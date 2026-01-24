@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 """
 Curated Podcast Generator
-Converts RSS feed scoring data into conversational podcast scripts.
+Converts RSS feed scoring data into conversational podcast scripts and generates audio.
 """
 
 import os
 import sys
 import json
 import requests
+import re
 from datetime import datetime, timedelta
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 import anthropic
 from dotenv import load_dotenv
 
@@ -21,6 +22,12 @@ SUPER_RSS_BASE_URL = "https://zirnhelt.github.io/super-rss-feed"
 SCORING_CACHE_URL = "https://raw.githubusercontent.com/zirnhelt/super-rss-feed/main/scored_articles_cache.json"
 FEED_URL = f"{SUPER_RSS_BASE_URL}/super-feed.json"
 
+# TTS Configuration
+TTS_VOICES = {
+    'riley': 'nova',    # Female voice for Riley
+    'casey': 'echo'     # More neutral voice for Casey
+}
+
 # Daily themes (Wednesday = Local News)
 DAILY_THEMES = {
     0: "AI/ML Infrastructure",        # Monday
@@ -31,6 +38,56 @@ DAILY_THEMES = {
     5: "Wild Card",                   # Saturday
     6: "Wild Card"                    # Sunday
 }
+
+def get_daily_filenames(theme_name):
+    """Get expected filenames for today's script and audio."""
+    date_str = datetime.now().strftime("%Y-%m-%d")
+    safe_theme = theme_name.replace(" ", "_").replace("&", "and").lower()
+    
+    script_filename = f"podcast_script_{date_str}_{safe_theme}.txt"
+    audio_filename = f"podcast_audio_{date_str}_{safe_theme}.mp3"
+    
+    return script_filename, audio_filename
+
+def check_existing_files(theme_name):
+    """Check if today's script and/or audio already exist."""
+    script_filename, audio_filename = get_daily_filenames(theme_name)
+    
+    script_exists = os.path.exists(script_filename)
+    audio_exists = os.path.exists(audio_filename)
+    
+    if script_exists:
+        print(f"📝 Found existing script: {script_filename}")
+    if audio_exists:
+        print(f"🎵 Found existing audio: {audio_filename}")
+    
+    return script_exists, audio_exists, script_filename, audio_filename
+
+def load_existing_script(script_filename):
+    """Load script content from existing file."""
+    try:
+        with open(script_filename, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # Extract just the script content (skip metadata header)
+        lines = content.split('\n')
+        script_start = 0
+        for i, line in enumerate(lines):
+            if line.startswith('# ') and ('Generated:' in line or 'Theme:' in line):
+                continue
+            elif line.strip() == '':
+                continue
+            else:
+                script_start = i
+                break
+        
+        script = '\n'.join(lines[script_start:])
+        print(f"✅ Loaded existing script ({len(script)} characters)")
+        return script
+        
+    except Exception as e:
+        print(f"❌ Error loading script: {e}")
+        return None
 
 def fetch_scoring_data():
     """Fetch article scores from the live super-rss-feed system."""
@@ -196,25 +253,169 @@ Generate the full script with [RILEY:] and [CASEY:] speaker tags."""
         print(f"❌ Error generating script: {e}")
         return None
 
+def parse_script_by_speaker(script):
+    """Parse script into segments by speaker."""
+    if not script:
+        return []
+    
+    # Split by speaker tags and clean up
+    segments = []
+    current_speaker = None
+    current_text = []
+    
+    for line in script.split('\n'):
+        line = line.strip()
+        
+        # Check for speaker tags
+        riley_match = re.match(r'\*\*RILEY:\*\*\s*(.*)', line)
+        casey_match = re.match(r'\*\*CASEY:\*\*\s*(.*)', line)
+        
+        if riley_match:
+            # Save previous segment
+            if current_speaker and current_text:
+                segments.append({
+                    'speaker': current_speaker,
+                    'text': ' '.join(current_text).strip()
+                })
+            current_speaker = 'riley'
+            current_text = [riley_match.group(1)] if riley_match.group(1) else []
+            
+        elif casey_match:
+            # Save previous segment
+            if current_speaker and current_text:
+                segments.append({
+                    'speaker': current_speaker,
+                    'text': ' '.join(current_text).strip()
+                })
+            current_speaker = 'casey'
+            current_text = [casey_match.group(1)] if casey_match.group(1) else []
+            
+        elif line and current_speaker:
+            # Skip metadata lines and empty lines
+            if not line.startswith('#') and not line.startswith('---') and not line.startswith('*End of'):
+                current_text.append(line)
+    
+    # Add final segment
+    if current_speaker and current_text:
+        segments.append({
+            'speaker': current_speaker,
+            'text': ' '.join(current_text).strip()
+        })
+    
+    # Filter out very short segments
+    segments = [s for s in segments if len(s['text']) > 10]
+    
+    print(f"🎭 Parsed script into {len(segments)} speaking segments")
+    return segments
+
+def generate_audio_from_script(script, output_filename):
+    """Convert script to audio using OpenAI TTS."""
+    print("🔊 Generating audio with OpenAI TTS...")
+    
+    # Check for OpenAI API key
+    openai_api_key = os.getenv('OPENAI_API_KEY')
+    if not openai_api_key:
+        print("❌ OPENAI_API_KEY not found in .env file")
+        print("   Add: OPENAI_API_KEY=your-key-here")
+        return None
+    
+    try:
+        # Import OpenAI (install with: pip install openai)
+        from openai import OpenAI
+        client = OpenAI(api_key=openai_api_key)
+        
+        # Parse script by speaker
+        segments = parse_script_by_speaker(script)
+        if not segments:
+            print("❌ No speaking segments found in script")
+            return None
+        
+        # Generate audio for each segment
+        audio_files = []
+        for i, segment in enumerate(segments):
+            speaker = segment['speaker']
+            text = segment['text']
+            voice = TTS_VOICES.get(speaker, 'alloy')
+            
+            print(f"  🎤 Generating audio {i+1}/{len(segments)} ({speaker}: {len(text)} chars)")
+            
+            # Generate TTS
+            response = client.audio.speech.create(
+                model="tts-1",  # or "tts-1-hd" for higher quality
+                voice=voice,
+                input=text,
+                speed=1.0
+            )
+            
+            # Save segment audio
+            segment_filename = f"temp_segment_{i:03d}_{speaker}.mp3"
+            with open(segment_filename, "wb") as f:
+                f.write(response.content)
+            
+            audio_files.append(segment_filename)
+        
+        print("🎵 Combining audio segments...")
+        
+        # Combine audio files (requires pydub: pip install pydub)
+        try:
+            from pydub import AudioSegment
+            
+            combined = AudioSegment.empty()
+            for audio_file in audio_files:
+                segment_audio = AudioSegment.from_mp3(audio_file)
+                combined += segment_audio
+                
+                # Add small pause between speakers (0.5 seconds)
+                combined += AudioSegment.silent(duration=500)
+            
+            # Export final podcast
+            combined.export(output_filename, format="mp3")
+            
+            # Clean up temporary files
+            for audio_file in audio_files:
+                os.remove(audio_file)
+            
+            print(f"✅ Generated podcast audio: {output_filename}")
+            
+            # Audio stats
+            duration_seconds = len(combined) / 1000
+            duration_minutes = duration_seconds / 60
+            print(f"   Duration: {duration_minutes:.1f} minutes")
+            print(f"   File size: {os.path.getsize(output_filename) / 1024 / 1024:.1f} MB")
+            
+            return output_filename
+            
+        except ImportError:
+            print("❌ pydub not installed. Install with: pip install pydub")
+            print("   Individual audio files created but not combined:")
+            for audio_file in audio_files:
+                print(f"   - {audio_file}")
+            return None
+            
+    except ImportError:
+        print("❌ OpenAI library not installed. Install with: pip install openai")
+        return None
+    except Exception as e:
+        print(f"❌ Error generating audio: {e}")
+        return None
+
 def save_script_to_file(script, theme_name):
     """Save the generated script to a file."""
     if not script:
         return None
     
     # Create filename with date and theme
-    date_str = datetime.now().strftime("%Y-%m-%d")
-    safe_theme = theme_name.replace(" ", "_").replace("&", "and").lower()
-    filename = f"podcast_script_{date_str}_{safe_theme}.txt"
+    script_filename, _ = get_daily_filenames(theme_name)
     
     try:
-        with open(filename, 'w', encoding='utf-8') as f:
-            f.write(f"# Curated Podcast Script - {date_str}\n")
+        with open(script_filename, 'w', encoding='utf-8') as f:
+            f.write(f"# Curated Podcast Script - {datetime.now().strftime('%Y-%m-%d')}\n")
             f.write(f"# Theme: {theme_name}\n")
             f.write(f"# Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
             f.write(script)
         
-        print(f"💾 Saved script to: {filename}")
-        return filename
+        print(f"💾 Saved script to: {script_filename}")
+        return script_filename
         
     except Exception as e:
         print(f"❌ Error saving script: {e}")
@@ -229,33 +430,65 @@ def main():
     today_theme = DAILY_THEMES[today_weekday]
     print(f"📅 Today's theme: {today_theme}")
     
-    # Fetch data from live system
-    scoring_data = fetch_scoring_data()
-    current_articles = fetch_feed_data()
+    # Check for existing files
+    script_exists, audio_exists, script_filename, audio_filename = check_existing_files(today_theme)
     
-    if not scoring_data or not current_articles:
-        print("❌ Failed to fetch data. Exiting.")
+    # If both exist, we're done
+    if script_exists and audio_exists:
+        print("✅ Both script and audio already exist for today!")
+        print(f"   Script: {script_filename}")
+        print(f"   Audio:  {audio_filename}")
         return
     
-    # Categorize articles
-    theme_articles, general_articles = categorize_articles_by_theme(current_articles, today_weekday)
+    # Load or generate script
+    if script_exists:
+        print("📖 Using existing script...")
+        script = load_existing_script(script_filename)
+    else:
+        print("🆕 Generating new script...")
+        
+        # Fetch data from live system
+        scoring_data = fetch_scoring_data()
+        current_articles = fetch_feed_data()
+        
+        if not scoring_data or not current_articles:
+            print("❌ Failed to fetch data. Exiting.")
+            return
+        
+        # Categorize articles
+        theme_articles, general_articles = categorize_articles_by_theme(current_articles, today_weekday)
+        
+        # Add AI scores to articles
+        theme_articles = get_article_scores(theme_articles, scoring_data)
+        general_articles = get_article_scores(general_articles, scoring_data)
+        
+        print(f"📊 Ready to generate podcast with {len(current_articles)} total articles")
+        
+        # Generate podcast script
+        script = generate_podcast_script(general_articles, theme_articles, today_theme)
+        
+        if not script:
+            print("❌ Failed to generate script. Exiting.")
+            return
+        
+        # Save script to file
+        script_filename = save_script_to_file(script, today_theme)
     
-    # Add AI scores to articles
-    theme_articles = get_article_scores(theme_articles, scoring_data)
-    general_articles = get_article_scores(general_articles, scoring_data)
+    # Generate audio if needed
+    if not audio_exists and script:
+        audio_file = generate_audio_from_script(script, audio_filename)
+        
+        if audio_file:
+            print(f"🎉 Podcast complete!")
+            print(f"   Script: {script_filename}")
+            print(f"   Audio:  {audio_file}")
+        else:
+            print(f"📝 Script ready: {script_filename}")
+            print("🔊 Audio generation failed - check requirements")
+    elif audio_exists:
+        print(f"🎵 Audio already exists: {audio_filename}")
     
-    print(f"📊 Ready to generate podcast with {len(current_articles)} total articles")
-    
-    # Generate podcast script
-    script = generate_podcast_script(general_articles, theme_articles, today_theme)
-    
-    # Save script to file
-    if script:
-        filename = save_script_to_file(script, today_theme)
-        if filename:
-            print(f"🎉 Podcast script ready: {filename}")
-    
-    print("✅ Script generation complete!")
+    print("✅ Generation complete!")
 
 if __name__ == "__main__":
     main()
