@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Quick RSS Feed Fixer for Cariboo Tech Progress Podcast
+Quick RSS Feed Fixer for Range Signals Podcast
 Fixes XML parsing issues and generates clean RSS feed
 """
 
@@ -11,7 +11,7 @@ from datetime import datetime
 
 def generate_clean_rss():
     """Generate a clean, properly escaped RSS feed."""
-    print("📡 Generating clean RSS feed for Cariboo Tech Progress...")
+    print("📡 Generating clean RSS feed for Range Signals...")
     
     # Find all episode files
     audio_files = glob.glob("podcast_audio_*.mp3")
@@ -35,7 +35,7 @@ def generate_clean_rss():
                 pub_date = datetime.now().strftime("%a, %d %b %Y 06:00:00 GMT")
             
             episodes.append({
-                'title': f"Cariboo Tech Progress - {theme}",
+                'title': f"Range Signals - {theme}",
                 'audio_file': audio_file,
                 'pub_date': pub_date,
                 'file_size': file_size,
@@ -48,14 +48,14 @@ def generate_clean_rss():
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">',
         '<channel>',
-        '<title>Cariboo Tech Progress</title>',
+        '<title>Range Signals</title>',
         '<link>https://zirnhelt.github.io/curated-podcast-generator/</link>',
         '<language>en-us</language>',
         '<copyright>Erich\'s AI Curator</copyright>',
-        '<itunes:subtitle>Technology and society in rural BC with Riley and Casey</itunes:subtitle>',
+        '<itunes:subtitle>Tech news for rural British Columbia</itunes:subtitle>',
         '<itunes:author>Riley and Casey</itunes:author>',
-        '<itunes:summary>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region.</itunes:summary>',
-        '<description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region.</description>',
+        '<itunes:summary>Technology news and thoughtful conversation about tech in rural BC. Daily episodes with weekly themes.</itunes:summary>',
+        '<description>Technology news and thoughtful conversation about tech in rural BC. Daily episodes with weekly themes.</description>',
         '<itunes:owner>',
         '<itunes:name>Erich\'s AI Curator</itunes:name>',
         '<itunes:email>podcast@example.com</itunes:email>',
@@ -75,7 +75,7 @@ def generate_clean_rss():
             f'<title>{escaped_title}</title>',
             '<link>https://zirnhelt.github.io/curated-podcast-generator/</link>',
             f'<pubDate>{episode["pub_date"]}</pubDate>',
-            '<description>Technology and societal progress in the Cariboo region.</description>',
+            '<description>Technology and society in rural British Columbia.</description>',
             f'<enclosure url="https://zirnhelt.github.io/curated-podcast-generator/{episode["audio_file"]}" length="{episode["file_size"]}" type="audio/mpeg"/>',
             f'<guid>https://zirnhelt.github.io/curated-podcast-generator/{episode["audio_file"]}</guid>',
             '<itunes:duration>30:00</itunes:duration>',

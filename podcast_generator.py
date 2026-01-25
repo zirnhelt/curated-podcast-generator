@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Curated Podcast Generator - Cariboo Focus Edition with Memory System & Citations
-Theme: "Technological and Societal Progress in the Cariboo" (pronounced CARE-ih-boo, like caribou)
+Range Signals - Tech News for Rural BC
+Theme: Technology and society in rural British Columbia
 Converts RSS feed scoring data into conversational podcast scripts and generates audio.
-Includes episode memory (2-3 weeks) and host personality tracking for continuity.
+Includes episode memory (2-3 weeks), host personality tracking, and 7-day article deduplication.
 Generates citations file for each episode.
 """
 
@@ -16,6 +16,7 @@ from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Optional, Tuple
 import anthropic
 from dotenv import load_dotenv
+from dedup_articles import deduplicate_articles, format_evolving_story_context
 
 # Load environment variables
 load_dotenv()
@@ -36,7 +37,7 @@ EPISODE_MEMORY_FILE = 'episode_memory.json'
 HOST_MEMORY_FILE = 'host_personality_memory.json'
 MEMORY_RETENTION_DAYS = 21  # 3 weeks of episode memory
 
-# Daily themes for Deep Dive - focused on Cariboo tech/society connections
+# Daily themes for Deep Dive - focused on tech/society connections
 DAILY_THEMES = {
     0: "Community-Controlled Infrastructure",    # Monday - local control of tech
     1: "Sustainable Innovation",                 # Tuesday - climate tech that works here
@@ -53,8 +54,8 @@ def load_episode_memory():
         with open(EPISODE_MEMORY_FILE, 'r', encoding='utf-8') as f:
             memory = json.load(f)
         
-        # Clean old episodes (older than MEMORY_RETENTION_DAYS) using Pacific time
-        cutoff_date = get_pacific_now() - timedelta(days=MEMORY_RETENTION_DAYS)
+        # Clean old episodes (older than MEMORY_RETENTION_DAYS)
+        cutoff_date = datetime.now() - timedelta(days=MEMORY_RETENTION_DAYS)
         recent_episodes = []
         
         for episode in memory.get('recent_episodes', []):
@@ -88,13 +89,13 @@ def load_host_memory():
         print("🎭 No host memory found, initializing defaults")
         return {
             "riley": {
-                "consistent_interests": ["rural tech deployment", "community infrastructure", "practical solutions"],
-                "recurring_questions": ["How can this work here?", "What would responsible deployment look like?"],
+                "consistent_interests": ["tech implementation", "infrastructure design", "practical deployment"],
+                "recurring_questions": ["How would this actually work?", "What's the implementation challenge?"],
                 "evolving_opinions": {}
             },
             "casey": {
-                "consistent_interests": ["digital equity", "community development", "rural innovation"],
-                "recurring_questions": ["How does this serve people like us?", "What can we learn from other rural communities?"],
+                "consistent_interests": ["community impact", "accessibility", "technology adaptation"],
+                "recurring_questions": ["Who benefits from this?", "What's the broader context?"],
                 "evolving_opinions": {}
             }
         }
@@ -148,13 +149,13 @@ def extract_host_positions_from_script(script):
     try:
         client = anthropic.Anthropic(api_key=api_key)
         
-        prompt = f"""Extract 2-3 notable positions or viewpoints that Riley and Casey expressed in this script. Focus on their distinct perspectives on rural tech and community development.
+        prompt = f"""Extract 2-3 notable positions or viewpoints that Riley and Casey expressed in this script. Focus on their distinct perspectives on tech and community.
 
 Script excerpt:
 {script[:2000]}...
 
 Return a simple JSON array of strings prefixed with speaker name, like:
-["Riley emphasized community ownership of infrastructure", "Casey highlighted digital equity concerns in rural areas", "Riley supported incremental tech adoption over wholesale changes"]
+["Riley emphasized practical implementation", "Casey highlighted accessibility concerns", "Riley supported incremental adoption"]
 
 Just the JSON array, no other text."""
 
@@ -247,20 +248,9 @@ def format_memory_for_prompt(episode_memory, host_memory):
     
     return context
 
-def get_pacific_now():
-    """Get current datetime in Pacific timezone."""
-    try:
-        from zoneinfo import ZoneInfo
-        return datetime.now(ZoneInfo("America/Vancouver"))
-    except ImportError:
-        # Fallback for older Python versions
-        import pytz
-        return datetime.now(pytz.timezone("America/Vancouver"))
-
 def get_daily_filenames(theme_name):
-    """Get expected filenames for today's script and audio using Pacific timezone."""
-    pacific_now = get_pacific_now()
-    date_str = pacific_now.strftime("%Y-%m-%d")
+    """Get expected filenames for today's script and audio."""
+    date_str = datetime.now().strftime("%Y-%m-%d")
     safe_theme = theme_name.replace(" ", "_").replace("&", "and").lower()
     
     script_filename = f"podcast_script_{date_str}_{safe_theme}.txt"
@@ -278,7 +268,7 @@ def check_existing_files(theme_name):
     citations_exist = os.path.exists(citations_filename)
     
     if script_exists:
-        print(f"📝 Found existing script: {script_filename}")
+        print(f"📄 Found existing script: {script_filename}")
     if audio_exists:
         print(f"🎵 Found existing audio: {audio_filename}")
     if citations_exist:
@@ -352,10 +342,10 @@ def fetch_feed_data():
         return []
 
 def categorize_articles_for_deep_dive(articles, theme_day):
-    """Categorize articles for deep dive segment based on Cariboo focus."""
+    """Categorize articles for deep dive segment based on theme focus."""
     theme = DAILY_THEMES[theme_day]
     
-    # Keywords for each Cariboo-focused theme
+    # Keywords for each theme
     theme_keywords = {
         "Community-Controlled Infrastructure": ["infrastructure", "broadband", "internet", "community", "local control", "municipal", "cooperative"],
         "Sustainable Innovation": ["climate", "solar", "renewable", "battery", "sustainability", "environment", "green tech", "carbon"],
@@ -388,7 +378,7 @@ def categorize_articles_for_deep_dive(articles, theme_day):
     
     # Take top 4 articles
     deep_dive_articles = theme_articles[:4]
-    print(f"🎯 Found {len(deep_dive_articles)} articles for '{theme}' (Cariboo focus)")
+    print(f"🎯 Found {len(deep_dive_articles)} articles for '{theme}'")
     
     return deep_dive_articles
 
@@ -416,25 +406,15 @@ def get_article_scores(articles, scoring_data):
     return scored_articles
 
 def get_current_date_info():
-    """Get properly formatted current date and day in Pacific timezone."""
-    try:
-        from zoneinfo import ZoneInfo
-        # Use Pacific timezone (handles PST/PDT automatically)
-        pacific_tz = ZoneInfo("America/Vancouver") 
-        now = datetime.now(pacific_tz)
-    except ImportError:
-        # Fallback for older Python versions
-        import pytz
-        pacific_tz = pytz.timezone("America/Vancouver")
-        now = datetime.now(pacific_tz)
-    
+    """Get properly formatted current date and day."""
+    now = datetime.now()
     weekday = now.strftime("%A")
     date_str = now.strftime("%B %d, %Y")
     
     return weekday, date_str
 
 def generate_episode_description(news_articles, deep_dive_articles, theme_name):
-    """Generate clean episode description for podcast apps with citations at bottom."""
+    """Generate compelling episode description for podcast apps."""
     weekday, formatted_date = get_current_date_info()
     
     # Get top story titles for teaser
@@ -450,36 +430,22 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name):
     else:
         stories_preview = "the week's top tech developments"
     
-    # Clean description without internal guidance
-    description = f"""Riley and Casey explore technology and society in rural communities. Today's focus: {theme_name}.
+    description = f"""Technology news for rural British Columbia. Today's theme: {theme_name}.
 
-NEWS ROUNDUP: We break down {stories_preview}, and explore what these developments mean for communities like ours.
+NEWS ROUNDUP: {stories_preview}, plus the week's most relevant tech developments.
 
-RURAL CONNECTIONS: Deep dive into {theme_name.lower()}, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.
+DEEP DIVE: Riley and Casey explore {theme_name.lower()}, discussing how technology intersects with rural and remote communities.
 
-Hosts: Riley (rural tech systems) and Casey (community development)."""
+Hosts: Riley (tech systems) and Casey (community development). 
+New episodes daily with weekly themes.
+
+Range Signals - daily tech news with a rural perspective."""
     
-    # Add simple citations at bottom
-    citations_text = "\n\nSources:\n"
-    
-    # Add news sources
-    for i, article in enumerate(news_articles[:12], 1):  # Updated to 12 for longer news segment
-        source_name = article.get('authors', [{}])[0].get('name', 'Unknown Source')
-        article_title = article.get('title', 'Untitled')[:60] + ("..." if len(article.get('title', '')) > 60 else "")
-        citations_text += f"{i}. {source_name}: {article_title}\n"
-    
-    # Add deep dive sources  
-    for i, article in enumerate(deep_dive_articles, len(news_articles[:12]) + 1):
-        source_name = article.get('authors', [{}])[0].get('name', 'Unknown Source')
-        article_title = article.get('title', 'Untitled')[:60] + ("..." if len(article.get('title', '')) > 60 else "")
-        citations_text += f"{i}. {source_name}: {article_title}\n"
-    
-    return description + citations_text
+    return description
 
 def generate_citations_file(news_articles, deep_dive_articles, theme_name):
     """Generate citations file for the episode."""
-    pacific_now = get_pacific_now()
-    date_str = pacific_now.strftime("%Y-%m-%d")
+    date_str = datetime.now().strftime("%Y-%m-%d")
     weekday, formatted_date = get_current_date_info()
     
     # Generate episode description
@@ -490,9 +456,9 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name):
             "date": date_str,
             "formatted_date": f"{weekday}, {formatted_date}",
             "theme": theme_name,
-            "title": f"Cariboo Tech Progress - {theme_name}",
+            "title": f"Range Signals - {theme_name}",
             "description": episode_description,
-            "generated_at": pacific_now.isoformat()
+            "generated_at": datetime.now().isoformat()
         },
         "segments": {
             "news_roundup": {
@@ -500,7 +466,7 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name):
                 "articles": []
             },
             "deep_dive": {
-                "title": f"Cariboo Connections - {theme_name}",
+                "title": f"{theme_name}",
                 "articles": []
             }
         }
@@ -545,8 +511,8 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name):
         return None
 
 def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory):
-    """Generate conversational podcast script with Cariboo focus including memory context."""
-    print("🎙️ Generating Cariboo-focused podcast script with Claude (including memory)...")
+    """Generate conversational podcast script for Range Signals with deduplication and natural tone."""
+    print("🎙️ Generating Range Signals podcast script with Claude (including memory & dedup)...")
     
     # Check for API key
     api_key = os.getenv('ANTHROPIC_API_KEY')
@@ -554,11 +520,16 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         print("❌ ANTHROPIC_API_KEY not found in .env file")
         return None
     
+    # Deduplicate articles against last 7 days
+    print("🔍 Checking for duplicate articles from last 7 days...")
+    deduped_articles, evolving_stories = deduplicate_articles(all_articles)
+    deduped_deep_dive, evolving_deep_dive = deduplicate_articles(deep_dive_articles)
+    
     # Get current date info
     weekday, date_str = get_current_date_info()
     
     # Prepare articles for script generation
-    top_news = all_articles[:12]  # More stories for longer news segment (20 minutes target)
+    top_news = deduped_articles[:8]  # Fewer stories for more focused news coverage
     
     # Create article summaries for Claude
     news_text = "\n".join([
@@ -568,67 +539,71 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
     
     deep_dive_text = "\n".join([
         f"- [{a.get('authors', [{}])[0].get('name', 'Unknown')}] {a.get('title', '')}\n  {a.get('summary', '')[:200]}... (AI Score: {a.get('ai_score', 0)})"
-        for a in deep_dive_articles
+        for a in deduped_deep_dive
     ])
     
     # Format memory context
     memory_context = format_memory_for_prompt(episode_memory, host_memory)
     
-    prompt = f"""Create a 30-minute DAILY podcast script for "{weekday}, {date_str}" focusing on "Technological and Societal Progress in the Caribou Region."
+    # Format evolving story context
+    evolving_context = format_evolving_story_context(evolving_stories)
+    
+    prompt = f"""Create a 30-minute DAILY podcast script for "{weekday}, {date_str}" - Range Signals: Tech news for rural BC.
 
-PODCAST THEME: "Technological and Societal Progress in the Caribou Region" 
-NOTE: For TTS pronunciation, use "Caribou" (like the animal) in all spoken content, but keep "Cariboo" in any written references
-How do rural and remote communities like ours grow and evolve alongside technology that typically benefits urban areas first? Focus on responsible, evolutionary approaches to progress.
+PODCAST CONCEPT: Technology and society in rural British Columbia.
+How do stories about tech, innovation, and infrastructure connect to life outside cities? Professional news delivery with thoughtful regional perspective.
 
 THIS IS A DAILY PODCAST - we publish every day with weekly themes. Say "today's episode" not "weekly show."
 
 {memory_context}
 
-HOSTS:
-- Riley (she/her): Tech systems thinker with rural roots, engineering background, asks "how can this work here?" and "what would responsible deployment look like?"
-- Casey (they/them): Community development focus, asks "how does this serve people like us?" and "what are we learning from other rural innovators?"
+{evolving_context}
 
-IMPORTANT: These are AI hosts - do not include personal human experiences like "my dad" or family references. Keep it professional and focused on rural tech perspectives.
+HOSTS:
+- Riley (she/her): Tech systems thinker, engineering background, asks practical questions about implementation
+- Casey (they/them): Community development focus, interested in how tech serves different contexts
 
 EPISODE STRUCTURE:
 
-**SEGMENT 1 (20 minutes): "The Week's Tech" - Professional News Roundup**
-Professional news anchor delivery covering these TOP-SCORED articles (use ALL of them for longer segment):
+**SEGMENT 1 (18 minutes): "Tech News Roundup"**
+Professional news delivery covering these TOP-SCORED articles:
 {news_text}
 
-Style: Professional news anchor format - structured, authoritative, informative. Each story format:
-- Lead with headline: "Our top story today..."
-- Brief context: "According to [SOURCE]..."  
-- Key facts in clear, concise language
-- Brief analysis of rural implications
-- Clean transitions: "In other technology news..." / "Also making headlines..."
-- 2-3 minutes per story, cover ALL stories provided
-- Professional, authoritative tone throughout
+Style: Structured, professional like CBC Radio News. Clear transitions, concise summaries, brief analysis. Each story takes 2-3 minutes max.
+
+IMPORTANT - Evolving Stories:
+{evolving_context if evolving_context else "No evolving stories today."}
+
+When covering an evolving story, be EXPLICIT: "We covered this on [date], here's the update..." Then deliver the new information.
+
+Regional angle: ONLY mention rural/regional connections when the story directly involves infrastructure, access, or deployment in smaller communities. Otherwise, just deliver the news professionally. Don't force the connection.
 
 ## [AD BREAK PLACEHOLDER - Future Sponsorship Spot]
-[NATURAL TRANSITION: "We'll be right back after this short break to dive deeper into today's theme: {theme_name}"]
+[NATURAL TRANSITION: "We'll be right back after this short break to explore today's theme: {theme_name}"]
 
-**SEGMENT 2 (10 minutes): "Caribou Connections - {theme_name}"**
-VERY CONVERSATIONAL analysis - like two friends chatting over coffee about tech:
+**SEGMENT 2 (12 minutes): "Deep Dive - {theme_name}"**
+CONVERSATIONAL exploration of today's theme through these articles:
 {deep_dive_text}
 
-Style: Relaxed, natural conversation. Let personalities flow - interrupt each other, build on ideas, use "you know?" and "right?" naturally. Disagree sometimes, then find common ground. Ask each other questions like "What do you think about..." Connect to: rural innovation, community-controlled tech, lessons for smaller communities. Build to strong thematic conclusion about progress in our region.
+Style: Natural conversation between friends. Build on each other's ideas, interrupt naturally, use "you know?" and "right?". Disagree and find common ground.
+
+Theme exploration: Let the theme guide the discussion - how does {theme_name} show up in these stories? What patterns emerge? What's interesting about how this tech works in different contexts?
+
+If there are evolving stories in this segment, reference them NATURALLY: "Remember we talked about this last week? Turns out..." - conversational, not formal.
+
+AVOID: Performative framing like "rural communities can't be afterthoughts" or "here's what this means for communities like ours" on every topic. Trust the conversation to make connections organically. Be curious, not preachy.
 
 CRITICAL REQUIREMENTS:
 - NO STAGE DIRECTIONS: Never write "(shuffles papers)", "(laughs)", "*chuckles*" or ANY performance cues
-- SEGMENT 1: Professional news anchor delivery - cover ALL provided articles in headline+summary format
-- SEGMENT 2: Natural friends conversation - interruptions, casual language, building on each other's thoughts
-- DAILY FREQUENCY: Say "today's episode" or "on today's show" - NEVER "weekly show" or "this week's episode"
-- ONGOING MANDATE: Don't say "as we continue our week" - this is the podcast's permanent mission, not a limited series
-- NO HUMAN PRETENSE: These are AI hosts - no personal family references, keep it professional
-- CARIBOU PRONUNCIATION: Use "Caribou" in all spoken content (for TTS), keep "Cariboo" only in written references
-- AVOID REPETITION: Don't repeat the same points - let variety and personality flow
-- Regional lens: "What does this mean for communities like ours?" "How could this work in rural areas?"
+- SEGMENT 1: Professional news delivery - structured, clear, informative
+- SEGMENT 2: Natural conversation - interruptions, casual language, building on ideas
+- DAILY FREQUENCY: Say "today's episode" or "on today's show" - NEVER "weekly show"
+- TONE: Curious and conversational, not preachy or performative
+- REGIONAL LENS: Natural when relevant, not forced on every story
 - USE MEMORY: Reference past episodes naturally when relevant ("Remember when we talked about...")
-- FEEDBACK INVITATION: End with "We'd love to hear your thoughts" but don't specify how (we'll add contact info later)
-- Current date is {weekday}, {date_str} - use this correctly
+- Current date is {weekday}, {date_str}
 
-OUTPUT: ~4,500-5,000 words with **RILEY:** and **CASEY:** speaker tags only."""
+OUTPUT: ~4,000-4,500 words with **RILEY:** and **CASEY:** speaker tags only."""
 
     try:
         client = anthropic.Anthropic(api_key=api_key)
@@ -640,7 +615,7 @@ OUTPUT: ~4,500-5,000 words with **RILEY:** and **CASEY:** speaker tags only."""
         )
         
         script = response.content[0].text
-        print("✅ Generated Cariboo-focused podcast script successfully!")
+        print("✅ Generated Range Signals podcast script successfully!")
         return script
         
     except Exception as e:
@@ -846,14 +821,12 @@ def generate_podcast_rss_feed():
             # Convert date for RSS
             try:
                 date_obj = datetime.strptime(episode_date, "%Y-%m-%d")
-                # RSS pubDate should be in GMT
                 pub_date = date_obj.strftime("%a, %d %b %Y 06:00:00 GMT")
             except:
-                pacific_now = get_pacific_now()
-                pub_date = pacific_now.strftime("%a, %d %b %Y 06:00:00 GMT")
+                pub_date = datetime.now().strftime("%a, %d %b %Y 06:00:00 GMT")
             
             episodes.append({
-                'title': f"Cariboo Tech Progress - {theme}",
+                'title': f"Range Signals - {theme}",
                 'audio_file': audio_file,
                 'pub_date': pub_date,
                 'file_size': file_size,
@@ -869,14 +842,14 @@ def generate_podcast_rss_feed():
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/">',
         '<channel>',
-        '<title>Cariboo Tech Progress</title>',
+        '<title>Range Signals</title>',
         '<link>https://zirnhelt.github.io/curated-podcast-generator/</link>',
         '<language>en-us</language>',
         '<copyright>© 2026 Erich\'s AI Curator</copyright>',
-        '<itunes:subtitle>Technology and society in rural BC with Riley and Casey</itunes:subtitle>',
+        '<itunes:subtitle>Tech news for rural British Columbia</itunes:subtitle>',
         '<itunes:author>Riley and Casey</itunes:author>',
-        '<itunes:summary>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region. Riley brings tech systems thinking with rural roots, while Casey focuses on community development. New episodes every day with weekly themes.</itunes:summary>',
-        '<description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region.</description>',
+        '<itunes:summary>Technology news and thoughtful conversation about tech in rural BC. Daily episodes with weekly themes. Riley brings tech systems thinking, while Casey focuses on community development. New episodes every day with weekly themes.</itunes:summary>',
+        '<description>Technology news and thoughtful conversation about tech in rural BC. Daily episodes with weekly themes.</description>',
         '<itunes:owner>',
         '<itunes:name>Erich\'s AI Curator</itunes:name>',
         '<itunes:email>podcast@example.com</itunes:email>',
@@ -888,7 +861,7 @@ def generate_podcast_rss_feed():
         '<itunes:category text="Society &amp; Culture"/>',
         '<itunes:explicit>false</itunes:explicit>',
         '<itunes:type>episodic</itunes:type>',
-        f'<lastBuildDate>{get_pacific_now().strftime("%a, %d %b %Y %H:%M:%S GMT")}</lastBuildDate>'
+        f'<lastBuildDate>{datetime.now().strftime("%a, %d %b %Y %H:%M:%S GMT")}</lastBuildDate>'
     ]
     
     # Add episodes with rich descriptions and proper XML escaping
@@ -905,7 +878,7 @@ def generate_podcast_rss_feed():
             f'<itunes:summary>{escaped_description}</itunes:summary>',
             f'<itunes:subtitle>Daily tech progress - {episode["theme"]}</itunes:subtitle>',
             f'<enclosure url="https://zirnhelt.github.io/curated-podcast-generator/{episode["audio_file"]}" length="{episode["file_size"]}" type="audio/mpeg"/>',
-            f'<guid isPermaLink="false">cariboo-tech-progress-{episode["episode_date"]}</guid>',
+            f'<guid isPermaLink="false">range-signals-{episode["episode_date"]}</guid>',
             '<itunes:duration>30:00</itunes:duration>',
             '<itunes:explicit>false</itunes:explicit>',
             '<itunes:episodeType>full</itunes:episodeType>',
@@ -931,13 +904,12 @@ def save_script_to_file(script, theme_name):
         return None
     
     script_filename, _, _ = get_daily_filenames(theme_name)
-    pacific_now = get_pacific_now()
     
     try:
         with open(script_filename, 'w', encoding='utf-8') as f:
-            f.write(f"# Cariboo Tech Progress Podcast Script - {pacific_now.strftime('%Y-%m-%d')}\n")
+            f.write(f"# Range Signals Podcast Script - {datetime.now().strftime('%Y-%m-%d')}\n")
             f.write(f"# Theme: {theme_name}\n")
-            f.write(f"# Generated: {pacific_now.strftime('%Y-%m-%d %H:%M:%S %Z')}\n\n")
+            f.write(f"# Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
             f.write(script)
         
         print(f"💾 Saved script to: {script_filename}")
@@ -948,12 +920,11 @@ def save_script_to_file(script, theme_name):
         return None
 
 def main():
-    print("🏔️ Cariboo Tech Progress Podcast Generator with Memory & Citations")
+    print("🔊️ Range Signals Podcast Generator with Memory & Citations")
     print("=" * 60)
     
-    # Get today's theme using Pacific timezone
-    pacific_now = get_pacific_now()
-    today_weekday = pacific_now.weekday()
+    # Get today's theme
+    today_weekday = datetime.now().weekday()
     today_theme = DAILY_THEMES[today_weekday]
     weekday, date_str = get_current_date_info()
     print(f"📅 {weekday}, {date_str} - Deep dive theme: {today_theme}")
@@ -988,11 +959,11 @@ def main():
                     # Add AI scores to articles
                     scored_articles = get_article_scores(current_articles, scoring_data)
                     
-                    # Get articles for deep dive (Cariboo-themed)
+                    # Get articles for deep dive
                     deep_dive_articles = categorize_articles_for_deep_dive(scored_articles, today_weekday)
                     
                     # Generate citations file
-                    citations_file = generate_citations_file(scored_articles[:12], deep_dive_articles, today_theme)
+                    citations_file = generate_citations_file(scored_articles[:8], deep_dive_articles, today_theme)
                     
                     if citations_file:
                         print(f"✅ Generated citations: {citations_file}")
@@ -1014,7 +985,7 @@ def main():
         print("📖 Using existing script...")
         script = load_existing_script(script_filename)
     else:
-        print("🆕 Generating new Cariboo-focused script with memory context...")
+        print("🆕 Generating new Range Signals script with memory context...")
         
         # Fetch data from live system
         scoring_data = fetch_scoring_data()
@@ -1027,18 +998,18 @@ def main():
         # Add AI scores to articles
         scored_articles = get_article_scores(current_articles, scoring_data)
         
-        # Get articles for deep dive (Cariboo-themed)
+        # Get articles for deep dive
         deep_dive_articles = categorize_articles_for_deep_dive(scored_articles, today_weekday)
         
-        print(f"📊 Ready to generate Cariboo Tech Progress podcast:")
+        print(f"📊 Ready to generate Range Signals podcast:")
         print(f"   News roundup: Top {min(8, len(scored_articles))} articles by score")
-        print(f"   Cariboo connections: {len(deep_dive_articles)} articles for {today_theme}")
+        print(f"   Deep dive: {len(deep_dive_articles)} articles for {today_theme}")
         print(f"   Memory context: {len(episode_memory.get('recent_episodes', []))} recent episodes")
         
         # Generate citations file
-        citations_file = generate_citations_file(scored_articles[:12], deep_dive_articles, today_theme)
+        citations_file = generate_citations_file(scored_articles[:8], deep_dive_articles, today_theme)
         
-        # Generate podcast script with memory and Cariboo focus
+        # Generate podcast script with memory and dedup
         script = generate_podcast_script(scored_articles, deep_dive_articles, today_theme, episode_memory, host_memory)
         
         if not script:
@@ -1050,7 +1021,7 @@ def main():
         
         # Update memory with new episode
         if script:
-            current_date = get_pacific_now().strftime("%Y-%m-%d")
+            current_date = datetime.now().strftime("%Y-%m-%d")
             update_episode_memory(script, today_theme, current_date)
             update_host_memory(script)
     
@@ -1059,7 +1030,7 @@ def main():
         audio_file = generate_audio_from_script(script, audio_filename)
         
         if audio_file:
-            print(f"🎉 Cariboo Tech Progress podcast complete!")
+            print(f"🎉 Range Signals podcast complete!")
             print(f"   Script: {script_filename}")
             print(f"   Audio:  {audio_file}")
             print(f"   Citations: {citations_filename}")
@@ -1072,7 +1043,7 @@ def main():
     # Generate RSS feed for podcast apps
     generate_podcast_rss_feed()
     
-    print("✅ Cariboo Tech Progress generation complete!")
+    print("✅ Range Signals generation complete!")
 
 if __name__ == "__main__":
     main()
