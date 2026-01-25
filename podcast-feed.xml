@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+<title>Cariboo Tech Progress</title>
+<link>https://zirnhelt.github.io/curated-podcast-generator/</link>
+<language>en-us</language>
+<copyright>© 2026 Erich's AI Curator</copyright>
+<itunes:subtitle>Technology and society in rural BC with Riley and Casey</itunes:subtitle>
+<itunes:author>Riley and Casey</itunes:author>
+<itunes:summary>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region. Riley brings tech systems thinking with rural roots, while Casey focuses on community development. New episodes every day with weekly themes.</itunes:summary>
+<description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region.</description>
+<itunes:owner>
+<itunes:name>Erich's AI Curator</itunes:name>
+<itunes:email>podcast@example.com</itunes:email>
+</itunes:owner>
+<itunes:image href="https://zirnhelt.github.io/curated-podcast-generator/podcast-cover.png"/>
+<itunes:category text="Technology">
+<itunes:category text="News"/>
+</itunes:category>
+<itunes:category text="Society &amp; Culture"/>
+<itunes:explicit>false</itunes:explicit>
+<itunes:type>episodic</itunes:type>
+<lastBuildDate>Sun, 25 Jan 2026 04:08:21 GMT</lastBuildDate>
+<item>
+<title>Cariboo Tech Progress - Regional Resilience</title>
+<link>https://zirnhelt.github.io/curated-podcast-generator/</link>
+<pubDate>Sun, 25 Jan 2026 06:00:00 GMT</pubDate>
+<description>Daily tech conversations for rural communities. Today's focus: Regional Resilience.
+
+NEWS ROUNDUP: We break down [CFJC Today Kamloops] Week in Review: Week of January 19 and [GN AI ML Infrastructure] AI Infrastructure Could Triple to $1.4 Trillion by 2030: Here's the Best Stock to Buy for 2026, plus 1 more stories, and explore what these developments mean for communities like ours in the Cariboo region.
+
+RURAL CONNECTIONS: Riley and Casey dive deep into regional resilience, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.
+
+Hosts: Riley (rural tech systems) and Casey (community development). 
+New episodes daily with weekly themes.
+
+This is a daily show - not weekly! - exploring how technology serves (or could better serve) rural communities.</description>
+<itunes:summary>Daily tech conversations for rural communities. Today's focus: Regional Resilience.
+
+NEWS ROUNDUP: We break down [CFJC Today Kamloops] Week in Review: Week of January 19 and [GN AI ML Infrastructure] AI Infrastructure Could Triple to $1.4 Trillion by 2030: Here's the Best Stock to Buy for 2026, plus 1 more stories, and explore what these developments mean for communities like ours in the Cariboo region.
+
+RURAL CONNECTIONS: Riley and Casey dive deep into regional resilience, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.
+
+Hosts: Riley (rural tech systems) and Casey (community development). 
+New episodes daily with weekly themes.
+
+This is a daily show - not weekly! - exploring how technology serves (or could better serve) rural communities.</itunes:summary>
+<itunes:subtitle>Daily tech progress - Regional Resilience</itunes:subtitle>
+<enclosure url="https://zirnhelt.github.io/curated-podcast-generator/podcast_audio_2026-01-25_regional_resilience.mp3" length="3624045" type="audio/mpeg"/>
+<guid isPermaLink="false">cariboo-tech-progress-2026-01-25</guid>
+<itunes:duration>30:00</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+<itunes:episodeType>full</itunes:episodeType>
+</item>
+<item>
+<title>Cariboo Tech Progress - Cariboo Innovation Stories</title>
+<link>https://zirnhelt.github.io/curated-podcast-generator/</link>
+<pubDate>Sat, 24 Jan 2026 06:00:00 GMT</pubDate>
+<description>Daily tech conversations for rural communities. Today's focus: Cariboo Innovation Stories.
+
+NEWS ROUNDUP: We break down [CFJC Today Kamloops] Week in Review: Week of January 19 and [GN AI ML Infrastructure] AI Infrastructure Could Triple to $1.4 Trillion by 2030: Here's the Best Stock to Buy for 2026, plus 1 more stories, and explore what these developments mean for communities like ours in the Cariboo region.
+
+RURAL CONNECTIONS: Riley and Casey dive deep into cariboo innovation stories, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.
+
+Hosts: Riley (rural tech systems) and Casey (community development). 
+New episodes daily with weekly themes.
+
+This is a daily show - not weekly! - exploring how technology serves (or could better serve) rural communities.</description>
+<itunes:summary>Daily tech conversations for rural communities. Today's focus: Cariboo Innovation Stories.
+
+NEWS ROUNDUP: We break down [CFJC Today Kamloops] Week in Review: Week of January 19 and [GN AI ML Infrastructure] AI Infrastructure Could Triple to $1.4 Trillion by 2030: Here's the Best Stock to Buy for 2026, plus 1 more stories, and explore what these developments mean for communities like ours in the Cariboo region.
+
+RURAL CONNECTIONS: Riley and Casey dive deep into cariboo innovation stories, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.
+
+Hosts: Riley (rural tech systems) and Casey (community development). 
+New episodes daily with weekly themes.
+
+This is a daily show - not weekly! - exploring how technology serves (or could better serve) rural communities.</itunes:summary>
+<itunes:subtitle>Daily tech progress - Cariboo Innovation Stories</itunes:subtitle>
+<enclosure url="https://zirnhelt.github.io/curated-podcast-generator/podcast_audio_2026-01-24_cariboo_innovation_stories.mp3" length="5107629" type="audio/mpeg"/>
+<guid isPermaLink="false">cariboo-tech-progress-2026-01-24</guid>
+<itunes:duration>30:00</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+<itunes:episodeType>full</itunes:episodeType>
+</item>
+</channel>
+</rss>
