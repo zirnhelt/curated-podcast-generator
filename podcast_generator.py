@@ -209,12 +209,12 @@ PODCAST CONCEPT:
 - Title: "Cariboo Signals" 
 - Tagline: "Daily tech from rural BC"
 - Theme: How do rural communities grow alongside technology?
-- Hosts: Alex (tech analyst) and Casey (community voice)
+- Hosts: Riley and Casey (community voice)
 - Length: ~15 minutes (2,500-3,000 words)
 - Tone: Conversational, thoughtful, grounded
 
 HOST PERSONALITIES:
-- Alex: Technical depth, industry analysis, asks "how does this work?" and "what are the implications?"
+- Riley: Technical depth, industry analysis, asks "how does this work?" and "what are the implications?"
 - Casey: Community impact, practical applications, asks "how does this affect people like us?" and "what can we learn?"
 
 Both hosts are curious, respectful, and bring different perspectives to create engaging dialogue.{host_context}{memory_context}
