@@ -126,12 +126,53 @@
             font-style: italic;
         }
         
-        .rss-links {
+        .subscribe-section {
             text-align: center;
             margin-top: 32px;
             padding: 20px;
             background: #f8f9fa;
             border-radius: 8px;
+        }
+        
+        .podcast-apps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+        
+        .app-link {
+            display: block;
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            border: 2px solid #ddd;
+            transition: all 0.3s;
+        }
+        
+        .app-link:hover {
+            border-color: #3498db;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .app-name {
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        
+        .app-description {
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        .rss-links {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
         }
         
         .rss-button {
@@ -165,6 +206,10 @@
             }
             
             .hosts-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .podcast-apps {
                 grid-template-columns: 1fr;
             }
             
@@ -206,12 +251,47 @@
             </div>
         </div>
         
-        <div class="rss-links">
+        <div class="subscribe-section">
             <h3>Subscribe to Cariboo Signals</h3>
             <p>Get new episodes automatically in your favorite podcast app:</p>
-            <br>
-            <a href="podcast-feed.xml" class="rss-button">🎙️ RSS Feed</a>
-            <a href="https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml" class="rss-button">📡 Direct Link</a>
+            
+            <div class="podcast-apps">
+                <a href="https://podcasts.apple.com/podcast/cariboo-signals/id" class="app-link">
+                    <div class="app-name">🎵 Apple Podcasts</div>
+                    <div class="app-description">iOS, macOS, Apple TV</div>
+                </a>
+                
+                <a href="https://open.spotify.com/show/" class="app-link">
+                    <div class="app-name">🟢 Spotify</div>
+                    <div class="app-description">Cross-platform streaming</div>
+                </a>
+                
+                <a href="https://podcasts.google.com/feed/aHR0cHM6Ly96aXJuaGVsdC5naXRodWIuaW8vY3VyYXRlZC1wb2RjYXN0LWdlbmVyYXRvci9wb2RjYXN0LWZlZWQueG1s" class="app-link">
+                    <div class="app-name">📺 Google Podcasts</div>
+                    <div class="app-description">Android, web</div>
+                </a>
+                
+                <a href="https://overcast.fm/itunes" class="app-link">
+                    <div class="app-name">☁️ Overcast</div>
+                    <div class="app-description">Smart Speed, Voice Boost</div>
+                </a>
+                
+                <a href="https://pca.st/podcast/add?url=https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml" class="app-link">
+                    <div class="app-name">📱 Pocket Casts</div>
+                    <div class="app-description">Cross-platform sync</div>
+                </a>
+                
+                <a href="https://castbox.fm/ch/" class="app-link">
+                    <div class="app-name">📦 Castbox</div>
+                    <div class="app-description">AI-powered features</div>
+                </a>
+            </div>
+            
+            <div class="rss-links">
+                <h4>Or subscribe directly:</h4>
+                <a href="podcast-feed.xml" class="rss-button">🎙️ RSS Feed</a>
+                <a href="https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml" class="rss-button">📡 Direct Link</a>
+            </div>
         </div>
         
         <div class="footer">
