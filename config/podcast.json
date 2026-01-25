@@ -1,0 +1,17 @@
+{
+  "title": "Cariboo Signals",
+  "tagline": "Daily tech from rural BC",
+  "description": "How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region.",
+  "url": "https://zirnhelt.github.io/curated-podcast-generator/",
+  "feed_url": "https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml",
+  "cover_image": "cariboo-signals.png",
+  "language": "en-us",
+  "copyright": "2026 Erich's AI Curator",
+  "author": "Riley and Casey",
+  "email": "podcast@example.com",
+  "categories": ["Technology", "Society & Culture"],
+  "explicit": false,
+  "episode_duration": "30:00",
+  "subtitle": "Technology and society in rural BC with Riley and Casey",
+  "summary": "How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region. Riley brings tech systems thinking with rural roots, while Casey focuses on community development. New episodes every day with weekly themes."
+}

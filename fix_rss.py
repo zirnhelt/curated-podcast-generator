@@ -1,17 +1,23 @@
 #!/usr/bin/env python3
 """
-Quick RSS Feed Fixer for Range Signals Podcast
+Quick RSS Feed Fixer for Cariboo Signals
 Fixes XML parsing issues and generates clean RSS feed
+Now uses config files for all text content
 """
 
 import os
 import glob
 import xml.sax.saxutils as saxutils
 from datetime import datetime
+from config_loader import load_podcast_config, load_credits_config
 
 def generate_clean_rss():
     """Generate a clean, properly escaped RSS feed."""
-    print("📡 Generating clean RSS feed for Range Signals...")
+    print("📡 Generating clean RSS feed for Cariboo Signals...")
+    
+    # Load configuration
+    podcast_config = load_podcast_config()
+    credits_config = load_credits_config()
     
     # Find all episode files
     audio_files = glob.glob("podcast_audio_*.mp3")
@@ -35,7 +41,7 @@ def generate_clean_rss():
                 pub_date = datetime.now().strftime("%a, %d %b %Y 06:00:00 GMT")
             
             episodes.append({
-                'title': f"Range Signals - {theme}",
+                'title': f"{podcast_config['title']} - {theme}",
                 'audio_file': audio_file,
                 'pub_date': pub_date,
                 'file_size': file_size,
@@ -43,43 +49,57 @@ def generate_clean_rss():
                 'theme': theme
             })
     
-    # Generate RSS XML with proper escaping using saxutils
+    # Generate RSS XML with proper escaping
     rss_lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">',
         '<channel>',
-        '<title>Range Signals</title>',
-        '<link>https://zirnhelt.github.io/curated-podcast-generator/</link>',
-        '<language>en-us</language>',
-        '<copyright>Erich\'s AI Curator</copyright>',
-        '<itunes:subtitle>Tech news for rural British Columbia</itunes:subtitle>',
-        '<itunes:author>Riley and Casey</itunes:author>',
-        '<itunes:summary>Technology news and thoughtful conversation about tech in rural BC. Daily episodes with weekly themes.</itunes:summary>',
-        '<description>Technology news and thoughtful conversation about tech in rural BC. Daily episodes with weekly themes.</description>',
+        f'<title>{saxutils.escape(podcast_config["title"])}</title>',
+        f'<link>{podcast_config["url"]}</link>',
+        f'<language>{podcast_config["language"]}</language>',
+        f'<copyright>{podcast_config["copyright"]}</copyright>',
+        f'<itunes:subtitle>{saxutils.escape(podcast_config["subtitle"])}</itunes:subtitle>',
+        f'<itunes:author>{podcast_config["author"]}</itunes:author>',
+        f'<itunes:summary>{saxutils.escape(podcast_config["summary"])}</itunes:summary>',
+        f'<description>{saxutils.escape(podcast_config["description"])}</description>',
         '<itunes:owner>',
-        '<itunes:name>Erich\'s AI Curator</itunes:name>',
-        '<itunes:email>podcast@example.com</itunes:email>',
+        f'<itunes:name>{podcast_config["author"]}</itunes:name>',
+        f'<itunes:email>{podcast_config["email"]}</itunes:email>',
         '</itunes:owner>',
-        '<itunes:category text="Technology"/>',
-        '<itunes:explicit>false</itunes:explicit>',
-        f'<lastBuildDate>{datetime.now().strftime("%a, %d %b %Y %H:%M:%S GMT")}</lastBuildDate>'
+        f'<itunes:image href="{podcast_config["url"]}{podcast_config["cover_image"]}"/>',
     ]
     
-    # Add episodes with proper XML escaping
+    # Add categories
+    for category in podcast_config["categories"]:
+        rss_lines.append(f'<itunes:category text="{saxutils.escape(category)}"/>')
+    
+    rss_lines.extend([
+        f'<itunes:explicit>{"true" if podcast_config["explicit"] else "false"}</itunes:explicit>',
+        '<itunes:type>episodic</itunes:type>',
+        f'<lastBuildDate>{datetime.now().strftime("%a, %d %b %Y %H:%M:%S GMT")}</lastBuildDate>'
+    ])
+    
+    # Add episodes with credits in description
     for episode in episodes:
-        # Use saxutils.escape for proper XML escaping
         escaped_title = saxutils.escape(episode['title'])
+        
+        # Combine description with credits
+        description_with_credits = podcast_config["description"] + "\n\n" + credits_config['text']
+        escaped_description = saxutils.escape(description_with_credits)
         
         rss_lines.extend([
             '<item>',
             f'<title>{escaped_title}</title>',
-            '<link>https://zirnhelt.github.io/curated-podcast-generator/</link>',
+            f'<link>{podcast_config["url"]}</link>',
             f'<pubDate>{episode["pub_date"]}</pubDate>',
-            '<description>Technology and society in rural British Columbia.</description>',
-            f'<enclosure url="https://zirnhelt.github.io/curated-podcast-generator/{episode["audio_file"]}" length="{episode["file_size"]}" type="audio/mpeg"/>',
-            f'<guid>https://zirnhelt.github.io/curated-podcast-generator/{episode["audio_file"]}</guid>',
-            '<itunes:duration>30:00</itunes:duration>',
-            '<itunes:explicit>false</itunes:explicit>',
+            f'<description>{escaped_description}</description>',
+            f'<itunes:summary>{escaped_description}</itunes:summary>',
+            f'<itunes:subtitle>Daily tech progress - {episode["theme"]}</itunes:subtitle>',
+            f'<enclosure url="{podcast_config["url"]}{episode["audio_file"]}" length="{episode["file_size"]}" type="audio/mpeg"/>',
+            f'<guid isPermaLink="false">{podcast_config["title"].lower().replace(" ", "-")}-{episode["episode_date"]}</guid>',
+            f'<itunes:duration>{podcast_config["episode_duration"]}</itunes:duration>',
+            f'<itunes:explicit>{"true" if podcast_config["explicit"] else "false"}</itunes:explicit>',
+            '<itunes:episodeType>full</itunes:episodeType>',
             '</item>'
         ])
     
@@ -95,7 +115,7 @@ def generate_clean_rss():
         f.write(rss_content)
     
     print(f"✅ Generated clean RSS feed with {len(episodes)} episodes")
-    print("🔍 Validating XML structure...")
+    print("📝 Validating XML structure...")
     
     # Quick validation
     try:

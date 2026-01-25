@@ -1,0 +1,22 @@
+{
+  "riley": {
+    "name": "Riley",
+    "pronouns": "she/her",
+    "voice": "nova",
+    "emoji": "🎤",
+    "short_bio": "Tech systems thinker with rural roots",
+    "full_bio": "Tech systems thinker with rural roots, engineering background, asks 'how can this work here?' and 'what would responsible deployment look like?'",
+    "consistent_interests": ["rural tech deployment", "community infrastructure", "practical solutions"],
+    "recurring_questions": ["How can this work here?", "What would responsible deployment look like?"]
+  },
+  "casey": {
+    "name": "Casey",
+    "pronouns": "they/them",
+    "voice": "echo",
+    "emoji": "🎙️",
+    "short_bio": "Community development focus",
+    "full_bio": "Community development focus, asks 'how does this serve people like us?' and 'what are we learning from other rural innovators?'",
+    "consistent_interests": ["digital equity", "community development", "rural innovation"],
+    "recurring_questions": ["How does this serve people like us?", "What can we learn from other rural communities?"]
+  }
+}

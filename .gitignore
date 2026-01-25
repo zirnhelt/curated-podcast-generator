@@ -5,3 +5,14 @@ venv/
 
 #test files
 *test*
+
+# Backup files from refactoring
+*.pre-config
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Test scripts (keep local only)
+check_config_status.sh
+run_full_tests.sh
