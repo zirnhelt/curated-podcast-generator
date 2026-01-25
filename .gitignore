@@ -2,3 +2,6 @@
 
 # Virtual environment
 venv/
+
+#test files
+*test*
