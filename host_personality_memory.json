@@ -1,25 +1,25 @@
 {
   "riley": {
     "consistent_interests": [
-      "rural tech deployment",
-      "community infrastructure",
-      "practical solutions"
+      "tech implementation",
+      "infrastructure design",
+      "practical deployment"
     ],
     "recurring_questions": [
-      "How can this work here?",
-      "What would responsible deployment look like?"
+      "How would this actually work?",
+      "What's the implementation challenge?"
     ],
     "evolving_opinions": {}
   },
   "casey": {
     "consistent_interests": [
-      "digital equity",
-      "community development",
-      "rural innovation"
+      "community impact",
+      "accessibility",
+      "technology adaptation"
     ],
     "recurring_questions": [
-      "How does this serve people like us?",
-      "What can we learn from other rural communities?"
+      "Who benefits from this?",
+      "What's the broader context?"
     ],
     "evolving_opinions": {}
   }
