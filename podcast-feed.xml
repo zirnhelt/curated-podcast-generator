@@ -1,39 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
 <channel>
-<title>Tech &amp; Impact Podcast</title>
+<title>Cariboo Tech Progress</title>
 <link>https://zirnhelt.github.io/curated-podcast-generator/</link>
 <language>en-us</language>
 <copyright>Erich's AI Curator</copyright>
-<itunes:subtitle>AI-curated daily conversations with Riley &amp; Casey</itunes:subtitle>
-<itunes:author>Riley &amp; Casey</itunes:author>
-<itunes:summary>Daily conversations about technology, climate, AI, and their impact on communities. Hosts Riley and Casey discuss the most relevant stories from 50+ curated sources.</itunes:summary>
-<description>Daily conversations about technology, climate, AI, and their impact on communities. Hosts Riley and Casey discuss the most relevant stories from 50+ curated sources.</description>
+<itunes:subtitle>Technology and society in rural BC with Riley and Casey</itunes:subtitle>
+<itunes:author>Riley and Casey</itunes:author>
+<itunes:summary>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region.</itunes:summary>
+<description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region.</description>
 <itunes:owner>
 <itunes:name>Erich's AI Curator</itunes:name>
 <itunes:email>podcast@example.com</itunes:email>
 </itunes:owner>
-<itunes:image href="https://zirnhelt.github.io/curated-podcast-generator/podcast-artwork.jpg"/>
 <itunes:category text="Technology"/>
-<itunes:category text="News"/>
 <itunes:explicit>false</itunes:explicit>
-<lastBuildDate>Sat, 24 Jan 2026 17:42:27 GMT</lastBuildDate>
-
+<lastBuildDate>Sat, 24 Jan 2026 18:54:24 GMT</lastBuildDate>
 <item>
-<title>Tech & Impact - Wild Card</title>
+<title>Cariboo Tech Progress - Wild Card.Test</title>
 <link>https://zirnhelt.github.io/curated-podcast-generator/</link>
 <pubDate>Sat, 24 Jan 2026 06:00:00 GMT</pubDate>
-<description>Daily tech and impact discussion covering wild card and top news stories.</description>
-<enclosure url="https://zirnhelt.github.io/curated-podcast-generator/podcast_audio_2026-01-24_wild_card.mp3" length="4230477" type="audio/mpeg"/>
-<guid>https://zirnhelt.github.io/curated-podcast-generator/podcast_audio_2026-01-24_wild_card.mp3</guid>
+<description>Technology and societal progress in the Cariboo region.</description>
+<enclosure url="https://zirnhelt.github.io/curated-podcast-generator/podcast_audio_2026-01-24_wild_card.test.mp3" length="4230477" type="audio/mpeg"/>
+<guid>https://zirnhelt.github.io/curated-podcast-generator/podcast_audio_2026-01-24_wild_card.test.mp3</guid>
 <itunes:duration>30:00</itunes:duration>
 <itunes:explicit>false</itunes:explicit>
 </item>
 <item>
-<title>Tech & Impact - Wild Card.Test</title>
+<title>Cariboo Tech Progress - Cariboo Innovation Stories</title>
+<link>https://zirnhelt.github.io/curated-podcast-generator/</link>
+<pubDate>Sat, 24 Jan 2026 06:00:00 GMT</pubDate>
+<description>Technology and societal progress in the Cariboo region.</description>
+<enclosure url="https://zirnhelt.github.io/curated-podcast-generator/podcast_audio_2026-01-24_cariboo_innovation_stories.mp3" length="5107629" type="audio/mpeg"/>
+<guid>https://zirnhelt.github.io/curated-podcast-generator/podcast_audio_2026-01-24_cariboo_innovation_stories.mp3</guid>
+<itunes:duration>30:00</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+</item>
+<item>
+<title>Cariboo Tech Progress - Wild Card.Test</title>
 <link>https://zirnhelt.github.io/curated-podcast-generator/</link>
 <pubDate>Wed, 21 Jan 2026 06:00:00 GMT</pubDate>
-<description>Daily tech and impact discussion covering wild card.test and top news stories.</description>
+<description>Technology and societal progress in the Cariboo region.</description>
 <enclosure url="https://zirnhelt.github.io/curated-podcast-generator/podcast_audio_2026-01-21_wild_card.test.mp3" length="4468173" type="audio/mpeg"/>
 <guid>https://zirnhelt.github.io/curated-podcast-generator/podcast_audio_2026-01-21_wild_card.test.mp3</guid>
 <itunes:duration>30:00</itunes:duration>
