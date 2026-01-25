@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
-Curated Podcast Generator
+Curated Podcast Generator - Cariboo Focus Edition with Memory System & Citations
+Theme: "Technological and Societal Progress in the Cariboo" (pronounced CARE-ih-boo, like caribou)
 Converts RSS feed scoring data into conversational podcast scripts and generates audio.
+Includes episode memory (2-3 weeks) and host personality tracking for continuity.
+Generates citations file for each episode.
 """
 
 import os
@@ -28,16 +31,221 @@ TTS_VOICES = {
     'casey': 'echo'     # More neutral voice for Casey
 }
 
-# Daily themes (Wednesday = Local News) - for DEEP DIVE ONLY
+# Memory Configuration
+EPISODE_MEMORY_FILE = 'episode_memory.json'
+HOST_MEMORY_FILE = 'host_personality_memory.json'
+MEMORY_RETENTION_DAYS = 21  # 3 weeks of episode memory
+
+# Daily themes for Deep Dive - focused on Cariboo tech/society connections
 DAILY_THEMES = {
-    0: "AI/ML Infrastructure",        # Monday
-    1: "Climate & Clean Energy",      # Tuesday  
-    2: "Local News & Canadian Focus", # Wednesday
-    3: "Smart Home & Homelab",        # Thursday
-    4: "Sci-Fi & Future Tech",        # Friday
-    5: "Wild Card",                   # Saturday
-    6: "Wild Card"                    # Sunday
+    0: "Community-Controlled Infrastructure",    # Monday - local control of tech
+    1: "Sustainable Innovation",                 # Tuesday - climate tech that works here
+    2: "Local Voices & Digital Equity",         # Wednesday - local news, digital access
+    3: "Rural Smart Solutions",                  # Thursday - tech adapted for rural needs
+    4: "Future-Ready Communities",               # Friday - preparing for what's coming
+    5: "Cariboo Innovation Stories",             # Saturday - local successes
+    6: "Regional Resilience"                     # Sunday - building strong communities
 }
+
+def load_episode_memory():
+    """Load recent episode summaries for continuity."""
+    try:
+        with open(EPISODE_MEMORY_FILE, 'r', encoding='utf-8') as f:
+            memory = json.load(f)
+        
+        # Clean old episodes (older than MEMORY_RETENTION_DAYS)
+        cutoff_date = datetime.now() - timedelta(days=MEMORY_RETENTION_DAYS)
+        recent_episodes = []
+        
+        for episode in memory.get('recent_episodes', []):
+            try:
+                episode_date = datetime.strptime(episode['date'], '%Y-%m-%d')
+                if episode_date > cutoff_date:
+                    recent_episodes.append(episode)
+            except:
+                continue
+        
+        memory['recent_episodes'] = recent_episodes
+        print(f"🧠 Loaded {len(recent_episodes)} episodes from memory")
+        return memory
+        
+    except FileNotFoundError:
+        print("🧠 No episode memory found, starting fresh")
+        return {'recent_episodes': []}
+    except Exception as e:
+        print(f"⚠️ Episode memory load error: {e}")
+        return {'recent_episodes': []}
+
+def load_host_memory():
+    """Load host personality and opinion tracking."""
+    try:
+        with open(HOST_MEMORY_FILE, 'r', encoding='utf-8') as f:
+            memory = json.load(f)
+        print("🎭 Loaded host personality memory")
+        return memory
+        
+    except FileNotFoundError:
+        print("🎭 No host memory found, initializing defaults")
+        return {
+            "riley": {
+                "consistent_interests": ["rural tech deployment", "community infrastructure", "practical solutions"],
+                "recurring_questions": ["How can this work here?", "What would responsible deployment look like?"],
+                "evolving_opinions": {}
+            },
+            "casey": {
+                "consistent_interests": ["digital equity", "community development", "rural innovation"],
+                "recurring_questions": ["How does this serve people like us?", "What can we learn from other rural communities?"],
+                "evolving_opinions": {}
+            }
+        }
+    except Exception as e:
+        print(f"⚠️ Host memory load error: {e}")
+        return {}
+
+def extract_key_topics_from_script(script, theme):
+    """Extract key discussion points from generated script using Claude."""
+    api_key = os.getenv('ANTHROPIC_API_KEY')
+    if not api_key:
+        return []
+    
+    try:
+        client = anthropic.Anthropic(api_key=api_key)
+        
+        prompt = f"""Extract 3-4 key topics that were discussed in this podcast script. Focus on specific technologies, events, or concepts that Riley and Casey spent significant time on.
+
+Script excerpt:
+{script[:2000]}...
+
+Return a simple JSON array of strings, like:
+["Rural broadband infrastructure challenges", "Community-controlled renewable energy", "Digital equity in remote areas"]
+
+Just the JSON array, no other text."""
+
+        response = client.messages.create(
+            model="claude-sonnet-4-20250514",
+            max_tokens=200,
+            messages=[{"role": "user", "content": prompt}]
+        )
+        
+        topics_text = response.content[0].text.strip()
+        # Try to parse JSON
+        if topics_text.startswith('[') and topics_text.endswith(']'):
+            topics = json.loads(topics_text)
+            return topics[:4]  # Limit to 4 topics
+        else:
+            return []
+            
+    except Exception as e:
+        print(f"⚠️ Topic extraction error: {e}")
+        return []
+
+def extract_host_positions_from_script(script):
+    """Extract notable positions/opinions from Riley and Casey."""
+    api_key = os.getenv('ANTHROPIC_API_KEY')
+    if not api_key:
+        return []
+    
+    try:
+        client = anthropic.Anthropic(api_key=api_key)
+        
+        prompt = f"""Extract 2-3 notable positions or viewpoints that Riley and Casey expressed in this script. Focus on their distinct perspectives on rural tech and community development.
+
+Script excerpt:
+{script[:2000]}...
+
+Return a simple JSON array of strings prefixed with speaker name, like:
+["Riley emphasized community ownership of infrastructure", "Casey highlighted digital equity concerns in rural areas", "Riley supported incremental tech adoption over wholesale changes"]
+
+Just the JSON array, no other text."""
+
+        response = client.messages.create(
+            model="claude-sonnet-4-20250514",
+            max_tokens=200,
+            messages=[{"role": "user", "content": prompt}]
+        )
+        
+        positions_text = response.content[0].text.strip()
+        if positions_text.startswith('[') and positions_text.endswith(']'):
+            positions = json.loads(positions_text)
+            return positions[:3]  # Limit to 3 positions
+        else:
+            return []
+            
+    except Exception as e:
+        print(f"⚠️ Position extraction error: {e}")
+        return []
+
+def update_episode_memory(script, theme, date_str):
+    """Add current episode to memory."""
+    memory = load_episode_memory()
+    
+    # Extract key topics and positions
+    key_topics = extract_key_topics_from_script(script, theme)
+    notable_discussions = extract_host_positions_from_script(script)
+    
+    # Add current episode
+    current_episode = {
+        'date': date_str,
+        'theme': theme,
+        'key_topics': key_topics,
+        'notable_discussions': notable_discussions
+    }
+    
+    # Add to beginning of list (most recent first)
+    memory['recent_episodes'].insert(0, current_episode)
+    
+    # Keep only recent episodes (limit to ~20 episodes)
+    memory['recent_episodes'] = memory['recent_episodes'][:20]
+    
+    # Save updated memory
+    try:
+        with open(EPISODE_MEMORY_FILE, 'w', encoding='utf-8') as f:
+            json.dump(memory, f, indent=2)
+        print(f"🧠 Updated episode memory with {len(key_topics)} topics")
+    except Exception as e:
+        print(f"⚠️ Memory save error: {e}")
+
+def update_host_memory(script):
+    """Update host personality tracking based on script content."""
+    memory = load_host_memory()
+    
+    # For now, just save the memory as-is
+    # In future iterations, we could analyze script to update evolving opinions
+    try:
+        with open(HOST_MEMORY_FILE, 'w', encoding='utf-8') as f:
+            json.dump(memory, f, indent=2)
+    except Exception as e:
+        print(f"⚠️ Host memory save error: {e}")
+
+def format_memory_for_prompt(episode_memory, host_memory):
+    """Format memory into context for Claude prompt."""
+    context = ""
+    
+    # Recent episodes context
+    recent_episodes = episode_memory.get('recent_episodes', [])[:5]  # Last 5 episodes
+    if recent_episodes:
+        context += "RECENT EPISODE CONTEXT (for natural callbacks):\n"
+        for episode in recent_episodes:
+            context += f"- {episode['date']} ({episode['theme']}): {', '.join(episode.get('key_topics', []))}\n"
+            for discussion in episode.get('notable_discussions', []):
+                context += f"  * {discussion}\n"
+        context += "\n"
+    
+    # Host personality context
+    riley_info = host_memory.get('riley', {})
+    casey_info = host_memory.get('casey', {})
+    
+    if riley_info or casey_info:
+        context += "HOST PERSONALITY CONTEXT:\n"
+        if riley_info:
+            context += f"Riley tends to focus on: {', '.join(riley_info.get('consistent_interests', []))}\n"
+            context += f"Riley often asks: {', '.join(riley_info.get('recurring_questions', []))}\n"
+        if casey_info:
+            context += f"Casey tends to focus on: {', '.join(casey_info.get('consistent_interests', []))}\n"
+            context += f"Casey often asks: {', '.join(casey_info.get('recurring_questions', []))}\n"
+        context += "\n"
+    
+    return context
 
 def get_daily_filenames(theme_name):
     """Get expected filenames for today's script and audio."""
@@ -46,22 +254,26 @@ def get_daily_filenames(theme_name):
     
     script_filename = f"podcast_script_{date_str}_{safe_theme}.txt"
     audio_filename = f"podcast_audio_{date_str}_{safe_theme}.mp3"
+    citations_filename = f"citations_{date_str}_{safe_theme}.json"
     
-    return script_filename, audio_filename
+    return script_filename, audio_filename, citations_filename
 
 def check_existing_files(theme_name):
     """Check if today's script and/or audio already exist."""
-    script_filename, audio_filename = get_daily_filenames(theme_name)
+    script_filename, audio_filename, citations_filename = get_daily_filenames(theme_name)
     
     script_exists = os.path.exists(script_filename)
     audio_exists = os.path.exists(audio_filename)
+    citations_exist = os.path.exists(citations_filename)
     
     if script_exists:
         print(f"📝 Found existing script: {script_filename}")
     if audio_exists:
         print(f"🎵 Found existing audio: {audio_filename}")
+    if citations_exist:
+        print(f"📚 Found existing citations: {citations_filename}")
     
-    return script_exists, audio_exists, script_filename, audio_filename
+    return script_exists, audio_exists, script_filename, audio_filename, citations_filename
 
 def load_existing_script(script_filename):
     """Load script content from existing file."""
@@ -129,26 +341,21 @@ def fetch_feed_data():
         return []
 
 def categorize_articles_for_deep_dive(articles, theme_day):
-    """Categorize articles for deep dive segment only."""
+    """Categorize articles for deep dive segment based on Cariboo focus."""
     theme = DAILY_THEMES[theme_day]
     
-    # Keywords for each theme
+    # Keywords for each Cariboo-focused theme
     theme_keywords = {
-        "AI/ML Infrastructure": ["ai", "ml", "machine learning", "artificial intelligence", "llm", "mlops", "telemetry", "observability", "platform engineering"],
-        "Climate & Clean Energy": ["climate", "solar", "wind", "battery", "ev", "electric vehicle", "renewable", "carbon", "emission", "sustainability"],
-        "Local News & Canadian Focus": ["canada", "canadian", "williams lake", "bc", "british columbia", "cariboo", "kamloops", "vancouver"],
-        "Smart Home & Homelab": ["smart home", "homekit", "homebridge", "hue", "automation", "self-hosted", "homelab", "raspberry pi", "docker"],
-        "Sci-Fi & Future Tech": ["sci-fi", "science fiction", "space", "mars", "quantum", "fusion", "robot", "android", "future"],
-        "Wild Card": []  # No specific keywords - use highest scores
+        "Community-Controlled Infrastructure": ["infrastructure", "broadband", "internet", "community", "local control", "municipal", "cooperative"],
+        "Sustainable Innovation": ["climate", "solar", "renewable", "battery", "sustainability", "environment", "green tech", "carbon"],
+        "Local Voices & Digital Equity": ["local news", "journalism", "digital divide", "internet access", "rural connectivity", "media"],
+        "Rural Smart Solutions": ["smart home", "automation", "rural", "remote", "satellite", "farming", "agriculture", "precision"],
+        "Future-Ready Communities": ["AI", "automation", "future of work", "skills", "training", "adaptation", "planning"],
+        "Cariboo Innovation Stories": ["startup", "innovation", "local business", "entrepreneur", "BC", "canada", "rural success"],
+        "Regional Resilience": ["resilience", "disaster", "emergency", "backup", "redundancy", "self-reliance", "independence"]
     }
     
     keywords = theme_keywords.get(theme, [])
-    
-    # For Wild Card, just return top articles by score
-    if theme == "Wild Card":
-        deep_dive_articles = articles[:4]  # Top 4 articles
-        print(f"🎯 Wild Card: Using top {len(deep_dive_articles)} articles by score")
-        return deep_dive_articles
     
     # Filter articles for theme
     theme_articles = []
@@ -160,9 +367,17 @@ def categorize_articles_for_deep_dive(articles, theme_day):
         if any(keyword in content for keyword in keywords):
             theme_articles.append(article)
     
-    # Take top 4 theme-matching articles
+    # If we don't have enough theme articles, supplement with highest-scoring general articles
+    if len(theme_articles) < 4:
+        remaining_needed = 4 - len(theme_articles)
+        # Get articles not already in theme_articles
+        used_urls = {a.get('url', '') for a in theme_articles}
+        general_articles = [a for a in articles if a.get('url', '') not in used_urls]
+        theme_articles.extend(general_articles[:remaining_needed])
+    
+    # Take top 4 articles
     deep_dive_articles = theme_articles[:4]
-    print(f"🎯 Found {len(deep_dive_articles)} articles for '{theme}' deep dive")
+    print(f"🎯 Found {len(deep_dive_articles)} articles for '{theme}' (Cariboo focus)")
     
     return deep_dive_articles
 
@@ -197,9 +412,106 @@ def get_current_date_info():
     
     return weekday, date_str
 
-def generate_podcast_script(all_articles, deep_dive_articles, theme_name):
-    """Generate conversational podcast script with Riley & Casey."""
-    print("🎙️ Generating podcast script with Claude...")
+def generate_episode_description(news_articles, deep_dive_articles, theme_name):
+    """Generate compelling episode description for podcast apps."""
+    weekday, formatted_date = get_current_date_info()
+    
+    # Get top story titles for teaser
+    top_stories = [article.get('title', '').split(' - ')[0] for article in news_articles[:3]]
+    top_stories = [story for story in top_stories if story]  # Remove empty
+    
+    if len(top_stories) >= 2:
+        stories_preview = f"{top_stories[0]} and {top_stories[1]}"
+        if len(top_stories) > 2:
+            stories_preview += f", plus {len(top_stories)-2} more stories"
+    elif len(top_stories) == 1:
+        stories_preview = top_stories[0]
+    else:
+        stories_preview = "the week's top tech developments"
+    
+    description = f"""Daily tech conversations for rural communities. Today's focus: {theme_name}.
+
+NEWS ROUNDUP: We break down {stories_preview}, and explore what these developments mean for communities like ours in the Cariboo region.
+
+RURAL CONNECTIONS: Riley and Casey dive deep into {theme_name.lower()}, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.
+
+Hosts: Riley (rural tech systems) and Casey (community development). 
+New episodes daily with weekly themes.
+
+This is a daily show - not weekly! - exploring how technology serves (or could better serve) rural communities."""
+    
+    return description
+
+def generate_citations_file(news_articles, deep_dive_articles, theme_name):
+    """Generate citations file for the episode."""
+    date_str = datetime.now().strftime("%Y-%m-%d")
+    weekday, formatted_date = get_current_date_info()
+    
+    # Generate episode description
+    episode_description = generate_episode_description(news_articles, deep_dive_articles, theme_name)
+    
+    citations_data = {
+        "episode": {
+            "date": date_str,
+            "formatted_date": f"{weekday}, {formatted_date}",
+            "theme": theme_name,
+            "title": f"Cariboo Tech Progress - {theme_name}",
+            "description": episode_description,
+            "generated_at": datetime.now().isoformat()
+        },
+        "segments": {
+            "news_roundup": {
+                "title": "The Week's Tech - News Roundup",
+                "articles": []
+            },
+            "deep_dive": {
+                "title": f"Cariboo Connections - {theme_name}",
+                "articles": []
+            }
+        }
+    }
+    
+    # Add news articles
+    for article in news_articles:
+        citation = {
+            "title": article.get('title', ''),
+            "url": article.get('url', ''),
+            "source": article.get('authors', [{}])[0].get('name', 'Unknown Source'),
+            "ai_score": article.get('ai_score', 0),
+            "date_published": article.get('date_published', ''),
+            "summary": article.get('summary', '')[:200] + "..." if len(article.get('summary', '')) > 200 else article.get('summary', '')
+        }
+        citations_data["segments"]["news_roundup"]["articles"].append(citation)
+    
+    # Add deep dive articles
+    for article in deep_dive_articles:
+        citation = {
+            "title": article.get('title', ''),
+            "url": article.get('url', ''),
+            "source": article.get('authors', [{}])[0].get('name', 'Unknown Source'),
+            "ai_score": article.get('ai_score', 0),
+            "date_published": article.get('date_published', ''),
+            "summary": article.get('summary', '')[:200] + "..." if len(article.get('summary', '')) > 200 else article.get('summary', '')
+        }
+        citations_data["segments"]["deep_dive"]["articles"].append(citation)
+    
+    # Save citations file
+    _, _, citations_filename = get_daily_filenames(theme_name)
+    
+    try:
+        with open(citations_filename, 'w', encoding='utf-8') as f:
+            json.dump(citations_data, f, indent=2, ensure_ascii=False)
+        
+        print(f"📚 Saved citations to: {citations_filename}")
+        return citations_filename
+        
+    except Exception as e:
+        print(f"❌ Error saving citations: {e}")
+        return None
+
+def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory):
+    """Generate conversational podcast script with Cariboo focus including memory context."""
+    print("🎙️ Generating Cariboo-focused podcast script with Claude (including memory)...")
     
     # Check for API key
     api_key = os.getenv('ANTHROPIC_API_KEY')
@@ -211,7 +523,7 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name):
     weekday, date_str = get_current_date_info()
     
     # Prepare articles for script generation
-    top_news = all_articles[:10]  # Top 10 for news roundup (by score, any topic)
+    top_news = all_articles[:8]  # Fewer stories for more focused news coverage
     
     # Create article summaries for Claude
     news_text = "\n".join([
@@ -224,39 +536,52 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name):
         for a in deep_dive_articles
     ])
     
-    prompt = f"""Create a 30-minute conversational podcast script for {weekday}, {date_str}.
+    # Format memory context
+    memory_context = format_memory_for_prompt(episode_memory, host_memory)
+    
+    prompt = f"""Create a 30-minute DAILY podcast script for "{weekday}, {date_str}" focusing on "Technological and Societal Progress in the Caribou Region."
+
+PODCAST THEME: "Technological and Societal Progress in the Caribou Region" 
+NOTE: For TTS pronunciation, use "Caribou" (like the animal) in all spoken content, but keep "Cariboo" in any written references
+How do rural and remote communities like ours grow and evolve alongside technology that typically benefits urban areas first? Focus on responsible, evolutionary approaches to progress.
+
+THIS IS A DAILY PODCAST - we publish every day with weekly themes. Say "today's episode" not "weekly show."
+
+{memory_context}
 
 HOSTS:
-- Riley (she/her): Tech systems thinker, engineering background, optimistic about solutions, asks "how does this scale?", loves finding connections between technologies
-- Casey (they/them): Impact journalist, community-focused, asks "who benefits?" and "who gets left out?", great at spotting unintended consequences
+- Riley (she/her): Tech systems thinker with rural roots, engineering background, asks "how can this work here?" and "what would responsible deployment look like?"
+- Casey (they/them): Community development focus, asks "how does this serve people like us?" and "what are we learning from other rural innovators?"
 
 EPISODE STRUCTURE:
 
-**SEGMENT 1 (18 minutes): "What Caught Our Eye" - News Roundup**
-Natural, flowing conversation about these TOP-SCORED articles (regardless of topic):
+**SEGMENT 1 (18 minutes): "The Week's Tech" - News Roundup**
+Professional news anchor style coverage of these TOP-SCORED articles:
 {news_text}
 
-Style: Newsy, snappy, engaging. Hit the highlights, share quick reactions. Riley and Casey riff off each other. Include some personality - maybe Riley gets excited about technical details, Casey always brings it back to real-world impact. Make it fun!
+Style: Structured, professional news delivery like CBC Radio News. Clear transitions, concise summaries, brief analysis. Each story takes 2-3 minutes max. Clean, professional delivery. Use phrases like "Our top story today..." and "In other technology news..."
 
-**SEGMENT 2 (12 minutes): "Deep Dive - {theme_name}"**
-More focused discussion of these related articles:
+## [AD BREAK PLACEHOLDER - Future Sponsorship Spot]
+[NATURAL TRANSITION: "We'll be right back after this short break to dive deeper into today's theme: {theme_name}"]
+
+**SEGMENT 2 (12 minutes): "Caribou Connections - {theme_name}"**
+VERY CONVERSATIONAL analysis - like two friends chatting over coffee about tech:
 {deep_dive_text}
 
-Style: More analytical, but still conversational. Build connections between the articles. Riley might see technical patterns, Casey might spot social trends.
+Style: Relaxed, natural conversation. Let personalities flow - interrupt each other, build on ideas, use "you know?" and "right?" naturally. Disagree sometimes, then find common ground. Ask each other questions like "What do you think about..." Connect to: rural innovation, community-controlled tech, lessons for smaller communities. Build to strong thematic conclusion about progress in our region.
 
-CONVERSATION STYLE:
-- Natural back-and-forth, like friends talking
-- Interruptions and "Oh!" moments are good
-- Use transitions like "Speaking of...", "That reminds me...", "Wait, did you see..."
-- Let personalities show: Riley's engineering enthusiasm vs Casey's community focus
-- Include some lighter moments - they should actually like each other!
-- Build on each other's points, don't just take turns
+CRITICAL REQUIREMENTS:
+- NO STAGE DIRECTIONS: Never write "(shuffles papers)", "(laughs)", "*chuckles*" or ANY performance cues
+- SEGMENT 1: Professional news anchor delivery - structured, clear, informative
+- SEGMENT 2: Natural friends conversation - interruptions, casual language, building on each other's thoughts
+- DAILY FREQUENCY: Say "today's episode" or "on today's show" - NEVER "weekly show" or "this week's episode"
+- CARIBOU PRONUNCIATION: Use "Caribou" in all spoken content (for TTS), keep "Cariboo" only in written references
+- AVOID REPETITION: Don't repeat the same points - let variety and personality flow
+- Regional lens: "What does this mean for communities like ours?" "How could this work in rural areas?"
+- USE MEMORY: Reference past episodes naturally when relevant ("Remember when we talked about...")
+- Current date is {weekday}, {date_str} - use this correctly
 
-IMPORTANT:
-- Use CORRECT date: {weekday}, {date_str}
-- Make it flow naturally - avoid robotic turn-taking
-- ~4,000-4,500 words total
-- Use **RILEY:** and **CASEY:** speaker tags"""
+OUTPUT: ~4,000-4,500 words with **RILEY:** and **CASEY:** speaker tags only."""
 
     try:
         client = anthropic.Anthropic(api_key=api_key)
@@ -268,7 +593,7 @@ IMPORTANT:
         )
         
         script = response.content[0].text
-        print("✅ Generated podcast script successfully!")
+        print("✅ Generated Cariboo-focused podcast script successfully!")
         return script
         
     except Exception as e:
@@ -276,7 +601,7 @@ IMPORTANT:
         return None
 
 def parse_script_by_speaker(script):
-    """Parse script into segments by speaker."""
+    """Parse script into segments by speaker, filtering out stage directions."""
     if not script:
         return []
     
@@ -287,7 +612,7 @@ def parse_script_by_speaker(script):
     for line in script.split('\n'):
         line = line.strip()
         
-        # Check for speaker tags
+        # Check for speaker tags FIRST, before any filtering
         riley_match = re.match(r'\*\*RILEY:\*\*\s*(.*)', line)
         casey_match = re.match(r'\*\*CASEY:\*\*\s*(.*)', line)
         
@@ -312,9 +637,21 @@ def parse_script_by_speaker(script):
             current_text = [casey_match.group(1)] if casey_match.group(1) else []
             
         elif line and current_speaker:
-            # Skip metadata lines and empty lines
-            if not line.startswith('#') and not line.startswith('---') and not line.startswith('*End of'):
-                current_text.append(line)
+            # Skip metadata lines, empty lines, and stage directions
+            if (not line.startswith('#') and 
+                not line.startswith('---') and 
+                not line.startswith('*End of') and
+                not line.startswith('##') and
+                not line.startswith('###') and
+                not line.startswith('[') and  # Skip [NATURAL AD BREAK TRANSITION]
+                not line.endswith(']')):
+                
+                # Filter out stage directions but keep regular content
+                if not (('(' in line and ')' in line) or
+                        'shuffles' in line.lower() or 
+                        'laughs' in line.lower() or
+                        'chuckles' in line.lower()):
+                    current_text.append(line)
     
     # Add final segment
     if current_speaker and current_text:
@@ -323,11 +660,22 @@ def parse_script_by_speaker(script):
             'text': ' '.join(current_text).strip()
         })
     
-    # Filter out very short segments
-    segments = [s for s in segments if len(s['text']) > 10]
+    # Filter out very short segments and clean up text
+    cleaned_segments = []
+    for segment in segments:
+        # Remove any remaining stage directions from text
+        clean_text = re.sub(r'\([^)]*\)', '', segment['text'])  # Remove (parenthetical)
+        clean_text = re.sub(r'\*[^*]*\*', '', clean_text)      # Remove *single asterisk actions*
+        clean_text = ' '.join(clean_text.split())              # Clean up whitespace
+        
+        if len(clean_text) > 10:  # Only keep substantial segments
+            cleaned_segments.append({
+                'speaker': segment['speaker'],
+                'text': clean_text
+            })
     
-    print(f"🎭 Parsed script into {len(segments)} speaking segments")
-    return segments
+    print(f"🎭 Parsed script into {len(cleaned_segments)} speaking segments")
+    return cleaned_segments
 
 def generate_audio_from_script(script, output_filename):
     """Convert script to audio using OpenAI TTS."""
@@ -415,25 +763,35 @@ def generate_audio_from_script(script, output_filename):
         return None
 
 def generate_podcast_rss_feed():
-    """Generate RSS feed for podcast apps."""
-    print("📡 Generating podcast RSS feed...")
+    """Generate RSS feed for podcast apps with rich episode descriptions."""
+    print("📡 Generating podcast RSS feed with episode descriptions...")
     
     # Find all episode files
     import glob
     audio_files = glob.glob("podcast_audio_*.mp3")
-    script_files = glob.glob("podcast_script_*.txt")
-    
-    # Get current date info
-    weekday, date_str = get_current_date_info()
     
     episodes = []
     for audio_file in sorted(audio_files, reverse=True):  # Newest first
         # Extract date and theme from filename
-        # Format: podcast_audio_2026-01-24_wild_card.mp3
         parts = audio_file.replace('podcast_audio_', '').replace('.mp3', '').split('_')
         if len(parts) >= 2:
             episode_date = parts[0]  # 2026-01-24
             theme = ' '.join(parts[1:]).replace('_', ' ').title()
+            
+            # Skip test files
+            if 'test' in theme.lower():
+                continue
+            
+            # Load episode description from citations file if available
+            citations_file = f"citations_{episode_date}_{'_'.join(parts[1:])}.json"
+            episode_description = "Daily tech conversations for rural communities."
+            
+            try:
+                with open(citations_file, 'r') as f:
+                    citations_data = json.load(f)
+                    episode_description = citations_data['episode'].get('description', episode_description)
+            except:
+                pass  # Use default description if citations file not found
             
             # Get file size
             file_size = os.path.getsize(audio_file)
@@ -446,60 +804,76 @@ def generate_podcast_rss_feed():
                 pub_date = datetime.now().strftime("%a, %d %b %Y 06:00:00 GMT")
             
             episodes.append({
-                'title': f"Tech & Impact - {theme}",
+                'title': f"Cariboo Tech Progress - {theme}",
                 'audio_file': audio_file,
                 'pub_date': pub_date,
                 'file_size': file_size,
                 'episode_date': episode_date,
-                'theme': theme
+                'theme': theme,
+                'description': episode_description
             })
     
-    # Generate RSS XML
-    rss_content = f'''<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-<channel>
-<title>Tech &amp; Impact Podcast</title>
-<link>https://zirnhelt.github.io/curated-podcast-generator/</link>
-<language>en-us</language>
-<copyright>Erich's AI Curator</copyright>
-<itunes:subtitle>AI-curated daily conversations with Riley &amp; Casey</itunes:subtitle>
-<itunes:author>Riley &amp; Casey</itunes:author>
-<itunes:summary>Daily conversations about technology, climate, AI, and their impact on communities. Hosts Riley and Casey discuss the most relevant stories from 50+ curated sources.</itunes:summary>
-<description>Daily conversations about technology, climate, AI, and their impact on communities. Hosts Riley and Casey discuss the most relevant stories from 50+ curated sources.</description>
-<itunes:owner>
-<itunes:name>Erich's AI Curator</itunes:name>
-<itunes:email>podcast@example.com</itunes:email>
-</itunes:owner>
-<itunes:image href="https://zirnhelt.github.io/curated-podcast-generator/podcast-artwork.jpg"/>
-<itunes:category text="Technology"/>
-<itunes:category text="News"/>
-<itunes:explicit>false</itunes:explicit>
-<lastBuildDate>{datetime.now().strftime("%a, %d %b %Y %H:%M:%S GMT")}</lastBuildDate>
-'''
+    # Generate RSS XML with proper escaping and rich metadata
+    import xml.sax.saxutils as saxutils
     
-    # Add episodes
+    rss_lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/">',
+        '<channel>',
+        '<title>Cariboo Tech Progress</title>',
+        '<link>https://zirnhelt.github.io/curated-podcast-generator/</link>',
+        '<language>en-us</language>',
+        '<copyright>© 2026 Erich\'s AI Curator</copyright>',
+        '<itunes:subtitle>Technology and society in rural BC with Riley and Casey</itunes:subtitle>',
+        '<itunes:author>Riley and Casey</itunes:author>',
+        '<itunes:summary>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region. Riley brings tech systems thinking with rural roots, while Casey focuses on community development. New episodes every day with weekly themes.</itunes:summary>',
+        '<description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region.</description>',
+        '<itunes:owner>',
+        '<itunes:name>Erich\'s AI Curator</itunes:name>',
+        '<itunes:email>podcast@example.com</itunes:email>',
+        '</itunes:owner>',
+        '<itunes:image href="https://zirnhelt.github.io/curated-podcast-generator/podcast-cover.png"/>',
+        '<itunes:category text="Technology">',
+        '<itunes:category text="News"/>',
+        '</itunes:category>',
+        '<itunes:category text="Society &amp; Culture"/>',
+        '<itunes:explicit>false</itunes:explicit>',
+        '<itunes:type>episodic</itunes:type>',
+        f'<lastBuildDate>{datetime.now().strftime("%a, %d %b %Y %H:%M:%S GMT")}</lastBuildDate>'
+    ]
+    
+    # Add episodes with rich descriptions and proper XML escaping
     for episode in episodes:
-        rss_content += f'''
-<item>
-<title>{episode['title']}</title>
-<link>https://zirnhelt.github.io/curated-podcast-generator/</link>
-<pubDate>{episode['pub_date']}</pubDate>
-<description>Daily tech and impact discussion covering {episode['theme'].lower()} and top news stories.</description>
-<enclosure url="https://zirnhelt.github.io/curated-podcast-generator/{episode['audio_file']}" length="{episode['file_size']}" type="audio/mpeg"/>
-<guid>https://zirnhelt.github.io/curated-podcast-generator/{episode['audio_file']}</guid>
-<itunes:duration>30:00</itunes:duration>
-<itunes:explicit>false</itunes:explicit>
-</item>'''
+        escaped_title = saxutils.escape(episode['title'])
+        escaped_description = saxutils.escape(episode['description'])
+        
+        rss_lines.extend([
+            '<item>',
+            f'<title>{escaped_title}</title>',
+            '<link>https://zirnhelt.github.io/curated-podcast-generator/</link>',
+            f'<pubDate>{episode["pub_date"]}</pubDate>',
+            f'<description>{escaped_description}</description>',
+            f'<itunes:summary>{escaped_description}</itunes:summary>',
+            f'<itunes:subtitle>Daily tech progress - {episode["theme"]}</itunes:subtitle>',
+            f'<enclosure url="https://zirnhelt.github.io/curated-podcast-generator/{episode["audio_file"]}" length="{episode["file_size"]}" type="audio/mpeg"/>',
+            f'<guid isPermaLink="false">cariboo-tech-progress-{episode["episode_date"]}</guid>',
+            '<itunes:duration>30:00</itunes:duration>',
+            '<itunes:explicit>false</itunes:explicit>',
+            '<itunes:episodeType>full</itunes:episodeType>',
+            '</item>'
+        ])
     
-    rss_content += '''
-</channel>
-</rss>'''
+    rss_lines.extend([
+        '</channel>',
+        '</rss>'
+    ])
     
     # Save RSS feed
+    rss_content = '\n'.join(rss_lines)
     with open('podcast-feed.xml', 'w', encoding='utf-8') as f:
         f.write(rss_content)
     
-    print(f"✅ Generated RSS feed with {len(episodes)} episodes: podcast-feed.xml")
+    print(f"✅ Generated RSS feed with {len(episodes)} episodes and rich descriptions: podcast-feed.xml")
     return 'podcast-feed.xml'
 
 def save_script_to_file(script, theme_name):
@@ -507,11 +881,11 @@ def save_script_to_file(script, theme_name):
     if not script:
         return None
     
-    script_filename, _ = get_daily_filenames(theme_name)
+    script_filename, _, _ = get_daily_filenames(theme_name)
     
     try:
         with open(script_filename, 'w', encoding='utf-8') as f:
-            f.write(f"# Curated Podcast Script - {datetime.now().strftime('%Y-%m-%d')}\n")
+            f.write(f"# Cariboo Tech Progress Podcast Script - {datetime.now().strftime('%Y-%m-%d')}\n")
             f.write(f"# Theme: {theme_name}\n")
             f.write(f"# Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
             f.write(script)
@@ -524,8 +898,8 @@ def save_script_to_file(script, theme_name):
         return None
 
 def main():
-    print("🎙️ Curated Podcast Generator")
-    print("=" * 40)
+    print("🏔️ Cariboo Tech Progress Podcast Generator with Memory & Citations")
+    print("=" * 60)
     
     # Get today's theme
     today_weekday = datetime.now().weekday()
@@ -533,14 +907,52 @@ def main():
     weekday, date_str = get_current_date_info()
     print(f"📅 {weekday}, {date_str} - Deep dive theme: {today_theme}")
     
-    # Check for existing files
-    script_exists, audio_exists, script_filename, audio_filename = check_existing_files(today_theme)
+    # Load memory systems
+    episode_memory = load_episode_memory()
+    host_memory = load_host_memory()
     
-    # If both exist, just generate RSS and exit
+    # Check for existing files
+    script_exists, audio_exists, script_filename, audio_filename, citations_filename = check_existing_files(today_theme)
+    
+    # If both script and audio exist, check if we need to generate citations
     if script_exists and audio_exists:
         print("✅ Both script and audio already exist for today!")
         print(f"   Script: {script_filename}")
         print(f"   Audio:  {audio_filename}")
+        
+        # Check if citations exist, if not generate them from existing script
+        citations_exist = os.path.exists(citations_filename)
+        if not citations_exist:
+            print("📚 Generating citations for existing episode...")
+            
+            # Load existing script
+            script = load_existing_script(script_filename)
+            if script:
+                # We need the original article data to generate citations
+                # Fetch data from live system
+                scoring_data = fetch_scoring_data()
+                current_articles = fetch_feed_data()
+                
+                if scoring_data and current_articles:
+                    # Add AI scores to articles
+                    scored_articles = get_article_scores(current_articles, scoring_data)
+                    
+                    # Get articles for deep dive (Cariboo-themed)
+                    deep_dive_articles = categorize_articles_for_deep_dive(scored_articles, today_weekday)
+                    
+                    # Generate citations file
+                    citations_file = generate_citations_file(scored_articles[:8], deep_dive_articles, today_theme)
+                    
+                    if citations_file:
+                        print(f"✅ Generated citations: {citations_file}")
+                    else:
+                        print("⚠️ Failed to generate citations")
+                else:
+                    print("⚠️ Could not fetch article data for citations")
+            else:
+                print("⚠️ Could not load existing script for citations")
+        else:
+            print(f"📚 Citations already exist: {citations_filename}")
         
         # Still generate RSS feed
         generate_podcast_rss_feed()
@@ -551,7 +963,7 @@ def main():
         print("📖 Using existing script...")
         script = load_existing_script(script_filename)
     else:
-        print("🆕 Generating new script...")
+        print("🆕 Generating new Cariboo-focused script with memory context...")
         
         # Fetch data from live system
         scoring_data = fetch_scoring_data()
@@ -564,15 +976,19 @@ def main():
         # Add AI scores to articles
         scored_articles = get_article_scores(current_articles, scoring_data)
         
-        # Get articles for deep dive (theme-specific)
+        # Get articles for deep dive (Cariboo-themed)
         deep_dive_articles = categorize_articles_for_deep_dive(scored_articles, today_weekday)
         
-        print(f"📊 Ready to generate podcast:")
-        print(f"   News roundup: Top {min(10, len(scored_articles))} articles by score")
-        print(f"   Deep dive: {len(deep_dive_articles)} articles for {today_theme}")
+        print(f"📊 Ready to generate Cariboo Tech Progress podcast:")
+        print(f"   News roundup: Top {min(8, len(scored_articles))} articles by score")
+        print(f"   Cariboo connections: {len(deep_dive_articles)} articles for {today_theme}")
+        print(f"   Memory context: {len(episode_memory.get('recent_episodes', []))} recent episodes")
         
-        # Generate podcast script
-        script = generate_podcast_script(scored_articles, deep_dive_articles, today_theme)
+        # Generate citations file
+        citations_file = generate_citations_file(scored_articles[:8], deep_dive_articles, today_theme)
+        
+        # Generate podcast script with memory and Cariboo focus
+        script = generate_podcast_script(scored_articles, deep_dive_articles, today_theme, episode_memory, host_memory)
         
         if not script:
             print("❌ Failed to generate script. Exiting.")
@@ -580,15 +996,22 @@ def main():
         
         # Save script to file
         script_filename = save_script_to_file(script, today_theme)
+        
+        # Update memory with new episode
+        if script:
+            current_date = datetime.now().strftime("%Y-%m-%d")
+            update_episode_memory(script, today_theme, current_date)
+            update_host_memory(script)
     
     # Generate audio if needed
     if not audio_exists and script:
         audio_file = generate_audio_from_script(script, audio_filename)
         
         if audio_file:
-            print(f"🎉 Podcast complete!")
+            print(f"🎉 Cariboo Tech Progress podcast complete!")
             print(f"   Script: {script_filename}")
             print(f"   Audio:  {audio_file}")
+            print(f"   Citations: {citations_filename}")
         else:
             print(f"📝 Script ready: {script_filename}")
             print("🔊 Audio generation failed - check requirements")
@@ -598,7 +1021,7 @@ def main():
     # Generate RSS feed for podcast apps
     generate_podcast_rss_feed()
     
-    print("✅ Generation complete!")
+    print("✅ Cariboo Tech Progress generation complete!")
 
 if __name__ == "__main__":
     main()

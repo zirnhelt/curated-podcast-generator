@@ -131,10 +131,11 @@
             margin-bottom: 12px;
         }
         
-        .download-buttons {
+        .episode-controls {
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
+            align-items: center;
         }
         
         .download-btn {
@@ -163,6 +164,115 @@
         
         .download-btn.script:hover {
             background: #2ecc71;
+        }
+        
+        .citations-btn {
+            background: #8e44ad;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .citations-btn:hover {
+            background: #9b59b6;
+            transform: translateY(-1px);
+        }
+        
+        .citations-section {
+            margin-top: 16px;
+            padding: 16px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            display: none;
+        }
+        
+        .citations-section.show {
+            display: block;
+        }
+        
+        .citations-segment {
+            margin-bottom: 24px;
+        }
+        
+        .citations-segment:last-child {
+            margin-bottom: 0;
+        }
+        
+        .segment-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+        
+        .citation {
+            margin-bottom: 16px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 3px solid #8e44ad;
+        }
+        
+        .citation:last-child {
+            margin-bottom: 0;
+        }
+        
+        .citation-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .citation-title a {
+            color: #2c3e50;
+            text-decoration: none;
+        }
+        
+        .citation-title a:hover {
+            color: #8e44ad;
+            text-decoration: underline;
+        }
+        
+        .citation-meta {
+            font-size: 0.85em;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .citation-summary {
+            font-size: 0.9em;
+            color: #555;
+            line-height: 1.4;
+        }
+        
+        .score-badge {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 0.75em;
+            font-weight: 600;
+        }
+        
+        .score-badge.high {
+            background: #27ae60;
+        }
+        
+        .score-badge.medium {
+            background: #f39c12;
+        }
+        
+        .score-badge.low {
+            background: #e74c3c;
         }
         
         .rss-section {
@@ -258,7 +368,7 @@
                 align-items: flex-start;
             }
             
-            .download-buttons {
+            .episode-controls {
                 justify-content: center;
             }
         }
@@ -272,7 +382,9 @@
         </div>
         
         <div class="theme-description">
-            <strong>Our Mission:</strong> How do rural and remote communities like ours grow and evolve alongside technology that typically benefits urban areas first? We explore responsible, evolutionary approaches to progress in the Cariboo region and beyond.
+            <strong>Our Mission:</strong> How do rural and remote communities like ours grow and evolve alongside technology that typically benefits urban areas first? We explore responsible, evolutionary approaches to progress in the Cariboo (CARE-ih-boo, like caribou) region and beyond.
+            <br><br>
+            <strong>Daily Episodes:</strong> New episodes every day with weekly themes, exploring tech news and rural connections.
         </div>
         
         <div class="hosts-section">
@@ -292,15 +404,55 @@
         </div>
         
         <div class="rss-section">
-            <h3 style="margin-top: 0; color: #27ae60;">📡 Subscribe in Your Podcast App</h3>
-            <p>Copy this RSS feed URL into your favorite podcast app:</p>
-            <div class="rss-url" onclick="copyToClipboard(this.textContent)" title="Click to copy">
-                https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml
+            <h3 style="margin-top: 0; color: #27ae60;">🎧 Listen on Your Favorite App</h3>
+            <p>Subscribe to never miss an episode:</p>
+            
+            <div style="margin: 16px 0; display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
+                <a href="https://podcasts.apple.com/podcast/id?feed=https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml" 
+                   class="download-btn" target="_blank" rel="noopener">🍎 Apple Podcasts</a>
+                <a href="https://open.spotify.com/" class="download-btn" target="_blank" rel="noopener">🎵 Spotify*</a>
+                <a href="https://podcasts.google.com/feed/aHR0cHM6Ly96aXJuaGVsdC5naXRodWIuaW8vY3VyYXRlZC1wb2RjYXN0LWdlbmVyYXRvci9wb2RjYXN0LWZlZWQueG1s" 
+                   class="download-btn" target="_blank" rel="noopener">🔍 Google Podcasts</a>
+                <a href="https://overcast.fm/+add?url=https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml" 
+                   class="download-btn" target="_blank" rel="noopener">☁️ Overcast</a>
+                <a href="https://pca.st/subscribe/https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml" 
+                   class="download-btn" target="_blank" rel="noopener">📱 Pocket Casts</a>
+                <a href="https://castro.fm/subscribe/https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml" 
+                   class="download-btn" target="_blank" rel="noopener">📻 Castro</a>
             </div>
+            
+            <p style="font-size: 0.9em; color: #666; margin-top: 12px;">
+                *Spotify requires manual submission. <a href="#spotify-instructions" style="color: #27ae60;">See instructions below</a>.
+            </p>
+            
+            <details style="margin-top: 16px;">
+                <summary style="cursor: pointer; font-weight: 600; color: #2c3e50;">📡 Or use RSS feed directly</summary>
+                <div class="rss-url" onclick="copyToClipboard(this.textContent)" title="Click to copy" style="margin-top: 8px;">
+                    https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml
+                </div>
+                <p style="font-size: 0.9em; color: #666; margin-top: 8px;">
+                    Copy this URL into any podcast app that supports RSS feeds.
+                </p>
+            </details>
+        </div>
+        
+        <div id="spotify-instructions" class="rss-section" style="background: #fff3cd; border-left-color: #856404;">
+            <h3 style="margin-top: 0; color: #856404;">🎵 Spotify Submission</h3>
+            <p>To get Cariboo Tech Progress on Spotify:</p>
+            <ol style="margin-left: 20px; color: #666;">
+                <li>Visit <a href="https://podcasters.spotify.com/" target="_blank" rel="noopener">Spotify for Podcasters</a></li>
+                <li>Sign in with your Spotify account</li>
+                <li>Click "Add Your Podcast"</li>
+                <li>Enter our RSS feed: <code>https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml</code></li>
+                <li>Wait for approval (usually 1-3 days)</li>
+            </ol>
+            <p style="font-size: 0.9em; color: #666; margin-top: 12px;">
+                Once submitted, it will appear in Spotify for all listeners automatically.
+            </p>
         </div>
         
         <div class="themes-section">
-            <h2>📅 Weekly Themes</h2>
+            <h2>📅 Daily Themes (Weekly Rotation)</h2>
             <div class="themes-grid">
                 <div class="theme-card">
                     <div class="theme-day">Monday</div>
@@ -377,6 +529,87 @@
             return 'Episode';
         }
         
+        function getScoreBadgeClass(score) {
+            if (score >= 70) return 'high';
+            if (score >= 40) return 'medium';
+            return 'low';
+        }
+        
+        async function loadCitations(episodeId, citationsFilename) {
+            const citationsSection = document.getElementById(`citations-${episodeId}`);
+            const button = document.getElementById(`citations-btn-${episodeId}`);
+            
+            if (citationsSection.classList.contains('show')) {
+                citationsSection.classList.remove('show');
+                button.textContent = '📚 Show Sources';
+                return;
+            }
+            
+            try {
+                button.textContent = '⏳ Loading...';
+                const response = await fetch(citationsFilename);
+                const citations = await response.json();
+                
+                let html = '';
+                
+                // News Roundup sources
+                if (citations.segments.news_roundup.articles.length > 0) {
+                    html += `<div class="citations-segment">`;
+                    html += `<div class="segment-title">${citations.segments.news_roundup.title}</div>`;
+                    
+                    citations.segments.news_roundup.articles.forEach(article => {
+                        const scoreClass = getScoreBadgeClass(article.ai_score);
+                        html += `
+                            <div class="citation">
+                                <div class="citation-title">
+                                    <a href="${article.url}" target="_blank" rel="noopener">${article.title}</a>
+                                </div>
+                                <div class="citation-meta">
+                                    ${article.source} • <span class="score-badge ${scoreClass}">Score: ${article.ai_score}</span>
+                                </div>
+                                <div class="citation-summary">${article.summary}</div>
+                            </div>
+                        `;
+                    });
+                    
+                    html += `</div>`;
+                }
+                
+                // Deep Dive sources
+                if (citations.segments.deep_dive.articles.length > 0) {
+                    html += `<div class="citations-segment">`;
+                    html += `<div class="segment-title">${citations.segments.deep_dive.title}</div>`;
+                    
+                    citations.segments.deep_dive.articles.forEach(article => {
+                        const scoreClass = getScoreBadgeClass(article.ai_score);
+                        html += `
+                            <div class="citation">
+                                <div class="citation-title">
+                                    <a href="${article.url}" target="_blank" rel="noopener">${article.title}</a>
+                                </div>
+                                <div class="citation-meta">
+                                    ${article.source} • <span class="score-badge ${scoreClass}">Score: ${article.ai_score}</span>
+                                </div>
+                                <div class="citation-summary">${article.summary}</div>
+                            </div>
+                        `;
+                    });
+                    
+                    html += `</div>`;
+                }
+                
+                citationsSection.innerHTML = html;
+                citationsSection.classList.add('show');
+                button.textContent = '📚 Hide Sources';
+                
+            } catch (error) {
+                console.error('Error loading citations:', error);
+                citationsSection.innerHTML = '<p>Citations not available for this episode.</p>';
+                citationsSection.classList.add('show');
+                button.textContent = '📚 Show Sources';
+            }
+        }
+        
         async function loadEpisodes() {
             const episodesList = document.getElementById('episodesList');
             
@@ -416,8 +649,11 @@
                     const episodeDate = dateMatch ? dateMatch[1] : 'Unknown Date';
                     const theme = getThemeFromFilename(fileName);
                     
-                    // Corresponding script file
+                    // Corresponding script and citations files
                     const scriptUrl = audioUrl.replace('podcast_audio_', 'podcast_script_').replace('.mp3', '.txt');
+                    const citationsUrl = audioUrl.replace('podcast_audio_', 'citations_').replace('.mp3', '.json');
+                    
+                    const episodeId = `episode-${episodeDate.replace(/-/g, '')}`;
                     
                     const episodeHtml = `
                         <div class="episode-section">
@@ -434,10 +670,12 @@
                                     Your browser does not support the audio element.
                                 </audio>
                             </div>
-                            <div class="download-buttons">
+                            <div class="episode-controls">
                                 <a href="${audioUrl}" class="download-btn" download>🎵 Download Audio (${formatFileSize(fileSize)})</a>
                                 <a href="${scriptUrl}" class="download-btn script" download>📝 View Script</a>
+                                <button class="citations-btn" id="citations-btn-${episodeId}" onclick="loadCitations('${episodeId}', '${citationsUrl}')">📚 Show Sources</button>
                             </div>
+                            <div class="citations-section" id="citations-${episodeId}"></div>
                         </div>
                     `;
                     
