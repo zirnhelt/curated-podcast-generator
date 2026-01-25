@@ -9,7 +9,7 @@ import sys
 import json
 import requests
 import re
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Optional, Tuple
 import anthropic
 from dotenv import load_dotenv
@@ -28,7 +28,7 @@ TTS_VOICES = {
     'casey': 'echo'     # More neutral voice for Casey
 }
 
-# Daily themes (Wednesday = Local News)
+# Daily themes (Wednesday = Local News) - for DEEP DIVE ONLY
 DAILY_THEMES = {
     0: "AI/ML Infrastructure",        # Monday
     1: "Climate & Clean Energy",      # Tuesday  
@@ -128,8 +128,8 @@ def fetch_feed_data():
         print(f"❌ Error parsing feed JSON: {e}")
         return []
 
-def categorize_articles_by_theme(articles, theme_day):
-    """Categorize articles based on daily theme."""
+def categorize_articles_for_deep_dive(articles, theme_day):
+    """Categorize articles for deep dive segment only."""
     theme = DAILY_THEMES[theme_day]
     
     # Keywords for each theme
@@ -144,25 +144,27 @@ def categorize_articles_by_theme(articles, theme_day):
     
     keywords = theme_keywords.get(theme, [])
     
-    # Categorize articles
-    theme_articles = []
-    general_articles = []
+    # For Wild Card, just return top articles by score
+    if theme == "Wild Card":
+        deep_dive_articles = articles[:4]  # Top 4 articles
+        print(f"🎯 Wild Card: Using top {len(deep_dive_articles)} articles by score")
+        return deep_dive_articles
     
+    # Filter articles for theme
+    theme_articles = []
     for article in articles:
         title = article.get('title', '').lower()
         summary = article.get('summary', '').lower()
         content = f"{title} {summary}"
         
-        # Check if article matches theme
-        if theme == "Wild Card" or any(keyword in content for keyword in keywords):
+        if any(keyword in content for keyword in keywords):
             theme_articles.append(article)
-        else:
-            general_articles.append(article)
     
-    print(f"🎯 Found {len(theme_articles)} articles for '{theme}' theme")
-    print(f"📰 Found {len(general_articles)} general articles")
+    # Take top 4 theme-matching articles
+    deep_dive_articles = theme_articles[:4]
+    print(f"🎯 Found {len(deep_dive_articles)} articles for '{theme}' deep dive")
     
-    return theme_articles, general_articles
+    return deep_dive_articles
 
 def get_article_scores(articles, scoring_data):
     """Match articles with their AI scores."""
@@ -187,7 +189,15 @@ def get_article_scores(articles, scoring_data):
     scored_articles.sort(key=lambda x: x.get('ai_score', 0), reverse=True)
     return scored_articles
 
-def generate_podcast_script(general_articles, theme_articles, theme_name):
+def get_current_date_info():
+    """Get properly formatted current date and day."""
+    now = datetime.now()
+    weekday = now.strftime("%A")
+    date_str = now.strftime("%B %d, %Y")
+    
+    return weekday, date_str
+
+def generate_podcast_script(all_articles, deep_dive_articles, theme_name):
     """Generate conversational podcast script with Riley & Casey."""
     print("🎙️ Generating podcast script with Claude...")
     
@@ -197,44 +207,56 @@ def generate_podcast_script(general_articles, theme_articles, theme_name):
         print("❌ ANTHROPIC_API_KEY not found in .env file")
         return None
     
+    # Get current date info
+    weekday, date_str = get_current_date_info()
+    
     # Prepare articles for script generation
-    top_general = general_articles[:8]  # Top 8 for headlines
-    top_theme = theme_articles[:3]      # Top 3 for deep dive
+    top_news = all_articles[:10]  # Top 10 for news roundup (by score, any topic)
     
     # Create article summaries for Claude
-    headlines_text = "\n".join([
-        f"- [{a.get('authors', [{}])[0].get('name', 'Unknown')}] {a.get('title', '')} (Score: {a.get('ai_score', 0)})"
-        for a in top_general
+    news_text = "\n".join([
+        f"- [{a.get('authors', [{}])[0].get('name', 'Unknown')}] {a.get('title', '')}\n  {a.get('summary', '')[:150]}... (AI Score: {a.get('ai_score', 0)})"
+        for a in top_news
     ])
     
-    theme_text = "\n".join([
-        f"- [{a.get('authors', [{}])[0].get('name', 'Unknown')}] {a.get('title', '')}\n  {a.get('summary', '')[:200]}... (Score: {a.get('ai_score', 0)})"
-        for a in top_theme
+    deep_dive_text = "\n".join([
+        f"- [{a.get('authors', [{}])[0].get('name', 'Unknown')}] {a.get('title', '')}\n  {a.get('summary', '')[:200]}... (AI Score: {a.get('ai_score', 0)})"
+        for a in deep_dive_articles
     ])
     
-    prompt = f"""Create a 30-minute conversational podcast script between two hosts discussing today's curated news.
+    prompt = f"""Create a 30-minute conversational podcast script for {weekday}, {date_str}.
 
 HOSTS:
-- Riley (she/her): Tech systems thinker, engineering background, asks "how does this scale?", optimistic about tech solutions
-- Casey (they/them): Impact journalist, focuses on real-world implications, asks "who benefits?", constructive but skeptical
+- Riley (she/her): Tech systems thinker, engineering background, optimistic about solutions, asks "how does this scale?", loves finding connections between technologies
+- Casey (they/them): Impact journalist, community-focused, asks "who benefits?" and "who gets left out?", great at spotting unintended consequences
 
-FORMAT:
-**SEGMENT 1 (15 minutes): Headlines Roundup**
-Natural conversation about these top articles:
-{headlines_text}
+EPISODE STRUCTURE:
 
-**SEGMENT 2 (15 minutes): Deep Dive - {theme_name}**
-Detailed discussion of these articles with broader context:
-{theme_text}
+**SEGMENT 1 (18 minutes): "What Caught Our Eye" - News Roundup**
+Natural, flowing conversation about these TOP-SCORED articles (regardless of topic):
+{news_text}
 
-STYLE:
-- Natural back-and-forth dialogue
-- Different perspectives from each host
-- Smooth transitions: "Speaking of X, did you see..."
-- Questions to each other: "What's your take on..."
-- 30 minutes total (roughly 4,500 words)
+Style: Newsy, snappy, engaging. Hit the highlights, share quick reactions. Riley and Casey riff off each other. Include some personality - maybe Riley gets excited about technical details, Casey always brings it back to real-world impact. Make it fun!
 
-Generate the full script with [RILEY:] and [CASEY:] speaker tags."""
+**SEGMENT 2 (12 minutes): "Deep Dive - {theme_name}"**
+More focused discussion of these related articles:
+{deep_dive_text}
+
+Style: More analytical, but still conversational. Build connections between the articles. Riley might see technical patterns, Casey might spot social trends.
+
+CONVERSATION STYLE:
+- Natural back-and-forth, like friends talking
+- Interruptions and "Oh!" moments are good
+- Use transitions like "Speaking of...", "That reminds me...", "Wait, did you see..."
+- Let personalities show: Riley's engineering enthusiasm vs Casey's community focus
+- Include some lighter moments - they should actually like each other!
+- Build on each other's points, don't just take turns
+
+IMPORTANT:
+- Use CORRECT date: {weekday}, {date_str}
+- Make it flow naturally - avoid robotic turn-taking
+- ~4,000-4,500 words total
+- Use **RILEY:** and **CASEY:** speaker tags"""
 
     try:
         client = anthropic.Anthropic(api_key=api_key)
@@ -258,7 +280,6 @@ def parse_script_by_speaker(script):
     if not script:
         return []
     
-    # Split by speaker tags and clean up
     segments = []
     current_speaker = None
     current_text = []
@@ -316,11 +337,9 @@ def generate_audio_from_script(script, output_filename):
     openai_api_key = os.getenv('OPENAI_API_KEY')
     if not openai_api_key:
         print("❌ OPENAI_API_KEY not found in .env file")
-        print("   Add: OPENAI_API_KEY=your-key-here")
         return None
     
     try:
-        # Import OpenAI (install with: pip install openai)
         from openai import OpenAI
         client = OpenAI(api_key=openai_api_key)
         
@@ -341,7 +360,7 @@ def generate_audio_from_script(script, output_filename):
             
             # Generate TTS
             response = client.audio.speech.create(
-                model="tts-1",  # or "tts-1-hd" for higher quality
+                model="tts-1",
                 voice=voice,
                 input=text,
                 speed=1.0
@@ -356,7 +375,6 @@ def generate_audio_from_script(script, output_filename):
         
         print("🎵 Combining audio segments...")
         
-        # Combine audio files (requires pydub: pip install pydub)
         try:
             from pydub import AudioSegment
             
@@ -387,9 +405,6 @@ def generate_audio_from_script(script, output_filename):
             
         except ImportError:
             print("❌ pydub not installed. Install with: pip install pydub")
-            print("   Individual audio files created but not combined:")
-            for audio_file in audio_files:
-                print(f"   - {audio_file}")
             return None
             
     except ImportError:
@@ -399,12 +414,99 @@ def generate_audio_from_script(script, output_filename):
         print(f"❌ Error generating audio: {e}")
         return None
 
+def generate_podcast_rss_feed():
+    """Generate RSS feed for podcast apps."""
+    print("📡 Generating podcast RSS feed...")
+    
+    # Find all episode files
+    import glob
+    audio_files = glob.glob("podcast_audio_*.mp3")
+    script_files = glob.glob("podcast_script_*.txt")
+    
+    # Get current date info
+    weekday, date_str = get_current_date_info()
+    
+    episodes = []
+    for audio_file in sorted(audio_files, reverse=True):  # Newest first
+        # Extract date and theme from filename
+        # Format: podcast_audio_2026-01-24_wild_card.mp3
+        parts = audio_file.replace('podcast_audio_', '').replace('.mp3', '').split('_')
+        if len(parts) >= 2:
+            episode_date = parts[0]  # 2026-01-24
+            theme = ' '.join(parts[1:]).replace('_', ' ').title()
+            
+            # Get file size
+            file_size = os.path.getsize(audio_file)
+            
+            # Convert date for RSS
+            try:
+                date_obj = datetime.strptime(episode_date, "%Y-%m-%d")
+                pub_date = date_obj.strftime("%a, %d %b %Y 06:00:00 GMT")
+            except:
+                pub_date = datetime.now().strftime("%a, %d %b %Y 06:00:00 GMT")
+            
+            episodes.append({
+                'title': f"Tech & Impact - {theme}",
+                'audio_file': audio_file,
+                'pub_date': pub_date,
+                'file_size': file_size,
+                'episode_date': episode_date,
+                'theme': theme
+            })
+    
+    # Generate RSS XML
+    rss_content = f'''<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+<title>Tech &amp; Impact Podcast</title>
+<link>https://zirnhelt.github.io/curated-podcast-generator/</link>
+<language>en-us</language>
+<copyright>Erich's AI Curator</copyright>
+<itunes:subtitle>AI-curated daily conversations with Riley &amp; Casey</itunes:subtitle>
+<itunes:author>Riley &amp; Casey</itunes:author>
+<itunes:summary>Daily conversations about technology, climate, AI, and their impact on communities. Hosts Riley and Casey discuss the most relevant stories from 50+ curated sources.</itunes:summary>
+<description>Daily conversations about technology, climate, AI, and their impact on communities. Hosts Riley and Casey discuss the most relevant stories from 50+ curated sources.</description>
+<itunes:owner>
+<itunes:name>Erich's AI Curator</itunes:name>
+<itunes:email>podcast@example.com</itunes:email>
+</itunes:owner>
+<itunes:image href="https://zirnhelt.github.io/curated-podcast-generator/podcast-artwork.jpg"/>
+<itunes:category text="Technology"/>
+<itunes:category text="News"/>
+<itunes:explicit>false</itunes:explicit>
+<lastBuildDate>{datetime.now().strftime("%a, %d %b %Y %H:%M:%S GMT")}</lastBuildDate>
+'''
+    
+    # Add episodes
+    for episode in episodes:
+        rss_content += f'''
+<item>
+<title>{episode['title']}</title>
+<link>https://zirnhelt.github.io/curated-podcast-generator/</link>
+<pubDate>{episode['pub_date']}</pubDate>
+<description>Daily tech and impact discussion covering {episode['theme'].lower()} and top news stories.</description>
+<enclosure url="https://zirnhelt.github.io/curated-podcast-generator/{episode['audio_file']}" length="{episode['file_size']}" type="audio/mpeg"/>
+<guid>https://zirnhelt.github.io/curated-podcast-generator/{episode['audio_file']}</guid>
+<itunes:duration>30:00</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+</item>'''
+    
+    rss_content += '''
+</channel>
+</rss>'''
+    
+    # Save RSS feed
+    with open('podcast-feed.xml', 'w', encoding='utf-8') as f:
+        f.write(rss_content)
+    
+    print(f"✅ Generated RSS feed with {len(episodes)} episodes: podcast-feed.xml")
+    return 'podcast-feed.xml'
+
 def save_script_to_file(script, theme_name):
     """Save the generated script to a file."""
     if not script:
         return None
     
-    # Create filename with date and theme
     script_filename, _ = get_daily_filenames(theme_name)
     
     try:
@@ -428,16 +530,20 @@ def main():
     # Get today's theme
     today_weekday = datetime.now().weekday()
     today_theme = DAILY_THEMES[today_weekday]
-    print(f"📅 Today's theme: {today_theme}")
+    weekday, date_str = get_current_date_info()
+    print(f"📅 {weekday}, {date_str} - Deep dive theme: {today_theme}")
     
     # Check for existing files
     script_exists, audio_exists, script_filename, audio_filename = check_existing_files(today_theme)
     
-    # If both exist, we're done
+    # If both exist, just generate RSS and exit
     if script_exists and audio_exists:
         print("✅ Both script and audio already exist for today!")
         print(f"   Script: {script_filename}")
         print(f"   Audio:  {audio_filename}")
+        
+        # Still generate RSS feed
+        generate_podcast_rss_feed()
         return
     
     # Load or generate script
@@ -455,17 +561,18 @@ def main():
             print("❌ Failed to fetch data. Exiting.")
             return
         
-        # Categorize articles
-        theme_articles, general_articles = categorize_articles_by_theme(current_articles, today_weekday)
-        
         # Add AI scores to articles
-        theme_articles = get_article_scores(theme_articles, scoring_data)
-        general_articles = get_article_scores(general_articles, scoring_data)
+        scored_articles = get_article_scores(current_articles, scoring_data)
         
-        print(f"📊 Ready to generate podcast with {len(current_articles)} total articles")
+        # Get articles for deep dive (theme-specific)
+        deep_dive_articles = categorize_articles_for_deep_dive(scored_articles, today_weekday)
+        
+        print(f"📊 Ready to generate podcast:")
+        print(f"   News roundup: Top {min(10, len(scored_articles))} articles by score")
+        print(f"   Deep dive: {len(deep_dive_articles)} articles for {today_theme}")
         
         # Generate podcast script
-        script = generate_podcast_script(general_articles, theme_articles, today_theme)
+        script = generate_podcast_script(scored_articles, deep_dive_articles, today_theme)
         
         if not script:
             print("❌ Failed to generate script. Exiting.")
@@ -487,6 +594,9 @@ def main():
             print("🔊 Audio generation failed - check requirements")
     elif audio_exists:
         print(f"🎵 Audio already exists: {audio_filename}")
+    
+    # Generate RSS feed for podcast apps
+    generate_podcast_rss_feed()
     
     print("✅ Generation complete!")
 
