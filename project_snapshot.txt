@@ -1,0 +1,3068 @@
+
+
+========================================
+DIRECTORY LISTING (Podcast Generator)
+========================================
+
+Root files:
+-rw-rw-r-- 1 zirnhelt zirnhelt 9.5K Jan 24 19:41 citations_2026-01-24_cariboo_innovation_stories.json
+-rw-rw-r-- 1 zirnhelt zirnhelt  687 Jan 24 18:26 episode_memory.json
+-rw-rw-r-- 1 zirnhelt zirnhelt 4.7K Jan 24 18:54 fix_rss.py
+-rw-rw-r-- 1 zirnhelt zirnhelt  600 Jan 24 18:26 host_personality_memory.json
+-rw-rw-r-- 1 zirnhelt zirnhelt  26K Jan 24 19:57 index.html
+-rw-rw-r-- 1 zirnhelt zirnhelt 8.5K Jan 24 18:49 index_old.html
+-rw-rw-r-- 1 zirnhelt zirnhelt  33K Jan 24 18:40 podcast_generator_backup.py
+-rw-rw-r-- 1 zirnhelt zirnhelt  43K Jan 24 19:57 podcast_generator.py
+-rw-rw-r-- 1 zirnhelt zirnhelt  19K Jan 24 15:10 podcast_script_2026-01-21_wild_card.test.txt
+-rw-rw-r-- 1 zirnhelt zirnhelt  21K Jan 24 18:26 podcast_script_2026-01-24_cariboo_innovation_stories.txt
+-rw-rw-r-- 1 zirnhelt zirnhelt  18K Jan 24 17:37 podcast_script_2026-01-24_wild_card.test.txt
+-rw-rw-r-- 1 zirnhelt zirnhelt  135 Jan 24 20:05 project_snapshot.txt
+-rw-rw-r-- 1 zirnhelt zirnhelt    0 Jan 24 13:55 README.md
+-rw-rw-r-- 1 zirnhelt zirnhelt   85 Jan 24 19:57 requirements.txt
+
+.github/workflows:
+total 8.0K
+-rw-rw-r-- 1 zirnhelt zirnhelt 4.9K Jan 24 19:57 daily-podcast.yml
+
+
+========================================
+GIT PULL STATUS (Podcast Generator)
+========================================
+Already up to date.
+
+
+========================================
+SOURCE FILES (Podcast Generator)
+========================================
+
+
+----------------------------------------
+FILE: fix_rss.py
+----------------------------------------
+#!/usr/bin/env python3
+"""
+Quick RSS Feed Fixer for Cariboo Tech Progress Podcast
+Fixes XML parsing issues and generates clean RSS feed
+"""
+
+import os
+import glob
+import xml.sax.saxutils as saxutils
+from datetime import datetime
+
+def generate_clean_rss():
+    """Generate a clean, properly escaped RSS feed."""
+    print("📡 Generating clean RSS feed for Cariboo Tech Progress...")
+    
+    # Find all episode files
+    audio_files = glob.glob("podcast_audio_*.mp3")
+    
+    episodes = []
+    for audio_file in sorted(audio_files, reverse=True):  # Newest first
+        # Extract date and theme from filename
+        parts = audio_file.replace('podcast_audio_', '').replace('.mp3', '').split('_')
+        if len(parts) >= 2:
+            episode_date = parts[0]  # 2026-01-24
+            theme = ' '.join(parts[1:]).replace('_', ' ').title()
+            
+            # Get file size
+            file_size = os.path.getsize(audio_file)
+            
+            # Convert date for RSS
+            try:
+                date_obj = datetime.strptime(episode_date, "%Y-%m-%d")
+                pub_date = date_obj.strftime("%a, %d %b %Y 06:00:00 GMT")
+            except:
+                pub_date = datetime.now().strftime("%a, %d %b %Y 06:00:00 GMT")
+            
+            episodes.append({
+                'title': f"Cariboo Tech Progress - {theme}",
+                'audio_file': audio_file,
+                'pub_date': pub_date,
+                'file_size': file_size,
+                'episode_date': episode_date,
+                'theme': theme
+            })
+    
+    # Generate RSS XML with proper escaping using saxutils
+    rss_lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">',
+        '<channel>',
+        '<title>Cariboo Tech Progress</title>',
+        '<link>https://zirnhelt.github.io/curated-podcast-generator/</link>',
+        '<language>en-us</language>',
+        '<copyright>Erich\'s AI Curator</copyright>',
+        '<itunes:subtitle>Technology and society in rural BC with Riley and Casey</itunes:subtitle>',
+        '<itunes:author>Riley and Casey</itunes:author>',
+        '<itunes:summary>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region.</itunes:summary>',
+        '<description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region.</description>',
+        '<itunes:owner>',
+        '<itunes:name>Erich\'s AI Curator</itunes:name>',
+        '<itunes:email>podcast@example.com</itunes:email>',
+        '</itunes:owner>',
+        '<itunes:category text="Technology"/>',
+        '<itunes:explicit>false</itunes:explicit>',
+        f'<lastBuildDate>{datetime.now().strftime("%a, %d %b %Y %H:%M:%S GMT")}</lastBuildDate>'
+    ]
+    
+    # Add episodes with proper XML escaping
+    for episode in episodes:
+        # Use saxutils.escape for proper XML escaping
+        escaped_title = saxutils.escape(episode['title'])
+        
+        rss_lines.extend([
+            '<item>',
+            f'<title>{escaped_title}</title>',
+            '<link>https://zirnhelt.github.io/curated-podcast-generator/</link>',
+            f'<pubDate>{episode["pub_date"]}</pubDate>',
+            '<description>Technology and societal progress in the Cariboo region.</description>',
+            f'<enclosure url="https://zirnhelt.github.io/curated-podcast-generator/{episode["audio_file"]}" length="{episode["file_size"]}" type="audio/mpeg"/>',
+            f'<guid>https://zirnhelt.github.io/curated-podcast-generator/{episode["audio_file"]}</guid>',
+            '<itunes:duration>30:00</itunes:duration>',
+            '<itunes:explicit>false</itunes:explicit>',
+            '</item>'
+        ])
+    
+    rss_lines.extend([
+        '</channel>',
+        '</rss>'
+    ])
+    
+    # Join lines and save
+    rss_content = '\n'.join(rss_lines)
+    
+    with open('podcast-feed.xml', 'w', encoding='utf-8') as f:
+        f.write(rss_content)
+    
+    print(f"✅ Generated clean RSS feed with {len(episodes)} episodes")
+    print("🔍 Validating XML structure...")
+    
+    # Quick validation
+    try:
+        import xml.etree.ElementTree as ET
+        ET.parse('podcast-feed.xml')
+        print("✅ XML validation passed!")
+    except ET.ParseError as e:
+        print(f"❌ XML validation failed: {e}")
+        return False
+    
+    return True
+
+if __name__ == "__main__":
+    success = generate_clean_rss()
+    if success:
+        print("\n🎉 RSS feed fixed! Test it at:")
+        print("   https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml")
+    else:
+        print("\n❌ RSS feed generation failed")
+
+
+----------------------------------------
+FILE: podcast_generator_backup.py
+----------------------------------------
+#!/usr/bin/env python3
+"""
+Curated Podcast Generator - Cariboo Focus Edition with Memory System
+Theme: "Technological and Societal Progress in the Cariboo"
+Converts RSS feed scoring data into conversational podcast scripts and generates audio.
+Includes episode memory (2-3 weeks) and host personality tracking for continuity.
+"""
+
+import os
+import sys
+import json
+import requests
+import re
+from datetime import datetime, timedelta, timezone
+from typing import Dict, List, Optional, Tuple
+import anthropic
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
+# Configuration
+SUPER_RSS_BASE_URL = "https://zirnhelt.github.io/super-rss-feed"
+SCORING_CACHE_URL = "https://raw.githubusercontent.com/zirnhelt/super-rss-feed/main/scored_articles_cache.json"
+FEED_URL = f"{SUPER_RSS_BASE_URL}/super-feed.json"
+
+# TTS Configuration
+TTS_VOICES = {
+    'riley': 'nova',    # Female voice for Riley
+    'casey': 'echo'     # More neutral voice for Casey
+}
+
+# Memory Configuration
+EPISODE_MEMORY_FILE = 'episode_memory.json'
+HOST_MEMORY_FILE = 'host_personality_memory.json'
+MEMORY_RETENTION_DAYS = 21  # 3 weeks of episode memory
+
+# Daily themes for Deep Dive - focused on Cariboo tech/society connections
+DAILY_THEMES = {
+    0: "Community-Controlled Infrastructure",    # Monday - local control of tech
+    1: "Sustainable Innovation",                 # Tuesday - climate tech that works here
+    2: "Local Voices & Digital Equity",         # Wednesday - local news, digital access
+    3: "Rural Smart Solutions",                  # Thursday - tech adapted for rural needs
+    4: "Future-Ready Communities",               # Friday - preparing for what's coming
+    5: "Cariboo Innovation Stories",             # Saturday - local successes
+    6: "Regional Resilience"                     # Sunday - building strong communities
+}
+
+def load_episode_memory():
+    """Load recent episode summaries for continuity."""
+    try:
+        with open(EPISODE_MEMORY_FILE, 'r', encoding='utf-8') as f:
+            memory = json.load(f)
+        
+        # Clean old episodes (older than MEMORY_RETENTION_DAYS)
+        cutoff_date = datetime.now() - timedelta(days=MEMORY_RETENTION_DAYS)
+        recent_episodes = []
+        
+        for episode in memory.get('recent_episodes', []):
+            try:
+                episode_date = datetime.strptime(episode['date'], '%Y-%m-%d')
+                if episode_date > cutoff_date:
+                    recent_episodes.append(episode)
+            except:
+                continue
+        
+        memory['recent_episodes'] = recent_episodes
+        print(f"🧠 Loaded {len(recent_episodes)} episodes from memory")
+        return memory
+        
+    except FileNotFoundError:
+        print("🧠 No episode memory found, starting fresh")
+        return {'recent_episodes': []}
+    except Exception as e:
+        print(f"⚠️ Episode memory load error: {e}")
+        return {'recent_episodes': []}
+
+def load_host_memory():
+    """Load host personality and opinion tracking."""
+    try:
+        with open(HOST_MEMORY_FILE, 'r', encoding='utf-8') as f:
+            memory = json.load(f)
+        print("🎭 Loaded host personality memory")
+        return memory
+        
+    except FileNotFoundError:
+        print("🎭 No host memory found, initializing defaults")
+        return {
+            "riley": {
+                "consistent_interests": ["rural tech deployment", "community infrastructure", "practical solutions"],
+                "recurring_questions": ["How can this work here?", "What would responsible deployment look like?"],
+                "evolving_opinions": {}
+            },
+            "casey": {
+                "consistent_interests": ["digital equity", "community development", "rural innovation"],
+                "recurring_questions": ["How does this serve people like us?", "What can we learn from other rural communities?"],
+                "evolving_opinions": {}
+            }
+        }
+    except Exception as e:
+        print(f"⚠️ Host memory load error: {e}")
+        return {}
+
+def extract_key_topics_from_script(script, theme):
+    """Extract key discussion points from generated script using Claude."""
+    api_key = os.getenv('ANTHROPIC_API_KEY')
+    if not api_key:
+        return []
+    
+    try:
+        client = anthropic.Anthropic(api_key=api_key)
+        
+        prompt = f"""Extract 3-4 key topics that were discussed in this podcast script. Focus on specific technologies, events, or concepts that Riley and Casey spent significant time on.
+
+Script excerpt:
+{script[:2000]}...
+
+Return a simple JSON array of strings, like:
+["Rural broadband infrastructure challenges", "Community-controlled renewable energy", "Digital equity in remote areas"]
+
+Just the JSON array, no other text."""
+
+        response = client.messages.create(
+            model="claude-sonnet-4-20250514",
+            max_tokens=200,
+            messages=[{"role": "user", "content": prompt}]
+        )
+        
+        topics_text = response.content[0].text.strip()
+        # Try to parse JSON
+        if topics_text.startswith('[') and topics_text.endswith(']'):
+            topics = json.loads(topics_text)
+            return topics[:4]  # Limit to 4 topics
+        else:
+            return []
+            
+    except Exception as e:
+        print(f"⚠️ Topic extraction error: {e}")
+        return []
+
+def extract_host_positions_from_script(script):
+    """Extract notable positions/opinions from Riley and Casey."""
+    api_key = os.getenv('ANTHROPIC_API_KEY')
+    if not api_key:
+        return []
+    
+    try:
+        client = anthropic.Anthropic(api_key=api_key)
+        
+        prompt = f"""Extract 2-3 notable positions or viewpoints that Riley and Casey expressed in this script. Focus on their distinct perspectives on rural tech and community development.
+
+Script excerpt:
+{script[:2000]}...
+
+Return a simple JSON array of strings prefixed with speaker name, like:
+["Riley emphasized community ownership of infrastructure", "Casey highlighted digital equity concerns in rural areas", "Riley supported incremental tech adoption over wholesale changes"]
+
+Just the JSON array, no other text."""
+
+        response = client.messages.create(
+            model="claude-sonnet-4-20250514",
+            max_tokens=200,
+            messages=[{"role": "user", "content": prompt}]
+        )
+        
+        positions_text = response.content[0].text.strip()
+        if positions_text.startswith('[') and positions_text.endswith(']'):
+            positions = json.loads(positions_text)
+            return positions[:3]  # Limit to 3 positions
+        else:
+            return []
+            
+    except Exception as e:
+        print(f"⚠️ Position extraction error: {e}")
+        return []
+
+def update_episode_memory(script, theme, date_str):
+    """Add current episode to memory."""
+    memory = load_episode_memory()
+    
+    # Extract key topics and positions
+    key_topics = extract_key_topics_from_script(script, theme)
+    notable_discussions = extract_host_positions_from_script(script)
+    
+    # Add current episode
+    current_episode = {
+        'date': date_str,
+        'theme': theme,
+        'key_topics': key_topics,
+        'notable_discussions': notable_discussions
+    }
+    
+    # Add to beginning of list (most recent first)
+    memory['recent_episodes'].insert(0, current_episode)
+    
+    # Keep only recent episodes (limit to ~20 episodes)
+    memory['recent_episodes'] = memory['recent_episodes'][:20]
+    
+    # Save updated memory
+    try:
+        with open(EPISODE_MEMORY_FILE, 'w', encoding='utf-8') as f:
+            json.dump(memory, f, indent=2)
+        print(f"🧠 Updated episode memory with {len(key_topics)} topics")
+    except Exception as e:
+        print(f"⚠️ Memory save error: {e}")
+
+def update_host_memory(script):
+    """Update host personality tracking based on script content."""
+    memory = load_host_memory()
+    
+    # For now, just save the memory as-is
+    # In future iterations, we could analyze script to update evolving opinions
+    try:
+        with open(HOST_MEMORY_FILE, 'w', encoding='utf-8') as f:
+            json.dump(memory, f, indent=2)
+    except Exception as e:
+        print(f"⚠️ Host memory save error: {e}")
+
+def format_memory_for_prompt(episode_memory, host_memory):
+    """Format memory into context for Claude prompt."""
+    context = ""
+    
+    # Recent episodes context
+    recent_episodes = episode_memory.get('recent_episodes', [])[:5]  # Last 5 episodes
+    if recent_episodes:
+        context += "RECENT EPISODE CONTEXT (for natural callbacks):\n"
+        for episode in recent_episodes:
+            context += f"- {episode['date']} ({episode['theme']}): {', '.join(episode.get('key_topics', []))}\n"
+            for discussion in episode.get('notable_discussions', []):
+                context += f"  * {discussion}\n"
+        context += "\n"
+    
+    # Host personality context
+    riley_info = host_memory.get('riley', {})
+    casey_info = host_memory.get('casey', {})
+    
+    if riley_info or casey_info:
+        context += "HOST PERSONALITY CONTEXT:\n"
+        if riley_info:
+            context += f"Riley tends to focus on: {', '.join(riley_info.get('consistent_interests', []))}\n"
+            context += f"Riley often asks: {', '.join(riley_info.get('recurring_questions', []))}\n"
+        if casey_info:
+            context += f"Casey tends to focus on: {', '.join(casey_info.get('consistent_interests', []))}\n"
+            context += f"Casey often asks: {', '.join(casey_info.get('recurring_questions', []))}\n"
+        context += "\n"
+    
+    return context
+
+def get_daily_filenames(theme_name):
+    """Get expected filenames for today's script and audio."""
+    date_str = datetime.now().strftime("%Y-%m-%d")
+    safe_theme = theme_name.replace(" ", "_").replace("&", "and").lower()
+    
+    script_filename = f"podcast_script_{date_str}_{safe_theme}.txt"
+    audio_filename = f"podcast_audio_{date_str}_{safe_theme}.mp3"
+    
+    return script_filename, audio_filename
+
+def check_existing_files(theme_name):
+    """Check if today's script and/or audio already exist."""
+    script_filename, audio_filename = get_daily_filenames(theme_name)
+    
+    script_exists = os.path.exists(script_filename)
+    audio_exists = os.path.exists(audio_filename)
+    
+    if script_exists:
+        print(f"📝 Found existing script: {script_filename}")
+    if audio_exists:
+        print(f"🎵 Found existing audio: {audio_filename}")
+    
+    return script_exists, audio_exists, script_filename, audio_filename
+
+def load_existing_script(script_filename):
+    """Load script content from existing file."""
+    try:
+        with open(script_filename, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # Extract just the script content (skip metadata header)
+        lines = content.split('\n')
+        script_start = 0
+        for i, line in enumerate(lines):
+            if line.startswith('# ') and ('Generated:' in line or 'Theme:' in line):
+                continue
+            elif line.strip() == '':
+                continue
+            else:
+                script_start = i
+                break
+        
+        script = '\n'.join(lines[script_start:])
+        print(f"✅ Loaded existing script ({len(script)} characters)")
+        return script
+        
+    except Exception as e:
+        print(f"❌ Error loading script: {e}")
+        return None
+
+def fetch_scoring_data():
+    """Fetch article scores from the live super-rss-feed system."""
+    print("📥 Fetching scoring cache from super-rss-feed...")
+    
+    try:
+        response = requests.get(SCORING_CACHE_URL, timeout=10)
+        response.raise_for_status()
+        
+        scoring_data = response.json()
+        print(f"✅ Loaded {len(scoring_data)} scored articles")
+        return scoring_data
+        
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Error fetching scoring cache: {e}")
+        return {}
+    except json.JSONDecodeError as e:
+        print(f"❌ Error parsing JSON: {e}")
+        return {}
+
+def fetch_feed_data():
+    """Fetch the current feed articles."""
+    print("📥 Fetching current feed data...")
+    
+    try:
+        response = requests.get(FEED_URL, timeout=10)
+        response.raise_for_status()
+        
+        feed_data = response.json()
+        articles = feed_data.get('items', [])
+        print(f"✅ Loaded {len(articles)} current articles")
+        return articles
+        
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Error fetching feed: {e}")
+        return []
+    except json.JSONDecodeError as e:
+        print(f"❌ Error parsing feed JSON: {e}")
+        return []
+
+def categorize_articles_for_deep_dive(articles, theme_day):
+    """Categorize articles for deep dive segment based on Cariboo focus."""
+    theme = DAILY_THEMES[theme_day]
+    
+    # Keywords for each Cariboo-focused theme
+    theme_keywords = {
+        "Community-Controlled Infrastructure": ["infrastructure", "broadband", "internet", "community", "local control", "municipal", "cooperative"],
+        "Sustainable Innovation": ["climate", "solar", "renewable", "battery", "sustainability", "environment", "green tech", "carbon"],
+        "Local Voices & Digital Equity": ["local news", "journalism", "digital divide", "internet access", "rural connectivity", "media"],
+        "Rural Smart Solutions": ["smart home", "automation", "rural", "remote", "satellite", "farming", "agriculture", "precision"],
+        "Future-Ready Communities": ["AI", "automation", "future of work", "skills", "training", "adaptation", "planning"],
+        "Cariboo Innovation Stories": ["startup", "innovation", "local business", "entrepreneur", "BC", "canada", "rural success"],
+        "Regional Resilience": ["resilience", "disaster", "emergency", "backup", "redundancy", "self-reliance", "independence"]
+    }
+    
+    keywords = theme_keywords.get(theme, [])
+    
+    # Filter articles for theme
+    theme_articles = []
+    for article in articles:
+        title = article.get('title', '').lower()
+        summary = article.get('summary', '').lower()
+        content = f"{title} {summary}"
+        
+        if any(keyword in content for keyword in keywords):
+            theme_articles.append(article)
+    
+    # If we don't have enough theme articles, supplement with highest-scoring general articles
+    if len(theme_articles) < 4:
+        remaining_needed = 4 - len(theme_articles)
+        # Get articles not already in theme_articles
+        used_urls = {a.get('url', '') for a in theme_articles}
+        general_articles = [a for a in articles if a.get('url', '') not in used_urls]
+        theme_articles.extend(general_articles[:remaining_needed])
+    
+    # Take top 4 articles
+    deep_dive_articles = theme_articles[:4]
+    print(f"🎯 Found {len(deep_dive_articles)} articles for '{theme}' (Cariboo focus)")
+    
+    return deep_dive_articles
+
+def get_article_scores(articles, scoring_data):
+    """Match articles with their AI scores."""
+    scored_articles = []
+    
+    for article in articles:
+        url = article.get('url', '')
+        title = article.get('title', '')
+        
+        # Find matching score in cache
+        score = 0
+        for cache_key, cache_data in scoring_data.items():
+            if cache_data.get('title', '') == title:
+                score = cache_data.get('score', 0)
+                break
+        
+        article_with_score = article.copy()
+        article_with_score['ai_score'] = score
+        scored_articles.append(article_with_score)
+    
+    # Sort by score (highest first)
+    scored_articles.sort(key=lambda x: x.get('ai_score', 0), reverse=True)
+    return scored_articles
+
+def get_current_date_info():
+    """Get properly formatted current date and day."""
+    now = datetime.now()
+    weekday = now.strftime("%A")
+    date_str = now.strftime("%B %d, %Y")
+    
+    return weekday, date_str
+
+def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory):
+    """Generate conversational podcast script with Cariboo focus including memory context."""
+    print("🎙️ Generating Cariboo-focused podcast script with Claude (including memory)...")
+    
+    # Check for API key
+    api_key = os.getenv('ANTHROPIC_API_KEY')
+    if not api_key:
+        print("❌ ANTHROPIC_API_KEY not found in .env file")
+        return None
+    
+    # Get current date info
+    weekday, date_str = get_current_date_info()
+    
+    # Prepare articles for script generation
+    top_news = all_articles[:8]  # Fewer stories for more focused news coverage
+    
+    # Create article summaries for Claude
+    news_text = "\n".join([
+        f"- [{a.get('authors', [{}])[0].get('name', 'Unknown')}] {a.get('title', '')}\n  {a.get('summary', '')[:150]}... (AI Score: {a.get('ai_score', 0)})"
+        for a in top_news
+    ])
+    
+    deep_dive_text = "\n".join([
+        f"- [{a.get('authors', [{}])[0].get('name', 'Unknown')}] {a.get('title', '')}\n  {a.get('summary', '')[:200]}... (AI Score: {a.get('ai_score', 0)})"
+        for a in deep_dive_articles
+    ])
+    
+    # Format memory context
+    memory_context = format_memory_for_prompt(episode_memory, host_memory)
+    
+    prompt = f"""Create a 30-minute podcast script for "{weekday}, {date_str}" focusing on "Technological and Societal Progress in the Cariboo."
+
+PODCAST THEME: "Technological and Societal Progress in the Cariboo"
+How do rural and remote communities like ours grow and evolve alongside technology that typically benefits urban areas first? Focus on responsible, evolutionary approaches to progress.
+
+{memory_context}
+
+HOSTS:
+- Riley (she/her): Tech systems thinker with rural roots, engineering background, asks "how can this work here?" and "what would responsible deployment look like?"
+- Casey (they/them): Community development focus, asks "how does this serve people like us?" and "what are we learning from other rural innovators?"
+
+EPISODE STRUCTURE:
+
+**SEGMENT 1 (18 minutes): "The Week's Tech" - News Roundup**
+Professional news anchor style coverage of these TOP-SCORED articles:
+{news_text}
+
+Style: Structured, professional news delivery. Clear transitions, concise summaries, brief analysis. Think CBC Radio News but with tech focus. No rambling conversations - hit the key points and move on. Each story should take 2-3 minutes max. Clean, professional delivery.
+
+**SEGMENT 2 (12 minutes): "Cariboo Connections - {theme_name}"**
+How today's theme connects to technological and societal progress in rural BC:
+{deep_dive_text}
+
+Style: More conversational analysis. Connect these stories to: rural innovation, community-controlled tech, lessons for smaller communities, responsible development. Build to strong thematic conclusion about progress in the Cariboo region.
+
+CRITICAL REQUIREMENTS:
+- NO STAGE DIRECTIONS: Never write "(shuffles papers)", "(laughs)", "*chuckles*" or similar cues that get read aloud
+- SEGMENT 1: News anchor professionalism - clear, structured, informative delivery
+- SEGMENT 2: More natural discussion, but focused on rural/community angle
+- AVOID REPETITION: Don't beat themes to death - let variety flow, conclude strongly
+- Cariboo lens: Always ask "what does this mean for communities like ours?"
+- USE MEMORY: Reference past episodes naturally when relevant
+- Current date is {weekday}, {date_str} - use this correctly
+
+OUTPUT: ~4,000-4,500 words with **RILEY:** and **CASEY:** speaker tags only."""
+
+    try:
+        client = anthropic.Anthropic(api_key=api_key)
+        
+        response = client.messages.create(
+            model="claude-sonnet-4-20250514",
+            max_tokens=4000,
+            messages=[{"role": "user", "content": prompt}]
+        )
+        
+        script = response.content[0].text
+        print("✅ Generated Cariboo-focused podcast script successfully!")
+        return script
+        
+    except Exception as e:
+        print(f"❌ Error generating script: {e}")
+        return None
+
+def parse_script_by_speaker(script):
+    """Parse script into segments by speaker, filtering out stage directions."""
+    if not script:
+        return []
+    
+    segments = []
+    current_speaker = None
+    current_text = []
+    
+    for line in script.split('\n'):
+        line = line.strip()
+        
+        # Skip lines with stage directions or actions in parentheses/asterisks
+        if re.search(r'[\(\*].+[\)\*]', line) or 'shuffles' in line.lower() or 'laughs' in line.lower():
+            continue
+        
+        # Check for speaker tags
+        riley_match = re.match(r'\*\*RILEY:\*\*\s*(.*)', line)
+        casey_match = re.match(r'\*\*CASEY:\*\*\s*(.*)', line)
+        
+        if riley_match:
+            # Save previous segment
+            if current_speaker and current_text:
+                segments.append({
+                    'speaker': current_speaker,
+                    'text': ' '.join(current_text).strip()
+                })
+            current_speaker = 'riley'
+            current_text = [riley_match.group(1)] if riley_match.group(1) else []
+            
+        elif casey_match:
+            # Save previous segment
+            if current_speaker and current_text:
+                segments.append({
+                    'speaker': current_speaker,
+                    'text': ' '.join(current_text).strip()
+                })
+            current_speaker = 'casey'
+            current_text = [casey_match.group(1)] if casey_match.group(1) else []
+            
+        elif line and current_speaker:
+            # Skip metadata lines and empty lines
+            if not line.startswith('#') and not line.startswith('---') and not line.startswith('*End of'):
+                current_text.append(line)
+    
+    # Add final segment
+    if current_speaker and current_text:
+        segments.append({
+            'speaker': current_speaker,
+            'text': ' '.join(current_text).strip()
+        })
+    
+    # Filter out very short segments and clean up text
+    cleaned_segments = []
+    for segment in segments:
+        # Remove any remaining stage directions from text
+        clean_text = re.sub(r'\([^)]*\)', '', segment['text'])  # Remove (parenthetical)
+        clean_text = re.sub(r'\*[^*]*\*', '', clean_text)      # Remove *asterisk actions*
+        clean_text = ' '.join(clean_text.split())              # Clean up whitespace
+        
+        if len(clean_text) > 10:  # Only keep substantial segments
+            cleaned_segments.append({
+                'speaker': segment['speaker'],
+                'text': clean_text
+            })
+    
+    print(f"🎭 Parsed script into {len(cleaned_segments)} speaking segments")
+    return cleaned_segments
+
+def generate_audio_from_script(script, output_filename):
+    """Convert script to audio using OpenAI TTS."""
+    print("🔊 Generating audio with OpenAI TTS...")
+    
+    # Check for OpenAI API key
+    openai_api_key = os.getenv('OPENAI_API_KEY')
+    if not openai_api_key:
+        print("❌ OPENAI_API_KEY not found in .env file")
+        return None
+    
+    try:
+        from openai import OpenAI
+        client = OpenAI(api_key=openai_api_key)
+        
+        # Parse script by speaker
+        segments = parse_script_by_speaker(script)
+        if not segments:
+            print("❌ No speaking segments found in script")
+            return None
+        
+        # Generate audio for each segment
+        audio_files = []
+        for i, segment in enumerate(segments):
+            speaker = segment['speaker']
+            text = segment['text']
+            voice = TTS_VOICES.get(speaker, 'alloy')
+            
+            print(f"  🎤 Generating audio {i+1}/{len(segments)} ({speaker}: {len(text)} chars)")
+            
+            # Generate TTS
+            response = client.audio.speech.create(
+                model="tts-1",
+                voice=voice,
+                input=text,
+                speed=1.0
+            )
+            
+            # Save segment audio
+            segment_filename = f"temp_segment_{i:03d}_{speaker}.mp3"
+            with open(segment_filename, "wb") as f:
+                f.write(response.content)
+            
+            audio_files.append(segment_filename)
+        
+        print("🎵 Combining audio segments...")
+        
+        try:
+            from pydub import AudioSegment
+            
+            combined = AudioSegment.empty()
+            for audio_file in audio_files:
+                segment_audio = AudioSegment.from_mp3(audio_file)
+                combined += segment_audio
+                
+                # Add small pause between speakers (0.5 seconds)
+                combined += AudioSegment.silent(duration=500)
+            
+            # Export final podcast
+            combined.export(output_filename, format="mp3")
+            
+            # Clean up temporary files
+            for audio_file in audio_files:
+                os.remove(audio_file)
+            
+            print(f"✅ Generated podcast audio: {output_filename}")
+            
+            # Audio stats
+            duration_seconds = len(combined) / 1000
+            duration_minutes = duration_seconds / 60
+            print(f"   Duration: {duration_minutes:.1f} minutes")
+            print(f"   File size: {os.path.getsize(output_filename) / 1024 / 1024:.1f} MB")
+            
+            return output_filename
+            
+        except ImportError:
+            print("❌ pydub not installed. Install with: pip install pydub")
+            return None
+            
+    except ImportError:
+        print("❌ OpenAI library not installed. Install with: pip install openai")
+        return None
+    except Exception as e:
+        print(f"❌ Error generating audio: {e}")
+        return None
+
+def generate_podcast_rss_feed():
+    """Generate RSS feed for podcast apps with proper XML escaping."""
+    print("📡 Generating podcast RSS feed...")
+    
+    # Find all episode files
+    import glob
+    audio_files = glob.glob("podcast_audio_*.mp3")
+    
+    episodes = []
+    for audio_file in sorted(audio_files, reverse=True):  # Newest first
+        # Extract date and theme from filename
+        parts = audio_file.replace('podcast_audio_', '').replace('.mp3', '').split('_')
+        if len(parts) >= 2:
+            episode_date = parts[0]  # 2026-01-24
+            theme = ' '.join(parts[1:]).replace('_', ' ').title()
+            
+            # Get file size
+            file_size = os.path.getsize(audio_file)
+            
+            # Convert date for RSS
+            try:
+                date_obj = datetime.strptime(episode_date, "%Y-%m-%d")
+                pub_date = date_obj.strftime("%a, %d %b %Y 06:00:00 GMT")
+            except:
+                pub_date = datetime.now().strftime("%a, %d %b %Y 06:00:00 GMT")
+            
+            episodes.append({
+                'title': f"Cariboo Tech Progress - {theme}",  # Updated title to reflect Cariboo theme
+                'audio_file': audio_file,
+                'pub_date': pub_date,
+                'file_size': file_size,
+                'episode_date': episode_date,
+                'theme': theme
+            })
+    
+    # Generate RSS XML with proper escaping
+    rss_content = f'''<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+<channel>
+<title>Cariboo Tech Progress</title>
+<link>https://zirnhelt.github.io/curated-podcast-generator/</link>
+<language>en-us</language>
+<copyright>Erich's AI Curator</copyright>
+<itunes:subtitle>Technology and society in rural BC with Riley and Casey</itunes:subtitle>
+<itunes:author>Riley and Casey</itunes:author>
+<itunes:summary>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region.</itunes:summary>
+<description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region.</description>
+<itunes:owner>
+<itunes:name>Erich's AI Curator</itunes:name>
+<itunes:email>podcast@example.com</itunes:email>
+</itunes:owner>
+<itunes:category text="Technology"/>
+<itunes:explicit>false</itunes:explicit>
+<lastBuildDate>{datetime.now().strftime("%a, %d %b %Y %H:%M:%S GMT")}</lastBuildDate>
+'''
+    
+    # Add episodes with proper XML escaping
+    for episode in episodes:
+        escaped_title = episode['title'].replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+        rss_content += f'''
+<item>
+<title>{escaped_title}</title>
+<link>https://zirnhelt.github.io/curated-podcast-generator/</link>
+<pubDate>{episode['pub_date']}</pubDate>
+<description>Technology and societal progress in the Cariboo region.</description>
+<enclosure url="https://zirnhelt.github.io/curated-podcast-generator/{episode['audio_file']}" length="{episode['file_size']}" type="audio/mpeg"/>
+<guid>https://zirnhelt.github.io/curated-podcast-generator/{episode['audio_file']}</guid>
+<itunes:duration>30:00</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+</item>'''
+    
+    rss_content += '''
+</channel>
+</rss>'''
+    
+    # Save RSS feed
+    with open('podcast-feed.xml', 'w', encoding='utf-8') as f:
+        f.write(rss_content)
+    
+    print(f"✅ Generated RSS feed with {len(episodes)} episodes: podcast-feed.xml")
+    return 'podcast-feed.xml'
+
+def save_script_to_file(script, theme_name):
+    """Save the generated script to a file."""
+    if not script:
+        return None
+    
+    script_filename, _ = get_daily_filenames(theme_name)
+    
+    try:
+        with open(script_filename, 'w', encoding='utf-8') as f:
+            f.write(f"# Cariboo Tech Progress Podcast Script - {datetime.now().strftime('%Y-%m-%d')}\n")
+            f.write(f"# Theme: {theme_name}\n")
+            f.write(f"# Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+            f.write(script)
+        
+        print(f"💾 Saved script to: {script_filename}")
+        return script_filename
+        
+    except Exception as e:
+        print(f"❌ Error saving script: {e}")
+        return None
+
+def main():
+    print("🏔️ Cariboo Tech Progress Podcast Generator with Memory")
+    print("=" * 50)
+    
+    # Get today's theme
+    today_weekday = datetime.now().weekday()
+    today_theme = DAILY_THEMES[today_weekday]
+    weekday, date_str = get_current_date_info()
+    print(f"📅 {weekday}, {date_str} - Deep dive theme: {today_theme}")
+    
+    # Load memory systems
+    episode_memory = load_episode_memory()
+    host_memory = load_host_memory()
+    
+    # Check for existing files
+    script_exists, audio_exists, script_filename, audio_filename = check_existing_files(today_theme)
+    
+    # If both exist, just generate RSS and exit
+    if script_exists and audio_exists:
+        print("✅ Both script and audio already exist for today!")
+        print(f"   Script: {script_filename}")
+        print(f"   Audio:  {audio_filename}")
+        
+        # Still generate RSS feed
+        generate_podcast_rss_feed()
+        return
+    
+    # Load or generate script
+    if script_exists:
+        print("📖 Using existing script...")
+        script = load_existing_script(script_filename)
+    else:
+        print("🆕 Generating new Cariboo-focused script with memory context...")
+        
+        # Fetch data from live system
+        scoring_data = fetch_scoring_data()
+        current_articles = fetch_feed_data()
+        
+        if not scoring_data or not current_articles:
+            print("❌ Failed to fetch data. Exiting.")
+            return
+        
+        # Add AI scores to articles
+        scored_articles = get_article_scores(current_articles, scoring_data)
+        
+        # Get articles for deep dive (Cariboo-themed)
+        deep_dive_articles = categorize_articles_for_deep_dive(scored_articles, today_weekday)
+        
+        print(f"📊 Ready to generate Cariboo Tech Progress podcast:")
+        print(f"   News roundup: Top {min(8, len(scored_articles))} articles by score")
+        print(f"   Cariboo connections: {len(deep_dive_articles)} articles for {today_theme}")
+        print(f"   Memory context: {len(episode_memory.get('recent_episodes', []))} recent episodes")
+        
+        # Generate podcast script with memory and Cariboo focus
+        script = generate_podcast_script(scored_articles, deep_dive_articles, today_theme, episode_memory, host_memory)
+        
+        if not script:
+            print("❌ Failed to generate script. Exiting.")
+            return
+        
+        # Save script to file
+        script_filename = save_script_to_file(script, today_theme)
+        
+        # Update memory with new episode
+        if script:
+            current_date = datetime.now().strftime("%Y-%m-%d")
+            update_episode_memory(script, today_theme, current_date)
+            update_host_memory(script)
+    
+    # Generate audio if needed
+    if not audio_exists and script:
+        audio_file = generate_audio_from_script(script, audio_filename)
+        
+        if audio_file:
+            print(f"🎉 Cariboo Tech Progress podcast complete!")
+            print(f"   Script: {script_filename}")
+            print(f"   Audio:  {audio_file}")
+        else:
+            print(f"📝 Script ready: {script_filename}")
+            print("🔊 Audio generation failed - check requirements")
+    elif audio_exists:
+        print(f"🎵 Audio already exists: {audio_filename}")
+    
+    # Generate RSS feed for podcast apps
+    generate_podcast_rss_feed()
+    
+    print("✅ Cariboo Tech Progress generation complete!")
+
+if __name__ == "__main__":
+    main()
+
+
+----------------------------------------
+FILE: podcast_generator.py
+----------------------------------------
+#!/usr/bin/env python3
+"""
+Curated Podcast Generator - Cariboo Focus Edition with Memory System & Citations
+Theme: "Technological and Societal Progress in the Cariboo" (pronounced CARE-ih-boo, like caribou)
+Converts RSS feed scoring data into conversational podcast scripts and generates audio.
+Includes episode memory (2-3 weeks) and host personality tracking for continuity.
+Generates citations file for each episode.
+"""
+
+import os
+import sys
+import json
+import requests
+import re
+from datetime import datetime, timedelta, timezone
+from typing import Dict, List, Optional, Tuple
+import anthropic
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
+# Configuration
+SUPER_RSS_BASE_URL = "https://zirnhelt.github.io/super-rss-feed"
+SCORING_CACHE_URL = "https://raw.githubusercontent.com/zirnhelt/super-rss-feed/main/scored_articles_cache.json"
+FEED_URL = f"{SUPER_RSS_BASE_URL}/super-feed.json"
+
+# TTS Configuration
+TTS_VOICES = {
+    'riley': 'nova',    # Female voice for Riley
+    'casey': 'echo'     # More neutral voice for Casey
+}
+
+# Memory Configuration
+EPISODE_MEMORY_FILE = 'episode_memory.json'
+HOST_MEMORY_FILE = 'host_personality_memory.json'
+MEMORY_RETENTION_DAYS = 21  # 3 weeks of episode memory
+
+# Daily themes for Deep Dive - focused on Cariboo tech/society connections
+DAILY_THEMES = {
+    0: "Community-Controlled Infrastructure",    # Monday - local control of tech
+    1: "Sustainable Innovation",                 # Tuesday - climate tech that works here
+    2: "Local Voices & Digital Equity",         # Wednesday - local news, digital access
+    3: "Rural Smart Solutions",                  # Thursday - tech adapted for rural needs
+    4: "Future-Ready Communities",               # Friday - preparing for what's coming
+    5: "Cariboo Innovation Stories",             # Saturday - local successes
+    6: "Regional Resilience"                     # Sunday - building strong communities
+}
+
+def load_episode_memory():
+    """Load recent episode summaries for continuity."""
+    try:
+        with open(EPISODE_MEMORY_FILE, 'r', encoding='utf-8') as f:
+            memory = json.load(f)
+        
+        # Clean old episodes (older than MEMORY_RETENTION_DAYS)
+        cutoff_date = datetime.now() - timedelta(days=MEMORY_RETENTION_DAYS)
+        recent_episodes = []
+        
+        for episode in memory.get('recent_episodes', []):
+            try:
+                episode_date = datetime.strptime(episode['date'], '%Y-%m-%d')
+                if episode_date > cutoff_date:
+                    recent_episodes.append(episode)
+            except:
+                continue
+        
+        memory['recent_episodes'] = recent_episodes
+        print(f"🧠 Loaded {len(recent_episodes)} episodes from memory")
+        return memory
+        
+    except FileNotFoundError:
+        print("🧠 No episode memory found, starting fresh")
+        return {'recent_episodes': []}
+    except Exception as e:
+        print(f"⚠️ Episode memory load error: {e}")
+        return {'recent_episodes': []}
+
+def load_host_memory():
+    """Load host personality and opinion tracking."""
+    try:
+        with open(HOST_MEMORY_FILE, 'r', encoding='utf-8') as f:
+            memory = json.load(f)
+        print("🎭 Loaded host personality memory")
+        return memory
+        
+    except FileNotFoundError:
+        print("🎭 No host memory found, initializing defaults")
+        return {
+            "riley": {
+                "consistent_interests": ["rural tech deployment", "community infrastructure", "practical solutions"],
+                "recurring_questions": ["How can this work here?", "What would responsible deployment look like?"],
+                "evolving_opinions": {}
+            },
+            "casey": {
+                "consistent_interests": ["digital equity", "community development", "rural innovation"],
+                "recurring_questions": ["How does this serve people like us?", "What can we learn from other rural communities?"],
+                "evolving_opinions": {}
+            }
+        }
+    except Exception as e:
+        print(f"⚠️ Host memory load error: {e}")
+        return {}
+
+def extract_key_topics_from_script(script, theme):
+    """Extract key discussion points from generated script using Claude."""
+    api_key = os.getenv('ANTHROPIC_API_KEY')
+    if not api_key:
+        return []
+    
+    try:
+        client = anthropic.Anthropic(api_key=api_key)
+        
+        prompt = f"""Extract 3-4 key topics that were discussed in this podcast script. Focus on specific technologies, events, or concepts that Riley and Casey spent significant time on.
+
+Script excerpt:
+{script[:2000]}...
+
+Return a simple JSON array of strings, like:
+["Rural broadband infrastructure challenges", "Community-controlled renewable energy", "Digital equity in remote areas"]
+
+Just the JSON array, no other text."""
+
+        response = client.messages.create(
+            model="claude-sonnet-4-20250514",
+            max_tokens=200,
+            messages=[{"role": "user", "content": prompt}]
+        )
+        
+        topics_text = response.content[0].text.strip()
+        # Try to parse JSON
+        if topics_text.startswith('[') and topics_text.endswith(']'):
+            topics = json.loads(topics_text)
+            return topics[:4]  # Limit to 4 topics
+        else:
+            return []
+            
+    except Exception as e:
+        print(f"⚠️ Topic extraction error: {e}")
+        return []
+
+def extract_host_positions_from_script(script):
+    """Extract notable positions/opinions from Riley and Casey."""
+    api_key = os.getenv('ANTHROPIC_API_KEY')
+    if not api_key:
+        return []
+    
+    try:
+        client = anthropic.Anthropic(api_key=api_key)
+        
+        prompt = f"""Extract 2-3 notable positions or viewpoints that Riley and Casey expressed in this script. Focus on their distinct perspectives on rural tech and community development.
+
+Script excerpt:
+{script[:2000]}...
+
+Return a simple JSON array of strings prefixed with speaker name, like:
+["Riley emphasized community ownership of infrastructure", "Casey highlighted digital equity concerns in rural areas", "Riley supported incremental tech adoption over wholesale changes"]
+
+Just the JSON array, no other text."""
+
+        response = client.messages.create(
+            model="claude-sonnet-4-20250514",
+            max_tokens=200,
+            messages=[{"role": "user", "content": prompt}]
+        )
+        
+        positions_text = response.content[0].text.strip()
+        if positions_text.startswith('[') and positions_text.endswith(']'):
+            positions = json.loads(positions_text)
+            return positions[:3]  # Limit to 3 positions
+        else:
+            return []
+            
+    except Exception as e:
+        print(f"⚠️ Position extraction error: {e}")
+        return []
+
+def update_episode_memory(script, theme, date_str):
+    """Add current episode to memory."""
+    memory = load_episode_memory()
+    
+    # Extract key topics and positions
+    key_topics = extract_key_topics_from_script(script, theme)
+    notable_discussions = extract_host_positions_from_script(script)
+    
+    # Add current episode
+    current_episode = {
+        'date': date_str,
+        'theme': theme,
+        'key_topics': key_topics,
+        'notable_discussions': notable_discussions
+    }
+    
+    # Add to beginning of list (most recent first)
+    memory['recent_episodes'].insert(0, current_episode)
+    
+    # Keep only recent episodes (limit to ~20 episodes)
+    memory['recent_episodes'] = memory['recent_episodes'][:20]
+    
+    # Save updated memory
+    try:
+        with open(EPISODE_MEMORY_FILE, 'w', encoding='utf-8') as f:
+            json.dump(memory, f, indent=2)
+        print(f"🧠 Updated episode memory with {len(key_topics)} topics")
+    except Exception as e:
+        print(f"⚠️ Memory save error: {e}")
+
+def update_host_memory(script):
+    """Update host personality tracking based on script content."""
+    memory = load_host_memory()
+    
+    # For now, just save the memory as-is
+    # In future iterations, we could analyze script to update evolving opinions
+    try:
+        with open(HOST_MEMORY_FILE, 'w', encoding='utf-8') as f:
+            json.dump(memory, f, indent=2)
+    except Exception as e:
+        print(f"⚠️ Host memory save error: {e}")
+
+def format_memory_for_prompt(episode_memory, host_memory):
+    """Format memory into context for Claude prompt."""
+    context = ""
+    
+    # Recent episodes context
+    recent_episodes = episode_memory.get('recent_episodes', [])[:5]  # Last 5 episodes
+    if recent_episodes:
+        context += "RECENT EPISODE CONTEXT (for natural callbacks):\n"
+        for episode in recent_episodes:
+            context += f"- {episode['date']} ({episode['theme']}): {', '.join(episode.get('key_topics', []))}\n"
+            for discussion in episode.get('notable_discussions', []):
+                context += f"  * {discussion}\n"
+        context += "\n"
+    
+    # Host personality context
+    riley_info = host_memory.get('riley', {})
+    casey_info = host_memory.get('casey', {})
+    
+    if riley_info or casey_info:
+        context += "HOST PERSONALITY CONTEXT:\n"
+        if riley_info:
+            context += f"Riley tends to focus on: {', '.join(riley_info.get('consistent_interests', []))}\n"
+            context += f"Riley often asks: {', '.join(riley_info.get('recurring_questions', []))}\n"
+        if casey_info:
+            context += f"Casey tends to focus on: {', '.join(casey_info.get('consistent_interests', []))}\n"
+            context += f"Casey often asks: {', '.join(casey_info.get('recurring_questions', []))}\n"
+        context += "\n"
+    
+    return context
+
+def get_daily_filenames(theme_name):
+    """Get expected filenames for today's script and audio."""
+    date_str = datetime.now().strftime("%Y-%m-%d")
+    safe_theme = theme_name.replace(" ", "_").replace("&", "and").lower()
+    
+    script_filename = f"podcast_script_{date_str}_{safe_theme}.txt"
+    audio_filename = f"podcast_audio_{date_str}_{safe_theme}.mp3"
+    citations_filename = f"citations_{date_str}_{safe_theme}.json"
+    
+    return script_filename, audio_filename, citations_filename
+
+def check_existing_files(theme_name):
+    """Check if today's script and/or audio already exist."""
+    script_filename, audio_filename, citations_filename = get_daily_filenames(theme_name)
+    
+    script_exists = os.path.exists(script_filename)
+    audio_exists = os.path.exists(audio_filename)
+    citations_exist = os.path.exists(citations_filename)
+    
+    if script_exists:
+        print(f"📝 Found existing script: {script_filename}")
+    if audio_exists:
+        print(f"🎵 Found existing audio: {audio_filename}")
+    if citations_exist:
+        print(f"📚 Found existing citations: {citations_filename}")
+    
+    return script_exists, audio_exists, script_filename, audio_filename, citations_filename
+
+def load_existing_script(script_filename):
+    """Load script content from existing file."""
+    try:
+        with open(script_filename, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # Extract just the script content (skip metadata header)
+        lines = content.split('\n')
+        script_start = 0
+        for i, line in enumerate(lines):
+            if line.startswith('# ') and ('Generated:' in line or 'Theme:' in line):
+                continue
+            elif line.strip() == '':
+                continue
+            else:
+                script_start = i
+                break
+        
+        script = '\n'.join(lines[script_start:])
+        print(f"✅ Loaded existing script ({len(script)} characters)")
+        return script
+        
+    except Exception as e:
+        print(f"❌ Error loading script: {e}")
+        return None
+
+def fetch_scoring_data():
+    """Fetch article scores from the live super-rss-feed system."""
+    print("📥 Fetching scoring cache from super-rss-feed...")
+    
+    try:
+        response = requests.get(SCORING_CACHE_URL, timeout=10)
+        response.raise_for_status()
+        
+        scoring_data = response.json()
+        print(f"✅ Loaded {len(scoring_data)} scored articles")
+        return scoring_data
+        
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Error fetching scoring cache: {e}")
+        return {}
+    except json.JSONDecodeError as e:
+        print(f"❌ Error parsing JSON: {e}")
+        return {}
+
+def fetch_feed_data():
+    """Fetch the current feed articles."""
+    print("📥 Fetching current feed data...")
+    
+    try:
+        response = requests.get(FEED_URL, timeout=10)
+        response.raise_for_status()
+        
+        feed_data = response.json()
+        articles = feed_data.get('items', [])
+        print(f"✅ Loaded {len(articles)} current articles")
+        return articles
+        
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Error fetching feed: {e}")
+        return []
+    except json.JSONDecodeError as e:
+        print(f"❌ Error parsing feed JSON: {e}")
+        return []
+
+def categorize_articles_for_deep_dive(articles, theme_day):
+    """Categorize articles for deep dive segment based on Cariboo focus."""
+    theme = DAILY_THEMES[theme_day]
+    
+    # Keywords for each Cariboo-focused theme
+    theme_keywords = {
+        "Community-Controlled Infrastructure": ["infrastructure", "broadband", "internet", "community", "local control", "municipal", "cooperative"],
+        "Sustainable Innovation": ["climate", "solar", "renewable", "battery", "sustainability", "environment", "green tech", "carbon"],
+        "Local Voices & Digital Equity": ["local news", "journalism", "digital divide", "internet access", "rural connectivity", "media"],
+        "Rural Smart Solutions": ["smart home", "automation", "rural", "remote", "satellite", "farming", "agriculture", "precision"],
+        "Future-Ready Communities": ["AI", "automation", "future of work", "skills", "training", "adaptation", "planning"],
+        "Cariboo Innovation Stories": ["startup", "innovation", "local business", "entrepreneur", "BC", "canada", "rural success"],
+        "Regional Resilience": ["resilience", "disaster", "emergency", "backup", "redundancy", "self-reliance", "independence"]
+    }
+    
+    keywords = theme_keywords.get(theme, [])
+    
+    # Filter articles for theme
+    theme_articles = []
+    for article in articles:
+        title = article.get('title', '').lower()
+        summary = article.get('summary', '').lower()
+        content = f"{title} {summary}"
+        
+        if any(keyword in content for keyword in keywords):
+            theme_articles.append(article)
+    
+    # If we don't have enough theme articles, supplement with highest-scoring general articles
+    if len(theme_articles) < 4:
+        remaining_needed = 4 - len(theme_articles)
+        # Get articles not already in theme_articles
+        used_urls = {a.get('url', '') for a in theme_articles}
+        general_articles = [a for a in articles if a.get('url', '') not in used_urls]
+        theme_articles.extend(general_articles[:remaining_needed])
+    
+    # Take top 4 articles
+    deep_dive_articles = theme_articles[:4]
+    print(f"🎯 Found {len(deep_dive_articles)} articles for '{theme}' (Cariboo focus)")
+    
+    return deep_dive_articles
+
+def get_article_scores(articles, scoring_data):
+    """Match articles with their AI scores."""
+    scored_articles = []
+    
+    for article in articles:
+        url = article.get('url', '')
+        title = article.get('title', '')
+        
+        # Find matching score in cache
+        score = 0
+        for cache_key, cache_data in scoring_data.items():
+            if cache_data.get('title', '') == title:
+                score = cache_data.get('score', 0)
+                break
+        
+        article_with_score = article.copy()
+        article_with_score['ai_score'] = score
+        scored_articles.append(article_with_score)
+    
+    # Sort by score (highest first)
+    scored_articles.sort(key=lambda x: x.get('ai_score', 0), reverse=True)
+    return scored_articles
+
+def get_current_date_info():
+    """Get properly formatted current date and day."""
+    now = datetime.now()
+    weekday = now.strftime("%A")
+    date_str = now.strftime("%B %d, %Y")
+    
+    return weekday, date_str
+
+def generate_episode_description(news_articles, deep_dive_articles, theme_name):
+    """Generate compelling episode description for podcast apps."""
+    weekday, formatted_date = get_current_date_info()
+    
+    # Get top story titles for teaser
+    top_stories = [article.get('title', '').split(' - ')[0] for article in news_articles[:3]]
+    top_stories = [story for story in top_stories if story]  # Remove empty
+    
+    if len(top_stories) >= 2:
+        stories_preview = f"{top_stories[0]} and {top_stories[1]}"
+        if len(top_stories) > 2:
+            stories_preview += f", plus {len(top_stories)-2} more stories"
+    elif len(top_stories) == 1:
+        stories_preview = top_stories[0]
+    else:
+        stories_preview = "the week's top tech developments"
+    
+    description = f"""Daily tech conversations for rural communities. Today's focus: {theme_name}.
+
+NEWS ROUNDUP: We break down {stories_preview}, and explore what these developments mean for communities like ours in the Cariboo region.
+
+RURAL CONNECTIONS: Riley and Casey dive deep into {theme_name.lower()}, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.
+
+Hosts: Riley (rural tech systems) and Casey (community development). 
+New episodes daily with weekly themes.
+
+This is a daily show - not weekly! - exploring how technology serves (or could better serve) rural communities."""
+    
+    return description
+
+def generate_citations_file(news_articles, deep_dive_articles, theme_name):
+    """Generate citations file for the episode."""
+    date_str = datetime.now().strftime("%Y-%m-%d")
+    weekday, formatted_date = get_current_date_info()
+    
+    # Generate episode description
+    episode_description = generate_episode_description(news_articles, deep_dive_articles, theme_name)
+    
+    citations_data = {
+        "episode": {
+            "date": date_str,
+            "formatted_date": f"{weekday}, {formatted_date}",
+            "theme": theme_name,
+            "title": f"Cariboo Tech Progress - {theme_name}",
+            "description": episode_description,
+            "generated_at": datetime.now().isoformat()
+        },
+        "segments": {
+            "news_roundup": {
+                "title": "The Week's Tech - News Roundup",
+                "articles": []
+            },
+            "deep_dive": {
+                "title": f"Cariboo Connections - {theme_name}",
+                "articles": []
+            }
+        }
+    }
+    
+    # Add news articles
+    for article in news_articles:
+        citation = {
+            "title": article.get('title', ''),
+            "url": article.get('url', ''),
+            "source": article.get('authors', [{}])[0].get('name', 'Unknown Source'),
+            "ai_score": article.get('ai_score', 0),
+            "date_published": article.get('date_published', ''),
+            "summary": article.get('summary', '')[:200] + "..." if len(article.get('summary', '')) > 200 else article.get('summary', '')
+        }
+        citations_data["segments"]["news_roundup"]["articles"].append(citation)
+    
+    # Add deep dive articles
+    for article in deep_dive_articles:
+        citation = {
+            "title": article.get('title', ''),
+            "url": article.get('url', ''),
+            "source": article.get('authors', [{}])[0].get('name', 'Unknown Source'),
+            "ai_score": article.get('ai_score', 0),
+            "date_published": article.get('date_published', ''),
+            "summary": article.get('summary', '')[:200] + "..." if len(article.get('summary', '')) > 200 else article.get('summary', '')
+        }
+        citations_data["segments"]["deep_dive"]["articles"].append(citation)
+    
+    # Save citations file
+    _, _, citations_filename = get_daily_filenames(theme_name)
+    
+    try:
+        with open(citations_filename, 'w', encoding='utf-8') as f:
+            json.dump(citations_data, f, indent=2, ensure_ascii=False)
+        
+        print(f"📚 Saved citations to: {citations_filename}")
+        return citations_filename
+        
+    except Exception as e:
+        print(f"❌ Error saving citations: {e}")
+        return None
+
+def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory):
+    """Generate conversational podcast script with Cariboo focus including memory context."""
+    print("🎙️ Generating Cariboo-focused podcast script with Claude (including memory)...")
+    
+    # Check for API key
+    api_key = os.getenv('ANTHROPIC_API_KEY')
+    if not api_key:
+        print("❌ ANTHROPIC_API_KEY not found in .env file")
+        return None
+    
+    # Get current date info
+    weekday, date_str = get_current_date_info()
+    
+    # Prepare articles for script generation
+    top_news = all_articles[:8]  # Fewer stories for more focused news coverage
+    
+    # Create article summaries for Claude
+    news_text = "\n".join([
+        f"- [{a.get('authors', [{}])[0].get('name', 'Unknown')}] {a.get('title', '')}\n  {a.get('summary', '')[:150]}... (AI Score: {a.get('ai_score', 0)})"
+        for a in top_news
+    ])
+    
+    deep_dive_text = "\n".join([
+        f"- [{a.get('authors', [{}])[0].get('name', 'Unknown')}] {a.get('title', '')}\n  {a.get('summary', '')[:200]}... (AI Score: {a.get('ai_score', 0)})"
+        for a in deep_dive_articles
+    ])
+    
+    # Format memory context
+    memory_context = format_memory_for_prompt(episode_memory, host_memory)
+    
+    prompt = f"""Create a 30-minute DAILY podcast script for "{weekday}, {date_str}" focusing on "Technological and Societal Progress in the Caribou Region."
+
+PODCAST THEME: "Technological and Societal Progress in the Caribou Region" 
+NOTE: For TTS pronunciation, use "Caribou" (like the animal) in all spoken content, but keep "Cariboo" in any written references
+How do rural and remote communities like ours grow and evolve alongside technology that typically benefits urban areas first? Focus on responsible, evolutionary approaches to progress.
+
+THIS IS A DAILY PODCAST - we publish every day with weekly themes. Say "today's episode" not "weekly show."
+
+{memory_context}
+
+HOSTS:
+- Riley (she/her): Tech systems thinker with rural roots, engineering background, asks "how can this work here?" and "what would responsible deployment look like?"
+- Casey (they/them): Community development focus, asks "how does this serve people like us?" and "what are we learning from other rural innovators?"
+
+EPISODE STRUCTURE:
+
+**SEGMENT 1 (18 minutes): "The Week's Tech" - News Roundup**
+Professional news anchor style coverage of these TOP-SCORED articles:
+{news_text}
+
+Style: Structured, professional news delivery like CBC Radio News. Clear transitions, concise summaries, brief analysis. Each story takes 2-3 minutes max. Clean, professional delivery. Use phrases like "Our top story today..." and "In other technology news..."
+
+## [AD BREAK PLACEHOLDER - Future Sponsorship Spot]
+[NATURAL TRANSITION: "We'll be right back after this short break to dive deeper into today's theme: {theme_name}"]
+
+**SEGMENT 2 (12 minutes): "Caribou Connections - {theme_name}"**
+VERY CONVERSATIONAL analysis - like two friends chatting over coffee about tech:
+{deep_dive_text}
+
+Style: Relaxed, natural conversation. Let personalities flow - interrupt each other, build on ideas, use "you know?" and "right?" naturally. Disagree sometimes, then find common ground. Ask each other questions like "What do you think about..." Connect to: rural innovation, community-controlled tech, lessons for smaller communities. Build to strong thematic conclusion about progress in our region.
+
+CRITICAL REQUIREMENTS:
+- NO STAGE DIRECTIONS: Never write "(shuffles papers)", "(laughs)", "*chuckles*" or ANY performance cues
+- SEGMENT 1: Professional news anchor delivery - structured, clear, informative
+- SEGMENT 2: Natural friends conversation - interruptions, casual language, building on each other's thoughts
+- DAILY FREQUENCY: Say "today's episode" or "on today's show" - NEVER "weekly show" or "this week's episode"
+- CARIBOU PRONUNCIATION: Use "Caribou" in all spoken content (for TTS), keep "Cariboo" only in written references
+- AVOID REPETITION: Don't repeat the same points - let variety and personality flow
+- Regional lens: "What does this mean for communities like ours?" "How could this work in rural areas?"
+- USE MEMORY: Reference past episodes naturally when relevant ("Remember when we talked about...")
+- Current date is {weekday}, {date_str} - use this correctly
+
+OUTPUT: ~4,000-4,500 words with **RILEY:** and **CASEY:** speaker tags only."""
+
+    try:
+        client = anthropic.Anthropic(api_key=api_key)
+        
+        response = client.messages.create(
+            model="claude-sonnet-4-20250514",
+            max_tokens=4000,
+            messages=[{"role": "user", "content": prompt}]
+        )
+        
+        script = response.content[0].text
+        print("✅ Generated Cariboo-focused podcast script successfully!")
+        return script
+        
+    except Exception as e:
+        print(f"❌ Error generating script: {e}")
+        return None
+
+def parse_script_by_speaker(script):
+    """Parse script into segments by speaker, filtering out stage directions."""
+    if not script:
+        return []
+    
+    segments = []
+    current_speaker = None
+    current_text = []
+    
+    for line in script.split('\n'):
+        line = line.strip()
+        
+        # Check for speaker tags FIRST, before any filtering
+        riley_match = re.match(r'\*\*RILEY:\*\*\s*(.*)', line)
+        casey_match = re.match(r'\*\*CASEY:\*\*\s*(.*)', line)
+        
+        if riley_match:
+            # Save previous segment
+            if current_speaker and current_text:
+                segments.append({
+                    'speaker': current_speaker,
+                    'text': ' '.join(current_text).strip()
+                })
+            current_speaker = 'riley'
+            current_text = [riley_match.group(1)] if riley_match.group(1) else []
+            
+        elif casey_match:
+            # Save previous segment
+            if current_speaker and current_text:
+                segments.append({
+                    'speaker': current_speaker,
+                    'text': ' '.join(current_text).strip()
+                })
+            current_speaker = 'casey'
+            current_text = [casey_match.group(1)] if casey_match.group(1) else []
+            
+        elif line and current_speaker:
+            # Skip metadata lines, empty lines, and stage directions
+            if (not line.startswith('#') and 
+                not line.startswith('---') and 
+                not line.startswith('*End of') and
+                not line.startswith('##') and
+                not line.startswith('###') and
+                not line.startswith('[') and  # Skip [NATURAL AD BREAK TRANSITION]
+                not line.endswith(']')):
+                
+                # Filter out stage directions but keep regular content
+                if not (('(' in line and ')' in line) or
+                        'shuffles' in line.lower() or 
+                        'laughs' in line.lower() or
+                        'chuckles' in line.lower()):
+                    current_text.append(line)
+    
+    # Add final segment
+    if current_speaker and current_text:
+        segments.append({
+            'speaker': current_speaker,
+            'text': ' '.join(current_text).strip()
+        })
+    
+    # Filter out very short segments and clean up text
+    cleaned_segments = []
+    for segment in segments:
+        # Remove any remaining stage directions from text
+        clean_text = re.sub(r'\([^)]*\)', '', segment['text'])  # Remove (parenthetical)
+        clean_text = re.sub(r'\*[^*]*\*', '', clean_text)      # Remove *single asterisk actions*
+        clean_text = ' '.join(clean_text.split())              # Clean up whitespace
+        
+        if len(clean_text) > 10:  # Only keep substantial segments
+            cleaned_segments.append({
+                'speaker': segment['speaker'],
+                'text': clean_text
+            })
+    
+    print(f"🎭 Parsed script into {len(cleaned_segments)} speaking segments")
+    return cleaned_segments
+
+def generate_audio_from_script(script, output_filename):
+    """Convert script to audio using OpenAI TTS."""
+    print("🔊 Generating audio with OpenAI TTS...")
+    
+    # Check for OpenAI API key
+    openai_api_key = os.getenv('OPENAI_API_KEY')
+    if not openai_api_key:
+        print("❌ OPENAI_API_KEY not found in .env file")
+        return None
+    
+    try:
+        from openai import OpenAI
+        client = OpenAI(api_key=openai_api_key)
+        
+        # Parse script by speaker
+        segments = parse_script_by_speaker(script)
+        if not segments:
+            print("❌ No speaking segments found in script")
+            return None
+        
+        # Generate audio for each segment
+        audio_files = []
+        for i, segment in enumerate(segments):
+            speaker = segment['speaker']
+            text = segment['text']
+            voice = TTS_VOICES.get(speaker, 'alloy')
+            
+            print(f"  🎤 Generating audio {i+1}/{len(segments)} ({speaker}: {len(text)} chars)")
+            
+            # Generate TTS
+            response = client.audio.speech.create(
+                model="tts-1",
+                voice=voice,
+                input=text,
+                speed=1.0
+            )
+            
+            # Save segment audio
+            segment_filename = f"temp_segment_{i:03d}_{speaker}.mp3"
+            with open(segment_filename, "wb") as f:
+                f.write(response.content)
+            
+            audio_files.append(segment_filename)
+        
+        print("🎵 Combining audio segments...")
+        
+        try:
+            from pydub import AudioSegment
+            
+            combined = AudioSegment.empty()
+            for audio_file in audio_files:
+                segment_audio = AudioSegment.from_mp3(audio_file)
+                combined += segment_audio
+                
+                # Add small pause between speakers (0.5 seconds)
+                combined += AudioSegment.silent(duration=500)
+            
+            # Export final podcast
+            combined.export(output_filename, format="mp3")
+            
+            # Clean up temporary files
+            for audio_file in audio_files:
+                os.remove(audio_file)
+            
+            print(f"✅ Generated podcast audio: {output_filename}")
+            
+            # Audio stats
+            duration_seconds = len(combined) / 1000
+            duration_minutes = duration_seconds / 60
+            print(f"   Duration: {duration_minutes:.1f} minutes")
+            print(f"   File size: {os.path.getsize(output_filename) / 1024 / 1024:.1f} MB")
+            
+            return output_filename
+            
+        except ImportError:
+            print("❌ pydub not installed. Install with: pip install pydub")
+            return None
+            
+    except ImportError:
+        print("❌ OpenAI library not installed. Install with: pip install openai")
+        return None
+    except Exception as e:
+        print(f"❌ Error generating audio: {e}")
+        return None
+
+def generate_podcast_rss_feed():
+    """Generate RSS feed for podcast apps with rich episode descriptions."""
+    print("📡 Generating podcast RSS feed with episode descriptions...")
+    
+    # Find all episode files
+    import glob
+    audio_files = glob.glob("podcast_audio_*.mp3")
+    
+    episodes = []
+    for audio_file in sorted(audio_files, reverse=True):  # Newest first
+        # Extract date and theme from filename
+        parts = audio_file.replace('podcast_audio_', '').replace('.mp3', '').split('_')
+        if len(parts) >= 2:
+            episode_date = parts[0]  # 2026-01-24
+            theme = ' '.join(parts[1:]).replace('_', ' ').title()
+            
+            # Skip test files
+            if 'test' in theme.lower():
+                continue
+            
+            # Load episode description from citations file if available
+            citations_file = f"citations_{episode_date}_{'_'.join(parts[1:])}.json"
+            episode_description = "Daily tech conversations for rural communities."
+            
+            try:
+                with open(citations_file, 'r') as f:
+                    citations_data = json.load(f)
+                    episode_description = citations_data['episode'].get('description', episode_description)
+            except:
+                pass  # Use default description if citations file not found
+            
+            # Get file size
+            file_size = os.path.getsize(audio_file)
+            
+            # Convert date for RSS
+            try:
+                date_obj = datetime.strptime(episode_date, "%Y-%m-%d")
+                pub_date = date_obj.strftime("%a, %d %b %Y 06:00:00 GMT")
+            except:
+                pub_date = datetime.now().strftime("%a, %d %b %Y 06:00:00 GMT")
+            
+            episodes.append({
+                'title': f"Cariboo Tech Progress - {theme}",
+                'audio_file': audio_file,
+                'pub_date': pub_date,
+                'file_size': file_size,
+                'episode_date': episode_date,
+                'theme': theme,
+                'description': episode_description
+            })
+    
+    # Generate RSS XML with proper escaping and rich metadata
+    import xml.sax.saxutils as saxutils
+    
+    rss_lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/">',
+        '<channel>',
+        '<title>Cariboo Tech Progress</title>',
+        '<link>https://zirnhelt.github.io/curated-podcast-generator/</link>',
+        '<language>en-us</language>',
+        '<copyright>© 2026 Erich\'s AI Curator</copyright>',
+        '<itunes:subtitle>Technology and society in rural BC with Riley and Casey</itunes:subtitle>',
+        '<itunes:author>Riley and Casey</itunes:author>',
+        '<itunes:summary>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region. Riley brings tech systems thinking with rural roots, while Casey focuses on community development. New episodes every day with weekly themes.</itunes:summary>',
+        '<description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region.</description>',
+        '<itunes:owner>',
+        '<itunes:name>Erich\'s AI Curator</itunes:name>',
+        '<itunes:email>podcast@example.com</itunes:email>',
+        '</itunes:owner>',
+        '<itunes:image href="https://zirnhelt.github.io/curated-podcast-generator/podcast-cover.png"/>',
+        '<itunes:category text="Technology">',
+        '<itunes:category text="News"/>',
+        '</itunes:category>',
+        '<itunes:category text="Society &amp; Culture"/>',
+        '<itunes:explicit>false</itunes:explicit>',
+        '<itunes:type>episodic</itunes:type>',
+        f'<lastBuildDate>{datetime.now().strftime("%a, %d %b %Y %H:%M:%S GMT")}</lastBuildDate>'
+    ]
+    
+    # Add episodes with rich descriptions and proper XML escaping
+    for episode in episodes:
+        escaped_title = saxutils.escape(episode['title'])
+        escaped_description = saxutils.escape(episode['description'])
+        
+        rss_lines.extend([
+            '<item>',
+            f'<title>{escaped_title}</title>',
+            '<link>https://zirnhelt.github.io/curated-podcast-generator/</link>',
+            f'<pubDate>{episode["pub_date"]}</pubDate>',
+            f'<description>{escaped_description}</description>',
+            f'<itunes:summary>{escaped_description}</itunes:summary>',
+            f'<itunes:subtitle>Daily tech progress - {episode["theme"]}</itunes:subtitle>',
+            f'<enclosure url="https://zirnhelt.github.io/curated-podcast-generator/{episode["audio_file"]}" length="{episode["file_size"]}" type="audio/mpeg"/>',
+            f'<guid isPermaLink="false">cariboo-tech-progress-{episode["episode_date"]}</guid>',
+            '<itunes:duration>30:00</itunes:duration>',
+            '<itunes:explicit>false</itunes:explicit>',
+            '<itunes:episodeType>full</itunes:episodeType>',
+            '</item>'
+        ])
+    
+    rss_lines.extend([
+        '</channel>',
+        '</rss>'
+    ])
+    
+    # Save RSS feed
+    rss_content = '\n'.join(rss_lines)
+    with open('podcast-feed.xml', 'w', encoding='utf-8') as f:
+        f.write(rss_content)
+    
+    print(f"✅ Generated RSS feed with {len(episodes)} episodes and rich descriptions: podcast-feed.xml")
+    return 'podcast-feed.xml'
+
+def save_script_to_file(script, theme_name):
+    """Save the generated script to a file."""
+    if not script:
+        return None
+    
+    script_filename, _, _ = get_daily_filenames(theme_name)
+    
+    try:
+        with open(script_filename, 'w', encoding='utf-8') as f:
+            f.write(f"# Cariboo Tech Progress Podcast Script - {datetime.now().strftime('%Y-%m-%d')}\n")
+            f.write(f"# Theme: {theme_name}\n")
+            f.write(f"# Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+            f.write(script)
+        
+        print(f"💾 Saved script to: {script_filename}")
+        return script_filename
+        
+    except Exception as e:
+        print(f"❌ Error saving script: {e}")
+        return None
+
+def main():
+    print("🏔️ Cariboo Tech Progress Podcast Generator with Memory & Citations")
+    print("=" * 60)
+    
+    # Get today's theme
+    today_weekday = datetime.now().weekday()
+    today_theme = DAILY_THEMES[today_weekday]
+    weekday, date_str = get_current_date_info()
+    print(f"📅 {weekday}, {date_str} - Deep dive theme: {today_theme}")
+    
+    # Load memory systems
+    episode_memory = load_episode_memory()
+    host_memory = load_host_memory()
+    
+    # Check for existing files
+    script_exists, audio_exists, script_filename, audio_filename, citations_filename = check_existing_files(today_theme)
+    
+    # If both script and audio exist, check if we need to generate citations
+    if script_exists and audio_exists:
+        print("✅ Both script and audio already exist for today!")
+        print(f"   Script: {script_filename}")
+        print(f"   Audio:  {audio_filename}")
+        
+        # Check if citations exist, if not generate them from existing script
+        citations_exist = os.path.exists(citations_filename)
+        if not citations_exist:
+            print("📚 Generating citations for existing episode...")
+            
+            # Load existing script
+            script = load_existing_script(script_filename)
+            if script:
+                # We need the original article data to generate citations
+                # Fetch data from live system
+                scoring_data = fetch_scoring_data()
+                current_articles = fetch_feed_data()
+                
+                if scoring_data and current_articles:
+                    # Add AI scores to articles
+                    scored_articles = get_article_scores(current_articles, scoring_data)
+                    
+                    # Get articles for deep dive (Cariboo-themed)
+                    deep_dive_articles = categorize_articles_for_deep_dive(scored_articles, today_weekday)
+                    
+                    # Generate citations file
+                    citations_file = generate_citations_file(scored_articles[:8], deep_dive_articles, today_theme)
+                    
+                    if citations_file:
+                        print(f"✅ Generated citations: {citations_file}")
+                    else:
+                        print("⚠️ Failed to generate citations")
+                else:
+                    print("⚠️ Could not fetch article data for citations")
+            else:
+                print("⚠️ Could not load existing script for citations")
+        else:
+            print(f"📚 Citations already exist: {citations_filename}")
+        
+        # Still generate RSS feed
+        generate_podcast_rss_feed()
+        return
+    
+    # Load or generate script
+    if script_exists:
+        print("📖 Using existing script...")
+        script = load_existing_script(script_filename)
+    else:
+        print("🆕 Generating new Cariboo-focused script with memory context...")
+        
+        # Fetch data from live system
+        scoring_data = fetch_scoring_data()
+        current_articles = fetch_feed_data()
+        
+        if not scoring_data or not current_articles:
+            print("❌ Failed to fetch data. Exiting.")
+            return
+        
+        # Add AI scores to articles
+        scored_articles = get_article_scores(current_articles, scoring_data)
+        
+        # Get articles for deep dive (Cariboo-themed)
+        deep_dive_articles = categorize_articles_for_deep_dive(scored_articles, today_weekday)
+        
+        print(f"📊 Ready to generate Cariboo Tech Progress podcast:")
+        print(f"   News roundup: Top {min(8, len(scored_articles))} articles by score")
+        print(f"   Cariboo connections: {len(deep_dive_articles)} articles for {today_theme}")
+        print(f"   Memory context: {len(episode_memory.get('recent_episodes', []))} recent episodes")
+        
+        # Generate citations file
+        citations_file = generate_citations_file(scored_articles[:8], deep_dive_articles, today_theme)
+        
+        # Generate podcast script with memory and Cariboo focus
+        script = generate_podcast_script(scored_articles, deep_dive_articles, today_theme, episode_memory, host_memory)
+        
+        if not script:
+            print("❌ Failed to generate script. Exiting.")
+            return
+        
+        # Save script to file
+        script_filename = save_script_to_file(script, today_theme)
+        
+        # Update memory with new episode
+        if script:
+            current_date = datetime.now().strftime("%Y-%m-%d")
+            update_episode_memory(script, today_theme, current_date)
+            update_host_memory(script)
+    
+    # Generate audio if needed
+    if not audio_exists and script:
+        audio_file = generate_audio_from_script(script, audio_filename)
+        
+        if audio_file:
+            print(f"🎉 Cariboo Tech Progress podcast complete!")
+            print(f"   Script: {script_filename}")
+            print(f"   Audio:  {audio_file}")
+            print(f"   Citations: {citations_filename}")
+        else:
+            print(f"📝 Script ready: {script_filename}")
+            print("🔊 Audio generation failed - check requirements")
+    elif audio_exists:
+        print(f"🎵 Audio already exists: {audio_filename}")
+    
+    # Generate RSS feed for podcast apps
+    generate_podcast_rss_feed()
+    
+    print("✅ Cariboo Tech Progress generation complete!")
+
+if __name__ == "__main__":
+    main()
+
+
+----------------------------------------
+FILE: requirements.txt
+----------------------------------------
+anthropic>=0.40.0
+openai>=1.0.0
+requests>=2.25.0
+python-dotenv>=0.19.0
+pydub>=0.25.0
+
+
+----------------------------------------
+FILE: index.html
+----------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cariboo Tech Progress - Rural Technology Conversations</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #4a5d73 0%, #2c3e50 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 48px;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        
+        .subtitle {
+            margin-bottom: 32px;
+            color: #666;
+            font-size: 1.2em;
+            font-style: italic;
+        }
+        
+        .theme-description {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #2c3e50;
+            margin-bottom: 32px;
+        }
+        
+        .hosts-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+        
+        .host-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .host-name {
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        
+        .host-desc {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        h2 {
+            font-size: 1.5em;
+            margin: 32px 0 16px 0;
+            color: #2c3e50;
+        }
+        
+        .episode-section {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        
+        .episode-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .episode-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .episode-date {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .episode-theme {
+            background: #2c3e50;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+        
+        .audio-player {
+            margin: 16px 0;
+        }
+        
+        audio {
+            width: 100%;
+            margin-bottom: 12px;
+        }
+        
+        .episode-controls {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #2c3e50;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .download-btn:hover {
+            background: #34495e;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.3);
+        }
+        
+        .download-btn.script {
+            background: #27ae60;
+        }
+        
+        .download-btn.script:hover {
+            background: #2ecc71;
+        }
+        
+        .citations-btn {
+            background: #8e44ad;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .citations-btn:hover {
+            background: #9b59b6;
+            transform: translateY(-1px);
+        }
+        
+        .citations-section {
+            margin-top: 16px;
+            padding: 16px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            display: none;
+        }
+        
+        .citations-section.show {
+            display: block;
+        }
+        
+        .citations-segment {
+            margin-bottom: 24px;
+        }
+        
+        .citations-segment:last-child {
+            margin-bottom: 0;
+        }
+        
+        .segment-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+        
+        .citation {
+            margin-bottom: 16px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 3px solid #8e44ad;
+        }
+        
+        .citation:last-child {
+            margin-bottom: 0;
+        }
+        
+        .citation-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .citation-title a {
+            color: #2c3e50;
+            text-decoration: none;
+        }
+        
+        .citation-title a:hover {
+            color: #8e44ad;
+            text-decoration: underline;
+        }
+        
+        .citation-meta {
+            font-size: 0.85em;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .citation-summary {
+            font-size: 0.9em;
+            color: #555;
+            line-height: 1.4;
+        }
+        
+        .score-badge {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 0.75em;
+            font-weight: 600;
+        }
+        
+        .score-badge.high {
+            background: #27ae60;
+        }
+        
+        .score-badge.medium {
+            background: #f39c12;
+        }
+        
+        .score-badge.low {
+            background: #e74c3c;
+        }
+        
+        .rss-section {
+            background: #e8f5e8;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #27ae60;
+            margin-bottom: 24px;
+        }
+        
+        .rss-url {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            word-break: break-all;
+            color: #2c3e50;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+        
+        .rss-url:hover {
+            background: #f0f0f0;
+        }
+        
+        .themes-section {
+            margin-top: 32px;
+        }
+        
+        .themes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+        
+        .theme-card {
+            background: #f8f9fa;
+            padding: 16px;
+            border-radius: 8px;
+            border-left: 4px solid #2c3e50;
+        }
+        
+        .theme-day {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 4px;
+        }
+        
+        .theme-topic {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .links-section {
+            margin-top: 32px;
+            text-align: center;
+        }
+        
+        .link-btn {
+            display: inline-block;
+            background: #2c3e50;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 0 8px 8px 8px;
+        }
+        
+        .link-btn:hover {
+            background: #34495e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(44, 62, 80, 0.4);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+        
+        @media (max-width: 768px) {
+            .hosts-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .episode-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .episode-controls {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏔️ Cariboo Tech Progress</h1>
+            <p class="subtitle">Technology and society in rural BC</p>
+        </div>
+        
+        <div class="theme-description">
+            <strong>Our Mission:</strong> How do rural and remote communities like ours grow and evolve alongside technology that typically benefits urban areas first? We explore responsible, evolutionary approaches to progress in the Cariboo (CARE-ih-boo, like caribou) region and beyond.
+            <br><br>
+            <strong>Daily Episodes:</strong> New episodes every day with weekly themes, exploring tech news and rural connections.
+        </div>
+        
+        <div class="hosts-section">
+            <div class="host-card">
+                <div class="host-name">🎤 Riley (she/her)</div>
+                <div class="host-desc">Tech systems thinker with rural roots. Engineering background. Asks "how can this work here?" and "what would responsible deployment look like?"</div>
+            </div>
+            <div class="host-card">
+                <div class="host-name">🎙️ Casey (they/them)</div>
+                <div class="host-desc">Community development focus. Asks "how does this serve people like us?" and "what are we learning from other rural innovators?"</div>
+            </div>
+        </div>
+        
+        <h2>🎧 Latest Episodes</h2>
+        <div id="episodesList">
+            <div class="loading">Loading latest episodes...</div>
+        </div>
+        
+        <div class="rss-section">
+            <h3 style="margin-top: 0; color: #27ae60;">🎧 Listen on Your Favorite App</h3>
+            <p>Subscribe to never miss an episode:</p>
+            
+            <div style="margin: 16px 0; display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
+                <a href="https://podcasts.apple.com/podcast/id?feed=https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml" 
+                   class="download-btn" target="_blank" rel="noopener">🍎 Apple Podcasts</a>
+                <a href="https://open.spotify.com/" class="download-btn" target="_blank" rel="noopener">🎵 Spotify*</a>
+                <a href="https://podcasts.google.com/feed/aHR0cHM6Ly96aXJuaGVsdC5naXRodWIuaW8vY3VyYXRlZC1wb2RjYXN0LWdlbmVyYXRvci9wb2RjYXN0LWZlZWQueG1s" 
+                   class="download-btn" target="_blank" rel="noopener">🔍 Google Podcasts</a>
+                <a href="https://overcast.fm/+add?url=https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml" 
+                   class="download-btn" target="_blank" rel="noopener">☁️ Overcast</a>
+                <a href="https://pca.st/subscribe/https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml" 
+                   class="download-btn" target="_blank" rel="noopener">📱 Pocket Casts</a>
+                <a href="https://castro.fm/subscribe/https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml" 
+                   class="download-btn" target="_blank" rel="noopener">📻 Castro</a>
+            </div>
+            
+            <p style="font-size: 0.9em; color: #666; margin-top: 12px;">
+                *Spotify requires manual submission. <a href="#spotify-instructions" style="color: #27ae60;">See instructions below</a>.
+            </p>
+            
+            <details style="margin-top: 16px;">
+                <summary style="cursor: pointer; font-weight: 600; color: #2c3e50;">📡 Or use RSS feed directly</summary>
+                <div class="rss-url" onclick="copyToClipboard(this.textContent)" title="Click to copy" style="margin-top: 8px;">
+                    https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml
+                </div>
+                <p style="font-size: 0.9em; color: #666; margin-top: 8px;">
+                    Copy this URL into any podcast app that supports RSS feeds.
+                </p>
+            </details>
+        </div>
+        
+        <div id="spotify-instructions" class="rss-section" style="background: #fff3cd; border-left-color: #856404;">
+            <h3 style="margin-top: 0; color: #856404;">🎵 Spotify Submission</h3>
+            <p>To get Cariboo Tech Progress on Spotify:</p>
+            <ol style="margin-left: 20px; color: #666;">
+                <li>Visit <a href="https://podcasters.spotify.com/" target="_blank" rel="noopener">Spotify for Podcasters</a></li>
+                <li>Sign in with your Spotify account</li>
+                <li>Click "Add Your Podcast"</li>
+                <li>Enter our RSS feed: <code>https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml</code></li>
+                <li>Wait for approval (usually 1-3 days)</li>
+            </ol>
+            <p style="font-size: 0.9em; color: #666; margin-top: 12px;">
+                Once submitted, it will appear in Spotify for all listeners automatically.
+            </p>
+        </div>
+        
+        <div class="themes-section">
+            <h2>📅 Daily Themes (Weekly Rotation)</h2>
+            <div class="themes-grid">
+                <div class="theme-card">
+                    <div class="theme-day">Monday</div>
+                    <div class="theme-topic">Community-Controlled Infrastructure</div>
+                </div>
+                <div class="theme-card">
+                    <div class="theme-day">Tuesday</div>
+                    <div class="theme-topic">Sustainable Innovation</div>
+                </div>
+                <div class="theme-card">
+                    <div class="theme-day">Wednesday</div>
+                    <div class="theme-topic">Local Voices & Digital Equity</div>
+                </div>
+                <div class="theme-card">
+                    <div class="theme-day">Thursday</div>
+                    <div class="theme-topic">Rural Smart Solutions</div>
+                </div>
+                <div class="theme-card">
+                    <div class="theme-day">Friday</div>
+                    <div class="theme-topic">Future-Ready Communities</div>
+                </div>
+                <div class="theme-card">
+                    <div class="theme-day">Saturday</div>
+                    <div class="theme-topic">Cariboo Innovation Stories</div>
+                </div>
+                <div class="theme-card">
+                    <div class="theme-day">Sunday</div>
+                    <div class="theme-topic">Regional Resilience</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="links-section">
+            <h2>🔗 Links</h2>
+            <a href="https://github.com/zirnhelt/curated-podcast-generator" class="link-btn">🔧 View Source Code</a>
+            <a href="https://github.com/zirnhelt/super-rss-feed" class="link-btn">📊 RSS Feed System</a>
+        </div>
+    </div>
+    
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('RSS feed URL copied to clipboard!');
+            }).catch(() => {
+                alert('Failed to copy. Please select and copy manually.');
+            });
+        }
+        
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+        }
+        
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+        }
+        
+        function getThemeFromFilename(filename) {
+            // Extract theme from filename like "podcast_audio_2026-01-24_cariboo_innovation_stories.mp3"
+            const parts = filename.replace('podcast_audio_', '').replace('.mp3', '').split('_');
+            if (parts.length >= 2) {
+                return parts.slice(1).join(' ').replace(/_/g, ' ')
+                    .replace(/\b\w/g, l => l.toUpperCase()); // Title case
+            }
+            return 'Episode';
+        }
+        
+        function getScoreBadgeClass(score) {
+            if (score >= 70) return 'high';
+            if (score >= 40) return 'medium';
+            return 'low';
+        }
+        
+        async function loadCitations(episodeId, citationsFilename) {
+            const citationsSection = document.getElementById(`citations-${episodeId}`);
+            const button = document.getElementById(`citations-btn-${episodeId}`);
+            
+            if (citationsSection.classList.contains('show')) {
+                citationsSection.classList.remove('show');
+                button.textContent = '📚 Show Sources';
+                return;
+            }
+            
+            try {
+                button.textContent = '⏳ Loading...';
+                const response = await fetch(citationsFilename);
+                const citations = await response.json();
+                
+                let html = '';
+                
+                // News Roundup sources
+                if (citations.segments.news_roundup.articles.length > 0) {
+                    html += `<div class="citations-segment">`;
+                    html += `<div class="segment-title">${citations.segments.news_roundup.title}</div>`;
+                    
+                    citations.segments.news_roundup.articles.forEach(article => {
+                        const scoreClass = getScoreBadgeClass(article.ai_score);
+                        html += `
+                            <div class="citation">
+                                <div class="citation-title">
+                                    <a href="${article.url}" target="_blank" rel="noopener">${article.title}</a>
+                                </div>
+                                <div class="citation-meta">
+                                    ${article.source} • <span class="score-badge ${scoreClass}">Score: ${article.ai_score}</span>
+                                </div>
+                                <div class="citation-summary">${article.summary}</div>
+                            </div>
+                        `;
+                    });
+                    
+                    html += `</div>`;
+                }
+                
+                // Deep Dive sources
+                if (citations.segments.deep_dive.articles.length > 0) {
+                    html += `<div class="citations-segment">`;
+                    html += `<div class="segment-title">${citations.segments.deep_dive.title}</div>`;
+                    
+                    citations.segments.deep_dive.articles.forEach(article => {
+                        const scoreClass = getScoreBadgeClass(article.ai_score);
+                        html += `
+                            <div class="citation">
+                                <div class="citation-title">
+                                    <a href="${article.url}" target="_blank" rel="noopener">${article.title}</a>
+                                </div>
+                                <div class="citation-meta">
+                                    ${article.source} • <span class="score-badge ${scoreClass}">Score: ${article.ai_score}</span>
+                                </div>
+                                <div class="citation-summary">${article.summary}</div>
+                            </div>
+                        `;
+                    });
+                    
+                    html += `</div>`;
+                }
+                
+                citationsSection.innerHTML = html;
+                citationsSection.classList.add('show');
+                button.textContent = '📚 Hide Sources';
+                
+            } catch (error) {
+                console.error('Error loading citations:', error);
+                citationsSection.innerHTML = '<p>Citations not available for this episode.</p>';
+                citationsSection.classList.add('show');
+                button.textContent = '📚 Show Sources';
+            }
+        }
+        
+        async function loadEpisodes() {
+            const episodesList = document.getElementById('episodesList');
+            
+            try {
+                // Try to fetch the RSS feed to get episode list
+                const response = await fetch('podcast-feed.xml');
+                const xmlText = await response.text();
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+                
+                const items = xmlDoc.querySelectorAll('item');
+                
+                if (items.length === 0) {
+                    episodesList.innerHTML = '<p>No episodes available yet. Check back soon!</p>';
+                    return;
+                }
+                
+                episodesList.innerHTML = '';
+                
+                // Show up to 3 most recent episodes
+                const episodesToShow = Math.min(3, items.length);
+                
+                for (let i = 0; i < episodesToShow; i++) {
+                    const item = items[i];
+                    const title = item.querySelector('title').textContent;
+                    const pubDate = item.querySelector('pubDate').textContent;
+                    const enclosure = item.querySelector('enclosure');
+                    
+                    if (!enclosure) continue;
+                    
+                    const audioUrl = enclosure.getAttribute('url');
+                    const fileSize = parseInt(enclosure.getAttribute('length'));
+                    const fileName = audioUrl.split('/').pop();
+                    
+                    // Extract date and theme from filename
+                    const dateMatch = fileName.match(/(\d{4}-\d{2}-\d{2})/);
+                    const episodeDate = dateMatch ? dateMatch[1] : 'Unknown Date';
+                    const theme = getThemeFromFilename(fileName);
+                    
+                    // Corresponding script and citations files
+                    const scriptUrl = audioUrl.replace('podcast_audio_', 'podcast_script_').replace('.mp3', '.txt');
+                    const citationsUrl = audioUrl.replace('podcast_audio_', 'citations_').replace('.mp3', '.json');
+                    
+                    const episodeId = `episode-${episodeDate.replace(/-/g, '')}`;
+                    
+                    const episodeHtml = `
+                        <div class="episode-section">
+                            <div class="episode-header">
+                                <div>
+                                    <div class="episode-title">${title}</div>
+                                    <div class="episode-date">${formatDate(episodeDate)}</div>
+                                </div>
+                                <div class="episode-theme">${theme}</div>
+                            </div>
+                            <div class="audio-player">
+                                <audio controls preload="metadata">
+                                    <source src="${audioUrl}" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                            <div class="episode-controls">
+                                <a href="${audioUrl}" class="download-btn" download>🎵 Download Audio (${formatFileSize(fileSize)})</a>
+                                <a href="${scriptUrl}" class="download-btn script" download>📝 View Script</a>
+                                <button class="citations-btn" id="citations-btn-${episodeId}" onclick="loadCitations('${episodeId}', '${citationsUrl}')">📚 Show Sources</button>
+                            </div>
+                            <div class="citations-section" id="citations-${episodeId}"></div>
+                        </div>
+                    `;
+                    
+                    episodesList.innerHTML += episodeHtml;
+                }
+                
+            } catch (error) {
+                console.error('Error loading episodes:', error);
+                episodesList.innerHTML = `
+                    <div class="episode-section">
+                        <p>Episodes are being generated. Check back in a few minutes!</p>
+                        <p style="margin-top: 16px;"><em>The podcast generator creates new episodes daily based on curated RSS feed data.</em></p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Load episodes when page loads
+        loadEpisodes();
+    </script>
+</body>
+</html>
+
+
+----------------------------------------
+FILE: .github/workflows/daily-podcast.yml
+----------------------------------------
+name: Daily Podcast Generation
+
+on:
+  schedule:
+    # Run daily at 5:00 AM Pacific Time
+    # 5:00 AM PST = 13:00 UTC (winter)
+    # 5:00 AM PDT = 12:00 UTC (summer)  
+    # Using 13:00 UTC to be consistent year-round (may be 6am in summer)
+    - cron: '0 13 * * *'
+  workflow_dispatch:  # Allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  generate-podcast:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+      
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pydub openai python-dotenv
+      
+      - name: Download existing files from GitHub Pages
+        run: |
+          # Download existing episodes and memory files if they exist
+          echo "Downloading existing files from GitHub Pages..."
+          
+          # Try to download memory files (don't fail if they don't exist)
+          wget https://zirnhelt.github.io/curated-podcast-generator/episode_memory.json -O episode_memory.json || echo "No episode memory found"
+          wget https://zirnhelt.github.io/curated-podcast-generator/host_personality_memory.json -O host_personality_memory.json || echo "No host memory found"
+          
+          # Download RSS feed for episode detection
+          wget https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml -O podcast-feed.xml || echo "No existing RSS feed"
+          
+          echo "Download complete"
+        continue-on-error: true
+      
+      - name: Generate daily podcast
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          echo "Starting daily podcast generation..."
+          echo "Current UTC time: $(date -u)"
+          echo "Current Pacific time: $(TZ='America/Vancouver' date)"
+          
+          python podcast_generator.py
+          
+          echo "Generation complete!"
+      
+      - name: List generated files
+        run: |
+          echo "Files in directory:"
+          ls -la
+          
+          echo "Episode files:"
+          ls -la podcast_audio_* podcast_script_* citations_* || echo "No episode files found"
+          
+          echo "Memory files:"
+          ls -la episode_memory.json host_personality_memory.json || echo "No memory files found"
+      
+      - name: Commit memory and cache files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Add memory files and any other state files
+          git add episode_memory.json host_personality_memory.json
+          
+          # Add any new episode files that were generated
+          git add podcast_audio_*.mp3 podcast_script_*.txt citations_*.json podcast-feed.xml || echo "No new episode files to add"
+          
+          # Only commit if there are changes
+          git diff --quiet && git diff --staged --quiet || git commit -m "Daily podcast generation - $(TZ='America/Vancouver' date '+%Y-%m-%d %A')"
+          git push
+        continue-on-error: true
+      
+      - name: Copy files to output directory
+        run: |
+          echo "Preparing files for GitHub Pages deployment..."
+          mkdir -p output
+          
+          # Copy all episode files
+          cp podcast_audio_*.mp3 output/ 2>/dev/null || echo "No audio files to copy"
+          cp podcast_script_*.txt output/ 2>/dev/null || echo "No script files to copy"  
+          cp citations_*.json output/ 2>/dev/null || echo "No citation files to copy"
+          
+          # Copy memory files
+          cp episode_memory.json host_personality_memory.json output/ 2>/dev/null || echo "No memory files to copy"
+          
+          # Copy website files
+          cp index.html output/
+          cp podcast-feed.xml output/
+          
+          echo "Files ready for deployment:"
+          ls -la output/
+      
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output
+          publish_branch: gh-pages
+          keep_files: false
+          commit_message: 'Daily podcast deployment - ${{ github.run_id }}'
+      
+      - name: Upload artifacts (for debugging)
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-podcast-files
+          path: |
+            podcast_audio_*.mp3
+            podcast_script_*.txt
+            citations_*.json
+            episode_memory.json
+            host_personality_memory.json
+          retention-days: 7
+        if: always()
+
+
+----------------------------------------
+FILE: README.md
+----------------------------------------
+
+
+----------------------------------------
+FILE: citations_2026-01-24_cariboo_innovation_stories.json
+----------------------------------------
+{
+  "episode": {
+    "date": "2026-01-24",
+    "formatted_date": "Saturday, January 24, 2026",
+    "theme": "Cariboo Innovation Stories",
+    "title": "Cariboo Tech Progress - Cariboo Innovation Stories",
+    "description": "Daily tech conversations for rural communities. Today's focus: Cariboo Innovation Stories.\n\nNEWS ROUNDUP: We break down [CFJC Today Kamloops] Week in Review: Week of January 19 and [GN AI ML Infrastructure] AI Infrastructure Could Triple to $1.4 Trillion by 2030: Here's the Best Stock to Buy for 2026, plus 1 more stories, and explore what these developments mean for communities like ours in the Cariboo region.\n\nRURAL CONNECTIONS: Riley and Casey dive deep into cariboo innovation stories, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.\n\nHosts: Riley (rural tech systems) and Casey (community development). \nNew episodes daily with weekly themes.\n\nThis is a daily show - not weekly! - exploring how technology serves (or could better serve) rural communities.",
+    "generated_at": "2026-01-24T19:41:13.103499"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "The Week's Tech - News Roundup",
+      "articles": [
+        {
+          "title": "[CFJC Today Kamloops] Week in Review: Week of January 19",
+          "url": "https://cfjctoday.com/2026/01/24/week-in-review-week-of-january-19/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-01-24T20:00:32+00:00",
+          "summary": "(Image Credit: Curtis Goodrum/CFJC Today)"
+        },
+        {
+          "title": "[GN AI ML Infrastructure] AI Infrastructure Could Triple to $1.4 Trillion by 2030: Here's the Best Stock to Buy for 2026 - Nasdaq",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQNGhsaThOUW9HbjRWSlU3Nk1sYkdPMDF3bV80OUJHZVZaaU1nN1lkbEZxanBXaWc1TFpSZlZfSlB6R2RrNVU2LWZzZEh5N1NWMnpQOE1DVWU3TFpEelRMY0hjWUNyQkZ3ZkhmcWc2cnhQM1RUYWJUclByVXAzZ0EwUzRlVVhrVHZTaVE2M19meFFaa2dYeDRjYWRaRnVETk42eU9NWmhYd3Y?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-01-24T08:22:00+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxQNGhsaThOUW9HbjRWSlU3Nk1sYkdPMDF3bV80OUJHZVZaaU1nN1lkbEZxanBXaWc1TFpSZlZfSlB6R2RrNVU2LWZzZEh5N1NWMnpQOE1DVWU3TFpEelRMY0hjWUNyQkZ3ZkhmcWc2cn..."
+        },
+        {
+          "title": "[GN AI ML Infrastructure] NVIDIA (NVDA) CEO Jensen Huang Frames AI as the Largest Infrastructure Buildout in Human History - Insider Monkey",
+          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPUE04Rkx3bkZmQm81OUllSGp3VGVkY09TQTJWZUpTQ095aDFkQ0I4LVFYQXhYUl92VXIzLXRBdHBYREJfVk9zS2g0V1pvOE9fbnQ1MGFyVm5COW1RWk1IUUVpekJTR2xDVU9McVF4bTRTZDd4Zkd1NG5WUk5OZFljYzRoYlZtRngyMVBzV2VJOEdyNFJHNjVtV0Z5am5oNlc5anl3NlNLMU96VTE3QmZ1Y0stLVJhcWRhZHZPRWFoRDF6ekQ0NGpPUGlDN0dEemE3QWVPUtIB3AFBVV95cUxPU0kyVFFOX2JRZDZpZ2JwcFVoVmJIYk91c21zdV83LUl3ZkpNSnkxbWZRMVV2WC1lWWd2LW5odlR0UkpQbmFfaWFvdnpYVHFUU2gtZ21mWFljbXBQeEVzLTNfTmVFcVhoSFk1b1VpMGxYVUNJU0pDTFBTazhoNzhpRDh0TC02V3FVX051SU5zeklOakF1MDV6VFRpT1IxT050dHhuMGxvejhNdEJ1UFlnbTQtQjBDYnhHQXdXR0txdUlIQk40VXpOMXp3UDQ1dVZFRjVhSTFVZUIzZU9Z?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-01-24T14:33:17+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMi1AFBVV95cUxPUE04Rkx3bkZmQm81OUllSGp3VGVkY09TQTJWZUpTQ095aDFkQ0I4LVFYQXhYUl92VXIzLXRBdHBYREJfVk9zS2g0V1pvOE9fbnQ1MGFyVm5COW1RWk1IUUVpekJTR2xDVU9McVF4bT..."
+        },
+        {
+          "title": "[GN AI ML Infrastructure] The AI Infrastructure Race: Assessing Broadcom and Marvell as Core Holdings - AD HOC NEWS",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQX01pbG5hRTRaTDZmWldKYTlMQkdaNnhqZDk3b040WjJ6anlFeDBpQmlnNHcxNTZ6ZmNMMzJSXzkyMmw0blVxdmR3MEp3UlpJWTdnWDdkUkwzTkQ1clF3U19uMmtGT1FzNnZMVlJHb3BQY3h5a1MwclBDVUtoeWRXelBTemVGcThid0hzcG5BcEFsQWI2TjNMaTJCcHh2eDJXZVlaQktlRXV1YmRoSERZNmhtcThOM0VIalRydUoyTFJiQQ?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-01-24T20:22:04+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMiwgFBVV95cUxQX01pbG5hRTRaTDZmWldKYTlMQkdaNnhqZDk3b040WjJ6anlFeDBpQmlnNHcxNTZ6ZmNMMzJSXzkyMmw0blVxdmR3MEp3UlpJWTdnWDdkUkwzTkQ1clF3U19uMmtGT1FzNnZMVlJHb3..."
+        },
+        {
+          "title": "[GN Clean Energy and EVs] Juniper Green Energy commissions 100 MWh BESS in Rajasthan - Manufacturing Today India",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQTlhONEsxQ2NhNlRnbUp5MHl3Ti0yVGs3QjRGWXJxY0RnM0FIVngzQTR3YjZnbVFlNlhENk44SzBGSGEyU08wUDNMazloWFhBUTF5X0diT19jQXhUM3JxcDlhQ2F0d1drQnlUeDMxcDRzVUEzUUFQTU9hVk1TR2ExUlN0Z2gweWdBd0hpSGRkYy1UcVNpS3BfWkVHcmN1Mnc?oc=5",
+          "source": "GN Clean Energy and EVs",
+          "ai_score": 0,
+          "date_published": "2026-01-23T13:02:46+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxQTlhONEsxQ2NhNlRnbUp5MHl3Ti0yVGs3QjRGWXJxY0RnM0FIVngzQTR3YjZnbVFlNlhENk44SzBGSGEyU08wUDNMazloWFhBUTF5X0diT19jQXhUM3JxcDlhQ2F0d1drQnlUeDMxcD..."
+        },
+        {
+          "title": "[GN Smart Home and Automation] I fell out of love with smart home tech years ago, but now I'm giving it a second chance - Android Authority",
+          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5aSDVvNUZYeWh1QUwtaW9CbEZub2EzOEZCQm9FQnJfZkFObXc1N2VNV3FhU1h6VjUtMXhVLUlaNGwwQ1plLXlMbktudXp0OUhERmE2ZzdFcGc3YWRiS29Jam1MVEl5SWZyalhV?oc=5",
+          "source": "GN Smart Home and Automation",
+          "ai_score": 0,
+          "date_published": "2026-01-23T10:04:01+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMia0FVX3lxTE5aSDVvNUZYeWh1QUwtaW9CbEZub2EzOEZCQm9FQnJfZkFObXc1N2VNV3FhU1h6VjUtMXhVLUlaNGwwQ1plLXlMbktudXp0OUhERmE2ZzdFcGc3YWRiS29Jam1MVEl5SWZyalhV?oc=5\"..."
+        },
+        {
+          "title": "[GN Clean Energy and EVs] Juniper Green Energy Commissions 100 MWh Merchant BESS Project in Rajasthan - SolarQuarter",
+          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNbi1WWGJhME5iMkp6M2JILXhlRzVQX0VJaHEwQXE5QlFfV1F6NE84VEFRTUNxR1B2YnFsalA1YnZaY3FlLWNpd1pQeWhadzBIUzRQLWFoVzFpRl9UbXZyLTVvU3k4OVBRWnF3NWtqVnNIT2s1eWtjcWlFWUI5MWlWVjJ5Vml5bnhqTXR1Y0wtU2xiTkZKRjBGRW9FcHdzYndZUHZjNFhIYlNucmozbTlqdVVR?oc=5",
+          "source": "GN Clean Energy and EVs",
+          "ai_score": 0,
+          "date_published": "2026-01-23T07:49:04+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxNbi1WWGJhME5iMkp6M2JILXhlRzVQX0VJaHEwQXE5QlFfV1F6NE84VEFRTUNxR1B2YnFsalA1YnZaY3FlLWNpd1pQeWhadzBIUzRQLWFoVzFpRl9UbXZyLTVvU3k4OVBRWnF3NWtqVn..."
+        },
+        {
+          "title": "[CFJC Today Kamloops] The man killed by a federal officer in Minneapolis was an ICU nurse, family says",
+          "url": "https://cfjctoday.com/2026/01/24/the-man-killed-by-a-federal-officer-in-minneapolis-was-an-icu-nurse-family-says/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-01-24T20:40:50+00:00",
+          "summary": "MINNEAPOLIS (AP) - Family members say the man killed by a federal officer in Minneapolis on Saturday was an intensive care nurse at the Veterans Admin..."
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Cariboo Innovation Stories",
+      "articles": [
+        {
+          "title": "[Business Insider] Trump threatens Canada with 100% tariffs over Beijing trade deal: 'China will eat Canada alive'",
+          "url": "https://www.businessinsider.com/canada-tariffs-china-trade-deal-donald-trump-mark-carney-2026-1",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-01-24T15:58:31+00:00",
+          "summary": "The warning comes days after Mark Carney delivered a speech in Davos, where he opined on the changing face of global politics since Trump's election."
+        },
+        {
+          "title": "[Business Insider] I moved to Canada, but it wasn't for me. I was cold, isolated, and finding a job was absolutely horrendous.",
+          "url": "https://www.businessinsider.com/moved-to-canada-left-job-work-culture-2026-1",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-01-24T10:19:01+00:00",
+          "summary": "Zina Malas moved to Canada in 2022, only to find it was difficult to land a job, make friends, and save money."
+        },
+        {
+          "title": "[NYT Top Stories] Trump Threatens Canada With Tariffs as Post-Davos Fallout Continues",
+          "url": "https://www.nytimes.com/2026/01/24/world/canada/trump-canada-tariffs.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-01-24T18:59:15+00:00",
+          "summary": "President Trump said he would impose tariffs if Canada made “a deal with China,” though there is no sign that those countries are discussing a broad trade agreement."
+        },
+        {
+          "title": "[Global News] Intense cold forces flight delays, cancellations at Canadian airports",
+          "url": "https://globalnews.ca/news/11636329/canadian-flight-cancelations-cold/",
+          "source": "Global News",
+          "ai_score": 0,
+          "date_published": "2026-01-24T15:38:43+00:00",
+          "summary": "Intense cold weather sweeping the country is leading to flight delays and cancellations with most of Canada's major airports and airlines."
+        }
+      ]
+    }
+  }
+}
+
+----------------------------------------
+FILE: episode_memory.json
+----------------------------------------
+{
+  "recent_episodes": [
+    {
+      "date": "2026-01-24",
+      "theme": "Cariboo Innovation Stories",
+      "key_topics": [
+        "AI infrastructure buildout and rural deployment",
+        "Smart home technology for rural communities",
+        "Trade tensions and economic impacts on technology access",
+        "Community-controlled technology systems for rural BC"
+      ],
+      "notable_discussions": [
+        "Riley focused on understanding where AI infrastructure investments will reach rural communities like the Cariboo",
+        "Casey emphasized examining how global developments connect to building community-controlled technology systems in rural BC"
+      ]
+    }
+  ]
+}
+
+----------------------------------------
+FILE: host_personality_memory.json
+----------------------------------------
+{
+  "riley": {
+    "consistent_interests": [
+      "rural tech deployment",
+      "community infrastructure",
+      "practical solutions"
+    ],
+    "recurring_questions": [
+      "How can this work here?",
+      "What would responsible deployment look like?"
+    ],
+    "evolving_opinions": {}
+  },
+  "casey": {
+    "consistent_interests": [
+      "digital equity",
+      "community development",
+      "rural innovation"
+    ],
+    "recurring_questions": [
+      "How does this serve people like us?",
+      "What can we learn from other rural communities?"
+    ],
+    "evolving_opinions": {}
+  }
+}

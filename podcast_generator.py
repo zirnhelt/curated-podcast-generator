@@ -53,8 +53,8 @@ def load_episode_memory():
         with open(EPISODE_MEMORY_FILE, 'r', encoding='utf-8') as f:
             memory = json.load(f)
         
-        # Clean old episodes (older than MEMORY_RETENTION_DAYS)
-        cutoff_date = datetime.now() - timedelta(days=MEMORY_RETENTION_DAYS)
+        # Clean old episodes (older than MEMORY_RETENTION_DAYS) using Pacific time
+        cutoff_date = get_pacific_now() - timedelta(days=MEMORY_RETENTION_DAYS)
         recent_episodes = []
         
         for episode in memory.get('recent_episodes', []):
@@ -247,9 +247,20 @@ def format_memory_for_prompt(episode_memory, host_memory):
     
     return context
 
+def get_pacific_now():
+    """Get current datetime in Pacific timezone."""
+    try:
+        from zoneinfo import ZoneInfo
+        return datetime.now(ZoneInfo("America/Vancouver"))
+    except ImportError:
+        # Fallback for older Python versions
+        import pytz
+        return datetime.now(pytz.timezone("America/Vancouver"))
+
 def get_daily_filenames(theme_name):
-    """Get expected filenames for today's script and audio."""
-    date_str = datetime.now().strftime("%Y-%m-%d")
+    """Get expected filenames for today's script and audio using Pacific timezone."""
+    pacific_now = get_pacific_now()
+    date_str = pacific_now.strftime("%Y-%m-%d")
     safe_theme = theme_name.replace(" ", "_").replace("&", "and").lower()
     
     script_filename = f"podcast_script_{date_str}_{safe_theme}.txt"
@@ -405,15 +416,25 @@ def get_article_scores(articles, scoring_data):
     return scored_articles
 
 def get_current_date_info():
-    """Get properly formatted current date and day."""
-    now = datetime.now()
+    """Get properly formatted current date and day in Pacific timezone."""
+    try:
+        from zoneinfo import ZoneInfo
+        # Use Pacific timezone (handles PST/PDT automatically)
+        pacific_tz = ZoneInfo("America/Vancouver") 
+        now = datetime.now(pacific_tz)
+    except ImportError:
+        # Fallback for older Python versions
+        import pytz
+        pacific_tz = pytz.timezone("America/Vancouver")
+        now = datetime.now(pacific_tz)
+    
     weekday = now.strftime("%A")
     date_str = now.strftime("%B %d, %Y")
     
     return weekday, date_str
 
 def generate_episode_description(news_articles, deep_dive_articles, theme_name):
-    """Generate compelling episode description for podcast apps."""
+    """Generate clean episode description for podcast apps with citations at bottom."""
     weekday, formatted_date = get_current_date_info()
     
     # Get top story titles for teaser
@@ -429,22 +450,36 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name):
     else:
         stories_preview = "the week's top tech developments"
     
-    description = f"""Daily tech conversations for rural communities. Today's focus: {theme_name}.
+    # Clean description without internal guidance
+    description = f"""Riley and Casey explore technology and society in rural communities. Today's focus: {theme_name}.
 
-NEWS ROUNDUP: We break down {stories_preview}, and explore what these developments mean for communities like ours in the Cariboo region.
+NEWS ROUNDUP: We break down {stories_preview}, and explore what these developments mean for communities like ours.
 
-RURAL CONNECTIONS: Riley and Casey dive deep into {theme_name.lower()}, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.
+RURAL CONNECTIONS: Deep dive into {theme_name.lower()}, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.
 
-Hosts: Riley (rural tech systems) and Casey (community development). 
-New episodes daily with weekly themes.
-
-This is a daily show - not weekly! - exploring how technology serves (or could better serve) rural communities."""
+Hosts: Riley (rural tech systems) and Casey (community development)."""
     
-    return description
+    # Add simple citations at bottom
+    citations_text = "\n\nSources:\n"
+    
+    # Add news sources
+    for i, article in enumerate(news_articles[:12], 1):  # Updated to 12 for longer news segment
+        source_name = article.get('authors', [{}])[0].get('name', 'Unknown Source')
+        article_title = article.get('title', 'Untitled')[:60] + ("..." if len(article.get('title', '')) > 60 else "")
+        citations_text += f"{i}. {source_name}: {article_title}\n"
+    
+    # Add deep dive sources  
+    for i, article in enumerate(deep_dive_articles, len(news_articles[:12]) + 1):
+        source_name = article.get('authors', [{}])[0].get('name', 'Unknown Source')
+        article_title = article.get('title', 'Untitled')[:60] + ("..." if len(article.get('title', '')) > 60 else "")
+        citations_text += f"{i}. {source_name}: {article_title}\n"
+    
+    return description + citations_text
 
 def generate_citations_file(news_articles, deep_dive_articles, theme_name):
     """Generate citations file for the episode."""
-    date_str = datetime.now().strftime("%Y-%m-%d")
+    pacific_now = get_pacific_now()
+    date_str = pacific_now.strftime("%Y-%m-%d")
     weekday, formatted_date = get_current_date_info()
     
     # Generate episode description
@@ -457,7 +492,7 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name):
             "theme": theme_name,
             "title": f"Cariboo Tech Progress - {theme_name}",
             "description": episode_description,
-            "generated_at": datetime.now().isoformat()
+            "generated_at": pacific_now.isoformat()
         },
         "segments": {
             "news_roundup": {
@@ -523,7 +558,7 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
     weekday, date_str = get_current_date_info()
     
     # Prepare articles for script generation
-    top_news = all_articles[:8]  # Fewer stories for more focused news coverage
+    top_news = all_articles[:12]  # More stories for longer news segment (20 minutes target)
     
     # Create article summaries for Claude
     news_text = "\n".join([
@@ -553,18 +588,27 @@ HOSTS:
 - Riley (she/her): Tech systems thinker with rural roots, engineering background, asks "how can this work here?" and "what would responsible deployment look like?"
 - Casey (they/them): Community development focus, asks "how does this serve people like us?" and "what are we learning from other rural innovators?"
 
+IMPORTANT: These are AI hosts - do not include personal human experiences like "my dad" or family references. Keep it professional and focused on rural tech perspectives.
+
 EPISODE STRUCTURE:
 
-**SEGMENT 1 (18 minutes): "The Week's Tech" - News Roundup**
-Professional news anchor style coverage of these TOP-SCORED articles:
+**SEGMENT 1 (20 minutes): "The Week's Tech" - Professional News Roundup**
+Professional news anchor delivery covering these TOP-SCORED articles (use ALL of them for longer segment):
 {news_text}
 
-Style: Structured, professional news delivery like CBC Radio News. Clear transitions, concise summaries, brief analysis. Each story takes 2-3 minutes max. Clean, professional delivery. Use phrases like "Our top story today..." and "In other technology news..."
+Style: Professional news anchor format - structured, authoritative, informative. Each story format:
+- Lead with headline: "Our top story today..."
+- Brief context: "According to [SOURCE]..."  
+- Key facts in clear, concise language
+- Brief analysis of rural implications
+- Clean transitions: "In other technology news..." / "Also making headlines..."
+- 2-3 minutes per story, cover ALL stories provided
+- Professional, authoritative tone throughout
 
 ## [AD BREAK PLACEHOLDER - Future Sponsorship Spot]
 [NATURAL TRANSITION: "We'll be right back after this short break to dive deeper into today's theme: {theme_name}"]
 
-**SEGMENT 2 (12 minutes): "Caribou Connections - {theme_name}"**
+**SEGMENT 2 (10 minutes): "Caribou Connections - {theme_name}"**
 VERY CONVERSATIONAL analysis - like two friends chatting over coffee about tech:
 {deep_dive_text}
 
@@ -572,16 +616,19 @@ Style: Relaxed, natural conversation. Let personalities flow - interrupt each ot
 
 CRITICAL REQUIREMENTS:
 - NO STAGE DIRECTIONS: Never write "(shuffles papers)", "(laughs)", "*chuckles*" or ANY performance cues
-- SEGMENT 1: Professional news anchor delivery - structured, clear, informative
+- SEGMENT 1: Professional news anchor delivery - cover ALL provided articles in headline+summary format
 - SEGMENT 2: Natural friends conversation - interruptions, casual language, building on each other's thoughts
 - DAILY FREQUENCY: Say "today's episode" or "on today's show" - NEVER "weekly show" or "this week's episode"
+- ONGOING MANDATE: Don't say "as we continue our week" - this is the podcast's permanent mission, not a limited series
+- NO HUMAN PRETENSE: These are AI hosts - no personal family references, keep it professional
 - CARIBOU PRONUNCIATION: Use "Caribou" in all spoken content (for TTS), keep "Cariboo" only in written references
 - AVOID REPETITION: Don't repeat the same points - let variety and personality flow
 - Regional lens: "What does this mean for communities like ours?" "How could this work in rural areas?"
 - USE MEMORY: Reference past episodes naturally when relevant ("Remember when we talked about...")
+- FEEDBACK INVITATION: End with "We'd love to hear your thoughts" but don't specify how (we'll add contact info later)
 - Current date is {weekday}, {date_str} - use this correctly
 
-OUTPUT: ~4,000-4,500 words with **RILEY:** and **CASEY:** speaker tags only."""
+OUTPUT: ~4,500-5,000 words with **RILEY:** and **CASEY:** speaker tags only."""
 
     try:
         client = anthropic.Anthropic(api_key=api_key)
@@ -799,9 +846,11 @@ def generate_podcast_rss_feed():
             # Convert date for RSS
             try:
                 date_obj = datetime.strptime(episode_date, "%Y-%m-%d")
+                # RSS pubDate should be in GMT
                 pub_date = date_obj.strftime("%a, %d %b %Y 06:00:00 GMT")
             except:
-                pub_date = datetime.now().strftime("%a, %d %b %Y 06:00:00 GMT")
+                pacific_now = get_pacific_now()
+                pub_date = pacific_now.strftime("%a, %d %b %Y 06:00:00 GMT")
             
             episodes.append({
                 'title': f"Cariboo Tech Progress - {theme}",
@@ -839,7 +888,7 @@ def generate_podcast_rss_feed():
         '<itunes:category text="Society &amp; Culture"/>',
         '<itunes:explicit>false</itunes:explicit>',
         '<itunes:type>episodic</itunes:type>',
-        f'<lastBuildDate>{datetime.now().strftime("%a, %d %b %Y %H:%M:%S GMT")}</lastBuildDate>'
+        f'<lastBuildDate>{get_pacific_now().strftime("%a, %d %b %Y %H:%M:%S GMT")}</lastBuildDate>'
     ]
     
     # Add episodes with rich descriptions and proper XML escaping
@@ -882,12 +931,13 @@ def save_script_to_file(script, theme_name):
         return None
     
     script_filename, _, _ = get_daily_filenames(theme_name)
+    pacific_now = get_pacific_now()
     
     try:
         with open(script_filename, 'w', encoding='utf-8') as f:
-            f.write(f"# Cariboo Tech Progress Podcast Script - {datetime.now().strftime('%Y-%m-%d')}\n")
+            f.write(f"# Cariboo Tech Progress Podcast Script - {pacific_now.strftime('%Y-%m-%d')}\n")
             f.write(f"# Theme: {theme_name}\n")
-            f.write(f"# Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+            f.write(f"# Generated: {pacific_now.strftime('%Y-%m-%d %H:%M:%S %Z')}\n\n")
             f.write(script)
         
         print(f"💾 Saved script to: {script_filename}")
@@ -901,8 +951,9 @@ def main():
     print("🏔️ Cariboo Tech Progress Podcast Generator with Memory & Citations")
     print("=" * 60)
     
-    # Get today's theme
-    today_weekday = datetime.now().weekday()
+    # Get today's theme using Pacific timezone
+    pacific_now = get_pacific_now()
+    today_weekday = pacific_now.weekday()
     today_theme = DAILY_THEMES[today_weekday]
     weekday, date_str = get_current_date_info()
     print(f"📅 {weekday}, {date_str} - Deep dive theme: {today_theme}")
@@ -941,7 +992,7 @@ def main():
                     deep_dive_articles = categorize_articles_for_deep_dive(scored_articles, today_weekday)
                     
                     # Generate citations file
-                    citations_file = generate_citations_file(scored_articles[:8], deep_dive_articles, today_theme)
+                    citations_file = generate_citations_file(scored_articles[:12], deep_dive_articles, today_theme)
                     
                     if citations_file:
                         print(f"✅ Generated citations: {citations_file}")
@@ -985,7 +1036,7 @@ def main():
         print(f"   Memory context: {len(episode_memory.get('recent_episodes', []))} recent episodes")
         
         # Generate citations file
-        citations_file = generate_citations_file(scored_articles[:8], deep_dive_articles, today_theme)
+        citations_file = generate_citations_file(scored_articles[:12], deep_dive_articles, today_theme)
         
         # Generate podcast script with memory and Cariboo focus
         script = generate_podcast_script(scored_articles, deep_dive_articles, today_theme, episode_memory, host_memory)
@@ -999,7 +1050,7 @@ def main():
         
         # Update memory with new episode
         if script:
-            current_date = datetime.now().strftime("%Y-%m-%d")
+            current_date = get_pacific_now().strftime("%Y-%m-%d")
             update_episode_memory(script, today_theme, current_date)
             update_host_memory(script)
     
