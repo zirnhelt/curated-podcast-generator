@@ -15,63 +15,53 @@
 </itunes:owner>
 <itunes:image href="https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals.png"/>
 <itunes:category text="Technology"/>
-<itunes:category text="Society &amp; Culture"/>
+<itunes:category text="Society & Culture"/>
 <itunes:explicit>false</itunes:explicit>
-<itunes:type>episodic</itunes:type>
-<lastBuildDate>Sun, 25 Jan 2026 14:53:27 GMT</lastBuildDate>
+<lastBuildDate>Mon, 26 Jan 2026 15:54:10 GMT</lastBuildDate>
 <item>
-<title>Cariboo Signals - Regional Resilience</title>
+<title>Cariboo Signals - Community-Controlled Infrastructure</title>
 <link>https://zirnhelt.github.io/curated-podcast-generator/</link>
-<pubDate>Sun, 25 Jan 2026 06:00:00 GMT</pubDate>
+<pubDate>Mon, 26 Jan 2026 05:00:00 PST</pubDate>
 <description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region.
-
-
 --- Credits ---
 Content Curation &amp; Script: Claude (Anthropic)
 TTS Voices: OpenAI TTS API
 Cover Art: ChatGPT (OpenAI)
 Podcast Coordination: Erich Zirnhelt</description>
-<itunes:summary>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region.
-
-
+<enclosure url="https://zirnhelt.github.io/curated-podcast-generator/podcast_audio_2026-01-26_community-controlled_infrastructure.mp3" length="5009805" type="audio/mpeg"/>
+<guid>https://zirnhelt.github.io/curated-podcast-generator/podcast_audio_2026-01-26_community-controlled_infrastructure.mp3</guid>
+<itunes:duration>30:00</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+</item>
+<item>
+<title>Cariboo Signals - Regional Resilience</title>
+<link>https://zirnhelt.github.io/curated-podcast-generator/</link>
+<pubDate>Sun, 25 Jan 2026 05:00:00 PST</pubDate>
+<description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region.
 --- Credits ---
 Content Curation &amp; Script: Claude (Anthropic)
 TTS Voices: OpenAI TTS API
 Cover Art: ChatGPT (OpenAI)
-Podcast Coordination: Erich Zirnhelt</itunes:summary>
-<itunes:subtitle>Daily tech progress - Regional Resilience</itunes:subtitle>
+Podcast Coordination: Erich Zirnhelt</description>
 <enclosure url="https://zirnhelt.github.io/curated-podcast-generator/podcast_audio_2026-01-25_regional_resilience.mp3" length="3969357" type="audio/mpeg"/>
-<guid isPermaLink="false">cariboo-signals-2026-01-25</guid>
+<guid>https://zirnhelt.github.io/curated-podcast-generator/podcast_audio_2026-01-25_regional_resilience.mp3</guid>
 <itunes:duration>30:00</itunes:duration>
 <itunes:explicit>false</itunes:explicit>
-<itunes:episodeType>full</itunes:episodeType>
 </item>
 <item>
 <title>Cariboo Signals - Cariboo Innovation Stories</title>
 <link>https://zirnhelt.github.io/curated-podcast-generator/</link>
-<pubDate>Sat, 24 Jan 2026 06:00:00 GMT</pubDate>
+<pubDate>Sat, 24 Jan 2026 05:00:00 PST</pubDate>
 <description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region.
-
-
 --- Credits ---
 Content Curation &amp; Script: Claude (Anthropic)
 TTS Voices: OpenAI TTS API
 Cover Art: ChatGPT (OpenAI)
 Podcast Coordination: Erich Zirnhelt</description>
-<itunes:summary>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region.
-
-
---- Credits ---
-Content Curation &amp; Script: Claude (Anthropic)
-TTS Voices: OpenAI TTS API
-Cover Art: ChatGPT (OpenAI)
-Podcast Coordination: Erich Zirnhelt</itunes:summary>
-<itunes:subtitle>Daily tech progress - Cariboo Innovation Stories</itunes:subtitle>
 <enclosure url="https://zirnhelt.github.io/curated-podcast-generator/podcast_audio_2026-01-24_cariboo_innovation_stories.mp3" length="5107629" type="audio/mpeg"/>
-<guid isPermaLink="false">cariboo-signals-2026-01-24</guid>
+<guid>https://zirnhelt.github.io/curated-podcast-generator/podcast_audio_2026-01-24_cariboo_innovation_stories.mp3</guid>
 <itunes:duration>30:00</itunes:duration>
 <itunes:explicit>false</itunes:explicit>
-<itunes:episodeType>full</itunes:episodeType>
 </item>
 </channel>
 </rss>
