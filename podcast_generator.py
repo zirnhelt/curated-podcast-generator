@@ -70,6 +70,17 @@ def load_memory(filename):
     """Load JSON memory file, return empty dict if doesn't exist."""
     if filename.exists():
         try:
+            with open(filename, 'r') as f:
+                return json.load(f)
+        except (json.JSONDecodeError, FileNotFoundError):
+            pass
+    return {}
+
+def save_memory(filename, data):
+    """Save memory data to JSON file."""
+    with open(filename, 'w') as f:
+        json.dump(data, f, indent=2)
+
 def get_episode_memory():
     """Load and clean episode memory (keep last MEMORY_RETENTION_DAYS)."""
     memory = load_memory(EPISODE_MEMORY_FILE)
@@ -84,16 +95,6 @@ def get_episode_memory():
                 cleaned[k] = v
         else:
             print(f"  ⚠️  Skipping malformed memory entry: {k}")
-    
-    if len(cleaned) != len(memory):
-        save_memory(EPISODE_MEMORY_FILE, cleaned)
-        print(f"🧹 Cleaned episode memory: {len(memory)} → {len(cleaned)} episodes")
-    
-    return cleaned
-    memory = load_memory(EPISODE_MEMORY_FILE)
-    
-    cutoff = get_pacific_now().timestamp() - (MEMORY_RETENTION_DAYS * 24 * 3600)
-    cleaned = {k: v for k, v in memory.items() if v.get('timestamp', 0) > cutoff}
     
     if len(cleaned) != len(memory):
         save_memory(EPISODE_MEMORY_FILE, cleaned)
