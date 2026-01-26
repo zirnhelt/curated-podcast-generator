@@ -41,7 +41,6 @@ except ImportError as e:
 SCRIPT_DIR = Path(__file__).parent
 SUPER_RSS_BASE_URL = "https://zirnhelt.github.io/super-rss-feed"
 SCORING_CACHE_URL = f"{SUPER_RSS_BASE_URL}/scored_articles_cache.json"
-FEED_URL = f"{SUPER_RSS_BASE_URL}/super-feed.json"
 
 # Memory Configuration
 EPISODE_MEMORY_FILE = SCRIPT_DIR / "episode_memory.json"
@@ -159,24 +158,41 @@ def fetch_scoring_data():
         return {}
 
 def fetch_feed_data():
-    """Fetch the current feed articles."""
-    print("📥 Fetching current feed data...")
+    """Fetch and combine articles from all category feeds."""
+    print("📥 Fetching current feed data from all categories...")
     
-    try:
-        response = requests.get(FEED_URL, timeout=10)
-        response.raise_for_status()
-        
-        feed_data = response.json()
-        articles = feed_data.get('items', [])
-        print(f"✅ Loaded {len(articles)} current articles")
-        return articles
-        
-    except requests.exceptions.RequestException as e:
-        print(f"❌ Error fetching feed: {e}")
-        return []
-    except json.JSONDecodeError as e:
-        print(f"❌ Error parsing feed JSON: {e}")
-        return []
+    categories = ['local', 'ai-tech', 'climate', 'homelab', 'news', 'science', 'scifi']
+    all_articles = []
+    
+    for category in categories:
+        feed_url = f"{SUPER_RSS_BASE_URL}/feed-{category}.json"
+        try:
+            response = requests.get(feed_url, timeout=10)
+            response.raise_for_status()
+            
+            feed_data = response.json()
+            articles = feed_data.get('items', [])
+            print(f"  ✓ {category}: {len(articles)} articles")
+            all_articles.extend(articles)
+            
+        except requests.exceptions.RequestException as e:
+            print(f"  ⚠️  {category}: {e}")
+            continue
+        except json.JSONDecodeError as e:
+            print(f"  ⚠️  {category}: JSON error: {e}")
+            continue
+    
+    # Deduplicate by URL
+    seen_urls = set()
+    unique_articles = []
+    for article in all_articles:
+        url = article.get('url', '')
+        if url and url not in seen_urls:
+            seen_urls.add(url)
+            unique_articles.append(article)
+    
+    print(f"✅ Loaded {len(unique_articles)} unique articles from {len(categories)} categories")
+    return unique_articles
 
 def get_article_scores(articles, scoring_data):
     """Match articles with their AI scores."""
