@@ -1,0 +1,158 @@
+{
+  "episode": {
+    "date": "2026-01-26",
+    "formatted_date": "Monday, January 26, 2026",
+    "theme": "Community-Controlled Infrastructure",
+    "title": "Cariboo Signals - Community-Controlled Infrastructure",
+    "description": "Riley and Casey explore technology and society in rural communities. Today's focus: Community-Controlled Infrastructure.\n\nNEWS ROUNDUP: We break down 🏔️ [Williams Lake Tribune] Williams Lake Tribune Article and [GN AI ML Infrastructure] Connect | APAC // Major Panel: Building the next generation of AI infrastructure, plus 1 more stories, and explore what these developments mean for communities like ours.\n\nRURAL CONNECTIONS: Deep dive into community-controlled infrastructure, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.\n\nHosts: Riley (Tech systems thinker with rural roots) and Casey (Community development focus).\n\nSources:\n1. Williams Lake Tribune: 🏔️ [Williams Lake Tribune] Williams Lake Tribune Article\n2. GN AI ML Infrastructure: [GN AI ML Infrastructure] Connect | APAC // Major Panel: Bui...\n3. GN 3D Printing: [GN 3D Printing] Killer 3D Printing Applications: Factory Au...\n4. GN AI ML Infrastructure: [GN AI ML Infrastructure] Fiber Broadband: The Critical Infr...\n5. GN AI ML Infrastructure: [GN AI ML Infrastructure] ST Telemedia Global Data Centres L...\n6. GN AI ML Infrastructure: [GN AI ML Infrastructure] AI power crunch drives Taiwan's tr...\n7. TechCrunch: [TechCrunch] Tech CEOs boast and bicker about AI at Davos\n8. GN AI ML Infrastructure: [GN AI ML Infrastructure] The Week’s 10 Biggest Funding Roun...\n9. NYT Business: [NYT Business] How Bad Are A.I. Delusions? We Asked People T...\n10. Quartz: [Quartz] The fight over AI training data is coming to a head\n11. Hackaday: [Hackaday] LLM-Generated Newspaper Provides Ultimate in Nich...\n12. GN AI ML Infrastructure: [GN AI ML Infrastructure] Can telcos compete in the Middle E...\n13. Williams Lake Tribune: 🏔️ [Williams Lake Tribune] Williams Lake Tribune Article\n14. GN AI ML Infrastructure: [GN AI ML Infrastructure] Connect | APAC // Major Panel: Bui...\n15. GN 3D Printing: [GN 3D Printing] Killer 3D Printing Applications: Factory Au...\n16. GN AI ML Infrastructure: [GN AI ML Infrastructure] Fiber Broadband: The Critical Infr...\n\n--- Credits ---\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: OpenAI TTS API\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt",
+    "generated_at": "2026-01-26T15:48:18.277739-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "The Week's Tech - News Roundup",
+      "articles": [
+        {
+          "title": "🏔️ [Williams Lake Tribune] Williams Lake Tribune Article",
+          "url": "https://wltribune.com/2026/01/25/coquitlam-born-kindel-nets-2-as-pittsburgh-penguins-trip-canucks-3-2/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-01-26T10:16:18.915617+00:00",
+          "summary": "Local news from Williams Lake Tribune"
+        },
+        {
+          "title": "[GN AI ML Infrastructure] Connect | APAC // Major Panel: Building the next generation of AI infrastructure - What will define success? - Data Center Dynamics",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPM1BlTDdjYS1na0dLcmJuSnliWjVIWFNKS1pUR0pMV2RsTU1ZZWdkdXh0cExHQ1hyQ1Uzc2xlMWxoV1JjWGFhakVrT2JNV1lLRVpybTRwOWNlV203TTF0RVFOMXdzTXBkdHk1Tkg1WS1JZTVyUUJSaGZ1SWVuZkhaM2QwM2V5XzVHeG9mMQ?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-01-25T05:15:43+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMijAFBVV95cUxPM1BlTDdjYS1na0dLcmJuSnliWjVIWFNKS1pUR0pMV2RsTU1ZZWdkdXh0cExHQ1hyQ1Uzc2xlMWxoV1JjWGFhakVrT2JNV1lLRVpybTRwOWNlV203TTF0RVFOMXdzTXBkdHk1Tkg1WS..."
+        },
+        {
+          "title": "[GN 3D Printing] Killer 3D Printing Applications: Factory Automation - 3DPrint.com",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPekxqYjQxcDJleTFYYmdnVmw0TTVvNDV5bDBRM1VMeEJmb0d6U21UYW9XMXo3WHF1eHZKQy1qaDFQdjgzRnp6Y2czdWdhMWljeW0zc1lkdjFTbVVZMDc5U2I3dmVvbTllMTl6b0RVdXRUZUZiXzhEVUp0RXZuVlNKaUYzb0XSAYoBQVVfeXFMUEpTblM3VTlDYXNET0RSTG1oNjRhb1B1UVMxS29JT21RSVltN244SjY3WGQtR29YR2Z2Z1ctWUdZYjdFRS1acVJ2OWwwVm9QcDB3UjdhblE0NW02VnFRdTF4ZTd3eUk1T0ZyZlZobnlKdTVwY2dVZGJ2N0JTbzNFd3hscjZYS2had213?oc=5",
+          "source": "GN 3D Printing",
+          "ai_score": 0,
+          "date_published": "2026-01-26T08:01:36+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxPekxqYjQxcDJleTFYYmdnVmw0TTVvNDV5bDBRM1VMeEJmb0d6U21UYW9XMXo3WHF1eHZKQy1qaDFQdjgzRnp6Y2czdWdhMWljeW0zc1lkdjFTbVVZMDc5U2I3dmVvbTllMTl6b0RVdX..."
+        },
+        {
+          "title": "[GN AI ML Infrastructure] Fiber Broadband: The Critical Infrastructure for AI and Quantum Computing - The Fast Mode",
+          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQZ3J5a2VSSWYtYW5jaTE1ZjJWblVadU8tbDZUcnZEdDl1Z0draUc2dUN0VlJybEYyNTBQOGtleVlzamxMTnpZS2xYSjhxcXBWZkxMNVEwUl9EVXhNN1YzMV9SZ2NSQnhBRG12bEFhRmdpNTVqQ1p3MzZDNWc5aXE5ZHRxVXhBOFZfVkhVYnB0eGFQQjlJZHgzcEJDR3JzQTFWcExURlhKN1habUt3b3czTjFIRFNaTF9UNlI3d05QQmRnRHA3UWc?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-01-25T23:38:04+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMixgFBVV95cUxQZ3J5a2VSSWYtYW5jaTE1ZjJWblVadU8tbDZUcnZEdDl1Z0draUc2dUN0VlJybEYyNTBQOGtleVlzamxMTnpZS2xYSjhxcXBWZkxMNVEwUl9EVXhNN1YzMV9SZ2NSQnhBRG12bEFhRm..."
+        },
+        {
+          "title": "[GN AI ML Infrastructure] ST Telemedia Global Data Centres Launches Southeast Asia’s First HVDC-Powered AI Infrastructure Testbed - pan african visions",
+          "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQTkNDWFJSZm1kaW5fTnpsektNRGpCRDVWeEItQjZIX0ROMkpIZVhabFEtc3ZrN2RUbE9va2FUcGQybGFLM0s5cWRNOFU1T09YNlZSQUJsNEc3R3pOOVVULVpHX3FVcmJEdGZ1TW5lem9McFJVLVplRVdyVEU0VlZnVjQ2N2VXS3RGZXRDMkdHTHNEck9Tdm9KSThVMG5GU0hTQVQ2OUltc1JHME5pbXpIbXNKdl9zSnExUWI1SV93aXl6d3o4a3NveEVYZ0Y0aXI1R29FMGhCVFc?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-01-26T07:30:00+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMi2AFBVV95cUxQTkNDWFJSZm1kaW5fTnpsektNRGpCRDVWeEItQjZIX0ROMkpIZVhabFEtc3ZrN2RUbE9va2FUcGQybGFLM0s5cWRNOFU1T09YNlZSQUJsNEc3R3pOOVVULVpHX3FVcmJEdGZ1TW5lem..."
+        },
+        {
+          "title": "[GN AI ML Infrastructure] AI power crunch drives Taiwan's trillion-dollar energy infrastructure upgrade - digitimes",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNSzRlMWJPQUFTTnFvaHo0UGtqMTRKNlRmZTJVcVVPRWhyaEt1akNRcG1aeUNkb0xCSjZLdUZYREVIS3NmSy10RVU4cE9Ta1VPbFRYVERnSWtTVUxzTjYtcndpaGVLTk9CWnBIcDdfclZ6OEZVczJ2NTN6bU9Yd1R1WklhazVuTXJUOExDZE0yT3Z4N0hlU1ByYldoby11Z3Ayd0E?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-01-26T07:14:47+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMiogFBVV95cUxNSzRlMWJPQUFTTnFvaHo0UGtqMTRKNlRmZTJVcVVPRWhyaEt1akNRcG1aeUNkb0xCSjZLdUZYREVIS3NmSy10RVU4cE9Ta1VPbFRYVERnSWtTVUxzTjYtcndpaGVLTk9CWnBIcDdfcl..."
+        },
+        {
+          "title": "[TechCrunch] Tech CEOs boast and bicker about AI at Davos",
+          "url": "https://techcrunch.com/2026/01/24/tech-ceos-boast-and-bicker-about-ai-at-davos/",
+          "source": "TechCrunch",
+          "ai_score": 0,
+          "date_published": "2026-01-24T20:00:46+00:00",
+          "summary": "There were times at this week’s meeting of the World Economic Forum when Davos seemed transformed into a high-powered tech conference."
+        },
+        {
+          "title": "[GN AI ML Infrastructure] The Week’s 10 Biggest Funding Rounds: A Big Week For AI And Drone Delivery - Crunchbase News",
+          "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPT1BHUkVPOVZMcUptcEZrRUgtVUhlaFhJdmdhbHVmTGRaVVozY0o0bDE3Z2RHQ0MwT1F6R2xzTnpmTFV5VHNkOUVBOVFObDJQNGQtU1RwU0dGcXdhRGpST0Uyd084OEdNT0s2ZWp6Vk5iUmphZXFaSUlvamZ6SFJjdGxpam9SLVk?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-01-23T20:12:36+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMihwFBVV95cUxPT1BHUkVPOVZMcUptcEZrRUgtVUhlaFhJdmdhbHVmTGRaVVozY0o0bDE3Z2RHQ0MwT1F6R2xzTnpmTFV5VHNkOUVBOVFObDJQNGQtU1RwU0dGcXdhRGpST0Uyd084OEdNT0s2ZWp6Vk..."
+        },
+        {
+          "title": "[NYT Business] How Bad Are A.I. Delusions? We Asked People Treating Them.",
+          "url": "https://www.nytimes.com/2026/01/26/us/chatgpt-delusions-psychosis.html",
+          "source": "NYT Business",
+          "ai_score": 0,
+          "date_published": "2026-01-26T10:00:16+00:00",
+          "summary": "Dozens of doctors and therapists said chatbots had led their patients to psychosis, isolation and unhealthy habits."
+        },
+        {
+          "title": "[Quartz] The fight over AI training data is coming to a head",
+          "url": "https://qz.com/ai-training-data-anthropic-claude-openai-chatgpt",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-01-26T10:00:00+00:00",
+          "summary": "As AI spreads into everyday life, pressure is mounting on tech firms to explain what data their models learn from — and who gets paid"
+        },
+        {
+          "title": "[Hackaday] LLM-Generated Newspaper Provides Ultimate in Niche Publications",
+          "url": "https://hackaday.com/2026/01/26/llm-generated-newspaper-provides-ultimate-in-niche-publications/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-01-26T09:00:56+00:00",
+          "summary": "<div><img alt=\"... does this count as fake news?\" class=\"attachment-large size-large wp-post-image\" height=\"406\" src=\"https://hackaday.com/wp-content/uploads/2026/01/Screenshot-2026-01-22-at-14-00-31-..."
+        },
+        {
+          "title": "[GN AI ML Infrastructure] Can telcos compete in the Middle East’s Neocloud and AI infrastructure market? - capacityglobal.com",
+          "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1sSG9rNURXbzRPNTdTWjR4WkszNTVjc2NhWlY5RFprX2VVYWxOTDRORFhWOFN3aW9CSkhya25DMXdwY09pZTFUZkRnanp0M0lncTAxU25PTGpOU2VlUTdiRlc4cHB5bG8?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-01-26T10:08:44+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1sSG9rNURXbzRPNTdTWjR4WkszNTVjc2NhWlY5RFprX2VVYWxOTDRORFhWOFN3aW9CSkhya25DMXdwY09pZTFUZkRnanp0M0lncTAxU25PTGpOU2VlUTdiRlc4cHB5bG8?oc=5\" targ..."
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Community-Controlled Infrastructure",
+      "articles": [
+        {
+          "title": "🏔️ [Williams Lake Tribune] Williams Lake Tribune Article",
+          "url": "https://wltribune.com/2026/01/25/coquitlam-born-kindel-nets-2-as-pittsburgh-penguins-trip-canucks-3-2/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-01-26T10:16:18.915617+00:00",
+          "summary": "Local news from Williams Lake Tribune"
+        },
+        {
+          "title": "[GN AI ML Infrastructure] Connect | APAC // Major Panel: Building the next generation of AI infrastructure - What will define success? - Data Center Dynamics",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPM1BlTDdjYS1na0dLcmJuSnliWjVIWFNKS1pUR0pMV2RsTU1ZZWdkdXh0cExHQ1hyQ1Uzc2xlMWxoV1JjWGFhakVrT2JNV1lLRVpybTRwOWNlV203TTF0RVFOMXdzTXBkdHk1Tkg1WS1JZTVyUUJSaGZ1SWVuZkhaM2QwM2V5XzVHeG9mMQ?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-01-25T05:15:43+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMijAFBVV95cUxPM1BlTDdjYS1na0dLcmJuSnliWjVIWFNKS1pUR0pMV2RsTU1ZZWdkdXh0cExHQ1hyQ1Uzc2xlMWxoV1JjWGFhakVrT2JNV1lLRVpybTRwOWNlV203TTF0RVFOMXdzTXBkdHk1Tkg1WS..."
+        },
+        {
+          "title": "[GN 3D Printing] Killer 3D Printing Applications: Factory Automation - 3DPrint.com",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPekxqYjQxcDJleTFYYmdnVmw0TTVvNDV5bDBRM1VMeEJmb0d6U21UYW9XMXo3WHF1eHZKQy1qaDFQdjgzRnp6Y2czdWdhMWljeW0zc1lkdjFTbVVZMDc5U2I3dmVvbTllMTl6b0RVdXRUZUZiXzhEVUp0RXZuVlNKaUYzb0XSAYoBQVVfeXFMUEpTblM3VTlDYXNET0RSTG1oNjRhb1B1UVMxS29JT21RSVltN244SjY3WGQtR29YR2Z2Z1ctWUdZYjdFRS1acVJ2OWwwVm9QcDB3UjdhblE0NW02VnFRdTF4ZTd3eUk1T0ZyZlZobnlKdTVwY2dVZGJ2N0JTbzNFd3hscjZYS2had213?oc=5",
+          "source": "GN 3D Printing",
+          "ai_score": 0,
+          "date_published": "2026-01-26T08:01:36+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxPekxqYjQxcDJleTFYYmdnVmw0TTVvNDV5bDBRM1VMeEJmb0d6U21UYW9XMXo3WHF1eHZKQy1qaDFQdjgzRnp6Y2czdWdhMWljeW0zc1lkdjFTbVVZMDc5U2I3dmVvbTllMTl6b0RVdX..."
+        },
+        {
+          "title": "[GN AI ML Infrastructure] Fiber Broadband: The Critical Infrastructure for AI and Quantum Computing - The Fast Mode",
+          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQZ3J5a2VSSWYtYW5jaTE1ZjJWblVadU8tbDZUcnZEdDl1Z0draUc2dUN0VlJybEYyNTBQOGtleVlzamxMTnpZS2xYSjhxcXBWZkxMNVEwUl9EVXhNN1YzMV9SZ2NSQnhBRG12bEFhRmdpNTVqQ1p3MzZDNWc5aXE5ZHRxVXhBOFZfVkhVYnB0eGFQQjlJZHgzcEJDR3JzQTFWcExURlhKN1habUt3b3czTjFIRFNaTF9UNlI3d05QQmRnRHA3UWc?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-01-25T23:38:04+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMixgFBVV95cUxQZ3J5a2VSSWYtYW5jaTE1ZjJWblVadU8tbDZUcnZEdDl1Z0draUc2dUN0VlJybEYyNTBQOGtleVlzamxMTnpZS2xYSjhxcXBWZkxMNVEwUl9EVXhNN1YzMV9SZ2NSQnhBRG12bEFhRm..."
+        }
+      ]
+    }
+  },
+  "credits": {
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator"
+  }
+}
