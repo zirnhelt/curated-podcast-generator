@@ -1,9 +1,10 @@
-tion<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cariboo Tech Revolution - Rural Technology Conversations</title>
+    <title>Cariboo Signals - Daily tech from rural BC</title>
+    <meta name="description" content="How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region.">
     <style>
         * {
             margin: 0;
@@ -32,6 +33,14 @@ tion<!DOCTYPE html>
         .header {
             text-align: center;
             margin-bottom: 40px;
+        }
+        
+        .podcast-cover {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 24px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
         }
         
         h1 {
@@ -66,45 +75,41 @@ tion<!DOCTYPE html>
             background: #f8f9fa;
             padding: 20px;
             border-radius: 8px;
+            border-left: 4px solid #3498db;
         }
         
         .host-name {
-            font-weight: 600;
-            font-size: 1.1em;
+            font-weight: bold;
+            color: #2c3e50;
             margin-bottom: 8px;
-            color: #2c3e50;
+            font-size: 1.1em;
         }
         
-        .host-desc {
-            color: #666;
-            font-size: 0.9em;
+        .episodes-section {
+            margin-top: 40px;
         }
         
-        h2 {
-            font-size: 1.5em;
-            margin: 32px 0 16px 0;
-            color: #2c3e50;
-        }
-        
-        .episode-section {
+        .episodes-list {
             background: #f8f9fa;
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 24px;
+            padding: 20px;
+            border-radius: 8px;
+            min-height: 200px;
         }
         
-        .episode-header {
+        .episode-item {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-            gap: 12px;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .episode-item:last-child {
+            border-bottom: none;
         }
         
         .episode-title {
-            font-size: 1.3em;
-            font-weight: 600;
+            font-weight: 500;
             color: #2c3e50;
         }
         
@@ -113,263 +118,123 @@ tion<!DOCTYPE html>
             font-size: 0.9em;
         }
         
-        .episode-theme {
-            background: #2c3e50;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.85em;
-            font-weight: 500;
-        }
-        
-        .audio-player {
-            margin: 16px 0;
-        }
-        
-        audio {
-            width: 100%;
-            margin-bottom: 12px;
-        }
-        
-        .episode-controls {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-        
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #2c3e50;
-            color: white;
-            padding: 10px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 0.9em;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-        
-        .download-btn:hover {
-            background: #34495e;
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.3);
-        }
-        
-        .download-btn.script {
-            background: #27ae60;
-        }
-        
-        .download-btn.script:hover {
-            background: #2ecc71;
-        }
-        
-        .citations-btn {
-            background: #8e44ad;
-            color: white;
-            border: none;
-            padding: 10px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.9em;
-            font-weight: 500;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .citations-btn:hover {
-            background: #9b59b6;
-            transform: translateY(-1px);
-        }
-        
-        .citations-section {
-            margin-top: 16px;
-            padding: 16px;
-            background: white;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            display: none;
-        }
-        
-        .citations-section.show {
-            display: block;
-        }
-        
-        .citations-segment {
-            margin-bottom: 24px;
-        }
-        
-        .citations-segment:last-child {
-            margin-bottom: 0;
-        }
-        
-        .segment-title {
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 12px;
-            font-size: 1.1em;
-        }
-        
-        .citation {
-            margin-bottom: 16px;
-            padding: 12px;
-            background: #f8f9fa;
-            border-radius: 6px;
-            border-left: 3px solid #8e44ad;
-        }
-        
-        .citation:last-child {
-            margin-bottom: 0;
-        }
-        
-        .citation-title {
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-        
-        .citation-title a {
-            color: #2c3e50;
-            text-decoration: none;
-        }
-        
-        .citation-title a:hover {
-            color: #8e44ad;
-            text-decoration: underline;
-        }
-        
-        .citation-meta {
-            font-size: 0.85em;
-            color: #666;
-            margin-bottom: 8px;
-        }
-        
-        .citation-summary {
-            font-size: 0.9em;
-            color: #555;
-            line-height: 1.4;
-        }
-        
-        .score-badge {
-            display: inline-block;
-            background: #27ae60;
-            color: white;
-            padding: 2px 6px;
-            border-radius: 10px;
-            font-size: 0.75em;
-            font-weight: 600;
-        }
-        
-        .score-badge.high {
-            background: #27ae60;
-        }
-        
-        .score-badge.medium {
-            background: #f39c12;
-        }
-        
-        .score-badge.low {
-            background: #e74c3c;
-        }
-        
-        .rss-section {
-            background: #e8f5e8;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #27ae60;
-            margin-bottom: 24px;
-        }
-        
-        .rss-url {
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            padding: 12px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
-            word-break: break-all;
-            color: #2c3e50;
-            cursor: pointer;
+        .episode-audio {
             margin-top: 8px;
-        }
-        
-        .rss-url:hover {
-            background: #f0f0f0;
-        }
-        
-        .themes-section {
-            margin-top: 32px;
-        }
-        
-        .themes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 16px;
-            margin-top: 16px;
-        }
-        
-        .theme-card {
-            background: #f8f9fa;
-            padding: 16px;
-            border-radius: 8px;
-            border-left: 4px solid #2c3e50;
-        }
-        
-        .theme-day {
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 4px;
-        }
-        
-        .theme-topic {
-            color: #666;
-            font-size: 0.9em;
-        }
-        
-        .links-section {
-            margin-top: 32px;
-            text-align: center;
-        }
-        
-        .link-btn {
-            display: inline-block;
-            background: #2c3e50;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            margin: 0 8px 8px 8px;
-        }
-        
-        .link-btn:hover {
-            background: #34495e;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(44, 62, 80, 0.4);
         }
         
         .loading {
             text-align: center;
-            padding: 40px;
-            color: #999;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .subscribe-section {
+            text-align: center;
+            margin-top: 32px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .podcast-apps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+        
+        .app-link {
+            display: block;
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            border: 2px solid #ddd;
+            transition: all 0.3s;
+        }
+        
+        .app-link:hover {
+            border-color: #3498db;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .app-name {
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        
+        .app-description {
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        .rss-links {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .rss-button {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin: 0 8px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        
+        .rss-button:hover {
+            background: #c0392b;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .credits {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .credits h3 {
+            margin-bottom: 16px;
+            color: #2c3e50;
+        }
+        
+        .credits-content {
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
         }
         
         @media (max-width: 768px) {
+            .container {
+                padding: 24px;
+            }
+            
             .hosts-section {
                 grid-template-columns: 1fr;
             }
             
-            .episode-header {
-                flex-direction: column;
-                align-items: flex-start;
+            .podcast-apps {
+                grid-template-columns: 1fr;
             }
             
-            .episode-controls {
-                justify-content: center;
+            h1 {
+                font-size: 2em;
             }
         }
     </style>
@@ -377,323 +242,169 @@ tion<!DOCTYPE html>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🏔️ Cariboo Tech Revolution</h1>
-            <p class="subtitle">Technology and society in rural BC</p>
+            <img src="cariboo-signals.png" alt="Cariboo Signals Cover" class="podcast-cover">
+            <h1>Cariboo Signals</h1>
+            <p class="subtitle">Daily tech from rural BC</p>
         </div>
         
         <div class="theme-description">
-            How do rural and remote communities like ours grow and evolve alongside technology that typically benefits urban areas first? We explore responsible, evolutionary approaches to progress in the Cariboo region and beyond.
-            <br><br>
-            <strong>Daily Episodes:</strong> New episodes every day with weekly themes, exploring tech news and rural connections.
+            <p>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region.</p>
         </div>
         
         <div class="hosts-section">
             <div class="host-card">
                 <div class="host-name">🎤 Riley</div>
-                <div class="host-desc">Tech systems thinker with rural roots. Engineering background. Asks "how can this work here?" and "what would responsible deployment look like?"</div>
+                <p>Tech systems thinker with rural roots, engineering background, asks 'how can this work here?' and 'what would responsible deployment look like?'</p>
             </div>
+
             <div class="host-card">
                 <div class="host-name">🎙️ Casey</div>
-                <div class="host-desc">Community development focus. Asks "how does this serve people like us?" and "what are we learning from other rural innovators?"</div>
+                <p>Community development focus, asks 'how does this serve people like us?' and 'what are we learning from other rural innovators?'</p>
+            </div>
+
+        </div>
+        
+        <div class="episodes-section">
+            <h2>Recent Episodes</h2>
+            <div class="episodes-list" id="episodes-container">
+                <div class="loading">Loading episodes...</div>
             </div>
         </div>
         
-        <h2>🎧 Latest Episodes</h2>
-        <div id="episodesList">
-            <div class="loading">Loading latest episodes...</div>
-        </div>
-        
-        <div class="rss-section">
-            <h3 style="margin-top: 0; color: #27ae60;">🎧 Listen on Your Favorite App</h3>
-            <p>Subscribe to never miss an episode:</p>
+        <div class="subscribe-section">
+            <h3>Subscribe to Cariboo Signals</h3>
+            <p>Get new episodes automatically in your favorite podcast app:</p>
             
-            <div style="margin: 16px 0; display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
-                <a href="https://podcasts.apple.com/podcast/id?feed=https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml" 
-                   class="download-btn" target="_blank" rel="noopener">🍎 Apple Podcasts</a>
-                <a href="https://open.spotify.com/" class="download-btn" target="_blank" rel="noopener">🎵 Spotify*</a>
-                <a href="https://podcasts.google.com/feed/aHR0cHM6Ly96aXJuaGVsdC5naXRodWIuaW8vY3VyYXRlZC1wb2RjYXN0LWdlbmVyYXRvci9wb2RjYXN0LWZlZWQueG1s" 
-                   class="download-btn" target="_blank" rel="noopener">🔍 Google Podcasts</a>
-                <a href="https://overcast.fm/+add?url=https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml" 
-                   class="download-btn" target="_blank" rel="noopener">☁️ Overcast</a>
-                <a href="https://pca.st/subscribe/https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml" 
-                   class="download-btn" target="_blank" rel="noopener">📱 Pocket Casts</a>
-                <a href="https://castro.fm/subscribe/https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml" 
-                   class="download-btn" target="_blank" rel="noopener">📻 Castro</a>
+            <div class="podcast-apps">
+                <a href="https://podcasts.apple.com/podcast/cariboo-signals/id" class="app-link">
+                    <div class="app-name">🎵 Apple Podcasts</div>
+                    <div class="app-description">iOS, macOS, Apple TV</div>
+                </a>
+                
+                <a href="https://open.spotify.com/show/" class="app-link">
+                    <div class="app-name">🟢 Spotify</div>
+                    <div class="app-description">Cross-platform streaming</div>
+                </a>
+                
+                <a href="https://podcasts.google.com/" class="app-link">
+                    <div class="app-name">📺 Google Podcasts</div>
+                    <div class="app-description">Android, web</div>
+                </a>
+                
+                <a href="https://overcast.fm/" class="app-link">
+                    <div class="app-name">☁️ Overcast</div>
+                    <div class="app-description">Smart Speed, Voice Boost</div>
+                </a>
+                
+                <a href="https://pca.st/" class="app-link">
+                    <div class="app-name">📱 Pocket Casts</div>
+                    <div class="app-description">Cross-platform sync</div>
+                </a>
+                
+                <a href="https://castbox.fm/" class="app-link">
+                    <div class="app-name">📦 Castbox</div>
+                    <div class="app-description">AI-powered features</div>
+                </a>
             </div>
             
-            <p style="font-size: 0.9em; color: #666; margin-top: 12px;">
-                *Spotify requires manual submission. <a href="#spotify-instructions" style="color: #27ae60;">See instructions below</a>.
-            </p>
-            
-            <details style="margin-top: 16px;">
-                <summary style="cursor: pointer; font-weight: 600; color: #2c3e50;">📡 Or use RSS feed directly</summary>
-                <div class="rss-url" onclick="copyToClipboard(this.textContent)" title="Click to copy" style="margin-top: 8px;">
-                    https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml
-                </div>
-                <p style="font-size: 0.9em; color: #666; margin-top: 8px;">
-                    Copy this URL into any podcast app that supports RSS feeds.
-                </p>
-            </details>
-        </div>
-        
-        <div id="spotify-instructions" class="rss-section" style="background: #fff3cd; border-left-color: #856404;">
-            <h3 style="margin-top: 0; color: #856404;">🎵 Spotify Submission</h3>
-            <p>To get Cariboo Tech Progress on Spotify:</p>
-            <ol style="margin-left: 20px; color: #666;">
-                <li>Visit <a href="https://podcasters.spotify.com/" target="_blank" rel="noopener">Spotify for Podcasters</a></li>
-                <li>Sign in with your Spotify account</li>
-                <li>Click "Add Your Podcast"</li>
-                <li>Enter our RSS feed: <code>https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml</code></li>
-                <li>Wait for approval (usually 1-3 days)</li>
-            </ol>
-            <p style="font-size: 0.9em; color: #666; margin-top: 12px;">
-                Once submitted, it will appear in Spotify for all listeners automatically.
-            </p>
-        </div>
-        
-        <div class="themes-section">
-            <h2>📅 Daily Themes (Weekly Rotation)</h2>
-            <div class="themes-grid">
-                <div class="theme-card">
-                    <div class="theme-day">Monday</div>
-                    <div class="theme-topic">Community-Controlled Infrastructure</div>
-                </div>
-                <div class="theme-card">
-                    <div class="theme-day">Tuesday</div>
-                    <div class="theme-topic">Sustainable Innovation</div>
-                </div>
-                <div class="theme-card">
-                    <div class="theme-day">Wednesday</div>
-                    <div class="theme-topic">Local Voices & Digital Equity</div>
-                </div>
-                <div class="theme-card">
-                    <div class="theme-day">Thursday</div>
-                    <div class="theme-topic">Rural Smart Solutions</div>
-                </div>
-                <div class="theme-card">
-                    <div class="theme-day">Friday</div>
-                    <div class="theme-topic">Future-Ready Communities</div>
-                </div>
-                <div class="theme-card">
-                    <div class="theme-day">Saturday</div>
-                    <div class="theme-topic">Cariboo Innovation Stories</div>
-                </div>
-                <div class="theme-card">
-                    <div class="theme-day">Sunday</div>
-                    <div class="theme-topic">Regional Resilience</div>
-                </div>
+            <div class="rss-links">
+                <h4>Or subscribe directly:</h4>
+                <a href="podcast-feed.xml" class="rss-button">🎙️ RSS Feed</a>
+                <a href="https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml" class="rss-button">📡 Direct Link</a>
             </div>
         </div>
         
-        <div class="links-section">
-            <h2>🔗 Links</h2>
-            <a href="https://github.com/zirnhelt/curated-podcast-generator" class="link-btn">🔧 View Source Code</a>
-            <a href="https://github.com/zirnhelt/super-rss-feed" class="link-btn">📊 RSS Feed System</a>
+        <div class="footer">
+            <div class="credits">
+                <h3>Credits</h3>
+                <div class="credits-content">
+                <p><strong>Content Curation & Script:</strong> Claude (Anthropic)</p>
+                <p><strong>TTS Voices:</strong> OpenAI TTS API</p>
+                <p><strong>Cover Art:</strong> ChatGPT (OpenAI)</p>
+                <p><strong>Podcast Coordination:</strong> Erich Zirnhelt</p>
+
+                </div>
+            </div>
+            
+            <p>Generated automatically from curated RSS feeds • Updated daily at 5 AM PST</p>
+            <p>Part of the <a href="https://zirnhelt.github.io/super-rss-feed/">Super RSS Feed</a> project</p>
         </div>
     </div>
-    
+
     <script>
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                alert('RSS feed URL copied to clipboard!');
-            }).catch(() => {
-                alert('Failed to copy. Please select and copy manually.');
-            });
-        }
-        
-        function formatFileSize(bytes) {
-            if (bytes === 0) return '0 Bytes';
-            const k = 1024;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
-        }
-        
-        function formatDate(dateStr) {
-            const date = new Date(dateStr);
-            return date.toLocaleDateString('en-US', { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-            });
-        }
-        
-        function getThemeFromFilename(filename) {
-            // Extract theme from filename like "podcast_audio_2026-01-24_cariboo_innovation_stories.mp3"
-            const parts = filename.replace('podcast_audio_', '').replace('.mp3', '').split('_');
-            if (parts.length >= 2) {
-                return parts.slice(1).join(' ').replace(/_/g, ' ')
-                    .replace(/\b\w/g, l => l.toUpperCase()); // Title case
-            }
-            return 'Episode';
-        }
-        
-        function getScoreBadgeClass(score) {
-            if (score >= 70) return 'high';
-            if (score >= 40) return 'medium';
-            return 'low';
-        }
-        
-        async function loadCitations(episodeId, citationsFilename) {
-            const citationsSection = document.getElementById(`citations-${episodeId}`);
-            const button = document.getElementById(`citations-btn-${episodeId}`);
-            
-            if (citationsSection.classList.contains('show')) {
-                citationsSection.classList.remove('show');
-                button.textContent = '📚 Show Sources';
-                return;
-            }
-            
-            try {
-                button.textContent = '⏳ Loading...';
-                const response = await fetch(citationsFilename);
-                const citations = await response.json();
-                
-                let html = '';
-                
-                // News Roundup sources
-                if (citations.segments.news_roundup.articles.length > 0) {
-                    html += `<div class="citations-segment">`;
-                    html += `<div class="segment-title">${citations.segments.news_roundup.title}</div>`;
-                    
-                    citations.segments.news_roundup.articles.forEach(article => {
-                        const scoreClass = getScoreBadgeClass(article.ai_score);
-                        html += `
-                            <div class="citation">
-                                <div class="citation-title">
-                                    <a href="${article.url}" target="_blank" rel="noopener">${article.title}</a>
-                                </div>
-                                <div class="citation-meta">
-                                    ${article.source} • <span class="score-badge ${scoreClass}">Score: ${article.ai_score}</span>
-                                </div>
-                                <div class="citation-summary">${article.summary}</div>
-                            </div>
-                        `;
-                    });
-                    
-                    html += `</div>`;
-                }
-                
-                // Deep Dive sources
-                if (citations.segments.deep_dive.articles.length > 0) {
-                    html += `<div class="citations-segment">`;
-                    html += `<div class="segment-title">${citations.segments.deep_dive.title}</div>`;
-                    
-                    citations.segments.deep_dive.articles.forEach(article => {
-                        const scoreClass = getScoreBadgeClass(article.ai_score);
-                        html += `
-                            <div class="citation">
-                                <div class="citation-title">
-                                    <a href="${article.url}" target="_blank" rel="noopener">${article.title}</a>
-                                </div>
-                                <div class="citation-meta">
-                                    ${article.source} • <span class="score-badge ${scoreClass}">Score: ${article.ai_score}</span>
-                                </div>
-                                <div class="citation-summary">${article.summary}</div>
-                            </div>
-                        `;
-                    });
-                    
-                    html += `</div>`;
-                }
-                
-                citationsSection.innerHTML = html;
-                citationsSection.classList.add('show');
-                button.textContent = '📚 Hide Sources';
-                
-            } catch (error) {
-                console.error('Error loading citations:', error);
-                citationsSection.innerHTML = '<p>Citations not available for this episode.</p>';
-                citationsSection.classList.add('show');
-                button.textContent = '📚 Show Sources';
-            }
-        }
-        
         async function loadEpisodes() {
-            const episodesList = document.getElementById('episodesList');
-            
             try {
-                // Try to fetch the RSS feed to get episode list
                 const response = await fetch('podcast-feed.xml');
                 const xmlText = await response.text();
-                const parser = new DOMParser();
-                const xmlDoc = parser.parseFromString(xmlText, "text/xml");
                 
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
                 const items = xmlDoc.querySelectorAll('item');
                 
+                const container = document.getElementById('episodes-container');
+                
                 if (items.length === 0) {
-                    episodesList.innerHTML = '<p>No episodes available yet. Check back soon!</p>';
+                    container.innerHTML = `
+                        <div class="loading">
+                            <p>No episodes found yet.</p>
+                            <p style="margin-top: 16px;"><em>The podcast generator creates new episodes daily based on curated RSS feed data.</em></p>
+                        </div>
+                    `;
                     return;
                 }
                 
-                episodesList.innerHTML = '';
+                let episodesHTML = '';
                 
-                // Show up to 3 most recent episodes
-                const episodesToShow = Math.min(3, items.length);
-                
-                for (let i = 0; i < episodesToShow; i++) {
-                    const item = items[i];
-                    const title = item.querySelector('title').textContent;
-                    const pubDate = item.querySelector('pubDate').textContent;
+                items.forEach((item, index) => {
+                    const title = item.querySelector('title')?.textContent || 'Untitled Episode';
+                    const pubDate = item.querySelector('pubDate')?.textContent || '';
                     const enclosure = item.querySelector('enclosure');
+                    const audioUrl = enclosure?.getAttribute('url') || '';
                     
-                    if (!enclosure) continue;
+                    let formattedDate = pubDate;
+                    try {
+                        const date = new Date(pubDate);
+                        formattedDate = date.toLocaleDateString('en-US', { 
+                            weekday: 'short', 
+                            year: 'numeric', 
+                            month: 'short', 
+                            day: 'numeric' 
+                        });
+                    } catch (e) {
+                        // Keep original date if parsing fails
+                    }
                     
-                    const audioUrl = enclosure.getAttribute('url');
-                    const fileSize = parseInt(enclosure.getAttribute('length'));
-                    const fileName = audioUrl.split('/').pop();
-                    
-                    // Extract date and theme from filename
-                    const dateMatch = fileName.match(/(\d{4}-\d{2}-\d{2})/);
-                    const episodeDate = dateMatch ? dateMatch[1] : 'Unknown Date';
-                    const theme = getThemeFromFilename(fileName);
-                    
-                    // Corresponding script and citations files
-                    const scriptUrl = audioUrl.replace('podcast_audio_', 'podcast_script_').replace('.mp3', '.txt');
-                    const citationsUrl = audioUrl.replace('podcast_audio_', 'citations_').replace('.mp3', '.json');
-                    
-                    const episodeId = `episode-${episodeDate.replace(/-/g, '')}`;
-                    
-                    const episodeHtml = `
-                        <div class="episode-section">
-                            <div class="episode-header">
-                                <div>
-                                    <div class="episode-title">${title}</div>
-                                    <div class="episode-date">${formatDate(episodeDate)}</div>
-                                </div>
-                                <div class="episode-theme">${theme}</div>
+                    episodesHTML += `
+                        <div class="episode-item">
+                            <div>
+                                <div class="episode-title">${title}</div>
+                                <div class="episode-date">${formattedDate}</div>
+                                ${audioUrl ? `
+                                    <div class="episode-audio">
+                                        <audio controls style="width: 100%; max-width: 300px;">
+                                            <source src="${audioUrl}" type="audio/mpeg">
+                                            Your browser does not support the audio element.
+                                        </audio>
+                                    </div>
+                                ` : ''}
                             </div>
-                            <div class="audio-player">
-                                <audio controls preload="metadata">
-                                    <source src="${audioUrl}" type="audio/mpeg">
-                                    Your browser does not support the audio element.
-                                </audio>
-                            </div>
-                            <div class="episode-controls">
-                                <a href="${audioUrl}" class="download-btn" download>🎵 Download Audio (${formatFileSize(fileSize)})</a>
-                                <a href="${scriptUrl}" class="download-btn script" download>📝 View Script</a>
-                                <button class="citations-btn" id="citations-btn-${episodeId}" onclick="loadCitations('${episodeId}', '${citationsUrl}')">📚 Show Sources</button>
-                            </div>
-                            <div class="citations-section" id="citations-${episodeId}"></div>
                         </div>
                     `;
-                    
-                    episodesList.innerHTML += episodeHtml;
-                }
+                });
+                
+                container.innerHTML = episodesHTML;
                 
             } catch (error) {
-                console.error('Error loading episodes:', error);
-                episodesList.innerHTML = `
-                    <div class="episode-section">
-                        <p>Episodes are being generated. Check back in a few minutes!</p>
+                console.error('Failed to load episodes:', error);
+                document.getElementById('episodes-container').innerHTML = `
+                    <div class="loading">
+                        <p>Episodes are being generated...</p>
                         <p style="margin-top: 16px;"><em>The podcast generator creates new episodes daily based on curated RSS feed data.</em></p>
                     </div>
                 `;
             }
         }
         
-        // Load episodes when page loads
         loadEpisodes();
     </script>
 </body>
