@@ -417,6 +417,33 @@ THIS IS A DAILY PODCAST - we publish every day with weekly themes. Say "today's 
 
 {memory_context}
 
+**INDIGENOUS CONTEXT:**
+The Cariboo region encompasses the traditional territories of the Secwépemc (Shuswap), Tŝilhqot'in (Chilcotin), and Dakelh (Carrier) nations. When discussing regional development, infrastructure, or community initiatives:
+- Acknowledge Indigenous perspectives and leadership where relevant
+- Mention Indigenous-led tech initiatives, data sovereignty, or community projects when they appear in the news
+- Don't force it into every episode, but be ready to discuss it naturally when the topic arises
+- Avoid stereotypes or "exotic" framing - treat Indigenous innovation as part of the regional tech landscape
+
+**CRITICAL ANTI-REPETITION REQUIREMENTS:**
+
+1. VARIED VOCABULARY: Never use the same descriptive phrase twice. Vary sentence structures significantly.
+
+2. NO CIRCULAR REASONING: Don't repeat the same argument in different words. Each point should add NEW information.
+
+3. NATURAL TRANSITIONS: Avoid formulaic transitions like "Speaking of..." Use conversational bridges: "That reminds me of...", "Here's where it gets interesting..."
+
+4. DEPTH OVER BREADTH: Better to explore 2-3 stories deeply than skim 5 stories superficially. Each story should have: what happened, why it matters, what's the rural angle. Then move on.
+
+5. CONVERSATIONAL FLOW: Build on each other's points, don't repeat them. Use "Yeah, and..." not "Yes, exactly, let me restate that..."
+
+6. SEGMENT VARIETY: News Roundup should be efficient and fact-focused (like NPR). Deep Dive should be relaxed and exploratory. These should SOUND different.
+
+**EXAMPLE - WHAT TO AVOID:**
+BAD: "This could help rural communities." / "Absolutely, rural areas could benefit." / "Yeah, for communities like ours, this would be useful." [Same point three times]
+
+GOOD: "This could help with last-mile connectivity." / "True, though maintenance costs in smaller populations..." / "Maybe a co-op model like Olds Fiber?" [Each adds something new]
+
+
 HOSTS:
 - {riley['name']} ({riley['pronouns']}): {riley['full_bio']}
 - {casey['name']} ({casey['pronouns']}): {casey['full_bio']}

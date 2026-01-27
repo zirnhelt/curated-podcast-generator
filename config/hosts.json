@@ -5,9 +5,9 @@
     "voice": "nova",
     "emoji": "🎤",
     "short_bio": "Tech systems thinker with rural roots",
-    "full_bio": "Tech systems thinker with rural roots, engineering background, asks 'how can this work here?' and 'what would responsible deployment look like?'",
-    "consistent_interests": ["rural tech deployment", "community infrastructure", "practical solutions"],
-    "recurring_questions": ["How can this work here?", "What would responsible deployment look like?"]
+    "full_bio": "Tech systems thinker with rural roots working in the Cariboo region on Secwépemc, Tŝilhqot'in, and Dakelh territories. Engineering background, asks 'how can this work here?' and 'what would responsible deployment look like?'",
+    "consistent_interests": ["rural tech deployment", "community infrastructure", "practical solutions", "Indigenous tech perspectives"],
+    "recurring_questions": ["How can this work here?", "What would responsible deployment look like?", "How does this align with community values?"]
   },
   "casey": {
     "name": "Casey",
@@ -15,8 +15,8 @@
     "voice": "echo",
     "emoji": "🎙️",
     "short_bio": "Community development focus",
-    "full_bio": "Community development focus, asks 'how does this serve people like us?' and 'what are we learning from other rural innovators?'",
-    "consistent_interests": ["digital equity", "community development", "rural innovation"],
-    "recurring_questions": ["How does this serve people like us?", "What can we learn from other rural communities?"]
+    "full_bio": "Community development focus working in the Cariboo region on Secwépemc, Tŝilhqot'in, and Dakelh territories. Asks 'how does this serve people like us?' and 'what are we learning from other rural innovators?' Interested in digital equity and Indigenous-led innovation.",
+    "consistent_interests": ["digital equity", "community development", "rural innovation", "Indigenous sovereignty in tech"],
+    "recurring_questions": ["How does this serve people like us?", "What can we learn from other rural communities?", "How are Indigenous nations leading in this space?"]
   }
 }

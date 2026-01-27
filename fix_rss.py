@@ -2,17 +2,34 @@
 """
 Quick RSS Feed Fixer for Cariboo Signals
 Fixes XML parsing issues and generates clean RSS feed
-Now uses config files for all text content
+Now uses config files for all text content AND episode-specific citations
 """
 
 import os
 import glob
+import json
 import xml.sax.saxutils as saxutils
 from datetime import datetime
 from config_loader import load_podcast_config, load_credits_config
 
+def load_episode_description(episode_date, theme):
+    """Load episode-specific description from citations file if it exists."""
+    safe_theme = theme.replace(" ", "_").replace("&", "and").lower()
+    citations_file = f"citations_{episode_date}_{safe_theme}.json"
+    
+    try:
+        if os.path.exists(citations_file):
+            with open(citations_file, 'r', encoding='utf-8') as f:
+                citations_data = json.load(f)
+                # Return the full episode description with sources
+                return citations_data['episode']['description']
+    except (json.JSONDecodeError, KeyError, FileNotFoundError) as e:
+        print(f"  ⚠️  Could not load description from {citations_file}: {e}")
+    
+    return None
+
 def generate_clean_rss():
-    """Generate a clean, properly escaped RSS feed."""
+    """Generate a clean, properly escaped RSS feed with episode-specific descriptions."""
     print("📡 Generating clean RSS feed for Cariboo Signals...")
     
     # Load configuration
@@ -79,13 +96,22 @@ def generate_clean_rss():
         f'<lastBuildDate>{datetime.now().strftime("%a, %d %b %Y %H:%M:%S GMT")}</lastBuildDate>'
     ])
     
-    # Add episodes with credits in description
+    # Add episodes with episode-specific descriptions
     for episode in episodes:
         escaped_title = saxutils.escape(episode['title'])
         
-        # Combine description with credits
-        description_with_credits = podcast_config["description"] + "\n\n" + credits_config['text']
-        escaped_description = saxutils.escape(description_with_credits)
+        # Try to load episode-specific description from citations file
+        episode_description = load_episode_description(episode['episode_date'], episode['theme'])
+        
+        if episode_description:
+            # Use episode-specific description (already includes citations and credits)
+            escaped_description = saxutils.escape(episode_description)
+            print(f"  ✅ Using episode-specific description for {episode['episode_date']}")
+        else:
+            # Fallback to generic description + credits
+            description_with_credits = podcast_config["description"] + "\n\n" + credits_config['text']
+            escaped_description = saxutils.escape(description_with_credits)
+            print(f"  ⚠️  Using generic description for {episode['episode_date']}")
         
         rss_lines.extend([
             '<item>',
@@ -115,7 +141,7 @@ def generate_clean_rss():
         f.write(rss_content)
     
     print(f"✅ Generated clean RSS feed with {len(episodes)} episodes")
-    print("📝 Validating XML structure...")
+    print("📋 Validating XML structure...")
     
     # Quick validation
     try:

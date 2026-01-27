@@ -7,8 +7,8 @@
 <copyright>2026 Erich's AI Curator</copyright>
 <itunes:subtitle>Technology and society in rural BC with Riley and Casey</itunes:subtitle>
 <itunes:author>Riley and Casey</itunes:author>
-<itunes:summary>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region. Riley brings tech systems thinking with rural roots, while Casey focuses on community development. New episodes every day with weekly themes.</itunes:summary>
-<description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region.</description>
+<itunes:summary>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region on the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations. Riley brings tech systems thinking with rural roots, while Casey focuses on community development. New episodes every day with weekly themes.</itunes:summary>
+<description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region on the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations.</description>
 <itunes:owner>
 <itunes:name>Riley and Casey</itunes:name>
 <itunes:email>podcast@example.com</itunes:email>
@@ -17,51 +17,174 @@
 <itunes:category text="Technology"/>
 <itunes:category text="Society &amp; Culture"/>
 <itunes:explicit>false</itunes:explicit>
-<lastBuildDate>Mon, 26 Jan 2026 16:23:35 GMT</lastBuildDate>
+<itunes:type>episodic</itunes:type>
+<lastBuildDate>Mon, 26 Jan 2026 17:12:38 GMT</lastBuildDate>
 <item>
 <title>Cariboo Signals - Community-Controlled Infrastructure</title>
 <link>https://zirnhelt.github.io/curated-podcast-generator/</link>
-<pubDate>Mon, 26 Jan 2026 05:00:00 PST</pubDate>
-<description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region.
+<pubDate>Mon, 26 Jan 2026 06:00:00 GMT</pubDate>
+<description>Riley and Casey explore technology and society in rural communities. Today's focus: Community-Controlled Infrastructure.
+
+NEWS ROUNDUP: We break down 🏔️ [Williams Lake Tribune] Williams Lake Tribune Article and [GN AI ML Infrastructure] Connect | APAC // Major Panel: Building the next generation of AI infrastructure, plus 1 more stories, and explore what these developments mean for communities like ours.
+
+RURAL CONNECTIONS: Deep dive into community-controlled infrastructure, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.
+
+Hosts: Riley (Tech systems thinker with rural roots) and Casey (Community development focus).
+
+Sources:
+1. Williams Lake Tribune: 🏔️ [Williams Lake Tribune] Williams Lake Tribune Article
+2. GN AI ML Infrastructure: [GN AI ML Infrastructure] Connect | APAC // Major Panel: Bui...
+3. GN 3D Printing: [GN 3D Printing] Killer 3D Printing Applications: Factory Au...
+4. GN AI ML Infrastructure: [GN AI ML Infrastructure] Fiber Broadband: The Critical Infr...
+5. GN AI ML Infrastructure: [GN AI ML Infrastructure] ST Telemedia Global Data Centres L...
+6. GN AI ML Infrastructure: [GN AI ML Infrastructure] AI power crunch drives Taiwan's tr...
+7. TechCrunch: [TechCrunch] Tech CEOs boast and bicker about AI at Davos
+8. GN AI ML Infrastructure: [GN AI ML Infrastructure] The Week’s 10 Biggest Funding Roun...
+9. NYT Business: [NYT Business] How Bad Are A.I. Delusions? We Asked People T...
+10. Quartz: [Quartz] The fight over AI training data is coming to a head
+11. Hackaday: [Hackaday] LLM-Generated Newspaper Provides Ultimate in Nich...
+12. GN AI ML Infrastructure: [GN AI ML Infrastructure] Can telcos compete in the Middle E...
+13. Williams Lake Tribune: 🏔️ [Williams Lake Tribune] Williams Lake Tribune Article
+14. GN AI ML Infrastructure: [GN AI ML Infrastructure] Connect | APAC // Major Panel: Bui...
+15. GN 3D Printing: [GN 3D Printing] Killer 3D Printing Applications: Factory Au...
+16. GN AI ML Infrastructure: [GN AI ML Infrastructure] Fiber Broadband: The Critical Infr...
+
 --- Credits ---
 Content Curation &amp; Script: Claude (Anthropic)
 TTS Voices: OpenAI TTS API
 Cover Art: ChatGPT (OpenAI)
 Podcast Coordination: Erich Zirnhelt</description>
+<itunes:summary>Riley and Casey explore technology and society in rural communities. Today's focus: Community-Controlled Infrastructure.
+
+NEWS ROUNDUP: We break down 🏔️ [Williams Lake Tribune] Williams Lake Tribune Article and [GN AI ML Infrastructure] Connect | APAC // Major Panel: Building the next generation of AI infrastructure, plus 1 more stories, and explore what these developments mean for communities like ours.
+
+RURAL CONNECTIONS: Deep dive into community-controlled infrastructure, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.
+
+Hosts: Riley (Tech systems thinker with rural roots) and Casey (Community development focus).
+
+Sources:
+1. Williams Lake Tribune: 🏔️ [Williams Lake Tribune] Williams Lake Tribune Article
+2. GN AI ML Infrastructure: [GN AI ML Infrastructure] Connect | APAC // Major Panel: Bui...
+3. GN 3D Printing: [GN 3D Printing] Killer 3D Printing Applications: Factory Au...
+4. GN AI ML Infrastructure: [GN AI ML Infrastructure] Fiber Broadband: The Critical Infr...
+5. GN AI ML Infrastructure: [GN AI ML Infrastructure] ST Telemedia Global Data Centres L...
+6. GN AI ML Infrastructure: [GN AI ML Infrastructure] AI power crunch drives Taiwan's tr...
+7. TechCrunch: [TechCrunch] Tech CEOs boast and bicker about AI at Davos
+8. GN AI ML Infrastructure: [GN AI ML Infrastructure] The Week’s 10 Biggest Funding Roun...
+9. NYT Business: [NYT Business] How Bad Are A.I. Delusions? We Asked People T...
+10. Quartz: [Quartz] The fight over AI training data is coming to a head
+11. Hackaday: [Hackaday] LLM-Generated Newspaper Provides Ultimate in Nich...
+12. GN AI ML Infrastructure: [GN AI ML Infrastructure] Can telcos compete in the Middle E...
+13. Williams Lake Tribune: 🏔️ [Williams Lake Tribune] Williams Lake Tribune Article
+14. GN AI ML Infrastructure: [GN AI ML Infrastructure] Connect | APAC // Major Panel: Bui...
+15. GN 3D Printing: [GN 3D Printing] Killer 3D Printing Applications: Factory Au...
+16. GN AI ML Infrastructure: [GN AI ML Infrastructure] Fiber Broadband: The Critical Infr...
+
+--- Credits ---
+Content Curation &amp; Script: Claude (Anthropic)
+TTS Voices: OpenAI TTS API
+Cover Art: ChatGPT (OpenAI)
+Podcast Coordination: Erich Zirnhelt</itunes:summary>
+<itunes:subtitle>Daily tech progress - Community-Controlled Infrastructure</itunes:subtitle>
 <enclosure url="https://zirnhelt.github.io/curated-podcast-generator/podcast_audio_2026-01-26_community-controlled_infrastructure.mp3" length="5009805" type="audio/mpeg"/>
-<guid>https://zirnhelt.github.io/curated-podcast-generator/podcast_audio_2026-01-26_community-controlled_infrastructure.mp3</guid>
+<guid isPermaLink="false">cariboo-signals-2026-01-26</guid>
 <itunes:duration>30:00</itunes:duration>
 <itunes:explicit>false</itunes:explicit>
+<itunes:episodeType>full</itunes:episodeType>
 </item>
 <item>
 <title>Cariboo Signals - Regional Resilience</title>
 <link>https://zirnhelt.github.io/curated-podcast-generator/</link>
-<pubDate>Sun, 25 Jan 2026 05:00:00 PST</pubDate>
-<description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region.
---- Credits ---
-Content Curation &amp; Script: Claude (Anthropic)
-TTS Voices: OpenAI TTS API
-Cover Art: ChatGPT (OpenAI)
-Podcast Coordination: Erich Zirnhelt</description>
+<pubDate>Sun, 25 Jan 2026 06:00:00 GMT</pubDate>
+<description>Riley and Casey explore technology and society in rural communities. Today's focus: Regional Resilience.
+
+NEWS ROUNDUP: We break down 📍 [Williams Lake Tribune] Williams Lake Tribune Article and [CFJC Today Kamloops] Week in Review: Week of January 19, plus 1 more stories, and explore what these developments mean for communities like ours.
+
+RURAL CONNECTIONS: Deep dive into regional resilience, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.
+
+Hosts: Riley (rural tech systems) and Casey (community development).
+
+Sources:
+1. Williams Lake Tribune: 📍 [Williams Lake Tribune] Williams Lake Tribune Article
+2. CFJC Today Kamloops: [CFJC Today Kamloops] Week in Review: Week of January 19
+3. GN AI ML Infrastructure: [GN AI ML Infrastructure] AI Infrastructure Could Triple to ...
+4. GN AI ML Infrastructure: [GN AI ML Infrastructure] NVIDIA (NVDA) CEO Jensen Huang Fra...
+5. XDA Developers: [XDA Developers] VLANs aren’t just for security; they made m...
+6. How-To Geek: [How-To Geek] This is the missing automation designer that H...
+7. GN Smart Home and Automation: [GN Smart Home and Automation] Philips Hue is a Readers' Cho...
+8. GN AI ML Infrastructure: [GN AI ML Infrastructure] The AI Infrastructure Race: Assess...
+9. GN AI ML Infrastructure: [GN AI ML Infrastructure] Equinix Tapped For Liquid Cooled A...
+10. GN Clean Energy and EVs: [GN Clean Energy and EVs] Nalco Renewable Energy Transition ...
+11. GN Clean Energy and EVs: [GN Clean Energy and EVs] Juniper Green Energy commissions 1...
+12. GN Smart Home and Automation: [GN Smart Home and Automation] I fell out of love with smart...
+13. XDA Developers: [XDA Developers] If you aren't testing your backup restorati...
+14. Global News: [Global News] Parti Québécois rallies around independence at...
+15. Android Authority: [Android Authority] Google Photos could soon TikTok-ify your...
+16. Williams Lake Tribune: 📍 [Williams Lake Tribune] Williams Lake Tribune Article
+</description>
+<itunes:summary>Riley and Casey explore technology and society in rural communities. Today's focus: Regional Resilience.
+
+NEWS ROUNDUP: We break down 📍 [Williams Lake Tribune] Williams Lake Tribune Article and [CFJC Today Kamloops] Week in Review: Week of January 19, plus 1 more stories, and explore what these developments mean for communities like ours.
+
+RURAL CONNECTIONS: Deep dive into regional resilience, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.
+
+Hosts: Riley (rural tech systems) and Casey (community development).
+
+Sources:
+1. Williams Lake Tribune: 📍 [Williams Lake Tribune] Williams Lake Tribune Article
+2. CFJC Today Kamloops: [CFJC Today Kamloops] Week in Review: Week of January 19
+3. GN AI ML Infrastructure: [GN AI ML Infrastructure] AI Infrastructure Could Triple to ...
+4. GN AI ML Infrastructure: [GN AI ML Infrastructure] NVIDIA (NVDA) CEO Jensen Huang Fra...
+5. XDA Developers: [XDA Developers] VLANs aren’t just for security; they made m...
+6. How-To Geek: [How-To Geek] This is the missing automation designer that H...
+7. GN Smart Home and Automation: [GN Smart Home and Automation] Philips Hue is a Readers' Cho...
+8. GN AI ML Infrastructure: [GN AI ML Infrastructure] The AI Infrastructure Race: Assess...
+9. GN AI ML Infrastructure: [GN AI ML Infrastructure] Equinix Tapped For Liquid Cooled A...
+10. GN Clean Energy and EVs: [GN Clean Energy and EVs] Nalco Renewable Energy Transition ...
+11. GN Clean Energy and EVs: [GN Clean Energy and EVs] Juniper Green Energy commissions 1...
+12. GN Smart Home and Automation: [GN Smart Home and Automation] I fell out of love with smart...
+13. XDA Developers: [XDA Developers] If you aren't testing your backup restorati...
+14. Global News: [Global News] Parti Québécois rallies around independence at...
+15. Android Authority: [Android Authority] Google Photos could soon TikTok-ify your...
+16. Williams Lake Tribune: 📍 [Williams Lake Tribune] Williams Lake Tribune Article
+</itunes:summary>
+<itunes:subtitle>Daily tech progress - Regional Resilience</itunes:subtitle>
 <enclosure url="https://zirnhelt.github.io/curated-podcast-generator/podcast_audio_2026-01-25_regional_resilience.mp3" length="3969357" type="audio/mpeg"/>
-<guid>https://zirnhelt.github.io/curated-podcast-generator/podcast_audio_2026-01-25_regional_resilience.mp3</guid>
+<guid isPermaLink="false">cariboo-signals-2026-01-25</guid>
 <itunes:duration>30:00</itunes:duration>
 <itunes:explicit>false</itunes:explicit>
+<itunes:episodeType>full</itunes:episodeType>
 </item>
 <item>
 <title>Cariboo Signals - Cariboo Innovation Stories</title>
 <link>https://zirnhelt.github.io/curated-podcast-generator/</link>
-<pubDate>Sat, 24 Jan 2026 05:00:00 PST</pubDate>
-<description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region.
---- Credits ---
-Content Curation &amp; Script: Claude (Anthropic)
-TTS Voices: OpenAI TTS API
-Cover Art: ChatGPT (OpenAI)
-Podcast Coordination: Erich Zirnhelt</description>
+<pubDate>Sat, 24 Jan 2026 06:00:00 GMT</pubDate>
+<description>Daily tech conversations for rural communities. Today's focus: Cariboo Innovation Stories.
+
+NEWS ROUNDUP: We break down [CFJC Today Kamloops] Week in Review: Week of January 19 and [GN AI ML Infrastructure] AI Infrastructure Could Triple to $1.4 Trillion by 2030: Here's the Best Stock to Buy for 2026, plus 1 more stories, and explore what these developments mean for communities like ours in the Cariboo region.
+
+RURAL CONNECTIONS: Riley and Casey dive deep into cariboo innovation stories, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.
+
+Hosts: Riley (rural tech systems) and Casey (community development). 
+New episodes daily with weekly themes.
+
+This is a daily show - not weekly! - exploring how technology serves (or could better serve) rural communities.</description>
+<itunes:summary>Daily tech conversations for rural communities. Today's focus: Cariboo Innovation Stories.
+
+NEWS ROUNDUP: We break down [CFJC Today Kamloops] Week in Review: Week of January 19 and [GN AI ML Infrastructure] AI Infrastructure Could Triple to $1.4 Trillion by 2030: Here's the Best Stock to Buy for 2026, plus 1 more stories, and explore what these developments mean for communities like ours in the Cariboo region.
+
+RURAL CONNECTIONS: Riley and Casey dive deep into cariboo innovation stories, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.
+
+Hosts: Riley (rural tech systems) and Casey (community development). 
+New episodes daily with weekly themes.
+
+This is a daily show - not weekly! - exploring how technology serves (or could better serve) rural communities.</itunes:summary>
+<itunes:subtitle>Daily tech progress - Cariboo Innovation Stories</itunes:subtitle>
 <enclosure url="https://zirnhelt.github.io/curated-podcast-generator/podcast_audio_2026-01-24_cariboo_innovation_stories.mp3" length="5107629" type="audio/mpeg"/>
-<guid>https://zirnhelt.github.io/curated-podcast-generator/podcast_audio_2026-01-24_cariboo_innovation_stories.mp3</guid>
+<guid isPermaLink="false">cariboo-signals-2026-01-24</guid>
 <itunes:duration>30:00</itunes:duration>
 <itunes:explicit>false</itunes:explicit>
+<itunes:episodeType>full</itunes:episodeType>
 </item>
 </channel>
 </rss>
