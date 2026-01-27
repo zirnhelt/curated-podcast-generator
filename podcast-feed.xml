@@ -17,7 +17,22 @@
 <itunes:category text="Technology"/>
 <itunes:category text="Society &amp; Culture"/>
 <itunes:explicit>false</itunes:explicit>
-<lastBuildDate>Mon, 26 Jan 2026 17:35:54 GMT</lastBuildDate>
+<lastBuildDate>Tue, 27 Jan 2026 05:46:04 GMT</lastBuildDate>
+<item>
+<title>Cariboo Signals - Sustainable Innovation</title>
+<link>https://zirnhelt.github.io/curated-podcast-generator/</link>
+<pubDate>Tue, 27 Jan 2026 05:00:00 PST</pubDate>
+<description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region on the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations.
+--- Credits ---
+Content Curation &amp; Script: Claude (Anthropic)
+TTS Voices: OpenAI TTS API
+Cover Art: ChatGPT (OpenAI)
+Podcast Coordination: Erich Zirnhelt</description>
+<enclosure url="https://zirnhelt.github.io/curated-podcast-generator/podcast_audio_2026-01-27_sustainable_innovation.mp3" length="4635501" type="audio/mpeg"/>
+<guid>https://zirnhelt.github.io/curated-podcast-generator/podcast_audio_2026-01-27_sustainable_innovation.mp3</guid>
+<itunes:duration>30:00</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+</item>
 <item>
 <title>Cariboo Signals - Community-Controlled Infrastructure</title>
 <link>https://zirnhelt.github.io/curated-podcast-generator/</link>
