@@ -56,6 +56,59 @@ CONFIG = {
     'interests': load_interests()
 }
 
+def polish_script_with_claude(script, theme_name, api_key):
+    """Use Claude to polish the script for better flow and less repetition."""
+    print("✨ Polishing script with Claude...")
+    
+    if not script or not api_key:
+        return script
+    
+    try:
+        client = Anthropic(api_key=api_key)
+        
+        polish_prompt = f"""Review and polish this podcast script to eliminate repetition between segments and improve flow.
+
+CURRENT ISSUES TO FIX:
+- Remove redundant mentions of companies/sources between Segment 1 (news) and Segment 2 (deep dive)
+- Ensure Segment 2 builds on Segment 1 rather than repeating it
+- Make sure the theme "{theme_name}" is properly explored in the deep dive
+- Improve transitions and natural flow between topics
+- Keep the same speaker tags and overall structure
+
+SCRIPT TO POLISH:
+{script}
+
+POLISHING INSTRUCTIONS:
+1. Keep exact same **RILEY:** and **CASEY:** speaker format
+2. Maintain the same overall length and energy
+3. In Segment 2, reference Segment 1 content with phrases like "Building on what we covered..." rather than re-stating facts
+4. Ensure Segment 2 focuses more on implications, connections, and "{theme_name}" rather than restating news
+5. Fix any awkward transitions or repetitive phrasing
+6. NO stage directions or performance cues
+
+Return the polished script with the same structure."""
+
+        response = client.messages.create(
+            model="claude-sonnet-4-20250514",
+            max_tokens=4000,
+            messages=[{"role": "user", "content": polish_prompt}]
+        )
+        
+        polished_script = response.content[0].text
+        
+        # Quick validation
+        if "**RILEY:**" in polished_script and "**CASEY:**" in polished_script:
+            print("✅ Script polished successfully!")
+            return polished_script
+        else:
+            print("⚠️ Polishing may have broken script format, using original")
+            return script
+            
+    except Exception as e:
+        print(f"⚠️ Error polishing script: {e}")
+        return script
+
+
 def get_pacific_now():
     """Get current datetime in Pacific timezone."""
     try:
@@ -629,8 +682,8 @@ def generate_audio_from_script(script, output_filename):
         return None
 
 def generate_podcast_rss_feed():
-    """Generate RSS feed for podcast distribution."""
-    print("📡 Generating podcast RSS feed...")
+    """Generate RSS feed with detailed citations for each episode."""
+    print("📡 Generating podcast RSS feed with citations...")
     
     podcast_config = CONFIG['podcast']
     credits_config = CONFIG['credits']
@@ -647,17 +700,54 @@ def generate_podcast_rss_feed():
                 date_obj = datetime.strptime(date_str, "%Y-%m-%d")
                 pub_date = date_obj.strftime("%a, %d %b %Y 05:00:00 PST")
                 
+                # Load corresponding citations file
+                safe_theme = theme.replace(' ', '_').replace('&', 'and').lower()
+                citations_file = f"citations_{date_str}_{safe_theme}.json"
+                
+                episode_description = podcast_config["description"]
+                
+                # Add citations if file exists
+                if os.path.exists(citations_file):
+                    try:
+                        with open(citations_file, 'r', encoding='utf-8') as f:
+                            citations_data = json.load(f)
+                        
+                        # Add theme context
+                        theme_display = theme.replace('_', ' ').title()
+                        episode_description += f"\n\nToday's focus: {theme_display}"
+                        
+                        # Add sources
+                        if citations_data.get('segments'):
+                            episode_description += "\n\nSources cited in this episode:\n"
+                            
+                            source_num = 1
+                            for segment_name, segment_data in citations_data['segments'].items():
+                                for article in segment_data.get('articles', []):
+                                    source_name = article.get('source', 'Unknown')
+                                    title = article.get('title', '')[:60]
+                                    if len(article.get('title', '')) > 60:
+                                        title += "..."
+                                    episode_description += f"{source_num}. {source_name}: {title}\n"
+                                    source_num += 1
+                    except Exception as e:
+                        print(f"   ⚠️ Could not load citations for {audio_file}: {e}")
+                
+                # Add credits
+                episode_description += credits_config['text']
+                
                 episodes.append({
                     'title': f"{podcast_config['title']} - {theme.replace('_', ' ').title()}",
                     'audio_file': audio_file,
                     'pub_date': pub_date,
-                    'file_size': os.path.getsize(audio_file)
+                    'file_size': os.path.getsize(audio_file),
+                    'description': episode_description
                 })
             except ValueError:
                 continue
     
     episodes = episodes[:10]  # Keep last 10 episodes
     
+    # Generate RSS XML
     rss_lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">',
@@ -678,27 +768,27 @@ def generate_podcast_rss_feed():
     ]
     
     for category in podcast_config["categories"]:
-        rss_lines.append(f'<itunes:category text="{saxutils.escape(category)}"/>')
+        rss_lines.append(f'<itunes:category text="{category}"/>')
     
     rss_lines.extend([
         f'<itunes:explicit>{"true" if podcast_config["explicit"] else "false"}</itunes:explicit>',
         f'<lastBuildDate>{get_pacific_now().strftime("%a, %d %b %Y %H:%M:%S GMT")}</lastBuildDate>'
     ])
     
+    # Add episodes with detailed descriptions
     for episode in episodes:
         escaped_title = saxutils.escape(episode['title'])
-        description_with_credits = saxutils.escape(
-            podcast_config["description"] + credits_config['text']
-        )
+        escaped_description = saxutils.escape(episode['description'])
         
         rss_lines.extend([
             '<item>',
             f'<title>{escaped_title}</title>',
             f'<link>{podcast_config["url"]}</link>',
             f'<pubDate>{episode["pub_date"]}</pubDate>',
-            f'<description>{description_with_credits}</description>',
+            f'<description>{escaped_description}</description>',
+            f'<itunes:summary>{escaped_description}</itunes:summary>',
             f'<enclosure url="{podcast_config["url"]}{episode["audio_file"]}" length="{episode["file_size"]}" type="audio/mpeg"/>',
-            f'<guid>{podcast_config["url"]}{episode["audio_file"]}</guid>',
+            f'<guid isPermaLink="false">{podcast_config["title"].lower().replace(" ", "-")}-{episode["audio_file"].replace("podcast_audio_", "").replace(".mp3", "")}</guid>',
             f'<itunes:duration>{podcast_config["episode_duration"]}</itunes:duration>',
             f'<itunes:explicit>{"true" if podcast_config["explicit"] else "false"}</itunes:explicit>',
             '</item>'
@@ -712,7 +802,7 @@ def generate_podcast_rss_feed():
     with open('podcast-feed.xml', 'w', encoding='utf-8') as f:
         f.write('\n'.join(rss_lines))
     
-    print(f"✅ Generated RSS feed with {len(episodes)} episodes")
+    print(f"✅ Generated RSS feed with {len(episodes)} episodes (with citations)")
 
 def save_script_to_file(script, theme_name):
     """Save the generated script to a file."""
@@ -830,6 +920,11 @@ def main():
         
         # Generate script
         script = generate_podcast_script(scored_articles, deep_dive_articles, today_theme, episode_memory, host_memory)
+        
+        # Polish the script for better flow
+        if script:
+            api_key = os.getenv('ANTHROPIC_API_KEY')
+            script = polish_script_with_claude(script, today_theme, api_key)
         
         if not script:
             print("❌ Failed to generate script. Exiting.")
