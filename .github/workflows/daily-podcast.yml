@@ -107,6 +107,7 @@ jobs:
           # Copy website files
           cp index.html output/
           cp podcast-feed.xml output/
+          cp cariboo-signals.png output/
           
           echo "Files ready for deployment:"
           ls -la output/
