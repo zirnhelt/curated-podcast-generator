@@ -787,7 +787,7 @@ def main():
         
         if not scoring_data or not current_articles:
             print("❌ Failed to fetch data. Exiting.")
-            return
+            sys.exit(1)
         
         # Score and categorize
         scored_articles = get_article_scores(current_articles, scoring_data)
@@ -806,7 +806,7 @@ def main():
         
         if not script:
             print("❌ Failed to generate script. Exiting.")
-            return
+            sys.exit(1)
         
         # Save script
         script_filename = save_script_to_file(script, today_theme)
