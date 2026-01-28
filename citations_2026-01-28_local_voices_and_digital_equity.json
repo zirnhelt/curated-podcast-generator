@@ -1,0 +1,158 @@
+{
+  "episode": {
+    "date": "2026-01-28",
+    "formatted_date": "Wednesday, January 28, 2026",
+    "theme": "Local Voices & Digital Equity",
+    "title": "Cariboo Signals - Local Voices & Digital Equity",
+    "description": "Riley and Casey explore technology and society in rural communities. Today's focus: Local Voices & Digital Equity.\n\nNEWS ROUNDUP: We break down LLM Black Boxes: The Observability Crisis Gripping AI-Driven SaaS and How Artisan Grains Helped Skagit County Rebuild Its Economy, plus 1 more stories, and explore what these developments mean for communities like ours.\n\nRURAL CONNECTIONS: Deep dive into local voices & digital equity, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.\n\nHosts: Riley (Tech systems thinker with rural roots) and Casey (Community development focus).\n\nSources:\n1. GN AI ML Infrastructure: LLM Black Boxes: The Observability Crisis Gripping AI-Driven...\n2. Civil Eats: How Artisan Grains Helped Skagit County Rebuild Its Economy\n3. GN AI ML Infrastructure: How 175-year-old glass company Corning won a $6 billion AI i...\n4. InsideEVs: GM Just Fixed One Of The Biggest Headaches Of EV Charging\n5. GN AI ML Infrastructure: The AI Infrastructure Stock That's About to Flip the Script ...\n6. GN AI ML Infrastructure: Fastly, Inc. (FSLY) Gains Attention as AI Adoption Supports ...\n7. ZDNet: Microsoft issues second emergency patch for Windows this mon...\n8. Quanta Magazine: Is Particle Physics Dead, Dying, or Just Hard?\n9. Al Jazeera English: Trump promises to ‘de-escalate’ Minnesota crisis after Alex ...\n10. Al Jazeera English: India curbs ‘grocery under 10 minutes’. But riders must stil...\n11. Al Jazeera English: Plane crash kills prominent Indian politician Ajit Pawar\n12. Al Jazeera English: Pegula sets up Australian Open semi against Rybakina as Swia...\n13. GN AI ML Infrastructure: LLM Black Boxes: The Observability Crisis Gripping AI-Driven...\n14. Civil Eats: How Artisan Grains Helped Skagit County Rebuild Its Economy\n15. GN AI ML Infrastructure: How 175-year-old glass company Corning won a $6 billion AI i...\n16. InsideEVs: GM Just Fixed One Of The Biggest Headaches Of EV Charging\n\n--- Credits ---\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: OpenAI TTS API\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt",
+    "generated_at": "2026-01-28T05:41:23.886652-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "The Week's Tech - News Roundup",
+      "articles": [
+        {
+          "title": "LLM Black Boxes: The Observability Crisis Gripping AI-Driven SaaS - WebProNews",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOQ3dOMThmNnFTMy1aNnJTQnhrS1hDRFRhaDFrQjlLLW5KVER2WlB2b1VxVUl3anpsQzJocmEtR3pXSHBOS1lLdzNacnZJZjAtWFhodThVVWl6YVA3c1U3NThjY2ZvMWhmbHgzam1tUUZJTkpGZDRoRGNOX3lpVUxCMkdfQjRCanA5SVhoT1B1TGZkZFg3SGdr?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 85,
+          "date_published": "2026-01-26T11:08:39+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMilwFBVV95cUxOQ3dOMThmNnFTMy1aNnJTQnhrS1hDRFRhaDFrQjlLLW5KVER2WlB2b1VxVUl3anpsQzJocmEtR3pXSHBOS1lLdzNacnZJZjAtWFhodThVVWl6YVA3c1U3NThjY2ZvMWhmbHgzam1tUU..."
+        },
+        {
+          "title": "How Artisan Grains Helped Skagit County Rebuild Its Economy",
+          "url": "https://civileats.com/2026/01/26/how-artisan-grains-helped-skagit-county-rebuild-its-economy/",
+          "source": "Civil Eats",
+          "ai_score": 80,
+          "date_published": "2026-01-26T09:00:10+00:00",
+          "summary": "<p>This broad alluvial plain, graced by the chiseled peaks of the North Cascades to the east and the forested humps of the San Juan Islands to the west, is home to the Breadlab, which develops highly ..."
+        },
+        {
+          "title": "How 175-year-old glass company Corning won a $6 billion AI infrastructure deal with Meta - MSN",
+          "url": "https://news.google.com/rss/articles/CBMikwJBVV95cUxQZkFFTnVyQUwydk5PQzh1UDBiaFU0TEJnenNzWG8ycE0xZzFJX2h6UV80ckFhNWFYOWVxUW5kYlMtOGtXMzk2cld2N0M0aGRHWXFBdmFCbjRzMkVjMElLTFJrakxUSXRvMDNZWXpMRkxuTVBadXYzd21NYU1JLWdOLTBYMFpHQnpxcTIxUGE0OUF2dHFpTkF0Zy1HdzdYelBHWXM2SVRNZ1BuckRXQVE0Mmd1dUp5cWUxTW9kbXVoaUhLUU9YYVdyWHFGVUJrSVFiTUw5WkR2VExZSTlQdDFvbEp1TmRfb3JjaXB1V1hBQUsybUM4UTFMLTB0QksyY2ZQTHFHSVBtb3BJZmZhTDFrTDlNZw?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 78,
+          "date_published": "2026-01-28T02:32:46+00:00",
+          "summary": ""
+        },
+        {
+          "title": "GM Just Fixed One Of The Biggest Headaches Of EV Charging",
+          "url": "https://insideevs.com/news/785483/gm-car-app-electrify-america-charging/",
+          "source": "InsideEVs",
+          "ai_score": 73,
+          "date_published": "2026-01-26T15:46:48+00:00",
+          "summary": "One less smartphone app to worry about is a win."
+        },
+        {
+          "title": "The AI Infrastructure Stock That's About to Flip the Script - The Motley Fool",
+          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOZ25zTkJaZW14Z0ZzUWR0NWlRMGNTbG9xaXdwaU5xVXRtRmdfR2I0bVlfTEExelNEVTU2OTVBUno4cGlfQkhWNThWVDJqSUhHZlJPUkVZVkV2ZTBuVWhnSDU4c29wT3VCRWpGU2ZKc1djaGo5ZU05RXF2TUlTTkcyNjhWQk1HV0JFekpSZWFLc1gwb0liNXc?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 68,
+          "date_published": "2026-01-26T14:35:00+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMilgFBVV95cUxOZ25zTkJaZW14Z0ZzUWR0NWlRMGNTbG9xaXdwaU5xVXRtRmdfR2I0bVlfTEExelNEVTU2OTVBUno4cGlfQkhWNThWVDJqSUhHZlJPUkVZVkV2ZTBuVWhnSDU4c29wT3VCRWpGU2ZKc1..."
+        },
+        {
+          "title": "Fastly, Inc. (FSLY) Gains Attention as AI Adoption Supports Infrastructure Software - Insider Monkey",
+          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOck84M2syYnpMZ3BxeUlhV2RVMlNLSExrS0VEZ3JWcjlRemstN1RkM0txZU9zS1ZPbHB5Rzl0OXBkbEZCZEwxeTlYb0l1OXpjc3MxeEhCSE9vX3p3XzV2MUMyS1pzejhCcG5HaGNOZEhnZ0JRdldIMHByRjBQazhLdzYySE9Fekg1eDAxSnFscmI1WkRXZ2F5VXcxMm1JdC16T2xqSW9rdU5IWU5lQmdlc1FvbTVTV1BMTVZDSDJ2eXDSAcgBQVVfeXFMTU1wcm1HTDNIQkJRbkQ2a1E2bEZ3b2FPbVlSc3BIT1RxNm9WeHd2YkdxbGx0RFlxQ1FWS0NHUFgwLUxCM2lvcHc5QXRyaEY2bzhkSHFkR3VRU0p0akdrMDZ6VE5aYllYNk13Vy03TUdsNGFFUld3U0RfbG1wVnJlaUhnMU8tQ2NSTmhTRVJXaFVyZ2dVdXdnNlZmTEd2cVNpTHpfcml6c2JzeGJhN3lla2F5aUNBSXRuM2dRSjA4ZngzLXZENllTSVA?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 65,
+          "date_published": "2026-01-26T01:26:20+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMiwAFBVV95cUxOck84M2syYnpMZ3BxeUlhV2RVMlNLSExrS0VEZ3JWcjlRemstN1RkM0txZU9zS1ZPbHB5Rzl0OXBkbEZCZEwxeTlYb0l1OXpjc3MxeEhCSE9vX3p3XzV2MUMyS1pzejhCcG5HaGNOZE..."
+        },
+        {
+          "title": "Microsoft issues second emergency patch for Windows this month - update your PC today",
+          "url": "https://www.zdnet.com/article/microsoft-second-emergency-patch-for-windows-in-january-update-now/",
+          "source": "ZDNet",
+          "ai_score": 55,
+          "date_published": "2026-01-26T15:43:02+00:00",
+          "summary": "Shipping an update that fixes some bugs but creates new ones is raising serious questions about Microsoft's quality control, or lack thereof."
+        },
+        {
+          "title": "Is Particle Physics Dead, Dying, or Just Hard?",
+          "url": "https://www.quantamagazine.org/is-particle-physics-dead-dying-or-just-hard-20260126/",
+          "source": "Quanta Magazine",
+          "ai_score": 55,
+          "date_published": "2026-01-26T15:36:37+00:00",
+          "summary": "Columnist Natalie Wolchover checks in with particle physicists more than a decade after the field entered a profound crisis.             <p>The post <a href=\"https://www.quantamagazine.org/is-particle..."
+        },
+        {
+          "title": "Trump promises to ‘de-escalate’ Minnesota crisis after Alex Pretti shooting",
+          "url": "https://www.aljazeera.com/news/2026/1/28/trump-promises-to-de-escalate-minnesota-crisis-after-alex-pretti-shooting?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 50,
+          "date_published": "2026-01-28T06:11:19+00:00",
+          "summary": ""
+        },
+        {
+          "title": "India curbs ‘grocery under 10 minutes’. But riders must still fatally race",
+          "url": "https://www.aljazeera.com/features/2026/1/28/india-curbs-grocery-under-10-minutes-but-riders-must-still-fatally-race?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 50,
+          "date_published": "2026-01-28T05:58:49+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Plane crash kills prominent Indian politician Ajit Pawar",
+          "url": "https://www.aljazeera.com/news/2026/1/28/plane-crash-kills-prominent-indian-politician-ajit-pawar?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 50,
+          "date_published": "2026-01-28T05:51:26+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Pegula sets up Australian Open semi against Rybakina as Swiatek crashes out",
+          "url": "https://www.aljazeera.com/sports/2026/1/28/pegula-sets-up-australian-open-semi-against-rybakina-as-swiatek-crashes-out?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 50,
+          "date_published": "2026-01-28T05:41:02+00:00",
+          "summary": ""
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Local Voices & Digital Equity",
+      "articles": [
+        {
+          "title": "LLM Black Boxes: The Observability Crisis Gripping AI-Driven SaaS - WebProNews",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOQ3dOMThmNnFTMy1aNnJTQnhrS1hDRFRhaDFrQjlLLW5KVER2WlB2b1VxVUl3anpsQzJocmEtR3pXSHBOS1lLdzNacnZJZjAtWFhodThVVWl6YVA3c1U3NThjY2ZvMWhmbHgzam1tUUZJTkpGZDRoRGNOX3lpVUxCMkdfQjRCanA5SVhoT1B1TGZkZFg3SGdr?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 85,
+          "date_published": "2026-01-26T11:08:39+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMilwFBVV95cUxOQ3dOMThmNnFTMy1aNnJTQnhrS1hDRFRhaDFrQjlLLW5KVER2WlB2b1VxVUl3anpsQzJocmEtR3pXSHBOS1lLdzNacnZJZjAtWFhodThVVWl6YVA3c1U3NThjY2ZvMWhmbHgzam1tUU..."
+        },
+        {
+          "title": "How Artisan Grains Helped Skagit County Rebuild Its Economy",
+          "url": "https://civileats.com/2026/01/26/how-artisan-grains-helped-skagit-county-rebuild-its-economy/",
+          "source": "Civil Eats",
+          "ai_score": 80,
+          "date_published": "2026-01-26T09:00:10+00:00",
+          "summary": "<p>This broad alluvial plain, graced by the chiseled peaks of the North Cascades to the east and the forested humps of the San Juan Islands to the west, is home to the Breadlab, which develops highly ..."
+        },
+        {
+          "title": "How 175-year-old glass company Corning won a $6 billion AI infrastructure deal with Meta - MSN",
+          "url": "https://news.google.com/rss/articles/CBMikwJBVV95cUxQZkFFTnVyQUwydk5PQzh1UDBiaFU0TEJnenNzWG8ycE0xZzFJX2h6UV80ckFhNWFYOWVxUW5kYlMtOGtXMzk2cld2N0M0aGRHWXFBdmFCbjRzMkVjMElLTFJrakxUSXRvMDNZWXpMRkxuTVBadXYzd21NYU1JLWdOLTBYMFpHQnpxcTIxUGE0OUF2dHFpTkF0Zy1HdzdYelBHWXM2SVRNZ1BuckRXQVE0Mmd1dUp5cWUxTW9kbXVoaUhLUU9YYVdyWHFGVUJrSVFiTUw5WkR2VExZSTlQdDFvbEp1TmRfb3JjaXB1V1hBQUsybUM4UTFMLTB0QksyY2ZQTHFHSVBtb3BJZmZhTDFrTDlNZw?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 78,
+          "date_published": "2026-01-28T02:32:46+00:00",
+          "summary": ""
+        },
+        {
+          "title": "GM Just Fixed One Of The Biggest Headaches Of EV Charging",
+          "url": "https://insideevs.com/news/785483/gm-car-app-electrify-america-charging/",
+          "source": "InsideEVs",
+          "ai_score": 73,
+          "date_published": "2026-01-26T15:46:48+00:00",
+          "summary": "One less smartphone app to worry about is a win."
+        }
+      ]
+    }
+  },
+  "credits": {
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator"
+  }
+}
