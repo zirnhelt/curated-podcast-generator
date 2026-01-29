@@ -1,6 +1,8 @@
 {
-  "text": "\n--- Credits ---\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: OpenAI TTS API\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt",
+  "text": "\n--- Credits ---\nTheme Song: Cariboo Signals by Sumo AI (suno.com)\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: OpenAI TTS API\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt",
   "structured": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
     "content_curation": "Claude (Anthropic)",
     "script_generation": "Claude (Anthropic)",
     "text_to_speech": "OpenAI TTS API",
@@ -11,6 +13,7 @@
   "html": {
     "heading": "Credits",
     "items": [
+      {"label": "Theme Song", "value": "<a href='cariboo-signals-full.mp3'>Cariboo Signals by Sumo AI</a>"},
       {"label": "Content Curation & Script", "value": "Claude (Anthropic)"},
       {"label": "TTS Voices", "value": "OpenAI TTS API"},
       {"label": "Cover Art", "value": "ChatGPT (OpenAI)"},
