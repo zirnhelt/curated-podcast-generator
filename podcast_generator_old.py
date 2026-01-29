@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Curated Podcast Generator - Cariboo Tech Progress Edition with Music & Memory
-Converts RSS feed scoring data into conversational podcast scripts and generates audio with music.
+Curated Podcast Generator - Cariboo Tech Progress Edition with Memory System & Citations
+Converts RSS feed scoring data into conversational podcast scripts and generates audio.
 All text content loaded from config/ directory for easy updates.
 """
 
@@ -9,7 +9,6 @@ import os
 import sys
 import json
 import glob
-import random
 import xml.sax.saxutils as saxutils
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -43,11 +42,6 @@ SCRIPT_DIR = Path(__file__).parent
 SUPER_RSS_BASE_URL = "https://zirnhelt.github.io/super-rss-feed"
 SCORING_CACHE_URL = f"{SUPER_RSS_BASE_URL}/scored_articles_cache.json"
 
-# Music files
-INTRO_MUSIC = SCRIPT_DIR / "cariboo-signals-intro.mp3"
-INTERVAL_MUSIC = SCRIPT_DIR / "cariboo-signals-interval.mp3"
-OUTRO_MUSIC = SCRIPT_DIR / "cariboo-signals-outro.mp3"
-
 # Memory Configuration
 EPISODE_MEMORY_FILE = SCRIPT_DIR / "episode_memory.json"
 HOST_MEMORY_FILE = SCRIPT_DIR / "host_personality_memory.json"
@@ -61,10 +55,6 @@ CONFIG = {
     'credits': load_credits_config(),
     'interests': load_interests()
 }
-
-def select_welcome_host():
-    """Randomly select which host opens the show."""
-    return random.choice(['riley', 'casey'])
 
 def polish_script_with_claude(script, theme_name, api_key):
     """Use Claude to polish the script for better flow and less repetition."""
@@ -452,12 +442,6 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
     podcast_config = CONFIG['podcast']
     hosts_config = CONFIG['hosts']
     
-    # Randomly select welcome host
-    welcome_host = select_welcome_host()
-    welcome_host_name = CONFIG['hosts'][welcome_host]['name']
-    other_host = 'casey' if welcome_host == 'riley' else 'riley'
-    other_host_name = CONFIG['hosts'][other_host]['name']
-    
     # Prepare articles
     top_news = all_articles[:12]
     
@@ -521,22 +505,16 @@ IMPORTANT: These are AI hosts - do not include personal human experiences like "
 
 EPISODE STRUCTURE:
 
-**WELCOME & INTRODUCTIONS:**
-**{welcome_host_name.upper()}:** Welcome to Cariboo Signals, it's {weekday}, {date_str}. [Brief mention of today's theme: {theme_name}]
-
-**{welcome_host_name.upper()}:** I'm {welcome_host_name}, {hosts_config[welcome_host]['full_bio']}
-
-**{other_host_name.upper()}:** And I'm {other_host_name}, {hosts_config[other_host]['full_bio']}
-
-[Natural transition into news]
-
-**SEGMENT 1: THE WEEK'S TECH**
+**SEGMENT 1 (20 minutes): "The Week's Tech" - Professional News Roundup**
 Professional news anchor delivery covering these TOP-SCORED articles:
 {news_text}
 
 Style: Professional news anchor format - structured, authoritative, informative.
 
-**SEGMENT 2: CARIBOO CONNECTIONS - {theme_name}**
+## [AD BREAK PLACEHOLDER - Future Sponsorship Spot]
+[NATURAL TRANSITION: "We'll be right back after this short break to dive deeper into today's theme: {theme_name}"]
+
+**SEGMENT 2 (10 minutes): "Cariboo Connections - {theme_name}"**
 VERY CONVERSATIONAL analysis:
 {deep_dive_text}
 
@@ -551,7 +529,6 @@ CRITICAL REQUIREMENTS:
 - USE MEMORY: Reference past episodes naturally when relevant
 - FEEDBACK INVITATION: End with "We'd love to hear your thoughts"
 - Current date is {weekday}, {date_str}
-- CLEAR SEGMENT MARKERS: Use exactly "**SEGMENT 1: THE WEEK'S TECH**" and "**SEGMENT 2: CARIBOO CONNECTIONS - {theme_name}**" as headers
 
 OUTPUT: ~4,500-5,000 words with **RILEY:** and **CASEY:** speaker tags only."""
 
@@ -572,51 +549,25 @@ OUTPUT: ~4,500-5,000 words with **RILEY:** and **CASEY:** speaker tags only."""
         print(f"❌ Error generating script: {e}")
         return None
 
-def parse_script_into_segments(script):
-    """Parse script into welcome, news, and deep dive segments."""
-    segments = {
-        'welcome': [],
-        'news': [],
-        'deep_dive': []
-    }
+def parse_script_by_speaker(script):
+    """Parse script into segments by speaker."""
+    if not script:
+        return []
     
-    current_section = 'welcome'
+    segments = []
     current_speaker = None
     current_text = []
     
     for line in script.split('\n'):
         line = line.strip()
         
-        # Detect segment transitions
-        if 'SEGMENT 1:' in line or '**SEGMENT 1:' in line:
-            # Save welcome section
-            if current_speaker and current_text:
-                segments['welcome'].append({
-                    'speaker': current_speaker,
-                    'text': ' '.join(current_text).strip()
-                })
-                current_text = []
-            current_section = 'news'
-            continue
-            
-        if 'SEGMENT 2:' in line or '**SEGMENT 2:' in line:
-            # Save news section
-            if current_speaker and current_text:
-                segments['news'].append({
-                    'speaker': current_speaker,
-                    'text': ' '.join(current_text).strip()
-                })
-                current_text = []
-            current_section = 'deep_dive'
-            continue
-        
-        # Parse speaker tags
+        # Check for speaker tags FIRST
         riley_match = re.match(r'\*\*RILEY:\*\*\s*(.*)', line)
         casey_match = re.match(r'\*\*CASEY:\*\*\s*(.*)', line)
         
         if riley_match:
             if current_speaker and current_text:
-                segments[current_section].append({
+                segments.append({
                     'speaker': current_speaker,
                     'text': ' '.join(current_text).strip()
                 })
@@ -625,7 +576,7 @@ def parse_script_into_segments(script):
             
         elif casey_match:
             if current_speaker and current_text:
-                segments[current_section].append({
+                segments.append({
                     'speaker': current_speaker,
                     'text': ' '.join(current_text).strip()
                 })
@@ -633,148 +584,41 @@ def parse_script_into_segments(script):
             current_text = [casey_match.group(1)] if casey_match.group(1) else []
             
         elif line and current_speaker:
-            # Skip metadata and markers
+            # Skip metadata and stage directions
             if (not line.startswith('#') and 
-                not line.startswith('---') and
-                not 'SEGMENT' in line and
+                not line.startswith('---') and 
+                not line.startswith('*End of') and
                 not line.startswith('[') and
-                not 'AD BREAK' in line):
+                not line.endswith(']') and
+                not ('(' in line and ')' in line)):
                 current_text.append(line)
     
     # Add final segment
     if current_speaker and current_text:
-        segments[current_section].append({
+        segments.append({
             'speaker': current_speaker,
             'text': ' '.join(current_text).strip()
         })
     
-    # Clean up segments
-    for section in segments:
-        segments[section] = [s for s in segments[section] if len(s['text']) > 10]
+    # Filter short segments
+    cleaned_segments = []
+    for segment in segments:
+        clean_text = re.sub(r'\([^)]*\)', '', segment['text'])
+        clean_text = re.sub(r'\*[^*]*\*', '', clean_text)
+        clean_text = ' '.join(clean_text.split())
+        
+        if len(clean_text) > 10:
+            cleaned_segments.append({
+                'speaker': segment['speaker'],
+                'text': clean_text
+            })
     
-    print(f"🎭 Parsed script into segments:")
-    print(f"   Welcome: {len(segments['welcome'])} segments")
-    print(f"   News: {len(segments['news'])} segments")
-    print(f"   Deep Dive: {len(segments['deep_dive'])} segments")
-    
-    return segments
-
-def generate_tts_for_segment(text, speaker, output_file):
-    """Generate TTS audio for a text segment."""
-    openai_api_key = os.getenv('OPENAI_API_KEY')
-    if not openai_api_key:
-        raise ValueError("OPENAI_API_KEY not found")
-    
-    client = OpenAI(api_key=openai_api_key)
-    voice = get_voice_for_host(speaker)
-    
-    response = client.audio.speech.create(
-        model="tts-1",
-        voice=voice,
-        input=text,
-        speed=1.0
-    )
-    
-    with open(output_file, "wb") as f:
-        f.write(response.content)
+    print(f"🎭 Parsed script into {len(cleaned_segments)} speaking segments")
+    return cleaned_segments
 
 def generate_audio_from_script(script, output_filename):
-    """Convert script to audio with music interludes."""
-    print("🔊 Generating audio with music interludes...")
-    
-    openai_api_key = os.getenv('OPENAI_API_KEY')
-    if not openai_api_key:
-        print("❌ OPENAI_API_KEY not found in environment")
-        return None
-    
-    # Check if music files exist
-    music_files_exist = all([
-        INTRO_MUSIC.exists(),
-        INTERVAL_MUSIC.exists(),
-        OUTRO_MUSIC.exists()
-    ])
-    
-    if not music_files_exist:
-        print("⚠️  Music files not found - falling back to TTS-only mode")
-        return generate_audio_tts_only(script, output_filename)
-    
-    try:
-        # Parse script into segments
-        segments = parse_script_into_segments(script)
-        
-        if not segments['welcome'] or not segments['news'] or not segments['deep_dive']:
-            print("⚠️  Segment parsing failed - falling back to TTS-only mode")
-            return generate_audio_tts_only(script, output_filename)
-        
-        # Load music
-        intro_music = AudioSegment.from_mp3(str(INTRO_MUSIC))
-        interval_music = AudioSegment.from_mp3(str(INTERVAL_MUSIC))
-        outro_music = AudioSegment.from_mp3(str(OUTRO_MUSIC))
-        
-        silence = AudioSegment.silent(duration=500)
-        
-        # Start with intro music
-        combined = intro_music + silence
-        
-        # Generate and add welcome section
-        print("  🎤 Generating welcome section...")
-        for i, segment in enumerate(segments['welcome']):
-            temp_file = f"temp_welcome_{i}.mp3"
-            print(f"    {segment['speaker']}: {len(segment['text'])} chars")
-            generate_tts_for_segment(segment['text'], segment['speaker'], temp_file)
-            combined += AudioSegment.from_mp3(temp_file)
-            combined += silence
-            os.remove(temp_file)
-        
-        # Add interval music
-        combined += interval_music + silence
-        
-        # Generate and add news section
-        print("  📰 Generating news section...")
-        for i, segment in enumerate(segments['news']):
-            temp_file = f"temp_news_{i}.mp3"
-            print(f"    {segment['speaker']}: {len(segment['text'])} chars")
-            generate_tts_for_segment(segment['text'], segment['speaker'], temp_file)
-            combined += AudioSegment.from_mp3(temp_file)
-            combined += silence
-            os.remove(temp_file)
-        
-        # Add interval music
-        combined += interval_music + silence
-        
-        # Generate and add deep dive section
-        print("  🔍 Generating deep dive section...")
-        for i, segment in enumerate(segments['deep_dive']):
-            temp_file = f"temp_deep_{i}.mp3"
-            print(f"    {segment['speaker']}: {len(segment['text'])} chars")
-            generate_tts_for_segment(segment['text'], segment['speaker'], temp_file)
-            combined += AudioSegment.from_mp3(temp_file)
-            combined += silence
-            os.remove(temp_file)
-        
-        # Add outro music
-        combined += outro_music
-        
-        # Export
-        combined.export(output_filename, format="mp3")
-        
-        duration_minutes = len(combined) / 1000 / 60
-        file_size_mb = os.path.getsize(output_filename) / 1024 / 1024
-        
-        print(f"✅ Generated podcast audio with music!")
-        print(f"   Duration: {duration_minutes:.1f} minutes")
-        print(f"   File size: {file_size_mb:.1f} MB")
-        
-        return output_filename
-        
-    except Exception as e:
-        print(f"❌ Error generating audio with music: {e}")
-        print("⚠️  Falling back to TTS-only mode")
-        return generate_audio_tts_only(script, output_filename)
-
-def generate_audio_tts_only(script, output_filename):
-    """Fallback: Generate audio without music (TTS only)."""
-    print("🔊 Generating TTS-only audio...")
+    """Convert script to audio using OpenAI TTS."""
+    print("🔊 Generating audio with OpenAI TTS...")
     
     openai_api_key = os.getenv('OPENAI_API_KEY')
     if not openai_api_key:
@@ -784,47 +628,7 @@ def generate_audio_tts_only(script, output_filename):
     try:
         client = OpenAI(api_key=openai_api_key)
         
-        # Parse script by speaker (simple version)
-        segments = []
-        current_speaker = None
-        current_text = []
-        
-        for line in script.split('\n'):
-            line = line.strip()
-            
-            riley_match = re.match(r'\*\*RILEY:\*\*\s*(.*)', line)
-            casey_match = re.match(r'\*\*CASEY:\*\*\s*(.*)', line)
-            
-            if riley_match:
-                if current_speaker and current_text:
-                    segments.append({
-                        'speaker': current_speaker,
-                        'text': ' '.join(current_text).strip()
-                    })
-                current_speaker = 'riley'
-                current_text = [riley_match.group(1)] if riley_match.group(1) else []
-                
-            elif casey_match:
-                if current_speaker and current_text:
-                    segments.append({
-                        'speaker': current_speaker,
-                        'text': ' '.join(current_text).strip()
-                    })
-                current_speaker = 'casey'
-                current_text = [casey_match.group(1)] if casey_match.group(1) else []
-                
-            elif line and current_speaker:
-                if not line.startswith('#') and not line.startswith('---'):
-                    current_text.append(line)
-        
-        if current_speaker and current_text:
-            segments.append({
-                'speaker': current_speaker,
-                'text': ' '.join(current_text).strip()
-            })
-        
-        segments = [s for s in segments if len(s['text']) > 10]
-        
+        segments = parse_script_by_speaker(script)
         if not segments:
             print("❌ No speaking segments found in script")
             return None
@@ -867,14 +671,14 @@ def generate_audio_tts_only(script, output_filename):
         duration_minutes = len(combined) / 1000 / 60
         file_size_mb = os.path.getsize(output_filename) / 1024 / 1024
         
-        print(f"✅ Generated podcast audio (TTS only)")
+        print(f"✅ Generated podcast audio: {output_filename}")
         print(f"   Duration: {duration_minutes:.1f} minutes")
         print(f"   File size: {file_size_mb:.1f} MB")
         
         return output_filename
         
     except Exception as e:
-        print(f"❌ Error generating TTS audio: {e}")
+        print(f"❌ Error generating audio: {e}")
         return None
 
 def generate_podcast_rss_feed():
