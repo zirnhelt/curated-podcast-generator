@@ -33,7 +33,7 @@ try:
     from openai import OpenAI
     from pydub import AudioSegment
 except ImportError as e:
-    print(f"⚠️  Missing required library: {e}")
+    print(f"âš ï¸  Missing required library: {e}")
     print("Please install with: pip install anthropic openai pydub")
     print("Also ensure ffmpeg is installed for audio processing")
     sys.exit(1)
@@ -68,7 +68,7 @@ def select_welcome_host():
 
 def polish_script_with_claude(script, theme_name, api_key):
     """Use Claude to polish the script for better flow and less repetition."""
-    print("✨ Polishing script with Claude...")
+    print("âœ¨ Polishing script with Claude...")
     
     if not script or not api_key:
         return script
@@ -76,31 +76,31 @@ def polish_script_with_claude(script, theme_name, api_key):
     try:
         client = Anthropic(api_key=api_key)
         
-        polish_prompt = f"""Review and polish this podcast script to eliminate repetition between segments and improve flow.
+        polish_prompt = f"""Review and polish this podcast script. Fix issues listed below while preserving structure and length.
 
-CURRENT ISSUES TO FIX:
-- Remove redundant mentions of companies/sources between Segment 1 (news) and Segment 2 (deep dive)
-- Ensure Segment 2 builds on Segment 1 rather than repeating it
-- Make sure the theme "{theme_name}" is properly explored in the deep dive
-- Improve transitions and natural flow between topics
-- Keep the same speaker tags and overall structure
+ISSUES TO FIX:
+- Segment 1 should sound like anchor-driven news: one host delivers, the other reacts briefly. If it's drifting into back-and-forth conversation, tighten it.
+- Segment 2 must NOT repeat Segment 1 stories — it can reference 2-3 of them but should go DEEPER (implications, second-order effects, rural angles). If it's just restating news, rewrite those passages.
+- Transitions between segments should say "after the break" — never "after the music". Fix any instances.
+- The deep dive should have personality. If it reads dry or lecture-y, add a wry observation or two. The hosts can note absurdities, acknowledge their own AI nature when funny, or observe the gap between tech hype and rural reality. Dry wit, not jokes.
+- Make sure the theme "{theme_name}" is genuinely explored, not just name-dropped.
+- Fix any awkward phrasing or repetitive sentence structures.
 
 SCRIPT TO POLISH:
 {script}
 
-POLISHING INSTRUCTIONS:
-1. Keep exact same **RILEY:** and **CASEY:** speaker format
-2. Maintain the same overall length and energy
-3. In Segment 2, reference Segment 1 content with phrases like "Building on what we covered..." rather than re-stating facts
-4. Ensure Segment 2 focuses more on implications, connections, and "{theme_name}" rather than restating news
-5. Fix any awkward transitions or repetitive phrasing
-6. NO stage directions or performance cues
+POLISHING RULES:
+1. Keep exact same **RILEY:** and **CASEY:** speaker format and segment markers
+2. Do NOT shorten the script — maintain or slightly expand length
+3. NO stage directions or performance cues anywhere
+4. Segment 2 should be substantially longer than Segment 1
+5. Sign-off should match the day of the week (check what's already there)
 
 Return the polished script with the same structure."""
 
         response = client.messages.create(
             model="claude-sonnet-4-20250514",
-            max_tokens=4000,
+            max_tokens=8000,
             messages=[{"role": "user", "content": polish_prompt}]
         )
         
@@ -108,14 +108,14 @@ Return the polished script with the same structure."""
         
         # Quick validation
         if "**RILEY:**" in polished_script and "**CASEY:**" in polished_script:
-            print("✅ Script polished successfully!")
+            print("âœ… Script polished successfully!")
             return polished_script
         else:
-            print("⚠️ Polishing may have broken script format, using original")
+            print("âš ï¸ Polishing may have broken script format, using original")
             return script
             
     except Exception as e:
-        print(f"⚠️ Error polishing script: {e}")
+        print(f"âš ï¸ Error polishing script: {e}")
         return script
 
 
@@ -156,11 +156,11 @@ def get_episode_memory():
             if v.get('timestamp', 0) > cutoff:
                 cleaned[k] = v
         else:
-            print(f"  ⚠️  Skipping malformed memory entry: {k}")
+            print(f"  âš ï¸  Skipping malformed memory entry: {k}")
     
     if len(cleaned) != len(memory):
         save_memory(EPISODE_MEMORY_FILE, cleaned)
-        print(f"🧹 Cleaned episode memory: {len(memory)} → {len(cleaned)} episodes")
+        print(f"ðŸ§¹ Cleaned episode memory: {len(memory)} â†’ {len(cleaned)} episodes")
     
     return cleaned
 
@@ -203,26 +203,26 @@ def update_host_memory(insights_by_host):
 
 def fetch_scoring_data():
     """Fetch article scores from the live super-rss-feed system."""
-    print("📥 Fetching scoring cache from super-rss-feed...")
+    print("ðŸ“¥ Fetching scoring cache from super-rss-feed...")
     
     try:
         response = requests.get(SCORING_CACHE_URL, timeout=10)
         response.raise_for_status()
         
         scoring_data = response.json()
-        print(f"✅ Loaded {len(scoring_data)} scored articles")
+        print(f"âœ… Loaded {len(scoring_data)} scored articles")
         return scoring_data
         
     except requests.exceptions.RequestException as e:
-        print(f"❌ Error fetching scoring cache: {e}")
+        print(f"âŒ Error fetching scoring cache: {e}")
         return {}
     except json.JSONDecodeError as e:
-        print(f"❌ Error parsing JSON: {e}")
+        print(f"âŒ Error parsing JSON: {e}")
         return {}
 
 def fetch_feed_data():
     """Fetch and combine articles from all category feeds."""
-    print("📥 Fetching current feed data from all categories...")
+    print("ðŸ“¥ Fetching current feed data from all categories...")
     
     categories = ['local', 'ai-tech', 'climate', 'homelab', 'news', 'science', 'scifi']
     all_articles = []
@@ -235,14 +235,14 @@ def fetch_feed_data():
             
             feed_data = response.json()
             articles = feed_data.get('items', [])
-            print(f"  ✓ {category}: {len(articles)} articles")
+            print(f"  âœ“ {category}: {len(articles)} articles")
             all_articles.extend(articles)
             
         except requests.exceptions.RequestException as e:
-            print(f"  ⚠️  {category}: {e}")
+            print(f"  âš ï¸  {category}: {e}")
             continue
         except json.JSONDecodeError as e:
-            print(f"  ⚠️  {category}: JSON error: {e}")
+            print(f"  âš ï¸  {category}: JSON error: {e}")
             continue
     
     # Deduplicate by URL
@@ -254,7 +254,7 @@ def fetch_feed_data():
             seen_urls.add(url)
             unique_articles.append(article)
     
-    print(f"✅ Loaded {len(unique_articles)} unique articles from {len(categories)} categories")
+    print(f"âœ… Loaded {len(unique_articles)} unique articles from {len(categories)} categories")
     return unique_articles
 
 def get_article_scores(articles, scoring_data):
@@ -280,16 +280,44 @@ def get_article_scores(articles, scoring_data):
     return scored_articles
 
 def categorize_articles_for_deep_dive(articles, theme_day):
-    """Categorize articles for deep dive segment based on daily theme."""
+    """Select deep dive articles from beyond the news pool, matched to theme.
+    
+    News pool = top 12 scored articles (used in Segment 1).
+    Deep dive pulls from the remainder, scored by theme keyword overlap
+    blended with AI score so we get relevance without being purely keyword-driven.
+    """
     theme_info = CONFIG['themes'][str(theme_day)]
     theme_name = theme_info['name']
     
-    # Simple keyword matching based on theme
-    # Could be expanded with more sophisticated logic
-    theme_articles = articles[:4]  # For now, just take top 4
+    # Build keyword list from theme name + any explicit keywords in config
+    theme_keywords = [w.lower() for w in theme_name.split() if len(w) > 3]
+    if 'keywords' in theme_info:
+        theme_keywords.extend([k.lower() for k in theme_info['keywords']])
     
-    print(f"🎯 Selected {len(theme_articles)} articles for '{theme_name}'")
-    return theme_articles
+    # News pool is the top 12 — deep dive must pull from the rest
+    news_urls = set(a.get('url', '') for a in articles[:12])
+    remaining = [a for a in articles if a.get('url', '') not in news_urls]
+    
+    if not remaining:
+        # Fallback: if fewer than 12 total articles, grab from positions 4+
+        remaining = articles[4:]
+    
+    # Score remaining by theme relevance + AI score blend
+    def theme_relevance(article):
+        text = f"{article.get('title', '')} {article.get('summary', '')}".lower()
+        keyword_hits = sum(1 for kw in theme_keywords if kw in text)
+        ai_score_normalized = article.get('ai_score', 0) / 100.0  # 0-1 range
+        # Keyword hits weighted heavier (each hit = 2 points), AI score as tiebreaker
+        return keyword_hits * 2 + ai_score_normalized
+    
+    remaining.sort(key=theme_relevance, reverse=True)
+    deep_dive_articles = remaining[:3]
+    
+    print(f"Deep dive: selected {len(deep_dive_articles)} articles for '{theme_name}'")
+    print(f"  Pool: {len(remaining)} candidates beyond top 12 news")
+    for a in deep_dive_articles:
+        print(f"  - {a.get('title', '')[:70]}...")
+    return deep_dive_articles
 
 def get_current_date_info():
     """Get properly formatted current date and day in Pacific timezone."""
@@ -409,11 +437,11 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name):
         with open(citations_filename, 'w', encoding='utf-8') as f:
             json.dump(citations_data, f, indent=2, ensure_ascii=False)
         
-        print(f"📋 Saved citations to: {citations_filename.name}")
+        print(f"ðŸ“‹ Saved citations to: {citations_filename.name}")
         return citations_filename
         
     except Exception as e:
-        print(f"❌ Error saving citations: {e}")
+        print(f"âŒ Error saving citations: {e}")
         return None
 
 def format_memory_for_prompt(episode_memory, host_memory):
@@ -441,11 +469,11 @@ def format_memory_for_prompt(episode_memory, host_memory):
 
 def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory):
     """Generate conversational podcast script using Claude."""
-    print("🎙️ Generating podcast script with Claude...")
+    print("ðŸŽ™ï¸ Generating podcast script with Claude...")
     
     api_key = os.getenv('ANTHROPIC_API_KEY')
     if not api_key:
-        print("❌ ANTHROPIC_API_KEY not found in environment")
+        print("âŒ ANTHROPIC_API_KEY not found in environment")
         return None
     
     weekday, date_str = get_current_date_info()
@@ -471,6 +499,23 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         for a in deep_dive_articles
     ])
     
+    # Brief news titles so Segment 2 can reference them without repeating summaries
+    news_titles_brief = "\n".join([
+        f"  {i+1}. {a.get('title', '')}"
+        for i, a in enumerate(top_news)
+    ])
+    
+    # Day-aware sign-off
+    weekday_lower = weekday.lower()
+    if weekday_lower == 'friday':
+        sign_off = "Enjoy your weekend."
+    elif weekday_lower == 'saturday':
+        sign_off = "Hope you're having a great weekend."
+    elif weekday_lower == 'sunday':
+        sign_off = "Hope you had a great weekend."
+    else:
+        sign_off = "Have a great rest of your day."
+    
     memory_context = format_memory_for_prompt(episode_memory, host_memory)
     interests = CONFIG['interests']
     
@@ -487,7 +532,7 @@ THIS IS A DAILY PODCAST - we publish every day with weekly themes. Say "today's 
 {memory_context}
 
 **INDIGENOUS CONTEXT:**
-The Cariboo region encompasses the traditional territories of the Secwépemc (Shuswap), Tŝilhqot'in (Chilcotin), and Dakelh (Carrier) nations. When discussing regional development, infrastructure, or community initiatives:
+The Cariboo region encompasses the traditional territories of the SecwÃ©pemc (Shuswap), TÅilhqot'in (Chilcotin), and Dakelh (Carrier) nations. When discussing regional development, infrastructure, or community initiatives:
 - Acknowledge Indigenous perspectives and leadership where relevant
 - Mention Indigenous-led tech initiatives, data sovereignty, or community projects when they appear in the news
 - Don't force it into every episode, but be ready to discuss it naturally when the topic arises
@@ -523,53 +568,63 @@ EPISODE STRUCTURE:
 
 **WELCOME & INTRODUCTIONS:**
 **{welcome_host_name.upper()}:** Welcome to Cariboo Signals, it's {weekday}, {date_str}. [Brief mention of today's theme: {theme_name}]
-
 **{welcome_host_name.upper()}:** I'm {welcome_host_name}, {hosts_config[welcome_host]['full_bio']}
-
 **{other_host_name.upper()}:** And I'm {other_host_name}, {hosts_config[other_host]['full_bio']}
 
-[Natural transition into news]
+WELCOME RULES: Keep the entire welcome section under 150 words total. Be warm but brisk.
+End with a transition cue before the segment break — something like "Coming up right after this break..." or "Up next..." Do NOT say "after the music" — just reference the break.
 
 **SEGMENT 1: THE WEEK'S TECH**
-Professional news anchor delivery covering these TOP-SCORED articles:
+One host delivers news in short, punchy blocks. The other adds only brief one-sentence reactions or context — no back-and-forth conversation. Think CBC/NPR anchor handoff style. Cover ALL of these articles:
 {news_text}
 
-Style: Professional news anchor format - structured, authoritative, informative.
+SEGMENT 1 RULES:
+- Each story gets: what happened, why it matters, the rural/community angle — then move on.
+- Anchor-driven delivery. Efficient. Authoritative.
+- End this segment with a transition cue like "Right after this break, we're diving deeper..." — do NOT say "after the music", just reference the break.
 
 **SEGMENT 2: CARIBOO CONNECTIONS - {theme_name}**
-VERY CONVERSATIONAL analysis:
+Your deep dive source articles (primary material for this segment):
 {deep_dive_text}
 
-Style: Relaxed, natural conversation about today's theme and rural tech implications.
+For context, Segment 1 covered these stories — weave in 2-3 of them to connect threads, but DO NOT repeat what was already said. Go deeper:
+{news_titles_brief}
+
+SEGMENT 2 RULES:
+- This is the meaty part of the show. Longer and more substantial than Segment 1.
+- Use the deep dive articles above as your primary source material.
+- Connect 2-3 Segment 1 stories back in, but explore WHY it matters — second-order effects, implications for rural communities, what nobody's talking about.
+- HUMOR & TONE: Add wry, self-aware observations where they fit naturally. The hosts can note the absurdity of certain tech trends applied to a town of 500 people, acknowledge the gap between Silicon Valley hype and rural reality, or gently observe their own AI nature when it's funny. Think dry wit and a knowing smirk — not punchlines. The listener should feel like they're eavesdropping on two smart people who genuinely enjoy this.
+- End with: "We'd love to hear your thoughts." Then sign off with: {sign_off}
 
 CRITICAL REQUIREMENTS:
 - NO STAGE DIRECTIONS: Never write "(shuffles papers)", "(laughs)", "*chuckles*" or ANY performance cues
-- DAILY FREQUENCY: Say "today's episode" - NEVER "weekly show"
-- NO HUMAN PRETENSE: These are AI hosts - no personal family references
-- AVOID REPETITION: Don't repeat the same points
+- DAILY FREQUENCY: Say "today's episode" — NEVER "weekly show"
+- NO HUMAN PRETENSE: These are AI hosts — no personal family references
+- AVOID REPETITION: Don't repeat the same points across or within segments
 - Regional lens: "What does this mean for communities like ours?"
 - USE MEMORY: Reference past episodes naturally when relevant
-- FEEDBACK INVITATION: End with "We'd love to hear your thoughts"
+- TRANSITIONS: Always say "after the break" or "after this break" — never "after the music"
 - Current date is {weekday}, {date_str}
 - CLEAR SEGMENT MARKERS: Use exactly "**SEGMENT 1: THE WEEK'S TECH**" and "**SEGMENT 2: CARIBOO CONNECTIONS - {theme_name}**" as headers
 
-OUTPUT: ~4,500-5,000 words with **RILEY:** and **CASEY:** speaker tags only."""
+OUTPUT: ~5,500-6,500 words with **RILEY:** and **CASEY:** speaker tags only."""
 
     try:
         client = Anthropic(api_key=api_key)
         
         response = client.messages.create(
             model="claude-sonnet-4-20250514",
-            max_tokens=4000,
+            max_tokens=7000,
             messages=[{"role": "user", "content": prompt}]
         )
         
         script = response.content[0].text
-        print("✅ Generated podcast script successfully!")
+        print("âœ… Generated podcast script successfully!")
         return script
         
     except Exception as e:
-        print(f"❌ Error generating script: {e}")
+        print(f"âŒ Error generating script: {e}")
         return None
 
 def parse_script_into_segments(script):
@@ -652,7 +707,7 @@ def parse_script_into_segments(script):
     for section in segments:
         segments[section] = [s for s in segments[section] if len(s['text']) > 10]
     
-    print(f"🎭 Parsed script into segments:")
+    print(f"ðŸŽ­ Parsed script into segments:")
     print(f"   Welcome: {len(segments['welcome'])} segments")
     print(f"   News: {len(segments['news'])} segments")
     print(f"   Deep Dive: {len(segments['deep_dive'])} segments")
@@ -680,11 +735,11 @@ def generate_tts_for_segment(text, speaker, output_file):
 
 def generate_audio_from_script(script, output_filename):
     """Convert script to audio with music interludes."""
-    print("🔊 Generating audio with music interludes...")
+    print("ðŸ”Š Generating audio with music interludes...")
     
     openai_api_key = os.getenv('OPENAI_API_KEY')
     if not openai_api_key:
-        print("❌ OPENAI_API_KEY not found in environment")
+        print("âŒ OPENAI_API_KEY not found in environment")
         return None
     
     # Check if music files exist
@@ -695,7 +750,7 @@ def generate_audio_from_script(script, output_filename):
     ])
     
     if not music_files_exist:
-        print("⚠️  Music files not found - falling back to TTS-only mode")
+        print("âš ï¸  Music files not found - falling back to TTS-only mode")
         return generate_audio_tts_only(script, output_filename)
     
     try:
@@ -703,13 +758,13 @@ def generate_audio_from_script(script, output_filename):
         segments = parse_script_into_segments(script)
         
         if not segments['welcome'] or not segments['news'] or not segments['deep_dive']:
-            print("⚠️  Segment parsing failed - falling back to TTS-only mode")
+            print("âš ï¸  Segment parsing failed - falling back to TTS-only mode")
             return generate_audio_tts_only(script, output_filename)
         
-        # Load music
-        intro_music = AudioSegment.from_mp3(str(INTRO_MUSIC))
-        interval_music = AudioSegment.from_mp3(str(INTERVAL_MUSIC))
-        outro_music = AudioSegment.from_mp3(str(OUTRO_MUSIC))
+        # Load and normalize music to target level (ducked below speech)
+        intro_music    = normalize_segment(AudioSegment.from_mp3(str(INTRO_MUSIC)),    TARGET_MUSIC_DBFS)
+        interval_music = normalize_segment(AudioSegment.from_mp3(str(INTERVAL_MUSIC)), TARGET_MUSIC_DBFS)
+        outro_music    = normalize_segment(AudioSegment.from_mp3(str(OUTRO_MUSIC)),    TARGET_MUSIC_DBFS)
         
         silence = AudioSegment.silent(duration=500)
         
@@ -717,12 +772,13 @@ def generate_audio_from_script(script, output_filename):
         combined = intro_music + silence
         
         # Generate and add welcome section
-        print("  🎤 Generating welcome section...")
+        print("  ðŸŽ¤ Generating welcome section...")
         for i, segment in enumerate(segments['welcome']):
             temp_file = f"temp_welcome_{i}.mp3"
             print(f"    {segment['speaker']}: {len(segment['text'])} chars")
             generate_tts_for_segment(segment['text'], segment['speaker'], temp_file)
-            combined += AudioSegment.from_mp3(temp_file)
+            speech = normalize_segment(AudioSegment.from_mp3(temp_file), TARGET_SPEECH_DBFS)
+            combined += speech
             combined += silence
             os.remove(temp_file)
         
@@ -730,12 +786,13 @@ def generate_audio_from_script(script, output_filename):
         combined += interval_music + silence
         
         # Generate and add news section
-        print("  📰 Generating news section...")
+        print("  ðŸ“° Generating news section...")
         for i, segment in enumerate(segments['news']):
             temp_file = f"temp_news_{i}.mp3"
             print(f"    {segment['speaker']}: {len(segment['text'])} chars")
             generate_tts_for_segment(segment['text'], segment['speaker'], temp_file)
-            combined += AudioSegment.from_mp3(temp_file)
+            speech = normalize_segment(AudioSegment.from_mp3(temp_file), TARGET_SPEECH_DBFS)
+            combined += speech
             combined += silence
             os.remove(temp_file)
         
@@ -743,12 +800,13 @@ def generate_audio_from_script(script, output_filename):
         combined += interval_music + silence
         
         # Generate and add deep dive section
-        print("  🔍 Generating deep dive section...")
+        print("  ðŸ” Generating deep dive section...")
         for i, segment in enumerate(segments['deep_dive']):
             temp_file = f"temp_deep_{i}.mp3"
             print(f"    {segment['speaker']}: {len(segment['text'])} chars")
             generate_tts_for_segment(segment['text'], segment['speaker'], temp_file)
-            combined += AudioSegment.from_mp3(temp_file)
+            speech = normalize_segment(AudioSegment.from_mp3(temp_file), TARGET_SPEECH_DBFS)
+            combined += speech
             combined += silence
             os.remove(temp_file)
         
@@ -761,24 +819,24 @@ def generate_audio_from_script(script, output_filename):
         duration_minutes = len(combined) / 1000 / 60
         file_size_mb = os.path.getsize(output_filename) / 1024 / 1024
         
-        print(f"✅ Generated podcast audio with music!")
+        print(f"âœ… Generated podcast audio with music!")
         print(f"   Duration: {duration_minutes:.1f} minutes")
         print(f"   File size: {file_size_mb:.1f} MB")
         
         return output_filename
         
     except Exception as e:
-        print(f"❌ Error generating audio with music: {e}")
-        print("⚠️  Falling back to TTS-only mode")
+        print(f"âŒ Error generating audio with music: {e}")
+        print("âš ï¸  Falling back to TTS-only mode")
         return generate_audio_tts_only(script, output_filename)
 
 def generate_audio_tts_only(script, output_filename):
     """Fallback: Generate audio without music (TTS only)."""
-    print("🔊 Generating TTS-only audio...")
+    print("ðŸ”Š Generating TTS-only audio...")
     
     openai_api_key = os.getenv('OPENAI_API_KEY')
     if not openai_api_key:
-        print("❌ OPENAI_API_KEY not found in environment")
+        print("âŒ OPENAI_API_KEY not found in environment")
         return None
     
     try:
@@ -826,7 +884,7 @@ def generate_audio_tts_only(script, output_filename):
         segments = [s for s in segments if len(s['text']) > 10]
         
         if not segments:
-            print("❌ No speaking segments found in script")
+            print("âŒ No speaking segments found in script")
             return None
         
         audio_files = []
@@ -835,7 +893,7 @@ def generate_audio_tts_only(script, output_filename):
             text = segment['text']
             voice = get_voice_for_host(speaker)
             
-            print(f"  🎤 Generating audio {i+1}/{len(segments)} ({speaker}: {len(text)} chars)")
+            print(f"  ðŸŽ¤ Generating audio {i+1}/{len(segments)} ({speaker}: {len(text)} chars)")
             
             response = client.audio.speech.create(
                 model="tts-1",
@@ -850,7 +908,7 @@ def generate_audio_tts_only(script, output_filename):
             
             audio_files.append(segment_filename)
         
-        print("🎵 Combining audio segments...")
+        print("ðŸŽµ Combining audio segments...")
         
         combined = AudioSegment.empty()
         for audio_file in audio_files:
@@ -867,19 +925,19 @@ def generate_audio_tts_only(script, output_filename):
         duration_minutes = len(combined) / 1000 / 60
         file_size_mb = os.path.getsize(output_filename) / 1024 / 1024
         
-        print(f"✅ Generated podcast audio (TTS only)")
+        print(f"âœ… Generated podcast audio (TTS only)")
         print(f"   Duration: {duration_minutes:.1f} minutes")
         print(f"   File size: {file_size_mb:.1f} MB")
         
         return output_filename
         
     except Exception as e:
-        print(f"❌ Error generating TTS audio: {e}")
+        print(f"âŒ Error generating TTS audio: {e}")
         return None
 
 def generate_podcast_rss_feed():
     """Generate RSS feed with detailed citations for each episode."""
-    print("📡 Generating podcast RSS feed with citations...")
+    print("ðŸ“¡ Generating podcast RSS feed with citations...")
     
     podcast_config = CONFIG['podcast']
     credits_config = CONFIG['credits']
@@ -926,7 +984,7 @@ def generate_podcast_rss_feed():
                                     episode_description += f"{source_num}. {source_name}: {title}\n"
                                     source_num += 1
                     except Exception as e:
-                        print(f"   ⚠️ Could not load citations for {audio_file}: {e}")
+                        print(f"   âš ï¸ Could not load citations for {audio_file}: {e}")
                 
                 # Add credits
                 episode_description += credits_config['text']
@@ -998,7 +1056,7 @@ def generate_podcast_rss_feed():
     with open('podcast-feed.xml', 'w', encoding='utf-8') as f:
         f.write('\n'.join(rss_lines))
     
-    print(f"✅ Generated RSS feed with {len(episodes)} episodes (with citations)")
+    print(f"âœ… Generated RSS feed with {len(episodes)} episodes (with citations)")
 
 def save_script_to_file(script, theme_name):
     """Save the generated script to a file."""
@@ -1017,11 +1075,11 @@ def save_script_to_file(script, theme_name):
             f.write(f"# Generated: {pacific_now.strftime('%Y-%m-%d %H:%M:%S %Z')}\n\n")
             f.write(script)
         
-        print(f"💾 Saved script to: {script_filename}")
+        print(f"ðŸ’¾ Saved script to: {script_filename}")
         return script_filename
         
     except Exception as e:
-        print(f"❌ Error saving script: {e}")
+        print(f"âŒ Error saving script: {e}")
         return None
 
 def extract_topics_and_themes(script):
@@ -1055,12 +1113,12 @@ def extract_topics_and_themes(script):
 
 def main():
     """Main podcast generation workflow."""
-    print("🎙️ Starting Cariboo Tech Progress generation...")
+    print("ðŸŽ™ï¸ Starting Cariboo Tech Progress generation...")
     print("=" * 60)
     
     # Load configuration
     podcast_config = CONFIG['podcast']
-    print(f"📻 Podcast: {podcast_config['title']}")
+    print(f"ðŸ“» Podcast: {podcast_config['title']}")
     
     # Get today's theme
     pacific_now = get_pacific_now()
@@ -1068,7 +1126,7 @@ def main():
     today_theme = get_theme_for_day(today_weekday)
     weekday, date_str = get_current_date_info()
     
-    print(f"📅 {weekday}, {date_str} - Theme: {today_theme}")
+    print(f"ðŸ“… {weekday}, {date_str} - Theme: {today_theme}")
     
     # Load memories
     episode_memory = get_episode_memory()
@@ -1084,7 +1142,7 @@ def main():
     audio_exists = os.path.exists(audio_filename)
     
     if script_exists and audio_exists:
-        print(f"✅ Today's episode already exists:")
+        print(f"âœ… Today's episode already exists:")
         print(f"   Script: {script_filename}")
         print(f"   Audio: {audio_filename}")
         generate_podcast_rss_feed()
@@ -1092,21 +1150,21 @@ def main():
     
     # Generate script if needed
     if not script_exists:
-        print("🆕 Generating new script...")
+        print("ðŸ†• Generating new script...")
         
         # Fetch data
         scoring_data = fetch_scoring_data()
         current_articles = fetch_feed_data()
         
         if not scoring_data or not current_articles:
-            print("❌ Failed to fetch data. Exiting.")
+            print("âŒ Failed to fetch data. Exiting.")
             sys.exit(1)
         
         # Score and categorize
         scored_articles = get_article_scores(current_articles, scoring_data)
         deep_dive_articles = categorize_articles_for_deep_dive(scored_articles, today_weekday)
         
-        print(f"📊 Ready to generate podcast:")
+        print(f"ðŸ“Š Ready to generate podcast:")
         print(f"   News roundup: Top 12 articles")
         print(f"   Theme: {today_theme}")
         print(f"   Memory context: {len(episode_memory)} recent episodes")
@@ -1123,7 +1181,7 @@ def main():
             script = polish_script_with_claude(script, today_theme, api_key)
         
         if not script:
-            print("❌ Failed to generate script. Exiting.")
+            print("âŒ Failed to generate script. Exiting.")
             sys.exit(1)
         
         # Save script
@@ -1141,7 +1199,7 @@ def main():
             }
             update_host_memory(host_insights)
     else:
-        print(f"📄 Using existing script: {script_filename}")
+        print(f"ðŸ“„ Using existing script: {script_filename}")
         with open(script_filename, 'r', encoding='utf-8') as f:
             script = f.read()
     
@@ -1150,19 +1208,20 @@ def main():
         audio_file = generate_audio_from_script(script, audio_filename)
         
         if audio_file:
-            print(f"🎉 Podcast complete!")
+            print(f"ðŸŽ‰ Podcast complete!")
             print(f"   Script: {script_filename}")
             print(f"   Audio:  {audio_file}")
         else:
-            print(f"📝 Script ready: {script_filename}")
-            print("🔊 Audio generation failed")
+            print(f"ðŸ“ Script ready: {script_filename}")
+            print("ðŸ”Š Audio generation failed")
     elif audio_exists:
-        print(f"🎵 Audio already exists: {audio_filename}")
+        print(f"ðŸŽµ Audio already exists: {audio_filename}")
     
     # Generate RSS feed
     generate_podcast_rss_feed()
     
-    print("✅ Generation complete!")
+    print("âœ… Generation complete!")
 
 if __name__ == "__main__":
     main()
+
