@@ -964,7 +964,7 @@ def generate_podcast_rss_feed():
     ]
     
     for category in podcast_config["categories"]:
-        rss_lines.append(f'<itunes:category text="{category}"/>')
+        rss_lines.append(f'<itunes:category text="{saxutils.escape(category)}"/>')
     
     rss_lines.extend([
         f'<itunes:explicit>{"true" if podcast_config["explicit"] else "false"}</itunes:explicit>',
