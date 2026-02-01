@@ -80,9 +80,9 @@ def polish_script_with_claude(script, theme_name, api_key):
 
 ISSUES TO FIX:
 - Segment 1 should sound like anchor-driven news: one host delivers, the other reacts briefly. If it's drifting into back-and-forth conversation, tighten it.
-- Segment 2 must NOT repeat Segment 1 stories — it can reference 2-3 of them but should go DEEPER (implications, second-order effects, rural angles). If it's just restating news, rewrite those passages.
-- Transitions between segments should say "after the break" — never "after the music". Fix any instances.
-- The deep dive should have personality. If it reads dry or lecture-y, add a wry observation or two. The hosts can note absurdities, acknowledge their own AI nature when funny, or observe the gap between tech hype and rural reality. Dry wit, not jokes.
+- Segment 2 must build ONE argument about the theme. If it reads like a second news roundup with rural angles bolted on, rewrite it. It can reference at most 2 news stories, only where they sharpen the argument.
+- Check transitions — each one should use unique phrasing. If any say "after the music", fix them. If they all sound the same, vary them.
+- Segment 2 MUST have at least 2 moments of genuine levity. If there are none, add them. Good targets: scale absurdity (Silicon Valley vs. a town of 500), the gap between tech hype and rural reality, or the hosts' own AI nature when it's actually funny.
 - Make sure the theme "{theme_name}" is genuinely explored, not just name-dropped.
 - Fix any awkward phrasing or repetitive sentence structures.
 
@@ -567,12 +567,11 @@ IMPORTANT: These are AI hosts - do not include personal human experiences like "
 EPISODE STRUCTURE:
 
 **WELCOME & INTRODUCTIONS:**
-**{welcome_host_name.upper()}:** Welcome to Cariboo Signals, it's {weekday}, {date_str}. [Brief mention of today's theme: {theme_name}]
-**{welcome_host_name.upper()}:** I'm {welcome_host_name}, {hosts_config[welcome_host]['full_bio']}
-**{other_host_name.upper()}:** And I'm {other_host_name}, {hosts_config[other_host]['full_bio']}
+**{welcome_host_name.upper()}:** Welcome to Cariboo Signals, it's {weekday}, {date_str}. Today's theme is {theme_name} — I'm {welcome_host_name}.
+**{other_host_name.upper()}:** And I'm {other_host_name}. [One sentence on the theme or what's ahead today.]
+**{welcome_host_name.upper()}:** [One-sentence transition into Segment 1 — don't preview specific stories, just hand off.]
 
-WELCOME RULES: Keep the entire welcome section under 150 words total. Be warm but brisk.
-End with a transition cue before the segment break — something like "Coming up right after this break..." or "Up next..." Do NOT say "after the music" — just reference the break.
+WELCOME RULES: Hard cap at 100 words total across exactly 3 turns. NO story previews — that's Segment 1's job. Be warm but brisk. Vary the transition handoff each episode.
 
 **SEGMENT 1: THE WEEK'S TECH**
 One host delivers news in short, punchy blocks. The other adds only brief one-sentence reactions or context — no back-and-forth conversation. Think CBC/NPR anchor handoff style. Cover ALL of these articles:
@@ -581,20 +580,21 @@ One host delivers news in short, punchy blocks. The other adds only brief one-se
 SEGMENT 1 RULES:
 - Each story gets: what happened, why it matters, the rural/community angle — then move on.
 - Anchor-driven delivery. Efficient. Authoritative.
-- End this segment with a transition cue like "Right after this break, we're diving deeper..." — do NOT say "after the music", just reference the break.
+- End with a short transition into Segment 2. Vary the phrasing each episode — never repeat the same transition twice, never say "after the music".
 
 **SEGMENT 2: CARIBOO CONNECTIONS - {theme_name}**
 Your deep dive source articles (primary material for this segment):
 {deep_dive_text}
 
-For context, Segment 1 covered these stories — weave in 2-3 of them to connect threads, but DO NOT repeat what was already said. Go deeper:
+For context, here's what Segment 1 covered — DO NOT repeat any of these. They can only appear if they sharpen your central argument:
 {news_titles_brief}
 
 SEGMENT 2 RULES:
 - This is the meaty part of the show. Longer and more substantial than Segment 1.
-- Use the deep dive articles above as your primary source material.
-- Connect 2-3 Segment 1 stories back in, but explore WHY it matters — second-order effects, implications for rural communities, what nobody's talking about.
-- HUMOR & TONE: Add wry, self-aware observations where they fit naturally. The hosts can note the absurdity of certain tech trends applied to a town of 500 people, acknowledge the gap between Silicon Valley hype and rural reality, or gently observe their own AI nature when it's funny. Think dry wit and a knowing smirk — not punchlines. The listener should feel like they're eavesdropping on two smart people who genuinely enjoy this.
+- BUILD ONE ARGUMENT about the theme using the deep dive articles as your foundation. This is NOT a second news roundup — pick a thread and pull on it.
+- You may reference at most 2 Segment 1 stories, and ONLY if they directly support your argument. The listener already heard them — don't summarize again.
+- Explore second-order effects, the gaps between what's promised and what actually reaches rural communities. What's nobody talking about?
+- HUMOR & TONE: You MUST include at least 2 genuinely funny moments. Good targets: the absurdity of applying Silicon Valley scale to a town of 500, the gap between tech promises and what actually reaches rural communities, or the hosts gently noting their own AI nature when it's actually funny (not just "ha ha I'm an AI"). Dry wit and a knowing smirk — not punchlines. The listener should feel like they're eavesdropping on two smart people who are genuinely enjoying themselves.
 - End with: "We'd love to hear your thoughts." Then sign off with: {sign_off}
 
 CRITICAL REQUIREMENTS:
@@ -604,7 +604,7 @@ CRITICAL REQUIREMENTS:
 - AVOID REPETITION: Don't repeat the same points across or within segments
 - Regional lens: "What does this mean for communities like ours?"
 - USE MEMORY: Reference past episodes naturally when relevant
-- TRANSITIONS: Always say "after the break" or "after this break" — never "after the music"
+- TRANSITIONS: Each transition should use unique phrasing. Never say "after the music". Don't overuse "the break" — one mention per transition is plenty.
 - Current date is {weekday}, {date_str}
 - CLEAR SEGMENT MARKERS: Use exactly "**SEGMENT 1: THE WEEK'S TECH**" and "**SEGMENT 2: CARIBOO CONNECTIONS - {theme_name}**" as headers
 
@@ -750,7 +750,7 @@ def generate_audio_from_script(script, output_filename):
     ])
     
     if not music_files_exist:
-        print("âš ï¸  Music files not found - falling back to TTS-only mode")
+        print("âš ï¸  OPENAI_API_KEY not set - falling back to TTS-only mode")
         return generate_audio_tts_only(script, output_filename)
     
     try:
@@ -761,6 +761,12 @@ def generate_audio_from_script(script, output_filename):
             print("âš ï¸  Segment parsing failed - falling back to TTS-only mode")
             return generate_audio_tts_only(script, output_filename)
         
+        # Verify music files exist before loading
+        for music_path in [INTRO_MUSIC, INTERVAL_MUSIC, OUTRO_MUSIC]:
+            if not music_path.exists():
+                raise FileNotFoundError(f"Music file missing: {music_path}")
+            print(f"   ✅ Found: {music_path} ({music_path.stat().st_size} bytes)")
+
         # Load and normalize music to target level (ducked below speech)
         intro_music    = normalize_segment(AudioSegment.from_mp3(str(INTRO_MUSIC)),    TARGET_MUSIC_DBFS)
         interval_music = normalize_segment(AudioSegment.from_mp3(str(INTERVAL_MUSIC)), TARGET_MUSIC_DBFS)
@@ -872,7 +878,12 @@ def generate_audio_tts_only(script, output_filename):
                 current_text = [casey_match.group(1)] if casey_match.group(1) else []
                 
             elif line and current_speaker:
-                if not line.startswith('#') and not line.startswith('---'):
+                if (not line.startswith('#') and 
+                    not line.startswith('---') and
+                    not 'SEGMENT' in line and
+                    not 'WELCOME' in line and
+                    not line.startswith('[') and
+                    not 'AD BREAK' in line):
                     current_text.append(line)
         
         if current_speaker and current_text:
