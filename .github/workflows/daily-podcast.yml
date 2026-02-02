@@ -6,7 +6,7 @@ on:
     # 5:00 AM PST = 13:00 UTC (winter)
     # 5:00 AM PDT = 12:00 UTC (summer)  
     # Using 13:00 UTC to be consistent year-round (may be 6am in summer)
-    - cron: '0 13 * * *'
+    - cron: '0 12 * * *'
   workflow_dispatch:  # Allow manual trigger
 
 permissions:
