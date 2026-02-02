@@ -1,0 +1,152 @@
+{
+  "episode": {
+    "date": "2026-02-02",
+    "formatted_date": "Monday, February 02, 2026",
+    "theme": "Community-Controlled Infrastructure",
+    "title": "Cariboo Signals - Community-Controlled Infrastructure",
+    "description": "Riley and Casey explore technology and society in rural communities. Today's focus: Community-Controlled Infrastructure.\n\nNEWS ROUNDUP: We break down SD73 adds new accessible school bus to increase equitable field trip transportation and I embedded myself in a vibe coding team at Gemini's AI hackathon in Singapore. Building an app in 7 hours takes real work., plus 1 more stories, and explore what these developments mean for communities like ours.\n\nRURAL CONNECTIONS: Deep dive into community-controlled infrastructure, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.\n\nHosts: Riley (Tech systems thinker with rural roots) and Casey (Community development focus).\n\nSources:\n1. CFJC Today Kamloops: SD73 adds new accessible school bus to increase equitable fi...\n2. Business Insider: I embedded myself in a vibe coding team at Gemini's AI hacka...\n3. GN AI ML Infrastructure: Tarabut Acquires Servable To Build AI-Native Financial Infra...\n4. GN AI ML Infrastructure: Meta’s $65 Billion AI Gamble: When Infrastructure Spending O...\n5. GN AI ML Infrastructure: Oracle Plans to Raise $50 Billion to Expand Cloud Infrastruc...\n6. TechCrunch: AI layoffs or ‘AI-washing’?\n7. GN AI ML Infrastructure: Arista Networks: The Critical Infrastructure Powering the AI...\n8. GN AI ML Infrastructure: Corning, Meta secure $6bn alliance to supercharge AI fibre s...\n9. Neowin: NVIDIA CEO says $100 billion investment in OpenAI was never ...\n10. GN AI ML Infrastructure: Arrow Electronics Earnings: A Litmus Test for AI Infrastruct...\n11. GN AI ML Infrastructure: Budget 2026–27: Tax holiday for foreign cloud companies sign...\n12. NYT Business: Indonesia Lifts Ban on Grok After New Assurances From X Corp\n13. GN AI ML Infrastructure: How Cybersecurity Infrastructure Could Determine America’s A...\n14. GN AI ML Infrastructure: The Race to Build New AI Infrastructure\n15. GN AI ML Infrastructure: Ciena: Riding The Second Wave Of AI Infrastructure Growth\n\n--- Credits ---\nTheme Song: Cariboo Signals by Sumo AI (suno.com)\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: OpenAI TTS API\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt",
+    "generated_at": "2026-02-02T05:56:05.965356-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "The Week's Tech - News Roundup",
+      "articles": [
+        {
+          "title": "SD73 adds new accessible school bus to increase equitable field trip transportation",
+          "url": "https://cfjctoday.com/2026/01/31/sd73-adds-new-accessible-school-bus-to-increase-equitable-field-trip-transportation/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-01-31T20:32:11+00:00",
+          "summary": ""
+        },
+        {
+          "title": "I embedded myself in a vibe coding team at Gemini's AI hackathon in Singapore. Building an app in 7 hours takes real work.",
+          "url": "https://www.businessinsider.com/vibe-coding-team-embed-google-gemini-hackathon-singapore-2026-2",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-02-02T05:07:11+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Tarabut Acquires Servable To Build AI-Native Financial Infrastructure Across MENA",
+          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOTXh4a3EyNTRodnJPdVlzWTk3RjdmQnhFWHdKeFlQZkx2b3ZxYzFSOHBLcFV4TktoUjNFREt1dFZFdDZzbjhDZlhXOE00NDN2Z293NjlnWEZ5OWh0T1BUNFR1M0FmNWh4SlF5N0JJeVRjUV9seElEbmMxZWowdXpyQ3I3Vjl1TE1HSG5aSjZTaGw0X3ZLSlFEa0xJQ2w1TTRmV19j0gGoAUFVX3lxTE5CdmxNbVUyaS1uX3JJelU1ZS1LM255Xzk0b0hnTWludzVnN3g5T1Q4UF9ud0dfR1BWdG1ic0JLZDlIejlaZExuRndiLUVJYXFKcDZ0VE9wNF9PMmYtUVV5NmNJUjZ4Uk1ReW9VaHpPY0xpTEJCOUx6d0t4YTdsWTZKenRZNFczOXhORGxDUXpsLVFsaHRiX0Y0WjBkcEpMdWFscGwxeFZCdQ?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-02T04:24:21+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Meta’s $65 Billion AI Gamble: When Infrastructure Spending Outpaces Revenue Reality",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQbVIzNXVoVExzclZKUmJOZ1NmUTFrWk5ZTEFFejNZcjhHYUZOdzJUbXFTSXpiZTJDcmhxaXl0ejRWWDhRWVFsOGdSNk5hSkxvaGNwajVrN1pEQ2N6dnI2c0FuTmlabWhJM1hZWWFkZWMyNDllY2RfZkI3SmxLbmItTUJRS3lmaFVfUDQ4ZXNwM0xsYUhGMHMyWVkxdThJNVVjYlBONENtQ3VIS21o?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-02T02:33:26+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Oracle Plans to Raise $50 Billion to Expand Cloud Infrastructure",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPNXJxeHpwNFZoQUhzYU11bVZ6dnJkUjZQSkVrdzgxNTVuY2pscmxqQUFIS2tYa1l1R0tkRy01bmJ0NTJWblRydVUyM1VkaXJDMXVNbFpFM2RtbVRjSTBwejlZVHViWk5VbkZFUmRFZlpJQXlJUVJaVlJXMlNrbmotUmtQWkxlNWtES0pibWtQYzh2Z0FxdGxXVUZHeVNwQQ?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-01T23:12:21+00:00",
+          "summary": ""
+        },
+        {
+          "title": "AI layoffs or ‘AI-washing’?",
+          "url": "https://techcrunch.com/2026/02/01/ai-layoffs-or-ai-washing/",
+          "source": "TechCrunch",
+          "ai_score": 0,
+          "date_published": "2026-02-01T22:15:53+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Arista Networks: The Critical Infrastructure Powering the AI Boom",
+          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOQWQySEh1ZWkwM1g3RVNBTWhQMXgzZjA4emNWaDdLbzA0ZkRMQjJvZXF4NkhRRW02d3RCRk9YNVJwcDF3WXcwYWo0VGhCZlVqRHdqeG5CNFdlY2J5VVRrVTBiN0tFWktYQ3FEdnZTRktQbk96RDNPS0o1MGEyOGd0OE84cTN0S0RjX1pJUW9VZG9BaDM3SmdMNk9ESWlBSnUwYzdyNTNWU2lvdEVtWHlwUHNSaEdBSmFnbURoeWFsR3I?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-01T17:25:04+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Corning, Meta secure $6bn alliance to supercharge AI fibre supply",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOZ01EX1NUSS1HQlUwMnJ4eWtBM3VuVFREb0c5aWQxanVrSmVSRHUyVVJiZ1gtc1o5ZURCeUVtVmhPd2ZFY00yazdaUXFhbV9JYUZpU0g1VUs0MlIzeWYwVmQtMDI3QURPU2RBZlpxSF92NnlfaEw4QXNwcEppR3I3WVNtR21FQmxiTkRhenAwUE9ZNG9VMHQ0Q3Q1SVdjWGc?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-01T16:29:17+00:00",
+          "summary": ""
+        },
+        {
+          "title": "NVIDIA CEO says $100 billion investment in OpenAI was never a commitment",
+          "url": "https://www.neowin.net/news/nvidia-ceo-says-100-billion-investment-in-openai-was-never-a-commitment/",
+          "source": "Neowin",
+          "ai_score": 0,
+          "date_published": "2026-02-01T16:00:01+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Arrow Electronics Earnings: A Litmus Test for AI Infrastructure Demand",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPeWtFeGpWTTFkdkJTbFR2d00zZ19PazFvbUpsUWFXNndXcUdqU0J3OUJKWlVtUFdrR0N4aW41bE1YSXlpZWtVUTVyN0Nra0tlaEV5Zm9qZ21OcENiLUU2RlpjZy10MjY5QWs5WEhkNjE2aWxSZzFEOGxrM0h3bkRCWHlQQUx6Tko5RTFPZjZ5U21HdXp3azRjRGU4elJ4eHR0OVZzcDFWcEhhZ3VSMzNWTDRIenhBRkhleG5KTEtZazRFX3NVdVNn?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-01T14:17:05+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Budget 2026–27: Tax holiday for foreign cloud companies signals AI infrastructure push",
+          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQcjl1TE1aUHZUSUNRQjhVb05DWkRnVVowajNPSnNwZXFIbE9ySkt0UFN0akx6ZHNzZVNuSTJySG80R09vclRGOW1MVGc4amNJQUJ5eFg2WGptTzVwYUZOcGF2UENTTXVTc09Ial8xNXB6aF94ZXNuOXdGVmJYdGlaNHR1a2oyelJxYktQcHliWnFGcHN1UEc1THl0MlNWX0dIelQ3NHh5QzhsVEVwM3gtdmVR?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-01T11:26:39+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Indonesia Lifts Ban on Grok After New Assurances From X Corp",
+          "url": "https://www.nytimes.com/2026/02/01/world/asia/indonesia-lift-grok-ban.html",
+          "source": "NYT Business",
+          "ai_score": 0,
+          "date_published": "2026-02-01T10:33:03+00:00",
+          "summary": ""
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Community-Controlled Infrastructure",
+      "articles": [
+        {
+          "title": "How Cybersecurity Infrastructure Could Determine America’s AI Supremacy Over China",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQT2pINkdhV3JVaEhoc2lyUlBTUEFEOXY2bmlUYnRRWm9ESEh3VDM3WUdTWXRqUzZ6S25xeWVxNE1pT1pSM25sNDVaWXllNUZnS3lPVUVOUnltV01Iakg4cXVkWklZYURwUS1jOUVSbGZLaTgtRHotTFdRdkRERGtnMXd6Qm1DOFJOOU9PLXhvTGFMYnpkUjU2bXQwcjA4TmltWHZnUVc0REhIRGhGS3c?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-01T10:01:56+00:00",
+          "summary": ""
+        },
+        {
+          "title": "The Race to Build New AI Infrastructure",
+          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOQkpFYXVzMGdtSkh6aVVubERXbTBNMk9BcTBVUlRNaHpBWnR2NzBMWTRXWHNiNEZVVWNCTnp6YU9CZnByb1pJZW9LV012X2JsOFFrMC0zM2lxOUhPd0NTLUVTODFGLXdBUlJIWFU0Q3FZRFZkSFZWcnFYYkgwcVdUUUxxZXY2dm9rN01LLVdwbGNCX1B1WGRIcmlsenlvTlpNUks0?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-02T04:50:45+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Ciena: Riding The Second Wave Of AI Infrastructure Growth",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPay1FRTgyckhjZktIU0hVZW0yU2tBQjhqV2FmNk4wTFkzQ1Z1bzJTQ2lsUUNKQjdMdFVYOGM1dTZscWE5bGw2VlZMdVNNZ0Y1T1dGcFV0ZUxRQkd0NHdNM2YyU2plbWVpY1BTUlRmME5lbzJQLWhzVFFyTldCcHMxWFRnbEhfZ3lHb015V2JzQ0h4ZEtWR0dXYUJjZXpQdw?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-02T04:23:51+00:00",
+          "summary": ""
+        }
+      ]
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator"
+  }
+}
