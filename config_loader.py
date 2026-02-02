@@ -34,6 +34,11 @@ def load_interests():
     with open(CONFIG_DIR / "interests.txt", 'r') as f:
         return f.read()
 
+def load_prompts_config():
+    """Load Claude API prompts."""
+    with open(CONFIG_DIR / "prompts.json", 'r') as f:
+        return json.load(f)
+
 def get_voice_for_host(host_key):
     """Get TTS voice for a host."""
     hosts = load_hosts_config()
@@ -51,7 +56,8 @@ def get_all_config():
         'hosts': load_hosts_config(),
         'themes': load_themes_config(),
         'credits': load_credits_config(),
-        'interests': load_interests()
+        'interests': load_interests(),
+        'prompts': load_prompts_config()
     }
 
 if __name__ == "__main__":
@@ -65,5 +71,6 @@ if __name__ == "__main__":
     print(f"📅 Themes: {len(config['themes'])} daily themes")
     print(f"✅ Credits loaded: {len(config['credits']['structured'])} items")
     print(f"📝 Interests: {len(config['interests'])} characters")
+    print(f"🤖 Prompts: {len(config['prompts'])} prompt templates")
     
     print("\n✅ All configs loaded successfully!")

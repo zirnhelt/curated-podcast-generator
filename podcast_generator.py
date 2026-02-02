@@ -23,6 +23,7 @@ from config_loader import (
     load_themes_config,
     load_credits_config,
     load_interests,
+    load_prompts_config,
     get_voice_for_host,
     get_theme_for_day
 )
@@ -33,7 +34,7 @@ try:
     from openai import OpenAI
     from pydub import AudioSegment
 except ImportError as e:
-    print(f"âš ï¸  Missing required library: {e}")
+    print(f"⚠️  Missing required library: {e}")
     print("Please install with: pip install anthropic openai pydub")
     print("Also ensure ffmpeg is installed for audio processing")
     sys.exit(1)
@@ -48,6 +49,10 @@ INTRO_MUSIC = SCRIPT_DIR / "cariboo-signals-intro.mp3"
 INTERVAL_MUSIC = SCRIPT_DIR / "cariboo-signals-interval.mp3"
 OUTRO_MUSIC = SCRIPT_DIR / "cariboo-signals-outro.mp3"
 
+# Audio normalization targets (dBFS)
+TARGET_SPEECH_DBFS = -20.0  # Speech louder and clear
+TARGET_MUSIC_DBFS = -28.0   # Music ducked beneath speech
+
 # Memory Configuration
 EPISODE_MEMORY_FILE = SCRIPT_DIR / "episode_memory.json"
 HOST_MEMORY_FILE = SCRIPT_DIR / "host_personality_memory.json"
@@ -59,16 +64,22 @@ CONFIG = {
     'hosts': load_hosts_config(),
     'themes': load_themes_config(),
     'credits': load_credits_config(),
-    'interests': load_interests()
+    'interests': load_interests(),
+    'prompts': load_prompts_config()
 }
 
 def select_welcome_host():
     """Randomly select which host opens the show."""
     return random.choice(['riley', 'casey'])
 
+def normalize_segment(audio_segment, target_dbfs):
+    """Normalize audio segment to target dBFS level."""
+    change_in_dbfs = target_dbfs - audio_segment.dBFS
+    return audio_segment.apply_gain(change_in_dbfs)
+
 def polish_script_with_claude(script, theme_name, api_key):
     """Use Claude to polish the script for better flow and less repetition."""
-    print("âœ¨ Polishing script with Claude...")
+    print("✨ Polishing script with Claude...")
     
     if not script or not api_key:
         return script
@@ -76,27 +87,14 @@ def polish_script_with_claude(script, theme_name, api_key):
     try:
         client = Anthropic(api_key=api_key)
         
-        polish_prompt = f"""Review and polish this podcast script. Fix issues listed below while preserving structure and length.
-
-ISSUES TO FIX:
-- Segment 1 should sound like anchor-driven news: one host delivers, the other reacts briefly. If it's drifting into back-and-forth conversation, tighten it.
-- Segment 2 must build ONE argument about the theme. If it reads like a second news roundup with rural angles bolted on, rewrite it. It can reference at most 2 news stories, only where they sharpen the argument.
-- Check transitions — each one should use unique phrasing. If any say "after the music", fix them. If they all sound the same, vary them.
-- Segment 2 MUST have at least 2 moments of genuine levity. If there are none, add them. Good targets: scale absurdity (Silicon Valley vs. a town of 500), the gap between tech hype and rural reality, or the hosts' own AI nature when it's actually funny.
-- Make sure the theme "{theme_name}" is genuinely explored, not just name-dropped.
-- Fix any awkward phrasing or repetitive sentence structures.
-
-SCRIPT TO POLISH:
-{script}
-
-POLISHING RULES:
-1. Keep exact same **RILEY:** and **CASEY:** speaker format and segment markers
-2. Do NOT shorten the script — maintain or slightly expand length
-3. NO stage directions or performance cues anywhere
-4. Segment 2 should be substantially longer than Segment 1
-5. Sign-off should match the day of the week (check what's already there)
-
-Return the polished script with the same structure."""
+        # Load prompt template from config
+        prompt_template = CONFIG['prompts']['script_polish']['template']
+        
+        # Format the template with actual values
+        polish_prompt = prompt_template.format(
+            theme_name=theme_name,
+            script=script
+        )
 
         response = client.messages.create(
             model="claude-sonnet-4-20250514",
@@ -108,16 +106,15 @@ Return the polished script with the same structure."""
         
         # Quick validation
         if "**RILEY:**" in polished_script and "**CASEY:**" in polished_script:
-            print("âœ… Script polished successfully!")
+            print("✅ Script polished successfully!")
             return polished_script
         else:
-            print("âš ï¸ Polishing may have broken script format, using original")
+            print("⚠️ Polishing may have broken script format, using original")
             return script
             
     except Exception as e:
-        print(f"âš ï¸ Error polishing script: {e}")
+        print(f"⚠️ Error polishing script: {e}")
         return script
-
 
 def get_pacific_now():
     """Get current datetime in Pacific timezone."""
@@ -467,13 +464,14 @@ def format_memory_for_prompt(episode_memory, host_memory):
     
     return context
 
+
 def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory):
     """Generate conversational podcast script using Claude."""
-    print("ðŸŽ™ï¸ Generating podcast script with Claude...")
+    print("🎙️ Generating podcast script with Claude...")
     
     api_key = os.getenv('ANTHROPIC_API_KEY')
     if not api_key:
-        print("âŒ ANTHROPIC_API_KEY not found in environment")
+        print("❌ ANTHROPIC_API_KEY not found in environment")
         return None
     
     weekday, date_str = get_current_date_info()
@@ -517,98 +515,36 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         sign_off = "Have a great rest of your day."
     
     memory_context = format_memory_for_prompt(episode_memory, host_memory)
-    interests = CONFIG['interests']
     
     riley = hosts_config['riley']
     casey = hosts_config['casey']
     
-    prompt = f"""Create a 30-minute DAILY podcast script for "{weekday}, {date_str}" focusing on "Technological and Societal Progress in the Cariboo."
-
-PODCAST THEME: "{podcast_config['title']}"
-{podcast_config['description']}
-
-THIS IS A DAILY PODCAST - we publish every day with weekly themes. Say "today's episode" not "weekly show."
-
-{memory_context}
-
-**INDIGENOUS CONTEXT:**
-The Cariboo region encompasses the traditional territories of the SecwÃ©pemc (Shuswap), TÅilhqot'in (Chilcotin), and Dakelh (Carrier) nations. When discussing regional development, infrastructure, or community initiatives:
-- Acknowledge Indigenous perspectives and leadership where relevant
-- Mention Indigenous-led tech initiatives, data sovereignty, or community projects when they appear in the news
-- Don't force it into every episode, but be ready to discuss it naturally when the topic arises
-- Avoid stereotypes or "exotic" framing - treat Indigenous innovation as part of the regional tech landscape
-
-**CRITICAL ANTI-REPETITION REQUIREMENTS:**
-
-1. VARIED VOCABULARY: Never use the same descriptive phrase twice. Vary sentence structures significantly.
-
-2. NO CIRCULAR REASONING: Don't repeat the same argument in different words. Each point should add NEW information.
-
-3. NATURAL TRANSITIONS: Avoid formulaic transitions like "Speaking of..." Use conversational bridges: "That reminds me of...", "Here's where it gets interesting..."
-
-4. DEPTH OVER BREADTH: Better to explore 2-3 stories deeply than skim 5 stories superficially. Each story should have: what happened, why it matters, what's the rural angle. Then move on.
-
-5. CONVERSATIONAL FLOW: Build on each other's points, don't repeat them. Use "Yeah, and..." not "Yes, exactly, let me restate that..."
-
-6. SEGMENT VARIETY: News Roundup should be efficient and fact-focused (like NPR). Deep Dive should be relaxed and exploratory. These should SOUND different.
-
-**EXAMPLE - WHAT TO AVOID:**
-BAD: "This could help rural communities." / "Absolutely, rural areas could benefit." / "Yeah, for communities like ours, this would be useful." [Same point three times]
-
-GOOD: "This could help with last-mile connectivity." / "True, though maintenance costs in smaller populations..." / "Maybe a co-op model like Olds Fiber?" [Each adds something new]
-
-
-HOSTS:
-- {riley['name']} ({riley['pronouns']}): {riley['full_bio']}
-- {casey['name']} ({casey['pronouns']}): {casey['full_bio']}
-
-IMPORTANT: These are AI hosts - do not include personal human experiences like "my dad" or family references. Keep it professional and focused on rural tech perspectives.
-
-EPISODE STRUCTURE:
-
-**WELCOME & INTRODUCTIONS:**
-**{welcome_host_name.upper()}:** Welcome to Cariboo Signals, it's {weekday}, {date_str}. Today's theme is {theme_name} — I'm {welcome_host_name}.
-**{other_host_name.upper()}:** And I'm {other_host_name}. [One sentence on the theme or what's ahead today.]
-**{welcome_host_name.upper()}:** [One-sentence transition into Segment 1 — don't preview specific stories, just hand off.]
-
-WELCOME RULES: Hard cap at 100 words total across exactly 3 turns. NO story previews — that's Segment 1's job. Be warm but brisk. Vary the transition handoff each episode.
-
-**SEGMENT 1: THE WEEK'S TECH**
-One host delivers news in short, punchy blocks. The other adds only brief one-sentence reactions or context — no back-and-forth conversation. Think CBC/NPR anchor handoff style. Cover ALL of these articles:
-{news_text}
-
-SEGMENT 1 RULES:
-- Each story gets: what happened, why it matters, the rural/community angle — then move on.
-- Anchor-driven delivery. Efficient. Authoritative.
-- End with a short transition into Segment 2. Vary the phrasing each episode — never repeat the same transition twice, never say "after the music".
-
-**SEGMENT 2: CARIBOO CONNECTIONS - {theme_name}**
-Your deep dive source articles (primary material for this segment):
-{deep_dive_text}
-
-For context, here's what Segment 1 covered — DO NOT repeat any of these. They can only appear if they sharpen your central argument:
-{news_titles_brief}
-
-SEGMENT 2 RULES:
-- This is the meaty part of the show. Longer and more substantial than Segment 1.
-- BUILD ONE ARGUMENT about the theme using the deep dive articles as your foundation. This is NOT a second news roundup — pick a thread and pull on it.
-- You may reference at most 2 Segment 1 stories, and ONLY if they directly support your argument. The listener already heard them — don't summarize again.
-- Explore second-order effects, the gaps between what's promised and what actually reaches rural communities. What's nobody talking about?
-- HUMOR & TONE: You MUST include at least 2 genuinely funny moments. Good targets: the absurdity of applying Silicon Valley scale to a town of 500, the gap between tech promises and what actually reaches rural communities, or the hosts gently noting their own AI nature when it's actually funny (not just "ha ha I'm an AI"). Dry wit and a knowing smirk — not punchlines. The listener should feel like they're eavesdropping on two smart people who are genuinely enjoying themselves.
-- End with: "We'd love to hear your thoughts." Then sign off with: {sign_off}
-
-CRITICAL REQUIREMENTS:
-- NO STAGE DIRECTIONS: Never write "(shuffles papers)", "(laughs)", "*chuckles*" or ANY performance cues
-- DAILY FREQUENCY: Say "today's episode" — NEVER "weekly show"
-- NO HUMAN PRETENSE: These are AI hosts — no personal family references
-- AVOID REPETITION: Don't repeat the same points across or within segments
-- Regional lens: "What does this mean for communities like ours?"
-- USE MEMORY: Reference past episodes naturally when relevant
-- TRANSITIONS: Each transition should use unique phrasing. Never say "after the music". Don't overuse "the break" — one mention per transition is plenty.
-- Current date is {weekday}, {date_str}
-- CLEAR SEGMENT MARKERS: Use exactly "**SEGMENT 1: THE WEEK'S TECH**" and "**SEGMENT 2: CARIBOO CONNECTIONS - {theme_name}**" as headers
-
-OUTPUT: ~5,500-6,500 words with **RILEY:** and **CASEY:** speaker tags only."""
+    # Load prompt template from config
+    prompt_template = CONFIG['prompts']['script_generation']['template']
+    
+    # Format the template with actual values
+    prompt = prompt_template.format(
+        weekday=weekday,
+        date_str=date_str,
+        podcast_title=podcast_config['title'],
+        podcast_description=podcast_config['description'],
+        memory_context=memory_context,
+        riley_name=riley['name'],
+        riley_pronouns=riley['pronouns'],
+        riley_bio=riley['full_bio'],
+        casey_name=casey['name'],
+        casey_pronouns=casey['pronouns'],
+        casey_bio=casey['full_bio'],
+        welcome_host_upper=welcome_host_name.upper(),
+        welcome_host_name=welcome_host_name,
+        other_host_upper=other_host_name.upper(),
+        other_host_name=other_host_name,
+        theme_name=theme_name,
+        news_text=news_text,
+        deep_dive_text=deep_dive_text,
+        news_titles_brief=news_titles_brief,
+        sign_off=sign_off
+    )
 
     try:
         client = Anthropic(api_key=api_key)
@@ -620,11 +556,11 @@ OUTPUT: ~5,500-6,500 words with **RILEY:** and **CASEY:** speaker tags only."""
         )
         
         script = response.content[0].text
-        print("âœ… Generated podcast script successfully!")
+        print("✅ Generated podcast script successfully!")
         return script
         
     except Exception as e:
-        print(f"âŒ Error generating script: {e}")
+        print(f"❌ Error generating script: {e}")
         return None
 
 def parse_script_into_segments(script):
