@@ -1,0 +1,152 @@
+{
+  "episode": {
+    "date": "2026-02-03",
+    "formatted_date": "Tuesday, February 03, 2026",
+    "theme": "Sustainable Innovation",
+    "title": "Cariboo Signals - Sustainable Innovation",
+    "description": "Riley and Casey explore technology and society in rural communities. Today's focus: Sustainable Innovation.\n\nNEWS ROUNDUP: We break down SD73 adds new accessible school bus to increase equitable field trip transportation and Qatar Digital Twin Market: Smart Infrastructure Adoption, AI Integration & Growth Outlook, plus 1 more stories, and explore what these developments mean for communities like ours.\n\nRURAL CONNECTIONS: Deep dive into sustainable innovation, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.\n\nHosts: Riley (Tech systems thinker with rural roots) and Casey (Community development focus).\n\nSources:\n1. CFJC Today Kamloops: SD73 adds new accessible school bus to increase equitable fi...\n2. GN AI ML Infrastructure: Qatar Digital Twin Market: Smart Infrastructure Adoption, AI...\n3. Al Jazeera English: Musk merges SpaceX and xAI firms, plans for space-based AI d...\n4. GN AI ML Infrastructure: AI redraws data center power architecture as rack-level ener...\n5. GN AI ML Infrastructure: India US Trade Deal fuels fresh momentum for data centres an...\n6. GN AI ML Infrastructure: Musk Folds xAI Into SpaceX, Cites Limits on Earth-Based AI I...\n7. GN AI ML Infrastructure: SpaceX Aims for Data Centers in Orbit as AI Strains Infrastr...\n8. GN AI ML Infrastructure: Crusoe Positions Itself at Nexus of AI Infrastructure and Su...\n9. NYT Top Stories: A Social Network for A.I. Bots Only. No Humans Allowed.\n10. ZDNet: OpenAI's Codex just got its own Mac app\n11. GN AI ML Infrastructure: Transparency Through Observability is Essential to AI Succes...\n12. TechRadar: Five AI agent predictions for 2026: The year enterprises sto...\n13. GN Clean Energy and EVs: EBRD Invests Nearly US$2B (€1.72B) In 120 Projects Across Ce...\n14. GN Clean Energy and EVs: Sustainable: Minneapolis microgrid initiative nears completi...\n15. TechRadar: MongoDB instances are being hit in data extortion attacks, s...\n\n--- Credits ---\nTheme Song: Cariboo Signals by Sumo AI (suno.com)\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: OpenAI TTS API\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt",
+    "generated_at": "2026-02-03T04:58:10.344425-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "The Week's Tech - News Roundup",
+      "articles": [
+        {
+          "title": "SD73 adds new accessible school bus to increase equitable field trip transportation",
+          "url": "https://cfjctoday.com/2026/01/31/sd73-adds-new-accessible-school-bus-to-increase-equitable-field-trip-transportation/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-01-31T20:32:11+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Qatar Digital Twin Market: Smart Infrastructure Adoption, AI Integration & Growth Outlook",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOYVB2QnJzMlZDejF4cmpDT1NyVk9xMWRleGxTWkRzNVJoclRsMWZ3OHEtLTJRS1licXlUcFNFbThwSW5fTEEtYlJJUDlNTHdIR1BFeUduWnI4c251dW92c3NzOUtpeEE2MHBTc1I0YTBvS2N1LWE0Y3Z6NlVnOXkyc0VSd3BucGlhSkRLRGdhRkpLb2lNVEV4QzVJV28tZnNzc3ppc0E3LXJYY3lib1RTeVUyam5vM2poV3c?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-03T05:39:03+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Musk merges SpaceX and xAI firms, plans for space-based AI data centres",
+          "url": "https://www.aljazeera.com/news/2026/2/3/musk-merges-spacex-and-xai-firms-plans-for-space-based-ai-data-centres?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 0,
+          "date_published": "2026-02-03T04:47:14+00:00",
+          "summary": ""
+        },
+        {
+          "title": "AI redraws data center power architecture as rack-level energy systems go mainstream",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNRXBsT3oxSXA4UnJIWHBuZFNheUtaMlk0bW91d1RkaXRYTnYxZDBfZ2RZTG1lMkxSTWZnS3FTYVZmZkYyMUxxZVF1dEVKRFBIZUJKR0g4TE03VEFfempHS3hnb3BmWmlpTUJjRFcwR2d4Y0dFSDlpUi13b1R0V016aUhsRE9pdVd3TGFRQUFRWDNWdmVC?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-03T04:25:43+00:00",
+          "summary": ""
+        },
+        {
+          "title": "India US Trade Deal fuels fresh momentum for data centres and AI infrastructure",
+          "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOQ2FSSzNaMGpQT2pIX3BjMUlEZWQ4RkdPa2FsUmI2RDhabFBfQm9pS3hVWEJvM2tPZTlGNXR1RUhibm5mcEhUWkotNnlhQ0I3eFIwLUV2SUtITFBIQVBQTC05aFp3Tm05d19NSk42OXVNb28yT1ZNWkphdGpOWFNSdXZfZklIQU15UUExRmxXZWJYZkNXdzRjRHpGTWRwQWJxUUxVNWJHZzl1UlRFd2lTRDk0MzdwMUlVSGZhdzdVSlZ1NFQwLWpYdkhac9IB0AFBVV95cUxObUM1SlFMT25qdGpDTWxiMWJkaERSYi1YQ25pdU5YRHdJdGtiTFUyb3dySjgzY3E4MHROTmNoelFLRVg5QVR1UDNtTkl5R0RVckJWNU80dFpTOEJTMWthYkl2VktaM25jcGhRc3pCMXZHdUNRcVFDNW5YSXhIaWVEY2FMM1ptelFwTWZZZDhQUGpxTy0yZWhqRXU5dUZVQ1RxVTFJTmFsTWo2emotYUg0a3dnYmxFVEpxOEhqZ2pwNkZtbnMxUlplamFNejVZclJx?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-03T03:44:46+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Musk Folds xAI Into SpaceX, Cites Limits on Earth-Based AI Infrastructure",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOTEEzR1NuNGxpYXNteEpTSm5EeXBacW9LcU50SWtYcUI5MjBHaFpGaFhacVdiM2QxUU15TnhMRnJRcklmZkpEblBJRERiaUFOZHB6a21mc3VFSGVQZHFLaHJDczNDa2ZmQjlKd3R1RE9nSjQycDNYR1UwR3J3bW9tUDBid2PSAYwBQVVfeXFMTzI3SVJJdk5MaURvNFBCV09UVGI3ZHczakt3ZUs1cEZ6azQxQ1lRcEJVNV9va20yRVBmdC1HdHZYUERlemROR2RnNl9tcElDWVBqTEpGTW1nazV0VTZZMHN1Nkg2WFF4YUItRFRZeHdHOEpndU4yel9BRERaR1NlR0Fxa2ZkUHVBajJINHY?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-03T02:13:20+00:00",
+          "summary": ""
+        },
+        {
+          "title": "SpaceX Aims for Data Centers in Orbit as AI Strains Infrastructure",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNMGg2eFROcTJuVDBDdFkzYVhYVEczSG9qUFRQZDFoek9ENERYc3NjTWFWRW55XzhjTlEtQzVPN0RuSHdpUlVVQXh0aWpJQXdBSkVpbXEwMFlmdjVSNF83ZXZCa0VuaThDa2RWVzRra01YdGxHVzlYR3p1N01uM1hDVGRLOHc4VER4OHI2M214U0poVGxpSzFyNkwzdVJQMEFsa2pnbmFXT2lGVDhKT0NLSW1oZURDTlk3dEp5TkY0WGYzZw?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-03T00:41:29+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Crusoe Positions Itself at Nexus of AI Infrastructure and Sustainable Energy",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPblhoaEExU202R1k5NUF4V2N4YmpjLVBaZm55ZGxsUFctYzNHaWVIZk9UMFdFejdKenNiTGNPTmtaQXE3LW1MbjhpcWU2Y2NLbWFMcDVrV2F6VURsVWMzdGk0TGNhMDF4a1lXV3R5RUEwQnV2Sjl5T0dWd1pfQ3VoVVhyRHBFM3dKb3ozNUo4NDBtZ1NBQ2dNV3I5elpOYk1xMkN2Vnh2cXV3ZUJBajFPSEVFSVJQY2FrSm5Cdm9IMURXZw?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-03T00:21:33+00:00",
+          "summary": ""
+        },
+        {
+          "title": "A Social Network for A.I. Bots Only. No Humans Allowed.",
+          "url": "https://www.nytimes.com/2026/02/02/technology/moltbook-ai-social-media.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-02-02T19:47:54+00:00",
+          "summary": ""
+        },
+        {
+          "title": "OpenAI's Codex just got its own Mac app",
+          "url": "https://www.zdnet.com/article/openai-codex-mac-app-free-trial/",
+          "source": "ZDNet",
+          "ai_score": 0,
+          "date_published": "2026-02-02T18:00:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Transparency Through Observability is Essential to AI Success",
+          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxORVZSYzBqNzBGZzNLY204TEZOOXRYTklqS1NiMlVFNC1KUERBT0NOeEVDSjhTTVdXUHo0SWZTSWZPVkFwTkVreTR0TjZGTU5leUN1ci1rb0JYQWJwMWU5N0o0TU1RMVQxX3hfM0d6OHk2SnpnLVJKNWR1S2w5S21sMUxGa0dDZW1oeWpWR0hTNVBDeGlPdGNRb290RTQyV1FDMTg0?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-02T17:53:46+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Five AI agent predictions for 2026: The year enterprises stop waiting and start winning",
+          "url": "https://www.techradar.com/pro/five-ai-agent-predictions-for-2026-the-year-enterprises-stop-waiting-and-start-winning",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-02-02T15:22:30+00:00",
+          "summary": ""
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Sustainable Innovation",
+      "articles": [
+        {
+          "title": "EBRD Invests Nearly US$2B (€1.72B) In 120 Projects Across Central Asia And Mongolia In 2025, Driving Renewable Energy, Sustainable Infrastructure And SME Growth",
+          "url": "https://news.google.com/rss/articles/CBMinAJBVV95cUxOdS02UzdIb3IzSzhTSFprZHNkcmo5VHpXZlR1VTJjNlhrZUxCTldEQWlVeXBfRHhHcEYzUy16VzBmOUpxX200RHp1OExIVWdpT1p3ZXN6RlJ5NGh6bGpxbWo5X3B6cTdrbENEdW9fU1dkLVIzNVB0YTU2bW50ZXRUcE5kUmNlalNlbnF0dGxfLWJ6WDA4VXlLQlZlYUNFSkRfaW5hZ3FWU1YxWFBZVzdvM2RPS1RqZU9SdFNTaGtaSjBaWjBlNnc4YTVMNnRoRklQRGVHUUtESFZrM01tdmtnRGFUUDZIa1FHTlNXMzA5YXpYOE9RV1NrZ1FTcEpFUzFxamhmN2xkZXl2TG01LTNRcFRzVWNPUFpLVzZ6bw?oc=5",
+          "source": "GN Clean Energy and EVs",
+          "ai_score": 0,
+          "date_published": "2026-02-02T09:56:43+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Sustainable: Minneapolis microgrid initiative nears completion in 2026",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQRmpiOVpZLVY2ekVwOXg5RldXY1dQdGdielpiWnRUSkxKVmJ2eThKemJzRWpyTEdsVlVFUFpiNUJlTC0xOEszaFlGQmxzU3duOHA4LVpZbXh1ekxwY0RDMTdnSWV3NzVKa0ZBNW1mdkJXZ2pFNUhUM1Z1WjItNTQ3WlZTNllDazJ4YWc?oc=5",
+          "source": "GN Clean Energy and EVs",
+          "ai_score": 0,
+          "date_published": "2026-02-02T22:21:38+00:00",
+          "summary": ""
+        },
+        {
+          "title": "MongoDB instances are being hit in data extortion attacks, so make sure you're protected",
+          "url": "https://www.techradar.com/pro/security/mongodb-instances-are-being-hit-in-data-extortion-attacks-so-make-sure-youre-protected",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-02-02T15:20:00+00:00",
+          "summary": ""
+        }
+      ]
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator"
+  }
+}
