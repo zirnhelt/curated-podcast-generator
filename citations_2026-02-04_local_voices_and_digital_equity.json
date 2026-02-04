@@ -1,0 +1,152 @@
+{
+  "episode": {
+    "date": "2026-02-04",
+    "formatted_date": "Wednesday, February 04, 2026",
+    "theme": "Local Voices & Digital Equity",
+    "title": "Cariboo Signals - Local Voices & Digital Equity",
+    "description": "Riley and Casey explore technology and society in rural communities. Today's focus: Local Voices & Digital Equity.\n\nNEWS ROUNDUP: We break down [CFJC Today Kamloops] CFJC Midday – The month of love is here! Valentine’s gift ideas at Tumbleweed Toys are plentiful, and some new products have hit the shelves and [CFJC Today Kamloops] CFJC Midday – February at the Paramount Theatre showcases some classics and much anticipated films! Catch Hamnet, Man on the Run and a special Valentine’s Day screening of The Princess Bride, plus 1 more stories, and explore what these developments mean for communities like ours.\n\nRURAL CONNECTIONS: Deep dive into local voices & digital equity, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.\n\nHosts: Riley (Tech systems thinker with rural roots) and Casey (Community development focus).\n\nSources:\n1. CFJC Today Kamloops: [CFJC Today Kamloops] CFJC Midday – The month of love is her...\n2. CFJC Today Kamloops: [CFJC Today Kamloops] CFJC Midday – February at the Paramoun...\n3. IndigiNews: [IndigiNews] [IndigiNews] With habitat affected by wildfires...\n4. Yellowhead Institute: [Yellowhead Institute] [Yellowhead Institute] Reflections on...\n5. Toms Guide: [Toms Guide] People are sleeping on Gemini’s Deep Research f...\n6. GN AI ML Infrastructure: [GN AI ML Infrastructure] Crusoe Emphasizes Energy as Key to...\n7. GN AI ML Infrastructure: [GN AI ML Infrastructure] Together AI strengthens infrastruc...\n8. GN AI ML Infrastructure: [GN AI ML Infrastructure] Is Applied Digital (APLD) Quietly ...\n9. GN AI ML Infrastructure: [GN AI ML Infrastructure] Marvell Technology Bolsters AI Inf...\n10. GN AI ML Infrastructure: [GN AI ML Infrastructure] AI is infrastructure, will generat...\n11. Business Insider: [Business Insider] OpenAI just snagged an Anthropic safety r...\n12. Android Police: [Android Police] Google wants Gemini to start using your And...\n13. GN AI ML Infrastructure: [GN AI ML Infrastructure] Nvidia, Dassault Systèmes Partner ...\n14. GN AI ML Infrastructure: [GN AI ML Infrastructure] [GN AI ML Infrastructure] Qatar Di...\n15. InsideEVs: [InsideEVs] [InsideEVs] General Motors' Strategy For Buildin...\n\n--- Credits ---\nTheme Song: Cariboo Signals by Sumo AI (suno.com)\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: OpenAI TTS API\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt",
+    "generated_at": "2026-02-04T04:57:13.093031-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "The Week's Tech - News Roundup",
+      "articles": [
+        {
+          "title": "[CFJC Today Kamloops] CFJC Midday – The month of love is here! Valentine’s gift ideas at Tumbleweed Toys are plentiful, and some new products have hit the shelves",
+          "url": "https://cfjctoday.com/2026/02/03/cfjc-midday-the-month-of-love-is-here-valentines-gift-ideas-at-tumbleweed-toys-are-plentiful-and-some-new-products-have-hit-the-shelves/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-04T02:13:59+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] CFJC Midday – February at the Paramount Theatre showcases some classics and much anticipated films! Catch Hamnet, Man on the Run and a special Valentine’s Day screening of The Princess Bride",
+          "url": "https://cfjctoday.com/2026/02/03/cfjc-midday-february-at-the-paramount-theatre-showcases-some-classics-and-much-anticipated-films-catch-hamnet-man-on-the-run-and-a-special-valentines-day-screening-of-the-princess-bride/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-04T01:57:38+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[IndigiNews] [IndigiNews] With habitat affected by wildfires, syilx-led program monitors rattlesnakes",
+          "url": "https://indiginews.com/news/syilx-led-program-monitors-rattlesnakes/",
+          "source": "IndigiNews",
+          "ai_score": 0,
+          "date_published": "2026-02-03T16:52:54+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[Yellowhead Institute] [Yellowhead Institute] Reflections on “Rupture”: Mark Carney’s New World Order & an Indigenous Response",
+          "url": "https://yellowheadinstitute.org/2026/reflections-on-rupture-mark-carneys-new-world-order-an-indigenous-response/?utm_source=rss&utm_medium=rss&utm_campaign=reflections-on-rupture-mark-carneys-new-world-order-an-indigenous-response",
+          "source": "Yellowhead Institute",
+          "ai_score": 0,
+          "date_published": "2026-02-03T10:00:39+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[Toms Guide] People are sleeping on Gemini’s Deep Research feature — here’s why it’s actually a game changer",
+          "url": "https://www.tomsguide.com/ai/people-are-sleeping-on-geminis-deep-research-feature-heres-why-its-actually-a-game-changer",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-02-04T06:15:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN AI ML Infrastructure] Crusoe Emphasizes Energy as Key to AI Infrastructure Competitiveness",
+          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPS0hCZTM1aEs2dnlvUGhwcFhaam5EeHpfMzRjR19Oc2RBcUtqb2x3a0RxMlY4XzVzWUtvYVAtV1Y4eGVmUU9WeVZLaE5PWFhDMUpSVG1VejFmOFhHTUVsYnI2Y1JfX3hHUUxNUVI5dlNRanZUSkMyZlRLRE9UZF9BM2J4Y0dYYmtKYWxJTTNKR3REbTZMN2NBdDhBcVF6ZV85X2JJSHZkaGdtYnptX0N1SnltcjM2bVk?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-04T06:14:39+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN AI ML Infrastructure] Together AI strengthens infrastructure leadership for AI cloud expansion",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQZXEyeEZvSjNNWjlZeHRzVmktcWZGQXFNRkxEM2VoTUtUUUZzSGJ5ZjlzSlo1VVZrMHlwVThFY0FxNGFtT3FZaVJrQUNLNzFnVjRhQm4wekdvQXhvcHdrcEU5X3kyR0Y4bFFjVlZ2b09seHJvRWVab3M2OHRGanVVXzNqbmZGMS12cGxhWG56RTl3dTJJMlNuSzc4djNRRWI1UTFScW9YVjFPZHBBMlF6YXZRY3NoWS1qTFYxdQ?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-04T06:14:36+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN AI ML Infrastructure] Is Applied Digital (APLD) Quietly Recasting Its Crypto Roots Into Hyperscale AI Infrastructure Leadership?",
+          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNWmkwMVZOclFHSzJkU1pvOVQ3NmxweEE1Q0p1UkstU2xPWWNKMjctOEswSlF2RENKdk5vOVBUMVJKWm9heGVYZE4yZC1YeHpaSVdmVDFLTHpuSVhmUnJLT3BXYXAxNl9PM2JqOTNsT2JaQ1JodEpMbF9LZWRSbHd5UGxkalhFZktJVTR5Wmg1Q2RGRGxkRFZKbGo3eGhGMm05R2pHTjZ0NU85RWozZmRoWDR0bDJtdTFUbHlEUzFRQlNSUW5nVnFvMGJZekpMT28?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-04T05:42:50+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN AI ML Infrastructure] Marvell Technology Bolsters AI Infrastructure with Strategic Acquisition",
+          "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNVnJtUWRFY2ttMk01LU5BNlNOc3RBanNfM1pBOUNGX0RuUzFlWi1NVGNrSG9fbmNwSUpEODBVTVcwWUU0b1BBb1gzS2xBRXgxTzcwbGFlZUM2NHp6MFlqYXpLXzc5bXdyc1k0aVV0bTlhZGNtcEp5cllXVGVfaC1YWG16Ui0tVy1WYUt2VXo3TTRjejJ4OVFDUGRSRjQ2akRVRU1hcHpYcl83akpHMTV1U1M2cU80bmRxTHBpWDBHVi1zZ0lqaHdNV2Y5Zw?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-04T05:31:04+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN AI ML Infrastructure] AI is infrastructure, will generate jobs in India, says founder of the world’s most valuable company ahead of India visit",
+          "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxNc2pJNWxxZnR1S3MxMFYwek5VZDdiWHpBU01sUUEwS0ZRbWdyZkpiSUVfS05IaS1Cb2ZZVU1QRGhoeDg3YkExNkNaMGdKRHBpUTBlNnpzbmp1RDR3TjA0ZlVCbG9yVVg3bTFRX2dIQS04TER5Sk9INnRvNGdJN0VsdVZieXVhU3R1UElNYmhJR0pVbHo2aTdnUTZVdk1aRHpTcjRkTHI1MDBkazR6N0ZTcDVmVExWckZzNWRIOXpKX0lTQXVLMFJ0NjNfX0lKWmlMdTR5aC1IeUs3NVo5Zi05NUpZTEIxWVAzT0w2SUxTZzRPRFVrNVRJLXN0bzlLQ2wy0gGGAkFVX3lxTE4wdXRpZHhkanVsMmliWm9mMVk5MVlpLTJJVlpTc0NMTVZRX3M5MkFrOVJLcUVibmh3ZS1oQS10YTVLRGNFdG1pVzNwU3R1ejlieW1GbmZfOWYtLVZjU0ZGU25PVHVJMEVTdDN4a0R4aWs0UG0teG9sMGhQUnAzYklQd0tyUkdjLTItUzY4emhhRGRzcHpHNnpYeXIxZ0dqN3FlVTBZUFpqYnYtY0dia2J2VUpFS0VPdDNQazZTNVBmLXRJMk5KWTg2Sm5kZnJnVlpISDBja3VqYndtWHNqX0R2VUNxemNXU3IzSGF3dlI2SVgxTEVlQ1gxVFJWZ3d5bXNOSFI5LUE?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-04T05:19:56+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[Business Insider] OpenAI just snagged an Anthropic safety researcher for its high-profile head of preparedness role",
+          "url": "https://www.businessinsider.com/openai-anthropic-safety-researcher-head-of-preparedness-dylan-scand-2026-2",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-02-04T05:01:14+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[Android Police] Google wants Gemini to start using your Android apps",
+          "url": "https://www.androidpolice.com/google-wants-gemini-to-start-using-your-android-apps/",
+          "source": "Android Police",
+          "ai_score": 0,
+          "date_published": "2026-02-04T04:40:10+00:00",
+          "summary": ""
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Local Voices & Digital Equity",
+      "articles": [
+        {
+          "title": "[GN AI ML Infrastructure] Nvidia, Dassault Systèmes Partner for Digital Twin AI Platform",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQTmM2eGU3UWFZVmNZdS04Sk1DTzk5cWNoaXJjZVBBamhZVXhFbHJDUDZVM2FFd2l2RUpUZjBvWnBOUU4wS21KbkRfbmUwbkpqMVFWVHViallHN2FKQXg5NWpNV0xnVllvREUyZ1R3YUM0NnhkZ3RCV3hNYV9xMHF0OXVTanNwNXY1dFRLV2ZudFBFMWtCS1c4VGRpSWczR0V5eHUybHN6dWk0YjdIdVE?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-03T19:20:21+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN AI ML Infrastructure] [GN AI ML Infrastructure] Qatar Digital Twin Market: Smart Infrastructure Adoption, AI Integration & Growth Outlook",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOYVB2QnJzMlZDejF4cmpDT1NyVk9xMWRleGxTWkRzNVJoclRsMWZ3OHEtLTJRS1licXlUcFNFbThwSW5fTEEtYlJJUDlNTHdIR1BFeUduWnI4c251dW92c3NzOUtpeEE2MHBTc1I0YTBvS2N1LWE0Y3Z6NlVnOXkyc0VSd3BucGlhSkRLRGdhRkpLb2lNVEV4QzVJV28tZnNzc3ppc0E3LXJYY3lib1RTeVUyam5vM2poV3c?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-03T05:39:03+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[InsideEVs] [InsideEVs] General Motors' Strategy For Building Cheaper EV Batteries: Go Hyper Local",
+          "url": "https://insideevs.com/news/786281/general-motors-ev-battery-localization-efforts/",
+          "source": "InsideEVs",
+          "ai_score": 0,
+          "date_published": "2026-02-03T17:06:33+00:00",
+          "summary": ""
+        }
+      ]
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator"
+  }
+}
