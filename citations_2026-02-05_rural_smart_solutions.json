@@ -1,0 +1,152 @@
+{
+  "episode": {
+    "date": "2026-02-05",
+    "formatted_date": "Thursday, February 05, 2026",
+    "theme": "Rural Smart Solutions",
+    "title": "Cariboo Signals - Rural Smart Solutions",
+    "description": "Riley and Casey explore technology and society in rural communities. Today's focus: Rural Smart Solutions.\n\nNEWS ROUNDUP: We break down [Global News] Nanaimo tugboat owner frustrated with justice system after offender released and [BC Gov News] [BC Gov News] Opening survey on land-use planning project in northeastern B.C., plus 1 more stories, and explore what these developments mean for communities like ours.\n\nRURAL CONNECTIONS: Deep dive into rural smart solutions, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.\n\nHosts: Riley (Tech systems thinker with rural roots) and Casey (Community development focus).\n\nSources:\n1. Global News: [Global News] Nanaimo tugboat owner frustrated with justice ...\n2. BC Gov News: [BC Gov News] [BC Gov News] Opening survey on land-use plann...\n3. Global News: [Global News] [Global News] B.C. government appoints former ...\n4. GN Williams Lake and BC Interior: [GN Williams Lake and BC Interior] [GN Williams Lake and BC ...\n5. Global News: [Global News] [Global News] [Global News] What’s a ‘thumper’...\n6. CFJC Today Kamloops: [CFJC Today Kamloops] [CFJC Today Kamloops] [CFJC Today Kaml...\n7. CFJC Today Kamloops: [CFJC Today Kamloops] [CFJC Today Kamloops] [CFJC Today Kaml...\n8. IndigiNews: [IndigiNews] [IndigiNews] [IndigiNews] [IndigiNews] [IndigiN...\n9. Yellowhead Institute: [Yellowhead Institute] [Yellowhead Institute] [Yellowhead In...\n10. GN AI ML Infrastructure: [GN AI ML Infrastructure] Salt AI Targets Data-Sensitive Pha...\n11. Toms Guide: [Toms Guide] 'I didn’t know AI could do this' — 10 surprisin...\n12. Neowin: [Neowin] You can now give AI agents access to your OneDrive\n13. TechRadar: [TechRadar] [TechRadar] 'A bet for the future of cybersecuri...\n14. TechRadar: [TechRadar] [TechRadar] [TechRadar] Zoom wants to make your ...\n15. Toms Guide: [Toms Guide] [Toms Guide] [Toms Guide] Here's 5 things an NP...\n\n--- Credits ---\nTheme Song: Cariboo Signals by Sumo AI (suno.com)\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: OpenAI TTS API\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt",
+    "generated_at": "2026-02-05T05:00:08.852563-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "The Week's Tech - News Roundup",
+      "articles": [
+        {
+          "title": "[Global News] Nanaimo tugboat owner frustrated with justice system after offender released",
+          "url": "https://globalnews.ca/news/11653172/nanaimo-tugboat-frustrated-offender-released-custody/",
+          "source": "Global News",
+          "ai_score": 0,
+          "date_published": "2026-02-05T03:34:35+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[BC Gov News] [BC Gov News] Opening survey on land-use planning project in northeastern B.C.",
+          "url": "https://news.gov.bc.ca/releases/2026WLRS0006-000116",
+          "source": "BC Gov News",
+          "ai_score": 0,
+          "date_published": "2026-02-04T21:28:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[Global News] [Global News] B.C. government appoints former RCMP officer to bridge extortion communications",
+          "url": "https://globalnews.ca/news/11652506/bc-appoints-former-rcmp-officer-bridge-extortion-communications/",
+          "source": "Global News",
+          "ai_score": 0,
+          "date_published": "2026-02-04T20:36:45+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN Williams Lake and BC Interior] [GN Williams Lake and BC Interior] B.C. Interior’s Sunrise Expansion Program gets nod from Canadian Energy Regulator",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQdldjdGxJbGlwb0VRS3dCRHRVaTVaZzFUR3Y4ZjgwVkc3VkM5THlGdXJvMU1ZRHlRZXN1UWQyOHVWcEFnSEpqdU9FY0FQQmFoeF82UGw0YWNJS2lNZU4wQmJfcTZJaGtEWnhJQ1BsVXo1ZHQxbk1yeE9EWmpoSXUtTWNnTVU3WWlJX0FwZTBwbjF1cU53UWdrX05qbHZkSEUxbUVKQWp0cW1oMWpQbXhWeXFLUQ?oc=5",
+          "source": "GN Williams Lake and BC Interior",
+          "ai_score": 0,
+          "date_published": "2026-02-04T17:31:38+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[Global News] [Global News] [Global News] What’s a ‘thumper’? B.C. RCMP describe devices in an unneighbourly noise case",
+          "url": "https://globalnews.ca/news/11651803/thumper-bc-rcmp-describe-devices-in-unneighbourly-noise-case/",
+          "source": "Global News",
+          "ai_score": 0,
+          "date_published": "2026-02-04T12:23:14+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] [CFJC Today Kamloops] [CFJC Today Kamloops] [CFJC Today Kamloops] CFJC Midday – The month of love is here! Valentine’s gift ideas at Tumbleweed Toys are plentiful, and some new products have hit the shelves",
+          "url": "https://cfjctoday.com/2026/02/03/cfjc-midday-the-month-of-love-is-here-valentines-gift-ideas-at-tumbleweed-toys-are-plentiful-and-some-new-products-have-hit-the-shelves/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-04T02:13:59+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] [CFJC Today Kamloops] [CFJC Today Kamloops] [CFJC Today Kamloops] CFJC Midday – February at the Paramount Theatre showcases some classics and much anticipated films! Catch Hamnet, Man on the Run and a special Valentine’s Day screening of The Princess Bride",
+          "url": "https://cfjctoday.com/2026/02/03/cfjc-midday-february-at-the-paramount-theatre-showcases-some-classics-and-much-anticipated-films-catch-hamnet-man-on-the-run-and-a-special-valentines-day-screening-of-the-princess-bride/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-04T01:57:38+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[IndigiNews] [IndigiNews] [IndigiNews] [IndigiNews] [IndigiNews] With habitat affected by wildfires, syilx-led program monitors rattlesnakes",
+          "url": "https://indiginews.com/news/syilx-led-program-monitors-rattlesnakes/",
+          "source": "IndigiNews",
+          "ai_score": 0,
+          "date_published": "2026-02-03T16:52:54+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[Yellowhead Institute] [Yellowhead Institute] [Yellowhead Institute] [Yellowhead Institute] [Yellowhead Institute] Reflections on “Rupture”: Mark Carney’s New World Order & an Indigenous Response",
+          "url": "https://yellowheadinstitute.org/2026/reflections-on-rupture-mark-carneys-new-world-order-an-indigenous-response/?utm_source=rss&utm_medium=rss&utm_campaign=reflections-on-rupture-mark-carneys-new-world-order-an-indigenous-response",
+          "source": "Yellowhead Institute",
+          "ai_score": 0,
+          "date_published": "2026-02-03T10:00:39+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN AI ML Infrastructure] Salt AI Targets Data-Sensitive Pharma and Biotech With In-House AI Infrastructure Focus",
+          "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQdmFRNGtvQjhWWV9ibGhvV19JSEcxb0ZtQU02N3NYSE9MeExPWmdQMHBOYWJfQUw1Zzl2dGthb2poSFRnRFNRZ1k4enhhWUp1V0w3Sld1T0x0QzdMMUR1V3J1OUlHVTJob1lQN0VMcUNUODc5WWp3Zy1sOUtIVV9wdVVKLWs1R052Rm1KUWtOVEJQY0JmbnVydWpSMUZ3MjdRRkhpLUxMbm9QNlhXbm1jU2x3enl1QkNOYTlKU0NIbHRoRlFiNkVERm1MRDNLcDcw?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-05T06:39:16+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[Toms Guide] 'I didn’t know AI could do this' — 10 surprisingly useful ways it saves me time every day",
+          "url": "https://www.tomsguide.com/ai/i-didnt-know-ai-could-do-this-10-surprisingly-useful-ways-it-saves-me-time-every-day",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-02-05T06:04:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[Neowin] You can now give AI agents access to your OneDrive",
+          "url": "https://www.neowin.net/news/you-can-now-give-ai-agents-access-to-your-onedrive/",
+          "source": "Neowin",
+          "ai_score": 0,
+          "date_published": "2026-02-05T05:54:02+00:00",
+          "summary": ""
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Rural Smart Solutions",
+      "articles": [
+        {
+          "title": "[TechRadar] [TechRadar] 'A bet for the future of cybersecurity' – Nord Security hits 400 patents as race for solutions against next-gen threats heats up",
+          "url": "https://www.techradar.com/vpn/vpn-services/a-bet-for-the-future-of-cybersecurity-nord-security-hits-400-patents-as-race-for-solutions-against-next-gen-threats-heats-up",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-02-04T16:50:31+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[TechRadar] [TechRadar] [TechRadar] Zoom wants to make your whole office smarter in a bid to make meetings less painful",
+          "url": "https://www.techradar.com/pro/zoom-wants-to-make-your-whole-office-smarter-in-a-bid-to-make-meetings-less-painful",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-02-04T12:35:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[Toms Guide] [Toms Guide] [Toms Guide] Here's 5 things an NPU can do for your laptop — AI smarts you'll actually use without realizing it",
+          "url": "https://www.tomsguide.com/computing/laptops/heres-5-things-an-npu-can-do-for-your-laptop-ai-smarts-youll-actually-use-without-realizing-it",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-02-04T12:01:00+00:00",
+          "summary": ""
+        }
+      ]
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator"
+  }
+}
