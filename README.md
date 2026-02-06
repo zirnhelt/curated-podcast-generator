@@ -44,6 +44,8 @@ This repo depends on the RSS feed system staying healthy. It pulls two things at
 
 If the RSS feed system is down or stale, the podcast generator will fail gracefully and exit with an error.
 
+For guidance on coordinating changes across both repos, see [SIBLING_REPOS.md](SIBLING_REPOS.md).
+
 ---
 
 ## Setup
