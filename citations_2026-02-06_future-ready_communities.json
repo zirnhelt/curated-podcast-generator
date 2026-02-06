@@ -1,0 +1,152 @@
+{
+  "episode": {
+    "date": "2026-02-06",
+    "formatted_date": "Friday, February 06, 2026",
+    "theme": "Future-Ready Communities",
+    "title": "Cariboo Signals - Future-Ready Communities",
+    "description": "Riley and Casey explore technology and society in rural communities. Today's focus: Future-Ready Communities.\n\nNEWS ROUNDUP: We break down [The Tyee] Controversial Kamloops Mayor Loses ‘Unbelievable’ Court Ruling and [The Tyee] Death of First Nations Teen Triggers Police Watchdog Investigation, plus 1 more stories, and explore what these developments mean for communities like ours.\n\nRURAL CONNECTIONS: Deep dive into future-ready communities, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.\n\nHosts: Riley (Tech systems thinker with rural roots) and Casey (Community development focus).\n\nSources:\n1. The Tyee: [The Tyee] Controversial Kamloops Mayor Loses ‘Unbelievable’...\n2. The Tyee: [The Tyee] Death of First Nations Teen Triggers Police Watch...\n3. CFJC Today Kamloops: [CFJC Today Kamloops] Court issues $6,000 in fines to two pe...\n4. CFJC Today Kamloops: [CFJC Today Kamloops] CFJC Midday – Brain Injury Survivor Ro...\n5. CFJC Today Kamloops: [CFJC Today Kamloops] CFJC Midday – Afrofusion launches ‘Lov...\n6. BC Gov News: [BC Gov News] Supporting youth in northern B.C. with 34 new ...\n7. CFJC Today Kamloops: [CFJC Today Kamloops] [CFJC Today Kamloops] Montreal launche...\n8. CFJC Today Kamloops: [CFJC Today Kamloops] [CFJC Today Kamloops] Blazers’ Hurlber...\n9. CFJC Today Kamloops: [CFJC Today Kamloops] [CFJC Today Kamloops] LOOPED IN WITH N...\n10. CFJC Today Kamloops: [CFJC Today Kamloops] [CFJC Today Kamloops] [CFJC Today Kaml...\n11. Global News: [Global News] [Global News] [Global News] [Global News] Nana...\n12. BC Gov News: [BC Gov News] [BC Gov News] [BC Gov News] [BC Gov News] [BC ...\n13. BC Gov News: [BC Gov News] [BC Gov News] New sheriffs serving communities...\n14. Global News: [Global News] [Global News] [Global News] [Global News] [Glo...\n15. GN Williams Lake and BC Interior: [GN Williams Lake and BC Interior] [GN Williams Lake and BC ...\n\n--- Credits ---\nTheme Song: Cariboo Signals by Sumo AI (suno.com)\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: OpenAI TTS API\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt",
+    "generated_at": "2026-02-06T04:57:36.918169-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "The Week's Tech - News Roundup",
+      "articles": [
+        {
+          "title": "[The Tyee] Controversial Kamloops Mayor Loses ‘Unbelievable’ Court Ruling",
+          "url": "https://thetyee.ca/News/2026/02/06/Kamloops-Mayor-Loses-Court-Ruling/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-02-06T08:20:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[The Tyee] Death of First Nations Teen Triggers Police Watchdog Investigation",
+          "url": "https://thetyee.ca/News/2026/02/06/Death-First-Nations-Teen-Police-Watchdog/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-02-06T08:10:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] Court issues $6,000 in fines to two people who killed Tex, the B.C. grizzly",
+          "url": "https://cfjctoday.com/2026/02/05/court-issues-6000-in-fines-to-two-people-who-killed-tex-the-b-c-grizzly/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-06T02:38:09+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] CFJC Midday – Brain Injury Survivor Rory Young chasing big fitness goal and leading the way in Mr. Health & Fitness Competition",
+          "url": "https://cfjctoday.com/2026/02/05/cfjc-midday-brain-injury-survivor-rory-young-chasing-big-fitness-goal-and-leading-the-way-in-mr-health-fitness-competition/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-06T02:16:59+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] CFJC Midday – Afrofusion launches ‘Love Around the World: A 7-Course Global Valentine’s Experience!’ Let your taste buds travel the world",
+          "url": "https://cfjctoday.com/2026/02/05/cfjc-midday-afrofusion-launches-love-around-the-world-a-7-course-global-valentines-experience-let-your-taste-buds-travel-the-world/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-06T02:16:43+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[BC Gov News] Supporting youth in northern B.C. with 34 new housing spaces",
+          "url": "https://news.gov.bc.ca/releases/2026HMA0011-000119",
+          "source": "BC Gov News",
+          "ai_score": 0,
+          "date_published": "2026-02-05T22:30:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] [CFJC Today Kamloops] Montreal launches blitz to repair ‘catastrophic’ number of potholes plaguing roadways",
+          "url": "https://cfjctoday.com/2026/02/05/montreal-launches-blitz-to-repair-catastrophic-number-of-potholes-plaguing-roadways/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-05T22:01:01+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] [CFJC Today Kamloops] Blazers’ Hurlbert named Team West alternate captain for inaugural WHL Prospects Game",
+          "url": "https://cfjctoday.com/2026/02/05/blazers-hurlbert-named-team-west-alternate-captain-for-inaugural-whl-prospects-game/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-05T20:37:32+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] [CFJC Today Kamloops] LOOPED IN WITH NIKKI OMEN: February 5, 2026",
+          "url": "https://cfjctoday.com/2026/02/05/looped-in-with-nikki-omen-february-5-2026/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-05T19:50:26+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] [CFJC Today Kamloops] [CFJC Today Kamloops] Fog advisory in effect for North Thompson and 100 Mile regions",
+          "url": "https://cfjctoday.com/2026/02/05/fog-advisory-in-effect-for-north-thompson-and-100-mile-regions/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-05T14:11:06+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[Global News] [Global News] [Global News] [Global News] Nanaimo tugboat owner frustrated with justice system after offender released",
+          "url": "https://globalnews.ca/news/11653172/nanaimo-tugboat-frustrated-offender-released-custody/",
+          "source": "Global News",
+          "ai_score": 0,
+          "date_published": "2026-02-05T03:34:35+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[BC Gov News] [BC Gov News] [BC Gov News] [BC Gov News] [BC Gov News] Opening survey on land-use planning project in northeastern B.C.",
+          "url": "https://news.gov.bc.ca/releases/2026WLRS0006-000116",
+          "source": "BC Gov News",
+          "ai_score": 0,
+          "date_published": "2026-02-04T21:28:00+00:00",
+          "summary": ""
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Future-Ready Communities",
+      "articles": [
+        {
+          "title": "[BC Gov News] [BC Gov News] New sheriffs serving communities throughout B.C.",
+          "url": "https://news.gov.bc.ca/releases/2026AG0005-000107",
+          "source": "BC Gov News",
+          "ai_score": 0,
+          "date_published": "2026-02-05T16:30:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[Global News] [Global News] [Global News] [Global News] [Global News] B.C. government appoints former RCMP officer to bridge extortion communications",
+          "url": "https://globalnews.ca/news/11652506/bc-appoints-former-rcmp-officer-bridge-extortion-communications/",
+          "source": "Global News",
+          "ai_score": 0,
+          "date_published": "2026-02-04T20:36:45+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN Williams Lake and BC Interior] [GN Williams Lake and BC Interior] [GN Williams Lake and BC Interior] [GN Williams Lake and BC Interior] [GN Williams Lake and BC Interior] B.C. Interior’s Sunrise Expansion Program gets nod from Canadian Energy Regulator",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQdldjdGxJbGlwb0VRS3dCRHRVaTVaZzFUR3Y4ZjgwVkc3VkM5THlGdXJvMU1ZRHlRZXN1UWQyOHVWcEFnSEpqdU9FY0FQQmFoeF82UGw0YWNJS2lNZU4wQmJfcTZJaGtEWnhJQ1BsVXo1ZHQxbk1yeE9EWmpoSXUtTWNnTVU3WWlJX0FwZTBwbjF1cU53UWdrX05qbHZkSEUxbUVKQWp0cW1oMWpQbXhWeXFLUQ?oc=5",
+          "source": "GN Williams Lake and BC Interior",
+          "ai_score": 0,
+          "date_published": "2026-02-04T17:31:38+00:00",
+          "summary": ""
+        }
+      ]
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator"
+  }
+}
