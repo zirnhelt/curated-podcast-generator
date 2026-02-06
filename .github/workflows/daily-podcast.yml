@@ -118,7 +118,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./output
           publish_branch: gh-pages
-          keep_files: false
+          keep_files: true
           commit_message: 'Daily podcast deployment - ${{ github.run_id }}'
       
       - name: Upload artifacts (for debugging)
