@@ -54,7 +54,7 @@ def generate_clean_rss():
             try:
                 date_obj = datetime.strptime(episode_date, "%Y-%m-%d")
                 pub_date = date_obj.strftime("%a, %d %b %Y 06:00:00 GMT")
-            except:
+            except ValueError:
                 pub_date = datetime.now().strftime("%a, %d %b %Y 06:00:00 GMT")
             
             episodes.append({
@@ -121,7 +121,7 @@ def generate_clean_rss():
             f'<description>{escaped_description}</description>',
             f'<itunes:summary>{escaped_description}</itunes:summary>',
             f'<itunes:subtitle>Daily tech progress - {episode["theme"]}</itunes:subtitle>',
-            f'<enclosure url="{podcast_config["url"]}{episode["audio_file"]}" length="{episode["file_size"]}" type="audio/mpeg"/>',
+            f'<enclosure url="{saxutils.escape(podcast_config["url"] + episode["audio_file"], {chr(34): "&quot;"})}" length="{episode["file_size"]}" type="audio/mpeg"/>',
             f'<guid isPermaLink="false">{podcast_config["title"].lower().replace(" ", "-")}-{episode["episode_date"]}</guid>',
             f'<itunes:duration>{podcast_config["episode_duration"]}</itunes:duration>',
             f'<itunes:explicit>{"true" if podcast_config["explicit"] else "false"}</itunes:explicit>',

@@ -5,49 +5,54 @@ Loads all text content from config/ directory
 """
 
 import json
+from functools import lru_cache
 from pathlib import Path
 
 CONFIG_DIR = Path(__file__).parent / "config"
 
+@lru_cache(maxsize=1)
 def load_podcast_config():
-    """Load main podcast configuration."""
+    """Load main podcast configuration (cached)."""
     with open(CONFIG_DIR / "podcast.json", 'r') as f:
         return json.load(f)
 
+@lru_cache(maxsize=1)
 def load_hosts_config():
-    """Load host personalities and settings."""
+    """Load host personalities and settings (cached)."""
     with open(CONFIG_DIR / "hosts.json", 'r') as f:
         return json.load(f)
 
+@lru_cache(maxsize=1)
 def load_themes_config():
-    """Load daily themes."""
+    """Load daily themes (cached)."""
     with open(CONFIG_DIR / "themes.json", 'r') as f:
         return json.load(f)
 
+@lru_cache(maxsize=1)
 def load_credits_config():
-    """Load credits information."""
+    """Load credits information (cached)."""
     with open(CONFIG_DIR / "credits.json", 'r') as f:
         return json.load(f)
 
+@lru_cache(maxsize=1)
 def load_interests():
-    """Load Claude scoring interests as plain text."""
+    """Load Claude scoring interests as plain text (cached)."""
     with open(CONFIG_DIR / "interests.txt", 'r') as f:
         return f.read()
 
+@lru_cache(maxsize=1)
 def load_prompts_config():
-    """Load Claude API prompts."""
+    """Load Claude API prompts (cached)."""
     with open(CONFIG_DIR / "prompts.json", 'r') as f:
         return json.load(f)
 
 def get_voice_for_host(host_key):
     """Get TTS voice for a host."""
-    hosts = load_hosts_config()
-    return hosts[host_key]["voice"]
+    return load_hosts_config()[host_key]["voice"]
 
 def get_theme_for_day(weekday):
     """Get theme for specific day of week (0=Monday, 6=Sunday)."""
-    themes = load_themes_config()
-    return themes[str(weekday)]["name"]
+    return load_themes_config()[str(weekday)]["name"]
 
 def get_all_config():
     """Load all configuration at once."""

@@ -295,37 +295,9 @@ def generate_index_html():
             <h3>Subscribe to {podcast_config['title']}</h3>
             <p>Get new episodes automatically in your favorite podcast app:</p>
             
-            <div class="podcast-apps">
-                <a href="https://podcasts.apple.com/podcast/cariboo-signals/id" class="app-link">
-                    <div class="app-name">🎵 Apple Podcasts</div>
-                    <div class="app-description">iOS, macOS, Apple TV</div>
-                </a>
-                
-                <a href="https://open.spotify.com/show/" class="app-link">
-                    <div class="app-name">🟢 Spotify</div>
-                    <div class="app-description">Cross-platform streaming</div>
-                </a>
-                
-                <a href="https://podcasts.google.com/" class="app-link">
-                    <div class="app-name">📺 Google Podcasts</div>
-                    <div class="app-description">Android, web</div>
-                </a>
-                
-                <a href="https://overcast.fm/" class="app-link">
-                    <div class="app-name">☁️ Overcast</div>
-                    <div class="app-description">Smart Speed, Voice Boost</div>
-                </a>
-                
-                <a href="https://pca.st/" class="app-link">
-                    <div class="app-name">📱 Pocket Casts</div>
-                    <div class="app-description">Cross-platform sync</div>
-                </a>
-                
-                <a href="https://castbox.fm/" class="app-link">
-                    <div class="app-name">📦 Castbox</div>
-                    <div class="app-description">AI-powered features</div>
-                </a>
-            </div>
+            <p style="color: #666; font-style: italic; margin-top: 12px;">
+                Podcast app listings coming soon. For now, subscribe directly via RSS below.
+            </p>
             
             <div class="rss-links">
                 <h4>Or subscribe directly:</h4>
