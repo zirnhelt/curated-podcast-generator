@@ -62,6 +62,8 @@ def api_retry(func, max_retries=3, base_delay=2):
 
 # Configuration
 SCRIPT_DIR = Path(__file__).parent
+PODCASTS_DIR = SCRIPT_DIR / "podcasts"
+PODCASTS_DIR.mkdir(exist_ok=True)
 SUPER_RSS_BASE_URL = "https://zirnhelt.github.io/super-rss-feed"
 SCORING_CACHE_URL = f"{SUPER_RSS_BASE_URL}/scored_articles_cache.json"
 
@@ -74,9 +76,9 @@ OUTRO_MUSIC = SCRIPT_DIR / "cariboo-signals-outro.mp3"
 TARGET_SPEECH_DBFS = -20.0  # Speech louder and clear
 TARGET_MUSIC_DBFS = -28.0   # Music ducked beneath speech
 
-# Memory Configuration
-EPISODE_MEMORY_FILE = SCRIPT_DIR / "episode_memory.json"
-HOST_MEMORY_FILE = SCRIPT_DIR / "host_personality_memory.json"
+# Memory Configuration (stored in podcasts/ alongside episodes)
+EPISODE_MEMORY_FILE = PODCASTS_DIR / "episode_memory.json"
+HOST_MEMORY_FILE = PODCASTS_DIR / "host_personality_memory.json"
 MEMORY_RETENTION_DAYS = 21
 
 # Load all config at startup
@@ -465,7 +467,7 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name):
     
     # Save citations file
     safe_theme = theme_name.replace(" ", "_").replace("&", "and").lower()
-    citations_filename = SCRIPT_DIR / f"citations_{date_str}_{safe_theme}.json"
+    citations_filename = PODCASTS_DIR / f"citations_{date_str}_{safe_theme}.json"
     
     try:
         with open(citations_filename, 'w', encoding='utf-8') as f:
@@ -854,7 +856,8 @@ def generate_podcast_rss_feed():
     podcast_config = CONFIG['podcast']
     credits_config = CONFIG['credits']
     
-    audio_files = glob.glob("podcast_audio_*.mp3")
+    podcasts_dir = str(PODCASTS_DIR)
+    audio_files = glob.glob(os.path.join(podcasts_dir, "podcast_audio_*.mp3"))
     episodes = []
 
     # Try to load pydub for actual duration; fall back to config default
@@ -867,20 +870,21 @@ def generate_podcast_rss_feed():
             return podcast_config["episode_duration"]
 
     for audio_file in sorted(audio_files, reverse=True):
-        match = re.search(r'podcast_audio_(\d{4}-\d{2}-\d{2})_(.+)\.mp3', audio_file)
+        audio_basename = os.path.basename(audio_file)
+        match = re.search(r'podcast_audio_(\d{4}-\d{2}-\d{2})_(.+)\.mp3', audio_basename)
         if match:
             date_str, theme = match.groups()
-            
+
             try:
                 date_obj = datetime.strptime(date_str, "%Y-%m-%d")
                 pub_date = date_obj.strftime("%a, %d %b %Y 05:00:00 PST")
-                
+
                 # Load corresponding citations file
                 safe_theme = theme.replace(' ', '_').replace('&', 'and').lower()
-                citations_file = f"citations_{date_str}_{safe_theme}.json"
-                
+                citations_file = os.path.join(podcasts_dir, f"citations_{date_str}_{safe_theme}.json")
+
                 episode_description = podcast_config["description"]
-                
+
                 # Add citations if file exists
                 if os.path.exists(citations_file):
                     try:
@@ -912,6 +916,7 @@ def generate_podcast_rss_feed():
                 
                 episodes.append({
                     'title': f"{podcast_config['title']} - {theme.replace('_', ' ').title()}",
+                    'audio_url_path': f"podcasts/{audio_basename}",
                     'audio_file': audio_file,
                     'pub_date': pub_date,
                     'file_size': os.path.getsize(audio_file),
@@ -920,7 +925,7 @@ def generate_podcast_rss_feed():
                 })
             except ValueError:
                 continue
-    
+
     episodes = episodes[:10]  # Keep last 10 episodes
     
     # Generate RSS XML
@@ -963,8 +968,8 @@ def generate_podcast_rss_feed():
             f'<pubDate>{episode["pub_date"]}</pubDate>',
             f'<description>{escaped_description}</description>',
             f'<itunes:summary>{escaped_description}</itunes:summary>',
-            f'<enclosure url="{saxutils.escape(podcast_config["url"] + episode["audio_file"], {chr(34): "&quot;"})}" length="{episode["file_size"]}" type="audio/mpeg"/>',
-            f'<guid isPermaLink="false">{podcast_config["title"].lower().replace(" ", "-")}-{episode["audio_file"].replace("podcast_audio_", "").replace(".mp3", "")}</guid>',
+            f'<enclosure url="{saxutils.escape(podcast_config["url"] + episode["audio_url_path"], {chr(34): "&quot;"})}" length="{episode["file_size"]}" type="audio/mpeg"/>',
+            f'<guid isPermaLink="false">{podcast_config["title"].lower().replace(" ", "-")}-{os.path.basename(episode["audio_file"]).replace("podcast_audio_", "").replace(".mp3", "")}</guid>',
             f'<itunes:duration>{episode["duration"]}</itunes:duration>',
             f'<itunes:explicit>{"true" if podcast_config["explicit"] else "false"}</itunes:explicit>',
             '</item>'
@@ -988,8 +993,8 @@ def save_script_to_file(script, theme_name):
     pacific_now = get_pacific_now()
     date_str = pacific_now.strftime("%Y-%m-%d")
     safe_theme = theme_name.replace(" ", "_").replace("&", "and").lower()
-    script_filename = f"podcast_script_{date_str}_{safe_theme}.txt"
-    
+    script_filename = str(PODCASTS_DIR / f"podcast_script_{date_str}_{safe_theme}.txt")
+
     try:
         with open(script_filename, 'w', encoding='utf-8') as f:
             f.write(f"# {CONFIG['podcast']['title']} Podcast Script - {date_str}\n")
@@ -1070,12 +1075,12 @@ def main():
     episode_memory = get_episode_memory()
     host_memory = get_host_personality_memory()
     
-    # Check for existing files
+    # Check for existing files (stored in podcasts/ subfolder)
     date_key = pacific_now.strftime("%Y-%m-%d")
     safe_theme = today_theme.replace(" ", "_").replace("&", "and").lower()
-    script_filename = f"podcast_script_{date_key}_{safe_theme}.txt"
-    audio_filename = f"podcast_audio_{date_key}_{safe_theme}.mp3"
-    
+    script_filename = str(PODCASTS_DIR / f"podcast_script_{date_key}_{safe_theme}.txt")
+    audio_filename = str(PODCASTS_DIR / f"podcast_audio_{date_key}_{safe_theme}.mp3")
+
     script_exists = os.path.exists(script_filename)
     audio_exists = os.path.exists(audio_filename)
     

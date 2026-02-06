@@ -40,14 +40,17 @@ jobs:
         run: |
           # Download existing episodes and memory files if they exist
           echo "Downloading existing files from GitHub Pages..."
-          
-          # Try to download memory files (don't fail if they don't exist)
-          wget https://zirnhelt.github.io/curated-podcast-generator/episode_memory.json -O episode_memory.json || echo "No episode memory found"
-          wget https://zirnhelt.github.io/curated-podcast-generator/host_personality_memory.json -O host_personality_memory.json || echo "No host memory found"
-          
+
+          # Ensure podcasts directory exists
+          mkdir -p podcasts
+
+          # Try to download memory files into podcasts/ (don't fail if they don't exist)
+          wget https://zirnhelt.github.io/curated-podcast-generator/podcasts/episode_memory.json -O podcasts/episode_memory.json || echo "No episode memory found"
+          wget https://zirnhelt.github.io/curated-podcast-generator/podcasts/host_personality_memory.json -O podcasts/host_personality_memory.json || echo "No host memory found"
+
           # Download RSS feed for episode detection
           wget https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml -O podcast-feed.xml || echo "No existing RSS feed"
-          
+
           echo "Download complete"
         continue-on-error: true
       
@@ -68,24 +71,24 @@ jobs:
         run: |
           echo "Files in directory:"
           ls -la
-          
-          echo "Episode files:"
-          ls -la podcast_audio_* podcast_script_* citations_* || echo "No episode files found"
-          
+
+          echo "Episode files in podcasts/:"
+          ls -la podcasts/podcast_audio_* podcasts/podcast_script_* podcasts/citations_* || echo "No episode files found"
+
           echo "Memory files:"
-          ls -la episode_memory.json host_personality_memory.json || echo "No memory files found"
+          ls -la podcasts/episode_memory.json podcasts/host_personality_memory.json || echo "No memory files found"
       
       - name: Commit memory and cache files
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          
+
           # Add memory files and any other state files
-          git add episode_memory.json host_personality_memory.json
-          
+          git add podcasts/episode_memory.json podcasts/host_personality_memory.json
+
           # Add any new episode files that were generated
-          git add podcast_audio_*.mp3 podcast_script_*.txt citations_*.json podcast-feed.xml || echo "No new episode files to add"
-          
+          git add podcasts/podcast_audio_*.mp3 podcasts/podcast_script_*.txt podcasts/citations_*.json podcast-feed.xml || echo "No new episode files to add"
+
           # Only commit if there are changes
           git diff --quiet && git diff --staged --quiet || git commit -m "Daily podcast generation - $(TZ='America/Vancouver' date '+%Y-%m-%d %A')"
           git push
@@ -94,23 +97,24 @@ jobs:
       - name: Copy files to output directory
         run: |
           echo "Preparing files for GitHub Pages deployment..."
-          mkdir -p output
-          
-          # Copy all episode files
-          cp podcast_audio_*.mp3 output/ 2>/dev/null || echo "No audio files to copy"
-          cp podcast_script_*.txt output/ 2>/dev/null || echo "No script files to copy"  
-          cp citations_*.json output/ 2>/dev/null || echo "No citation files to copy"
-          
-          # Copy memory files
-          cp episode_memory.json host_personality_memory.json output/ 2>/dev/null || echo "No memory files to copy"
-          
+          mkdir -p output/podcasts
+
+          # Copy all episode files into output/podcasts/
+          cp podcasts/podcast_audio_*.mp3 output/podcasts/ 2>/dev/null || echo "No audio files to copy"
+          cp podcasts/podcast_script_*.txt output/podcasts/ 2>/dev/null || echo "No script files to copy"
+          cp podcasts/citations_*.json output/podcasts/ 2>/dev/null || echo "No citation files to copy"
+
+          # Copy memory files into output/podcasts/
+          cp podcasts/episode_memory.json podcasts/host_personality_memory.json output/podcasts/ 2>/dev/null || echo "No memory files to copy"
+
           # Copy website files
           cp index.html output/
           cp podcast-feed.xml output/
           cp cariboo-signals.png output/
-          
+
           echo "Files ready for deployment:"
           ls -la output/
+          ls -la output/podcasts/
       
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
@@ -126,10 +130,10 @@ jobs:
         with:
           name: daily-podcast-files
           path: |
-            podcast_audio_*.mp3
-            podcast_script_*.txt
-            citations_*.json
-            episode_memory.json
-            host_personality_memory.json
+            podcasts/podcast_audio_*.mp3
+            podcasts/podcast_script_*.txt
+            podcasts/citations_*.json
+            podcasts/episode_memory.json
+            podcasts/host_personality_memory.json
           retention-days: 7
         if: always()

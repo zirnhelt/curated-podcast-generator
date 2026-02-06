@@ -10,13 +10,16 @@ import glob
 import json
 import xml.sax.saxutils as saxutils
 from datetime import datetime
+from pathlib import Path
 from config_loader import load_podcast_config, load_credits_config
+
+PODCASTS_DIR = Path(__file__).parent / "podcasts"
 
 def load_episode_description(episode_date, theme):
     """Load episode-specific description from citations file if it exists."""
     safe_theme = theme.replace(" ", "_").replace("&", "and").lower()
-    citations_file = f"citations_{episode_date}_{safe_theme}.json"
-    
+    citations_file = str(PODCASTS_DIR / f"citations_{episode_date}_{safe_theme}.json")
+
     try:
         if os.path.exists(citations_file):
             with open(citations_file, 'r', encoding='utf-8') as f:
@@ -36,13 +39,14 @@ def generate_clean_rss():
     podcast_config = load_podcast_config()
     credits_config = load_credits_config()
     
-    # Find all episode files
-    audio_files = glob.glob("podcast_audio_*.mp3")
-    
+    # Find all episode files in podcasts/ subfolder
+    audio_files = glob.glob(str(PODCASTS_DIR / "podcast_audio_*.mp3"))
+
     episodes = []
     for audio_file in sorted(audio_files, reverse=True):  # Newest first
         # Extract date and theme from filename
-        parts = audio_file.replace('podcast_audio_', '').replace('.mp3', '').split('_')
+        audio_basename = os.path.basename(audio_file)
+        parts = audio_basename.replace('podcast_audio_', '').replace('.mp3', '').split('_')
         if len(parts) >= 2:
             episode_date = parts[0]  # 2026-01-24
             theme = ' '.join(parts[1:]).replace('_', ' ').title()
@@ -59,6 +63,7 @@ def generate_clean_rss():
             
             episodes.append({
                 'title': f"{podcast_config['title']} - {theme}",
+                'audio_url_path': f"podcasts/{audio_basename}",
                 'audio_file': audio_file,
                 'pub_date': pub_date,
                 'file_size': file_size,
@@ -121,7 +126,7 @@ def generate_clean_rss():
             f'<description>{escaped_description}</description>',
             f'<itunes:summary>{escaped_description}</itunes:summary>',
             f'<itunes:subtitle>Daily tech progress - {episode["theme"]}</itunes:subtitle>',
-            f'<enclosure url="{saxutils.escape(podcast_config["url"] + episode["audio_file"], {chr(34): "&quot;"})}" length="{episode["file_size"]}" type="audio/mpeg"/>',
+            f'<enclosure url="{saxutils.escape(podcast_config["url"] + episode["audio_url_path"], {chr(34): "&quot;"})}" length="{episode["file_size"]}" type="audio/mpeg"/>',
             f'<guid isPermaLink="false">{podcast_config["title"].lower().replace(" ", "-")}-{episode["episode_date"]}</guid>',
             f'<itunes:duration>{podcast_config["episode_duration"]}</itunes:duration>',
             f'<itunes:explicit>{"true" if podcast_config["explicit"] else "false"}</itunes:explicit>',

@@ -10,6 +10,9 @@ import json
 import glob
 from datetime import datetime, timedelta
 from difflib import SequenceMatcher
+from pathlib import Path
+
+PODCASTS_DIR = Path(__file__).parent / "podcasts"
 
 def normalize_title(title):
     """Normalize title for comparison by removing source tags and cleaning."""
@@ -28,14 +31,15 @@ def title_similarity(title1, title2):
 def load_recent_citations(days=7):
     """Load citations from the last N days."""
     cutoff_date = datetime.now() - timedelta(days=days)
-    citations_files = glob.glob("citations_*.json")
+    citations_files = glob.glob(str(PODCASTS_DIR / "citations_*.json"))
     
     recent_citations = []
     
     for filename in citations_files:
         try:
             # Extract date from filename: citations_2026-01-24_theme.json
-            parts = filename.replace('citations_', '').replace('.json', '').split('_')
+            basename = os.path.basename(filename)
+            parts = basename.replace('citations_', '').replace('.json', '').split('_')
             if len(parts) >= 2:
                 date_str = parts[0]
                 file_date = datetime.strptime(date_str, '%Y-%m-%d')
