@@ -67,6 +67,10 @@ PODCASTS_DIR.mkdir(exist_ok=True)
 SUPER_RSS_BASE_URL = "https://zirnhelt.github.io/super-rss-feed"
 SCORING_CACHE_URL = f"{SUPER_RSS_BASE_URL}/scored_articles_cache.json"
 
+# Claude model selection (override via environment variables)
+SCRIPT_MODEL = os.getenv("CLAUDE_SCRIPT_MODEL", "claude-sonnet-4-20250514")
+POLISH_MODEL = os.getenv("CLAUDE_POLISH_MODEL", "claude-opus-4-6")
+
 # Music files
 INTRO_MUSIC = SCRIPT_DIR / "cariboo-signals-intro.mp3"
 INTERVAL_MUSIC = SCRIPT_DIR / "cariboo-signals-interval.mp3"
@@ -139,8 +143,9 @@ def polish_script_with_claude(script, theme_name, api_key):
             script=script
         )
 
+        print(f"   Using model: {POLISH_MODEL}")
         response = api_retry(lambda: client.messages.create(
-            model="claude-sonnet-4-20250514",
+            model=POLISH_MODEL,
             max_tokens=8000,
             messages=[{"role": "user", "content": polish_prompt}]
         ))
@@ -593,8 +598,9 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             print("❌ ANTHROPIC_API_KEY not found in environment")
             return None
 
+        print(f"   Using model: {SCRIPT_MODEL}")
         response = api_retry(lambda: client.messages.create(
-            model="claude-sonnet-4-20250514",
+            model=SCRIPT_MODEL,
             max_tokens=7000,
             messages=[{"role": "user", "content": prompt}]
         ))
