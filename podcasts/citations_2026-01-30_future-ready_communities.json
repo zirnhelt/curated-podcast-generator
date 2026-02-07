@@ -1,0 +1,160 @@
+{
+  "episode": {
+    "date": "2026-01-30",
+    "formatted_date": "Friday, January 30, 2026",
+    "theme": "Future-Ready Communities",
+    "title": "Cariboo Signals - Future-Ready Communities",
+    "description": "Riley and Casey explore technology and society in rural communities. Today's focus: Future-Ready Communities.\n\nNEWS ROUNDUP: We break down Sharon AI to Deploy 1K B200 Cluster at NEXTDC M3 Data Center Using Lenovo Infrastructure and VAST Data and You don't need a bird feeder — this hardy plant with bountiful berries will keep birds flocking to your yard, plus 1 more stories, and explore what these developments mean for communities like ours.\n\nRURAL CONNECTIONS: Deep dive into future-ready communities, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.\n\nHosts: Riley (Tech systems thinker with rural roots) and Casey (Community development focus).\n\nSources:\n1. GN AI ML Infrastructure: Sharon AI to Deploy 1K B200 Cluster at NEXTDC M3 Data Center...\n2. Toms Guide: You don't need a bird feeder — this hardy plant with bountif...\n3. Toms Guide: Your weekend binge list: 9 new shows and movies to stream on...\n4. Al Jazeera English: UNRWA staff cuts deepen in Gaza as Israel restricts critical...\n5. Android Authority: Spotify might bring back a feature everyone loved till 2018 ...\n6. Toms Guide: Your TV is watching you — how to turn off data collection on...\n7. XDA Developers: This amazing Linux CPU scheduler uses the power of the stars...\n8. Toms Guide: This hiking fleece is my favorite winter running layer — jus...\n9. Android Authority: The team behind vivo’s add-on camera lens just made a 10x le...\n10. Hackaday: Lazarustorm Lets a PiStorm Live Outside Your Old Amiga\n11. The Guardian Global Development: Seven in 10 Africans are under 30 – invest in them and they ...\n12. NYT Top Stories: The End of Nuclear Arms Control\n13. GN AI ML Infrastructure: Sharon AI to Deploy 1K B200 Cluster at NEXTDC M3 Data Center...\n14. Toms Guide: You don't need a bird feeder — this hardy plant with bountif...\n15. Toms Guide: Your weekend binge list: 9 new shows and movies to stream on...\n16. Al Jazeera English: UNRWA staff cuts deepen in Gaza as Israel restricts critical...\n\n--- Credits ---\nTheme Song: Cariboo Signals by Sumo AI (suno.com)\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: OpenAI TTS API\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt",
+    "generated_at": "2026-01-30T05:48:48.964816-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "The Week's Tech - News Roundup",
+      "articles": [
+        {
+          "title": "Sharon AI to Deploy 1K B200 Cluster at NEXTDC M3 Data Center Using Lenovo Infrastructure and VAST Data - 01net",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQcWpQYWtCLVFqUmlkb2ZjM3VkRFFfOGstRVJabUp0eUlKVmFBUlJMTXlKcFNCNzMwYzRzWEswaWJWdXJLOUdnNEx5ZVdaQU1DQnRkRG8tbEYxc2djRHJNd2J3SkNyeTVvcDdRWnJPeGxLb1p4NTJLUUJwTE9tTDhkMjZZbnFZcVFIRWdaeTJhY0JEYXA5cVZ3NmNqV0FIbjBHTlI5MmRUeTNGWFhTUlFMMHo4WVZLelZVQkk4Y2QzUjUxdw?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-01-30T06:48:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "You don't need a bird feeder — this hardy plant with bountiful berries will keep birds flocking to your yard",
+          "url": "https://www.tomsguide.com/home/gardening/you-dont-need-a-bird-feeder-this-hardy-plant-with-bountiful-berries-will-keep-birds-flocking-to-your-yard",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-01-30T06:45:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Your weekend binge list: 9 new shows and movies to stream on Netflix, Prime Video and more (Jan. 30-Feb. 1)",
+          "url": "https://www.tomsguide.com/entertainment/streaming/your-weekend-binge-list-9-new-shows-and-movies-to-stream-on-netflix-prime-video-and-more-jan-30-feb-1",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-01-30T06:30:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "UNRWA staff cuts deepen in Gaza as Israel restricts critical aid access",
+          "url": "https://www.aljazeera.com/news/2026/1/30/unrwa-staff-cuts-deepen-in-gaza-as-israel-restricts-critical-aid-access?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 0,
+          "date_published": "2026-01-30T06:19:15+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Spotify might bring back a feature everyone loved till 2018 (APK teardown)",
+          "url": "https://www.androidauthority.com/spotify-editable-usernames-3636618/",
+          "source": "Android Authority",
+          "ai_score": 0,
+          "date_published": "2026-01-30T06:15:30+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Your TV is watching you — how to turn off data collection on LG, Samsung, Roku and more",
+          "url": "https://www.tomsguide.com/tvs/your-tv-is-watching-you-how-to-turn-off-data-collection-on-lg-samsung-roku-and-more",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-01-30T06:15:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "This amazing Linux CPU scheduler uses the power of the stars to decide which processes to focus on",
+          "url": "https://www.xda-developers.com/this-amazing-linux-cpu-scheduler-uses-the-power-of-the-stars-to-decide-which-processes-to-focus-on/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-01-30T06:11:42+00:00",
+          "summary": ""
+        },
+        {
+          "title": "This hiking fleece is my favorite winter running layer — just ask my washing machine",
+          "url": "https://www.tomsguide.com/wellness/fitness/this-hiking-fleece-is-my-favorite-winter-running-layer-just-ask-my-washing-machine",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-01-30T06:03:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "The team behind vivo’s add-on camera lens just made a 10x lens for iPhones",
+          "url": "https://www.androidauthority.com/the-team-behind-vivos-add-on-camera-lens-just-made-a-10x-lens-for-iphones-3636613/",
+          "source": "Android Authority",
+          "ai_score": 0,
+          "date_published": "2026-01-30T06:00:26+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Lazarustorm Lets a PiStorm Live Outside Your Old Amiga",
+          "url": "https://hackaday.com/2026/01/29/lazarustorm-lets-a-pistorm-live-outside-your-old-amiga/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-01-30T06:00:16+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Seven in 10 Africans are under 30 – invest in them and they will change the world | Monica Geingos",
+          "url": "https://www.theguardian.com/global-development/2026/jan/30/seven-10-africans-under-30-leadership-young-people-leadership",
+          "source": "The Guardian Global Development",
+          "ai_score": 0,
+          "date_published": "2026-01-30T06:00:13+00:00",
+          "summary": ""
+        },
+        {
+          "title": "The End of Nuclear Arms Control",
+          "url": "https://www.nytimes.com/2026/01/30/opinion/nuclear-treaty-deal-start.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-01-30T06:00:06+00:00",
+          "summary": ""
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Future-Ready Communities",
+      "articles": [
+        {
+          "title": "Sharon AI to Deploy 1K B200 Cluster at NEXTDC M3 Data Center Using Lenovo Infrastructure and VAST Data - 01net",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQcWpQYWtCLVFqUmlkb2ZjM3VkRFFfOGstRVJabUp0eUlKVmFBUlJMTXlKcFNCNzMwYzRzWEswaWJWdXJLOUdnNEx5ZVdaQU1DQnRkRG8tbEYxc2djRHJNd2J3SkNyeTVvcDdRWnJPeGxLb1p4NTJLUUJwTE9tTDhkMjZZbnFZcVFIRWdaeTJhY0JEYXA5cVZ3NmNqV0FIbjBHTlI5MmRUeTNGWFhTUlFMMHo4WVZLelZVQkk4Y2QzUjUxdw?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-01-30T06:48:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "You don't need a bird feeder — this hardy plant with bountiful berries will keep birds flocking to your yard",
+          "url": "https://www.tomsguide.com/home/gardening/you-dont-need-a-bird-feeder-this-hardy-plant-with-bountiful-berries-will-keep-birds-flocking-to-your-yard",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-01-30T06:45:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Your weekend binge list: 9 new shows and movies to stream on Netflix, Prime Video and more (Jan. 30-Feb. 1)",
+          "url": "https://www.tomsguide.com/entertainment/streaming/your-weekend-binge-list-9-new-shows-and-movies-to-stream-on-netflix-prime-video-and-more-jan-30-feb-1",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-01-30T06:30:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "UNRWA staff cuts deepen in Gaza as Israel restricts critical aid access",
+          "url": "https://www.aljazeera.com/news/2026/1/30/unrwa-staff-cuts-deepen-in-gaza-as-israel-restricts-critical-aid-access?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 0,
+          "date_published": "2026-01-30T06:19:15+00:00",
+          "summary": ""
+        }
+      ]
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator"
+  }
+}

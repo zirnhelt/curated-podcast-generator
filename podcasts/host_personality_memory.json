@@ -1,0 +1,30 @@
+{
+  "riley": {
+    "consistent_interests": [
+      "tech implementation",
+      "infrastructure design",
+      "practical deployment",
+      "AI",
+      "technology adoption"
+    ],
+    "recurring_questions": [
+      "How would this actually work?",
+      "What's the implementation challenge?"
+    ],
+    "evolving_opinions": {}
+  },
+  "casey": {
+    "consistent_interests": [
+      "community impact",
+      "accessibility",
+      "technology adaptation",
+      "community development",
+      "rural broadband"
+    ],
+    "recurring_questions": [
+      "Who benefits from this?",
+      "What's the broader context?"
+    ],
+    "evolving_opinions": {}
+  }
+}

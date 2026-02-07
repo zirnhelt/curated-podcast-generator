@@ -1,0 +1,152 @@
+{
+  "episode": {
+    "date": "2026-02-07",
+    "formatted_date": "Saturday, February 07, 2026",
+    "theme": "Cariboo Innovation Stories",
+    "title": "Cariboo Signals - Cariboo Innovation Stories",
+    "description": "Riley and Casey explore technology and society in rural communities. Today's focus: Cariboo Innovation Stories.\n\nNEWS ROUNDUP: We break down [Global News] Criticism over B.C. government’s handling of Texada grizzly bear shooting and [CFJC Today Kamloops] Friday, February 6 — CFJC Evening News, plus 1 more stories, and explore what these developments mean for communities like ours.\n\nRURAL CONNECTIONS: Deep dive into cariboo innovation stories, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.\n\nHosts: Riley (Tech systems thinker with rural roots) and Casey (Community development focus).\n\nSources:\n1. Global News: [Global News] Criticism over B.C. government’s handling of T...\n2. CFJC Today Kamloops: [CFJC Today Kamloops] Friday, February 6 — CFJC Evening News\n3. CFJC Today Kamloops: [CFJC Today Kamloops] CFJC Midday – The Kamloops Black Film ...\n4. CFJC Today Kamloops: [CFJC Today Kamloops] Families safe but members of Kamloops ...\n5. CFJC Today Kamloops: [CFJC Today Kamloops] Pipeline protest created safety risks,...\n6. CFJC Today Kamloops: [CFJC Today Kamloops] B.C. asks top court to hear DRIPA appe...\n7. BC Gov News: [BC Gov News] Closures planned for Pattullo Bridge, stal̕əw̓...\n8. IndigiNews: [IndigiNews] ‘B.C.’ group declares Similkameen River among p...\n9. Global News: [Global News] Wolfe Islander III turns 50 while filling in f...\n10. CFJC Today Kamloops: [CFJC Today Kamloops] Here’s a quick glance at unemployment ...\n11. CFJC Today Kamloops: [CFJC Today Kamloops] National employment numbers for Januar...\n12. TechCrunch: [TechCrunch] Benchmark raises $225M in special funds to doub...\n13. NYT Top Stories: [NYT Top Stories] We Didn’t Ask for This Internet\n14. NYT Top Stories: [NYT Top Stories] [NYT Top Stories] Amazon’s $200 Billion Sp...\n15. NYT Top Stories: [NYT Top Stories] [NYT Top Stories] [NYT Top Stories] At Ukr...\n\n--- Credits ---\nTheme Song: Cariboo Signals by Sumo AI (suno.com)\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: OpenAI TTS API\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt",
+    "generated_at": "2026-02-07T04:46:42.749934-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "The Week's Tech - News Roundup",
+      "articles": [
+        {
+          "title": "[Global News] Criticism over B.C. government’s handling of Texada grizzly bear shooting",
+          "url": "https://globalnews.ca/news/11657016/criticism-bc-government-texada-grizzly-bear-shooting/",
+          "source": "Global News",
+          "ai_score": 0,
+          "date_published": "2026-02-07T04:03:29+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] Friday, February 6 — CFJC Evening News",
+          "url": "https://cfjctoday.com/2026/02/06/friday-february-6-cfjc-evening-news/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-07T02:24:23+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] CFJC Midday – The Kamloops Black Film Festival once again uniting the community and celebrating black storytelling in cinema",
+          "url": "https://cfjctoday.com/2026/02/06/cfjc-midday-the-kamloops-black-film-festival-once-again-uniting-the-community-and-celebrating-black-storytelling-in-cinema/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-07T02:17:40+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] Families safe but members of Kamloops Iranian community hearing few details from back home",
+          "url": "https://cfjctoday.com/2026/02/06/families-safe-but-members-of-kamloops-iranian-community-hearing-few-details-from-back-home/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-07T01:04:27+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] Pipeline protest created safety risks, but journalists were let in, says RCMP officer",
+          "url": "https://cfjctoday.com/2026/02/06/pipeline-protest-created-safety-risks-but-journalists-were-let-in-says-rcmp-officer/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-06T21:43:48+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] B.C. asks top court to hear DRIPA appeal, saying ‘core democratic values’ at stake",
+          "url": "https://cfjctoday.com/2026/02/06/b-c-asks-top-court-to-hear-dripa-appeal-saying-core-democratic-values-at-stake/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-06T21:12:35+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[BC Gov News] Closures planned for Pattullo Bridge, stal̕əw̓asəm (Riverview) Bridge",
+          "url": "https://news.gov.bc.ca/releases/2026TT0021-000126",
+          "source": "BC Gov News",
+          "ai_score": 0,
+          "date_published": "2026-02-06T20:35:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[IndigiNews] ‘B.C.’ group declares Similkameen River among province’s most ‘endangered’",
+          "url": "https://indiginews.com/news/similkameen-river-among-provinces-most-endangered/",
+          "source": "IndigiNews",
+          "ai_score": 0,
+          "date_published": "2026-02-06T16:18:40+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[Global News] Wolfe Islander III turns 50 while filling in for troubled successor",
+          "url": "https://globalnews.ca/news/11655699/wolfe-islander-iii-ferry-50/",
+          "source": "Global News",
+          "ai_score": 0,
+          "date_published": "2026-02-06T14:31:59+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] Here’s a quick glance at unemployment rates for January, by Canadian city",
+          "url": "https://cfjctoday.com/2026/02/06/heres-a-quick-glance-at-unemployment-rates-for-january-by-canadian-city-2/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-06T14:10:10+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] National employment numbers for January from Statistics Canada, at a glance",
+          "url": "https://cfjctoday.com/2026/02/06/national-employment-numbers-for-january-from-statistics-canada-at-a-glance-2/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-06T14:09:58+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[TechCrunch] Benchmark raises $225M in special funds to double down on Cerebras",
+          "url": "https://techcrunch.com/2026/02/06/benchmark-raises-225m-in-special-funds-to-double-down-on-cerebras/",
+          "source": "TechCrunch",
+          "ai_score": 0,
+          "date_published": "2026-02-07T05:23:04+00:00",
+          "summary": ""
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Cariboo Innovation Stories",
+      "articles": [
+        {
+          "title": "[NYT Top Stories] We Didn’t Ask for This Internet",
+          "url": "https://www.nytimes.com/2026/02/06/opinion/ezra-klein-podcast-doctorow-wu.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-02-06T21:15:57+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[NYT Top Stories] [NYT Top Stories] Amazon’s $200 Billion Spending Plan Raises Stakes in A.I. Race",
+          "url": "https://www.nytimes.com/2026/02/05/technology/amazon-200-billion-ai.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-02-05T23:51:01+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[NYT Top Stories] [NYT Top Stories] [NYT Top Stories] At Ukraine’s Request, Starlink Denies Internet Access to Russian Troops",
+          "url": "https://www.nytimes.com/2026/02/05/world/europe/starlink-blocks-russian-troops-access.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-02-05T21:55:26+00:00",
+          "summary": ""
+        }
+      ]
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator"
+  }
+}

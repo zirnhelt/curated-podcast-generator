@@ -1,0 +1,158 @@
+{
+  "episode": {
+    "date": "2026-01-27",
+    "formatted_date": "Tuesday, January 27, 2026",
+    "theme": "Sustainable Innovation",
+    "title": "Cariboo Signals - Sustainable Innovation",
+    "description": "Riley and Casey explore technology and society in rural communities. Today's focus: Sustainable Innovation.\n\nNEWS ROUNDUP: We break down 🏔️ [Williams Lake Tribune] Williams Lake Tribune Article and [GN AI ML Infrastructure] Snowflake announces acquisition of Observe to provide AI-powered observability, plus 1 more stories, and explore what these developments mean for communities like ours.\n\nRURAL CONNECTIONS: Deep dive into sustainable innovation, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.\n\nHosts: Riley (Tech systems thinker with rural roots) and Casey (Community development focus).\n\nSources:\n1. Williams Lake Tribune: 🏔️ [Williams Lake Tribune] Williams Lake Tribune Article\n2. GN AI ML Infrastructure: [GN AI ML Infrastructure] Snowflake announces acquisition of...\n3. GN AI ML Infrastructure: [GN AI ML Infrastructure] New Relic links AI observability t...\n4. GN AI ML Infrastructure: [GN AI ML Infrastructure] Connect | APAC // Major Panel: Bui...\n5. Business Insider: [Business Insider] 7 of the most interesting quotes from Ant...\n6. GN AI ML Infrastructure: [GN AI ML Infrastructure] The Endgame of AI Is Electricity: ...\n7. GN AI ML Infrastructure: [GN AI ML Infrastructure] Arize AI Showcases Wayfair Deploym...\n8. GN AI ML Infrastructure: [GN AI ML Infrastructure] AI infrastructure and green transi...\n9. GN Clean Energy and EVs: [GN Clean Energy and EVs] Sam Altman-backed Exowatt launches...\n10. Business Insider: [Business Insider] Clawdbot is the new AI techies are buzzin...\n11. GN AI ML Infrastructure: [GN AI ML Infrastructure] STT GDC launches HVDC-powered AI i...\n12. GN AI ML Infrastructure: [GN AI ML Infrastructure] Descope introduces dedicated ident...\n13. Williams Lake Tribune: 🏔️ [Williams Lake Tribune] Williams Lake Tribune Article\n14. GN AI ML Infrastructure: [GN AI ML Infrastructure] Snowflake announces acquisition of...\n15. GN AI ML Infrastructure: [GN AI ML Infrastructure] New Relic links AI observability t...\n16. GN AI ML Infrastructure: [GN AI ML Infrastructure] Connect | APAC // Major Panel: Bui...\n\n--- Credits ---\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: OpenAI TTS API\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt",
+    "generated_at": "2026-01-27T05:40:13.087499-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "The Week's Tech - News Roundup",
+      "articles": [
+        {
+          "title": "🏔️ [Williams Lake Tribune] Williams Lake Tribune Article",
+          "url": "https://wltribune.com/2026/01/26/b-c-still-failing-to-properly-fill-out-documentation-for-involuntarily-held-patients/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-01-27T10:15:51.107616+00:00",
+          "summary": "Local news from Williams Lake Tribune"
+        },
+        {
+          "title": "[GN AI ML Infrastructure] Snowflake announces acquisition of Observe to provide AI-powered observability - E3-Magazin",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNZE9OVmFmM1lSMXR3d0xzcC1RbXpFSnJQajZCQU1GcXFacmc5WFpzMnh6U2VZNDRJY1QwYkNybXVNT2pYY0hhaVBtdUZveHQtRzdtSDdHU1duRDB0NkVFX2h2UURxQlNQZVIyLWo2UXBHRTc5dGRMc2R6STNJdFBPSkh4U2k2d1RDTUZhNFVwdWdwTzktVFVnRFZIWGdFbm8?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-01-27T10:02:36+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxNZE9OVmFmM1lSMXR3d0xzcC1RbXpFSnJQajZCQU1GcXFacmc5WFpzMnh6U2VZNDRJY1QwYkNybXVNT2pYY0hhaVBtdUZveHQtRzdtSDdHU1duRDB0NkVFX2h2UURxQlNQZVIyLWo2UX..."
+        },
+        {
+          "title": "[GN AI ML Infrastructure] New Relic links AI observability to faster deployments - IT Brief Australia",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxObk8yQWVnVVExRnhieHhFb0s4bDNRVFlYdmtodXRpUzR6RWlFZ2N6UVJWS3BoSXR4aFhLQ1BPbUJEcVVPVjRHeFhKQndMMnhmd3RrS3VpQ2EzOWIzeHQ5dVdmbDR5WWpKUnJvaXdKX0tFZy1pQ05JaG03LUxGSkFaYm1VUlJJdVpFQnVF?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-01-26T22:02:00+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMiiwFBVV95cUxObk8yQWVnVVExRnhieHhFb0s4bDNRVFlYdmtodXRpUzR6RWlFZ2N6UVJWS3BoSXR4aFhLQ1BPbUJEcVVPVjRHeFhKQndMMnhmd3RrS3VpQ2EzOWIzeHQ5dVdmbDR5WWpKUnJvaXdKX0..."
+        },
+        {
+          "title": "[GN AI ML Infrastructure] Connect | APAC // Major Panel: Building the next generation of AI infrastructure - What will define success? - Data Center Dynamics",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPM1BlTDdjYS1na0dLcmJuSnliWjVIWFNKS1pUR0pMV2RsTU1ZZWdkdXh0cExHQ1hyQ1Uzc2xlMWxoV1JjWGFhakVrT2JNV1lLRVpybTRwOWNlV203TTF0RVFOMXdzTXBkdHk1Tkg1WS1JZTVyUUJSaGZ1SWVuZkhaM2QwM2V5XzVHeG9mMQ?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-01-25T05:15:43+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMijAFBVV95cUxPM1BlTDdjYS1na0dLcmJuSnliWjVIWFNKS1pUR0pMV2RsTU1ZZWdkdXh0cExHQ1hyQ1Uzc2xlMWxoV1JjWGFhakVrT2JNV1lLRVpybTRwOWNlV203TTF0RVFOMXdzTXBkdHk1Tkg1WS..."
+        },
+        {
+          "title": "[Business Insider] 7 of the most interesting quotes from Anthropic CEO's sprawling 19,000-word essay about AI",
+          "url": "https://www.businessinsider.com/dario-amodei-ai-essay-most-interesting-quotes-2026-1",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-01-27T05:15:01+00:00",
+          "summary": "Anthropic CEO Dario Amodei wrote that AI poses \"a serious civilizational challenge,\" one that will require society to take significant action."
+        },
+        {
+          "title": "[GN AI ML Infrastructure] The Endgame of AI Is Electricity: Watch Five Electric Utility Stocks in 2026 and Beyond - NAI500",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNWndTZHVMU2FuSDZKZHBaVHZGd1hWTG5BT0JWX2JxUDJIQmVnQ3NrSXZxUjBaLVZmSWpUdGlWem0zcWQ1cG4wY2NZWWRzU01vaWVuWjUwTjJIMWJUenZmYTRLS1ZCMHh5LVBCVUJYQ3BoQ3BTZ0tDZ09uZ2FkRU5tYnMzaWxYYU5GMk1HVm5nSFJraDFaMjAzclF5Q0p5TnJUTUZyTkNYWHhMRzVseHVQUjJmc1ZSbENxcTVn?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-01-27T02:35:20+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMiuwFBVV95cUxNWndTZHVMU2FuSDZKZHBaVHZGd1hWTG5BT0JWX2JxUDJIQmVnQ3NrSXZxUjBaLVZmSWpUdGlWem0zcWQ1cG4wY2NZWWRzU01vaWVuWjUwTjJIMWJUenZmYTRLS1ZCMHh5LVBCVUJYQ3..."
+        },
+        {
+          "title": "[GN AI ML Infrastructure] Arize AI Showcases Wayfair Deployment, Underscoring Enterprise Demand for AI Observability Tools - TipRanks",
+          "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNLXpvLUpaNFppbHVpUmJ3N19lQURoVDJjYXY1OGQ5bnZkaHNtSG5CTm54dXBWUS1YSHZHcmdYMHpGU28ya0pyR1BodkRSaGp5VVNueS1fSGNKLW9oQ19YUFEyU2ZsZU54dGRYRy1zaTJCOFpRTjhmQ1BmNV9xYTBzaXBMZmN2RjVZTS01MnFZQzVfbWhLLTFyVnEwMFo4Qkhvaks4NExHU3pNZExfYkhPWDhNRzU2YTlGMG1MVlFlbVJHUEVtRDVSdXNVX1hPQ0M5akdOREk4T1BHM1E?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-01-26T18:11:18+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMi2wFBVV95cUxNLXpvLUpaNFppbHVpUmJ3N19lQURoVDJjYXY1OGQ5bnZkaHNtSG5CTm54dXBWUS1YSHZHcmdYMHpGU28ya0pyR1BodkRSaGp5VVNueS1fSGNKLW9oQ19YUFEyU2ZsZU54dGRYRy1zaT..."
+        },
+        {
+          "title": "[GN AI ML Infrastructure] AI infrastructure and green transition: assessing the environmental and economic costs and benefits of AI - OMFIF",
+          "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOT3c2U0FlRWJqRmoxOTVOa3FhNW4wazJBTWRsT2l1SHFwTHU3YThQdXJYMkJvRVJnLUljdS1yd0xtT2l5S2hTbUlTQkk0VDhqZXVUTTZ0WXpwekk1eGluaTFXY3BycHZmTnBNLUJtOTBTT2lMVjlKX3NwM29QU0N4TUQzSW5vVl9ieDg0dHBqWjFUR1REYlE5RVpXdGVmcEdWc2xJMjU0QjZnUThzMGJFeGpIdEJVbU92cXNZYUlHWUpmenhKSGR3NjZqMDR0bjBZLWc?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-01-26T13:07:57+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMi0gFBVV95cUxOT3c2U0FlRWJqRmoxOTVOa3FhNW4wazJBTWRsT2l1SHFwTHU3YThQdXJYMkJvRVJnLUljdS1yd0xtT2l5S2hTbUlTQkk0VDhqZXVUTTZ0WXpwekk1eGluaTFXY3BycHZmTnBNLUJtOT..."
+        },
+        {
+          "title": "[GN Clean Energy and EVs] Sam Altman-backed Exowatt launches arm to power data centers with clean energy - ESG Dive",
+          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPVUt1aVBYM3N2TmkyU0ZKLUdyYVhvY1drZHY2NFZSQm1MQUgtSGljRFQydHBOODVKdUdYSXZ1Mlp1RnRfdE5hSTQtOVN5YlBWUGt5UnRtbDJNZ2taWDNPWlJ3QjMzVUh0enRUZjdmeTR1R2RGRFJDRHVPNXRXZjB4ZF9mSEpaRnluRTZIR2lobjAydXBjNjJfVlhtemFDSWtYVjVaVnZFWHRCZ0lkSnJFazNB?oc=5",
+          "source": "GN Clean Energy and EVs",
+          "ai_score": 0,
+          "date_published": "2026-01-26T18:07:50+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxPVUt1aVBYM3N2TmkyU0ZKLUdyYVhvY1drZHY2NFZSQm1MQUgtSGljRFQydHBOODVKdUdYSXZ1Mlp1RnRfdE5hSTQtOVN5YlBWUGt5UnRtbDJNZ2taWDNPWlJ3QjMzVUh0enRUZjdmeT..."
+        },
+        {
+          "title": "[Business Insider] Clawdbot is the new AI techies are buzzing about &mdash; and it's renewing interest in the Mac Mini",
+          "url": "https://www.businessinsider.com/clawdbot-ai-mac-mini-2026-1",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-01-27T08:30:01+00:00",
+          "summary": "Clawdbot is a local AI agent that promises to manage your digital life, from organizing your calendar to booking restaurant reservations."
+        },
+        {
+          "title": "[GN AI ML Infrastructure] STT GDC launches HVDC-powered AI infrastructure testbed in Singapore - Telecompaper",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxONU1SNDQxTTRZSWFHN1lQX1RXbldIbmxrRDBKU2JWbk52Ty15N3N5a3B3bjZZRGctdmdXbmE2bkRXdnN6N0hHVnM4Q0ppQXBvaVBjZjljWDVSU21XVnFVRnlrQWZTSDNPS0d3NkZrZW5yLUJaRnVxYWl2b3oxWWt0aDhWbHZIdVZnNEhmUDdva3UyQWpZVmloLTJVWVFXSmtkMXNhWHVYemxrTmJFM1JXdw?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-01-27T05:48:05+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMisAFBVV95cUxONU1SNDQxTTRZSWFHN1lQX1RXbldIbmxrRDBKU2JWbk52Ty15N3N5a3B3bjZZRGctdmdXbmE2bkRXdnN6N0hHVnM4Q0ppQXBvaVBjZjljWDVSU21XVnFVRnlrQWZTSDNPS0d3NkZrZW..."
+        },
+        {
+          "title": "[GN AI ML Infrastructure] Descope introduces dedicated identity infrastructure for AI agents and MCP ecosystems - Help Net Security",
+          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPVDV1dVl5MFh0RmpDaWNxWVpOb20zcGNmdnZneUMtMkNKSEk5Qk83LXBuQkVpU3Rzcm9pUkZXb3pjYXQ5R2pNQ04wcXJaa3MzemhUdlV4VG9tZE5QR0RtaGh0Uy1jajlKZTZDSHd0TUdPZlc2MnVpWTZLek1aOV9COHRB?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-01-27T07:27:18+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMiggFBVV95cUxPVDV1dVl5MFh0RmpDaWNxWVpOb20zcGNmdnZneUMtMkNKSEk5Qk83LXBuQkVpU3Rzcm9pUkZXb3pjYXQ5R2pNQ04wcXJaa3MzemhUdlV4VG9tZE5QR0RtaGh0Uy1jajlKZTZDSHd0TU..."
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Sustainable Innovation",
+      "articles": [
+        {
+          "title": "🏔️ [Williams Lake Tribune] Williams Lake Tribune Article",
+          "url": "https://wltribune.com/2026/01/26/b-c-still-failing-to-properly-fill-out-documentation-for-involuntarily-held-patients/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-01-27T10:15:51.107616+00:00",
+          "summary": "Local news from Williams Lake Tribune"
+        },
+        {
+          "title": "[GN AI ML Infrastructure] Snowflake announces acquisition of Observe to provide AI-powered observability - E3-Magazin",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNZE9OVmFmM1lSMXR3d0xzcC1RbXpFSnJQajZCQU1GcXFacmc5WFpzMnh6U2VZNDRJY1QwYkNybXVNT2pYY0hhaVBtdUZveHQtRzdtSDdHU1duRDB0NkVFX2h2UURxQlNQZVIyLWo2UXBHRTc5dGRMc2R6STNJdFBPSkh4U2k2d1RDTUZhNFVwdWdwTzktVFVnRFZIWGdFbm8?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-01-27T10:02:36+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxNZE9OVmFmM1lSMXR3d0xzcC1RbXpFSnJQajZCQU1GcXFacmc5WFpzMnh6U2VZNDRJY1QwYkNybXVNT2pYY0hhaVBtdUZveHQtRzdtSDdHU1duRDB0NkVFX2h2UURxQlNQZVIyLWo2UX..."
+        },
+        {
+          "title": "[GN AI ML Infrastructure] New Relic links AI observability to faster deployments - IT Brief Australia",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxObk8yQWVnVVExRnhieHhFb0s4bDNRVFlYdmtodXRpUzR6RWlFZ2N6UVJWS3BoSXR4aFhLQ1BPbUJEcVVPVjRHeFhKQndMMnhmd3RrS3VpQ2EzOWIzeHQ5dVdmbDR5WWpKUnJvaXdKX0tFZy1pQ05JaG03LUxGSkFaYm1VUlJJdVpFQnVF?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-01-26T22:02:00+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMiiwFBVV95cUxObk8yQWVnVVExRnhieHhFb0s4bDNRVFlYdmtodXRpUzR6RWlFZ2N6UVJWS3BoSXR4aFhLQ1BPbUJEcVVPVjRHeFhKQndMMnhmd3RrS3VpQ2EzOWIzeHQ5dVdmbDR5WWpKUnJvaXdKX0..."
+        },
+        {
+          "title": "[GN AI ML Infrastructure] Connect | APAC // Major Panel: Building the next generation of AI infrastructure - What will define success? - Data Center Dynamics",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPM1BlTDdjYS1na0dLcmJuSnliWjVIWFNKS1pUR0pMV2RsTU1ZZWdkdXh0cExHQ1hyQ1Uzc2xlMWxoV1JjWGFhakVrT2JNV1lLRVpybTRwOWNlV203TTF0RVFOMXdzTXBkdHk1Tkg1WS1JZTVyUUJSaGZ1SWVuZkhaM2QwM2V5XzVHeG9mMQ?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-01-25T05:15:43+00:00",
+          "summary": "<a href=\"https://news.google.com/rss/articles/CBMijAFBVV95cUxPM1BlTDdjYS1na0dLcmJuSnliWjVIWFNKS1pUR0pMV2RsTU1ZZWdkdXh0cExHQ1hyQ1Uzc2xlMWxoV1JjWGFhakVrT2JNV1lLRVpybTRwOWNlV203TTF0RVFOMXdzTXBkdHk1Tkg1WS..."
+        }
+      ]
+    }
+  },
+  "credits": {
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator"
+  }
+}

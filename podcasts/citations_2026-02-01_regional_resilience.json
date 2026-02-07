@@ -1,0 +1,152 @@
+{
+  "episode": {
+    "date": "2026-02-01",
+    "formatted_date": "Sunday, February 01, 2026",
+    "theme": "Regional Resilience",
+    "title": "Cariboo Signals - Regional Resilience",
+    "description": "Riley and Casey explore technology and society in rural communities. Today's focus: Regional Resilience.\n\nNEWS ROUNDUP: We break down SD73 adds new accessible school bus to increase equitable field trip transportation and NVIDIA is still planning to make a 'huge' investment in OpenAI, CEO says, plus 1 more stories, and explore what these developments mean for communities like ours.\n\nRURAL CONNECTIONS: Deep dive into regional resilience, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.\n\nHosts: Riley (Tech systems thinker with rural roots) and Casey (Community development focus).\n\nSources:\n1. CFJC Today Kamloops: SD73 adds new accessible school bus to increase equitable fi...\n2. Engadget: NVIDIA is still planning to make a 'huge' investment in Open...\n3. TechCrunch: SpaceX seeks federal approval to launch 1 million solar-powe...\n4. XDA Developers: 5 lesser-known self-hosted services you're missing out on\n5. XDA Developers: Open-source NAS projects struggle because users refuse to fu...\n6. XDA Developers: I switched to Emby, and it's way better than Plex and Jellyf...\n7. Toms Guide: Can eating more protein improve your mood? A nutritionist ex...\n8. NYT Top Stories: My Patient Was Dying. His Wife Would Not Accept It.\n9. WIRED: LegalZoom Promo Code: Exclusive 10% Off LLC Formations\n10. WIRED: Tuft & Needle Promo Codes: 20% Off | February 2026\n11. Al Jazeera English: A vote for continuity? What to know for Costa Rica’s preside...\n12. WIRED: Home Chef Promo Code: 50% Off\n13. CFJC Today Kamloops: Iran says it now considers EU militaries to be terrorist gro...\n14. Toms Guide: Missed it in theaters? Here's every movie finally arriving o...\n15. WIRED: Vitamix Promo Codes and Deals: $25 Off + Free Shipping\n\n--- Credits ---\nTheme Song: Cariboo Signals by Sumo AI (suno.com)\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: OpenAI TTS API\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt",
+    "generated_at": "2026-02-01T05:37:29.686973-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "The Week's Tech - News Roundup",
+      "articles": [
+        {
+          "title": "SD73 adds new accessible school bus to increase equitable field trip transportation",
+          "url": "https://cfjctoday.com/2026/01/31/sd73-adds-new-accessible-school-bus-to-increase-equitable-field-trip-transportation/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-01-31T20:32:11+00:00",
+          "summary": ""
+        },
+        {
+          "title": "NVIDIA is still planning to make a 'huge' investment in OpenAI, CEO says",
+          "url": "https://www.engadget.com/ai/nvidia-is-still-planning-to-make-a-huge-investment-in-openai-ceo-says-205521528.html?src=rss",
+          "source": "Engadget",
+          "ai_score": 0,
+          "date_published": "2026-01-31T20:55:21+00:00",
+          "summary": ""
+        },
+        {
+          "title": "SpaceX seeks federal approval to launch 1 million solar-powered satellite data centers",
+          "url": "https://techcrunch.com/2026/01/31/spacex-seeks-federal-approval-to-launch-1-million-solar-powered-satellite-data-centers/",
+          "source": "TechCrunch",
+          "ai_score": 0,
+          "date_published": "2026-01-31T21:27:25+00:00",
+          "summary": ""
+        },
+        {
+          "title": "5 lesser-known self-hosted services you're missing out on",
+          "url": "https://www.xda-developers.com/lesser-known-self-hosted-services-youre-missing-out-on/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-01-31T22:00:20+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Open-source NAS projects struggle because users refuse to fund them",
+          "url": "https://www.xda-developers.com/open-source-nas-sustainability-funding-problem/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-01-31T20:30:20+00:00",
+          "summary": ""
+        },
+        {
+          "title": "I switched to Emby, and it's way better than Plex and Jellyfin...in some ways",
+          "url": "https://www.xda-developers.com/switched-to-emby-better-than-plex-jellyfin/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-01-31T18:00:20+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Can eating more protein improve your mood? A nutritionist explains",
+          "url": "https://www.tomsguide.com/wellness/fitness/can-eating-more-protein-improve-your-mood-a-nutritionist-explains",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-02-01T06:45:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "My Patient Was Dying. His Wife Would Not Accept It.",
+          "url": "https://www.nytimes.com/2026/02/01/opinion/hospital-doctors-difficult-patients.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-02-01T06:44:16+00:00",
+          "summary": ""
+        },
+        {
+          "title": "LegalZoom Promo Code: Exclusive 10% Off LLC Formations",
+          "url": "https://www.wired.com/story/legalzoom-promo-code/",
+          "source": "WIRED",
+          "ai_score": 0,
+          "date_published": "2026-02-01T06:37:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Tuft & Needle Promo Codes: 20% Off | February 2026",
+          "url": "https://www.wired.com/story/tuft-and-needle-promo-code/",
+          "source": "WIRED",
+          "ai_score": 0,
+          "date_published": "2026-02-01T06:36:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "A vote for continuity? What to know for Costa Rica’s presidential election",
+          "url": "https://www.aljazeera.com/news/2026/2/1/what-to-know-about-costa-ricas-presidential-election?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 0,
+          "date_published": "2026-02-01T06:30:52+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Home Chef Promo Code: 50% Off",
+          "url": "https://www.wired.com/story/home-chef-promo-code/",
+          "source": "WIRED",
+          "ai_score": 0,
+          "date_published": "2026-02-01T06:20:00+00:00",
+          "summary": ""
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Regional Resilience",
+      "articles": [
+        {
+          "title": "Iran says it now considers EU militaries to be terrorist groups",
+          "url": "https://cfjctoday.com/2026/01/31/iran-says-it-considers-eu-militaries-to-be-terrorist-groups/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-01T06:16:11+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Missed it in theaters? Here's every movie finally arriving on streaming this month",
+          "url": "https://www.tomsguide.com/entertainment/streaming/missed-it-in-theaters-heres-every-movie-finally-arriving-on-streaming-this-month-february-2026",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-02-01T06:15:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "Vitamix Promo Codes and Deals: $25 Off + Free Shipping",
+          "url": "https://www.wired.com/story/vitamix-promo-code/",
+          "source": "WIRED",
+          "ai_score": 0,
+          "date_published": "2026-02-01T06:14:00+00:00",
+          "summary": ""
+        }
+      ]
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator"
+  }
+}
