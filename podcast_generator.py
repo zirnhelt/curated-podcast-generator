@@ -436,7 +436,7 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name):
         },
         "segments": {
             "news_roundup": {
-                "title": "The Week's Tech - News Roundup",
+                "title": "News Roundup",
                 "articles": []
             },
             "deep_dive": {
@@ -541,7 +541,7 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         for a in deep_dive_articles
     ])
     
-    # Brief news titles so Segment 2 can reference them without repeating summaries
+    # Brief news titles so the Deep Dive can reference them without repeating summaries
     news_titles_brief = "\n".join([
         f"  {i+1}. {a.get('title', '')}"
         for i, a in enumerate(top_news)
@@ -628,8 +628,8 @@ def parse_script_into_segments(script):
     for line in script.split('\n'):
         line = line.strip()
         
-        # Detect segment transitions
-        if 'SEGMENT 1:' in line or '**SEGMENT 1:' in line:
+        # Detect segment transitions (support both old "SEGMENT 1/2:" and new "NEWS ROUNDUP:/DEEP DIVE:" markers)
+        if 'SEGMENT 1:' in line or '**SEGMENT 1:' in line or 'NEWS ROUNDUP:' in line or '**NEWS ROUNDUP:' in line:
             # Save welcome section
             if current_speaker and current_text:
                 segments['welcome'].append({
@@ -640,7 +640,7 @@ def parse_script_into_segments(script):
             current_section = 'news'
             continue
             
-        if 'SEGMENT 2:' in line or '**SEGMENT 2:' in line:
+        if 'SEGMENT 2:' in line or '**SEGMENT 2:' in line or 'DEEP DIVE:' in line or '**DEEP DIVE:' in line:
             # Save news section
             if current_speaker and current_text:
                 segments['news'].append({
