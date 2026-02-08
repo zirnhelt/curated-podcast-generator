@@ -1,0 +1,152 @@
+{
+  "episode": {
+    "date": "2026-02-08",
+    "formatted_date": "Sunday, February 08, 2026",
+    "theme": "Regional Resilience",
+    "title": "Cariboo Signals - Regional Resilience",
+    "description": "Riley and Casey explore technology and society in rural communities. Today's focus: Regional Resilience.\n\nNEWS ROUNDUP: We break down [CFJC Today Kamloops] ‘Comprehensive’ review underway as city looks to improve use, cost recovery at Westsyde pool and [CFJC Today Kamloops] SD73 DPAC seeking feedback on proposed School Streets project in Kamloops, plus 1 more stories, and explore what these developments mean for communities like ours.\n\nRURAL CONNECTIONS: Deep dive into regional resilience, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.\n\nHosts: Riley (Tech systems thinker with rural roots) and Casey (Community development focus).\n\nSources:\n1. CFJC Today Kamloops: [CFJC Today Kamloops] ‘Comprehensive’ review underway as cit...\n2. CFJC Today Kamloops: [CFJC Today Kamloops] SD73 DPAC seeking feedback on proposed...\n3. CFJC Today Kamloops: [CFJC Today Kamloops] Week in Review: Week of February 2\n4. CFJC Today Kamloops: [CFJC Today Kamloops] ‘Hard to believe’: One year since B.C....\n5. GN AI ML Infrastructure: [GN AI ML Infrastructure] Water Implications of AI-Driven Di...\n6. Toms Guide: [Toms Guide] I used ChatGPT to build a Moltbot and get on Mo...\n7. GN AI ML Infrastructure: [GN AI ML Infrastructure] Integrated Quantum Technologies Na...\n8. New Atlas: [New Atlas] Starlink moonlights as satellite traffic cop\n9. TechCrunch: [TechCrunch] India has changed its startup rules for deep te...\n10. GN AI ML Infrastructure: [GN AI ML Infrastructure] Gruve: $50 Million Follow-On Serie...\n11. GN AI ML Infrastructure: [GN AI ML Infrastructure] 'AI's real challenge is data, not ...\n12. XDA Developers: [XDA Developers] Matching the right LLM for your GPU feels l...\n13. Resilience.org: [Resilience.org] Restoring Hydrological Cycles as a Foundati...\n14. Resilience.org: [Resilience.org] Do cows raze the land?\n15. Resilience.org: [Resilience.org] How to Read the Signs of Collapse: Economic...\n\n--- Credits ---\nTheme Song: Cariboo Signals by Sumo AI (suno.com)\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: OpenAI TTS API\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt",
+    "generated_at": "2026-02-08T04:48:28.977016-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "The Week's Tech - News Roundup",
+      "articles": [
+        {
+          "title": "[CFJC Today Kamloops] ‘Comprehensive’ review underway as city looks to improve use, cost recovery at Westsyde pool",
+          "url": "https://cfjctoday.com/2026/02/07/comprehensive-operational-review-underway-as-city-looks-to-improve-cost-recovery-at-westsyde-pool-and-fitness-centre/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-07T23:21:54+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] SD73 DPAC seeking feedback on proposed School Streets project in Kamloops",
+          "url": "https://cfjctoday.com/2026/02/07/sd73-dpac-seeking-feedback-on-proposed-school-streets-project-in-kamloops/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-07T20:36:29+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] Week in Review: Week of February 2",
+          "url": "https://cfjctoday.com/2026/02/07/week-in-review-week-of-february-2/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-07T20:00:07+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] ‘Hard to believe’: One year since B.C. mother Jennifer Provencal disappeared",
+          "url": "https://cfjctoday.com/2026/02/07/hard-to-believe-one-year-since-b-c-mother-jennifer-provencal-disappeared/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-07T18:18:20+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN AI ML Infrastructure] Water Implications of AI-Driven Digital Infrastructure Expansion",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNQTh0UGNTbHp5YVl6ZFFWWlY2SnBFdko1RUlRWkJiZFZsRXNTMmI0bWtKaG9GNkdQX0NGUTFmc0l0VkhQR2FIc3VxVWp0S2c5amd0Z1VabVlGSEkwT0paUGxiXy1BQkpKWHFhdHRhclA2Nk5TU0xmQVpoVlo2c0VkXzRSd1JUbmxZTGZfSTJqMFlaRkh1eWVicWRyZEllYVp6aWc?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-08T06:00:54+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[Toms Guide] I used ChatGPT to build a Moltbot and get on Moltbook — here’s exactly how I did it",
+          "url": "https://www.tomsguide.com/ai/i-used-chatgpt-to-build-a-moltbot-and-get-on-moltbook-heres-exactly-how-i-did-it",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-02-08T05:45:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN AI ML Infrastructure] Integrated Quantum Technologies Names Anita Oehley CTO to Drive Enterprise-Scale AI Infrastructure",
+          "url": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxPYnFsOGtIaUYtVWdiNGpBdTI3SlJ6dDJ0Q0R4dXdPNlNyZTVZamhMWFBfd0ZJd09naFg4ZjVvdXJtWnRhY2M3NHBELU5vSlkwbS12QTc2WmtBWmFzSkNSenNyUTNVWmRTXy1RYnNHU1o0V2RscDhwWExGdnppeHBkbnB2dHJqWDBwak9XaVlvS21XRlplTFo2Q3h5a2kwN243bmN3R1dNWXR2M3R4RWQwOXhseUpjSGw1ZTF6Z3lWUmZxLXZFaVJtckdsaFhZU0UtdlFEOUoyZU9UX2NsZklvMjZhaFc5NFY4YjZoUXc4RENSZ3N4Y2pVczdFQXNaUDBkb3V5aFJyZEQ?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-08T04:45:45+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[New Atlas] Starlink moonlights as satellite traffic cop",
+          "url": "https://newatlas.com/space/starlink-satellite-traffic-cop/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-02-08T04:03:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[TechCrunch] India has changed its startup rules for deep tech",
+          "url": "https://techcrunch.com/2026/02/07/india-has-changed-its-startup-rules-for-deep-tech/",
+          "source": "TechCrunch",
+          "ai_score": 0,
+          "date_published": "2026-02-08T03:30:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN AI ML Infrastructure] Gruve: $50 Million Follow-On Series A Raised For AI Infrastructure Platform",
+          "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFBIQ2k2NHQyOUlYSU1iSzg2Z1lwRWVmUzNBb1lEeFUyLW1DTDBLVXJHRmhod2NDTEJNY3gtcEdZSjJKZjJHdmJEd19fRWdLOVNhaUw4N0dhSdIBXEFVX3lxTE50ZTVVWHNlLWE4UE52MjUwX0poMFp5WWFlSktJS2hYLVhxVWpaYkNWQUJyZzEyMExxdVVOYkFLOW5CY2RlNWV4RDhXcjgwTXJCemlMWWZMUTE0VzY0?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-08T03:21:35+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN AI ML Infrastructure] 'AI's real challenge is data, not infrastructure': NetApp CEO",
+          "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5PbnMtV0Fycno2QzRMY0wyWDVpUm5Ma2duM3pEQ3pmZ0pIX3ZhS3p2Ykt4UHBaVHU0M3hSOXgxMk1QSy0yRFhzZUtkTWlUX0I4TWF0UE1fcw?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-08T01:33:25+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[XDA Developers] Matching the right LLM for your GPU feels like an art, but I finally cracked it",
+          "url": "https://www.xda-developers.com/matching-the-right-llm-for-your-gpu-feels-like-an-art/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-02-08T01:01:21+00:00",
+          "summary": ""
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Regional Resilience",
+      "articles": [
+        {
+          "title": "[Resilience.org] Restoring Hydrological Cycles as a Foundation for Water Resilience",
+          "url": "https://www.resilience.org/stories/2026-02-05/restoring-hydrological-cycles-as-a-foundation-for-water-resilience/",
+          "source": "Resilience.org",
+          "ai_score": 0,
+          "date_published": "2026-02-05T12:05:27+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[Resilience.org] Do cows raze the land?",
+          "url": "https://www.resilience.org/stories/2026-02-05/do-cows-raze-the-land/",
+          "source": "Resilience.org",
+          "ai_score": 0,
+          "date_published": "2026-02-05T11:40:52+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[Resilience.org] How to Read the Signs of Collapse: Economic Stagnation, Resource Scarcity, and Europe’s Industrial Decline",
+          "url": "https://www.resilience.org/stories/2026-02-05/how-to-read-the-signs-of-collapse-economic-stagnation-resource-scarcity-and-europes-industrial-decline/",
+          "source": "Resilience.org",
+          "ai_score": 0,
+          "date_published": "2026-02-05T11:08:56+00:00",
+          "summary": ""
+        }
+      ]
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator"
+  }
+}
