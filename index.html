@@ -136,40 +136,6 @@
             border-radius: 8px;
         }
         
-        .podcast-apps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-top: 20px;
-        }
-        
-        .app-link {
-            display: block;
-            background: white;
-            padding: 12px;
-            border-radius: 8px;
-            text-decoration: none;
-            color: #333;
-            border: 2px solid #ddd;
-            transition: all 0.3s;
-        }
-        
-        .app-link:hover {
-            border-color: #3498db;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        
-        .app-name {
-            font-weight: bold;
-            margin-bottom: 4px;
-        }
-        
-        .app-description {
-            font-size: 0.9em;
-            color: #666;
-        }
-        
         .rss-links {
             text-align: center;
             margin-top: 20px;
@@ -229,10 +195,6 @@
                 grid-template-columns: 1fr;
             }
             
-            .podcast-apps {
-                grid-template-columns: 1fr;
-            }
-            
             h1 {
                 font-size: 2em;
             }
@@ -273,45 +235,16 @@
         
         <div class="subscribe-section">
             <h3>Subscribe to Cariboo Signals</h3>
-            <p>Get new episodes automatically in your favorite podcast app:</p>
-            
-            <div class="podcast-apps">
-                <a href="https://podcasts.apple.com/podcast/cariboo-signals/id" class="app-link">
-                    <div class="app-name">🎵 Apple Podcasts</div>
-                    <div class="app-description">iOS, macOS, Apple TV</div>
-                </a>
-                
-                <a href="https://open.spotify.com/show/" class="app-link">
-                    <div class="app-name">🟢 Spotify</div>
-                    <div class="app-description">Cross-platform streaming</div>
-                </a>
-                
-                <a href="https://podcasts.google.com/" class="app-link">
-                    <div class="app-name">📺 Google Podcasts</div>
-                    <div class="app-description">Android, web</div>
-                </a>
-                
-                <a href="https://overcast.fm/" class="app-link">
-                    <div class="app-name">☁️ Overcast</div>
-                    <div class="app-description">Smart Speed, Voice Boost</div>
-                </a>
-                
-                <a href="https://pca.st/" class="app-link">
-                    <div class="app-name">📱 Pocket Casts</div>
-                    <div class="app-description">Cross-platform sync</div>
-                </a>
-                
-                <a href="https://castbox.fm/" class="app-link">
-                    <div class="app-name">📦 Castbox</div>
-                    <div class="app-description">AI-powered features</div>
-                </a>
-            </div>
-            
+            <p>Add this podcast to your favorite app using the RSS feed link below:</p>
+
             <div class="rss-links">
-                <h4>Or subscribe directly:</h4>
                 <a href="podcast-feed.xml" class="rss-button">🎙️ RSS Feed</a>
-                <a href="https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml" class="rss-button">📡 Direct Link</a>
+                <a href="#" class="rss-button" id="copy-rss" onclick="copyRssUrl(event)">📋 Copy Feed URL</a>
             </div>
+
+            <p style="margin-top: 16px; color: #666; font-size: 0.9em;">
+                Paste the feed URL into any podcast app (Apple Podcasts, Overcast, Pocket Casts, etc.) to subscribe.
+            </p>
         </div>
         
         <div class="footer">
@@ -333,6 +266,16 @@
     </div>
 
     <script>
+        function copyRssUrl(event) {
+            event.preventDefault();
+            const feedUrl = 'https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml';
+            navigator.clipboard.writeText(feedUrl).then(function() {
+                const btn = document.getElementById('copy-rss');
+                btn.textContent = '✅ Copied!';
+                setTimeout(function() { btn.textContent = '📋 Copy Feed URL'; }, 2000);
+            });
+        }
+
         async function loadEpisodes() {
             try {
                 const response = await fetch('podcast-feed.xml');
