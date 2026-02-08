@@ -436,7 +436,7 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name):
         },
         "segments": {
             "news_roundup": {
-                "title": "The Week's Tech - News Roundup",
+                "title": "News Roundup",
                 "articles": []
             },
             "deep_dive": {
