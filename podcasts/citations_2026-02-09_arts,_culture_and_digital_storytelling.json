@@ -1,0 +1,152 @@
+{
+  "episode": {
+    "date": "2026-02-09",
+    "formatted_date": "Monday, February 09, 2026",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "title": "Cariboo Signals - Arts, Culture & Digital Storytelling",
+    "description": "Riley and Casey explore technology and society in rural communities. Today's focus: Arts, Culture & Digital Storytelling.\n\nNEWS ROUNDUP: We break down [The Tyee] BC Separatists Met in Campbell River. So Did Pro-Canada Protesters and [The Tyee] Juno Winner Dominique Fils-Aimé Comes to the Chan Centre, plus 1 more stories, and explore what these developments mean for communities like ours.\n\nRURAL CONNECTIONS: Deep dive into arts, culture & digital storytelling, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.\n\nHosts: Riley (Tech systems thinker with rural roots) and Casey (Community development focus).\n\nSources:\n1. The Tyee: [The Tyee] BC Separatists Met in Campbell River. So Did Pro-...\n2. The Tyee: [The Tyee] Juno Winner Dominique Fils-Aimé Comes to the Chan...\n3. The Tyee: [The Tyee] The Tyee Is Recruiting Our Next Editor-in-Chief\n4. CFJC Today Kamloops: [CFJC Today Kamloops] New Pritchard water treatment plant to...\n5. CFJC Today Kamloops: [CFJC Today Kamloops] City of Kamloops looking for two volun...\n6. CFJC Today Kamloops: [CFJC Today Kamloops] Details released as Kamloops prepares ...\n7. CFJC Today Kamloops: [CFJC Today Kamloops] Kamloops Storm win first Doug Birks Di...\n8. CFJC Today Kamloops: [CFJC Today Kamloops] Edmonstone records fourth shutout as B...\n9. XDA Developers: [XDA Developers] Microsoft is removing one of its most belov...\n10. GN 3D Printing: [GN 3D Printing] VulcanForms secures $220 million to scale i...\n11. GN AI ML Infrastructure: [GN AI ML Infrastructure] Gen AI accelerates global cloud in...\n12. GN AI ML Infrastructure: [GN AI ML Infrastructure] Blackstone, Coatue Grant $10 Billi...\n13. Business Insider: [Business Insider] The '996' work culture taking over Silico...\n14. GN AI ML Infrastructure: [GN AI ML Infrastructure] The AI Infrastructure Race: Reshap...\n15. GN AI ML Infrastructure: [GN AI ML Infrastructure] From Optics to AI: How Network Eng...\n\n--- Credits ---\nTheme Song: Cariboo Signals by Sumo AI (suno.com)\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: OpenAI TTS API\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt",
+    "generated_at": "2026-02-09T05:07:40.167570-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[The Tyee] BC Separatists Met in Campbell River. So Did Pro-Canada Protesters",
+          "url": "https://thetyee.ca/Analysis/2026/02/09/BC-Separatists-Met-Campbell-River/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-02-09T08:40:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[The Tyee] Juno Winner Dominique Fils-Aimé Comes to the Chan Centre",
+          "url": "https://thetyee.ca/Presents/2026/02/09/Dominique-Fils-Aime-Chan-Centre/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-02-09T08:30:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[The Tyee] The Tyee Is Recruiting Our Next Editor-in-Chief",
+          "url": "https://thetyee.ca/Tyeenews/2026/02/09/The-Tyee-Recruiting-Editor-in-Chief/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-02-09T08:20:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] New Pritchard water treatment plant to be commissioned in March",
+          "url": "https://cfjctoday.com/2026/02/08/new-pritchard-water-treatment-plant-to-be-commissioned-in-march/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-08T23:22:06+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] City of Kamloops looking for two volunteers to serve on Arts and Culture Engagement Group",
+          "url": "https://cfjctoday.com/2026/02/08/city-of-kamloops-looking-for-two-volunteers-to-serve-on-arts-and-culture-engagement-group/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-08T23:00:07+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] Details released as Kamloops prepares to organize 12th annual Family Day Festival",
+          "url": "https://cfjctoday.com/2026/02/08/details-released-as-kamloops-prepares-to-organize-12th-annual-family-day-festival/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-08T21:44:57+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] Kamloops Storm win first Doug Birks Division title in over a decade",
+          "url": "https://cfjctoday.com/2026/02/08/kamloops-storm-win-first-doug-birks-division-title-in-over-a-decade/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-08T17:41:20+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] Edmonstone records fourth shutout as Blazers wrap up road trip with win over Giants",
+          "url": "https://cfjctoday.com/2026/02/08/edmonstone-records-fourth-shutout-as-blazers-wrap-up-road-trip-with-win-over-giants/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-08T16:24:28+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[XDA Developers] Microsoft is removing one of its most beloved Android and iOS apps today",
+          "url": "https://www.xda-developers.com/microsoft-is-removing-one-of-its-more-beloved-android-and-ios-apps-today/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-02-09T06:41:25+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN 3D Printing] VulcanForms secures $220 million to scale its digital metal manufacturing platform",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOay03dEI0SnFPTWRDSmhHRUVCRHdlLVJ4aGtQbnprNUFiUDFyUTJRRm5KQ1k0dElXTW81SUNoQ1BnWFUzQ0YxZkpHR0xiVEd4czQ5NWJod19GekUxS0lsR0h4QXh1bXRZTl9hZi15LW16emZQbm1FYmpyWFl4Yi10bUJLZEZGVUFValVUUUw3bzlfTmhjV3diM2xtdEZOTmlQN2FtOA?oc=5",
+          "source": "GN 3D Printing",
+          "ai_score": 0,
+          "date_published": "2026-02-09T06:33:50+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN AI ML Infrastructure] Gen AI accelerates global cloud infrastructure market in Q4 - Synergy",
+          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNSm5CNVVNRWJLdjZhdWphUmFOdmRCWXgtQWEzWDJmTHZXMWxYcmYwRjB0SmVGblhBNlppamlfdE12S3FuVHRmbGpwZjVfOXpqMWhzdHZPbl94UFJZQ01JWVZndFotbGtSSE53TVVITko4ZVZNS0pWVnNxNVFCUDVrSEVWb1lHYndlc3pWY29wYmhrU0F3SG50ZDlKY01qblVfcDVyamRMbE5JUGp4T3lB?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-09T06:29:28+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN AI ML Infrastructure] Blackstone, Coatue Grant $10 Billion Loan to Australia AI Firm",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNRXRodEEtX3RGTFdpNzJrTVBBcC1TdDFVVkZWQkpxSTVFZlp6Rnh3dU5JSWxuYXQ2cUtkWHZ6elV3NEVKaGIxXzRwLTVYaERBeHRMU25KQnJQWElCUEFNal9uRjZMUGJzR0RBV0ZaU3ktdTNNNDM4VElRcHhaRkZOZEQ2WWV1MVRBZjZJdGhIRWgxUTJ3aW1Ka1RtZVhpeEFDNXBVaGJMNUdZdlhlVElYeA?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-09T06:09:00+00:00",
+          "summary": ""
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Arts, Culture & Digital Storytelling",
+      "articles": [
+        {
+          "title": "[Business Insider] The '996' work culture taking over Silicon Valley is coming at a 'human expense,' these AI researchers say",
+          "url": "https://www.businessinsider.com/996-work-culture-silicon-valley-burnout-ai-researchers-2026-2",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-02-08T10:07:01+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN AI ML Infrastructure] The AI Infrastructure Race: Reshaping Digital Real Estate Investment",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOOXZ4QXpNNTJxOEFVNU16dnVkX1FuaGxpaDd5MmJIendDRzI5QnpRTzZha0sweXg1STQxNllqVTRZczJKSkdyNTlBbjNWeDRxMmVSdHBMeDdtbTNkUlhnMW5nNjFrZHlyWElmWlFJd0Faa1FtdUd5QkNBcnR4ZUJESXBHN0JUZ2tobWN4QnRIMmpFM3pmb0JzNHhpY0tGdXdjbndfOERkcjhTS2RkNGJUcmNONVdoV0FLeTRoS0FB?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-07T15:35:03+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN AI ML Infrastructure] From Optics to AI: How Network Engineers Are Redefining Digital Infrastructure",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNR1dfcS1RcjlqYTlVbWp2c2EyT1BncG5XUk0zRVJOVVlaUkljd19LNmVjSm5IWVlISi1YWmhpZXFQUWZaYmpSWUpRa3c5MWFDMlRiUElfSjg2MTJuNXRRT0U5UG95bWNCSlFzc1A4VUtkUWNpeE9iZ3NJNzU5SGZyc2gxY25YclR6ZVBKbFQtMm5mY1ctc0FkNUpEM0VnOXc?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-06T17:06:12+00:00",
+          "summary": ""
+        }
+      ]
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator"
+  }
+}
