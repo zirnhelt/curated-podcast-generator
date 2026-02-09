@@ -46,6 +46,18 @@ def load_prompts_config():
     with open(CONFIG_DIR / "prompts.json", 'r') as f:
         return json.load(f)
 
+@lru_cache(maxsize=1)
+def load_psa_organizations():
+    """Load PSA organizations roster (cached)."""
+    with open(CONFIG_DIR / "psa_organizations.json", 'r') as f:
+        return json.load(f)["organizations"]
+
+@lru_cache(maxsize=1)
+def load_psa_events():
+    """Load PSA events calendar (cached)."""
+    with open(CONFIG_DIR / "psa_events.json", 'r') as f:
+        return json.load(f)["events"]
+
 def get_voice_for_host(host_key):
     """Get TTS voice for a host."""
     return load_hosts_config()[host_key]["voice"]
@@ -62,7 +74,9 @@ def get_all_config():
         'themes': load_themes_config(),
         'credits': load_credits_config(),
         'interests': load_interests(),
-        'prompts': load_prompts_config()
+        'prompts': load_prompts_config(),
+        'psa_organizations': load_psa_organizations(),
+        'psa_events': load_psa_events()
     }
 
 if __name__ == "__main__":

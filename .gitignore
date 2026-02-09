@@ -9,6 +9,9 @@ venv/
 # Backup files from refactoring
 *.pre-config
 
+# PSA rotation runtime state
+podcasts/psa_rotation_state.json
+
 # Python cache
 __pycache__/
 *.pyc

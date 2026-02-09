@@ -1,0 +1,172 @@
+{
+  "organizations": {
+    "partners-for-literacy": {
+      "name": "Cariboo Chilcotin Partners for Literacy",
+      "short_name": "Partners for Literacy",
+      "description": "Free adult literacy, ESL, and digital literacy programs across the Cariboo Chilcotin",
+      "website": "caribooliteracy.com",
+      "weekdays": [0],
+      "tags": ["digital literacy", "education", "adult learning"]
+    },
+    "community-futures": {
+      "name": "Community Futures Cariboo Chilcotin",
+      "short_name": "Community Futures",
+      "description": "Nonprofit with volunteer board supporting rural entrepreneurs and community economic development",
+      "website": "cfdccariboo.com",
+      "weekdays": [2, 6],
+      "tags": ["economic development", "small business", "disaster resilience"]
+    },
+    "wl-community-living": {
+      "name": "Williams Lake Association for Community Living",
+      "short_name": "WL Community Living",
+      "description": "Supporting people with diverse abilities in Williams Lake since 1960",
+      "website": "wlacl.org",
+      "weekdays": [2],
+      "tags": ["disability support", "community inclusion", "advocacy"]
+    },
+    "cara": {
+      "name": "Cariboo Agricultural Research Alliance",
+      "short_name": "CARA",
+      "description": "Applied agricultural research for Cariboo farmers and ranchers",
+      "website": "cariboo-agricultural-research.ca",
+      "weekdays": [1],
+      "tags": ["agriculture", "ranching", "research"]
+    },
+    "central-chilcotin-rehab": {
+      "name": "Central Chilcotin Rehabilitation Ltd.",
+      "short_name": "Central Chilcotin Rehab",
+      "description": "Indigenous joint venture doing award-winning forest rehabilitation and biomass work across Tŝideldel, Tl'etinqox, and Yunesit'in territories",
+      "website": null,
+      "weekdays": [1, 6],
+      "tags": ["forestry", "Indigenous enterprise", "land rehabilitation"]
+    },
+    "stampede-association": {
+      "name": "Williams Lake Stampede Association",
+      "short_name": "WL Stampede",
+      "description": "Nonprofit that runs the world-famous Williams Lake Stampede on Canada Day weekend",
+      "website": "williamslakestampede.com",
+      "weekdays": [1],
+      "tags": ["rodeo", "community event", "western heritage"]
+    },
+    "ccacs": {
+      "name": "Central Cariboo Arts & Culture Society",
+      "short_name": "CCACS",
+      "description": "Manages the Arts Centre, grants programs, and Performances in the Park summer concert series",
+      "website": "centralcaribooarts.com",
+      "weekdays": [0],
+      "tags": ["arts", "culture", "music", "performances"]
+    },
+    "station-house-gallery": {
+      "name": "Station House Gallery",
+      "short_name": "Station House Gallery",
+      "description": "Williams Lake's primary visual arts gallery showcasing regional artists",
+      "website": null,
+      "weekdays": [0],
+      "tags": ["visual arts", "gallery", "exhibitions"]
+    },
+    "cariboo-museum": {
+      "name": "Museum of the Cariboo Chilcotin",
+      "short_name": "Cariboo Museum",
+      "description": "Regional history museum and home of the BC Cowboy Hall of Fame",
+      "website": null,
+      "weekdays": [0],
+      "tags": ["history", "heritage", "museum"]
+    },
+    "denisiqi": {
+      "name": "Denisiqi Services Society",
+      "short_name": "Denisiqi",
+      "description": "Over 20 years of culturally grounded child and family services for Tŝilhqot'in and Ulkatcho communities",
+      "website": "denisiqi.org",
+      "weekdays": [3],
+      "tags": ["Indigenous services", "child welfare", "cultural programs"]
+    },
+    "cariboo-friendship": {
+      "name": "Cariboo Friendship Society",
+      "short_name": "Cariboo Friendship Society",
+      "description": "Urban Indigenous nonprofit since 1969 providing housing, youth programs, crisis services, and The Hearth restaurant",
+      "website": "cariboofriendshipsociety.ca",
+      "weekdays": [3],
+      "tags": ["Indigenous services", "housing", "youth", "crisis support"]
+    },
+    "ccatec": {
+      "name": "Carrier Chilcotin Aboriginal Training & Employment Centre",
+      "short_name": "CCATEC",
+      "description": "Workforce development and employment training across Carrier, Chilcotin, and Secwépemc nations",
+      "website": "ccatec.com",
+      "weekdays": [3],
+      "tags": ["Indigenous employment", "training", "workforce development"]
+    },
+    "first-journey-trails": {
+      "name": "First Journey Trails & Indigenous Youth Mountain Bike Program",
+      "short_name": "First Journey Trails",
+      "description": "Trail design, construction, and the Indigenous Youth Mountain Bike Program empowering youth through trail building and riding",
+      "website": "firstjourneytrails.com",
+      "weekdays": [4],
+      "tags": ["trails", "mountain biking", "Indigenous youth", "outdoor recreation"]
+    },
+    "scout-island": {
+      "name": "Scout Island Nature Centre",
+      "short_name": "Scout Island",
+      "description": "Volunteer-run nature education centre operated by the Williams Lake Field Naturalists — birding, kids programs, Salmon in the Classroom",
+      "website": "scoutisland.ca",
+      "weekdays": [4],
+      "tags": ["nature education", "birding", "conservation", "volunteer"]
+    },
+    "conservation-society": {
+      "name": "Cariboo Chilcotin Conservation Society",
+      "short_name": "Conservation Society",
+      "description": "Environmental education nonprofit — Water Wise, Waste Wise, Skates for All, and school field programs since 1996",
+      "website": "conservationsociety.ca",
+      "weekdays": [4],
+      "tags": ["conservation", "environmental education", "water", "waste reduction"]
+    },
+    "wl-hospice": {
+      "name": "Williams Lake Hospice Society",
+      "short_name": "WL Hospice",
+      "description": "100% volunteer hospice providing companionship, respite, and grief support — all donations stay in community",
+      "website": "williamslakehospice.com",
+      "weekdays": [5],
+      "tags": ["hospice", "palliative care", "volunteer", "grief support"]
+    },
+    "cmha-cariboo": {
+      "name": "CMHA Cariboo Chilcotin",
+      "short_name": "CMHA",
+      "description": "Mental health counselling, housing support, victim services, and crisis intervention in Williams Lake and 100 Mile House",
+      "website": "cariboo.cmha.bc.ca",
+      "weekdays": [5],
+      "tags": ["mental health", "counselling", "housing", "crisis support"]
+    },
+    "ccsar": {
+      "name": "Central Cariboo Search and Rescue",
+      "short_name": "Central Cariboo SAR",
+      "description": "Highly trained volunteer first responders serving the central Cariboo region locally, regionally, and provincially",
+      "website": "ccsar.ca",
+      "weekdays": [5],
+      "tags": ["search and rescue", "volunteer", "emergency response"]
+    },
+    "cmh-foundation": {
+      "name": "Cariboo Memorial Hospital Foundation",
+      "short_name": "CMH Foundation",
+      "description": "Volunteer-driven foundation that has raised nearly $4 million for hospital equipment in Williams Lake",
+      "website": "cmhospitalfoundation.ca",
+      "weekdays": [5],
+      "tags": ["healthcare", "fundraising", "hospital equipment"]
+    },
+    "salvation-army-wl": {
+      "name": "Salvation Army Williams Lake",
+      "short_name": "Salvation Army",
+      "description": "Food bank, emergency shelter, free meals, and Christmas hamper program for Williams Lake families",
+      "website": null,
+      "weekdays": [6],
+      "tags": ["food security", "shelter", "emergency services"]
+    },
+    "spca-wl": {
+      "name": "BC SPCA Williams Lake",
+      "short_name": "BC SPCA Williams Lake",
+      "description": "Animal welfare, shelter, and adoption services in Williams Lake",
+      "website": "spca.bc.ca/locations/williams-lake",
+      "weekdays": [6],
+      "tags": ["animal welfare", "adoption", "volunteer"]
+    }
+  }
+}

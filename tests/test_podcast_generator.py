@@ -1,39 +1,11 @@
 """Tests for deterministic functions in podcast_generator.
 
-Since podcast_generator imports anthropic/openai/pydub at module level and exits
-if missing, we mock those imports before importing the module.
+Heavy third-party dependencies (anthropic, openai, pydub) are stubbed in
+tests/conftest.py at import time so podcast_generator can be imported safely.
 """
 
-import sys
-import types
 import pytest
 
-
-@pytest.fixture(autouse=True, scope="module")
-def mock_dependencies():
-    """Provide stubs for heavy third-party packages so the module can load."""
-    modules = {}
-    for mod_name in ("anthropic", "openai", "pydub"):
-        if mod_name not in sys.modules:
-            modules[mod_name] = sys.modules[mod_name] = types.ModuleType(mod_name)
-
-    # Provide the classes the module references at import time
-    sys.modules["anthropic"].Anthropic = type("Anthropic", (), {})
-    sys.modules["openai"].OpenAI = type("OpenAI", (), {})
-    sys.modules["pydub"].AudioSegment = type("AudioSegment", (), {
-        "from_mp3": staticmethod(lambda *a, **k: None),
-        "silent": staticmethod(lambda *a, **k: None),
-        "empty": staticmethod(lambda *a, **k: None),
-    })
-
-    yield
-
-    for mod_name, mod in modules.items():
-        if sys.modules.get(mod_name) is mod:
-            del sys.modules[mod_name]
-
-
-# Import after mocks are installed
 from podcast_generator import (
     get_article_scores,
     extract_topics_and_themes,
@@ -90,6 +62,24 @@ class TestParseScriptIntoSegments:
 **CASEY:** We'd love to hear your thoughts. Have a great day.
 """
 
+    SCRIPT_WITH_SPOTLIGHT = """
+**RILEY:** Welcome to the show, it's Friday.
+**CASEY:** Good to be here, let's get started.
+
+**NEWS ROUNDUP**
+**RILEY:** First up, a big story about AI regulation in Canada.
+**CASEY:** That's an important development for rural communities.
+
+**COMMUNITY SPOTLIGHT**
+**CASEY:** Before we dive deeper, a quick shout-out to Scout Island Nature Centre, a volunteer-run gem right here in Williams Lake.
+**RILEY:** They do fantastic work with kids and nature education.
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Wild Spaces & Outdoor Life**
+**CASEY:** Let's talk about trail infrastructure in the Cariboo.
+**RILEY:** Great topic. Several communities have launched new trail projects.
+**CASEY:** We'd love to hear your thoughts. Have a great weekend.
+"""
+
     def test_welcome_section(self):
         segments = parse_script_into_segments(self.SAMPLE_SCRIPT)
         assert len(segments["welcome"]) == 2
@@ -104,6 +94,21 @@ class TestParseScriptIntoSegments:
     def test_deep_dive_section(self):
         segments = parse_script_into_segments(self.SAMPLE_SCRIPT)
         assert len(segments["deep_dive"]) >= 2
+
+    def test_community_spotlight_section(self):
+        segments = parse_script_into_segments(self.SCRIPT_WITH_SPOTLIGHT)
+        assert len(segments["community_spotlight"]) == 2
+        assert segments["community_spotlight"][0]["speaker"] == "casey"
+        assert "Scout Island" in segments["community_spotlight"][0]["text"]
+
+    def test_spotlight_does_not_leak_into_news(self):
+        segments = parse_script_into_segments(self.SCRIPT_WITH_SPOTLIGHT)
+        for seg in segments["news"]:
+            assert "Scout Island" not in seg["text"]
+
+    def test_empty_spotlight_when_absent(self):
+        segments = parse_script_into_segments(self.SAMPLE_SCRIPT)
+        assert segments["community_spotlight"] == []
 
     def test_filters_short_text(self):
         """Segments with <= 10 chars of text should be dropped."""

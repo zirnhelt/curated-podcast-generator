@@ -1,0 +1,233 @@
+{
+  "_comment": "PSA event calendar. Dates use MM-DD format for recurring annual events. When an event falls within the lookahead window (default 7 days) and matches an org on today's roster, that org gets featured with the event-specific PSA angle. Update approximate dates annually for floating events (e.g. Mental Health Week).",
+  "events": [
+    {
+      "name": "Skates for All season",
+      "start_date": "01-01",
+      "end_date": "02-28",
+      "organization_id": "conservation-society",
+      "psa_angle": "The Conservation Society's Skates for All program is collecting donated skates — kids' sizes 7 to 10 are always in demand. Drop them off at Total Ice or the Cariboo Memorial Recreation Complex."
+    },
+    {
+      "name": "Heritage Day",
+      "start_date": "02-19",
+      "end_date": "02-19",
+      "organization_id": "cariboo-friendship",
+      "psa_angle": "Heritage Day is a chance to celebrate the diverse cultural heritage of our region. The Cariboo Friendship Society has been part of that story since 1969."
+    },
+    {
+      "name": "World Water Day",
+      "start_date": "03-22",
+      "end_date": "03-22",
+      "organization_id": "conservation-society",
+      "psa_angle": "It's World Water Day. The Conservation Society's Water Wise program teaches Cariboo communities about protecting our watersheds — programs available for schools and community groups."
+    },
+    {
+      "name": "National Poetry Month",
+      "start_date": "04-01",
+      "end_date": "04-30",
+      "organization_id": "ccacs",
+      "psa_angle": "April is National Poetry Month. CCACS supports local writers and artists year-round through grants and programming at the Arts Centre."
+    },
+    {
+      "name": "Earth Day",
+      "start_date": "04-22",
+      "end_date": "04-22",
+      "organization_id": "scout-island",
+      "psa_angle": "Happy Earth Day. Scout Island Nature Centre runs volunteer stewardship programs all spring and summer — check scoutisland.ca for upcoming birding walks and nature programs."
+    },
+    {
+      "name": "National Volunteer Week",
+      "start_date": "04-19",
+      "end_date": "04-25",
+      "organization_id": null,
+      "all_orgs": true,
+      "psa_angle": "It's National Volunteer Week. {org_name} is always looking for volunteers — visit {org_website} to find out how you can help."
+    },
+    {
+      "name": "Red Dress Day (MMIWG)",
+      "start_date": "05-05",
+      "end_date": "05-05",
+      "organization_id": "cariboo-friendship",
+      "psa_angle": "Today is Red Dress Day, honouring missing and murdered Indigenous women and girls. The Cariboo Friendship Society's PEACE program provides prevention, education, advocacy, counselling, and empowerment services."
+    },
+    {
+      "name": "Mental Health Week",
+      "start_date": "05-04",
+      "end_date": "05-10",
+      "organization_id": "cmha-cariboo",
+      "psa_angle": "It's Mental Health Week. CMHA Cariboo Chilcotin offers free counselling and support right here in Williams Lake. Reach them at 250-398-8220, or in crisis, call 310-6789 any time."
+    },
+    {
+      "name": "Aboriginal Awareness Week",
+      "start_date": "05-22",
+      "end_date": "05-25",
+      "organization_id": "ccatec",
+      "psa_angle": "It's Aboriginal Awareness Week. CCATEC provides workforce development and employment training across Carrier, Chilcotin, and Secwépemc nations — supporting people in building careers close to home."
+    },
+    {
+      "name": "Trail season opens",
+      "start_date": "05-01",
+      "end_date": "05-31",
+      "organization_id": "first-journey-trails",
+      "psa_angle": "Trail season is here. First Journey Trails and the Indigenous Youth Mountain Bike Program are gearing up — a great time to get involved or register youth for summer rides."
+    },
+    {
+      "name": "Scout Island Nature House opens",
+      "start_date": "05-01",
+      "end_date": "05-15",
+      "organization_id": "scout-island",
+      "psa_angle": "Scout Island's Nature House opens for the season this month. Nature Kids Club memberships are just $35 per family per year. Visit scoutisland.ca to register."
+    },
+    {
+      "name": "National Indigenous History Month",
+      "start_date": "06-01",
+      "end_date": "06-30",
+      "organization_id": null,
+      "organization_ids": ["denisiqi", "cariboo-friendship", "ccatec"],
+      "psa_angle": "June is National Indigenous History Month. {org_name} continues to serve our region's Indigenous communities — learn more at {org_website}."
+    },
+    {
+      "name": "National Indigenous Peoples Day",
+      "start_date": "06-21",
+      "end_date": "06-21",
+      "organization_id": "denisiqi",
+      "psa_angle": "Happy National Indigenous Peoples Day. Denisiqi Services Society has been providing culturally grounded support for Tŝilhqot'in and Ulkatcho families for over 20 years."
+    },
+    {
+      "name": "Performances in the Park",
+      "start_date": "06-15",
+      "end_date": "08-31",
+      "organization_id": "ccacs",
+      "psa_angle": "CCACS Performances in the Park brings free live music to Boitano Park every Thursday evening this summer. Check centralcaribooarts.com for this week's lineup."
+    },
+    {
+      "name": "Williams Lake Stampede",
+      "start_date": "06-28",
+      "end_date": "07-04",
+      "organization_id": "stampede-association",
+      "psa_angle": "The Williams Lake Stampede is coming up on Canada Day weekend. The Stampede Association is a nonprofit that brings the whole community together — volunteer spots and event info at williamslakestampede.com."
+    },
+    {
+      "name": "BC Cowboy Hall of Fame induction",
+      "start_date": "07-01",
+      "end_date": "07-04",
+      "organization_id": "cariboo-museum",
+      "psa_angle": "The Museum of the Cariboo Chilcotin welcomes new inductees into the BC Cowboy Hall of Fame this Canada Day weekend. Stop by and celebrate our ranching heritage."
+    },
+    {
+      "name": "Scout Island summer programs",
+      "start_date": "07-01",
+      "end_date": "08-31",
+      "organization_id": "scout-island",
+      "psa_angle": "Scout Island Nature Centre is running kids' summer programs all season — each week has a different theme like Water, Bugs, or Birds. Sign up at scoutisland.ca."
+    },
+    {
+      "name": "Back to school — literacy programs",
+      "start_date": "08-15",
+      "end_date": "09-15",
+      "organization_id": "partners-for-literacy",
+      "psa_angle": "Back to school season is a great reminder that Partners for Literacy offers free adult education and digital skills programs. It's never too late to learn something new."
+    },
+    {
+      "name": "Scout Island Salmon Trip",
+      "start_date": "09-01",
+      "end_date": "09-30",
+      "organization_id": "scout-island",
+      "psa_angle": "Scout Island's Salmon Trip takes students on a three-day adventure at Gavin Lake — brood stock collection, stream surveys, and hands-on salmon habitat research. Apply at scoutisland.ca."
+    },
+    {
+      "name": "Culture Days",
+      "start_date": "09-22",
+      "end_date": "09-28",
+      "organization_id": "ccacs",
+      "psa_angle": "It's Culture Days. CCACS and local arts organizations are hosting open studios, workshops, and free events across the Central Cariboo."
+    },
+    {
+      "name": "National Day for Truth and Reconciliation",
+      "start_date": "09-30",
+      "end_date": "09-30",
+      "organization_id": "cariboo-friendship",
+      "psa_angle": "Today is the National Day for Truth and Reconciliation. The Cariboo Friendship Society has served our community since 1969, providing culturally grounded support, housing, and youth programming."
+    },
+    {
+      "name": "Mental Illness Awareness Week",
+      "start_date": "10-05",
+      "end_date": "10-11",
+      "organization_id": "cmha-cariboo",
+      "psa_angle": "It's Mental Illness Awareness Week. CMHA Cariboo Chilcotin is here for you — free counselling, housing support, and crisis services. Call 250-398-8220 or visit cariboo.cmha.bc.ca."
+    },
+    {
+      "name": "Waste Reduction Week",
+      "start_date": "10-19",
+      "end_date": "10-25",
+      "organization_id": "conservation-society",
+      "psa_angle": "It's Waste Reduction Week. The Conservation Society's Waste Wise program works with schools and businesses across School District 27 to reduce waste in the Cariboo."
+    },
+    {
+      "name": "Thanksgiving food drive",
+      "start_date": "10-10",
+      "end_date": "10-13",
+      "organization_id": "salvation-army-wl",
+      "psa_angle": "This Thanksgiving, consider donating to the Salvation Army Williams Lake food bank. They provide free meals and hampers to families across the community."
+    },
+    {
+      "name": "National Addictions Awareness Week",
+      "start_date": "11-15",
+      "end_date": "11-21",
+      "organization_id": "cmha-cariboo",
+      "psa_angle": "It's National Addictions Awareness Week. CMHA Cariboo Chilcotin provides local addiction support and operates Jubilee House, helping residents connect with housing, benefits, and treatment."
+    },
+    {
+      "name": "Remembrance Day",
+      "start_date": "11-11",
+      "end_date": "11-11",
+      "organization_id": "ccsar",
+      "psa_angle": "On Remembrance Day, we honour those who served. Central Cariboo Search and Rescue carries on that spirit of service — their volunteers are always ready to respond when our community needs them."
+    },
+    {
+      "name": "Giving Tuesday",
+      "start_date": "12-02",
+      "end_date": "12-02",
+      "organization_id": null,
+      "all_orgs": true,
+      "psa_angle": "It's Giving Tuesday. {org_name} does vital work right here in the Cariboo — consider a donation at {org_website}."
+    },
+    {
+      "name": "International Volunteer Day",
+      "start_date": "12-05",
+      "end_date": "12-05",
+      "organization_id": null,
+      "all_orgs": true,
+      "psa_angle": "It's International Volunteer Day. {org_name} relies on volunteers to serve our community. Visit {org_website} to find out how you can help."
+    },
+    {
+      "name": "Holiday hamper season",
+      "start_date": "12-01",
+      "end_date": "12-24",
+      "organization_id": "salvation-army-wl",
+      "psa_angle": "The Salvation Army is running their Christmas hamper program. Families can sign up to receive a holiday food hamper, and donations of food and toys are welcome."
+    },
+    {
+      "name": "Holiday hospice support",
+      "start_date": "12-15",
+      "end_date": "12-31",
+      "organization_id": "wl-hospice",
+      "psa_angle": "The holidays can be a difficult time for those who've lost someone. Williams Lake Hospice Society offers grief support and companionship — all volunteer, all local. Visit williamslakehospice.com."
+    },
+    {
+      "name": "Holiday pet adoption",
+      "start_date": "12-10",
+      "end_date": "12-31",
+      "organization_id": "spca-wl",
+      "psa_angle": "Looking for a new family member this holiday season? BC SPCA Williams Lake has animals waiting for forever homes. Visit spca.bc.ca to see who's available."
+    },
+    {
+      "name": "Year-end giving — hospital",
+      "start_date": "12-01",
+      "end_date": "12-31",
+      "organization_id": "cmh-foundation",
+      "psa_angle": "The Cariboo Memorial Hospital Foundation has raised nearly four million dollars for equipment at our local hospital — all through community donations. Consider a year-end gift at cmhospitalfoundation.ca."
+    }
+  ]
+}
