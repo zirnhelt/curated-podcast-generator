@@ -8,6 +8,8 @@ from config_loader import (
     load_credits_config,
     load_interests,
     load_prompts_config,
+    load_psa_organizations,
+    load_psa_events,
     get_voice_for_host,
     get_theme_for_day,
     get_all_config,
@@ -60,9 +62,25 @@ class TestConfigLoader:
         assert isinstance(theme, str)
         assert len(theme) > 0
 
+    def test_load_psa_organizations(self):
+        orgs = load_psa_organizations()
+        assert isinstance(orgs, dict)
+        assert len(orgs) > 0
+        for org_id, org in orgs.items():
+            assert "name" in org
+            assert "weekdays" in org
+
+    def test_load_psa_events(self):
+        events = load_psa_events()
+        assert isinstance(events, list)
+        assert len(events) > 0
+        for event in events:
+            assert "name" in event
+            assert "start_date" in event
+
     def test_get_all_config(self):
         config = get_all_config()
-        assert set(config.keys()) == {"podcast", "hosts", "themes", "credits", "interests", "prompts"}
+        assert set(config.keys()) == {"podcast", "hosts", "themes", "credits", "interests", "prompts", "psa_organizations", "psa_events"}
 
     def test_configs_are_cached(self):
         """Verify lru_cache returns the same object on repeated calls."""

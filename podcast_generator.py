@@ -32,6 +32,9 @@ from config_loader import (
 # Import deduplication module
 from dedup_articles import deduplicate_articles, format_evolving_story_context
 
+# Import PSA selector
+from psa_selector import select_psa
+
 # Try importing required libraries
 try:
     from anthropic import Anthropic
@@ -509,7 +512,7 @@ def format_memory_for_prompt(episode_memory, host_memory):
     return context
 
 
-def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context=""):
+def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None):
     """Generate conversational podcast script using Claude."""
     print("🎙️ Generating podcast script with Claude...")
     
@@ -562,12 +565,25 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
     if evolving_context:
         memory_context += evolving_context + "\n"
 
+    # Build PSA context for the Community Spotlight segment
+    if psa_info:
+        psa_context = f"Featured organization: {psa_info['org_name']}\n"
+        psa_context += f"Description: {psa_info['org_description']}\n"
+        if psa_info.get('org_website'):
+            psa_context += f"Website: {psa_info['org_website']}\n"
+        if psa_info.get('psa_angle'):
+            psa_context += f"Talking point: {psa_info['psa_angle']}\n"
+        if psa_info.get('event_name'):
+            psa_context += f"Tied to: {psa_info['event_name']}\n"
+    else:
+        psa_context = "No community spotlight for today's episode."
+
     riley = hosts_config['riley']
     casey = hosts_config['casey']
-    
+
     # Load prompt template from config
     prompt_template = CONFIG['prompts']['script_generation']['template']
-    
+
     # Format the template with actual values
     prompt = prompt_template.format(
         weekday=weekday,
@@ -589,7 +605,8 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         news_text=news_text,
         deep_dive_text=deep_dive_text,
         news_titles_brief=news_titles_brief,
-        sign_off=sign_off
+        sign_off=sign_off,
+        psa_context=psa_context
     )
 
     try:
@@ -618,16 +635,17 @@ def parse_script_into_segments(script):
     segments = {
         'welcome': [],
         'news': [],
+        'community_spotlight': [],
         'deep_dive': []
     }
-    
+
     current_section = 'welcome'
     current_speaker = None
     current_text = []
-    
+
     for line in script.split('\n'):
         line = line.strip()
-        
+
         # Detect segment transitions (support both old "SEGMENT 1/2:" and new "NEWS ROUNDUP:/DEEP DIVE:" markers)
         if 'SEGMENT 1:' in line or '**SEGMENT 1:' in line or 'NEWS ROUNDUP:' in line or '**NEWS ROUNDUP:' in line:
             # Save welcome section
@@ -639,11 +657,22 @@ def parse_script_into_segments(script):
                 current_text = []
             current_section = 'news'
             continue
-            
-        if 'SEGMENT 2:' in line or '**SEGMENT 2:' in line or 'DEEP DIVE:' in line or '**DEEP DIVE:' in line:
+
+        if 'COMMUNITY SPOTLIGHT' in line or '**COMMUNITY SPOTLIGHT' in line:
             # Save news section
             if current_speaker and current_text:
-                segments['news'].append({
+                segments[current_section].append({
+                    'speaker': current_speaker,
+                    'text': ' '.join(current_text).strip()
+                })
+                current_text = []
+            current_section = 'community_spotlight'
+            continue
+
+        if 'SEGMENT 2:' in line or '**SEGMENT 2:' in line or 'DEEP DIVE:' in line or '**DEEP DIVE:' in line:
+            # Save current section (could be news or community_spotlight)
+            if current_speaker and current_text:
+                segments[current_section].append({
                     'speaker': current_speaker,
                     'text': ' '.join(current_text).strip()
                 })
@@ -696,6 +725,7 @@ def parse_script_into_segments(script):
     print(f"🎭 Parsed script into segments:")
     print(f"   Welcome: {len(segments['welcome'])} segments")
     print(f"   News: {len(segments['news'])} segments")
+    print(f"   Community Spotlight: {len(segments['community_spotlight'])} segments")
     print(f"   Deep Dive: {len(segments['deep_dive'])} segments")
     
     return segments
@@ -782,8 +812,18 @@ def generate_audio_from_script(script, output_filename):
                 speech = normalize_segment(AudioSegment.from_mp3(temp_file), TARGET_SPEECH_DBFS)
                 combined += speech + silence
 
-            # Add interval music
+            # Add interval music before community spotlight / deep dive
             combined += interval_music + silence
+
+            # Generate and add community spotlight section (if present)
+            if segments['community_spotlight']:
+                print("  🏘️  Generating community spotlight...")
+                for i, segment in enumerate(segments['community_spotlight']):
+                    temp_file = os.path.join(tmpdir, f"spotlight_{i}.mp3")
+                    print(f"    {segment['speaker']}: {len(segment['text'])} chars")
+                    generate_tts_for_segment(segment['text'], segment['speaker'], temp_file)
+                    speech = normalize_segment(AudioSegment.from_mp3(temp_file), TARGET_SPEECH_DBFS)
+                    combined += speech + silence
 
             # Generate and add deep dive section
             print("  🔍 Generating deep dive section...")
@@ -825,7 +865,7 @@ def generate_audio_tts_only(script, output_filename):
     try:
         # Reuse the structured parser and flatten all sections
         parsed = parse_script_into_segments(script)
-        segments = parsed['welcome'] + parsed['news'] + parsed['deep_dive']
+        segments = parsed['welcome'] + parsed['news'] + parsed['community_spotlight'] + parsed['deep_dive']
         segments = [s for s in segments if len(s['text']) > 10]
 
         if not segments:
@@ -1128,8 +1168,17 @@ def main():
         # Inject evolving story context into memory for the prompt
         evolving_context = format_evolving_story_context(evolving_stories)
 
+        # Select today's PSA / Community Spotlight
+        psa_info = select_psa(pacific_now.date())
+        if psa_info:
+            print(f"🏘️  Community Spotlight: {psa_info['org_name']} ({psa_info['source']})")
+            if psa_info.get('event_name'):
+                print(f"   Event: {psa_info['event_name']}")
+        else:
+            print("🏘️  No community spotlight for today")
+
         # Generate script
-        script = generate_podcast_script(scored_articles, deep_dive_articles, today_theme, episode_memory, host_memory, evolving_context)
+        script = generate_podcast_script(scored_articles, deep_dive_articles, today_theme, episode_memory, host_memory, evolving_context, psa_info=psa_info)
         
         # Polish the script for better flow
         if script:
