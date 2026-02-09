@@ -647,7 +647,7 @@ def parse_script_into_segments(script):
         line = line.strip()
 
         # Detect segment transitions (support both old "SEGMENT 1/2:" and new "NEWS ROUNDUP:/DEEP DIVE:" markers)
-        if 'SEGMENT 1:' in line or '**SEGMENT 1:' in line or 'NEWS ROUNDUP:' in line or '**NEWS ROUNDUP:' in line:
+        if 'SEGMENT 1:' in line or '**SEGMENT 1:' in line or 'NEWS ROUNDUP' in line:
             # Save welcome section
             if current_speaker and current_text:
                 segments['welcome'].append({
@@ -669,7 +669,7 @@ def parse_script_into_segments(script):
             current_section = 'community_spotlight'
             continue
 
-        if 'SEGMENT 2:' in line or '**SEGMENT 2:' in line or 'DEEP DIVE:' in line or '**DEEP DIVE:' in line:
+        if 'SEGMENT 2:' in line or '**SEGMENT 2:' in line or 'DEEP DIVE' in line:
             # Save current section (could be news or community_spotlight)
             if current_speaker and current_text:
                 segments[current_section].append({
