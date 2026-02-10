@@ -1,0 +1,152 @@
+{
+  "episode": {
+    "date": "2026-02-10",
+    "formatted_date": "Tuesday, February 10, 2026",
+    "theme": "Working Lands & Industry",
+    "title": "Cariboo Signals - Working Lands & Industry",
+    "description": "Riley and Casey explore technology and society in rural communities. Today's focus: Working Lands & Industry.\n\nNEWS ROUNDUP: We break down [CFJC Today Kamloops] CFJC Midday – Recycle it Right! City of Kamloops encourages residents to attend Family Day Festival and take part in fun and educating activities and [CFJC Today Kamloops] Kamloops DPAC extends safety push to limit vehicle traffic near schools, plus 1 more stories, and explore what these developments mean for communities like ours.\n\nRURAL CONNECTIONS: Deep dive into working lands & industry, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.\n\nHosts: Riley (Tech systems thinker with rural roots) and Casey (Community development focus).\n\nSources:\n1. CFJC Today Kamloops: [CFJC Today Kamloops] CFJC Midday – Recycle it Right! City o...\n2. CFJC Today Kamloops: [CFJC Today Kamloops] Kamloops DPAC extends safety push to l...\n3. CFJC Today Kamloops: [CFJC Today Kamloops] ASK Wellness prepares to welcome clien...\n4. BC Gov News: [BC Gov News] Overnight traffic-pattern changes planned for ...\n5. CFJC Today Kamloops: [CFJC Today Kamloops] Blazers’ Edmonstone named WHL goaltend...\n6. CFJC Today Kamloops: [CFJC Today Kamloops] Lillooet couple ‘stunned’ after $2.5 m...\n7. CFJC Today Kamloops: [CFJC Today Kamloops] Kamloops RCMP looking for witnesses af...\n8. GN AI ML Infrastructure: [GN AI ML Infrastructure] Submer Acquires Radian Arc to Prov...\n9. Android Police: [Android Police] Google will make Gemini easier to access in...\n10. GN AI ML Infrastructure: [GN AI ML Infrastructure] \"The gap in the global AI arms rac...\n11. TechCrunch: [TechCrunch] The first signs of burnout are coming from the ...\n12. Toms Guide: [Toms Guide] I tested Gemini 3 Flash vs Claude 4.6 Opus in 9...\n13. GN AI ML Infrastructure: [GN AI ML Infrastructure] Salience Labs goes all-in on all-o...\n14. TechCrunch: [TechCrunch] Gather AI, maker of ‘curious’ warehouse drones,...\n15. GN AI ML Infrastructure: [GN AI ML Infrastructure] Tower Semiconductor, Nvidia advanc...\n\n--- Credits ---\nTheme Song: Cariboo Signals by Sumo AI (suno.com)\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: OpenAI TTS API\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt",
+    "generated_at": "2026-02-10T05:12:23.204709-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[CFJC Today Kamloops] CFJC Midday – Recycle it Right! City of Kamloops encourages residents to attend Family Day Festival and take part in fun and educating activities",
+          "url": "https://cfjctoday.com/2026/02/09/cfjc-midday-recycle-it-right-city-of-kamloops-encourage-residents-to-attend-family-day-festival-and-take-part-in-fun-and-educating-activities/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-10T01:48:24+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] Kamloops DPAC extends safety push to limit vehicle traffic near schools",
+          "url": "https://cfjctoday.com/2026/02/09/kamloops-dpac-extends-safety-push-to-limit-vehicle-traffic-near-schools/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-10T00:54:15+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] ASK Wellness prepares to welcome clients back to Crossroads after more than a year",
+          "url": "https://cfjctoday.com/2026/02/09/ask-wellness-prepares-to-welcome-clients-back-to-crossroads-after-more-than-a-year/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-10T00:39:10+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[BC Gov News] Overnight traffic-pattern changes planned for Highway 1 at Highway 11",
+          "url": "https://news.gov.bc.ca/releases/2026TT0022-000134",
+          "source": "BC Gov News",
+          "ai_score": 0,
+          "date_published": "2026-02-09T23:10:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] Blazers’ Edmonstone named WHL goaltender of the week",
+          "url": "https://cfjctoday.com/2026/02/09/blazers-edmonstone-named-whl-goaltender-of-the-week/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-09T22:25:04+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] Lillooet couple ‘stunned’ after $2.5 million Lotto 6/49 win",
+          "url": "https://cfjctoday.com/2026/02/09/lillooet-couple-stunned-after-2-5-million-lotto-6-49-win/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-09T21:22:24+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[CFJC Today Kamloops] Kamloops RCMP looking for witnesses after Friday hit-and-run leads to serious injuries",
+          "url": "https://cfjctoday.com/2026/02/09/kamloops-rcmp-looking-for-witnesses-after-friday-hit-and-run-leads-to-serious-injuries/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-09T19:45:22+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN AI ML Infrastructure] Submer Acquires Radian Arc to Provide Full-Stack AI Infrastructure, From Core Datacenters to Edge Compute",
+          "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOSFJxcmdFVXpIWHN1TnV6TF9wVVVVal82TGlZY21DRE5WcEpDTXdHVkxXcVBzSGY5SjdNaF9YUTREeWZCYXJzSGhtLW1TTFFUbVgzd1d3dmNZa05HTVpaUDVKckRrNVVkNHZsT2k2c1FWcFVqaTFuTUFyLWdRSDFxMk9zajVYQXVTRFN1NG1sNmtIYnNpMU5HRmFZeUpOY1ZjVjdRY0o1SkNKZGhQejZVM3paQlBSQTlOdzVBUFpFN3E1VW9zc1A2QmZyemNLZEtPUm85Y2RhZHZ2TmVFSk5ncGlyQTU0aXRyeUpKb2VwM2RhaTVYYVNNOA?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-10T07:03:46+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[Android Police] Google will make Gemini easier to access in Android's upcoming desktop interface",
+          "url": "https://www.androidpolice.com/google-will-make-gemini-easier-to-access-on-android-desktop/",
+          "source": "Android Police",
+          "ai_score": 0,
+          "date_published": "2026-02-10T06:52:35+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN AI ML Infrastructure] \"The gap in the global AI arms race lies in infrastructure, and that's exactly where the opportunity lies\"",
+          "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBqWVZxV09pRWlJVzZoVEtCQ3VIUkxSZk1jaElVc2RYbFdjQkd0WV80VE93QnJPLXZCQjRSaVQ4cGtqWlE3bXRaNE9hRHhFTG9hRHNFbUZ4ZU4yVVZzSDVtMmVrVzdydUU?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-10T06:50:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[TechCrunch] The first signs of burnout are coming from the people who embrace AI the most",
+          "url": "https://techcrunch.com/2026/02/09/the-first-signs-of-burnout-are-coming-from-the-people-who-embrace-ai-the-most/",
+          "source": "TechCrunch",
+          "ai_score": 0,
+          "date_published": "2026-02-10T06:46:55+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[Toms Guide] I tested Gemini 3 Flash vs Claude 4.6 Opus in 9 tough challenges — here’s the winner",
+          "url": "https://www.tomsguide.com/ai/i-tested-gemini-3-flash-vs-claude-4-6-opus-in-9-tough-challenges-heres-the-winner",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-02-10T06:30:00+00:00",
+          "summary": ""
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Working Lands & Industry",
+      "articles": [
+        {
+          "title": "[GN AI ML Infrastructure] Salience Labs goes all-in on all-optical networking with photonics switches for AI infrastructure",
+          "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxOU3pUQ29NeDJwOFoxenJIRV9KYjNLQUZ2dDNZWXFpbE1XVG03M19BU25FclRVMGtZaE96UTVsS3FDaFpIQjI4SXdrSEZtcHZhOGVjamJZVTJ0cUMxUFJHUnRYX1EzN2tZZUNsTWZKNzVTM0h5UXIwdTE2QUhuTFdSRlotT1NRRmJwbVV5d29oOFNldUwxbnMzT2RCYkF5ZkZtV09lVThWUGxpcUx3VVRTNDNPdndhaE5FRGJOWk9hMjNPbUNpN2VFM2hQaWxoUEo2dXBKbVRpQlRMZ1BZNWJuNG1UeGhIX0lNQ1E?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-09T19:52:29+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[TechCrunch] Gather AI, maker of ‘curious’ warehouse drones, lands $40M led by Keith Block’s firm",
+          "url": "https://techcrunch.com/2026/02/09/gather-ai-maker-of-curious-warehouse-drones-lands-40m-led-by-keith-blocks-firm/",
+          "source": "TechCrunch",
+          "ai_score": 0,
+          "date_published": "2026-02-09T14:00:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN AI ML Infrastructure] Tower Semiconductor, Nvidia advance 1.6T optical modules for AI data center networking",
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPWm8ya1gtcEZ3NjktcllfV01IM1dXQlFnS1l6RThsdFVPc2lQQmRFQnZVajM2WkNqRVQ1eHQ4UGVXQVJxZENkVWlMNzJzdU5KRTVlSGFaZF9GTzhVdHBUOWdSc3M1TU5FSExGOEw1Ymg5dUlwdVgtNUZLS0ZUb3FBeDdTVU9RYURzdmV5dVUtOFhldG9uaHlTai0tcXdqZGZieFY0ZVV2RFAxTVV3X3lmUFpsUms?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-09T02:37:45+00:00",
+          "summary": ""
+        }
+      ]
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator"
+  }
+}
