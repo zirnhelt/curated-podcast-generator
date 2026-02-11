@@ -1,0 +1,21 @@
+name: Verify R2 Upload
+
+on:
+  workflow_dispatch:  # Manual trigger only
+
+jobs:
+  test-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Upload index.html to R2
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_ENDPOINT_URL: https://${{ secrets.CF_ACCOUNT_ID }}.r2.cloudflarestorage.com
+        run: |
+          aws s3 cp index.html s3://cariboo-signals/index.html \
+            --content-type "text/html"
+          echo "Upload complete! Check https://podcast.cariboosignals.ca/index.html"
