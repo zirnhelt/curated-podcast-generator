@@ -84,6 +84,10 @@ OUTRO_MUSIC = SCRIPT_DIR / "cariboo-signals-outro.mp3"
 TARGET_SPEECH_DBFS = -20.0  # Speech louder and clear
 TARGET_MUSIC_DBFS = -28.0   # Music ducked beneath speech
 
+# Interval music duration (ms) — trim long theme to a short chime
+INTERVAL_MUSIC_DURATION_MS = 2000
+INTERVAL_FADE_OUT_MS = 300
+
 # Memory Configuration (stored in podcasts/ alongside episodes)
 EPISODE_MEMORY_FILE = PODCASTS_DIR / "episode_memory.json"
 HOST_MEMORY_FILE = PODCASTS_DIR / "host_personality_memory.json"
@@ -881,6 +885,7 @@ def generate_audio_from_script(script, output_filename):
         # Load and normalize music to target level (ducked below speech)
         intro_music    = normalize_segment(AudioSegment.from_mp3(str(INTRO_MUSIC)),    TARGET_MUSIC_DBFS)
         interval_music = normalize_segment(AudioSegment.from_mp3(str(INTERVAL_MUSIC)), TARGET_MUSIC_DBFS)
+        interval_music = interval_music[:INTERVAL_MUSIC_DURATION_MS].fade_out(INTERVAL_FADE_OUT_MS)
         outro_music    = normalize_segment(AudioSegment.from_mp3(str(OUTRO_MUSIC)),    TARGET_MUSIC_DBFS)
         
         silence = AudioSegment.silent(duration=500)
