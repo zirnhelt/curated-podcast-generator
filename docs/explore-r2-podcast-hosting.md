@@ -26,45 +26,35 @@ Keep everything else (GitHub Actions generation, GitHub Pages for website/RSS) t
 
 $0. The free tier covers this project's scale indefinitely.
 
-## Custom Domain (Vanity URL)
+## Custom Domain: `cariboosignals.ca`
 
-### Without a Custom Domain
-
-R2 provides a development subdomain:
+Domain `cariboosignals.ca` is already on Cloudflare. Map a subdomain to the R2 bucket:
 
 ```
-https://pub-<hash>.r2.dev/podcasts/podcast_audio_2026-02-10_example.mp3
+https://audio.cariboosignals.ca/podcasts/podcast_audio_2026-02-10_example.mp3
 ```
 
-Functional but not pretty. Fine for RSS feeds (listeners never see the URL).
+**Setup** (one-time, in Cloudflare dashboard):
+1. R2 bucket → Settings → Custom Domains → Add
+2. Enter `audio.cariboosignals.ca`
+3. Cloudflare auto-creates the CNAME DNS record
+4. Wait a few minutes for status to go from "Initializing" to "Active"
 
-### With a Custom Domain
+**Benefits of custom domain over `r2.dev`:**
+- Cloudflare Cache (Smart Tiered Caching) — accelerates repeated downloads
+- WAF rules, bot management, access controls available if needed later
+- Professional appearance for directory submissions
+- No need for the `r2.dev` public access toggle at all
 
-If you have a domain on Cloudflare (e.g., `cariboosignals.com`), you can map a
-subdomain to the R2 bucket:
+The RSS feed URL can also move to the custom domain later if desired:
 
 ```
-https://audio.cariboosignals.com/podcast_audio_2026-02-10_example.mp3
+https://cariboosignals.ca/feed.xml          (via Cloudflare Pages or Worker)
+https://audio.cariboosignals.ca/feed.xml    (served from R2 alongside audio)
 ```
 
-**Requirements:**
-- Domain must be added as a zone in your Cloudflare account
-- Can use a new domain (~$10-15/year for a `.com`) or a free subdomain of an
-  existing Cloudflare-managed domain
-- Setup: R2 bucket → Settings → Custom Domains → Add domain → Cloudflare
-  auto-creates the DNS record
-
-**Bonus with custom domain:**
-- Cloudflare Cache (Smart Tiered Caching) accelerates repeated downloads
-- WAF rules, bot management, access controls available
-- Looks professional for directory submissions
-
-### Recommendation
-
-Start with the `r2.dev` URL — it works immediately and costs nothing.
-Add a custom domain later if you want a cleaner look for directory listings.
-Podcast apps (Apple Podcasts, Spotify, Pocket Casts) don't display the raw
-audio URL to listeners, so vanity matters less than you'd think.
+For now, keeping the RSS on GitHub Pages is fine — directories only need a
+stable URL they can poll.
 
 ## What Changes
 
@@ -128,15 +118,7 @@ if os.environ.get("R2_ACCESS_KEY_ID"):
 
 ```json
 {
-  "audio_base_url": "https://pub-<hash>.r2.dev/"
-}
-```
-
-Or with a custom domain:
-
-```json
-{
-  "audio_base_url": "https://audio.cariboosignals.com/"
+  "audio_base_url": "https://audio.cariboosignals.ca/"
 }
 ```
 
@@ -199,14 +181,13 @@ boto3
 
 ## One-Time Setup Steps
 
-1. **Create Cloudflare account** (free) at cloudflare.com
-2. **Create R2 bucket** named `cariboo-signals`
-3. **Enable public access** on the bucket (Settings → Public Access → Allow)
-4. **Note the `r2.dev` URL** assigned to the bucket
+1. ~~Create Cloudflare account~~ ✅ Done
+2. ~~Add domain to Cloudflare~~ ✅ Done (`cariboosignals.ca`)
+3. **Create R2 bucket** named `cariboo-signals`
+4. **Add custom domain** `audio.cariboosignals.ca` to the bucket (auto-creates DNS)
 5. **Create R2 API token** with read/write permissions for the bucket
 6. **Add secrets** to GitHub repo (Settings → Secrets → Actions)
-7. **Update `config/podcast.json`** with `audio_base_url`
-8. **(Optional)** Add a custom domain if you have one on Cloudflare
+7. **Update `config/podcast.json`** with `audio_base_url: "https://audio.cariboosignals.ca/"`
 
 ## Directory Submission
 
@@ -234,14 +215,13 @@ This can be done incrementally:
    Old episodes still served from GitHub Pages (existing URLs in RSS still work).
 
 3. **Phase 3:** Optionally upload historical episodes to R2 and update old RSS entries.
-   Add custom domain if desired. Submit to podcast directories.
+   Submit to podcast directories.
 
 4. **Phase 4:** Clean MP3s from git history with `git filter-repo` to reclaim repo size
    (optional, destructive — only if repo size becomes a real problem).
 
 ## Open Questions
 
-- [ ] Do you want to register a domain (e.g., `cariboosignals.com`) or is the `r2.dev` URL fine?
 - [ ] Should the website audio player also point to R2, or keep serving from GitHub Pages during transition?
-- [ ] How many historical episodes (currently 20) should be migrated to R2?
-- [ ] Is a Cloudflare account acceptable, or do you prefer a different S3-compatible provider (Backblaze B2, etc.)?
+- [ ] How many historical episodes should be migrated to R2?
+- [ ] Should the RSS feed eventually move to `cariboosignals.ca` too, or stay on GitHub Pages?
