@@ -69,6 +69,7 @@ PODCASTS_DIR = SCRIPT_DIR / "podcasts"
 PODCASTS_DIR.mkdir(exist_ok=True)
 SUPER_RSS_BASE_URL = "https://zirnhelt.github.io/super-rss-feed"
 SCORING_CACHE_URL = f"{SUPER_RSS_BASE_URL}/scored_articles_cache.json"
+PODCAST_FEED_URL = f"{SUPER_RSS_BASE_URL}/feed-podcast.json"
 
 # Claude model selection (override via environment variables)
 SCRIPT_MODEL = os.getenv("CLAUDE_SCRIPT_MODEL", "claude-sonnet-4-20250514")
@@ -305,6 +306,55 @@ def fetch_feed_data():
     print(f"✅ Loaded {len(unique_articles)} unique articles from {len(categories)} categories")
     return unique_articles
 
+def fetch_podcast_feed():
+    """Fetch the curated podcast feed with pre-scored, theme-sorted articles.
+
+    Returns (feed_meta, theme_articles, bonus_articles) where feed_meta contains
+    _podcast.theme and _podcast.theme_description from the feed.
+    """
+    print("📥 Fetching curated podcast feed...")
+
+    try:
+        response = requests.get(PODCAST_FEED_URL, timeout=10)
+        response.raise_for_status()
+
+        feed_data = response.json()
+
+        # Extract podcast metadata from the feed
+        feed_meta = {
+            'theme': feed_data.get('_podcast', {}).get('theme', ''),
+            'theme_description': feed_data.get('_podcast', {}).get('theme_description', ''),
+        }
+
+        items = feed_data.get('items', [])
+
+        # Split into theme articles and bonus (off-theme) articles
+        theme_articles = []
+        bonus_articles = []
+        for item in items:
+            # Carry over feed-provided metadata
+            item['_keyword_matches'] = item.get('_keyword_matches', 0)
+            item['_boosted_score'] = item.get('_boosted_score', item.get('ai_score', 0))
+
+            if item.get('_is_bonus', False):
+                bonus_articles.append(item)
+            else:
+                theme_articles.append(item)
+
+        print(f"  📌 Feed theme: {feed_meta['theme']}")
+        print(f"  ✓ Theme articles: {len(theme_articles)}")
+        print(f"  ✓ Bonus articles: {len(bonus_articles)}")
+        print(f"✅ Loaded {len(items)} articles from podcast feed")
+        return feed_meta, theme_articles, bonus_articles
+
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Error fetching podcast feed: {e}")
+        return None, [], []
+    except json.JSONDecodeError as e:
+        print(f"❌ Error parsing podcast feed JSON: {e}")
+        return None, [], []
+
+
 def get_article_scores(articles, scoring_data):
     """Match articles with their AI scores."""
     # Pre-build title->score lookup for O(1) matching
@@ -325,27 +375,27 @@ def get_article_scores(articles, scoring_data):
 
 def categorize_articles_for_deep_dive(articles, theme_day):
     """Select deep dive articles from beyond the news pool, matched to theme.
-    
+
     News pool = top 12 scored articles (used in Segment 1).
     Deep dive pulls from the remainder, scored by theme keyword overlap
     blended with AI score so we get relevance without being purely keyword-driven.
     """
     theme_info = CONFIG['themes'][str(theme_day)]
     theme_name = theme_info['name']
-    
+
     # Build keyword list from theme name + any explicit keywords in config
     theme_keywords = [w.lower() for w in theme_name.split() if len(w) > 3]
     if 'keywords' in theme_info:
         theme_keywords.extend([k.lower() for k in theme_info['keywords']])
-    
+
     # News pool is the top 12 — deep dive must pull from the rest
     news_urls = set(a.get('url', '') for a in articles[:12])
     remaining = [a for a in articles if a.get('url', '') not in news_urls]
-    
+
     if not remaining:
         # Fallback: if fewer than 12 total articles, grab from positions 4+
         remaining = articles[4:]
-    
+
     # Score remaining by theme relevance + AI score blend
     def theme_relevance(article):
         text = f"{article.get('title', '')} {article.get('summary', '')}".lower()
@@ -353,15 +403,44 @@ def categorize_articles_for_deep_dive(articles, theme_day):
         ai_score_normalized = article.get('ai_score', 0) / 100.0  # 0-1 range
         # Keyword hits weighted heavier (each hit = 2 points), AI score as tiebreaker
         return keyword_hits * 2 + ai_score_normalized
-    
+
     remaining.sort(key=theme_relevance, reverse=True)
     deep_dive_articles = remaining[:3]
-    
+
     print(f"Deep dive: selected {len(deep_dive_articles)} articles for '{theme_name}'")
     print(f"  Pool: {len(remaining)} candidates beyond top 12 news")
     for a in deep_dive_articles:
         print(f"  - {a.get('title', '')[:70]}...")
     return deep_dive_articles
+
+
+def select_deep_dive_from_feed(theme_articles, theme_name):
+    """Select deep dive articles from pre-curated podcast feed theme articles.
+
+    The feed already sorts articles by boosted score (theme relevance).
+    Articles with _keyword_matches > 0 are strongly on-theme.
+    Top 3 theme articles become the deep dive; the rest go to news.
+    """
+    # Articles are already sorted by boosted score from the feed.
+    # Prefer articles with keyword matches for deep dive.
+    strong_match = [a for a in theme_articles if a.get('_keyword_matches', 0) > 0]
+    weak_match = [a for a in theme_articles if a.get('_keyword_matches', 0) == 0]
+
+    # Take up to 3 from strong matches first, then fill from weak
+    deep_dive = strong_match[:3]
+    if len(deep_dive) < 3:
+        deep_dive.extend(weak_match[:3 - len(deep_dive)])
+
+    deep_dive_urls = {a.get('url', '') for a in deep_dive}
+    news_articles = [a for a in theme_articles if a.get('url', '') not in deep_dive_urls]
+
+    print(f"Deep dive: selected {len(deep_dive)} articles for '{theme_name}'")
+    print(f"  Strong keyword matches: {len(strong_match)}")
+    print(f"  Remaining for news: {len(news_articles)}")
+    for a in deep_dive:
+        kw = a.get('_keyword_matches', 0)
+        print(f"  - [kw={kw}] {a.get('title', '')[:70]}...")
+    return deep_dive, news_articles
 
 def get_current_date_info():
     """Get properly formatted current date and day in Pacific timezone."""
@@ -512,44 +591,59 @@ def format_memory_for_prompt(episode_memory, host_memory):
     return context
 
 
-def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None):
+def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None, feed_meta=None, bonus_articles=None):
     """Generate conversational podcast script using Claude."""
     print("🎙️ Generating podcast script with Claude...")
-    
+
     api_key = os.getenv('ANTHROPIC_API_KEY')
     if not api_key:
         print("❌ ANTHROPIC_API_KEY not found in environment")
         return None
-    
+
     weekday, date_str = get_current_date_info()
     podcast_config = CONFIG['podcast']
     hosts_config = CONFIG['hosts']
-    
+
     # Randomly select welcome host
     welcome_host = select_welcome_host()
     welcome_host_name = CONFIG['hosts'][welcome_host]['name']
     other_host = 'casey' if welcome_host == 'riley' else 'riley'
     other_host_name = CONFIG['hosts'][other_host]['name']
-    
-    # Prepare articles
-    top_news = all_articles[:12]
-    
+
+    # Separate on-theme news from bonus articles for formatting
+    if bonus_articles:
+        bonus_urls = {a.get('url', '') for a in bonus_articles}
+        on_theme_news = [a for a in all_articles if a.get('url', '') not in bonus_urls]
+    else:
+        on_theme_news = all_articles
+        bonus_articles = []
+
+    # Format on-theme news articles
     news_text = "\n".join([
         f"- [{a.get('authors', [{}])[0].get('name', 'Unknown')}] {a.get('title', '')}\n  {a.get('summary', '')[:150]}... (AI Score: {a.get('ai_score', 0)})"
-        for a in top_news
+        for a in on_theme_news
     ])
-    
+
+    # Format bonus (off-theme) articles separately
+    if bonus_articles:
+        bonus_text = "\n\nBONUS PICKS (off-theme but noteworthy — introduce these separately, e.g. \"Also worth noting today...\"):\n"
+        bonus_text += "\n".join([
+            f"- [{a.get('authors', [{}])[0].get('name', 'Unknown')}] {a.get('title', '')}\n  {a.get('summary', '')[:150]}... (AI Score: {a.get('ai_score', 0)})"
+            for a in bonus_articles
+        ])
+        news_text += bonus_text
+
     deep_dive_text = "\n".join([
         f"- [{a.get('authors', [{}])[0].get('name', 'Unknown')}] {a.get('title', '')}\n  {a.get('summary', '')[:200]}... (AI Score: {a.get('ai_score', 0)})"
         for a in deep_dive_articles
     ])
-    
+
     # Brief news titles so the Deep Dive can reference them without repeating summaries
     news_titles_brief = "\n".join([
         f"  {i+1}. {a.get('title', '')}"
-        for i, a in enumerate(top_news)
+        for i, a in enumerate(all_articles)
     ])
-    
+
     # Day-aware sign-off
     weekday_lower = weekday.lower()
     if weekday_lower == 'friday':
@@ -560,10 +654,14 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         sign_off = "Hope you had a great weekend."
     else:
         sign_off = "Have a great rest of your day."
-    
+
     memory_context = format_memory_for_prompt(episode_memory, host_memory)
     if evolving_context:
         memory_context += evolving_context + "\n"
+
+    # Add feed theme description to memory context if available
+    if feed_meta and feed_meta.get('theme_description'):
+        memory_context += f"TODAY'S THEME FRAMING (from curated feed):\n{feed_meta['theme_description']}\n\n"
 
     # Build PSA context for the Community Spotlight segment
     if psa_info:
@@ -1140,31 +1238,60 @@ def main():
     # Generate script if needed
     if not script_exists:
         print("🆕 Generating new script...")
-        
-        # Fetch data
-        scoring_data = fetch_scoring_data()
-        current_articles = fetch_feed_data()
-        
-        if not scoring_data or not current_articles:
-            print("❌ Failed to fetch data. Exiting.")
-            sys.exit(1)
-        
-        # Score and categorize
-        scored_articles = get_article_scores(current_articles, scoring_data)
 
-        # Deduplicate against recent episodes
-        scored_articles, evolving_stories = deduplicate_articles(scored_articles)
+        # Fetch curated podcast feed (pre-scored, theme-sorted)
+        feed_meta, theme_articles, bonus_articles = fetch_podcast_feed()
 
-        deep_dive_articles = categorize_articles_for_deep_dive(scored_articles, today_weekday)
-        
+        if feed_meta is None or not theme_articles:
+            # Fallback: use legacy multi-category fetch if podcast feed unavailable
+            print("⚠️  Podcast feed unavailable, falling back to category feeds...")
+            scoring_data = fetch_scoring_data()
+            current_articles = fetch_feed_data()
+
+            if not scoring_data or not current_articles:
+                print("❌ Failed to fetch data. Exiting.")
+                sys.exit(1)
+
+            scored_articles = get_article_scores(current_articles, scoring_data)
+            scored_articles, evolving_stories = deduplicate_articles(scored_articles)
+            deep_dive_articles = categorize_articles_for_deep_dive(scored_articles, today_weekday)
+            news_articles = scored_articles[:12]
+            feed_meta = None
+        else:
+            # Use the curated podcast feed
+            # Override theme from feed if available
+            if feed_meta.get('theme'):
+                today_theme = feed_meta['theme']
+                safe_theme = today_theme.replace(" ", "_").replace("&", "and").lower()
+                script_filename = str(PODCASTS_DIR / f"podcast_script_{date_key}_{safe_theme}.txt")
+                audio_filename = str(PODCASTS_DIR / f"podcast_audio_{date_key}_{safe_theme}.mp3")
+
+            # Deduplicate all articles against recent episodes
+            all_feed_articles = theme_articles + bonus_articles
+            all_feed_articles, evolving_stories = deduplicate_articles(all_feed_articles)
+
+            # Re-split after dedup
+            bonus_urls = {a.get('url', '') for a in bonus_articles}
+            theme_articles = [a for a in all_feed_articles if a.get('url', '') not in bonus_urls]
+            bonus_articles = [a for a in all_feed_articles if a.get('url', '') in bonus_urls]
+
+            # Select deep dive from theme articles; rest go to news
+            deep_dive_articles, news_articles = select_deep_dive_from_feed(theme_articles, today_theme)
+
+            # Append bonus articles to news, flagged for separate intro
+            news_articles = news_articles + bonus_articles
+
         print(f"📊 Ready to generate podcast:")
-        print(f"   News roundup: Top 12 articles")
+        print(f"   News roundup: {len(news_articles)} articles")
+        print(f"   Deep dive: {len(deep_dive_articles)} articles")
         print(f"   Theme: {today_theme}")
+        if feed_meta and feed_meta.get('theme_description'):
+            print(f"   Theme description: {feed_meta['theme_description'][:80]}...")
         print(f"   Memory context: {len(episode_memory)} recent episodes")
-        
+
         # Generate citations
-        citations_file = generate_citations_file(scored_articles[:12], deep_dive_articles, today_theme)
-        
+        citations_file = generate_citations_file(news_articles, deep_dive_articles, today_theme)
+
         # Inject evolving story context into memory for the prompt
         evolving_context = format_evolving_story_context(evolving_stories)
 
@@ -1178,25 +1305,30 @@ def main():
             print("🏘️  No community spotlight for today")
 
         # Generate script
-        script = generate_podcast_script(scored_articles, deep_dive_articles, today_theme, episode_memory, host_memory, evolving_context, psa_info=psa_info)
-        
+        script = generate_podcast_script(
+            news_articles, deep_dive_articles, today_theme,
+            episode_memory, host_memory, evolving_context,
+            psa_info=psa_info, feed_meta=feed_meta,
+            bonus_articles=bonus_articles
+        )
+
         # Polish the script for better flow
         if script:
             api_key = os.getenv('ANTHROPIC_API_KEY')
             script = polish_script_with_claude(script, today_theme, api_key)
-        
+
         if not script:
             print("❌ Failed to generate script. Exiting.")
             sys.exit(1)
-        
+
         # Save script
         script_filename = save_script_to_file(script, today_theme)
-        
+
         # Update memory
         if script:
-            topics, themes = extract_topics_and_themes(script, scored_articles[:12], deep_dive_articles)
+            topics, themes = extract_topics_and_themes(script, news_articles, deep_dive_articles)
             update_episode_memory(date_key, topics, themes)
-            
+
             # Update host memory
             host_insights = {
                 'riley': [t for t in topics if 'tech' in t.lower() or 'AI' in t][:2],
