@@ -1,0 +1,123 @@
+# Cariboo Signals Podcast Script - 2026-02-11
+# Theme: Community Tech & Governance
+# Generated: 2026-02-11 05:10:53 PST
+
+
+
+**RILEY:** Welcome to Cariboo Signals, it's Wednesday, February eleventh, 2026. Today's theme is Community Tech & Governance — I'm Riley.
+
+**CASEY:** And I'm Casey. We're looking at how local governments and communities are navigating the tech infrastructure decisions that'll shape the next decade.
+
+**RILEY:** Let's get into what's making news today.
+
+**NEWS ROUNDUP**
+
+**RILEY:** Leading off, Cisco is making a significant bet that partner dependency will give them an edge in the AI infrastructure race. The networking giant is doubling down on their ecosystem approach, arguing that companies building AI systems will prefer working with established channel partners rather than going direct to manufacturers. For rural communities, this could mean more accessible deployment options through local IT providers who already have Cisco relationships.
+
+**CASEY:** That partnership model has worked well for basic networking gear in smaller markets.
+
+**CASEY:** Next up, Google just issued one-hundred-year bonds to fund their AI infrastructure buildout — yes, bonds that mature in 2126. They're raising capital at historically low rates to build data centers and compute infrastructure across multiple continents. The century-long timeline signals Google's confidence that AI workloads will dominate computing for generations, but it also raises questions about who controls that infrastructure over such extended periods.
+
+**RILEY:** A hundred years is longer than most municipalities have existed out here.
+
+**RILEY:** Intel's 14A chip manufacturing process is facing delays, and industry analysts say this exposes deeper cracks in AI infrastructure expectations. The delays mean advanced chips that were supposed to compete with Taiwan Semiconductor's offerings won't arrive until late 2027 at the earliest. This could create bottlenecks in the AI hardware supply chain, potentially making advanced computing resources even more expensive for organizations outside major tech hubs.
+
+**CASEY:** Supply chain bottlenecks always hit rural areas hardest when it comes to accessing new technology.
+
+**CASEY:** In acquisition news, Submer has acquired Radian Arc to create what they're calling a "full-stack AI infrastructure" solution. Submer specializes in liquid cooling systems for data centers, while Radian Arc brings edge computing capabilities. The combined company is targeting organizations that need high-performance computing but can't rely on cloud services due to latency or data sovereignty requirements.
+
+**RILEY:** Edge computing keeps surfacing as potentially more viable for distributed rural applications.
+
+**RILEY:** G42 and Vietnamese partners have signed a one-billion-dollar deal to build AI and cloud infrastructure in Vietnam. The agreement includes both data centers and what they're calling "sovereign AI" capabilities — essentially ensuring that Vietnamese data and AI processing can stay within national borders. The partnership also includes training programs for local technicians and requirements that a percentage of infrastructure jobs go to Vietnamese workers, making it an interesting model for how international tech investment can include local capacity building.
+
+**CASEY:** The sovereignty angle is something Indigenous communities here have been thinking about for years.
+
+**CASEY:** Finally, HPE is making a quiet but significant push into healthcare AI, which analysts suggest might reframe their entire infrastructure investment narrative. Rather than competing directly in consumer AI applications, they're focusing on specialized healthcare workloads that require on-premises computing due to privacy regulations. This could signal a broader shift toward sector-specific AI infrastructure rather than one-size-fits-all cloud solutions.
+
+**RILEY:** Healthcare AI has particular relevance for rural areas where specialist access is already limited.
+
+**RILEY:** Also worth noting today, The Tyee published a piece on incorporating Haida wisdom into disaster planning, examining how traditional knowledge systems can inform modern emergency preparedness. And from India, Pace Digitek won a major solar-plus-battery storage project — 250 megawatts of solar with over 1,100 megawatt-hours of battery capacity at Pavagada.
+
+**CASEY:** Both stories speak to different approaches to building resilient systems. Now let's turn to an organization doing that kind of work right here in our region.
+
+**COMMUNITY SPOTLIGHT**
+
+**CASEY:** Today we're featuring Community Futures Cariboo Chilcotin, a nonprofit with a volunteer board that supports rural entrepreneurs and community economic development throughout our region. They offer business loans, mentorship, and strategic planning to help local ventures start up and scale up. If you're exploring new markets or figuring out how tech fits into your business, they understand what it means to operate out here. Find them at cfdccariboo.com.
+
+**RILEY:** They've helped quite a few local businesses navigate the digital transition — good people to have in your corner.
+
+**CASEY:** With that, let's dig into what today's stories mean when you zoom in to communities like ours.
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Community Tech & Governance**
+
+**RILEY:** Here's the argument I want to make today: the current AI infrastructure boom is creating a narrow window where rural communities can actually shape how this technology reaches them — but only if they build governance capacity right alongside the technical capacity. Miss that window, and these communities become passive consumers of systems designed for someone else entirely.
+
+**CASEY:** That's a strong claim. Walk me through it.
+
+**RILEY:** Start with what's happening at the top of the food chain. Companies like Cisco are pouring billions into AI networking chips for what they're calling a six-hundred-billion-dollar infrastructure market. Six hundred billion. That's roughly the GDP of Belgium being redirected into computing hardware. Meanwhile, Google is so confident in this trajectory that they're issuing hundred-year bonds to finance data centers.
+
+**CASEY:** The scale is genuinely absurd when you sit with it for a moment. The entire population of the Cariboo Regional District — every man, woman, and child — could probably share a single high-end AI server and still have compute cycles to spare. But because the economics are driven by hyperscale demand, nobody's building for a town of five thousand.
+
+**RILEY:** Right, and here's where most people throw up their hands and say, well, that's just how markets work, what can you do. But I think that misses something important about the current moment. The infrastructure decisions being made right now — which chip architectures get built, which network standards get adopted, whether computing stays centralized or pushes to the edge — those decisions will constrain what's possible for decades. If rural communities aren't at the table while those decisions are still fluid, they'll be stuck adapting to whatever gets handed down.
+
+**CASEY:** So you're saying this is a governance problem before it's a technology problem.
+
+**RILEY:** Exactly. And not governance in the abstract sense of "someone should regulate AI." I mean the specific, unglamorous, municipal-council-meeting kind of governance. Who decides whether Williams Lake deploys an AI system to process permit applications? What happens when that system denies someone a building permit and they want to appeal — do they argue with a municipal clerk or with a vendor's support ticket?
+
+**CASEY:** I can picture that council meeting now. Agenda item fourteen, subsection B: algorithmic accountability framework. Right between the water main repair budget and the request to repaint the crosswalk on Oliver Street.
+
+**RILEY:** And that's the thing — it sounds absurd, but those are exactly the decisions that need to happen at the local level. Because AI systems deployed in municipal services aren't just technical infrastructure. They're policy-making systems. Every assumption baked into the algorithm — what counts as a complete application, how to weigh competing land-use priorities, which bylaw complaints get flagged first — those are political choices wearing a digital costume.
+
+**CASEY:** Most municipal councils I've encountered would be the first to admit they have zero experience thinking about algorithmic bias or model transparency. And honestly, why would they? These weren't relevant skills for running a town of three thousand people until about five minutes ago.
+
+**RILEY:** Which is exactly why this has to be framed as a governance capacity question, not just a tech adoption question. And here's where I think a regional approach becomes essential. A single small municipality can't afford to hire an AI ethics officer — and frankly, if the Cariboo Regional District posted that job listing, I'd love to see the applications.
+
+**CASEY:** "Must be comfortable with gravel roads and existential questions about machine learning."
+
+**RILEY:** But a regional district, or a coalition of smaller communities, could realistically support shared technical services that multiple municipalities draw on and collectively oversee. Think of it like a regional AI cooperative. Communities pool resources, share costs, and — critically — share the governance responsibility.
+
+**CASEY:** That's an appealing model on paper. But let's pressure-test it against how things actually work out here. Rural communities don't have a stellar track record when it comes to regional cooperation on complex issues. Getting three municipalities to agree on snowplow schedules is hard enough.
+
+**RILEY:** Fair point. But two things are different now. First, the cost of not cooperating is higher than it used to be. If each community independently contracts with whatever vendor pitches them first, they end up with incompatible systems, no collective bargaining power, and no shared capacity to evaluate whether these tools actually work. Second, climate adaptation and infrastructure costs are already forcing more regional thinking. AI governance could ride that wave rather than trying to create a new one from scratch.
+
+**CASEY:** I'll grant you that. And Cisco's partner ecosystem strategy, which came up in the roundup, is relevant here. Their bet is that organizations will adopt AI through existing IT relationships rather than going direct to Nvidia or whoever else. For a school district or regional health authority, that probably means working with the same consultant who set up their current network. So if communities can coordinate their requirements before those conversations happen, they have some real leverage.
+
+**RILEY:** And that leverage matters more than people realize. Vendors build what customers ask for. If a regional coalition of rural health authorities collectively tells a vendor, "We need this diagnostic tool to function on satellite internet with intermittent connectivity and a single nurse practitioner as the end user," that's a product specification. One tiny health clinic asking for the same thing is a support ticket that goes nowhere.
+
+**CASEY:** That's a compelling framing. The Vietnam deal from the roundup actually illustrates this from the other direction. The reason that G42 partnership includes local training programs and hiring requirements is because the Vietnamese government understood something fundamental: infrastructure you can't operate independently isn't really your infrastructure. It's a lease dressed up as ownership.
+
+**RILEY:** And that's the trap rural communities need to avoid. You can buy the fanciest AI-enabled municipal platform on the market, but if every update, every configuration change, every troubleshooting call goes back to a vendor in Toronto or San Jose, then you haven't gained autonomy. You've just added a more expensive dependency.
+
+**CASEY:** So what does building genuine local capacity actually look like in practice? Because "invest in workforce development" is easy to say and brutally hard to do when your community's biggest challenge is retaining anyone under thirty-five.
+
+**RILEY:** It starts with being honest about what's realistic. You're not going to train machine learning engineers in Quesnel — not because people there aren't capable, but because the career incentives pull that talent elsewhere. What you can build is a layer of informed users and decision-makers. People who understand enough about how these systems work to ask the right questions, set meaningful requirements, and hold vendors accountable.
+
+**CASEY:** Sort of like how you don't need to be an electrician to know your building's wiring is up to code, but you do need to know enough to hire a competent inspector.
+
+**RILEY:** That's a great analogy. And organizations like Community Futures Cariboo Chilcotin could play a real role here, because they already sit at the intersection of business development and community governance. They understand local economic priorities. If they can help entrepreneurs and municipal leaders think through technology adoption more strategically — not just "should we buy this tool" but "what are we giving up if we become dependent on this vendor" — that's meaningful governance capacity.
+
+**CASEY:** Healthcare is the area where this argument hits hardest for me. Rural healthcare is such an obvious application for AI — diagnostic support, triage assistance, specialist consultations — and it's an area where the gap between what's technically possible and what actually gets deployed in small communities is enormous.
+
+**RILEY:** It's the perfect case study for everything we're talking about. An AI diagnostic tool designed for a teaching hospital in Vancouver assumes reliable broadband, dedicated IT support, and clinicians who've been trained on the interface. Ship that same tool to a nursing station connected by satellite with one nurse practitioner on staff, and you haven't solved a problem — you've created a new one.
+
+**CASEY:** But if rural health authorities across BC collectively specified what they need — offline functionality, low-bandwidth operation, simplified interfaces, integration with existing provincial health records — that becomes a viable market. Not a huge one by Silicon Valley standards, but a real one.
+
+**RILEY:** And potentially one that other rural jurisdictions around the world would benefit from too. The needs of a remote clinic in northern BC aren't that different from a remote clinic in northern Norway or outback Australia. There's a global market for rural-appropriate health AI that nobody's building for yet because nobody's organized the demand.
+
+**CASEY:** Which brings us full circle to governance. Organizing that demand requires institutional coordination — regional health authorities talking to each other, agreeing on shared specifications, jointly negotiating with vendors. That's governance work. Not glamorous, not technologically exciting, but it's where the actual power lies.
+
+**RILEY:** And it needs to start now, while these platforms are still being designed, while the chip architectures are still being decided, while the deployment models are still being debated. Every month that passes without rural voices in those conversations is a month where assumptions get baked in that'll be expensive or impossible to reverse later.
+
+**CASEY:** The counterargument is that most communities will simply accept whatever the province or the big vendors provide, even if it wasn't designed with their needs in mind. Path of least resistance.
+
+**RILEY:** That's the likely default outcome, sure. But "likely" isn't "inevitable." Especially if we can connect these infrastructure conversations to things communities already care about — keeping young people local with meaningful tech-adjacent jobs, improving healthcare access, supporting the businesses that are already here. The governance argument becomes a lot more compelling when it's attached to outcomes people can see and feel.
+
+**CASEY:** So if someone's listening to this and they sit on a municipal council or a regional board, what's the one concrete thing they could do this month?
+
+**RILEY:** Ask your IT provider what AI-enabled tools they're planning to offer in the next two years, and ask what data those tools will collect, where it'll be stored, and who'll have access to it. If they can't answer clearly, that tells you something important about the relationship. And if they can, you've started the governance conversation.
+
+**CASEY:** That's practical advice. Not "form a committee" — just start asking better questions of the people you're already working with.
+
+**RILEY:** That's the entry point. Governance doesn't have to start with a framework document. It starts with curiosity about who's making decisions on your behalf and whether those decisions reflect your community's priorities.
+
+**CASEY:** We'd love to hear how those conversations go. Drop us a line and let us know what you're seeing in your community. Have a great rest of your Wednesday.
