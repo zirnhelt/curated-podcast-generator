@@ -1,30 +1,37 @@
 {
   "0": {
     "name": "Arts, Culture & Digital Storytelling",
-    "description": "Local arts scene, festivals, creative economy, media, and cultural tech"
+    "description": "Local arts scene, festivals, creative economy, media, and cultural tech",
+    "keywords": ["arts", "culture", "storytelling", "festival", "creative", "media", "film", "music", "gallery", "museum", "digital art", "podcast", "journalism"]
   },
   "1": {
     "name": "Working Lands & Industry",
-    "description": "Cariboo forestry, ranching, mining, agriculture — tech in the resource economy"
+    "description": "Cariboo forestry, ranching, mining, agriculture — tech in the resource economy",
+    "keywords": ["forestry", "ranching", "mining", "agriculture", "lumber", "cattle", "resource", "farming", "timber", "sawmill", "crop", "harvest", "livestock", "industrial"]
   },
   "2": {
     "name": "Community Tech & Governance",
-    "description": "SD27, CRD, Williams Lake council, municipal networks, civic innovation"
+    "description": "SD27, CRD, Williams Lake council, municipal networks, civic innovation",
+    "keywords": ["governance", "council", "municipal", "civic", "community", "public", "policy", "bylaw", "broadband", "network", "digital equity", "open data", "smart city", "election"]
   },
   "3": {
     "name": "Indigenous Lands & Innovation",
-    "description": "Tŝilhqot'in, Secwépemc, Dakelh — language, governance, land stewardship, and tech"
+    "description": "Tŝilhqot'in, Secwépemc, Dakelh — language, governance, land stewardship, and tech",
+    "keywords": ["indigenous", "first nations", "aboriginal", "reconciliation", "treaty", "land rights", "sovereignty", "guardian", "stewardship", "language revitalization", "elder", "traditional knowledge", "Haida", "Tsilhqotin", "Secwepemc", "Dakelh", "tribal"]
   },
   "4": {
     "name": "Wild Spaces & Outdoor Life",
-    "description": "Chilcotin wilderness, backcountry recreation, conservation tech, wildfire and climate"
+    "description": "Chilcotin wilderness, backcountry recreation, conservation tech, wildfire and climate",
+    "keywords": ["wilderness", "wildfire", "conservation", "wildlife", "outdoor", "recreation", "hiking", "fishing", "hunting", "backcountry", "park", "trail", "forest fire", "climate", "salmon", "grizzly", "caribou"]
   },
   "5": {
     "name": "Cariboo Voices & Local News",
-    "description": "Williams Lake, Quesnel, 100 Mile House, Bella Coola — community stories and digital equity"
+    "description": "Williams Lake, Quesnel, 100 Mile House, Bella Coola — community stories and digital equity",
+    "keywords": ["Williams Lake", "Quesnel", "100 Mile", "Bella Coola", "Cariboo", "local", "community", "rural", "small town", "digital equity", "Chilcotin", "Prince George"]
   },
   "6": {
     "name": "Resilient Rural Futures",
-    "description": "Infrastructure, connectivity, sustainability, and preparing Cariboo communities for change"
+    "description": "Infrastructure, connectivity, sustainability, and preparing Cariboo communities for change",
+    "keywords": ["infrastructure", "connectivity", "sustainability", "resilience", "rural", "broadband", "renewable", "solar", "wind", "fiber", "satellite", "preparedness", "adaptation", "transition"]
   }
 }
