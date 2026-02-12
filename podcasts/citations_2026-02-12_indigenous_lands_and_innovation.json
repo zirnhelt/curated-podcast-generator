@@ -1,0 +1,120 @@
+{
+  "episode": {
+    "date": "2026-02-12",
+    "formatted_date": "Thursday, February 12, 2026",
+    "theme": "Indigenous Lands & Innovation",
+    "title": "Cariboo Signals - Indigenous Lands & Innovation",
+    "description": "Riley and Casey explore technology and society in rural communities. Today's focus: Indigenous Lands & Innovation.\n\nNEWS ROUNDUP: We break down [GN Clean Energy and EVs] India speeds clean energy shift, narrows gap with China and [NYT Top Stories] This Comet Stopped Spinning. Then It Started Rotating Backward., plus 1 more stories, and explore what these developments mean for communities like ours.\n\nRURAL CONNECTIONS: Deep dive into indigenous lands & innovation, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.\n\nHosts: Riley (Tech systems thinker with rural roots) and Casey (Community development focus).\n\nSources:\n1. GN Clean Energy and EVs: [GN Clean Energy and EVs] India speeds clean energy shift, n...\n2. NYT Top Stories: [NYT Top Stories] This Comet Stopped Spinning. Then It Start...\n3. XDA Developers: [XDA Developers] Whisper transcribes my voice notes faster t...\n4. TechRadar: [TechRadar] Could this be a new era for 3D printers? Major m...\n5. GN 3D Printing: [GN 3D Printing] Researchers Find a Way to 3D Print One of t...\n6. The Tyee: [The Tyee] A Love Letter to Tumbler Ridge\n7. GN 3D Printing: [GN 3D Printing] 3D printing technology leaves the lab, is u...\n8. XDA Developers: [XDA Developers] I built a $15 ESP32 smart clock that does t...\n9. The Guardian Global Development: [The Guardian Global Development] ‘At 2am, it feels like som...\n10. Boing Boing: [Boing Boing] Idaho high schoolers build two airplanes, then...\n11. InsideEVs: [InsideEVs] BYD's Plan To Make The Atto 3 More Popular: Doub...\n\n--- Credits ---\nTheme Song: Cariboo Signals by Sumo AI (suno.com)\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: OpenAI TTS API\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt",
+    "generated_at": "2026-02-12T05:05:45.704660-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[GN Clean Energy and EVs] India speeds clean energy shift, narrows gap with China - CHOSUNBIZ",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxORlN5MG5nVHNzQlVBVVlsT1RsSkRsc1hXMVVaalNfeXRQSXE5dUVVN3dBUFdqZGl3WFA2M0hGMHNnVU1NWDdWMWVaRjBXc3pqV3ROZUNmSGp3TWphS01KSV91WHZfazZmU1ZxVWJZNkEyOHBVREpBU2JhTlpXSXFkWDNoVlUzSzdu0gGcAUFVX3lxTFB6UXdvelZxRTVJTkRIRHlfTmEtcW4xM1FiVG1kNm5JNmJTQVVQckFlVThTcGlXdDh4MGtkNnhyMWViWE9TaGtwWndiNHhhRXhoZkgyQUpraUpneXlKZm8wTEJpOWhBYjNrMHFfZlNONlE0LTlxcERoSGRMdXhycDMxRjl1UGZCMDNzMmgwbFRTaDBnWjIwaE5GTjd1Yw?oc=5",
+          "source": "GN Clean Energy and EVs",
+          "ai_score": 0,
+          "date_published": "2026-02-12T05:43:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[NYT Top Stories] This Comet Stopped Spinning. Then It Started Rotating Backward.",
+          "url": "https://www.nytimes.com/2026/02/11/science/comet-spinning-backwards.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-02-12T02:19:44+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[XDA Developers] Whisper transcribes my voice notes faster than I can type, and it runs entirely offline",
+          "url": "https://www.xda-developers.com/whisper-transcribes-voice-notes-faster-runs-entirely-offline/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-02-12T01:00:21+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[TechRadar] Could this be a new era for 3D printers? Major milestone reached as tungsten printing is now finally possible",
+          "url": "https://www.techradar.com/pro/a-new-era-for-3d-printers-major-milestone-reached-as-tungsten-printing-is-now-finally-possible",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-02-11T23:45:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN 3D Printing] Researchers Find a Way to 3D Print One of the Hardest Engineering Materials on Earth",
+          "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE5GRXR6d2JacmFNRDNWc1FQTGdndV94dFJrMTB5VzdGdFVIZ2pMbnlIT3hoMHpxdVZqQ2pSY0FvWjNIR2hCWlpKaVZn?oc=5",
+          "source": "GN 3D Printing",
+          "ai_score": 0,
+          "date_published": "2026-02-11T22:12:38+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[The Tyee] A Love Letter to Tumbler Ridge",
+          "url": "https://thetyee.ca/News/2026/02/11/Love-Letter-Tumbler-Ridge/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-02-12T01:31:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN 3D Printing] 3D printing technology leaves the lab, is used in construction in 2025 and 2026, and delivers structures with less concrete, fewer workers, and less carbon",
+          "url": "https://news.google.com/rss/articles/CBMimAJBVV95cUxQLWs0NGZ4U2EtSjVxQ3VqQkRWUEdqM05FS3V4cC1wSUw5YzFtU0xIZEtyUlktX3NSczdSOG1oZndzb0w4Y3VsUmJIQXk2aEVDZkZGRVlDWXNqaXdsdmlwazduNm85MFBiVmszN1dFMEdzb1FneTA5M3B6VnRhVlR2Y3U5M1hGNzdGal9ZMTRQZFNqd1ZjYklycVI2aUxQVkZ6aVNqRDdBNHYweEhFQWlHc0xJdmZLLWNWUjFHYVEzcTlHUWdPRTNvbjhsMUczbTlnQmswT2hjcGRoajBYbS1BYk5vX2FYN3RIX1RxUE1tRXVTWUhhOUVGZVhybllkOHgxM3JFWXFKTDFQTk1hZi14S05iMmtmZUVh?oc=5",
+          "source": "GN 3D Printing",
+          "ai_score": 0,
+          "date_published": "2026-02-11T17:27:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[XDA Developers] I built a $15 ESP32 smart clock that does things no store-bought one can",
+          "url": "https://www.xda-developers.com/built-15-esp32-smart-clock/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-02-12T00:00:19+00:00",
+          "summary": ""
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Indigenous Lands & Innovation",
+      "articles": [
+        {
+          "title": "[The Guardian Global Development] ‘At 2am, it feels like someone’s there’: why Nigerians are choosing chatbots to give them advice and therapy",
+          "url": "https://www.theguardian.com/global-development/2026/feb/12/nigeria-mental-health-ai-chatbots-psychiatry-therapy-depression-privacy",
+          "source": "The Guardian Global Development",
+          "ai_score": 0,
+          "date_published": "2026-02-12T06:00:41+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[Boing Boing] Idaho high schoolers build two airplanes, then go fly them",
+          "url": "https://boingboing.net/2026/02/11/idaho-high-schoolers-build-two-airplanes-then-go-fly-them.html",
+          "source": "Boing Boing",
+          "ai_score": 0,
+          "date_published": "2026-02-11T23:43:09+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[InsideEVs] BYD's Plan To Make The Atto 3 More Popular: Double The Horsepower And Better Charging",
+          "url": "https://insideevs.com/news/787078/byd-atto-3-evo-update/",
+          "source": "InsideEVs",
+          "ai_score": 0,
+          "date_published": "2026-02-11T22:49:02+00:00",
+          "summary": ""
+        }
+      ]
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator"
+  }
+}
