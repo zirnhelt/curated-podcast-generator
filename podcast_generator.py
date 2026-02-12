@@ -418,32 +418,97 @@ def categorize_articles_for_deep_dive(articles, theme_day):
     return deep_dive_articles
 
 
+def _local_theme_relevance(article, theme_keywords):
+    """Score an article's theme relevance using local keyword matching.
+
+    Returns a float: keyword_hits * 2 + boosted_score / 100.0
+    """
+    text = f"{article.get('title', '')} {article.get('summary', '')}".lower()
+    keyword_hits = sum(1 for kw in theme_keywords if kw in text)
+    boosted = article.get('_boosted_score', article.get('ai_score', 0)) / 100.0
+    return keyword_hits * 2 + boosted
+
+
+def _build_theme_keywords(theme_name):
+    """Build keyword list from theme config (name + explicit keywords)."""
+    # Find the theme info by matching the name
+    theme_info = None
+    for key, info in CONFIG['themes'].items():
+        if info['name'] == theme_name:
+            theme_info = info
+            break
+
+    # Extract keywords from theme name (words > 3 chars)
+    keywords = [w.lower() for w in theme_name.split() if len(w) > 3]
+
+    # Add explicit keywords from config
+    if theme_info and 'keywords' in theme_info:
+        keywords.extend([k.lower() for k in theme_info['keywords']])
+
+    # Add words from the description (strip punctuation)
+    if theme_info and 'description' in theme_info:
+        for w in theme_info['description'].split():
+            cleaned = w.strip('.,;:—-').lower()
+            if len(cleaned) > 3:
+                keywords.append(cleaned)
+
+    # Deduplicate while preserving order
+    seen = set()
+    unique = []
+    for kw in keywords:
+        if kw not in seen:
+            seen.add(kw)
+            unique.append(kw)
+    return unique
+
+
 def select_deep_dive_from_feed(theme_articles, theme_name):
     """Select deep dive articles from pre-curated podcast feed theme articles.
 
     The feed already sorts articles by boosted score (theme relevance).
     Articles with _keyword_matches > 0 are strongly on-theme.
     Top 3 theme articles become the deep dive; the rest go to news.
+
+    When the feed provides no keyword matches, falls back to local keyword
+    scoring against the theme name and config keywords.
     """
     # Articles are already sorted by boosted score from the feed.
     # Prefer articles with keyword matches for deep dive.
     strong_match = [a for a in theme_articles if a.get('_keyword_matches', 0) > 0]
     weak_match = [a for a in theme_articles if a.get('_keyword_matches', 0) == 0]
 
-    # Take up to 3 from strong matches first, then fill from weak
-    deep_dive = strong_match[:3]
-    if len(deep_dive) < 3:
-        deep_dive.extend(weak_match[:3 - len(deep_dive)])
+    theme_keywords = _build_theme_keywords(theme_name)
+    used_local_scoring = False
+
+    if strong_match:
+        # Feed provided keyword matches — use them
+        deep_dive = strong_match[:3]
+        if len(deep_dive) < 3:
+            deep_dive.extend(weak_match[:3 - len(deep_dive)])
+    else:
+        # Feed provided no keyword matches — apply local theme scoring
+        used_local_scoring = True
+        print(f"  ⚠️  No feed keyword matches; applying local theme scoring")
+        print(f"  📎 Local keywords: {theme_keywords[:10]}{'...' if len(theme_keywords) > 10 else ''}")
+
+        scored = sorted(theme_articles, key=lambda a: _local_theme_relevance(a, theme_keywords), reverse=True)
+        deep_dive = scored[:3]
 
     deep_dive_urls = {a.get('url', '') for a in deep_dive}
     news_articles = [a for a in theme_articles if a.get('url', '') not in deep_dive_urls]
 
+    # When using local scoring, also sort news by theme relevance
+    if used_local_scoring:
+        news_articles.sort(key=lambda a: _local_theme_relevance(a, theme_keywords), reverse=True)
+
     print(f"Deep dive: selected {len(deep_dive)} articles for '{theme_name}'")
-    print(f"  Strong keyword matches: {len(strong_match)}")
+    print(f"  Strong keyword matches (from feed): {len(strong_match)}")
+    print(f"  Local scoring fallback: {'yes' if used_local_scoring else 'no'}")
     print(f"  Remaining for news: {len(news_articles)}")
     for a in deep_dive:
         kw = a.get('_keyword_matches', 0)
-        print(f"  - [kw={kw}] {a.get('title', '')[:70]}...")
+        local_score = _local_theme_relevance(a, theme_keywords)
+        print(f"  - [kw={kw}, local={local_score:.1f}] {a.get('title', '')[:70]}...")
     return deep_dive, news_articles
 
 def get_current_date_info():
