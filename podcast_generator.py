@@ -1063,6 +1063,45 @@ def generate_audio_tts_only(script, output_filename):
     except Exception as e:
         print(f"❌ Error generating TTS audio: {e}")
         return None
+
+def upload_to_r2(file_path, object_key):
+    """Upload a file to Cloudflare R2 (S3-compatible).
+
+    Requires environment variables: CF_ACCOUNT_ID, R2_ACCESS_KEY_ID,
+    R2_SECRET_ACCESS_KEY. Optional: R2_BUCKET_NAME (default: cariboo-signals).
+    Silently skips if credentials are not configured.
+    """
+    account_id = os.environ.get("CF_ACCOUNT_ID")
+    access_key = os.environ.get("R2_ACCESS_KEY_ID")
+    secret_key = os.environ.get("R2_SECRET_ACCESS_KEY")
+
+    if not all([account_id, access_key, secret_key]):
+        print("   ⏭️  R2 credentials not configured, skipping upload")
+        return False
+
+    try:
+        import boto3
+
+        r2 = boto3.client(
+            "s3",
+            endpoint_url=f"https://{account_id}.r2.cloudflarestorage.com",
+            aws_access_key_id=access_key,
+            aws_secret_access_key=secret_key,
+            region_name="auto",
+        )
+        bucket = os.environ.get("R2_BUCKET_NAME", "cariboo-signals")
+        r2.upload_file(
+            file_path,
+            bucket,
+            object_key,
+            ExtraArgs={"ContentType": "audio/mpeg"},
+        )
+        print(f"   ☁️  Uploaded {object_key} to R2 bucket '{bucket}'")
+        return True
+    except Exception as e:
+        print(f"   ⚠️  R2 upload failed for {object_key}: {e}")
+        return False
+
 def generate_podcast_rss_feed():
     """Generate RSS feed with detailed citations for each episode."""
     print("📡 Generating podcast RSS feed with citations...")
@@ -1170,11 +1209,14 @@ def generate_podcast_rss_feed():
         f'<lastBuildDate>{get_pacific_now().strftime("%a, %d %b %Y %H:%M:%S GMT")}</lastBuildDate>'
     ])
     
+    # Use R2 audio URL if configured, otherwise fall back to GitHub Pages
+    audio_base = podcast_config.get("audio_base_url", podcast_config["url"])
+
     # Add episodes with detailed descriptions
     for episode in episodes:
         escaped_title = saxutils.escape(episode['title'])
         escaped_description = saxutils.escape(episode['description'])
-        
+
         rss_lines.extend([
             '<item>',
             f'<title>{escaped_title}</title>',
@@ -1182,7 +1224,7 @@ def generate_podcast_rss_feed():
             f'<pubDate>{episode["pub_date"]}</pubDate>',
             f'<description>{escaped_description}</description>',
             f'<itunes:summary>{escaped_description}</itunes:summary>',
-            f'<enclosure url="{saxutils.escape(podcast_config["url"] + episode["audio_url_path"], {chr(34): "&quot;"})}" length="{episode["file_size"]}" type="audio/mpeg"/>',
+            f'<enclosure url="{saxutils.escape(audio_base + episode["audio_url_path"], {chr(34): "&quot;"})}" length="{episode["file_size"]}" type="audio/mpeg"/>',
             f'<guid isPermaLink="false">{podcast_config["title"].lower().replace(" ", "-")}-{os.path.basename(episode["audio_file"]).replace("podcast_audio_", "").replace(".mp3", "")}</guid>',
             f'<itunes:duration>{episode["duration"]}</itunes:duration>',
             f'<itunes:explicit>{"true" if podcast_config["explicit"] else "false"}</itunes:explicit>',
@@ -1413,17 +1455,19 @@ def main():
     # Generate audio if needed
     if not audio_exists and script:
         audio_file = generate_audio_from_script(script, audio_filename)
-        
+
         if audio_file:
             print(f"🎉 Podcast complete!")
             print(f"   Script: {script_filename}")
             print(f"   Audio:  {audio_file}")
+            # Upload to R2 (dual-publish: keep in git AND upload to R2)
+            upload_to_r2(audio_file, f"podcasts/{os.path.basename(audio_file)}")
         else:
             print(f"📝 Script ready: {script_filename}")
             print("📊 Audio generation failed")
     elif audio_exists:
         print(f"🎵 Audio already exists: {audio_filename}")
-    
+
     # Generate RSS feed
     generate_podcast_rss_feed()
     
