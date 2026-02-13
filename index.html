@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cariboo Signals - Daily tech from rural BC</title>
-    <link rel="icon" type="image/png" href="car-sig-favicon.png">
     <meta name="description" content="How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region on the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations.">
     <style>
         * {
@@ -137,6 +136,40 @@
             border-radius: 8px;
         }
         
+        .podcast-apps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+        
+        .app-link {
+            display: block;
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            border: 2px solid #ddd;
+            transition: all 0.3s;
+        }
+        
+        .app-link:hover {
+            border-color: #3498db;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .app-name {
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        
+        .app-description {
+            font-size: 0.9em;
+            color: #666;
+        }
+        
         .rss-links {
             text-align: center;
             margin-top: 20px;
@@ -196,6 +229,10 @@
                 grid-template-columns: 1fr;
             }
             
+            .podcast-apps {
+                grid-template-columns: 1fr;
+            }
+            
             h1 {
                 font-size: 2em;
             }
@@ -236,16 +273,17 @@
         
         <div class="subscribe-section">
             <h3>Subscribe to Cariboo Signals</h3>
-            <p>Add this podcast to your favorite app using the RSS feed link below:</p>
-
-            <div class="rss-links">
-                <a href="podcast-feed.xml" class="rss-button">🎙️ RSS Feed</a>
-                <a href="#" class="rss-button" id="copy-rss" onclick="copyRssUrl(event)">📋 Copy Feed URL</a>
-            </div>
-
-            <p style="margin-top: 16px; color: #666; font-size: 0.9em;">
-                Paste the feed URL into any podcast app (Apple Podcasts, Overcast, Pocket Casts, etc.) to subscribe.
+            <p>Get new episodes automatically in your favorite podcast app:</p>
+            
+            <p style="color: #666; font-style: italic; margin-top: 12px;">
+                Podcast app listings coming soon. For now, subscribe directly via RSS below.
             </p>
+            
+            <div class="rss-links">
+                <h4>Or subscribe directly:</h4>
+                <a href="podcast-feed.xml" class="rss-button">🎙️ RSS Feed</a>
+                <a href="https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml" class="rss-button">📡 Direct Link</a>
+            </div>
         </div>
         
         <div class="footer">
@@ -267,16 +305,6 @@
     </div>
 
     <script>
-        function copyRssUrl(event) {
-            event.preventDefault();
-            const feedUrl = 'https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml';
-            navigator.clipboard.writeText(feedUrl).then(function() {
-                const btn = document.getElementById('copy-rss');
-                btn.textContent = '✅ Copied!';
-                setTimeout(function() { btn.textContent = '📋 Copy Feed URL'; }, 2000);
-            });
-        }
-
         async function loadEpisodes() {
             try {
                 const response = await fetch('podcast-feed.xml');
