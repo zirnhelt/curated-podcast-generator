@@ -19,6 +19,11 @@
 - RSS feed with proper XML escaping
 
 ## Short-term
+- [ ] Submit to Apple Podcasts (see [docs/submit-apple-podcasts.md](docs/submit-apple-podcasts.md))
+  - [ ] Upgrade cover art to 1400x1400+ pixels (Apple minimum)
+  - [ ] Replace placeholder email in config/podcast.json
+  - [ ] Submit RSS feed at podcastsconnect.apple.com
+- [ ] Submit to Spotify, Amazon Music, Pocket Casts
 - [ ] Clean up backup and old generator scripts from root directory
 - [ ] Reduce technical jargon for general audiences
 - [ ] Theme-based filtering on website index page

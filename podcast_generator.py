@@ -1280,6 +1280,7 @@ def generate_podcast_rss_feed():
         rss_lines.append(f'<itunes:category text="{saxutils.escape(category)}"/>')
     
     rss_lines.extend([
+        '<itunes:type>episodic</itunes:type>',
         f'<itunes:explicit>{"true" if podcast_config["explicit"] else "false"}</itunes:explicit>',
         f'<lastBuildDate>{get_pacific_now().strftime("%a, %d %b %Y %H:%M:%S GMT")}</lastBuildDate>'
     ])
