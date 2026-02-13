@@ -85,8 +85,9 @@ TARGET_SPEECH_DBFS = -20.0  # Speech louder and clear
 TARGET_MUSIC_DBFS = -28.0   # Music ducked beneath speech
 
 # Interval music duration (ms) — trim long theme to a short chime
-INTERVAL_MUSIC_DURATION_MS = 2000
-INTERVAL_FADE_OUT_MS = 300
+# Use only the crisp front-end attack of the intermission MP3
+INTERVAL_MUSIC_DURATION_MS = 1200
+INTERVAL_FADE_OUT_MS = 400
 
 # Memory Configuration (stored in podcasts/ alongside episodes)
 EPISODE_MEMORY_FILE = PODCASTS_DIR / "episode_memory.json"
