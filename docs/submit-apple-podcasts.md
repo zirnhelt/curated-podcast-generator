@@ -6,34 +6,28 @@ Step-by-step guide for getting the podcast listed on Apple Podcasts and other di
 
 Before submitting, verify these requirements are met:
 
-### 1. Cover art (ACTION REQUIRED)
+### 1. Cover art
 
 Apple requires cover art between **1400x1400** and **3000x3000** pixels.
 
-Current: `cariboo-signals.png` is **1024x1024** — this will be rejected.
+Current: `cariboo-signals.png` is **1400x1400** — meets the minimum.
 
-To fix:
-- Regenerate the cover art at 3000x3000 pixels (PNG or JPEG, RGB color space)
-- Replace `cariboo-signals.png` in the repo root
-- The RSS feed already references this file automatically
+To update:
+- Replace `cariboo-signals.png` in the repo root (PNG or JPEG, RGB color space, square)
+- The RSS feed references this file automatically
 
-### 2. Contact email (ACTION REQUIRED)
+### 2. Contact email
 
-The RSS feed currently uses a placeholder email: `podcast@example.com`
-
-To fix:
-- Edit `config/podcast.json`
-- Change the `"email"` field to a real email address
-- This email is used by Apple to contact the podcast owner about issues
+The RSS feed owner email is set to `feedback@cariboosignals.ca` in `config/podcast.json`.
 
 ### 3. RSS feed URL
 
 Your feed URL is:
 ```
-https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml
+https://podcast.cariboosignals.ca/podcast-feed.xml
 ```
 
-This is publicly accessible and auto-updated daily by GitHub Actions.
+This is hosted on Cloudflare R2 and auto-updated daily by GitHub Actions.
 
 ### 4. Validate the feed
 
@@ -54,7 +48,7 @@ You can also validate with Apple's tool after submission at [Podcasts Connect](h
 3. **Click** the **+** button or "Add a Show"
 4. **Paste** your RSS feed URL:
    ```
-   https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml
+   https://podcast.cariboosignals.ca/podcast-feed.xml
    ```
 5. **Review** the preview — Apple will parse your feed and show:
    - Show title (Cariboo Signals)
