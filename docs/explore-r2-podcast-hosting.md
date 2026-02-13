@@ -31,12 +31,12 @@ $0. The free tier covers this project's scale indefinitely.
 Domain `cariboosignals.ca` is already on Cloudflare. Map a subdomain to the R2 bucket:
 
 ```
-https://audio.cariboosignals.ca/podcasts/podcast_audio_2026-02-10_example.mp3
+https://podcast.cariboosignals.ca/podcasts/podcast_audio_2026-02-10_example.mp3
 ```
 
 **Setup** (one-time, in Cloudflare dashboard):
 1. R2 bucket → Settings → Custom Domains → Add
-2. Enter `audio.cariboosignals.ca`
+2. Enter `podcast.cariboosignals.ca`
 3. Cloudflare auto-creates the CNAME DNS record
 4. Wait a few minutes for status to go from "Initializing" to "Active"
 
@@ -50,7 +50,7 @@ The RSS feed URL can also move to the custom domain later if desired:
 
 ```
 https://cariboosignals.ca/feed.xml          (via Cloudflare Pages or Worker)
-https://audio.cariboosignals.ca/feed.xml    (served from R2 alongside audio)
+https://podcast.cariboosignals.ca/feed.xml    (served from R2 alongside audio)
 ```
 
 For now, keeping the RSS on GitHub Pages is fine — directories only need a
@@ -118,7 +118,7 @@ if os.environ.get("R2_ACCESS_KEY_ID"):
 
 ```json
 {
-  "audio_base_url": "https://audio.cariboosignals.ca/"
+  "audio_base_url": "https://podcast.cariboosignals.ca/"
 }
 ```
 
@@ -184,10 +184,10 @@ boto3
 1. ~~Create Cloudflare account~~ ✅ Done
 2. ~~Add domain to Cloudflare~~ ✅ Done (`cariboosignals.ca`)
 3. **Create R2 bucket** named `cariboo-signals`
-4. **Add custom domain** `audio.cariboosignals.ca` to the bucket (auto-creates DNS)
+4. **Add custom domain** `podcast.cariboosignals.ca` to the bucket (auto-creates DNS)
 5. **Create R2 API token** with read/write permissions for the bucket
 6. **Add secrets** to GitHub repo (Settings → Secrets → Actions)
-7. **Update `config/podcast.json`** with `audio_base_url: "https://audio.cariboosignals.ca/"`
+7. **Update `config/podcast.json`** with `audio_base_url: "https://podcast.cariboosignals.ca/"`
 
 ## Directory Submission
 
