@@ -101,13 +101,16 @@ def generate_clean_rss():
         f'<lastBuildDate>{datetime.now().strftime("%a, %d %b %Y %H:%M:%S GMT")}</lastBuildDate>'
     ])
     
+    # Use R2 audio URL if configured, otherwise fall back to GitHub Pages
+    audio_base = podcast_config.get("audio_base_url", podcast_config["url"])
+
     # Add episodes with episode-specific descriptions
     for episode in episodes:
         escaped_title = saxutils.escape(episode['title'])
-        
+
         # Try to load episode-specific description from citations file
         episode_description = load_episode_description(episode['episode_date'], episode['theme'])
-        
+
         if episode_description:
             # Use episode-specific description (already includes citations and credits)
             escaped_description = saxutils.escape(episode_description)
@@ -117,7 +120,7 @@ def generate_clean_rss():
             description_with_credits = podcast_config["description"] + "\n\n" + credits_config['text']
             escaped_description = saxutils.escape(description_with_credits)
             print(f"  ⚠️  Using generic description for {episode['episode_date']}")
-        
+
         rss_lines.extend([
             '<item>',
             f'<title>{escaped_title}</title>',
@@ -126,7 +129,7 @@ def generate_clean_rss():
             f'<description>{escaped_description}</description>',
             f'<itunes:summary>{escaped_description}</itunes:summary>',
             f'<itunes:subtitle>Daily tech progress - {episode["theme"]}</itunes:subtitle>',
-            f'<enclosure url="{saxutils.escape(podcast_config["url"] + episode["audio_url_path"], {chr(34): "&quot;"})}" length="{episode["file_size"]}" type="audio/mpeg"/>',
+            f'<enclosure url="{saxutils.escape(audio_base + episode["audio_url_path"], {chr(34): "&quot;"})}" length="{episode["file_size"]}" type="audio/mpeg"/>',
             f'<guid isPermaLink="false">{podcast_config["title"].lower().replace(" ", "-")}-{episode["episode_date"]}</guid>',
             f'<itunes:duration>{podcast_config["episode_duration"]}</itunes:duration>',
             f'<itunes:explicit>{"true" if podcast_config["explicit"] else "false"}</itunes:explicit>',
