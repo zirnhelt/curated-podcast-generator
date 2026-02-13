@@ -1064,43 +1064,118 @@ def generate_audio_tts_only(script, output_filename):
         print(f"❌ Error generating TTS audio: {e}")
         return None
 
+CONTENT_TYPES = {
+    ".mp3": "audio/mpeg",
+    ".html": "text/html",
+    ".xml": "application/rss+xml",
+    ".json": "application/json",
+    ".png": "image/png",
+    ".jpg": "image/jpeg",
+    ".jpeg": "image/jpeg",
+    ".txt": "text/plain",
+    ".css": "text/css",
+    ".js": "application/javascript",
+}
+
+
+def _get_r2_client():
+    """Return (boto3 S3 client, bucket name) or (None, None) if credentials missing."""
+    account_id = os.environ.get("CF_ACCOUNT_ID")
+    access_key = os.environ.get("R2_ACCESS_KEY_ID")
+    secret_key = os.environ.get("R2_SECRET_ACCESS_KEY")
+
+    if not all([account_id, access_key, secret_key]):
+        return None, None
+
+    import boto3
+    r2 = boto3.client(
+        "s3",
+        endpoint_url=f"https://{account_id}.r2.cloudflarestorage.com",
+        aws_access_key_id=access_key,
+        aws_secret_access_key=secret_key,
+        region_name="auto",
+    )
+    bucket = os.environ.get("R2_BUCKET_NAME", "cariboo-signals")
+    return r2, bucket
+
+
+def _upload_file_to_r2(r2_client, bucket, file_path, object_key):
+    """Upload a single file to R2. Returns True on success."""
+    try:
+        ext = os.path.splitext(file_path)[1].lower()
+        content_type = CONTENT_TYPES.get(ext, "application/octet-stream")
+        r2_client.upload_file(
+            file_path,
+            bucket,
+            object_key,
+            ExtraArgs={"ContentType": content_type},
+        )
+        print(f"   ☁️  Uploaded {object_key} ({content_type})")
+        return True
+    except Exception as e:
+        print(f"   ⚠️  R2 upload failed for {object_key}: {e}")
+        return False
+
+
 def upload_to_r2(file_path, object_key):
     """Upload a file to Cloudflare R2 (S3-compatible).
 
     Requires environment variables: CF_ACCOUNT_ID, R2_ACCESS_KEY_ID,
     R2_SECRET_ACCESS_KEY. Optional: R2_BUCKET_NAME (default: cariboo-signals).
     Silently skips if credentials are not configured.
+    Content type is auto-detected from file extension.
     """
-    account_id = os.environ.get("CF_ACCOUNT_ID")
-    access_key = os.environ.get("R2_ACCESS_KEY_ID")
-    secret_key = os.environ.get("R2_SECRET_ACCESS_KEY")
-
-    if not all([account_id, access_key, secret_key]):
+    r2, bucket = _get_r2_client()
+    if r2 is None:
         print("   ⏭️  R2 credentials not configured, skipping upload")
         return False
+    return _upload_file_to_r2(r2, bucket, file_path, object_key)
 
+
+def _regenerate_index_html():
+    """Regenerate index.html so the latest episodes are reflected."""
     try:
-        import boto3
-
-        r2 = boto3.client(
-            "s3",
-            endpoint_url=f"https://{account_id}.r2.cloudflarestorage.com",
-            aws_access_key_id=access_key,
-            aws_secret_access_key=secret_key,
-            region_name="auto",
-        )
-        bucket = os.environ.get("R2_BUCKET_NAME", "cariboo-signals")
-        r2.upload_file(
-            file_path,
-            bucket,
-            object_key,
-            ExtraArgs={"ContentType": "audio/mpeg"},
-        )
-        print(f"   ☁️  Uploaded {object_key} to R2 bucket '{bucket}'")
-        return True
+        from generate_html import generate_index_html
+        generate_index_html()
     except Exception as e:
-        print(f"   ⚠️  R2 upload failed for {object_key}: {e}")
-        return False
+        print(f"   ⚠️  Could not regenerate index.html: {e}")
+
+
+def sync_site_to_r2():
+    """Upload all site assets and podcast episodes to R2.
+
+    Uploads: index.html, podcast-feed.xml, cover image, and all audio files.
+    """
+    r2, bucket = _get_r2_client()
+    if r2 is None:
+        print("⏭️  R2 credentials not configured, skipping site sync")
+        return
+
+    print("☁️  Syncing site to R2...")
+    base_dir = Path(__file__).parent
+
+    # Site assets
+    site_files = [
+        ("index.html", "index.html"),
+        ("podcast-feed.xml", "podcast-feed.xml"),
+        ("cariboo-signals.png", "cariboo-signals.png"),
+    ]
+    for local_name, r2_key in site_files:
+        local_path = base_dir / local_name
+        if local_path.exists():
+            _upload_file_to_r2(r2, bucket, str(local_path), r2_key)
+        else:
+            print(f"   ⚠️  {local_name} not found, skipping")
+
+    # All podcast audio files (backlog + today)
+    audio_files = sorted(glob.glob(str(PODCASTS_DIR / "podcast_audio_*.mp3")))
+    if audio_files:
+        print(f"   Uploading {len(audio_files)} audio episodes...")
+        for audio_file in audio_files:
+            r2_key = f"podcasts/{os.path.basename(audio_file)}"
+            _upload_file_to_r2(r2, bucket, audio_file, r2_key)
+    else:
+        print("   No audio files to upload")
 
 def generate_podcast_rss_feed():
     """Generate RSS feed with detailed citations for each episode."""
@@ -1345,6 +1420,8 @@ def main():
         print(f"   Script: {script_filename}")
         print(f"   Audio: {audio_filename}")
         generate_podcast_rss_feed()
+        _regenerate_index_html()
+        sync_site_to_r2()
         return
     
     # Generate script if needed
@@ -1460,17 +1537,17 @@ def main():
             print(f"🎉 Podcast complete!")
             print(f"   Script: {script_filename}")
             print(f"   Audio:  {audio_file}")
-            # Upload to R2 (dual-publish: keep in git AND upload to R2)
-            upload_to_r2(audio_file, f"podcasts/{os.path.basename(audio_file)}")
         else:
             print(f"📝 Script ready: {script_filename}")
             print("📊 Audio generation failed")
     elif audio_exists:
         print(f"🎵 Audio already exists: {audio_filename}")
 
-    # Generate RSS feed
+    # Generate RSS feed, regenerate index.html, and sync everything to R2
     generate_podcast_rss_feed()
-    
+    _regenerate_index_html()
+    sync_site_to_r2()
+
     print("✅ Generation complete!")
 
 if __name__ == "__main__":
