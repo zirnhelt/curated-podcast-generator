@@ -1,0 +1,128 @@
+{
+  "episode": {
+    "date": "2026-02-13",
+    "formatted_date": "Friday, February 13, 2026",
+    "theme": "Wild Spaces & Outdoor Life",
+    "title": "Cariboo Signals - Wild Spaces & Outdoor Life",
+    "description": "Riley and Casey explore technology and society in rural communities. Today's focus: Wild Spaces & Outdoor Life.\n\nNEWS ROUNDUP: We break down [GN Clean Energy and EVs] Hanwha and Morrison’s Chrysalis partner for 3.5GW of solar and storage in North America and [GN Clean Energy and EVs] Electrify everything, plus 1 more stories, and explore what these developments mean for communities like ours.\n\nRURAL CONNECTIONS: Deep dive into wild spaces & outdoor life, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.\n\nHosts: Riley (Tech systems thinker with rural roots) and Casey (Community development focus).\n\nSources:\n1. GN Clean Energy and EVs: [GN Clean Energy and EVs] Hanwha and Morrison’s Chrysalis pa...\n2. GN Clean Energy and EVs: [GN Clean Energy and EVs] Electrify everything\n3. InsideEVs: [InsideEVs] Rivian Targets 20,000 To 25,000 R2 Deliveries Th...\n4. GN Clean Energy and EVs: [GN Clean Energy and EVs] US Details New China Limits for Cl...\n5. New Atlas: [New Atlas] VW split-cell bus smashes MPV and cargo hauling ...\n6. GN 3D Printing: [GN 3D Printing] Innovative Recyclable Ink Advances 3D Print...\n7. Hackaday: [Hackaday] Does this Electron Make Me Look Fat? Weighing an ...\n8. Hackaday: [Hackaday] Argon ONE UP: Test-Tasting a Raspberry Pi CM5 Bas...\n9. XDA Developers: [XDA Developers] MyMiniFactory has acquired Thingiverse to h...\n10. ScienceAlert: [ScienceAlert] WATCH: Crew-12 Is Set For Launch to ISS After...\n11. GN Clean Energy and EVs: [GN Clean Energy and EVs] HKUST Unveils Innovative Calcium-I...\n12. Neowin: [Neowin] Don't get left in the dark: The EcoFlow DELTA Pro 3...\n\n--- Credits ---\nTheme Song: Cariboo Signals by Sumo AI (suno.com)\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: OpenAI TTS API\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt",
+    "generated_at": "2026-02-13T04:57:49.643826-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[GN Clean Energy and EVs] Hanwha and Morrison’s Chrysalis partner for 3.5GW of solar and storage in North America",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQa1pwQ2U0dmVjS0pYS3hDUmlOc201VU5ZT3Rmcmhkcm83M01fR0NMTEtCWUVhNG85N2JGWmJ3SG1nd2NTUl9RVlBTMzZuMHl3ay1iOEp5Qlk0YzlVbklUN2trcUtLYjB5cGtUNFFnaGRlOVc1ZndmZ2o4YUdXdHpVTk1BRmhOYVlKRTRraEJsV0tpbTBKWXNRZWVIYkZ6cWJEeV9KYjhXaUdTUUxjNTJ3WXBQV1RBSFhvWko0?oc=5",
+          "source": "GN Clean Energy and EVs",
+          "ai_score": 0,
+          "date_published": "2026-02-12T12:47:18+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN Clean Energy and EVs] Electrify everything",
+          "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQWlFYNXhEV1RfRnBXZzRxUUJiaW5jV3NTeWZFczhYVk9HNjA1TG5YSThORXlaUDVQQ2NidmYzS0pkRmhmbkNNaDR5R2k1UTNUMlJ5ZU4wQW9ka0x5ZEIwVWhiRFRSRjVrTG1HZzlLb1NGV2gtOG94b29ybVV5LVZGYVVSdFY2cjg?oc=5",
+          "source": "GN Clean Energy and EVs",
+          "ai_score": 0,
+          "date_published": "2026-02-13T03:46:53+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[InsideEVs] Rivian Targets 20,000 To 25,000 R2 Deliveries This Year",
+          "url": "https://insideevs.com/news/787190/rivian-r2-deliveries-2026-volume/",
+          "source": "InsideEVs",
+          "ai_score": 0,
+          "date_published": "2026-02-12T23:44:37+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN Clean Energy and EVs] US Details New China Limits for Clean Energy Tax Credits",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQTGlSdF9VVUpXenBOclpkaU9iMVRPVVJJV3U4Sm5Kb0NncVpkRWwycnlKVFQ0dmExN1c5blhhSG9qOUhaUF96aldTT3l2TWotOG9PV1VReFkxaFVHZzJ0VkNacXFqbXpuRFBnbkw4SDk4em90WjZoMG1HNVBOUGNpaEhWVGN2RUtPYVNfWXg1S3U2VVZQdmNFWlFOMFI5VEpXV3EtaTA1bG16d0k?oc=5",
+          "source": "GN Clean Energy and EVs",
+          "ai_score": 0,
+          "date_published": "2026-02-13T02:18:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[New Atlas] VW split-cell bus smashes MPV and cargo hauling into all-in-one van",
+          "url": "https://newatlas.com/automotive/vw-id-buzz-mpv-cargo-van/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-02-13T00:03:45+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN 3D Printing] Innovative Recyclable Ink Advances 3D Printing Technology",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxObU5fZzFXQWw1bUp5RTBIYkdFeC0yQ3JxeGhIRFlHWnl0ZmwyRWoxTGVxc1ktV055UmRfanZBX2N6c3lTV2tBZ1NkcWVzbGJQTGMwOEtfWUtBUVEwbklnMmN5Rmd6OENjbmVpZ3hwS3ZwcHloVDRyeGVzRVF6T3FvZ1RNZ3VXcVFZaUE?oc=5",
+          "source": "GN 3D Printing",
+          "ai_score": 0,
+          "date_published": "2026-02-12T23:35:50+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[Hackaday] Does this Electron Make Me Look Fat? Weighing an Electron",
+          "url": "https://hackaday.com/2026/02/12/does-this-electron-make-me-look-fat-weighing-an-electron/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-02-13T03:00:12+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[Hackaday] Argon ONE UP: Test-Tasting a Raspberry Pi CM5 Based Laptop",
+          "url": "https://hackaday.com/2026/02/12/argon-one-up-test-tasting-a-raspberry-pi-cm5-based-laptop/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-02-13T06:00:29+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[XDA Developers] MyMiniFactory has acquired Thingiverse to help the \"underserved\" 3D printing site",
+          "url": "https://www.xda-developers.com/myminifactory-has-acquired-thingiverse-to-help-the-underserved-3d-printing-site/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-02-12T22:27:36+00:00",
+          "summary": ""
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Wild Spaces & Outdoor Life",
+      "articles": [
+        {
+          "title": "[ScienceAlert] WATCH: Crew-12 Is Set For Launch to ISS After NASA Medical Evacuation",
+          "url": "https://www.sciencealert.com/watch-crew-12-is-set-for-launch-to-iss-after-nasa-medical-evacuation",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-02-13T04:24:43+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN Clean Energy and EVs] HKUST Unveils Innovative Calcium-Ion Battery Technology to Boost Energy Storage Efficiency and Sustainability",
+          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPN1U3c2czNkk1aUN4VlBtQ1d6MFA0alhOclpvbFIwRUNpVjd0UVVPbmxrYUNwMVQxTHhDMUJ4NzlpUHhoZkVzelUtVW95d2UteG1RbWJsZENHY29OMm53aDROZDkwOVVTVy1kUGtoRnBibHA5YUY1WGxHeHNYaWo1YTJ6UnRTWThScWNJNHdMWEZybC1ETmJ4UVNzdXcxVklZVnBVZXlBXzNSeDI5OE5zSnZzRjd5NVpteU5jZ1VqMDNPY2VQWUltNjYtT1U1bDQ?oc=5",
+          "source": "GN Clean Energy and EVs",
+          "ai_score": 0,
+          "date_published": "2026-02-13T05:37:30+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[Neowin] Don't get left in the dark: The EcoFlow DELTA Pro 3 is now 46% off",
+          "url": "https://www.neowin.net/deals/dont-get-left-in-the-dark-the-ecoflow-delta-pro-3-is-now-46-off/",
+          "source": "Neowin",
+          "ai_score": 0,
+          "date_published": "2026-02-13T03:42:01+00:00",
+          "summary": ""
+        }
+      ]
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator"
+  }
+}
