@@ -14,19 +14,19 @@ Theme day 5 (Saturday) is **"Cariboo Voices & Local News"** — its purpose is t
 
 ### What to change
 
-Add RSS feeds from regional BC news outlets to the super-rss-feed source list. Recommended sources:
+Prioritize RSS feeds from regional BC news outlets to the super-rss-feed source list. Recommended sources:
 
-| Source | Coverage | Likely RSS URL |
+| Source | Coverage |
 |---|---|---|
-| Williams Lake Tribune | Williams Lake, Cariboo region | `https://www.wltribune.com/feed/` (verify) |
-| Quesnel Cariboo Observer | Quesnel, Cariboo region | `https://www.quesnelobserver.com/feed/` (verify) |
-| 100 Mile Free Press | 100 Mile House area | `https://www.100milefreepress.net/feed/` (verify) |
-| My Cariboo Now | Williams Lake, Quesnel, regional | `https://www.mycariboonow.com/feed/` (verify) |
-| CBC Prince George | Northern BC, Cariboo mentions | Look for their RSS/Atom feed |
+| Williams Lake Tribune | Williams Lake, Cariboo region | 
+| Quesnel Cariboo Observer | Quesnel, Cariboo region | 
+| 100 Mile Free Press | 100 Mile House area 
+| My Cariboo Now | Williams Lake, Quesnel, regional |
+| CBC Prince George | Northern BC, Cariboo mentions |
+| CBC Kamloops | Northern BC, Cariboo mentions |
 
 **Important notes:**
 
-- Verify each feed URL is live and returns valid RSS/Atom XML before adding.
 - Some Black Press sites (Tribune, Observer, Free Press) share a CMS and may use a consistent feed URL pattern — check one and the others likely follow.
 - These articles should flow into the existing `feed-local.json` category or a new `feed-cariboo.json` category. If using a new category, the podcast generator's `CATEGORY_FEEDS` list in `podcast_generator.py` (line ~260) will also need updating.
 - The scoring system should give these sources a baseline boost. Articles from Cariboo-region outlets inherently match the podcast's interests — the `interests.txt` scoring notes already say "Local Williams Lake/Cariboo content should score 80+ regardless of topic."
