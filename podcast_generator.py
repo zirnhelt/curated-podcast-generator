@@ -1369,7 +1369,7 @@ def generate_podcast_rss_feed():
                 episode_description += credits_config['text']
                 
                 episodes.append({
-                    'title': f"{podcast_config['title']} - {theme.replace('_', ' ').title()}",
+                    'title': f"{theme.replace('_', ' ').title()}",
                     'audio_url_path': f"podcasts/{audio_basename}",
                     'audio_file': audio_file,
                     'pub_date': pub_date,
