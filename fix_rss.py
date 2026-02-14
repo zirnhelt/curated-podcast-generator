@@ -77,9 +77,9 @@ def generate_clean_rss():
         '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">',
         '<channel>',
         f'<title>{saxutils.escape(podcast_config["title"])}</title>',
-        f'<link>{podcast_config["url"]}</link>',
+        f'<link>{podcast_config["url"]}index.html</link>',
         f'<language>{podcast_config["language"]}</language>',
-        f'<copyright>{podcast_config["copyright"]}</copyright>',
+        f'<copyright>{saxutils.escape(podcast_config["copyright"])}</copyright>',
         f'<itunes:subtitle>{saxutils.escape(podcast_config["subtitle"])}</itunes:subtitle>',
         f'<itunes:author>{podcast_config["author"]}</itunes:author>',
         f'<itunes:summary>{saxutils.escape(podcast_config["summary"])}</itunes:summary>',
@@ -112,22 +112,21 @@ def generate_clean_rss():
         episode_description = load_episode_description(episode['episode_date'], episode['theme'])
 
         if episode_description:
-            # Use episode-specific description (already includes citations and credits)
-            escaped_description = saxutils.escape(episode_description)
+            raw_description = episode_description
             print(f"  ✅ Using episode-specific description for {episode['episode_date']}")
         else:
             # Fallback to generic description + credits
-            description_with_credits = podcast_config["description"] + "\n\n" + credits_config['text']
-            escaped_description = saxutils.escape(description_with_credits)
+            raw_description = podcast_config["description"] + "\n\n" + credits_config['text']
             print(f"  ⚠️  Using generic description for {episode['episode_date']}")
 
+        # Use CDATA so line breaks render in podcast apps
         rss_lines.extend([
             '<item>',
             f'<title>{escaped_title}</title>',
-            f'<link>{podcast_config["url"]}</link>',
+            f'<link>{podcast_config["url"]}index.html</link>',
             f'<pubDate>{episode["pub_date"]}</pubDate>',
-            f'<description>{escaped_description}</description>',
-            f'<itunes:summary>{escaped_description}</itunes:summary>',
+            f'<description><![CDATA[{raw_description}]]></description>',
+            f'<itunes:summary><![CDATA[{raw_description}]]></itunes:summary>',
             f'<itunes:subtitle>Daily tech progress - {episode["theme"]}</itunes:subtitle>',
             f'<enclosure url="{saxutils.escape(audio_base + episode["audio_url_path"], {chr(34): "&quot;"})}" length="{episode["file_size"]}" type="audio/mpeg"/>',
             f'<guid isPermaLink="false">{podcast_config["title"].lower().replace(" ", "-")}-{episode["episode_date"]}</guid>',

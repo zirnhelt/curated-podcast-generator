@@ -58,6 +58,15 @@ def load_psa_events():
     with open(CONFIG_DIR / "psa_events.json", 'r') as f:
         return json.load(f)["events"]
 
+@lru_cache(maxsize=1)
+def load_blocklist():
+    """Load content blocklist (cached)."""
+    blocklist_path = CONFIG_DIR / "blocklist.json"
+    if blocklist_path.exists():
+        with open(blocklist_path, 'r') as f:
+            return json.load(f)
+    return {"title_keywords": []}
+
 def get_voice_for_host(host_key):
     """Get TTS voice for a host."""
     return load_hosts_config()[host_key]["voice"]
@@ -76,7 +85,8 @@ def get_all_config():
         'interests': load_interests(),
         'prompts': load_prompts_config(),
         'psa_organizations': load_psa_organizations(),
-        'psa_events': load_psa_events()
+        'psa_events': load_psa_events(),
+        'blocklist': load_blocklist()
     }
 
 if __name__ == "__main__":
