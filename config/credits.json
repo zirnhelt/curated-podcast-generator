@@ -1,5 +1,5 @@
 {
-  "text": "\n--- Credits ---\nTheme Song: Cariboo Signals by Sumo AI (suno.com)\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: OpenAI TTS API\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt",
+  "text": "\n--- Credits ---\nTheme Song: Cariboo Signals by Sumo AI (suno.com)\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: OpenAI TTS API\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt\n\n\u00a9 2026 Erich Zirnhelt. Licensed under CC BY-NC 4.0.\nhttps://creativecommons.org/licenses/by-nc/4.0/",
   "structured": {
     "theme_song": "Cariboo Signals by Sumo AI",
     "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
@@ -8,7 +8,11 @@
     "text_to_speech": "OpenAI TTS API",
     "cover_art": "ChatGPT (OpenAI)",
     "coordination": "Erich Zirnhelt",
-    "project": "github.com/zirnhelt/curated-podcast-generator"
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
   },
   "html": {
     "heading": "Credits",
@@ -17,7 +21,8 @@
       {"label": "Content Curation & Script", "value": "Claude (Anthropic)"},
       {"label": "TTS Voices", "value": "OpenAI TTS API"},
       {"label": "Cover Art", "value": "ChatGPT (OpenAI)"},
-      {"label": "Podcast Coordination", "value": "Erich Zirnhelt"}
+      {"label": "Podcast Coordination", "value": "Erich Zirnhelt"},
+      {"label": "License", "value": "<a href='https://creativecommons.org/licenses/by-nc/4.0/'>CC BY-NC 4.0</a> \u00a9 2026 Erich Zirnhelt"}
     ]
   }
 }

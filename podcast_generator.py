@@ -25,6 +25,7 @@ from config_loader import (
     load_credits_config,
     load_interests,
     load_prompts_config,
+    load_blocklist,
     get_voice_for_host,
     get_theme_for_day
 )
@@ -311,11 +312,37 @@ def fetch_feed_data():
     print(f"✅ Loaded {len(unique_articles)} unique articles from {len(categories)} categories")
     return unique_articles
 
+def apply_blocklist(articles):
+    """Remove articles whose titles match blocklist keywords."""
+    blocklist = load_blocklist()
+    keywords = [kw.lower() for kw in blocklist.get("title_keywords", [])]
+    if not keywords:
+        return articles
+    filtered = []
+    removed = 0
+    for article in articles:
+        title = article.get("title", "").lower()
+        if any(kw in title for kw in keywords):
+            removed += 1
+        else:
+            filtered.append(article)
+    if removed:
+        print(f"  🚫 Blocklist removed {removed} article(s)")
+    return filtered
+
+
 def fetch_podcast_feed():
     """Fetch the curated podcast feed with pre-scored, theme-sorted articles.
 
     Returns (feed_meta, theme_articles, bonus_articles) where feed_meta contains
     _podcast.theme and _podcast.theme_description from the feed.
+
+    TODO(super-feed): Add dedicated local news sources (e.g. Williams Lake Tribune,
+    Quesnel Cariboo Observer) so theme day 5 "Cariboo Voices & Local News" pulls
+    actual local reporting instead of framing generic tech articles as local.
+
+    TODO(super-feed): Add theme-aware filtering for news roundup articles so
+    off-theme days don't produce a random/tech-heavy segment 1.
     """
     print("📥 Fetching curated podcast feed...")
 
@@ -345,6 +372,10 @@ def fetch_podcast_feed():
                 bonus_articles.append(item)
             else:
                 theme_articles.append(item)
+
+        # Apply blocklist filtering
+        theme_articles = apply_blocklist(theme_articles)
+        bonus_articles = apply_blocklist(bonus_articles)
 
         print(f"  📌 Feed theme: {feed_meta['theme']}")
         print(f"  ✓ Theme articles: {len(theme_articles)}")
@@ -521,7 +552,11 @@ def get_current_date_info():
     return weekday, date_str
 
 def generate_episode_description(news_articles, deep_dive_articles, theme_name):
-    """Generate episode description with sources and credits."""
+    """Generate episode description with sources and credits.
+
+    TODO: Generate description *after* the script is finalized so citations
+    align with what was actually discussed, not just the input article list.
+    """
     weekday, formatted_date = get_current_date_info()
     podcast_config = CONFIG['podcast']
     
@@ -1263,9 +1298,9 @@ def generate_podcast_rss_feed():
         '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">',
         '<channel>',
         f'<title>{saxutils.escape(podcast_config["title"])}</title>',
-        f'<link>{podcast_config["url"]}</link>',
+        f'<link>{podcast_config["url"]}index.html</link>',
         f'<language>{podcast_config["language"]}</language>',
-        f'<copyright>{podcast_config["copyright"]}</copyright>',
+        f'<copyright>{saxutils.escape(podcast_config["copyright"])}</copyright>',
         f'<itunes:subtitle>{saxutils.escape(podcast_config["subtitle"])}</itunes:subtitle>',
         f'<itunes:author>{podcast_config["author"]}</itunes:author>',
         f'<itunes:summary>{saxutils.escape(podcast_config["summary"])}</itunes:summary>',
@@ -1294,13 +1329,14 @@ def generate_podcast_rss_feed():
         escaped_title = saxutils.escape(episode['title'])
         escaped_description = saxutils.escape(episode['description'])
 
+        # Use CDATA for description so line breaks render in podcast apps
         rss_lines.extend([
             '<item>',
             f'<title>{escaped_title}</title>',
-            f'<link>{podcast_config["url"]}</link>',
+            f'<link>{podcast_config["url"]}index.html</link>',
             f'<pubDate>{episode["pub_date"]}</pubDate>',
-            f'<description>{escaped_description}</description>',
-            f'<itunes:summary>{escaped_description}</itunes:summary>',
+            f'<description><![CDATA[{episode["description"]}]]></description>',
+            f'<itunes:summary><![CDATA[{episode["description"]}]]></itunes:summary>',
             f'<enclosure url="{saxutils.escape(audio_base + episode["audio_url_path"], {chr(34): "&quot;"})}" length="{episode["file_size"]}" type="audio/mpeg"/>',
             f'<guid isPermaLink="false">{podcast_config["title"].lower().replace(" ", "-")}-{os.path.basename(episode["audio_file"]).replace("podcast_audio_", "").replace(".mp3", "")}</guid>',
             f'<itunes:duration>{episode["duration"]}</itunes:duration>',
@@ -1444,6 +1480,7 @@ def main():
                 sys.exit(1)
 
             scored_articles = get_article_scores(current_articles, scoring_data)
+            scored_articles = apply_blocklist(scored_articles)
             scored_articles, evolving_stories = deduplicate_articles(scored_articles)
             deep_dive_articles = categorize_articles_for_deep_dive(scored_articles, today_weekday)
             news_articles = scored_articles[:12]
