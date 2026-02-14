@@ -453,11 +453,11 @@ def generate_index_html():
         <div class="subscribe-section">
             <h3>Subscribe to {podcast_config['title']}</h3>
             <p>Get new episodes automatically in your favorite podcast app:</p>
-            
-            <p style="color: #666; font-style: italic; margin-top: 12px;">
-                Podcast app listings coming soon. For now, subscribe directly via RSS below.
-            </p>
-            
+
+            {'<div class="podcast-apps">' if podcast_config.get('podcast_links') else ''}
+                {f'<a href="{podcast_config["podcast_links"]["apple_podcasts"]}" class="app-link" target="_blank" rel="noopener noreferrer"><div class="app-name">🍎 Apple Podcasts</div><div class="app-description">Listen on iPhone, iPad, Mac, and more</div></a>' if podcast_config.get('podcast_links', {}).get('apple_podcasts') else ''}
+            {'</div>' if podcast_config.get('podcast_links') else ''}
+
             <div class="rss-links">
                 <h4>Or subscribe directly:</h4>
                 <a href="podcast-feed.xml" class="rss-button">🎙️ RSS Feed</a>
