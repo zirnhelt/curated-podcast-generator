@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
 <channel>
 <title>Cariboo Signals</title>
-<link>https://zirnhelt.github.io/curated-podcast-generator/</link>
+<link>https://podcast.cariboosignals.ca/</link>
 <language>en-us</language>
 <copyright>2026 Erich's AI Curator</copyright>
 <itunes:subtitle>Technology and society in rural BC with Riley and Casey</itunes:subtitle>
@@ -13,15 +13,70 @@
 <itunes:name>Riley and Casey</itunes:name>
 <itunes:email>feedback@cariboosignals.ca</itunes:email>
 </itunes:owner>
-<itunes:image href="https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals.png"/>
+<itunes:image href="https://podcast.cariboosignals.ca/cariboo-signals.png"/>
 <itunes:category text="Technology"/>
 <itunes:category text="Society &amp; Culture"/>
 <itunes:type>episodic</itunes:type>
 <itunes:explicit>false</itunes:explicit>
-<lastBuildDate>Fri, 13 Feb 2026 05:05:45 GMT</lastBuildDate>
+<lastBuildDate>Sat, 14 Feb 2026 04:53:31 GMT</lastBuildDate>
+<item>
+<title>Cariboo Signals - Cariboo Voices And Local News</title>
+<link>https://podcast.cariboosignals.ca/</link>
+<pubDate>Sat, 14 Feb 2026 05:00:00 PST</pubDate>
+<description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region on the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations.
+
+Today's focus: Cariboo Voices And Local News
+
+Sources cited in this episode:
+1. XDA Developers: [XDA Developers] Linux 7.0 may receive a self-repairing feat...
+2. Hackaday: [Hackaday] R2D2 Gets New Brains
+3. ZDNet: [ZDNet] My 5 favorite Linux distros that are ready to use ou...
+4. XDA Developers: [XDA Developers] Forget about PCIe 5.0 — PCIe 3.0 SSDs are f...
+5. GN AI ML Infrastructure: [GN AI ML Infrastructure] Astera Labs Q4 2025 Earnings: Dive...
+6. ZDNet: [ZDNet] How to clear your Google Search cache on Android (an...
+7. Al Jazeera English: [Al Jazeera English] Trump threatens an executive order to m...
+8. GN Clean Energy and EVs: [GN Clean Energy and EVs] Fortescue Battery Electric Locomot...
+9. GN Smart Home and Automation: [GN Smart Home and Automation] 7 smart home mistakes that ar...
+10. How-To Geek: [How-To Geek] Stop putting NVMe SSDs in USB enclosures: You'...
+11. Hackaday: [Hackaday] Rock Sphere Machine Produces Off the Charts Satis...
+
+--- Credits ---
+Theme Song: Cariboo Signals by Sumo AI (suno.com)
+Content Curation &amp; Script: Claude (Anthropic)
+TTS Voices: OpenAI TTS API
+Cover Art: ChatGPT (OpenAI)
+Podcast Coordination: Erich Zirnhelt</description>
+<itunes:summary>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region on the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations.
+
+Today's focus: Cariboo Voices And Local News
+
+Sources cited in this episode:
+1. XDA Developers: [XDA Developers] Linux 7.0 may receive a self-repairing feat...
+2. Hackaday: [Hackaday] R2D2 Gets New Brains
+3. ZDNet: [ZDNet] My 5 favorite Linux distros that are ready to use ou...
+4. XDA Developers: [XDA Developers] Forget about PCIe 5.0 — PCIe 3.0 SSDs are f...
+5. GN AI ML Infrastructure: [GN AI ML Infrastructure] Astera Labs Q4 2025 Earnings: Dive...
+6. ZDNet: [ZDNet] How to clear your Google Search cache on Android (an...
+7. Al Jazeera English: [Al Jazeera English] Trump threatens an executive order to m...
+8. GN Clean Energy and EVs: [GN Clean Energy and EVs] Fortescue Battery Electric Locomot...
+9. GN Smart Home and Automation: [GN Smart Home and Automation] 7 smart home mistakes that ar...
+10. How-To Geek: [How-To Geek] Stop putting NVMe SSDs in USB enclosures: You'...
+11. Hackaday: [Hackaday] Rock Sphere Machine Produces Off the Charts Satis...
+
+--- Credits ---
+Theme Song: Cariboo Signals by Sumo AI (suno.com)
+Content Curation &amp; Script: Claude (Anthropic)
+TTS Voices: OpenAI TTS API
+Cover Art: ChatGPT (OpenAI)
+Podcast Coordination: Erich Zirnhelt</itunes:summary>
+<enclosure url="https://podcast.cariboosignals.ca/podcasts/podcast_audio_2026-02-14_cariboo_voices_and_local_news.mp3" length="16281837" type="audio/mpeg"/>
+<guid isPermaLink="false">cariboo-signals-2026-02-14_cariboo_voices_and_local_news</guid>
+<itunes:duration>16:57</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+</item>
 <item>
 <title>Cariboo Signals - Wild Spaces And Outdoor Life</title>
-<link>https://zirnhelt.github.io/curated-podcast-generator/</link>
+<link>https://podcast.cariboosignals.ca/</link>
 <pubDate>Fri, 13 Feb 2026 05:00:00 PST</pubDate>
 <description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region on the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations.
 
@@ -78,7 +133,7 @@ Podcast Coordination: Erich Zirnhelt</itunes:summary>
 </item>
 <item>
 <title>Cariboo Signals - Indigenous Lands And Innovation</title>
-<link>https://zirnhelt.github.io/curated-podcast-generator/</link>
+<link>https://podcast.cariboosignals.ca/</link>
 <pubDate>Thu, 12 Feb 2026 05:00:00 PST</pubDate>
 <description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region on the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations.
 
@@ -133,7 +188,7 @@ Podcast Coordination: Erich Zirnhelt</itunes:summary>
 </item>
 <item>
 <title>Cariboo Signals - Community Tech And Governance</title>
-<link>https://zirnhelt.github.io/curated-podcast-generator/</link>
+<link>https://podcast.cariboosignals.ca/</link>
 <pubDate>Wed, 11 Feb 2026 05:00:00 PST</pubDate>
 <description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region on the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations.
 
@@ -190,7 +245,7 @@ Podcast Coordination: Erich Zirnhelt</itunes:summary>
 </item>
 <item>
 <title>Cariboo Signals - Working Lands And Industry</title>
-<link>https://zirnhelt.github.io/curated-podcast-generator/</link>
+<link>https://podcast.cariboosignals.ca/</link>
 <pubDate>Tue, 10 Feb 2026 05:00:00 PST</pubDate>
 <description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region on the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations.
 
@@ -253,7 +308,7 @@ Podcast Coordination: Erich Zirnhelt</itunes:summary>
 </item>
 <item>
 <title>Cariboo Signals - Arts, Culture And Digital Storytelling</title>
-<link>https://zirnhelt.github.io/curated-podcast-generator/</link>
+<link>https://podcast.cariboosignals.ca/</link>
 <pubDate>Mon, 09 Feb 2026 05:00:00 PST</pubDate>
 <description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region on the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations.
 
@@ -316,7 +371,7 @@ Podcast Coordination: Erich Zirnhelt</itunes:summary>
 </item>
 <item>
 <title>Cariboo Signals - Regional Resilience</title>
-<link>https://zirnhelt.github.io/curated-podcast-generator/</link>
+<link>https://podcast.cariboosignals.ca/</link>
 <pubDate>Sun, 08 Feb 2026 05:00:00 PST</pubDate>
 <description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region on the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations.
 
@@ -379,7 +434,7 @@ Podcast Coordination: Erich Zirnhelt</itunes:summary>
 </item>
 <item>
 <title>Cariboo Signals - Cariboo Innovation Stories</title>
-<link>https://zirnhelt.github.io/curated-podcast-generator/</link>
+<link>https://podcast.cariboosignals.ca/</link>
 <pubDate>Sat, 07 Feb 2026 05:00:00 PST</pubDate>
 <description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region on the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations.
 
@@ -442,7 +497,7 @@ Podcast Coordination: Erich Zirnhelt</itunes:summary>
 </item>
 <item>
 <title>Cariboo Signals - Future-Ready Communities</title>
-<link>https://zirnhelt.github.io/curated-podcast-generator/</link>
+<link>https://podcast.cariboosignals.ca/</link>
 <pubDate>Fri, 06 Feb 2026 05:00:00 PST</pubDate>
 <description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region on the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations.
 
@@ -505,7 +560,7 @@ Podcast Coordination: Erich Zirnhelt</itunes:summary>
 </item>
 <item>
 <title>Cariboo Signals - Rural Smart Solutions</title>
-<link>https://zirnhelt.github.io/curated-podcast-generator/</link>
+<link>https://podcast.cariboosignals.ca/</link>
 <pubDate>Thu, 05 Feb 2026 05:00:00 PST</pubDate>
 <description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region on the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations.
 
@@ -564,69 +619,6 @@ Podcast Coordination: Erich Zirnhelt</itunes:summary>
 <enclosure url="https://podcast.cariboosignals.ca/podcasts/podcast_audio_2026-02-05_rural_smart_solutions.mp3" length="4918989" type="audio/mpeg"/>
 <guid isPermaLink="false">cariboo-signals-2026-02-05_rural_smart_solutions</guid>
 <itunes:duration>20:29</itunes:duration>
-<itunes:explicit>false</itunes:explicit>
-</item>
-<item>
-<title>Cariboo Signals - Local Voices And Digital Equity</title>
-<link>https://zirnhelt.github.io/curated-podcast-generator/</link>
-<pubDate>Wed, 04 Feb 2026 05:00:00 PST</pubDate>
-<description>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region on the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations.
-
-Today's focus: Local Voices And Digital Equity
-
-Sources cited in this episode:
-1. CFJC Today Kamloops: [CFJC Today Kamloops] CFJC Midday – The month of love is her...
-2. CFJC Today Kamloops: [CFJC Today Kamloops] CFJC Midday – February at the Paramoun...
-3. IndigiNews: [IndigiNews] [IndigiNews] With habitat affected by wildfires...
-4. Yellowhead Institute: [Yellowhead Institute] [Yellowhead Institute] Reflections on...
-5. Toms Guide: [Toms Guide] People are sleeping on Gemini’s Deep Research f...
-6. GN AI ML Infrastructure: [GN AI ML Infrastructure] Crusoe Emphasizes Energy as Key to...
-7. GN AI ML Infrastructure: [GN AI ML Infrastructure] Together AI strengthens infrastruc...
-8. GN AI ML Infrastructure: [GN AI ML Infrastructure] Is Applied Digital (APLD) Quietly ...
-9. GN AI ML Infrastructure: [GN AI ML Infrastructure] Marvell Technology Bolsters AI Inf...
-10. GN AI ML Infrastructure: [GN AI ML Infrastructure] AI is infrastructure, will generat...
-11. Business Insider: [Business Insider] OpenAI just snagged an Anthropic safety r...
-12. Android Police: [Android Police] Google wants Gemini to start using your And...
-13. GN AI ML Infrastructure: [GN AI ML Infrastructure] Nvidia, Dassault Systèmes Partner ...
-14. GN AI ML Infrastructure: [GN AI ML Infrastructure] [GN AI ML Infrastructure] Qatar Di...
-15. InsideEVs: [InsideEVs] [InsideEVs] General Motors' Strategy For Buildin...
-
---- Credits ---
-Theme Song: Cariboo Signals by Sumo AI (suno.com)
-Content Curation &amp; Script: Claude (Anthropic)
-TTS Voices: OpenAI TTS API
-Cover Art: ChatGPT (OpenAI)
-Podcast Coordination: Erich Zirnhelt</description>
-<itunes:summary>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region on the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations.
-
-Today's focus: Local Voices And Digital Equity
-
-Sources cited in this episode:
-1. CFJC Today Kamloops: [CFJC Today Kamloops] CFJC Midday – The month of love is her...
-2. CFJC Today Kamloops: [CFJC Today Kamloops] CFJC Midday – February at the Paramoun...
-3. IndigiNews: [IndigiNews] [IndigiNews] With habitat affected by wildfires...
-4. Yellowhead Institute: [Yellowhead Institute] [Yellowhead Institute] Reflections on...
-5. Toms Guide: [Toms Guide] People are sleeping on Gemini’s Deep Research f...
-6. GN AI ML Infrastructure: [GN AI ML Infrastructure] Crusoe Emphasizes Energy as Key to...
-7. GN AI ML Infrastructure: [GN AI ML Infrastructure] Together AI strengthens infrastruc...
-8. GN AI ML Infrastructure: [GN AI ML Infrastructure] Is Applied Digital (APLD) Quietly ...
-9. GN AI ML Infrastructure: [GN AI ML Infrastructure] Marvell Technology Bolsters AI Inf...
-10. GN AI ML Infrastructure: [GN AI ML Infrastructure] AI is infrastructure, will generat...
-11. Business Insider: [Business Insider] OpenAI just snagged an Anthropic safety r...
-12. Android Police: [Android Police] Google wants Gemini to start using your And...
-13. GN AI ML Infrastructure: [GN AI ML Infrastructure] Nvidia, Dassault Systèmes Partner ...
-14. GN AI ML Infrastructure: [GN AI ML Infrastructure] [GN AI ML Infrastructure] Qatar Di...
-15. InsideEVs: [InsideEVs] [InsideEVs] General Motors' Strategy For Buildin...
-
---- Credits ---
-Theme Song: Cariboo Signals by Sumo AI (suno.com)
-Content Curation &amp; Script: Claude (Anthropic)
-TTS Voices: OpenAI TTS API
-Cover Art: ChatGPT (OpenAI)
-Podcast Coordination: Erich Zirnhelt</itunes:summary>
-<enclosure url="https://podcast.cariboosignals.ca/podcasts/podcast_audio_2026-02-04_local_voices_and_digital_equity.mp3" length="12031725" type="audio/mpeg"/>
-<guid isPermaLink="false">cariboo-signals-2026-02-04_local_voices_and_digital_equity</guid>
-<itunes:duration>12:31</itunes:duration>
 <itunes:explicit>false</itunes:explicit>
 </item>
 </channel>
