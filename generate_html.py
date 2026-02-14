@@ -4,14 +4,16 @@ Generate index.html from configuration files
 Makes it easy to update website content without editing HTML
 """
 
-from config_loader import load_podcast_config, load_hosts_config, load_credits_config
+from config_loader import load_podcast_config, load_hosts_config, load_credits_config, load_themes_config
+import json
 
 def generate_index_html():
     """Generate complete index.html from config files."""
-    
+
     podcast_config = load_podcast_config()
     hosts_config = load_hosts_config()
     credits_config = load_credits_config()
+    themes_config = load_themes_config()
     
     # Generate host cards HTML
     host_cards = ""
@@ -27,6 +29,21 @@ def generate_index_html():
     credits_html = ""
     for item in credits_config['html']['items']:
         credits_html += f'                <p><strong>{item["label"]}:</strong> {item["value"]}</p>\n'
+
+    # Generate weekly schedule HTML
+    days_of_week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    schedule_html = ""
+    for day_num, day_name in enumerate(days_of_week):
+        theme = themes_config[str(day_num)]
+        schedule_html += f"""
+            <div class="schedule-day">
+                <div class="schedule-day-name">{day_name}</div>
+                <div class="schedule-theme-name">{theme['name']}</div>
+            </div>
+"""
+
+    # Prepare themes data for JavaScript
+    themes_json = json.dumps(themes_config)
     
     html_content = f'''<!DOCTYPE html>
 <html lang="en">
@@ -249,20 +266,127 @@ def generate_index_html():
             max-width: 600px;
             margin: 0 auto;
         }}
-        
+
+        .schedule-section {{
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 32px;
+        }}
+
+        .schedule-section h3 {{
+            margin-bottom: 16px;
+            color: #2c3e50;
+            text-align: center;
+        }}
+
+        .weekly-schedule {{
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+        }}
+
+        .schedule-day {{
+            background: white;
+            padding: 12px 8px;
+            border-radius: 6px;
+            text-align: center;
+            border: 2px solid #ddd;
+        }}
+
+        .schedule-day-name {{
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 0.85em;
+            margin-bottom: 6px;
+        }}
+
+        .schedule-theme-name {{
+            color: #666;
+            font-size: 0.75em;
+            line-height: 1.3;
+        }}
+
+        .filter-section {{
+            background: #e8f4f8;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+        }}
+
+        .filter-controls {{
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+        }}
+
+        .filter-group {{
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }}
+
+        .filter-group label {{
+            font-weight: 500;
+            font-size: 0.9em;
+            color: #2c3e50;
+        }}
+
+        .filter-group select {{
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 2px solid #ddd;
+            background: white;
+            font-size: 0.95em;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }}
+
+        .filter-group select:hover {{
+            border-color: #3498db;
+        }}
+
+        .filter-group select:focus {{
+            outline: none;
+            border-color: #3498db;
+        }}
+
+        .episode-item.hidden {{
+            display: none;
+        }}
+
         @media (max-width: 768px) {{
             .container {{
                 padding: 24px;
             }}
-            
+
             .hosts-section {{
                 grid-template-columns: 1fr;
             }}
-            
+
             .podcast-apps {{
                 grid-template-columns: 1fr;
             }}
-            
+
+            .weekly-schedule {{
+                grid-template-columns: 1fr;
+            }}
+
+            .filter-controls {{
+                flex-direction: column;
+                align-items: stretch;
+            }}
+
+            .filter-group {{
+                width: 100%;
+            }}
+
+            .filter-group select {{
+                width: 100%;
+            }}
+
             h1 {{
                 font-size: 2em;
             }}
@@ -283,9 +407,44 @@ def generate_index_html():
         
         <div class="hosts-section">{host_cards}
         </div>
-        
+
+        <div class="schedule-section">
+            <h3>📅 Weekly Theme Schedule</h3>
+            <div class="weekly-schedule">{schedule_html}
+            </div>
+        </div>
+
         <div class="episodes-section">
             <h2>Recent Episodes</h2>
+
+            <div class="filter-section">
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label for="theme-filter">Filter by Theme:</label>
+                        <select id="theme-filter">
+                            <option value="all">All Themes</option>
+                            <option value="0">Arts, Culture & Digital Storytelling</option>
+                            <option value="1">Working Lands & Industry</option>
+                            <option value="2">Community Tech & Governance</option>
+                            <option value="3">Indigenous Lands & Innovation</option>
+                            <option value="4">Wild Spaces & Outdoor Life</option>
+                            <option value="5">Cariboo Voices & Local News</option>
+                            <option value="6">Resilient Rural Futures</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="date-filter">Filter by Date:</label>
+                        <select id="date-filter">
+                            <option value="all">All Episodes</option>
+                            <option value="7">Last 7 Days</option>
+                            <option value="30">Last 30 Days</option>
+                            <option value="90">Last 90 Days</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
             <div class="episodes-list" id="episodes-container">
                 <div class="loading">Loading episodes...</div>
             </div>
@@ -294,11 +453,11 @@ def generate_index_html():
         <div class="subscribe-section">
             <h3>Subscribe to {podcast_config['title']}</h3>
             <p>Get new episodes automatically in your favorite podcast app:</p>
-            
-            <p style="color: #666; font-style: italic; margin-top: 12px;">
-                Podcast app listings coming soon. For now, subscribe directly via RSS below.
-            </p>
-            
+
+            {'<div class="podcast-apps">' if podcast_config.get('podcast_links') else ''}
+                {f'<a href="{podcast_config["podcast_links"]["apple_podcasts"]}" class="app-link" target="_blank" rel="noopener noreferrer"><div class="app-name">🍎 Apple Podcasts</div><div class="app-description">Listen on iPhone, iPad, Mac, and more</div></a>' if podcast_config.get('podcast_links', {}).get('apple_podcasts') else ''}
+            {'</div>' if podcast_config.get('podcast_links') else ''}
+
             <div class="rss-links">
                 <h4>Or subscribe directly:</h4>
                 <a href="podcast-feed.xml" class="rss-button">🎙️ RSS Feed</a>
@@ -320,17 +479,24 @@ def generate_index_html():
     </div>
 
     <script>
+        // Theme configuration
+        const themes = {themes_json};
+        const themeNames = Object.values(themes).map(t => t.name);
+
+        // Store all episodes data
+        let allEpisodes = [];
+
         async function loadEpisodes() {{
             try {{
                 const response = await fetch('podcast-feed.xml');
                 const xmlText = await response.text();
-                
+
                 const parser = new DOMParser();
                 const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
                 const items = xmlDoc.querySelectorAll('item');
-                
+
                 const container = document.getElementById('episodes-container');
-                
+
                 if (items.length === 0) {{
                     container.innerHTML = `
                         <div class="loading">
@@ -340,48 +506,49 @@ def generate_index_html():
                     `;
                     return;
                 }}
-                
-                let episodesHTML = '';
-                
+
+                // Parse and store all episodes
+                allEpisodes = [];
                 items.forEach((item, index) => {{
                     const title = item.querySelector('title')?.textContent || 'Untitled Episode';
                     const pubDate = item.querySelector('pubDate')?.textContent || '';
                     const enclosure = item.querySelector('enclosure');
                     const audioUrl = enclosure?.getAttribute('url') || '';
-                    
+
+                    let date = null;
                     let formattedDate = pubDate;
                     try {{
-                        const date = new Date(pubDate);
-                        formattedDate = date.toLocaleDateString('en-US', {{ 
-                            weekday: 'short', 
-                            year: 'numeric', 
-                            month: 'short', 
-                            day: 'numeric' 
+                        date = new Date(pubDate);
+                        formattedDate = date.toLocaleDateString('en-US', {{
+                            weekday: 'short',
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric'
                         }});
                     }} catch (e) {{
                         // Keep original date if parsing fails
                     }}
-                    
-                    episodesHTML += `
-                        <div class="episode-item">
-                            <div>
-                                <div class="episode-title">${{title}}</div>
-                                <div class="episode-date">${{formattedDate}}</div>
-                                ${{audioUrl ? `
-                                    <div class="episode-audio">
-                                        <audio controls style="width: 100%; max-width: 300px;">
-                                            <source src="${{audioUrl}}" type="audio/mpeg">
-                                            Your browser does not support the audio element.
-                                        </audio>
-                                    </div>
-                                ` : ''}}
-                            </div>
-                        </div>
-                    `;
+
+                    // Extract theme from title
+                    let themeId = null;
+                    for (let i = 0; i < themeNames.length; i++) {{
+                        if (title.includes(themeNames[i])) {{
+                            themeId = i;
+                            break;
+                        }}
+                    }}
+
+                    allEpisodes.push({{
+                        title,
+                        pubDate: date,
+                        formattedDate,
+                        audioUrl,
+                        themeId
+                    }});
                 }});
-                
-                container.innerHTML = episodesHTML;
-                
+
+                renderEpisodes();
+
             }} catch (error) {{
                 console.error('Failed to load episodes:', error);
                 document.getElementById('episodes-container').innerHTML = `
@@ -392,7 +559,70 @@ def generate_index_html():
                 `;
             }}
         }}
-        
+
+        function renderEpisodes() {{
+            const container = document.getElementById('episodes-container');
+            const themeFilter = document.getElementById('theme-filter').value;
+            const dateFilter = document.getElementById('date-filter').value;
+
+            // Apply filters
+            const now = new Date();
+            const filteredEpisodes = allEpisodes.filter(episode => {{
+                // Theme filter
+                if (themeFilter !== 'all') {{
+                    if (episode.themeId !== parseInt(themeFilter)) {{
+                        return false;
+                    }}
+                }}
+
+                // Date filter
+                if (dateFilter !== 'all' && episode.pubDate) {{
+                    const daysDiff = Math.floor((now - episode.pubDate) / (1000 * 60 * 60 * 24));
+                    if (daysDiff > parseInt(dateFilter)) {{
+                        return false;
+                    }}
+                }}
+
+                return true;
+            }});
+
+            if (filteredEpisodes.length === 0) {{
+                container.innerHTML = `
+                    <div class="loading">
+                        <p>No episodes match the selected filters.</p>
+                        <p style="margin-top: 16px;"><em>Try adjusting your filter selections.</em></p>
+                    </div>
+                `;
+                return;
+            }}
+
+            let episodesHTML = '';
+            filteredEpisodes.forEach(episode => {{
+                episodesHTML += `
+                    <div class="episode-item">
+                        <div>
+                            <div class="episode-title">${{episode.title}}</div>
+                            <div class="episode-date">${{episode.formattedDate}}</div>
+                            ${{episode.audioUrl ? `
+                                <div class="episode-audio">
+                                    <audio controls style="width: 100%; max-width: 300px;">
+                                        <source src="${{episode.audioUrl}}" type="audio/mpeg">
+                                        Your browser does not support the audio element.
+                                    </audio>
+                                </div>
+                            ` : ''}}
+                        </div>
+                    </div>
+                `;
+            }});
+
+            container.innerHTML = episodesHTML;
+        }}
+
+        // Add filter event listeners
+        document.getElementById('theme-filter').addEventListener('change', renderEpisodes);
+        document.getElementById('date-filter').addEventListener('change', renderEpisodes);
+
         loadEpisodes();
     </script>
 </body>
