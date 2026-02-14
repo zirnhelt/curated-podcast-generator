@@ -455,7 +455,7 @@ def generate_index_html():
             <p>Get new episodes automatically in your favorite podcast app:</p>
 
             {'<div class="podcast-apps">' if podcast_config.get('podcast_links') else ''}
-                {f'<a href="{podcast_config["podcast_links"]["apple_podcasts"]}" class="app-link" target="_blank" rel="noopener noreferrer"><div class="app-name">🍎 Apple Podcasts</div><div class="app-description">Listen on iPhone, iPad, Mac, and more</div></a>' if podcast_config.get('podcast_links', {}).get('apple_podcasts') else ''}
+                {f'<a href="{podcast_config["podcast_links"]["apple_podcasts"]}" class="app-link" target="_blank" rel="noopener noreferrer"><div class="app-name"><svg style="display: inline-block; vertical-align: middle; margin-right: 6px;" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.5563 10.7838C16.5456 8.36313 18.5438 7.17813 18.6413 7.11938C17.5369 5.54875 15.8544 5.34125 15.2456 5.31938C13.7756 5.16313 12.3544 6.21313 11.6088 6.21313C10.8469 6.21313 9.68063 5.33688 8.42813 5.36063C6.77813 5.38438 5.23938 6.32813 4.41188 7.80188C2.71813 10.8075 3.97313 15.2294 5.60688 17.6581C6.42438 18.8475 7.38938 20.1756 8.64063 20.13C9.86688 20.0806 10.3269 19.3331 11.8119 19.3331C13.2825 19.3331 13.7069 20.13 14.9838 20.1019C16.2975 20.0806 17.1306 18.9056 17.9156 17.7069C18.8506 16.3425 19.2438 15.0031 19.2606 14.9331C19.2288 14.9219 16.5694 13.8881 16.5563 10.7838Z" fill="currentColor"/><path d="M13.9419 3.58125C14.6231 2.75188 15.0931 1.605 14.9625 0.4375C13.9869 0.48 12.7819 1.11313 12.0781 1.92375C11.4525 2.63813 10.8894 3.81938 11.0388 4.94063C12.1281 5.02688 13.2456 4.39563 13.9419 3.58125Z" fill="currentColor"/></svg>Apple Podcasts</div><div class="app-description">Listen on iPhone, iPad, Mac, and more</div></a>' if podcast_config.get('podcast_links', {}).get('apple_podcasts') else ''}
             {'</div>' if podcast_config.get('podcast_links') else ''}
 
             <div class="rss-links">
@@ -530,9 +530,12 @@ def generate_index_html():
                     }}
 
                     // Extract theme from title
+                    // Normalize both strings to handle & vs And differences
                     let themeId = null;
+                    const normalizedTitle = title.toLowerCase().replace(/&/g, 'and');
                     for (let i = 0; i < themeNames.length; i++) {{
-                        if (title.includes(themeNames[i])) {{
+                        const normalizedTheme = themeNames[i].toLowerCase().replace(/&/g, 'and');
+                        if (normalizedTitle.includes(normalizedTheme)) {{
                             themeId = i;
                             break;
                         }}
