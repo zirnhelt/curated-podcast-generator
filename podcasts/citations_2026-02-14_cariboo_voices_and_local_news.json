@@ -1,0 +1,120 @@
+{
+  "episode": {
+    "date": "2026-02-14",
+    "formatted_date": "Saturday, February 14, 2026",
+    "theme": "Cariboo Voices & Local News",
+    "title": "Cariboo Signals - Cariboo Voices & Local News",
+    "description": "Riley and Casey explore technology and society in rural communities. Today's focus: Cariboo Voices & Local News.\n\nNEWS ROUNDUP: We break down [XDA Developers] Linux 7.0 may receive a self-repairing feature that automatically fixes your XFS filesystem and [Hackaday] R2D2 Gets New Brains, plus 1 more stories, and explore what these developments mean for communities like ours.\n\nRURAL CONNECTIONS: Deep dive into cariboo voices & local news, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.\n\nHosts: Riley (Tech systems thinker with rural roots) and Casey (Community development focus).\n\nSources:\n1. XDA Developers: [XDA Developers] Linux 7.0 may receive a self-repairing feat...\n2. Hackaday: [Hackaday] R2D2 Gets New Brains\n3. ZDNet: [ZDNet] My 5 favorite Linux distros that are ready to use ou...\n4. XDA Developers: [XDA Developers] Forget about PCIe 5.0 — PCIe 3.0 SSDs are f...\n5. GN AI ML Infrastructure: [GN AI ML Infrastructure] Astera Labs Q4 2025 Earnings: Dive...\n6. ZDNet: [ZDNet] How to clear your Google Search cache on Android (an...\n7. Al Jazeera English: [Al Jazeera English] Trump threatens an executive order to m...\n8. GN Clean Energy and EVs: [GN Clean Energy and EVs] Fortescue Battery Electric Locomot...\n9. GN Smart Home and Automation: [GN Smart Home and Automation] 7 smart home mistakes that ar...\n10. How-To Geek: [How-To Geek] Stop putting NVMe SSDs in USB enclosures: You'...\n11. Hackaday: [Hackaday] Rock Sphere Machine Produces Off the Charts Satis...\n\n--- Credits ---\nTheme Song: Cariboo Signals by Sumo AI (suno.com)\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: OpenAI TTS API\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt",
+    "generated_at": "2026-02-14T04:45:32.758161-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[XDA Developers] Linux 7.0 may receive a self-repairing feature that automatically fixes your XFS filesystem",
+          "url": "https://www.xda-developers.com/linux-7-0-impressive-self-repairing-feature-fixes-your-filesystem/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-02-14T04:21:56+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[Hackaday] R2D2 Gets New Brains",
+          "url": "https://hackaday.com/2026/02/13/r2d2-gets-new-brains/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-02-14T00:00:02+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[ZDNet] My 5 favorite Linux distros that are ready to use out of the box (no setup required)",
+          "url": "https://www.zdnet.com/article/5-favorite-linux-distros-easy-setup/",
+          "source": "ZDNet",
+          "ai_score": 0,
+          "date_published": "2026-02-14T01:00:48+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[XDA Developers] Forget about PCIe 5.0 — PCIe 3.0 SSDs are fast enough for 99% of users",
+          "url": "https://www.xda-developers.com/forget-pcie-5-even-pcie-3-ssd-enough-for-most/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-02-13T23:00:20+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN AI ML Infrastructure] Astera Labs Q4 2025 Earnings: Diversified AI Connectivity Momentum",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNR3BQclB5OFp2NmVVOVcyQjYySEYxcFo5cGZ1amNhZ1Q2ZEVFb1EtY2tJc1EwMWx5OUlKcG1TRFI4LWptTGFVQV9PUWxzNnc0dDJobE5GYUpJVWhQVlZFX1EyZ1d0WVFOdWVQNTM2a1dtVjVLc1puc2dpNVVuV0RqRWZXeHV5MVdZWk5NVXJ4cmpuVW8xaFEyNGwxb0xmNDc0S3c?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-13T16:33:00+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[ZDNet] How to clear your Google Search cache on Android (and why it's a must for me)",
+          "url": "https://www.zdnet.com/article/how-to-clear-google-search-cache-on-android-phone/",
+          "source": "ZDNet",
+          "ai_score": 0,
+          "date_published": "2026-02-14T02:00:37+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[Al Jazeera English] Trump threatens an executive order to mandate voter IDs before elections",
+          "url": "https://www.aljazeera.com/news/2026/2/14/trump-threatens-an-executive-order-to-mandate-voter-ids-before-elections?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 0,
+          "date_published": "2026-02-14T00:52:24+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[GN Clean Energy and EVs] Fortescue Battery Electric Locomotives Revolutionise Heavy Mining Operations",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNdkFNRzEyc1dJRjR0WWtiYUJOVlZhUDZ4VV94QXY4Njh2TXJiRXZRcjJpYUlQNTRoaUVaUmxlS2NQWk52RFQ4WUwwQTBJQlBnbWQwZjM0VWRocmN5OFNCUTZQSzJ1cTJCTGg0QndpUk1NYTBQMVJ4SkNfbklPRnp3QWJDRG5RNDNfV1ZoYjdYeU1LelQy?oc=5",
+          "source": "GN Clean Energy and EVs",
+          "ai_score": 0,
+          "date_published": "2026-02-14T02:55:02+00:00",
+          "summary": ""
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Cariboo Voices & Local News",
+      "articles": [
+        {
+          "title": "[GN Smart Home and Automation] 7 smart home mistakes that are making your devices unreliable",
+          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5mbEFPVUl4eUpkSGRkcDd1amo5ZXBvTDI1Szl3YmJwU2ducTBodFNMTU1pZE0yNnhCMmlnRWEtalhXNHBhUjYzZVBwWjFfaWs3bUhxTDR2UlFxcjJf?oc=5",
+          "source": "GN Smart Home and Automation",
+          "ai_score": 0,
+          "date_published": "2026-02-13T23:00:17+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[How-To Geek] Stop putting NVMe SSDs in USB enclosures: You're crippling your hardware",
+          "url": "https://www.howtogeek.com/please-stop-turning-expensive-ssds-into-portable-drives/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-02-13T22:30:16+00:00",
+          "summary": ""
+        },
+        {
+          "title": "[Hackaday] Rock Sphere Machine Produces Off the Charts Satisfaction",
+          "url": "https://hackaday.com/2026/02/13/rock-sphere-machine-produces-off-the-charts-satisfaction/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-02-14T06:00:55+00:00",
+          "summary": ""
+        }
+      ]
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator"
+  }
+}
