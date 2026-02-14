@@ -543,6 +543,57 @@ def select_deep_dive_from_feed(theme_articles, theme_name):
         print(f"  - [kw={kw}, local={local_score:.1f}] {a.get('title', '')[:70]}...")
     return deep_dive, news_articles
 
+def match_articles_to_script(articles, script):
+    """Match input articles against the finalized script to find which were actually discussed.
+
+    Returns a list of (article, discussed) tuples preserving original order,
+    where *discussed* is True when key terms from the article title appear in
+    the script text.
+    """
+    if not script:
+        return [(a, True) for a in articles]  # No script to check; assume all
+
+    script_lower = script.lower()
+
+    results = []
+    for article in articles:
+        raw_title = article.get('title', '')
+
+        # Strip source prefix like "[TechCrunch] " or "🏔️ [Source] "
+        cleaned = re.sub(r'^[^\[]*\[[^\]]*\]\s*', '', raw_title).strip()
+        # Also strip trailing " - Source Name"
+        cleaned = re.split(r'\s*[-–—]\s*(?=[A-Z])', cleaned)[0].strip()
+
+        if not cleaned or len(cleaned) < 6:
+            results.append((article, True))  # Too short to match; keep it
+            continue
+
+        # Build search terms: the full cleaned title and significant sub-phrases
+        # (3+ word windows) to handle partial matches
+        words = cleaned.split()
+        discussed = False
+
+        # Check full cleaned title (case-insensitive)
+        if cleaned.lower() in script_lower:
+            discussed = True
+        else:
+            # Check meaningful sub-phrases (sliding windows of 3-5 words)
+            for window_size in range(min(5, len(words)), 2, -1):
+                for i in range(len(words) - window_size + 1):
+                    phrase = ' '.join(words[i:i + window_size]).lower()
+                    # Skip very generic phrases
+                    if len(phrase) < 10:
+                        continue
+                    if phrase in script_lower:
+                        discussed = True
+                        break
+                if discussed:
+                    break
+
+        results.append((article, discussed))
+
+    return results
+
 def get_current_date_info():
     """Get properly formatted current date and day in Pacific timezone."""
     pacific_now = get_pacific_now()
@@ -551,19 +602,29 @@ def get_current_date_info():
     
     return weekday, date_str
 
-def generate_episode_description(news_articles, deep_dive_articles, theme_name):
+def generate_episode_description(news_articles, deep_dive_articles, theme_name, script=None):
     """Generate episode description with sources and credits.
 
-    TODO: Generate description *after* the script is finalized so citations
-    align with what was actually discussed, not just the input article list.
+    When *script* is provided, citations are aligned with what was actually
+    discussed in the finalized script rather than the raw input article list.
     """
     weekday, formatted_date = get_current_date_info()
     podcast_config = CONFIG['podcast']
-    
-    # Get top story titles for teaser
-    top_stories = [article.get('title', '').split(' - ')[0] for article in news_articles[:3]]
+
+    # Match articles against the finalized script (if available)
+    news_matched = match_articles_to_script(news_articles, script)
+    deep_matched = match_articles_to_script(deep_dive_articles, script)
+
+    discussed_news = [a for a, d in news_matched if d]
+    discussed_deep = [a for a, d in deep_matched if d]
+    extra_news = [a for a, d in news_matched if not d]
+    extra_deep = [a for a, d in deep_matched if not d]
+
+    # Get top story titles for teaser — prefer articles actually discussed
+    teaser_pool = discussed_news if discussed_news else news_articles
+    top_stories = [article.get('title', '').split(' - ')[0] for article in teaser_pool[:3]]
     top_stories = [story for story in top_stories if story]
-    
+
     if len(top_stories) >= 2:
         stories_preview = f"{top_stories[0]} and {top_stories[1]}"
         if len(top_stories) > 2:
@@ -572,11 +633,11 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name):
         stories_preview = top_stories[0]
     else:
         stories_preview = "the week's top tech developments"
-    
+
     hosts = CONFIG['hosts']
     riley_bio = hosts['riley']['short_bio']
     casey_bio = hosts['casey']['short_bio']
-    
+
     description = f"""Riley and Casey explore technology and society in rural communities. Today's focus: {theme_name}.
 
 NEWS ROUNDUP: We break down {stories_preview}, and explore what these developments mean for communities like ours.
@@ -584,34 +645,57 @@ NEWS ROUNDUP: We break down {stories_preview}, and explore what these developmen
 RURAL CONNECTIONS: Deep dive into {theme_name.lower()}, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.
 
 Hosts: Riley ({riley_bio}) and Casey ({casey_bio})."""
-    
-    # Add sources
-    citations_text = "\n\nSources:\n"
-    
-    for i, article in enumerate(news_articles[:12], 1):
+
+    # Add sources — discussed articles first, then additional sources
+    def _format_citation(article):
         source_name = article.get('authors', [{}])[0].get('name', 'Unknown Source')
         article_title = article.get('title', 'Untitled')[:60] + ("..." if len(article.get('title', '')) > 60 else "")
-        citations_text += f"{i}. {source_name}: {article_title}\n"
-    
-    for i, article in enumerate(deep_dive_articles, len(news_articles[:12]) + 1):
-        source_name = article.get('authors', [{}])[0].get('name', 'Unknown Source')
-        article_title = article.get('title', 'Untitled')[:60] + ("..." if len(article.get('title', '')) > 60 else "")
-        citations_text += f"{i}. {source_name}: {article_title}\n"
-    
+        return f"{source_name}: {article_title}"
+
+    discussed_all = discussed_news[:12] + discussed_deep
+    extra_all = extra_news[:12] + extra_deep
+
+    citations_text = ""
+    if discussed_all:
+        citations_text += "\n\nSources discussed:\n"
+        for i, article in enumerate(discussed_all, 1):
+            citations_text += f"{i}. {_format_citation(article)}\n"
+
+    if extra_all:
+        start = len(discussed_all) + 1
+        citations_text += "\nAdditional sources provided:\n"
+        for i, article in enumerate(extra_all, start):
+            citations_text += f"{i}. {_format_citation(article)}\n"
+
+    if not discussed_all and not extra_all:
+        citations_text += "\n\nSources:\n(none)\n"
+
     # Add credits
     description += citations_text + CONFIG['credits']['text']
-    
+
     return description
 
-def generate_citations_file(news_articles, deep_dive_articles, theme_name):
-    """Generate citations file for the episode."""
+def generate_citations_file(news_articles, deep_dive_articles, theme_name, script=None):
+    """Generate citations file for the episode.
+
+    When *script* is provided (the finalized, polished script), each citation
+    is annotated with ``"discussed": true/false`` to indicate whether the
+    article was actually referenced in the episode, and the episode
+    description reflects that alignment.
+    """
     pacific_now = get_pacific_now()
     date_str = pacific_now.strftime("%Y-%m-%d")
     weekday, formatted_date = get_current_date_info()
-    
+
     podcast_config = CONFIG['podcast']
-    episode_description = generate_episode_description(news_articles, deep_dive_articles, theme_name)
-    
+    episode_description = generate_episode_description(
+        news_articles, deep_dive_articles, theme_name, script=script
+    )
+
+    # Match articles against script
+    news_matched = match_articles_to_script(news_articles, script)
+    deep_matched = match_articles_to_script(deep_dive_articles, script)
+
     citations_data = {
         "episode": {
             "date": date_str,
@@ -633,30 +717,36 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name):
         },
         "credits": CONFIG['credits']['structured']
     }
-    
-    # Add articles
-    for article in news_articles:
+
+    def _build_citation(article, discussed):
         citation = {
             "title": article.get('title', ''),
             "url": article.get('url', ''),
             "source": article.get('authors', [{}])[0].get('name', 'Unknown Source'),
             "ai_score": article.get('ai_score', 0),
             "date_published": article.get('date_published', ''),
-            "summary": article.get('summary', '')[:200] + "..." if len(article.get('summary', '')) > 200 else article.get('summary', '')
+            "summary": article.get('summary', '')[:200] + "..." if len(article.get('summary', '')) > 200 else article.get('summary', ''),
+            "discussed": discussed,
         }
-        citations_data["segments"]["news_roundup"]["articles"].append(citation)
-    
-    for article in deep_dive_articles:
-        citation = {
-            "title": article.get('title', ''),
-            "url": article.get('url', ''),
-            "source": article.get('authors', [{}])[0].get('name', 'Unknown Source'),
-            "ai_score": article.get('ai_score', 0),
-            "date_published": article.get('date_published', ''),
-            "summary": article.get('summary', '')[:200] + "..." if len(article.get('summary', '')) > 200 else article.get('summary', '')
-        }
-        citations_data["segments"]["deep_dive"]["articles"].append(citation)
-    
+        return citation
+
+    # Add articles with discussion status
+    for article, discussed in news_matched:
+        citations_data["segments"]["news_roundup"]["articles"].append(
+            _build_citation(article, discussed)
+        )
+
+    for article, discussed in deep_matched:
+        citations_data["segments"]["deep_dive"]["articles"].append(
+            _build_citation(article, discussed)
+        )
+
+    # Log alignment summary
+    news_discussed = sum(1 for _, d in news_matched if d)
+    deep_discussed = sum(1 for _, d in deep_matched if d)
+    print(f"📋 Citation alignment: {news_discussed}/{len(news_matched)} news, "
+          f"{deep_discussed}/{len(deep_matched)} deep-dive articles matched to script")
+
     # Save citations file
     safe_theme = theme_name.replace(" ", "_").replace("&", "and").lower()
     citations_filename = PODCASTS_DIR / f"citations_{date_str}_{safe_theme}.json"
@@ -1517,9 +1607,6 @@ def main():
             print(f"   Theme description: {feed_meta['theme_description'][:80]}...")
         print(f"   Memory context: {len(episode_memory)} recent episodes")
 
-        # Generate citations
-        citations_file = generate_citations_file(news_articles, deep_dive_articles, today_theme)
-
         # Inject evolving story context into memory for the prompt
         evolving_context = format_evolving_story_context(evolving_stories)
 
@@ -1548,6 +1635,12 @@ def main():
         if not script:
             print("❌ Failed to generate script. Exiting.")
             sys.exit(1)
+
+        # Generate citations *after* script is finalized so they align with
+        # what was actually discussed, not just the input article list.
+        citations_file = generate_citations_file(
+            news_articles, deep_dive_articles, today_theme, script=script
+        )
 
         # Save script
         script_filename = save_script_to_file(script, today_theme)
