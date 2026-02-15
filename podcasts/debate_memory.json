@@ -1,0 +1,28 @@
+{
+  "2026-02-15": {
+    "timestamp": 1771160034.957873,
+    "date": "2026-02-15",
+    "theme": "Resilient Rural Futures",
+    "central_question": "Should rural communities invest in self-hosted, locally controlled technology infrastructure, or are they better served relying on centralized cloud services?",
+    "riley_position": "Rural communities should build local technology infrastructure because costs have dropped dramatically, it provides genuine resilience against corporate failures, and communities can pool resources regionally to share expertise and costs.",
+    "riley_key_evidence": [
+      "Fiber installation costs dropped 60% between 2015-2024",
+      "Town of Olds, Alberta delivers gigabit service for $60/month via municipal fiber cooperative O-Net",
+      "Kuhkenah Network (K-Net) maintained connectivity during 2022 Rogers outage serving First Nations communities for 30+ years"
+    ],
+    "casey_position": "Self-hosted infrastructure is impractical for small rural communities due to high hidden costs, expertise requirements, and maintenance burdens that advocates consistently undercount.",
+    "casey_key_evidence": [
+      "Olds O-Net required $40+ million investment ($4,400 per resident) with ongoing debt servicing",
+      "Qualified Linux systems administrator costs $65-85k annually - unsustainable for small communities",
+      "Rogers 2022 outage affecting 12 million people shows even billion-dollar companies with thousands of engineers fail catastrophically"
+    ],
+    "resolution": "They reached partial agreement that building technical literacy and piloting low-risk local services is reasonable, while disagreeing on whether this would lead to widespread community infrastructure adoption or better-negotiated corporate contracts.",
+    "topics_covered": [
+      "Cost analysis of local vs. corporate infrastructure",
+      "Technical expertise and volunteer sustainability",
+      "Regional cooperation models and resource pooling",
+      "Resilience comparison between centralized and distributed systems",
+      "Rural cooperative movement parallels and lessons"
+    ]
+  }
+}
