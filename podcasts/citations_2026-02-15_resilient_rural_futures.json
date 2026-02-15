@@ -1,0 +1,126 @@
+{
+  "episode": {
+    "date": "2026-02-15",
+    "formatted_date": "Sunday, February 15, 2026",
+    "theme": "Resilient Rural Futures",
+    "title": "Cariboo Signals - Resilient Rural Futures",
+    "description": "Riley and Casey explore technology and society in rural communities. Today's focus: Resilient Rural Futures.\n\nNEWS ROUNDUP: We break down [ScienceAlert] Black Hole May Be '100 Trillion Times' More Powerful Than The Death Star and [XDA Developers] LocalSend replaced AirDrop for me, and it works across every device I own, plus 1 more stories, and explore what these developments mean for communities like ours.\n\nRURAL CONNECTIONS: Deep dive into resilient rural futures, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.\n\nHosts: Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).\n\nSources discussed:\n1. ScienceAlert: [ScienceAlert] Black Hole May Be '100 Trillion Times' More P...\n2. XDA Developers: [XDA Developers] LocalSend replaced AirDrop for me, and it w...\n3. How-To Geek: [How-To Geek] How I turned my old Wiimote into a PC mouse (u...\n\nAdditional sources provided:\n4. GN Clean Energy and EVs: [GN Clean Energy and EVs] Forrest launches battery-powered t...\n5. XDA Developers: [XDA Developers] You, too, can make this $30 ESP32 room mapp...\n6. Hackaday: [Hackaday] Reverse Engineering a Dash Robot with Ghidra\n7. Toms Guide: [Toms Guide] Your Samsung TV is watching you — how to turn o...\n8. XDA Developers: [XDA Developers] This handy self-hosted tool made it impossi...\n9. GN AI ML Infrastructure: [GN AI ML Infrastructure] Sharper Focus as Lumen Reorients T...\n10. ZDNet: [ZDNet] Why Amazon's Echo Hub became my favorite way to cont...\n\n--- Credits ---\nTheme Song: Cariboo Signals by Sumo AI (suno.com)\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: OpenAI TTS API\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt\n\n© 2026 Erich Zirnhelt. Licensed under CC BY-NC 4.0.\nhttps://creativecommons.org/licenses/by-nc/4.0/",
+    "generated_at": "2026-02-15T04:53:42.706312-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[GN Clean Energy and EVs] Forrest launches battery-powered trains as green deadline nears",
+          "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQd01rdnp4eWNBVjRrZWo3d3ZQLWJjZmdFRWtISG9XMllQYTc2MnJfR0pjb29JbUNfSm9NcDFuSTlvMkZYMHh0X0xtS2MzYXRqY1kxeEdUN3RfUmx4RGZPbjlMSUxSOGdDYnItMGVrTUczMDNqTUlaMG1vVHRwY0ZEOEVyM3VneGk1UW8wekxGOGdpU2xRdWFkeVE5UQ?oc=5",
+          "source": "GN Clean Energy and EVs",
+          "ai_score": 0,
+          "date_published": "2026-02-14T23:00:03+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] You, too, can make this $30 ESP32 room mapper at home",
+          "url": "https://www.xda-developers.com/you-too-can-make-this-30-esp32-room-mapper-at-home/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-02-15T06:00:04+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Black Hole May Be '100 Trillion Times' More Powerful Than The Death Star",
+          "url": "https://www.sciencealert.com/black-hole-may-be-100-trillion-times-more-powerful-than-the-death-star",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-02-15T01:00:16+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[XDA Developers] LocalSend replaced AirDrop for me, and it works across every device I own",
+          "url": "https://www.xda-developers.com/localsend-replaced-airdrop-works-across-every-device-i-own/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-02-15T01:00:21+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[How-To Geek] How I turned my old Wiimote into a PC mouse (using two candles)",
+          "url": "https://www.howtogeek.com/heres-how-i-turned-my-old-wii-remote-into-a-computer-mouse/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-02-14T22:30:16+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Hackaday] Reverse Engineering a Dash Robot with Ghidra",
+          "url": "https://hackaday.com/2026/02/14/reverse-engineering-a-dash-robot-with-ghidra/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-02-15T00:00:50+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] Your Samsung TV is watching you — how to turn off data collection",
+          "url": "https://www.tomsguide.com/tvs/your-samsung-tv-is-watching-you-how-to-turn-off-data-collection",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-02-15T05:45:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Resilient Rural Futures",
+      "articles": [
+        {
+          "title": "[XDA Developers] This handy self-hosted tool made it impossible to lose anything in my home",
+          "url": "https://www.xda-developers.com/this-handy-self-hosted-tool-made-it-impossible-to-lose-anything-in-my-home/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-02-15T01:00:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[GN AI ML Infrastructure] Sharper Focus as Lumen Reorients Toward AI-Grade Infrastructure",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOcm4wZ3Jpbk4tTWRWWjR6TXQxaEFIMDZhZXlaeDdGeGlGdl95SXpySEl5ZDdkVS1FdnVoYlJKbmRnLWE5OWlWdkFWblJfUXhIckpvX0FXMWNRb2JfUzhRNWpac3c1WkhGWTdxTDhRMVltRGtwRXBNMVhQdHpHa0oyRWNJMHBWVDVtemY2V0RiMmN6eVFocVVUVFJsQi02Rko5aFFySEVSazhKbzdlazZnSmdHdGxMbUJlVTgyMk9qMA?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-15T05:21:07+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ZDNet] Why Amazon's Echo Hub became my favorite way to control my smart home",
+          "url": "https://www.zdnet.com/article/amazon-echo-hub-review/",
+          "source": "ZDNet",
+          "ai_score": 0,
+          "date_published": "2026-02-15T00:00:48+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
