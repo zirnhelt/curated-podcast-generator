@@ -93,7 +93,9 @@ INTERVAL_FADE_OUT_MS = 400
 # Memory Configuration (stored in podcasts/ alongside episodes)
 EPISODE_MEMORY_FILE = PODCASTS_DIR / "episode_memory.json"
 HOST_MEMORY_FILE = PODCASTS_DIR / "host_personality_memory.json"
+DEBATE_MEMORY_FILE = PODCASTS_DIR / "debate_memory.json"
 MEMORY_RETENTION_DAYS = 21
+DEBATE_MEMORY_RETENTION_DAYS = 90
 
 # Load all config at startup
 CONFIG = {
@@ -255,6 +257,168 @@ def update_host_memory(insights_by_host):
         memory[host_key]["consistent_interests"] = memory[host_key]["consistent_interests"][-10:]
     
     save_memory(HOST_MEMORY_FILE, memory)
+
+def get_debate_memory():
+    """Load and clean debate memory (keep last DEBATE_MEMORY_RETENTION_DAYS)."""
+    memory = load_memory(DEBATE_MEMORY_FILE)
+
+    cutoff = get_pacific_now().timestamp() - (DEBATE_MEMORY_RETENTION_DAYS * 24 * 3600)
+
+    cleaned = {}
+    for k, v in memory.items():
+        if isinstance(v, dict) and 'timestamp' in v:
+            if v.get('timestamp', 0) > cutoff:
+                cleaned[k] = v
+        else:
+            print(f"  ⚠️  Skipping malformed debate memory entry: {k}")
+
+    if len(cleaned) != len(memory):
+        save_memory(DEBATE_MEMORY_FILE, cleaned)
+        print(f"🧹 Cleaned debate memory: {len(memory)} → {len(cleaned)} entries")
+
+    return cleaned
+
+def update_debate_memory(date_key, theme, debate_summary):
+    """Update debate memory with summary of today's deep dive debate."""
+    memory = get_debate_memory()
+    memory[date_key] = {
+        "timestamp": get_pacific_now().timestamp(),
+        "date": date_key,
+        "theme": theme,
+        **debate_summary
+    }
+    save_memory(DEBATE_MEMORY_FILE, memory)
+
+def extract_debate_summary(script, theme_name):
+    """Extract a structured summary of the deep dive debate from the script.
+
+    Uses Claude to pull out the central question, each host's key arguments,
+    evidence cited, and how the debate resolved — so future episodes on the
+    same theme can build on (or avoid repeating) these positions.
+    """
+    client = get_anthropic_client()
+    if not client or not script:
+        return _extract_debate_summary_fallback(script, theme_name)
+
+    prompt = (
+        "Analyze the DEEP DIVE segment of this podcast script and extract a structured summary.\n\n"
+        f"Theme: {theme_name}\n\n"
+        "Script:\n" + script + "\n\n"
+        "Return a JSON object with exactly these fields:\n"
+        "{\n"
+        '  "central_question": "The main question or thesis debated (one sentence)",\n'
+        '  "riley_position": "Riley\'s core argument in 1-2 sentences",\n'
+        '  "riley_key_evidence": ["List of 2-3 specific facts/data/examples Riley cited"],\n'
+        '  "casey_position": "Casey\'s core argument in 1-2 sentences",\n'
+        '  "casey_key_evidence": ["List of 2-3 specific facts/data/examples Casey cited"],\n'
+        '  "resolution": "How the debate ended: who conceded what, or where they agreed to disagree (1-2 sentences)",\n'
+        '  "topics_covered": ["3-5 specific subtopics explored during the debate"]\n'
+        "}\n\n"
+        "Return ONLY the JSON object, no other text."
+    )
+
+    try:
+        response = api_retry(lambda: client.messages.create(
+            model=SCRIPT_MODEL,
+            max_tokens=1000,
+            messages=[{"role": "user", "content": prompt}]
+        ))
+        text = response.content[0].text.strip()
+        # Strip markdown code fences if present
+        if text.startswith("```"):
+            text = text.split("\n", 1)[1] if "\n" in text else text[3:]
+            if text.endswith("```"):
+                text = text[:-3]
+            text = text.strip()
+        return json.loads(text)
+    except Exception as e:
+        print(f"  ⚠️  Claude debate extraction failed, using fallback: {e}")
+        return _extract_debate_summary_fallback(script, theme_name)
+
+def _extract_debate_summary_fallback(script, theme_name):
+    """Simple keyword-based fallback when Claude extraction isn't available."""
+    if not script:
+        return {"central_question": theme_name, "topics_covered": [theme_name]}
+
+    # Find deep dive section
+    deep_dive_start = script.lower().find("deep dive")
+    if deep_dive_start == -1:
+        deep_dive_text = script
+    else:
+        deep_dive_text = script[deep_dive_start:]
+
+    # Extract topics from the deep dive text using keyword matching
+    topics = []
+    topic_keywords = [
+        'broadband', 'fiber', 'satellite', 'connectivity', 'telemedicine',
+        'precision agriculture', 'renewable energy', 'solar', 'data sovereignty',
+        'AI', 'automation', 'digital divide', 'infrastructure', 'co-op',
+        'community ownership', 'maintenance', 'funding', 'pilot project',
+    ]
+    deep_lower = deep_dive_text.lower()
+    for kw in topic_keywords:
+        if kw.lower() in deep_lower:
+            topics.append(kw)
+
+    return {
+        "central_question": f"Deep dive on {theme_name}",
+        "topics_covered": topics[:5] if topics else [theme_name]
+    }
+
+def format_debate_memory_for_prompt(debate_memory, today_theme):
+    """Format debate memory into context for the prompt, grouped by theme.
+
+    Shows previous debates on the same theme so hosts can build on past
+    arguments rather than repeating them.
+    """
+    if not debate_memory:
+        return ""
+
+    # Find past debates on the same theme
+    same_theme = []
+    other_recent = []
+    for entry in debate_memory.values():
+        if entry.get('theme', '').lower() == today_theme.lower():
+            same_theme.append(entry)
+        else:
+            other_recent.append(entry)
+
+    if not same_theme and not other_recent:
+        return ""
+
+    context = "DEBATE HISTORY (do NOT repeat these arguments — build on them, challenge them, or find new angles):\n"
+
+    if same_theme:
+        # Sort by date, most recent first
+        same_theme.sort(key=lambda x: x.get('date', ''), reverse=True)
+        context += f"\nPrevious debates on \"{today_theme}\" (same theme — you MUST take a different angle):\n"
+        for entry in same_theme[:4]:  # Show last 4 debates on same theme
+            context += f"  [{entry.get('date', '?')}]\n"
+            if entry.get('central_question'):
+                context += f"    Question: {entry['central_question']}\n"
+            if entry.get('riley_position'):
+                context += f"    Riley argued: {entry['riley_position']}\n"
+            if entry.get('riley_key_evidence'):
+                context += f"    Riley's evidence: {'; '.join(entry['riley_key_evidence'][:2])}\n"
+            if entry.get('casey_position'):
+                context += f"    Casey argued: {entry['casey_position']}\n"
+            if entry.get('casey_key_evidence'):
+                context += f"    Casey's evidence: {'; '.join(entry['casey_key_evidence'][:2])}\n"
+            if entry.get('resolution'):
+                context += f"    Resolution: {entry['resolution']}\n"
+            if entry.get('topics_covered'):
+                context += f"    Subtopics covered: {', '.join(entry['topics_covered'])}\n"
+
+    # Show a brief summary of recent debates on other themes for cross-references
+    if other_recent:
+        other_recent.sort(key=lambda x: x.get('date', ''), reverse=True)
+        context += f"\nRecent debates on other themes (available for cross-reference):\n"
+        for entry in other_recent[:3]:
+            q = entry.get('central_question', entry.get('theme', '?'))
+            context += f"  [{entry.get('date', '?')}] {entry.get('theme', '?')}: {q}\n"
+
+    context += "\n"
+    return context
 
 def fetch_scoring_data():
     """Fetch article scores from the live super-rss-feed system."""
@@ -786,7 +950,7 @@ def format_memory_for_prompt(episode_memory, host_memory):
     return context
 
 
-def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None, feed_meta=None, bonus_articles=None):
+def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None, feed_meta=None, bonus_articles=None, debate_memory=None):
     """Generate conversational podcast script using Claude."""
     print("🎙️ Generating podcast script with Claude...")
 
@@ -853,6 +1017,10 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
     memory_context = format_memory_for_prompt(episode_memory, host_memory)
     if evolving_context:
         memory_context += evolving_context + "\n"
+
+    # Add debate history so hosts don't repeat the same arguments
+    if debate_memory:
+        memory_context += format_debate_memory_for_prompt(debate_memory, theme_name)
 
     # Add feed theme description to memory context if available
     if feed_meta and feed_meta.get('theme_description'):
@@ -1533,6 +1701,7 @@ def main():
     # Load memories
     episode_memory = get_episode_memory()
     host_memory = get_host_personality_memory()
+    debate_memory = get_debate_memory()
     
     # Check for existing files (stored in podcasts/ subfolder)
     date_key = pacific_now.strftime("%Y-%m-%d")
@@ -1624,7 +1793,7 @@ def main():
             news_articles, deep_dive_articles, today_theme,
             episode_memory, host_memory, evolving_context,
             psa_info=psa_info, feed_meta=feed_meta,
-            bonus_articles=bonus_articles
+            bonus_articles=bonus_articles, debate_memory=debate_memory
         )
 
         # Polish the script for better flow
@@ -1656,6 +1825,12 @@ def main():
                 'casey': [t for t in topics if 'community' in t.lower() or 'rural' in t.lower()][:2]
             }
             update_host_memory(host_insights)
+
+            # Update debate memory with structured summary of today's deep dive
+            print("🗂️  Extracting debate summary for memory...")
+            debate_summary = extract_debate_summary(script, today_theme)
+            update_debate_memory(date_key, today_theme, debate_summary)
+            print(f"   Debate question: {debate_summary.get('central_question', 'N/A')}")
     else:
         print(f"🔄 Using existing script: {script_filename}")
         with open(script_filename, 'r', encoding='utf-8') as f:
