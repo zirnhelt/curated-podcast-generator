@@ -47,6 +47,7 @@ jobs:
           # Try to download memory files into podcasts/ (don't fail if they don't exist)
           wget https://zirnhelt.github.io/curated-podcast-generator/podcasts/episode_memory.json -O podcasts/episode_memory.json || echo "No episode memory found"
           wget https://zirnhelt.github.io/curated-podcast-generator/podcasts/host_personality_memory.json -O podcasts/host_personality_memory.json || echo "No host memory found"
+          wget https://zirnhelt.github.io/curated-podcast-generator/podcasts/debate_memory.json -O podcasts/debate_memory.json || echo "No debate memory found"
 
           # Download RSS feed for episode detection
           wget https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml -O podcast-feed.xml || echo "No existing RSS feed"
@@ -80,7 +81,7 @@ jobs:
           ls -la podcasts/podcast_audio_* podcasts/podcast_script_* podcasts/citations_* || echo "No episode files found"
 
           echo "Memory files:"
-          ls -la podcasts/episode_memory.json podcasts/host_personality_memory.json || echo "No memory files found"
+          ls -la podcasts/episode_memory.json podcasts/host_personality_memory.json podcasts/debate_memory.json || echo "No memory files found"
       
       - name: Commit memory and cache files
         run: |
@@ -88,7 +89,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           # Add memory files and any other state files
-          git add podcasts/episode_memory.json podcasts/host_personality_memory.json
+          git add podcasts/episode_memory.json podcasts/host_personality_memory.json podcasts/debate_memory.json
 
           # Add any new episode files that were generated
           git add podcasts/podcast_audio_*.mp3 podcasts/podcast_script_*.txt podcasts/citations_*.json podcast-feed.xml || echo "No new episode files to add"
@@ -109,7 +110,7 @@ jobs:
           cp podcasts/citations_*.json output/podcasts/ 2>/dev/null || echo "No citation files to copy"
 
           # Copy memory files into output/podcasts/
-          cp podcasts/episode_memory.json podcasts/host_personality_memory.json output/podcasts/ 2>/dev/null || echo "No memory files to copy"
+          cp podcasts/episode_memory.json podcasts/host_personality_memory.json podcasts/debate_memory.json output/podcasts/ 2>/dev/null || echo "No memory files to copy"
 
           # Copy website files
           cp index.html output/
@@ -139,5 +140,6 @@ jobs:
             podcasts/citations_*.json
             podcasts/episode_memory.json
             podcasts/host_personality_memory.json
+            podcasts/debate_memory.json
           retention-days: 7
         if: always()
