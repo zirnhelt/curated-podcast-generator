@@ -64,6 +64,55 @@ def api_retry(func, max_retries=3, base_delay=2):
             else:
                 raise
 
+# Pronunciation corrections for TTS
+PRONUNCIATION_CORRECTIONS = {
+    # Place names in the Cariboo region
+    'Quesnel': 'Keh-NEL',  # Silent S
+    'quesnel': 'keh-NEL',
+    'QUESNEL': 'KEH-NEL',
+
+    # First Nations names - using phonetic spellings for TTS
+    'Secwépemc': 'She-KWEP-em',
+    'secwépemc': 'she-KWEP-em',
+    'SECWÉPEMC': 'SHE-KWEP-EM',
+    'Shuswap': 'SHOO-swap',  # Common English name for Secwépemc
+
+    'Tŝilhqot\'in': 'Sill-KOH-tin',
+    'tŝilhqot\'in': 'sill-KOH-tin',
+    'TŜILHQOT\'IN': 'SILL-KOH-TIN',
+    'Chilcotin': 'Chill-KOH-tin',  # Common English name for Tŝilhqot'in
+
+    'Dakelh': 'Dah-KELH',
+    'dakelh': 'dah-KELH',
+    'DAKELH': 'DAH-KELH',
+    'Carrier': 'CARE-ee-er',  # Common English name for Dakelh
+
+    # Other regional place names
+    'Cariboo': 'CARE-ih-boo',  # Not CARE-uh-boo
+    'cariboo': 'care-ih-boo',
+    'CARIBOO': 'CARE-IH-BOO',
+
+    'Williams Lake': 'Williams Lake',  # Correct as is
+    'Kamloops': 'Kam-loops',  # Correct pronunciation
+}
+
+def apply_pronunciation_corrections(text):
+    """Apply pronunciation corrections for place names and First Nations names.
+
+    This ensures TTS engines pronounce regional names correctly, which is
+    especially important for First Nations names where mispronunciation can be
+    offensive.
+    """
+    if not text:
+        return text
+
+    corrected = text
+    for original, phonetic in PRONUNCIATION_CORRECTIONS.items():
+        # Use word boundaries to avoid partial matches
+        corrected = re.sub(r'\b' + re.escape(original) + r'\b', phonetic, corrected)
+
+    return corrected
+
 # Configuration
 SCRIPT_DIR = Path(__file__).parent
 PODCASTS_DIR = SCRIPT_DIR / "podcasts"
@@ -167,6 +216,9 @@ def polish_script_with_claude(script, theme_name, api_key):
         # Quick validation
         if "**RILEY:**" in polished_script and "**CASEY:**" in polished_script:
             print("✅ Script polished successfully!")
+            # Apply pronunciation corrections for TTS
+            print("🗣️  Applying pronunciation corrections...")
+            polished_script = apply_pronunciation_corrections(polished_script)
             return polished_script
         else:
             print("⚠️ Polishing may have broken script format, using original")
@@ -1085,6 +1137,9 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
 
         script = response.content[0].text
         print("✅ Generated podcast script successfully!")
+        # Apply pronunciation corrections for TTS
+        print("🗣️  Applying pronunciation corrections...")
+        script = apply_pronunciation_corrections(script)
         return script
 
     except Exception as e:
