@@ -9,6 +9,14 @@
       "psa_angle": "The Conservation Society's Skates for All program is collecting donated skates — kids' sizes 7 to 10 are always in demand. Drop them off at Total Ice or the Cariboo Memorial Recreation Complex."
     },
     {
+      "name": "Family Day",
+      "start_date": "02-16",
+      "end_date": "02-16",
+      "organization_id": null,
+      "all_orgs": true,
+      "psa_angle": "Happy Family Day! Today's a great day to spend time with loved ones and connect with community. {org_name} is here to support families across the Cariboo — learn more at {org_website}."
+    },
+    {
       "name": "Heritage Day",
       "start_date": "02-19",
       "end_date": "02-19",

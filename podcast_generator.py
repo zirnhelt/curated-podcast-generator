@@ -1129,9 +1129,22 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         for i, a in enumerate(all_articles)
     ])
 
-    # Day-aware sign-off
+    # Day-aware sign-off (check for holidays first)
     weekday_lower = weekday.lower()
-    if weekday_lower == 'friday':
+
+    # Check if today is a holiday/special event
+    if psa_info and psa_info.get('event_name') and psa_info.get('source') == 'event':
+        event_name = psa_info['event_name']
+        # Holidays that should be called out in the closing
+        special_holidays = ['Family Day', 'Canada Day', 'Remembrance Day', 'National Indigenous Peoples Day',
+                           'National Day for Truth and Reconciliation', 'Earth Day', 'Red Dress Day (MMIWG)']
+        if event_name in special_holidays:
+            sign_off = f"Enjoy your {event_name}."
+        elif weekday_lower == 'friday':
+            sign_off = "Enjoy your weekend."
+        else:
+            sign_off = "Have a great rest of your day."
+    elif weekday_lower == 'friday':
         sign_off = "Enjoy your weekend."
     elif weekday_lower == 'saturday':
         sign_off = "Hope you're having a great weekend."
@@ -1151,6 +1164,14 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
     # Add feed theme description to memory context if available
     if feed_meta and feed_meta.get('theme_description'):
         memory_context += f"TODAY'S THEME FRAMING (from curated feed):\n{feed_meta['theme_description']}\n\n"
+
+    # Add holiday context if today is a special holiday that should be acknowledged in opening/closing
+    if psa_info and psa_info.get('event_name') and psa_info.get('source') == 'event':
+        event_name = psa_info['event_name']
+        special_holidays = ['Family Day', 'Canada Day', 'Remembrance Day', 'National Indigenous Peoples Day',
+                           'National Day for Truth and Reconciliation', 'Earth Day', 'Red Dress Day (MMIWG)']
+        if event_name in special_holidays:
+            memory_context += f"TODAY'S HOLIDAY: It's {event_name} today. Acknowledge this naturally in the opening greeting (e.g., 'Happy {event_name}') and use the closing sign-off 'Enjoy your {event_name}.'\n\n"
 
     # Build PSA context for the Community Spotlight segment
     if psa_info:
