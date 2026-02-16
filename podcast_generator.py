@@ -64,55 +64,6 @@ def api_retry(func, max_retries=3, base_delay=2):
             else:
                 raise
 
-# Pronunciation corrections for TTS
-PRONUNCIATION_CORRECTIONS = {
-    # Place names in the Cariboo region
-    'Quesnel': 'Keh-NEL',  # Silent S
-    'quesnel': 'keh-NEL',
-    'QUESNEL': 'KEH-NEL',
-
-    # First Nations names - using phonetic spellings for TTS
-    'Secwépemc': 'She-KWEP-em',
-    'secwépemc': 'she-KWEP-em',
-    'SECWÉPEMC': 'SHE-KWEP-EM',
-    'Shuswap': 'SHOO-swap',  # Common English name for Secwépemc
-
-    'Tŝilhqot\'in': 'Sill-KOH-tin',
-    'tŝilhqot\'in': 'sill-KOH-tin',
-    'TŜILHQOT\'IN': 'SILL-KOH-TIN',
-    'Chilcotin': 'Chill-KOH-tin',  # Common English name for Tŝilhqot'in
-
-    'Dakelh': 'Dah-KELH',
-    'dakelh': 'dah-KELH',
-    'DAKELH': 'DAH-KELH',
-    'Carrier': 'CARE-ee-er',  # Common English name for Dakelh
-
-    # Other regional place names
-    'Cariboo': 'CARE-ih-boo',  # Not CARE-uh-boo
-    'cariboo': 'care-ih-boo',
-    'CARIBOO': 'CARE-IH-BOO',
-
-    'Williams Lake': 'Williams Lake',  # Correct as is
-    'Kamloops': 'Kam-loops',  # Correct pronunciation
-}
-
-def apply_pronunciation_corrections(text):
-    """Apply pronunciation corrections for place names and First Nations names.
-
-    This ensures TTS engines pronounce regional names correctly, which is
-    especially important for First Nations names where mispronunciation can be
-    offensive.
-    """
-    if not text:
-        return text
-
-    corrected = text
-    for original, phonetic in PRONUNCIATION_CORRECTIONS.items():
-        # Use word boundaries to avoid partial matches
-        corrected = re.sub(r'\b' + re.escape(original) + r'\b', phonetic, corrected)
-
-    return corrected
-
 # Configuration
 SCRIPT_DIR = Path(__file__).parent
 PODCASTS_DIR = SCRIPT_DIR / "podcasts"
@@ -216,9 +167,6 @@ def polish_script_with_claude(script, theme_name, api_key):
         # Quick validation
         if "**RILEY:**" in polished_script and "**CASEY:**" in polished_script:
             print("✅ Script polished successfully!")
-            # Apply pronunciation corrections for TTS
-            print("🗣️  Applying pronunciation corrections...")
-            polished_script = apply_pronunciation_corrections(polished_script)
             return polished_script
         else:
             print("⚠️ Polishing may have broken script format, using original")
@@ -226,6 +174,85 @@ def polish_script_with_claude(script, theme_name, api_key):
 
     except Exception as e:
         print(f"⚠️ Error polishing script: {e}")
+        return script
+
+def fact_check_deep_dive(script, news_articles, deep_dive_articles):
+    """Review the deep dive section for unverifiable claims and soften them.
+
+    The deep dive is AI-generated dialogue where both hosts cite specific
+    statistics, programs, and studies.  Many of these are hallucinated —
+    they sound authoritative but cannot be verified.
+
+    This pass compares every specific claim in the deep dive against the
+    input articles (the only verified source material) and rewrites claims
+    that aren't traceable to those articles with honest hedging language.
+    """
+    print("🔍 Fact-checking deep dive claims...")
+
+    client = get_anthropic_client()
+    if not client or not script:
+        return script
+
+    # Build a reference list of article titles + summaries so Claude knows
+    # what information is actually verified
+    verified_sources = []
+    for article in (news_articles or []) + (deep_dive_articles or []):
+        title = article.get('title', '')
+        summary = article.get('summary', '')[:300]
+        url = article.get('url', '')
+        verified_sources.append(f"- {title} ({url})\n  {summary}" if summary else f"- {title} ({url})")
+
+    sources_text = "\n".join(verified_sources) if verified_sources else "(no articles provided)"
+
+    prompt = (
+        "You are a fact-checker for a rural technology podcast. The script below contains a DEEP DIVE "
+        "section where two AI hosts discuss a topic. Because the hosts are AI-generated, they often "
+        "cite very specific statistics, dollar amounts, program names, study findings, and project "
+        "details that SOUND authoritative but are actually fabricated.\n\n"
+        "Your job: review ONLY the DEEP DIVE section and fix unverifiable claims.\n\n"
+        "VERIFIED SOURCE MATERIAL (the only information you can treat as confirmed):\n"
+        f"{sources_text}\n\n"
+        "RULES:\n"
+        "1. Any specific claim that comes directly from the verified articles above — KEEP as-is.\n"
+        "2. Well-known public facts (e.g. 'Starlink is a satellite internet service', 'OCAP stands for "
+        "Ownership, Control, Access, Possession') — KEEP as-is.\n"
+        "3. Specific statistics, dollar amounts, percentages, dates, project names, study findings, or "
+        "organizational details that are NOT from the verified articles and are NOT widely known public "
+        "facts — these are likely hallucinated. For each one:\n"
+        "   a. If the underlying POINT is valuable, rewrite to remove the fabricated specifics. "
+        "Use honest hedging: 'some communities have...', 'programs like...', 'studies suggest...', "
+        "'one example is...', 'estimates range...'. Keep the argument's logic intact.\n"
+        "   b. If the claim is a specific named project or study that might not exist, generalize it: "
+        "'projects in similar communities' rather than inventing a specific name.\n"
+        "   c. If a fabricated statistic is the entire basis for a point, reframe the point around "
+        "the logic rather than the number.\n"
+        "4. Do NOT remove interesting arguments or flatten the discussion — just make the evidence honest.\n"
+        "5. Do NOT change the NEWS ROUNDUP, WELCOME, or COMMUNITY SPOTLIGHT sections at all.\n"
+        "6. Preserve all **RILEY:** and **CASEY:** speaker tags and segment markers exactly.\n"
+        "7. Maintain the same overall script length — don't cut substantially.\n\n"
+        f"SCRIPT:\n{script}\n\n"
+        "Return the complete script with the deep dive fact-checked. Do not add commentary."
+    )
+
+    try:
+        response = api_retry(lambda: client.messages.create(
+            model=POLISH_MODEL,
+            max_tokens=8000,
+            messages=[{"role": "user", "content": prompt}]
+        ))
+
+        checked_script = response.content[0].text
+
+        # Validate the output
+        if "**RILEY:**" in checked_script and "**CASEY:**" in checked_script:
+            print("✅ Deep dive fact-checked successfully!")
+            return checked_script
+        else:
+            print("⚠️ Fact-check may have broken script format, using original")
+            return script
+
+    except Exception as e:
+        print(f"⚠️ Error fact-checking script: {e}")
         return script
 
 def get_pacific_now():
@@ -818,11 +845,14 @@ def get_current_date_info():
     
     return weekday, date_str
 
-def generate_episode_description(news_articles, deep_dive_articles, theme_name, script=None):
+def generate_episode_description(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None):
     """Generate episode description with sources and credits.
 
     When *script* is provided, citations are aligned with what was actually
     discussed in the finalized script rather than the raw input article list.
+
+    When *debate_summary* is provided, the deep dive section is enriched
+    with the actual topics and questions explored in the episode.
     """
     weekday, formatted_date = get_current_date_info()
     podcast_config = CONFIG['podcast']
@@ -854,18 +884,31 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
     riley_bio = hosts['riley']['short_bio']
     casey_bio = hosts['casey']['short_bio']
 
+    # Build deep dive description from debate summary if available
+    if debate_summary and debate_summary.get('central_question'):
+        deep_dive_desc = debate_summary['central_question']
+        topics = debate_summary.get('topics_covered', [])
+        if topics:
+            deep_dive_desc += f" Topics include: {', '.join(topics)}."
+    else:
+        deep_dive_desc = f"Deep dive into {theme_name.lower()}, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies."
+
     description = f"""Riley and Casey explore technology and society in rural communities. Today's focus: {theme_name}.
 
 NEWS ROUNDUP: We break down {stories_preview}, and explore what these developments mean for communities like ours.
 
-RURAL CONNECTIONS: Deep dive into {theme_name.lower()}, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.
+RURAL CONNECTIONS: {deep_dive_desc}
 
 Hosts: Riley ({riley_bio}) and Casey ({casey_bio})."""
 
     # Add sources — discussed articles first, then additional sources
+    # Citations are formatted as HTML links for podcast apps and RSS readers
     def _format_citation(article):
         source_name = article.get('authors', [{}])[0].get('name', 'Unknown Source')
         article_title = article.get('title', 'Untitled')[:60] + ("..." if len(article.get('title', '')) > 60 else "")
+        url = article.get('url', '')
+        if url:
+            return f'{source_name}: <a href="{url}">{article_title}</a>'
         return f"{source_name}: {article_title}"
 
     discussed_all = discussed_news[:12] + discussed_deep
@@ -891,13 +934,17 @@ Hosts: Riley ({riley_bio}) and Casey ({casey_bio})."""
 
     return description
 
-def generate_citations_file(news_articles, deep_dive_articles, theme_name, script=None):
+def generate_citations_file(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None):
     """Generate citations file for the episode.
 
     When *script* is provided (the finalized, polished script), each citation
     is annotated with ``"discussed": true/false`` to indicate whether the
     article was actually referenced in the episode, and the episode
     description reflects that alignment.
+
+    When *debate_summary* is provided (from extract_debate_summary), it is
+    included in the deep_dive segment so citations capture the key topics,
+    positions, and evidence discussed beyond the input articles.
     """
     pacific_now = get_pacific_now()
     date_str = pacific_now.strftime("%Y-%m-%d")
@@ -905,7 +952,8 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
 
     podcast_config = CONFIG['podcast']
     episode_description = generate_episode_description(
-        news_articles, deep_dive_articles, theme_name, script=script
+        news_articles, deep_dive_articles, theme_name, script=script,
+        debate_summary=debate_summary
     )
 
     # Match articles against script
@@ -928,7 +976,8 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
             },
             "deep_dive": {
                 "title": f"Cariboo Connections - {theme_name}",
-                "articles": []
+                "articles": [],
+                "discussion": debate_summary or {}
             }
         },
         "credits": CONFIG['credits']['structured']
@@ -1137,9 +1186,6 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
 
         script = response.content[0].text
         print("✅ Generated podcast script successfully!")
-        # Apply pronunciation corrections for TTS
-        print("🗣️  Applying pronunciation corrections...")
-        script = apply_pronunciation_corrections(script)
         return script
 
     except Exception as e:
@@ -1567,15 +1613,24 @@ def generate_podcast_rss_feed():
                     try:
                         with open(citations_file, 'r', encoding='utf-8') as f:
                             citations_data = json.load(f)
-                        
+
                         # Add theme context
                         theme_display = theme.replace('_', ' ').title()
                         episode_description += f"\n\nToday's focus: {theme_display}"
-                        
-                        # Add sources
+
+                        # Add deep dive discussion highlights if available
+                        deep_dive = citations_data.get('segments', {}).get('deep_dive', {})
+                        discussion = deep_dive.get('discussion', {})
+                        if discussion.get('central_question'):
+                            episode_description += f"\n\nDEEP DIVE: {discussion['central_question']}"
+                            topics = discussion.get('topics_covered', [])
+                            if topics:
+                                episode_description += f"\nTopics: {', '.join(topics)}"
+
+                        # Add sources as links
                         if citations_data.get('segments'):
                             episode_description += "\n\nSources cited in this episode:\n"
-                            
+
                             source_num = 1
                             for segment_name, segment_data in citations_data['segments'].items():
                                 for article in segment_data.get('articles', []):
@@ -1583,7 +1638,11 @@ def generate_podcast_rss_feed():
                                     title = article.get('title', '')[:60]
                                     if len(article.get('title', '')) > 60:
                                         title += "..."
-                                    episode_description += f"{source_num}. {source_name}: {title}\n"
+                                    url = article.get('url', '')
+                                    if url:
+                                        episode_description += f'{source_num}. {source_name}: <a href="{url}">{title}</a>\n'
+                                    else:
+                                        episode_description += f"{source_num}. {source_name}: {title}\n"
                                     source_num += 1
                     except Exception as e:
                         print(f"   ⚠️ Could not load citations for {audio_file}: {e}")
@@ -1856,14 +1915,24 @@ def main():
             api_key = os.getenv('ANTHROPIC_API_KEY')
             script = polish_script_with_claude(script, today_theme, api_key)
 
+        # Fact-check the deep dive against input articles
+        if script:
+            script = fact_check_deep_dive(script, news_articles, deep_dive_articles)
+
         if not script:
             print("❌ Failed to generate script. Exiting.")
             sys.exit(1)
 
+        # Extract debate summary before citations so we can include it
+        print("🗂️  Extracting debate summary for memory and citations...")
+        debate_summary = extract_debate_summary(script, today_theme)
+        print(f"   Debate question: {debate_summary.get('central_question', 'N/A')}")
+
         # Generate citations *after* script is finalized so they align with
         # what was actually discussed, not just the input article list.
         citations_file = generate_citations_file(
-            news_articles, deep_dive_articles, today_theme, script=script
+            news_articles, deep_dive_articles, today_theme, script=script,
+            debate_summary=debate_summary
         )
 
         # Save script
@@ -1881,11 +1950,8 @@ def main():
             }
             update_host_memory(host_insights)
 
-            # Update debate memory with structured summary of today's deep dive
-            print("🗂️  Extracting debate summary for memory...")
-            debate_summary = extract_debate_summary(script, today_theme)
+            # Update debate memory
             update_debate_memory(date_key, today_theme, debate_summary)
-            print(f"   Debate question: {debate_summary.get('central_question', 'N/A')}")
     else:
         print(f"🔄 Using existing script: {script_filename}")
         with open(script_filename, 'r', encoding='utf-8') as f:
