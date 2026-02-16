@@ -24,5 +24,31 @@
       "Resilience comparison between centralized and distributed systems",
       "Rural cooperative movement parallels and lessons"
     ]
+  },
+  "2026-02-16": {
+    "timestamp": 1771247169.11212,
+    "date": "2026-02-16",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "central_question": "Are digital tools and platforms genuinely empowering rural communities to tell their stories effectively, or are they creating new barriers and dependencies while promising false solutions?",
+    "riley_position": "Digital storytelling tools are becoming more accessible and effective for rural communities, with decreasing costs, improving infrastructure, and better governance frameworks enabling genuine cultural preservation and economic opportunities.",
+    "riley_key_evidence": [
+      "First Nations Technology Council documented 47 community-led digital heritage projects across BC, with 31 in communities under 5,000 people",
+      "UBC's Oral History project provides turnkey recording kits for under $2,000 per community and has partnered with 23 communities since 2023",
+      "Starlink coverage now reaches 94% of rural BC with speeds of 50-200 Mbps, sufficient for collaborative editing and live streaming"
+    ],
+    "casey_position": "Digital platforms create surveillance risks, dependency on corporate infrastructure, and technical barriers that exclude the most culturally knowledgeable community members while requiring unsustainable volunteer labor and funding.",
+    "casey_key_evidence": [
+      "Over 60% of Arctic cultural digitization projects from 2010-2020 had no data repatriation plan when funding expired",
+      "29% of rural Canadians over 65 don't use the internet at all, with another 22% describing themselves as 'not confident' online",
+      "Meta's automated systems have repeatedly flagged Indigenous ceremony videos and traditional hunting practices as policy violations"
+    ],
+    "resolution": "Both agreed that structural solutions like regional shared services and better funding models are needed, with Riley acknowledging infrastructure gaps while Casey conceded that governance frameworks are improving - they agreed to disagree on whether current progress outweighs the barriers.",
+    "topics_covered": [
+      "Digital infrastructure and connectivity challenges in rural areas",
+      "Cultural preservation vs. platform surveillance and content moderation",
+      "Economic sustainability and monetization for rural digital creators",
+      "Intergenerational participation gaps in digital literacy",
+      "Community ownership and control of digital cultural assets"
+    ]
   }
 }
