@@ -70,7 +70,24 @@ PODCASTS_DIR = SCRIPT_DIR / "podcasts"
 PODCASTS_DIR.mkdir(exist_ok=True)
 SUPER_RSS_BASE_URL = "https://zirnhelt.github.io/super-rss-feed"
 SCORING_CACHE_URL = f"{SUPER_RSS_BASE_URL}/scored_articles_cache.json"
-PODCAST_FEED_URL = f"{SUPER_RSS_BASE_URL}/feed-podcast.json"
+
+# Day names for feed URLs (0=Monday, 6=Sunday)
+DAY_NAMES = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+
+def get_podcast_feed_url(weekday):
+    """Get the podcast feed URL for a specific day of the week.
+
+    Each day has its own persistent themed feed with a rolling 7-day article cache.
+    Updates occur 3x daily (6 AM, 2 PM, 10 PM Pacific).
+
+    Args:
+        weekday: Integer 0-6 (0=Monday, 6=Sunday)
+
+    Returns:
+        URL string for that day's feed (e.g., feed-podcast-monday.json)
+    """
+    day_name = DAY_NAMES[weekday]
+    return f"{SUPER_RSS_BASE_URL}/feed-podcast-{day_name}.json"
 
 # Claude model selection (override via environment variables)
 SCRIPT_MODEL = os.getenv("CLAUDE_SCRIPT_MODEL", "claude-sonnet-4-20250514")
@@ -574,8 +591,14 @@ def apply_blocklist(articles):
     return filtered
 
 
-def fetch_podcast_feed():
-    """Fetch the curated podcast feed with pre-scored, theme-sorted articles.
+def fetch_podcast_feed(weekday):
+    """Fetch the curated podcast feed for a specific day of the week.
+
+    Each day has its own persistent themed feed with pre-scored, theme-sorted articles
+    from a rolling 7-day cache. Updates occur 3x daily (6 AM, 2 PM, 10 PM Pacific).
+
+    Args:
+        weekday: Integer 0-6 (0=Monday, 6=Sunday)
 
     Returns (feed_meta, theme_articles, bonus_articles) where feed_meta contains
     _podcast.theme and _podcast.theme_description from the feed.
@@ -587,10 +610,12 @@ def fetch_podcast_feed():
     TODO(super-feed): Add theme-aware filtering for news roundup articles so
     off-theme days don't produce a random/tech-heavy segment 1.
     """
-    print("📥 Fetching curated podcast feed...")
+    feed_url = get_podcast_feed_url(weekday)
+    day_name = DAY_NAMES[weekday]
+    print(f"📥 Fetching curated podcast feed for {day_name.title()}...")
 
     try:
-        response = requests.get(PODCAST_FEED_URL, timeout=10)
+        response = requests.get(feed_url, timeout=10)
         response.raise_for_status()
 
         feed_data = response.json()
@@ -1839,8 +1864,8 @@ def main():
     if not script_exists:
         print("🆕 Generating new script...")
 
-        # Fetch curated podcast feed (pre-scored, theme-sorted)
-        feed_meta, theme_articles, bonus_articles = fetch_podcast_feed()
+        # Fetch curated podcast feed for today's day of week (pre-scored, theme-sorted)
+        feed_meta, theme_articles, bonus_articles = fetch_podcast_feed(today_weekday)
 
         if feed_meta is None or not theme_articles:
             # Fallback: use legacy multi-category fetch if podcast feed unavailable
