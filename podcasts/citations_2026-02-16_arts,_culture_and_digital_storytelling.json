@@ -1,0 +1,144 @@
+{
+  "episode": {
+    "date": "2026-02-16",
+    "formatted_date": "Monday, February 16, 2026",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "title": "Cariboo Signals - Arts, Culture & Digital Storytelling",
+    "description": "Riley and Casey explore technology and society in rural communities. Today's focus: Arts, Culture & Digital Storytelling.\n\nNEWS ROUNDUP: We break down [Quesnel Cariboo Observer] VIDEO: Vigil for Tumbler Ridge in Langley City and [The Guardian Global Development] ‘The goal has been to demystify’: how a colonial Nairobi library was restored and given back to the people, plus 1 more stories, and explore what these developments mean for communities like ours.\n\nRURAL CONNECTIONS: Deep dive into arts, culture & digital storytelling, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies.\n\nHosts: Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).\n\nSources discussed:\n1. Quesnel Cariboo Observer: [Quesnel Cariboo Observer] VIDEO: Vigil for Tumbler Ridge in...\n2. The Guardian Global Development: [The Guardian Global Development] ‘The goal has been to demy...\n3. CFJC Today Kamloops: [CFJC Today Kamloops] TNRD extends 911 dispatch contract wit...\n4. The Marginalian: [The Marginalian] How to Live and How to Die\n5. GN 3D Printing: [GN 3D Printing] Recyclable ink for 3D printing\n6. The Tyee: [The Tyee] Will BC Axe FireSmart Funding in Tomorrow’s Budge...\n7. The Tyee: [The Tyee] What We Know about the Online Life of the Tumbler...\n\nAdditional sources provided:\n8. XDA Developers: [XDA Developers] Don't buy a Steam Machine even if your PC i...\n9. XDA Developers: [XDA Developers] DDR4 systems quietly became the only sane c...\n10. 100 Mile Free Press: [100 Mile Free Press] RANCH MUSINGS: A Cariboo rancher visit...\n11. CFJC Today Kamloops: [CFJC Today Kamloops] How a day of chaos and heartache unspo...\n12. Boing Boing: [Boing Boing] Bitcoin mining, but make it a $50 experiment\n\n--- Credits ---\nTheme Song: Cariboo Signals by Sumo AI (suno.com)\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: OpenAI TTS API\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt\n\n© 2026 Erich Zirnhelt. Licensed under CC BY-NC 4.0.\nhttps://creativecommons.org/licenses/by-nc/4.0/",
+    "generated_at": "2026-02-16T05:05:47.535308-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Quesnel Cariboo Observer] VIDEO: Vigil for Tumbler Ridge in Langley City",
+          "url": "https://quesnelobserver.com/2026/02/15/video-vigil-for-tumbler-ridge-in-langley-city/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-02-16T03:45:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[The Guardian Global Development] ‘The goal has been to demystify’: how a colonial Nairobi library was restored and given back to the people",
+          "url": "https://www.theguardian.com/global-development/2026/feb/16/the-goal-has-been-to-demystify-how-a-colonial-nairobi-library-was-restored-and-given-back-to-the-people",
+          "source": "The Guardian Global Development",
+          "ai_score": 0,
+          "date_published": "2026-02-16T05:00:42+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[XDA Developers] Don't buy a Steam Machine even if your PC is half-a-decade old",
+          "url": "https://www.xda-developers.com/do-this-instead-of-getting-a-steam-machine-on-older-hardware/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-02-16T00:00:20+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[CFJC Today Kamloops] TNRD extends 911 dispatch contract with RDCO while awaiting details, costs on NextGen service",
+          "url": "https://cfjctoday.com/2026/02/15/tnrd-extends-911-dispatch-contract-with-rdco-while-awaiting-details-costs-on-nextgen-service/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-16T00:41:45+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[XDA Developers] DDR4 systems quietly became the only sane choice in 2026",
+          "url": "https://www.xda-developers.com/ddr4-systems-quietly-became-the-smart-buy-in-2026/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-02-15T23:00:20+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[100 Mile Free Press] RANCH MUSINGS: A Cariboo rancher visits Cuba",
+          "url": "https://100milefreepress.net/2026/02/15/ranch-musings-a-cariboo-rancher-visits-cuba/",
+          "source": "100 Mile Free Press",
+          "ai_score": 0,
+          "date_published": "2026-02-16T01:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Marginalian] How to Live and How to Die",
+          "url": "https://www.themarginalian.org/2026/02/15/emily-levine-cold-solace-anna-belle-kaufman/",
+          "source": "The Marginalian",
+          "ai_score": 0,
+          "date_published": "2026-02-16T00:38:02+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[GN 3D Printing] Recyclable ink for 3D printing",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQR3BXQ3BrM0MzYzBOT3J6MHZiNHpETTAxNDY3WjNFb2p0WEw1ZzlvY1V3azR0VktPVzJMU0pLczF5RUtHWWRwY2txc01RcF90ZzdSaU1ERDZoeE5IYkN4ZDVVc2lxN2c2eFd4UDRJVWdwMHV5bTdMUXhhT1h4TW5EOENtZjc?oc=5",
+          "source": "GN 3D Printing",
+          "ai_score": 0,
+          "date_published": "2026-02-16T05:28:26+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[The Tyee] Will BC Axe FireSmart Funding in Tomorrow’s Budget?",
+          "url": "https://thetyee.ca/News/2026/02/16/Will-BC-Axe-FireSmart-Funding/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-02-16T08:20:00+00:00",
+          "summary": "",
+          "discussed": true
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Arts, Culture & Digital Storytelling",
+      "articles": [
+        {
+          "title": "[CFJC Today Kamloops] How a day of chaos and heartache unspooled in Tumbler Ridge",
+          "url": "https://cfjctoday.com/2026/02/15/how-a-day-of-chaos-and-heartache-unspooled-in-tumbler-ridge/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-02-15T23:41:30+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Tyee] What We Know about the Online Life of the Tumbler Ridge Shooter",
+          "url": "https://thetyee.ca/News/2026/02/16/Online-Life-Tumbler-Ridge-Shooter/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-02-16T08:40:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Boing Boing] Bitcoin mining, but make it a $50 experiment",
+          "url": "https://boingboing.net/2026/02/15/bitcoin-mining-but-make-it-a-50-experiment.html",
+          "source": "Boing Boing",
+          "ai_score": 0,
+          "date_published": "2026-02-15T22:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
