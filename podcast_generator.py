@@ -176,6 +176,85 @@ def polish_script_with_claude(script, theme_name, api_key):
         print(f"⚠️ Error polishing script: {e}")
         return script
 
+def fact_check_deep_dive(script, news_articles, deep_dive_articles):
+    """Review the deep dive section for unverifiable claims and soften them.
+
+    The deep dive is AI-generated dialogue where both hosts cite specific
+    statistics, programs, and studies.  Many of these are hallucinated —
+    they sound authoritative but cannot be verified.
+
+    This pass compares every specific claim in the deep dive against the
+    input articles (the only verified source material) and rewrites claims
+    that aren't traceable to those articles with honest hedging language.
+    """
+    print("🔍 Fact-checking deep dive claims...")
+
+    client = get_anthropic_client()
+    if not client or not script:
+        return script
+
+    # Build a reference list of article titles + summaries so Claude knows
+    # what information is actually verified
+    verified_sources = []
+    for article in (news_articles or []) + (deep_dive_articles or []):
+        title = article.get('title', '')
+        summary = article.get('summary', '')[:300]
+        url = article.get('url', '')
+        verified_sources.append(f"- {title} ({url})\n  {summary}" if summary else f"- {title} ({url})")
+
+    sources_text = "\n".join(verified_sources) if verified_sources else "(no articles provided)"
+
+    prompt = (
+        "You are a fact-checker for a rural technology podcast. The script below contains a DEEP DIVE "
+        "section where two AI hosts discuss a topic. Because the hosts are AI-generated, they often "
+        "cite very specific statistics, dollar amounts, program names, study findings, and project "
+        "details that SOUND authoritative but are actually fabricated.\n\n"
+        "Your job: review ONLY the DEEP DIVE section and fix unverifiable claims.\n\n"
+        "VERIFIED SOURCE MATERIAL (the only information you can treat as confirmed):\n"
+        f"{sources_text}\n\n"
+        "RULES:\n"
+        "1. Any specific claim that comes directly from the verified articles above — KEEP as-is.\n"
+        "2. Well-known public facts (e.g. 'Starlink is a satellite internet service', 'OCAP stands for "
+        "Ownership, Control, Access, Possession') — KEEP as-is.\n"
+        "3. Specific statistics, dollar amounts, percentages, dates, project names, study findings, or "
+        "organizational details that are NOT from the verified articles and are NOT widely known public "
+        "facts — these are likely hallucinated. For each one:\n"
+        "   a. If the underlying POINT is valuable, rewrite to remove the fabricated specifics. "
+        "Use honest hedging: 'some communities have...', 'programs like...', 'studies suggest...', "
+        "'one example is...', 'estimates range...'. Keep the argument's logic intact.\n"
+        "   b. If the claim is a specific named project or study that might not exist, generalize it: "
+        "'projects in similar communities' rather than inventing a specific name.\n"
+        "   c. If a fabricated statistic is the entire basis for a point, reframe the point around "
+        "the logic rather than the number.\n"
+        "4. Do NOT remove interesting arguments or flatten the discussion — just make the evidence honest.\n"
+        "5. Do NOT change the NEWS ROUNDUP, WELCOME, or COMMUNITY SPOTLIGHT sections at all.\n"
+        "6. Preserve all **RILEY:** and **CASEY:** speaker tags and segment markers exactly.\n"
+        "7. Maintain the same overall script length — don't cut substantially.\n\n"
+        f"SCRIPT:\n{script}\n\n"
+        "Return the complete script with the deep dive fact-checked. Do not add commentary."
+    )
+
+    try:
+        response = api_retry(lambda: client.messages.create(
+            model=POLISH_MODEL,
+            max_tokens=8000,
+            messages=[{"role": "user", "content": prompt}]
+        ))
+
+        checked_script = response.content[0].text
+
+        # Validate the output
+        if "**RILEY:**" in checked_script and "**CASEY:**" in checked_script:
+            print("✅ Deep dive fact-checked successfully!")
+            return checked_script
+        else:
+            print("⚠️ Fact-check may have broken script format, using original")
+            return script
+
+    except Exception as e:
+        print(f"⚠️ Error fact-checking script: {e}")
+        return script
+
 def get_pacific_now():
     """Get current datetime in Pacific timezone."""
     try:
@@ -1835,6 +1914,10 @@ def main():
         if script:
             api_key = os.getenv('ANTHROPIC_API_KEY')
             script = polish_script_with_claude(script, today_theme, api_key)
+
+        # Fact-check the deep dive against input articles
+        if script:
+            script = fact_check_deep_dive(script, news_articles, deep_dive_articles)
 
         if not script:
             print("❌ Failed to generate script. Exiting.")
