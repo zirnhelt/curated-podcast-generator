@@ -37,10 +37,16 @@ Super RSS Feed (scored articles + category feeds)
 
 ### Dependencies
 
-This repo depends on the RSS feed system staying healthy. It pulls two things at runtime:
+This repo depends on the RSS feed system staying healthy. It pulls curated podcast feeds at runtime:
 
-- **Scored articles cache:** `https://zirnhelt.github.io/super-rss-feed/scored_articles_cache.json` — article scores from Claude
-- **Category feeds:** `feed-{local,ai-tech,climate,homelab,news,science,scifi}.json` — the actual article data
+- **Day-specific podcast feeds:** `feed-podcast-{dayname}.json` (monday through sunday) — pre-scored, theme-sorted articles from a rolling 7-day cache
+  - Each day has its own persistent themed feed
+  - Updates 3x daily (6 AM, 2 PM, 10 PM Pacific)
+  - Includes theme-matched articles and bonus (off-theme) picks
+
+**Fallback:** If podcast feeds are unavailable, the generator falls back to:
+- **Scored articles cache:** `scored_articles_cache.json` — article scores from Claude
+- **Category feeds:** `feed-{local,ai-tech,climate,homelab,news,science,scifi}.json` — raw article data
 
 If the RSS feed system is down or stale, the podcast generator will fail gracefully and exit with an error.
 
@@ -90,17 +96,17 @@ Everything lives in `config/`. No need to touch the main scripts to tweak conten
 
 ### Themes
 
-Themes rotate on a weekly cycle. Each day gets one:
+Themes rotate on a weekly cycle. Each day gets its own themed feed:
 
-| Day | Theme |
-|---|---|
-| Monday | Community-Controlled Infrastructure |
-| Tuesday | Sustainable Innovation |
-| Wednesday | Local Voices & Digital Equity |
-| Thursday | Rural Smart Solutions |
-| Friday | Future-Ready Communities |
-| Saturday | Cariboo Innovation Stories |
-| Sunday | Regional Resilience |
+| Day | Theme | Description |
+|---|---|---|
+| Monday | Arts, Culture & Digital Storytelling | Local arts, festivals, creative economy, media |
+| Tuesday | Working Lands & Industry | Forestry, ranching, mining, agriculture tech |
+| Wednesday | Community Tech & Governance | Municipal networks, civic innovation, digital equity |
+| Thursday | Indigenous Lands & Innovation | First Nations governance, land stewardship, language tech |
+| Friday | Wild Spaces & Outdoor Life | Conservation, wildfire, backcountry recreation |
+| Saturday | Cariboo Voices & Local News | Williams Lake, Quesnel, local community stories |
+| Sunday | Resilient Rural Futures | Infrastructure, connectivity, sustainability |
 
 ### Hosts
 
