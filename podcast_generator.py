@@ -124,6 +124,37 @@ CONFIG = {
     'prompts': load_prompts_config()
 }
 
+# Batch API configuration
+# Set PODCAST_USE_BATCH=0 to disable batch processing and use real-time calls
+USE_BATCH_API = os.getenv("PODCAST_USE_BATCH", "1") == "1"
+BATCH_POLL_INTERVAL = 10  # seconds between status checks
+BATCH_POLL_TIMEOUT = 600  # max seconds to wait for batch completion
+
+
+def build_cached_system_prompt():
+    """Build the static system prompt for script generation.
+
+    This prompt is identical across episodes — host bios, format rules,
+    and anti-repetition requirements never change.  Marking it with
+    cache_control lets the Anthropic API cache it across retries and
+    sequential calls within the same run (5-minute TTL).
+    """
+    prompts = CONFIG['prompts']
+    if 'script_generation_system' not in prompts:
+        return None  # Fallback: caller will use legacy single-prompt path
+
+    hosts = CONFIG['hosts']
+    podcast = CONFIG['podcast']
+    return prompts['script_generation_system']['template'].format(
+        podcast_description=podcast['description'],
+        riley_name=hosts['riley']['name'],
+        riley_pronouns=hosts['riley']['pronouns'],
+        riley_bio=hosts['riley']['full_bio'],
+        casey_name=hosts['casey']['name'],
+        casey_pronouns=hosts['casey']['pronouns'],
+        casey_bio=hosts['casey']['full_bio'],
+    )
+
 def select_welcome_host():
     """Randomly select which host opens the show."""
     return random.choice(['riley', 'casey'])
@@ -271,6 +302,216 @@ def fact_check_deep_dive(script, news_articles, deep_dive_articles):
     except Exception as e:
         print(f"⚠️ Error fact-checking script: {e}")
         return script
+
+
+# ---------------------------------------------------------------------------
+# Batch API helpers
+# ---------------------------------------------------------------------------
+
+def _build_verified_sources(news_articles, deep_dive_articles):
+    """Build the verified-sources reference string for fact-checking."""
+    verified_sources = []
+    for article in (news_articles or []) + (deep_dive_articles or []):
+        title = article.get('title', '')
+        summary = article.get('summary', '')[:300]
+        url = article.get('url', '')
+        verified_sources.append(f"- {title} ({url})\n  {summary}" if summary else f"- {title} ({url})")
+    return "\n".join(verified_sources) if verified_sources else "(no articles provided)"
+
+
+def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_articles):
+    """Submit polish+factcheck and debate summary as a Message Batch.
+
+    Returns the batch object (with batch.id for polling) or None on error.
+    The batch contains two requests:
+      - "polish-and-factcheck": combined Opus call (replaces 2 separate calls)
+      - "debate-summary": Sonnet extraction (runs in parallel)
+    """
+    client = get_anthropic_client()
+    if not client:
+        return None
+
+    prompts = CONFIG['prompts']
+    verified_sources = _build_verified_sources(news_articles, deep_dive_articles)
+
+    # Build combined polish+factcheck prompt
+    pf_template = prompts.get('polish_and_factcheck', {}).get('template')
+    if not pf_template:
+        print("⚠️ polish_and_factcheck prompt not found, cannot use batch")
+        return None
+
+    pf_prompt = pf_template.format(
+        theme_name=theme_name,
+        script=script,
+        verified_sources=verified_sources
+    )
+
+    # Build debate summary prompt (same as extract_debate_summary)
+    debate_prompt = (
+        "Analyze the DEEP DIVE segment of this podcast script and extract a structured summary.\n\n"
+        f"Theme: {theme_name}\n\n"
+        "Script:\n" + script + "\n\n"
+        "Return a JSON object with exactly these fields:\n"
+        "{\n"
+        '  "central_question": "The main question or thesis debated (one sentence)",\n'
+        '  "riley_position": "Riley\'s core argument in 1-2 sentences",\n'
+        '  "riley_key_evidence": ["List of 2-3 specific facts/data/examples Riley cited"],\n'
+        '  "casey_position": "Casey\'s core argument in 1-2 sentences",\n'
+        '  "casey_key_evidence": ["List of 2-3 specific facts/data/examples Casey cited"],\n'
+        '  "resolution": "How the debate ended: who conceded what, or where they agreed to disagree (1-2 sentences)",\n'
+        '  "topics_covered": ["3-5 specific subtopics explored during the debate"]\n'
+        "}\n\n"
+        "Return ONLY the JSON object, no other text."
+    )
+
+    try:
+        print("📦 Submitting post-processing batch (polish+factcheck + debate summary)...")
+        print(f"   Polish+factcheck model: {POLISH_MODEL}")
+        print(f"   Debate summary model: {SCRIPT_MODEL}")
+
+        batch = client.messages.batches.create(
+            requests=[
+                {
+                    "custom_id": "polish-and-factcheck",
+                    "params": {
+                        "model": POLISH_MODEL,
+                        "max_tokens": 8000,
+                        "messages": [{"role": "user", "content": pf_prompt}]
+                    }
+                },
+                {
+                    "custom_id": "debate-summary",
+                    "params": {
+                        "model": SCRIPT_MODEL,
+                        "max_tokens": 1000,
+                        "messages": [{"role": "user", "content": debate_prompt}]
+                    }
+                },
+            ]
+        )
+        print(f"   Batch submitted: {batch.id}")
+        return batch
+
+    except Exception as e:
+        print(f"⚠️ Error submitting batch: {e}")
+        return None
+
+
+def poll_batch_completion(batch_id):
+    """Poll a Message Batch until it reaches a terminal state.
+
+    Returns the final batch object, or None on timeout/error.
+    """
+    import time
+
+    client = get_anthropic_client()
+    if not client:
+        return None
+
+    elapsed = 0
+    while elapsed < BATCH_POLL_TIMEOUT:
+        try:
+            batch = client.messages.batches.retrieve(batch_id)
+            status = batch.processing_status
+
+            if status == "ended":
+                succeeded = batch.request_counts.succeeded
+                errored = batch.request_counts.errored
+                print(f"   Batch complete: {succeeded} succeeded, {errored} errored")
+                return batch
+
+            # Still processing
+            print(f"   Batch status: {status} "
+                  f"(processing: {batch.request_counts.processing}, "
+                  f"succeeded: {batch.request_counts.succeeded}) "
+                  f"[{elapsed}s elapsed]")
+
+        except Exception as e:
+            print(f"   ⚠️ Poll error: {e}")
+
+        time.sleep(BATCH_POLL_INTERVAL)
+        elapsed += BATCH_POLL_INTERVAL
+
+    print(f"⚠️ Batch {batch_id} timed out after {BATCH_POLL_TIMEOUT}s")
+    return None
+
+
+def collect_batch_results(batch_id):
+    """Retrieve results from a completed batch.
+
+    Returns a dict mapping custom_id -> result content (text or parsed JSON).
+    """
+    client = get_anthropic_client()
+    if not client:
+        return {}
+
+    results = {}
+    try:
+        for result in client.messages.batches.results(batch_id):
+            custom_id = result.custom_id
+
+            if result.result.type == "succeeded":
+                text = result.result.message.content[0].text
+                results[custom_id] = text
+            else:
+                error_type = result.result.type
+                print(f"   ⚠️ Batch request '{custom_id}' failed: {error_type}")
+                if hasattr(result.result, 'error'):
+                    print(f"      {result.result.error}")
+
+    except Exception as e:
+        print(f"⚠️ Error collecting batch results: {e}")
+
+    return results
+
+
+def run_post_processing_batch(script, theme_name, news_articles, deep_dive_articles):
+    """Submit, poll, and collect post-processing batch results.
+
+    Returns (polished_script, debate_summary) or falls back to real-time
+    calls if the batch fails.
+    """
+    batch = submit_post_processing_batch(script, theme_name, news_articles, deep_dive_articles)
+    if not batch:
+        return None, None
+
+    # Poll until done
+    completed = poll_batch_completion(batch.id)
+    if not completed:
+        return None, None
+
+    # Collect results
+    results = collect_batch_results(batch.id)
+
+    # Extract polished+factchecked script
+    polished_script = None
+    pf_text = results.get("polish-and-factcheck")
+    if pf_text and "**RILEY:**" in pf_text and "**CASEY:**" in pf_text:
+        polished_script = pf_text
+        print("✅ Batch: script polished and fact-checked successfully!")
+    elif pf_text:
+        print("⚠️ Batch: polish+factcheck may have broken format, using original")
+    else:
+        print("⚠️ Batch: polish+factcheck request failed")
+
+    # Extract debate summary
+    debate_summary = None
+    debate_text = results.get("debate-summary")
+    if debate_text:
+        try:
+            text = debate_text.strip()
+            if text.startswith("```"):
+                text = text.split("\n", 1)[1] if "\n" in text else text[3:]
+                if text.endswith("```"):
+                    text = text[:-3]
+                text = text.strip()
+            debate_summary = json.loads(text)
+            print("✅ Batch: debate summary extracted successfully!")
+        except Exception as e:
+            print(f"   ⚠️ Batch debate summary parse failed: {e}")
+
+    return polished_script, debate_summary
+
 
 def get_pacific_now():
     """Get current datetime in Pacific timezone."""
@@ -1189,33 +1430,57 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
     riley = hosts_config['riley']
     casey = hosts_config['casey']
 
-    # Load prompt template from config
-    prompt_template = CONFIG['prompts']['script_generation']['template']
+    # Try split system+user prompt (cacheable) first, fall back to legacy
+    system_prompt = build_cached_system_prompt()
+    prompts = CONFIG['prompts']
 
-    # Format the template with actual values
-    prompt = prompt_template.format(
-        weekday=weekday,
-        date_str=date_str,
-        podcast_title=podcast_config['title'],
-        podcast_description=podcast_config['description'],
-        memory_context=memory_context,
-        riley_name=riley['name'],
-        riley_pronouns=riley['pronouns'],
-        riley_bio=riley['full_bio'],
-        casey_name=casey['name'],
-        casey_pronouns=casey['pronouns'],
-        casey_bio=casey['full_bio'],
-        welcome_host_upper=welcome_host_name.upper(),
-        welcome_host_name=welcome_host_name,
-        other_host_upper=other_host_name.upper(),
-        other_host_name=other_host_name,
-        theme_name=theme_name,
-        news_text=news_text,
-        deep_dive_text=deep_dive_text,
-        news_titles_brief=news_titles_brief,
-        sign_off=sign_off,
-        psa_context=psa_context
-    )
+    if system_prompt and 'script_generation_user' in prompts:
+        # New path: static system prompt (cached) + dynamic user prompt
+        user_prompt = prompts['script_generation_user']['template'].format(
+            weekday=weekday,
+            date_str=date_str,
+            memory_context=memory_context,
+            welcome_host_upper=welcome_host_name.upper(),
+            welcome_host_name=welcome_host_name,
+            other_host_upper=other_host_name.upper(),
+            other_host_name=other_host_name,
+            theme_name=theme_name,
+            news_text=news_text,
+            deep_dive_text=deep_dive_text,
+            news_titles_brief=news_titles_brief,
+            sign_off=sign_off,
+            psa_context=psa_context
+        )
+        use_cached = True
+        print("   Using cached system prompt for script generation")
+    else:
+        # Legacy path: single combined prompt
+        prompt_template = prompts['script_generation']['template']
+        user_prompt = prompt_template.format(
+            weekday=weekday,
+            date_str=date_str,
+            podcast_title=podcast_config['title'],
+            podcast_description=podcast_config['description'],
+            memory_context=memory_context,
+            riley_name=riley['name'],
+            riley_pronouns=riley['pronouns'],
+            riley_bio=riley['full_bio'],
+            casey_name=casey['name'],
+            casey_pronouns=casey['pronouns'],
+            casey_bio=casey['full_bio'],
+            welcome_host_upper=welcome_host_name.upper(),
+            welcome_host_name=welcome_host_name,
+            other_host_upper=other_host_name.upper(),
+            other_host_name=other_host_name,
+            theme_name=theme_name,
+            news_text=news_text,
+            deep_dive_text=deep_dive_text,
+            news_titles_brief=news_titles_brief,
+            sign_off=sign_off,
+            psa_context=psa_context
+        )
+        system_prompt = None
+        use_cached = False
 
     try:
         client = get_anthropic_client()
@@ -1224,11 +1489,24 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             return None
 
         print(f"   Using model: {SCRIPT_MODEL}")
-        response = api_retry(lambda: client.messages.create(
-            model=SCRIPT_MODEL,
-            max_tokens=7000,
-            messages=[{"role": "user", "content": prompt}]
-        ))
+
+        if use_cached:
+            response = api_retry(lambda: client.messages.create(
+                model=SCRIPT_MODEL,
+                max_tokens=7000,
+                system=[{
+                    "type": "text",
+                    "text": system_prompt,
+                    "cache_control": {"type": "ephemeral"}
+                }],
+                messages=[{"role": "user", "content": user_prompt}]
+            ))
+        else:
+            response = api_retry(lambda: client.messages.create(
+                model=SCRIPT_MODEL,
+                max_tokens=7000,
+                messages=[{"role": "user", "content": user_prompt}]
+            ))
 
         script = response.content[0].text
         print("✅ Generated podcast script successfully!")
@@ -1956,22 +2234,46 @@ def main():
             bonus_articles=bonus_articles, debate_memory=debate_memory
         )
 
-        # Polish the script for better flow
-        if script:
+        if not script:
+            print("❌ Failed to generate script. Exiting.")
+            sys.exit(1)
+
+        # Post-processing: polish + fact-check + debate summary
+        # Try batch API first (50% cost discount), fall back to real-time calls
+        debate_summary = None
+        if script and USE_BATCH_API:
+            print("📦 Using Batch API for post-processing (50% cost discount)...")
+            batch_script, batch_debate = run_post_processing_batch(
+                script, today_theme, news_articles, deep_dive_articles
+            )
+            if batch_script:
+                script = batch_script
+            else:
+                # Batch polish failed — fall back to real-time calls
+                print("⚠️ Batch polish failed, falling back to real-time calls...")
+                api_key = os.getenv('ANTHROPIC_API_KEY')
+                script = polish_script_with_claude(script, today_theme, api_key)
+                if script:
+                    script = fact_check_deep_dive(script, news_articles, deep_dive_articles)
+
+            if batch_debate:
+                debate_summary = batch_debate
+
+        elif script:
+            # Real-time path (batch disabled)
             api_key = os.getenv('ANTHROPIC_API_KEY')
             script = polish_script_with_claude(script, today_theme, api_key)
-
-        # Fact-check the deep dive against input articles
-        if script:
-            script = fact_check_deep_dive(script, news_articles, deep_dive_articles)
+            if script:
+                script = fact_check_deep_dive(script, news_articles, deep_dive_articles)
 
         if not script:
             print("❌ Failed to generate script. Exiting.")
             sys.exit(1)
 
-        # Extract debate summary before citations so we can include it
-        print("🗂️  Extracting debate summary for memory and citations...")
-        debate_summary = extract_debate_summary(script, today_theme)
+        # Extract debate summary if not already obtained from batch
+        if not debate_summary:
+            print("🗂️  Extracting debate summary for memory and citations...")
+            debate_summary = extract_debate_summary(script, today_theme)
         print(f"   Debate question: {debate_summary.get('central_question', 'N/A')}")
 
         # Generate citations *after* script is finalized so they align with
