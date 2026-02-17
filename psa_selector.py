@@ -15,6 +15,7 @@ PODCASTS_DIR = Path(__file__).parent / "podcasts"
 PSA_STATE_FILE = PODCASTS_DIR / "psa_rotation_state.json"
 
 EVENT_LOOKAHEAD_DAYS = 7
+MIN_DAYS_BETWEEN_REPEATS = 7
 
 
 def load_psa_organizations():
@@ -30,11 +31,24 @@ def load_psa_events():
 
 
 def load_rotation_state():
-    """Load round-robin rotation state from disk."""
+    """Load round-robin rotation state from disk.
+
+    State format:
+        {
+            "rotation": {"0": 2, "4": 1, ...},   # weekday -> last used index
+            "last_aired": {"org_id": "YYYY-MM-DD", ...}  # org -> date last featured
+        }
+
+    Handles legacy format (flat weekday->index dict) by migrating it transparently.
+    """
     if PSA_STATE_FILE.exists():
         with open(PSA_STATE_FILE, "r") as f:
-            return json.load(f)
-    return {}
+            data = json.load(f)
+        # Migrate legacy flat format: {"0": 3, "1": 1} -> new nested format
+        if data and all(k.isdigit() for k in data):
+            return {"rotation": data, "last_aired": {}}
+        return data
+    return {"rotation": {}, "last_aired": {}}
 
 
 def save_rotation_state(state):
@@ -42,6 +56,12 @@ def save_rotation_state(state):
     PODCASTS_DIR.mkdir(exist_ok=True)
     with open(PSA_STATE_FILE, "w") as f:
         json.dump(state, f, indent=2)
+
+
+def record_aired(org_id, today, state):
+    """Record that an org aired on the given date."""
+    state.setdefault("last_aired", {})[org_id] = today.isoformat()
+    return state
 
 
 def get_orgs_for_weekday(weekday, organizations):
@@ -131,16 +151,44 @@ def _format_psa_angle(angle_template, org):
     )
 
 
-def round_robin_select(weekday, roster, state):
-    """Select the next org in rotation for this weekday.
+def round_robin_select(weekday, roster, state, today, min_days=MIN_DAYS_BETWEEN_REPEATS):
+    """Select the next org in rotation for this weekday, skipping recent repeats.
+
+    Advances through the roster in order, skipping any org that aired within
+    min_days. If every org aired recently (small roster), falls back to the
+    least-recently-aired to avoid an infinite skip loop.
 
     Returns (org_id, org_data, updated_state).
     """
+    rotation = state.setdefault("rotation", {})
+    last_aired = state.setdefault("last_aired", {})
+
     key = str(weekday)
-    last_index = state.get(key, -1)
-    next_index = (last_index + 1) % len(roster)
-    state[key] = next_index
-    org_id, org_data = roster[next_index]
+    last_index = rotation.get(key, -1)
+    n = len(roster)
+
+    for i in range(n):
+        candidate_index = (last_index + 1 + i) % n
+        org_id, org_data = roster[candidate_index]
+
+        last_str = last_aired.get(org_id)
+        if last_str:
+            days_since = (today - date.fromisoformat(last_str)).days
+            if days_since < min_days:
+                continue  # Aired too recently, try next
+
+        rotation[key] = candidate_index
+        return org_id, org_data, state
+
+    # All orgs aired recently — pick least-recently-aired to minimise wait
+    def days_ago(item):
+        oid, _ = item
+        last_str = last_aired.get(oid)
+        return date.fromisoformat(last_str) if last_str else date.min
+
+    fallback_index = min(range(n), key=lambda i: days_ago(roster[i]))
+    rotation[key] = fallback_index
+    org_id, org_data = roster[fallback_index]
     return org_id, org_data, state
 
 
@@ -186,6 +234,11 @@ def select_psa(today=None):
                 event_name = event["name"]
                 break
 
+        # Record this org as aired so it counts toward cross-week deduplication
+        state = load_rotation_state()
+        state = record_aired(org_id, today, state)
+        save_rotation_state(state)
+
         return {
             "org_id": org_id,
             "org_name": org["name"],
@@ -199,7 +252,8 @@ def select_psa(today=None):
 
     # Fall back to round-robin
     state = load_rotation_state()
-    org_id, org, state = round_robin_select(weekday, roster, state)
+    org_id, org, state = round_robin_select(weekday, roster, state, today)
+    state = record_aired(org_id, today, state)
     save_rotation_state(state)
 
     return {

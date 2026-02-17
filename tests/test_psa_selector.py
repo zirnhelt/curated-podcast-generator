@@ -13,6 +13,8 @@ from psa_selector import (
     round_robin_select,
     select_psa,
     _format_psa_angle,
+    record_aired,
+    MIN_DAYS_BETWEEN_REPEATS,
 )
 
 
@@ -216,35 +218,96 @@ class TestFormatPsaAngle:
 # --- round_robin_select ---
 
 class TestRoundRobinSelect:
+    def _fresh_state(self):
+        return {"rotation": {}, "last_aired": {}}
+
     def test_starts_at_first_org(self):
         roster = [("a", {"name": "A"}), ("b", {"name": "B"})]
-        state = {}
-        org_id, org, state = round_robin_select(4, roster, state)
+        state = self._fresh_state()
+        today = date(2026, 1, 1)
+        org_id, org, state = round_robin_select(4, roster, state, today)
         assert org_id == "a"
-        assert state["4"] == 0
+        assert state["rotation"]["4"] == 0
 
     def test_advances_through_roster(self):
         roster = [("a", {"name": "A"}), ("b", {"name": "B"}), ("c", {"name": "C"})]
-        state = {"4": 0}
-        org_id, _, state = round_robin_select(4, roster, state)
+        # "a" aired long ago, so "b" should be next
+        old_date = date(2025, 12, 1)
+        state = {"rotation": {"4": 0}, "last_aired": {"a": old_date.isoformat()}}
+        today = date(2026, 1, 1)
+        org_id, _, state = round_robin_select(4, roster, state, today)
         assert org_id == "b"
-        assert state["4"] == 1
+        assert state["rotation"]["4"] == 1
 
     def test_wraps_around(self):
         roster = [("a", {"name": "A"}), ("b", {"name": "B"})]
-        state = {"4": 1}
-        org_id, _, state = round_robin_select(4, roster, state)
+        old_date = date(2025, 12, 1)
+        state = {"rotation": {"4": 1}, "last_aired": {"b": old_date.isoformat()}}
+        today = date(2026, 1, 1)
+        org_id, _, state = round_robin_select(4, roster, state, today)
         assert org_id == "a"
-        assert state["4"] == 0
+        assert state["rotation"]["4"] == 0
+
+    def test_skips_recently_aired_org(self):
+        roster = [("a", {"name": "A"}), ("b", {"name": "B"}), ("c", {"name": "C"})]
+        today = date(2026, 2, 10)
+        recent = date(2026, 2, 7)  # 3 days ago, within cooldown
+        # After index 0 ("a"), next would be "b" but it aired recently
+        state = {
+            "rotation": {"4": 0},
+            "last_aired": {"b": recent.isoformat()},
+        }
+        org_id, _, state = round_robin_select(4, roster, state, today)
+        assert org_id == "c"  # skips "b", lands on "c"
+
+    def test_fallback_to_least_recent_when_all_aired(self):
+        roster = [("a", {"name": "A"}), ("b", {"name": "B"})]
+        today = date(2026, 2, 10)
+        # Both aired within the cooldown window
+        state = {
+            "rotation": {"4": 0},
+            "last_aired": {
+                "a": date(2026, 2, 8).isoformat(),  # 2 days ago
+                "b": date(2026, 2, 5).isoformat(),  # 5 days ago (least recent)
+            },
+        }
+        org_id, _, state = round_robin_select(4, roster, state, today)
+        assert org_id == "b"  # "b" is least recently aired
 
     def test_independent_per_weekday(self):
         roster_mon = [("x", {"name": "X"})]
         roster_fri = [("y", {"name": "Y"}), ("z", {"name": "Z"})]
-        state = {}
-        _, _, state = round_robin_select(0, roster_mon, state)
-        _, _, state = round_robin_select(4, roster_fri, state)
-        assert state["0"] == 0
-        assert state["4"] == 0
+        today = date(2026, 1, 1)
+        state = self._fresh_state()
+        _, _, state = round_robin_select(0, roster_mon, state, today)
+        _, _, state = round_robin_select(4, roster_fri, state, today)
+        assert state["rotation"]["0"] == 0
+        assert state["rotation"]["4"] == 0
+
+    def test_cross_week_deduplication(self):
+        """An org aired within the cooldown window should be skipped."""
+        roster = [("a", {"name": "A"}), ("b", {"name": "B"})]
+        today = date(2026, 2, 17)
+        six_days_ago = date(2026, 2, 11)  # 6 days ago — within cooldown (< 7)
+        state = {
+            "rotation": {"4": 1},  # last picked was "b" at index 1
+            "last_aired": {"a": six_days_ago.isoformat()},
+        }
+        # Next in rotation would be "a", but it aired only 6 days ago
+        org_id, _, _ = round_robin_select(4, roster, state, today, min_days=MIN_DAYS_BETWEEN_REPEATS)
+        assert org_id == "b"  # should skip "a" and pick "b"
+
+    def test_exactly_min_days_is_allowed(self):
+        """An org aired exactly min_days ago is eligible again."""
+        roster = [("a", {"name": "A"}), ("b", {"name": "B"})]
+        today = date(2026, 2, 17)
+        seven_days_ago = date(2026, 2, 10)  # exactly 7 days ago — cooldown lifted
+        state = {
+            "rotation": {"4": 1},
+            "last_aired": {"a": seven_days_ago.isoformat()},
+        }
+        org_id, _, _ = round_robin_select(4, roster, state, today, min_days=MIN_DAYS_BETWEEN_REPEATS)
+        assert org_id == "a"  # "a" is back in rotation after 7 days
 
 
 # --- select_psa (integration) ---
