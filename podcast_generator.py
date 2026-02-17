@@ -135,9 +135,9 @@ def build_cached_system_prompt():
     """Build the static system prompt for script generation.
 
     This prompt is identical across episodes — host bios, format rules,
-    and anti-repetition requirements never change.  Marking it with
-    cache_control lets the Anthropic API cache it across retries and
-    sequential calls within the same run (5-minute TTL).
+    and anti-repetition requirements never change.  Splitting it into a
+    separate system message keeps the dynamic user prompt shorter and
+    cleaner.
     """
     prompts = CONFIG['prompts']
     if 'script_generation_system' not in prompts:
@@ -433,6 +433,13 @@ def poll_batch_completion(batch_id):
         elapsed += BATCH_POLL_INTERVAL
 
     print(f"⚠️ Batch {batch_id} timed out after {BATCH_POLL_TIMEOUT}s")
+    # Cancel the batch so we don't get charged for it when it eventually
+    # completes in the background — we're about to fall back to real-time calls.
+    try:
+        client.messages.batches.cancel(batch_id)
+        print(f"   Cancelled timed-out batch {batch_id} to avoid double-billing")
+    except Exception as cancel_err:
+        print(f"   ⚠️ Could not cancel batch {batch_id}: {cancel_err}")
     return None
 
 
@@ -1430,7 +1437,7 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
     riley = hosts_config['riley']
     casey = hosts_config['casey']
 
-    # Try split system+user prompt (cacheable) first, fall back to legacy
+    # Try split system+user prompt first, fall back to legacy single-prompt
     system_prompt = build_cached_system_prompt()
     prompts = CONFIG['prompts']
 
@@ -1452,7 +1459,7 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             psa_context=psa_context
         )
         use_cached = True
-        print("   Using cached system prompt for script generation")
+        print("   Using split system/user prompt for script generation")
     else:
         # Legacy path: single combined prompt
         prompt_template = prompts['script_generation']['template']
@@ -1494,11 +1501,7 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             response = api_retry(lambda: client.messages.create(
                 model=SCRIPT_MODEL,
                 max_tokens=7000,
-                system=[{
-                    "type": "text",
-                    "text": system_prompt,
-                    "cache_control": {"type": "ephemeral"}
-                }],
+                system=system_prompt,
                 messages=[{"role": "user", "content": user_prompt}]
             ))
         else:
