@@ -1,20 +1,4 @@
 {
-  "2026-01-26": {
-    "timestamp": 1769471389.251844,
-    "topics": [
-      "AI",
-      "artificial intelligence",
-      "automation",
-      "innovation",
-      "community development"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact"
-    ],
-    "date": "2026-01-26"
-  },
   "2026-01-27": {
     "timestamp": 1769521299.011987,
     "topics": [
@@ -382,5 +366,24 @@
       "Indigenous tech"
     ],
     "date": "2026-02-16"
+  },
+  "2026-02-17": {
+    "timestamp": 1771334102.806711,
+    "topics": [
+      "[GN Clean Energy and EVs] MDL expands its BYD partnership wi",
+      "[Hackaday] Performing an Autopsy on 15 Dead Battle Born LFP ",
+      "[Business Insider] A Ukrainian drone pilot found a hidden Ru",
+      "[GN AI ML Infrastructure] How clean energy infrastructure ca",
+      "[GN 3D Printing] Germany Funds Titanium Aluminide Additive R",
+      "[TechRadar] At this price, the Jackery 300 Plus portable pow",
+      "[TechRadar] I can't recommend this Dell laptop deal enough",
+      "[GN Clean Energy and EVs] Octopus Energy Invests Nearly $1 B"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "connectivity"
+    ],
+    "date": "2026-02-17"
   }
 }
