@@ -1,20 +1,4 @@
 {
-  "2026-01-27": {
-    "timestamp": 1769521299.011987,
-    "topics": [
-      "AI",
-      "automation",
-      "innovation",
-      "sustainability",
-      "technology adoption"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact"
-    ],
-    "date": "2026-01-27"
-  },
   "2026-01-28": {
     "timestamp": 1769607800.503853,
     "topics": [
@@ -385,5 +369,24 @@
       "connectivity"
     ],
     "date": "2026-02-17"
+  },
+  "2026-02-18": {
+    "timestamp": 1771419977.115325,
+    "topics": [
+      "[My Cariboo Now] Independent Investigations Office determini",
+      "[Quesnel Cariboo Observer] Former B.C. Conservative leader w",
+      "[My Cariboo Now] Temporary school facilities arriving in Tum",
+      "[XDA Developers] Old laptops make better home servers than a",
+      "[The Tyee] Vancouver\u2019s Handling of False Creek South Is Offi",
+      "[GN AI ML Infrastructure] AI and Machine Learning",
+      "[Quesnel Cariboo Observer] Interlakes hosting benefit concer",
+      "[Quesnel Cariboo Observer] B.C. is raising taxes and cutting"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "connectivity"
+    ],
+    "date": "2026-02-18"
   }
 }
