@@ -1,0 +1,167 @@
+{
+  "episode": {
+    "date": "2026-02-18",
+    "formatted_date": "Wednesday, February 18, 2026",
+    "theme": "Community Tech & Governance",
+    "title": "Cariboo Signals - Community Tech & Governance",
+    "description": "Riley and Casey explore technology and society in rural communities. Today's focus: Community Tech & Governance.\n\nNEWS ROUNDUP: We break down [My Cariboo Now] Independent Investigations Office determining if mandate met for Tumbler Ridge investigation and [Quesnel Cariboo Observer] Former B.C. Conservative leader will not take another leadership run, plus 1 more stories, and explore what these developments mean for communities like ours.\n\nRURAL CONNECTIONS: Can AI-driven infrastructure management systems enhance rural governance while maintaining democratic accountability and community-centered decision-making? Topics include: Predictive maintenance vs. reactive infrastructure management, Regional cooperation and shared technology services, Democratic accountability and citizen understanding of AI decisions, Digital divide in rural civic engagement, Cost-benefit analysis of municipal AI adoption.\n\nHosts: Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).\n\nSources discussed:\n1. My Cariboo Now: <a href=\"https://www.mycariboonow.com/138699/news/rcmp/independent-investigations-office-determining-if-mandate-met-for-tumbler-ridge-investigation/\">[My Cariboo Now] Independent Investigations Office determini...</a>\n2. Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/02/17/former-b-c-conservative-leader-will-not-take-another-leadership-run/\">[Quesnel Cariboo Observer] Former B.C. Conservative leader w...</a>\n3. My Cariboo Now: <a href=\"https://www.mycariboonow.com/138565/news/education/temporary-school-facilities-arriving-in-tumbler-ridge-this-week/\">[My Cariboo Now] Temporary school facilities arriving in Tum...</a>\n4. XDA Developers: <a href=\"https://www.xda-developers.com/old-laptops-make-better-home-servers-than-raspberry-pi/\">[XDA Developers] Old laptops make better home servers than a...</a>\n5. The Tyee: <a href=\"https://thetyee.ca/Opinion/2026/02/17/Vancouver-Handling-False-Creek-South/\">[The Tyee] Vancouver’s Handling of False Creek South Is Offi...</a>\n6. Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/02/17/b-c-is-raising-taxes-and-cutting-public-sector-jobs-as-provincial-debt-soars/\">[Quesnel Cariboo Observer] B.C. is raising taxes and cutting...</a>\n\nAdditional sources provided:\n7. My Cariboo Now: <a href=\"https://www.mycariboonow.com/139150/politics/b-c-government-presents-budget-with-a-higher-taxes-13-3b-deficit/\">[My Cariboo Now] B.C. government presents budget with higher...</a>\n8. Engadget: <a href=\"https://www.engadget.com/cybersecurity/texas-ag-sues-tp-link-over-purported-connection-to-china-193802258.html?src=rss\">[Engadget] Texas AG sues TP-Link over purported connection t...</a>\n9. GN Clean Energy and EVs: <a href=\"https://news.google.com/rss/articles/CBMi0wFBVV95cUxOMGJpUWtfanhWNlNLRExQUHcyaUtrLUNWVE9sOTNYVDUtM1pSX3duaGpVQ2FMV2Z6X2lRMXcwaEZ4MkRVU3NsX1NwRlZnLURkdFYtTDl5VGFKcDd5UklRSS05QndZX05qc0tMTUNhNDN3OWlXc2xVSGNLVzZpRkZvWmtKVEoxUld2ZHd0UEQ1MFlMRjRhSHJOeFZKTzdvZlpxdm9pRHRhcmRuQS10U2JGMmgxeGtSNzhOdkZ6M29NMmlrbkZYMDNsOWxXaEJBamhyelVz?oc=5\">[GN Clean Energy and EVs] GSU Launches 5 MWp Solar Plant and...</a>\n10. TechCrunch: <a href=\"https://techcrunch.com/2026/02/17/ford-turns-to-f1-and-bounties-to-build-a-30000-electric-truck/\">[TechCrunch] Ford turns to F1 and bounties to build a $30,00...</a>\n11. GN AI ML Infrastructure: <a href=\"https://news.google.com/rss/articles/CBMitwFBVV95cUxNZEs3cktIa05keWxxdmtUMzZXN051UzNXSWNUbFpobVozckhyMlZmZWk4d20xODg4WS1fZENUckZuUlQzdHVWRGtCa2hMVUhpdmdMVWZXQ3JFRWdBa25RVXRadERNMDg0elowQ2JoT3pBTVZMVWR2UHozTGIwRV9TQXhheUN6UmFHRWJvWlRKeWFmdERGTUJ2ek1jNldma1VXU3VLSE0zWFdnYXliZTQ4Z01LYnBPX2s?oc=5\">[GN AI ML Infrastructure] AI and Machine Learning - Municipa...</a>\n12. Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/02/17/interlakes-hosting-benefit-concert-for-tumbler-ridge/\">[Quesnel Cariboo Observer] Interlakes hosting benefit concer...</a>\n\n--- Credits ---\nTheme Song: Cariboo Signals by Sumo AI (suno.com)\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: OpenAI TTS API\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt\n\n© 2026 Erich Zirnhelt. Licensed under CC BY-NC 4.0.\nhttps://creativecommons.org/licenses/by-nc/4.0/",
+    "generated_at": "2026-02-18T05:06:17.110169-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[My Cariboo Now] Independent Investigations Office determining if mandate met for Tumbler Ridge investigation",
+          "url": "https://www.mycariboonow.com/138699/news/rcmp/independent-investigations-office-determining-if-mandate-met-for-tumbler-ridge-investigation/",
+          "source": "My Cariboo Now",
+          "ai_score": 0,
+          "date_published": "2026-02-17T20:27:05+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Former B.C. Conservative leader will not take another leadership run",
+          "url": "https://quesnelobserver.com/2026/02/17/former-b-c-conservative-leader-will-not-take-another-leadership-run/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-02-17T20:21:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[My Cariboo Now] Temporary school facilities arriving in Tumbler Ridge this week",
+          "url": "https://www.mycariboonow.com/138565/news/education/temporary-school-facilities-arriving-in-tumbler-ridge-this-week/",
+          "source": "My Cariboo Now",
+          "ai_score": 0,
+          "date_published": "2026-02-17T19:29:54+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[XDA Developers] Old laptops make better home servers than any Raspberry Pi, and they're often free",
+          "url": "https://www.xda-developers.com/old-laptops-make-better-home-servers-than-raspberry-pi/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-02-17T13:01:23+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[The Tyee] Vancouver’s Handling of False Creek South Is Officially a Scandal",
+          "url": "https://thetyee.ca/Opinion/2026/02/17/Vancouver-Handling-False-Creek-South/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-02-17T08:10:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[My Cariboo Now] B.C. government presents budget with higher taxes, $13.3B deficit",
+          "url": "https://www.mycariboonow.com/139150/politics/b-c-government-presents-budget-with-a-higher-taxes-13-3b-deficit/",
+          "source": "My Cariboo Now",
+          "ai_score": 0,
+          "date_published": "2026-02-17T23:35:18+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Engadget] Texas AG sues TP-Link over purported connection to China",
+          "url": "https://www.engadget.com/cybersecurity/texas-ag-sues-tp-link-over-purported-connection-to-china-193802258.html?src=rss",
+          "source": "Engadget",
+          "ai_score": 0,
+          "date_published": "2026-02-17T20:29:03+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[GN Clean Energy and EVs] GSU Launches 5 MWp Solar Plant and ‘Green Berbera Vision’ to Shift Port City from Diesel to Renewables",
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOMGJpUWtfanhWNlNLRExQUHcyaUtrLUNWVE9sOTNYVDUtM1pSX3duaGpVQ2FMV2Z6X2lRMXcwaEZ4MkRVU3NsX1NwRlZnLURkdFYtTDl5VGFKcDd5UklRSS05QndZX05qc0tMTUNhNDN3OWlXc2xVSGNLVzZpRkZvWmtKVEoxUld2ZHd0UEQ1MFlMRjRhSHJOeFZKTzdvZlpxdm9pRHRhcmRuQS10U2JGMmgxeGtSNzhOdkZ6M29NMmlrbkZYMDNsOWxXaEJBamhyelVz?oc=5",
+          "source": "GN Clean Energy and EVs",
+          "ai_score": 0,
+          "date_published": "2026-02-18T06:47:28+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechCrunch] Ford turns to F1 and bounties to build a $30,000 electric truck",
+          "url": "https://techcrunch.com/2026/02/17/ford-turns-to-f1-and-bounties-to-build-a-30000-electric-truck/",
+          "source": "TechCrunch",
+          "ai_score": 0,
+          "date_published": "2026-02-17T23:43:21+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Community Tech & Governance",
+      "articles": [
+        {
+          "title": "[GN AI ML Infrastructure] AI and Machine Learning - Municipalities pilot AI-driven road infrastructure platform",
+          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNZEs3cktIa05keWxxdmtUMzZXN051UzNXSWNUbFpobVozckhyMlZmZWk4d20xODg4WS1fZENUckZuUlQzdHVWRGtCa2hMVUhpdmdMVWZXQ3JFRWdBa25RVXRadERNMDg0elowQ2JoT3pBTVZMVWR2UHozTGIwRV9TQXhheUN6UmFHRWJvWlRKeWFmdERGTUJ2ek1jNldma1VXU3VLSE0zWFdnYXliZTQ4Z01LYnBPX2s?oc=5",
+          "source": "GN AI ML Infrastructure",
+          "ai_score": 0,
+          "date_published": "2026-02-16T12:04:58+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Interlakes hosting benefit concert for Tumbler Ridge",
+          "url": "https://quesnelobserver.com/2026/02/17/interlakes-hosting-benefit-concert-for-tumbler-ridge/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-02-18T01:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] B.C. is raising taxes and cutting public sector jobs as provincial debt soars",
+          "url": "https://quesnelobserver.com/2026/02/17/b-c-is-raising-taxes-and-cutting-public-sector-jobs-as-provincial-debt-soars/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-02-17T22:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Can AI-driven infrastructure management systems enhance rural governance while maintaining democratic accountability and community-centered decision-making?",
+        "riley_position": "AI infrastructure systems can transform rural governance by providing predictive maintenance, cost savings, and better resource allocation through regional cooperation models. These tools augment rather than replace human judgment and can actually increase transparency in decision-making.",
+        "riley_key_evidence": [
+          "Kamloops area smart traffic systems improved rural traffic prediction after three years of local data",
+          "City of Medicine Hat saw 30% reduction in emergency road repairs with predictive systems",
+          "Thompson-Nicola Regional District exploring shared technology services model"
+        ],
+        "casey_position": "AI systems risk creating accountability gaps and excluding communities lacking digital literacy or resources. Democratic legitimacy requires citizen understanding of decision-making processes, which sophisticated algorithms may undermine.",
+        "casey_key_evidence": [
+          "Williams Lake council spent 40 minutes debating simple zoning application, showing complexity challenges",
+          "Provincial integrated service delivery platforms failed in half of rural municipalities five years ago",
+          "Digital divide exists where half the population gets news from radio and municipal websites unchanged since 2018"
+        ],
+        "resolution": "Both agreed that technology can enhance governance if democratic accountability is built in from the start, with Casey accepting regional cooperation could work if citizens understand decision-making processes, and Riley acknowledging that human elements of democracy must be preserved.",
+        "topics_covered": [
+          "Predictive maintenance vs. reactive infrastructure management",
+          "Regional cooperation and shared technology services",
+          "Democratic accountability and citizen understanding of AI decisions",
+          "Digital divide in rural civic engagement",
+          "Cost-benefit analysis of municipal AI adoption"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
