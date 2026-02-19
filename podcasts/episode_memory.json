@@ -1,20 +1,4 @@
 {
-  "2026-01-28": {
-    "timestamp": 1769607800.503853,
-    "topics": [
-      "AI",
-      "automation",
-      "rural broadband",
-      "innovation",
-      "sustainability"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact"
-    ],
-    "date": "2026-01-28"
-  },
   "2026-01-29": {
     "timestamp": 1769694954.808571,
     "topics": [
@@ -388,5 +372,25 @@
       "connectivity"
     ],
     "date": "2026-02-18"
+  },
+  "2026-02-19": {
+    "timestamp": 1771506395.977498,
+    "topics": [
+      "[Techdirt] Preserving The Web Is Not The Problem. Losing It ",
+      "[Nautilus] Space Age Technology Reveals Secrets of Bronze Ag",
+      "[The Narwhal] B.C.\u2019s critical minerals push to reshape the p",
+      "[NYT Top Stories] Satellite Feature on iPhone Allowed Skiers",
+      "[Quesnel Cariboo Observer] B.C. quietly suspends major affor",
+      "[IndigiNews] Exhibition explores \u2018total visual languages\u2019 bi",
+      "[Al Jazeera English] Glacier grafting: How an Indigenous art",
+      "[The Narwhal] As B.C. stokes its economic engine, Eby says r"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-02-19"
   }
 }
