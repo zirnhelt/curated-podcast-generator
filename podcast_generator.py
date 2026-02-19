@@ -1166,16 +1166,17 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
     else:
         deep_dive_desc = f"Deep dive into {theme_name.lower()}, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies."
 
-    description = f"""Riley and Casey explore technology and society in rural communities. Today's focus: {theme_name}.
-
-NEWS ROUNDUP: We break down {stories_preview}, and explore what these developments mean for communities like ours.
-
-RURAL CONNECTIONS: {deep_dive_desc}
-
-Hosts: Riley ({riley_bio}) and Casey ({casey_bio})."""
+    description = (
+        f"<p>Riley and Casey explore technology and society in rural communities. "
+        f"Today's focus: {theme_name}.</p>"
+        f"<p><b>NEWS ROUNDUP:</b> We break down {stories_preview}, and explore what "
+        f"these developments mean for communities like ours.</p>"
+        f"<p><b>RURAL CONNECTIONS:</b> {deep_dive_desc}</p>"
+        f"<p><b>Hosts:</b> Riley ({riley_bio}) and Casey ({casey_bio}).</p>"
+    )
 
     # Add sources — discussed articles first, then additional sources
-    # Citations are formatted as HTML links for podcast apps and RSS readers
+    # Citations are formatted as HTML list items for podcast apps and RSS readers
     def _format_citation(article):
         source_name = article.get('authors', [{}])[0].get('name', 'Unknown Source')
         article_title = article.get('title', 'Untitled')[:60] + ("..." if len(article.get('title', '')) > 60 else "")
@@ -1187,23 +1188,36 @@ Hosts: Riley ({riley_bio}) and Casey ({casey_bio})."""
     discussed_all = discussed_news[:12] + discussed_deep
     extra_all = extra_news[:12] + extra_deep
 
-    citations_text = ""
+    citations_html = ""
     if discussed_all:
-        citations_text += "\n\nSources discussed:\n"
-        for i, article in enumerate(discussed_all, 1):
-            citations_text += f"{i}. {_format_citation(article)}\n"
+        citations_html += "<p><b>Sources discussed:</b></p><ul>"
+        for article in discussed_all:
+            citations_html += f"<li>{_format_citation(article)}</li>"
+        citations_html += "</ul>"
 
     if extra_all:
-        start = len(discussed_all) + 1
-        citations_text += "\nAdditional sources provided:\n"
-        for i, article in enumerate(extra_all, start):
-            citations_text += f"{i}. {_format_citation(article)}\n"
+        citations_html += "<p><b>Additional sources provided:</b></p><ul>"
+        for article in extra_all:
+            citations_html += f"<li>{_format_citation(article)}</li>"
+        citations_html += "</ul>"
 
     if not discussed_all and not extra_all:
-        citations_text += "\n\nSources:\n(none)\n"
+        citations_html = "<p><b>Sources:</b> (none)</p>"
 
-    # Add credits
-    description += citations_text + CONFIG['credits']['text']
+    # Build HTML credits block
+    credits = CONFIG['credits']['structured']
+    credits_html = (
+        "<p><b>Credits</b><br>"
+        f"Theme Song: {credits['theme_song']}<br>"
+        f"Content Curation &amp; Script: {credits['content_curation']}<br>"
+        f"TTS Voices: {credits['text_to_speech']}<br>"
+        f"Cover Art: {credits['cover_art']}<br>"
+        f"Podcast Coordination: {credits['coordination']}<br>"
+        f"&#169; 2026 {credits['copyright_holder']}. "
+        f"Licensed under <a href=\"{credits['license_url']}\">{credits['license']}</a>.</p>"
+    )
+
+    description += citations_html + credits_html
 
     return description
 
