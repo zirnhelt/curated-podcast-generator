@@ -31,7 +31,7 @@ def generate_index_html():
         credits_html += f'                <p><strong>{item["label"]}:</strong> {item["value"]}</p>\n'
 
     # Generate weekly schedule HTML
-    days_of_week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     schedule_html = ""
     for day_num, day_name in enumerate(days_of_week):
         theme = themes_config[str(day_num)]
