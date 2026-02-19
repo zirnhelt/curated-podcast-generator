@@ -1,0 +1,149 @@
+{
+  "episode": {
+    "date": "2026-02-19",
+    "formatted_date": "Thursday, February 19, 2026",
+    "theme": "Indigenous Lands & Innovation",
+    "title": "Cariboo Signals - Indigenous Lands & Innovation",
+    "description": "Riley and Casey explore technology and society in rural communities. Today's focus: Indigenous Lands & Innovation.\n\nNEWS ROUNDUP: We break down [Nautilus] Space Age Technology Reveals Secrets of Bronze Age Sword and [Quesnel Cariboo Observer] B.C. quietly suspends major affordable housing fund, leaving proponents holding the bag, plus 1 more stories, and explore what these developments mean for communities like ours.\n\nRURAL CONNECTIONS: Can Indigenous communities use technology to shift power relationships and control innovation processes, or are they being forced to innovate around systemic problems while facing extractive timelines? Topics include: Digital preservation and cultural knowledge documentation, Critical minerals extraction vs Indigenous consent processes, Indigenous-controlled technology infrastructure requirements, Scale mismatches between community governance and global commodity timelines, Technology as a tool for shifting power relationships rather than just responding to them.\n\nHosts: Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).\n\nSources discussed:\n1. Nautilus: <a href=\"https://nautil.us/space-age-technology-reveals-secrets-of-bronze-age-sword-1268753/\">[Nautilus] Space Age Technology Reveals Secrets of Bronze Ag...</a>\n2. Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/02/18/b-c-quietly-suspends-major-affordable-housing-fund-leaving-proponents-holding-the-bag/\">[Quesnel Cariboo Observer] B.C. quietly suspends major affor...</a>\n3. My Cariboo Now: <a href=\"https://www.mycariboonow.com/142330/news/provincial-reporter/mla-harman-bhangu-is-11th-candidate-to-enter-b-c-conservative-leadership-race-2/\">[My Cariboo Now] MLA Harman Bhangu is 11th candidate to ente...</a>\n4. Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/02/18/rehabilitated-eagle-released-in-fort-st-james-after-7-months/\">[Quesnel Cariboo Observer] Rehabilitated eagle released in F...</a>\n5. The Narwhal: <a href=\"https://thenarwhal.ca/bc-budget-economy-reconciliation/\">[The Narwhal] As B.C. stokes its economic engine, Eby says r...</a>\n\nAdditional sources provided:\n6. Techdirt: <a href=\"https://www.techdirt.com/2026/02/17/preserving-the-web-is-not-the-problem-losing-it-is/\">[Techdirt] Preserving The Web Is Not The Problem. Losing It ...</a>\n7. The Narwhal: <a href=\"https://thenarwhal.ca/bc-mining-push-2026/\">[The Narwhal] B.C.’s critical minerals push to reshape the p...</a>\n8. NYT Top Stories: <a href=\"https://www.nytimes.com/2026/02/18/us/apple-iphone-sos-satellite-rescue.html\">[NYT Top Stories] Satellite Feature on iPhone Allowed Skiers...</a>\n9. IndigiNews: <a href=\"https://indiginews.com/arts/every-river-has-a-mouth-salish-art-exhibition/\">[IndigiNews] Exhibition explores ‘total visual languages’ bi...</a>\n10. Al Jazeera English: <a href=\"https://www.aljazeera.com/news/2026/2/17/glacier-grafting-how-an-indigenous-art-is-countering-water-scarcity?traffic_source=rss\">[Al Jazeera English] Glacier grafting: How an Indigenous art...</a>\n\n--- Credits ---\nTheme Song: Cariboo Signals by Sumo AI (suno.com)\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: OpenAI TTS API\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt\n\n© 2026 Erich Zirnhelt. Licensed under CC BY-NC 4.0.\nhttps://creativecommons.org/licenses/by-nc/4.0/",
+    "generated_at": "2026-02-19T05:06:35.972954-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Techdirt] Preserving The Web Is Not The Problem. Losing It Is.",
+          "url": "https://www.techdirt.com/2026/02/17/preserving-the-web-is-not-the-problem-losing-it-is/",
+          "source": "Techdirt",
+          "ai_score": 0,
+          "date_published": "2026-02-17T23:24:37+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] Space Age Technology Reveals Secrets of Bronze Age Sword",
+          "url": "https://nautil.us/space-age-technology-reveals-secrets-of-bronze-age-sword-1268753/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-02-18T21:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[The Narwhal] B.C.’s critical minerals push to reshape the province — fast and without consent?",
+          "url": "https://thenarwhal.ca/bc-mining-push-2026/",
+          "source": "The Narwhal",
+          "ai_score": 0,
+          "date_published": "2026-02-17T13:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] Satellite Feature on iPhone Allowed Skiers to Seek Help After Avalanche",
+          "url": "https://www.nytimes.com/2026/02/18/us/apple-iphone-sos-satellite-rescue.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-02-19T00:00:57+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] B.C. quietly suspends major affordable housing fund, leaving proponents holding the bag",
+          "url": "https://quesnelobserver.com/2026/02/18/b-c-quietly-suspends-major-affordable-housing-fund-leaving-proponents-holding-the-bag/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-02-18T23:30:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[My Cariboo Now] MLA Harman Bhangu is 11th candidate to enter B.C. Conservative leadership race",
+          "url": "https://www.mycariboonow.com/142330/news/provincial-reporter/mla-harman-bhangu-is-11th-candidate-to-enter-b-c-conservative-leadership-race-2/",
+          "source": "My Cariboo Now",
+          "ai_score": 0,
+          "date_published": "2026-02-18T21:09:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Rehabilitated eagle released in Fort St. James after 7 months",
+          "url": "https://quesnelobserver.com/2026/02/18/rehabilitated-eagle-released-in-fort-st-james-after-7-months/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-02-18T18:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Indigenous Lands & Innovation",
+      "articles": [
+        {
+          "title": "[IndigiNews] Exhibition explores ‘total visual languages’ binding Salish peoples together",
+          "url": "https://indiginews.com/arts/every-river-has-a-mouth-salish-art-exhibition/",
+          "source": "IndigiNews",
+          "ai_score": 0,
+          "date_published": "2026-02-17T16:23:50+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] Glacier grafting: How an Indigenous art is countering water scarcity",
+          "url": "https://www.aljazeera.com/news/2026/2/17/glacier-grafting-how-an-indigenous-art-is-countering-water-scarcity?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 0,
+          "date_published": "2026-02-17T15:54:34+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Narwhal] As B.C. stokes its economic engine, Eby says reconciliation law is in the way",
+          "url": "https://thenarwhal.ca/bc-budget-economy-reconciliation/",
+          "source": "The Narwhal",
+          "ai_score": 0,
+          "date_published": "2026-02-18T13:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Can Indigenous communities use technology to shift power relationships and control innovation processes, or are they being forced to innovate around systemic problems while facing extractive timelines?",
+        "riley_position": "Indigenous communities can lead innovation by controlling technology development from the start, using tools like blockchain, digital governance platforms, and environmental monitoring to strengthen self-determination and shift power dynamics.",
+        "riley_key_evidence": [
+          "Coast Salish artists using traditional and digital media for visual storytelling systems",
+          "Himalayan communities using traditional ice harvesting with modern materials for glacier grafting",
+          "Indigenous communities building blockchain registries and peer-to-peer networks for knowledge preservation"
+        ],
+        "casey_position": "While Indigenous-led innovation has potential, communities face structural power imbalances with government and industry operating on faster timelines, forcing reactive responses rather than genuine control over development.",
+        "casey_key_evidence": [
+          "BC's accelerated critical minerals extraction without meaningful Indigenous consent",
+          "Premier Eby's comments about reconciliation legislation being 'in the way' of economic development",
+          "Communities being asked to make decisions about projects with decades-long implications under rushed consultation processes"
+        ],
+        "resolution": "Both agreed that Indigenous technological sovereignty should be a prerequisite for resource development, with funding from industry, and concluded by asking listeners what Indigenous-led innovation would look like specifically in Cariboo communities.",
+        "topics_covered": [
+          "Digital preservation and cultural knowledge documentation",
+          "Critical minerals extraction vs Indigenous consent processes",
+          "Indigenous-controlled technology infrastructure requirements",
+          "Scale mismatches between community governance and global commodity timelines",
+          "Technology as a tool for shifting power relationships rather than just responding to them"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
