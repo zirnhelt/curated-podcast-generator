@@ -128,5 +128,31 @@
       "Scale mismatches between community governance and global commodity timelines",
       "Technology as a tool for shifting power relationships rather than just responding to them"
     ]
+  },
+  "2026-02-20": {
+    "timestamp": 1771592409.205856,
+    "date": "2026-02-20",
+    "theme": "Wild Spaces & Outdoor Life",
+    "central_question": "Is advancing technology genuinely improving backcountry safety accessibility for rural communities, or is it creating new barriers and false confidence?",
+    "riley_position": "Technology is democratizing backcountry safety through more affordable devices, better educational tools, and expanding satellite connectivity that makes comprehensive safety equipment accessible to more people.",
+    "riley_key_evidence": [
+      "Amazfit T-Rex Ultra 2 offers premium GPS features at half the cost of Garmin devices",
+      "Apple's Emergency SOS via satellite is built into mainstream phones without per-message fees",
+      "Starlink and cellular carriers are expanding rural connectivity infrastructure"
+    ],
+    "casey_position": "Technology creates equity barriers and false confidence while failing to address fundamental challenges like training access, connectivity gaps, and the need for hands-on backcountry skills.",
+    "casey_key_evidence": [
+      "Avalanche Canada's app was initially built for users who already understood technical terminology",
+      "Williams Lake's avalanche safety program disappeared after two seasons when the coordinator left",
+      "Satellite communicators still cost hundreds of dollars plus monthly fees, creating income-based safety tiers"
+    ],
+    "resolution": "They converged on community-based solutions that integrate technology thoughtfully, agreeing that local partnerships and rural-specific programs offer more promise than waiting for generic tech solutions.",
+    "topics_covered": [
+      "Technology equity and affordability barriers",
+      "Rural connectivity and infrastructure challenges",
+      "Training program sustainability and access",
+      "Technology literacy versus traditional backcountry skills",
+      "Community-based implementation strategies"
+    ]
   }
 }

@@ -1,20 +1,4 @@
 {
-  "2026-01-29": {
-    "timestamp": 1769694954.808571,
-    "topics": [
-      "AI",
-      "automation",
-      "innovation",
-      "sustainability",
-      "community development"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact"
-    ],
-    "date": "2026-01-29"
-  },
   "2026-01-30": {
     "timestamp": 1769781028.998421,
     "topics": [
@@ -392,5 +376,25 @@
       "Indigenous tech"
     ],
     "date": "2026-02-19"
+  },
+  "2026-02-20": {
+    "timestamp": 1771592409.205173,
+    "topics": [
+      "[Boing Boing] Amazing camera trap footage represents hope fo",
+      "[Android Authority] Amazfit just launched its biggest watch ",
+      "[NYT Top Stories] Another Storm Complicates Efforts to Recov",
+      "[Quesnel Cariboo Observer] B.C. skiers cautioned after split",
+      "[NYT Top Stories] After Avalanche Warnings, a Sierra Nevada ",
+      "[TechRadar] Forget the Samsung Galaxy Watch Ultra 2 \u2014 the Am",
+      "[TechRadar] Garmin Fenix 9 incoming? CEO Cliff Pemble teases",
+      "[NYT Top Stories] What You Need to Know About Avalanche Safe"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "connectivity"
+    ],
+    "date": "2026-02-20"
   }
 }
