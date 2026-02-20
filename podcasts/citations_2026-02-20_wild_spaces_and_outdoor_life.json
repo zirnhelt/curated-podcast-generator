@@ -1,0 +1,149 @@
+{
+  "episode": {
+    "date": "2026-02-20",
+    "formatted_date": "Friday, February 20, 2026",
+    "theme": "Wild Spaces & Outdoor Life",
+    "title": "Cariboo Signals - Wild Spaces & Outdoor Life",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Wild Spaces & Outdoor Life.</p><p><b>NEWS ROUNDUP:</b> We break down [Boing Boing] Amazing camera trap footage represents hope for endangered tigers and [Android Authority] Amazfit just launched its biggest watch yet, and it’s packed for navigating, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Is advancing technology genuinely improving backcountry safety accessibility for rural communities, or is it creating new barriers and false confidence? Topics include: Technology equity and affordability barriers, Rural connectivity and infrastructure challenges, Training program sustainability and access, Technology literacy versus traditional backcountry skills, Community-based implementation strategies.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>TechRadar: <a href=\"https://www.techradar.com/health-fitness/forget-the-samsung-galaxy-watch-ultra-2-the-amazfit-t-rex-ultra-2-might-be-the-surprise-outdoor-smartwatch-to-beat-this-year\">[TechRadar] Forget the Samsung Galaxy Watch Ultra 2 — the Am...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/article/backcountry-skiing-safety-avalanche.html\">[NYT Top Stories] What You Need to Know About Avalanche Safe...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Boing Boing: <a href=\"https://boingboing.net/2026/02/16/amazing-camera-trap-footage-represents-hope-for-endangered-tigers.html\">[Boing Boing] Amazing camera trap footage represents hope fo...</a></li><li>Android Authority: <a href=\"https://www.androidauthority.com/amazfit-t-rex-ultra-2-launch-3642636/\">[Android Authority] Amazfit just launched its biggest watch ...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/02/19/weather/recovery-efforts-tahoe-avalanche-more-snow.html\">[NYT Top Stories] Another Storm Complicates Efforts to Recov...</a></li><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/02/19/b-c-skiers-cautioned-after-splitboarder-breaks-foot-in-rogers-pass-avalanche/\">[Quesnel Cariboo Observer] B.C. skiers cautioned after split...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/02/19/nyregion/avalanche-lake-tahoe-deaths.html\">[NYT Top Stories] After Avalanche Warnings, a Sierra Nevada ...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/02/19/us/lake-tahoe-avalanche-recovery-safety.html\">[NYT Top Stories] In Lake Tahoe Avalanche Recovery, the Safe...</a></li><li>Lifehacker: <a href=\"https://lifehacker.com/tech/iphone-emergency-sos-feature-can-save-your-life-in-an-emergency?utm_medium=RSS\">[Lifehacker] This iPhone Feature Can Save Your Life in an Em...</a></li><li>TechRadar: <a href=\"https://www.techradar.com/health-fitness/garmin-fenix-9-incoming-ceo-cliff-pemble-teases-big-things-to-come-in-the-back-half-of-the-year\">[TechRadar] Garmin Fenix 9 incoming? CEO Cliff Pemble teases...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Sumo AI<br>Content Curation &amp; Script: Claude (Anthropic)<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-02-20T05:00:09.198911-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Boing Boing] Amazing camera trap footage represents hope for endangered tigers",
+          "url": "https://boingboing.net/2026/02/16/amazing-camera-trap-footage-represents-hope-for-endangered-tigers.html",
+          "source": "Boing Boing",
+          "ai_score": 0,
+          "date_published": "2026-02-16T14:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Android Authority] Amazfit just launched its biggest watch yet, and it’s packed for navigating",
+          "url": "https://www.androidauthority.com/amazfit-t-rex-ultra-2-launch-3642636/",
+          "source": "Android Authority",
+          "ai_score": 0,
+          "date_published": "2026-02-20T00:25:41+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] Another Storm Complicates Efforts to Recover Victims of Tahoe Avalanche",
+          "url": "https://www.nytimes.com/2026/02/19/weather/recovery-efforts-tahoe-avalanche-more-snow.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-02-19T20:35:33+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] B.C. skiers cautioned after splitboarder breaks foot in Rogers Pass avalanche",
+          "url": "https://quesnelobserver.com/2026/02/19/b-c-skiers-cautioned-after-splitboarder-breaks-foot-in-rogers-pass-avalanche/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-02-19T20:10:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] After Avalanche Warnings, a Sierra Nevada Tragedy",
+          "url": "https://www.nytimes.com/2026/02/19/nyregion/avalanche-lake-tahoe-deaths.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-02-19T13:48:18+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] In Lake Tahoe Avalanche Recovery, the Safety of Searchers Is Top Concern",
+          "url": "https://www.nytimes.com/2026/02/19/us/lake-tahoe-avalanche-recovery-safety.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-02-19T10:06:01+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Lifehacker] This iPhone Feature Can Save Your Life in an Emergency",
+          "url": "https://lifehacker.com/tech/iphone-emergency-sos-feature-can-save-your-life-in-an-emergency?utm_medium=RSS",
+          "source": "Lifehacker",
+          "ai_score": 0,
+          "date_published": "2026-02-19T18:00:13+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Wild Spaces & Outdoor Life",
+      "articles": [
+        {
+          "title": "[TechRadar] Forget the Samsung Galaxy Watch Ultra 2 — the Amazfit T-Rex Ultra 2 might be the surprise outdoor smartwatch to beat this year",
+          "url": "https://www.techradar.com/health-fitness/forget-the-samsung-galaxy-watch-ultra-2-the-amazfit-t-rex-ultra-2-might-be-the-surprise-outdoor-smartwatch-to-beat-this-year",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-02-19T23:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[TechRadar] Garmin Fenix 9 incoming? CEO Cliff Pemble teases big things to come 'in the back half of the year'",
+          "url": "https://www.techradar.com/health-fitness/garmin-fenix-9-incoming-ceo-cliff-pemble-teases-big-things-to-come-in-the-back-half-of-the-year",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-02-19T11:21:27+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] What You Need to Know About Avalanche Safety in the Backcountry",
+          "url": "https://www.nytimes.com/article/backcountry-skiing-safety-avalanche.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-02-18T19:38:06+00:00",
+          "summary": "",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Is advancing technology genuinely improving backcountry safety accessibility for rural communities, or is it creating new barriers and false confidence?",
+        "riley_position": "Technology is democratizing backcountry safety through more affordable devices, better educational tools, and expanding satellite connectivity that makes comprehensive safety equipment accessible to more people.",
+        "riley_key_evidence": [
+          "Amazfit T-Rex Ultra 2 offers premium GPS features at half the cost of Garmin devices",
+          "Apple's Emergency SOS via satellite is built into mainstream phones without per-message fees",
+          "Starlink and cellular carriers are expanding rural connectivity infrastructure"
+        ],
+        "casey_position": "Technology creates equity barriers and false confidence while failing to address fundamental challenges like training access, connectivity gaps, and the need for hands-on backcountry skills.",
+        "casey_key_evidence": [
+          "Avalanche Canada's app was initially built for users who already understood technical terminology",
+          "Williams Lake's avalanche safety program disappeared after two seasons when the coordinator left",
+          "Satellite communicators still cost hundreds of dollars plus monthly fees, creating income-based safety tiers"
+        ],
+        "resolution": "They converged on community-based solutions that integrate technology thoughtfully, agreeing that local partnerships and rural-specific programs offer more promise than waiting for generic tech solutions.",
+        "topics_covered": [
+          "Technology equity and affordability barriers",
+          "Rural connectivity and infrastructure challenges",
+          "Training program sustainability and access",
+          "Technology literacy versus traditional backcountry skills",
+          "Community-based implementation strategies"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
