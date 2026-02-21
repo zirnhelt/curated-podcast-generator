@@ -90,8 +90,11 @@ def get_podcast_feed_url(weekday):
     return f"{SUPER_RSS_BASE_URL}/feed-podcast-{day_name}.json"
 
 # Claude model selection (override via environment variables)
+# Cost hierarchy (cheapest to most expensive): Haiku → Sonnet → Opus
+# Opus is ~5x the cost of Sonnet — only use it if quality clearly demands it.
 SCRIPT_MODEL = os.getenv("CLAUDE_SCRIPT_MODEL", "claude-sonnet-4-20250514")
-POLISH_MODEL = os.getenv("CLAUDE_POLISH_MODEL", "claude-opus-4-6")
+POLISH_MODEL = os.getenv("CLAUDE_POLISH_MODEL", "claude-sonnet-4-20250514")
+SUMMARY_MODEL = os.getenv("CLAUDE_SUMMARY_MODEL", "claude-3-5-haiku-20241022")
 
 # Music files
 INTRO_MUSIC = SCRIPT_DIR / "cariboo-signals-intro.mp3"
@@ -127,8 +130,8 @@ CONFIG = {
 # Batch API configuration
 # Set PODCAST_USE_BATCH=0 to disable batch processing and use real-time calls
 USE_BATCH_API = os.getenv("PODCAST_USE_BATCH", "1") == "1"
-BATCH_POLL_INTERVAL = 10  # seconds between status checks
-BATCH_POLL_TIMEOUT = 600  # max seconds to wait for batch completion
+BATCH_POLL_INTERVAL = 10   # seconds between status checks
+BATCH_POLL_TIMEOUT = 1800  # max seconds to wait (30 min — batch API can take >10 min)
 
 
 def build_cached_system_prompt():
@@ -308,6 +311,49 @@ def fact_check_deep_dive(script, news_articles, deep_dive_articles):
 # Batch API helpers
 # ---------------------------------------------------------------------------
 
+def run_realtime_polish_and_factcheck(script, theme_name, news_articles, deep_dive_articles):
+    """Real-time fallback: combined polish+factcheck in ONE call using POLISH_MODEL.
+
+    Used when the Batch API times out or is disabled.  Runs the same
+    combined prompt as the batch path so we only make a single API call
+    instead of the old two-call sequence (polish → fact-check).
+    """
+    client = get_anthropic_client()
+    if not client or not script:
+        return script
+
+    prompts = CONFIG['prompts']
+    pf_template = prompts.get('polish_and_factcheck', {}).get('template')
+    if not pf_template:
+        # No combined template — fall back to legacy polish-only call
+        return polish_script_with_claude(script, theme_name, os.getenv('ANTHROPIC_API_KEY'))
+
+    verified_sources = _build_verified_sources(news_articles, deep_dive_articles)
+    pf_prompt = pf_template.format(
+        theme_name=theme_name,
+        script=script,
+        verified_sources=verified_sources
+    )
+
+    print(f"✨ Running polish+factcheck real-time ({POLISH_MODEL})...")
+    try:
+        response = api_retry(lambda: client.messages.create(
+            model=POLISH_MODEL,
+            max_tokens=8000,
+            messages=[{"role": "user", "content": pf_prompt}]
+        ))
+        result = response.content[0].text
+        if "**RILEY:**" in result and "**CASEY:**" in result:
+            print("✅ Script polished and fact-checked successfully!")
+            return result
+        else:
+            print("⚠️ Polish+factcheck may have broken script format, using original")
+            return script
+    except Exception as e:
+        print(f"⚠️ Error in polish+factcheck: {e}")
+        return script
+
+
 def _build_verified_sources(news_articles, deep_dive_articles):
     """Build the verified-sources reference string for fact-checking."""
     verified_sources = []
@@ -367,7 +413,7 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
     try:
         print("📦 Submitting post-processing batch (polish+factcheck + debate summary)...")
         print(f"   Polish+factcheck model: {POLISH_MODEL}")
-        print(f"   Debate summary model: {SCRIPT_MODEL}")
+        print(f"   Debate summary model: {SUMMARY_MODEL}")
 
         batch = client.messages.batches.create(
             requests=[
@@ -382,7 +428,7 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
                 {
                     "custom_id": "debate-summary",
                     "params": {
-                        "model": SCRIPT_MODEL,
+                        "model": SUMMARY_MODEL,
                         "max_tokens": 1000,
                         "messages": [{"role": "user", "content": debate_prompt}]
                     }
@@ -663,7 +709,7 @@ def extract_debate_summary(script, theme_name):
 
     try:
         response = api_retry(lambda: client.messages.create(
-            model=SCRIPT_MODEL,
+            model=SUMMARY_MODEL,
             max_tokens=1000,
             messages=[{"role": "user", "content": prompt}]
         ))
@@ -2266,22 +2312,21 @@ def main():
             if batch_script:
                 script = batch_script
             else:
-                # Batch polish failed — fall back to real-time calls
-                print("⚠️ Batch polish failed, falling back to real-time calls...")
-                api_key = os.getenv('ANTHROPIC_API_KEY')
-                script = polish_script_with_claude(script, today_theme, api_key)
-                if script:
-                    script = fact_check_deep_dive(script, news_articles, deep_dive_articles)
+                # Batch polish failed — fall back to a single combined real-time call
+                # (one call instead of the old two-call polish→factcheck sequence)
+                print("⚠️ Batch polish failed, falling back to single real-time call...")
+                script = run_realtime_polish_and_factcheck(
+                    script, today_theme, news_articles, deep_dive_articles
+                )
 
             if batch_debate:
                 debate_summary = batch_debate
 
         elif script:
-            # Real-time path (batch disabled)
-            api_key = os.getenv('ANTHROPIC_API_KEY')
-            script = polish_script_with_claude(script, today_theme, api_key)
-            if script:
-                script = fact_check_deep_dive(script, news_articles, deep_dive_articles)
+            # Real-time path (batch disabled) — single combined call
+            script = run_realtime_polish_and_factcheck(
+                script, today_theme, news_articles, deep_dive_articles
+            )
 
         if not script:
             print("❌ Failed to generate script. Exiting.")
