@@ -1,20 +1,4 @@
 {
-  "2026-01-30": {
-    "timestamp": 1769781028.998421,
-    "topics": [
-      "AI",
-      "automation",
-      "digital divide",
-      "innovation",
-      "sustainability"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact"
-    ],
-    "date": "2026-01-30"
-  },
   "2026-01-31": {
     "timestamp": 1769866621.117904,
     "topics": [
@@ -396,5 +380,25 @@
       "connectivity"
     ],
     "date": "2026-02-20"
+  },
+  "2026-02-21": {
+    "timestamp": 1771678068.281488,
+    "topics": [
+      "[Al Jazeera English] UK weighs removing ex-Prince Andrew fro",
+      "[Neowin] Microsoft announces new ESU programs for more versi",
+      "[Toms Guide] I tested Reddit\u2019s favorite gaming headsets on 7",
+      "[XDA Developers] KDE Plasma 6.7.0 will make managing your pr",
+      "[The Economic Times] Odisha mobilises over 5,000 MSMEs in cl",
+      "[My Cariboo Now] B.C. paramedics union reaches agreement wit",
+      "[Toms Guide] I tested the 'Death Star of speakers' for a wee",
+      "[TipRanks] Nscale Targets Telecom Opportunities in Sovereign"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-02-21"
   }
 }
