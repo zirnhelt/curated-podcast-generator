@@ -392,11 +392,12 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
         verified_sources=verified_sources
     )
 
-    # Build debate summary prompt (same as extract_debate_summary)
+    # Build debate summary prompt — only send the deep-dive section (30% of script)
+    deep_dive_section = _extract_deep_dive_section(script)
     debate_prompt = (
-        "Analyze the DEEP DIVE segment of this podcast script and extract a structured summary.\n\n"
+        "Analyze this DEEP DIVE podcast segment and extract a structured summary.\n\n"
         f"Theme: {theme_name}\n\n"
-        "Script:\n" + script + "\n\n"
+        "Segment:\n" + deep_dive_section + "\n\n"
         "Return a JSON object with exactly these fields:\n"
         "{\n"
         '  "central_question": "The main question or thesis debated (one sentence)",\n'
@@ -679,6 +680,14 @@ def update_debate_memory(date_key, theme, debate_summary):
     }
     save_memory(DEBATE_MEMORY_FILE, memory)
 
+def _extract_deep_dive_section(script):
+    """Return just the DEEP DIVE section of the script, or the full script as fallback."""
+    idx = script.lower().find("deep dive")
+    if idx != -1:
+        return script[idx:]
+    return script
+
+
 def extract_debate_summary(script, theme_name):
     """Extract a structured summary of the deep dive debate from the script.
 
@@ -690,10 +699,14 @@ def extract_debate_summary(script, theme_name):
     if not client or not script:
         return _extract_debate_summary_fallback(script, theme_name)
 
+    # Only send the deep-dive section — the rest of the script is irrelevant
+    # and wastes input tokens (deep dive is ~30% of the full script).
+    deep_dive_section = _extract_deep_dive_section(script)
+
     prompt = (
-        "Analyze the DEEP DIVE segment of this podcast script and extract a structured summary.\n\n"
+        "Analyze this DEEP DIVE podcast segment and extract a structured summary.\n\n"
         f"Theme: {theme_name}\n\n"
-        "Script:\n" + script + "\n\n"
+        "Segment:\n" + deep_dive_section + "\n\n"
         "Return a JSON object with exactly these fields:\n"
         "{\n"
         '  "central_question": "The main question or thesis debated (one sentence)",\n'
