@@ -1,0 +1,145 @@
+{
+  "episode": {
+    "date": "2026-02-22",
+    "formatted_date": "Sunday, February 22, 2026",
+    "theme": "Resilient Rural Futures",
+    "title": "Cariboo Signals - Resilient Rural Futures",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Resilient Rural Futures.</p><p><b>NEWS ROUNDUP:</b> We break down [Toms Guide] Experts explain why over 65s need this amount of sleep — and how to get it and [ScienceAlert] There's a Critical Thing You Can Do to Keep Alzheimer's Symptoms at Bay, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Deep dive on Resilient Rural Futures Topics include: broadband, AI, infrastructure, maintenance, funding.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>Toms Guide: <a href=\"https://www.tomsguide.com/wellness/sleep/experts-explain-why-over-65s-need-this-amount-of-sleep-and-how-to-get-it\">[Toms Guide] Experts explain why over 65s need this amount o...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/theres-a-critical-thing-you-can-do-to-keep-alzheimers-symptoms-at-bay\">[ScienceAlert] There's a Critical Thing You Can Do to Keep A...</a></li><li>Android Authority: <a href=\"https://www.androidauthority.com/jackery-explorer-5000-plus-deal-3642892/\">[Android Authority] Jackery Explorer 5000 Plus deal: My favo...</a></li><li>BC Gov News: <a href=\"https://news.gov.bc.ca/releases/2026MCM0010-000179\">[BC Gov News] Adding three mining projects to Critical Miner...</a></li><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/02/20/b-c-forests-minister-says-the-province-rethinking-firesmart-funding-model/\">[Quesnel Cariboo Observer] B.C. forests minister says the pr...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>WIRED: <a href=\"https://www.wired.com/story/government-docs-reveal-new-details-about-tesla-and-waymo-robotaxi-programs/\">[WIRED] Government Docs Reveal New Details About Tesla and W...</a></li><li>InsideEVs: <a href=\"https://insideevs.com/news/787926/nissan-leaf-delayed/\">[InsideEVs] Exclusive: Nissan's Most Affordable EV Just Got ...</a></li><li>ZDNet: <a href=\"https://www.zdnet.com/article/how-to-control-linux-pc-from-your-android-phone-kde-connect/\">[ZDNet] You can control your Linux PC from your Android phon...</a></li><li>GN 3D Printing: <a href=\"https://news.google.com/rss/articles/CBMirwFBVV95cUxPMUpydldZLUQxNmJJYVlxZ0FKR1g5Y2FNMmdvWmdldnFzZUZJNFV5Mk9FR0kwMlNFU1hlSmZCSUhfNjRBSmdYRkFFakROY0x1bGRLSGx3TWJEa0VVVE14aHRqY1NHaHFxaENDeV9TcjJ5OThVcDBManJNT3RaNS0tMk1qOHk0YnZLSlNXUlYwNGZXcUh0bUJWT01BNmViVDFPbUVobTBTWXRwWG1tdkg0?oc=5\">[GN 3D Printing] Six Fault Lines That Will Reshape Additive ...</a></li><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/02/20/lost-plate-leads-to-2-arrests-and-gun-ammo-seizure-in-prince-george/\">[Quesnel Cariboo Observer] Lost plate leads to 2 arrests and...</a></li><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/02/20/avalanche-kills-man-heli-skiing-in-columbia-mountains-with-b-c-company/\">[Quesnel Cariboo Observer] Avalanche kills man heli-skiing i...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Sumo AI<br>Content Curation &amp; Script: Claude (Anthropic)<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-02-22T04:50:54.891432-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Toms Guide] Experts explain why over 65s need this amount of sleep — and how to get it",
+          "url": "https://www.tomsguide.com/wellness/sleep/experts-explain-why-over-65s-need-this-amount-of-sleep-and-how-to-get-it",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-02-20T22:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[ScienceAlert] There's a Critical Thing You Can Do to Keep Alzheimer's Symptoms at Bay",
+          "url": "https://www.sciencealert.com/theres-a-critical-thing-you-can-do-to-keep-alzheimers-symptoms-at-bay",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-02-20T21:55:12+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[WIRED] Government Docs Reveal New Details About Tesla and Waymo Robotaxis’ Human Babysitters",
+          "url": "https://www.wired.com/story/government-docs-reveal-new-details-about-tesla-and-waymo-robotaxi-programs/",
+          "source": "WIRED",
+          "ai_score": 0,
+          "date_published": "2026-02-20T21:53:01+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[InsideEVs] Exclusive: Nissan's Most Affordable EV Just Got Delayed Indefinitely",
+          "url": "https://insideevs.com/news/787926/nissan-leaf-delayed/",
+          "source": "InsideEVs",
+          "ai_score": 0,
+          "date_published": "2026-02-20T21:36:33+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ZDNet] You can control your Linux PC from your Android phone",
+          "url": "https://www.zdnet.com/article/how-to-control-linux-pc-from-your-android-phone-kde-connect/",
+          "source": "ZDNet",
+          "ai_score": 0,
+          "date_published": "2026-02-20T21:06:45+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Android Authority] Jackery Explorer 5000 Plus deal: My favorite power station drops to record-low price",
+          "url": "https://www.androidauthority.com/jackery-explorer-5000-plus-deal-3642892/",
+          "source": "Android Authority",
+          "ai_score": 0,
+          "date_published": "2026-02-20T21:02:44+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[BC Gov News] Adding three mining projects to Critical Minerals Office",
+          "url": "https://news.gov.bc.ca/releases/2026MCM0010-000179",
+          "source": "BC Gov News",
+          "ai_score": 0,
+          "date_published": "2026-02-20T20:15:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[GN 3D Printing] Six Fault Lines That Will Reshape Additive Manufacturing, 2026–2028",
+          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPMUpydldZLUQxNmJJYVlxZ0FKR1g5Y2FNMmdvWmdldnFzZUZJNFV5Mk9FR0kwMlNFU1hlSmZCSUhfNjRBSmdYRkFFakROY0x1bGRLSGx3TWJEa0VVVE14aHRqY1NHaHFxaENDeV9TcjJ5OThVcDBManJNT3RaNS0tMk1qOHk0YnZLSlNXUlYwNGZXcUh0bUJWT01BNmViVDFPbUVobTBTWXRwWG1tdkg0?oc=5",
+          "source": "GN 3D Printing",
+          "ai_score": 0,
+          "date_published": "2026-02-19T18:54:32+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Resilient Rural Futures",
+      "articles": [
+        {
+          "title": "[Quesnel Cariboo Observer] Lost plate leads to 2 arrests and gun, ammo seizure in Prince George",
+          "url": "https://quesnelobserver.com/2026/02/20/lost-plate-leads-to-2-arrests-and-gun-ammo-seizure-in-prince-george/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-02-20T22:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Avalanche kills man heli-skiing in Columbia Mountains with B.C. company",
+          "url": "https://quesnelobserver.com/2026/02/20/avalanche-kills-man-heli-skiing-in-columbia-mountains-with-b-c-company/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-02-20T22:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] B.C. forests minister says the province rethinking FireSmart funding model",
+          "url": "https://quesnelobserver.com/2026/02/20/b-c-forests-minister-says-the-province-rethinking-firesmart-funding-model/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-02-20T21:30:00+00:00",
+          "summary": "",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Deep dive on Resilient Rural Futures",
+        "topics_covered": [
+          "broadband",
+          "AI",
+          "infrastructure",
+          "maintenance",
+          "funding"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
