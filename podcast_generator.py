@@ -114,8 +114,10 @@ INTERVAL_FADE_OUT_MS = 400
 EPISODE_MEMORY_FILE = PODCASTS_DIR / "episode_memory.json"
 HOST_MEMORY_FILE = PODCASTS_DIR / "host_personality_memory.json"
 DEBATE_MEMORY_FILE = PODCASTS_DIR / "debate_memory.json"
+CTA_MEMORY_FILE = PODCASTS_DIR / "cta_memory.json"
 MEMORY_RETENTION_DAYS = 21
 DEBATE_MEMORY_RETENTION_DAYS = 90
+CTA_MEMORY_RETENTION_DAYS = 365
 
 # Load all config at startup
 CONFIG = {
@@ -680,6 +682,41 @@ def update_debate_memory(date_key, theme, debate_summary):
     }
     save_memory(DEBATE_MEMORY_FILE, memory)
 
+def get_cta_memory():
+    """Load and clean CTA memory (keep last CTA_MEMORY_RETENTION_DAYS = 365 days)."""
+    memory = load_memory(CTA_MEMORY_FILE)
+
+    cutoff = get_pacific_now().timestamp() - (CTA_MEMORY_RETENTION_DAYS * 24 * 3600)
+
+    cleaned = {}
+    for k, v in memory.items():
+        if isinstance(v, dict) and 'timestamp' in v:
+            if v.get('timestamp', 0) > cutoff:
+                cleaned[k] = v
+        else:
+            print(f"  ⚠️  Skipping malformed CTA memory entry: {k}")
+
+    if len(cleaned) != len(memory):
+        save_memory(CTA_MEMORY_FILE, cleaned)
+        print(f"🧹 Cleaned CTA memory: {len(memory)} → {len(cleaned)} entries")
+
+    return cleaned
+
+
+def update_cta_memory(date_key, theme, calls_to_action):
+    """Save today's extracted calls to action to the one-year CTA cache."""
+    if not calls_to_action:
+        return
+    memory = get_cta_memory()
+    memory[date_key] = {
+        "timestamp": get_pacific_now().timestamp(),
+        "date": date_key,
+        "theme": theme,
+        "calls_to_action": calls_to_action,
+    }
+    save_memory(CTA_MEMORY_FILE, memory)
+
+
 def _extract_deep_dive_section(script):
     """Return just the DEEP DIVE section of the script, or the full script as fallback."""
     idx = script.lower().find("deep dive")
@@ -715,7 +752,8 @@ def extract_debate_summary(script, theme_name):
         '  "casey_position": "Casey\'s core argument in 1-2 sentences",\n'
         '  "casey_key_evidence": ["List of 2-3 specific facts/data/examples Casey cited"],\n'
         '  "resolution": "How the debate ended: who conceded what, or where they agreed to disagree (1-2 sentences)",\n'
-        '  "topics_covered": ["3-5 specific subtopics explored during the debate"]\n'
+        '  "topics_covered": ["3-5 specific subtopics explored during the debate"],\n'
+        '  "calls_to_action": ["Every concrete suggestion, project idea, or community action proposed during this segment — verbatim or very close paraphrase, 1-2 sentences each. Include all \'what if\', \'imagine\', \'here\'s who to call\', or \'a community could try\' style suggestions."]\n'
         "}\n\n"
         "Return ONLY the JSON object, no other text."
     )
@@ -822,6 +860,56 @@ def format_debate_memory_for_prompt(debate_memory, today_theme):
 
     context += "\n"
     return context
+
+
+def format_cta_history_for_prompt(cta_memory, today_theme):
+    """Format one-year CTA history into prompt context to prevent repetition.
+
+    Shows past calls to action on the same theme so hosts propose genuinely
+    new, more specific ideas rather than recycling generic suggestions.
+    Also shows a handful of CTAs from other themes to enable cross-pollination.
+    """
+    if not cta_memory:
+        return ""
+
+    same_theme = []
+    other_recent = []
+    for entry in cta_memory.values():
+        if not entry.get('calls_to_action'):
+            continue
+        if entry.get('theme', '').lower() == today_theme.lower():
+            same_theme.append(entry)
+        else:
+            other_recent.append(entry)
+
+    if not same_theme and not other_recent:
+        return ""
+
+    context = (
+        "PAST CALLS TO ACTION — one-year cache (do NOT repeat these; "
+        "build on them or get more specific and local):\n"
+    )
+
+    if same_theme:
+        same_theme.sort(key=lambda x: x.get('date', ''), reverse=True)
+        context += f'\nPrevious CTAs on "{today_theme}" (same theme — propose something new or drill deeper):\n'
+        for entry in same_theme:  # Show all same-theme CTAs — full year
+            date = entry.get('date', '?')
+            for cta in entry.get('calls_to_action', []):
+                context += f"  [{date}] {cta}\n"
+
+    if other_recent:
+        other_recent.sort(key=lambda x: x.get('date', ''), reverse=True)
+        context += "\nRecent CTAs on other themes (for inspiration and cross-theme connections):\n"
+        for entry in other_recent[:5]:
+            date = entry.get('date', '?')
+            theme = entry.get('theme', '?')
+            for cta in entry.get('calls_to_action', [])[:2]:  # Max 2 per episode
+                context += f"  [{date}] ({theme}) {cta}\n"
+
+    context += "\n"
+    return context
+
 
 def fetch_scoring_data():
     """Fetch article scores from the live super-rss-feed system."""
@@ -1397,7 +1485,7 @@ def format_memory_for_prompt(episode_memory, host_memory):
     return context
 
 
-def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None, feed_meta=None, bonus_articles=None, debate_memory=None):
+def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None, feed_meta=None, bonus_articles=None, debate_memory=None, cta_memory=None):
     """Generate conversational podcast script using Claude."""
     print("🎙️ Generating podcast script with Claude...")
 
@@ -1481,6 +1569,10 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
     # Add debate history so hosts don't repeat the same arguments
     if debate_memory:
         memory_context += format_debate_memory_for_prompt(debate_memory, theme_name)
+
+    # Add one-year CTA history so hosts don't recycle the same suggestions
+    if cta_memory:
+        memory_context += format_cta_history_for_prompt(cta_memory, theme_name)
 
     # Add feed theme description to memory context if available
     if feed_meta and feed_meta.get('theme_description'):
@@ -2216,6 +2308,7 @@ def main():
     episode_memory = get_episode_memory()
     host_memory = get_host_personality_memory()
     debate_memory = get_debate_memory()
+    cta_memory = get_cta_memory()
     
     # Check for existing files (stored in podcasts/ subfolder)
     date_key = pacific_now.strftime("%Y-%m-%d")
@@ -2307,7 +2400,8 @@ def main():
             news_articles, deep_dive_articles, today_theme,
             episode_memory, host_memory, evolving_context,
             psa_info=psa_info, feed_meta=feed_meta,
-            bonus_articles=bonus_articles, debate_memory=debate_memory
+            bonus_articles=bonus_articles, debate_memory=debate_memory,
+            cta_memory=cta_memory
         )
 
         if not script:
@@ -2375,6 +2469,12 @@ def main():
 
             # Update debate memory
             update_debate_memory(date_key, today_theme, debate_summary)
+
+            # Update one-year CTA cache
+            ctas = debate_summary.get('calls_to_action', []) if debate_summary else []
+            if ctas:
+                update_cta_memory(date_key, today_theme, ctas)
+                print(f"💡 Saved {len(ctas)} calls to action to CTA cache")
     else:
         print(f"🔄 Using existing script: {script_filename}")
         with open(script_filename, 'r', encoding='utf-8') as f:
