@@ -1,20 +1,4 @@
 {
-  "2026-01-31": {
-    "timestamp": 1769866621.117904,
-    "topics": [
-      "AI",
-      "automation",
-      "innovation",
-      "community development",
-      "infrastructure"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact"
-    ],
-    "date": "2026-01-31"
-  },
   "2026-02-01": {
     "timestamp": 1769953137.483355,
     "topics": [
@@ -400,5 +384,24 @@
       "Indigenous tech"
     ],
     "date": "2026-02-21"
+  },
+  "2026-02-22": {
+    "timestamp": 1771764654.897072,
+    "topics": [
+      "[Toms Guide] Experts explain why over 65s need this amount o",
+      "[ScienceAlert] There's a Critical Thing You Can Do to Keep A",
+      "[WIRED] Government Docs Reveal New Details About Tesla and W",
+      "[InsideEVs] Exclusive: Nissan's Most Affordable EV Just Got ",
+      "[ZDNet] You can control your Linux PC from your Android phon",
+      "[Quesnel Cariboo Observer] Lost plate leads to 2 arrests and",
+      "[Quesnel Cariboo Observer] Avalanche kills man heli-skiing i",
+      "[Quesnel Cariboo Observer] B.C. forests minister says the pr"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "connectivity"
+    ],
+    "date": "2026-02-22"
   }
 }
