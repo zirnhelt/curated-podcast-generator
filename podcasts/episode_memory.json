@@ -1,19 +1,4 @@
 {
-  "2026-02-01": {
-    "timestamp": 1769953137.483355,
-    "topics": [
-      "AI",
-      "innovation",
-      "sustainability",
-      "infrastructure"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact"
-    ],
-    "date": "2026-02-01"
-  },
   "2026-02-02": {
     "timestamp": 1770040706.943757,
     "topics": [
@@ -403,5 +388,25 @@
       "connectivity"
     ],
     "date": "2026-02-22"
+  },
+  "2026-02-23": {
+    "timestamp": 1771851998.024062,
+    "topics": [
+      "[The Tyee] Please Advise! Why Do Conservative MPs Keep Bolti",
+      "[Toms Guide] Netflix new releases \u2014 5 shows and movies you n",
+      "[XDA Developers] Microsoft Copilot is the best productivity ",
+      "[Toms Guide] I use the 'empty chair' prompt to streamline my",
+      "[Al Jazeera English] ICC to hold hearings on charges against",
+      "[The Tyee] Danielle Smith Is No Separatist. She\u2019s Much Worse",
+      "[The Tyee] Elbows Up for Indigenous Rights",
+      "[The Tyee] BC Premier\u2019s Office Sued over Firing of Employee "
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-02-23"
   }
 }

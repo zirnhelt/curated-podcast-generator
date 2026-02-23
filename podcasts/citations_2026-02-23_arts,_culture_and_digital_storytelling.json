@@ -1,0 +1,145 @@
+{
+  "episode": {
+    "date": "2026-02-23",
+    "formatted_date": "Monday, February 23, 2026",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "title": "Cariboo Signals - Arts, Culture & Digital Storytelling",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Arts, Culture & Digital Storytelling.</p><p><b>NEWS ROUNDUP:</b> We break down [The Tyee] Please Advise! Why Do Conservative MPs Keep Bolting? and [Hackaday] Panoramic Film Camera Made from 3D Printed Parts, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Deep dive on Arts, Culture & Digital Storytelling Topics include: broadband, connectivity, AI, infrastructure, maintenance.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>The Tyee: <a href=\"https://thetyee.ca/Opinion/2026/02/23/Please-Advise-Conservative-MPs-Bolting/\">[The Tyee] Please Advise! Why Do Conservative MPs Keep Bolti...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/02/20/panoramic-film-camera-made-from-3d-printed-parts/\">[Hackaday] Panoramic Film Camera Made from 3D Printed Parts</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Toms Guide: <a href=\"https://www.tomsguide.com/entertainment/netflix/new-netflix-shows-and-movies-february-23-march-1-2026\">[Toms Guide] Netflix new releases — 5 shows and movies you n...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/microsoft-copilot-is-the-best-productivity-app-on-windows-says-microsoft/\">[XDA Developers] Microsoft Copilot is the best productivity ...</a></li><li>Toms Guide: <a href=\"https://www.tomsguide.com/ai/i-use-the-empty-chair-prompt-to-streamline-my-workflow-heres-how-it-works\">[Toms Guide] I use the 'empty chair' prompt to streamline my...</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/news/2026/2/23/icc-to-hold-hearings-on-charges-against-ex-philippine-president-duterte?traffic_source=rss\">[Al Jazeera English] ICC to hold hearings on charges against...</a></li><li>Android Authority: <a href=\"https://www.androidauthority.com/samsung-privacy-display-coming-to-more-android-phones-3643074/\">[Android Authority] Looks like Samsung’s Privacy Display tri...</a></li><li>Toms Guide: <a href=\"https://www.tomsguide.com/home/why-you-should-never-water-your-peace-lily-with-tap-water-and-what-to-use-instead\">[Toms Guide] Why you should never water your peace lily with...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/Opinion/2026/02/23/Danielle-Smith-No-Separatist-Much-Worse/\">[The Tyee] Danielle Smith Is No Separatist. She’s Much Worse</a></li><li>The Tyee: <a href=\"https://thetyee.ca/Opinion/2026/02/23/Elbows-Up-Indigenous-Rights/\">[The Tyee] Elbows Up for Indigenous Rights</a></li><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/02/23/BC-Premier-Office-Sued-Firing-Employee-RCMP-Investigation/\">[The Tyee] BC Premier’s Office Sued over Firing of Employee ...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Sumo AI<br>Content Curation &amp; Script: Claude (Anthropic)<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-02-23T05:06:38.018587-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[The Tyee] Please Advise! Why Do Conservative MPs Keep Bolting?",
+          "url": "https://thetyee.ca/Opinion/2026/02/23/Please-Advise-Conservative-MPs-Bolting/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-02-23T08:10:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Toms Guide] Netflix new releases — 5 shows and movies you need to stream this week (Feb. 23-March 1)",
+          "url": "https://www.tomsguide.com/entertainment/netflix/new-netflix-shows-and-movies-february-23-march-1-2026",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-02-23T07:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] Microsoft Copilot is the best productivity app on Windows, says Microsoft",
+          "url": "https://www.xda-developers.com/microsoft-copilot-is-the-best-productivity-app-on-windows-says-microsoft/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-02-23T06:49:59+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] I use the 'empty chair' prompt to streamline my workflow — here’s how it works",
+          "url": "https://www.tomsguide.com/ai/i-use-the-empty-chair-prompt-to-streamline-my-workflow-heres-how-it-works",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-02-23T06:45:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] ICC to hold hearings on charges against ex-Philippine President Duterte",
+          "url": "https://www.aljazeera.com/news/2026/2/23/icc-to-hold-hearings-on-charges-against-ex-philippine-president-duterte?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 0,
+          "date_published": "2026-02-23T06:39:39+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Android Authority] Looks like Samsung’s Privacy Display trick won’t remain exclusive for long",
+          "url": "https://www.androidauthority.com/samsung-privacy-display-coming-to-more-android-phones-3643074/",
+          "source": "Android Authority",
+          "ai_score": 0,
+          "date_published": "2026-02-23T06:36:08+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] Why you should never water your peace lily with tap water — and what to use instead",
+          "url": "https://www.tomsguide.com/home/why-you-should-never-water-your-peace-lily-with-tap-water-and-what-to-use-instead",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-02-23T06:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Panoramic Film Camera Made from 3D Printed Parts",
+          "url": "https://hackaday.com/2026/02/20/panoramic-film-camera-made-from-3d-printed-parts/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-02-20T21:00:19+00:00",
+          "summary": "",
+          "discussed": true
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Arts, Culture & Digital Storytelling",
+      "articles": [
+        {
+          "title": "[The Tyee] Danielle Smith Is No Separatist. She’s Much Worse",
+          "url": "https://thetyee.ca/Opinion/2026/02/23/Danielle-Smith-No-Separatist-Much-Worse/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-02-23T08:40:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Tyee] Elbows Up for Indigenous Rights",
+          "url": "https://thetyee.ca/Opinion/2026/02/23/Elbows-Up-Indigenous-Rights/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-02-23T08:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Tyee] BC Premier’s Office Sued over Firing of Employee Under RCMP Investigation",
+          "url": "https://thetyee.ca/News/2026/02/23/BC-Premier-Office-Sued-Firing-Employee-RCMP-Investigation/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-02-23T08:20:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Deep dive on Arts, Culture & Digital Storytelling",
+        "topics_covered": [
+          "broadband",
+          "connectivity",
+          "AI",
+          "infrastructure",
+          "maintenance"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
