@@ -1,33 +1,4 @@
 {
-  "2026-02-02": {
-    "timestamp": 1770040706.943757,
-    "topics": [
-      "AI",
-      "machine learning",
-      "infrastructure"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption"
-    ],
-    "date": "2026-02-02"
-  },
-  "2026-02-03": {
-    "timestamp": 1770123643.771805,
-    "topics": [
-      "AI",
-      "rural broadband",
-      "innovation",
-      "sustainability",
-      "infrastructure"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact"
-    ],
-    "date": "2026-02-03"
-  },
   "2026-02-04": {
     "timestamp": 1770209939.447774,
     "topics": [
@@ -408,5 +379,25 @@
       "Indigenous tech"
     ],
     "date": "2026-02-23"
+  },
+  "2026-02-24": {
+    "timestamp": 1771939618.823815,
+    "topics": [
+      "[The Tyee] We Can\u2019t Wait for War to Mobilize the Public",
+      "[The Tyee] Police Watchdog Finds Failures in Missing Indigen",
+      "[XDA Developers] Panasonic won't build its own TVs anymore a",
+      "[Al Jazeera English] Kashmir, spying, demolitions: How Modi\u2019",
+      "[IBS Intelligence] Weak data infrastructure slows AI adoptio",
+      "[Neowin] Anthropic accuses China of 'industrial-scale' attem",
+      "[The Tyee] Can Vancouver Progressives Unite to Win the Next ",
+      "[The Tyee] A Sober Look at Alberta\u2019s Separatist Surge"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-02-24"
   }
 }

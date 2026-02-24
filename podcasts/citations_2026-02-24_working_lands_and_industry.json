@@ -1,0 +1,145 @@
+{
+  "episode": {
+    "date": "2026-02-24",
+    "formatted_date": "Tuesday, February 24, 2026",
+    "theme": "Working Lands & Industry",
+    "title": "Cariboo Signals - Working Lands & Industry",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Working Lands & Industry.</p><p><b>NEWS ROUNDUP:</b> We break down [The Tyee] Police Watchdog Finds Failures in Missing Indigenous Woman Case and [IBS Intelligence] Weak data infrastructure slows AI adoption, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Deep dive on Working Lands & Industry Topics include: broadband, satellite, precision agriculture, solar, AI.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/02/24/Police-Watchdog-Finds-Failures-Missing-Indigenous-Woman-Case/\">[The Tyee] Police Watchdog Finds Failures in Missing Indigen...</a></li><li>IBS Intelligence: <a href=\"https://news.google.com/rss/articles/CBMiiAFBVV95cUxQMkljMjRnTXNScUZtaVd0UnI5Zm5qMkNDLVpJMjdvRGZuaHFzT3lHcXlETzhmeU9QWVlVNVNaMkxpaVVSbkRCQkFYZEtvZTJyR29sUzg3cS1VVGV3NW43MlkzZkZ6NFFubmlKMHd4T3dISlFIUmJYWHh6WVdPTzFyUFI5N0dRVkM5?oc=5\">[IBS Intelligence] Weak data infrastructure slows AI adoptio...</a></li><li>Neowin: <a href=\"https://www.neowin.net/news/anthropic-accuses-china-of-industrial-scale-attempt-to-steal-claudes-abilities/\">[Neowin] Anthropic accuses China of 'industrial-scale' attem...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>The Tyee: <a href=\"https://thetyee.ca/Analysis/2026/02/24/We-Cannot-Wait-War-Mobilize-Public/\">[The Tyee] We Can’t Wait for War to Mobilize the Public</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/panasonic-wont-build-own-tvs-anymore-passes-baton-skyworth/\">[XDA Developers] Panasonic won't build its own TVs anymore a...</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/features/2026/2/24/kashmir-spying-demolitions-how-modis-india-embraced-israel-model?traffic_source=rss\">[Al Jazeera English] Kashmir, spying, demolitions: How Modi’...</a></li><li>New Atlas: <a href=\"https://newatlas.com/automotive/lamborghini-lanzador-electric-supercar-ev-concept/\">[New Atlas] Lamborghini kills its electric supercar that nob...</a></li><li>Toms Guide: <a href=\"https://www.tomsguide.com/entertainment/apple-tv/everything-new-coming-to-apple-tv-in-march-2026\">[Toms Guide] Everything new coming to Apple TV in March 2026</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/managed-switch-home-network-fixed-problems-didnt-know-existed/\">[XDA Developers] I added a managed switch to my home network...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/02/24/Can-Vancouver-Progressives-Unite/\">[The Tyee] Can Vancouver Progressives Unite to Win the Next ...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/Analysis/2026/02/24/Sober-Look-Alberta-Separatist-Surge/\">[The Tyee] A Sober Look at Alberta’s Separatist Surge</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Sumo AI<br>Content Curation &amp; Script: Claude (Anthropic)<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-02-24T05:26:58.817705-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[The Tyee] We Can’t Wait for War to Mobilize the Public",
+          "url": "https://thetyee.ca/Analysis/2026/02/24/We-Cannot-Wait-War-Mobilize-Public/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-02-24T08:20:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Tyee] Police Watchdog Finds Failures in Missing Indigenous Woman Case",
+          "url": "https://thetyee.ca/News/2026/02/24/Police-Watchdog-Finds-Failures-Missing-Indigenous-Woman-Case/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-02-24T08:10:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[XDA Developers] Panasonic won't build its own TVs anymore as it passes the baton to Skyworth",
+          "url": "https://www.xda-developers.com/panasonic-wont-build-own-tvs-anymore-passes-baton-skyworth/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-02-24T06:57:37+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] Kashmir, spying, demolitions: How Modi’s India embraced ‘Israel model’",
+          "url": "https://www.aljazeera.com/features/2026/2/24/kashmir-spying-demolitions-how-modis-india-embraced-israel-model?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 0,
+          "date_published": "2026-02-24T06:44:34+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[IBS Intelligence] Weak data infrastructure slows AI adoption",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQMkljMjRnTXNScUZtaVd0UnI5Zm5qMkNDLVpJMjdvRGZuaHFzT3lHcXlETzhmeU9QWVlVNVNaMkxpaVVSbkRCQkFYZEtvZTJyR29sUzg3cS1VVGV3NW43MlkzZkZ6NFFubmlKMHd4T3dISlFIUmJYWHh6WVdPTzFyUFI5N0dRVkM5?oc=5",
+          "source": "IBS Intelligence",
+          "ai_score": 0,
+          "date_published": "2026-02-24T06:44:10+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[New Atlas] Lamborghini kills its electric supercar that nobody wanted",
+          "url": "https://newatlas.com/automotive/lamborghini-lanzador-electric-supercar-ev-concept/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-02-24T06:33:12+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] Everything new coming to Apple TV in March 2026",
+          "url": "https://www.tomsguide.com/entertainment/apple-tv/everything-new-coming-to-apple-tv-in-march-2026",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-02-24T06:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] I added a managed switch to my home network, and it fixed problems I didn't know I had",
+          "url": "https://www.xda-developers.com/managed-switch-home-network-fixed-problems-didnt-know-existed/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-02-20T20:30:20+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Working Lands & Industry",
+      "articles": [
+        {
+          "title": "[Neowin] Anthropic accuses China of 'industrial-scale' attempt to steal Claude's abilities",
+          "url": "https://www.neowin.net/news/anthropic-accuses-china-of-industrial-scale-attempt-to-steal-claudes-abilities/",
+          "source": "Neowin",
+          "ai_score": 0,
+          "date_published": "2026-02-24T06:36:02+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[The Tyee] Can Vancouver Progressives Unite to Win the Next Election?",
+          "url": "https://thetyee.ca/News/2026/02/24/Can-Vancouver-Progressives-Unite/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-02-24T08:40:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Tyee] A Sober Look at Alberta’s Separatist Surge",
+          "url": "https://thetyee.ca/Analysis/2026/02/24/Sober-Look-Alberta-Separatist-Surge/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-02-24T08:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Deep dive on Working Lands & Industry",
+        "topics_covered": [
+          "broadband",
+          "satellite",
+          "precision agriculture",
+          "solar",
+          "AI"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
