@@ -193,5 +193,18 @@
       "infrastructure",
       "maintenance"
     ]
+  },
+  "2026-02-24": {
+    "timestamp": 1771939618.82443,
+    "date": "2026-02-24",
+    "theme": "Working Lands & Industry",
+    "central_question": "Deep dive on Working Lands & Industry",
+    "topics_covered": [
+      "broadband",
+      "satellite",
+      "precision agriculture",
+      "solar",
+      "AI"
+    ]
   }
 }
