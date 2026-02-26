@@ -1,0 +1,127 @@
+{
+  "episode": {
+    "date": "2026-02-26",
+    "formatted_date": "Thursday, February 26, 2026",
+    "theme": "Indigenous Lands & Innovation",
+    "title": "Cariboo Signals - Indigenous Lands & Innovation",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Indigenous Lands & Innovation.</p><p><b>NEWS ROUNDUP:</b> We break down [Techzine Global] VAST Data leverages unique market position to develop full-stack AI infrastructure and [IndigiNews] Indigenous rights defenders say they’ll ‘not stay silent’ after anti-protest bylaw defeated in ‘Winnipeg’, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Deep dive on Indigenous Lands & Innovation Topics include: broadband, fiber, satellite, connectivity, data sovereignty.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>Techzine Global: <a href=\"https://news.google.com/rss/articles/CBMi0AFBVV95cUxQOWZtZXN1aEF0blZYUkk1UDlhRF84QXh2RkdvRlE0TFhuQkFIcG96S1JoRloySXV4bUtIU2ZDeG5xQ0tXLVFQckpsc1RXUW0zTmxkVTZTSGl5Y1hZcmhlLS1PcmlZSjN4ZElHX01JbmlOY2JHWU9ydjktTE1Pa3poUmE3Y3FmVWYyQ1dxejJ6NGd0VnZudzJENFA1NHZoQWQxX2lOdjFLTjZiYkpzYXlNZkp4NGM5T29Oc1lzLW1pVEJ4Yy1MQ3UyZE1wQ2E3QTlp?oc=5\">[Techzine Global] VAST Data leverages unique market position...</a></li><li>IndigiNews: <a href=\"https://indiginews.com/news/winnipeg-protest-bylaw-indigenous-opposition/\">[IndigiNews] Indigenous rights defenders say they’ll ‘not st...</a></li><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/02/21/cariboo-chilcotin-mobile-therapy-buses-mark-one-year-on-road/\">[Quesnel Cariboo Observer] Cariboo Chilcotin mobile therapy ...</a></li><li>Global News: <a href=\"https://globalnews.ca/news/11706232/nationwide-prescribed-burn-program-being-launched-administered-through-ubc-okanagan/\">[Global News] Nationwide prescribed burn program being launc...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Hackaday: <a href=\"https://news.google.com/rss/articles/CBMihgFBVV95cUxNU2RMUWUzOHYyT2hsZ3RJUU5CX3lfSXJUNGkyalJmcVhxaWM4emFHWEdQUjVVcGdoa2dILTlMNGd4b0pVRXVqNVZSaTlOX2pnNzJ3cWFLZWhwTUhWaURyRGU3ODYtZWVnelVfVHVXUko5ZGVuWXppZzB5aF8yXzZObHZpbGNyZw?oc=5\">[Hackaday] Meshtastic Does More Than Simple Communication</a></li><li>Engadget: <a href=\"https://www.engadget.com/mobile/smartphones/how-to-send-a-message-via-satellite-on-iphone-130000418.html?src=rss\">[Engadget] How to send a message via satellite on iPhone</a></li><li>The Narwhal: <a href=\"https://thenarwhal.ca/declaration-act-bc-warp-speed/\">[The Narwhal] B.C. moves at ‘warp speed’ to change landmark ...</a></li><li>Resilience.org: <a href=\"https://www.resilience.org/stories/2026-02-25/agrihouse-at-the-venice-architecture-biennale-cultivating-climate-resilience-through-land-water-and-collective-policy/\">[Resilience.org] Agrihouse at the Venice Architecture Bienna...</a></li><li>Resilience.org: <a href=\"https://www.resilience.org/stories/2026-02-19/black-history-month-land-power-and-the-knowledge-that-survived/\">[Resilience.org] Black History Month: Land, Power, and the K...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Sumo AI<br>Content Curation &amp; Script: Claude (Anthropic)<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-02-26T05:06:47.689579-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Techzine Global] VAST Data leverages unique market position to develop full-stack AI infrastructure",
+          "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQOWZtZXN1aEF0blZYUkk1UDlhRF84QXh2RkdvRlE0TFhuQkFIcG96S1JoRloySXV4bUtIU2ZDeG5xQ0tXLVFQckpsc1RXUW0zTmxkVTZTSGl5Y1hZcmhlLS1PcmlZSjN4ZElHX01JbmlOY2JHWU9ydjktTE1Pa3poUmE3Y3FmVWYyQ1dxejJ6NGd0VnZudzJENFA1NHZoQWQxX2lOdjFLTjZiYkpzYXlNZkp4NGM5T29Oc1lzLW1pVEJ4Yy1MQ3UyZE1wQ2E3QTlp?oc=5",
+          "source": "Techzine Global",
+          "ai_score": 0,
+          "date_published": "2026-02-25T18:30:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[IndigiNews] Indigenous rights defenders say they’ll ‘not stay silent’ after anti-protest bylaw defeated in ‘Winnipeg’",
+          "url": "https://indiginews.com/news/winnipeg-protest-bylaw-indigenous-opposition/",
+          "source": "IndigiNews",
+          "ai_score": 0,
+          "date_published": "2026-02-25T15:17:17+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Hackaday] Meshtastic Does More Than Simple Communication",
+          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNU2RMUWUzOHYyT2hsZ3RJUU5CX3lfSXJUNGkyalJmcVhxaWM4emFHWEdQUjVVcGdoa2dILTlMNGd4b0pVRXVqNVZSaTlOX2pnNzJ3cWFLZWhwTUhWaURyRGU3ODYtZWVnelVfVHVXUko5ZGVuWXppZzB5aF8yXzZObHZpbGNyZw?oc=5",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-02-22T21:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Engadget] How to send a message via satellite on iPhone",
+          "url": "https://www.engadget.com/mobile/smartphones/how-to-send-a-message-via-satellite-on-iphone-130000418.html?src=rss",
+          "source": "Engadget",
+          "ai_score": 0,
+          "date_published": "2026-02-22T13:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Cariboo Chilcotin mobile therapy buses mark one year on road",
+          "url": "https://quesnelobserver.com/2026/02/21/cariboo-chilcotin-mobile-therapy-buses-mark-one-year-on-road/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-02-21T20:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Global News] Nationwide prescribed burn program being launched, administered through UBC-Okanagan",
+          "url": "https://globalnews.ca/news/11706232/nationwide-prescribed-burn-program-being-launched-administered-through-ubc-okanagan/",
+          "source": "Global News",
+          "ai_score": 0,
+          "date_published": "2026-02-26T02:38:42+00:00",
+          "summary": "",
+          "discussed": true
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Indigenous Lands & Innovation",
+      "articles": [
+        {
+          "title": "[The Narwhal] B.C. moves at ‘warp speed’ to change landmark Indigenous Rights law",
+          "url": "https://thenarwhal.ca/declaration-act-bc-warp-speed/",
+          "source": "The Narwhal",
+          "ai_score": 0,
+          "date_published": "2026-02-24T13:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Resilience.org] Agrihouse at the Venice Architecture Biennale: cultivating climate resilience through land, water and collective policy",
+          "url": "https://www.resilience.org/stories/2026-02-25/agrihouse-at-the-venice-architecture-biennale-cultivating-climate-resilience-through-land-water-and-collective-policy/",
+          "source": "Resilience.org",
+          "ai_score": 0,
+          "date_published": "2026-02-25T11:18:41+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Resilience.org] Black History Month: Land, Power, and the Knowledge That Survived",
+          "url": "https://www.resilience.org/stories/2026-02-19/black-history-month-land-power-and-the-knowledge-that-survived/",
+          "source": "Resilience.org",
+          "ai_score": 0,
+          "date_published": "2026-02-19T11:13:37+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Deep dive on Indigenous Lands & Innovation",
+        "topics_covered": [
+          "broadband",
+          "fiber",
+          "satellite",
+          "connectivity",
+          "data sovereignty"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
