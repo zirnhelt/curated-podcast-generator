@@ -1,0 +1,127 @@
+{
+  "episode": {
+    "date": "2026-02-27",
+    "formatted_date": "Friday, February 27, 2026",
+    "theme": "Wild Spaces & Outdoor Life",
+    "title": "Cariboo Signals - Wild Spaces & Outdoor Life",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Wild Spaces & Outdoor Life.</p><p><b>NEWS ROUNDUP:</b> We break down [My Cariboo Now] New paid on-call firefighters recruitment underway in Williams Lake and [Al Jazeera English] UN approves first carbon credits under Paris Agreement market mechanism, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Deep dive on Wild Spaces & Outdoor Life Topics include: broadband, satellite, data sovereignty, AI, infrastructure.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/153051/news/fire/new-paid-on-call-firefighters-recruitment-underway-in-williams-lake/\">[My Cariboo Now] New paid on-call firefighters recruitment u...</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/news/2026/2/26/un-approves-first-carbon-credits-under-paris-agreement-market-mechanism?traffic_source=rss\">[Al Jazeera English] UN approves first carbon credits under ...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/02/24/dinner-and-auction-supports-williams-lake-youth-rodeo-clubs-upcoming-season/\">[Williams Lake Tribune] Dinner and auction supports Williams...</a></li><li>100 Mile Free Press: <a href=\"https://100milefreepress.net/2026/02/26/archives-new-prosperity-gold-copper-project-rejected-in-2012/\">[100 Mile Free Press] ARCHIVES: New Prosperity Gold-Copper P...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/171007/news/indigenous/nazko-healing-fires-dates-for-new-season/\">[My Cariboo Now] Nazko healing fires dates for new season</a></li><li>New Atlas: <a href=\"https://newatlas.com/tiny-houses/zinc-studio-cabin/\">[New Atlas] Rugged tiny house is built to stand up to the el...</a></li><li>Gizmodo: <a href=\"https://gizmodo.com/could-melting-glaciers-actually-slow-climate-change-2000727302\">[Gizmodo] Could Melting Glaciers Actually Slow Climate Chang...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/02/26/opening-ceremony-tonight-launches-trail-rossland-bc-winter-games/\">[Williams Lake Tribune] Opening ceremony tonight launches Tr...</a></li><li>The Guardian Global Development: <a href=\"https://www.theguardian.com/global-development/2026/feb/26/ancient-stepwells-brought-back-india-run-out-water-day-zero\">[The Guardian Global Development] Ancient stepwells brought ...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Sumo AI<br>Content Curation &amp; Script: Claude (Anthropic)<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-02-27T05:00:10.940339-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[My Cariboo Now] New paid on-call firefighters recruitment underway in Williams Lake",
+          "url": "https://www.mycariboonow.com/153051/news/fire/new-paid-on-call-firefighters-recruitment-underway-in-williams-lake/",
+          "source": "My Cariboo Now",
+          "ai_score": 0,
+          "date_published": "2026-02-23T12:30:31+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Al Jazeera English] UN approves first carbon credits under Paris Agreement market mechanism",
+          "url": "https://www.aljazeera.com/news/2026/2/26/un-approves-first-carbon-credits-under-paris-agreement-market-mechanism?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 0,
+          "date_published": "2026-02-26T09:21:12+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Dinner and auction supports Williams Lake Youth Rodeo Club’s upcoming season",
+          "url": "https://wltribune.com/2026/02/24/dinner-and-auction-supports-williams-lake-youth-rodeo-clubs-upcoming-season/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-02-24T15:36:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[100 Mile Free Press] ARCHIVES: New Prosperity Gold-Copper Project rejected in 2012",
+          "url": "https://100milefreepress.net/2026/02/26/archives-new-prosperity-gold-copper-project-rejected-in-2012/",
+          "source": "100 Mile Free Press",
+          "ai_score": 0,
+          "date_published": "2026-02-26T19:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[My Cariboo Now] Nazko healing fires dates for new season",
+          "url": "https://www.mycariboonow.com/171007/news/indigenous/nazko-healing-fires-dates-for-new-season/",
+          "source": "My Cariboo Now",
+          "ai_score": 0,
+          "date_published": "2026-02-26T18:59:02+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[New Atlas] Rugged tiny house is built to stand up to the elements",
+          "url": "https://newatlas.com/tiny-houses/zinc-studio-cabin/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-02-20T12:18:24+00:00",
+          "summary": "",
+          "discussed": true
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Wild Spaces & Outdoor Life",
+      "articles": [
+        {
+          "title": "[Gizmodo] Could Melting Glaciers Actually Slow Climate Change?",
+          "url": "https://gizmodo.com/could-melting-glaciers-actually-slow-climate-change-2000727302",
+          "source": "Gizmodo",
+          "ai_score": 0,
+          "date_published": "2026-02-26T22:05:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Opening ceremony tonight launches Trail-Rossland BC Winter Games",
+          "url": "https://wltribune.com/2026/02/26/opening-ceremony-tonight-launches-trail-rossland-bc-winter-games/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-02-26T05:35:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Guardian Global Development] Ancient stepwells brought back to life as India begins to run out of water",
+          "url": "https://www.theguardian.com/global-development/2026/feb/26/ancient-stepwells-brought-back-india-run-out-water-day-zero",
+          "source": "The Guardian Global Development",
+          "ai_score": 0,
+          "date_published": "2026-02-26T05:00:20+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Deep dive on Wild Spaces & Outdoor Life",
+        "topics_covered": [
+          "broadband",
+          "satellite",
+          "data sovereignty",
+          "AI",
+          "infrastructure"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
