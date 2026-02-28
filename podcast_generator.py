@@ -1880,6 +1880,9 @@ def generate_audio_from_script(script, output_filename):
                     speech = normalize_segment(AudioSegment.from_mp3(temp_file), TARGET_SPEECH_DBFS)
                     combined += speech + silence
 
+                # Add interval chime after community spotlight, before deep dive
+                combined += interval_music + silence
+
             # Generate and add deep dive section
             print("  🔍 Generating deep dive section...")
             for i, segment in enumerate(segments['deep_dive']):
