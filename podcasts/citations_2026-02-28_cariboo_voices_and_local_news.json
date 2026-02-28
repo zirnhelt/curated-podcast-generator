@@ -1,0 +1,136 @@
+{
+  "episode": {
+    "date": "2026-02-28",
+    "formatted_date": "Saturday, February 28, 2026",
+    "theme": "Cariboo Voices & Local News",
+    "title": "Cariboo Signals - Cariboo Voices & Local News",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Cariboo Voices & Local News.</p><p><b>NEWS ROUNDUP:</b> We break down [Williams Lake Tribune] B.C. school trustee Laurie Throness resigns after $750K hate-speech ruling for Barry Neufeld and [Williams Lake Tribune] Clearwater RCMP respond to criticism of intimate partner violence reduction target, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Deep dive on Cariboo Voices & Local News Topics include: broadband, fiber, connectivity, AI, infrastructure.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/02/26/b-c-school-trustee-laurie-throness-resigns-after-750k-hate-speech-ruling-for-barry-neufeld/\">[Williams Lake Tribune] B.C. school trustee Laurie Throness ...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/02/25/clearwater-rcmp-respond-to-criticism-of-intimate-partner-violence-reduction-target/\">[Williams Lake Tribune] Clearwater RCMP respond to criticism...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/178094/news/weather/avalanche-conditions-considered-dangerous-this-weekend-in-the-cariboo/\">[My Cariboo Now] Avalanche conditions “considered dangerous”...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/167701/news/communty/its-the-19th-year-for-pink-shirt-anti-bullying-awareness-day/\">[My Cariboo Now] It’s the 19th year for Pink Shirt/anti-bull...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/171234/news/court/pretrail-set-for-lac-la-hache-man-facing-firearms-charges/\">[My Cariboo Now] Pretrail set for Lac La Hache man facing fi...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/146230/win/would-you-rather-sweepstakes-2026/\">[My Cariboo Now] Would You Rather Sweepstakes 2026</a></li><li>CNET: <a href=\"https://www.cnet.com/home/internet/best-rural-internet-providers/\">[CNET] Best Rural Internet Providers for 2026</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/02/24/lake-city-secondary-student-raising-awareness-on-blood-donations/\">[Williams Lake Tribune] Lake City Secondary student raising ...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/02/24/hometown-hero-wells-artist-uses-theatre-to-keep-stories-of-remembrance-alive/\">[Quesnel Cariboo Observer] Hometown Hero: Wells artist uses ...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/02/27/escaped-alone-on-stage-in-williams-lake/\">[Williams Lake Tribune] Escaped Alone on stage in Williams L...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Sumo AI<br>Content Curation &amp; Script: Claude (Anthropic)<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-02-28T04:46:46.576749-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] B.C. school trustee Laurie Throness resigns after $750K hate-speech ruling for Barry Neufeld",
+          "url": "https://wltribune.com/2026/02/26/b-c-school-trustee-laurie-throness-resigns-after-750k-hate-speech-ruling-for-barry-neufeld/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-02-26T13:53:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Clearwater RCMP respond to criticism of intimate partner violence reduction target",
+          "url": "https://wltribune.com/2026/02/25/clearwater-rcmp-respond-to-criticism-of-intimate-partner-violence-reduction-target/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-02-25T15:10:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[My Cariboo Now] Avalanche conditions “considered dangerous” this weekend in the Cariboo",
+          "url": "https://www.mycariboonow.com/178094/news/weather/avalanche-conditions-considered-dangerous-this-weekend-in-the-cariboo/",
+          "source": "My Cariboo Now",
+          "ai_score": 0,
+          "date_published": "2026-02-28T01:27:35+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[My Cariboo Now] It’s the 19th year for Pink Shirt/anti-bullying awareness day",
+          "url": "https://www.mycariboonow.com/167701/news/communty/its-the-19th-year-for-pink-shirt-anti-bullying-awareness-day/",
+          "source": "My Cariboo Now",
+          "ai_score": 0,
+          "date_published": "2026-02-25T18:55:01+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[My Cariboo Now] Pretrail set for Lac La Hache man facing firearms charges",
+          "url": "https://www.mycariboonow.com/171234/news/court/pretrail-set-for-lac-la-hache-man-facing-firearms-charges/",
+          "source": "My Cariboo Now",
+          "ai_score": 0,
+          "date_published": "2026-02-26T21:40:25+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[My Cariboo Now] Would You Rather Sweepstakes 2026",
+          "url": "https://www.mycariboonow.com/146230/win/would-you-rather-sweepstakes-2026/",
+          "source": "My Cariboo Now",
+          "ai_score": 0,
+          "date_published": "2026-02-23T08:00:52+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[CNET] Best Rural Internet Providers for 2026",
+          "url": "https://www.cnet.com/home/internet/best-rural-internet-providers/",
+          "source": "CNET",
+          "ai_score": 0,
+          "date_published": "2026-02-27T18:52:00+00:00",
+          "summary": "",
+          "discussed": true
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Cariboo Voices & Local News",
+      "articles": [
+        {
+          "title": "[Quesnel Cariboo Observer] Hometown Hero: Wells artist uses theatre to keep stories of remembrance alive",
+          "url": "https://quesnelobserver.com/2026/02/24/hometown-hero-wells-artist-uses-theatre-to-keep-stories-of-remembrance-alive/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-02-24T13:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Escaped Alone on stage in Williams Lake",
+          "url": "https://wltribune.com/2026/02/27/escaped-alone-on-stage-in-williams-lake/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-02-27T16:25:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Lake City Secondary student raising awareness on blood donations",
+          "url": "https://wltribune.com/2026/02/24/lake-city-secondary-student-raising-awareness-on-blood-donations/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-02-24T12:28:00+00:00",
+          "summary": "",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Deep dive on Cariboo Voices & Local News",
+        "topics_covered": [
+          "broadband",
+          "fiber",
+          "connectivity",
+          "AI",
+          "infrastructure"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
