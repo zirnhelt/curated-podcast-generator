@@ -115,6 +115,7 @@ EPISODE_MEMORY_FILE = PODCASTS_DIR / "episode_memory.json"
 HOST_MEMORY_FILE = PODCASTS_DIR / "host_personality_memory.json"
 DEBATE_MEMORY_FILE = PODCASTS_DIR / "debate_memory.json"
 CTA_MEMORY_FILE = PODCASTS_DIR / "cta_memory.json"
+SEEDS_FILE = PODCASTS_DIR / "content_seeds.json"
 MEMORY_RETENTION_DAYS = 21
 DEBATE_MEMORY_RETENTION_DAYS = 90
 CTA_MEMORY_RETENTION_DAYS = 365
@@ -134,6 +135,142 @@ CONFIG = {
 USE_BATCH_API = os.getenv("PODCAST_USE_BATCH", "1") == "1"
 BATCH_POLL_INTERVAL = 10   # seconds between status checks
 BATCH_POLL_TIMEOUT = 1800  # max seconds to wait (30 min — batch API can take >10 min)
+
+# How many days before a normal-priority seed is force-promoted to the deep dive
+SEED_ESCALATION_DAYS = 5
+
+
+# ---------------------------------------------------------------------------
+# Content seeding helpers
+# ---------------------------------------------------------------------------
+
+def load_content_seeds():
+    """Return pending seeds from podcasts/content_seeds.json.
+
+    Seeds are added by the user via seed.py.  Only "pending" seeds are
+    returned; already-used ones are silently skipped.
+    """
+    if not SEEDS_FILE.exists():
+        return []
+    try:
+        with open(SEEDS_FILE) as f:
+            data = json.load(f)
+        return [s for s in data.get("seeds", []) if s.get("status") == "pending"]
+    except (json.JSONDecodeError, OSError):
+        return []
+
+
+def _fetch_url_metadata(url):
+    """Best-effort fetch of title + description from a URL.
+
+    Returns (title, description) strings; either may be empty on failure.
+    """
+    try:
+        resp = requests.get(url, timeout=8, headers={"User-Agent": "Mozilla/5.0"})
+        resp.raise_for_status()
+        html = resp.text
+
+        title = ""
+        m = re.search(r'<meta[^>]+property=["\']og:title["\'][^>]+content=["\'](.*?)["\']', html, re.I | re.S)
+        if m:
+            title = m.group(1).strip()
+        if not title:
+            m = re.search(r'<title[^>]*>(.*?)</title>', html, re.I | re.S)
+            if m:
+                title = re.sub(r'\s+', ' ', m.group(1)).strip()
+
+        desc = ""
+        m = re.search(r'<meta[^>]+property=["\']og:description["\'][^>]+content=["\'](.*?)["\']', html, re.I | re.S)
+        if m:
+            desc = m.group(1).strip()
+        if not desc:
+            m = re.search(r'<meta[^>]+name=["\']description["\'][^>]+content=["\'](.*?)["\']', html, re.I | re.S)
+            if m:
+                desc = m.group(1).strip()
+
+        return title[:200], desc[:400]
+    except Exception:
+        return "", ""
+
+
+def build_seed_article(seed):
+    """Convert a URL seed into a synthetic article dict for the pipeline.
+
+    The returned dict matches the shape expected by fetch_podcast_feed()
+    callers so it slots seamlessly into theme_articles.
+    """
+    url = seed["url"]
+    print(f"  🌱 Fetching metadata for seeded URL: {url[:70]}...")
+    title, desc = _fetch_url_metadata(url)
+
+    if not title:
+        title = url  # last-resort fallback
+
+    # Prefer the user's note as the summary if it's more descriptive
+    note = seed.get("note") or ""
+    summary = f"{note}  —  {desc}" if note and desc else (note or desc or title)
+
+    # Score: high-priority or old seeds get a near-perfect score so they
+    # win the deep dive selection race; normal seeds compete fairly.
+    added_at = datetime.fromisoformat(seed["added_at"])
+    age_days = (datetime.now(timezone.utc) - added_at).days
+    is_escalated = seed.get("priority") == "high" or age_days >= SEED_ESCALATION_DAYS
+
+    ai_score = 95 if is_escalated else 82
+
+    article = {
+        "title": title,
+        "url": url,
+        "summary": summary,
+        "ai_score": ai_score,
+        "authors": [{"name": "Seeded Content"}],
+        # Pipeline metadata
+        "_keyword_matches": 5 if is_escalated else 2,
+        "_boosted_score": ai_score,
+        "_is_bonus": False,
+        "_is_seeded": True,
+        "_seed_id": seed["id"],
+        "_seed_note": note,
+    }
+
+    status = "escalated" if is_escalated else "queued"
+    print(f"    ✅ [{status}] \"{title[:60]}\" (score={ai_score})")
+    return article
+
+
+def format_thought_seeds_for_prompt(thought_seeds):
+    """Format thought seeds as an exploration prompt block for the script prompt."""
+    if not thought_seeds:
+        return ""
+    lines = ["EXPLORATION PROMPTS (seed these naturally into the conversation — pick one or more if they fit the theme):"]
+    for s in thought_seeds:
+        line = f"- \"{s['content']}\""
+        if s.get("note"):
+            line += f"  [{s['note']}]"
+        lines.append(line)
+    return "\n".join(lines) + "\n\n"
+
+
+def consume_seeds(seed_ids):
+    """Mark the given seed IDs as 'used' in content_seeds.json."""
+    if not seed_ids or not SEEDS_FILE.exists():
+        return
+    try:
+        with open(SEEDS_FILE) as f:
+            data = json.load(f)
+        today = datetime.now(timezone.utc).date().isoformat()
+        consumed = []
+        for s in data.get("seeds", []):
+            if s["id"] in seed_ids and s.get("status") == "pending":
+                s["status"] = "used"
+                s["used_on"] = today
+                consumed.append(s["id"])
+        with open(SEEDS_FILE, "w") as f:
+            json.dump(data, f, indent=2)
+        if consumed:
+            print(f"  🌱 Consumed {len(consumed)} seed(s): {', '.join(consumed)}")
+    except (json.JSONDecodeError, OSError) as e:
+        print(f"  ⚠️  Could not update seeds file: {e}")
 
 
 def build_cached_system_prompt():
@@ -1485,7 +1622,7 @@ def format_memory_for_prompt(episode_memory, host_memory):
     return context
 
 
-def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None, feed_meta=None, bonus_articles=None, debate_memory=None, cta_memory=None):
+def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None, feed_meta=None, bonus_articles=None, debate_memory=None, cta_memory=None, thought_seeds=None):
     """Generate conversational podcast script using Claude."""
     print("🎙️ Generating podcast script with Claude...")
 
@@ -1577,6 +1714,10 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
     # Add feed theme description to memory context if available
     if feed_meta and feed_meta.get('theme_description'):
         memory_context += f"TODAY'S THEME FRAMING (from curated feed):\n{feed_meta['theme_description']}\n\n"
+
+    # Inject user-seeded thoughts as exploration prompts for the hosts
+    if thought_seeds:
+        memory_context += format_thought_seeds_for_prompt(thought_seeds)
 
     # Add holiday context if today is a special holiday that should be acknowledged in opening/closing
     if psa_info and psa_info.get('event_name') and psa_info.get('source') == 'event':
@@ -2312,6 +2453,14 @@ def main():
     host_memory = get_host_personality_memory()
     debate_memory = get_debate_memory()
     cta_memory = get_cta_memory()
+
+    # Load pending content seeds (URLs and thoughts bookmarked by the user)
+    pending_seeds = load_content_seeds()
+    url_seeds = [s for s in pending_seeds if s.get("type") == "url"]
+    thought_seeds = [s for s in pending_seeds if s.get("type") == "thought"]
+    if pending_seeds:
+        print(f"🌱 Content seeds: {len(url_seeds)} URL(s), {len(thought_seeds)} thought(s)")
+    consumed_seed_ids = []
     
     # Check for existing files (stored in podcasts/ subfolder)
     date_key = pacific_now.strftime("%Y-%m-%d")
@@ -2352,6 +2501,17 @@ def main():
             scored_articles = apply_blocklist(scored_articles)
             scored_articles, evolving_stories = deduplicate_articles(scored_articles)
             deep_dive_articles = categorize_articles_for_deep_dive(scored_articles, today_weekday)
+            # In the fallback path, inject eligible URL seeds directly into deep dive
+            if url_seeds:
+                eligible_url_seeds = [
+                    s for s in url_seeds
+                    if not s.get("theme_hint") or s.get("priority") == "high" or
+                       (datetime.now(timezone.utc) - datetime.fromisoformat(s["added_at"])).days >= SEED_ESCALATION_DAYS
+                ]
+                seed_articles = [build_seed_article(s) for s in eligible_url_seeds]
+                deep_dive_articles = seed_articles + deep_dive_articles
+                for a in seed_articles:
+                    consumed_seed_ids.append(a["_seed_id"])
             news_articles = scored_articles[:12]
             feed_meta = None
         else:
@@ -2372,8 +2532,29 @@ def main():
             theme_articles = [a for a in all_feed_articles if a.get('url', '') not in bonus_urls]
             bonus_articles = [a for a in all_feed_articles if a.get('url', '') in bonus_urls]
 
+            # Inject user-seeded URLs into the article pool before selection.
+            # Seeds with no theme_hint (or a matching one) are eligible today.
+            # High-priority / old seeds are inserted at the front so they win
+            # the deep dive selection race.
+            if url_seeds:
+                eligible_url_seeds = [
+                    s for s in url_seeds
+                    if not s.get("theme_hint") or
+                       s.get("theme_hint", "").lower() in today_theme.lower() or
+                       (datetime.now(timezone.utc) - datetime.fromisoformat(s["added_at"])).days >= SEED_ESCALATION_DAYS or
+                       s.get("priority") == "high"
+                ]
+                seed_articles = [build_seed_article(s) for s in eligible_url_seeds]
+                # Prepend seeds so select_deep_dive_from_feed sees them first
+                theme_articles = seed_articles + theme_articles
+
             # Select deep dive from theme articles; rest go to news
             deep_dive_articles, news_articles = select_deep_dive_from_feed(theme_articles, today_theme)
+
+            # Track which seeded articles landed in the deep dive
+            for a in deep_dive_articles:
+                if a.get("_seed_id"):
+                    consumed_seed_ids.append(a["_seed_id"])
 
             # Append bonus articles to news, flagged for separate intro
             news_articles = news_articles + bonus_articles
@@ -2398,13 +2579,25 @@ def main():
         else:
             print("🏘️  No community spotlight for today")
 
+        # Filter thought seeds by theme hint (theme-agnostic seeds always apply)
+        active_thought_seeds = [
+            s for s in thought_seeds
+            if not s.get("theme_hint") or
+               s.get("theme_hint", "").lower() in today_theme.lower() or
+               s.get("priority") == "high" or
+               (datetime.now(timezone.utc) - datetime.fromisoformat(s["added_at"])).days >= SEED_ESCALATION_DAYS
+        ]
+        if active_thought_seeds:
+            print(f"  💭 Injecting {len(active_thought_seeds)} thought seed(s) into script prompt")
+            consumed_seed_ids.extend(s["id"] for s in active_thought_seeds)
+
         # Generate script
         script = generate_podcast_script(
             news_articles, deep_dive_articles, today_theme,
             episode_memory, host_memory, evolving_context,
             psa_info=psa_info, feed_meta=feed_meta,
             bonus_articles=bonus_articles, debate_memory=debate_memory,
-            cta_memory=cta_memory
+            cta_memory=cta_memory, thought_seeds=active_thought_seeds
         )
 
         if not script:
@@ -2457,6 +2650,10 @@ def main():
 
         # Save script
         script_filename = save_script_to_file(script, today_theme)
+
+        # Mark consumed seeds as used
+        if consumed_seed_ids:
+            consume_seeds(consumed_seed_ids)
 
         # Update memory
         if script:
