@@ -1,0 +1,94 @@
+name: Seed Content
+
+# Triggered by the GitHub API — designed to be called from an iOS Shortcut.
+#
+# Example API call (from Shortcut or curl):
+#   POST https://api.github.com/repos/OWNER/REPO/actions/workflows/seed-content.yml/dispatches
+#   Authorization: Bearer <PAT>
+#   {
+#     "ref": "main",
+#     "inputs": {
+#       "type": "url",
+#       "content": "https://example.com/article",
+#       "note": "great angle on rural connectivity",
+#       "priority": "normal",
+#       "theme_hint": ""
+#     }
+#   }
+
+on:
+  workflow_dispatch:
+    inputs:
+      type:
+        description: 'Seed type'
+        required: true
+        default: 'url'
+        type: choice
+        options:
+          - url
+          - thought
+      content:
+        description: 'URL (for url type) or thought text (for thought type)'
+        required: true
+        type: string
+      note:
+        description: 'Optional note or angle to explore'
+        required: false
+        default: ''
+        type: string
+      priority:
+        description: 'Priority — high forces the seed into the next deep dive'
+        required: false
+        default: 'normal'
+        type: choice
+        options:
+          - normal
+          - high
+      theme_hint:
+        description: 'Optional theme to target (e.g. "Resilient Rural Futures")'
+        required: false
+        default: ''
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run seed.py
+        run: |
+          ARGS=("${{ inputs.type }}" "${{ inputs.content }}")
+
+          if [ -n "${{ inputs.note }}" ]; then
+            ARGS+=(--note "${{ inputs.note }}")
+          fi
+
+          ARGS+=(--priority "${{ inputs.priority }}")
+
+          if [ -n "${{ inputs.theme_hint }}" ]; then
+            ARGS+=(--theme "${{ inputs.theme_hint }}")
+          fi
+
+          python seed.py "${ARGS[@]}"
+
+      - name: Commit and push updated seeds
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add podcasts/content_seeds.json
+          git diff --staged --quiet && echo "No changes to commit" && exit 0
+          TYPE="${{ inputs.type }}"
+          CONTENT="${{ inputs.content }}"
+          SHORT="${CONTENT:0:60}"
+          git commit -m "seed: add ${TYPE} — ${SHORT}"
+          git push
