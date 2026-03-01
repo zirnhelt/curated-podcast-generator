@@ -2,9 +2,12 @@ name: Seed Content
 
 # Triggered by the GitHub API — designed to be called from an iOS Shortcut.
 #
-# Example API call (from Shortcut or curl):
+# TWO ways to trigger — use whichever works for your PAT scopes:
+#
+# ── Option A: workflow_dispatch (requires 'workflow' scope on PAT) ──────────
 #   POST https://api.github.com/repos/OWNER/REPO/actions/workflows/seed-content.yml/dispatches
 #   Authorization: Bearer <PAT>
+#   Content-Type: application/json
 #   {
 #     "ref": "main",
 #     "inputs": {
@@ -15,6 +18,27 @@ name: Seed Content
 #       "theme_hint": ""
 #     }
 #   }
+#   Success: HTTP 204 (No Content)
+#
+# ── Option B: repository_dispatch (only requires 'repo' scope on PAT) ───────
+#   POST https://api.github.com/repos/OWNER/REPO/dispatches
+#   Authorization: Bearer <PAT>
+#   Content-Type: application/json
+#   {
+#     "event_type": "seed-content",
+#     "client_payload": {
+#       "type": "url",
+#       "content": "https://example.com/article",
+#       "note": "great angle on rural connectivity",
+#       "priority": "normal",
+#       "theme_hint": ""
+#     }
+#   }
+#   Success: HTTP 204 (No Content)
+#
+# ── Debugging ────────────────────────────────────────────────────────────────
+#   Run scripts/debug-seed-dispatch.sh to check your PAT scopes and see the
+#   actual HTTP status (iOS Shortcuts silently swallows 403/422 errors).
 
 on:
   workflow_dispatch:
@@ -50,6 +74,9 @@ on:
         default: ''
         type: string
 
+  repository_dispatch:
+    types: [seed-content]
+
 permissions:
   contents: write
 
@@ -57,6 +84,13 @@ jobs:
   seed:
     runs-on: ubuntu-latest
     steps:
+      - name: Log trigger source
+        run: |
+          echo "Triggered by: ${{ github.event_name }}"
+          echo "Event type:   ${{ github.event.action }}"
+          echo "Seed type:    ${{ inputs.type || github.event.client_payload.type }}"
+          echo "Content:      ${{ inputs.content || github.event.client_payload.content }}"
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -67,12 +101,15 @@ jobs:
 
       - name: Run seed.py
         env:
-          SEED_TYPE: ${{ inputs.type }}
-          SEED_CONTENT: ${{ inputs.content }}
-          SEED_NOTE: ${{ inputs.note }}
-          SEED_PRIORITY: ${{ inputs.priority }}
-          SEED_THEME: ${{ inputs.theme_hint }}
+          SEED_TYPE: ${{ inputs.type || github.event.client_payload.type }}
+          SEED_CONTENT: ${{ inputs.content || github.event.client_payload.content }}
+          SEED_NOTE: ${{ inputs.note || github.event.client_payload.note }}
+          SEED_PRIORITY: ${{ inputs.priority || github.event.client_payload.priority }}
+          SEED_THEME: ${{ inputs.theme_hint || github.event.client_payload.theme_hint }}
         run: |
+          SEED_TYPE="${SEED_TYPE:-url}"
+          SEED_PRIORITY="${SEED_PRIORITY:-normal}"
+
           ARGS=("$SEED_TYPE" "$SEED_CONTENT")
 
           if [ -n "$SEED_NOTE" ]; then
@@ -93,8 +130,8 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add podcasts/content_seeds.json
           git diff --staged --quiet && echo "No changes to commit" && exit 0
-          TYPE="${{ inputs.type }}"
-          CONTENT="${{ inputs.content }}"
+          TYPE="${{ inputs.type || github.event.client_payload.type }}"
+          CONTENT="${{ inputs.content || github.event.client_payload.content }}"
           SHORT="${CONTENT:0:60}"
           git commit -m "seed: add ${TYPE} — ${SHORT}"
           git push
