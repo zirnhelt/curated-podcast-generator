@@ -2250,41 +2250,46 @@ def generate_podcast_rss_feed():
                         with open(citations_file, 'r', encoding='utf-8') as f:
                             citations_data = json.load(f)
 
-                        # Add theme context
-                        theme_display = theme.replace('_', ' ').title()
-                        episode_description += f"\n\nToday's focus: {theme_display}"
+                        # Use the pre-built HTML description if available (preserves
+                        # paragraph formatting in Apple Podcasts and other apps)
+                        if citations_data.get('episode', {}).get('description'):
+                            episode_description = citations_data['episode']['description']
+                        else:
+                            # Fallback: build plain-text description from segments
+                            theme_display = theme.replace('_', ' ').title()
+                            episode_description += f"\n\nToday's focus: {theme_display}"
 
-                        # Add deep dive discussion highlights if available
-                        deep_dive = citations_data.get('segments', {}).get('deep_dive', {})
-                        discussion = deep_dive.get('discussion', {})
-                        if discussion.get('central_question'):
-                            episode_description += f"\n\nDEEP DIVE: {discussion['central_question']}"
-                            topics = discussion.get('topics_covered', [])
-                            if topics:
-                                episode_description += f"\nTopics: {', '.join(topics)}"
+                            deep_dive = citations_data.get('segments', {}).get('deep_dive', {})
+                            discussion = deep_dive.get('discussion', {})
+                            if discussion.get('central_question'):
+                                episode_description += f"\n\nDEEP DIVE: {discussion['central_question']}"
+                                topics = discussion.get('topics_covered', [])
+                                if topics:
+                                    episode_description += f"\nTopics: {', '.join(topics)}"
 
-                        # Add sources as links
-                        if citations_data.get('segments'):
-                            episode_description += "\n\nSources cited in this episode:\n"
-
-                            source_num = 1
-                            for segment_name, segment_data in citations_data['segments'].items():
-                                for article in segment_data.get('articles', []):
-                                    source_name = article.get('source', 'Unknown')
-                                    title = article.get('title', '')[:60]
-                                    if len(article.get('title', '')) > 60:
-                                        title += "..."
-                                    url = article.get('url', '')
-                                    if url:
-                                        episode_description += f'{source_num}. {source_name}: <a href="{url}">{title}</a>\n'
-                                    else:
-                                        episode_description += f"{source_num}. {source_name}: {title}\n"
-                                    source_num += 1
+                            if citations_data.get('segments'):
+                                episode_description += "\n\nSources cited in this episode:\n"
+                                source_num = 1
+                                for segment_name, segment_data in citations_data['segments'].items():
+                                    for article in segment_data.get('articles', []):
+                                        source_name = article.get('source', 'Unknown')
+                                        title = article.get('title', '')[:60]
+                                        if len(article.get('title', '')) > 60:
+                                            title += "..."
+                                        url = article.get('url', '')
+                                        if url:
+                                            episode_description += f'{source_num}. {source_name}: <a href="{url}">{title}</a>\n'
+                                        else:
+                                            episode_description += f"{source_num}. {source_name}: {title}\n"
+                                        source_num += 1
+                            # Add credits to fallback plain-text description
+                            episode_description += credits_config['text']
                     except Exception as e:
                         print(f"   ⚠️ Could not load citations for {audio_file}: {e}")
-                
-                # Add credits
-                episode_description += credits_config['text']
+                        episode_description += credits_config['text']
+                else:
+                    # No citations file — append credits to base description
+                    episode_description += credits_config['text']
                 
                 episodes.append({
                     'title': f"{theme.replace('_', ' ').title()}",
