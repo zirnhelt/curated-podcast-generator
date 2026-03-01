@@ -1,0 +1,136 @@
+{
+  "episode": {
+    "date": "2026-03-01",
+    "formatted_date": "Sunday, March 01, 2026",
+    "theme": "Resilient Rural Futures",
+    "title": "Cariboo Signals - Resilient Rural Futures",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Resilient Rural Futures.</p><p><b>NEWS ROUNDUP:</b> We break down [Resilience.org] Small-scale supply chains in action, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Deep dive on Resilient Rural Futures Topics include: broadband, fiber, connectivity, telemedicine, AI.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>Resilience.org: <a href=\"https://www.resilience.org/stories/2026-02-27/small-scale-supply-chains-in-action/\">[Resilience.org] Small-scale supply chains in action</a></li><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/02/28/uber-coming-to-100-mile-house-this-spring/\">[Quesnel Cariboo Observer] Uber coming to 100 Mile House thi...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/video/al-jazeera-world/2026/2/25/cuba-technical-disobedience?traffic_source=rss\">[Al Jazeera English] Cuba: Technological Disobedience</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/this-device-running-esphome-quietly-runs-my-house/\">[XDA Developers] This device running ESPHome quietly runs my...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/02/26/world/europe/ukraine-russia-kharkiv-air-raid-alarms.html\">[NYT Top Stories] The Secret of How Ukraine’s Lifesaving Air...</a></li><li>The Tech Buzz: <a href=\"https://news.google.com/rss/articles/CBMimgFBVV95cUxPZklrUDZMeWtObFpoUDRwWWRDZ25XWGVWbFZtdzdMZnQwZWgteVNfWUlDVjVVeVZtNXo5Um1SaWtHeVc2X3VBaEp6N0JOMmk1M2QxRkFzLUpqMjliUWZTUjAyR25TQXBrWlI4Yl9WY1l5R2M2ZVJfbjJJbUNYZUlSdmQtLVJhQm1uQkZYY05jRmZtcm84WVdpNjZB?oc=5\">[The Tech Buzz] Google locks in 1.9GW clean energy deal with...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/old-phone-sound-sensor-my-smartest-home-assistant-trigger/\">[XDA Developers] I turned my old phone into a sound sensor, ...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/02/24/business-leaders-give-b-c-budget-unprecedented-d-grade-blast-pst-change/\">[Williams Lake Tribune] Business leaders give B.C. budget un...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/home-assistant-march-beta-wake-word-detection/\">[XDA Developers] Home Assistant's latest beta finally turns ...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/177065/news/health-care/emergency-services-at-100-mile-district-general-hospital-unavailable-until-8-am-feb-28/\">[My Cariboo Now] Emergency Services at 100 Mile District Gen...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Sumo AI<br>Content Curation &amp; Script: Claude (Anthropic)<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-03-01T04:49:55.566592-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Al Jazeera English] Cuba: Technological Disobedience",
+          "url": "https://www.aljazeera.com/video/al-jazeera-world/2026/2/25/cuba-technical-disobedience?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 0,
+          "date_published": "2026-02-25T19:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] This device running ESPHome quietly runs my house",
+          "url": "https://www.xda-developers.com/this-device-running-esphome-quietly-runs-my-house/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-02-26T21:01:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] The Secret of How Ukraine’s Lifesaving Air-Raid Alarms Work",
+          "url": "https://www.nytimes.com/2026/02/26/world/europe/ukraine-russia-kharkiv-air-raid-alarms.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-02-26T11:13:55+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Tech Buzz] Google locks in 1.9GW clean energy deal with 100-hour battery",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPZklrUDZMeWtObFpoUDRwWWRDZ25XWGVWbFZtdzdMZnQwZWgteVNfWUlDVjVVeVZtNXo5Um1SaWtHeVc2X3VBaEp6N0JOMmk1M2QxRkFzLUpqMjliUWZTUjAyR25TQXBrWlI4Yl9WY1l5R2M2ZVJfbjJJbUNYZUlSdmQtLVJhQm1uQkZYY05jRmZtcm84WVdpNjZB?oc=5",
+          "source": "The Tech Buzz",
+          "ai_score": 0,
+          "date_published": "2026-02-24T22:23:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] I turned my old phone into a sound sensor, and it's my smartest Home Assistant trigger",
+          "url": "https://www.xda-developers.com/old-phone-sound-sensor-my-smartest-home-assistant-trigger/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-02-26T01:01:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Business leaders give B.C. budget unprecedented ‘D’ grade, blast PST change",
+          "url": "https://wltribune.com/2026/02/24/business-leaders-give-b-c-budget-unprecedented-d-grade-blast-pst-change/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-02-24T11:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Resilience.org] Small-scale supply chains in action",
+          "url": "https://www.resilience.org/stories/2026-02-27/small-scale-supply-chains-in-action/",
+          "source": "Resilience.org",
+          "ai_score": 0,
+          "date_published": "2026-02-27T10:45:57+00:00",
+          "summary": "",
+          "discussed": true
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Resilient Rural Futures",
+      "articles": [
+        {
+          "title": "[Quesnel Cariboo Observer] Uber coming to 100 Mile House this Spring",
+          "url": "https://quesnelobserver.com/2026/02/28/uber-coming-to-100-mile-house-this-spring/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-02-28T13:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[XDA Developers] Home Assistant's latest beta finally turns your Android phone into a voice satellite",
+          "url": "https://www.xda-developers.com/home-assistant-march-beta-wake-word-detection/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-02-26T20:30:35+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[My Cariboo Now] Emergency Services at 100 Mile District General Hospital unavailable until 8 am Feb 28",
+          "url": "https://www.mycariboonow.com/177065/news/health-care/emergency-services-at-100-mile-district-general-hospital-unavailable-until-8-am-feb-28/",
+          "source": "My Cariboo Now",
+          "ai_score": 0,
+          "date_published": "2026-02-27T16:37:13+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Deep dive on Resilient Rural Futures",
+        "topics_covered": [
+          "broadband",
+          "fiber",
+          "connectivity",
+          "telemedicine",
+          "AI"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
