@@ -91,6 +91,9 @@ jobs:
           # Add memory files and any other state files
           git add podcasts/episode_memory.json podcasts/host_personality_memory.json podcasts/debate_memory.json
 
+          # Persist seed consumption status (seeds marked "used" during generation)
+          git add podcasts/content_seeds.json || echo "No seeds file to add"
+
           # Add any new episode files that were generated
           git add podcasts/podcast_audio_*.mp3 podcasts/podcast_script_*.txt podcasts/citations_*.json podcast-feed.xml || echo "No new episode files to add"
 
