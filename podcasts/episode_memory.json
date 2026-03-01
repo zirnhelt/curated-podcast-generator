@@ -1,24 +1,4 @@
 {
-  "2026-02-07": {
-    "timestamp": 1770468545.595339,
-    "topics": [
-      "[Global News] Criticism over B.C. government\u2019s handling of T",
-      "[CFJC Today Kamloops] Friday, February 6 \u2014 CFJC Evening News",
-      "[CFJC Today Kamloops] CFJC Midday \u2013 The Kamloops Black Film ",
-      "[CFJC Today Kamloops] Families safe but members of Kamloops ",
-      "[CFJC Today Kamloops] Pipeline protest created safety risks,",
-      "[NYT Top Stories] We Didn\u2019t Ask for This Internet",
-      "[NYT Top Stories] [NYT Top Stories] Amazon\u2019s $200 Billion Sp",
-      "[NYT Top Stories] [NYT Top Stories] [NYT Top Stories] At Ukr"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-02-07"
-  },
   "2026-02-08": {
     "timestamp": 1770555110.481239,
     "topics": [
@@ -434,5 +414,25 @@
       "Indigenous tech"
     ],
     "date": "2026-02-28"
+  },
+  "2026-03-01": {
+    "timestamp": 1772369395.571259,
+    "topics": [
+      "[Al Jazeera English] Cuba: Technological Disobedience",
+      "[XDA Developers] This device running ESPHome quietly runs my",
+      "[NYT Top Stories] The Secret of How Ukraine\u2019s Lifesaving Air",
+      "[The Tech Buzz] Google locks in 1.9GW clean energy deal with",
+      "[XDA Developers] I turned my old phone into a sound sensor, ",
+      "[Quesnel Cariboo Observer] Uber coming to 100 Mile House thi",
+      "[XDA Developers] Home Assistant's latest beta finally turns ",
+      "[My Cariboo Now] Emergency Services at 100 Mile District Gen"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "connectivity"
+    ],
+    "date": "2026-03-01"
   }
 }
