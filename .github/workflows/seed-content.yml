@@ -66,17 +66,23 @@ jobs:
           python-version: '3.11'
 
       - name: Run seed.py
+        env:
+          SEED_TYPE: ${{ inputs.type }}
+          SEED_CONTENT: ${{ inputs.content }}
+          SEED_NOTE: ${{ inputs.note }}
+          SEED_PRIORITY: ${{ inputs.priority }}
+          SEED_THEME: ${{ inputs.theme_hint }}
         run: |
-          ARGS=("${{ inputs.type }}" "${{ inputs.content }}")
+          ARGS=("$SEED_TYPE" "$SEED_CONTENT")
 
-          if [ -n "${{ inputs.note }}" ]; then
-            ARGS+=(--note "${{ inputs.note }}")
+          if [ -n "$SEED_NOTE" ]; then
+            ARGS+=(--note "$SEED_NOTE")
           fi
 
-          ARGS+=(--priority "${{ inputs.priority }}")
+          ARGS+=(--priority "$SEED_PRIORITY")
 
-          if [ -n "${{ inputs.theme_hint }}" ]; then
-            ARGS+=(--theme "${{ inputs.theme_hint }}")
+          if [ -n "$SEED_THEME" ]; then
+            ARGS+=(--theme "$SEED_THEME")
           fi
 
           python seed.py "${ARGS[@]}"
