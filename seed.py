@@ -155,6 +155,7 @@ def main():
     p_url.add_argument("url", help="Article URL to bookmark")
     p_url.add_argument("--note", default=None, help="Optional note or angle to explore")
     p_url.add_argument("--priority", choices=["normal", "high"], default="normal",
+                       type=str.strip,
                        help="high = force into next deep dive regardless of theme")
     p_url.add_argument("--theme", default=None,
                        help=f"Target theme hint (e.g. 'Resilient Rural Futures'). Options: {', '.join(THEMES)}")
@@ -163,7 +164,8 @@ def main():
     p_thought = sub.add_parser("thought", help="Log a thought or question for further exploration")
     p_thought.add_argument("text", help="The thought, question, or angle to explore")
     p_thought.add_argument("--note", default=None, help="Additional context")
-    p_thought.add_argument("--priority", choices=["normal", "high"], default="normal")
+    p_thought.add_argument("--priority", choices=["normal", "high"], default="normal",
+                           type=str.strip)
     p_thought.add_argument("--theme", default=None, help="Target theme hint")
 
     # list command
