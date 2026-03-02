@@ -1,4 +1,17 @@
 {
   "version": 1,
-  "seeds": []
+  "seeds": [
+    {
+      "id": "dda65c13",
+      "type": "url",
+      "url": "https://www.techradar.com/pro/this-potentially-life-saving-breakthrough-uses-bat-like-pulses-to-turn-smartphones-into-radars-to-alert-users-of-danger",
+      "title": null,
+      "note": "Possible livestock monitoring use?",
+      "added_at": "2026-03-02T04:08:30.567646+00:00",
+      "priority": "normal",
+      "theme_hint": null,
+      "status": "pending",
+      "used_on": null
+    }
+  ]
 }
