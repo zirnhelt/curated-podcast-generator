@@ -137,9 +137,6 @@ BATCH_POLL_INTERVAL = 10   # seconds between status checks
 BATCH_POLL_TIMEOUT = 1800  # max seconds to wait (30 min — batch API can take >10 min)
 
 # How many days before a normal-priority seed is force-promoted to the deep dive
-SEED_ESCALATION_DAYS = 5
-
-
 # ---------------------------------------------------------------------------
 # Content seeding helpers
 # ---------------------------------------------------------------------------
@@ -193,15 +190,116 @@ def _fetch_url_metadata(url):
         return "", ""
 
 
+def _score_text_against_themes(text, themes_config):
+    """Return {day_int: keyword_count} for each theme in themes_config."""
+    text_lower = text.lower()
+    return {
+        int(day): sum(1 for kw in theme.get("keywords", []) if kw.lower() in text_lower)
+        for day, theme in themes_config.items()
+    }
+
+
+def rate_pending_seeds(pending_seeds):
+    """Assign each unrated seed a best-fit theme weekday (0-6) or None.
+
+    Seeds with a user-supplied theme_hint are matched to the closest theme by
+    name.  Seeds with no hint are scored by keyword overlap against every
+    theme; the highest-scoring theme wins.  Seeds that match no keywords on
+    any theme are marked theme-agnostic (eligible every day).
+
+    Results are written back to content_seeds.json so the rating only happens
+    once per seed.  For URL seeds the fetched title/description are cached
+    in-memory (seed["_title"], seed["_desc"]) for reuse by build_seed_article
+    in the same run; they are NOT persisted to the file.
+    """
+    themes_config = CONFIG['themes']
+    dirty = False
+
+    for seed in pending_seeds:
+        if "best_theme_day" in seed:
+            continue  # already rated on a previous run
+
+        best_day = None
+        best_name = None
+
+        if seed.get("theme_hint"):
+            # User-specified hint: find the best-matching theme by name
+            hint = seed["theme_hint"].lower()
+            top_score = 0
+            for day_str, theme in themes_config.items():
+                score = sum(
+                    1 for w in hint.split()
+                    if len(w) > 3 and w in theme["name"].lower()
+                )
+                if score > top_score:
+                    top_score = score
+                    best_day = int(day_str)
+                    best_name = theme["name"]
+            if best_day is None:
+                # Fallback: substring match
+                for day_str, theme in themes_config.items():
+                    if hint in theme["name"].lower() or theme["name"].lower() in hint:
+                        best_day = int(day_str)
+                        best_name = theme["name"]
+                        break
+        else:
+            # Score the seed's text content against all themes
+            text_parts = [seed.get("note") or ""]
+            if seed["type"] == "thought":
+                text_parts.append(seed.get("content", ""))
+            elif seed["type"] == "url":
+                print(f"  🌱 Fetching metadata to rate seed [{seed['id']}]: {seed['url'][:60]}...")
+                title, desc = _fetch_url_metadata(seed["url"])
+                seed["_title"] = title  # cache in-memory for build_seed_article
+                seed["_desc"] = desc
+                text_parts.extend([title, desc])
+
+            text = " ".join(text_parts)
+            if text.strip():
+                scores = _score_text_against_themes(text, themes_config)
+                top_day = max(scores, key=scores.get)
+                if scores[top_day] > 0:
+                    best_day = top_day
+                    best_name = themes_config[str(top_day)]["name"]
+
+        seed["best_theme_day"] = best_day
+        seed["best_theme_name"] = best_name
+        dirty = True
+
+        label = best_name if best_name else "any theme (no strong keyword match)"
+        print(f"  🗓️  Seed [{seed['id']}] queued for → {label}")
+
+    if dirty and SEEDS_FILE.exists():
+        try:
+            with open(SEEDS_FILE) as f:
+                data = json.load(f)
+            id_map = {s["id"]: s for s in pending_seeds}
+            for stored in data.get("seeds", []):
+                if stored["id"] in id_map and "best_theme_day" in id_map[stored["id"]]:
+                    stored["best_theme_day"] = id_map[stored["id"]]["best_theme_day"]
+                    stored["best_theme_name"] = id_map[stored["id"]].get("best_theme_name")
+            with open(SEEDS_FILE, "w") as f:
+                json.dump(data, f, indent=2)
+        except (json.JSONDecodeError, OSError) as e:
+            print(f"  ⚠️  Could not persist seed ratings: {e}")
+
+
 def build_seed_article(seed):
     """Convert a URL seed into a synthetic article dict for the pipeline.
 
     The returned dict matches the shape expected by fetch_podcast_feed()
-    callers so it slots seamlessly into theme_articles.
+    callers so it slots seamlessly into theme_articles.  Metadata fetched
+    during rate_pending_seeds is reused if available (seed["_title"/"_desc"]);
+    otherwise a fresh fetch is performed.
     """
     url = seed["url"]
-    print(f"  🌱 Fetching metadata for seeded URL: {url[:70]}...")
-    title, desc = _fetch_url_metadata(url)
+
+    # Reuse metadata cached during theme rating (same run) when available
+    if "_title" in seed and "_desc" in seed:
+        title, desc = seed["_title"], seed["_desc"]
+    else:
+        print(f"  🌱 Fetching metadata for seeded URL: {url[:70]}...")
+        title, desc = _fetch_url_metadata(url)
 
     if not title:
         title = url  # last-resort fallback
@@ -210,13 +308,10 @@ def build_seed_article(seed):
     note = seed.get("note") or ""
     summary = f"{note}  —  {desc}" if note and desc else (note or desc or title)
 
-    # Score: high-priority or old seeds get a near-perfect score so they
-    # win the deep dive selection race; normal seeds compete fairly.
-    added_at = datetime.fromisoformat(seed["added_at"])
-    age_days = (datetime.now(timezone.utc) - added_at).days
-    is_escalated = seed.get("priority") == "high" or age_days >= SEED_ESCALATION_DAYS
-
-    ai_score = 95 if is_escalated else 82
+    # High-priority seeds get a slightly higher score so they win the
+    # deep-dive selection race; normal seeds compete fairly.
+    is_high = seed.get("priority") == "high"
+    ai_score = 90 if is_high else 82
 
     article = {
         "title": title,
@@ -225,7 +320,7 @@ def build_seed_article(seed):
         "ai_score": ai_score,
         "authors": [{"name": "Seeded Content"}],
         # Pipeline metadata
-        "_keyword_matches": 5 if is_escalated else 2,
+        "_keyword_matches": 3 if is_high else 2,
         "_boosted_score": ai_score,
         "_is_bonus": False,
         "_is_seeded": True,
@@ -233,8 +328,9 @@ def build_seed_article(seed):
         "_seed_note": note,
     }
 
-    status = "escalated" if is_escalated else "queued"
-    print(f"    ✅ [{status}] \"{title[:60]}\" (score={ai_score})")
+    theme_label = seed.get("best_theme_name") or "unrated"
+    status = "high-priority" if is_high else "normal"
+    print(f"    ✅ [{status}] \"{title[:60]}\" (score={ai_score}, theme={theme_label})")
     return article
 
 
@@ -2489,6 +2585,11 @@ def main():
     if not script_exists:
         print("🆕 Generating new script...")
 
+        # Rate any unrated seeds against all themes and persist results.
+        # Seeds are only eligible on the day whose theme best matches their content.
+        if pending_seeds:
+            rate_pending_seeds(pending_seeds)
+
         # Fetch curated podcast feed for today's day of week (pre-scored, theme-sorted)
         feed_meta, theme_articles, bonus_articles = fetch_podcast_feed(today_weekday)
 
@@ -2506,12 +2607,12 @@ def main():
             scored_articles = apply_blocklist(scored_articles)
             scored_articles, evolving_stories = deduplicate_articles(scored_articles)
             deep_dive_articles = categorize_articles_for_deep_dive(scored_articles, today_weekday)
-            # In the fallback path, inject eligible URL seeds directly into deep dive
+            # In the fallback path, inject eligible URL seeds directly into deep dive.
+            # Only seeds rated for today's theme (or theme-agnostic) are included.
             if url_seeds:
                 eligible_url_seeds = [
                     s for s in url_seeds
-                    if not s.get("theme_hint") or s.get("priority") == "high" or
-                       (datetime.now(timezone.utc) - datetime.fromisoformat(s["added_at"])).days >= SEED_ESCALATION_DAYS
+                    if s.get("best_theme_day") is None or s.get("best_theme_day") == today_weekday
                 ]
                 seed_articles = [build_seed_article(s) for s in eligible_url_seeds]
                 deep_dive_articles = seed_articles + deep_dive_articles
@@ -2537,17 +2638,13 @@ def main():
             theme_articles = [a for a in all_feed_articles if a.get('url', '') not in bonus_urls]
             bonus_articles = [a for a in all_feed_articles if a.get('url', '') in bonus_urls]
 
-            # Inject user-seeded URLs into the article pool before selection.
-            # Seeds with no theme_hint (or a matching one) are eligible today.
-            # High-priority / old seeds are inserted at the front so they win
-            # the deep dive selection race.
+            # Inject user-seeded URLs rated for today's theme into the article
+            # pool.  Theme-agnostic seeds (no keyword match on any theme) are
+            # always eligible.  Seeds queued for a different day wait their turn.
             if url_seeds:
                 eligible_url_seeds = [
                     s for s in url_seeds
-                    if not s.get("theme_hint") or
-                       s.get("theme_hint", "").lower() in today_theme.lower() or
-                       (datetime.now(timezone.utc) - datetime.fromisoformat(s["added_at"])).days >= SEED_ESCALATION_DAYS or
-                       s.get("priority") == "high"
+                    if s.get("best_theme_day") is None or s.get("best_theme_day") == today_weekday
                 ]
                 seed_articles = [build_seed_article(s) for s in eligible_url_seeds]
                 # Prepend seeds so select_deep_dive_from_feed sees them first
@@ -2584,13 +2681,10 @@ def main():
         else:
             print("🏘️  No community spotlight for today")
 
-        # Filter thought seeds by theme hint (theme-agnostic seeds always apply)
+        # Filter thought seeds to those rated for today's theme (or theme-agnostic)
         active_thought_seeds = [
             s for s in thought_seeds
-            if not s.get("theme_hint") or
-               s.get("theme_hint", "").lower() in today_theme.lower() or
-               s.get("priority") == "high" or
-               (datetime.now(timezone.utc) - datetime.fromisoformat(s["added_at"])).days >= SEED_ESCALATION_DAYS
+            if s.get("best_theme_day") is None or s.get("best_theme_day") == today_weekday
         ]
         if active_thought_seeds:
             print(f"  💭 Injecting {len(active_thought_seeds)} thought seed(s) into script prompt")

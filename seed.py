@@ -77,7 +77,7 @@ def cmd_url(args) -> None:
     if args.theme:
         print(f"  Theme hint: {args.theme}")
     if args.priority == "high":
-        print("  Priority: HIGH (will be forced into the next deep dive)")
+        print("  Priority: HIGH (wins deep dive selection when its theme day arrives)")
 
 
 def cmd_thought(args) -> None:
@@ -127,8 +127,12 @@ def cmd_list(args) -> None:
 
         if s.get("note"):
             print(f"           note: {s['note']}")
-        if s.get("theme_hint"):
-            print(f"           theme: {s['theme_hint']}")
+        if s.get("best_theme_name"):
+            day_names = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+            day_abbr = day_names[s["best_theme_day"]] if s.get("best_theme_day") is not None else "?"
+            print(f"           queued: {s['best_theme_name']} ({day_abbr})")
+        elif s.get("theme_hint"):
+            print(f"           theme hint: {s['theme_hint']} (not yet rated)")
         if s.get("used_on"):
             print(f"           used: {s['used_on']}")
 
@@ -155,7 +159,7 @@ def main():
     p_url.add_argument("url", help="Article URL to bookmark")
     p_url.add_argument("--note", default=None, help="Optional note or angle to explore")
     p_url.add_argument("--priority", choices=["normal", "high"], default="normal",
-                       help="high = force into next deep dive regardless of theme")
+                       help="high = wins deep dive selection when its theme day arrives")
     p_url.add_argument("--theme", default=None,
                        help=f"Target theme hint (e.g. 'Resilient Rural Futures'). Options: {', '.join(THEMES)}")
 
