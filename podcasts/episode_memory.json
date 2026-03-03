@@ -1,24 +1,4 @@
 {
-  "2026-02-09": {
-    "timestamp": 1770642632.37576,
-    "topics": [
-      "[The Tyee] BC Separatists Met in Campbell River. So Did Pro-",
-      "[The Tyee] Juno Winner Dominique Fils-Aim\u00e9 Comes to the Chan",
-      "[The Tyee] The Tyee Is Recruiting Our Next Editor-in-Chief",
-      "[CFJC Today Kamloops] New Pritchard water treatment plant to",
-      "[CFJC Today Kamloops] City of Kamloops looking for two volun",
-      "[Business Insider] The '996' work culture taking over Silico",
-      "[GN AI ML Infrastructure] The AI Infrastructure Race: Reshap",
-      "[GN AI ML Infrastructure] From Optics to AI: How Network Eng"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech",
-      "connectivity"
-    ],
-    "date": "2026-02-09"
-  },
   "2026-02-10": {
     "timestamp": 1770729313.830149,
     "topics": [
@@ -434,5 +414,25 @@
       "Indigenous tech"
     ],
     "date": "2026-03-02"
+  },
+  "2026-03-03": {
+    "timestamp": 1772542776.777112,
+    "topics": [
+      "[My Cariboo Now] Wildfire Risk Reduction project scheduled n",
+      "[Egypt Oil & Gas] Egypt, Norway\u2019s Scatec Explore Expanding R",
+      "[NYT Business] Abu Dhabi\u2019s State Oil Company Looks Beyond Oi",
+      "[WIRED] The Latest Repair Battlefield Is the Iowa Farmlands\u2014",
+      "[BC Gov News] Supporting tech companies to boost B.C. critic",
+      "[Williams Lake Tribune] Gold and copper located on mining pr",
+      "[My Cariboo Now] Palmer Project focused on treating extensiv",
+      "[TechCentral] Sola Group starts work on SA\u2019s first solar-and"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-03-03"
   }
 }
