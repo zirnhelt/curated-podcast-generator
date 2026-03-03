@@ -23,7 +23,9 @@
       "priority": "normal",
       "theme_hint": null,
       "status": "pending",
-      "used_on": null
+      "used_on": null,
+      "best_theme_day": 2,
+      "best_theme_name": "Community Tech & Governance"
     },
     {
       "id": "2182e1a0",
@@ -35,7 +37,9 @@
       "priority": "normal",
       "theme_hint": null,
       "status": "pending",
-      "used_on": null
+      "used_on": null,
+      "best_theme_day": 4,
+      "best_theme_name": "Wild Spaces & Outdoor Life"
     }
   ]
 }

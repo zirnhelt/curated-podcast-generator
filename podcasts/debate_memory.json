@@ -284,5 +284,18 @@
       "infrastructure",
       "funding"
     ]
+  },
+  "2026-03-03": {
+    "timestamp": 1772542776.777901,
+    "date": "2026-03-03",
+    "theme": "Working Lands & Industry",
+    "central_question": "Deep dive on Working Lands & Industry",
+    "topics_covered": [
+      "satellite",
+      "precision agriculture",
+      "solar",
+      "data sovereignty",
+      "AI"
+    ]
   }
 }
