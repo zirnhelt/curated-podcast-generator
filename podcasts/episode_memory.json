@@ -1,24 +1,4 @@
 {
-  "2026-02-10": {
-    "timestamp": 1770729313.830149,
-    "topics": [
-      "[CFJC Today Kamloops] CFJC Midday \u2013 Recycle it Right! City o",
-      "[CFJC Today Kamloops] Kamloops DPAC extends safety push to l",
-      "[CFJC Today Kamloops] ASK Wellness prepares to welcome clien",
-      "[BC Gov News] Overnight traffic-pattern changes planned for ",
-      "[CFJC Today Kamloops] Blazers\u2019 Edmonstone named WHL goaltend",
-      "[GN AI ML Infrastructure] Salience Labs goes all-in on all-o",
-      "[TechCrunch] Gather AI, maker of \u2018curious\u2019 warehouse drones,",
-      "[GN AI ML Infrastructure] Tower Semiconductor, Nvidia advanc"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-02-10"
-  },
   "2026-02-11": {
     "timestamp": 1770815453.564239,
     "topics": [
@@ -434,5 +414,24 @@
       "Indigenous tech"
     ],
     "date": "2026-03-03"
+  },
+  "2026-03-04": {
+    "timestamp": 1772629141.600354,
+    "topics": [
+      "[My Cariboo Now] Nicole Audet officially declared as new CRD",
+      "[My Cariboo Now] B.C. to end twice-yearly time changes with ",
+      "[My Cariboo Now] Final list of candidates for new chief and ",
+      "[New Atlas] Google spinoff beams blazing-fast internet aroun",
+      "[Williams Lake Tribune] Williams Lake Lions Club hosting clu",
+      "https://www.fastcompany.com/91500104/google-minnesota-data-c",
+      "[Williams Lake Tribune] \u2018Not a luxury\u2019: Outgoing B.C. merit ",
+      "[The Tyee] Who You Gonna Call? Not 911 on BC\u2019s Central Coast"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech"
+    ],
+    "date": "2026-03-04"
   }
 }
