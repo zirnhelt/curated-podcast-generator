@@ -1,0 +1,145 @@
+{
+  "episode": {
+    "date": "2026-03-04",
+    "formatted_date": "Wednesday, March 04, 2026",
+    "theme": "Community Tech & Governance",
+    "title": "Cariboo Signals - Community Tech & Governance",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Community Tech & Governance.</p><p><b>NEWS ROUNDUP:</b> We break down [My Cariboo Now] Nicole Audet officially declared as new CRD Area A Director and [My Cariboo Now] B.C. to end twice-yearly time changes with move to permanent Daylight Saving Time, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Deep dive on Community Tech & Governance Topics include: renewable energy, solar, AI, infrastructure, maintenance.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/171793/news/municipal-news/cariboo-regional-district/nicole-audet-officially-declared-as-new-crd-area-a-director/\">[My Cariboo Now] Nicole Audet officially declared as new CRD...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/188595/news/provincial/b-c-to-end-twice-yearly-time-changes-with-move-to-permanent-daylight-saving-time/\">[My Cariboo Now] B.C. to end twice-yearly time changes with ...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/191028/news/indigenous/final-list-of-candidates-for-new-chief-and-councillor-for-lhatko-dene-nation-election/\">[My Cariboo Now] Final list of candidates for new chief and ...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/03/williams-lake-lions-club-hosting-clubs-day/\">[Williams Lake Tribune] Williams Lake Lions Club hosting clu...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/03/vote-on-mlas-bill-to-repeal-b-c-human-rights-code-explained/\">[Williams Lake Tribune] Vote on MLA’s bill to repeal B.C. hu...</a></li><li>100 Mile Free Press: <a href=\"https://100milefreepress.net/2026/03/01/nominations-open-for-2026-best-of-the-south-cariboo-contest/\">[100 Mile Free Press] Nominations open for 2026 Best of the ...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>New Atlas: <a href=\"https://newatlas.com/telecommunications/google-taara-25gbps-internet-cities-light/\">[New Atlas] Google spinoff beams blazing-fast internet aroun...</a></li><li>Resilience.org: <a href=\"https://www.resilience.org/stories/2026-03-03/the-future-is-local-mitmach-region-vorarlberg/\">[Resilience.org] The Future is Local: Mitmach-Region Vorarlb...</a></li><li>Seeded Content: <a href=\"https://www.fastcompany.com/91500104/google-minnesota-data-center-electric-bills\">https://www.fastcompany.com/91500104/google-minnesota-data-c...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/02/27/not-a-luxury-outgoing-b-c-merit-commissioner-warns-axing-role-hurts-accountability/\">[Williams Lake Tribune] ‘Not a luxury’: Outgoing B.C. merit ...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/03/04/Who-You-Gonna-Call-Not-911-BC-Central-Coast/\">[The Tyee] Who You Gonna Call? Not 911 on BC’s Central Coast</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Sumo AI<br>Content Curation &amp; Script: Claude (Anthropic)<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-03-04T04:59:01.595851-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[My Cariboo Now] Nicole Audet officially declared as new CRD Area A Director",
+          "url": "https://www.mycariboonow.com/171793/news/municipal-news/cariboo-regional-district/nicole-audet-officially-declared-as-new-crd-area-a-director/",
+          "source": "My Cariboo Now",
+          "ai_score": 0,
+          "date_published": "2026-02-27T14:00:42+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[My Cariboo Now] B.C. to end twice-yearly time changes with move to permanent Daylight Saving Time",
+          "url": "https://www.mycariboonow.com/188595/news/provincial/b-c-to-end-twice-yearly-time-changes-with-move-to-permanent-daylight-saving-time/",
+          "source": "My Cariboo Now",
+          "ai_score": 0,
+          "date_published": "2026-03-03T01:36:19+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[My Cariboo Now] Final list of candidates for new chief and councillor for Lhatko Dene Nation election",
+          "url": "https://www.mycariboonow.com/191028/news/indigenous/final-list-of-candidates-for-new-chief-and-councillor-for-lhatko-dene-nation-election/",
+          "source": "My Cariboo Now",
+          "ai_score": 0,
+          "date_published": "2026-03-03T18:30:32+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[New Atlas] Google spinoff beams blazing-fast internet around cities using light",
+          "url": "https://newatlas.com/telecommunications/google-taara-25gbps-internet-cities-light/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-02-28T16:03:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Williams Lake Lions Club hosting clubs day",
+          "url": "https://wltribune.com/2026/03/03/williams-lake-lions-club-hosting-clubs-day/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-03T05:30:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Vote on MLA’s bill to repeal B.C. human rights code explained",
+          "url": "https://wltribune.com/2026/03/03/vote-on-mlas-bill-to-repeal-b-c-human-rights-code-explained/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-03T16:50:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[100 Mile Free Press] Nominations open for 2026 Best of the South Cariboo Contest",
+          "url": "https://100milefreepress.net/2026/03/01/nominations-open-for-2026-best-of-the-south-cariboo-contest/",
+          "source": "100 Mile Free Press",
+          "ai_score": 0,
+          "date_published": "2026-03-01T13:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Resilience.org] The Future is Local: Mitmach-Region Vorarlberg",
+          "url": "https://www.resilience.org/stories/2026-03-03/the-future-is-local-mitmach-region-vorarlberg/",
+          "source": "Resilience.org",
+          "ai_score": 0,
+          "date_published": "2026-03-03T10:10:28+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Community Tech & Governance",
+      "articles": [
+        {
+          "title": "https://www.fastcompany.com/91500104/google-minnesota-data-center-electric-bills",
+          "url": "https://www.fastcompany.com/91500104/google-minnesota-data-center-electric-bills",
+          "source": "Seeded Content",
+          "ai_score": 82,
+          "date_published": "",
+          "summary": "I want to explore community micro grids",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] ‘Not a luxury’: Outgoing B.C. merit commissioner warns axing role hurts accountability",
+          "url": "https://wltribune.com/2026/02/27/not-a-luxury-outgoing-b-c-merit-commissioner-warns-axing-role-hurts-accountability/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-02-27T16:17:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Tyee] Who You Gonna Call? Not 911 on BC’s Central Coast",
+          "url": "https://thetyee.ca/News/2026/03/04/Who-You-Gonna-Call-Not-911-BC-Central-Coast/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-03-04T08:20:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Deep dive on Community Tech & Governance",
+        "topics_covered": [
+          "renewable energy",
+          "solar",
+          "AI",
+          "infrastructure",
+          "maintenance"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
