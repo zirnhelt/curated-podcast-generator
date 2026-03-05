@@ -1,0 +1,145 @@
+{
+  "episode": {
+    "date": "2026-03-05",
+    "formatted_date": "Thursday, March 05, 2026",
+    "theme": "Indigenous Lands & Innovation",
+    "title": "Cariboo Signals - Indigenous Lands & Innovation",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Indigenous Lands & Innovation.</p><p><b>NEWS ROUNDUP:</b> We break down [Williams Lake Tribune] Historic sex crimes trial wraps up in Williams Lake and [Williams Lake Tribune] Williams Lake screening of The Spirit Who Swims sparks salmon conservation dialogue, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Deep dive on Indigenous Lands & Innovation Topics include: fiber, connectivity, AI, infrastructure, maintenance.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/02/historic-sex-crimes-trial-wraps-up-in-williams-lake/\">[Williams Lake Tribune] Historic sex crimes trial wraps up i...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/03/williams-lake-screening-of-the-spirit-who-swims-sparks-salmon-conservation-dialogue/\">[Williams Lake Tribune] Williams Lake screening of The Spiri...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/04/b-c-altering-supportive-housing-tenancy-rules-to-prevent-violence-disruptive-behaviour/\">[Williams Lake Tribune] B.C. altering supportive housing ten...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/04/cheesecake-and-fashion-make-for-a-wonderful-day-at-williams-lake-seniors-centre/\">[Williams Lake Tribune] Cheesecake and fashion make for a wo...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/04/williams-lake-first-nation-celebrates-signing-of-local-education-agreements/\">[Williams Lake Tribune] Williams Lake First Nation celebrate...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/195201/news/indigenous/musqueam-agreement-wont-impact-private-property-in-b-c-ottawa-says/\">[My Cariboo Now] Musqueam agreement won’t impact private pro...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/04/deal-between-musqueam-feds-stirs-controversy-puts-b-c-premier-on-defensive/\">[Williams Lake Tribune] Deal between Musqueam, feds stirs co...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/04/williams-lake-mustangs-finish-season-with-dominant-wins-over-100-mile-house-wranglers/\">[Williams Lake Tribune] Williams Lake Mustangs finish season...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/04/cheryl-smy/\">[Williams Lake Tribune] Cheryl Smy</a></li><li>Seeded Content: <a href=\"https://www.tomsguide.com/computing/internet/connected-and-thriving-new-nbn-report-reveals-the-real-social-benefits-of-fast-internet\">Connected and thriving: new NBN report reveals the real soci...</a></li><li>IndigiNews: <a href=\"https://indiginews.com/features/inuit-grapple-with-loss-of-caribou-13-years-into-labrador-hunting-ban/\">[IndigiNews] Inuit grapple with loss of caribou 13 years int...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Sumo AI<br>Content Curation &amp; Script: Claude (Anthropic)<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-03-05T05:02:27.498664-08:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[My Cariboo Now] Musqueam agreement won’t impact private property in B.C., Ottawa says",
+          "url": "https://www.mycariboonow.com/195201/news/indigenous/musqueam-agreement-wont-impact-private-property-in-b-c-ottawa-says/",
+          "source": "My Cariboo Now",
+          "ai_score": 0,
+          "date_published": "2026-03-05T01:17:30+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Deal between Musqueam, feds stirs controversy, puts B.C. premier on defensive",
+          "url": "https://wltribune.com/2026/03/04/deal-between-musqueam-feds-stirs-controversy-puts-b-c-premier-on-defensive/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-04T13:26:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Historic sex crimes trial wraps up in Williams Lake",
+          "url": "https://wltribune.com/2026/03/02/historic-sex-crimes-trial-wraps-up-in-williams-lake/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-02T12:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Williams Lake screening of The Spirit Who Swims sparks salmon conservation dialogue",
+          "url": "https://wltribune.com/2026/03/03/williams-lake-screening-of-the-spirit-who-swims-sparks-salmon-conservation-dialogue/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-03T13:44:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Williams Lake Mustangs finish season with dominant wins over 100 Mile House Wranglers",
+          "url": "https://wltribune.com/2026/03/04/williams-lake-mustangs-finish-season-with-dominant-wins-over-100-mile-house-wranglers/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-04T20:54:06.104571+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] B.C. altering supportive housing tenancy rules to prevent violence, disruptive behaviour",
+          "url": "https://wltribune.com/2026/03/04/b-c-altering-supportive-housing-tenancy-rules-to-prevent-violence-disruptive-behaviour/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-04T16:45:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Cheryl Smy",
+          "url": "https://wltribune.com/2026/03/04/cheryl-smy/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-04T06:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Cheesecake and fashion make for a wonderful day at Williams Lake Seniors Centre",
+          "url": "https://wltribune.com/2026/03/04/cheesecake-and-fashion-make-for-a-wonderful-day-at-williams-lake-seniors-centre/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-04T05:30:00+00:00",
+          "summary": "",
+          "discussed": true
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Indigenous Lands & Innovation",
+      "articles": [
+        {
+          "title": "Connected and thriving: new NBN report reveals the real social benefits of fast internet",
+          "url": "https://www.tomsguide.com/computing/internet/connected-and-thriving-new-nbn-report-reveals-the-real-social-benefits-of-fast-internet",
+          "source": "Seeded Content",
+          "ai_score": 82,
+          "date_published": "",
+          "summary": "We have gigabit fibre in horsefly thanks to government subsidy and I expect that to pay off in subtle ways  —  From online uni classes to work-life balance, findings reveal several social benefits of",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Williams Lake First Nation celebrates signing of local education agreements",
+          "url": "https://wltribune.com/2026/03/04/williams-lake-first-nation-celebrates-signing-of-local-education-agreements/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-04T15:30:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[IndigiNews] Inuit grapple with loss of caribou 13 years into ‘Labrador’ hunting ban: ‘I feel like a big part of me is gone’",
+          "url": "https://indiginews.com/features/inuit-grapple-with-loss-of-caribou-13-years-into-labrador-hunting-ban/",
+          "source": "IndigiNews",
+          "ai_score": 0,
+          "date_published": "2026-03-02T17:32:54+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Deep dive on Indigenous Lands & Innovation",
+        "topics_covered": [
+          "fiber",
+          "connectivity",
+          "AI",
+          "infrastructure",
+          "maintenance"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}

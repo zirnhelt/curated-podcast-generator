@@ -50,8 +50,10 @@
       "added_at": "2026-03-05T06:05:04.158842+00:00",
       "priority": "normal",
       "theme_hint": null,
-      "status": "pending",
-      "used_on": null
+      "status": "used",
+      "used_on": "2026-03-05",
+      "best_theme_day": null,
+      "best_theme_name": null
     }
   ]
 }
