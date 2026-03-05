@@ -40,6 +40,18 @@
       "used_on": null,
       "best_theme_day": 4,
       "best_theme_name": "Wild Spaces & Outdoor Life"
+    },
+    {
+      "id": "c7af6b18",
+      "type": "url",
+      "url": "https://www.tomsguide.com/computing/internet/connected-and-thriving-new-nbn-report-reveals-the-real-social-benefits-of-fast-internet",
+      "title": null,
+      "note": "We have gigabit fibre in horsefly thanks to government subsidy and I expect that to pay off in subtle ways",
+      "added_at": "2026-03-05T06:05:04.158842+00:00",
+      "priority": "normal",
+      "theme_hint": null,
+      "status": "pending",
+      "used_on": null
     }
   ]
 }
