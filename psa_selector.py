@@ -30,6 +30,15 @@ def load_psa_events():
         return json.load(f)["events"]
 
 
+def load_notable_dates():
+    """Load notable dates calendar for theme-aligned secondary mentions."""
+    notable_file = CONFIG_DIR / "notable_dates.json"
+    if notable_file.exists():
+        with open(notable_file, "r") as f:
+            return json.load(f)["dates"]
+    return []
+
+
 def load_rotation_state():
     """Load round-robin rotation state from disk.
 
@@ -192,6 +201,33 @@ def round_robin_select(weekday, roster, state, today, min_days=MIN_DAYS_BETWEEN_
     return org_id, org_data, state
 
 
+def find_notable_dates(today, weekday, notable_dates):
+    """Find notable dates that match today and align with the day's theme.
+
+    Returns a list of dicts with 'name' and 'note' for each matching date.
+    Matches are dates where today falls on the exact date (or within a range
+    if end_date is set) AND the weekday's theme index is in theme_tags.
+    """
+    today_mmdd = today.strftime("%m-%d")
+    matches = []
+    for entry in notable_dates:
+        entry_mmdd = entry["date"]
+        end_mmdd = entry.get("end_date") or entry_mmdd
+
+        # Check if today falls on or within the date range
+        if not (entry_mmdd <= today_mmdd <= end_mmdd):
+            continue
+
+        # Check if the day's theme is relevant
+        if weekday in entry.get("theme_tags", []):
+            matches.append({
+                "name": entry["name"],
+                "note": entry["note"],
+            })
+
+    return matches
+
+
 def select_psa(today=None):
     """Select today's PSA organization and talking points.
 
@@ -204,17 +240,35 @@ def select_psa(today=None):
         psa_angle: str | None  (event-specific angle, or None for round-robin)
         event_name: str | None
         source: "event" | "rotation"
+        notable_dates: list[dict]  (theme-aligned dates of note for today)
     """
     if today is None:
         today = date.today()
 
     organizations = load_psa_organizations()
     events = load_psa_events()
+    notable_dates_data = load_notable_dates()
 
     weekday = today.weekday()
     roster = get_orgs_for_weekday(weekday, organizations)
 
+    # Find theme-aligned notable dates for today
+    todays_notable = find_notable_dates(today, weekday, notable_dates_data)
+
     if not roster:
+        # Still return notable dates even if no orgs are configured
+        if todays_notable:
+            return {
+                "org_id": None,
+                "org_name": None,
+                "org_short_name": None,
+                "org_description": None,
+                "org_website": None,
+                "psa_angle": None,
+                "event_name": None,
+                "source": None,
+                "notable_dates": todays_notable,
+            }
         return None
 
     roster_org_ids = [org_id for org_id, _ in roster]
@@ -248,6 +302,7 @@ def select_psa(today=None):
             "psa_angle": psa_angle,
             "event_name": event_name,
             "source": "event",
+            "notable_dates": todays_notable,
         }
 
     # Fall back to round-robin
@@ -265,19 +320,25 @@ def select_psa(today=None):
         "psa_angle": None,
         "event_name": None,
         "source": "rotation",
+        "notable_dates": todays_notable,
     }
 
 
 if __name__ == "__main__":
     result = select_psa()
     if result:
-        print(f"Today's PSA: {result['org_name']}")
-        print(f"  Source: {result['source']}")
-        if result["event_name"]:
-            print(f"  Event: {result['event_name']}")
-        if result["psa_angle"]:
-            print(f"  Angle: {result['psa_angle']}")
-        else:
-            print(f"  Description: {result['org_description']}")
+        if result.get("org_name"):
+            print(f"Today's PSA: {result['org_name']}")
+            print(f"  Source: {result['source']}")
+            if result["event_name"]:
+                print(f"  Event: {result['event_name']}")
+            if result["psa_angle"]:
+                print(f"  Angle: {result['psa_angle']}")
+            else:
+                print(f"  Description: {result['org_description']}")
+        if result.get("notable_dates"):
+            print(f"  Notable dates today:")
+            for nd in result["notable_dates"]:
+                print(f"    - {nd['name']}: {nd['note']}")
     else:
         print("No PSA organizations configured for today.")

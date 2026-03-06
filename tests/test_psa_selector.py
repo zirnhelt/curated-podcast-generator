@@ -9,6 +9,8 @@ from unittest.mock import patch
 from psa_selector import (
     get_orgs_for_weekday,
     find_active_events,
+    find_notable_dates,
+    load_notable_dates,
     match_event_to_roster,
     round_robin_select,
     select_psa,
@@ -402,3 +404,94 @@ class TestConfigFiles:
         for day in range(7):
             day_orgs = [oid for oid, o in orgs.items() if day in o["weekdays"]]
             assert len(day_orgs) > 0, f"Weekday {day} has no PSA organizations assigned"
+
+    def test_notable_dates_json_valid(self):
+        config_path = Path(__file__).parent.parent / "config" / "notable_dates.json"
+        with open(config_path) as f:
+            data = json.load(f)
+        dates = data["dates"]
+        assert len(dates) > 0
+        for entry in dates:
+            assert "name" in entry
+            assert "date" in entry
+            assert "theme_tags" in entry
+            assert "note" in entry
+            # Validate date format MM-DD
+            d = entry["date"]
+            assert len(d) == 5 and d[2] == "-", f"Bad date format: {d}"
+            # theme_tags should be valid weekday indices
+            assert isinstance(entry["theme_tags"], list)
+            assert all(0 <= t <= 6 for t in entry["theme_tags"])
+
+
+# --- find_notable_dates ---
+
+class TestFindNotableDates:
+    @pytest.fixture
+    def sample_notable(self):
+        return [
+            {
+                "name": "World Wildlife Day",
+                "date": "03-03",
+                "end_date": None,
+                "theme_tags": [4],
+                "note": "UN day celebrating wild animals and plants.",
+            },
+            {
+                "name": "Open Data Day",
+                "date": "03-07",
+                "end_date": None,
+                "theme_tags": [2],
+                "note": "Global celebration of open data.",
+            },
+            {
+                "name": "World Press Freedom Day",
+                "date": "05-03",
+                "end_date": None,
+                "theme_tags": [0, 5],
+                "note": "Importance of local journalism.",
+            },
+        ]
+
+    def test_exact_match_with_theme(self, sample_notable):
+        today = date(2026, 3, 3)
+        # Weekday 4 (Friday) matches World Wildlife Day theme_tags
+        result = find_notable_dates(today, 4, sample_notable)
+        assert len(result) == 1
+        assert result[0]["name"] == "World Wildlife Day"
+
+    def test_no_match_wrong_theme(self, sample_notable):
+        today = date(2026, 3, 3)
+        # Weekday 0 (Monday) doesn't match World Wildlife Day theme_tags [4]
+        result = find_notable_dates(today, 0, sample_notable)
+        assert len(result) == 0
+
+    def test_no_match_wrong_date(self, sample_notable):
+        today = date(2026, 3, 4)
+        result = find_notable_dates(today, 4, sample_notable)
+        assert len(result) == 0
+
+    def test_multi_theme_tag(self, sample_notable):
+        today = date(2026, 5, 3)
+        # World Press Freedom Day has theme_tags [0, 5]
+        result_mon = find_notable_dates(today, 0, sample_notable)
+        assert len(result_mon) == 1
+        result_sat = find_notable_dates(today, 5, sample_notable)
+        assert len(result_sat) == 1
+        result_tue = find_notable_dates(today, 1, sample_notable)
+        assert len(result_tue) == 0
+
+    def test_empty_notable_dates(self):
+        today = date(2026, 3, 3)
+        result = find_notable_dates(today, 4, [])
+        assert result == []
+
+
+# --- select_psa returns notable_dates ---
+
+class TestSelectPsaNotableDates:
+    def test_result_includes_notable_dates_key(self):
+        result = select_psa(date(2026, 2, 6))  # A Friday
+        if result:
+            assert "notable_dates" in result
+            assert isinstance(result["notable_dates"], list)

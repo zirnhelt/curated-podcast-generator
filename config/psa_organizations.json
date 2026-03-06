@@ -167,6 +167,78 @@
       "website": "spca.bc.ca/locations/williams-lake",
       "weekdays": [6],
       "tags": ["animal welfare", "adoption", "volunteer"]
+    },
+    "wl-indian-band": {
+      "name": "Williams Lake Indian Band",
+      "short_name": "Williams Lake Indian Band",
+      "description": "T'exelcemc (Williams Lake Indian Band) — self-governing First Nation with programs in language revitalization, housing, and land stewardship",
+      "website": "wlib.ca",
+      "weekdays": [3],
+      "tags": ["Indigenous governance", "language revitalization", "land stewardship"]
+    },
+    "sd27": {
+      "name": "School District 27 (Cariboo-Chilcotin)",
+      "short_name": "SD27",
+      "description": "Public school district serving Williams Lake, 100 Mile House, and surrounding Cariboo communities with innovative rural education programs",
+      "website": "sd27.bc.ca",
+      "weekdays": [2],
+      "tags": ["education", "youth", "rural schools"]
+    },
+    "cariboo-regional-library": {
+      "name": "Cariboo Regional District Library",
+      "short_name": "Cariboo Library",
+      "description": "Public library system serving the Cariboo region with branches in Williams Lake, Quesnel, 100 Mile House and more — free internet access, digital literacy programs, and community gathering spaces",
+      "website": "crdl.bc.ca",
+      "weekdays": [0, 2],
+      "tags": ["library", "digital access", "literacy", "community"]
+    },
+    "boys-girls-club-wl": {
+      "name": "Boys and Girls Club of Williams Lake",
+      "short_name": "Boys & Girls Club",
+      "description": "After-school programs, summer camps, and youth mentorship serving Williams Lake families since 1973",
+      "website": "bgcwilliamslake.com",
+      "weekdays": [2],
+      "tags": ["youth", "mentorship", "after-school programs"]
+    },
+    "habitat-for-humanity-cariboo": {
+      "name": "Habitat for Humanity Cariboo",
+      "short_name": "Habitat Cariboo",
+      "description": "Building affordable homes in the Cariboo and operating the ReStore — diverting building materials from landfill while funding housing",
+      "website": "habitatcariboo.org",
+      "weekdays": [6],
+      "tags": ["housing", "affordable housing", "volunteer", "sustainability"]
+    },
+    "wl-food-policy-council": {
+      "name": "Williams Lake Food Policy Council",
+      "short_name": "WL Food Policy Council",
+      "description": "Community organization supporting local food security through community gardens, food recovery, and farm-to-table initiatives in the Cariboo",
+      "website": null,
+      "weekdays": [1],
+      "tags": ["food security", "community gardens", "agriculture", "sustainability"]
+    },
+    "cariboo-chilcotin-coast-tourism": {
+      "name": "Cariboo Chilcotin Coast Tourism Association",
+      "short_name": "Cariboo Tourism",
+      "description": "Regional destination marketing organization promoting tourism across the Cariboo, Chilcotin, and Coast — supporting rural businesses and outdoor recreation",
+      "website": "landwithoutlimits.com",
+      "weekdays": [1, 4],
+      "tags": ["tourism", "outdoor recreation", "economic development"]
+    },
+    "wl-women-centre": {
+      "name": "Williams Lake Women's Centre",
+      "short_name": "WL Women's Centre",
+      "description": "Support services for women and families including crisis intervention, advocacy, and community programming in Williams Lake",
+      "website": null,
+      "weekdays": [5],
+      "tags": ["women's services", "crisis support", "advocacy"]
+    },
+    "quesnel-community-foundation": {
+      "name": "Quesnel Community Foundation",
+      "short_name": "Quesnel Foundation",
+      "description": "Community foundation supporting Quesnel-area nonprofits and local projects through grants and endowments",
+      "website": "quesnelfoundation.ca",
+      "weekdays": [5, 6],
+      "tags": ["community foundation", "grants", "philanthropy"]
     }
   }
 }
