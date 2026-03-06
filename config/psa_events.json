@@ -236,6 +236,83 @@
       "end_date": "12-31",
       "organization_id": "cmh-foundation",
       "psa_angle": "The Cariboo Memorial Hospital Foundation has raised nearly four million dollars for equipment at our local hospital — all through community donations. Consider a year-end gift at cmhospitalfoundation.ca."
+    },
+    {
+      "name": "World Habitat Day",
+      "start_date": "10-06",
+      "end_date": "10-06",
+      "organization_id": "habitat-for-humanity-cariboo",
+      "psa_angle": "It's World Habitat Day. Habitat for Humanity Cariboo builds affordable homes right here — and their ReStore diverts building materials from landfill while funding housing. Volunteer at habitatcariboo.org."
+    },
+    {
+      "name": "Pink Shirt Day",
+      "start_date": "02-26",
+      "end_date": "02-26",
+      "organization_id": "boys-girls-club-wl",
+      "psa_angle": "Today is Pink Shirt Day — a day to stand against bullying. The Boys and Girls Club of Williams Lake provides safe after-school spaces where kids build confidence and belonging."
+    },
+    {
+      "name": "BC Library Week",
+      "start_date": "10-19",
+      "end_date": "10-25",
+      "organization_id": "cariboo-regional-library",
+      "psa_angle": "It's BC Library Week. Your Cariboo Regional District Library is more than books — free internet access, digital literacy programs, and community spaces in Williams Lake, Quesnel, 100 Mile House and beyond."
+    },
+    {
+      "name": "Back to school season",
+      "start_date": "09-01",
+      "end_date": "09-10",
+      "organization_id": "sd27",
+      "psa_angle": "It's back to school across SD27. School District 27 serves students from Williams Lake to Anahim Lake — with innovative programs in trades, outdoor education, and Indigenous language instruction."
+    },
+    {
+      "name": "World Food Day",
+      "start_date": "10-16",
+      "end_date": "10-16",
+      "organization_id": "wl-food-policy-council",
+      "psa_angle": "It's World Food Day. The Williams Lake Food Policy Council supports local food security through community gardens and food recovery — because food grown here feeds here."
+    },
+    {
+      "name": "World Tourism Day",
+      "start_date": "09-27",
+      "end_date": "09-27",
+      "organization_id": "cariboo-chilcotin-coast-tourism",
+      "psa_angle": "Happy World Tourism Day. The Cariboo Chilcotin Coast Tourism Association promotes our region's incredible outdoor recreation and rural businesses — explore what's in our backyard at landwithoutlimits.com."
+    },
+    {
+      "name": "International Women's Day",
+      "start_date": "03-08",
+      "end_date": "03-08",
+      "organization_id": "wl-women-centre",
+      "psa_angle": "Today is International Women's Day. The Williams Lake Women's Centre provides crisis support, advocacy, and community programming for women and families in our community."
+    },
+    {
+      "name": "National Day of the Hunter",
+      "start_date": "09-20",
+      "end_date": "09-20",
+      "organization_id": "conservation-society",
+      "psa_angle": "It's National Hunting Day. Ethical hunting is part of the Cariboo's heritage and conservation story. The Conservation Society's programs help connect communities with responsible land use."
+    },
+    {
+      "name": "International Literacy Day",
+      "start_date": "09-08",
+      "end_date": "09-08",
+      "organization_id": "partners-for-literacy",
+      "psa_angle": "Today is International Literacy Day. Partners for Literacy offers free programs in Williams Lake and across the Cariboo — from adult reading to digital skills. It's never too late to learn something new."
+    },
+    {
+      "name": "National AccessAbility Week",
+      "start_date": "05-25",
+      "end_date": "05-31",
+      "organization_id": "wl-community-living",
+      "psa_angle": "It's National AccessAbility Week. The Williams Lake Association for Community Living has supported people with diverse abilities since 1960 — building an inclusive Cariboo one connection at a time."
+    },
+    {
+      "name": "Community Foundation Week",
+      "start_date": "04-07",
+      "end_date": "04-13",
+      "organization_id": "quesnel-community-foundation",
+      "psa_angle": "It's Community Foundation Week. The Quesnel Community Foundation supports local nonprofits and projects through grants and endowments — community dollars working for community good."
     }
   ]
 }

@@ -1779,7 +1779,8 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         event_name = psa_info['event_name']
         # Holidays that should be called out in the closing
         special_holidays = ['Family Day', 'Canada Day', 'Remembrance Day', 'National Indigenous Peoples Day',
-                           'National Day for Truth and Reconciliation', 'Earth Day', 'Red Dress Day (MMIWG)']
+                           'National Day for Truth and Reconciliation', 'Earth Day', 'Red Dress Day (MMIWG)',
+                           'International Women\'s Day', 'Pink Shirt Day']
         if event_name in special_holidays:
             sign_off = f"Enjoy your {event_name}."
         elif weekday_lower == 'friday':
@@ -1819,12 +1820,26 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
     if psa_info and psa_info.get('event_name') and psa_info.get('source') == 'event':
         event_name = psa_info['event_name']
         special_holidays = ['Family Day', 'Canada Day', 'Remembrance Day', 'National Indigenous Peoples Day',
-                           'National Day for Truth and Reconciliation', 'Earth Day', 'Red Dress Day (MMIWG)']
+                           'National Day for Truth and Reconciliation', 'Earth Day', 'Red Dress Day (MMIWG)',
+                           'International Women\'s Day', 'Pink Shirt Day']
         if event_name in special_holidays:
             memory_context += f"TODAY'S HOLIDAY: It's {event_name} today. Acknowledge this naturally in the opening greeting (e.g., 'Happy {event_name}') and use the closing sign-off 'Enjoy your {event_name}.'\n\n"
 
+    # Add notable dates context — theme-aligned secondary dates that add color to the episode
+    if psa_info and psa_info.get('notable_dates'):
+        notable = psa_info['notable_dates']
+        if notable:
+            lines = [f"- {nd['name']}: {nd['note']}" for nd in notable]
+            memory_context += (
+                "NOTABLE DATES TODAY (theme-aligned events of note — weave into the episode naturally "
+                "where they fit, e.g. in the opening, a transition, or the deep dive. Don't force them all in, "
+                "just use the ones that connect to today's stories):\n"
+                + "\n".join(lines)
+                + "\n\n"
+            )
+
     # Build PSA context for the Community Spotlight segment
-    if psa_info:
+    if psa_info and psa_info.get('org_name'):
         psa_context = f"Featured organization: {psa_info['org_name']}\n"
         psa_context += f"Description: {psa_info['org_description']}\n"
         if psa_info.get('org_website'):
@@ -2674,12 +2689,15 @@ def main():
 
         # Select today's PSA / Community Spotlight
         psa_info = select_psa(pacific_now.date())
-        if psa_info:
+        if psa_info and psa_info.get('org_name'):
             print(f"🏘️  Community Spotlight: {psa_info['org_name']} ({psa_info['source']})")
             if psa_info.get('event_name'):
                 print(f"   Event: {psa_info['event_name']}")
         else:
             print("🏘️  No community spotlight for today")
+        if psa_info and psa_info.get('notable_dates'):
+            names = [nd['name'] for nd in psa_info['notable_dates']]
+            print(f"📅 Notable dates: {', '.join(names)}")
 
         # Filter thought seeds to those rated for today's theme (or theme-agnostic)
         active_thought_seeds = [

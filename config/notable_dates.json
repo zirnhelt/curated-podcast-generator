@@ -1,0 +1,250 @@
+{
+  "_comment": "Notable dates and events of the day that can be mentioned in the podcast when they align with the daily theme. Each entry has theme_tags (matching weekday theme indices) so the system surfaces only relevant dates. These are secondary — they don't drive PSA org selection, they add color and context to the episode.",
+  "dates": [
+    {
+      "name": "World Radio Day",
+      "date": "02-13",
+      "end_date": null,
+      "theme_tags": [0],
+      "note": "Celebrates radio as a medium for education and free speech — a natural fit for a podcast about community media."
+    },
+    {
+      "name": "World Poetry Day",
+      "date": "03-21",
+      "end_date": null,
+      "theme_tags": [0],
+      "note": "UNESCO day celebrating poetry's role in cultural expression and linguistic diversity."
+    },
+    {
+      "name": "International Dance Day",
+      "date": "04-29",
+      "end_date": null,
+      "theme_tags": [0],
+      "note": "Celebrates dance as a form of cultural expression — relevant to Cariboo arts programming."
+    },
+    {
+      "name": "World Press Freedom Day",
+      "date": "05-03",
+      "end_date": null,
+      "theme_tags": [0, 5],
+      "note": "A reminder of the importance of local journalism and free press in rural communities."
+    },
+    {
+      "name": "World Music Day (Fete de la Musique)",
+      "date": "06-21",
+      "end_date": null,
+      "theme_tags": [0],
+      "note": "Global celebration of music — coincides with the longest day of the year and the Cariboo's summer arts season."
+    },
+    {
+      "name": "International Day of Rural Women",
+      "date": "10-15",
+      "end_date": null,
+      "theme_tags": [1, 5],
+      "note": "Recognizes the critical role of rural women in agriculture, food security, and community leadership."
+    },
+    {
+      "name": "World Soil Day",
+      "date": "12-05",
+      "end_date": null,
+      "theme_tags": [1],
+      "note": "Raises awareness of soil health and sustainable land management — central to Cariboo ranching and farming."
+    },
+    {
+      "name": "Agriculture Day in Canada",
+      "date": "02-11",
+      "end_date": null,
+      "theme_tags": [1],
+      "note": "Celebrating Canadian agriculture and the people who grow our food — Cariboo ranchers and farmers included."
+    },
+    {
+      "name": "International Day of Forests",
+      "date": "03-21",
+      "end_date": null,
+      "theme_tags": [1, 4],
+      "note": "UN day highlighting the importance of forests to people and the planet — forestry is a cornerstone of the Cariboo economy."
+    },
+    {
+      "name": "World Bee Day",
+      "date": "05-20",
+      "end_date": null,
+      "theme_tags": [1, 4],
+      "note": "Pollinators are essential to Cariboo agriculture and wild ecosystems alike."
+    },
+    {
+      "name": "Open Data Day",
+      "date": "03-07",
+      "end_date": null,
+      "theme_tags": [2],
+      "note": "Global celebration of open data — relevant to civic transparency and community tech governance."
+    },
+    {
+      "name": "International Day of Democracy",
+      "date": "09-15",
+      "end_date": null,
+      "theme_tags": [2],
+      "note": "A day to reflect on civic participation, local governance, and community engagement."
+    },
+    {
+      "name": "World Cities Day",
+      "date": "10-31",
+      "end_date": null,
+      "theme_tags": [2, 6],
+      "note": "UN day on sustainable urbanization — what does that mean for small cities like Williams Lake?"
+    },
+    {
+      "name": "Civic Holiday (BC Day)",
+      "date": "08-04",
+      "end_date": null,
+      "theme_tags": [2, 5],
+      "note": "BC Day — a chance to celebrate what makes British Columbia and the Cariboo special."
+    },
+    {
+      "name": "National Indigenous Languages Day",
+      "date": "03-31",
+      "end_date": null,
+      "theme_tags": [3],
+      "note": "Celebrates Indigenous language revitalization — Secwepemctsin, Tŝilhqot'in, and Dakelh language programs in the Cariboo."
+    },
+    {
+      "name": "International Day of the World's Indigenous Peoples",
+      "date": "08-09",
+      "end_date": null,
+      "theme_tags": [3],
+      "note": "UN day recognizing Indigenous peoples' rights, cultures, and contributions worldwide."
+    },
+    {
+      "name": "Treaty Day / Douglas Treaties anniversary",
+      "date": "04-30",
+      "end_date": null,
+      "theme_tags": [3],
+      "note": "A day to reflect on treaty relationships and the ongoing work of reconciliation in BC."
+    },
+    {
+      "name": "Moose Hide Campaign Day",
+      "date": "05-11",
+      "end_date": null,
+      "theme_tags": [3, 5],
+      "note": "Indigenous-led campaign calling on men and boys to stand against violence toward women and children."
+    },
+    {
+      "name": "World Migratory Bird Day",
+      "date": "05-10",
+      "end_date": null,
+      "theme_tags": [4],
+      "note": "Celebrates migratory birds and their habitats — Scout Island and the Cariboo wetlands are critical stopover points."
+    },
+    {
+      "name": "World Environment Day",
+      "date": "06-05",
+      "end_date": null,
+      "theme_tags": [4, 1],
+      "note": "UN day for environmental awareness — relevant to Cariboo conservation, wildfire resilience, and land stewardship."
+    },
+    {
+      "name": "International Mountain Day",
+      "date": "12-11",
+      "end_date": null,
+      "theme_tags": [4],
+      "note": "Celebrates mountain ecosystems and communities — the Cariboo and Chilcotin ranges are our backyard."
+    },
+    {
+      "name": "World Rivers Day",
+      "date": "09-28",
+      "end_date": null,
+      "theme_tags": [4],
+      "note": "Celebrates waterways worldwide — the Fraser, Chilcotin, and Quesnel rivers are the arteries of the Cariboo."
+    },
+    {
+      "name": "World Wildlife Day",
+      "date": "03-03",
+      "end_date": null,
+      "theme_tags": [4],
+      "note": "UN day celebrating wild animals and plants — the Cariboo is home to caribou, grizzly, salmon, and diverse ecosystems."
+    },
+    {
+      "name": "National Trails Day",
+      "date": "06-07",
+      "end_date": null,
+      "theme_tags": [4],
+      "note": "Celebrating trails and the people who build and maintain them — from Gold Rush Trail to First Journey Trails."
+    },
+    {
+      "name": "World Wildfire Community Preparedness Day",
+      "date": "05-03",
+      "end_date": null,
+      "theme_tags": [4, 6],
+      "note": "A day to prepare for wildfire season — the Cariboo knows this reality all too well after 2017 and 2023."
+    },
+    {
+      "name": "International Day of Cooperatives",
+      "date": "07-05",
+      "end_date": null,
+      "theme_tags": [6, 2],
+      "note": "Celebrates the cooperative movement — relevant to community-owned infrastructure and rural economic resilience."
+    },
+    {
+      "name": "World Telecommunications Day",
+      "date": "05-17",
+      "end_date": null,
+      "theme_tags": [6, 2],
+      "note": "ITU day on connectivity and digital inclusion — broadband access remains a key challenge in rural BC."
+    },
+    {
+      "name": "Global Recycling Day",
+      "date": "03-18",
+      "end_date": null,
+      "theme_tags": [6],
+      "note": "Raises awareness of recycling and waste reduction — relevant to sustainability efforts in the Cariboo."
+    },
+    {
+      "name": "World Humanitarian Day",
+      "date": "08-19",
+      "end_date": null,
+      "theme_tags": [5, 6],
+      "note": "Honours humanitarian workers — a moment to recognize the volunteers and organizations that serve the Cariboo."
+    },
+    {
+      "name": "Rural Health Day",
+      "date": "11-20",
+      "end_date": null,
+      "theme_tags": [5, 6],
+      "note": "National Rural Health Day — spotlighting healthcare access challenges and innovations in rural communities like ours."
+    },
+    {
+      "name": "World Mental Health Day",
+      "date": "10-10",
+      "end_date": null,
+      "theme_tags": [5],
+      "note": "Global day for mental health awareness and advocacy — CMHA Cariboo Chilcotin is a local lifeline."
+    },
+    {
+      "name": "International Volunteer Day",
+      "date": "12-05",
+      "end_date": null,
+      "theme_tags": [5, 6],
+      "note": "Recognizes volunteers worldwide — Cariboo organizations from SAR to hospice run on volunteer power."
+    },
+    {
+      "name": "World Water Day",
+      "date": "03-22",
+      "end_date": null,
+      "theme_tags": [4, 6],
+      "note": "UN day on water and sanitation — Cariboo watersheds face pressures from development, drought, and climate change."
+    },
+    {
+      "name": "Small Business Saturday",
+      "date": "11-29",
+      "end_date": null,
+      "theme_tags": [6, 1],
+      "note": "Celebrating small and local businesses — the backbone of Cariboo towns."
+    },
+    {
+      "name": "International Youth Day",
+      "date": "08-12",
+      "end_date": null,
+      "theme_tags": [2, 5],
+      "note": "Celebrates young people and their role in community — rural youth retention is a key Cariboo challenge."
+    }
+  ]
+}
