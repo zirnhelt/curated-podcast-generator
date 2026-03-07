@@ -36,6 +36,10 @@ from dedup_articles import deduplicate_articles, format_evolving_story_context
 # Import PSA selector
 from psa_selector import select_psa
 
+# Import weather and ambient audio modules
+from weather import fetch_weather, format_weather_for_prompt
+from ambient import get_ambient_transition
+
 # Try importing required libraries
 try:
     from anthropic import Anthropic
@@ -1718,7 +1722,7 @@ def format_memory_for_prompt(episode_memory, host_memory):
     return context
 
 
-def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None, feed_meta=None, bonus_articles=None, debate_memory=None, cta_memory=None, thought_seeds=None):
+def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None, feed_meta=None, bonus_articles=None, debate_memory=None, cta_memory=None, thought_seeds=None, weather_data=None):
     """Generate conversational podcast script using Claude."""
     print("🎙️ Generating podcast script with Claude...")
 
@@ -1854,6 +1858,9 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
     riley = hosts_config['riley']
     casey = hosts_config['casey']
 
+    # Build weather context for the welcome section
+    weather_context = format_weather_for_prompt(weather_data)
+
     # Try split system+user prompt first, fall back to legacy single-prompt
     system_prompt = build_cached_system_prompt()
     prompts = CONFIG['prompts']
@@ -1873,7 +1880,8 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             deep_dive_text=deep_dive_text,
             news_titles_brief=news_titles_brief,
             sign_off=sign_off,
-            psa_context=psa_context
+            psa_context=psa_context,
+            weather_context=weather_context
         )
         use_cached = True
         print("   Using split system/user prompt for script generation")
@@ -1901,7 +1909,8 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             deep_dive_text=deep_dive_text,
             news_titles_brief=news_titles_brief,
             sign_off=sign_off,
-            psa_context=psa_context
+            psa_context=psa_context,
+            weather_context=weather_context
         )
         system_prompt = None
         use_cached = False
@@ -1917,14 +1926,14 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         if use_cached:
             response = api_retry(lambda: client.messages.create(
                 model=SCRIPT_MODEL,
-                max_tokens=7000,
+                max_tokens=8000,
                 system=system_prompt,
                 messages=[{"role": "user", "content": user_prompt}]
             ))
         else:
             response = api_retry(lambda: client.messages.create(
                 model=SCRIPT_MODEL,
-                max_tokens=7000,
+                max_tokens=8000,
                 messages=[{"role": "user", "content": user_prompt}]
             ))
 
@@ -2054,8 +2063,8 @@ def generate_tts_for_segment(text, speaker, output_file):
     with open(output_file, "wb") as f:
         f.write(response.content)
 
-def generate_audio_from_script(script, output_filename):
-    """Convert script to audio with music interludes."""
+def generate_audio_from_script(script, output_filename, theme_name=None):
+    """Convert script to audio with music interludes and theme-aware ambient transitions."""
     print("📊 Generating audio with music interludes...")
     
     if not get_openai_client():
@@ -2091,7 +2100,10 @@ def generate_audio_from_script(script, output_filename):
         interval_music = normalize_segment(AudioSegment.from_mp3(str(INTERVAL_MUSIC)), TARGET_MUSIC_DBFS)
         interval_music = interval_music[:INTERVAL_MUSIC_DURATION_MS].fade_out(INTERVAL_FADE_OUT_MS)
         outro_music    = normalize_segment(AudioSegment.from_mp3(str(OUTRO_MUSIC)),    TARGET_MUSIC_DBFS)
-        
+
+        # Try loading a theme-aware ambient transition (falls back to interval_music)
+        ambient_transition = get_ambient_transition(theme_name, fallback_segment=interval_music)
+
         silence = AudioSegment.silent(duration=500)
 
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -2107,7 +2119,7 @@ def generate_audio_from_script(script, output_filename):
                 speech = normalize_segment(AudioSegment.from_mp3(temp_file), TARGET_SPEECH_DBFS)
                 combined += speech + silence
 
-            # Add interval music
+            # Add interval music (standard chime into news)
             combined += interval_music + silence
 
             # Generate and add news section
@@ -2119,8 +2131,8 @@ def generate_audio_from_script(script, output_filename):
                 speech = normalize_segment(AudioSegment.from_mp3(temp_file), TARGET_SPEECH_DBFS)
                 combined += speech + silence
 
-            # Add interval music before community spotlight / deep dive
-            combined += interval_music + silence
+            # Add ambient transition before community spotlight / deep dive
+            combined += ambient_transition + silence
 
             # Generate and add community spotlight section (if present)
             if segments['community_spotlight']:
@@ -2132,8 +2144,8 @@ def generate_audio_from_script(script, output_filename):
                     speech = normalize_segment(AudioSegment.from_mp3(temp_file), TARGET_SPEECH_DBFS)
                     combined += speech + silence
 
-                # Add interval chime after community spotlight, before deep dive
-                combined += interval_music + silence
+                # Add ambient transition after community spotlight, before deep dive
+                combined += ambient_transition + silence
 
             # Generate and add deep dive section
             print("  🔍 Generating deep dive section...")
@@ -2684,6 +2696,14 @@ def main():
             print(f"   Theme description: {feed_meta['theme_description'][:80]}...")
         print(f"   Memory context: {len(episode_memory)} recent episodes")
 
+        # Fetch weather for Williams Lake
+        print("🌤️  Fetching weather for Williams Lake...")
+        weather_data = fetch_weather()
+        if weather_data:
+            print(f"   {weather_data['summary']}")
+        else:
+            print("   Weather unavailable — skipping weather check")
+
         # Inject evolving story context into memory for the prompt
         evolving_context = format_evolving_story_context(evolving_stories)
 
@@ -2714,7 +2734,8 @@ def main():
             episode_memory, host_memory, evolving_context,
             psa_info=psa_info, feed_meta=feed_meta,
             bonus_articles=bonus_articles, debate_memory=debate_memory,
-            cta_memory=cta_memory, thought_seeds=active_thought_seeds
+            cta_memory=cta_memory, thought_seeds=active_thought_seeds,
+            weather_data=weather_data
         )
 
         if not script:
@@ -2799,7 +2820,7 @@ def main():
     
     # Generate audio if needed
     if not audio_exists and script:
-        audio_file = generate_audio_from_script(script, audio_filename)
+        audio_file = generate_audio_from_script(script, audio_filename, theme_name=today_theme)
 
         if audio_file:
             print(f"🎉 Podcast complete!")
