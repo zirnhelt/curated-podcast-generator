@@ -11,6 +11,8 @@ from podcast_generator import (
     extract_topics_and_themes,
     parse_script_into_segments,
     select_welcome_host,
+    _extract_pacing_tag,
+    heuristic_gap_ms,
 )
 
 
@@ -141,6 +143,79 @@ class TestExtractTopicsAndThemes:
         articles = [{"title": "Big Solar Farm Opens - Reuters", "url": "x"}]
         topics, _ = extract_topics_and_themes(script, news_articles=articles)
         assert any("Solar Farm" in t for t in topics)
+
+
+class TestExtractPacingTag:
+    def test_overlap_tag(self):
+        gap, text = _extract_pacing_tag("[overlap:-150] Ha! That tracks.")
+        assert gap == -150
+        assert text == "Ha! That tracks."
+
+    def test_pause_tag(self):
+        gap, text = _extract_pacing_tag("[pause:400] But here's the thing...")
+        assert gap == 400
+        assert text == "But here's the thing..."
+
+    def test_no_tag(self):
+        gap, text = _extract_pacing_tag("Just a normal line.")
+        assert gap is None
+        assert text == "Just a normal line."
+
+    def test_negative_pause(self):
+        gap, text = _extract_pacing_tag("[pause:-50] Quick.")
+        assert gap == -50
+
+    def test_zero(self):
+        gap, text = _extract_pacing_tag("[pause:0] Immediate.")
+        assert gap == 0
+        assert text == "Immediate."
+
+
+class TestHeuristicGapMs:
+    def test_short_interjection(self):
+        gap = heuristic_gap_ms("Ha!", "riley", "casey")
+        assert gap <= 50
+
+    def test_medium_reaction(self):
+        gap = heuristic_gap_ms("That's an important development for rural areas.", "riley", "casey")
+        assert 50 < gap <= 200
+
+    def test_normal_speaker_change(self):
+        gap = heuristic_gap_ms("Let me tell you about a big story that just broke about AI regulation in Canada and its impact.", "riley", "casey")
+        assert gap >= 300
+
+    def test_same_speaker_zero(self):
+        gap = heuristic_gap_ms("Continuing my thought here with more detail.", "riley", "riley")
+        assert gap == 0
+
+
+class TestParseScriptPacingTags:
+    def test_overlap_tag_extracted(self):
+        script = """
+**RILEY:** First, a big story about AI regulation in Canada.
+**CASEY:** [overlap:-100] Ha! That tracks.
+
+**SEGMENT 2: CARIBOO CONNECTIONS**
+**RILEY:** Let's dive into broadband projects in the region.
+**CASEY:** [pause:400] But here's the real question about funding and sustainability.
+"""
+        segments = parse_script_into_segments(script)
+        # Casey's welcome/news reaction should have the overlap tag
+        news_casey = [s for s in segments['welcome'] if s['speaker'] == 'casey']
+        assert len(news_casey) > 0
+        assert news_casey[0]['gap_ms'] == -100
+        assert "Ha! That tracks." in news_casey[0]['text']
+        # Deep dive Casey should have the pause tag
+        dd_casey = [s for s in segments['deep_dive'] if s['speaker'] == 'casey']
+        assert len(dd_casey) > 0
+        assert dd_casey[0]['gap_ms'] == 400
+
+    def test_no_tag_gives_none(self):
+        script = "**RILEY:** Just a normal line of dialogue for testing."
+        segments = parse_script_into_segments(script)
+        for section in segments.values():
+            for seg in section:
+                assert seg['gap_ms'] is None
 
 
 class TestSelectWelcomeHost:
