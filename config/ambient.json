@@ -1,0 +1,36 @@
+{
+  "_comment": "Theme-aware ambient transition sounds. Each theme maps to an ambient MP3 file placed in the ambient/ directory. These play as brief atmospheric transitions between segments (3-5 seconds, faded). If a theme's file is missing, falls back to the standard interval music. Generate ambient clips with any AI audio tool (Ludo, ElevenLabs SFX, Suno, etc.) or source from freesound.org under CC0.",
+  "themes": {
+    "Arts, Culture & Digital Storytelling": {
+      "file": "ambient-arts.mp3",
+      "description": "Soft acoustic guitar or gentle piano — creative, warm"
+    },
+    "Working Lands & Industry": {
+      "file": "ambient-industry.mp3",
+      "description": "Distant machinery hum, wind across open fields"
+    },
+    "Community Tech & Governance": {
+      "file": "ambient-civic.mp3",
+      "description": "Quiet office ambience, soft keyboard clicks, civic tone"
+    },
+    "Indigenous Lands & Innovation": {
+      "file": "ambient-indigenous.mp3",
+      "description": "Gentle wind through pines, subtle water sounds — respectful and grounded"
+    },
+    "Wild Spaces & Outdoor Life": {
+      "file": "ambient-wilderness.mp3",
+      "description": "Birdsong, gentle creek, forest ambience"
+    },
+    "Cariboo Voices & Local News": {
+      "file": "ambient-community.mp3",
+      "description": "Gentle small-town morning — distant traffic, birds, coffee shop warmth"
+    },
+    "Resilient Rural Futures": {
+      "file": "ambient-futures.mp3",
+      "description": "Soft electronic hum with natural undertones — tech meets nature"
+    }
+  },
+  "duration_ms": 4000,
+  "fade_in_ms": 500,
+  "fade_out_ms": 800
+}
