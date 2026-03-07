@@ -1945,6 +1945,91 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         print(f"❌ Error generating script: {e}")
         return None
 
+def _extract_pacing_tag(text):
+    """Extract an optional [overlap:N] or [pause:N] tag from the start of text.
+
+    Returns (gap_ms, cleaned_text).  gap_ms is None when no tag is present,
+    meaning the heuristic default should be used at assembly time.
+    """
+    m = re.match(r'\[(?:overlap|pause):(-?\d+)\]\s*', text)
+    if m:
+        return int(m.group(1)), text[m.end():]
+    return None, text
+
+
+# ---------------------------------------------------------------------------
+# Dynamic pacing helpers (silence trim + heuristic gap)
+# ---------------------------------------------------------------------------
+
+def trim_tts_silence(segment, silence_thresh=-45, min_silence_len=80):
+    """Trim leading/trailing silence from a pydub AudioSegment.
+
+    Uses pydub's silence detection to strip the dead air that TTS engines
+    (especially OpenAI) tend to add at the head and tail of each clip.
+    """
+    from pydub.silence import detect_leading_silence
+    lead = detect_leading_silence(segment, silence_threshold=silence_thresh,
+                                  chunk_size=min_silence_len)
+    # detect_leading_silence only does the front; reverse for the tail
+    trail = detect_leading_silence(segment.reverse(), silence_threshold=silence_thresh,
+                                   chunk_size=min_silence_len)
+    end = len(segment) - trail
+    if end <= lead:
+        return segment  # degenerate case: clip is entirely "silent"
+    return segment[lead:end]
+
+
+def heuristic_gap_ms(text, prev_speaker, cur_speaker):
+    """Return a sensible inter-segment gap based on the upcoming text.
+
+    * Very short interjections (< 25 chars, e.g. "Ha!", "Right?", "Exactly.")
+      get a tight overlap or minimal gap.
+    * Same speaker continuing gets no gap.
+    * Normal speaker change gets a moderate gap.
+    """
+    stripped = text.strip()
+    char_count = len(stripped)
+
+    # Same speaker continuation (shouldn't normally happen, but be safe)
+    if cur_speaker and prev_speaker == cur_speaker:
+        return 0
+
+    # Short interjection / reaction
+    if char_count <= 25:
+        return 50  # very tight – almost overlapping
+
+    # Medium-length reaction (one sentence)
+    if char_count <= 80:
+        return 150
+
+    # Standard speaker change
+    return 350
+
+
+def _append_with_gap(combined, speech, gap_ms):
+    """Append *speech* to *combined* using the given gap.
+
+    Positive gap_ms → insert silence between segments.
+    Zero            → butt-join with no silence.
+    Negative gap_ms → overlap: the new speech starts before the
+                      previous segment ends (via pydub overlay).
+    """
+    if gap_ms > 0:
+        combined += AudioSegment.silent(duration=gap_ms) + speech
+    elif gap_ms == 0:
+        combined += speech
+    else:
+        # Negative overlap — clamp so we never reach before the start
+        overlap = min(-gap_ms, len(combined))
+        position = len(combined) - overlap
+        # Build a canvas long enough to hold both pieces
+        needed_len = position + len(speech)
+        if needed_len > len(combined):
+            combined += AudioSegment.silent(duration=needed_len - len(combined))
+        combined = combined.overlay(speech, position=position)
+    return combined
+
+
 def parse_script_into_segments(script):
     """Parse script into welcome, news, and deep dive segments."""
     segments = {
@@ -1957,6 +2042,7 @@ def parse_script_into_segments(script):
     current_section = 'welcome'
     current_speaker = None
     current_text = []
+    current_gap_ms = None  # None means "use heuristic default"
 
     for line in script.split('\n'):
         line = line.strip()
@@ -1967,7 +2053,8 @@ def parse_script_into_segments(script):
             if current_speaker and current_text:
                 segments['welcome'].append({
                     'speaker': current_speaker,
-                    'text': ' '.join(current_text).strip()
+                    'text': ' '.join(current_text).strip(),
+                    'gap_ms': current_gap_ms,
                 })
                 current_text = []
             current_section = 'news'
@@ -1978,7 +2065,8 @@ def parse_script_into_segments(script):
             if current_speaker and current_text:
                 segments[current_section].append({
                     'speaker': current_speaker,
-                    'text': ' '.join(current_text).strip()
+                    'text': ' '.join(current_text).strip(),
+                    'gap_ms': current_gap_ms,
                 })
                 current_text = []
             current_section = 'community_spotlight'
@@ -1989,7 +2077,8 @@ def parse_script_into_segments(script):
             if current_speaker and current_text:
                 segments[current_section].append({
                     'speaker': current_speaker,
-                    'text': ' '.join(current_text).strip()
+                    'text': ' '.join(current_text).strip(),
+                    'gap_ms': current_gap_ms,
                 })
                 current_text = []
             current_section = 'deep_dive'
@@ -1998,24 +2087,30 @@ def parse_script_into_segments(script):
         # Parse speaker tags
         riley_match = re.match(r'\*\*RILEY:\*\*\s*(.*)', line)
         casey_match = re.match(r'\*\*CASEY:\*\*\s*(.*)', line)
-        
+
         if riley_match:
             if current_speaker and current_text:
                 segments[current_section].append({
                     'speaker': current_speaker,
-                    'text': ' '.join(current_text).strip()
+                    'text': ' '.join(current_text).strip(),
+                    'gap_ms': current_gap_ms,
                 })
             current_speaker = 'riley'
-            current_text = [riley_match.group(1)] if riley_match.group(1) else []
-            
+            text_after = riley_match.group(1) or ''
+            current_gap_ms, text_after = _extract_pacing_tag(text_after)
+            current_text = [text_after] if text_after else []
+
         elif casey_match:
             if current_speaker and current_text:
                 segments[current_section].append({
                     'speaker': current_speaker,
-                    'text': ' '.join(current_text).strip()
+                    'text': ' '.join(current_text).strip(),
+                    'gap_ms': current_gap_ms,
                 })
             current_speaker = 'casey'
-            current_text = [casey_match.group(1)] if casey_match.group(1) else []
+            text_after = casey_match.group(1) or ''
+            current_gap_ms, text_after = _extract_pacing_tag(text_after)
+            current_text = [text_after] if text_after else []
             
         elif line and current_speaker:
             # Skip metadata and markers
@@ -2030,9 +2125,10 @@ def parse_script_into_segments(script):
     if current_speaker and current_text:
         segments[current_section].append({
             'speaker': current_speaker,
-            'text': ' '.join(current_text).strip()
+            'text': ' '.join(current_text).strip(),
+            'gap_ms': current_gap_ms,
         })
-    
+
     # Clean up segments
     for section in segments:
         segments[section] = [s for s in segments[section] if len(s['text']) > 10]
@@ -2104,60 +2200,55 @@ def generate_audio_from_script(script, output_filename, theme_name=None):
         # Try loading a theme-aware ambient transition (falls back to interval_music)
         ambient_transition = get_ambient_transition(theme_name, fallback_segment=interval_music)
 
-        silence = AudioSegment.silent(duration=500)
+        # Section-boundary gap (after music / ambient transitions)
+        section_gap = AudioSegment.silent(duration=400)
 
         with tempfile.TemporaryDirectory() as tmpdir:
             # Start with intro music
-            combined = intro_music + silence
+            combined = intro_music + section_gap
 
-            # Generate and add welcome section
-            print("  🎤 Generating welcome section...")
-            for i, segment in enumerate(segments['welcome']):
-                temp_file = os.path.join(tmpdir, f"welcome_{i}.mp3")
-                print(f"    {segment['speaker']}: {len(segment['text'])} chars")
-                generate_tts_for_segment(segment['text'], segment['speaker'], temp_file)
-                speech = normalize_segment(AudioSegment.from_mp3(temp_file), TARGET_SPEECH_DBFS)
-                combined += speech + silence
-
-            # Add interval music (standard chime into news)
-            combined += interval_music + silence
-
-            # Generate and add news section
-            print("  📰 Generating news section...")
-            for i, segment in enumerate(segments['news']):
-                temp_file = os.path.join(tmpdir, f"news_{i}.mp3")
-                print(f"    {segment['speaker']}: {len(segment['text'])} chars")
-                generate_tts_for_segment(segment['text'], segment['speaker'], temp_file)
-                speech = normalize_segment(AudioSegment.from_mp3(temp_file), TARGET_SPEECH_DBFS)
-                combined += speech + silence
-
-            # Add ambient transition before community spotlight / deep dive
-            combined += ambient_transition + silence
-
-            # Generate and add community spotlight section (if present)
-            if segments['community_spotlight']:
-                print("  🏘️  Generating community spotlight...")
-                for i, segment in enumerate(segments['community_spotlight']):
-                    temp_file = os.path.join(tmpdir, f"spotlight_{i}.mp3")
+            def _render_section(seg_list, label, prefix):
+                """Render a list of parsed segments into combined audio."""
+                nonlocal combined
+                prev_speaker = None
+                print(f"  {label}")
+                for i, segment in enumerate(seg_list):
+                    temp_file = os.path.join(tmpdir, f"{prefix}_{i}.mp3")
                     print(f"    {segment['speaker']}: {len(segment['text'])} chars")
                     generate_tts_for_segment(segment['text'], segment['speaker'], temp_file)
                     speech = normalize_segment(AudioSegment.from_mp3(temp_file), TARGET_SPEECH_DBFS)
-                    combined += speech + silence
+                    speech = trim_tts_silence(speech)
 
+                    # Determine gap: explicit tag > heuristic
+                    gap = segment.get('gap_ms')
+                    if gap is None:
+                        gap = heuristic_gap_ms(segment['text'], prev_speaker, segment['speaker'])
+                    combined = _append_with_gap(combined, speech, gap)
+                    prev_speaker = segment['speaker']
+
+            # Welcome section
+            _render_section(segments['welcome'], "🎤 Generating welcome section...", "welcome")
+
+            # Add interval music (standard chime into news)
+            combined += section_gap + interval_music + section_gap
+
+            # News section
+            _render_section(segments['news'], "📰 Generating news section...", "news")
+
+            # Add ambient transition before community spotlight / deep dive
+            combined += section_gap + ambient_transition + section_gap
+
+            # Community spotlight section (if present)
+            if segments['community_spotlight']:
+                _render_section(segments['community_spotlight'], "🏘️  Generating community spotlight...", "spotlight")
                 # Add ambient transition after community spotlight, before deep dive
-                combined += ambient_transition + silence
+                combined += section_gap + ambient_transition + section_gap
 
-            # Generate and add deep dive section
-            print("  🔍 Generating deep dive section...")
-            for i, segment in enumerate(segments['deep_dive']):
-                temp_file = os.path.join(tmpdir, f"deep_{i}.mp3")
-                print(f"    {segment['speaker']}: {len(segment['text'])} chars")
-                generate_tts_for_segment(segment['text'], segment['speaker'], temp_file)
-                speech = normalize_segment(AudioSegment.from_mp3(temp_file), TARGET_SPEECH_DBFS)
-                combined += speech + silence
+            # Deep dive section
+            _render_section(segments['deep_dive'], "🔍 Generating deep dive section...", "deep")
 
         # Add outro music (after tmpdir context - files cleaned up)
-        combined += outro_music
+        combined += section_gap + outro_music
         
         # Export
         combined.export(output_filename, format="mp3")
@@ -2196,12 +2287,17 @@ def generate_audio_tts_only(script, output_filename):
 
         with tempfile.TemporaryDirectory() as tmpdir:
             combined = AudioSegment.empty()
+            prev_speaker = None
             for i, segment in enumerate(segments):
                 print(f"  🎤 Generating audio {i+1}/{len(segments)} ({segment['speaker']}: {len(segment['text'])} chars)")
                 temp_file = os.path.join(tmpdir, f"seg_{i:03d}.mp3")
                 generate_tts_for_segment(segment['text'], segment['speaker'], temp_file)
-                combined += AudioSegment.from_mp3(temp_file)
-                combined += AudioSegment.silent(duration=500)
+                speech = trim_tts_silence(AudioSegment.from_mp3(temp_file))
+                gap = segment.get('gap_ms')
+                if gap is None:
+                    gap = heuristic_gap_ms(segment['text'], prev_speaker, segment['speaker'])
+                combined = _append_with_gap(combined, speech, gap)
+                prev_speaker = segment['speaker']
 
         combined.export(output_filename, format="mp3")
 
