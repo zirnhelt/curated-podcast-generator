@@ -2462,6 +2462,104 @@ def sync_site_to_r2():
     else:
         print("   No audio files to upload")
 
+    # Upload transcript files alongside audio
+    transcript_files = sorted(glob.glob(str(PODCASTS_DIR / "podcast_transcript_*.html")))
+    if transcript_files:
+        print(f"   Uploading {len(transcript_files)} transcript(s)...")
+        for transcript_file in transcript_files:
+            r2_key = f"podcasts/{os.path.basename(transcript_file)}"
+            _upload_file_to_r2(r2, bucket, transcript_file, r2_key)
+
+
+def script_to_friendly_transcript(script_content):
+    """Convert a raw podcast script to a clean HTML transcript for Apple Podcasts.
+
+    Strips markdown speaker tags and pacing annotations, turning the internal
+    **RILEY:** / **CASEY:** format into readable HTML paragraphs.
+    """
+    lines = script_content.splitlines()
+    html_parts = [
+        "<!DOCTYPE html>",
+        '<html lang="en">',
+        "<head><meta charset=\"UTF-8\"><title>Transcript</title></head>",
+        "<body>",
+    ]
+
+    SECTION_HEADERS = {
+        "NEWS ROUNDUP", "COMMUNITY SPOTLIGHT", "DEEP DIVE",
+        "SEGMENT 1", "SEGMENT 2", "CARIBOO CONNECTIONS",
+    }
+
+    for line in lines:
+        stripped = line.strip()
+
+        # Skip file-header comment lines (# ...)
+        if stripped.startswith("#"):
+            continue
+
+        # Strip pacing tags like [overlap:200] or [pause:500]
+        stripped = re.sub(r'\[(?:overlap|pause):-?\d+\]\s*', '', stripped)
+
+        # Speaker lines: **RILEY:** text  or  **CASEY:** text
+        riley_m = re.match(r'\*\*RILEY:\*\*\s*(.*)', stripped)
+        casey_m = re.match(r'\*\*CASEY:\*\*\s*(.*)', stripped)
+        if riley_m:
+            text = saxutils.escape(riley_m.group(1).strip())
+            html_parts.append(f"<p><strong>Riley:</strong> {text}</p>")
+            continue
+        if casey_m:
+            text = saxutils.escape(casey_m.group(1).strip())
+            html_parts.append(f"<p><strong>Casey:</strong> {text}</p>")
+            continue
+
+        # Section header lines like **NEWS ROUNDUP** or **DEEP DIVE: ...**
+        header_m = re.match(r'\*\*([^*]+)\*\*', stripped)
+        if header_m:
+            header_text = header_m.group(1).strip().rstrip(':')
+            if any(kw in header_text.upper() for kw in SECTION_HEADERS):
+                html_parts.append(f"<h2>{saxutils.escape(header_text)}</h2>")
+                continue
+
+        # Blank lines become spacing
+        if not stripped:
+            html_parts.append("")
+            continue
+
+        # Any remaining non-empty line (shouldn't be many) — emit as paragraph
+        html_parts.append(f"<p>{saxutils.escape(stripped)}</p>")
+
+    html_parts.append("</body>")
+    html_parts.append("</html>")
+    return "\n".join(html_parts)
+
+
+def generate_episode_transcript(script_filename, date_str, safe_theme):
+    """Generate a friendly HTML transcript from a podcast script file.
+
+    Returns the transcript file path on success, or None on failure.
+    """
+    if not script_filename or not os.path.exists(script_filename):
+        return None
+
+    transcript_filename = str(PODCASTS_DIR / f"podcast_transcript_{date_str}_{safe_theme}.html")
+
+    try:
+        with open(script_filename, 'r', encoding='utf-8') as f:
+            script_content = f.read()
+
+        html = script_to_friendly_transcript(script_content)
+
+        with open(transcript_filename, 'w', encoding='utf-8') as f:
+            f.write(html)
+
+        print(f"📄 Saved transcript to: {transcript_filename}")
+        return transcript_filename
+
+    except Exception as e:
+        print(f"⚠️  Could not generate transcript: {e}")
+        return None
+
+
 def generate_podcast_rss_feed():
     """Generate RSS feed with detailed citations for each episode."""
     print("📡 Generating podcast RSS feed with citations...")
@@ -2558,11 +2656,27 @@ def generate_podcast_rss_feed():
                 continue
 
     episodes = episodes[:10]  # Keep last 10 episodes
-    
+
+    # Attach transcript path for each episode if a transcript file exists
+    audio_base = podcast_config.get("audio_base_url", podcast_config["url"])
+    for episode in episodes:
+        audio_basename = os.path.basename(episode['audio_file'])
+        m = re.search(r'podcast_audio_(\d{4}-\d{2}-\d{2})_(.+)\.mp3', audio_basename)
+        if m:
+            ep_date, ep_theme = m.groups()
+            transcript_file = PODCASTS_DIR / f"podcast_transcript_{ep_date}_{ep_theme}.html"
+            if transcript_file.exists():
+                episode['transcript_url'] = f"{audio_base}podcasts/podcast_transcript_{ep_date}_{ep_theme}.html"
+            else:
+                episode['transcript_url'] = None
+        else:
+            episode['transcript_url'] = None
+
     # Generate RSS XML
     rss_lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
-        '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">',
+        '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"'
+        ' xmlns:podcast="https://podcastindex.org/namespace/1.0">',
         '<channel>',
         f'<title>{saxutils.escape(podcast_config["title"])}</title>',
         f'<link>{podcast_config["url"]}index.html</link>',
@@ -2588,16 +2702,13 @@ def generate_podcast_rss_feed():
         f'<lastBuildDate>{get_pacific_now().strftime("%a, %d %b %Y %H:%M:%S GMT")}</lastBuildDate>'
     ])
     
-    # Use R2 audio URL if configured, otherwise fall back to GitHub Pages
-    audio_base = podcast_config.get("audio_base_url", podcast_config["url"])
-
     # Add episodes with detailed descriptions
     for episode in episodes:
         escaped_title = saxutils.escape(episode['title'])
         escaped_description = saxutils.escape(episode['description'])
 
         # Use CDATA for description so line breaks render in podcast apps
-        rss_lines.extend([
+        item_lines = [
             '<item>',
             f'<title>{escaped_title}</title>',
             f'<link>{podcast_config["url"]}index.html</link>',
@@ -2608,8 +2719,12 @@ def generate_podcast_rss_feed():
             f'<guid isPermaLink="false">{podcast_config["title"].lower().replace(" ", "-")}-{os.path.basename(episode["audio_file"]).replace("podcast_audio_", "").replace(".mp3", "")}</guid>',
             f'<itunes:duration>{episode["duration"]}</itunes:duration>',
             f'<itunes:explicit>{"true" if podcast_config["explicit"] else "false"}</itunes:explicit>',
-            '</item>'
-        ])
+        ]
+        if episode.get('transcript_url'):
+            escaped_transcript_url = saxutils.escape(episode['transcript_url'], {chr(34): "&quot;"})
+            item_lines.append(f'<podcast:transcript url="{escaped_transcript_url}" type="text/html"/>')
+        item_lines.append('</item>')
+        rss_lines.extend(item_lines)
     
     rss_lines.extend([
         '</channel>',
@@ -2734,6 +2849,7 @@ def main():
         print(f"✅ Today's episode already exists:")
         print(f"   Script: {script_filename}")
         print(f"   Audio: {audio_filename}")
+        generate_episode_transcript(script_filename, date_key, safe_theme)
         generate_podcast_rss_feed()
         _regenerate_index_html()
         sync_site_to_r2()
@@ -2962,6 +3078,9 @@ def main():
             print("📊 Audio generation failed")
     elif audio_exists:
         print(f"🎵 Audio already exists: {audio_filename}")
+
+    # Generate HTML transcript for Apple Podcasts
+    generate_episode_transcript(script_filename, date_key, safe_theme)
 
     # Generate RSS feed, regenerate index.html, and sync everything to R2
     generate_podcast_rss_feed()

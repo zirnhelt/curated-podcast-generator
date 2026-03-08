@@ -15,6 +15,14 @@ from config_loader import load_podcast_config, load_credits_config
 
 PODCASTS_DIR = Path(__file__).parent / "podcasts"
 
+def load_episode_transcript_url(episode_date, safe_theme, audio_base):
+    """Return the transcript URL if a transcript HTML file exists for this episode."""
+    transcript_file = PODCASTS_DIR / f"podcast_transcript_{episode_date}_{safe_theme}.html"
+    if transcript_file.exists():
+        return f"{audio_base}podcasts/podcast_transcript_{episode_date}_{safe_theme}.html"
+    return None
+
+
 def load_episode_description(episode_date, theme):
     """Load episode-specific description from citations file if it exists."""
     safe_theme = theme.replace(" ", "_").replace("&", "and").lower()
@@ -74,7 +82,8 @@ def generate_clean_rss():
     # Generate RSS XML with proper escaping
     rss_lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
-        '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">',
+        '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"'
+        ' xmlns:podcast="https://podcastindex.org/namespace/1.0">',
         '<channel>',
         f'<title>{saxutils.escape(podcast_config["title"])}</title>',
         f'<link>{podcast_config["url"]}index.html</link>',
@@ -119,8 +128,11 @@ def generate_clean_rss():
             raw_description = podcast_config["description"] + "\n\n" + credits_config['text']
             print(f"  ⚠️  Using generic description for {episode['episode_date']}")
 
+        safe_theme = episode['theme'].replace(" ", "_").replace("&", "and").lower()
+        transcript_url = load_episode_transcript_url(episode['episode_date'], safe_theme, audio_base)
+
         # Use CDATA so line breaks render in podcast apps
-        rss_lines.extend([
+        item_lines = [
             '<item>',
             f'<title>{escaped_title}</title>',
             f'<link>{podcast_config["url"]}index.html</link>',
@@ -133,8 +145,12 @@ def generate_clean_rss():
             f'<itunes:duration>{podcast_config["episode_duration"]}</itunes:duration>',
             f'<itunes:explicit>{"true" if podcast_config["explicit"] else "false"}</itunes:explicit>',
             '<itunes:episodeType>full</itunes:episodeType>',
-            '</item>'
-        ])
+        ]
+        if transcript_url:
+            escaped_transcript_url = saxutils.escape(transcript_url, {chr(34): "&quot;"})
+            item_lines.append(f'<podcast:transcript url="{escaped_transcript_url}" type="text/html"/>')
+        item_lines.append('</item>')
+        rss_lines.extend(item_lines)
     
     rss_lines.extend([
         '</channel>',
