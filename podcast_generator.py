@@ -1979,13 +1979,17 @@ def trim_tts_silence(segment, silence_thresh=-45, min_silence_len=80):
     return segment[lead:end]
 
 
-def heuristic_gap_ms(text, prev_speaker, cur_speaker):
+def heuristic_gap_ms(text, prev_speaker, cur_speaker, section="deep_dive"):
     """Return a sensible inter-segment gap based on the upcoming text.
 
     * Very short interjections (< 25 chars, e.g. "Ha!", "Right?", "Exactly.")
       get a tight overlap or minimal gap.
     * Same speaker continuing gets no gap.
     * Normal speaker change gets a moderate gap.
+
+    The *section* parameter adjusts pacing per segment type.  The news
+    section uses wider gaps so it sounds deliberate and authoritative
+    (NPR/CBC anchor style) rather than rushed.
     """
     stripped = text.strip()
     char_count = len(stripped)
@@ -1994,6 +1998,15 @@ def heuristic_gap_ms(text, prev_speaker, cur_speaker):
     if cur_speaker and prev_speaker == cur_speaker:
         return 0
 
+    # --- News section: slower, more measured pacing ---
+    if section == "news":
+        if char_count <= 25:
+            return 150   # short reactions still get a beat
+        if char_count <= 80:
+            return 350   # medium reactions get a clear pause
+        return 600       # full story hand-off gets a deliberate breath
+
+    # --- Default (deep dive / welcome / other): conversational pacing ---
     # Short interjection / reaction
     if char_count <= 25:
         return 50  # very tight – almost overlapping
@@ -2222,7 +2235,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None):
                     # Determine gap: explicit tag > heuristic
                     gap = segment.get('gap_ms')
                     if gap is None:
-                        gap = heuristic_gap_ms(segment['text'], prev_speaker, segment['speaker'])
+                        gap = heuristic_gap_ms(segment['text'], prev_speaker, segment['speaker'], section=prefix)
                     combined = _append_with_gap(combined, speech, gap)
                     prev_speaker = segment['speaker']
 
