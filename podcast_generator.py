@@ -1979,12 +1979,26 @@ def trim_tts_silence(segment, silence_thresh=-45, min_silence_len=80):
     return segment[lead:end]
 
 
+def _is_story_transition(text):
+    """Detect phrases that signal a new story or topic shift."""
+    lower = text.strip().lower()
+    transition_starters = (
+        "moving on", "next up", "in other news", "turning to",
+        "switching gears", "also today", "meanwhile", "on the",
+        "now,", "now ", "over in", "closer to home",
+        "also worth noting", "before we move on", "a couple of quick",
+        "and finally", "lastly", "wrapping up",
+    )
+    return any(lower.startswith(phrase) for phrase in transition_starters)
+
+
 def heuristic_gap_ms(text, prev_speaker, cur_speaker, section="deep_dive"):
     """Return a sensible inter-segment gap based on the upcoming text.
 
     * Very short interjections (< 25 chars, e.g. "Ha!", "Right?", "Exactly.")
       get a tight overlap or minimal gap.
-    * Same speaker continuing gets no gap.
+    * Same speaker continuing in the news section gets a deliberate
+      pause (new story).  In other sections it gets no gap.
     * Normal speaker change gets a moderate gap.
 
     The *section* parameter adjusts pacing per segment type.  The news
@@ -1994,8 +2008,16 @@ def heuristic_gap_ms(text, prev_speaker, cur_speaker, section="deep_dive"):
     stripped = text.strip()
     char_count = len(stripped)
 
-    # Same speaker continuation (shouldn't normally happen, but be safe)
+    # Same speaker continuation
     if cur_speaker and prev_speaker == cur_speaker:
+        # In the news section the same host moving to a new story needs a
+        # clear breath so stories don't blend together.
+        if section == "news":
+            if _is_story_transition(stripped):
+                return 850   # very clear topic break
+            if char_count > 80:
+                return 700   # likely a new story — deliberate pause
+            return 350       # shorter continuation still gets a beat
         return 0
 
     # --- News section: slower, more measured pacing ---
