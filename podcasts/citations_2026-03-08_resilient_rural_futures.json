@@ -1,0 +1,136 @@
+{
+  "episode": {
+    "date": "2026-03-08",
+    "formatted_date": "Sunday, March 08, 2026",
+    "theme": "Resilient Rural Futures",
+    "title": "Cariboo Signals - Resilient Rural Futures",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Resilient Rural Futures.</p><p><b>NEWS ROUNDUP:</b> We break down [XDA Developers] Please stop relying on the Internet for your smart home devices and [XDA Developers] I blocked all cloud access from my smart home for a week to see what still works, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Deep dive on Resilient Rural Futures Topics include: broadband, fiber, telemedicine, solar, AI.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>XDA Developers: <a href=\"https://www.xda-developers.com/please-stop-relying-on-the-internet-for-your-smart-home-devices/\">[XDA Developers] Please stop relying on the Internet for you...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/blocked-all-cloud-access-from-smart-home-for-week-what-still-works/\">[XDA Developers] I blocked all cloud access from my smart ho...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/05/feds-commit-70-4m-for-worker-training-in-b-c-amid-tariff-upheaval/\">[Williams Lake Tribune] Feds commit $70.4M for worker traini...</a></li><li>U.S. News & World Report: <a href=\"https://news.google.com/rss/articles/CBMivgFBVV95cUxQMVI2ZkZ6MkFBT2hiSnB3SktzWVlSR2RVNE5taTZBV2JDbS13eWtXQUlLSVh0Q3RHaHMxYUJTVHJOaFBNblN3d3Jqcmx6VzZDVzNBNHM2UlpLZzY2Nk9tbVc5TVlGTzd1OGJ3Q1hDSk1zd0p6bWo4WTMxWXptRFp2UVBaanBOLW9FOF8yWHhXdjhWQnBzcDlEalFMUlIwc2RoZFBmc0owX1NTc1B2VmpFNEVuU1h0WjFZNVdDampB?oc=5\">[U.S. News & World Report] Telemedicine Not Closing the Ment...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>XDA Developers: <a href=\"https://www.xda-developers.com/services-i-could-not-self-host-forever-after-a-year-of-self-hosting/\">[XDA Developers] I self-hosted everything for a year, and th...</a></li><li>100 Mile Free Press: <a href=\"https://100milefreepress.net/2026/03/05/editor-alternative-available-for-yellowhead-copper-projects-transmission-line/\">[100 Mile Free Press] EDITOR: Alternative available for Yell...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/WhatWorks/2026/03/05/What-Can-You-Do-Used-Plastic-3D-Printers/\">[The Tyee] What Can You Do with Used Plastic and 3D Printers...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/03/04/climate/nuclear-power-terrapower-construction-permit.html\">[NYT Top Stories] TerraPower Nuclear Reactor in Wyoming Gets...</a></li><li>The Globe and Mail: <a href=\"https://news.google.com/rss/articles/CBMisAFBVV95cUxOQkdSaWZ0Q0ZKSjJ2WU5KZFFkdk5BbDVQWVlOWmI1bDhaY2s1YjNhSURrMkxDSTB2enJhR1VTb2EwWS1SS0w0S0JPejhoSTNleUxHZ2d4dGxwQ1BDSkZORlpUMDBJTUNNbUxEdlhSdjRFWkN3M0dwamtIdExhZzNQU2FUVlFlVXdIS1dyU3d1cDlJVGhfOVdiUU1Cc0QyWTliZHNlQzhodk1KTkUtRElRRA?oc=5\">[The Globe and Mail] Tumbler Ridge shooting highlights rural...</a></li><li>How-To Geek: <a href=\"https://www.howtogeek.com/things-ive-learned-after-a-decade-of-using-rooftop-solar/\">[How-To Geek] 6 things I've learned after a decade of using ...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Sumo AI<br>Content Curation &amp; Script: Claude (Anthropic)<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-03-08T05:49:31.628241-07:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[XDA Developers] I self-hosted everything for a year, and these are the services I couldn’t self-host forever",
+          "url": "https://www.xda-developers.com/services-i-could-not-self-host-forever-after-a-year-of-self-hosting/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-07T21:30:20+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] Please stop relying on the Internet for your smart home devices",
+          "url": "https://www.xda-developers.com/please-stop-relying-on-the-internet-for-your-smart-home-devices/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-04T13:00:21+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[100 Mile Free Press] EDITOR: Alternative available for Yellowhead Copper Project’s transmission line",
+          "url": "https://100milefreepress.net/2026/03/05/editor-alternative-available-for-yellowhead-copper-projects-transmission-line/",
+          "source": "100 Mile Free Press",
+          "ai_score": 0,
+          "date_published": "2026-03-06T01:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] I blocked all cloud access from my smart home for a week to see what still works",
+          "url": "https://www.xda-developers.com/blocked-all-cloud-access-from-smart-home-for-week-what-still-works/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-02T20:30:20+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[The Tyee] What Can You Do with Used Plastic and 3D Printers? Meet Two Pros",
+          "url": "https://thetyee.ca/WhatWorks/2026/03/05/What-Can-You-Do-Used-Plastic-3D-Printers/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-03-05T08:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] TerraPower Nuclear Reactor in Wyoming Gets Federal Permit",
+          "url": "https://www.nytimes.com/2026/03/04/climate/nuclear-power-terrapower-construction-permit.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-03-04T18:53:12+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Feds commit $70.4M for worker training in B.C. amid tariff upheaval",
+          "url": "https://wltribune.com/2026/03/05/feds-commit-70-4m-for-worker-training-in-b-c-amid-tariff-upheaval/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-05T16:30:00+00:00",
+          "summary": "",
+          "discussed": true
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Resilient Rural Futures",
+      "articles": [
+        {
+          "title": "[The Globe and Mail] Tumbler Ridge shooting highlights rural northern B.C.’s mental health deserts",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOQkdSaWZ0Q0ZKSjJ2WU5KZFFkdk5BbDVQWVlOWmI1bDhaY2s1YjNhSURrMkxDSTB2enJhR1VTb2EwWS1SS0w0S0JPejhoSTNleUxHZ2d4dGxwQ1BDSkZORlpUMDBJTUNNbUxEdlhSdjRFWkN3M0dwamtIdExhZzNQU2FUVlFlVXdIS1dyU3d1cDlJVGhfOVdiUU1Cc0QyWTliZHNlQzhodk1KTkUtRElRRA?oc=5",
+          "source": "The Globe and Mail",
+          "ai_score": 0,
+          "date_published": "2026-03-04T09:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] 6 things I've learned after a decade of using rooftop solar",
+          "url": "https://www.howtogeek.com/things-ive-learned-after-a-decade-of-using-rooftop-solar/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-07T23:00:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[U.S. News & World Report] Telemedicine Not Closing the Mental Health Gap in Rural Areas",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQMVI2ZkZ6MkFBT2hiSnB3SktzWVlSR2RVNE5taTZBV2JDbS13eWtXQUlLSVh0Q3RHaHMxYUJTVHJOaFBNblN3d3Jqcmx6VzZDVzNBNHM2UlpLZzY2Nk9tbVc5TVlGTzd1OGJ3Q1hDSk1zd0p6bWo4WTMxWXptRFp2UVBaanBOLW9FOF8yWHhXdjhWQnBzcDlEalFMUlIwc2RoZFBmc0owX1NTc1B2VmpFNEVuU1h0WjFZNVdDampB?oc=5",
+          "source": "U.S. News & World Report",
+          "ai_score": 0,
+          "date_published": "2026-03-06T11:38:20+00:00",
+          "summary": "",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Deep dive on Resilient Rural Futures",
+        "topics_covered": [
+          "broadband",
+          "fiber",
+          "telemedicine",
+          "solar",
+          "AI"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
