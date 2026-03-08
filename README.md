@@ -141,6 +141,28 @@ Each run produces three files:
 
 ---
 
+## Tests
+
+112 unit tests across 6 modules. No API keys or network access required — heavy dependencies (anthropic, openai, pydub) are stubbed automatically via `conftest.py`.
+
+```bash
+pip install pytest
+python -m pytest tests/ -v
+```
+
+| Module | Tests | What it covers |
+|---|---|---|
+| `test_ambient.py` | 5 | Ambient config loading, theme transitions, fallbacks |
+| `test_config_loader.py` | 12 | Loading each config file, voice/theme helpers, caching |
+| `test_dedup.py` | 8 | Title normalization, similarity scoring, evolving story context |
+| `test_podcast_generator.py` | 27 | Article scoring, script parsing, pacing tags, heuristic gaps, host selection |
+| `test_psa_selector.py` | 22 | PSA org selection, event matching, round-robin rotation, notable dates, config validation |
+| `test_weather.py` | 13 | Weather fetching, driving impact detection, prompt formatting, WMO codes |
+
+**Note:** `tests/` is in `.gitignore` (via `*test*`). Use `git add -f tests/` when committing test changes.
+
+---
+
 ## Local Testing
 
 ```bash
