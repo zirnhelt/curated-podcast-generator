@@ -1,23 +1,4 @@
 {
-  "2026-02-14": {
-    "timestamp": 1771073277.169874,
-    "topics": [
-      "[XDA Developers] Linux 7.0 may receive a self-repairing feat",
-      "[Hackaday] R2D2 Gets New Brains",
-      "[ZDNet] My 5 favorite Linux distros that are ready to use ou",
-      "[XDA Developers] Forget about PCIe 5.0 \u2014 PCIe 3.0 SSDs are f",
-      "[GN AI ML Infrastructure] Astera Labs Q4 2025 Earnings: Dive",
-      "[GN Smart Home and Automation] 7 smart home mistakes that ar",
-      "[How-To Geek] Stop putting NVMe SSDs in USB enclosures: You'",
-      "[Hackaday] Rock Sphere Machine Produces Off the Charts Satis"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "connectivity"
-    ],
-    "date": "2026-02-14"
-  },
   "2026-02-15": {
     "timestamp": 1771160022.714592,
     "topics": [
@@ -433,5 +414,25 @@
       "connectivity"
     ],
     "date": "2026-03-07"
+  },
+  "2026-03-08": {
+    "timestamp": 1772974171.632272,
+    "topics": [
+      "[XDA Developers] I self-hosted everything for a year, and th",
+      "[XDA Developers] Please stop relying on the Internet for you",
+      "[100 Mile Free Press] EDITOR: Alternative available for Yell",
+      "[XDA Developers] I blocked all cloud access from my smart ho",
+      "[The Tyee] What Can You Do with Used Plastic and 3D Printers",
+      "[The Globe and Mail] Tumbler Ridge shooting highlights rural",
+      "[How-To Geek] 6 things I've learned after a decade of using ",
+      "[U.S. News & World Report] Telemedicine Not Closing the Ment"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "connectivity"
+    ],
+    "date": "2026-03-08"
   }
 }
