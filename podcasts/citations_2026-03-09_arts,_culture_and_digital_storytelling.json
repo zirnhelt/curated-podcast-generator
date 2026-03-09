@@ -1,0 +1,396 @@
+{
+  "episode": {
+    "date": "2026-03-09",
+    "formatted_date": "Monday, March 09, 2026",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "title": "Cariboo Signals - Arts, Culture & Digital Storytelling",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Arts, Culture & Digital Storytelling.</p><p><b>NEWS ROUNDUP:</b> We break down [Williams Lake Tribune] Victoria charity launches national youth contest to fight book bans and [Neowin] Planet of Lana II review: Gorgeous sci-fi adventure that ends too soon, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Deep dive on Arts, Culture & Digital Storytelling Topics include: AI, infrastructure, maintenance, funding.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/03/victoria-charity-launches-national-youth-contest-to-fight-book-bans/\">[Williams Lake Tribune] Victoria charity launches national y...</a></li><li>Neowin: <a href=\"https://www.neowin.net/reviews/planet-of-lana-ii-review-gorgeous-sci-fi-adventure-that-ends-too-soon/\">[Neowin] Planet of Lana II review: Gorgeous sci-fi adventure...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/05/eby-calls-for-more-ai-regulation-after-altman-meeting-about-tumbler-ridge/\">[Williams Lake Tribune] Eby calls for more AI regulation aft...</a></li><li>100 Mile Free Press: <a href=\"https://100milefreepress.net/2026/03/04/forster-log-cabin-quilters-donate-to-bridge-lake-fair/\">[100 Mile Free Press] FORSTER: Log Cabin Quilters donate to ...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/someone-converted-ikea-lamp-tetris-game-esp32/\">[XDA Developers] Someone converted an Ikea wall lamp into a ...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/08/international-womens-day-2026-amanda-nemeth/\">[Williams Lake Tribune] International Women’s Day 2026: Aman...</a></li><li>Boing Boing: <a href=\"https://boingboing.net/2026/03/03/a-consciousness-on-an-old-drive-tells-its-awful-story.html\">[Boing Boing] A consciousness on an old drive tells its awfu...</a></li><li>Gizmodo: <a href=\"https://gizmodo.com/if-alien-dyson-spheres-are-real-these-are-the-stars-theyd-pick-2000729692\">[Gizmodo] If Alien Dyson Spheres Are Real, These Are the Sta...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/08/quiz-are-you-ready-for-the-time-change/\">[Williams Lake Tribune] QUIZ: Are you ready for the time cha...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/07/international-womens-day-2026-marg-bublitz/\">[Williams Lake Tribune] International Women’s Day 2026: Marg...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/07/international-womens-day-2026-misty-schulz/\">[Williams Lake Tribune] International Women’s Day 2026: Mist...</a></li><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/03/06/man-linked-to-edgewood-ostrich-protest-heads-to-assault-trial/\">[Quesnel Cariboo Observer] Man linked to Edgewood ostrich pr...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/201709/news/health-care/sleep-experts-say-permanent-dst-could-bring-unintended-health-impacts/\">[My Cariboo Now] Sleep experts say permanent DST could bring...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/200795/news/rcmp/crime/three-year-investigation-leads-to-two-arrests-and-31-charges/\">[My Cariboo Now] Three year investigation leads to two arres...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/197560/news/education/bc-teachers-vote-to-ratify-new-collective-agreement/\">[My Cariboo Now] BC Teachers vote to ratify new collective a...</a></li><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/03/06/b-c-teen-drowned-after-dingo-attack-on-island-in-australia/\">[Quesnel Cariboo Observer] B.C. teen drowned after dingo att...</a></li><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/03/03/accused-naramata-murderers-trial-begins-first-of-82-days-in-kelowna/\">[Quesnel Cariboo Observer] Accused Naramata murderer’s trial...</a></li><li>TechRadar: <a href=\"https://www.techradar.com/pro/before-the-matrix-and-the-terminator-there-was-the-creation-of-the-humanoids-how-an-obscure-1962-b-movie-set-the-scene-for-robot-takeover-and-introduced-the-concept-of-centralized-intelligence\">[TechRadar] Before The Matrix and The Terminator, there was ...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/08/international-womens-day-2026-bobbi-jo-krist/\">[Williams Lake Tribune] International Women’s Day 2026: Bobb...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/195220/news/communty/women-to-be-celebrated-in-quesnel-this-weekend/\">[My Cariboo Now] Women to be celebrated in Quesnel this week...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Sumo AI<br>Content Curation &amp; Script: Claude (Anthropic)<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-03-09T06:04:38.367714-07:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Victoria charity launches national youth contest to fight book bans",
+          "url": "https://wltribune.com/2026/03/03/victoria-charity-launches-national-youth-contest-to-fight-book-bans/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-03T14:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] International Women’s Day 2026: Amanda Nemeth",
+          "url": "https://wltribune.com/2026/03/08/international-womens-day-2026-amanda-nemeth/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-08T19:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Neowin] Planet of Lana II review: Gorgeous sci-fi adventure that ends too soon",
+          "url": "https://www.neowin.net/reviews/planet-of-lana-ii-review-gorgeous-sci-fi-adventure-that-ends-too-soon/",
+          "source": "Neowin",
+          "ai_score": 0,
+          "date_published": "2026-03-04T14:00:02+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Boing Boing] A consciousness on an old drive tells its awful story",
+          "url": "https://boingboing.net/2026/03/03/a-consciousness-on-an-old-drive-tells-its-awful-story.html",
+          "source": "Boing Boing",
+          "ai_score": 0,
+          "date_published": "2026-03-03T23:24:53+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Gizmodo] If Alien Dyson Spheres Are Real, These Are the Stars They’d Pick",
+          "url": "https://gizmodo.com/if-alien-dyson-spheres-are-real-these-are-the-stars-theyd-pick-2000729692",
+          "source": "Gizmodo",
+          "ai_score": 0,
+          "date_published": "2026-03-04T21:50:38+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] QUIZ: Are you ready for the time change?",
+          "url": "https://wltribune.com/2026/03/08/quiz-are-you-ready-for-the-time-change/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-08T05:20:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] International Women’s Day 2026: Marg Bublitz",
+          "url": "https://wltribune.com/2026/03/07/international-womens-day-2026-marg-bublitz/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-07T18:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] International Women’s Day 2026: Misty Schulz",
+          "url": "https://wltribune.com/2026/03/07/international-womens-day-2026-misty-schulz/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-07T13:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Man linked to Edgewood ostrich protest heads to assault trial",
+          "url": "https://quesnelobserver.com/2026/03/06/man-linked-to-edgewood-ostrich-protest-heads-to-assault-trial/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-03-07T00:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[My Cariboo Now] Sleep experts say permanent DST could bring unintended health impacts",
+          "url": "https://www.mycariboonow.com/201709/news/health-care/sleep-experts-say-permanent-dst-could-bring-unintended-health-impacts/",
+          "source": "My Cariboo Now",
+          "ai_score": 0,
+          "date_published": "2026-03-07T01:10:08+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[My Cariboo Now] Three year investigation leads to two arrests and 31 charges",
+          "url": "https://www.mycariboonow.com/200795/news/rcmp/crime/three-year-investigation-leads-to-two-arrests-and-31-charges/",
+          "source": "My Cariboo Now",
+          "ai_score": 0,
+          "date_published": "2026-03-06T18:06:30+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[My Cariboo Now] BC Teachers vote to ratify new collective agreement",
+          "url": "https://www.mycariboonow.com/197560/news/education/bc-teachers-vote-to-ratify-new-collective-agreement/",
+          "source": "My Cariboo Now",
+          "ai_score": 0,
+          "date_published": "2026-03-05T18:21:35+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] B.C. teen drowned after dingo attack on island in Australia",
+          "url": "https://quesnelobserver.com/2026/03/06/b-c-teen-drowned-after-dingo-attack-on-island-in-australia/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-03-06T17:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Eby calls for more AI regulation after Altman meeting about Tumbler Ridge",
+          "url": "https://wltribune.com/2026/03/05/eby-calls-for-more-ai-regulation-after-altman-meeting-about-tumbler-ridge/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-05T15:53:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[100 Mile Free Press] FORSTER: Log Cabin Quilters donate to Bridge Lake Fair",
+          "url": "https://100milefreepress.net/2026/03/04/forster-log-cabin-quilters-donate-to-bridge-lake-fair/",
+          "source": "100 Mile Free Press",
+          "ai_score": 0,
+          "date_published": "2026-03-05T01:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Accused Naramata murderer’s trial begins first of 82 days in Kelowna",
+          "url": "https://quesnelobserver.com/2026/03/03/accused-naramata-murderers-trial-begins-first-of-82-days-in-kelowna/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-03-03T21:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[MacRumors] Apple Hoping to 3D-Print More Products",
+          "url": "https://www.macrumors.com/2026/03/08/apple-hoping-to-3d-print-more-products/",
+          "source": "MacRumors",
+          "ai_score": 0,
+          "date_published": "2026-03-08T14:40:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Experiment With The Pi Camera The Modular Way",
+          "url": "https://hackaday.com/2026/03/08/experiment-with-the-pi-camera-the-modular-way/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-09T02:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Marginalian] The New Science of Plant Intelligence and the Mystery of What Makes a Mind",
+          "url": "https://www.themarginalian.org/2026/03/02/the-light-eaters/",
+          "source": "The Marginalian",
+          "ai_score": 0,
+          "date_published": "2026-03-02T16:06:37+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Verge] Big Google Home update lets Gemini describe live camera feeds",
+          "url": "https://www.theverge.com/tech/888008/big-google-home-update-lets-gemini-describe-live-camera-feeds",
+          "source": "The Verge",
+          "ai_score": 0,
+          "date_published": "2026-03-03T09:55:29+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] Someone converted an Ikea wall lamp into a Tetris game with an ESP32",
+          "url": "https://www.xda-developers.com/someone-converted-ikea-lamp-tetris-game-esp32/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-09T05:16:48+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Hackaday] Building an Analogue Computer to Simulate Neurons",
+          "url": "https://hackaday.com/2026/03/08/building-an-analogue-computer-to-simulate-neurons/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-09T05:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] I turned my old Android phone into a universal remote for my entire smart home",
+          "url": "https://www.xda-developers.com/turned-phone-into-universal-remote-entire-smart-home/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-09T00:00:20+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Back to Basics: Hacking on Key Matrixes",
+          "url": "https://hackaday.com/2026/03/03/back-to-basics-hacking-on-key-matrixes/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-03T15:00:07+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] Microsoft says your PC can't run Windows 11, but these Linux distros run better on it anyway",
+          "url": "https://www.xda-developers.com/pc-cant-run-windows-11-but-these-linux-distros-work/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-08T21:31:20+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] 'The precision and quality of the print finish are exceptional': Our 3D printing expert loved the beginner-friendly Anycubic Kobra S1 and it's $320 off right now",
+          "url": "https://www.techradar.com/pro/the-precision-and-quality-of-the-print-finish-are-exceptional-our-3d-printing-expert-loved-the-beginner-friendly-anycubic-kobra-s1-and-its-usd320-off-right-now",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-05T15:31:27+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Embossing Precision Ball Joints for a Micromanipulator",
+          "url": "https://hackaday.com/2026/03/04/embossing-precision-ball-joints-for-a-micromanipulator/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-05T00:00:03+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Fixing an Onkyo Receiver with Multiple Faults",
+          "url": "https://hackaday.com/2026/03/07/fixing-an-onkyo-receiver-with-multiple-faults/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-07T09:00:58+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] Jellyfin’s Roku app gets a big update with new features and UI tweaks",
+          "url": "https://www.xda-developers.com/jellyfin-roku-app-big-update-new-features-ui-tweaks/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-06T01:56:44+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] Jellyfin, the open-source media server, just got better on Roku TVs",
+          "url": "https://www.howtogeek.com/jellyfin-the-open-source-media-server-just-got-better-on-roku-tvs/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-02T19:32:45+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] 'Ideal Glass' That Behaves Like a Crystal May Be Possible After All",
+          "url": "https://www.sciencealert.com/ideal-glass-that-behaves-like-a-crystal-may-be-possible-after-all",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-09T01:53:01+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] How to get over “printer’s block” and get more out of your 3D printer",
+          "url": "https://www.howtogeek.com/how-to-get-over-printers-block-with-your-3d-printer/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-08T12:15:15+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] How to Run Ethernet Cables to Your Router and Keep Them Tidy",
+          "url": "https://www.wired.com/story/how-to-run-ethernet-cables-around-your-home/",
+          "source": "WIRED",
+          "ai_score": 0,
+          "date_published": "2026-03-08T11:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] You don’t have to be a homeowner to build a smart home",
+          "url": "https://www.xda-developers.com/dont-have-to-be-homeowner-build-smart-home/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-07T20:30:20+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] DIY 3D Pen is Born To Weld",
+          "url": "https://hackaday.com/2026/03/07/diy-3d-pen-is-born-to-weld/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-07T12:00:55+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] 5 things I 3D printed that get more daily use than anything from Amazon",
+          "url": "https://www.xda-developers.com/things-3d-printed-daily-more-than-amazon-finds/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-07T11:30:21+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Arts, Culture & Digital Storytelling",
+      "articles": [
+        {
+          "title": "[TechRadar] Before The Matrix and The Terminator, there was 'The Creation of the Humanoids' — how an obscure 1962 B-movie set the scene for robot takeover and introduced the concept of centralized intelligence",
+          "url": "https://www.techradar.com/pro/before-the-matrix-and-the-terminator-there-was-the-creation-of-the-humanoids-how-an-obscure-1962-b-movie-set-the-scene-for-robot-takeover-and-introduced-the-concept-of-centralized-intelligence",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-07T13:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] International Women’s Day 2026: Bobbi-Jo Krist",
+          "url": "https://wltribune.com/2026/03/08/international-womens-day-2026-bobbi-jo-krist/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-08T06:48:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[My Cariboo Now] Women to be celebrated in Quesnel this weekend",
+          "url": "https://www.mycariboonow.com/195220/news/communty/women-to-be-celebrated-in-quesnel-this-weekend/",
+          "source": "My Cariboo Now",
+          "ai_score": 0,
+          "date_published": "2026-03-05T14:00:10+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Deep dive on Arts, Culture & Digital Storytelling",
+        "topics_covered": [
+          "AI",
+          "infrastructure",
+          "maintenance",
+          "funding"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
