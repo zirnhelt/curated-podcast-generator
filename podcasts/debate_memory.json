@@ -372,5 +372,18 @@
       "maintenance",
       "funding"
     ]
+  },
+  "2026-03-10": {
+    "timestamp": 1773147783.636599,
+    "date": "2026-03-10",
+    "theme": "Working Lands & Industry",
+    "central_question": "Deep dive on Working Lands & Industry",
+    "topics_covered": [
+      "fiber",
+      "satellite",
+      "precision agriculture",
+      "solar",
+      "AI"
+    ]
   }
 }
