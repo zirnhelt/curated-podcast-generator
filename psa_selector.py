@@ -15,7 +15,7 @@ PODCASTS_DIR = Path(__file__).parent / "podcasts"
 PSA_STATE_FILE = PODCASTS_DIR / "psa_rotation_state.json"
 
 EVENT_LOOKAHEAD_DAYS = 7
-MIN_DAYS_BETWEEN_REPEATS = 7
+MIN_DAYS_BETWEEN_REPEATS = 28
 
 
 def load_psa_organizations():

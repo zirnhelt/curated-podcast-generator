@@ -2264,8 +2264,8 @@ def generate_audio_from_script(script, output_filename, theme_name=None):
             # Welcome section
             _render_section(segments['welcome'], "🎤 Generating welcome section...", "welcome")
 
-            # Add interval music (standard chime into news)
-            combined += section_gap + interval_music + section_gap
+            # Add themed chime into news (falls back to generic interval music if no ambient file)
+            combined += section_gap + ambient_transition + section_gap
 
             # News section
             _render_section(segments['news'], "📰 Generating news section...", "news")
@@ -2722,7 +2722,7 @@ def generate_podcast_rss_feed():
         ]
         if episode.get('transcript_url'):
             escaped_transcript_url = saxutils.escape(episode['transcript_url'], {chr(34): "&quot;"})
-            item_lines.append(f'<podcast:transcript url="{escaped_transcript_url}" type="text/html"/>')
+            item_lines.append(f'<podcast:transcript url="{escaped_transcript_url}" type="text/html" rel="captions" language="en-CA"/>')
         item_lines.append('</item>')
         rss_lines.extend(item_lines)
     
