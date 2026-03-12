@@ -1,23 +1,4 @@
 {
-  "2026-02-18": {
-    "timestamp": 1771419977.115325,
-    "topics": [
-      "[My Cariboo Now] Independent Investigations Office determini",
-      "[Quesnel Cariboo Observer] Former B.C. Conservative leader w",
-      "[My Cariboo Now] Temporary school facilities arriving in Tum",
-      "[XDA Developers] Old laptops make better home servers than a",
-      "[The Tyee] Vancouver\u2019s Handling of False Creek South Is Offi",
-      "[GN AI ML Infrastructure] AI and Machine Learning",
-      "[Quesnel Cariboo Observer] Interlakes hosting benefit concer",
-      "[Quesnel Cariboo Observer] B.C. is raising taxes and cutting"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "connectivity"
-    ],
-    "date": "2026-02-18"
-  },
   "2026-02-19": {
     "timestamp": 1771506395.977498,
     "topics": [
@@ -434,5 +415,25 @@
       "connectivity"
     ],
     "date": "2026-03-11"
+  },
+  "2026-03-12": {
+    "timestamp": 1773320458.972348,
+    "topics": [
+      "[Williams Lake Tribune] Dinner night at Miocene supports Che",
+      "[Quesnel Cariboo Observer] New partnership allows B.C. patie",
+      "[My Cariboo Now] Fire at Picnic Gazebo in Williams Lake quic",
+      "[My Cariboo Now] Calls grow for public inquiry after Tumbler",
+      "[Williams Lake Tribune] 13 B.C. drug-user groups lose bid fo",
+      "[Williams Lake Tribune] Similkameen First Nations denounce M",
+      "[IndigiNews] As climate, industry warm Okanagan waterways, e",
+      "[Williams Lake Tribune] Picnic gazebo at Williams Lake Boita"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-03-12"
   }
 }

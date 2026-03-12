@@ -1,0 +1,136 @@
+{
+  "episode": {
+    "date": "2026-03-12",
+    "formatted_date": "Thursday, March 12, 2026",
+    "theme": "Indigenous Lands & Innovation",
+    "title": "Cariboo Signals - Indigenous Lands & Innovation",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Indigenous Lands & Innovation.</p><p><b>NEWS ROUNDUP:</b> We break down [Williams Lake Tribune] Dinner night at Miocene supports Chelsea Lewis Memorial Award for women in the trades and [Quesnel Cariboo Observer] New partnership allows B.C. patients to access surgeries in Alberta, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Deep dive on Indigenous Lands & Innovation Topics include: satellite, precision agriculture, renewable energy, AI, infrastructure.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/05/dinner-night-at-miocene-supports-chelsea-lewis-memorial-award-for-women-in-the-trades/\">[Williams Lake Tribune] Dinner night at Miocene supports Che...</a></li><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/03/04/new-partnership-allows-b-c-patients-to-access-surgeries-in-alberta/\">[Quesnel Cariboo Observer] New partnership allows B.C. patie...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/191662/news/emergency-services/fire/fire-at-picnic-gazebo-in-williams-lake-quickly-extinguished/\">[My Cariboo Now] Fire at Picnic Gazebo in Williams Lake quic...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/171494/news/provincial/calls-grow-for-public-inquiry-after-tumbler-ridge-shooting/\">[My Cariboo Now] Calls grow for public inquiry after Tumbler...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/04/13-b-c-drug-user-groups-lose-bid-for-judicial-review/\">[Williams Lake Tribune] 13 B.C. drug-user groups lose bid fo...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/197765/news/emergency-services/search-and-rescue/quesnel-rcmp-search-and-rescue-respond-to-report-of-person-in-the-water/\">[My Cariboo Now] Quesnel RCMP-Search and Rescue respond to r...</a></li><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/03/05/cariboo-sailor-brings-arctic-and-pacific-naval-missions-to-presentation-in-quesnel/\">[Quesnel Cariboo Observer] Cariboo sailor brings Arctic and ...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/05/similkameen-first-nations-denounce-mlas-claims-on-copper-mountain-mine/\">[Williams Lake Tribune] Similkameen First Nations denounce M...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>IndigiNews: <a href=\"https://indiginews.com/news/as-climate-industry-warm-okanagan-waterways-expert-warns-of-extinction-event-for-fish-by-2040/\">[IndigiNews] As climate, industry warm Okanagan waterways, e...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/05/picnic-gazebo-at-williams-lake-boitanio-park-closed-for-assessment-after-fire/\">[Williams Lake Tribune] Picnic gazebo at Williams Lake Boita...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Sumo AI<br>Content Curation &amp; Script: Claude (Anthropic)<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-03-12T06:00:58.968231-07:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Dinner night at Miocene supports Chelsea Lewis Memorial Award for women in the trades",
+          "url": "https://wltribune.com/2026/03/05/dinner-night-at-miocene-supports-chelsea-lewis-memorial-award-for-women-in-the-trades/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-05T05:42:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] New partnership allows B.C. patients to access surgeries in Alberta",
+          "url": "https://quesnelobserver.com/2026/03/04/new-partnership-allows-b-c-patients-to-access-surgeries-in-alberta/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-03-04T23:26:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[My Cariboo Now] Fire at Picnic Gazebo in Williams Lake quickly extinguished",
+          "url": "https://www.mycariboonow.com/191662/news/emergency-services/fire/fire-at-picnic-gazebo-in-williams-lake-quickly-extinguished/",
+          "source": "My Cariboo Now",
+          "ai_score": 0,
+          "date_published": "2026-03-03T23:17:25+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[My Cariboo Now] Calls grow for public inquiry after Tumbler Ridge Shooting",
+          "url": "https://www.mycariboonow.com/171494/news/provincial/calls-grow-for-public-inquiry-after-tumbler-ridge-shooting/",
+          "source": "My Cariboo Now",
+          "ai_score": 0,
+          "date_published": "2026-02-26T22:57:35+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] 13 B.C. drug-user groups lose bid for judicial review",
+          "url": "https://wltribune.com/2026/03/04/13-b-c-drug-user-groups-lose-bid-for-judicial-review/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-04T13:24:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[My Cariboo Now] Quesnel RCMP-Search and Rescue respond to report of person in the water",
+          "url": "https://www.mycariboonow.com/197765/news/emergency-services/search-and-rescue/quesnel-rcmp-search-and-rescue-respond-to-report-of-person-in-the-water/",
+          "source": "My Cariboo Now",
+          "ai_score": 0,
+          "date_published": "2026-03-05T20:06:27+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Cariboo sailor brings Arctic and Pacific naval missions to presentation in Quesnel",
+          "url": "https://quesnelobserver.com/2026/03/05/cariboo-sailor-brings-arctic-and-pacific-naval-missions-to-presentation-in-quesnel/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-03-05T18:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Indigenous Lands & Innovation",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Similkameen First Nations denounce MLA’s claims on Copper Mountain mine",
+          "url": "https://wltribune.com/2026/03/05/similkameen-first-nations-denounce-mlas-claims-on-copper-mountain-mine/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-05T11:30:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[IndigiNews] As climate, industry warm Okanagan waterways, expert warns of ‘extinction event’ for fish by 2040",
+          "url": "https://indiginews.com/news/as-climate-industry-warm-okanagan-waterways-expert-warns-of-extinction-event-for-fish-by-2040/",
+          "source": "IndigiNews",
+          "ai_score": 0,
+          "date_published": "2026-03-05T17:31:31+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Picnic gazebo at Williams Lake Boitanio Park closed for assessment after fire",
+          "url": "https://wltribune.com/2026/03/05/picnic-gazebo-at-williams-lake-boitanio-park-closed-for-assessment-after-fire/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-05T12:08:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Deep dive on Indigenous Lands & Innovation",
+        "topics_covered": [
+          "satellite",
+          "precision agriculture",
+          "renewable energy",
+          "AI",
+          "infrastructure"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
