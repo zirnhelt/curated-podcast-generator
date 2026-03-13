@@ -54,6 +54,18 @@
       "used_on": "2026-03-05",
       "best_theme_day": null,
       "best_theme_name": null
+    },
+    {
+      "id": "b119d45a",
+      "type": "url",
+      "url": "https://www.techradar.com/pro/rebuilding-trust-in-ai-with-responsible-adoption",
+      "title": null,
+      "note": "Let\u2019s dig into this. Not sure which day is best",
+      "added_at": "2026-03-13T21:47:54.969208+00:00",
+      "priority": "normal",
+      "theme_hint": null,
+      "status": "pending",
+      "used_on": null
     }
   ]
 }
