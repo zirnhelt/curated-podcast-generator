@@ -31,7 +31,7 @@ import numpy as np
 from scipy.signal import butter, sosfilt, resample_poly
 
 SAMPLE_RATE = 44100
-TARGET_DURATION_S = 5.0
+TARGET_DURATION_S = 1.5
 AMBIENT_DIR = Path(__file__).parent / "ambient"
 THEME_SONG = Path(__file__).parent / "cariboo-signals-intro.mp3"
 FULL_SONG = Path(__file__).parent / "cariboo-signals-full.mp3"
@@ -152,7 +152,7 @@ def _eq(stereo: np.ndarray,
     return result
 
 
-def _fade(stereo: np.ndarray, fade_in_s: float = 0.08, fade_out_s: float = 0.25) -> np.ndarray:
+def _fade(stereo: np.ndarray, fade_in_s: float = 0.05, fade_out_s: float = 0.15) -> np.ndarray:
     """Apply linear fade-in and fade-out."""
     n = stereo.shape[1]
     env = np.ones(n, dtype=np.float32)
@@ -225,7 +225,7 @@ def gen_industry(song: np.ndarray) -> np.ndarray:
     out = _trim_to(shifted, TARGET_DURATION_S)
     out = _eq(out, low_shelf_db=+4.0, low_shelf_hz=180.0,      # weight / warmth
                     high_shelf_db=-2.0, high_shelf_hz=6000.0)   # less shrill
-    return _fade(out, fade_in_s=0.15)
+    return _fade(out)
 
 
 def gen_civic(song: np.ndarray) -> np.ndarray:
@@ -252,7 +252,7 @@ def gen_indigenous(song: np.ndarray) -> np.ndarray:
     shifted = _speed_shift(clip, semitones=-2.0)
     out = _trim_to(shifted, TARGET_DURATION_S)
     out = _eq(out, low_shelf_db=+2.5, low_shelf_hz=300.0)      # earthy warmth
-    return _fade(out, fade_in_s=0.2)
+    return _fade(out)
 
 
 def gen_wilderness(song: np.ndarray) -> np.ndarray:
@@ -281,7 +281,7 @@ def gen_community(song: np.ndarray) -> np.ndarray:
     shifted = _speed_shift(clip, semitones=-1.0)
     out = _trim_to(shifted, TARGET_DURATION_S)
     out = _eq(out, low_shelf_db=+3.0, low_shelf_hz=250.0)      # cozy warmth
-    return _fade(out, fade_in_s=0.12)
+    return _fade(out)
 
 
 def gen_futures(song: np.ndarray) -> np.ndarray:
@@ -295,7 +295,7 @@ def gen_futures(song: np.ndarray) -> np.ndarray:
     shifted = _speed_shift(clip, semitones=+5.0)
     out = _trim_to(shifted, TARGET_DURATION_S)
     out = _eq(out, high_shelf_db=+4.0, high_shelf_hz=4500.0)   # crisp & bright
-    return _fade(out, fade_in_s=0.06)
+    return _fade(out)
 
 
 # ── main ──────────────────────────────────────────────────────────────────────
