@@ -1,9 +1,11 @@
 """Generate themed intermission chimes for Cariboo Signals.
 
-Creates 7 synthetic ambient MP3 files — one per podcast theme — using
-numpy additive synthesis and pydub for audio processing and export.
-Each clip is ~5 seconds, faded, and exported to ambient/ at -20 dBFS
-(the ambient.py loader normalises them further to -28 dBFS at runtime).
+Creates 7 MP3 files — one per podcast theme — by slicing and processing
+cariboo-signals-intro.mp3.  Each variant is a recognisable echo of the
+theme song, pitched and EQ'd to match its weekly theme character.
+
+No abstract synthesis: every chime is built from the actual theme song so
+they all feel sonically related to the show's on-air identity.
 
 Usage:
     python generate_ambient_chimes.py
@@ -19,359 +21,281 @@ Output:
 """
 
 import io
+import os
+import subprocess
 import wave
+from fractions import Fraction
 from pathlib import Path
 
 import numpy as np
-from pydub import AudioSegment
+from scipy.signal import butter, sosfilt, resample_poly
 
 SAMPLE_RATE = 44100
-DURATION_S = 5.0
+TARGET_DURATION_S = 1.5
 AMBIENT_DIR = Path(__file__).parent / "ambient"
+THEME_SONG = Path(__file__).parent / "cariboo-signals-intro.mp3"
+FULL_SONG = Path(__file__).parent / "cariboo-signals-full.mp3"
 
-# ── synthesis helpers ─────────────────────────────────────────────────────────
+# ── ffmpeg helpers ─────────────────────────────────────────────────────────────
 
-def _sine(freq: float, duration_s: float, amplitude: float = 1.0) -> np.ndarray:
-    """Return a sine wave as a float64 array in [-1, 1]."""
-    t = np.linspace(0, duration_s, int(SAMPLE_RATE * duration_s), endpoint=False)
-    return amplitude * np.sin(2.0 * np.pi * freq * t)
-
-
-def _adsr(
-    n_samples: int,
-    attack_s: float = 0.4,
-    decay_s: float = 0.3,
-    sustain: float = 0.7,
-    release_s: float = 1.0,
-) -> np.ndarray:
-    """Return an ADSR amplitude envelope of length n_samples."""
-    a = int(SAMPLE_RATE * attack_s)
-    d = int(SAMPLE_RATE * decay_s)
-    r = int(SAMPLE_RATE * release_s)
-    # Clamp so segments never exceed total length
-    total = n_samples
-    a = min(a, total // 4)
-    d = min(d, total // 4)
-    r = min(r, total // 4)
-    s_len = total - a - d - r
-
-    env = np.zeros(n_samples)
-    env[:a] = np.linspace(0.0, 1.0, a)
-    env[a : a + d] = np.linspace(1.0, sustain, d)
-    if s_len > 0:
-        env[a + d : a + d + s_len] = sustain
-    env[a + d + s_len :] = np.linspace(sustain, 0.0, r)
-    return env
+def _ffmpeg_exe() -> str:
+    """Return path to ffmpeg; try system PATH first, then imageio_ffmpeg."""
+    import shutil
+    system_ff = shutil.which("ffmpeg")
+    if system_ff:
+        return system_ff
+    try:
+        import imageio_ffmpeg
+        return imageio_ffmpeg.get_ffmpeg_exe()
+    except ImportError:
+        raise RuntimeError("ffmpeg not found; install it or pip install imageio-ffmpeg")
 
 
-def _exp_decay(n_samples: int, tau_s: float = 1.5) -> np.ndarray:
-    """Return an exponential-decay amplitude envelope."""
-    t = np.linspace(0, n_samples / SAMPLE_RATE, n_samples)
-    env = np.exp(-t / tau_s)
-    return env
-
-
-def _chord(freqs_amps: list, duration_s: float) -> np.ndarray:
-    """Mix sine tones; return normalised float64 array."""
-    n = int(SAMPLE_RATE * duration_s)
-    out = np.zeros(n)
-    for freq, amp in freqs_amps:
-        out += _sine(freq, duration_s, amp)
-    peak = np.max(np.abs(out))
-    if peak > 0:
-        out /= peak
-    return out
-
-
-def _white_noise(duration_s: float, amplitude: float = 1.0) -> np.ndarray:
-    return amplitude * np.random.default_rng(42).standard_normal(
-        int(SAMPLE_RATE * duration_s)
+def _load_mp3(path: Path) -> np.ndarray:
+    """Decode an MP3 to a (2, N) float32 stereo array at SAMPLE_RATE."""
+    ff = _ffmpeg_exe()
+    result = subprocess.run(
+        [ff, "-i", str(path),
+         "-f", "s16le", "-ar", str(SAMPLE_RATE), "-ac", "2",
+         "-loglevel", "error", "pipe:1"],
+        capture_output=True,
     )
+    if result.returncode != 0:
+        raise RuntimeError(f"ffmpeg failed on {path}: {result.stderr.decode()}")
+    raw = np.frombuffer(result.stdout, dtype=np.int16).astype(np.float32) / 32768.0
+    # interleaved stereo → (2, N)
+    return raw.reshape(-1, 2).T
 
 
-def _brown_noise(duration_s: float, amplitude: float = 1.0) -> np.ndarray:
-    rng = np.random.default_rng(7)
-    white = rng.standard_normal(int(SAMPLE_RATE * duration_s))
-    brown = np.cumsum(white)
-    brown /= np.max(np.abs(brown))
-    return amplitude * brown
-
-
-def _pink_noise(duration_s: float, amplitude: float = 1.0) -> np.ndarray:
-    """Approximate pink noise by averaging offset white-noise copies."""
-    n = int(SAMPLE_RATE * duration_s)
-    rng = np.random.default_rng(13)
-    pink = np.zeros(n)
-    for k in (1, 2, 4, 8, 16):
-        white = rng.standard_normal(n)
-        # Simple low-pass by convolving with box kernel of length k*100
-        kernel_len = k * 50
-        pink += np.convolve(white, np.ones(kernel_len) / kernel_len, mode="same")
-    peak = np.max(np.abs(pink))
+def _export_mp3(stereo: np.ndarray, dest: Path, target_dbfs: float = -20.0) -> None:
+    """Normalise a (2, N) float32 array and write to dest as 128 kbps MP3."""
+    peak = np.max(np.abs(stereo))
     if peak > 0:
-        pink /= peak
-    return amplitude * pink
+        gain = 10 ** (target_dbfs / 20.0) / peak
+        stereo = np.clip(stereo * gain, -1.0, 1.0)
 
+    # Interleave channels → int16
+    interleaved = stereo.T.flatten()
+    int16 = (interleaved * 32767).astype(np.int16)
 
-def _lowpass(signal: np.ndarray, cutoff_hz: float) -> np.ndarray:
-    """Very simple IIR single-pole low-pass filter."""
-    rc = 1.0 / (2.0 * np.pi * cutoff_hz)
-    dt = 1.0 / SAMPLE_RATE
-    alpha = dt / (rc + dt)
-    out = np.zeros_like(signal)
-    out[0] = signal[0]
-    for i in range(1, len(signal)):
-        out[i] = out[i - 1] + alpha * (signal[i] - out[i - 1])
-    return out
-
-
-def _to_audiosegment(samples: np.ndarray) -> AudioSegment:
-    """Convert a float64 numpy array [-1,1] to a pydub AudioSegment (mono)."""
-    samples = np.clip(samples, -1.0, 1.0)
-    int16 = (samples * 32767).astype(np.int16)
+    # Write a temporary WAV to stdout, pipe into ffmpeg for MP3 encode
     buf = io.BytesIO()
     with wave.open(buf, "wb") as wf:
-        wf.setnchannels(1)
+        wf.setnchannels(2)
         wf.setsampwidth(2)
         wf.setframerate(SAMPLE_RATE)
         wf.writeframes(int16.tobytes())
-    buf.seek(0)
-    return AudioSegment.from_wav(buf)
+    wav_bytes = buf.getvalue()
+
+    ff = _ffmpeg_exe()
+    result = subprocess.run(
+        [ff, "-y", "-f", "wav", "-i", "pipe:0",
+         "-b:a", "128k", "-loglevel", "error", str(dest)],
+        input=wav_bytes,
+        capture_output=True,
+    )
+    if result.returncode != 0:
+        raise RuntimeError(f"ffmpeg export failed: {result.stderr.decode()}")
+
+    rms = np.sqrt(np.mean(stereo ** 2))
+    import math
+    actual_dbfs = 20 * math.log10(rms) if rms > 0 else -100
+    dur = stereo.shape[1] / SAMPLE_RATE
+    print(f"  ✓ {dest.name}  ({dur:.1f}s, {actual_dbfs:.1f} dBFS)")
 
 
-def _export(samples: np.ndarray, filename: str, target_dbfs: float = -20.0) -> None:
-    """Normalise and export samples to ambient/<filename>.mp3"""
-    seg = _to_audiosegment(samples)
-    # Convert to stereo for richer playback
-    seg = seg.set_channels(2)
-    # Normalise to target
-    if seg.dBFS > float("-inf"):
-        seg = seg.apply_gain(target_dbfs - seg.dBFS)
-    out_path = AMBIENT_DIR / filename
-    seg.export(str(out_path), format="mp3", bitrate="128k")
-    print(f"  ✓ {out_path.name}  ({seg.duration_seconds:.1f}s, {seg.dBFS:.1f} dBFS)")
+# ── audio processing ───────────────────────────────────────────────────────────
+
+def _speed_shift(stereo: np.ndarray, semitones: float) -> np.ndarray:
+    """Pitch-shift by resampling (changes tempo by the same factor).
+
+    Positive semitones → higher pitch / shorter duration.
+    Negative semitones → lower pitch / longer duration.
+    """
+    factor = 2.0 ** (semitones / 12.0)
+    frac = Fraction(factor).limit_denominator(128)
+    up, down = frac.numerator, frac.denominator
+    out = np.stack([
+        resample_poly(ch, up, down).astype(np.float32)
+        for ch in stereo
+    ])
+    return out
 
 
-# ── per-theme generators ──────────────────────────────────────────────────────
+def _butter_filter(stereo: np.ndarray, kind: str, cutoff_hz, order: int = 4) -> np.ndarray:
+    """Apply a Butterworth low-pass or high-pass filter."""
+    nyq = SAMPLE_RATE / 2.0
+    if isinstance(cutoff_hz, (list, tuple)):
+        wn = [c / nyq for c in cutoff_hz]
+    else:
+        wn = cutoff_hz / nyq
+    sos = butter(order, wn, btype=kind, output="sos")
+    return np.stack([sosfilt(sos, ch).astype(np.float32) for ch in stereo])
 
-def gen_arts() -> np.ndarray:
+
+def _eq(stereo: np.ndarray,
+        low_shelf_db: float = 0.0, low_shelf_hz: float = 250.0,
+        high_shelf_db: float = 0.0, high_shelf_hz: float = 4000.0) -> np.ndarray:
+    """Very simple 2-band shelf EQ using additive filtered signals."""
+    result = stereo.copy()
+
+    if low_shelf_db != 0.0:
+        low = _butter_filter(stereo, "low", low_shelf_hz)
+        gain = 10 ** (low_shelf_db / 20.0) - 1.0
+        result = result + low * gain
+
+    if high_shelf_db != 0.0:
+        high = _butter_filter(stereo, "high", high_shelf_hz)
+        gain = 10 ** (high_shelf_db / 20.0) - 1.0
+        result = result + high * gain
+
+    return result
+
+
+def _fade(stereo: np.ndarray, fade_in_s: float = 0.05, fade_out_s: float = 0.15) -> np.ndarray:
+    """Apply linear fade-in and fade-out."""
+    n = stereo.shape[1]
+    env = np.ones(n, dtype=np.float32)
+    fi = int(SAMPLE_RATE * fade_in_s)
+    fo = int(SAMPLE_RATE * fade_out_s)
+    if fi > 0:
+        env[:fi] = np.linspace(0.0, 1.0, fi)
+    if fo > 0:
+        env[-fo:] = np.linspace(1.0, 0.0, fo)
+    return stereo * env
+
+
+def _slice(stereo: np.ndarray, start_s: float, duration_s: float) -> np.ndarray:
+    """Return a [start, start+duration] slice (zero-padded if needed)."""
+    start = int(SAMPLE_RATE * start_s)
+    length = int(SAMPLE_RATE * duration_s)
+    n = stereo.shape[1]
+    clip = stereo[:, start:start + length]
+    if clip.shape[1] < length:
+        pad = np.zeros((2, length - clip.shape[1]), dtype=np.float32)
+        clip = np.concatenate([clip, pad], axis=1)
+    return clip
+
+
+def _trim_to(stereo: np.ndarray, duration_s: float) -> np.ndarray:
+    """Trim or zero-pad to exactly duration_s seconds."""
+    target = int(SAMPLE_RATE * duration_s)
+    n = stereo.shape[1]
+    if n >= target:
+        return stereo[:, :target]
+    pad = np.zeros((2, target - n), dtype=np.float32)
+    return np.concatenate([stereo, pad], axis=1)
+
+
+# ── per-theme variants ─────────────────────────────────────────────────────────
+#
+# Each generator receives the full decoded intro array and returns a
+# TARGET_DURATION_S stereo float32 array ready for export.
+#
+# Strategy: take overlapping slices from different parts of the theme song
+# so each chime starts on distinct musical material, then apply mild
+# pitch-shifts and EQ to reinforce the weekly theme's character.
+# All variants are unmistakably the same song — just heard through a
+# different lens.
+
+def gen_arts(song: np.ndarray) -> np.ndarray:
     """Arts, Culture & Digital Storytelling
-    Warm piano-like chord: C major (C4, E4, G4) with bell harmonics.
-    Slow attack, gentle sustain, natural release.
+    Bright, uplifting — +3 semitones, airy high-end shimmer.
+    Opening bars carry the most melodic energy; feels like stepping into
+    a creative space.
     """
-    n = int(SAMPLE_RATE * DURATION_S)
-    env = _adsr(n, attack_s=0.5, decay_s=0.4, sustain=0.75, release_s=1.5)
-
-    # Piano-style additive synthesis — fundamental + harmonics decay faster
-    chord = np.zeros(n)
-    notes = [
-        (261.63, 1.0),   # C4
-        (329.63, 0.85),  # E4
-        (392.00, 0.70),  # G4
-        (523.25, 0.45),  # C5
-        (659.25, 0.20),  # E5 (overtone)
-    ]
-    for freq, amp in notes:
-        # Each harmonic has its own faster decay
-        harm_env = _exp_decay(n, tau_s=2.0 - 0.3 * (freq / 261.63))
-        tone = _sine(freq, DURATION_S, amp)
-        chord += tone * harm_env
-
-    # Very soft pink noise texture for room ambience
-    noise = _pink_noise(DURATION_S, amplitude=0.04)
-
-    combined = chord * env + noise
-    return combined / np.max(np.abs(combined))
+    # Start from the very opening (0 s); pitch up for brightness
+    grab_s = TARGET_DURATION_S * (2.0 ** (3 / 12.0)) + 0.5   # grab extra to fill after resample
+    clip = _slice(song, start_s=0.5, duration_s=grab_s)
+    shifted = _speed_shift(clip, semitones=+3.0)
+    out = _trim_to(shifted, TARGET_DURATION_S)
+    out = _eq(out, high_shelf_db=+3.0, high_shelf_hz=5000.0)   # air / sparkle
+    return _fade(out)
 
 
-def gen_industry() -> np.ndarray:
+def gen_industry(song: np.ndarray) -> np.ndarray:
     """Working Lands & Industry
-    Low industrial drone with subtle harmonic shimmer and brown-noise texture.
+    Deep, grounded — -4 semitones, warm low-end weight.
+    Mid-section of the intro has the fuller harmonic content; slowed down
+    it feels steady and purposeful, like machinery at work.
     """
-    n = int(SAMPLE_RATE * DURATION_S)
-
-    # Low drone: 55 Hz (A1) fundamental + harmonics
-    drone = _chord(
-        [(55.0, 1.0), (110.0, 0.55), (165.0, 0.30), (220.0, 0.15)],
-        DURATION_S,
-    )
-
-    # Slow tremolo on the drone (0.8 Hz amplitude modulation)
-    t = np.linspace(0, DURATION_S, n)
-    tremolo = 0.85 + 0.15 * np.sin(2.0 * np.pi * 0.8 * t)
-
-    # Low-passed brown noise for machinery undertone
-    noise = _lowpass(_brown_noise(DURATION_S, amplitude=0.35), cutoff_hz=200.0)
-
-    # Wide ADSR — long fade in to avoid abruptness
-    env = _adsr(n, attack_s=1.0, decay_s=0.5, sustain=0.8, release_s=1.5)
-
-    combined = drone * tremolo * env + noise * env
-    return combined / np.max(np.abs(combined))
+    grab_s = TARGET_DURATION_S * (2.0 ** (4 / 12.0)) + 0.5
+    clip = _slice(song, start_s=3.0, duration_s=grab_s)
+    shifted = _speed_shift(clip, semitones=-4.0)
+    out = _trim_to(shifted, TARGET_DURATION_S)
+    out = _eq(out, low_shelf_db=+4.0, low_shelf_hz=180.0,      # weight / warmth
+                    high_shelf_db=-2.0, high_shelf_hz=6000.0)   # less shrill
+    return _fade(out)
 
 
-def gen_civic() -> np.ndarray:
+def gen_civic(song: np.ndarray) -> np.ndarray:
     """Community Tech & Governance
-    Clean bell chime: professional and clear, like a meeting-room notification.
+    Clean, clear — 0 semitones, flat EQ, natural presentation.
+    The unprocessed theme song is itself professional and civic in character;
+    a mid-song slice with no pitch tricks communicates trustworthiness.
     """
-    n = int(SAMPLE_RATE * DURATION_S)
-
-    # Bell inharmonic partials (ratios relative to 440 Hz)
-    # Classic tubular bell partial ratios: 1, 2.756, 5.404, 8.933
-    base = 440.0  # A4
-    bell_partials = [
-        (base * 1.000, 1.00),
-        (base * 2.756, 0.55),
-        (base * 5.404, 0.28),
-        (base * 8.933, 0.14),
-    ]
-    bell = _chord(bell_partials, DURATION_S)
-
-    # Bell envelope: sharp attack, long exponential decay
-    attack_env = np.ones(n)
-    attack_n = int(SAMPLE_RATE * 0.01)  # 10 ms attack
-    attack_env[:attack_n] = np.linspace(0.0, 1.0, attack_n)
-    decay_env = _exp_decay(n, tau_s=1.8)
-    env = attack_env * decay_env
-
-    # Subtle second bell hit at 1.5s for civic double-chime feel
-    bell2 = _chord([(base * 1.5, 0.6), (base * 1.5 * 2.756, 0.3)], DURATION_S)
-    offset = int(SAMPLE_RATE * 1.5)
-    shift_env = np.zeros(n)
-    remaining = n - offset
-    if remaining > 0:
-        shift_env[offset:] = _exp_decay(remaining, tau_s=1.4)
-
-    combined = bell * env + bell2 * shift_env * 0.5
-    return combined / np.max(np.abs(combined))
+    clip = _slice(song, start_s=5.0, duration_s=TARGET_DURATION_S + 0.3)
+    out = _trim_to(clip, TARGET_DURATION_S)
+    # Slight high-pass to remove any rumble; otherwise untouched
+    out = _butter_filter(out, "high", 60.0)
+    return _fade(out)
 
 
-def gen_indigenous() -> np.ndarray:
+def gen_indigenous(song: np.ndarray) -> np.ndarray:
     """Indigenous Lands & Innovation
-    Pentatonic wind tones with gentle water/breeze texture.
-    Respectful, grounded, natural.
+    Warm, grounded, natural — -2 semitones, mid warmth.
+    A slightly lower pitch settles the song into the landscape; the
+    early-mid section has an open, unhurried quality.
     """
-    n = int(SAMPLE_RATE * DURATION_S)
-
-    # G pentatonic scale: G3, A3, B3, D4, E4
-    pentatonic = [
-        (196.00, 0.70),  # G3
-        (220.00, 0.55),  # A3
-        (246.94, 0.65),  # B3
-        (293.66, 0.50),  # D4
-        (329.63, 0.40),  # E4
-    ]
-
-    # Arpeggiate rather than chord — enter one note at a time
-    tones = np.zeros(n)
-    entry_offsets = [0.0, 0.6, 1.1, 1.7, 2.4]
-    for (freq, amp), offset_s in zip(pentatonic, entry_offsets):
-        onset = int(SAMPLE_RATE * offset_s)
-        tone_n = n - onset
-        if tone_n <= 0:
-            continue
-        tone = _sine(freq, tone_n / SAMPLE_RATE, amp)
-        env = _exp_decay(tone_n, tau_s=1.6)
-        tones[onset:] += tone * env
-
-    # Wind/water: low-passed pink noise, very gentle
-    wind = _lowpass(_pink_noise(DURATION_S, amplitude=0.18), cutoff_hz=600.0)
-
-    # Overall fade-in and fade-out
-    overall_env = _adsr(n, attack_s=0.8, decay_s=0.2, sustain=0.9, release_s=1.5)
-
-    combined = tones * overall_env + wind * overall_env
-    peak = np.max(np.abs(combined))
-    return combined / peak if peak > 0 else combined
+    grab_s = TARGET_DURATION_S * (2.0 ** (2 / 12.0)) + 0.5
+    clip = _slice(song, start_s=2.0, duration_s=grab_s)
+    shifted = _speed_shift(clip, semitones=-2.0)
+    out = _trim_to(shifted, TARGET_DURATION_S)
+    out = _eq(out, low_shelf_db=+2.5, low_shelf_hz=300.0)      # earthy warmth
+    return _fade(out)
 
 
-def gen_wilderness() -> np.ndarray:
+def gen_wilderness(song: np.ndarray) -> np.ndarray:
     """Wild Spaces & Outdoor Life
-    Forest ambience: bird-like high chirps over a soft low drone.
+    Open, airy — +2 semitones, high-pass for a sense of wide skies.
+    Starting further into the song catches a different melodic moment;
+    the pitch lift makes it feel light and expansive.
     """
-    n = int(SAMPLE_RATE * DURATION_S)
-    rng = np.random.default_rng(99)
-
-    # Low forest drone: wind through trees
-    drone = _lowpass(_brown_noise(DURATION_S, amplitude=0.25), cutoff_hz=300.0)
-    drone_env = _adsr(n, attack_s=0.6, decay_s=0.3, sustain=0.85, release_s=1.2)
-
-    # Bird-like chirps: short sine bursts at bird frequencies
-    birds = np.zeros(n)
-    chirp_times_s = [0.3, 0.9, 1.5, 2.1, 2.8, 3.4, 4.0]
-    chirp_freqs = [2800.0, 3200.0, 2600.0, 3500.0, 2900.0, 3100.0, 2700.0]
-    for t_s, freq in zip(chirp_times_s, chirp_freqs):
-        # Each chirp is a ~100 ms Gaussian-windowed sine
-        onset = int(SAMPLE_RATE * t_s)
-        chirp_len = int(SAMPLE_RATE * 0.12)
-        if onset + chirp_len > n:
-            continue
-        t_chirp = np.linspace(0, 0.12, chirp_len)
-        # Slight upward frequency sweep
-        chirp = np.sin(2.0 * np.pi * (freq + 400.0 * t_chirp) * t_chirp)
-        window = np.hanning(chirp_len)
-        amplitude = 0.18 + 0.12 * rng.random()
-        birds[onset : onset + chirp_len] += amplitude * chirp * window
-
-    combined = drone * drone_env + birds
-    return combined / np.max(np.abs(combined))
+    grab_s = TARGET_DURATION_S * (2.0 ** (2 / 12.0)) + 0.5
+    clip = _slice(song, start_s=8.5, duration_s=grab_s)
+    shifted = _speed_shift(clip, semitones=+2.0)
+    out = _trim_to(shifted, TARGET_DURATION_S)
+    out = _eq(out, high_shelf_db=+2.0, high_shelf_hz=4000.0,   # brightness
+                    low_shelf_db=-1.5, low_shelf_hz=150.0)      # lift the lows slightly
+    return _fade(out)
 
 
-def gen_community() -> np.ndarray:
+def gen_community(song: np.ndarray) -> np.ndarray:
     """Cariboo Voices & Local News
-    Warm morning small-town feel: welcoming F major chord with soft texture.
+    Warm, welcoming — -1 semitone, gentle low-mid boost.
+    The theme song already feels friendly; a slight de-tuning and warm
+    EQ makes it feel like a familiar morning greeting.
     """
-    n = int(SAMPLE_RATE * DURATION_S)
-
-    # F major: F3, A3, C4 — warm and approachable
-    chord = _chord(
-        [
-            (174.61, 1.00),  # F3
-            (220.00, 0.80),  # A3
-            (261.63, 0.65),  # C4
-            (349.23, 0.40),  # F4 octave
-            (440.00, 0.20),  # A4 overtone
-        ],
-        DURATION_S,
-    )
-
-    # Warm envelope — medium attack, like a lazy morning
-    env = _adsr(n, attack_s=0.7, decay_s=0.4, sustain=0.80, release_s=1.4)
-
-    # Soft white noise for coffee-shop room texture (very quiet)
-    noise = _lowpass(_white_noise(DURATION_S, amplitude=0.06), cutoff_hz=800.0)
-
-    combined = chord * env + noise
-    return combined / np.max(np.abs(combined))
+    grab_s = TARGET_DURATION_S * (2.0 ** (1 / 12.0)) + 0.3
+    clip = _slice(song, start_s=6.5, duration_s=grab_s)
+    shifted = _speed_shift(clip, semitones=-1.0)
+    out = _trim_to(shifted, TARGET_DURATION_S)
+    out = _eq(out, low_shelf_db=+3.0, low_shelf_hz=250.0)      # cozy warmth
+    return _fade(out)
 
 
-def gen_futures() -> np.ndarray:
+def gen_futures(song: np.ndarray) -> np.ndarray:
     """Resilient Rural Futures
-    Electronic hum meets organic undertones: slightly detuned tones + nature texture.
+    Forward-looking, energised — +5 semitones, bright and crisp.
+    The tail end of the intro carries the song's conclusion/climax; pitching
+    it up gives it lift and momentum — pointing towards what's next.
     """
-    n = int(SAMPLE_RATE * DURATION_S)
-    t = np.linspace(0, DURATION_S, n)
-
-    # Electronic base: slightly detuned pair of tones (chorus effect)
-    freq_base = 220.0  # A3
-    detune = 1.5  # Hz
-    electronic = (
-        0.6 * np.sin(2.0 * np.pi * freq_base * t)
-        + 0.4 * np.sin(2.0 * np.pi * (freq_base + detune) * t)
-        + 0.3 * np.sin(2.0 * np.pi * freq_base * 2 * t)
-    )
-
-    # Slow LFO wobble for electronic feel (0.4 Hz)
-    lfo = 0.80 + 0.20 * np.sin(2.0 * np.pi * 0.4 * t)
-
-    # Organic layer: low-passed pink noise for natural texture
-    organic = _lowpass(_pink_noise(DURATION_S, amplitude=0.22), cutoff_hz=500.0)
-
-    # Overall envelope
-    env = _adsr(n, attack_s=0.6, decay_s=0.3, sustain=0.85, release_s=1.5)
-
-    combined = (electronic * lfo * 0.7 + organic) * env
-    return combined / np.max(np.abs(combined))
+    grab_s = TARGET_DURATION_S * (2.0 ** (5 / 12.0)) + 0.5
+    clip = _slice(song, start_s=10.5, duration_s=grab_s)
+    shifted = _speed_shift(clip, semitones=+5.0)
+    out = _trim_to(shifted, TARGET_DURATION_S)
+    out = _eq(out, high_shelf_db=+4.0, high_shelf_hz=4500.0)   # crisp & bright
+    return _fade(out)
 
 
 # ── main ──────────────────────────────────────────────────────────────────────
@@ -389,12 +313,24 @@ THEMES = [
 
 def main():
     AMBIENT_DIR.mkdir(exist_ok=True)
-    print(f"Generating {len(THEMES)} themed ambient chimes → {AMBIENT_DIR}/\n")
 
+    source = THEME_SONG if THEME_SONG.exists() else FULL_SONG
+    if not source.exists():
+        raise FileNotFoundError(
+            f"Theme song not found at {THEME_SONG} or {FULL_SONG}. "
+            "Make sure cariboo-signals-intro.mp3 is in the project root."
+        )
+
+    print(f"Loading theme song: {source.name} …")
+    song = _load_mp3(source)
+    song_dur = song.shape[1] / SAMPLE_RATE
+    print(f"  {song_dur:.1f}s, stereo at {SAMPLE_RATE} Hz\n")
+
+    print(f"Generating {len(THEMES)} theme-song variants → {AMBIENT_DIR}/\n")
     for filename, theme, generator in THEMES:
         print(f"[{theme}]")
-        samples = generator()
-        _export(samples, filename)
+        out = generator(song)
+        _export_mp3(out, AMBIENT_DIR / filename)
 
     print(f"\nDone. {len(THEMES)} files written to {AMBIENT_DIR}/")
 
