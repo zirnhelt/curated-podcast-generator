@@ -33,6 +33,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   generate-bespoke:
@@ -69,6 +71,7 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
+          PODCAST_BASE_URL: https://podcast.cariboosignals.ca/
         run: |
           THRESHOLD="${{ inputs.threshold }}"
           THRESHOLD="${THRESHOLD:-3}"
@@ -87,10 +90,37 @@ jobs:
           git add podcasts/bespoke/ || echo "No bespoke dir to add"
           git add podcasts/content_seeds.json || echo "No seeds file to add"
           git add podcasts/bespoke_debate_memory.json || echo "No bespoke memory to add"
+          git add bespoke-feed.xml || echo "No feed file to add"
 
           git diff --staged --quiet && echo "No changes to commit" && exit 0
           git commit -m "bespoke: generate episode for tag '${{ inputs.tag }}'"
           git push
+
+      - name: Prepare output for GitHub Pages
+        run: |
+          mkdir -p output/podcasts/bespoke
+
+          # Bespoke episode files
+          cp podcasts/bespoke/bespoke_audio_*.mp3   output/podcasts/bespoke/ 2>/dev/null || true
+          cp podcasts/bespoke/bespoke_script_*.txt   output/podcasts/bespoke/ 2>/dev/null || true
+          cp podcasts/bespoke/bespoke_citations_*.json output/podcasts/bespoke/ 2>/dev/null || true
+          cp podcasts/bespoke/bespoke_shownotes_*.md  output/podcasts/bespoke/ 2>/dev/null || true
+
+          # Bespoke RSS feed at site root
+          cp bespoke-feed.xml output/
+
+          echo "Output:"
+          ls -lh output/
+          ls -lh output/podcasts/bespoke/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output
+          publish_branch: gh-pages
+          keep_files: true
+          commit_message: "bespoke: deploy episode '${{ inputs.tag }}' - ${{ github.run_id }}"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
@@ -101,5 +131,6 @@ jobs:
             podcasts/bespoke/bespoke_script_*.txt
             podcasts/bespoke/bespoke_citations_*.json
             podcasts/bespoke/bespoke_shownotes_*.md
+            bespoke-feed.xml
           retention-days: 30
         if: always()
