@@ -73,6 +73,11 @@ on:
         required: false
         default: ''
         type: string
+      tag:
+        description: 'Bespoke topic tag (e.g. "billionaires", "middle-east"). When 3+ seeds share the same tag, a bespoke episode is auto-generated.'
+        required: false
+        default: ''
+        type: string
 
   repository_dispatch:
     types: [seed-content]
@@ -106,6 +111,9 @@ jobs:
           SEED_NOTE: ${{ inputs.note || github.event.client_payload.note }}
           SEED_PRIORITY: ${{ inputs.priority || github.event.client_payload.priority }}
           SEED_THEME: ${{ inputs.theme_hint || github.event.client_payload.theme_hint }}
+          SEED_TAG: ${{ inputs.tag || github.event.client_payload.tag }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           SEED_TYPE="${SEED_TYPE:-url}"
           SEED_PRIORITY="${SEED_PRIORITY:-normal}"
@@ -122,6 +130,10 @@ jobs:
             ARGS+=(--theme "$SEED_THEME")
           fi
 
+          if [ -n "$SEED_TAG" ]; then
+            ARGS+=(--tag "$SEED_TAG")
+          fi
+
           python seed.py "${ARGS[@]}"
 
       - name: Commit and push updated seeds
@@ -132,6 +144,9 @@ jobs:
           git diff --staged --quiet && echo "No changes to commit" && exit 0
           TYPE="${{ inputs.type || github.event.client_payload.type }}"
           CONTENT="${{ inputs.content || github.event.client_payload.content }}"
+          TAG="${{ inputs.tag || github.event.client_payload.tag }}"
           SHORT="${CONTENT:0:60}"
-          git commit -m "seed: add ${TYPE} — ${SHORT}"
+          TAG_SUFFIX=""
+          if [ -n "$TAG" ]; then TAG_SUFFIX=" [#${TAG}]"; fi
+          git commit -m "seed: add ${TYPE}${TAG_SUFFIX} — ${SHORT}"
           git push
