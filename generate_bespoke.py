@@ -962,10 +962,32 @@ def main():
     parser = argparse.ArgumentParser(
         description="Generate a bespoke podcast episode from tagged seeds."
     )
-    parser.add_argument("--tag", required=True, help="Topic tag to generate episode for")
+    parser.add_argument("--tag", required=False, help="Topic tag to generate episode for")
     parser.add_argument("--threshold", type=int, default=3,
                         help="Minimum seeds required (default: 3)")
+    parser.add_argument("--sync-only", action="store_true",
+                        help="Regenerate feed and upload to R2 without generating a new episode")
     args = parser.parse_args()
+
+    base_url = os.getenv("PODCAST_BASE_URL", "https://podcast.cariboosignals.ca/")
+
+    if args.sync_only:
+        generate_bespoke_rss_feed(base_url)
+        r2, bucket = _get_r2_client()
+        if r2:
+            feed_path = SCRIPT_DIR / "bespoke-feed.xml"
+            if feed_path.exists():
+                _upload_file_to_r2(r2, bucket, feed_path, "bespoke-feed.xml")
+            for mp3 in sorted(BESPOKE_DIR.glob("bespoke_audio_*.mp3")):
+                _upload_file_to_r2(r2, bucket, mp3, f"podcasts/bespoke/{mp3.name}")
+            for f in sorted(BESPOKE_DIR.glob("bespoke_citations_*.json")):
+                _upload_file_to_r2(r2, bucket, f, f"podcasts/bespoke/{f.name}")
+            for f in sorted(BESPOKE_DIR.glob("bespoke_shownotes_*.md")):
+                _upload_file_to_r2(r2, bucket, f, f"podcasts/bespoke/{f.name}")
+        return
+
+    if not args.tag:
+        parser.error("--tag is required unless --sync-only is set")
 
     tag = args.tag.lower()
     date_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
@@ -1074,7 +1096,6 @@ def main():
     mark_seeds_used(tag, seeds)
 
     # Update bespoke RSS feed
-    base_url = os.getenv("PODCAST_BASE_URL", "https://podcast.cariboosignals.ca/")
     generate_bespoke_rss_feed(base_url)
 
     # Upload to Cloudflare R2

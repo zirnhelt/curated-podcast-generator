@@ -22,14 +22,19 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Topic tag to generate episode for (e.g. "billionaires")'
-        required: true
+        description: 'Topic tag to generate episode for (e.g. "billionaires") — leave blank for sync-only'
+        required: false
         type: string
       threshold:
         description: 'Minimum seeds required (default: 3)'
         required: false
         default: '3'
         type: string
+      sync_only:
+        description: 'Rebuild feed and upload to R2 without generating a new episode'
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -43,7 +48,8 @@ jobs:
     steps:
       - name: Log trigger
         run: |
-          echo "Generating bespoke episode for tag: ${{ inputs.tag }}"
+          echo "Tag: ${{ inputs.tag }}"
+          echo "Sync-only: ${{ inputs.sync_only }}"
           echo "Threshold: ${{ inputs.threshold }}"
           echo "UTC time: $(date -u)"
 
@@ -77,9 +83,13 @@ jobs:
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           R2_BUCKET_NAME: cariboo-signals
         run: |
-          THRESHOLD="${{ inputs.threshold }}"
-          THRESHOLD="${THRESHOLD:-3}"
-          python generate_bespoke.py --tag "${{ inputs.tag }}" --threshold "$THRESHOLD"
+          if [ "${{ inputs.sync_only }}" = "true" ]; then
+            python generate_bespoke.py --sync-only
+          else
+            THRESHOLD="${{ inputs.threshold }}"
+            THRESHOLD="${THRESHOLD:-3}"
+            python generate_bespoke.py --tag "${{ inputs.tag }}" --threshold "$THRESHOLD"
+          fi
 
       - name: List generated files
         run: |
