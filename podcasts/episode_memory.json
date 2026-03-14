@@ -1,44 +1,4 @@
 {
-  "2026-02-20": {
-    "timestamp": 1771592409.205173,
-    "topics": [
-      "[Boing Boing] Amazing camera trap footage represents hope fo",
-      "[Android Authority] Amazfit just launched its biggest watch ",
-      "[NYT Top Stories] Another Storm Complicates Efforts to Recov",
-      "[Quesnel Cariboo Observer] B.C. skiers cautioned after split",
-      "[NYT Top Stories] After Avalanche Warnings, a Sierra Nevada ",
-      "[TechRadar] Forget the Samsung Galaxy Watch Ultra 2 \u2014 the Am",
-      "[TechRadar] Garmin Fenix 9 incoming? CEO Cliff Pemble teases",
-      "[NYT Top Stories] What You Need to Know About Avalanche Safe"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "connectivity"
-    ],
-    "date": "2026-02-20"
-  },
-  "2026-02-21": {
-    "timestamp": 1771678068.281488,
-    "topics": [
-      "[Al Jazeera English] UK weighs removing ex-Prince Andrew fro",
-      "[Neowin] Microsoft announces new ESU programs for more versi",
-      "[Toms Guide] I tested Reddit\u2019s favorite gaming headsets on 7",
-      "[XDA Developers] KDE Plasma 6.7.0 will make managing your pr",
-      "[The Economic Times] Odisha mobilises over 5,000 MSMEs in cl",
-      "[My Cariboo Now] B.C. paramedics union reaches agreement wit",
-      "[Toms Guide] I tested the 'Death Star of speakers' for a wee",
-      "[TipRanks] Nscale Targets Telecom Opportunities in Sovereign"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-02-21"
-  },
   "2026-02-22": {
     "timestamp": 1771764654.897072,
     "topics": [
@@ -435,5 +395,25 @@
       "Indigenous tech"
     ],
     "date": "2026-03-13"
+  },
+  "2026-03-14": {
+    "timestamp": 1773492844.928409,
+    "topics": [
+      "[Williams Lake Tribune] Hundreds of troops train west of Wil",
+      "[Williams Lake Tribune] Williams Lake students race duct-tap",
+      "[100 Mile Free Press] Mieke Reelick",
+      "[Williams Lake Tribune] Rezoning approved for building 60-si",
+      "[Williams Lake Tribune] Infant from Fort St. John spends 240",
+      "Rebuilding trust in AI with responsible adoption",
+      "[100 Mile Free Press] 100 Mile House ER closed for second st",
+      "[Quesnel Cariboo Observer] 150 people died in B.C. in Januar"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "connectivity"
+    ],
+    "date": "2026-03-14"
   }
 }

@@ -64,8 +64,10 @@
       "added_at": "2026-03-13T21:47:54.969208+00:00",
       "priority": "normal",
       "theme_hint": null,
-      "status": "pending",
-      "used_on": null
+      "status": "used",
+      "used_on": "2026-03-14",
+      "best_theme_day": null,
+      "best_theme_name": null
     }
   ]
 }
