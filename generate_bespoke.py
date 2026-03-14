@@ -898,6 +898,64 @@ def generate_bespoke_rss_feed(base_url):
     return BESPOKE_FEED_FILE
 
 
+# ── R2 upload ─────────────────────────────────────────────────────────────
+
+def _get_r2_client():
+    account_id = os.environ.get("CF_ACCOUNT_ID")
+    access_key = os.environ.get("R2_ACCESS_KEY_ID")
+    secret_key = os.environ.get("R2_SECRET_ACCESS_KEY")
+    if not all([account_id, access_key, secret_key]):
+        return None, None
+    import boto3
+    r2 = boto3.client(
+        "s3",
+        endpoint_url=f"https://{account_id}.r2.cloudflarestorage.com",
+        aws_access_key_id=access_key,
+        aws_secret_access_key=secret_key,
+        region_name="auto",
+    )
+    bucket = os.environ.get("R2_BUCKET_NAME", "cariboo-signals")
+    return r2, bucket
+
+
+def _upload_file_to_r2(r2, bucket, local_path, object_key):
+    try:
+        r2.upload_file(str(local_path), bucket, object_key)
+        print(f"   R2: {object_key}")
+        return True
+    except Exception as e:
+        print(f"   R2 upload failed for {object_key}: {e}")
+        return False
+
+
+def sync_bespoke_to_r2(tag, date_str):
+    """Upload the just-generated bespoke episode + updated feed to R2."""
+    r2, bucket = _get_r2_client()
+    if r2 is None:
+        print("R2 credentials not configured, skipping upload")
+        return
+
+    print("Syncing bespoke episode to R2...")
+
+    # Feed file
+    feed_path = SCRIPT_DIR / "bespoke-feed.xml"
+    if feed_path.exists():
+        _upload_file_to_r2(r2, bucket, feed_path, "bespoke-feed.xml")
+
+    # Episode files for this run
+    safe_tag = tag.replace(" ", "-").lower()
+    patterns = [
+        f"bespoke_audio_{safe_tag}_{date_str}.mp3",
+        f"bespoke_citations_{safe_tag}_{date_str}.json",
+        f"bespoke_shownotes_{safe_tag}_{date_str}.md",
+        f"bespoke_script_{safe_tag}_{date_str}.txt",
+    ]
+    for filename in patterns:
+        local_path = BESPOKE_DIR / filename
+        if local_path.exists():
+            _upload_file_to_r2(r2, bucket, local_path, f"podcasts/bespoke/{filename}")
+
+
 # ── Main ───────────────────────────────────────────────────────────────────
 
 def main():
@@ -1018,6 +1076,9 @@ def main():
     # Update bespoke RSS feed
     base_url = os.getenv("PODCAST_BASE_URL", "https://podcast.cariboosignals.ca/")
     generate_bespoke_rss_feed(base_url)
+
+    # Upload to Cloudflare R2
+    sync_bespoke_to_r2(tag, date_str)
 
     print(f"\n{'='*50}")
     print(f"  Episode complete: {tag}")
