@@ -84,6 +84,7 @@ on:
 
 permissions:
   contents: write
+  actions: write   # required to dispatch generate-bespoke.yml when tag threshold is reached
 
 jobs:
   seed:
