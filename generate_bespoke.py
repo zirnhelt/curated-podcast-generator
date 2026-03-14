@@ -937,10 +937,11 @@ def sync_bespoke_to_r2(tag, date_str):
 
     print("Syncing bespoke episode to R2...")
 
-    # Feed file
-    feed_path = SCRIPT_DIR / "bespoke-feed.xml"
-    if feed_path.exists():
-        _upload_file_to_r2(r2, bucket, feed_path, "bespoke-feed.xml")
+    # Feed file and landing page
+    for filename in ("bespoke-feed.xml", "bespoke.html"):
+        p = SCRIPT_DIR / filename
+        if p.exists():
+            _upload_file_to_r2(r2, bucket, p, filename)
 
     # Episode files for this run
     safe_tag = tag.replace(" ", "-").lower()
@@ -975,9 +976,10 @@ def main():
         generate_bespoke_rss_feed(base_url)
         r2, bucket = _get_r2_client()
         if r2:
-            feed_path = SCRIPT_DIR / "bespoke-feed.xml"
-            if feed_path.exists():
-                _upload_file_to_r2(r2, bucket, feed_path, "bespoke-feed.xml")
+            for filename in ("bespoke-feed.xml", "bespoke.html"):
+                p = SCRIPT_DIR / filename
+                if p.exists():
+                    _upload_file_to_r2(r2, bucket, p, filename)
             for mp3 in sorted(BESPOKE_DIR.glob("bespoke_audio_*.mp3")):
                 _upload_file_to_r2(r2, bucket, mp3, f"podcasts/bespoke/{mp3.name}")
             for f in sorted(BESPOKE_DIR.glob("bespoke_citations_*.json")):
