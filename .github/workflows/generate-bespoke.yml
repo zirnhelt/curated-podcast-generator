@@ -1,0 +1,105 @@
+name: Generate Bespoke Episode
+
+# Triggered automatically by seed.py when 3+ seeds share the same tag,
+# or manually via the GitHub Actions UI / API.
+#
+# ── Manual trigger via GitHub API ───────────────────────────────────────────
+#   POST https://api.github.com/repos/OWNER/REPO/actions/workflows/generate-bespoke.yml/dispatches
+#   Authorization: Bearer <PAT>
+#   Content-Type: application/json
+#   {
+#     "ref": "main",
+#     "inputs": { "tag": "billionaires" }
+#   }
+#
+# ── Output files (in podcasts/bespoke/) ────────────────────────────────────
+#   bespoke_audio_{tag}_{date}.mp3
+#   bespoke_script_{tag}_{date}.txt
+#   bespoke_citations_{tag}_{date}.json
+#   bespoke_shownotes_{tag}_{date}.md
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Topic tag to generate episode for (e.g. "billionaires")'
+        required: true
+        type: string
+      threshold:
+        description: 'Minimum seeds required (default: 3)'
+        required: false
+        default: '3'
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  generate-bespoke:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Log trigger
+        run: |
+          echo "Generating bespoke episode for tag: ${{ inputs.tag }}"
+          echo "Threshold: ${{ inputs.threshold }}"
+          echo "UTC time: $(date -u)"
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pydub openai python-dotenv
+
+      - name: Generate bespoke episode
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
+        run: |
+          THRESHOLD="${{ inputs.threshold }}"
+          THRESHOLD="${THRESHOLD:-3}"
+          python generate_bespoke.py --tag "${{ inputs.tag }}" --threshold "$THRESHOLD"
+
+      - name: List generated files
+        run: |
+          echo "Bespoke episode files:"
+          ls -la podcasts/bespoke/ 2>/dev/null || echo "No bespoke files found"
+
+      - name: Commit episode files and updated seeds
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add podcasts/bespoke/ || echo "No bespoke dir to add"
+          git add podcasts/content_seeds.json || echo "No seeds file to add"
+          git add podcasts/bespoke_debate_memory.json || echo "No bespoke memory to add"
+
+          git diff --staged --quiet && echo "No changes to commit" && exit 0
+          git commit -m "bespoke: generate episode for tag '${{ inputs.tag }}'"
+          git push
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: bespoke-${{ inputs.tag }}-${{ github.run_id }}
+          path: |
+            podcasts/bespoke/bespoke_audio_*.mp3
+            podcasts/bespoke/bespoke_script_*.txt
+            podcasts/bespoke/bespoke_citations_*.json
+            podcasts/bespoke/bespoke_shownotes_*.md
+          retention-days: 30
+        if: always()

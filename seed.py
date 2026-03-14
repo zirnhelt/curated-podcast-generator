@@ -7,8 +7,8 @@ The podcast algorithm picks them up during the next generation run and
 works them into a deep dive or discussion when the timing fits.
 
 Usage:
-  python seed.py url <url> [--note TEXT] [--priority normal|high] [--theme THEME]
-  python seed.py thought <text> [--note TEXT] [--priority normal|high] [--theme THEME]
+  python seed.py url <url> [--note TEXT] [--priority normal|high] [--theme THEME] [--tag TAG]
+  python seed.py thought <text> [--note TEXT] [--priority normal|high] [--theme THEME] [--tag TAG]
   python seed.py list [--all]
   python seed.py remove <id>
 
@@ -16,12 +16,19 @@ Examples:
   python seed.py url "https://example.com/mesh-networks" --note "great rural angle"
   python seed.py thought "What if communities owned their own LTE towers?"
   python seed.py url "https://..." --priority high --theme "Resilient Rural Futures"
+  python seed.py url "https://..." --tag "billionaires"   # bespoke episode tag
   python seed.py list
   python seed.py remove abc123
+
+Bespoke episodes:
+  When 3+ seeds share the same --tag, a bespoke long-form debate episode is
+  automatically triggered via generate_bespoke.py. Tags are free-form strings
+  (e.g. "billionaires", "middle-east", "ai-regulation").
 """
 
 import argparse
 import json
+import os
 import sys
 import uuid
 from datetime import datetime, timezone
@@ -55,6 +62,60 @@ def _save_seeds(data: dict) -> None:
     print(f"Saved to {SEEDS_FILE}")
 
 
+BESPOKE_TRIGGER_THRESHOLD = 3
+
+
+def check_bespoke_trigger(data: dict, tag: str) -> None:
+    """Check if enough tagged seeds exist to trigger a bespoke episode.
+
+    When the count of pending seeds with *tag* reaches BESPOKE_TRIGGER_THRESHOLD,
+    dispatch the generate-bespoke.yml workflow via the GitHub API.
+
+    Requires GITHUB_TOKEN and GITHUB_REPOSITORY environment variables
+    (automatically available inside GitHub Actions).
+    """
+    tag_lower = tag.lower()
+    pending_tagged = [
+        s for s in data.get("seeds", [])
+        if s.get("tag", "").lower() == tag_lower and s.get("status") == "pending"
+    ]
+    count = len(pending_tagged)
+    print(f"  Tag '{tag_lower}': {count} pending seed(s) (trigger at {BESPOKE_TRIGGER_THRESHOLD})")
+
+    if count < BESPOKE_TRIGGER_THRESHOLD:
+        return
+
+    token = os.environ.get("GITHUB_TOKEN")
+    repo = os.environ.get("GITHUB_REPOSITORY")
+    if not token or not repo:
+        print(f"  Threshold reached! Run manually: python generate_bespoke.py --tag {tag_lower}")
+        return
+
+    import urllib.request
+    url = f"https://api.github.com/repos/{repo}/actions/workflows/generate-bespoke.yml/dispatches"
+    payload = json.dumps({"ref": "main", "inputs": {"tag": tag_lower}}).encode()
+    req = urllib.request.Request(
+        url,
+        data=payload,
+        headers={
+            "Authorization": f"Bearer {token}",
+            "Accept": "application/vnd.github+json",
+            "X-GitHub-Api-Version": "2022-11-28",
+            "Content-Type": "application/json",
+        },
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(req) as resp:
+            if resp.status == 204:
+                print(f"  Auto-triggered bespoke episode for tag '{tag_lower}'!")
+            else:
+                print(f"  Unexpected response {resp.status} when dispatching bespoke workflow")
+    except Exception as e:
+        print(f"  Could not dispatch bespoke workflow: {e}")
+        print(f"  Run manually: python generate_bespoke.py --tag {tag_lower}")
+
+
 def cmd_url(args) -> None:
     data = _load_seeds()
     seed = {
@@ -66,6 +127,7 @@ def cmd_url(args) -> None:
         "added_at": datetime.now(timezone.utc).isoformat(),
         "priority": args.priority,
         "theme_hint": args.theme,
+        "tag": args.tag.lower() if args.tag else None,
         "status": "pending",
         "used_on": None,
     }
@@ -76,8 +138,12 @@ def cmd_url(args) -> None:
         print(f"  Note: {args.note}")
     if args.theme:
         print(f"  Theme hint: {args.theme}")
+    if args.tag:
+        print(f"  Bespoke tag: {args.tag.lower()}")
     if args.priority == "high":
         print("  Priority: HIGH (wins deep dive selection when its theme day arrives)")
+    if args.tag:
+        check_bespoke_trigger(data, args.tag)
 
 
 def cmd_thought(args) -> None:
@@ -90,6 +156,7 @@ def cmd_thought(args) -> None:
         "added_at": datetime.now(timezone.utc).isoformat(),
         "priority": args.priority,
         "theme_hint": args.theme,
+        "tag": args.tag.lower() if args.tag else None,
         "status": "pending",
         "used_on": None,
     }
@@ -98,6 +165,10 @@ def cmd_thought(args) -> None:
     print(f"Added thought seed [{seed['id']}]: {args.text[:80]}")
     if args.theme:
         print(f"  Theme hint: {args.theme}")
+    if args.tag:
+        print(f"  Bespoke tag: {args.tag.lower()}")
+    if args.tag:
+        check_bespoke_trigger(data, args.tag)
 
 
 def cmd_list(args) -> None:
@@ -127,6 +198,8 @@ def cmd_list(args) -> None:
 
         if s.get("note"):
             print(f"           note: {s['note']}")
+        if s.get("tag"):
+            print(f"           bespoke tag: #{s['tag']}")
         if s.get("best_theme_name"):
             day_names = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
             day_abbr = day_names[s["best_theme_day"]] if s.get("best_theme_day") is not None else "?"
@@ -162,6 +235,8 @@ def main():
                        help="high = wins deep dive selection when its theme day arrives")
     p_url.add_argument("--theme", default=None,
                        help=f"Target theme hint (e.g. 'Resilient Rural Futures'). Options: {', '.join(THEMES)}")
+    p_url.add_argument("--tag", default=None,
+                       help="Bespoke topic tag (e.g. 'billionaires'). When 3+ seeds share a tag, a bespoke episode is auto-generated.")
 
     # thought command
     p_thought = sub.add_parser("thought", help="Log a thought or question for further exploration")
@@ -169,6 +244,8 @@ def main():
     p_thought.add_argument("--note", default=None, help="Additional context")
     p_thought.add_argument("--priority", choices=["normal", "high"], default="normal")
     p_thought.add_argument("--theme", default=None, help="Target theme hint")
+    p_thought.add_argument("--tag", default=None,
+                           help="Bespoke topic tag (same as --tag for url)")
 
     # list command
     p_list = sub.add_parser("list", help="List seeds")

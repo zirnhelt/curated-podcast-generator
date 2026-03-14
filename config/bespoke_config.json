@@ -1,0 +1,17 @@
+{
+  "source_expansion": {
+    "enabled": true,
+    "provider": "brave",
+    "max_additional_sources": 5,
+    "min_user_sources": 3
+  },
+  "generation": {
+    "trigger_threshold": 3,
+    "script_target_words": 6000,
+    "min_point_counterpoint_exchanges": 5
+  },
+  "audio": {
+    "use_intro_music": true,
+    "use_outro_music": true
+  }
+}
