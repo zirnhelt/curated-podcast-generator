@@ -508,7 +508,8 @@ def extract_debate_summary(script, tag, client):
         ))
         return json.loads(response.content[0].text)
     except Exception:
-        return {"central_question": f"Discussion of {tag}", "resolution": "See episode", "calls_to_action": []}
+        human_tag = tag.replace("-", " ").replace("_", " ").title()
+        return {"central_question": f"Discussion of {human_tag}", "resolution": "See episode", "calls_to_action": []}
 
 
 # ── Audio assembly ─────────────────────────────────────────────────────────
@@ -925,11 +926,11 @@ def generate_bespoke_rss_feed(base_url):
             except Exception:
                 pass
 
-        title = tag.replace("-", " ").title()
+        title = tag.replace("-", " ").replace("_", " ").title()
         if central_question:
             title += f": {central_question}"
 
-        description = f"<p><strong>Topic:</strong> {saxutils.escape(tag.replace('-', ' ').title())}</p>"
+        description = f"<p><strong>Topic:</strong> {saxutils.escape(tag.replace('-', ' ').replace('_', ' ').title())}</p>"
         if central_question:
             description += f"<p><strong>Central question:</strong> {saxutils.escape(central_question)}</p>"
         if topics:
