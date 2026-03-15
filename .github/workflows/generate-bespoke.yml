@@ -120,9 +120,10 @@ jobs:
           cp podcasts/bespoke/bespoke_citations_*.json output/podcasts/bespoke/ 2>/dev/null || true
           cp podcasts/bespoke/bespoke_shownotes_*.md  output/podcasts/bespoke/ 2>/dev/null || true
 
-          # Bespoke RSS feed and landing page at site root
+          # Bespoke RSS feed, landing page, and cover image at site root
           cp bespoke-feed.xml output/
           cp bespoke.html output/
+          cp Deepdives.png output/
 
           echo "Output:"
           ls -lh output/
