@@ -1042,8 +1042,8 @@ def sync_bespoke_to_r2(tag, date_str):
 
     print("Syncing bespoke episode to R2...")
 
-    # Feed file and landing page
-    for filename in ("bespoke-feed.xml", "bespoke.html"):
+    # Feed file, landing page, and cover image
+    for filename in ("bespoke-feed.xml", "bespoke.html", "Deepdives.png"):
         p = SCRIPT_DIR / filename
         if p.exists():
             _upload_file_to_r2(r2, bucket, p, filename)
@@ -1092,7 +1092,7 @@ def main():
         generate_bespoke_rss_feed(base_url)
         r2, bucket = _get_r2_client()
         if r2:
-            for filename in ("bespoke-feed.xml", "bespoke.html"):
+            for filename in ("bespoke-feed.xml", "bespoke.html", "Deepdives.png"):
                 p = SCRIPT_DIR / filename
                 if p.exists():
                     _upload_file_to_r2(r2, bucket, p, filename)
