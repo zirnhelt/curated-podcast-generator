@@ -108,6 +108,7 @@ jobs:
 
           git diff --staged --quiet && echo "No changes to commit" && exit 0
           git commit -m "bespoke: generate episode for tag '${{ inputs.tag }}'"
+          git pull --rebase origin main
           git push
 
       - name: Prepare output for GitHub Pages
