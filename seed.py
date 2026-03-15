@@ -36,6 +36,7 @@ from pathlib import Path
 
 
 SEEDS_FILE = Path(__file__).parent / "podcasts" / "content_seeds.json"
+TAGS_FILE  = Path(__file__).parent / "tags.json"
 
 THEMES = [
     "Arts, Culture & Digital Storytelling",
@@ -55,10 +56,52 @@ def _load_seeds() -> dict:
     return {"version": 1, "seeds": []}
 
 
+def _write_tags_json(data: dict) -> None:
+    """Publish tags.json to the repo root for the iOS Shortcut to read.
+
+    Fetched via raw.githubusercontent.com/main/tags.json — no auth required.
+    The shortcut shows 'pending' tags as the primary list (active topics to add
+    seeds to) and falls back to 'all' if the user wants a recently-used tag.
+
+    Each entry is a plain string so iOS Shortcuts' 'Choose from List' works
+    with zero extra steps.
+    """
+    seeds = data.get("seeds", [])
+
+    # Pending tags — the ones the iOS Shortcut should highlight
+    pending_counts: dict[str, int] = {}
+    for s in seeds:
+        t = s.get("tag")
+        if t and s.get("status") == "pending":
+            pending_counts[t] = pending_counts.get(t, 0) + 1
+
+    # All tags ever used, most-recently-added first
+    seen: set[str] = set()
+    all_tags: list[str] = []
+    for s in reversed(seeds):
+        t = s.get("tag")
+        if t and t not in seen:
+            seen.add(t)
+            all_tags.append(t)
+
+    # Pending list sorted by seed count descending (busiest topic first)
+    pending_tags = sorted(pending_counts, key=lambda t: -pending_counts[t])
+
+    payload = {
+        "updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "pending": pending_tags,
+        "pending_counts": pending_counts,
+        "all": all_tags,
+    }
+    with open(TAGS_FILE, "w") as f:
+        json.dump(payload, f, indent=2)
+
+
 def _save_seeds(data: dict) -> None:
     SEEDS_FILE.parent.mkdir(exist_ok=True)
     with open(SEEDS_FILE, "w") as f:
         json.dump(data, f, indent=2)
+    _write_tags_json(data)
     print(f"Saved to {SEEDS_FILE}")
 
 
