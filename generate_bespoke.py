@@ -1045,6 +1045,17 @@ def sync_bespoke_to_r2(tag, date_str):
         if p.exists():
             _upload_file_to_r2(r2, bucket, p, filename)
 
+    # Theme song assets (full song + the three derived clips)
+    for filename in (
+        "string-theory-kickoff.mp3",
+        "bespoke-theme-intro.mp3",
+        "bespoke-theme-outro.mp3",
+        "bespoke-theme-interval.mp3",
+    ):
+        p = SCRIPT_DIR / filename
+        if p.exists():
+            _upload_file_to_r2(r2, bucket, p, filename)
+
     # Episode files for this run
     safe_tag = tag.replace(" ", "-").lower()
     patterns = [
