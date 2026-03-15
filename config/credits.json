@@ -32,7 +32,7 @@
     "items": [
       {"label": "Theme Song", "value": "<a href='string-theory-kickoff.mp3'>String Theory Kickoff by Suno</a>"},
       {"label": "Script", "value": "Claude (Anthropic)"},
-      {"label": "TTS Voices", "value": "OpenAI TTS API (Onyx \u00b7 Shimmer)"},
+      {"label": "TTS Voices", "value": "OpenAI TTS API (Nova \u00b7 Echo)"},
       {"label": "Sources", "value": "Curated by listeners + Brave Search"},
       {"label": "Podcast Coordination", "value": "Erich Zirnhelt"},
       {"label": "License", "value": "<a href='https://creativecommons.org/licenses/by-nc/4.0/'>CC BY-NC 4.0</a> \u00a9 2026 Erich Zirnhelt"}
