@@ -118,8 +118,8 @@
       "priority": "normal",
       "theme_hint": null,
       "tag": "mental-health-vs-security",
-      "status": "pending",
-      "used_on": null
+      "status": "used_bespoke",
+      "used_on": "2026-03-15"
     },
     {
       "id": "6b0822ac",
@@ -131,8 +131,8 @@
       "priority": "normal",
       "theme_hint": null,
       "tag": "mental-health-vs-security",
-      "status": "pending",
-      "used_on": null
+      "status": "used_bespoke",
+      "used_on": "2026-03-15"
     },
     {
       "id": "eeaac87e",
@@ -144,8 +144,8 @@
       "priority": "normal",
       "theme_hint": null,
       "tag": "mental-health-vs-security",
-      "status": "pending",
-      "used_on": null
+      "status": "used_bespoke",
+      "used_on": "2026-03-15"
     }
   ]
 }
