@@ -45,11 +45,14 @@ BESPOKE_DIR = PODCASTS_DIR / "bespoke"
 SEEDS_FILE = PODCASTS_DIR / "content_seeds.json"
 BESPOKE_MEMORY_FILE = PODCASTS_DIR / "bespoke_debate_memory.json"
 
-INTRO_MUSIC = SCRIPT_DIR / "cariboo-signals-intro.mp3"
-OUTRO_MUSIC = SCRIPT_DIR / "cariboo-signals-outro.mp3"
-INTERVAL_MUSIC = SCRIPT_DIR / "cariboo-signals-interval.mp3"
-# Drop bespoke-theme.mp3 here when ready; falls back to INTRO_MUSIC
-BESPOKE_THEME = SCRIPT_DIR / "bespoke-theme.mp3"
+BESPOKE_INTRO_MUSIC = SCRIPT_DIR / "bespoke-theme-intro.mp3"
+BESPOKE_OUTRO_MUSIC = SCRIPT_DIR / "bespoke-theme-outro.mp3"
+BESPOKE_INTERVAL_MUSIC = SCRIPT_DIR / "bespoke-theme-interval.mp3"
+
+# Fallbacks to shared cariboo-signals tracks if the bespoke theme files are absent
+_CARIBOO_INTRO = SCRIPT_DIR / "cariboo-signals-intro.mp3"
+_CARIBOO_OUTRO = SCRIPT_DIR / "cariboo-signals-outro.mp3"
+_CARIBOO_INTERVAL = SCRIPT_DIR / "cariboo-signals-interval.mp3"
 
 # ── Models ─────────────────────────────────────────────────────────────────
 SCRIPT_MODEL = os.getenv("CLAUDE_SCRIPT_MODEL", "claude-sonnet-4-20250514")
@@ -82,37 +85,37 @@ def get_openai_client():
 
 # ── Retry helper ───────────────────────────────────────────────────────────
 
-def decrypt_tag(tag: str) -> str:
-    """Decrypt an encrypted tag before use.
+def expand_tag(tag: str, client) -> str:
+    """Expand a short, cryptic tag slug into a rich plain-English topic description.
 
-    Priority:
-      1. Fernet symmetric decryption when BESPOKE_TAG_KEY is set.
-      2. URL-safe base64 decode (no key needed).
-      3. Return raw tag unchanged.
+    Tags like "billionaires" or "middle-east" are by nature terse.  This asks
+    Claude to broaden them into a fuller description of the topic space so that
+    the script prompt has richer context to work with.  The expanded description
+    is used in prompts alongside (not instead of) the original tag slug, which
+    is still used for file naming and memory keys.
     """
-    import base64
-
-    key = os.getenv("BESPOKE_TAG_KEY")
-    if key:
-        try:
-            from cryptography.fernet import Fernet
-            f = Fernet(key.encode())
-            return f.decrypt(tag.encode()).decode().strip()
-        except Exception as e:
-            print(f"  Warning: Fernet decrypt failed ({e}), falling back to base64")
-
+    prompt = (
+        f"The following is a short topic tag for a long-form podcast episode: \"{tag}\"\n\n"
+        "Tags are intentionally cryptic slugs.  Expand this into a rich, plain-English "
+        "topic description (3-5 sentences) that:\n"
+        "- States the full topic clearly and without jargon\n"
+        "- Names the key tensions, debates, or dimensions worth exploring\n"
+        "- Suggests the scope (historical, economic, political, ethical, etc.) that is relevant\n"
+        "- Does NOT presuppose a conclusion or editorial angle\n\n"
+        "Return only the plain-English description.  No preamble, no bullet points."
+    )
     try:
-        # Pad to a multiple of 4 so b64decode doesn't complain
-        padded = tag + "=" * (-len(tag) % 4)
-        decoded = base64.urlsafe_b64decode(padded).decode("utf-8").strip()
-        # Only accept if it looks like a valid slug
-        if decoded and all(c.isalnum() or c in "-_ " for c in decoded):
-            print(f"  Tag decoded from base64: '{decoded}'")
-            return decoded
-    except Exception:
-        pass
-
-    return tag
+        response = api_retry(lambda: client.messages.create(
+            model=SCRIPT_MODEL,
+            max_tokens=300,
+            messages=[{"role": "user", "content": prompt}]
+        ))
+        expanded = response.content[0].text.strip()
+        print(f"  Tag expanded: \"{tag}\" → {expanded[:120]}{'…' if len(expanded) > 120 else ''}")
+        return expanded
+    except Exception as e:
+        print(f"  Tag expansion failed ({e}), using raw tag")
+        return tag
 
 
 def api_retry(func, max_retries=3, base_delay=2):
@@ -213,10 +216,11 @@ def fetch_url_content(url):
 
 # ── Source expansion via Brave Search ──────────────────────────────────────
 
-def generate_search_queries(tag, articles_summary, client):
+def generate_search_queries(tag, articles_summary, client, tag_description=""):
     """Ask Claude for search queries to broaden coverage beyond user seeds."""
+    topic_context = tag_description if tag_description else tag
     prompt = (
-        f"You are helping find credible sources for a podcast episode about: {tag}\n\n"
+        f"You are helping find credible sources for a podcast episode about: {topic_context}\n\n"
         f"These articles have already been curated:\n{articles_summary}\n\n"
         "Generate exactly 4 diverse search queries to find DIFFERENT credible perspectives, "
         "counterarguments, historical context, or expert analysis not in the existing articles. "
@@ -254,7 +258,7 @@ def brave_search(query, api_key, count=5):
         return []
 
 
-def expand_sources(tag, user_articles, client, config):
+def expand_sources(tag, user_articles, client, config, tag_description=""):
     """Fetch additional credible sources to complement user seeds."""
     source_cfg = config.get("source_expansion", {})
     if not source_cfg.get("enabled", True):
@@ -272,7 +276,7 @@ def expand_sources(tag, user_articles, client, config):
     )
 
     print("  Generating search queries...")
-    queries = generate_search_queries(tag, articles_summary, client)
+    queries = generate_search_queries(tag, articles_summary, client, tag_description=tag_description)
     print(f"  Got {len(queries)} queries")
 
     seen_urls = {a['url'] for a in user_articles}
@@ -375,7 +379,7 @@ EVIDENCE RULES:
 - No Cariboo/rural BC framing, no land acknowledgements, no weather, no PSA segments"""
 
 
-def generate_bespoke_script(tag, all_articles, past_debates, client):
+def generate_bespoke_script(tag, all_articles, past_debates, client, tag_description=""):
     user_articles = [a for a in all_articles if a.get("source_type") != "auto"]
     auto_articles = [a for a in all_articles if a.get("source_type") == "auto"]
 
@@ -393,8 +397,12 @@ def generate_bespoke_script(tag, all_articles, past_debates, client):
 
     memory_block = format_memory_for_prompt(past_debates)
 
+    topic_block = f"TOPIC TAG: {tag}\n"
+    if tag_description:
+        topic_block += f"TOPIC DESCRIPTION: {tag_description}\n"
+
     user_prompt = (
-        f"TOPIC: {tag}\n\n"
+        f"{topic_block}\n"
         f"{sources_block}\n"
         f"{memory_block}\n\n"
         "Generate a complete long-form debate podcast episode on this topic. "
@@ -637,11 +645,13 @@ def generate_audio(script, output_path, hosts, config):
 
     audio_cfg = config.get("audio", {})
 
-    # Use bespoke-theme.mp3 when available, fall back to the shared intro music
-    theme_path = BESPOKE_THEME if BESPOKE_THEME.exists() else INTRO_MUSIC
-    use_theme = audio_cfg.get("use_intro_music", True) and theme_path.exists()
-    use_outro = audio_cfg.get("use_outro_music", True) and OUTRO_MUSIC.exists()
-    use_chime = INTERVAL_MUSIC.exists()
+    intro_path = BESPOKE_INTRO_MUSIC if BESPOKE_INTRO_MUSIC.exists() else _CARIBOO_INTRO
+    outro_path = BESPOKE_OUTRO_MUSIC if BESPOKE_OUTRO_MUSIC.exists() else _CARIBOO_OUTRO
+    interval_path = BESPOKE_INTERVAL_MUSIC if BESPOKE_INTERVAL_MUSIC.exists() else _CARIBOO_INTERVAL
+
+    use_theme = audio_cfg.get("use_intro_music", True) and intro_path.exists()
+    use_outro = audio_cfg.get("use_outro_music", True) and outro_path.exists()
+    use_chime = interval_path.exists()
 
     turns = parse_bespoke_script(script)
     if not turns:
@@ -656,17 +666,16 @@ def generate_audio(script, output_path, hosts, config):
             combined = AudioSegment.empty()
 
             if use_theme:
-                theme = normalize_segment(AudioSegment.from_mp3(str(theme_path)), TARGET_MUSIC_DBFS)
+                theme = normalize_segment(AudioSegment.from_mp3(str(intro_path)), TARGET_MUSIC_DBFS)
                 combined = theme + AudioSegment.silent(duration=500)
-                label = "bespoke-theme.mp3" if BESPOKE_THEME.exists() else "intro music (placeholder)"
-                print(f"  Added {label} ({len(theme)/1000:.1f}s)")
+                print(f"  Added intro music: {intro_path.name} ({len(theme)/1000:.1f}s)")
 
             prev_speaker = None
             tts_idx = 0
             for turn in turns:
                 if turn['speaker'] == '__CHIME__':
                     if use_chime:
-                        chime_raw = AudioSegment.from_mp3(str(INTERVAL_MUSIC))
+                        chime_raw = AudioSegment.from_mp3(str(interval_path))
                         chime = normalize_segment(chime_raw[:1200], TARGET_MUSIC_DBFS).fade_out(400)
                         combined += AudioSegment.silent(duration=300) + chime + AudioSegment.silent(duration=300)
                         print(f"  Added intermission chime ({len(chime)/1000:.1f}s)")
@@ -689,7 +698,7 @@ def generate_audio(script, output_path, hosts, config):
                 prev_speaker = turn['speaker']
 
             if use_outro:
-                outro = normalize_segment(AudioSegment.from_mp3(str(OUTRO_MUSIC)), TARGET_MUSIC_DBFS)
+                outro = normalize_segment(AudioSegment.from_mp3(str(outro_path)), TARGET_MUSIC_DBFS)
                 combined += AudioSegment.silent(duration=500) + outro
                 print(f"  Added outro music ({len(outro)/1000:.1f}s)")
 
@@ -1084,7 +1093,7 @@ def main():
     if not args.tag:
         parser.error("--tag is required unless --sync-only is set")
 
-    tag = decrypt_tag(args.tag).lower()
+    tag = args.tag.lower()
     date_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
     BESPOKE_DIR.mkdir(parents=True, exist_ok=True)
@@ -1109,6 +1118,10 @@ def main():
     if not client:
         print("ANTHROPIC_API_KEY not set. Exiting.")
         sys.exit(1)
+
+    # Expand the tag slug into plain-English topic description before anything else
+    print("\nExpanding tag into topic description...")
+    tag_description = expand_tag(tag, client)
 
     # Fetch content for user seeds
     print("\nFetching article content...")
@@ -1142,7 +1155,7 @@ def main():
 
     # Expand sources
     print("\nExpanding sources via Brave Search...")
-    auto_articles = expand_sources(tag, user_articles, client, config)
+    auto_articles = expand_sources(tag, user_articles, client, config, tag_description=tag_description)
     all_articles = user_articles + auto_articles
     print(f"Total sources: {len(all_articles)} ({len(user_articles)} user, {len(auto_articles)} auto-expanded)")
 
@@ -1153,7 +1166,7 @@ def main():
 
     # Generate script
     print("\nGenerating script...")
-    script = generate_bespoke_script(tag, all_articles, past_debates, client)
+    script = generate_bespoke_script(tag, all_articles, past_debates, client, tag_description=tag_description)
     word_count = len(script.split())
     turn_count = script.count("**MORGAN:**") + script.count("**SABLE:**")
     print(f"  Draft: {word_count} words, {turn_count} turns")
