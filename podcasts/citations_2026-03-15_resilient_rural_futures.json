@@ -1,0 +1,397 @@
+{
+  "episode": {
+    "date": "2026-03-15",
+    "formatted_date": "Sunday, March 15, 2026",
+    "theme": "Resilient Rural Futures",
+    "title": "Cariboo Signals - Resilient Rural Futures",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Resilient Rural Futures.</p><p><b>NEWS ROUNDUP:</b> We break down [Hackaday] This Printed Zipper Repair Requires No Unsewing and [ScienceAlert] Weight-Loss Drugs Could Cost Just $3 a Month to Make as Patents End, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Deep dive on Resilient Rural Futures Topics include: broadband, telemedicine, renewable energy, solar, AI.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>Hackaday: <a href=\"https://hackaday.com/2026/03/14/this-printed-zipper-repair-requires-no-unsewing/\">[Hackaday] This Printed Zipper Repair Requires No Unsewing</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/weight-loss-drugs-could-cost-just-3-a-month-to-make-as-patents-end\">[ScienceAlert] Weight-Loss Drugs Could Cost Just $3 a Month ...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/flock-safety-alpr-cameras-misreads-2026-3\">[Business Insider] A $7.5 billion cop-tech darling runs head...</a></li><li>TechRadar: <a href=\"https://www.techradar.com/pro/could-this-be-the-key-to-eternal-storage-experts-claim-new-dna-hdd-can-be-erased-and-overwritten-repeatedly\">[TechRadar] Could this be the key to eternal storage? Expert...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/the-internet-nearly-died-and-nobody-knew-xz-utils-backdoor/\">[XDA Developers] The internet nearly died (and nobody knew)</a></li><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/03/13/infant-from-fort-st-john-spends-240-days-in-bc-childrens-hospital/\">[Quesnel Cariboo Observer] Infant from Fort St. John spends ...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Hackaday: <a href=\"https://hackaday.com/2026/03/14/building-a-neatly-framed-word-clock/\">[Hackaday] Building a Neatly Framed Word Clock</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/03/14/gnu-radio-gets-a-makeover-with-pimpmygrc/\">[Hackaday] GNU Radio Gets a Makeover With PimpMyGRC</a></li><li>How-To Geek: <a href=\"https://www.howtogeek.com/5-advanced-ups-features-youre-probably-not-using/\">[How-To Geek] Stop treating your UPS like a dumb battery: 4 ...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/curiosity-cracked-open-a-rock-on-mars-and-revealed-a-huge-surprise\">[ScienceAlert] Curiosity Cracked Open a Rock on Mars And Rev...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/14/williams-lake-97th-birthday-of-incorporation-celebrated/\">[Williams Lake Tribune] Williams Lake 97th birthday of incor...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/14/b-c-mountaineer-looks-to-conquer-seven-summits-in-record-breaking-fashion/\">[Williams Lake Tribune] B.C. mountaineer looks to conquer Se...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/03/09/the-moon-is-safe-for-now-no-collision-in-2032-after-all/\">[Hackaday] The Moon is Safe, For Now: No Collision in 2032 A...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/ai-agents-management-structure-org-chart-consulting-firms-mckinsey-ibm-2026-3\">[Business Insider] AI agents are upending the company org ch...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/03/09/reverse-engineering-the-bluetooth-fichero-thermal-label-printer-protocol/\">[Hackaday] Reverse-Engineering the Bluetooth Fichero Thermal...</a></li><li>Toms Guide: <a href=\"https://www.tomsguide.com/ai/i-can-text-claude-like-a-personal-assistant-now-this-iphone-shortcut-made-it-possible\">[Toms Guide] I can text Claude like a personal assistant now...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/retiree-vibe-coding-seniors-ai-lewis-dickson-2026-2\">[Business Insider] I'm a 78-year-old retiree who's vibe codi...</a></li><li>TechRadar: <a href=\"https://www.techradar.com/pro/is-that-a-mac-mini-in-disguise-no-but-the-new-satechi-cubedock-packs-in-everything-youd-want-in-a-mini-pc-and-for-much-less\">[TechRadar] Is that a Mac mini in disguise? No, but the new ...</a></li><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/03/13/rezoning-approved-for-building-60-site-b-c-campground-of-trans-canada/\">[Quesnel Cariboo Observer] Rezoning approved for building 60...</a></li><li>How-To Geek: <a href=\"https://www.howtogeek.com/these-windows-background-processes-are-slowly-shortening-your-ssds-lifespan/\">[How-To Geek] These 6 Windows background processes might be ...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Sumo AI<br>Content Curation &amp; Script: Claude (Anthropic)<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-03-15T05:55:49.767545-07:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Hackaday] This Printed Zipper Repair Requires No Unsewing",
+          "url": "https://hackaday.com/2026/03/14/this-printed-zipper-repair-requires-no-unsewing/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-15T02:00:23+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Hackaday] Building a Neatly Framed Word Clock",
+          "url": "https://hackaday.com/2026/03/14/building-a-neatly-framed-word-clock/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-15T05:00:35+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] GNU Radio Gets a Makeover With PimpMyGRC",
+          "url": "https://hackaday.com/2026/03/14/gnu-radio-gets-a-makeover-with-pimpmygrc/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-14T23:00:47+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] Stop treating your UPS like a dumb battery: 4 UPS settings I use to keep my home server alive",
+          "url": "https://www.howtogeek.com/5-advanced-ups-features-youre-probably-not-using/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-14T21:00:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Weight-Loss Drugs Could Cost Just $3 a Month to Make as Patents End",
+          "url": "https://www.sciencealert.com/weight-loss-drugs-could-cost-just-3-a-month-to-make-as-patents-end",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-09T01:18:11+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[ScienceAlert] Curiosity Cracked Open a Rock on Mars And Revealed a Huge Surprise",
+          "url": "https://www.sciencealert.com/curiosity-cracked-open-a-rock-on-mars-and-revealed-a-huge-surprise",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-14T22:34:35+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Williams Lake 97th birthday of incorporation celebrated",
+          "url": "https://wltribune.com/2026/03/14/williams-lake-97th-birthday-of-incorporation-celebrated/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-14T18:50:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] B.C. mountaineer looks to conquer Seven Summits in record-breaking fashion",
+          "url": "https://wltribune.com/2026/03/14/b-c-mountaineer-looks-to-conquer-seven-summits-in-record-breaking-fashion/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-14T18:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] The Moon is Safe, For Now: No Collision in 2032 After All",
+          "url": "https://hackaday.com/2026/03/09/the-moon-is-safe-for-now-no-collision-in-2032-after-all/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-09T11:00:05+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] A $7.5 billion cop-tech darling runs headfirst into human consequences",
+          "url": "https://www.businessinsider.com/flock-safety-alpr-cameras-misreads-2026-3",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-03-09T09:07:01+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Business Insider] AI agents are upending the company org chart",
+          "url": "https://www.businessinsider.com/ai-agents-management-structure-org-chart-consulting-firms-mckinsey-ibm-2026-3",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-03-09T09:04:01+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Reverse-Engineering the Bluetooth Fichero Thermal Label Printer Protocol",
+          "url": "https://hackaday.com/2026/03/09/reverse-engineering-the-bluetooth-fichero-thermal-label-printer-protocol/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-09T08:00:34+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] I can text Claude like a personal assistant now — this iPhone shortcut made it possible",
+          "url": "https://www.tomsguide.com/ai/i-can-text-claude-like-a-personal-assistant-now-this-iphone-shortcut-made-it-possible",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-03-09T05:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] I'm a 78-year-old retiree who's vibe coding. Being out of the workforce doesn't mean we can't use AI like tech pros.",
+          "url": "https://www.businessinsider.com/retiree-vibe-coding-seniors-ai-lewis-dickson-2026-2",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-03-09T00:00:02+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Could this be the key to eternal storage? Experts claim new DNA HDD can be ‘erased and overwritten repeatedly’",
+          "url": "https://www.techradar.com/pro/could-this-be-the-key-to-eternal-storage-experts-claim-new-dna-hdd-can-be-erased-and-overwritten-repeatedly",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-08T22:50:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[TechRadar] Is that a Mac mini in disguise? No, but the new Satechi CubeDock packs in everything you'd want in a mini PC — and for much less",
+          "url": "https://www.techradar.com/pro/is-that-a-mac-mini-in-disguise-no-but-the-new-satechi-cubedock-packs-in-everything-youd-want-in-a-mini-pc-and-for-much-less",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-08T19:20:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] 10 tricks you can do with FFmpeg on Linux",
+          "url": "https://www.howtogeek.com/10-tricks-you-can-do-with-ffmpeg-on-linux/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-08T17:23:15+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Engadget] Apple is reportedly looking into 3D printing aluminum iPhones and Apple Watches",
+          "url": "https://www.engadget.com/mobile/smartphones/apple-is-reportedly-looking-into-3d-printing-aluminum-iphones-and-apple-watches-163721491.html?src=rss",
+          "source": "Engadget",
+          "ai_score": 0,
+          "date_published": "2026-03-08T16:37:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] 5 things smart bulbs give you that smart switches don't",
+          "url": "https://www.howtogeek.com/things-smart-bulbs-give-you-that-smart-switches-dont/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-08T16:00:15+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] The internet nearly died (and nobody knew)",
+          "url": "https://www.xda-developers.com/the-internet-nearly-died-and-nobody-knew-xz-utils-backdoor/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-08T14:30:20+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[How-To Geek] 5 ways to repurposed your RTX GPU—after quitting PC gaming",
+          "url": "https://www.howtogeek.com/ways-i-repurposed-my-rtx-gpuafter-quitting-pc-gaming/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-08T14:15:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] 5 NotebookLM tips I use to supercharge my productivity",
+          "url": "https://www.xda-developers.com/5-notebooklm-tips-i-use-to-supercharge-my-productivity/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-08T13:30:19+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] The new boss at work may not be human",
+          "url": "https://www.aljazeera.com/economy/2026/3/8/the-new-boss-at-work-may-not-be?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 0,
+          "date_published": "2026-03-08T11:08:18+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] International Women's Day: The Evolutionary Mysteries of The Female Body",
+          "url": "https://www.sciencealert.com/international-womens-day-the-evolutionary-mysteries-of-the-female-body",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-08T11:00:47+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] Force Your MacBook to Only Charge up to 80 Percent (and Why You Should)",
+          "url": "https://www.wired.com/story/only-charge-your-macbook-to-80-percent/",
+          "source": "WIRED",
+          "ai_score": 0,
+          "date_published": "2026-03-08T11:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] Video: Hyundai's firefighting robots lead the way into burning buildings",
+          "url": "https://newatlas.com/robotics/hyundai-firefighting-robots/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-03-08T10:03:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] These robots are coming for the jobs no one wants — and could fill workforce gaps",
+          "url": "https://www.businessinsider.com/agility-robotics-humanoid-robots-labor-shortage-aging-workforce-2026-3",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-03-08T08:44:01+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] I ran 7 real-world prompts on Gemini 3 and Claude Sonnet 4.6 — the results surprised me",
+          "url": "https://www.tomsguide.com/ai/i-ran-7-real-world-prompts-on-gemini-3-and-claude-sonnet-4-6-the-results-surprised-me",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-03-08T07:45:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Guardian Global Development] Life on Kenya’s largest dump: the invisible workers sorting the world’s rubbish",
+          "url": "https://www.theguardian.com/global-development/2026/mar/08/waste-pickers-kenya-recycling-dandora-rubbish-dump",
+          "source": "The Guardian Global Development",
+          "ai_score": 0,
+          "date_published": "2026-03-08T07:00:13+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Resilience.org] A Guide to Staying Human (Part 1): Desperately Seeking Agency",
+          "url": "https://www.resilience.org/stories/2026-03-09/a-guide-to-staying-human-part-1-desperately-seeking-agency/",
+          "source": "Resilience.org",
+          "ai_score": 0,
+          "date_published": "2026-03-09T10:54:08+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] One of this year’s most unhinged sci-fi thriller movies is now streaming — and it’s a full adrenaline blast",
+          "url": "https://www.tomsguide.com/entertainment/streaming/one-of-this-years-most-unhinged-sci-fi-thriller-movies-is-now-streaming-and-its-a-full-adrenaline-blast",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-03-09T11:03:26+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] Are Smart Beds Worth It? A Certified Sleep Science Coach Weighs In (2026)",
+          "url": "https://www.wired.com/gallery/best-smart-beds/",
+          "source": "WIRED",
+          "ai_score": 0,
+          "date_published": "2026-03-09T09:33:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Well] 6 Daytime Habits for Better Sleep",
+          "url": "https://www.nytimes.com/2026/03/09/well/better-sleep-tips.html",
+          "source": "NYT Well",
+          "ai_score": 0,
+          "date_published": "2026-03-09T09:00:57+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NPR Health News] Kids' willpower is no match for fast food and screens. Try this instead",
+          "url": "https://www.npr.org/2026/03/09/nx-s1-5736553/fast-food-screens-kids-health",
+          "source": "NPR Health News",
+          "ai_score": 0,
+          "date_published": "2026-03-09T09:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] The best alarm clocks in 2026, tested by sleep experts",
+          "url": "https://www.businessinsider.com/guides/home/best-alarm-clock",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-03-08T14:12:01+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NPR Health News] Teens are sleeping less than ever and screens aren't primarily to blame",
+          "url": "https://www.npr.org/2026/03/08/nx-s1-5737426/time-change-teens-sleep-screens",
+          "source": "NPR Health News",
+          "ai_score": 0,
+          "date_published": "2026-03-08T11:04:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Resilient Rural Futures",
+      "articles": [
+        {
+          "title": "[Quesnel Cariboo Observer] Rezoning approved for building 60-site B.C. campground of Trans-Canada",
+          "url": "https://quesnelobserver.com/2026/03/13/rezoning-approved-for-building-60-site-b-c-campground-of-trans-canada/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-03-14T01:20:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Infant from Fort St. John spends 240 days in BC Children’s Hospital",
+          "url": "https://quesnelobserver.com/2026/03/13/infant-from-fort-st-john-spends-240-days-in-bc-childrens-hospital/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-03-14T00:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[How-To Geek] These 6 Windows background processes might be slowly shortening your SSD's lifespan",
+          "url": "https://www.howtogeek.com/these-windows-background-processes-are-slowly-shortening-your-ssds-lifespan/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-09T11:30:16+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Deep dive on Resilient Rural Futures",
+        "topics_covered": [
+          "broadband",
+          "telemedicine",
+          "renewable energy",
+          "solar",
+          "AI"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Sumo AI",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
