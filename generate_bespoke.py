@@ -6,10 +6,11 @@ Generates a long-form debate episode (~35-45 min) from user-curated URLs tagged
 with a topic tag, augmented with auto-expanded credible sources via Brave Search.
 
 Hosts:
-  Morgan (they/them, voice: onyx)  — Empiricist, follows evidence and data
-  Sable  (she/her,  voice: shimmer) — Systems thinker, follows power and context
+  Riley (she/her,   voice: nova) — Tech optimist & empiricist, follows evidence and deployments
+  Casey (they/them, voice: echo) — Community skeptic & systems thinker, follows power and context
 
-No Cariboo framing, no news roundup, no PSA. The entire episode is the deep dive.
+Cariboo Signals foundation: land acknowledgment and regional awareness woven into the intro.
+No news roundup, no PSA. The entire episode is the deep dive.
 
 Usage:
     python generate_bespoke.py --tag "billionaires"
@@ -348,18 +349,18 @@ def format_memory_for_prompt(past_debates):
 SYSTEM_PROMPT = """You are generating a long-form podcast episode in the style of rigorous, well-researched debate journalism in audio form.
 
 HOSTS:
-- Morgan (they/them): Empiricist. Follows evidence, data, and measurable outcomes. Demands verifiable claims. Recurring questions: "What does the data actually show?", "What's the counterfactual?", "Who funded this research?", "What happened last time someone tried this?", "How would we know if this were wrong?"
-- Sable (she/her): Systems thinker. Follows incentives, power structures, and historical patterns. Recurring questions: "Who benefits from this framing?", "What historical pattern does this repeat?", "What's being left out of this picture?", "What does this look like in 20 years?", "Whose interests does this serve?"
+- Riley (she/her): Technology Optimist & Empiricist. Believes tech can transform rural communities but backs every claim with evidence — real deployments, named communities, measurable outcomes. Holds herself to the same evidentiary standard she holds others. Willing to concede when evidence points somewhere inconvenient, but defaults to "how do we make this work" once the evidence clears the bar. Recurring questions: "What does the evidence actually show?", "What's the cost of NOT adopting this?", "Where has this already worked in a small community?", "What would responsible deployment look like?", "How would we know if this were wrong?"
+- Casey (they/them): Community Skeptic & Systems Thinker. Follows incentives, power structures, and long historical patterns. Asks who funded the research, whose interests the framing serves, and what happens to communities when the pilot money runs out. Deeply interested in digital equity and Indigenous-led innovation, but demands proof over hype. Recurring questions: "Who actually benefits from this?", "What historical pattern does this repeat?", "Whose interests does this framing serve, and whose does it obscure?", "What happens when the funding runs out?", "What's being left out of this picture?"
 
-DYNAMIC: Neither is naive or dogmatic. Morgan wants data; Sable wants context. Both are intellectually honest and challenge each other with specifics — not just opinions. They can reach partial agreement, maintain different views, or find the question itself is wrong. The show's value is in the quality of the thinking, not in taking predictable sides.
+DYNAMIC: Neither is naive or dogmatic. Riley wants evidence of what works; Casey wants context for who it works for. Both are intellectually honest and challenge each other with specifics — not just opinions. They can reach partial agreement, maintain different views, or find the question itself is wrong. The show's value is in the quality of the thinking, not in taking predictable sides.
 
 FORMAT:
-- Speaker tags: **MORGAN:** and **SABLE:** (bold name + colon, space before text)
+- Speaker tags: **RILEY:** and **CASEY:** (bold name + colon, space before text)
 - Optional pacing hints at the start of a turn: [overlap:-150] for a quick interjection, [pause:500] for a considered beat
 - No segment markers — the entire episode is one continuous discussion
 
 EPISODE STRUCTURE:
-1. INTRO (150-200 words): Both hosts introduce themselves by name and role — Morgan as the empiricist, Sable as the systems thinker. They name the topic and frame the central tension or question they'll explore. Stakes established. Warm but not generic. End this section with exactly the following on its own line:
+1. INTRO (150-200 words): Both hosts introduce themselves by name and approach. They open with a brief, natural land acknowledgment — they're broadcasting from the Cariboo, on the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations. Keep it genuine, not formulaic — vary the phrasing. Then name the topic and frame the central tension or question they'll explore. Stakes established. Warm but not generic. End this section with exactly the following on its own line:
 [CHIME]
 
 2. MAIN DISCUSSION (5,000-7,000 words):
@@ -376,7 +377,7 @@ EVIDENCE RULES:
 - Do NOT invent statistics, dollar amounts, program names, or study findings
 - If a claim isn't in the source articles and isn't widely known public fact: hedge it
 - Acceptable hedges: "some studies suggest...", "examples include...", "advocates argue...", "critics point out..."
-- No Cariboo/rural BC framing, no land acknowledgements, no weather, no PSA segments"""
+- No weather check, no PSA segments"""
 
 
 def generate_bespoke_script(tag, all_articles, past_debates, client, tag_description=""):
@@ -406,7 +407,7 @@ def generate_bespoke_script(tag, all_articles, past_debates, client, tag_descrip
         f"{sources_block}\n"
         f"{memory_block}\n\n"
         "Generate a complete long-form debate podcast episode on this topic. "
-        "Morgan and Sable should engage seriously with the source material, citing specific "
+        "Riley and Casey should engage seriously with the source material, citing specific "
         "information from the articles above. The episode should feel like the best long-form "
         "journalism you've ever heard — rigorous, illuminating, and genuinely interesting. "
         "Do not pad or repeat. Every exchange should move the conversation forward."
@@ -430,7 +431,7 @@ def polish_bespoke_script(script, tag, client):
         "2. Ensure each point/counterpoint builds on the previous one\n"
         "3. Tighten passages where hosts are agreeing without adding new information\n"
         "4. Verify the resolution feels earned and specific, not generic\n"
-        "5. Ensure **MORGAN:** and **SABLE:** speaker tags are properly formatted throughout\n"
+        "5. Ensure **RILEY:** and **CASEY:** speaker tags are properly formatted throughout\n"
         "6. Maintain the overall length — do not cut substantially\n\n"
         f"SCRIPT:\n{script}\n\n"
         "Return the complete polished script. No commentary."
@@ -442,7 +443,7 @@ def polish_bespoke_script(script, tag, client):
         messages=[{"role": "user", "content": prompt}]
     ))
     polished = response.content[0].text
-    if "**MORGAN:**" in polished and "**SABLE:**" in polished:
+    if "**RILEY:**" in polished and "**CASEY:**" in polished:
         return polished
     print("  Warning: polish may have broken format, using original")
     return script
@@ -466,7 +467,7 @@ def fact_check_bespoke_script(script, all_articles, client):
         "the verified sources — rewrite with honest hedging: 'some research suggests...', "
         "'examples include...', 'the pattern in comparable cases...'\n"
         "4. Do NOT remove interesting arguments — just make the evidence honest\n"
-        "5. Preserve all **MORGAN:** and **SABLE:** speaker tags exactly\n"
+        "5. Preserve all **RILEY:** and **CASEY:** speaker tags exactly\n"
         "6. Maintain the same overall script length\n\n"
         f"SCRIPT:\n{script}\n\n"
         "Return the complete fact-checked script. No commentary."
@@ -478,7 +479,7 @@ def fact_check_bespoke_script(script, all_articles, client):
         messages=[{"role": "user", "content": prompt}]
     ))
     checked = response.content[0].text
-    if "**MORGAN:**" in checked and "**SABLE:**" in checked:
+    if "**RILEY:**" in checked and "**CASEY:**" in checked:
         return checked
     print("  Warning: fact-check may have broken format, using original")
     return script
@@ -489,8 +490,8 @@ def extract_debate_summary(script, tag, client):
         f"Extract a structured summary from this podcast debate about '{tag}'.\n\n"
         "Return a JSON object with:\n"
         "- central_question: the main question debated (string)\n"
-        "- morgan_position: Morgan's core argument (string)\n"
-        "- sable_position: Sable's core argument (string)\n"
+        "- riley_position: Riley's core argument (string)\n"
+        "- casey_position: Casey's core argument (string)\n"
         "- resolution: how the debate resolved or what was left open (string)\n"
         "- topics_covered: 4-6 key topics discussed (array of strings)\n"
         "- calls_to_action: every concrete action, resource, or next step that both hosts "
@@ -590,22 +591,22 @@ def parse_bespoke_script(script):
             turns.append({'speaker': '__CHIME__', 'text': '', 'gap_ms': None})
             continue
 
-        morgan_m = re.match(r'\*\*MORGAN:\*\*\s*(.*)', line)
-        sable_m = re.match(r'\*\*SABLE:\*\*\s*(.*)', line)
+        riley_m = re.match(r'\*\*RILEY:\*\*\s*(.*)', line)
+        casey_m = re.match(r'\*\*CASEY:\*\*\s*(.*)', line)
 
-        if morgan_m or sable_m:
+        if riley_m or casey_m:
             if current_speaker and current_text:
                 turns.append({
                     'speaker': current_speaker,
                     'text': ' '.join(current_text).strip(),
                     'gap_ms': current_gap_ms,
                 })
-            if morgan_m:
-                current_speaker = 'morgan'
-                text_after = morgan_m.group(1) or ''
+            if riley_m:
+                current_speaker = 'riley'
+                text_after = riley_m.group(1) or ''
             else:
-                current_speaker = 'sable'
-                text_after = sable_m.group(1) or ''
+                current_speaker = 'casey'
+                text_after = casey_m.group(1) or ''
             current_gap_ms, text_after = _extract_pacing_tag(text_after)
             current_text = [text_after] if text_after else []
         elif line and current_speaker:
@@ -666,9 +667,10 @@ def generate_audio(script, output_path, hosts, config):
             combined = AudioSegment.empty()
 
             if use_theme:
-                theme = normalize_segment(AudioSegment.from_mp3(str(intro_path)), TARGET_MUSIC_DBFS)
+                theme_full = normalize_segment(AudioSegment.from_mp3(str(intro_path)), TARGET_MUSIC_DBFS)
+                theme = theme_full[:10000].fade_out(500)
                 combined = theme + AudioSegment.silent(duration=500)
-                print(f"  Added intro music: {intro_path.name} ({len(theme)/1000:.1f}s)")
+                print(f"  Added intro music: {intro_path.name} ({len(theme)/1000:.1f}s, trimmed to 10s)")
 
             prev_speaker = None
             tts_idx = 0
@@ -676,7 +678,7 @@ def generate_audio(script, output_path, hosts, config):
                 if turn['speaker'] == '__CHIME__':
                     if use_chime:
                         chime_raw = AudioSegment.from_mp3(str(interval_path))
-                        chime = normalize_segment(chime_raw[:1200], TARGET_MUSIC_DBFS).fade_out(400)
+                        chime = normalize_segment(chime_raw[:1450], TARGET_MUSIC_DBFS).fade_out(400)
                         combined += AudioSegment.silent(duration=300) + chime + AudioSegment.silent(duration=300)
                         print(f"  Added intermission chime ({len(chime)/1000:.1f}s)")
                     else:
@@ -850,10 +852,11 @@ BESPOKE_FEED_CONFIG = {
     "title": "Cariboo Signals: Deep Dives",
     "description": (
         "Long-form debate episodes on weighty topics — politics, philosophy, economics, technology. "
-        "Hosted by Morgan (empiricist) and Sable (systems thinker). "
+        "Hosted by Riley (tech optimist & empiricist) and Casey (community skeptic & systems thinker), "
+        "broadcasting from the Cariboo region of BC. "
         "Each episode is built from curated sources and auto-expanded with credible coverage."
     ),
-    "author": "Morgan and Sable",
+    "author": "Riley and Casey",
     "language": "en-us",
     "explicit": False,
     "categories": ["Society & Culture", "Technology"],
@@ -1179,7 +1182,7 @@ def main():
     print("\nGenerating script...")
     script = generate_bespoke_script(tag, all_articles, past_debates, client, tag_description=tag_description)
     word_count = len(script.split())
-    turn_count = script.count("**MORGAN:**") + script.count("**SABLE:**")
+    turn_count = script.count("**RILEY:**") + script.count("**CASEY:**")
     print(f"  Draft: {word_count} words, {turn_count} turns")
 
     # Polish
