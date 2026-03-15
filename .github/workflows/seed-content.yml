@@ -37,26 +37,20 @@ name: Seed Content
 #   Success: HTTP 204 (No Content)
 #
 # ── iOS Shortcut: tag picker ─────────────────────────────────────────────────
-#   To avoid typos, have the shortcut fetch the live tag list before asking for
-#   a tag.  This file is updated on every seed and readable without auth:
+#   tags.txt is a plain newline-separated list (no JSON parsing needed).
+#   Updated on every seed commit, readable without auth:
 #
-#     GET https://raw.githubusercontent.com/zirnhelt/curated-podcast-generator/main/tags.json
+#     GET https://raw.githubusercontent.com/zirnhelt/curated-podcast-generator/main/tags.txt
 #
-#   Response shape:
-#     {
-#       "pending": ["mental-health-vs-security"],   ← active topics (add seeds here)
-#       "pending_counts": {"mental-health-vs-security": 2},
-#       "all": ["mental-health-vs-security", "aging_genx"]  ← all tags ever used
-#     }
-#
-#   Suggested shortcut steps for the tag field:
-#     1. Get Contents of URL → tags.json URL above
-#     2. Get Dictionary from Input
-#     3. Get Dictionary Value for key "pending"   (use "all" if pending is empty)
-#     4. Add item "New tag…" to the list
-#     5. Choose from List  →  tag_choice
-#     6. If tag_choice == "New tag…":  Ask for Input → tag_choice
-#     7. Use tag_choice as the "tag" field in the dispatch body
+#   Shortcut steps for the tag field:
+#     1. Get Contents of URL  →  tags.txt URL above
+#     2. Split Text  by  New Lines  →  Tag Options
+#     3. List:  item 1 = "New tag…"  /  item 2 = Tag Options variable
+#     4. Choose from List  (prompt: "Tag")  →  Set Variable "Chosen Tag"
+#     5. Ask for Input  (prompt: "Confirm or edit tag",
+#                        Default Value: Chosen Tag variable)
+#     6. Set Variable "Chosen Tag"  to  Ask for Input result
+#     7. Use Chosen Tag as the "tag" field in the dispatch body
 #
 # ── Debugging ────────────────────────────────────────────────────────────────
 #   Run scripts/debug-seed-dispatch.sh to check your PAT scopes and see the
@@ -163,7 +157,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add podcasts/content_seeds.json tags.json
+          git add podcasts/content_seeds.json tags.json tags.txt
           git diff --staged --quiet && echo "No changes to commit" && exit 0
           TYPE="${{ inputs.type || github.event.client_payload.type }}"
           CONTENT="${{ inputs.content || github.event.client_payload.content }}"
