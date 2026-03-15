@@ -1,0 +1,81 @@
+{
+  "episode": {
+    "tag": "mental-health-vs-security",
+    "title": "Deep Dive: Mental Health Vs Security",
+    "generated_at": "2026-03-15T18:39:39.564949+00:00",
+    "date": "2026-03-15",
+    "debate_summary": {
+      "central_question": "Discussion of mental-health-vs-security",
+      "resolution": "See episode",
+      "calls_to_action": []
+    }
+  },
+  "sources": [
+    {
+      "title": "HealthIM tool helps RCMP respond to mental health crises in East Kootenay : My East Kootenay Now",
+      "url": "https://www.myeastkootenaynow.com/53969/news/health-care/healthim-tool-helps-rcmp-respond-to-mental-health-crises-in-east-kootenay/",
+      "source_type": "user",
+      "summary": "Stay up-to-date with the latest news, events, and local happenings in the East Kootenay region. MyEastKootenayNow brings you community updates, weather forecasts, and more to keep you informed and connected.",
+      "discussed": true
+    },
+    {
+      "title": "150 people died in B.C. in January from toxic drugs: Coroner - Williams Lake Tribune",
+      "url": "https://wltribune.com/2026/03/12/150-people-died-in-b-c-in-january-from-toxic-drugs-coroner/",
+      "source_type": "user",
+      "summary": "Province approaching 10 years of the toxic drug public health emergency",
+      "discussed": true
+    },
+    {
+      "title": "Williams Lake city councillor to propose &quot;aggressive&quot; motion for public safety : My Cariboo Now",
+      "url": "https://www.mycariboonow.com/214957/news/municipal-news/city-of-williams-lake/williams-lake-city-councillor-to-propose-aggressive-motion-for-public-safety/",
+      "source_type": "user",
+      "summary": "Stay connected with My\u202fCariboo\u202fNow \u2014 delivering local news, community events, weather alerts, and live radio to Quesnel, Williams\u202fLake, 100\u202fMile\u202fHouse, and beyond.",
+      "discussed": true
+    },
+    {
+      "title": "1 The use and impact of surveillance-based technology initiatives in",
+      "url": "https://www.medrxiv.org/content/medrxiv/early/2024/04/05/2024.04.04.24305329.full.pdf",
+      "source_type": "auto",
+      "summary": "NOTE: This preprint reports new research that has not been certified by peer review and should not be used to guide clinical practice. ... and the sensitivities, ethical concerns and potential harms of surveillance. This systematic review aims \u00b7 to: 1) map how surveillance technologies have been emp",
+      "discussed": false
+    },
+    {
+      "title": "The use and impact of surveillance-based technology initiatives in inpatient and acute mental health settings: a systematic review - King's College London",
+      "url": "https://kclpure.kcl.ac.uk/portal/en/publications/the-use-and-impact-of-surveillance-based-technology-initiatives-i",
+      "source_type": "auto",
+      "summary": "However, their use has been questioned in light of limited research conducted and the sensitivities, ethical concerns and potential harms of surveillance. This systematic review aims to (1) map how surveillance technologies have been employed in inpatient mental health settings, (2) explore ...",
+      "discussed": false
+    },
+    {
+      "title": "Exploring the Impact of Security Technologies on Mental Health: A Comprehensive Review - PMC",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10918303/",
+      "source_type": "auto",
+      "summary": "The protection of civil liberties is an essential component of a just and free society, and ethical concerns related to their potential infringement can have a profound impact on an individual&#x27;s mental well-being [35]. ... Cultural and societal factors: Cultural norms and societal values have a",
+      "discussed": true
+    },
+    {
+      "title": "The Dangers of Surveillance - Harvard Law Review",
+      "url": "https://harvardlawreview.org/print/vol-126/the-dangers-of-surveillance/",
+      "source_type": "auto",
+      "summary": "First, <strong>surveillance is harmful because it can chill the exercise of our civil liberties</strong>. With respect to civil liberties, consider surveillance of people when they are thinking, reading, and communicating with others in order to make up their ...",
+      "discussed": false
+    },
+    {
+      "title": "(PDF) Correction: The use and impact of surveillance-based technology initiatives in inpatient and acute mental health settings: a systematic review",
+      "url": "https://www.researchgate.net/publication/389677185_Correction_The_use_and_impact_of_surveillance-based_technology_initiatives_in_inpatient_and_acute_mental_health_settings_a_systematic_review",
+      "source_type": "auto",
+      "summary": "However, their use has been questioned in light of limited research conducted and the sensitivities, ethical concerns and potential harms of surveillance. This systematic review aims to (1) map how surveillance ... [Show full abstract] technologies have been employed in inpatient mental health setti",
+      "discussed": false
+    }
+  ],
+  "fact_check": {
+    "notes": "Specific claims are drawn from the sources listed above or explicitly hedged.",
+    "hedged_phrases_count": 3
+  },
+  "credits": {
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "source_expansion": "Brave Search API",
+    "license": "CC BY-NC 4.0"
+  }
+}
