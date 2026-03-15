@@ -1,11 +1,9 @@
 name: Generate Bespoke Episode
 
-# Triggered automatically by seed-content.yml when 3+ seeds share the same tag,
+# Triggered automatically by seed.py when 3+ seeds share the same tag,
 # or manually via the GitHub Actions UI / API.
 #
-# TWO ways to trigger from an iOS Shortcut or script:
-#
-# ── Option A: workflow_dispatch (requires 'workflow' scope on PAT) ──────────
+# ── Manual trigger via GitHub API ───────────────────────────────────────────
 #   POST https://api.github.com/repos/OWNER/REPO/actions/workflows/generate-bespoke.yml/dispatches
 #   Authorization: Bearer <PAT>
 #   Content-Type: application/json
@@ -13,17 +11,6 @@ name: Generate Bespoke Episode
 #     "ref": "main",
 #     "inputs": { "tag": "billionaires" }
 #   }
-#   Success: HTTP 204 (No Content)
-#
-# ── Option B: repository_dispatch (only requires 'repo' scope on PAT) ───────
-#   POST https://api.github.com/repos/OWNER/REPO/dispatches
-#   Authorization: Bearer <PAT>
-#   Content-Type: application/json
-#   {
-#     "event_type": "generate-bespoke",
-#     "client_payload": { "tag": "billionaires", "threshold": "3" }
-#   }
-#   Success: HTTP 204 (No Content)
 #
 # ── Output files (in podcasts/bespoke/) ────────────────────────────────────
 #   bespoke_audio_{tag}_{date}.mp3
@@ -49,9 +36,6 @@ on:
         default: false
         type: boolean
 
-  repository_dispatch:
-    types: [generate-bespoke]
-
 permissions:
   contents: write
   pages: write
@@ -64,10 +48,9 @@ jobs:
     steps:
       - name: Log trigger
         run: |
-          echo "Triggered by: ${{ github.event_name }}"
-          echo "Tag: ${{ inputs.tag || github.event.client_payload.tag }}"
-          echo "Sync-only: ${{ inputs.sync_only || github.event.client_payload.sync_only }}"
-          echo "Threshold: ${{ inputs.threshold || github.event.client_payload.threshold }}"
+          echo "Tag: ${{ inputs.tag }}"
+          echo "Sync-only: ${{ inputs.sync_only }}"
+          echo "Threshold: ${{ inputs.threshold }}"
           echo "UTC time: $(date -u)"
 
       - name: Checkout repository
@@ -100,14 +83,12 @@ jobs:
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           R2_BUCKET_NAME: cariboo-signals
         run: |
-          SYNC_ONLY="${{ inputs.sync_only || github.event.client_payload.sync_only }}"
-          TAG="${{ inputs.tag || github.event.client_payload.tag }}"
-          THRESHOLD="${{ inputs.threshold || github.event.client_payload.threshold }}"
-          THRESHOLD="${THRESHOLD:-3}"
-          if [ "$SYNC_ONLY" = "true" ]; then
+          if [ "${{ inputs.sync_only }}" = "true" ]; then
             python generate_bespoke.py --sync-only
           else
-            python generate_bespoke.py --tag "$TAG" --threshold "$THRESHOLD"
+            THRESHOLD="${{ inputs.threshold }}"
+            THRESHOLD="${THRESHOLD:-3}"
+            python generate_bespoke.py --tag "${{ inputs.tag }}" --threshold "$THRESHOLD"
           fi
 
       - name: List generated files
@@ -126,7 +107,7 @@ jobs:
           git add bespoke-feed.xml || echo "No feed file to add"
 
           git diff --staged --quiet && echo "No changes to commit" && exit 0
-          git commit -m "bespoke: generate episode for tag '${{ inputs.tag || github.event.client_payload.tag }}'"
+          git commit -m "bespoke: generate episode for tag '${{ inputs.tag }}'"
           git push
 
       - name: Prepare output for GitHub Pages
@@ -155,12 +136,12 @@ jobs:
           publish_dir: ./output
           publish_branch: gh-pages
           keep_files: true
-          commit_message: "bespoke: deploy episode '${{ inputs.tag || github.event.client_payload.tag }}' - ${{ github.run_id }}"
+          commit_message: "bespoke: deploy episode '${{ inputs.tag }}' - ${{ github.run_id }}"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: bespoke-${{ inputs.tag || github.event.client_payload.tag }}-${{ github.run_id }}
+          name: bespoke-${{ inputs.tag }}-${{ github.run_id }}
           path: |
             podcasts/bespoke/bespoke_audio_*.mp3
             podcasts/bespoke/bespoke_script_*.txt
