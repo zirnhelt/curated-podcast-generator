@@ -1,0 +1,95 @@
+{
+  "episode": {
+    "tag": "aging_genx",
+    "title": "Deep Dive: Aging_Genx",
+    "generated_at": "2026-03-15T22:31:48.590261+00:00",
+    "date": "2026-03-15",
+    "debate_summary": {
+      "central_question": "Discussion of aging_genx",
+      "resolution": "See episode",
+      "calls_to_action": []
+    }
+  },
+  "sources": [
+    {
+      "title": "I was laid off in my 60s and can&#x27;t find a job after 11 months. I wish I could retire, but I can&#x27;t afford it.",
+      "url": "https://www.businessinsider.com/laid-off-wells-fargo-job-search-retirement-savings-unemployment-teaching-2026-3",
+      "source_type": "user",
+      "summary": "After Wells Fargo laid off Robin Peppers Daniel in her 60s, she has been job hunting for nearly a year, and says she can&#x27;t afford to retire.",
+      "discussed": true
+    },
+    {
+      "title": "Many workers and bosses agree there",
+      "url": "https://www.techradar.com/pro/many-workers-and-bosses-agree-theres-no-time-for-ai-upskilling-so-whats-the-answer",
+      "source_type": "user",
+      "summary": "Most employers say time is the biggest barrier to AI upskilling &ndash; cost and a lack of clear ownership are also problems.",
+      "discussed": false
+    },
+    {
+      "title": "Whole-Person Mental Health: Care, Choice, Community, and Combatting Populism",
+      "url": "https://www.libdems.org.uk/news/article/whole-person-mental-health",
+      "source_type": "user",
+      "summary": "The UK is facing a mental health emergency. Liberal Democrats have a proud record of pushing Britain\u2019s mental health services forward. Now we are offering the bold solutions we need to fight the crisis unfolding in our communities.",
+      "discussed": true
+    },
+    {
+      "title": "Are you guilty of \u2018job hugging?\u2019 Career expert on another workplace trend",
+      "url": "https://www.ctvnews.ca/ctv-your-morning/article/are-you-guilty-of-job-hugging-career-expert-on-another-workplace-trend/",
+      "source_type": "user",
+      "summary": "Unsatisfied at your job, but unable to quit? There\u2019s a term for that.",
+      "discussed": false
+    },
+    {
+      "title": "Are you guilty of \u2018job hugging?\u2019 Career expert on another workplace trend",
+      "url": "https://www.ctvnews.ca/ctv-your-morning/article/are-you-guilty-of-job-hugging-career-expert-on-another-workplace-trend/",
+      "source_type": "user",
+      "summary": "Unsatisfied at your job, but unable to quit? There\u2019s a term for that.",
+      "discussed": false
+    },
+    {
+      "title": "The Sandwich Generation | Pew Research Center",
+      "url": "https://www.pewresearch.org/social-trends/2013/01/30/the-sandwich-generation/",
+      "source_type": "auto",
+      "summary": "<strong>Among those younger than 40, only 18% have a parent age 65 or older; 20% of those ages 60 and older have a parent in that age group</strong>. But for those in their 60s and beyond who do still have a living parent, the likelihood that the parent will ...",
+      "discussed": true
+    },
+    {
+      "title": "A National Profile of Sandwich Generation Caregivers Providing Care to Both Older Adults and Children - PMC",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10023280/",
+      "source_type": "auto",
+      "summary": "We used 2015 National Study of Caregiving (NSOC) and National Health and Aging Trends Study (NHATS) to compare individual (demographic, socio-economic, health, and caregiving characteristics) and caregiving-related experience (financial and emotional difficulties, caregiver role overload and gains, ",
+      "discussed": true
+    },
+    {
+      "title": "Coping strategies of the sandwich generation in the care process: a qualitative study - PMC",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11616165/",
+      "source_type": "auto",
+      "summary": "The sandwich generation refers ... and their own children. Research shows that <strong>the number of sandwich generation caregivers is increasing, and they face significant physical, psychological, social, and economic challenges</strong>....",
+      "discussed": true
+    },
+    {
+      "title": "BURNING THE CANDLE AT BOTH ENDS: SANDWICH GENERATION CAREGIVING IN THE U.S.",
+      "url": "https://caringacross.org/wp-content/uploads/2024/01/NAC_SandwichCaregiving_Report_digital112019.pdf",
+      "source_type": "auto",
+      "summary": "that reflects the financial and cultural realities of today\u2019s modern families and sandwich caregivers. We simply cannot afford to simply maintain the current status quo. ... 1Bureau of Labor Statistics, The Department of Labor, \u201cEmployment in Families With Children in 2016,\u201d The Economics Daily. htt",
+      "discussed": true
+    },
+    {
+      "title": "The Sandwich Generation: Stuck Between Aging Parents, Young Children",
+      "url": "https://mylifesite.net/blog/post/the-sandwich-generation-stuck-between-aging-parents-young-children",
+      "source_type": "auto",
+      "summary": "US Department of Agriculture (USDA) data from 2015 shows that <strong>a child born into a middle-income family costs roughly $12,980 to $13,900 per year</strong> (depending on the age of the child).",
+      "discussed": false
+    }
+  ],
+  "fact_check": {
+    "notes": "Specific claims are drawn from the sources listed above or explicitly hedged.",
+    "hedged_phrases_count": 2
+  },
+  "credits": {
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "source_expansion": "Brave Search API",
+    "license": "CC BY-NC 4.0"
+  }
+}
