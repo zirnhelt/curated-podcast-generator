@@ -181,15 +181,7 @@ jobs:
             exit 0
           fi
           THRESHOLD=3
-          COUNT=$(python - <<'EOF'
-import json, os, sys
-tag = os.environ["SEED_TAG"].lower()
-with open("podcasts/content_seeds.json") as f:
-    data = json.load(f)
-pending = [s for s in data.get("seeds", []) if s.get("tag","").lower() == tag and s.get("status") == "pending"]
-print(len(pending))
-EOF
-          )
+          COUNT=$(python3 -c "import json,os; tag=os.environ['SEED_TAG'].lower(); data=json.load(open('podcasts/content_seeds.json')); print(len([s for s in data.get('seeds',[]) if s.get('tag','').lower()==tag and s.get('status')=='pending']))")
           echo "Pending seeds for tag '$SEED_TAG': $COUNT (threshold: $THRESHOLD)"
           if [ "$COUNT" -ge "$THRESHOLD" ]; then
             echo "Threshold reached — dispatching generate-bespoke.yml for tag '$SEED_TAG'"
