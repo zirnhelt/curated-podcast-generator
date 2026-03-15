@@ -129,8 +129,10 @@ jobs:
           SEED_PRIORITY: ${{ inputs.priority || github.event.client_payload.priority }}
           SEED_THEME: ${{ inputs.theme_hint || github.event.client_payload.theme_hint }}
           SEED_TAG: ${{ inputs.tag || github.event.client_payload.tag }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
+          # Intentionally omit GITHUB_TOKEN/GITHUB_REPOSITORY here so seed.py
+          # does not dispatch generate-bespoke.yml before the seed is committed.
+          # Dispatch happens in the "Dispatch bespoke if threshold reached" step
+          # below, after the commit/push has landed.
         run: |
           SEED_TYPE="${SEED_TYPE:-url}"
           SEED_PRIORITY="${SEED_PRIORITY:-normal}"
@@ -167,3 +169,34 @@ jobs:
           if [ -n "$TAG" ]; then TAG_SUFFIX=" [#${TAG}]"; fi
           git commit -m "seed: add ${TYPE}${TAG_SUFFIX} — ${SHORT}"
           git push
+
+      - name: Dispatch bespoke if threshold reached
+        # Run AFTER the commit/push so generate-bespoke.yml sees all seeds
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SEED_TAG: ${{ inputs.tag || github.event.client_payload.tag }}
+        run: |
+          if [ -z "$SEED_TAG" ]; then
+            echo "No tag — skipping bespoke check."
+            exit 0
+          fi
+          THRESHOLD=3
+          COUNT=$(python - <<'EOF'
+import json, os, sys
+tag = os.environ["SEED_TAG"].lower()
+with open("podcasts/content_seeds.json") as f:
+    data = json.load(f)
+pending = [s for s in data.get("seeds", []) if s.get("tag","").lower() == tag and s.get("status") == "pending"]
+print(len(pending))
+EOF
+          )
+          echo "Pending seeds for tag '$SEED_TAG': $COUNT (threshold: $THRESHOLD)"
+          if [ "$COUNT" -ge "$THRESHOLD" ]; then
+            echo "Threshold reached — dispatching generate-bespoke.yml for tag '$SEED_TAG'"
+            gh workflow run generate-bespoke.yml \
+              --ref main \
+              --field tag="$SEED_TAG" \
+              --field threshold="$THRESHOLD"
+          else
+            echo "Not enough seeds yet — no dispatch."
+          fi
