@@ -111,6 +111,34 @@ jobs:
           git pull --rebase origin main
           git push
 
+      - name: Sync bespoke files to Cloudflare R2
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_ENDPOINT_URL: https://${{ secrets.CF_ACCOUNT_ID }}.r2.cloudflarestorage.com
+        run: |
+          BUCKET="cariboo-signals"
+          echo "Syncing bespoke content to R2..."
+
+          # Feed and landing page (no-cache so CDN serves fresh content)
+          aws s3 cp bespoke-feed.xml "s3://${BUCKET}/bespoke-feed.xml" \
+            --content-type "application/rss+xml" \
+            --cache-control "no-cache"
+          aws s3 cp bespoke.html "s3://${BUCKET}/bespoke.html" \
+            --content-type "text/html" \
+            --cache-control "no-cache"
+          [ -f Deepdives.png ] && aws s3 cp Deepdives.png "s3://${BUCKET}/Deepdives.png" \
+            --content-type "image/png"
+
+          # All bespoke audio files
+          for f in podcasts/bespoke/bespoke_audio_*.mp3; do
+            [ -f "$f" ] && echo "  uploading $f" && \
+              aws s3 cp "$f" "s3://${BUCKET}/${f}" --content-type "audio/mpeg"
+          done
+
+          echo "R2 sync complete"
+        continue-on-error: true
+
       - name: Prepare output for GitHub Pages
         run: |
           mkdir -p output/podcasts/bespoke
