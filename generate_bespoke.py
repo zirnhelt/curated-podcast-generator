@@ -47,6 +47,9 @@ BESPOKE_MEMORY_FILE = PODCASTS_DIR / "bespoke_debate_memory.json"
 
 INTRO_MUSIC = SCRIPT_DIR / "cariboo-signals-intro.mp3"
 OUTRO_MUSIC = SCRIPT_DIR / "cariboo-signals-outro.mp3"
+INTERVAL_MUSIC = SCRIPT_DIR / "cariboo-signals-interval.mp3"
+# Drop bespoke-theme.mp3 here when ready; falls back to INTRO_MUSIC
+BESPOKE_THEME = SCRIPT_DIR / "bespoke-theme.mp3"
 
 # ── Models ─────────────────────────────────────────────────────────────────
 SCRIPT_MODEL = os.getenv("CLAUDE_SCRIPT_MODEL", "claude-sonnet-4-20250514")
@@ -78,6 +81,39 @@ def get_openai_client():
 
 
 # ── Retry helper ───────────────────────────────────────────────────────────
+
+def decrypt_tag(tag: str) -> str:
+    """Decrypt an encrypted tag before use.
+
+    Priority:
+      1. Fernet symmetric decryption when BESPOKE_TAG_KEY is set.
+      2. URL-safe base64 decode (no key needed).
+      3. Return raw tag unchanged.
+    """
+    import base64
+
+    key = os.getenv("BESPOKE_TAG_KEY")
+    if key:
+        try:
+            from cryptography.fernet import Fernet
+            f = Fernet(key.encode())
+            return f.decrypt(tag.encode()).decode().strip()
+        except Exception as e:
+            print(f"  Warning: Fernet decrypt failed ({e}), falling back to base64")
+
+    try:
+        # Pad to a multiple of 4 so b64decode doesn't complain
+        padded = tag + "=" * (-len(tag) % 4)
+        decoded = base64.urlsafe_b64decode(padded).decode("utf-8").strip()
+        # Only accept if it looks like a valid slug
+        if decoded and all(c.isalnum() or c in "-_ " for c in decoded):
+            print(f"  Tag decoded from base64: '{decoded}'")
+            return decoded
+    except Exception:
+        pass
+
+    return tag
+
 
 def api_retry(func, max_retries=3, base_delay=2):
     import time
@@ -319,7 +355,8 @@ FORMAT:
 - No segment markers — the entire episode is one continuous discussion
 
 EPISODE STRUCTURE:
-1. INTRO (150-200 words): One host opens by naming the central tension or question, not just the topic. The other responds with their initial lens. Stakes established. No generic "welcome to the show" preamble.
+1. INTRO (150-200 words): Both hosts introduce themselves by name and role — Morgan as the empiricist, Sable as the systems thinker. They name the topic and frame the central tension or question they'll explore. Stakes established. Warm but not generic. End this section with exactly the following on its own line:
+[CHIME]
 
 2. MAIN DISCUSSION (5,000-7,000 words):
    - Open by steelmanning the strongest version of both perspectives
@@ -329,7 +366,7 @@ EPISODE STRUCTURE:
    - At least 3 moments where a host genuinely shifts, concedes, or refines their position based on what the other said
    - Intellectual humor is welcome when it's earned; avoid forced banter
 
-3. RESOLUTION (200-300 words): Earned endpoint — not forced agreement. May be: shifted perspective, better-defined disagreement, mixed conclusion, or actionable framing. End with something concrete the listener can take away.
+3. RESOLUTION (200-300 words): Earned endpoint — not forced agreement. May be: shifted perspective, better-defined disagreement, mixed conclusion, or actionable framing. Close with 2-3 concrete, specific calls to action that both hosts genuinely endorse — things a listener could actually do, research, or get involved in. These must feel earned by the debate, not tacked on.
 
 EVIDENCE RULES:
 - Do NOT invent statistics, dollar amounts, program names, or study findings
@@ -447,19 +484,22 @@ def extract_debate_summary(script, tag, client):
         "- morgan_position: Morgan's core argument (string)\n"
         "- sable_position: Sable's core argument (string)\n"
         "- resolution: how the debate resolved or what was left open (string)\n"
-        "- topics_covered: 4-6 key topics discussed (array of strings)\n\n"
-        f"SCRIPT (excerpt):\n{script[:4000]}\n\n"
+        "- topics_covered: 4-6 key topics discussed (array of strings)\n"
+        "- calls_to_action: every concrete action, resource, or next step that both hosts "
+        "agreed on or explicitly endorsed at the end of the episode (array of strings, "
+        "empty array if none)\n\n"
+        f"SCRIPT:\n{script[-3000:]}\n\n"
         "Return only valid JSON, no other text."
     )
     try:
         response = api_retry(lambda: client.messages.create(
             model=SCRIPT_MODEL,
-            max_tokens=600,
+            max_tokens=800,
             messages=[{"role": "user", "content": prompt}]
         ))
         return json.loads(response.content[0].text)
     except Exception:
-        return {"central_question": f"Discussion of {tag}", "resolution": "See episode"}
+        return {"central_question": f"Discussion of {tag}", "resolution": "See episode", "calls_to_action": []}
 
 
 # ── Audio assembly ─────────────────────────────────────────────────────────
@@ -513,7 +553,13 @@ def _append_with_gap(combined, speech, gap_ms):
 
 
 def parse_bespoke_script(script):
-    """Parse bespoke script into a list of {speaker, text, gap_ms} turns."""
+    """Parse bespoke script into a list of turn dicts.
+
+    Each dict has: speaker, text, gap_ms.
+    A special sentinel {'speaker': '__CHIME__', 'text': '', 'gap_ms': None} is
+    inserted wherever the script contains a bare [CHIME] line, marking where
+    the intermission chime should play between intro and main discussion.
+    """
     turns = []
     current_speaker = None
     current_text = []
@@ -521,6 +567,20 @@ def parse_bespoke_script(script):
 
     for line in script.split('\n'):
         line = line.strip()
+
+        # Intermission chime marker
+        if line == '[CHIME]':
+            if current_speaker and current_text:
+                turns.append({
+                    'speaker': current_speaker,
+                    'text': ' '.join(current_text).strip(),
+                    'gap_ms': current_gap_ms,
+                })
+                current_speaker = None
+                current_text = []
+                current_gap_ms = None
+            turns.append({'speaker': '__CHIME__', 'text': '', 'gap_ms': None})
+            continue
 
         morgan_m = re.match(r'\*\*MORGAN:\*\*\s*(.*)', line)
         sable_m = re.match(r'\*\*SABLE:\*\*\s*(.*)', line)
@@ -551,7 +611,7 @@ def parse_bespoke_script(script):
             'gap_ms': current_gap_ms,
         })
 
-    return [t for t in turns if len(t['text']) > 10]
+    return [t for t in turns if t['speaker'] == '__CHIME__' or len(t['text']) > 10]
 
 
 def generate_tts_segment(text, speaker, output_file, hosts):
@@ -570,35 +630,55 @@ def generate_tts_segment(text, speaker, output_file, hosts):
 
 
 def generate_audio(script, output_path, hosts, config):
-    """Assemble bespoke audio: [intro music] + episode + [outro music]."""
+    """Assemble bespoke audio: [theme] + intro + [chime] + episode + [outro]."""
     if not get_openai_client():
         print("  OPENAI_API_KEY not set — skipping audio generation")
         return None
 
     audio_cfg = config.get("audio", {})
-    use_intro = audio_cfg.get("use_intro_music", True) and INTRO_MUSIC.exists()
+
+    # Use bespoke-theme.mp3 when available, fall back to the shared intro music
+    theme_path = BESPOKE_THEME if BESPOKE_THEME.exists() else INTRO_MUSIC
+    use_theme = audio_cfg.get("use_intro_music", True) and theme_path.exists()
     use_outro = audio_cfg.get("use_outro_music", True) and OUTRO_MUSIC.exists()
+    use_chime = INTERVAL_MUSIC.exists()
 
     turns = parse_bespoke_script(script)
     if not turns:
         print("  No speaker turns found in script")
         return None
 
-    print(f"  Parsed {len(turns)} speaker turns")
+    speech_turns = [t for t in turns if t['speaker'] != '__CHIME__']
+    print(f"  Parsed {len(speech_turns)} speaker turns")
 
     try:
         with tempfile.TemporaryDirectory() as tmpdir:
             combined = AudioSegment.empty()
 
-            if use_intro:
-                intro = normalize_segment(AudioSegment.from_mp3(str(INTRO_MUSIC)), TARGET_MUSIC_DBFS)
-                combined = intro + AudioSegment.silent(duration=500)
-                print(f"  Added intro music ({len(intro)/1000:.1f}s)")
+            if use_theme:
+                theme = normalize_segment(AudioSegment.from_mp3(str(theme_path)), TARGET_MUSIC_DBFS)
+                combined = theme + AudioSegment.silent(duration=500)
+                label = "bespoke-theme.mp3" if BESPOKE_THEME.exists() else "intro music (placeholder)"
+                print(f"  Added {label} ({len(theme)/1000:.1f}s)")
 
             prev_speaker = None
-            for i, turn in enumerate(turns):
-                print(f"  TTS {i+1}/{len(turns)} ({turn['speaker']}: {len(turn['text'])} chars)")
-                temp_file = os.path.join(tmpdir, f"turn_{i:03d}.mp3")
+            tts_idx = 0
+            for turn in turns:
+                if turn['speaker'] == '__CHIME__':
+                    if use_chime:
+                        chime_raw = AudioSegment.from_mp3(str(INTERVAL_MUSIC))
+                        chime = normalize_segment(chime_raw[:1200], TARGET_MUSIC_DBFS).fade_out(400)
+                        combined += AudioSegment.silent(duration=300) + chime + AudioSegment.silent(duration=300)
+                        print(f"  Added intermission chime ({len(chime)/1000:.1f}s)")
+                    else:
+                        combined += AudioSegment.silent(duration=800)
+                        print("  Intermission chime file not found — inserted silence")
+                    prev_speaker = None
+                    continue
+
+                tts_idx += 1
+                print(f"  TTS {tts_idx}/{len(speech_turns)} ({turn['speaker']}: {len(turn['text'])} chars)")
+                temp_file = os.path.join(tmpdir, f"turn_{tts_idx:03d}.mp3")
                 generate_tts_segment(turn['text'], turn['speaker'], temp_file, hosts)
                 speech = normalize_segment(AudioSegment.from_mp3(temp_file), TARGET_SPEECH_DBFS)
                 speech = trim_tts_silence(speech)
@@ -714,6 +794,13 @@ def write_show_notes(tag, date_str, all_articles, debate_summary, output_dir):
         topics = debate_summary["topics_covered"]
         lines += ["**Topics covered:** " + " · ".join(topics), ""]
 
+    ctas = debate_summary.get("calls_to_action", []) if debate_summary else []
+    if ctas:
+        lines += ["## Calls to Action", ""]
+        for cta in ctas:
+            lines.append(f"- {cta}")
+        lines.append("")
+
     lines += ["## Sources", ""]
 
     if user_articles:
@@ -799,6 +886,7 @@ def generate_bespoke_rss_feed(base_url):
         citations_file = BESPOKE_DIR / f"bespoke_citations_{tag}_{date_str}.json"
         central_question = ""
         topics = []
+        ctas = []
         sources_html = ""
         if citations_file.exists():
             try:
@@ -807,6 +895,7 @@ def generate_bespoke_rss_feed(base_url):
                 summary = cdata.get("episode", {}).get("debate_summary", {})
                 central_question = summary.get("central_question", "")
                 topics = summary.get("topics_covered", [])
+                ctas = summary.get("calls_to_action", [])
                 user_srcs = [s for s in cdata.get("sources", []) if s.get("source_type") == "user" and s.get("url")]
                 auto_srcs = [s for s in cdata.get("sources", []) if s.get("source_type") == "auto" and s.get("url")]
                 if user_srcs:
@@ -833,6 +922,10 @@ def generate_bespoke_rss_feed(base_url):
             description += f"<p><strong>Central question:</strong> {saxutils.escape(central_question)}</p>"
         if topics:
             description += f"<p><strong>Topics:</strong> {saxutils.escape(', '.join(topics))}</p>"
+        if ctas:
+            description += "<p><strong>Calls to action:</strong><br/>"
+            description += "<br/>".join(f"• {saxutils.escape(c)}" for c in ctas)
+            description += "</p>"
         description += sources_html
         description += (
             "<p><em>Generated by Claude (Anthropic) · Audio by OpenAI TTS · "
@@ -991,7 +1084,7 @@ def main():
     if not args.tag:
         parser.error("--tag is required unless --sync-only is set")
 
-    tag = args.tag.lower()
+    tag = decrypt_tag(args.tag).lower()
     date_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
     BESPOKE_DIR.mkdir(parents=True, exist_ok=True)
