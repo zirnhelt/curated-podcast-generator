@@ -37,6 +37,7 @@ from pathlib import Path
 
 SEEDS_FILE = Path(__file__).parent / "podcasts" / "content_seeds.json"
 TAGS_FILE  = Path(__file__).parent / "tags.json"
+TAGS_TXT   = Path(__file__).parent / "tags.txt"
 
 THEMES = [
     "Arts, Culture & Digital Storytelling",
@@ -57,14 +58,14 @@ def _load_seeds() -> dict:
 
 
 def _write_tags_json(data: dict) -> None:
-    """Publish tags.json to the repo root for the iOS Shortcut to read.
+    """Write tags.json (structured) and tags.txt (plain list) to the repo root.
 
-    Fetched via raw.githubusercontent.com/main/tags.json — no auth required.
-    The shortcut shows 'pending' tags as the primary list (active topics to add
-    seeds to) and falls back to 'all' if the user wants a recently-used tag.
+    tags.txt is the iOS Shortcut-friendly format — one tag per line, pending
+    tags first (sorted by seed count), then previously-used tags.  The shortcut
+    fetches it via raw.githubusercontent.com and uses 'Split Text' to get a
+    clean list with zero dictionary parsing.
 
-    Each entry is a plain string so iOS Shortcuts' 'Choose from List' works
-    with zero extra steps.
+    tags.json retains the full structured metadata for programmatic use.
     """
     seeds = data.get("seeds", [])
 
@@ -87,6 +88,12 @@ def _write_tags_json(data: dict) -> None:
     # Pending list sorted by seed count descending (busiest topic first)
     pending_tags = sorted(pending_counts, key=lambda t: -pending_counts[t])
 
+    # Flat ordered list: pending first, then remaining used tags
+    flat_tags = list(pending_tags)
+    for t in all_tags:
+        if t not in pending_counts:
+            flat_tags.append(t)
+
     payload = {
         "updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "pending": pending_tags,
@@ -95,6 +102,9 @@ def _write_tags_json(data: dict) -> None:
     }
     with open(TAGS_FILE, "w") as f:
         json.dump(payload, f, indent=2)
+
+    with open(TAGS_TXT, "w") as f:
+        f.write("\n".join(flat_tags))
 
 
 def _save_seeds(data: dict) -> None:
