@@ -955,7 +955,7 @@ def generate_bespoke_rss_feed(base_url):
 
     cfg = BESPOKE_FEED_CONFIG
     feed_url = f"{base_url}bespoke-feed.xml"
-    cover_url = f"{base_url}cariboo-signals.png"
+    cover_url = f"{base_url}Deepdives.png"
     now_rfc = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S GMT")
 
     lines = [
