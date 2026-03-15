@@ -1,23 +1,4 @@
 {
-  "2026-02-22": {
-    "timestamp": 1771764654.897072,
-    "topics": [
-      "[Toms Guide] Experts explain why over 65s need this amount o",
-      "[ScienceAlert] There's a Critical Thing You Can Do to Keep A",
-      "[WIRED] Government Docs Reveal New Details About Tesla and W",
-      "[InsideEVs] Exclusive: Nissan's Most Affordable EV Just Got ",
-      "[ZDNet] You can control your Linux PC from your Android phon",
-      "[Quesnel Cariboo Observer] Lost plate leads to 2 arrests and",
-      "[Quesnel Cariboo Observer] Avalanche kills man heli-skiing i",
-      "[Quesnel Cariboo Observer] B.C. forests minister says the pr"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "connectivity"
-    ],
-    "date": "2026-02-22"
-  },
   "2026-02-23": {
     "timestamp": 1771851998.024062,
     "topics": [
@@ -415,5 +396,24 @@
       "connectivity"
     ],
     "date": "2026-03-14"
+  },
+  "2026-03-15": {
+    "timestamp": 1773579349.786136,
+    "topics": [
+      "[Hackaday] This Printed Zipper Repair Requires No Unsewing",
+      "[Hackaday] Building a Neatly Framed Word Clock",
+      "[Hackaday] GNU Radio Gets a Makeover With PimpMyGRC",
+      "[How-To Geek] Stop treating your UPS like a dumb battery: 4 ",
+      "[ScienceAlert] Weight-Loss Drugs Could Cost Just $3 a Month ",
+      "[Quesnel Cariboo Observer] Rezoning approved for building 60",
+      "[Quesnel Cariboo Observer] Infant from Fort St. John spends ",
+      "[How-To Geek] These 6 Windows background processes might be "
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "connectivity"
+    ],
+    "date": "2026-03-15"
   }
 }

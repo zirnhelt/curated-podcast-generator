@@ -437,5 +437,18 @@
       "connectivity",
       "telemedicine"
     ]
+  },
+  "2026-03-15": {
+    "timestamp": 1773579349.786848,
+    "date": "2026-03-15",
+    "theme": "Resilient Rural Futures",
+    "central_question": "Deep dive on Resilient Rural Futures",
+    "topics_covered": [
+      "broadband",
+      "telemedicine",
+      "renewable energy",
+      "solar",
+      "AI"
+    ]
   }
 }
