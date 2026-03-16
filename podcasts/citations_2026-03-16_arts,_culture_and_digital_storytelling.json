@@ -1,0 +1,219 @@
+{
+  "episode": {
+    "date": "2026-03-16",
+    "formatted_date": "Monday, March 16, 2026",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "title": "Cariboo Signals - Arts, Culture & Digital Storytelling",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Arts, Culture & Digital Storytelling.</p><p><b>NEWS ROUNDUP:</b> We break down [NYT Top Stories] ‘Nobody Owns Us’: How Plans for a Google Data Center Divided an Oklahoma Town and [Williams Lake Tribune] Boulder hits semi driver on Highway 1 near Revelstoke, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Deep dive on Arts, Culture & Digital Storytelling Topics include: broadband, AI, infrastructure, community ownership, funding.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/03/14/us/rock-fire-department-google-donation-oklahoma.html\">[NYT Top Stories] ‘Nobody Owns Us’: How Plans for a Google D...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/15/boulder-hits-semi-driver-on-highway-1-near-revelstoke/\">[Williams Lake Tribune] Boulder hits semi driver on Highway ...</a></li><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/03/14/province-investigates-kwantlen-student-association-for-fund-misuse/\">[Quesnel Cariboo Observer] Province investigates Kwantlen St...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/sudden-sight-loss-risk-almost-5x-higher-with-wegovy-than-ozempic-study-finds\">[ScienceAlert] Sudden Sight Loss Risk Almost 5x Higher With ...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/used-rtx-3090-still-best-for-local-ai-in-value/\">[XDA Developers] A used RTX 3090 is still the best GPU for l...</a></li><li>TechRadar: <a href=\"https://www.techradar.com/pro/this-is-probably-the-most-powerful-external-gpu-enclosure-pluggables-tbt5-ai-is-the-first-one-that-explicitly-targets-local-llm-and-workstation-gpu\">[TechRadar] This is probably the most powerful external GPU ...</a></li><li>100 Mile Free Press: <a href=\"https://100milefreepress.net/2026/03/15/cariboo-outdoors-a-brief-discussion-of-fishing-rods/\">[100 Mile Free Press] CARIBOO OUTDOORS: A brief discussion o...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>ScienceAlert: <a href=\"https://www.sciencealert.com/study-reveals-a-turning-point-in-us-life-expectancy\">[ScienceAlert] Study Reveals a 'Turning Point' in US Life Ex...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/this-3d-printed-privacy-first-security-camera-uses-a-pi-zero-2-under-the-hood/\">[XDA Developers] This 3D-printed privacy-first security came...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/03/15/building-a-rad-bluetooth-speaker-that-didnt-really-exist/\">[Hackaday] Building a Rad Bluetooth Speaker that Didn’t Real...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/each-stressful-person-in-your-life-may-age-you-by-months-study-finds\">[ScienceAlert] Each Stressful Person in Your Life May Age Yo...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/major-parkinsons-study-reveals-symptom-differences-in-men-and-women\">[ScienceAlert] Major Parkinson's Study Reveals Symptom Diffe...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/i-turned-a-steam-deck-into-my-living-room-home-lab-terminal/\">[XDA Developers] I turned a Steam Deck into my living room h...</a></li><li>Our World in Data: <a href=\"https://ourworldindata.org/why-cheap-waste-management-is-key-to-stopping-plastic-pollution\">[Our World in Data] Why cheap waste management is key to sto...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/3d-prints-easter-gift-giving-easy-breaking-bank/\">[XDA Developers] These 3D prints will make Easter gift givin...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/hba-card-increase-storage-easily/\">[XDA Developers] I added a $25 HBA card to my home server an...</a></li><li>How-To Geek: <a href=\"https://www.howtogeek.com/the-truth-about-nvme-cooling-why-those-tiny-fans-are-a-total-waste-of-space/\">[How-To Geek] The active NVMe cooling trap: Why SSD fans are...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/03/15/climate/snow-drought-ski-wildfire-risk.html\">[NYT Top Stories] In Ski Towns, a Bad Snow Year Is Worsening...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/blackwells-path-tracing-is-10000x-better-than-pascal/\">[XDA Developers] Blackwell's path tracing is 10,000x better ...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-03-16T06:13:51.823085-07:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[NYT Top Stories] ‘Nobody Owns Us’: How Plans for a Google Data Center Divided an Oklahoma Town",
+          "url": "https://www.nytimes.com/2026/03/14/us/rock-fire-department-google-donation-oklahoma.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-03-15T17:17:22+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Boulder hits semi driver on Highway 1 near Revelstoke",
+          "url": "https://wltribune.com/2026/03/15/boulder-hits-semi-driver-on-highway-1-near-revelstoke/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-15T16:12:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Province investigates Kwantlen Student Association for fund misuse",
+          "url": "https://quesnelobserver.com/2026/03/14/province-investigates-kwantlen-student-association-for-fund-misuse/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-03-14T16:13:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[ScienceAlert] Sudden Sight Loss Risk Almost 5x Higher With Wegovy Than Ozempic, Study Finds",
+          "url": "https://www.sciencealert.com/sudden-sight-loss-risk-almost-5x-higher-with-wegovy-than-ozempic-study-finds",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-16T04:25:26+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[ScienceAlert] Study Reveals a 'Turning Point' in US Life Expectancy",
+          "url": "https://www.sciencealert.com/study-reveals-a-turning-point-in-us-life-expectancy",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-16T02:34:45+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] This 3D-printed privacy-first security camera uses a Pi Zero 2 under the hood",
+          "url": "https://www.xda-developers.com/this-3d-printed-privacy-first-security-camera-uses-a-pi-zero-2-under-the-hood/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-16T02:15:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Building a Rad Bluetooth Speaker that Didn’t Really Exist",
+          "url": "https://hackaday.com/2026/03/15/building-a-rad-bluetooth-speaker-that-didnt-really-exist/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-16T02:00:13+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Each Stressful Person in Your Life May Age You by Months, Study Finds",
+          "url": "https://www.sciencealert.com/each-stressful-person-in-your-life-may-age-you-by-months-study-finds",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-16T01:15:15+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Major Parkinson's Study Reveals Symptom Differences in Men And Women",
+          "url": "https://www.sciencealert.com/major-parkinsons-study-reveals-symptom-differences-in-men-and-women",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-16T00:19:39+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] I turned a Steam Deck into my living room home lab terminal",
+          "url": "https://www.xda-developers.com/i-turned-a-steam-deck-into-my-living-room-home-lab-terminal/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-16T00:00:20+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Our World in Data] Why cheap waste management is key to stopping plastic pollution",
+          "url": "https://ourworldindata.org/why-cheap-waste-management-is-key-to-stopping-plastic-pollution",
+          "source": "Our World in Data",
+          "ai_score": 0,
+          "date_published": "2026-03-16T00:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] These 3D prints will make Easter gift giving easy without breaking the bank",
+          "url": "https://www.xda-developers.com/3d-prints-easter-gift-giving-easy-breaking-bank/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-15T23:00:20+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] I added a $25 HBA card to my home server and went from 2 drives to 8 easily",
+          "url": "https://www.xda-developers.com/hba-card-increase-storage-easily/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-15T21:30:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] A used RTX 3090 is still the best GPU for local AI in 2026, and it's not even close on value",
+          "url": "https://www.xda-developers.com/used-rtx-3090-still-best-for-local-ai-in-value/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-15T21:00:20+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[How-To Geek] The active NVMe cooling trap: Why SSD fans are a waste of money (with one major exception)",
+          "url": "https://www.howtogeek.com/the-truth-about-nvme-cooling-why-those-tiny-fans-are-a-total-waste-of-space/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-15T21:00:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] In Ski Towns, a Bad Snow Year Is Worsening Wildfire Fears",
+          "url": "https://www.nytimes.com/2026/03/15/climate/snow-drought-ski-wildfire-risk.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-03-15T09:00:18+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Arts, Culture & Digital Storytelling",
+      "articles": [
+        {
+          "title": "[TechRadar] This is probably the most powerful external GPU enclosure around right now — Pluggable's TBT5-AI is the first to explicitly target local LLM and workstation GPU",
+          "url": "https://www.techradar.com/pro/this-is-probably-the-most-powerful-external-gpu-enclosure-pluggables-tbt5-ai-is-the-first-one-that-explicitly-targets-local-llm-and-workstation-gpu",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-15T22:10:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[XDA Developers] Blackwell's path tracing is 10,000x better than Pascal, claims Nvidia...and future GPUs will be 1,000,000x better",
+          "url": "https://www.xda-developers.com/blackwells-path-tracing-is-10000x-better-than-pascal/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-16T01:08:11+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[100 Mile Free Press] CARIBOO OUTDOORS: A brief discussion of fishing rods",
+          "url": "https://100milefreepress.net/2026/03/15/cariboo-outdoors-a-brief-discussion-of-fishing-rods/",
+          "source": "100 Mile Free Press",
+          "ai_score": 0,
+          "date_published": "2026-03-16T00:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Deep dive on Arts, Culture & Digital Storytelling",
+        "topics_covered": [
+          "broadband",
+          "AI",
+          "infrastructure",
+          "community ownership",
+          "funding"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
