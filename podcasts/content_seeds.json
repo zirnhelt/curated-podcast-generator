@@ -118,7 +118,9 @@
       "priority": "normal",
       "theme_hint": null,
       "tag": "mental-health-vs-security",
-      "status": "pending"
+      "status": "pending",
+      "best_theme_day": 5,
+      "best_theme_name": "Cariboo Voices & Local News"
     },
     {
       "id": "6b0822ac",
@@ -130,7 +132,9 @@
       "priority": "normal",
       "theme_hint": null,
       "tag": "mental-health-vs-security",
-      "status": "pending"
+      "status": "pending",
+      "best_theme_day": 2,
+      "best_theme_name": "Community Tech & Governance"
     },
     {
       "id": "eeaac87e",
@@ -142,7 +146,9 @@
       "priority": "normal",
       "theme_hint": null,
       "tag": "mental-health-vs-security",
-      "status": "pending"
+      "status": "pending",
+      "best_theme_day": 5,
+      "best_theme_name": "Cariboo Voices & Local News"
     },
     {
       "id": "d3b09c82",

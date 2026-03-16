@@ -1,24 +1,4 @@
 {
-  "2026-02-23": {
-    "timestamp": 1771851998.024062,
-    "topics": [
-      "[The Tyee] Please Advise! Why Do Conservative MPs Keep Bolti",
-      "[Toms Guide] Netflix new releases \u2014 5 shows and movies you n",
-      "[XDA Developers] Microsoft Copilot is the best productivity ",
-      "[Toms Guide] I use the 'empty chair' prompt to streamline my",
-      "[Al Jazeera English] ICC to hold hearings on charges against",
-      "[The Tyee] Danielle Smith Is No Separatist. She\u2019s Much Worse",
-      "[The Tyee] Elbows Up for Indigenous Rights",
-      "[The Tyee] BC Premier\u2019s Office Sued over Firing of Employee "
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-02-23"
-  },
   "2026-02-24": {
     "timestamp": 1771939618.823815,
     "topics": [
@@ -415,5 +395,25 @@
       "connectivity"
     ],
     "date": "2026-03-15"
+  },
+  "2026-03-16": {
+    "timestamp": 1773666831.837616,
+    "topics": [
+      "[NYT Top Stories] \u2018Nobody Owns Us\u2019: How Plans for a Google D",
+      "[Williams Lake Tribune] Boulder hits semi driver on Highway ",
+      "[Quesnel Cariboo Observer] Province investigates Kwantlen St",
+      "[ScienceAlert] Sudden Sight Loss Risk Almost 5x Higher With ",
+      "[ScienceAlert] Study Reveals a 'Turning Point' in US Life Ex",
+      "[TechRadar] This is probably the most powerful external GPU ",
+      "[XDA Developers] Blackwell's path tracing is 10,000x better ",
+      "[100 Mile Free Press] CARIBOO OUTDOORS: A brief discussion o"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-03-16"
   }
 }

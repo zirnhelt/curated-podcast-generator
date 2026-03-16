@@ -1,0 +1,211 @@
+# Cariboo Signals Podcast Script - 2026-03-16
+# Theme: Arts, Culture & Digital Storytelling
+# Generated: 2026-03-16 06:13:51 PDT
+
+**NEWS ROUNDUP**
+
+**RILEY:** In Oklahoma, a small town's battle over a Google data center is revealing the complicated reality of big tech's infrastructure promises. The tech giant wants to build a facility in a community of just 9,000 people, bringing jobs and tax revenue — but also massive water consumption and energy demands that have split residents down the middle.
+
+**CASEY:** Classic case of who actually pays the hidden costs when big tech comes to town.
+
+**CASEY:** Closer to home, a boulder struck a semi-truck driver on Highway 1 near Revelstoke yesterday, highlighting ongoing rockfall risks on that stretch of the Trans-Canada. The driver sustained minor injuries, but it's a reminder of the infrastructure challenges facing our mountain corridors.
+
+**RILEY:** Those rockfall zones have been getting worse with climate shifts too.
+
+**RILEY:** Meanwhile in post-secondary news, the province is investigating the Kwantlen Student Association for potential misuse of student funds, including concerns about financial transparency and governance. It's part of a broader pattern of accountability issues we're seeing across B.C.'s student organizations.
+
+**CASEY:** Student associations managing millions with surprisingly little oversight — something's got to give.
+
+**CASEY:** Also worth noting today — several health and tech stories making waves. A new study suggests Wegovy carries nearly five times higher risk of sudden sight loss compared to Ozempic. On the brighter side, researchers have identified what they're calling a turning point in U.S. life expectancy trends.
+
+**RILEY:** The vision risks are concerning, especially given how widely these drugs are being prescribed.
+
+**RILEY:** And for the makers out there, there's a fascinating 3D-printed security camera project using a Raspberry Pi Zero 2 that prioritizes privacy over cloud connectivity — exactly the kind of local-first thinking we need more of.
+
+**CASEY:** Privacy-first design is refreshing when everything else wants your data in the cloud.
+
+**RILEY:** Coming up after our community spotlight, we're diving deep into arts, culture, and digital storytelling. But first, let's highlight an organization doing crucial work in our region.
+
+**COMMUNITY SPOTLIGHT**
+
+**CASEY:** Today we're featuring Cariboo Chilcotin Partners for Literacy, which provides free adult literacy, ESL, and digital literacy programs across our region. Whether you're looking to brush up on computer skills, learn English as a second language, or strengthen reading and writing abilities, they offer flexible programs designed around rural life — evening classes, weekend workshops, even one-on-one tutoring. They understand that in rural communities, you can't always make it to a 9-to-5 schedule.
+
+**RILEY:** Digital literacy especially has become such a fundamental skill for everything from accessing government services to participating in the modern economy.
+
+**CASEY:** You can find them at caribooliteracy.com, and they're always looking for volunteer tutors too. Now, let's explore today's theme.
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Arts, Culture & Digital Storytelling**
+
+**RILEY:** Casey, I've been thinking about something as we keep covering the digital storytelling beat. We've talked about infrastructure, funding models, platform dependency — all the structural stuff. But here's what's nagging at me: are we actually measuring the right thing?
+
+**CASEY:** How do you mean?
+
+**RILEY:** Well, take this new external GPU enclosure from Pluggable — the TBT5-AI. It's explicitly designed for local AI workloads, including large language models. For the first time, a creative in 100 Mile House could potentially run sophisticated AI tools right from their desktop, no cloud required.
+
+**CASEY:** Okay, but what's the "right thing" we're not measuring?
+
+**RILEY:** Impact. Real cultural impact. We keep getting caught up in debates about whether digital tools are accessible enough or sustainable enough. But what if some of these barriers we worry about are actually solving themselves faster than we think?
+
+**CASEY:** I'm skeptical that technology alone solves accessibility barriers, Riley. But I'm curious where you're going with this.
+
+**RILEY:** Look at what Nvidia's claiming about their new Blackwell architecture — 10,000 times better path tracing than their Pascal generation from just eight years ago. And they're projecting another 1,000-fold improvement ahead. That's not just incrementally better graphics. That's the difference between a $50,000 workstation and something you could reasonably put on a credit card.
+
+**CASEY:** But you're talking about cutting-edge gaming GPUs. How does that translate to actual storytelling tools for communities like ours? Most cultural organizations I know are still struggling with basic video editing on aging hardware.
+
+**RILEY:** That's exactly my point! The high-end stuff today becomes the accessible stuff tomorrow. Remember when 4K video editing required a Hollywood budget? Now you can do it on a laptop. The real question isn't whether these tools will become accessible — it's whether our communities will be ready when they do.
+
+**CASEY:** But there's a huge difference between technical capability and actual adoption, especially in cultural work. I've seen plenty of community organizations get expensive equipment through grants, then have it sit in storage because nobody knows how to use it properly, or worse, because the knowledge holders in the community don't trust digital platforms.
+
+**RILEY:** Fair point about trust and training. But here's where I think we're missing the forest for the trees. That external GPU I mentioned? It could enable a documentary filmmaker in Quesnel to render complex visual effects locally, without sending sensitive cultural content to cloud services. Same with AI transcription for oral history projects — you could process everything on-premises.
+
+**CASEY:** Local processing is definitely better for sensitive content, I'll give you that.
+
+**RILEY:** Right! And the barriers we've been focused on — cost, technical complexity, infrastructure dependency — those are all moving in the right direction simultaneously. The question is whether we're building the human infrastructure to take advantage.
+
+**CASEY:** Okay, but let's dig into that human infrastructure piece. Because I think that's where the real challenges lurk. Having powerful tools doesn't automatically translate to meaningful cultural preservation or community storytelling. Look at how many rural newspapers have folded despite having access to better publishing technology than ever existed.
+
+**RILEY:** Absolutely. What does meaningful look like to you?
+
+**CASEY:** Well, take the Cariboo Outdoors column in the 100 Mile Free Press — there's a perfect example right in front of us. It's just a brief discussion of fishing rods, but it represents exactly the kind of local knowledge and perspective that makes rural storytelling valuable. The author knows the specific lakes, the seasonal patterns, the gear that actually works in our conditions.
+
+**RILEY:** That's a great example. And that kind of hyperlocal expertise is exactly what these new tools could amplify, right? Imagine if that same outdoor writer could easily create interactive maps, embed weather data, add video demonstrations of different casting techniques — without needing a computer science degree.
+
+**CASEY:** But here's my concern — and this goes back to our previous conversations about platform dependency. That columnist writes for a local newspaper with local editors who understand the context and community standards. The moment you start optimizing for digital platforms, you're optimizing for algorithms, engagement metrics, broader audiences. You risk losing the very thing that makes local storytelling valuable — its rootedness in place and relationship.
+
+**RILEY:** I hear that, but I think you're creating a false choice. Why can't we have both? The 100 Mile Free Press could absolutely maintain their editorial standards while also giving their writers better tools to tell richer stories.
+
+**CASEY:** Because tools aren't neutral, Riley. Every platform, every algorithm, every interface makes assumptions about what good storytelling looks like. Instagram Stories prioritize quick hits over deep reflection. YouTube rewards consistency and engagement over seasonal or cyclical storytelling that might match natural rhythms better. Even email newsletters push you toward weekly schedules instead of "when something important happens" schedules.
+
+**RILEY:** But that's assuming we stick with those platforms! What if we don't?
+
+**CASEY:** What's the alternative?
+
+**RILEY:** Local infrastructure. Community-owned platforms. The same way some towns built their own broadband networks when Telus wouldn't serve them properly, what if they built their own digital storytelling ecosystems? That external GPU I mentioned earlier — that could power a community media server, not just individual workstations.
+
+**CASEY:** Now that's interesting, but who builds it? Who maintains it? We're back to the sustainability questions that have killed so many rural digital projects. I can't tell you how many community websites I've seen that haven't been updated since 2019 because the volunteer who knew WordPress moved away.
+
+**RILEY:** This is where I think the conversation gets exciting, though. Because we're not talking about building everything from scratch anymore. The tools are becoming modular, user-friendly, cost-effective. A community could start with something as simple as a local podcast studio and grow from there. Or hell, they could start with better 3D-printed cases for their existing equipment — speaking of which, did you see that XDA article about Easter gift ideas you can 3D print?
+
+**CASEY:** Are you seriously suggesting we craft our way to digital sovereignty? [laughs]
+
+**RILEY:** [laughing] Maybe! But seriously, the point is that communities can start small and build incrementally instead of needing massive upfront investments that usually fail.
+
+**CASEY:** Okay, let's play this out. Say Williams Lake decides they want to build local digital storytelling infrastructure. What does year one actually look like, beyond 3D-printed phone cases?
+
+**RILEY:** Great question. Year one might be partnership with Cariboo Chilcotin Partners for Literacy — the group we just highlighted. They're already doing digital literacy training. Add some basic audio recording equipment, maybe partner with Thompson Rivers University for student projects. Start documenting local knowledge that's already being shared informally.
+
+**CASEY:** I like that you're thinking about existing institutions instead of reinventing everything. But you're still assuming the technical side is the easy part. What about editorial standards? Content ownership? Community protocols around sensitive information? What happens when someone records an elder's story and then wants to monetize it on YouTube?
+
+**RILEY:** Those are absolutely critical questions. And honestly, that's where I think Indigenous communities are way ahead of the rest of us. They've been wrestling with digital sovereignty and cultural protocols for years. There are established frameworks for community ownership of cultural content, protocols for consent and attribution, models for keeping sensitive knowledge within appropriate boundaries.
+
+**CASEY:** That's actually a really important point. Indigenous-led digital projects often have much clearer governance structures around content ownership and community benefit. But adapting those frameworks to non-Indigenous communities isn't straightforward — and it needs to be done respectfully, not just copied wholesale.
+
+**RILEY:** No, it's not straightforward. But it's worth attempting, and there are Indigenous technologists and legal experts who are doing consulting work on exactly these issues. Here's what gives me optimism — the technical barriers keep dropping while the governance models keep improving. That combination creates opportunities that didn't exist even five years ago.
+
+**CASEY:** Let me push back on the technical optimism for a second. Yes, individual tools are getting better and cheaper. But integration is still a nightmare. Getting different systems to work together, training people to use them effectively, troubleshooting when things break — that's where projects die. I've seen community centers with donation boxes full of incompatible cables and obsolete adapters.
+
+**RILEY:** True, but that's changing too! Look at how the maker community has evolved.
+
+**CASEY:** How so?
+
+**RILEY:** Ten years ago, 3D printing required serious technical skills and constant troubleshooting. Now my neighbor prints replacement parts for her chicken coop feeder like it's no big deal. The same thing is happening with video editing, audio production, even basic web development. The learning curves are flattening.
+
+**CASEY:** But creative tools aren't chicken coop feeders, Riley. Cultural storytelling requires aesthetic judgment, narrative structure, understanding of community context and ethics. You can't just democratize the technical aspects and expect good outcomes. We could end up with a lot of technically proficient but culturally shallow content.
+
+**RILEY:** That's a fair point. But I'd argue that aesthetic judgment and narrative structure already exist in our communities — they're just not being captured or shared effectively with wider audiences.
+
+**CASEY:** Explain what you mean.
+
+**RILEY:** Think about how people already tell stories in the Cariboo. At the coffee shop, around the fire, in the truck heading to a job site. The narrative skills are there. The cultural context is definitely there. The technical barriers have been what's preventing those stories from reaching broader audiences or being preserved for future generations.
+
+**CASEY:** Okay, but there's also something lost in translation when you move from face-to-face storytelling to digital formats. The intimacy, the ability to read your audience and adjust on the fly, the collaborative nature of oral tradition where the audience shapes the story — those don't translate directly to recorded formats.
+
+**RILEY:** They don't have to translate directly, though.
+
+**CASEY:** What do you mean?
+
+**RILEY:** Maybe we're thinking about this backwards. Instead of trying to replicate face-to-face storytelling in digital formats, what if we used digital tools to enhance face-to-face experiences? Augmented reality for historical sites, interactive elements for community events, better ways to coordinate and promote local cultural activities.
+
+**CASEY:** Now that's a different angle entirely. Using technology to strengthen existing cultural practices rather than replace them.
+
+**RILEY:** Exactly! And that's where local ownership becomes crucial. A community-controlled system could prioritize those kinds of enhancements over the engagement metrics that drive commercial platforms.
+
+**CASEY:** I'm warming up to this vision, but I still think you're underestimating the human challenges. Even with better tools and clearer governance, someone has to do the work. Rural communities are already stretched thin with volunteer time, and asking people to become amateur technologists on top of everything else seems unrealistic.
+
+**RILEY:** That's where economic sustainability comes in. And this is where I think we might be on the verge of something genuinely new. These AI tools we've been discussing — they could dramatically reduce the time cost of content production.
+
+**CASEY:** How so?
+
+**RILEY:** Automatic transcription for oral history projects. AI-assisted editing for local documentaries. Automated social media posting to promote community events. The creative and cultural judgment still requires human input, but the technical grunt work could be largely automated.
+
+**CASEY:** If it works reliably, sure.
+
+**RILEY:** Right, if it works reliably. But the reliability keeps improving, and the cost keeps dropping. We might be approaching a tipping point where the economics finally make sense for rural communities.
+
+**CASEY:** Let's talk about that economic piece more directly. Because even if the tools get cheaper and easier, somebody still needs to coordinate everything. Someone needs to train people, manage the equipment, handle technical problems when they arise, navigate the inevitable personality conflicts when the amateur historians disagree about whose version of events gets recorded.
+
+**RILEY:** What if that somebody was a regional position? Like a circuit-riding digital storytelling coordinator, funded jointly by several communities plus maybe some grants from Creative BC or the Canada Council?
+
+**CASEY:** That could work. Similar to how some rural communities share librarians or IT support. But it would need to be someone who really understands local culture, not just the technical side.
+
+**RILEY:** Absolutely. And ideally someone with roots in the region. This isn't a job for a consultant flying in from Vancouver with a PowerPoint about "digital transformation."
+
+**CASEY:** [laughs] God, please no more digital transformation consultants.
+
+**RILEY:** [laughing] Right? But seriously, I think there are people in our communities who could grow into this role. Maybe someone who's already doing community organizing or cultural work, who could add the technical coordination piece to their skill set.
+
+**CASEY:** Okay, I'm starting to see a path forward here. Regional coordination, local ownership, focus on enhancing existing cultural practices rather than replacing them. But we still haven't talked about one crucial piece — audience.
+
+**RILEY:** What about it?
+
+**CASEY:** Well, who are these stories for? If we're building local infrastructure, are we primarily serving the community itself? Future generations? Broader audiences who might be interested in rural perspectives? Because those are different goals that might require different approaches.
+
+**RILEY:** That's a great question. And I think the answer might be "yes" to all three, but in different ways.
+
+**CASEY:** How do you mean?
+
+**RILEY:** Local infrastructure could serve multiple purposes simultaneously. Community documentation for internal use and relationship building. Cultural preservation for future generations. And selective sharing with broader audiences when communities choose to do so, on their own terms.
+
+**CASEY:** But those are different goals that might require different approaches. What works for internal community documentation might not work for external audiences, and vice versa. A story that resonates locally might need additional context to be meaningful to outsiders.
+
+**RILEY:** True. But that's where having local control becomes really valuable. Communities could make those decisions case by case, story by story. Some content stays internal. Some gets shared regionally. Some might reach national or international audiences.
+
+**CASEY:** And some might transition between those categories over time, as communities decide what they're comfortable sharing more broadly.
+
+**RILEY:** Exactly! A story that starts as internal community documentation might become valuable for tourism promotion, or educational outreach, or academic research — but always with community permission and involvement in that decision.
+
+**CASEY:** I like that flexibility. But it also requires pretty sophisticated thinking about content management and access controls. Are rural communities really going to master that level of digital governance?
+
+**RILEY:** Maybe not immediately. But they don't have to solve everything at once. They could start simple — basic recording and documentation — and add complexity over time as needs and capabilities grow.
+
+**CASEY:** You know, Riley, I think you've convinced me on something important. Not that technology will solve all the barriers to rural digital storytelling, but that the barriers might be shifting faster than I've been acknowledging.
+
+**RILEY:** What shifted your thinking?
+
+**CASEY:** The idea that we don't have to solve everything at once. If communities can start with simple, local-controlled systems and grow incrementally, that's much more realistic than the grand digital transformation projects that usually fail spectacularly and leave everyone cynical about technology.
+
+**RILEY:** And the technical improvements we're seeing — better AI tools, more powerful but affordable hardware, more user-friendly interfaces — they make that incremental approach much more viable than it would have been even a few years ago.
+
+**CASEY:** Right. Plus the governance frameworks are getting better too. Communities don't have to figure out digital sovereignty from scratch anymore — there are models to learn from and adapt.
+
+**RILEY:** So what would you want to see happen first? If someone from, say, Quesnel was listening and thinking about starting something like this?
+
+**CASEY:** Honestly, I'd want them to talk to Cariboo Chilcotin Partners for Literacy first. See what digital literacy training is already happening, what gaps exist, what communities are asking for. Start with the human infrastructure before worrying about the technical infrastructure.
+
+**RILEY:** That's smart. Build on existing relationships and trust.
+
+**CASEY:** Exactly. And then maybe pilot something small — a podcast series about local history, or basic video documentation of traditional skills. Test the waters before making big infrastructure investments.
+
+**RILEY:** And connect with other communities attempting similar projects. Learn from both successes and failures.
+
+**CASEY:** Yes. That regional coordination idea you mentioned earlier — that could start informally, just communities sharing experiences and resources.
+
+**RILEY:** You know, Casey, this conversation has me thinking we might be at an interesting moment. Not a revolutionary transformation, but a genuine opportunity for rural communities to tell their stories on their own terms.
+
+**CASEY:** If they choose to seize it.
+
+**RILEY:** If they choose to seize it. And if the technical promises actually deliver as advertised. But for the first time in a while, I'm cautiously optimistic that both of those things might happen.
+
+**CASEY:** We'd love to hear your thoughts — send us an email at feedback at cariboo signals dot c-a.
+
+**RILEY:** Have a great rest of your Saturday.
