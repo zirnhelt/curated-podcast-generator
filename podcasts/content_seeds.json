@@ -186,8 +186,10 @@
       "priority": "normal",
       "theme_hint": null,
       "tag": null,
-      "status": "pending",
-      "used_on": null
+      "status": "used",
+      "used_on": "2026-03-17",
+      "best_theme_day": 1,
+      "best_theme_name": "Working Lands & Industry"
     }
   ]
 }
