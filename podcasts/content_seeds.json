@@ -175,6 +175,19 @@
       "tag": "aging_genx",
       "status": "used_bespoke",
       "used_on": "2026-03-15"
+    },
+    {
+      "id": "9ef57ff9",
+      "type": "url",
+      "url": "https://thenarwhal.ca/manitoba-cattle-research-expansion/",
+      "title": null,
+      "note": "Working lands ",
+      "added_at": "2026-03-17T13:03:27.293314+00:00",
+      "priority": "normal",
+      "theme_hint": null,
+      "tag": null,
+      "status": "pending",
+      "used_on": null
     }
   ]
 }
