@@ -1,44 +1,4 @@
 {
-  "2026-02-24": {
-    "timestamp": 1771939618.823815,
-    "topics": [
-      "[The Tyee] We Can\u2019t Wait for War to Mobilize the Public",
-      "[The Tyee] Police Watchdog Finds Failures in Missing Indigen",
-      "[XDA Developers] Panasonic won't build its own TVs anymore a",
-      "[Al Jazeera English] Kashmir, spying, demolitions: How Modi\u2019",
-      "[IBS Intelligence] Weak data infrastructure slows AI adoptio",
-      "[Neowin] Anthropic accuses China of 'industrial-scale' attem",
-      "[The Tyee] Can Vancouver Progressives Unite to Win the Next ",
-      "[The Tyee] A Sober Look at Alberta\u2019s Separatist Surge"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-02-24"
-  },
-  "2026-02-25": {
-    "timestamp": 1772024774.722816,
-    "topics": [
-      "[My Cariboo Now] B.C. leaders seek answers on OpenAI decisio",
-      "[Global News] SaskPower looks to make province \u2018energy power",
-      "[The Narwhal] A $10-billion AI data centre races ahead in a ",
-      "[The Verge] Taara Beam provides 25Gbps connectivity over inv",
-      "[Hackaday] Meshtastic Does More Than Simple Communication",
-      "[Construction World] Human-Centred Governance As AI Scales I",
-      "[Quesnel Cariboo Observer] Cariboo Regional District release",
-      "[AirQualityNews] Solihull Council launches group-buying sola"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech",
-      "connectivity"
-    ],
-    "date": "2026-02-25"
-  },
   "2026-02-26": {
     "timestamp": 1772111207.694013,
     "topics": [
@@ -435,5 +395,25 @@
       "Indigenous tech"
     ],
     "date": "2026-03-17"
+  },
+  "2026-03-18": {
+    "timestamp": 1773839983.416567,
+    "topics": [
+      "[Williams Lake Tribune] Trans Mountain begins assessment wor",
+      "[The Tyee] BC\u2019s Auditor General Offers Reasons for the Lack ",
+      "[Lifehacker] You Can Turn an Old Android Phone Into a Wifi E",
+      "[The Tyee] Inside BC\u2019s Plan to Fast-Track Environmental Asse",
+      "[ZDNet] I replaced my router with a Wi-Fi 7 mesh model, and ",
+      "150 people died in B.C. in January from toxic drugs: Coroner",
+      "[Williams Lake Tribune] Williams Lake city council approve o",
+      "[Williams Lake Tribune] B.C. Conservative leader candidate t"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-03-18"
   }
 }
