@@ -1,0 +1,417 @@
+{
+  "episode": {
+    "date": "2026-03-18",
+    "formatted_date": "Wednesday, March 18, 2026",
+    "theme": "Community Tech & Governance",
+    "title": "Cariboo Signals - Community Tech & Governance",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Community Tech & Governance.</p><p><b>NEWS ROUNDUP:</b> We break down [Williams Lake Tribune] Trans Mountain begins assessment work in North Thompson and [Lifehacker] You Can Turn an Old Android Phone Into a Wifi Extender for Your Home Network, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Deep dive on Community Tech & Governance Topics include: broadband, satellite, connectivity, AI, infrastructure.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/17/trans-mountain-begins-assessment-work-in-north-thompson/\">[Williams Lake Tribune] Trans Mountain begins assessment wor...</a></li><li>Lifehacker: <a href=\"https://lifehacker.com/tech/you-can-turn-an-old-android-phone-into-a-wifi-extender?utm_medium=RSS\">[Lifehacker] You Can Turn an Old Android Phone Into a Wifi E...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/17/williams-lake-mustangs-stun-quesnel-with-late-comeback-advance-to-face-kamloops/\">[Williams Lake Tribune] Williams Lake Mustangs stun Quesnel ...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/17/motorist-dead-after-logging-truck-crash-on-highway-97-near-prince-george/\">[Williams Lake Tribune] Motorist dead after logging truck cr...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/03/17/technology/anthropic-pentagon-national-security-risk.html\">[NYT Top Stories] U.S. Says Anthropic Is an ‘Unacceptable’ N...</a></li><li>TechRadar: <a href=\"https://www.techradar.com/ai-platforms-assistants/chatgpt/this-simple-chatgpt-trick-forces-the-ai-to-poke-holes-in-its-own-logic\">[TechRadar] This simple ChatGPT trick forces the AI to poke ...</a></li><li>CNET: <a href=\"https://www.cnet.com/tech/services-and-software/google-meta-and-amazon-join-global-pact-to-fight-rising-online-scams/\">[CNET] Google, Meta and Amazon Join Global Pact to Fight Ris...</a></li><li>100 Mile Free Press: <a href=\"https://100milefreepress.net/2026/03/17/peter-skene-ogden-secondary-school-grads-trounce-teachers-8-3/\">[100 Mile Free Press] Peter Skene Ogden Secondary School Gra...</a></li><li>100 Mile Free Press: <a href=\"https://100milefreepress.net/2026/03/17/100-mile-house-hosts-international-womens-day-event-with-record-turnout/\">[100 Mile Free Press] 100 Mile House hosts International Wom...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/03/17/zip-drive-emulator-puts-big-disks-back-on-lpt/\">[Hackaday] Zip-Drive Emulator Puts Big Disks Back on LPT</a></li><li>TechRadar: <a href=\"https://www.techradar.com/pro/security/no-one-asked-them-to-security-experts-warn-malicious-ai-agents-can-team-up-to-launch-cyberattacks\">[TechRadar] 'No one asked them to': Security experts warn ma...</a></li><li>CNET: <a href=\"https://www.cnet.com/tech/services-and-software/encyclopedia-britannica-and-merriam-webster-sue-openai/\">[CNET] Encyclopedia Britannica and Merriam-Webster Sue OpenA...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/17/williams-lake-city-council-approve-of-reserves-to-cover-financial-plan-shortfall/\">[Williams Lake Tribune] Williams Lake city council approve o...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/03/18/BC-Auditor-General-Reasons-Lack-Rebuilding-Lytton/\">[The Tyee] BC’s Auditor General Offers Reasons for the Lack ...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/03/18/BC-Plan-Fast-Track-Environmental-Assessments/\">[The Tyee] Inside BC’s Plan to Fast-Track Environmental Asse...</a></li><li>ZDNet: <a href=\"https://www.zdnet.com/article/tp-link-deco-7-pro-review/\">[ZDNet] I replaced my router with a Wi-Fi 7 mesh model, and ...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/03/17/testing-whether-heated-chambers-help-brittle-filaments/\">[Hackaday] Testing Whether Heated Chambers Help Brittle Fila...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/built-music-controlled-rgb-led-strip-with-esp32-better-store-bought/\">[XDA Developers] I built a cheap music-controlled RGB LED st...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/3d-printing-supports-trick-makes-easier-remove/\">[XDA Developers] If you're 3D printing with supports, this t...</a></li><li>How-To Geek: <a href=\"https://www.howtogeek.com/how-i-replaced-audible-with-audiobookshelf/\">[How-To Geek] How I replaced Audible with a self-hosted alte...</a></li><li>How-To Geek: <a href=\"https://www.howtogeek.com/linux-phones-could-get-even-better-with-postmarketos-duranium/\">[How-To Geek] Linux phones could get even better with postma...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/army-anduril-strike-deal-linking-systems-to-counter-drones-2026-3\">[Business Insider] The Army's $87 million deal with Anduril ...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/03/17/testing-a-soviet-1000-volt-insulation-tester-from-1985/\">[Hackaday] Testing a Soviet 1000 Volt Insulation Tester from...</a></li><li>Gizmodo: <a href=\"https://gizmodo.com/amid-ai-agent-boom-the-tech-industry-makes-it-clear-with-great-laziness-comes-great-responsibility-2000734649\">[Gizmodo] Amid AI Agent Boom, the Tech Industry Makes It Cle...</a></li><li>Boing Boing: <a href=\"https://boingboing.net/2026/03/17/the-unhackable-xbox-one-has-been-hacked-and-microsoft-cant-patch-it.html\">[Boing Boing] The \"unhackable\" Xbox One has been hacked — an...</a></li><li>Seeded Content: <a href=\"https://wltribune.com/2026/03/12/150-people-died-in-b-c-in-january-from-toxic-drugs-coroner/\">150 people died in B.C. in January from toxic drugs: Coroner...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/17/b-c-conservative-leader-candidate-touring-province/\">[Williams Lake Tribune] B.C. Conservative leader candidate t...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-03-18T06:19:43.395246-07:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Trans Mountain begins assessment work in North Thompson",
+          "url": "https://wltribune.com/2026/03/17/trans-mountain-begins-assessment-work-in-north-thompson/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-17T13:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[The Tyee] BC’s Auditor General Offers Reasons for the Lack of Rebuilding in Lytton",
+          "url": "https://thetyee.ca/News/2026/03/18/BC-Auditor-General-Reasons-Lack-Rebuilding-Lytton/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-03-18T07:40:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Lifehacker] You Can Turn an Old Android Phone Into a Wifi Extender for Your Home Network",
+          "url": "https://lifehacker.com/tech/you-can-turn-an-old-android-phone-into-a-wifi-extender?utm_medium=RSS",
+          "source": "Lifehacker",
+          "ai_score": 0,
+          "date_published": "2026-03-17T14:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[The Tyee] Inside BC’s Plan to Fast-Track Environmental Assessments",
+          "url": "https://thetyee.ca/News/2026/03/18/BC-Plan-Fast-Track-Environmental-Assessments/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-03-18T07:10:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ZDNet] I replaced my router with a Wi-Fi 7 mesh model, and wondered where my dead zones went",
+          "url": "https://www.zdnet.com/article/tp-link-deco-7-pro-review/",
+          "source": "ZDNet",
+          "ai_score": 0,
+          "date_published": "2026-03-17T09:00:57+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Williams Lake Mustangs stun Quesnel with late comeback, advance to face Kamloops",
+          "url": "https://wltribune.com/2026/03/17/williams-lake-mustangs-stun-quesnel-with-late-comeback-advance-to-face-kamloops/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-18T05:44:55.911918+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Motorist dead after logging truck crash on Highway 97 near Prince George",
+          "url": "https://wltribune.com/2026/03/17/motorist-dead-after-logging-truck-crash-on-highway-97-near-prince-george/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-18T05:44:55.911896+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Hackaday] Testing Whether Heated Chambers Help Brittle Filaments",
+          "url": "https://hackaday.com/2026/03/17/testing-whether-heated-chambers-help-brittle-filaments/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-18T05:00:47+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] U.S. Says Anthropic Is an ‘Unacceptable’ National Security Risk",
+          "url": "https://www.nytimes.com/2026/03/17/technology/anthropic-pentagon-national-security-risk.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-03-18T03:51:54+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[TechRadar] This simple ChatGPT trick forces the AI to poke holes in its own logic",
+          "url": "https://www.techradar.com/ai-platforms-assistants/chatgpt/this-simple-chatgpt-trick-forces-the-ai-to-poke-holes-in-its-own-logic",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-18T01:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[CNET] Google, Meta and Amazon Join Global Pact to Fight Rising Online Scams",
+          "url": "https://www.cnet.com/tech/services-and-software/google-meta-and-amazon-join-global-pact-to-fight-rising-online-scams/",
+          "source": "CNET",
+          "ai_score": 0,
+          "date_published": "2026-03-18T00:29:04+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[XDA Developers] I built a cheap music-controlled RGB LED strip with ESP32 and it’s better than any store-bought one",
+          "url": "https://www.xda-developers.com/built-music-controlled-rgb-led-strip-with-esp32-better-store-bought/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-18T00:00:20+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[100 Mile Free Press] Peter Skene Ogden Secondary School Grads trounce teachers 8-3",
+          "url": "https://100milefreepress.net/2026/03/17/peter-skene-ogden-secondary-school-grads-trounce-teachers-8-3/",
+          "source": "100 Mile Free Press",
+          "ai_score": 0,
+          "date_published": "2026-03-18T00:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[100 Mile Free Press] 100 Mile House hosts International Women’s Day event with record turnout",
+          "url": "https://100milefreepress.net/2026/03/17/100-mile-house-hosts-international-womens-day-event-with-record-turnout/",
+          "source": "100 Mile Free Press",
+          "ai_score": 0,
+          "date_published": "2026-03-17T23:30:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Hackaday] Zip-Drive Emulator Puts Big Disks Back on LPT",
+          "url": "https://hackaday.com/2026/03/17/zip-drive-emulator-puts-big-disks-back-on-lpt/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-17T23:00:55+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[XDA Developers] If you're 3D printing with supports, this trick makes them easier to remove",
+          "url": "https://www.xda-developers.com/3d-printing-supports-trick-makes-easier-remove/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-17T23:00:20+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] 'No one asked them to': Security experts warn malicious AI agents can team up to launch cyberattacks",
+          "url": "https://www.techradar.com/pro/security/no-one-asked-them-to-security-experts-warn-malicious-ai-agents-can-team-up-to-launch-cyberattacks",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-17T22:05:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[CNET] Encyclopedia Britannica and Merriam-Webster Sue OpenAI",
+          "url": "https://www.cnet.com/tech/services-and-software/encyclopedia-britannica-and-merriam-webster-sue-openai/",
+          "source": "CNET",
+          "ai_score": 0,
+          "date_published": "2026-03-17T21:38:22+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[XDA Developers] SteamOS on a mini PC is the couch gaming setup I never knew I wanted",
+          "url": "https://www.xda-developers.com/steamos-mini-pc-couch-gaming-setup-never-knew-wanted/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-17T21:30:21+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[CNET] Nvidia GTC 2026 Keynote: What to Know About DLSS 5, NemoClaw and Vera CPU",
+          "url": "https://www.cnet.com/tech/services-and-software/nvidia-gtc-2026-3-things-you-should-know-about/",
+          "source": "CNET",
+          "ai_score": 0,
+          "date_published": "2026-03-17T21:15:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[How-To Geek] How I replaced Audible with a self-hosted alternative",
+          "url": "https://www.howtogeek.com/how-i-replaced-audible-with-audiobookshelf/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-17T20:58:18+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] Linux phones could get even better with postmarketOS ‘Duranium’",
+          "url": "https://www.howtogeek.com/linux-phones-could-get-even-better-with-postmarketos-duranium/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-17T20:47:47+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] March Hare Madness in Williams Lake attracts the curiouser and curiouser",
+          "url": "https://quesnelobserver.com/2026/03/17/march-hare-madness-in-williams-lake-attracts-the-curiouser-and-curiouser/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-03-17T20:16:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Business Insider] The Army's $87 million deal with Anduril is about linking sensors and shooters to give operators a better shot at defeating drones",
+          "url": "https://www.businessinsider.com/army-anduril-strike-deal-linking-systems-to-counter-drones-2026-3",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-03-17T20:08:38+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Testing a Soviet 1000 Volt Insulation Tester from 1985",
+          "url": "https://hackaday.com/2026/03/17/testing-a-soviet-1000-volt-insulation-tester-from-1985/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-17T20:00:30+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Gizmodo] Amid AI Agent Boom, the Tech Industry Makes It Clear: With Great Laziness Comes Great Responsibility",
+          "url": "https://gizmodo.com/amid-ai-agent-boom-the-tech-industry-makes-it-clear-with-great-laziness-comes-great-responsibility-2000734649",
+          "source": "Gizmodo",
+          "ai_score": 0,
+          "date_published": "2026-03-17T19:20:07+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] The \"unhackable\" Xbox One has been hacked — and Microsoft can't patch it",
+          "url": "https://boingboing.net/2026/03/17/the-unhackable-xbox-one-has-been-hacked-and-microsoft-cant-patch-it.html",
+          "source": "Boing Boing",
+          "ai_score": 0,
+          "date_published": "2026-03-17T19:00:37+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] Proton VPN review: Swiss-based security and a strong streaming tool",
+          "url": "https://www.businessinsider.com/guides/tech/proton-vpn-review",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-03-17T18:52:03+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] The System76 Thelio Mira is the new Linux desktop workstation to beat",
+          "url": "https://www.howtogeek.com/the-system76-thelio-mira-is-the-new-linux-desktop-workstation-to-beat/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-17T18:49:35+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Verge] Ikea tried to build a smart home for everyone — here&#8217;s why it&#8217;s not working yet",
+          "url": "https://www.theverge.com/tech/896006/ikea-matter-thread-smart-home-problems",
+          "source": "The Verge",
+          "ai_score": 0,
+          "date_published": "2026-03-17T18:45:14+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Business] As War Chokes Natural Gas Supply, Asia Turns Back to Coal",
+          "url": "https://www.nytimes.com/2026/03/18/business/iran-war-lng-asia-japan.html",
+          "source": "NYT Business",
+          "ai_score": 0,
+          "date_published": "2026-03-18T04:00:07+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] FAA greenlights eVTOL aircraft operations across the USA",
+          "url": "https://newatlas.com/aircraft/faa-eipp-evtol-acceleration-program/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-03-18T03:46:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[ScienceAlert] CERN Discovers New Particle After Upgrading Large Hadron Collider",
+          "url": "https://www.sciencealert.com/cern-discovers-new-particle-after-upgrading-large-hadron-collider",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-18T01:37:06+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Nautilus] Discarded Plastic Can Be Converted Into Parkinson’s Drug",
+          "url": "https://nautil.us/discarded-plastic-can-be-converted-into-parkinsons-drug-1279012/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-03-17T21:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Astronomers May Have Seen Colliding Black Holes Trigger a Blaze of Light",
+          "url": "https://www.sciencealert.com/astronomers-may-have-seen-colliding-black-holes-trigger-a-blaze-of-light",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-17T20:58:59+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Android Authority] You’ll soon be able to ask Fitbit’s AI coach how that slice of pizza affects your glucose levels",
+          "url": "https://www.androidauthority.com/fitbit-personal-health-coach-updates-3649832/",
+          "source": "Android Authority",
+          "ai_score": 0,
+          "date_published": "2026-03-17T20:41:10+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Gizmodo] New NASA Chief Aiming for Moon Landings Every Month in 2027",
+          "url": "https://gizmodo.com/new-nasa-chief-aiming-for-moon-landings-every-month-in-2027-2000734483",
+          "source": "Gizmodo",
+          "ai_score": 0,
+          "date_published": "2026-03-17T19:35:08+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[InsideEVs] Gas Car Drivers Hit 5 Times Harder By Iran Oil Shock Than EV Owners",
+          "url": "https://insideevs.com/news/790317/ev-drivers-protected-oil-prices/",
+          "source": "InsideEVs",
+          "ai_score": 0,
+          "date_published": "2026-03-17T19:29:25+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Community Tech & Governance",
+      "articles": [
+        {
+          "title": "150 people died in B.C. in January from toxic drugs: Coroner - Williams Lake Tribune",
+          "url": "https://wltribune.com/2026/03/12/150-people-died-in-b-c-in-january-from-toxic-drugs-coroner/",
+          "source": "Seeded Content",
+          "ai_score": 82,
+          "date_published": "",
+          "summary": "Province approaching 10 years of the toxic drug public health emergency",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Williams Lake city council approve of reserves to cover financial plan shortfall",
+          "url": "https://wltribune.com/2026/03/17/williams-lake-city-council-approve-of-reserves-to-cover-financial-plan-shortfall/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-17T13:33:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] B.C. Conservative leader candidate touring province",
+          "url": "https://wltribune.com/2026/03/17/b-c-conservative-leader-candidate-touring-province/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-17T13:32:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Deep dive on Community Tech & Governance",
+        "topics_covered": [
+          "broadband",
+          "satellite",
+          "connectivity",
+          "AI",
+          "infrastructure"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
