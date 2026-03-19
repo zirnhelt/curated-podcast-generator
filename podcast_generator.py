@@ -98,7 +98,53 @@ def get_podcast_feed_url(weekday):
 # Opus is ~5x the cost of Sonnet — only use it if quality clearly demands it.
 SCRIPT_MODEL = os.getenv("CLAUDE_SCRIPT_MODEL", "claude-sonnet-4-20250514")
 POLISH_MODEL = os.getenv("CLAUDE_POLISH_MODEL", "claude-sonnet-4-20250514")
+OPUS_REVIEW_MODEL = os.getenv("CLAUDE_OPUS_REVIEW_MODEL", "claude-opus-4-6")
 SUMMARY_MODEL = os.getenv("CLAUDE_SUMMARY_MODEL", "claude-3-5-haiku-20241022")
+
+# Threshold: escalate polish+factcheck to Opus when the deep dive had fewer
+# than this many source articles.  Thin sourcing means the generator had more
+# creative latitude, so there are more potential hallucinations to catch.
+OPUS_REVIEW_ARTICLE_THRESHOLD = int(os.getenv("OPUS_REVIEW_ARTICLE_THRESHOLD", "3"))
+
+# Tracks which review model was actually used this run; read by citation/description generators.
+_review_model_used = None
+
+
+def select_review_model(deep_dive_articles):
+    """Return the model to use for the polish+factcheck pass.
+
+    Escalates to Opus when source coverage is thin (few deep-dive articles)
+    because less verified material means the script generator relied more on
+    training-data recall, increasing hallucination risk.
+
+    Override behaviour via environment variables:
+      PODCAST_FORCE_OPUS_REVIEW=1   — always use Opus
+      PODCAST_FORCE_OPUS_REVIEW=0   — always use Sonnet (POLISH_MODEL)
+      OPUS_REVIEW_ARTICLE_THRESHOLD — article count below which Opus is used
+    """
+    global _review_model_used
+    force = os.getenv("PODCAST_FORCE_OPUS_REVIEW")
+    if force == "1":
+        print(f"   Review model: {OPUS_REVIEW_MODEL} (forced via PODCAST_FORCE_OPUS_REVIEW)")
+        _review_model_used = OPUS_REVIEW_MODEL
+        return OPUS_REVIEW_MODEL
+    if force == "0":
+        print(f"   Review model: {POLISH_MODEL} (forced via PODCAST_FORCE_OPUS_REVIEW)")
+        _review_model_used = POLISH_MODEL
+        return POLISH_MODEL
+
+    article_count = len(deep_dive_articles) if deep_dive_articles else 0
+    if article_count < OPUS_REVIEW_ARTICLE_THRESHOLD:
+        print(
+            f"   Review model: {OPUS_REVIEW_MODEL} "
+            f"(thin sourcing: {article_count} deep-dive articles < threshold {OPUS_REVIEW_ARTICLE_THRESHOLD})"
+        )
+        _review_model_used = OPUS_REVIEW_MODEL
+        return OPUS_REVIEW_MODEL
+
+    print(f"   Review model: {POLISH_MODEL} ({article_count} deep-dive articles, threshold met)")
+    _review_model_used = POLISH_MODEL
+    return POLISH_MODEL
 
 # Music files
 INTRO_MUSIC = SCRIPT_DIR / "cariboo-signals-intro.mp3"
@@ -574,10 +620,11 @@ def run_realtime_polish_and_factcheck(script, theme_name, news_articles, deep_di
         verified_sources=verified_sources
     )
 
-    print(f"✨ Running polish+factcheck real-time ({POLISH_MODEL})...")
+    review_model = select_review_model(deep_dive_articles)
+    print(f"✨ Running polish+factcheck real-time...")
     try:
         response = api_retry(lambda: client.messages.create(
-            model=POLISH_MODEL,
+            model=review_model,
             max_tokens=8000,
             messages=[{"role": "user", "content": pf_prompt}]
         ))
@@ -650,9 +697,9 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
         "Return ONLY the JSON object, no other text."
     )
 
+    review_model = select_review_model(deep_dive_articles)
     try:
         print("📦 Submitting post-processing batch (polish+factcheck + debate summary)...")
-        print(f"   Polish+factcheck model: {POLISH_MODEL}")
         print(f"   Debate summary model: {SUMMARY_MODEL}")
 
         batch = client.messages.batches.create(
@@ -660,7 +707,7 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
                 {
                     "custom_id": "polish-and-factcheck",
                     "params": {
-                        "model": POLISH_MODEL,
+                        "model": review_model,
                         "max_tokens": 8000,
                         "messages": [{"role": "user", "content": pf_prompt}]
                     }
@@ -1590,10 +1637,12 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
 
     # Build HTML credits block
     credits = CONFIG['credits']['structured']
+    review_model_label = _review_model_used or POLISH_MODEL
     credits_html = (
         "<p><b>Credits</b><br>"
         f"Theme Song: {credits['theme_song']}<br>"
         f"Content Curation &amp; Script: {credits['content_curation']}<br>"
+        f"Script Review Model: {review_model_label}<br>"
         f"TTS Voices: {credits['text_to_speech']}<br>"
         f"Cover Art: {credits['cover_art']}<br>"
         f"Podcast Coordination: {credits['coordination']}<br>"
@@ -1638,7 +1687,12 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
             "theme": theme_name,
             "title": f"{podcast_config['title']} - {theme_name}",
             "description": episode_description,
-            "generated_at": pacific_now.isoformat()
+            "generated_at": pacific_now.isoformat(),
+            "models": {
+                "script": SCRIPT_MODEL,
+                "review": _review_model_used or POLISH_MODEL,
+                "summary": SUMMARY_MODEL,
+            }
         },
         "segments": {
             "news_roundup": {
