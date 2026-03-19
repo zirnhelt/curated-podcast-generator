@@ -1,24 +1,4 @@
 {
-  "2026-02-26": {
-    "timestamp": 1772111207.694013,
-    "topics": [
-      "[Techzine Global] VAST Data leverages unique market position",
-      "[IndigiNews] Indigenous rights defenders say they\u2019ll \u2018not st",
-      "[Hackaday] Meshtastic Does More Than Simple Communication",
-      "[Engadget] How to send a message via satellite on iPhone",
-      "[Quesnel Cariboo Observer] Cariboo Chilcotin mobile therapy ",
-      "[The Narwhal] B.C. moves at \u2018warp speed\u2019 to change landmark ",
-      "[Resilience.org] Agrihouse at the Venice Architecture Bienna",
-      "[Resilience.org] Black History Month: Land, Power, and the K"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-02-26"
-  },
   "2026-02-27": {
     "timestamp": 1772197210.94416,
     "topics": [
@@ -415,5 +395,25 @@
       "Indigenous tech"
     ],
     "date": "2026-03-18"
+  },
+  "2026-03-19": {
+    "timestamp": 1773925626.773676,
+    "topics": [
+      "[The Guardian Global Development] The Myanmar nurses dodging",
+      "[Nautilus] Did Music Give Rise to Language?",
+      "[TechCrunch] FBI is buying location data to track US citizen",
+      "[TechRadar] Only 9% of global firms are ready to handle AI-d",
+      "[TechCrunch] Patreon CEO calls AI companies\u2019 fair use argume",
+      "[IndigiNews] Tla\u2019amin set to reclaim forest stewardship with",
+      "[Yellowhead Institute] The New Impact Assessment Regime: Coo",
+      "[Williams Lake Tribune] Central Cariboo Islamic Center eyes "
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-03-19"
   }
 }
