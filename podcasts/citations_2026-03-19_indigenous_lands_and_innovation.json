@@ -1,0 +1,408 @@
+{
+  "episode": {
+    "date": "2026-03-19",
+    "formatted_date": "Thursday, March 19, 2026",
+    "theme": "Indigenous Lands & Innovation",
+    "title": "Cariboo Signals - Indigenous Lands & Innovation",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Indigenous Lands & Innovation.</p><p><b>NEWS ROUNDUP:</b> We break down [TechRadar] Only 9% of global firms are ready to handle AI-driven threats, and many are dangerously overconfident and [TechCrunch] Patreon CEO calls AI companies’ fair use argument ‘bogus,’ says creators should be paid, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Deep dive on Indigenous Lands & Innovation Topics include: broadband, fiber, connectivity, telemedicine, renewable energy.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>TechRadar: <a href=\"https://www.techradar.com/pro/security/only-9-percent-of-global-firms-are-ready-to-handle-ai-driven-threats-and-many-are-dangerously-overconfident\">[TechRadar] Only 9% of global firms are ready to handle AI-d...</a></li><li>TechCrunch: <a href=\"https://techcrunch.com/2026/03/18/patreon-ceo-calls-ai-companies-fair-use-argument-bogus-says-creators-should-be-paid/\">[TechCrunch] Patreon CEO calls AI companies’ fair use argume...</a></li><li>Neowin: <a href=\"https://www.neowin.net/news/report-ai-overviews-are-crushing-small-publishers-as-google-search-traffic-drops-60/\">[Neowin] Report: AI Overviews are crushing small publishers,...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/cannabis-compounds-may-reverse-fatty-liver-disease-study-suggests\">[ScienceAlert] Cannabis Compounds May Reverse Fatty Liver Di...</a></li><li>Yellowhead Institute: <a href=\"https://yellowheadinstitute.org/2026/the-new-impact-assessment-regime-cooperation-agreements-the-return-of-provincial-power-discretionary-indigenous-rights/?utm_source=rss&utm_medium=rss&utm_campaign=the-new-impact-assessment-regime-cooperation-agreements-the-return-of-provincial-power-discretionary-indigenous-rights\">[Yellowhead Institute] The New Impact Assessment Regime: Coo...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>The Guardian Global Development: <a href=\"https://www.theguardian.com/global-development/2026/mar/19/the-myanmar-nurses-dodging-drones-to-graduate-from-a-secret-jungle-school\">[The Guardian Global Development] The Myanmar nurses dodging...</a></li><li>Nautilus: <a href=\"https://nautil.us/did-music-give-rise-to-language-1279034/\">[Nautilus] Did Music Give Rise to Language?</a></li><li>TechCrunch: <a href=\"https://techcrunch.com/2026/03/18/fbi-is-buying-location-data-to-track-us-citizens-kash-patel-wyden/\">[TechCrunch] FBI is buying location data to track US citizen...</a></li><li>ZDNet: <a href=\"https://www.zdnet.com/article/most-efficient-portable-power-stations-lab-tested/\">[ZDNet] The hidden metric that makes these portable power st...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/03/18/science/comet-fragments-hubble-telescope.html\">[NYT Top Stories] NASA’s Hubble Telescope Spots Comet K1 Exp...</a></li><li>Boing Boing: <a href=\"https://boingboing.net/2026/03/18/earleaf-an-offline-audiobook-app-built-out-of-frustration.html\">[Boing Boing] Earleaf: an offline audiobook app built out of...</a></li><li>Kottke.org: <a href=\"https://kottke.org/26/03/0048601-birds-in-the-united-state\">[Kottke.org] &#8220;Birds in the United States are not only ...</a></li><li>Quartz: <a href=\"https://qz.com/farmer-mac-ceo-us-agriculture\">[Quartz] Farmer Mac CEO Brad Nordholm discusses state of U.S...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/ai-coding-changing-software-developer-role-2026-3\">[Business Insider] Google developers find that with AI, judg...</a></li><li>Toms Guide: <a href=\"https://www.tomsguide.com/phones/iphones/more-than-220-million-iphones-under-attack-from-new-darksword-exploit-how-to-stay-safe\">[Toms Guide] More than 220 million iPhones under attack from...</a></li><li>How-To Geek: <a href=\"https://www.howtogeek.com/visual-studio-codes-latest-update-is-a-big-deal-for-web-development/\">[How-To Geek] Visual Studio Code's latest update is a big de...</a></li><li>Engadget: <a href=\"https://www.engadget.com/science/space/hubble-catches-rare-view-of-a-comet-crumbling-185817544.html?src=rss\">[Engadget] Hubble catches rare view of a comet crumbling</a></li><li>IndigiNews: <a href=\"https://indiginews.com/news/tlaamin-reclaims-forest-stewardship-logging-licence/\">[IndigiNews] Tla’amin set to reclaim forest stewardship with...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/18/central-cariboo-islamic-center-eyes-new-land-for-regions-first-mosque/\">[Williams Lake Tribune] Central Cariboo Islamic Center eyes ...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-03-19T06:07:06.755743-07:00"
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[The Guardian Global Development] The Myanmar nurses dodging drones to graduate from a secret jungle school",
+          "url": "https://www.theguardian.com/global-development/2026/mar/19/the-myanmar-nurses-dodging-drones-to-graduate-from-a-secret-jungle-school",
+          "source": "The Guardian Global Development",
+          "ai_score": 0,
+          "date_published": "2026-03-19T05:00:58+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] Did Music Give Rise to Language?",
+          "url": "https://nautil.us/did-music-give-rise-to-language-1279034/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-03-18T19:00:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechCrunch] FBI is buying location data to track US citizens, director confirms",
+          "url": "https://techcrunch.com/2026/03/18/fbi-is-buying-location-data-to-track-us-citizens-kash-patel-wyden/",
+          "source": "TechCrunch",
+          "ai_score": 0,
+          "date_published": "2026-03-18T18:32:32+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Only 9% of global firms are ready to handle AI-driven threats, and many are dangerously overconfident",
+          "url": "https://www.techradar.com/pro/security/only-9-percent-of-global-firms-are-ready-to-handle-ai-driven-threats-and-many-are-dangerously-overconfident",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-18T18:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[TechCrunch] Patreon CEO calls AI companies’ fair use argument ‘bogus,’ says creators should be paid",
+          "url": "https://techcrunch.com/2026/03/18/patreon-ceo-calls-ai-companies-fair-use-argument-bogus-says-creators-should-be-paid/",
+          "source": "TechCrunch",
+          "ai_score": 0,
+          "date_published": "2026-03-18T17:54:31+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[ZDNet] The hidden metric that makes these portable power stations truly worth your money",
+          "url": "https://www.zdnet.com/article/most-efficient-portable-power-stations-lab-tested/",
+          "source": "ZDNet",
+          "ai_score": 0,
+          "date_published": "2026-03-19T01:30:45+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] NASA’s Hubble Telescope Spots Comet K1 Exploding Into Fragments",
+          "url": "https://www.nytimes.com/2026/03/18/science/comet-fragments-hubble-telescope.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-03-18T22:48:08+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] Earleaf: an offline audiobook app built out of frustration",
+          "url": "https://boingboing.net/2026/03/18/earleaf-an-offline-audiobook-app-built-out-of-frustration.html",
+          "source": "Boing Boing",
+          "ai_score": 0,
+          "date_published": "2026-03-18T22:09:06+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Kottke.org] &#8220;Birds in the United States are not only declining,...",
+          "url": "https://kottke.org/26/03/0048601-birds-in-the-united-state",
+          "source": "Kottke.org",
+          "ai_score": 0,
+          "date_published": "2026-03-18T21:25:19+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] Farmer Mac CEO Brad Nordholm discusses state of U.S. agriculture",
+          "url": "https://qz.com/farmer-mac-ceo-us-agriculture",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-03-18T21:09:22+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] Google developers find that with AI, judgment is more important than JavaScript",
+          "url": "https://www.businessinsider.com/ai-coding-changing-software-developer-role-2026-3",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-03-18T21:05:46+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] More than 220 million iPhones under attack from new DarkSword exploit — how to stay safe",
+          "url": "https://www.tomsguide.com/phones/iphones/more-than-220-million-iphones-under-attack-from-new-darksword-exploit-how-to-stay-safe",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-03-18T20:11:33+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Neowin] Report: AI Overviews are crushing small publishers, as Google search traffic drops 60%",
+          "url": "https://www.neowin.net/news/report-ai-overviews-are-crushing-small-publishers-as-google-search-traffic-drops-60/",
+          "source": "Neowin",
+          "ai_score": 0,
+          "date_published": "2026-03-18T19:16:01+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[How-To Geek] Visual Studio Code's latest update is a big deal for web development",
+          "url": "https://www.howtogeek.com/visual-studio-codes-latest-update-is-a-big-deal-for-web-development/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-18T19:12:31+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Engadget] Hubble catches rare view of a comet crumbling",
+          "url": "https://www.engadget.com/science/space/hubble-catches-rare-view-of-a-comet-crumbling-185817544.html?src=rss",
+          "source": "Engadget",
+          "ai_score": 0,
+          "date_published": "2026-03-18T18:58:17+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[STAT News] More than 150,000 uncounted Covid-19 deaths occurred early in the pandemic, a study finds",
+          "url": "https://www.statnews.com/2026/03/18/study-finds-150000-uncounted-covid-19-deaths-early-pandemic/?utm_campaign=rss",
+          "source": "STAT News",
+          "ai_score": 0,
+          "date_published": "2026-03-18T18:36:43+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Avalanche risk high in parts of B.C., Alberta, Yukon",
+          "url": "https://quesnelobserver.com/2026/03/18/avalanche-risk-high-in-parts-of-b-c-alberta-yukon/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-03-18T18:11:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] Why Walmart and OpenAI Are Shaking Up Their Agentic Shopping Deal",
+          "url": "https://www.wired.com/story/ai-lab-walmart-openai-shaking-up-agentic-shopping-deal/",
+          "source": "WIRED",
+          "ai_score": 0,
+          "date_published": "2026-03-18T18:01:18+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Kottke.org] What does it feel like to be struck by lightning?...",
+          "url": "https://kottke.org/26/03/0048576-what-does-it-feel-like",
+          "source": "Kottke.org",
+          "ai_score": 0,
+          "date_published": "2026-03-18T17:12:54+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Okanagan-based petition supports interprovincial wine trade bill",
+          "url": "https://wltribune.com/2026/03/18/okanagan-based-petition-supports-interprovincial-wine-trade-bill/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-18T17:11:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] Val Kilmer is starring in a new film, even though he died last year — here’s how AI made it possible",
+          "url": "https://www.tomsguide.com/ai/val-kilmer-is-starring-in-a-new-film-even-though-he-died-last-year-heres-how-ai-made-it-possible",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-03-18T17:00:28+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Teardown of a 2026 LEGO SMART Brick",
+          "url": "https://hackaday.com/2026/03/18/teardown-of-a-2026-lego-smart-brick/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-19T05:00:48+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Cannabis Compounds May Reverse Fatty Liver Disease, Study Suggests",
+          "url": "https://www.sciencealert.com/cannabis-compounds-may-reverse-fatty-liver-disease-study-suggests",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-19T04:03:15+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Hackaday] DIY Reflow Plate Runs On USB Power Delivery",
+          "url": "https://hackaday.com/2026/03/18/diy-reflow-plate-runs-on-usb-power-delivery/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-19T02:00:07+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] What Is 'Eye Stroke'? Expert Explains The Rare Wegovy Risk",
+          "url": "https://www.sciencealert.com/what-is-eye-stroke-expert-explains-the-rare-wegovy-risk",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-19T01:35:48+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] This is why I keep buying ESP32 boards instead of more smart home gadgets",
+          "url": "https://www.xda-developers.com/why-keep-buying-esp32-boards-instead-more-smart-home-gadgets/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-19T00:01:22+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] Used enterprise SSDs are the best storage deal in 2026 if you know which ones to avoid",
+          "url": "https://www.xda-developers.com/used-enterprise-ssds-are-the-best-storage-deal-in-2026/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-18T23:01:22+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Running Windows 98 on the iPAQ IA-2 Internet Appliance",
+          "url": "https://hackaday.com/2026/03/18/running-windows-98-on-the-ipaq-ia-2-internet-appliance/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-18T23:00:31+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] Don't make this common beginner's 3D printing mistake",
+          "url": "https://www.howtogeek.com/dont-make-this-common-beginners-3d-printing-mistake/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-18T22:00:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] This app turns Plex into a streamlined self-hosted live TV platform",
+          "url": "https://www.xda-developers.com/coax-app-turns-plex-into-streamlined-self-hosted-live-tv-platform/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-18T21:03:17+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] The best thing I ever added to my 3D printer wasn't a better nozzle",
+          "url": "https://www.xda-developers.com/best-thing-ever-added-3d-printer-wasnt-better-nozzle/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-18T21:01:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Repurposing Old AMD APUs For AI Work",
+          "url": "https://hackaday.com/2026/03/18/repurposing-old-amd-apus-for-ai-work/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-18T20:00:58+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[CNET] I Tried Internxt, an Encrypted, Secure Cloud Storage Built for the Post-Quantum Era",
+          "url": "https://www.cnet.com/tech/services-and-software/i-tried-internxt-an-encrypted-secure-cloud-storage-built-for-the-post-quantum-era/",
+          "source": "CNET",
+          "ai_score": 0,
+          "date_published": "2026-03-18T19:26:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] I tried Asus’ new AI-powered Wi-Fi 7 gaming router and it gave me gigabit speeds at 50 feet away",
+          "url": "https://www.tomsguide.com/computing/routers/asus-rog-rapture-gt-be19000ai-review",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-03-18T18:51:32+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] FLOSS Weekly Episode 866: BreezyBox and Embedded Compilers",
+          "url": "https://hackaday.com/2026/03/18/floss-weekly-episode-866-breezybox-and-embedded-compilers/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-18T18:30:53+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] 4 obscure Linux apps I use all the time",
+          "url": "https://www.howtogeek.com/4-obscure-linux-apps-i-use-all-the-time/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-18T18:05:17+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] “Whiplash”: Heart Attack and Stroke Risk Jumps When People Stop Taking GLP-1s",
+          "url": "https://nautil.us/whiplash-heart-attack-and-stroke-risk-jumps-when-people-stop-taking-glp-1s-1279029/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-03-18T17:19:47+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Indigenous Lands & Innovation",
+      "articles": [
+        {
+          "title": "[IndigiNews] Tla’amin set to reclaim forest stewardship with $80M logging licence deal: ‘A generational opportunity’",
+          "url": "https://indiginews.com/news/tlaamin-reclaims-forest-stewardship-logging-licence/",
+          "source": "IndigiNews",
+          "ai_score": 0,
+          "date_published": "2026-03-18T15:07:25+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Yellowhead Institute] The New Impact Assessment Regime: Cooperation Agreements, the Return of Provincial Power & Discretionary Indigenous Rights",
+          "url": "https://yellowheadinstitute.org/2026/the-new-impact-assessment-regime-cooperation-agreements-the-return-of-provincial-power-discretionary-indigenous-rights/?utm_source=rss&utm_medium=rss&utm_campaign=the-new-impact-assessment-regime-cooperation-agreements-the-return-of-provincial-power-discretionary-indigenous-rights",
+          "source": "Yellowhead Institute",
+          "ai_score": 0,
+          "date_published": "2026-03-17T14:16:44+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Central Cariboo Islamic Center eyes new land for region’s first mosque",
+          "url": "https://wltribune.com/2026/03/18/central-cariboo-islamic-center-eyes-new-land-for-regions-first-mosque/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-19T05:40:49.555287+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Deep dive on Indigenous Lands & Innovation",
+        "topics_covered": [
+          "broadband",
+          "fiber",
+          "connectivity",
+          "telemedicine",
+          "renewable energy"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
