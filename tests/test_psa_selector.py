@@ -290,12 +290,12 @@ class TestRoundRobinSelect:
         """An org aired within the cooldown window should be skipped."""
         roster = [("a", {"name": "A"}), ("b", {"name": "B"})]
         today = date(2026, 2, 17)
-        six_days_ago = date(2026, 2, 11)  # 6 days ago — within cooldown (< 7)
+        twenty_seven_days_ago = date(2026, 1, 21)  # 27 days ago — within cooldown (< 28)
         state = {
             "rotation": {"4": 1},  # last picked was "b" at index 1
-            "last_aired": {"a": six_days_ago.isoformat()},
+            "last_aired": {"a": twenty_seven_days_ago.isoformat()},
         }
-        # Next in rotation would be "a", but it aired only 6 days ago
+        # Next in rotation would be "a", but it aired only 27 days ago
         org_id, _, _ = round_robin_select(4, roster, state, today, min_days=MIN_DAYS_BETWEEN_REPEATS)
         assert org_id == "b"  # should skip "a" and pick "b"
 
@@ -303,13 +303,13 @@ class TestRoundRobinSelect:
         """An org aired exactly min_days ago is eligible again."""
         roster = [("a", {"name": "A"}), ("b", {"name": "B"})]
         today = date(2026, 2, 17)
-        seven_days_ago = date(2026, 2, 10)  # exactly 7 days ago — cooldown lifted
+        twenty_eight_days_ago = date(2026, 1, 20)  # exactly 28 days ago — cooldown lifted
         state = {
             "rotation": {"4": 1},
-            "last_aired": {"a": seven_days_ago.isoformat()},
+            "last_aired": {"a": twenty_eight_days_ago.isoformat()},
         }
         org_id, _, _ = round_robin_select(4, roster, state, today, min_days=MIN_DAYS_BETWEEN_REPEATS)
-        assert org_id == "a"  # "a" is back in rotation after 7 days
+        assert org_id == "a"  # "a" is back in rotation after 28 days
 
 
 # --- select_psa (integration) ---
