@@ -1,0 +1,413 @@
+{
+  "episode": {
+    "date": "2026-03-20",
+    "formatted_date": "Friday, March 20, 2026",
+    "theme": "Wild Spaces & Outdoor Life",
+    "title": "Cariboo Signals - Wild Spaces & Outdoor Life",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Wild Spaces & Outdoor Life.</p><p><b>NEWS ROUNDUP:</b> We break down [Williams Lake Tribune] Fishing photos needed for 2026 Gateway fishing guide and [ScienceAlert] Something Else Used to Drive Climate Changes, Ancient Ice Cores Reveal, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Deep dive on Wild Spaces & Outdoor Life Topics include: satellite, AI, infrastructure, maintenance, funding.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/19/fishing-photos-needed-for-2026-gateway-fishing-guide/\">[Williams Lake Tribune] Fishing photos needed for 2026 Gatew...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/something-else-used-to-drive-climate-changes-ancient-ice-cores-reveal\">[ScienceAlert] Something Else Used to Drive Climate Changes,...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/19/spill-containment-and-cleanup-underway-after-train-derailment-near-prince-rupert/\">[Williams Lake Tribune] Spill containment and cleanup underw...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/03/17/weather/weird-weather-march-heat-snow-tornado.html\">[NYT Top Stories] Why March Weather Is Weird: Snow, Tornadoe...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/19/south-cariboo-woman-helps-document-the-2025-canadian-1052-ufo-sightings/\">[Williams Lake Tribune] South Cariboo woman helps document 2...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/this-nas-makes-it-easy-to-move-away-from-the-cloud/\">[XDA Developers] Your first NAS doesn't need to be expensive...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/17/ubc-study-shows-artificial-turf-fields-pose-lethal-chemical-threat-to-coho-salmon/\">[Williams Lake Tribune] UBC study shows artificial turf fiel...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/17/more-rain-high-streamflows-in-the-forecast-for-coastal-b-c-until-friday/\">[Williams Lake Tribune] More rain, high streamflows in the f...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/19/bringing-the-heat-7-temperature-records-broken-in-okanagan-cariboo/\">[Williams Lake Tribune] Bringing the heat: 7 temperature rec...</a></li><li>The Narwhal: <a href=\"https://thenarwhal.ca/bc-atmospheric-river-flooding-risk-2026/\">[The Narwhal] Why B.C. is flooding — again</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/03/17/science/birds-honeyeater-birdsong-conservation.html\">[NYT Top Stories] How To Bring a Bird’s Song Back from the E...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/18/barriere-to-use-vacant-lot-to-show-firesmarting-can-be-beautiful/\">[Williams Lake Tribune] Barriere to use vacant lot to show F...</a></li><li>Gizmodo: <a href=\"https://gizmodo.com/scientists-built-tiny-portable-atomic-clocks-and-naturally-theyre-headed-for-drones-2000735592\">[Gizmodo] Scientists Built Tiny, Portable Atomic Clocks—and ...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/18/firefighters-tackle-blaze-at-hungry-hiker-cafe-in-clearwater/\">[Williams Lake Tribune] Firefighters tackle blaze at Hungry ...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/18/pep-air-volunteers-dedicate-time-so-that-others-may-live-across-b-c/\">[Williams Lake Tribune] PEP Air volunteers dedicate time so ...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/03/20/Mining-Created-BC-Town-Opposes-New-Project/\">[The Tyee] Mining Created This BC Town. Now It Opposes a New...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/03/20/Public-Transit-Expansion-Plans-Shelved-BC/\">[The Tyee] Public Transit Expansion Plans Shelved Across BC</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/19/williams-lake-advocate-earns-provincial-recognition-for-housing-work/\">[Williams Lake Tribune] Williams Lake advocate earns provinc...</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/features/2026/3/20/why-pakistani-farmers-are-suing-two-german-companies-for-deadly-2022-floods?traffic_source=rss\">[Al Jazeera English] Why Pakistani farmers are suing two Ger...</a></li><li>TechRadar: <a href=\"https://www.techradar.com/pro/nvidias-earth-2-models-want-to-change-weather-forecasting-for-ever\">[TechRadar] Nvidia's Earth-2 models, including 'climate in a...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/17/b-c-riders-soar-to-podium-in-revelstoke-at-world-backcountry-snowboard-finals/\">[Williams Lake Tribune] B.C. riders soar to podium in Revels...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-20250514<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-03-20T06:03:26.892029-07:00",
+    "models": {
+      "script": "claude-sonnet-4-20250514",
+      "review": "claude-sonnet-4-20250514",
+      "summary": "claude-3-5-haiku-20241022"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Fishing photos needed for 2026 Gateway fishing guide",
+          "url": "https://wltribune.com/2026/03/19/fishing-photos-needed-for-2026-gateway-fishing-guide/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-19T14:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[ScienceAlert] Something Else Used to Drive Climate Changes, Ancient Ice Cores Reveal",
+          "url": "https://www.sciencealert.com/something-else-used-to-drive-climate-changes-ancient-ice-cores-reveal",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-18T16:00:01+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] More rain, high streamflows in the forecast for coastal B.C. until Friday",
+          "url": "https://wltribune.com/2026/03/17/more-rain-high-streamflows-in-the-forecast-for-coastal-b-c-until-friday/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-17T15:14:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Bringing the heat: 7 temperature records broken in Okanagan, Cariboo",
+          "url": "https://wltribune.com/2026/03/19/bringing-the-heat-7-temperature-records-broken-in-okanagan-cariboo/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-20T05:32:57.737167+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Narwhal] Why B.C. is flooding — again",
+          "url": "https://thenarwhal.ca/bc-atmospheric-river-flooding-risk-2026/",
+          "source": "The Narwhal",
+          "ai_score": 0,
+          "date_published": "2026-03-19T19:13:17+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] How To Bring a Bird’s Song Back from the Edge of Extinction",
+          "url": "https://www.nytimes.com/2026/03/17/science/birds-honeyeater-birdsong-conservation.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-03-17T09:01:26+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Spill containment and cleanup underway after train derailment near Prince Rupert",
+          "url": "https://wltribune.com/2026/03/19/spill-containment-and-cleanup-underway-after-train-derailment-near-prince-rupert/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-19T15:33:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[NYT Top Stories] Why March Weather Is Weird: Snow, Tornadoes, Recording-Breaking Heat and More",
+          "url": "https://www.nytimes.com/2026/03/17/weather/weird-weather-march-heat-snow-tornado.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-03-17T09:03:43+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] South Cariboo woman helps document 2025’s 1,052 Canadian UFO sightings",
+          "url": "https://wltribune.com/2026/03/19/south-cariboo-woman-helps-document-the-2025-canadian-1052-ufo-sightings/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-19T12:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Barriere to use vacant lot to show FireSmarting can be beautiful",
+          "url": "https://wltribune.com/2026/03/18/barriere-to-use-vacant-lot-to-show-firesmarting-can-be-beautiful/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-18T16:33:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Gizmodo] Scientists Built Tiny, Portable Atomic Clocks—and Naturally, They’re Headed for Drones",
+          "url": "https://gizmodo.com/scientists-built-tiny-portable-atomic-clocks-and-naturally-theyre-headed-for-drones-2000735592",
+          "source": "Gizmodo",
+          "ai_score": 0,
+          "date_published": "2026-03-19T20:15:39+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Firefighters tackle blaze at Hungry Hiker Cafe in Clearwater",
+          "url": "https://wltribune.com/2026/03/18/firefighters-tackle-blaze-at-hungry-hiker-cafe-in-clearwater/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-18T13:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] PEP Air volunteers dedicate time so ‘that others may live’ across B.C.",
+          "url": "https://wltribune.com/2026/03/18/pep-air-volunteers-dedicate-time-so-that-others-may-live-across-b-c/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-18T05:45:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Tyee] Mining Created This BC Town. Now It Opposes a New Project",
+          "url": "https://thetyee.ca/News/2026/03/20/Mining-Created-BC-Town-Opposes-New-Project/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-03-20T07:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Tyee] Public Transit Expansion Plans Shelved Across BC",
+          "url": "https://thetyee.ca/News/2026/03/20/Public-Transit-Expansion-Plans-Shelved-BC/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-03-20T07:20:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Williams Lake advocate earns provincial recognition for housing work",
+          "url": "https://wltribune.com/2026/03/19/williams-lake-advocate-earns-provincial-recognition-for-housing-work/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-20T05:32:57.737140+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] Why Pakistani farmers are suing two German companies for deadly 2022 floods",
+          "url": "https://www.aljazeera.com/features/2026/3/20/why-pakistani-farmers-are-suing-two-german-companies-for-deadly-2022-floods?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 0,
+          "date_published": "2026-03-20T04:22:09+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] This Infamous Radioactive 'Tomb' Is Leaking, And Experts Are Worried",
+          "url": "https://www.sciencealert.com/this-infamous-radioactive-tomb-is-leaking-and-experts-are-worried",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-20T02:57:04+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Studying a Battle Born LFP Battery’s Death Under Controlled Conditions",
+          "url": "https://hackaday.com/2026/03/19/studying-a-battle-born-lfp-batterys-death-under-controlled-conditions/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-20T02:00:12+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[100 Mile Free Press] MISHA’S MUSINGS: We will meet again",
+          "url": "https://100milefreepress.net/2026/03/19/mishas-musings-we-will-meet-again/",
+          "source": "100 Mile Free Press",
+          "ai_score": 0,
+          "date_published": "2026-03-20T00:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[100 Mile Free Press] FORSTER: Mountain Spruce Community Centre shed lost in early morning fire",
+          "url": "https://100milefreepress.net/2026/03/19/forster-mountain-spruce-community-centre-shed-lost-in-early-morning-fire/",
+          "source": "100 Mile Free Press",
+          "ai_score": 0,
+          "date_published": "2026-03-20T00:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[100 Mile Free Press] 100 Mile House emergency room to be closed all day Friday, March 20",
+          "url": "https://100milefreepress.net/2026/03/19/100-mile-house-emergency-room-to-be-closed-all-day-friday-march-20/",
+          "source": "100 Mile Free Press",
+          "ai_score": 0,
+          "date_published": "2026-03-19T23:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] Ingeniously prepped pop-up 4x4 camper wagon knows no bounds",
+          "url": "https://newatlas.com/rvs-motorhomes/storyteller-grand-bohemian-4x4-micro-camper/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-03-19T22:04:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Retro Weather Display Acts Like It’s Windows 95",
+          "url": "https://hackaday.com/2026/03/19/retro-weather-display-acts-like-its-windows-95/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-19T20:00:46+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Recording HDR Video With A Raspberry Pi",
+          "url": "https://hackaday.com/2026/03/19/recording-hdr-video-with-a-raspberry-pi/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-20T05:00:39+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Tyee] How a Veteran Firefighter Battled WorkSafeBC for Treatment",
+          "url": "https://thetyee.ca/News/2026/03/13/Vancouver-Firefighter-Battled-WorkSafeBC-Treatment/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-03-13T07:40:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Tyee] Computers Came for Our Jobs Before. How Will AI?",
+          "url": "https://thetyee.ca/News/2026/03/20/Computers-Came-Jobs-Before-How-Will-AI/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-03-20T07:40:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] Instant, real-time video AI is now upon us, for better and worse",
+          "url": "https://newatlas.com/ai-humanoids/runway-real-time-ai-video/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-03-20T05:03:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] Mark Cuban says he thinks the humanoid robot push will fail in 5 to 10 years",
+          "url": "https://www.businessinsider.com/mark-cuban-humanoid-robotics-will-fail-robots-houses-codesigned-2026-3",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-03-20T04:18:01+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] Jensen Huang says he will be 'deeply alarmed' if his $500,000 engineer did not consume at least $250,000 of tokens",
+          "url": "https://www.businessinsider.com/jensen-huang-500k-engineers-250k-ai-tokens-nvidia-compute-2026-3",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-03-20T04:03:14+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] Hyundai's Motional wants to deploy robotaxis at lower costs. Here are 5 takeaways from our chat with the CEO.",
+          "url": "https://www.businessinsider.com/hyundai-motional-robotaxi-uber-partnership-ceo-laura-major-interview-2026-3",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-03-20T04:02:01+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Krebs on Security] Feds Disrupt IoT Botnets Behind Huge DDoS Attacks",
+          "url": "https://krebsonsecurity.com/2026/03/feds-disrupt-iot-botnets-behind-huge-ddos-attacks/",
+          "source": "Krebs on Security",
+          "ai_score": 0,
+          "date_published": "2026-03-20T00:49:19+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] Uber gave up on driverless cars. Now it's paying the price.",
+          "url": "https://www.businessinsider.com/uber-autonomous-vehicles-driverless-cancelled-project-catching-up-waymo-tesla-2026-3",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-03-20T00:09:49+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] US Takes Down Botnets Used in Record-Breaking Cyberattacks",
+          "url": "https://www.wired.com/story/us-takes-down-botnets-used-in-record-breaking-cyberattacks/",
+          "source": "WIRED",
+          "ai_score": 0,
+          "date_published": "2026-03-20T00:07:30+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] Your first NAS doesn't need to be expensive, and here's the one I'd actually buy",
+          "url": "https://www.xda-developers.com/this-nas-makes-it-easy-to-move-away-from-the-cloud/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-19T23:50:24+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[NYT Top Stories] Jeff Bezos in Talks to Raise $100 Billion Fund to Transform Companies With A.I.",
+          "url": "https://www.nytimes.com/2026/03/19/technology/jeff-bezos-ai-fund-project-prometheus.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-03-19T23:48:08+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Real Robot Makes Debut in Programming Game",
+          "url": "https://hackaday.com/2026/03/19/real-robot-makes-debut-in-programming-game/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-19T23:00:17+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Wild Spaces & Outdoor Life",
+      "articles": [
+        {
+          "title": "[TechRadar] Nvidia's Earth-2 models, including 'climate in a bottle', want to change weather forecasting for everyone across the world",
+          "url": "https://www.techradar.com/pro/nvidias-earth-2-models-want-to-change-weather-forecasting-for-ever",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-19T17:05:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] UBC study shows artificial turf fields pose lethal chemical threat to coho salmon",
+          "url": "https://wltribune.com/2026/03/17/ubc-study-shows-artificial-turf-fields-pose-lethal-chemical-threat-to-coho-salmon/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-17T14:32:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] B.C. riders soar to podium in Revelstoke at world backcountry snowboard finals",
+          "url": "https://wltribune.com/2026/03/17/b-c-riders-soar-to-podium-in-revelstoke-at-world-backcountry-snowboard-finals/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-17T05:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Deep dive on Wild Spaces & Outdoor Life",
+        "topics_covered": [
+          "satellite",
+          "AI",
+          "infrastructure",
+          "maintenance",
+          "funding"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
