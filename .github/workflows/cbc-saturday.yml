@@ -17,6 +17,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   generate-cbc-saturday:
@@ -40,6 +42,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install boto3
 
       - name: Generate CBC Saturday Morning show
         env:
@@ -61,19 +64,65 @@ jobs:
           echo "Generated files:"
           ls -lh podcasts/cbc_saturday_*.mp3 2>/dev/null || echo "No output file found"
 
-      - name: Commit generated show
-        if: ${{ inputs.dry_run != 'true' }}
+      - name: Generate RSS feed
+        env:
+          PODCAST_BASE_URL: https://podcast.cariboosignals.ca/
+        run: python generate_cbc_saturday_feed.py
+
+      - name: Commit generated show and feed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           git add podcasts/cbc_saturday_*.mp3 || echo "No audio file to stage"
           git add podcasts/.music_cache/ || true
+          git add cbc-saturday-feed.xml || true
 
           git diff --quiet && git diff --staged --quiet \
             || git commit -m "CBC Saturday show - $(TZ='America/Vancouver' date '+%Y-%m-%d')"
+          git pull --rebase origin main
           git push
         continue-on-error: true
+
+      - name: Sync to Cloudflare R2
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_ENDPOINT_URL: https://${{ secrets.CF_ACCOUNT_ID }}.r2.cloudflarestorage.com
+        run: |
+          BUCKET="cariboo-signals"
+          echo "Syncing CBC Saturday content to R2..."
+
+          aws s3 cp cbc-saturday-feed.xml "s3://${BUCKET}/cbc-saturday-feed.xml" \
+            --content-type "application/rss+xml" \
+            --cache-control "no-cache"
+
+          for f in podcasts/cbc_saturday_*.mp3; do
+            [ -f "$f" ] && echo "  uploading $f" && \
+              aws s3 cp "$f" "s3://${BUCKET}/${f}" --content-type "audio/mpeg"
+          done
+
+          echo "R2 sync complete"
+        continue-on-error: true
+
+      - name: Prepare output for GitHub Pages
+        run: |
+          mkdir -p output/podcasts
+
+          cp podcasts/cbc_saturday_*.mp3 output/podcasts/ 2>/dev/null || true
+          cp cbc-saturday-feed.xml output/ 2>/dev/null || true
+
+          echo "Output:"
+          ls -lh output/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output
+          publish_branch: gh-pages
+          keep_files: true
+          commit_message: "cbc-saturday: deploy show ${{ github.run_id }}"
 
       - name: Upload show as artifact
         if: ${{ inputs.dry_run != 'true' }}
