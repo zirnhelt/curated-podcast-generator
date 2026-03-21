@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+<channel>
+<title>CBC Saturday Morning — Cariboo Mix</title>
+<link>https://podcast.cariboosignals.ca/</link>
+<language>en-ca</language>
+<description>A curated Saturday morning radio experience drawn from CBC podcasts (World Report, BC Today, Kamloops News, q, Unreserved), with Canadian indie music transitions from Jamendo. Assembled automatically each Saturday for the Cariboo region of BC.</description>
+<itunes:author>Cariboo Signals</itunes:author>
+<itunes:summary>A curated Saturday morning radio experience drawn from CBC podcasts (World Report, BC Today, Kamloops News, q, Unreserved), with Canadian indie music transitions from Jamendo. Assembled automatically each Saturday for the Cariboo region of BC.</itunes:summary>
+<atom:link href="https://podcast.cariboosignals.ca/cbc-saturday-feed.xml" rel="self" type="application/rss+xml" xmlns:atom="http://www.w3.org/2005/Atom"/>
+<itunes:explicit>false</itunes:explicit>
+<itunes:type>episodic</itunes:type>
+<itunes:category text="News"/>
+<lastBuildDate>Sat, 21 Mar 2026 23:49:13 GMT</lastBuildDate>
+</channel>
+</rss>
