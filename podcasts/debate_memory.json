@@ -512,5 +512,18 @@
       "maintenance",
       "funding"
     ]
+  },
+  "2026-03-21": {
+    "timestamp": 1774097441.004625,
+    "date": "2026-03-21",
+    "theme": "Cariboo Voices & Local News",
+    "central_question": "Deep dive on Cariboo Voices & Local News",
+    "topics_covered": [
+      "broadband",
+      "data sovereignty",
+      "AI",
+      "digital divide",
+      "infrastructure"
+    ]
   }
 }
