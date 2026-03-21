@@ -1,4 +1,4 @@
-name: CBC Saturday Morning Show
+name: Cariboo Saturday Morning Show
 
 on:
   schedule:
@@ -44,11 +44,11 @@ jobs:
           pip install -r requirements.txt
           pip install boto3
 
-      - name: Generate CBC Saturday Morning show
+      - name: Generate Cariboo Saturday Morning show
         env:
           JAMENDO_CLIENT_ID: ${{ secrets.JAMENDO_CLIENT_ID }}
         run: |
-          echo "=== CBC Saturday Morning Generator ==="
+          echo "=== Cariboo Saturday Morning Generator ==="
           echo "Run date: $(TZ='America/Vancouver' date)"
           echo "Dry run: ${{ inputs.dry_run || 'false' }}"
 
@@ -79,7 +79,7 @@ jobs:
           git add cbc-saturday-feed.xml || true
 
           git diff --quiet && git diff --staged --quiet \
-            || git commit -m "CBC Saturday show - $(TZ='America/Vancouver' date '+%Y-%m-%d')"
+            || git commit -m "Cariboo Saturday show - $(TZ='America/Vancouver' date '+%Y-%m-%d')"
           git pull --rebase origin main
           git push
         continue-on-error: true
@@ -91,7 +91,7 @@ jobs:
           AWS_ENDPOINT_URL: https://${{ secrets.CF_ACCOUNT_ID }}.r2.cloudflarestorage.com
         run: |
           BUCKET="cariboo-signals"
-          echo "Syncing CBC Saturday content to R2..."
+          echo "Syncing Cariboo Saturday content to R2..."
 
           aws s3 cp cbc-saturday-feed.xml "s3://${BUCKET}/cbc-saturday-feed.xml" \
             --content-type "application/rss+xml" \

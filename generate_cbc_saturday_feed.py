@@ -22,7 +22,7 @@ PODCASTS_DIR = SCRIPT_DIR / "podcasts"
 FEED_FILE = SCRIPT_DIR / "cbc-saturday-feed.xml"
 
 FEED_CONFIG = {
-    "title": "CBC Saturday Morning — Cariboo Mix",
+    "title": "Cariboo Saturday Morning — Cariboo Mix",
     "description": (
         "A curated Saturday morning radio experience drawn from CBC podcasts "
         "(World Report, BC Today, Kamloops News, q, Unreserved), "
@@ -57,10 +57,10 @@ def generate_feed(base_url: str) -> None:
                 hour=16, tzinfo=timezone.utc
             )
             pub_date = dt.strftime("%a, %d %b %Y %H:%M:%S GMT")
-            title = f"CBC Saturday Morning — {dt.strftime('%B %-d, %Y')}"
+            title = f"Cariboo Saturday Morning — {dt.strftime('%B %-d, %Y')}"
         except ValueError:
             pub_date = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S GMT")
-            title = f"CBC Saturday Morning — {stem}"
+            title = f"Cariboo Saturday Morning — {stem}"
 
         size = mp3.stat().st_size
         url = f"{base_url}podcasts/{mp3.name}"
