@@ -1,0 +1,85 @@
+name: CBC Saturday Morning Show
+
+on:
+  schedule:
+    # Every Saturday at 8:00 AM Pacific Time
+    # 8:00 AM PST = 16:00 UTC (Nov–Mar)
+    # 8:00 AM PDT = 15:00 UTC (Mar–Nov)
+    # Using 16:00 UTC year-round (will run at 9 AM in PDT summer)
+    - cron: '0 16 * * 6'
+  workflow_dispatch:   # Manual trigger from GitHub Actions UI
+    inputs:
+      dry_run:
+        description: 'Dry run only (check feeds, no download/assembly)'
+        required: false
+        default: 'false'
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  generate-cbc-saturday:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Generate CBC Saturday Morning show
+        env:
+          FMA_API_KEY: ${{ secrets.FMA_API_KEY }}
+        run: |
+          echo "=== CBC Saturday Morning Generator ==="
+          echo "Run date: $(TZ='America/Vancouver' date)"
+          echo "Dry run: ${{ inputs.dry_run || 'false' }}"
+
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            python cbc_saturday.py --dry-run
+          else
+            python cbc_saturday.py
+          fi
+
+      - name: List output file
+        if: ${{ inputs.dry_run != 'true' }}
+        run: |
+          echo "Generated files:"
+          ls -lh podcasts/cbc_saturday_*.mp3 2>/dev/null || echo "No output file found"
+
+      - name: Commit generated show
+        if: ${{ inputs.dry_run != 'true' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add podcasts/cbc_saturday_*.mp3 || echo "No audio file to stage"
+          git add podcasts/.music_cache/ || true
+
+          git diff --quiet && git diff --staged --quiet \
+            || git commit -m "CBC Saturday show - $(TZ='America/Vancouver' date '+%Y-%m-%d')"
+          git push
+        continue-on-error: true
+
+      - name: Upload show as artifact
+        if: ${{ inputs.dry_run != 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: cbc-saturday-show
+          path: podcasts/cbc_saturday_*.mp3
+          retention-days: 14
+        if: always()
