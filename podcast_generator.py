@@ -186,7 +186,6 @@ USE_BATCH_API = os.getenv("PODCAST_USE_BATCH", "1") == "1"
 BATCH_POLL_INTERVAL = 10   # seconds between status checks
 BATCH_POLL_TIMEOUT = 1800  # max seconds to wait (30 min — batch API can take >10 min)
 
-# How many days before a normal-priority seed is force-promoted to the deep dive
 # ---------------------------------------------------------------------------
 # Content seeding helpers
 # ---------------------------------------------------------------------------
@@ -2936,12 +2935,16 @@ def main():
             scored_articles, evolving_stories = deduplicate_articles(scored_articles)
             deep_dive_articles = categorize_articles_for_deep_dive(scored_articles, today_weekday)
             # In the fallback path, inject eligible URL seeds directly into deep dive.
-            # Only seeds rated for today's theme (or theme-agnostic) are included.
+            # High-priority seeds are always eligible (bypass theme day filter) so
+            # they appear in the very next episode, as the shortcut advertises.
             if url_seeds:
                 eligible_url_seeds = [
                     s for s in url_seeds
-                    if s.get("best_theme_day") is None or s.get("best_theme_day") == today_weekday
+                    if s.get("priority") == "high"
+                    or s.get("best_theme_day") is None
+                    or s.get("best_theme_day") == today_weekday
                 ]
+                eligible_url_seeds.sort(key=lambda s: 0 if s.get("priority") == "high" else 1)
                 seed_articles = [build_seed_article(s) for s in eligible_url_seeds]
                 deep_dive_articles = seed_articles + deep_dive_articles
                 for a in seed_articles:
@@ -2966,14 +2969,19 @@ def main():
             theme_articles = [a for a in all_feed_articles if a.get('url', '') not in bonus_urls]
             bonus_articles = [a for a in all_feed_articles if a.get('url', '') in bonus_urls]
 
-            # Inject user-seeded URLs rated for today's theme into the article
-            # pool.  Theme-agnostic seeds (no keyword match on any theme) are
-            # always eligible.  Seeds queued for a different day wait their turn.
+            # Inject user-seeded URLs into the article pool.
+            # High-priority seeds are always eligible (bypass theme day filter) so
+            # they appear in the very next episode, as the shortcut advertises.
+            # Theme-agnostic seeds (no keyword match) are also always eligible.
+            # Normal-priority seeds queued for a different day wait their turn.
             if url_seeds:
                 eligible_url_seeds = [
                     s for s in url_seeds
-                    if s.get("best_theme_day") is None or s.get("best_theme_day") == today_weekday
+                    if s.get("priority") == "high"
+                    or s.get("best_theme_day") is None
+                    or s.get("best_theme_day") == today_weekday
                 ]
+                eligible_url_seeds.sort(key=lambda s: 0 if s.get("priority") == "high" else 1)
                 seed_articles = [build_seed_article(s) for s in eligible_url_seeds]
                 # Prepend seeds so select_deep_dive_from_feed sees them first
                 theme_articles = seed_articles + theme_articles
