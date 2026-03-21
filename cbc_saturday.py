@@ -4,7 +4,7 @@ cbc_saturday.py — CBC Saturday Morning Radio Generator
 
 Fetches the latest episodes from configured CBC podcast RSS feeds (prioritising
 news: World Report → BC Today → CBC Kamloops), trims their intros/outros,
-interspersed with short Canadian indie music clips from Free Music Archive,
+interspersed with short Canadian indie music clips from Jamendo,
 and assembles everything into a single MP3 that mimics the CBC Radio 1
 Saturday morning listening experience.
 
@@ -16,7 +16,8 @@ Usage:
     --output    Override output MP3 path.
 
 Environment:
-    FMA_API_KEY   Free Music Archive API key (or set fma_api_key in config).
+    JAMENDO_CLIENT_ID   Jamendo API client ID (or set jamendo_client_id in config).
+                        Register free at https://devportal.jamendo.com
 """
 
 from __future__ import annotations
@@ -168,50 +169,51 @@ def extract_opening_jingle(raw_audio: AudioSegment, jingle_end_ms: int) -> Audio
 # Free Music Archive
 # ---------------------------------------------------------------------------
 
-FMA_API_BASE = "https://freemusicarchive.org/api/get"
+JAMENDO_API_BASE = "https://api.jamendo.com/v3.0"
 
 
-def fetch_fma_tracks(api_key: str, tags: list[str], limit: int = 20) -> list[dict]:
-    """Fetch Canadian indie tracks from Free Music Archive.
+def fetch_jamendo_tracks(client_id: str, tags: list[str], limit: int = 30) -> list[dict]:
+    """Fetch Canadian indie tracks from Jamendo.
 
-    Tries each tag in order (most specific first) and returns the first
-    non-empty result set. Prefers tracks whose metadata mentions Canada.
-    Returns [] on any failure.
+    Queries with location_country=CA to prefer Canadian artists, then falls back
+    to genre tags without the country filter if no results are found.
+    Returns [] on any failure or missing client_id.
     """
-    if not api_key:
+    if not client_id:
+        print("  [INFO] No JAMENDO_CLIENT_ID set — skipping music fetch.")
+        print("         Register free at https://devportal.jamendo.com")
         return []
 
+    url = f"{JAMENDO_API_BASE}/tracks/"
+
     for tag in tags:
-        try:
-            url = f"{FMA_API_BASE}/tracks.json"
+        for country_filter in ["CA", None]:  # try Canadian artists first, then global
             params = {
-                "api_key": api_key,
-                "genre_title": tag,
+                "client_id": client_id,
+                "format": "json",
                 "limit": limit,
-                "page": 1,
+                "fuzzytags": tag,
+                "audiodownload_allowed": "true",
+                "include": "musicinfo",
+                "order": "popularity_week",
             }
-            resp = requests.get(url, params=params, headers=HEADERS, timeout=15)
-            resp.raise_for_status()
-            data = resp.json()
-            tracks = data.get("dataset", [])
-            if not tracks:
-                continue
+            if country_filter:
+                params["location_country"] = country_filter
 
-            # Best-effort: prefer Canadian artists
-            canadian = [
-                t for t in tracks
-                if "canada" in (t.get("artist_name", "") + t.get("track_tags", "")).lower()
-            ]
-            result = canadian if canadian else tracks
-            print(
-                f"  [FMA] Found {len(result)} tracks (tag={tag!r}, "
-                f"{len(canadian)} Canadian-flagged)."
-            )
-            return result
-        except requests.RequestException as exc:
-            print(f"  [WARN] FMA API error for tag {tag!r}: {exc}")
-            continue
+            try:
+                resp = requests.get(url, params=params, headers=HEADERS, timeout=15)
+                resp.raise_for_status()
+                data = resp.json()
+                tracks = data.get("results", [])
+                if not tracks:
+                    continue
+                label = f"Canadian ({country_filter})" if country_filter else "global"
+                print(f"  [Jamendo] {len(tracks)} tracks — tag={tag!r}, {label}")
+                return tracks
+            except requests.RequestException as exc:
+                print(f"  [WARN] Jamendo error (tag={tag!r}, country={country_filter}): {exc}")
 
+    print("  [WARN] No Jamendo tracks retrieved for any tag.")
     return []
 
 
@@ -222,24 +224,24 @@ def get_music_clip(
     music_target_dbfs: float,
     used_ids: set[str],
 ) -> AudioSegment | None:
-    """Download a random (un-used) track and trim it to duration_ms.
+    """Download a random (un-used) Jamendo track and trim it to duration_ms.
 
     Caches downloaded files in cache_dir by track ID.
     Returns None if all tracks fail.
     """
-    pool = [t for t in tracks if str(t.get("track_id", "")) not in used_ids]
+    pool = [t for t in tracks if str(t.get("id", "")) not in used_ids]
     random.shuffle(pool)
 
     for track in pool:
-        track_id = str(track.get("track_id", "unknown"))
-        track_url = track.get("track_file", "") or track.get("track_url", "")
+        track_id = str(track.get("id", "unknown"))
+        track_url = track.get("audiodownload", "")
         if not track_url:
             continue
 
-        cached = cache_dir / f"fma_{track_id}.mp3"
+        cached = cache_dir / f"jamendo_{track_id}.mp3"
         if not cached.exists():
             print(
-                f"  [Music] Downloading: {track.get('track_title', '?')} "
+                f"  [Music] Downloading: {track.get('name', '?')} "
                 f"by {track.get('artist_name', '?')}"
             )
             if not download_audio(track_url, cached):
@@ -255,7 +257,7 @@ def get_music_clip(
         if len(full) < duration_ms:
             clip = full
         else:
-            # Start slightly into the track to skip any long lead-in
+            # Start slightly into the track to skip any long lead-in silence
             start = min(5000, len(full) // 4)
             clip = full[start : start + duration_ms]
 
@@ -264,7 +266,7 @@ def get_music_clip(
         used_ids.add(track_id)
 
         print(
-            f"  [Music] Using: {track.get('track_title', '?')} "
+            f"  [Music] Using: {track.get('name', '?')} "
             f"by {track.get('artist_name', '?')} ({len(clip) // 1000}s)"
         )
         return clip
@@ -363,8 +365,8 @@ def main() -> None:
 
     config = load_config(args.config)
 
-    # Allow FMA key from env
-    fma_key = os.environ.get("FMA_API_KEY", config.get("fma_api_key", ""))
+    # Allow Jamendo client ID from env
+    jamendo_client_id = os.environ.get("JAMENDO_CLIENT_ID", config.get("jamendo_client_id", ""))
 
     output_dir = SCRIPT_DIR / config.get("output_dir", "podcasts")
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -459,9 +461,9 @@ def main() -> None:
                 music_clips = load_music_from_dir(music_dir, duration_ms, music_target_dbfs)
                 print(f"  Loaded {len(music_clips)} clips from local dir.")
 
-        if len(music_clips) < num_clips_needed and fma_key:
-            print("\n=== Fetching Canadian indie tracks from FMA ===")
-            tracks = fetch_fma_tracks(fma_key, config.get("fma_tags", ["indie"]), limit=30)
+        if len(music_clips) < num_clips_needed:
+            print("\n=== Fetching Canadian indie tracks from Jamendo ===")
+            tracks = fetch_jamendo_tracks(jamendo_client_id, config.get("fma_tags", ["indie"]))
             if tracks:
                 used_ids: set[str] = set()
                 while len(music_clips) < num_clips_needed:

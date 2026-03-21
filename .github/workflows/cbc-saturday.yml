@@ -43,7 +43,7 @@ jobs:
 
       - name: Generate CBC Saturday Morning show
         env:
-          FMA_API_KEY: ${{ secrets.FMA_API_KEY }}
+          JAMENDO_CLIENT_ID: ${{ secrets.JAMENDO_CLIENT_ID }}
         run: |
           echo "=== CBC Saturday Morning Generator ==="
           echo "Run date: $(TZ='America/Vancouver' date)"

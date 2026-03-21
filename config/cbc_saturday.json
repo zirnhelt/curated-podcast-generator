@@ -1,7 +1,7 @@
 {
   "output_dir": "podcasts",
-  "fma_api_key": "",
-  "fma_tags": ["canadian", "indie", "indie-rock", "indie-pop", "folk"],
+  "jamendo_client_id": "",
+  "fma_tags": ["indie", "folk", "indie-rock", "indie-pop"],
   "music_transition_duration_ms": 20000,
   "music_target_dbfs": -28.0,
   "speech_target_dbfs": -20.0,
