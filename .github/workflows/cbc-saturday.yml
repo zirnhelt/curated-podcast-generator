@@ -65,13 +65,11 @@ jobs:
           ls -lh podcasts/cbc_saturday_*.mp3 2>/dev/null || echo "No output file found"
 
       - name: Generate RSS feed
-        if: ${{ inputs.dry_run != 'true' }}
         env:
           PODCAST_BASE_URL: https://podcast.cariboosignals.ca/
         run: python generate_cbc_saturday_feed.py
 
       - name: Commit generated show and feed
-        if: ${{ inputs.dry_run != 'true' }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -87,7 +85,6 @@ jobs:
         continue-on-error: true
 
       - name: Sync to Cloudflare R2
-        if: ${{ inputs.dry_run != 'true' }}
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
@@ -109,7 +106,6 @@ jobs:
         continue-on-error: true
 
       - name: Prepare output for GitHub Pages
-        if: ${{ inputs.dry_run != 'true' }}
         run: |
           mkdir -p output/podcasts
 
@@ -120,7 +116,6 @@ jobs:
           ls -lh output/
 
       - name: Deploy to GitHub Pages
-        if: ${{ inputs.dry_run != 'true' }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
