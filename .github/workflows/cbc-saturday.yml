@@ -96,6 +96,9 @@ jobs:
           aws s3 cp cbc-saturday-feed.xml "s3://${BUCKET}/cbc-saturday-feed.xml" \
             --content-type "application/rss+xml" \
             --cache-control "no-cache"
+          aws s3 cp cbc-saturday.html "s3://${BUCKET}/cbc-saturday.html" \
+            --content-type "text/html" \
+            --cache-control "no-cache"
 
           for f in podcasts/cbc_saturday_*.mp3; do
             [ -f "$f" ] && echo "  uploading $f" && \
@@ -111,6 +114,7 @@ jobs:
 
           cp podcasts/cbc_saturday_*.mp3 output/podcasts/ 2>/dev/null || true
           cp cbc-saturday-feed.xml output/ 2>/dev/null || true
+          cp cbc-saturday.html output/ 2>/dev/null || true
 
           echo "Output:"
           ls -lh output/

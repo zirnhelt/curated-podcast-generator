@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cariboo Signals: CBC Saturday Morning — Weekend radio, curated and remixed</title>
+    <meta name="description" content="A weekly Saturday morning show built from CBC Radio highlights, local music, and community stories from the Cariboo region.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #1a3a2e 0%, #0d2018 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 48px;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 24px;
+            color: #2e7d52;
+            text-decoration: none;
+            font-size: 0.95em;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .podcast-cover {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 24px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-bottom: 6px;
+            color: #0d2018;
+        }
+
+        .series-label {
+            display: inline-block;
+            background: #2e7d52;
+            color: white;
+            font-size: 0.8em;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+            font-style: italic;
+            margin-bottom: 0;
+        }
+
+        .theme-description {
+            background: #eef7f2;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #2e7d52;
+            margin-bottom: 32px;
+        }
+
+        .episodes-section {
+            margin-top: 40px;
+        }
+
+        .episodes-section h2 {
+            margin-bottom: 20px;
+            color: #0d2018;
+        }
+
+        .episodes-list {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            min-height: 200px;
+        }
+
+        .episode-item {
+            padding: 16px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .episode-item:last-child {
+            border-bottom: none;
+        }
+
+        .episode-title {
+            font-weight: 500;
+            color: #0d2018;
+            font-size: 1.05em;
+            margin-bottom: 4px;
+        }
+
+        .episode-date {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+        }
+
+        .episode-audio {
+            margin-top: 10px;
+        }
+
+        .loading {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+        }
+
+        .subscribe-section {
+            text-align: center;
+            margin-top: 32px;
+            padding: 20px;
+            background: #eef7f2;
+            border-radius: 8px;
+        }
+
+        .subscribe-section h3 {
+            margin-bottom: 8px;
+            color: #0d2018;
+        }
+
+        .rss-links {
+            margin-top: 20px;
+        }
+
+        .rss-button {
+            display: inline-block;
+            background: #2e7d52;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin: 0 8px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .rss-button:hover {
+            background: #1f5738;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .credits {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .credits h3 {
+            margin-bottom: 16px;
+            color: #0d2018;
+        }
+
+        .credits-content {
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .credits-content p {
+            margin-bottom: 6px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 24px;
+            }
+
+            h1 {
+                font-size: 1.7em;
+            }
+
+            .rss-button {
+                display: block;
+                margin: 8px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Cariboo Signals daily podcast</a>
+
+        <div class="header">
+            <div class="series-label">Saturday Morning</div>
+            <h1>CBC Saturday Morning</h1>
+            <p class="subtitle">Weekend radio, curated and remixed for the Cariboo</p>
+        </div>
+
+        <div class="theme-description">
+            <p>Every Saturday morning, highlights from CBC Radio programs are woven together with local music to create a community radio experience for the Cariboo region. Segments drawn from CBC shows like Quirks &amp; Quarks, The Current, and more — with theme music in between.</p>
+        </div>
+
+        <div class="episodes-section">
+            <h2>Episodes</h2>
+            <div class="episodes-list" id="episodes-container">
+                <div class="loading">Loading episodes...</div>
+            </div>
+        </div>
+
+        <div class="subscribe-section">
+            <h3>Subscribe to CBC Saturday Morning</h3>
+            <p>Add this feed to any podcast app that accepts an RSS URL:</p>
+            <div class="rss-links">
+                <a href="cbc-saturday-feed.xml" class="rss-button">🎙️ RSS Feed</a>
+                <a href="https://podcast.cariboosignals.ca/cbc-saturday-feed.xml" class="rss-button">📡 Direct Link</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="credits">
+                <h3>Credits</h3>
+                <div class="credits-content">
+                    <p><strong>Audio Sources:</strong> CBC Radio (used under fair dealing for education/commentary)</p>
+                    <p><strong>Theme Music:</strong> Jamendo (Creative Commons licensed)</p>
+                    <p><strong>Assembly:</strong> Claude (Anthropic) + FFmpeg</p>
+                    <p><strong>Podcast Coordination:</strong> Erich Zirnhelt</p>
+                    <p><strong>License:</strong> <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a> © 2026 Erich Zirnhelt</p>
+                </div>
+            </div>
+            <p>Generated every Saturday from CBC Radio streams</p>
+            <p>Part of the <a href="https://podcast.cariboosignals.ca/">Cariboo Signals</a> project</p>
+        </div>
+    </div>
+
+    <script>
+        async function loadEpisodes() {
+            const container = document.getElementById('episodes-container');
+            try {
+                const response = await fetch('cbc-saturday-feed.xml');
+                if (!response.ok) throw new Error('Feed not found');
+                const xmlText = await response.text();
+
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
+                const items = xmlDoc.querySelectorAll('item');
+
+                if (items.length === 0) {
+                    container.innerHTML = '<div class="loading"><p>No episodes yet — check back Saturday morning.</p></div>';
+                    return;
+                }
+
+                let html = '';
+                items.forEach(item => {
+                    const title = item.querySelector('title')?.textContent || 'Untitled';
+                    const pubDate = item.querySelector('pubDate')?.textContent || '';
+                    const enclosure = item.querySelector('enclosure');
+                    const audioUrl = enclosure?.getAttribute('url') || '';
+
+                    let formattedDate = pubDate;
+                    try {
+                        formattedDate = new Date(pubDate).toLocaleDateString('en-US', {
+                            weekday: 'short', year: 'numeric', month: 'short', day: 'numeric'
+                        });
+                    } catch (e) {}
+
+                    html += `
+                        <div class="episode-item">
+                            <div class="episode-title">${title}</div>
+                            <div class="episode-date">${formattedDate}</div>
+                            ${audioUrl ? `
+                                <div class="episode-audio">
+                                    <audio controls style="width:100%;max-width:340px;">
+                                        <source src="${audioUrl}" type="audio/mpeg">
+                                    </audio>
+                                </div>` : ''}
+                        </div>`;
+                });
+
+                container.innerHTML = html;
+            } catch (e) {
+                container.innerHTML = '<div class="loading"><p>Episodes loading — check back soon.</p></div>';
+            }
+        }
+
+        loadEpisodes();
+    </script>
+</body>
+</html>
