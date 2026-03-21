@@ -82,4 +82,3 @@ jobs:
           name: cbc-saturday-show
           path: podcasts/cbc_saturday_*.mp3
           retention-days: 14
-        if: always()
