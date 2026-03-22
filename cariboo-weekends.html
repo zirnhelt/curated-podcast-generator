@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cariboo Weekends — Weekend radio from the Cariboo</title>
+    <meta name="description" content="Weekend radio for the Cariboo region. Saturday brings CBC news highlights with Riley. Sunday brings CBC cultural programming with Casey. Part of the Cariboo Signals family.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #3a2a1a 0%, #1a120a 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 48px;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 24px;
+            color: #8b6914;
+            text-decoration: none;
+            font-size: 0.95em;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .podcast-cover {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 24px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            background: #c8a84b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.4em;
+            margin-bottom: 6px;
+            color: #1a120a;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+            font-style: italic;
+            margin-bottom: 0;
+        }
+
+        .theme-description {
+            background: #fdf8ee;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #c8a84b;
+            margin-bottom: 40px;
+        }
+
+        .shows-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .show-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: block;
+        }
+
+        .show-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.14);
+        }
+
+        .show-card-header {
+            padding: 20px;
+            color: white;
+        }
+
+        .show-card-header.saturday {
+            background: linear-gradient(135deg, #1a3a2e 0%, #0d2018 100%);
+        }
+
+        .show-card-header.sunday {
+            background: linear-gradient(135deg, #2c3e50 0%, #1a2a38 100%);
+        }
+
+        .show-day {
+            font-size: 0.75em;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            opacity: 0.8;
+            margin-bottom: 6px;
+        }
+
+        .show-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .show-host {
+            font-size: 0.85em;
+            opacity: 0.85;
+        }
+
+        .show-card-body {
+            padding: 16px 20px 20px;
+        }
+
+        .show-card-body p {
+            color: #555;
+            font-size: 0.95em;
+            margin-bottom: 14px;
+        }
+
+        .show-link {
+            display: inline-block;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+        }
+
+        .show-link.saturday {
+            background: #2e7d52;
+        }
+
+        .show-link.saturday:hover {
+            background: #1f5738;
+        }
+
+        .show-link.sunday {
+            background: #2c6e9e;
+        }
+
+        .show-link.sunday:hover {
+            background: #1e4f73;
+        }
+
+        .schedule-section {
+            background: #fdf8ee;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #c8a84b;
+            margin-bottom: 32px;
+        }
+
+        .schedule-section h3 {
+            margin-bottom: 14px;
+            color: #1a120a;
+        }
+
+        .schedule-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 10px;
+        }
+
+        .schedule-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .schedule-day-label {
+            font-weight: 700;
+            color: #1a120a;
+            min-width: 90px;
+        }
+
+        .schedule-day-content {
+            color: #555;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .footer a {
+            color: #8b6914;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 24px;
+            }
+
+            h1 {
+                font-size: 1.9em;
+            }
+
+            .shows-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Cariboo Signals daily podcast</a>
+
+        <div class="header">
+            <!-- Replace cariboo-weekends.png with the new image when available -->
+            <img src="cariboo-weekends.png" alt="Cariboo Weekends" class="podcast-cover"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="podcast-cover" style="display:none;">🏔️</div>
+            <h1>Cariboo Weekends</h1>
+            <p class="subtitle">Weekend radio from the heart of BC</p>
+        </div>
+
+        <div class="theme-description">
+            <p>Two mornings, two hosts, one region. Cariboo Weekends brings together the best of CBC Radio and
+            Canadian indie music for the Cariboo community — news and current affairs on Saturday with Riley,
+            arts and culture on Sunday with Casey. Part of the
+            <a href="https://podcast.cariboosignals.ca/" style="color:#8b6914;">Cariboo Signals</a> family.</p>
+        </div>
+
+        <div class="shows-grid">
+            <a href="cariboo-saturday.html" class="show-card">
+                <div class="show-card-header saturday">
+                    <div class="show-day">Saturday Morning</div>
+                    <div class="show-title">Cariboo Saturday</div>
+                    <div class="show-host">Hosted by Riley</div>
+                </div>
+                <div class="show-card-body">
+                    <p>CBC news and current affairs — World Report, BC Today, and Kamloops News — woven together with Canadian indie music. Stay informed on your Saturday morning.</p>
+                    <span class="show-link saturday">Listen →</span>
+                </div>
+            </a>
+
+            <a href="cariboo-sunday.html" class="show-card">
+                <div class="show-card-header sunday">
+                    <div class="show-day">Sunday Morning</div>
+                    <div class="show-title">Cariboo Sunday</div>
+                    <div class="show-host">Hosted by Casey</div>
+                </div>
+                <div class="show-card-body">
+                    <p>CBC arts and culture programming — q with Tom Power and Unreserved — with Canadian indie music between. Wind down your weekend with something thoughtful.</p>
+                    <span class="show-link sunday">Listen →</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="schedule-section">
+            <h3>Weekend Schedule</h3>
+            <div class="schedule-row">
+                <div class="schedule-day-label">Saturday</div>
+                <div class="schedule-day-content">CBC World Report · BC Today · CBC Kamloops News — hosted by Riley (voice: nova)</div>
+            </div>
+            <div class="schedule-row">
+                <div class="schedule-day-label">Sunday</div>
+                <div class="schedule-day-content">q with Tom Power · Unreserved — hosted by Casey (voice: echo)</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Part of the <a href="https://podcast.cariboosignals.ca/">Cariboo Signals</a> project</p>
+            <p style="margin-top:8px;">CBC audio used under fair dealing for education and commentary &middot; Music: Jamendo CC</p>
+            <p style="margin-top:4px;">AI assembly by Claude (Anthropic) &middot; Coordination: Erich Zirnhelt &middot; <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a></p>
+        </div>
+    </div>
+</body>
+</html>

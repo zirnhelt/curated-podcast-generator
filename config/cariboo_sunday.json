@@ -1,0 +1,29 @@
+{
+  "output_dir": "podcasts",
+  "jamendo_client_id": "3daee737",
+  "fma_tags": ["indie", "folk", "indie-rock", "indie-pop"],
+  "music_transition_duration_ms": 20000,
+  "music_intermission_duration_ms": 240000,
+  "max_song_duration_ms": 240000,
+  "music_target_dbfs": -28.0,
+  "speech_target_dbfs": -20.0,
+  "music_dir": "",
+  "feeds": [
+    {
+      "name": "q with Tom Power",
+      "rss_url": "https://www.cbc.ca/podcasting/includes/q.xml",
+      "trim_start_ms": 45000,
+      "trim_end_ms": 60000,
+      "priority": 1,
+      "_note": "Cultural interview show — long-form, trim generous opening/closing"
+    },
+    {
+      "name": "Unreserved",
+      "rss_url": "https://www.cbc.ca/podcasting/includes/unreserved.xml",
+      "trim_start_ms": 45000,
+      "trim_end_ms": 60000,
+      "priority": 2,
+      "_note": "Indigenous arts and culture show — long-form, trim generous opening/closing"
+    }
+  ]
+}

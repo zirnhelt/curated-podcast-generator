@@ -49,6 +49,10 @@ from pydub import AudioSegment
 SCRIPT_DIR = Path(__file__).parent
 DEFAULT_CONFIG = SCRIPT_DIR / "config" / "cariboo_saturday.json"
 
+# Load host personalities so Riley's voice stays consistent with the main show
+_hosts_config_path = SCRIPT_DIR / "config" / "hosts.json"
+HOSTS_CONFIG: dict = json.loads(_hosts_config_path.read_text(encoding="utf-8")) if _hosts_config_path.exists() else {}
+
 # ---------------------------------------------------------------------------
 # Audio helpers
 # ---------------------------------------------------------------------------
@@ -101,18 +105,26 @@ def get_anthropic_client():
 def generate_riley_line(context: str) -> str:
     """Use Claude to write a short natural spoken line for Riley.
 
+    Riley's personality is loaded from config/hosts.json so her voice stays
+    consistent with her character in the main Cariboo Signals daily show.
     Falls back to a plain empty string if the API is unavailable.
     """
     client = get_anthropic_client()
     if not client:
         return ""
 
+    riley = HOSTS_CONFIG.get("riley", {})
+    riley_bio = riley.get("full_bio", "warm radio host who knows the Cariboo region of BC well")
+    riley_questions = "; ".join(riley.get("recurring_questions", []))
+
     prompt = (
         "You are writing a short spoken line for Riley, host of Cariboo Saturday Morning "
-        "on cariboosignals.ca. Riley is warm, knows the Cariboo region of BC well, and "
-        "sounds like a natural radio host — not a newsreader. She keeps things brief and "
-        "conversational. No emojis, no stage directions, no quotation marks. Just the words "
-        "she would say on air. Under 3 sentences.\n\n"
+        "on cariboosignals.ca — part of the Cariboo Weekends programming block.\n\n"
+        f"Riley's personality: {riley_bio}\n"
+        + (f"Her recurring angles: {riley_questions}\n" if riley_questions else "")
+        + "\nShe sounds like a natural radio host — not a newsreader. "
+        "No emojis, no stage directions, no quotation marks. "
+        "Just the words she would say on air. Under 3 sentences.\n\n"
         f"Context: {context}"
     )
     try:
@@ -194,11 +206,13 @@ def riley_speak(context: str, tmp_dir: Path) -> AudioSegment | None:
 HEADERS = {"User-Agent": "Cariboo-Saturday-Generator/1.0 (personal use)"}
 
 
-def fetch_latest_episode(feed: dict) -> dict | None:
-    """Parse an RSS feed and return metadata for the latest episode.
+def fetch_episode_candidates(feed: dict, max_candidates: int = 3) -> list[dict]:
+    """Parse an RSS feed and return up to max_candidates audio episodes, newest first.
 
-    Returns a dict with keys: name, title, url, pub_date, duration
-    or None if the feed is unavailable or has no audio enclosure.
+    Returns a list of dicts with keys: name, title, url, pub_date, duration, etc.
+    Returns an empty list if the feed is unavailable or has no audio enclosures.
+    Keeping multiple candidates lets the caller fall back to an older episode if the
+    latest one fails to download (e.g. geo-restriction or transient network error).
     """
     rss_url = feed["rss_url"]
     try:
@@ -206,17 +220,20 @@ def fetch_latest_episode(feed: dict) -> dict | None:
         resp.raise_for_status()
     except requests.RequestException as exc:
         print(f"  [WARN] Could not fetch {feed['name']}: {exc}")
-        return None
+        return []
 
     try:
         root = ET.fromstring(resp.content)
     except ET.ParseError as exc:
         print(f"  [WARN] Could not parse RSS for {feed['name']}: {exc}")
-        return None
+        return []
 
     ns = {"itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd"}
+    candidates: list[dict] = []
 
     for item in root.iter("item"):
+        if len(candidates) >= max_candidates:
+            break
         enclosure = item.find("enclosure")
         if enclosure is None:
             continue
@@ -239,7 +256,7 @@ def fetch_latest_episode(feed: dict) -> dict | None:
         link_el = item.find("link")
         episode_link = link_el.text.strip() if link_el is not None and link_el.text else ""
 
-        return {
+        candidates.append({
             "name": feed["name"],
             "title": title,
             "url": url,
@@ -250,10 +267,11 @@ def fetch_latest_episode(feed: dict) -> dict | None:
             "trim_end_ms": feed.get("trim_end_ms", 10000),
             "jingle_end_ms": feed.get("jingle_end_ms"),
             "intermission_after": feed.get("intermission_after", False),
-        }
+        })
 
-    print(f"  [WARN] No audio enclosure found in {feed['name']} feed.")
-    return None
+    if not candidates:
+        print(f"  [WARN] No audio enclosures found in {feed['name']} feed.")
+    return candidates
 
 
 def download_audio(url: str, dest: Path) -> bool:
@@ -358,12 +376,20 @@ def get_music_clip(
     duration_ms: int,
     music_target_dbfs: float,
     used_ids: set[str],
+    max_song_duration_ms: int = 240_000,
 ) -> tuple[AudioSegment | None, dict | None]:
     """Download a random (un-used) Jamendo track and trim it to duration_ms.
+
+    The clip is capped at max_song_duration_ms (default 4 minutes) regardless of
+    the requested duration_ms, so intermission slots never play an overly long song.
+    If the track's natural length (after the lead-in skip) is shorter than the
+    requested duration, the full available length is used instead of padding.
 
     Caches downloaded files in cache_dir by track ID.
     Returns (clip, track_info) or (None, None) if all tracks fail.
     """
+    effective_max = min(duration_ms, max_song_duration_ms)
+
     pool = [t for t in tracks if str(t.get("id", "")) not in used_ids]
     random.shuffle(pool)
 
@@ -389,12 +415,11 @@ def get_music_clip(
             cached.unlink(missing_ok=True)
             continue
 
-        if len(full) < duration_ms:
-            clip = full
-        else:
-            # Start slightly into the track to skip any long lead-in silence
-            start = min(5000, len(full) // 4)
-            clip = full[start : start + duration_ms]
+        # Start slightly into the track to skip any long lead-in silence
+        start = min(5000, len(full) // 4)
+        available_ms = len(full) - start
+        clip_ms = min(available_ms, effective_max)
+        clip = full[start : start + clip_ms]
 
         clip = clip.fade_in(1000).fade_out(1000)
         clip = normalize_segment(clip, music_target_dbfs)
@@ -638,17 +663,19 @@ def main() -> None:
     # Step 2: Fetch episode metadata
     # -----------------------------------------------------------------------
     print("\n=== Fetching CBC podcast episodes ===")
-    episode_meta: list[dict] = []
+    # episode_candidates maps feed name -> list of fallback episodes (newest first)
+    episode_candidates: list[list[dict]] = []
     for feed in feeds:
         print(f"  Checking: {feed['name']} …")
-        meta = fetch_latest_episode(feed)
-        if meta:
-            print(f"    -> {meta['title']} ({meta['pub_date']})")
-            episode_meta.append(meta)
+        candidates = fetch_episode_candidates(feed)
+        if candidates:
+            print(f"    -> {candidates[0]['title']} ({candidates[0]['pub_date']}) [{len(candidates)} candidate(s)]")
+            episode_candidates.append(candidates)
         else:
             print(f"    -> Skipped (unavailable)")
+    episode_meta: list[dict] = [c[0] for c in episode_candidates]  # used for dry-run display
 
-    if not episode_meta:
+    if not episode_candidates:
         print("\n[ERROR] No episodes could be fetched. Exiting.")
         sys.exit(1)
 
@@ -675,19 +702,30 @@ def main() -> None:
         intermission_indices: set[int] = set()
         opening_jingle: AudioSegment | None = None
 
-        for i, meta in enumerate(episode_meta):
+        for i, candidates in enumerate(episode_candidates):
             dest = tmp / f"ep_{i:02d}.mp3"
-            print(f"\n  [{i+1}/{len(episode_meta)}] {meta['name']}")
-            print(f"    Downloading: {meta['url'][:80]}…")
+            feed_name = candidates[0]["name"]
+            print(f"\n  [{i+1}/{len(episode_candidates)}] {feed_name}")
 
-            if not download_audio(meta["url"], dest):
-                print(f"    [WARN] Download failed — skipping.")
-                continue
+            # Try each candidate in order until one downloads successfully
+            raw: AudioSegment | None = None
+            meta: dict | None = None
+            for attempt, cand in enumerate(candidates):
+                if attempt > 0:
+                    print(f"    [FALLBACK] Trying older episode: {cand['title']}")
+                print(f"    Downloading: {cand['url'][:80]}…")
+                if not download_audio(cand["url"], dest):
+                    print(f"    [WARN] Download failed (attempt {attempt + 1}/{len(candidates)}).")
+                    continue
+                try:
+                    raw = AudioSegment.from_mp3(str(dest))
+                    meta = cand
+                    break
+                except Exception as exc:
+                    print(f"    [WARN] Could not decode audio: {exc}")
 
-            try:
-                raw = AudioSegment.from_mp3(str(dest))
-            except Exception as exc:
-                print(f"    [WARN] Could not decode audio: {exc}")
+            if raw is None or meta is None:
+                print(f"    [WARN] All {len(candidates)} candidate(s) failed — skipping {feed_name}.")
                 continue
 
             print(f"    Duration: {len(raw) // 1000}s raw")
@@ -714,7 +752,8 @@ def main() -> None:
         # plus one extra for the closing music after the last episode.
         # Slots where the preceding episode has intermission_after get a longer clip.
         duration_ms = config.get("music_transition_duration_ms", 20000)
-        intermission_ms = config.get("music_intermission_duration_ms", 300000)
+        intermission_ms = config.get("music_intermission_duration_ms", 240000)
+        max_song_duration_ms = config.get("max_song_duration_ms", 240_000)
         music_target_dbfs = config.get("music_target_dbfs", TARGET_MUSIC_DBFS)
 
         # One slot per episode (the last episode's slot is "wasted" by the iterator
@@ -746,7 +785,8 @@ def main() -> None:
                 used_ids: set[str] = set()
                 for slot_duration in transition_durations[len(music_items):]:
                     clip, track_info = get_music_clip(
-                        tracks, music_cache, slot_duration, music_target_dbfs, used_ids
+                        tracks, music_cache, slot_duration, music_target_dbfs, used_ids,
+                        max_song_duration_ms=max_song_duration_ms,
                     )
                     if clip is None:
                         break
@@ -786,7 +826,7 @@ def main() -> None:
         # Step 7: Save companion metadata JSON for show notes
         # -------------------------------------------------------------------
         meta_path = output_path.with_suffix(".json")
-        # Build episode list from episode_meta (only those that downloaded successfully)
+        # Build episode list from candidates (only those that downloaded successfully)
         included_names = {name for name, _ in episodes}
         meta_episodes = [
             {
@@ -795,7 +835,8 @@ def main() -> None:
                 "pub_date": m["pub_date"],
                 "link": m.get("link", ""),
             }
-            for m in episode_meta
+            for cands in episode_candidates
+            for m in cands[:1]  # use the first (latest) candidate's metadata for show notes
             if m["name"] in included_names
         ]
         meta_music = [
