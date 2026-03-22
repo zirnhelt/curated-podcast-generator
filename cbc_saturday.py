@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-cbc_saturday.py — CBC Saturday Morning Radio Generator
+cbc_saturday.py — Cariboo Saturday Morning Radio Generator
 
 Fetches the latest episodes from configured CBC podcast RSS feeds (prioritising
 news: World Report → BC Today → CBC Kamloops), trims their intros/outros,
@@ -357,7 +357,7 @@ def load_config(config_path: Path) -> dict:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="CBC Saturday Morning Radio Generator")
+    parser = argparse.ArgumentParser(description="Cariboo Saturday Morning Radio Generator")
     parser.add_argument("--dry-run", action="store_true", help="Fetch metadata only, no audio download.")
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG, help="Config file path.")
     parser.add_argument("--output", type=Path, default=None, help="Override output MP3 path.")
