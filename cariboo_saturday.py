@@ -245,6 +245,7 @@ def fetch_latest_episode(feed: dict) -> dict | None:
             "trim_start_ms": feed.get("trim_start_ms", 10000),
             "trim_end_ms": feed.get("trim_end_ms", 10000),
             "jingle_end_ms": feed.get("jingle_end_ms"),
+            "intermission_after": feed.get("intermission_after", False),
         }
 
     print(f"  [WARN] No audio enclosure found in {feed['name']} feed.")
@@ -457,6 +458,7 @@ def assemble_show(
     weather_summary: str | None,
     config: dict,
     tmp_dir: Path,
+    intermission_indices: set[int] | None = None,
 ) -> AudioSegment:
     """Assemble the final show with Riley hosting.
 
@@ -472,6 +474,9 @@ def assemble_show(
         Riley: sign-off
         Closing music (fade out)
     """
+    if intermission_indices is None:
+        intermission_indices = set()
+
     combined = AudioSegment.empty()
 
     # Opening jingle
@@ -501,13 +506,23 @@ def assemble_show(
 
         if not is_last and clip_item is not None:
             clip, track_info = clip_item
-
-            # Riley: brief episode wrap-up and music tease
+            is_intermission = i in intermission_indices
             next_name = episodes[i + 1][0]
-            outro_context = (
-                f"Riley briefly wraps up the {name} segment and says a music break "
-                f"is coming before {next_name}. Keep it to one short sentence."
-            )
+
+            if is_intermission:
+                # Riley: wrap up news block and announce music intermission
+                outro_context = (
+                    f"Riley wraps up the news block — that's the last local news segment "
+                    f"(just finished {name}). She tells listeners there's a music intermission "
+                    f"before the longer CBC programming coming up ({next_name} and more). "
+                    f"Warm and natural, 1-2 sentences."
+                )
+            else:
+                # Riley: brief episode wrap-up and music tease
+                outro_context = (
+                    f"Riley briefly wraps up the {name} segment and says a music break "
+                    f"is coming before {next_name}. Keep it to one short sentence."
+                )
             outro = riley_speak(outro_context, tmp_dir)
             combined += _riley_segment(outro)
 
@@ -520,13 +535,22 @@ def assemble_show(
                 if track_info.get("genres")
                 else ""
             )
-            track_id_context = (
-                f"Riley IDs the music track that just played: '{track_info['name']}' "
-                f"by {track_info['artist']}{genres_str}. "
-                f"She gives a brief natural mention of the artist (e.g. whether they're a "
-                f"solo act, duo, band; any Cariboo/BC/Canadian connection if it fits), "
-                f"then introduces the next segment: {next_name}."
-            )
+            if is_intermission:
+                track_id_context = (
+                    f"Riley IDs the music track that just played: '{track_info['name']}' "
+                    f"by {track_info['artist']}{genres_str}. "
+                    f"She gives a natural mention of the artist and any Cariboo/BC/Canadian "
+                    f"connection if it fits, then welcomes listeners back from the intermission "
+                    f"and introduces the next longer segment: {next_name}."
+                )
+            else:
+                track_id_context = (
+                    f"Riley IDs the music track that just played: '{track_info['name']}' "
+                    f"by {track_info['artist']}{genres_str}. "
+                    f"She gives a brief natural mention of the artist (e.g. whether they're a "
+                    f"solo act, duo, band; any Cariboo/BC/Canadian connection if it fits), "
+                    f"then introduces the next segment: {next_name}."
+                )
             track_id = riley_speak(track_id_context, tmp_dir)
             combined += _riley_segment(track_id)
 
@@ -643,6 +667,7 @@ def main() -> None:
 
         print("\n=== Downloading and trimming episodes ===")
         episodes: list[tuple[str, AudioSegment]] = []
+        intermission_indices: set[int] = set()
         opening_jingle: AudioSegment | None = None
 
         for i, meta in enumerate(episode_meta):
@@ -669,6 +694,8 @@ def main() -> None:
 
             trimmed = trim_episode(raw, meta["trim_start_ms"], meta["trim_end_ms"])
             print(f"    Trimmed to: {len(trimmed) // 1000}s")
+            if meta.get("intermission_after"):
+                intermission_indices.add(len(episodes))
             episodes.append((meta["name"], trimmed))
 
         if not episodes:
@@ -678,16 +705,32 @@ def main() -> None:
         # -------------------------------------------------------------------
         # Step 4: Music clips
         # -------------------------------------------------------------------
-        num_clips_needed = len(episodes) + 1  # transitions between + closing
-        music_items: list[tuple[AudioSegment, dict]] = []
+        # Build per-slot durations: one clip per episode (transition or closing),
+        # plus one extra for the closing music after the last episode.
+        # Slots where the preceding episode has intermission_after get a longer clip.
         duration_ms = config.get("music_transition_duration_ms", 20000)
+        intermission_ms = config.get("music_intermission_duration_ms", 300000)
         music_target_dbfs = config.get("music_target_dbfs", TARGET_MUSIC_DBFS)
 
+        # One slot per episode (the last episode's slot is "wasted" by the iterator
+        # but consumed), plus one final closing-music slot.
+        transition_durations: list[int] = []
+        for idx in range(len(episodes)):
+            if idx in intermission_indices:
+                transition_durations.append(intermission_ms)
+                print(f"  [Music] Slot {idx}: intermission ({intermission_ms // 1000}s)")
+            else:
+                transition_durations.append(duration_ms)
+        transition_durations.append(duration_ms)  # closing music slot
+        num_clips_needed = len(transition_durations)
+
+        music_items: list[tuple[AudioSegment, dict]] = []
         music_dir_str = config.get("music_dir", "")
         if music_dir_str:
             music_dir = Path(music_dir_str)
             if music_dir.is_dir():
                 print(f"\n=== Loading music from local dir: {music_dir} ===")
+                # Local dir: load with transition duration; intermission slots reuse last clip
                 music_items = load_music_from_dir(music_dir, duration_ms, music_target_dbfs)
                 print(f"  Loaded {len(music_items)} clips from local dir.")
 
@@ -696,9 +739,9 @@ def main() -> None:
             tracks = fetch_jamendo_tracks(jamendo_client_id, config.get("fma_tags", ["indie"]))
             if tracks:
                 used_ids: set[str] = set()
-                while len(music_items) < num_clips_needed:
+                for slot_duration in transition_durations[len(music_items):]:
                     clip, track_info = get_music_clip(
-                        tracks, music_cache, duration_ms, music_target_dbfs, used_ids
+                        tracks, music_cache, slot_duration, music_target_dbfs, used_ids
                     )
                     if clip is None:
                         break
@@ -711,6 +754,8 @@ def main() -> None:
         # Step 5: Assemble with Riley hosting
         # -------------------------------------------------------------------
         print(f"\n=== Assembling show ({len(episodes)} episodes, {len(music_items)} music clips) ===")
+        if intermission_indices:
+            print(f"  Intermission after episode indices: {sorted(intermission_indices)}")
         show = assemble_show(
             episodes,
             opening_jingle,
@@ -718,6 +763,7 @@ def main() -> None:
             weather_summary,
             {"speech_target_dbfs": config.get("speech_target_dbfs", TARGET_SPEECH_DBFS)},
             tmp,
+            intermission_indices=intermission_indices,
         )
 
         total_min = len(show) // 60_000
