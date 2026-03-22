@@ -32,7 +32,23 @@
       "trim_end_ms": 10000,
       "priority": 3,
       "intermission_after": true,
-      "_note": "intermission_after: play a longer music break after this segment before the closing music"
+      "_note": "intermission_after: longer music break between news block and political programming"
+    },
+    {
+      "name": "The Current",
+      "rss_url": "https://www.cbc.ca/podcasting/includes/thecurrent.xml",
+      "trim_start_ms": 45000,
+      "trim_end_ms": 60000,
+      "priority": 4,
+      "_note": "CBC flagship morning current affairs show — long-form, trim generous opening/closing"
+    },
+    {
+      "name": "Front Burner",
+      "rss_url": "https://www.cbc.ca/podcasting/includes/frontburner.xml",
+      "trim_start_ms": 15000,
+      "trim_end_ms": 15000,
+      "priority": 5,
+      "_note": "Daily news explainer — shorter, lighter trim needed"
     }
   ]
 }

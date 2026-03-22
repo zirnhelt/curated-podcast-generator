@@ -10,11 +10,36 @@
   "music_dir": "",
   "feeds": [
     {
+      "name": "CBC News: World Report",
+      "rss_url": "https://www.cbc.ca/podcasting/includes/worldreport.xml",
+      "trim_start_ms": 10000,
+      "trim_end_ms": 10000,
+      "jingle_end_ms": 10000,
+      "priority": 1,
+      "_note": "jingle_end_ms: extract this many ms as the one-time show-open jingle"
+    },
+    {
+      "name": "CBC BC Today",
+      "rss_url": "https://www.cbc.ca/podcasting/includes/bctoday.xml",
+      "trim_start_ms": 8000,
+      "trim_end_ms": 10000,
+      "priority": 2
+    },
+    {
+      "name": "CBC Kamloops News",
+      "rss_url": "https://www.cbc.ca/podcasting/includes/kamloopsnews.xml",
+      "trim_start_ms": 8000,
+      "trim_end_ms": 10000,
+      "priority": 3,
+      "intermission_after": true,
+      "_note": "intermission_after: longer music break between news block and cultural programming"
+    },
+    {
       "name": "q with Tom Power",
       "rss_url": "https://www.cbc.ca/podcasting/includes/q.xml",
       "trim_start_ms": 45000,
       "trim_end_ms": 60000,
-      "priority": 1,
+      "priority": 4,
       "_note": "Cultural interview show — long-form, trim generous opening/closing"
     },
     {
@@ -22,7 +47,7 @@
       "rss_url": "https://www.cbc.ca/podcasting/includes/unreserved.xml",
       "trim_start_ms": 45000,
       "trim_end_ms": 60000,
-      "priority": 2,
+      "priority": 5,
       "_note": "Indigenous arts and culture show — long-form, trim generous opening/closing"
     }
   ]
