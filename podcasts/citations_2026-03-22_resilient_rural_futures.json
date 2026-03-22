@@ -1,0 +1,404 @@
+{
+  "episode": {
+    "date": "2026-03-22",
+    "formatted_date": "Sunday, March 22, 2026",
+    "theme": "Resilient Rural Futures",
+    "title": "Cariboo Signals - Resilient Rural Futures",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Resilient Rural Futures.</p><p><b>NEWS ROUNDUP:</b> We break down [Kottke.org] Battery prices continue to fall . &#8220;Lithium-ion... and [100 Mile Free Press] Gateway water system under boil water advisory, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Deep dive on Resilient Rural Futures Topics include: broadband, satellite, connectivity, renewable energy, solar.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>Kottke.org: <a href=\"https://kottke.org/26/03/0048590-battery-prices-continue-t\">[Kottke.org] Battery prices continue to fall . &#8220;Lithiu...</a></li><li>100 Mile Free Press: <a href=\"https://100milefreepress.net/2026/03/21/gateway-water-system-under-boil-water-advisory/\">[100 Mile Free Press] Gateway water system under boil water ...</a></li><li>100 Mile Free Press: <a href=\"https://100milefreepress.net/2026/03/21/enbridge-discusses-accommodation-concerns-with-district-of-100-mile-house/\">[100 Mile Free Press] Enbridge discusses accommodation conce...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/i-got-rid-of-my-ring-doorbell-my-home-actually-feels-more-secure/\">[XDA Developers] I got rid of my Ring doorbell and my home a...</a></li><li>100 Mile Free Press: <a href=\"https://100milefreepress.net/2026/03/21/community-information-open-house-for-108-mile-ranch-set-for-march-25/\">[100 Mile Free Press] Community information open house for 1...</a></li><li>TechCrunch: <a href=\"https://techcrunch.com/2026/03/21/how-fusion-power-works-and-the-startups-pursuing-it/\">[TechCrunch] How fusion power works and the startups pursuin...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/21/6-b-c-temperature-records-broken-on-first-day-of-spring-all-in-okanagan-region/\">[Williams Lake Tribune] 6 B.C. temperature records broken on...</a></li><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/03/20/opinion-when-dental-care-disappears-emergency-rooms-fill-up/\">[Quesnel Cariboo Observer] OPINION: When dental care disappe...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>The Verge: <a href=\"https://www.theverge.com/tech/895836/klumpen-off-grid-utilities-for-cabins\">[The Verge] Leaving civilization is now easier with this ‘of...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/21/potential-risk-canada-ends-longtime-weatheradio-service-leaving-some-forecast-less/\">[Williams Lake Tribune] ‘Potential risk’: Canada ends longti...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/my-media-server-started-as-a-convenience-project/\">[XDA Developers] My media server started as a convenience pr...</a></li><li>How-To Geek: <a href=\"https://www.howtogeek.com/grouping-accessories-in-home-assistant/\">[How-To Geek] Why you should be grouping more accessories in...</a></li><li>ZDNet: <a href=\"https://www.zdnet.com/article/what-is-moca-2-5-improve-internet/\">[ZDNet] What is MoCA 2.5? How this low-cost networking can r...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/this-cool-esp32-project-tells-you-how-your-3d-prints-are-doing/\">[XDA Developers] This cool ESP32 project tells you how your ...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/03/21/the-unreasonable-power-density-of-lithium-ion/\">[Hackaday] The Unreasonable Power Density of Lithium-Ion</a></li><li>How-To Geek: <a href=\"https://www.howtogeek.com/i-3d-printed-my-own-smart-display-because-googles-wasnt-good-enough/\">[How-To Geek] I 3D printed my own smart display because Goog...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/cancelled-chatgpt-gemini-perplexity-to-run-one-local-model/\">[XDA Developers] I cancelled ChatGPT, Gemini, and Perplexity...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/founder-says-ev-chargers-are-key-employee-perk-gas-costs-2026-3\">[Business Insider] I put EV chargers in my company's parking...</a></li><li>How-To Geek: <a href=\"https://www.howtogeek.com/this-is-the-smart-home-display-id-buy-if-i-had-all-the-money/\">[How-To Geek] This is the smart home display I’d buy if I ha...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/03/18/forgetfulino-puts-back-up-of-source-inside-the-binary/\">[Hackaday] Forgetfulino Puts Back Up of Source Inside the Bi...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/21/cariboo-mens-choir-returns-in-williams-lake-after-6-year-hiatus/\">[Williams Lake Tribune] Cariboo Men’s Choir returns in Willi...</a></li><li>TechRadar: <a href=\"https://www.techradar.com/pro/when-confidence-becomes-a-risk-the-gap-between-cyber-resilience-readiness-and-reality\">[TechRadar] When confidence becomes a risk: The gap between ...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-20250514<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-03-22T05:54:39.497213-07:00",
+    "models": {
+      "script": "claude-sonnet-4-20250514",
+      "review": "claude-sonnet-4-20250514",
+      "summary": "claude-3-5-haiku-20241022"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Kottke.org] Battery prices continue to fall . &#8220;Lithium-ion...",
+          "url": "https://kottke.org/26/03/0048590-battery-prices-continue-t",
+          "source": "Kottke.org",
+          "ai_score": 0,
+          "date_published": "2026-03-17T15:08:33+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[100 Mile Free Press] Gateway water system under boil water advisory",
+          "url": "https://100milefreepress.net/2026/03/21/gateway-water-system-under-boil-water-advisory/",
+          "source": "100 Mile Free Press",
+          "ai_score": 0,
+          "date_published": "2026-03-22T02:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[The Verge] Leaving civilization is now easier with this ‘off-grid utility core’",
+          "url": "https://www.theverge.com/tech/895836/klumpen-off-grid-utilities-for-cabins",
+          "source": "The Verge",
+          "ai_score": 0,
+          "date_published": "2026-03-17T10:16:39+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] ‘Potential risk’: Canada ends longtime Weatheradio service, leaving some forecast-less",
+          "url": "https://wltribune.com/2026/03/21/potential-risk-canada-ends-longtime-weatheradio-service-leaving-some-forecast-less/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-21T08:33:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] My media server started as a convenience project, but it has become one of my favorite things I’ve ever built",
+          "url": "https://www.xda-developers.com/my-media-server-started-as-a-convenience-project/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-21T20:01:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[100 Mile Free Press] Enbridge discusses accommodation concerns with District of 100 Mile House",
+          "url": "https://100milefreepress.net/2026/03/21/enbridge-discusses-accommodation-concerns-with-district-of-100-mile-house/",
+          "source": "100 Mile Free Press",
+          "ai_score": 0,
+          "date_published": "2026-03-21T18:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[XDA Developers] I got rid of my Ring doorbell and my home actually feels more secure",
+          "url": "https://www.xda-developers.com/i-got-rid-of-my-ring-doorbell-my-home-actually-feels-more-secure/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-21T19:30:21+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[How-To Geek] Why you should be grouping more accessories in Home Assistant",
+          "url": "https://www.howtogeek.com/grouping-accessories-in-home-assistant/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-21T20:00:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[100 Mile Free Press] Community information open house for 108 Mile Ranch set for March 25",
+          "url": "https://100milefreepress.net/2026/03/21/community-information-open-house-for-108-mile-ranch-set-for-march-25/",
+          "source": "100 Mile Free Press",
+          "ai_score": 0,
+          "date_published": "2026-03-21T18:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[TechCrunch] How fusion power works and the startups pursuing it",
+          "url": "https://techcrunch.com/2026/03/21/how-fusion-power-works-and-the-startups-pursuing-it/",
+          "source": "TechCrunch",
+          "ai_score": 0,
+          "date_published": "2026-03-21T14:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] 6 B.C. temperature records broken on first day of spring, all in Okanagan region",
+          "url": "https://wltribune.com/2026/03/21/6-b-c-temperature-records-broken-on-first-day-of-spring-all-in-okanagan-region/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-21T07:20:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[ZDNet] What is MoCA 2.5? How this low-cost networking can replace Wi-Fi and fix dead zones",
+          "url": "https://www.zdnet.com/article/what-is-moca-2-5-improve-internet/",
+          "source": "ZDNet",
+          "ai_score": 0,
+          "date_published": "2026-03-19T16:14:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] This cool ESP32 project tells you how your 3D prints are doing",
+          "url": "https://www.xda-developers.com/this-cool-esp32-project-tells-you-how-your-3d-prints-are-doing/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-18T06:18:59+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] The Unreasonable Power Density of Lithium-Ion",
+          "url": "https://hackaday.com/2026/03/21/the-unreasonable-power-density-of-lithium-ion/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-21T14:00:31+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] I 3D printed my own smart display because Google's wasn't good enough",
+          "url": "https://www.howtogeek.com/i-3d-printed-my-own-smart-display-because-googles-wasnt-good-enough/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-17T18:30:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] I cancelled ChatGPT, Gemini, and Perplexity to run one local model, and I don't miss them",
+          "url": "https://www.xda-developers.com/cancelled-chatgpt-gemini-perplexity-to-run-one-local-model/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-17T10:00:19+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] I put EV chargers in my company's parking lot. With gas prices soaring, employees appreciate them even more.",
+          "url": "https://www.businessinsider.com/founder-says-ev-chargers-are-key-employee-perk-gas-costs-2026-3",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-03-17T09:33:01+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] This is the smart home display I’d buy if I had all the money",
+          "url": "https://www.howtogeek.com/this-is-the-smart-home-display-id-buy-if-i-had-all-the-money/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-21T22:00:17+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Forgetfulino Puts Back Up of Source Inside the Binary",
+          "url": "https://hackaday.com/2026/03/18/forgetfulino-puts-back-up-of-source-inside-the-binary/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-18T15:30:46+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Google signs data center deal which includes a 20-year commitment to add new clean power",
+          "url": "https://www.techradar.com/pro/googles-signs-data-center-deal-that-comes-with-a-20-year-commitment-to-add-new-clean-power",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-19T18:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] Why Western Digital completely embarrassed Seagate in the 2025 Backblaze reliability report",
+          "url": "https://www.howtogeek.com/these-were-the-most-reliable-hdds-of-2025-according-to-backblaze-data/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-21T18:30:17+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Engadget] DNA building blocks on asteroid Ryugu, bacteria that eat plastic waste, and more science news",
+          "url": "https://www.engadget.com/science/dna-building-blocks-on-asteroid-ryugu-bacteria-that-eat-plastic-waste-and-more-science-news-150000975.html?src=rss",
+          "source": "Engadget",
+          "ai_score": 0,
+          "date_published": "2026-03-21T15:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] How to Set Up Your Own NAS Server for Backups and Content Streaming",
+          "url": "https://www.wired.com/story/how-to-set-up-nas-server/",
+          "source": "WIRED",
+          "ai_score": 0,
+          "date_published": "2026-03-17T10:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] Elon Musk unveiled more on his moonshot Terafab project. Here are 4 takeaways.",
+          "url": "https://www.businessinsider.com/elon-musk-terafab-details-spacex-tesla-ai-satellites-terawatt-2026-3",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-03-22T04:15:51+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Analog Video From an 8-Bit Microcontroller",
+          "url": "https://hackaday.com/2026/03/21/analog-video-from-an-8-bit-microcontroller/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-22T02:00:41+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Reviving a Cursed Sun SPARCstation IPX",
+          "url": "https://hackaday.com/2026/03/21/reviving-a-cursed-sun-sparcstation-ipx/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-21T23:00:20+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] 700 AI agents built a civilization with a new religion",
+          "url": "https://boingboing.net/2026/03/21/700-ai-agents-built-a-civilization-with-a-new-religion.html",
+          "source": "Boing Boing",
+          "ai_score": 0,
+          "date_published": "2026-03-21T21:38:26+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Ancient Fragments Could Be The World's Oldest Known Geometry",
+          "url": "https://www.sciencealert.com/ancient-fragments-could-be-the-worlds-oldest-known-geometry",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-21T21:00:58+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] ESP32: When Is A P4 A P4, But Not The P4 You Thought It Was",
+          "url": "https://hackaday.com/2026/03/21/esp32-when-is-a-p4-a-p4-but-not-the-p4-you-thought-it-was/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-21T20:00:44+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Gut Bacteria May Directly Enter The Brain, Study in Mice Reveals",
+          "url": "https://www.sciencealert.com/gut-bacteria-may-directly-enter-the-brain-study-in-mice-reveals",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-21T18:00:24+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] No injuries after small airplane makes hard landing at B.C. airport",
+          "url": "https://wltribune.com/2026/03/21/no-injuries-after-small-airplane-makes-hard-landing-at-b-c-airport/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-21T17:02:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] I asked a robot to serve me snacks at Nvidia GTC 2026",
+          "url": "https://www.techradar.com/pro/i-asked-a-robot-to-serve-me-snacks-at-nvidia-gtc-2026-but-im-not-ready-to-call-it-the-future-just-yet",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-21T16:15:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] New Experimental Drug Shrinks Tumors in Prostate Cancer Clinical Trial",
+          "url": "https://www.sciencealert.com/new-experimental-drug-shrinks-tumors-in-prostate-cancer-clinical-trial",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-21T14:00:54+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Does Vitamin C Really Protect You From The Common Cold?",
+          "url": "https://www.sciencealert.com/does-vitamin-c-really-protect-you-from-the-common-cold",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-22T01:00:57+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Engadget] What to read this weekend: Revisiting Project Hail Mary and The Thing on the Doorstep",
+          "url": "https://www.engadget.com/entertainment/what-to-read-this-weekend-revisiting-project-hail-mary-and-the-thing-on-the-doorstep-190000250.html?src=rss",
+          "source": "Engadget",
+          "ai_score": 0,
+          "date_published": "2026-03-21T19:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] 'We should regard it as a privilege to be stepping stones to higher things': How Arthur C Clarke predicted the rise of AGI and the looming demise of humanity back in 1964",
+          "url": "https://www.techradar.com/pro/we-should-regard-it-as-a-privilege-to-be-stepping-stones-to-higher-things-how-arthur-c-clarke-predicted-the-rise-of-agi-and-the-looming-demise-of-humanity-back-in-1964",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-21T17:05:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Resilient Rural Futures",
+      "articles": [
+        {
+          "title": "[Quesnel Cariboo Observer] OPINION: When dental care disappears, emergency rooms fill up",
+          "url": "https://quesnelobserver.com/2026/03/20/opinion-when-dental-care-disappears-emergency-rooms-fill-up/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-03-20T20:40:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Cariboo Men’s Choir returns in Williams Lake after 6-year hiatus",
+          "url": "https://wltribune.com/2026/03/21/cariboo-mens-choir-returns-in-williams-lake-after-6-year-hiatus/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-21T11:20:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] When confidence becomes a risk: The gap between cyber resilience readiness and reality",
+          "url": "https://www.techradar.com/pro/when-confidence-becomes-a-risk-the-gap-between-cyber-resilience-readiness-and-reality",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-19T15:32:10+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Deep dive on Resilient Rural Futures",
+        "topics_covered": [
+          "broadband",
+          "satellite",
+          "connectivity",
+          "renewable energy",
+          "solar"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
