@@ -8,6 +8,9 @@ interspersed with short Canadian indie music clips from Jamendo,
 and assembles everything into a single MP3 that mimics the CBC Radio 1
 Saturday morning listening experience.
 
+Riley hosts the show, adding commentary between segments, reading Cariboo weather,
+and identifying each music track.
+
 Usage:
     python cariboo_saturday.py [--dry-run] [--config PATH] [--output PATH]
 
@@ -18,6 +21,10 @@ Usage:
 Environment:
     JAMENDO_CLIENT_ID   Jamendo API client ID (or set jamendo_client_id in config).
                         Register free at https://devportal.jamendo.com
+    OPENAI_API_KEY      Required for Riley's voice (TTS). Without it the show
+                        assembles silently between segments.
+    ANTHROPIC_API_KEY   Required for Riley's script lines. Without it fallback
+                        templates are used.
 """
 
 from __future__ import annotations
@@ -43,7 +50,7 @@ SCRIPT_DIR = Path(__file__).parent
 DEFAULT_CONFIG = SCRIPT_DIR / "config" / "cariboo_saturday.json"
 
 # ---------------------------------------------------------------------------
-# Audio helpers (mirrors podcast_generator.py patterns)
+# Audio helpers
 # ---------------------------------------------------------------------------
 
 TARGET_SPEECH_DBFS = -20.0
@@ -58,10 +65,133 @@ def normalize_segment(audio: AudioSegment, target_dbfs: float) -> AudioSegment:
 
 
 # ---------------------------------------------------------------------------
+# Riley hosting — TTS + AI script generation
+# ---------------------------------------------------------------------------
+
+def get_openai_client():
+    """Return a cached OpenAI client, or None if OPENAI_API_KEY is unset."""
+    api_key = os.environ.get("OPENAI_API_KEY")
+    if not api_key:
+        return None
+    if not hasattr(get_openai_client, "_client"):
+        try:
+            from openai import OpenAI
+            get_openai_client._client = OpenAI(api_key=api_key)
+        except ImportError:
+            print("  [WARN] openai package not installed — Riley TTS disabled.")
+            get_openai_client._client = None
+    return get_openai_client._client
+
+
+def get_anthropic_client():
+    """Return a cached Anthropic client, or None if ANTHROPIC_API_KEY is unset."""
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    if not api_key:
+        return None
+    if not hasattr(get_anthropic_client, "_client"):
+        try:
+            import anthropic
+            get_anthropic_client._client = anthropic.Anthropic(api_key=api_key)
+        except ImportError:
+            print("  [WARN] anthropic package not installed — AI script lines disabled.")
+            get_anthropic_client._client = None
+    return get_anthropic_client._client
+
+
+def generate_riley_line(context: str) -> str:
+    """Use Claude to write a short natural spoken line for Riley.
+
+    Falls back to a plain empty string if the API is unavailable.
+    """
+    client = get_anthropic_client()
+    if not client:
+        return ""
+
+    prompt = (
+        "You are writing a short spoken line for Riley, host of Cariboo Saturday Morning "
+        "on cariboosignals.ca. Riley is warm, knows the Cariboo region of BC well, and "
+        "sounds like a natural radio host — not a newsreader. She keeps things brief and "
+        "conversational. No emojis, no stage directions, no quotation marks. Just the words "
+        "she would say on air. Under 3 sentences.\n\n"
+        f"Context: {context}"
+    )
+    try:
+        import anthropic
+        response = get_anthropic_client().messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=200,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        return response.content[0].text.strip()
+    except Exception as exc:
+        print(f"  [WARN] Claude API error generating Riley line: {exc}")
+        return ""
+
+
+def trim_tts_silence(
+    segment: AudioSegment, silence_thresh: float = -45, min_silence_len: int = 80
+) -> AudioSegment:
+    """Trim leading/trailing silence from a TTS segment."""
+    from pydub.silence import detect_leading_silence
+
+    start = detect_leading_silence(
+        segment, silence_threshold=silence_thresh, chunk_size=min_silence_len
+    )
+    end = detect_leading_silence(
+        segment.reverse(), silence_threshold=silence_thresh, chunk_size=min_silence_len
+    )
+    duration = len(segment)
+    trimmed = segment[start : duration - end] if duration - end > start else segment
+    return trimmed
+
+
+def riley_tts(text: str, tmp_dir: Path) -> AudioSegment | None:
+    """Convert text to audio using Riley's voice (OpenAI TTS nova).
+
+    Returns None if TTS is unavailable or text is empty.
+    """
+    if not text:
+        return None
+    client = get_openai_client()
+    if not client:
+        print("  [INFO] No OPENAI_API_KEY — skipping Riley commentary.")
+        return None
+
+    tmp_file = tmp_dir / f"riley_{abs(hash(text)) % 10_000_000}.mp3"
+    try:
+        response = client.audio.speech.create(
+            model="tts-1",
+            voice="nova",
+            input=text,
+            speed=1.0,
+        )
+        with open(tmp_file, "wb") as fh:
+            fh.write(response.content)
+        speech = AudioSegment.from_mp3(str(tmp_file))
+        speech = trim_tts_silence(speech)
+        return normalize_segment(speech, TARGET_SPEECH_DBFS)
+    except Exception as exc:
+        print(f"  [WARN] Riley TTS error: {exc}")
+        return None
+
+
+def riley_speak(context: str, tmp_dir: Path) -> AudioSegment | None:
+    """Generate a Riley line via Claude, then convert to TTS audio.
+
+    Returns None if either step is unavailable.
+    """
+    text = generate_riley_line(context)
+    if not text:
+        return None
+    print(f"  [Riley] {text}")
+    return riley_tts(text, tmp_dir)
+
+
+# ---------------------------------------------------------------------------
 # RSS / Download
 # ---------------------------------------------------------------------------
 
-HEADERS = {"User-Agent": "CBC-Saturday-Generator/1.0 (personal use)"}
+HEADERS = {"User-Agent": "Cariboo-Saturday-Generator/1.0 (personal use)"}
 
 
 def fetch_latest_episode(feed: dict) -> dict | None:
@@ -166,7 +296,7 @@ def extract_opening_jingle(raw_audio: AudioSegment, jingle_end_ms: int) -> Audio
 
 
 # ---------------------------------------------------------------------------
-# Free Music Archive
+# Music — Jamendo
 # ---------------------------------------------------------------------------
 
 JAMENDO_API_BASE = "https://api.jamendo.com/v3.0"
@@ -223,11 +353,11 @@ def get_music_clip(
     duration_ms: int,
     music_target_dbfs: float,
     used_ids: set[str],
-) -> AudioSegment | None:
+) -> tuple[AudioSegment | None, dict | None]:
     """Download a random (un-used) Jamendo track and trim it to duration_ms.
 
     Caches downloaded files in cache_dir by track ID.
-    Returns None if all tracks fail.
+    Returns (clip, track_info) or (None, None) if all tracks fail.
     """
     pool = [t for t in tracks if str(t.get("id", "")) not in used_ids]
     random.shuffle(pool)
@@ -265,22 +395,34 @@ def get_music_clip(
         clip = normalize_segment(clip, music_target_dbfs)
         used_ids.add(track_id)
 
+        track_info = {
+            "name": track.get("name", ""),
+            "artist": track.get("artist_name", ""),
+            "genres": (
+                track.get("musicinfo", {}).get("tags", {}).get("genres", [])
+            ),
+        }
         print(
-            f"  [Music] Using: {track.get('name', '?')} "
-            f"by {track.get('artist_name', '?')} ({len(clip) // 1000}s)"
+            f"  [Music] Using: {track_info['name']} "
+            f"by {track_info['artist']} ({len(clip) // 1000}s)"
         )
-        return clip
+        return clip, track_info
 
-    return None
+    return None, None
 
 
-def load_music_from_dir(music_dir: Path, duration_ms: int, music_target_dbfs: float) -> list[AudioSegment]:
-    """Load MP3/FLAC files from a local directory, shuffled."""
+def load_music_from_dir(
+    music_dir: Path, duration_ms: int, music_target_dbfs: float
+) -> list[tuple[AudioSegment, dict]]:
+    """Load MP3/FLAC files from a local directory, shuffled.
+
+    Returns list of (clip, track_info) tuples.
+    """
     files = list(music_dir.glob("*.mp3")) + list(music_dir.glob("*.flac"))
     if not files:
         return []
     random.shuffle(files)
-    clips = []
+    results = []
     for f in files:
         try:
             full = AudioSegment.from_file(str(f))
@@ -288,10 +430,10 @@ def load_music_from_dir(music_dir: Path, duration_ms: int, music_target_dbfs: fl
             clip = full[start : start + duration_ms]
             clip = clip.fade_in(1000).fade_out(1000)
             clip = normalize_segment(clip, music_target_dbfs)
-            clips.append(clip)
+            results.append((clip, {"name": f.stem, "artist": "", "genres": []}))
         except Exception as exc:
             print(f"  [WARN] Could not load {f.name}: {exc}")
-    return clips
+    return results
 
 
 # ---------------------------------------------------------------------------
@@ -301,22 +443,34 @@ def load_music_from_dir(music_dir: Path, duration_ms: int, music_target_dbfs: fl
 GAP = AudioSegment.silent(duration=GAP_MS)
 
 
+def _riley_segment(audio: AudioSegment | None) -> AudioSegment:
+    """Wrap a Riley TTS segment with short silence padding, or return empty."""
+    if audio is None:
+        return AudioSegment.empty()
+    return GAP + audio + GAP
+
+
 def assemble_show(
     episodes: list[tuple[str, AudioSegment]],
     opening_jingle: AudioSegment | None,
-    music_clips: list[AudioSegment],
+    music_items: list[tuple[AudioSegment, dict]],
+    weather_summary: str | None,
     config: dict,
+    tmp_dir: Path,
 ) -> AudioSegment:
-    """Assemble the final show from episodes and music clips.
+    """Assemble the final show with Riley hosting.
 
     Structure:
         CBC opening jingle (once, from first episode's raw intro)
-        [short silence]
-        Episode 1 content (trimmed)
-        [short silence] + music transition + [short silence]
-        Episode 2 content (trimmed)
+        Riley: show open + weather
+        Episode 1
+        Riley: outro for episode + music tease
+        Music clip 1
+        Riley: track ID + intro for next segment
+        Episode 2
         ...
-        [short silence] + closing music fade
+        Riley: sign-off
+        Closing music (fade out)
     """
     combined = AudioSegment.empty()
 
@@ -324,25 +478,83 @@ def assemble_show(
     if opening_jingle is not None:
         combined += opening_jingle + GAP
 
-    music_iter = iter(music_clips)
+    # --- Riley: show opener + weather ---
+    date_str = datetime.now().strftime("%A, %B %-d")
+    segment_names = ", ".join(name for name, _ in episodes)
+    weather_note = f" {weather_summary}" if weather_summary else ""
+    opener_context = (
+        f"Riley opens the Cariboo Saturday Morning show. Today is {date_str}.{weather_note} "
+        f"The segments lined up are: {segment_names}. She welcomes listeners, gives the weather "
+        f"naturally (if provided), and briefly teases what's coming up."
+    )
+    opener = riley_speak(opener_context, tmp_dir)
+    combined += _riley_segment(opener)
+
+    music_iter = iter(music_items)
 
     for i, (name, audio) in enumerate(episodes):
         print(f"  Adding episode: {name} ({len(audio) // 1000}s)")
         combined += normalize_segment(audio, config["speech_target_dbfs"])
 
-        # Add a music transition between episodes (not after the last one)
-        if i < len(episodes) - 1:
-            clip = next(music_iter, None)
-            if clip is not None:
-                combined += GAP + clip + GAP
-            else:
-                # No music available — just add a short pause
-                combined += AudioSegment.silent(duration=2000)
+        clip_item = next(music_iter, None)
+        is_last = i == len(episodes) - 1
 
-    # Closing: fade out with one final music clip if available
-    closing = next(music_iter, None)
-    if closing is not None:
-        combined += GAP + closing.fade_out(3000)
+        if not is_last and clip_item is not None:
+            clip, track_info = clip_item
+
+            # Riley: brief episode wrap-up and music tease
+            next_name = episodes[i + 1][0]
+            outro_context = (
+                f"Riley briefly wraps up the {name} segment and says a music break "
+                f"is coming before {next_name}. Keep it to one short sentence."
+            )
+            outro = riley_speak(outro_context, tmp_dir)
+            combined += _riley_segment(outro)
+
+            # Music
+            combined += GAP + clip + GAP
+
+            # Riley: music ID + intro for next segment
+            genres_str = (
+                f", genres: {', '.join(track_info['genres'])}"
+                if track_info.get("genres")
+                else ""
+            )
+            track_id_context = (
+                f"Riley IDs the music track that just played: '{track_info['name']}' "
+                f"by {track_info['artist']}{genres_str}. "
+                f"She gives a brief natural mention of the artist (e.g. whether they're a "
+                f"solo act, duo, band; any Cariboo/BC/Canadian connection if it fits), "
+                f"then introduces the next segment: {next_name}."
+            )
+            track_id = riley_speak(track_id_context, tmp_dir)
+            combined += _riley_segment(track_id)
+
+        elif is_last:
+            # No more episodes — closing music if available
+            clip_item = next(music_iter, None)
+            if clip_item is not None:
+                clip, track_info = clip_item
+
+                # Riley: sign-off before closing music
+                signoff_context = (
+                    "Riley signs off the Cariboo Saturday Morning show warmly, "
+                    "thanks listeners, and says there's one last track to close out the morning."
+                )
+                signoff = riley_speak(signoff_context, tmp_dir)
+                combined += _riley_segment(signoff)
+
+                combined += GAP + clip.fade_out(3000)
+            else:
+                # No closing music — Riley signs off directly
+                signoff_context = (
+                    "Riley signs off the Cariboo Saturday Morning show warmly and thanks listeners."
+                )
+                signoff = riley_speak(signoff_context, tmp_dir)
+                combined += _riley_segment(signoff)
+
+        elif is_last and clip_item is None:
+            combined += AudioSegment.silent(duration=2000)
 
     return combined
 
@@ -378,7 +590,23 @@ def main() -> None:
     feeds = sorted(config["feeds"], key=lambda f: f.get("priority", 99))
 
     # -----------------------------------------------------------------------
-    # Step 1: Fetch episode metadata
+    # Step 1: Fetch weather
+    # -----------------------------------------------------------------------
+    weather_summary: str | None = None
+    print("\n=== Fetching Cariboo weather ===")
+    try:
+        from weather import fetch_weather
+        weather_data = fetch_weather()
+        if weather_data:
+            weather_summary = weather_data["summary"]
+            print(f"  Weather: {weather_summary}")
+        else:
+            print("  [WARN] Weather fetch returned no data.")
+    except Exception as exc:
+        print(f"  [WARN] Weather fetch failed: {exc}")
+
+    # -----------------------------------------------------------------------
+    # Step 2: Fetch episode metadata
     # -----------------------------------------------------------------------
     print("\n=== Fetching CBC podcast episodes ===")
     episode_meta: list[dict] = []
@@ -401,10 +629,12 @@ def main() -> None:
             print(f"  {m['name']}: {m['title']}")
             print(f"    URL: {m['url']}")
             print(f"    Trim: {m['trim_start_ms']}ms start / {m['trim_end_ms']}ms end")
+        if weather_summary:
+            print(f"\n  Weather: {weather_summary}")
         return
 
     # -----------------------------------------------------------------------
-    # Step 2: Download + trim episodes
+    # Step 3: Download + trim episodes
     # -----------------------------------------------------------------------
     with tempfile.TemporaryDirectory() as tmpdir:
         tmp = Path(tmpdir)
@@ -446,10 +676,10 @@ def main() -> None:
             sys.exit(1)
 
         # -------------------------------------------------------------------
-        # Step 3: Music clips
+        # Step 4: Music clips
         # -------------------------------------------------------------------
-        num_clips_needed = len(episodes)  # one per transition + closing
-        music_clips: list[AudioSegment] = []
+        num_clips_needed = len(episodes) + 1  # transitions between + closing
+        music_items: list[tuple[AudioSegment, dict]] = []
         duration_ms = config.get("music_transition_duration_ms", 20000)
         music_target_dbfs = config.get("music_target_dbfs", TARGET_MUSIC_DBFS)
 
@@ -458,34 +688,36 @@ def main() -> None:
             music_dir = Path(music_dir_str)
             if music_dir.is_dir():
                 print(f"\n=== Loading music from local dir: {music_dir} ===")
-                music_clips = load_music_from_dir(music_dir, duration_ms, music_target_dbfs)
-                print(f"  Loaded {len(music_clips)} clips from local dir.")
+                music_items = load_music_from_dir(music_dir, duration_ms, music_target_dbfs)
+                print(f"  Loaded {len(music_items)} clips from local dir.")
 
-        if len(music_clips) < num_clips_needed:
+        if len(music_items) < num_clips_needed:
             print("\n=== Fetching Canadian indie tracks from Jamendo ===")
             tracks = fetch_jamendo_tracks(jamendo_client_id, config.get("fma_tags", ["indie"]))
             if tracks:
                 used_ids: set[str] = set()
-                while len(music_clips) < num_clips_needed:
-                    clip = get_music_clip(
+                while len(music_items) < num_clips_needed:
+                    clip, track_info = get_music_clip(
                         tracks, music_cache, duration_ms, music_target_dbfs, used_ids
                     )
                     if clip is None:
                         break
-                    music_clips.append(clip)
+                    music_items.append((clip, track_info))
 
-        if not music_clips:
+        if not music_items:
             print("\n  [INFO] No music clips available — assembling without music transitions.")
 
         # -------------------------------------------------------------------
-        # Step 4: Assemble
+        # Step 5: Assemble with Riley hosting
         # -------------------------------------------------------------------
-        print(f"\n=== Assembling show ({len(episodes)} episodes, {len(music_clips)} music clips) ===")
+        print(f"\n=== Assembling show ({len(episodes)} episodes, {len(music_items)} music clips) ===")
         show = assemble_show(
             episodes,
             opening_jingle,
-            music_clips,
+            music_items,
+            weather_summary,
             {"speech_target_dbfs": config.get("speech_target_dbfs", TARGET_SPEECH_DBFS)},
+            tmp,
         )
 
         total_min = len(show) // 60_000
@@ -493,7 +725,7 @@ def main() -> None:
         print(f"  Total duration: {total_min}m {total_sec}s")
 
         # -------------------------------------------------------------------
-        # Step 5: Export
+        # Step 6: Export
         # -------------------------------------------------------------------
         print(f"\n=== Exporting to {output_path} ===")
         show.export(str(output_path), format="mp3", bitrate="128k")
@@ -507,7 +739,9 @@ def main() -> None:
         print(f"    - {name} ({len(audio) // 1000}s)")
     if opening_jingle:
         print(f"  Opening jingle: {len(opening_jingle) // 1000}s (from first episode)")
-    print(f"  Music transitions: {len(music_clips)}")
+    print(f"  Music transitions: {len(music_items)}")
+    if weather_summary:
+        print(f"  Weather: {weather_summary}")
 
 
 if __name__ == "__main__":

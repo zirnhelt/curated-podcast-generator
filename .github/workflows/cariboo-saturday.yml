@@ -47,6 +47,8 @@ jobs:
       - name: Generate Cariboo Saturday Morning show
         env:
           JAMENDO_CLIENT_ID: ${{ secrets.JAMENDO_CLIENT_ID }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           echo "=== Cariboo Saturday Morning Generator ==="
           echo "Run date: $(TZ='America/Vancouver' date)"
