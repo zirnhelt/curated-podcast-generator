@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-cbc_saturday.py — Cariboo Saturday Morning Radio Generator
+cariboo_saturday.py — Cariboo Saturday Morning Radio Generator
 
 Fetches the latest episodes from configured CBC podcast RSS feeds (prioritising
 news: World Report → BC Today → CBC Kamloops), trims their intros/outros,
@@ -9,10 +9,10 @@ and assembles everything into a single MP3 that mimics the CBC Radio 1
 Saturday morning listening experience.
 
 Usage:
-    python cbc_saturday.py [--dry-run] [--config PATH] [--output PATH]
+    python cariboo_saturday.py [--dry-run] [--config PATH] [--output PATH]
 
     --dry-run   Fetch feed metadata and print episode info without downloading audio.
-    --config    Path to config JSON (default: config/cbc_saturday.json).
+    --config    Path to config JSON (default: config/cariboo_saturday.json).
     --output    Override output MP3 path.
 
 Environment:
@@ -40,7 +40,7 @@ from pydub import AudioSegment
 # ---------------------------------------------------------------------------
 
 SCRIPT_DIR = Path(__file__).parent
-DEFAULT_CONFIG = SCRIPT_DIR / "config" / "cbc_saturday.json"
+DEFAULT_CONFIG = SCRIPT_DIR / "config" / "cariboo_saturday.json"
 
 # ---------------------------------------------------------------------------
 # Audio helpers (mirrors podcast_generator.py patterns)
@@ -372,7 +372,7 @@ def main() -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
 
     date_str = datetime.now().strftime("%Y-%m-%d")
-    output_path = args.output or output_dir / f"cbc_saturday_{date_str}.mp3"
+    output_path = args.output or output_dir / f"cariboo_saturday_{date_str}.mp3"
 
     # Sort feeds by priority (lowest number = highest priority)
     feeds = sorted(config["feeds"], key=lambda f: f.get("priority", 99))

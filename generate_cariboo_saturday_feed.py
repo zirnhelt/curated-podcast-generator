@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-generate_cbc_saturday_feed.py — Build cbc-saturday-feed.xml
+generate_cariboo_saturday_feed.py — Build cariboo-saturday-feed.xml
 
-Scans podcasts/cbc_saturday_*.mp3, derives pub-dates from filenames, and writes
+Scans podcasts/cariboo_saturday_*.mp3, derives pub-dates from filenames, and writes
 a podcast-compatible RSS feed.
 
 Usage:
-    python generate_cbc_saturday_feed.py [--base-url URL]
+    python generate_cariboo_saturday_feed.py [--base-url URL]
 """
 
 from __future__ import annotations
@@ -19,7 +19,7 @@ from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).parent
 PODCASTS_DIR = SCRIPT_DIR / "podcasts"
-FEED_FILE = SCRIPT_DIR / "cbc-saturday-feed.xml"
+FEED_FILE = SCRIPT_DIR / "cariboo-saturday-feed.xml"
 
 FEED_CONFIG = {
     "title": "Cariboo Saturday Morning — Cariboo Mix",
@@ -43,15 +43,15 @@ def _estimate_duration(size_bytes: int) -> str:
 
 
 def generate_feed(base_url: str) -> None:
-    mp3s = sorted(PODCASTS_DIR.glob("cbc_saturday_*.mp3"), reverse=True)
+    mp3s = sorted(PODCASTS_DIR.glob("cariboo_saturday_*.mp3"), reverse=True)
     if not mp3s:
-        print("  [WARN] No cbc_saturday_*.mp3 files found — feed will be empty.")
+        print("  [WARN] No cariboo_saturday_*.mp3 files found — feed will be empty.")
 
     episodes = []
     for mp3 in mp3s[:20]:  # keep last 20
-        # filename: cbc_saturday_YYYY-MM-DD.mp3
-        stem = mp3.stem  # cbc_saturday_2026-03-22
-        date_str = stem.replace("cbc_saturday_", "")
+        # filename: cariboo_saturday_YYYY-MM-DD.mp3
+        stem = mp3.stem  # cariboo_saturday_2026-03-22
+        date_str = stem.replace("cariboo_saturday_", "")
         try:
             dt = datetime.strptime(date_str, "%Y-%m-%d").replace(
                 hour=16, tzinfo=timezone.utc
@@ -64,7 +64,7 @@ def generate_feed(base_url: str) -> None:
 
         size = mp3.stat().st_size
         url = f"{base_url}podcasts/{mp3.name}"
-        guid = f"cbc-saturday-{date_str}"
+        guid = f"cariboo-saturday-{date_str}"
         duration = _estimate_duration(size)
 
         episodes.append(
@@ -79,7 +79,7 @@ def generate_feed(base_url: str) -> None:
         )
 
     cfg = FEED_CONFIG
-    feed_url = f"{base_url}cbc-saturday-feed.xml"
+    feed_url = f"{base_url}cariboo-saturday-feed.xml"
     now_rfc = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S GMT")
 
     lines = [
