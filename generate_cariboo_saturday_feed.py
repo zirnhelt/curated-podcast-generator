@@ -12,6 +12,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import xml.sax.saxutils as saxutils
 from datetime import datetime, timezone
@@ -42,6 +43,70 @@ def _estimate_duration(size_bytes: int) -> str:
     return f"{seconds // 60}:{seconds % 60:02d}"
 
 
+def _build_description(title: str, meta_path: Path) -> str:
+    """Build an HTML episode description from companion metadata JSON if available.
+
+    Falls back to plain title when no metadata exists.
+    """
+    if not meta_path.exists():
+        return title
+
+    try:
+        meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    except Exception:
+        return title
+
+    parts: list[str] = [f"<p>{title}</p>"]
+
+    episodes = meta.get("episodes", [])
+    if episodes:
+        parts.append("<p><strong>CBC segments featured:</strong></p><ul>")
+        for ep in episodes:
+            name = ep.get("name", "")
+            ep_title = ep.get("title", name)
+            link = ep.get("link", "")
+            pub = ep.get("pub_date", "")
+            pub_note = f" — {pub}" if pub else ""
+            if link:
+                parts.append(
+                    f'<li><a href="{saxutils.escape(link)}">'
+                    f"{saxutils.escape(ep_title)}</a>"
+                    f" ({saxutils.escape(name)}){saxutils.escape(pub_note)}</li>"
+                )
+            else:
+                parts.append(
+                    f"<li>{saxutils.escape(ep_title)}"
+                    f" ({saxutils.escape(name)}){saxutils.escape(pub_note)}</li>"
+                )
+        parts.append("</ul>")
+
+    music = meta.get("music", [])
+    if music:
+        parts.append("<p><strong>Music:</strong></p><ul>")
+        for track in music:
+            track_name = track.get("name", "")
+            artist = track.get("artist", "")
+            genres = track.get("genres", [])
+            shareurl = track.get("shareurl", "")
+            genre_note = f" [{', '.join(genres)}]" if genres else ""
+            credit = f"{saxutils.escape(track_name)} by {saxutils.escape(artist)}{saxutils.escape(genre_note)}"
+            if shareurl:
+                parts.append(
+                    f'<li><a href="{saxutils.escape(shareurl)}">{credit}</a>'
+                    f" via Jamendo (CC)</li>"
+                )
+            else:
+                parts.append(f"<li>{credit} via Jamendo (CC)</li>")
+        parts.append("</ul>")
+
+    parts.append(
+        "<p><em>Assembled automatically from CBC Radio podcasts for the Cariboo region of BC. "
+        "Music sourced from Jamendo under Creative Commons licence.</em></p>"
+    )
+
+    return "".join(parts)
+
+
 def generate_feed(base_url: str) -> None:
     mp3s = sorted(PODCASTS_DIR.glob("cariboo_saturday_*.mp3"), reverse=True)
     if not mp3s:
@@ -66,6 +131,8 @@ def generate_feed(base_url: str) -> None:
         url = f"{base_url}podcasts/{mp3.name}"
         guid = f"cariboo-saturday-{date_str}"
         duration = _estimate_duration(size)
+        meta_path = mp3.with_suffix(".json")
+        description = _build_description(title, meta_path)
 
         episodes.append(
             {
@@ -75,6 +142,7 @@ def generate_feed(base_url: str) -> None:
                 "size": size,
                 "guid": guid,
                 "duration": duration,
+                "description": description,
             }
         )
 
@@ -104,7 +172,8 @@ def generate_feed(base_url: str) -> None:
             "<item>",
             f"<title>{saxutils.escape(ep['title'])}</title>",
             f"<pubDate>{ep['pub_date']}</pubDate>",
-            f"<description>{saxutils.escape(ep['title'])}</description>",
+            f"<description><![CDATA[{ep['description']}]]></description>",
+            f"<itunes:summary><![CDATA[{ep['description']}]]></itunes:summary>",
             f'<enclosure url="{saxutils.escape(ep["url"])}" length="{ep["size"]}" type="audio/mpeg"/>',
             f'<guid isPermaLink="false">{ep["guid"]}</guid>',
             f"<itunes:duration>{ep['duration']}</itunes:duration>",
