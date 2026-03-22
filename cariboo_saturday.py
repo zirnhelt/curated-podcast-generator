@@ -236,12 +236,16 @@ def fetch_latest_episode(feed: dict) -> dict | None:
         duration_el = item.find("itunes:duration", ns)
         duration = duration_el.text if duration_el is not None else ""
 
+        link_el = item.find("link")
+        episode_link = link_el.text.strip() if link_el is not None and link_el.text else ""
+
         return {
             "name": feed["name"],
             "title": title,
             "url": url,
             "pub_date": pub_date,
             "duration": duration,
+            "link": episode_link,
             "trim_start_ms": feed.get("trim_start_ms", 10000),
             "trim_end_ms": feed.get("trim_end_ms", 10000),
             "jingle_end_ms": feed.get("jingle_end_ms"),
@@ -402,6 +406,7 @@ def get_music_clip(
             "genres": (
                 track.get("musicinfo", {}).get("tags", {}).get("genres", [])
             ),
+            "shareurl": track.get("shareurl", ""),
         }
         print(
             f"  [Music] Using: {track_info['name']} "
@@ -776,6 +781,39 @@ def main() -> None:
         print(f"\n=== Exporting to {output_path} ===")
         show.export(str(output_path), format="mp3", bitrate="128k")
         print(f"  Done. File size: {output_path.stat().st_size // 1024}KB")
+
+        # -------------------------------------------------------------------
+        # Step 7: Save companion metadata JSON for show notes
+        # -------------------------------------------------------------------
+        meta_path = output_path.with_suffix(".json")
+        # Build episode list from episode_meta (only those that downloaded successfully)
+        included_names = {name for name, _ in episodes}
+        meta_episodes = [
+            {
+                "name": m["name"],
+                "title": m["title"],
+                "pub_date": m["pub_date"],
+                "link": m.get("link", ""),
+            }
+            for m in episode_meta
+            if m["name"] in included_names
+        ]
+        meta_music = [
+            {
+                "name": ti.get("name", ""),
+                "artist": ti.get("artist", ""),
+                "genres": ti.get("genres", []),
+                "shareurl": ti.get("shareurl", ""),
+            }
+            for _, ti in music_items
+        ]
+        show_metadata = {
+            "date": date_str,
+            "episodes": meta_episodes,
+            "music": meta_music,
+        }
+        meta_path.write_text(json.dumps(show_metadata, indent=2, ensure_ascii=False), encoding="utf-8")
+        print(f"  Metadata: {meta_path}")
 
     # Summary
     print("\n=== Summary ===")
