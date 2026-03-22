@@ -21,7 +21,7 @@ permissions:
   id-token: write
 
 jobs:
-  generate-cbc-saturday:
+  generate-cariboo-saturday:
     runs-on: ubuntu-latest
 
     steps:
@@ -47,36 +47,38 @@ jobs:
       - name: Generate Cariboo Saturday Morning show
         env:
           JAMENDO_CLIENT_ID: ${{ secrets.JAMENDO_CLIENT_ID }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           echo "=== Cariboo Saturday Morning Generator ==="
           echo "Run date: $(TZ='America/Vancouver' date)"
           echo "Dry run: ${{ inputs.dry_run || 'false' }}"
 
           if [ "${{ inputs.dry_run }}" = "true" ]; then
-            python cbc_saturday.py --dry-run
+            python cariboo_saturday.py --dry-run
           else
-            python cbc_saturday.py
+            python cariboo_saturday.py
           fi
 
       - name: List output file
         if: ${{ inputs.dry_run != 'true' }}
         run: |
           echo "Generated files:"
-          ls -lh podcasts/cbc_saturday_*.mp3 2>/dev/null || echo "No output file found"
+          ls -lh podcasts/cariboo_saturday_*.mp3 2>/dev/null || echo "No output file found"
 
       - name: Generate RSS feed
         env:
           PODCAST_BASE_URL: https://podcast.cariboosignals.ca/
-        run: python generate_cbc_saturday_feed.py
+        run: python generate_cariboo_saturday_feed.py
 
       - name: Commit generated show and feed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add podcasts/cbc_saturday_*.mp3 || echo "No audio file to stage"
+          git add podcasts/cariboo_saturday_*.mp3 || echo "No audio file to stage"
           git add podcasts/.music_cache/ || true
-          git add cbc-saturday-feed.xml || true
+          git add cariboo-saturday-feed.xml || true
 
           git diff --quiet && git diff --staged --quiet \
             || git commit -m "Cariboo Saturday show - $(TZ='America/Vancouver' date '+%Y-%m-%d')"
@@ -93,14 +95,14 @@ jobs:
           BUCKET="cariboo-signals"
           echo "Syncing Cariboo Saturday content to R2..."
 
-          aws s3 cp cbc-saturday-feed.xml "s3://${BUCKET}/cbc-saturday-feed.xml" \
+          aws s3 cp cariboo-saturday-feed.xml "s3://${BUCKET}/cariboo-saturday-feed.xml" \
             --content-type "application/rss+xml" \
             --cache-control "no-cache"
-          aws s3 cp cbc-saturday.html "s3://${BUCKET}/cbc-saturday.html" \
+          aws s3 cp cariboo-saturday.html "s3://${BUCKET}/cariboo-saturday.html" \
             --content-type "text/html" \
             --cache-control "no-cache"
 
-          for f in podcasts/cbc_saturday_*.mp3; do
+          for f in podcasts/cariboo_saturday_*.mp3; do
             [ -f "$f" ] && echo "  uploading $f" && \
               aws s3 cp "$f" "s3://${BUCKET}/${f}" --content-type "audio/mpeg"
           done
@@ -112,9 +114,9 @@ jobs:
         run: |
           mkdir -p output/podcasts
 
-          cp podcasts/cbc_saturday_*.mp3 output/podcasts/ 2>/dev/null || true
-          cp cbc-saturday-feed.xml output/ 2>/dev/null || true
-          cp cbc-saturday.html output/ 2>/dev/null || true
+          cp podcasts/cariboo_saturday_*.mp3 output/podcasts/ 2>/dev/null || true
+          cp cariboo-saturday-feed.xml output/ 2>/dev/null || true
+          cp cariboo-saturday.html output/ 2>/dev/null || true
 
           echo "Output:"
           ls -lh output/
@@ -126,12 +128,12 @@ jobs:
           publish_dir: ./output
           publish_branch: gh-pages
           keep_files: true
-          commit_message: "cbc-saturday: deploy show ${{ github.run_id }}"
+          commit_message: "cariboo-saturday: deploy show ${{ github.run_id }}"
 
       - name: Upload show as artifact
         if: ${{ inputs.dry_run != 'true' }}
         uses: actions/upload-artifact@v4
         with:
-          name: cbc-saturday-show
-          path: podcasts/cbc_saturday_*.mp3
+          name: cariboo-saturday-show
+          path: podcasts/cariboo_saturday_*.mp3
           retention-days: 14

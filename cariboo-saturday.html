@@ -242,8 +242,8 @@
             <h3>Subscribe to Cariboo Saturday Morning</h3>
             <p>Add this feed to any podcast app that accepts an RSS URL:</p>
             <div class="rss-links">
-                <a href="cbc-saturday-feed.xml" class="rss-button">🎙️ RSS Feed</a>
-                <a href="https://podcast.cariboosignals.ca/cbc-saturday-feed.xml" class="rss-button">📡 Direct Link</a>
+                <a href="cariboo-saturday-feed.xml" class="rss-button">🎙️ RSS Feed</a>
+                <a href="https://podcast.cariboosignals.ca/cariboo-saturday-feed.xml" class="rss-button">📡 Direct Link</a>
             </div>
         </div>
 
@@ -267,7 +267,7 @@
         async function loadEpisodes() {
             const container = document.getElementById('episodes-container');
             try {
-                const response = await fetch('cbc-saturday-feed.xml');
+                const response = await fetch('cariboo-saturday-feed.xml');
                 if (!response.ok) throw new Error('Feed not found');
                 const xmlText = await response.text();
 
