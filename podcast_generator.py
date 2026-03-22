@@ -592,6 +592,129 @@ def fact_check_deep_dive(script, news_articles, deep_dive_articles):
 
 
 # ---------------------------------------------------------------------------
+# Brave Search enrichment for daily deep dives
+# ---------------------------------------------------------------------------
+
+def _brave_search(query, api_key, count=5):
+    """Call Brave Search API and return a list of result dicts."""
+    try:
+        resp = requests.get(
+            "https://api.search.brave.com/res/v1/web/search",
+            headers={
+                "Accept": "application/json",
+                "Accept-Encoding": "gzip",
+                "X-Subscription-Token": api_key,
+            },
+            params={"q": query, "count": count, "search_lang": "en", "safesearch": "moderate"},
+            timeout=10,
+        )
+        resp.raise_for_status()
+        return [
+            {"title": r.get("title", ""), "url": r.get("url", ""), "description": r.get("description", "")}
+            for r in resp.json().get("web", {}).get("results", [])
+        ]
+    except Exception as e:
+        print(f"  Brave search failed for '{query[:50]}': {e}")
+        return []
+
+
+def _assess_deep_dive_for_enrichment(deep_dive_articles, theme_name, client):
+    """Ask Claude Haiku whether Brave enrichment is warranted for this deep dive.
+
+    Returns (should_enrich: bool, reason: str, queries: list[str]).
+    Cheap Haiku call — only runs when BRAVE_SEARCH_API_KEY is set.
+    """
+    articles_summary = "\n".join(
+        f"- {a.get('title', '')}: {a.get('summary', '')[:150]}"
+        for a in deep_dive_articles
+    )
+    prompt = (
+        f"You are helping decide whether a podcast deep dive on today's theme '{theme_name}' "
+        "warrants additional fact-checking and story shaping via live web search.\n\n"
+        f"Deep dive articles selected:\n{articles_summary}\n\n"
+        "Assess whether these articles cover a topic where:\n"
+        "1. There are likely recent developments, breaking news, or rapidly evolving facts\n"
+        "2. The topic involves contested claims, policy disputes, or scientific findings "
+        "that benefit from independent verification\n"
+        "3. Current events or broader context would materially enrich the story\n\n"
+        "If enrichment IS warranted, provide 2-3 targeted search queries focused on "
+        "fact-checking specific claims, finding recent developments, or surfacing "
+        "counterpoints not covered in the articles above.\n\n"
+        "Respond ONLY with valid JSON (no markdown fences):\n"
+        '{"should_enrich": true, "reason": "one sentence", "queries": ["query1", "query2"]}\n'
+        "If enrichment is NOT warranted:\n"
+        '{"should_enrich": false, "reason": "one sentence", "queries": []}'
+    )
+    try:
+        response = api_retry(lambda: client.messages.create(
+            model=SUMMARY_MODEL,
+            max_tokens=300,
+            messages=[{"role": "user", "content": prompt}]
+        ))
+        raw = response.content[0].text.strip()
+        # Strip markdown code fences if the model adds them anyway
+        if raw.startswith("```"):
+            raw = re.sub(r"^```[a-z]*\n?", "", raw).rstrip("`").strip()
+        data = json.loads(raw)
+        return bool(data.get("should_enrich", False)), data.get("reason", ""), data.get("queries", [])[:3]
+    except Exception as e:
+        print(f"  ⚠️  Brave enrichment assessment failed: {e}")
+        return False, "", []
+
+
+def enrich_deep_dive_with_brave(deep_dive_articles, theme_name, client):
+    """Conditionally enrich the deep dive with live Brave Search results.
+
+    Uses Claude Haiku to decide whether the topic and current articles justify
+    a web search pass, then runs targeted queries and returns a formatted
+    context block for injection into the script generation prompt.
+
+    Returns an empty string when enrichment is not warranted, BRAVE_SEARCH_API_KEY
+    is unset, or the search returns no new results.
+    """
+    brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
+    if not brave_key:
+        return ""
+
+    print("🔎 Assessing deep dive for Brave Search enrichment...")
+    should_enrich, reason, queries = _assess_deep_dive_for_enrichment(
+        deep_dive_articles, theme_name, client
+    )
+
+    if not should_enrich:
+        print(f"  ℹ️  Brave enrichment skipped: {reason or 'not warranted for this topic'}")
+        return ""
+
+    print(f"  ✅ Enrichment warranted: {reason}")
+
+    existing_urls = {a.get("url", "") for a in deep_dive_articles}
+    results = []
+    for query in queries:
+        print(f"    🌐 Searching: {query[:70]}")
+        for r in _brave_search(query, brave_key, count=4):
+            if r["url"] not in existing_urls:
+                existing_urls.add(r["url"])
+                results.append(r)
+
+    if not results:
+        print("  ℹ️  Brave search returned no new results")
+        return ""
+
+    print(f"  📰 {len(results)} additional results fetched for deep dive enrichment")
+
+    lines = [
+        f"- {r['title']}\n  {r['description'][:200]}\n  Source: {r['url']}"
+        for r in results[:8]
+    ]
+    return (
+        "ADDITIONAL CONTEXT FROM LIVE WEB SEARCH (use this to verify claims, add recent "
+        "developments, or surface missing context in the deep dive; cite naturally when relevant):\n"
+        + "\n".join(lines)
+        + "\n\n"
+    )
+
+
+# ---------------------------------------------------------------------------
 # Batch API helpers
 # ---------------------------------------------------------------------------
 
@@ -1775,7 +1898,7 @@ def format_memory_for_prompt(episode_memory, host_memory):
     return context
 
 
-def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None, feed_meta=None, bonus_articles=None, debate_memory=None, cta_memory=None, thought_seeds=None, weather_data=None):
+def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None, feed_meta=None, bonus_articles=None, debate_memory=None, cta_memory=None, thought_seeds=None, weather_data=None, brave_context=""):
     """Generate conversational podcast script using Claude."""
     print("🎙️ Generating podcast script with Claude...")
 
@@ -1872,6 +1995,10 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
     # Inject user-seeded thoughts as exploration prompts for the hosts
     if thought_seeds:
         memory_context += format_thought_seeds_for_prompt(thought_seeds)
+
+    # Inject Brave Search enrichment context (fact-checking + recent developments)
+    if brave_context:
+        memory_context += brave_context
 
     # Add holiday context if today is a special holiday that should be acknowledged in opening/closing
     if psa_info and psa_info.get('event_name') and psa_info.get('source') == 'event':
@@ -3005,6 +3132,10 @@ def main():
             print(f"   Theme description: {feed_meta['theme_description'][:80]}...")
         print(f"   Memory context: {len(episode_memory)} recent episodes")
 
+        # Conditionally enrich deep dive with Brave Search (fact-checking + story shaping)
+        brave_client = get_anthropic_client()
+        brave_context = enrich_deep_dive_with_brave(deep_dive_articles, today_theme, brave_client) if brave_client else ""
+
         # Fetch weather for Williams Lake
         print("🌤️  Fetching weather for Williams Lake...")
         weather_data = fetch_weather()
@@ -3044,7 +3175,7 @@ def main():
             psa_info=psa_info, feed_meta=feed_meta,
             bonus_articles=bonus_articles, debate_memory=debate_memory,
             cta_memory=cta_memory, thought_seeds=active_thought_seeds,
-            weather_data=weather_data
+            weather_data=weather_data, brave_context=brave_context
         )
 
         if not script:
