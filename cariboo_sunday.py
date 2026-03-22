@@ -178,17 +178,20 @@ def assemble_show(
 
     Structure:
         Casey: show open + weather
-        Episode 1  (q with Tom Power)
-        Casey: outro for episode + music tease
-        Music clip 1
-        Casey: track ID + intro for next segment
-        Episode 2  (Unreserved)
-        ...
+        Episode 1  (CBC News: World Report)
+        [short music transition]
+        Episode 2  (CBC BC Today)
+        [short music transition]
+        Episode 3  (CBC Kamloops News)
+        [longer intermission music — intermission_after flag]
+        Episode 4  (q with Tom Power)
+        [short music transition]
+        Episode 5  (Unreserved)
         Casey: sign-off
         Closing music (fade out)
 
-    Note: No CBC opening jingle — unlike World Report, the social shows don't
-    have a short extractable news jingle.
+    Any feed that fails to download is skipped; intermission_indices tracks which
+    episode slots should be followed by a longer music break.
     """
     if intermission_indices is None:
         intermission_indices = set()
@@ -361,7 +364,7 @@ def main() -> None:
 
         print("\n=== Downloading and trimming episodes ===")
         episodes: list[tuple[str, AudioSegment]] = []
-        intermission_indices: set[int] = set()  # not used for Sunday, kept for consistency
+        intermission_indices: set[int] = set()
 
         for i, candidates in enumerate(episode_candidates):
             dest = tmp / f"ep_{i:02d}.mp3"
@@ -392,6 +395,8 @@ def main() -> None:
             print(f"    Duration: {len(raw) // 1000}s raw")
             trimmed = trim_episode(raw, meta["trim_start_ms"], meta["trim_end_ms"])
             print(f"    Trimmed to: {len(trimmed) // 1000}s")
+            if meta.get("intermission_after"):
+                intermission_indices.add(len(episodes))
             episodes.append((meta["name"], trimmed))
 
         if not episodes:
@@ -402,12 +407,20 @@ def main() -> None:
         # Step 4: Music clips
         # -------------------------------------------------------------------
         duration_ms = config.get("music_transition_duration_ms", 20000)
+        intermission_ms = config.get("music_intermission_duration_ms", 240_000)
         max_song_duration_ms = config.get("max_song_duration_ms", 240_000)
         music_target_dbfs = config.get("music_target_dbfs", TARGET_MUSIC_DBFS)
 
-        # One transition clip per adjacent episode pair, plus one closing clip
-        num_clips_needed = len(episodes)  # (n-1) transitions + 1 closing
-        transition_durations = [duration_ms] * num_clips_needed
+        # One transition clip per episode; slots after intermission_after feeds get
+        # a longer clip. The last slot is the closing music after the final episode.
+        transition_durations: list[int] = []
+        for idx in range(len(episodes)):
+            if idx in intermission_indices:
+                transition_durations.append(intermission_ms)
+                print(f"  [Music] Slot {idx}: intermission ({intermission_ms // 1000}s)")
+            else:
+                transition_durations.append(duration_ms)
+        num_clips_needed = len(transition_durations)
 
         music_items: list[tuple[AudioSegment, dict]] = []
         music_dir_str = config.get("music_dir", "")
