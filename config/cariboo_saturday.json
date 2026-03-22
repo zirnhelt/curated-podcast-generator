@@ -3,6 +3,7 @@
   "jamendo_client_id": "3daee737",
   "fma_tags": ["indie", "folk", "indie-rock", "indie-pop"],
   "music_transition_duration_ms": 20000,
+  "music_intermission_duration_ms": 300000,
   "music_target_dbfs": -28.0,
   "speech_target_dbfs": -20.0,
   "music_dir": "",
@@ -28,7 +29,9 @@
       "rss_url": "https://www.cbc.ca/podcasting/includes/kamloopsnews.xml",
       "trim_start_ms": 8000,
       "trim_end_ms": 10000,
-      "priority": 3
+      "priority": 3,
+      "intermission_after": true,
+      "_note": "intermission_after: play a longer music break after this segment before CBC long-form programming"
     },
     {
       "name": "q with Tom Power",
