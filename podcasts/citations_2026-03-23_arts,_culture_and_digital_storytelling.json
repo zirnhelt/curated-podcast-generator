@@ -1,0 +1,404 @@
+{
+  "episode": {
+    "date": "2026-03-23",
+    "formatted_date": "Monday, March 23, 2026",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "title": "Cariboo Signals - Arts, Culture & Digital Storytelling",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Arts, Culture & Digital Storytelling.</p><p><b>NEWS ROUNDUP:</b> We break down [TechRadar] Google unveils new ‘vibe design’ tool to help anyone design a high-fidelity UI using natural language and [Business Insider] This 16-year-old refused a $300,000 offer to drop out of high school and now runs his own AI company, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Deep dive on Arts, Culture & Digital Storytelling Topics include: broadband, AI, infrastructure, funding, pilot project.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>TechRadar: <a href=\"https://www.techradar.com/pro/google-unveils-new-vibe-design-tool-to-help-anyone-design-a-high-fidelity-ui-using-natural-language\">[TechRadar] Google unveils new ‘vibe design’ tool to help an...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/evion-ai-crop-analysis-tool-small-mid-sized-farms-2026-3\">[Business Insider] This 16-year-old refused a $300,000 offer...</a></li><li>How-To Geek: <a href=\"https://www.howtogeek.com/directx-is-making-a-next-gen-shift-and-no-ones-talking-about-it/\">[How-To Geek] Microsoft just killed triangle-by-triangle ray...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/22/comox-hells-angels-trial-faces-stay-bid-over-charter-breaches/\">[Williams Lake Tribune] Comox Hells Angels trial faces stay ...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/22/williams-lake-lions-club-hosts-clubs-day/\">[Williams Lake Tribune] Williams Lake Lions Club hosts Clubs...</a></li><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/03/21/photos-sidney-dive-reveals-years-worth-of-ghost-gear-tangled-on-the-seabed/\">[Quesnel Cariboo Observer] PHOTOS: Sidney dive reveals years...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/ai-software-for-nonprofits-tech-support-customer-satisfaction-2026-03\">[Business Insider] As a nonprofit-focused software company, ...</a></li><li>Quartz: <a href=\"https://qz.com/ai-in-classrooms-early-results\">[Quartz] Schools are putting AI in classrooms before they kn...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>TechRadar: <a href=\"https://www.techradar.com/pro/security/three-high-risk-ai-vulnerabilities-discovered-in-claude-ai-end-to-end-attack-chain-exfiltrates-sensitive-info-without-user-knowing\">[TechRadar] Three high-risk AI vulnerabilities discovered in...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/22/iain-black-endorsed-for-conservative-leadership-by-vernon-mp-who-once-held-the-job/\">[Williams Lake Tribune] Iain Black endorsed for Conservative...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/jensen-huang-gift-andrej-karpathy-ai-dgx-station-2026-3\">[Business Insider] Andrej Karpathy says he's using his Jense...</a></li><li>Quartz: <a href=\"https://qz.com/uber-rivian-robotaxi-deal\">[Quartz] Uber and Rivian are teaming up for a big robotaxi p...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/03/22/building-a-laser-driven-photoacoustic-speaker/\">[Hackaday] Building a Laser-Driven Photoacoustic Speaker</a></li><li>How-To Geek: <a href=\"https://www.howtogeek.com/homelab-projects-to-try-this-weekend-march-20-22/\">[How-To Geek] Homelab projects to try this weekend (March 20</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/03/18/building-an-lc-meter-with-a-franklin-oscillator/\">[Hackaday] Building an LC Meter with a Franklin Oscillator</a></li><li>Toms Guide: <a href=\"https://www.tomsguide.com/computing/mini-pcs/i-gave-my-favorite-pocketable-mini-pc-an-instant-upgrade-with-this-docking-station-and-now-its-a-full-fledged-gaming-rig\">[Toms Guide] I gave my favorite pocketable mini PC an instan...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/03/22/climate/energy-imbalance-un-report.html\">[NYT Top Stories] U.N. Climate Report Finds Growing Energy I...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/magnetic-fluid-injected-into-the-heart-may-prevent-strokes-scientists-think\">[ScienceAlert] Magnetic Fluid Injected Into The Heart May Pr...</a></li><li>New Atlas: <a href=\"https://newatlas.com/tiny-houses/cabin-devin-off-grid-ark-shelter/\">[New Atlas] Off-grid micro house fits everything you need in...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/built-esp32-display-monitor-bambu-lab-printer/\">[XDA Developers] I built a $15 ESP32 display that lets me mo...</a></li><li>Gizmodo: <a href=\"https://gizmodo.com/tech-employees-are-reportedly-being-evaluated-by-how-fast-they-burn-through-llm-tokens-2000736627\">[Gizmodo] Tech Employees Are Reportedly Being Evaluated by H...</a></li><li>TechRadar: <a href=\"https://www.techradar.com/pro/why-stolen-credentials-continue-to-work-even-where-mfa-is-in-place\">[TechRadar] Why stolen credentials continue to work even whe...</a></li><li>TechRadar: <a href=\"https://www.techradar.com/vpn/vpn-services/nymvpns-latest-update-brings-crucial-anti-censorship-and-usability-boost-but-apple-users-will-have-to-be-patient\">[TechRadar] NymVPN's latest update brings crucial anti-censo...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-20250514<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-03-23T06:10:12.991464-07:00",
+    "models": {
+      "script": "claude-sonnet-4-20250514",
+      "review": "claude-sonnet-4-20250514",
+      "summary": "claude-3-5-haiku-20241022"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[TechRadar] Three high-risk AI vulnerabilities discovered in Claude.ai – end-to-end attack chain exfiltrates sensitive info without user knowing",
+          "url": "https://www.techradar.com/pro/security/three-high-risk-ai-vulnerabilities-discovered-in-claude-ai-end-to-end-attack-chain-exfiltrates-sensitive-info-without-user-knowing",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-19T16:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Google unveils new ‘vibe design’ tool to help anyone design a high-fidelity UI using natural language",
+          "url": "https://www.techradar.com/pro/google-unveils-new-vibe-design-tool-to-help-anyone-design-a-high-fidelity-ui-using-natural-language",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-19T15:30:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Business Insider] This 16-year-old refused a $300,000 offer to drop out of high school and now runs his own AI company",
+          "url": "https://www.businessinsider.com/evion-ai-crop-analysis-tool-small-mid-sized-farms-2026-3",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-03-22T20:06:36+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[How-To Geek] Microsoft just killed triangle-by-triangle ray tracing",
+          "url": "https://www.howtogeek.com/directx-is-making-a-next-gen-shift-and-no-ones-talking-about-it/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-22T18:00:16+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Comox Hells Angels trial faces stay bid over Charter breaches",
+          "url": "https://wltribune.com/2026/03/22/comox-hells-angels-trial-faces-stay-bid-over-charter-breaches/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-22T16:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Williams Lake Lions Club hosts Clubs Day",
+          "url": "https://wltribune.com/2026/03/22/williams-lake-lions-club-hosts-clubs-day/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-22T11:32:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Iain Black endorsed for Conservative leadership by Vernon MP who once held the job",
+          "url": "https://wltribune.com/2026/03/22/iain-black-endorsed-for-conservative-leadership-by-vernon-mp-who-once-held-the-job/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-22T10:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] PHOTOS: Sidney dive reveals years worth of ‘ghost gear’ tangled on the seabed",
+          "url": "https://quesnelobserver.com/2026/03/21/photos-sidney-dive-reveals-years-worth-of-ghost-gear-tangled-on-the-seabed/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-03-21T12:30:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Business Insider] As a nonprofit-focused software company, AI tools help our clients fundraise with limited resources",
+          "url": "https://www.businessinsider.com/ai-software-for-nonprofits-tech-support-customer-satisfaction-2026-03",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-03-19T17:15:59+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Quartz] Schools are putting AI in classrooms before they know what it does",
+          "url": "https://qz.com/ai-in-classrooms-early-results",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-03-19T17:00:53+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Business Insider] Andrej Karpathy says he's using his Jensen Huang hand-signed Nvidia chip system to power his Clawbot 'Dobby'",
+          "url": "https://www.businessinsider.com/jensen-huang-gift-andrej-karpathy-ai-dgx-station-2026-3",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-03-19T15:53:30+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] Uber and Rivian are teaming up for a big robotaxi push",
+          "url": "https://qz.com/uber-rivian-robotaxi-deal",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-03-19T14:53:52+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Building a Laser-Driven Photoacoustic Speaker",
+          "url": "https://hackaday.com/2026/03/22/building-a-laser-driven-photoacoustic-speaker/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-23T05:00:38+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] Homelab projects to try this weekend (March 20",
+          "url": "https://www.howtogeek.com/homelab-projects-to-try-this-weekend-march-20-22/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-19T17:30:17+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Building an LC Meter with a Franklin Oscillator",
+          "url": "https://hackaday.com/2026/03/18/building-an-lc-meter-with-a-franklin-oscillator/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-18T08:00:35+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] I gave my favorite pocketable mini PC an instant upgrade with this docking station — and now it’s a full-fledged gaming rig",
+          "url": "https://www.tomsguide.com/computing/mini-pcs/i-gave-my-favorite-pocketable-mini-pc-an-instant-upgrade-with-this-docking-station-and-now-its-a-full-fledged-gaming-rig",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-03-23T05:45:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] U.N. Climate Report Finds Growing Energy Imbalance on Earth",
+          "url": "https://www.nytimes.com/2026/03/22/climate/energy-imbalance-un-report.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-03-23T03:00:04+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Magnetic Fluid Injected Into The Heart May Prevent Strokes, Scientists Think",
+          "url": "https://www.sciencealert.com/magnetic-fluid-injected-into-the-heart-may-prevent-strokes-scientists-think",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-23T02:00:35+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] Off-grid micro house fits everything you need into just 215 sq ft",
+          "url": "https://newatlas.com/tiny-houses/cabin-devin-off-grid-ark-shelter/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-03-23T00:03:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] I built a $15 ESP32 display that lets me monitor my Bambu Lab printer from my desk",
+          "url": "https://www.xda-developers.com/built-esp32-display-monitor-bambu-lab-printer/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-23T00:00:20+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Our World in Data] The human cost of unsafe abortions",
+          "url": "https://ourworldindata.org/the-human-cost-of-unsafe-abortions",
+          "source": "Our World in Data",
+          "ai_score": 0,
+          "date_published": "2026-03-23T00:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Scientists Identified a Speech Trait That Foreshadows Cognitive Decline",
+          "url": "https://www.sciencealert.com/scientists-identified-a-speech-trait-that-foreshadows-cognitive-decline",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-22T23:21:51+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] Heat Wave in California and Other Western States Wilts a More Air-Conditioned U.S.",
+          "url": "https://www.nytimes.com/2026/03/22/us/heat-wave-air-conditioning-california-utah-colorado-oklahoma.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-03-22T21:47:38+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] I stopped blaming my 3D printer when winter exposed what I really misunderstood about filament",
+          "url": "https://www.xda-developers.com/stopped-blaming-3d-printer-when-winter-exposed-misunderstood-filament/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-22T21:01:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] IDing Counterfeit Drugs Might Be Easier Than You Think",
+          "url": "https://hackaday.com/2026/03/22/iding-counterfeit-drugs-might-be-easier-than-you-think/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-22T20:00:34+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] Meteorite Crashes Through Roof of House Near Houston",
+          "url": "https://www.nytimes.com/2026/03/22/us/meteorite-crash-texas-home.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-03-22T19:41:02+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] 7 settings I change after installing Ubuntu",
+          "url": "https://www.howtogeek.com/7-settings-i-change-after-installing-ubuntu/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-22T18:22:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Viruses That Jump to Humans Don't Need Special Mutations, Study Finds",
+          "url": "https://www.sciencealert.com/viruses-that-jump-to-humans-dont-need-special-mutations-study-finds",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-22T18:00:42+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] I built a NAS from an old laptop—here's what Linux taught me the hard way",
+          "url": "https://www.howtogeek.com/things-i-wish-i-knew-before-setting-up-my-first-nas/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-22T17:00:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Storing Solar Energy As Ice For Air Conditioning",
+          "url": "https://hackaday.com/2026/03/22/storing-solar-energy-as-ice-for-air-conditioning/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-22T17:00:06+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] A Meteor Exploded Over Ohio. Then the Hunt for Meteorites Began.",
+          "url": "https://www.nytimes.com/2026/03/22/us/meteor-hunters-ohio-cleveland.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-03-22T15:42:36+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] Why you can't sleep the first night in a new place",
+          "url": "https://boingboing.net/2026/03/19/why-you-cant-sleep-the-first-night-in-a-new-place.html",
+          "source": "Boing Boing",
+          "ai_score": 0,
+          "date_published": "2026-03-19T17:19:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] After 20 years, I've finally found a replacement for WinRAR",
+          "url": "https://www.howtogeek.com/after-20-years-ive-finally-found-a-replacement-for-winrar/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-19T17:09:17+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[CNET] GIGABYTE's X870E AUROS Elite X3D Is Built to Be the Ultimate AMD Gaming Foundation",
+          "url": "https://www.cnet.com/tech/computing/gigabytes-x870e-auros-elite-x3d-is-built-to-be-the-ultimate-amd-gaming-foundation/",
+          "source": "CNET",
+          "ai_score": 0,
+          "date_published": "2026-03-19T16:23:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Gizmodo] Astronomers Pinpoint the Best 45 Places in the Galaxy to Look For Alien Life",
+          "url": "https://gizmodo.com/astronomers-pinpoint-the-best-45-places-in-the-galaxy-to-look-for-alien-life-2000735521",
+          "source": "Gizmodo",
+          "ai_score": 0,
+          "date_published": "2026-03-19T16:05:39+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ZDNet] I tested NordVPN's free scam checker against a real threat in my inbox",
+          "url": "https://www.zdnet.com/article/nordvpn-scam-checker/",
+          "source": "ZDNet",
+          "ai_score": 0,
+          "date_published": "2026-03-19T16:04:04+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Arts, Culture & Digital Storytelling",
+      "articles": [
+        {
+          "title": "[Gizmodo] Tech Employees Are Reportedly Being Evaluated by How Fast They Burn Through LLM Tokens",
+          "url": "https://gizmodo.com/tech-employees-are-reportedly-being-evaluated-by-how-fast-they-burn-through-llm-tokens-2000736627",
+          "source": "Gizmodo",
+          "ai_score": 0,
+          "date_published": "2026-03-22T18:14:29+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Why stolen credentials continue to work even where MFA is in place",
+          "url": "https://www.techradar.com/pro/why-stolen-credentials-continue-to-work-even-where-mfa-is-in-place",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-22T15:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] NymVPN's latest update brings crucial anti-censorship and usability boost — but Apple users will have to be patient",
+          "url": "https://www.techradar.com/vpn/vpn-services/nymvpns-latest-update-brings-crucial-anti-censorship-and-usability-boost-but-apple-users-will-have-to-be-patient",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-19T16:26:04+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Deep dive on Arts, Culture & Digital Storytelling",
+        "topics_covered": [
+          "broadband",
+          "AI",
+          "infrastructure",
+          "funding",
+          "pilot project"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
