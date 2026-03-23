@@ -1,24 +1,4 @@
 {
-  "2026-03-02": {
-    "timestamp": 1772456362.643012,
-    "topics": [
-      "[Quesnel Cariboo Observer] Friday night lights and 1,700 bur",
-      "[All3DP] Is This New $189 \"Smart Enclosure\" the Missing Piec",
-      "[XDA Developers] 6 self-hosted services I set up once and ne",
-      "[Design News] 3D Printing Shifts from Prototyping to Product",
-      "[3D Printing Industry] MANUFACTURA's CORNCRETL Offers a Sust",
-      "Vodafone and Tiami turn ordinary phones into real-time radar",
-      "[Williams Lake Tribune] Summerlanders puzzled by proliferati",
-      "[Williams Lake Tribune] WOLF: Does anyone else regularly rea"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-03-02"
-  },
   "2026-03-03": {
     "timestamp": 1772542776.777112,
     "topics": [
@@ -415,5 +395,25 @@
       "connectivity"
     ],
     "date": "2026-03-22"
+  },
+  "2026-03-23": {
+    "timestamp": 1774271413.014874,
+    "topics": [
+      "[TechRadar] Three high-risk AI vulnerabilities discovered in",
+      "[TechRadar] Google unveils new \u2018vibe design\u2019 tool to help an",
+      "[Business Insider] This 16-year-old refused a $300,000 offer",
+      "[How-To Geek] Microsoft just killed triangle-by-triangle ray",
+      "[Williams Lake Tribune] Comox Hells Angels trial faces stay ",
+      "[Gizmodo] Tech Employees Are Reportedly Being Evaluated by H",
+      "[TechRadar] Why stolen credentials continue to work even whe",
+      "[TechRadar] NymVPN's latest update brings crucial anti-censo"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-03-23"
   }
 }

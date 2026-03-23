@@ -538,5 +538,18 @@
       "renewable energy",
       "solar"
     ]
+  },
+  "2026-03-23": {
+    "timestamp": 1774271413.015575,
+    "date": "2026-03-23",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "central_question": "Deep dive on Arts, Culture & Digital Storytelling",
+    "topics_covered": [
+      "broadband",
+      "AI",
+      "infrastructure",
+      "funding",
+      "pilot project"
+    ]
   }
 }
