@@ -1,0 +1,386 @@
+{
+  "episode": {
+    "date": "2026-03-24",
+    "formatted_date": "Tuesday, March 24, 2026",
+    "theme": "Working Lands & Industry",
+    "title": "Cariboo Signals - Working Lands & Industry",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Working Lands & Industry.</p><p><b>NEWS ROUNDUP:</b> We break down [The Tyee] Half of BC’s Community Paramedic Positions Are Unfilled and [Williams Lake Tribune] Williams Lake Fire Department responds to vehicle fire in Dairy Fields, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Deep dive on Working Lands & Industry Topics include: satellite, connectivity, precision agriculture, solar, AI.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/03/24/Half-BC-Community-Paramedic-Positions-Unfilled/\">[The Tyee] Half of BC’s Community Paramedic Positions Are Un...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/23/williams-lake-fire-department-responds-to-vehicle-fire-in-dairy-fields/\">[Williams Lake Tribune] Williams Lake Fire Department respon...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/03/23/venus-flytrap-takes-ride-through-a-particle-accelerator/\">[Hackaday] Venus Flytrap Takes Ride Through a Particle Accel...</a></li><li>BC Gov News: <a href=\"https://news.gov.bc.ca/releases/2026EMCR0005-000298\">[BC Gov News] Strengthening flood resilience in East Kootena...</a></li><li>Nautilus: <a href=\"https://nautil.us/why-we-dont-have-a-lyme-disease-vaccine-1279152/\">[Nautilus] Why We Don’t Have a Lyme Disease Vaccine</a></li><li>Gizmodo: <a href=\"https://gizmodo.com/sunken-soviet-submarine-is-quietly-leaking-radiation-decades-later-study-finds-2000737006\">[Gizmodo] Sunken Soviet Submarine Is Quietly Leaking Radiati...</a></li><li>Boing Boing: <a href=\"https://boingboing.net/2026/03/23/hoover-dam-could-lose-most-of-its-power-as-lake-mead-plummets.html\">[Boing Boing] Hoover Dam could lose most of its power as Lak...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/23/b-c-ubc-partnering-on-40m-fund-to-help-spin-off-businesses-from-research/\">[Williams Lake Tribune] B.C., UBC partnering on $40M fund to...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/built-gesture-controlled-desk-buddy-esp32-grove/\">[XDA Developers] I built a gesture-controlled desk buddy wit...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/03/24/health/mdma-therapy-ptsd-psychedelic-australia.html\">[NYT Top Stories] MDMA Therapy in Australia Shows Results fo...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/claude-can-now-automate-your-entire-desktop-but-with-a-serious-limitation/\">[XDA Developers] Claude can now automate your entire desktop...</a></li><li>CNET: <a href=\"https://www.cnet.com/tech/services-and-software/claude-control-your-computer-to-perform-tasks/\">[CNET] Anthropic's Claude Can Now Control Your Computer</a></li><li>The Tyee: <a href=\"https://thetyee.ca/Analysis/2026/03/17/Harvesting-Burned-Trees/\">[The Tyee] Harvesting Burned Trees May Seem a No-Brainer. Bu...</a></li><li>Civil Eats: <a href=\"https://civileats.com/2026/03/23/nearly-150-usda-county-offices-have-no-conservation-staff-new-data-shows/\">[Civil Eats] Nearly 150 USDA County Offices Have No Conserva...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Hackaday: <a href=\"https://hackaday.com/2026/03/23/low-self-discharge-high-voltage-supercapacitors-using-porous-carbon/\">[Hackaday] Low Self-Discharge, High-Voltage Supercapacitors ...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/gigantic-heat-dome-baking-the-whole-us-may-be-historic-scientists-say\">[ScienceAlert] Gigantic 'Heat Dome' Baking The Whole US May ...</a></li><li>IndigiNews: <a href=\"https://indiginews.com/food/west-moberly-first-nations-food-security-geothermal/\">[IndigiNews] First Nation aims to grow its food security in ...</a></li><li>100 Mile Free Press: <a href=\"https://100milefreepress.net/2026/03/23/undercover-officer-testifies-at-gangsters-murder-trial-in-kelowna/\">[100 Mile Free Press] Undercover officer testifies at gangst...</a></li><li>ZDNet: <a href=\"https://www.zdnet.com/article/opera-gx-browser-linux/\">[ZDNet] Opera GX for Linux is way more than great gaming bro...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/the-biggest-mistake-people-make-with-glp-1-drugs-and-how-to-avoid-it\">[ScienceAlert] The 'Biggest Mistake' People Make With GLP-1 ...</a></li><li>New Atlas: <a href=\"https://newatlas.com/outdoors/invader-viator-60-second-camper/\">[New Atlas] 60-sec cube camper rises & slides into much more...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/stop-wasting-your-modern-ssd-on-over-provisioning/\">[XDA Developers] Stop wasting 10% of your SSD on an old tric...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/03/23/picoz80-is-a-drop-in-replacement-for-everyones-favorite-zilog-cpu/\">[Hackaday] PicoZ80 is a Drop-in Replacement for Everyone’s F...</a></li><li>MacRumors: <a href=\"https://www.macrumors.com/2026/03/23/kwikset-carplay-integration/\">[MacRumors] Kwikset Smart Locks Can Now Be Controlled Throug...</a></li><li>Android Authority: <a href=\"https://www.androidauthority.com/tecno-openclaw-on-android-3651043/\">[Android Authority] This Android brand is launching the firs...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/pc-building-blunders-that-haunt-upgrade-path-for-years/\">[XDA Developers] I still regret these 4 PC building blunders...</a></li><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/03/23/prince-george-rcmp-seeking-witnesses-for-shooting-in-moccasin-flats/\">[Quesnel Cariboo Observer] Prince George RCMP seeking witnes...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-20250514<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-03-24T06:14:45.345992-07:00",
+    "models": {
+      "script": "claude-sonnet-4-20250514",
+      "review": "claude-sonnet-4-20250514",
+      "summary": "claude-3-5-haiku-20241022"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[The Tyee] Half of BC’s Community Paramedic Positions Are Unfilled",
+          "url": "https://thetyee.ca/News/2026/03/24/Half-BC-Community-Paramedic-Positions-Unfilled/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-03-24T07:40:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Williams Lake Fire Department responds to vehicle fire in Dairy Fields",
+          "url": "https://wltribune.com/2026/03/23/williams-lake-fire-department-responds-to-vehicle-fire-in-dairy-fields/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-24T05:40:51.771367+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Hackaday] Venus Flytrap Takes Ride Through a Particle Accelerator",
+          "url": "https://hackaday.com/2026/03/23/venus-flytrap-takes-ride-through-a-particle-accelerator/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-24T05:00:26+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Hackaday] Low Self-Discharge, High-Voltage Supercapacitors Using Porous Carbon",
+          "url": "https://hackaday.com/2026/03/23/low-self-discharge-high-voltage-supercapacitors-using-porous-carbon/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-24T02:00:11+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Gigantic 'Heat Dome' Baking The Whole US May Be Historic, Scientists Say",
+          "url": "https://www.sciencealert.com/gigantic-heat-dome-baking-the-whole-us-may-be-historic-scientists-say",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-24T00:03:40+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[IndigiNews] First Nation aims to grow its food security in northern ‘B.C.’ — with geothermal heat",
+          "url": "https://indiginews.com/food/west-moberly-first-nations-food-security-geothermal/",
+          "source": "IndigiNews",
+          "ai_score": 0,
+          "date_published": "2026-03-23T21:26:31+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[BC Gov News] Strengthening flood resilience in East Kootenay region",
+          "url": "https://news.gov.bc.ca/releases/2026EMCR0005-000298",
+          "source": "BC Gov News",
+          "ai_score": 0,
+          "date_published": "2026-03-23T21:25:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[100 Mile Free Press] Undercover officer testifies at gangster’s murder trial in Kelowna",
+          "url": "https://100milefreepress.net/2026/03/23/undercover-officer-testifies-at-gangsters-murder-trial-in-kelowna/",
+          "source": "100 Mile Free Press",
+          "ai_score": 0,
+          "date_published": "2026-03-23T20:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] Why We Don’t Have a Lyme Disease Vaccine",
+          "url": "https://nautil.us/why-we-dont-have-a-lyme-disease-vaccine-1279152/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-03-23T20:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Gizmodo] Sunken Soviet Submarine Is Quietly Leaking Radiation Decades Later, Study Finds",
+          "url": "https://gizmodo.com/sunken-soviet-submarine-is-quietly-leaking-radiation-decades-later-study-finds-2000737006",
+          "source": "Gizmodo",
+          "ai_score": 0,
+          "date_published": "2026-03-23T19:00:46+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Boing Boing] Hoover Dam could lose most of its power as Lake Mead plummets",
+          "url": "https://boingboing.net/2026/03/23/hoover-dam-could-lose-most-of-its-power-as-lake-mead-plummets.html",
+          "source": "Boing Boing",
+          "ai_score": 0,
+          "date_published": "2026-03-23T18:55:31+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] B.C., UBC partnering on $40M fund to help spin off businesses from research",
+          "url": "https://wltribune.com/2026/03/23/b-c-ubc-partnering-on-40m-fund-to-help-spin-off-businesses-from-research/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-23T14:12:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[XDA Developers] I built a gesture-controlled desk buddy with an $8 ESP32 and Grove sensors",
+          "url": "https://www.xda-developers.com/built-gesture-controlled-desk-buddy-esp32-grove/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-24T00:00:22+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[NYT Top Stories] MDMA Therapy in Australia Shows Results for PTSD Patients, but the Cost Is Limiting Access",
+          "url": "https://www.nytimes.com/2026/03/24/health/mdma-therapy-ptsd-psychedelic-australia.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-03-24T04:00:12+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[XDA Developers] Claude can now automate your entire desktop, but with a serious limitation",
+          "url": "https://www.xda-developers.com/claude-can-now-automate-your-entire-desktop-but-with-a-serious-limitation/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-24T02:16:27+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[ZDNet] Opera GX for Linux is way more than great gaming browser",
+          "url": "https://www.zdnet.com/article/opera-gx-browser-linux/",
+          "source": "ZDNet",
+          "ai_score": 0,
+          "date_published": "2026-03-24T02:00:33+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] The 'Biggest Mistake' People Make With GLP-1 Drugs, And How to Avoid It",
+          "url": "https://www.sciencealert.com/the-biggest-mistake-people-make-with-glp-1-drugs-and-how-to-avoid-it",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-24T00:39:37+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] 60-sec cube camper rises & slides into much more than meets the eye",
+          "url": "https://newatlas.com/outdoors/invader-viator-60-second-camper/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-03-24T00:12:29+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] Stop wasting 10% of your SSD on an old trick that modern drives don't need anymore",
+          "url": "https://www.xda-developers.com/stop-wasting-your-modern-ssd-on-over-provisioning/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-23T23:00:22+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] PicoZ80 is a Drop-in Replacement for Everyone’s Favorite Zilog CPU",
+          "url": "https://hackaday.com/2026/03/23/picoz80-is-a-drop-in-replacement-for-everyones-favorite-zilog-cpu/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-23T23:00:08+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[MacRumors] Kwikset Smart Locks Can Now Be Controlled Through Apple CarPlay",
+          "url": "https://www.macrumors.com/2026/03/23/kwikset-carplay-integration/",
+          "source": "MacRumors",
+          "ai_score": 0,
+          "date_published": "2026-03-23T22:47:43+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Android Authority] This Android brand is launching the first true OpenClaw-powered AI agent on a phone",
+          "url": "https://www.androidauthority.com/tecno-openclaw-on-android-3651043/",
+          "source": "Android Authority",
+          "ai_score": 0,
+          "date_published": "2026-03-23T22:00:19+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[CNET] Anthropic's Claude Can Now Control Your Computer",
+          "url": "https://www.cnet.com/tech/services-and-software/claude-control-your-computer-to-perform-tasks/",
+          "source": "CNET",
+          "ai_score": 0,
+          "date_published": "2026-03-23T21:00:48+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[XDA Developers] I still regret these 4 PC building blunders that haunted my upgrade path for years",
+          "url": "https://www.xda-developers.com/pc-building-blunders-that-haunt-upgrade-path-for-years/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-23T21:00:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Engadget] Claude Code and Cowork can now use your computer",
+          "url": "https://www.engadget.com/ai/claude-code-and-cowork-can-now-use-your-computer-210000126.html?src=rss",
+          "source": "Engadget",
+          "ai_score": 0,
+          "date_published": "2026-03-23T21:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] Not ready to QuitGPT? I tried this new tool that slows ChatGPT on purpose — and it says a lot about AI backlash",
+          "url": "https://www.tomsguide.com/ai/not-ready-to-quitgpt-i-tried-this-new-tool-that-slows-chatgpt-on-purpose-and-it-says-a-lot-about-ai-backlash",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-03-23T20:40:17+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechCrunch] Zipline snaps up another $200M to fuel its drone delivery expansion",
+          "url": "https://techcrunch.com/2026/03/23/zipline-snaps-up-another-200m-to-fuel-its-drone-delivery-expansion/",
+          "source": "TechCrunch",
+          "ai_score": 0,
+          "date_published": "2026-03-23T20:37:52+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Lifehacker] Google Is Using AI to Mess With Headlines (Again)",
+          "url": "https://lifehacker.com/tech/google-search-ai-rewriting-headlines?utm_medium=RSS",
+          "source": "Lifehacker",
+          "ai_score": 0,
+          "date_published": "2026-03-23T20:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Apple sets WWDC for June 8 — and this may be its last best chance to fix Siri and deliver the AI we were promised",
+          "url": "https://www.techradar.com/phones/iphone/apple-sets-wwdc-for-june-8-and-this-may-be-its-last-best-chance-to-fix-siri-and-deliver-the-ai-we-were-promised",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-23T20:25:02+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Acoustic Drone Detection On the Cheap with ESP32",
+          "url": "https://hackaday.com/2026/03/23/acoustic-drone-detection-on-the-cheap-with-esp32/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-23T20:00:34+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ZDNet] 3 ways Cisco's DefenseClaw aims to make agentic AI safer",
+          "url": "https://www.zdnet.com/article/cisco-defenseclaw-to-govern-agentic-ai/",
+          "source": "ZDNet",
+          "ai_score": 0,
+          "date_published": "2026-03-23T19:58:55+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] Guy built an e-ink subway display so he didn't have to keep unlocking his phone",
+          "url": "https://boingboing.net/2026/03/23/guy-built-an-e-ink-subway-display-so-he-didnt-have-to-keep-unlocking-his-phone.html",
+          "source": "Boing Boing",
+          "ai_score": 0,
+          "date_published": "2026-03-23T19:52:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Verge] Nvidia CEO Jensen Huang says &#8216;I think we&#8217;ve achieved AGI&#8217;",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/899086/jensen-huang-nvidia-agi",
+          "source": "The Verge",
+          "ai_score": 0,
+          "date_published": "2026-03-23T19:42:33+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Build This Open-Source Graphics Calculator",
+          "url": "https://hackaday.com/2026/03/23/build-this-open-source-graphics-calculator/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-23T18:30:18+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Working Lands & Industry",
+      "articles": [
+        {
+          "title": "[The Tyee] Harvesting Burned Trees May Seem a No-Brainer. But It Poses Big Risks",
+          "url": "https://thetyee.ca/Analysis/2026/03/17/Harvesting-Burned-Trees/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-03-17T07:20:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Prince George RCMP seeking witnesses for shooting in Moccasin Flats",
+          "url": "https://quesnelobserver.com/2026/03/23/prince-george-rcmp-seeking-witnesses-for-shooting-in-moccasin-flats/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-03-23T21:05:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Civil Eats] Nearly 150 USDA County Offices Have No Conservation Staff, New Data Shows",
+          "url": "https://civileats.com/2026/03/23/nearly-150-usda-county-offices-have-no-conservation-staff-new-data-shows/",
+          "source": "Civil Eats",
+          "ai_score": 0,
+          "date_published": "2026-03-23T19:12:46+00:00",
+          "summary": "",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Deep dive on Working Lands & Industry",
+        "topics_covered": [
+          "satellite",
+          "connectivity",
+          "precision agriculture",
+          "solar",
+          "AI"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
