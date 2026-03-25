@@ -1925,19 +1925,32 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         on_theme_news = all_articles
         bonus_articles = []
 
+    # Sort on-theme news by boosted score (theme relevance) so the most
+    # relevant articles appear first and get picked up by Claude's selection.
+    on_theme_news = sorted(
+        on_theme_news,
+        key=lambda a: a.get('_boosted_score', a.get('ai_score', 0)),
+        reverse=True,
+    )
+
+    def _format_news_article(a):
+        """Format a news article for the script-generation prompt."""
+        source = a.get('authors', [{}])[0].get('name', 'Unknown')
+        title = a.get('title', '')
+        summary = a.get('summary', '')[:150]
+        # Use _boosted_score (theme relevance from the feed) if available;
+        # fall back to ai_score so legacy articles still show a value.
+        score = a.get('_boosted_score', a.get('ai_score', 0))
+        theme_tag = ' [✓THEME]' if a.get('_keyword_matches', 0) > 0 else ''
+        return f"- [{source}] {title}{theme_tag}\n  {summary}... (Relevance: {score})"
+
     # Format on-theme news articles
-    news_text = "\n".join([
-        f"- [{a.get('authors', [{}])[0].get('name', 'Unknown')}] {a.get('title', '')}\n  {a.get('summary', '')[:150]}... (AI Score: {a.get('ai_score', 0)})"
-        for a in on_theme_news
-    ])
+    news_text = "\n".join([_format_news_article(a) for a in on_theme_news])
 
     # Format bonus (off-theme) articles separately
     if bonus_articles:
         bonus_text = "\n\nBONUS PICKS (off-theme but noteworthy — introduce these separately, e.g. \"Also worth noting today...\"):\n"
-        bonus_text += "\n".join([
-            f"- [{a.get('authors', [{}])[0].get('name', 'Unknown')}] {a.get('title', '')}\n  {a.get('summary', '')[:150]}... (AI Score: {a.get('ai_score', 0)})"
-            for a in bonus_articles
-        ])
+        bonus_text += "\n".join([_format_news_article(a) for a in bonus_articles])
         news_text += bonus_text
 
     deep_dive_text = "\n".join([
