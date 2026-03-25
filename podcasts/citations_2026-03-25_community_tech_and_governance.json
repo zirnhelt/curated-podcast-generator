@@ -1,0 +1,413 @@
+{
+  "episode": {
+    "date": "2026-03-25",
+    "formatted_date": "Wednesday, March 25, 2026",
+    "theme": "Community Tech & Governance",
+    "title": "Cariboo Signals - Community Tech & Governance",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Community Tech & Governance.</p><p><b>NEWS ROUNDUP:</b> We break down [Williams Lake Tribune] Redevelopment project at Jubilee Place in Williams Lake adjusted following provincial budget and [100 Mile Free Press] Air quality monitors to be installed at Watch Lake VFD, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Deep dive on Community Tech & Governance Topics include: broadband, renewable energy, data sovereignty, AI, infrastructure.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/24/redevelopment-project-at-jubilee-place-in-williams-lake-adjusted-following-provincial-budget/\">[Williams Lake Tribune] Redevelopment project at Jubilee Pla...</a></li><li>100 Mile Free Press: <a href=\"https://100milefreepress.net/2026/03/24/air-quality-monitors-to-be-installed-at-watch-lake-vfd/\">[100 Mile Free Press] Air quality monitors to be installed a...</a></li><li>100 Mile Free Press: <a href=\"https://100milefreepress.net/2026/03/24/100-mile-house-er-to-be-closed-for-sixth-time-this-march/\">[100 Mile Free Press] 100 Mile House ER to be closed for six...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/24/realtor-nets-20k-fine-for-false-advertising-of-lakefront-lots-north-of-sicamous/\">[Williams Lake Tribune] Realtor nets $20K fine for false adv...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/03/25/BC-Cuts-Climate-Agency/\">[The Tyee] BC Cuts Climate Agency, Sends Some Staff to Work ...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>WIRED: <a href=\"https://www.wired.com/story/us-government-foreign-made-router-ban-explained/\">[WIRED] What You Need to Know About the Foreign-Made Router ...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/03/18/BC-Auditor-General-Reasons-Lack-Rebuilding-Lytton/\">[The Tyee] BC’s Auditor General Offers Reasons for the Lack ...</a></li><li>Toms Guide: <a href=\"https://www.tomsguide.com/computing/vpns/amneziavpn-launches-amneziawg-2-0-and-its-a-fundamental-shift-from-its-predecessor\">[Toms Guide] AmneziaVPN launches AmneziaWG 2.0 – and it's a ...</a></li><li>How-To Geek: <a href=\"https://www.howtogeek.com/best-home-assistant-project-you-can-do-in-an-hour/\">[How-To Geek] This is the best Home Assistant project you ca...</a></li><li>CNET: <a href=\"https://www.cnet.com/tech/services-and-software/best-vpn-for-mac/\">[CNET] Best VPN for Mac for 2026: Improve Your Privacy for W...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/03/18/BC-Plan-Fast-Track-Environmental-Assessments/\">[The Tyee] Inside BC’s Plan to Fast-Track Environmental Asse...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/24/snow-warning-for-highway-1-wind-statement-issued-for-interior-highways-cariboo-region/\">[Williams Lake Tribune] Snow warning for Highway 1, wind sta...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/03/24/3d-printed-robot-arm-built-for-learning-purposes/\">[Hackaday] 3D Printed Robot Arm Built For Learning Purposes</a></li><li>Toms Guide: <a href=\"https://www.tomsguide.com/ai/i-tested-grok-vs-claude-with-the-same-5-prompts-the-winner-wasnt-obvious\">[Toms Guide] I tested Grok vs. Claude with the same 5 prompt...</a></li><li>NYT Well: <a href=\"https://www.nytimes.com/video/well/100000010781737/why-a-strong-butt-is-key-to-healthy-aging.html\">[NYT Well] Why a Strong Butt Is Key to Healthy Aging</a></li><li>ZDNet: <a href=\"https://www.zdnet.com/article/if-ai-agents-are-workers-tasklet-is-a-miracle-worker/\">[ZDNet] I built an app for work in 5 minutes with Tasklet</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/03/24/testing-expensive-graphene-reinforced-nylon-filament/\">[Hackaday] Testing Expensive Graphene-Reinforced Nylon Filam...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/03/25/Unpaid-Subcontractors-Recovery-Centres/\">[The Tyee] Unpaid Subcontractors for Recovery Centres Say UC...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/24/b-c-government-wont-reveal-dripa-changes-as-first-nations-consultation-begins/\">[Williams Lake Tribune] B.C. government won’t reveal DRIPA c...</a></li><li>MacRumors: <a href=\"https://www.macrumors.com/review/nuki-keypad-2-nfc/\">[MacRumors] Nuki Keypad 2 NFC Brings Aliro-Powered Tap-to-Un...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-20250514<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-03-25T06:13:36.213830-07:00",
+    "models": {
+      "script": "claude-sonnet-4-20250514",
+      "review": "claude-sonnet-4-20250514",
+      "summary": "claude-3-5-haiku-20241022"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[WIRED] What You Need to Know About the Foreign-Made Router Ban in the US",
+          "url": "https://www.wired.com/story/us-government-foreign-made-router-ban-explained/",
+          "source": "WIRED",
+          "ai_score": 0,
+          "date_published": "2026-03-24T18:59:10+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Redevelopment project at Jubilee Place in Williams Lake adjusted following provincial budget",
+          "url": "https://wltribune.com/2026/03/24/redevelopment-project-at-jubilee-place-in-williams-lake-adjusted-following-provincial-budget/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-25T05:42:01.116493+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[100 Mile Free Press] Air quality monitors to be installed at Watch Lake VFD",
+          "url": "https://100milefreepress.net/2026/03/24/air-quality-monitors-to-be-installed-at-watch-lake-vfd/",
+          "source": "100 Mile Free Press",
+          "ai_score": 0,
+          "date_published": "2026-03-25T00:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[100 Mile Free Press] 100 Mile House ER to be closed for sixth time this March",
+          "url": "https://100milefreepress.net/2026/03/24/100-mile-house-er-to-be-closed-for-sixth-time-this-march/",
+          "source": "100 Mile Free Press",
+          "ai_score": 0,
+          "date_published": "2026-03-24T23:30:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[The Tyee] BC’s Auditor General Offers Reasons for the Lack of Rebuilding in Lytton",
+          "url": "https://thetyee.ca/News/2026/03/18/BC-Auditor-General-Reasons-Lack-Rebuilding-Lytton/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-03-18T07:40:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] AmneziaVPN launches AmneziaWG 2.0 – and it's a 'fundamental shift' from its predecessor",
+          "url": "https://www.tomsguide.com/computing/vpns/amneziavpn-launches-amneziawg-2-0-and-its-a-fundamental-shift-from-its-predecessor",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-03-24T14:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] This is the best Home Assistant project you can do in an hour",
+          "url": "https://www.howtogeek.com/best-home-assistant-project-you-can-do-in-an-hour/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-24T22:00:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[CNET] Best VPN for Mac for 2026: Improve Your Privacy for Web Browsing, Streaming and Gaming",
+          "url": "https://www.cnet.com/tech/services-and-software/best-vpn-for-mac/",
+          "source": "CNET",
+          "ai_score": 0,
+          "date_published": "2026-03-24T21:01:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Realtor nets $20K fine for false advertising of lakefront lots north of Sicamous",
+          "url": "https://wltribune.com/2026/03/24/realtor-nets-20k-fine-for-false-advertising-of-lakefront-lots-north-of-sicamous/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-24T13:30:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[The Tyee] BC Cuts Climate Agency, Sends Some Staff to Work on Pipelines",
+          "url": "https://thetyee.ca/News/2026/03/25/BC-Cuts-Climate-Agency/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-03-25T07:30:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[The Tyee] Inside BC’s Plan to Fast-Track Environmental Assessments",
+          "url": "https://thetyee.ca/News/2026/03/18/BC-Plan-Fast-Track-Environmental-Assessments/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-03-18T07:10:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Snow warning for Highway 1, wind statement issued for Interior highways, Cariboo region",
+          "url": "https://wltribune.com/2026/03/24/snow-warning-for-highway-1-wind-statement-issued-for-interior-highways-cariboo-region/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-25T05:42:01.116519+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] 3D Printed Robot Arm Built For Learning Purposes",
+          "url": "https://hackaday.com/2026/03/24/3d-printed-robot-arm-built-for-learning-purposes/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-25T05:00:28+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] I tested Grok vs. Claude with the same 5 prompts — the winner wasn't obvious",
+          "url": "https://www.tomsguide.com/ai/i-tested-grok-vs-claude-with-the-same-5-prompts-the-winner-wasnt-obvious",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-03-25T05:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Well] Why a Strong Butt Is Key to Healthy Aging",
+          "url": "https://www.nytimes.com/video/well/100000010781737/why-a-strong-butt-is-key-to-healthy-aging.html",
+          "source": "NYT Well",
+          "ai_score": 0,
+          "date_published": "2026-03-25T04:18:28+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ZDNet] I built an app for work in 5 minutes with Tasklet",
+          "url": "https://www.zdnet.com/article/if-ai-agents-are-workers-tasklet-is-a-miracle-worker/",
+          "source": "ZDNet",
+          "ai_score": 0,
+          "date_published": "2026-03-25T03:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Testing Expensive Graphene-Reinforced Nylon Filament",
+          "url": "https://hackaday.com/2026/03/24/testing-expensive-graphene-reinforced-nylon-filament/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-25T02:00:15+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] World's First Antimatter Delivery by Truck Signals a 'New Era' in Physics",
+          "url": "https://www.sciencealert.com/worlds-first-antimatter-delivery-by-truck-signals-a-new-era-in-physics",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-25T01:35:32+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] NASA Abandons Its Ambitious Lunar Space Station in Major Shake-Up",
+          "url": "https://www.sciencealert.com/nasa-abandons-its-ambitious-lunar-space-station-in-major-shake-up",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-25T01:18:35+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechCrunch] Lululemon bets Epoch Biodesign can eat its shorts, literally",
+          "url": "https://techcrunch.com/2026/03/24/lululemon-bets-epoch-biodesign-can-eat-its-shorts-literally/",
+          "source": "TechCrunch",
+          "ai_score": 0,
+          "date_published": "2026-03-25T00:01:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[100 Mile Free Press] Firearms stolen from South Cariboo residence",
+          "url": "https://100milefreepress.net/2026/03/24/firearms-stolen-from-south-cariboo-residence/",
+          "source": "100 Mile Free Press",
+          "ai_score": 0,
+          "date_published": "2026-03-25T00:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[100 Mile Free Press] Shirley Vincenzi",
+          "url": "https://100milefreepress.net/2026/03/24/shirley-vincenzi/",
+          "source": "100 Mile Free Press",
+          "ai_score": 0,
+          "date_published": "2026-03-24T23:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Heating a Woodshop With Sawdust",
+          "url": "https://hackaday.com/2026/03/24/heating-a-woodshop-with-sawdust/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-24T23:00:48+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] PC building is expensive in 2026, and these are the used enterprise parts I'm buying instead",
+          "url": "https://www.xda-developers.com/pc-building-expensive-these-are-used-enterprise-parts-im-buying-instead/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-24T23:00:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] I stopped OneDrive from taking over my files with these settings",
+          "url": "https://www.xda-developers.com/stop-onedrive-taking-over-files-settings/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-24T22:00:20+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[CNET] NASA's Ignition Program: Skipping the Lunar Orbiter and Going Straight for a Moon Base",
+          "url": "https://www.cnet.com/science/space/nasas-ignition-program-skips-lunar-orbiter-goes-straight-for-moon-base/",
+          "source": "CNET",
+          "ai_score": 0,
+          "date_published": "2026-03-24T21:52:19+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] AtlasOS makes Windows 11 actually usable, but you're trading security for speed",
+          "url": "https://www.xda-developers.com/atlasos-makes-windows-11-actually-usable-but-youre-trading-security-speed/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-24T21:31:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechCrunch] Anthropic hands Claude Code more control, but keeps it on a leash",
+          "url": "https://techcrunch.com/2026/03/24/anthropic-hands-claude-code-more-control-but-keeps-it-on-a-leash/",
+          "source": "TechCrunch",
+          "ai_score": 0,
+          "date_published": "2026-03-24T21:00:30+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] Hubble Snaps a New Dazzling Photo of the Crab Nebula",
+          "url": "https://nautil.us/hubble-snaps-a-new-dazzling-photo-of-the-crab-nebula-1279203/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-03-24T21:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Gizmodo] Watch First Video Evidence of Sperm Whales Headbutting Each Other",
+          "url": "https://gizmodo.com/watch-first-video-evidence-of-sperm-whales-headbutting-each-other-2000737607",
+          "source": "Gizmodo",
+          "ai_score": 0,
+          "date_published": "2026-03-24T20:50:45+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechCrunch] Crusoe makes big battery buys for its data centers",
+          "url": "https://techcrunch.com/2026/03/24/crusoe-makes-big-battery-buys-for-its-data-centers/",
+          "source": "TechCrunch",
+          "ai_score": 0,
+          "date_published": "2026-03-24T20:40:10+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] A single injection fixed schizophrenia-related brain problems in mice with no side effects",
+          "url": "https://boingboing.net/2026/03/24/a-single-injection-fixed-schizophrenia-related-brain-problems-in-mice-with-no-side-effects.html",
+          "source": "Boing Boing",
+          "ai_score": 0,
+          "date_published": "2026-03-24T20:32:04+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Quesnel café aims to break carrot cake Guinness Book record",
+          "url": "https://quesnelobserver.com/2026/03/24/quesnel-caf-aims-to-break-carrot-cake-guinness-book-record/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-03-24T20:20:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Irish spirit sweeps Quesnel bonspiel",
+          "url": "https://quesnelobserver.com/2026/03/24/irish-spirit-sweeps-quesnel-bonspiel/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-03-24T20:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] How ‘Tiny Shortcuts’ Are Poisoning Science",
+          "url": "https://nautil.us/how-tiny-shortcuts-are-poisoning-science-1279176/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-03-24T20:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] MG’s SolidCore battery and Hybrid+ tech make EVs faster and smarter",
+          "url": "https://www.howtogeek.com/mg-solidcore-battery-hybrid-plus-ev-tech/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-24T19:45:18+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Gizmodo] Finally, Some Good News in the Fight Against Lyme Disease",
+          "url": "https://gizmodo.com/finally-some-good-news-in-the-fight-against-lyme-disease-2000737417",
+          "source": "Gizmodo",
+          "ai_score": 0,
+          "date_published": "2026-03-24T19:35:35+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Community Tech & Governance",
+      "articles": [
+        {
+          "title": "[The Tyee] Unpaid Subcontractors for Recovery Centres Say UCP Abandoned Them",
+          "url": "https://thetyee.ca/News/2026/03/25/Unpaid-Subcontractors-Recovery-Centres/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-03-25T07:40:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] B.C. government won’t reveal DRIPA changes as First Nations consultation begins",
+          "url": "https://wltribune.com/2026/03/24/b-c-government-wont-reveal-dripa-changes-as-first-nations-consultation-begins/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-24T16:34:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[MacRumors] Nuki Keypad 2 NFC Brings Aliro-Powered Tap-to-Unlock Home Key Support to Nuki Smart Locks",
+          "url": "https://www.macrumors.com/review/nuki-keypad-2-nfc/",
+          "source": "MacRumors",
+          "ai_score": 0,
+          "date_published": "2026-03-24T20:47:57+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Deep dive on Community Tech & Governance",
+        "topics_covered": [
+          "broadband",
+          "renewable energy",
+          "data sovereignty",
+          "AI",
+          "infrastructure"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
