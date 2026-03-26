@@ -1,0 +1,413 @@
+{
+  "episode": {
+    "date": "2026-03-26",
+    "formatted_date": "Thursday, March 26, 2026",
+    "theme": "Indigenous Lands & Innovation",
+    "title": "Cariboo Signals - Indigenous Lands & Innovation",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Indigenous Lands & Innovation.</p><p><b>NEWS ROUNDUP:</b> We break down [The Tyee] Why Humans Still Burn Logs for Power, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Deep dive on Indigenous Lands & Innovation Topics include: renewable energy, solar, data sovereignty, AI, infrastructure.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>The Tyee: <a href=\"https://thetyee.ca/Analysis/2026/03/26/Why-Humans-Still-Burn-Logs-Power/\">[The Tyee] Why Humans Still Burn Logs for Power</a></li><li>IndigiNews: <a href=\"https://indiginews.com/news/carney-crossroads-first-nations-afn-national-chief-interview/\">[IndigiNews] ‘Carney is at a crossroads’ with First Nations,...</a></li><li>The Narwhal: <a href=\"https://thenarwhal.ca/generating-futures-webinar/\">[The Narwhal] Watch: how First Nations are leading the clean...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/24/negotiations-over-proposed-south-okanagan-national-park-trundle-along/\">[Williams Lake Tribune] Negotiations over proposed South Oka...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>CNET: <a href=\"https://www.cnet.com/home/internet/i-review-routers-for-a-living-dont-buy-a-router-right-now/\">[CNET] I Review Routers for a Living. Don’t Buy a Router Rig...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/03/26/Just-14-Species-Genuinely-Improved-BC-At-Risk-Lists/\">[The Tyee] Just 14 Species Have ‘Genuinely’ Improved on BC’s...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/Opinion/2026/03/26/Tumbler-Ridge-Rural-Medicine/\">[The Tyee] Tumbler Ridge Shows We Can’t Take Rural Medicine ...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/25/williams-lake-city-councillors-proposed-recommendation-on-public-safety-struck-from-council-agenda/\">[Williams Lake Tribune] Williams Lake council drops controve...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/03/25/testing-severely-neglected-vhs-tapes-and-cds/\">[Hackaday] Testing Severely Neglected VHS Tapes and CDs</a></li><li>Toms Guide: <a href=\"https://www.tomsguide.com/ai/i-tested-meta-ai-vs-deepseek-with-5-real-world-prompts-one-completely-dominated\">[Toms Guide] I tested Meta AI vs Deepseek with 5 real-world ...</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/economy/2026/3/26/us-lawmakers-push-for-pause-in-data-centres-until-ai-safeguards-in-place?traffic_source=rss\">[Al Jazeera English] US lawmakers push for pause in data cen...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/03/25/demonstrating-gray-codes-with-industrial-display/\">[Hackaday] Demonstrating Gray Codes With Industrial Display</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/oldest-dog-dna-ever-found-reveals-how-ancient-our-friendship-really-is\">[ScienceAlert] Oldest Dog DNA Ever Found Reveals How Ancient...</a></li><li>ZDNet: <a href=\"https://www.zdnet.com/article/eero-7-wifi-system-amazon-spring-sale-2026/\">[ZDNet] This discounted Wi-Fi 7 mesh system has me seriously...</a></li><li>The Marginalian: <a href=\"https://www.themarginalian.org/2026/03/25/gardening-art-resistance/\">[The Marginalian] Gardening as Resistance: Notes on Building...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/ugreen-dh4300-plus-big-spring-sale/\">[XDA Developers] Skip Synology and grab this underrated NAS ...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-20250514<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-03-26T06:17:25.070268-07:00",
+    "models": {
+      "script": "claude-sonnet-4-20250514",
+      "review": "claude-sonnet-4-20250514",
+      "summary": "claude-3-5-haiku-20241022"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[CNET] I Review Routers for a Living. Don’t Buy a Router Right Now",
+          "url": "https://www.cnet.com/home/internet/i-review-routers-for-a-living-dont-buy-a-router-right-now/",
+          "source": "CNET",
+          "ai_score": 0,
+          "date_published": "2026-03-26T04:41:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Tyee] Just 14 Species Have ‘Genuinely’ Improved on BC’s At-Risk Lists",
+          "url": "https://thetyee.ca/News/2026/03/26/Just-14-Species-Genuinely-Improved-BC-At-Risk-Lists/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-03-26T07:40:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Tyee] Why Humans Still Burn Logs for Power",
+          "url": "https://thetyee.ca/Analysis/2026/03/26/Why-Humans-Still-Burn-Logs-Power/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-03-26T07:30:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[The Tyee] Tumbler Ridge Shows We Can’t Take Rural Medicine for Granted",
+          "url": "https://thetyee.ca/Opinion/2026/03/26/Tumbler-Ridge-Rural-Medicine/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-03-26T07:20:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Williams Lake council drops controversial public safety motion",
+          "url": "https://wltribune.com/2026/03/25/williams-lake-city-councillors-proposed-recommendation-on-public-safety-struck-from-council-agenda/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-26T05:55:04.983177+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Testing Severely Neglected VHS Tapes and CDs",
+          "url": "https://hackaday.com/2026/03/25/testing-severely-neglected-vhs-tapes-and-cds/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-26T05:00:33+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] I tested Meta AI vs Deepseek with 5 real-world prompts — one completely dominated",
+          "url": "https://www.tomsguide.com/ai/i-tested-meta-ai-vs-deepseek-with-5-real-world-prompts-one-completely-dominated",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-03-26T04:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] US lawmakers push for pause in data centres until AI safeguards in place",
+          "url": "https://www.aljazeera.com/economy/2026/3/26/us-lawmakers-push-for-pause-in-data-centres-until-ai-safeguards-in-place?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 0,
+          "date_published": "2026-03-26T03:39:28+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Demonstrating Gray Codes With Industrial Display",
+          "url": "https://hackaday.com/2026/03/25/demonstrating-gray-codes-with-industrial-display/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-26T02:00:47+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Oldest Dog DNA Ever Found Reveals How Ancient Our Friendship Really Is",
+          "url": "https://www.sciencealert.com/oldest-dog-dna-ever-found-reveals-how-ancient-our-friendship-really-is",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-26T01:52:43+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ZDNet] This discounted Wi-Fi 7 mesh system has me seriously considering an internet upgrade",
+          "url": "https://www.zdnet.com/article/eero-7-wifi-system-amazon-spring-sale-2026/",
+          "source": "ZDNet",
+          "ai_score": 0,
+          "date_published": "2026-03-26T00:43:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Marginalian] Gardening as Resistance: Notes on Building Paradise",
+          "url": "https://www.themarginalian.org/2026/03/25/gardening-art-resistance/",
+          "source": "The Marginalian",
+          "ai_score": 0,
+          "date_published": "2026-03-25T23:31:50+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] Skip Synology and grab this underrated NAS at its new lower price",
+          "url": "https://www.xda-developers.com/ugreen-dh4300-plus-big-spring-sale/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-25T23:16:59+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] This guy used AI to document his grandmother's life on a personal Wikipedia and now you can, too",
+          "url": "https://boingboing.net/2026/03/25/this-guy-used-ai-to-document-his-grandmothers-life-on-a-personal-wikipedia-and-now-you-can-too.html",
+          "source": "Boing Boing",
+          "ai_score": 0,
+          "date_published": "2026-03-25T23:08:11+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] VGA Output From A PIC18",
+          "url": "https://hackaday.com/2026/03/25/vga-output-from-a-pic18/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-25T23:00:13+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] After 60 Years, Diabetes Drug Revealed to Unexpectedly Affect The Brain",
+          "url": "https://www.sciencealert.com/after-60-years-diabetes-drug-revealed-to-unexpectedly-affect-the-brain",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-25T22:54:58+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[100 Mile Free Press] 100 Mile fire crews extinguish carport blaze that destroyed 2 vehicles",
+          "url": "https://100milefreepress.net/2026/03/25/breaking-news-truck-and-car-port-on-fire-at-800-block-of-spruce-ave/",
+          "source": "100 Mile Free Press",
+          "ai_score": 0,
+          "date_published": "2026-03-25T22:46:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] The autism spectrum has 39 dimensions, and every profile is unique",
+          "url": "https://boingboing.net/2026/03/25/the-autism-spectrum-has-39-dimensions-and-every-profile-is-unique.html",
+          "source": "Boing Boing",
+          "ai_score": 0,
+          "date_published": "2026-03-25T22:26:31+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] AI is headed to the battlefield before the bedroom",
+          "url": "https://qz.com/ai-battlefield-before-bedroom",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-03-25T22:05:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechCrunch] The AI skills gap is here, says AI company, and power users are pulling ahead",
+          "url": "https://techcrunch.com/2026/03/25/the-ai-skills-gap-is-here-says-ai-company-and-power-users-are-pulling-ahead/",
+          "source": "TechCrunch",
+          "ai_score": 0,
+          "date_published": "2026-03-25T21:44:13+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NPR Health News] Soil may be a source of resistance to antibiotics, new research suggests",
+          "url": "https://www.npr.org/2026/03/25/nx-s1-5754017/soil-may-be-a-source-of-resistance-to-antibiotics-new-research-suggests",
+          "source": "NPR Health News",
+          "ai_score": 0,
+          "date_published": "2026-03-25T21:37:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Prince George RCMP seek public help in Highway 16 Bridge incident",
+          "url": "https://quesnelobserver.com/2026/03/25/prince-george-rcmp-seek-public-help-in-highway-16-bridge-incident/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-03-25T20:55:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] GitHub’s Copilot will use you as AI training data, but you can opt out",
+          "url": "https://www.howtogeek.com/githubs-copilot-will-use-you-as-ai-training-data-but-you-can-opt-out/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-25T20:38:15+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] I set up this open-source tool to see what my network was doing, and I found things I didn't expect",
+          "url": "https://www.xda-developers.com/this-open-source-tool-lets-you-see-what-your-network-is-doing/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-25T20:30:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] 17 EVs and plug-in hybrids worth waiting for, according to Consumer Reports",
+          "url": "https://qz.com/best-upcoming-evs-2025-2026-consumer-reports",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-03-25T20:27:45+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Engadget] Webb and Hubble telescopes combine forces for a new view of Saturn",
+          "url": "https://www.engadget.com/science/space/webb-and-hubble-telescopes-combine-forces-for-a-new-view-of-saturn-202526270.html?src=rss",
+          "source": "Engadget",
+          "ai_score": 0,
+          "date_published": "2026-03-25T20:25:26+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] My perfect self-hosted setup became my biggest productivity killer",
+          "url": "https://www.xda-developers.com/perfect-self-hosted-setup-became-biggest-productivity-killer/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-25T20:01:24+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] I intentionally overheated my NVMe SSD (and proved your cheap motherboard heatsink is fine)",
+          "url": "https://www.howtogeek.com/i-didnt-know-if-i-could-trust-this-cheap-nvme-heatsink-so-i-tried-overheating-my-ssd-on-purpose-to-find-out/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-25T20:00:20+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] The Most Intricate Of Freeform Digital Clocks",
+          "url": "https://hackaday.com/2026/03/25/the-most-intricate-of-freeform-digital-clocks/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-25T20:00:07+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[STAT News] California considers seal of approval for foods that are not ultra-processed",
+          "url": "https://www.statnews.com/2026/03/25/california-ultraprocessed-food-labeling-bill/?utm_campaign=rss",
+          "source": "STAT News",
+          "ai_score": 0,
+          "date_published": "2026-03-25T19:01:28+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] 1st of its kind in B.C.: Butcher’s Hub opens in North Okanagan",
+          "url": "https://wltribune.com/2026/03/25/1st-of-its-kind-in-b-c-butchers-hub-opens-in-north-okanagan/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-25T19:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] Meta and OpenAI's compute crunch gives Arm a big opportunity",
+          "url": "https://www.businessinsider.com/arm-unveils-ai-chip-partners-with-meta-openai-2026-3",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-03-25T18:55:51+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[CNET] Mars Just Got Closer: How NASA's SR-1 Freedom Could Rewrite Space Travel",
+          "url": "https://www.cnet.com/science/space/mars-spaceship-sr-1-freedom-nasa/",
+          "source": "CNET",
+          "ai_score": 0,
+          "date_published": "2026-03-25T18:51:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Top LLM PyPl package compromised to steal user details",
+          "url": "https://www.techradar.com/pro/security/top-llm-pypl-package-compromised-to-steal-user-details-heres-what-we-know",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-25T18:45:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] '75% of web pages are AI-generated' — AI CEO explains why companies are desperate for 'real' human data",
+          "url": "https://www.tomsguide.com/ai/75-percent-of-web-pages-are-ai-generated-ai-ceo-explains-why-companies-are-desperate-for-real-human-data",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-03-25T18:17:24+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Anthropic gives Claude Code new 'auto mode' which lets it choose its own permissions",
+          "url": "https://www.techradar.com/pro/anthropic-gives-claude-code-new-auto-mode-which-lets-it-choose-its-own-permissions",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-25T18:05:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Gizmodo] Astronomers Spot Previously Unknown Space ‘Cavity’ That’s Quietly Protecting the Moon",
+          "url": "https://gizmodo.com/astronomers-spot-previously-unknown-space-cavity-thats-quietly-protecting-the-moon-2000737969",
+          "source": "Gizmodo",
+          "ai_score": 0,
+          "date_published": "2026-03-25T18:00:30+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Indigenous Lands & Innovation",
+      "articles": [
+        {
+          "title": "[IndigiNews] ‘Carney is at a crossroads’ with First Nations, says AFN national chief",
+          "url": "https://indiginews.com/news/carney-crossroads-first-nations-afn-national-chief-interview/",
+          "source": "IndigiNews",
+          "ai_score": 0,
+          "date_published": "2026-03-25T19:00:53+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[The Narwhal] Watch: how First Nations are leading the clean energy shift in B.C.",
+          "url": "https://thenarwhal.ca/generating-futures-webinar/",
+          "source": "The Narwhal",
+          "ai_score": 0,
+          "date_published": "2026-03-25T16:44:15+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Negotiations over proposed South Okanagan national park trundle along",
+          "url": "https://wltribune.com/2026/03/24/negotiations-over-proposed-south-okanagan-national-park-trundle-along/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-24T17:30:00+00:00",
+          "summary": "",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Deep dive on Indigenous Lands & Innovation",
+        "topics_covered": [
+          "renewable energy",
+          "solar",
+          "data sovereignty",
+          "AI",
+          "infrastructure"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
