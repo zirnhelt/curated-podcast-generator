@@ -5,23 +5,31 @@ name: Generate Bespoke Episode
 #
 # TWO ways to trigger from an iOS Shortcut or script:
 #
-# ── Option A: workflow_dispatch (requires 'workflow' scope on PAT) ──────────
-#   POST https://api.github.com/repos/OWNER/REPO/actions/workflows/generate-bespoke.yml/dispatches
-#   Authorization: Bearer <PAT>
-#   Content-Type: application/json
-#   {
-#     "ref": "main",
-#     "inputs": { "tag": "billionaires" }
-#   }
-#   Success: HTTP 204 (No Content)
+# ── Option B (RECOMMENDED for iOS Shortcuts): repository_dispatch ────────────
+#   Only requires 'repo' scope on your PAT — no 'workflow' scope needed.
+#   Also avoids GitHub secondary rate limits that affect the workflow_dispatch
+#   endpoint when multiple callers (Shortcut + auto-trigger) race each other.
 #
-# ── Option B: repository_dispatch (only requires 'repo' scope on PAT) ───────
 #   POST https://api.github.com/repos/OWNER/REPO/dispatches
 #   Authorization: Bearer <PAT>
 #   Content-Type: application/json
 #   {
 #     "event_type": "generate-bespoke",
 #     "client_payload": { "tag": "billionaires", "threshold": "3" }
+#   }
+#   Success: HTTP 204 (No Content)
+#
+# ── Option A: workflow_dispatch (requires 'workflow' scope on PAT) ──────────
+#   NOT recommended from iOS Shortcuts — requires the harder-to-get 'workflow'
+#   scope, and the workflow_dispatch endpoint has stricter secondary rate limits.
+#   Returns 403 "Bad credentials" if the PAT lacks 'workflow' scope.
+#
+#   POST https://api.github.com/repos/OWNER/REPO/actions/workflows/generate-bespoke.yml/dispatches
+#   Authorization: Bearer <PAT>
+#   Content-Type: application/json
+#   {
+#     "ref": "main",
+#     "inputs": { "tag": "billionaires" }
 #   }
 #   Success: HTTP 204 (No Content)
 #

@@ -2,15 +2,19 @@ name: Seed Content
 
 # Triggered by the GitHub API — designed to be called from an iOS Shortcut.
 #
-# TWO ways to trigger — use whichever works for your PAT scopes:
+# TWO ways to trigger from an iOS Shortcut or script:
 #
-# ── Option A: workflow_dispatch (requires 'workflow' scope on PAT) ──────────
-#   POST https://api.github.com/repos/OWNER/REPO/actions/workflows/seed-content.yml/dispatches
+# ── Option B (RECOMMENDED for iOS Shortcuts): repository_dispatch ────────────
+#   Only requires 'repo' scope on your PAT — no 'workflow' scope needed.
+#   Avoids the 403 "Bad credentials" error caused by missing 'workflow' scope,
+#   and the secondary rate limits on the workflow_dispatch endpoint.
+#
+#   POST https://api.github.com/repos/OWNER/REPO/dispatches
 #   Authorization: Bearer <PAT>
 #   Content-Type: application/json
 #   {
-#     "ref": "main",
-#     "inputs": {
+#     "event_type": "seed-content",
+#     "client_payload": {
 #       "type": "url",
 #       "content": "https://example.com/article",
 #       "note": "great angle on rural connectivity",
@@ -20,13 +24,16 @@ name: Seed Content
 #   }
 #   Success: HTTP 204 (No Content)
 #
-# ── Option B: repository_dispatch (only requires 'repo' scope on PAT) ───────
-#   POST https://api.github.com/repos/OWNER/REPO/dispatches
+# ── Option A: workflow_dispatch (requires 'workflow' scope on PAT) ──────────
+#   NOT recommended from iOS Shortcuts — requires the harder-to-get 'workflow'
+#   scope and the endpoint has stricter secondary rate limits.
+#
+#   POST https://api.github.com/repos/OWNER/REPO/actions/workflows/seed-content.yml/dispatches
 #   Authorization: Bearer <PAT>
 #   Content-Type: application/json
 #   {
-#     "event_type": "seed-content",
-#     "client_payload": {
+#     "ref": "main",
+#     "inputs": {
 #       "type": "url",
 #       "content": "https://example.com/article",
 #       "note": "great angle on rural connectivity",
@@ -171,10 +178,15 @@ jobs:
           git push
 
       - name: Dispatch bespoke if threshold reached
-        # Run AFTER the commit/push so generate-bespoke.yml sees all seeds
+        # Run AFTER the commit/push so generate-bespoke.yml sees all seeds.
+        # Uses repository_dispatch (not workflow_dispatch) so this step works
+        # with the default GITHUB_TOKEN and does not require 'workflow' PAT scope.
+        # repository_dispatch also avoids secondary-rate-limit conflicts when an
+        # iOS Shortcut triggers generate-bespoke.yml around the same time.
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SEED_TAG: ${{ inputs.tag || github.event.client_payload.tag }}
+          REPO: ${{ github.repository }}
         run: |
           if [ -z "$SEED_TAG" ]; then
             echo "No tag — skipping bespoke check."
@@ -184,11 +196,9 @@ jobs:
           COUNT=$(python3 -c "import json,os; tag=os.environ['SEED_TAG'].lower(); data=json.load(open('podcasts/content_seeds.json')); print(len([s for s in data.get('seeds',[]) if s.get('tag','').lower()==tag and s.get('status')=='pending']))")
           echo "Pending seeds for tag '$SEED_TAG': $COUNT (threshold: $THRESHOLD)"
           if [ "$COUNT" -ge "$THRESHOLD" ]; then
-            echo "Threshold reached — dispatching generate-bespoke.yml for tag '$SEED_TAG'"
-            gh workflow run generate-bespoke.yml \
-              --ref main \
-              --field tag="$SEED_TAG" \
-              --field threshold="$THRESHOLD"
+            echo "Threshold reached — dispatching generate-bespoke via repository_dispatch for tag '$SEED_TAG'"
+            PAYLOAD=$(printf '{"event_type":"generate-bespoke","client_payload":{"tag":"%s","threshold":"%s"}}' "$SEED_TAG" "$THRESHOLD")
+            gh api "repos/${REPO}/dispatches" --method POST --input - <<<"$PAYLOAD"
           else
             echo "Not enough seeds yet — no dispatch."
           fi
