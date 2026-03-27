@@ -2,11 +2,10 @@ name: Daily Podcast Generation
 
 on:
   schedule:
-    # Run daily at 5:00 AM Pacific Time
-    # 5:00 AM PST = 13:00 UTC (winter)
-    # 5:00 AM PDT = 12:00 UTC (summer)  
-    # Using 13:00 UTC to be consistent year-round (may be 6am in summer)
-    - cron: '0 12 * * *'
+    # Run daily early in the morning UTC
+    # 6:00 AM UTC = ~11 PM PDT / 10 PM PST (previous evening Pacific)
+    # Ensures the podcast is ready early each day
+    - cron: '0 6 * * *'
   workflow_dispatch:  # Allow manual trigger
 
 permissions:
