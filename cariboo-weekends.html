@@ -47,14 +47,23 @@
             margin-bottom: 40px;
         }
 
-        .podcast-cover {
+        .cover-img {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 24px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            display: block;
+        }
+
+        .cover-fallback {
             width: 200px;
             height: 200px;
             margin: 0 auto 24px;
             border-radius: 12px;
             box-shadow: 0 8px 32px rgba(0,0,0,0.3);
             background: #c8a84b;
-            display: flex;
+            display: none;
             align-items: center;
             justify-content: center;
             font-size: 4em;
@@ -82,98 +91,222 @@
             margin-bottom: 40px;
         }
 
-        .shows-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin-bottom: 40px;
+        /* Show sections */
+        .show-section {
+            margin-bottom: 48px;
         }
 
-        .show-card {
-            background: #f8f9fa;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-            text-decoration: none;
-            color: inherit;
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: block;
-        }
-
-        .show-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.14);
-        }
-
-        .show-card-header {
+        .show-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
             padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
             color: white;
         }
 
-        .show-card-header.saturday {
+        .show-header.saturday {
             background: linear-gradient(135deg, #1a3a2e 0%, #0d2018 100%);
         }
 
-        .show-card-header.sunday {
+        .show-header.sunday {
             background: linear-gradient(135deg, #2c3e50 0%, #1a2a38 100%);
         }
 
-        .show-day {
+        .show-cover {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            flex-shrink: 0;
+            object-fit: cover;
+        }
+
+        .show-cover-fallback {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            flex-shrink: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+        }
+
+        .show-cover-fallback.saturday {
+            background: #2e7d52;
+        }
+
+        .show-cover-fallback.sunday {
+            background: #2c6e9e;
+        }
+
+        .show-header-text {
+            flex: 1;
+        }
+
+        .show-day-label {
             font-size: 0.75em;
             font-weight: 700;
             letter-spacing: 0.12em;
             text-transform: uppercase;
             opacity: 0.8;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .show-title {
-            font-size: 1.3em;
+            font-size: 1.5em;
             font-weight: 700;
             margin-bottom: 4px;
         }
 
         .show-host {
-            font-size: 0.85em;
+            font-size: 0.9em;
             opacity: 0.85;
         }
 
-        .show-card-body {
-            padding: 16px 20px 20px;
-        }
-
-        .show-card-body p {
+        .show-description {
+            background: #f8f9fa;
+            padding: 16px 20px;
+            border-radius: 8px;
             color: #555;
             font-size: 0.95em;
-            margin-bottom: 14px;
+            margin-bottom: 20px;
         }
 
-        .show-link {
-            display: inline-block;
-            padding: 8px 18px;
-            border-radius: 6px;
+        .show-description.saturday {
+            border-left: 4px solid #2e7d52;
+        }
+
+        .show-description.sunday {
+            border-left: 4px solid #2c6e9e;
+        }
+
+        /* Episodes */
+        .episodes-list {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            min-height: 100px;
+        }
+
+        .episode-item {
+            padding: 14px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .episode-item:last-child {
+            border-bottom: none;
+        }
+
+        .episode-title {
+            font-weight: 500;
+            color: #1a120a;
+            font-size: 1.02em;
+            margin-bottom: 4px;
+        }
+
+        .episode-date {
+            color: #666;
             font-size: 0.9em;
-            font-weight: 600;
-            text-decoration: none;
-            color: white;
+            margin-bottom: 8px;
         }
 
-        .show-link.saturday {
+        .episode-audio {
+            margin-top: 8px;
+        }
+
+        .loading {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 20px 0;
+        }
+
+        /* Subscribe section */
+        .subscribe-section {
+            background: #fdf8ee;
+            border-radius: 12px;
+            padding: 28px;
+            margin-bottom: 40px;
+            border: 1px solid #e8d9a0;
+        }
+
+        .subscribe-section h3 {
+            color: #1a120a;
+            margin-bottom: 6px;
+            font-size: 1.2em;
+        }
+
+        .subscribe-section p {
+            color: #666;
+            font-size: 0.95em;
+            margin-bottom: 20px;
+        }
+
+        .subscribe-shows {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .subscribe-show {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .subscribe-show-title {
+            font-weight: 700;
+            margin-bottom: 4px;
+            font-size: 0.95em;
+        }
+
+        .subscribe-show-title.saturday {
+            color: #1a3a2e;
+        }
+
+        .subscribe-show-title.sunday {
+            color: #1a2a38;
+        }
+
+        .subscribe-show-desc {
+            font-size: 0.85em;
+            color: #888;
+            margin-bottom: 12px;
+        }
+
+        .rss-button {
+            display: inline-block;
+            color: white;
+            padding: 9px 18px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin: 0 6px 6px 0;
+            font-weight: 500;
+            font-size: 0.9em;
+            transition: background 0.3s;
+        }
+
+        .rss-button.saturday {
             background: #2e7d52;
         }
 
-        .show-link.saturday:hover {
+        .rss-button.saturday:hover {
             background: #1f5738;
         }
 
-        .show-link.sunday {
+        .rss-button.sunday {
             background: #2c6e9e;
         }
 
-        .show-link.sunday:hover {
+        .rss-button.sunday:hover {
             background: #1e4f73;
         }
 
+        /* Schedule */
         .schedule-section {
             background: #fdf8ee;
             padding: 20px;
@@ -229,8 +362,19 @@
                 font-size: 1.9em;
             }
 
-            .shows-grid {
+            .subscribe-shows {
                 grid-template-columns: 1fr;
+            }
+
+            .show-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .rss-button {
+                display: block;
+                margin: 6px 0;
+                text-align: center;
             }
         }
     </style>
@@ -240,9 +384,9 @@
         <a href="index.html" class="back-link">← Cariboo Signals daily podcast</a>
 
         <div class="header">
-            <img src="cariboo-weekends.png" alt="Cariboo Weekends" class="podcast-cover"
+            <img src="cariboo-weekends.png" alt="Cariboo Weekends" class="cover-img"
                  onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-            <div class="podcast-cover" style="display:none;">🏔️</div>
+            <div class="cover-fallback">🏔️</div>
             <h1>Cariboo Weekends</h1>
             <p class="subtitle">Weekend radio from the heart of BC</p>
         </div>
@@ -254,30 +398,68 @@
             <a href="index.html" style="color:#8b6914;">Cariboo Signals</a> family.</p>
         </div>
 
-        <div class="shows-grid">
-            <a href="cariboo-saturday.html" class="show-card">
-                <div class="show-card-header saturday">
-                    <div class="show-day">Saturday Morning</div>
+        <!-- Saturday Morning -->
+        <div class="show-section">
+            <div class="show-header saturday">
+                <img src="cariboo-saturday.png" alt="Cariboo Saturday Morning" class="show-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <div class="show-cover-fallback saturday">📻</div>
+                <div class="show-header-text">
+                    <div class="show-day-label">Saturday Morning</div>
                     <div class="show-title">Cariboo Saturday</div>
                     <div class="show-host">Hosted by Riley</div>
                 </div>
-                <div class="show-card-body">
-                    <p>CBC news block (World Report, BC Today, Kamloops News) followed by political programming (The Current, Front Burner), woven together with Canadian indie music.</p>
-                    <span class="show-link saturday">Listen →</span>
-                </div>
-            </a>
+            </div>
 
-            <a href="cariboo-sunday.html" class="show-card">
-                <div class="show-card-header sunday">
-                    <div class="show-day">Sunday Morning</div>
+            <div class="show-description saturday">
+                CBC news block (World Report, BC Today, Kamloops News) followed by political programming (The Current, Front Burner), woven together with Canadian indie music. For arts and culture, tune in Sunday morning.
+            </div>
+
+            <div class="episodes-list" id="saturday-episodes">
+                <div class="loading">Loading Saturday episodes...</div>
+            </div>
+        </div>
+
+        <!-- Sunday Morning -->
+        <div class="show-section">
+            <div class="show-header sunday">
+                <img src="cariboo-sunday.png" alt="Cariboo Sunday Morning" class="show-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <div class="show-cover-fallback sunday">🎵</div>
+                <div class="show-header-text">
+                    <div class="show-day-label">Sunday Morning</div>
                     <div class="show-title">Cariboo Sunday</div>
                     <div class="show-host">Hosted by Casey</div>
                 </div>
-                <div class="show-card-body">
-                    <p>CBC news block (World Report, BC Today, Kamloops News) followed by cultural programming (q with Tom Power, Unreserved), woven together with Canadian indie music.</p>
-                    <span class="show-link sunday">Listen →</span>
+            </div>
+
+            <div class="show-description sunday">
+                CBC news block (World Report, BC Today, Kamloops News) followed by cultural programming — <em>q with Tom Power</em> and <em>Unreserved</em> — woven together with Canadian indie music. For news and current affairs, tune in Saturday morning.
+            </div>
+
+            <div class="episodes-list" id="sunday-episodes">
+                <div class="loading">Loading Sunday episodes...</div>
+            </div>
+        </div>
+
+        <!-- Subscribe -->
+        <div class="subscribe-section">
+            <h3>Subscribe to Cariboo Weekends</h3>
+            <p>Add either feed to any podcast app that accepts an RSS URL:</p>
+            <div class="subscribe-shows">
+                <div class="subscribe-show">
+                    <div class="subscribe-show-title saturday">Cariboo Saturday Morning</div>
+                    <div class="subscribe-show-desc">News &amp; current affairs &middot; Every Saturday</div>
+                    <a href="cariboo-saturday-feed.xml" class="rss-button saturday">🎙️ RSS Feed</a>
+                    <a href="https://podcast.cariboosignals.ca/cariboo-saturday-feed.xml" class="rss-button saturday">📡 Direct Link</a>
                 </div>
-            </a>
+                <div class="subscribe-show">
+                    <div class="subscribe-show-title sunday">Cariboo Sunday Morning</div>
+                    <div class="subscribe-show-desc">Arts &amp; culture &middot; Every Sunday</div>
+                    <a href="cariboo-sunday-feed.xml" class="rss-button sunday">🎙️ RSS Feed</a>
+                    <a href="https://podcast.cariboosignals.ca/cariboo-sunday-feed.xml" class="rss-button sunday">📡 Direct Link</a>
+                </div>
+            </div>
         </div>
 
         <div class="schedule-section">
@@ -298,5 +480,59 @@
             <p style="margin-top:4px;">AI assembly by Claude (Anthropic) &middot; Coordination: Erich Zirnhelt &middot; <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a></p>
         </div>
     </div>
+
+    <script>
+        async function loadFeed(feedUrl, containerId, emptyMsg) {
+            const container = document.getElementById(containerId);
+            try {
+                const response = await fetch(feedUrl);
+                if (!response.ok) throw new Error('Feed not found');
+                const xmlText = await response.text();
+
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
+                const items = xmlDoc.querySelectorAll('item');
+
+                if (items.length === 0) {
+                    container.innerHTML = `<div class="loading"><p>${emptyMsg}</p></div>`;
+                    return;
+                }
+
+                let html = '';
+                items.forEach(item => {
+                    const title = item.querySelector('title')?.textContent || 'Untitled';
+                    const pubDate = item.querySelector('pubDate')?.textContent || '';
+                    const enclosure = item.querySelector('enclosure');
+                    const audioUrl = enclosure?.getAttribute('url') || '';
+
+                    let formattedDate = pubDate;
+                    try {
+                        formattedDate = new Date(pubDate).toLocaleDateString('en-US', {
+                            weekday: 'short', year: 'numeric', month: 'short', day: 'numeric'
+                        });
+                    } catch (e) {}
+
+                    html += `
+                        <div class="episode-item">
+                            <div class="episode-title">${title}</div>
+                            <div class="episode-date">${formattedDate}</div>
+                            ${audioUrl ? `
+                                <div class="episode-audio">
+                                    <audio controls style="width:100%;max-width:340px;">
+                                        <source src="${audioUrl}" type="audio/mpeg">
+                                    </audio>
+                                </div>` : ''}
+                        </div>`;
+                });
+
+                container.innerHTML = html;
+            } catch (e) {
+                container.innerHTML = `<div class="loading"><p>Episodes loading — check back soon.</p></div>`;
+            }
+        }
+
+        loadFeed('cariboo-saturday-feed.xml', 'saturday-episodes', 'No episodes yet — check back Saturday morning.');
+        loadFeed('cariboo-sunday-feed.xml', 'sunday-episodes', 'No episodes yet — check back Sunday morning.');
+    </script>
 </body>
 </html>
