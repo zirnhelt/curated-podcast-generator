@@ -7,15 +7,18 @@
 <description>A curated Saturday morning radio experience drawn from CBC podcasts (World Report, BC Today, Kamloops News, q, Unreserved), with Canadian indie music transitions from Jamendo. Assembled automatically each Saturday for the Cariboo region of BC.</description>
 <itunes:author>Cariboo Signals</itunes:author>
 <itunes:summary>A curated Saturday morning radio experience drawn from CBC podcasts (World Report, BC Today, Kamloops News, q, Unreserved), with Canadian indie music transitions from Jamendo. Assembled automatically each Saturday for the Cariboo region of BC.</itunes:summary>
+<itunes:image href="https://podcast.cariboosignals.ca/cariboo-saturday.png"/>
 <atom:link href="https://podcast.cariboosignals.ca/cariboo-saturday-feed.xml" rel="self" type="application/rss+xml" xmlns:atom="http://www.w3.org/2005/Atom"/>
 <itunes:explicit>false</itunes:explicit>
 <itunes:type>episodic</itunes:type>
 <itunes:category text="News"/>
-<lastBuildDate>Sun, 22 Mar 2026 05:39:00 GMT</lastBuildDate>
+<lastBuildDate>Sat, 28 Mar 2026 15:34:43 GMT</lastBuildDate>
 <item>
 <title>Cariboo Saturday Morning — March 22, 2026</title>
 <pubDate>Sun, 22 Mar 2026 16:00:00 GMT</pubDate>
-<description>Cariboo Saturday Morning — March 22, 2026</description>
+<description><![CDATA[Cariboo Saturday Morning — March 22, 2026]]></description>
+<itunes:summary><![CDATA[Cariboo Saturday Morning — March 22, 2026]]></itunes:summary>
+<itunes:image href="https://podcast.cariboosignals.ca/cariboo-saturday.png"/>
 <enclosure url="https://podcast.cariboosignals.ca/podcasts/cariboo_saturday_2026-03-22.mp3" length="40121199" type="audio/mpeg"/>
 <guid isPermaLink="false">cariboo-saturday-2026-03-22</guid>
 <itunes:duration>41:47</itunes:duration>
