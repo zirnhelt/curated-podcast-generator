@@ -22,6 +22,8 @@ SCRIPT_DIR = Path(__file__).parent
 PODCASTS_DIR = SCRIPT_DIR / "podcasts"
 FEED_FILE = SCRIPT_DIR / "cariboo-saturday-feed.xml"
 
+COVER_IMAGE = "cariboo-saturday.png"
+
 FEED_CONFIG = {
     "title": "Cariboo Saturday Morning — Cariboo Mix",
     "description": (
@@ -148,6 +150,7 @@ def generate_feed(base_url: str) -> None:
 
     cfg = FEED_CONFIG
     feed_url = f"{base_url}cariboo-saturday-feed.xml"
+    cover_url = f"{base_url}{COVER_IMAGE}"
     now_rfc = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S GMT")
 
     lines = [
@@ -160,6 +163,7 @@ def generate_feed(base_url: str) -> None:
         f"<description>{saxutils.escape(cfg['description'])}</description>",
         f"<itunes:author>{saxutils.escape(cfg['author'])}</itunes:author>",
         f"<itunes:summary>{saxutils.escape(cfg['description'])}</itunes:summary>",
+        f'<itunes:image href="{saxutils.escape(cover_url)}"/>',
         f'<atom:link href="{saxutils.escape(feed_url)}" rel="self" type="application/rss+xml" xmlns:atom="http://www.w3.org/2005/Atom"/>',
         f"<itunes:explicit>{'true' if cfg['explicit'] else 'false'}</itunes:explicit>",
         "<itunes:type>episodic</itunes:type>",
@@ -174,6 +178,7 @@ def generate_feed(base_url: str) -> None:
             f"<pubDate>{ep['pub_date']}</pubDate>",
             f"<description><![CDATA[{ep['description']}]]></description>",
             f"<itunes:summary><![CDATA[{ep['description']}]]></itunes:summary>",
+            f'<itunes:image href="{saxutils.escape(cover_url)}"/>',
             f'<enclosure url="{saxutils.escape(ep["url"])}" length="{ep["size"]}" type="audio/mpeg"/>',
             f'<guid isPermaLink="false">{ep["guid"]}</guid>',
             f"<itunes:duration>{ep['duration']}</itunes:duration>",
