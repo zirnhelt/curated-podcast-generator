@@ -1,0 +1,404 @@
+{
+  "episode": {
+    "date": "2026-03-28",
+    "formatted_date": "Saturday, March 28, 2026",
+    "theme": "Cariboo Voices & Local News",
+    "title": "Cariboo Signals - Cariboo Voices & Local News",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Cariboo Voices & Local News.</p><p><b>NEWS ROUNDUP:</b> We break down [Williams Lake Tribune] Good Samaritan killed at crash scene west of Williams Lake and [Williams Lake Tribune] Fuel management projects to begin north of Kamloops, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Deep dive on Cariboo Voices & Local News Topics include: broadband, satellite, connectivity, AI, infrastructure.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/27/good-samaritan-killed-at-crash-scene-west-of-williams-lake/\">[Williams Lake Tribune] Good Samaritan killed at crash scene...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/27/fuel-management-projects-to-begin-north-of-kamloops/\">[Williams Lake Tribune] Fuel management projects to begin no...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/24/calgary-author-bringing-chinese-exclusion-act-book-to-b-c-railway-town/\">[Williams Lake Tribune] Calgary author bringing Chinese Excl...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/24/man-with-child-porn-charge-sought-by-police-known-to-frequent-cariboo-region/\">[Williams Lake Tribune] Man with child porn charge sought by...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/brain-pattern-reveals-why-chronic-pain-leads-to-depression\">[ScienceAlert] Brain Pattern Reveals Why Chronic Pain Leads ...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/26/tru-board-of-directors-considering-closing-williams-lake-campus-in-spring-2028/\">[Williams Lake Tribune] TRU Board of Governors considering c...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/27/tru-delays-decision-on-williams-lake-campus-closure-until-june/\">[Williams Lake Tribune] TRU delays decision on Williams Lake...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/26/quesnel-caf-owner-spends-month-baking-record-challenging-cake/\">[Williams Lake Tribune] Quesnel café owner spends month baki...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/03/27/big-dogs-small-dogs-baby-dogs-vanderhoof-to-host-canine-competition/\">[Quesnel Cariboo Observer] ‘Big dogs, small dogs, baby dogs’...</a></li><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/03/27/yellowhead-project-manager-overviews-proposed-copper-mine-timeline/\">[Quesnel Cariboo Observer] Yellowhead Project manager overvi...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/26/professional-employees-association-ratifies-deal-with-b-c-government/\">[Williams Lake Tribune] Professional Employees Association r...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/23/cadet-band-marches-into-b-c-venues/\">[Williams Lake Tribune] Cadet Band marches into B.C. venues</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/26/b-c-seniors-advocate-continues-to-warn-of-spiralling-wait-times-for-long-term-care/\">[Williams Lake Tribune] B.C. seniors advocate continues to w...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/27/latest-changes-to-b-c-s-heritage-act-reduce-ambiguity-first-nations-role/\">[Williams Lake Tribune] Latest proposed changes to B.C.’s He...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/23/okanagan-unhoused-encampment-injunction-hearing-adjourned-no-new-date/\">[Williams Lake Tribune] Okanagan unhoused encampment injunct...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/25/fulmer-brings-bc-conservative-leadership-bid-on-tour/\">[Williams Lake Tribune] Fulmer brings BC Conservative leader...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/26/quesnel-man-sentenced-to-30-months-for-assault-with-hatchet/\">[Williams Lake Tribune] Quesnel man sentenced to 30 months f...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/26/probation-for-customer-who-assaulted-threatened-quesnel-7-eleven-clerk/\">[Williams Lake Tribune] Probation for customer who assaulted...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/27/b-c-launches-new-marine-coastal-testbed/\">[Williams Lake Tribune] B.C. launches new marine, coastal te...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/25/victoria-trans-community-warns-b-c-decision-may-worsen-surgical-wait-times/\">[Williams Lake Tribune] Victoria trans community warns B.C. ...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-20250514<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-03-28T03:38:52.980870-07:00",
+    "models": {
+      "script": "claude-sonnet-4-20250514",
+      "review": "claude-sonnet-4-20250514",
+      "summary": "claude-3-5-haiku-20241022"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Quesnel Cariboo Observer] ‘Big dogs, small dogs, baby dogs’: Vanderhoof to host canine competition",
+          "url": "https://quesnelobserver.com/2026/03/27/big-dogs-small-dogs-baby-dogs-vanderhoof-to-host-canine-competition/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-03-27T21:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Good Samaritan killed at crash scene west of Williams Lake",
+          "url": "https://wltribune.com/2026/03/27/good-samaritan-killed-at-crash-scene-west-of-williams-lake/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-28T05:38:21.211314+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Yellowhead Project manager overviews proposed copper mine timeline",
+          "url": "https://quesnelobserver.com/2026/03/27/yellowhead-project-manager-overviews-proposed-copper-mine-timeline/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-03-27T18:05:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Fuel management projects to begin north of Kamloops",
+          "url": "https://wltribune.com/2026/03/27/fuel-management-projects-to-begin-north-of-kamloops/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-27T15:45:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Professional Employees Association ratifies deal with B.C. government",
+          "url": "https://wltribune.com/2026/03/26/professional-employees-association-ratifies-deal-with-b-c-government/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-26T15:56:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Calgary author bringing Chinese Exclusion Act book to B.C. railway town",
+          "url": "https://wltribune.com/2026/03/24/calgary-author-bringing-chinese-exclusion-act-book-to-b-c-railway-town/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-24T16:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Cadet Band marches into B.C. venues",
+          "url": "https://wltribune.com/2026/03/23/cadet-band-marches-into-b-c-venues/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-23T15:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] B.C. seniors advocate continues to warn of spiralling wait times for long-term care",
+          "url": "https://wltribune.com/2026/03/26/b-c-seniors-advocate-continues-to-warn-of-spiralling-wait-times-for-long-term-care/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-26T16:35:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Man with child porn charge sought by police, known to frequent Cariboo region",
+          "url": "https://wltribune.com/2026/03/24/man-with-child-porn-charge-sought-by-police-known-to-frequent-cariboo-region/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-24T15:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Latest proposed changes to B.C.’s Heritage act would reduce ambiguity, First Nations’ role",
+          "url": "https://wltribune.com/2026/03/27/latest-changes-to-b-c-s-heritage-act-reduce-ambiguity-first-nations-role/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-27T14:32:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Okanagan unhoused encampment injunction hearing adjourned, no new date",
+          "url": "https://wltribune.com/2026/03/23/okanagan-unhoused-encampment-injunction-hearing-adjourned-no-new-date/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-23T16:05:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Fulmer brings BC Conservative leadership bid on tour",
+          "url": "https://wltribune.com/2026/03/25/fulmer-brings-bc-conservative-leadership-bid-on-tour/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-25T15:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Quesnel man sentenced to 30 months for assault with hatchet",
+          "url": "https://wltribune.com/2026/03/26/quesnel-man-sentenced-to-30-months-for-assault-with-hatchet/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-26T12:07:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Probation for customer who assaulted, threatened Quesnel 7-Eleven clerk",
+          "url": "https://wltribune.com/2026/03/26/probation-for-customer-who-assaulted-threatened-quesnel-7-eleven-clerk/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-26T12:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] B.C. launches new marine, coastal testbed",
+          "url": "https://wltribune.com/2026/03/27/b-c-launches-new-marine-coastal-testbed/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-27T14:01:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Victoria trans community warns B.C. decision may worsen surgical wait times",
+          "url": "https://wltribune.com/2026/03/25/victoria-trans-community-warns-b-c-decision-may-worsen-surgical-wait-times/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-25T15:11:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Police stop ‘zoned out’ driver in slippery, rainy conditions on Coquitlam highway",
+          "url": "https://wltribune.com/2026/03/24/police-stop-zoned-out-driver-in-slippery-rainy-conditions-on-coquitlam-highway/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-24T12:16:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] B.C.’s premier planning China trade trip, LNG likely on agenda amid war in Iran",
+          "url": "https://wltribune.com/2026/03/23/b-c-s-premier-planning-china-trade-trip-lng-likely-on-agenda-amid-war-in-iran/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-23T16:31:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Man charged in B.C. bestiality case back in court next week",
+          "url": "https://wltribune.com/2026/03/26/man-charged-in-b-c-bestiality-case-back-in-court-next-week/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-26T16:21:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Using FireWire on a Raspberry Pi Before Linux Drops Support",
+          "url": "https://hackaday.com/2026/03/27/using-firewire-on-a-raspberry-pi-before-linux-drops-support/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-28T02:00:09+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Brain Pattern Reveals Why Chronic Pain Leads to Depression",
+          "url": "https://www.sciencealert.com/brain-pattern-reveals-why-chronic-pain-leads-to-depression",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-28T01:00:15+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[XDA Developers] The cheapest smart home automation I ever set up cost me less than a dollar",
+          "url": "https://www.xda-developers.com/the-cheapest-smart-home-automation-i-ever-set-up-cost-me-less-than-a-dollar/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-28T00:00:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] 'From 16 hours to under 5 minutes': How Gen AI is turning fraud into a $400B+ global industry — and experts warn that it’s just the beginning",
+          "url": "https://www.techradar.com/pro/security/from-16-hours-to-under-5-minutes-how-gen-ai-is-turning-fraud-into-a-usd400b-global-industry-and-experts-warn-that-its-just-the-beginning",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-27T23:15:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] AI photo restoration is erasing your family's real history",
+          "url": "https://www.howtogeek.com/ai-photo-restoration-is-erasing-your-familys-real-history/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-27T22:00:15+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] AI Research Is Getting Harder to Separate From Geopolitics",
+          "url": "https://www.wired.com/story/made-in-china-ai-research-is-starting-to-split-along-geopolitical-lines/",
+          "source": "WIRED",
+          "ai_score": 0,
+          "date_published": "2026-03-27T21:46:39+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] New Ape Fossil Could Shift Our Evolutionary Origins Northward",
+          "url": "https://nautil.us/new-ape-fossil-could-shift-our-evolutionary-origins-northward-1279335/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-03-27T21:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Parkinson's Link to Gut Bacteria Hints at Unexpectedly Simple Treatment",
+          "url": "https://www.sciencealert.com/parkinsons-link-to-gut-bacteria-hints-at-unexpectedly-simple-treatment",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-27T21:00:25+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] Hoarding 4K remuxes is what having a 70TB Plex sever is all about",
+          "url": "https://www.xda-developers.com/hoarding-4k-remuxes-is-what-having-a-plex-sever-is-all-about/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-27T20:00:20+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] One penguin that isn't suitable for kids? Linux will now carry out age verification checks",
+          "url": "https://www.techradar.com/pro/one-penguin-that-isnt-suitable-for-kids-linux-will-now-carry-out-age-verification-checks",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-27T19:50:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] Meta is stepping into the energy business — at least in Louisiana",
+          "url": "https://qz.com/meta-louisiana-data-center-entergy-2-billion-savings",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-03-27T19:31:46+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] I turned my home server into an AI appliance, and this is the stack that actually stuck",
+          "url": "https://www.xda-developers.com/home-server-local-ai-stack-that-actually-stuck/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-27T19:30:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] Meta is running intensive AI training weeks to get employees testing agents and coding with Claude",
+          "url": "https://www.businessinsider.com/meta-ai-week-employee-training-claude-agents-vibe-coding-2026-3",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-03-27T19:05:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] Switzerland tried to secure internet routing, but the industry just ignored it",
+          "url": "https://www.xda-developers.com/switzerland-tried-to-secure-internet-routing-but-the-industry-just-ignored-it/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-27T19:00:23+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] When Fake Supplements Work",
+          "url": "https://nautil.us/when-fake-supplements-work-1279324/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-03-27T19:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] Anthropic's new, more powerful AI model confirmed after data leak",
+          "url": "https://qz.com/anthropic-claude-mythos-data-leak",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-03-27T18:46:11+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] Lynq co-founder Karina Dagenais on the power of infrastructure-free comms",
+          "url": "https://qz.com/lynq-karina-dagenais-infrastructure-free-comms",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-03-27T18:45:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Cariboo Voices & Local News",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] TRU Board of Governors considering closing Williams Lake campus in spring 2028",
+          "url": "https://wltribune.com/2026/03/26/tru-board-of-directors-considering-closing-williams-lake-campus-in-spring-2028/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-26T17:06:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] TRU delays decision on Williams Lake campus closure until June",
+          "url": "https://wltribune.com/2026/03/27/tru-delays-decision-on-williams-lake-campus-closure-until-june/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-27T16:47:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Quesnel café owner spends month baking record challenging cake",
+          "url": "https://wltribune.com/2026/03/26/quesnel-caf-owner-spends-month-baking-record-challenging-cake/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-26T17:10:00+00:00",
+          "summary": "",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Deep dive on Cariboo Voices & Local News",
+        "topics_covered": [
+          "broadband",
+          "satellite",
+          "connectivity",
+          "AI",
+          "infrastructure"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
