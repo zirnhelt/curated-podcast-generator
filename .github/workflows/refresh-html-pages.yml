@@ -4,7 +4,7 @@ on:
   workflow_dispatch:  # Manual trigger only
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   refresh-html:
@@ -38,6 +38,25 @@ jobs:
 
           echo "Files ready for deployment:"
           ls -la output/
+
+      - name: Sync HTML pages to Cloudflare R2
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_ENDPOINT_URL: https://${{ secrets.CF_ACCOUNT_ID }}.r2.cloudflarestorage.com
+        run: |
+          BUCKET="cariboo-signals"
+          echo "Syncing HTML pages to R2..."
+
+          for page in index.html cariboo-saturday.html cariboo-sunday.html bespoke.html cariboo-weekends.html; do
+            [ -f "$page" ] && aws s3 cp "$page" "s3://${BUCKET}/${page}" \
+              --content-type "text/html" \
+              --cache-control "no-cache" \
+              && echo "  uploaded $page"
+          done
+
+          echo "R2 sync complete"
+        continue-on-error: true
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
