@@ -1,0 +1,49 @@
+name: Refresh HTML Pages
+
+on:
+  workflow_dispatch:  # Manual trigger only
+
+permissions:
+  contents: read
+
+jobs:
+  refresh-html:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Regenerate index.html
+        run: python generate_html.py
+
+      - name: Copy files to output directory
+        run: |
+          mkdir -p output/podcasts
+
+          # Copy generated HTML pages
+          cp index.html output/
+          cp cariboo-saturday.html output/
+          cp cariboo-sunday.html output/
+          cp bespoke.html output/
+          cp cariboo-weekends.html output/
+
+          # Copy static assets
+          cp cariboo-signals.png output/
+
+          echo "Files ready for deployment:"
+          ls -la output/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output
+          publish_branch: gh-pages
+          keep_files: true
+          commit_message: 'Refresh HTML pages - ${{ github.run_id }}'
