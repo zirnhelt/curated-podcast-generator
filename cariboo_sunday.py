@@ -61,6 +61,7 @@ from cariboo_saturday import (
     fetch_jamendo_tracks,
     get_music_clip,
     load_music_from_dir,
+    generate_host_episode_intro,
 )
 from pydub import AudioSegment
 
@@ -111,6 +112,20 @@ def generate_casey_line(context: str) -> str:
     except Exception as exc:
         print(f"  [WARN] Claude API error generating Casey line: {exc}")
         return ""
+
+
+def generate_casey_episode_intro(
+    episode_meta: dict,
+    is_first: bool,
+    weather_summary: str | None,
+    prev_track: dict | None,
+    date_str: str,
+) -> str:
+    """Thin wrapper around generate_host_episode_intro for Casey (Sunday host)."""
+    return generate_host_episode_intro(
+        "casey", "Casey", "Cariboo Sunday Morning",
+        episode_meta, is_first, weather_summary, prev_track, date_str,
+    )
 
 
 def casey_tts(text: str, tmp_dir: Path) -> AudioSegment | None:
@@ -173,7 +188,8 @@ def assemble_show(
     config: dict,
     tmp_dir: Path,
     intermission_indices: set[int] | None = None,
-) -> AudioSegment:
+    episode_metas: list[dict] | None = None,
+) -> tuple[AudioSegment, list[tuple[AudioSegment, dict]]]:
     """Assemble the final Sunday show with Casey hosting.
 
     Structure:
@@ -197,18 +213,22 @@ def assemble_show(
         intermission_indices = set()
 
     combined = AudioSegment.empty()
+    played_music: list[tuple[AudioSegment, dict]] = []
 
-    # --- Casey: show opener + weather ---
+    # --- Casey: show opener + weather (grounded in actual first episode metadata) ---
     date_str = datetime.now().strftime("%A, %B %-d")
-    segment_names = ", ".join(name for name, _ in episodes)
-    weather_note = f" {weather_summary}" if weather_summary else ""
-    opener_context = (
-        f"Casey opens the Cariboo Sunday Morning show. Today is {date_str}.{weather_note} "
-        f"The segments lined up are: {segment_names}. They welcome listeners, mention the weather "
-        f"naturally (if provided), and briefly tease what's coming up — CBC cultural and arts programming."
+    first_meta = (episode_metas[0] if episode_metas else {}) if episodes else {}
+    opener_text = generate_casey_episode_intro(
+        episode_meta=first_meta,
+        is_first=True,
+        weather_summary=weather_summary,
+        prev_track=None,
+        date_str=date_str,
     )
-    opener = casey_speak(opener_context, tmp_dir)
-    combined += _casey_segment(opener)
+    if opener_text:
+        print(f"  [Casey] {opener_text}")
+    opener_audio = casey_tts(opener_text, tmp_dir) if opener_text else None
+    combined += _casey_segment(opener_audio)
 
     music_iter = iter(music_items)
 
@@ -231,30 +251,32 @@ def assemble_show(
             outro = casey_speak(outro_context, tmp_dir)
             combined += _casey_segment(outro)
 
-            # Music
+            # Music — record that this clip actually played
+            played_music.append((clip, track_info))
             combined += GAP + clip + GAP
 
-            # Casey: music ID + intro for next segment
-            genres_str = (
-                f", genres: {', '.join(track_info['genres'])}"
-                if track_info.get("genres")
-                else ""
+            # Casey: music ID + grounded intro for next segment
+            next_meta = (
+                episode_metas[i + 1] if episode_metas and i + 1 < len(episode_metas) else {}
             )
-            track_id_context = (
-                f"Casey IDs the music track that just played: '{track_info['name']}' "
-                f"by {track_info['artist']}{genres_str}. "
-                f"They give a brief natural mention of the artist (e.g. whether they're a "
-                f"solo act, duo, band; any Cariboo/BC/Canadian connection if it fits), "
-                f"then introduces the next segment: {next_name}."
+            track_id_text = generate_casey_episode_intro(
+                episode_meta=next_meta,
+                is_first=False,
+                weather_summary=None,
+                prev_track=track_info,
+                date_str=date_str,
             )
-            track_id = casey_speak(track_id_context, tmp_dir)
-            combined += _casey_segment(track_id)
+            if track_id_text:
+                print(f"  [Casey] {track_id_text}")
+            track_id_audio = casey_tts(track_id_text, tmp_dir) if track_id_text else None
+            combined += _casey_segment(track_id_audio)
 
         elif is_last:
             # No more episodes — closing music if available
             clip_item = next(music_iter, None)
             if clip_item is not None:
                 clip, track_info = clip_item
+                played_music.append((clip, track_info))
 
                 # Casey: sign-off before closing music
                 signoff_context = (
@@ -276,7 +298,7 @@ def assemble_show(
         elif is_last and clip_item is None:
             combined += AudioSegment.silent(duration=2000)
 
-    return combined
+    return combined, played_music
 
 
 # ---------------------------------------------------------------------------
@@ -364,6 +386,7 @@ def main() -> None:
 
         print("\n=== Downloading and trimming episodes ===")
         episodes: list[tuple[str, AudioSegment]] = []
+        episode_metas: list[dict] = []
         intermission_indices: set[int] = set()
 
         for i, candidates in enumerate(episode_candidates):
@@ -398,6 +421,7 @@ def main() -> None:
             if meta.get("intermission_after"):
                 intermission_indices.add(len(episodes))
             episodes.append((meta["name"], trimmed))
+            episode_metas.append(meta)
 
         if not episodes:
             print("\n[ERROR] All episode downloads failed. Exiting.")
@@ -452,17 +476,26 @@ def main() -> None:
         # Step 5: Assemble with Casey hosting
         # -------------------------------------------------------------------
         print(f"\n=== Assembling show ({len(episodes)} episodes, {len(music_items)} music clips) ===")
-        show = assemble_show(
+        if intermission_indices:
+            print(f"  Intermission after episode indices: {sorted(intermission_indices)}")
+        show, played_music = assemble_show(
             episodes,
             music_items,
             weather_summary,
             {"speech_target_dbfs": config.get("speech_target_dbfs", TARGET_SPEECH_DBFS)},
             tmp,
+            intermission_indices=intermission_indices,
+            episode_metas=episode_metas,
         )
 
         total_min = len(show) // 60_000
         total_sec = (len(show) % 60_000) // 1000
         print(f"  Total duration: {total_min}m {total_sec}s")
+        if len(show) < 3_600_000:
+            print(
+                f"  [WARN] Show is under 60 minutes ({total_min}m) — "
+                f"consider adding more feeds or increasing candidates."
+            )
 
         # -------------------------------------------------------------------
         # Step 6: Export
@@ -494,7 +527,7 @@ def main() -> None:
                 "genres": ti.get("genres", []),
                 "shareurl": ti.get("shareurl", ""),
             }
-            for _, ti in music_items
+            for _, ti in played_music
         ]
         show_metadata = {
             "date": date_str,
@@ -510,7 +543,7 @@ def main() -> None:
     print(f"  Episodes included ({len(episodes)}):")
     for name, audio in episodes:
         print(f"    - {name} ({len(audio) // 1000}s)")
-    print(f"  Music transitions: {len(music_items)}")
+    print(f"  Music transitions: {len(played_music)} played ({len(music_items)} prepared)")
     if weather_summary:
         print(f"  Weather: {weather_summary}")
 

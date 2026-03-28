@@ -33,6 +33,7 @@ import argparse
 import json
 import os
 import random
+import re
 import sys
 import tempfile
 import xml.etree.ElementTree as ET
@@ -138,6 +139,126 @@ def generate_riley_line(context: str) -> str:
     except Exception as exc:
         print(f"  [WARN] Claude API error generating Riley line: {exc}")
         return ""
+
+
+def generate_host_episode_intro(
+    host_key: str,
+    host_name: str,
+    show_name: str,
+    episode_meta: dict,
+    is_first: bool,
+    weather_summary: str | None,
+    prev_track: dict | None,
+    date_str: str,
+) -> str:
+    """Generate a grounded episode intro for a host, using actual episode metadata.
+
+    The prompt is constrained to real episode title/description so the host does
+    not invent or hallucinate content beyond what the RSS feed provides.
+
+    Args:
+        host_key: Key into HOSTS_CONFIG ("riley" or "casey").
+        host_name: Display name used in the prompt ("Riley" or "Casey").
+        show_name: Show title ("Cariboo Saturday Morning" / "Cariboo Sunday Morning").
+        episode_meta: Candidate dict from fetch_episode_candidates (may be {}).
+        is_first: True for the show opener before the first episode.
+        weather_summary: Current weather string, or None.
+        prev_track: track_info dict from get_music_clip, or None if no music preceded.
+        date_str: Formatted date string e.g. "Saturday, March 28".
+    """
+    client = get_anthropic_client()
+    if not client:
+        return ""
+
+    host = HOSTS_CONFIG.get(host_key, {})
+    host_bio = host.get("full_bio", f"warm radio host who knows the Cariboo region of BC well")
+
+    ep_title = episode_meta.get("title", "today's episode")
+    ep_show = episode_meta.get("name", "")
+
+    # Resolve best available description, strip HTML, truncate
+    desc_text = (
+        episode_meta.get("description")
+        or episode_meta.get("summary")
+        or episode_meta.get("subtitle")
+        or ""
+    )
+    desc_text = re.sub(r"<[^>]+>", "", desc_text).strip()
+    desc_snippet = desc_text[:200] + ("\u2026" if len(desc_text) > 200 else "")
+
+    episode_info = f"Next episode: \u2018{ep_title}\u2019" + (f" from {ep_show}" if ep_show else "")
+    if desc_snippet:
+        episode_info += f". What it\u2019s about: {desc_snippet}"
+
+    if is_first:
+        weather_note = f" Weather in the Cariboo today: {weather_summary}." if weather_summary else ""
+        first_episode_info = f"First episode: \u2018{ep_title}\u2019" + (f" from {ep_show}" if ep_show else "")
+        if desc_snippet:
+            first_episode_info += f". What it\u2019s about: {desc_snippet}"
+        context_block = (
+            f"{host_name} opens the {show_name} show. Today is {date_str}.{weather_note} "
+            f"{first_episode_info}. "
+            f"{host_name} welcomes listeners, gives the weather naturally (if provided), and "
+            f"introduces the first segment by its actual title. "
+            f"{host_name} does NOT invent or promise content beyond what is described above. "
+            f"2\u20133 sentences maximum."
+        )
+    else:
+        track_line = ""
+        if prev_track:
+            genres_str = (
+                f", genres: {', '.join(prev_track['genres'])}" if prev_track.get("genres") else ""
+            )
+            track_line = (
+                f"The track that just played was \u2018{prev_track['name']}\u2019 "
+                f"by {prev_track['artist']}{genres_str}. "
+                f"{host_name} briefly IDs that track (artist name, any BC/Canadian connection if "
+                f"it fits naturally), then introduces the next episode. "
+            )
+        context_block = (
+            f"{track_line}"
+            f"{episode_info}. "
+            f"{host_name} introduces this episode by its actual title and real topic (from the "
+            f"description above). "
+            f"{host_name} does NOT hallucinate or invent story details beyond what is described above. "
+            f"2\u20133 sentences maximum."
+        )
+
+    prompt = (
+        f"You are writing a short spoken line for {host_name}, host of {show_name} "
+        f"on cariboosignals.ca \u2014 part of the Cariboo Weekends programming block.\n\n"
+        f"{host_name}\u2019s personality: {host_bio}\n"
+        f"{host_name} sounds like a natural radio host \u2014 not a newsreader. "
+        f"No emojis, no stage directions, no quotation marks. "
+        f"Just the words they would say on air.\n\n"
+        f"Context: {context_block}"
+    )
+
+    try:
+        import anthropic
+        response = get_anthropic_client().messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=200,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        return response.content[0].text.strip()
+    except Exception as exc:
+        print(f"  [WARN] Claude API error generating {host_name} episode intro: {exc}")
+        return ""
+
+
+def generate_riley_episode_intro(
+    episode_meta: dict,
+    is_first: bool,
+    weather_summary: str | None,
+    prev_track: dict | None,
+    date_str: str,
+) -> str:
+    """Thin wrapper around generate_host_episode_intro for Riley (Saturday host)."""
+    return generate_host_episode_intro(
+        "riley", "Riley", "Cariboo Saturday Morning",
+        episode_meta, is_first, weather_summary, prev_track, date_str,
+    )
 
 
 def trim_tts_silence(
@@ -256,6 +377,15 @@ def fetch_episode_candidates(feed: dict, max_candidates: int = 3) -> list[dict]:
         link_el = item.find("link")
         episode_link = link_el.text.strip() if link_el is not None and link_el.text else ""
 
+        description_el = item.find("description")
+        description = description_el.text if description_el is not None else ""
+
+        summary_el = item.find("itunes:summary", ns)
+        summary = summary_el.text if summary_el is not None else ""
+
+        subtitle_el = item.find("itunes:subtitle", ns)
+        subtitle = subtitle_el.text if subtitle_el is not None else ""
+
         candidates.append({
             "name": feed["name"],
             "title": title,
@@ -263,6 +393,9 @@ def fetch_episode_candidates(feed: dict, max_candidates: int = 3) -> list[dict]:
             "pub_date": pub_date,
             "duration": duration,
             "link": episode_link,
+            "description": description,
+            "summary": summary,
+            "subtitle": subtitle,
             "trim_start_ms": feed.get("trim_start_ms", 10000),
             "trim_end_ms": feed.get("trim_end_ms", 10000),
             "jingle_end_ms": feed.get("jingle_end_ms"),
@@ -489,7 +622,8 @@ def assemble_show(
     config: dict,
     tmp_dir: Path,
     intermission_indices: set[int] | None = None,
-) -> AudioSegment:
+    episode_metas: list[dict] | None = None,
+) -> tuple[AudioSegment, list[tuple[AudioSegment, dict]]]:
     """Assemble the final show with Riley hosting.
 
     Structure:
@@ -508,22 +642,26 @@ def assemble_show(
         intermission_indices = set()
 
     combined = AudioSegment.empty()
+    played_music: list[tuple[AudioSegment, dict]] = []
 
     # Opening jingle
     if opening_jingle is not None:
         combined += opening_jingle + GAP
 
-    # --- Riley: show opener + weather ---
+    # --- Riley: show opener + weather (grounded in actual first episode metadata) ---
     date_str = datetime.now().strftime("%A, %B %-d")
-    segment_names = ", ".join(name for name, _ in episodes)
-    weather_note = f" {weather_summary}" if weather_summary else ""
-    opener_context = (
-        f"Riley opens the Cariboo Saturday Morning show. Today is {date_str}.{weather_note} "
-        f"The segments lined up are: {segment_names}. She welcomes listeners, gives the weather "
-        f"naturally (if provided), and briefly teases what's coming up."
+    first_meta = (episode_metas[0] if episode_metas else {}) if episodes else {}
+    opener_text = generate_riley_episode_intro(
+        episode_meta=first_meta,
+        is_first=True,
+        weather_summary=weather_summary,
+        prev_track=None,
+        date_str=date_str,
     )
-    opener = riley_speak(opener_context, tmp_dir)
-    combined += _riley_segment(opener)
+    if opener_text:
+        print(f"  [Riley] {opener_text}")
+    opener_audio = riley_tts(opener_text, tmp_dir) if opener_text else None
+    combined += _riley_segment(opener_audio)
 
     music_iter = iter(music_items)
 
@@ -556,39 +694,32 @@ def assemble_show(
             outro = riley_speak(outro_context, tmp_dir)
             combined += _riley_segment(outro)
 
-            # Music
+            # Music — record that this clip actually played
+            played_music.append((clip, track_info))
             combined += GAP + clip + GAP
 
-            # Riley: music ID + intro for next segment
-            genres_str = (
-                f", genres: {', '.join(track_info['genres'])}"
-                if track_info.get("genres")
-                else ""
+            # Riley: music ID + grounded intro for next segment
+            next_meta = (
+                episode_metas[i + 1] if episode_metas and i + 1 < len(episode_metas) else {}
             )
-            if is_intermission:
-                track_id_context = (
-                    f"Riley IDs the music track that just played: '{track_info['name']}' "
-                    f"by {track_info['artist']}{genres_str}. "
-                    f"She gives a natural mention of the artist and any Cariboo/BC/Canadian "
-                    f"connection if it fits, then welcomes listeners back from the intermission "
-                    f"and introduces the next longer segment: {next_name}."
-                )
-            else:
-                track_id_context = (
-                    f"Riley IDs the music track that just played: '{track_info['name']}' "
-                    f"by {track_info['artist']}{genres_str}. "
-                    f"She gives a brief natural mention of the artist (e.g. whether they're a "
-                    f"solo act, duo, band; any Cariboo/BC/Canadian connection if it fits), "
-                    f"then introduces the next segment: {next_name}."
-                )
-            track_id = riley_speak(track_id_context, tmp_dir)
-            combined += _riley_segment(track_id)
+            track_id_text = generate_riley_episode_intro(
+                episode_meta=next_meta,
+                is_first=False,
+                weather_summary=None,
+                prev_track=track_info,
+                date_str=date_str,
+            )
+            if track_id_text:
+                print(f"  [Riley] {track_id_text}")
+            track_id_audio = riley_tts(track_id_text, tmp_dir) if track_id_text else None
+            combined += _riley_segment(track_id_audio)
 
         elif is_last:
             # No more episodes — closing music if available
             clip_item = next(music_iter, None)
             if clip_item is not None:
                 clip, track_info = clip_item
+                played_music.append((clip, track_info))
 
                 # Riley: sign-off before closing music
                 signoff_context = (
@@ -610,7 +741,7 @@ def assemble_show(
         elif is_last and clip_item is None:
             combined += AudioSegment.silent(duration=2000)
 
-    return combined
+    return combined, played_music
 
 
 # ---------------------------------------------------------------------------
@@ -699,6 +830,7 @@ def main() -> None:
 
         print("\n=== Downloading and trimming episodes ===")
         episodes: list[tuple[str, AudioSegment]] = []
+        episode_metas: list[dict] = []
         intermission_indices: set[int] = set()
         opening_jingle: AudioSegment | None = None
 
@@ -740,6 +872,7 @@ def main() -> None:
             if meta.get("intermission_after"):
                 intermission_indices.add(len(episodes))
             episodes.append((meta["name"], trimmed))
+            episode_metas.append(meta)
 
         if not episodes:
             print("\n[ERROR] All episode downloads failed. Exiting.")
@@ -801,7 +934,7 @@ def main() -> None:
         print(f"\n=== Assembling show ({len(episodes)} episodes, {len(music_items)} music clips) ===")
         if intermission_indices:
             print(f"  Intermission after episode indices: {sorted(intermission_indices)}")
-        show = assemble_show(
+        show, played_music = assemble_show(
             episodes,
             opening_jingle,
             music_items,
@@ -809,11 +942,17 @@ def main() -> None:
             {"speech_target_dbfs": config.get("speech_target_dbfs", TARGET_SPEECH_DBFS)},
             tmp,
             intermission_indices=intermission_indices,
+            episode_metas=episode_metas,
         )
 
         total_min = len(show) // 60_000
         total_sec = (len(show) % 60_000) // 1000
         print(f"  Total duration: {total_min}m {total_sec}s")
+        if len(show) < 3_600_000:
+            print(
+                f"  [WARN] Show is under 60 minutes ({total_min}m) — "
+                f"consider adding more feeds or increasing candidates."
+            )
 
         # -------------------------------------------------------------------
         # Step 6: Export
@@ -846,7 +985,7 @@ def main() -> None:
                 "genres": ti.get("genres", []),
                 "shareurl": ti.get("shareurl", ""),
             }
-            for _, ti in music_items
+            for _, ti in played_music
         ]
         show_metadata = {
             "date": date_str,
@@ -864,7 +1003,7 @@ def main() -> None:
         print(f"    - {name} ({len(audio) // 1000}s)")
     if opening_jingle:
         print(f"  Opening jingle: {len(opening_jingle) // 1000}s (from first episode)")
-    print(f"  Music transitions: {len(music_items)}")
+    print(f"  Music transitions: {len(played_music)} played ({len(music_items)} prepared)")
     if weather_summary:
         print(f"  Weather: {weather_summary}")
 
