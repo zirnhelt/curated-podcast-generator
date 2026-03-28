@@ -16,7 +16,15 @@
       "How would this actually work?",
       "What's the implementation challenge?"
     ],
-    "evolving_opinions": {}
+    "evolving_opinions": {},
+    "bespoke_anchors": [
+      "technology_optimist_empiricist",
+      "tracks record of predictions",
+      "holds self to same evidentiary standard",
+      "concedes when evidence is compelling"
+    ],
+    "personality_clues": [],
+    "core_memories": []
   },
   "casey": {
     "consistent_interests": [
@@ -33,6 +41,14 @@
       "Who benefits from this?",
       "What's the broader context?"
     ],
-    "evolving_opinions": {}
+    "evolving_opinions": {},
+    "bespoke_anchors": [
+      "community_skeptic_systems_thinker",
+      "follows incentives and power structures",
+      "situates claims in historical context",
+      "demands full picture \u2014 not just press releases"
+    ],
+    "personality_clues": [],
+    "core_memories": []
   }
 }
