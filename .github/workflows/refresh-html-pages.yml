@@ -35,6 +35,10 @@ jobs:
 
           # Copy static assets
           cp cariboo-signals.png output/
+          cp cariboo-saturday.png output/
+          cp cariboo-sunday.png output/
+          cp cariboo-weekends.png output/
+          cp Deepdives.png output/
 
           echo "Files ready for deployment:"
           ls -la output/
@@ -53,6 +57,13 @@ jobs:
               --content-type "text/html" \
               --cache-control "no-cache" \
               && echo "  uploaded $page"
+          done
+
+          for img in cariboo-signals.png cariboo-saturday.png cariboo-sunday.png cariboo-weekends.png Deepdives.png; do
+            [ -f "$img" ] && aws s3 cp "$img" "s3://${BUCKET}/${img}" \
+              --content-type "image/png" \
+              --cache-control "public, max-age=86400" \
+              && echo "  uploaded $img"
           done
 
           echo "R2 sync complete"
