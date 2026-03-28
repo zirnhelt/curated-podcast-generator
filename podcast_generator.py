@@ -170,6 +170,26 @@ MEMORY_RETENTION_DAYS = 21
 DEBATE_MEMORY_RETENTION_DAYS = 90
 CTA_MEMORY_RETENTION_DAYS = 365
 
+# Host personality evolution settings
+# Anchors are distilled from bespoke_hosts.json — the richer character definitions
+# used in long-form episodes. These seed the daily show's foundational traits.
+_BESPOKE_ANCHORS = {
+    'riley': [
+        "technology_optimist_empiricist",
+        "tracks record of predictions",
+        "holds self to same evidentiary standard",
+        "concedes when evidence is compelling",
+    ],
+    'casey': [
+        "community_skeptic_systems_thinker",
+        "follows incentives and power structures",
+        "situates claims in historical context",
+        "demands full picture — not just press releases",
+    ],
+}
+_CLUE_PROMOTION_THRESHOLD = 3  # occurrences before a signal becomes a core memory
+_MAX_PERSONALITY_CLUES = 30    # rolling buffer depth per host
+
 # Load all config at startup
 CONFIG = {
     'podcast': load_podcast_config(),
@@ -1035,26 +1055,86 @@ def update_episode_memory(date_key, topics, themes):
     }
     save_memory(EPISODE_MEMORY_FILE, memory)
 
-def update_host_memory(insights_by_host):
-    """Update host personality memory with new insights."""
+def update_host_memory(insights_by_host, clues=None):
+    """Update host personality memory with new insights and personality clues.
+
+    insights_by_host: {host_key: [topic_strings]} — existing interest tracking
+    clues: {host_key: [clue_strings]} — new compact personality signals, optional
+    """
     memory = get_host_personality_memory()
-    
+
     for host_key, insights in insights_by_host.items():
         if host_key not in memory:
             host_config = CONFIG['hosts'][host_key]
             memory[host_key] = {
                 "consistent_interests": host_config['consistent_interests'].copy(),
                 "recurring_questions": host_config['recurring_questions'].copy(),
-                "evolving_opinions": {}
+                "evolving_opinions": {},
+                "bespoke_anchors": _BESPOKE_ANCHORS.get(host_key, []),
+                "personality_clues": [],
+                "core_memories": [],
             }
-        
+        else:
+            # Migrate existing entries that predate the evolution system
+            hm = memory[host_key]
+            if "bespoke_anchors" not in hm:
+                hm["bespoke_anchors"] = _BESPOKE_ANCHORS.get(host_key, [])
+            if "personality_clues" not in hm:
+                hm["personality_clues"] = []
+            if "core_memories" not in hm:
+                hm["core_memories"] = []
+
+        # Existing interest tracking (keep for backward compat)
         for insight in insights:
             if insight not in memory[host_key]["consistent_interests"]:
                 memory[host_key]["consistent_interests"].append(insight)
-        
-        # Keep only recent interests (last 10)
         memory[host_key]["consistent_interests"] = memory[host_key]["consistent_interests"][-10:]
-    
+
+        # Merge new personality clues
+        if clues and host_key in clues:
+            today = get_pacific_now().strftime("%Y-%m-%d")
+            for new_clue in clues[host_key]:
+                if not new_clue or not isinstance(new_clue, str):
+                    continue
+                new_key = _clue_key(new_clue)
+                existing = next(
+                    (c for c in memory[host_key]["personality_clues"]
+                     if _clue_key(c["clue"]) == new_key),
+                    None
+                )
+                if existing:
+                    existing["occurrences"] += 1
+                    existing["date"] = today
+                    existing["clue"] = new_clue  # refresh note with latest phrasing
+                else:
+                    memory[host_key]["personality_clues"].append({
+                        "date": today,
+                        "clue": new_clue,
+                        "occurrences": 1,
+                    })
+
+            # Promote high-frequency clues to core memories
+            remaining = []
+            for c in memory[host_key]["personality_clues"]:
+                if c["occurrences"] >= _CLUE_PROMOTION_THRESHOLD:
+                    c_key = _clue_key(c["clue"])
+                    already_core = any(
+                        _clue_key(m["signal"]) == c_key
+                        for m in memory[host_key]["core_memories"]
+                    )
+                    if not already_core:
+                        memory[host_key]["core_memories"].append({
+                            "formed": c["date"],
+                            "signal": c["clue"],
+                            "occurrences": c["occurrences"],
+                        })
+                        print(f"  ⭐ {host_key} core memory: {c['clue']}")
+                    # Either way, remove from the rolling buffer
+                else:
+                    remaining.append(c)
+
+            memory[host_key]["personality_clues"] = remaining[-_MAX_PERSONALITY_CLUES:]
+
     save_memory(HOST_MEMORY_FILE, memory)
 
 def get_debate_memory():
@@ -1211,6 +1291,67 @@ def _extract_debate_summary_fallback(script, theme_name):
         "central_question": f"Deep dive on {theme_name}",
         "topics_covered": topics[:5] if topics else [theme_name]
     }
+
+
+def _clue_key(clue):
+    """Dedup key for a personality clue — the topic:signal part before ' — '."""
+    return clue.split(" — ")[0].strip()
+
+
+def extract_personality_clues(script):
+    """Extract subtle personality signals from this episode's deep-dive section.
+
+    Returns {"riley": [...], "casey": [...]} with compact shorthand clues, or {}
+    on failure.  Each clue uses the format: [topic-tag]:[signal] — [note ≤8 words]
+
+    Topic tags: tech-optimism, evidence-bar, community-trust, pilot-skepticism,
+                rural-context, structural-lens, Indigenous-tech, funding-risk
+    Signals: + (reinforced), - (softened), x (conceded to other host), ~ (complicated)
+
+    Only clues where something genuinely shifted are emitted — routine on-brand
+    behaviour is deliberately excluded to keep the signal meaningful.
+    """
+    client = get_anthropic_client()
+    if not client or not script:
+        return {}
+
+    deep_dive_section = _extract_deep_dive_section(script)
+
+    prompt = (
+        "Read this podcast deep-dive and identify subtle personality signals — "
+        "moments where a host's stance, emphasis, or worldview shifted or deepened.\n\n"
+        "Segment:\n" + deep_dive_section + "\n\n"
+        "For each host (Riley, Casey), output 0–2 clues in this exact format:\n"
+        "  [topic-tag]:[signal] — [note, max 8 words]\n\n"
+        "Topic tags: tech-optimism, evidence-bar, community-trust, pilot-skepticism, "
+        "rural-context, structural-lens, Indigenous-tech, funding-risk\n"
+        "Signals: + (reinforced this episode), - (softened/nuanced away from), "
+        "x (conceded point to other host), ~ (added genuine complexity)\n\n"
+        "Only include a clue when something genuinely shifted or stood out. "
+        "Skip if the host just played their usual role with no new development.\n\n"
+        "Return a JSON object only — no other text:\n"
+        '{"riley": ["clue1"], "casey": ["clue1", "clue2"]}\n'
+        "Use empty arrays if no notable signals emerged."
+    )
+
+    try:
+        response = api_retry(lambda: client.messages.create(
+            model=SUMMARY_MODEL,
+            max_tokens=200,
+            messages=[{"role": "user", "content": prompt}]
+        ))
+        text = response.content[0].text.strip()
+        if text.startswith("```"):
+            text = text.split("\n", 1)[1] if "\n" in text else text[3:]
+            if text.endswith("```"):
+                text = text[:-3]
+            text = text.strip()
+        result = json.loads(text)
+        return {k: v for k, v in result.items() if isinstance(v, list)}
+    except Exception as e:
+        print(f"  ⚠️  Personality clue extraction skipped: {e}")
+        return {}
+
 
 def format_debate_memory_for_prompt(debate_memory, today_theme):
     """Format debate memory into context for the prompt, grouped by theme.
@@ -1877,7 +2018,7 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
 def format_memory_for_prompt(episode_memory, host_memory):
     """Format memory into context for Claude prompt."""
     context = ""
-    
+
     recent_episodes = list(episode_memory.values())[-5:]
     if recent_episodes:
         context += "RECENT EPISODE CONTEXT (for natural callbacks):\n"
@@ -1886,15 +2027,52 @@ def format_memory_for_prompt(episode_memory, host_memory):
             if topics:
                 context += f"- {episode['date']}: {', '.join(topics)}\n"
         context += "\n"
-    
+
     hosts_config = CONFIG['hosts']
     if host_memory:
-        context += "HOST PERSONALITY CONTEXT:\n"
-        for host_key, host_data in hosts_config.items():
-            if host_key in host_memory:
-                context += f"{host_data['name']} tends to focus on: {', '.join(host_memory[host_key].get('consistent_interests', []))}\n"
-        context += "\n"
-    
+        has_evolution = any(
+            host_memory.get(k, {}).get('bespoke_anchors') or
+            host_memory.get(k, {}).get('core_memories') or
+            host_memory.get(k, {}).get('personality_clues')
+            for k in hosts_config
+        )
+
+        if has_evolution:
+            context += "HOST PERSONALITY EVOLUTION:\n"
+            for host_key, host_data in hosts_config.items():
+                if host_key not in host_memory:
+                    continue
+                hm = host_memory[host_key]
+                name = host_data['name']
+
+                # Foundational anchors derived from bespoke (richer) character definitions
+                anchors = hm.get('bespoke_anchors', [])
+                if anchors:
+                    context += f"{name} — core: {' | '.join(anchors[:3])}\n"
+
+                # Core memories: signals promoted after recurring ≥3 times
+                core = hm.get('core_memories', [])
+                if core:
+                    parts = [f"{m['signal']} (×{m['occurrences']})" for m in core[-4:]]
+                    context += f"{name} — established: {'; '.join(parts)}\n"
+
+                # Recent personality clues (rolling buffer, last 6)
+                clues = hm.get('personality_clues', [])
+                if clues:
+                    recent = clues[-6:]
+                    parts = [f"{c['clue']} (×{c['occurrences']})" for c in recent]
+                    context += f"{name} — recent signals: {'; '.join(parts)}\n"
+
+            context += "(Subtle tendencies — let them color tone and emphasis, not overhaul character.)\n\n"
+        else:
+            # Fallback: legacy interest tracking only
+            context += "HOST PERSONALITY CONTEXT:\n"
+            for host_key, host_data in hosts_config.items():
+                if host_key in host_memory:
+                    interests = host_memory[host_key].get('consistent_interests', [])
+                    context += f"{host_data['name']} tends to focus on: {', '.join(interests)}\n"
+            context += "\n"
+
     return context
 
 
@@ -3251,12 +3429,18 @@ def main():
             topics, themes = extract_topics_and_themes(script, news_articles, deep_dive_articles)
             update_episode_memory(date_key, topics, themes)
 
-            # Update host memory
+            # Update host memory with topic insights and personality clues
             host_insights = {
                 'riley': [t for t in topics if 'tech' in t.lower() or 'AI' in t][:2],
                 'casey': [t for t in topics if 'community' in t.lower() or 'rural' in t.lower()][:2]
             }
-            update_host_memory(host_insights)
+            print("🧠 Extracting personality clues...")
+            personality_clues = extract_personality_clues(script)
+            if personality_clues:
+                for host, host_clues in personality_clues.items():
+                    if host_clues:
+                        print(f"   {host}: {'; '.join(host_clues)}")
+            update_host_memory(host_insights, clues=personality_clues)
 
             # Update debate memory
             update_debate_memory(date_key, today_theme, debate_summary)
