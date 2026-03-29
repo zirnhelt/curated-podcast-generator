@@ -489,7 +489,7 @@ def assemble_show(
     config: dict,
     tmp_dir: Path,
     intermission_indices: set[int] | None = None,
-) -> AudioSegment:
+) -> tuple[AudioSegment, list[dict]]:
     """Assemble the final show with Riley hosting.
 
     Structure:
@@ -508,8 +508,10 @@ def assemble_show(
         intermission_indices = set()
 
     combined = AudioSegment.empty()
+    chapters: list[dict] = []
 
     # Opening jingle
+    chapters.append({"startTime": 0, "title": "Introduction"})
     if opening_jingle is not None:
         combined += opening_jingle + GAP
 
@@ -529,6 +531,7 @@ def assemble_show(
 
     for i, (name, audio) in enumerate(episodes):
         print(f"  Adding episode: {name} ({len(audio) // 1000}s)")
+        chapters.append({"startTime": round(len(combined) / 1000, 1), "title": name})
         combined += normalize_segment(audio, config["speech_target_dbfs"])
 
         clip_item = next(music_iter, None)
@@ -557,6 +560,14 @@ def assemble_show(
             combined += _riley_segment(outro)
 
             # Music
+            if track_info.get("name"):
+                track_label = f"Music — {track_info['name']} by {track_info['artist']}"
+            else:
+                track_label = "Music Break"
+            music_chapter: dict = {"startTime": round(len(combined) / 1000, 1), "title": track_label}
+            if track_info.get("shareurl"):
+                music_chapter["url"] = track_info["shareurl"]
+            chapters.append(music_chapter)
             combined += GAP + clip + GAP
 
             # Riley: music ID + intro for next segment
@@ -598,6 +609,14 @@ def assemble_show(
                 signoff = riley_speak(signoff_context, tmp_dir)
                 combined += _riley_segment(signoff)
 
+                if track_info.get("name"):
+                    track_label = f"Music — {track_info['name']} by {track_info['artist']}"
+                else:
+                    track_label = "Music Break"
+                music_chapter = {"startTime": round(len(combined) / 1000, 1), "title": track_label}
+                if track_info.get("shareurl"):
+                    music_chapter["url"] = track_info["shareurl"]
+                chapters.append(music_chapter)
                 combined += GAP + clip.fade_out(3000)
             else:
                 # No closing music — Riley signs off directly
@@ -610,7 +629,7 @@ def assemble_show(
         elif is_last and clip_item is None:
             combined += AudioSegment.silent(duration=2000)
 
-    return combined
+    return combined, chapters
 
 
 # ---------------------------------------------------------------------------
@@ -801,7 +820,7 @@ def main() -> None:
         print(f"\n=== Assembling show ({len(episodes)} episodes, {len(music_items)} music clips) ===")
         if intermission_indices:
             print(f"  Intermission after episode indices: {sorted(intermission_indices)}")
-        show = assemble_show(
+        show, chapters = assemble_show(
             episodes,
             opening_jingle,
             music_items,
@@ -821,6 +840,12 @@ def main() -> None:
         print(f"\n=== Exporting to {output_path} ===")
         show.export(str(output_path), format="mp3", bitrate="128k")
         print(f"  Done. File size: {output_path.stat().st_size // 1024}KB")
+
+        # Step 7b: Write Podcast Index chapters JSON
+        chapters_path = output_path.with_name(output_path.stem + "_chapters.json")
+        chapters_data = {"version": "1.2.0", "chapters": chapters}
+        chapters_path.write_text(json.dumps(chapters_data, indent=2, ensure_ascii=False), encoding="utf-8")
+        print(f"  Chapters: {chapters_path} ({len(chapters)} chapter(s))")
 
         # -------------------------------------------------------------------
         # Step 7: Save companion metadata JSON for show notes
