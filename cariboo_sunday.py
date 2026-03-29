@@ -223,11 +223,20 @@ def assemble_show(
             clip, track_info = clip_item
             next_name = episodes[i + 1][0]
 
-            # Casey: brief episode wrap-up and music tease
-            outro_context = (
-                f"Casey briefly wraps up the {name} segment and says a music break "
-                f"is coming before {next_name}. Keep it to one short sentence."
-            )
+            # Casey: outro — longer for intermission break, brief for transitions
+            if i in intermission_indices:
+                outro_context = (
+                    f"Casey wraps up the news block — the {name} segment was the last "
+                    f"of the morning news. There's a longer music break coming before "
+                    f"cultural programming with {next_name}. Casey gives a warm 2–3 sentence "
+                    f"handoff: thanks the news team, invites listeners to relax into the music, "
+                    f"and teases what's coming in the cultural hour."
+                )
+            else:
+                outro_context = (
+                    f"Casey briefly wraps up the {name} segment and says a music break "
+                    f"is coming before {next_name}. Keep it to one short sentence."
+                )
             outro = casey_speak(outro_context, tmp_dir)
             combined += _casey_segment(outro)
 
@@ -458,6 +467,7 @@ def main() -> None:
             weather_summary,
             {"speech_target_dbfs": config.get("speech_target_dbfs", TARGET_SPEECH_DBFS)},
             tmp,
+            intermission_indices=intermission_indices,
         )
 
         total_min = len(show) // 60_000
