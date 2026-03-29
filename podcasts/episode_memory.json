@@ -1,24 +1,4 @@
 {
-  "2026-03-07": {
-    "timestamp": 1772887627.922386,
-    "topics": [
-      "[Williams Lake Tribune] Williams Lake Urgent and Primary Car",
-      "[My Cariboo Now] Early morning vehicle incident claims life ",
-      "[100 Mile Free Press] 100 Mile Performing Arts Society\u2019s aud",
-      "[Quesnel Cariboo Observer] Pedestrian dies in early-morning ",
-      "[My Cariboo Now] Quesnel is getting ready to party like it\u2019s",
-      "[Quesnel Cariboo Observer] RCMP find \u2018no credible threat\u2019 to",
-      "[My Cariboo Now] Williams Lake RCMP seeking help to find mis",
-      "[100 Mile Free Press] 100 Mile House RCMP find \u2018no credible "
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech",
-      "connectivity"
-    ],
-    "date": "2026-03-07"
-  },
   "2026-03-08": {
     "timestamp": 1772974171.632272,
     "topics": [
@@ -436,5 +416,25 @@
       "connectivity"
     ],
     "date": "2026-03-28"
+  },
+  "2026-03-29": {
+    "timestamp": 1774780770.16235,
+    "topics": [
+      "[TechRadar] Why strong authentication beyond the browser wil",
+      "[How-To Geek] This is the fastest and cheapest way to build ",
+      "[TechRadar] 'Nuclear energy is the essential backbone for th",
+      "[How-To Geek] Creating a DIY homelab: Fast, free, and beginn",
+      "[How-To Geek] 7 household repairs that are cheaper and easie",
+      "[New Atlas] Off-grid tiny house is well-suited to full-time ",
+      "[XDA Developers] This MCP Server turned my NAS into a self-h",
+      "[Hackaday] Watch Electricity Slosh: Visualizing Impedance Ma"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "connectivity"
+    ],
+    "date": "2026-03-29"
   }
 }
