@@ -7,16 +7,29 @@
 <description>A curated Sunday morning radio experience drawn from CBC cultural podcasts (q with Tom Power, Unreserved), with Canadian indie music transitions from Jamendo. Assembled automatically each Sunday for the Cariboo region of BC.</description>
 <itunes:author>Cariboo Signals</itunes:author>
 <itunes:summary>A curated Sunday morning radio experience drawn from CBC cultural podcasts (q with Tom Power, Unreserved), with Canadian indie music transitions from Jamendo. Assembled automatically each Sunday for the Cariboo region of BC.</itunes:summary>
+<itunes:image href="https://podcast.cariboosignals.ca/cariboo-sunday.png"/>
 <atom:link href="https://podcast.cariboosignals.ca/cariboo-sunday-feed.xml" rel="self" type="application/rss+xml" xmlns:atom="http://www.w3.org/2005/Atom"/>
 <itunes:explicit>false</itunes:explicit>
 <itunes:type>episodic</itunes:type>
 <itunes:category text="Arts"/>
-<lastBuildDate>Sun, 22 Mar 2026 20:14:41 GMT</lastBuildDate>
+<lastBuildDate>Sun, 29 Mar 2026 14:49:06 GMT</lastBuildDate>
+<item>
+<title>Cariboo Sunday Morning — March 29, 2026</title>
+<pubDate>Sun, 29 Mar 2026 16:00:00 GMT</pubDate>
+<description><![CDATA[<p>Cariboo Sunday Morning — March 29, 2026</p><p><strong>CBC segments featured:</strong></p><ul><li>Keep saying her name: the search for Kadin Savikataaq (Unreserved) — Fri, 27 Mar 2026 01:10:00 EDT</li></ul><p><strong>Music:</strong></p><ul><li><a href="https://www.jamendo.com/track/1181019">Gates by Bellevue [rock, pop, indie]</a> via Jamendo (CC)</li></ul><p><em>Assembled automatically from CBC Radio podcasts for the Cariboo region of BC. Music sourced from Jamendo under Creative Commons licence.</em></p>]]></description>
+<itunes:summary><![CDATA[<p>Cariboo Sunday Morning — March 29, 2026</p><p><strong>CBC segments featured:</strong></p><ul><li>Keep saying her name: the search for Kadin Savikataaq (Unreserved) — Fri, 27 Mar 2026 01:10:00 EDT</li></ul><p><strong>Music:</strong></p><ul><li><a href="https://www.jamendo.com/track/1181019">Gates by Bellevue [rock, pop, indie]</a> via Jamendo (CC)</li></ul><p><em>Assembled automatically from CBC Radio podcasts for the Cariboo region of BC. Music sourced from Jamendo under Creative Commons licence.</em></p>]]></itunes:summary>
+<itunes:image href="https://podcast.cariboosignals.ca/cariboo-sunday.png"/>
+<enclosure url="https://podcast.cariboosignals.ca/podcasts/cariboo_sunday_2026-03-29.mp3" length="48217069" type="audio/mpeg"/>
+<guid isPermaLink="false">cariboo-sunday-2026-03-29</guid>
+<itunes:duration>50:13</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+</item>
 <item>
 <title>Cariboo Sunday Morning — March 22, 2026</title>
 <pubDate>Sun, 22 Mar 2026 16:00:00 GMT</pubDate>
 <description><![CDATA[Cariboo Sunday Morning — March 22, 2026]]></description>
 <itunes:summary><![CDATA[Cariboo Sunday Morning — March 22, 2026]]></itunes:summary>
+<itunes:image href="https://podcast.cariboosignals.ca/cariboo-sunday.png"/>
 <enclosure url="https://podcast.cariboosignals.ca/podcasts/cariboo_sunday_2026-03-22.mp3" length="40898186" type="audio/mpeg"/>
 <guid isPermaLink="false">cariboo-sunday-2026-03-22</guid>
 <itunes:duration>42:36</itunes:duration>
