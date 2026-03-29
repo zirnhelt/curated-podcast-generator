@@ -2,11 +2,11 @@ name: Cariboo Sunday Morning Show
 
 on:
   schedule:
-    # Every Sunday at 8:00 AM Pacific Time
-    # 8:00 AM PST = 16:00 UTC (Nov–Mar)
-    # 8:00 AM PDT = 15:00 UTC (Mar–Nov)
-    - cron: '0 15 * * 0'  # 8:00 AM PDT (Mar–Nov)
-    - cron: '0 16 * * 0'  # 8:00 AM PST (Nov–Mar)
+    # Every Sunday at 5:00 AM Pacific Time
+    # 5:00 AM PDT = 12:00 UTC (Mar–Nov)
+    # 5:00 AM PST = 13:00 UTC (Nov–Mar)
+    # Using 12:00 UTC year-round (will run at 6 AM in PST winter)
+    - cron: '0 12 * * 0'
   workflow_dispatch:   # Manual trigger from GitHub Actions UI
     inputs:
       dry_run:
