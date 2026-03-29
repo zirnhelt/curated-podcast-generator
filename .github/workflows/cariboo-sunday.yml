@@ -5,8 +5,8 @@ on:
     # Every Sunday at 8:00 AM Pacific Time
     # 8:00 AM PST = 16:00 UTC (Nov–Mar)
     # 8:00 AM PDT = 15:00 UTC (Mar–Nov)
-    # Using 16:00 UTC year-round (will run at 9 AM in PDT summer)
-    - cron: '0 16 * * 0'
+    - cron: '0 15 * * 0'  # 8:00 AM PDT (Mar–Nov)
+    - cron: '0 16 * * 0'  # 8:00 AM PST (Nov–Mar)
   workflow_dispatch:   # Manual trigger from GitHub Actions UI
     inputs:
       dry_run:
