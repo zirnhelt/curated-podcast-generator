@@ -111,6 +111,17 @@ jobs:
               aws s3 cp "$f" "s3://${BUCKET}/${f}" --content-type "audio/mpeg"
           done
 
+          for f in podcasts/cariboo_sunday_*_chapters.json; do
+            [ -f "$f" ] && echo "  uploading $f" && \
+              aws s3 cp "$f" "s3://${BUCKET}/${f}" --content-type "application/json"
+          done
+
+          for img in cariboo-weekends.png cariboo-saturday.png cariboo-sunday.png cariboo-signals.png; do
+            [ -f "$img" ] && aws s3 cp "$img" "s3://${BUCKET}/${img}" \
+              --content-type "image/png" \
+              --cache-control "public, max-age=86400"
+          done
+
           echo "R2 sync complete"
         continue-on-error: true
 
@@ -119,9 +130,14 @@ jobs:
           mkdir -p output/podcasts
 
           cp podcasts/cariboo_sunday_*.mp3 output/podcasts/ 2>/dev/null || true
+          cp podcasts/cariboo_sunday_*_chapters.json output/podcasts/ 2>/dev/null || true
           cp cariboo-sunday-feed.xml output/ 2>/dev/null || true
           cp cariboo-sunday.html output/ 2>/dev/null || true
           cp cariboo-weekends.html output/ 2>/dev/null || true
+          cp cariboo-signals.png output/ 2>/dev/null || true
+          cp cariboo-weekends.png output/ 2>/dev/null || true
+          cp cariboo-saturday.png output/ 2>/dev/null || true
+          cp cariboo-sunday.png output/ 2>/dev/null || true
 
           echo "Output:"
           ls -lh output/

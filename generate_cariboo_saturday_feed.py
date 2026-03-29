@@ -135,6 +135,9 @@ def generate_feed(base_url: str) -> None:
         duration = _estimate_duration(size)
         meta_path = mp3.with_suffix(".json")
         description = _build_description(title, meta_path)
+        chapters_filename = f"cariboo_saturday_{date_str}_chapters.json"
+        chapters_path_local = PODCASTS_DIR / chapters_filename
+        chapters_url = f"{base_url}podcasts/{chapters_filename}" if chapters_path_local.exists() else None
 
         episodes.append(
             {
@@ -145,6 +148,7 @@ def generate_feed(base_url: str) -> None:
                 "guid": guid,
                 "duration": duration,
                 "description": description,
+                "chapters_url": chapters_url,
             }
         )
 
@@ -155,7 +159,7 @@ def generate_feed(base_url: str) -> None:
 
     lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
-        '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">',
+        '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0">',
         "<channel>",
         f"<title>{saxutils.escape(cfg['title'])}</title>",
         f"<link>{saxutils.escape(base_url)}</link>",
@@ -183,6 +187,11 @@ def generate_feed(base_url: str) -> None:
             f'<guid isPermaLink="false">{ep["guid"]}</guid>',
             f"<itunes:duration>{ep['duration']}</itunes:duration>",
             "<itunes:explicit>false</itunes:explicit>",
+            *(
+                [f'<podcast:chapters url="{saxutils.escape(ep["chapters_url"])}" type="application/json+chapters"/>']
+                if ep.get("chapters_url")
+                else []
+            ),
             "</item>",
         ]
 
