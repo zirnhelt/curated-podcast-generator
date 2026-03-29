@@ -1,0 +1,404 @@
+{
+  "episode": {
+    "date": "2026-03-29",
+    "formatted_date": "Sunday, March 29, 2026",
+    "theme": "Resilient Rural Futures",
+    "title": "Cariboo Signals - Resilient Rural Futures",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Resilient Rural Futures.</p><p><b>NEWS ROUNDUP:</b> We break down [TechRadar] Why strong authentication beyond the browser will define the future of connected devices and [How-To Geek] This is the fastest and cheapest way to build a fully offline Home Assistant smart home, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Deep dive on Resilient Rural Futures Topics include: broadband, connectivity, telemedicine, renewable energy, solar.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>TechRadar: <a href=\"https://www.techradar.com/pro/why-strong-authentication-beyond-the-browser-will-define-the-future-of-connected-devices\">[TechRadar] Why strong authentication beyond the browser wil...</a></li><li>How-To Geek: <a href=\"https://www.howtogeek.com/fastest-and-cheapest-way-to-build-fully-offline-home-assistant/\">[How-To Geek] This is the fastest and cheapest way to build ...</a></li><li>TechRadar: <a href=\"https://www.techradar.com/pro/nuclear-energy-is-the-essential-backbone-for-this-future-but-the-industry-remains-trapped-in-a-delivery-bottleneck-microsoft-and-nvidia-team-up-to-tackle-historic-surge-in-power-demand-by-using-ai-to-help-the-nuclear-power-industry\">[TechRadar] 'Nuclear energy is the essential backbone for th...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/nvidia-ceo-jensen-huang-urges-blue-collar-workers-embrace-ai-2026-3\">[Business Insider] Nvidia's Jensen Huang has a message for b...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/replaced-proxmox-backup-strategy-one-tool-havent-thought-backups/\">[XDA Developers] I replaced my entire Proxmox backup strateg...</a></li><li>The Narwhal: <a href=\"https://thenarwhal.ca/2026-nna-nomination/\">[The Narwhal] The Narwhal’s investigation into contaminated ...</a></li><li>New Atlas: <a href=\"https://newatlas.com/tiny-houses/off-grid-tiny-craft/\">[New Atlas] Off-grid tiny house is well-suited to full-time ...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>How-To Geek: <a href=\"https://www.howtogeek.com/i-turned-my-potato-pc-into-a-homelab-for-free-in-under-an-hour/\">[How-To Geek] Creating a DIY homelab: Fast, free, and beginn...</a></li><li>How-To Geek: <a href=\"https://www.howtogeek.com/household-repairs-that-are-cheaper-and-easier-with-a-3d-printer/\">[How-To Geek] 7 household repairs that are cheaper and easie...</a></li><li>Android Police: <a href=\"https://www.androidpolice.com/ugreen-dh-2300-for-cheap/\">[Android Police] Stop paying for cloud storage and get yours...</a></li><li>How-To Geek: <a href=\"https://www.howtogeek.com/stop-filling-your-ssd-to-the-brim-heres-what-happens-when-you-do/\">[How-To Geek] Your nearly full SSD is tanking your performan...</a></li><li>NYT Business: <a href=\"https://www.nytimes.com/2026/03/26/business/economy/ai-data-centers-construction-local-opposition.html\">[NYT Business] Local Opposition Is Slowing A.I. Data Centers...</a></li><li>The Marginalian: <a href=\"https://www.themarginalian.org/2026/03/25/telling-is-listening-ursula-k-le-guin-communication/\">[The Marginalian] Telling Is Listening: Ursula K. Le Guin on...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/03/29/opinion/ai-claude-chatgpt-gemini-mcluhan.html\">[NYT Top Stories] Marshall McLuhan Was Right About Claude, T...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/kaos-begins-tearing-systemd-apart-after-dropping-kde-plasma-last-month/\">[XDA Developers] KaOS begins tearing systemd apart after dro...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/collagen-supplements-may-offer-real-benefits-large-review-suggests\">[ScienceAlert] Collagen Supplements May Offer Real Benefits,...</a></li><li>100 Mile Free Press: <a href=\"https://100milefreepress.net/2026/03/28/buxton-springs-renewal-is-just-around-the-corner/\">[100 Mile Free Press] BUXTON: Spring’s renewal is just aroun...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/03/28/playful-space-dice-kit-shows-off-clever-design/\">[Hackaday] Playful ‘Space Dice’ Kit Shows Off Clever Design</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/fedora-44-will-automatically-make-your-windows-games-run-faster-no-tweaks-required/\">[XDA Developers] Fedora 44 will automatically make your Wind...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/this-mcp-server-turned-my-nas-into-a-self-hosted-ai-assistant/\">[XDA Developers] This MCP Server turned my NAS into a self-h...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/03/28/watch-electricity-slosh-visualizing-impedance-matching/\">[Hackaday] Watch Electricity Slosh: Visualizing Impedance Ma...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-20250514<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-03-29T03:39:30.145039-07:00",
+    "models": {
+      "script": "claude-sonnet-4-20250514",
+      "review": "claude-sonnet-4-20250514",
+      "summary": "claude-3-5-haiku-20241022"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[TechRadar] Why strong authentication beyond the browser will define the future of connected devices",
+          "url": "https://www.techradar.com/pro/why-strong-authentication-beyond-the-browser-will-define-the-future-of-connected-devices",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-25T15:37:23+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[How-To Geek] This is the fastest and cheapest way to build a fully offline Home Assistant smart home",
+          "url": "https://www.howtogeek.com/fastest-and-cheapest-way-to-build-fully-offline-home-assistant/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-23T17:30:16+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[TechRadar] 'Nuclear energy is the essential backbone for this future, but the industry remains trapped in a delivery bottleneck': Microsoft and Nvidia team up to tackle 'historic surge in power demand' by using AI to help the nuclear power industry",
+          "url": "https://www.techradar.com/pro/nuclear-energy-is-the-essential-backbone-for-this-future-but-the-industry-remains-trapped-in-a-delivery-bottleneck-microsoft-and-nvidia-team-up-to-tackle-historic-surge-in-power-demand-by-using-ai-to-help-the-nuclear-power-industry",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-28T21:05:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[How-To Geek] Creating a DIY homelab: Fast, free, and beginner-friendly",
+          "url": "https://www.howtogeek.com/i-turned-my-potato-pc-into-a-homelab-for-free-in-under-an-hour/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-28T20:00:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] 7 household repairs that are cheaper and easier with a 3D printer",
+          "url": "https://www.howtogeek.com/household-repairs-that-are-cheaper-and-easier-with-a-3d-printer/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-28T22:00:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] Nvidia's Jensen Huang has a message for blue-collar workers: Don't miss the AI wave",
+          "url": "https://www.businessinsider.com/nvidia-ceo-jensen-huang-urges-blue-collar-workers-embrace-ai-2026-3",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-03-24T18:01:52+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Android Police] Stop paying for cloud storage and get yourself a reliable NAS setup for cheap",
+          "url": "https://www.androidpolice.com/ugreen-dh-2300-for-cheap/",
+          "source": "Android Police",
+          "ai_score": 0,
+          "date_published": "2026-03-28T23:38:46+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] I replaced my entire Proxmox backup strategy with one tool, and I haven't thought about backups since",
+          "url": "https://www.xda-developers.com/replaced-proxmox-backup-strategy-one-tool-havent-thought-backups/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-28T16:30:20+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[The Narwhal] The Narwhal’s investigation into contaminated military sites is a finalist for the National Newspaper Awards",
+          "url": "https://thenarwhal.ca/2026-nna-nomination/",
+          "source": "The Narwhal",
+          "ai_score": 0,
+          "date_published": "2026-03-26T14:47:22+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[How-To Geek] Your nearly full SSD is tanking your performance—here's why",
+          "url": "https://www.howtogeek.com/stop-filling-your-ssd-to-the-brim-heres-what-happens-when-you-do/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-28T21:00:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Business] Local Opposition Is Slowing A.I. Data Centers. Wall Street Has Noticed.",
+          "url": "https://www.nytimes.com/2026/03/26/business/economy/ai-data-centers-construction-local-opposition.html",
+          "source": "NYT Business",
+          "ai_score": 0,
+          "date_published": "2026-03-26T15:29:24+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Marginalian] Telling Is Listening: Ursula K. Le Guin on the Magic of Real Human Conversation",
+          "url": "https://www.themarginalian.org/2026/03/25/telling-is-listening-ursula-k-le-guin-communication/",
+          "source": "The Marginalian",
+          "ai_score": 0,
+          "date_published": "2026-03-25T14:07:13+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] Marshall McLuhan Was Right About Claude, Too",
+          "url": "https://www.nytimes.com/2026/03/29/opinion/ai-claude-chatgpt-gemini-mcluhan.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-03-29T05:38:37+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] KaOS begins tearing systemd apart after dropping KDE Plasma last month",
+          "url": "https://www.xda-developers.com/kaos-begins-tearing-systemd-apart-after-dropping-kde-plasma-last-month/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-29T04:44:59+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Collagen Supplements May Offer Real Benefits, Large Review Suggests",
+          "url": "https://www.sciencealert.com/collagen-supplements-may-offer-real-benefits-large-review-suggests",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-29T01:00:35+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[100 Mile Free Press] BUXTON: Spring’s renewal is just around the corner",
+          "url": "https://100milefreepress.net/2026/03/28/buxton-springs-renewal-is-just-around-the-corner/",
+          "source": "100 Mile Free Press",
+          "ai_score": 0,
+          "date_published": "2026-03-29T00:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Playful ‘Space Dice’ Kit Shows Off Clever Design",
+          "url": "https://hackaday.com/2026/03/28/playful-space-dice-kit-shows-off-clever-design/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-28T23:00:53+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] Fedora 44 will automatically make your Windows games run faster, no tweaks required",
+          "url": "https://www.xda-developers.com/fedora-44-will-automatically-make-your-windows-games-run-faster-no-tweaks-required/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-28T21:30:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] How living at high altitudes can protect against diabetes",
+          "url": "https://refractor.io/medical/low-oxygen-high-altitude-red-blood-cells-diabetes/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-03-28T21:09:06+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] One Form of Exercise Improves Sleep The Most, Study Reveals",
+          "url": "https://www.sciencealert.com/one-form-of-exercise-improves-sleep-the-most-study-reveals",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-28T21:00:27+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechCrunch] Stanford study outlines dangers of asking AI chatbots for personal advice",
+          "url": "https://techcrunch.com/2026/03/28/stanford-study-outlines-dangers-of-asking-ai-chatbots-for-personal-advice/",
+          "source": "TechCrunch",
+          "ai_score": 0,
+          "date_published": "2026-03-28T20:45:54+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] Valve's Steam Machine delay forced me to DIY, and honestly it's better this way",
+          "url": "https://www.xda-developers.com/valve-steam-machine-delay-forced-diy-better-whis-way/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-28T20:00:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Extremely Rare Star Preserves Traces of The Universe's First Light",
+          "url": "https://www.sciencealert.com/extremely-rare-star-preserves-traces-of-the-universes-first-light",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-28T18:00:47+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] I upgraded to Wi-Fi 7 and discovered the real bottleneck was hiding in my walls",
+          "url": "https://www.xda-developers.com/upgraded-to-wi-fi-7-and-discovered-the-real-bottleneck-was-hiding-in-my-walls/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-28T17:30:20+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Turning Tesla Model 3’s Computer Into a Desktop PC",
+          "url": "https://hackaday.com/2026/03/28/turning-tesla-model-3s-computer-into-a-desktop-pc/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-28T17:00:31+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Couples Share a Surprising Percentage of Gut Bacteria That May Impact Health",
+          "url": "https://www.sciencealert.com/couples-share-a-surprising-percentage-of-gut-bacteria-that-may-impact-health",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-28T14:00:37+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Canada’s oldest Black WWII veteran dies at 104",
+          "url": "https://wltribune.com/2026/03/28/canadas-oldest-black-wwii-veteran-dies-at-104/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-28T13:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Bad news skeptics - GitHub says it will employ user data to train its AI after all",
+          "url": "https://www.techradar.com/pro/bad-news-skeptics-github-says-it-will-employ-user-data-to-train-its-ai-after-all",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-26T15:55:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Want to upgrade your Philips Hue setup? Now's the time to do it — starting with this 5-star gadget that we called 'a seriously bright idea'",
+          "url": "https://www.techradar.com/home/smart-home/want-to-upgrade-your-philips-hue-setup-nows-the-time-to-do-it-starting-with-this-5-star-gadget-that-we-called-a-seriously-bright-idea",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-26T15:54:53+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] Google’s TurboQuant breakthrough is rattling memory chip stocks",
+          "url": "https://qz.com/google-turboquant-breakthrough-memory-chip-stocks-decline",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-03-26T15:47:18+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Neowin] Amazon Spring Day 2026 deal: Ugreen DXP8800 Plus 8-Bay Desktop NAS is a fine purchase",
+          "url": "https://www.neowin.net/deals/amazon-spring-day-2026-deal-ugreen-dxp8800-plus-8-bay-desktop-nas-is-a-fine-purchase/",
+          "source": "Neowin",
+          "ai_score": 0,
+          "date_published": "2026-03-26T14:30:02+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechCrunch] A major hacking tool has leaked online, putting millions of iPhones at risk. Here’s what you need to know.",
+          "url": "https://techcrunch.com/2026/03/26/a-major-hacking-tool-has-leaked-online-putting-millions-of-iphones-at-risk-heres-what-you-need-to-know/",
+          "source": "TechCrunch",
+          "ai_score": 0,
+          "date_published": "2026-03-26T14:09:40+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Stadia Controller Reborn as Bluetooth Gamepad Adapter",
+          "url": "https://hackaday.com/2026/03/25/stadia-controller-reborn-as-bluetooth-gamepad-adapter/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-25T15:30:30+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] AI robot snaps together like Lego and moves unlike anything I've ever seen before — I can't stop watching",
+          "url": "https://www.techradar.com/ai-platforms-assistants/ai-robot-snaps-together-like-lego-and-moves-unlike-anything-ive-ever-seen-before-i-cant-stop-watching",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-25T15:18:30+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] The 100-Gigawatt Wall: The real reason OpenAI is sacrificing Sora",
+          "url": "https://www.tomsguide.com/ai/openai-is-killing-off-sora-and-it-reveals-a-massive-problem-for-the-future-of-ai",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-03-25T15:18:11+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Atlantic Culture] How AI Is Creeping Into <em>The New York Times</em>",
+          "url": "https://www.theatlantic.com/culture/2026/03/how-ai-creeping-new-york-times/686528/?utm_source=feed",
+          "source": "The Atlantic Culture",
+          "ai_score": 0,
+          "date_published": "2026-03-25T15:14:58+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Resilient Rural Futures",
+      "articles": [
+        {
+          "title": "[New Atlas] Off-grid tiny house is well-suited to full-time nomadic lifestyle",
+          "url": "https://newatlas.com/tiny-houses/off-grid-tiny-craft/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-03-24T14:57:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[XDA Developers] This MCP Server turned my NAS into a self-hosted AI assistant, and it changed how I work",
+          "url": "https://www.xda-developers.com/this-mcp-server-turned-my-nas-into-a-self-hosted-ai-assistant/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-28T19:31:20+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Watch Electricity Slosh: Visualizing Impedance Matching",
+          "url": "https://hackaday.com/2026/03/28/watch-electricity-slosh-visualizing-impedance-matching/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-29T02:00:50+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Deep dive on Resilient Rural Futures",
+        "topics_covered": [
+          "broadband",
+          "connectivity",
+          "telemedicine",
+          "renewable energy",
+          "solar"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}

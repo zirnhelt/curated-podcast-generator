@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[Global News] Fundraiser launched for tech to keep invasive ",
-      "[TechRadar] 'We have this power from the wind. We have free ",
       "Rebuilding trust in AI with responsible adoption",
       "[TechRadar] This is probably the most powerful external GPU ",
       "[TechCrunch] FBI is buying location data to track US citizen",
@@ -10,13 +8,23 @@
       "[TechRadar] Nvidia's Earth-2 models, including 'climate in a",
       "[TechRadar] When confidence becomes a risk: The gap between ",
       "[TechRadar] Three high-risk AI vulnerabilities discovered in",
-      "[TechRadar] Google unveils new \u2018vibe design\u2019 tool to help an"
+      "[TechRadar] Google unveils new \u2018vibe design\u2019 tool to help an",
+      "[TechRadar] Why strong authentication beyond the browser wil",
+      "[TechRadar] 'Nuclear energy is the essential backbone for th"
     ],
     "recurring_questions": [
       "How would this actually work?",
       "What's the implementation challenge?"
     ],
-    "evolving_opinions": {}
+    "evolving_opinions": {},
+    "bespoke_anchors": [
+      "technology_optimist_empiricist",
+      "tracks record of predictions",
+      "holds self to same evidentiary standard",
+      "concedes when evidence is compelling"
+    ],
+    "personality_clues": [],
+    "core_memories": []
   },
   "casey": {
     "consistent_interests": [
@@ -33,6 +41,14 @@
       "Who benefits from this?",
       "What's the broader context?"
     ],
-    "evolving_opinions": {}
+    "evolving_opinions": {},
+    "bespoke_anchors": [
+      "community_skeptic_systems_thinker",
+      "follows incentives and power structures",
+      "situates claims in historical context",
+      "demands full picture \u2014 not just press releases"
+    ],
+    "personality_clues": [],
+    "core_memories": []
   }
 }
