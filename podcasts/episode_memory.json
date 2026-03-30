@@ -1,24 +1,4 @@
 {
-  "2026-03-08": {
-    "timestamp": 1772974171.632272,
-    "topics": [
-      "[XDA Developers] I self-hosted everything for a year, and th",
-      "[XDA Developers] Please stop relying on the Internet for you",
-      "[100 Mile Free Press] EDITOR: Alternative available for Yell",
-      "[XDA Developers] I blocked all cloud access from my smart ho",
-      "[The Tyee] What Can You Do with Used Plastic and 3D Printers",
-      "[The Globe and Mail] Tumbler Ridge shooting highlights rural",
-      "[How-To Geek] 6 things I've learned after a decade of using ",
-      "[U.S. News & World Report] Telemedicine Not Closing the Ment"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "connectivity"
-    ],
-    "date": "2026-03-08"
-  },
   "2026-03-09": {
     "timestamp": 1773061478.385203,
     "topics": [
@@ -436,5 +416,25 @@
       "connectivity"
     ],
     "date": "2026-03-29"
+  },
+  "2026-03-30": {
+    "timestamp": 1774868856.785085,
+    "topics": [
+      "[Kottke.org] An interview with Andy Weir about the accuracy ",
+      "[Hackaday] Writing an Open-World Engine for the Nintendo 64",
+      "[Noahpinion] Maybe you should have bought an electric car",
+      "[New Atlas] Clever telescopic camper trailer reinvents a gam",
+      "[Hackaday] Training a Transformer with 1970s-era Technology",
+      "[TechRadar] 'Weekend work increased more than 40%': How AI i",
+      "[Boing Boing] Top devs share their placeholder art to prove ",
+      "[MacRumors] Apple Reportedly Working on 'Small Sensor for Ma"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-03-30"
   }
 }
