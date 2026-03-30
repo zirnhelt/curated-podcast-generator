@@ -629,5 +629,18 @@
       "renewable energy",
       "solar"
     ]
+  },
+  "2026-03-30": {
+    "timestamp": 1774868857.087596,
+    "date": "2026-03-30",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "central_question": "Deep dive on Arts, Culture & Digital Storytelling",
+    "topics_covered": [
+      "data sovereignty",
+      "AI",
+      "infrastructure",
+      "community ownership",
+      "maintenance"
+    ]
   }
 }

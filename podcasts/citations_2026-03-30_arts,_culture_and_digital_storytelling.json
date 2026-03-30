@@ -1,0 +1,359 @@
+{
+  "episode": {
+    "date": "2026-03-30",
+    "formatted_date": "Monday, March 30, 2026",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "title": "Cariboo Signals - Arts, Culture & Digital Storytelling",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Arts, Culture & Digital Storytelling.</p><p><b>NEWS ROUNDUP:</b> We break down [New Atlas] Ancient Roman board game stumped experts for decades – until AI played and [XDA Developers] I built a DIY automation keypad for under $20, and it replaced three devices on my desk, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Deep dive on Arts, Culture & Digital Storytelling Topics include: data sovereignty, AI, infrastructure, community ownership, maintenance.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>New Atlas: <a href=\"https://newatlas.com/history/ancient-roman-boardgame-ai/\">[New Atlas] Ancient Roman board game stumped experts for dec...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/built-automation-keypad-under-20-replaced-devices-on-desk/\">[XDA Developers] I built a DIY automation keypad for under $...</a></li><li>100 Mile Free Press: <a href=\"https://100milefreepress.net/2026/03/29/alexander-aaron-and-gail-bregg-will-be-missed/\">[100 Mile Free Press] ALEXANDER: Aaron and Gail Bregg will b...</a></li><li>TechCrunch: <a href=\"https://techcrunch.com/2026/03/29/soras-shutdown-could-be-a-reality-check-moment-for-ai-video/\">[TechCrunch] Sora’s shutdown could be a reality check moment...</a></li><li>Neowin: <a href=\"https://www.neowin.net/news/firefox-gets-big-update-with-built-in-vpn-split-view-and-other-improvements/\">[Neowin] Firefox gets big update with built-in VPN, Split Vi...</a></li><li>Boing Boing: <a href=\"https://boingboing.net/2026/03/23/top-devs-share-their-placeholder-art-to-prove-you-dont-need-ai.html\">[Boing Boing] Top devs share their placeholder art to prove ...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Kottke.org: <a href=\"https://kottke.org/26/03/0048621-an-interview-with-andy-we\">[Kottke.org] An interview with Andy Weir about the accuracy ...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/03/29/writing-an-open-world-engine-for-the-nintendo-64/\">[Hackaday] Writing an Open-World Engine for the Nintendo 64</a></li><li>Noahpinion: <a href=\"https://www.noahpinion.blog/p/maybe-you-should-have-bought-an-electric\">[Noahpinion] Maybe you should have bought an electric car</a></li><li>New Atlas: <a href=\"https://newatlas.com/camping-trailers/prattline-telescopic-camper-trailer/\">[New Atlas] Clever telescopic camper trailer reinvents a gam...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/03/29/training-a-transformer-with-1970s-era-technology/\">[Hackaday] Training a Transformer with 1970s-era Technology</a></li><li>New Atlas: <a href=\"https://refractor.io/environment/pig-boar-hybrids-fukushima-wild-genomes/\">[New Atlas] Pig-boar hybrids in Fukushima evacuation zone re...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/i-revived-my-old-android-phone-by-turning-it-into-a-home-assistant-satellite/\">[XDA Developers] I revived my old Android phone by turning i...</a></li><li>New Atlas: <a href=\"https://newatlas.com/tiny-houses/veronique-lou/\">[New Atlas] Upside-down tiny house packs clever layout and e...</a></li><li>How-To Geek: <a href=\"https://www.howtogeek.com/weirdest-smart-lighting-gadget/\">[How-To Geek] The weirdest smart lighting gadget I never kne...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/stopped-buying-desk-organizers-printables-solved-problems-amazon/\">[XDA Developers] I stopped buying desk organizers once I rea...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/smart-tv-screenshotting-everything-watch-heres-how-block/\">[XDA Developers] Your smart TV is screenshotting everything ...</a></li><li>How-To Geek: <a href=\"https://www.howtogeek.com/these-are-the-hard-drive-specs-they-dont-want-you-to-see/\">[How-To Geek] Stop buying hard drives based on capacity—chec...</a></li><li>TechRadar: <a href=\"https://www.techradar.com/pro/weekend-work-increased-more-than-40-how-ai-is-quietly-expanding-the-work-week-as-saturday-starts-shift-to-7-11-a-m\">[TechRadar] 'Weekend work increased more than 40%': How AI i...</a></li><li>MacRumors: <a href=\"https://www.macrumors.com/2026/03/23/apple-small-sensor-for-security-rumor/\">[MacRumors] Apple Reportedly Working on 'Small Sensor for Ma...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-20250514<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-03-30T04:07:36.768286-07:00",
+    "models": {
+      "script": "claude-sonnet-4-20250514",
+      "review": "claude-sonnet-4-20250514",
+      "summary": "claude-3-5-haiku-20241022"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Kottke.org] An interview with Andy Weir about the accuracy of the...",
+          "url": "https://kottke.org/26/03/0048621-an-interview-with-andy-we",
+          "source": "Kottke.org",
+          "ai_score": 0,
+          "date_published": "2026-03-23T17:27:31+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Writing an Open-World Engine for the Nintendo 64",
+          "url": "https://hackaday.com/2026/03/29/writing-an-open-world-engine-for-the-nintendo-64/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-30T05:00:32+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Noahpinion] Maybe you should have bought an electric car",
+          "url": "https://www.noahpinion.blog/p/maybe-you-should-have-bought-an-electric",
+          "source": "Noahpinion",
+          "ai_score": 0,
+          "date_published": "2026-03-30T02:08:06+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] Clever telescopic camper trailer reinvents a game-changing RV classic",
+          "url": "https://newatlas.com/camping-trailers/prattline-telescopic-camper-trailer/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-03-30T02:03:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Training a Transformer with 1970s-era Technology",
+          "url": "https://hackaday.com/2026/03/29/training-a-transformer-with-1970s-era-technology/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-30T02:00:41+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] Pig-boar hybrids in Fukushima evacuation zone rewrite wild genomes",
+          "url": "https://refractor.io/environment/pig-boar-hybrids-fukushima-wild-genomes/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-03-30T01:20:52+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] Ancient Roman board game stumped experts for decades – until AI played",
+          "url": "https://newatlas.com/history/ancient-roman-boardgame-ai/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-03-30T00:03:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[XDA Developers] I built a DIY automation keypad for under $20, and it replaced three devices on my desk",
+          "url": "https://www.xda-developers.com/built-automation-keypad-under-20-replaced-devices-on-desk/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-30T00:00:22+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[100 Mile Free Press] ALEXANDER: Aaron and Gail Bregg will be missed",
+          "url": "https://100milefreepress.net/2026/03/29/alexander-aaron-and-gail-bregg-will-be-missed/",
+          "source": "100 Mile Free Press",
+          "ai_score": 0,
+          "date_published": "2026-03-30T00:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[XDA Developers] I revived my old Android phone by turning it into a better voice assistant than any smart speaker I've owned",
+          "url": "https://www.xda-developers.com/i-revived-my-old-android-phone-by-turning-it-into-a-home-assistant-satellite/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-29T23:00:22+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] Upside-down tiny house packs clever layout and energy efficient design",
+          "url": "https://newatlas.com/tiny-houses/veronique-lou/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-03-29T22:03:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] The weirdest smart lighting gadget I never knew I needed",
+          "url": "https://www.howtogeek.com/weirdest-smart-lighting-gadget/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-29T22:00:17+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] I stopped buying desk organizers once I realized Printables solved problems Amazon couldn't",
+          "url": "https://www.xda-developers.com/stopped-buying-desk-organizers-printables-solved-problems-amazon/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-29T21:00:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] Your smart TV is screenshotting everything you watch, but here's how to block it",
+          "url": "https://www.xda-developers.com/smart-tv-screenshotting-everything-watch-heres-how-block/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-29T20:00:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] Stop buying hard drives based on capacity—check these 4 hidden specs first",
+          "url": "https://www.howtogeek.com/these-are-the-hard-drive-specs-they-dont-want-you-to-see/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-29T20:00:17+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] Android is tracking your every move—here's exactly what it knows",
+          "url": "https://www.howtogeek.com/android-is-tracking-your-every-move-heres-exactly-what-it-knows/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-29T19:00:17+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] These $10 home lab upgrades solved problems I didn't know I had",
+          "url": "https://www.xda-developers.com/these-home-lab-upgrades-solved-problems-i-didnt-know-i-had/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-29T18:00:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechCrunch] Sora’s shutdown could be a reality check moment for AI video",
+          "url": "https://techcrunch.com/2026/03/29/soras-shutdown-could-be-a-reality-check-moment-for-ai-video/",
+          "source": "TechCrunch",
+          "ai_score": 0,
+          "date_published": "2026-03-29T16:30:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[TechRadar] 'A career can be just as strong in these fields of plumbing and electricians': Blackrock boss says getting an AI job shouldn't be the end goal for everyone",
+          "url": "https://www.techradar.com/pro/a-career-can-be-just-as-strong-in-these-fields-of-plumbing-and-electricians-blackrock-boss-says-getting-an-ai-job-shouldnt-be-the-end-goal-for-everyone",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-29T15:05:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[CNET] If You Buy a New Router, It Might ‘Turn Into a Pumpkin’ Next Year",
+          "url": "https://www.cnet.com/home/internet/my-expert-advice-dont-buy-a-router-right-now/",
+          "source": "CNET",
+          "ai_score": 0,
+          "date_published": "2026-03-29T14:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Oracle is revamping how businesses procure AI agents — leave the invoices to AI while you handle the negotiations",
+          "url": "https://www.techradar.com/pro/oracle-is-revamping-how-businesses-procure-ai-agents-leave-the-invoices-to-ai-while-you-handle-the-negotiations",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-24T15:22:55+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] I tried the “top 1%” way of using AI — and I can’t believe how much time I was wasting",
+          "url": "https://www.tomsguide.com/ai/i-tried-the-top-1-percent-way-of-using-ai-and-i-cant-believe-how-much-time-i-was-wasting",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-03-24T15:18:43+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Amnezia VPN drops new AmneziaWG 2.0 protocol as censorship tactics grow smarter",
+          "url": "https://www.techradar.com/vpn/vpn-services/amnezia-vpn-drops-new-amneziawg-2-0-protocol-as-censorship-tactics-grow-smarter",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-24T14:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[InsideEVs] Jay Leno Says The Tesla Semi’s Biggest Advantage Isn’t Its Range",
+          "url": "https://insideevs.com/news/790849/jay-leno-drives-tesla-semi/",
+          "source": "InsideEVs",
+          "ai_score": 0,
+          "date_published": "2026-03-23T17:53:15+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Verge] Donut Lab’s solid-state battery could barely hold a charge after getting damaged",
+          "url": "https://www.theverge.com/transportation/898881/donut-lab-solid-state-battery-damage-test",
+          "source": "The Verge",
+          "ai_score": 0,
+          "date_published": "2026-03-23T17:35:52+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] Fitbit Data Sheds Light on Best Time to Exercise",
+          "url": "https://nautil.us/fitbit-data-sheds-light-on-best-time-to-exercise-1279140/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-03-23T17:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Linux Fu: UPNP A Port Mapping Odyssey",
+          "url": "https://hackaday.com/2026/03/23/linux-fu-upnp-a-port-mapping-odyssey/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-23T17:00:39+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] I use the 'invert' prompt to answer problems before they arise",
+          "url": "https://www.techradar.com/ai-platforms-assistants/chatgpt/i-use-the-invert-prompt-to-answer-problems-before-they-arise",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-23T16:28:05+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Lifehacker] How to Use Almost Any Computer Without Leaving a Trace",
+          "url": "https://lifehacker.com/tech/how-to-use-almost-any-computer-without-leaving-a-trace?utm_medium=RSS",
+          "source": "Lifehacker",
+          "ai_score": 0,
+          "date_published": "2026-03-23T16:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] A Simple Switch for Simply too much Current",
+          "url": "https://hackaday.com/2026/03/23/a-simple-switch-for-simply-too-much-current/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-23T15:30:23+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Neowin] Firefox gets big update with built-in VPN, Split View, and other improvements",
+          "url": "https://www.neowin.net/news/firefox-gets-big-update-with-built-in-vpn-split-view-and-other-improvements/",
+          "source": "Neowin",
+          "ai_score": 0,
+          "date_published": "2026-03-23T14:44:02+00:00",
+          "summary": "",
+          "discussed": true
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Arts, Culture & Digital Storytelling",
+      "articles": [
+        {
+          "title": "[TechRadar] 'Weekend work increased more than 40%': How AI is quietly expanding the work week as Saturday starts shift to 7:11 am",
+          "url": "https://www.techradar.com/pro/weekend-work-increased-more-than-40-how-ai-is-quietly-expanding-the-work-week-as-saturday-starts-shift-to-7-11-a-m",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-03-29T21:35:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] Top devs share their placeholder art to prove you don't need AI",
+          "url": "https://boingboing.net/2026/03/23/top-devs-share-their-placeholder-art-to-prove-you-dont-need-ai.html",
+          "source": "Boing Boing",
+          "ai_score": 0,
+          "date_published": "2026-03-23T16:47:18+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[MacRumors] Apple Reportedly Working on 'Small Sensor for Managing Home Security'",
+          "url": "https://www.macrumors.com/2026/03/23/apple-small-sensor-for-security-rumor/",
+          "source": "MacRumors",
+          "ai_score": 0,
+          "date_published": "2026-03-23T16:16:36+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Deep dive on Arts, Culture & Digital Storytelling",
+        "topics_covered": [
+          "data sovereignty",
+          "AI",
+          "infrastructure",
+          "community ownership",
+          "maintenance"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
