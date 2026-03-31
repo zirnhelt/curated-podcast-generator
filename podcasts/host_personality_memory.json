@@ -23,7 +23,18 @@
       "holds self to same evidentiary standard",
       "concedes when evidence is compelling"
     ],
-    "personality_clues": [],
+    "personality_clues": [
+      {
+        "date": "2026-03-31",
+        "clue": "tech-optimism:x \u2014 conceded that technology alone doesn't solve structural problems",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-03-31",
+        "clue": "structural-lens:+ \u2014 deepened engagement with systemic barriers beyond individual operator level",
+        "occurrences": 1
+      }
+    ],
     "core_memories": []
   },
   "casey": {
@@ -48,7 +59,18 @@
       "situates claims in historical context",
       "demands full picture \u2014 not just press releases"
     ],
-    "personality_clues": [],
+    "personality_clues": [
+      {
+        "date": "2026-03-31",
+        "clue": "pilot-skepticism:~ \u2014 acknowledged carbon markets and soil science as legitimate while maintaining rigorous skepticism about implementation",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-03-31",
+        "clue": "community-trust:+ \u2014 shifted from abstract critique to specific co-governance models with Nations as structural necessity",
+        "occurrences": 1
+      }
+    ],
     "core_memories": []
   }
 }
