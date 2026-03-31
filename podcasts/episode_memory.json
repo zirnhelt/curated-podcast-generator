@@ -1,23 +1,4 @@
 {
-  "2026-03-09": {
-    "timestamp": 1773061478.385203,
-    "topics": [
-      "[Williams Lake Tribune] Victoria charity launches national y",
-      "[Williams Lake Tribune] International Women\u2019s Day 2026: Aman",
-      "[Neowin] Planet of Lana II review: Gorgeous sci-fi adventure",
-      "[Boing Boing] A consciousness on an old drive tells its awfu",
-      "[Gizmodo] If Alien Dyson Spheres Are Real, These Are the Sta",
-      "[TechRadar] Before The Matrix and The Terminator, there was ",
-      "[Williams Lake Tribune] International Women\u2019s Day 2026: Bobb",
-      "[My Cariboo Now] Women to be celebrated in Quesnel this week"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact"
-    ],
-    "date": "2026-03-09"
-  },
   "2026-03-10": {
     "timestamp": 1773147783.635777,
     "topics": [
@@ -436,5 +417,25 @@
       "Indigenous tech"
     ],
     "date": "2026-03-30"
+  },
+  "2026-03-31": {
+    "timestamp": 1774954912.7313,
+    "topics": [
+      "[The Tyee] Half of BC\u2019s Community Paramedic Positions Are Un",
+      "[Williams Lake Tribune] New Democrats pass resolution to pro",
+      "[Hackaday] Tame the Tape: Open-Source Dotterboard for Bulk S",
+      "[Hackaday] This Front Panel Makes Its Own Clean-Edged Drill ",
+      "[Hackaday] Medieval Alhambra\u2019s Pulser Pump and Other Aquatic",
+      "[BC Gov News] BC Timber Sales to increase fibre access, stre",
+      "[Quartz] Holganix's Howard W. Buffett: agriculture 'way of s",
+      "[Boing Boing] Augmented reality glasses can aid dementia pat"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-03-31"
   }
 }

@@ -642,5 +642,31 @@
       "community ownership",
       "maintenance"
     ]
+  },
+  "2026-03-31": {
+    "timestamp": 1774954914.393301,
+    "date": "2026-03-31",
+    "theme": "Working Lands & Industry",
+    "central_question": "How can the Cariboo build a working landscape that is economically viable, ecologically sustainable, and socially equitable when these three goals are often in tension?",
+    "riley_position": "Technology and market instruments (BCTS, soil health science, carbon markets, precision monitoring) can meaningfully improve land management outcomes if deployed through organized collective structures rather than atomized individual operators.",
+    "riley_key_evidence": [
+      "BC Timber Sales designed to create competition and prevent tenure concentration through smaller operator bidding",
+      "Soil health measurement technology has become vastly cheaper through remote sensing and precision sampling in the last 5 years",
+      "Alberta's mobile slaughter program demonstrates regulatory pathways for processing infrastructure that BC could adopt"
+    ],
+    "casey_position": "Instruments alone are insufficient; they must be designed with explicit consideration of power structures and who captures value, requiring indigenous co-governance and organizational capacity that currently doesn't exist in the Cariboo.",
+    "casey_key_evidence": [
+      "BC Timber Sales theory of competition doesn't guarantee outcomes\u2014large players often dominate BCTS auctions anyway in isolated districts",
+      "Carbon market transaction costs are prohibitively expensive for small family operations without aggregation infrastructure",
+      "Traditional ecological knowledge frameworks for managing stressors like mountain pine beetle and drought are underintegrated into commercial forestry and ranching"
+    ],
+    "resolution": "Riley and Casey achieve substantial agreement that the core answer requires organized collective action (co-ops, Nation-led structures, regional funds) to access infrastructure and capital\u2014disagreeing primarily on degree of optimism rather than fundamental diagnosis. They align on the need for unglamorous institutional work to translate good ideas into durable structures.",
+    "topics_covered": [
+      "BC Timber Sales policy design and competitive market dynamics in forestry",
+      "Soil health science, microbial inoculants, and measurement challenges for ranching",
+      "Carbon markets, ecosystem service payments, and aggregation models for smallholder operations",
+      "Indigenous co-governance, traditional ecological knowledge, and tenure restructuring",
+      "Infrastructure gaps: connectivity, processing facilities, long-term capital, and organizational capacity"
+    ]
   }
 }
