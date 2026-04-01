@@ -259,6 +259,62 @@ def _fetch_url_metadata(url):
         return "", ""
 
 
+def _fetch_article_body(url, brave_key=None):
+    """Fetch the readable body text of an article URL.
+
+    Tries a direct HTTP fetch and strips HTML to extract prose content.
+    Falls back to Brave Search snippet if the fetch fails or returns too
+    little text (e.g. paywalled pages, JS-rendered sites).
+
+    Returns a body string (up to 2000 chars); empty string on total failure.
+    """
+    body = ""
+    try:
+        resp = requests.get(url, timeout=10, headers={"User-Agent": "Mozilla/5.0"})
+        resp.raise_for_status()
+        html = resp.text
+        # Strip scripts, styles, then all tags
+        text = re.sub(r'<(script|style)[^>]*>.*?</\1>', '', html, flags=re.I | re.S)
+        text = re.sub(r'<[^>]+>', ' ', text)
+        text = re.sub(r'\s+', ' ', text).strip()
+        if len(text) > 200:
+            body = text[:2000]
+    except Exception:
+        pass
+
+    if not body and brave_key:
+        # Try Brave Search for a richer snippet using the URL as query
+        results = _brave_search(url, brave_key, count=1)
+        if not results:
+            # Fallback: search by URL domain + title hint
+            results = _brave_search(f'site:{url.split("/")[2]} {url}', brave_key, count=1)
+        if results and results[0].get("description"):
+            body = results[0]["description"][:2000]
+
+    return body
+
+
+def _enrich_articles_with_body(articles, label="", max_articles=None):
+    """Fetch body text for articles in-place, adding a '_body' field.
+
+    Only enriches up to max_articles (fetches the whole list if None).
+    Uses Brave Search as fallback when direct fetching fails.
+    """
+    brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
+    targets = articles if max_articles is None else articles[:max_articles]
+    if not targets:
+        return
+    tag = f" ({label})" if label else ""
+    print(f"  📄 Fetching article body text{tag} for {len(targets)} article(s)...")
+    for a in targets:
+        url = a.get("url", "")
+        if not url or a.get("_body"):
+            continue
+        body = _fetch_article_body(url, brave_key=brave_key)
+        if body:
+            a["_body"] = body
+
+
 def _score_text_against_themes(text, themes_config):
     """Return {day_int: keyword_count} for each theme in themes_config."""
     text_lower = text.lower()
@@ -2115,12 +2171,14 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         """Format a news article for the script-generation prompt."""
         source = a.get('authors', [{}])[0].get('name', 'Unknown')
         title = a.get('title', '')
-        summary = a.get('summary', '')[:150]
+        summary = a.get('summary', '')[:200]
         # Use _boosted_score (theme relevance from the feed) if available;
         # fall back to ai_score so legacy articles still show a value.
         score = a.get('_boosted_score', a.get('ai_score', 0))
         theme_tag = ' [✓THEME]' if a.get('_keyword_matches', 0) > 0 else ''
-        return f"- [{source}] {title}{theme_tag}\n  {summary}... (Relevance: {score})"
+        body = a.get('_body', '')
+        body_line = f"\n  Content: {body[:500]}" if body else ""
+        return f"- [{source}] {title}{theme_tag}\n  {summary}... (Relevance: {score}){body_line}"
 
     # Format on-theme news articles
     news_text = "\n".join([_format_news_article(a) for a in on_theme_news])
@@ -2131,10 +2189,16 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         bonus_text += "\n".join([_format_news_article(a) for a in bonus_articles])
         news_text += bonus_text
 
-    deep_dive_text = "\n".join([
-        f"- [{a.get('authors', [{}])[0].get('name', 'Unknown')}] {a.get('title', '')}\n  {a.get('summary', '')[:200]}... (AI Score: {a.get('ai_score', 0)})"
-        for a in deep_dive_articles
-    ])
+    def _format_deep_dive_article(a):
+        source = a.get('authors', [{}])[0].get('name', 'Unknown')
+        title = a.get('title', '')
+        summary = a.get('summary', '')[:300]
+        score = a.get('_boosted_score', a.get('ai_score', 0))
+        body = a.get('_body', '')
+        body_line = f"\n  Content: {body[:1000]}" if body else ""
+        return f"- [{source}] {title}\n  {summary}... (AI Score: {score}){body_line}"
+
+    deep_dive_text = "\n".join([_format_deep_dive_article(a) for a in deep_dive_articles])
 
     # Brief news titles so the Deep Dive can reference them without repeating summaries
     news_titles_brief = "\n".join([
@@ -3322,6 +3386,11 @@ def main():
         if feed_meta and feed_meta.get('theme_description'):
             print(f"   Theme description: {feed_meta['theme_description'][:80]}...")
         print(f"   Memory context: {len(episode_memory)} recent episodes")
+
+        # Fetch article body text so Claude has real content to work from,
+        # not just headlines and meta-description snippets.
+        _enrich_articles_with_body(deep_dive_articles, label="deep dive")
+        _enrich_articles_with_body(news_articles, label="news roundup", max_articles=6)
 
         # Conditionally enrich deep dive with Brave Search (fact-checking + story shaping)
         brave_client = get_anthropic_client()

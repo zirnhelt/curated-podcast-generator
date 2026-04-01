@@ -182,13 +182,20 @@ def mark_seeds_used(tag, seeds):
 # ── Article fetching ───────────────────────────────────────────────────────
 
 def fetch_url_content(url):
-    """Fetch title, description, and simplified body text from a URL."""
+    """Fetch title, description, and simplified body text from a URL.
+
+    Falls back to Brave Search snippet if the direct fetch fails or returns
+    too little body text (e.g. paywalls, JS-rendered pages).
+    """
+    title = ""
+    desc = ""
+    body = ""
+
     try:
         resp = requests.get(url, timeout=10, headers={"User-Agent": "Mozilla/5.0"})
         resp.raise_for_status()
         html = resp.text
 
-        title = ""
         m = re.search(r'<meta[^>]+property=["\']og:title["\'][^>]+content=["\'](.*?)["\']', html, re.I | re.S)
         if m:
             title = m.group(1).strip()
@@ -197,7 +204,6 @@ def fetch_url_content(url):
             if m:
                 title = re.sub(r'\s+', ' ', m.group(1)).strip()
 
-        desc = ""
         m = re.search(r'<meta[^>]+property=["\']og:description["\'][^>]+content=["\'](.*?)["\']', html, re.I | re.S)
         if m:
             desc = m.group(1).strip()
@@ -206,13 +212,27 @@ def fetch_url_content(url):
             if m:
                 desc = m.group(1).strip()
 
-        body = re.sub(r'<(script|style)[^>]*>.*?</\1>', '', html, flags=re.I | re.S)
-        body = re.sub(r'<[^>]+>', ' ', body)
-        body = re.sub(r'\s+', ' ', body).strip()
-
-        return title[:200], desc[:500], body[:3000]
+        raw = re.sub(r'<(script|style)[^>]*>.*?</\1>', '', html, flags=re.I | re.S)
+        raw = re.sub(r'<[^>]+>', ' ', raw)
+        raw = re.sub(r'\s+', ' ', raw).strip()
+        if len(raw) > 200:
+            body = raw[:3000]
     except Exception:
-        return "", "", ""
+        pass
+
+    # Brave fallback: use search snippet when body is missing or too thin
+    if not body:
+        brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
+        if brave_key:
+            results = brave_search(url, brave_key, count=1)
+            if results and results[0].get("description"):
+                body = results[0]["description"]
+                if not title:
+                    title = results[0].get("title", "")
+                if not desc:
+                    desc = body
+
+    return title[:200], desc[:500], body[:3000]
 
 
 # ── Source expansion via Brave Search ──────────────────────────────────────
@@ -388,13 +408,23 @@ def generate_bespoke_script(tag, all_articles, past_debates, client, tag_descrip
     if user_articles:
         sources_block += "=== Curated by host ===\n"
         for a in user_articles:
-            body_excerpt = a.get("body", "")[:500]
-            summary = a.get("summary", "") or body_excerpt
-            sources_block += f"Title: {a['title']}\nURL: {a['url']}\nSummary: {summary[:500]}\n\n"
+            summary = a.get("summary", "")
+            body = a.get("body", "")
+            sources_block += f"Title: {a['title']}\nURL: {a['url']}\n"
+            if summary:
+                sources_block += f"Summary: {summary[:400]}\n"
+            if body:
+                sources_block += f"Content: {body[:2000]}\n"
+            sources_block += "\n"
     if auto_articles:
         sources_block += "=== Additional credible sources (auto-expanded) ===\n"
         for a in auto_articles:
-            sources_block += f"Title: {a['title']}\nURL: {a['url']}\nSummary: {a.get('summary', '')[:400]}\n\n"
+            body = a.get("body", "")
+            sources_block += f"Title: {a['title']}\nURL: {a['url']}\n"
+            sources_block += f"Summary: {a.get('summary', '')[:400]}\n"
+            if body:
+                sources_block += f"Content: {body[:1000]}\n"
+            sources_block += "\n"
 
     memory_block = format_memory_for_prompt(past_debates)
 
