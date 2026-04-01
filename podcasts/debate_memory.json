@@ -668,5 +668,31 @@
       "Indigenous co-governance, traditional ecological knowledge, and tenure restructuring",
       "Infrastructure gaps: connectivity, processing facilities, long-term capital, and organizational capacity"
     ]
+  },
+  "2026-04-01": {
+    "timestamp": 1775041668.743743,
+    "date": "2026-04-01",
+    "theme": "Community Tech & Governance",
+    "central_question": "How do information systems and governance structures in rural communities determine who has access to decision-making power, and whose interests do transparency measures actually serve?",
+    "riley_position": "Information infrastructure is critical but communities shouldn't wait for perfect systems\u2014pragmatic volunteer-led solutions (like Facebook groups) work well enough in the interim, and the risk of over-waiting for ideal governance can leave people uninformed during crises.",
+    "riley_key_evidence": [
+      "Facebook groups maintained by volunteers are currently the fastest and most reliable way to disseminate urgent safety information like cougar sightings in small communities",
+      "Labor law analogy showing mandatory disclosure of union organizing was framed as transparency but actually enabled employer counter-campaigns",
+      "The Heiltsuk Nation's post-Deepwater Horizon alert system demonstrates that community-controlled information infrastructure is buildable and effective"
+    ],
+    "casey_position": "Informal, volunteer-dependent information systems are fragile and ultimately reinforce information asymmetries that disadvantage rural communities; transparency measures can be designed to benefit powerful actors rather than empower communities, particularly Indigenous communities protecting negotiation positions.",
+    "casey_key_evidence": [
+      "Canada Post's cost-per-route analysis doesn't account for bundled services like mail carriers performing informal wellness checks on isolated seniors",
+      "The Aboriginal Title Transparency Act could expose sensitive negotiating positions to resource extraction interests, turning transparency into a pressure tool against Indigenous rights",
+      "Rural municipalities lack the capacity to commission the social infrastructure research needed to advocate effectively against top-down federal decisions"
+    ],
+    "resolution": "They agreed that community-controlled information infrastructure is the goal and identified concrete middle-path solutions (SMS broadcast systems, municipal emergency contact databases, regional district-commissioned community mapping) rather than continuing to debate the perfect versus pragmatic tension.",
+    "topics_covered": [
+      "Cougar alert systems and emergency communication infrastructure in rural BC",
+      "Canada Post mail delivery consolidation and loss of bundled community services",
+      "Aboriginal Title Transparency Act and strategic disclosure in Indigenous governance",
+      "Epistemic infrastructure and who controls information about community needs",
+      "Heiltsuk and other Indigenous-led information sovereignty models"
+    ]
   }
 }
