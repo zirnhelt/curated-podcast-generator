@@ -1,0 +1,426 @@
+{
+  "episode": {
+    "date": "2026-04-01",
+    "formatted_date": "Wednesday, April 01, 2026",
+    "theme": "Community Tech & Governance",
+    "title": "Cariboo Signals - Community Tech & Governance",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Community Tech & Governance.</p><p><b>NEWS ROUNDUP:</b> We break down [BC Gov News] Building volunteer fire department capacity and [Android Authority] Android Auto just made EV trip planning a lot smarter for these car brands, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> How do information systems and governance structures in rural communities determine who has access to decision-making power, and whose interests do transparency measures actually serve? Topics include: Cougar alert systems and emergency communication infrastructure in rural BC, Canada Post mail delivery consolidation and loss of bundled community services, Aboriginal Title Transparency Act and strategic disclosure in Indigenous governance, Epistemic infrastructure and who controls information about community needs, Heiltsuk and other Indigenous-led information sovereignty models.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>BC Gov News: <a href=\"https://news.gov.bc.ca/releases/2026EMCR0006-000339\">[BC Gov News] Building volunteer fire department capacity</a></li><li>Android Authority: <a href=\"https://www.androidauthority.com/google-maps-android-auto-ev-trip-planning-3653027/\">[Android Authority] Android Auto just made EV trip planning ...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/31/trailblazer-chronicles-bathrooms-bins-and-the-reality-of-welcoming-people-outside/\">[Williams Lake Tribune] TRAILBLAZER CHRONICLES: Bathrooms, b...</a></li><li>TechRadar: <a href=\"https://www.techradar.com/vpn/vpn-privacy-security/irans-internet-shutdown-proves-we-need-to-go-beyond-starlink-and-vpns-this-could-this-be-the-solution\">[TechRadar] Iran’s internet shutdown proves we need to go be...</a></li><li>100 Mile Free Press: <a href=\"https://100milefreepress.net/2026/03/31/vehicle-stolen-in-chilliwack-recovered-near-100-mile-house/\">[100 Mile Free Press] Vehicle stolen in Chilliwack recovered...</a></li><li>Nautilus: <a href=\"https://nautil.us/who-gets-to-do-science-1279399/\">[Nautilus] Who Gets to Do Science?</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/31/mla-mcinnis-introduces-aboriginal-title-transparency-act/\">[Williams Lake Tribune] MLA McInnis introduces Aboriginal Ti...</a></li><li>100 Mile Free Press: <a href=\"https://100milefreepress.net/2026/03/31/potential-cougar-sighted-in-centennial-park/\">[100 Mile Free Press] Potential cougar sighted in Centennial...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Boing Boing: <a href=\"https://boingboing.net/2026/03/31/audio-tapes-challenge-milgram-obedience-findings.html\">[Boing Boing] Audio tapes challenge Milgram obedience findin...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/30/deadline-looms-for-property-owner-to-demolish-fire-damaged-structure-in-williams-lake/\">[Williams Lake Tribune] Deadline looms for property owner to...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/31/b-c-moving-to-alter-environment-assessments-codify-how-to-involve-u-s-tribes/\">[Williams Lake Tribune] B.C. moving to alter environment ass...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/31/prescribed-burns-set-for-nemiah-valley/\">[Williams Lake Tribune] Prescribed burns set for Nemiah Vall...</a></li><li>Toms Guide: <a href=\"https://www.tomsguide.com/ai/i-put-claude-vs-deepseek-through-7-real-world-tests-and-one-is-clearly-better\">[Toms Guide] I put Claude vs. Deepseek through 7 real-world ...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/03/31/running-a-game-on-a-pc-with-no-system-ram/\">[Hackaday] Running a Game on a PC with no System RAM</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/chatgpt-openai-training-niche-occupations-specialized-llm-handshake-data-labeling-2026-4\">[Business Insider] Inside the OpenAI project where freelance...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/anthropic-leak-reveals-claude-code-internal-source-code-2026-3\">[Business Insider] Anthropic accidentally exposed part of Cl...</a></li><li>Neowin: <a href=\"https://www.neowin.net/news/mercor-says-it-is-one-of-thousands-of-companies-hit-by-the-recent-litellm-attack/\">[Neowin] Mercor says it is \"one of thousands of companies\" h...</a></li><li>ZDNet: <a href=\"https://www.zdnet.com/article/maybe-open-source-needs-ai/\">[ZDNet] How AI has suddenly become much more useful to open-...</a></li><li>WIRED: <a href=\"https://www.wired.com/story/robotaxi-outage-in-china-leaves-passengers-stuck-in-cars-on-highways/\">[WIRED] Robotaxi Outage in China Leaves Passengers Stranded ...</a></li><li>Quartz: <a href=\"https://qz.com/recycling-industry-cameras-robots-garbage-data\">[Quartz] Robots, cameras, and lots of data about garbage: In...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/31/canada-post-to-convert-remaining-door-to-door-delivery-to-community-mailboxes/\">[Williams Lake Tribune] Canada Post to convert remaining doo...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-6<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-04-01T04:07:46.997340-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-sonnet-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Boing Boing] Audio tapes challenge Milgram obedience findings",
+          "url": "https://boingboing.net/2026/03/31/audio-tapes-challenge-milgram-obedience-findings.html",
+          "source": "Boing Boing",
+          "ai_score": 0,
+          "date_published": "2026-03-31T17:58:28+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Deadline looms for property owner to demolish fire-damaged structure in downtown Williams Lake",
+          "url": "https://wltribune.com/2026/03/30/deadline-looms-for-property-owner-to-demolish-fire-damaged-structure-in-williams-lake/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-30T16:09:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[BC Gov News] Building volunteer fire department capacity",
+          "url": "https://news.gov.bc.ca/releases/2026EMCR0006-000339",
+          "source": "BC Gov News",
+          "ai_score": 0,
+          "date_published": "2026-03-31T16:30:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] B.C. moving to alter environment assessments, codify how to involve U.S. tribes",
+          "url": "https://wltribune.com/2026/03/31/b-c-moving-to-alter-environment-assessments-codify-how-to-involve-u-s-tribes/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-31T15:52:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Android Authority] Android Auto just made EV trip planning a lot smarter for these car brands",
+          "url": "https://www.androidauthority.com/google-maps-android-auto-ev-trip-planning-3653027/",
+          "source": "Android Authority",
+          "ai_score": 0,
+          "date_published": "2026-03-30T15:30:57+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Prescribed burns set for Nemiah Valley",
+          "url": "https://wltribune.com/2026/03/31/prescribed-burns-set-for-nemiah-valley/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-01T06:08:51.926565+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] TRAILBLAZER CHRONICLES: Bathrooms, bins, and the reality of welcoming people outside",
+          "url": "https://wltribune.com/2026/03/31/trailblazer-chronicles-bathrooms-bins-and-the-reality-of-welcoming-people-outside/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-01T06:08:51.926516+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[TechRadar] Iran’s internet shutdown proves we need to go beyond Starlink and VPNs — this could this be the solution",
+          "url": "https://www.techradar.com/vpn/vpn-privacy-security/irans-internet-shutdown-proves-we-need-to-go-beyond-starlink-and-vpns-this-could-this-be-the-solution",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-04-01T06:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Toms Guide] I put Claude vs. Deepseek through 7 real-world tests — and one is clearly better",
+          "url": "https://www.tomsguide.com/ai/i-put-claude-vs-deepseek-through-7-real-world-tests-and-one-is-clearly-better",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-04-01T05:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Running a Game on a PC with no System RAM",
+          "url": "https://hackaday.com/2026/03/31/running-a-game-on-a-pc-with-no-system-ram/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-04-01T05:00:43+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] Inside the OpenAI project where freelancers train ChatGPT on everything from farming to commercial flying",
+          "url": "https://www.businessinsider.com/chatgpt-openai-training-niche-occupations-specialized-llm-handshake-data-labeling-2026-4",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-04-01T04:00:01+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] Anthropic accidentally exposed part of Claude Code's internal source code",
+          "url": "https://www.businessinsider.com/anthropic-leak-reveals-claude-code-internal-source-code-2026-3",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-04-01T03:22:06+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Neowin] Mercor says it is \"one of thousands of companies\" hit by the recent LiteLLM attack",
+          "url": "https://www.neowin.net/news/mercor-says-it-is-one-of-thousands-of-companies-hit-by-the-recent-litellm-attack/",
+          "source": "Neowin",
+          "ai_score": 0,
+          "date_published": "2026-04-01T02:58:01+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ZDNet] How AI has suddenly become much more useful to open-source developers",
+          "url": "https://www.zdnet.com/article/maybe-open-source-needs-ai/",
+          "source": "ZDNet",
+          "ai_score": 0,
+          "date_published": "2026-04-01T01:40:49+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] Robotaxi Outage in China Leaves Passengers Stranded on Highways",
+          "url": "https://www.wired.com/story/robotaxi-outage-in-china-leaves-passengers-stuck-in-cars-on-highways/",
+          "source": "WIRED",
+          "ai_score": 0,
+          "date_published": "2026-04-01T01:24:55+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] Robots, cameras, and lots of data about garbage: Inside the recycling industry's new bet",
+          "url": "https://qz.com/recycling-industry-cameras-robots-garbage-data",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-04-01T01:12:15+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] FCEL and AI Data Centers: Can 12.5 MW Blocks Drive Scale?",
+          "url": "https://qz.com/fcel-and-ai-data-centers-can-12-5-mw-blocks-drive-scale",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-04-01T00:07:26+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] How is Modine Becoming a Higher-Quality Stock Than Before?",
+          "url": "https://qz.com/how-is-modine-becoming-a-higher-quality-stock-than-before",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-04-01T00:07:20+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] Can Advanced Packaging Demand Accelerate LRCX's Long-Term Growth?",
+          "url": "https://qz.com/can-advanced-packaging-demand-accelerate-lrcx-s-long-term-growth",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-04-01T00:07:02+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] Your old Android phone has a sensor suite that most IoT devices can only dream of",
+          "url": "https://www.xda-developers.com/your-old-android-phone-has-sensor-suite-most-iot-devices-can-dream/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-04-01T00:00:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[100 Mile Free Press] Vehicle stolen in Chilliwack recovered near 100 Mile House",
+          "url": "https://100milefreepress.net/2026/03/31/vehicle-stolen-in-chilliwack-recovered-near-100-mile-house/",
+          "source": "100 Mile Free Press",
+          "ai_score": 0,
+          "date_published": "2026-03-31T23:15:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Nautilus] The Big-Game Elephants Neanderthals Hunted for Food",
+          "url": "https://nautil.us/the-big-game-elephants-neanderthals-hunted-for-food-1279409/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-03-31T22:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] CachyOS has a one-click Windows VM button, and dual-booting feels completely outdated",
+          "url": "https://www.xda-developers.com/cachyos-one-click-windows-vm-button-dual-booting-feels-completely-outdated/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-03-31T21:30:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[CNET] Only a Few Hours Left to Take Nearly 50% Off the Anker Solix C800 Solar Bundle at Amazon's Spring Sale",
+          "url": "https://www.cnet.com/deals/anker-solix-c800-solar-bundle-amazon-deal/",
+          "source": "CNET",
+          "ai_score": 0,
+          "date_published": "2026-03-31T21:10:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Engadget] Toyota's still trying to make hydrogen fuel cells happen",
+          "url": "https://www.engadget.com/transportation/toyotas-still-trying-to-make-hydrogen-fuel-cells-happen-202237728.html?src=rss",
+          "source": "Engadget",
+          "ai_score": 0,
+          "date_published": "2026-03-31T20:22:37+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] A Very Unscientific History of Scientific Hoaxes",
+          "url": "https://nautil.us/a-very-unscientific-history-of-scientific-hoaxes-1279405/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-03-31T20:06:03+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] How Small Can A Linux Executable Be?",
+          "url": "https://hackaday.com/2026/03/31/how-small-can-a-linux-executable-be/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-03-31T20:00:26+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] More research links artificial sweetener erythritol to stroke risk",
+          "url": "https://boingboing.net/2026/03/31/more-research-links-artificial-sweetener-erythritol-to-stroke-risk.html",
+          "source": "Boing Boing",
+          "ai_score": 0,
+          "date_published": "2026-03-31T19:34:34+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[InsideEVs] The World's First Solid-State Electric Motorcycle Hits Production, Verge Motorcycles Says",
+          "url": "https://insideevs.com/news/791709/worlds-first-production-solid-state-battery-motorcycle/",
+          "source": "InsideEVs",
+          "ai_score": 0,
+          "date_published": "2026-03-31T19:15:26+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] Stop overspending on Raspberry Pis: why I picked a $15 Pi Zero over a $200 Pi 5",
+          "url": "https://www.howtogeek.com/bought-raspberry-pi-zero-instead-of-pi-5/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-03-31T19:00:18+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] In the AI era, revenue-per-employee is the new Big Tech metric",
+          "url": "https://www.businessinsider.com/tech-scorecard-revenue-per-employee-nvidia-microsoft-openai-anthropic-meta-2026-3",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-03-31T18:59:09+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Android Authority] Gemini for Home’s new ‘expressive’ lighting controls let you describe the vibes",
+          "url": "https://www.androidauthority.com/gemini-home-expressive-lighting-3653611/",
+          "source": "Android Authority",
+          "ai_score": 0,
+          "date_published": "2026-03-31T18:48:32+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Scientists Found a Big Problem With How We Measure Microplastics",
+          "url": "https://www.sciencealert.com/scientists-found-a-big-problem-with-how-we-measure-microplastics",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-03-31T18:00:29+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] Who Gets to Do Science?",
+          "url": "https://nautil.us/who-gets-to-do-science-1279399/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-03-31T18:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Android Authority] This VPN provider is launching a privacy-first alternative to other AI platforms",
+          "url": "https://www.androidauthority.com/expressvpn-expressai-3653606/",
+          "source": "Android Authority",
+          "ai_score": 0,
+          "date_published": "2026-03-31T17:37:01+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] The US Military’s GPS Software Is an $8 Billion Mess",
+          "url": "https://www.wired.com/story/the-us-militarys-gps-software-is-an-8-billion-mess/",
+          "source": "WIRED",
+          "ai_score": 0,
+          "date_published": "2026-03-31T17:34:46+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] BYD's global push is accelerating just as expensive gas jolts EV demand",
+          "url": "https://www.businessinsider.com/byds-gas-prices-ev-demand-2026-3",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-03-31T17:00:03+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Community Tech & Governance",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] MLA McInnis introduces Aboriginal Title Transparency Act",
+          "url": "https://wltribune.com/2026/03/31/mla-mcinnis-introduces-aboriginal-title-transparency-act/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-31T14:05:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Canada Post to convert remaining door-to-door delivery to community mailboxes",
+          "url": "https://wltribune.com/2026/03/31/canada-post-to-convert-remaining-door-to-door-delivery-to-community-mailboxes/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-03-31T16:14:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[100 Mile Free Press] Potential cougar sighted in Centennial Park",
+          "url": "https://100milefreepress.net/2026/03/31/potential-cougar-sighted-in-centennial-park/",
+          "source": "100 Mile Free Press",
+          "ai_score": 0,
+          "date_published": "2026-04-01T00:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "How do information systems and governance structures in rural communities determine who has access to decision-making power, and whose interests do transparency measures actually serve?",
+        "riley_position": "Information infrastructure is critical but communities shouldn't wait for perfect systems—pragmatic volunteer-led solutions (like Facebook groups) work well enough in the interim, and the risk of over-waiting for ideal governance can leave people uninformed during crises.",
+        "riley_key_evidence": [
+          "Facebook groups maintained by volunteers are currently the fastest and most reliable way to disseminate urgent safety information like cougar sightings in small communities",
+          "Labor law analogy showing mandatory disclosure of union organizing was framed as transparency but actually enabled employer counter-campaigns",
+          "The Heiltsuk Nation's post-Deepwater Horizon alert system demonstrates that community-controlled information infrastructure is buildable and effective"
+        ],
+        "casey_position": "Informal, volunteer-dependent information systems are fragile and ultimately reinforce information asymmetries that disadvantage rural communities; transparency measures can be designed to benefit powerful actors rather than empower communities, particularly Indigenous communities protecting negotiation positions.",
+        "casey_key_evidence": [
+          "Canada Post's cost-per-route analysis doesn't account for bundled services like mail carriers performing informal wellness checks on isolated seniors",
+          "The Aboriginal Title Transparency Act could expose sensitive negotiating positions to resource extraction interests, turning transparency into a pressure tool against Indigenous rights",
+          "Rural municipalities lack the capacity to commission the social infrastructure research needed to advocate effectively against top-down federal decisions"
+        ],
+        "resolution": "They agreed that community-controlled information infrastructure is the goal and identified concrete middle-path solutions (SMS broadcast systems, municipal emergency contact databases, regional district-commissioned community mapping) rather than continuing to debate the perfect versus pragmatic tension.",
+        "topics_covered": [
+          "Cougar alert systems and emergency communication infrastructure in rural BC",
+          "Canada Post mail delivery consolidation and loss of bundled community services",
+          "Aboriginal Title Transparency Act and strategic disclosure in Indigenous governance",
+          "Epistemic infrastructure and who controls information about community needs",
+          "Heiltsuk and other Indigenous-led information sovereignty models"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}

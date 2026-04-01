@@ -1,24 +1,4 @@
 {
-  "2026-03-10": {
-    "timestamp": 1773147783.635777,
-    "topics": [
-      "[My Cariboo Now] B.C. tables legislation to expand protest r",
-      "[My Cariboo Now] Have you seen Zoe Bedard",
-      "[TechRadar] Megawatt charging is go \u2014 BYD tests 1,500kW netw",
-      "[BC Gov News] Growing tourism, unlocking opportunities for p",
-      "[ScienceAlert] Pesticide Exposure Could Increase Disease Ris",
-      "[The Tyee] How Is Ottawa\u2019s Tariff Response Working for BC?",
-      "[Civil Eats] As Louisiana\u2019s Wetlands Erode, A Fishing Cultur",
-      "[My Cariboo Now] Quesnel Search and Rescue member receives q"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-03-10"
-  },
   "2026-03-11": {
     "timestamp": 1773234149.04988,
     "topics": [
@@ -437,5 +417,25 @@
       "Indigenous tech"
     ],
     "date": "2026-03-31"
+  },
+  "2026-04-01": {
+    "timestamp": 1775041667.022453,
+    "topics": [
+      "[Boing Boing] Audio tapes challenge Milgram obedience findin",
+      "[Williams Lake Tribune] Deadline looms for property owner to",
+      "[BC Gov News] Building volunteer fire department capacity",
+      "[Williams Lake Tribune] B.C. moving to alter environment ass",
+      "[Android Authority] Android Auto just made EV trip planning ",
+      "[Williams Lake Tribune] MLA McInnis introduces Aboriginal Ti",
+      "[Williams Lake Tribune] Canada Post to convert remaining doo",
+      "[100 Mile Free Press] Potential cougar sighted in Centennial"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-04-01"
   }
 }
