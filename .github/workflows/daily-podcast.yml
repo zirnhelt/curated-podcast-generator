@@ -116,10 +116,14 @@ jobs:
           cp podcasts/episode_memory.json podcasts/host_personality_memory.json podcasts/debate_memory.json output/podcasts/ 2>/dev/null || echo "No memory files to copy"
           cp podcasts/psa_rotation_state.json output/podcasts/ 2>/dev/null || echo "No PSA rotation state to copy"
 
-          # Copy website files
+          # Copy website files and all cover images referenced by index.html
           cp index.html output/
           cp podcast-feed.xml output/
           cp cariboo-signals.png output/
+          cp cariboo-weekends.png output/ 2>/dev/null || true
+          cp cariboo-saturday.png output/ 2>/dev/null || true
+          cp cariboo-sunday.png output/ 2>/dev/null || true
+          cp Deepdives.png output/ 2>/dev/null || true
 
           echo "Files ready for deployment:"
           ls -la output/
