@@ -1,24 +1,4 @@
 {
-  "2026-03-11": {
-    "timestamp": 1773234149.04988,
-    "topics": [
-      "[TechRadar] 'Big tech pays for power \u2014 why not broadband?': ",
-      "[Williams Lake Tribune] B.C. allowing Vancouver and Victoria",
-      "[Williams Lake Tribune] Rally at Surrey border park to mark ",
-      "[Williams Lake Tribune] Princeton man who attacked doctor ha",
-      "[Williams Lake Tribune] U.S. Ambassador Hoekstra says he and",
-      "[My Cariboo Now] Williams Lake city councillor to propose \u201ca",
-      "[Williams Lake Tribune] Acting merit commissioner selected f",
-      "[Williams Lake Tribune] MLA Lorne Doerkson responds to Human"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech",
-      "connectivity"
-    ],
-    "date": "2026-03-11"
-  },
   "2026-03-12": {
     "timestamp": 1773320458.972348,
     "topics": [
@@ -437,5 +417,25 @@
       "Indigenous tech"
     ],
     "date": "2026-04-01"
+  },
+  "2026-04-02": {
+    "timestamp": 1775127724.527912,
+    "topics": [
+      "[Engadget] What\u2019s going on with Donut Lab?",
+      "[Williams Lake Tribune] British Columbians declare 15,600 as",
+      "[Williams Lake Tribune] B.C. man calling on feds to declare ",
+      "[Williams Lake Tribune] Court fines visitors for 2 dog incid",
+      "[Toms Guide] Your soil might still be compacted from winter ",
+      "[Williams Lake Tribune] First Nations letter calls B.C. gove",
+      "[Ricochet] \u2018How many more have to die?\u2019: Northern Ontario fi",
+      "[Kottke.org] On Stewart Brand&#8217;s Maintenance: Of Everyt"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-04-02"
   }
 }
