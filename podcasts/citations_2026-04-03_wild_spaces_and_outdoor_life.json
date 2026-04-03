@@ -1,0 +1,408 @@
+{
+  "episode": {
+    "date": "2026-04-03",
+    "formatted_date": "Friday, April 03, 2026",
+    "theme": "Wild Spaces & Outdoor Life",
+    "title": "Cariboo Signals - Wild Spaces & Outdoor Life",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Wild Spaces & Outdoor Life.</p><p><b>NEWS ROUNDUP:</b> We break down [The Tyee] A Deadly Fungal Invader Is Threatening BC’s Bats and [BC Gov News] Opening Clean Industry Fund 2026 intake, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Who controls ecological knowledge and data in Cariboo wilderness, and does technology democratization actually distribute power or concentrate it further? Topics include: Data sovereignty and Indigenous data governance frameworks (OCAP principles, UNDRIP implementation), Co-management models for monitoring infrastructure versus province-run systems, Citizen science limitations and strengths in low-population-density rural regions, Backcountry safety infrastructure (satellite communicators, SAR funding models), Maintenance and sustainability of remote monitoring equipment in harsh climates.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>Sources discussed:</b></p><ul><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/04/03/Deadly-Fungal-Invader-Threatening-BC-Bats/\">[The Tyee] A Deadly Fungal Invader Is Threatening BC’s Bats</a></li><li>BC Gov News: <a href=\"https://news.gov.bc.ca/releases/2026ECS0010-000357\">[BC Gov News] Opening Clean Industry Fund 2026 intake</a></li><li>Android Authority: <a href=\"https://www.androidauthority.com/dji-power-1000-v2-review-3635703/\">[Android Authority] The DJI Power 1000 V2 is a no-nonsense p...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/04/02/spring-classic-indoor-rodeo-returns-to-williams-lake/\">[Williams Lake Tribune] Spring Classic Indoor Rodeo returns ...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/04/02/williams-lake-punjabi-society-hosts-free-food-event-for-vaisakhi/\">[Williams Lake Tribune] Williams Lake Punjabi Society hostin...</a></li><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/04/02/20-year-old-man-missing-since-april-2025-found-dead-prince-george-rcmp/\">[Quesnel Cariboo Observer] 20-year-old man missing since Apr...</a></li><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/04/02/prince-george-rcmp-has-arrested-a-suspect-linked-with-one-of-three-arsons/\">[Quesnel Cariboo Observer] Prince George RCMP has arrested a...</a></li><li>Civil Eats: <a href=\"https://civileats.com/2026/04/02/usda-pauses-rural-energy-grants-amid-anti-renewables-push/\">[Civil Eats] USDA Pauses Rural Energy Grants Amid Anti-Renew...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/04/02/williams-lake-beaver-mauled-by-dogs-receiving-life-saving-care-in-smithers/\">[Williams Lake Tribune] Injured beaver from Williams Lake tr...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>100 Mile Free Press: <a href=\"https://100milefreepress.net/2026/04/02/buxton-bird-watching-is-not-just-for-the-retired/\">[100 Mile Free Press] BUXTON: Bird watching is not just for ...</a></li><li>Gizmodo: <a href=\"https://gizmodo.com/china-is-trying-to-grow-new-forests-in-a-notorious-mega-desert-its-working-2000741708\">[Gizmodo] China Is Trying to Grow New Forests in This Notori...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/04/03/BC-Government-AI-Redact-Personal-Information/\">[The Tyee] BC Government May Use AI to Redact Personal Infor...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/03/31/heros-welcome-home-to-village-for-b-c-gold-medalist/\">[Williams Lake Tribune] Hero’s welcome home to ‘village’ for...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/uber-ceo-dara-khosrowshahi-drivers-use-tesla-fsd-2026-4\">[Business Insider] Uber drivers: Your boss knows you're usin...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/04/02/pan-and-tilt-the-weatherproof-way-with-bowden-cables/\">[Hackaday] Pan and Tilt The Weatherproof Way, With Bowden Ca...</a></li><li>TechRadar: <a href=\"https://www.techradar.com/pro/hp-unveils-its-most-powerful-pc-ever-with-up-to-four-nvidia-blackwell-gpus-and-i-love-its-bizarre-user-inspired-tool-free-side-panel\">[TechRadar] HP unveils its most powerful PC ever with up to ...</a></li><li>Quartz: <a href=\"https://qz.com/hims-hers-expands-personalized-digital-healthcare-platform\">[Quartz] Hims & Hers Expands Personalized Digital Healthcare...</a></li><li>Quartz: <a href=\"https://qz.com/uuuu-s-terbium-oxide-breakthrough-turning-point-for-ev-magnet-supply\">[Quartz] UUUU's Terbium Oxide Breakthrough: Turning Point fo...</a></li><li>Quartz: <a href=\"https://qz.com/mp-s-loss-streak-continued-in-2025-can-it-stage-a-comeback-this-year\">[Quartz] MP's Loss Streak Continued in 2025: Can It Stage a ...</a></li><li>Quartz: <a href=\"https://qz.com/solaredge-technologies-expands-us-footprint-to-power-future-growth\">[Quartz] SolarEdge Technologies Expands US Footprint to Powe...</a></li><li>Gizmodo: <a href=\"https://gizmodo.com/cursors-new-tool-lets-users-delegate-to-a-team-of-coding-agents-2000741761\">[Gizmodo] Cursor’s New Tool Lets Users Delegate to a Team of...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/chemical-signature-hidden-in-lunar-rocks-hints-at-oxygen-in-the-ancient-moon\">[ScienceAlert] Chemical Signature Hidden in Lunar Rocks Hint...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-opus-4-6<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-04-03T03:52:40.273339-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-opus-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[The Tyee] A Deadly Fungal Invader Is Threatening BC’s Bats",
+          "url": "https://thetyee.ca/News/2026/04/03/Deadly-Fungal-Invader-Threatening-BC-Bats/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-04-03T07:40:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[100 Mile Free Press] BUXTON: Bird watching is not just for the retired",
+          "url": "https://100milefreepress.net/2026/04/02/buxton-bird-watching-is-not-just-for-the-retired/",
+          "source": "100 Mile Free Press",
+          "ai_score": 0,
+          "date_published": "2026-04-03T00:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[BC Gov News] Opening Clean Industry Fund 2026 intake",
+          "url": "https://news.gov.bc.ca/releases/2026ECS0010-000357",
+          "source": "BC Gov News",
+          "ai_score": 0,
+          "date_published": "2026-04-02T18:30:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Gizmodo] China Is Trying to Grow New Forests in This Notorious Mega-Desert. It’s Working",
+          "url": "https://gizmodo.com/china-is-trying-to-grow-new-forests-in-a-notorious-mega-desert-its-working-2000741708",
+          "source": "Gizmodo",
+          "ai_score": 0,
+          "date_published": "2026-04-02T19:55:38+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Android Authority] The DJI Power 1000 V2 is a no-nonsense power station ready to take you off-grid",
+          "url": "https://www.androidauthority.com/dji-power-1000-v2-review-3635703/",
+          "source": "Android Authority",
+          "ai_score": 0,
+          "date_published": "2026-03-30T09:30:20+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[The Tyee] BC Government May Use AI to Redact Personal Information",
+          "url": "https://thetyee.ca/News/2026/04/03/BC-Government-AI-Redact-Personal-Information/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-04-03T07:10:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Hero’s welcome home to ‘village’ for B.C. gold medalist",
+          "url": "https://wltribune.com/2026/03/31/heros-welcome-home-to-village-for-b-c-gold-medalist/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-03T05:54:23.433319+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Spring Classic Indoor Rodeo returns to Williams Lake",
+          "url": "https://wltribune.com/2026/04/02/spring-classic-indoor-rodeo-returns-to-williams-lake/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-03T05:54:23.433242+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Williams Lake Punjabi Society hosting free food event for Vaisakhi",
+          "url": "https://wltribune.com/2026/04/02/williams-lake-punjabi-society-hosts-free-food-event-for-vaisakhi/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-03T05:54:23.433210+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Business Insider] Uber drivers: Your boss knows you're using Tesla's FSD on the job",
+          "url": "https://www.businessinsider.com/uber-ceo-dara-khosrowshahi-drivers-use-tesla-fsd-2026-4",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-04-03T04:02:01+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Pan and Tilt The Weatherproof Way, With Bowden Cables",
+          "url": "https://hackaday.com/2026/04/02/pan-and-tilt-the-weatherproof-way-with-bowden-cables/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-04-03T02:00:23+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] HP unveils its most powerful PC ever with up to four Nvidia Blackwell GPUs, and I love its bizarre user-inspired tool-free side panel",
+          "url": "https://www.techradar.com/pro/hp-unveils-its-most-powerful-pc-ever-with-up-to-four-nvidia-blackwell-gpus-and-i-love-its-bizarre-user-inspired-tool-free-side-panel",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-04-03T00:10:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] Hims & Hers Expands Personalized Digital Healthcare Platform",
+          "url": "https://qz.com/hims-hers-expands-personalized-digital-healthcare-platform",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-04-03T00:00:19+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] UUUU's Terbium Oxide Breakthrough: Turning Point for EV Magnet Supply?",
+          "url": "https://qz.com/uuuu-s-terbium-oxide-breakthrough-turning-point-for-ev-magnet-supply",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-04-03T00:00:18+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] MP's Loss Streak Continued in 2025: Can It Stage a Comeback This Year?",
+          "url": "https://qz.com/mp-s-loss-streak-continued-in-2025-can-it-stage-a-comeback-this-year",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-04-03T00:00:14+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] SolarEdge Technologies Expands US Footprint to Power Future Growth",
+          "url": "https://qz.com/solaredge-technologies-expands-us-footprint-to-power-future-growth",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-04-03T00:00:10+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] 20-year-old man missing since April 2025 found dead: Prince George RCMP",
+          "url": "https://quesnelobserver.com/2026/04/02/20-year-old-man-missing-since-april-2025-found-dead-prince-george-rcmp/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-04-02T22:30:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Prince George RCMP has arrested a suspect linked with one of three arsons",
+          "url": "https://quesnelobserver.com/2026/04/02/prince-george-rcmp-has-arrested-a-suspect-linked-with-one-of-three-arsons/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-04-02T22:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Gizmodo] Cursor’s New Tool Lets Users Delegate to a Team of Coding Agents",
+          "url": "https://gizmodo.com/cursors-new-tool-lets-users-delegate-to-a-team-of-coding-agents-2000741761",
+          "source": "Gizmodo",
+          "ai_score": 0,
+          "date_published": "2026-04-02T21:40:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Physicists Found Something That Can Move Faster Than Light: The Darkness Inside It",
+          "url": "https://www.sciencealert.com/physicists-found-something-that-can-move-faster-than-light-the-darkness-inside-it",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-04-02T21:00:49+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] Tech Companies Are Trying to Neuter Colorado’s Landmark Right-to-Repair Law",
+          "url": "https://www.wired.com/story/tech-companies-are-trying-to-neuter-colorados-landmark-right-to-repair-law/",
+          "source": "WIRED",
+          "ai_score": 0,
+          "date_published": "2026-04-02T20:36:27+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Gizmodo] New Theory Says We’ve Been Overcomplicating the Big Bang",
+          "url": "https://gizmodo.com/new-theory-says-weve-been-overcomplicating-the-big-bang-2000741777",
+          "source": "Gizmodo",
+          "ai_score": 0,
+          "date_published": "2026-04-02T20:25:04+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Civil Eats] USDA Pauses Rural Energy Grants Amid Anti-Renewables Push",
+          "url": "https://civileats.com/2026/04/02/usda-pauses-rural-energy-grants-amid-anti-renewables-push/",
+          "source": "Civil Eats",
+          "ai_score": 0,
+          "date_published": "2026-04-02T20:23:18+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Quartz] Can AI Workload Expansion Strengthen Snowflake's Next Leg of Growth?",
+          "url": "https://qz.com/can-ai-workload-expansion-strengthen-snowflake-s-next-leg-of-growth",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-04-02T20:21:33+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] The Threadless Ball Screw Never Took Off, But Don’t Write It Off",
+          "url": "https://hackaday.com/2026/04/02/the-threadless-ball-screw-never-took-off-but-dont-write-it-off/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-04-02T20:00:11+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Gizmodo] RAM Prices Are Threatening the Viability of the Raspberry Pi and Single-Board Computing",
+          "url": "https://gizmodo.com/ram-prices-are-threatening-the-viability-of-the-raspberry-pi-and-single-board-computing-2000741726",
+          "source": "Gizmodo",
+          "ai_score": 0,
+          "date_published": "2026-04-02T19:45:01+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] How AI could destroy — or save — humanity, according to AI experts",
+          "url": "https://www.businessinsider.com/former-ai-insiders-share-hard-truths-about-living-with-technology-2026-4",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-04-02T19:13:06+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Business] Republicans Seek Protections for Oil Giants Against Climate Lawsuits",
+          "url": "https://www.nytimes.com/2026/04/02/business/oil-liability-shield-laws-climate-lawsuits.html",
+          "source": "NYT Business",
+          "ai_score": 0,
+          "date_published": "2026-04-02T19:00:55+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Windows 3.1 on a Modern AM5-Based PC is Surprisingly Usable",
+          "url": "https://hackaday.com/2026/04/02/windows-3-1-on-a-modern-am5-based-pc-is-surprisingly-usable/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-04-02T18:30:58+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] Stop pointing your router antennas straight up—the secret to positioning them for perfect Wi-Fi coverage",
+          "url": "https://www.howtogeek.com/the-antennas-on-your-router-arent-there-for-show-heres-how-to-use-them-correctly/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-04-02T18:30:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Gizmodo] The Octopus Penis Arm Doesn’t Just Deliver Sperm—It Sniffs Out the Sweet Spot",
+          "url": "https://gizmodo.com/the-octopus-penis-arm-doesnt-just-deliver-sperm-it-sniffs-out-the-sweet-spot-2000741607",
+          "source": "Gizmodo",
+          "ai_score": 0,
+          "date_published": "2026-04-02T18:15:45+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] 6 awesome ways to upcycle an old Raspberry Pi",
+          "url": "https://www.howtogeek.com/6-awesome-ways-to-upcycle-an-old-raspberry-pi/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-04-02T18:08:17+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Scientists Think Vagus Nerve Stimulation Could Help Protect Your Memory",
+          "url": "https://www.sciencealert.com/scientists-think-vagus-nerve-stimulation-could-help-protect-your-memory",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-04-02T18:00:46+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] Raspberry Pi projects to try this weekend (April 3",
+          "url": "https://www.howtogeek.com/raspberry-pi-projects-to-try-this-weekend-april-3-5/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-04-02T17:30:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] 2 B.C. MLAs criticized by NDP caucus for voting against Safe Access to Schools Act",
+          "url": "https://wltribune.com/2026/04/02/2-b-c-mlas-criticized-by-ndp-caucus-for-voting-against-safe-access-to-schools-act/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-02T16:41:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Small town B.C. camel stars in Animal Control sitcom",
+          "url": "https://wltribune.com/2026/04/02/small-town-b-c-camel-stars-in-animal-control-sitcom/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-02T16:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Wild Spaces & Outdoor Life",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Injured beaver from Williams Lake transported to Smithers rescue",
+          "url": "https://wltribune.com/2026/04/02/williams-lake-beaver-mauled-by-dogs-receiving-life-saving-care-in-smithers/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-03T05:54:23.432957+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[ScienceAlert] Chemical Signature Hidden in Lunar Rocks Hints at Oxygen in The Ancient Moon",
+          "url": "https://www.sciencealert.com/chemical-signature-hidden-in-lunar-rocks-hints-at-oxygen-in-the-ancient-moon",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-04-03T01:00:22+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Who controls ecological knowledge and data in Cariboo wilderness, and does technology democratization actually distribute power or concentrate it further?",
+        "riley_position": "Democratized sensing technology and improved connectivity have genuinely distributed monitoring capacity, and co-management models with First Nations can create more reliable infrastructure than province-run systems if paired with genuine authority transfer and co-funding.",
+        "riley_key_evidence": [
+          "Tŝilhqot'in Nation Forestry LP successfully integrates traditional ecological knowledge with satellite-based forest monitoring operationally",
+          "Blueberry River First Nations IPCA agreement established a model for Nation-centered data governance and monitoring frameworks",
+          "Satellite connectivity improvements like Starlink enable real-time data transmission from remote locations where it wasn't previously viable"
+        ],
+        "casey_position": "Technological democratization masks deeper governance and power asymmetries; data collection without corresponding decision-making authority and sustained funding creates the appearance of equity while offloading infrastructure costs onto under-resourced communities.",
+        "casey_key_evidence": [
+          "Blueberry River monitoring framework only emerged after litigation forced the province to the table, not through proactive institutional design",
+          "University research teams deploying sensors on Secwépemc territory often retain data control in academic databases requiring formal Nation requests for access",
+          "Remote monitoring cameras receive deprioritized maintenance during budget cycles, systematically affecting highest-need remote locations"
+        ],
+        "resolution": "Riley and Casey converge on identifying governance capacity and sustainable funding as the actual bottleneck (not technology), and both agree that genuine co-management requires pre-negotiated data sovereignty agreements, adequate co-funding, and community-led decision-making authority—with Casey emphasizing the need for operational OCAP principles and template agreements to prevent repeated extraction.",
+        "topics_covered": [
+          "Data sovereignty and Indigenous data governance frameworks (OCAP principles, UNDRIP implementation)",
+          "Co-management models for monitoring infrastructure versus province-run systems",
+          "Citizen science limitations and strengths in low-population-density rural regions",
+          "Backcountry safety infrastructure (satellite communicators, SAR funding models)",
+          "Maintenance and sustainability of remote monitoring equipment in harsh climates"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
