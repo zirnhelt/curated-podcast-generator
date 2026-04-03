@@ -1868,7 +1868,7 @@ def get_current_date_info():
     
     return weekday, date_str
 
-def generate_episode_description(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None):
+def generate_episode_description(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None):
     """Generate episode description with sources and credits.
 
     When *script* is provided, citations are aligned with what was actually
@@ -1925,6 +1925,15 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
         f"<p><b>Hosts:</b> Riley ({riley_bio}) and Casey ({casey_bio}).</p>"
     )
 
+    if psa_info and psa_info.get('org_name'):
+        website = psa_info.get('org_website', '')
+        org_name = saxutils.escape(psa_info['org_name'])
+        if website:
+            website_url = website if website.startswith('http') else f"https://{website}"
+            description += f'<p><b>COMMUNITY SPOTLIGHT:</b> <a href="{website_url}">{org_name}</a></p>'
+        else:
+            description += f'<p><b>COMMUNITY SPOTLIGHT:</b> {org_name}</p>'
+
     # Add sources — discussed articles first, then additional sources
     # Citations are formatted as HTML list items for podcast apps and RSS readers
     def _format_citation(article):
@@ -1973,7 +1982,7 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
 
     return description
 
-def generate_citations_file(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None):
+def generate_citations_file(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None):
     """Generate citations file for the episode.
 
     When *script* is provided (the finalized, polished script), each citation
@@ -1992,7 +2001,7 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
     podcast_config = CONFIG['podcast']
     episode_description = generate_episode_description(
         news_articles, deep_dive_articles, theme_name, script=script,
-        debate_summary=debate_summary
+        debate_summary=debate_summary, psa_info=psa_info
     )
 
     # Match articles against script
@@ -2622,7 +2631,7 @@ def generate_tts_for_segment(text, speaker, output_file):
     response = api_retry(lambda: client.audio.speech.create(
         model="tts-1",
         voice=voice,
-        input=text,
+        input=text.replace("Quesnel", "Kwi-nell"),
         speed=1.0
     ))
 
@@ -2696,6 +2705,8 @@ def generate_audio_from_script(script, output_filename, theme_name=None):
                     combined = _append_with_gap(combined, speech, gap)
                     prev_speaker = segment['speaker']
 
+            chapters = [{"startTime": 0, "title": "Introduction"}]
+
             # Welcome section
             _render_section(segments['welcome'], "🎤 Generating welcome section...", "welcome")
 
@@ -2703,6 +2714,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None):
             combined += section_gap + ambient_transition + section_gap
 
             # News section
+            chapters.append({"startTime": round(len(combined) / 1000, 1), "title": "News Roundup"})
             _render_section(segments['news'], "📰 Generating news section...", "news")
 
             # Add ambient transition before community spotlight / deep dive
@@ -2710,26 +2722,37 @@ def generate_audio_from_script(script, output_filename, theme_name=None):
 
             # Community spotlight section (if present)
             if segments['community_spotlight']:
+                chapters.append({"startTime": round(len(combined) / 1000, 1), "title": "Community Spotlight"})
                 _render_section(segments['community_spotlight'], "🏘️  Generating community spotlight...", "spotlight")
                 # Add ambient transition after community spotlight, before deep dive
                 combined += section_gap + ambient_transition + section_gap
 
             # Deep dive section
+            chapters.append({"startTime": round(len(combined) / 1000, 1), "title": "Deep Dive"})
             _render_section(segments['deep_dive'], "🔍 Generating deep dive section...", "deep")
 
         # Add outro music (after tmpdir context - files cleaned up)
         combined += section_gap + outro_music
-        
+
         # Export
         combined.export(output_filename, format="mp3")
-        
+
+        # Save chapters JSON
+        chapters_data = {"version": "1.2.0", "chapters": chapters}
+        chapters_filename = str(Path(output_filename).with_name(
+            Path(output_filename).name.replace('podcast_audio_', 'podcast_chapters_').replace('.mp3', '.json')
+        ))
+        with open(chapters_filename, 'w', encoding='utf-8') as f:
+            json.dump(chapters_data, f, indent=2)
+        print(f"📑 Saved chapters: {chapters_filename}")
+
         duration_minutes = len(combined) / 1000 / 60
         file_size_mb = os.path.getsize(output_filename) / 1024 / 1024
-        
+
         print(f"✅ Generated podcast audio with music!")
         print(f"   Duration: {duration_minutes:.1f} minutes")
         print(f"   File size: {file_size_mb:.1f} MB")
-        
+
         return output_filename
         
     except Exception as e:
@@ -3107,6 +3130,20 @@ def generate_podcast_rss_feed():
         else:
             episode['transcript_url'] = None
 
+    # Attach chapters path for each episode if a chapters file exists
+    for episode in episodes:
+        audio_basename = os.path.basename(episode['audio_file'])
+        m = re.search(r'podcast_audio_(\d{4}-\d{2}-\d{2})_(.+)\.mp3', audio_basename)
+        if m:
+            ep_date, ep_theme = m.groups()
+            chapters_file = PODCASTS_DIR / f"podcast_chapters_{ep_date}_{ep_theme}.json"
+            episode['chapters_url'] = (
+                f"{audio_base}podcasts/podcast_chapters_{ep_date}_{ep_theme}.json"
+                if chapters_file.exists() else None
+            )
+        else:
+            episode['chapters_url'] = None
+
     # Generate RSS XML
     rss_lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
@@ -3157,7 +3194,10 @@ def generate_podcast_rss_feed():
         ]
         if episode.get('transcript_url'):
             escaped_transcript_url = saxutils.escape(episode['transcript_url'], {chr(34): "&quot;"})
-            item_lines.append(f'<podcast:transcript url="{escaped_transcript_url}" type="text/html" rel="captions" language="en-CA"/>')
+            item_lines.append(f'<podcast:transcript url="{escaped_transcript_url}" type="text/html" language="en-CA"/>')
+        if episode.get('chapters_url'):
+            escaped_chapters_url = saxutils.escape(episode['chapters_url'], {chr(34): "&quot;"})
+            item_lines.append(f'<podcast:chapters url="{escaped_chapters_url}" type="application/json+chapters"/>')
         item_lines.append('</item>')
         rss_lines.extend(item_lines)
     
@@ -3483,7 +3523,7 @@ def main():
         # what was actually discussed, not just the input article list.
         citations_file = generate_citations_file(
             news_articles, deep_dive_articles, today_theme, script=script,
-            debate_summary=debate_summary
+            debate_summary=debate_summary, psa_info=psa_info
         )
 
         # Save script
