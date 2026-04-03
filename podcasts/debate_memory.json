@@ -720,5 +720,31 @@
       "Community-owned versus externally-deployed infrastructure models",
       "Maintenance funding as the critical but underfunded layer of technology sustainability"
     ]
+  },
+  "2026-04-03": {
+    "timestamp": 1775213562.107483,
+    "date": "2026-04-03",
+    "theme": "Wild Spaces & Outdoor Life",
+    "central_question": "Who controls ecological knowledge and data in Cariboo wilderness, and does technology democratization actually distribute power or concentrate it further?",
+    "riley_position": "Democratized sensing technology and improved connectivity have genuinely distributed monitoring capacity, and co-management models with First Nations can create more reliable infrastructure than province-run systems if paired with genuine authority transfer and co-funding.",
+    "riley_key_evidence": [
+      "T\u015dilhqot'in Nation Forestry LP successfully integrates traditional ecological knowledge with satellite-based forest monitoring operationally",
+      "Blueberry River First Nations IPCA agreement established a model for Nation-centered data governance and monitoring frameworks",
+      "Satellite connectivity improvements like Starlink enable real-time data transmission from remote locations where it wasn't previously viable"
+    ],
+    "casey_position": "Technological democratization masks deeper governance and power asymmetries; data collection without corresponding decision-making authority and sustained funding creates the appearance of equity while offloading infrastructure costs onto under-resourced communities.",
+    "casey_key_evidence": [
+      "Blueberry River monitoring framework only emerged after litigation forced the province to the table, not through proactive institutional design",
+      "University research teams deploying sensors on Secw\u00e9pemc territory often retain data control in academic databases requiring formal Nation requests for access",
+      "Remote monitoring cameras receive deprioritized maintenance during budget cycles, systematically affecting highest-need remote locations"
+    ],
+    "resolution": "Riley and Casey converge on identifying governance capacity and sustainable funding as the actual bottleneck (not technology), and both agree that genuine co-management requires pre-negotiated data sovereignty agreements, adequate co-funding, and community-led decision-making authority\u2014with Casey emphasizing the need for operational OCAP principles and template agreements to prevent repeated extraction.",
+    "topics_covered": [
+      "Data sovereignty and Indigenous data governance frameworks (OCAP principles, UNDRIP implementation)",
+      "Co-management models for monitoring infrastructure versus province-run systems",
+      "Citizen science limitations and strengths in low-population-density rural regions",
+      "Backcountry safety infrastructure (satellite communicators, SAR funding models)",
+      "Maintenance and sustainability of remote monitoring equipment in harsh climates"
+    ]
   }
 }

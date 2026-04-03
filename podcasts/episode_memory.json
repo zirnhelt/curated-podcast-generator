@@ -1,24 +1,4 @@
 {
-  "2026-03-12": {
-    "timestamp": 1773320458.972348,
-    "topics": [
-      "[Williams Lake Tribune] Dinner night at Miocene supports Che",
-      "[Quesnel Cariboo Observer] New partnership allows B.C. patie",
-      "[My Cariboo Now] Fire at Picnic Gazebo in Williams Lake quic",
-      "[My Cariboo Now] Calls grow for public inquiry after Tumbler",
-      "[Williams Lake Tribune] 13 B.C. drug-user groups lose bid fo",
-      "[Williams Lake Tribune] Similkameen First Nations denounce M",
-      "[IndigiNews] As climate, industry warm Okanagan waterways, e",
-      "[Williams Lake Tribune] Picnic gazebo at Williams Lake Boita"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-03-12"
-  },
   "2026-03-13": {
     "timestamp": 1773406799.042896,
     "topics": [
@@ -437,5 +417,25 @@
       "Indigenous tech"
     ],
     "date": "2026-04-02"
+  },
+  "2026-04-03": {
+    "timestamp": 1775213560.293943,
+    "topics": [
+      "[The Tyee] A Deadly Fungal Invader Is Threatening BC\u2019s Bats",
+      "[100 Mile Free Press] BUXTON: Bird watching is not just for ",
+      "[BC Gov News] Opening Clean Industry Fund 2026 intake",
+      "[Gizmodo] China Is Trying to Grow New Forests in This Notori",
+      "[Android Authority] The DJI Power 1000 V2 is a no-nonsense p",
+      "[Williams Lake Tribune] Injured beaver from Williams Lake tr",
+      "[ScienceAlert] Chemical Signature Hidden in Lunar Rocks Hint",
+      "AI"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-04-03"
   }
 }
