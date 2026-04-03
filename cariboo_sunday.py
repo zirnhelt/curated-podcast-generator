@@ -2,10 +2,11 @@
 """
 cariboo_sunday.py — Cariboo Sunday Morning Radio Generator
 
-Fetches the latest episodes from CBC cultural podcast RSS feeds (q with Tom Power
-and Unreserved), trims their intros/outros, interspersed with short Canadian indie
-music clips from Jamendo, and assembles everything into a single MP3 for Sunday
-morning listening.
+Fetches the latest episodes from five CBC podcast RSS feeds: a news block
+(CBC News: World Report, CBC BC Today, CBC Kamloops News) followed by cultural
+programming (q with Tom Power, Unreserved).  Trims intros/outros, interspersed
+with short Canadian indie music clips from Jamendo, and assembles everything
+into a single MP3 for Sunday morning listening.
 
 Casey hosts the show, adding commentary between segments, reading Cariboo weather,
 and identifying each music track.  Casey's personality is loaded from
@@ -201,12 +202,28 @@ def assemble_show(
 
     # --- Casey: show opener + weather ---
     date_str = datetime.now().strftime("%A, %B %-d")
-    segment_names = ", ".join(name for name, _ in episodes)
     weather_note = f" {weather_summary}" if weather_summary else ""
+
+    # Split episodes into news block and cultural block so the opener accurately
+    # describes both parts of the show.
+    _news_keywords = ("World Report", "BC Today", "Kamloops", "News")
+    news_names = [n for n, _ in episodes if any(kw in n for kw in _news_keywords)]
+    cultural_names = [n for n, _ in episodes if not any(kw in n for kw in _news_keywords)]
+
+    if news_names and cultural_names:
+        _programming_note = (
+            f"The news block covers {', '.join(news_names)}, "
+            f"followed by cultural programming: {', '.join(cultural_names)}."
+        )
+    elif news_names:
+        _programming_note = f"Today's show covers the news block: {', '.join(news_names)}."
+    else:
+        _programming_note = f"Today's cultural programming: {', '.join(cultural_names)}."
+
     opener_context = (
         f"Casey opens the Cariboo Sunday Morning show. Today is {date_str}.{weather_note} "
-        f"The segments lined up are: {segment_names}. They welcome listeners, mention the weather "
-        f"naturally (if provided), and briefly tease what's coming up — CBC cultural and arts programming."
+        f"{_programming_note} Casey welcomes listeners, mentions the weather naturally "
+        f"(if provided), and briefly previews both the news block and the cultural segments."
     )
     opener = casey_speak(opener_context, tmp_dir)
     combined += _casey_segment(opener)

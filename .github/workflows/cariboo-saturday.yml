@@ -107,6 +107,13 @@ jobs:
             --content-type "text/html" \
             --cache-control "no-cache"
 
+          for img in cariboo-weekends.png cariboo-saturday.png cariboo-sunday.png; do
+            [ -f "$img" ] && aws s3 cp "$img" "s3://${BUCKET}/${img}" \
+              --content-type "image/png" \
+              --cache-control "max-age=86400" \
+              && echo "  uploaded $img"
+          done
+
           for f in podcasts/cariboo_saturday_*.mp3; do
             [ -f "$f" ] && echo "  uploading $f" && \
               aws s3 cp "$f" "s3://${BUCKET}/${f}" --content-type "audio/mpeg"
