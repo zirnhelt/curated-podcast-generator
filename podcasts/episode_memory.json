@@ -1,24 +1,4 @@
 {
-  "2026-03-13": {
-    "timestamp": 1773406799.042896,
-    "topics": [
-      "[Global News] Fundraiser launched for tech to keep invasive ",
-      "[TechRadar] 'We have this power from the wind. We have free ",
-      "[Williams Lake Tribune] B.C. snowpack near normal but some r",
-      "[Williams Lake Tribune] Leaders in the North Okanagan join f",
-      "[Our World in Data] What are the world\u2019s deadliest animals, ",
-      "[The Tyee] BC\u2019s Forests Minister on \u2018Tough Days,\u2019 Wildfire, ",
-      "[Williams Lake Tribune] Okanagan Basin Water Board fundraisi",
-      "[Williams Lake Tribune] Ambitious plans in the works for Sou"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-03-13"
-  },
   "2026-03-14": {
     "timestamp": 1773492844.928409,
     "topics": [
@@ -437,5 +417,25 @@
       "Indigenous tech"
     ],
     "date": "2026-04-03"
+  },
+  "2026-04-04": {
+    "timestamp": 1775299357.150605,
+    "topics": [
+      "[Williams Lake Tribune] Prince George RCMP investigate after",
+      "[Williams Lake Tribune] Repeat offender sentenced to 5 years",
+      "[Hackaday] Reverse-Engineering a Handheld Car Tire Pressure ",
+      "[Hackaday] Simulating a glowing fireplace with an RP2040",
+      "[Nautilus] Cosmic Mysteries Swirl Around \u201cForbidden Planet\u201d",
+      "[Quesnel Cariboo Observer] Prince George-North Cariboo MLA f",
+      "[Williams Lake Tribune] UPDATE: Highway 1 near Chase re-open",
+      "[Williams Lake Tribune] Canada\u2019s 7th Most Wanted Arrested in"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-04-04"
   }
 }

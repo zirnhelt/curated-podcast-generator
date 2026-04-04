@@ -746,5 +746,31 @@
       "Backcountry safety infrastructure (satellite communicators, SAR funding models)",
       "Maintenance and sustainability of remote monitoring equipment in harsh climates"
     ]
+  },
+  "2026-04-04": {
+    "timestamp": 1775299358.813647,
+    "date": "2026-04-04",
+    "theme": "Cariboo Voices & Local News",
+    "central_question": "How can local accountability infrastructure\u2014particularly journalism\u2014be sustainably funded and structured to serve rural communities like the Cariboo?",
+    "riley_position": "Rural journalism has higher marginal value per story than urban journalism and deserves structural investment through models like community foundation endowments that create durable, locally-accountable funding rather than grant-dependent cycles.",
+    "riley_key_evidence": [
+      "Elections BC fine of $1,500 to Prince George-North Cariboo MLA was amplified by Quesnel Cariboo Observer coverage, making formal accountability meaningful to constituents",
+      "Local papers (Tribune, Observer, 100 Mile Free Press) cover a geographic area the size of some European countries with skeleton newsroom staff",
+      "Community Foundation endowment model keeps giving year after year without requiring constant re-application"
+    ],
+    "casey_position": "Accountability mechanisms are functioning but imperfect and under-resourced; the real problem is the business model collapse of local journalism caused by digital aggregation, not technology, and external solutions must be carefully designed to avoid editorial dependency.",
+    "casey_key_evidence": [
+      "Classified ad revenue migrated to Craigslist/Kijiji and display advertising redistributed to Google/Meta, eliminating the century-old economic engine of local journalism",
+      "Rural papers hit particularly hard because advertiser base was already thin compared to urban markets",
+      "Federal Local Journalism Initiative funding has been a lifeline but raises subtle dependency questions about editorial pressure"
+    ],
+    "resolution": "They converged on agreement that a Cariboo civic information endowment\u2014managed locally through a mix of former journalists, community foundation representatives, and First Nations communication staff\u2014represents a worth-pursuing model that avoids grant-cycle dependency while maintaining editorial independence.",
+    "topics_covered": [
+      "Elections BC enforcement and formal political accountability mechanisms",
+      "Local journalism sustainability and the business model crisis in rural media",
+      "First Nations governance and Indigenous data sovereignty as parallel accountability structures",
+      "Civic tech tools and their sustainability challenges in rural contexts",
+      "Community foundation endowment models as durable funding alternatives"
+    ]
   }
 }
