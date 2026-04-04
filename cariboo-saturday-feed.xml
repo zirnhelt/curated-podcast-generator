@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0">
 <channel>
 <title>Cariboo Saturday Morning — Cariboo Mix</title>
 <link>https://podcast.cariboosignals.ca/</link>
@@ -12,7 +12,19 @@
 <itunes:explicit>false</itunes:explicit>
 <itunes:type>episodic</itunes:type>
 <itunes:category text="News"/>
-<lastBuildDate>Sat, 28 Mar 2026 16:33:23 GMT</lastBuildDate>
+<lastBuildDate>Sat, 04 Apr 2026 12:32:22 GMT</lastBuildDate>
+<item>
+<title>Cariboo Saturday Morning — April 4, 2026</title>
+<pubDate>Sat, 04 Apr 2026 16:00:00 GMT</pubDate>
+<description><![CDATA[<p>Cariboo Saturday Morning — April 4, 2026</p><p><strong>CBC segments featured:</strong></p><ul><li>Flights, food and finance: is economic chaos coming? (Front Burner) — Fri, 03 Apr 2026 04:10:00 EDT</li></ul><p><strong>Music:</strong></p><ul><li><a href="https://www.jamendo.com/track/1968609">Handcrafted by Fresh Body Shop [indie, pop]</a> via Jamendo (CC)</li><li><a href="https://www.jamendo.com/track/1174817">Leave and Never Look Back by madelyn munsell [pop, indie]</a> via Jamendo (CC)</li></ul><p><em>Assembled automatically from CBC Radio podcasts for the Cariboo region of BC. Music sourced from Jamendo under Creative Commons licence.</em></p>]]></description>
+<itunes:summary><![CDATA[<p>Cariboo Saturday Morning — April 4, 2026</p><p><strong>CBC segments featured:</strong></p><ul><li>Flights, food and finance: is economic chaos coming? (Front Burner) — Fri, 03 Apr 2026 04:10:00 EDT</li></ul><p><strong>Music:</strong></p><ul><li><a href="https://www.jamendo.com/track/1968609">Handcrafted by Fresh Body Shop [indie, pop]</a> via Jamendo (CC)</li><li><a href="https://www.jamendo.com/track/1174817">Leave and Never Look Back by madelyn munsell [pop, indie]</a> via Jamendo (CC)</li></ul><p><em>Assembled automatically from CBC Radio podcasts for the Cariboo region of BC. Music sourced from Jamendo under Creative Commons licence.</em></p>]]></itunes:summary>
+<itunes:image href="https://podcast.cariboosignals.ca/cariboo-saturday.png"/>
+<enclosure url="https://podcast.cariboosignals.ca/podcasts/cariboo_saturday_2026-04-04.mp3" length="23780667" type="audio/mpeg"/>
+<guid isPermaLink="false">cariboo-saturday-2026-04-04</guid>
+<itunes:duration>24:46</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+<podcast:chapters url="https://podcast.cariboosignals.ca/podcasts/cariboo_saturday_2026-04-04_chapters.json" type="application/json+chapters"/>
+</item>
 <item>
 <title>Cariboo Saturday Morning — March 28, 2026</title>
 <pubDate>Sat, 28 Mar 2026 16:00:00 GMT</pubDate>
