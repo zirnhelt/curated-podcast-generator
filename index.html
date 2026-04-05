@@ -428,7 +428,7 @@
 
             <div class="schedule-day">
                 <div class="schedule-day-name">Sunday</div>
-                <div class="schedule-theme-name">Resilient Rural Futures</div>
+                <div class="schedule-theme-name">Science, Wonder & the Natural World</div>
             </div>
 
             </div>
@@ -443,13 +443,13 @@
                         <label for="theme-filter">Filter by Theme:</label>
                         <select id="theme-filter">
                             <option value="all">All Themes</option>
-                            <option value="0">Arts, Culture & Digital Storytelling</option>
+                                                        <option value="0">Arts, Culture & Digital Storytelling</option>
                             <option value="1">Working Lands & Industry</option>
                             <option value="2">Community Tech & Governance</option>
                             <option value="3">Indigenous Lands & Innovation</option>
                             <option value="4">Wild Spaces & Outdoor Life</option>
                             <option value="5">Cariboo Voices & Local News</option>
-                            <option value="6">Resilient Rural Futures</option>
+                            <option value="6">Science, Wonder & the Natural World</option>
                         </select>
                     </div>
 
@@ -511,7 +511,7 @@
 
     <script>
         // Theme configuration
-        const themes = {"0": {"name": "Arts, Culture & Digital Storytelling", "description": "Local arts scene, festivals, creative economy, media, and cultural tech", "keywords": ["arts", "culture", "storytelling", "festival", "creative", "media", "film", "music", "gallery", "museum", "digital art", "podcast", "journalism"]}, "1": {"name": "Working Lands & Industry", "description": "Cariboo forestry, ranching, mining, agriculture \u2014 tech in the resource economy", "keywords": ["forestry", "ranching", "mining", "agriculture", "lumber", "cattle", "resource", "farming", "timber", "sawmill", "crop", "harvest", "livestock", "industrial"]}, "2": {"name": "Community Tech & Governance", "description": "SD27, CRD, Williams Lake council, municipal networks, civic innovation", "keywords": ["governance", "council", "municipal", "civic", "community", "public", "policy", "bylaw", "broadband", "network", "digital equity", "open data", "smart city", "election"]}, "3": {"name": "Indigenous Lands & Innovation", "description": "T\u015dilhqot'in, Secw\u00e9pemc, Dakelh \u2014 language, governance, land stewardship, and tech", "keywords": ["indigenous", "first nations", "aboriginal", "reconciliation", "treaty", "land rights", "sovereignty", "guardian", "stewardship", "language revitalization", "elder", "traditional knowledge", "Haida", "Tsilhqotin", "Secwepemc", "Dakelh", "tribal"]}, "4": {"name": "Wild Spaces & Outdoor Life", "description": "Chilcotin wilderness, backcountry recreation, conservation tech, wildfire and climate", "keywords": ["wilderness", "wildfire", "conservation", "wildlife", "outdoor", "recreation", "hiking", "fishing", "hunting", "backcountry", "park", "trail", "forest fire", "climate", "salmon", "grizzly", "caribou"]}, "5": {"name": "Cariboo Voices & Local News", "description": "Williams Lake, Quesnel, 100 Mile House, Bella Coola \u2014 community stories and digital equity", "keywords": ["Williams Lake", "Quesnel", "100 Mile", "Bella Coola", "Cariboo", "local", "community", "rural", "small town", "digital equity", "Chilcotin", "Prince George"]}, "6": {"name": "Resilient Rural Futures", "description": "Infrastructure, connectivity, sustainability, and preparing Cariboo communities for change", "keywords": ["infrastructure", "connectivity", "sustainability", "resilience", "rural", "broadband", "renewable", "solar", "wind", "fiber", "satellite", "preparedness", "adaptation", "transition"]}};
+        const themes = {"0": {"name": "Arts, Culture & Digital Storytelling", "description": "Local arts scene, festivals, creative economy, media, and cultural tech", "keywords": ["arts", "culture", "storytelling", "festival", "creative", "media", "film", "music", "gallery", "museum", "digital art", "podcast", "journalism"]}, "1": {"name": "Working Lands & Industry", "description": "Cariboo forestry, ranching, mining, agriculture \u2014 tech in the resource economy", "keywords": ["forestry", "ranching", "mining", "agriculture", "lumber", "cattle", "resource", "farming", "timber", "sawmill", "crop", "harvest", "livestock", "industrial"]}, "2": {"name": "Community Tech & Governance", "description": "SD27, CRD, Williams Lake council, municipal networks, civic innovation", "keywords": ["governance", "council", "municipal", "civic", "community", "public", "policy", "bylaw", "broadband", "network", "digital equity", "open data", "smart city", "election"]}, "3": {"name": "Indigenous Lands & Innovation", "description": "T\u015dilhqot'in, Secw\u00e9pemc, Dakelh \u2014 language, governance, land stewardship, and tech", "keywords": ["indigenous", "first nations", "aboriginal", "reconciliation", "treaty", "land rights", "sovereignty", "guardian", "stewardship", "language revitalization", "elder", "traditional knowledge", "Haida", "Tsilhqotin", "Secwepemc", "Dakelh", "tribal"]}, "4": {"name": "Wild Spaces & Outdoor Life", "description": "Chilcotin wilderness, backcountry recreation, conservation tech, wildfire and climate", "keywords": ["wilderness", "wildfire", "conservation", "wildlife", "outdoor", "recreation", "hiking", "fishing", "hunting", "backcountry", "park", "trail", "forest fire", "climate", "salmon", "grizzly", "caribou"]}, "5": {"name": "Cariboo Voices & Local News", "description": "Williams Lake, Quesnel, 100 Mile House, Bella Coola \u2014 community stories and digital equity", "keywords": ["Williams Lake", "Quesnel", "100 Mile", "Bella Coola", "Cariboo", "local", "community", "rural", "small town", "digital equity", "Chilcotin", "Prince George"]}, "6": {"name": "Science, Wonder & the Natural World", "description": "Scientific discovery, natural phenomena, ecology, and the curiosity behind how our world works \u2014 grounded in the landscapes and living systems of the Cariboo", "keywords": ["science", "research", "discovery", "ecology", "biology", "astronomy", "physics", "evolution", "nature", "species", "salmon", "caribou", "bat", "watershed", "wetland", "grassland", "boreal", "species at risk", "wildfire science", "citizen science", "field research", "natural history", "phenomenon", "study", "biodiversity"]}};
         const themeNames = Object.values(themes).map(t => t.name);
 
         // Store all episodes data
