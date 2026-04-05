@@ -89,7 +89,7 @@
       "name": "World Cities Day",
       "date": "10-31",
       "end_date": null,
-      "theme_tags": [2, 6],
+      "theme_tags": [2],
       "note": "UN day on sustainable urbanization — what does that mean for small cities like Williams Lake?"
     },
     {
@@ -180,35 +180,35 @@
       "name": "International Day of Cooperatives",
       "date": "07-05",
       "end_date": null,
-      "theme_tags": [6, 2],
+      "theme_tags": [2],
       "note": "Celebrates the cooperative movement — relevant to community-owned infrastructure and rural economic resilience."
     },
     {
       "name": "World Telecommunications Day",
       "date": "05-17",
       "end_date": null,
-      "theme_tags": [6, 2],
+      "theme_tags": [2],
       "note": "ITU day on connectivity and digital inclusion — broadband access remains a key challenge in rural BC."
     },
     {
       "name": "Global Recycling Day",
       "date": "03-18",
       "end_date": null,
-      "theme_tags": [6],
+      "theme_tags": [4],
       "note": "Raises awareness of recycling and waste reduction — relevant to sustainability efforts in the Cariboo."
     },
     {
       "name": "World Humanitarian Day",
       "date": "08-19",
       "end_date": null,
-      "theme_tags": [5, 6],
+      "theme_tags": [5],
       "note": "Honours humanitarian workers — a moment to recognize the volunteers and organizations that serve the Cariboo."
     },
     {
       "name": "Rural Health Day",
       "date": "11-20",
       "end_date": null,
-      "theme_tags": [5, 6],
+      "theme_tags": [5],
       "note": "National Rural Health Day — spotlighting healthcare access challenges and innovations in rural communities like ours."
     },
     {
@@ -222,7 +222,7 @@
       "name": "International Volunteer Day",
       "date": "12-05",
       "end_date": null,
-      "theme_tags": [5, 6],
+      "theme_tags": [5],
       "note": "Recognizes volunteers worldwide — Cariboo organizations from SAR to hospice run on volunteer power."
     },
     {
@@ -236,7 +236,7 @@
       "name": "Small Business Saturday",
       "date": "11-29",
       "end_date": null,
-      "theme_tags": [6, 1],
+      "theme_tags": [1],
       "note": "Celebrating small and local businesses — the backbone of Cariboo towns."
     },
     {
@@ -245,6 +245,27 @@
       "end_date": null,
       "theme_tags": [2, 5],
       "note": "Celebrates young people and their role in community — rural youth retention is a key Cariboo challenge."
+    },
+    {
+      "name": "World Science Day for Peace and Development",
+      "date": "11-10",
+      "end_date": null,
+      "theme_tags": [6],
+      "note": "UNESCO day celebrating the role of science in society and the importance of scientific literacy — a natural fit for a Sunday of wonder and discovery."
+    },
+    {
+      "name": "Darwin Day",
+      "date": "02-12",
+      "end_date": null,
+      "theme_tags": [6],
+      "note": "Marks Charles Darwin's birthday — a global celebration of scientific thinking, curiosity, and the theory of evolution that shapes our understanding of the natural world."
+    },
+    {
+      "name": "Earth Day",
+      "date": "04-22",
+      "end_date": null,
+      "theme_tags": [4, 6],
+      "note": "Annual event raising awareness of the natural world and environmental stewardship — connects the Cariboo's wild landscapes to global ecological science."
     }
   ]
 }
