@@ -59,231 +59,347 @@ def generate_index_html():
     <title>{podcast_config['title']} - {podcast_config['tagline']}</title>
     <meta name="description" content="{podcast_config['description']}">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:wght@300;400;600&display=swap');
+
+        :root {{
+            --gold:        #c8a84b;
+            --gold-light:  #e2c97e;
+            --gold-dim:    #8a6f2e;
+            --black:       #0d0b08;
+            --dark:        #1a1610;
+            --charcoal:    #2a2318;
+            --mid:         #3d3426;
+            --grey-light:  #c8c2b6;
+            --grey-mid:    #7a7063;
+            --off-white:   #ede8de;
+        }}
+
         * {{
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }}
-        
+
         body {{
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #4a5d73 0%, #2c3e50 100%);
+            font-family: 'Source Serif 4', Georgia, serif;
+            line-height: 1.7;
+            color: var(--grey-light);
+            background-color: var(--black);
+            background-image:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(200,168,75,0.015) 2px,
+                    rgba(200,168,75,0.015) 3px
+                ),
+                linear-gradient(160deg, #1a1610 0%, #0d0b08 60%, #111008 100%);
             min-height: 100vh;
             padding: 40px 20px;
         }}
-        
+
         .container {{
-            background: white;
-            border-radius: 16px;
+            background: var(--dark);
+            border: 1px solid var(--gold-dim);
+            border-radius: 4px;
             padding: 48px;
             max-width: 900px;
             margin: 0 auto;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 0 0 4px var(--black), 0 0 0 5px var(--gold-dim), 0 32px 80px rgba(0,0,0,0.8);
+            position: relative;
         }}
-        
+
+        /* Corner ornaments */
+        .container::before, .container::after {{
+            content: '✦';
+            position: absolute;
+            color: var(--gold-dim);
+            font-size: 1.1em;
+            line-height: 1;
+        }}
+        .container::before {{ top: 12px; left: 16px; }}
+        .container::after  {{ bottom: 12px; right: 16px; }}
+
         .header {{
             text-align: center;
             margin-bottom: 40px;
         }}
-        
+
         .podcast-cover {{
-            width: 200px;
-            height: 200px;
+            width: 180px;
+            height: 180px;
             margin: 0 auto 24px;
-            border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            border-radius: 4px;
+            border: 3px solid var(--gold-dim);
+            box-shadow: 0 0 0 6px var(--charcoal), 0 8px 40px rgba(0,0,0,0.6);
         }}
-        
+
         h1 {{
-            font-size: 2.5em;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.8em;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            color: var(--gold-light);
+            text-shadow: 0 2px 12px rgba(200,168,75,0.3);
             margin-bottom: 8px;
-            color: #2c3e50;
         }}
-        
+
+        h2 {{
+            font-family: 'Playfair Display', Georgia, serif;
+            color: var(--gold);
+            font-size: 1.6em;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--gold-dim);
+        }}
+
+        h3 {{
+            font-family: 'Playfair Display', Georgia, serif;
+            color: var(--gold);
+        }}
+
         .subtitle {{
             margin-bottom: 32px;
-            color: #666;
-            font-size: 1.2em;
+            color: var(--grey-mid);
+            font-size: 1.1em;
             font-style: italic;
+            letter-spacing: 0.06em;
         }}
-        
+
+        /* Divider rule */
+        .ornament-rule {{
+            text-align: center;
+            color: var(--gold-dim);
+            margin: 28px 0;
+            font-size: 0.9em;
+            letter-spacing: 0.3em;
+        }}
+
         .theme-description {{
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #2c3e50;
+            background: var(--charcoal);
+            padding: 20px 24px;
+            border-radius: 2px;
+            border-left: 3px solid var(--gold);
             margin-bottom: 32px;
+            color: var(--grey-light);
         }}
-        
+
         .hosts-section {{
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
             margin-bottom: 32px;
         }}
-        
+
         .host-card {{
-            background: #f8f9fa;
+            background: var(--charcoal);
             padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #3498db;
+            border-radius: 2px;
+            border-left: 3px solid var(--gold-dim);
+            border-bottom: 1px solid var(--mid);
         }}
-        
+
         .host-name {{
-            font-weight: bold;
-            color: #2c3e50;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 700;
+            color: var(--gold-light);
             margin-bottom: 8px;
-            font-size: 1.1em;
+            font-size: 1.05em;
         }}
-        
+
         .episodes-section {{
             margin-top: 40px;
         }}
-        
+
         .episodes-list {{
-            background: #f8f9fa;
+            background: var(--charcoal);
             padding: 20px;
-            border-radius: 8px;
+            border-radius: 2px;
+            border: 1px solid var(--mid);
             min-height: 200px;
         }}
-        
+
         .episode-item {{
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 12px 0;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid var(--mid);
         }}
-        
+
         .episode-item:last-child {{
             border-bottom: none;
         }}
-        
+
         .episode-title {{
-            font-weight: 500;
-            color: #2c3e50;
+            font-weight: 600;
+            color: var(--off-white);
         }}
-        
+
         .episode-date {{
-            color: #666;
-            font-size: 0.9em;
+            color: var(--grey-mid);
+            font-size: 0.88em;
+            white-space: nowrap;
+            margin-left: 12px;
         }}
-        
+
         .episode-audio {{
             margin-top: 8px;
         }}
-        
+
         .loading {{
             text-align: center;
-            color: #666;
+            color: var(--grey-mid);
             font-style: italic;
         }}
-        
+
         .subscribe-section {{
             text-align: center;
             margin-top: 32px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 8px;
+            padding: 24px;
+            background: var(--charcoal);
+            border-radius: 2px;
+            border: 1px solid var(--mid);
         }}
-        
+
+        .subscribe-section h3 {{
+            margin-bottom: 8px;
+        }}
+
+        .subscribe-section p {{
+            color: var(--grey-mid);
+            margin-bottom: 16px;
+        }}
+
         .podcast-apps {{
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 16px;
             margin-top: 20px;
         }}
-        
+
         .app-link {{
             display: block;
-            background: white;
-            padding: 12px;
-            border-radius: 8px;
+            background: var(--dark);
+            padding: 12px 16px;
+            border-radius: 2px;
             text-decoration: none;
-            color: #333;
-            border: 2px solid #ddd;
-            transition: all 0.3s;
+            color: var(--grey-light);
+            border: 1px solid var(--gold-dim);
+            transition: all 0.25s;
         }}
-        
+
         .app-link:hover {{
-            border-color: #3498db;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-color: var(--gold-light);
+            background: var(--charcoal);
+            box-shadow: 0 0 12px rgba(200,168,75,0.15);
         }}
-        
+
         .app-name {{
-            font-weight: bold;
+            font-weight: 600;
+            color: var(--off-white);
             margin-bottom: 4px;
         }}
-        
+
         .app-description {{
-            font-size: 0.9em;
-            color: #666;
+            font-size: 0.88em;
+            color: var(--grey-mid);
         }}
-        
+
         .rss-links {{
             text-align: center;
             margin-top: 20px;
             padding-top: 20px;
-            border-top: 1px solid #ddd;
+            border-top: 1px solid var(--mid);
         }}
-        
+
+        .rss-links h4 {{
+            color: var(--grey-mid);
+            font-weight: 400;
+            margin-bottom: 12px;
+            font-size: 0.9em;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }}
+
         .rss-button {{
             display: inline-block;
-            background: #e74c3c;
-            color: white;
-            padding: 12px 24px;
+            background: transparent;
+            color: var(--gold);
+            padding: 10px 22px;
             text-decoration: none;
-            border-radius: 6px;
-            margin: 0 8px;
+            border-radius: 2px;
+            border: 1px solid var(--gold-dim);
+            margin: 0 6px;
             font-weight: 500;
-            transition: background 0.3s;
+            transition: all 0.25s;
+            font-size: 0.95em;
         }}
-        
+
         .rss-button:hover {{
-            background: #c0392b;
+            background: var(--gold);
+            color: var(--black);
+            border-color: var(--gold);
         }}
-        
+
         .footer {{
             text-align: center;
             margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
-            color: #666;
-            font-size: 0.9em;
+            padding-top: 24px;
+            border-top: 1px solid var(--mid);
+            color: var(--grey-mid);
+            font-size: 0.88em;
         }}
-        
+
+        .footer a {{
+            color: var(--gold-dim);
+            text-decoration: none;
+        }}
+
+        .footer a:hover {{
+            color: var(--gold);
+        }}
+
         .credits {{
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
+            background: var(--charcoal);
+            padding: 20px 24px;
+            border-radius: 2px;
+            border: 1px solid var(--mid);
             margin-bottom: 20px;
         }}
-        
+
         .credits h3 {{
-            margin-bottom: 16px;
-            color: #2c3e50;
+            margin-bottom: 14px;
+            font-size: 1em;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--gold-dim);
         }}
-        
+
         .credits-content {{
             text-align: left;
             max-width: 600px;
             margin: 0 auto;
+            color: var(--grey-mid);
+            font-size: 0.9em;
+            line-height: 1.8;
         }}
 
         .schedule-section {{
-            background: #f8f9fa;
+            background: var(--charcoal);
             padding: 20px;
-            border-radius: 8px;
+            border-radius: 2px;
+            border: 1px solid var(--mid);
             margin-bottom: 32px;
         }}
 
         .schedule-section h3 {{
             margin-bottom: 16px;
-            color: #2c3e50;
             text-align: center;
+            font-size: 1em;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--gold-dim);
         }}
 
         .weekly-schedule {{
@@ -293,39 +409,46 @@ def generate_index_html():
         }}
 
         .schedule-day {{
-            background: white;
+            background: var(--dark);
             padding: 12px 8px;
-            border-radius: 6px;
+            border-radius: 2px;
             text-align: center;
-            border: 2px solid #ddd;
+            border: 1px solid var(--mid);
+            transition: border-color 0.2s;
+        }}
+
+        .schedule-day:hover {{
+            border-color: var(--gold-dim);
         }}
 
         .schedule-day-name {{
-            font-weight: bold;
-            color: #2c3e50;
-            font-size: 0.85em;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 700;
+            color: var(--gold);
+            font-size: 0.82em;
             margin-bottom: 6px;
+            letter-spacing: 0.04em;
         }}
 
         .schedule-theme-name {{
-            color: #666;
-            font-size: 0.75em;
+            color: var(--grey-mid);
+            font-size: 0.73em;
             line-height: 1.3;
         }}
 
         .filter-section {{
-            background: #e8f4f8;
-            padding: 20px;
-            border-radius: 8px;
+            background: var(--charcoal);
+            padding: 18px 20px;
+            border-radius: 2px;
             margin-bottom: 20px;
-            border-left: 4px solid #3498db;
+            border-left: 3px solid var(--gold-dim);
         }}
 
         .filter-controls {{
             display: flex;
-            gap: 16px;
+            gap: 20px;
             flex-wrap: wrap;
-            align-items: center;
+            align-items: flex-end;
         }}
 
         .filter-group {{
@@ -335,28 +458,28 @@ def generate_index_html():
         }}
 
         .filter-group label {{
-            font-weight: 500;
-            font-size: 0.9em;
-            color: #2c3e50;
+            font-size: 0.78em;
+            color: var(--gold-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }}
 
         .filter-group select {{
             padding: 8px 12px;
-            border-radius: 6px;
-            border: 2px solid #ddd;
-            background: white;
-            font-size: 0.95em;
+            border-radius: 2px;
+            border: 1px solid var(--mid);
+            background: var(--dark);
+            color: var(--grey-light);
+            font-family: inherit;
+            font-size: 0.92em;
             cursor: pointer;
-            transition: border-color 0.3s;
+            transition: border-color 0.2s;
         }}
 
-        .filter-group select:hover {{
-            border-color: #3498db;
-        }}
-
+        .filter-group select:hover,
         .filter-group select:focus {{
             outline: none;
-            border-color: #3498db;
+            border-color: var(--gold-dim);
         }}
 
         .episode-item.hidden {{
@@ -365,7 +488,11 @@ def generate_index_html():
 
         @media (max-width: 768px) {{
             .container {{
-                padding: 24px;
+                padding: 24px 20px;
+            }}
+
+            h1 {{
+                font-size: 2em;
             }}
 
             .hosts-section {{
@@ -377,7 +504,7 @@ def generate_index_html():
             }}
 
             .weekly-schedule {{
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(4, 1fr);
             }}
 
             .filter-controls {{
@@ -385,16 +512,9 @@ def generate_index_html():
                 align-items: stretch;
             }}
 
-            .filter-group {{
-                width: 100%;
-            }}
-
+            .filter-group,
             .filter-group select {{
                 width: 100%;
-            }}
-
-            h1 {{
-                font-size: 2em;
             }}
         }}
     </style>
@@ -414,25 +534,25 @@ def generate_index_html():
         <div class="hosts-section">{host_cards}
         </div>
 
-        <div class="schedule-section" style="background:#fdf8ee;border-left:4px solid #c8a84b;margin-bottom:32px;">
-            <h3 style="color:#1a120a;margin-bottom:16px;">📻 Weekend Shows — Cariboo Weekends</h3>
-            <p style="margin-bottom:16px;color:#555;">Riley and Casey also host a weekend programming block drawing from CBC Radio and Canadian indie music.</p>
+        <div class="schedule-section" style="border-left:3px solid var(--gold);margin-bottom:32px;">
+            <h3 style="margin-bottom:16px;">📻 Weekend Shows — Cariboo Weekends</h3>
+            <p style="margin-bottom:16px;color:var(--grey-mid);">Riley and Casey also host a weekend programming block drawing from CBC Radio and Canadian indie music.</p>
             <a href="cariboo-weekends.html" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-decoration:none;color:inherit;">
-                <div style="display:block;background:white;border-radius:8px;padding:16px;border:2px solid #2e7d52;transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.12)'" onmouseout="this.style.boxShadow='none'">
-                    <div style="font-weight:700;color:#0d2018;margin-bottom:4px;">Cariboo Saturday Morning</div>
-                    <div style="font-size:0.85em;color:#666;margin-bottom:8px;">Hosted by Riley &middot; Every Saturday</div>
-                    <div style="font-size:0.9em;color:#555;">News block (World Report, BC Today, Kamloops) + political programming (The Current, Front Burner).</div>
+                <div style="display:block;background:var(--dark);border-radius:2px;padding:16px;border:1px solid var(--mid);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold-dim)'" onmouseout="this.style.borderColor='var(--mid)'">
+                    <div style="font-family:'Playfair Display',Georgia,serif;font-weight:700;color:var(--gold-light);margin-bottom:4px;">Cariboo Saturday Morning</div>
+                    <div style="font-size:0.82em;color:var(--grey-mid);margin-bottom:8px;">Hosted by Riley &middot; Every Saturday</div>
+                    <div style="font-size:0.88em;color:var(--grey-light);">News block (World Report, BC Today, Kamloops) + political programming (The Current, Front Burner).</div>
                 </div>
-                <div style="display:block;background:white;border-radius:8px;padding:16px;border:2px solid #2c6e9e;transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.12)'" onmouseout="this.style.boxShadow='none'">
-                    <div style="font-weight:700;color:#0d1820;margin-bottom:4px;">Cariboo Sunday Morning</div>
-                    <div style="font-size:0.85em;color:#666;margin-bottom:8px;">Hosted by Casey &middot; Every Sunday</div>
-                    <div style="font-size:0.9em;color:#555;">News block (World Report, BC Today, Kamloops) + cultural programming (q, Unreserved).</div>
+                <div style="display:block;background:var(--dark);border-radius:2px;padding:16px;border:1px solid var(--mid);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold-dim)'" onmouseout="this.style.borderColor='var(--mid)'">
+                    <div style="font-family:'Playfair Display',Georgia,serif;font-weight:700;color:var(--gold-light);margin-bottom:4px;">Cariboo Sunday Morning</div>
+                    <div style="font-size:0.82em;color:var(--grey-mid);margin-bottom:8px;">Hosted by Casey &middot; Every Sunday</div>
+                    <div style="font-size:0.88em;color:var(--grey-light);">News block (World Report, BC Today, Kamloops) + cultural programming (q, Unreserved).</div>
                 </div>
             </a>
             <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center;">
-                <a href="cariboo-saturday-feed.xml" style="display:inline-block;background:#2e7d52;color:white;padding:8px 16px;text-decoration:none;border-radius:6px;font-size:0.85em;font-weight:500;">🎙️ Saturday RSS</a>
-                <a href="cariboo-sunday-feed.xml" style="display:inline-block;background:#2c6e9e;color:white;padding:8px 16px;text-decoration:none;border-radius:6px;font-size:0.85em;font-weight:500;">🎙️ Sunday RSS</a>
-                <a href="cariboo-weekends.html" style="color:#8b6914;font-size:0.85em;">View all weekend episodes →</a>
+                <a href="cariboo-saturday-feed.xml" style="display:inline-block;background:transparent;color:var(--gold);padding:7px 16px;text-decoration:none;border-radius:2px;font-size:0.85em;font-weight:500;border:1px solid var(--gold-dim);">🎙️ Saturday RSS</a>
+                <a href="cariboo-sunday-feed.xml" style="display:inline-block;background:transparent;color:var(--gold);padding:7px 16px;text-decoration:none;border-radius:2px;font-size:0.85em;font-weight:500;border:1px solid var(--gold-dim);">🎙️ Sunday RSS</a>
+                <a href="cariboo-weekends.html" style="color:var(--gold-dim);font-size:0.85em;text-decoration:none;">View all weekend episodes →</a>
             </div>
         </div>
 
@@ -485,10 +605,10 @@ def generate_index_html():
                 <a href="podcast-feed.xml" class="rss-button">🎙️ RSS Feed</a>
                 <a href="{podcast_config['feed_url']}" class="rss-button">📡 Direct Link</a>
             </div>
-            <div style="margin-top:24px;padding-top:20px;border-top:1px solid #ddd;">
-                <p style="margin-bottom:12px;">Also from Cariboo Signals:</p>
-                <a href="bespoke.html" style="display:inline-block;background:#3d2c4e;color:white;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:500;">🎧 Deep Dives — Long-form debates by Riley &amp; Casey</a>
-                <a href="bespoke-feed.xml" style="display:inline-block;background:#5a3fa0;color:white;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:500;margin-left:8px;">🎙️ Deep Dives RSS</a>
+            <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--mid);">
+                <p style="margin-bottom:12px;color:var(--grey-mid);font-size:0.9em;text-transform:uppercase;letter-spacing:0.1em;">Also from Cariboo Signals</p>
+                <a href="bespoke.html" style="display:inline-block;background:transparent;color:var(--gold);padding:10px 22px;text-decoration:none;border-radius:2px;font-weight:500;border:1px solid var(--gold-dim);">🎧 Deep Dives — Long-form debates by Riley &amp; Casey</a>
+                <a href="bespoke-feed.xml" style="display:inline-block;background:transparent;color:var(--gold);padding:10px 22px;text-decoration:none;border-radius:2px;font-weight:500;margin-left:8px;border:1px solid var(--gold-dim);">🎙️ Deep Dives RSS</a>
             </div>
         </div>
         
