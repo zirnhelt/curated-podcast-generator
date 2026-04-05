@@ -44,6 +44,12 @@ def generate_index_html():
 
     # Prepare themes data for JavaScript
     themes_json = json.dumps(themes_config)
+
+    # Generate theme dropdown options dynamically
+    theme_options = '\n'.join(
+        f'                            <option value="{k}">{v["name"]}</option>'
+        for k, v in themes_config.items()
+    )
     
     html_content = f'''<!DOCTYPE html>
 <html lang="en">
@@ -445,13 +451,7 @@ def generate_index_html():
                         <label for="theme-filter">Filter by Theme:</label>
                         <select id="theme-filter">
                             <option value="all">All Themes</option>
-                            <option value="0">Arts, Culture & Digital Storytelling</option>
-                            <option value="1">Working Lands & Industry</option>
-                            <option value="2">Community Tech & Governance</option>
-                            <option value="3">Indigenous Lands & Innovation</option>
-                            <option value="4">Wild Spaces & Outdoor Life</option>
-                            <option value="5">Cariboo Voices & Local News</option>
-                            <option value="6">Resilient Rural Futures</option>
+                            {theme_options}
                         </select>
                     </div>
 
