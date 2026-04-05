@@ -1,0 +1,246 @@
+{
+  "episode": {
+    "date": "2026-04-05",
+    "formatted_date": "Sunday, April 05, 2026",
+    "theme": "Resilient Rural Futures",
+    "title": "Cariboo Signals - Resilient Rural Futures",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Resilient Rural Futures.</p><p><b>NEWS ROUNDUP:</b> We break down [Hackaday] The Smallest Dialup ISP is a Raspberry Pi and a Prison Phone and [XDA Developers] A single mini PC replaced my Raspberry Pi cluster and nearly cut my power use in half, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> When precision agriculture technology works effectively, how should rural farmers engage with the data ownership and platform dependency structures that come with it? Topics include: Data ownership and control in precision agriculture platforms, The asymmetry between farmer data generation and platform value extraction, Cooperative versus corporate models for agricultural data governance, Technology dependency risks and platform obsolescence in rural contexts, Practical negotiation strategies for rural technology adoption.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://quesnelfoundation.ca\">Quesnel Community Foundation</a></p><p><b>Sources discussed:</b></p><ul><li>Hackaday: <a href=\"https://hackaday.com/2026/04/04/the-smallest-dialup-isp-is-a-raspberry-pi-and-a-prison-phone/\">[Hackaday] The Smallest Dialup ISP is a Raspberry Pi and a P...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/mini-pc-replaced-raspberry-pi-cluster-cut-power-use-half/\">[XDA Developers] A single mini PC replaced my Raspberry Pi c...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/04/04/health/post-icu-syndrome.html\">[NYT Top Stories] For Many Patients Leaving the I.C.U., the ...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/04/05/opinion/estrogen-hormone-therapy-patches-shortage.html\">[NYT Top Stories] Women Need Treatment for Hot Flashes. Why ...</a></li><li>NYT Business: <a href=\"https://www.nytimes.com/2026/04/04/business/media/orion-samuelson-dead.html\">[NYT Business] Orion Samuelson, the Elvis Presley of Agricul...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Quartz: <a href=\"https://qz.com/is-eqt-well-positioned-to-gain-on-mounting-clean-energy-demand\">[Quartz] Is EQT Well-Positioned to Gain on Mounting Clean En...</a></li><li>How-To Geek: <a href=\"https://www.howtogeek.com/private-homelab-put-these-apps-at-the-top-of-your-list/\">[How-To Geek] Want a private homelab? Put these 12 apps at t...</a></li><li>How-To Geek: <a href=\"https://www.howtogeek.com/my-single-homelab-server-became-a-nightmare-so-i-split-it-into-eight/\">[How-To Geek] My single homelab server became a nightmare, s...</a></li><li>ZDNet: <a href=\"https://www.zdnet.com/article/adjusting-router-antenna-fix-wi-fi-problems/\">[ZDNet] Adjusting my router's antenna fixed my Wi-Fi problem...</a></li><li>InsideEVs: <a href=\"https://insideevs.com/news/792068/nissan-rogue-hybrid-e-power/\">[InsideEVs] Nissan's Turnaround Hinges On This Unique Hybrid...</a></li><li>The Marginalian: <a href=\"https://www.themarginalian.org/2026/04/04/mandelbrot-fractals-chaos/\">[The Marginalian] The Pattern Inside the Pattern: Fractals, ...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/wine-11-6-just-made-modding-windows-games-linux-easier/\">[XDA Developers] Wine 11.6 just made modding Windows games o...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/04/04/tracking-parts-box-usage-with-stickers/\">[Hackaday] Tracking Parts Box Usage With Stickers</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/04/04/exposing-a-radiation-hardened-2-4-ghz-wi-fi-receiver-to-500-kilograys/\">[Hackaday] Exposing a Radiation-Hardened 2.4 GHz Wi-Fi Recei...</a></li><li>Neowin: <a href=\"https://www.neowin.net/news/incredible-ai-mod-helps-unsupported-intel-cpu-chipset-motherboard-bypass-into-windows-11/\">[Neowin] Incredible AI mod helps unsupported Intel CPU, chip...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/04/04/scrap-vintage-camera-goes-digital-with-scanner-parts/\">[Hackaday] Scrap Vintage Camera Goes Digital with Scanner Pa...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/the-prettiest-sea-slugs-use-crystals-in-their-skin-as-pixels-of-color\">[ScienceAlert] The Prettiest Sea Slugs Use Crystals in Their...</a></li><li>TechCrunch: <a href=\"https://techcrunch.com/2026/04/04/unpacking-peter-thiels-big-bet-on-solar-powered-cow-collars/\">[TechCrunch] Peter Thiel’s big bet on solar-powered cow coll...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-opus-4-6<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-04-05T03:43:18.911877-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-opus-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Quartz] Is EQT Well-Positioned to Gain on Mounting Clean Energy Demand?",
+          "url": "https://qz.com/is-eqt-well-positioned-to-gain-on-mounting-clean-energy-demand",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-04-05T00:00:11+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] Want a private homelab? Put these 12 apps at the top of your list",
+          "url": "https://www.howtogeek.com/private-homelab-put-these-apps-at-the-top-of-your-list/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-04-04T18:00:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] The Smallest Dialup ISP is a Raspberry Pi and a Prison Phone",
+          "url": "https://hackaday.com/2026/04/04/the-smallest-dialup-isp-is-a-raspberry-pi-and-a-prison-phone/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-04-05T02:00:59+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[XDA Developers] A single mini PC replaced my Raspberry Pi cluster and nearly cut my power use in half",
+          "url": "https://www.xda-developers.com/mini-pc-replaced-raspberry-pi-cluster-cut-power-use-half/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-04-05T00:00:22+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[How-To Geek] My single homelab server became a nightmare, so I split it into eight",
+          "url": "https://www.howtogeek.com/my-single-homelab-server-became-a-nightmare-so-i-split-it-into-eight/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-04-04T19:05:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ZDNet] Adjusting my router's antenna fixed my Wi-Fi problems",
+          "url": "https://www.zdnet.com/article/adjusting-router-antenna-fix-wi-fi-problems/",
+          "source": "ZDNet",
+          "ai_score": 0,
+          "date_published": "2026-04-04T19:49:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[InsideEVs] Nissan's Turnaround Hinges On This Unique Hybrid System. It's Nothing Like Toyota's",
+          "url": "https://insideevs.com/news/792068/nissan-rogue-hybrid-e-power/",
+          "source": "InsideEVs",
+          "ai_score": 0,
+          "date_published": "2026-04-04T14:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Marginalian] The Pattern Inside the Pattern: Fractals, the Hidden Order Beneath Chaos, and the Story of the Refugee Who Revolutionized the Mathematics of Reality",
+          "url": "https://www.themarginalian.org/2026/04/04/mandelbrot-fractals-chaos/",
+          "source": "The Marginalian",
+          "ai_score": 0,
+          "date_published": "2026-04-04T13:50:44+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] For Many Patients Leaving the I.C.U., the Struggle Has Only Just Begun",
+          "url": "https://www.nytimes.com/2026/04/04/health/post-icu-syndrome.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-04-04T09:01:04+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[XDA Developers] Wine 11.6 just made modding Windows games on Linux easier, and Proton could be next",
+          "url": "https://www.xda-developers.com/wine-11-6-just-made-modding-windows-games-linux-easier/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-04-05T00:46:57+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Tracking Parts Box Usage With Stickers",
+          "url": "https://hackaday.com/2026/04/04/tracking-parts-box-usage-with-stickers/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-04-05T05:00:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] Women Need Treatment for Hot Flashes. Why Is This So Hard?",
+          "url": "https://www.nytimes.com/2026/04/05/opinion/estrogen-hormone-therapy-patches-shortage.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-04-05T05:00:05+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Hackaday] Exposing a Radiation-Hardened 2.4 GHz Wi-Fi Receiver to 500 Kilograys",
+          "url": "https://hackaday.com/2026/04/04/exposing-a-radiation-hardened-2-4-ghz-wi-fi-receiver-to-500-kilograys/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-04-04T23:00:17+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Neowin] Incredible AI mod helps unsupported Intel CPU, chipset, motherboard bypass into Windows 11",
+          "url": "https://www.neowin.net/news/incredible-ai-mod-helps-unsupported-intel-cpu-chipset-motherboard-bypass-into-windows-11/",
+          "source": "Neowin",
+          "ai_score": 0,
+          "date_published": "2026-04-04T20:20:01+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Scrap Vintage Camera Goes Digital with Scanner Parts",
+          "url": "https://hackaday.com/2026/04/04/scrap-vintage-camera-goes-digital-with-scanner-parts/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-04-04T20:00:26+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] The Prettiest Sea Slugs Use Crystals in Their Skin as 'Pixels' of Color",
+          "url": "https://www.sciencealert.com/the-prettiest-sea-slugs-use-crystals-in-their-skin-as-pixels-of-color",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-04-04T19:00:22+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Open Graphics Card Powers Cyberpunk “Laptop”",
+          "url": "https://hackaday.com/2026/04/04/open-graphics-card-powers-cyberpunk-laptop/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-04-04T17:00:27+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Business] Orion Samuelson, the Elvis Presley of Agricultural Radio, Dies at 91",
+          "url": "https://www.nytimes.com/2026/04/04/business/media/orion-samuelson-dead.html",
+          "source": "NYT Business",
+          "ai_score": 0,
+          "date_published": "2026-04-04T14:29:06+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[ScienceAlert] New 'Unifying Theory' May Explain How Alzheimer's Emerges in The Brain",
+          "url": "https://www.sciencealert.com/new-unifying-theory-may-explain-how-alzheimers-emerges-in-the-brain",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-04-04T14:00:57+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Resilient Rural Futures",
+      "articles": [
+        {
+          "title": "[TechCrunch] Peter Thiel’s big bet on solar-powered cow collars",
+          "url": "https://techcrunch.com/2026/04/04/unpacking-peter-thiels-big-bet-on-solar-powered-cow-collars/",
+          "source": "TechCrunch",
+          "ai_score": 0,
+          "date_published": "2026-04-04T21:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "When precision agriculture technology works effectively, how should rural farmers engage with the data ownership and platform dependency structures that come with it?",
+        "riley_position": "Precision agriculture platforms deliver genuine productivity and health monitoring benefits that rural ranchers need now, and while data ownership concerns are valid, industry frameworks and voluntary standards can address them without delaying adoption.",
+        "riley_key_evidence": [
+          "Virtual fencing eliminates need for physical mustering on unfenced range, enabling better pasture rotation and land outcomes",
+          "Real-time health monitoring catches sick animals early, preventing losses",
+          "Aggregated data used to train algorithms benefits all users through improved system accuracy"
+        ],
+        "casey_position": "The asymmetric and opaque data ownership structures in precision agriculture platforms mirror colonial extraction patterns, and farmers need genuine data sovereignty through cooperative ownership models rather than relying on voluntary industry frameworks.",
+        "casey_key_evidence": [
+          "Equipment manufacturers have used aggregated farmer data to inform pricing, parts availability, and resale value decisions that benefited the company over individual farmers",
+          "European agricultural cooperatives in Netherlands and Denmark have developed jointly-owned data platforms where farmers collectively own the analytics layer",
+          "Voluntary frameworks negotiated between industry and tech companies constitute 'a polite request' rather than true sovereignty"
+        ],
+        "resolution": "Riley and Casey found substantive agreement on practical steps forward: industry associations should develop data rights checklists as adoption standards, farmers should negotiate collectively rather than individually, and the key question should be 'what happens when economics change?' rather than just 'does this work?' They both rejected both techno-optimism and over-cautious avoidance.",
+        "topics_covered": [
+          "Data ownership and control in precision agriculture platforms",
+          "The asymmetry between farmer data generation and platform value extraction",
+          "Cooperative versus corporate models for agricultural data governance",
+          "Technology dependency risks and platform obsolescence in rural contexts",
+          "Practical negotiation strategies for rural technology adoption"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}

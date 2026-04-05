@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] Only 9% of global firms are ready to handle AI-d",
       "[TechRadar] Nvidia's Earth-2 models, including 'climate in a",
       "[TechRadar] When confidence becomes a risk: The gap between ",
       "[TechRadar] Three high-risk AI vulnerabilities discovered in",
@@ -10,7 +9,8 @@
       "[TechRadar] 'Nuclear energy is the essential backbone for th",
       "[Hackaday] Training a Transformer with 1970s-era Technology",
       "[TechRadar] 'Weekend work increased more than 40%': How AI i",
-      "AI"
+      "AI",
+      "[TechCrunch] Peter Thiel\u2019s big bet on solar-powered cow coll"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -25,13 +25,8 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-03-31",
-        "clue": "tech-optimism:x \u2014 conceded that technology alone doesn't solve structural problems",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-04-03",
-        "clue": "structural-lens:+ \u2014 Shifted focus upstream to governance and funding as real bottlenecks",
+        "date": "2026-04-05",
+        "clue": "tech-optimism:x \u2014 Conceded that procurement/terms matter more than product",
         "occurrences": 2
       },
       {
@@ -70,7 +65,13 @@
         "occurrences": 1
       }
     ],
-    "core_memories": []
+    "core_memories": [
+      {
+        "formed": "2026-04-05",
+        "signal": "structural-lens:+ \u2014 Moved from feature-based to systemic power analysis",
+        "occurrences": 3
+      }
+    ]
   },
   "casey": {
     "consistent_interests": [
@@ -131,13 +132,18 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-04",
-        "clue": "pilot-skepticism:+ \u2014 deepened conviction that 18-month grants structurally fail",
-        "occurrences": 1
+        "date": "2026-04-05",
+        "clue": "pilot-skepticism:+ \u2014 Deepened skepticism from tech failure to institutional dependency",
+        "occurrences": 2
       },
       {
         "date": "2026-04-04",
         "clue": "structural-lens:x \u2014 conceded old ad model wasn't more independent",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-04-05",
+        "clue": "community-trust:~ \u2014 Shifted from individual caution to collective bargaining as solution",
         "occurrences": 1
       }
     ],

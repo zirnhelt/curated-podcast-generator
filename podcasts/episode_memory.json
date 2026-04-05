@@ -1,24 +1,4 @@
 {
-  "2026-03-14": {
-    "timestamp": 1773492844.928409,
-    "topics": [
-      "[Williams Lake Tribune] Hundreds of troops train west of Wil",
-      "[Williams Lake Tribune] Williams Lake students race duct-tap",
-      "[100 Mile Free Press] Mieke Reelick",
-      "[Williams Lake Tribune] Rezoning approved for building 60-si",
-      "[Williams Lake Tribune] Infant from Fort St. John spends 240",
-      "Rebuilding trust in AI with responsible adoption",
-      "[100 Mile Free Press] 100 Mile House ER closed for second st",
-      "[Quesnel Cariboo Observer] 150 people died in B.C. in Januar"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "connectivity"
-    ],
-    "date": "2026-03-14"
-  },
   "2026-03-15": {
     "timestamp": 1773579349.786136,
     "topics": [
@@ -437,5 +417,25 @@
       "Indigenous tech"
     ],
     "date": "2026-04-04"
+  },
+  "2026-04-05": {
+    "timestamp": 1775385798.923281,
+    "topics": [
+      "[Quartz] Is EQT Well-Positioned to Gain on Mounting Clean En",
+      "[How-To Geek] Want a private homelab? Put these 12 apps at t",
+      "[Hackaday] The Smallest Dialup ISP is a Raspberry Pi and a P",
+      "[XDA Developers] A single mini PC replaced my Raspberry Pi c",
+      "[How-To Geek] My single homelab server became a nightmare, s",
+      "[TechCrunch] Peter Thiel\u2019s big bet on solar-powered cow coll",
+      "AI",
+      "technology adoption"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech",
+      "connectivity"
+    ],
+    "date": "2026-04-05"
   }
 }
