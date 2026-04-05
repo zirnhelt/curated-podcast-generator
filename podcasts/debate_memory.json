@@ -772,5 +772,31 @@
       "Civic tech tools and their sustainability challenges in rural contexts",
       "Community foundation endowment models as durable funding alternatives"
     ]
+  },
+  "2026-04-05": {
+    "timestamp": 1775385800.513167,
+    "date": "2026-04-05",
+    "theme": "Resilient Rural Futures",
+    "central_question": "When precision agriculture technology works effectively, how should rural farmers engage with the data ownership and platform dependency structures that come with it?",
+    "riley_position": "Precision agriculture platforms deliver genuine productivity and health monitoring benefits that rural ranchers need now, and while data ownership concerns are valid, industry frameworks and voluntary standards can address them without delaying adoption.",
+    "riley_key_evidence": [
+      "Virtual fencing eliminates need for physical mustering on unfenced range, enabling better pasture rotation and land outcomes",
+      "Real-time health monitoring catches sick animals early, preventing losses",
+      "Aggregated data used to train algorithms benefits all users through improved system accuracy"
+    ],
+    "casey_position": "The asymmetric and opaque data ownership structures in precision agriculture platforms mirror colonial extraction patterns, and farmers need genuine data sovereignty through cooperative ownership models rather than relying on voluntary industry frameworks.",
+    "casey_key_evidence": [
+      "Equipment manufacturers have used aggregated farmer data to inform pricing, parts availability, and resale value decisions that benefited the company over individual farmers",
+      "European agricultural cooperatives in Netherlands and Denmark have developed jointly-owned data platforms where farmers collectively own the analytics layer",
+      "Voluntary frameworks negotiated between industry and tech companies constitute 'a polite request' rather than true sovereignty"
+    ],
+    "resolution": "Riley and Casey found substantive agreement on practical steps forward: industry associations should develop data rights checklists as adoption standards, farmers should negotiate collectively rather than individually, and the key question should be 'what happens when economics change?' rather than just 'does this work?' They both rejected both techno-optimism and over-cautious avoidance.",
+    "topics_covered": [
+      "Data ownership and control in precision agriculture platforms",
+      "The asymmetry between farmer data generation and platform value extraction",
+      "Cooperative versus corporate models for agricultural data governance",
+      "Technology dependency risks and platform obsolescence in rural contexts",
+      "Practical negotiation strategies for rural technology adoption"
+    ]
   }
 }
