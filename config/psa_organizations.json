@@ -117,7 +117,7 @@
       "short_name": "Conservation Society",
       "description": "Environmental education nonprofit — Water Wise, Waste Wise, Skates for All, and school field programs since 1996",
       "website": "conservationsociety.ca",
-      "weekdays": [4],
+      "weekdays": [4, 6],
       "tags": ["conservation", "environmental education", "water", "waste reduction"]
     },
     "wl-hospice": {
