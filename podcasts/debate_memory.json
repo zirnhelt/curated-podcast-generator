@@ -798,5 +798,31 @@
       "Technology dependency risks and platform obsolescence in rural contexts",
       "Practical negotiation strategies for rural technology adoption"
     ]
+  },
+  "2026-04-06": {
+    "timestamp": 1775473478.904759,
+    "date": "2026-04-06",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "central_question": "How should rural and Indigenous communities build digital cultural infrastructure that serves their storytelling needs while avoiding both corporate platform gatekeeping and unsustainable technological dependence?",
+    "riley_position": "Current platform algorithms are inherently hostile to place-based community storytelling, so communities should build outside these systems using open-source tools and community-owned hosting, which enables sustainable experiential digital storytelling.",
+    "riley_key_evidence": [
+      "Photographic archives and oral histories don't generate engagement signals needed for platform visibility",
+      "The Doig River First Nation built a language and culture archive from community initiative without major institutional partnership",
+      "Open-source tools and publicly documented build processes create better durability than contractor-built custom experiences"
+    ],
+    "casey_position": "While platform gatekeeping is problematic, building independent infrastructure requires sustained capacity and governance that most small communities lack, and many promising digital cultural projects have been abandoned due to technology lifecycle obsolescence and one-person dependency.",
+    "casey_key_evidence": [
+      "Mukurtu platform and Inuit Tapiriit Kanatami language tools required university partnerships or national funding infrastructure",
+      "Doig River project faced years of sustainability uncertainty and founder burnout risks",
+      "Multiple BC heritage projects became orphaned when underlying technologies (like Flash Player) became obsolete"
+    ],
+    "resolution": "Riley and Casey reached substantial agreement that the current platform architecture is structurally harmful to rural/Indigenous storytelling and that building outside platforms with Indigenous co-design (not just consultation) is necessary, though Casey remains cautious about infrastructure-first approaches without proven sustainability models.",
+    "topics_covered": [
+      "Ireland's government digital wallet age verification system and identity gatekeeping implications",
+      "Algorithmic attention economics as a form of cultural gatekeeping versus government-mandated identity systems",
+      "Data sovereignty and Indigenous control over cultural archival materials",
+      "Regional digital cultural infrastructure co-op model with shared hosting and technical capacity",
+      "Digital preservation sustainability and technology obsolescence risks for cultural projects"
+    ]
   }
 }

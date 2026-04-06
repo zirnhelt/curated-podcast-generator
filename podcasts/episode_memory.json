@@ -1,23 +1,4 @@
 {
-  "2026-03-15": {
-    "timestamp": 1773579349.786136,
-    "topics": [
-      "[Hackaday] This Printed Zipper Repair Requires No Unsewing",
-      "[Hackaday] Building a Neatly Framed Word Clock",
-      "[Hackaday] GNU Radio Gets a Makeover With PimpMyGRC",
-      "[How-To Geek] Stop treating your UPS like a dumb battery: 4 ",
-      "[ScienceAlert] Weight-Loss Drugs Could Cost Just $3 a Month ",
-      "[Quesnel Cariboo Observer] Rezoning approved for building 60",
-      "[Quesnel Cariboo Observer] Infant from Fort St. John spends ",
-      "[How-To Geek] These 6 Windows background processes might be "
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "connectivity"
-    ],
-    "date": "2026-03-15"
-  },
   "2026-03-16": {
     "timestamp": 1773666831.837616,
     "topics": [
@@ -437,5 +418,25 @@
       "connectivity"
     ],
     "date": "2026-04-05"
+  },
+  "2026-04-06": {
+    "timestamp": 1775473477.279032,
+    "topics": [
+      "[Williams Lake Tribune] QUIZ: A celebration of Easter",
+      "[Business Insider] I quit tech, bought 22 acres, and didn't ",
+      "[Williams Lake Tribune] Adam Sandler spotted in B.C. while f",
+      "[Williams Lake Tribune] Robert Barron column: I hope I get t",
+      "[Williams Lake Tribune] Langford diver goes deep in the Saan",
+      "[Engadget] Ireland is testing out a digital wallet that cond",
+      "[Open Culture] Watch the Titanic and Lusitania Sink in Real ",
+      "[fundsforNGOs] Curated List of Funding Opportunities in Agri"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-04-06"
   }
 }

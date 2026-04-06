@@ -1,0 +1,117 @@
+# Cariboo Signals Podcast Script - 2026-04-06
+# Theme: Arts, Culture & Digital Storytelling
+# Generated: 2026-04-06 04:04:37 PDT
+
+**RILEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. It's Monday, April 6th, 2026. Speaking to you from the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations here in the Cariboo region. Today's theme is Arts, Culture & Digital Storytelling — I'm Riley.
+
+**CASEY:** And I'm Casey. A lot to unpack today around how digital tools are reshaping who gets to tell stories, who controls access to them, and what that means for communities like ours. Quick weather note — out at Horsefly Lake it's sitting at 6 degrees this morning under some overcast skies. High of 18 is on the way, but there's a slight chance of snow showers later, so if you're heading into Williams Lake today, pack a layer.
+
+**RILEY:** Let's get into the week's news.
+
+---
+
+**NEWS ROUNDUP**
+
+**RILEY:** First Nations leaders in B.C. are calling the provincial government's proposed suspension of DRIPA — the Declaration on the Rights of Indigenous Peoples Act — "asinine." DRIPA was meant to align provincial law with the UN Declaration on the Rights of Indigenous Peoples, and any rollback would directly undermine Indigenous communities' ability to govern land, resources, and — critically for today's theme — their own cultural data and heritage. On the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations, this isn't abstract policy. It's about who has a seat at the table when decisions get made.
+
+**CASEY:** We covered the Aboriginal Title bill two weeks ago — this DRIPA development is the other shoe dropping, and it lands hard.
+
+**CASEY:** Over in Quesnel, the Cariboo Observer is running a historical feature on the Occidental Hotel — a piece of the town's layered past that might have been lost if not for community journalism keeping that archive alive. It's a good reminder that local memory-keeping is its own form of cultural infrastructure.
+
+**RILEY:** And it raises a real question about what happens to those archives when the paper closes — a conversation that's still very much unresolved.
+
+**RILEY:** A 100 Mile House man is proposing an alternate route for the Yellowhead Copper Mine's power line, citing concerns about environmental and community impact. It's a sign that infrastructure proposals in the Cariboo are increasingly meeting organized, informed pushback — communities aren't just waiting to be told what's happening.
+
+**CASEY:** Organized local opposition with a concrete counter-proposal — that's exactly the kind of civic engagement that makes infrastructure decisions better.
+
+**CASEY:** Canadian Armed Forces wrapped up a large-scale training exercise west of Williams Lake. The region's geography makes it valuable for that kind of operational training, though details on what the exercise involved remain limited.
+
+**RILEY:** Worth watching — and worth asking questions about when more information becomes available.
+
+**RILEY:** Interior Health is reporting active outbreaks at six care facilities across the Interior Health region. That's a significant public health alert — if you have family in a care home locally, it's worth checking in directly with the facility.
+
+**CASEY:** Health communication infrastructure — getting accurate information out fast to rural families — is its own ongoing challenge, and this is a reminder of the stakes.
+
+**CASEY:** On a lighter note, Adam Sandler has been spotted in B.C. while filming a new movie. Details are still sparse on the location, but film productions like this can bring real economic activity to rural areas — and sometimes renewed attention to B.C. landscapes and stories.
+
+**RILEY:** Though B.C. tends to play the role of somewhere else entirely — we're everybody's backdrop, rarely our own protagonist.
+
+**RILEY:** The Williams Lake Tribune's Robert Barron column this week is a personal reflection on hoping to live long enough to watch humans walk on Mars. It's the kind of local voice that puts a human face on the biggest questions out there.
+
+**CASEY:** Good opinion writing does that — it closes the distance between the cosmic and the personal. Nice piece.
+
+**RILEY:** That's the news. Let's take a moment to shine a light on someone doing important work right here in the Cariboo.
+
+---
+
+**COMMUNITY SPOTLIGHT**
+
+**CASEY:** April is National Poetry Month, and there's no better time to talk about the Central Cariboo Arts & Culture Society. CCACS runs the Arts Centre in Williams Lake, administers grants for local artists and arts organizations, and puts on the beloved Performances in the Park summer concert series. If you're a writer, a visual artist, a musician, or someone who just loves showing up to see your neighbours do something creative — this is your organization. They're actively supporting local writers and poets this month with programming and resources. Check them out at centralcaribooarts.com.
+
+**RILEY:** The Arts Centre genuinely punches above its weight for a community our size — it's one of those anchors that makes Williams Lake feel like a place, not just a dot on a map.
+
+**RILEY:** Now let's dig into something that's been sitting at the edge of all our arts and culture conversations — the question of who gets to be in the room when digital platforms decide how culture gets shared, accessed, and protected.
+
+---
+
+**DEEP DIVE: CARIBOO CONNECTIONS — Arts, Culture & Digital Storytelling**
+
+**RILEY:** We've spent the last several weeks on this theme circling around infrastructure, funding sustainability, AI tools, and data sovereignty. Good conversations — but there's a thread we haven't pulled on directly, which is platform gatekeeping and audience access. Who actually gets to see the stories being told? Ireland just announced a trial of a government digital wallet that includes age verification for social media platforms — before you can access certain content, the system checks your identity against official documents. And it got me thinking: what does that kind of architecture mean not just for teenagers trying to get on Instagram, but for communities like ours trying to reach audiences at all?
+
+**CASEY:** I want to start with what Ireland is actually doing, because it's worth being precise. The government digital wallet can store a birth certificate or driving licence, and the age verification layer draws on that to confirm a user meets platform thresholds. The stated goal is protecting young people from harmful content — which is a real and serious concern. But the mechanism is essentially a national identity layer sitting between citizens and their ability to participate in digital public life. That has implications well beyond parental controls.
+
+**RILEY:** The protection case is genuine, though. Platforms have done a pretty dismal job of self-regulating around youth exposure to harmful content — that's well-documented at this point. And Ireland is at least trying to build a privacy-preserving version of this — the wallet is designed so the platform only learns that you're old enough, not who you are specifically. That's a meaningful architectural choice.
+
+**CASEY:** In theory. The execution of "privacy-preserving" identity systems has a mixed track record in practice — what's designed to be minimal in scope has a way of expanding over time, especially once the infrastructure exists and governments change. But set the technical implementation aside for a moment and ask the community impact question: what does it mean when accessing digital cultural space requires verified government documentation? Rural communities, Indigenous communities, people who are undocumented, people who don't drive — all of these groups interact differently with government ID infrastructure. The population that gets excluded when platforms become identity-gated isn't random. It skews toward people already underserved by those platforms.
+
+**RILEY:** That's a real concern, and I don't want to brush past it. But here's the other side of that same coin — right now, platforms are gated in a different way. They're gated by algorithmic attention economics. A community artist in Horsefly producing beautiful work about the Cariboo landscape competes with the same recommendation engine as influencers with million-dollar production budgets. The current system isn't neutral either. The question is which failure mode we're more worried about.
+
+**CASEY:** Okay, that's a genuinely interesting reframe. You're saying the choice isn't between a gated system and an open system — it's between two different gatekeeping architectures.
+
+**RILEY:** Exactly. And the current gatekeeping architecture — engagement optimization, ad revenue, reach metrics — is systematically hostile to the kind of slow, place-based, community-rooted storytelling that actually describes most of what happens in communities like ours. A photographic archive of the Quesnel waterfront from 1920 doesn't generate the engagement signals that keep it visible. Local oral history recordings don't go viral. The algorithm doesn't know what to do with Dakelh language content — there's no training signal, no advertising category, no monetization pathway.
+
+**CASEY:** And yet those stories exist and matter enormously. The Occidental Hotel piece in the Cariboo Observer this week is a perfect example — that's community memory work. Low clicks, high cultural value. The platforms have no mechanism to distinguish between those two things. But I want to push on something: even if we accept that the current platform architecture is broken for communities like ours, the alternative you're gesturing at — building outside those platforms — has its own track record, and it isn't uniformly encouraging.
+
+**RILEY:** What do you mean?
+
+**CASEY:** I mean that the communities which have had the most success building their own digital cultural infrastructure — their own archives, language preservation tools, broadcast capacity — have almost always needed either significant grant funding, academic partnerships, or both. The Mukurtu platform, which Indigenous communities in various countries have used for digital cultural archives, emerged from a multi-year partnership between First Nations communities and a research university. It's genuinely community-controlled, but it took sustained institutional collaboration to build. What does that look like for a smaller community here in the Tŝilhqot'in territory without those connections?
+
+**RILEY:** The scale problem is real. But I'd push back on the framing that meaningful work requires institutional partnership from the start. There are examples of community-led digital storytelling built with modest resources — the key variable often seems to be whether there's a committed local champion who can maintain momentum, not whether a university is attached. Some First Nations communities in B.C. have built language and culture archives that started very small and grew through community initiative, without major institutional backing at the outset.
+
+**CASEY:** Those projects are genuinely impressive. But the honest version of those stories also includes years of sustainability uncertainty, periods where one person's burnout nearly ended the whole project, and ongoing questions about who maintains the infrastructure when the founding champion moves on. We touched on that exact vulnerability when we talked about local journalism — it applies to cultural archives even more acutely, because the content itself is often irreplaceable. At least when a newspaper closes, the back issues still exist somewhere. When an underfunded community archive loses its host or its administrator, the files can just be gone.
+
+**RILEY:** Which brings us back to the endowment question. The model that actually works for cultural infrastructure long-term isn't grant-dependent and isn't one-person-dependent — it's capitalized well enough to survive transitions. The Central Cariboo Arts & Culture Society is interesting in that context because it's been operating for decades. It's not a flash-in-the-pan pilot. What does that longevity teach us about what actually sticks?
+
+**CASEY:** It teaches us that embedding an arts organization in a community's identity — not just its funding cycle — creates a different kind of durability. CCACS runs Performances in the Park, which means it's visible, it's beloved, it's the thing people show up for on summer evenings. That social capital is a form of institutional resilience that grant applications can't buy. The question is whether the same principle applies to digital storytelling infrastructure. Can a digital archive become as embedded in community life as a summer concert series?
+
+**RILEY:** I think it can, but it requires a different design philosophy than most digital cultural projects apply. Most archives are built to be comprehensive and permanent — the archival instinct. What makes something beloved and embedded is usually the opposite: it's participatory, it's updated, it creates moments of shared recognition. The Open Culture feature on the Titanic and Lusitania sinking in real time is a useful example of what I mean — it's not a static historical document, it's an experiential encounter with history that people actually watch together and talk about afterward. That design philosophy — history as experience, not just record — is something rural cultural storytelling could genuinely learn from.
+
+**CASEY:** I want to sit with that for a second, because there's a version of it I find genuinely exciting. What if the story of the Occidental Hotel wasn't just a newspaper feature but an audio walk through what Quesnel's waterfront sounded like in 1920? What if documentation of the Horsefly River included a temporal layer — you could see what the river looked like year by year over a century? You could feel the changes rather than just read about them.
+
+**RILEY:** Now you're doing the thing I usually do.
+
+**CASEY:** I contain multitudes. But here's my honest concern with that direction: experiential digital storytelling of that calibre is expensive to build well, and these projects have a troubling tendency to become orphaned. You get a beautiful interactive experience funded by a centennial grant, it wins some awards, gets featured in a press release — and then a few years later, the platform it was built on is obsolete, the hosting lapses, and it's gone. I've watched this happen with multiple heritage projects in B.C. The technology lifecycle is actively hostile to permanence.
+
+**RILEY:** Which is an argument for open standards and community-owned hosting, not against experiential design. If you build on open-source tools, host on infrastructure you control, and document your build process publicly — that's a fundamentally different durability profile than a contractor-built custom experience only the original developer understands.
+
+**CASEY:** The capacity to actually do that — to manage your own hosting, use open-source tools competently, document builds — that's a real skills requirement that most small arts organizations and community archives don't currently have. We're back to the infrastructure and capacity problem. Which brings me to something concrete worth raising as a community question: is there a case for a regional digital cultural infrastructure co-op? Not one organization owning everything, but shared hosting, shared technical capacity, shared archival standards — so the Cariboo Observer's historical photo archive, Tŝilhqot'in cultural materials, and CCACS event recordings can all benefit from the same backbone without each organization needing to hire its own systems administrator.
+
+**RILEY:** That's a model that exists in other sectors — agricultural co-ops, credit unions, rural broadband co-ops. The logic translates directly. You get shared fixed costs, retained community ownership, and resilience through distribution. The challenge is governance: who decides what's in scope, how data sovereignty is maintained for Indigenous cultural materials versus public historical records, and how disputes about preservation priorities get resolved.
+
+**CASEY:** And governance is where these things get either really right or catastrophically wrong. The Indigenous data sovereignty piece is non-negotiable — whatever regional infrastructure gets built has to have a tiered access model from the ground up, not bolted on after the fact. Secwépemc, Tŝilhqot'in, and Dakelh communities need to be co-designers, not just stakeholders who get consulted. The DRIPA story in today's news is a stark reminder of what happens when that's not the baseline assumption — when communities are treated as interested parties rather than decision-makers.
+
+**RILEY:** Agreed completely. And the practical path to that probably runs through existing relationships — the First Nations Technology Council in B.C. has been doing work on Indigenous digital inclusion, and the First Nations Cultural Council does language and heritage work across the province. If someone in this region wanted to start the conversation about regional cultural infrastructure, those are calls worth making.
+
+**CASEY:** Here's what I'd add as a concrete first step that doesn't require a co-op or a grant application: a regional digital cultural audit. Who is currently maintaining what, on what infrastructure, with what succession plans? My guess is that there are dozens of small archives, recording projects, oral history collections, and community media efforts scattered across the Cariboo that nobody has a complete picture of. Before you build new infrastructure, you need to know what exists and where the vulnerabilities are. That's a project a local college, a community foundation, or even a committed volunteer network could do without waiting for anyone's permission.
+
+**RILEY:** National Poetry Month feels like exactly the right moment to make that case. The poem that exists only on a hard drive in someone's spare bedroom is a poem that might not survive them. The question of digital preservation is also a question of which voices get to persist — and that's as much an arts and culture question as it is a technology question.
+
+**CASEY:** On that note — let's land this. Where do we actually agree?
+
+**RILEY:** We agree that the current platform architecture — algorithmically driven, engagement-optimized, designed for advertising markets — is structurally bad for rural and Indigenous cultural storytelling, and that's not going to fix itself. We agree that building outside those platforms is the right instinct, but it requires capacity and governance that doesn't currently exist in a coordinated way in the Cariboo. And we agree that the path forward runs through Indigenous co-design, not consultation.
+
+**CASEY:** Where I'm still more cautious than you: I think the infrastructure-first instinct consistently underestimates how many promising cultural tech projects have been built and then abandoned, and I'd want the sustainability question answered before the architecture question. But I'll grant you this — your point about the current platform architecture being its own gatekeeping system, not a neutral open space, genuinely shifted something for me. The choice isn't between control and freedom. It's between different control structures, and the one we have now wasn't designed with the Cariboo in mind.
+
+**RILEY:** And the one that serves the Cariboo is the one the Cariboo helps design.
+
+**CASEY:** We'd love to hear your thoughts — and if you're working on a digital cultural project in this region, or if you know of an archive that's at risk, reach out. Send us an email at feedback at cariboo signals dot c-a. Have a great rest of your Monday.
