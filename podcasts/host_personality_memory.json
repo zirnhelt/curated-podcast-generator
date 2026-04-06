@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] Nvidia's Earth-2 models, including 'climate in a",
       "[TechRadar] When confidence becomes a risk: The gap between ",
       "[TechRadar] Three high-risk AI vulnerabilities discovered in",
       "[TechRadar] Google unveils new \u2018vibe design\u2019 tool to help an",
@@ -10,7 +9,8 @@
       "[Hackaday] Training a Transformer with 1970s-era Technology",
       "[TechRadar] 'Weekend work increased more than 40%': How AI i",
       "AI",
-      "[TechCrunch] Peter Thiel\u2019s big bet on solar-powered cow coll"
+      "[TechCrunch] Peter Thiel\u2019s big bet on solar-powered cow coll",
+      "[Business Insider] I quit tech, bought 22 acres, and didn't "
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -55,13 +55,18 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-04",
-        "clue": "tech-optimism:~ \u2014 acknowledged CMS improvements real but insufficient alone",
-        "occurrences": 1
+        "date": "2026-04-06",
+        "clue": "tech-optimism:~ \u2014 Acknowledged platform gatekeeping as structural problem, not solvable",
+        "occurrences": 2
       },
       {
         "date": "2026-04-04",
         "clue": "community-trust:+ \u2014 warmed to endowment model as legitimate funding answer",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-04-06",
+        "clue": "structural-lens:+ \u2014 Reframed debate from open vs. gated to gatekeeping architectures",
         "occurrences": 1
       }
     ],
@@ -132,14 +137,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-05",
-        "clue": "pilot-skepticism:+ \u2014 Deepened skepticism from tech failure to institutional dependency",
+        "date": "2026-04-06",
+        "clue": "structural-lens:x \u2014 Conceded that current algorithm-driven gatekeeping systematically hostile to place-based storytelling",
         "occurrences": 2
-      },
-      {
-        "date": "2026-04-04",
-        "clue": "structural-lens:x \u2014 conceded old ad model wasn't more independent",
-        "occurrences": 1
       },
       {
         "date": "2026-04-05",
@@ -147,6 +147,12 @@
         "occurrences": 1
       }
     ],
-    "core_memories": []
+    "core_memories": [
+      {
+        "formed": "2026-04-06",
+        "signal": "pilot-skepticism:+ \u2014 Doubled down on sustainability orphaning pattern, demanded answers before architecture",
+        "occurrences": 3
+      }
+    ]
   }
 }
