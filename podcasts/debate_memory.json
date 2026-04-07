@@ -824,5 +824,31 @@
       "Regional digital cultural infrastructure co-op model with shared hosting and technical capacity",
       "Digital preservation sustainability and technology obsolescence risks for cultural projects"
     ]
+  },
+  "2026-04-07": {
+    "timestamp": 1775559916.765413,
+    "date": "2026-04-07",
+    "theme": "Working Lands & Industry",
+    "central_question": "How can BC's regulatory framework be restructured to prevent harm from overlapping Crown land uses (forestry, ranching, mining) rather than simply compensating victims after the fact?",
+    "riley_position": "Technology and data systems can facilitate accountability by enabling real-time documentation and notification, though governance structures must be redesigned to give harmed parties actual enforcement leverage and standing in disputes.",
+    "riley_key_evidence": [
+      "Grazing permit boundaries and spray schedules are already mapped and planned weeks in advance, so real-time notification technology is technically feasible",
+      "Quebec's agricultural zone protection framework establishes baseline documentation requirements before adjacent activities proceed",
+      "Remote sensing and satellite imagery can now detect forage quality changes at cost-effective resolutions to establish before-state conditions"
+    ],
+    "casey_position": "The cattle poisoning case reveals a fundamental power structure problem\u2014ranchers lack institutional standing and decision authority over shared Crown land\u2014that technology alone cannot solve without systemic accountability reforms and organized collective bargaining.",
+    "casey_key_evidence": [
+      "The settlement compensated affected ranchers but changed nothing about how the next spray season will be planned, proving compensation is insufficient without prevention infrastructure",
+      "Crown land administration is fragmented across multiple ministries with no coordinating body, placing accountability burden entirely on the harmed party",
+      "Atomized individual permit holders are structurally disadvantaged against industrial-scale tenure holders and need organized collective representation"
+    ],
+    "resolution": "Riley and Casey converged on the need for both technological infrastructure (baseline monitoring, documentation protocols) and structural reforms (organized ranching associations, conflict resolution bodies with jurisdiction, mandatory two-way notification with enforcement). They agreed the policy window is open now and specific reforms like Quebec's model are worth pursuing.",
+    "topics_covered": [
+      "Cattle poisoning settlement as precedent and its limitations",
+      "Data sovereignty and documentation as leverage in resource disputes",
+      "Crown land fragmentation across provincial ministries and coordination failures",
+      "Indigenous co-governance and First Nations' potential conflict resolution role",
+      "Organized collective bargaining versus atomized individual permit holders"
+    ]
   }
 }
