@@ -1,24 +1,4 @@
 {
-  "2026-03-16": {
-    "timestamp": 1773666831.837616,
-    "topics": [
-      "[NYT Top Stories] \u2018Nobody Owns Us\u2019: How Plans for a Google D",
-      "[Williams Lake Tribune] Boulder hits semi driver on Highway ",
-      "[Quesnel Cariboo Observer] Province investigates Kwantlen St",
-      "[ScienceAlert] Sudden Sight Loss Risk Almost 5x Higher With ",
-      "[ScienceAlert] Study Reveals a 'Turning Point' in US Life Ex",
-      "[TechRadar] This is probably the most powerful external GPU ",
-      "[XDA Developers] Blackwell's path tracing is 10,000x better ",
-      "[100 Mile Free Press] CARIBOO OUTDOORS: A brief discussion o"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-03-16"
-  },
   "2026-03-17": {
     "timestamp": 1773753190.186965,
     "topics": [
@@ -438,5 +418,24 @@
       "Indigenous tech"
     ],
     "date": "2026-04-06"
+  },
+  "2026-04-07": {
+    "timestamp": 1775559914.762376,
+    "topics": [
+      "[Williams Lake Tribune] Victoria seeks federal, provincial i",
+      "[Williams Lake Tribune] Williams Lake businesses and homeown",
+      "[Williams Lake Tribune] Williams Lake community shows its he",
+      "[ScienceAlert] One Sleep Habit Could Boost Your Heart Health",
+      "[ScienceAlert] It's Official: Artemis II Has Carried Humans ",
+      "[The Tyee] Cattle Were Poisoned by BC\u2019s Forest Fertilizer. N",
+      "[Kottke.org] A visual history of exploring the far side of t",
+      "[New Atlas] Toyota\u2019s new flagship EV is off to a flying star"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech"
+    ],
+    "date": "2026-04-07"
   }
 }

@@ -1,0 +1,354 @@
+{
+  "episode": {
+    "date": "2026-04-07",
+    "formatted_date": "Tuesday, April 07, 2026",
+    "theme": "Working Lands & Industry",
+    "title": "Cariboo Signals - Working Lands & Industry",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Working Lands & Industry.</p><p><b>NEWS ROUNDUP:</b> We break down [Williams Lake Tribune] Victoria seeks federal, provincial input to develop ‘reasonable guardrails’ for AI and [Williams Lake Tribune] Williams Lake businesses and homeowners encouraged to FireSmart, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> How can BC's regulatory framework be restructured to prevent harm from overlapping Crown land uses (forestry, ranching, mining) rather than simply compensating victims after the fact? Topics include: Cattle poisoning settlement as precedent and its limitations, Data sovereignty and documentation as leverage in resource disputes, Crown land fragmentation across provincial ministries and coordination failures, Indigenous co-governance and First Nations' potential conflict resolution role, Organized collective bargaining versus atomized individual permit holders.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://cariboo-agricultural-research.ca\">Cariboo Agricultural Research Alliance</a></p><p><b>Sources discussed:</b></p><ul><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/04/06/victoria-seeks-federal-provincial-input-to-develop-reasonable-guardrails-for-ai/\">[Williams Lake Tribune] Victoria seeks federal, provincial i...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/04/06/williams-lake-businesses-and-homeowners-encouraged-to-firesmart/\">[Williams Lake Tribune] Williams Lake businesses and homeown...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/04/06/williams-lake-community-shows-its-heart-for-loring-family-after-tragic-loss/\">[Williams Lake Tribune] Williams Lake community shows its he...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/its-official-artemis-ii-has-carried-humans-farther-from-earth-than-ever-before\">[ScienceAlert] It's Official: Artemis II Has Carried Humans ...</a></li><li>How-To Geek: <a href=\"https://www.howtogeek.com/rivian-r2-will-be-a-road-trip-champion-with-335-miles-of-epa-range/\">[How-To Geek] Rivian's R2 pulls off something Tesla hasn't: ...</a></li><li>CFJC Today Kamloops: <a href=\"https://cfjctoday.com/2026/04/06/cariboo-chilcotin-mla-doerksons-100-mile-house-hospital-er-petition-quickly-garners-1500-signatures/\">[CFJC Today Kamloops] Cariboo-Chilcotin MLA Doerkson’s 100 M...</a></li><li>100 Mile Free Press: <a href=\"https://100milefreepress.net/2026/04/06/green-lake-community-clubs-pancake-breakfast-a-huge-success/\">[100 Mile Free Press] Green Lake Community Club’s Pancake Br...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/04/06/10-hectare-wildfire-sparks-near-lytton-off-highway-1/\">[Williams Lake Tribune] 10 hectare wildfire sparks near Lytt...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/earths-population-has-surpassed-the-planets-capacity-study-suggests\">[ScienceAlert] Earth's Population Has Surpassed The Planet's...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/04/07/Cattle-Poisoned-BC-Forest-Fertilizer/\">[The Tyee] Cattle Were Poisoned by BC’s Forest Fertilizer. N...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>ScienceAlert: <a href=\"https://www.sciencealert.com/sticking-to-the-same-bedtime-each-night-could-help-lower-heart-health-risk\">[ScienceAlert] One Sleep Habit Could Boost Your Heart Health...</a></li><li>CNET: <a href=\"https://www.cnet.com/videos/nasas-artemis-ii-breaks-record-with-trip-around-the-moon/\">[CNET] NASA's Artemis II Breaks Record With Trip Around The ...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/fingernail-sized-esp32-dev-board-ignores-every-design-rule/\">[XDA Developers] This fingernail-sized ESP32 dev board ignor...</a></li><li>TechRadar: <a href=\"https://www.techradar.com/pro/we-want-to-raise-awareness-on-this-issue-google-warns-quantum-computers-could-break-bitcoin-encryption-much-sooner-than-expected\">[TechRadar] 'We want to raise awareness on this issue': Goog...</a></li><li>NYT Well: <a href=\"https://www.nytimes.com/2026/04/06/health/arpa-h-osteoarthritis-bone-cartilage.html\">[NYT Well] Federal Agency Unveils Three Potential Osteoarthr...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/chasing-perfect-home-lab-why-yours-never-works/\">[XDA Developers] Chasing the perfect home lab is why yours n...</a></li><li>WIRED: <a href=\"https://www.wired.com/story/a-single-strike-wont-shut-off-the-gulfs-desalination-system/\">[WIRED] A Single Strike Won’t Shut Off the Gulf’s Desalinati...</a></li><li>Toms Guide: <a href=\"https://www.tomsguide.com/ai/netflixs-new-ai-doesnt-create-videos-it-rewrites-reality-and-its-open-source\">[Toms Guide] Netflix’s new AI doesn’t create videos — it rew...</a></li><li>Nautilus: <a href=\"https://nautil.us/did-this-17th-century-novel-presage-the-coming-artemis-ii-observations-1279559/\">[Nautilus] Did This 17th-Century Novel Presage the Coming Ar...</a></li><li>How-To Geek: <a href=\"https://www.howtogeek.com/im-a-homelab-enthusiast-but-i-refuse-to-self-host-these-5-services/\">[How-To Geek] I'm a homelab enthusiast, but I refuse to self...</a></li><li>Gizmodo: <a href=\"https://gizmodo.com/nasa-administrator-says-odds-of-finding-alien-life-are-pretty-high-2000742807\">[Gizmodo] NASA Administrator Says Odds of Finding Alien Life...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/droughts-are-the-ideal-breeding-ground-for-antibiotic-resistant-bacteria-study-warns\">[ScienceAlert] Droughts Are The Ideal Breeding Ground For An...</a></li><li>Kottke.org: <a href=\"https://kottke.org/26/04/0048676-a-visual-history-of-explo\">[Kottke.org] A visual history of exploring the far side of t...</a></li><li>New Atlas: <a href=\"https://newatlas.com/automotive/toyota-bz7/\">[New Atlas] Toyota’s new flagship EV is off to a flying star...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-6<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-04-07T04:05:14.747634-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-sonnet-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Victoria seeks federal, provincial input to develop ‘reasonable guardrails’ for AI",
+          "url": "https://wltribune.com/2026/04/06/victoria-seeks-federal-provincial-input-to-develop-reasonable-guardrails-for-ai/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-07T06:00:37.160719+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Williams Lake businesses and homeowners encouraged to FireSmart",
+          "url": "https://wltribune.com/2026/04/06/williams-lake-businesses-and-homeowners-encouraged-to-firesmart/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-07T06:00:37.160633+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Williams Lake community shows its heart for Loring family after tragic loss",
+          "url": "https://wltribune.com/2026/04/06/williams-lake-community-shows-its-heart-for-loring-family-after-tragic-loss/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-07T06:00:37.160594+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[ScienceAlert] One Sleep Habit Could Boost Your Heart Health, Study Suggests",
+          "url": "https://www.sciencealert.com/sticking-to-the-same-bedtime-each-night-could-help-lower-heart-health-risk",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-04-07T04:07:14+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] It's Official: Artemis II Has Carried Humans Farther From Earth Than Ever Before",
+          "url": "https://www.sciencealert.com/its-official-artemis-ii-has-carried-humans-farther-from-earth-than-ever-before",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-04-07T02:04:57+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[How-To Geek] Rivian's R2 pulls off something Tesla hasn't: 335 miles of EPA range under $60,000",
+          "url": "https://www.howtogeek.com/rivian-r2-will-be-a-road-trip-champion-with-335-miles-of-epa-range/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-04-07T01:37:09+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[CNET] NASA's Artemis II Breaks Record With Trip Around The Moon video",
+          "url": "https://www.cnet.com/videos/nasas-artemis-ii-breaks-record-with-trip-around-the-moon/",
+          "source": "CNET",
+          "ai_score": 0,
+          "date_published": "2026-04-07T00:40:30+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[CFJC Today Kamloops] Cariboo-Chilcotin MLA Doerkson’s 100 Mile House hospital ER petition quickly garners 1,500+ signatures",
+          "url": "https://cfjctoday.com/2026/04/06/cariboo-chilcotin-mla-doerksons-100-mile-house-hospital-er-petition-quickly-garners-1500-signatures/",
+          "source": "CFJC Today Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-04-07T00:12:13+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[100 Mile Free Press] Green Lake Community Club’s Pancake Breakfast a huge success",
+          "url": "https://100milefreepress.net/2026/04/06/green-lake-community-clubs-pancake-breakfast-a-huge-success/",
+          "source": "100 Mile Free Press",
+          "ai_score": 0,
+          "date_published": "2026-04-07T00:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[XDA Developers] This fingernail-sized ESP32 dev board ignores several design rules and somehow still functions",
+          "url": "https://www.xda-developers.com/fingernail-sized-esp32-dev-board-ignores-every-design-rule/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-04-06T23:09:48+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] 'We want to raise awareness on this issue': Google warns quantum computers could break Bitcoin encryption much sooner than expected",
+          "url": "https://www.techradar.com/pro/we-want-to-raise-awareness-on-this-issue-google-warns-quantum-computers-could-break-bitcoin-encryption-much-sooner-than-expected",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-04-06T22:25:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Well] Federal Agency Unveils Three Potential Osteoarthritis Treatments",
+          "url": "https://www.nytimes.com/2026/04/06/health/arpa-h-osteoarthritis-bone-cartilage.html",
+          "source": "NYT Well",
+          "ai_score": 0,
+          "date_published": "2026-04-06T21:40:02+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] Chasing the perfect home lab is why yours never works",
+          "url": "https://www.xda-developers.com/chasing-perfect-home-lab-why-yours-never-works/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-04-06T20:31:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] A Single Strike Won’t Shut Off the Gulf’s Desalination System",
+          "url": "https://www.wired.com/story/a-single-strike-wont-shut-off-the-gulfs-desalination-system/",
+          "source": "WIRED",
+          "ai_score": 0,
+          "date_published": "2026-04-06T20:23:04+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] Netflix’s new AI doesn’t create videos — it rewrites reality (and it's open source)",
+          "url": "https://www.tomsguide.com/ai/netflixs-new-ai-doesnt-create-videos-it-rewrites-reality-and-its-open-source",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-04-06T20:16:18+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] Did This 17th-Century Novel Presage the Coming Artemis II Observations?",
+          "url": "https://nautil.us/did-this-17th-century-novel-presage-the-coming-artemis-ii-observations-1279559/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-04-06T20:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] I'm a homelab enthusiast, but I refuse to self host these 5 services",
+          "url": "https://www.howtogeek.com/im-a-homelab-enthusiast-but-i-refuse-to-self-host-these-5-services/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-04-06T19:48:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Gizmodo] NASA Administrator Says Odds of Finding Alien Life Are ‘Pretty High’",
+          "url": "https://gizmodo.com/nasa-administrator-says-odds-of-finding-alien-life-are-pretty-high-2000742807",
+          "source": "Gizmodo",
+          "ai_score": 0,
+          "date_published": "2026-04-06T19:30:04+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Droughts Are The Ideal Breeding Ground For Antibiotic-Resistant Bacteria, Study Warns",
+          "url": "https://www.sciencealert.com/droughts-are-the-ideal-breeding-ground-for-antibiotic-resistant-bacteria-study-warns",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-04-06T19:00:37+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] I stopped throwing out old hardware after discovering Proxmox",
+          "url": "https://www.xda-developers.com/i-stopped-throwing-out-old-server-hardware-after-discovering-proxmox/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-04-06T18:30:22+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] A.I. Is on Its Way to Upending Cybersecurity",
+          "url": "https://www.nytimes.com/2026/04/06/technology/ai-cybersecurity-hackers.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-04-06T18:28:29+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Gizmodo] OpenAI Releases Its Vague Vision for Reorganizing Society Around Superintelligence",
+          "url": "https://gizmodo.com/openai-releases-its-vague-vision-for-reorganizing-society-around-superintelligence-2000742906",
+          "source": "Gizmodo",
+          "ai_score": 0,
+          "date_published": "2026-04-06T17:05:24+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] 10 hectare wildfire sparks near Lytton off Highway 1",
+          "url": "https://wltribune.com/2026/04/06/10-hectare-wildfire-sparks-near-lytton-off-highway-1/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-06T17:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Nautilus] Unraveling the Chemical Secrets of a Wholesome Plant-Pollinator Relationship",
+          "url": "https://nautil.us/unraveling-the-chemical-secrets-of-a-wholesome-plant-pollinator-relationship-1279549/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-04-06T17:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ZDNet] I tried Peppermint Linux: How this bare-bones distro lets you build your ideal OS",
+          "url": "https://www.zdnet.com/article/peppermint-linux/",
+          "source": "ZDNet",
+          "ai_score": 0,
+          "date_published": "2026-04-06T16:20:57+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ZDNet] How much RAM does Linux really need in 2026? My sweet spot after decades of use",
+          "url": "https://www.zdnet.com/article/how-much-ram-does-your-linux-pc-need-2026/",
+          "source": "ZDNet",
+          "ai_score": 0,
+          "date_published": "2026-04-06T15:44:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NPR Health News] Over-the-counter medication abortion? These researchers say it would be safe",
+          "url": "https://www.npr.org/2026/04/06/nx-s1-5773372/medication-abortion-jama-safety-mifepristone-misoprostol",
+          "source": "NPR Health News",
+          "ai_score": 0,
+          "date_published": "2026-04-06T15:42:08+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Earth's Population Has Surpassed The Planet's Capacity, Study Suggests",
+          "url": "https://www.sciencealert.com/earths-population-has-surpassed-the-planets-capacity-study-suggests",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-04-06T15:00:10+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Island RCMP officer killed on duty in 2016 remembered for warm heart, big smile",
+          "url": "https://wltribune.com/2026/04/06/island-rcmp-officer-killed-on-duty-in-2016-remembered-for-warm-heart-big-smile/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-06T08:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Working Lands & Industry",
+      "articles": [
+        {
+          "title": "[The Tyee] Cattle Were Poisoned by BC’s Forest Fertilizer. Now Someone Will Pay",
+          "url": "https://thetyee.ca/News/2026/04/07/Cattle-Poisoned-BC-Forest-Fertilizer/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-04-07T07:10:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Kottke.org] A visual history of exploring the far side of the Moon ....",
+          "url": "https://kottke.org/26/04/0048676-a-visual-history-of-explo",
+          "source": "Kottke.org",
+          "ai_score": 0,
+          "date_published": "2026-04-06T18:13:46+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] Toyota’s new flagship EV is off to a flying start: 3,000+ orders in 1 hour",
+          "url": "https://newatlas.com/automotive/toyota-bz7/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-04-06T17:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "How can BC's regulatory framework be restructured to prevent harm from overlapping Crown land uses (forestry, ranching, mining) rather than simply compensating victims after the fact?",
+        "riley_position": "Technology and data systems can facilitate accountability by enabling real-time documentation and notification, though governance structures must be redesigned to give harmed parties actual enforcement leverage and standing in disputes.",
+        "riley_key_evidence": [
+          "Grazing permit boundaries and spray schedules are already mapped and planned weeks in advance, so real-time notification technology is technically feasible",
+          "Quebec's agricultural zone protection framework establishes baseline documentation requirements before adjacent activities proceed",
+          "Remote sensing and satellite imagery can now detect forage quality changes at cost-effective resolutions to establish before-state conditions"
+        ],
+        "casey_position": "The cattle poisoning case reveals a fundamental power structure problem—ranchers lack institutional standing and decision authority over shared Crown land—that technology alone cannot solve without systemic accountability reforms and organized collective bargaining.",
+        "casey_key_evidence": [
+          "The settlement compensated affected ranchers but changed nothing about how the next spray season will be planned, proving compensation is insufficient without prevention infrastructure",
+          "Crown land administration is fragmented across multiple ministries with no coordinating body, placing accountability burden entirely on the harmed party",
+          "Atomized individual permit holders are structurally disadvantaged against industrial-scale tenure holders and need organized collective representation"
+        ],
+        "resolution": "Riley and Casey converged on the need for both technological infrastructure (baseline monitoring, documentation protocols) and structural reforms (organized ranching associations, conflict resolution bodies with jurisdiction, mandatory two-way notification with enforcement). They agreed the policy window is open now and specific reforms like Quebec's model are worth pursuing.",
+        "topics_covered": [
+          "Cattle poisoning settlement as precedent and its limitations",
+          "Data sovereignty and documentation as leverage in resource disputes",
+          "Crown land fragmentation across provincial ministries and coordination failures",
+          "Indigenous co-governance and First Nations' potential conflict resolution role",
+          "Organized collective bargaining versus atomized individual permit holders"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}

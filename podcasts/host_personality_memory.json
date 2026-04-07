@@ -55,11 +55,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-06",
-        "clue": "tech-optimism:~ \u2014 Acknowledged platform gatekeeping as structural problem, not solvable",
-        "occurrences": 2
-      },
-      {
         "date": "2026-04-04",
         "clue": "community-trust:+ \u2014 warmed to endowment model as legitimate funding answer",
         "occurrences": 1
@@ -68,12 +63,22 @@
         "date": "2026-04-06",
         "clue": "structural-lens:+ \u2014 Reframed debate from open vs. gated to gatekeeping architectures",
         "occurrences": 1
+      },
+      {
+        "date": "2026-04-07",
+        "clue": "structural-lens:x \u2014 Conceded political/institutional standing matters more than data systems alone",
+        "occurrences": 1
       }
     ],
     "core_memories": [
       {
         "formed": "2026-04-05",
         "signal": "structural-lens:+ \u2014 Moved from feature-based to systemic power analysis",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-04-07",
+        "signal": "tech-optimism:~ \u2014 Shifted from generic 'smarter technology' to specific attribution use case",
         "occurrences": 3
       }
     ]
@@ -87,7 +92,8 @@
       "rural broadband",
       "[The Globe and Mail] Tumbler Ridge shooting highlights rural",
       "[The Tyee] Half of BC\u2019s Community Paramedic Positions Are Un",
-      "[The Tyee] Tumbler Ridge Shows We Can\u2019t Take Rural Medicine "
+      "[The Tyee] Tumbler Ridge Shows We Can\u2019t Take Rural Medicine ",
+      "[Williams Lake Tribune] Williams Lake community shows its he"
     ],
     "recurring_questions": [
       "Who benefits from this?",
@@ -144,6 +150,16 @@
       {
         "date": "2026-04-05",
         "clue": "community-trust:~ \u2014 Shifted from individual caution to collective bargaining as solution",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-04-07",
+        "clue": "funding-risk:+ \u2014 Reinforced unfunded responsibility pattern as core structural failure across sectors",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-04-07",
+        "clue": "pilot-skepticism:+ \u2014 Deepened skepticism that co-management becomes genuine authority versus consultation theater",
         "occurrences": 1
       }
     ],
