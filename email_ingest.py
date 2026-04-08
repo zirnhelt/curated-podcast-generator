@@ -1,34 +1,45 @@
 #!/usr/bin/env python3
 """
-Email ingest for the Cariboo Signals podcast generator.
+Email ingest for the Cariboo Signals podcast generator — Gmail API edition.
 
-Connects to an IMAP mailbox, fetches unseen messages, classifies them as
-newsletter or listener feedback, sanitizes body text against prompt injection,
-auto-assigns a podcast theme via keyword scoring, and appends items to
-podcasts/email_queue.json for pickup by the daily generation run.
+Connects to Gmail via OAuth2, fetches unread messages from a configured label,
+classifies them as newsletter or listener feedback, sanitizes body text against
+prompt injection, auto-assigns a podcast theme via keyword scoring, and appends
+items to podcasts/email_queue.json for pickup by the daily generation run.
 
 Usage:
-  python email_ingest.py
+  python email_ingest.py [--dry-run]
 
-Required environment variables:
-  EMAIL_HOST   IMAP hostname (e.g. imap.gmail.com)
-  EMAIL_USER   Email address
-  EMAIL_PASS   Password or app-specific password
+Required environment variables (store as GitHub Secrets):
+  GMAIL_CLIENT_ID       OAuth2 client ID from Google Cloud Console
+  GMAIL_CLIENT_SECRET   OAuth2 client secret
+  GMAIL_REFRESH_TOKEN   Offline refresh token (obtained once via OAuth flow)
 
 Optional:
-  EMAIL_PORT   IMAP port (default: 993)
-  EMAIL_FOLDER Folder/label to poll (default: INBOX)
+  GMAIL_LABEL           Gmail label to filter (default: INBOX).
+                        Use a specific label like "newsletters" or "podcast" to
+                        target only pre-labelled emails.  Supports nested labels
+                        with "/" e.g. "podcast/incoming".
+
+One-time setup (local, run once to get GMAIL_REFRESH_TOKEN):
+  1. Create a Google Cloud project and enable the Gmail API.
+  2. Create OAuth2 credentials (Desktop app type) — download client_secret.json.
+  3. Run:  python email_ingest.py --auth
+     This opens a browser, asks you to approve Gmail access, and prints a
+     refresh token to store in GitHub Secrets.
 
 Security note:
   All body text is sanitized (HTML stripped, prompt-injection chars removed,
-  truncated) before being stored.  Newsletter body text is NOT passed to Claude;
-  only fetched URL metadata is used.  Feedback body text is wrapped in explicit
-  untrusted-content delimiters when injected into Claude prompts.
+  truncated) before storage.  Newsletter body is NOT forwarded to Claude — only
+  freshly fetched URL metadata is used.  Feedback body is wrapped in explicit
+  untrusted-content delimiters in the script prompt.
 """
 
+import argparse
+import base64
 import email
 import email.header
-import imaplib
+import email.utils
 import json
 import os
 import re
@@ -44,11 +55,13 @@ SCRIPT_DIR = Path(__file__).parent
 QUEUE_FILE = SCRIPT_DIR / "podcasts" / "email_queue.json"
 THEMES_FILE = SCRIPT_DIR / "config" / "themes.json"
 
-# Feedback bodies are truncated to this many chars before storage/prompt injection
+GMAIL_SCOPES = ["https://www.googleapis.com/auth/gmail.modify"]
+TOKEN_URI = "https://oauth2.googleapis.com/token"
+
+# Feedback bodies are truncated to this many chars before storage/prompting
 FEEDBACK_MAX_CHARS = 500
-# Newsletter preview is only used for theme scoring, kept short
+# Newsletter preview kept short — only used for theme scoring
 NEWSLETTER_MAX_CHARS = 200
-# URLs below this length after validation are skipped
 URL_MIN_LEN = 10
 
 
@@ -89,22 +102,20 @@ def _strip_html(html: str) -> str:
         parser.feed(html)
         return parser.get_text()
     except Exception:
-        # Fallback: remove tags with regex
         return re.sub(r"<[^>]+>", " ", html)
 
 
 # ---------------------------------------------------------------------------
-# Sanitization
+# Sanitization (prompt injection defence)
 # ---------------------------------------------------------------------------
 
-# Characters / sequences that could be used for prompt injection
 _INJECTION_PATTERN = re.compile(
-    r"<[^>]*>"           # any remaining HTML/XML tags
-    r"|{{.*?}}"          # Jinja/template delimiters
-    r"|\[\[.*?\]\]"      # wiki-style brackets
-    r"|\{%.*?%\}"        # template tags
-    r"|`{3,}"            # triple backtick fences
-    r"|\bsystem\b\s*:"   # "system:" role markers
+    r"<[^>]*>"            # residual HTML/XML tags
+    r"|{{.*?}}"           # Jinja/template delimiters
+    r"|\[\[.*?\]\]"       # wiki-style brackets
+    r"|\{%.*?%\}"         # template tags
+    r"|`{3,}"             # triple backtick fences
+    r"|\bsystem\b\s*:"    # role markers
     r"|\bASSISTANT\b\s*:"
     r"|\bUSER\b\s*:"
     r"|\bHUMAN\b\s*:",
@@ -118,7 +129,6 @@ def _sanitize(text: str, max_chars: int) -> str:
         return ""
     text = _strip_html(text)
     text = _INJECTION_PATTERN.sub(" ", text)
-    # Collapse whitespace
     text = re.sub(r"\s+", " ", text).strip()
     return text[:max_chars]
 
@@ -128,15 +138,10 @@ def _sanitize(text: str, max_chars: int) -> str:
 # ---------------------------------------------------------------------------
 
 _URL_PATTERN = re.compile(r"https?://[^\s<>\"')\]]+")
-
-_BLOCKED_HOSTS = {
-    "localhost", "127.0.0.1", "0.0.0.0", "::1",
-    "169.254.169.254",  # AWS metadata endpoint
-}
+_BLOCKED_HOSTS = {"localhost", "127.0.0.1", "0.0.0.0", "::1", "169.254.169.254"}
 
 
 def _is_safe_url(url: str) -> bool:
-    """Return True only for safe, public http(s) URLs."""
     try:
         parts = urlparse(url)
     except Exception:
@@ -146,29 +151,21 @@ def _is_safe_url(url: str) -> bool:
     host = parts.netloc.split(":")[0].lower()
     if not host or host in _BLOCKED_HOSTS:
         return False
-    # Block private/internal IP ranges
     ip_match = re.match(r"^(\d+)\.(\d+)\.", host)
     if ip_match:
         a, b = int(ip_match.group(1)), int(ip_match.group(2))
         if a == 10 or (a == 172 and 16 <= b <= 31) or (a == 192 and b == 168):
             return False
-    if len(url) < URL_MIN_LEN:
-        return False
-    return True
+    return len(url) >= URL_MIN_LEN
 
 
 def _extract_urls(plain: str, html: str) -> list:
-    """Extract, validate, and deduplicate URLs from plain text and raw HTML."""
     raw = _URL_PATTERN.findall(plain + " " + html)
-    seen = set()
-    result = []
+    seen, result = set(), []
     for url in raw:
-        # Strip trailing punctuation that often attaches in email text
         url = url.rstrip(".,;:!?\"'")
-        if url in seen:
-            continue
-        seen.add(url)
-        if _is_safe_url(url):
+        if url not in seen and _is_safe_url(url):
+            seen.add(url)
             result.append(url)
         if len(result) >= 10:
             break
@@ -176,7 +173,7 @@ def _extract_urls(plain: str, html: str) -> list:
 
 
 # ---------------------------------------------------------------------------
-# Theme scoring (mirrors podcast_generator._score_text_against_themes)
+# Theme scoring
 # ---------------------------------------------------------------------------
 
 def _load_themes() -> dict:
@@ -189,7 +186,7 @@ def _load_themes() -> dict:
 
 
 def _score_themes(text: str, themes: dict) -> tuple:
-    """Return (theme_name, theme_day_int) for the best-matching theme, or (None, None)."""
+    """Return (theme_name, theme_day_int) for the best match, or (None, None)."""
     if not text.strip() or not themes:
         return None, None
     text_lower = text.lower()
@@ -208,7 +205,6 @@ def _score_themes(text: str, themes: dict) -> tuple:
 # ---------------------------------------------------------------------------
 
 def _decode_header_value(value: str) -> str:
-    """Decode RFC 2047-encoded email header value to a plain string."""
     if not value:
         return ""
     parts = email.header.decode_header(value)
@@ -222,14 +218,11 @@ def _decode_header_value(value: str) -> str:
 
 
 def _get_plain_and_html(msg) -> tuple:
-    """Walk a parsed email message and return (plain_text, html_text)."""
-    plain_parts = []
-    html_parts = []
+    plain_parts, html_parts = [], []
     if msg.is_multipart():
         for part in msg.walk():
             ct = part.get_content_type()
-            cd = part.get("Content-Disposition", "")
-            if "attachment" in cd:
+            if "attachment" in part.get("Content-Disposition", ""):
                 continue
             charset = part.get_content_charset() or "utf-8"
             try:
@@ -258,6 +251,89 @@ def _get_plain_and_html(msg) -> tuple:
 
 
 # ---------------------------------------------------------------------------
+# Gmail API auth
+# ---------------------------------------------------------------------------
+
+def _build_gmail_service():
+    """Build an authenticated Gmail API service using OAuth2 refresh token."""
+    try:
+        from google.oauth2.credentials import Credentials
+        from google.auth.transport.requests import Request
+        from googleapiclient.discovery import build
+    except ImportError:
+        print(
+            "❌ Gmail API libraries not installed.\n"
+            "   Run: pip install google-auth google-auth-oauthlib google-api-python-client",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    client_id = os.environ.get("GMAIL_CLIENT_ID", "").strip()
+    client_secret = os.environ.get("GMAIL_CLIENT_SECRET", "").strip()
+    refresh_token = os.environ.get("GMAIL_REFRESH_TOKEN", "").strip()
+
+    if not all([client_id, client_secret, refresh_token]):
+        print(
+            "❌ GMAIL_CLIENT_ID, GMAIL_CLIENT_SECRET, and GMAIL_REFRESH_TOKEN must all be set.\n"
+            "   Run 'python email_ingest.py --auth' once locally to obtain a refresh token.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    creds = Credentials(
+        token=None,
+        refresh_token=refresh_token,
+        client_id=client_id,
+        client_secret=client_secret,
+        token_uri=TOKEN_URI,
+        scopes=GMAIL_SCOPES,
+    )
+    creds.refresh(Request())
+    return build("gmail", "v1", credentials=creds, cache_discovery=False)
+
+
+def run_auth_flow() -> None:
+    """One-time interactive OAuth flow to obtain a refresh token.
+
+    Run this locally once:
+        python email_ingest.py --auth
+
+    You'll be prompted to authorize access in a browser.  The resulting
+    refresh token is printed — store it as the GMAIL_REFRESH_TOKEN secret.
+    """
+    try:
+        from google_auth_oauthlib.flow import InstalledAppFlow
+    except ImportError:
+        print(
+            "❌ Run: pip install google-auth-oauthlib google-api-python-client",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    client_id = os.environ.get("GMAIL_CLIENT_ID", "").strip()
+    client_secret = os.environ.get("GMAIL_CLIENT_SECRET", "").strip()
+
+    if not client_id or not client_secret:
+        print("❌ Set GMAIL_CLIENT_ID and GMAIL_CLIENT_SECRET before running --auth.", file=sys.stderr)
+        sys.exit(1)
+
+    client_config = {
+        "installed": {
+            "client_id": client_id,
+            "client_secret": client_secret,
+            "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+            "token_uri": TOKEN_URI,
+            "redirect_uris": ["urn:ietf:wg:oauth:2.0:oob", "http://localhost"],
+        }
+    }
+    flow = InstalledAppFlow.from_client_config(client_config, GMAIL_SCOPES)
+    creds = flow.run_local_server(port=0)
+    print("\n✅ Authorization successful!")
+    print(f"\nGMAIL_REFRESH_TOKEN={creds.refresh_token}")
+    print("\nStore this value as a GitHub Secret named GMAIL_REFRESH_TOKEN.")
+
+
+# ---------------------------------------------------------------------------
 # Queue I/O
 # ---------------------------------------------------------------------------
 
@@ -281,69 +357,70 @@ def _save_queue(data: dict) -> None:
 # Main ingestion
 # ---------------------------------------------------------------------------
 
-def ingest() -> int:
-    """Fetch unseen emails and append them to the queue. Returns count added."""
-    host = os.environ.get("EMAIL_HOST", "").strip()
-    user = os.environ.get("EMAIL_USER", "").strip()
-    password = os.environ.get("EMAIL_PASS", "").strip()
-    port = int(os.environ.get("EMAIL_PORT", "993"))
-    folder = os.environ.get("EMAIL_FOLDER", "INBOX")
+def ingest(dry_run: bool = False) -> int:
+    """Fetch unread labelled emails and append them to the queue.
 
-    if not host or not user or not password:
-        print("❌ EMAIL_HOST, EMAIL_USER, and EMAIL_PASS must all be set.", file=sys.stderr)
-        sys.exit(1)
-
-    queue = _load_queue()
-    seen_message_ids = {item["message_id"] for item in queue.get("items", []) if item.get("message_id")}
+    Returns the count of new items added.
+    """
+    label = os.environ.get("GMAIL_LABEL", "INBOX").strip()
     themes = _load_themes()
 
-    print(f"📧 Connecting to {host}:{port} as {user}...")
-    try:
-        conn = imaplib.IMAP4_SSL(host, port)
-        conn.login(user, password)
-    except Exception as e:
-        print(f"❌ IMAP connection failed: {e}", file=sys.stderr)
-        sys.exit(1)
+    print(f"📧 Connecting to Gmail API (label: {label!r})...")
+    service = _build_gmail_service()
+
+    queue = _load_queue()
+    seen_message_ids = {
+        item["message_id"]
+        for item in queue.get("items", [])
+        if item.get("message_id")
+    }
+
+    # Build Gmail search query: unread messages in the target label
+    query = f"is:unread label:{label}" if label.upper() != "INBOX" else "is:unread"
 
     try:
-        conn.select(folder)
-        _, data = conn.search(None, "UNSEEN")
-        msg_ids = data[0].split() if data and data[0] else []
+        result = service.users().messages().list(
+            userId="me", q=query, maxResults=50
+        ).execute()
     except Exception as e:
-        print(f"❌ Could not search mailbox: {e}", file=sys.stderr)
-        conn.logout()
+        print(f"❌ Gmail API list failed: {e}", file=sys.stderr)
         sys.exit(1)
 
-    if not msg_ids:
+    messages = result.get("messages", [])
+    if not messages:
         print("  No new messages.")
-        conn.logout()
         return 0
 
-    print(f"  Found {len(msg_ids)} unseen message(s).")
+    print(f"  Found {len(messages)} unread message(s).")
     added = 0
 
-    for imap_id in msg_ids:
+    for msg_stub in messages:
+        msg_id = msg_stub["id"]
+
         try:
-            _, raw = conn.fetch(imap_id, "(RFC822)")
+            raw_msg = service.users().messages().get(
+                userId="me", id=msg_id, format="raw"
+            ).execute()
         except Exception as e:
-            print(f"  ⚠️  Could not fetch message {imap_id}: {e}")
+            print(f"  ⚠️  Could not fetch message {msg_id}: {e}")
             continue
 
-        raw_bytes = raw[0][1] if raw and raw[0] else b""
+        raw_bytes = base64.urlsafe_b64decode(raw_msg["raw"] + "==")
         try:
             msg = email.message_from_bytes(raw_bytes)
         except Exception as e:
-            print(f"  ⚠️  Could not parse message {imap_id}: {e}")
+            print(f"  ⚠️  Could not parse message {msg_id}: {e}")
             continue
 
-        message_id = (msg.get("Message-ID") or "").strip()
-        if message_id and message_id in seen_message_ids:
-            print(f"  ⏭  Duplicate message-id, skipping: {message_id[:60]}")
-            # Still mark SEEN so we don't re-fetch
-            conn.store(imap_id, "+FLAGS", "\\Seen")
+        message_id_header = (msg.get("Message-ID") or msg_id).strip()
+
+        if message_id_header in seen_message_ids:
+            print(f"  ⏭  Duplicate, skipping: {message_id_header[:60]}")
+            if not dry_run:
+                _mark_read(service, msg_id)
             continue
 
-        # Classify: newsletter has a List-Unsubscribe header
+        # Classify: newsletter = has List-Unsubscribe header
         is_newsletter = bool(msg.get("List-Unsubscribe"))
         item_type = "newsletter" if is_newsletter else "feedback"
 
@@ -351,28 +428,23 @@ def ingest() -> int:
         from_address = _decode_header_value(msg.get("From", ""))
         date_str = msg.get("Date", "")
         try:
-            received_at = email.utils.parsedate_to_datetime(date_str).isoformat() if date_str else datetime.now(timezone.utc).isoformat()
+            received_at = email.utils.parsedate_to_datetime(date_str).isoformat()
         except Exception:
             received_at = datetime.now(timezone.utc).isoformat()
 
         plain_body, html_body = _get_plain_and_html(msg)
-
-        # Extract URLs before sanitization (raw content has cleaner URLs)
         extracted_urls = _extract_urls(plain_body, html_body)
 
-        # Sanitize body text — different limits for each type
         max_chars = NEWSLETTER_MAX_CHARS if is_newsletter else FEEDBACK_MAX_CHARS
         raw_text = plain_body if plain_body.strip() else _strip_html(html_body)
         body_text = _sanitize(raw_text, max_chars)
 
-        # Auto-assign theme by scoring subject + body against theme keywords
-        score_text = f"{subject} {body_text}"
-        theme_tag, theme_day = _score_themes(score_text, themes)
+        theme_tag, theme_day = _score_themes(f"{subject} {body_text}", themes)
 
         item = {
             "id": uuid.uuid4().hex[:8],
             "type": item_type,
-            "message_id": message_id,
+            "message_id": message_id_header,
             "from_address": from_address,
             "subject": subject[:200],
             "received_at": received_at,
@@ -385,26 +457,63 @@ def ingest() -> int:
         }
 
         queue["items"].append(item)
-        if message_id:
-            seen_message_ids.add(message_id)
+        seen_message_ids.add(message_id_header)
         added += 1
 
         theme_label = theme_tag or "no strong theme match (will not be used)"
         print(f"  ✅ [{item_type}] \"{subject[:60]}\" → {theme_label} ({len(extracted_urls)} URL(s))")
 
-        # Mark as SEEN in IMAP so we don't re-fetch on next run
-        conn.store(imap_id, "+FLAGS", "\\Seen")
+        if not dry_run:
+            _mark_read(service, msg_id)
 
-    conn.logout()
-
-    if added:
+    if added and not dry_run:
         _save_queue(queue)
         print(f"\n📧 Added {added} new item(s) to email queue.")
+    elif added and dry_run:
+        print(f"\n📧 [DRY RUN] Would have added {added} item(s) — queue not written.")
     else:
         print("  No new items added.")
 
     return added
 
 
+def _mark_read(service, gmail_msg_id: str) -> None:
+    """Remove the UNREAD label so we don't re-fetch on the next run."""
+    try:
+        service.users().messages().modify(
+            userId="me",
+            id=gmail_msg_id,
+            body={"removeLabelIds": ["UNREAD"]},
+        ).execute()
+    except Exception as e:
+        print(f"  ⚠️  Could not mark message {gmail_msg_id} as read: {e}")
+
+
+# ---------------------------------------------------------------------------
+# CLI entry point
+# ---------------------------------------------------------------------------
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Ingest unread Gmail messages into podcasts/email_queue.json"
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Parse and print items but do not mark emails as read or write the queue",
+    )
+    parser.add_argument(
+        "--auth",
+        action="store_true",
+        help="Run one-time OAuth flow to obtain GMAIL_REFRESH_TOKEN (local use only)",
+    )
+    args = parser.parse_args()
+
+    if args.auth:
+        run_auth_flow()
+    else:
+        ingest(dry_run=args.dry_run)
+
+
 if __name__ == "__main__":
-    ingest()
+    main()
