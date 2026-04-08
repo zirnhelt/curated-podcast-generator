@@ -850,5 +850,31 @@
       "Indigenous co-governance and First Nations' potential conflict resolution role",
       "Organized collective bargaining versus atomized individual permit holders"
     ]
+  },
+  "2026-04-08": {
+    "timestamp": 1775646940.24263,
+    "date": "2026-04-08",
+    "theme": "Community Tech & Governance",
+    "central_question": "What governance failures are revealed when Indigenous communities must resort to litigation to protect their territories from industrial contamination, and what infrastructure would enable proactive rather than reactive protection?",
+    "riley_position": "Environmental governance systems fail when they produce plans and timelines without binding operational triggers, forcing communities into expensive litigation; communities need independent monitoring capacity and pre-established legal relationships to shift from reactive to proactive defense.",
+    "riley_key_evidence": [
+      "Teck's Water Quality Centre treatment facility exists but deployment timeline is slow, allowing interim harm while regulations shift",
+      "Selenium from Elk Valley coal mines is lethal to fish and disrupts reproduction in the Oldman River watershed",
+      "Nation-controlled monitoring networks are technically feasible at grant-fundable scales and establish data authority"
+    ],
+    "casey_position": "Data without binding authority to trigger operational changes is merely documentation of harm; governance capacity lags behind legal rights frameworks, and this gap may be structurally maintained by actors who benefit from dependency.",
+    "casey_key_evidence": [
+      "T\u015dilhqot'in Nation has 2014 Supreme Court title declaration but still requires years of negotiation to convert legal rights into operational control",
+      "Monitoring programs funded through initial grants often become non-functional when operational funding ends, creating governance shells",
+      "Session-cookie malware and cybersecurity threats disproportionately affect under-resourced rural institutions"
+    ],
+    "resolution": "No winner emerged; instead they converged on a framework that litigation, treaty negotiation, monitoring infrastructure, and legal capacity-building are complementary tools rather than alternatives. They agreed the Piikani lawsuit's precedent value matters regardless of outcome, and that communities should diagnose their own governance gaps rather than adopt a single solution.",
+    "topics_covered": [
+      "Monitoring authority and data control as governance levers",
+      "Litigation as a governance mechanism when regulatory systems fail",
+      "Funding sustainability for nation-led environmental infrastructure",
+      "The gap between legal rights frameworks and operational capacity to exercise them",
+      "Treaty negotiation versus alternative pathways to jurisdiction"
+    ]
   }
 }
