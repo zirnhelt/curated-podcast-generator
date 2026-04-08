@@ -1,0 +1,300 @@
+{
+  "episode": {
+    "date": "2026-04-08",
+    "formatted_date": "Wednesday, April 08, 2026",
+    "theme": "Community Tech & Governance",
+    "title": "Cariboo Signals - Community Tech & Governance",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Community Tech & Governance.</p><p><b>NEWS ROUNDUP:</b> We break down [Williams Lake Tribune] Annual cleaning of water mains and reservoirs begins in Williams Lake and [Quesnel Cariboo Observer] UPDATE: 3 arts positions reinstated at Okanagan College following arbitration, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> What governance failures are revealed when Indigenous communities must resort to litigation to protect their territories from industrial contamination, and what infrastructure would enable proactive rather than reactive protection? Topics include: Monitoring authority and data control as governance levers, Litigation as a governance mechanism when regulatory systems fail, Funding sustainability for nation-led environmental infrastructure, The gap between legal rights frameworks and operational capacity to exercise them, Treaty negotiation versus alternative pathways to jurisdiction.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://cfdccariboo.com\">Community Futures Cariboo Chilcotin</a></p><p><b>Sources discussed:</b></p><ul><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/04/07/annual-cleaning-of-water-mains-and-reservoirs-begins-in-williams-lake/\">[Williams Lake Tribune] Annual cleaning of water mains and r...</a></li><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/04/07/arbitrator-finds-okanagan-college-at-fault-for-layoffs/\">[Quesnel Cariboo Observer] UPDATE: 3 arts positions reinstat...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/04/07/george-abbott-named-chief-commissioner-of-b-c-treaty-commission/\">[Williams Lake Tribune] George Abbott named chief commission...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/04/07/williams-lake-invited-to-eat-around-the-world-at-the-international-food-fair/\">[Williams Lake Tribune] Williams Lake invited to eat around ...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/esp32-flash-bee-palm-sized-lightning-radar-you-can-build-yourself/\">[XDA Developers] The ESP32 Flash Bee is a palm-sized lightni...</a></li><li>Gizmodo: <a href=\"https://gizmodo.com/tiny-robots-reveal-hidden-ocean-chemistry-in-low-oxygen-waters-2000743589\">[Gizmodo] Tiny Robots Reveal Hidden Ocean Chemistry in Low-O...</a></li><li>New Atlas: <a href=\"https://newatlas.com/energy/new-electrolyte-double-ev-range/\">[New Atlas] New cold-hardy electrolyte could potentially dou...</a></li><li>IndigiNews: <a href=\"https://indiginews.com/arts/nuxalk-sputc-ooligan-documentary/\">[IndigiNews] Film uplifts ceremonies for the return of oolig...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/new-breakthrough-in-solar-cell-efficiency-hits-130-quantum-yield\">[ScienceAlert] New Breakthrough in Solar Cell Efficiency Hit...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/04/07/b-c-based-mining-company-confirms-9-of-10-workers-abducted-in-mexico-have-died/\">[Williams Lake Tribune] B.C.-based mining company confirms 9...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/04/07/Piikani-Member-Vows-To-Sue/\">[The Tyee] A Piikani Member Vows to Sue to Stop Selenium Pol...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>XDA Developers: <a href=\"https://www.xda-developers.com/tiny-docker-container-monitors-entire-network-alerts-me/\">[XDA Developers] This tiny Docker container monitors my enti...</a></li><li>Quartz: <a href=\"https://qz.com/rklb-s-neutron-launch-vehicle-is-it-driving-the-next-phase-of-growth\">[Quartz] RKLB's Neutron Launch Vehicle: Is It Driving the Ne...</a></li><li>Nautilus: <a href=\"https://nautil.us/the-mystery-of-water-on-the-moon-1279617/\">[Nautilus] The Mystery of Water on the Moon</a></li><li>TechRadar: <a href=\"https://www.techradar.com/pro/security/stolen-session-cookies-render-mfa-irrelevant-how-usd900-per-month-turnkey-malware-is-putting-enterprise-grade-account-hijacking-in-the-hands-of-rookie-hackers\">[TechRadar] 'Stolen session cookies render MFA irrelevant': ...</a></li><li>InsideEVs: <a href=\"https://insideevs.com/news/792296/bmw-i7-neue-klasse-rimac-batteries/\">[InsideEVs] The Next BMW i7 Will Get Its Batteries From An U...</a></li><li>Gizmodo: <a href=\"https://gizmodo.com/for-the-first-time-astronomers-spot-two-supermassive-black-holes-locked-in-a-death-spiral-2000743581\">[Gizmodo] Unprecedented Observation Reveals 2 Supermassive B...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/04/07/tinygo-boldly-goes-where-no-go-ever-did-go-before/\">[Hackaday] TinyGo Boldly Goes Where No Go Ever Did Go Before</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/04/07/magnetic-levitation-using-an-induction-cooktop/\">[Hackaday] Magnetic Levitation using an Induction Cooktop</a></li><li>How-To Geek: <a href=\"https://www.howtogeek.com/ways-to-use-nas-usb-ports/\">[How-To Geek] Your NAS has USB ports: 4 practical uses most ...</a></li><li>ZDNet: <a href=\"https://www.zdnet.com/article/what-is-a-tiling-window-manager/\">[ZDNet] Love window snapping on Linux? You should try a tili...</a></li><li>ZDNet: <a href=\"https://www.zdnet.com/article/elive-linux/\">[ZDNet] Why I returned to Enlightenment Linux after 30 years...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/04/07/thermostat-do-it-with-a-555/\">[Hackaday] Thermostat? Do It With a 555!</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-opus-4-6<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-04-08T04:15:38.031476-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-opus-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Annual cleaning of water mains and reservoirs begins in Williams Lake",
+          "url": "https://wltribune.com/2026/04/07/annual-cleaning-of-water-mains-and-reservoirs-begins-in-williams-lake/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-08T06:02:29.688871+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] UPDATE: 3 arts positions reinstated at Okanagan College following arbitration",
+          "url": "https://quesnelobserver.com/2026/04/07/arbitrator-finds-okanagan-college-at-fault-for-layoffs/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-04-07T20:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] George Abbott named chief commissioner of B.C. Treaty Commission",
+          "url": "https://wltribune.com/2026/04/07/george-abbott-named-chief-commissioner-of-b-c-treaty-commission/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-07T16:48:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[XDA Developers] This tiny Docker container monitors my entire network and alerts me before things break",
+          "url": "https://www.xda-developers.com/tiny-docker-container-monitors-entire-network-alerts-me/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-04-07T20:30:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Williams Lake invited to eat around the world at the International Food Fair",
+          "url": "https://wltribune.com/2026/04/07/williams-lake-invited-to-eat-around-the-world-at-the-international-food-fair/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-08T06:02:29.688603+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[XDA Developers] The ESP32 Flash Bee is a palm-sized lightning radar you can build yourself",
+          "url": "https://www.xda-developers.com/esp32-flash-bee-palm-sized-lightning-radar-you-can-build-yourself/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-04-08T01:51:34+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Quartz] RKLB's Neutron Launch Vehicle: Is It Driving the Next Phase of Growth?",
+          "url": "https://qz.com/rklb-s-neutron-launch-vehicle-is-it-driving-the-next-phase-of-growth",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-04-08T00:21:22+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] The Mystery of Water on the Moon",
+          "url": "https://nautil.us/the-mystery-of-water-on-the-moon-1279617/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-04-07T22:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] 'Stolen session cookies render MFA irrelevant': How $900-per-month turnkey malware is putting enterprise-grade account hijacking in the hands of rookie hackers",
+          "url": "https://www.techradar.com/pro/security/stolen-session-cookies-render-mfa-irrelevant-how-usd900-per-month-turnkey-malware-is-putting-enterprise-grade-account-hijacking-in-the-hands-of-rookie-hackers",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-04-07T21:20:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[InsideEVs] The Next BMW i7 Will Get Its Batteries From An Unexpected Source",
+          "url": "https://insideevs.com/news/792296/bmw-i7-neue-klasse-rimac-batteries/",
+          "source": "InsideEVs",
+          "ai_score": 0,
+          "date_published": "2026-04-07T21:16:26+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Gizmodo] Unprecedented Observation Reveals 2 Supermassive Black Holes Locked in a Tight Death Spiral",
+          "url": "https://gizmodo.com/for-the-first-time-astronomers-spot-two-supermassive-black-holes-locked-in-a-death-spiral-2000743581",
+          "source": "Gizmodo",
+          "ai_score": 0,
+          "date_published": "2026-04-07T20:50:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Gizmodo] Tiny Robots Reveal Hidden Ocean Chemistry in Low-Oxygen Waters",
+          "url": "https://gizmodo.com/tiny-robots-reveal-hidden-ocean-chemistry-in-low-oxygen-waters-2000743589",
+          "source": "Gizmodo",
+          "ai_score": 0,
+          "date_published": "2026-04-07T20:20:07+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Hackaday] TinyGo Boldly Goes Where No Go Ever Did Go Before",
+          "url": "https://hackaday.com/2026/04/07/tinygo-boldly-goes-where-no-go-ever-did-go-before/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-04-07T20:00:26+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] New cold-hardy electrolyte could potentially double battery range of EVs",
+          "url": "https://newatlas.com/energy/new-electrolyte-double-ev-range/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-04-07T19:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Hackaday] Magnetic Levitation using an Induction Cooktop",
+          "url": "https://hackaday.com/2026/04/07/magnetic-levitation-using-an-induction-cooktop/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-04-07T18:30:26+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] Your NAS has USB ports: 4 practical uses most people miss",
+          "url": "https://www.howtogeek.com/ways-to-use-nas-usb-ports/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-04-07T18:00:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ZDNet] Love window snapping on Linux? You should try a tiling window manager",
+          "url": "https://www.zdnet.com/article/what-is-a-tiling-window-manager/",
+          "source": "ZDNet",
+          "ai_score": 0,
+          "date_published": "2026-04-07T16:31:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ZDNet] Why I returned to Enlightenment Linux after 30 years: Testing the new Elive beta",
+          "url": "https://www.zdnet.com/article/elive-linux/",
+          "source": "ZDNet",
+          "ai_score": 0,
+          "date_published": "2026-04-07T15:56:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Thermostat? Do It With a 555!",
+          "url": "https://hackaday.com/2026/04/07/thermostat-do-it-with-a-555/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-04-07T15:30:51+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[IndigiNews] Film uplifts ceremonies for the return of ooligan, a vital fish for Nuxalk Nation",
+          "url": "https://indiginews.com/arts/nuxalk-sputc-ooligan-documentary/",
+          "source": "IndigiNews",
+          "ai_score": 0,
+          "date_published": "2026-04-07T15:09:58+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[ScienceAlert] New Breakthrough in Solar Cell Efficiency Hits 130% Quantum Yield",
+          "url": "https://www.sciencealert.com/new-breakthrough-in-solar-cell-efficiency-hits-130-quantum-yield",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-04-07T15:00:37+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] B.C.-based mining company confirms 9 of 10 workers abducted in Mexico have died",
+          "url": "https://wltribune.com/2026/04/07/b-c-based-mining-company-confirms-9-of-10-workers-abducted-in-mexico-have-died/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-07T14:56:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] 1 pleads not guilty in Kelowna court for 2021 homicide of Penticton man",
+          "url": "https://wltribune.com/2026/04/07/1-pleads-not-guilty-in-kelowna-court-for-2021-homicide-of-penticton-man/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-07T13:45:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] B.C. country singer vying for top-three spot in national competition",
+          "url": "https://wltribune.com/2026/04/07/b-c-country-singer-vying-for-top-three-spot-in-national-competition/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-07T13:25:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Two bald eagles rescued from power line after mid-air fight in Surrey, B.C.",
+          "url": "https://wltribune.com/2026/04/07/two-bald-eagles-rescued-from-power-line-after-mid-air-fight-in-surrey-b-c/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-07T13:17:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Community Tech & Governance",
+      "articles": [
+        {
+          "title": "[The Tyee] A Piikani Member Vows to Sue to Stop Selenium Pollution",
+          "url": "https://thetyee.ca/News/2026/04/07/Piikani-Member-Vows-To-Sue/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-04-07T19:41:00+00:00",
+          "summary": "",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "What governance failures are revealed when Indigenous communities must resort to litigation to protect their territories from industrial contamination, and what infrastructure would enable proactive rather than reactive protection?",
+        "riley_position": "Environmental governance systems fail when they produce plans and timelines without binding operational triggers, forcing communities into expensive litigation; communities need independent monitoring capacity and pre-established legal relationships to shift from reactive to proactive defense.",
+        "riley_key_evidence": [
+          "Teck's Water Quality Centre treatment facility exists but deployment timeline is slow, allowing interim harm while regulations shift",
+          "Selenium from Elk Valley coal mines is lethal to fish and disrupts reproduction in the Oldman River watershed",
+          "Nation-controlled monitoring networks are technically feasible at grant-fundable scales and establish data authority"
+        ],
+        "casey_position": "Data without binding authority to trigger operational changes is merely documentation of harm; governance capacity lags behind legal rights frameworks, and this gap may be structurally maintained by actors who benefit from dependency.",
+        "casey_key_evidence": [
+          "Tŝilhqot'in Nation has 2014 Supreme Court title declaration but still requires years of negotiation to convert legal rights into operational control",
+          "Monitoring programs funded through initial grants often become non-functional when operational funding ends, creating governance shells",
+          "Session-cookie malware and cybersecurity threats disproportionately affect under-resourced rural institutions"
+        ],
+        "resolution": "No winner emerged; instead they converged on a framework that litigation, treaty negotiation, monitoring infrastructure, and legal capacity-building are complementary tools rather than alternatives. They agreed the Piikani lawsuit's precedent value matters regardless of outcome, and that communities should diagnose their own governance gaps rather than adopt a single solution.",
+        "topics_covered": [
+          "Monitoring authority and data control as governance levers",
+          "Litigation as a governance mechanism when regulatory systems fail",
+          "Funding sustainability for nation-led environmental infrastructure",
+          "The gap between legal rights frameworks and operational capacity to exercise them",
+          "Treaty negotiation versus alternative pathways to jurisdiction"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
