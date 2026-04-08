@@ -375,8 +375,10 @@ def ingest(dry_run: bool = False) -> int:
         if item.get("message_id")
     }
 
-    # Build Gmail search query: unread messages in the target label
-    query = f"is:unread label:{label}" if label.upper() != "INBOX" else "is:unread"
+    # Build Gmail search query: all messages in the target label.
+    # Deduplication is handled via seen_message_ids; dropping is:unread ensures
+    # messages manually marked read in Gmail are still picked up.
+    query = f"label:{label}" if label.upper() != "INBOX" else "in:inbox"
 
     try:
         result = service.users().messages().list(
@@ -440,6 +442,12 @@ def ingest(dry_run: bool = False) -> int:
         body_text = _sanitize(raw_text, max_chars)
 
         theme_tag, theme_day = _score_themes(f"{subject} {body_text}", themes)
+
+        if theme_tag is None:
+            print(f"  ⏭  No theme match, skipping: \"{subject[:60]}\"")
+            if not dry_run:
+                _mark_read(service, msg_id)
+            continue
 
         item = {
             "id": uuid.uuid4().hex[:8],

@@ -6,6 +6,9 @@ on:
     - cron: '0 0,4,8,14,18,22 * * *'
   workflow_dispatch:  # Allow manual trigger
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 permissions:
   contents: write
 
