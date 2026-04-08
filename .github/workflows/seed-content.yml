@@ -98,6 +98,9 @@ on:
   repository_dispatch:
     types: [seed-content]
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 permissions:
   contents: write
   actions: write   # required to dispatch generate-bespoke.yml when tag threshold is reached
