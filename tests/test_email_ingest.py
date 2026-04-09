@@ -1,14 +1,18 @@
-"""Tests for email_ingest module — sender blocklist and theme scoring."""
+"""Tests for email_ingest module — sender blocklist, theme scoring, and full ingest pipeline."""
 
+import base64
 import json
 import sys
+import uuid
 from pathlib import Path
+from email.mime.text import MIMEText
+from unittest.mock import MagicMock
 
 import pytest
 
 # email_ingest only uses stdlib at import time; no stubs needed
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from email_ingest import _is_blocked_sender, _score_themes
+from email_ingest import _is_blocked_sender, _score_themes, ingest
 
 
 # ---------------------------------------------------------------------------
@@ -154,3 +158,119 @@ class TestScoreThemes:
         text = "science research ecology biodiversity watershed field research citizen science"
         tag, day = _score_themes(text, themes)
         assert day == 6
+
+
+# ---------------------------------------------------------------------------
+# ingest() — full pipeline with mocked Gmail service
+# ---------------------------------------------------------------------------
+
+def _make_raw_email(subject, from_addr, body, message_id=None):
+    """Build a base64url-encoded raw email dict as returned by the Gmail API."""
+    msg = MIMEText(body)
+    msg["Subject"] = subject
+    msg["From"] = from_addr
+    msg["To"] = "podcast@example.com"
+    msg["Date"] = "Thu, 01 Jan 2026 00:00:00 +0000"
+    msg["Message-ID"] = message_id or f"<{uuid.uuid4().hex}@example.com>"
+    return {"raw": base64.urlsafe_b64encode(msg.as_bytes()).decode()}
+
+
+def _mock_gmail_service(raw_email_dicts):
+    """Return a MagicMock Gmail service that yields the given raw email dicts."""
+    svc = MagicMock()
+    svc.users().messages().list().execute.return_value = {
+        "messages": [{"id": str(i)} for i in range(len(raw_email_dicts))]
+    }
+    svc.users().messages().get().execute.side_effect = raw_email_dicts
+    svc.users().messages().modify().execute.return_value = {}
+    return svc
+
+
+class TestIngest:
+    def test_themed_feedback_email_is_added(self, tmp_path, monkeypatch):
+        """A feedback email whose body matches a theme keyword is queued."""
+        raw = _make_raw_email(
+            subject="Love the show",
+            from_addr="listener@example.com",
+            body="Great coverage of Williams Lake and Cariboo rural communities.",
+        )
+        svc = _mock_gmail_service([raw])
+
+        queue_file = tmp_path / "email_queue.json"
+        monkeypatch.setenv("GMAIL_LABEL", "podcast")
+        monkeypatch.setattr("email_ingest._build_gmail_service", lambda: svc)
+        monkeypatch.setattr("email_ingest.QUEUE_FILE", queue_file)
+
+        added = ingest(dry_run=False)
+
+        assert added == 1
+        queue = json.loads(queue_file.read_text())
+        assert len(queue["items"]) == 1
+        item = queue["items"][0]
+        assert item["type"] == "feedback"
+        assert item["theme_tag"] == "Cariboo Voices & Local News"
+        assert item["status"] == "pending"
+        assert item["subject"] == "Love the show"
+
+    def test_unthemed_email_is_skipped(self, tmp_path, monkeypatch):
+        """An email with no theme keyword match is not added to the queue."""
+        raw = _make_raw_email(
+            subject="Test",
+            from_addr="sender@example.com",
+            body="Hello there, just a generic message with no matching keywords.",
+        )
+        svc = _mock_gmail_service([raw])
+
+        queue_file = tmp_path / "email_queue.json"
+        monkeypatch.setenv("GMAIL_LABEL", "podcast")
+        monkeypatch.setattr("email_ingest._build_gmail_service", lambda: svc)
+        monkeypatch.setattr("email_ingest.QUEUE_FILE", queue_file)
+
+        added = ingest(dry_run=False)
+
+        assert added == 0
+        assert not queue_file.exists()
+
+    def test_duplicate_email_is_skipped(self, tmp_path, monkeypatch):
+        """An email whose Message-ID is already in the queue is not re-added."""
+        mid = "<already-seen@example.com>"
+        raw = _make_raw_email(
+            subject="Cariboo community update",
+            from_addr="sender@example.com",
+            body="Williams Lake local news and community stories.",
+            message_id=mid,
+        )
+        svc = _mock_gmail_service([raw])
+
+        queue_file = tmp_path / "email_queue.json"
+        queue_file.write_text(json.dumps({
+            "version": 1,
+            "items": [{"message_id": mid, "status": "pending"}],
+        }))
+
+        monkeypatch.setenv("GMAIL_LABEL", "podcast")
+        monkeypatch.setattr("email_ingest._build_gmail_service", lambda: svc)
+        monkeypatch.setattr("email_ingest.QUEUE_FILE", queue_file)
+
+        added = ingest(dry_run=False)
+
+        assert added == 0
+
+    def test_dry_run_does_not_write_queue(self, tmp_path, monkeypatch):
+        """dry_run=True parses emails but never writes the queue file."""
+        raw = _make_raw_email(
+            subject="Science in Cariboo",
+            from_addr="researcher@example.com",
+            body="New citizen science research on watershed ecology and biodiversity.",
+        )
+        svc = _mock_gmail_service([raw])
+
+        queue_file = tmp_path / "email_queue.json"
+        monkeypatch.setenv("GMAIL_LABEL", "podcast")
+        monkeypatch.setattr("email_ingest._build_gmail_service", lambda: svc)
+        monkeypatch.setattr("email_ingest.QUEUE_FILE", queue_file)
+
+        added = ingest(dry_run=True)
+
+        assert added == 1
+        assert not queue_file.exists()
