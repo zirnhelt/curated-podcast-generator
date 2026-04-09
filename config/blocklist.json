@@ -47,5 +47,24 @@
     "shutout",
     "hat trick"
   ],
-  "description": "Articles matching these keywords (case-insensitive) in the title are excluded from the podcast. Includes political content and all sports coverage — even local sports stories are excluded per editorial policy."
+  "description": "Articles matching these keywords (case-insensitive) in the title are excluded from the podcast. Includes political content and all sports coverage — even local sports stories are excluded per editorial policy.",
+  "email_sender_blocklist": {
+    "description": "Emails from these sender domains or matching these from-address patterns are rejected at ingest, regardless of keyword score.",
+    "domains": [
+      "podmatch.com",
+      "podseo.com",
+      "truefans.fm",
+      "cloudflare.com",
+      "em1.cloudflare.com",
+      "notify.cloudflare.com",
+      "paypal.com",
+      "intl.paypal.com",
+      "cira.ca"
+    ],
+    "patterns": [
+      "mailer-daemon",
+      "mail delivery subsystem",
+      "postmaster@"
+    ]
+  }
 }
