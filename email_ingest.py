@@ -196,20 +196,24 @@ def _load_email_sender_blocklist() -> dict:
         return {}
 
 
-def _load_trusted_senders() -> list:
+def _load_subject_blocklist() -> list:
     blocklist_file = SCRIPT_DIR / "config" / "blocklist.json"
     try:
         with open(blocklist_file) as f:
             data = json.load(f)
-        return [a.lower() for a in data.get("trusted_senders", {}).get("addresses", [])]
+        return [p.lower() for p in data.get("email_subject_blocklist", {}).get("patterns", [])]
     except (OSError, json.JSONDecodeError) as e:
-        print(f"  ⚠️  Could not load trusted senders: {e}", file=sys.stderr)
+        print(f"  ⚠️  Could not load subject blocklist: {e}", file=sys.stderr)
         return []
 
 
-def _is_trusted_sender(from_address: str, trusted: list) -> bool:
-    addr_lower = from_address.lower()
-    return any(t in addr_lower for t in trusted)
+def _is_blocked_subject(subject: str, patterns: list) -> bool:
+    """Return True if the subject starts with any blocked pattern (whole-word, case-insensitive)."""
+    subj = subject.strip().lower()
+    for pattern in patterns:
+        if re.match(r"^" + re.escape(pattern) + r"(\s|$)", subj):
+            return True
+    return False
 
 
 def _is_blocked_sender(from_address: str, blocklist: dict) -> bool:
@@ -408,7 +412,7 @@ def ingest(dry_run: bool = False) -> int:
     label = os.environ.get("GMAIL_LABEL", "INBOX").strip()
     themes = _load_themes()
     sender_blocklist = _load_email_sender_blocklist()
-    trusted_senders = _load_trusted_senders()
+    subject_blocklist = _load_subject_blocklist()
 
     print(f"📧 Connecting to Gmail API (label: {label!r})...")
     service = _build_gmail_service()
@@ -480,6 +484,12 @@ def ingest(dry_run: bool = False) -> int:
                 _mark_read(service, msg_id)
             continue
 
+        if _is_blocked_subject(subject, subject_blocklist):
+            print(f"  ⏭  Blocked subject, skipping: \"{subject[:60]}\"")
+            if not dry_run:
+                _mark_read(service, msg_id)
+            continue
+
         date_str = msg.get("Date", "")
         try:
             received_at = email.utils.parsedate_to_datetime(date_str).isoformat()
@@ -496,14 +506,10 @@ def ingest(dry_run: bool = False) -> int:
         theme_tag, theme_day = _score_themes(f"{from_address} {subject} {body_text}", themes)
 
         if theme_tag is None:
-            if _is_trusted_sender(from_address, trusted_senders):
-                item_type = "test"
-                print(f"  ✅ [test] \"{subject[:60]}\" → (trusted sender, no theme required)")
-            else:
-                print(f"  ⏭  No theme match, skipping: \"{subject[:60]}\"")
-                if not dry_run:
-                    _mark_read(service, msg_id)
-                continue
+            print(f"  ⏭  No theme match, skipping: \"{subject[:60]}\"")
+            if not dry_run:
+                _mark_read(service, msg_id)
+            continue
 
         item = {
             "id": uuid.uuid4().hex[:8],

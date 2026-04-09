@@ -12,7 +12,7 @@ import pytest
 
 # email_ingest only uses stdlib at import time; no stubs needed
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from email_ingest import _is_blocked_sender, _is_trusted_sender, _score_themes, ingest
+from email_ingest import _is_blocked_sender, _is_blocked_subject, _score_themes, ingest
 
 
 # ---------------------------------------------------------------------------
@@ -107,24 +107,34 @@ class TestIsBlockedSender:
 
 
 # ---------------------------------------------------------------------------
-# _is_trusted_sender
+# _is_blocked_subject
 # ---------------------------------------------------------------------------
 
-SAMPLE_TRUSTED = ["zirnhelt@gmail.com"]
+SAMPLE_SUBJECT_BLOCKLIST = ["test"]
 
 
-class TestIsTrustedSender:
-    def test_recognises_owner_email(self):
-        assert _is_trusted_sender("Erich Zirnhelt <zirnhelt@gmail.com>", SAMPLE_TRUSTED)
+class TestIsBlockedSubject:
+    def test_blocks_bare_test(self):
+        assert _is_blocked_subject("Test", SAMPLE_SUBJECT_BLOCKLIST)
+
+    def test_blocks_test_with_number(self):
+        assert _is_blocked_subject("Test 4", SAMPLE_SUBJECT_BLOCKLIST)
+
+    def test_blocks_test_with_word(self):
+        assert _is_blocked_subject("Test two", SAMPLE_SUBJECT_BLOCKLIST)
 
     def test_case_insensitive(self):
-        assert _is_trusted_sender("ZIRNHELT@GMAIL.COM", SAMPLE_TRUSTED)
+        assert _is_blocked_subject("TEST 5", SAMPLE_SUBJECT_BLOCKLIST)
 
-    def test_unknown_sender_not_trusted(self):
-        assert not _is_trusted_sender("stranger@example.com", SAMPLE_TRUSTED)
+    def test_does_not_block_mid_word(self):
+        # "testing" starts with "test" but is a different word
+        assert not _is_blocked_subject("Testing new tech", SAMPLE_SUBJECT_BLOCKLIST)
 
-    def test_empty_trusted_list_allows_nobody(self):
-        assert not _is_trusted_sender("zirnhelt@gmail.com", [])
+    def test_does_not_block_unrelated_subject(self):
+        assert not _is_blocked_subject("Cariboo community update", SAMPLE_SUBJECT_BLOCKLIST)
+
+    def test_empty_blocklist_blocks_nothing(self):
+        assert not _is_blocked_subject("Test", [])
 
 
 # ---------------------------------------------------------------------------
@@ -277,12 +287,12 @@ class TestIngest:
 
         assert added == 0
 
-    def test_trusted_sender_bypasses_theme_matching(self, tmp_path, monkeypatch):
-        """An email from a trusted sender is queued as type 'test' even with no theme match."""
+    def test_subject_blocked_email_is_skipped(self, tmp_path, monkeypatch):
+        """An email whose subject starts with 'test' is skipped even if it would match a theme."""
         raw = _make_raw_email(
-            subject="Test",
-            from_addr="Erich Zirnhelt <zirnhelt@gmail.com>",
-            body="Just testing the email address.",
+            subject="Test 4",
+            from_addr="listener@example.com",
+            body="Williams Lake and Cariboo community stories.",  # would match a theme
         )
         svc = _mock_gmail_service([raw])
 
@@ -293,12 +303,8 @@ class TestIngest:
 
         added = ingest(dry_run=False)
 
-        assert added == 1
-        queue = json.loads(queue_file.read_text())
-        item = queue["items"][0]
-        assert item["type"] == "test"
-        assert item["theme_tag"] is None
-        assert item["subject"] == "Test"
+        assert added == 0
+        assert not queue_file.exists()
 
     def test_dry_run_does_not_write_queue(self, tmp_path, monkeypatch):
         """dry_run=True parses emails but never writes the queue file."""
