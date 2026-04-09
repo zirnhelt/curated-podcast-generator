@@ -2,6 +2,31 @@
   "version": 1,
   "items": [
     {
+      "id": "dc3fb6d5",
+      "type": "newsletter",
+      "message_id": "<671bfabb-f09f-4346-8e7d-e792f7808299@mtasv.net>",
+      "from_address": "Animikii Indigenous Technology <news@animikii.com>",
+      "subject": "From wildfires to clam gardens: decolonizing data",
+      "received_at": "2026-04-08T19:02:53+00:00",
+      "body_text": "![A graphic illustration of an urban roof top patio with flowers and plants blooming in a variety or pots along the edge. A woman in a purple top and pink pants holds a water can as the rising sun ill",
+      "extracted_urls": [
+        "https://assets.buttondown.email/images/32f798c1-fd59-4ab4-9e61-8fb9d6e26c58.jpg?w=960&fit=max",
+        "https://www.theguardian.com/environment/2026/apr/04/indigenous-knowledge-western-science-climate-ecosystems?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=from-wildfires-to-clam-gardens-decolonizing-data",
+        "https://www.openaccessgovernment.org/article/indigenous-pathways-to-stem-successes-barriers-and-next-steps-across-turtle-island/207751/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=from-wildfires-to-clam-gardens-decolonizing-data",
+        "https://nativenewsonline.net/sponsored-content/as-data-becomes-a-strategic-asset-native-leaders-face-a-new-sovereignty-test/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=from-wildfires-to-clam-gardens-decolonizing-data",
+        "https://assets.buttondown.email/images/06dc2319-d483-4597-a187-896bd883bb02.jpg?w=960&amp;fit=max",
+        "https://unsplash.com/@jelphoto?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText&utm_campaign=from-wildfires-to-clam-gardens-decolonizing-data",
+        "https://unsplash.com/photos/a-purple-flower-in-the-middle-of-a-forest-vK3JT0UDNds?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText&utm_campaign=from-wildfires-to-clam-gardens-decolonizing-data",
+        "https://indiginews.com/features/wildfire-season-indigenous-fire-keepers-gather/?utm_source=newsriver&amp;amp;utm_medium=email&amp;amp;utm_campaign=from-wildfires-to-clam-gardens-decolonizing-data",
+        "https://www.cbc.ca/news/canada/north/virtual-museum-perserving-igloolik-culture-from-1960s-70s-9.7151258?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=from-wildfires-to-clam-gardens-decolonizing-data",
+        "https://universityaffairs.ca/news/addressing-academias-pretendian-problem/?utm_source=newsriver&amp;amp;utm_medium=email&amp;amp;utm_campaign=from-wildfires-to-clam-gardens-decolonizing-data"
+      ],
+      "theme_tag": "Wild Spaces & Outdoor Life",
+      "theme_day": 4,
+      "status": "pending",
+      "used_at": null
+    },
+    {
       "id": "fcea7002",
       "type": "feedback",
       "message_id": "<gDRBxkbeSX-tBynz5Z2nvQ@geopod-ismtpd-32>",
