@@ -1,24 +1,4 @@
 {
-  "2026-03-18": {
-    "timestamp": 1773839983.416567,
-    "topics": [
-      "[Williams Lake Tribune] Trans Mountain begins assessment wor",
-      "[The Tyee] BC\u2019s Auditor General Offers Reasons for the Lack ",
-      "[Lifehacker] You Can Turn an Old Android Phone Into a Wifi E",
-      "[The Tyee] Inside BC\u2019s Plan to Fast-Track Environmental Asse",
-      "[ZDNet] I replaced my router with a Wi-Fi 7 mesh model, and ",
-      "150 people died in B.C. in January from toxic drugs: Coroner",
-      "[Williams Lake Tribune] Williams Lake city council approve o",
-      "[Williams Lake Tribune] B.C. Conservative leader candidate t"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-03-18"
-  },
   "2026-03-19": {
     "timestamp": 1773925626.773676,
     "topics": [
@@ -437,5 +417,25 @@
       "Indigenous tech"
     ],
     "date": "2026-04-08"
+  },
+  "2026-04-09": {
+    "timestamp": 1775734530.886721,
+    "topics": [
+      "[Williams Lake Tribune] B.C. First Nation at odds over owner",
+      "[Williams Lake Tribune] Okanagan Humane Society: Happy Harle",
+      "[Williams Lake Tribune] Princeton Posse punch ticket to KIJH",
+      "[Williams Lake Tribune] Barkerville 2026 season brings gold ",
+      "[Toms Guide] I use the \u2018cheese prompt\u2019 to instantly improve ",
+      "From wildfires to clam gardens: decolonizing data",
+      "Braiding knowledge: how Indigenous expertise and western sci",
+      "From wildfires to clam gardens: decolonizing data"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-04-09"
   }
 }

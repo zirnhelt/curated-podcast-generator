@@ -876,5 +876,37 @@
       "The gap between legal rights frameworks and operational capacity to exercise them",
       "Treaty negotiation versus alternative pathways to jurisdiction"
     ]
+  },
+  "2026-04-09": {
+    "timestamp": 1775734532.79569,
+    "date": "2026-04-09",
+    "theme": "Indigenous Lands & Innovation",
+    "central_question": "When Indigenous communities share ecological knowledge with Western institutions, how can that sharing preserve Indigenous data sovereignty and prevent knowledge systems from being absorbed or devalued?",
+    "riley_position": "Indigenous and Western knowledge systems are complementary rather than substitutive; braiding them as distinct strands preserves the integrity of both, and communities should begin building governance and knowledge infrastructure now despite funding constraints, because the window for encoding intergenerational ecological understanding is closing.",
+    "riley_key_evidence": [
+      "Selenium contamination cases where Indigenous community reports of sick animals and declining fish preceded formal monitoring data by years",
+      "Clam garden research between marine biologists and Lekwungen and W\u0331S\u00c1NE\u0106 peoples shaped research questions from the nations first, not by university priorities",
+      "Guardian Stewards programs run by B.C. First Nations where data goes to the nation first before provincial/federal sharing"
+    ],
+    "casey_position": "Data sovereignty requires more than access control\u2014it requires defining what counts as data first; communities must preserve decision-making control over the pace and architecture of knowledge work and avoid accepting under-resourced programs that create dependencies without leveraging power to negotiate terms.",
+    "casey_key_evidence": [
+      "Broadband rollouts, environmental monitoring, and health data systems where short-term grants expire leaving communities with obligations but no infrastructure",
+      "Traditional ecological knowledge evolved in a climate regime that no longer fully applies; both Indigenous and Western systems are being stress-tested by novel conditions simultaneously",
+      "Guardian programs covering millions of hectares on budgets inadequate relative to scope, representing downloading of responsibility without resources"
+    ],
+    "resolution": "They converged on the principle that both knowledge systems are imperfect and complementary, neither sufficient alone; they agreed the epistemological framework\u2014what counts as knowledge\u2014must precede data architecture, and that this is a harder problem than governance because it requires different ways of knowing to coexist without one consuming the other.",
+    "topics_covered": [
+      "Data sovereignty and decolonizing data systems",
+      "Knowledge braiding versus integration",
+      "Indigenous fire stewardship and clam garden restoration",
+      "Traditional ecological knowledge versus Western scientific monitoring",
+      "Food sovereignty and ecosystem restoration projects",
+      "Funding gaps in Guardian Stewards and community-controlled programs"
+    ],
+    "calls_to_action": [
+      "A Cariboo community could bring together Elders, land stewards, and locally available technical capacity to spend real time answering the foundational question: what counts as data from an Indigenous stewardship perspective for this landscape, and what are the indicators that actually matter?\u2014without immediately building a database, just establishing epistemology first so the architecture follows correctly.",
+      "Communities should preserve optionality by assessing what knowledge-sharing with provincial institutions actually costs before committing to short-term grant cycles, rather than accepting underfunded programs that lock in relationships before the community has leverage to negotiate terms.",
+      "Send feedback and perspectives on Indigenous data governance to feedback at cariboo signals dot c-a."
+    ]
   }
 }
