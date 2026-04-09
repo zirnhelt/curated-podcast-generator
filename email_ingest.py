@@ -185,6 +185,33 @@ def _load_themes() -> dict:
         return {}
 
 
+def _load_email_sender_blocklist() -> dict:
+    blocklist_file = SCRIPT_DIR / "config" / "blocklist.json"
+    try:
+        with open(blocklist_file) as f:
+            data = json.load(f)
+        return data.get("email_sender_blocklist", {})
+    except (OSError, json.JSONDecodeError) as e:
+        print(f"  ⚠️  Could not load sender blocklist: {e}", file=sys.stderr)
+        return {}
+
+
+def _is_blocked_sender(from_address: str, blocklist: dict) -> bool:
+    """Return True if the sender should be rejected based on domain or pattern."""
+    addr_lower = from_address.lower()
+    for pattern in blocklist.get("patterns", []):
+        if pattern.lower() in addr_lower:
+            return True
+    match = re.search(r"@([\w.\-]+)", addr_lower)
+    if match:
+        domain = match.group(1)
+        for blocked in blocklist.get("domains", []):
+            blocked_lower = blocked.lower()
+            if domain == blocked_lower or domain.endswith("." + blocked_lower):
+                return True
+    return False
+
+
 def _score_themes(text: str, themes: dict) -> tuple:
     """Return (theme_name, theme_day_int) for the best match, or (None, None)."""
     if not text.strip() or not themes:
@@ -364,6 +391,7 @@ def ingest(dry_run: bool = False) -> int:
     """
     label = os.environ.get("GMAIL_LABEL", "INBOX").strip()
     themes = _load_themes()
+    sender_blocklist = _load_email_sender_blocklist()
 
     print(f"📧 Connecting to Gmail API (label: {label!r})...")
     service = _build_gmail_service()
@@ -428,6 +456,13 @@ def ingest(dry_run: bool = False) -> int:
 
         subject = _decode_header_value(msg.get("Subject", ""))
         from_address = _decode_header_value(msg.get("From", ""))
+
+        if _is_blocked_sender(from_address, sender_blocklist):
+            print(f"  ⏭  Blocked sender, skipping: \"{from_address[:60]}\"")
+            if not dry_run:
+                _mark_read(service, msg_id)
+            continue
+
         date_str = msg.get("Date", "")
         try:
             received_at = email.utils.parsedate_to_datetime(date_str).isoformat()
@@ -441,7 +476,7 @@ def ingest(dry_run: bool = False) -> int:
         raw_text = plain_body if plain_body.strip() else _strip_html(html_body)
         body_text = _sanitize(raw_text, max_chars)
 
-        theme_tag, theme_day = _score_themes(f"{subject} {body_text}", themes)
+        theme_tag, theme_day = _score_themes(f"{from_address} {subject} {body_text}", themes)
 
         if theme_tag is None:
             print(f"  ⏭  No theme match, skipping: \"{subject[:60]}\"")
