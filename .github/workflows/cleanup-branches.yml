@@ -1,0 +1,42 @@
+name: Cleanup Merged Branches
+
+on:
+  pull_request:
+    types: [closed]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Delete merged branches
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git fetch --prune origin
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            branch="${{ github.head_ref }}"
+            echo "Deleting merged PR branch: $branch"
+            git push origin --delete "$branch" || echo "Branch already deleted or protected"
+          else
+            # Bulk cleanup: delete all branches merged into main except protected ones
+            PROTECTED="main gh-pages"
+            for branch in $(git branch -r --merged origin/main | sed 's|origin/||' | tr -d ' '); do
+              skip=false
+              for p in $PROTECTED; do
+                [ "$branch" = "$p" ] && skip=true && break
+              done
+              if [ "$skip" = "false" ]; then
+                echo "Deleting: $branch"
+                git push origin --delete "$branch" || echo "Failed to delete $branch"
+              fi
+            done
+          fi
