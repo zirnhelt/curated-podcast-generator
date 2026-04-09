@@ -12,7 +12,7 @@ import pytest
 
 # email_ingest only uses stdlib at import time; no stubs needed
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from email_ingest import _is_blocked_sender, _score_themes, ingest
+from email_ingest import _is_blocked_sender, _is_trusted_sender, _score_themes, ingest
 
 
 # ---------------------------------------------------------------------------
@@ -104,6 +104,27 @@ class TestIsBlockedSender:
         assert _is_blocked_sender(
             "Andrea De Marsi <demars@podseo.com>", SAMPLE_BLOCKLIST
         )
+
+
+# ---------------------------------------------------------------------------
+# _is_trusted_sender
+# ---------------------------------------------------------------------------
+
+SAMPLE_TRUSTED = ["zirnhelt@gmail.com"]
+
+
+class TestIsTrustedSender:
+    def test_recognises_owner_email(self):
+        assert _is_trusted_sender("Erich Zirnhelt <zirnhelt@gmail.com>", SAMPLE_TRUSTED)
+
+    def test_case_insensitive(self):
+        assert _is_trusted_sender("ZIRNHELT@GMAIL.COM", SAMPLE_TRUSTED)
+
+    def test_unknown_sender_not_trusted(self):
+        assert not _is_trusted_sender("stranger@example.com", SAMPLE_TRUSTED)
+
+    def test_empty_trusted_list_allows_nobody(self):
+        assert not _is_trusted_sender("zirnhelt@gmail.com", [])
 
 
 # ---------------------------------------------------------------------------
@@ -255,6 +276,29 @@ class TestIngest:
         added = ingest(dry_run=False)
 
         assert added == 0
+
+    def test_trusted_sender_bypasses_theme_matching(self, tmp_path, monkeypatch):
+        """An email from a trusted sender is queued as type 'test' even with no theme match."""
+        raw = _make_raw_email(
+            subject="Test",
+            from_addr="Erich Zirnhelt <zirnhelt@gmail.com>",
+            body="Just testing the email address.",
+        )
+        svc = _mock_gmail_service([raw])
+
+        queue_file = tmp_path / "email_queue.json"
+        monkeypatch.setenv("GMAIL_LABEL", "podcast")
+        monkeypatch.setattr("email_ingest._build_gmail_service", lambda: svc)
+        monkeypatch.setattr("email_ingest.QUEUE_FILE", queue_file)
+
+        added = ingest(dry_run=False)
+
+        assert added == 1
+        queue = json.loads(queue_file.read_text())
+        item = queue["items"][0]
+        assert item["type"] == "test"
+        assert item["theme_tag"] is None
+        assert item["subject"] == "Test"
 
     def test_dry_run_does_not_write_queue(self, tmp_path, monkeypatch):
         """dry_run=True parses emails but never writes the queue file."""

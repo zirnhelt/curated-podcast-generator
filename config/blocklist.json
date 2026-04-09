@@ -48,6 +48,12 @@
     "hat trick"
   ],
   "description": "Articles matching these keywords (case-insensitive) in the title are excluded from the podcast. Includes political content and all sports coverage — even local sports stories are excluded per editorial policy.",
+  "trusted_senders": {
+    "description": "Emails from these addresses bypass theme matching and are queued as type 'test' for pipeline verification. They are never used in podcast generation.",
+    "addresses": [
+      "zirnhelt@gmail.com"
+    ]
+  },
   "email_sender_blocklist": {
     "description": "Emails from these sender domains or matching these from-address patterns are rejected at ingest, regardless of keyword score.",
     "domains": [
