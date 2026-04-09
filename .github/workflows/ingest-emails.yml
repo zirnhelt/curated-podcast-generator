@@ -30,14 +30,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install google-auth google-auth-oauthlib google-api-python-client
 
-      - name: Download existing email queue from GitHub Pages
-        run: |
-          mkdir -p podcasts
-          wget https://zirnhelt.github.io/curated-podcast-generator/podcasts/email_queue.json \
-            -O podcasts/email_queue.json \
-            || echo '{"version":1,"items":[]}' > podcasts/email_queue.json
-          echo "Email queue loaded ($(python -c "import json; d=json.load(open('podcasts/email_queue.json')); print(len(d.get('items',[])))") existing items)"
-        continue-on-error: true
+      - name: Ensure podcasts directory exists
+        run: mkdir -p podcasts
 
       - name: Ingest new emails from Gmail
         env:

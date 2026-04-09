@@ -51,7 +51,6 @@ jobs:
           wget https://zirnhelt.github.io/curated-podcast-generator/podcasts/host_personality_memory.json -O podcasts/host_personality_memory.json || echo "No host memory found"
           wget https://zirnhelt.github.io/curated-podcast-generator/podcasts/debate_memory.json -O podcasts/debate_memory.json || echo "No debate memory found"
           wget https://zirnhelt.github.io/curated-podcast-generator/podcasts/psa_rotation_state.json -O podcasts/psa_rotation_state.json || echo "No PSA rotation state found"
-          wget https://zirnhelt.github.io/curated-podcast-generator/podcasts/email_queue.json -O podcasts/email_queue.json || echo '{"version":1,"items":[]}' > podcasts/email_queue.json
 
           # Download RSS feed for episode detection
           wget https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml -O podcast-feed.xml || echo "No existing RSS feed"
