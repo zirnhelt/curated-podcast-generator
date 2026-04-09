@@ -138,6 +138,14 @@ def check_bespoke_trigger(data: dict, tag: str) -> None:
     if count < BESPOKE_TRIGGER_THRESHOLD:
         return
 
+    # When running inside GitHub Actions, the seed-content.yml workflow has a
+    # dedicated "Dispatch bespoke if threshold reached" step that fires AFTER
+    # the commit lands, so generate-bespoke.yml sees the fresh seed data.
+    # Dispatching here would be premature (pre-commit) and redundant.
+    if os.environ.get("GITHUB_ACTIONS"):
+        print(f"  Running in GitHub Actions — bespoke dispatch handled by workflow step.")
+        return
+
     token = os.environ.get("GITHUB_TOKEN")
     repo = os.environ.get("GITHUB_REPOSITORY")
     if not token or not repo:
@@ -165,7 +173,13 @@ def check_bespoke_trigger(data: dict, tag: str) -> None:
             else:
                 print(f"  Unexpected response {resp.status} when dispatching bespoke workflow")
     except Exception as e:
-        print(f"  Could not dispatch bespoke workflow: {e}")
+        msg = str(e)
+        if "403" in msg or "401" in msg or "Unauthorized" in msg or "Forbidden" in msg:
+            print(f"  Authentication error dispatching bespoke workflow: {e}")
+            print(f"  Your GITHUB_TOKEN needs 'workflow' scope to trigger workflow_dispatch.")
+            print(f"  Fix: github.com/settings/tokens → enable 'workflow' scope on your PAT.")
+        else:
+            print(f"  Could not dispatch bespoke workflow: {e}")
         print(f"  Run manually: python generate_bespoke.py --tag {tag_lower}")
 
 
