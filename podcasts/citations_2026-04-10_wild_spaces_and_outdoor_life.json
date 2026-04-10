@@ -1,0 +1,408 @@
+{
+  "episode": {
+    "date": "2026-04-10",
+    "formatted_date": "Friday, April 10, 2026",
+    "theme": "Wild Spaces & Outdoor Life",
+    "title": "Cariboo Signals - Wild Spaces & Outdoor Life",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Wild Spaces & Outdoor Life.</p><p><b>NEWS ROUNDUP:</b> We break down [Williams Lake Tribune] New Cariboo fire agreement aims to cut emergency response delays and [CNET] US Mobile Is Getting Into the Home Internet Business by Pairing With Starlink, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Can technology effectively support Indigenous-led wildfire management and cultural burning practices, or does it risk substituting for community knowledge and authority? Topics include: Role of Indigenous women in reclaiming cultural burning practices and dual expertise as firefighters and cultural values experts, Funding architecture and governance models for Nation-led land stewardship versus project-based grant cycles, Integration of fire behavior modeling technology with traditional ecological knowledge in prescribed burn planning, Data sovereignty, OCAP principles, and knowledge extraction risks in academic-Indigenous community partnerships, Restoration of pedagogical and social structures for knowledge transmission alongside technical practice restoration.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://conservationsociety.ca\">Cariboo Chilcotin Conservation Society</a></p><p><b>Sources discussed:</b></p><ul><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/04/09/new-cariboo-fire-agreement-aims-to-cut-emergency-response-delays/\">[Williams Lake Tribune] New Cariboo fire agreement aims to c...</a></li><li>CNET: <a href=\"https://www.cnet.com/tech/mobile/us-mobile-starlink-bundle/\">[CNET] US Mobile Is Getting Into the Home Internet Business ...</a></li><li>InsideEVs: <a href=\"https://insideevs.com/news/792471/solar-dc-charging-station-free-california/\">[InsideEVs] These EV Fast Chargers Are Completely Off-Grid—A...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/04/09/pushing-in-the-same-direction-b-c-premier-asked-about-okanagan-long-term-care-facility/\">[Williams Lake Tribune] ‘Pushing in the same direction’: B.C...</a></li><li>The Narwhal: <a href=\"https://thenarwhal.ca/salish-women-reclaiming-fire/\">[The Narwhal] Interior Salish women are reclaiming fire — an...</a></li><li>Engadget: <a href=\"https://www.engadget.com/big-tech/amazons-satellite-internet-service-is-scheduled-for-mid-2026-availability-164046305.html?src=rss\">[Engadget] Amazon's satellite internet service is scheduled ...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>New Atlas: <a href=\"https://newatlas.com/outdoor-gear/scopix-ai-night-vision-binoculars/\">[New Atlas] NV binoculars identify the creatures lurking in ...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/04/03/Deadly-Fungal-Invader-Threatening-BC-Bats/\">[The Tyee] A Deadly Fungal Invader Is Threatening BC’s Bats</a></li><li>Boing Boing: <a href=\"https://boingboing.net/2026/04/09/trees-vs-erosion-how-roots-fight-back-and-keep-landscapes-stable.html\">[Boing Boing] Trees vs. erosion: how roots fight back and ke...</a></li><li>The Narwhal: <a href=\"https://thenarwhal.ca/opinion-spacex-satellites-night-sky/\">[The Narwhal] A million new SpaceX satellites will destroy t...</a></li><li>Gizmodo: <a href=\"https://gizmodo.com/yellowstones-dreaded-supervolcano-has-an-unexpected-power-source-study-says-2000744448\">[Gizmodo] Yellowstone’s Dreaded Supervolcano Has an Unexpect...</a></li><li>Toms Guide: <a href=\"https://www.tomsguide.com/ai/dont-trust-chatgpt-at-face-value-heres-the-system-i-use-to-fact-check-it-in-seconds\">[Toms Guide] Don't trust ChatGPT at face-value — here's the ...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/scientists-may-have-found-a-new-cause-of-high-blood-pressure-and-a-way-to-treat-it\">[ScienceAlert] Scientists May Have Found a New Cause of High...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/this-developer-squeezed-a-full-minecraft-server-onto-an-esp32-and-it-actually-works/\">[XDA Developers] This developer squeezed a full Minecraft se...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/04/09/usb-abstracted/\">[Hackaday] USB, Abstracted</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/tried-openclaw-inspired-ai-assistant-on-10-esp32-board-itworks/\">[XDA Developers] I tried an OpenClaw-inspired AI assistant o...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/04/09/kerry-wong-finds-smd-test-clips/\">[Hackaday] [Kerry Wong] Finds SMD Test Clips</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/nextcloud-onlyoffice-feud-may-kill-self-hosted-office-setup/\">[XDA Developers] The Nextcloud and OnlyOffice feud may kill ...</a></li><li>STAT News: <a href=\"https://www.statnews.com/2026/04/09/autoimmune-diseases-car-t-therapy-advances/?utm_campaign=rss\">[STAT News] STAT+: 5 years after lupus breakthrough, CAR-T i...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-6<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-04-10T04:24:29.680747-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-sonnet-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[New Atlas] NV binoculars identify the creatures lurking in the dark",
+          "url": "https://newatlas.com/outdoor-gear/scopix-ai-night-vision-binoculars/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-04-08T12:38:35+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Tyee] A Deadly Fungal Invader Is Threatening BC’s Bats",
+          "url": "https://thetyee.ca/News/2026/04/03/Deadly-Fungal-Invader-Threatening-BC-Bats/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-04-03T07:40:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] New Cariboo fire agreement aims to cut emergency response delays",
+          "url": "https://wltribune.com/2026/04/09/new-cariboo-fire-agreement-aims-to-cut-emergency-response-delays/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-10T06:13:35.228007+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Boing Boing] Trees vs. erosion: how roots fight back and keep landscapes stable",
+          "url": "https://boingboing.net/2026/04/09/trees-vs-erosion-how-roots-fight-back-and-keep-landscapes-stable.html",
+          "source": "Boing Boing",
+          "ai_score": 0,
+          "date_published": "2026-04-09T19:40:31+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Narwhal] A million new SpaceX satellites will destroy the night sky — for everyone on Earth",
+          "url": "https://thenarwhal.ca/opinion-spacex-satellites-night-sky/",
+          "source": "The Narwhal",
+          "ai_score": 0,
+          "date_published": "2026-04-09T12:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Gizmodo] Yellowstone’s Dreaded Supervolcano Has an Unexpected Power Source, Study Says",
+          "url": "https://gizmodo.com/yellowstones-dreaded-supervolcano-has-an-unexpected-power-source-study-says-2000744448",
+          "source": "Gizmodo",
+          "ai_score": 0,
+          "date_published": "2026-04-09T18:00:45+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] Don't trust ChatGPT at face-value — here's the system I use to fact-check it in seconds",
+          "url": "https://www.tomsguide.com/ai/dont-trust-chatgpt-at-face-value-heres-the-system-i-use-to-fact-check-it-in-seconds",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-04-10T04:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Scientists May Have Found a New Cause of High Blood Pressure, And a Way to Treat It",
+          "url": "https://www.sciencealert.com/scientists-may-have-found-a-new-cause-of-high-blood-pressure-and-a-way-to-treat-it",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-04-10T03:16:39+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] This developer squeezed a full Minecraft server onto an ESP32, and it actually works",
+          "url": "https://www.xda-developers.com/this-developer-squeezed-a-full-minecraft-server-onto-an-esp32-and-it-actually-works/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-04-10T03:03:34+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] USB, Abstracted",
+          "url": "https://hackaday.com/2026/04/09/usb-abstracted/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-04-10T02:00:42+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] I tried an OpenClaw-inspired AI assistant on a $10 ESP32 board, and it actually works",
+          "url": "https://www.xda-developers.com/tried-openclaw-inspired-ai-assistant-on-10-esp32-board-itworks/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-04-10T00:00:22+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] [Kerry Wong] Finds SMD Test Clips",
+          "url": "https://hackaday.com/2026/04/09/kerry-wong-finds-smd-test-clips/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-04-09T23:00:35+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[CNET] US Mobile Is Getting Into the Home Internet Business by Pairing With Starlink",
+          "url": "https://www.cnet.com/tech/mobile/us-mobile-starlink-bundle/",
+          "source": "CNET",
+          "ai_score": 0,
+          "date_published": "2026-04-09T22:05:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[XDA Developers] The Nextcloud and OnlyOffice feud may kill my self-hosted office setup",
+          "url": "https://www.xda-developers.com/nextcloud-onlyoffice-feud-may-kill-self-hosted-office-setup/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-04-09T22:00:22+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Neowin] You can totally install FreeBSD on these laptops without issues, claims OS maintainer",
+          "url": "https://www.neowin.net/news/you-can-totally-install-freebsd-on-these-laptops-without-issues-claims-os-maintainer/",
+          "source": "Neowin",
+          "ai_score": 0,
+          "date_published": "2026-04-09T21:46:02+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[CNET] The First Person Has Been Convicted Under a New US Anti-Deepfake Law",
+          "url": "https://www.cnet.com/tech/services-and-software/first-conviction-ai-deepfake-take-it-down-act-news/",
+          "source": "CNET",
+          "ai_score": 0,
+          "date_published": "2026-04-09T20:38:17+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] How Nicotine Disrupts the “Lung-Brain Axis”—And Could Lead to Dementia",
+          "url": "https://nautil.us/how-nicotine-disrupts-the-lung-brain-axis-and-could-lead-to-dementia-1279711/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-04-09T20:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[InsideEVs] These EV Fast Chargers Are Completely Off-Grid—And Free",
+          "url": "https://insideevs.com/news/792471/solar-dc-charging-station-free-california/",
+          "source": "InsideEVs",
+          "ai_score": 0,
+          "date_published": "2026-04-09T18:52:43+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Hackaday] Need a Reactalyser?",
+          "url": "https://hackaday.com/2026/04/09/need-a-reactalyser/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-04-09T18:30:54+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Verge] Framework is teasing a lot of Linux for its April 21st event",
+          "url": "https://www.theverge.com/tech/909401/framework-next-gen-linux-teaser",
+          "source": "The Verge",
+          "ai_score": 0,
+          "date_published": "2026-04-09T18:24:46+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] The 70-Person AI Image Startup Taking on Silicon Valley's Giants",
+          "url": "https://www.wired.com/story/black-forest-labs-ai-image-generation/",
+          "source": "WIRED",
+          "ai_score": 0,
+          "date_published": "2026-04-09T18:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Business] Volkswagen to End E.V. Production at Tennessee Plant",
+          "url": "https://www.nytimes.com/2026/04/09/business/volkswagen-electric-vehicles-id4-chattanooga.html",
+          "source": "NYT Business",
+          "ai_score": 0,
+          "date_published": "2026-04-09T17:58:52+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] Your DNS server knows every website you visit—here's why Google's 8.8.8.8 is different",
+          "url": "https://www.howtogeek.com/what-8888-does-when-use-dns-server/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-04-09T17:31:51+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] B.C. United fined for false John Rustad attack website, mailout",
+          "url": "https://wltribune.com/2026/04/09/b-c-united-fined-for-false-john-rustad-attack-website-mailout/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-09T17:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] High-speed hydrofoil e-ferry is quieter than a library",
+          "url": "https://newatlas.com/marine/candela-p12-business-hydrofoil-electric-ferry/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-04-09T16:03:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Kottke.org] &#8220;Working with agents feels much less like classic...",
+          "url": "https://kottke.org/26/04/0048685-working-with-agents-feels",
+          "source": "Kottke.org",
+          "ai_score": 0,
+          "date_published": "2026-04-09T15:48:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Printed Sleeve Gives Keys Some Grip",
+          "url": "https://hackaday.com/2026/04/09/one-good-turn/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-04-09T15:30:53+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] ‘Pushing in the same direction’: B.C. Premier asked about Okanagan long-term care facility",
+          "url": "https://wltribune.com/2026/04/09/pushing-in-the-same-direction-b-c-premier-asked-about-okanagan-long-term-care-facility/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-09T15:15:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Kottke.org] How to Guess If Your Job Will Exist in Five Years ....",
+          "url": "https://kottke.org/26/04/0048697-how-to-guess-if-your",
+          "source": "Kottke.org",
+          "ai_score": 0,
+          "date_published": "2026-04-09T15:01:14+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Woman With 3 Autoimmune Diseases Enters Remission After Immune 'Reset'",
+          "url": "https://www.sciencealert.com/woman-with-3-autoimmune-diseases-enters-remission-after-immune-reset",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-04-09T15:00:59+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] B.C.’s need for more schools highlighted by Premier Eby during West Kelowna visit",
+          "url": "https://wltribune.com/2026/04/09/b-c-s-need-for-more-schools-highlighted-by-premier-eby-during-west-kelowna-visit/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-09T14:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Closing the implementation gap in America's cyber strategy",
+          "url": "https://www.techradar.com/pro/closing-the-implementation-gap-in-americas-cyber-strategy",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-04-09T14:27:12+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[STAT News] STAT+: FDA rejects an industry proposal to deregulate some AI devices",
+          "url": "https://www.statnews.com/2026/04/09/fda-rejects-proposal-to-deregulate-ai-devices-health-tech/?utm_campaign=rss",
+          "source": "STAT News",
+          "ai_score": 0,
+          "date_published": "2026-04-09T14:22:48+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] I took this AI note-taker to all my meetings for 7 days — I have one major regret that changed how I use it",
+          "url": "https://www.tomsguide.com/ai/i-spent-a-week-using-ai-in-meetings-heres-the-one-thing-i-wish-i-knew-before-i-started",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-04-09T12:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Tyee] BC Government May Use AI to Redact Personal Information",
+          "url": "https://thetyee.ca/News/2026/04/03/BC-Government-AI-Redact-Personal-Information/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-04-03T07:10:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Wild Spaces & Outdoor Life",
+      "articles": [
+        {
+          "title": "[The Narwhal] Interior Salish women are reclaiming fire — and protecting their homelands",
+          "url": "https://thenarwhal.ca/salish-women-reclaiming-fire/",
+          "source": "The Narwhal",
+          "ai_score": 0,
+          "date_published": "2026-04-09T18:23:20+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Engadget] Amazon's satellite internet service is scheduled for mid-2026 availability",
+          "url": "https://www.engadget.com/big-tech/amazons-satellite-internet-service-is-scheduled-for-mid-2026-availability-164046305.html?src=rss",
+          "source": "Engadget",
+          "ai_score": 0,
+          "date_published": "2026-04-09T16:40:46+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[STAT News] STAT+: 5 years after lupus breakthrough, CAR-T is still surprising autoimmunity researchers",
+          "url": "https://www.statnews.com/2026/04/09/autoimmune-diseases-car-t-therapy-advances/?utm_campaign=rss",
+          "source": "STAT News",
+          "ai_score": 0,
+          "date_published": "2026-04-09T15:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Can technology effectively support Indigenous-led wildfire management and cultural burning practices, or does it risk substituting for community knowledge and authority?",
+        "riley_position": "Technology tools like fire behavior modeling and sensors can meaningfully support Nation-led prescribed burn programs if deployed as a service layer to community-defined priorities rather than as a replacement for traditional knowledge.",
+        "riley_key_evidence": [
+          "Canadian Forest Fire Behavior Prediction System now has richer input data including high-resolution fuel maps and drone survey data",
+          "Low-cost monitoring infrastructure (acoustic sensors, weather stations, fuel moisture sensors) could be deployed by Nations at fraction of provincial program cost if data ownership is secured upfront",
+          "OCAP principles (Ownership, Control, Access, Possession) provide framework for structuring technology partnerships with academic institutions"
+        ],
+        "casey_position": "The foundational work is restoring Indigenous governance authority and sustained funding models; technology should follow from community-defined land stewardship priorities rather than driving them, and the restoration of cultural burning requires rebuilding social and pedagogical structures, not just deploying tools.",
+        "casey_key_evidence": [
+          "Tŝilhqot'in Nation's 2014 Supreme Court title decision established jurisdiction but not automatic operational funding for land management programs",
+          "Current funding for Nation-led prescribed burn programs relies on patchwork of one-year project grants rather than structural, sustained revenue-sharing models",
+          "Interior Salish women leading cultural burning carry knowledge traditionally transmitted through plant gathering and land stewardship roles disrupted by colonization"
+        ],
+        "resolution": "Casey and Riley reached agreement that technology should serve as a support layer for Indigenous-led stewardship rather than substitute for it, and that the correct priority is securing governance authority and sustained funding before deploying tools. They concurred that the governance question must be answered first, with technology following from community-defined needs.",
+        "topics_covered": [
+          "Role of Indigenous women in reclaiming cultural burning practices and dual expertise as firefighters and cultural values experts",
+          "Funding architecture and governance models for Nation-led land stewardship versus project-based grant cycles",
+          "Integration of fire behavior modeling technology with traditional ecological knowledge in prescribed burn planning",
+          "Data sovereignty, OCAP principles, and knowledge extraction risks in academic-Indigenous community partnerships",
+          "Restoration of pedagogical and social structures for knowledge transmission alongside technical practice restoration"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}

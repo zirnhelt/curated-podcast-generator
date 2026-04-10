@@ -908,5 +908,31 @@
       "Communities should preserve optionality by assessing what knowledge-sharing with provincial institutions actually costs before committing to short-term grant cycles, rather than accepting underfunded programs that lock in relationships before the community has leverage to negotiate terms.",
       "Send feedback and perspectives on Indigenous data governance to feedback at cariboo signals dot c-a."
     ]
+  },
+  "2026-04-10": {
+    "timestamp": 1775820271.615789,
+    "date": "2026-04-10",
+    "theme": "Wild Spaces & Outdoor Life",
+    "central_question": "Can technology effectively support Indigenous-led wildfire management and cultural burning practices, or does it risk substituting for community knowledge and authority?",
+    "riley_position": "Technology tools like fire behavior modeling and sensors can meaningfully support Nation-led prescribed burn programs if deployed as a service layer to community-defined priorities rather than as a replacement for traditional knowledge.",
+    "riley_key_evidence": [
+      "Canadian Forest Fire Behavior Prediction System now has richer input data including high-resolution fuel maps and drone survey data",
+      "Low-cost monitoring infrastructure (acoustic sensors, weather stations, fuel moisture sensors) could be deployed by Nations at fraction of provincial program cost if data ownership is secured upfront",
+      "OCAP principles (Ownership, Control, Access, Possession) provide framework for structuring technology partnerships with academic institutions"
+    ],
+    "casey_position": "The foundational work is restoring Indigenous governance authority and sustained funding models; technology should follow from community-defined land stewardship priorities rather than driving them, and the restoration of cultural burning requires rebuilding social and pedagogical structures, not just deploying tools.",
+    "casey_key_evidence": [
+      "T\u015dilhqot'in Nation's 2014 Supreme Court title decision established jurisdiction but not automatic operational funding for land management programs",
+      "Current funding for Nation-led prescribed burn programs relies on patchwork of one-year project grants rather than structural, sustained revenue-sharing models",
+      "Interior Salish women leading cultural burning carry knowledge traditionally transmitted through plant gathering and land stewardship roles disrupted by colonization"
+    ],
+    "resolution": "Casey and Riley reached agreement that technology should serve as a support layer for Indigenous-led stewardship rather than substitute for it, and that the correct priority is securing governance authority and sustained funding before deploying tools. They concurred that the governance question must be answered first, with technology following from community-defined needs.",
+    "topics_covered": [
+      "Role of Indigenous women in reclaiming cultural burning practices and dual expertise as firefighters and cultural values experts",
+      "Funding architecture and governance models for Nation-led land stewardship versus project-based grant cycles",
+      "Integration of fire behavior modeling technology with traditional ecological knowledge in prescribed burn planning",
+      "Data sovereignty, OCAP principles, and knowledge extraction risks in academic-Indigenous community partnerships",
+      "Restoration of pedagogical and social structures for knowledge transmission alongside technical practice restoration"
+    ]
   }
 }

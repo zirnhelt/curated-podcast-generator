@@ -25,11 +25,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-04-05",
-        "clue": "tech-optimism:x \u2014 Conceded that procurement/terms matter more than product",
-        "occurrences": 2
-      },
-      {
         "date": "2026-04-01",
         "clue": "structural-lens:~ \u2014 Conceded that efficiency arguments alone flatten real rural service complexity",
         "occurrences": 1
@@ -73,6 +68,11 @@
         "date": "2026-04-09",
         "clue": "Indigenous-tech:~ \u2014 Conceded climate stress-tests both knowledge systems equally",
         "occurrences": 1
+      },
+      {
+        "date": "2026-04-10",
+        "clue": "Indigenous-tech:+ \u2014 Reinforced OCAP principles as governance prerequisite",
+        "occurrences": 1
       }
     ],
     "core_memories": [
@@ -84,6 +84,11 @@
       {
         "formed": "2026-04-07",
         "signal": "tech-optimism:~ \u2014 Shifted from generic 'smarter technology' to specific attribution use case",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-04-10",
+        "signal": "tech-optimism:x \u2014 Conceded maintenance burden reality, not just spec sheet",
         "occurrences": 3
       }
     ]
@@ -158,20 +163,25 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-09",
-        "clue": "funding-risk:+ \u2014 Deepened critique of grant-cycle pressure masking structural underfunding patterns",
-        "occurrences": 2
-      },
-      {
         "date": "2026-04-08",
         "clue": "pilot-skepticism:+ \u2014 Deepened critique: capacity-building can function as managed dependency",
         "occurrences": 2
+      },
+      {
+        "date": "2026-04-10",
+        "clue": "structural-lens:~ \u2014 Connected gender/pedagogy to land stewardship in new way",
+        "occurrences": 1
       }
     ],
     "core_memories": [
       {
         "formed": "2026-04-06",
         "signal": "pilot-skepticism:+ \u2014 Doubled down on sustainability orphaning pattern, demanded answers before architecture",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-04-10",
+        "signal": "funding-risk:+ \u2014 Deepened critique of grant-cycle vulnerability across episodes",
         "occurrences": 3
       }
     ]
