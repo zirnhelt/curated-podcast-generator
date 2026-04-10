@@ -31,7 +31,7 @@ from config_loader import (
 )
 
 # Import deduplication module
-from dedup_articles import deduplicate_articles, format_evolving_story_context
+from dedup_articles import deduplicate_articles, format_evolving_story_context, cluster_and_rescore_corpus
 
 # Import PSA selector
 from psa_selector import select_psa
@@ -2307,9 +2307,10 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         # fall back to ai_score so legacy articles still show a value.
         score = a.get('_boosted_score', a.get('ai_score', 0))
         theme_tag = ' [✓THEME]' if a.get('_keyword_matches', 0) > 0 else ''
+        cluster_tag = f' [SAME STORY: {a["_topic_cluster"]}]' if a.get('_topic_cluster') else ''
         body = a.get('_body', '')
         body_line = f"\n  Content: {body[:500]}" if body else ""
-        return f"- [{source}] {title}{theme_tag}\n  {summary}... (Relevance: {score}){body_line}"
+        return f"- [{source}] {title}{theme_tag}{cluster_tag}\n  {summary}... (Relevance: {score}){body_line}"
 
     # Format on-theme news articles
     news_text = "\n".join([_format_news_article(a) for a in on_theme_news])
@@ -3524,6 +3525,11 @@ def main():
             # Deduplicate all articles against recent episodes
             all_feed_articles = theme_articles + bonus_articles
             all_feed_articles, evolving_stories = deduplicate_articles(all_feed_articles)
+
+            # Cluster same-story duplicates within today's batch and penalize extras
+            all_feed_articles = cluster_and_rescore_corpus(
+                all_feed_articles, today_theme, get_anthropic_client(), model=SUMMARY_MODEL
+            )
 
             # Re-split after dedup
             bonus_urls = {a.get('url', '') for a in bonus_articles}

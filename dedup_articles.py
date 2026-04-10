@@ -135,12 +135,120 @@ def format_evolving_story_context(evolving_stories):
     
     return "\n".join(context_lines)
 
+def cluster_and_rescore_corpus(articles, theme_name, client=None, model=None):
+    """
+    Identify topic clusters within the current article batch and penalize duplicates.
+
+    Uses Claude to detect when multiple articles cover the same underlying story.
+    Within each cluster, the highest-scored article is kept at full score; the
+    rest have their _boosted_score reduced to 30% of its original value and are
+    tagged _cluster_suppressed=True.
+
+    All clustered articles receive a _topic_cluster string label.
+
+    Falls back silently (returns articles unchanged) if client is None or if
+    Claude returns invalid JSON.
+
+    Args:
+        articles: list of article dicts (must have title, summary, _boosted_score or ai_score)
+        theme_name: today's theme name (used in the prompt for context)
+        client: Anthropic client instance (or None to skip)
+        model: Claude model ID to use (defaults to claude-haiku-4-5-20251001)
+
+    Returns:
+        articles list with updated _boosted_score, _cluster_suppressed, _topic_cluster fields
+    """
+    if not client or not articles:
+        return articles
+
+    if model is None:
+        model = "claude-haiku-4-5-20251001"
+
+    # Build compact article list for the prompt
+    article_list = []
+    for i, a in enumerate(articles):
+        article_list.append({
+            "index": i,
+            "title": a.get("title", ""),
+            "summary": a.get("summary", "")[:150],
+        })
+
+    prompt = (
+        f"You are helping curate a podcast about '{theme_name}'. "
+        "Below is a list of articles fetched today. Identify groups where "
+        "2 or more articles cover the *same underlying news story* from different "
+        "sources (e.g. multiple outlets reporting the same event, announcement, or development).\n\n"
+        "Article list (JSON):\n"
+        f"{json.dumps(article_list, ensure_ascii=False)}\n\n"
+        "Return ONLY valid JSON with no markdown fences:\n"
+        '{"clusters": [{"label": "short story label", "indices": [0, 3, 7]}, ...]}\n\n'
+        "Rules:\n"
+        "- Only include clusters with 2 or more articles.\n"
+        "- Each article index may appear in at most one cluster.\n"
+        "- If no duplicate stories exist, return {\"clusters\": []}.\n"
+        "- Labels should be concise (5 words or fewer)."
+    )
+
+    try:
+        response = client.messages.create(
+            model=model,
+            max_tokens=600,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        raw = response.content[0].text.strip()
+        data = json.loads(raw)
+        clusters = data.get("clusters", [])
+    except Exception as e:
+        print(f"  ⚠️  cluster_and_rescore_corpus: Claude call failed ({e}), skipping")
+        return articles
+
+    if not clusters:
+        print("  ✔️  No intra-batch duplicate clusters detected")
+        return articles
+
+    # Work on copies so callers get a fresh list
+    articles = [a.copy() for a in articles]
+
+    for cluster in clusters:
+        label = cluster.get("label", "")
+        indices = cluster.get("indices", [])
+        # Validate indices
+        valid = [i for i in indices if isinstance(i, int) and 0 <= i < len(articles)]
+        if len(valid) < 2:
+            continue
+
+        # Tag all cluster members
+        for i in valid:
+            articles[i]["_topic_cluster"] = label
+
+        # Canonical = article with highest _boosted_score (or ai_score as fallback)
+        canonical_idx = max(
+            valid,
+            key=lambda i: articles[i].get("_boosted_score", articles[i].get("ai_score", 0)),
+        )
+
+        # Penalize the non-canonical duplicates
+        suppressed = [i for i in valid if i != canonical_idx]
+        for i in suppressed:
+            original = articles[i].get("_boosted_score", articles[i].get("ai_score", 0))
+            articles[i]["_boosted_score"] = max(1, int(original * 0.3))
+            articles[i]["_cluster_suppressed"] = True
+
+        canonical_title = articles[canonical_idx].get("title", "")[:60]
+        print(
+            f"  🔗 Cluster \"{label}\": canonical=\"{canonical_title}\","
+            f" suppressed {len(suppressed)} duplicate(s)"
+        )
+
+    return articles
+
+
 if __name__ == "__main__":
     # Test the deduplication
     print("Testing deduplication module...")
     recent = load_recent_citations(days=7)
     print(f"\nFound {len(recent)} articles in recent history")
-    
+
     if recent:
         print("\nMost recent articles:")
         for article in recent[:5]:
