@@ -2905,7 +2905,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
         if weekend_closing is None:
             combined += section_gap + outro_music
 
-        # Weekend closing: farewell → Jamendo song → track ID + final sign-off
+        # Weekend closing: farewell + song ID → full song (no fade)
         if weekend_closing is not None:
             closing_clip, closing_track_info, closing_host = weekend_closing
             print(f"🎵 Adding weekend closing song ({closing_host} hosts)...")
@@ -2913,25 +2913,33 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
             with tempfile.TemporaryDirectory() as closing_tmpdir:
                 gap = AudioSegment.silent(duration=500)
 
-                # Host: farewell + announces closing song
-                farewell_context = (
-                    f"{closing_host.title()} warmly signs off the weekend Cariboo Signals episode, "
-                    "thanks listeners for tuning in, and lets them know there's "
-                    "one last song to close out the show."
-                )
-                farewell_text = _generate_host_line(farewell_context, closing_host)
-                if farewell_text:
-                    print(f"  [{closing_host.title()}] {farewell_text}")
-                    farewell_file = os.path.join(closing_tmpdir, "farewell.mp3")
-                    generate_tts_for_segment(farewell_text, closing_host, farewell_file)
-                    farewell_audio = normalize_segment(
-                        trim_tts_silence(AudioSegment.from_mp3(farewell_file)), TARGET_SPEECH_DBFS
-                    )
-                    combined += gap + farewell_audio + gap
-
-                # Jamendo closing song (short fade out so host can speak after)
-                track_name = closing_track_info.get("name", "")
+                track_name   = closing_track_info.get("name", "")
                 track_artist = closing_track_info.get("artist", "")
+                genres_str   = (
+                    f" — {', '.join(closing_track_info['genres'])}"
+                    if closing_track_info.get("genres")
+                    else ""
+                )
+
+                # Host: farewell + song introduction (song ID comes before the music)
+                closing_context = (
+                    f"{closing_host.title()} warmly signs off the weekend Cariboo Signals episode, "
+                    f"thanks listeners, and introduces the closing song: "
+                    f"'{track_name}' by {track_artist}{genres_str}. "
+                    f"The farewell and song description are woven together naturally — "
+                    f"one or two sentences, mentioning cariboosignals.ca."
+                )
+                closing_text = _generate_host_line(closing_context, closing_host)
+                if closing_text:
+                    print(f"  [{closing_host.title()}] {closing_text}")
+                    closing_file = os.path.join(closing_tmpdir, "closing.mp3")
+                    generate_tts_for_segment(closing_text, closing_host, closing_file)
+                    closing_audio = normalize_segment(
+                        trim_tts_silence(AudioSegment.from_mp3(closing_file)), TARGET_SPEECH_DBFS
+                    )
+                    combined += gap + closing_audio + gap
+
+                # Full song — no fade out
                 if track_name:
                     track_label = f"Music — {track_name} by {track_artist}"
                 else:
@@ -2939,29 +2947,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
                 chapters.append({"startTime": round(len(combined) / 1000, 1), "title": track_label})
                 if closing_track_info.get("shareurl"):
                     chapters[-1]["url"] = closing_track_info["shareurl"]
-                combined += gap + closing_clip.fade_out(2000) + gap
-
-                # Host: identify the song + final sign-off
-                genres_str = (
-                    f", genres: {', '.join(closing_track_info['genres'])}"
-                    if closing_track_info.get("genres")
-                    else ""
-                )
-                post_song_context = (
-                    f"{closing_host.title()} identifies the closing song that just played: "
-                    f"'{track_name}' by {track_artist}{genres_str}. "
-                    f"They give a warm, brief final sign-off — mentioning cariboosignals.ca "
-                    f"and wishing listeners a great rest of their weekend. One or two sentences."
-                )
-                post_song_text = _generate_host_line(post_song_context, closing_host)
-                if post_song_text:
-                    print(f"  [{closing_host.title()}] {post_song_text}")
-                    post_file = os.path.join(closing_tmpdir, "post_song.mp3")
-                    generate_tts_for_segment(post_song_text, closing_host, post_file)
-                    post_audio = normalize_segment(
-                        trim_tts_silence(AudioSegment.from_mp3(post_file)), TARGET_SPEECH_DBFS
-                    )
-                    combined += gap + post_audio
+                combined += closing_clip
 
         # Export
         combined.export(output_filename, format="mp3")
