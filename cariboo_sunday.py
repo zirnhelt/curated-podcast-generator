@@ -222,8 +222,9 @@ def assemble_show(
 
     opener_context = (
         f"Casey opens the Cariboo Sunday Morning show. Today is {date_str}.{weather_note} "
-        f"{_programming_note} Casey welcomes listeners, mentions the weather naturally "
-        f"(if provided), and briefly previews both the news block and the cultural segments."
+        f"{_programming_note} Casey welcomes listeners, gives a brief Cariboo-wide weather "
+        f"update naturally (covering home base plus conditions across the region if data is "
+        f"provided), and briefly previews both the news block and the cultural segments."
     )
     opener = casey_speak(opener_context, tmp_dir)
     combined += _casey_segment(opener)
@@ -292,13 +293,14 @@ def assemble_show(
             if clip_item is not None:
                 clip, track_info = clip_item
 
-                # Casey: sign-off before closing music
-                signoff_context = (
-                    "Casey signs off the Cariboo Sunday Morning show warmly, "
-                    "thanks listeners, and says there's one last track to close out the morning."
+                # Casey: farewell + announces closing song
+                farewell_context = (
+                    "Casey warmly signs off the Cariboo Sunday Morning show, "
+                    "thanks listeners for spending their Sunday morning with them, "
+                    "and lets them know there's one last song to close out the show."
                 )
-                signoff = casey_speak(signoff_context, tmp_dir)
-                combined += _casey_segment(signoff)
+                farewell = casey_speak(farewell_context, tmp_dir)
+                combined += _casey_segment(farewell)
 
                 if track_info.get("name"):
                     track_label = f"Music — {track_info['name']} by {track_info['artist']}"
@@ -308,11 +310,27 @@ def assemble_show(
                 if track_info.get("shareurl"):
                     music_chapter["url"] = track_info["shareurl"]
                 chapters.append(music_chapter)
-                combined += GAP + clip.fade_out(3000)
+                combined += GAP + clip.fade_out(2000) + GAP
+
+                # Casey: post-song ID + final sign-off
+                genres_str = (
+                    f", genres: {', '.join(track_info['genres'])}"
+                    if track_info.get("genres")
+                    else ""
+                )
+                post_song_context = (
+                    f"Casey identifies the closing song that just played: "
+                    f"'{track_info['name']}' by {track_info['artist']}{genres_str}. "
+                    f"They give a warm, brief final sign-off — mentioning cariboosignals.ca "
+                    f"and wishing listeners a great rest of their Sunday. One or two sentences."
+                )
+                post_song = casey_speak(post_song_context, tmp_dir)
+                combined += _casey_segment(post_song)
             else:
                 # No closing music — Casey signs off directly
                 signoff_context = (
-                    "Casey signs off the Cariboo Sunday Morning show warmly and thanks listeners."
+                    "Casey signs off the Cariboo Sunday Morning show warmly, "
+                    "thanks listeners, and wishes them a great rest of their Sunday."
                 )
                 signoff = casey_speak(signoff_context, tmp_dir)
                 combined += _casey_segment(signoff)

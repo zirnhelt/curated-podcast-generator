@@ -1,8 +1,10 @@
 """Fetch current weather for the Cariboo region.
 
-Primary location: Horsefly Lake (home base).
-Secondary: Williams Lake — included only when driving conditions are notable
-(snow, freezing rain, fog, heavy rain, high winds).
+Covers four communities spread across the Cariboo for a regional picture:
+  - Horsefly Lake  (home base)
+  - 100 Mile House (south Cariboo)
+  - Williams Lake  (central Cariboo hub)
+  - Quesnel        (north Cariboo)
 
 Uses the Open-Meteo free API — no API key required.
 Returns a plain-English summary suitable for injection into the podcast script prompt.
@@ -10,13 +12,21 @@ Returns a plain-English summary suitable for injection into the podcast script p
 
 import requests
 
-# Horsefly Lake, BC (primary — home base)
+# Horsefly Lake, BC (home base)
 HORSEFLY_LAT = 52.35
 HORSEFLY_LON = -121.40
 
-# Williams Lake, BC (secondary — driving/town conditions)
+# 100 Mile House, BC (south Cariboo)
+HUNDRED_MILE_LAT = 51.64
+HUNDRED_MILE_LON = -121.43
+
+# Williams Lake, BC (central Cariboo hub / driving waypoint)
 WILLIAMS_LAKE_LAT = 52.14
 WILLIAMS_LAKE_LON = -122.14
+
+# Quesnel, BC (north Cariboo)
+QUESNEL_LAT = 53.02
+QUESNEL_LON = -122.49
 
 TIMEZONE = "America/Vancouver"
 
@@ -131,21 +141,25 @@ def _describe(code):
 
 
 def fetch_weather():
-    """Fetch weather for Horsefly Lake (primary) and Williams Lake (driving).
+    """Fetch weather for four key Cariboo communities and return a regional summary.
+
+    Locations: Horsefly Lake (home), 100 Mile House, Williams Lake, Quesnel.
 
     Returns:
-        dict with 'summary' string for the script prompt, plus raw data
-        None if the primary location fetch fails entirely
+        dict with 'summary' string for the script prompt, plus raw data per location.
+        None if the primary (Horsefly Lake) fetch fails entirely.
     """
     horsefly = _fetch_location(HORSEFLY_LAT, HORSEFLY_LON)
+    hundred_mile = _fetch_location(HUNDRED_MILE_LAT, HUNDRED_MILE_LON)
     williams = _fetch_location(WILLIAMS_LAKE_LAT, WILLIAMS_LAKE_LON)
+    quesnel = _fetch_location(QUESNEL_LAT, QUESNEL_LON)
 
     if not horsefly:
         return None
 
     hf = horsefly
 
-    # Primary summary: Horsefly Lake conditions
+    # Home-base lead: Horsefly Lake current conditions + today's forecast
     summary = (
         f"Out at Horsefly Lake it's {hf['current_temp']} degrees "
         f"with {_describe(hf['current_code'])}."
@@ -155,28 +169,46 @@ def fetch_weather():
         summary += f" Winds at {hf['current_wind']} k-p-h."
 
     summary += (
-        f" Forecast high of {hf['high']}, low of {hf['low']} "
-        f"with {_describe(hf['daily_code'])}."
+        f" High of {hf['high']}, low of {hf['low']} "
+        f"with {_describe(hf['daily_code'])} expected."
     )
 
     if hf["precip"] > 0:
-        summary += f" About {hf['precip']:.0f} millimetres of precipitation expected."
+        summary += f" About {hf['precip']:.0f} millimetres of precipitation."
 
-    # Seasonal advisories
-    if hf["high"] > 30:
-        summary += " It's a hot one — stay hydrated and check the BC Wildfire Dashboard."
-    elif hf["low"] < -20:
-        summary += " Bundle up out there — extreme cold advisory territory."
-    elif hf["low"] < -10:
-        summary += " Dress warm — proper Cariboo winter weather."
+    # Regional snapshot: brief conditions for each Cariboo community
+    regional_parts = []
+    for loc_name, loc in [
+        ("100 Mile House", hundred_mile),
+        ("Williams Lake", williams),
+        ("Quesnel", quesnel),
+    ]:
+        if loc:
+            regional_parts.append(
+                f"{loc_name} sitting at {loc['current_temp']} with {_describe(loc['current_code'])}"
+            )
 
-    # Williams Lake — only mention if driving conditions are notable
+    if regional_parts:
+        summary += " Across the Cariboo — " + ", ".join(regional_parts) + "."
+
+    # Seasonal advisories — based on the coldest/hottest spot in the region
+    all_locs = [l for l in [horsefly, hundred_mile, williams, quesnel] if l]
+    max_high = max(l["high"] for l in all_locs)
+    min_low = min(l["low"] for l in all_locs)
+
+    if max_high > 30:
+        summary += " It's a hot one across the region — stay hydrated and check the BC Wildfire Dashboard."
+    elif min_low < -20:
+        summary += " Bundle up — extreme cold conditions in parts of the Cariboo."
+    elif min_low < -10:
+        summary += " Dress warm — proper Cariboo winter weather across the region."
+
+    # Driving alert: Williams Lake route conditions
     if williams and _has_driving_impact(williams):
         wl = williams
         wl_conditions = _describe(wl["current_code"])
         wl_forecast = _describe(wl["daily_code"])
 
-        # Pick whichever is more impactful for the driving note
         if wl["current_code"] in DRIVING_IMPACT_CODES:
             summary += (
                 f" Heads up if you're heading into Williams Lake — "
@@ -191,13 +223,14 @@ def fetch_weather():
         if wl["max_wind"] > 50:
             summary += f" Strong wind gusts up to {wl['max_wind']} k-p-h on the road."
 
-        # Freezing rain / black ice warning
         if wl["current_code"] in {56, 57, 66, 67} or wl["daily_code"] in {56, 57, 66, 67}:
             summary += " Take it slow on the Horsefly Road."
 
     return {
         "horsefly": horsefly,
+        "hundred_mile": hundred_mile,
         "williams_lake": williams,
+        "quesnel": quesnel,
         "williams_lake_driving_impact": williams is not None and _has_driving_impact(williams),
         "summary": summary,
     }
@@ -216,9 +249,9 @@ def format_weather_for_prompt(weather_data):
         return ""
 
     return (
-        "WEATHER CHECK (for the hosts to deliver naturally in the welcome section — "
-        "keep it to 2-3 sentences, conversational, not a formal forecast. "
-        "Horsefly Lake is home base; only mention Williams Lake if driving conditions "
-        "are noted below):\n"
+        "WEATHER CHECK (Cariboo-wide — for the hosts to deliver naturally in the welcome "
+        "section. Cover the regional highlights: home base at Horsefly Lake, then a brief "
+        "sweep across 100 Mile House, Williams Lake, and Quesnel. Keep it to 2-3 sentences, "
+        "conversational, not a formal forecast. Flag any driving alerts if noted below):\n"
         f"{weather_data['summary']}\n\n"
     )
