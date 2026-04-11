@@ -3151,7 +3151,16 @@ def generate_podcast_rss_feed():
     
     podcast_config = CONFIG['podcast']
     credits_config = CONFIG['credits']
-    
+
+    # Use weekend-specific cover images on Saturday and Sunday
+    today_weekday = get_pacific_now().weekday()
+    if today_weekday == 5:  # Saturday
+        cover_image = "cariboo-saturday.png"
+    elif today_weekday == 6:  # Sunday
+        cover_image = "cariboo-sunday.png"
+    else:
+        cover_image = podcast_config["cover_image"]
+
     podcasts_dir = str(PODCASTS_DIR)
     audio_files = glob.glob(os.path.join(podcasts_dir, "podcast_audio_*.mp3"))
     episodes = []
@@ -3289,7 +3298,7 @@ def generate_podcast_rss_feed():
         f'<itunes:name>{podcast_config["author"]}</itunes:name>',
         f'<itunes:email>{podcast_config["email"]}</itunes:email>',
         '</itunes:owner>',
-        f'<itunes:image href="{podcast_config["url"]}{podcast_config["cover_image"]}"/>',
+        f'<itunes:image href="{podcast_config["url"]}{cover_image}"/>',
     ]
     
     for category in podcast_config["categories"]:
