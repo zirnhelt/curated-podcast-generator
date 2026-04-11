@@ -40,8 +40,6 @@ from psa_selector import select_psa
 from weather import fetch_weather, format_weather_for_prompt
 from ambient import get_ambient_transition
 
-# Import Jamendo helpers (used for weekend closing song)
-from cariboo_saturday import fetch_jamendo_tracks, get_music_clip
 
 # Try importing required libraries
 try:
@@ -157,6 +155,136 @@ OUTRO_MUSIC = SCRIPT_DIR / "cariboo-signals-outro.mp3"
 # Audio normalization targets (dBFS)
 TARGET_SPEECH_DBFS = -20.0  # Speech louder and clear
 TARGET_MUSIC_DBFS = -28.0   # Music ducked beneath speech
+
+# ---------------------------------------------------------------------------
+# Jamendo music helpers (weekend closing song)
+# ---------------------------------------------------------------------------
+
+JAMENDO_API_BASE = "https://api.jamendo.com/v3.0"
+_JAMENDO_HEADERS = {"User-Agent": "CaribooPodcast/1.0 (personal use)"}
+
+
+def _download_jamendo_audio(url: str, dest) -> bool:
+    """Stream-download a Jamendo audio file to dest. Returns True on success."""
+    for attempt in range(3):
+        try:
+            with requests.get(url, headers=_JAMENDO_HEADERS, stream=True, timeout=60) as resp:
+                resp.raise_for_status()
+                with open(dest, "wb") as fh:
+                    for chunk in resp.iter_content(chunk_size=8192):
+                        fh.write(chunk)
+            return True
+        except requests.RequestException as exc:
+            print(f"  [WARN] Download attempt {attempt + 1}/3 failed for {url}: {exc}")
+    return False
+
+
+def fetch_jamendo_tracks(client_id: str, tags: list, limit: int = 30) -> list:
+    """Fetch Canadian indie tracks from Jamendo.
+
+    Queries with location_country=CA to prefer Canadian artists, then falls back
+    to genre tags without the country filter if no results are found.
+    Returns [] on any failure or missing client_id.
+    """
+    if not client_id:
+        print("  [INFO] No JAMENDO_CLIENT_ID set — skipping music fetch.")
+        return []
+
+    url = f"{JAMENDO_API_BASE}/tracks/"
+
+    for tag in tags:
+        for country_filter in ["CA", None]:
+            params = {
+                "client_id": client_id,
+                "format": "json",
+                "limit": limit,
+                "fuzzytags": tag,
+                "audiodownload_allowed": "true",
+                "include": "musicinfo",
+                "order": "popularity_week",
+            }
+            if country_filter:
+                params["location_country"] = country_filter
+
+            try:
+                resp = requests.get(url, params=params, headers=_JAMENDO_HEADERS, timeout=15)
+                resp.raise_for_status()
+                data = resp.json()
+                tracks = data.get("results", [])
+                if not tracks:
+                    continue
+                label = f"Canadian ({country_filter})" if country_filter else "global"
+                print(f"  [Jamendo] {len(tracks)} tracks — tag={tag!r}, {label}")
+                return tracks
+            except requests.RequestException as exc:
+                print(f"  [WARN] Jamendo error (tag={tag!r}, country={country_filter}): {exc}")
+
+    print("  [WARN] No Jamendo tracks retrieved for any tag.")
+    return []
+
+
+def get_music_clip(
+    tracks: list,
+    cache_dir,
+    duration_ms: int,
+    music_target_dbfs: float,
+    used_ids: set,
+    max_song_duration_ms: int = 240_000,
+):
+    """Download a random (un-used) Jamendo track and trim it to duration_ms.
+
+    Returns (clip, track_info) or (None, None) if all tracks fail.
+    """
+    effective_max = min(duration_ms, max_song_duration_ms)
+
+    pool = [t for t in tracks if str(t.get("id", "")) not in used_ids]
+    random.shuffle(pool)
+
+    for track in pool:
+        track_id = str(track.get("id", "unknown"))
+        track_url = track.get("audiodownload", "")
+        if not track_url:
+            continue
+
+        cached = Path(cache_dir) / f"jamendo_{track_id}.mp3"
+        if not cached.exists():
+            print(
+                f"  [Music] Downloading: {track.get('name', '?')} "
+                f"by {track.get('artist_name', '?')}"
+            )
+            if not _download_jamendo_audio(track_url, cached):
+                continue
+
+        try:
+            full = AudioSegment.from_mp3(str(cached))
+        except Exception as exc:
+            print(f"  [WARN] Could not decode {cached.name}: {exc}")
+            cached.unlink(missing_ok=True)
+            continue
+
+        start = min(5000, len(full) // 4)
+        available_ms = len(full) - start
+        clip_ms = min(available_ms, effective_max)
+        clip = full[start: start + clip_ms]
+
+        clip = clip.fade_in(1000).fade_out(1000)
+        clip = normalize_segment(clip, music_target_dbfs)
+        used_ids.add(track_id)
+
+        track_info = {
+            "name": track.get("name", ""),
+            "artist": track.get("artist_name", ""),
+            "genres": track.get("musicinfo", {}).get("tags", {}).get("genres", []),
+            "shareurl": track.get("shareurl", ""),
+        }
+        print(
+            f"  [Music] Using: {track_info['name']} "
+            f"by {track_info['artist']} ({len(clip) // 1000}s)"
+        )
+        return clip, track_info
+
+    return None, None
+
 
 # Interval music duration (ms) — trim long theme to a short chime
 # Use only the crisp front-end attack of the intermission MP3
