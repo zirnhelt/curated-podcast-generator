@@ -521,9 +521,8 @@ def assemble_show(
     weather_note = f" {weather_summary}" if weather_summary else ""
     opener_context = (
         f"Riley opens the Cariboo Saturday Morning show. Today is {date_str}.{weather_note} "
-        f"The segments lined up are: {segment_names}. She welcomes listeners, gives a brief "
-        f"Cariboo-wide weather update naturally (covering home base plus conditions across "
-        f"the region if data is provided), and briefly teases what's coming up."
+        f"The segments lined up are: {segment_names}. She welcomes listeners, gives the weather "
+        f"naturally (if provided), and briefly teases what's coming up."
     )
     opener = riley_speak(opener_context, tmp_dir)
     combined += _riley_segment(opener)
@@ -602,14 +601,13 @@ def assemble_show(
             if clip_item is not None:
                 clip, track_info = clip_item
 
-                # Riley: farewell + announces closing song
-                farewell_context = (
-                    "Riley warmly signs off the Cariboo Saturday Morning show, "
-                    "thanks listeners for tuning in, and lets them know there's "
-                    "one last song to close out the morning."
+                # Riley: sign-off before closing music
+                signoff_context = (
+                    "Riley signs off the Cariboo Saturday Morning show warmly, "
+                    "thanks listeners, and says there's one last track to close out the morning."
                 )
-                farewell = riley_speak(farewell_context, tmp_dir)
-                combined += _riley_segment(farewell)
+                signoff = riley_speak(signoff_context, tmp_dir)
+                combined += _riley_segment(signoff)
 
                 if track_info.get("name"):
                     track_label = f"Music — {track_info['name']} by {track_info['artist']}"
@@ -619,27 +617,11 @@ def assemble_show(
                 if track_info.get("shareurl"):
                     music_chapter["url"] = track_info["shareurl"]
                 chapters.append(music_chapter)
-                combined += GAP + clip.fade_out(2000) + GAP
-
-                # Riley: post-song ID + final sign-off
-                genres_str = (
-                    f", genres: {', '.join(track_info['genres'])}"
-                    if track_info.get("genres")
-                    else ""
-                )
-                post_song_context = (
-                    f"Riley identifies the closing song that just played: "
-                    f"'{track_info['name']}' by {track_info['artist']}{genres_str}. "
-                    f"She gives a warm, brief final sign-off — mentioning cariboosignals.ca "
-                    f"and wishing listeners a great rest of their Saturday. One or two sentences."
-                )
-                post_song = riley_speak(post_song_context, tmp_dir)
-                combined += _riley_segment(post_song)
+                combined += GAP + clip.fade_out(3000)
             else:
                 # No closing music — Riley signs off directly
                 signoff_context = (
-                    "Riley signs off the Cariboo Saturday Morning show warmly, "
-                    "thanks listeners, and wishes them a great rest of their weekend."
+                    "Riley signs off the Cariboo Saturday Morning show warmly and thanks listeners."
                 )
                 signoff = riley_speak(signoff_context, tmp_dir)
                 combined += _riley_segment(signoff)

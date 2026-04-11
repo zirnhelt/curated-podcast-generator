@@ -40,6 +40,9 @@ from psa_selector import select_psa
 from weather import fetch_weather, format_weather_for_prompt
 from ambient import get_ambient_transition
 
+# Import Jamendo helpers (used for weekend closing song)
+from cariboo_saturday import fetch_jamendo_tracks, get_music_clip
+
 # Try importing required libraries
 try:
     from anthropic import Anthropic
@@ -2765,8 +2768,48 @@ def generate_tts_for_segment(text, speaker, output_file):
     with open(output_file, "wb") as f:
         f.write(response.content)
 
-def generate_audio_from_script(script, output_filename, theme_name=None):
-    """Convert script to audio with music interludes and theme-aware ambient transitions."""
+def _generate_host_line(context: str, host: str) -> str:
+    """Ask Claude to write a short spoken line for the named host.
+
+    Uses the same host personality loaded from config/hosts.json.
+    Returns an empty string if the Anthropic client is unavailable.
+    """
+    client = get_anthropic_client()
+    if not client:
+        return ""
+
+    hosts_config = CONFIG.get('hosts', {})
+    host_cfg = hosts_config.get(host, {})
+    bio = host_cfg.get('full_bio', f"{host}, a Cariboo Signals radio host")
+
+    prompt = (
+        f"You are writing a short spoken line for {host_cfg.get('name', host.title())}, "
+        f"co-host of Cariboo Signals on cariboosignals.ca.\n\n"
+        f"Host personality: {bio}\n\n"
+        "Speak naturally — like a real radio host, not a newsreader. "
+        "No emojis, no stage directions, no quotation marks. "
+        "Just the words they would say on air. Under 3 sentences.\n\n"
+        f"Context: {context}"
+    )
+    try:
+        response = api_retry(lambda: client.messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=200,
+            messages=[{"role": "user", "content": prompt}],
+        ))
+        return response.content[0].text.strip()
+    except Exception as exc:
+        print(f"  ⚠️  Claude host-line generation failed: {exc}")
+        return ""
+
+
+def generate_audio_from_script(script, output_filename, theme_name=None, weekend_closing=None):
+    """Convert script to audio with music interludes and theme-aware ambient transitions.
+
+    weekend_closing: optional tuple of (clip: AudioSegment, track_info: dict, closing_host: str)
+        When provided, appends a Jamendo closing song after the outro music, framed by
+        a host farewell before the song and a track-ID sign-off after it fades out.
+    """
     print("📊 Generating audio with music interludes...")
     
     if not get_openai_client():
@@ -2858,8 +2901,67 @@ def generate_audio_from_script(script, output_filename, theme_name=None):
             chapters.append({"startTime": round(len(combined) / 1000, 1), "title": "Deep Dive"})
             _render_section(segments['deep_dive'], "🔍 Generating deep dive section...", "deep")
 
-        # Add outro music (after tmpdir context - files cleaned up)
-        combined += section_gap + outro_music
+        # Add outro music — skip on weekends (Jamendo closing song takes its place)
+        if weekend_closing is None:
+            combined += section_gap + outro_music
+
+        # Weekend closing: farewell → Jamendo song → track ID + final sign-off
+        if weekend_closing is not None:
+            closing_clip, closing_track_info, closing_host = weekend_closing
+            print(f"🎵 Adding weekend closing song ({closing_host} hosts)...")
+
+            with tempfile.TemporaryDirectory() as closing_tmpdir:
+                gap = AudioSegment.silent(duration=500)
+
+                # Host: farewell + announces closing song
+                farewell_context = (
+                    f"{closing_host.title()} warmly signs off the weekend Cariboo Signals episode, "
+                    "thanks listeners for tuning in, and lets them know there's "
+                    "one last song to close out the show."
+                )
+                farewell_text = _generate_host_line(farewell_context, closing_host)
+                if farewell_text:
+                    print(f"  [{closing_host.title()}] {farewell_text}")
+                    farewell_file = os.path.join(closing_tmpdir, "farewell.mp3")
+                    generate_tts_for_segment(farewell_text, closing_host, farewell_file)
+                    farewell_audio = normalize_segment(
+                        trim_tts_silence(AudioSegment.from_mp3(farewell_file)), TARGET_SPEECH_DBFS
+                    )
+                    combined += gap + farewell_audio + gap
+
+                # Jamendo closing song (short fade out so host can speak after)
+                track_name = closing_track_info.get("name", "")
+                track_artist = closing_track_info.get("artist", "")
+                if track_name:
+                    track_label = f"Music — {track_name} by {track_artist}"
+                else:
+                    track_label = "Closing Music"
+                chapters.append({"startTime": round(len(combined) / 1000, 1), "title": track_label})
+                if closing_track_info.get("shareurl"):
+                    chapters[-1]["url"] = closing_track_info["shareurl"]
+                combined += gap + closing_clip.fade_out(2000) + gap
+
+                # Host: identify the song + final sign-off
+                genres_str = (
+                    f", genres: {', '.join(closing_track_info['genres'])}"
+                    if closing_track_info.get("genres")
+                    else ""
+                )
+                post_song_context = (
+                    f"{closing_host.title()} identifies the closing song that just played: "
+                    f"'{track_name}' by {track_artist}{genres_str}. "
+                    f"They give a warm, brief final sign-off — mentioning cariboosignals.ca "
+                    f"and wishing listeners a great rest of their weekend. One or two sentences."
+                )
+                post_song_text = _generate_host_line(post_song_context, closing_host)
+                if post_song_text:
+                    print(f"  [{closing_host.title()}] {post_song_text}")
+                    post_file = os.path.join(closing_tmpdir, "post_song.mp3")
+                    generate_tts_for_segment(post_song_text, closing_host, post_file)
+                    post_audio = normalize_segment(
+                        trim_tts_silence(AudioSegment.from_mp3(post_file)), TARGET_SPEECH_DBFS
+                    )
+                    combined += gap + post_audio
 
         # Export
         combined.export(output_filename, format="mp3")
@@ -3599,8 +3701,8 @@ def main():
         brave_client = get_anthropic_client()
         brave_context = enrich_deep_dive_with_brave(deep_dive_articles, today_theme, brave_client) if brave_client else ""
 
-        # Fetch weather for Williams Lake
-        print("🌤️  Fetching weather for Williams Lake...")
+        # Fetch Cariboo-wide weather
+        print("🌤️  Fetching Cariboo-wide weather...")
         weather_data = fetch_weather()
         if weather_data:
             print(f"   {weather_data['summary']}")
@@ -3737,9 +3839,86 @@ def main():
         with open(script_filename, 'r', encoding='utf-8') as f:
             script = f.read()
     
+    # On weekends, fetch one Jamendo track for the closing song
+    weekend_closing = None
+    if today_weekday in (5, 6):
+        print("🎵 Weekend episode — fetching Jamendo closing song...")
+        jamendo_client_id = os.environ.get("JAMENDO_CLIENT_ID", "")
+        closing_host = "riley" if today_weekday == 5 else "casey"
+        try:
+            tracks = fetch_jamendo_tracks(jamendo_client_id, ["indie", "folk", "indie-rock"])
+            if tracks:
+                music_cache = PODCASTS_DIR / ".music_cache"
+                music_cache.mkdir(exist_ok=True)
+                clip, track_info = get_music_clip(
+                    tracks, music_cache,
+                    duration_ms=240_000,
+                    music_target_dbfs=TARGET_MUSIC_DBFS,
+                    used_ids=set(),
+                    max_song_duration_ms=240_000,
+                )
+                if clip is not None:
+                    weekend_closing = (clip, track_info, closing_host)
+                    print(f"   Closing song: {track_info.get('name', '?')} by {track_info.get('artist', '?')}")
+
+                    # Patch closing music credit into the citations/show-notes JSON
+                    safe_theme = today_theme.replace(" ", "_").replace("&", "and").lower()
+                    citations_path = PODCASTS_DIR / f"citations_{date_key}_{safe_theme}.json"
+                    if citations_path.exists():
+                        try:
+                            with open(citations_path, encoding="utf-8") as fh:
+                                cdata = json.load(fh)
+
+                            t_name   = track_info.get("name", "")
+                            t_artist = track_info.get("artist", "")
+                            t_url    = track_info.get("shareurl", "")
+                            genres   = track_info.get("genres", [])
+                            genre_str = ", ".join(genres) if genres else "indie"
+
+                            music_html = (
+                                f'<p><b>Closing Music:</b> &ldquo;{saxutils.escape(t_name)}&rdquo; '
+                                f'by {saxutils.escape(t_artist)} &mdash; {saxutils.escape(genre_str)}. '
+                                f'Free music via <a href="{saxutils.escape(t_url)}">Jamendo</a>, '
+                                f'licensed under Creative Commons.</p>'
+                            ) if t_url else (
+                                f'<p><b>Closing Music:</b> &ldquo;{saxutils.escape(t_name)}&rdquo; '
+                                f'by {saxutils.escape(t_artist)} &mdash; free music via Jamendo, '
+                                f'licensed under Creative Commons.</p>'
+                            )
+
+                            # Append music note before the credits block in the description
+                            desc = cdata.get("episode", {}).get("description", "")
+                            # Insert before the Credits <p> block if present, else append
+                            if "<p><b>Credits</b>" in desc:
+                                desc = desc.replace(
+                                    "<p><b>Credits</b>", music_html + "<p><b>Credits</b>", 1
+                                )
+                            else:
+                                desc += music_html
+                            cdata.setdefault("episode", {})["description"] = desc
+                            cdata["closing_music"] = {
+                                "name": t_name, "artist": t_artist,
+                                "genres": genres, "shareurl": t_url,
+                                "license": "Creative Commons via Jamendo",
+                            }
+                            with open(citations_path, "w", encoding="utf-8") as fh:
+                                json.dump(cdata, fh, indent=2, ensure_ascii=False)
+                            print(f"   📋 Show notes updated with closing music credit.")
+                        except Exception as exc:
+                            print(f"   ⚠️  Could not update citations with music credit: {exc}")
+                else:
+                    print("   ⚠️  No usable Jamendo track found — skipping closing song.")
+            else:
+                print("   ⚠️  Jamendo returned no tracks — skipping closing song.")
+        except Exception as exc:
+            print(f"   ⚠️  Jamendo fetch failed: {exc} — skipping closing song.")
+
     # Generate audio if needed
     if not audio_exists and script:
-        audio_file = generate_audio_from_script(script, audio_filename, theme_name=today_theme)
+        audio_file = generate_audio_from_script(
+            script, audio_filename, theme_name=today_theme,
+            weekend_closing=weekend_closing,
+        )
 
         if audio_file:
             print(f"🎉 Podcast complete!")
