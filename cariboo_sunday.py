@@ -131,7 +131,7 @@ def casey_tts(text: str, tmp_dir: Path) -> AudioSegment | None:
         response = client.audio.speech.create(
             model="tts-1",
             voice="echo",
-            input=text,
+            input=text.replace("Quesnel", "Kweh-nell"),
             speed=1.0,
         )
         with open(tmp_file, "wb") as fh:

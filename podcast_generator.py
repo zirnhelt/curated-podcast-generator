@@ -2761,7 +2761,7 @@ def generate_tts_for_segment(text, speaker, output_file):
     response = api_retry(lambda: client.audio.speech.create(
         model="tts-1",
         voice=voice,
-        input=text.replace("Quesnel", "Kwi-nell"),
+        input=text.replace("Quesnel", "Kweh-nell"),
         speed=1.0
     ))
 
