@@ -31,14 +31,10 @@ jobs:
 
           # Copy generated HTML pages
           cp index.html output/
-          cp cariboo-saturday.html output/
-          cp cariboo-sunday.html output/
           cp bespoke.html output/
-          cp cariboo-weekends.html output/
 
           # Copy static assets — all cover images referenced by the HTML pages
           cp cariboo-signals.png output/
-          cp cariboo-weekends.png output/ 2>/dev/null || true
           cp cariboo-saturday.png output/ 2>/dev/null || true
           cp cariboo-sunday.png output/ 2>/dev/null || true
           cp Deepdives.png output/ 2>/dev/null || true
@@ -56,14 +52,14 @@ jobs:
           BUCKET="cariboo-signals"
           echo "Syncing HTML pages to R2..."
 
-          for page in index.html cariboo-saturday.html cariboo-sunday.html bespoke.html cariboo-weekends.html; do
+          for page in index.html bespoke.html; do
             [ -f "$page" ] && aws s3 cp "$page" "s3://${BUCKET}/${page}" \
               --content-type "text/html" \
               --cache-control "no-cache" \
               && echo "  uploaded $page"
           done
 
-          for img in cariboo-signals.png cariboo-weekends.png cariboo-saturday.png cariboo-sunday.png Deepdives.png car-sig-favicon.png; do
+          for img in cariboo-signals.png cariboo-saturday.png cariboo-sunday.png Deepdives.png car-sig-favicon.png; do
             [ -f "$img" ] && aws s3 cp "$img" "s3://${BUCKET}/${img}" \
               --content-type "image/png" \
               --cache-control "public, max-age=86400" \
