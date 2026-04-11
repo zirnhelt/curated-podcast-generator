@@ -3830,6 +3830,15 @@ def main():
     if today_weekday in (5, 6):
         print("🎵 Weekend episode — fetching Jamendo closing song...")
         jamendo_client_id = os.environ.get("JAMENDO_CLIENT_ID", "")
+        if not jamendo_client_id:
+            config_name = "cariboo_saturday.json" if today_weekday == 5 else "cariboo_sunday.json"
+            config_path = SCRIPT_DIR / "config" / config_name
+            if config_path.exists():
+                try:
+                    with open(config_path, encoding="utf-8") as _cfg_fh:
+                        jamendo_client_id = json.load(_cfg_fh).get("jamendo_client_id", "")
+                except Exception:
+                    pass
         closing_host = "riley" if today_weekday == 5 else "casey"
         try:
             tracks = fetch_jamendo_tracks(jamendo_client_id, ["indie", "folk", "indie-rock"])
