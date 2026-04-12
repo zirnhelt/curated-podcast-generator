@@ -1,24 +1,4 @@
 {
-  "2026-03-21": {
-    "timestamp": 1774097441.003871,
-    "topics": [
-      "[Williams Lake Tribune] B.C. allowing old-growth logging des",
-      "[Quesnel Cariboo Observer] Prince George-North Cariboo MLA i",
-      "[Williams Lake Tribune] Energy efficiency upgrades at Caribo",
-      "[Williams Lake Tribune] Snowfall warning issued for Chilcoti",
-      "[Williams Lake Tribune] Princeton mill celebrates approval o",
-      "HealthIM tool helps RCMP respond to mental health crises in ",
-      "Williams Lake city councillor to propose &quot;aggressive&qu",
-      "[Quesnel Cariboo Observer] Hometown Hero: Quesnel city manag"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-03-21"
-  },
   "2026-03-22": {
     "timestamp": 1774184079.516673,
     "topics": [
@@ -436,5 +416,25 @@
       "Indigenous tech"
     ],
     "date": "2026-04-11"
+  },
+  "2026-04-12": {
+    "timestamp": 1775990768.531962,
+    "topics": [
+      "[Quartz] Can DUK's Grid Modernization Drive Long-Term Growth",
+      "[Williams Lake Tribune] Volunteers, students plant 500 trees",
+      "[Hackaday] Testing Refrigerants and Capillary Tubes to Find ",
+      "[XDA Developers] The Linux kernel now allows AI-written code",
+      "[Business Insider] An AI built a boutique with $100,000, the",
+      "[ScienceAlert] Experimental Drug Can Reverse Osteoarthritis ",
+      "[New Atlas] AI drones make mine clearing faster and safer",
+      "AI"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-04-12"
   }
 }

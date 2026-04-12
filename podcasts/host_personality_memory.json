@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] When confidence becomes a risk: The gap between ",
-      "[TechRadar] Three high-risk AI vulnerabilities discovered in",
       "[TechRadar] Google unveils new \u2018vibe design\u2019 tool to help an",
       "[TechRadar] Why strong authentication beyond the browser wil",
       "[TechRadar] 'Nuclear energy is the essential backbone for th",
@@ -10,7 +8,9 @@
       "[TechRadar] 'Weekend work increased more than 40%': How AI i",
       "AI",
       "[TechCrunch] Peter Thiel\u2019s big bet on solar-powered cow coll",
-      "[Business Insider] I quit tech, bought 22 acres, and didn't "
+      "[Business Insider] I quit tech, bought 22 acres, and didn't ",
+      "[XDA Developers] The Linux kernel now allows AI-written code",
+      "[Business Insider] An AI built a boutique with $100,000, the"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -50,9 +50,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-04",
-        "clue": "community-trust:+ \u2014 warmed to endowment model as legitimate funding answer",
-        "occurrences": 1
+        "date": "2026-04-12",
+        "clue": "community-trust:+ \u2014 Shifted emphasis from partnership language to 'coaxing' as epistemic humility",
+        "occurrences": 2
       },
       {
         "date": "2026-04-07",
@@ -82,6 +82,11 @@
       {
         "date": "2026-04-11",
         "clue": "community-trust:~ \u2014 Acknowledged that social fabric matters equally to formal systems, deepening earlier position",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-04-12",
+        "clue": "tech-optimism:~ \u2014 Acknowledged drone sensing requires trained technician, not just price reduction",
         "occurrences": 1
       }
     ],
@@ -138,11 +143,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-04-09",
-        "clue": "pilot-skepticism:x \u2014 Acknowledged tension between urgency and perfect conditions, moved toward pragmatism",
-        "occurrences": 2
-      },
-      {
         "date": "2026-04-02",
         "clue": "structural-lens: + \u2014 Deepened critique from process failures to sovereignty sequencing requirement",
         "occurrences": 1
@@ -188,9 +188,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-11",
-        "clue": "funding-risk:+ \u2014 Repeatedly returned to unsustainability of volunteer-dependent capacity; strengthened this concern",
-        "occurrences": 1
+        "date": "2026-04-12",
+        "clue": "funding-risk:+ \u2014 Deepened concern from governance gaps to specific 15-year infrastructure sustainability architecture",
+        "occurrences": 2
       }
     ],
     "core_memories": [
@@ -202,6 +202,11 @@
       {
         "formed": "2026-04-10",
         "signal": "funding-risk:+ \u2014 Deepened critique of grant-cycle vulnerability across episodes",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-04-12",
+        "signal": "pilot-skepticism:x \u2014 Conceded that waiting for perfection guarantees nothing gets built",
         "occurrences": 3
       }
     ]

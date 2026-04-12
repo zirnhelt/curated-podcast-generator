@@ -1,0 +1,221 @@
+{
+  "episode": {
+    "date": "2026-04-12",
+    "formatted_date": "Sunday, April 12, 2026",
+    "theme": "Science, Wonder & the Natural World",
+    "title": "Cariboo Signals - Science, Wonder & the Natural World",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Science, Wonder & the Natural World.</p><p><b>NEWS ROUNDUP:</b> We break down [Williams Lake Tribune] Volunteers, students plant 500 trees to rejuvenate B.C. park after 2023 wildfire and [XDA Developers] The Linux kernel now allows AI-written code, but you're on the hook for it, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> How can rural communities transition from being passive data sources for external scientific projects to becoming active generators and owners of ecological research questions and findings? Topics include: Data sovereignty and the OCAP principles in community science partnerships, Knowledge extraction versus epistemic collaboration with Indigenous communities, Sustainable funding and governance models for long-term ecological monitoring, Role of technology (drones, sensors) in making community-scale ecological research economically viable, Community Futures organizations as potential intermediaries for ecological enterprise and stewardship compensation.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://cfdccariboo.com\">Community Futures Cariboo Chilcotin</a></p><p><b>Sources discussed:</b></p><ul><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/04/11/volunteers-students-plant-500-trees-to-rejuvenate-b-c-park-after-2023-wildfire/\">[Williams Lake Tribune] Volunteers, students plant 500 trees...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/linux-kernel-now-allows-ai-written-code/\">[XDA Developers] The Linux kernel now allows AI-written code...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/andon-market-luna-ai-agent-managed-store-san-francisco-2026-4\">[Business Insider] An AI built a boutique with $100,000, the...</a></li><li>TechRadar: <a href=\"https://www.techradar.com/pro/security/usd15k-bill-destroyed-a-solo-developers-startup-how-hackers-are-using-leaked-google-api-keys-to-go-wild-with-gemini-ai-for-free\">[TechRadar] '$15K bill destroyed a solo developer’s startup'...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/experimental-drug-can-reverse-osteoarthritis-in-weeks-animal-research-shows\">[ScienceAlert] Experimental Drug Can Reverse Osteoarthritis ...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Quartz: <a href=\"https://qz.com/can-duk-s-grid-modernization-drive-long-term-growth-and-reliability\">[Quartz] Can DUK's Grid Modernization Drive Long-Term Growth...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/04/11/testing-refrigerants-and-capillary-tubes-to-find-peak-performance/\">[Hackaday] Testing Refrigerants and Capillary Tubes to Find ...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/a-used-mac-mini-could-be-great-for-your-home-lab-but-take-a-look-at-regular-mini-pcs-first/\">[XDA Developers] A used Mac Mini could be great for your hom...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/layer-height-sabotaging-3d-prints-notice-pattern-obvious/\">[XDA Developers] Layer height was sabotaging my 3D prints, a...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/04/11/a-suction-driven-seven-segment-display/\">[Hackaday] A Suction-Driven Seven-Segment Display</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/04/11/implementing-pcie-over-fiber-using-sfp-modules/\">[Hackaday] Implementing PCIe over Fiber Using SFP Modules</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/04/11/authenticate-ssh-with-your-tpm/\">[Hackaday] Authenticate SSH with Your TPM</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/04/11/exclusive-eby-discusses-dripa-healthcare-housing-and-more-in-vernon-stop/\">[Williams Lake Tribune] EXCLUSIVE: Eby discusses DRIPA, heal...</a></li><li>Neowin: <a href=\"https://www.neowin.net/reviews/orico-x50-thunderbolt-5-portable-ssd-review-blazing-speeds-and-innovative-cooling/\">[Neowin] ORICO X50 Thunderbolt 5 Portable SSD review: Blazin...</a></li><li>CNET: <a href=\"https://www.cnet.com/tech/computing/gen-1-physical-ai-model-robot-dexterity/\">[CNET] Watch a Robot Stuff Cash Into a Wallet Just Like You ...</a></li><li>New Atlas: <a href=\"https://newatlas.com/military/ai-drones-mine-clearing/\">[New Atlas] AI drones make mine clearing faster and safer</a></li></ul><p><b>Closing Music:</b> &ldquo;Même&rdquo; by Paul &amp;amp; Manuel &mdash; indie, chansonfrancaise, world. Free music via <a href=\"https://www.jamendo.com/track/2037486\">Jamendo</a>, licensed under Creative Commons.</p><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-opus-4-6<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-04-12T03:46:08.522991-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-opus-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Quartz] Can DUK's Grid Modernization Drive Long-Term Growth and Reliability?",
+          "url": "https://qz.com/can-duk-s-grid-modernization-drive-long-term-growth-and-reliability",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-04-12T00:01:38+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Volunteers, students plant 500 trees to rejuvenate B.C. park after 2023 wildfire",
+          "url": "https://wltribune.com/2026/04/11/volunteers-students-plant-500-trees-to-rejuvenate-b-c-park-after-2023-wildfire/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-11T13:48:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Hackaday] Testing Refrigerants and Capillary Tubes to Find Peak Performance",
+          "url": "https://hackaday.com/2026/04/11/testing-refrigerants-and-capillary-tubes-to-find-peak-performance/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-04-12T05:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] The Linux kernel now allows AI-written code, but you're on the hook for it",
+          "url": "https://www.xda-developers.com/linux-kernel-now-allows-ai-written-code/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-04-12T01:59:05+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Business Insider] An AI built a boutique with $100,000, then panicked when no one showed up to work",
+          "url": "https://www.businessinsider.com/andon-market-luna-ai-agent-managed-store-san-francisco-2026-4",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-04-12T01:30:32+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[XDA Developers] A used Mac Mini could be great for your home lab, but take a look at regular mini PCs first",
+          "url": "https://www.xda-developers.com/a-used-mac-mini-could-be-great-for-your-home-lab-but-take-a-look-at-regular-mini-pcs-first/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-04-12T00:00:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] Layer height was sabotaging my 3D prints, and I didn't notice until the pattern became obvious",
+          "url": "https://www.xda-developers.com/layer-height-sabotaging-3d-prints-notice-pattern-obvious/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-04-11T23:00:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] A Suction-Driven Seven-Segment Display",
+          "url": "https://hackaday.com/2026/04/11/a-suction-driven-seven-segment-display/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-04-11T23:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Implementing PCIe over Fiber Using SFP Modules",
+          "url": "https://hackaday.com/2026/04/11/implementing-pcie-over-fiber-using-sfp-modules/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-04-11T20:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] '$15K bill destroyed a solo developer’s startup': How hackers are using leaked Google API keys to ‘go wild’ with Gemini AI for free",
+          "url": "https://www.techradar.com/pro/security/usd15k-bill-destroyed-a-solo-developers-startup-how-hackers-are-using-leaked-google-api-keys-to-go-wild-with-gemini-ai-for-free",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-04-11T17:35:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Hackaday] Authenticate SSH with Your TPM",
+          "url": "https://hackaday.com/2026/04/11/authenticate-ssh-with-your-tpm/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-04-11T17:00:14+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] EXCLUSIVE: Eby discusses DRIPA, healthcare, housing and more in Vernon stop",
+          "url": "https://wltribune.com/2026/04/11/exclusive-eby-discusses-dripa-healthcare-housing-and-more-in-vernon-stop/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-11T17:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Neowin] ORICO X50 Thunderbolt 5 Portable SSD review: Blazing speeds and innovative cooling",
+          "url": "https://www.neowin.net/reviews/orico-x50-thunderbolt-5-portable-ssd-review-blazing-speeds-and-innovative-cooling/",
+          "source": "Neowin",
+          "ai_score": 0,
+          "date_published": "2026-04-11T15:00:01+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[CNET] Watch a Robot Stuff Cash Into a Wallet Just Like You Do",
+          "url": "https://www.cnet.com/tech/computing/gen-1-physical-ai-model-robot-dexterity/",
+          "source": "CNET",
+          "ai_score": 0,
+          "date_published": "2026-04-11T13:10:37+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Science, Wonder & the Natural World",
+      "articles": [
+        {
+          "title": "[ScienceAlert] Experimental Drug Can Reverse Osteoarthritis in Weeks, Animal Research Shows",
+          "url": "https://www.sciencealert.com/experimental-drug-can-reverse-osteoarthritis-in-weeks-animal-research-shows",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-04-11T21:00:30+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[New Atlas] AI drones make mine clearing faster and safer",
+          "url": "https://newatlas.com/military/ai-drones-mine-clearing/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-04-11T16:03:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "How can rural communities transition from being passive data sources for external scientific projects to becoming active generators and owners of ecological research questions and findings?",
+        "riley_position": "Rural communities should be positioned as 'observation platforms' that lead community-based ecological science, generating their own research questions and owning the resulting knowledge rather than simply providing data to external institutions.",
+        "riley_key_evidence": [
+          "Tree-planting restoration work can serve as longitudinal ecological datasets if properly instrumented to track species establishment and canopy closure",
+          "The osteoarthritis research metaphor of 'coaxing' the body's repair mechanisms rather than overriding them applies to community science governance",
+          "Cariboo communities sit atop extraordinary ecological complexity (old-growth forests, riparian systems, wildlife corridors) that mainstream science is poorly equipped to monitor"
+        ],
+        "casey_position": "Community science requires robust governance structures and sustainable funding mechanisms; without outcome ownership, problem definition authority, and long-term institutional commitment, rural communities become complicit in the same extractive patterns they seek to avoid.",
+        "casey_key_evidence": [
+          "History of rural and Indigenous communities being recruited as data sources with results published, governed, and commercialized elsewhere",
+          "Pilot-to-generalization gap: success metrics are often fuzzy, defined by funders rather than communities, or measured as 'we published a paper' rather than ecological improvement",
+          "Sensor and database infrastructure funded by three-year grants becomes university property when grants expire, leaving no durable community data system"
+        ],
+        "resolution": "The speakers found substantial agreement: both embraced the osteoarthritis metaphor of epistemic humility and the need for outcome ownership. They agreed the key variables are problem definition authority and sustainable governance architecture, and identified Community Futures organizations and accessible drone technology as potential infrastructure solutions, though Casey emphasized that technology access alone doesn't eliminate capacity gaps.",
+        "topics_covered": [
+          "Data sovereignty and the OCAP principles in community science partnerships",
+          "Knowledge extraction versus epistemic collaboration with Indigenous communities",
+          "Sustainable funding and governance models for long-term ecological monitoring",
+          "Role of technology (drones, sensors) in making community-scale ecological research economically viable",
+          "Community Futures organizations as potential intermediaries for ecological enterprise and stewardship compensation"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  },
+  "closing_music": {
+    "name": "Même",
+    "artist": "Paul &amp; Manuel",
+    "genres": [
+      "indie",
+      "chansonfrancaise",
+      "world"
+    ],
+    "shareurl": "https://www.jamendo.com/track/2037486",
+    "license": "Creative Commons via Jamendo"
+  }
+}
