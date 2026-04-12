@@ -960,5 +960,31 @@
       "Community foundation endowment models for sustaining local infrastructure",
       "Indigenous Guardian programs as models for sustained locally-rooted capacity"
     ]
+  },
+  "2026-04-12": {
+    "timestamp": 1775990770.513682,
+    "date": "2026-04-12",
+    "theme": "Science, Wonder & the Natural World",
+    "central_question": "How can rural communities transition from being passive data sources for external scientific projects to becoming active generators and owners of ecological research questions and findings?",
+    "riley_position": "Rural communities should be positioned as 'observation platforms' that lead community-based ecological science, generating their own research questions and owning the resulting knowledge rather than simply providing data to external institutions.",
+    "riley_key_evidence": [
+      "Tree-planting restoration work can serve as longitudinal ecological datasets if properly instrumented to track species establishment and canopy closure",
+      "The osteoarthritis research metaphor of 'coaxing' the body's repair mechanisms rather than overriding them applies to community science governance",
+      "Cariboo communities sit atop extraordinary ecological complexity (old-growth forests, riparian systems, wildlife corridors) that mainstream science is poorly equipped to monitor"
+    ],
+    "casey_position": "Community science requires robust governance structures and sustainable funding mechanisms; without outcome ownership, problem definition authority, and long-term institutional commitment, rural communities become complicit in the same extractive patterns they seek to avoid.",
+    "casey_key_evidence": [
+      "History of rural and Indigenous communities being recruited as data sources with results published, governed, and commercialized elsewhere",
+      "Pilot-to-generalization gap: success metrics are often fuzzy, defined by funders rather than communities, or measured as 'we published a paper' rather than ecological improvement",
+      "Sensor and database infrastructure funded by three-year grants becomes university property when grants expire, leaving no durable community data system"
+    ],
+    "resolution": "The speakers found substantial agreement: both embraced the osteoarthritis metaphor of epistemic humility and the need for outcome ownership. They agreed the key variables are problem definition authority and sustainable governance architecture, and identified Community Futures organizations and accessible drone technology as potential infrastructure solutions, though Casey emphasized that technology access alone doesn't eliminate capacity gaps.",
+    "topics_covered": [
+      "Data sovereignty and the OCAP principles in community science partnerships",
+      "Knowledge extraction versus epistemic collaboration with Indigenous communities",
+      "Sustainable funding and governance models for long-term ecological monitoring",
+      "Role of technology (drones, sensors) in making community-scale ecological research economically viable",
+      "Community Futures organizations as potential intermediaries for ecological enterprise and stewardship compensation"
+    ]
   }
 }
