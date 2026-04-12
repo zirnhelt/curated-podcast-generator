@@ -9,6 +9,7 @@ import os
 import sys
 import json
 import glob
+import html as _html
 import random
 import xml.sax.saxutils as saxutils
 from datetime import datetime, timedelta, timezone
@@ -272,8 +273,8 @@ def get_music_clip(
         used_ids.add(track_id)
 
         track_info = {
-            "name": track.get("name", ""),
-            "artist": track.get("artist_name", ""),
+            "name": _html.unescape(track.get("name", "")),
+            "artist": _html.unescape(track.get("artist_name", "")),
             "genres": track.get("musicinfo", {}).get("tags", {}).get("genres", []),
             "shareurl": track.get("shareurl", ""),
         }
@@ -3993,10 +3994,9 @@ def main():
                             genre_str = ", ".join(genres) if genres else "indie"
 
                             music_html = (
-                                f'<p><b>Closing Music:</b> &ldquo;{saxutils.escape(t_name)}&rdquo; '
+                                f'<p><b>Closing Music:</b> &ldquo;<a href="{saxutils.escape(t_url)}">{saxutils.escape(t_name)}</a>&rdquo; '
                                 f'by {saxutils.escape(t_artist)} &mdash; {saxutils.escape(genre_str)}. '
-                                f'Free music via <a href="{saxutils.escape(t_url)}">Jamendo</a>, '
-                                f'licensed under Creative Commons.</p>'
+                                f'Free music via Jamendo, licensed under Creative Commons.</p>'
                             ) if t_url else (
                                 f'<p><b>Closing Music:</b> &ldquo;{saxutils.escape(t_name)}&rdquo; '
                                 f'by {saxutils.escape(t_artist)} &mdash; free music via Jamendo, '
