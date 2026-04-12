@@ -117,10 +117,10 @@ jobs:
           echo "Content:      ${{ inputs.content || github.event.client_payload.content }}"
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: '3.11'
 
@@ -159,18 +159,21 @@ jobs:
           python seed.py "${ARGS[@]}"
 
       - name: Commit and push updated seeds
+        env:
+          # Pass user-supplied inputs via env vars to prevent expression-injection
+          # if values contain shell metacharacters or commit-message-breaking chars.
+          COMMIT_TYPE: ${{ inputs.type || github.event.client_payload.type }}
+          COMMIT_CONTENT: ${{ inputs.content || github.event.client_payload.content }}
+          COMMIT_TAG: ${{ inputs.tag || github.event.client_payload.tag }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add podcasts/content_seeds.json tags.json tags.txt
           git diff --staged --quiet && echo "No changes to commit" && exit 0
-          TYPE="${{ inputs.type || github.event.client_payload.type }}"
-          CONTENT="${{ inputs.content || github.event.client_payload.content }}"
-          TAG="${{ inputs.tag || github.event.client_payload.tag }}"
-          SHORT="${CONTENT:0:60}"
+          SHORT="${COMMIT_CONTENT:0:60}"
           TAG_SUFFIX=""
-          if [ -n "$TAG" ]; then TAG_SUFFIX=" [#${TAG}]"; fi
-          git commit -m "seed: add ${TYPE}${TAG_SUFFIX} — ${SHORT}"
+          if [ -n "$COMMIT_TAG" ]; then TAG_SUFFIX=" [#${COMMIT_TAG}]"; fi
+          git commit -m "seed: add ${COMMIT_TYPE}${TAG_SUFFIX} — ${SHORT}"
           git push
 
       - name: Dispatch bespoke if threshold reached

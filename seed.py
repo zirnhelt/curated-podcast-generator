@@ -29,15 +29,41 @@ Bespoke episodes:
 import argparse
 import json
 import os
+import re
 import sys
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import urlparse
 
 
 SEEDS_FILE = Path(__file__).parent / "podcasts" / "content_seeds.json"
 TAGS_FILE  = Path(__file__).parent / "tags.json"
 TAGS_TXT   = Path(__file__).parent / "tags.txt"
+
+_BLOCKED_HOSTS = {"localhost", "127.0.0.1", "0.0.0.0", "::1", "169.254.169.254"}
+
+
+def _validate_url(url: str) -> str:
+    """Return the URL if it looks safe, or raise ValueError."""
+    try:
+        parts = urlparse(url)
+    except Exception as exc:
+        raise ValueError(f"Could not parse URL: {exc}") from exc
+    if parts.scheme not in ("http", "https"):
+        raise ValueError(f"URL must use http or https scheme (got {parts.scheme!r})")
+    host = parts.netloc.split(":")[0].lower()
+    if not host:
+        raise ValueError("URL has no host")
+    if host in _BLOCKED_HOSTS:
+        raise ValueError(f"URL targets a blocked host ({host})")
+    ip_match = re.match(r"^(\d+)\.(\d+)\.", host)
+    if ip_match:
+        a, b = int(ip_match.group(1)), int(ip_match.group(2))
+        if a == 10 or (a == 172 and 16 <= b <= 31) or (a == 192 and b == 168):
+            raise ValueError(f"URL targets a private IP range ({host})")
+    return url
+
 
 THEMES = [
     "Arts, Culture & Digital Storytelling",
@@ -170,6 +196,11 @@ def check_bespoke_trigger(data: dict, tag: str) -> None:
 
 
 def cmd_url(args) -> None:
+    try:
+        _validate_url(args.url)
+    except ValueError as exc:
+        print(f"❌ Invalid URL: {exc}", file=sys.stderr)
+        sys.exit(1)
     data = _load_seeds()
     seed = {
         "id": uuid.uuid4().hex[:8],

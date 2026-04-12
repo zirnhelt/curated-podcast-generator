@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-VlyduVqaHyNUuJKob3mYns35DY/OwFimtY0uQXvxi9M='; style-src 'unsafe-inline'; img-src 'self' https: data:; media-src https: blob:; connect-src 'self'">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <title>Cariboo Signals - A daily AI-generated tech review from and about rural BC</title>
     <meta name="description" content="How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region on the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations.">
     <style>
@@ -371,6 +373,7 @@
 
         </div>
 
+
         <div class="schedule-section">
             <h3>📅 Weekly Theme Schedule</h3>
             <div class="weekly-schedule">
@@ -488,6 +491,16 @@
     </div>
 
     <script>
+        // HTML-escape helper — prevents XSS when inserting RSS/XML content into innerHTML
+        function escHtml(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
         // Theme configuration
         const themes = {"0": {"name": "Arts, Culture & Digital Storytelling", "description": "Local arts scene, festivals, creative economy, media, and cultural tech", "keywords": ["arts", "culture", "storytelling", "festival", "creative", "media", "film", "music", "gallery", "museum", "digital art", "podcast", "journalism"]}, "1": {"name": "Working Lands & Industry", "description": "Cariboo forestry, ranching, mining, agriculture \u2014 tech in the resource economy", "keywords": ["forestry", "ranching", "mining", "agriculture", "lumber", "cattle", "resource", "farming", "timber", "sawmill", "crop", "harvest", "livestock", "industrial"]}, "2": {"name": "Community Tech & Governance", "description": "SD27, CRD, Williams Lake council, municipal networks, civic innovation", "keywords": ["governance", "council", "municipal", "civic", "community", "public", "policy", "bylaw", "broadband", "network", "digital equity", "open data", "smart city", "election"]}, "3": {"name": "Indigenous Lands & Innovation", "description": "T\u015dilhqot'in, Secw\u00e9pemc, Dakelh \u2014 language, governance, land stewardship, and tech", "keywords": ["indigenous", "first nations", "aboriginal", "reconciliation", "treaty", "land rights", "sovereignty", "guardian", "stewardship", "language revitalization", "elder", "traditional knowledge", "Haida", "Tsilhqotin", "Secwepemc", "Dakelh", "tribal"]}, "4": {"name": "Wild Spaces & Outdoor Life", "description": "Chilcotin wilderness, backcountry recreation, conservation tech, wildfire and climate", "keywords": ["wilderness", "wildfire", "conservation", "wildlife", "outdoor", "recreation", "hiking", "fishing", "hunting", "backcountry", "park", "trail", "forest fire", "climate", "salmon", "grizzly", "caribou"]}, "5": {"name": "Cariboo Voices & Local News", "description": "Williams Lake, Quesnel, 100 Mile House, Bella Coola \u2014 community stories and digital equity", "keywords": ["Williams Lake", "Quesnel", "100 Mile", "Bella Coola", "Cariboo", "local", "community", "rural", "small town", "digital equity", "Chilcotin", "Prince George"]}, "6": {"name": "Science, Wonder & the Natural World", "description": "Scientific discovery, natural phenomena, ecology, and the curiosity behind how our world works \u2014 grounded in the landscapes and living systems of the Cariboo", "keywords": ["science", "research", "discovery", "ecology", "biology", "astronomy", "physics", "evolution", "nature", "species", "salmon", "caribou", "bat", "watershed", "wetland", "grassland", "boreal", "species at risk", "wildfire science", "citizen science", "field research", "natural history", "phenomenon", "study", "biodiversity"]}};
         const themeNames = Object.values(themes).map(t => t.name);
@@ -613,12 +626,12 @@
                 episodesHTML += `
                     <div class="episode-item">
                         <div>
-                            <div class="episode-title">${episode.title}</div>
-                            <div class="episode-date">${episode.formattedDate}</div>
+                            <div class="episode-title">${escHtml(episode.title)}</div>
+                            <div class="episode-date">${escHtml(episode.formattedDate)}</div>
                             ${episode.audioUrl ? `
                                 <div class="episode-audio">
                                     <audio controls style="width: 100%; max-width: 300px;">
-                                        <source src="${episode.audioUrl}" type="audio/mpeg">
+                                        <source src="${escHtml(episode.audioUrl)}" type="audio/mpeg">
                                         Your browser does not support the audio element.
                                     </audio>
                                 </div>
