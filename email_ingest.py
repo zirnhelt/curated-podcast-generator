@@ -109,6 +109,21 @@ def _strip_html(html: str) -> str:
 # Sanitization (prompt injection defence)
 # ---------------------------------------------------------------------------
 
+def _mask_email(addr: str) -> str:
+    """Return a privacy-safe version of an email address for storage.
+
+    Full address  →  first char + *** + @domain.tld
+    "Alice <alice@example.com>"  →  "a***@example.com"
+    Used so that email_queue.json (which is committed to the repo) does not
+    contain full email addresses should it ever be accidentally re-published.
+    """
+    m = re.search(r"([^<@\s]+)@([\w.\-]+)", addr)
+    if not m:
+        return "[redacted]"
+    local, domain = m.group(1), m.group(2)
+    return f"{local[0]}***@{domain}"
+
+
 _INJECTION_PATTERN = re.compile(
     r"<[^>]*>"            # residual HTML/XML tags
     r"|{{.*?}}"           # Jinja/template delimiters
@@ -515,7 +530,7 @@ def ingest(dry_run: bool = False) -> int:
             "id": uuid.uuid4().hex[:8],
             "type": item_type,
             "message_id": message_id_header,
-            "from_address": from_address,
+            "from_address": _mask_email(from_address),  # masked — never store full address
             "subject": subject[:200],
             "received_at": received_at,
             "body_text": body_text,

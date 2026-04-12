@@ -5,7 +5,10 @@ Makes it easy to update website content without editing HTML
 """
 
 from config_loader import load_podcast_config, load_hosts_config, load_credits_config, load_themes_config
+import base64
+import hashlib
 import json
+import re
 
 def generate_index_html():
     """Generate complete index.html from config files."""
@@ -56,7 +59,7 @@ def generate_index_html():
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' https: data:; media-src https: blob:; connect-src 'self'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src SCRIPT_HASH_PLACEHOLDER; style-src 'unsafe-inline'; img-src 'self' https: data:; media-src https: blob:; connect-src 'self'">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <title>{podcast_config['title']} - {podcast_config['tagline']}</title>
     <meta name="description" content="{podcast_config['description']}">
@@ -649,6 +652,19 @@ def generate_index_html():
 </body>
 </html>'''
     
+    # Compute SHA256 of the inline script block and substitute into the CSP.
+    # This removes 'unsafe-inline' and ties the CSP to the exact script content,
+    # so any unexpected modification of the script is blocked by the browser.
+    script_match = re.search(r'<script>(.*?)</script>', html_content, re.DOTALL)
+    if script_match:
+        script_body = script_match.group(1)
+        sha256_bytes = hashlib.sha256(script_body.encode('utf-8')).digest()
+        script_hash = f"'sha256-{base64.b64encode(sha256_bytes).decode()}'"
+    else:
+        # Fallback (should never happen) — leave unsafe-inline rather than break the page
+        script_hash = "'unsafe-inline'"
+    html_content = html_content.replace('SCRIPT_HASH_PLACEHOLDER', script_hash)
+
     # Save to file
     with open('index.html', 'w', encoding='utf-8') as f:
         f.write(html_content)

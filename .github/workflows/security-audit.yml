@@ -28,10 +28,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: '3.11'
 
@@ -115,7 +115,7 @@ jobs:
           fi
 
       # ── 5. Email PII guard ───────────────────────────────────────────────────
-      - name: Email PII guard (email_queue.json must not be deployed)
+      - name: Email PII guard (email_queue.json must not be deployed; sender must be masked)
         run: |
           echo "=== Checking email_queue.json is not copied to public output ==="
           if grep -n "email_queue.json" .github/workflows/daily-podcast.yml | \
@@ -124,6 +124,47 @@ jobs:
             exit 1
           else
             echo "PASS: email_queue.json is not copied to public output"
+          fi
+
+          echo "=== Checking email sender is masked before storage ==="
+          if ! grep -q "_mask_email" email_ingest.py; then
+            echo "::error::email_ingest.py does not call _mask_email() — full addresses may be stored"
+            exit 1
+          else
+            echo "PASS: _mask_email() present in email_ingest.py"
+          fi
+          if ! grep -q '"from_address": _mask_email' email_ingest.py; then
+            echo "::error::from_address is not assigned via _mask_email()"
+            exit 1
+          else
+            echo "PASS: from_address stored via _mask_email()"
+          fi
+
+      # ── 5b. CSP unsafe-inline guard ─────────────────────────────────────────
+      - name: CSP guard (script-src must not use unsafe-inline)
+        run: |
+          echo "=== Checking HTML files do not use unsafe-inline in script-src ==="
+          FAIL=0
+          for f in index.html bespoke.html; do
+            if [ ! -f "$f" ]; then continue; fi
+            # Extract script-src directive from CSP meta tag and check for unsafe-inline
+            if grep -o "script-src[^;\"]*" "$f" | grep -q "unsafe-inline"; then
+              echo "FAIL: $f has 'unsafe-inline' in script-src"
+              FAIL=1
+            else
+              echo "PASS: $f script-src does not use 'unsafe-inline'"
+            fi
+            # Confirm a sha256 hash is present instead
+            if grep -o "script-src[^;\"]*" "$f" | grep -q "sha256-"; then
+              echo "PASS: $f uses sha256 hash in script-src"
+            else
+              echo "FAIL: $f has no sha256 hash in script-src"
+              FAIL=1
+            fi
+          done
+          if [ "$FAIL" -ne 0 ]; then
+            echo "::error::CSP guard failed — scripts are not hash-pinned"
+            exit 1
           fi
 
       # ── 6. GitHub Actions injection guard ────────────────────────────────────
@@ -197,6 +238,7 @@ jobs:
           echo "  2. bandit        — Python static security analysis"
           echo "  3. Secrets scan  — hardcoded credential patterns"
           echo "  4. XSS guard     — escHtml() coverage in HTML"
-          echo "  5. PII guard     — email_queue.json not deployed publicly"
+          echo "  5. PII guard     — email_queue.json not deployed; sender masked"
+          echo "  5b.CSP guard     — script-src uses sha256 hashes, not unsafe-inline"
           echo "  6. Injection     — GitHub Actions expression injection"
           echo "  7. Pinning       — dependency version pinning reminder"
