@@ -56,6 +56,8 @@ def generate_index_html():
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' https: data:; media-src https: blob:; connect-src 'self'">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <title>{podcast_config['title']} - {podcast_config['tagline']}</title>
     <meta name="description" content="{podcast_config['description']}">
     <style>
@@ -485,6 +487,16 @@ def generate_index_html():
     </div>
 
     <script>
+        // HTML-escape helper — prevents XSS when inserting RSS/XML content into innerHTML
+        function escHtml(str) {{
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }}
+
         // Theme configuration
         const themes = {themes_json};
         const themeNames = Object.values(themes).map(t => t.name);
@@ -610,12 +622,12 @@ def generate_index_html():
                 episodesHTML += `
                     <div class="episode-item">
                         <div>
-                            <div class="episode-title">${{episode.title}}</div>
-                            <div class="episode-date">${{episode.formattedDate}}</div>
+                            <div class="episode-title">${{escHtml(episode.title)}}</div>
+                            <div class="episode-date">${{escHtml(episode.formattedDate)}}</div>
                             ${{episode.audioUrl ? `
                                 <div class="episode-audio">
                                     <audio controls style="width: 100%; max-width: 300px;">
-                                        <source src="${{episode.audioUrl}}" type="audio/mpeg">
+                                        <source src="${{escHtml(episode.audioUrl)}}" type="audio/mpeg">
                                         Your browser does not support the audio element.
                                     </audio>
                                 </div>

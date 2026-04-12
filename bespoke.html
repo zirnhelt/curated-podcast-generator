@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' https: data:; media-src https: blob:; connect-src 'self'">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <title>Cariboo Signals: Deep Dives — Long-form debates on big topics</title>
     <meta name="description" content="Long-form debate episodes on politics, philosophy, economics, and technology. Hosted by Riley and Casey — an empiricist and a systems thinker who never quite agree.">
     <style>
@@ -338,6 +340,16 @@
     </div>
 
     <script>
+        // HTML-escape helper — prevents XSS when inserting RSS/XML content into innerHTML
+        function escHtml(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
         async function loadEpisodes() {
             const container = document.getElementById('episodes-container');
             try {
@@ -375,13 +387,13 @@
 
                     html += `
                         <div class="episode-item">
-                            <div class="episode-tag">${tagLabel}</div>
-                            ${question ? `<div class="episode-title">${question}</div>` : ''}
-                            <div class="episode-date">${formattedDate}</div>
+                            <div class="episode-tag">${escHtml(tagLabel)}</div>
+                            ${question ? `<div class="episode-title">${escHtml(question)}</div>` : ''}
+                            <div class="episode-date">${escHtml(formattedDate)}</div>
                             ${audioUrl ? `
                                 <div class="episode-audio">
                                     <audio controls style="width:100%;max-width:340px;">
-                                        <source src="${audioUrl}" type="audio/mpeg">
+                                        <source src="${escHtml(audioUrl)}" type="audio/mpeg">
                                     </audio>
                                 </div>` : ''}
                         </div>`;

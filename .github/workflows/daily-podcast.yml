@@ -121,7 +121,8 @@ jobs:
           # Copy memory files into output/podcasts/
           cp podcasts/episode_memory.json podcasts/host_personality_memory.json podcasts/debate_memory.json output/podcasts/ 2>/dev/null || echo "No memory files to copy"
           cp podcasts/psa_rotation_state.json output/podcasts/ 2>/dev/null || echo "No PSA rotation state to copy"
-          cp podcasts/email_queue.json output/podcasts/ 2>/dev/null || true
+          # NOTE: email_queue.json is intentionally NOT deployed — it contains
+          # email sender addresses (PII) and partial message bodies.
 
           # Copy website files and all cover images referenced by index.html
           cp index.html output/

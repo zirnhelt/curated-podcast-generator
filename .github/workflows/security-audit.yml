@@ -1,0 +1,202 @@
+name: Security Audit
+
+# Runs after every daily podcast build and on every push to main.
+# Also available as a manual trigger.
+on:
+  workflow_run:
+    workflows: ["Daily Podcast Generation"]
+    types: [completed]
+  push:
+    branches: [main]
+    paths:
+      - '**.py'
+      - 'requirements.txt'
+      - '.github/workflows/**.yml'
+      - '**.html'
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: Security Audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install audit tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install pip-audit bandit
+
+      # ── 1. Dependency CVE scan ───────────────────────────────────────────────
+      - name: pip-audit (known CVEs in dependencies)
+        run: pip-audit -r requirements.txt
+
+      # ── 2. Static analysis for common Python security issues ─────────────────
+      - name: bandit (Python static security analysis)
+        run: |
+          bandit -r . \
+            --exclude ./.git,./venv,./tests \
+            --severity-level medium \
+            --confidence-level medium \
+            -f txt || true
+          # Run again in strict mode for high/critical only — fail the build
+          bandit -r . \
+            --exclude ./.git,./venv,./tests \
+            --severity-level high \
+            --confidence-level high \
+            -f txt
+
+      # ── 3. Secrets scan ──────────────────────────────────────────────────────
+      - name: Check for hardcoded secrets patterns
+        run: |
+          echo "=== Scanning for hardcoded secret patterns ==="
+          # Patterns that should never appear in source
+          FOUND=0
+          check() {
+            local label="$1"; shift
+            if grep -rn --include="*.py" --include="*.yml" --include="*.json" \
+                "$@" . \
+                --exclude-dir=.git --exclude-dir=venv 2>/dev/null | \
+                grep -v "os\.getenv\|os\.environ\|secrets\.\|PLACEHOLDER\|example\|#"; then
+              echo "FAIL: $label"
+              FOUND=1
+            else
+              echo "PASS: $label"
+            fi
+          }
+          check "OpenAI key pattern"        -E "sk-[A-Za-z0-9]{20,}"
+          check "AWS access key pattern"    -E "AKIA[A-Z0-9]{16}"
+          check "GitHub PAT pattern"        -E "ghp_[A-Za-z0-9]{36}"
+          check "Generic API key literal"   -E "(api_key|API_KEY)\s*=\s*['\"][A-Za-z0-9_\-]{16,}['\"]"
+          check "Anthropic key pattern"     -E "sk-ant-[A-Za-z0-9]+"
+          if [ "$FOUND" -ne 0 ]; then
+            echo "::error::Potential hardcoded secrets detected — review output above"
+            exit 1
+          fi
+
+      # ── 4. XSS guard: ensure escHtml() wraps all RSS data in HTML templates ──
+      - name: XSS guard (escHtml usage in HTML files)
+        run: |
+          echo "=== Checking escHtml() coverage in HTML files ==="
+          FAIL=0
+          for f in index.html bespoke.html; do
+            if [ ! -f "$f" ]; then continue; fi
+            # Confirm escHtml helper exists
+            if ! grep -q "function escHtml" "$f"; then
+              echo "FAIL: $f missing escHtml() definition"
+              FAIL=1
+            else
+              echo "PASS: $f has escHtml() definition"
+            fi
+            # Confirm episode.title / rawTitle / tagLabel / question are escaped
+            if grep -E 'innerHTML.*\$\{(episode\.title|rawTitle|tagLabel|question|episode\.formattedDate|formattedDate|episode\.audioUrl|audioUrl)[^}]*\}' "$f" | grep -v "escHtml"; then
+              echo "FAIL: $f contains unescaped RSS variable in innerHTML context"
+              FAIL=1
+            else
+              echo "PASS: $f RSS variables are escaped"
+            fi
+          done
+          if [ "$FAIL" -ne 0 ]; then
+            echo "::error::XSS guard failed — RSS data may be inserted into innerHTML without escaping"
+            exit 1
+          fi
+
+      # ── 5. Email PII guard ───────────────────────────────────────────────────
+      - name: Email PII guard (email_queue.json must not be deployed)
+        run: |
+          echo "=== Checking email_queue.json is not copied to public output ==="
+          if grep -n "email_queue.json" .github/workflows/daily-podcast.yml | \
+              grep -v "^[^:]*:#" | grep "cp.*output"; then
+            echo "::error::daily-podcast.yml copies email_queue.json to the public output directory"
+            exit 1
+          else
+            echo "PASS: email_queue.json is not copied to public output"
+          fi
+
+      # ── 6. GitHub Actions injection guard ────────────────────────────────────
+      - name: GitHub Actions injection guard (inputs via env vars)
+        run: |
+          echo "=== Checking GitHub Actions workflows for expression injection ==="
+          FAIL=0
+          # Look for ${{ inputs.* }} or ${{ github.event.client_payload.* }}
+          # directly inside a `run:` block (not inside an `env:` block)
+          python3 - <<'PYEOF'
+          import re, sys, pathlib
+
+          WORKFLOW_DIR = pathlib.Path(".github/workflows")
+          # Pattern: ${{ inputs.X }} or ${{ github.event.client_payload.X }}
+          EXPR = re.compile(r'\$\{\{[^}]*(inputs\.|github\.event\.client_payload\.)[^}]*\}\}')
+
+          fail = False
+          for wf in WORKFLOW_DIR.glob("*.yml"):
+              text = wf.read_text()
+              in_run = False
+              in_env = False
+              indent_run = 0
+              for lineno, line in enumerate(text.splitlines(), 1):
+                  stripped = line.lstrip()
+                  indent = len(line) - len(stripped)
+                  if re.match(r'run:\s*\|', stripped):
+                      in_run = True
+                      in_env = False
+                      indent_run = indent
+                      continue
+                  if re.match(r'env:\s*$', stripped):
+                      in_env = True
+                      in_run = False
+                      continue
+                  if in_run and indent <= indent_run and stripped and not stripped.startswith('#'):
+                      in_run = False
+                  if in_env and indent <= indent_run and stripped and not stripped.startswith('#'):
+                      in_env = False
+                  if in_run and not in_env:
+                      m = EXPR.search(line)
+                      if m:
+                          print(f"FAIL: {wf.name}:{lineno}: expression in run block: {m.group()}")
+                          fail = True
+
+          if fail:
+              sys.exit(1)
+          else:
+              print("PASS: no direct ${{ inputs.* }} expansion found inside run blocks")
+          PYEOF
+
+      # ── 7. Dependency pinning reminder ───────────────────────────────────────
+      - name: Dependency pinning check (warn on unpinned >=)
+        run: |
+          echo "=== Checking requirements.txt for unpinned dependencies ==="
+          UNPINNED=$(grep -E "^[a-zA-Z].*>=" requirements.txt | wc -l)
+          TOTAL=$(grep -cE "^[a-zA-Z]" requirements.txt || true)
+          echo "  $UNPINNED/$TOTAL packages use >= (minimum-version) instead of == (exact pin)"
+          if [ "$UNPINNED" -gt 0 ]; then
+            echo "::warning::$UNPINNED dependencies in requirements.txt use >= instead of ==. Consider pinning with: pip freeze > requirements-lock.txt"
+          fi
+
+      - name: Audit summary
+        if: always()
+        run: |
+          echo ""
+          echo "=============================="
+          echo "  Security Audit Complete"
+          echo "=============================="
+          echo "Checks run:"
+          echo "  1. pip-audit     — CVE scan on dependencies"
+          echo "  2. bandit        — Python static security analysis"
+          echo "  3. Secrets scan  — hardcoded credential patterns"
+          echo "  4. XSS guard     — escHtml() coverage in HTML"
+          echo "  5. PII guard     — email_queue.json not deployed publicly"
+          echo "  6. Injection     — GitHub Actions expression injection"
+          echo "  7. Pinning       — dependency version pinning reminder"

@@ -102,11 +102,15 @@ jobs:
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           R2_BUCKET_NAME: cariboo-signals
+          # Pass user-supplied inputs via env vars, not inline ${{ }} expansion,
+          # to prevent expression-injection if values contain shell metacharacters.
+          INPUT_TAG: ${{ inputs.tag || github.event.client_payload.tag }}
+          INPUT_THRESHOLD: ${{ inputs.threshold || github.event.client_payload.threshold }}
+          INPUT_SYNC_ONLY: ${{ inputs.sync_only || github.event.client_payload.sync_only }}
         run: |
-          SYNC_ONLY="${{ inputs.sync_only || github.event.client_payload.sync_only }}"
-          TAG="${{ inputs.tag || github.event.client_payload.tag }}"
-          THRESHOLD="${{ inputs.threshold || github.event.client_payload.threshold }}"
-          THRESHOLD="${THRESHOLD:-3}"
+          SYNC_ONLY="${INPUT_SYNC_ONLY:-false}"
+          TAG="${INPUT_TAG:-}"
+          THRESHOLD="${INPUT_THRESHOLD:-3}"
           if [ "$SYNC_ONLY" = "true" ]; then
             python generate_bespoke.py --sync-only
           else
