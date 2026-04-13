@@ -66,11 +66,15 @@ jobs:
 
     steps:
       - name: Log trigger
+        env:
+          INPUT_TAG: ${{ inputs.tag || github.event.client_payload.tag }}
+          INPUT_SYNC_ONLY: ${{ inputs.sync_only || github.event.client_payload.sync_only }}
+          INPUT_THRESHOLD: ${{ inputs.threshold || github.event.client_payload.threshold }}
         run: |
           echo "Triggered by: ${{ github.event_name }}"
-          echo "Tag: ${{ inputs.tag || github.event.client_payload.tag }}"
-          echo "Sync-only: ${{ inputs.sync_only || github.event.client_payload.sync_only }}"
-          echo "Threshold: ${{ inputs.threshold || github.event.client_payload.threshold }}"
+          echo "Tag: $INPUT_TAG"
+          echo "Sync-only: $INPUT_SYNC_ONLY"
+          echo "Threshold: $INPUT_THRESHOLD"
           echo "UTC time: $(date -u)"
 
       - name: Checkout repository
@@ -122,6 +126,8 @@ jobs:
           ls -la podcasts/bespoke/ 2>/dev/null || echo "No bespoke files found"
 
       - name: Commit episode files and updated seeds
+        env:
+          COMMIT_TAG: ${{ inputs.tag || github.event.client_payload.tag }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -132,7 +138,7 @@ jobs:
           git add bespoke-feed.xml || echo "No feed file to add"
 
           git diff --staged --quiet && echo "No changes to commit" && exit 0
-          git commit -m "bespoke: generate episode for tag '${{ inputs.tag || github.event.client_payload.tag }}'"
+          git commit -m "bespoke: generate episode for tag '$COMMIT_TAG'"
           git pull --rebase origin main
           git push
 

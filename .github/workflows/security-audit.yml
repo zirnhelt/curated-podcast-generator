@@ -1,11 +1,7 @@
 name: Security Audit
 
-# Runs after every daily podcast build and on every push to main.
-# Also available as a manual trigger.
+# Runs on code changes pushed to main and on manual trigger.
 on:
-  workflow_run:
-    workflows: ["Daily Podcast Generation"]
-    types: [completed]
   push:
     branches: [main]
     paths:
@@ -183,6 +179,8 @@ jobs:
 
           fail = False
           for wf in WORKFLOW_DIR.glob("*.yml"):
+              if wf.name == "security-audit.yml":
+                  continue  # skip self — contains injection patterns as string literals
               text = wf.read_text()
               in_run = False
               in_env = False
