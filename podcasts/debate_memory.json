@@ -986,5 +986,31 @@
       "Role of technology (drones, sensors) in making community-scale ecological research economically viable",
       "Community Futures organizations as potential intermediaries for ecological enterprise and stewardship compensation"
     ]
+  },
+  "2026-04-13": {
+    "timestamp": 1776079540.060649,
+    "date": "2026-04-13",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "central_question": "What foundational conditions must exist in rural communities before digital storytelling infrastructure can meaningfully address the underrepresentation of their narratives?",
+    "riley_position": "Rural storytelling ecosystems need intentional capacity-building and local infrastructure nodes (like libraries and community organizations) to develop sustainable cultural production, rather than waiting for market forces or external platforms to solve the problem.",
+    "riley_key_evidence": [
+      "Indigenous language revitalization projects have inherent cultural urgency that sustains storytelling work beyond grant cycles",
+      "The T\u015dilhqot'in Nation has demonstrated sophistication in structuring agreements on their own terms for research and knowledge management",
+      "Existing community infrastructure like Cariboo Regional District library system represents underutilized civic nodes for storytelling fellowship programs"
+    ],
+    "casey_position": "The real bottleneck is capacity and presence\u2014communities are losing people who stay and develop local expertise\u2014and durable storytelling ecosystems require either self-generating value (like Nardwuar's historically valuable archive) or intentional structural investment to overcome market undervaluation of rural content.",
+    "casey_key_evidence": [
+      "Nardwuar's success depended on Vancouver's 1990s infrastructure of independent venues and touring acts, not just personal obsession",
+      "Rural BC stories are under-resourced and under-distributed rather than unpopular, and the algorithm amplifies what's already been funded",
+      "Current storytelling nodes (Film Club, Barkerville, Quesnel arts positions) are all grant or heritage-tourism dependent with no stable foundation"
+    ],
+    "resolution": "Both agreed that the storytelling ecosystem question is inseparable from community infrastructure and presence questions, and converged on the Nardwuar model of custodianship\u2014asking how stories stay accessible to their originating communities for decades rather than how quickly they reach external audiences.",
+    "topics_covered": [
+      "The gap between cultural production capacity and platform/distribution infrastructure",
+      "Distinguishing between grant-dependent tools versus sustainable internal capacity-building",
+      "Indigenous communities' approach to language documentation as self-sustaining storytelling practice",
+      "Existing Cariboo cultural institutions as underutilized infrastructure nodes",
+      "Long-term custodianship and archival accessibility as core design principle"
+    ]
   }
 }

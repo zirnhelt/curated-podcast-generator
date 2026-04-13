@@ -1,0 +1,651 @@
+{
+  "episode": {
+    "date": "2026-04-13",
+    "formatted_date": "Monday, April 13, 2026",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "title": "Cariboo Signals - Arts, Culture & Digital Storytelling",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Arts, Culture & Digital Storytelling.</p><p><b>NEWS ROUNDUP:</b> We break down #1334 The Long Fight for a Little Justice in Burns Lake and #172 Why Governments Want to Ban Kids From AI and Social Media, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> What foundational conditions must exist in rural communities before digital storytelling infrastructure can meaningfully address the underrepresentation of their narratives? Topics include: The gap between cultural production capacity and platform/distribution infrastructure, Distinguishing between grant-dependent tools versus sustainable internal capacity-building, Indigenous communities' approach to language documentation as self-sustaining storytelling practice, Existing Cariboo cultural institutions as underutilized infrastructure nodes, Long-term custodianship and archival accessibility as core design principle.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://caribooliteracy.com\">Cariboo Chilcotin Partners for Literacy</a></p><p><b>Sources discussed:</b></p><ul><li>Newsletter: CANADALAND <support@canadaland.com>: <a href=\"https://www.canadaland.com/podcast/1334-the-long-fight-for-a-little-justice-in-burns-lake/?utm_source=Master+Email+List&utm_campaign=a8f87a1b39-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-a8f87a1b39-379881794\">#1334 The Long Fight for a Little Justice in Burns Lake</a></li><li>Newsletter: CANADALAND <support@canadaland.com>: <a href=\"https://www.canadaland.com/podcast/172-why-governments-want-to-ban-kids-from-ai-and-social-media/?utm_source=Master+Email+List&utm_campaign=9b92f9c0c5-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-9b92f9c0c5-379881794\">#172 Why Governments Want to Ban Kids From AI and Social Med...</a></li><li>Newsletter: CANADALAND <support@canadaland.com>: <a href=\"https://www.canadaland.com/podcast/1318-the-only-reporter-in-tumbler-ridge/?utm_source=Master+Email+List&utm_campaign=ac122a734a-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-ac122a734a-379881794\">#1318 The Only Reporter in Tumbler Ridge</a></li><li>TechRadar: <a href=\"https://www.techradar.com/pro/71-of-u-s-households-get-routers-from-isps-why-new-fcc-rules-could-leave-millions-stuck-with-outdated-insecure-hardware\">[TechRadar] '71% of US households get routers from ISPs': Wh...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/Analysis/2026/04/13/Does-Burning-Wood-Fight-Climate-Change/\">[The Tyee] Does Burning Wood Actually Fight Climate Change?</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/turned-100-screen-self-hosted-photo-frame-never-touches-cloud/\">[XDA Developers] I built a $100 ePaper photo frame that neve...</a></li><li>Newsletter: CANADALAND <support@canadaland.com>: <a href=\"https://www.canadaland.com/podcast/1342-nardwuar-an-oral-history/?utm_source=Master+Email+List&utm_campaign=3185aea645-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-3185aea645-379881794\">#1342 Nardwuar: An Oral History</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Newsletter: CANADALAND <support@canadaland.com>: <a href=\"https://www.canadaland.com/podcast/1338-reality-is-a-casino-as-prediction-markets-enter-canada/?utm_source=Master+Email+List&utm_campaign=421dafbce0-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-421dafbce0-379881794\">#1338 Reality is a Casino as Prediction Markets Enter Canada</a></li><li>Newsletter: CANADALAND <support@canadaland.com>: <a href=\"https://www.canadaland.com/podcast/175-can-carney-break-canadas-high-speed-rail-curse/?utm_source=Master+Email+List&utm_campaign=421dafbce0-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-421dafbce0-379881794\">#175 Can Carney Break Canada&#039;s High Speed Rail Curse?</a></li><li>Newsletter: CANADALAND <support@canadaland.com>: <a href=\"https://www.canadaland.com/podcast/1340-air-canada-ceos-french-exit/?utm_source=Master+Email+List&utm_campaign=421dafbce0-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-421dafbce0-379881794\">#1340 Air Canada CEO’s French Exit</a></li><li>Newsletter: OpenMedia <contact@openmedia.org>: <a href=\"https://action.openmedia.org/page/email/click/2205/9288991?email=2CPvkM%2BcODXCbI96RRcF68QaztlvuLM%2B&campid=DvcuNskbKNC15xl1A%2FXc2A==\">Big things are happening in March❗</a></li><li>Newsletter: OpenMedia <contact@openmedia.org>: <a href=\"https://action.openmedia.org/page/email/click/2205/9288992?email=2CPvkM%2BcODXCbI96RRcF68QaztlvuLM%2B&campid=DvcuNskbKNC15xl1A%2FXc2A==\">Senate Passes Bill C-4 While Sharply Criticizing Political P...</a></li><li>Newsletter: OpenMedia <contact@openmedia.org>: <a href=\"https://action.openmedia.org/page/email/click/2205/9288993?email=2CPvkM%2BcODXCbI96RRcF68QaztlvuLM%2B&campid=DvcuNskbKNC15xl1A%2FXc2A==\">Petition e-7237 - Petitions</a></li><li>Newsletter: \"Emma Gilchrist, The Narwhal\" <editor@thenarwhal.ca>: <a href=\"https://checkout.fundjournalism.org/memberform?org_id=thenarwhal&campaign=7014x0000005rqRAAQ&utm_source=The+Narwhal&utm_campaign=96941c4a52-AUTOMATION__2&utm_medium=email&utm_term=0_f6a05fddb8-96941c4a52-439954357\">People love to tell you what you can't do</a></li><li>Newsletter: \"Emma Gilchrist, The Narwhal\" <editor@thenarwhal.ca>: <a href=\"https://thenarwhal.fundjournalism.org/join/?amount=&frequency=monthly&campaign=7014x0000005rqRAAQ&utm_source=The+Narwhal&utm_campaign=96941c4a52-AUTOMATION__2&utm_medium=email&utm_term=0_f6a05fddb8-96941c4a52-439954357\">People love to tell you what you can't do</a></li><li>Newsletter: \"Emma Gilchrist, The Narwhal\" <editor@thenarwhal.ca>: <a href=\"https://thenarwhal.ca/?utm_source=The+Narwhal&utm_campaign=96941c4a52-AUTOMATION__2&utm_medium=email&utm_term=0_f6a05fddb8-96941c4a52-439954357\">The Narwhal | News on Climate Change, Environmental Issues i...</a></li><li>Newsletter: CANADALAND <support@canadaland.com>: <a href=\"https://www.canadaland.com/podcast/174-how-to-cut-a-trade-deal-amid-trumps-tariff-chaos/?utm_source=Master+Email+List&utm_campaign=a8f87a1b39-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-a8f87a1b39-379881794\">#174 How to Cut A Trade Deal Amid Trump’s Tariff Chaos</a></li><li>Newsletter: CANADALAND <support@canadaland.com>: <a href=\"https://www.canadaland.com/podcast/1336-the-pierre-poilievre-experience/?utm_source=Master+Email+List&utm_campaign=a8f87a1b39-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-a8f87a1b39-379881794\">#1336 The Pierre Poilievre Experience</a></li><li>Newsletter: CANADALAND <support@canadaland.com>: <a href=\"https://www.canadaland.com/podcast/1330-my-chatbot-encouraged-my-psychosis/?utm_source=Master+Email+List&utm_campaign=18dfc33ae8-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-18dfc33ae8-379881794\">#1330 My Chatbot Encouraged my Psychosis</a></li><li>Newsletter: CANADALAND <support@canadaland.com>: <a href=\"https://www.canadaland.com/podcast/176-canada-is-built-on-a-clause-that-nobody-is-supposed-to-use-what-happens-now-that-everyone-is-using-it/?utm_source=Master+Email+List&utm_campaign=3185aea645-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-3185aea645-379881794\">#176 Canada Is Built on a Clause That Nobody Is Supposed to ...</a></li><li>Newsletter: CANADALAND <support@canadaland.com>: <a href=\"https://fizz.ca/en/mobile?ADDONS%5B0%5D=18&CVRG=108&DATA=703&PLAN=3&SMS=223&VOICE=90&WIZARD=mobile&utm_source=canadaland&utm_medium=article&utm_term=01&utm_content=2026&utm_source=Master+Email+List&utm_campaign=3185aea645-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-3185aea645-379881794\">Discover Our Cell Phone Plans | Fizz</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-6<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-04-13T04:25:38.278481-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-sonnet-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "#1338 Reality is a Casino as Prediction Markets Enter Canada",
+          "url": "https://www.canadaland.com/podcast/1338-reality-is-a-casino-as-prediction-markets-enter-canada/?utm_source=Master+Email+List&utm_campaign=421dafbce0-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-421dafbce0-379881794",
+          "source": "Newsletter: CANADALAND <support@canadaland.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "“The long-term vision is to financialize everything and create a tradable asset out of any difference in opinion.”  - Tarek Mansour, co-founder and CEO of Kalshi.",
+          "discussed": false
+        },
+        {
+          "title": "#175 Can Carney Break Canada&#039;s High Speed Rail Curse?",
+          "url": "https://www.canadaland.com/podcast/175-can-carney-break-canadas-high-speed-rail-curse/?utm_source=Master+Email+List&utm_campaign=421dafbce0-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-421dafbce0-379881794",
+          "source": "Newsletter: CANADALAND <support@canadaland.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "How do you build ambitious, nation-shaping infrastructure in a country where the human realities on the ground are so complex?",
+          "discussed": false
+        },
+        {
+          "title": "#1340 Air Canada CEO’s French Exit",
+          "url": "https://www.canadaland.com/podcast/1340-air-canada-ceos-french-exit/?utm_source=Master+Email+List&utm_campaign=421dafbce0-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-421dafbce0-379881794",
+          "source": "Newsletter: CANADALAND <support@canadaland.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Air Canada’s CEO retires early following backlash around his inability to speak French.",
+          "discussed": false
+        },
+        {
+          "title": "Big things are happening in March❗",
+          "url": "https://action.openmedia.org/page/email/click/2205/9288991?email=2CPvkM%2BcODXCbI96RRcF68QaztlvuLM%2B&campid=DvcuNskbKNC15xl1A%2FXc2A==",
+          "source": "Newsletter: OpenMedia <contact@openmedia.org>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Big things are happening in March❗",
+          "discussed": false
+        },
+        {
+          "title": "Senate Passes Bill C-4 While Sharply Criticizing Political Parties",
+          "url": "https://action.openmedia.org/page/email/click/2205/9288992?email=2CPvkM%2BcODXCbI96RRcF68QaztlvuLM%2B&campid=DvcuNskbKNC15xl1A%2FXc2A==",
+          "source": "Newsletter: OpenMedia <contact@openmedia.org>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Bill C-4 has passed the Senate with a three-year sunset clause, giving federal political parties a time limit to self-regulate their use of voter data and remain exempt from privacy laws. OpenMedia ex...",
+          "discussed": false
+        },
+        {
+          "title": "Petition e-7237 - Petitions",
+          "url": "https://action.openmedia.org/page/email/click/2205/9288993?email=2CPvkM%2BcODXCbI96RRcF68QaztlvuLM%2B&campid=DvcuNskbKNC15xl1A%2FXc2A==",
+          "source": "Newsletter: OpenMedia <contact@openmedia.org>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Big things are happening in March❗",
+          "discussed": false
+        },
+        {
+          "title": "People love to tell you what you can't do",
+          "url": "https://checkout.fundjournalism.org/memberform?org_id=thenarwhal&campaign=7014x0000005rqRAAQ&utm_source=The+Narwhal&utm_campaign=96941c4a52-AUTOMATION__2&utm_medium=email&utm_term=0_f6a05fddb8-96941c4a52-439954357",
+          "source": "Newsletter: \"Emma Gilchrist, The Narwhal\" <editor@thenarwhal.ca>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "People love to tell you what you can't do",
+          "discussed": false
+        },
+        {
+          "title": "People love to tell you what you can't do",
+          "url": "https://thenarwhal.fundjournalism.org/join/?amount=&frequency=monthly&campaign=7014x0000005rqRAAQ&utm_source=The+Narwhal&utm_campaign=96941c4a52-AUTOMATION__2&utm_medium=email&utm_term=0_f6a05fddb8-96941c4a52-439954357",
+          "source": "Newsletter: \"Emma Gilchrist, The Narwhal\" <editor@thenarwhal.ca>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "People love to tell you what you can't do",
+          "discussed": false
+        },
+        {
+          "title": "The Narwhal | News on Climate Change, Environmental Issues in Canada",
+          "url": "https://thenarwhal.ca/?utm_source=The+Narwhal&utm_campaign=96941c4a52-AUTOMATION__2&utm_medium=email&utm_term=0_f6a05fddb8-96941c4a52-439954357",
+          "source": "Newsletter: \"Emma Gilchrist, The Narwhal\" <editor@thenarwhal.ca>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "The Narwhal&#039;s team of investigative journalists dives deep to tell stories about the natural world in Canada you can&#039;t find anywhere else.",
+          "discussed": false
+        },
+        {
+          "title": "#1334 The Long Fight for a Little Justice in Burns Lake",
+          "url": "https://www.canadaland.com/podcast/1334-the-long-fight-for-a-little-justice-in-burns-lake/?utm_source=Master+Email+List&utm_campaign=a8f87a1b39-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-a8f87a1b39-379881794",
+          "source": "Newsletter: CANADALAND <support@canadaland.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "“People who made very serious allegations were not even talked to by the RCMP, and for some reason the tribunal says, that&#039;s not discriminatory.”  -Journalist, Laura Robinson",
+          "discussed": true
+        },
+        {
+          "title": "#174 How to Cut A Trade Deal Amid Trump’s Tariff Chaos",
+          "url": "https://www.canadaland.com/podcast/174-how-to-cut-a-trade-deal-amid-trumps-tariff-chaos/?utm_source=Master+Email+List&utm_campaign=a8f87a1b39-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-a8f87a1b39-379881794",
+          "source": "Newsletter: CANADALAND <support@canadaland.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "The scramble for CUMSA has begun. Lobbyists are lobbying. Negotiators are negotiating.",
+          "discussed": false
+        },
+        {
+          "title": "#1336 The Pierre Poilievre Experience",
+          "url": "https://www.canadaland.com/podcast/1336-the-pierre-poilievre-experience/?utm_source=Master+Email+List&utm_campaign=a8f87a1b39-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-a8f87a1b39-379881794",
+          "source": "Newsletter: CANADALAND <support@canadaland.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "How does Rogan fit into Poilievre’s larger strategic shift?",
+          "discussed": false
+        },
+        {
+          "title": "#1330 My Chatbot Encouraged my Psychosis",
+          "url": "https://www.canadaland.com/podcast/1330-my-chatbot-encouraged-my-psychosis/?utm_source=Master+Email+List&utm_campaign=18dfc33ae8-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-18dfc33ae8-379881794",
+          "source": "Newsletter: CANADALAND <support@canadaland.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "&quot; In my psychosis all my memories were distorted. So I was like, oh my gosh, I went to the White House when I was little. Obviously I was trafficked there for abuse to world elites.&quot;  -Antho...",
+          "discussed": false
+        },
+        {
+          "title": "#172 Iran&#039;s Crypto Pipeline to Toronto",
+          "url": "https://www.canadaland.com/podcast/172-irans-crypto-pipeline-to-toronto/?utm_source=Master+Email+List&utm_campaign=18dfc33ae8-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-18dfc33ae8-379881794",
+          "source": "Newsletter: CANADALAND <support@canadaland.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Investigative reporters have uncovered a network of these crypto-to-cash desks operating across Canada.",
+          "discussed": false
+        },
+        {
+          "title": "#1332 Peak Oil! Carney, Cash, and Carbon",
+          "url": "https://www.canadaland.com/podcast/1332-peak-oil-carney-cash-and-carbon/?utm_source=Master+Email+List&utm_campaign=18dfc33ae8-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-18dfc33ae8-379881794",
+          "source": "Newsletter: CANADALAND <support@canadaland.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Gas prices are back in the news as the Iran War disrupts global oil supply.",
+          "discussed": false
+        },
+        {
+          "title": "#1326 A Reality Check with Iranian-Canadians",
+          "url": "https://www.canadaland.com/podcast/1326-a-reality-check-with-iranian-canadians/?utm_source=Master+Email+List&utm_campaign=9b92f9c0c5-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-9b92f9c0c5-379881794",
+          "source": "Newsletter: CANADALAND <support@canadaland.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "“There are many agents from the regime within Toronto and other cities documenting our faces and our presence.” -Bahar Almasi",
+          "discussed": false
+        },
+        {
+          "title": "#172 Why Governments Want to Ban Kids From AI and Social Media",
+          "url": "https://www.canadaland.com/podcast/172-why-governments-want-to-ban-kids-from-ai-and-social-media/?utm_source=Master+Email+List&utm_campaign=9b92f9c0c5-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-9b92f9c0c5-379881794",
+          "source": "Newsletter: CANADALAND <support@canadaland.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "The Government vs. The Algorithm",
+          "discussed": true
+        },
+        {
+          "title": "#1328 The Murder of Nancy Grewal",
+          "url": "https://www.canadaland.com/podcast/1328-the-murder-of-nancy-grewal/?utm_source=Master+Email+List&utm_campaign=9b92f9c0c5-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-9b92f9c0c5-379881794",
+          "source": "Newsletter: CANADALAND <support@canadaland.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "In February, controversial Sikh YouTuber Nancy Grewal told CBC News that she feared for her life. Days later, she was stabbed to death outside of Windsor, Ontario.",
+          "discussed": false
+        },
+        {
+          "title": "#1322 Scoop: AI Slop Training for Aircraft Mechanics",
+          "url": "https://www.canadaland.com/podcast/1322-scoop-ai-slop-training-for-aircraft-mechanics/?utm_source=Master+Email+List&utm_campaign=be9c7aa4f6-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-be9c7aa4f6-379881794",
+          "source": "Newsletter: CANADALAND <support@canadaland.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "“Everybody needs to know about this. We need to shut this down. This is aviation. This is training. There are safety issues here.”  -Jeff Weeks, Aviation Executive",
+          "discussed": false
+        },
+        {
+          "title": "#1323 Carney Cuts The Scientists Who Test For Toxins",
+          "url": "https://www.canadaland.com/podcast/1323-carney-cuts-the-scientists-who-test-for-toxins/?utm_source=Master+Email+List&utm_campaign=be9c7aa4f6-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-be9c7aa4f6-379881794",
+          "source": "Newsletter: CANADALAND <support@canadaland.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "More than 24,000 federal public servants have received notices that their jobs could be at risk. That is on top of the 9800 public service employees who were already let go last year.",
+          "discussed": false
+        },
+        {
+          "title": "#1324 Carney&#039;s Position on War with Iran: Sure, Why Not?",
+          "url": "https://www.canadaland.com/podcast/1324-carneys-position-on-war-with-iran-sure-why-not/?utm_source=Master+Email+List&utm_campaign=be9c7aa4f6-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-be9c7aa4f6-379881794",
+          "source": "Newsletter: CANADALAND <support@canadaland.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Carney’s support of the US and Israel’s attack on Iran raises questions around Canada’s “principled pragmatism” approach to foreign policy.",
+          "discussed": false
+        },
+        {
+          "title": "Big updates this month!",
+          "url": "https://action.openmedia.org/page/email/click/2205/9155313?email=2CPvkM%2BcODXCbI96RRcF68QaztlvuLM%2B&campid=DvcuNskbKNC15xl1A%2FXc2A==",
+          "source": "Newsletter: OpenMedia <contact@openmedia.org>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Big updates this month!",
+          "discussed": false
+        },
+        {
+          "title": "Endorse Canadaâs Digital Sovereignty Charter!",
+          "url": "https://action.openmedia.org/page/email/click/2205/9155314?email=2CPvkM%2BcODXCbI96RRcF68QaztlvuLM%2B&campid=DvcuNskbKNC15xl1A%2FXc2A==",
+          "source": "Newsletter: OpenMedia <contact@openmedia.org>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "ð¨ð¦ Canada needs real digital sovereignty NOW to secure the future we deserve. âï¸ Endorse the Digital Sovereignty Charterâs five principles today!",
+          "discussed": false
+        },
+        {
+          "title": "Big updates this month!",
+          "url": "https://action.openmedia.org/page/email/click/2205/9155315?email=2CPvkM%2BcODXCbI96RRcF68QaztlvuLM%2B&campid=DvcuNskbKNC15xl1A%2FXc2A==",
+          "source": "Newsletter: OpenMedia <contact@openmedia.org>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Big updates this month!",
+          "discussed": false
+        },
+        {
+          "title": "#1318 The Only Reporter in Tumbler Ridge",
+          "url": "https://www.canadaland.com/podcast/1318-the-only-reporter-in-tumbler-ridge/?utm_source=Master+Email+List&utm_campaign=ac122a734a-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-ac122a734a-379881794",
+          "source": "Newsletter: CANADALAND <support@canadaland.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "“I knew that the swarm of reporters was going to descend and that everybody wanted a little piece of somebody. So I was like, well, I will allow myself to be the bone that the news hounds chew on.” -T...",
+          "discussed": true
+        },
+        {
+          "title": "#170 Carney Brokers a &quot;Mega Anti-Trump Alliance&quot;",
+          "url": "https://www.canadaland.com/podcast/170-carney-brokers-a-mega-anti-trump-alliance/?utm_source=Master+Email+List&utm_campaign=ac122a734a-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-ac122a734a-379881794",
+          "source": "Newsletter: CANADALAND <support@canadaland.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Mark Carney is busy trying to Trump-proof Canada with a flurry of trade deals and whispers of a mega anti-Trump alliance linking Europe and the Indo-Pacific.",
+          "discussed": false
+        },
+        {
+          "title": "#1320 Could OpenAI Have Stopped Tumbler Ridge?",
+          "url": "https://www.canadaland.com/podcast/1320-could-openai-have-stopped-tumbler-ridge/?utm_source=Master+Email+List&utm_campaign=ac122a734a-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-ac122a734a-379881794",
+          "source": "Newsletter: CANADALAND <support@canadaland.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "&quot; What in the Silicon Valley ethos of move fast and break stuff would make us expect that they are going to have any real safety concerns at all?&quot;",
+          "discussed": false
+        },
+        {
+          "title": "#1314 Jay Baruchel&#039;s CanCon Manifesto",
+          "url": "https://www.canadaland.com/podcast/1314-jay-baruchels-cancon-manifesto/?utm_source=Master+Email+List&utm_campaign=337e6ee592-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-337e6ee592-379881794",
+          "source": "Newsletter: CANADALAND <support@canadaland.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "“ If you think the world is better with Canada in it then you have to accept that certain things have to happen for that to continue.” -Jay Baruchel",
+          "discussed": false
+        },
+        {
+          "title": "#169 The Bishnoi Gang’s Extortion Campaign in BC",
+          "url": "https://www.canadaland.com/podcast/169-the-bishnoi-gangs-extortion-campaign-in-bc/?utm_source=Master+Email+List&utm_campaign=337e6ee592-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-337e6ee592-379881794",
+          "source": "Newsletter: CANADALAND <support@canadaland.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Surrey, BC has already recorded 51 extortions this year. 11 of them ended with shots fired.",
+          "discussed": false
+        },
+        {
+          "title": "#1316 The Dirty Cops of Toronto",
+          "url": "https://www.canadaland.com/podcast/1316-the-dirty-cops-of-toronto/?utm_source=Master+Email+List&utm_campaign=337e6ee592-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-337e6ee592-379881794",
+          "source": "Newsletter: CANADALAND <support@canadaland.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Project South uncovers one of the worst cases of police corruption in Canadian history.",
+          "discussed": false
+        },
+        {
+          "title": "Chads hits Ed Kowalczyk with cease-and-desist",
+          "url": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/607ddc67-5077-4b8e-8143-c2e717771510/labi.jpg?t=1771554207",
+          "source": "Newsletter: Stereogum <noreply@stereogum.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Chads hits Ed Kowalczyk with cease-and-desist",
+          "discussed": false
+        },
+        {
+          "title": "Labi Siffre Announces First New Album In Decades, Gives Rare Performance",
+          "url": "https://stereogum.com/2489375/resurgent-folk-icon-labi-siffre-announces-first-new-album-in-28-years-performs-rare-live-set-for-bbc/music/",
+          "source": "Newsletter: Stereogum <noreply@stereogum.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Labi Siffre, a UK folk musician influenced by soul and jazz, has had a fascinating career. Over the decades, Siffre has only intermittently been active — a cluster of solo albums in the early ’70s, a ...",
+          "discussed": false
+        },
+        {
+          "title": "U2 Release Surprise New EP &#x27;Days Of Ash&#x27; Feat. Ed Sheeran",
+          "url": "https://stereogum.com/2489579/u2-release-surprise-new-ep-days-of-ash-feat-ed-sheeran-taras-topolia/music",
+          "source": "Newsletter: Stereogum <noreply@stereogum.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "U2 are one of the biggest bands and one of the biggest brands in rock ‘n’ roll history, but it’s been more than eight years since the widely ignored Songs Of Experience, their last album of new music....",
+          "discussed": false
+        },
+        {
+          "title": "#1310 Was New Brunswick&#039;s Medical Mystery a &quot;House of Cards&quot;?",
+          "url": "https://www.canadaland.com/podcast/1310-was-new-brunswicks-medical-mystery-a-house-of-cards/?utm_source=Master+Email+List&utm_campaign=db924d0ff3-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-db924d0ff3-379881794",
+          "source": "Newsletter: CANADALAND <support@canadaland.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "“ That is not what we were promised. That&#039;s not what our patients expected.”    -Dr. Alier Marrero",
+          "discussed": false
+        },
+        {
+          "title": "#168 The &quot;Canadianization of NATO&quot; and our Fight to Host the World&#039;s Military Bank",
+          "url": "https://www.canadaland.com/podcast/168-the-canadianization-of-nato-and-our-fight-to-host-the-worlds-military-bank/?utm_source=Master+Email+List&utm_campaign=db924d0ff3-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-db924d0ff3-379881794",
+          "source": "Newsletter: CANADALAND <support@canadaland.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "NATO is building something new: a Defence, Security and Resilience Bank. Basically a World Bank for war, and Canada wants it.",
+          "discussed": false
+        },
+        {
+          "title": "#1312 The Most Political Olympics Ever?",
+          "url": "https://www.canadaland.com/podcast/1312-the-most-political-olympics-ever/?utm_source=Master+Email+List&utm_campaign=db924d0ff3-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-db924d0ff3-379881794",
+          "source": "Newsletter: CANADALAND <support@canadaland.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Playing rules-based games at the end of the rules-based order.",
+          "discussed": false
+        },
+        {
+          "title": "Music 2025: everything now",
+          "url": "https://paulwells.substack.com/p/music-2025-everything-now",
+          "source": "Newsletter: p***@substack.com",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Music 2025: everything now",
+          "discussed": false
+        },
+        {
+          "title": "Music 2025: everything now",
+          "url": "https://substack.com/redirect/180d36f4-95a7-4be6-8024-e80c152de28e?j=eyJ1IjoiMXowZHQ1In0.mvna92GfDhJMQOtMU2KeSxltMfGkAz5N-ySx0RWrD9g",
+          "source": "Newsletter: p***@substack.com",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Music 2025: everything now",
+          "discussed": false
+        },
+        {
+          "title": "Music 2025: everything now",
+          "url": "https://substack.com/redirect/489bd03e-8e2b-43ee-a1ab-08a5a1b08785?j=eyJ1IjoiMXowZHQ1In0.mvna92GfDhJMQOtMU2KeSxltMfGkAz5N-ySx0RWrD9g",
+          "source": "Newsletter: p***@substack.com",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Music 2025: everything now",
+          "discussed": false
+        },
+        {
+          "title": "National Gallery of Canada: coda and prelude",
+          "url": "https://paulwells.substack.com/p/national-gallery-of-canada-coda-and",
+          "source": "Newsletter: p***@substack.com",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "National Gallery of Canada: coda and prelude",
+          "discussed": false
+        },
+        {
+          "title": "National Gallery of Canada: coda and prelude",
+          "url": "https://substack.com/redirect/d09424c5-5b68-4d84-acd0-e8030da7e231?j=eyJ1IjoiMXowZHQ1In0.mvna92GfDhJMQOtMU2KeSxltMfGkAz5N-ySx0RWrD9g",
+          "source": "Newsletter: p***@substack.com",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "National Gallery of Canada: coda and prelude",
+          "discussed": false
+        },
+        {
+          "title": "National Gallery of Canada: coda and prelude",
+          "url": "https://substack.com/redirect/c44b54fa-cb39-4e1e-844f-057c77d54cb7?j=eyJ1IjoiMXowZHQ1In0.mvna92GfDhJMQOtMU2KeSxltMfGkAz5N-ySx0RWrD9g",
+          "source": "Newsletter: p***@substack.com",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "National Gallery of Canada: coda and prelude",
+          "discussed": false
+        },
+        {
+          "title": "XHTML namespace",
+          "url": "http://www.w3.org/1999/xhtml",
+          "source": "Newsletter: f***@oncanadaproject.ca",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Why does disinformation win while truth struggles? 🤔",
+          "discussed": false
+        },
+        {
+          "title": "Why does disinformation win while truth struggles? 🤔",
+          "url": "https://use.typekit.net/zzl1xzu.css",
+          "source": "Newsletter: f***@oncanadaproject.ca",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Why does disinformation win while truth struggles? 🤔",
+          "discussed": false
+        },
+        {
+          "title": "Why does disinformation win while truth struggles? 🤔",
+          "url": "https://fonts.googleapis.com/css?family=Oswald:300,400,700&amp;display=swap",
+          "source": "Newsletter: f***@oncanadaproject.ca",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Why does disinformation win while truth struggles? 🤔",
+          "discussed": false
+        },
+        {
+          "title": "XHTML namespace",
+          "url": "http://www.w3.org/1999/xhtml",
+          "source": "Newsletter: f***@oncanadaproject.ca",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Why does disinformation win while truth struggles? 🤔",
+          "discussed": false
+        },
+        {
+          "title": "Why does disinformation win while truth struggles? 🤔",
+          "url": "https://use.typekit.net/zzl1xzu.css",
+          "source": "Newsletter: f***@oncanadaproject.ca",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Why does disinformation win while truth struggles? 🤔",
+          "discussed": false
+        },
+        {
+          "title": "Why does disinformation win while truth struggles? 🤔",
+          "url": "https://fonts.googleapis.com/css?family=Oswald:300,400,700&amp;display=swap",
+          "source": "Newsletter: f***@oncanadaproject.ca",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Why does disinformation win while truth struggles? 🤔",
+          "discussed": false
+        },
+        {
+          "title": "The Line Podcast: The police again tell the public to give up, and pray",
+          "url": "https://www.readtheline.ca/p/the-line-podcast-the-police-again",
+          "source": "Newsletter: t***@substack.com",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Also: Jen counts her own Carney Countdown. And why you should actually listen to people even if you do not like their views",
+          "discussed": false
+        },
+        {
+          "title": "The Line Podcast: The police again tell the public to give up, and pray",
+          "url": "https://substack.com/redirect/1039c9a1-6ee5-44c0-8c83-9635d0126e26?j=eyJ1IjoiMXowZHQ1In0.mvna92GfDhJMQOtMU2KeSxltMfGkAz5N-ySx0RWrD9g",
+          "source": "Newsletter: t***@substack.com",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "The Line Podcast: The police again tell the public to give up, and pray",
+          "discussed": false
+        },
+        {
+          "title": "The Line Podcast: The police again tell the public to give up, and pray",
+          "url": "https://substack.com/redirect/8296228b-f75a-427d-b720-2565ff330d82?j=eyJ1IjoiMXowZHQ1In0.mvna92GfDhJMQOtMU2KeSxltMfGkAz5N-ySx0RWrD9g",
+          "source": "Newsletter: t***@substack.com",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "The Line Podcast: The police again tell the public to give up, and pray",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] '71% of US households get routers from ISPs': Why new FCC rules could leave millions stuck with outdated, insecure hardware",
+          "url": "https://www.techradar.com/pro/71-of-u-s-households-get-routers-from-isps-why-new-fcc-rules-could-leave-millions-stuck-with-outdated-insecure-hardware",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-04-12T20:05:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[The Tyee] Does Burning Wood Actually Fight Climate Change?",
+          "url": "https://thetyee.ca/Analysis/2026/04/13/Does-Burning-Wood-Fight-Climate-Change/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-04-13T07:30:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[The Tyee] Trash or Treasures? This Man Offers a New Way to Recycle Old Homes",
+          "url": "https://thetyee.ca/WhatWorks/2026/04/06/New-Way-Recycle-Old-Homes/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-04-06T07:40:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] I built a $100 ePaper photo frame that never touches the cloud, and it looks like a real print",
+          "url": "https://www.xda-developers.com/turned-100-screen-self-hosted-photo-frame-never-touches-cloud/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-04-13T00:00:23+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[ScienceAlert] This Tiny Wildflower Could Be a Secret Weapon Against Superbugs",
+          "url": "https://www.sciencealert.com/this-tiny-wildflower-could-be-a-secret-weapon-against-superbugs",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-04-12T14:00:22+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] We’re All Abuzz About the Bee Write Back Writerdeck",
+          "url": "https://hackaday.com/2026/04/12/were-all-abuzz-about-the-bee-write-back-writerdeck/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-04-13T05:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] AI tools may be why Linux 7.0's RC cycle was so choppy, but Linus just shipped it anyway",
+          "url": "https://www.xda-developers.com/ai-tools-may-be-why-linux-70s-rc-cycle-was-so-choppy/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-04-13T03:05:54+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Ocean Heat Waves Are 'Supercharging' Hurricane Damage, Scientists Warn",
+          "url": "https://www.sciencealert.com/ocean-heat-waves-are-supercharging-hurricane-damage-scientists-warn",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-04-13T01:24:43+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] I switched from Proxmox to its FreeBSD counterpart on my home server – here's how it went",
+          "url": "https://www.xda-developers.com/i-switched-my-home-server-from-proxmox-to-its-freebsd-counterpart/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-04-12T21:30:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] 6 everyday items I no longer have to buy thanks to 3D printing",
+          "url": "https://www.howtogeek.com/everyday-items-i-no-longer-have-to-buy-thanks-to-3d-printing/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-04-12T18:45:17+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Green Powered Challenge: Solar Powered Pi Hosts Websites in RAM",
+          "url": "https://hackaday.com/2026/04/12/green-powered-challenge-solar-powered-pi-hosts-websites-in-ram/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-04-12T14:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Arts, Culture & Digital Storytelling",
+      "articles": [
+        {
+          "title": "#1342 Nardwuar: An Oral History",
+          "url": "https://www.canadaland.com/podcast/1342-nardwuar-an-oral-history/?utm_source=Master+Email+List&utm_campaign=3185aea645-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-3185aea645-379881794",
+          "source": "Newsletter: CANADALAND <support@canadaland.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "The history of Canada’s weirdest and most prolific interviewer.",
+          "discussed": true
+        },
+        {
+          "title": "#176 Canada Is Built on a Clause That Nobody Is Supposed to Use. What Happens Now That Everyone Is Using It?",
+          "url": "https://www.canadaland.com/podcast/176-canada-is-built-on-a-clause-that-nobody-is-supposed-to-use-what-happens-now-that-everyone-is-using-it/?utm_source=Master+Email+List&utm_campaign=3185aea645-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-3185aea645-379881794",
+          "source": "Newsletter: CANADALAND <support@canadaland.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "The Supreme Court of Canada just wrapped up its longest-ever hearing. The subject? Quebec’s Bill 21.",
+          "discussed": false
+        },
+        {
+          "title": "Discover Our Cell Phone Plans | Fizz",
+          "url": "https://fizz.ca/en/mobile?ADDONS%5B0%5D=18&CVRG=108&DATA=703&PLAN=3&SMS=223&VOICE=90&WIZARD=mobile&utm_source=canadaland&utm_medium=article&utm_term=01&utm_content=2026&utm_source=Master+Email+List&utm_campaign=3185aea645-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-3185aea645-379881794",
+          "source": "Newsletter: CANADALAND <support@canadaland.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Customize your mobile plan based on your needs and budget and since there’s no fixed-term contract, you get to change it whenever you need to. Plus, you get rewards on day 1.",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "What foundational conditions must exist in rural communities before digital storytelling infrastructure can meaningfully address the underrepresentation of their narratives?",
+        "riley_position": "Rural storytelling ecosystems need intentional capacity-building and local infrastructure nodes (like libraries and community organizations) to develop sustainable cultural production, rather than waiting for market forces or external platforms to solve the problem.",
+        "riley_key_evidence": [
+          "Indigenous language revitalization projects have inherent cultural urgency that sustains storytelling work beyond grant cycles",
+          "The Tŝilhqot'in Nation has demonstrated sophistication in structuring agreements on their own terms for research and knowledge management",
+          "Existing community infrastructure like Cariboo Regional District library system represents underutilized civic nodes for storytelling fellowship programs"
+        ],
+        "casey_position": "The real bottleneck is capacity and presence—communities are losing people who stay and develop local expertise—and durable storytelling ecosystems require either self-generating value (like Nardwuar's historically valuable archive) or intentional structural investment to overcome market undervaluation of rural content.",
+        "casey_key_evidence": [
+          "Nardwuar's success depended on Vancouver's 1990s infrastructure of independent venues and touring acts, not just personal obsession",
+          "Rural BC stories are under-resourced and under-distributed rather than unpopular, and the algorithm amplifies what's already been funded",
+          "Current storytelling nodes (Film Club, Barkerville, Quesnel arts positions) are all grant or heritage-tourism dependent with no stable foundation"
+        ],
+        "resolution": "Both agreed that the storytelling ecosystem question is inseparable from community infrastructure and presence questions, and converged on the Nardwuar model of custodianship—asking how stories stay accessible to their originating communities for decades rather than how quickly they reach external audiences.",
+        "topics_covered": [
+          "The gap between cultural production capacity and platform/distribution infrastructure",
+          "Distinguishing between grant-dependent tools versus sustainable internal capacity-building",
+          "Indigenous communities' approach to language documentation as self-sustaining storytelling practice",
+          "Existing Cariboo cultural institutions as underutilized infrastructure nodes",
+          "Long-term custodianship and archival accessibility as core design principle"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
