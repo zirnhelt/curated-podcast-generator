@@ -110,11 +110,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Log trigger source
+        env:
+          SEED_TYPE: ${{ inputs.type || github.event.client_payload.type }}
+          SEED_CONTENT: ${{ inputs.content || github.event.client_payload.content }}
         run: |
           echo "Triggered by: ${{ github.event_name }}"
           echo "Event type:   ${{ github.event.action }}"
-          echo "Seed type:    ${{ inputs.type || github.event.client_payload.type }}"
-          echo "Content:      ${{ inputs.content || github.event.client_payload.content }}"
+          echo "Seed type:    $SEED_TYPE"
+          echo "Content:      $SEED_CONTENT"
 
       - name: Checkout repository
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
