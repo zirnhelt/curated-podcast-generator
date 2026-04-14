@@ -1012,5 +1012,38 @@
       "Existing Cariboo cultural institutions as underutilized infrastructure nodes",
       "Long-term custodianship and archival accessibility as core design principle"
     ]
+  },
+  "2026-04-14": {
+    "timestamp": 1776166762.818051,
+    "date": "2026-04-14",
+    "theme": "Working Lands & Industry",
+    "central_question": "Can mining governance and technology models be redesigned to ensure companies bear long-term liability for environmental damage rather than leaving taxpayers and communities holding the reclamation bill?",
+    "riley_position": "Technology for continuous environmental monitoring is genuinely shifting accountability possibilities, and when paired with Indigenous co-governance arrangements that grant real decision authority, mining can be held more accountable before damage occurs.",
+    "riley_key_evidence": [
+      "BC has a mine reclamation security bond system requiring companies to post bonds before permitting",
+      "Real-time water quality sensors, drone-based tailings monitoring, and satellite-based ground deformation tracking are now deployed at active BC mine sites",
+      "Some BC mining agreements now include community environmental monitoring boards with access to live sensor feeds, not just filtered summaries"
+    ],
+    "casey_position": "While monitoring technology is real and valuable, the governance gap\u2014who owns the data, who has authority to act on it, and how liability is funded post-closure\u2014remains the critical unsolved problem, and technology alone cannot bridge structural accountability failures.",
+    "casey_key_evidence": [
+      "Bond estimates set at project start have historically underestimated actual reclamation costs by wide margins; Mount Polley is a local example where eventual cleanup liability far exceeded initial bond estimates",
+      "The rebound effect: lower extraction costs often lead to higher extraction volumes, expanding rather than shrinking the overall footprint",
+      "Post-closure monitoring infrastructure is typically unfunded and underfunded, with the moment revenue stops being precisely when environmental risks (acid rock drainage, tailings seepage) tend to emerge"
+    ],
+    "resolution": "They converged on conditional agreement: yes, mining can do better, but only if accountability infrastructure including independent oversight, adequate bonding, and post-closure endowment funding is designed and locked in during the environmental assessment phase, before operations begin. Both agreed the governance window during permitting is the moment of maximum community leverage.",
+    "topics_covered": [
+      "Bond calculation and reclamation cost estimation failures in BC mining history",
+      "Environmental monitoring technology and real-time data access as accountability tools",
+      "Indigenous co-governance arrangements and decision authority in mining oversight",
+      "Post-closure liability and orphan site funding models",
+      "Community technical capacity gaps during environmental assessment processes"
+    ],
+    "calls_to_action": [
+      "Communities facing proposed resource projects should engage during the environmental assessment window\u2014the moment of maximum leverage\u2014to demand real-time monitoring access, independent oversight seats on environmental boards, and explicit post-closure fund architecture as conditions of support.",
+      "Don't accept 'we'll file the reclamation plan later' as an answer; require that accountability infrastructure be designed before operations begin, not promised after they end.",
+      "Communities should consider hiring independent hydrogeologists and geotechnical engineers to review company environmental submissions during assessment; some impact benefit agreements now include funding for this kind of independent technical review.",
+      "Raise these questions at the next community meeting, band council session, or municipal council agenda\u2014'these conversations don't start in Victoria, they start here.'",
+      "Send feedback and thoughts to feedback@cariboosignals.ca"
+    ]
   }
 }
