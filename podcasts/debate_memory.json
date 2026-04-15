@@ -1045,5 +1045,40 @@
       "Raise these questions at the next community meeting, band council session, or municipal council agenda\u2014'these conversations don't start in Victoria, they start here.'",
       "Send feedback and thoughts to feedback@cariboosignals.ca"
     ]
+  },
+  "2026-04-15": {
+    "timestamp": 1776252966.572871,
+    "date": "2026-04-15",
+    "theme": "Community Tech & Governance",
+    "central_question": "What does it mean for communities\u2014particularly Indigenous nations in BC\u2014to govern technology itself, rather than simply using it, and what institutional capacity is required to sustain that governance?",
+    "riley_position": "Community-controlled digital infrastructure is achievable and sustainable if designed with embedded local expertise and supported by shared regional technical capacity networks. The design problem can be mitigated through intentional capacity-building models and pooled technical resources.",
+    "riley_key_evidence": [
+      "Animikii's approach of embedding team members inside communities acknowledges that technology systems reflect the values of designers, so outside contractors produce systems that don't fit community needs",
+      "A few BC First Nations have successfully moved toward shared IT arrangements without surrendering data sovereignty",
+      "The First Nations Technology Council has been building connective tissue and capacity pipelines provincially"
+    ],
+    "casey_position": "Indigenous-led digital governance platforms face a critical sustainability paradox: the sovereignty design that restricts outside access for security also limits the pool of trusted technical partners available during emergencies. Funding waves produce orphaned infrastructure, and digital capacity cannot be grafted onto communities already struggling with basic institutional health.",
+    "casey_key_evidence": [
+      "Pattern repeats across Indigenous digital infrastructure projects: systems are abandoned when grant funding ends and the person who understood the system leaves",
+      "First Nations with community-controlled data governance platforms have far less recourse than municipalities when systems break, because sovereignty design explicitly limits outside access",
+      "Archival governance failures carry asymmetric stakes\u2014a First Nation losing twenty years of resource use documentation could materially weaken treaty negotiations or Aboriginal title claims"
+    ],
+    "resolution": "Casey and Riley converged on a systems-level argument: digital governance capacity grows from overall institutional health, not as an isolated project. They agreed the most practical entry point is a governance capacity audit (not a tech audit) before platform selection, and they both emphasized that strong civic participation and institutional accountability must precede and enable digital tools.",
+    "topics_covered": [
+      "Distinction between using technology for governance versus governing technology itself",
+      "Design sustainability: the tension between data sovereignty restrictions and emergency technical support access",
+      "Archival governance and the asymmetric stakes of data loss for Indigenous nations versus municipalities",
+      "Funding models: grant dependency versus revenue-generating data governance and education-based capacity pipelines",
+      "The relationship between overall institutional health and digital governance capacity"
+    ],
+    "calls_to_action": [
+      "Community Futures Cariboo Chilcotin is actively looking for volunteers with financial, legal, or community development experience to join their board and committees\u2014a high-leverage way to support rural economic development locally.",
+      "Before investing in a digital governance platform, conduct a governance capacity audit: document who has authority over data decisions, who has technical skills, and whether institutional memory is held in documents or people.",
+      "Explore revenue-generating data governance models\u2014license carefully anonymized data from monitoring or health programs to researchers or government agencies on community-controlled terms to generate operational funding independent of grants.",
+      "Integrate digital skills into community education programs to train the next generation as technical administrators of their own systems, reducing vulnerability to key-person dependency.",
+      "Consider regional technical capacity arrangements and shared help desk support networks through organizations like the First Nations Technology Council, pooling expertise without surrendering data sovereignty.",
+      "Document your organization's institutional knowledge\u2014if it exists primarily in people's heads rather than in accessible form, that is a governance vulnerability that precedes and shapes any technology decision.",
+      "Contact Cariboo Signals at feedback@cariboosignals.ca if you are involved in a digital governance project in the region; they are actively interested in learning about such work."
+    ]
   }
 }

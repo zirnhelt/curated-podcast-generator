@@ -25,9 +25,9 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-04-01",
-        "clue": "structural-lens:~ \u2014 Conceded that efficiency arguments alone flatten real rural service complexity",
-        "occurrences": 1
+        "date": "2026-04-15",
+        "clue": "structural-lens:~ \u2014 Articulated access-restriction/maintenance tension unprompted",
+        "occurrences": 2
       },
       {
         "date": "2026-04-01",
@@ -60,9 +60,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-08",
-        "clue": "funding-risk:x \u2014 Conceded Casey's point on endowment design gaps under negotiation asymmetry",
-        "occurrences": 1
+        "date": "2026-04-15",
+        "clue": "funding-risk:x \u2014 Conceded wave-funding problem after initially defending shared IT",
+        "occurrences": 2
       },
       {
         "date": "2026-04-09",
@@ -118,7 +118,8 @@
       "[The Globe and Mail] Tumbler Ridge shooting highlights rural",
       "[The Tyee] Half of BC\u2019s Community Paramedic Positions Are Un",
       "[The Tyee] Tumbler Ridge Shows We Can\u2019t Take Rural Medicine ",
-      "[Williams Lake Tribune] Williams Lake community shows its he"
+      "[Williams Lake Tribune] Williams Lake community shows its he",
+      "Immersed in Community (and Archives!)"
     ],
     "recurring_questions": [
       "Who benefits from this?",
@@ -193,13 +194,18 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-14",
-        "clue": "structural-lens:+ \u2014 Pushed rebound effect, post-closure liability gaps with unusual persistence",
-        "occurrences": 1
+        "date": "2026-04-15",
+        "clue": "structural-lens:+ \u2014 Explicitly named systems-interdependence (institutions, not just platforms matter)",
+        "occurrences": 2
       },
       {
         "date": "2026-04-14",
         "clue": "pilot-skepticism:x \u2014 Credited community monitoring boards as 'meaningful shift' despite broader skepticism",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-04-15",
+        "clue": "pilot-skepticism:+ \u2014 Hardened concern about sustainability across three separate exchanges",
         "occurrences": 1
       }
     ],

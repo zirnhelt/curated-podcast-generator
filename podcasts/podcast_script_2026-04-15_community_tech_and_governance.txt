@@ -1,0 +1,133 @@
+# Cariboo Signals Podcast Script - 2026-04-15
+# Theme: Community Tech & Governance
+# Generated: 2026-04-15 04:36:04 PDT
+
+**RILEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. It's Wednesday, April 15th, 2026. Coming to you from the Cariboo, on lands that have been cared for by the Secwépemc, Tŝilhqot'in, and Dakelh peoples since time immemorial. Today's theme is Community Tech & Governance — how small communities make big decisions about technology, democracy, and public life. I'm Riley.
+
+**CASEY:** And I'm Casey. Today we're asking a question that sounds simple but really isn't: when communities use technology for public good, who actually gets to define what "public good" means?
+
+**RILEY:** Quick weather check before we dive in — out at Horsefly Lake it's sitting right at zero degrees this morning, overcast with a high of four expected and some rain on the way tonight. Across the region, 100 Mile House is at minus three with snow showers, Williams Lake at minus two but clear, and Quesnel at minus one under overcast skies. If you're heading into Williams Lake later, watch for those snow showers rolling in through the afternoon.
+
+**CASEY:** Tax day in Canada — and we'll get into some stories about where public money and technology intersect. Let's get to it.
+
+---
+
+**NEWS ROUNDUP**
+
+**RILEY:** First up, from the Animikii Indigenous Technology newsletter — a story that caught our eye this week. Animikii, a Victoria-based Indigenous-owned tech company, put out a piece called "Immersed in Community and Archives," documenting their team's work embedding directly inside Indigenous communities to build digital archive systems. The model is notable: rather than external consultants parachuting in with a product, Animikii sends team members to live and work alongside communities, learning what historical materials need to be preserved and how community members want to access them. The governance angle is real — these are digital systems designed from the inside out, with communities holding control over their own records.
+
+**CASEY:** And they're demoing Niiwin — their Indigenous data governance platform — which puts data sovereignty into the actual software architecture, not just the mission statement.
+
+**RILEY:** Also from Animikii this week, a preview of the Niiwin platform specifically. It's designed to help Indigenous nations manage who can access their data, under what conditions, and with what permissions — community authority isn't just documented separately, it's enforced structurally. For nations in the Cariboo working to protect cultural records, linguistic materials, and land-use documentation, that kind of tooling matters enormously.
+
+**CASEY:** Shifting gears to connectivity — How-To Geek ran a piece this week that's instructive for anyone who's finally landed decent broadband in a rural home. The headline: "I upgraded to fiber and my Wi-Fi still lagged." The writer discovered the bottleneck wasn't the internet service — it was the router and aging in-home hardware. A seven-year-old router will strangle a gigabit connection.
+
+**RILEY:** Worth naming that troubleshooting home networks assumes technical literacy that a lot of rural seniors and lower-income households simply don't have — which is exactly where community tech support programs earn their keep.
+
+**CASEY:** From the Williams Lake Tribune — the Williams Lake Mustangs wrapped up their 2025-26 season with a community barbecue this past weekend. The hockey club used the event to thank sponsors and volunteers, and also to preview some of their digital ticketing and community engagement tools for next season. Local sports organizations are often early adopters of community-facing digital platforms, and the Mustangs have been piloting an online engagement system that lets fans weigh in on certain game-night decisions.
+
+**RILEY:** Low stakes is actually ideal for learning how to run a digital vote before you use the same tools for anything that actually matters.
+
+**CASEY:** Also from the Williams Lake Tribune — the BC Conservatives have made their opening bid to end union-only contracts, known as project labour agreements, for public infrastructure projects in the province. This has direct implications for rural communities, since a significant portion of public construction in the Cariboo — schools, community centres, road upgrades — is built under PLAs. Proponents argue removing PLAs opens up more bidders and potentially lowers costs. Critics, including the BCGEU and most building trades unions, argue it drives down wages and reduces safety oversight on worksites where monitoring capacity is already thin.
+
+**RILEY:** The rural equity dimension matters here — lower upfront bids don't always mean lower total costs once you factor in incomplete work, turnover, and the loss of apprenticeship pipelines that PLAs typically require.
+
+**CASEY:** On the networking hardware front — two stories worth pairing. CNET reversed course this week and now recommends Wi-Fi 7 routers after lab testing showed meaningful real-world performance gains, particularly in dense device environments. And Engadget reported that the FCC has effectively handed Netgear a de facto monopoly in the US router market after banning routers made with certain foreign components — with Netgear among the first to qualify for an exemption.
+
+**RILEY:** Which raises an obvious question for rural Canadian communities: if your broadband relies on hardware subject to US regulatory decisions, how much control do you actually have over your own network?
+
+**CASEY:** Now a few items beyond today's theme. The BC government introduced the K'ómoks Treaty Act in the legislature this week — legislation to formalize a modern treaty with the K'ómoks First Nation on Vancouver Island, with provisions around land management, resource revenue sharing, and self-governance structures. Worth watching as a model for nations across BC still in treaty negotiations.
+
+**RILEY:** That's a significant governance milestone, and we'll likely come back to it as the legislation moves through the house.
+
+**CASEY:** From the Quesnel Cariboo Observer — the BCGEU has filed an unfair labour practices complaint against Kootenay Lake ferry management, centered on alleged interference with union organizing and collective bargaining rights. BC Ferries and its regional services are essential infrastructure in rural and remote communities — this dispute is worth tracking.
+
+**RILEY:** And this one really matters locally — the Williams Lake Tribune reports that more than 150 people turned out to a rally in 100 Mile House calling for stable emergency room services. The South Cariboo Health Centre ER has faced ongoing staffing challenges, with periodic closures that leave residents hours from emergency care. One hundred and fifty people showing up in a town of roughly 2,000 is a significant turnout. Community governance in its most direct form.
+
+**CASEY:** That rally is also a data point about what happens when digital civic tools aren't available or aren't trusted — people drive to a parking lot in April weather to make their voices heard in person.
+
+**RILEY:** Finally, The Tyee published a historical piece this week on Joseph Trutch — BC's first Lieutenant Governor and the architect of much of the province's early Indigenous land policy. Trutch systematically reduced the size of Indigenous reserves, denied the existence of Aboriginal title, and shaped a policy framework whose legal and social consequences are still being litigated today, including in cases we've covered on this show. Understanding that history is part of understanding why governance trust gaps exist in the Cariboo right now.
+
+**CASEY:** You can't understand the present governance landscape in this region without understanding how it was designed to function — and for whom.
+
+**RILEY:** That brings us to a good pause point. Coming up, our Community Spotlight, and then the Deep Dive — where we're asking not just whether communities use technology for governance, but whether they have the institutional capacity to govern technology itself.
+
+---
+
+**COMMUNITY SPOTLIGHT**
+
+**CASEY:** Before we get there — a word about an organization doing genuinely important work in this region. It's National Volunteer Week, and we want to highlight Community Futures Cariboo Chilcotin. Community Futures is a nonprofit with a volunteer board that supports rural entrepreneurs and community economic development across the Cariboo Chilcotin. They run loan programs for small businesses, business planning support, and community economic development projects — and they do it with a level of local accountability that you simply don't get from programs administered from Victoria or Ottawa. If you've ever thought about starting something in this region and didn't know where to begin, Community Futures is frequently the right first call. You can find them at cfdccariboo.com — and right now, they're actively looking for volunteers to join their board and committees.
+
+**RILEY:** If you have financial, legal, or community development experience and want to put it to work locally, a volunteer board seat with Community Futures is one of the highest-leverage things you can do for this region.
+
+**CASEY:** Alright — on to the Deep Dive.
+
+---
+
+**DEEP DIVE: CARIBOO CONNECTIONS — Community Tech & Governance**
+
+**RILEY:** So today's central question. We've covered a lot of ground on this theme over the past several weeks — governance failures that push communities into litigation, information infrastructure and who controls emergency alerts, monitoring authority and data sovereignty. What we haven't fully wrestled with is this: what does it mean for a community to *govern* technology, as opposed to simply *using* it? And specifically — what does that look like for Indigenous nations in BC who are building their own digital infrastructure?
+
+**CASEY:** The Animikii material from today's roundup gives us a concrete entry point. There's a distinction worth drawing between two kinds of community tech governance. The first is a community using technology to run a better town council — digital permits, online consultations, e-voting for local decisions. The second is a community building and controlling the technological systems that shape their own governance. The Niiwin platform is squarely in that second category.
+
+**RILEY:** And that second category is genuinely harder. Building a data governance platform requires technical capacity, legal frameworks, sustained funding, and community trust — all simultaneously. Animikii's approach of embedding team members inside communities is a meaningful design choice. It acknowledges that technology systems reflect the values and priorities of whoever designs them. If the designers are outsiders, the system embeds outsider assumptions.
+
+**CASEY:** Which sounds obvious when you say it, but it's violated constantly. Most "digital services for Indigenous communities" projects have been built by provincial or federal contractors who'd never set foot in the community, based on requirements gathered in a two-day workshop. The result is systems that communities are expected to maintain and trust, built on someone else's model of what they need.
+
+**RILEY:** So Animikii addresses the design problem. But even a perfectly community-centred platform still needs people inside the community who can administer it, update it, troubleshoot it, and evolve it as needs change. What does the capacity-building piece actually look like?
+
+**CASEY:** This is where I get genuinely concerned about sustainability. We've raised this in other contexts — digital governance platforms have a familiar failure mode. A nation might have a well-designed, community-controlled Niiwin deployment today. Three years from now, the grant that funded the engagement has ended, the one person who understood the system has moved to Kamloops, and nobody can update the permissions structure when membership rolls change. That's not a hypothetical — it's a pattern that repeats across Indigenous digital infrastructure projects across the country.
+
+**RILEY:** That failure mode is real. But I'd push back on framing it as unique to Indigenous-led infrastructure. Municipalities across BC have the same problem with enterprise software — there are legacy systems in regional districts right now that nobody fully understands because the person who implemented them retired. The question isn't whether sustainability is hard; it's whether the design and capacity-building model can mitigate it.
+
+**CASEY:** Fair, but there's an asymmetry worth naming. A municipality can hire a contractor to fix a legacy system, or appeal to the province for technical support. A First Nation with a community-controlled data governance platform — one *explicitly designed* to limit outside access for sovereignty reasons — has far less recourse when something breaks. The sovereignty design and the maintenance dependency can directly work against each other.
+
+**RILEY:** That's a tension I hadn't fully articulated before. The security of the system depends on restricting access, but that restriction also limits the pool of people who can help when something goes wrong.
+
+**CASEY:** Exactly. And it raises a governance structure question that I don't think gets asked enough in the design phase: who are the trusted technical partners a nation could call in an emergency — people who have both the clearance and the competence? That probably needs to be negotiated before the system goes live, not discovered after something breaks.
+
+**RILEY:** Which is actually an argument for regional technical capacity — something like a shared Indigenous digital infrastructure support network, where nations pool some of their technical expertise. You don't have to surrender data sovereignty to share a help desk. A few BC First Nations have moved toward shared IT arrangements precisely for this reason, and the First Nations Technology Council has been building that kind of connective tissue provincially.
+
+**CASEY:** That's a reasonable structural response. Though I'd note that shared IT arrangements still require enough trust between nations to share administrative access to sensitive systems — and that trust isn't automatic, especially where nations have overlapping or contested territorial relationships. It's not just a technical problem.
+
+**RILEY:** Point taken. The governance layer underneath the governance layer — who governs the shared governance infrastructure. It's turtles all the way down. Though at some point you have to build something, or the perfect becomes the enemy of the functional.
+
+**CASEY:** True. And this connects to something the Animikii archive work gestures at without fully resolving — the stakes of what's actually being stored. Archives aren't just storage. They're governance documents. A nation's land use records, oral history transcriptions, meeting minutes from decades past about what elders said about a particular watershed — that's the evidentiary foundation for future rights claims. Losing that to a failed hard drive or an abandoned platform isn't an IT problem. It's a governance catastrophe.
+
+**RILEY:** And the stakes are profoundly asymmetric. If a municipality loses three years of parks committee minutes, that's inconvenient. If a First Nation loses twenty years of resource use documentation, that could materially weaken a treaty negotiation or an Aboriginal title claim. The archival governance question carries a completely different weight in that context.
+
+**CASEY:** Which is why I keep coming back to the question of who funds the long game. The BC and federal governments have funded Indigenous digital projects in waves — periods of significant investment followed by quieter stretches, with renewed interest now partly driven by UNDRIP implementation requirements. But wave-funding produces exactly the orphaned infrastructure problem we keep identifying. A platform built on a three-year grant is designed around a three-year horizon.
+
+**RILEY:** So what would a more sustainable model actually look like? Because "wait for the federal government to commit to perpetual operational funding" is not a governance strategy — it's a wish.
+
+**CASEY:** A few things seem to work in comparable contexts. One is revenue-generating data governance — nations that license carefully anonymized data from their monitoring or health programs to researchers or government agencies, on community-controlled terms, can generate operational revenue that doesn't depend on grants. Organizations like the Inuit Tapiriit Kanatami have explored governance frameworks for health data along these lines. It's not a complete solution, but it changes the dependency relationship.
+
+**RILEY:** The second model I'd point to is integrating digital skills into community education programs — training the next generation of community members to be the technical administrators of their own systems. It's slow, and it requires a ten-year horizon, but communities that invest in that pipeline are less vulnerable to the "one person who understood the system has left" problem.
+
+**CASEY:** Though that requires the education infrastructure to support it. In communities where the local school is struggling to maintain consistent teacher staffing, adding a meaningful digital governance curriculum is a significant additional ask on already-stretched institutions. You can't bolt digital capacity onto a system that's already running on fumes.
+
+**RILEY:** Agreed. And that loops back to something we touched on earlier this season — the difference between having infrastructure and having the institutional capacity to use it. You can have fiber internet, a data governance platform, a well-designed digital archive. But if the school can't retain teachers and the health centre is running on rotating locum physicians, the additional cognitive and administrative load of governing your own digital infrastructure is genuinely prohibitive. These systems are not separable.
+
+**CASEY:** That's the systems argument I keep wanting to make explicitly. Digital governance capacity isn't a project you bolt onto a community. It grows — or doesn't — with the overall health of the institution. A community that's stretched thin managing day-to-day services doesn't have spare cycles for platform administration, no matter how well-designed the platform is.
+
+**RILEY:** So what does that mean practically for a Cariboo community thinking about this today? Because I want to land somewhere concrete rather than leaving people with a framework and no entry point.
+
+**CASEY:** Here's a starting point — and it's not glamorous. Before any community invests in a digital governance platform, the most valuable thing they can probably do is a governance capacity audit. Not a tech audit. A governance audit. Who currently has the authority to make decisions about data? Who has the skills to administer systems? Where does the institutional memory live — in documents, or in people? If it's primarily in people, what happens when those people leave?
+
+**RILEY:** That's a genuinely useful reframe. Most digital governance conversations start with "what platform should we use?" — and the Animikii model suggests the better first question is "what do we actually need to govern, and who has the authority to govern it?" The platform choice follows from those answers, not the other way around.
+
+**CASEY:** And on the Cariboo-specific angle — a few things make this moment somewhat opportune. The BC government's UNDRIP implementation commitments create political leverage for nations seeking operational funding rather than just project funding. The K'ómoks Treaty Act we mentioned in the roundup is a concrete example of governance formalization that creates new institutional structures with real teeth. And the First Nations Technology Council in BC has been building digital literacy and infrastructure programs that function as a practical capacity pipeline for nations who want to plug in.
+
+**RILEY:** I'd add one more thing. The 100 Mile House ER rally we covered today — 150 people showing up in person to demand accountability for a public service — is a reminder that governance isn't only digital. The most durable community governance tools are sometimes the oldest ones: organized people, collective voice, public accountability. Digital tools can amplify that. They make it easier to coordinate, document, communicate across distance. But the underlying civic capacity has to be there first, or the tools sit unused.
+
+**CASEY:** And in communities where that civic capacity is strong — where people show up, where institutions have genuine accountability to residents — digital governance tools tend to actually work. Where it's weak, even the best-designed platform becomes a system nobody uses. Which might be the most honest thing we've said today.
+
+**RILEY:** So the answer to "how do you govern technology for public good" might actually be: govern everything else well first. And then the technology question gets a lot more tractable.
+
+**CASEY:** Which is either deeply encouraging or deeply inconvenient, depending on how impatient you are.
+
+**RILEY:** Probably both, honestly. If there's one concrete takeaway from today's conversation, it's this: if you're involved in any community organization in the Cariboo — a nation, a municipality, a school district, a non-profit — it's worth asking whether your organization's institutional knowledge is documented or just held in people's heads. That's a governance question before it's a technology question, and the answer shapes everything that comes after.
+
+**CASEY:** And if you're curious about the Animikii and Niiwin work specifically, their newsletters are publicly available and genuinely worth reading for anyone interested in where Indigenous-led digital governance is heading in BC.
+
+**RILEY:** We'd love to hear your thoughts — send us an email at feedback at cariboo signals dot c-a. If you're involved in a digital governance project in the Cariboo region, we'd especially like to know about it. Thanks for spending part of your Wednesday with us — have a great rest of your day.
