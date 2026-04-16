@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] Google unveils new \u2018vibe design\u2019 tool to help an",
       "[TechRadar] Why strong authentication beyond the browser wil",
       "[TechRadar] 'Nuclear energy is the essential backbone for th",
       "[Hackaday] Training a Transformer with 1970s-era Technology",
@@ -10,7 +9,8 @@
       "[TechCrunch] Peter Thiel\u2019s big bet on solar-powered cow coll",
       "[Business Insider] I quit tech, bought 22 acres, and didn't ",
       "[XDA Developers] The Linux kernel now allows AI-written code",
-      "[Business Insider] An AI built a boutique with $100,000, the"
+      "[Business Insider] An AI built a boutique with $100,000, the",
+      "Preventing AI extractivism: the case for braiding indigenous"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -88,6 +88,16 @@
         "date": "2026-04-12",
         "clue": "tech-optimism:~ \u2014 Acknowledged drone sensing requires trained technician, not just price reduction",
         "occurrences": 1
+      },
+      {
+        "date": "2026-04-16",
+        "clue": "tech-optimism: - \u2014 Conceded enforcement gaps in ABS frameworks, timeline risks.",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-04-16",
+        "clue": "structural-lens: x \u2014 Accepted Casey's point about temporal asymmetry between building and extraction.",
+        "occurrences": 1
       }
     ],
     "core_memories": [
@@ -144,9 +154,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-04-02",
-        "clue": "structural-lens: + \u2014 Deepened critique from process failures to sovereignty sequencing requirement",
-        "occurrences": 1
+        "date": "2026-04-16",
+        "clue": "structural-lens: + \u2014 Shifted from platform-choice framing to pre-platform decision hierarchy.",
+        "occurrences": 2
       },
       {
         "date": "2026-04-02",
@@ -206,6 +216,11 @@
       {
         "date": "2026-04-15",
         "clue": "pilot-skepticism:+ \u2014 Hardened concern about sustainability across three separate exchanges",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-04-16",
+        "clue": "pilot-skepticism: ~ \u2014 Deepened concern from extraction risk to intergenerational governance responsibility.",
         "occurrences": 1
       }
     ],

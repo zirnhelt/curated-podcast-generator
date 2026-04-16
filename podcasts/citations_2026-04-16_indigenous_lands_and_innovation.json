@@ -1,0 +1,597 @@
+{
+  "episode": {
+    "date": "2026-04-16",
+    "formatted_date": "Thursday, April 16, 2026",
+    "theme": "Indigenous Lands & Innovation",
+    "title": "Cariboo Signals - Indigenous Lands & Innovation",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Indigenous Lands & Innovation.</p><p><b>NEWS ROUNDUP:</b> We break down Preventing AI extractivism: the case for braiding indigenous data justice with ABS for stronger AI data governance and TMU students to safeguard Residential School Survivor testimonies, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> What infrastructure, governance, and safeguards must be in place before Indigenous communities build digital archives to ensure long-term functionality, community control, and protection from data extraction? Topics include: Format obsolescence and technical sovereignty in digital preservation, Shared infrastructure governance models versus isolated community systems, AI extractivism and machine-readable metadata protection (TK Labels), Temporal asymmetry between knowledge preservation and data extraction, Regional Indigenous consortium potential for shared technical capacity in the Cariboo.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://denisiqi.org\">Denisiqi Services Society</a></p><p><b>Sources discussed:</b></p><ul><li>Newsletter: Animikii Indigenous Technology <news@animikii.com>: <a href=\"https://link.springer.com/article/10.1007/s00146-026-02931-z?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=time-to-come-out-of-hibernation\">Preventing AI extractivism: the case for braiding indigenous...</a></li><li>Newsletter: Animikii Indigenous Technology <news@animikii.com>: <a href=\"https://www.torontomu.ca/news-events/news/2026/03/tmu-students-to-safeguard-residential-school-survivor-testimonies/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=see-our-impact-pop-up-in-new-report\">TMU students to safeguard Residential School Survivor testim...</a></li><li>Newsletter: Animikii Indigenous Technology <news@animikii.com>: <a href=\"https://cabinradio.ca/282108/news/health/five-headlines-from-a-major-nwt-health-privacy-report/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=see-our-impact-pop-up-in-new-report\">Five headlines from a major NWT health privacy report</a></li><li>Newsletter: Animikii Indigenous Technology <news@animikii.com>: <a href=\"https://assets.buttondown.email/images/c2272ec4-84ba-4293-8743-e6f22b59e435.jpg?w=960&fit=max\">“Records  have a spirit and need to be treated with  respect...</a></li><li>Newsletter: Animikii Indigenous Technology <news@animikii.com>: <a href=\"https://www.openaccessgovernment.org/article/why-indigenous-rights-are-reshaping-archaeology-in-canada/205683/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=records-have-a-spirit-and-need-to-be-treated-with\">“Records  have a spirit and need to be treated with  respect...</a></li><li>Newsletter: Animikii Indigenous Technology <news@animikii.com>: <a href=\"https://www.aptnnews.ca/infocus/6-million-records-later-what-does-library-and-archives-canadas-day-schools-project-mean-for-survivors/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=records-have-a-spirit-and-need-to-be-treated-with\">“Records  have a spirit and need to be treated with  respect...</a></li><li>Newsletter: Animikii Indigenous Technology <news@animikii.com>: <a href=\"https://bioengineer.org/professor-krystal-tsosie-advocates-for-indigenous-led-science-at-aaas-conference/?utm_source=newsriver&utm_medium=email&utm_campaign=local-contexts-speaking-at-databackday\">Professor Krystal Tsosie Advocates for Indigenous-Led Scienc...</a></li><li>Newsletter: Animikii Indigenous Technology <news@animikii.com>: <a href=\"https://www.cbc.ca/news/indigenous/nakota-language-learning-indiana-university-9.7078103?utm_source=newsriver&utm_medium=email&utm_campaign=did-you-know-its-love-data-week-2026\">Nakota communities reclaim audio recordings housed at Indian...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/04/15/b-c-introduces-legislation-to-ratify-kitselas-treaty/\">[Williams Lake Tribune] B.C. introduces legislation to ratif...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/04/15/prescribed-burn-planned-at-horsefly-river-spawning-channel-east-of-williams-lake/\">[Williams Lake Tribune] Prescribed burn planned at Horsefly ...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/04/15/breaking-rcmp-responding-to-reports-of-gunfire-in-quesnel/\">[Williams Lake Tribune] BREAKING: RCMP responding to reports...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Newsletter: Animikii Indigenous Technology <news@animikii.com>: <a href=\"https://indiginews.com/arts/indigenous-leaders-celebrate-belongings-returned-from-the-vatican/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=time-to-come-out-of-hibernation\">In ‘Gatineau,’ Indigenous leaders celebrate belongings retur...</a></li><li>Newsletter: Animikii Indigenous Technology <news@animikii.com>: <a href=\"https://assets.buttondown.email/images/c2272ec4-84ba-4293-8743-e6f22b59e435.jpg?w=960&fit=max\">See our impact \"pop' up\" in new report</a></li><li>Newsletter: Animikii Indigenous Technology <news@animikii.com>: <a href=\"https://assets.buttondown.email/images/c2272ec4-84ba-4293-8743-e6f22b59e435.jpg?w=960&fit=max\">What does Indigenous data sovereignty look like? We spent a ...</a></li><li>Newsletter: Animikii Indigenous Technology <news@animikii.com>: <a href=\"https://mixpanel.com/blog/what-is-a-technology-stack/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=what-does-indigenous-data-sovereignty-look-like\">What is a tech stack? | Signals &amp; Stories</a></li><li>Newsletter: Animikii Indigenous Technology <news@animikii.com>: <a href=\"https://matomo.org/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=what-does-indigenous-data-sovereignty-look-like\">Matomo - The Google Analytics alternative that protects your...</a></li><li>Newsletter: Animikii Indigenous Technology <news@animikii.com>: <a href=\"https://assets.buttondown.email/images/c2272ec4-84ba-4293-8743-e6f22b59e435.jpg?w=960&fit=max\">Local Contexts speaking at #DataBackDay</a></li><li>Newsletter: Animikii Indigenous Technology <news@animikii.com>: <a href=\"https://www.queensjournal.ca/highlighting-indigenous-research-at-queens-voices-of-indigenous-research-column-2/?utm_source=newsriver&utm_medium=email&utm_campaign=local-contexts-speaking-at-databackday\">Local Contexts speaking at #DataBackDay</a></li><li>Newsletter: Animikii Indigenous Technology <news@animikii.com>: <a href=\"https://assets.buttondown.email/images/c2272ec4-84ba-4293-8743-e6f22b59e435.jpg?w=960&fit=max\">Did you know -  it’s  Love Data Week 2026!</a></li><li>Newsletter: Animikii Indigenous Technology <news@animikii.com>: <a href=\"https://indiginews.com/news/truth-courage-care-esketemc-leader-honoured-with-b-c-reconciliation-award/?utm_source=newsriver&utm_medium=email&utm_campaign=did-you-know-its-love-data-week-2026\">‘Truth, courage, care’: Esk’etemc leader honoured with ‘B.C....</a></li><li>The Guardian Global Development: <a href=\"https://www.theguardian.com/global-development/2026/apr/16/eliminate-malaria-eswatini-swaziland-migration-disease-climate\">[The Guardian Global Development] Can you stop malaria cross...</a></li><li>TechRadar: <a href=\"https://www.techradar.com/pro/vodafonethree-gets-ofcom-approval-to-bring-satellite-connectivity-to-your-smartphone\">[TechRadar] VodafoneThree gets Ofcom approval to bring satel...</a></li><li>Toms Guide: <a href=\"https://www.tomsguide.com/ai/the-learn-to-code-era-is-officially-over-why-ive-switched-my-kids-to-intent-architecture-instead\">[Toms Guide] The 'Learn to Code' era is over — as an AI edit...</a></li><li>Newsletter: Animikii Indigenous Technology <news@animikii.com>: <a href=\"https://assets.buttondown.email/images/32f798c1-fd59-4ab4-9e61-8fb9d6e26c58.jpg?w=960&fit=max\">Digital Archives as Memory Keepers</a></li><li>Newsletter: Animikii Indigenous Technology <news@animikii.com>: <a href=\"https://animikii.com/insights/statutory-holidays-at-animikii?utm_source=newsriver&amp;amp;utm_medium=email&amp;amp;utm_campaign=digital-archives-as-memory-keepers\">Statutory Holidays at Animikii\n    &mdash; Animikii Indigeno...</a></li><li>Newsletter: Animikii Indigenous Technology <news@animikii.com>: <a href=\"https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ09bJZhUjWAeYBozlJT1Z7Cs7JwcnWhFFvf_hv6nmkjUncsdco7J6YhiwNpEuEfYIxiFq5E03s7?mtm_campaign=NII-Q1-2026&amp;amp;mtm_kwd=KNC&amp;amp;mtm_source=NWR&amp;amp;utm_source=newsriver&amp;amp;utm_medium=email&amp;amp;utm_campaign=digital-archives-as-memory-keepers\">Niiwin Demo</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-6<br>TTS Voices: OpenAI TTS API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-04-16T04:11:28.208906-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-sonnet-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "Preventing AI extractivism: the case for braiding indigenous data justice with ABS for stronger AI data governance - AI &amp; SOCIETY",
+          "url": "https://link.springer.com/article/10.1007/s00146-026-02931-z?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=time-to-come-out-of-hibernation",
+          "source": "Newsletter: Animikii Indigenous Technology <news@animikii.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Artificial-intelligence systems are rapidly reproducing colonial extractivism by harvesting Indigenous linguistic, biometric, geospatial, and ecological data without consent, compensation, or accounta...",
+          "discussed": true
+        },
+        {
+          "title": "In ‘Gatineau,’ Indigenous leaders celebrate belongings returned from the Vatican: ‘We welcome them home’",
+          "url": "https://indiginews.com/arts/indigenous-leaders-celebrate-belongings-returned-from-the-vatican/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=time-to-come-out-of-hibernation",
+          "source": "Newsletter: Animikii Indigenous Technology <news@animikii.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Five of the objects were ceremonially uncrated at the Canadian Museum of History last week, while a total of 62 items will be transferred to their home communities across the country",
+          "discussed": false
+        },
+        {
+          "title": "See our impact \"pop' up\" in new report",
+          "url": "https://assets.buttondown.email/images/c2272ec4-84ba-4293-8743-e6f22b59e435.jpg?w=960&fit=max",
+          "source": "Newsletter: Animikii Indigenous Technology <news@animikii.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "See our impact \"pop' up\" in new report",
+          "discussed": false
+        },
+        {
+          "title": "TMU students to safeguard Residential School Survivor testimonies",
+          "url": "https://www.torontomu.ca/news-events/news/2026/03/tmu-students-to-safeguard-residential-school-survivor-testimonies/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=see-our-impact-pop-up-in-new-report",
+          "source": "Newsletter: Animikii Indigenous Technology <news@animikii.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Pulitzer Prize-winning journalist Connie Walker leads the charge with TMU law and journalism students’ support",
+          "discussed": true
+        },
+        {
+          "title": "Five headlines from a major NWT health privacy report",
+          "url": "https://cabinradio.ca/282108/news/health/five-headlines-from-a-major-nwt-health-privacy-report/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=see-our-impact-pop-up-in-new-report",
+          "source": "Newsletter: Animikii Indigenous Technology <news@animikii.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Health privacy breaches in the NWT are occurring at the rate of six or seven a month. A new report examines how our health privacy laws are working.",
+          "discussed": true
+        },
+        {
+          "title": "“Records  have a spirit and need to be treated with  respect”",
+          "url": "https://assets.buttondown.email/images/c2272ec4-84ba-4293-8743-e6f22b59e435.jpg?w=960&fit=max",
+          "source": "Newsletter: Animikii Indigenous Technology <news@animikii.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "“Records  have a spirit and need to be treated with  respect”",
+          "discussed": true
+        },
+        {
+          "title": "“Records  have a spirit and need to be treated with  respect”",
+          "url": "https://www.openaccessgovernment.org/article/why-indigenous-rights-are-reshaping-archaeology-in-canada/205683/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=records-have-a-spirit-and-need-to-be-treated-with",
+          "source": "Newsletter: Animikii Indigenous Technology <news@animikii.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "“Records  have a spirit and need to be treated with  respect”",
+          "discussed": true
+        },
+        {
+          "title": "“Records  have a spirit and need to be treated with  respect”",
+          "url": "https://www.aptnnews.ca/infocus/6-million-records-later-what-does-library-and-archives-canadas-day-schools-project-mean-for-survivors/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=records-have-a-spirit-and-need-to-be-treated-with",
+          "source": "Newsletter: Animikii Indigenous Technology <news@animikii.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "“Records  have a spirit and need to be treated with  respect”",
+          "discussed": true
+        },
+        {
+          "title": "What does Indigenous data sovereignty look like? We spent a day\r\n finding out.",
+          "url": "https://assets.buttondown.email/images/c2272ec4-84ba-4293-8743-e6f22b59e435.jpg?w=960&fit=max",
+          "source": "Newsletter: Animikii Indigenous Technology <news@animikii.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "What does Indigenous data sovereignty look like? We spent a day\r\n finding out.",
+          "discussed": false
+        },
+        {
+          "title": "What is a tech stack? | Signals &amp; Stories",
+          "url": "https://mixpanel.com/blog/what-is-a-technology-stack/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=what-does-indigenous-data-sovereignty-look-like",
+          "source": "Newsletter: Animikii Indigenous Technology <news@animikii.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "A technology stack (or tech stack) is a combination of tools, applications, and services used to build a web or mobile app. Here are some examples of best-in-breed stacks.",
+          "discussed": false
+        },
+        {
+          "title": "Matomo - The Google Analytics alternative that protects your data",
+          "url": "https://matomo.org/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=what-does-indigenous-data-sovereignty-look-like",
+          "source": "Newsletter: Animikii Indigenous Technology <news@animikii.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Matomo&#039;s the Google Analytics alternative that protects your data and your customer&#039;s privacy. A powerful web analytics platform with 100% data ownership.",
+          "discussed": false
+        },
+        {
+          "title": "Local Contexts speaking at #DataBackDay",
+          "url": "https://assets.buttondown.email/images/c2272ec4-84ba-4293-8743-e6f22b59e435.jpg?w=960&fit=max",
+          "source": "Newsletter: Animikii Indigenous Technology <news@animikii.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Local Contexts speaking at #DataBackDay",
+          "discussed": false
+        },
+        {
+          "title": "Local Contexts speaking at #DataBackDay",
+          "url": "https://www.queensjournal.ca/highlighting-indigenous-research-at-queens-voices-of-indigenous-research-column-2/?utm_source=newsriver&utm_medium=email&utm_campaign=local-contexts-speaking-at-databackday",
+          "source": "Newsletter: Animikii Indigenous Technology <news@animikii.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Local Contexts speaking at #DataBackDay",
+          "discussed": false
+        },
+        {
+          "title": "Professor Krystal Tsosie Advocates for Indigenous-Led Science at AAAS",
+          "url": "https://bioengineer.org/professor-krystal-tsosie-advocates-for-indigenous-led-science-at-aaas-conference/?utm_source=newsriver&utm_medium=email&utm_campaign=local-contexts-speaking-at-databackday",
+          "source": "Newsletter: Animikii Indigenous Technology <news@animikii.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Krystal Tsosie, a leading figure in Indigenous genomics, bioethics, and data governance, is set to present a landmark lecture titled The Future of Science Is Indigenous at the esteemed American",
+          "discussed": true
+        },
+        {
+          "title": "Did you know -  it’s  Love Data Week 2026!",
+          "url": "https://assets.buttondown.email/images/c2272ec4-84ba-4293-8743-e6f22b59e435.jpg?w=960&fit=max",
+          "source": "Newsletter: Animikii Indigenous Technology <news@animikii.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Did you know -  it’s  Love Data Week 2026!",
+          "discussed": false
+        },
+        {
+          "title": "‘Truth, courage, care’: Esk’etemc leader honoured with ‘B.C.’ reconciliation award",
+          "url": "https://indiginews.com/news/truth-courage-care-esketemc-leader-honoured-with-b-c-reconciliation-award/?utm_source=newsriver&utm_medium=email&utm_campaign=did-you-know-its-love-data-week-2026",
+          "source": "Newsletter: Animikii Indigenous Technology <news@animikii.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Charlene Belleau has been ‘leading voice’ of justice for survivors — documenting truth and supporting community healing",
+          "discussed": false
+        },
+        {
+          "title": "Nakota communities reclaim audio recordings housed at Indiana University | CBC News",
+          "url": "https://www.cbc.ca/news/indigenous/nakota-language-learning-indiana-university-9.7078103?utm_source=newsriver&utm_medium=email&utm_campaign=did-you-know-its-love-data-week-2026",
+          "source": "Newsletter: Animikii Indigenous Technology <news@animikii.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Indiana University is working with Nakota communities to digitize old audio recordings and put them online to use for language learning.",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] B.C. introduces legislation to ratify Kitselas Treaty",
+          "url": "https://wltribune.com/2026/04/15/b-c-introduces-legislation-to-ratify-kitselas-treaty/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-15T16:05:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[The Guardian Global Development] Can you stop malaria crossing borders? One nation’s bid to wipe out the disease",
+          "url": "https://www.theguardian.com/global-development/2026/apr/16/eliminate-malaria-eswatini-swaziland-migration-disease-climate",
+          "source": "The Guardian Global Development",
+          "ai_score": 0,
+          "date_published": "2026-04-16T04:00:47+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Prescribed burn planned at Horsefly River Spawning Channel east of Williams Lake",
+          "url": "https://wltribune.com/2026/04/15/prescribed-burn-planned-at-horsefly-river-spawning-channel-east-of-williams-lake/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-16T06:17:22.345701+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] BREAKING: RCMP responding to reports of gunfire in Quesnel",
+          "url": "https://wltribune.com/2026/04/15/breaking-rcmp-responding-to-reports-of-gunfire-in-quesnel/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-16T06:17:22.345413+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[TechRadar] VodafoneThree gets Ofcom approval to bring satellite connectivity to your smartphone",
+          "url": "https://www.techradar.com/pro/vodafonethree-gets-ofcom-approval-to-bring-satellite-connectivity-to-your-smartphone",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-04-16T06:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] The 'Learn to Code' era is over — as an AI editor, here's the 'Intent Architecture' roadmap I’m giving my kids instead",
+          "url": "https://www.tomsguide.com/ai/the-learn-to-code-era-is-officially-over-why-ive-switched-my-kids-to-intent-architecture-instead",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-04-16T05:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] Jensen Huang explains why Nvidia invests in tons of companies, instead of trying to pick winners",
+          "url": "https://www.businessinsider.com/jensen-huang-explains-nvidia-doesnt-pick-winners-openai-anthropic-intel-2026-4",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-04-16T05:25:12+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Cooking a Raspberry Pi FireWire HAT With Backfeeding",
+          "url": "https://hackaday.com/2026/04/15/cooking-a-raspberry-pi-firewire-hat-with-backfeeding/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-04-16T05:00:47+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NPR Health News] A Colorado hospital profits from resolving language barriers",
+          "url": "https://www.npr.org/2026/04/16/nx-s1-5780035/rural-hospital-colorado-medical-translators",
+          "source": "NPR Health News",
+          "ai_score": 0,
+          "date_published": "2026-04-16T04:01:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] Raspberry Pi OS is getting a new security measure, and people are already annoyed",
+          "url": "https://www.xda-developers.com/raspberry-pi-os-is-getting-a-new-security-measure-and-people-are-already-annoyed/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-04-16T03:40:44+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Unexpected Source of Salt May Be Raising Blood Pressure For Millions",
+          "url": "https://www.sciencealert.com/unexpected-source-of-salt-may-be-raising-blood-pressure-for-millions",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-04-16T02:46:28+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Why You Keep Waking at 3am, According to Sleep Science",
+          "url": "https://www.sciencealert.com/why-you-keep-waking-at-3am-according-to-sleep-science",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-04-16T01:52:55+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] Analysis of Alzheimer’s Drugs Stirs Debate About Their Effectiveness",
+          "url": "https://www.nytimes.com/2026/04/15/health/alzheimers-drugs-benefit-anti-amyloid.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-04-16T00:05:36+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] The Genetic Roots of Extreme Morning Sickness",
+          "url": "https://nautil.us/the-genetic-roots-of-extreme-morning-sickness-1279900/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-04-15T22:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] I tried running a full desktop OS inside a browser tab, and it actually works for real work",
+          "url": "https://www.xda-developers.com/tried-running-full-desktop-os-inside-browser-actually-works-real-tasks/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-04-15T22:00:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Judge orders 3 men to share responsibility for $1.7M libel damages",
+          "url": "https://quesnelobserver.com/2026/04/15/judge-orders-3-men-to-share-responsibility-for-1-7m-libel-damages/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-04-15T21:57:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechCrunch] Monarch Tractor’s collapse ends with an acquisition by Caterpillar",
+          "url": "https://techcrunch.com/2026/04/15/monarch-tractors-collapse-ends-in-with-an-acquisition-by-caterpillar/",
+          "source": "TechCrunch",
+          "ai_score": 0,
+          "date_published": "2026-04-15T21:05:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Business] That Meeting You Hate May Keep A.I. From Stealing Your Job",
+          "url": "https://www.nytimes.com/2026/04/15/business/ai-jobs-human-work.html",
+          "source": "NYT Business",
+          "ai_score": 0,
+          "date_published": "2026-04-15T21:01:24+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Gizmodo] BYD Is Rolling Out 5-Minute Charging on Several Popular EVs",
+          "url": "https://gizmodo.com/byd-is-rolling-out-5-minute-charging-on-several-popular-evs-2000747052",
+          "source": "Gizmodo",
+          "ai_score": 0,
+          "date_published": "2026-04-15T21:00:37+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[BC Gov News] Supporting B.C. businesses to build clean-energy marine industry",
+          "url": "https://news.gov.bc.ca/releases/2026JEG0027-000413",
+          "source": "BC Gov News",
+          "ai_score": 0,
+          "date_published": "2026-04-15T21:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] Why Are Gray Whales Dying in the San Francisco Bay?",
+          "url": "https://nautil.us/why-are-gray-whales-dying-in-the-san-francisco-bay-1279896/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-04-15T20:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Hacking Fermentation for Infinite Pickles from Pass-thru Bioreactor",
+          "url": "https://hackaday.com/2026/04/15/hacking-fermentation-for-infinite-pickles-from-pass-thru-bioreactor/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-04-15T20:00:42+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] 'Maybe it’s not science fiction': Solar panels are causing rainwater to fall in one of the driest places on Earth",
+          "url": "https://www.techradar.com/pro/maybe-its-not-science-fiction-solar-panels-are-causing-rainwater-to-fall-in-one-of-the-driest-places-on-earth",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-04-15T19:45:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Gizmodo] The West Finally Got Some Snow, but It’s Too Little, Too Late",
+          "url": "https://gizmodo.com/the-west-finally-got-some-snow-but-its-too-little-too-late-2000747028",
+          "source": "Gizmodo",
+          "ai_score": 0,
+          "date_published": "2026-04-15T19:40:04+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] NASA Wants to Put Nuclear Reactors on the Moon",
+          "url": "https://www.wired.com/story/nasa-wants-to-put-nuclear-reactors-on-the-moon/",
+          "source": "WIRED",
+          "ai_score": 0,
+          "date_published": "2026-04-15T18:55:52+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[InsideEVs] Building EVs And Gas Cars On The Same Chassis Was Never Going To Work. This One Photo Proves It.",
+          "url": "https://insideevs.com/features/793060/ev-and-gas-car-shared-platform/",
+          "source": "InsideEVs",
+          "ai_score": 0,
+          "date_published": "2026-04-15T18:49:06+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] A Look at Full Spectrum 3D Printing",
+          "url": "https://hackaday.com/2026/04/15/a-look-at-full-spectrum-3d-printing/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-04-15T18:30:51+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] Circle K will offer easy EV charging while you grab a slushie",
+          "url": "https://www.howtogeek.com/circle-k-charge-your-ev-while-you-grab-a-slushie/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-04-15T18:04:44+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] This uncommon port turns weak mini PCs into sleeper gaming rigs",
+          "url": "https://www.howtogeek.com/this-uncommon-port-turns-weak-mini-pcs-into-sleeper-gaming-rigs/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-04-15T18:00:50+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] 'Fireproof' batteries create their own internal firewall when the heat is on",
+          "url": "https://newatlas.com/energy/fireproof-batteries-internal-firewall/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-04-15T17:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] B.C. man suing Interior Health, doctors for alleged negligence that led to amputation",
+          "url": "https://wltribune.com/2026/04/15/b-c-man-suing-interior-health-doctors-for-alleged-negligence-that-led-to-amputation/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-15T17:15:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Gizmodo] Anthropic Is Jacking Up the Price for Power Users Amid Complaints Its Model Is Getting Worse",
+          "url": "https://gizmodo.com/anthropic-is-jacking-up-the-price-for-power-users-amid-complaints-its-model-is-getting-worse-2000746923",
+          "source": "Gizmodo",
+          "ai_score": 0,
+          "date_published": "2026-04-15T16:55:50+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] About 4 people died daily from toxic drugs in B.C. in February",
+          "url": "https://wltribune.com/2026/04/15/about-4-people-died-daily-from-toxic-drugs-in-b-c-in-february/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-15T16:49:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] More Americans travelling north again as fewer and fewer Canadians head south",
+          "url": "https://wltribune.com/2026/04/15/more-americans-travelling-north-again-fewer-and-fewer-canadians-head-south/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-15T16:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] Can the Brain Survive Cryonic Sleep?",
+          "url": "https://nautil.us/can-the-brain-survive-cryonic-sleep-1279886/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-04-15T16:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] Volkswagen is launching a revamped ID.3 Neo electric hatchback in Europe",
+          "url": "https://qz.com/volkswagen-id3-neo-electric-hatchback-europe-041526",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-04-15T15:31:50+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] What Is ‘Jagged Intelligence’ and How Can It Reframe the AI Debate?",
+          "url": "https://www.nytimes.com/2026/04/15/technology/how-jagged-intelligence-can-reframe-the-ai-debate.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-04-15T15:19:41+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ZDNet] 'Like handing out the blueprint to a bank vault': Why AI led one company to abandon open source",
+          "url": "https://www.zdnet.com/article/ai-security-worries-force-company-to-abandon-open-source/",
+          "source": "ZDNet",
+          "ai_score": 0,
+          "date_published": "2026-04-15T15:00:39+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Science-Based Medicine] New Study on AI Clinical Decision-Making",
+          "url": "https://sciencebasedmedicine.org/new-study-on-ai-clinical-decision-making/?utm_source=rss&utm_medium=rss&utm_campaign=new-study-on-ai-clinical-decision-making",
+          "source": "Science-Based Medicine",
+          "ai_score": 0,
+          "date_published": "2026-04-15T12:28:27+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Indigenous Lands & Innovation",
+      "articles": [
+        {
+          "title": "Digital Archives as Memory Keepers",
+          "url": "https://assets.buttondown.email/images/32f798c1-fd59-4ab4-9e61-8fb9d6e26c58.jpg?w=960&fit=max",
+          "source": "Newsletter: Animikii Indigenous Technology <news@animikii.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Digital Archives as Memory Keepers",
+          "discussed": false
+        },
+        {
+          "title": "Statutory Holidays at Animikii\n    &mdash; Animikii Indigenous Technology",
+          "url": "https://animikii.com/insights/statutory-holidays-at-animikii?utm_source=newsriver&amp;amp;utm_medium=email&amp;amp;utm_campaign=digital-archives-as-memory-keepers",
+          "source": "Newsletter: Animikii Indigenous Technology <news@animikii.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "While some holidays may hold special significance to certain groups of people, other groups may not identify with the significance or even understand the significance of the holiday.",
+          "discussed": false
+        },
+        {
+          "title": "Niiwin Demo",
+          "url": "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ09bJZhUjWAeYBozlJT1Z7Cs7JwcnWhFFvf_hv6nmkjUncsdco7J6YhiwNpEuEfYIxiFq5E03s7?mtm_campaign=NII-Q1-2026&amp;amp;mtm_kwd=KNC&amp;amp;mtm_source=NWR&amp;amp;utm_source=newsriver&amp;amp;utm_medium=email&amp;amp;utm_campaign=digital-archives-as-memory-keepers",
+          "source": "Newsletter: Animikii Indigenous Technology <news@animikii.com>",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Digital Archives as Memory Keepers",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "What infrastructure, governance, and safeguards must be in place before Indigenous communities build digital archives to ensure long-term functionality, community control, and protection from data extraction?",
+        "riley_position": "Digital archives require shared infrastructure models (like Niiwin), machine-readable governance metadata (TK Labels), and community representation in platform governance to balance dependency risks with sustainability.",
+        "riley_key_evidence": [
+          "Format migration and open standards are sovereignty questions, not just technical preferences",
+          "Local Contexts TK Labels are machine-readable metadata that can legally restrict AI training data scraping",
+          "Shared platform governance through co-operative models reduces per-community maintenance burden while preserving control"
+        ],
+        "casey_position": "Archives are literal infrastructure requiring years of relationship-building and governance protocols, but face a dangerous temporal asymmetry where knowledge takes years to build trust but minutes to extract—requiring succession planning and careful sequencing before going online.",
+        "casey_key_evidence": [
+          "TMU residential school testimony project illustrates how digitization is easy but 50-year preservation is the real challenge",
+          "University digital library projects have failed, causing materials to disappear into institutional limbo",
+          "A language recording requiring three years of relationship-building can be scraped for AI training in seconds"
+        ],
+        "resolution": "Both speakers converged on the necessity of community data governance policies, TK Labels, written succession plans, and strategic partnerships before launch. Riley acknowledged the risk of moving too fast; Casey agreed that tools exist and waiting creates its own risk of knowledge-holder loss. They agreed the tension between careful governance and urgency cannot be cleanly resolved but can be managed through proper sequencing.",
+        "topics_covered": [
+          "Format obsolescence and technical sovereignty in digital preservation",
+          "Shared infrastructure governance models versus isolated community systems",
+          "AI extractivism and machine-readable metadata protection (TK Labels)",
+          "Temporal asymmetry between knowledge preservation and data extraction",
+          "Regional Indigenous consortium potential for shared technical capacity in the Cariboo"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "OpenAI TTS API",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
