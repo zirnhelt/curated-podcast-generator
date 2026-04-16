@@ -1080,5 +1080,31 @@
       "Document your organization's institutional knowledge\u2014if it exists primarily in people's heads rather than in accessible form, that is a governance vulnerability that precedes and shapes any technology decision.",
       "Contact Cariboo Signals at feedback@cariboosignals.ca if you are involved in a digital governance project in the region; they are actively interested in learning about such work."
     ]
+  },
+  "2026-04-16": {
+    "timestamp": 1776337890.410976,
+    "date": "2026-04-16",
+    "theme": "Indigenous Lands & Innovation",
+    "central_question": "What infrastructure, governance, and safeguards must be in place before Indigenous communities build digital archives to ensure long-term functionality, community control, and protection from data extraction?",
+    "riley_position": "Digital archives require shared infrastructure models (like Niiwin), machine-readable governance metadata (TK Labels), and community representation in platform governance to balance dependency risks with sustainability.",
+    "riley_key_evidence": [
+      "Format migration and open standards are sovereignty questions, not just technical preferences",
+      "Local Contexts TK Labels are machine-readable metadata that can legally restrict AI training data scraping",
+      "Shared platform governance through co-operative models reduces per-community maintenance burden while preserving control"
+    ],
+    "casey_position": "Archives are literal infrastructure requiring years of relationship-building and governance protocols, but face a dangerous temporal asymmetry where knowledge takes years to build trust but minutes to extract\u2014requiring succession planning and careful sequencing before going online.",
+    "casey_key_evidence": [
+      "TMU residential school testimony project illustrates how digitization is easy but 50-year preservation is the real challenge",
+      "University digital library projects have failed, causing materials to disappear into institutional limbo",
+      "A language recording requiring three years of relationship-building can be scraped for AI training in seconds"
+    ],
+    "resolution": "Both speakers converged on the necessity of community data governance policies, TK Labels, written succession plans, and strategic partnerships before launch. Riley acknowledged the risk of moving too fast; Casey agreed that tools exist and waiting creates its own risk of knowledge-holder loss. They agreed the tension between careful governance and urgency cannot be cleanly resolved but can be managed through proper sequencing.",
+    "topics_covered": [
+      "Format obsolescence and technical sovereignty in digital preservation",
+      "Shared infrastructure governance models versus isolated community systems",
+      "AI extractivism and machine-readable metadata protection (TK Labels)",
+      "Temporal asymmetry between knowledge preservation and data extraction",
+      "Regional Indigenous consortium potential for shared technical capacity in the Cariboo"
+    ]
   }
 }

@@ -1,24 +1,4 @@
 {
-  "2026-03-25": {
-    "timestamp": 1774444416.229028,
-    "topics": [
-      "[WIRED] What You Need to Know About the Foreign-Made Router ",
-      "[Williams Lake Tribune] Redevelopment project at Jubilee Pla",
-      "[100 Mile Free Press] Air quality monitors to be installed a",
-      "[100 Mile Free Press] 100 Mile House ER to be closed for six",
-      "[The Tyee] BC\u2019s Auditor General Offers Reasons for the Lack ",
-      "[The Tyee] Unpaid Subcontractors for Recovery Centres Say UC",
-      "[Williams Lake Tribune] B.C. government won\u2019t reveal DRIPA c",
-      "[MacRumors] Nuki Keypad 2 NFC Brings Aliro-Powered Tap-to-Un"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-03-25"
-  },
   "2026-03-26": {
     "timestamp": 1774531045.084223,
     "topics": [
@@ -436,5 +416,25 @@
       "Indigenous tech"
     ],
     "date": "2026-04-15"
+  },
+  "2026-04-16": {
+    "timestamp": 1776337888.245223,
+    "topics": [
+      "Preventing AI extractivism: the case for braiding indigenous",
+      "In \u2018Gatineau,\u2019 Indigenous leaders celebrate belongings retur",
+      "See our impact \"pop' up\" in new report",
+      "TMU students to safeguard Residential School Survivor testim",
+      "Five headlines from a major NWT health privacy report",
+      "Digital Archives as Memory Keepers",
+      "Statutory Holidays at Animikii\n    &mdash; Animikii Indigeno",
+      "Niiwin Demo"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech",
+      "connectivity"
+    ],
+    "date": "2026-04-16"
   }
 }

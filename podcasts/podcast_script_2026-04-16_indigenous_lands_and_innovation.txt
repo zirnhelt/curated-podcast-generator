@@ -1,0 +1,135 @@
+# Cariboo Signals Podcast Script - 2026-04-16
+# Theme: Indigenous Lands & Innovation
+# Generated: 2026-04-16 04:11:28 PDT
+
+**CASEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. It's Thursday, April 16th, 2026. Coming to you from the Cariboo, on lands that have been cared for by the Secwépemc, Tŝilhqot'in, and Dakelh peoples since time immemorial. Today's theme is Indigenous Lands & Innovation — I'm Casey.
+
+**RILEY:** And I'm Riley. Today we're looking at what it actually means to build technology infrastructure that serves Indigenous communities on their own terms — from digital archives to data governance to the quiet battle over who controls Indigenous knowledge in the age of AI.
+
+**CASEY:** Quick weather note before we dive in — out at Horsefly Lake it's minus 2 this morning with clear skies, high of 9 expected today with overcast rolling in. Around the region, 100 Mile House is sitting at minus 6 and partly cloudy, Williams Lake at minus 1 with mainly clear skies, and Quesnel at minus 4 under clear skies. Good driving conditions across most of the Cariboo — but layer up this morning. Let's get into the news.
+
+---
+
+**NEWS ROUNDUP**
+
+**RILEY:** Leading today with a story that cuts right to the heart of this theme. A new peer-reviewed paper published in the journal *AI & Society* argues that artificial intelligence systems are actively reproducing colonial extraction patterns — harvesting Indigenous linguistic, biometric, geospatial, and ecological data without consent, compensation, or accountability. The authors propose braiding Indigenous data justice principles with Access and Benefit Sharing mechanisms — the same legal tools used to regulate bioprospecting under biodiversity treaties. Without that kind of binding framework, they argue, AI development is essentially strip-mining Indigenous knowledge at scale.
+
+**CASEY:** And most of that harvesting is happening invisibly — scraped from digitized archives, oral history transcriptions, even open-access research papers that Indigenous communities never agreed to put into training datasets.
+
+**RILEY:** On a more hopeful note — the Nakota communities have secured a real win, reclaiming audio recordings that had been housed at Indiana University for decades. The university is now working with those nations to digitize the recordings and make them available online specifically for language learning. What's notable is the framing: the communities drove the process and defined the terms of access. The recordings return in a form the communities control.
+
+**CASEY:** That's the model — repatriation with community-defined access, not institutional benevolence with a donation receipt attached.
+
+**CASEY:** Right here in BC, there's meaningful movement on the treaty front. The provincial government has introduced legislation to ratify the Kitselas Treaty — a modern treaty between the Kitselas Nation near Terrace and the federal and provincial Crowns. Modern treaties establish clear land, resource, and governance rights, and that legal foundation is what makes durable technology deployment actually meaningful. You can't build lasting data infrastructure without the standing underneath it.
+
+**RILEY:** Worth noting: the Kitselas Treaty has been in negotiation for years. Legislative ratification is significant, but the real test will be implementation funding.
+
+**RILEY:** Charlene Belleau, a leader from the Esk'etemc Nation right here in the Cariboo, has been honoured with a BC reconciliation award. The citation reads "truth, courage, care." Belleau has spent years documenting survivor testimonies and supporting community healing — and that documentation work is itself a form of technology practice. Preserving truth in accessible, durable form is infrastructure.
+
+**CASEY:** That framing — documentation as infrastructure — is one we'll pull on in the deep dive.
+
+**CASEY:** At Toronto Metropolitan University, a team of law and journalism students led by Pulitzer Prize-winning journalist Connie Walker is working to safeguard Residential School survivor testimonies. The project focuses on archival preservation — ensuring testimonies don't deteriorate, get lost in institutional transitions, or become inaccessible to the communities they belong to. The legal component is particularly interesting: students are examining what rights survivors and their descendants actually hold over these records.
+
+**RILEY:** The intersection of legal frameworks and archival technology is exactly where the hard work happens — who holds the key, not just who holds the file.
+
+**RILEY:** Out of the Northwest Territories, a new health privacy report is sounding alarms. Health privacy breaches are occurring at a rate of six or seven per month — significant for a jurisdiction with a small, largely Indigenous population. The report flags that existing protections weren't designed with the specific vulnerabilities of remote and Indigenous communities in mind.
+
+**CASEY:** Six or seven breaches a month in a small population is not a rounding error — that's a structural failure, and it echoes the AI extractivism concern: Indigenous health data is among the highest-sensitivity categories in any governance discussion.
+
+**CASEY:** Professor Krystal Tsosie, a leading figure in Indigenous genomics and bioethics, presented at the American Association for the Advancement of Science this week. Her lecture, titled "The Future of Science Is Indigenous," focuses on how communities can participate in science on their own epistemological terms rather than as subjects of extraction. Her central argument: Indigenous-led science produces better science, not just more equitable science.
+
+**RILEY:** That distinction matters — it's not just about fairness, it's about what gets missed when only one lens is applied.
+
+**RILEY:** Also from the Indigenous tech space — Local Contexts, the initiative behind the Traditional Knowledge Labels and Biocultural Labels system, spoke at an event called DataBackDay. These labels function as a metadata layer that communities attach to digitized cultural materials to specify how they can be used, shared, and accessed. They don't replace legal frameworks, but they give communities a practical tool to assert control over materials already in circulation.
+
+**CASEY:** Think of it as a consent layer that travels with the data — which is precisely the kind of technical solution that addresses the AI extractivism problem Riley opened with.
+
+**CASEY:** A couple of local items to flag — there's a prescribed burn planned at the Horsefly River Spawning Channel east of Williams Lake. Fire managers are using controlled burns to improve riparian habitat, with timing that matters for spring salmon runs. We'll keep an eye on that.
+
+And out of Quesnel, RCMP are responding to reports of gunfire — that's a breaking story as of this morning, details still coming in. Stay tuned to local sources for updates.
+
+**RILEY:** On the connectivity front, briefly — VodafoneThree has received Ofcom approval in the UK to deliver satellite connectivity directly to mobile phones, no ground dish required. For rural communities watching this space, direct-to-device satellite is the model that could eventually close gaps that fixed infrastructure simply won't reach. Still years from broad deployment, but the regulatory pathway is opening.
+
+**CASEY:** Let's take a short break — coming up, a spotlight on an organization doing essential work in Tŝilhqot'in and Ulkatcho communities right here in the Cariboo.
+
+---
+
+**COMMUNITY SPOTLIGHT**
+
+**RILEY:** This week is National Volunteer Week, and we want to highlight an organization that's been quietly doing some of the most important work in this region for over two decades. Denisiqi Services Society provides culturally grounded child and family services to Tŝilhqot'in and Ulkatcho communities — and "culturally grounded" here isn't a buzzword. It means services designed and delivered within the frameworks of those communities, not imported from outside. If you want to learn more or find out how to get involved, head to denisiqi.org.
+
+**CASEY:** Denisiqi is exactly the kind of community-rooted organization that makes everything else possible — when families are supported, communities can focus on everything from language revitalization to land stewardship. Which, as it happens, is right where we're headed next.
+
+---
+
+**DEEP DIVE: CARIBOO CONNECTIONS — Indigenous Lands & Innovation**
+
+**CASEY:** So here's the question I want to work through today — one we haven't quite landed on in previous episodes. We've talked about data sovereignty, governance sequencing, knowledge braiding. But I want to ask something more specific: when an Indigenous community builds or commissions a digital archive, what actually needs to be true for that archive to still be functioning, still be trusted, and still be serving its community twenty years from now?
+
+**RILEY:** That's the right question, and the reason I think it's the right one is that we have real examples to examine now. The Nakota language recordings repatriation from Indiana University — which we covered in the roundup — gives us a concrete case. But you're right that longevity is the test most projects don't get graded on until it's too late.
+
+**CASEY:** Let me start with what I think is the underappreciated problem. Archives are infrastructure — not metaphorically, literally. A digital archive requires servers or cloud storage contracts, ongoing software maintenance, format migration as file standards evolve, staff who know how to administer the system, and community members who trust it enough to actually contribute. The TMU residential school testimony project is a great example of good intentions meeting hard infrastructure reality. Digitizing those testimonies is the easy part. Keeping them accessible, in formats that work, under terms the communities have defined, for the next fifty years — that's the challenge.
+
+**RILEY:** And format migration is something most people genuinely don't think about. Audio files recorded in the 1960s and 70s — like some of the Nakota recordings — were on magnetic tape. Those tapes deteriorate. The digital formats they're converted to today will be partially obsolete in fifteen years. If you archive something in a proprietary format, you're creating a future dependency on whatever company owns that format. Open formats, open standards — that's not just a technical preference, it's a sovereignty question.
+
+**CASEY:** Okay, that's a sharp point — format lock-in as a form of dependency. I hadn't framed it quite that way before. But here's what I want to push on: who in a community of, say, a few hundred people in a remote part of the Cariboo has the technical knowledge to manage format migration cycles? The Tŝilhqot'in have built sophisticated land use planning infrastructure — but that required legal staff, GIS technicians, sustained institutional support. You can't hand a community a digital archive platform and say "good luck, maintain this."
+
+**RILEY:** No, and the stronger models don't ask communities to go it alone. The idea behind shared Indigenous-built platforms — like what Animikii has developed — is that multiple communities use the same underlying infrastructure, which means the maintenance burden is distributed across a network rather than sitting entirely on one small nation's IT person. Think co-operative rather than franchise.
+
+**CASEY:** I want to give that model genuine credit, because the co-operative framing is different from the "we built you a portal, good luck" pattern. But let me name the failure mode anyway. Even if the maintenance burden is shared, the governance of that shared platform is a real question. If a single Indigenous-led technology organization is the entity maintaining the infrastructure, then communities are still dependent on that organization's funding, priorities, and continued existence. That's better than depending on a government department or a university archive — but it's still a dependency.
+
+**RILEY:** That's fair, and it's actually an argument for why communities should be active participants in platform governance, not just users. The distinction between being a customer and being a co-owner is the whole ballgame. If Secwépemc or Dakelh communities in this region were using a shared archive platform, they should have real representation in decisions about what gets built, what changes, and what the succession plan looks like if the lead organization ever hits trouble.
+
+**CASEY:** And succession planning for a digital archive is something almost nobody builds in at the start. What happens to the Nakota language recordings if the hosting institution's digital library budget gets cut in ten years? What's the protocol? Where does the backup live? Who holds the access credentials? These aren't hypothetical — institutional digital library projects have failed before, and materials sometimes just disappear into storage limbo.
+
+**RILEY:** Which is exactly why the repatriation model matters so much. You're not just getting a copy of the recordings — you're getting primary custody. The community holds the original. An institution might have a backup. Not the other way around. That inversion is what makes it repatriation rather than just digitization.
+
+**CASEY:** Here's where I want to bring in the AI extractivism angle, because it connects directly. The paper in *AI & Society* argues that AI systems are harvesting Indigenous data without consent. But there's a subtler version of that problem that I think is more dangerous in the short term. When a community puts materials into even a well-intentioned archive — language recordings, oral histories, ecological knowledge — and that archive is connected to the internet, those materials become technically scrapeable. Training data crawlers don't distinguish between a colonial database and an Indigenous-controlled one. If the Nakota language recordings go online for community language learning, what stops an AI company from pulling them into a training dataset?
+
+**RILEY:** This is exactly where the Local Contexts Traditional Knowledge Labels become technically significant rather than just symbolically meaningful. The TK Labels are machine-readable metadata — they can specify that a recording is for community use only, or that it requires permission from a specific knowledge holder before any derivative use. In principle, an AI company that respects those labels — or is legally required to — would exclude that material from training runs. The Access and Benefit Sharing framework the *AI & Society* paper proposes would give those labels actual legal teeth.
+
+**CASEY:** "In principle" is doing a lot of work in that sentence. Because the current state of AI training data governance is essentially: companies scrape what they can, disclaim liability, and wait to be sued. The communities most exposed — remote, under-resourced, not positioned to run expensive IP litigation — are also the ones with the least protection. Even if TK Labels become a recognized standard in research ethics contexts, enforcement against a large commercial AI developer is a different matter entirely.
+
+**RILEY:** That's a real constraint, and I won't pretend otherwise. But I'd push back on the implied conclusion that community action is therefore futile. The ABS framework the paper proposes would function similarly to how biodiversity treaties regulate bioprospecting — creating prior informed consent requirements and benefit-sharing obligations at the point of data collection, not just at the point of product release. That shifts the burden earlier in the pipeline, which is where it needs to be.
+
+**CASEY:** I want to sit with that comparison for a second, because the biodiversity treaty analogy is genuinely instructive — but also cautionary. Those treaties took decades to negotiate, have significant enforcement gaps, and biopiracy cases still happen regularly. If the AI governance timeline runs similarly, we're talking about protection frameworks that arrive well after a substantial portion of the extraction has already occurred.
+
+**RILEY:** Which argues for parallel tracks. Legal and policy frameworks take time — so communities can't wait for those to mature before taking technical steps. TK Labels now, community data governance policies now, careful decisions about what goes online and under what terms now. The legal architecture catches up; communities don't have to be unprotected in the meantime.
+
+**CASEY:** That's actually a reasonable synthesis. Though I'd add that "careful decisions about what goes online" can tip into paralysis if communities feel the risk is total. There's a genuine tension between protecting materials and using them — language recordings that stay locked away don't support language revitalization. An archive that nobody can access doesn't serve the living community.
+
+**RILEY:** And that tension is real and not resolvable by getting the technology right. It's a governance question — who in the community has the authority to decide what level of access serves the community best? The Esk'etemc work under Charlene Belleau is interesting precisely because it's built that governance layer first. Years spent establishing protocols for what can be documented, who owns it, and what purposes it can serve — that work is the foundation that makes any future technology decision trustworthy.
+
+**CASEY:** Here's something I keep coming back to. There's a profound asymmetry between what takes years to build — trust, protocols, legal standing, community consensus about what materials can even be archived — and what takes seconds to extract. A language recording that required three years of relationship-building to capture can be scraped in moments. That temporal gap between building and taking is itself a structural problem that no single technical solution fully closes.
+
+**RILEY:** That's an uncomfortable framing, and I think it's right. It also argues for a different kind of urgency than I usually bring to technology adoption conversations. Normally I'm saying "communities risk being left behind if they don't move quickly." Here the risk runs the other direction — move too fast, put materials online before the governance layer is solid, and you've created a vulnerability rather than an asset. This domain inverts the usual calculus.
+
+**CASEY:** That's actually a shift for you, and I think it's the honest one here. So let me make this concrete for communities in this region. If a Dakelh community in the Cariboo were considering a digital archive of oral histories right now, what would you say needs to be in place before they open any kind of external access?
+
+**RILEY:** Three things, in order. First: a community data governance policy — not a terms of service document, but an internally developed, community-approved framework that specifies what data belongs to whom, who makes decisions about it, and under what circumstances external access is permitted. The First Nations Information Governance Centre has existing frameworks communities can adapt rather than build from zero.
+
+Second: a technical layer with TK Labels or equivalent machine-readable metadata on every item. Local Contexts offers these at no cost, and they're increasingly recognized in research ethics review processes.
+
+Third — and this is the one that consistently gets skipped — a written succession and maintenance plan before anything goes live. Who maintains this in year five? What's the format migration protocol? What happens if the lead administrator leaves or the funding model changes?
+
+**CASEY:** I'd add a fourth: a genuine relationship, not just a contract, with whatever technical partner is involved. The reason Indigenous-led technology organizations have credibility in this space is accountability — they've been building this specific kind of infrastructure for years and have real community relationships on the line. That's meaningfully different from hiring a general web development firm to build a portal. The partner matters as much as the platform.
+
+**RILEY:** And there's something worth floating as a longer-term idea — a regional technical consortium. Secwépemc, Tŝilhqot'in, and Dakelh nations have different languages, different protocols, different needs. But they also share overlapping interests in sustainable, sovereign digital infrastructure. A shared technical working group that maintains individual community control over their own archives while distributing the maintenance burden could be worth exploring. The Tŝilhqot'in National Government already coordinates across multiple bands on land use decisions — there's precedent for that kind of governance architecture.
+
+**CASEY:** That's the kind of idea worth putting on the table rather than in a report. Not as an external recommendation — but as a question to regional Indigenous governments: is there appetite for that kind of technical cooperation? What would governance look like? Who would facilitate it, and on whose terms?
+
+**RILEY:** And I'd say that question is actually more actionable than most of the tech policy conversations we cover, because the relevant relationships already exist in this region.
+
+**CASEY:** Here's where I want to land. Digital archives aren't just a technology question or even a data sovereignty question — they're a question about intergenerational responsibility. The phrase from today's roundup that keeps returning to me is: "records have a spirit and need to be treated with respect." That's not a metaphor for filing systems. It's a governance principle. The archive isn't just storage — it's a relationship between the community and its past, and between the community and future members who will inherit it.
+
+**RILEY:** And technology can serve that relationship well or badly depending entirely on how it's deployed. The TK Labels, the ABS frameworks in that *AI & Society* paper, the shared platform models — these are tools that serve the relationship when communities control them. They become extraction engines when communities don't.
+
+**CASEY:** Which means the most important question isn't "what platform should we use" — it's "what decisions do we need to make before we choose any platform at all."
+
+**RILEY:** And then, once those decisions are made — move. Because the knowledge holders who carry this material in living memory won't be here indefinitely, and a digital archive built in five years preserves less than one built now.
+
+**CASEY:** That tension — between moving carefully and moving before the window closes — is probably the hardest thing about this work. There's no clean resolution to it. But communities should know that the tools exist, the models exist, and they don't have to start from zero. People have done this work, made the mistakes, and built something worth learning from.
+
+**RILEY:** If you're working in this space — or want to be — organizations like Animikii, the First Nations Information Governance Centre, and Local Contexts all have publicly available resources. And the Esk'etemc Nation's documentation work under Charlene Belleau is a model worth studying for anyone in the Cariboo region thinking seriously about this.
+
+**CASEY:** We'd love to hear from you — especially if you're working on something like this in our region. Send us a note at feedback at cariboo signals dot c-a. Thanks for listening, and have a good Thursday.
