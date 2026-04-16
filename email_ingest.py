@@ -350,7 +350,20 @@ def _build_gmail_service():
         token_uri=TOKEN_URI,
         scopes=GMAIL_SCOPES,
     )
-    creds.refresh(Request())
+    try:
+        creds.refresh(Request())
+    except Exception as e:
+        error_str = str(e)
+        if "invalid_grant" in error_str or "Token has been expired or revoked" in error_str:
+            print(
+                "❌ Gmail refresh token has expired or been revoked.\n"
+                "   Re-run 'python email_ingest.py --auth' locally to obtain a new refresh token,\n"
+                "   then update the GMAIL_REFRESH_TOKEN repository secret.",
+                file=sys.stderr,
+            )
+        else:
+            print(f"❌ Failed to refresh Gmail credentials: {e}", file=sys.stderr)
+        sys.exit(1)
     return build("gmail", "v1", credentials=creds, cache_discovery=False)
 
 
