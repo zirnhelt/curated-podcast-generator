@@ -1,44 +1,4 @@
 {
-  "2026-03-26": {
-    "timestamp": 1774531045.084223,
-    "topics": [
-      "[CNET] I Review Routers for a Living. Don\u2019t Buy a Router Rig",
-      "[The Tyee] Just 14 Species Have \u2018Genuinely\u2019 Improved on BC\u2019s",
-      "[The Tyee] Why Humans Still Burn Logs for Power",
-      "[The Tyee] Tumbler Ridge Shows We Can\u2019t Take Rural Medicine ",
-      "[Williams Lake Tribune] Williams Lake council drops controve",
-      "[IndigiNews] \u2018Carney is at a crossroads\u2019 with First Nations,",
-      "[The Narwhal] Watch: how First Nations are leading the clean",
-      "[Williams Lake Tribune] Negotiations over proposed South Oka"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-03-26"
-  },
-  "2026-03-27": {
-    "timestamp": 1774608950.755105,
-    "topics": [
-      "[Williams Lake Tribune] Kelowna drone operator fined $5K for",
-      "[Williams Lake Tribune] Revelstoke entrepreneur stringing ne",
-      "[The Narwhal] Decades in the making: Mi\u2019kmaq and Parks Canad",
-      "[Williams Lake Tribune] Okanagan Lake Resort insurer dispute",
-      "[The Tyee] Alberta First Nations and Farmers Want Review of ",
-      "[Williams Lake Tribune] Three dead, one injured after avalan",
-      "[Williams Lake Tribune] BC Wildfire Service to conduct presc",
-      "[Williams Lake Tribune] 1 dead following avalanche near B.C."
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-03-27"
-  },
   "2026-03-28": {
     "timestamp": 1774694332.997028,
     "topics": [
@@ -436,5 +396,25 @@
       "connectivity"
     ],
     "date": "2026-04-16"
+  },
+  "2026-04-17": {
+    "timestamp": 1776425600.524532,
+    "topics": [
+      "[100 Mile Free Press] Springs events ramping up in Lac La Ha",
+      "[Nautilus] Was the Grand Canyon Born from an Ancient Lake Sp",
+      "[BC Gov News] Strengthening emergency support for evacuees",
+      "[Gizmodo] The Cockroach of Dinosaurs Likely Survived Extinct",
+      "[The Tyee] How Companies Hijack AI Chatbots",
+      "[The Tyee] Can Nature Help Solve the Flood Threat Humans Cre",
+      "[BC Gov News] Encouraging people to prepare for seasonal haz",
+      "[Kottke.org] Researchers have found that  some aspects of sp"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-04-17"
   }
 }

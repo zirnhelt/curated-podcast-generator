@@ -1106,5 +1106,37 @@
       "Temporal asymmetry between knowledge preservation and data extraction",
       "Regional Indigenous consortium potential for shared technical capacity in the Cariboo"
     ]
+  },
+  "2026-04-17": {
+    "timestamp": 1776425602.165115,
+    "date": "2026-04-17",
+    "theme": "Wild Spaces & Outdoor Life",
+    "central_question": "How can technology actually protect communities during acute emergencies (floods, fires) when the gap between notification systems and genuine preparedness is fundamentally social and structural, not technical?",
+    "riley_position": "Technology serves emergency preparedness best when built by and for communities themselves, integrated with local knowledge, and designed to work offline; the real innovation is encoding community social networks digitally rather than imposing vendor platforms from outside.",
+    "riley_key_evidence": [
+      "Indigenous Nations building their own emergency management systems that map who needs transportation, who has medical equipment requiring power, and who speaks which language before evacuation orders come",
+      "Community-maintained spatial data in rural areas using local knowledge (e.g., 'the old Hendricks place' at specific GPS coordinates) to solve address database problems",
+      "LiDAR mapping and remote sensing can now model floodplain behaviour at high resolution, allowing planners to identify where natural restoration would have highest flood-mitigation impact"
+    ],
+    "casey_position": "Technology cannot solve structural problems\u2014it merely relocates them; capacity constraints (part-time coordinators), property rights tangles around floodplain restoration, and data infrastructure maintenance are human and political problems that require sustained institutional commitment.",
+    "casey_key_evidence": [
+      "AlertBC's technical infrastructure (geofenced alerts, multilingual options) fails in implementation: rural communities with patchy cell coverage miss alerts, elderly non-smartphone users don't receive them, and Nation communities received English-only alerts with boundaries mismatched to where people actually lived",
+      "Location-sharing tools require a charged phone, coverage, and knowledge to use\u2014assumptions that fail during a 2 a.m. wildfire evacuation",
+      "Beaver activity in restored wetlands meaningfully reduces peak flood flows, but giving water back its room requires resolving land use, property rights, and fair compensation for ranchers whose bottom pastures are where the river wants to be"
+    ],
+    "resolution": "Riley and Casey reached substantial agreement: they both endorsed Indigenous governance as enabling long-term ecological stewardship across election cycles, both emphasized that technology informs decisions without making them, and both concluded that the most genuinely interesting work is communities building data infrastructure to know their own land deeply\u2014which is a community story that technology is part of, not the story itself.",
+    "topics_covered": [
+      "Gaps between notification systems (AlertBC) and genuine community preparedness in the acute emergency moment",
+      "How community-built emergency management systems outperform vendor-imposed platforms in rural and Indigenous contexts",
+      "Nature-based flood solutions (wetland restoration, floodplain reconnection) enabled by LiDAR and remote sensing technology, and their political economy implications",
+      "Indigenous territorial governance as enabling long-term ecological planning and data stewardship across generations",
+      "Data sovereignty and institutional continuity in environmental monitoring and emergency management"
+    ],
+    "calls_to_action": [
+      "Ask your local Nation's emergency management coordinator and municipal or regional district counterpart one diagnostic question: do our alert systems talk to each other? In many cases they don't, and this is a solvable technical and governance problem that costs almost nothing to identify.",
+      "A community could build a community-held emergency management platform on open-source infrastructure with local or sovereignty-protected hosting, mapping who needs what, integrating with AlertBC, and including a genuine offline mode\u2014maintained by someone the community actually pays year-round.",
+      "Deploy mesh radio networks in highest-risk communities and pre-position satellite communicators at community gathering points, designed for offline operation during smoke and cell tower outages.",
+      "Run a seasonal community drill designed with the community that tests emergency systems under realistic conditions, not a top-down tabletop exercise."
+    ]
   }
 }
