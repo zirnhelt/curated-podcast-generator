@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] Why strong authentication beyond the browser wil",
       "[TechRadar] 'Nuclear energy is the essential backbone for th",
       "[Hackaday] Training a Transformer with 1970s-era Technology",
       "[TechRadar] 'Weekend work increased more than 40%': How AI i",
@@ -10,7 +9,8 @@
       "[Business Insider] I quit tech, bought 22 acres, and didn't ",
       "[XDA Developers] The Linux kernel now allows AI-written code",
       "[Business Insider] An AI built a boutique with $100,000, the",
-      "Preventing AI extractivism: the case for braiding indigenous"
+      "Preventing AI extractivism: the case for braiding indigenous",
+      "[The Tyee] How Companies Hijack AI Chatbots"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -45,11 +45,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-14",
-        "clue": "tech-optimism:- \u2014 Acknowledged bond calculation failures, Mount Polley precedent undermines confidence",
-        "occurrences": 2
-      },
-      {
         "date": "2026-04-12",
         "clue": "community-trust:+ \u2014 Shifted emphasis from partnership language to 'coaxing' as epistemic humility",
         "occurrences": 2
@@ -68,11 +63,6 @@
         "date": "2026-04-09",
         "clue": "Indigenous-tech:~ \u2014 Conceded climate stress-tests both knowledge systems equally",
         "occurrences": 1
-      },
-      {
-        "date": "2026-04-14",
-        "clue": "Indigenous-tech:+ \u2014 Elevated Indigenous co-governance as genuine game-changer, not just consultation",
-        "occurrences": 2
       },
       {
         "date": "2026-04-13",
@@ -114,6 +104,16 @@
       {
         "formed": "2026-04-10",
         "signal": "tech-optimism:x \u2014 Conceded maintenance burden reality, not just spec sheet",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-04-17",
+        "signal": "tech-optimism:- \u2014 Shifted from tech-as-solution to tech-as-informant",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-04-17",
+        "signal": "Indigenous-tech:+ \u2014 Deepened commitment to sovereignty-first data models",
         "occurrences": 3
       }
     ]
@@ -204,14 +204,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-15",
-        "clue": "structural-lens:+ \u2014 Explicitly named systems-interdependence (institutions, not just platforms matter)",
+        "date": "2026-04-17",
+        "clue": "pilot-skepticism:x \u2014 Conceded Indigenous governance temporal horizon genuinely differs",
         "occurrences": 2
-      },
-      {
-        "date": "2026-04-14",
-        "clue": "pilot-skepticism:x \u2014 Credited community monitoring boards as 'meaningful shift' despite broader skepticism",
-        "occurrences": 1
       },
       {
         "date": "2026-04-15",
@@ -238,6 +233,11 @@
       {
         "formed": "2026-04-12",
         "signal": "pilot-skepticism:x \u2014 Conceded that waiting for perfection guarantees nothing gets built",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-04-17",
+        "signal": "structural-lens:+ \u2014 Elevated institutional continuity as underrated advantage",
         "occurrences": 3
       }
     ]
