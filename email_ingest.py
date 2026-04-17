@@ -358,7 +358,19 @@ def _build_gmail_service():
             print(
                 "❌ Gmail refresh token has expired or been revoked.\n"
                 "   Re-run 'python email_ingest.py --auth' locally to obtain a new refresh token,\n"
-                "   then update the GMAIL_REFRESH_TOKEN repository secret.",
+                "   then update the GMAIL_REFRESH_TOKEN repository secret.\n"
+                "   Note: if your Google Cloud app is in 'Testing' mode, refresh tokens expire\n"
+                "   after 7 days — publish the app or add yourself as a test user to avoid this.",
+                file=sys.stderr,
+            )
+        elif "invalid_client" in error_str:
+            print(
+                "❌ Invalid OAuth client credentials.\n"
+                "   GMAIL_CLIENT_ID or GMAIL_CLIENT_SECRET do not match the Google Cloud project\n"
+                "   that issued GMAIL_REFRESH_TOKEN.  Re-generate all three secrets together:\n"
+                "   1. Download fresh client_secret.json from Google Cloud Console.\n"
+                "   2. Re-run 'python email_ingest.py --auth' to get a matching refresh token.\n"
+                "   3. Update GMAIL_CLIENT_ID, GMAIL_CLIENT_SECRET, and GMAIL_REFRESH_TOKEN.",
                 file=sys.stderr,
             )
         else:
@@ -402,7 +414,20 @@ def run_auth_flow() -> None:
         }
     }
     flow = InstalledAppFlow.from_client_config(client_config, GMAIL_SCOPES)
-    creds = flow.run_local_server(port=0)
+    # access_type="offline" ensures a refresh token is returned.
+    # prompt="consent" forces Google to issue a brand-new refresh token even if
+    # the user previously authorized this app — necessary when re-generating an
+    # expired or revoked token.
+    creds = flow.run_local_server(port=0, access_type="offline", prompt="consent")
+    if not creds.refresh_token:
+        print(
+            "❌ No refresh token returned by Google.\n"
+            "   This can happen if you previously authorized this app and Google\n"
+            "   reused the old session.  Revoke access in your Google Account\n"
+            "   (myaccount.google.com → Security → Third-party apps) then re-run.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
     print("\n✅ Authorization successful!")
     print(f"\nGMAIL_REFRESH_TOKEN={creds.refresh_token}")
     print("\nStore this value as a GitHub Secret named GMAIL_REFRESH_TOKEN.")
@@ -442,7 +467,7 @@ def ingest(dry_run: bool = False) -> int:
     sender_blocklist = _load_email_sender_blocklist()
     subject_blocklist = _load_subject_blocklist()
 
-    print(f"📧 Connecting to Gmail API (label: {label!r})...")
+    print(f"📧 Connecting to Gmail API (label: {label!r})...", flush=True)
     service = _build_gmail_service()
 
     queue = _load_queue()
