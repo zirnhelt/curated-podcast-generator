@@ -1138,5 +1138,31 @@
       "Deploy mesh radio networks in highest-risk communities and pre-position satellite communicators at community gathering points, designed for offline operation during smoke and cell tower outages.",
       "Run a seasonal community drill designed with the community that tests emergency systems under realistic conditions, not a top-down tabletop exercise."
     ]
+  },
+  "2026-04-18": {
+    "timestamp": 1776509301.166876,
+    "date": "2026-04-18",
+    "theme": "Cariboo Voices & Local News",
+    "central_question": "How do small rural communities like those in the Cariboo actually make public decisions, and are the formal mechanisms available to them functioning effectively?",
+    "riley_position": "The technological and procedural tools for better local democracy exist and are workable in small communities; the real constraint is not technology but the political will and sustained commitment to implement and use these tools effectively.",
+    "riley_key_evidence": [
+      "AI-assisted meeting transcription and civic tech platforms like OpenMuni have been successfully piloted in smaller Canadian municipalities with good technical results",
+      "Participatory budgeting models have shown positive engagement results in smaller municipalities, particularly reaching people who don't typically attend council meetings",
+      "Community organizations can implement participatory processes at smaller scales (like the Williams Lake Community Foundation) without waiting for full municipal adoption"
+    ],
+    "casey_position": "Small municipalities lack the institutional capacity and sustained staff resources to effectively implement transparency tools or participatory processes, making capacity the true bottleneck rather than a solvable technology problem.",
+    "casey_key_evidence": [
+      "Smaller councils typically don't formalize decision reasoning in written records the way larger municipalities do, creating a transparency gap rooted in institutional capacity",
+      "Participatory budgeting pilots often stall when initial champions move on, requiring dedicated staffing and political commitment that small communities struggle to sustain",
+      "Rural communities have less civic engagement infrastructure (journalists, advocacy groups, engaged residents with spare time) to actually use and act on transparent records"
+    ],
+    "resolution": "Riley and Casey converge on the diagnosis that capacity is the real constraint, but disagree on the solution's locus: Riley argues technology can reduce labor burden and communities should try smaller experiments, while Casey emphasizes that sustained provincial infrastructure investment\u2014not one-time grants\u2014is necessary for genuine change.",
+    "topics_covered": [
+      "Williams Lake cannabis licensing decision as a case study in local democratic procedure versus substance",
+      "Canada Post service changes as an example of decisions made remotely without meaningful local input",
+      "Civic technology tools (meeting transcription, decision dashboards, participatory budgeting) and their applicability to small municipalities",
+      "The gap between consultation and genuine decision-making power in rural governance",
+      "Indigenous governance models (T\u015dilhqot'in Nation) as contrasts to current non-Indigenous local democratic processes"
+    ]
   }
 }

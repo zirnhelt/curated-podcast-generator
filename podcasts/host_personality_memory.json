@@ -45,11 +45,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-12",
-        "clue": "community-trust:+ \u2014 Shifted emphasis from partnership language to 'coaxing' as epistemic humility",
-        "occurrences": 2
-      },
-      {
         "date": "2026-04-07",
         "clue": "structural-lens:x \u2014 Conceded political/institutional standing matters more than data systems alone",
         "occurrences": 1
@@ -75,9 +70,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-04-12",
-        "clue": "tech-optimism:~ \u2014 Acknowledged drone sensing requires trained technician, not just price reduction",
-        "occurrences": 1
+        "date": "2026-04-18",
+        "clue": "tech-optimism:~ \u2014 Conceded that technology alone doesn't guarantee use without civic capacity",
+        "occurrences": 2
       },
       {
         "date": "2026-04-16",
@@ -114,6 +109,11 @@
       {
         "formed": "2026-04-17",
         "signal": "Indigenous-tech:+ \u2014 Deepened commitment to sovereignty-first data models",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-04-18",
+        "signal": "community-trust:+ \u2014 Emphasized participatory budgeting as trust-building through visible input-to-outcome connection",
         "occurrences": 3
       }
     ]
@@ -174,11 +174,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-04-06",
-        "clue": "structural-lens:x \u2014 Conceded that current algorithm-driven gatekeeping systematically hostile to place-based storytelling",
-        "occurrences": 2
-      },
-      {
         "date": "2026-04-05",
         "clue": "community-trust:~ \u2014 Shifted from individual caution to collective bargaining as solution",
         "occurrences": 1
@@ -209,9 +204,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-04-15",
-        "clue": "pilot-skepticism:+ \u2014 Hardened concern about sustainability across three separate exchanges",
-        "occurrences": 1
+        "date": "2026-04-18",
+        "clue": "pilot-skepticism:+ \u2014 Repeatedly returned to sustainability problem; grants that vanish leave cautionary tales",
+        "occurrences": 2
       },
       {
         "date": "2026-04-16",
@@ -238,6 +233,11 @@
       {
         "formed": "2026-04-17",
         "signal": "structural-lens:+ \u2014 Elevated institutional continuity as underrated advantage",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-04-18",
+        "signal": "structural-lens:x \u2014 Granted that lower documentation barriers matter even if ceiling unchanged",
         "occurrences": 3
       }
     ]
