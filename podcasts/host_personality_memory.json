@@ -70,11 +70,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-04-18",
-        "clue": "tech-optimism:~ \u2014 Conceded that technology alone doesn't guarantee use without civic capacity",
-        "occurrences": 2
-      },
-      {
         "date": "2026-04-16",
         "clue": "tech-optimism: - \u2014 Conceded enforcement gaps in ABS frameworks, timeline risks.",
         "occurrences": 1
@@ -82,6 +77,11 @@
       {
         "date": "2026-04-16",
         "clue": "structural-lens: x \u2014 Accepted Casey's point about temporal asymmetry between building and extraction.",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-04-19",
+        "clue": "community-trust:+ \u2014 Deepened emphasis on problem-definition authority over knowledge extraction",
         "occurrences": 1
       }
     ],
@@ -169,11 +169,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-08",
-        "clue": "evidence-bar:~ \u2014 Acknowledged monitoring data alone insufficient without operational triggers/teeth",
-        "occurrences": 2
-      },
-      {
         "date": "2026-04-05",
         "clue": "community-trust:~ \u2014 Shifted from individual caution to collective bargaining as solution",
         "occurrences": 1
@@ -197,11 +192,6 @@
         "date": "2026-04-13",
         "clue": "funding-risk:x \u2014 conceded distinction between deliverables and skill-building but noted difficulty",
         "occurrences": 1
-      },
-      {
-        "date": "2026-04-17",
-        "clue": "pilot-skepticism:x \u2014 Conceded Indigenous governance temporal horizon genuinely differs",
-        "occurrences": 2
       },
       {
         "date": "2026-04-18",
@@ -238,6 +228,11 @@
       {
         "formed": "2026-04-18",
         "signal": "structural-lens:x \u2014 Granted that lower documentation barriers matter even if ceiling unchanged",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-04-19",
+        "signal": "evidence-bar:~ \u2014 Added nuance that scientific literacy means holding findings lightly",
         "occurrences": 3
       }
     ]

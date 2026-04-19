@@ -1,24 +1,4 @@
 {
-  "2026-03-29": {
-    "timestamp": 1774780770.16235,
-    "topics": [
-      "[TechRadar] Why strong authentication beyond the browser wil",
-      "[How-To Geek] This is the fastest and cheapest way to build ",
-      "[TechRadar] 'Nuclear energy is the essential backbone for th",
-      "[How-To Geek] Creating a DIY homelab: Fast, free, and beginn",
-      "[How-To Geek] 7 household repairs that are cheaper and easie",
-      "[New Atlas] Off-grid tiny house is well-suited to full-time ",
-      "[XDA Developers] This MCP Server turned my NAS into a self-h",
-      "[Hackaday] Watch Electricity Slosh: Visualizing Impedance Ma"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "connectivity"
-    ],
-    "date": "2026-03-29"
-  },
   "2026-03-30": {
     "timestamp": 1774868856.785085,
     "topics": [
@@ -416,5 +396,25 @@
       "Indigenous tech"
     ],
     "date": "2026-04-18"
+  },
+  "2026-04-19": {
+    "timestamp": 1776595523.666335,
+    "topics": [
+      "[ScienceAlert] Tiny Microbes Hiding in Soil May Help Pull Ra",
+      "[New Atlas] This all-female fish species reproduces without ",
+      "[Toms Guide] This phone actually has a built-in walkie-talki",
+      "[New Atlas] Now we're cooking with water! Startup offers a h",
+      "[InsideEVs] Do Or Die: How EV Startups Rivian, Lucid, And Sl",
+      "Handheld duster/GetYourGuide.com/Expert photo tip",
+      "Handheld duster/GetYourGuide.com/Expert photo tip",
+      "Handheld duster/GetYourGuide.com/Expert photo tip"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-04-19"
   }
 }
