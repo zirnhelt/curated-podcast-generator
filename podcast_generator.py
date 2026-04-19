@@ -2970,7 +2970,7 @@ def _generate_parallel_azure_audio(segments, base_output_filename):
         print("⚠️  Azure parallel: AZURE_SPEECH_KEY/AZURE_SPEECH_REGION not set — skipping")
         return
 
-    azure_path = str(Path(base_output_filename).with_suffix("")) + "_azure.wav"
+    azure_path = str(Path(base_output_filename).with_suffix("")) + "_azure.mp3"
     print(f"🔵 Azure parallel: generating comparison audio → {Path(azure_path).name}")
     t0 = time.time()
 
@@ -2991,7 +2991,7 @@ def _generate_parallel_azure_audio(segments, base_output_filename):
                 )
                 combined += section_audio
 
-        combined.export(azure_path, format="wav")
+        combined.export(azure_path, format="mp3")
         elapsed = time.time() - t0
         duration_min = len(combined) / 1000 / 60
         total_chars = sum(
@@ -3705,6 +3705,106 @@ def generate_podcast_rss_feed():
     
     print(f"✅ Generated RSS feed with {len(episodes)} episodes (with citations)")
 
+
+def generate_tts_test_feed():
+    """Generate a temporary TTS A/B test feed from *_azure.mp3 parallel episodes."""
+    azure_files = glob.glob(os.path.join(str(PODCASTS_DIR), "podcast_audio_*_azure.mp3"))
+    if not azure_files:
+        print("ℹ️  No Azure parallel episodes found — skipping tts-test-feed.xml")
+        return
+
+    podcast_config = CONFIG['podcast']
+    audio_base = podcast_config.get("audio_base_url", podcast_config["url"])
+
+    def get_audio_duration(filepath):
+        try:
+            audio = AudioSegment.from_mp3(filepath)
+            total_secs = len(audio) // 1000
+            return f"{total_secs // 60}:{total_secs % 60:02d}"
+        except Exception:
+            return podcast_config["episode_duration"]
+
+    episodes = []
+    for audio_file in sorted(azure_files, reverse=True):
+        audio_basename = os.path.basename(audio_file)
+        match = re.search(r'podcast_audio_(\d{4}-\d{2}-\d{2})_(.+)_azure\.mp3', audio_basename)
+        if not match:
+            continue
+        date_str, theme = match.groups()
+        try:
+            date_obj = datetime.strptime(date_str, "%Y-%m-%d")
+            pub_date = date_obj.strftime("%a, %d %b %Y 05:00:00 PST")
+
+            safe_theme = theme.replace(' ', '_').replace('&', 'and').lower()
+            citations_file = os.path.join(str(PODCASTS_DIR), f"citations_{date_str}_{safe_theme}.json")
+            episode_description = podcast_config["description"]
+            if os.path.exists(citations_file):
+                try:
+                    with open(citations_file, 'r', encoding='utf-8') as f:
+                        citations_data = json.load(f)
+                    if citations_data.get('episode', {}).get('description'):
+                        episode_description = citations_data['episode']['description']
+                except Exception:
+                    pass
+
+            episodes.append({
+                'title': f"{theme.replace('_', ' ').title()} [Azure TTS]",
+                'audio_url_path': f"podcasts/{audio_basename}",
+                'audio_file': audio_file,
+                'pub_date': pub_date,
+                'file_size': os.path.getsize(audio_file),
+                'duration': get_audio_duration(audio_file),
+                'description': episode_description,
+            })
+        except ValueError:
+            continue
+
+    episodes = episodes[:10]
+
+    rss_lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"'
+        ' xmlns:podcast="https://podcastindex.org/namespace/1.0">',
+        '<channel>',
+        f'<title>{saxutils.escape(podcast_config["title"])} \u2013 TTS Preview</title>',
+        f'<link>{podcast_config["url"]}index.html</link>',
+        f'<language>{podcast_config["language"]}</language>',
+        f'<description>Azure Neural TTS A/B test feed \u2013 temporary, this week only.</description>',
+        f'<itunes:author>{podcast_config["author"]}</itunes:author>',
+        '<itunes:owner>',
+        f'<itunes:name>{podcast_config["author"]}</itunes:name>',
+        f'<itunes:email>{podcast_config["email"]}</itunes:email>',
+        '</itunes:owner>',
+        f'<itunes:image href="{podcast_config["url"]}{podcast_config["cover_image"]}"/>',
+        '<itunes:type>episodic</itunes:type>',
+        f'<itunes:explicit>{"true" if podcast_config["explicit"] else "false"}</itunes:explicit>',
+        f'<lastBuildDate>{get_pacific_now().strftime("%a, %d %b %Y %H:%M:%S GMT")}</lastBuildDate>',
+    ]
+
+    for episode in episodes:
+        item_lines = [
+            '<item>',
+            f'<title>{saxutils.escape(episode["title"])}</title>',
+            f'<link>{podcast_config["url"]}index.html</link>',
+            f'<pubDate>{episode["pub_date"]}</pubDate>',
+            f'<description><![CDATA[{episode["description"]}]]></description>',
+            f'<itunes:summary><![CDATA[{episode["description"]}]]></itunes:summary>',
+            f'<enclosure url="{saxutils.escape(audio_base + episode["audio_url_path"], {chr(34): "&quot;"})}" length="{episode["file_size"]}" type="audio/mpeg"/>',
+            f'<guid isPermaLink="false">cariboo-signals-tts-test-{os.path.basename(episode["audio_file"]).replace("podcast_audio_", "").replace("_azure.mp3", "")}</guid>',
+            f'<itunes:duration>{episode["duration"]}</itunes:duration>',
+            f'<itunes:explicit>{"true" if podcast_config["explicit"] else "false"}</itunes:explicit>',
+            '</item>',
+        ]
+        rss_lines.extend(item_lines)
+
+    rss_lines.extend(['</channel>', '</rss>'])
+
+    with open('tts-test-feed.xml', 'w', encoding='utf-8') as f:
+        f.write('\n'.join(rss_lines))
+
+    print(f"✅ Generated TTS test feed with {len(episodes)} Azure episodes → tts-test-feed.xml")
+
+
 def save_script_to_file(script, theme_name):
     """Save the generated script to a file."""
     if not script:
@@ -3826,6 +3926,7 @@ def main():
         print(f"   Audio: {audio_filename}")
         generate_episode_transcript(script_filename, date_key, safe_theme)
         generate_podcast_rss_feed()
+        generate_tts_test_feed()
         _regenerate_index_html()
         sync_site_to_r2()
         return
@@ -4193,6 +4294,7 @@ def main():
 
     # Generate RSS feed, regenerate index.html, and sync everything to R2
     generate_podcast_rss_feed()
+    generate_tts_test_feed()
     _regenerate_index_html()
     sync_site_to_r2()
 
