@@ -53,6 +53,7 @@ jobs:
 
           # Download RSS feed for episode detection
           wget https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml -O podcast-feed.xml || echo "No existing RSS feed"
+          wget https://zirnhelt.github.io/curated-podcast-generator/tts-test-feed.xml -O tts-test-feed.xml || echo "No existing TTS test feed"
 
           echo "Download complete"
         continue-on-error: true
@@ -104,6 +105,7 @@ jobs:
 
           # Add any new episode files that were generated
           git add podcasts/podcast_audio_*.mp3 podcasts/podcast_script_*.txt podcasts/citations_*.json podcast-feed.xml || echo "No new episode files to add"
+          git add tts-test-feed.xml || echo "No TTS test feed to add"
 
           # Only commit if there are changes
           git diff --quiet && git diff --staged --quiet || git commit -m "Daily podcast generation - $(TZ='America/Vancouver' date '+%Y-%m-%d %A')"
@@ -129,6 +131,7 @@ jobs:
           # Copy website files and all cover images referenced by index.html
           cp index.html output/
           cp podcast-feed.xml output/
+          cp tts-test-feed.xml output/ 2>/dev/null || echo "No TTS test feed to copy"
           cp cariboo-signals.png output/
           cp cariboo-saturday.png output/ 2>/dev/null || true
           cp cariboo-sunday.png output/ 2>/dev/null || true
