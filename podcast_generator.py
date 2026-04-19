@@ -30,6 +30,12 @@ from config_loader import (
     get_voice_for_host,
     get_theme_for_day
 )
+from azure_tts import (
+    generate_azure_tts_for_section,
+    AZURE_VOICE_MAP,
+    PRONUNCIATION_DICT as AZURE_PRONUNCIATION_DICT,
+    get_azure_speech_config,
+)
 
 # Import deduplication module
 from dedup_articles import deduplicate_articles, format_evolving_story_context, cluster_and_rescore_corpus
@@ -156,6 +162,10 @@ OUTRO_MUSIC = SCRIPT_DIR / "cariboo-signals-outro.mp3"
 # Audio normalization targets (dBFS)
 TARGET_SPEECH_DBFS = -20.0  # Speech louder and clear
 TARGET_MUSIC_DBFS = -28.0   # Music ducked beneath speech
+
+# Azure TTS feature flags
+USE_AZURE_TTS = bool(os.getenv("AZURE_SPEECH_KEY"))          # full switch to Azure
+USE_AZURE_PARALLEL = bool(os.getenv("AZURE_TTS_PARALLEL"))   # generate both, save _azure.wav for comparison
 
 # ---------------------------------------------------------------------------
 # Jamendo music helpers (weekend closing song)
@@ -2880,17 +2890,22 @@ def parse_script_into_segments(script):
     return segments
 
 def generate_tts_for_segment(text, speaker, output_file):
-    """Generate TTS audio for a text segment."""
+    """Generate TTS audio for a text segment via OpenAI."""
     client = get_openai_client()
     if not client:
         raise ValueError("OPENAI_API_KEY not found")
 
     voice = get_voice_for_host(speaker)
 
+    # Apply shared pronunciation substitutions
+    clean = text
+    for word, alias in AZURE_PRONUNCIATION_DICT.items():
+        clean = clean.replace(word, alias)
+
     response = api_retry(lambda: client.audio.speech.create(
         model="tts-1",
         voice=voice,
-        input=text.replace("Quesnel", "Kweh-nell"),
+        input=clean,
         speed=1.0
     ))
 
@@ -2932,6 +2947,72 @@ def _generate_host_line(context: str, host: str) -> str:
         return ""
 
 
+def _append_comparison_log(entry):
+    """Append a TTS comparison entry to podcasts/tts_comparison_log.json."""
+    log_path = Path("podcasts") / "tts_comparison_log.json"
+    try:
+        existing = json.loads(log_path.read_text()) if log_path.exists() else []
+        existing.append(entry)
+        log_path.write_text(json.dumps(existing, indent=2))
+    except Exception:
+        pass
+
+
+def _generate_parallel_azure_audio(segments, base_output_filename):
+    """Generate an Azure Multi-Talker comparison episode alongside the main OpenAI one.
+
+    Produces speech-only audio (no music) saved as *_azure.wav next to the main MP3.
+    Logs duration, latency, and estimated cost to podcasts/tts_comparison_log.json.
+    """
+    import time
+
+    if not get_azure_speech_config():
+        print("⚠️  Azure parallel: AZURE_SPEECH_KEY/AZURE_SPEECH_REGION not set — skipping")
+        return
+
+    azure_path = str(Path(base_output_filename).with_suffix("")) + "_azure.wav"
+    print(f"🔵 Azure parallel: generating comparison audio → {Path(azure_path).name}")
+    t0 = time.time()
+
+    try:
+        combined = AudioSegment.empty()
+        for section_name in ("welcome", "news", "community_spotlight", "deep_dive"):
+            seg_list = segments.get(section_name, [])
+            if not seg_list:
+                continue
+            total_chars = sum(len(s["text"]) for s in seg_list)
+            print(f"  Azure {section_name}: {len(seg_list)} turns, {total_chars} chars")
+            with tempfile.TemporaryDirectory() as tmpdir:
+                section_wav = os.path.join(tmpdir, f"{section_name}.wav")
+                generate_azure_tts_for_section(seg_list, section_wav)
+                section_audio = normalize_segment(
+                    trim_tts_silence(AudioSegment.from_file(section_wav, format="wav")),
+                    TARGET_SPEECH_DBFS,
+                )
+                combined += section_audio
+
+        combined.export(azure_path, format="wav")
+        elapsed = time.time() - t0
+        duration_min = len(combined) / 1000 / 60
+        total_chars = sum(
+            sum(len(s["text"]) for s in segments.get(sec, []))
+            for sec in ("welcome", "news", "community_spotlight", "deep_dive")
+        )
+        _append_comparison_log({
+            "date": datetime.now().isoformat(),
+            "azure_file": Path(azure_path).name,
+            "openai_file": Path(base_output_filename).name,
+            "azure_duration_min": round(duration_min, 2),
+            "azure_latency_s": round(elapsed, 1),
+            "total_chars": total_chars,
+            "estimated_azure_cost_usd": round(total_chars / 1_000_000 * 22, 4),
+        })
+        print(f"  ✅ Azure parallel done: {duration_min:.1f} min, {elapsed:.1f}s → {Path(azure_path).name}")
+
+    except Exception as exc:
+        print(f"  ⚠️  Azure parallel generation failed: {exc}")
+
+
 def generate_audio_from_script(script, output_filename, theme_name=None, weekend_closing=None):
     """Convert script to audio with music interludes and theme-aware ambient transitions.
 
@@ -2940,8 +3021,12 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
         a host farewell before the song and a track-ID sign-off after it fades out.
     """
     print("📊 Generating audio with music interludes...")
-    
-    if not get_openai_client():
+
+    if USE_AZURE_TTS:
+        if not get_azure_speech_config():
+            print("❌ Azure TTS enabled but AZURE_SPEECH_KEY/AZURE_SPEECH_REGION not set")
+            return None
+    elif not get_openai_client():
         return None
     
     # Check if music files exist
@@ -2988,8 +3073,23 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
             def _render_section(seg_list, label, prefix):
                 """Render a list of parsed segments into combined audio."""
                 nonlocal combined
-                prev_speaker = None
                 print(f"  {label}")
+
+                if USE_AZURE_TTS:
+                    # Azure Multi-Talker: one synthesis call for the entire section
+                    section_wav = os.path.join(tmpdir, f"{prefix}_azure.wav")
+                    total_chars = sum(len(s['text']) for s in seg_list)
+                    print(f"    Azure Multi-Talker: {len(seg_list)} turns, {total_chars} chars")
+                    generate_azure_tts_for_section(seg_list, section_wav)
+                    section_audio = normalize_segment(
+                        trim_tts_silence(AudioSegment.from_file(section_wav, format="wav")),
+                        TARGET_SPEECH_DBFS,
+                    )
+                    combined += section_audio
+                    return
+
+                # OpenAI: per-segment calls with heuristic gap stitching
+                prev_speaker = None
                 for i, segment in enumerate(seg_list):
                     temp_file = os.path.join(tmpdir, f"{prefix}_{i}.mp3")
                     print(f"    {segment['speaker']}: {len(segment['text'])} chars")
@@ -3029,6 +3129,28 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
             # Deep dive section
             chapters.append({"startTime": round(len(combined) / 1000, 1), "title": "Deep Dive"})
             _render_section(segments['deep_dive'], "🔍 Generating deep dive section...", "deep")
+
+            # Spoken credits (brief, before outro)
+            tts_credit = (
+                "Azure Neural TTS, Ava and Andrew"
+                if USE_AZURE_TTS
+                else "OpenAI TTS"
+            )
+            credits_text = (
+                f"Cariboo Signals is produced with Claude by Anthropic for scripting "
+                f"and {tts_credit} for audio synthesis. "
+                f"Music licensed under Creative Commons. Find us at cariboosignals.ca."
+            )
+            try:
+                credits_file = os.path.join(tmpdir, "credits.mp3")
+                generate_tts_for_segment(credits_text, "riley", credits_file)
+                credits_audio = normalize_segment(
+                    trim_tts_silence(AudioSegment.from_mp3(credits_file)), TARGET_SPEECH_DBFS
+                )
+                combined += AudioSegment.silent(duration=600) + credits_audio
+                print("  ✅ Added spoken credits")
+            except Exception as ce:
+                print(f"  ⚠️  Credits segment skipped: {ce}")
 
         # Add outro music — skip on weekends (Jamendo closing song takes its place)
         if weekend_closing is None:
@@ -3081,6 +3203,10 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
         # Export
         combined.export(output_filename, format="mp3")
 
+        # Parallel Azure comparison (week-1 evaluation: generate both, keep OpenAI as main)
+        if USE_AZURE_PARALLEL and not USE_AZURE_TTS:
+            _generate_parallel_azure_audio(segments, output_filename)
+
         # Save chapters JSON
         chapters_data = {"version": "1.2.0", "chapters": chapters}
         chapters_filename = str(Path(output_filename).with_name(
@@ -3108,7 +3234,11 @@ def generate_audio_tts_only(script, output_filename):
     """Fallback: Generate audio without music (TTS only)."""
     print("📊 Generating TTS-only audio...")
 
-    if not get_openai_client():
+    if USE_AZURE_TTS:
+        if not get_azure_speech_config():
+            print("❌ Azure TTS enabled but credentials not set")
+            return None
+    elif not get_openai_client():
         print("❌ OPENAI_API_KEY not found in environment")
         return None
 
@@ -3124,17 +3254,28 @@ def generate_audio_tts_only(script, output_filename):
 
         with tempfile.TemporaryDirectory() as tmpdir:
             combined = AudioSegment.empty()
-            prev_speaker = None
-            for i, segment in enumerate(segments):
-                print(f"  🎤 Generating audio {i+1}/{len(segments)} ({segment['speaker']}: {len(segment['text'])} chars)")
-                temp_file = os.path.join(tmpdir, f"seg_{i:03d}.mp3")
-                generate_tts_for_segment(segment['text'], segment['speaker'], temp_file)
-                speech = trim_tts_silence(AudioSegment.from_mp3(temp_file))
-                gap = segment.get('gap_ms')
-                if gap is None:
-                    gap = heuristic_gap_ms(segment['text'], prev_speaker, segment['speaker'])
-                combined = _append_with_gap(combined, speech, gap)
-                prev_speaker = segment['speaker']
+
+            if USE_AZURE_TTS:
+                # Azure Multi-Talker: one call for the full flat segment list
+                print(f"  🔵 Azure Multi-Talker: {len(segments)} turns")
+                section_wav = os.path.join(tmpdir, "all_azure.wav")
+                generate_azure_tts_for_section(segments, section_wav)
+                combined = normalize_segment(
+                    trim_tts_silence(AudioSegment.from_file(section_wav, format="wav")),
+                    TARGET_SPEECH_DBFS,
+                )
+            else:
+                prev_speaker = None
+                for i, segment in enumerate(segments):
+                    print(f"  🎤 Generating audio {i+1}/{len(segments)} ({segment['speaker']}: {len(segment['text'])} chars)")
+                    temp_file = os.path.join(tmpdir, f"seg_{i:03d}.mp3")
+                    generate_tts_for_segment(segment['text'], segment['speaker'], temp_file)
+                    speech = trim_tts_silence(AudioSegment.from_mp3(temp_file))
+                    gap = segment.get('gap_ms')
+                    if gap is None:
+                        gap = heuristic_gap_ms(segment['text'], prev_speaker, segment['speaker'])
+                    combined = _append_with_gap(combined, speech, gap)
+                    prev_speaker = segment['speaker']
 
         combined.export(output_filename, format="mp3")
 

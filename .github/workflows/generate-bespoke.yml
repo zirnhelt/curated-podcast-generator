@@ -99,6 +99,9 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
+          AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
+          AZURE_TTS_PARALLEL: ${{ secrets.AZURE_TTS_PARALLEL }}
           BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
           PODCAST_BASE_URL: https://podcast.cariboosignals.ca/
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
