@@ -23,6 +23,12 @@ def _install_stubs():
         "empty": staticmethod(lambda *a, **k: None),
     })
 
+    # Azure Speech SDK stub — azure_tts.py imports this at call time (inside functions),
+    # but providing a stub lets any top-level import in test files succeed cleanly.
+    for mod_name in ("azure", "azure.cognitiveservices", "azure.cognitiveservices.speech"):
+        if mod_name not in sys.modules:
+            sys.modules[mod_name] = types.ModuleType(mod_name)
+
 
 # Run at import time so stubs are ready before test modules are collected
 _install_stubs()

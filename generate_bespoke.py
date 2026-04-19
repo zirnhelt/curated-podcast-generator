@@ -63,6 +63,9 @@ POLISH_MODEL = os.getenv("CLAUDE_POLISH_MODEL", "claude-sonnet-4-6")
 TARGET_SPEECH_DBFS = -20.0
 TARGET_MUSIC_DBFS = -28.0
 
+# ── Azure TTS feature flag ─────────────────────────────────────────────────
+USE_AZURE_TTS = bool(os.getenv("AZURE_SPEECH_KEY"))
+
 
 # ── API clients ────────────────────────────────────────────────────────────
 
@@ -82,6 +85,12 @@ def get_openai_client():
             return None
         get_openai_client._client = OpenAI(api_key=api_key)
     return get_openai_client._client
+
+
+def get_azure_client():
+    """Return Azure SpeechConfig, or None if credentials are absent."""
+    from azure_tts import get_azure_speech_config
+    return get_azure_speech_config()
 
 
 # ── Retry helper ───────────────────────────────────────────────────────────
@@ -658,11 +667,15 @@ def generate_tts_segment(text, speaker, output_file, hosts):
     client = get_openai_client()
     if not client:
         raise ValueError("OPENAI_API_KEY not found")
+    from azure_tts import PRONUNCIATION_DICT as _PRON
     voice = hosts[speaker]["voice"]
+    clean = text
+    for word, alias in _PRON.items():
+        clean = clean.replace(word, alias)
     response = api_retry(lambda: client.audio.speech.create(
         model="tts-1",
         voice=voice,
-        input=text.replace("Quesnel", "Kweh-nell"),
+        input=clean,
         speed=1.0,
     ))
     with open(output_file, "wb") as f:
@@ -671,7 +684,11 @@ def generate_tts_segment(text, speaker, output_file, hosts):
 
 def generate_audio(script, output_path, hosts, config):
     """Assemble bespoke audio: [theme] + intro + [chime] + episode + [outro]."""
-    if not get_openai_client():
+    if USE_AZURE_TTS:
+        if not get_azure_client():
+            print("  Azure TTS enabled but AZURE_SPEECH_KEY/AZURE_SPEECH_REGION not set — skipping audio")
+            return None
+    elif not get_openai_client():
         print("  OPENAI_API_KEY not set — skipping audio generation")
         return None
 
@@ -703,32 +720,73 @@ def generate_audio(script, output_path, hosts, config):
                 combined = theme + AudioSegment.silent(duration=500)
                 print(f"  Added intro music: {intro_path.name} ({len(theme)/1000:.1f}s, trimmed to 10s)")
 
-            prev_speaker = None
-            tts_idx = 0
-            for turn in turns:
-                if turn['speaker'] == '__CHIME__':
-                    if use_chime:
-                        chime_raw = AudioSegment.from_mp3(str(interval_path))
-                        chime = normalize_segment(chime_raw[:1450], TARGET_MUSIC_DBFS).fade_out(400)
-                        combined += AudioSegment.silent(duration=300) + chime + AudioSegment.silent(duration=300)
-                        print(f"  Added intermission chime ({len(chime)/1000:.1f}s)")
+            if USE_AZURE_TTS and speech_turns:
+                # Azure Multi-Talker: synthesize all speech turns as one section,
+                # but still honour __CHIME__ sentinels as section breaks.
+                from azure_tts import generate_azure_tts_for_section
+                chime_indices = {i for i, t in enumerate(turns) if t['speaker'] == '__CHIME__'}
+                chunk_start = 0
+                chunk_turns: list[dict] = []
+                azure_idx = 0
+                for idx, turn in enumerate(turns):
+                    if turn['speaker'] == '__CHIME__':
+                        if chunk_turns:
+                            azure_idx += 1
+                            chunk_wav = os.path.join(tmpdir, f"azure_chunk_{azure_idx}.wav")
+                            print(f"  Azure chunk {azure_idx}: {len(chunk_turns)} turns")
+                            generate_azure_tts_for_section(chunk_turns, chunk_wav)
+                            chunk_audio = normalize_segment(
+                                trim_tts_silence(AudioSegment.from_file(chunk_wav, format="wav")),
+                                TARGET_SPEECH_DBFS,
+                            )
+                            combined += chunk_audio
+                            chunk_turns = []
+                        if use_chime:
+                            chime_raw = AudioSegment.from_mp3(str(interval_path))
+                            chime = normalize_segment(chime_raw[:1450], TARGET_MUSIC_DBFS).fade_out(400)
+                            combined += AudioSegment.silent(duration=300) + chime + AudioSegment.silent(duration=300)
+                            print(f"  Added intermission chime ({len(chime)/1000:.1f}s)")
+                        else:
+                            combined += AudioSegment.silent(duration=800)
                     else:
-                        combined += AudioSegment.silent(duration=800)
-                        print("  Intermission chime file not found — inserted silence")
-                    prev_speaker = None
-                    continue
+                        chunk_turns.append(turn)
+                if chunk_turns:
+                    azure_idx += 1
+                    chunk_wav = os.path.join(tmpdir, f"azure_chunk_{azure_idx}.wav")
+                    print(f"  Azure chunk {azure_idx}: {len(chunk_turns)} turns")
+                    generate_azure_tts_for_section(chunk_turns, chunk_wav)
+                    chunk_audio = normalize_segment(
+                        trim_tts_silence(AudioSegment.from_file(chunk_wav, format="wav")),
+                        TARGET_SPEECH_DBFS,
+                    )
+                    combined += chunk_audio
+            else:
+                prev_speaker = None
+                tts_idx = 0
+                for turn in turns:
+                    if turn['speaker'] == '__CHIME__':
+                        if use_chime:
+                            chime_raw = AudioSegment.from_mp3(str(interval_path))
+                            chime = normalize_segment(chime_raw[:1450], TARGET_MUSIC_DBFS).fade_out(400)
+                            combined += AudioSegment.silent(duration=300) + chime + AudioSegment.silent(duration=300)
+                            print(f"  Added intermission chime ({len(chime)/1000:.1f}s)")
+                        else:
+                            combined += AudioSegment.silent(duration=800)
+                            print("  Intermission chime file not found — inserted silence")
+                        prev_speaker = None
+                        continue
 
-                tts_idx += 1
-                print(f"  TTS {tts_idx}/{len(speech_turns)} ({turn['speaker']}: {len(turn['text'])} chars)")
-                temp_file = os.path.join(tmpdir, f"turn_{tts_idx:03d}.mp3")
-                generate_tts_segment(turn['text'], turn['speaker'], temp_file, hosts)
-                speech = normalize_segment(AudioSegment.from_mp3(temp_file), TARGET_SPEECH_DBFS)
-                speech = trim_tts_silence(speech)
-                gap = turn.get('gap_ms')
-                if gap is None:
-                    gap = heuristic_gap_ms(turn['text'], prev_speaker, turn['speaker'])
-                combined = _append_with_gap(combined, speech, gap)
-                prev_speaker = turn['speaker']
+                    tts_idx += 1
+                    print(f"  TTS {tts_idx}/{len(speech_turns)} ({turn['speaker']}: {len(turn['text'])} chars)")
+                    temp_file = os.path.join(tmpdir, f"turn_{tts_idx:03d}.mp3")
+                    generate_tts_segment(turn['text'], turn['speaker'], temp_file, hosts)
+                    speech = normalize_segment(AudioSegment.from_mp3(temp_file), TARGET_SPEECH_DBFS)
+                    speech = trim_tts_silence(speech)
+                    gap = turn.get('gap_ms')
+                    if gap is None:
+                        gap = heuristic_gap_ms(turn['text'], prev_speaker, turn['speaker'])
+                    combined = _append_with_gap(combined, speech, gap)
+                    prev_speaker = turn['speaker']
 
             if use_outro:
                 outro = normalize_segment(AudioSegment.from_mp3(str(outro_path)), TARGET_MUSIC_DBFS)
