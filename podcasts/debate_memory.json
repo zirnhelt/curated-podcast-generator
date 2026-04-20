@@ -1190,5 +1190,31 @@
       "Cariboo rural resilience mechanisms and economic diversity evolution",
       "Community interpretive capacity as prerequisite to ecological governance and decision-making authority"
     ]
+  },
+  "2026-04-20": {
+    "timestamp": 1776684493.18282,
+    "date": "2026-04-20",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "central_question": "How can rural Cariboo communities build lasting digital storytelling capacity that preserves cultural memory while maintaining sovereignty over their own narratives?",
+    "riley_position": "The real opportunity lies not in digitizing existing materials but in building new storytelling capacity through accessible technology and clear governance structures that communities can control themselves.",
+    "riley_key_evidence": [
+      "Mukurtu CMS has sustained community archive projects for 15+ years through granular access controls rather than flashy technology",
+      "Hardware costs for digitization and storage have dropped dramatically, making consumer-grade equipment viable for community organizations",
+      "AI tools can assist with metadata (facial recognition, transcription, tagging) but cannot generate the interpretive meaning that lived experience provides"
+    ],
+    "casey_position": "The critical missing layer is the interpretive work\u2014the contextualization of digital materials\u2014which requires pairing digitization with structured oral history collection and depends on time-sensitive knowledge from elders and community knowledge-keepers.",
+    "casey_key_evidence": [
+      "Digital files without narrative context are not meaningful archives; a folder of 10,000 JPEGs requires someone who lived the experience to provide meaning",
+      "Indigenous-led tech projects are systematically under-resourced compared to venture-funded urban AI tools, creating asymmetry in whose stories get told",
+      "DRIPA delay leaves Indigenous communities in a governance vacuum while physical cultural materials continue to deteriorate"
+    ],
+    "resolution": "Casey and Riley converged on a shared framework: community-scale memory sprints pairing digitization with recorded narration, governed locally without waiting for provincial frameworks, with equal partnership between cultural offices and libraries rather than top-down institutional models.",
+    "topics_covered": [
+      "Digitization infrastructure vs. storytelling capacity building",
+      "Cultural sovereignty and governance in digital archiving",
+      "Interpretive labor and the role of elders in meaning-making",
+      "Technology accessibility for rural communities",
+      "Institutional partnerships and power dynamics in cultural preservation"
+    ]
   }
 }
