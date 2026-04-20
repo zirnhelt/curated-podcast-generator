@@ -2,7 +2,7 @@
 """
 Azure Neural TTS integration with Multi-Talker support.
 
-Provides section-level SSML synthesis via en-US-MultiTalker-Ava-Andrew:DragonHDLatestNeural.
+Provides section-level SSML synthesis via en-US-MultiTalker-Ava-AndrewMultilingual:DragonHDLatestNeural.
 One synthesis call per script section produces coherent prosody across speaker transitions,
 replacing the per-segment OpenAI calls + manual gap stitching.
 
@@ -18,12 +18,12 @@ from pathlib import Path
 
 # Voice names used inside <voice> SSML elements (single-talker names)
 AZURE_VOICE_MAP = {
-    "riley": "en-US-Ava:DragonHDLatestNeural",   # warm, conversational — tech optimist
-    "casey": "en-US-Andrew:DragonHDLatestNeural", # measured, clear — community skeptic
+    "riley": "en-US-Ava:DragonHDLatestNeural",                  # warm, conversational — tech optimist
+    "casey": "en-US-AndrewMultilingual:DragonHDLatestNeural",   # measured, clear — community skeptic
 }
 
 # The multi-speaker engine name set on SpeechConfig
-MULTITALKER_MODEL = "en-US-MultiTalker-Ava-Andrew:DragonHDLatestNeural"
+MULTITALKER_MODEL = "en-US-MultiTalker-Ava-AndrewMultilingual:DragonHDLatestNeural"
 
 # Conservative per-request SSML char limit (Azure caps at ~10 000 chars of SSML)
 SSML_CHAR_LIMIT = 8_000
