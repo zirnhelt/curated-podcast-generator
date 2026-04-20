@@ -17,6 +17,11 @@ on:
           - both
           - openai
           - azure
+      force:
+        description: 'Force regeneration even if today''s episode already exists'
+        required: false
+        default: false
+        type: boolean
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -25,28 +30,50 @@ permissions:
   contents: write
 
 jobs:
+  check-episode:
+    runs-on: ubuntu-latest
+    outputs:
+      episode_exists: ${{ steps.check.outputs.episode_exists }}
+    steps:
+      - name: Check if today's episode already exists
+        id: check
+        run: |
+          TODAY=$(TZ='America/Vancouver' date '+%Y-%m-%d')
+          echo "Checking for episode dated $TODAY in live RSS feed..."
+          FEED=$(curl -sf --max-time 10 \
+            "https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml" || echo "")
+          if echo "$FEED" | grep -q "$TODAY"; then
+            echo "episode_exists=true" >> "$GITHUB_OUTPUT"
+            echo "✅ Episode for $TODAY already exists — skipping generation"
+          else
+            echo "episode_exists=false" >> "$GITHUB_OUTPUT"
+            echo "🆕 No episode for $TODAY found — proceeding with generation"
+          fi
+
   generate-podcast:
     runs-on: ubuntu-latest
-    
+    needs: check-episode
+    if: needs.check-episode.outputs.episode_exists != 'true' || inputs.force == true
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
-      
+
       - name: Set up Python
         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: '3.11'
-      
+
       - name: Install system dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y ffmpeg
-      
+
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements-lock.txt
-      
+
       - name: Download existing files from GitHub Pages
         run: |
           # Download existing episodes and memory files if they exist
@@ -67,7 +94,7 @@ jobs:
 
           echo "Download complete"
         continue-on-error: true
-      
+
       - name: Generate daily podcast
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -84,11 +111,11 @@ jobs:
           echo "Starting daily podcast generation..."
           echo "Current UTC time: $(date -u)"
           echo "Current Pacific time: $(TZ='America/Vancouver' date)"
-          
+
           python podcast_generator.py
-          
+
           echo "Generation complete!"
-      
+
       - name: List generated files
         run: |
           echo "Files in directory:"
@@ -99,7 +126,7 @@ jobs:
 
           echo "Memory files:"
           ls -la podcasts/episode_memory.json podcasts/host_personality_memory.json podcasts/debate_memory.json || echo "No memory files found"
-      
+
       - name: Commit memory and cache files
         run: |
           git config user.name "github-actions[bot]"
@@ -122,7 +149,7 @@ jobs:
           git diff --quiet && git diff --staged --quiet || git commit -m "Daily podcast generation - $(TZ='America/Vancouver' date '+%Y-%m-%d %A')"
           git push
         continue-on-error: true
-      
+
       - name: Copy files to output directory
         run: |
           echo "Preparing files for GitHub Pages deployment..."
@@ -160,7 +187,7 @@ jobs:
           echo "Files ready for deployment:"
           ls -la output/
           ls -la output/podcasts/
-      
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@373f7f263a76c20808c831209c920827a82a2847 # v3
         with:
@@ -169,7 +196,7 @@ jobs:
           publish_branch: gh-pages
           keep_files: true
           commit_message: 'Daily podcast deployment - ${{ github.run_id }}'
-      
+
       - name: Upload artifacts (for debugging)
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
