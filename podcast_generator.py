@@ -3949,6 +3949,20 @@ def main():
         print(f"✅ Today's episode already exists:")
         print(f"   Script: {script_filename}")
         print(f"   Audio: {audio_filename}")
+
+        # If Azure parallel is enabled and the _azure.mp3 is missing, generate it now
+        # from the existing script so re-runs catch up without regenerating everything.
+        if USE_AZURE_PARALLEL and not USE_AZURE_TTS:
+            azure_filename = str(Path(audio_filename).with_suffix("")) + "_azure.mp3"
+            if not os.path.exists(azure_filename):
+                print(f"🔵 Azure parallel file missing — generating from existing script...")
+                with open(script_filename, "r", encoding="utf-8") as fh:
+                    existing_script = fh.read()
+                segments = parse_script_into_segments(existing_script)
+                _generate_parallel_azure_audio(segments, audio_filename)
+            else:
+                print(f"✅ Azure parallel file already exists: {Path(azure_filename).name}")
+
         generate_episode_transcript(script_filename, date_key, safe_theme)
         generate_podcast_rss_feed()
         generate_tts_test_feed()
