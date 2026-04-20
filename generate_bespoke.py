@@ -63,8 +63,9 @@ POLISH_MODEL = os.getenv("CLAUDE_POLISH_MODEL", "claude-sonnet-4-6")
 TARGET_SPEECH_DBFS = -20.0
 TARGET_MUSIC_DBFS = -28.0
 
-# ── Azure TTS feature flag ─────────────────────────────────────────────────
-USE_AZURE_TTS = bool(os.getenv("USE_AZURE_TTS"))
+# ── Azure TTS feature flags ────────────────────────────────────────────────
+USE_AZURE_TTS      = bool(os.getenv("USE_AZURE_TTS"))
+USE_AZURE_PARALLEL = bool(os.getenv("AZURE_TTS_PARALLEL"))
 
 
 # ── API clients ────────────────────────────────────────────────────────────
@@ -682,6 +683,66 @@ def generate_tts_segment(text, speaker, output_file, hosts):
         f.write(response.content)
 
 
+def _generate_parallel_azure(turns, base_output_path, use_chime, interval_path):
+    """Generate an Azure comparison episode saved as *_azure.mp3 next to the main file."""
+    import time
+    from azure_tts import generate_azure_tts_for_section
+
+    if not get_azure_client():
+        print("⚠️  Azure parallel: AZURE_SPEECH_KEY/AZURE_SPEECH_REGION not set — skipping")
+        return
+
+    azure_path = Path(str(base_output_path).replace(".mp3", "_azure.mp3"))
+    print(f"🔵 Azure parallel: generating comparison audio → {azure_path.name}")
+    t0 = time.time()
+
+    try:
+        combined = AudioSegment.empty()
+        chunk_turns: list[dict] = []
+        azure_idx = 0
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            for turn in turns:
+                if turn['speaker'] == '__CHIME__':
+                    if chunk_turns:
+                        azure_idx += 1
+                        chunk_wav = os.path.join(tmpdir, f"azure_chunk_{azure_idx}.wav")
+                        generate_azure_tts_for_section(chunk_turns, chunk_wav)
+                        chunk_audio = normalize_segment(
+                            trim_tts_silence(AudioSegment.from_file(chunk_wav, format="wav")),
+                            TARGET_SPEECH_DBFS,
+                        )
+                        combined += chunk_audio
+                        chunk_turns = []
+                    if use_chime and interval_path.exists():
+                        chime_raw = AudioSegment.from_mp3(str(interval_path))
+                        chime = normalize_segment(chime_raw[:1450], TARGET_MUSIC_DBFS).fade_out(400)
+                        combined += AudioSegment.silent(duration=300) + chime + AudioSegment.silent(duration=300)
+                    else:
+                        combined += AudioSegment.silent(duration=800)
+                else:
+                    chunk_turns.append(turn)
+
+            if chunk_turns:
+                azure_idx += 1
+                chunk_wav = os.path.join(tmpdir, f"azure_chunk_{azure_idx}.wav")
+                generate_azure_tts_for_section(chunk_turns, chunk_wav)
+                chunk_audio = normalize_segment(
+                    trim_tts_silence(AudioSegment.from_file(chunk_wav, format="wav")),
+                    TARGET_SPEECH_DBFS,
+                )
+                combined += chunk_audio
+
+        combined.export(str(azure_path), format="mp3")
+        elapsed = time.time() - t0
+        duration_min = len(combined) / 1000 / 60
+        total_chars = sum(len(t['text']) for t in turns if t['speaker'] != '__CHIME__')
+        print(f"  ✅ Azure parallel done: {duration_min:.1f} min, {elapsed:.1f}s → {azure_path.name}")
+
+    except Exception as exc:
+        print(f"  ⚠️  Azure parallel generation failed: {exc}")
+
+
 def generate_audio(script, output_path, hosts, config):
     """Assemble bespoke audio: [theme] + intro + [chime] + episode + [outro]."""
     if USE_AZURE_TTS:
@@ -797,6 +858,10 @@ def generate_audio(script, output_path, hosts, config):
         duration_min = len(combined) / 1000 / 60
         size_mb = output_path.stat().st_size / 1024 / 1024
         print(f"  Audio: {duration_min:.1f} min, {size_mb:.1f} MB → {output_path.name}")
+
+        if USE_AZURE_PARALLEL and not USE_AZURE_TTS:
+            _generate_parallel_azure(turns, output_path, use_chime, interval_path)
+
         return str(output_path)
 
     except Exception as e:
