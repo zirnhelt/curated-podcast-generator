@@ -2,7 +2,7 @@
 """
 Azure Neural TTS integration with Multi-Talker support.
 
-Provides section-level SSML synthesis via en-US-MultiTalker-Ava-AndrewMultilingual:DragonHDLatestNeural.
+Provides section-level SSML synthesis via en-US-MultiTalker-Ava-Andrew:DragonHDLatestNeural.
 One synthesis call per script section produces coherent prosody across speaker transitions,
 replacing the per-segment OpenAI calls + manual gap stitching.
 
@@ -108,7 +108,7 @@ def _build_ssml_doc(inner: str) -> str:
     return (
         '<speak version="1.0"'
         ' xmlns="http://www.w3.org/2001/10/synthesis"'
-        ' xmlns:mstts="http://www.w3.org/2001/mstts"'
+        ' xmlns:mstts="https://www.w3.org/2001/mstts"'
         ' xml:lang="en-US">'
         f"{inner}"
         "</speak>"
