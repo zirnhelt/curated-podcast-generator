@@ -33,7 +33,8 @@ AZURE_VOICE_MAP = {
 # Conservative per-request SSML char limit (Azure caps at ~10 000 chars of SSML)
 SSML_CHAR_LIMIT = 8_000
 
-# Cariboo region place-name pronunciations injected via SSML <sub alias="..."> tags
+# Cariboo region place-name pronunciations for OpenAI TTS (plain-text phonetic aliases).
+# Imported in podcast_generator.py as AZURE_PRONUNCIATION_DICT for the OpenAI fallback path.
 PRONUNCIATION_DICT: dict[str, str] = {
     "Quesnel":        "Kweh-NELL",
     "Tŝilhqot'in":   "Tsill-KO-tin",
@@ -46,6 +47,29 @@ PRONUNCIATION_DICT: dict[str, str] = {
     "Canim Lake":     "KAN-im Lake",
     "100 Mile House": "One-Hundred Mile House",
     "Tatla Lake":     "TAT-la Lake",
+}
+
+# IPA pronunciations for Azure SSML <phoneme> tags — more precise than <sub alias>.
+IPA_DICT: dict[str, str] = {
+    "Quesnel":        "kwɛˈnɛl",
+    "Tŝilhqot'in":   "tsɪlˈkoʊtɪn",
+    "Secwépemc":      "sɛˈkwɛpɛm",
+    "Dakelh":         "dɑˈkɛl",
+    "Nazko":          "ˈnæzkoʊ",
+    "Lac la Hache":   "læk.lə.ˈhæʃ",
+    "Anahim Lake":    "ˈænəhiːm leɪk",
+    "Alexis Creek":   "əˈlɛksɪs kriːk",
+    "Canim Lake":     "ˈkænɪm leɪk",
+    "100 Mile House": "wʌn ˈhʌndrəd maɪl haʊs",
+    "Tatla Lake":     "ˈtætlə leɪk",
+}
+
+# Per-speaker expression styles for <mstts:express-as> within each turn.
+# Degree 1.0 = default; values 1.1–1.5 add moderate expressiveness.
+# These mirror the classic character voices: Riley warm/engaged, Casey measured/thoughtful.
+HOST_EXPRESSION: dict[str, dict[str, str]] = {
+    "ava":    {"style": "friendly",   "styledegree": "1.2"},
+    "andrew": {"style": "empathetic", "styledegree": "1.0"},
 }
 
 _speech_config_cache = None
@@ -79,16 +103,16 @@ def get_azure_speech_config():
 
 
 def apply_pronunciation(text: str) -> str:
-    """XML-escape *text* and wrap known place names in <sub alias="..."> tags.
+    """XML-escape *text* and wrap known place names in IPA <phoneme> tags.
 
     Must be called on raw text — do not pre-escape the input.
     Returns an SSML-safe fragment (not a full document).
     """
     escaped = saxutils.escape(text)
-    for word, alias in PRONUNCIATION_DICT.items():
+    for word, ipa in IPA_DICT.items():
         escaped_word = saxutils.escape(word)
-        sub_tag = f'<sub alias="{saxutils.escape(alias)}">{escaped_word}</sub>'
-        escaped = escaped.replace(escaped_word, sub_tag)
+        phoneme_tag = f'<phoneme alphabet="ipa" ph="{ipa}">{escaped_word}</phoneme>'
+        escaped = escaped.replace(escaped_word, phoneme_tag)
     return escaped
 
 
@@ -133,7 +157,16 @@ def build_section_ssml(
             break_el = pacing_tag_to_ssml(seg.get("gap_ms"))
             if break_el:
                 turn_parts.append(break_el)
-        turn_parts.append(f'<mstts:turn speaker="{speaker}">{processed}</mstts:turn>')
+        expr = HOST_EXPRESSION.get(speaker)
+        if expr:
+            content = (
+                f'<mstts:express-as style="{expr["style"]}" styledegree="{expr["styledegree"]}">'
+                f"{processed}"
+                f"</mstts:express-as>"
+            )
+        else:
+            content = processed
+        turn_parts.append(f'<mstts:turn speaker="{speaker}">{content}</mstts:turn>')
 
     inner = (
         f'<voice name="{MULTITALKER_MODEL}">'
