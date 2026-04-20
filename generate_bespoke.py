@@ -64,7 +64,7 @@ TARGET_SPEECH_DBFS = -20.0
 TARGET_MUSIC_DBFS = -28.0
 
 # ── Azure TTS feature flag ─────────────────────────────────────────────────
-USE_AZURE_TTS = bool(os.getenv("AZURE_SPEECH_KEY"))
+USE_AZURE_TTS = bool(os.getenv("USE_AZURE_TTS"))
 
 
 # ── API clients ────────────────────────────────────────────────────────────

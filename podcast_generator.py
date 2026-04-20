@@ -164,7 +164,7 @@ TARGET_SPEECH_DBFS = -20.0  # Speech louder and clear
 TARGET_MUSIC_DBFS = -28.0   # Music ducked beneath speech
 
 # Azure TTS feature flags
-USE_AZURE_TTS = bool(os.getenv("AZURE_SPEECH_KEY"))          # full switch to Azure
+USE_AZURE_TTS = bool(os.getenv("USE_AZURE_TTS"))              # full switch to Azure
 USE_AZURE_PARALLEL = bool(os.getenv("AZURE_TTS_PARALLEL"))   # generate both, save _azure.wav for comparison
 
 # ---------------------------------------------------------------------------
@@ -3230,11 +3230,12 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
         print("⚠️  Falling back to TTS-only mode")
         return generate_audio_tts_only(script, output_filename)
 
-def generate_audio_tts_only(script, output_filename):
+def generate_audio_tts_only(script, output_filename, _force_openai=False):
     """Fallback: Generate audio without music (TTS only)."""
     print("📊 Generating TTS-only audio...")
 
-    if USE_AZURE_TTS:
+    use_azure = USE_AZURE_TTS and not _force_openai
+    if use_azure:
         if not get_azure_speech_config():
             print("❌ Azure TTS enabled but credentials not set")
             return None
@@ -3255,7 +3256,7 @@ def generate_audio_tts_only(script, output_filename):
         with tempfile.TemporaryDirectory() as tmpdir:
             combined = AudioSegment.empty()
 
-            if USE_AZURE_TTS:
+            if use_azure:
                 # Azure Multi-Talker: one call for the full flat segment list
                 print(f"  🔵 Azure Multi-Talker: {len(segments)} turns")
                 section_wav = os.path.join(tmpdir, "all_azure.wav")
@@ -3290,6 +3291,9 @@ def generate_audio_tts_only(script, output_filename):
 
     except Exception as e:
         print(f"❌ Error generating TTS audio: {e}")
+        if use_azure and get_openai_client():
+            print("⚠️  Azure TTS failed — falling back to OpenAI TTS")
+            return generate_audio_tts_only(script, output_filename, _force_openai=True)
         return None
 
 CONTENT_TYPES = {
