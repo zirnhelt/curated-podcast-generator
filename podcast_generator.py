@@ -3405,10 +3405,18 @@ def sync_site_to_r2(max_age_days: float = 2.0):
         else:
             print(f"   ⚠️  {local_name} not found, skipping")
 
-    cutoff = time.time() - max_age_days * 86400 if max_age_days > 0 else 0
+    # Use filename-embedded date (YYYY-MM-DD) rather than filesystem mtime so that
+    # a fresh git checkout in CI (which resets all mtimes to "now") does not cause
+    # every historical file to look recent and trigger a full re-upload.
+    cutoff_date = (datetime.now(timezone.utc) - timedelta(days=max_age_days)).date() if max_age_days > 0 else None
 
     def _is_recent(path: str) -> bool:
-        return max_age_days <= 0 or os.path.getmtime(path) >= cutoff
+        if cutoff_date is None:
+            return True
+        m = re.search(r"(\d{4}-\d{2}-\d{2})", os.path.basename(path))
+        if m:
+            return datetime.strptime(m.group(1), "%Y-%m-%d").date() >= cutoff_date
+        return os.path.getmtime(path) >= (time.time() - max_age_days * 86400)
 
     # Podcast audio files — skip old ones already in R2.
     audio_files = sorted(glob.glob(str(PODCASTS_DIR / "podcast_audio_*.mp3")))
@@ -3950,9 +3958,10 @@ def main():
         print(f"   Script: {script_filename}")
         print(f"   Audio: {audio_filename}")
 
-        # If Azure parallel is enabled and the _azure.mp3 is missing, generate it now
-        # from the existing script so re-runs catch up without regenerating everything.
-        if USE_AZURE_PARALLEL and not USE_AZURE_TTS:
+        # If Azure TTS is active (either parallel comparison or full-switch mode) and
+        # the _azure.mp3 is missing, generate it now from the existing script so
+        # re-runs catch up without regenerating everything.
+        if USE_AZURE_PARALLEL or USE_AZURE_TTS:
             azure_filename = str(Path(audio_filename).with_suffix("")) + "_azure.mp3"
             if not os.path.exists(azure_filename):
                 print(f"🔵 Azure parallel file missing — generating from existing script...")
