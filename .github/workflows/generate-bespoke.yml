@@ -48,6 +48,15 @@ on:
         required: false
         default: false
         type: boolean
+      tts_provider:
+        description: 'TTS provider — both generates OpenAI (for feed) + Azure (for comparison)'
+        required: false
+        default: both
+        type: choice
+        options:
+          - both
+          - openai
+          - azure
 
   repository_dispatch:
     types: [generate-bespoke]
@@ -101,7 +110,8 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
           AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
-          AZURE_TTS_PARALLEL: ${{ secrets.AZURE_TTS_PARALLEL }}
+          USE_AZURE_TTS: ${{ inputs.tts_provider == 'azure' && 'true' || '' }}
+          AZURE_TTS_PARALLEL: ${{ (inputs.tts_provider == 'both' || inputs.tts_provider == '') && 'true' || '' }}
           BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
           PODCAST_BASE_URL: https://podcast.cariboosignals.ca/
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
@@ -211,5 +221,6 @@ jobs:
             podcasts/bespoke/bespoke_citations_*.json
             podcasts/bespoke/bespoke_shownotes_*.md
             bespoke-feed.xml
+            podcasts/tts_comparison_log.json
           retention-days: 30
         if: always()

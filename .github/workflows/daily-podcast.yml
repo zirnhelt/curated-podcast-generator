@@ -6,7 +6,17 @@ on:
     # 3:00 AM PDT = 10:00 UTC (summer)
     # 3:00 AM PST = 11:00 UTC (winter)
     - cron: '0 10 * * *'
-  workflow_dispatch:  # Allow manual trigger
+  workflow_dispatch:
+    inputs:
+      tts_provider:
+        description: 'TTS provider — both generates OpenAI (for feed) + Azure (for comparison)'
+        required: false
+        default: openai
+        type: choice
+        options:
+          - both
+          - openai
+          - azure
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -64,7 +74,8 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
           AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
-          AZURE_TTS_PARALLEL: ${{ secrets.AZURE_TTS_PARALLEL }}
+          USE_AZURE_TTS: ${{ inputs.tts_provider == 'azure' && 'true' || '' }}
+          AZURE_TTS_PARALLEL: ${{ inputs.tts_provider == 'both' && 'true' || '' }}
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
@@ -161,5 +172,6 @@ jobs:
             podcasts/episode_memory.json
             podcasts/host_personality_memory.json
             podcasts/debate_memory.json
+            podcasts/tts_comparison_log.json
           retention-days: 7
         if: always()
