@@ -70,7 +70,15 @@ def get_azure_speech_config():
             "Run: pip install azure-cognitiveservices-speech>=1.37.0"
         )
 
-    cfg = speechsdk.SpeechConfig(subscription=key, region=region)
+    # Use the cognitive-services endpoint directly so preview voices (e.g.
+    # MultiTalker) are reachable. The SDK's default region-derived endpoint
+    # uses {region}.tts.speech.microsoft.com, which may route to a different
+    # cluster where preview voices are unavailable.
+    if region.startswith("http"):
+        endpoint = region.rstrip("/")
+    else:
+        endpoint = f"https://{region}.api.cognitive.microsoft.com"
+    cfg = speechsdk.SpeechConfig.from_endpoint(endpoint=endpoint, subscription=key)
     cfg.set_speech_synthesis_output_format(
         speechsdk.SpeechSynthesisOutputFormat.Riff24Khz16BitMonoPcm
     )
@@ -185,7 +193,6 @@ def synthesize_section(
     synthesizer = speechsdk.SpeechSynthesizer(
         speech_config=speech_config, audio_config=audio_cfg
     )
-    print(f"  [Azure SSML debug] sending {len(ssml)} chars:\n{ssml}\n")
     result = synthesizer.speak_ssml_async(ssml).get()
 
     if result.reason == speechsdk.ResultReason.SynthesizingAudioCompleted:
