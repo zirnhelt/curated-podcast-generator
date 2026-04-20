@@ -11,7 +11,7 @@ on:
       tts_provider:
         description: 'TTS provider — both generates OpenAI (for feed) + Azure (for comparison)'
         required: false
-        default: both
+        default: openai
         type: choice
         options:
           - both
@@ -75,7 +75,7 @@ jobs:
           AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
           AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
           USE_AZURE_TTS: ${{ inputs.tts_provider == 'azure' && 'true' || '' }}
-          AZURE_TTS_PARALLEL: ${{ (inputs.tts_provider == 'both' || inputs.tts_provider == '') && 'true' || '' }}
+          AZURE_TTS_PARALLEL: ${{ inputs.tts_provider == 'both' && 'true' || '' }}
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
