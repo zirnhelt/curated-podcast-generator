@@ -16,14 +16,19 @@ import os
 import xml.sax.saxutils as saxutils
 from pathlib import Path
 
-# Voice names used inside <voice> SSML elements (single-talker names)
-AZURE_VOICE_MAP = {
-    "riley": "en-US-Ava:DragonHDLatestNeural",                  # warm, conversational — tech optimist
-    "casey": "en-US-Andrew:DragonHDLatestNeural",                 # measured, clear — community skeptic
+MULTITALKER_MODEL = "en-US-MultiTalker-Ava-Andrew:DragonHDLatestNeural"
+
+# Maps host keys to mstts:turn speaker identifiers used by the MultiTalker model
+MULTITALKER_SPEAKER_MAP = {
+    "riley": "ava",
+    "casey": "andrew",
 }
 
-# The multi-speaker engine name set on SpeechConfig
-MULTITALKER_MODEL = "en-US-MultiTalker-Ava-AndrewMultilingual:DragonHDLatestNeural"
+# Kept for backward-compatibility with any imports; not used in SSML generation
+AZURE_VOICE_MAP = {
+    "riley": "en-US-Ava:DragonHDLatestNeural",
+    "casey": "en-US-Andrew:DragonHDLatestNeural",
+}
 
 # Conservative per-request SSML char limit (Azure caps at ~10 000 chars of SSML)
 SSML_CHAR_LIMIT = 8_000
@@ -117,29 +122,28 @@ def build_section_ssml(
 ) -> str:
     """Build a complete <speak> SSML document for one podcast section.
 
-    Each segment becomes a <voice> element; explicit [pause:N] tags become
-    <break> elements between turns. Overlap tags are dropped (Multi-Talker
-    produces natural fast-reply pacing without them).
+    Uses the MultiTalker format: a single <voice> element wrapping
+    <mstts:dialog> with <mstts:turn speaker="ava/andrew"> per segment.
+    The voice_map parameter is unused but kept for API compatibility.
     """
-    if voice_map is None:
-        voice_map = AZURE_VOICE_MAP
-
-    inner_parts: list[str] = []
+    turn_parts: list[str] = []
     for i, seg in enumerate(segments):
-        voice_name = voice_map.get(seg["speaker"], voice_map.get("riley", ""))
+        speaker = MULTITALKER_SPEAKER_MAP.get(seg["speaker"], "ava")
         processed = apply_pronunciation(seg["text"])
-        voice_el = (
-            f'<voice name="{voice_name}">'
-            f'<mstts:express-as style="{style}">{processed}</mstts:express-as>'
-            f"</voice>"
-        )
         if i > 0:
             break_el = pacing_tag_to_ssml(seg.get("gap_ms"))
             if break_el:
-                inner_parts.append(break_el)
-        inner_parts.append(voice_el)
+                turn_parts.append(break_el)
+        turn_parts.append(f'<mstts:turn speaker="{speaker}">{processed}</mstts:turn>')
 
-    return _build_ssml_doc("".join(inner_parts))
+    inner = (
+        f'<voice name="{MULTITALKER_MODEL}">'
+        f"<mstts:dialog>"
+        + "".join(turn_parts)
+        + "</mstts:dialog>"
+        + "</voice>"
+    )
+    return _build_ssml_doc(inner)
 
 
 def _split_segments_by_char_limit(
