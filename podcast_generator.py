@@ -11,6 +11,7 @@ import json
 import glob
 import html as _html
 import random
+import time
 import xml.sax.saxutils as saxutils
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -3373,10 +3374,15 @@ def _regenerate_index_html():
         print(f"   ⚠️  Could not regenerate index.html: {e}")
 
 
-def sync_site_to_r2():
-    """Upload all site assets and podcast episodes to R2.
+def sync_site_to_r2(max_age_days: float = 2.0):
+    """Upload site assets and recent podcast episodes to R2.
 
-    Uploads: index.html, podcast-feed.xml, cover image, and all audio files.
+    Site assets (index.html, feed, cover image) are always uploaded since they
+    are regenerated on every run.  Audio and transcript files are only uploaded
+    when their modification time is within *max_age_days* of now, so that
+    backlog files that are already in R2 are skipped on subsequent runs.
+
+    Pass max_age_days=0 (or a negative value) to upload every file unconditionally.
     """
     r2, bucket = _get_r2_client()
     if r2 is None:
@@ -3386,7 +3392,7 @@ def sync_site_to_r2():
     print("☁️  Syncing site to R2...")
     base_dir = Path(__file__).parent
 
-    # Site assets
+    # Site assets — always upload; they are regenerated each run.
     site_files = [
         ("index.html", "index.html"),
         ("podcast-feed.xml", "podcast-feed.xml"),
@@ -3399,23 +3405,38 @@ def sync_site_to_r2():
         else:
             print(f"   ⚠️  {local_name} not found, skipping")
 
-    # All podcast audio files (backlog + today)
+    cutoff = time.time() - max_age_days * 86400 if max_age_days > 0 else 0
+
+    def _is_recent(path: str) -> bool:
+        return max_age_days <= 0 or os.path.getmtime(path) >= cutoff
+
+    # Podcast audio files — skip old ones already in R2.
     audio_files = sorted(glob.glob(str(PODCASTS_DIR / "podcast_audio_*.mp3")))
-    if audio_files:
-        print(f"   Uploading {len(audio_files)} audio episodes...")
-        for audio_file in audio_files:
+    recent_audio = [f for f in audio_files if _is_recent(f)]
+    skipped_audio = len(audio_files) - len(recent_audio)
+    if recent_audio:
+        print(f"   Uploading {len(recent_audio)} audio episode(s)"
+              + (f" ({skipped_audio} unchanged, skipped)" if skipped_audio else "") + "...")
+        for audio_file in recent_audio:
             r2_key = f"podcasts/{os.path.basename(audio_file)}"
             _upload_file_to_r2(r2, bucket, audio_file, r2_key)
+    elif audio_files:
+        print(f"   All {len(audio_files)} audio episode(s) already up to date, skipping")
     else:
         print("   No audio files to upload")
 
-    # Upload transcript files alongside audio
+    # Transcript files — same recency filter.
     transcript_files = sorted(glob.glob(str(PODCASTS_DIR / "podcast_transcript_*.html")))
-    if transcript_files:
-        print(f"   Uploading {len(transcript_files)} transcript(s)...")
-        for transcript_file in transcript_files:
+    recent_transcripts = [f for f in transcript_files if _is_recent(f)]
+    skipped_transcripts = len(transcript_files) - len(recent_transcripts)
+    if recent_transcripts:
+        print(f"   Uploading {len(recent_transcripts)} transcript(s)"
+              + (f" ({skipped_transcripts} unchanged, skipped)" if skipped_transcripts else "") + "...")
+        for transcript_file in recent_transcripts:
             r2_key = f"podcasts/{os.path.basename(transcript_file)}"
             _upload_file_to_r2(r2, bucket, transcript_file, r2_key)
+    elif transcript_files:
+        print(f"   All {len(transcript_files)} transcript(s) already up to date, skipping")
 
 
 def script_to_friendly_transcript(script_content):
