@@ -3143,11 +3143,22 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
                 f"Music licensed under Creative Commons. Find us at cariboosignals.ca."
             )
             try:
-                credits_file = os.path.join(tmpdir, "credits.mp3")
-                generate_tts_for_segment(credits_text, "riley", credits_file)
-                credits_audio = normalize_segment(
-                    trim_tts_silence(AudioSegment.from_mp3(credits_file)), TARGET_SPEECH_DBFS
-                )
+                if USE_AZURE_TTS:
+                    credits_wav = os.path.join(tmpdir, "credits.wav")
+                    generate_azure_tts_for_section(
+                        [{"speaker": "riley", "text": credits_text, "gap_ms": None}],
+                        credits_wav,
+                    )
+                    credits_audio = normalize_segment(
+                        trim_tts_silence(AudioSegment.from_file(credits_wav, format="wav")),
+                        TARGET_SPEECH_DBFS,
+                    )
+                else:
+                    credits_file = os.path.join(tmpdir, "credits.mp3")
+                    generate_tts_for_segment(credits_text, "riley", credits_file)
+                    credits_audio = normalize_segment(
+                        trim_tts_silence(AudioSegment.from_mp3(credits_file)), TARGET_SPEECH_DBFS
+                    )
                 combined += AudioSegment.silent(duration=600) + credits_audio
                 print("  ✅ Added spoken credits")
             except Exception as ce:
@@ -3278,6 +3289,17 @@ def generate_audio_tts_only(script, output_filename, _force_openai=False):
                         gap = heuristic_gap_ms(segment['text'], prev_speaker, segment['speaker'])
                     combined = _append_with_gap(combined, speech, gap)
                     prev_speaker = segment['speaker']
+
+        # Append outro music even in TTS-only mode so fallback episodes aren't cut off
+        if OUTRO_MUSIC.exists():
+            try:
+                outro = normalize_segment(
+                    AudioSegment.from_mp3(str(OUTRO_MUSIC)), TARGET_MUSIC_DBFS
+                )
+                combined = combined + AudioSegment.silent(duration=400) + outro
+                print("  ✅ Added outro music (TTS-only mode)")
+            except Exception as outro_err:
+                print(f"  ⚠️  Outro skipped in TTS-only mode: {outro_err}")
 
         combined.export(output_filename, format="mp3")
 
