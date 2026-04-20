@@ -19,7 +19,7 @@ from pathlib import Path
 # Voice names used inside <voice> SSML elements (single-talker names)
 AZURE_VOICE_MAP = {
     "riley": "en-US-Ava:DragonHDLatestNeural",                  # warm, conversational — tech optimist
-    "casey": "en-US-AndrewMultilingual:DragonHDLatestNeural",   # measured, clear — community skeptic
+    "casey": "en-US-Andrew:DragonHDLatestNeural",                 # measured, clear — community skeptic
 }
 
 # The multi-speaker engine name set on SpeechConfig
