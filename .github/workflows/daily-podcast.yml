@@ -128,10 +128,19 @@ jobs:
           echo "Preparing files for GitHub Pages deployment..."
           mkdir -p output/podcasts
 
-          # Copy all episode files into output/podcasts/
-          cp podcasts/podcast_audio_*.mp3 output/podcasts/ 2>/dev/null || echo "No audio files to copy"
-          cp podcasts/podcast_script_*.txt output/podcasts/ 2>/dev/null || echo "No script files to copy"
-          cp podcasts/citations_*.json output/podcasts/ 2>/dev/null || echo "No citation files to copy"
+          # Copy only recent episode files (last 2 days) — historical files are
+          # already on gh-pages via keep_files: true, no need to re-deploy them.
+          TODAY=$(TZ='America/Vancouver' date '+%Y-%m-%d')
+          YESTERDAY=$(TZ='America/Vancouver' date -d 'yesterday' '+%Y-%m-%d')
+          for f in podcasts/podcast_audio_*.mp3; do
+            [[ "$f" == *"$TODAY"* || "$f" == *"$YESTERDAY"* ]] && cp "$f" output/podcasts/ && echo "  copied $f"
+          done
+          for f in podcasts/podcast_script_*.txt; do
+            [[ "$f" == *"$TODAY"* || "$f" == *"$YESTERDAY"* ]] && cp "$f" output/podcasts/ && echo "  copied $f"
+          done
+          for f in podcasts/citations_*.json; do
+            [[ "$f" == *"$TODAY"* || "$f" == *"$YESTERDAY"* ]] && cp "$f" output/podcasts/ && echo "  copied $f"
+          done
 
           # Copy memory files into output/podcasts/
           cp podcasts/episode_memory.json podcasts/host_personality_memory.json podcasts/debate_memory.json output/podcasts/ 2>/dev/null || echo "No memory files to copy"

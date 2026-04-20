@@ -174,11 +174,11 @@ jobs:
           [ -f Deepdives.png ] && aws s3 cp Deepdives.png "s3://${BUCKET}/Deepdives.png" \
             --content-type "image/png"
 
-          # All bespoke audio files
-          for f in podcasts/bespoke/bespoke_audio_*.mp3; do
-            [ -f "$f" ] && echo "  uploading $f" && \
-              aws s3 cp "$f" "s3://${BUCKET}/${f}" --content-type "audio/mpeg"
-          done
+          # Bespoke audio files — only upload new/changed (sync compares ETags)
+          aws s3 sync podcasts/bespoke/ "s3://${BUCKET}/podcasts/bespoke/" \
+            --exclude "*" \
+            --include "bespoke_audio_*.mp3" \
+            --content-type "audio/mpeg"
 
           echo "R2 sync complete"
         continue-on-error: true
