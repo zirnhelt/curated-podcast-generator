@@ -78,7 +78,7 @@ def get_azure_speech_config():
         endpoint = region.rstrip("/")
     else:
         endpoint = f"https://{region}.api.cognitive.microsoft.com"
-    cfg = speechsdk.SpeechConfig.from_endpoint(endpoint=endpoint, subscription=key)
+    cfg = speechsdk.SpeechConfig(subscription=key, endpoint=endpoint)
     cfg.set_speech_synthesis_output_format(
         speechsdk.SpeechSynthesisOutputFormat.Riff24Khz16BitMonoPcm
     )
