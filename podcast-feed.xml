@@ -13,12 +13,12 @@
 <itunes:name>Riley and Casey</itunes:name>
 <itunes:email>feedback@cariboosignals.ca</itunes:email>
 </itunes:owner>
-<itunes:image href="https://podcast.cariboosignals.ca/cariboo-sunday.png"/>
+<itunes:image href="https://podcast.cariboosignals.ca/cariboo-signals.png"/>
 <itunes:category text="Technology"/>
 <itunes:category text="Society &amp; Culture"/>
 <itunes:type>episodic</itunes:type>
 <itunes:explicit>false</itunes:explicit>
-<lastBuildDate>Sun, 19 Apr 2026 03:56:45 GMT</lastBuildDate>
+<lastBuildDate>Mon, 20 Apr 2026 04:32:43 GMT</lastBuildDate>
 <item>
 <title>Science, Wonder And The Natural World</title>
 <link>https://podcast.cariboosignals.ca/index.html</link>
@@ -29,8 +29,6 @@
 <guid isPermaLink="false">cariboo-signals-2026-04-19_science,_wonder_and_the_natural_world</guid>
 <itunes:duration>26:02</itunes:duration>
 <itunes:explicit>false</itunes:explicit>
-<podcast:transcript url="https://podcast.cariboosignals.ca/podcasts/podcast_transcript_2026-04-19_science,_wonder_and_the_natural_world.html" type="text/html" language="en-CA"/>
-<podcast:chapters url="https://podcast.cariboosignals.ca/podcasts/podcast_chapters_2026-04-19_science,_wonder_and_the_natural_world.json" type="application/json+chapters"/>
 </item>
 <item>
 <title>Cariboo Voices And Local News</title>

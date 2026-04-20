@@ -1,24 +1,4 @@
 {
-  "2026-03-30": {
-    "timestamp": 1774868856.785085,
-    "topics": [
-      "[Kottke.org] An interview with Andy Weir about the accuracy ",
-      "[Hackaday] Writing an Open-World Engine for the Nintendo 64",
-      "[Noahpinion] Maybe you should have bought an electric car",
-      "[New Atlas] Clever telescopic camper trailer reinvents a gam",
-      "[Hackaday] Training a Transformer with 1970s-era Technology",
-      "[TechRadar] 'Weekend work increased more than 40%': How AI i",
-      "[Boing Boing] Top devs share their placeholder art to prove ",
-      "[MacRumors] Apple Reportedly Working on 'Small Sensor for Ma"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-03-30"
-  },
   "2026-03-31": {
     "timestamp": 1774954912.7313,
     "topics": [
@@ -416,5 +396,25 @@
       "Indigenous tech"
     ],
     "date": "2026-04-19"
+  },
+  "2026-04-20": {
+    "timestamp": 1776684490.908324,
+    "topics": [
+      "[Williams Lake Tribune] B.C. premier\u2019s office says DRIPA cha",
+      "[100 Mile Free Press] Cancer patient donates saddle sale to ",
+      "[Williams Lake Tribune] Canada\u2019s alcohol relief \u2018step in the",
+      "[CBC] Williams Lake, Quesnel and 100 Mile House firefighters",
+      "[Williams Lake Tribune] Surge in demand overwhelms West Koot",
+      "[Business Insider] Some of the buzziest names in superintell",
+      "[Hackaday] Hackaday Podcast Episode 366: DOOM on a Toaster, ",
+      "[Boing Boing] Turn shoebox memories into digital keepsakes w"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech",
+      "connectivity"
+    ],
+    "date": "2026-04-20"
   }
 }
