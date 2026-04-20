@@ -164,7 +164,7 @@ TARGET_SPEECH_DBFS = -20.0  # Speech louder and clear
 TARGET_MUSIC_DBFS = -28.0   # Music ducked beneath speech
 
 # Azure TTS feature flags
-USE_AZURE_TTS = bool(os.getenv("AZURE_SPEECH_KEY"))          # full switch to Azure
+USE_AZURE_TTS = bool(os.getenv("USE_AZURE_TTS"))              # full switch to Azure (opt-in only)
 USE_AZURE_PARALLEL = bool(os.getenv("AZURE_TTS_PARALLEL"))   # generate both, save _azure.wav for comparison
 
 # ---------------------------------------------------------------------------
