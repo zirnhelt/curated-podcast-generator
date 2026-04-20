@@ -16,7 +16,7 @@ import os
 import xml.sax.saxutils as saxutils
 from pathlib import Path
 
-MULTITALKER_MODEL = "en-US-MultiTalker-Ava-Andrew:DragonHDLatestNeural"
+MULTITALKER_MODEL = "en-US-MultiTalker-Ava-AndrewMultilingual:DragonHDLatestNeural"
 
 # Maps host keys to mstts:turn speaker identifiers used by the MultiTalker model
 MULTITALKER_SPEAKER_MAP = {
