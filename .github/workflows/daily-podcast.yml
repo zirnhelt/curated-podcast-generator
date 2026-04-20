@@ -6,7 +6,13 @@ on:
     # 3:00 AM PDT = 10:00 UTC (summer)
     # 3:00 AM PST = 11:00 UTC (winter)
     - cron: '0 10 * * *'
-  workflow_dispatch:  # Allow manual trigger
+  workflow_dispatch:
+    inputs:
+      use_azure_tts:
+        description: 'Use Azure Neural TTS instead of OpenAI TTS'
+        required: false
+        default: false
+        type: boolean
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -65,6 +71,7 @@ jobs:
           AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
           AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
           AZURE_TTS_PARALLEL: ${{ secrets.AZURE_TTS_PARALLEL }}
+          USE_AZURE_TTS: ${{ inputs.use_azure_tts || '' }}
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}

@@ -48,6 +48,11 @@ on:
         required: false
         default: false
         type: boolean
+      use_azure_tts:
+        description: 'Use Azure Neural TTS instead of OpenAI TTS'
+        required: false
+        default: false
+        type: boolean
 
   repository_dispatch:
     types: [generate-bespoke]
@@ -102,6 +107,7 @@ jobs:
           AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
           AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
           AZURE_TTS_PARALLEL: ${{ secrets.AZURE_TTS_PARALLEL }}
+          USE_AZURE_TTS: ${{ inputs.use_azure_tts || '' }}
           BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
           PODCAST_BASE_URL: https://podcast.cariboosignals.ca/
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
