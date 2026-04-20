@@ -71,7 +71,6 @@ def get_azure_speech_config():
         )
 
     cfg = speechsdk.SpeechConfig(subscription=key, region=region)
-    cfg.speech_synthesis_voice_name = MULTITALKER_MODEL
     cfg.set_speech_synthesis_output_format(
         speechsdk.SpeechSynthesisOutputFormat.Riff24Khz16BitMonoPcm
     )
@@ -186,6 +185,7 @@ def synthesize_section(
     synthesizer = speechsdk.SpeechSynthesizer(
         speech_config=speech_config, audio_config=audio_cfg
     )
+    print(f"  [Azure SSML debug] sending {len(ssml)} chars:\n{ssml}\n")
     result = synthesizer.speak_ssml_async(ssml).get()
 
     if result.reason == speechsdk.ResultReason.SynthesizingAudioCompleted:
