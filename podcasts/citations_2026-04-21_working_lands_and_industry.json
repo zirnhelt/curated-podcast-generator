@@ -1,0 +1,427 @@
+{
+  "episode": {
+    "date": "2026-04-21",
+    "formatted_date": "Tuesday, April 21, 2026",
+    "theme": "Working Lands & Industry",
+    "title": "Cariboo Signals - Working Lands & Industry",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Working Lands & Industry.</p><p><b>NEWS ROUNDUP:</b> We break down [Engadget] Deezer says AI-made songs make up 44 percent of daily uploads and [Williams Lake Tribune] B.C. to opt into part of federal temporary foreign worker expansion, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Can electric equipment effectively replace gas-powered tools in Cariboo working landscapes, and who bears the costs and risks of that transition? Topics include: Electric off-road motorcycles (KTM Freeride E) for ranch operations, Total cost of ownership and maintenance differentials between electric and gas equipment, Rural service infrastructure and field-serviceability of electric vehicles, Workforce development and skills transition for electric drivetrain repair, Collective procurement and co-operative models for equipment transition.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://cariboo-agricultural-research.ca\">Cariboo Agricultural Research Alliance</a></p><p><b>Sources discussed:</b></p><ul><li>Engadget: <a href=\"https://www.engadget.com/entertainment/music/deezer-says-ai-made-songs-make-up-44-percent-of-daily-uploads-163642921.html?src=rss\">[Engadget] Deezer says AI-made songs make up 44 percent of d...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/04/20/b-c-to-opt-into-part-of-federal-temporary-foreign-worker-expansion/\">[Williams Lake Tribune] B.C. to opt into part of federal tem...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/04/20/you-can-accomplish-anything-fellow-in-yellow-makes-way-across-north-thompson/\">[Williams Lake Tribune] ‘You can accomplish anything’: Fello...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/04/20/williams-lake-first-nations-wins-b-c-achievement-community-award/\">[Williams Lake Tribune] Williams Lake First Nations wins B.C...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/blood-tests-could-reveal-alzheimers-risk-years-before-symptoms-appear\">[ScienceAlert] Blood Tests Could Reveal Alzheimer's Risk Yea...</a></li><li>New Atlas: <a href=\"https://newatlas.com/motorcycles/ktm-freeride-e-street-legal/\">[New Atlas] KTM’s flagship electric dual sport is finally st...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>New Atlas: <a href=\"https://newatlas.com/urban-transport/ice-pers-electric-trike/\">[New Atlas] Chainless recumbent ICE trike scraps the links f...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/04/20/rcmp-seek-information-on-pickup-truck-involved-in-bella-coola-gate-vandalism/\">[Williams Lake Tribune] RCMP seek information on pickup truc...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/ai-gives-problematic-health-advice-around-half-the-time-study-suggests\">[ScienceAlert] AI Gives 'Problematic' Health Advice Around H...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/linuxs-new-vram-saving-feature-almost-triples-the-framerate-in-some-games/\">[XDA Developers] Valve's new Linux VRAM fix almost triples f...</a></li><li>Quartz: <a href=\"https://qz.com/ai-white-collar-jobs-wage-deflation-layoffs\">[Quartz] AI is already hollowing out the white-collar econom...</a></li><li>Quartz: <a href=\"https://qz.com/ai-productivity-wages-gap-workers-compensation-042026\">[Quartz] AI is making workers more productive. Their paychec...</a></li><li>Quartz: <a href=\"https://qz.com/ai-white-collar-wage-shrinkflation-benefits-compensation-decline-042026\">[Quartz] The AI shrinkflation of white-collar jobs: More wor...</a></li><li>Quartz: <a href=\"https://qz.com/white-collar-definition-ai-jobs-measurement-042026\">[Quartz] 'White-collar' is too blurry a category to measure ...</a></li><li>Quartz: <a href=\"https://qz.com/ai-capex-data-center-spending-jobs-decoupling-042026\">[Quartz] AI capital expenditures are booming. Jobs aren't. H...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/your-smartwatch-may-be-getting-6-key-health-metrics-wrong\">[ScienceAlert] Your Smartwatch May Be Getting 6 Key Health M...</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/news/2026/4/21/six-women-win-2026-goldman-prize-worlds-top-environmental-award?traffic_source=rss\">[Al Jazeera English] Six women win 2026 Goldman prize, world...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/cyberpunk-2077-inside-proxmox-vm-mini-pc-actually-worked/\">[XDA Developers] I ran Cyberpunk 2077 inside a Proxmox VM on...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/04/20/sleeping-beauty-marmot-roger-yet-to-wake-from-slumber-at-b-c-hotel/\">[Williams Lake Tribune] Sleeping beauty marmot Roger yet to ...</a></li><li>New Atlas: <a href=\"https://newatlas.com/bicycles/manta-enclosed-ebike-retractable-outriggers/\">[New Atlas] Enclosed ebike uses retractable outriggers to ke...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-6<br>TTS Voices: Azure Neural TTS (Ava · Andrew)<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-04-21T04:14:06.236722-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-sonnet-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Engadget] Deezer says AI-made songs make up 44 percent of daily uploads",
+          "url": "https://www.engadget.com/entertainment/music/deezer-says-ai-made-songs-make-up-44-percent-of-daily-uploads-163642921.html?src=rss",
+          "source": "Engadget",
+          "ai_score": 0,
+          "date_published": "2026-04-20T16:36:42+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[New Atlas] Chainless recumbent ICE trike scraps the links for pedal-by-wire tech",
+          "url": "https://newatlas.com/urban-transport/ice-pers-electric-trike/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-04-20T15:27:30+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] B.C. to opt into part of federal temporary foreign worker expansion",
+          "url": "https://wltribune.com/2026/04/20/b-c-to-opt-into-part-of-federal-temporary-foreign-worker-expansion/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-20T15:10:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] RCMP seek information on pickup truck involved in Bella Coola gate vandalism",
+          "url": "https://wltribune.com/2026/04/20/rcmp-seek-information-on-pickup-truck-involved-in-bella-coola-gate-vandalism/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-21T06:17:53.761507+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] ‘You can accomplish anything’: Fellow in Yellow makes way across North Thompson",
+          "url": "https://wltribune.com/2026/04/20/you-can-accomplish-anything-fellow-in-yellow-makes-way-across-north-thompson/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-21T06:17:53.761467+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Williams Lake First Nations wins B.C. Achievement Community Award",
+          "url": "https://wltribune.com/2026/04/20/williams-lake-first-nations-wins-b-c-achievement-community-award/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-21T06:17:53.761291+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[ScienceAlert] Blood Tests Could Reveal Alzheimer's Risk Years Before Symptoms Appear",
+          "url": "https://www.sciencealert.com/blood-tests-could-reveal-alzheimers-risk-years-before-symptoms-appear",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-04-21T04:01:46+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[ScienceAlert] AI Gives 'Problematic' Health Advice Around Half The Time, Study Suggests",
+          "url": "https://www.sciencealert.com/ai-gives-problematic-health-advice-around-half-the-time-study-suggests",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-04-21T02:28:40+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] Valve's new Linux VRAM fix almost triples framerates in some games on the 4GB Radeon RX 6500 XT",
+          "url": "https://www.xda-developers.com/linuxs-new-vram-saving-feature-almost-triples-the-framerate-in-some-games/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-04-21T02:24:44+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] AI is already hollowing out the white-collar economy",
+          "url": "https://qz.com/ai-white-collar-jobs-wage-deflation-layoffs",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-04-21T02:03:06+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] AI is making workers more productive. Their paychecks aren't keeping up",
+          "url": "https://qz.com/ai-productivity-wages-gap-workers-compensation-042026",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-04-21T02:02:05+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] The AI shrinkflation of white-collar jobs: More work, same pay, fewer perks",
+          "url": "https://qz.com/ai-white-collar-wage-shrinkflation-benefits-compensation-decline-042026",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-04-21T02:01:55+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] 'White-collar' is too blurry a category to measure AI's toll on workers",
+          "url": "https://qz.com/white-collar-definition-ai-jobs-measurement-042026",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-04-21T02:01:08+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] AI capital expenditures are booming. Jobs aren't. Here's why",
+          "url": "https://qz.com/ai-capex-data-center-spending-jobs-decoupling-042026",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-04-21T01:31:20+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Your Smartwatch May Be Getting 6 Key Health Metrics Wrong",
+          "url": "https://www.sciencealert.com/your-smartwatch-may-be-getting-6-key-health-metrics-wrong",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-04-21T01:11:49+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] Six women win 2026 Goldman prize, world’s top environmental award",
+          "url": "https://www.aljazeera.com/news/2026/4/21/six-women-win-2026-goldman-prize-worlds-top-environmental-award?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 0,
+          "date_published": "2026-04-21T00:07:04+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] I ran Cyberpunk 2077 inside a Proxmox VM on a mini PC, and it actually worked",
+          "url": "https://www.xda-developers.com/cyberpunk-2077-inside-proxmox-vm-mini-pc-actually-worked/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-04-21T00:00:22+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechCrunch] Anthropic takes $5B from Amazon and pledges $100B in cloud spending in return",
+          "url": "https://techcrunch.com/2026/04/20/anthropic-takes-5b-from-amazon-and-pledges-100b-in-cloud-spending-in-return/",
+          "source": "TechCrunch",
+          "ai_score": 0,
+          "date_published": "2026-04-20T23:10:27+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] I didn't know my homelab was broken until I found split DNS",
+          "url": "https://www.xda-developers.com/i-didnt-know-my-homelab-was-broken-until-i-found-split-dns/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-04-20T23:00:22+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] “Essentially invisible:” How hackers 'trojan-horsed' QEMU virtual machines to bypass security and drop ransomware",
+          "url": "https://www.techradar.com/pro/essentially-invisible-how-hackers-trojan-horsed-qemu-virtual-machines-to-bypass-security-and-drop-ransomware",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-04-20T22:40:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] Mushrooms Stole a Trick From Bacteria. It Could Help Us Control the Weather",
+          "url": "https://nautil.us/mushrooms-stole-a-trick-from-bacteria-it-could-help-us-control-the-weather-1280034/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-04-20T22:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] \"100x faster than traditional tools\": Scientists load quantum computer with first complete genome to crack biology’s 'impossible' puzzle — in time for World Quantum Day",
+          "url": "https://www.techradar.com/pro/100x-faster-than-traditional-tools-scientists-load-quantum-computer-with-first-complete-genome-to-crack-biologys-impossible-puzzle-in-time-for-world-quantum-day",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-04-20T22:10:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] Every automation wave in history created more jobs than it destroyed. Will AI be different?",
+          "url": "https://qz.com/automation-history-jobs-ai-042026",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-04-20T21:52:20+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] Your motherboard has a hidden networking suite that could kill your lag spikes",
+          "url": "https://www.xda-developers.com/motherboard-came-with-powerful-networking-features-youre-ignoring/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-04-20T21:00:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Lifehacker] This Bright and Powerful Blink Floodlight Camera Is Over Half Off Right Now",
+          "url": "https://lifehacker.com/tech/blink-wired-floodlight-camera-deal-april-2026?utm_medium=RSS",
+          "source": "Lifehacker",
+          "ai_score": 0,
+          "date_published": "2026-04-20T21:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] 'The 1000 TOPS consumer': How the NPU-everywhere strategy could turn every user into a walking supercomputer by 2030",
+          "url": "https://www.techradar.com/pro/the-1000-tops-consumer-how-the-npu-everywhere-strategy-could-turn-every-user-into-a-walking-supercomputer-by-2030",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-04-20T20:51:41+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] Your home lab probably falls apart for the wrong reason, and these tools fix it",
+          "url": "https://www.xda-developers.com/home-lab-falls-apart-wrong-reason-tools-fix/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-04-20T20:30:22+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] The Ghost of Microgravity in Astronauts’ Brains",
+          "url": "https://nautil.us/the-ghost-of-microgravity-in-astronauts-brains-1280028/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-04-20T20:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] Miso Robotics CEO Rich Hull on 'Flippy' and 'Zippy' boosting kitchen operations",
+          "url": "https://qz.com/miso-robotics-ceo-flippy-zippy-kitchen-operations",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-04-20T19:00:18+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] Kai CEO Galinda Antova: 'we make human defenders superhuman'",
+          "url": "https://qz.com/kai-ceo-galinda-antova-human-defenders-superhuman",
+          "source": "Quartz",
+          "ai_score": 0,
+          "date_published": "2026-04-20T18:50:57+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[CNET] Blue Origin New Glenn Mission NG-3: Everything That Happened in 8 Minutes video",
+          "url": "https://www.cnet.com/videos/blue-origin-new-glenn-mission-ng-3-everything-that-happened-in-8-minutes/",
+          "source": "CNET",
+          "ai_score": 0,
+          "date_published": "2026-04-20T18:49:03+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Hyundai reinvents the hatchback with the 300-mile range Ioniq 3 — a compact, aerodynamic EV that runs on Android Automotive",
+          "url": "https://www.techradar.com/vehicle-tech/hybrid-electric-vehicles/hyundai-reinvents-the-hatchback-with-the-300-mile-range-ioniq-3-a-compact-aerodynamic-ev-that-runs-on-android-automotive",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-04-20T18:29:14+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Bluetti Elite 30 V2 review: An all-rounder portable power station for those who work or play outdoors",
+          "url": "https://www.techradar.com/pro/bluetti-elite-30-v2-portable-power-station-review",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-04-20T17:14:11+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] VIDEO: Alberta man sentenced in B.C. highway crash that destroyed tow truck, Mercedes",
+          "url": "https://wltribune.com/2026/04/20/video-alberta-man-sentenced-in-b-c-highway-crash-that-destroyed-tow-truck-mercedes/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-20T16:27:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] DIY Weather Stations Report In From Chernobyl",
+          "url": "https://hackaday.com/2026/04/20/diy-weather-stations-report-in-from-chernobyl/",
+          "source": "Hackaday",
+          "ai_score": 0,
+          "date_published": "2026-04-20T15:30:22+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] Watch out, AMD — Intel’s Arc G3 and Arc G3 Extreme handheld chips expected for Computex reveal",
+          "url": "https://www.tomsguide.com/gaming/handheld-gaming/watch-out-amd-intels-arc-g3-and-arc-g3-extreme-handheld-chips-expected-for-computex-reveal",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-04-20T15:21:52+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Charges laid against B.C. pair in decade-old homicide of Summerland man",
+          "url": "https://wltribune.com/2026/04/20/charges-laid-against-b-c-pair-in-decade-old-homicide-of-summerland-man/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-20T14:20:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Working Lands & Industry",
+      "articles": [
+        {
+          "title": "[New Atlas] KTM’s flagship electric dual sport is finally street-legal",
+          "url": "https://newatlas.com/motorcycles/ktm-freeride-e-street-legal/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-04-21T04:50:29+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Sleeping beauty marmot Roger yet to wake from slumber at B.C. hotel",
+          "url": "https://wltribune.com/2026/04/20/sleeping-beauty-marmot-roger-yet-to-wake-from-slumber-at-b-c-hotel/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-20T17:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] Enclosed ebike uses retractable outriggers to keep riders on the upright",
+          "url": "https://newatlas.com/bicycles/manta-enclosed-ebike-retractable-outriggers/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-04-20T17:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Can electric equipment effectively replace gas-powered tools in Cariboo working landscapes, and who bears the costs and risks of that transition?",
+        "riley_position": "Electric equipment is technically viable for working landscapes and can achieve lower total cost of ownership through reduced maintenance, with infrastructure solutions like solar charging stations making the transition feasible.",
+        "riley_key_evidence": [
+          "KTM Freeride E electric trail bike now street legal across all 50 US states with near-silent operation and instant torque advantages for ranching",
+          "Solar charging infrastructure at remote cabins is cost-effective precedent already deployed in Alberta and Montana ranching operations",
+          "Applied research pilots through CARA could generate evidence to inform purchasing decisions across the region"
+        ],
+        "casey_position": "While electrification may be inevitable, the transition burden falls disproportionately on individual small operators who lack capital, local repair expertise, and reference points for rural adaptation of equipment designed for affluent urban/competitive markets.",
+        "casey_key_evidence": [
+          "KTM Freeride E costs $15,000 CAD versus $7,500 for comparable gas bikes—a premium difficult for family operations on thin margins",
+          "Electric drivetrain repair skills are concentrated in urban centres while rural small-engine mechanics are widely distributed",
+          "Equipment is designed for enduro racers and urban commuters, not conceived with Cariboo fence riders in mind"
+        ],
+        "resolution": "Both agreed the real problem is organizational and institutional rather than technical: the transition needs coordinated workforce development, collective structures like ranching co-ops with shared equipment depots, and decade-long funding horizons rather than annual grant cycles.",
+        "topics_covered": [
+          "Electric off-road motorcycles (KTM Freeride E) for ranch operations",
+          "Total cost of ownership and maintenance differentials between electric and gas equipment",
+          "Rural service infrastructure and field-serviceability of electric vehicles",
+          "Workforce development and skills transition for electric drivetrain repair",
+          "Collective procurement and co-operative models for equipment transition"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "Azure Neural TTS (Ava · Andrew)",
+    "text_to_speech_openai": "OpenAI TTS API (Nova · Echo)",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}

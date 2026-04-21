@@ -1,24 +1,4 @@
 {
-  "2026-03-31": {
-    "timestamp": 1774954912.7313,
-    "topics": [
-      "[The Tyee] Half of BC\u2019s Community Paramedic Positions Are Un",
-      "[Williams Lake Tribune] New Democrats pass resolution to pro",
-      "[Hackaday] Tame the Tape: Open-Source Dotterboard for Bulk S",
-      "[Hackaday] This Front Panel Makes Its Own Clean-Edged Drill ",
-      "[Hackaday] Medieval Alhambra\u2019s Pulser Pump and Other Aquatic",
-      "[BC Gov News] BC Timber Sales to increase fibre access, stre",
-      "[Quartz] Holganix's Howard W. Buffett: agriculture 'way of s",
-      "[Boing Boing] Augmented reality glasses can aid dementia pat"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-03-31"
-  },
   "2026-04-01": {
     "timestamp": 1775041667.022453,
     "topics": [
@@ -416,5 +396,23 @@
       "connectivity"
     ],
     "date": "2026-04-20"
+  },
+  "2026-04-21": {
+    "timestamp": 1776770046.26622,
+    "topics": [
+      "[Engadget] Deezer says AI-made songs make up 44 percent of d",
+      "[New Atlas] Chainless recumbent ICE trike scraps the links f",
+      "[Williams Lake Tribune] B.C. to opt into part of federal tem",
+      "[Williams Lake Tribune] RCMP seek information on pickup truc",
+      "[Williams Lake Tribune] \u2018You can accomplish anything\u2019: Fello",
+      "[New Atlas] KTM\u2019s flagship electric dual sport is finally st",
+      "[Williams Lake Tribune] Sleeping beauty marmot Roger yet to ",
+      "[New Atlas] Enclosed ebike uses retractable outriggers to ke"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption"
+    ],
+    "date": "2026-04-21"
   }
 }
