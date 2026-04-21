@@ -68,8 +68,8 @@ IPA_DICT: dict[str, str] = {
 # Degree 1.0 = default; values 1.1–1.5 add moderate expressiveness.
 # These mirror the classic character voices: Riley warm/engaged, Casey measured/thoughtful.
 HOST_EXPRESSION: dict[str, dict[str, str]] = {
-    "ava":    {"style": "friendly",   "styledegree": "1.2"},
-    "andrew": {"style": "empathetic", "styledegree": "1.0"},
+    "ava":    {"style": "cheerful",        "styledegree": "1.3"},
+    "andrew": {"style": "newscast-casual", "styledegree": "1.1"},
 }
 
 _speech_config_cache = None
@@ -153,10 +153,6 @@ def build_section_ssml(
     for i, seg in enumerate(segments):
         speaker = MULTITALKER_SPEAKER_MAP.get(seg["speaker"], "ava")
         processed = apply_pronunciation(seg["text"])
-        if i > 0:
-            break_el = pacing_tag_to_ssml(seg.get("gap_ms"))
-            if break_el:
-                turn_parts.append(break_el)
         expr = HOST_EXPRESSION.get(speaker)
         if expr:
             content = (
