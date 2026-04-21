@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] 'Nuclear energy is the essential backbone for th",
       "[Hackaday] Training a Transformer with 1970s-era Technology",
       "[TechRadar] 'Weekend work increased more than 40%': How AI i",
       "AI",
@@ -10,7 +9,8 @@
       "[XDA Developers] The Linux kernel now allows AI-written code",
       "[Business Insider] An AI built a boutique with $100,000, the",
       "Preventing AI extractivism: the case for braiding indigenous",
-      "[The Tyee] How Companies Hijack AI Chatbots"
+      "[The Tyee] How Companies Hijack AI Chatbots",
+      "[Engadget] Deezer says AI-made songs make up 44 percent of d"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -61,11 +61,6 @@
       },
       {
         "date": "2026-04-13",
-        "clue": "structural-lens:+ \u2014 moved from platform problems to ecosystem capacity",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-04-13",
         "clue": "community-trust:~ \u2014 introduced custodianship as distinct from extraction",
         "occurrences": 2
       },
@@ -92,6 +87,11 @@
       {
         "date": "2026-04-20",
         "clue": "pilot-skepticism:x \u2014 Conceded that 'permission' framing was imprecise; distribution/discoverability is sharper edge",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-04-21",
+        "clue": "tech-optimism:~ \u2014 Shifted from tech-as-solution to 'organizational work matters most'",
         "occurrences": 1
       }
     ],
@@ -154,9 +154,9 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-03-31",
-        "clue": "pilot-skepticism:~ \u2014 acknowledged carbon markets and soil science as legitimate while maintaining rigorous skepticism about implementation",
-        "occurrences": 1
+        "date": "2026-04-21",
+        "clue": "pilot-skepticism:~ \u2014 Moved from dismissing electric viability to identifying transition-period cost distribution as real problem",
+        "occurrences": 2
       },
       {
         "date": "2026-04-01",
@@ -189,9 +189,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-04-11",
-        "clue": "evidence-bar:x \u2014 Conceded air quality monitoring works, but shifted critique downstream to implementation gaps",
-        "occurrences": 1
+        "date": "2026-04-21",
+        "clue": "evidence-bar:x \u2014 Conceded that local pilot data would change risk calculus meaningfully",
+        "occurrences": 2
       },
       {
         "date": "2026-04-13",

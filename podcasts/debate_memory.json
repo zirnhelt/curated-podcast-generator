@@ -1216,5 +1216,31 @@
       "Technology accessibility for rural communities",
       "Institutional partnerships and power dynamics in cultural preservation"
     ]
+  },
+  "2026-04-21": {
+    "timestamp": 1776770049.211084,
+    "date": "2026-04-21",
+    "theme": "Working Lands & Industry",
+    "central_question": "Can electric equipment effectively replace gas-powered tools in Cariboo working landscapes, and who bears the costs and risks of that transition?",
+    "riley_position": "Electric equipment is technically viable for working landscapes and can achieve lower total cost of ownership through reduced maintenance, with infrastructure solutions like solar charging stations making the transition feasible.",
+    "riley_key_evidence": [
+      "KTM Freeride E electric trail bike now street legal across all 50 US states with near-silent operation and instant torque advantages for ranching",
+      "Solar charging infrastructure at remote cabins is cost-effective precedent already deployed in Alberta and Montana ranching operations",
+      "Applied research pilots through CARA could generate evidence to inform purchasing decisions across the region"
+    ],
+    "casey_position": "While electrification may be inevitable, the transition burden falls disproportionately on individual small operators who lack capital, local repair expertise, and reference points for rural adaptation of equipment designed for affluent urban/competitive markets.",
+    "casey_key_evidence": [
+      "KTM Freeride E costs $15,000 CAD versus $7,500 for comparable gas bikes\u2014a premium difficult for family operations on thin margins",
+      "Electric drivetrain repair skills are concentrated in urban centres while rural small-engine mechanics are widely distributed",
+      "Equipment is designed for enduro racers and urban commuters, not conceived with Cariboo fence riders in mind"
+    ],
+    "resolution": "Both agreed the real problem is organizational and institutional rather than technical: the transition needs coordinated workforce development, collective structures like ranching co-ops with shared equipment depots, and decade-long funding horizons rather than annual grant cycles.",
+    "topics_covered": [
+      "Electric off-road motorcycles (KTM Freeride E) for ranch operations",
+      "Total cost of ownership and maintenance differentials between electric and gas equipment",
+      "Rural service infrastructure and field-serviceability of electric vehicles",
+      "Workforce development and skills transition for electric drivetrain repair",
+      "Collective procurement and co-operative models for equipment transition"
+    ]
   }
 }
