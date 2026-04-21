@@ -2959,10 +2959,10 @@ def _append_comparison_log(entry):
         pass
 
 
-def _generate_parallel_azure_audio(segments, base_output_filename):
+def _generate_parallel_azure_audio(segments, base_output_filename, theme_name=None):
     """Generate an Azure Multi-Talker comparison episode alongside the main OpenAI one.
 
-    Produces speech-only audio (no music) saved as *_azure.wav next to the main MP3.
+    Produces a full episode with music interludes saved as *_azure.mp3 next to the main MP3.
     Logs duration, latency, and estimated cost to podcasts/tts_comparison_log.json.
     """
     import time
@@ -2976,22 +2976,59 @@ def _generate_parallel_azure_audio(segments, base_output_filename):
     t0 = time.time()
 
     try:
-        combined = AudioSegment.empty()
-        for section_name in ("welcome", "news", "community_spotlight", "deep_dive"):
-            seg_list = segments.get(section_name, [])
-            if not seg_list:
-                continue
-            total_chars = sum(len(s["text"]) for s in seg_list)
-            print(f"  Azure {section_name}: {len(seg_list)} turns, {total_chars} chars")
-            with tempfile.TemporaryDirectory() as tmpdir:
+        intro_music    = normalize_segment(AudioSegment.from_mp3(str(INTRO_MUSIC)),    TARGET_MUSIC_DBFS)
+        interval_music = normalize_segment(AudioSegment.from_mp3(str(INTERVAL_MUSIC)), TARGET_MUSIC_DBFS)
+        interval_music = interval_music[:INTERVAL_MUSIC_DURATION_MS].fade_out(INTERVAL_FADE_OUT_MS)
+        outro_music    = normalize_segment(AudioSegment.from_mp3(str(OUTRO_MUSIC)),    TARGET_MUSIC_DBFS)
+        ambient_transition = get_ambient_transition(theme_name, fallback_segment=interval_music)
+        section_gap = AudioSegment.silent(duration=400)
+
+        combined = intro_music + section_gap
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            def _render(section_name):
+                nonlocal combined
+                seg_list = segments.get(section_name, [])
+                if not seg_list:
+                    return
+                total_chars = sum(len(s["text"]) for s in seg_list)
+                print(f"  Azure {section_name}: {len(seg_list)} turns, {total_chars} chars")
                 section_wav = os.path.join(tmpdir, f"{section_name}.wav")
                 generate_azure_tts_for_section(seg_list, section_wav)
-                section_audio = normalize_segment(
+                combined += normalize_segment(
                     trim_tts_silence(AudioSegment.from_file(section_wav, format="wav")),
                     TARGET_SPEECH_DBFS,
                 )
-                combined += section_audio
 
+            _render("welcome")
+            combined += section_gap + ambient_transition + section_gap
+            _render("news")
+            combined += section_gap + ambient_transition + section_gap
+            if segments.get("community_spotlight"):
+                _render("community_spotlight")
+                combined += section_gap + ambient_transition + section_gap
+            _render("deep_dive")
+
+            credits_text = (
+                "Cariboo Signals is produced with Claude by Anthropic for scripting "
+                "and Azure Neural TTS, Ava and Andrew for audio synthesis. "
+                "Music licensed under Creative Commons. Find us at cariboosignals.ca."
+            )
+            try:
+                credits_wav = os.path.join(tmpdir, "credits.wav")
+                generate_azure_tts_for_section(
+                    [{"speaker": "riley", "text": credits_text, "gap_ms": None}],
+                    credits_wav,
+                )
+                credits_audio = normalize_segment(
+                    trim_tts_silence(AudioSegment.from_file(credits_wav, format="wav")),
+                    TARGET_SPEECH_DBFS,
+                )
+                combined += AudioSegment.silent(duration=600) + credits_audio
+            except Exception as ce:
+                print(f"  ⚠️  Azure parallel credits skipped: {ce}")
+
+        combined += section_gap + outro_music
         combined.export(azure_path, format="mp3")
         elapsed = time.time() - t0
         duration_min = len(combined) / 1000 / 60
@@ -3217,7 +3254,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
 
         # Parallel Azure comparison (week-1 evaluation: generate both, keep OpenAI as main)
         if USE_AZURE_PARALLEL and not USE_AZURE_TTS:
-            _generate_parallel_azure_audio(segments, output_filename)
+            _generate_parallel_azure_audio(segments, output_filename, theme_name=theme_name)
 
         # Save chapters JSON
         chapters_data = {"version": "1.2.0", "chapters": chapters}
@@ -3990,7 +4027,7 @@ def main():
                 with open(script_filename, "r", encoding="utf-8") as fh:
                     existing_script = fh.read()
                 segments = parse_script_into_segments(existing_script)
-                _generate_parallel_azure_audio(segments, audio_filename)
+                _generate_parallel_azure_audio(segments, audio_filename, theme_name=today_theme)
             else:
                 print(f"✅ Azure parallel file already exists: {Path(azure_filename).name}")
 
