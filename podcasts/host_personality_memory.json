@@ -25,11 +25,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-04-15",
-        "clue": "structural-lens:~ \u2014 Articulated access-restriction/maintenance tension unprompted",
-        "occurrences": 2
-      },
-      {
         "date": "2026-04-01",
         "clue": "evidence-bar:+ \u2014 Insisted data documentation matters more than the decision itself",
         "occurrences": 1
@@ -93,6 +88,11 @@
         "date": "2026-04-21",
         "clue": "tech-optimism:~ \u2014 Shifted from tech-as-solution to 'organizational work matters most'",
         "occurrences": 1
+      },
+      {
+        "date": "2026-04-22",
+        "clue": "community-trust:x \u2014 Conceded regional coordination risks gatekeeping, Indigenous representation complexity",
+        "occurrences": 1
       }
     ],
     "core_memories": [
@@ -124,6 +124,11 @@
       {
         "formed": "2026-04-18",
         "signal": "community-trust:+ \u2014 Emphasized participatory budgeting as trust-building through visible input-to-outcome connection",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-04-22",
+        "signal": "structural-lens:~ \u2014 Added nuance that transparency alone insufficient without recognition",
         "occurrences": 3
       }
     ]
@@ -206,6 +211,16 @@
       {
         "date": "2026-04-16",
         "clue": "pilot-skepticism: ~ \u2014 Deepened concern from extraction risk to intergenerational governance responsibility.",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-04-22",
+        "clue": "rural-context:+ \u2014 Deepened commitment to rural capacity constraints as design constraint",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-04-22",
+        "clue": "structural-lens:+ \u2014 Shifted from individual solutions toward systemic regional infrastructure model",
         "occurrences": 1
       }
     ],
