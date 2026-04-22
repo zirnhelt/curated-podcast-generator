@@ -1,0 +1,382 @@
+{
+  "episode": {
+    "date": "2026-04-22",
+    "formatted_date": "Wednesday, April 22, 2026",
+    "theme": "Community Tech & Governance",
+    "title": "Cariboo Signals - Community Tech & Governance",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Community Tech & Governance.</p><p><b>NEWS ROUNDUP:</b> We break down [Engadget] Apple and Google are reportedly pointing users to 'nudify' apps and [Business Insider] The newest prediction markets guru is a middle schooler in braces, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> How does opacity in institutional decision-making undermine democratic accountability in rural communities, and what information infrastructure can address it? Topics include: Federal access to information proposals and exemptions for 'transitory' records, TRU Williams Lake campus closure as a governance accountability gap, Irish fuel protests as a case study in civic breakdown from opaque decision-making, Proactive disclosure and shared transparency infrastructure models for rural municipalities, Regional coordination mechanisms through the Cariboo Regional District.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://cfdccariboo.com\">Community Futures Cariboo Chilcotin</a></p><p><b>Sources discussed:</b></p><ul><li>Engadget: <a href=\"https://www.engadget.com/apps/apple-and-google-are-reportedly-pointing-users-to-nudify-apps-065144277.html?src=rss\">[Engadget] Apple and Google are reportedly pointing users to...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/prediction-markets-13-year-old-eli-goldfine-2026-4\">[Business Insider] The newest prediction markets guru is a m...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/04/21/williams-lake-city-council-push-against-possible-closure-of-thompson-rivers-university-campus/\">[Williams Lake Tribune] Williams Lake council opposes potent...</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/features/2026/4/16/why-are-fuel-price-protests-sweeping-the-republic-of-ireland?traffic_source=rss\">[Al Jazeera English] Why are fuel price protests sweeping th...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/04/16/us/politics/jd-vance-2028-fundraising.html\">[NYT Top Stories] Ahead of 2028, Vance Collects Cash, Chits ...</a></li><li>The Guardian Global Development: <a href=\"https://www.theguardian.com/global-development/2026/apr/16/norways-state-telecoms-firm-accused-of-helping-myanmar-regime-seize-activists\">[The Guardian Global Development] Norway’s state telecoms fi...</a></li><li>Quesnel Cariboo Observer: <a href=\"https://quesnelobserver.com/2026/04/21/quesnel-testing-voyent-alert-system-may-6/\">[Quesnel Cariboo Observer] Quesnel testing Voyent Alert syst...</a></li><li>100 Mile Free Press: <a href=\"https://100milefreepress.net/2026/04/21/100-mile-museum-project-receives-grant/\">[100 Mile Free Press] 100 Mile Museum project receives grant</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/04/16/us/politics/young-men-religion-importance-poll.html\">[NYT Top Stories] More Young Men Say Religion Is ‘Very Impor...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/04/16/opinion/younger-men-dating-older-women.html\">[NYT Top Stories] Older Women Are in Demand by Younger Men</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/opinions/2026/4/16/legal-migrants-remain-vulnerable-to-trafficking?traffic_source=rss\">[Al Jazeera English] Legal migrants remain vulnerable to tra...</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/video/newsfeed/2026/4/16/kyiv-hit-by-deadly-missile-attack-amid-shortage-of-interceptors?traffic_source=rss\">[Al Jazeera English] Kyiv hit by deadly missile attack amid ...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/04/16/world/europe/ukraine-odesa-fertilizer-plant-privatization.html\">[NYT Top Stories] Got $100 Million? Ukraine Has Just the Fer...</a></li><li>Kottke.org: <a href=\"https://kottke.org/26/04/0048767-the-great-american-glp-1-\">[Kottke.org] The Great American GLP-1 Experiment . In the la...</a></li><li>NYT Business: <a href=\"https://www.nytimes.com/2026/04/16/business/europe-airlines-jet-fuel-strait-hormuz.html\">[NYT Business] European Airlines Face Fuel Shortages Within ...</a></li><li>NYT Business: <a href=\"https://www.nytimes.com/2026/04/16/business/medicare-advantage-enrollment-networks.html\">[NYT Business] Help for Medicare Advantage Patients Who Lose...</a></li><li>The Narwhal: <a href=\"https://thenarwhal.ca/canada-access-to-information-changes/\">[The Narwhal] Government emails, text messages could be shie...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-6<br>TTS Voices: Azure Neural TTS (Ava · Andrew)<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-04-22T06:46:33.250792-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-sonnet-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[NYT Top Stories] Ahead of 2028, Vance Collects Cash, Chits and Contacts",
+          "url": "https://www.nytimes.com/2026/04/16/us/politics/jd-vance-2028-fundraising.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-04-16T09:01:07+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Guardian Global Development] Norway’s state telecoms firm accused of helping Myanmar regime seize activists",
+          "url": "https://www.theguardian.com/global-development/2026/apr/16/norways-state-telecoms-firm-accused-of-helping-myanmar-regime-seize-activists",
+          "source": "The Guardian Global Development",
+          "ai_score": 0,
+          "date_published": "2026-04-16T09:00:53+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Engadget] Apple and Google are reportedly pointing users to 'nudify' apps",
+          "url": "https://www.engadget.com/apps/apple-and-google-are-reportedly-pointing-users-to-nudify-apps-065144277.html?src=rss",
+          "source": "Engadget",
+          "ai_score": 0,
+          "date_published": "2026-04-16T07:45:38+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Quesnel testing Voyent Alert system May 6",
+          "url": "https://quesnelobserver.com/2026/04/21/quesnel-testing-voyent-alert-system-may-6/",
+          "source": "Quesnel Cariboo Observer",
+          "ai_score": 0,
+          "date_published": "2026-04-21T21:17:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[100 Mile Free Press] 100 Mile Museum project receives grant",
+          "url": "https://100milefreepress.net/2026/04/21/100-mile-museum-project-receives-grant/",
+          "source": "100 Mile Free Press",
+          "ai_score": 0,
+          "date_published": "2026-04-22T00:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] More Young Men Say Religion Is ‘Very Important’ to Them, Poll Finds",
+          "url": "https://www.nytimes.com/2026/04/16/us/politics/young-men-religion-importance-poll.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-04-16T13:53:25+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] Older Women Are in Demand by Younger Men",
+          "url": "https://www.nytimes.com/2026/04/16/opinion/younger-men-dating-older-women.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-04-16T13:31:32+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] Legal migrants remain vulnerable to trafficking",
+          "url": "https://www.aljazeera.com/opinions/2026/4/16/legal-migrants-remain-vulnerable-to-trafficking?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 0,
+          "date_published": "2026-04-16T13:30:23+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] Kyiv hit by deadly missile attack amid shortage of interceptors",
+          "url": "https://www.aljazeera.com/video/newsfeed/2026/4/16/kyiv-hit-by-deadly-missile-attack-amid-shortage-of-interceptors?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 0,
+          "date_published": "2026-04-16T13:05:18+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] Got $100 Million? Ukraine Has Just the Fertilizer Plant for You.",
+          "url": "https://www.nytimes.com/2026/04/16/world/europe/ukraine-odesa-fertilizer-plant-privatization.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-04-16T13:03:43+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Kottke.org] The Great American GLP-1 Experiment . In the last few...",
+          "url": "https://kottke.org/26/04/0048767-the-great-american-glp-1-",
+          "source": "Kottke.org",
+          "ai_score": 0,
+          "date_published": "2026-04-16T13:01:09+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Business] European Airlines Face Fuel Shortages Within Weeks",
+          "url": "https://www.nytimes.com/2026/04/16/business/europe-airlines-jet-fuel-strait-hormuz.html",
+          "source": "NYT Business",
+          "ai_score": 0,
+          "date_published": "2026-04-16T12:47:11+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Business] Help for Medicare Advantage Patients Who Lose Doctors Is Shelved, for Now",
+          "url": "https://www.nytimes.com/2026/04/16/business/medicare-advantage-enrollment-networks.html",
+          "source": "NYT Business",
+          "ai_score": 0,
+          "date_published": "2026-04-16T12:42:38+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Lifehacker] This Three-Stage Air Purifier Is 69% Off Right Now",
+          "url": "https://lifehacker.com/tech/levoit-lv-h133-air-purifier-sale-april-2026?utm_medium=RSS",
+          "source": "Lifehacker",
+          "ai_score": 0,
+          "date_published": "2026-04-16T12:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] Israeli strike destroys last working bridge over Lebanon’s Litani River",
+          "url": "https://www.aljazeera.com/video/newsfeed/2026/4/16/israeli-strike-destroys-last-working-bridge-over-lebanons-litani-river?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 0,
+          "date_published": "2026-04-16T12:21:26+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Gizmodo] Govee’s Next Trick Is Just a Whole Dang Wall of Light",
+          "url": "https://gizmodo.com/govees-next-trick-is-just-a-whole-dang-wall-of-light-2000740602",
+          "source": "Gizmodo",
+          "ai_score": 0,
+          "date_published": "2026-04-16T12:00:38+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[CNET] iPhone 17 vs. iPhone 16: Should You Upgrade?",
+          "url": "https://www.cnet.com/tech/mobile/iphone-17-vs-iphone-16-which-is-the-right-choice-for-you/",
+          "source": "CNET",
+          "ai_score": 0,
+          "date_published": "2026-04-16T11:01:14+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[CNET] 8 Expert-Approved Sleep Trackers You'll Want for Better Sleep Tonight",
+          "url": "https://www.cnet.com/health/sleep/best-sleep-tracker/",
+          "source": "CNET",
+          "ai_score": 0,
+          "date_published": "2026-04-16T11:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] These Allbirds AI jokes are as fire as the company's stock price",
+          "url": "https://www.businessinsider.com/allbirds-ai-memes-company-stock-price-ai-pivot-2026-4",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-04-16T10:48:49+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] ‘Sent to be killed’: How Russia forces migrants to fight in Ukraine",
+          "url": "https://www.aljazeera.com/features/2026/4/16/sent-to-be-killed-how-russia-forces-migrants-to-fight-in-ukraine?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 0,
+          "date_published": "2026-04-16T10:45:39+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] Sudan power crisis: Studying using candles, counting gas station trips",
+          "url": "https://www.aljazeera.com/news/2026/4/16/sudan-power-crisis-studying-using-candles-counting-gas-station-trips?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 0,
+          "date_published": "2026-04-16T10:33:43+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] Why Warren Buffett's cash pile and Michael Burry's AI doubts make sense in this market",
+          "url": "https://www.businessinsider.com/warren-buffett-cash-michael-burry-ai-stocks-dietrich-energy-iran-2026-4",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-04-16T09:41:24+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] We asked 12 gig workers how much they made in 2025. The answers varied wildly.",
+          "url": "https://www.businessinsider.com/how-much-gig-workers-make-uber-doordash-taskrabit-earnings-2026-4",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-04-16T09:17:01+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] Why Netflix is in a win-win position as it continues to hike prices",
+          "url": "https://www.businessinsider.com/netflix-ad-business-price-increases-media-analysts-first-quarter-earnings-2026-4",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-04-16T09:05:03+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] From cockroaches to 'comfortable': Bank leaders are now playing it cool on private credit",
+          "url": "https://www.businessinsider.com/banks-private-credit-exposure-earnings-systemic-risk-2026-4",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-04-16T09:05:01+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[CNET] Vitamix Is Quietly Phasing Out the Popular (and Affordable) Explorian. I Found Out Why",
+          "url": "https://www.cnet.com/news/why-vitamix-explorian-discontinued/",
+          "source": "CNET",
+          "ai_score": 0,
+          "date_published": "2026-04-16T09:02:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Gizmodo] Kalshi Wants Your ID Whether You Gamble or Not (You Know, for Kids)",
+          "url": "https://gizmodo.com/kalshi-wants-your-id-whether-you-gamble-or-not-you-know-for-kids-2000747117",
+          "source": "Gizmodo",
+          "ai_score": 0,
+          "date_published": "2026-04-16T09:00:20+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] The newest prediction markets guru is a middle schooler in braces",
+          "url": "https://www.businessinsider.com/prediction-markets-13-year-old-eli-goldfine-2026-4",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-04-16T09:00:02+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Al Jazeera English] Israeli air attack destroys buildings around south Lebanon hospital",
+          "url": "https://www.aljazeera.com/video/newsfeed/2026/4/16/israeli-air-attack-destroys-buildings-around-south-lebanon-hospital?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 0,
+          "date_published": "2026-04-16T08:55:44+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] Afghan villagers turn to gold-panning to sustain livelihoods",
+          "url": "https://www.aljazeera.com/gallery/2026/4/16/afghan-villagers-turn-to-gold-panning-to-sustain-livelihoods?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 0,
+          "date_published": "2026-04-16T08:52:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] Fire breaks out at crucial Australian refinery, raising fuel supply fears",
+          "url": "https://www.aljazeera.com/news/2026/4/16/fire-breaks-out-at-crucial-australian-refinery-raising-fuel-supply-fears?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 0,
+          "date_published": "2026-04-16T08:44:46+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] All 15 PNE concerts at new amphitheatre: Boy George & Culture Club, ‘Weird Al’ & more",
+          "url": "https://wltribune.com/2026/04/16/all-15-pne-concerts-at-new-amphitheatre-boy-george-weird-al-more/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-16T07:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Community Tech & Governance",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Williams Lake council opposes potential TRU campus closure",
+          "url": "https://wltribune.com/2026/04/21/williams-lake-city-council-push-against-possible-closure-of-thompson-rivers-university-campus/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-22T06:17:05.405937+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[The Narwhal] Government emails, text messages could be shielded by federal transparency law changes",
+          "url": "https://thenarwhal.ca/canada-access-to-information-changes/",
+          "source": "The Narwhal",
+          "ai_score": 0,
+          "date_published": "2026-04-16T12:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] Why are fuel price protests sweeping the Republic of Ireland?",
+          "url": "https://www.aljazeera.com/features/2026/4/16/why-are-fuel-price-protests-sweeping-the-republic-of-ireland?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 0,
+          "date_published": "2026-04-16T09:47:35+00:00",
+          "summary": "",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "How does opacity in institutional decision-making undermine democratic accountability in rural communities, and what information infrastructure can address it?",
+        "riley_position": "Information architecture failures precede governance failures; transparency infrastructure must be designed to capture informal communications that reveal actual decision-making reasoning, and communities can implement proactive disclosure and shared platforms without waiting for legislative change.",
+        "riley_key_evidence": [
+          "TRU's internal deliberations (emails, texts) about campus closures are invisible to affected communities until decisions are already made",
+          "Loss of informal records prevents communities from identifying patterns of decision-making that systematically disadvantage them",
+          "Shared transparency infrastructure models have worked in other domains like purchasing and emergency coordination"
+        ],
+        "casey_position": "Rural communities face a deeper power asymmetry where decisions affecting them are made by distant institutions without meaningful consultation, and while transparency tools matter, they must be understood as building democratic legitimacy rather than merely improving efficiency.",
+        "casey_key_evidence": [
+          "Williams Lake council has no direct authority over TRU despite the campus's critical role in workforce development and healthcare training pipelines",
+          "Cariboo municipalities already struggle with slow, heavily redacted FOI responses with limited administrative capacity",
+          "Rural communities historically treated as resource extraction zones rather than as places deserving functional democratic representation"
+        ],
+        "resolution": "Casey and Riley agree that transparency infrastructure is necessary but not sufficient; they align on the importance of both structural policy engagement (federal FOI comment periods) and local capacity-building (shared regional platforms), though Casey emphasizes the underlying power imbalance while Riley focuses on what communities can control immediately.",
+        "topics_covered": [
+          "Federal access to information proposals and exemptions for 'transitory' records",
+          "TRU Williams Lake campus closure as a governance accountability gap",
+          "Irish fuel protests as a case study in civic breakdown from opaque decision-making",
+          "Proactive disclosure and shared transparency infrastructure models for rural municipalities",
+          "Regional coordination mechanisms through the Cariboo Regional District"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "Azure Neural TTS (Ava · Andrew)",
+    "text_to_speech_openai": "OpenAI TTS API (Nova · Echo)",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}

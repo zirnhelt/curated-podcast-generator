@@ -1242,5 +1242,31 @@
       "Workforce development and skills transition for electric drivetrain repair",
       "Collective procurement and co-operative models for equipment transition"
     ]
+  },
+  "2026-04-22": {
+    "timestamp": 1776865595.087688,
+    "date": "2026-04-22",
+    "theme": "Community Tech & Governance",
+    "central_question": "How does opacity in institutional decision-making undermine democratic accountability in rural communities, and what information infrastructure can address it?",
+    "riley_position": "Information architecture failures precede governance failures; transparency infrastructure must be designed to capture informal communications that reveal actual decision-making reasoning, and communities can implement proactive disclosure and shared platforms without waiting for legislative change.",
+    "riley_key_evidence": [
+      "TRU's internal deliberations (emails, texts) about campus closures are invisible to affected communities until decisions are already made",
+      "Loss of informal records prevents communities from identifying patterns of decision-making that systematically disadvantage them",
+      "Shared transparency infrastructure models have worked in other domains like purchasing and emergency coordination"
+    ],
+    "casey_position": "Rural communities face a deeper power asymmetry where decisions affecting them are made by distant institutions without meaningful consultation, and while transparency tools matter, they must be understood as building democratic legitimacy rather than merely improving efficiency.",
+    "casey_key_evidence": [
+      "Williams Lake council has no direct authority over TRU despite the campus's critical role in workforce development and healthcare training pipelines",
+      "Cariboo municipalities already struggle with slow, heavily redacted FOI responses with limited administrative capacity",
+      "Rural communities historically treated as resource extraction zones rather than as places deserving functional democratic representation"
+    ],
+    "resolution": "Casey and Riley agree that transparency infrastructure is necessary but not sufficient; they align on the importance of both structural policy engagement (federal FOI comment periods) and local capacity-building (shared regional platforms), though Casey emphasizes the underlying power imbalance while Riley focuses on what communities can control immediately.",
+    "topics_covered": [
+      "Federal access to information proposals and exemptions for 'transitory' records",
+      "TRU Williams Lake campus closure as a governance accountability gap",
+      "Irish fuel protests as a case study in civic breakdown from opaque decision-making",
+      "Proactive disclosure and shared transparency infrastructure models for rural municipalities",
+      "Regional coordination mechanisms through the Cariboo Regional District"
+    ]
   }
 }

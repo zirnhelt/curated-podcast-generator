@@ -1,24 +1,4 @@
 {
-  "2026-04-01": {
-    "timestamp": 1775041667.022453,
-    "topics": [
-      "[Boing Boing] Audio tapes challenge Milgram obedience findin",
-      "[Williams Lake Tribune] Deadline looms for property owner to",
-      "[BC Gov News] Building volunteer fire department capacity",
-      "[Williams Lake Tribune] B.C. moving to alter environment ass",
-      "[Android Authority] Android Auto just made EV trip planning ",
-      "[Williams Lake Tribune] MLA McInnis introduces Aboriginal Ti",
-      "[Williams Lake Tribune] Canada Post to convert remaining doo",
-      "[100 Mile Free Press] Potential cougar sighted in Centennial"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-04-01"
-  },
   "2026-04-02": {
     "timestamp": 1775127724.527912,
     "topics": [
@@ -414,5 +394,24 @@
       "technology adoption"
     ],
     "date": "2026-04-21"
+  },
+  "2026-04-22": {
+    "timestamp": 1776865593.275916,
+    "topics": [
+      "[NYT Top Stories] Ahead of 2028, Vance Collects Cash, Chits ",
+      "[The Guardian Global Development] Norway\u2019s state telecoms fi",
+      "[Engadget] Apple and Google are reportedly pointing users to",
+      "[Quesnel Cariboo Observer] Quesnel testing Voyent Alert syst",
+      "[100 Mile Free Press] 100 Mile Museum project receives grant",
+      "[Williams Lake Tribune] Williams Lake council opposes potent",
+      "[The Narwhal] Government emails, text messages could be shie",
+      "[Al Jazeera English] Why are fuel price protests sweeping th"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech"
+    ],
+    "date": "2026-04-22"
   }
 }
