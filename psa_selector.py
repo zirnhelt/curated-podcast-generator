@@ -109,10 +109,14 @@ def find_active_events(today, events, lookahead_days=EVENT_LOOKAHEAD_DAYS):
             active.append((duration, event))
             continue
 
-        # Or if the event starts within the lookahead window
+        # Or if the event starts within the lookahead window.
+        # Only tease short events (≤3 days) in advance — multi-day awareness weeks
+        # (e.g. National Volunteer Week) should not run before they actually start,
+        # because the psa_angle says "It's [event]" as if it's already happening.
         days_until = (start - today).days
-        if 0 < days_until <= lookahead_days:
-            duration = (end - start).days
+        event_duration = (end - start).days
+        if 0 < days_until <= lookahead_days and event_duration <= 3:
+            duration = event_duration
             active.append((duration, event))
 
     # Sort by duration (shorter/more specific events first)

@@ -2862,8 +2862,28 @@ def parse_script_into_segments(script):
             current_text = [text_after] if text_after else []
             
         elif line and current_speaker:
-            # Skip metadata and markers
-            if (not line.startswith('#') and 
+            # Handle standalone or inline pacing tags on continuation lines.
+            # Claude sometimes writes [pause:N] on its own line between speaker turns
+            # instead of attaching it to the next **SPEAKER:** tag. Detect this: if the
+            # line starts with a valid pacing tag, flush the current segment and start a
+            # new one (for the same speaker) with the extracted gap.
+            gap_ms_tag, remaining = _extract_pacing_tag(line)
+            if gap_ms_tag is not None:
+                if current_text:
+                    segments[current_section].append({
+                        'speaker': current_speaker,
+                        'text': ' '.join(current_text).strip(),
+                        'gap_ms': current_gap_ms,
+                    })
+                    current_text = []
+                current_gap_ms = gap_ms_tag
+                if remaining.strip():
+                    current_text = [remaining.strip()]
+                continue
+
+            # Skip metadata and markers (non-pacing lines starting with '[' are stage
+            # directions or unknown tags — drop them silently)
+            if (not line.startswith('#') and
                 not line.startswith('---') and
                 not 'SEGMENT' in line and
                 not line.startswith('[') and
