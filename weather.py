@@ -88,7 +88,7 @@ def _fetch_location(lat, lon):
         "daily": ("temperature_2m_max,temperature_2m_min,"
                   "precipitation_sum,weather_code,wind_speed_10m_max"),
         "timezone": TIMEZONE,
-        "forecast_days": 1,
+        "forecast_days": 2,
         "temperature_unit": "celsius",
         "wind_speed_unit": "kmh",
     }
@@ -109,6 +109,7 @@ def _fetch_location(lat, lon):
         current = data["current"]
         daily = data["daily"]
 
+        tomorrow_codes = daily.get("weather_code", [])
         return {
             "current_temp": round(current["temperature_2m"]),
             "current_code": current.get("weather_code", 0),
@@ -116,7 +117,8 @@ def _fetch_location(lat, lon):
             "high": round(daily["temperature_2m_max"][0]),
             "low": round(daily["temperature_2m_min"][0]),
             "precip": daily["precipitation_sum"][0],
-            "daily_code": daily.get("weather_code", [0])[0],
+            "daily_code": tomorrow_codes[0] if tomorrow_codes else 0,
+            "tomorrow_code": tomorrow_codes[1] if len(tomorrow_codes) > 1 else None,
             "max_wind": round(daily.get("wind_speed_10m_max", [0])[0]),
         }
     except (KeyError, IndexError, TypeError) as e:
@@ -168,10 +170,11 @@ def fetch_weather():
     if hf["current_wind"] > 20:
         summary += f" Winds at {hf['current_wind']} k-p-h."
 
-    summary += (
-        f" High of {hf['high']}, low of {hf['low']} "
-        f"with {_describe(hf['daily_code'])} expected."
-    )
+    summary += f" High of {hf['high']}, low of {hf['low']}."
+
+    # Use tomorrow's forecast to avoid repeating today's current condition twice.
+    if hf.get("tomorrow_code") is not None:
+        summary += f" Tomorrow looking {_describe(hf['tomorrow_code'])}."
 
     if hf["precip"] > 0:
         summary += f" About {hf['precip']:.0f} millimetres of precipitation."
