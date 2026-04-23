@@ -1,24 +1,4 @@
 {
-  "2026-04-02": {
-    "timestamp": 1775127724.527912,
-    "topics": [
-      "[Engadget] What\u2019s going on with Donut Lab?",
-      "[Williams Lake Tribune] British Columbians declare 15,600 as",
-      "[Williams Lake Tribune] B.C. man calling on feds to declare ",
-      "[Williams Lake Tribune] Court fines visitors for 2 dog incid",
-      "[Toms Guide] Your soil might still be compacted from winter ",
-      "[Williams Lake Tribune] First Nations letter calls B.C. gove",
-      "[Ricochet] \u2018How many more have to die?\u2019: Northern Ontario fi",
-      "[Kottke.org] On Stewart Brand&#8217;s Maintenance: Of Everyt"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-04-02"
-  },
   "2026-04-03": {
     "timestamp": 1775213560.293943,
     "topics": [
@@ -413,5 +393,25 @@
       "Indigenous tech"
     ],
     "date": "2026-04-22"
+  },
+  "2026-04-23": {
+    "timestamp": 1776942999.992819,
+    "topics": [
+      "[APTN News] The next test for economic reconciliation is exp",
+      "[APTN News] Some people with medical needs are being taken o",
+      "[APTN News] First Nations chiefs call for inquiry into RCMP ",
+      "[Williams Lake Tribune] Deportation for cartel-linked \u2018hitma",
+      "[IndigiNews] \u2018Leah carried a deep love for her family\u2019: Moth",
+      "[The Tyee] BC Must Stop Blaming First Nations for Old-Growth",
+      "[IndigiNews] Tla\u2019amin choreographer sets the dance stage abl",
+      "[APTN News] 5,200-kilometre long-range patrol crosses the fi"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-04-23"
   }
 }
