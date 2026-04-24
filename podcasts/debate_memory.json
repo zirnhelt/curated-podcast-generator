@@ -1294,5 +1294,32 @@
       "Capacity gaps between well-resourced and underfunded Indigenous nations",
       "Digital security and surveillance as extensions of territorial knowledge vulnerabilities"
     ]
+  },
+  "2026-04-24": {
+    "timestamp": 1777029194.155134,
+    "date": "2026-04-24",
+    "theme": "Wild Spaces & Outdoor Life",
+    "central_question": "Can technology meaningfully shorten the gap between wildfire detection and community response, and what institutional changes are needed to make that technology operationally useful?",
+    "riley_position": "Technology solutions exist to improve fire behavior prediction through updated fuel mapping via LiDAR and satellite imagery, but the real bottleneck is integrating these data into operational decision-making workflows. Distributed fuel monitoring networks operated by Nations could provide locally-calibrated data if properly resourced and incorporated into provincial briefings.",
+    "riley_key_evidence": [
+      "BC Wildfire Service uses outdated fuel type maps (some not updated since pre-2017) that cause fire behavior to be modeled incorrectly",
+      "Alberta Wildfire's predictive services units successfully translate remote sensing data into daily operational briefings that staff can act on",
+      "Fuel moisture sensor networks cost only a few hundred dollars each and could generate more granular, current data than provincial models"
+    ],
+    "casey_position": "The detection technology is working reasonably well, but the real problem is the institutional and funding infrastructure gap: data often exists but sits unused in databases because there's no operational bridge to frontline decision-makers. Nations and communities need sustained core funding for land management programs, not temporary project grants, and provincial agencies need structural incentive to actually use distributed data sources.",
+    "casey_key_evidence": [
+      "Remote sensing data often exists in university databases or provincial servers that fire crews have no workflow to access",
+      "Pilot monitoring programs fail after grant cycles end because they lack sustained institutional funding and staff continuity",
+      "The detection-to-suppression lag allows structure losses in fires that grow faster than modeled, particularly in the hours before formal resource deployment"
+    ],
+    "resolution": "They converged on a shared problem and concrete solution: a regional fuel monitoring network across multiple Nations and the Cariboo Regional District would be valuable, but requires three things to succeed\u2014pre-negotiated data governance, sustained maintenance budgets, and most importantly, BC Wildfire Service commitment to actually incorporate the data into operational briefings. Both acknowledged this is an institutional culture and staffing problem, not a pure technology problem, and that current urgency creates an opening for this collaboration.",
+    "topics_covered": [
+      "Wildfire detection technology vs. response infrastructure gaps",
+      "Outdated fuel type mapping and its impact on fire behavior prediction",
+      "The role of predictive services units in translating remote sensing data to operational use",
+      "Nation-operated fuel monitoring networks as complement to provincial capacity",
+      "Funding and institutional sustainability models for Indigenous-led land monitoring programs",
+      "Data governance and integration challenges in provincial wildfire management"
+    ]
   }
 }
