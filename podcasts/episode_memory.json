@@ -1,24 +1,4 @@
 {
-  "2026-04-03": {
-    "timestamp": 1775213560.293943,
-    "topics": [
-      "[The Tyee] A Deadly Fungal Invader Is Threatening BC\u2019s Bats",
-      "[100 Mile Free Press] BUXTON: Bird watching is not just for ",
-      "[BC Gov News] Opening Clean Industry Fund 2026 intake",
-      "[Gizmodo] China Is Trying to Grow New Forests in This Notori",
-      "[Android Authority] The DJI Power 1000 V2 is a no-nonsense p",
-      "[Williams Lake Tribune] Injured beaver from Williams Lake tr",
-      "[ScienceAlert] Chemical Signature Hidden in Lunar Rocks Hint",
-      "AI"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-04-03"
-  },
   "2026-04-04": {
     "timestamp": 1775299357.150605,
     "topics": [
@@ -413,5 +393,25 @@
       "Indigenous tech"
     ],
     "date": "2026-04-23"
+  },
+  "2026-04-24": {
+    "timestamp": 1777029192.391021,
+    "topics": [
+      "[CFJC Today Kamloops] Small wildfire near Kamloops quickly c",
+      "[Global News] Nova Scotia\u2019s provincewide ban on entering the",
+      "[Nautilus] How Lonely Walks in Nature Can Make You Feel Less",
+      "[The Guardian Global Development] Heatwaves, floods and wild",
+      "[Williams Lake Tribune] 5 bears die at B.C. wildlife rescue",
+      "[Quesnel Cariboo Observer] UPDATE: Wildfire reported west of",
+      "[CFJC Today Kamloops] Five out of 14 wildfires burning in B.",
+      "[Williams Lake Tribune] Evacuation alert issued for 10 prope"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-04-24"
   }
 }
