@@ -3030,9 +3030,9 @@ def _generate_parallel_azure_audio(segments, base_output_filename, theme_name=No
             _render("deep_dive")
 
             credits_text = (
-                "Cariboo Signals is produced with Claude by Anthropic for scripting "
-                "and Azure Neural TTS, Ava and Andrew for audio synthesis. "
-                "Music licensed under Creative Commons. Find us at cariboosignals.ca."
+                "Cariboo Signals is produced with Claude by Anthropic for scripting, "
+                "Azure Neural TTS, Ava and Andrew for audio synthesis, and Suno for our theme music. "
+                "Find us at cariboosignals.ca."
             )
             try:
                 credits_wav = os.path.join(tmpdir, "credits.wav")
@@ -3195,9 +3195,9 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
                 else "OpenAI TTS"
             )
             credits_text = (
-                f"Cariboo Signals is produced with Claude by Anthropic for scripting "
-                f"and {tts_credit} for audio synthesis. "
-                f"Music licensed under Creative Commons. Find us at cariboosignals.ca."
+                f"Cariboo Signals is produced with Claude by Anthropic for scripting, "
+                f"{tts_credit} for audio synthesis, and Suno for our theme music. "
+                f"Find us at cariboosignals.ca."
             )
             try:
                 if USE_AZURE_TTS:
@@ -3526,6 +3526,54 @@ def sync_site_to_r2(max_age_days: float = 2.0):
         print(f"   All {len(transcript_files)} transcript(s) already up to date, skipping")
 
 
+def _ms_to_vtt_ts(ms):
+    """Convert milliseconds to WebVTT timestamp HH:MM:SS.mmm."""
+    h, ms = divmod(ms, 3600000)
+    m, ms = divmod(ms, 60000)
+    s, ms = divmod(ms, 1000)
+    return f"{h:02d}:{m:02d}:{s:02d}.{ms:03d}"
+
+
+def script_to_vtt_transcript(script_content, intro_offset_ms=25000):
+    """Convert a raw podcast script to WebVTT format with estimated timestamps.
+
+    Timestamps are approximated at ~140 wpm starting after the intro music offset.
+    Apple Podcasts requires text/vtt to display a provided transcript instead of
+    prompting the user to generate one.
+    """
+    WORDS_PER_MS = 140 / 60000
+    cues = []
+    current_ms = intro_offset_ms
+
+    for line in script_content.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("#") or not stripped:
+            continue
+
+        extra_pause = sum(int(m.group(1)) for m in re.finditer(r'\[pause:(\d+)\]', stripped))
+        stripped = re.sub(r'\[(?:overlap|pause):-?\d+\]\s*', '', stripped).strip()
+
+        riley_m = re.match(r'\*\*RILEY:\*\*\s*(.*)', stripped)
+        casey_m = re.match(r'\*\*CASEY:\*\*\s*(.*)', stripped)
+        if riley_m:
+            speaker, text = "Riley", riley_m.group(1).strip()
+        elif casey_m:
+            speaker, text = "Casey", casey_m.group(1).strip()
+        else:
+            continue
+
+        if not text:
+            continue
+
+        current_ms += extra_pause
+        duration_ms = max(1000, int(len(text.split()) / WORDS_PER_MS))
+        end_ms = current_ms + duration_ms
+        cues.append(f"{_ms_to_vtt_ts(current_ms)} --> {_ms_to_vtt_ts(end_ms)}\n<v {speaker}>{text}")
+        current_ms = end_ms + 300
+
+    return "WEBVTT\n\n" + "\n\n".join(cues) if cues else None
+
+
 def script_to_friendly_transcript(script_content):
     """Convert a raw podcast script to a clean HTML transcript for Apple Podcasts.
 
@@ -3589,26 +3637,32 @@ def script_to_friendly_transcript(script_content):
 
 
 def generate_episode_transcript(script_filename, date_str, safe_theme):
-    """Generate a friendly HTML transcript from a podcast script file.
+    """Generate HTML and WebVTT transcripts from a podcast script file.
 
-    Returns the transcript file path on success, or None on failure.
+    Returns the HTML transcript file path on success, or None on failure.
     """
     if not script_filename or not os.path.exists(script_filename):
         return None
 
-    transcript_filename = str(PODCASTS_DIR / f"podcast_transcript_{date_str}_{safe_theme}.html")
+    html_filename = str(PODCASTS_DIR / f"podcast_transcript_{date_str}_{safe_theme}.html")
+    vtt_filename = str(PODCASTS_DIR / f"podcast_transcript_{date_str}_{safe_theme}.vtt")
 
     try:
         with open(script_filename, 'r', encoding='utf-8') as f:
             script_content = f.read()
 
         html = script_to_friendly_transcript(script_content)
-
-        with open(transcript_filename, 'w', encoding='utf-8') as f:
+        with open(html_filename, 'w', encoding='utf-8') as f:
             f.write(html)
+        print(f"📄 Saved HTML transcript to: {html_filename}")
 
-        print(f"📄 Saved transcript to: {transcript_filename}")
-        return transcript_filename
+        vtt = script_to_vtt_transcript(script_content)
+        if vtt:
+            with open(vtt_filename, 'w', encoding='utf-8') as f:
+                f.write(vtt)
+            print(f"📄 Saved VTT transcript to: {vtt_filename}")
+
+        return html_filename
 
     except Exception as e:
         print(f"⚠️  Could not generate transcript: {e}")
@@ -3721,19 +3775,25 @@ def generate_podcast_rss_feed():
 
     episodes = episodes[:10]  # Keep last 10 episodes
 
-    # Attach transcript path for each episode if a transcript file exists
+    # Attach transcript paths for each episode (VTT for Apple Podcasts, HTML for others)
     audio_base = podcast_config.get("audio_base_url", podcast_config["url"])
     for episode in episodes:
         audio_basename = os.path.basename(episode['audio_file'])
         m = re.search(r'podcast_audio_(\d{4}-\d{2}-\d{2})_(.+)\.mp3', audio_basename)
         if m:
             ep_date, ep_theme = m.groups()
-            transcript_file = PODCASTS_DIR / f"podcast_transcript_{ep_date}_{ep_theme}.html"
-            if transcript_file.exists():
-                episode['transcript_url'] = f"{audio_base}podcasts/podcast_transcript_{ep_date}_{ep_theme}.html"
-            else:
-                episode['transcript_url'] = None
+            vtt_file = PODCASTS_DIR / f"podcast_transcript_{ep_date}_{ep_theme}.vtt"
+            html_file = PODCASTS_DIR / f"podcast_transcript_{ep_date}_{ep_theme}.html"
+            episode['vtt_transcript_url'] = (
+                f"{audio_base}podcasts/podcast_transcript_{ep_date}_{ep_theme}.vtt"
+                if vtt_file.exists() else None
+            )
+            episode['transcript_url'] = (
+                f"{audio_base}podcasts/podcast_transcript_{ep_date}_{ep_theme}.html"
+                if html_file.exists() else None
+            )
         else:
+            episode['vtt_transcript_url'] = None
             episode['transcript_url'] = None
 
     # Attach chapters path for each episode if a chapters file exists
@@ -3798,6 +3858,9 @@ def generate_podcast_rss_feed():
             f'<itunes:duration>{episode["duration"]}</itunes:duration>',
             f'<itunes:explicit>{"true" if podcast_config["explicit"] else "false"}</itunes:explicit>',
         ]
+        if episode.get('vtt_transcript_url'):
+            escaped_vtt_url = saxutils.escape(episode['vtt_transcript_url'], {chr(34): "&quot;"})
+            item_lines.append(f'<podcast:transcript url="{escaped_vtt_url}" type="text/vtt" language="en-CA"/>')
         if episode.get('transcript_url'):
             escaped_transcript_url = saxutils.escape(episode['transcript_url'], {chr(34): "&quot;"})
             item_lines.append(f'<podcast:transcript url="{escaped_transcript_url}" type="text/html" language="en-CA"/>')
