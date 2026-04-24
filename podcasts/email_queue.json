@@ -936,6 +936,31 @@
       "theme_day": 3,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "731d4630",
+      "type": "newsletter",
+      "message_id": "<b74ee46da1eb7a8973ab45d41.9538d97182.20260424153207.907af29350.df6d4a16@mail116.atl111.rsgsv.net>",
+      "from_address": "s***@canadaland.com",
+      "subject": "Tax rebates & public stores: how do we fix grocery prices?",
+      "received_at": "2026-04-24T15:32:31+00:00",
+      "body_text": "Canadaland logo ** The Young and the Speechless ------------------------------------------------------------ https://www.canadaland.com/podcast/1350-academy-of-dunces-a-decade-of-campus-censorship/?ut",
+      "extracted_urls": [
+        "https://www.canadaland.com/podcast/1350-academy-of-dunces-a-decade-of-campus-censorship/?utm_source=Master+Email+List&utm_campaign=907af29350-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-907af29350-379881794",
+        "https://www.canadaland.com/podcast/178-did-bc-premier-david-eby-just-reconcile-himself-out-of-a-job/?utm_source=Master+Email+List&utm_campaign=907af29350-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-907af29350-379881794",
+        "https://fizz.ca/en/mobile?ADDONS%5B0%5D=18&CVRG=108&DATA=703&PLAN=3&SMS=223&VOICE=90&WIZARD=mobile&utm_source=canadaland&utm_medium=article&utm_term=01&utm_content=2026&utm_source=Master+Email+List&utm_campaign=907af29350-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-907af29350-379881794",
+        "https://www.canadaland.com/podcast/1352-mark-carney-youtuber/?utm_source=Master+Email+List&utm_campaign=907af29350-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-907af29350-379881794",
+        "https://www.canadaland.com/podcast/1353-does-canada-need-government-supermarkets/?utm_source=Master+Email+List&utm_campaign=907af29350-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-907af29350-379881794",
+        "https://www.canadaland.com/share?utm_source=Master+Email+List&utm_campaign=907af29350-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-907af29350-379881794",
+        "https://hotdocs.ca/festivals/hot-docs-festival?utm_source=Canadaland&utm_medium=display&utm_campaign=HD26&utm_source=Master+Email+List&utm_campaign=907af29350-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-907af29350-379881794",
+        "https://canadalandnetwork.supercast.com/?utm_source=Master+Email+List&utm_campaign=907af29350-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-907af29350-379881794",
+        "https://mailchi.mp/canadaland.com/newsletter-signup?utm_source=Master+Email+List&utm_campaign=907af29350-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-907af29350-379881794",
+        "http://www.canadaland.com/?utm_source=Master+Email+List&utm_campaign=907af29350-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-907af29350-379881794"
+      ],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
