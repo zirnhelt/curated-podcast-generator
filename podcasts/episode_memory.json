@@ -1,24 +1,4 @@
 {
-  "2026-04-04": {
-    "timestamp": 1775299357.150605,
-    "topics": [
-      "[Williams Lake Tribune] Prince George RCMP investigate after",
-      "[Williams Lake Tribune] Repeat offender sentenced to 5 years",
-      "[Hackaday] Reverse-Engineering a Handheld Car Tire Pressure ",
-      "[Hackaday] Simulating a glowing fireplace with an RP2040",
-      "[Nautilus] Cosmic Mysteries Swirl Around \u201cForbidden Planet\u201d",
-      "[Quesnel Cariboo Observer] Prince George-North Cariboo MLA f",
-      "[Williams Lake Tribune] UPDATE: Highway 1 near Chase re-open",
-      "[Williams Lake Tribune] Canada\u2019s 7th Most Wanted Arrested in"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-04-04"
-  },
   "2026-04-05": {
     "timestamp": 1775385798.923281,
     "topics": [
@@ -413,5 +393,25 @@
       "Indigenous tech"
     ],
     "date": "2026-04-24"
+  },
+  "2026-04-25": {
+    "timestamp": 1777114292.801849,
+    "topics": [
+      "[Quesnel Cariboo Observer] Lhtako Dene chief, councillor re-",
+      "[100 Mile Free Press] PAPER QUIPS: Home video; preserving th",
+      "[Williams Lake Tribune] TRAILBLAZER CHRONICLES: What differe",
+      "[Williams Lake Tribune] 5-year jail sentence for woman who k",
+      "[Quesnel Cariboo Observer] Alleged car thief rams police cru",
+      "[Williams Lake Tribune] 2026 Williams Lake Stampede Parade g",
+      "[Williams Lake Tribune] Williams Lake International Food Fai",
+      "[Williams Lake Tribune] Community volunteers create meaningf"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-04-25"
   }
 }
