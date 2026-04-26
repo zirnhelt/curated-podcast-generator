@@ -975,6 +975,22 @@
       "theme_day": 0,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "5fc351dd",
+      "type": "feedback",
+      "message_id": "<897577C3-0C35-4758-A5BE-8503F3C4CB77@gmail.com>",
+      "from_address": "z***@gmail.com",
+      "subject": "Canadian Indigenous languages technology project - National Research Council Canada",
+      "received_at": "2026-04-25T16:56:23-07:00",
+      "body_text": "Topic for a deep dive https://nrc.canada.ca/en/research-development/research-collaboration/programs/canadian-indigenous-languages-technology-project Thanks, Erich",
+      "extracted_urls": [
+        "https://nrc.canada.ca/en/research-development/research-collaboration/programs/canadian-indigenous-languages-technology-project"
+      ],
+      "theme_tag": "Community Tech & Governance",
+      "theme_day": 2,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
