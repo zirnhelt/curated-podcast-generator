@@ -1,24 +1,4 @@
 {
-  "2026-04-05": {
-    "timestamp": 1775385798.923281,
-    "topics": [
-      "[Quartz] Is EQT Well-Positioned to Gain on Mounting Clean En",
-      "[How-To Geek] Want a private homelab? Put these 12 apps at t",
-      "[Hackaday] The Smallest Dialup ISP is a Raspberry Pi and a P",
-      "[XDA Developers] A single mini PC replaced my Raspberry Pi c",
-      "[How-To Geek] My single homelab server became a nightmare, s",
-      "[TechCrunch] Peter Thiel\u2019s big bet on solar-powered cow coll",
-      "AI",
-      "technology adoption"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech",
-      "connectivity"
-    ],
-    "date": "2026-04-05"
-  },
   "2026-04-06": {
     "timestamp": 1775473477.279032,
     "topics": [
@@ -413,5 +393,25 @@
       "Indigenous tech"
     ],
     "date": "2026-04-25"
+  },
+  "2026-04-26": {
+    "timestamp": 1777200707.871314,
+    "topics": [
+      "[Resilience.org] The UK can\u2019t debate its way out of climate ",
+      "[ZDNet] I powered my 3,000-sq-ft home with an EcoFlow batter",
+      "[Kottke.org] Trials for a pancreatic cancer mRNA vaccine :..",
+      "[ScienceAlert] After 6 Decades, One Drug Is Still Finding Ne",
+      "[ScienceAlert] Air Purifiers Could Boost Your Brain Function",
+      "[Kottke.org] &#8220; NASA&#8217;s Curiosity rover has detect",
+      "[ScienceAlert] Physicists Simulated a Quantum Process That C",
+      "[ScienceAlert] Scientists Reveal The Optimal Amount of Sleep"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-04-26"
   }
 }
