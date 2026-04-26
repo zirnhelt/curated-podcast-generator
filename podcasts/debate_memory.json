@@ -1347,5 +1347,31 @@
       "Social capital theory: bonding versus bridging across community groups",
       "Structural constraints on rural volunteering and hybrid funding models for non-profits"
     ]
+  },
+  "2026-04-26": {
+    "timestamp": 1777200709.543437,
+    "date": "2026-04-26",
+    "theme": "Science, Wonder & the Natural World",
+    "central_question": "Can rural communities like the Cariboo be positioned to conduct long-duration, place-based observational science better than centralized institutions, and what governance structures would make this work?",
+    "riley_position": "Rural communities have inherent advantages for longitudinal ecological observation through existing land management practices and stakeholder relationships, but the governance architecture\u2014particularly around data ownership and control in contested Indigenous territories\u2014must be resolved before infrastructure is built.",
+    "riley_key_evidence": [
+      "Ranches have tracked pastures through multiple generations of climate variation; Secw\u00e9pemc and T\u015dilhqot'in knowledge holders carry observational records spanning millennia",
+      "The York University sleep study succeeded by aggregating 69 separate studies over time, requiring sustained infrastructure maintenance beyond grant cycles",
+      "Community Futures organizations already sit at the intersection of ranching operations and First Nations economic development, positioning them to convene governance conversations"
+    ],
+    "casey_position": "Rural communities should formalize their existing longitudinal observational capacity through a 'monitoring commons' model where multiple land users with distinct operational needs share infrastructure costs and data, with OCAP principles and Indigenous governance embedded from the design stage.",
+    "casey_key_evidence": [
+      "Curiosity rover's thirteen-year sustained observation on Mars generated undeniable patterns through incremental data accumulation rather than breakthrough experiments",
+      "Wildfire management could improve with systematic local tracking of vegetation density, soil moisture, and snowmelt timing over 10-15 years rather than relying on provincial aggregate data",
+      "Cattle ranchers, wildlife monitors, timber operators, and tourism operators all need overlapping climate and ecological data, creating natural infrastructure-sharing opportunities"
+    ],
+    "resolution": "Casey and Riley reached substantial agreement: governance questions must precede technology deployment, the monitoring commons model is viable, and a starting point should be convening land users around three operational questions rather than beginning with sensor deployment. They acknowledged the approach is harder than technology problems but fundamentally more important.",
+    "topics_covered": [
+      "Long-duration observational science as a structural advantage for rural communities",
+      "Indigenous data sovereignty and OCAP principles in shared monitoring infrastructure",
+      "Governance architecture and dispute resolution in data-sharing arrangements across competing land interests",
+      "Community Futures as a potential convening body for multi-stakeholder monitoring commons",
+      "Operational vs. scientific framing as the foundation for durable rural science initiatives"
+    ]
   }
 }

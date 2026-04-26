@@ -80,9 +80,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-20",
-        "clue": "pilot-skepticism:x \u2014 Conceded that 'permission' framing was imprecise; distribution/discoverability is sharper edge",
-        "occurrences": 1
+        "date": "2026-04-26",
+        "clue": "pilot-skepticism:x \u2014 conceded governance-first approach has real merit",
+        "occurrences": 2
       },
       {
         "date": "2026-04-24",
@@ -93,11 +93,6 @@
         "date": "2026-04-22",
         "clue": "community-trust:x \u2014 Conceded regional coordination risks gatekeeping, Indigenous representation complexity",
         "occurrences": 1
-      },
-      {
-        "date": "2026-04-24",
-        "clue": "structural-lens:+ \u2014 Shifted focus to predictive services units as connective tissue",
-        "occurrences": 2
       },
       {
         "date": "2026-04-23",
@@ -194,11 +189,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-23",
-        "clue": "community-trust:~ \u2014 acknowledged Rangers as genuine authority-holding, not just consultation",
-        "occurrences": 2
-      },
-      {
         "date": "2026-04-21",
         "clue": "evidence-bar:x \u2014 Conceded that local pilot data would change risk calculus meaningfully",
         "occurrences": 2
@@ -219,9 +209,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-22",
-        "clue": "structural-lens:+ \u2014 Shifted from individual solutions toward systemic regional infrastructure model",
-        "occurrences": 1
+        "date": "2026-04-26",
+        "clue": "structural-lens:+ \u2014 shifted from abstract 'monitoring commons' to operational-needs-first methodology",
+        "occurrences": 2
       },
       {
         "date": "2026-04-24",
@@ -268,6 +258,11 @@
       {
         "formed": "2026-04-25",
         "signal": "structural-lens:~ \u2014 Acknowledged social capital as real, not just sentiment",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-04-26",
+        "signal": "community-trust:~ \u2014 acknowledged extraction risk, then reframed it as solvable through design-stage governance",
         "occurrences": 3
       }
     ]

@@ -1,0 +1,438 @@
+{
+  "episode": {
+    "date": "2026-04-26",
+    "formatted_date": "Sunday, April 26, 2026",
+    "theme": "Science, Wonder & the Natural World",
+    "title": "Cariboo Signals - Science, Wonder & the Natural World",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Science, Wonder & the Natural World.</p><p><b>NEWS ROUNDUP:</b> We break down [Kottke.org] Trials for a pancreatic cancer mRNA vaccine :... and [Boing Boing] A 1946 plan to feed a billion people with sawdust, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Can rural communities like the Cariboo be positioned to conduct long-duration, place-based observational science better than centralized institutions, and what governance structures would make this work? Topics include: Long-duration observational science as a structural advantage for rural communities, Indigenous data sovereignty and OCAP principles in shared monitoring infrastructure, Governance architecture and dispute resolution in data-sharing arrangements across competing land interests, Community Futures as a potential convening body for multi-stakeholder monitoring commons, Operational vs. scientific framing as the foundation for durable rural science initiatives.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> Salvation Army Williams Lake</p><p><b>Sources discussed:</b></p><ul><li>Kottke.org: <a href=\"https://kottke.org/26/04/0048774-trials-for-a-pancreatic-c\">[Kottke.org] Trials for a pancreatic cancer mRNA vaccine :.....</a></li><li>Boing Boing: <a href=\"https://boingboing.net/2026/04/22/a-1946-plan-to-feed-a-billion-people-with-sawdust.html\">[Boing Boing] A 1946 plan to feed a billion people with sawd...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/turned-old-android-phone-into-home-server-more-useful-than-raspberry-pi/\">[XDA Developers] I turned an old Android phone into a home s...</a></li><li>Kottke.org: <a href=\"https://kottke.org/26/04/0048775-nasas-curiosity-rover-has\">[Kottke.org] &#8220; NASA&#8217;s Curiosity rover has detect...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/physicists-simulated-a-quantum-process-that-could-end-the-universe\">[ScienceAlert] Physicists Simulated a Quantum Process That C...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Resilience.org: <a href=\"https://www.resilience.org/stories/2026-04-22/the-uk-cant-debate-its-way-out-of-climate-impacts-it-needs-a-plan-b-now/\">[Resilience.org] The UK can’t debate its way out of climate ...</a></li><li>ZDNet: <a href=\"https://www.zdnet.com/article/ecoflow-delta-pro-ultra-x-review/\">[ZDNet] I powered my 3,000-sq-ft home with an EcoFlow batter...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/after-6-decades-one-drug-is-still-finding-new-uses-in-medicine\">[ScienceAlert] After 6 Decades, One Drug Is Still Finding Ne...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/air-purifiers-could-boost-your-brain-function-study-suggests\">[ScienceAlert] Air Purifiers Could Boost Your Brain Function...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/curiosity-finds-new-building-blocks-of-life-on-mars-in-landmark-experiment\">[ScienceAlert] Curiosity Finds New Building Blocks of Life o...</a></li><li>Boing Boing: <a href=\"https://boingboing.net/2026/04/22/what-is-this-weird-huge-mound-in-siberia.html\">[Boing Boing] What is this weird huge mound in Siberia?</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/04/20/science/reid-wiseman-earthset-photo-artemis-2.html\">[NYT Top Stories] ‘Earthset’ Is Captured on Video for First ...</a></li><li>Nautilus: <a href=\"https://nautil.us/mars-curiosity-rover-makes-a-big-find-on-the-red-planet-1280052/\">[Nautilus] Mars Curiosity Rover Makes a Big Find on the Red ...</a></li><li>Nautilus: <a href=\"https://nautil.us/the-mystery-of-the-giant-blobs-at-the-center-of-the-earth-1280082/\">[Nautilus] The Mystery of the Giant Blobs at the Center of t...</a></li><li>BC Gov News: <a href=\"https://news.gov.bc.ca/releases/2026HMA0048-000456\">[BC Gov News] Celebrating the opening of Chief Leonard Georg...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/04/24/opinion/ezra-klein-podcast-stewart-brand.html\">[NYT Top Stories] Stewart Brand on the Ideals the Tech Indus...</a></li><li>Nautilus: <a href=\"https://nautil.us/the-peace-that-an-eclipse-brings-1280047/\">[Nautilus] The Peace That an Eclipse Brings</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/scientists-reveal-the-optimal-amount-of-sleep-to-lower-dementia-risk\">[ScienceAlert] Scientists Reveal The Optimal Amount of Sleep...</a></li></ul><p><b>Closing Music:</b> &ldquo;<a href=\"https://www.jamendo.com/track/1181019\">Gates</a>&rdquo; by Bellevue &mdash; rock, pop, indie. Free music via Jamendo, licensed under Creative Commons.</p><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-6<br>TTS Voices: Azure Neural TTS (Ava · Andrew)<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-04-26T03:51:47.847366-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-sonnet-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Resilience.org] The UK can’t debate its way out of climate impacts. It needs a Plan B now",
+          "url": "https://www.resilience.org/stories/2026-04-22/the-uk-cant-debate-its-way-out-of-climate-impacts-it-needs-a-plan-b-now/",
+          "source": "Resilience.org",
+          "ai_score": 0,
+          "date_published": "2026-04-22T08:00:38+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ZDNet] I powered my 3,000-sq-ft home with an EcoFlow battery in a blackout",
+          "url": "https://www.zdnet.com/article/ecoflow-delta-pro-ultra-x-review/",
+          "source": "ZDNet",
+          "ai_score": 0,
+          "date_published": "2026-04-21T18:00:47+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Kottke.org] Trials for a pancreatic cancer mRNA vaccine :...",
+          "url": "https://kottke.org/26/04/0048774-trials-for-a-pancreatic-c",
+          "source": "Kottke.org",
+          "ai_score": 0,
+          "date_published": "2026-04-21T15:24:25+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[ScienceAlert] After 6 Decades, One Drug Is Still Finding New Uses in Medicine",
+          "url": "https://www.sciencealert.com/after-6-decades-one-drug-is-still-finding-new-uses-in-medicine",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-04-26T01:00:20+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Air Purifiers Could Boost Your Brain Function, Study Suggests",
+          "url": "https://www.sciencealert.com/air-purifiers-could-boost-your-brain-function-study-suggests",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-04-25T14:00:35+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] A 1946 plan to feed a billion people with sawdust",
+          "url": "https://boingboing.net/2026/04/22/a-1946-plan-to-feed-a-billion-people-with-sawdust.html",
+          "source": "Boing Boing",
+          "ai_score": 0,
+          "date_published": "2026-04-22T17:41:34+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[ScienceAlert] Curiosity Finds New Building Blocks of Life on Mars in Landmark Experiment",
+          "url": "https://www.sciencealert.com/curiosity-finds-new-building-blocks-of-life-on-mars-in-landmark-experiment",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-04-22T03:14:13+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] What is this weird huge mound in Siberia?",
+          "url": "https://boingboing.net/2026/04/22/what-is-this-weird-huge-mound-in-siberia.html",
+          "source": "Boing Boing",
+          "ai_score": 0,
+          "date_published": "2026-04-22T17:22:26+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] ‘Earthset’ Is Captured on Video for First Time",
+          "url": "https://www.nytimes.com/2026/04/20/science/reid-wiseman-earthset-photo-artemis-2.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-04-20T21:05:57+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] Mars Curiosity Rover Makes a Big Find on the Red Planet",
+          "url": "https://nautil.us/mars-curiosity-rover-makes-a-big-find-on-the-red-planet-1280052/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-04-21T18:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] The Mystery of the Giant Blobs at the Center of the Earth",
+          "url": "https://nautil.us/the-mystery-of-the-giant-blobs-at-the-center-of-the-earth-1280082/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-04-21T22:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[BC Gov News] Celebrating the opening of Chief Leonard George building in Vancouver",
+          "url": "https://news.gov.bc.ca/releases/2026HMA0048-000456",
+          "source": "BC Gov News",
+          "ai_score": 0,
+          "date_published": "2026-04-24T20:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] Stewart Brand on the Ideals the Tech Industry Forgot",
+          "url": "https://www.nytimes.com/2026/04/24/opinion/ezra-klein-podcast-stewart-brand.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-04-24T19:40:27+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] The Peace That an Eclipse Brings",
+          "url": "https://nautil.us/the-peace-that-an-eclipse-brings-1280047/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-04-21T19:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] Seriously small tiny house comes at an ultra-affordable price",
+          "url": "https://newatlas.com/tiny-houses/mantra-micro-cabin-simplify-further/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-04-25T17:03:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Global News] Saskatchewan community comes together to fight rising waters",
+          "url": "https://globalnews.ca/news/11816736/saskatchewan-community-fights-rising-waters/",
+          "source": "Global News",
+          "ai_score": 0,
+          "date_published": "2026-04-25T01:02:35+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Tyee] A Little Library for Dog Sticks",
+          "url": "https://thetyee.ca/Culture/2026/04/24/Little-Library-Dog-Sticks/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-04-25T00:20:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] AI-boosted infrared cooker gives you real grilled flavor indoors",
+          "url": "https://newatlas.com/around-the-home/cozytime-lumo-infrared-cooker/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-04-24T17:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] Fjallraven gives its popular Kanken backpack a sustainable, eco-friendly makeover",
+          "url": "https://www.businessinsider.com/guides/style/fjallraven-tree-kanken-review",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-04-22T19:03:11+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[CNET] Xfinity Launches New Cheaper Mobile Plans and Included Device Protection",
+          "url": "https://www.cnet.com/tech/mobile/xfinity-launches-new-cheaper-mobile-plans-and-included-device-protection/",
+          "source": "CNET",
+          "ai_score": 0,
+          "date_published": "2026-04-22T13:30:56+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] Japan Is Used to Earthquakes, but What About a Big One?",
+          "url": "https://www.nytimes.com/2026/04/22/world/asia/japan-earthquake-megaquake-tsunami.html",
+          "source": "NYT Top Stories",
+          "ai_score": 0,
+          "date_published": "2026-04-22T09:19:13+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] I was frustrated by every baby carrier on the market. So I built my own — and grew 2,200% in the last three years.",
+          "url": "https://www.businessinsider.com/baby-carrier-startup-growth-strategy-marketing-2026-4",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-04-21T20:19:45+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] What a Parrot Means When It Says Your Name",
+          "url": "https://nautil.us/what-a-parrot-means-when-it-says-your-name-1280042/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-04-21T16:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Global News] ‘They want to understand’: Agritourism growing across Alberta",
+          "url": "https://globalnews.ca/news/11809498/alberta-agritourism/",
+          "source": "Global News",
+          "ai_score": 0,
+          "date_published": "2026-04-21T00:20:58+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[CNET] I'm a Smart Home Expert. Here Are 3 Easy Automations I Find Particularly Useful",
+          "url": "https://www.cnet.com/home/smart-home/im-a-smart-home-tech-expert-here-are-3-easy-automations-i-find-particularly-useful/",
+          "source": "CNET",
+          "ai_score": 0,
+          "date_published": "2026-04-22T10:09:24+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] I just tested this portable solar panel to charge my phone",
+          "url": "https://www.tomsguide.com/phones/i-just-tested-this-portable-solar-panel-to-charge-my-phone",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-04-22T08:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] Prehistoric rock art in Colombia's Serranía de la Lindosa reveals ancient human \"Kiss\"",
+          "url": "https://boingboing.net/2026/04/24/prehistoric-rock-art-in-colombias-serrania-de-la-lindosa-reveals-ancient-human-kiss.html",
+          "source": "Boing Boing",
+          "ai_score": 0,
+          "date_published": "2026-04-24T20:24:59+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] 9 points to remember when choosing an business internet provider",
+          "url": "https://www.techradar.com/pro/9-points-to-remember-when-choosing-an-business-internet-provider",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-04-24T19:50:25+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Tyee] He Helped Canada Line Workers Win Justice. Now, There’s a Book",
+          "url": "https://thetyee.ca/News/2026/04/24/He-Helped-Canada-Line-Workers-Win-Justice/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-04-24T07:20:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ZDNet] 5 easy ways you wouldn't think to automate your home",
+          "url": "https://www.zdnet.com/article/easy-ways-to-automate-home-you-didnt-think-about/",
+          "source": "ZDNet",
+          "ai_score": 0,
+          "date_published": "2026-04-23T15:21:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] This amazing ESP32 game runs at 60FPS on a 480x320 screen",
+          "url": "https://www.xda-developers.com/this-amazing-esp32-game-runs-at-60fps-on-a-480x320-screen/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-04-26T03:43:55+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] I tripled my power bill building a massive home server before realizing two cheap NAS units are better",
+          "url": "https://www.howtogeek.com/reasons-your-homelab-needs-two-nas-devices-not-just-one/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-04-25T17:45:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] I turned an old Android phone into a home server, and it’s more useful than my Raspberry Pi",
+          "url": "https://www.xda-developers.com/turned-old-android-phone-into-home-server-more-useful-than-raspberry-pi/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-04-22T00:00:58+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[TechCrunch] Amazon taps Sweden’s Einride for its electric big rigs",
+          "url": "https://techcrunch.com/2026/04/21/amazon-taps-swedens-einride-for-its-electric-big-rigs/",
+          "source": "TechCrunch",
+          "ai_score": 0,
+          "date_published": "2026-04-21T14:09:43+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] I moved my Raspberry Pi projects to $5 ESP32 boards, and nothing broke",
+          "url": "https://www.xda-developers.com/moved-raspberry-pi-projects-esp32-boards-nothing-broke/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-04-26T00:00:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] I had no idea Home Assistant and Sonos could work this well together",
+          "url": "https://www.howtogeek.com/home-assistant-sonos-work-well-together/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-04-25T17:00:17+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Coldest city in B.C.: Merritt sets 102-year-old temperature record",
+          "url": "https://wltribune.com/2026/04/25/coldest-city-in-b-c-merritt-sets-102-year-old-temperature-record/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 0,
+          "date_published": "2026-04-25T08:23:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Science, Wonder & the Natural World",
+      "articles": [
+        {
+          "title": "[Kottke.org] &#8220; NASA&#8217;s Curiosity rover has detected organic...",
+          "url": "https://kottke.org/26/04/0048775-nasas-curiosity-rover-has",
+          "source": "Kottke.org",
+          "ai_score": 0,
+          "date_published": "2026-04-21T14:31:48+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[ScienceAlert] Physicists Simulated a Quantum Process That Could End The Universe",
+          "url": "https://www.sciencealert.com/physicists-simulated-a-quantum-process-that-could-end-the-universe",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-04-25T18:00:43+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[ScienceAlert] Scientists Reveal The Optimal Amount of Sleep to Lower Dementia Risk",
+          "url": "https://www.sciencealert.com/scientists-reveal-the-optimal-amount-of-sleep-to-lower-dementia-risk",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-04-25T21:00:29+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Can rural communities like the Cariboo be positioned to conduct long-duration, place-based observational science better than centralized institutions, and what governance structures would make this work?",
+        "riley_position": "Rural communities have inherent advantages for longitudinal ecological observation through existing land management practices and stakeholder relationships, but the governance architecture—particularly around data ownership and control in contested Indigenous territories—must be resolved before infrastructure is built.",
+        "riley_key_evidence": [
+          "Ranches have tracked pastures through multiple generations of climate variation; Secwépemc and Tŝilhqot'in knowledge holders carry observational records spanning millennia",
+          "The York University sleep study succeeded by aggregating 69 separate studies over time, requiring sustained infrastructure maintenance beyond grant cycles",
+          "Community Futures organizations already sit at the intersection of ranching operations and First Nations economic development, positioning them to convene governance conversations"
+        ],
+        "casey_position": "Rural communities should formalize their existing longitudinal observational capacity through a 'monitoring commons' model where multiple land users with distinct operational needs share infrastructure costs and data, with OCAP principles and Indigenous governance embedded from the design stage.",
+        "casey_key_evidence": [
+          "Curiosity rover's thirteen-year sustained observation on Mars generated undeniable patterns through incremental data accumulation rather than breakthrough experiments",
+          "Wildfire management could improve with systematic local tracking of vegetation density, soil moisture, and snowmelt timing over 10-15 years rather than relying on provincial aggregate data",
+          "Cattle ranchers, wildlife monitors, timber operators, and tourism operators all need overlapping climate and ecological data, creating natural infrastructure-sharing opportunities"
+        ],
+        "resolution": "Casey and Riley reached substantial agreement: governance questions must precede technology deployment, the monitoring commons model is viable, and a starting point should be convening land users around three operational questions rather than beginning with sensor deployment. They acknowledged the approach is harder than technology problems but fundamentally more important.",
+        "topics_covered": [
+          "Long-duration observational science as a structural advantage for rural communities",
+          "Indigenous data sovereignty and OCAP principles in shared monitoring infrastructure",
+          "Governance architecture and dispute resolution in data-sharing arrangements across competing land interests",
+          "Community Futures as a potential convening body for multi-stakeholder monitoring commons",
+          "Operational vs. scientific framing as the foundation for durable rural science initiatives"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "Azure Neural TTS (Ava · Andrew)",
+    "text_to_speech_openai": "OpenAI TTS API (Nova · Echo)",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  },
+  "closing_music": {
+    "name": "Gates",
+    "artist": "Bellevue",
+    "genres": [
+      "rock",
+      "pop",
+      "indie"
+    ],
+    "shareurl": "https://www.jamendo.com/track/1181019",
+    "license": "Creative Commons via Jamendo"
+  }
+}
