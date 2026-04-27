@@ -1373,5 +1373,31 @@
       "Community Futures as a potential convening body for multi-stakeholder monitoring commons",
       "Operational vs. scientific framing as the foundation for durable rural science initiatives"
     ]
+  },
+  "2026-04-27": {
+    "timestamp": 1777290762.202033,
+    "date": "2026-04-27",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "central_question": "How should Canada regulate digital platforms to protect rural and Indigenous cultural storytelling in the absence of platform accountability structures?",
+    "riley_position": "Platform regulation alone won't solve the distribution problem for rural creators; communities should build direct audience relationships and owned infrastructure independent of platforms, using AI as connective tissue rather than production capacity.",
+    "riley_key_evidence": [
+      "Algorithms systematically favor emotionally provocative content over carefully produced oral histories, creating a structural disadvantage for community storytellers",
+      "Email lists and direct podcast feeds bypass algorithmic suppression and cannot be taken away by platforms",
+      "AI search tools with data sovereignty protections (like searching oral history footage by plain language) could solve archive interpretation bottlenecks without extracting community data"
+    ],
+    "casey_position": "Canada's regulatory gap creates measurable harms to cultural diversity; a duty of care framework with procedural protections and data portability rights could level the playing field while platform power continuously expands.",
+    "casey_key_evidence": [
+      "Meta blocked Canadian news entirely rather than pay link fees under the Online News Act, demonstrating real harms from regulatory gaps",
+      "The UK has the Online Safety Act, Australia has platform duty of care, and the EU has the Digital Services Act\u2014Canada has none",
+      "AI-generated content automation is widening the gap between industrial content factories and community producers, making the regulatory timeline urgent"
+    ],
+    "resolution": "They converged on a both/and position: communities need both federal duty of care regulation and immediate local action (owned infrastructure, direct relationships), with platforms used as 'doors, not houses.' Casey conceded regulation moves slowly; Riley conceded platform reach is genuinely valuable and shouldn't be abandoned.",
+    "topics_covered": [
+      "Platform algorithms as non-neutral distribution infrastructure that shapes what gets created",
+      "Data portability and creator sovereignty as components of duty of care frameworks",
+      "Community-owned alternative infrastructure (newsletters, podcasts, local archives) as durable alternatives to platform dependency",
+      "AI's role in cultural production: generation vs. connective discovery for community storytellers",
+      "Risks of overregulation creating automated content moderation harms to marginalized creators"
+    ]
   }
 }
