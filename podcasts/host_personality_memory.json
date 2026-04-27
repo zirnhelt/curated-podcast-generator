@@ -60,9 +60,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-04-16",
-        "clue": "tech-optimism: - \u2014 Conceded enforcement gaps in ABS frameworks, timeline risks.",
-        "occurrences": 1
+        "date": "2026-04-27",
+        "clue": "tech-optimism: - \u2014 Walked back AI-as-democratizer; now skeptical of commercial tool trajectories",
+        "occurrences": 2
       },
       {
         "date": "2026-04-16",
@@ -97,6 +97,11 @@
       {
         "date": "2026-04-23",
         "clue": "pilot-skepticism:+ \u2014 explicitly critiqued project-based grant model as fundamentally inadequate",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-04-27",
+        "clue": "structural-lens: + \u2014 Deepened platform-harm analysis; systematized algorithmic suppression of community content",
         "occurrences": 1
       }
     ],
@@ -174,11 +179,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-04-16",
-        "clue": "structural-lens: + \u2014 Shifted from platform-choice framing to pre-platform decision hierarchy.",
-        "occurrences": 2
-      },
-      {
         "date": "2026-04-02",
         "clue": "community-trust: x \u2014 Acknowledged genuine shift in explicit data sovereignty negotiations among First Nations",
         "occurrences": 1
@@ -222,6 +222,11 @@
         "date": "2026-04-25",
         "clue": "community-trust:- \u2014 Softened skepticism of volunteer infrastructure value",
         "occurrences": 1
+      },
+      {
+        "date": "2026-04-27",
+        "clue": "pilot-skepticism: x \u2014 Conceded Local 58 outlier exists; strengthened 'owned infrastructure' position instead",
+        "occurrences": 1
       }
     ],
     "core_memories": [
@@ -263,6 +268,11 @@
       {
         "formed": "2026-04-26",
         "signal": "community-trust:~ \u2014 acknowledged extraction risk, then reframed it as solvable through design-stage governance",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-04-27",
+        "signal": "structural-lens: + \u2014 Shifted from regulation-as-solution to parallel infrastructure as durability hedge",
         "occurrences": 3
       }
     ]
