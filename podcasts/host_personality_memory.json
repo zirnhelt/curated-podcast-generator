@@ -85,11 +85,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-04-24",
-        "clue": "tech-optimism:~ \u2014 Acknowledged data integration as 'hard part,' not automatic",
-        "occurrences": 2
-      },
-      {
         "date": "2026-04-22",
         "clue": "community-trust:x \u2014 Conceded regional coordination risks gatekeeping, Indigenous representation complexity",
         "occurrences": 1
@@ -102,6 +97,11 @@
       {
         "date": "2026-04-27",
         "clue": "structural-lens: + \u2014 Deepened platform-harm analysis; systematized algorithmic suppression of community content",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-04-28",
+        "clue": "structural-lens:+ \u2014 Deepened case for capitalized regional asset pools",
         "occurrences": 1
       }
     ],
@@ -204,9 +204,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-22",
-        "clue": "rural-context:+ \u2014 Deepened commitment to rural capacity constraints as design constraint",
-        "occurrences": 1
+        "date": "2026-04-28",
+        "clue": "rural-context:+ \u2014 Named right-to-repair as concrete operational constraint",
+        "occurrences": 2
       },
       {
         "date": "2026-04-26",
@@ -226,6 +226,11 @@
       {
         "date": "2026-04-27",
         "clue": "pilot-skepticism: x \u2014 Conceded Local 58 outlier exists; strengthened 'owned infrastructure' position instead",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-04-28",
+        "clue": "pilot-skepticism:+ \u2014 Extended caution to equipment subsidy programs specifically",
         "occurrences": 1
       }
     ],

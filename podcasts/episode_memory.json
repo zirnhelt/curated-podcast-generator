@@ -1,23 +1,4 @@
 {
-  "2026-04-07": {
-    "timestamp": 1775559914.762376,
-    "topics": [
-      "[Williams Lake Tribune] Victoria seeks federal, provincial i",
-      "[Williams Lake Tribune] Williams Lake businesses and homeown",
-      "[Williams Lake Tribune] Williams Lake community shows its he",
-      "[ScienceAlert] One Sleep Habit Could Boost Your Heart Health",
-      "[ScienceAlert] It's Official: Artemis II Has Carried Humans ",
-      "[The Tyee] Cattle Were Poisoned by BC\u2019s Forest Fertilizer. N",
-      "[Kottke.org] A visual history of exploring the far side of t",
-      "[New Atlas] Toyota\u2019s new flagship EV is off to a flying star"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech"
-    ],
-    "date": "2026-04-07"
-  },
   "2026-04-08": {
     "timestamp": 1775646938.046954,
     "topics": [
@@ -413,5 +394,25 @@
       "Indigenous tech"
     ],
     "date": "2026-04-27"
+  },
+  "2026-04-28": {
+    "timestamp": 1777378954.862237,
+    "topics": [
+      "[Quartz] Boeing is losing less money as aircraft deliveries ",
+      "[The Tyee] Salmon Scientists Warn the DFO Is Killing a Cruci",
+      "[Williams Lake Tribune] Compost pile spontaneously combusts ",
+      "[The Tyee] BC\u2019s Protest-Response Team Is Monitoring Treaty N",
+      "[FlowingData] Ethics in the way of scale",
+      "[New Atlas] Tactical zero-wood 4x4 camper pod revels in Cana",
+      "AI",
+      "innovation"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-04-28"
   }
 }
