@@ -1399,5 +1399,37 @@
       "AI's role in cultural production: generation vs. connective discovery for community storytellers",
       "Risks of overregulation creating automated content moderation harms to marginalized creators"
     ]
+  },
+  "2026-04-28": {
+    "timestamp": 1777378956.847028,
+    "date": "2026-04-28",
+    "theme": "Working Lands & Industry",
+    "central_question": "Is the lack of working-landscape-appropriate equipment design and affordability a significant constraint on rural land stewardship in the Cariboo, or is it secondary to organizational capacity and governance issues?",
+    "riley_position": "Equipment design and accessibility gaps are a real operational constraint that interacts with organizational capacity\u2014better equipment becomes feasible when organizations like CCR have collective procurement power, and working-landscape-first products can succeed if manufacturers stay committed to that market rather than drifting toward recreational buyers.",
+    "riley_key_evidence": [
+      "The Tactical Skookum's zero-wood construction design reflects genuine freeze-thaw cycle engineering rather than marketing\u2014a working-landscape-first approach",
+      "Pickup truck market drift toward urban commuters and suburban aesthetics has compromised suspension tuning, touchscreen interfaces, and ground clearance for actual ranchers",
+      "Equipment co-ops exist in agricultural contexts where members share combines or seeding rigs, demonstrating the viability of shared-asset models"
+    ],
+    "casey_position": "Organizational and governance structures are the binding constraint, not physical equipment; accumulated field knowledge and practice adaptation embedded in existing equipment are underweighted; and equipment innovations designed outside working-landscape contexts get redesigned away from actual rural needs as markets scale.",
+    "casey_key_evidence": [
+      "Every previous episode identified organizational capacity and governance as bottlenecks, not lack of gear\u2014ranchers face tenure insecurity, thin margins, and structural constraints rather than equipment gaps",
+      "Ranchers' field-modified equipment reflects fifteen years of calibration to specific local terrain and conditions; new gear disrupts that accumulated adaptation with real costs",
+      "Pickup truck example: F-150 Lightning has impressive technology and field-capable power export features but ground clearance and suspension compromised toward median buyers who aren't ranchers on the Nechako Plateau"
+    ],
+    "resolution": "They didn't fully resolve the disagreement but converged on a both/and acknowledgment: organizational capacity and equipment are interrelated problems, not competing ones. Both conceded that scaling working-landscape equipment requires structural intervention (not just market forces) and that right-to-repair and user-serviceable design are critical. They ended by proposing concrete policy and organizational approaches rather than debating which constraint is primary.",
+    "topics_covered": [
+      "Working-landscape vs. recreational equipment design differences and the customer-base drift problem",
+      "Durability, repairability, and cost structures appropriate for thin-margin operations vs. discretionary adventure budgets",
+      "Shared-asset and cooperative equipment ownership models scaled to regional or Nation level",
+      "Right-to-repair and manufacturer service dependency as operational constraints in remote geographies",
+      "Accumulated field knowledge and practice adaptation embedded in existing equipment"
+    ],
+    "calls_to_action": [
+      "Organizations doing serious stewardship work\u2014Nation-led enterprises, ranching associations, regional districts\u2014should build a capital equipment inventory separate from operating budgets: equipment owned collectively, maintained properly, and depreciated over realistic lifespans, funded through operating revenues from stewardship contracts themselves rather than grants.",
+      "Manufacturers building working-landscape-capable equipment should engage Cariboo stewardship organizations as design partners, not just customers\u2014partner with the Cariboo Cattlemen's Association, CCR, and regional First Nations land departments to gather real-world conditions feedback that improves the product.",
+      "BC's rural economic development programs should include an equipment capital stream operating on longer timelines and larger scales than typical project grants, structured as a policy lever similar to subsidy programs for clean energy equipment.",
+      "Community members with field experience in equipment design or collective procurement models should contact the podcast at feedback@cariboosignals.c-a with their expertise and local examples."
+    ]
   }
 }
