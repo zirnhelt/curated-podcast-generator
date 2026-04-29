@@ -100,8 +100,13 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-28",
-        "clue": "structural-lens:+ \u2014 Deepened case for capitalized regional asset pools",
+        "date": "2026-04-29",
+        "clue": "structural-lens:+ \u2014 Moved from product-focused to governance-as-variable framing by episode end",
+        "occurrences": 2
+      },
+      {
+        "date": "2026-04-29",
+        "clue": "tech-optimism:- \u2014 Started celebratory about T-Mobile product, ended cautious about governance dependency",
         "occurrences": 1
       }
     ],
@@ -214,11 +219,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-04-24",
-        "clue": "funding-risk:+ \u2014 Explicitly separated technology conversation from funding as inseparable",
-        "occurrences": 2
-      },
-      {
         "date": "2026-04-25",
         "clue": "community-trust:- \u2014 Softened skepticism of volunteer infrastructure value",
         "occurrences": 1
@@ -231,6 +231,11 @@
       {
         "date": "2026-04-28",
         "clue": "pilot-skepticism:+ \u2014 Extended caution to equipment subsidy programs specifically",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-04-29",
+        "clue": "Indigenous-tech:~ \u2014 Introduced data sovereignty complexity beyond typical tech governance models",
         "occurrences": 1
       }
     ],
