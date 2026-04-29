@@ -253,7 +253,7 @@ def _score_themes(text: str, themes: dict) -> tuple:
         return None, None
     text_lower = text.lower()
     scores = {
-        int(day): sum(1 for kw in theme.get("keywords", []) if kw.lower() in text_lower)
+        int(day): sum(len(kw.split()) for kw in theme.get("keywords", []) if kw.lower() in text_lower)
         for day, theme in themes.items()
     }
     best_day = max(scores, key=scores.get)

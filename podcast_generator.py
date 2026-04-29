@@ -489,7 +489,7 @@ def _score_text_against_themes(text, themes_config):
     """Return {day_int: keyword_count} for each theme in themes_config."""
     text_lower = text.lower()
     return {
-        int(day): sum(1 for kw in theme.get("keywords", []) if kw.lower() in text_lower)
+        int(day): sum(len(kw.split()) for kw in theme.get("keywords", []) if kw.lower() in text_lower)
         for day, theme in themes_config.items()
     }
 
