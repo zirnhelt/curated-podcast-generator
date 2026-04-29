@@ -35,18 +35,20 @@ SSML_CHAR_LIMIT = 8_000
 
 # Cariboo region place-name pronunciations for OpenAI TTS (plain-text phonetic aliases).
 # Imported in podcast_generator.py as AZURE_PRONUNCIATION_DICT for the OpenAI fallback path.
+# IMPORTANT: no hyphens, no ALL-CAPS, no spaces as syllable separators — OpenAI TTS reads
+# hyphens as audible pauses and spaces as full word gaps. Use single concatenated words.
 PRONUNCIATION_DICT: dict[str, str] = {
-    "Quesnel":        "Kweh-NELL",
-    "Tŝilhqot'in":   "Tsill-KO-tin",
-    "Secwépemc":      "Seh-KWEP-em",
-    "Dakelh":         "Dah-KELH",
-    "Nazko":          "NAZ-koh",
-    "Lac la Hache":   "Lack-la-HASH",
-    "Anahim Lake":    "AN-a-heem Lake",
-    "Alexis Creek":   "a-LEX-is Creek",
-    "Canim Lake":     "KAN-im Lake",
-    "100 Mile House": "One-Hundred Mile House",
-    "Tatla Lake":     "TAT-la Lake",
+    "Quesnel":        "Kwenell",
+    "Tŝilhqot'in":   "Tsilkohtin",
+    "Secwépemc":      "Sekwepem",
+    "Dakelh":         "Dahkel",
+    "Nazko":          "Nazkoh",
+    "Lac la Hache":   "Lack la Hash",
+    "Anahim Lake":    "Anaheem Lake",
+    "Alexis Creek":   "Alexis Creek",
+    "Canim Lake":     "Kannim Lake",
+    "100 Mile House": "One Hundred Mile House",
+    "Tatla Lake":     "Tatla Lake",
 }
 
 # IPA pronunciations for Azure SSML <phoneme> tags — more precise than <sub alias>.
