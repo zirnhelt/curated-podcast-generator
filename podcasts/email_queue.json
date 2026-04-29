@@ -1005,6 +1005,31 @@
       "theme_day": 4,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "943f25e9",
+      "type": "newsletter",
+      "message_id": "<b74ee46da1eb7a8973ab45d41.9538d97182.20260429151646.d4146c6990.e9d7e41b@mail99.sea31.mcsv.net>",
+      "from_address": "s***@canadaland.com",
+      "subject": "13+ years worth of podcasts to share",
+      "received_at": "2026-04-29T15:17:06+00:00",
+      "body_text": "View this email in your browser (https://mailchi.mp/canadaland.com/2026-04-29?e=9538d97182) https://www.canadaland.com/share?utm_source=Master+Email+List&utm_campaign=d4146c6990-2025-03-Flash-Sale-For",
+      "extracted_urls": [
+        "https://mailchi.mp/canadaland.com/2026-04-29?e=9538d97182",
+        "https://www.canadaland.com/share?utm_source=Master+Email+List&utm_campaign=d4146c6990-2025-03-Flash-Sale-For-You_COPY_01&utm_medium=email&utm_term=0_456bc9800d-d4146c6990-379881794",
+        "http://canadaland.com/share?utm_source=Master+Email+List&utm_campaign=d4146c6990-2025-03-Flash-Sale-For-You_COPY_01&utm_medium=email&utm_term=0_456bc9800d-d4146c6990-379881794",
+        "https://www.canadaland.com/?utm_source=Master+Email+List&utm_campaign=d4146c6990-2025-03-Flash-Sale-For-You_COPY_01&utm_medium=email&utm_term=0_456bc9800d-d4146c6990-379881794",
+        "https://twitter.com/canadaland?utm_source=Master+Email+List&utm_campaign=d4146c6990-2025-03-Flash-Sale-For-You_COPY_01&utm_medium=email&utm_term=0_456bc9800d-d4146c6990-379881794",
+        "https://www.facebook.com/canadalandshow/?utm_source=Master+Email+List&utm_campaign=d4146c6990-2025-03-Flash-Sale-For-You_COPY_01&utm_medium=email&utm_term=0_456bc9800d-d4146c6990-379881794",
+        "https://www.instagram.com/canadaland_media/?utm_source=Master+Email+List&utm_campaign=d4146c6990-2025-03-Flash-Sale-For-You_COPY_01&utm_medium=email&utm_term=0_456bc9800d-d4146c6990-379881794",
+        "https://www.canadaland.com/adfree-faq/?utm_source=Master+Email+List&utm_campaign=d4146c6990-2025-03-Flash-Sale-For-You_COPY_01&utm_medium=email&utm_term=0_456bc9800d-d4146c6990-379881794",
+        "https://canadaland.us12.list-manage.com/subscribe?u=b74ee46da1eb7a8973ab45d41&id=456bc9800d",
+        "https://canadaland.us12.list-manage.com/profile?u=b74ee46da1eb7a8973ab45d41&id=456bc9800d&e=9538d97182&c=d4146c6990"
+      ],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
