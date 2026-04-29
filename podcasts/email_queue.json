@@ -1030,6 +1030,31 @@
       "theme_day": 0,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "cc8a8321",
+      "type": "newsletter",
+      "message_id": "<1c1e899a-2226-4d92-be2c-8d61f08d5795@mtasv.net>",
+      "from_address": "n***@animikii.com",
+      "subject": "Science, inquiry, and recovering ancestral knowledge",
+      "received_at": "2026-04-29T19:08:20+00:00",
+      "body_text": "![A graphic illustration of an urban roof top patio with flowers and plants blooming in a variety or pots along the edge. A woman in a purple top and pink pants holds a water can as the rising sun ill",
+      "extracted_urls": [
+        "https://assets.buttondown.email/images/32f798c1-fd59-4ab4-9e61-8fb9d6e26c58.jpg?w=960&fit=max",
+        "https://www.abqjournal.com/lifestyles/iaias-new-computer-science-program-fuses-art-technology-and-indigenous-ethics/3028658?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=recovering-ancestral-knowledge",
+        "https://discoverestevan.com/articles/indigenous-beading-app-creator-highlights-culture-at-mtis-local-25-event-in-bienfait?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=recovering-ancestral-knowledge",
+        "https://www.ijpr.org/environment-energy-and-transportation/2026-04-27/how-indigenous-leaders-are-carrying-fire-from-northwest-history-to-the-present?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=recovering-ancestral-knowledge",
+        "https://umtoday.ca/stories/indigenous-leadership-program-students-driving-community-impact?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=recovering-ancestral-knowledge",
+        "https://assets.buttondown.email/images/f78d6a1e-3d5c-44e3-9004-2a5be15d2cfd.png?w=960&fit=max",
+        "https://nativenewsonline.net/opinion/data-control-will-shape-the-next-phase-of-tribal-sovereignty/?utm_source=newsriver&amp;amp;utm_medium=email&amp;amp;utm_campaign=recovering-ancestral-knowledge",
+        "https://www.cbc.ca/news/canada/calgary/olds-mihta-askiy-data-centres-environmental-assessments-9.7167537?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=recovering-ancestral-knowledge",
+        "https://grist.org/indigenous/ai-is-a-double-edged-sword-for-indigenous-land-protection-un-experts-warn/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=recovering-ancestral-knowledge",
+        "https://www.teaonews.co.nz/2026/04/25/indigenous-land-defenders-are-being-killed-ai-is-scraping-their-knowledge/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=recovering-ancestral-knowledge"
+      ],
+      "theme_tag": "Indigenous Lands & Innovation",
+      "theme_day": 3,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
