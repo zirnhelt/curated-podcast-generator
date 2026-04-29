@@ -1431,5 +1431,31 @@
       "BC's rural economic development programs should include an equipment capital stream operating on longer timelines and larger scales than typical project grants, structured as a policy lever similar to subsidy programs for clean energy equipment.",
       "Community members with field experience in equipment design or collective procurement models should contact the podcast at feedback@cariboosignals.c-a with their expertise and local examples."
     ]
+  },
+  "2026-04-29": {
+    "timestamp": 1777462625.143197,
+    "date": "2026-04-29",
+    "theme": "Community Tech & Governance",
+    "central_question": "When rural communities adopt external technology solutions (commercial or government-funded), what governance structures must exist to ensure sustainable, community-controlled outcomes?",
+    "riley_position": "Commercial hybrid solutions like T-Mobile's Starlink backup offer practical connectivity improvements that most rural communities couldn't achieve through independent infrastructure projects, but governance capacity\u2014not technology ownership\u2014is the determining factor in success.",
+    "riley_key_evidence": [
+      "T-Mobile's hybrid connectivity model formalizes an architecture rural communities have improvised for years, with Starlink latency improvements making it genuinely viable for emergency communications backup",
+      "Olds, Alberta's MRNet fiber co-op took eight years and significant municipal capital, a runway most Cariboo communities don't have",
+      "Governance readiness checklist could be a practical tool for Indigenous and municipal decision-makers without requiring external consultants"
+    ],
+    "casey_position": "Adopting external technology without pre-existing governance infrastructure\u2014including operations budgets, technical maintenance capacity, and data sovereignty protocols\u2014transfers risk from institutions to communities and creates orphaned systems when external partners exit.",
+    "casey_key_evidence": [
+      "Vancouver's lifeguard funding cuts transfer risk from public budgets to individuals and liability claims, mirroring how grant-dependent tech projects fail at year-five when maintenance costs weren't budgeted",
+      "Indigenous language technology projects require epistemological sovereignty over data that standard licensing frameworks don't address, and require embedded technical training\u2014not just workshops\u2014to prevent knowledge remaining external",
+      "Williams Lake Association for Community Living sustained community programming for 66 years through institutional durability rather than grant cycles"
+    ],
+    "resolution": "Riley conceded that technology optimism ('adopt early, iterate fast') fails without governance infrastructure, and both agreed that the core question before any technology adoption should be 'can we govern this five years from now without the external partner?'\u2014shifting focus from technology choice to governance capacity design.",
+    "topics_covered": [
+      "Commercial vs. community-owned infrastructure as a false binary disguising the real variable of governance capacity",
+      "Indigenous language technology sustainability: funding, technical maintenance, and data sovereignty in federally-funded projects like CILT",
+      "Regional coordination models for Indigenous technical services and the risk of pooled decision-making erasing smaller communities' urgencies",
+      "Operations budget and embedded technical training as necessary conditions for technology adoption in resource-constrained communities",
+      "Governance readiness standards for rural digital infrastructure decisions across municipalities and First Nations"
+    ]
   }
 }

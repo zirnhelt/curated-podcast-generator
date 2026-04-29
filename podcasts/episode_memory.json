@@ -1,24 +1,4 @@
 {
-  "2026-04-08": {
-    "timestamp": 1775646938.046954,
-    "topics": [
-      "[Williams Lake Tribune] Annual cleaning of water mains and r",
-      "[Quesnel Cariboo Observer] UPDATE: 3 arts positions reinstat",
-      "[Williams Lake Tribune] George Abbott named chief commission",
-      "[XDA Developers] This tiny Docker container monitors my enti",
-      "[Williams Lake Tribune] Williams Lake invited to eat around ",
-      "[The Tyee] A Piikani Member Vows to Sue to Stop Selenium Pol",
-      "AI",
-      "sustainability"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-04-08"
-  },
   "2026-04-09": {
     "timestamp": 1775734530.886721,
     "topics": [
@@ -414,5 +394,25 @@
       "Indigenous tech"
     ],
     "date": "2026-04-28"
+  },
+  "2026-04-29": {
+    "timestamp": 1777462622.957924,
+    "topics": [
+      "[BC Gov News] Cracking down on organized crime, gun violence",
+      "[BC Gov News] Dewdney Bridge replacement reaches completion",
+      "[Williams Lake Tribune] 22 incarcerated people died in corre",
+      "[Williams Lake Tribune] Tear down begins on fire-damaged str",
+      "[The Tyee] Canada Should Be Leading a Geothermal Power Boom",
+      "[The Tyee] As Cuts Loom, Vancouver Rejects Plan to Fund Beac",
+      "[Quartz] T-Mobile is rolling out broadband for business cust",
+      "AI"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-04-29"
   }
 }
