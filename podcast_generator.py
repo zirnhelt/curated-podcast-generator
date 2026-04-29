@@ -1966,7 +1966,7 @@ def categorize_articles_for_deep_dive(articles, theme_day):
     # Score remaining by theme relevance + AI score blend
     def theme_relevance(article):
         text = f"{article.get('title', '')} {article.get('summary', '')}".lower()
-        keyword_hits = sum(1 for kw in theme_keywords if kw in text)
+        keyword_hits = sum(len(kw.split()) for kw in theme_keywords if kw in text)
         ai_score_normalized = article.get('ai_score', 0) / 100.0  # 0-1 range
         # Keyword hits weighted heavier (each hit = 2 points), AI score as tiebreaker
         return keyword_hits * 2 + ai_score_normalized
@@ -1987,7 +1987,7 @@ def _local_theme_relevance(article, theme_keywords):
     Returns a float: keyword_hits * 2 + boosted_score / 100.0
     """
     text = f"{article.get('title', '')} {article.get('summary', '')}".lower()
-    keyword_hits = sum(1 for kw in theme_keywords if kw in text)
+    keyword_hits = sum(len(kw.split()) for kw in theme_keywords if kw in text)
     boosted = article.get('_boosted_score', article.get('ai_score', 0)) / 100.0
     return keyword_hits * 2 + boosted
 
