@@ -859,8 +859,8 @@
       ],
       "theme_tag": "Indigenous Lands & Innovation",
       "theme_day": 3,
-      "status": "pending",
-      "used_at": null
+      "status": "used",
+      "used_at": "2026-04-30"
     },
     {
       "id": "824b5771",
@@ -934,8 +934,8 @@
       ],
       "theme_tag": "Indigenous Lands & Innovation",
       "theme_day": 3,
-      "status": "pending",
-      "used_at": null
+      "status": "used",
+      "used_at": "2026-04-30"
     },
     {
       "id": "731d4630",
@@ -1053,8 +1053,8 @@
       ],
       "theme_tag": "Indigenous Lands & Innovation",
       "theme_day": 3,
-      "status": "pending",
-      "used_at": null
+      "status": "used",
+      "used_at": "2026-04-30"
     }
   ]
 }

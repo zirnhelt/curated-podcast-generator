@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] 'Weekend work increased more than 40%': How AI i",
-      "AI",
       "[TechCrunch] Peter Thiel\u2019s big bet on solar-powered cow coll",
       "[Business Insider] I quit tech, bought 22 acres, and didn't ",
       "[XDA Developers] The Linux kernel now allows AI-written code",
@@ -10,7 +8,9 @@
       "Preventing AI extractivism: the case for braiding indigenous",
       "[The Tyee] How Companies Hijack AI Chatbots",
       "[Engadget] Deezer says AI-made songs make up 44 percent of d",
-      "[Williams Lake Tribune] TRAILBLAZER CHRONICLES: What differe"
+      "[Williams Lake Tribune] TRAILBLAZER CHRONICLES: What differe",
+      "Indigenous tech and art meet at IAIA\u2019s new computer science ",
+      "InFocus: What\u2019s behind Canada\u2019s \u2018sovereign\u2019  AI plan?"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -75,13 +75,8 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-20",
-        "clue": "tech-optimism:+ \u2014 Ecosystem maturity argument; genuine optimism about Indigenous-led tech infrastructure",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-04-26",
-        "clue": "pilot-skepticism:x \u2014 conceded governance-first approach has real merit",
+        "date": "2026-04-30",
+        "clue": "tech-optimism:+ \u2014 Built case for local language models feasibility",
         "occurrences": 2
       },
       {
@@ -144,6 +139,11 @@
       {
         "formed": "2026-04-22",
         "signal": "structural-lens:~ \u2014 Added nuance that transparency alone insufficient without recognition",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-04-30",
+        "signal": "pilot-skepticism:x \u2014 Conceded retrofit more expensive than design-in",
         "occurrences": 3
       }
     ]
@@ -236,6 +236,16 @@
       {
         "date": "2026-04-29",
         "clue": "Indigenous-tech:~ \u2014 Introduced data sovereignty complexity beyond typical tech governance models",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-04-30",
+        "clue": "structural-lens:~ \u2014 Shifted from data governance to capacity constraint reframing",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-04-30",
+        "clue": "funding-risk:+ \u2014 Elevated sustained funding as non-negotiable precondition, not detail",
         "occurrences": 1
       }
     ],

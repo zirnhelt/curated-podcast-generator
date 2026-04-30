@@ -1457,5 +1457,32 @@
       "Operations budget and embedded technical training as necessary conditions for technology adoption in resource-constrained communities",
       "Governance readiness standards for rural digital infrastructure decisions across municipalities and First Nations"
     ]
+  },
+  "2026-04-30": {
+    "timestamp": 1777549174.940469,
+    "date": "2026-04-30",
+    "theme": "Indigenous Lands & Innovation",
+    "central_question": "Whose sovereignty does Canada's 'sovereign AI' plan actually serve, and does it advance or undermine Indigenous data sovereignty?",
+    "riley_position": "Canada's sovereign AI strategy prioritizes national economic competitiveness over Indigenous data sovereignty, and the historical pattern of building infrastructure first and consulting later means Indigenous governance will likely be retrofitted rather than foundational.",
+    "riley_key_evidence": [
+      "Canada's AI strategy iterations have been organized around national economic competitiveness, not community sovereignty",
+      "OCAP principles have existed since the late 1990s but remain consistently underimplemented across infrastructure projects",
+      "Pattern of build-first-consult-later seen in broadband, environmental monitoring, and health data systems"
+    ],
+    "casey_position": "Indigenous communities should seriously consider building parallel, independently-governed AI infrastructure rather than defaulting to integration into national systems, with genuine funding and authority\u2014not just consultation roles.",
+    "casey_key_evidence": [
+      "The T\u015dilhqot'in built their own land monitoring infrastructure after the William case rather than waiting for provincial systems",
+      "Community-developed tools like Jill Ruep's beading app prove the proof-of-concept when governance is baked into development from the start",
+      "MMIWG data undercounting demonstrates consequences of communities not controlling information systems that document violence against them"
+    ],
+    "resolution": "They reached substantial agreement that community ownership at the architecture stage (not consultation stage) is the proven model, and that the technical barriers to Indigenous-controlled AI infrastructure are now lower than ever\u2014though genuine funding remains the critical gap.",
+    "topics_covered": [
+      "Distinction between national sovereignty and Indigenous data sovereignty in AI strategy",
+      "OCAP principles (Ownership, Control, Access, Possession) and implementation gaps",
+      "Data governance for relational Indigenous knowledge versus Western individual-privacy frameworks",
+      "AI for climate and accountability structures versus technical optimization",
+      "Guardian programs and knowledge extraction without adequate resource allocation",
+      "Parallel versus integrated Indigenous AI infrastructure models"
+    ]
   }
 }

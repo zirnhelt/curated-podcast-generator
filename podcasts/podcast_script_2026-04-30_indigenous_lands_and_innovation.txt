@@ -1,0 +1,149 @@
+# Cariboo Signals Podcast Script - 2026-04-30
+# Theme: Indigenous Lands & Innovation
+# Generated: 2026-04-30 04:39:33 PDT
+
+**CASEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. It's Thursday, April 30th, 2026. Coming to you from the Cariboo, on lands that have been cared for by the Secwépemc, Tŝilhqot'in, and Dakelh peoples since time immemorial. Today's theme is Indigenous Lands and Innovation — and today is also Red Dress Day, a day we hold space for missing and murdered Indigenous women, girls, and 2-Spirit people. I'm Casey.
+
+**RILEY:** And I'm Riley. Today we're looking at how Indigenous communities are deploying technology on their own terms — for sovereignty, for stewardship, and for cultural continuity.
+
+**CASEY:** Out at Horsefly Lake this morning it's sitting right at zero with clear skies — going up to a high of 22 today, dropping back to minus one tonight. Beautiful spring day, but tomorrow turns overcast. Across the region: 100 Mile House is at four with clear skies, Williams Lake at two and clear, Quesnel at four with some cloud rolling in. Enjoy the sunshine while it lasts. Let's get into today's stories.
+
+---
+
+**NEWS ROUNDUP**
+
+**RILEY:** Leading off today — the Animikii newsletter is running a piece on rethinking privacy through the lens of Indigenous data sovereignty. The core argument is that Western privacy frameworks, built around individual consent and corporate data handling, are a poor fit for Indigenous communities, where data about a person is also data about a family, a clan, a territory. The piece calls for governance models where communities — not individuals, not governments — hold primary authority over their own information.
+
+**CASEY:** That framing directly challenges how most Canadian privacy law is structured — and it connects to the TK Labels work we discussed a few weeks ago. This is the policy layer those tools need to operate within.
+
+**CASEY:** Also from the Animikii feed — the Institute of American Indian Arts in New Mexico has launched a computer science program that explicitly blends Indigenous art, digital media, and coding. Students are building projects that incorporate traditional knowledge systems into their technical work — not treating culture as decoration, but as the actual framework for how they think about computation. The program is drawing attention as a model for how post-secondary institutions might stop asking Indigenous students to leave their knowledge at the door when they enter a tech classroom.
+
+**RILEY:** That's a curriculum design question with real stakes — because the institutions that train the next generation of Indigenous technologists will shape what tools get built, and for whom.
+
+**RILEY:** Closer to home — also through the Animikii feed — Métis entrepreneur Jill Ruep was at a Métis Local 25 cultural event in Saskatchewan, showcasing an app she built to teach Indigenous beading. The app walks users through traditional patterns, explains the cultural significance behind design choices, and connects learners who might not have access to in-person knowledge holders. It's a small project, but it illustrates something important: the most effective Indigenous cultural technology is often built by community members, for community members, without waiting for institutional backing.
+
+**CASEY:** And it sidesteps the extraction problem entirely — the knowledge stays in community hands because the developer is community.
+
+**CASEY:** Staying on that theme — The Narwhal has a piece out on Guardian programs, the Indigenous-led land and water stewardship initiatives operating across Canada. The reporting highlights something we've raised before: these programs deliver measurable conservation outcomes and support economic participation in remote territories — but federal investment is chronically uncertain. Funding comes in short cycles, positions are eliminated between grants, and the institutional knowledge built by individual Guardians doesn't transfer cleanly when programs pause and restart.
+
+**RILEY:** The irony being that Guardian programs are arguably the most cost-effective environmental monitoring infrastructure Canada has — and they're treated like pilot projects instead of permanent public goods.
+
+**RILEY:** At the United Nations — IndigiNews is reporting that a Mohawk leader appearing before the UN called for formal watchdog mechanisms to enforce UNDRIP compliance. The argument is straightforward: Canada's commitment to the UN Declaration on the Rights of Indigenous Peoples is years old, and without binding accountability structures, it functions more as a statement of intent than an operational framework. The call is specifically for third-party monitoring with the authority to flag non-compliance — not just document it.
+
+**CASEY:** Which is exactly what BC's DRIPA implementation is missing at the provincial level — the gap between declaration and enforcement is where rights tend to disappear.
+
+**CASEY:** APTN is running a piece on Canadian Rangers — specifically how Rangers in remote northern communities are actively passing on territorial knowledge to younger members. Today's angle is personal: individual Rangers describing what it means to teach young people how to read ice, weather, and landscape in ways that satellite data can't fully replicate.
+
+**RILEY:** That intergenerational transmission piece is doing real work — technology can log coordinates, but it can't yet encode why a certain stretch of river sounds different in spring, or what that means for safe travel.
+
+**RILEY:** Two stories that connect directly. First — salmon coalitions are pushing the federal government to make a decision on the fate of open-net fish farms in BC. First Nations along the coast have been calling for removal of farms from wild salmon migration routes for years, backed by evidence of sea lice transfer and disease pressure on wild stocks. The federal government has repeatedly delayed a clear ruling, and the coalition is arguing that the delay itself is a policy choice — one that keeps the aquaculture industry in the status quo while wild salmon stocks bear the cost.
+
+**CASEY:** The Tyee is running a related piece arguing that BC has been effectively blaming First Nations for the pace of old-growth logging deferrals — when the province holds the primary decision-making authority. Both stories are versions of the same pattern: governments allowing harmful extractive activities to continue, then distributing responsibility for the consequences onto Indigenous nations.
+
+**RILEY:** It's an accountability shell game — and it has real ecological consequences in watersheds that communities like ours depend on.
+
+**CASEY:** A difficult story from APTN — parents and a former social worker in the Splatsin First Nation in BC say families don't have adequate access to justice when disputing child welfare decisions made by band administration. The concerns raised include lack of independent appeal mechanisms and insufficient external oversight. This is complicated territory — Indigenous child welfare jurisdiction is a hard-won right, and the story doesn't argue against self-governance, but it does raise the question of what accountability structures need to exist within community-controlled systems to protect the most vulnerable members.
+
+**RILEY:** The lesson isn't that self-governance doesn't work — it's that every governance system needs robust internal accountability, and building that takes resources and time.
+
+**RILEY:** Amnesty International has released a report flagging a deepening housing crisis for Indigenous people across Canada — overcrowding, lack of potable water, inadequate insulation in northern climates. The report connects housing insecurity directly to health outcomes, educational disruption, and vulnerability to the kind of crises — fires, floods, pandemics — that hit remote areas hardest. This is an infrastructure failure being treated as a social services question.
+
+**CASEY:** And housing is the material foundation for everything else we talk about on this show — language programs, data sovereignty work, Guardian stewardship — all of it is harder when people are doubling up in inadequate buildings.
+
+**CASEY:** Also from APTN — advocates for Indigenous people in federal prisons are calling on Ottawa to appoint a new Correctional Investigator, a position that's been vacant or undersupported at a time when Indigenous people represent a sharply disproportionate share of the federal prison population relative to the general population. The Correctional Investigator is the oversight mechanism for conditions inside — and its effectiveness directly determines whether serious rights violations get surfaced.
+
+**RILEY:** That gap between population share and incarceration rate is one of the sharpest statistical expressions of structural inequity in Canada, and it doesn't improve without dedicated oversight.
+
+**RILEY:** Also worth noting today — a culturally safe primary care centre has opened near Fort St. James in northern BC. The facility is designed to provide healthcare in a way that reflects Indigenous cultural practices and languages, reducing the barrier that standard clinical environments often create for Indigenous patients. A meaningful development for communities in our region.
+
+**CASEY:** And Governor General Mary Simon returned to Tumbler Ridge — her first visit back since the shooting incident there last year. Simon is Inuk and the first Indigenous person to hold the role of Governor General, so her presence in northern BC communities carries particular significance, especially today.
+
+**RILEY:** The Williams Lake Theatre Society has programming returning this summer — worth a note for local arts supporters, with details available through the Tribune.
+
+**CASEY:** And on this day in BC history — today marks the anniversary of the Douglas Treaties, the agreements signed in the 1850s between Governor James Douglas and First Nations on Vancouver Island. Those treaties remain among the few in BC that explicitly acknowledged Indigenous land rights in writing. Most of BC's territory, including this region, has no treaty at all — which is part of why the ongoing work of reconciliation and rights recognition here remains so legally and politically unresolved.
+
+That's the roundup. Let's take a moment now for our Community Spotlight — because on Red Dress Day, there's one organization in our region doing work that deserves to be heard.
+
+---
+
+**COMMUNITY SPOTLIGHT**
+
+**RILEY:** The Cariboo Friendship Society has been serving urban Indigenous people in Williams Lake since 1969. That's not a typo — 57 years of continuous operation, making it one of the longest-running Indigenous community organizations in the Cariboo. They run housing supports, youth programs, and crisis services, and The Hearth, their community restaurant, is a gathering place that does a lot more than serve meals.
+
+On Red Dress Day specifically, their PEACE program is worth knowing about — Prevention, Education, Advocacy, Counselling, and Empowerment — supporting Indigenous women and families affected by violence and honouring the lives of missing and murdered Indigenous women, girls, and 2-Spirit people. If you want to support their work or connect with services, cariboofriendshipsociety.ca is where to start.
+
+**CASEY:** Organizations like the Friendship Society don't make headlines, but they're the connective tissue that holds communities together through every crisis — and today of all days, that work matters.
+
+There's a thread running through today's news that connects to something much larger, and it's where we want to spend our deep dive. Stick with us.
+
+---
+
+**DEEP DIVE: CARIBOO CONNECTIONS — Indigenous Lands & Innovation**
+
+**CASEY:** So we've spent the last several weeks on this theme moving through some foundational questions — digital archives, data sovereignty frameworks, knowledge braiding with Western science, technology as a multiplier on existing rights. Today I want to pull on a thread that's been lurking in the background but that the Animikii deep dive articles surface pretty directly.
+
+Canada is building what it's calling a "sovereign AI" plan. And Indigenous data sovereignty advocates are watching that framing very carefully. The question I want to explore is this: whose sovereignty does a "sovereign AI" actually serve?
+
+**RILEY:** That's the right question to be asking right now, because the timing matters. Canada's AI strategy has historically been organized around national economic competitiveness — keeping talent here, building compute capacity here, making sure Canadian companies aren't just consuming American AI infrastructure. Those are legitimate concerns. But "sovereign" in that context means national sovereignty — the Canadian state — not the sovereignty of the hundreds of First Nations operating within Canadian borders.
+
+**CASEY:** And those are genuinely different things. In some cases, they're directly in tension. If a Canadian government AI system is trained on health records, environmental data, or administrative records that include Indigenous community information — under a "Canadian sovereign AI" framework — that could actually be a step backward for Indigenous data sovereignty. The data gets embedded in a national system with national governance, not community governance.
+
+**RILEY:** The Animikii newsletter frames this sharply. The piece on Indigenous data sovereignty and privacy points out that Western privacy law treats data as attached to individuals — you have a right to your own information. But Indigenous data often doesn't work that way. Data about one person is simultaneously data about their family, their community, their territory, their governance structures. A health record from a remote First Nation isn't just a personal file. It encodes information about that community's disease burden, their relationship to land and food systems, their capacity gaps.
+
+**CASEY:** And when that data gets absorbed into a national AI training pipeline, the community loses the ability to say what questions get asked of it, who analyzes it, or what conclusions get drawn. Which is where the OCAP principles have been doing work for years — Ownership, Control, Access, and Possession, developed by the First Nations Information Governance Centre. The framework argues that First Nations communities should own their data collectively, control how it's used, determine who accesses it, and physically possess it where possible. Those aren't radical demands — they're the same rights any government or corporation would assert over strategically significant information.
+
+**RILEY:** And there's real momentum behind them. The TK Labels framework gives communities machine-readable metadata they can attach to traditional knowledge materials right now. Local language models trained on community-held data are computationally feasible at a scale that wasn't true even a few years ago. The IAIA computer science program we mentioned in the roundup is training a generation of Indigenous technologists who understand these governance questions as design requirements, not ethics footnotes. That's genuine infrastructure being built.
+
+**CASEY:** But here's where I want to push back on the optimistic reading. OCAP principles have been documented and cited in policy discussions for decades. The gap between "Canada recognizes the OCAP framework" and "Canada's AI infrastructure is actually designed around it" is enormous. And the Animikii piece on Canada's sovereign AI plan suggests the current national strategy was built without meaningful Indigenous input into its foundational architecture. Recognizing a framework and building systems that operationalize it are completely different things.
+
+**RILEY:** That's consistent with what we've seen in other infrastructure builds — broadband rollouts, environmental monitoring networks, health data systems. The pattern is: build first, consult later, retrofit governance where possible. And retrofitting is almost always more expensive and less effective than designing it in from the start. I'll grant you that. But the alternative isn't necessarily parallel systems — it might be fighting harder for design authority at the table where these decisions are being made.
+
+**CASEY:** Which assumes the table is accessible, and that having a seat at it translates into shaping the architecture rather than commenting on a draft that's already mostly finished. I'm skeptical of that path, and here's why: the climate AI piece from the Animikii feed adds a dimension that I think is genuinely underappreciated. The argument in the npj Climate Action piece is that dominant AI-for-climate approaches risk reproducing the same cultural patterns that caused ecological breakdown in the first place — specifically human exceptionalism, technosolutionism, and what the piece calls extractivism. The idea that you can optimize your way out of a relational crisis.
+
+**RILEY:** I want to push on that, because it risks becoming an unfalsifiable critique — where any AI application gets dismissed as extractivist by definition. What does that argument actually look like in practice?
+
+**CASEY:** Fair. The concern isn't technology per se — it's about accountability structures. The worry is that "AI for climate" gets framed as a technical optimization problem: maximize carbon sequestration, minimize emissions per unit of GDP. When the underlying crisis is actually about relationships — between humans and ecosystems, between colonizing states and Indigenous territories, between present consumption and future generations. AI systems that optimize for measurable proxies while ignoring those relational dimensions can make things worse in ways that don't show up in the performance metrics.
+
+**RILEY:** Okay, that's a more precise claim and I think it's defensible. There's a version of AI-powered wildfire prediction that is genuinely useful — better early warning, more accurate fuel load mapping. And there's a version that becomes a substitute for addressing the underlying conditions — the land management neglect, the prescribed burn restrictions, the chronically underfunded Guardian programs — that make fires more destructive in the first place. The tool can obscure the governance failure.
+
+**CASEY:** Which loops back to the Guardian programs story from The Narwhal today. These are people doing irreplaceable ecological work — monitoring salmon runs, tracking invasive species, maintaining fire-break knowledge, observing landscape change in real time. Their knowledge feeds into scientific databases, contributes to federal environmental assessments, and informs resource management decisions. And their positions are funded on short, uncertain grant cycles.
+
+**RILEY:** While the data they generate gets absorbed into systems that have permanent infrastructure. That's a genuine asymmetry, and I don't have a clean answer to it. But I'd note that the Rangers story offers a counterexample worth examining — one where Indigenous territorial knowledge has been integrated into state capacity in a way that's been, by most accounts, mutually beneficial. Rangers get resources and institutional recognition; the federal program gets irreplaceable land knowledge that no remote sensing system can replicate.
+
+**CASEY:** But is that integration durable or contingent? The Rangers program gets elevated when there's geopolitical pressure on Arctic sovereignty. If that pressure eases, or if the federal government decides drone surveillance can substitute for Ranger patrols, what happens to the recognition? Has the knowledge been captured in a form the community controls, or has it migrated into federal systems?
+
+**RILEY:** That's the question I genuinely don't have a clean answer to. And it's a different version of the sovereign AI problem — not just "will Canada's AI system respect our data governance," but "once our knowledge is in the system, can we get it back out on our own terms?" Which, now that I say it out loud, sounds like a question someone should be asking at every federal AI consultation going forward.
+
+**CASEY:** There's a phrase in Indigenous data governance circles: "data as a byproduct of life." The idea that information generated by communities going about their daily existence — traveling on the land, fishing, harvesting, monitoring water quality — belongs to those communities, not to the institutions that happen to collect it. Most of the current technical architecture of Canadian AI doesn't reflect that principle at all. And honestly, most of the people building that architecture probably haven't encountered it.
+
+**RILEY:** Which is exactly why the IAIA program matters beyond being a good news story. If the next generation of Indigenous technologists is trained to treat "who benefits from this data flow, and who bears the cost" as a design question rather than an ethics afterthought — that changes what gets built. The beading app is a small proof of concept for the same logic. Jill Ruep didn't wait for an institution to recognize the value of beading knowledge and commission a preservation tool. She built it herself, with community input, for community use. The governance is baked into the development process because the developer and the community are the same entity.
+
+**CASEY:** That model works. We've said this across multiple episodes — the FirstVoices language platform, community-led land monitoring initiatives, research projects that put Nations at the center of the design rather than the data collection. The through-line is community ownership at the architecture stage, not the consultation stage.
+
+**RILEY:** So here's where I want to be genuinely optimistic for a moment, and you can tell me if I'm being naive. The technical barriers to community-controlled AI infrastructure are lower than they've ever been. Local language models trained on community-held data are computationally feasible. Community-controlled servers are within reach for well-resourced First Nations. The TK Labels are operational right now. The OCAP framework is documented and ready to be embedded in procurement requirements. The tools exist.
+
+**CASEY:** The tools exist. The capacity to deploy them at scale alongside everything else a small Nation administration is managing — that's the real constraint. We're talking about nations where a handful of staff might be managing all consultation obligations, environmental monitoring, economic development, and housing administration at the same time. Building independent AI infrastructure on top of that is a serious capacity ask, and it needs to come with genuine, sustained funding — not another two-year pilot grant that evaporates before the institutional knowledge can consolidate.
+
+**RILEY:** Which brings us back to the Guardian programs problem, and honestly it's a little bit funny that every thread in this conversation eventually leads back to underfunded programs doing irreplaceable work on short grant cycles. It's almost like there's a pattern. 
+
+**CASEY:** Almost like someone should build an AI to detect it.
+
+**RILEY:** If Canada wants Indigenous communities to be genuine partners in building a sovereign AI future — and that is the language the policy documents use — then "partner" has to mean resourced, governing, owning. Not "contributor of data and local knowledge while decisions get made elsewhere."
+
+**CASEY:** There's something almost clarifying about Red Dress Day as a backdrop for this conversation. Because MMIWG data is one of the starkest examples of what happens when Indigenous communities don't control the information systems that document violence against them. For years, the numbers of missing and murdered Indigenous women were undercounted, misclassified, scattered across jurisdictions with no coordinating mechanism. Families knew the scale of the crisis. The official data said otherwise.
+
+**RILEY:** And when the National Inquiry surfaced the true scope, it was in large part because Indigenous-led organizations had been building their own documentation — their own networks of family support, their own evidence — because they couldn't trust that the official systems were doing it. That's not a metaphor. That's the concrete consequence of data governance failure. People disappeared from the record because the systems recording their existence weren't accountable to their communities.
+
+**CASEY:** So when we ask "whose sovereignty does a sovereign AI serve" — that's the stakes. Not just economic competitiveness or data portability. The question of who gets counted, who gets seen, who gets protected.
+
+**RILEY:** And I think that framing is where the optimist and the skeptic in this conversation actually land in the same place. Whether you believe the path forward is embedding Indigenous governance into national AI infrastructure, or building parallel community-controlled systems, or some combination — the precondition is the same. Sustained funding, genuine decision-making authority, and design influence from the start. Not retrofit, not advisory status, not pilot grants.
+
+**CASEY:** If there's a call to action here, it's this: the next time a federal or provincial AI consultation process opens — and they do open — Indigenous nations in this region should be at the table as rights-holders with governance authority, not as stakeholders with advisory status. The Secwépemc, Tŝilhqot'in, and Dakelh nations all have territorial interests that any national AI infrastructure will affect. Making sure their governance frameworks are embedded in the design, not appended after the fact, is the work.
+
+**RILEY:** And for listeners who want to engage more concretely — the First Nations Information Governance Centre has published guidance on OCAP implementation that's publicly available. Local Contexts has the TK Labels framework. These aren't academic documents — they're operational tools that communities can use right now to start asserting data governance, regardless of what the national AI strategy says.
+
+**CASEY:** The technology exists to do this right. The question, as always, is whether the will to fund and recognize it follows.
+
+**RILEY:** That's our conversation for today. We'd love to hear your thoughts — send us an email at feedback at cariboo signals dot c-a.
+
+**CASEY:** Enjoy your Red Dress Day. Hold the memory of those who are gone, and the people working every day to make sure no more names are added to that list. We'll be back tomorrow.
