@@ -2247,7 +2247,85 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
 
     return description
 
-def generate_citations_file(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None):
+def score_script(script_text):
+    """Score a finalized script against known AI speech pattern anti-patterns.
+
+    Returns a dict suitable for embedding in the citations file under
+    episode.quality. Lower total_hits is better; voice_ratio closer to
+    0.75-0.85 indicates Casey's turns are appropriately shorter than Riley's.
+    """
+    import re as _re
+
+    patterns = {
+        "i_want_to_announcements": [
+            r'\bI want to (?:push|flag|note|be clear|be honest|add|come back|pull|put|engage|make sure|explore|dig|look)\b',
+        ],
+        "heres_opener": [
+            r"\bHere's (?:where|what|the|who|how|why|one |an |a )\b",
+        ],
+        "pre_validation": [
+            r"\bFair (?:point|challenge|enough)[,\.]",
+            r"\bThat's (?:a fair|fair)[,\. ]",
+            r"\bThat's (?:a meaningful|an important|a good) (?:distinction|point|frame)\b",
+            r"\bI'll take that as\b",
+        ],
+        "contrastive_negation": [
+            r"\bisn't just (?:about|a |an |the )",
+            r"\bnot just (?:about|a |an |the |purely |simply )",
+            r"\bnot speculative technically\b",
+            r"The \w+ is for [^,]{3,30}, not for\b",
+        ],
+        "debate_club_vocab": [
+            r"\bsteelman\b",
+            r"\bcircling back to where we started\b",
+            r"\bI'm less confident (?:in )?that\b",
+        ],
+        "structural_announcements": [
+            r'\bLet me (?:flag|push|note|be clear|be honest|try|engage|pull|put)\b',
+        ],
+    }
+
+    hits = {}
+    total = 0
+    for category, pats in patterns.items():
+        count = sum(
+            len(_re.findall(p, script_text, _re.IGNORECASE))
+            for p in pats
+        )
+        hits[category] = count
+        total += count
+
+    # Voice length ratio (Casey avg / Riley avg) in Deep Dive only
+    voice_ratio = None
+    dd_start = script_text.find("**DEEP DIVE:")
+    if dd_start >= 0:
+        deep = script_text[dd_start:]
+        chunks = _re.split(r'\*\*(RILEY|CASEY):\*\*', deep)
+        riley_words, casey_words = [], []
+        speaker = None
+        for chunk in chunks:
+            if chunk in ("RILEY", "CASEY"):
+                speaker = chunk
+            elif speaker:
+                # Strip pacing tags and count words
+                clean = _re.sub(r'\[(?:pause|overlap):[^\]]+\]', '', chunk)
+                wc = len(clean.split())
+                if wc > 8:
+                    (riley_words if speaker == "RILEY" else casey_words).append(wc)
+        if riley_words and casey_words:
+            riley_avg = sum(riley_words) / len(riley_words)
+            casey_avg = sum(casey_words) / len(casey_words)
+            voice_ratio = round(casey_avg / riley_avg, 2) if riley_avg else None
+
+    return {
+        "word_count": len(script_text.split()),
+        "voice_ratio_casey_riley": voice_ratio,
+        "pattern_hits": hits,
+        "total_hits": total,
+    }
+
+
+def generate_citations_file(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, quality=None):
     """Generate citations file for the episode.
 
     When *script* is provided (the finalized, polished script), each citation
@@ -2285,7 +2363,8 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
                 "script": SCRIPT_MODEL,
                 "review": _review_model_used or POLISH_MODEL,
                 "summary": SUMMARY_MODEL,
-            }
+            },
+            **({"quality": quality} if quality else {}),
         },
         "segments": {
             "news_roundup": {
@@ -4337,11 +4416,18 @@ def main():
             debate_summary = extract_debate_summary(script, today_theme)
         print(f"   Debate question: {debate_summary.get('central_question', 'N/A')}")
 
+        # Score the finalized script for AI speech pattern quality
+        print("📊 Scoring script for AI speech patterns...")
+        script_quality = score_script(script)
+        print(f"   Total pattern hits: {script_quality['total_hits']}  |  "
+              f"Voice ratio Casey/Riley: {script_quality['voice_ratio_casey_riley']}  |  "
+              f"Words: {script_quality['word_count']}")
+
         # Generate citations *after* script is finalized so they align with
         # what was actually discussed, not just the input article list.
         citations_file = generate_citations_file(
             news_articles, deep_dive_articles, today_theme, script=script,
-            debate_summary=debate_summary, psa_info=psa_info
+            debate_summary=debate_summary, psa_info=psa_info, quality=script_quality
         )
 
         # Save script
