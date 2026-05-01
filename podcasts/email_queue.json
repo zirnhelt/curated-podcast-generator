@@ -1055,6 +1055,31 @@
       "theme_day": 3,
       "status": "used",
       "used_at": "2026-04-30"
+    },
+    {
+      "id": "45deb788",
+      "type": "newsletter",
+      "message_id": "<1928822276.1695473.1777665699590@ip-172-22-5-33.ca-central-1.compute.internal>",
+      "from_address": "c***@openmedia.org",
+      "subject": "\ud83d\udc23 Is your privacy protected this Spring?",
+      "received_at": "2026-05-01T16:01:39-04:00",
+      "body_text": "Voter privacy, C-22, AI and more! (https://action.openmedia.org/s/9400824/BXS744BGN) OpenMedia Monthly | April 2026 Hi Erich, Spring is around the corner, and we have many exciting updates about our f",
+      "extracted_urls": [
+        "https://action.openmedia.org/s/9400824/BXS744BGN",
+        "https://action.openmedia.org/s/9400825/BXS744BGN",
+        "https://action.openmedia.org/s/9400826/BXS744BGN",
+        "https://action.openmedia.org/s/9400827/BXS744BGN",
+        "https://action.openmedia.org/s/9400828/BXS744BGN",
+        "https://action.openmedia.org/s/9400829/BXS744BGN",
+        "http://action.openmedia.org/s/9400830/BXS744BGN",
+        "https://action.openmedia.org/s/9400831/BXS744BGN",
+        "https://action.openmedia.org/s/9400832/BXS744BGN",
+        "https://action.openmedia.org/s/9400833/BXS744BGN"
+      ],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
