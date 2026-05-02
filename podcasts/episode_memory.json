@@ -1,43 +1,4 @@
 {
-  "2026-04-10": {
-    "timestamp": 1775820269.70638,
-    "topics": [
-      "[New Atlas] NV binoculars identify the creatures lurking in ",
-      "[The Tyee] A Deadly Fungal Invader Is Threatening BC\u2019s Bats",
-      "[Williams Lake Tribune] New Cariboo fire agreement aims to c",
-      "[Boing Boing] Trees vs. erosion: how roots fight back and ke",
-      "[The Narwhal] A million new SpaceX satellites will destroy t",
-      "[The Narwhal] Interior Salish women are reclaiming fire \u2014 an",
-      "[Engadget] Amazon's satellite internet service is scheduled ",
-      "[STAT News] STAT+: 5 years after lupus breakthrough, CAR-T i"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-04-10"
-  },
-  "2026-04-11": {
-    "timestamp": 1775904024.86858,
-    "topics": [
-      "[Quesnel Cariboo Observer] B.C. unemployment rate spikes 0.6",
-      "[Williams Lake Tribune] B.C. government easing carbon tax fo",
-      "[Williams Lake Tribune] \u2018The problem is Premier Eby\u2019: B.C. N",
-      "[Williams Lake Tribune] Judge scorches Okanagan Indian Band\u2019",
-      "[Williams Lake Tribune] Chairlift outage at B.C. ski resort ",
-      "[100 Mile Free Press] South Cariboo firefighters contain bla",
-      "[Williams Lake Tribune] Elevated pollution prompts air quali",
-      "[Williams Lake Tribune] Williams Lake Film Club presents \u2018H "
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech"
-    ],
-    "date": "2026-04-11"
-  },
   "2026-04-12": {
     "timestamp": 1775990768.531962,
     "topics": [
@@ -434,5 +395,25 @@
       "connectivity"
     ],
     "date": "2026-05-01"
+  },
+  "2026-05-02": {
+    "timestamp": 1777719632.8321,
+    "topics": [
+      "[Williams Lake Tribune] Scheduled criminal trials at 11 B.C.",
+      "[Williams Lake Tribune] B.C. forests minister unveils new fe",
+      "[100 Mile Free Press] TABLE TALES: Back to the Underhive",
+      "[CFJC Today Kamloops] Minister says B.C. expects billions fr",
+      "[Williams Lake Tribune] Haunted 108 turns 108 Heritage Site ",
+      "[100 Mile Free Press] Fraudulent incident costs Shuswap comm",
+      "[Williams Lake Tribune] BCWS urges caution following a strin",
+      "[Williams Lake Tribune] B.C. invests in playgrounds for Ques"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-05-02"
   }
 }

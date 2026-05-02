@@ -85,19 +85,14 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-23",
-        "clue": "pilot-skepticism:+ \u2014 explicitly critiqued project-based grant model as fundamentally inadequate",
-        "occurrences": 1
+        "date": "2026-05-02",
+        "clue": "pilot-skepticism:+ \u2014 Shifted from neutral on Guardian programs to questioning annual funding cycles",
+        "occurrences": 2
       },
       {
         "date": "2026-04-27",
         "clue": "structural-lens: + \u2014 Deepened platform-harm analysis; systematized algorithmic suppression of community content",
         "occurrences": 1
-      },
-      {
-        "date": "2026-04-29",
-        "clue": "structural-lens:+ \u2014 Moved from product-focused to governance-as-variable framing by episode end",
-        "occurrences": 2
       },
       {
         "date": "2026-04-29",
@@ -209,11 +204,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-28",
-        "clue": "rural-context:+ \u2014 Named right-to-repair as concrete operational constraint",
-        "occurrences": 2
-      },
-      {
         "date": "2026-04-26",
         "clue": "structural-lens:+ \u2014 shifted from abstract 'monitoring commons' to operational-needs-first methodology",
         "occurrences": 2
@@ -246,6 +236,11 @@
       {
         "date": "2026-04-30",
         "clue": "funding-risk:+ \u2014 Elevated sustained funding as non-negotiable precondition, not detail",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-05-02",
+        "clue": "funding-risk:~ \u2014 Conceded that implementation support matters as much as tool existence itself",
         "occurrences": 1
       }
     ],
@@ -293,6 +288,11 @@
       {
         "formed": "2026-04-27",
         "signal": "structural-lens: + \u2014 Shifted from regulation-as-solution to parallel infrastructure as durability hedge",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-05-02",
+        "signal": "rural-context:+ \u2014 Deepened nuance: resort vs. resource economy aren't equivalent policy outcomes",
         "occurrences": 3
       }
     ]

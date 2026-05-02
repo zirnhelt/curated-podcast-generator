@@ -1497,5 +1497,31 @@
       "infrastructure",
       "funding"
     ]
+  },
+  "2026-05-02": {
+    "timestamp": 1777719634.923961,
+    "date": "2026-05-02",
+    "theme": "Cariboo Voices & Local News",
+    "central_question": "What institutional capacity do rural Cariboo communities actually need to sustain and maintain public services, and who bears responsibility for providing it?",
+    "riley_position": "Provincial capital investments in playgrounds and infrastructure are valuable additions to existing municipal systems, and Indigenous-led stewardship programs represent a positive structural direction for wildfire prevention if sustained properly.",
+    "riley_key_evidence": [
+      "Cariboo Memorial Hospital Foundation raised $4 million locally for hospital equipment over years of sustained fundraising",
+      "New playgrounds drop into existing parks departments, making marginal maintenance costs rather than requiring entirely new institutions",
+      "Abel Lake fire containment succeeded because of years of local training that prepared people to respond effectively"
+    ],
+    "casey_position": "Rural communities face compounding institutional thinness that makes them vulnerable to cascading failures; baseline support infrastructure must shift from optional enhancement to requirement, and financial/operational commitments must accompany capital investments.",
+    "casey_key_evidence": [
+      "A Shuswap community lost $44,000 to fraud\u2014equivalent to eight months of staff salary, not a rounding error",
+      "Small organizations lack segregated financial duties (one person initiates, authorizes, and reconciles payments), creating fraud exposure",
+      "Playground investments may include high-maintenance features like splash pads requiring recurring operational budgets that small municipalities struggle with"
+    ],
+    "resolution": "They converged on agreement that the ask is not radical but baseline: operational funding commitments with capital projects, protective financial infrastructure as standard offerings, and sustained multi-year budgets for Indigenous-led prevention programs. Casey's concern about pace prevailed (needs are happening now), but both agreed regional coordination and local journalism's sense-making function are essential.",
+    "topics_covered": [
+      "Provincial playground investment and hidden operational maintenance costs",
+      "Rural community fraud vulnerability and financial institution design choices",
+      "Wildfire prevention infrastructure and Indigenous-led Guardian programs",
+      "Institutional capacity gaps in small municipalities and First Nations organizations",
+      "Local journalism's role in connecting disparate stories into structural pattern analysis"
+    ]
   }
 }
