@@ -3153,7 +3153,7 @@ def _generate_parallel_azure_audio(segments, base_output_filename, theme_name=No
 def generate_audio_from_script(script, output_filename, theme_name=None, weekend_closing=None):
     """Convert script to audio with music interludes and theme-aware ambient transitions.
 
-    weekend_closing: optional tuple of (clip: AudioSegment, track_info: dict, closing_host: str)
+    weekend_closing: optional tuple of (clip: AudioSegment, track_info: dict, closing_host: str, day_name: str)
         When provided, appends a Jamendo closing song after the outro music, framed by
         a host farewell before the song and a track-ID sign-off after it fades out.
     """
@@ -3306,7 +3306,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
 
         # Weekend closing: farewell + song ID → full song (no fade)
         if weekend_closing is not None:
-            closing_clip, closing_track_info, closing_host = weekend_closing
+            closing_clip, closing_track_info, closing_host, closing_day_name = weekend_closing
             print(f"🎵 Adding weekend closing song ({closing_host} hosts)...")
 
             with tempfile.TemporaryDirectory() as closing_tmpdir:
@@ -3322,7 +3322,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
 
                 # Host: farewell + song introduction (song ID comes before the music)
                 closing_context = (
-                    f"{closing_host.title()} warmly signs off the weekend Cariboo Signals episode, "
+                    f"{closing_host.title()} warmly signs off the {closing_day_name} Cariboo Signals episode, "
                     f"thanks listeners, and introduces the closing song: "
                     f"'{track_name}' by {track_artist}{genres_str}. "
                     f"The farewell and song description are woven together naturally — "
@@ -4481,6 +4481,7 @@ def main():
             CONFIG['podcast'].get("jamendo_client_id", ""),
         )
         closing_host = "riley" if today_weekday == 5 else "casey"
+        closing_day_name = "Saturday" if today_weekday == 5 else "Sunday"
         try:
             tracks = fetch_jamendo_tracks(jamendo_client_id, ["indie", "folk", "indie-rock"])
             if tracks:
@@ -4494,7 +4495,7 @@ def main():
                     max_song_duration_ms=240_000,
                 )
                 if clip is not None:
-                    weekend_closing = (clip, track_info, closing_host)
+                    weekend_closing = (clip, track_info, closing_host, closing_day_name)
                     print(f"   Closing song: {track_info.get('name', '?')} by {track_info.get('artist', '?')}")
 
                     # Patch closing music credit into the citations/show-notes JSON
