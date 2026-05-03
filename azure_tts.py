@@ -38,6 +38,7 @@ SSML_CHAR_LIMIT = 8_000
 # IMPORTANT: no hyphens, no ALL-CAPS, no spaces as syllable separators — OpenAI TTS reads
 # hyphens as audible pauses and spaces as full word gaps. Use single concatenated words.
 PRONUNCIATION_DICT: dict[str, str] = {
+    "Cariboo":        "Karribu",
     "Quesnel":        "Kwenell",
     "Tŝilhqot'in":   "Tsilkohtin",
     "Secwépemc":      "Sekwepem",
@@ -53,6 +54,7 @@ PRONUNCIATION_DICT: dict[str, str] = {
 
 # IPA pronunciations for Azure SSML <phoneme> tags — more precise than <sub alias>.
 IPA_DICT: dict[str, str] = {
+    "Cariboo":        "ˈkærɪbuː",
     "Quesnel":        "kwɛˈnɛl",
     "Tŝilhqot'in":   "tsɪlˈkoʊtɪn",
     "Secwépemc":      "sɛˈkwɛpɛm",

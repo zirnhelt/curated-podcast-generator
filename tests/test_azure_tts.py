@@ -15,36 +15,40 @@ from azure_tts import (
 class TestApplyPronunciation:
     def test_quesnel_substituted(self):
         result = apply_pronunciation("We're broadcasting from Quesnel today.")
-        assert '<sub alias="Kweh-NELL">Quesnel</sub>' in result
+        assert '<phoneme alphabet="ipa" ph="kwɛˈnɛl">Quesnel</phoneme>' in result
 
     def test_plain_text_xml_escaped(self):
         result = apply_pronunciation("A & B < C > D")
         assert "&amp;" in result
         assert "&lt;" in result
         assert "&gt;" in result
-        assert "<sub" not in result  # no place names, no sub tags
+        assert "<phoneme" not in result  # no place names, no phoneme tags
 
-    def test_ampersand_before_sub_injection(self):
+    def test_ampersand_before_phoneme_injection(self):
         # Ampersand in text must be escaped even when a place name also appears
         result = apply_pronunciation("Quesnel & area news")
-        assert '<sub alias="Kweh-NELL">Quesnel</sub>' in result
+        assert '<phoneme alphabet="ipa" ph="kwɛˈnɛl">Quesnel</phoneme>' in result
         assert "&amp;" in result
 
     def test_no_match_unchanged_except_escaping(self):
         original = "Hello there, Williams Lake."
         result = apply_pronunciation(original)
-        # No place names from PRONUNCIATION_DICT — no <sub> tags
-        assert "<sub" not in result
+        # No place names from IPA_DICT — no <phoneme> tags
+        assert "<phoneme" not in result
 
     def test_100_mile_house(self):
         result = apply_pronunciation("Meeting in 100 Mile House tonight.")
-        assert '<sub alias="One-Hundred Mile House">100 Mile House</sub>' in result
+        assert '<phoneme alphabet="ipa" ph="wʌn ˈhʌndrəd maɪl haʊs">100 Mile House</phoneme>' in result
+
+    def test_cariboo_substituted(self):
+        result = apply_pronunciation("Welcome to Cariboo Signals.")
+        assert '<phoneme alphabet="ipa" ph="ˈkærɪbuː">Cariboo</phoneme>' in result
 
     def test_multiple_places_in_one_string(self):
         result = apply_pronunciation("Quesnel and Lac la Hache weather update.")
         assert "Quesnel" in result
         assert "Lac la Hache" in result
-        assert result.count("<sub") == 2
+        assert result.count("<phoneme") == 2
 
 
 class TestPacingTagToSsml:
@@ -119,7 +123,7 @@ class TestBuildSectionSsml:
             {"speaker": "riley", "text": "Coming from Quesnel today.", "gap_ms": None},
         ]
         ssml = build_section_ssml(segments)
-        assert '<sub alias="Kweh-NELL">Quesnel</sub>' in ssml
+        assert '<phoneme alphabet="ipa" ph="kwɛˈnɛl">Quesnel</phoneme>' in ssml
 
     def test_custom_voice_map(self):
         custom_map = {
