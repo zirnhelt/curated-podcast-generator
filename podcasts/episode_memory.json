@@ -1,24 +1,4 @@
 {
-  "2026-04-12": {
-    "timestamp": 1775990768.531962,
-    "topics": [
-      "[Quartz] Can DUK's Grid Modernization Drive Long-Term Growth",
-      "[Williams Lake Tribune] Volunteers, students plant 500 trees",
-      "[Hackaday] Testing Refrigerants and Capillary Tubes to Find ",
-      "[XDA Developers] The Linux kernel now allows AI-written code",
-      "[Business Insider] An AI built a boutique with $100,000, the",
-      "[ScienceAlert] Experimental Drug Can Reverse Osteoarthritis ",
-      "[New Atlas] AI drones make mine clearing faster and safer",
-      "AI"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-04-12"
-  },
   "2026-04-13": {
     "timestamp": 1776079538.3036,
     "topics": [
@@ -415,5 +395,25 @@
       "Indigenous tech"
     ],
     "date": "2026-05-02"
+  },
+  "2026-05-03": {
+    "timestamp": 1777806178.876689,
+    "topics": [
+      "[Android Authority] This innovative power bank solved both m",
+      "[Kottke.org] Sombrero Galaxy: The Universe&#8217;s Dusty Bri",
+      "[ScienceAlert] The Roots of Dementia Trace Back All The Way ",
+      "[Boing Boing] Free Universal Construction Kit: 3D-printable ",
+      "[Boing Boing] Researchers built a language model that thinks",
+      "[Kottke.org] Winners of the GDT Nature Photographer of the Y",
+      "[Nautilus] New Frog Species Gets Olympian Name",
+      "[TechRadar] 'We\u2019re not selling and we\u2019re not giving way': Lo"
+    ],
+    "themes": [
+      "rural development",
+      "environmental impact",
+      "Indigenous tech",
+      "connectivity"
+    ],
+    "date": "2026-05-03"
   }
 }

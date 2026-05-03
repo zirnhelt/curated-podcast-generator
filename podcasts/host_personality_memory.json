@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[XDA Developers] The Linux kernel now allows AI-written code",
       "[Business Insider] An AI built a boutique with $100,000, the",
       "Preventing AI extractivism: the case for braiding indigenous",
       "[The Tyee] How Companies Hijack AI Chatbots",
@@ -10,7 +9,8 @@
       "Indigenous tech and art meet at IAIA\u2019s new computer science ",
       "InFocus: What\u2019s behind Canada\u2019s \u2018sovereign\u2019  AI plan?",
       "[TechRadar] 12 gadgets that will turn your mini garden into ",
-      "[TechRadar] 'I snap them up' \u2014 award-winning wildlife photog"
+      "[TechRadar] 'I snap them up' \u2014 award-winning wildlife photog",
+      "[TechRadar] 'We\u2019re not selling and we\u2019re not giving way': Lo"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -97,6 +97,16 @@
       {
         "date": "2026-04-29",
         "clue": "tech-optimism:- \u2014 Started celebratory about T-Mobile product, ended cautious about governance dependency",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-05-03",
+        "clue": "Indigenous-tech:+ \u2014 Explicitly centered OCAP principles as prerequisite architecture",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-05-03",
+        "clue": "structural-lens:+ \u2014 Moved from observation-collection to governance-layer-first thinking",
         "occurrences": 1
       }
     ],
@@ -219,9 +229,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-28",
-        "clue": "pilot-skepticism:+ \u2014 Extended caution to equipment subsidy programs specifically",
-        "occurrences": 1
+        "date": "2026-05-03",
+        "clue": "pilot-skepticism:+ \u2014 Named grant-cycle vulnerability as structural problem, not just local frustration",
+        "occurrences": 2
       },
       {
         "date": "2026-04-29",
@@ -241,6 +251,11 @@
       {
         "date": "2026-05-02",
         "clue": "funding-risk:~ \u2014 Conceded that implementation support matters as much as tool existence itself",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-05-03",
+        "clue": "community-trust:x \u2014 Conceded that wonder/astonishment has operational function in sustaining observation",
         "occurrences": 1
       }
     ],

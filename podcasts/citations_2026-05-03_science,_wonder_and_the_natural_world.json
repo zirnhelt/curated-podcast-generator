@@ -1,0 +1,433 @@
+{
+  "episode": {
+    "date": "2026-05-03",
+    "formatted_date": "Sunday, May 03, 2026",
+    "theme": "Science, Wonder & the Natural World",
+    "title": "Cariboo Signals - Science, Wonder & the Natural World",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Science, Wonder & the Natural World.</p><p><b>NEWS ROUNDUP:</b> We break down [Boing Boing] Researchers built a language model that thinks it's still 1930 and [Business Insider] A couple bought a 380-square-foot shed for $12,000 and turned it into a tiny home they share with their 3 dogs, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> How can systematic ecological observation and community science build both scientific resilience and territorial sovereignty in the Cariboo region? Topics include: Citizen science platforms and distributed observation infrastructure, Data sovereignty and Indigenous-governed biodiversity data, Multi-stakeholder funding models for sustained environmental monitoring, The role of wonder versus obligation in driving long-term ecological observation, Community Futures' potential role as a regional convener.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://spca.bc.ca/locations/williams-lake\">BC SPCA Williams Lake</a></p><p><b>Sources discussed:</b></p><ul><li>Boing Boing: <a href=\"https://boingboing.net/2026/04/29/researchers-built-a-language-model-that-thinks-its-still-1930.html\">[Boing Boing] Researchers built a language model that thinks...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/couple-lives-in-380-sq-ft-converted-shed-tiny-home-2026-5\">[Business Insider] A couple bought a 380-square-foot shed fo...</a></li><li>NPR Health News: <a href=\"https://www.npr.org/2026/04/29/nx-s1-5745097/a-look-at-one-of-the-farms-rfk-jr-has-pointed-to-as-a-model-for-reparenting\">[NPR Health News] A look at one of the farms RFK Jr. has poi...</a></li><li>Kottke.org: <a href=\"https://kottke.org/26/04/0048844-winners-of-the-gdt-nature\">[Kottke.org] Winners of the GDT Nature Photographer of the Y...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Android Authority: <a href=\"https://www.androidauthority.com/baseus-energeek-gx11-mifi-power-bank-impressions-3642283/\">[Android Authority] This innovative power bank solved both m...</a></li><li>Kottke.org: <a href=\"https://kottke.org/26/04/sombrero-galaxy-the-universes-dusty-brimmed-hat\">[Kottke.org] Sombrero Galaxy: The Universe&#8217;s Dusty Bri...</a></li><li>ScienceAlert: <a href=\"https://www.sciencealert.com/the-roots-of-dementia-trace-back-all-the-way-to-childhood-experts-reveal\">[ScienceAlert] The Roots of Dementia Trace Back All The Way ...</a></li><li>Boing Boing: <a href=\"https://boingboing.net/2026/04/28/free-universal-construction-kit-3d-printable-adapters-to-connect-lego-duplo-knex-stickle-bricks-and-other-systems.html\">[Boing Boing] Free Universal Construction Kit: 3D-printable ...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/Culture/2026/04/30/Botanist-Diana-Beresford-Kroeger-Calls-Trees-Forests-Sacred/\">[The Tyee] The Botanist Who Isn’t Afraid to Call Trees Sacre...</a></li><li>Nautilus: <a href=\"https://nautil.us/scorpions-wield-metal-tipped-weapons-1280315/\">[Nautilus] Scorpions Wield Metal-Tipped Weapons</a></li><li>Boing Boing: <a href=\"https://boingboing.net/2026/05/01/city-where-everything-grows-fines-homeowners-edible-garden.html\">[Boing Boing] City \"where everything grows\" fines homeowner'...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/guides/home/click-and-grow-smart-garden\">[Business Insider] I grew basil and lettuce using this indoo...</a></li><li>BC Gov News: <a href=\"https://news.gov.bc.ca/releases/2026HMA0050-000489\">[BC Gov News] Opening new supportive homes in Surrey</a></li><li>WIRED: <a href=\"https://www.wired.com/story/youtube-promote-russian-language-kyrgyzstan/\">[WIRED] This Indigenous Language Survived Russian Occupation...</a></li><li>Boing Boing: <a href=\"https://boingboing.net/2026/04/29/a-space-cat-with-a-rainbow-exhaust-wants-nothing-from-you.html\">[Boing Boing] A space cat with a rainbow exhaust wants nothi...</a></li><li>BC Gov News: <a href=\"https://news.gov.bc.ca/releases/2026JEG0032-000491\">[BC Gov News] Supporting manufacturing in Nanaimo to strengt...</a></li><li>Nautilus: <a href=\"https://nautil.us/new-frog-species-gets-olympian-name-1280311/\">[Nautilus] New Frog Species Gets Olympian Name</a></li><li>TechRadar: <a href=\"https://www.techradar.com/pro/were-not-selling-and-were-not-giving-way-lone-farmer-defeats-tennessees-tva-as-us-electricity-giant-grapples-with-exploding-demand-from-ai-fuelled-data-centers-from-google-and-elon-musks-xai-encouraged-by-slow-legislature\">[TechRadar] 'We’re not selling and we’re not giving way': Lo...</a></li></ul><p><b>Closing Music:</b> &ldquo;<a href=\"https://www.jamendo.com/track/1214600\">Crash and Burn</a>&rdquo; by JARA &mdash; indie, pop, rocknroll. Free music via Jamendo, licensed under Creative Commons.</p><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-6<br>TTS Voices: Azure Neural TTS (Ava · Andrew)<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-05-03T04:02:58.850475-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-sonnet-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 3111,
+      "voice_ratio_casey_riley": 0.85,
+      "pattern_hits": {
+        "i_want_to_announcements": 1,
+        "heres_opener": 1,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0
+      },
+      "total_hits": 2
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Android Authority] This innovative power bank solved both my battery and internet anxiety",
+          "url": "https://www.androidauthority.com/baseus-energeek-gx11-mifi-power-bank-impressions-3642283/",
+          "source": "Android Authority",
+          "ai_score": 0,
+          "date_published": "2026-05-02T11:30:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Kottke.org] Sombrero Galaxy: The Universe&#8217;s Dusty Brimmed Hat",
+          "url": "https://kottke.org/26/04/sombrero-galaxy-the-universes-dusty-brimmed-hat",
+          "source": "Kottke.org",
+          "ai_score": 0,
+          "date_published": "2026-04-27T14:59:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] The Roots of Dementia Trace Back All The Way to Childhood, Experts Reveal",
+          "url": "https://www.sciencealert.com/the-roots-of-dementia-trace-back-all-the-way-to-childhood-experts-reveal",
+          "source": "ScienceAlert",
+          "ai_score": 0,
+          "date_published": "2026-05-02T23:24:53+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] Free Universal Construction Kit: 3D-printable adapters to connect Lego, Duplo, K'Nex, Stickle Bricks and other systems",
+          "url": "https://boingboing.net/2026/04/28/free-universal-construction-kit-3d-printable-adapters-to-connect-lego-duplo-knex-stickle-bricks-and-other-systems.html",
+          "source": "Boing Boing",
+          "ai_score": 0,
+          "date_published": "2026-04-28T14:10:29+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] Researchers built a language model that thinks it's still 1930",
+          "url": "https://boingboing.net/2026/04/29/researchers-built-a-language-model-that-thinks-its-still-1930.html",
+          "source": "Boing Boing",
+          "ai_score": 0,
+          "date_published": "2026-04-29T18:22:17+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Business Insider] A couple bought a 380-square-foot shed for $12,000 and turned it into a tiny home they share with their 3 dogs",
+          "url": "https://www.businessinsider.com/couple-lives-in-380-sq-ft-converted-shed-tiny-home-2026-5",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-05-02T11:18:01+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[The Tyee] The Botanist Who Isn’t Afraid to Call Trees Sacred",
+          "url": "https://thetyee.ca/Culture/2026/04/30/Botanist-Diana-Beresford-Kroeger-Calls-Trees-Forests-Sacred/",
+          "source": "The Tyee",
+          "ai_score": 0,
+          "date_published": "2026-04-30T18:51:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] Scorpions Wield Metal-Tipped Weapons",
+          "url": "https://nautil.us/scorpions-wield-metal-tipped-weapons-1280315/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-04-29T19:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] City \"where everything grows\" fines homeowner's edible garden",
+          "url": "https://boingboing.net/2026/05/01/city-where-everything-grows-fines-homeowners-edible-garden.html",
+          "source": "Boing Boing",
+          "ai_score": 0,
+          "date_published": "2026-05-01T22:06:03+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] I grew basil and lettuce using this indoor smart garden, and the process was truly effortless",
+          "url": "https://www.businessinsider.com/guides/home/click-and-grow-smart-garden",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-04-27T06:00:52+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[BC Gov News] Opening new supportive homes in Surrey",
+          "url": "https://news.gov.bc.ca/releases/2026HMA0050-000489",
+          "source": "BC Gov News",
+          "ai_score": 0,
+          "date_published": "2026-05-01T18:45:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] This Indigenous Language Survived Russian Occupation. Can It Survive YouTube?",
+          "url": "https://www.wired.com/story/youtube-promote-russian-language-kyrgyzstan/",
+          "source": "WIRED",
+          "ai_score": 0,
+          "date_published": "2026-05-01T09:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] A space cat with a rainbow exhaust wants nothing from you",
+          "url": "https://boingboing.net/2026/04/29/a-space-cat-with-a-rainbow-exhaust-wants-nothing-from-you.html",
+          "source": "Boing Boing",
+          "ai_score": 0,
+          "date_published": "2026-04-29T16:18:30+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[BC Gov News] Supporting manufacturing in Nanaimo to strengthen local jobs",
+          "url": "https://news.gov.bc.ca/releases/2026JEG0032-000491",
+          "source": "BC Gov News",
+          "ai_score": 0,
+          "date_published": "2026-05-01T18:15:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] I replaced my Raspberry Pis with $5 ESP32s for smart home projects, and they do everything I need",
+          "url": "https://www.xda-developers.com/i-replaced-raspberry-pis-with-5-esp32s-for-home-assistant/",
+          "source": "XDA Developers",
+          "ai_score": 0,
+          "date_published": "2026-05-03T00:00:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[CBC Kamloops] Kamloops couple shares tale of miraculous escape from trailer fire",
+          "url": "https://www.cbc.ca/news/canada/british-columbia/kamloops-couple-trailer-fire-9.7183888?cmp=rss",
+          "source": "CBC Kamloops",
+          "ai_score": 0,
+          "date_published": "2026-05-01T02:26:35+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Narwhal] Alberta taxpayers are paying millions to ranchers who lease public lands. Here are 5 things you need to know",
+          "url": "https://thenarwhal.ca/alberta-grazing-leases-explainer/",
+          "source": "The Narwhal",
+          "ai_score": 0,
+          "date_published": "2026-04-30T14:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] Compact home in Quebec brings the forest indoors",
+          "url": "https://newatlas.com/architecture/la-maraude-canada-nathalie-thibodeau-architecte/",
+          "source": "New Atlas",
+          "ai_score": 0,
+          "date_published": "2026-04-30T12:58:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] From their miraculous memory to seeing colors we can’t, here is the surprising way hummingbirds find your garden — and how to create the perfect 'hummingbird highway'",
+          "url": "https://www.tomsguide.com/home/the-hummingbird-highway-the-surprising-way-hummingbirds-find-feeders",
+          "source": "Toms Guide",
+          "ai_score": 0,
+          "date_published": "2026-04-30T05:45:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ZDNet] Eero Signal keeps your business online during internet outages",
+          "url": "https://www.zdnet.com/article/eero-signal-keeps-your-business-online-during-internet-outages/",
+          "source": "ZDNet",
+          "ai_score": 0,
+          "date_published": "2026-04-29T21:55:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Global News] Amnesty International sounds alarm on state of housing in Manawan, Que.",
+          "url": "https://globalnews.ca/news/11823796/amnesty-international-sounds-alarm-on-state-of-housing-in-manawan-que/",
+          "source": "Global News",
+          "ai_score": 0,
+          "date_published": "2026-05-01T02:08:29+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[APTN News] First Nations must define economic reconciliation at fall meeting, says financial expert",
+          "url": "https://www.aptnnews.ca/nation-to-nation/first-nations-must-define-economic-reconciliation-at-fall-meeting-says-financial-expert/",
+          "source": "APTN News",
+          "ai_score": 0,
+          "date_published": "2026-04-30T23:13:30+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NPR Health News] A look at one of the farms RFK Jr. has pointed to as a model for 'reparenting'",
+          "url": "https://www.npr.org/2026/04/29/nx-s1-5745097/a-look-at-one-of-the-farms-rfk-jr-has-pointed-to-as-a-model-for-reparenting",
+          "source": "NPR Health News",
+          "ai_score": 0,
+          "date_published": "2026-04-29T21:55:10+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[The Narwhal] Alberta’s finance minister receives public money for oil and gas wells on public land",
+          "url": "https://thenarwhal.ca/alberta-nathan-horner-grazing-leases/",
+          "source": "The Narwhal",
+          "ai_score": 0,
+          "date_published": "2026-04-29T11:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] I kept every PC I ever built. Here's why that turned out to be genius",
+          "url": "https://www.howtogeek.com/i-kept-every-pc-i-ever-owned-it-turned-out-to-be-my-best-tech-decision/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-05-02T17:00:17+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] 'Exactly one photon': European scientists have built the first block of a truly unhackable global quantum internet that can run on existing fiber networks — breaking what was once thought to be an impossible barrier to transmit identical light particles",
+          "url": "https://www.techradar.com/pro/exactly-one-photon-european-scientists-have-built-the-first-block-of-a-truly-unhackable-global-quantum-internet-that-can-run-on-existing-fiber-networks-breaking-what-was-once-thought-to-be-an-impossible-barrier-to-transmit-identical-light-particles",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-05-01T17:35:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] Home Assistant is incomplete without this essential plug-in—here's why",
+          "url": "https://www.howtogeek.com/home-assistant-is-simply-incomplete-without-this-essential-plug-in-heres-why/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-05-02T19:00:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] 5 more lightweight Linux distros that go easy on your old Windows PC",
+          "url": "https://www.howtogeek.com/5-more-lightweight-linux-distros-that-go-easy-on-your-old-windows-pc/",
+          "source": "How-To Geek",
+          "ai_score": 0,
+          "date_published": "2026-05-02T16:54:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Google's $3 USB stick for revamping old laptops with ChromeOS Flex has sold out — and proves I was right about Chromebooks",
+          "url": "https://www.techradar.com/computing/chromebooks/googles-usd3-usb-stick-for-revamping-old-laptops-with-chromeos-flex-has-sold-out-and-proves-i-was-right-about-chromebooks",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-05-02T14:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] How Does Your Brain Know a Cat Is a Cat?",
+          "url": "https://nautil.us/how-does-your-brain-know-a-cat-is-a-cat-1280394/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-05-01T17:00:38+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Redditor builds a PC inside an old CRT monitor — it looks like an ancient iMac, but runs Cyberpunk 2077 at 100fps in 1440p",
+          "url": "https://www.techradar.com/computing/redditor-builds-a-pc-inside-an-old-crt-monitor-it-looks-like-an-ancient-imac-but-runs-cyberpunk-2077-at-100fps-in-1440p",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-05-01T18:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Kottke.org] &#8220;Since 1900,  scientists have observed more than 20...",
+          "url": "https://kottke.org/26/05/0048845-since-1900-scientists-hav",
+          "source": "Kottke.org",
+          "ai_score": 0,
+          "date_published": "2026-05-01T15:47:54+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] Here’s Why Dreams During Naps Are So Weird",
+          "url": "https://nautil.us/heres-why-dreams-during-naps-are-so-weird-1280388/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-05-01T14:24:01+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] Apollo's top economist says AI is about to spark a job-market boom",
+          "url": "https://www.businessinsider.com/ai-job-market-labor-unemployment-jevons-paradox-apollo-torsten-slok-2026-4",
+          "source": "Business Insider",
+          "ai_score": 0,
+          "date_published": "2026-04-29T13:28:20+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] In Yemen, Starlink internet brings opportunities – for some",
+          "url": "https://www.aljazeera.com/features/2026/5/3/in-yemen-starlink-internet-brings-opportunities-for-some?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 0,
+          "date_published": "2026-05-03T06:21:44+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Science, Wonder & the Natural World",
+      "articles": [
+        {
+          "title": "[Kottke.org] Winners of the GDT Nature Photographer of the Year 2026 .",
+          "url": "https://kottke.org/26/04/0048844-winners-of-the-gdt-nature",
+          "source": "Kottke.org",
+          "ai_score": 0,
+          "date_published": "2026-04-29T20:55:53+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Nautilus] New Frog Species Gets Olympian Name",
+          "url": "https://nautil.us/new-frog-species-gets-olympian-name-1280311/",
+          "source": "Nautilus",
+          "ai_score": 0,
+          "date_published": "2026-04-29T18:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] 'We’re not selling and we’re not giving way': Lone farmer defeats Tennessee's TVA as US electricity giant grapples with exploding demand from AI-fuelled data centers from Google and Elon Musk's xAI, encouraged by slow legislature",
+          "url": "https://www.techradar.com/pro/were-not-selling-and-were-not-giving-way-lone-farmer-defeats-tennessees-tva-as-us-electricity-giant-grapples-with-exploding-demand-from-ai-fuelled-data-centers-from-google-and-elon-musks-xai-encouraged-by-slow-legislature",
+          "source": "TechRadar",
+          "ai_score": 0,
+          "date_published": "2026-05-02T21:35:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "How can systematic ecological observation and community science build both scientific resilience and territorial sovereignty in the Cariboo region?",
+        "riley_position": "Wonder and careful observation, increasingly distributed through citizen science platforms like iNaturalist, provide the motivational and practical infrastructure for ecological monitoring and community resilience.",
+        "riley_key_evidence": [
+          "iNaturalist has 200 million global observations with significant BC biodiversity data for rare species tracking",
+          "Watershed councils in the American Southwest have maintained continuous monitoring for over two decades through multi-stakeholder cost-sharing",
+          "Photography competitions show distributed high-quality observation capacity that can be translated into scientific data"
+        ],
+        "casey_position": "Wonder is less operationally important than relationships and obligations to place; the Cariboo's most sophisticated ecological knowledge comes from Indigenous and multi-generational community relationships, not Western scientific frameworks, and any monitoring system must be governed to protect data sovereignty.",
+        "casey_key_evidence": [
+          "The 4.5-million-year-old Ecuadorian frog persisted because surrounding communities maintained protective relationships with the landscape",
+          "Cariboo amphibian baseline population data is insufficient to determine species status or population trends",
+          "The TVA farm story shows how documented relationships with place create legal and political standing against extraction pressure"
+        ],
+        "resolution": "They reached substantial agreement that multi-stakeholder, sustained monitoring networks with Indigenous governance are necessary; Casey and Riley converged on Community Futures as a potential convener and agreed that longitudinal observation requires funding resilience and explicit data-broker roles rather than short-term grants.",
+        "topics_covered": [
+          "Citizen science platforms and distributed observation infrastructure",
+          "Data sovereignty and Indigenous-governed biodiversity data",
+          "Multi-stakeholder funding models for sustained environmental monitoring",
+          "The role of wonder versus obligation in driving long-term ecological observation",
+          "Community Futures' potential role as a regional convener"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "Azure Neural TTS (Ava · Andrew)",
+    "text_to_speech_openai": "OpenAI TTS API (Nova · Echo)",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  },
+  "closing_music": {
+    "name": "Crash and Burn",
+    "artist": "JARA",
+    "genres": [
+      "indie",
+      "pop",
+      "rocknroll"
+    ],
+    "shareurl": "https://www.jamendo.com/track/1214600",
+    "license": "Creative Commons via Jamendo"
+  }
+}
