@@ -1523,5 +1523,31 @@
       "Institutional capacity gaps in small municipalities and First Nations organizations",
       "Local journalism's role in connecting disparate stories into structural pattern analysis"
     ]
+  },
+  "2026-05-03": {
+    "timestamp": 1777806180.706109,
+    "date": "2026-05-03",
+    "theme": "Science, Wonder & the Natural World",
+    "central_question": "How can systematic ecological observation and community science build both scientific resilience and territorial sovereignty in the Cariboo region?",
+    "riley_position": "Wonder and careful observation, increasingly distributed through citizen science platforms like iNaturalist, provide the motivational and practical infrastructure for ecological monitoring and community resilience.",
+    "riley_key_evidence": [
+      "iNaturalist has 200 million global observations with significant BC biodiversity data for rare species tracking",
+      "Watershed councils in the American Southwest have maintained continuous monitoring for over two decades through multi-stakeholder cost-sharing",
+      "Photography competitions show distributed high-quality observation capacity that can be translated into scientific data"
+    ],
+    "casey_position": "Wonder is less operationally important than relationships and obligations to place; the Cariboo's most sophisticated ecological knowledge comes from Indigenous and multi-generational community relationships, not Western scientific frameworks, and any monitoring system must be governed to protect data sovereignty.",
+    "casey_key_evidence": [
+      "The 4.5-million-year-old Ecuadorian frog persisted because surrounding communities maintained protective relationships with the landscape",
+      "Cariboo amphibian baseline population data is insufficient to determine species status or population trends",
+      "The TVA farm story shows how documented relationships with place create legal and political standing against extraction pressure"
+    ],
+    "resolution": "They reached substantial agreement that multi-stakeholder, sustained monitoring networks with Indigenous governance are necessary; Casey and Riley converged on Community Futures as a potential convener and agreed that longitudinal observation requires funding resilience and explicit data-broker roles rather than short-term grants.",
+    "topics_covered": [
+      "Citizen science platforms and distributed observation infrastructure",
+      "Data sovereignty and Indigenous-governed biodiversity data",
+      "Multi-stakeholder funding models for sustained environmental monitoring",
+      "The role of wonder versus obligation in driving long-term ecological observation",
+      "Community Futures' potential role as a regional convener"
+    ]
   }
 }
