@@ -494,13 +494,60 @@ def _score_text_against_themes(text, themes_config):
     }
 
 
+def _claude_theme_match(text: str, themes_config: dict) -> tuple:
+    """Semantically match article text to the best-fit theme using Claude.
+
+    Called when keyword scoring returns 0 for every theme so that articles are
+    held for the most relevant upcoming episode rather than floating as
+    theme-agnostic and defaulting to today's episode.
+
+    Returns (best_day_int, theme_name) or (None, None) if no clear fit.
+    """
+    client = get_anthropic_client()
+    if not client:
+        return None, None
+
+    theme_lines = "\n".join(
+        f"{day}: {theme['name']} — {theme['description']}"
+        for day, theme in sorted(themes_config.items(), key=lambda x: int(x[0]))
+    )
+    prompt = (
+        "You are a theme classifier for a regional podcast called Cariboo Signals.\n\n"
+        "Given the content below, which of the 7 podcast themes is the BEST fit?\n"
+        "Reply with ONLY the theme day number (0–6), or 'none' if it truly fits none.\n\n"
+        f"THEMES:\n{theme_lines}\n\n"
+        f"CONTENT:\n{text[:600]}"
+    )
+    try:
+        response = api_retry(lambda: client.messages.create(
+            model=SUMMARY_MODEL,
+            max_tokens=10,
+            messages=[{"role": "user", "content": prompt}]
+        ))
+        raw = response.content[0].text.strip().lower()
+        if raw == "none":
+            return None, None
+        m = re.search(r'\b([0-6])\b', raw)
+        if m:
+            day = int(m.group(1))
+            if str(day) in themes_config:
+                return day, themes_config[str(day)]["name"]
+    except Exception as e:
+        print(f"  ⚠️  Claude theme match failed: {e}")
+    return None, None
+
+
 def rate_pending_seeds(pending_seeds):
     """Assign each unrated seed a best-fit theme weekday (0-6) or None.
 
     Seeds with a user-supplied theme_hint are matched to the closest theme by
     name.  Seeds with no hint are scored by keyword overlap against every
-    theme; the highest-scoring theme wins.  Seeds that match no keywords on
-    any theme are marked theme-agnostic (eligible every day).
+    theme; the highest-scoring theme wins.  When keyword scores tie between
+    today and an upcoming day, the upcoming day is preferred so the seed adds
+    value to a different episode rather than competing with the curated feed.
+    Seeds that match no keywords are passed to Claude for semantic theme
+    alignment; only seeds Claude also can't classify are left theme-agnostic
+    (eligible every day).
 
     Results are written back to content_seeds.json so the rating only happens
     once per seed.  For URL seeds the fetched title/description are cached
@@ -554,14 +601,30 @@ def rate_pending_seeds(pending_seeds):
                 scores = _score_text_against_themes(text, themes_config)
                 top_day = max(scores, key=scores.get)
                 if scores[top_day] > 0:
+                    # Tiebreaker: when today also achieves the max score, prefer the
+                    # soonest upcoming non-today day so the seed adds value on a
+                    # different episode rather than competing with the curated feed.
+                    today_wd = get_pacific_now().weekday()
+                    if top_day == today_wd:
+                        max_score = scores[top_day]
+                        tied_non_today = [d for d, s in scores.items() if s == max_score and d != today_wd]
+                        if tied_non_today:
+                            days_until = lambda d: (d - today_wd - 1) % 7 + 1
+                            top_day = min(tied_non_today, key=days_until)
                     best_day = top_day
                     best_name = themes_config[str(top_day)]["name"]
+                else:
+                    # No keyword match — ask Claude to semantically assign an upcoming
+                    # theme so the seed is held for the right episode instead of
+                    # floating as theme-agnostic and defaulting to today.
+                    print(f"  🤖 No keyword match for seed [{seed['id']}]; asking Claude to assign theme...")
+                    best_day, best_name = _claude_theme_match(text, themes_config)
 
         seed["best_theme_day"] = best_day
         seed["best_theme_name"] = best_name
         dirty = True
 
-        label = best_name if best_name else "any theme (no strong keyword match)"
+        label = best_name if best_name else "any theme (no strong keyword match — eligible any day)"
         print(f"  🗓️  Seed [{seed['id']}] queued for → {label}")
 
     if dirty and SEEDS_FILE.exists():
