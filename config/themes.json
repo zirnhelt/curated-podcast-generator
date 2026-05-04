@@ -10,9 +10,9 @@
     "keywords": ["forestry", "ranching", "mining", "agriculture", "lumber", "cattle", "resource", "farming", "timber", "sawmill", "crop", "harvest", "livestock", "industrial"]
   },
   "2": {
-    "name": "Community Tech & Governance",
-    "description": "SD27, CRD, Williams Lake council, municipal networks, civic innovation",
-    "keywords": ["governance", "council", "municipal", "civic", "community", "public", "policy", "bylaw", "broadband", "network", "digital equity", "open data", "smart city", "election"]
+    "name": "Gear, Gadgets & Practical Tech",
+    "description": "Consumer devices, maker projects, homelab, practical tools — technology you can hold, build, or deploy at home or on the job",
+    "keywords": ["gear", "gadget", "device", "hardware", "tool", "maker", "DIY", "homelab", "raspberry pi", "3D print", "camera", "drone", "sensor", "wearable", "review", "hands-on", "battery", "solar", "router", "NAS", "smart home", "Arduino", "keyboard", "headphone", "monitor", "laptop", "phone"]
   },
   "3": {
     "name": "Indigenous Lands & Innovation",
@@ -25,9 +25,9 @@
     "keywords": ["wilderness", "wildfire", "conservation", "wildlife", "outdoor", "recreation", "hiking", "fishing", "hunting", "backcountry", "park", "trail", "forest fire", "climate", "salmon", "grizzly", "caribou"]
   },
   "5": {
-    "name": "Cariboo Voices & Local News",
-    "description": "Williams Lake, Quesnel, 100 Mile House, Bella Coola — community stories and digital equity",
-    "keywords": ["Williams Lake", "Quesnel", "100 Mile", "Bella Coola", "Cariboo", "local", "community", "rural", "small town", "digital equity", "Chilcotin", "Prince George"]
+    "name": "Cariboo Local Affairs",
+    "description": "Williams Lake council, CRD, SD27, Quesnel, 100 Mile House, Bella Coola — civic decisions, community voices, and local development that shape everyday life in the Cariboo",
+    "keywords": ["Williams Lake", "Quesnel", "100 Mile", "Bella Coola", "Cariboo", "local", "community", "council", "municipal", "CRD", "SD27", "bylaw", "budget", "zoning", "infrastructure", "rural", "small town", "Chilcotin", "Prince George", "development", "housing", "transit", "water", "fire hall", "mayor", "councillor", "public meeting", "referendum"]
   },
   "6": {
     "name": "Science, Wonder & the Natural World",

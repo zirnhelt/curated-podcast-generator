@@ -115,6 +115,10 @@ SUMMARY_MODEL = os.getenv("CLAUDE_SUMMARY_MODEL", "claude-haiku-4-5-20251001")
 # creative latitude, so there are more potential hallucinations to catch.
 OPUS_REVIEW_ARTICLE_THRESHOLD = int(os.getenv("OPUS_REVIEW_ARTICLE_THRESHOLD", "3"))
 
+# Saturday (Cariboo Local Affairs) runs a deeper, longer episode.
+SATURDAY_DEEP_DIVE_COUNT = 5   # vs. standard 3
+SATURDAY_NEWS_ROUNDUP_COUNT = 15  # vs. standard 12
+
 # Tracks which review model was actually used this run; read by citation/description generators.
 _review_model_used = None
 
@@ -2018,12 +2022,13 @@ def categorize_articles_for_deep_dive(articles, theme_day):
     if 'keywords' in theme_info:
         theme_keywords.extend([k.lower() for k in theme_info['keywords']])
 
-    # News pool is the top 12 — deep dive must pull from the rest
-    news_urls = set(a.get('url', '') for a in articles[:12])
+    # News pool size — Saturday runs a longer roundup
+    pool_size = SATURDAY_NEWS_ROUNDUP_COUNT if theme_day == 5 else 12
+    news_urls = set(a.get('url', '') for a in articles[:pool_size])
     remaining = [a for a in articles if a.get('url', '') not in news_urls]
 
     if not remaining:
-        # Fallback: if fewer than 12 total articles, grab from positions 4+
+        # Fallback: if fewer than pool_size total articles, grab from positions 4+
         remaining = articles[4:]
 
     # Score remaining by theme relevance + AI score blend
@@ -2035,7 +2040,8 @@ def categorize_articles_for_deep_dive(articles, theme_day):
         return keyword_hits * 2 + ai_score_normalized
 
     remaining.sort(key=theme_relevance, reverse=True)
-    deep_dive_articles = remaining[:3]
+    deep_dive_count = SATURDAY_DEEP_DIVE_COUNT if theme_day == 5 else 3
+    deep_dive_articles = remaining[:deep_dive_count]
 
     print(f"Deep dive: selected {len(deep_dive_articles)} articles for '{theme_name}'")
     print(f"  Pool: {len(remaining)} candidates beyond top 12 news")
@@ -2088,12 +2094,12 @@ def _build_theme_keywords(theme_name):
     return unique
 
 
-def select_deep_dive_from_feed(theme_articles, theme_name):
+def select_deep_dive_from_feed(theme_articles, theme_name, count=3):
     """Select deep dive articles from pre-curated podcast feed theme articles.
 
     The feed already sorts articles by boosted score (theme relevance).
     Articles with _keyword_matches > 0 are strongly on-theme.
-    Top 3 theme articles become the deep dive; the rest go to news.
+    Top `count` theme articles become the deep dive; the rest go to news.
 
     When the feed provides no keyword matches, falls back to local keyword
     scoring against the theme name and config keywords.
@@ -2108,9 +2114,9 @@ def select_deep_dive_from_feed(theme_articles, theme_name):
 
     if strong_match:
         # Feed provided keyword matches — use them
-        deep_dive = strong_match[:3]
-        if len(deep_dive) < 3:
-            deep_dive.extend(weak_match[:3 - len(deep_dive)])
+        deep_dive = strong_match[:count]
+        if len(deep_dive) < count:
+            deep_dive.extend(weak_match[:count - len(deep_dive)])
     else:
         # Feed provided no keyword matches — apply local theme scoring
         used_local_scoring = True
@@ -2118,7 +2124,7 @@ def select_deep_dive_from_feed(theme_articles, theme_name):
         print(f"  📎 Local keywords: {theme_keywords[:10]}{'...' if len(theme_keywords) > 10 else ''}")
 
         scored = sorted(theme_articles, key=lambda a: _local_theme_relevance(a, theme_keywords), reverse=True)
-        deep_dive = scored[:3]
+        deep_dive = scored[:count]
 
     deep_dive_urls = {a.get('url', '') for a in deep_dive}
     news_articles = [a for a in theme_articles if a.get('url', '') not in deep_dive_urls]
@@ -4363,7 +4369,8 @@ def main():
                 consumed_email_ids.extend(i["id"] for i in email_newsletters)
 
             # Select deep dive from theme articles; rest go to news
-            deep_dive_articles, news_articles = select_deep_dive_from_feed(theme_articles, today_theme)
+            deep_dive_count = SATURDAY_DEEP_DIVE_COUNT if today_weekday == 5 else 3
+            deep_dive_articles, news_articles = select_deep_dive_from_feed(theme_articles, today_theme, count=deep_dive_count)
 
             # Track which seeded articles landed in the deep dive
             for a in deep_dive_articles:

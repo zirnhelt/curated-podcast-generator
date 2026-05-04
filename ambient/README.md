@@ -12,11 +12,11 @@ the generic chime automatically.
 |-------|----------|-----------|
 | Arts, Culture & Digital Storytelling | `ambient-arts.mp3` | Soft acoustic guitar or gentle piano — creative, warm |
 | Working Lands & Industry | `ambient-industry.mp3` | Distant machinery hum, wind across open fields |
-| Community Tech & Governance | `ambient-civic.mp3` | Quiet office ambience, soft keyboard clicks, civic tone |
+| Gear, Gadgets & Practical Tech | `ambient-gadgets.mp3` | Workshop energy — gentle tool hum, keyboard clicks, the sound of something being built |
 | Indigenous Lands & Innovation | `ambient-indigenous.mp3` | Gentle wind through pines, subtle water sounds — respectful and grounded |
 | Wild Spaces & Outdoor Life | `ambient-wilderness.mp3` | Birdsong, gentle creek, forest ambience |
-| Cariboo Voices & Local News | `ambient-community.mp3` | Gentle small-town morning — distant traffic, birds, coffee shop warmth |
-| Resilient Rural Futures | `ambient-futures.mp3` | Soft electronic hum with natural undertones — tech meets nature |
+| Cariboo Local Affairs | `ambient-community.mp3` | Gentle small-town morning — distant traffic, birds, coffee shop warmth |
+| Science, Wonder & the Natural World | `ambient-futures.mp3` | Forest morning — birdsong layered with quiet wind and distant water, curious and still |
 
 ## Generation tips
 
