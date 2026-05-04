@@ -100,13 +100,18 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-03",
-        "clue": "Indigenous-tech:+ \u2014 Explicitly centered OCAP principles as prerequisite architecture",
-        "occurrences": 1
+        "date": "2026-05-04",
+        "clue": "Indigenous-tech:+ \u2014 Escalated from collaboration framing to funding parity as foundational requirement",
+        "occurrences": 2
       },
       {
         "date": "2026-05-03",
         "clue": "structural-lens:+ \u2014 Moved from observation-collection to governance-layer-first thinking",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-05-04",
+        "clue": "structural-lens:~ \u2014 Moved from infrastructure focus to governance as inseparable from economics",
         "occurrences": 1
       }
     ],
@@ -229,11 +234,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-03",
-        "clue": "pilot-skepticism:+ \u2014 Named grant-cycle vulnerability as structural problem, not just local frustration",
-        "occurrences": 2
-      },
-      {
         "date": "2026-04-29",
         "clue": "Indigenous-tech:~ \u2014 Introduced data sovereignty complexity beyond typical tech governance models",
         "occurrences": 1
@@ -254,9 +254,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-03",
-        "clue": "community-trust:x \u2014 Conceded that wonder/astonishment has operational function in sustaining observation",
-        "occurrences": 1
+        "date": "2026-05-04",
+        "clue": "community-trust:x \u2014 Conceded that community pressure itself can generate resilience, not just risk",
+        "occurrences": 2
       }
     ],
     "core_memories": [
