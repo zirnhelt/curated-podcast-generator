@@ -1549,5 +1549,31 @@
       "The role of wonder versus obligation in driving long-term ecological observation",
       "Community Futures' potential role as a regional convener"
     ]
+  },
+  "2026-05-04": {
+    "timestamp": 1777896109.325825,
+    "date": "2026-05-04",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "central_question": "How can independent cultural production in rural regions like the Cariboo achieve financial sustainability without relying on precarious grant cycles?",
+    "riley_position": "Rural cultural audio production is achievable through direct audience relationships and community-supported models, and existing institutional anchors like Station House Gallery could incubate storytelling programs with proper funding and Indigenous co-governance.",
+    "riley_key_evidence": [
+      "Canadaland grew from one-person operation to multi-show network over 13 years through listener crowdfunding",
+      "Production barriers are now technical-light; distribution is essentially free (podcast hosting cheap, Spotify/Apple free)",
+      "BC Arts Council community arts access grants and precedents like Kelowna Arts Council audio documentation work exist"
+    ],
+    "casey_position": "The cold-start problem is harder in rural contexts, grant-dependent models are unsustainable, and community embeddedness creates editorial accountability problems that threaten coverage of important local stories.",
+    "casey_key_evidence": [
+      "Canadaland's early years were 'financially precarious' and took years to become viable",
+      "Williams Lake has a potential audience of tens of thousands vs. millions for national outlets like Canadaland",
+      "Community radio in BC (CKPG, CFIS) faces serious funding cuts and volunteer burnout, making it fragile infrastructure"
+    ],
+    "resolution": "Both hosts agreed that depth over scale is the operating principle, that Indigenous co-governance must be built into any program structure rather than bolted on, and that funding parity for Indigenous-led organizations is the harder and more important question than settler institution program additions.",
+    "topics_covered": [
+      "Economic models for independent creative sustainability (recurring revenue, direct audience relationships, co-op structures)",
+      "Grant landscape and funding mechanisms (Local Journalism Initiative, BC Arts Council, pilot-to-permanent transition challenges)",
+      "Infrastructure constraints (cold-start problem, institutional anchors, community radio viability)",
+      "Indigenous sovereignty and cultural production governance (co-governance requirements, funding disparity, direct resourcing to nations)",
+      "Editorial independence in small communities (social pressure, accountability dynamics, coverage gaps)"
+    ]
   }
 }
