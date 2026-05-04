@@ -143,11 +143,11 @@ Themes rotate on a weekly cycle. Each day gets its own themed feed:
 |---|---|---|
 | Monday | Arts, Culture & Digital Storytelling | Local arts, festivals, creative economy, media |
 | Tuesday | Working Lands & Industry | Forestry, ranching, mining, agriculture tech |
-| Wednesday | Community Tech & Governance | Municipal networks, civic innovation, digital equity |
+| Wednesday | Gear, Gadgets & Practical Tech | Consumer devices, maker projects, homelab, practical tools |
 | Thursday | Indigenous Lands & Innovation | First Nations governance, land stewardship, language tech |
 | Friday | Wild Spaces & Outdoor Life | Conservation, wildfire, backcountry recreation |
-| Saturday | Cariboo Voices & Local News | Williams Lake, Quesnel, local community stories |
-| Sunday | Resilient Rural Futures | Infrastructure, connectivity, sustainability |
+| Saturday | Cariboo Local Affairs | Williams Lake council, CRD, SD27, Quesnel, 100 Mile — civic and community stories (longer episode) |
+| Sunday | Science, Wonder & the Natural World | Scientific discovery, ecology, natural history, citizen science |
 
 ### Hosts
 

@@ -11,17 +11,18 @@ The podcast generator fetches one JSON feed per day of the week:
 ```
 feed-podcast-monday.json    → Arts, Culture & Digital Storytelling
 feed-podcast-tuesday.json   → Working Lands & Industry
-feed-podcast-wednesday.json → Community Tech & Governance
+feed-podcast-wednesday.json → Gear, Gadgets & Practical Tech
 feed-podcast-thursday.json  → Indigenous Lands & Innovation
 feed-podcast-friday.json    → Wild Spaces & Outdoor Life
-feed-podcast-saturday.json  → Cariboo Voices & Local News
-feed-podcast-sunday.json    → Resilient Rural Futures
+feed-podcast-saturday.json  → Cariboo Local Affairs
+feed-podcast-sunday.json    → Science, Wonder & the Natural World
 ```
 
-Each feed is fetched at generation time (~6 AM Pacific). The generator
+Each feed is fetched at generation time (~3 AM Pacific). The generator
 splits items into **theme articles** and **bonus articles**, selects the
-top 3 theme-matched articles as the deep-dive source, and passes the rest
-to the news roundup prompt. It then asks Claude to prioritise on-theme
+top theme-matched articles as the deep-dive source (3 on weekdays, 5 on
+Saturday), and passes the rest to the news roundup prompt (12 articles on
+weekdays, 15 on Saturday). It then asks Claude to prioritise on-theme
 stories when writing the episode.
 
 ## Required item fields (currently missing — priority work)
@@ -73,7 +74,7 @@ item["_is_bonus"] = compute_keyword_matches(article, theme_keywords) == 0
 
 Local BC sources (Williams Lake Tribune, Quesnel Cariboo Observer, etc.)
 should **never** be marked `_is_bonus` on the Saturday feed regardless of
-keyword score — local news is the point of that day.
+keyword score — local news and civic coverage are the point of that day.
 
 ### `_podcast.theme_description` (string)
 
@@ -99,14 +100,28 @@ per day, written for the hosts, e.g.:
 Several themes produce weak episodes because the feed has no dedicated
 sources for them. Add these RSS/JSON sources to the relevant day feeds.
 
-### Saturday — Cariboo Voices & Local News (highest priority)
+### Saturday — Cariboo Local Affairs (highest priority)
 These sources produce daily Cariboo/BC content; Saturday's feed should be
-predominantly local even without keyword filtering.
+predominantly local and civic even without keyword filtering. Williams Lake
+council meets Tuesday evenings — coverage is published by Wednesday or
+Thursday, well in time for Saturday's episode.
 - Williams Lake Tribune RSS
 - Quesnel Cariboo Observer RSS
 - 100 Mile Free Press RSS
 - My Cariboo Now (mycariboonow.com)
 - My East Kootenay Now
+- City of Williams Lake news / agendas
+- Cariboo Regional District news
+
+### Wednesday — Gear, Gadgets & Practical Tech
+Consumer and maker-focused feeds that produce high-volume product and
+project content — currently these articles surface as noise on other days.
+- iFixit (ifixit.com/News)
+- Hackaday (hackaday.com)
+- Tom's Hardware
+- The Verge (gear/reviews tag)
+- Wirecutter
+- MakeUseOf
 
 ### Thursday — Indigenous Lands & Innovation
 - IndigiNews (indiginews.com)
@@ -133,11 +148,11 @@ This is the hardest theme to feed organically; generic tech news dominates.
 - Spacing Magazine (spacing.ca)
 - Local festival/event feeds (Williams Lake, Quesnel)
 
-### Sunday — Resilient Rural Futures
-- BC Gov News (already partial — include infrastructure/energy tags)
-- BCBC Infrastructure news
-- Rural Municipalities of BC news
-- Connecting BC broadband updates
+### Sunday — Science, Wonder & the Natural World
+- Canadian Geographic
+- BC Nature (bcnature.ca)
+- ScienceDaily (ecology/wildlife tags)
+- The Narwhal (science/research angle)
 
 ## Expected item schema (complete)
 

@@ -6,11 +6,11 @@ See [SIBLING_REPOS.md](../SIBLING_REPOS.md) for the general integration model be
 
 ---
 
-## 1. Add dedicated local news sources for "Cariboo Voices & Local News" theme day
+## 1. Add dedicated local news sources for "Cariboo Local Affairs" theme day
 
 ### Problem
 
-Theme day 5 (Saturday) is **"Cariboo Voices & Local News"** — its purpose is to surface actual local reporting about Williams Lake, Quesnel, 100 Mile House, and Bella Coola. Currently, the feed has no dedicated local news RSS sources, so this theme day ends up pulling generic tech articles and awkwardly framing them as local content. The theme keywords in the podcast generator (`Williams Lake`, `Quesnel`, `100 Mile`, `Bella Coola`, `Cariboo`, `local`, `community`, `rural`, `small town`, etc.) rarely match anything because the upstream feeds simply don't carry this content.
+Theme day 5 (Saturday) is **"Cariboo Local Affairs"** — its purpose is to surface actual local reporting and civic coverage about Williams Lake, Quesnel, 100 Mile House, and Bella Coola, including Williams Lake Town Council decisions (council meets Tuesday evenings; coverage is available well before Saturday's episode). Currently, the feed has no dedicated local news RSS sources, so this theme day ends up pulling generic tech articles and awkwardly framing them as local content. The theme keywords in the podcast generator (`Williams Lake`, `Quesnel`, `100 Mile`, `Bella Coola`, `Cariboo`, `council`, `CRD`, `SD27`, `local`, `community`, `rural`, etc.) rarely match anything because the upstream feeds simply don't carry this content.
 
 ### What to change
 
