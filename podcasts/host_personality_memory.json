@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[Business Insider] An AI built a boutique with $100,000, the",
       "Preventing AI extractivism: the case for braiding indigenous",
       "[The Tyee] How Companies Hijack AI Chatbots",
       "[Engadget] Deezer says AI-made songs make up 44 percent of d",
@@ -10,7 +9,8 @@
       "InFocus: What\u2019s behind Canada\u2019s \u2018sovereign\u2019  AI plan?",
       "[TechRadar] 12 gadgets that will turn your mini garden into ",
       "[TechRadar] 'I snap them up' \u2014 award-winning wildlife photog",
-      "[TechRadar] 'We\u2019re not selling and we\u2019re not giving way': Lo"
+      "[TechRadar] 'We\u2019re not selling and we\u2019re not giving way': Lo",
+      "[TechRadar] 'Help cattle producers hold onto their land and "
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -85,11 +85,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-02",
-        "clue": "pilot-skepticism:+ \u2014 Shifted from neutral on Guardian programs to questioning annual funding cycles",
-        "occurrences": 2
-      },
-      {
         "date": "2026-04-27",
         "clue": "structural-lens: + \u2014 Deepened platform-harm analysis; systematized algorithmic suppression of community content",
         "occurrences": 1
@@ -112,6 +107,11 @@
       {
         "date": "2026-05-04",
         "clue": "structural-lens:~ \u2014 Moved from infrastructure focus to governance as inseparable from economics",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-05-05",
+        "clue": "tech-optimism:~ \u2014 Moved from solar inevitability to data-infrastructure-first pragmatism",
         "occurrences": 1
       }
     ],
@@ -154,6 +154,11 @@
       {
         "formed": "2026-04-30",
         "signal": "pilot-skepticism:x \u2014 Conceded retrofit more expensive than design-in",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-05-05",
+        "signal": "pilot-skepticism:+ \u2014 Explicitly acknowledged Crown tenure constraint genuinely limits model applicability",
         "occurrences": 3
       }
     ]
@@ -257,6 +262,16 @@
         "date": "2026-05-04",
         "clue": "community-trust:x \u2014 Conceded that community pressure itself can generate resilience, not just risk",
         "occurrences": 2
+      },
+      {
+        "date": "2026-05-05",
+        "clue": "structural-lens:x \u2014 Conceded producer-funded agrologist model viable where association capacity exists",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-05-05",
+        "clue": "pilot-skepticism:+ \u2014 Hardened skepticism: tools exist but institutional will repeatedly absent",
+        "occurrences": 1
       }
     ],
     "core_memories": [
