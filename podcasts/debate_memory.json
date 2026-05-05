@@ -1575,5 +1575,31 @@
       "Indigenous sovereignty and cultural production governance (co-governance requirements, funding disparity, direct resourcing to nations)",
       "Editorial independence in small communities (social pressure, accountability dynamics, coverage gaps)"
     ]
+  },
+  "2026-05-05": {
+    "timestamp": 1777980221.342896,
+    "date": "2026-05-05",
+    "theme": "Working Lands & Industry",
+    "central_question": "Can diversification strategies like agrivoltaics and precision agriculture help small-to-medium working land operators survive margin compression, and what infrastructure investments would actually enable Cariboo producers to access these opportunities?",
+    "riley_position": "Revenue diversification and technology adoption are viable pathways for working lands, but success depends on building foundational data infrastructure and producer-governed systems that enable access to innovation across scale levels.",
+    "riley_key_evidence": [
+      "Tennessee solar ranch uses sensor suite and dual-optimization software to simultaneously optimize cattle and solar yields",
+      "BC agrivoltaic installations have received ALR approval in Fraser Valley when they demonstrably maintain agricultural productivity",
+      "Precision application technology shows 15-20% input cost reductions on comparable Prairie grain operations"
+    ],
+    "casey_position": "Technology solutions like solar and new crop varieties benefit large-scale or well-capitalized operators disproportionately; Cariboo's mixed-tenure landscape (Crown leases + private land) and institutional gaps make direct adoption of Tennessee models unrealistic without significant modification.",
+    "casey_key_evidence": [
+      "Cariboo ranch operations typically mix private deeded land with Crown grazing leases, limiting solar panel placement to small fractions of operational acreage",
+      "New Summerland cherry varieties reach market through private nursery licensing, effectively pricing out smaller operators with less capital",
+      "BC extension services have been largely defunded, leaving a gap in expertise delivery for precision agriculture technology"
+    ],
+    "resolution": "Riley and Casey converged on a concrete middle path: build producer-governed data infrastructure first (sensors, recordkeeping, co-op data ownership) as foundational investment that enables everything else\u2014precision input management, ALR applications, research investment cases\u2014rather than pursuing technology solutions in isolation. They agreed this requires specific regional proposals with budgets attached rather than abstract policy conversations.",
+    "topics_covered": [
+      "Agrivoltaics (solar + grazing) feasibility and ALR regulatory constraints in BC versus US models",
+      "Crown lease tenure as structural constraint on dual-land-use revenue diversification",
+      "Public-private partnerships in agricultural research and commercialization (Summerland cherry breeding case)",
+      "Regional disparities in agricultural research investment and the case for Cariboo-specific breeding/extension capacity",
+      "Data sovereignty and producer-owned cooperative models for aggregating farm production data"
+    ]
   }
 }

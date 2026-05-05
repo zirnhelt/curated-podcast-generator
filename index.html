@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-tRVRUwMzhWKCorcC/M0piL+gnVI5Ko4ZTDlEwbNuMs4='; style-src 'unsafe-inline'; img-src 'self' https: data:; media-src https: blob:; connect-src 'self'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-3n+HTr6LcD/Ec7k2DGbOlcAS1yQdofxWrUqRjAjSp+8='; style-src 'unsafe-inline'; img-src 'self' https: data:; media-src https: blob:; connect-src 'self'">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <title>Cariboo Signals - A daily AI-generated tech review from and about rural BC</title>
     <meta name="description" content="How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region on the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations.">
@@ -389,7 +389,7 @@
 
             <div class="schedule-day">
                 <div class="schedule-day-name">Wednesday</div>
-                <div class="schedule-theme-name">Community Tech & Governance</div>
+                <div class="schedule-theme-name">Gear, Gadgets & Practical Tech</div>
             </div>
 
             <div class="schedule-day">
@@ -404,7 +404,7 @@
 
             <div class="schedule-day">
                 <div class="schedule-day-name">Saturday</div>
-                <div class="schedule-theme-name">Cariboo Voices & Local News</div>
+                <div class="schedule-theme-name">Cariboo Local Affairs</div>
             </div>
 
             <div class="schedule-day">
@@ -426,10 +426,10 @@
                             <option value="all">All Themes</option>
                                                         <option value="0">Arts, Culture & Digital Storytelling</option>
                             <option value="1">Working Lands & Industry</option>
-                            <option value="2">Community Tech & Governance</option>
+                            <option value="2">Gear, Gadgets & Practical Tech</option>
                             <option value="3">Indigenous Lands & Innovation</option>
                             <option value="4">Wild Spaces & Outdoor Life</option>
-                            <option value="5">Cariboo Voices & Local News</option>
+                            <option value="5">Cariboo Local Affairs</option>
                             <option value="6">Science, Wonder & the Natural World</option>
                         </select>
                     </div>
@@ -503,7 +503,7 @@
         }
 
         // Theme configuration
-        const themes = {"0": {"name": "Arts, Culture & Digital Storytelling", "description": "Local arts scene, festivals, creative economy, media, and cultural tech", "keywords": ["arts", "culture", "storytelling", "festival", "creative", "media", "film", "music", "gallery", "museum", "digital art", "podcast", "journalism"]}, "1": {"name": "Working Lands & Industry", "description": "Cariboo forestry, ranching, mining, agriculture \u2014 tech in the resource economy", "keywords": ["forestry", "ranching", "mining", "agriculture", "lumber", "cattle", "resource", "farming", "timber", "sawmill", "crop", "harvest", "livestock", "industrial"]}, "2": {"name": "Community Tech & Governance", "description": "SD27, CRD, Williams Lake council, municipal networks, civic innovation", "keywords": ["governance", "council", "municipal", "civic", "community", "public", "policy", "bylaw", "broadband", "network", "digital equity", "open data", "smart city", "election"]}, "3": {"name": "Indigenous Lands & Innovation", "description": "T\u015dilhqot'in, Secw\u00e9pemc, Dakelh \u2014 language, governance, land stewardship, and tech", "keywords": ["indigenous", "first nations", "aboriginal", "reconciliation", "treaty", "land rights", "sovereignty", "guardian", "stewardship", "language revitalization", "elder", "traditional knowledge", "Haida", "Tsilhqotin", "Secwepemc", "Dakelh", "tribal", "M\u00e9tis", "Inuit", "indigenous language", "language preservation", "language documentation", "residential school", "turtle island", "decolonization", "UNDRIP", "band council"]}, "4": {"name": "Wild Spaces & Outdoor Life", "description": "Chilcotin wilderness, backcountry recreation, conservation tech, wildfire and climate", "keywords": ["wilderness", "wildfire", "conservation", "wildlife", "outdoor", "recreation", "hiking", "fishing", "hunting", "backcountry", "park", "trail", "forest fire", "climate", "salmon", "grizzly", "caribou"]}, "5": {"name": "Cariboo Voices & Local News", "description": "Williams Lake, Quesnel, 100 Mile House, Bella Coola \u2014 community stories and digital equity", "keywords": ["Williams Lake", "Quesnel", "100 Mile", "Bella Coola", "Cariboo", "local", "community", "rural", "small town", "digital equity", "Chilcotin", "Prince George"]}, "6": {"name": "Science, Wonder & the Natural World", "description": "Scientific discovery, natural phenomena, ecology, and the curiosity behind how our world works \u2014 grounded in the landscapes and living systems of the Cariboo", "keywords": ["science", "research", "discovery", "ecology", "biology", "astronomy", "physics", "evolution", "nature", "species", "salmon", "caribou", "bat", "watershed", "wetland", "grassland", "boreal", "species at risk", "wildfire science", "citizen science", "field research", "natural history", "phenomenon", "study", "biodiversity"]}};
+        const themes = {"0": {"name": "Arts, Culture & Digital Storytelling", "description": "Local arts scene, festivals, creative economy, media, and cultural tech", "keywords": ["arts", "culture", "storytelling", "festival", "creative", "media", "film", "music", "gallery", "museum", "digital art", "podcast", "journalism"]}, "1": {"name": "Working Lands & Industry", "description": "Cariboo forestry, ranching, mining, agriculture \u2014 tech in the resource economy", "keywords": ["forestry", "ranching", "mining", "agriculture", "lumber", "cattle", "resource", "farming", "timber", "sawmill", "crop", "harvest", "livestock", "industrial"]}, "2": {"name": "Gear, Gadgets & Practical Tech", "description": "Consumer devices, maker projects, homelab, practical tools \u2014 technology you can hold, build, or deploy at home or on the job", "keywords": ["gear", "gadget", "device", "hardware", "tool", "maker", "DIY", "homelab", "raspberry pi", "3D print", "camera", "drone", "sensor", "wearable", "review", "hands-on", "battery", "solar", "router", "NAS", "smart home", "Arduino", "keyboard", "headphone", "monitor", "laptop", "phone"]}, "3": {"name": "Indigenous Lands & Innovation", "description": "T\u015dilhqot'in, Secw\u00e9pemc, Dakelh \u2014 language, governance, land stewardship, and tech", "keywords": ["indigenous", "first nations", "aboriginal", "reconciliation", "treaty", "land rights", "sovereignty", "guardian", "stewardship", "language revitalization", "elder", "traditional knowledge", "Haida", "Tsilhqotin", "Secwepemc", "Dakelh", "tribal", "M\u00e9tis", "Inuit", "indigenous language", "language preservation", "language documentation", "residential school", "turtle island", "decolonization", "UNDRIP", "band council"]}, "4": {"name": "Wild Spaces & Outdoor Life", "description": "Chilcotin wilderness, backcountry recreation, conservation tech, wildfire and climate", "keywords": ["wilderness", "wildfire", "conservation", "wildlife", "outdoor", "recreation", "hiking", "fishing", "hunting", "backcountry", "park", "trail", "forest fire", "climate", "salmon", "grizzly", "caribou"]}, "5": {"name": "Cariboo Local Affairs", "description": "Williams Lake council, CRD, SD27, Quesnel, 100 Mile House, Bella Coola \u2014 civic decisions, community voices, and local development that shape everyday life in the Cariboo", "keywords": ["Williams Lake", "Quesnel", "100 Mile", "Bella Coola", "Cariboo", "local", "community", "council", "municipal", "CRD", "SD27", "bylaw", "budget", "zoning", "infrastructure", "rural", "small town", "Chilcotin", "Prince George", "development", "housing", "transit", "water", "fire hall", "mayor", "councillor", "public meeting", "referendum"]}, "6": {"name": "Science, Wonder & the Natural World", "description": "Scientific discovery, natural phenomena, ecology, and the curiosity behind how our world works \u2014 grounded in the landscapes and living systems of the Cariboo", "keywords": ["science", "research", "discovery", "ecology", "biology", "astronomy", "physics", "evolution", "nature", "species", "salmon", "caribou", "bat", "watershed", "wetland", "grassland", "boreal", "species at risk", "wildfire science", "citizen science", "field research", "natural history", "phenomenon", "study", "biodiversity"]}};
         const themeNames = Object.values(themes).map(t => t.name);
 
         // Store all episodes data
