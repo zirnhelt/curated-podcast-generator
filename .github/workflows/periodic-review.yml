@@ -37,16 +37,19 @@ jobs:
 
       - name: Determine days to review
         id: params
+        env:
+          INPUT_DAYS: ${{ github.event.inputs.days }}
         run: |
-          DAYS="${{ github.event.inputs.days || '5' }}"
+          DAYS="${INPUT_DAYS:-5}"
           echo "days=$DAYS" >> "$GITHUB_OUTPUT"
           echo "Reviewing last $DAYS days of scripts"
 
       - name: Run script review
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          DAYS_TO_REVIEW: ${{ steps.params.outputs.days }}
         run: |
-          python review_scripts.py --days ${{ steps.params.outputs.days }} --output file
+          python review_scripts.py --days "$DAYS_TO_REVIEW" --output file
 
       - name: Read report for issue body
         id: report
