@@ -1,0 +1,83 @@
+name: Periodic Script Review
+
+on:
+  schedule:
+    # Every Monday at 9:00 AM Pacific (17:00 UTC summer / 18:00 UTC winter)
+    - cron: '0 17 * * 1'
+  workflow_dispatch:
+    inputs:
+      days:
+        description: 'Number of days of scripts to review'
+        required: false
+        default: '5'
+        type: string
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install anthropic
+
+      - name: Determine days to review
+        id: params
+        run: |
+          DAYS="${{ github.event.inputs.days || '5' }}"
+          echo "days=$DAYS" >> "$GITHUB_OUTPUT"
+          echo "Reviewing last $DAYS days of scripts"
+
+      - name: Run script review
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python review_scripts.py --days ${{ steps.params.outputs.days }} --output file
+
+      - name: Read report for issue body
+        id: report
+        run: |
+          REPORT_FILE=$(ls reviews/review_*.md | sort | tail -1)
+          echo "path=$REPORT_FILE" >> "$GITHUB_OUTPUT"
+          # Truncate to ~65000 chars so it fits in a GitHub issue body
+          python3 -c "
+          with open('$REPORT_FILE') as f:
+              content = f.read()
+          limit = 65000
+          if len(content) > limit:
+              content = content[:limit] + '\n\n*(report truncated — see committed file for full version)*'
+          print(content, end='')
+          " > /tmp/issue_body.md
+
+      - name: Create GitHub Issue with report
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          REVIEW_DATE=$(TZ='America/Vancouver' date '+%Y-%m-%d')
+          gh issue create \
+            --title "Script Review — $REVIEW_DATE" \
+            --body-file /tmp/issue_body.md \
+            --label "script-review"
+
+      - name: Commit review report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add reviews/
+          git diff --staged --quiet && echo "No new review file to commit" || \
+            git commit -m "Add script review $(TZ='America/Vancouver' date '+%Y-%m-%d')"
+          git push origin HEAD
