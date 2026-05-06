@@ -55,11 +55,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-13",
-        "clue": "community-trust:~ \u2014 introduced custodianship as distinct from extraction",
-        "occurrences": 2
-      },
-      {
         "date": "2026-04-27",
         "clue": "tech-optimism: - \u2014 Walked back AI-as-democratizer; now skeptical of commercial tool trajectories",
         "occurrences": 2
@@ -100,9 +95,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-05-03",
-        "clue": "structural-lens:+ \u2014 Moved from observation-collection to governance-layer-first thinking",
-        "occurrences": 1
+        "date": "2026-05-06",
+        "clue": "structural-lens:+ \u2014 moved from tech-as-solution to institutional-anchoring requirement",
+        "occurrences": 2
       },
       {
         "date": "2026-05-04",
@@ -160,6 +155,11 @@
         "formed": "2026-05-05",
         "signal": "pilot-skepticism:+ \u2014 Explicitly acknowledged Crown tenure constraint genuinely limits model applicability",
         "occurrences": 3
+      },
+      {
+        "formed": "2026-05-06",
+        "signal": "community-trust:~ \u2014 acknowledged maintenance gap persists even with institutional support",
+        "occurrences": 3
       }
     ]
   },
@@ -204,9 +204,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-03",
-        "clue": "Indigenous-tech:+ \u2014 Moved from skepticism to genuine optimism about Guardians model",
-        "occurrences": 1
+        "date": "2026-05-06",
+        "clue": "Indigenous-tech:+ \u2014 introduced as corrective to one-directional tech narrative",
+        "occurrences": 2
       },
       {
         "date": "2026-04-21",
@@ -271,6 +271,11 @@
       {
         "date": "2026-05-05",
         "clue": "pilot-skepticism:+ \u2014 Hardened skepticism: tools exist but institutional will repeatedly absent",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-05-06",
+        "clue": "pilot-skepticism:x \u2014 conceded Framework/repairability efforts as genuine bright spot",
         "occurrences": 1
       }
     ],

@@ -1601,5 +1601,31 @@
       "Regional disparities in agricultural research investment and the case for Cariboo-specific breeding/extension capacity",
       "Data sovereignty and producer-owned cooperative models for aggregating farm production data"
     ]
+  },
+  "2026-05-06": {
+    "timestamp": 1778068737.371143,
+    "date": "2026-05-06",
+    "theme": "Gear, Gadgets & Practical Tech",
+    "central_question": "How can remote Cariboo communities effectively bridge the gap between available technology and practical knowledge to solve real infrastructure and sustainability problems?",
+    "riley_position": "The technology and documentation already exist; the real barrier is building local social infrastructure and knowledge-sharing networks that connect people with practical expertise, particularly through institutional anchoring of programs like repair caf\u00e9s.",
+    "riley_key_evidence": [
+      "Solar panel efficiency and battery chemistry have matured enough to provide meaningful supplemental charge over a full sun day",
+      "Open-source hardware documentation (like Hackaday projects) provides starting points for practical builds",
+      "Institutional anchoring through SD27, libraries, or colleges creates sustainable programs vs. volunteer-dependent models"
+    ],
+    "casey_position": "While technology is better than ever, the practical barriers for remote communities aren't primarily technical\u2014they're time poverty, isolation from peer communities, and lack of local support when problems arise, compounded by manufacturer incentive structures working against repairability.",
+    "casey_key_evidence": [
+      "Marketing for solar products (Solly, Jackery, Goal Zero) doesn't match real-world winter performance in the Cariboo, creating a literacy problem",
+      "PLA 3D printer warping in cold garages requires additional build projects to solve (enclosures), creating recursive tinkering barriers",
+      "Repair caf\u00e9s burn out because they depend on volunteer time from 2-3 key people who eventually move or change roles"
+    ],
+    "resolution": "Riley and Casey converge on agreeing that institutional anchoring (through SD27, colleges, libraries, or First Nations technical groups) is the practical solution that makes programs sustainable, and both acknowledge that the real 'build project' is the social infrastructure, not the technology itself.",
+    "topics_covered": [
+      "Off-grid solar power systems: specifications, realistic performance, and marketing vs. reality",
+      "Maker culture and open-source hardware documentation for practical problem-solving",
+      "Right-to-repair and device repairability as infrastructure equity issues",
+      "Repair caf\u00e9s and community technical capacity-building models",
+      "First Nations technical knowledge and local innovation ecosystems"
+    ]
   }
 }
