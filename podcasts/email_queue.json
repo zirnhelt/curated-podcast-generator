@@ -1155,6 +1155,31 @@
       "theme_day": 2,
       "status": "used",
       "used_at": "2026-05-06"
+    },
+    {
+      "id": "e0276331",
+      "type": "newsletter",
+      "message_id": "<89b36891-99b0-4e41-8858-b1bc649aa2a3@mtasv.net>",
+      "from_address": "n***@animikii.com",
+      "subject": "Coming soon to an event near you",
+      "received_at": "2026-05-06T19:06:15+00:00",
+      "body_text": "![A graphic illustration of an urban roof top patio with flowers and plants blooming in a variety or pots along the edge. A woman in a purple top and pink pants holds a water can as the rising sun ill",
+      "extracted_urls": [
+        "https://assets.buttondown.email/images/32f798c1-fd59-4ab4-9e61-8fb9d6e26c58.jpg?w=960&fit=max",
+        "https://animikii.com/insights/rethinking-privacy-through-indigenous-data-sovereignty?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=coming-soon-to-an-event-near-you",
+        "https://www.forestsnews.org/159517/indigenous-knowledge-ai-fire-management?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=coming-soon-to-an-event-near-you",
+        "https://indigenousjournalists.org/2026/05/weve-got-our-hands-full-and-we-need-your-help/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=coming-soon-to-an-event-near-you",
+        "https://assets.buttondown.email/images/3522df7b-e45b-4cbc-8607-b7771284ee1f.jpg?w=960&amp;fit=max",
+        "https://unsplash.com/@craigmanners_com?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText&utm_campaign=coming-soon-to-an-event-near-you",
+        "https://unsplash.com/photos/a-bee-on-a-flower-cmLNT_xyXLY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText&utm_campaign=coming-soon-to-an-event-near-you",
+        "https://events.genomebc.ca/genomics-forum-2026/11105605?ref=GBCWEB-EC&amp;amp;utm_source=newsriver&amp;amp;utm_medium=email&amp;amp;utm_campaign=coming-soon-to-an-event-near-you",
+        "https://halifax.citynews.ca/2026/05/05/indigenous-people-honor-and-raise-awareness-for-relatives-who-are-missing-or-have-been-killed/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=coming-soon-to-an-event-near-you",
+        "https://www.cbc.ca/news/canada/edmonton/frog-lake-cree-language-app-9.7185348?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=coming-soon-to-an-event-near-you"
+      ],
+      "theme_tag": "Indigenous Lands & Innovation",
+      "theme_day": 3,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
