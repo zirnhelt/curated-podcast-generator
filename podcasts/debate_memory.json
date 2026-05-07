@@ -1627,5 +1627,31 @@
       "Repair caf\u00e9s and community technical capacity-building models",
       "First Nations technical knowledge and local innovation ecosystems"
     ]
+  },
+  "2026-05-07": {
+    "timestamp": 1778155458.29492,
+    "date": "2026-05-07",
+    "theme": "Indigenous Lands & Innovation",
+    "central_question": "Can Indigenous knowledge be integrated into AI wildfire management systems equitably, or does the current technical and governance infrastructure inevitably replicate historical extraction patterns?",
+    "riley_position": "Indigenous data sovereignty is achievable through restructured governance frameworks and technical tools like TK Labels, and recent legal precedents (post-T\u015dilhqot'in) create a materially different landscape for enforcing these protections. Technical capacity is no longer the primary barrier; political will and institutional appetite are.",
+    "riley_key_evidence": [
+      "CIFOR-ICRAF study showing Indigenous knowledge improves AI wildfire models but requires community participation at architecture stage, not just data contribution",
+      "TK Labels as machine-readable restrictions that can be embedded in training datasets to prevent certain uses algorithmically",
+      "T\u015dilhqot'in Nation's land monitoring work built with community-controlled architecture from inception, with legal standing post-William case to refuse external extraction"
+    ],
+    "casey_position": "The power asymmetry between communities and AI developers is severe and persistent; legal frameworks and governance principles exist but enforcement and capacity-building take generations, while the immediate pressure to deploy tools for urgent wildfire seasons will force communities into inequitable transactions.",
+    "casey_key_evidence": [
+      "Only 3-4 Indigenous tech firms in BC have capacity to do this work; demand far exceeds supply",
+      "Nagoya Protocol on benefit-sharing (in force since 2014) remains largely unenforced in practice",
+      "6.5 billion in Ottawa funding went out with no outcome tracking, exemplifying how funding tied to participation in systems communities don't control becomes extraction"
+    ],
+    "resolution": "They converge on a pragmatic course of action without resolving the underlying tension: communities must engage in BC Wildfire Service procurement negotiations this fall with structural protections (veto authority, voting board seats, benefit-sharing), using the CIFOR-ICRAF evidence base to make the case. Casey acknowledges the legal landscape has shifted post-T\u015dilhqot'in but warns bureaucratic implementation lags; Riley concedes historical patterns but argues recent pressures (wildfires, research, Indigenous tech firms) create a convergence window.",
+    "topics_covered": [
+      "Data sovereignty versus Western privacy frameworks: relational vs. individual consent models",
+      "Technical irreversibility of abstracted knowledge in AI training and attribution/revocation problems",
+      "Capacity and scaling barriers: dependency on external firms versus long-term community workforce development",
+      "Funding architecture as extraction mechanism when communities have no governance stake or outcome definition authority",
+      "Procurement timing as leverage point: design-stage governance versus post-contract retrofit"
+    ]
   }
 }
