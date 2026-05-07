@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "Preventing AI extractivism: the case for braiding indigenous",
       "[The Tyee] How Companies Hijack AI Chatbots",
       "[Engadget] Deezer says AI-made songs make up 44 percent of d",
       "[Williams Lake Tribune] TRAILBLAZER CHRONICLES: What differe",
@@ -10,7 +9,8 @@
       "[TechRadar] 12 gadgets that will turn your mini garden into ",
       "[TechRadar] 'I snap them up' \u2014 award-winning wildlife photog",
       "[TechRadar] 'We\u2019re not selling and we\u2019re not giving way': Lo",
-      "[TechRadar] 'Help cattle producers hold onto their land and "
+      "[TechRadar] 'Help cattle producers hold onto their land and ",
+      "Indigenous knowledge can improve AI models to manage fires, "
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -70,11 +70,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-30",
-        "clue": "tech-optimism:+ \u2014 Built case for local language models feasibility",
-        "occurrences": 2
-      },
-      {
         "date": "2026-04-22",
         "clue": "community-trust:x \u2014 Conceded regional coordination risks gatekeeping, Indigenous representation complexity",
         "occurrences": 1
@@ -107,6 +102,11 @@
       {
         "date": "2026-05-05",
         "clue": "tech-optimism:~ \u2014 Moved from solar inevitability to data-infrastructure-first pragmatism",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-05-07",
+        "clue": "Indigenous-tech:x \u2014 conceded capacity gap, pivoted to Animikii as workaround model",
         "occurrences": 1
       }
     ],
@@ -159,6 +159,11 @@
       {
         "formed": "2026-05-06",
         "signal": "community-trust:~ \u2014 acknowledged maintenance gap persists even with institutional support",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-05-07",
+        "signal": "tech-optimism:+ \u2014 TK Labels, edge computing shift from skeptical to solutions-focused",
         "occurrences": 3
       }
     ]
@@ -244,14 +249,14 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-30",
-        "clue": "structural-lens:~ \u2014 Shifted from data governance to capacity constraint reframing",
-        "occurrences": 1
+        "date": "2026-05-07",
+        "clue": "structural-lens:~ \u2014 acknowledged technical architecture as enforcement mechanism, genuine complexity addition",
+        "occurrences": 2
       },
       {
-        "date": "2026-04-30",
-        "clue": "funding-risk:+ \u2014 Elevated sustained funding as non-negotiable precondition, not detail",
-        "occurrences": 1
+        "date": "2026-05-07",
+        "clue": "funding-risk:+ \u2014 hardened position on procurement timelines as critical leverage point",
+        "occurrences": 2
       },
       {
         "date": "2026-05-02",

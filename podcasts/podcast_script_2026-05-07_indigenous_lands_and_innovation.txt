@@ -1,0 +1,121 @@
+# Cariboo Signals Podcast Script - 2026-05-07
+# Theme: Indigenous Lands & Innovation
+# Generated: 2026-05-07 05:04:16 PDT
+
+**CASEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. It's Thursday, May 7th, 2026. Coming to you from the Cariboo, on lands that have been cared for by the Secwépemc, Tŝilhqot'in, and Dakelh peoples since time immemorial. Today's theme is Indigenous Lands & Innovation — I'm Casey.
+
+**RILEY:** And I'm Riley. Today we're looking at what it actually means to put Indigenous communities in the driver's seat of their own technological futures — not as a metaphor, but as a governance and funding question.
+
+**CASEY:** Quick weather note — it's a beautiful May morning out at Horsefly Lake, 5 degrees with clear skies, high of 20 today. Williams Lake, 100 Mile House, and Quesnel are all sitting around 5 or 6 degrees under clear skies as well — enjoy it, because tomorrow's looking overcast. Let's get into the news.
+
+---
+
+**NEWS ROUNDUP**
+
+**CASEY:** BC has a new Chief Treaty Commissioner. The Tyee profiled the appointment, and the commissioner is laying out a path forward that emphasizes implementation — not just signing — of treaty commitments. The distinction matters: BC has dozens of treaties in various stages, but the gap between what's on paper and what's actually resourced and operational is substantial. The commissioner is signalling that closing that gap is the mandate.
+
+**RILEY:** Implementation is exactly where Indigenous governance frameworks either get real traction or stall out waiting for transfers that never materialize.
+
+**RILEY:** Ottawa invested 6.5 billion dollars in First Nations programs and, according to APTN News, had no systematic tracking of whether those investments actually improved lives. No outcome metrics, no accountability framework, just disbursements. The Auditor General has flagged this pattern before, but the scale here is striking.
+
+**CASEY:** Six-point-five billion with no measurement infrastructure is the policy equivalent of flying blind — if you can't identify what's working, you can't replicate it.
+
+**RILEY:** The BC government also formally announced the appointment of a provincial commissioner to the BC Treaty Commission this week — procedural, but it signals the province is at least staffing the table. And May 5th was Red Dress Day. BC's minister and parliamentary secretary issued a statement marking the National Day of Awareness for Missing and Murdered Indigenous Women, Girls, and 2-Spirit people.
+
+**CASEY:** That brings us to something generating real tension right now. APTN is reporting that families of MMIWG2S+ are pushing back — hard — on how federal funding flows. Two separate stories: families saying the money needs to reach those directly affected, not intermediary organizations, and hundreds of families saying national organizations simply don't speak for them.
+
+**RILEY:** A structural problem, not a new one — and it shows up in housing, health, and tech programming just as much as it does here.
+
+**CASEY:** Global News is reporting that memorial events were held in Kelowna this week — families and communities marking Red Dress Day with ceremony and calls for action. The grief is immediate and the accountability questions are systemic. Both are real simultaneously.
+
+**RILEY:** Shifting to something that connects the accountability thread to cultural survival — The Guardian ran a piece on Tibet where children educated in state-run boarding schools are losing their mother tongue. The reporting describes a deliberate assimilation infrastructure: children immersed in Mandarin from early ages, Tibetan language and identity squeezed out by the system's design. Not without resonance for Canadian residential school history.
+
+**CASEY:** Which is exactly why a people's tribunal heading to Montreal to hear evidence against the federal government on residential schools matters. APTN reports this is a community-led accountability mechanism — not a government-designed process, but one originating from the families and nations most affected.
+
+**RILEY:** Also from APTN — senators in Ottawa heard calls for Indigenous sovereignty over cannabis following raids in Nova Scotia. The argument: where Indigenous economic development intersects with federal regulation, communities should have jurisdictional authority, not just licensing workarounds.
+
+**CASEY:** And a lighter story to close the themed roundup — a Quebec Indigenous women's sailing team, Voile Autochtone, is reclaiming the St. Lawrence River through competitive sailing. A sovereignty assertion through presence and practice, on the water, in traditional territory, doing something joyful and visible.
+
+**RILEY:** Nepal celebrated the return of a stolen 13th-century Buddha statue from New York this week — a reminder that cultural repatriation is a live issue globally. And the New York Times ran an explainer on Australia's Welcome to Country ceremony — good background reading for anyone unfamiliar with how Indigenous protocol shapes public life there.
+
+**CASEY:** Also worth noting — the Narwhal has a genuinely hopeful piece on burrowing owls recovering in BC with conservation support from the Upper Nicola Band. After years of population collapse, numbers are ticking back up. The Tyee is covering community-scale climate response through urban agriculture and sprouting programs. And for anyone watching rural connectivity: ZDNet tested 5G across rural America on a three-day road trip — mixed results that will feel familiar to anyone who's tried to stream video outside Williams Lake. Drivers in Enderby, meanwhile, are paying a dollar a litre for gas during a local price war, which is the kind of headline that makes the rest of the Cariboo quietly envious.
+
+Coming up — we're spotlighting a workforce development organization that's been building economic capacity across Carrier, Chilcotin, and Secwépemc territories for years. Right after this.
+
+---
+
+**COMMUNITY SPOTLIGHT**
+
+**RILEY:** The Carrier Chilcotin Aboriginal Training and Employment Centre — CCATEC — has been doing the quiet, essential work of connecting Indigenous job seekers across the Cariboo to real employment and skills training. They serve communities across Carrier, Chilcotin, and Secwépemc nations, offering everything from trades training to employment support to career counselling. This is workforce development that's culturally grounded and regionally specific — not a generic program shipped in from somewhere else. You can find them at ccatec.com.
+
+**CASEY:** Economic self-determination starts with the ability to build a livelihood on your own territory — CCATEC is doing exactly that groundwork.
+
+And that connects directly to what we're digging into today. Let's go deeper.
+
+---
+
+**DEEP DIVE: CARIBOO CONNECTIONS — Indigenous Lands & Innovation**
+
+**CASEY:** We've spent previous episodes on this theme covering data sovereignty architecture and whether Canada's AI strategy actually serves Indigenous communities. Today the thread I want to pull on is more specific: a study just published by CIFOR-ICRAF — the Center for International Forestry Research — finding that Indigenous knowledge can genuinely improve AI models for wildfire management. Better prediction, better response, better outcomes. But the study is equally blunt that current AI frameworks lack the community participation and data ownership mechanisms to make that happen without replicating old extraction patterns. So the question is: is "Indigenous knowledge integration" a genuine model shift, or a more sophisticated form of extraction?
+
+**RILEY:** The finding is significant precisely because it isn't just an equity argument — it's a performance argument. Communities with deep, place-specific knowledge of how fire moves through particular valley systems, how burn patterns differ across different forest types, how landscape features shape fire behaviour — that knowledge makes the tools more accurate. Emergency management agencies can't dismiss that on a bad fire year.
+
+**CASEY:** They can't dismiss the finding. They can absolutely dismiss the governance conditions attached to it. And that's the pattern. The knowledge gets recognized as valuable, the governance terms get treated as negotiable-downward, and what gets built is a tool that performs better because of community knowledge that the community doesn't control.
+
+**RILEY:** Walk me through what "doesn't control" actually means technically, because I think people assume it's a legal problem when it's also an architectural one.
+
+**CASEY:** Once knowledge is abstracted into model weights through the training process, it becomes unattributable and unrevocable. You can't pull it back out. You can't delete it. If a Dakelh or Tŝilhqot'in community contributes knowledge about how specific terrain features affect fire behaviour — knowledge that may be place-specific, holder-specific, potentially sacred — and that knowledge gets encoded into weights, the community has no technical recourse when the tool gets redeployed in ways they never consented to. The CIFOR-ICRAF study flags this directly. Their call is for community participation at the model architecture stage, not just the data contribution stage.
+
+**RILEY:** Most communities are being approached at the data contribution stage. "Share your knowledge, we'll build the tool, you'll benefit from better fire prediction." That framing leaves every architectural decision with the developers.
+
+**CASEY:** Correct. And the Ottawa story from today's roundup shows what that looks like at scale — 6.5 billion dollars out the door, no outcome tracking, no accountability framework. When communities aren't defining what success looks like, they're not partners. They're inputs.
+
+**RILEY:** The governance failure in the funding story and the governance failure in the AI story are structurally identical. That's worth sitting with. But the technical barriers to doing this differently are lower than they've ever been. Small language models, edge computing, infrastructure that can run on community-controlled servers — building a community-controlled fire knowledge system doesn't require the budget it would have required a decade ago. And there's a firm in BC making exactly this case right now. Animikii — the Indigenous-led technology company — their impact strategist Jeff Doctor is presenting at the IAPP Symposium in Toronto this week alongside Wabusk Data Solutions, arguing that Indigenous data sovereignty isn't a supplement to conventional privacy frameworks. It's a fundamental challenge to them.
+
+**CASEY:** Explain the distinction, because it matters.
+
+**RILEY:** Western privacy law is built around individual consent and data minimization. Indigenous data governance — OCAP principles, the frameworks that communities across Tŝilhqot'in and Secwépemc territory have been developing — is relational. Data about a river isn't just ecological data. It's territorial data, cultural data, and it carries responsibilities that travel with it. An AI training pipeline that strips context to optimize a model destroys exactly what makes the knowledge useful, and violates obligations that don't disappear because a contract didn't mention them.
+
+**CASEY:** The IAPP audience is corporate privacy officers and technology lawyers. If that argument lands there — not just in Indigenous policy circles — it starts changing default practice. I'll grant the venue matters. But the argument has to survive a hard question: what's the enforcement mechanism? The Convention on Biological Diversity's Nagoya Protocol has had benefit-sharing provisions for traditional knowledge on paper since 2014. Enforcement has been largely absent. A framework that sounds right but can't be enforced is still extraction with better documentation.
+
+**RILEY:** Build the enforcement into the technical architecture instead of relying on legal frameworks that don't get implemented. TK Labels — machine-readable Traditional Knowledge labels — let communities embed restrictions directly into training datasets. Specific uses can be algorithmically prevented, not just contractually prohibited. That's a technical sovereignty tool that doesn't require litigation to activate.
+
+**CASEY:** That shifts the equation, I'll admit. If communities can set technical conditions on how their knowledge enters a model — conditions the system actually enforces — the power asymmetry has a real counterweight. The remaining question is whether AI developers implement systems that respect those labels or route around them when deployment pressure is high.
+
+**RILEY:** Which is exactly why Animikii presenting to the legal and business community matters. Getting corporate privacy officers to understand that Indigenous data sovereignty is a framework problem — not a consultation checkbox — is how you shift the default before the next procurement cycle rather than litigating it after.
+
+**CASEY:** Procurement cycles. That's where this lives or dies. The 2023 wildfire season in BC was catastrophic enough that there's genuine institutional appetite for whatever actually works. If the CIFOR-ICRAF findings get traction with BC Wildfire Service, there's a window right now to establish governance terms before the next round of AI tool procurement. That window closes the moment contracts go out to tender without governance conditions attached.
+
+**RILEY:** And the Nations whose territory is directly affected — Tŝilhqot'in, Secwépemc, Dakelh — have both the knowledge and, since the Tŝilhqot'in title decision, meaningful jurisdictional standing. The William case didn't just establish Aboriginal title over specific land. It gave the Nation standing to refuse external resource extraction on that land. Courts have been clear that data derived from titled territory carries analogous protections if communities choose to assert them.
+
+**CASEY:** Choose to assert them with what resources? Legal standing requires legal capacity. The Nations that have successfully built parallel technical and governance infrastructure have done so after significant investment over decades. A community without a treaty, without a land claims resolution, trying to negotiate data governance terms with a university AI lab or a federal emergency management agency — the power asymmetry isn't subtle. And the asymmetry is compounded by the fact that participation often comes with grant money attached. Funding tied to contributing knowledge to systems you don't control is a known failure mode. We saw it in the Ottawa spending story.
+
+**RILEY:** [pause:400] That's the exact mechanism that produces bad outcomes — and you're right that it's not hypothetical. But the answer isn't to wait until capacity is fully built before engaging. The Animikii model — an Indigenous-led tech firm that holds technical capacity while communities retain governance authority — is a viable workaround for the capacity gap right now. You don't need internal developers if you have an Indigenous-controlled firm that will hold the technical architecture on your behalf and transfer capacity over time.
+
+**CASEY:** Viable for communities that can access Animikii or an equivalent. There are a small number of Indigenous tech firms in BC with the capacity to do this work at that level. The demand across the province is considerably larger than that supply.
+
+**RILEY:** That's a scaling problem with a known solution: funded capacity-building inside communities rather than perpetual reliance on external firms. CCATEC — which we just spotlighted — is part of that ecosystem. Workforce development that includes digital and data skills is how you build internal capacity across a generation. It's slow, it's unsexy, and it's the only path that doesn't reproduce dependency.
+
+**CASEY:** Across a generation. Which is honest — but the wildfire season doesn't pause for a generation of capacity-building. The pressure to plug community knowledge into whatever AI system the province is already deploying will be intense, and it will come with funding attached and a timeline that doesn't accommodate governance negotiation.
+
+**RILEY:** [pause:350] Yes. And that's precisely why the window is now. Not in two years when the next contract is already signed.
+
+**CASEY:** So what does "being in the room" actually look like in practice? Because "engage early" is advice that sounds actionable and often isn't.
+
+**RILEY:** Concretely: the Tŝilhqot'in, Secwépemc, and Dakelh nations all have territory directly modelled in BC Wildfire Service planning. A joint technical working group — those Nations plus a firm like Animikii — negotiating directly with BC Wildfire Service on AI tool governance before the next procurement cycle is specific, achievable, and consequential. The new Chief Treaty Commissioner has a mandate focused on implementation rather than process. That's a lever that doesn't require starting from scratch politically.
+
+**CASEY:** The political will question is whether BC Wildfire Service treats that as genuine co-governance or a consultation exercise where the outcome was already decided. Those two things look identical from the outside until they don't. And historically, the bureaucratic culture implementing the post-Tŝilhqot'in legal landscape has moved considerably slower than the legal landscape itself.
+
+**RILEY:** You can build structural tests in. If communities have veto authority over specific data uses, if there's a technical representative on the tool governance board with actual voting rights, if the contract includes benefit-sharing provisions for ongoing use — those are distinguishable from performative consultation. They either survive procurement legal review or they don't, and that answer tells you something real about whether the partnership is genuine.
+
+**CASEY:** Agreed on the structure. The fight is in whether those provisions survive budget pressure and procurement timelines. They usually don't. I don't think we resolve that today — but the CIFOR-ICRAF study, the Animikii symposium work, and wildfire seasons that keep getting worse are converging pressures. Communities that have governance frameworks in place before the next major procurement cycle will be in a categorically different position than those that don't.
+
+**RILEY:** That's the actionable core. If you're involved in Nation governance anywhere in the Cariboo, the moment to be in the room is before the contract goes out for tender. Look at what the Tŝilhqot'in have built on land monitoring, connect with Animikii, and get someone into BC Wildfire Service planning conversations this fall. The CIFOR-ICRAF study gives you the evidence base to make the case that your knowledge makes the tools measurably better — which is the argument emergency management agencies can't wave away when fire seasons are breaking records.
+
+**CASEY:** The accountability thread from today's roundup doesn't disappear either. Billions in funding with no outcome tracking is what happens when communities aren't the ones defining what success looks like. The same failure mode applies to AI tools. Communities need to be specifying the metrics, not just receiving the outputs — and that has to be designed in from the start, because retrofitting governance onto a deployed system is much harder than building it in before anyone signs anything.
+
+**RILEY:** Two different versions of the same problem — governance designed around the people it's supposed to serve, or governance designed around institutional convenience and fixed after the fact. The fire management case is a live test of which one BC chooses.
+
+**CASEY:** We'll be watching. And so should the communities whose territory is on the line — literally.
+
+That's where we'll leave it for today. A consequential research development, a BC-based Indigenous tech firm making the governance argument in rooms that can change practice, and fire seasons that make this anything but theoretical. Send us your thoughts at feedback at cariboo signals dot c-a. Have a great rest of your Thursday.
