@@ -137,6 +137,13 @@ case "$DISPATCH_STATUS" in
     echo "SUCCESS! Workflow dispatch accepted (204 No Content)."
     echo "Check: https://github.com/$REPO/actions/workflows/$WORKFLOW"
     ;;
+  401)
+    echo ""
+    echo "ERROR: 401 Unauthorized — PAT is invalid or expired."
+    echo "Regenerate your PAT at: https://github.com/settings/tokens"
+    echo "Required scopes: repo + workflow"
+    echo "Response body: $DISPATCH_BODY"
+    ;;
   403)
     echo ""
     echo "ERROR: 403 Forbidden — PAT lacks required permissions."

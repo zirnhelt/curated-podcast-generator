@@ -170,6 +170,7 @@ def check_bespoke_trigger(data: dict, tag: str) -> None:
         print(f"  Threshold reached! Run manually: python generate_bespoke.py --tag {tag_lower}")
         return
 
+    import urllib.error
     import urllib.request
     url = f"https://api.github.com/repos/{repo}/actions/workflows/generate-bespoke.yml/dispatches"
     payload = json.dumps({"ref": "main", "inputs": {"tag": tag_lower}}).encode()
@@ -190,6 +191,19 @@ def check_bespoke_trigger(data: dict, tag: str) -> None:
                 print(f"  Auto-triggered bespoke episode for tag '{tag_lower}'!")
             else:
                 print(f"  Unexpected response {resp.status} when dispatching bespoke workflow")
+    except urllib.error.HTTPError as e:
+        body = ""
+        try:
+            body = e.read().decode("utf-8", errors="replace")
+        except Exception:
+            pass
+        if e.code == 401:
+            print(f"  Could not dispatch bespoke workflow: 401 Bad credentials — GITHUB_TOKEN is invalid or expired.")
+        elif e.code == 403:
+            print(f"  Could not dispatch bespoke workflow: 403 Forbidden — token is missing the 'workflow' scope.")
+        else:
+            print(f"  Could not dispatch bespoke workflow: HTTP {e.code} — {body}")
+        print(f"  Run manually: python generate_bespoke.py --tag {tag_lower}")
     except Exception as e:
         print(f"  Could not dispatch bespoke workflow: {e}")
         print(f"  Run manually: python generate_bespoke.py --tag {tag_lower}")
