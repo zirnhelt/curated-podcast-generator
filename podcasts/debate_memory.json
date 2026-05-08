@@ -1653,5 +1653,31 @@
       "Funding architecture as extraction mechanism when communities have no governance stake or outcome definition authority",
       "Procurement timing as leverage point: design-stage governance versus post-contract retrofit"
     ]
+  },
+  "2026-05-08": {
+    "timestamp": 1778239425.002915,
+    "date": "2026-05-08",
+    "theme": "Wild Spaces & Outdoor Life",
+    "central_question": "Does BC's new lightning detection technology funding represent a meaningful advance in wildfire prevention, or does it risk becoming a demonstration project without the governance structure and procurement commitment to achieve real operational impact?",
+    "riley_position": "The funding direction is sound and detection technology combined with satellite thermal imagery and sensor networks can meaningfully reduce the window between lightning strike and initial attack, especially if paired with drone-based thermal surveillance and anchor customer procurement strategies.",
+    "riley_key_evidence": [
+      "Cultus Lake fire this week: one helicopter, fourteen firefighters, 1.1 hectares contained\u2014demonstrating that early detection enables successful initial attack outcomes",
+      "Drone-based FLIR thermal detection can identify 0.01-hectare hotspots in weather conditions that ground helicopters and costs significantly less per flight hour",
+      "Australian and US states achieved drone-based wildfire surveillance traction through multi-year procurement contracts that enabled certification pathways"
+    ],
+    "casey_position": "The technology announcement is incomplete without addressing stale fuel mapping data, pre-negotiated Nation governance protocols, and explicit procurement commitments; isolated tech investment without operational ecosystem design and community benefit distribution typically produces demonstrations rather than solutions.",
+    "casey_key_evidence": [
+      "BC Wildfire Service fuel type maps in some areas haven't been updated since before the 2017 fire season, making ignition probability models inaccurate",
+      "Detection systems need to be calibrated for Cariboo-specific fire ecology (grassland-forest interface, distinct lightning patterns) not generic provincial models",
+      "Communities benefiting from detection systems (Alexis Creek, Anahim Lake on T\u015dilhqot'in territory) should be involved in system design before deployment, not notified after the fact"
+    ],
+    "resolution": "Casey and Riley converged on the need for pre-negotiated governance frameworks, multi-year procurement commitments rather than one-time grants, explicit integration pathways into BC Wildfire Service operations, and annual performance standards with public reporting. Both agreed that technology alone is insufficient without operational ecosystem design and community involvement from the outset.",
+    "topics_covered": [
+      "Lightning detection technology and its role in reducing detection-to-initial-attack timeframes",
+      "Fuel mapping data currency and its impact on ignition probability modeling accuracy",
+      "Drone-based thermal surveillance capabilities and Transport Canada BVLOS regulatory constraints",
+      "Indigenous Nation governance and territorial protocols in fire detection system deployment",
+      "Procurement strategy versus grant funding as mechanisms for technology sector viability and operational scaling"
+    ]
   }
 }
