@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[The Tyee] How Companies Hijack AI Chatbots",
       "[Engadget] Deezer says AI-made songs make up 44 percent of d",
       "[Williams Lake Tribune] TRAILBLAZER CHRONICLES: What differe",
       "Indigenous tech and art meet at IAIA\u2019s new computer science ",
@@ -10,7 +9,8 @@
       "[TechRadar] 'I snap them up' \u2014 award-winning wildlife photog",
       "[TechRadar] 'We\u2019re not selling and we\u2019re not giving way': Lo",
       "[TechRadar] 'Help cattle producers hold onto their land and ",
-      "Indigenous knowledge can improve AI models to manage fires, "
+      "Indigenous knowledge can improve AI models to manage fires, ",
+      "[BC Gov News] Supporting B.C. tech to help reduce lightning-"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -90,11 +90,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-05-06",
-        "clue": "structural-lens:+ \u2014 moved from tech-as-solution to institutional-anchoring requirement",
-        "occurrences": 2
-      },
-      {
         "date": "2026-05-04",
         "clue": "structural-lens:~ \u2014 Moved from infrastructure focus to governance as inseparable from economics",
         "occurrences": 1
@@ -107,6 +102,11 @@
       {
         "date": "2026-05-07",
         "clue": "Indigenous-tech:x \u2014 conceded capacity gap, pivoted to Animikii as workaround model",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-05-08",
+        "clue": "evidence-bar:~ \u2014 Conceded drone BVLOS regulatory lag despite sector optimism",
         "occurrences": 1
       }
     ],
@@ -209,11 +209,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-06",
-        "clue": "Indigenous-tech:+ \u2014 introduced as corrective to one-directional tech narrative",
-        "occurrences": 2
-      },
-      {
         "date": "2026-04-21",
         "clue": "evidence-bar:x \u2014 Conceded that local pilot data would change risk calculus meaningfully",
         "occurrences": 2
@@ -274,9 +269,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-05",
-        "clue": "pilot-skepticism:+ \u2014 Hardened skepticism: tools exist but institutional will repeatedly absent",
-        "occurrences": 1
+        "date": "2026-05-08",
+        "clue": "pilot-skepticism:+ \u2014 Doubled down on performance-standards-or-nothing accountability framework",
+        "occurrences": 2
       },
       {
         "date": "2026-05-06",
@@ -333,6 +328,11 @@
       {
         "formed": "2026-05-02",
         "signal": "rural-context:+ \u2014 Deepened nuance: resort vs. resource economy aren't equivalent policy outcomes",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-05-08",
+        "signal": "Indigenous-tech:+ \u2014 Moved from abstract governance concern to concrete operational authority question",
         "occurrences": 3
       }
     ]
