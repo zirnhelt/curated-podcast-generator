@@ -1,24 +1,4 @@
 {
-  "2026-04-19": {
-    "timestamp": 1776595523.666335,
-    "topics": [
-      "[ScienceAlert] Tiny Microbes Hiding in Soil May Help Pull Ra",
-      "[New Atlas] This all-female fish species reproduces without ",
-      "[Toms Guide] This phone actually has a built-in walkie-talki",
-      "[New Atlas] Now we're cooking with water! Startup offers a h",
-      "[InsideEVs] Do Or Die: How EV Startups Rivian, Lucid, And Sl",
-      "Handheld duster/GetYourGuide.com/Expert photo tip",
-      "Handheld duster/GetYourGuide.com/Expert photo tip",
-      "Handheld duster/GetYourGuide.com/Expert photo tip"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-04-19"
-  },
   "2026-04-20": {
     "timestamp": 1776684490.908324,
     "topics": [
@@ -414,5 +394,24 @@
       "Indigenous tech"
     ],
     "date": "2026-05-09"
+  },
+  "2026-05-10": {
+    "timestamp": 1778411201.645518,
+    "topics": [
+      "[ScienceDaily] What scientists found inside coral reefs coul",
+      "[Kottke.org] Animated Artemis II Photos Reveal Satellites Bu",
+      "[ScienceAlert] Movement Triggers a Hidden 'Brain Cleaning' M",
+      "[NYT Top Stories] New Study Shows Risks of Amazon Deforestat",
+      "[ScienceDaily] Scientists make stunning discovery that could",
+      "[ScienceDaily] Scientists found the \u201choly grail\u201d gene that c",
+      "[ScienceDaily] Evolution isn\u2019t random. Scientists find the s",
+      "[ScienceDaily] Scientists just created exotic new forms of m"
+    ],
+    "themes": [
+      "rural development",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-05-10"
   }
 }
