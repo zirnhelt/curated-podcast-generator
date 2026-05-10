@@ -2300,12 +2300,13 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
     # Build HTML credits block
     credits = CONFIG['credits']['structured']
     review_model_label = _review_model_used or POLISH_MODEL
+    tts_label = credits['text_to_speech'] if USE_AZURE_TTS else credits['text_to_speech_openai']
     credits_html = (
         "<p><b>Credits</b><br>"
         f"Theme Song: {credits['theme_song']}<br>"
         f"Content Curation &amp; Script: {credits['content_curation']}<br>"
         f"Script Review Model: {review_model_label}<br>"
-        f"TTS Voices: {credits['text_to_speech']}<br>"
+        f"TTS Voices: {tts_label}<br>"
         f"Cover Art: {credits['cover_art']}<br>"
         f"Podcast Coordination: {credits['coordination']}<br>"
         f"&#169; 2026 {credits['copyright_holder']}. "
