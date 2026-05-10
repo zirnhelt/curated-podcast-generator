@@ -2,14 +2,14 @@ name: Periodic Script Review
 
 on:
   schedule:
-    # Every Monday at 9:00 AM Pacific (17:00 UTC summer / 18:00 UTC winter)
-    - cron: '0 17 * * 1'
+    # Every Sunday at 2:00 AM Pacific (09:00 UTC summer / 10:00 UTC winter)
+    - cron: '0 9 * * 0'
   workflow_dispatch:
     inputs:
       days:
         description: 'Number of days of scripts to review'
         required: false
-        default: '5'
+        default: '7'
         type: string
 
 env:
@@ -40,7 +40,7 @@ jobs:
         env:
           INPUT_DAYS: ${{ github.event.inputs.days }}
         run: |
-          DAYS="${INPUT_DAYS:-5}"
+          DAYS="${INPUT_DAYS:-7}"
           echo "days=$DAYS" >> "$GITHUB_OUTPUT"
           echo "Reviewing last $DAYS days of scripts"
 
