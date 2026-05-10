@@ -6,7 +6,7 @@ Reads the last N days of podcast scripts and evaluates them against
 the project's mission, goals, and quality standards using Claude.
 
 Usage:
-    python review_scripts.py                  # review last 5 days
+    python review_scripts.py                  # review last 7 days
     python review_scripts.py --days 7         # review last 7 days
     python review_scripts.py --output stdout  # print to terminal only
 """
@@ -210,7 +210,7 @@ def save_report(report: str, days: int) -> Path:
 
 def main():
     parser = argparse.ArgumentParser(description="Review recent podcast scripts against mission and quality standards")
-    parser.add_argument("--days", type=int, default=5, help="Number of days to review (default: 5)")
+    parser.add_argument("--days", type=int, default=7, help="Number of days to review (default: 7)")
     parser.add_argument(
         "--output",
         choices=["file", "stdout", "both"],
