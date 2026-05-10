@@ -1705,5 +1705,31 @@
       "Indigenous-led economic development and cultural tourism as alternative rural capacity-building",
       "The gap between program funding and workforce retention capacity in rural service delivery"
     ]
+  },
+  "2026-05-10": {
+    "timestamp": 1778411203.680399,
+    "date": "2026-05-10",
+    "theme": "Science, Wonder & the Natural World",
+    "central_question": "How can recent scientific discoveries about conserved mechanisms in regeneration, evolution, and quantum systems translate into actionable improvements for rural communities like the Cariboo?",
+    "riley_position": "Scientific findings about conserved genetic pathways and mechanisms create near-term opportunities for the Cariboo through reanalysis of existing data and research partnerships, particularly in understanding ecological succession and salmon population dynamics.",
+    "riley_key_evidence": [
+      "SP genes for regeneration are conserved across salamanders, zebrafish, and mice, potentially creating accessible wound-care protocols rather than just surgical solutions",
+      "Butterflies and moths reuse the same genetic switches for 120 million years, suggesting evolution follows conserved scripts applicable to boreal forest succession prediction",
+      "Existing iNaturalist observation data and Forests Ministry monitoring data could be reanalyzed through the lens of conserved ecological pathways"
+    ],
+    "casey_position": "Scientific advances alone don't reach rural communities without addressing structural barriers around funding models, capacity constraints, and governance\u2014the mechanism matters less than who controls research questions and whether funding is operational rather than project-based.",
+    "casey_key_evidence": [
+      "Rural patients are last to access clinical therapies regardless of pipeline promise because specialty clinics and trials concentrate in urban centers like Vancouver",
+      "The butterfly research is about warning coloration, not forest succession\u2014inferring broader ecological applications requires several more papers of validation",
+      "Technique transfer without infrastructure capacity (trained personnel, equipment, analytical infrastructure) reproduces extraction problems rather than solving them"
+    ],
+    "resolution": "Riley and Casey converged on a concrete recommendation: the Cariboo needs a single regionally-based science analyst position funded through multi-stakeholder operational budgets (not project grants) to ask questions of existing data. Casey's emphasis on structural funding barriers and governance shaped the final proposal into something more institutionally sustainable than Riley's initial research-trajectory arguments.",
+    "topics_covered": [
+      "Gene therapy and regenerative medicine accessibility in rural communities",
+      "Evolutionary conservation of genetic expression mechanisms and ecological succession prediction",
+      "Indigenous data sovereignty and co-investigator research partnerships with universities",
+      "Monitoring commons governance and the role of temporal sequence in system dynamics",
+      "Analytical capacity as the primary bottleneck rather than data availability or discovery"
+    ]
   }
 }
