@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[Engadget] Deezer says AI-made songs make up 44 percent of d",
-      "[Williams Lake Tribune] TRAILBLAZER CHRONICLES: What differe",
       "Indigenous tech and art meet at IAIA\u2019s new computer science ",
       "InFocus: What\u2019s behind Canada\u2019s \u2018sovereign\u2019  AI plan?",
       "[TechRadar] 12 gadgets that will turn your mini garden into ",
@@ -10,7 +8,9 @@
       "[TechRadar] 'We\u2019re not selling and we\u2019re not giving way': Lo",
       "[TechRadar] 'Help cattle producers hold onto their land and ",
       "Indigenous knowledge can improve AI models to manage fires, ",
-      "[BC Gov News] Supporting B.C. tech to help reduce lightning-"
+      "[BC Gov News] Supporting B.C. tech to help reduce lightning-",
+      "[Engadget] Spotify now lets AI agents like OpenClaw generate",
+      "[TechRadar] 'Podslop' is a real and growing problem \u2014 data s"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -95,9 +95,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-05-05",
-        "clue": "tech-optimism:~ \u2014 Moved from solar inevitability to data-infrastructure-first pragmatism",
-        "occurrences": 1
+        "date": "2026-05-11",
+        "clue": "tech-optimism:~ \u2014 Motion-capture exoskeleton pivot shows willingness to complexity",
+        "occurrences": 2
       },
       {
         "date": "2026-05-07",
@@ -117,6 +117,11 @@
       {
         "date": "2026-05-10",
         "clue": "evidence-bar:x \u2014 Accepted Casey's reframing of butterfly research to gene regulation model",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-05-11",
+        "clue": "structural-lens:+ \u2014 Moved from individual solutions to provincial funding ask",
         "occurrences": 1
       }
     ],
@@ -254,11 +259,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-05-07",
-        "clue": "funding-risk:+ \u2014 hardened position on procurement timelines as critical leverage point",
-        "occurrences": 2
-      },
-      {
         "date": "2026-05-10",
         "clue": "funding-risk:~ \u2014 Named institutional graveyard pattern while resisting full cynicism about trying",
         "occurrences": 2
@@ -279,9 +279,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-05-06",
-        "clue": "pilot-skepticism:x \u2014 conceded Framework/repairability efforts as genuine bright spot",
-        "occurrences": 1
+        "date": "2026-05-11",
+        "clue": "pilot-skepticism:x \u2014 Conceded Mukurtu model actually solves visibility/control tension",
+        "occurrences": 2
       },
       {
         "date": "2026-05-09",
