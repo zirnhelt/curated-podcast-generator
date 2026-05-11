@@ -1731,5 +1731,31 @@
       "Monitoring commons governance and the role of temporal sequence in system dynamics",
       "Analytical capacity as the primary bottleneck rather than data availability or discovery"
     ]
+  },
+  "2026-05-11": {
+    "timestamp": 1778503472.246047,
+    "date": "2026-05-11",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "central_question": "How can rural cultural institutions build sustainable, discoverable storytelling capacity in an environment flooded with AI-generated content while maintaining community control and authentic relationships?",
+    "riley_position": "Emerging technology infrastructure and emerging tools create opportunities for cultural institutions to position themselves strategically now, particularly for transmitting embodied knowledge remotely. Provincial funding or cooperative models for dedicated digital capacity at anchor institutions can change trajectories meaningfully over time.",
+    "riley_key_evidence": [
+      "The reggae band case study where authentic relationships survived AI-diluted streaming through live shows and Bandcamp direct channels",
+      "Motion-capture exoskeleton technology demonstrating potential for transmitting embodied craft knowledge remotely across distance",
+      "Canadaland's word-of-mouth discovery model within defined professional communities rather than broad algorithms"
+    ],
+    "casey_position": "The structural bottleneck isn't technology costs but sustained editorial capacity and institutional funding, which are unlikely to materialize from traditional sources. Communities should optimize for depth of relationship with existing audiences rather than reach, and recognize that authentic, place-specific content's value lies in its irreplaceability for local audiences, not commercial scalability.",
+    "casey_key_evidence": [
+      "The M\u00e9tis beadwork revival came through in-person workshops and elder teaching, not digital distribution tools",
+      "Small Cariboo cultural institutions operate with minimal digital budgets (under $10k annually) and thin governance bandwidth",
+      "Atlantic humanities funding cuts demonstrate arts budgets are first to be eliminated in austerity cycles"
+    ],
+    "resolution": "The hosts converged on optimizing for depth over scale and rooting digital documentation in existing community practices (live events, gatherings, cultural ceremonies) rather than pursuing algorithmic reach. They acknowledged the maintenance gap persists and remains difficult to solve, but agreed inaction in a hostile content environment is worse than pursuing imperfect solutions.",
+    "topics_covered": [
+      "AI-generated content's impact on discoverability for authentic rural cultural storytelling",
+      "Governance models balancing community control with visibility (Mukurtu tiered-access system)",
+      "Funding models for digital capacity at small cultural institutions (provincial arts funding vs. co-op models)",
+      "Technology's relationship to community vitality (downstream not upstream)",
+      "Place-specific authenticity as defense against synthetic content and media pressure"
+    ]
   }
 }

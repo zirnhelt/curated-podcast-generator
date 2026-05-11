@@ -1,24 +1,4 @@
 {
-  "2026-04-20": {
-    "timestamp": 1776684490.908324,
-    "topics": [
-      "[Williams Lake Tribune] B.C. premier\u2019s office says DRIPA cha",
-      "[100 Mile Free Press] Cancer patient donates saddle sale to ",
-      "[Williams Lake Tribune] Canada\u2019s alcohol relief \u2018step in the",
-      "[CBC] Williams Lake, Quesnel and 100 Mile House firefighters",
-      "[Williams Lake Tribune] Surge in demand overwhelms West Koot",
-      "[Business Insider] Some of the buzziest names in superintell",
-      "[Hackaday] Hackaday Podcast Episode 366: DOOM on a Toaster, ",
-      "[Boing Boing] Turn shoebox memories into digital keepsakes w"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech",
-      "connectivity"
-    ],
-    "date": "2026-04-20"
-  },
   "2026-04-21": {
     "timestamp": 1776770046.26622,
     "topics": [
@@ -413,5 +393,25 @@
       "Indigenous tech"
     ],
     "date": "2026-05-10"
+  },
+  "2026-05-11": {
+    "timestamp": 1778503470.35437,
+    "topics": [
+      "[NYT Business] James Murdoch\u2019s Company Said to Be in Talks t",
+      "[Kottke.org] &#8220;Podcast sloplords&#8221; are  flooding t",
+      "[Engadget] Spotify now lets AI agents like OpenClaw generate",
+      "[TechRadar] 'Podslop' is a real and growing problem \u2014 data s",
+      "[Open Culture] How Yasujir\u014d Ozu Learned to Use Color in His ",
+      "#1358 The A.I. App for Rich People to Fight Journalists Who ",
+      "#1359 Michelle Rempel Garner is Tired of Conservative Drama ",
+      "Discover Our Cell Phone Plans | Fizz"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-05-11"
   }
 }
