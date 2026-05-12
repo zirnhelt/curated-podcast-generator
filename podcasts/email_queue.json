@@ -1219,6 +1219,31 @@
       "theme_day": 0,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "458daf70",
+      "type": "newsletter",
+      "message_id": "<1828331425.6841571.1778607511909@cell-5-55c4d7d88c-92hd8>",
+      "from_address": "m***@make.co",
+      "subject": "Skiing on Jet Power",
+      "received_at": "2026-05-12T17:38:31+00:00",
+      "body_text": "Plus, building a chatty C-3POhttps://make.co/ https://makezine.com/article/drones-vehicles/rockets/skiing-on-jet-power/ **Skiing on Jet Power** From author Methodical Maker \u2014 \u201cThe first time I punched",
+      "extracted_urls": [
+        "https://make.co/",
+        "https://makezine.com/article/drones-vehicles/rockets/skiing-on-jet-power/",
+        "https://makezine.com/article/craft/cosplay-props/chatty-c-3po-threepio-explores-human-ai-relations/",
+        "https://makezine.com/projects/torch-it-all-about-yakisugi-charred-timber-finish/",
+        "https://www.youtube.com/watch?v=3P_DAtOMXKo",
+        "https://makezine.com/article/maker-news/upcycling-old-phones-with-rephone/",
+        "https://makezine.com/article/technology/robotics/hands-on-with-ros-2-nodes-topics-and-services/",
+        "https://makezine.com/article/digital-fabrication/3d-printing-workshop/review-creality-raptor-pro-3d-scanner/",
+        "https://meet.zoho.com/uwia-gmk-hdk",
+        "https://www.makershed.com/collections/craft-magazine/products/craft-ebook-collection-pdf"
+      ],
+      "theme_tag": "Gear, Gadgets & Practical Tech",
+      "theme_day": 2,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
