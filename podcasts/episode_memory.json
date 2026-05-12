@@ -1,22 +1,4 @@
 {
-  "2026-04-21": {
-    "timestamp": 1776770046.26622,
-    "topics": [
-      "[Engadget] Deezer says AI-made songs make up 44 percent of d",
-      "[New Atlas] Chainless recumbent ICE trike scraps the links f",
-      "[Williams Lake Tribune] B.C. to opt into part of federal tem",
-      "[Williams Lake Tribune] RCMP seek information on pickup truc",
-      "[Williams Lake Tribune] \u2018You can accomplish anything\u2019: Fello",
-      "[New Atlas] KTM\u2019s flagship electric dual sport is finally st",
-      "[Williams Lake Tribune] Sleeping beauty marmot Roger yet to ",
-      "[New Atlas] Enclosed ebike uses retractable outriggers to ke"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption"
-    ],
-    "date": "2026-04-21"
-  },
   "2026-04-22": {
     "timestamp": 1776865593.275916,
     "topics": [
@@ -413,5 +395,25 @@
       "Indigenous tech"
     ],
     "date": "2026-05-11"
+  },
+  "2026-05-12": {
+    "timestamp": 1778587379.597189,
+    "topics": [
+      "[InsideEVs] While You Stop For A 30-Minute Charge, Nio Just ",
+      "[NPR Health News] Forest therapy: Why a physician wants more",
+      "[InsideEVs] BMW Has Built Way More EVs Than You Think",
+      "[Toms Guide] A $340,000 bonus isn't enough \u2014 Samsung workers",
+      "[The Narwhal] Inside Haida Gwaii\u2019s historic plan to ditch di",
+      "[New Atlas] Startup harnesses the power of AI in the ongoing",
+      "[Quartz] USDA is giving California peach farmers $9 million ",
+      "[Williams Lake Tribune] $12M coming from province to support"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-05-12"
   }
 }

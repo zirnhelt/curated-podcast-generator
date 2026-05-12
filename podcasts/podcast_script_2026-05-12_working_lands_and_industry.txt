@@ -1,0 +1,151 @@
+# Cariboo Signals Podcast Script - 2026-05-12
+# Theme: Working Lands & Industry
+# Generated: 2026-05-12 05:02:59 PDT
+
+**NEWS ROUNDUP**
+
+**RILEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. It's Tuesday, May 12th, 2026. Speaking to you from the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations here in the Cariboo region. Today's theme is Working Lands and Industry — I'm Riley.
+
+**CASEY:** And I'm Casey. It's a good day to ask who actually benefits when the resource economy modernizes — and who gets left managing the cleanup.
+
+**RILEY:** Quick weather check from home base — it's 3 degrees out at Horsefly Lake this morning, overcast, with a high of 24 forecast. Across the region: 100 Mile House, Williams Lake, and Quesnel are all sitting around 4 to 5 degrees under the same grey ceiling. Tomorrow brings some light rain, so if you're planning fieldwork, today's your window.
+
+**CASEY:** That swing from 3 to 24 in a single day is very Cariboo. Dress in layers, drive carefully on the back roads.
+
+**RILEY:** Let's get into today's news.
+
+---
+
+**NEWS ROUNDUP**
+
+**RILEY:** Starting with something directly relevant to BC's working landscape — the province is putting twelve million dollars into support for wood products. This isn't mill infrastructure money; it's targeted at market development and product innovation for BC lumber and engineered wood. The timing matters: US tariffs have been grinding down margins for months, and finding new export markets — think Japan's mass timber construction boom, or domestic government procurement requirements — is becoming a survival strategy rather than a nice-to-have.
+
+**CASEY:** Twelve million is modest against the scale of the disruption, but if it's structured as market intelligence and trade facilitation rather than another pilot project, it could punch above its weight.
+
+**CASEY:** The province is also framing international trade partnerships as part of the response. A BC government announcement this week highlights efforts to forge new export relationships to compete in global markets — clearly part of the same tariff-hedging strategy. Diversifying away from US dependence is a long-term project, but the political will seems to be there right now in a way it hasn't been before.
+
+**RILEY:** The challenge is that partnerships take years to materialize into actual purchase orders, and mills in the Cariboo are dealing with present-tense cash flow problems.
+
+**RILEY:** Shifting to agriculture — the USDA is paying California peach farmers nine million dollars to uproot 420,000 trees. This isn't a disaster response; it's a managed contraction program. The California peach industry has been squeezed by cheap imports, water costs, and changing consumer preferences. The government is essentially funding an exit strategy to reduce oversupply and stabilize prices for the farmers who remain. It's a real policy tool that Canadian agricultural planners rarely deploy as explicitly.
+
+**CASEY:** The Cariboo parallel is obvious — there are operations running on inertia and hope rather than genuine viability. Managed exits might be less cruel than market-forced collapse.
+
+**CASEY:** Now to a story that threads through both resource extraction and technology — a startup is using AI to hunt for critical minerals, training models on geological survey data, satellite imagery, and historical drill records to predict where mineral deposits are most likely to be. For BC — a province sitting on known but incompletely mapped mineral potential — this kind of prospecting AI could shorten the exploration timeline considerably.
+
+**RILEY:** Faster discovery doesn't automatically mean better governance. The speed of AI prospecting will outpace community consultation frameworks if nobody updates those processes.
+
+**RILEY:** On the EV front, two data points worth pairing. Nio, the Chinese automaker, just completed one million battery swaps in a single week across their charging network. One million. That's not a pilot — that's a scaling proof of concept for swap-based EV infrastructure as an alternative to long charge stops. Meanwhile, BMW has quietly crossed two million cumulative EVs produced — a number that surprises most people who still think of them as a niche player.
+
+**CASEY:** Battery swap is interesting for rural contexts — you're replacing a 30-minute stop with a 5-minute stop, which matters a lot when the next charger is 200 kilometres away.
+
+**CASEY:** There's a story out this week about forest therapy gaining traction in mainstream medicine — a physician in the US is making the case for training doctors in nature-based treatments and formally prescribing time in forests as a clinical intervention. Japan has been running peer-reviewed forest bathing programs for decades with measurable effects on stress hormones and blood pressure. For a region whose economy is built around forests, there's an interesting angle here about attaching new economic value to forest access.
+
+**RILEY:** If "the forest is the medicine" becomes a billable framework, that changes the conversation about what forests are for — and who manages access to them.
+
+**RILEY:** The Narwhal has a detailed piece on Haida Gwaii's plan to transition off diesel power generation — a multi-year renewable energy strategy for an island community that's geographically isolated and currently entirely diesel-dependent. It's one of the most ambitious Indigenous-led energy transitions in BC, and it has direct lessons for Cariboo communities still running diesel backup generation.
+
+**CASEY:** Haida Gwaii's governance structure gives them unusual capacity to actually execute this — that's the variable that doesn't transfer automatically.
+
+**CASEY:** Also from TechRadar — Micron is building a fifty-billion-dollar chip factory in Idaho, and it will consume billions of litres of water annually. The company has declined to say where that water will come from in a region that's already water-stressed. Large industrial facilities promising economic development while drawing down shared water resources is a pattern BC communities know well.
+
+**RILEY:** And finally — Safeway is blaming a wood pulp shortage for switching to handleless paper bags. Not exactly a crisis, but a quiet reminder that BC's forest products show up in stranger supply chains than people realize.
+
+**CASEY:** Funny right up until you remember that pulp market instability directly affects Cariboo mill employment.
+
+**RILEY:** That's the news. Coming up — we'll hear about an organization doing some important food security work right in the region, and then we're going into a deep dive on AI-driven mineral exploration and what it could mean for how the Cariboo's resource economy gets mapped and developed in the next decade.
+
+---
+
+**COMMUNITY SPOTLIGHT**
+
+**CASEY:** The Williams Lake Food Policy Council has been quietly doing some of the most grounded food systems work in the Cariboo. They run community gardens, coordinate food recovery programs so surplus doesn't end up in the landfill, and actively work to strengthen the connection between local farms and local tables. In a region where the nearest large grocery distribution hub can be hours away, building regional food resilience isn't an abstract policy goal — it's a practical infrastructure project. If you want to support local food security or get involved with a community garden this season, look them up at the Williams Lake Food Policy Council.
+
+**RILEY:** Their farm-to-table work is the kind of thing that doesn't make headlines but makes a real difference when a supply chain hiccup hits.
+
+**CASEY:** The mineral exploration AI story connects to something bigger about how the Cariboo's resource future gets decided — and who's at the table when that happens. Let's dig into it.
+
+---
+
+**DEEP DIVE: CARIBOO CONNECTIONS — Working Lands & Industry**
+
+**RILEY:** The AI mineral exploration story is worth spending real time on, because it represents a genuine inflection point in how prospecting works — and BC is squarely in the path of this change.
+
+The traditional model is expensive, slow, and dependent on individual geologists with decades of regional experience. You fly surveys, you core-drill, you miss a lot, you spend years between "we think there might be something here" and "here's a confirmed resource." The new AI-driven approach trains machine learning models on everything that's ever been recorded about a geological region — historical survey data, satellite hyperspectral imagery, geochemical assay results, even archival drill logs that were never digitized — and uses that to generate probability maps of where deposits are most likely to be.
+
+The value proposition is that the model can identify targets that human analysts passed over because the existing data wasn't assembled in a way that made the pattern visible. That's not incremental improvement. That's a different kind of search.
+
+**CASEY:** The technical achievement is real. The question I keep landing on is: what happens to the pace of the rest of the system when exploration accelerates?
+
+BC's environmental assessment process was not designed for a world where a junior company can generate twenty high-probability exploration targets in the time it used to take to evaluate two. UNDRIP consultation requirements, Nation-to-Nation engagement on territory — those processes have minimum timescales that aren't going to compress because a geology model says go fast. You end up with a pressure asymmetry: discovery accelerates, everything downstream doesn't.
+
+**RILEY:** The current pace of exploration is so slow that deposits in BC that could supply critical minerals for the clean energy transition are sitting unmapped while we're importing cobalt from the DRC under far worse governance conditions. Faster discovery isn't the problem. The question is whether BC builds the institutional capacity to handle the acceleration — and that's a choice, not a fixed constraint.
+
+**CASEY:** "Build institutional capacity" is doing a lot of work there. The Ministry of Mines is chronically understaffed. First Nations consultation offices are already overwhelmed managing the existing project queue. You're describing a solution that would take years to implement while the technology is already deployable today. And there's a concrete cost asymmetry here: a junior mining company can license AI prospecting tools for a fraction of what it would cost a Nation government to build equivalent internal capacity from scratch.
+
+**RILEY:** Some Nations are ahead of the province on exactly this. The Tahltan Nation has built its own environmental monitoring capacity and a formalized consultation protocol that's actually faster than the provincial process because it's clear and authoritative. That model is replicable — and it shows that the capacity gap isn't inevitable, it's a funding decision.
+
+**CASEY:** Tahltan has decades of sustained political organization and resource sector engagement behind that capacity. You can't copy-paste it into a Nation that's simultaneously managing underfunded band administration and active treaty negotiation backlogs. The Cariboo's Nations are in genuinely different positions from each other, let alone from Tahltan. Pointing to the best-resourced example as proof the others can catch up quickly is optimistic to the point of being misleading.
+
+**RILEY:** Agreed it's not uniform — and agreed the painful, adversarial path is not a model to celebrate. The point is that capacity can be built proactively with targeted investment rather than reactively through conflict. That's a provincial and federal funding decision that hasn't been made yet, but it's within reach.
+
+Let me bring this back to the AI exploration angle specifically, because there's a piece of this that doesn't get enough attention: the data layer. The competitive advantage of these tools isn't just the model — it's that they aggregate and clean geological data currently scattered across federal archives, provincial databases, and private company records. A lot of that data was collected using public money. BC Geological Survey data, federal mineral inventory data — publicly funded, now feeding proprietary systems.
+
+**CASEY:** So who owns the derivative intelligence that comes out of a model trained on publicly-funded data?
+
+**RILEY:** Right now, the answer is: the company does. They've built a proprietary system on top of a public data commons and the value capture flows to their investors. Which is a familiar story in the resource sector, just at a new layer of abstraction — instead of extracting the mineral, you extract the knowledge about where the mineral is.
+
+**CASEY:** And monetize the exploration rights based on that knowledge, while the public that funded the underlying surveys sees none of it. At least when a mine gets built, there are royalties and employment. The data extraction layer doesn't even have that.
+
+**RILEY:** There's a policy intervention available that BC hasn't taken: require that any mineral exploration permit application using AI-derived targets must submit the underlying probability maps to the provincial geological survey as a condition of permitting. The knowledge feeds back into the public commons. Companies still have their competitive advantage — they found the target faster — but the intelligence accumulates publicly.
+
+**CASEY:** That's structurally interesting. Does it require legislative change or just a regulatory update?
+
+**RILEY:** Likely a regulation change under the Mineral Tenure Act rather than full legislation — lower bar. The political will is the constraint, not the legal mechanism.
+
+**CASEY:** The enforcement question is whether the province has the technical staff to verify that submitted probability maps are complete and not cherry-picked. You'd need geoscientists who understand what an AI model output actually looks like, and that's a real skills gap in the public sector right now. It's not an argument against the policy — it's an argument that the policy is only as good as the capacity to enforce it.
+
+**RILEY:** Solvable with a small number of senior hires at the BC Geological Survey. We're talking about a handful of specialist positions, not a department restructuring.
+
+**CASEY:** Positions that have gone unfilled for years in the current fiscal environment. The gap between "solvable in principle" and "solved in practice" is where rural resource policy consistently dies. I'm not saying it's impossible — I'm saying don't count the enforcement as working until it actually is.
+
+**RILEY:** The wood products funding announced today actually supports the same underlying logic. Twelve million dollars going into BC wood products market development is the province acknowledging that public investment in industry intelligence and market access is a legitimate function of government. That same logic applies to mineral sector data capacity — it's not a novel ask, it's an extension of something already happening.
+
+**CASEY:** The wood products money is reactive — a response to tariff disruption. Proactive investment in mineral data governance would require someone in Victoria to be thinking ahead of the crisis. That's a different political calculation, and historically it doesn't happen until the crisis is already visible.
+
+**RILEY:** The clean energy transition is making it visible in real time. Copper, lithium, cobalt — every solar panel and EV battery is a demand signal. BC has the geology. The question is whether we develop it on our terms or whether the gap between slow processes and global demand means companies with AI tools make the decisions on the ground faster than governance can respond.
+
+**CASEY:** The "on our terms" framing assumes there's a coherent "we." Secwépemc, Tŝilhqot'in, and Dakelh nations don't have identical interests or identical relationships with the resource sector. The province has its own fiscal pressures. Municipal governments want jobs. The people who live next to a proposed mine site often want something different from all of those entities at once. The AI prospecting tool doesn't resolve any of that — it just delivers a higher-quality target list to a system already struggling to manage disagreement.
+
+**RILEY:** Slower discovery doesn't resolve those disagreements either. It just means fewer projects in the pipeline, less pressure, and less capacity-building. The disagreements exist independent of the technology. And honestly — a junior mining company showing up with forty AI-identified targets instead of four is almost a darkly funny image. Like handing someone who's already juggling three balls a fourth, fifth, and sixth simultaneously and saying "good luck."
+
+**CASEY:** It's funny until you're the Nation administrator who has to respond to all forty consultation notices with the same staff complement you had for four. Then it's just exhausting.
+
+**RILEY:** Which is exactly the argument for investing in Nation-level technical capacity now, not after the wave hits. That's the concrete ask.
+
+**CASEY:** Walk me through the full set. What are you actually recommending?
+
+**RILEY:** Three connected things. First: the BC Geological Survey should be actively aggregating and publishing the kind of comprehensive historical dataset that gives AI tools their power — not just as a resource for private companies, but as a public commons that Nations and researchers can also query. Make BC a better data environment for everyone, not just for companies with proprietary access.
+
+Second: any Nation in the Cariboo that wants to develop its own AI-assisted exploration capacity should be able to. There's federal and provincial money for Indigenous economic development that could be pointed at this specifically — building technical capacity within Nation governments to use the same prospecting tools that junior mining companies are already running.
+
+Third: the data repatriation regulation. AI-derived exploration intelligence generated from publicly-funded data feeds back into the public system as a condition of permitting. That's the accountability mechanism.
+
+**CASEY:** The second one I'd support without caveats. If the tool is going to exist — and it does — having Nations as users rather than just subjects of the process changes the structural power dynamic in a way that's durable and doesn't depend on regulatory enforcement.
+
+On the first and third, the details matter more than the principle. "Comprehensive aggregation" done badly is just another data silo with a provincial logo on it. And the repatriation regulation needs the enforcement capacity we discussed.
+
+**RILEY:** The Nation-level capacity point is worth pulling on further, because it's not just about mining. If Nations have the technical infrastructure to run their own prospecting models, that same infrastructure runs environmental monitoring models, wildlife corridor analysis, land-use planning tools. The capability is the asset, not the specific application.
+
+**CASEY:** That's the pattern we keep seeing across different contexts — who controls the analytical layer ends up controlling the decision layer. This is the mining version of a problem that shows up in agricultural data systems, in health data, in forestry planning. The financial stakes here are higher than most of those other contexts, which means the incentive to keep Nations out of the analytical layer is also higher.
+
+**RILEY:** Which is exactly why the window to build that capacity before the next wave of exploration claims gets filed is shorter than it looks. The technology is already operational in BC. The governance gap exists whether or not Victoria has noticed it yet.
+
+**CASEY:** And that's where I'd leave my flag planted. The AI exploration technology is real, it's already in play, and the question of Nation-level technical capacity isn't hypothetical or distant. It's immediate. What I'm genuinely uncertain about is whether the political will to fund it proactively exists before a high-profile conflict forces it — and I've seen too many "this time will be different" moments in BC resource policy to be optimistic on that specific point.
+
+**RILEY:** The clean energy demand signal is different in scale from anything that's come before. That's not a guarantee — but it's a reason to keep pushing.
+
+**CASEY:** That's the one I'll leave unresolved. Push hard. Just don't be surprised if the system needs a crisis to move.
+
+**RILEY:** That's the episode. If you've got thoughts on mineral exploration governance, Nation-level technical capacity, or anything else we covered today, send us an email at feedback at cariboo signals dot c-a.
+
+Have a great rest of your Tuesday.

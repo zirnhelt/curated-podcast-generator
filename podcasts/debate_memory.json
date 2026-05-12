@@ -1757,5 +1757,31 @@
       "Technology's relationship to community vitality (downstream not upstream)",
       "Place-specific authenticity as defense against synthetic content and media pressure"
     ]
+  },
+  "2026-05-12": {
+    "timestamp": 1778587381.436554,
+    "date": "2026-05-12",
+    "theme": "Working Lands & Industry",
+    "central_question": "Can BC deploy AI-driven mineral exploration technology responsibly, or must governance capacity be built before the technology accelerates discovery?",
+    "riley_position": "AI exploration technology is already operational and necessary for BC to develop critical minerals for the clean energy transition; the solution is to build institutional capacity in parallel with technology deployment, not to suppress the technology while waiting for capacity.",
+    "riley_key_evidence": [
+      "KoBold Metals' Zambia copper discovery identified a target human analysts had missed by assembling disparate data sources",
+      "Tahltan Nation's established environmental monitoring and consultation protocols demonstrate that Nations can develop faster processes than provincial ones",
+      "BC wood products funding announcement shows the province already invests in industry-specific data and market development"
+    ],
+    "casey_position": "The pace of AI-driven discovery will overwhelm existing governance, consultation, and environmental assessment systems that weren't designed for rapid acceleration; capacity-building should precede or run in genuine parallel with deployment, not follow it.",
+    "casey_key_evidence": [
+      "BC's Ministry of Mines is chronically understaffed and First Nations consultation offices are already overwhelmed with the current project queue",
+      "Tahltan's capacity took twenty-plus years of sustained political organization and cannot be copy-pasted to Nations dealing with underfunded band administration and treaty backlogs",
+      "Building required expertise at BC Geological Survey requires 2-3 senior positions that have gone unfilled for five years in the current fiscal environment"
+    ],
+    "resolution": "Riley and Casey converged on supporting Nation-level technical capacity building as the priority intervention\u2014if Nations develop their own AI prospecting capability, they shift from subjects of the process to users with analytical control. They disagreed on enforcement feasibility but agreed the governance question is urgent and the window to act before exploration claims accelerate is narrow.",
+    "topics_covered": [
+      "AI mineral exploration technology and KoBold Metals' competitive advantages",
+      "Institutional capacity gaps in provincial and Indigenous consultation and assessment processes",
+      "Data sovereignty and public value capture from publicly-funded geological data",
+      "Nation-level technical capacity building as a structural intervention in resource governance",
+      "Sequencing of technology deployment versus governance system readiness"
+    ]
   }
 }

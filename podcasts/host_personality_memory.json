@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "Indigenous tech and art meet at IAIA\u2019s new computer science ",
       "InFocus: What\u2019s behind Canada\u2019s \u2018sovereign\u2019  AI plan?",
       "[TechRadar] 12 gadgets that will turn your mini garden into ",
       "[TechRadar] 'I snap them up' \u2014 award-winning wildlife photog",
@@ -10,7 +9,8 @@
       "Indigenous knowledge can improve AI models to manage fires, ",
       "[BC Gov News] Supporting B.C. tech to help reduce lightning-",
       "[Engadget] Spotify now lets AI agents like OpenClaw generate",
-      "[TechRadar] 'Podslop' is a real and growing problem \u2014 data s"
+      "[TechRadar] 'Podslop' is a real and growing problem \u2014 data s",
+      "[New Atlas] Startup harnesses the power of AI in the ongoing"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -123,6 +123,16 @@
         "date": "2026-05-11",
         "clue": "structural-lens:+ \u2014 Moved from individual solutions to provincial funding ask",
         "occurrences": 1
+      },
+      {
+        "date": "2026-05-12",
+        "clue": "tech-optimism:x \u2014 Conceded that capacity gaps are real, not inevitable.",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-05-12",
+        "clue": "funding-risk:~ \u2014 Acknowledged wood products precedent reveals political calculation lag.",
+        "occurrences": 1
       }
     ],
     "core_memories": [
@@ -209,11 +219,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-04-21",
-        "clue": "pilot-skepticism:~ \u2014 Moved from dismissing electric viability to identifying transition-period cost distribution as real problem",
-        "occurrences": 2
-      },
-      {
         "date": "2026-04-01",
         "clue": "community-trust:+ \u2014 Shifted from abstract governance to specific municipal SMS systems as viable",
         "occurrences": 2
@@ -289,9 +294,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-10",
-        "clue": "structural-lens:+ \u2014 Deepened temporal-sequence framing across quantum physics, governance, monitoring systems",
-        "occurrences": 1
+        "date": "2026-05-12",
+        "clue": "structural-lens:+ \u2014 Deepened analysis of who controls analytical layer controls decisions.",
+        "occurrences": 2
       }
     ],
     "core_memories": [
@@ -348,6 +353,11 @@
       {
         "formed": "2026-05-08",
         "signal": "Indigenous-tech:+ \u2014 Moved from abstract governance concern to concrete operational authority question",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-05-12",
+        "signal": "pilot-skepticism:~ \u2014 Shifted from skepticism to uncertainty about political will rather than feasibility.",
         "occurrences": 3
       }
     ]
