@@ -1,0 +1,144 @@
+# Cariboo Signals Podcast Script - 2026-05-13
+# Theme: Gear, Gadgets & Practical Tech
+# Generated: 2026-05-13 05:13:22 PDT
+
+**CARIBOO SIGNALS — Wednesday, May 13th, 2026**
+*Gear, Gadgets & Practical Tech*
+
+---
+
+**RILEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. It's Wednesday, May 13th, 2026. Here in the Cariboo, on the traditional and unceded territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations. Today's theme is Gear, Gadgets & Practical Tech — I'm Riley.
+
+**CASEY:** And I'm Casey. Today we're looking at who actually owns the tools you buy, who gets to fix them, and what happens when tinkerers push back.
+
+**RILEY:** Quick weather note — Horsefly Lake is sitting at nine degrees with overcast skies this morning, high of eighteen today with a bit of rain expected tomorrow, about three millimetres. Across the region, 100 Mile House has light drizzle, Williams Lake and Quesnel both overcast at ten. Nothing dramatic, but a good day to be inside with a soldering iron.
+
+**CASEY:** Or a 3D printer. Of which there is apparently quite a lot of news.
+
+**RILEY:** There really is. Let's get into it.
+
+---
+
+**NEWS ROUNDUP**
+
+**RILEY:** Leading today — and it's a big one for the maker community — Louis Rossmann, the right-to-repair advocate who built a following filming laptop motherboard repairs on YouTube, has publicly told 3D printer manufacturer Bambu Lab to, quote, go bleep themselves. Bambu threatened a lawsuit against the developer of OrcaSlicer — that's an open-source slicer app, a competing alternative to Bambu's own software. Rossmann stepped in and offered to personally cover the developer's legal fees. The issue cuts to the heart of a growing problem: a company sells you hardware, then uses legal pressure to shut down third-party software that makes that hardware more useful.
+
+**CASEY:** Bambu's been skating on "open ecosystem" branding while quietly locking the ecosystem down — this makes the contradiction impossible to ignore.
+
+**RILEY:** 3DMakerPro has a new all-in-one 3D scanner called the Toucan getting solid reviews from Tom's Hardware. At its price point, it's aimed at small shops and serious hobbyists who want to capture real-world objects and bring them into CAD. The rural angle is straightforward — if you need to reproduce a broken bracket or a discontinued part, scanning the original and printing a copy is now genuinely accessible.
+
+**CASEY:** When the nearest machine shop is two hours away, that capability changes the math considerably.
+
+**RILEY:** CNET gave its Editors' Choice award to a four-tool-head 3D printer — meaning it can swap between four different materials or colours in a single print job without manual intervention. Hardware that would have been a research prototype five years ago is now a consumer product with a review in a mainstream tech publication.
+
+**CASEY:** Every one of those tool-head mechanisms is also a new potential failure point. More capable and more complex aren't the same thing as more reliable — worth keeping in mind when you're forty-five minutes from a service centre.
+
+**CASEY:** Hackaday has a piece on someone attempting to repair a GoPro Hero 10 — purchased for a hundred dollars — with a common issue: no camera input, cracked display. What's interesting isn't just the repair itself, it's that the teardown and diagnostic process is documented publicly, so the next person with the same problem has a starting point instead of a dead end.
+
+**RILEY:** That documentation is the actual product. The repair is almost secondary.
+
+**CASEY:** Two pieces in today's lineup touch on the limits of 3D printing in ways that matter for practical use. Hackaday has a guide on avoiding failed screw holes in printed parts — a genuinely common problem where threads strip or crack under load. And separately, the Noctua fan files situation: Noctua released design files for their well-regarded PC fans expecting people to print replacements, and found that consumer FDM printers can't reproduce the blade geometry accurately enough to match the originals. The aerodynamics require tolerances that home printing can't hit.
+
+**RILEY:** Useful corrective. "Print your own" is the answer sometimes, and the wrong answer other times — knowing which is which matters.
+
+**CASEY:** Also from Hackaday — a look at direct FDM printing with plastic pellets instead of filament spools. Pellet-fed systems cut material costs significantly and open up a wider range of materials, but the technology is still maturing. And separately, someone built full-scale functional train whistles using 3D-printed parts, tuned to specific pitches. A long way from replacing locomotive hardware, but a good demonstration of acoustic engineering in printed form.
+
+**RILEY:** Also a strong argument for closed workshops and patient neighbours.
+
+**RILEY:** The cost-saving angle on 3D printing showed up in an XDA Developers piece — a filmmaker who saved eight hundred dollars by printing an anamorphic lens adapter instead of renting one. Day rental on professional anamorphic glass is real money; the printed version cost less than a single day's rental and does the same optical job for their use case.
+
+**CASEY:** That's the story that actually lands for rural communities — not the fancy multi-material machine, but the eight-hundred-dollar problem that prints away for a few dollars in filament.
+
+**RILEY:** A couple of self-build storage pieces worth bundling together. How-To Geek ran a piece on building an external SSD rather than buying premade — better control over enclosure quality and storage capacity at a lower cost per gigabyte. XDA has someone who assembled a NAS entirely from hardware they already owned — old motherboard, mismatched drives, a salvaged case — and got a functional home server running. A surprising amount of useful infrastructure can be assembled from components that would otherwise sit in a drawer.
+
+**CASEY:** Or end up in landfill. There's a real secondary benefit to the maker instinct there.
+
+**CASEY:** An interesting one from Hackaday — someone figured out how to get a proprietary-bus GPU designed for servers onto a standard PCIe slot using a custom circuit board. The specific card, a modded Tesla V100, turns out to be unusually efficient at running local AI language models — more so than some current midrange consumer cards. The motivation was cost: these older data-centre cards can be found cheaply as cloud providers cycle out old hardware, and now they're getting a second life running AI inference in basements.
+
+**RILEY:** That's the cloud-waste-to-local-compute pipeline, and it's more real than most people realize.
+
+**RILEY:** A few quick items from the bonus pile. XDA Developers tested an Orange Pi Zero 3W running three home server apps simultaneously to find its breaking point — apparently it hasn't broken yet. Useful benchmark for anyone thinking about ultra-cheap local server hardware. How-To Geek has a piece on surge protectors silently failing — the MOV components that actually absorb surges degrade over time and give no warning, so an old power bar may offer zero protection while still looking fine. And ZDNet covered jailbreaking an old Kindle to install KOReader, an open-source e-reader app with better format support and no Amazon dependency — relevant for anyone who wants to run local library ebook formats without fighting proprietary DRM.
+
+**CASEY:** That Kindle piece pairs well with what we've been saying about device longevity — the value of the hardware often outlasts the company's interest in supporting it.
+
+**RILEY:** Coming up — the Cariboo Regional District Library, which is doing some genuinely important work in exactly the digital access space we keep coming back to. First, a short break.
+
+---
+
+**COMMUNITY SPOTLIGHT**
+
+**CASEY:** The Cariboo Regional District Library system might be the most underrated tech resource in this region. Branches in Williams Lake, Quesnel, 100 Mile House, and beyond — free internet access, computers you can actually use when yours is down, and digital literacy programs that don't assume you already know what you're doing. For anyone without reliable home internet, which is a lot of people in the Cariboo, the library isn't a backup plan — it's the plan. Worth knowing they're there, and worth supporting when your municipality is setting budget priorities. Find them at crdl dot bc dot ca.
+
+**RILEY:** Their digital literacy programming has been quietly growing — it's the kind of institutional support that actually makes the maker and repair culture we cover on this show accessible to people who didn't come in with a technical background.
+
+**CASEY:** Speaking of what it takes to actually use these tools — that's exactly where the deep dive goes today.
+
+---
+
+**DEEP DIVE: CARIBOO CONNECTIONS — Gear, Gadgets & Practical Tech**
+
+**RILEY:** We had a conversation about a week ago on this theme, and where we landed was that the real infrastructure problem isn't the technology — it's the social scaffolding around it. Repair cafés, institutional anchoring through libraries and colleges, peer networks. We were basically asking: how do communities build the knowledge layer?
+
+**CASEY:** And I stand by that framing. But today's roundup is pulling me somewhere different. Because running underneath almost every story — the Bambu Lab lawsuit, the Noctua files, the GoPro teardown, the pellet-fed printers — is a question about what you're actually allowed to do with a tool you own. That's not a knowledge-sharing problem. That's a legal and structural problem.
+
+**RILEY:** The ownership question. And it matters a lot more in rural contexts because the gap between "I can legally do this" and "I can practically get this done by someone else" is enormous. If Bambu Lab can use legal threats to shut down independent software for their printers, the person in Quesnel who learned to use OrcaSlicer to get better print quality from their machine loses that — and there's no alternative path.
+
+**CASEY:** The Bambu situation is worth staying with. The pattern isn't new — we've seen it with John Deere and agricultural equipment, with medical device manufacturers. Company creates a proprietary ecosystem, builds dependency, then uses terms of service or intellectual property law to foreclose independent repair or modification. What's different with Bambu is how fast it happened. They came out of nowhere a few years ago with competitive hardware, attracted a huge enthusiast base partly by seeming open, and are now closing the walls.
+
+**RILEY:** The John Deere comparison is the right one for this audience. A farmer in the Cariboo with a broken tractor in the middle of harvest season who can't get a dealer technician for three days — that's not a hypothetical, that's a documented pattern that drove years of right-to-repair legislation fights. The 3D printing community is earlier in that same arc. Whether Rossmann's intervention and the public pressure it generates actually changes the trajectory, or just delays it, is an open question.
+
+**CASEY:** Rossmann's move is tactically smart. Paying the legal fees removes the main lever — most individual developers fold not because they'd lose the case but because they can't afford to fight it. But the underlying legal ambiguity doesn't go away. Copyright law in Canada and the US hasn't fully caught up to the question of whether a manufacturer can control software that interacts with their hardware but doesn't reproduce their code.
+
+**RILEY:** Canada's in an interesting position there. The Copyright Modernization Act has broader circumvention exceptions than US law in some areas, and there have been pushes provincially — BC included — around right-to-repair for agricultural and consumer electronics. A federal right-to-repair bill moving through committee would extend some protections. It doesn't resolve everything, but it would at minimum establish that certain kinds of interoperability aren't infringement.
+
+**CASEY:** "Moving through committee" is doing a lot of work in that sentence. Bills move through committee for a very long time. And in the meantime, a small community makerspace that invested in Bambu hardware based on the open ecosystem promise is in a worse position than if they'd bought a cheaper machine with no ecosystem promises at all. That's the practical cost of the gap between direction of travel and actual legal protection.
+
+**RILEY:** The direction of travel is still real — eight years ago right-to-repair was a fringe position, now it has cross-party support. But your point about procurement stands. I'd push back slightly on the framing, though — the alternative isn't always "buy the cheaper open machine." Manufacturers with genuinely open commitments have had their own problems: support gaps, quality variance, lead times. The real answer is communities buying hardware from manufacturers with a demonstrated track record on repairability, not just marketing language about openness.
+
+**CASEY:** Which requires procurement sophistication that most small community organizations don't have. A library board or a First Nations technology committee isn't necessarily equipped to do a multi-year repairability audit before buying a printer. That's not a knock on them — it's just not their job.
+
+**RILEY:** That's where a regional buying consortium would help. SD27, the CRD, First Nations technology programs — if they pooled procurement decisions and had a shared evaluation framework, they could do that due diligence once and share the result. Not a new idea, but it keeps coming up because the problem keeps coming up.
+
+**CASEY:** It keeps not happening, too. Procurement pooling has been discussed at the regional district level for years across multiple categories. The coordination cost is real — different budget cycles, different approval processes, different political dynamics. And honestly, the Bambu situation is more likely to become another cautionary tale people nod at than a genuine catalyst. The next grant cycle starts, and whoever has the shiniest brochure wins.
+
+**RILEY:** Maybe. But concrete bad outcomes are sometimes what it takes to make the abstract argument land. You can talk about repairability criteria in procurement all year; one makerspace that bought locked-down hardware and can't use independent software anymore is the example that sticks.
+
+**CASEY:** Fair enough on the persuasive value. Let's just not wait for the bad outcome to be ours.
+
+**RILEY:** Shifting to the other piece driving today's deep dive — the Make Magazine story on jet-powered skiing. Someone strapping personal electric ducted fan units to their body to achieve self-propelled skiing without a tow rope or a hill. On the surface it sounds like expensive toy territory, but it's a useful lens on a broader question: what happens when propulsion technology gets cheap and portable enough that individuals can build their own mobility solutions?
+
+**CASEY:** My first reaction to jet-powered skiing is "someone's going to get very hurt." But walk me through where you're going with it.
+
+**RILEY:** The underlying technology — high-efficiency brushless motors, compact lithium battery packs, ducted fan designs optimized for thrust-to-weight — has followed the same cost curve that made drones accessible. A ducted fan unit that would have been aerospace-grade hardware fifteen years ago can now be sourced at hobbyist prices. The skiing application is flashy, but the same technology stack shows up in electric paramotor units, lightweight personal watercraft, and — more relevant for the Cariboo — experimental light electric aircraft and drones with meaningful payload capacity.
+
+**CASEY:** The Make piece doesn't give precise unit costs, and I'd want to know what "hobbyist prices" actually means before drawing lines to community applications. There's a wide range between "cheaper than it used to be" and "someone in rural BC can actually afford and maintain this." Those are different claims.
+
+**RILEY:** Agreed — and without hard numbers from the article I won't invent them. What the pattern across personal electric propulsion projects consistently shows is: first-gen hardware is expensive and fragile, second-gen is more robust and substantially cheaper, third-gen is the one that actually diffuses broadly. Based on where comparable hardware has landed, we seem to be somewhere in the second-to-third-gen transition on personal ducted fan systems. But the maintenance question is sitting right there regardless.
+
+**CASEY:** And it's a serious one. Ducted fans are sensitive to debris ingestion — a blade nick from a small rock or ice chunk and you're looking at vibration that degrades the whole unit fast. In a shop environment with access to replacement parts, manageable. In a remote community where the nearest equivalent of an RC hobby shop might be hours away, the maintenance profile is a genuine barrier, not a minor inconvenience.
+
+**RILEY:** That connects directly back to the Noctua fan story from today's roundup. Hobbyists are already printing structural components for ducted fan assemblies — not the blades, the aerodynamic tolerances are the same problem — but housings, mounts, adapters. The combination of printable structural parts and commercially available motors and electronics is where the interesting design space is opening up. The hybrid model: buy the precision-machined components you can't print, fabricate everything else locally.
+
+**CASEY:** That's actually the more defensible rural argument than "just print the whole thing." Though it requires knowing which components fall into which category. Knowing you can print the housing but not the blade comes from understanding aerodynamics and material properties — not from watching a single YouTube tutorial. The knowledge gap is real.
+
+**RILEY:** Which is why the knowledge-layer argument from last week still holds. The eight-hundred-dollar anamorphic lens story, the NAS built from drawer hardware, the Tesla V100 GPU getting a second life running local AI inference — all of these are the same move. Identify the layer of a system that actually requires precision manufacturing, acquire that part, build everything else yourself. The skill is knowing which layer you can't substitute. And that skill compounds — it's built incrementally, not all at once.
+
+**CASEY:** The compounding is real where it happens. The gap is that it only compounds for people who have the time, the initial curiosity, and enough baseline technical exposure to get started. We keep building programs for people who are already partway up the ladder. The person in a remote community working three jobs with no technical background — the pathway is much harder to see from where they're standing. And that person is not a rare edge case in the Cariboo.
+
+**RILEY:** That's the equity argument and it's the right one to keep making. The implied conclusion sometimes sounds like "therefore don't build the programs." The answer is make the entry point lower and the support more visible — not abandon the project.
+
+**CASEY:** Not saying don't build them. Saying don't measure success by the number of people who show up to the makerspace on a Saturday afternoon. Measure it by whether the person who can't make it to the Saturday session has any pathway at all. Mobile programming, remote mentorship, a loan-tool library with embedded instructions. The CRDL is doing some of this. It's not enough yet, but it's the right instinct.
+
+**RILEY:** The tool-lending library model is genuinely underutilized in rural BC. Some public libraries in other provinces have expanded into lending power tools, test equipment, even 3D printers on a loan basis. If CRDL expanded in that direction — it would require funding, probably a provincial rural tech access grant — the barrier to first contact with this equipment drops significantly. And the Williams Lake branch has been expanding digital programming over the last year, which makes it a stronger grant applicant than starting from scratch.
+
+**CASEY:** That's worth saying clearly as a practical call to action: if you're in a position to make that case — at a town council meeting, in a conversation with your MLA, in a letter to the CRD — the argument is right there. The CRDL is already doing this work. A targeted grant to expand tool lending and digital fabrication access would land in a system ready to absorb it.
+
+**RILEY:** And keep an eye on what happens with Bambu. If Rossmann's intervention sparks a broader conversation about right-to-repair protections for maker hardware specifically, there may be an opportunity to get rural access provisions written into whatever legislation emerges. The window for that kind of input is usually early and closes fast. The federal bill's committee process is still open — that's a legitimate place for community voices to show up. Rural technology equity lands across party lines when it's made concretely.
+
+**CASEY:** The maintenance gap still doesn't close with legislation, though. You can have the legal right to repair something and still be four hours from anyone who knows how. Trades programs at CNC, dual-credit pathways in schools, First Nations technical apprenticeship programs — those are the longer answer. And they're moving, but slowly is the honest word for it. Legislation and makerspaces and library grants solve part of the problem. They don't solve that part.
+
+**RILEY:** The pieces are there. The regional training pipeline, the procurement framework, the legal protections, the library infrastructure — none of them are complete, but they're all in motion. That's a genuinely different situation than five years ago.
+
+**CASEY:** In motion and far enough apart that no one's connecting them yet. Someone should be.
+
+**RILEY:** We'd love to hear your thoughts on any of this — what tools your community actually relies on, what repair barriers you've run into, whether your library is doing any of this work. Send us an email at feedback at cariboo signals dot c-a. Have a great rest of your Wednesday.

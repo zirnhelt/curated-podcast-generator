@@ -1783,5 +1783,31 @@
       "Nation-level technical capacity building as a structural intervention in resource governance",
       "Sequencing of technology deployment versus governance system readiness"
     ]
+  },
+  "2026-05-13": {
+    "timestamp": 1778674404.818318,
+    "date": "2026-05-13",
+    "theme": "Gear, Gadgets & Practical Tech",
+    "central_question": "How can rural communities build sustainable, maintainable technology infrastructure when manufacturers increasingly restrict ownership rights and technical expertise is geographically concentrated?",
+    "riley_position": "Communities can develop technological capability through layered learning and hybrid DIY/commercial approaches\u2014starting with simple repairs, progressing to understanding which system components require precision manufacturing versus local fabrication, supported by accessible institutional infrastructure like tool-lending libraries.",
+    "riley_key_evidence": [
+      "Ducted fan housings and mounts can be 3D printed while precision-machined blades cannot, creating a hybrid manufacturing model",
+      "CRDL has already expanded digital programming and could leverage existing momentum for targeted provincial rural tech access grants",
+      "Skills compound progressively: GoPro repairs build component troubleshooting, NAS builds teach power budgeting and thermal management"
+    ],
+    "casey_position": "Legal right-to-repair protections and knowledge infrastructure are necessary but insufficient; the persistent gap is practical geographic distance to maintenance expertise and the capability threshold required to evaluate complex systems independently.",
+    "casey_key_evidence": [
+      "Bambu Lab escalated from open-ecosystem company to using legal threats within 'a few years,' following the John Deere pattern",
+      "Most small community organizations lack procurement sophistication to conduct five-year repairability audits before purchasing equipment",
+      "Ducted fan maintenance requires debris sensitivity awareness and replacement part access\u2014manageable in shops but challenging four hours from nearest hobby shop"
+    ],
+    "resolution": "They agreed that both layers matter\u2014legislation and knowledge infrastructure are necessary conditions but insufficient alone\u2014and identified a concrete action: advocating to the province for expanded rural tool-lending and digital fabrication access at CRDL, while monitoring federal right-to-repair committee processes for community input opportunities.",
+    "topics_covered": [
+      "Bambu Lab lawsuit and proprietary ecosystem lock-in versus right-to-repair",
+      "Hybrid DIY/commercial manufacturing models for complex systems",
+      "Rural technology equity and geographic access barriers",
+      "Federal and provincial right-to-repair legislation landscape",
+      "Tool-lending libraries and institutional infrastructure for rural tech access"
+    ]
   }
 }
