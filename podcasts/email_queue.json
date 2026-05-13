@@ -1244,6 +1244,31 @@
       "theme_day": 2,
       "status": "used",
       "used_at": "2026-05-13"
+    },
+    {
+      "id": "40db73ac",
+      "type": "newsletter",
+      "message_id": "<22bfaec3-28ac-4aa0-8a28-fb00c0cee3f2@mtasv.net>",
+      "from_address": "n***@animikii.com",
+      "subject": "Soaring from coast to coast for Indspire",
+      "received_at": "2026-05-13T19:09:55+00:00",
+      "body_text": "![A graphic illustration of an urban roof top patio with flowers and plants blooming in a variety or pots along the edge. A woman in a purple top and pink pants holds a water can as the rising sun ill",
+      "extracted_urls": [
+        "https://assets.buttondown.email/images/32f798c1-fd59-4ab4-9e61-8fb9d6e26c58.jpg?w=960&fit=max",
+        "https://news.ubc.ca/2026/05/indigenous-lands-outperform-protected-areas-on-conservation/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=soaring-from-coast-to-coast-for-indspire",
+        "https://www.uvic.ca/library/about-us/news-stories/news/exhibits/active/woven-legacies.php?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=soaring-from-coast-to-coast-for-indspire",
+        "https://www.med.ubc.ca/news/addressing-forced-resilience-indigenous-experiences-with-genomic-medicine-in-b-c/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=soaring-from-coast-to-coast-for-indspire",
+        "https://assets.buttondown.email/images/34d99889-f738-4538-9ea2-7fbb6d04df14.jpg?w=960&amp;fit=max",
+        "https://indspire.ca/events/soaring/?utm_source=newsriver&amp;amp;utm_medium=email&amp;amp;utm_campaign=soaring-from-coast-to-coast-for-indspire",
+        "https://betakit.com/bobbie-racette-built-her-new-startup-around-a-simple-idea-be-the-support-she-never-had/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=soaring-from-coast-to-coast-for-indspire",
+        "https://www.civilbeat.org/2026/05/ai-data-centers-are-the-new-plantations-unless-we-build-them-differently/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=soaring-from-coast-to-coast-for-indspire",
+        "https://assets.buttondown.email/images/e6728a05-6499-4d7b-afff-b55d4d3bbdca.jpg?w=960&fit=max",
+        "https://akii.ca/m/links"
+      ],
+      "theme_tag": "Indigenous Lands & Innovation",
+      "theme_day": 3,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
