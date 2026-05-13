@@ -25,7 +25,7 @@ jobs:
               && echo "Deleted $branch" || echo "Branch already deleted or protected"
           else
             echo "Scanning for stale claude/ branches..."
-            branches=$(gh api "repos/${{ github.repository }}/branches?per_page=100" --paginate -q '.[].name' | grep '^claude/')
+            branches=$(gh api "repos/${{ github.repository }}/branches?per_page=100" --paginate -q '.[].name' | grep '^claude/' || true)
             for branch in $branches; do
               open_prs=$(gh api "repos/${{ github.repository }}/pulls?head=${{ github.repository_owner }}:${branch}&state=open" -q 'length')
               if [ "$open_prs" = "0" ]; then
