@@ -90,11 +90,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-05-09",
-        "clue": "structural-lens:~ \u2014 Acknowledged capacity-building underfunding as systemic, not just resource problem",
-        "occurrences": 2
-      },
-      {
         "date": "2026-05-11",
         "clue": "tech-optimism:~ \u2014 Motion-capture exoskeleton pivot shows willingness to complexity",
         "occurrences": 2
@@ -115,9 +110,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-10",
-        "clue": "evidence-bar:x \u2014 Accepted Casey's reframing of butterfly research to gene regulation model",
-        "occurrences": 1
+        "date": "2026-05-13",
+        "clue": "evidence-bar:x \u2014 Conceded lack of hard cost data on ducted fan units",
+        "occurrences": 2
       },
       {
         "date": "2026-05-11",
@@ -279,11 +274,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-08",
-        "clue": "pilot-skepticism:+ \u2014 Doubled down on performance-standards-or-nothing accountability framework",
-        "occurrences": 2
-      },
-      {
         "date": "2026-05-11",
         "clue": "pilot-skepticism:x \u2014 Conceded Mukurtu model actually solves visibility/control tension",
         "occurrences": 2
@@ -297,6 +287,11 @@
         "date": "2026-05-12",
         "clue": "structural-lens:+ \u2014 Deepened analysis of who controls analytical layer controls decisions.",
         "occurrences": 2
+      },
+      {
+        "date": "2026-05-13",
+        "clue": "rural-context:~ \u2014 Shifted from access-as-barrier to equity-as-measurement-problem for programs",
+        "occurrences": 1
       }
     ],
     "core_memories": [
