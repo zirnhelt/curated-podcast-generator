@@ -1,43 +1,4 @@
 {
-  "2026-04-22": {
-    "timestamp": 1776865593.275916,
-    "topics": [
-      "[NYT Top Stories] Ahead of 2028, Vance Collects Cash, Chits ",
-      "[The Guardian Global Development] Norway\u2019s state telecoms fi",
-      "[Engadget] Apple and Google are reportedly pointing users to",
-      "[Quesnel Cariboo Observer] Quesnel testing Voyent Alert syst",
-      "[100 Mile Free Press] 100 Mile Museum project receives grant",
-      "[Williams Lake Tribune] Williams Lake council opposes potent",
-      "[The Narwhal] Government emails, text messages could be shie",
-      "[Al Jazeera English] Why are fuel price protests sweeping th"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech"
-    ],
-    "date": "2026-04-22"
-  },
-  "2026-04-23": {
-    "timestamp": 1776942999.992819,
-    "topics": [
-      "[APTN News] The next test for economic reconciliation is exp",
-      "[APTN News] Some people with medical needs are being taken o",
-      "[APTN News] First Nations chiefs call for inquiry into RCMP ",
-      "[Williams Lake Tribune] Deportation for cartel-linked \u2018hitma",
-      "[IndigiNews] \u2018Leah carried a deep love for her family\u2019: Moth",
-      "[The Tyee] BC Must Stop Blaming First Nations for Old-Growth",
-      "[IndigiNews] Tla\u2019amin choreographer sets the dance stage abl",
-      "[APTN News] 5,200-kilometre long-range patrol crosses the fi"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-04-23"
-  },
   "2026-04-24": {
     "timestamp": 1777029192.391021,
     "topics": [
@@ -435,5 +396,25 @@
       "Indigenous tech"
     ],
     "date": "2026-05-13"
+  },
+  "2026-05-14": {
+    "timestamp": 1778759941.2986,
+    "topics": [
+      "[The Tyee] BC\u2019s New Chief Treaty Commissioner on the Path Fo",
+      "[The Guardian Global Development] Official marking of land f",
+      "[Global News] Manitoba\u2019s nursing regulator apologizes for di",
+      "[APTN News] UN advice raises pressure on Liberals to end Ind",
+      "[IndigiNews] IndigiNews is now a registered charity!",
+      "Soaring from coast to coast for Indspire",
+      "Soaring from coast to coast for Indspire",
+      "Digital pathways into the University Art Collections"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-05-14"
   }
 }

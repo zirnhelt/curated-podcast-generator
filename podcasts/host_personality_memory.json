@@ -45,11 +45,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-04-15",
-        "clue": "funding-risk:x \u2014 Conceded wave-funding problem after initially defending shared IT",
-        "occurrences": 2
-      },
-      {
         "date": "2026-04-09",
         "clue": "Indigenous-tech:~ \u2014 Conceded climate stress-tests both knowledge systems equally",
         "occurrences": 1
@@ -115,9 +110,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-05-11",
-        "clue": "structural-lens:+ \u2014 Moved from individual solutions to provincial funding ask",
-        "occurrences": 1
+        "date": "2026-05-14",
+        "clue": "structural-lens:+ \u2014 Shifted from noting capacity gap to systemic institutional change lever",
+        "occurrences": 2
       },
       {
         "date": "2026-05-12",
@@ -184,6 +179,11 @@
       {
         "formed": "2026-05-07",
         "signal": "tech-optimism:+ \u2014 TK Labels, edge computing shift from skeptical to solutions-focused",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-05-14",
+        "signal": "funding-risk:x \u2014 Conceded charitable model trade-offs (partisan limits) without full pushback",
         "occurrences": 3
       }
     ]
@@ -254,11 +254,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-07",
-        "clue": "structural-lens:~ \u2014 acknowledged technical architecture as enforcement mechanism, genuine complexity addition",
-        "occurrences": 2
-      },
-      {
         "date": "2026-05-10",
         "clue": "funding-risk:~ \u2014 Named institutional graveyard pattern while resisting full cynicism about trying",
         "occurrences": 2
@@ -291,6 +286,11 @@
       {
         "date": "2026-05-13",
         "clue": "rural-context:~ \u2014 Shifted from access-as-barrier to equity-as-measurement-problem for programs",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-05-14",
+        "clue": "funding-risk:+ \u2014 Hardened position on underfunding as operational reality, not solvable",
         "occurrences": 1
       }
     ],
