@@ -1809,5 +1809,31 @@
       "Federal and provincial right-to-repair legislation landscape",
       "Tool-lending libraries and institutional infrastructure for rural tech access"
     ]
+  },
+  "2026-05-14": {
+    "timestamp": 1778759943.439435,
+    "date": "2026-05-14",
+    "theme": "Indigenous Lands & Innovation",
+    "central_question": "How can Indigenous communities build internal technical capacity to implement data sovereignty frameworks, and what is the role of long-term human capital development versus short-term institutional solutions?",
+    "riley_position": "Long-term scholarship pipelines and credential development through organizations like Indspire are the only sustainable way to close Indigenous tech capacity gaps, and the compounding effect of placing Indigenous professionals inside institutions changes default decision-making for decades.",
+    "riley_key_evidence": [
+      "Indspire has funded over 37,000 awards since 1988 across STEM, health, trades, and arts",
+      "FirstVoices has documented over 60 Indigenous languages with community-controlled access since 2003",
+      "One Indigenous data governance specialist inside an institution changes outcomes of every digitization project for the next twenty years"
+    ],
+    "casey_position": "Scholarship pipelines are necessary but insufficient because they operate on a 5-10 year timeline while capacity gaps create urgent decisions today, and institutional hiring of Indigenous staff often fails to grant actual decision-making authority despite providing legitimacy.",
+    "casey_key_evidence": [
+      "Only three or four Indigenous tech firms in BC have capacity to do wildfire AI work",
+      "Most university digitization projects land between user participation and true repatriation and call it collaboration",
+      "Universities turn over presidents and government programs turn over ministers, making institutional will vulnerable to budget decisions in future administrative cycles"
+    ],
+    "resolution": "Riley and Casey converge on the need for a combined ecosystem approach: short-term applied skills through First Nations Technology Council, long-term credential pipelines through Indspire, and information infrastructure through IndigiNews, while agreeing the central question for the Cariboo is whether regional institutions actively plug into this ecosystem or remain passive observers.",
+    "topics_covered": [
+      "Indspire scholarship pipeline and long-term capacity building",
+      "UVic digital collections project and governance authority over digitization",
+      "FirstVoices as model for community-controlled digital infrastructure",
+      "Institutional hiring practices and the difference between advisory roles and decision-making authority",
+      "Funding models and structural durability: government dependency versus charitable sector diversification"
+    ]
   }
 }
