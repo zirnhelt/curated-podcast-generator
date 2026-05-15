@@ -85,11 +85,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-05-11",
-        "clue": "tech-optimism:~ \u2014 Motion-capture exoskeleton pivot shows willingness to complexity",
-        "occurrences": 2
-      },
-      {
         "date": "2026-05-07",
         "clue": "Indigenous-tech:x \u2014 conceded capacity gap, pivoted to Animikii as workaround model",
         "occurrences": 1
@@ -122,6 +117,11 @@
       {
         "date": "2026-05-12",
         "clue": "funding-risk:~ \u2014 Acknowledged wood products precedent reveals political calculation lag.",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-05-15",
+        "clue": "pilot-skepticism:+ \u2014 Pushed for concrete action in two weeks, not next cycle",
         "occurrences": 1
       }
     ],
@@ -259,11 +259,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-05-04",
-        "clue": "community-trust:x \u2014 Conceded that community pressure itself can generate resilience, not just risk",
-        "occurrences": 2
-      },
-      {
         "date": "2026-05-05",
         "clue": "structural-lens:x \u2014 Conceded producer-funded agrologist model viable where association capacity exists",
         "occurrences": 1
@@ -277,11 +272,6 @@
         "date": "2026-05-09",
         "clue": "evidence-bar:+ \u2014 Elevated scrutiny of Indigenous-led operations, demanding multi-season proof over good-faith direction",
         "occurrences": 1
-      },
-      {
-        "date": "2026-05-12",
-        "clue": "structural-lens:+ \u2014 Deepened analysis of who controls analytical layer controls decisions.",
-        "occurrences": 2
       },
       {
         "date": "2026-05-13",
@@ -353,6 +343,11 @@
       {
         "formed": "2026-05-12",
         "signal": "pilot-skepticism:~ \u2014 Shifted from skepticism to uncertainty about political will rather than feasibility.",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-05-15",
+        "signal": "community-trust:x \u2014 Conceded credit union as legitimate institutional convener",
         "occurrences": 3
       }
     ]
