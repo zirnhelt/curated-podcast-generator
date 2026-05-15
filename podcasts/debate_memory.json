@@ -1835,5 +1835,31 @@
       "Institutional hiring practices and the difference between advisory roles and decision-making authority",
       "Funding models and structural durability: government dependency versus charitable sector diversification"
     ]
+  },
+  "2026-05-15": {
+    "timestamp": 1778846637.4948,
+    "date": "2026-05-15",
+    "theme": "Wild Spaces & Outdoor Life",
+    "central_question": "Can technology tools and targeted institutional interventions meaningfully improve wildfire preparedness and emergency survival readiness in rural Cariboo communities?",
+    "riley_position": "Technology like satellite communicators and AI-assisted planning tools can serve as enabling infrastructure that prompts preparedness action and community engagement, especially when marketed strategically during advisory windows and through trusted community institutions like credit unions.",
+    "riley_key_evidence": [
+      "Garmin inReach Mini 2 satellite communicators are currently 40% off at ~$450 CAD and provide SOS, two-way text, and location tracking without cell coverage",
+      "Regional Districts could develop low-cost recommended device lists with minimal institutional burden\u2014requiring only 'a meeting, a document, and a press release'",
+      "Credit unions in rural communities have direct financial interest in community survival, existing mailing lists, physical branches, and demonstrated capacity to convene community resilience programming"
+    ],
+    "casey_position": "Top-down technology recommendations and algorithmic solutions cannot replace the durable social infrastructure of community relationships and institutional trust; the real barrier is institutional will and liability concerns, not capacity, and proven models rely on volunteer-led, locally-initiated engagement rather than device adoption.",
+    "casey_key_evidence": [
+      "BC Wildfire Service community engagement sessions that actually move outcomes include a coordinator, paper registration, and a follow-up phone tree\u2014unglamorous but effective",
+      "Current satellite communicator technology is fragmented across platforms that don't interoperate with BCEHS dispatch in standardized ways, creating a standards problem rather than an adoption problem",
+      "Emergency Management BC has low appetite for multi-department coordination initiatives following post-2023 restructuring, and CRD Emergency Program capacity is approximately 2.5 staff covering an area the size of a mid-sized European country"
+    ],
+    "resolution": "The speakers found partial agreement that community-initiated, low-overhead events (like a single 'wildfire readiness block' evening in a community hall) represent the most practical near-term intervention, and that technology functions as an enabling layer rather than a primary solution. They converged on the insight that institutional relationships and ongoing community-landscape connections matter more than devices themselves, though Riley retained that technology can serve as a conversation prompt while Casey emphasized active fires give no time for future solutions.",
+    "topics_covered": [
+      "Satellite communicator technology accessibility and pricing for rural populations",
+      "AI-assisted emergency planning tools and demographic limitations",
+      "Interoperability and standards gaps in emergency communication devices",
+      "Community social infrastructure versus top-down institutional programs",
+      "Role of local institutions (credit unions, search and rescue, Regional Districts) in building preparedness"
+    ]
   }
 }
