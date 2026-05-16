@@ -100,16 +100,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-13",
-        "clue": "evidence-bar:x \u2014 Conceded lack of hard cost data on ducted fan units",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-05-14",
-        "clue": "structural-lens:+ \u2014 Shifted from noting capacity gap to systemic institutional change lever",
-        "occurrences": 2
-      },
-      {
         "date": "2026-05-12",
         "clue": "tech-optimism:x \u2014 Conceded that capacity gaps are real, not inevitable.",
         "occurrences": 1
@@ -185,12 +175,16 @@
         "formed": "2026-05-14",
         "signal": "funding-risk:x \u2014 Conceded charitable model trade-offs (partisan limits) without full pushback",
         "occurrences": 3
+      },
+      {
+        "formed": "2026-05-16",
+        "signal": "evidence-bar:x \u2014 Conceded correlation-not-causation but repositioned it as actionable hypothesis",
+        "occurrences": 3
       }
     ]
   },
   "casey": {
     "consistent_interests": [
-      "accessibility",
       "technology adaptation",
       "community development",
       "rural broadband",
@@ -199,7 +193,8 @@
       "[The Tyee] Tumbler Ridge Shows We Can\u2019t Take Rural Medicine ",
       "[Williams Lake Tribune] Williams Lake community shows its he",
       "Immersed in Community (and Archives!)",
-      "[Williams Lake Tribune] Community volunteers create meaningf"
+      "[Williams Lake Tribune] Community volunteers create meaningf",
+      "[100 Mile Free Press] HANSEN: Lac La Hache Community Club pr"
     ],
     "recurring_questions": [
       "Who benefits from this?",
@@ -281,6 +276,16 @@
       {
         "date": "2026-05-14",
         "clue": "funding-risk:+ \u2014 Hardened position on underfunding as operational reality, not solvable",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-05-16",
+        "clue": "pilot-skepticism:~ \u2014 Acknowledged Wranglers bet validity while deepening concern about volunteer bench depth",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-05-16",
+        "clue": "structural-lens:+ \u2014 Moved from dismissing single anecdotes to naming systemic healthcare/forestry pressures as real limits",
         "occurrences": 1
       }
     ],
