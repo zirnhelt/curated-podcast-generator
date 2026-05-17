@@ -95,9 +95,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-09",
-        "clue": "pilot-skepticism:x \u2014 Conceded Barkerville tourism resilience remains hypothesis, not demonstrated fact",
-        "occurrences": 1
+        "date": "2026-05-17",
+        "clue": "pilot-skepticism:x \u2014 Conceded that one-time surveys create false confidence, accepted continuity necessity",
+        "occurrences": 2
       },
       {
         "date": "2026-05-12",
@@ -112,6 +112,11 @@
       {
         "date": "2026-05-15",
         "clue": "pilot-skepticism:+ \u2014 Pushed for concrete action in two weeks, not next cycle",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-05-17",
+        "clue": "tech-optimism:~ \u2014 Acknowledged endowment model as governance problem, not just technical solution",
         "occurrences": 1
       }
     ],
@@ -249,11 +254,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-10",
-        "clue": "funding-risk:~ \u2014 Named institutional graveyard pattern while resisting full cynicism about trying",
-        "occurrences": 2
-      },
-      {
         "date": "2026-05-05",
         "clue": "structural-lens:x \u2014 Conceded producer-funded agrologist model viable where association capacity exists",
         "occurrences": 1
@@ -284,9 +284,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-16",
-        "clue": "structural-lens:+ \u2014 Moved from dismissing single anecdotes to naming systemic healthcare/forestry pressures as real limits",
-        "occurrences": 1
+        "date": "2026-05-17",
+        "clue": "structural-lens:+ \u2014 Moved from dismissing eDNA to designing governance architecture around it",
+        "occurrences": 2
       }
     ],
     "core_memories": [
@@ -353,6 +353,11 @@
       {
         "formed": "2026-05-15",
         "signal": "community-trust:x \u2014 Conceded credit union as legitimate institutional convener",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-05-17",
+        "signal": "funding-risk:~ \u2014 Shifted from rejecting endowment idea to identifying specific unsolved longevity problem",
         "occurrences": 3
       }
     ]

@@ -1,24 +1,4 @@
 {
-  "2026-04-26": {
-    "timestamp": 1777200707.871314,
-    "topics": [
-      "[Resilience.org] The UK can\u2019t debate its way out of climate ",
-      "[ZDNet] I powered my 3,000-sq-ft home with an EcoFlow batter",
-      "[Kottke.org] Trials for a pancreatic cancer mRNA vaccine :..",
-      "[ScienceAlert] After 6 Decades, One Drug Is Still Finding Ne",
-      "[ScienceAlert] Air Purifiers Could Boost Your Brain Function",
-      "[Kottke.org] &#8220; NASA&#8217;s Curiosity rover has detect",
-      "[ScienceAlert] Physicists Simulated a Quantum Process That C",
-      "[ScienceAlert] Scientists Reveal The Optimal Amount of Sleep"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-04-26"
-  },
   "2026-04-27": {
     "timestamp": 1777290759.884427,
     "topics": [
@@ -415,5 +395,25 @@
       "Indigenous tech"
     ],
     "date": "2026-05-16"
+  },
+  "2026-05-17": {
+    "timestamp": 1779016374.346819,
+    "topics": [
+      "[ScienceDaily] Stunning 150-million-year-old stegosaur skull",
+      "[ScienceDaily] Paleontology rocked by discovery of organic m",
+      "[New Atlas] JWST discovers a galaxy that doesn\u2019t spin in the",
+      "[ScienceDaily] After 100 years, scientists finally uncover h",
+      "[ScienceDaily] Scientists discover the Southern Ocean is \u201csw",
+      "[ScienceDaily] Giant squid discovery uncovers a hidden deep-",
+      "[ScienceDaily] Earth is flying through ancient supernova deb",
+      "[New Atlas] Plants may literally hear the sound of approachi"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-05-17"
   }
 }
