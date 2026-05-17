@@ -72,7 +72,7 @@ REVIEW_CRITERIA = """\
 
 9. **Transition Variety** — Are transitions unique each time? Any say "after the music" (banned)?
 
-10. **Rural Cariboo Lens** — Does the episode consistently ask "what does this mean for communities like ours?" or does it drift into generic tech commentary?\
+10. **Rural Cariboo Lens** — Does the episode consistently ask "what does this mean for communities like ours?" or does it drift into generic tech commentary? Specifically: does the Deep Dive name at least one specific Cariboo community, First Nation, or organization in its second half? The absence of any named Cariboo entity in the final third of the Deep Dive is a score of 3 or below on this dimension, regardless of how often "rural" or "communities like ours" appears. For Indigenous-topic episodes, the named entity must be a Cariboo Nation or organization, not national Indigenous organizations alone.\
 """
 
 
