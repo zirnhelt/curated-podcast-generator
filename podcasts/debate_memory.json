@@ -1,30 +1,4 @@
 {
-  "2026-02-15": {
-    "timestamp": 1771160034.957873,
-    "date": "2026-02-15",
-    "theme": "Resilient Rural Futures",
-    "central_question": "Should rural communities invest in self-hosted, locally controlled technology infrastructure, or are they better served relying on centralized cloud services?",
-    "riley_position": "Rural communities should build local technology infrastructure because costs have dropped dramatically, it provides genuine resilience against corporate failures, and communities can pool resources regionally to share expertise and costs.",
-    "riley_key_evidence": [
-      "Fiber installation costs dropped 60% between 2015-2024",
-      "Town of Olds, Alberta delivers gigabit service for $60/month via municipal fiber cooperative O-Net",
-      "Kuhkenah Network (K-Net) maintained connectivity during 2022 Rogers outage serving First Nations communities for 30+ years"
-    ],
-    "casey_position": "Self-hosted infrastructure is impractical for small rural communities due to high hidden costs, expertise requirements, and maintenance burdens that advocates consistently undercount.",
-    "casey_key_evidence": [
-      "Olds O-Net required $40+ million investment ($4,400 per resident) with ongoing debt servicing",
-      "Qualified Linux systems administrator costs $65-85k annually - unsustainable for small communities",
-      "Rogers 2022 outage affecting 12 million people shows even billion-dollar companies with thousands of engineers fail catastrophically"
-    ],
-    "resolution": "They reached partial agreement that building technical literacy and piloting low-risk local services is reasonable, while disagreeing on whether this would lead to widespread community infrastructure adoption or better-negotiated corporate contracts.",
-    "topics_covered": [
-      "Cost analysis of local vs. corporate infrastructure",
-      "Technical expertise and volunteer sustainability",
-      "Regional cooperation models and resource pooling",
-      "Resilience comparison between centralized and distributed systems",
-      "Rural cooperative movement parallels and lessons"
-    ]
-  },
   "2026-02-16": {
     "timestamp": 1771247169.11212,
     "date": "2026-02-16",
@@ -1886,6 +1860,32 @@
       "Leadership succession and bench depth in volunteer organizations",
       "High-infrastructure anchors (junior hockey) versus low-infrastructure sustainable activities",
       "The distinction between sustaining activities and anchoring community identity"
+    ]
+  },
+  "2026-05-17": {
+    "timestamp": 1779016376.27235,
+    "date": "2026-05-17",
+    "theme": "Science, Wonder & the Natural World",
+    "central_question": "How can the Cariboo region develop locally-controlled, long-term scientific monitoring infrastructure using accessible methodologies without reproducing extractive research models?",
+    "riley_position": "Environmental DNA (eDNA) and acoustic ecology research methodologies are now affordable and accessible enough to enable Indigenous-led monitoring of local river systems and forest regeneration; the technical barriers have dropped substantially, making regional science feasible.",
+    "riley_key_evidence": [
+      "eDNA sampling equipment costs have dropped from tens of thousands to a few thousand dollars for freshwater systems",
+      "MIT research showed plants detect acoustic vibrations from rainfall, with mechanisms present in most vascular plants, not just rice",
+      "A targeted eDNA survey of 15-20 Cariboo tributary sites would cost under $50,000 and could update stale bull trout distribution maps from the early 2010s"
+    ],
+    "casey_position": "Technical feasibility is necessary but insufficient; the real barriers are governance (Indigenous data sovereignty, interpretive authority retention by universities), funding continuity (one-time projects vs. ongoing monitoring), and political incentives that don't align with findings that might constrain resource extraction.",
+    "casey_key_evidence": [
+      "DFO community engagement programs have been defunded and reinstated on a four-year political cycle, making infrastructure availability unreliable",
+      "Universities can quietly retain interpretive control by running sequencing analysis even when communities lead sample collection",
+      "Timber licensees have financial incentives to fund research on harvesting efficiency, not on acoustic ecology findings that might justify retaining standing forest"
+    ],
+    "resolution": "Casey and Riley converged on a structural solution: use community foundation endowment models (like the Quesnel Community Foundation) to provide continuous funding for monitoring programs, while keeping governance separate and anchored in Indigenous-led monitoring commons; they acknowledged this requires careful design and further conversation at First Nations economic development tables rather than resolution on the podcast.",
+    "topics_covered": [
+      "Environmental DNA methodology for monitoring aquatic species without capture or disturbance",
+      "Indigenous data sovereignty and governance requirements for research conducted on traditional territories",
+      "Acoustic ecology and plant responses to environmental sound in forest regeneration contexts",
+      "Old-growth forests as scientific archives containing climate and cosmic event records",
+      "Community foundations and endowment models as sustainable funding vehicles for long-term ecological monitoring"
     ]
   }
 }
