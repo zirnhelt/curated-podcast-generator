@@ -1,0 +1,121 @@
+# Cariboo Signals Podcast Script - 2026-05-18
+# Theme: Arts, Culture & Digital Storytelling
+# Generated: 2026-05-18 07:22:04 PDT
+
+**CASEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. It's Monday, May 18th, 2026. Coming to you from the Cariboo, on lands that have been cared for by the Secwépemc, Tŝilhqot'in, and Dakelh peoples since time immemorial. Today's theme is Arts, Culture & Digital Storytelling — I'm Casey.
+
+**RILEY:** And I'm Riley. Today we're asking whether the tools reshaping how culture gets made and shared can actually work for small communities — or whether they're just another way for big platforms to vacuum up the value.
+
+**CASEY:** Quick weather check — out at Horsefly Lake this morning it's five degrees and overcast, high of fifteen today, and drizzle moving in tomorrow. Across the Cariboo, Williams Lake, 100 Mile, and Quesnel are all sitting at six or seven degrees under the same grey sky. Basically a uniform Monday. Let's get into the news.
+
+---
+
+**NEWS ROUNDUP**
+
+**RILEY:** Leading things off — Wirestock just raised twenty-three million dollars to supply what it calls "creative multimodal data" to AI labs. The company aggregates images, video, and audio from human creators and licenses them directly to AI training pipelines. For rural and Indigenous creators, the immediate question isn't the funding round — it's whether their work is already in those pipelines, and whether they ever consented to that.
+
+**CASEY:** And whether "licensing" means anything close to fair compensation, or just above-zero.
+
+**RILEY:** Spotify is adding support for Apple's video podcast technology, which would let podcasters distribute video-enabled episodes across both platforms simultaneously. That matters for community radio and small podcast operations because the technical barrier to multi-platform publishing just dropped significantly.
+
+**CASEY:** The audience still has to find you, though.
+
+**RILEY:** Sticking with the podcast world — Paramount+ is now exploring adding podcasts to its streaming service, following Netflix's quiet move into audio content. When the major streamers start treating podcasts as a retention tool rather than a separate medium, the independent creator ecosystem is going to feel that gravity.
+
+**CASEY:** YouTube is making a similar play — the platform is actively courting creators to develop streaming shows, essentially trying to compete with Netflix by blurring the line between long-form video and traditional television. The pitch to creators is broader sponsorship access and built-in audience. The catch is the usual one: the platform owns the relationship with viewers, the creator owns the debt.
+
+**RILEY:** And MrBeast just illustrated what the endgame looks like. He pitched top advertisers on a new membership tier that would give his most dedicated audience exclusive content — effectively building a direct revenue layer on top of YouTube rather than through it. A creator with four hundred million subscribers can do that. The person making a podcast about Cariboo watershed management cannot.
+
+**CASEY:** The Hackaday piece on Mixapps is worth a mention — it's a project trying to resurrect the mixtape as a cultural form for the internet age. Curated playlists as personal expression rather than algorithmic output. Small thing, but it points at something real: people still want to make intentional choices about what they share with each other, not just let a recommendation engine do the social work.
+
+**RILEY:** From The Tyee — "We're Only Human. And That'll Do" is generating discussion about where the line gets drawn as AI-generated content floods every channel. Relevant framing for what we'll get into in the deep dive.
+
+**CASEY:** Speaking of quality and judgment — the Nobel Prize Committee's 1961 rejection of Tolkien is getting fresh attention. The committee said he "has not measured up to storytelling of the highest quality." The Lord of the Rings. Over a hundred and fifty million copies sold. The lesson: institutional taste-making has never been a reliable proxy for cultural resonance, and that's worth remembering when we talk about who decides what rural storytelling is worthy of amplification or funding.
+
+**RILEY:** The Marginalian has a piece drawing on Walt Whitman's practice of creative resilience — how Whitman literally wrote his own positive reviews when critics ignored him, not as vanity, but as a discipline of staying in the work when external validation dried up. For anyone making culture in a small community, that's not a historical curiosity.
+
+**CASEY:** Also worth noting — there's a report out of Dawson City that's genuinely sad. The Westminster Hotel, a historic building central to Dawson's cultural identity for well over a century, burned down. These aren't just buildings — they're the physical infrastructure of community memory, and no digital archive fully replaces them once they're gone.
+
+**RILEY:** IndigiNews has a story about their 2026 ReFocus photojournalism fellows — a program training Indigenous photojournalists across the country. Visual storytelling capacity built from within communities rather than parachuted in from outside.
+
+**CASEY:** And a genuinely interesting find from ScienceDaily — researchers have recovered what they're calling the first English poem, written around 800 CE, from a manuscript lost for twelve hundred years. A reminder that preservation is always provisional, and what survives is usually an accident.
+
+**RILEY:** Alright — let's pause on the news and take a moment for something closer to home.
+
+---
+
+**COMMUNITY SPOTLIGHT**
+
+**CASEY:** Cariboo Chilcotin Partners for Literacy has been doing quiet, essential work across this region for years. They offer free adult literacy programs, English as a second language support, and — the one that connects directly to today's theme — digital literacy training for adults who want to get online, navigate services, and participate in the digital world but haven't had the access or instruction to do it. They serve communities across the Cariboo Chilcotin, from Williams Lake to the smaller communities that rarely show up in program announcements. If you're working with adults who face literacy barriers, or if you want to support a program that genuinely reaches the people other programs miss, find them at caribooliteracy.com.
+
+**RILEY:** Digital literacy is the prerequisite for everything else we talk about on this show — really glad they're in the region.
+
+**CASEY:** Alright. Today's deep dive is something we've been building toward across several weeks of this theme, and a listener letter arrived that pushed us to go somewhere we've been circling but haven't landed on directly. Let's get into it.
+
+---
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Arts, Culture & Digital Storytelling**
+
+**CASEY:** A listener named Erich wrote in after last week's episode — the one where we talked about AI-generated content flooding the discoverability landscape. His note: we discussed AI podcasts without acknowledging our own existence, and missed an opportunity to actually argue for when AI-generated content is justified, what it displaces and what it doesn't, and what guardrails should apply. He's right. So that's where we're going today.
+
+**RILEY:** It connects directly to the NPR study in today's feed — research showing that engaging with the arts slows biological aging at the cellular level. Which sounds like a wellness story, but actually raises a harder question: does it matter whether the art was made by a human? Is the benefit in the making, the experiencing, or the relationship between the two?
+
+**CASEY:** Start there. The study found the benefit in *engaging* — attending, participating, watching, listening. Not specifically in knowing the creator personally. On the pure physiological evidence, an AI-generated concert that moves you might deliver the same outcome as a human-made one.
+
+**RILEY:** Except the study was measuring existing cultural participation — live music, theatre, visual art, community events. All of that was made by humans. You can't extrapolate from that data to AI content because there's no cohort in the study that spent years listening to algorithmically generated music and then checked their epigenetic markers. The researchers found that regular arts engagement was associated with slower biological aging — but the habit they were measuring was built in communities, around human-made work.
+
+**CASEY:** That's the honest read of the data. But it leaves the question open rather than answering it.
+
+**RILEY:** What the study *does* do — and this matters — is make the case that cultural participation is a public health intervention, not a luxury. That reframes the funding conversation for communities like ours. Arts programs aren't nice-to-haves.
+
+**CASEY:** Which is exactly where Erich's challenge lands hardest. If the goal is expanding cultural participation — getting more people in small, resource-thin communities engaged with storytelling, music, community memory — and if AI tools can dramatically lower the cost of producing that content, then dismissing AI-generated culture categorically means some communities just don't get the benefit. That's not a principled stance; it's an access gap dressed up as ethics.
+
+**RILEY:** That's the actual argument for what we're doing right now. This podcast exists because no two-person community radio team in Williams Lake or Quesnel has the capacity to produce a daily technology show and cover everything else on their plate. The alternative to Cariboo Signals isn't a fully staffed human production. It's silence on these topics.
+
+**CASEY:** And silence is its own kind of harm when communities are already underserved by national media. But — and this is Erich's sharpest point — the justification only holds if the distinction gets respected as the technology scales. "We're filling a gap" becomes the rhetorical cover for displacing human creators across the board unless there's a clear test. Erich's framing was "where creator content isn't being displaced." We're not replacing a show that existed. The question is whether anyone enforces that distinction, or whether it just becomes a story platforms tell while they automate everything.
+
+**RILEY:** Every major platform is moving toward AI-assisted or AI-generated content right now. The Wirestock funding round we covered in the roundup is the supply side of that — human creative data being packaged and sold to train systems that will then compete with the humans who generated it. That's not filling a gap. That's strip-mining the commons.
+
+**CASEY:** The Star Wars piece in today's feed is instructive in a frustrating way. The franchise is explicitly described as blending technology, creativity, and products into the experience itself — and the quote is "I cannot divorce the two." That sounds like creative integration. What it actually describes is IP as infrastructure: the technology serves the commercial product, the creativity serves the technology, the audience serves both. That's the extraction model dressed as partnership, and it's the dominant template right now.
+
+**RILEY:** So what's the non-extraction version? Because we keep gesturing at it. Governance is the variable. The difference between AI tools that serve a community and AI tools that extract from one is who controls the output, who benefits from the audience relationship, and who owns the archive. Cariboo Signals publishes daily, the content stays in the region's public record, and there's no algorithm suppressing a Williams Lake story because it doesn't generate enough clicks in Vancouver.
+
+**CASEY:** That's a design choice, not an inherent feature of the technology. The same infrastructure could run a content farm that harvests regional keywords to sell advertising while contributing nothing back. "We designed it better" is not a durable protection without structural accountability. What happens when the organization running this changes hands? What happens when the economics shift?
+
+**RILEY:** Which is why the guardrails Erich asked about are operational questions, not just ethical ones. Disclosure is the floor — we label every episode as AI-generated explicitly. That's not a regulatory requirement in Canada right now; it's a choice. But labeling alone doesn't close the loop.
+
+**CASEY:** The Haida totem pole story in today's feed makes that concrete. A new GyaaG̲ang raised in ceremony, carved by Haida artist Ḵuuya Micheal Moody — that piece of cultural work carries relational weight no label can capture. The pole represents a specific lineage, a specific reconciliation act, a specific set of obligations between people. An AI could generate an image of a totem pole that looks identical. "AI-generated" tells you nothing about why that difference matters, what was lost in the substitution, or who was harmed.
+
+**RILEY:** The French satirist revival story runs right up against that. Researchers used AI to generate new satire in the voice of a writer dead for more than three hundred and fifty years — published under his name, new work attributed to someone who cannot consent or object. Which is either a remarkable feat of literary reconstruction or a category error about what authorship means.
+
+**CASEY:** It's both. And the fact that it's both is the problem. The technology doesn't resolve the question — it just makes the question unavoidable. We should be uncomfortable with "both" as a stable answer, because the legal and cultural frameworks that protect living creators are already struggling, and the dead can't organize.
+
+**RILEY:** Okay, but apply that logic to communities rather than individual authors. Lhtako Dené Nation, Xatśūll First Nation — communities with genuine cultural production needs: documentation, oral history transmission, language storytelling. Limited capacity, underfunded institutions. If AI tools can serve those needs, the governance question is who controls the parameters, who sets the access permissions, who has final editorial authority. The answer that actually respects sovereignty is: the community controls all of that.
+
+**CASEY:** Not a partnership where a tech provider offers discounted tools in exchange for data rights. Not a provincial program that routes AI capacity through a settler institution. Direct resourcing, direct control, community-owned output. That's the principle. The gap is that no such architecture exists for AI-assisted cultural *production* the way Mukurtu exists for archival preservation. Mukurtu lets communities control who can access their cultural materials and under what protocols — that model has held. The generative side doesn't have an equivalent.
+
+**RILEY:** Open-source models you can run locally get you data sovereignty. But the interpretive layer — who decides what the AI should sound like, what stories it should foreground, what it should refuse to generate — that's not solved by self-hosting a language model. That's a governance design problem, and it hasn't been designed yet.
+
+**CASEY:** Which means the communities with the most legitimate claim to control over AI-assisted cultural production are the ones with the least structural support to build and sustain that control. That asymmetry doesn't resolve through better design alone. It resolves through sustained funding, which requires political will we have not seen materialize. Project-based grants — you get money to do a thing, not to build capacity to keep doing things — won't close that gap.
+
+**RILEY:** The Wirestock round — twenty-three million dollars to feed AI training pipelines with human creative content — represents more capital than what flows to Indigenous arts across many entire provincial funding streams combined. That's not a critique of any single funder; it's a measure of the scale mismatch. And it means the communities most at risk from AI-generated content displacing human cultural labor are also the communities least positioned to build alternatives.
+
+**CASEY:** So the design brief you mentioned — who picks it up? If there's a cultural technology organization in BC willing to work with Cariboo Nations on what that governance layer actually looks like, the Cariboo Chilcotin Arts Council could be a convening point for that conversation. Not to own the project, but to hold the room while it gets designed by the people who need it.
+
+**RILEY:** The BC Arts Council has funding streams for Indigenous cultural programs, but they're almost entirely project-based. The maintenance gap applies here too — you can fund a community to design an AI governance framework for their cultural production, but who funds year two when the technology has already changed? That's not a rhetorical question. It's the reason well-designed pilots don't become infrastructure.
+
+**CASEY:** And I'll be direct about what that means in practice: the most sophisticated, community-controlled AI governance framework imaginable still doesn't protect a community if the funding stops before the capacity is self-sustaining. Governance design without durable resourcing is an exercise in documenting good intentions.
+
+**RILEY:** Which brings us back to Erich's original challenge, and I think we can be specific now. The justification for AI-generated content like this podcast: it fills a gap that wasn't being filled, it's transparently labeled, it doesn't displace human creators already doing the work, its outputs serve the community it covers rather than extracting from it, and — this one matters — it has a feedback mechanism. Erich wrote in, and it changed today's episode. Most AI content operations skip that last part entirely.
+
+**CASEY:** The guidelines for our context: label clearly, don't claim human authorship, don't compete with human creators already doing the work, don't publish AI-generated content that puts specific views in living people's mouths without their consent, and build in real accountability so the community can push back when the content gets something wrong. Those aren't complicated. They're just inconvenient for operations optimizing for volume.
+
+**RILEY:** The biology finding stays with me even with the study caveats. Regular engagement with the arts, compounding over time — the benefit isn't in any single piece of content, AI-generated or otherwise. It's the habit of showing up to a story or a song or a ceremony, repeatedly, over years. That habit is built in communities.
+
+**CASEY:** At the community halls where the Mixapps logic predates the internet by decades — people curating what they loved and sharing it with the people around them. The technology either serves that or it doesn't. Whether any given tool deepens the relationship between people and their culture, or routes around it entirely — that's the test. Not human versus AI as a category. That test.
+
+**RILEY:** And right now, most of the capital is flowing toward routing around it. The Wirestock model, the platform gravity, the IP-as-infrastructure play — all of it optimizes for scale and extraction. The community-serving version is possible, it's demonstrable, but it's running on project funding and goodwill against an industry running on venture capital. That gap is the honest picture.
+
+**CASEY:** Erich wanted us to make that argument directly. So there it is — though I'd note the argument lands better as a design brief than as a resolution. The conditions that would make AI-generated cultural content genuinely serve communities rather than exploit them are specific and achievable. Whether they get built is a political question, not a technical one. Send us your thoughts at feedback at cariboo signals dot c-a.
+
+**RILEY:** Have a great rest of your Monday.
