@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "InFocus: What\u2019s behind Canada\u2019s \u2018sovereign\u2019  AI plan?",
-      "[TechRadar] 12 gadgets that will turn your mini garden into ",
       "[TechRadar] 'I snap them up' \u2014 award-winning wildlife photog",
       "[TechRadar] 'We\u2019re not selling and we\u2019re not giving way': Lo",
       "[TechRadar] 'Help cattle producers hold onto their land and ",
@@ -10,7 +8,9 @@
       "[BC Gov News] Supporting B.C. tech to help reduce lightning-",
       "[Engadget] Spotify now lets AI agents like OpenClaw generate",
       "[TechRadar] 'Podslop' is a real and growing problem \u2014 data s",
-      "[New Atlas] Startup harnesses the power of AI in the ongoing"
+      "[New Atlas] Startup harnesses the power of AI in the ongoing",
+      "[TechCrunch] Wirestock raises $23M to supply creative multi-",
+      "[Neowin] Spotify will soon support Apple's technology to ope"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -110,13 +110,18 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-15",
-        "clue": "pilot-skepticism:+ \u2014 Pushed for concrete action in two weeks, not next cycle",
-        "occurrences": 1
+        "date": "2026-05-18",
+        "clue": "pilot-skepticism:+ \u2014 'maintenance gap applies here too' deepened skepticism",
+        "occurrences": 2
       },
       {
         "date": "2026-05-17",
         "clue": "tech-optimism:~ \u2014 Acknowledged endowment model as governance problem, not just technical solution",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-05-18",
+        "clue": "structural-lens:+ \u2014 shifted from design solution to political economy argument",
         "occurrences": 1
       }
     ],
@@ -214,11 +219,6 @@
     ],
     "personality_clues": [
       {
-        "date": "2026-04-01",
-        "clue": "community-trust:+ \u2014 Shifted from abstract governance to specific municipal SMS systems as viable",
-        "occurrences": 2
-      },
-      {
         "date": "2026-04-02",
         "clue": "community-trust: x \u2014 Acknowledged genuine shift in explicit data sovereignty negotiations among First Nations",
         "occurrences": 1
@@ -287,6 +287,11 @@
         "date": "2026-05-17",
         "clue": "structural-lens:+ \u2014 Moved from dismissing eDNA to designing governance architecture around it",
         "occurrences": 2
+      },
+      {
+        "date": "2026-05-18",
+        "clue": "funding-risk:~ \u2014 conceded AI-fill-gaps logic, then systematically dismantled it",
+        "occurrences": 1
       }
     ],
     "core_memories": [
@@ -358,6 +363,11 @@
       {
         "formed": "2026-05-17",
         "signal": "funding-risk:~ \u2014 Shifted from rejecting endowment idea to identifying specific unsolved longevity problem",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-05-18",
+        "signal": "community-trust:+ \u2014 moved from abstract principles to specific operational guardrails",
         "occurrences": 3
       }
     ]

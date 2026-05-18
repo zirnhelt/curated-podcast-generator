@@ -1,56 +1,4 @@
 {
-  "2026-02-16": {
-    "timestamp": 1771247169.11212,
-    "date": "2026-02-16",
-    "theme": "Arts, Culture & Digital Storytelling",
-    "central_question": "Are digital tools and platforms genuinely empowering rural communities to tell their stories effectively, or are they creating new barriers and dependencies while promising false solutions?",
-    "riley_position": "Digital storytelling tools are becoming more accessible and effective for rural communities, with decreasing costs, improving infrastructure, and better governance frameworks enabling genuine cultural preservation and economic opportunities.",
-    "riley_key_evidence": [
-      "First Nations Technology Council documented 47 community-led digital heritage projects across BC, with 31 in communities under 5,000 people",
-      "UBC's Oral History project provides turnkey recording kits for under $2,000 per community and has partnered with 23 communities since 2023",
-      "Starlink coverage now reaches 94% of rural BC with speeds of 50-200 Mbps, sufficient for collaborative editing and live streaming"
-    ],
-    "casey_position": "Digital platforms create surveillance risks, dependency on corporate infrastructure, and technical barriers that exclude the most culturally knowledgeable community members while requiring unsustainable volunteer labor and funding.",
-    "casey_key_evidence": [
-      "Over 60% of Arctic cultural digitization projects from 2010-2020 had no data repatriation plan when funding expired",
-      "29% of rural Canadians over 65 don't use the internet at all, with another 22% describing themselves as 'not confident' online",
-      "Meta's automated systems have repeatedly flagged Indigenous ceremony videos and traditional hunting practices as policy violations"
-    ],
-    "resolution": "Both agreed that structural solutions like regional shared services and better funding models are needed, with Riley acknowledging infrastructure gaps while Casey conceded that governance frameworks are improving - they agreed to disagree on whether current progress outweighs the barriers.",
-    "topics_covered": [
-      "Digital infrastructure and connectivity challenges in rural areas",
-      "Cultural preservation vs. platform surveillance and content moderation",
-      "Economic sustainability and monetization for rural digital creators",
-      "Intergenerational participation gaps in digital literacy",
-      "Community ownership and control of digital cultural assets"
-    ]
-  },
-  "2026-02-17": {
-    "timestamp": 1771334102.807413,
-    "date": "2026-02-17",
-    "theme": "Working Lands & Industry",
-    "central_question": "Whether increasing technology dependence in resource industries like ranching, forestry, and mining will ultimately benefit or harm rural working communities in the Cariboo region.",
-    "riley_position": "Technology integration amplifies human expertise and creates economic opportunities through improved efficiency, grid upgrades, and diversification. The trajectory is toward more accessible, reliable systems that complement rather than replace traditional knowledge.",
-    "riley_key_evidence": [
-      "Lithium iron phosphate batteries offer better cycle life than older systems",
-      "Data centers can justify utility upgrades that benefit entire rural regions",
-      "Modern systems use standardized protocols like CAN bus and Modbus for easier repair"
-    ],
-    "casey_position": "Technology dependence creates new vulnerabilities and external dependencies that erode local self-sufficiency and resilience. The benefits concentrate elsewhere while risks and costs remain local.",
-    "casey_key_evidence": [
-      "Fifteen failed Battle Born batteries showed manufacturing defects in critical battery management systems",
-      "Diesel generator repairs use local mechanics and knowledge while electronics require specialized distant technicians",
-      "Data centers can outbid resource industries for electricity, driving up power costs"
-    ],
-    "resolution": "They agreed on key evaluation criteria: systems should increase self-sufficiency, be maintainable locally, and complement existing knowledge. Riley remained optimistic about technology's trajectory while Casey advocated planning for risks over hoping for benefits.",
-    "topics_covered": [
-      "Battery reliability and maintenance infrastructure gaps",
-      "Competition between data centers and resource industries for electricity",
-      "Local technical capacity and repair capabilities",
-      "Economic diversification versus traditional industry stability",
-      "Technology as amplification versus replacement of human expertise"
-    ]
-  },
   "2026-02-18": {
     "timestamp": 1771419977.115984,
     "date": "2026-02-18",
@@ -1886,6 +1834,37 @@
       "Acoustic ecology and plant responses to environmental sound in forest regeneration contexts",
       "Old-growth forests as scientific archives containing climate and cosmic event records",
       "Community foundations and endowment models as sustainable funding vehicles for long-term ecological monitoring"
+    ]
+  },
+  "2026-05-18": {
+    "timestamp": 1779114126.152202,
+    "date": "2026-05-18",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "central_question": "When, if ever, is AI-generated cultural content justified, and what governance structures and guardrails should protect communities from extraction while enabling legitimate cultural participation?",
+    "riley_position": "AI-generated content can fill real gaps in underserved communities, but only if it's transparently labeled, doesn't displace existing human creators, serves the community rather than extracting from it, and maintains accountability mechanisms. The real threat is venture-capital-driven extraction models that optimize for scale.",
+    "riley_key_evidence": [
+      "NPR study showing arts engagement slows biological aging at cellular level, but the benefit was measured in human-made cultural participation built in communities",
+      "Wirestock funding round represents $23 million flowing to AI training pipelines with human creative content\u2014more capital than many provincial Indigenous arts funding streams combined",
+      "Mukurtu archival preservation model exists and has held as a community-controlled framework, but no equivalent governance architecture exists for AI-assisted cultural production"
+    ],
+    "casey_position": "The distinction between justified and exploitative AI-generated content hinges on structural control: who owns the output, who benefits from the audience relationship, who owns the archive, and whether the community has final editorial authority. Without durable resourcing and political will, even well-designed governance frameworks fail once project funding ends.",
+    "casey_key_evidence": [
+      "Nobel Prize Committee rejected Tolkien's Lord of the Rings in 1961 as not measuring up to 'storytelling of highest quality' despite 150+ million copies sold, showing institutional taste-making is unreliable",
+      "French satirists generated new AI content under a dead author's name\u2014a category error about authorship that illustrates how the technology makes unavoidable questions about consent and cultural ownership",
+      "Haida totem pole carved by \u1e34uuya Micheal Moody carries relational weight and specific obligations that an AI-generated identical image cannot capture, showing labels alone don't convey what's lost in substitution"
+    ],
+    "resolution": "Casey and Riley converged on specific, achievable design guidelines (clear labeling, no human authorship claims, no displacement of existing creators, no AI-generated content attributing views to living people without consent, built-in accountability) while agreeing the real problem is political, not technical: venture-capital-driven extraction models are winning against community-serving alternatives because of massive resource asymmetries, not superiority.",
+    "topics_covered": [
+      "NPR study on arts engagement and biological aging at cellular level",
+      "AI content flooding discoverability landscapes and what it displaces versus what it doesn't",
+      "Indigenous sovereignty and community control over cultural production tools and governance",
+      "Project-based funding gaps and the failure of pilots to become sustainable infrastructure",
+      "Extraction models in tech (Wirestock, IP-as-infrastructure) versus community-serving design"
+    ],
+    "calls_to_action": [
+      "The Cariboo Chilcotin Arts Council could serve as a convening point for a conversation between a cultural technology organization and Cariboo Nations to design what community-controlled AI governance frameworks actually look like in practice, with the Arts Council holding the room but not owning the project.",
+      "Send feedback and thoughts to feedback@cariboosignals.ca\u2014the show explicitly operates with a feedback mechanism that changes content when communities push back, unlike most AI content operations.",
+      "Communities interested in AI-assisted cultural production should demand durable resourcing commitments, not just project-based grants, and insist on direct control over parameters, access permissions, and editorial authority rather than partnerships routing capacity through tech providers or settler institutions."
     ]
   }
 }
