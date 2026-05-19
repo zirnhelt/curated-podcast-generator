@@ -354,7 +354,10 @@ CONFIG = {
 # Set PODCAST_USE_BATCH=0 to disable batch processing and use real-time calls
 USE_BATCH_API = os.getenv("PODCAST_USE_BATCH", "1") == "1"
 BATCH_POLL_INTERVAL = 10   # seconds between status checks
-BATCH_POLL_TIMEOUT = 1800  # max seconds to wait (30 min — batch API can take >10 min)
+# 10-minute default: small 2-request batches finish in 2-5 min under normal conditions;
+# longer waits just delay the real-time fallback when the API is under pressure.
+# Override with PODCAST_BATCH_TIMEOUT env var if needed.
+BATCH_POLL_TIMEOUT = int(os.getenv("PODCAST_BATCH_TIMEOUT", "600"))
 
 # ---------------------------------------------------------------------------
 # Content seeding helpers
