@@ -1176,6 +1176,7 @@ def _filter_sparse_news_articles(articles: list) -> list:
     """
     brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
     kept, skipped = [], []
+    brave_used = False
 
     for a in articles:
         body = a.get("_body", "") or ""
@@ -1193,6 +1194,7 @@ def _filter_sparse_news_articles(articles: list) -> list:
             )
             if best:
                 a["_body"] = best["description"]
+                brave_used = True
                 print(f"  🔎 Brave-enriched sparse article: \"{title[:60]}\"")
                 kept.append(a)
                 continue
@@ -1207,9 +1209,9 @@ def _filter_sparse_news_articles(articles: list) -> list:
     # Safety floor: never drop the list below 3 articles
     if len(kept) < 3 and skipped:
         print("  ⚠️  Too few articles after sparse filter — restoring full list")
-        return articles
+        return articles, brave_used
 
-    return kept
+    return kept, brave_used
 
 
 # ---------------------------------------------------------------------------
@@ -2292,7 +2294,7 @@ def get_current_date_info():
     
     return weekday, date_str
 
-def generate_episode_description(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None):
+def generate_episode_description(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, brave_used=False):
     """Generate episode description with sources and credits.
 
     When *script* is provided, citations are aligned with what was actually
@@ -2403,12 +2405,14 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
     credits = CONFIG['credits']['structured']
     review_model_label = _review_model_used or POLISH_MODEL
     tts_label = credits['text_to_speech'] if USE_AZURE_TTS else credits['text_to_speech_openai']
+    brave_credit = "Web Search: Brave Search API<br>" if brave_used else ""
     credits_html = (
         "<p><b>Credits</b><br>"
         f"Theme Song: {credits['theme_song']}<br>"
         f"Content Curation &amp; Script: {credits['content_curation']}<br>"
         f"Script Review Model: {review_model_label}<br>"
         f"TTS Voices: {tts_label}<br>"
+        f"{brave_credit}"
         f"Cover Art: {credits['cover_art']}<br>"
         f"Podcast Coordination: {credits['coordination']}<br>"
         f"&#169; 2026 {credits['copyright_holder']}. "
@@ -2497,7 +2501,7 @@ def score_script(script_text):
     }
 
 
-def generate_citations_file(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, quality=None):
+def generate_citations_file(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, quality=None, brave_used=False):
     """Generate citations file for the episode.
 
     When *script* is provided (the finalized, polished script), each citation
@@ -2516,7 +2520,7 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
     podcast_config = CONFIG['podcast']
     episode_description = generate_episode_description(
         news_articles, deep_dive_articles, theme_name, script=script,
-        debate_summary=debate_summary, psa_info=psa_info
+        debate_summary=debate_summary, psa_info=psa_info, brave_used=brave_used
     )
 
     # Match articles against script
@@ -4556,11 +4560,12 @@ def main():
         # not just headlines and meta-description snippets.
         _enrich_articles_with_body(deep_dive_articles, label="deep dive")
         _enrich_articles_with_body(news_articles, label="news roundup", max_articles=20)
-        news_articles = _filter_sparse_news_articles(news_articles)
+        news_articles, _sparse_brave_used = _filter_sparse_news_articles(news_articles)
 
         # Conditionally enrich deep dive with Brave Search (fact-checking + story shaping)
         brave_client = get_anthropic_client()
         brave_context = enrich_deep_dive_with_brave(deep_dive_articles, today_theme, brave_client) if brave_client else ""
+        brave_used = _sparse_brave_used or bool(brave_context)
 
         # Fetch Cariboo-wide weather
         print("🌤️  Fetching Cariboo-wide weather...")
@@ -4662,7 +4667,8 @@ def main():
         # what was actually discussed, not just the input article list.
         citations_file = generate_citations_file(
             news_articles, deep_dive_articles, today_theme, script=script,
-            debate_summary=debate_summary, psa_info=psa_info, quality=script_quality
+            debate_summary=debate_summary, psa_info=psa_info, quality=script_quality,
+            brave_used=brave_used
         )
 
         # Save script
