@@ -1,0 +1,438 @@
+{
+  "episode": {
+    "date": "2026-05-19",
+    "formatted_date": "Tuesday, May 19, 2026",
+    "theme": "Working Lands & Industry",
+    "title": "Cariboo Signals - Working Lands & Industry",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Working Lands & Industry.</p><p><b>NEWS ROUNDUP:</b> We break down [ScienceDaily] AI reveals the invisible magnetic chaos wasting energy inside electric motors and [Tom's Hardware] Texas county passes data center ban for rural areas for a year, move comes in wake of AI data centers moving to remote areas to skirt regulations — state senator says counties cannot legally impose these bans, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Does the Cariboo have the institutional capacity to adopt agricultural innovations and manage competing land uses, or is the regional governance infrastructure too thin to implement solutions regardless of technological readiness? Topics include: Perennial grain economics and the yield-penalty transition problem in Cariboo agriculture, Agricultural financing gaps and why lender structures prevent innovation adoption, Regional research capacity deficits and the mismatch between global research agendas and local agricultural needs, Data centre land use competition with agriculture and grid reliability impacts, Indigenous-led land stewardship as an institutional capacity model, The timing mismatch between technological readiness, institution-building, and external land use pressures.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://landwithoutlimits.com\">Cariboo Chilcotin Coast Tourism Association</a></p><p><b>Sources discussed:</b></p><ul><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/05/260517211433.htm\">[ScienceDaily] AI reveals the invisible magnetic chaos wasti...</a></li><li>Tom's Hardware: <a href=\"https://www.tomshardware.com/tech-industry/big-tech/texas-county-passes-data-center-moratorium-for-a-year-follows-other-local-governments-pausing-similar-projects-but-state-senator-says-counties-cannot-impose-these-bans\">[Tom's Hardware] Texas county passes data center ban for rur...</a></li><li>Quartz: <a href=\"https://qz.com/cascading-outages-data-centers-grid-load-shedding-risk-051326\">[Quartz] What 'cascading outages' near AI data centers mean ...</a></li><li>APTN News: <a href=\"https://www.aptnnews.ca/national-news/baffinland-iron-mines-seeking-creditor-protection-under-agreement-as-it-weighs-strategic-alternatives/\">[APTN News] Baffinland Iron Mines seeking creditor protectio...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/05/18/environmental-advocates-call-pipeline-deal-a-betrayal-of-canadas-climate-goals/\">[Williams Lake Tribune] Environmental advocates call pipelin...</a></li><li>Williams Lake Tribune: <a href=\"https://wltribune.com/2026/05/18/wild-world-record-broken-by-barefoot-b-c-runner/\">[Williams Lake Tribune] Wild world record broken by barefoot...</a></li><li>NYT Business: <a href=\"https://www.nytimes.com/2026/05/13/business/energy-environment/fervo-geothermal-energy-ipo.html\">[NYT Business] A Start-Up Aiming to Make Geothermal Energy M...</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/05/260517211437.htm\">[ScienceDaily] Scientists just unlocked a cheaper way to mak...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/05/14/rs-485-sprinkler-control-scaling-irrigation-across-the-farm/\">[Hackaday] RS-485 Sprinkler Control: Scaling Irrigation Acro...</a></li><li>Neowin: <a href=\"https://www.neowin.net/news/solar-power-could-finally-be-viable-with-this-invention/\">[Neowin] Solar power could finally be viable with this inven...</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/05/260518041341.htm\">[ScienceDaily] Forget electrons, this breakthrough uses ligh...</a></li><li>Tom's Hardware: <a href=\"https://www.tomshardware.com/tech-industry/softbank-to-manufacture-its-own-batteries-to-power-ai-data-centers\">[Tom's Hardware] SoftBank to manufacture its own batteries w...</a></li><li>TechRadar: <a href=\"https://www.techradar.com/pro/this-us-start-up-wants-to-pay-you-to-host-a-data-center-on-the-side-of-your-home-and-says-it-wont-disturb-you-at-all\">[TechRadar] This US start-up wants to pay you to host a data...</a></li><li>InsideEVs: <a href=\"https://insideevs.com/news/796222/ev-fee-gas-tax-house-bill-2026/\">[InsideEVs] Congress Wants You To Pay $130 A Year Just To Dr...</a></li><li>Krebs on Security: <a href=\"https://krebsonsecurity.com/2026/05/cisa-admin-leaked-aws-govcloud-keys-on-github/\">[Krebs on Security] CISA Admin Leaked AWS GovCloud Keys on G...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/05/17/opinion/chatgpt-ai-college-school-graduation.html\">[NYT Top Stories] My Classmate, ChatGPT</a></li><li>New Atlas: <a href=\"https://refractor.io/biology/genetic-discovery-changes-how-rice-is-grown/\">[New Atlas] Genetic discovery could change how rice is grown...</a></li><li>TechRadar: <a href=\"https://www.techradar.com/pro/us-data-centers-use-enough-electricity-to-power-upwards-of-16-million-homes-annually-the-statistics-on-why-opposition-groups-are-pushing-for-people-over-profit\">[TechRadar] US data centers use enough electricity to power ...</a></li><li>Tom's Hardware: <a href=\"https://www.tomshardware.com/tech-industry/artificial-intelligence/openclaw-creator-burns-through-1-3-million-in-openai-api-tokens-in-a-single-month\">[Tom's Hardware] OpenClaw creator burned through $1.3 millio...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-6<br>TTS Voices: OpenAI TTS API (Nova · Echo)<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-05-19T06:15:57.265792-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-sonnet-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 2935,
+      "voice_ratio_casey_riley": 0.9,
+      "pattern_hits": {
+        "i_want_to_announcements": 1,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0
+      },
+      "total_hits": 1
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Environmental advocates call pipeline deal a ‘betrayal’ of Canada’s climate goals",
+          "url": "https://wltribune.com/2026/05/18/environmental-advocates-call-pipeline-deal-a-betrayal-of-canadas-climate-goals/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 92,
+          "date_published": "2026-05-18T15:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Wild world record broken by barefoot B.C. runner",
+          "url": "https://wltribune.com/2026/05/18/wild-world-record-broken-by-barefoot-b-c-runner/",
+          "source": "Williams Lake Tribune",
+          "ai_score": 88,
+          "date_published": "2026-05-18T15:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Business] A Start-Up Aiming to Make Geothermal Energy Mainstream Goes Public",
+          "url": "https://www.nytimes.com/2026/05/13/business/energy-environment/fervo-geothermal-energy-ipo.html",
+          "source": "NYT Business",
+          "ai_score": 81,
+          "date_published": "2026-05-15T19:15:47+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceDaily] Scientists just unlocked a cheaper way to make clean hydrogen fuel",
+          "url": "https://www.sciencedaily.com/releases/2026/05/260517211437.htm",
+          "source": "ScienceDaily",
+          "ai_score": 75,
+          "date_published": "2026-05-18T04:55:16+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] RS-485 Sprinkler Control: Scaling Irrigation Across the Farm",
+          "url": "https://hackaday.com/2026/05/14/rs-485-sprinkler-control-scaling-irrigation-across-the-farm/",
+          "source": "Hackaday",
+          "ai_score": 72,
+          "date_published": "2026-05-14T20:00:53+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceDaily] AI reveals the invisible magnetic chaos wasting energy inside electric motors",
+          "url": "https://www.sciencedaily.com/releases/2026/05/260517211433.htm",
+          "source": "ScienceDaily",
+          "ai_score": 72,
+          "date_published": "2026-05-18T04:02:36+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Neowin] Solar power could finally be viable with this invention",
+          "url": "https://www.neowin.net/news/solar-power-could-finally-be-viable-with-this-invention/",
+          "source": "Neowin",
+          "ai_score": 72,
+          "date_published": "2026-05-16T16:40:01+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceDaily] Forget electrons, this breakthrough uses light-matter particles to power AI",
+          "url": "https://www.sciencedaily.com/releases/2026/05/260518041341.htm",
+          "source": "ScienceDaily",
+          "ai_score": 72,
+          "date_published": "2026-05-19T00:23:26+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Tom's Hardware] SoftBank to manufacture its own batteries with water-based tech to power AI data centers — targets gigawatt-hour-scale production by 2028",
+          "url": "https://www.tomshardware.com/tech-industry/softbank-to-manufacture-its-own-batteries-to-power-ai-data-centers",
+          "source": "Tom's Hardware",
+          "ai_score": 68,
+          "date_published": "2026-05-12T11:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Tom's Hardware] Texas county passes data center ban for rural areas for a year, move comes in wake of AI data centers moving to remote areas to skirt regulations — state senator says counties cannot legally impose these bans",
+          "url": "https://www.tomshardware.com/tech-industry/big-tech/texas-county-passes-data-center-moratorium-for-a-year-follows-other-local-governments-pausing-similar-projects-but-state-senator-says-counties-cannot-impose-these-bans",
+          "source": "Tom's Hardware",
+          "ai_score": 68,
+          "date_published": "2026-05-16T14:37:59+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[TechRadar] This US start-up wants to pay you to host a data center on the side of your home — and says it won't disturb you at all",
+          "url": "https://www.techradar.com/pro/this-us-start-up-wants-to-pay-you-to-host-a-data-center-on-the-side-of-your-home-and-says-it-wont-disturb-you-at-all",
+          "source": "TechRadar",
+          "ai_score": 68,
+          "date_published": "2026-05-16T20:25:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] What 'cascading outages' near AI data centers mean for your electricity",
+          "url": "https://qz.com/cascading-outages-data-centers-grid-load-shedding-risk-051326",
+          "source": "Quartz",
+          "ai_score": 68,
+          "date_published": "2026-05-15T17:01:30+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[InsideEVs] Congress Wants You To Pay $130 A Year Just To Drive An Electric Car",
+          "url": "https://insideevs.com/news/796222/ev-fee-gas-tax-house-bill-2026/",
+          "source": "InsideEVs",
+          "ai_score": 64,
+          "date_published": "2026-05-18T19:42:04+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Krebs on Security] CISA Admin Leaked AWS GovCloud Keys on Github",
+          "url": "https://krebsonsecurity.com/2026/05/cisa-admin-leaked-aws-govcloud-keys-on-github/",
+          "source": "Krebs on Security",
+          "ai_score": 62,
+          "date_published": "2026-05-18T20:48:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] My Classmate, ChatGPT",
+          "url": "https://www.nytimes.com/2026/05/17/opinion/chatgpt-ai-college-school-graduation.html",
+          "source": "NYT Top Stories",
+          "ai_score": 63,
+          "date_published": "2026-05-17T05:00:05+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Brain 'Zaps' From Contact Lenses May Help Ease Depression, Mouse Study Shows",
+          "url": "https://www.sciencealert.com/brain-zaps-from-contact-lenses-may-help-ease-depression-mouse-study-shows",
+          "source": "ScienceAlert",
+          "ai_score": 58,
+          "date_published": "2026-05-18T23:30:30+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Verge] Volvo teases a new affordable EV to replace discontinued EX30",
+          "url": "https://www.theverge.com/transportation/932857/volvo-ex30-ev-replacement-affordable-ex60",
+          "source": "The Verge",
+          "ai_score": 58,
+          "date_published": "2026-05-18T20:41:09+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Ebola Emergency: Here's What We Know About This Deadly Outbreak",
+          "url": "https://www.sciencealert.com/ebola-emergency-heres-what-we-know-about-this-deadly-outbreak",
+          "source": "ScienceAlert",
+          "ai_score": 55,
+          "date_published": "2026-05-19T01:13:26+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] Your SSD has built-in maintenance tools that Windows keeps hidden from you",
+          "url": "https://www.xda-developers.com/windows-has-hidden-ssd-maintenance-settings-that-most-people-never-touch/",
+          "source": "XDA Developers",
+          "ai_score": 55,
+          "date_published": "2026-05-18T21:00:21+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ZDNet] Cloud attacks are getting faster and deadlier",
+          "url": "https://www.zdnet.com/article/google-cloud-threat-report-third-party-software-ai-attacks/",
+          "source": "ZDNet",
+          "ai_score": 54,
+          "date_published": "2026-05-18T20:13:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechCrunch] Former Tesla exec and Heron Power CEO Drew Baglino has founded a heat pump startup",
+          "url": "https://techcrunch.com/2026/05/12/former-tesla-exec-and-heron-power-ceo-drew-baglino-has-founded-a-heat-pump-startup/",
+          "source": "TechCrunch",
+          "ai_score": 52,
+          "date_published": "2026-05-12T18:14:58+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quartz] Shell companies and NDAs: How AI data center developers keep land deals secret",
+          "url": "https://qz.com/shell-companies-ndas-data-center-land-deals-secrecy-051326",
+          "source": "Quartz",
+          "ai_score": 52,
+          "date_published": "2026-05-15T16:51:17+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Tyee] As Employers Push to Adopt AI, Many Workers Push Back",
+          "url": "https://thetyee.ca/News/2026/05/19/Employers-Push-Adopt-AI-Workers-Push-Back/",
+          "source": "The Tyee",
+          "ai_score": 53,
+          "date_published": "2026-05-19T07:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Android Authority] Apple may finally close the AI gap with Android in iOS 27",
+          "url": "https://www.androidauthority.com/apple-ai-features-ios-27-3668409/",
+          "source": "Android Authority",
+          "ai_score": 50,
+          "date_published": "2026-05-19T07:02:31+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] Microsoft is scrapping SMS 2-factor authentication because it's \"a leading source of fraud\"",
+          "url": "https://www.xda-developers.com/microsoft-is-scrapping-sms-2-factor-authentication-because-its-a-leading-source-of-fraud/",
+          "source": "XDA Developers",
+          "ai_score": 52,
+          "date_published": "2026-05-19T00:56:56+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[MakeUseOf] 5 things you shouldn't self-host, even though you technically can",
+          "url": "https://www.makeuseof.com/things-shouldnt-self-host-technically-can/",
+          "source": "MakeUseOf",
+          "ai_score": 52,
+          "date_published": "2026-05-18T20:00:18+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] Here are 3 tips for eating more fiber from a plant-based cardiologist",
+          "url": "https://www.businessinsider.com/how-to-eat-more-fiber-tips-plant-based-cardiologist-2026-5",
+          "source": "Business Insider",
+          "ai_score": 52,
+          "date_published": "2026-05-18T19:01:26+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[CNET] Google's Android Update Pushes Smartphones Into the AI-First Era",
+          "url": "https://www.cnet.com/tech/mobile/google-gemini-intelligence-ai-first-smartphone/",
+          "source": "CNET",
+          "ai_score": 50,
+          "date_published": "2026-05-18T16:56:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Tom's Hardware] ASML to equip India’s first commercial chip fab — $11 billion Dholera project targets 50,000 wafers a month",
+          "url": "https://www.tomshardware.com/tech-industry/asml-partners-with-tata-electronics-to-equip-indias-first-commercial-semiconductor-fab",
+          "source": "Tom's Hardware",
+          "ai_score": 48,
+          "date_published": "2026-05-17T15:02:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Business] In Qatar, Energy Sector Damage Is Severe, and the Way Back Will Be Long",
+          "url": "https://www.nytimes.com/2026/05/14/business/qatar-lng-iran.html",
+          "source": "NYT Business",
+          "ai_score": 47,
+          "date_published": "2026-05-14T14:58:44+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[InsideEVs] The Volkswagen ID. Buzz Returns For 2027 With New Trims And One Big Fix Owners Wanted",
+          "url": "https://insideevs.com/news/795883/2027-volkswagen-id-buzz-returns-to-the-us/",
+          "source": "InsideEVs",
+          "ai_score": 42,
+          "date_published": "2026-05-14T17:39:46+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Verge] Honda&#8217;s hybrid future starts with new Accord and RDX prototypes",
+          "url": "https://www.theverge.com/transportation/931044/honda-hybrid-prototypes-accord-acura-rdx",
+          "source": "The Verge",
+          "ai_score": 38,
+          "date_published": "2026-05-14T22:46:55+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] What is the UAE’s Barakah nuclear plant, nearly hit by a drone?",
+          "url": "https://www.aljazeera.com/news/2026/5/18/what-is-the-uaes-barakah-nuclear-plant-nearly-hit-by-a-drone?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "ai_score": 35,
+          "date_published": "2026-05-18T14:09:47+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Atlantic Culture] The Protein Shortage Is Coming",
+          "url": "https://www.theatlantic.com/culture/2026/05/protein-powder-shortage/687193/?utm_source=feed",
+          "source": "The Atlantic Culture",
+          "ai_score": 30,
+          "date_published": "2026-05-15T22:55:07+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[APTN News] Baffinland Iron Mines seeking creditor protection under agreement as it weighs ‘strategic alternatives’",
+          "url": "https://www.aptnnews.ca/national-news/baffinland-iron-mines-seeking-creditor-protection-under-agreement-as-it-weighs-strategic-alternatives/",
+          "source": "APTN News",
+          "ai_score": 27,
+          "date_published": "2026-05-15T21:59:42+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[BC Gov News] Premier’s statement about MOU between Alberta, Ottawa",
+          "url": "https://news.gov.bc.ca/releases/2026PREM0033-000562",
+          "source": "BC Gov News",
+          "ai_score": 20,
+          "date_published": "2026-05-15T20:03:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Working Lands & Industry",
+      "articles": [
+        {
+          "title": "[New Atlas] Genetic discovery could change how rice is grown around the world, but at a cost",
+          "url": "https://refractor.io/biology/genetic-discovery-changes-how-rice-is-grown/",
+          "source": "New Atlas",
+          "ai_score": 62,
+          "date_published": "2026-05-18T02:22:53+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] US data centers use enough electricity to power upwards of 16 million homes annually – the statistics on why opposition groups are pushing for People Over Profit",
+          "url": "https://www.techradar.com/pro/us-data-centers-use-enough-electricity-to-power-upwards-of-16-million-homes-annually-the-statistics-on-why-opposition-groups-are-pushing-for-people-over-profit",
+          "source": "TechRadar",
+          "ai_score": 55,
+          "date_published": "2026-05-17T00:20:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Tom's Hardware] OpenClaw creator burned through $1.3 million in OpenAI API tokens in a single month — bill covered 603 billion tokens across 7.6 million requests and 100 coding agents",
+          "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/openclaw-creator-burns-through-1-3-million-in-openai-api-tokens-in-a-single-month",
+          "source": "Tom's Hardware",
+          "ai_score": 55,
+          "date_published": "2026-05-17T10:40:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Does the Cariboo have the institutional capacity to adopt agricultural innovations and manage competing land uses, or is the regional governance infrastructure too thin to implement solutions regardless of technological readiness?",
+        "riley_position": "Institutional capacity gaps in research, financing, and land governance are policy and structural problems—not technological ones—and can be addressed through regional institutions anchored in producer needs and Indigenous-led stewardship models. The gap is closable if sequencing starts with identifying shared operational problems that motivate institution-building.",
+        "riley_key_evidence": [
+          "Perennial grain research (Kernza, intermediate wheatgrass) shows yield gaps are closing and input cost reductions compound over years, but BC lacks transition financing programs that exist in some US jurisdictions",
+          "The Cariboo has no regional agricultural research station running multi-year trials under local climate and soil conditions, unlike Interior wine grape and tree fruit sectors",
+          "Indigenous-led agricultural programs (Williams Lake First Nation, Xatśūll First Nation, Secwépemc range management) demonstrate that institutional capacity can develop through practice rather than waiting for governance architecture to be complete"
+        ],
+        "casey_position": "The timing mismatch between slow innovation adoption timelines, even slower institution-building, and rapid land use pressures makes the capacity problem essentially unsolvable within the necessary window. Regional governance lacks both the technical sophistication and political will to negotiate complex agreements, and interim protective measures without enforcement capacity are ineffective.",
+        "casey_key_evidence": [
+          "Lenders calibrate operating loans to annual crop yields; a ten-year ecological return model doesn't cover next February's payment, making transition adoption structurally difficult regardless of science quality",
+          "Cariboo Regional District covers an area larger than many European countries but lacks legal staff to negotiate data centre power agreements that protect agricultural grid reliability",
+          "Perennial specialty crop policy fixes that work in US jurisdictions operate in a higher per-acre income environment than Cariboo hay and cattle operations, making direct comparison misleading"
+        ],
+        "resolution": "Partial convergence: Casey accepts Riley's reframing that institution-building should follow from solving concrete shared operational problems rather than precede them, but remains skeptical that governance capacity and land use pressures will align on compatible timelines. They agree on the problem but disagree on whether solutions arrive in time.",
+        "topics_covered": [
+          "Perennial grain economics and the yield-penalty transition problem in Cariboo agriculture",
+          "Agricultural financing gaps and why lender structures prevent innovation adoption",
+          "Regional research capacity deficits and the mismatch between global research agendas and local agricultural needs",
+          "Data centre land use competition with agriculture and grid reliability impacts",
+          "Indigenous-led land stewardship as an institutional capacity model",
+          "The timing mismatch between technological readiness, institution-building, and external land use pressures"
+        ],
+        "calls_to_action": [
+          "Develop a regional agricultural authority with actual research budget and producer governance—not a provincial program delivered to the region, but something with institutional roots in the Cariboo itself",
+          "Use concrete shared operational problems (e.g., multi-year perennial forage trial data needed for transition financing) as recruiting pitches to build producer-governance institutions around precision agriculture data infrastructure and collective equipment ownership",
+          "Implement moratoria or meaningful consultation requirements on large industrial land uses in agricultural zones while regional frameworks are developed—drawing on BC's historical precedent of moving on ALR protections when political pressure is sufficient",
+          "Communities in the Cariboo should recognize they have active stakes in energy infrastructure negotiations (pipeline decisions, etc.) and should engage as participants rather than observers in those land use decisions"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "Azure Neural TTS (Ava · Andrew)",
+    "text_to_speech_openai": "OpenAI TTS API (Nova · Echo)",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}

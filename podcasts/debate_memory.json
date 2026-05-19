@@ -1,30 +1,4 @@
 {
-  "2026-02-18": {
-    "timestamp": 1771419977.115984,
-    "date": "2026-02-18",
-    "theme": "Community Tech & Governance",
-    "central_question": "Can AI-driven infrastructure management systems enhance rural governance while maintaining democratic accountability and community-centered decision-making?",
-    "riley_position": "AI infrastructure systems can transform rural governance by providing predictive maintenance, cost savings, and better resource allocation through regional cooperation models. These tools augment rather than replace human judgment and can actually increase transparency in decision-making.",
-    "riley_key_evidence": [
-      "Kamloops area smart traffic systems improved rural traffic prediction after three years of local data",
-      "City of Medicine Hat saw 30% reduction in emergency road repairs with predictive systems",
-      "Thompson-Nicola Regional District exploring shared technology services model"
-    ],
-    "casey_position": "AI systems risk creating accountability gaps and excluding communities lacking digital literacy or resources. Democratic legitimacy requires citizen understanding of decision-making processes, which sophisticated algorithms may undermine.",
-    "casey_key_evidence": [
-      "Williams Lake council spent 40 minutes debating simple zoning application, showing complexity challenges",
-      "Provincial integrated service delivery platforms failed in half of rural municipalities five years ago",
-      "Digital divide exists where half the population gets news from radio and municipal websites unchanged since 2018"
-    ],
-    "resolution": "Both agreed that technology can enhance governance if democratic accountability is built in from the start, with Casey accepting regional cooperation could work if citizens understand decision-making processes, and Riley acknowledging that human elements of democracy must be preserved.",
-    "topics_covered": [
-      "Predictive maintenance vs. reactive infrastructure management",
-      "Regional cooperation and shared technology services",
-      "Democratic accountability and citizen understanding of AI decisions",
-      "Digital divide in rural civic engagement",
-      "Cost-benefit analysis of municipal AI adoption"
-    ]
-  },
   "2026-02-19": {
     "timestamp": 1771506395.978185,
     "date": "2026-02-19",
@@ -1865,6 +1839,39 @@
       "The Cariboo Chilcotin Arts Council could serve as a convening point for a conversation between a cultural technology organization and Cariboo Nations to design what community-controlled AI governance frameworks actually look like in practice, with the Arts Council holding the room but not owning the project.",
       "Send feedback and thoughts to feedback@cariboosignals.ca\u2014the show explicitly operates with a feedback mechanism that changes content when communities push back, unlike most AI content operations.",
       "Communities interested in AI-assisted cultural production should demand durable resourcing commitments, not just project-based grants, and insist on direct control over parameters, access permissions, and editorial authority rather than partnerships routing capacity through tech providers or settler institutions."
+    ]
+  },
+  "2026-05-19": {
+    "timestamp": 1779196559.139988,
+    "date": "2026-05-19",
+    "theme": "Working Lands & Industry",
+    "central_question": "Does the Cariboo have the institutional capacity to adopt agricultural innovations and manage competing land uses, or is the regional governance infrastructure too thin to implement solutions regardless of technological readiness?",
+    "riley_position": "Institutional capacity gaps in research, financing, and land governance are policy and structural problems\u2014not technological ones\u2014and can be addressed through regional institutions anchored in producer needs and Indigenous-led stewardship models. The gap is closable if sequencing starts with identifying shared operational problems that motivate institution-building.",
+    "riley_key_evidence": [
+      "Perennial grain research (Kernza, intermediate wheatgrass) shows yield gaps are closing and input cost reductions compound over years, but BC lacks transition financing programs that exist in some US jurisdictions",
+      "The Cariboo has no regional agricultural research station running multi-year trials under local climate and soil conditions, unlike Interior wine grape and tree fruit sectors",
+      "Indigenous-led agricultural programs (Williams Lake First Nation, Xat\u015b\u016bll First Nation, Secw\u00e9pemc range management) demonstrate that institutional capacity can develop through practice rather than waiting for governance architecture to be complete"
+    ],
+    "casey_position": "The timing mismatch between slow innovation adoption timelines, even slower institution-building, and rapid land use pressures makes the capacity problem essentially unsolvable within the necessary window. Regional governance lacks both the technical sophistication and political will to negotiate complex agreements, and interim protective measures without enforcement capacity are ineffective.",
+    "casey_key_evidence": [
+      "Lenders calibrate operating loans to annual crop yields; a ten-year ecological return model doesn't cover next February's payment, making transition adoption structurally difficult regardless of science quality",
+      "Cariboo Regional District covers an area larger than many European countries but lacks legal staff to negotiate data centre power agreements that protect agricultural grid reliability",
+      "Perennial specialty crop policy fixes that work in US jurisdictions operate in a higher per-acre income environment than Cariboo hay and cattle operations, making direct comparison misleading"
+    ],
+    "resolution": "Partial convergence: Casey accepts Riley's reframing that institution-building should follow from solving concrete shared operational problems rather than precede them, but remains skeptical that governance capacity and land use pressures will align on compatible timelines. They agree on the problem but disagree on whether solutions arrive in time.",
+    "topics_covered": [
+      "Perennial grain economics and the yield-penalty transition problem in Cariboo agriculture",
+      "Agricultural financing gaps and why lender structures prevent innovation adoption",
+      "Regional research capacity deficits and the mismatch between global research agendas and local agricultural needs",
+      "Data centre land use competition with agriculture and grid reliability impacts",
+      "Indigenous-led land stewardship as an institutional capacity model",
+      "The timing mismatch between technological readiness, institution-building, and external land use pressures"
+    ],
+    "calls_to_action": [
+      "Develop a regional agricultural authority with actual research budget and producer governance\u2014not a provincial program delivered to the region, but something with institutional roots in the Cariboo itself",
+      "Use concrete shared operational problems (e.g., multi-year perennial forage trial data needed for transition financing) as recruiting pitches to build producer-governance institutions around precision agriculture data infrastructure and collective equipment ownership",
+      "Implement moratoria or meaningful consultation requirements on large industrial land uses in agricultural zones while regional frameworks are developed\u2014drawing on BC's historical precedent of moving on ALR protections when political pressure is sufficient",
+      "Communities in the Cariboo should recognize they have active stakes in energy infrastructure negotiations (pipeline decisions, etc.) and should engage as participants rather than observers in those land use decisions"
     ]
   }
 }

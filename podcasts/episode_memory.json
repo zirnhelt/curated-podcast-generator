@@ -1,24 +1,4 @@
 {
-  "2026-04-28": {
-    "timestamp": 1777378954.862237,
-    "topics": [
-      "[Quartz] Boeing is losing less money as aircraft deliveries ",
-      "[The Tyee] Salmon Scientists Warn the DFO Is Killing a Cruci",
-      "[Williams Lake Tribune] Compost pile spontaneously combusts ",
-      "[The Tyee] BC\u2019s Protest-Response Team Is Monitoring Treaty N",
-      "[FlowingData] Ethics in the way of scale",
-      "[New Atlas] Tactical zero-wood 4x4 camper pod revels in Cana",
-      "AI",
-      "innovation"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-04-28"
-  },
   "2026-04-29": {
     "timestamp": 1777462622.957924,
     "topics": [
@@ -414,5 +394,25 @@
       "Indigenous tech"
     ],
     "date": "2026-05-18"
+  },
+  "2026-05-19": {
+    "timestamp": 1779196557.289099,
+    "topics": [
+      "[Williams Lake Tribune] Environmental advocates call pipelin",
+      "[Williams Lake Tribune] Wild world record broken by barefoot",
+      "[NYT Business] A Start-Up Aiming to Make Geothermal Energy M",
+      "[ScienceDaily] Scientists just unlocked a cheaper way to mak",
+      "[Hackaday] RS-485 Sprinkler Control: Scaling Irrigation Acro",
+      "[New Atlas] Genetic discovery could change how rice is grown",
+      "[TechRadar] US data centers use enough electricity to power ",
+      "[Tom's Hardware] OpenClaw creator burned through $1.3 millio"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-05-19"
   }
 }
