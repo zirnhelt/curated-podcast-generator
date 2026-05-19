@@ -4250,6 +4250,63 @@ def extract_topics_and_themes(script, news_articles=None, deep_dive_articles=Non
 
     return topics[:8], themes[:4]
 
+
+def _recover_orphaned_episodes(lookback_days=3):
+    """Check the past N days for script files that have no corresponding audio.
+
+    An "orphaned" episode has a podcast_script_YYYY-MM-DD_*.txt but no matching
+    podcast_audio_YYYY-MM-DD_*.mp3. For each orphaned script found, audio generation
+    is attempted. Failures are logged and skipped so they never block today's episode.
+
+    Returns True if at least one audio file was successfully recovered.
+    """
+    pacific_now = get_pacific_now()
+    recovered_any = False
+
+    for days_back in range(1, lookback_days + 1):
+        past_date = pacific_now - timedelta(days=days_back)
+        date_str = past_date.strftime("%Y-%m-%d")
+
+        script_files = list(PODCASTS_DIR.glob(f"podcast_script_{date_str}_*.txt"))
+        if not script_files:
+            continue
+
+        for script_path in script_files:
+            # Derive the canonical audio path directly from the script filename.
+            # e.g. podcast_script_2026-05-19_working_lands_and_industry.txt
+            #   -> podcast_audio_2026-05-19_working_lands_and_industry.mp3
+            slug = script_path.stem.replace("podcast_script_", "", 1)
+            audio_path = PODCASTS_DIR / f"podcast_audio_{slug}.mp3"
+
+            if audio_path.exists():
+                continue
+
+            print(f"⚠️  Orphaned episode detected: {script_path.name} — audio missing")
+            try:
+                script_content = script_path.read_text(encoding="utf-8")
+            except OSError as exc:
+                print(f"   ⚠️  Could not read script, skipping recovery: {exc}")
+                continue
+
+            print(f"   🔄 Attempting recovery for {date_str}...")
+            try:
+                result = generate_audio_from_script(
+                    script_content,
+                    str(audio_path),
+                    theme_name=None,       # ambient lookup falls back gracefully
+                    weekend_closing=None,  # skip Jamendo closing for recovered episodes
+                )
+                if result:
+                    print(f"   ✅ Recovery succeeded: {audio_path.name}")
+                    recovered_any = True
+                else:
+                    print(f"   ⚠️  Recovery failed for {date_str} — will retry next run")
+            except Exception as exc:
+                print(f"   ⚠️  Recovery error for {date_str}: {exc} — skipping")
+
+    return recovered_any
+
+
 def main():
     """Main podcast generation workflow."""
     print("🎙️ Starting Cariboo Tech Progress generation...")
@@ -4286,7 +4343,10 @@ def main():
     if email_newsletters or email_feedback:
         print(f"📧 Email queue: {len(email_newsletters)} newsletter(s), {len(email_feedback)} feedback(s) for today's theme")
     consumed_email_ids = []
-    
+
+    # Recover any past episodes whose script exists but audio was never generated
+    _recover_orphaned_episodes(lookback_days=3)
+
     # Check for existing files (stored in podcasts/ subfolder)
     date_key = pacific_now.strftime("%Y-%m-%d")
     safe_theme = today_theme.replace(" ", "_").replace("&", "and").lower()
