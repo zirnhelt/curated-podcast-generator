@@ -400,10 +400,43 @@ def load_pending_email_items(today_theme: str) -> tuple:
         return [], []
 
 
-def _fetch_url_metadata(url):
-    """Best-effort fetch of title + description from a URL.
+_AUTHOR_META_PATTERNS = [
+    r'<meta[^>]+property=["\']article:author["\'][^>]+content=["\'](.*?)["\']',
+    r'<meta[^>]+name=["\']author["\'][^>]+content=["\'](.*?)["\']',
+    r'<meta[^>]+name=["\']dc\.creator["\'][^>]+content=["\'](.*?)["\']',
+]
 
-    Returns (title, description) strings; either may be empty on failure.
+
+def _extract_author_from_html(html):
+    """Extract author name from HTML meta tags. Returns name string or empty string."""
+    for pattern in _AUTHOR_META_PATTERNS:
+        m = re.search(pattern, html, re.I | re.S)
+        if m:
+            author = m.group(1).strip()
+            if author:
+                return author[:100]
+    return ""
+
+
+def _fetch_article_author(url):
+    """Best-effort fetch of article author from HTML meta tags.
+
+    Returns author name string or empty string on any failure.
+    """
+    if not url:
+        return ""
+    try:
+        resp = requests.get(url, timeout=5, headers={"User-Agent": "Mozilla/5.0"})
+        resp.raise_for_status()
+        return _extract_author_from_html(resp.text)
+    except Exception:
+        return ""
+
+
+def _fetch_url_metadata(url):
+    """Best-effort fetch of title, description, and author from a URL.
+
+    Returns (title, description, author) strings; any may be empty on failure.
     """
     try:
         resp = requests.get(url, timeout=8, headers={"User-Agent": "Mozilla/5.0"})
@@ -428,9 +461,11 @@ def _fetch_url_metadata(url):
             if m:
                 desc = m.group(1).strip()
 
-        return title[:200], desc[:400]
+        author = _extract_author_from_html(html)
+
+        return title[:200], desc[:400], author
     except Exception:
-        return "", ""
+        return "", "", ""
 
 
 def _fetch_article_body(url, brave_key=None):
@@ -595,9 +630,10 @@ def rate_pending_seeds(pending_seeds):
                 text_parts.append(seed.get("content", ""))
             elif seed["type"] == "url":
                 print(f"  🌱 Fetching metadata to rate seed [{seed['id']}]: {seed['url'][:60]}...")
-                title, desc = _fetch_url_metadata(seed["url"])
+                title, desc, author = _fetch_url_metadata(seed["url"])
                 seed["_title"] = title  # cache in-memory for build_seed_article
                 seed["_desc"] = desc
+                seed["_author"] = author
                 text_parts.extend([title, desc])
 
             text = " ".join(text_parts)
@@ -659,9 +695,10 @@ def build_seed_article(seed):
     # Reuse metadata cached during theme rating (same run) when available
     if "_title" in seed and "_desc" in seed:
         title, desc = seed["_title"], seed["_desc"]
+        author = seed.get("_author", "")
     else:
         print(f"  🌱 Fetching metadata for seeded URL: {url[:70]}...")
-        title, desc = _fetch_url_metadata(url)
+        title, desc, author = _fetch_url_metadata(url)
 
     if not title:
         title = url  # last-resort fallback
@@ -681,6 +718,7 @@ def build_seed_article(seed):
         "summary": summary,
         "ai_score": ai_score,
         "authors": [{"name": "Seeded Content"}],
+        "_article_author": author,
         # Pipeline metadata
         "_keyword_matches": 3 if is_high else 2,
         "_boosted_score": ai_score,
@@ -739,7 +777,7 @@ def build_email_newsletter_article(item: dict, url: str) -> dict:
     and normal seeds (82), giving newsletter content good but not dominant
     selection priority.
     """
-    title, desc = _fetch_url_metadata(url)
+    title, desc, author = _fetch_url_metadata(url)
     if not title:
         title = item.get("subject") or url
     return {
@@ -748,6 +786,7 @@ def build_email_newsletter_article(item: dict, url: str) -> dict:
         "summary": desc or item.get("subject", ""),
         "ai_score": 88,
         "authors": [{"name": f"Newsletter: {item.get('from_address', 'unknown')}"}],
+        "_article_author": author,
         "_keyword_matches": 2,
         "_boosted_score": 88,
         "_is_bonus": False,
@@ -2270,16 +2309,28 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
 
     # Add sources — discussed articles first, then additional sources
     # Citations are formatted as HTML list items for podcast apps and RSS readers
-    def _format_citation(article):
-        source_name = article.get('authors', [{}])[0].get('name', 'Unknown Source')
-        article_title = article.get('title', 'Untitled')[:60] + ("..." if len(article.get('title', '')) > 60 else "")
-        url = article.get('url', '')
-        if url:
-            return f'{source_name}: <a href="{url}">{article_title}</a>'
-        return f"{source_name}: {article_title}"
 
     discussed_all = discussed_news[:12] + discussed_deep
     extra_all = extra_news[:12] + extra_deep
+
+    # Enrich cited articles with individual author data (best-effort, feed articles only)
+    for article in discussed_all + extra_all:
+        if not article.get('_article_author') and not article.get('_is_seeded'):
+            article['_article_author'] = _fetch_article_author(article.get('url', ''))
+
+    def _format_citation(article):
+        source_name = article.get('authors', [{}])[0].get('name', 'Unknown Source')
+        author = article.get('_article_author', '')
+        article_title = article.get('title', 'Untitled')[:60] + ("..." if len(article.get('title', '')) > 60 else "")
+        url = article.get('url', '')
+        # Show author only when it's a distinct name (not the same as the publication)
+        if author and author.lower() != source_name.lower():
+            attribution = f"{author} ({source_name})"
+        else:
+            attribution = source_name
+        if url:
+            return f'{attribution}: <a href="{url}">{article_title}</a>'
+        return f"{attribution}: {article_title}"
 
     citations_html = ""
     if discussed_all:
@@ -2455,6 +2506,7 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
             "title": article.get('title', ''),
             "url": article.get('url', ''),
             "source": article.get('authors', [{}])[0].get('name', 'Unknown Source'),
+            "author": article.get('_article_author', ''),
             "ai_score": article.get('ai_score', 0),
             "date_published": article.get('date_published', ''),
             "summary": article.get('summary', '')[:200] + "..." if len(article.get('summary', '')) > 200 else article.get('summary', ''),
