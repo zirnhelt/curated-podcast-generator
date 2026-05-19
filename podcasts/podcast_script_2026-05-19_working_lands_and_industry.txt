@@ -1,0 +1,119 @@
+# Cariboo Signals Podcast Script - 2026-05-19
+# Theme: Working Lands & Industry
+# Generated: 2026-05-19 06:15:57 PDT
+
+**RILEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. It's Tuesday, May 19th, 2026. Reaching you from the heart of the Cariboo, the homeland of the Secwépemc, Tŝilhqot'in, and Dakelh nations. Today's theme is Working Lands & Industry — I'm Riley.
+
+**CASEY:** And I'm Casey. A drizzly one across the region today — fitting weather for talking about whether the resource economy that built this place has any runway left.
+
+**RILEY:** [pause:300] Out at Horsefly Lake we're sitting at 7 degrees, overcast, high of 15 expected. Dense drizzle has settled over Quesnel and Williams Lake, with moderate drizzle in 100 Mile House — if you're driving the highway this morning, take it easy. Let's get into the news.
+
+---
+
+**NEWS ROUNDUP**
+
+**RILEY:** A genetic discovery out of wild rice could fundamentally reshape how farmers grow one of the world's most important staple crops. Scientists have identified a genetic sequence — MIR156BC — that, when reactivated, can make rice behave as a perennial rather than an annual crop. Annual crops require replanting every season, with all the soil disruption, fuel, and labour that entails. A perennial rice plant regrows from the roots, potentially cutting input costs dramatically. The trade-off: early evidence suggests yield reductions compared to conventional annual varieties. For rice farmers globally, the math isn't simple — but for researchers studying perennial grain crops more broadly, this is a significant molecular unlock.
+
+**CASEY:** The yield penalty is the whole ballgame — perennial wheat research has been hitting that wall for decades.
+
+**RILEY:** A geothermal startup has gone public in the US, pitching enhanced geothermal as the next scalable clean energy source. The company is targeting locations without natural geothermal activity by drilling deep and fracturing rock to create heat exchange — essentially building a geothermal resource where none naturally exists. BC has genuine geothermal potential, particularly in the northeast and along volcanic corridors, and this IPO signals investor appetite for baseload clean power alternatives to gas.
+
+**CASEY:** BC's own geothermal potential has been flagged for thirty years without a commercial project getting to the finish line. An IPO south of the border doesn't change our permitting timeline.
+
+**RILEY:** Also on clean energy — researchers have synthesized a platinum-free catalyst for hydrogen production. Platinum is the main cost driver in electrolysis, and removing it from the equation could meaningfully drop the price of green hydrogen. For industrial applications in forestry and mining — equipment fleets, remote power — hydrogen is a credible long-horizon option if the production cost comes down.
+
+**CASEY:** Catalysts that work in a lab and catalysts that survive industrial deployment are different things. We've been two years away from cheap green hydrogen for about fifteen years now.
+
+**CASEY:** On something a rural operator could actually build this season — a Hackaday writeup covers a farmer who extended an RS-485 sprinkler control network across large distances using off-the-shelf industrial components. RS-485 is a wired communication standard that handles long cable runs without signal degradation. The result: scalable automated irrigation across hundreds of metres of field, built for well under what commercial precision ag systems cost.
+
+**RILEY:** Wired beating wireless for reliability in a field environment — somebody finally built the thing instead of just arguing about it.
+
+**CASEY:** From ScienceDaily — AI tools are now being used to map the magnetic behaviour inside electric motors, identifying energy losses that were previously invisible to engineers. Better motor efficiency matters everywhere electric equipment runs — pumps, drive systems, anything on a working property.
+
+**RILEY:** Efficiency gains that don't require replacing the equipment itself are underrated — the capital barrier stays out of the way.
+
+**CASEY:** On energy infrastructure — Texas is in a legal fight over rural data centres. A county passed a one-year ban on data centres in agricultural zones after large AI infrastructure projects started moving to rural areas specifically to avoid urban regulatory scrutiny. A state senator says counties can't legally impose those bans. The conflict isn't resolved. Rural land is cheap, power is available, and urban regulatory appetite doesn't follow the infrastructure out.
+
+**RILEY:** BC has the cheap power and the land. Nobody's written the rules yet, and that window won't stay open.
+
+**RILEY:** Which connects to a Quartz piece on cascading grid outages near AI data centres — facilities drawing hundreds of megawatts can destabilize local distribution grids during peak demand. Rural communities already at the end of transmission lines are more exposed, not less.
+
+**CASEY:** Williams Lake's grid reliability has been a running conversation for years. Add a hyperscale data centre upstream and that gets worse before it gets better.
+
+**RILEY:** Also worth noting today — Baffinland Iron Mines in Nunavut has filed for creditor protection as it weighs strategic alternatives. That's a major Arctic mining operation in financial distress, and a reminder that commodity cycles don't exempt large capital projects. The BC Premier issued a statement on the Alberta-Ottawa pipeline MOU — environmental advocates are calling the deal a betrayal of Canada's climate commitments, per the Williams Lake Tribune. And on a lighter note — a barefoot BC runner has broken a world record. Details were sparse, but the commitment is unimpeachable.
+
+**CASEY:** [pause:200] We all contain multitudes.
+
+**RILEY:** Coming up after this — we're shining a light on an organization that turns the Cariboo's working landscape into a destination.
+
+---
+
+**COMMUNITY SPOTLIGHT**
+
+**CASEY:** The Cariboo Chilcotin Coast Tourism Association — they go by the tagline "Land Without Limits," which, if you've driven the Chilcotin Plateau, you understand immediately. This is the regional destination marketing organization covering the full sweep of the Cariboo, Chilcotin, and Coast, supporting the rural businesses and guides and outfitters and ranchers who help visitors experience this place on its own terms. They're not selling a theme park — they're connecting people to working landscapes, Indigenous cultural experiences, and outdoor country that's genuinely hard to find anywhere else. If you're a rural operator thinking about tourism as a revenue stream, they're worth a conversation. Find them at landwithoutlimits.com.
+
+**RILEY:** Tourism built on authentic working landscapes is one of the few diversification paths that actually reinforces what makes this region worth protecting.
+
+**CASEY:** And with that, into the deep end.
+
+---
+
+**DEEP DIVE: CARIBOO CONNECTIONS — Working Lands & Industry**
+
+**RILEY:** The perennial rice story from today's roundup kicked off something I've been sitting with. The science is real — a genetic sequence that lets a cultivated crop regrow from its roots rather than requiring annual replanting. But the researchers are upfront: there's a yield penalty. And that trade-off — lower input costs, potentially higher ecological benefit, but reduced output — is exactly the dilemma facing working lands right now across the board. Not just in rice paddies in Southeast Asia. The question I want to dig into is whether the working landscape of the Cariboo is actually positioned to benefit from this generation of agricultural and land-use innovation, or whether the economic structure of these operations makes adoption functionally impossible regardless of how good the science gets.
+
+**CASEY:** The perennial grain framing exposes something the precision agriculture conversation usually glosses over. The yield penalty in perennial rice is real — researchers are honest about it, even if the long-term soil health math might eventually offset it. Cattlemen in the Cariboo face an analogous version of this every time someone pitches rotational grazing intensification or cover cropping on hay ground. The ecological upside is documented. The transition costs and short-term productivity hit are real. And most of these operations don't have two or three lean years of runway to absorb a transition.
+
+**RILEY:** That's the margin problem. But it's worth separating what's structurally impossible from what's just currently unfunded. Perennial forage systems, perennial ryegrass, intermediate wheatgrass breeding programs — those are already in use across parts of the Interior. Kernza, the perennial wheatgrass developed through the Land Institute in Kansas, has had Canadian trial plots. The yield gap is real but it's closing. And the input cost reduction — one less tillage pass per season, less diesel, less soil compaction — compounds over years.
+
+**CASEY:** Kernza trial data from plots in the Canadian prairies shows average commercial yield still well below parity with annual wheat. That gap matters when your lender's operating loan is calibrated to annual crop yields. Show them a ten-year ecological return model and they'll show you next February's payment.
+
+**RILEY:** The lender problem is a financing design problem, not an agricultural problem. Crop insurance and lending products built around transition periods exist in some jurisdictions — some US states have done this for perennial specialty crops. BC's agricultural financing programs don't currently have transition financing for perennial systems, but that's a policy gap, not a physical constraint.
+
+**CASEY:** Perennial specialty crops in those jurisdictions operate in a different revenue environment than Cariboo hay and cattle. The per-acre income ceiling is higher. The policy fix that works there flatters the comparison when you apply it here.
+
+**RILEY:** [pause:300] The actual structural question isn't whether Cariboo producers should plant Kernza tomorrow. It's whether the innovation pipeline — the genetic discoveries, the precision input tools, the irrigation automation we saw in the RS-485 story — is being shaped by the needs of operations like these, or whether it's being developed for large-scale grain agriculture in the US Midwest and handed down as an afterthought.
+
+**CASEY:** Clearly the latter. The perennial rice research is coming out of institutions focused on global food security for the billion-plus people who depend on rice as a primary calorie source. Legitimate priority. But it means the agronomic research agenda isn't being set in Williams Lake or Alexis Creek — it's being set by the funding priorities of international agricultural research centres and large commodity crop programs.
+
+**RILEY:** Which is why regional research capacity matters. The consistent gap is that there's no research and extension capacity anchored in the Cariboo. The Cariboo Cattlemen's Association does advocacy work. There's no Cariboo Agricultural Research Station running multi-year trials on perennial forage systems under the specific climate and soil conditions between Cache Creek and Prince George.
+
+**CASEY:** Accurate, and it's been accurate for a long time. The Interior's agricultural research infrastructure got rationalized — euphemism for cut — through multiple provincial budget cycles. What remains is scattered and serves the wine grape and tree fruit sector disproportionately because that's where the commercial pressure is.
+
+**RILEY:** So the data centre land use story from the roundup actually connects here. Texas counties are fighting over whether AI infrastructure companies can plant gigawatt-scale facilities in agricultural zones. BC has cheap hydroelectric power, the land, and almost no regulatory architecture for this use case. The ALR doesn't cover Crown range land, and existing rural zoning in most Cariboo-Chilcotin regional districts wasn't written with hyperscale data centres in mind.
+
+**CASEY:** Real gap. And the Texas pattern is instructive precisely because of the grid instability issue. The Quartz piece on cascading outages near data centres isn't hypothetical — large industrial loads on already-stressed rural distribution infrastructure create reliability problems for everyone else on the circuit. A cattle operation with an automated watering system, a hay dryer, a farm gate store walk-in cooler — all of those are affected by grid events caused by something that has nothing to do with agriculture.
+
+**RILEY:** The counterargument the data centre industry makes — and it has some validity — is that large anchor loads can attract grid investment that benefits the whole region. If an operator pays for a transmission upgrade to get reliable power, the excess capacity serves agricultural and forestry users too. That's happened in some rural deployments.
+
+**CASEY:** It's happened when the data centre was locked into a long-term power purchase agreement that made the grid investment pencil out. When the operator is chasing the lowest power cost and will relocate if a cheaper market opens up, the anchor doesn't stay. The grid upgrade argument assumes permanence the contracts don't always guarantee.
+
+**RILEY:** [pause:400] The contractual structure question is solvable — but you're right that it requires a regional government with enough sophistication to negotiate it. Most Cariboo-Chilcotin electoral area directors are volunteers managing massive geographic jurisdictions without legal staff.
+
+**CASEY:** The Cariboo Regional District covers an area larger than many European countries. The staff capacity to negotiate a data centre power agreement that protects agricultural grid reliability is not currently there. And I'd add: that's not a knock on the people doing that work. It's a structural resource problem.
+
+**RILEY:** So you end up with the same gap from a completely different direction. Whether you're talking about agricultural research investment, perennial crop transition financing, or data centre land use governance — the Cariboo's institutional capacity to shape what happens to its own landscape is thin relative to the scale of what's being proposed or decided from outside.
+
+**CASEY:** And this is where I'd push on a framing that comes up a lot — the idea that the right technology, adopted at the right moment, solves the capacity problem. The RS-485 irrigation system is genuinely elegant. A producer who builds it has real operational advantages. But that producer still faces the same operating loan terms, the same Crown tenure insecurity, the same absence of regional research extension support as before. Farm-level technology adoption doesn't aggregate into institutional capacity.
+
+**RILEY:** Agreed on that. But the conclusion isn't that institutional capacity has to fully precede everything. The Williams Lake First Nation's agricultural land program, the range management work that Secwépemc communities have been doing on their traditional territories — those are cases where Indigenous-led land stewardship has built institutional capacity partly through the practice of doing the work, not by waiting for the governance architecture to be complete first. The Xatśūll First Nation has been developing land and resource management capacity specifically because they decided not to wait for provincial systems to catch up.
+
+**CASEY:** Real examples. And instructive about the model — Nation-driven, long-term horizon, not dependent on provincial grant cycles. But those are communities with specific governance structures and territorial relationships to the land built over generations. The model doesn't transfer automatically to non-Indigenous producers dealing with entirely different tenure and financing relationships. Pointing at it as a template risks glossing over why it worked.
+
+**RILEY:** Not a template — a proof of concept for what regionally-rooted institutional capacity looks like when it actually functions. The question is whether there's a mechanism for that kind of capacity to develop around working lands more broadly. A regional agricultural authority with actual research budget and producer governance. Not a provincial program delivered to the region — something with roots here.
+
+**CASEY:** The historical precedents for that kind of institution in BC agricultural regions are mixed. The ones that have lasted had both provincial support and a critical mass of producer buy-in from the start. The Cariboo's agricultural sector is fragmented across cattle, hay, some grain, small-scale diversified operations. Organizing that into a coherent governance structure is genuinely hard, and I'll say plainly: the political will isn't obviously there.
+
+**RILEY:** Political will might be the wrong entry point. Producer organizations don't typically start with political will — they start with a shared operational problem nobody can solve individually. Precision ag data infrastructure, collective equipment ownership — those are potential organizing catalysts. If Cariboo cattle producers collectively needed multi-year perennial forage trial data to make transition financing work, that's a concrete shared problem that could anchor a producer-governance institution.
+
+**CASEY:** [pause:350] That resequences how I've been thinking about it. Not "build the institution, then solve the problems" — but the unsolved problems are the recruitment pitch for the institution. I'll take that. What still doesn't close for me is time. Perennial grain research timelines, institution-building timelines, and the pace at which land use pressure from data centres and pipeline infrastructure is arriving — those are on different clocks. The innovation might be ready in ten years. The governance capacity might be ready in fifteen. The land use decisions are being made now.
+
+**RILEY:** Which is the argument for interim measures with teeth. Moratoria or meaningful consultation requirements on large industrial land uses in agricultural zones while regional frameworks are developed. BC's provincial government has moved on ALR protections before when the political pressure was sufficient. The pipeline MOU controversy in today's news is a reminder that those battles are live — and that communities in the Cariboo have a stake in how that energy infrastructure calculus gets made, not just as observers.
+
+**CASEY:** A moratorium without enforcement capacity is a press release. And the communities with the most at stake — the Nations managing range land, the small producers on Crown tenure — have the least leverage in those negotiations. That asymmetry doesn't get fixed by writing a policy.
+
+**RILEY:** The science is advancing. The tools are getting cheaper. The agronomic options for working lands are genuinely expanding — and some of that is arriving faster than anyone expected five years ago. The gap is that institutional capacity to translate any of that into durable benefit for Cariboo producers and communities is lagging in ways that aren't primarily technological problems. I think that gap is closable. The sequencing just has to start with the problems, not the org chart.
+
+**CASEY:** The drizzle will let up eventually. Whether the governance architecture arrives before the next wave of land use pressure — I'm less convinced the timing works out.
+
+**RILEY:** We'd love to hear your thoughts — send us an email at feedback at cariboo signals dot c-a. Have a great rest of your Tuesday.

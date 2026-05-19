@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] 'I snap them up' \u2014 award-winning wildlife photog",
       "[TechRadar] 'We\u2019re not selling and we\u2019re not giving way': Lo",
       "[TechRadar] 'Help cattle producers hold onto their land and ",
       "Indigenous knowledge can improve AI models to manage fires, ",
@@ -10,7 +9,8 @@
       "[TechRadar] 'Podslop' is a real and growing problem \u2014 data s",
       "[New Atlas] Startup harnesses the power of AI in the ongoing",
       "[TechCrunch] Wirestock raises $23M to supply creative multi-",
-      "[Neowin] Spotify will soon support Apple's technology to ope"
+      "[Neowin] Spotify will soon support Apple's technology to ope",
+      "[TechRadar] US data centers use enough electricity to power "
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -115,14 +115,14 @@
         "occurrences": 2
       },
       {
-        "date": "2026-05-17",
-        "clue": "tech-optimism:~ \u2014 Acknowledged endowment model as governance problem, not just technical solution",
-        "occurrences": 1
+        "date": "2026-05-19",
+        "clue": "tech-optimism:~ \u2014 Acknowledged innovation pipeline shaped by external priorities, not local need",
+        "occurrences": 2
       },
       {
-        "date": "2026-05-18",
-        "clue": "structural-lens:+ \u2014 shifted from design solution to political economy argument",
-        "occurrences": 1
+        "date": "2026-05-19",
+        "clue": "structural-lens:+ \u2014 Shifted from technology-as-solution to institutional capacity as primary gap",
+        "occurrences": 2
       }
     ],
     "core_memories": [
@@ -259,11 +259,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-11",
-        "clue": "pilot-skepticism:x \u2014 Conceded Mukurtu model actually solves visibility/control tension",
-        "occurrences": 2
-      },
-      {
         "date": "2026-05-09",
         "clue": "evidence-bar:+ \u2014 Elevated scrutiny of Indigenous-led operations, demanding multi-season proof over good-faith direction",
         "occurrences": 1
@@ -274,9 +269,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-14",
-        "clue": "funding-risk:+ \u2014 Hardened position on underfunding as operational reality, not solvable",
-        "occurrences": 1
+        "date": "2026-05-19",
+        "clue": "funding-risk:+ \u2014 Deepened concern about timing misalignment between innovation and land-use pressure arrival",
+        "occurrences": 2
       },
       {
         "date": "2026-05-16",
