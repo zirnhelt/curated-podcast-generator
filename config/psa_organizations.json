@@ -105,7 +105,7 @@
       "name": "Station House Gallery",
       "short_name": "Station House Gallery",
       "description": "Williams Lake's primary visual arts gallery showcasing regional artists",
-      "website": null,
+      "website": "stationhousegallery.com",
       "weekdays": [
         0
       ],
@@ -119,7 +119,7 @@
       "name": "Museum of the Cariboo Chilcotin",
       "short_name": "Cariboo Museum",
       "description": "Regional history museum and home of the BC Cowboy Hall of Fame",
-      "website": null,
+      "website": "cowboy-museum.com",
       "weekdays": [
         0
       ],
@@ -159,9 +159,9 @@
       ]
     },
     "ccatec": {
-      "name": "Carrier Chilcotin Aboriginal Training & Employment Centre",
+      "name": "Cariboo Chilcotin Aboriginal Training Employment Centre",
       "short_name": "CCATEC",
-      "description": "Workforce development and employment training across Carrier, Chilcotin, and Secwépemc nations",
+      "description": "Workforce development and employment training for First Nations across the Cariboo Chilcotin region, connecting Indigenous job seekers with labour-market-driven training opportunities",
       "website": "ccatec.com",
       "weekdays": [
         3
@@ -336,7 +336,7 @@
       "name": "Cariboo Regional District Library",
       "short_name": "Cariboo Library",
       "description": "Public library system serving the Cariboo region with branches in Williams Lake, Quesnel, 100 Mile House and more — free internet access, digital literacy programs, and community gathering spaces",
-      "website": "crdl.bc.ca",
+      "website": "cln.ca",
       "weekdays": [
         0,
         2
@@ -351,7 +351,7 @@
     "boys-girls-club-wl": {
       "name": "Boys and Girls Club of Williams Lake",
       "short_name": "Boys & Girls Club",
-      "description": "After-school programs, summer camps, and youth mentorship serving Williams Lake families since 1973",
+      "description": "After-school programs, summer camps, and youth mentorship serving Williams Lake families since 1994 — low-to-no-cost programs open to all kids and teens",
       "website": "bgcwilliamslake.com",
       "weekdays": [
         2
@@ -360,21 +360,6 @@
         "youth",
         "mentorship",
         "after-school programs"
-      ]
-    },
-    "habitat-for-humanity-cariboo": {
-      "name": "Habitat for Humanity Cariboo",
-      "short_name": "Habitat Cariboo",
-      "description": "Building affordable homes in the Cariboo and operating the ReStore — diverting building materials from landfill while funding housing",
-      "website": "habitatcariboo.org",
-      "weekdays": [
-        6
-      ],
-      "tags": [
-        "housing",
-        "affordable housing",
-        "volunteer",
-        "sustainability"
       ]
     },
     "wl-food-policy-council": {
@@ -405,20 +390,6 @@
         "tourism",
         "outdoor recreation",
         "economic development"
-      ]
-    },
-    "wl-women-centre": {
-      "name": "Williams Lake Women's Centre",
-      "short_name": "WL Women's Centre",
-      "description": "Support services for women and families including crisis intervention, advocacy, and community programming in Williams Lake",
-      "website": null,
-      "weekdays": [
-        5
-      ],
-      "tags": [
-        "women's services",
-        "crisis support",
-        "advocacy"
       ]
     },
     "quesnel-community-foundation": {
