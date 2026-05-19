@@ -316,6 +316,8 @@ SEEDS_FILE = PODCASTS_DIR / "content_seeds.json"
 EMAIL_QUEUE_FILE = PODCASTS_DIR / "email_queue.json"
 # Newsletter bodies below this length are treated as URL-only → Brave enrichment
 EMAIL_BODY_MIN_CHARS = 300
+# News articles with less body text than this are treated as sparse; Brave is tried before skipping
+NEWS_BODY_MIN_CHARS = 150
 MEMORY_RETENTION_DAYS = 21
 DEBATE_MEMORY_RETENTION_DAYS = 90
 CTA_MEMORY_RETENTION_DAYS = 365
@@ -1162,6 +1164,52 @@ def enrich_deep_dive_with_brave(deep_dive_articles, theme_name, client):
         + "\n".join(lines)
         + "\n\n"
     )
+
+
+def _filter_sparse_news_articles(articles: list) -> list:
+    """Remove news articles without sufficient body text after trying Brave enrichment.
+
+    Articles that can't be enriched are dropped so Claude doesn't broadcast a
+    story it can only describe in a single headline.  A title-based Brave search
+    is attempted first so articles that were paywalled or JS-rendered still get a
+    chance at real content before being cut.
+    """
+    brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
+    kept, skipped = [], []
+
+    for a in articles:
+        body = a.get("_body", "") or ""
+        if len(body) >= NEWS_BODY_MIN_CHARS:
+            kept.append(a)
+            continue
+
+        title = a.get("title", "")
+        if brave_key and title:
+            results = _brave_search(title, brave_key, count=3)
+            best = max(
+                (r for r in results if len(r.get("description", "")) >= NEWS_BODY_MIN_CHARS),
+                key=lambda r: len(r.get("description", "")),
+                default=None,
+            )
+            if best:
+                a["_body"] = best["description"]
+                print(f"  🔎 Brave-enriched sparse article: \"{title[:60]}\"")
+                kept.append(a)
+                continue
+
+        skipped.append(title)
+
+    if skipped:
+        print(f"  ⏭️  Skipping {len(skipped)} sparse article(s) with no retrievable detail:")
+        for t in skipped:
+            print(f"     - {t[:80]}")
+
+    # Safety floor: never drop the list below 3 articles
+    if len(kept) < 3 and skipped:
+        print("  ⚠️  Too few articles after sparse filter — restoring full list")
+        return articles
+
+    return kept
 
 
 # ---------------------------------------------------------------------------
@@ -4507,7 +4555,8 @@ def main():
         # Fetch article body text so Claude has real content to work from,
         # not just headlines and meta-description snippets.
         _enrich_articles_with_body(deep_dive_articles, label="deep dive")
-        _enrich_articles_with_body(news_articles, label="news roundup", max_articles=6)
+        _enrich_articles_with_body(news_articles, label="news roundup", max_articles=20)
+        news_articles = _filter_sparse_news_articles(news_articles)
 
         # Conditionally enrich deep dive with Brave Search (fact-checking + story shaping)
         brave_client = get_anthropic_client()
