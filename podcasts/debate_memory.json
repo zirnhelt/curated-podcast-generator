@@ -1873,5 +1873,38 @@
       "Implement moratoria or meaningful consultation requirements on large industrial land uses in agricultural zones while regional frameworks are developed\u2014drawing on BC's historical precedent of moving on ALR protections when political pressure is sufficient",
       "Communities in the Cariboo should recognize they have active stakes in energy infrastructure negotiations (pipeline decisions, etc.) and should engage as participants rather than observers in those land use decisions"
     ]
+  },
+  "2026-05-20": {
+    "timestamp": 1779280960.798981,
+    "date": "2026-05-20",
+    "theme": "Gear, Gadgets & Practical Tech",
+    "central_question": "In geographically isolated rural regions like the Cariboo, what combination of technology, maintenance practices, and community infrastructure actually enables sustainable self-sufficiency and emergency preparedness?",
+    "riley_position": "Emergency and fabrication technology only delivers value when embedded in sustained community institutions and when users understand the real maintenance and skill requirements\u2014not through product marketing claims or one-off workshops, but through structured, ongoing programs modeled on proven institutional models.",
+    "riley_key_evidence": [
+      "ChargeTab teardown showed single-use emergency chargers degrade in heat faster than shelf life suggests, making them unreliable when needed most",
+      "The Boys and Girls Club's 30+ years of consistent programming demonstrates that unglamorous, sustained institutional work\u2014not product launches\u2014actually shapes community capacity",
+      "Secw\u00e9pemc and T\u015dilhqot'in nations building technical capacity most effectively have embedded it in existing governance structures rather than as standalone projects"
+    ],
+    "casey_position": "The accessibility gap between 'technically possible' and 'accessible to people who need it most' is the real problem, and individual skill-building initiatives collapse without institutional structures that persist beyond key people leaving or burning out.",
+    "casey_key_evidence": [
+      "ESP32 microcontroller projects assume comfort with soldering and Arduino IDE\u2014a weekend frustration and burned-out board for non-experts, not true accessibility",
+      "Bambu Lab's proprietary firmware lock-in poses direct costs to small fabrication operators in rural areas where there is no Plan B or alternative maker space",
+      "Knowledge transfer works until the person who knows the trick leaves\u2014sustaining capability requires structure, not just individual expertise"
+    ],
+    "resolution": "Riley and Casey converged on the conclusion that technology infrastructure in rural communities requires both sustained institutional commitment (modeled on successful long-term programs like the Boys and Girls Club) and embedding technical programming within existing community structures rather than launching separate initiatives. They agreed the human infrastructure supporting tools matters as much as the tools themselves.",
+    "topics_covered": [
+      "Emergency preparedness technology: single-use vs. maintained rechargeable devices and their real-world reliability in rural heat conditions",
+      "3D printing, ESP32 microcontrollers, and open-source fabrication as accessibility tools with real skill and infrastructure barriers",
+      "Proprietary vs. open-source firmware lock-in (Bambu Lab case study) and its disproportionate impact on geographically isolated small operators",
+      "Institutional sustainability of technical skill-building programs and knowledge transfer in communities with high population turnover",
+      "Data sovereignty and community control over fabrication tools in Indigenous and rural contexts"
+    ],
+    "calls_to_action": [
+      "If buying fabrication tools for a community or organization, audit the firmware policy before the specs to avoid proprietary lock-in that becomes a problem in five years when company priorities shift.",
+      "Community organizations thinking about technical programming should design for a sustainable five-year version with sustained funding and institutional embedding, not a one-time launch event.",
+      "Anyone with old devices collecting dust should explore the laptop screen project and old phone-as-offline-GPS use case\u2014these solve real Cariboo problems (dead zones) using what people already have.",
+      "A community workshop can teach offline phone mapping and other device reuse tricks in an afternoon, but embed it in existing structures (like the library or school district) rather than launching it as a separate initiative to ensure persistence.",
+      "Individuals in isolated areas should maintain a small 10,000\u201320,000 mAh power bank cycled every few months rather than relying on single-use emergency chargers that degrade in vehicle heat."
+    ]
   }
 }
