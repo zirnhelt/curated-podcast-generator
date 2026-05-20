@@ -1294,6 +1294,31 @@
       "theme_day": 3,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "71c47a85",
+      "type": "newsletter",
+      "message_id": "<4a26d9d3-6e1d-47bc-b451-d2aee1fb93c9@mtasv.net>",
+      "from_address": "n***@animikii.com",
+      "subject": "Technology shouldn't sacrifice the integrity of knowledge",
+      "received_at": "2026-05-20T19:07:35+00:00",
+      "body_text": "![A graphic illustration of an urban roof top patio with flowers and plants blooming in a variety or pots along the edge. A woman in a purple top and pink pants holds a water can as the rising sun ill",
+      "extracted_urls": [
+        "https://assets.buttondown.email/images/32f798c1-fd59-4ab4-9e61-8fb9d6e26c58.jpg?w=960&fit=max",
+        "https://bcbusiness.ca/business/tech-science/web-summit-vancouver-2026-takeaways/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=technology-shouldnt-sacrifice-knowleddge",
+        "https://www.einpresswire.com/article/913357218/seattle-university-school-of-law-hosts-conference-on-indigenous-perspectives-on-ai?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=technology-shouldnt-sacrifice-knowleddge",
+        "https://news.uoguelph.ca/2026/05/spend-time-on-the-land-indigenous-stewardship-practices-critical-for-conservation/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=technology-shouldnt-sacrifice-knowleddge",
+        "https://assets.buttondown.email/images/01962765-4bc3-4d58-ad8e-35ce5ac1a1c1.png?w=960&amp;fit=max",
+        "https://news.uvic.ca/2026/reclaiming-hesquiaht-word-by-word/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=technology-shouldnt-sacrifice-knowleddge",
+        "https://animikii.com/services?utm_source=newsriver&amp;amp;utm_medium=email&amp;amp;utm_campaign=technology-shouldnt-sacrifice-knowleddge",
+        "https://indiginews.com/news/introducing-our-2026-refocus-photojournalism-fellows/?utm_source=newsriver&utm_medium=email&utm_campaign=technology-shouldnt-sacrifice-knowleddge",
+        "https://www.ualberta.ca/en/the-quad/2026/05/in-photos-indigenous-engaged-research-symposium.html?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=technology-shouldnt-sacrifice-knowleddge",
+        "https://www.umu.se/en/news/digital-strategies-by-indigenous-people-in-brazil_12174082/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=technology-shouldnt-sacrifice-knowleddge"
+      ],
+      "theme_tag": "Indigenous Lands & Innovation",
+      "theme_day": 3,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
