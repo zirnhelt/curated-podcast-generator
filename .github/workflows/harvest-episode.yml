@@ -79,6 +79,10 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          gh label create "episode-harvest" \
+            --color "0075ca" \
+            --description "Deep dive takeaways and action items" \
+            2>/dev/null || true
           EPISODE_DATE="${{ steps.report.outputs.episode_date }}"
           gh issue create \
             --title "Episode Harvest — $EPISODE_DATE" \
