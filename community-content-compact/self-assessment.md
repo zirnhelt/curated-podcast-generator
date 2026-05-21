@@ -29,53 +29,49 @@ Cariboo Signals qualifies for **Track A — Community-Insider Production** on al
 
 ## Scored Assessment
 
-|Category                        |Score |Max   |Notes                                                                                                                                       |
-|--------------------------------|------|------|--------------------------------------------------------------------------------------------------------------------------------------------|
-|I. Transparency                 |      |      |                                                                                                                                            |
-|  T1 Producer Disclosure        |1     |2     |Producer named; community connection not formally stated anywhere in the project                                                            |
-|  T2 Process Disclosure         |2     |2     |Full methodology documented in repo                                                                                                         |
-|II. Source Integrity            |      |      |                                                                                                                                            |
-|  S1 Source Documentation       |2     |2     |Per-episode citation JSON; sources credited                                                                                                 |
-|  S2 Credit                     |1     |1     |Clear credit given; compensation not expected at this scale                                                                                 |
-|III. Displacement               |      |      |                                                                                                                                            |
-|  D1 Existing Creator Assessment|2     |2     |Confirmed gap — no equivalent Cariboo-focused daily audio digest exists                                                                     |
-|IV. Consent & Attribution       |      |      |                                                                                                                                            |
-|  C1 Consent Mechanism          |1     |2     |PSA organizations are real entities being represented — N/A does not apply. Some orgs notified, others not; no consistent process documented|
-|  C2 Living Person Protection   |1     |2     |Informal care taken; no documented policy                                                                                                   |
-|V. Benefit Flow                 |      |      |                                                                                                                                            |
-|  B1 Output Ownership           |2     |2     |Fully owned by producer                                                                                                                     |
-|  B2 Audience Relationship      |1     |2     |Distribution via Apple/Spotify — no direct subscriber list yet                                                                              |
-|  B3 Archive                    |1     |1     |Episode archive on GitHub under producer control                                                                                            |
-|VI. Accountability              |      |      |                                                                                                                                            |
-|  A1 Feedback Mechanism         |1     |2     |GitHub Issues exist; no formal corrections policy or documented response process                                                            |
-|**Total**                       |**15**|**20**|                                                                                                                                            |
+|Category                        |Score |Max   |Notes                                                                                                                                                    |
+|--------------------------------|------|------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+|I. Transparency                 |      |      |                                                                                                                                                         |
+|  T1 Producer Disclosure        |2     |2     |Producer and community connection stated on website and in podcast.json: Erich Zirnhelt, Horsefly, BC (Secwépemc territory)                              |
+|  T2 Process Disclosure         |2     |2     |Full methodology documented in repo                                                                                                                      |
+|II. Source Integrity            |      |      |                                                                                                                                                         |
+|  S1 Source Documentation       |2     |2     |Per-episode citation JSON; sources credited                                                                                                              |
+|  S2 Credit                     |1     |1     |Clear credit given; compensation not expected at this scale                                                                                              |
+|III. Displacement               |      |      |                                                                                                                                                         |
+|  D1 Existing Creator Assessment|2     |2     |Confirmed gap — no equivalent Cariboo-focused daily audio digest exists                                                                                  |
+|IV. Consent & Attribution       |      |      |                                                                                                                                                         |
+|  C1 Consent Mechanism          |2     |2     |PSA policy published at docs/psa-policy.md; notification process documented; opt-out mechanism established                                               |
+|  C2 Living Person Protection   |1     |2     |Informal care taken; no documented policy                                                                                                                |
+|V. Benefit Flow                 |      |      |                                                                                                                                                         |
+|  B1 Output Ownership           |2     |2     |Fully owned by producer                                                                                                                                  |
+|  B2 Audience Relationship      |1     |2     |Distribution via Apple/Spotify — no direct subscriber list yet                                                                                           |
+|  B3 Archive                    |1     |1     |Episode archive on GitHub under producer control                                                                                                         |
+|VI. Accountability              |      |      |                                                                                                                                                         |
+|  A1 Feedback Mechanism         |2     |2     |Corrections policy published at docs/corrections-policy.md; submission process, handling timeline, and on-air correction commitment documented            |
+|**Total**                       |**18**|**20**|                                                                                                                                                         |
 
 -----
 
 ## Verdict
 
-**Sound (12–16 / Track A)**
+**Exemplary (17–20 / Track A)**
 
-Core accountability conditions are met. The project is transparent about its AI-generated nature, fills a confirmed community gap, owns its outputs and archive, and credits its sources. Named gaps are worth addressing over time.
+Strong practice across all conditions relevant to this scale of production. The project is transparent about its AI-generated nature and producer identity, fills a confirmed community gap, owns its outputs and archive, credits its sources, has documented consent and correction processes, and has a clear feedback mechanism. One remaining gap: direct subscriber list independent of Apple/Spotify (B2).
 
 -----
 
 ## Continuous Improvement Path
 
-The following items would move the score from Sound toward Exemplary, sequenced by effort.
+**Completed**
 
-**Low effort**
+- ✓ Producer community connection stated on website and `podcast.json` (T1: 1→2)
+- ✓ PSA selection and notification policy published at `docs/psa-policy.md` (C1: 1→2)
+- ✓ Corrections policy published at `docs/corrections-policy.md` (A1: 1→2)
 
-- Add a producer community connection statement to the website and `podcast.json` — moves T1 from 1→2
-- Publish a PSA/partner selection and notification policy in `docs/` — moves C1 from 1→2
-- Add a corrections policy (how to submit, how handled, commitment to note in subsequent episodes) — moves A1 from 1→2
+**Remaining**
 
-**Medium effort**
-
-- Add a direct email subscription option alongside Apple/Spotify — moves B2 from 1→2
-- Add a "How we're made" funding disclosure page or section — relevant to Track B T3 if the project ever crosses into that territory
-
-**Result if low-effort items complete:** 18/20 — Exemplary
+- Add a direct email subscription option alongside Apple/Spotify — moves B2 from 1→2, reaching a perfect 20/20
+- Add a "How we're made" funding disclosure page — relevant to Track B T3 if the project ever crosses into that territory
 
 -----
 

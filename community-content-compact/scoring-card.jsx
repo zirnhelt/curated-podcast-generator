@@ -1,5 +1,97 @@
 import { useState, useMemo } from "react";
 
+// ---------------------------------------------------------------------------
+// CaribooSignalsCard — static pre-filled card, no interactive tabs
+// 18/20 Exemplary (Track A) as of May 2026
+// ---------------------------------------------------------------------------
+
+const CS_SCORES = { i: 4, ii: 3, iii: 2, iv: 3, v: 4, vi: 2 };
+const CS_TOTAL  = 18;
+const CS_MAX    = 20;
+const CS_PCT    = Math.round((CS_TOTAL / CS_MAX) * 100);
+const CS_COLOR  = "#145530";
+
+export function CaribooSignalsCard() {
+  const cats = [
+    { id: "i",   label: "Transparency",         max: 4 },
+    { id: "ii",  label: "Source Integrity",      max: 3 },
+    { id: "iii", label: "Displacement",          max: 2 },
+    { id: "iv",  label: "Consent & Attribution", max: 4 },
+    { id: "v",   label: "Benefit Flow",          max: 5 },
+    { id: "vi",  label: "Accountability",        max: 2 },
+  ];
+
+  return (
+    <div style={{ fontFamily: "Arial, Helvetica, sans-serif", width: 290, background: "white", border: "3px solid #1a1a1a" }}>
+      <div style={{ padding: "6px 10px 5px", borderBottom: "9px solid #1a1a1a" }}>
+        <div style={{ fontSize: 28, fontWeight: 900, color: "#1a1a1a", lineHeight: 1, letterSpacing: "-0.02em" }}>Content</div>
+        <div style={{ fontSize: 28, fontWeight: 900, color: "#1a1a1a", lineHeight: 1, letterSpacing: "-0.02em" }}>Accountability</div>
+        <div style={{ fontSize: 28, fontWeight: 900, color: "#1a1a1a", lineHeight: 1, letterSpacing: "-0.02em" }}>Facts</div>
+        <div style={{ fontSize: 9, fontWeight: 700, color: "#666", letterSpacing: "0.03em", marginTop: 2 }}>The Community Content Compact</div>
+      </div>
+
+      <div style={{ padding: "4px 10px", borderBottom: "4px solid #1a1a1a" }}>
+        <div style={{ fontSize: 8, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#999" }}>Content</div>
+        <div style={{ fontSize: 13, fontWeight: 700, color: "#1a1a1a", lineHeight: 1.25, marginTop: 1 }}>Cariboo Signals</div>
+        <div style={{ fontSize: 10, color: "#777" }}>Erich Zirnhelt · Horsefly, BC</div>
+      </div>
+
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "3px 10px", borderBottom: "1px solid #e8e4de" }}>
+        <span style={{ fontSize: 9, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", color: "#999" }}>Track</span>
+        <span style={{ fontSize: 10, fontWeight: 700, color: "#1a1a1a" }}>Track A — Community-Insider</span>
+      </div>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "3px 10px", borderBottom: "none" }}>
+        <span style={{ fontSize: 9, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", color: "#999" }}>Disqualifiers</span>
+        <span style={{ fontSize: 10, fontWeight: 700, color: "#1e6e40" }}>CLEAR</span>
+      </div>
+
+      <div style={{ height: 4, background: "#1a1a1a" }} />
+
+      <div style={{ display: "flex", justifyContent: "space-between", background: "#1a1a1a", padding: "3px 10px" }}>
+        <span style={{ fontSize: 8, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", color: "white" }}>Category</span>
+        <span style={{ fontSize: 8, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", color: "white" }}>Score</span>
+      </div>
+
+      {cats.map((cat) => {
+        const s = CS_SCORES[cat.id];
+        return (
+          <div key={cat.id} style={{ display: "flex", alignItems: "center", padding: "4px 10px", borderBottom: "1px solid #f0ece6", gap: 6 }}>
+            <span style={{ fontSize: 10, color: "#1a1a1a", fontWeight: 500, flex: 1 }}>{cat.label}</span>
+            <div style={{ width: 64, height: 5, background: "#e8e4de", borderRadius: 2, flexShrink: 0, overflow: "hidden" }}>
+              <div style={{ width: `${(s / cat.max) * 100}%`, height: "100%", borderRadius: 2, background: "#1a1a1a" }} />
+            </div>
+            <span style={{ fontSize: 9, fontWeight: 700, color: "#1a1a1a", width: 28, textAlign: "right" }}>{s}/{cat.max}</span>
+          </div>
+        );
+      })}
+
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", padding: "5px 10px", borderTop: "5px solid #1a1a1a", borderBottom: "1px solid #1a1a1a" }}>
+        <span style={{ fontSize: 13, fontWeight: 900, color: "#1a1a1a" }}>Total Score</span>
+        <span style={{ fontSize: 22, fontWeight: 900, color: "#1a1a1a", lineHeight: 1 }}>{CS_TOTAL}/{CS_MAX}</span>
+      </div>
+
+      <div style={{ padding: "4px 10px 5px", borderBottom: "8px solid #1a1a1a" }}>
+        <div style={{ height: 6, background: "#e8e4de", borderRadius: 3, overflow: "hidden", marginBottom: 2 }}>
+          <div style={{ width: `${CS_PCT}%`, height: "100%", borderRadius: 3, background: CS_COLOR }} />
+        </div>
+        <div style={{ fontSize: 8, color: "#aaa", fontWeight: 600 }}>{CS_PCT}% of maximum</div>
+      </div>
+
+      <div style={{ padding: 10, textAlign: "center" }}>
+        <div style={{ fontSize: 26, fontWeight: 900, lineHeight: 1, letterSpacing: "-0.02em", color: CS_COLOR }}>EXEMPLARY</div>
+        <div style={{ fontSize: 8, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.07em", color: "#aaa", marginTop: 3 }}>Community Content Compact Rating</div>
+      </div>
+
+      <div style={{ padding: "4px 10px", borderTop: "1px solid #e8e4de" }}>
+        <div style={{ fontSize: 7, color: "#ccc", lineHeight: 1.5 }}>
+          Cariboo Signals · Community Content Compact · May 2026<br />
+          github.com/zirnhelt/curated-podcast-generator
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const TRACKS = {
   A: {
     label: "Track A",
