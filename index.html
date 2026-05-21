@@ -312,6 +312,75 @@
             display: none;
         }
 
+        .accountability-section {
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .accountability-section h3 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .accountability-section .section-intro {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .content-facts {
+            font-family: Arial, Helvetica, sans-serif;
+            width: 290px;
+            background: white;
+            border: 3px solid #1a1a1a;
+            margin: 0 auto;
+            color: #1a1a1a;
+            text-align: left;
+        }
+        .cf-hd { padding: 6px 10px 5px; border-bottom: 9px solid #1a1a1a; }
+        .cf-hd-title { font-size: 28px; font-weight: 900; line-height: 1; letter-spacing: -0.02em; color: #1a1a1a; }
+        .cf-hd-sub { font-size: 9px; font-weight: 700; color: #666; letter-spacing: 0.03em; margin-top: 2px; }
+        .cf-meta { padding: 4px 10px; border-bottom: 4px solid #1a1a1a; }
+        .cf-meta-lbl { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #999; }
+        .cf-meta-name { font-size: 13px; font-weight: 700; color: #1a1a1a; line-height: 1.25; margin-top: 1px; }
+        .cf-meta-sub { font-size: 10px; color: #777; }
+        .cf-status { display: flex; align-items: center; justify-content: space-between; padding: 3px 10px; }
+        .cf-status-lbl { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #999; }
+        .cf-status-val { font-size: 10px; font-weight: 700; color: #1a1a1a; }
+        .cf-divider { height: 4px; background: #1a1a1a; }
+        .cf-cat-hd { display: flex; justify-content: space-between; background: #1a1a1a; padding: 3px 10px; }
+        .cf-cat-hd span { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: white; }
+        .cf-pcat { display: flex; align-items: center; padding: 4px 10px; border-bottom: 1px solid #f0ece6; gap: 6px; }
+        .cf-pcat-name { font-size: 10px; color: #1a1a1a; font-weight: 500; flex: 1; }
+        .cf-pcat-bar-bg { width: 64px; height: 5px; background: #e8e4de; border-radius: 2px; flex-shrink: 0; overflow: hidden; }
+        .cf-pcat-bar { height: 100%; border-radius: 2px; background: #1a1a1a; }
+        .cf-pcat-sc { font-size: 9px; font-weight: 700; color: #1a1a1a; width: 28px; text-align: right; }
+        .cf-ptotal { display: flex; justify-content: space-between; align-items: baseline; padding: 5px 10px; border-top: 5px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; }
+        .cf-ptotal-lbl { font-size: 13px; font-weight: 900; color: #1a1a1a; }
+        .cf-ptotal-val { font-size: 22px; font-weight: 900; color: #1a1a1a; line-height: 1; }
+        .cf-pct { padding: 4px 10px 5px; border-bottom: 8px solid #1a1a1a; }
+        .cf-pct-bg { height: 6px; background: #e8e4de; border-radius: 3px; overflow: hidden; margin-bottom: 2px; }
+        .cf-pct-fill { height: 100%; border-radius: 3px; background: #145530; width: 90%; }
+        .cf-pct-lbl { font-size: 8px; color: #aaa; font-weight: 600; }
+        .cf-verdict { padding: 10px; text-align: center; }
+        .cf-verdict-text { font-size: 26px; font-weight: 900; line-height: 1; letter-spacing: -0.02em; color: #145530; }
+        .cf-verdict-rating { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-top: 3px; }
+        .cf-pfooter { padding: 4px 10px; border-top: 1px solid #e8e4de; font-size: 7px; color: #ccc; line-height: 1.5; }
+        .cf-pfooter a { color: #ccc; }
+
+        .accountability-section .section-footer {
+            color: #666;
+            font-size: 0.85em;
+            margin-top: 16px;
+        }
+
+        .accountability-section .section-footer a { color: #3498db; }
+
         @media (max-width: 768px) {
             .container {
                 padding: 24px;
@@ -471,7 +540,96 @@
                 <a href="bespoke-feed.xml" style="display:inline-block;background:#5a3fa0;color:white;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:500;margin-left:8px;">🎙️ Deep Dives RSS</a>
             </div>
         </div>
-        
+
+        <div class="accountability-section">
+            <h3>Community Accountability</h3>
+            <p class="section-intro">Cariboo Signals scores itself against the <a href="community-content-compact/framework.md">Community Content Compact</a> — a framework for evaluating whether AI-generated content serves the communities it draws from.</p>
+
+            <div class="content-facts">
+                <div class="cf-hd">
+                    <div class="cf-hd-title">Content</div>
+                    <div class="cf-hd-title">Accountability</div>
+                    <div class="cf-hd-title">Facts</div>
+                    <div class="cf-hd-sub">The Community Content Compact</div>
+                </div>
+
+                <div class="cf-meta">
+                    <div class="cf-meta-lbl">Content</div>
+                    <div class="cf-meta-name">Cariboo Signals</div>
+                    <div class="cf-meta-sub">Erich Zirnhelt · Horsefly, BC</div>
+                </div>
+
+                <div class="cf-status" style="border-bottom:1px solid #e8e4de;">
+                    <span class="cf-status-lbl">Track</span>
+                    <span class="cf-status-val">Track A — Community-Insider</span>
+                </div>
+                <div class="cf-status">
+                    <span class="cf-status-lbl">Disqualifiers</span>
+                    <span class="cf-status-val" style="color:#1e6e40;">CLEAR</span>
+                </div>
+
+                <div class="cf-divider"></div>
+
+                <div class="cf-cat-hd">
+                    <span>Category</span>
+                    <span>Score</span>
+                </div>
+
+                <div class="cf-pcat">
+                    <span class="cf-pcat-name">Transparency</span>
+                    <div class="cf-pcat-bar-bg"><div class="cf-pcat-bar" style="width:100%;"></div></div>
+                    <span class="cf-pcat-sc">4/4</span>
+                </div>
+                <div class="cf-pcat">
+                    <span class="cf-pcat-name">Source Integrity</span>
+                    <div class="cf-pcat-bar-bg"><div class="cf-pcat-bar" style="width:100%;"></div></div>
+                    <span class="cf-pcat-sc">3/3</span>
+                </div>
+                <div class="cf-pcat">
+                    <span class="cf-pcat-name">Displacement</span>
+                    <div class="cf-pcat-bar-bg"><div class="cf-pcat-bar" style="width:100%;"></div></div>
+                    <span class="cf-pcat-sc">2/2</span>
+                </div>
+                <div class="cf-pcat">
+                    <span class="cf-pcat-name">Consent &amp; Attribution</span>
+                    <div class="cf-pcat-bar-bg"><div class="cf-pcat-bar" style="width:75%;"></div></div>
+                    <span class="cf-pcat-sc">3/4</span>
+                </div>
+                <div class="cf-pcat">
+                    <span class="cf-pcat-name">Benefit Flow</span>
+                    <div class="cf-pcat-bar-bg"><div class="cf-pcat-bar" style="width:80%;"></div></div>
+                    <span class="cf-pcat-sc">4/5</span>
+                </div>
+                <div class="cf-pcat" style="border-bottom:none;">
+                    <span class="cf-pcat-name">Accountability</span>
+                    <div class="cf-pcat-bar-bg"><div class="cf-pcat-bar" style="width:100%;"></div></div>
+                    <span class="cf-pcat-sc">2/2</span>
+                </div>
+
+                <div class="cf-ptotal">
+                    <span class="cf-ptotal-lbl">Total Score</span>
+                    <span class="cf-ptotal-val">18/20</span>
+                </div>
+
+                <div class="cf-pct">
+                    <div class="cf-pct-bg"><div class="cf-pct-fill"></div></div>
+                    <div class="cf-pct-lbl">90% of maximum</div>
+                </div>
+
+                <div class="cf-verdict">
+                    <div class="cf-verdict-text">EXEMPLARY</div>
+                    <div class="cf-verdict-rating">Community Content Compact Rating</div>
+                </div>
+
+                <div class="cf-pfooter">
+                    Cariboo Signals · Community Content Compact · May 2026<br>
+                    <a href="https://github.com/zirnhelt/curated-podcast-generator">github.com/zirnhelt/curated-podcast-generator</a>
+                </div>
+            </div>
+
+            <p class="section-footer">We score ourselves because the question matters. Remaining gap: direct subscriber list (B2). <a href="community-content-compact/self-assessment.md">Read the full self-assessment.</a></p>
+        </div>
+
         <div class="footer">
             <div class="credits">
                 <h3>Credits</h3>
@@ -480,8 +638,9 @@
                 <p><strong>Content Curation & Script:</strong> Claude (Anthropic)</p>
                 <p><strong>TTS Voices:</strong> Azure Neural TTS (Ava · Andrew)</p>
                 <p><strong>Cover Art:</strong> ChatGPT (OpenAI)</p>
-                <p><strong>Podcast Coordination:</strong> Erich Zirnhelt</p>
+                <p><strong>Podcast Coordination:</strong> Erich Zirnhelt, Horsefly, BC (Secwépemc territory)</p>
                 <p><strong>License:</strong> <a href='https://creativecommons.org/licenses/by-nc/4.0/'>CC BY-NC 4.0</a> © 2026 Erich Zirnhelt</p>
+                <p><strong>Corrections:</strong> <a href='docs/corrections-policy.md'>corrections-policy.md</a> · <a href='docs/psa-policy.md'>psa-policy.md</a></p>
 
                 </div>
             </div>
