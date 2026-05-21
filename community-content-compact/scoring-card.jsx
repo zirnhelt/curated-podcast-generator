@@ -138,11 +138,11 @@ export function CaribooSignalsCard() {
       producer="Erich Zirnhelt"
       community="Cariboo region, BC"
       date="May 2026"
-      track="B"
+      track="A"
       scores={{
         transparency:    3,
-        sourceIntegrity: 1,
-        displacement:    0,
+        sourceIntegrity: 2,
+        displacement:    1,
         consent:         2,
         benefitFlow:     1,
         accountability:  1,
