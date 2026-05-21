@@ -261,6 +261,19 @@ def generate_azure_tts_for_section(
     # Multiple chunks — synthesize each and stitch with pydub
     import tempfile
     from pydub import AudioSegment
+    from pydub.silence import detect_leading_silence
+
+    def _trim_chunk_silence(segment, silence_thresh=-45, chunk_size=80):
+        """Trim leading/trailing silence from a synthesized WAV chunk.
+
+        Azure TTS adds ~200–400 ms of silence at the start and end of each
+        synthesis call. Without trimming, those pad together with the explicit
+        200 ms inter-chunk gap to produce dead air at chunk boundaries.
+        """
+        lead = detect_leading_silence(segment, silence_threshold=silence_thresh, chunk_size=chunk_size)
+        trail = detect_leading_silence(segment.reverse(), silence_threshold=silence_thresh, chunk_size=chunk_size)
+        end = len(segment) - trail
+        return segment if end <= lead else segment[lead:end]
 
     chunk_audios: list[AudioSegment] = []
     with tempfile.TemporaryDirectory() as tmpdir:
@@ -268,7 +281,8 @@ def generate_azure_tts_for_section(
             chunk_file = Path(tmpdir) / f"chunk_{idx}.wav"
             ssml = build_section_ssml(chunk, voice_map=voice_map)
             synthesize_section(ssml, chunk_file, speech_config)
-            chunk_audios.append(AudioSegment.from_file(str(chunk_file), format="wav"))
+            audio = AudioSegment.from_file(str(chunk_file), format="wav")
+            chunk_audios.append(_trim_chunk_silence(audio))
 
     combined = chunk_audios[0]
     gap = AudioSegment.silent(duration=200)
