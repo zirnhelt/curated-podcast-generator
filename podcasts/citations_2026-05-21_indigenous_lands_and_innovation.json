@@ -1,0 +1,230 @@
+{
+  "episode": {
+    "date": "2026-05-21",
+    "formatted_date": "Thursday, May 21, 2026",
+    "theme": "Indigenous Lands & Innovation",
+    "title": "Cariboo Signals - Indigenous Lands & Innovation",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Indigenous Lands & Innovation.</p><p><b>NEWS ROUNDUP:</b> We break down Technology shouldn't sacrifice the integrity of knowledge and Seattle University School of Law Hosts Conference on Indigenous Perspectives on AI, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> When technology enables discovery of concealed evidence (like residential school graves), how should communities balance the capacity to surface knowledge with governance frameworks that protect how that knowledge is used and disclosed? Topics include: Data sovereignty and community consent in residential school investigations, Technology capabilities (GPR, LiDAR) vs. governance frameworks for knowledge use, Federal funding architecture and its role as both enabler and gatekeeper, Academic research partnerships and data storage/publication control, AI risk to Indigenous knowledge in publicly accessible datasets.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://ccatec.com\">Cariboo Chilcotin Aboriginal Training Employment Centre</a></p><p><b>Sources discussed:</b></p><ul><li>Newsletter: n***@animikii.com: <a href=\"https://assets.buttondown.email/images/32f798c1-fd59-4ab4-9e61-8fb9d6e26c58.jpg?w=960&fit=max\">Technology shouldn't sacrifice the integrity of knowledge</a></li><li>Newsletter: n***@animikii.com: <a href=\"https://www.einpresswire.com/article/913357218/seattle-university-school-of-law-hosts-conference-on-indigenous-perspectives-on-ai?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=technology-shouldnt-sacrifice-knowleddge\">Seattle University School of Law Hosts Conference on Indigen...</a></li><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/05/19/heiltsuk-nation-settles-coquitlam-canadian-tire-racial-profiling-case/\">[Williams Lake Tribune] Heiltsuk Nation settles Coquitlam Ca...</a></li><li>Dell Cameron (WIRED): <a href=\"https://www.wired.com/story/a-bipartisan-amendment-would-end-police-license-plate-tracking-nationwide/\">[WIRED] A Bipartisan Amendment Would End Police License Plat...</a></li><li>Jason Weisberger (Boing Boing): <a href=\"https://boingboing.net/2026/05/19/ais-giant-rural-job-machine-mostly-appears-to-manufacture-hype.html\">[Boing Boing] AI's giant rural job machine mostly appears to...</a></li><li>Paresh Dave (WIRED): <a href=\"https://www.wired.com/story/elon-musk-spacex-spending-gas-turbines-grok/\">[WIRED] SpaceX Is Spending $2.8 Billion to Buy Gas Turbines ...</a></li><li>Newsletter: s***@canadaland.com: <a href=\"https://www.canadaland.com/podcast/1362-the-truth-about-residential-school-graves/?utm_source=Master+Email+List&utm_campaign=1d48be21ed-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-1d48be21ed-379881794\">#1362 The Truth About Residential School Graves</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>CNET: <a href=\"https://www.cnet.com/science/ai-making-up-citations-scientific-papers/\">[CNET] Scientists Warn AI Slop Is Wreaking Havoc in the Rese...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/ai-recycling-waste-sorting-technology-stony-brook-university-2026-05\">[Business Insider] Civil engineering researchers are teachin...</a></li><li>Tim De Chant (TechCrunch): <a href=\"https://techcrunch.com/2026/05/20/global-ev-market-goes-k-shaped-as-the-u-s-gets-left-behind/\">[TechCrunch] Global EV market goes K-shaped as the US gets l...</a></li><li>The Maple: <a href=\"https://www.readthemaple.com/provincial-landlords/\">[The Maple] Find Out If Your Provincial Rep Is A Landlord</a></li><li>The Maple: <a href=\"https://www.readthemaple.com/on-landlords/\">[The Maple] Ontario, Find Out If Your MPP Is A Landlord</a></li><li>The Maple: <a href=\"https://www.readthemaple.com/bc-landlords/\">[The Maple] British Columbia, Find Out If Your MLA Is A Land...</a></li><li>Newsletter: s***@canadaland.com: <a href=\"https://www.canadaland.com/podcast/181-avi-lewis-the-canadaland-interview/?utm_source=Master+Email+List&utm_campaign=1d48be21ed-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-1d48be21ed-379881794\">#181 Avi Lewis: the Canadaland Interview</a></li><li>Newsletter: s***@canadaland.com: <a href=\"https://fizz.ca/en/mobile?ADDONS%5B0%5D=18&CVRG=108&DATA=703&PLAN=3&SMS=223&VOICE=90&WIZARD=mobile&utm_source=canadaland&utm_medium=article&utm_term=01&utm_content=2026&utm_source=Master+Email+List&utm_campaign=1d48be21ed-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-1d48be21ed-379881794\">Discover Our Cell Phone Plans | Fizz</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-6<br>TTS Voices: OpenAI TTS API (Nova · Echo)<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-05-21T05:51:45.739800-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-sonnet-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 2980,
+      "voice_ratio_casey_riley": 1.07,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 1,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0
+      },
+      "total_hits": 1
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "Technology shouldn't sacrifice the integrity of knowledge",
+          "url": "https://assets.buttondown.email/images/32f798c1-fd59-4ab4-9e61-8fb9d6e26c58.jpg?w=960&fit=max",
+          "source": "Newsletter: n***@animikii.com",
+          "author": "",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Technology shouldn't sacrifice the integrity of knowledge",
+          "discussed": true
+        },
+        {
+          "title": "Seattle University School of Law Hosts Conference on Indigenous Perspectives on AI",
+          "url": "https://www.einpresswire.com/article/913357218/seattle-university-school-of-law-hosts-conference-on-indigenous-perspectives-on-ai?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=technology-shouldnt-sacrifice-knowleddge",
+          "source": "Newsletter: n***@animikii.com",
+          "author": "",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Technology shouldn't sacrifice the integrity of knowledge",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Heiltsuk Nation settles Coquitlam Canadian Tire racial profiling case",
+          "url": "https://wltribune.com/2026/05/19/heiltsuk-nation-settles-coquitlam-canadian-tire-racial-profiling-case/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 70,
+          "date_published": "2026-05-19T17:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[CNET] Scientists Warn AI Slop Is Wreaking Havoc in the Research World",
+          "url": "https://www.cnet.com/science/ai-making-up-citations-scientific-papers/",
+          "source": "CNET",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-05-21T01:01:23+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] A Bipartisan Amendment Would End Police License Plate Tracking Nationwide",
+          "url": "https://www.wired.com/story/a-bipartisan-amendment-would-end-police-license-plate-tracking-nationwide/",
+          "source": "WIRED",
+          "author": "Dell Cameron",
+          "ai_score": 55,
+          "date_published": "2026-05-20T21:58:06+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Boing Boing] AI's giant rural job machine mostly appears to manufacture hype",
+          "url": "https://boingboing.net/2026/05/19/ais-giant-rural-job-machine-mostly-appears-to-manufacture-hype.html",
+          "source": "Boing Boing",
+          "author": "Jason Weisberger",
+          "ai_score": 68,
+          "date_published": "2026-05-19T18:08:11+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[WIRED] SpaceX Is Spending $2.8 Billion to Buy Gas Turbines for Its AI Data Centers",
+          "url": "https://www.wired.com/story/elon-musk-spacex-spending-gas-turbines-grok/",
+          "source": "WIRED",
+          "author": "Paresh Dave",
+          "ai_score": 65,
+          "date_published": "2026-05-20T23:30:06+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Business Insider] Civil engineering researchers are teaching AI how to sort your recycling",
+          "url": "https://www.businessinsider.com/ai-recycling-waste-sorting-technology-stony-brook-university-2026-05",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-05-20T18:42:55+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechCrunch] Global EV market goes K-shaped as the US gets left behind",
+          "url": "https://techcrunch.com/2026/05/20/global-ev-market-goes-k-shaped-as-the-u-s-gets-left-behind/",
+          "source": "TechCrunch",
+          "author": "Tim De Chant",
+          "ai_score": 62,
+          "date_published": "2026-05-20T17:34:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Maple] Find Out If Your Provincial Rep Is A Landlord",
+          "url": "https://www.readthemaple.com/provincial-landlords/",
+          "source": "The Maple",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-05-20T00:37:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Maple] Ontario, Find Out If Your MPP Is A Landlord",
+          "url": "https://www.readthemaple.com/on-landlords/",
+          "source": "The Maple",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-05-20T00:26:26+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Maple] British Columbia, Find Out If Your MLA Is A Landlord",
+          "url": "https://www.readthemaple.com/bc-landlords/",
+          "source": "The Maple",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-05-20T00:25:46+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Indigenous Lands & Innovation",
+      "articles": [
+        {
+          "title": "#1362 The Truth About Residential School Graves",
+          "url": "https://www.canadaland.com/podcast/1362-the-truth-about-residential-school-graves/?utm_source=Master+Email+List&utm_campaign=1d48be21ed-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-1d48be21ed-379881794",
+          "source": "Newsletter: s***@canadaland.com",
+          "author": "",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "I think we need to respect what the families want and not force them to do something for anybody else but their own healing and their own search for justice.   -Kisha Supernant, Professor of Anthropol...",
+          "discussed": true
+        },
+        {
+          "title": "#181 Avi Lewis: the Canadaland Interview",
+          "url": "https://www.canadaland.com/podcast/181-avi-lewis-the-canadaland-interview/?utm_source=Master+Email+List&utm_campaign=1d48be21ed-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-1d48be21ed-379881794",
+          "source": "Newsletter: s***@canadaland.com",
+          "author": "",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "NDP Leader Avi Lewis has a massive task ahead of him.",
+          "discussed": false
+        },
+        {
+          "title": "Discover Our Cell Phone Plans | Fizz",
+          "url": "https://fizz.ca/en/mobile?ADDONS%5B0%5D=18&CVRG=108&DATA=703&PLAN=3&SMS=223&VOICE=90&WIZARD=mobile&utm_source=canadaland&utm_medium=article&utm_term=01&utm_content=2026&utm_source=Master+Email+List&utm_campaign=1d48be21ed-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-1d48be21ed-379881794",
+          "source": "Newsletter: s***@canadaland.com",
+          "author": "",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Customize your mobile plan based on your needs and budget and since there’s no fixed-term contract, you get to change it whenever you need to. Plus, you get rewards on day 1.",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "When technology enables discovery of concealed evidence (like residential school graves), how should communities balance the capacity to surface knowledge with governance frameworks that protect how that knowledge is used and disclosed?",
+        "riley_position": "Communities should be pragmatic about deploying imperfect technical tools under time pressure, because waiting for perfect legal frameworks means families wait longer for answers; the key is building data governance infrastructure alongside the survey work.",
+        "riley_key_evidence": [
+          "GPR technology allows surveying without excavation, which respects Indigenous legal traditions that consider disturbance a violation",
+          "Williams Lake First Nation's documented, deliberate approach to ground surveys and archival research demonstrates sovereignty in practice",
+          "FirstVoices model shows community-controlled data repositories with access restrictions can be built to protect knowledge"
+        ],
+        "casey_position": "The pattern of deploying technical infrastructure before governance architecture is settled creates long-term problems; retrofitting governance onto existing systems is harder than building it in from the start, and external pressure to move quickly compounds the risk.",
+        "casey_key_evidence": [
+          "Tk'emlúps te Secwépemc's 2021 GPR announcement went global within hours, politicizing the findings in ways the community didn't control",
+          "Federal government funding relationships are not neutral when the government's predecessor institutions ran the schools themselves",
+          "AI training datasets could absorb research findings before communities decide whether to make them public—a current risk, not a hypothetical one"
+        ],
+        "resolution": "They agreed that both urgency and governance gaps are real and coexist; they converged on concrete next steps: data storage questions must be answered in writing before partnership agreements, communities should engage the First Nations Technology Council early, and regional institutions should provide administrative capacity in a support role rather than assuming leadership.",
+        "topics_covered": [
+          "Data sovereignty and community consent in residential school investigations",
+          "Technology capabilities (GPR, LiDAR) vs. governance frameworks for knowledge use",
+          "Federal funding architecture and its role as both enabler and gatekeeper",
+          "Academic research partnerships and data storage/publication control",
+          "AI risk to Indigenous knowledge in publicly accessible datasets"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "Azure Neural TTS (Ava · Andrew)",
+    "text_to_speech_openai": "OpenAI TTS API (Nova · Echo)",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}

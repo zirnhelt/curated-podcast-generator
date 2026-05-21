@@ -1,0 +1,133 @@
+# Cariboo Signals Podcast Script - 2026-05-21
+# Theme: Indigenous Lands & Innovation
+# Generated: 2026-05-21 05:51:47 PDT
+
+**CASEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. It's Thursday, May 21st, 2026. Coming to you from the Cariboo, on lands that have been cared for by the Secwépemc, Tŝilhqot'in, and Dakelh peoples since time immemorial. Today's theme is Indigenous Lands and Innovation — I'm Casey.
+
+**RILEY:** And I'm Riley. Today we're looking at what it actually means for Indigenous communities to shape technology on their own terms — not as data sources, not as beneficiaries, but as the ones setting the terms.
+
+**CASEY:** Quick weather note before we dive in — it's a grey morning across the Cariboo. Horsefly Lake sitting at 6 degrees, high of 16 expected. Williams Lake, 100 Mile, and Quesnel all in the overcast column too. If you're heading into Williams Lake this afternoon, moderate rain is forecast, so give yourself extra time on the roads. Let's get into the news.
+
+---
+
+**NEWS ROUNDUP**
+
+**RILEY:** Leading today with something that came through the Animikii newsletter — and it's a sentence worth sitting with: technology shouldn't sacrifice the integrity of knowledge. The argument is straightforward but pointed. As AI systems absorb more and more information, they flatten context. A story told in ceremony carries meaning that evaporates when it becomes a data point. The piece frames this as a core tension in Indigenous knowledge management — not just about who owns the data, but whether the format itself destroys what matters.
+
+**CASEY:** And that's exactly what makes Indigenous data sovereignty harder than just building a better consent form.
+
+**CASEY:** Connecting directly to that — Seattle University School of Law hosted a conference this week on Indigenous perspectives on AI. Legal scholars, technologists, and Indigenous knowledge holders in the same room asking how AI governance frameworks can be rebuilt from the ground up rather than patched after the fact. The conference focused particularly on how existing IP law was designed around individual ownership, which simply doesn't map onto collective, relational, and intergenerational knowledge systems.
+
+**RILEY:** The gap between "we'll add an Indigenous advisory panel" and actually restructuring the legal architecture is enormous — and most institutions are nowhere near the second thing.
+
+**RILEY:** Over in the Williams Lake Tribune, the Heiltsuk Nation has settled a racial profiling case against a Canadian Tire in Coquitlam. A Heiltsuk Nation member was falsely accused of shoplifting and detained. The settlement terms weren't fully disclosed, but the Nation pursued it as a matter of record and accountability, not just compensation. Worth noting on a day about Indigenous rights and dignity — this is the kind of systemic harm that erodes trust in institutions across the board.
+
+**CASEY:** It lands differently when you're talking about a community that already has to fight for every acknowledgment of its rights. The bar for "good faith" keeps getting set against that backdrop.
+
+**CASEY:** On the AI integrity front — CNET is reporting that scientists are raising serious alarms about AI-generated content contaminating academic research. The concern isn't just bad papers getting published. It's that AI-generated text is now being fed back into AI training datasets, creating what researchers are calling an epistemic pollution loop. Fabricated citations, plausible-sounding but invented findings, studies that never existed — all of it circulating and being treated as source material. For fields that rely on systematic literature reviews, this is a genuine crisis.
+
+**RILEY:** A direct threat to any research pipeline Indigenous communities depend on — including the science underpinning land claims, ecological knowledge, and health outcomes.
+
+**RILEY:** On surveillance — WIRED is covering a bipartisan amendment in the US Congress that would end police license plate tracking nationwide. The proposal would prohibit law enforcement from using automated readers to build location databases without a warrant. Civil liberties groups have been pushing this for over a decade; the bipartisan angle is what's new. For context: license plate readers disproportionately affect communities near major highways — which in rural BC often means Indigenous communities on or near reserve lands adjacent to logging and resource corridors.
+
+**CASEY:** The Canadian legislative parallel isn't there yet, but the surveillance pattern absolutely is.
+
+**CASEY:** Also worth flagging today — a Boing Boing piece taking a hard look at the claim that AI is creating a rural jobs boom. The headline does the heavy lifting: AI's giant rural job machine mostly appears to manufacture hype. The analysis found that most announced AI-related rural employment is either temporary construction work for data centres, or jobs that require credentials rural communities don't currently have pipelines to supply. The net benefit to rural workers is, charitably, unclear.
+
+**RILEY:** We've talked about the innovation pipeline being shaped by external priorities rather than local need — this is that problem with a dollar sign attached.
+
+**RILEY:** On the energy side — SpaceX is spending $2.8 billion on gas turbines to power its AI data centres, and they're doing it with fossil fuel generation. The energy appetite here is not slowing down.
+
+**CASEY:** Meanwhile BC communities are still waiting on transmission upgrades that have been on the books for years.
+
+**CASEY:** Finally, The Maple has published a breakdown of BC MLAs' property disclosure forms, identifying which representatives own rental properties. It's part of a cross-country series. The BC results are publicly available and searchable. No editorial comment from us — just worth knowing the tool exists if you want to understand who your representative is and what financial interests shape their votes on housing and land policy.
+
+**RILEY:** Including land policy that directly intersects with Indigenous title and treaty negotiations.
+
+**CASEY:** That wraps the roundup. Before we get into the deep dive, a quick word about an organization doing essential work this week.
+
+---
+
+**COMMUNITY SPOTLIGHT**
+
+**RILEY:** This week is Aboriginal Awareness Week, and we want to highlight the Cariboo Chilcotin Aboriginal Training and Employment Centre — CCATEC. They provide workforce development and employment training across Carrier, Chilcotin, and Secwépemc nation communities, connecting Indigenous job seekers with real, labour-market-driven training opportunities. The goal isn't just to get people into jobs — it's to support people in building careers close to home, in communities they're rooted in. That distinction matters more than it might sound. You can find them at ccatec dot com.
+
+**CASEY:** If you're an employer in the region and you're not already connected with CCATEC, that's a gap worth closing — especially right now.
+
+We've been orbiting a question on this show for a while without quite landing on it. Today we go there directly.
+
+---
+
+**DEEP DIVE: CARIBOO CONNECTIONS — Indigenous Lands & Innovation**
+
+**CASEY:** We've spent a fair amount of time on this show talking about governance frameworks, data sovereignty principles, procurement timing — the structural pieces. The Canadaland piece on residential school graves pulls us somewhere different, and it's worth going there directly.
+
+Kisha Supernant, an anthropology professor at the University of Alberta who specializes in ground-penetrating radar surveys at former residential school sites, made a point that stays with me. She said communities need to be the ones deciding what knowledge is surfaced, how it's held, and whether it becomes public evidence at all. The technology — ground-penetrating radar, LiDAR, soil analysis — is sophisticated and genuinely useful. But the question of what to do with what it finds is not a technical question.
+
+**RILEY:** That's where this episode can go somewhere we haven't been. We've talked about TK Labels, OCAP principles, procurement architecture — all of that protects knowledge communities already have. The residential school graves work asks something harder: what happens when technology helps surface knowledge that was deliberately destroyed or concealed, and the community itself is divided about whether and how that knowledge should become public?
+
+**CASEY:** "The community decides" can't be a simple answer. Families are not unanimous. Nations are not unanimous. There are survivors who want graves confirmed and named publicly. There are families who want to know privately and grieve without cameras. There are communities that want legal proceedings. There are communities that want ceremony, not courts. Ground-penetrating radar doesn't tell you which of those is right.
+
+**RILEY:** The technology creates options that didn't previously exist — which is genuinely valuable. A decade ago, confirming the presence of unmarked graves required excavation, an act that is itself considered a violation in many Indigenous legal traditions. GPR and LiDAR changed that. You can now survey without disturbing. That matters.
+
+**CASEY:** It does. But the gap between "we can now see what's there" and "we know what to do about what we found" isn't closing because the sensors got better. And the pressure from outside the community to do something with the findings, quickly, publicly, in ways that satisfy a news cycle or a political moment — that pressure doesn't go away just because the technology is more respectful.
+
+**RILEY:** The Tk'emlúps te Secwépemc announcement in 2021 is the obvious reference point. The GPR findings at the Kamloops Indian Residential School went global within hours of the Nation's carefully considered disclosure. The technology didn't cause that, but it created the conditions for it — and the story was immediately being interpreted, politicized, debated by people nowhere near the community.
+
+**CASEY:** And Tk'emlúps is in our broader regional context. Secwépemc territory extends across much of the southern Cariboo. St. Joseph's Mission residential school operated for decades near Williams Lake. There are families in this region still searching. When we talk about what this means for communities like ours, we're not talking about somewhere abstract.
+
+**RILEY:** The Williams Lake First Nation has been doing this work — ground surveys, archival research, community consultation — and they've been deliberate about the pace. That's sovereignty in practice. Deciding how fast your own grief moves.
+
+**CASEY:** Except the urgency argument isn't only coming from journalists and politicians. Some families want answers faster. Some survivors who are elderly want confirmation while they're still alive to witness it. "Let the community set the pace" is right in principle, but it can also become a way of deferring hard internal conversations about which voices within the community carry the most weight.
+
+**RILEY:** That tension is real. And it points to something the technology genuinely can't resolve: getting from a scan to an identification to a family notification requires forensic anthropology, archival matching, genetic analysis where families consent, and spiritual and ceremonial support through that entire process. The scan is step one of about fifteen.
+
+**CASEY:** Steps two through fifteen require sustained, multi-year funding. Not a one-time federal announcement. Not a grant that covers the GPR survey and then runs out before the archival phase is complete. The capacity gap in Indigenous tech work generally means even well-resourced projects stall mid-process. This is the highest-stakes version of that problem.
+
+**RILEY:** And the funding architecture is particularly troubled because the federal government is simultaneously the funder and the party whose predecessor institutions ran the schools. That's not a neutral relationship.
+
+**CASEY:** So when governments have discretion over how much flows and on what timeline, they have a de facto veto over how fast truth-telling can happen. That's not an accident of bureaucracy — it's a structural conflict of interest.
+
+**RILEY:** Which is the argument for independent, community-controlled funding structures — endowments, trusts, distinctions-based allocations that aren't subject to annual budget cycles or changes in federal political will. The National Centre for Truth and Reconciliation has been making that argument for years.
+
+**CASEY:** The gap between the argument and the implementation is wide. And while that plays out, technical work at individual sites proceeds at whatever pace each community can sustain, which varies enormously based on prior relationships with researchers and existing administrative capacity.
+
+**RILEY:** The researcher relationship piece is worth unpacking. Supernant's lab at the University of Alberta works explicitly under community direction — the Nation defines the research questions, controls the data, decides what gets published and when. That's a model. It's not universal. There are research teams that still operate closer to the old approach: researcher proposes the study, gets ethics approval, publishes findings in journals the community may never see.
+
+**CASEY:** And the academic publication question connects directly to the AI slop story from the roundup. If research findings from these sites get absorbed into AI training datasets before communities have had a chance to contextualize and control them, the harm isn't hypothetical. You could have AI systems that "know" things about specific grave sites that the relevant Nation hasn't decided to make public. That's a current risk, not a future one.
+
+**RILEY:** The technical fix exists — community-controlled data repositories with access restrictions, similar in principle to what FirstVoices does for language data. You can build a system where research data lives on infrastructure the Nation controls, with access credentials the Nation administers. The question is whether research partnerships being stood up right now include those technical requirements, or whether everything is going into standard university databases by default.
+
+**CASEY:** My strong suspicion, based on how quickly these partnerships are being formed and how stretched most Nations' legal and technical capacity is, is that the data governance architecture is being built ad hoc or not at all. The GPR team shows up, the community is managing the survey process, communicating with families, responding to media — and the data governance conversation is happening at 11 PM with whoever's left in the room. — Though I'll admit I'm speculating from the outside about internal processes I can't fully see.
+
+**RILEY:** Fair enough on the uncertainty. But the pattern is consistent enough across other Indigenous tech partnerships that the suspicion isn't unreasonable. Organizations like the First Nations Technology Council could be playing a much more active role — providing data governance frameworks that Nations can adopt and adapt quickly without building from scratch. Whether the FNTC is being resourced to deploy that in this specific context, I genuinely don't know.
+
+**CASEY:** And in the Cariboo specifically — what support do the Williams Lake First Nation, the Xatśūll First Nation, or the communities in Tŝilhqot'in territory whose members attended St. Joseph's Mission actually have access to for that governance infrastructure work? Not the survey. The data management after.
+
+**RILEY:** The Seattle law conference from the roundup is relevant here in a way I didn't flag earlier. The legal scholars there were working specifically on how AI governance frameworks apply to Indigenous knowledge — and residential school investigation data is a case study in exactly the kind of knowledge existing legal frameworks weren't designed to handle. It's not personal data in the GDPR sense. It's not intellectual property in the copyright sense. It's evidence of a crime, held by a community that is simultaneously the victim, the investigator, and the decision-maker about what justice looks like.
+
+**CASEY:** A genuinely novel legal category. And we're building the technical infrastructure before we've settled the legal architecture — that's the pattern that keeps causing problems across every domain we cover.
+
+**RILEY:** Though waiting for the legal framework to be complete before deploying the technical tools means more families wait longer for any information at all. The communities doing this work are making pragmatic decisions about imperfect tools in real time. That's not a failure of governance — that's what governance actually looks like when the stakes are high and the timeline is urgent.
+
+**CASEY:** The pragmatism is real, and the risk is real simultaneously. Technical infrastructure built under time pressure, without full governance architecture, becomes the default. Retrofitting governance onto existing systems is consistently harder than building it in from the start. We said that about AI wildfire systems. It applies here too.
+
+**RILEY:** So what does a community about to begin this work actually do today, given that both the urgency and the governance gaps are real? A few concrete things: before signing any research partnership, get the data storage and access questions answered in writing — where does the data live, who holds credentials, what happens if the university relationship ends. Connect with the FNTC before the survey is done, not after. And if federal funding is flowing to the survey phase, advocate explicitly in the funding agreement for a governance infrastructure line item. It doesn't have to be large, but it has to exist.
+
+**CASEY:** For regional institutions — UNBC, Thompson Rivers University, the Cariboo Regional District — if you're being asked to support this work, the most useful thing you can do is not insert yourself into the research. Provide the administrative capacity so Nations aren't managing grant reporting, media inquiries, family communications, and data governance conversations simultaneously with three staff members.
+
+**RILEY:** Capacity to manage the process, not ownership of the process. That's the shift that actually helps.
+
+**CASEY:** And it's one regional institutions are positioned to make — if they're willing to operate in a support role rather than a leadership one. The question is whether they've actually made that shift, or whether they're still running on the assumption that leadership is their contribution.
+
+**RILEY:** Worth asking directly at the next public meeting any of those institutions holds. Put the question on the record.
+
+**CASEY:** For Aboriginal Awareness Week, that's not a bad place to land. Awareness as a specific, answerable question directed at a specific institution with the capacity to help — and the track record of defaulting to the wrong role.
+
+**RILEY:** The technology exists. The knowledge about how to deploy it responsibly exists. The question that's still open is whether the institutions surrounding these communities will finally get out of the way fast enough to matter.
+
+**CASEY:** That one I'm not optimistic about. But the communities doing this work haven't been waiting for institutional permission so far — and that might be the most important thing to say.
+
+---
+
+We'd love to hear your thoughts — send us an email at feedback at cariboo signals dot c-a. Have a great rest of your Thursday.

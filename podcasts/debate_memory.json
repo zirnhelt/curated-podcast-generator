@@ -1,30 +1,4 @@
 {
-  "2026-02-19": {
-    "timestamp": 1771506395.978185,
-    "date": "2026-02-19",
-    "theme": "Indigenous Lands & Innovation",
-    "central_question": "Can Indigenous communities use technology to shift power relationships and control innovation processes, or are they being forced to innovate around systemic problems while facing extractive timelines?",
-    "riley_position": "Indigenous communities can lead innovation by controlling technology development from the start, using tools like blockchain, digital governance platforms, and environmental monitoring to strengthen self-determination and shift power dynamics.",
-    "riley_key_evidence": [
-      "Coast Salish artists using traditional and digital media for visual storytelling systems",
-      "Himalayan communities using traditional ice harvesting with modern materials for glacier grafting",
-      "Indigenous communities building blockchain registries and peer-to-peer networks for knowledge preservation"
-    ],
-    "casey_position": "While Indigenous-led innovation has potential, communities face structural power imbalances with government and industry operating on faster timelines, forcing reactive responses rather than genuine control over development.",
-    "casey_key_evidence": [
-      "BC's accelerated critical minerals extraction without meaningful Indigenous consent",
-      "Premier Eby's comments about reconciliation legislation being 'in the way' of economic development",
-      "Communities being asked to make decisions about projects with decades-long implications under rushed consultation processes"
-    ],
-    "resolution": "Both agreed that Indigenous technological sovereignty should be a prerequisite for resource development, with funding from industry, and concluded by asking listeners what Indigenous-led innovation would look like specifically in Cariboo communities.",
-    "topics_covered": [
-      "Digital preservation and cultural knowledge documentation",
-      "Critical minerals extraction vs Indigenous consent processes",
-      "Indigenous-controlled technology infrastructure requirements",
-      "Scale mismatches between community governance and global commodity timelines",
-      "Technology as a tool for shifting power relationships rather than just responding to them"
-    ]
-  },
   "2026-02-20": {
     "timestamp": 1771592409.205856,
     "date": "2026-02-20",
@@ -1905,6 +1879,32 @@
       "Anyone with old devices collecting dust should explore the laptop screen project and old phone-as-offline-GPS use case\u2014these solve real Cariboo problems (dead zones) using what people already have.",
       "A community workshop can teach offline phone mapping and other device reuse tricks in an afternoon, but embed it in existing structures (like the library or school district) rather than launching it as a separate initiative to ensure persistence.",
       "Individuals in isolated areas should maintain a small 10,000\u201320,000 mAh power bank cycled every few months rather than relying on single-use emergency chargers that degrade in vehicle heat."
+    ]
+  },
+  "2026-05-21": {
+    "timestamp": 1779367909.046454,
+    "date": "2026-05-21",
+    "theme": "Indigenous Lands & Innovation",
+    "central_question": "When technology enables discovery of concealed evidence (like residential school graves), how should communities balance the capacity to surface knowledge with governance frameworks that protect how that knowledge is used and disclosed?",
+    "riley_position": "Communities should be pragmatic about deploying imperfect technical tools under time pressure, because waiting for perfect legal frameworks means families wait longer for answers; the key is building data governance infrastructure alongside the survey work.",
+    "riley_key_evidence": [
+      "GPR technology allows surveying without excavation, which respects Indigenous legal traditions that consider disturbance a violation",
+      "Williams Lake First Nation's documented, deliberate approach to ground surveys and archival research demonstrates sovereignty in practice",
+      "FirstVoices model shows community-controlled data repositories with access restrictions can be built to protect knowledge"
+    ],
+    "casey_position": "The pattern of deploying technical infrastructure before governance architecture is settled creates long-term problems; retrofitting governance onto existing systems is harder than building it in from the start, and external pressure to move quickly compounds the risk.",
+    "casey_key_evidence": [
+      "Tk'eml\u00faps te Secw\u00e9pemc's 2021 GPR announcement went global within hours, politicizing the findings in ways the community didn't control",
+      "Federal government funding relationships are not neutral when the government's predecessor institutions ran the schools themselves",
+      "AI training datasets could absorb research findings before communities decide whether to make them public\u2014a current risk, not a hypothetical one"
+    ],
+    "resolution": "They agreed that both urgency and governance gaps are real and coexist; they converged on concrete next steps: data storage questions must be answered in writing before partnership agreements, communities should engage the First Nations Technology Council early, and regional institutions should provide administrative capacity in a support role rather than assuming leadership.",
+    "topics_covered": [
+      "Data sovereignty and community consent in residential school investigations",
+      "Technology capabilities (GPR, LiDAR) vs. governance frameworks for knowledge use",
+      "Federal funding architecture and its role as both enabler and gatekeeper",
+      "Academic research partnerships and data storage/publication control",
+      "AI risk to Indigenous knowledge in publicly accessible datasets"
     ]
   }
 }
