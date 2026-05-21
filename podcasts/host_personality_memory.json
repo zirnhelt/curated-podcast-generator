@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] 'We\u2019re not selling and we\u2019re not giving way': Lo",
-      "[TechRadar] 'Help cattle producers hold onto their land and ",
       "Indigenous knowledge can improve AI models to manage fires, ",
       "[BC Gov News] Supporting B.C. tech to help reduce lightning-",
       "[Engadget] Spotify now lets AI agents like OpenClaw generate",
@@ -10,7 +8,9 @@
       "[New Atlas] Startup harnesses the power of AI in the ongoing",
       "[TechCrunch] Wirestock raises $23M to supply creative multi-",
       "[Neowin] Spotify will soon support Apple's technology to ope",
-      "[TechRadar] US data centers use enough electricity to power "
+      "[TechRadar] US data centers use enough electricity to power ",
+      "Technology shouldn't sacrifice the integrity of knowledge",
+      "[CNET] Scientists Warn AI Slop Is Wreaking Havoc in the Rese"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -45,9 +45,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-04-09",
-        "clue": "Indigenous-tech:~ \u2014 Conceded climate stress-tests both knowledge systems equally",
-        "occurrences": 1
+        "date": "2026-05-21",
+        "clue": "Indigenous-tech:~ \u2014 Acknowledged pragmatism-vs-governance tension as simultaneous truths",
+        "occurrences": 2
       },
       {
         "date": "2026-04-27",
@@ -122,6 +122,11 @@
       {
         "date": "2026-05-20",
         "clue": "rural-context:+ \u2014 Deepened geographic specificity of proprietary lock-in stakes",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-05-21",
+        "clue": "structural-lens:+ \u2014 Explicitly named institutional role-shifting as governance",
         "occurrences": 1
       }
     ],
@@ -269,11 +274,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-19",
-        "clue": "funding-risk:+ \u2014 Deepened concern about timing misalignment between innovation and land-use pressure arrival",
-        "occurrences": 2
-      },
-      {
         "date": "2026-05-16",
         "clue": "pilot-skepticism:~ \u2014 Acknowledged Wranglers bet validity while deepening concern about volunteer bench depth",
         "occurrences": 1
@@ -291,6 +291,11 @@
       {
         "date": "2026-05-20",
         "clue": "tech-optimism:- \u2014 Consistently named accessibility floor where optimism breaks down",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-05-21",
+        "clue": "pilot-skepticism:x \u2014 Conceded uncertainty about Williams Lake process details mid-argument",
         "occurrences": 1
       }
     ],
