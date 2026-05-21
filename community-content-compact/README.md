@@ -1,49 +1,71 @@
 # Community Content Compact
 
-A structured accountability framework for evaluating whether content produced about, from, or on behalf of a community actually serves that community.
+A framework for evaluating the relationship between content producers and the communities they represent, draw from, or claim to serve — regardless of how the content was made.
+
+-----
+
+## Origin
+
+This framework emerged from a Cariboo Signals episode harvest (May 18, 2026) covering arts, culture, and digital storytelling. The episode's hosts converged on a set of conditions under which AI-generated cultural content is defensible. That convergence became the seed of a broader question: do these conditions apply only to AI content, or to all externally produced creative content?
+
+The answer is all of it. The power asymmetry between producer and community doesn't change based on the technology involved.
+
+-----
 
 ## Files
 
-| File | Description |
-|---|---|
-| `manifesto.md` | The founding argument — why this framework exists and what it's trying to fix |
-| `framework.md` | The full two-track scoring rubric (Track A: community-insider; Track B: external producer) |
-| `scoring-card.jsx` | Standalone React component for scoring and sharing a content review |
+|File              |Purpose                                                                                                                 |
+|------------------|------------------------------------------------------------------------------------------------------------------------|
+|`manifesto.md`    |The original argument: when AI-generated cultural content is and isn't defensible, and the unsolved governance gap      |
+|`framework.md`    |The full scoring framework: two tracks, seven categories, 35 points (Track B) or 20 points (Track A), five verdict tiers|
+|`scoring-card.jsx`|A React scoring card — nutrition-panel style — for filling in and sharing scores for a specific piece of content        |
+|`self-assessment.md`|Cariboo Signals scored against Track A, with rationale and improvement path                                           |
+
+-----
+
+## How the Framework Works
+
+The framework routes reviewers to one of two tracks based on the producer's relationship to the community:
+
+**Track A — Community-Insider Production**
+For producers who are community members, non-commercial, self-funded or micro-funded, and producing primarily for the community itself. 6 categories, 20 points. Verdict labels: Needs Work / Developing / Sound / Exemplary.
+
+**Track B — External Production**
+For institutional, commercial, mixed, or externally funded producers. 7 categories, 35 points. Verdict labels: Extractive / High Risk / Conditional / Defensible / Community-Serving.
+
+Two automatic disqualifiers apply to both tracks and end the evaluation regardless of score.
+
+Track A includes a **Continuous Improvement** section — a tiered growth path toward Track B standards, organized by effort level.
+
+-----
+
+## The Scoring Card
+
+`scoring-card.jsx` is a standalone React component. It has two tabs:
+
+- **Score** — enter content name, producer, track, disqualifier status, and category scores
+- **Card** — renders a nutrition-panel-style summary with category bars, total score, percentage fill, and a color-coded verdict
+
+It can be embedded in a web page, run as a standalone artifact in Claude.ai, or used as a reference for the printable markdown framework.
+
+-----
 
 ## Relationship to Cariboo Signals
 
-This framework was developed through [Cariboo Signals](https://zirnhelt.github.io/curated-podcast-generator/) — an AI-generated daily podcast about technology and society in rural British Columbia.
+Cariboo Signals scores **15/20 — Sound** on Track A. It is:
 
-Building an AI content system for a specific community forced concrete decisions about transparency, displacement, consent, and governance that general AI ethics frameworks do not address well. The Compact emerged from applying this rubric to Cariboo Signals itself. The score was uncomfortable: **8/35, Extractive**. That discomfort is the point.
+- Self-funded (~$4/month in API fees)
+- Community-adjacent (Horsefly, BC / Secwépemc territory)
+- Non-commercial
+- Transparent about AI generation
 
-The framework is offered for adaptation and use by any organization working on these questions. It is not a certification program. It is a structured way to have a harder conversation earlier — ideally before content is published, not after harm is done.
+The Track A Continuous Improvement section in `self-assessment.md` maps directly to a Get Well Plan developed through Claude Code for the project, sequenced by effort.
 
-## How to Use
+-----
 
-1. Complete the **Content Identification** header
-2. Check the two **Automatic Disqualifiers** — a Yes ends the evaluation
-3. Select your **track** based on producer-community relationship:
-   - **Track A** if the producer is a member of, directly employed by, or directly accountable to the community they cover
-   - **Track B** if the producer stands outside the community they cover
-4. Score each category using the track-specific criteria
-5. Sum the scores and read the verdict
-6. Use the Notes section to document remediation commitments
+## License and Use
 
-The `scoring-card.jsx` component renders a shareable, printable visual summary of a completed evaluation.
-
-## Scoring at a Glance
-
-| Score | Verdict |
-|---|---|
-| *Any DQ* | **Disqualified** — Do not proceed |
-| 0–10 | **Extractive** — Fundamental redesign required |
-| 11–18 | **High Risk** — Specific conditions must be met before publication |
-| 19–25 | **Conditional** — Written remediation plan required |
-| 26–31 | **Defensible** — Proceed with active accountability maintenance |
-| 32–35 | **Community-Serving** — Document and share this model |
-
----
+Offered for adaptation and use by any organization working on these questions. Attribution appreciated but not required.
 
 *Developed through Cariboo Signals, May 2026.*
-*Offered for adaptation and use by any organization working on these questions.*
 *github.com/zirnhelt/curated-podcast-generator*

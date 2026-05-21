@@ -1,102 +1,73 @@
-# The Founding Argument
+# The Community Content Compact
 
-*Why community accountability frameworks for content don't exist yet, why they need to, and what we're trying to do about it.*
+### A Manifesto for Ethical Creative Content Production
 
----
+*Developed through Cariboo Signals, May 2026*
 
-## The Problem Is Structural, Not Ethical
+-----
 
-When organizations produce content about communities they don't belong to, we reach first for ethics: Was it accurate? Was it respectful? Did it include diverse voices?
+## The Problem Worth Naming
 
-These are real questions. They are not the right starting questions.
+AI-generated cultural content already exists. Externally produced documentary, journalism, and platform-driven content about communities has always existed. The question in both cases isn't whether communities will encounter it — they will — but whether they encounter it on terms that serve them or extract from them.
 
-Ethics frameworks are designed to evaluate behavior — whether individual decisions were good or bad. They are not designed to evaluate structure — who owns what the content creates, who decides what gets made, what happens to the community when the producer leaves. A documentary can be scrupulously accurate, deeply respectful, beautifully produced, and still take from a community far more than it gives. The ethics were fine. The structure was extractive.
+Existing governance frameworks address AI *archiving* of community content. None adequately address AI *generation* of cultural content on behalf of, or within, underserved communities. And the broader question — who gets to tell a community's stories, under what conditions, and with what accountability — has never had a satisfactory structural answer.
 
-This is the gap this framework is trying to fill.
+This compact attempts to fill that gap. The conditions it describes are not technically complex. They are politically difficult, because they lose to extraction models backed by orders of magnitude more capital and institutional inertia.
 
----
+-----
 
-## The Power Asymmetry Nobody Talks About
+## Five Conditions for Defensible Content Production
 
-When an outside producer makes content about a community, a specific set of assets moves in one direction:
+These conditions apply whether the producer is an AI system, a documentary crew, a national broadcaster, a university researcher, a platform algorithm, or a hobbyist podcaster.
 
-- **Stories** flow from the community to the producer
-- **Credibility** accrues to the producer (they "know" the community)
-- **Revenue** flows to the producer and their platform
-- **Audience relationships** are owned by the producer's distribution channels
-- **Archives** live on the producer's infrastructure
-- **Editorial control** sits with the producer
+**1. Transparent Authorship and Origin**
+Content must clearly disclose who or what produced it, how, and why — at the point of encounter, not in fine print. Audiences have a right to evaluate what they're consuming. Producers have an obligation to make that evaluation possible.
 
-If the producer leaves — pivots, loses funding, sells, dies — the community loses all of it. They have no content. No archive. No audience. No credibility. They start from zero. The producer walks away with a career-defining project.
+**2. No Displacement Without Engagement**
+Content that competes with or substitutes for human creators already doing this work in the community requires, at minimum, an honest assessment of that competition. The stronger standard is active collaboration where existing creators retain meaningful creative authority.
 
-This is the default arrangement. It is so common we've stopped seeing it as a choice.
+**3. Consent Before Attribution**
+No content should attribute views, statements, cultural knowledge, or creative expression to living people without their explicit, informed, and revocable consent. This applies with particular force to Elders, knowledge keepers, and community leaders whose voices carry cultural weight beyond their individual words.
 
-The Community Content Compact is a structured challenge to that arrangement.
+**4. Community-Serving Benefit Flow**
+The content, the audience relationship, the archive, and any commercial or reputational benefit must accrue to the community — not to an external platform, funder, or technology partner. If any of those four things routes outward, the model is extractive regardless of its stated intentions.
 
----
+**5. Real Accountability**
+A genuine feedback mechanism must exist — not a comment form — through which the community can challenge, correct, or remove content. This mechanism must be accessible to community members who are not technically literate, and must have actual power to change outcomes.
 
-## Why AI Makes This Urgent
+-----
 
-Generative AI has collapsed the cost of content production. A single person can now produce content at the volume and frequency that once required a newsroom. An AI system can generate a daily podcast, an hourly newsletter, a weekly magazine — indefinitely, at near-zero marginal cost — about any community it can find data on.
+## The Structural Diagnosis
 
-This is not hypothetical. Cariboo Signals does exactly this. So do thousands of other systems.
+Meeting all five conditions is achievable. The obstacle is not technical complexity. It is structural:
 
-The collapse in production cost creates a new class of risk: a community's information space can be filled, shaped, and defined by producers who have no relationship to that community and no accountability to it. The AI system does not know it is doing this. The producer may not know it either. The community almost certainly does not know until the content has already set expectations, established frames, and attracted an audience that the community had no say in building.
+- **Project-based funding produces pilots, not infrastructure.** Governance frameworks designed in year one disappear in year two when the grant ends. Good intentions without sustained resourcing are documentation, not protection.
+- **Extraction models are capitalized at incompatible scale.** Venture-capital-funded platforms and national broadcasters outresource community-controlled alternatives by orders of magnitude. The gap is not closing.
+- **The policy tools that could change this exist as proposals, not law.** Mandatory content disclosure, multi-year operational funding for cultural governance capacity, and data sovereignty legislation with enforcement teeth are all achievable. None are in place at the scale needed.
 
-Traditional media ethics were designed for a world where content production was expensive and slow. They assume scarcity. AI removes scarcity. The old frameworks do not scale to the new production environment.
+-----
 
-What scales is structure. Who owns what. Who decides. Who benefits. Who can say no.
+## The Unsolved Problem
 
----
+There is no Mukurtu for AI-generated cultural content. Mukurtu provides community-controlled infrastructure for *archiving* existing cultural materials. No equivalent architecture exists for governing who generates new cultural content using AI, under what conditions, with what accountability.
 
-## What We Mean by Community
+More broadly: there is no standard framework for evaluating the ethical standing of any externally produced content about a community. Individual organizations have policies. Funders have guidelines. Neither adds up to a shared accountability standard communities can invoke and producers can be held to.
 
-This framework uses "community" to mean any defined group of people who share a geography, identity, experience, or interest, and who have reasonable grounds to expect that content produced about them, from their stories, or in their name reflects their interests — not just the interests of the producer.
+This compact is a proposal toward that standard.
 
-The framework is not limited to marginalized or vulnerable communities, though the stakes are often higher there. It applies to any content where the producer-community relationship creates a structural imbalance.
+-----
 
-The framework is not limited to AI-generated content. The questions are the same whether the content was generated by a language model, reported by a journalist, produced by an NGO, or assembled by a documentary team. The power asymmetry is the same. The accountability requirements are the same.
+## Four Questions for Any Content Partnership
 
----
+Before signing any agreement involving content production about or within a community — AI tools, research collaborations, broadcast partnerships, platform programs — require written answers to these four questions:
 
-## Two Tracks Because There Are Two Situations
+1. **Who owns the output?**
+1. **Who owns the audience relationship?**
+1. **Who owns the archive?**
+1. **Does the community hold final editorial authority?**
 
-Not all producers stand in the same relationship to the community they cover.
+If any answer is ambiguous, or routes control to the external partner, treat it as an extraction model regardless of how it is described.
 
-**Track B** is for external producers — organizations, systems, and individuals who stand outside the community and choose to produce content about it. These are the situations where extraction risk is highest. The full rubric applies.
+-----
 
-**Track A** is for community-insider producers — people who are members of, directly employed by, or directly accountable to the community they cover. They are less likely to extract, but they face a different and underappreciated risk: **capture**. One voice, or one faction, within a community claiming to speak for the whole. An individual building a personal platform on community stories without a clear mandate. A long-running insider producer who gradually loses accountability because their legitimacy goes unquestioned.
-
-Track A does not ask "are you taking from the community?" It asks "do you have the community's genuine mandate to speak, and what happens when you're gone?"
-
-Both tracks ask the same structural questions. The criteria are calibrated to the different risks.
-
----
-
-## What This Framework Is Not
-
-It is not a certification. There is no body that awards the Community Content Compact label. Producers score themselves — or are scored by community members, funders, or reviewers — and the score is a starting point for accountability conversation, not an endpoint.
-
-It is not a journalism ethics code. It does not require neutrality, balance, or objectivity. Communities are not obligated to present themselves "fairly." The framework has nothing to say about editorial standards beyond the two automatic disqualifiers (misrepresentation of authorship, attribution without consent).
-
-It is not a legal instrument. It does not establish enforceable rights. It establishes vocabulary for conversations that are currently hard to have because the vocabulary doesn't exist.
-
-It is not finished. It was drafted in May 2026, through Cariboo Signals, by a single producer who scored his own project at 8/35 and decided to write down why that felt wrong. If you improve it, that is the point.
-
----
-
-## The Invitation
-
-If you are producing content about a community — by AI or by hand, at scale or at kitchen-table scope — use this framework before you publish, not after. Let the discomfort of a low score tell you something before the community has to tell you the same thing, later, in worse circumstances.
-
-If you are a community being produced about — by a journalist, an NGO, a documentary crew, or an AI system — use this framework to evaluate what's being done in your name and decide what you want to demand.
-
-If you improve this framework — add a track, adjust a criterion, discover a question we should have asked — share it. The repository is public. The framework is CC BY 4.0.
-
-The conversation about community accountability in content has been happening in journalism ethics, indigenous data sovereignty, community-based participatory research, and documentary film for decades. This framework borrows from all of them. What it attempts to add is a single instrument that works across all producer types — because the problem is the same regardless of how the content was made.
-
----
-
-*Developed through Cariboo Signals, May 2026.*
-*CC BY 4.0 — adapt freely with attribution.*
-*github.com/zirnhelt/curated-podcast-generator*
+*This compact was developed through community-focused journalism and is offered for adaptation, critique, and use by any organization working on these questions. The scoring framework and card in this directory operationalize these principles into a practical review tool.*
