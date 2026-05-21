@@ -54,12 +54,7 @@ preamble, no explanation, no ```markdown fences.
 [2–3 sentences. What did this episode argue or conclude? Do not write "the hosts
 discuss" — state what the episode found or established.]
 
-## Key Takeaways
-### News Roundup Highlights
-[One bullet per discussed story. Each bullet must state the implication or
-relevance for someone in a rural BC community — not a plain summary of the news.]
-
-### Deep Dive: [Deep Dive Title]
+## Deep Dive: [Deep Dive Title]
 **Central Question:** [exact question from the structured data]
 **Riley's Take:** [1–2 sentences — her core position and reasoning]
 **Casey's Take:** [1–2 sentences — their core position and reasoning]
@@ -143,17 +138,10 @@ def load_episode_data(cit_path: Path, scr_path: Path) -> dict:
 
     episode = citations.get("episode", {})
     segments = citations.get("segments", {})
-    nr = segments.get("news_roundup", {})
     dd = segments.get("deep_dive", {})
-
-    # Older episodes may lack the 'discussed' field — include all if absent
-    news_articles = [
-        a for a in nr.get("articles", []) if a.get("discussed", True)
-    ]
 
     return {
         "episode": episode,
-        "news_articles": news_articles,
         "deep_dive": {
             "title": dd.get("title", ""),
             "articles": dd.get("articles", []),
@@ -166,18 +154,8 @@ def load_episode_data(cit_path: Path, scr_path: Path) -> dict:
 def build_harvest_prompt(data: dict) -> str:
     """Build the user-turn prompt from episode data."""
     episode = data["episode"]
-    news_articles = data["news_articles"]
     deep_dive = data["deep_dive"]
     script_text = data["script_text"]
-
-    # News roundup articles
-    news_lines = []
-    for a in news_articles:
-        title = re.sub(r"^\[.*?\]\s*", "", a.get("title", "(untitled)"))
-        source = a.get("source", "")
-        url = a.get("url", "")
-        news_lines.append(f"- {title} ({source}) — {url}")
-    news_block = "\n".join(news_lines) if news_lines else "(no articles flagged as discussed)"
 
     # Deep dive discussion block
     disc = deep_dive["discussion"]
@@ -221,12 +199,6 @@ def build_harvest_prompt(data: dict) -> str:
 - **Theme:** {episode.get("theme", "")}
 - **Episode Title:** {episode.get("title", "")}
 - **Deep Dive Title:** {deep_dive["title"]}
-
----
-
-## News Roundup: Discussed Articles
-
-{news_block}
 
 ---
 
@@ -335,7 +307,6 @@ def main():
 
     episode = data["episode"]
     print(f"  Theme:     {episode.get('theme', theme_slug)}")
-    print(f"  News items: {len(data['news_articles'])} discussed")
 
     if not data["deep_dive"]["discussion"]:
         print(
