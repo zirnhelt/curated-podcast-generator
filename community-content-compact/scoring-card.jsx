@@ -1,352 +1,325 @@
-/**
- * Community Content Compact — Scoring Card
- *
- * Standalone React component. Two tabs: Score (form) and Card (nutrition-panel display).
- * No external dependencies beyond React.
- *
- * Named exports:
- *   CaribooSignalsCard  — pre-filled Track A assessment for Cariboo Signals (15/20 Sound)
- *
- * Default export:
- *   ScoringCard({ title, producer, community, date, track, scores, disqualified, disqualifierNote })
- *
- * Usage:
- *   import ScoringCard, { CaribooSignalsCard } from './scoring-card.jsx'
- *
- *   // Pre-filled:
- *   <CaribooSignalsCard />
- *
- *   // Interactive:
- *   <ScoringCard title="My Project" track="A" />
- */
+import { useState, useMemo } from "react";
 
-import React, { useState } from 'react';
+const TRACKS = {
+  A: {
+    label: "Track A",
+    sublabel: "Community-Insider",
+    categories: [
+      { id: "i",   label: "Transparency",         max: 4 },
+      { id: "ii",  label: "Source Integrity",      max: 3 },
+      { id: "iii", label: "Displacement",          max: 2 },
+      { id: "iv",  label: "Consent & Attribution", max: 4 },
+      { id: "v",   label: "Benefit Flow",          max: 5 },
+      { id: "vi",  label: "Accountability",        max: 2 },
+    ],
+    max: 20,
+    verdicts: [
+      { min: 0,  max: 5,  label: "NEEDS WORK",  color: "#b03020" },
+      { min: 6,  max: 11, label: "DEVELOPING",  color: "#c05800" },
+      { min: 12, max: 16, label: "SOUND",        color: "#1e6e40" },
+      { min: 17, max: 20, label: "EXEMPLARY",    color: "#145530" },
+    ],
+  },
+  B: {
+    label: "Track B",
+    sublabel: "External Production",
+    categories: [
+      { id: "i",   label: "Transparency",          max: 7 },
+      { id: "ii",  label: "Source Integrity",       max: 4 },
+      { id: "iii", label: "Displacement",           max: 5 },
+      { id: "iv",  label: "Consent & Attribution",  max: 4 },
+      { id: "v",   label: "Benefit Flow",           max: 6 },
+      { id: "vi",  label: "Accountability",         max: 4 },
+      { id: "vii", label: "Governance Durability",  max: 5 },
+    ],
+    max: 35,
+    verdicts: [
+      { min: 0,  max: 10, label: "EXTRACTIVE",         color: "#b03020" },
+      { min: 11, max: 18, label: "HIGH RISK",          color: "#c05800" },
+      { min: 19, max: 25, label: "CONDITIONAL",        color: "#a08000" },
+      { min: 26, max: 31, label: "DEFENSIBLE",         color: "#1e6e40" },
+      { min: 32, max: 35, label: "COMMUNITY-SERVING",  color: "#145530" },
+    ],
+  },
+};
 
-// ---------------------------------------------------------------------------
-// Track A — 6 categories, 20 points
-// ---------------------------------------------------------------------------
+export default function App() {
+  const [contentName, setContentName] = useState("");
+  const [producer, setProducer] = useState("");
+  const [track, setTrack] = useState("A");
+  const [dq, setDq] = useState(false);
+  const [scores, setScores] = useState({});
+  const [tab, setTab] = useState("score");
 
-const TRACK_A_CATEGORIES = [
-  { key: 'transparency',    label: 'I. Transparency',           max: 4 },
-  { key: 'sourceIntegrity', label: 'II. Source Integrity',      max: 3 },
-  { key: 'displacement',    label: 'III. Displacement',         max: 2 },
-  { key: 'consent',         label: 'IV. Consent & Attribution', max: 4 },
-  { key: 'benefitFlow',     label: 'V. Benefit Flow',           max: 5 },
-  { key: 'accountability',  label: 'VI. Accountability',        max: 2 },
-];
+  const trackData = TRACKS[track];
 
-const TRACK_A_VERDICTS = [
-  { min: 17, max: 20, label: 'Exemplary',    bg: '#14532d', fg: '#fff' },
-  { min: 12, max: 16, label: 'Sound',        bg: '#1e40af', fg: '#fff' },
-  { min: 6,  max: 11, label: 'Developing',   bg: '#854d0e', fg: '#fff' },
-  { min: 0,  max: 5,  label: 'Needs Work',   bg: '#7f1d1d', fg: '#fff' },
-];
-
-// ---------------------------------------------------------------------------
-// Track B — 7 categories, 35 points
-// ---------------------------------------------------------------------------
-
-const TRACK_B_CATEGORIES = [
-  { key: 'transparency',    label: 'I. Transparency',            max: 7 },
-  { key: 'sourceIntegrity', label: 'II. Source Integrity',       max: 4 },
-  { key: 'displacement',    label: 'III. Displacement',          max: 5 },
-  { key: 'consent',         label: 'IV. Consent & Attribution',  max: 4 },
-  { key: 'benefitFlow',     label: 'V. Benefit Flow',            max: 6 },
-  { key: 'accountability',  label: 'VI. Accountability',         max: 4 },
-  { key: 'governance',      label: 'VII. Governance Durability', max: 5 },
-];
-
-const TRACK_B_VERDICTS = [
-  { min: 32, max: 35, label: 'Community-Serving', bg: '#14532d', fg: '#fff' },
-  { min: 26, max: 31, label: 'Defensible',        bg: '#15803d', fg: '#fff' },
-  { min: 19, max: 25, label: 'Conditional',       bg: '#854d0e', fg: '#fff' },
-  { min: 11, max: 18, label: 'High Risk',         bg: '#9a3412', fg: '#fff' },
-  { min: 0,  max: 10, label: 'Extractive',        bg: '#7f1d1d', fg: '#fff' },
-];
-
-// ---------------------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------------------
-
-function getCategories(track) {
-  return track === 'A' ? TRACK_A_CATEGORIES : TRACK_B_CATEGORIES;
-}
-
-function getVerdicts(track) {
-  return track === 'A' ? TRACK_A_VERDICTS : TRACK_B_VERDICTS;
-}
-
-function getMaxTotal(track) {
-  return getCategories(track).reduce((s, c) => s + c.max, 0);
-}
-
-function getVerdict(total, track, disqualified) {
-  if (disqualified) return { label: 'Disqualified', bg: '#111827', fg: '#fff' };
-  const verdicts = getVerdicts(track);
-  return verdicts.find(v => total >= v.min && total <= v.max) ?? verdicts[verdicts.length - 1];
-}
-
-function barColor(pct) {
-  if (pct >= 0.7) return '#16a34a';
-  if (pct >= 0.4) return '#ca8a04';
-  return '#dc2626';
-}
-
-// ---------------------------------------------------------------------------
-// Card view (nutrition-panel style)
-// ---------------------------------------------------------------------------
-
-function NutritionCard({ title, producer, community, date, track, scores, disqualified, disqualifierNote }) {
-  const categories = getCategories(track);
-  const verdicts   = getVerdicts(track);
-  const maxTotal   = getMaxTotal(track);
-  const total      = categories.reduce((s, c) => s + (Number(scores[c.key]) || 0), 0);
-  const verdict    = getVerdict(total, track, disqualified);
-
-  const s = {
-    card: {
-      fontFamily: "'Arial Narrow', Arial, Helvetica, sans-serif",
-      border: '3px solid #111',
-      width: 300,
-      padding: '8px 10px 10px',
-      background: '#fff',
-      color: '#111',
-    },
-    headerLabel: { fontSize: 9, letterSpacing: 2, textTransform: 'uppercase', color: '#555', marginBottom: 2 },
-    title:       { fontSize: 30, fontWeight: 900, lineHeight: 1, letterSpacing: -1 },
-    ruleThick:   { borderTop: '8px solid #111', margin: '6px 0' },
-    ruleMedium:  { borderTop: '4px solid #111', margin: '6px 0' },
-    ruleThin:    { borderTop: '1px solid #ccc', margin: '5px 0' },
-    metaRow:     { display: 'flex', justifyContent: 'space-between', fontSize: 10, lineHeight: 1.6 },
-    totalRow:    { display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' },
-    totalLabel:  { fontSize: 13, fontWeight: 700 },
-    totalValue:  { fontSize: 30, fontWeight: 900, lineHeight: 1 },
-    badge: (v)  => ({ background: v.bg, color: v.fg, fontWeight: 700, fontSize: 13, textAlign: 'center', padding: '3px 0', marginTop: 5, letterSpacing: 0.5, textTransform: 'uppercase' }),
-    catRow:      { display: 'flex', justifyContent: 'space-between', fontSize: 10, fontWeight: 600, marginBottom: 2 },
-    barTrack:    { height: 5, background: '#e5e7eb', borderRadius: 2, marginBottom: 5 },
-    keyHeader:   { fontSize: 9, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', marginBottom: 3 },
-    keyRow:      { display: 'flex', justifyContent: 'space-between', fontSize: 9, lineHeight: 1.7 },
-    footer:      { fontSize: 8, color: '#888', marginTop: 5 },
-  };
-
-  return (
-    <div style={s.card}>
-      <div style={s.headerLabel}>Community Content Compact · Track {track}</div>
-      <div style={s.title}>Content<br />Facts</div>
-      <div style={s.ruleThick} />
-
-      {[['Content', title], producer && ['Producer', producer], community && ['Community', community], date && ['Reviewed', date]]
-        .filter(Boolean)
-        .map(([label, value]) => (
-          <div key={label} style={s.metaRow}>
-            <span style={{ fontWeight: 700 }}>{label}</span>
-            <span style={{ maxWidth: 185, textAlign: 'right' }}>{value}</span>
-          </div>
-        ))}
-
-      <div style={s.ruleMedium} />
-
-      <div style={s.totalRow}>
-        <span style={s.totalLabel}>Total Score</span>
-        <span style={s.totalValue}>{disqualified ? 'DQ' : `${total} / ${maxTotal}`}</span>
-      </div>
-      <div style={s.badge(verdict)}>{verdict.label}</div>
-
-      <div style={s.ruleMedium} />
-
-      {disqualified ? (
-        <div style={{ fontSize: 10, lineHeight: 1.5 }}>
-          <strong>Disqualifier triggered:</strong><br />{disqualifierNote || 'See evaluation notes.'}
-        </div>
-      ) : (
-        categories.map((cat, i) => {
-          const score = Number(scores[cat.key]) || 0;
-          const pct   = score / cat.max;
-          return (
-            <React.Fragment key={cat.key}>
-              <div style={s.catRow}>
-                <span>{cat.label}</span>
-                <span style={{ fontWeight: 400 }}>{score} / {cat.max}</span>
-              </div>
-              <div style={{ ...s.barTrack, marginBottom: i < categories.length - 1 ? 5 : 0 }}>
-                <div style={{ width: `${pct * 100}%`, height: '100%', background: barColor(pct), borderRadius: 2 }} />
-              </div>
-            </React.Fragment>
-          );
-        })
-      )}
-
-      <div style={s.ruleMedium} />
-
-      <div style={s.keyHeader}>Verdict Key · Track {track}</div>
-      {verdicts.map(v => (
-        <div key={v.label} style={s.keyRow}>
-          <span style={{ color: v.bg, fontWeight: 600 }}>{v.label}</span>
-          <span>{v.min}–{v.max}</span>
-        </div>
-      ))}
-      <div style={s.keyRow}><span style={{ fontWeight: 600 }}>Disqualified</span><span>Any DQ</span></div>
-
-      <div style={s.ruleThin} />
-      <div style={s.footer}>Community Content Compact · github.com/zirnhelt/curated-podcast-generator · CC BY 4.0</div>
-    </div>
+  const totalScore = useMemo(
+    () => trackData.categories.reduce((s, c) => s + (parseInt(scores[c.id]) || 0), 0),
+    [scores, track, trackData]
   );
-}
 
-// ---------------------------------------------------------------------------
-// Score form view
-// ---------------------------------------------------------------------------
+  const verdict = useMemo(() => {
+    if (dq) return { label: "DISQUALIFIED", color: "#7d1a1a" };
+    return trackData.verdicts.find((v) => totalScore >= v.min && totalScore <= v.max);
+  }, [dq, totalScore, trackData]);
 
-function ScoreForm({ fields, setFields, track, setTrack, scores, setScores }) {
-  const categories = getCategories(track);
+  const pct = Math.round((totalScore / trackData.max) * 100);
 
-  function updateScore(key, val) {
-    const cat = categories.find(c => c.key === key);
-    const num = Math.max(0, Math.min(cat.max, Number(val) || 0));
-    setScores(prev => ({ ...prev, [key]: num }));
-  }
-
-  const inputStyle = {
-    border: '1px solid #ccc', borderRadius: 4, padding: '4px 6px',
-    fontSize: 13, width: '100%', boxSizing: 'border-box',
+  const setScore = (id, val) => {
+    const cat = trackData.categories.find((c) => c.id === id);
+    const n = parseInt(val);
+    const clamped = isNaN(n) ? "" : Math.max(0, Math.min(cat.max, n));
+    setScores((p) => ({ ...p, [id]: clamped }));
   };
-  const labelStyle = { fontSize: 12, fontWeight: 600, display: 'block', marginBottom: 3 };
-  const rowStyle   = { marginBottom: 12 };
+
+  const switchTrack = (t) => {
+    setTrack(t);
+    setScores({});
+  };
 
   return (
-    <div style={{ fontFamily: 'system-ui, sans-serif', fontSize: 13 }}>
-      <div style={rowStyle}>
-        <label style={labelStyle}>Content title</label>
-        <input style={inputStyle} value={fields.title} onChange={e => setFields(f => ({ ...f, title: e.target.value }))} />
-      </div>
-      <div style={rowStyle}>
-        <label style={labelStyle}>Producer</label>
-        <input style={inputStyle} value={fields.producer} onChange={e => setFields(f => ({ ...f, producer: e.target.value }))} />
-      </div>
-      <div style={rowStyle}>
-        <label style={labelStyle}>Community</label>
-        <input style={inputStyle} value={fields.community} onChange={e => setFields(f => ({ ...f, community: e.target.value }))} />
-      </div>
-      <div style={rowStyle}>
-        <label style={labelStyle}>Date reviewed</label>
-        <input style={inputStyle} value={fields.date} onChange={e => setFields(f => ({ ...f, date: e.target.value }))} />
-      </div>
-      <div style={rowStyle}>
-        <label style={labelStyle}>Track</label>
-        <select style={inputStyle} value={track} onChange={e => { setTrack(e.target.value); setScores({}); }}>
-          <option value="A">Track A — Community-Insider (/ 20)</option>
-          <option value="B">Track B — External Producer (/ 35)</option>
-        </select>
-      </div>
-      <div style={rowStyle}>
-        <label style={labelStyle}>
-          <input type="checkbox" checked={fields.disqualified} onChange={e => setFields(f => ({ ...f, disqualified: e.target.checked }))} />
-          {' '}Disqualifier triggered (DQ1 or DQ2)
-        </label>
-        {fields.disqualified && (
-          <input style={{ ...inputStyle, marginTop: 4 }} placeholder="Note which disqualifier and why" value={fields.disqualifierNote} onChange={e => setFields(f => ({ ...f, disqualifierNote: e.target.value }))} />
-        )}
+    <div style={{ fontFamily: "system-ui, -apple-system, sans-serif", background: "#eeebe6", minHeight: "100vh" }}>
+      <style>{`
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        /* Tabs */
+        .tabs { display: flex; background: #1a1a1a; }
+        .tab-btn { flex: 1; padding: 13px 0; font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+          text-transform: uppercase; cursor: pointer; background: none; border: none; color: #666;
+          border-bottom: 2px solid transparent; transition: color 0.15s, border-color 0.15s; }
+        .tab-btn.on { color: #f0ede8; border-bottom-color: #f0ede8; }
+
+        /* Form */
+        .form { padding: 16px; max-width: 480px; margin: 0 auto; }
+        .f-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #888; margin-bottom: 5px; display: block; }
+        .f-field { margin-bottom: 14px; }
+        .f-input { width: 100%; padding: 9px 11px; border: 1px solid #d8d4cd; border-radius: 4px;
+          font-size: 14px; background: white; color: #1a1a1a; outline: none; }
+        .f-input:focus { border-color: #999; }
+        .track-row { display: flex; border: 1px solid #d8d4cd; border-radius: 4px; overflow: hidden; background: white; }
+        .track-opt { flex: 1; padding: 9px 6px; text-align: center; font-size: 12px; font-weight: 600;
+          cursor: pointer; background: none; border: none; color: #999; transition: all 0.15s; line-height: 1.3; }
+        .track-opt.on { background: #1a1a1a; color: white; }
+        .dq-row { display: flex; align-items: center; justify-content: space-between; padding: 9px 11px;
+          background: white; border: 1px solid #d8d4cd; border-radius: 4px; }
+        .dq-status { font-size: 13px; color: #444; }
+        .toggle { position: relative; width: 42px; height: 24px; display: inline-block; }
+        .toggle input { opacity: 0; width: 0; height: 0; }
+        .tog-slider { position: absolute; inset: 0; background: #ddd; border-radius: 24px; cursor: pointer; transition: 0.2s; }
+        .tog-slider:before { content: ""; position: absolute; width: 18px; height: 18px; left: 3px; top: 3px;
+          background: white; border-radius: 50%; transition: 0.2s; }
+        input:checked + .tog-slider { background: #b03020; }
+        input:checked + .tog-slider:before { transform: translateX(18px); }
+        .score-table { background: white; border: 1px solid #d8d4cd; border-radius: 4px; overflow: hidden; }
+        .score-row { display: flex; align-items: center; padding: 8px 12px; border-bottom: 1px solid #f0ece6; gap: 8px; }
+        .score-row:last-child { border-bottom: none; }
+        .score-name { font-size: 13px; color: #333; flex: 1; }
+        .score-num { width: 52px; padding: 5px 8px; border: 1px solid #d8d4cd; border-radius: 3px;
+          font-size: 14px; text-align: center; background: #fafaf8; color: #1a1a1a; outline: none; }
+        .score-num:focus { border-color: #999; }
+        .score-of { font-size: 11px; color: #bbb; width: 26px; }
+        .go-btn { width: 100%; margin-top: 16px; padding: 12px; background: #1a1a1a; color: white;
+          border: none; border-radius: 4px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+          text-transform: uppercase; cursor: pointer; }
+
+        /* Panel */
+        .panel-wrap { padding: 20px 16px 32px; display: flex; justify-content: center; }
+        .panel { width: 290px; background: white; border: 3px solid #1a1a1a; font-family: Arial, Helvetica, sans-serif; }
+        .p-hd { padding: 6px 10px 5px; border-bottom: 9px solid #1a1a1a; }
+        .p-hd-title { font-size: 28px; font-weight: 900; color: #1a1a1a; line-height: 1; letter-spacing: -0.02em; }
+        .p-hd-sub { font-size: 9px; font-weight: 700; color: #666; letter-spacing: 0.03em; margin-top: 2px; }
+        .p-meta { padding: 4px 10px; border-bottom: 4px solid #1a1a1a; }
+        .p-meta-lbl { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #999; }
+        .p-meta-val { font-size: 13px; font-weight: 700; color: #1a1a1a; line-height: 1.25; margin-top: 1px; }
+        .p-meta-sub { font-size: 10px; color: #777; }
+        .p-row { display: flex; align-items: center; justify-content: space-between; padding: 3px 10px; border-bottom: 1px solid #e8e4de; }
+        .p-row-lbl { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #999; }
+        .p-row-val { font-size: 10px; font-weight: 700; color: #1a1a1a; }
+        .p-row-pass { font-size: 10px; font-weight: 700; color: #1e6e40; }
+        .p-row-fail { font-size: 10px; font-weight: 700; color: #b03020; }
+        .p-divider-thick { height: 4px; background: #1a1a1a; }
+        .p-cat-hd { display: flex; justify-content: space-between; background: #1a1a1a; padding: 3px 10px; }
+        .p-cat-hd span { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: white; }
+        .p-cat { display: flex; align-items: center; padding: 4px 10px; border-bottom: 1px solid #f0ece6; gap: 6px; }
+        .p-cat:last-of-type { border-bottom: none; }
+        .p-cat-name { font-size: 10px; color: #1a1a1a; font-weight: 500; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .p-cat-bar-bg { width: 64px; height: 5px; background: #e8e4de; border-radius: 2px; flex-shrink: 0; overflow: hidden; }
+        .p-cat-bar { height: 5px; border-radius: 2px; background: #1a1a1a; }
+        .p-cat-sc { font-size: 9px; font-weight: 700; color: #1a1a1a; width: 28px; text-align: right; flex-shrink: 0; }
+        .p-total { display: flex; justify-content: space-between; align-items: baseline;
+          padding: 5px 10px; border-top: 5px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; }
+        .p-total-lbl { font-size: 13px; font-weight: 900; color: #1a1a1a; }
+        .p-total-val { font-size: 22px; font-weight: 900; color: #1a1a1a; line-height: 1; }
+        .p-pct { padding: 4px 10px 5px; border-bottom: 8px solid #1a1a1a; }
+        .p-pct-bg { height: 6px; background: #e8e4de; border-radius: 3px; overflow: hidden; margin-bottom: 2px; }
+        .p-pct-bar { height: 6px; border-radius: 3px; transition: width 0.3s; }
+        .p-pct-lbl { font-size: 8px; color: #aaa; font-weight: 600; }
+        .p-verdict { padding: 10px; text-align: center; }
+        .p-verdict-grade { font-size: 26px; font-weight: 900; line-height: 1; letter-spacing: -0.02em; }
+        .p-verdict-sub { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-top: 3px; }
+        .p-dq-block { padding: 14px 10px; text-align: center; border-top: 4px solid #1a1a1a; }
+        .p-dq-text { font-size: 22px; font-weight: 900; color: #b03020; }
+        .p-dq-sub { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-top: 3px; }
+        .p-footer { padding: 4px 10px; border-top: 1px solid #e8e4de; }
+        .p-footer-text { font-size: 7px; color: #ccc; line-height: 1.5; }
+      `}</style>
+
+      {/* Tabs */}
+      <div className="tabs">
+        <button className={`tab-btn ${tab === "score" ? "on" : ""}`} onClick={() => setTab("score")}>Score</button>
+        <button className={`tab-btn ${tab === "card" ? "on" : ""}`} onClick={() => setTab("card")}>Card</button>
       </div>
 
-      {!fields.disqualified && (
-        <>
-          <div style={{ borderTop: '2px solid #111', paddingTop: 10, marginBottom: 10, fontWeight: 700, fontSize: 13 }}>Category Scores</div>
-          {categories.map(cat => (
-            <div key={cat.key} style={{ ...rowStyle, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <label style={{ ...labelStyle, marginBottom: 0, flex: 1 }}>{cat.label}</label>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                <input
-                  type="number" min={0} max={cat.max}
-                  style={{ ...inputStyle, width: 52 }}
-                  value={scores[cat.key] ?? ''}
-                  onChange={e => updateScore(cat.key, e.target.value)}
-                />
-                <span style={{ color: '#888', fontSize: 11 }}>/ {cat.max}</span>
+      {/* Score tab */}
+      {tab === "score" && (
+        <div className="form">
+          <div className="f-field">
+            <label className="f-label">Content</label>
+            <input className="f-input" placeholder="Title or description" value={contentName} onChange={(e) => setContentName(e.target.value)} />
+          </div>
+          <div className="f-field">
+            <label className="f-label">Producer</label>
+            <input className="f-input" placeholder="Producer or organization" value={producer} onChange={(e) => setProducer(e.target.value)} />
+          </div>
+          <div className="f-field">
+            <label className="f-label">Track</label>
+            <div className="track-row">
+              <button className={`track-opt ${track === "A" ? "on" : ""}`} onClick={() => switchTrack("A")}>
+                Track A<br />Community-Insider
+              </button>
+              <button className={`track-opt ${track === "B" ? "on" : ""}`} onClick={() => switchTrack("B")}>
+                Track B<br />External
+              </button>
+            </div>
+          </div>
+          <div className="f-field">
+            <label className="f-label">Disqualifier triggered</label>
+            <div className="dq-row">
+              <span className="dq-status">{dq ? "Yes — evaluation ends here" : "No — proceed to scoring"}</span>
+              <label className="toggle">
+                <input type="checkbox" checked={dq} onChange={(e) => setDq(e.target.checked)} />
+                <span className="tog-slider" />
+              </label>
+            </div>
+          </div>
+          {!dq && (
+            <div className="f-field">
+              <label className="f-label">Category Scores</label>
+              <div className="score-table">
+                {trackData.categories.map((cat) => (
+                  <div key={cat.id} className="score-row">
+                    <span className="score-name">{cat.label}</span>
+                    <input
+                      type="number"
+                      className="score-num"
+                      min={0}
+                      max={cat.max}
+                      value={scores[cat.id] ?? ""}
+                      placeholder="0"
+                      onChange={(e) => setScore(cat.id, e.target.value)}
+                    />
+                    <span className="score-of">/{cat.max}</span>
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
-        </>
+          )}
+          <button className="go-btn" onClick={() => setTab("card")}>View Card →</button>
+        </div>
+      )}
+
+      {/* Card tab */}
+      {tab === "card" && (
+        <div className="panel-wrap">
+          <div className="panel">
+
+            {/* Header */}
+            <div className="p-hd">
+              <div className="p-hd-title">Content</div>
+              <div className="p-hd-title">Accountability</div>
+              <div className="p-hd-title">Facts</div>
+              <div className="p-hd-sub">The Community Content Compact</div>
+            </div>
+
+            {/* Content */}
+            <div className="p-meta">
+              <div className="p-meta-lbl">Content</div>
+              <div className="p-meta-val">{contentName || "—"}</div>
+              {producer && <div className="p-meta-sub">{producer}</div>}
+            </div>
+
+            {/* Track row */}
+            <div className="p-row" style={{ borderBottom: "1px solid #e8e4de" }}>
+              <span className="p-row-lbl">Track</span>
+              <span className="p-row-val">{trackData.label} — {trackData.sublabel}</span>
+            </div>
+
+            {/* DQ row */}
+            <div className="p-row" style={{ borderBottom: "none" }}>
+              <span className="p-row-lbl">Disqualifiers</span>
+              {dq
+                ? <span className="p-row-fail">TRIGGERED</span>
+                : <span className="p-row-pass">CLEAR</span>
+              }
+            </div>
+
+            <div className="p-divider-thick" />
+
+            {dq ? (
+              <div className="p-dq-block">
+                <div className="p-dq-text">DISQUALIFIED</div>
+                <div className="p-dq-sub">Fails regardless of score</div>
+              </div>
+            ) : (
+              <>
+                <div className="p-cat-hd">
+                  <span>Category</span>
+                  <span>Score</span>
+                </div>
+
+                {trackData.categories.map((cat) => {
+                  const s = parseInt(scores[cat.id]) || 0;
+                  return (
+                    <div key={cat.id} className="p-cat">
+                      <span className="p-cat-name">{cat.label}</span>
+                      <div className="p-cat-bar-bg">
+                        <div className="p-cat-bar" style={{ width: `${(s / cat.max) * 100}%` }} />
+                      </div>
+                      <span className="p-cat-sc">{s}/{cat.max}</span>
+                    </div>
+                  );
+                })}
+
+                <div className="p-total">
+                  <span className="p-total-lbl">Total Score</span>
+                  <span className="p-total-val">{totalScore}/{trackData.max}</span>
+                </div>
+
+                <div className="p-pct">
+                  <div className="p-pct-bg">
+                    <div className="p-pct-bar" style={{ width: `${pct}%`, background: verdict?.color || "#1a1a1a" }} />
+                  </div>
+                  <div className="p-pct-lbl">{pct}% of maximum</div>
+                </div>
+
+                <div className="p-verdict">
+                  <div className="p-verdict-grade" style={{ color: verdict?.color || "#1a1a1a" }}>
+                    {verdict?.label || "—"}
+                  </div>
+                  <div className="p-verdict-sub">Community Content Compact Rating</div>
+                </div>
+              </>
+            )}
+
+            <div className="p-footer">
+              <div className="p-footer-text">
+                Cariboo Signals · Community Content Compact · May 2026<br />
+                github.com/zirnhelt/curated-podcast-generator
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </div>
-  );
-}
-
-// ---------------------------------------------------------------------------
-// Default export — full tabbed component
-// ---------------------------------------------------------------------------
-
-export default function ScoringCard({
-  title: initTitle       = '',
-  producer: initProducer = '',
-  community: initCom     = '',
-  date: initDate         = '',
-  track: initTrack       = 'A',
-  scores: initScores     = {},
-  disqualified: initDQ   = false,
-  disqualifierNote: initNote = '',
-}) {
-  const [tab, setTab]           = useState('card');
-  const [track, setTrack]       = useState(initTrack);
-  const [scores, setScores]     = useState(initScores);
-  const [fields, setFields]     = useState({
-    title: initTitle, producer: initProducer, community: initCom,
-    date: initDate, disqualified: initDQ, disqualifierNote: initNote,
-  });
-
-  const tabBtn = (id, label) => ({
-    onClick: () => setTab(id),
-    style: {
-      padding: '6px 16px', border: 'none', cursor: 'pointer', fontWeight: 600, fontSize: 13,
-      borderBottom: tab === id ? '3px solid #111' : '3px solid transparent',
-      background: 'none', color: tab === id ? '#111' : '#777',
-    },
-  });
-
-  return (
-    <div style={{ fontFamily: 'system-ui, sans-serif', maxWidth: 340 }}>
-      <div style={{ display: 'flex', borderBottom: '1px solid #ddd', marginBottom: 16 }}>
-        <button {...tabBtn('score', 'Score')}>Score</button>
-        <button {...tabBtn('card', 'Card')}>Card</button>
-      </div>
-
-      {tab === 'score' ? (
-        <ScoreForm fields={fields} setFields={setFields} track={track} setTrack={setTrack} scores={scores} setScores={setScores} />
-      ) : (
-        <NutritionCard
-          title={fields.title}
-          producer={fields.producer}
-          community={fields.community}
-          date={fields.date}
-          track={track}
-          scores={scores}
-          disqualified={fields.disqualified}
-          disqualifierNote={fields.disqualifierNote}
-        />
-      )}
-    </div>
-  );
-}
-
-// ---------------------------------------------------------------------------
-// Pre-filled export — Cariboo Signals Track A, 15/20 Sound
-// ---------------------------------------------------------------------------
-
-export function CaribooSignalsCard() {
-  return (
-    <NutritionCard
-      title="Cariboo Signals"
-      producer="Erich Zirnhelt"
-      community="Cariboo region, BC"
-      date="May 2026"
-      track="A"
-      scores={{
-        transparency:    3,
-        sourceIntegrity: 3,
-        displacement:    2,
-        consent:         2,
-        benefitFlow:     4,
-        accountability:  1,
-      }}
-    />
   );
 }
