@@ -312,6 +312,132 @@
             display: none;
         }
 
+        .accountability-section {
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .accountability-section h3 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .accountability-section .section-intro {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .content-facts {
+            font-family: 'Arial Narrow', Arial, Helvetica, sans-serif;
+            border: 3px solid #111;
+            width: 300px;
+            margin: 0 auto;
+            padding: 8px 10px 10px;
+            background: #fff;
+            color: #111;
+            text-align: left;
+        }
+
+        .cf-header-label {
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #555;
+            margin-bottom: 2px;
+        }
+
+        .cf-title {
+            font-size: 32px;
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+
+        .cf-rule-thick { border-top: 8px solid #111; margin: 6px 0; }
+        .cf-rule-medium { border-top: 4px solid #111; margin: 6px 0; }
+        .cf-rule-thin { border-top: 1px solid #ccc; margin: 5px 0; }
+
+        .cf-meta-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            line-height: 1.6;
+        }
+
+        .cf-meta-label { font-weight: 700; }
+
+        .cf-total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .cf-total-label { font-size: 13px; font-weight: 700; }
+        .cf-total-value { font-size: 32px; font-weight: 900; line-height: 1; }
+
+        .cf-verdict-badge {
+            background: #7f1d1d;
+            color: #fff;
+            font-weight: 700;
+            font-size: 13px;
+            text-align: center;
+            padding: 3px 0;
+            margin-top: 5px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .cf-cat-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .cf-cat-score { font-weight: 400; }
+
+        .cf-bar-track {
+            height: 5px;
+            background: #e5e7eb;
+            border-radius: 2px;
+            margin-bottom: 5px;
+        }
+
+        .cf-bar-fill { height: 100%; border-radius: 2px; }
+
+        .cf-verdict-key-header {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 3px;
+        }
+
+        .cf-verdict-key-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 9px;
+            line-height: 1.7;
+        }
+
+        .cf-panel-footer { font-size: 8px; color: #888; margin-top: 5px; }
+        .cf-panel-footer a { color: #888; }
+
+        .accountability-section .section-footer {
+            color: #666;
+            font-size: 0.85em;
+            margin-top: 16px;
+        }
+
+        .accountability-section .section-footer a { color: #3498db; }
+
         @media (max-width: 768px) {
             .container {
                 padding: 24px;
@@ -471,7 +597,69 @@
                 <a href="bespoke-feed.xml" style="display:inline-block;background:#5a3fa0;color:white;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:500;margin-left:8px;">🎙️ Deep Dives RSS</a>
             </div>
         </div>
-        
+
+        <div class="accountability-section">
+            <h3>Community Accountability</h3>
+            <p class="section-intro">Cariboo Signals scores itself against the <a href="community-content-compact/framework.md">Community Content Compact</a> — a framework for evaluating whether AI-generated content serves the communities it draws from.</p>
+
+            <div class="content-facts">
+                <div class="cf-header-label">Community Content Compact · Track B</div>
+                <div class="cf-title">Content<br>Facts</div>
+                <div class="cf-rule-thick"></div>
+
+                <div class="cf-meta-row"><span class="cf-meta-label">Content</span><span>Cariboo Signals</span></div>
+                <div class="cf-meta-row"><span class="cf-meta-label">Producer</span><span>Erich Zirnhelt</span></div>
+                <div class="cf-meta-row"><span class="cf-meta-label">Community</span><span>Cariboo region, BC</span></div>
+                <div class="cf-meta-row"><span class="cf-meta-label">Reviewed</span><span>May 2026</span></div>
+
+                <div class="cf-rule-medium"></div>
+
+                <div class="cf-total-row">
+                    <span class="cf-total-label">Total Score</span>
+                    <span class="cf-total-value">8 / 35</span>
+                </div>
+                <div class="cf-verdict-badge">Extractive</div>
+
+                <div class="cf-rule-medium"></div>
+
+                <div class="cf-cat-row"><span>I. Transparency</span><span class="cf-cat-score">3 / 7</span></div>
+                <div class="cf-bar-track"><div class="cf-bar-fill" style="width:42.9%;background:#ca8a04;"></div></div>
+
+                <div class="cf-cat-row"><span>II. Source Integrity</span><span class="cf-cat-score">1 / 4</span></div>
+                <div class="cf-bar-track"><div class="cf-bar-fill" style="width:25%;background:#dc2626;"></div></div>
+
+                <div class="cf-cat-row"><span>III. Displacement / Mandate</span><span class="cf-cat-score">0 / 5</span></div>
+                <div class="cf-bar-track"><div class="cf-bar-fill" style="width:0%;background:#dc2626;"></div></div>
+
+                <div class="cf-cat-row"><span>IV. Consent &amp; Attribution</span><span class="cf-cat-score">2 / 4</span></div>
+                <div class="cf-bar-track"><div class="cf-bar-fill" style="width:50%;background:#ca8a04;"></div></div>
+
+                <div class="cf-cat-row"><span>V. Benefit Flow</span><span class="cf-cat-score">1 / 6</span></div>
+                <div class="cf-bar-track"><div class="cf-bar-fill" style="width:16.7%;background:#dc2626;"></div></div>
+
+                <div class="cf-cat-row"><span>VI. Accountability</span><span class="cf-cat-score">1 / 4</span></div>
+                <div class="cf-bar-track"><div class="cf-bar-fill" style="width:25%;background:#dc2626;"></div></div>
+
+                <div class="cf-cat-row"><span>VII. Governance Durability</span><span class="cf-cat-score">0 / 5</span></div>
+                <div class="cf-bar-track" style="margin-bottom:0;"><div class="cf-bar-fill" style="width:0%;background:#dc2626;"></div></div>
+
+                <div class="cf-rule-medium"></div>
+
+                <div class="cf-verdict-key-header">Verdict Key</div>
+                <div class="cf-verdict-key-row"><span style="color:#14532d;font-weight:600;">Community-Serving</span><span>32–35</span></div>
+                <div class="cf-verdict-key-row"><span style="color:#15803d;font-weight:600;">Defensible</span><span>26–31</span></div>
+                <div class="cf-verdict-key-row"><span style="color:#854d0e;font-weight:600;">Conditional</span><span>19–25</span></div>
+                <div class="cf-verdict-key-row"><span style="color:#9a3412;font-weight:600;">High Risk</span><span>11–18</span></div>
+                <div class="cf-verdict-key-row"><span style="color:#7f1d1d;font-weight:600;">Extractive</span><span>0–10</span></div>
+                <div class="cf-verdict-key-row"><span style="font-weight:600;">Disqualified</span><span>Any DQ</span></div>
+
+                <div class="cf-rule-thin"></div>
+                <div class="cf-panel-footer">Community Content Compact · <a href="community-content-compact/framework.md">framework</a> · CC BY 4.0</div>
+            </div>
+
+            <p class="section-footer">We score ourselves because the question matters. Lowest-scoring areas: Displacement, Benefit Flow, and Governance Durability. <a href="community-content-compact/README.md">Read the framework and get well plan.</a></p>
+        </div>
+
         <div class="footer">
             <div class="credits">
                 <h3>Credits</h3>

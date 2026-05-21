@@ -131,6 +131,27 @@ const styles = {
   footer: { fontSize: 8, color: '#888', marginTop: 5 },
 };
 
+export function CaribooSignalsCard() {
+  return (
+    <ScoringCard
+      title="Cariboo Signals"
+      producer="Erich Zirnhelt"
+      community="Cariboo region, BC"
+      date="May 2026"
+      track="B"
+      scores={{
+        transparency:    3,
+        sourceIntegrity: 1,
+        displacement:    0,
+        consent:         2,
+        benefitFlow:     1,
+        accountability:  1,
+        governance:      0,
+      }}
+    />
+  );
+}
+
 export default function ScoringCard({
   title = 'Untitled Content',
   producer = '',
