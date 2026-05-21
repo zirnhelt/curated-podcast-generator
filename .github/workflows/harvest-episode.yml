@@ -1,0 +1,95 @@
+name: Harvest Episode
+
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Episode date to harvest (YYYY-MM-DD). Leave empty for most recent.'
+        required: false
+        default: ''
+        type: string
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  harvest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install anthropic
+
+      - name: Resolve episode date
+        id: params
+        env:
+          INPUT_DATE: ${{ github.event.inputs.date }}
+        run: |
+          DATE="${INPUT_DATE:-}"
+          if [ -n "$DATE" ]; then
+            echo "date=$DATE" >> "$GITHUB_OUTPUT"
+            echo "Harvesting episode for date: $DATE"
+          else
+            echo "date=" >> "$GITHUB_OUTPUT"
+            echo "Harvesting most recent episode"
+          fi
+
+      - name: Run episode harvest
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          EPISODE_DATE: ${{ steps.params.outputs.date }}
+        run: |
+          if [ -n "$EPISODE_DATE" ]; then
+            python harvest_episode.py --date "$EPISODE_DATE" --output file
+          else
+            python harvest_episode.py --output file
+          fi
+
+      - name: Read harvest for issue body
+        id: report
+        run: |
+          HARVEST_FILE=$(ls reviews/harvest_*.md | sort | tail -1)
+          echo "path=$HARVEST_FILE" >> "$GITHUB_OUTPUT"
+          # Extract episode date from filename for issue title
+          EPISODE_DATE=$(basename "$HARVEST_FILE" | sed 's/harvest_\([0-9-]*\)_.*/\1/')
+          echo "episode_date=$EPISODE_DATE" >> "$GITHUB_OUTPUT"
+          # Truncate to ~65000 chars to fit in a GitHub issue body
+          python3 -c "
+          with open('$HARVEST_FILE') as f:
+              content = f.read()
+          limit = 65000
+          if len(content) > limit:
+              content = content[:limit] + '\n\n*(truncated — see committed file for full version)*'
+          print(content, end='')
+          " > /tmp/harvest_body.md
+
+      - name: Create GitHub Issue with harvest
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          EPISODE_DATE="${{ steps.report.outputs.episode_date }}"
+          gh issue create \
+            --title "Episode Harvest — $EPISODE_DATE" \
+            --body-file /tmp/harvest_body.md \
+            --label "episode-harvest"
+
+      - name: Commit harvest document
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add reviews/
+          git diff --staged --quiet && echo "No new harvest file to commit" || \
+            git commit -m "Add episode harvest ${{ steps.report.outputs.episode_date }}"
+          git push origin HEAD
