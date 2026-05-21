@@ -13,6 +13,7 @@ Requires:
 """
 
 import os
+import re
 import xml.sax.saxutils as saxutils
 from pathlib import Path
 
@@ -205,12 +206,24 @@ def _split_segments_by_char_limit(
     return chunks
 
 
+def _count_words(text: str) -> int:
+    """Count words in *text* using word-boundary tokenization."""
+    return len(re.findall(r"\b\w+\b", text))
+
+
 def synthesize_section(
     ssml: str,
     output_file: str | Path,
     speech_config,
+    *,
+    expected_word_count: int | None = None,
 ) -> None:
     """Synthesize *ssml* to *output_file* using the Azure Speech SDK.
+
+    When *expected_word_count* is provided, the SDK's word-boundary events are
+    used to count words actually synthesized and a warning is printed if the
+    count differs from the expected value — catching silent word omissions like
+    the "governance frameworks" incident without any extra API call.
 
     Raises RuntimeError if synthesis is cancelled or fails.
     """
@@ -220,9 +233,27 @@ def synthesize_section(
     synthesizer = speechsdk.SpeechSynthesizer(
         speech_config=speech_config, audio_config=audio_cfg
     )
+
+    synthesized_word_count = 0
+
+    if expected_word_count is not None:
+        def _on_word_boundary(evt):
+            nonlocal synthesized_word_count
+            if evt.boundary_type == speechsdk.SpeechSynthesisBoundaryType.Word:
+                synthesized_word_count += 1
+
+        synthesizer.synthesis_word_boundary.connect(_on_word_boundary)
+
     result = synthesizer.speak_ssml_async(ssml).get()
 
     if result.reason == speechsdk.ResultReason.SynthesizingAudioCompleted:
+        if expected_word_count is not None and synthesized_word_count != expected_word_count:
+            diff = expected_word_count - synthesized_word_count
+            print(
+                f"  ⚠️  TTS word count mismatch: expected {expected_word_count}, "
+                f"synthesized {synthesized_word_count} "
+                f"({'missing' if diff > 0 else 'extra'} {abs(diff)} word(s))"
+            )
         return
 
     if result.reason == speechsdk.ResultReason.Canceled:
@@ -255,20 +286,36 @@ def generate_azure_tts_for_section(
 
     if len(chunks) == 1:
         ssml = build_section_ssml(chunks[0], voice_map=voice_map)
-        synthesize_section(ssml, output_file, speech_config)
+        expected = sum(_count_words(seg["text"]) for seg in chunks[0])
+        synthesize_section(ssml, output_file, speech_config, expected_word_count=expected)
         return
 
     # Multiple chunks — synthesize each and stitch with pydub
     import tempfile
     from pydub import AudioSegment
+    from pydub.silence import detect_leading_silence
+
+    def _trim_chunk_silence(segment, silence_thresh=-45, chunk_size=80):
+        """Trim leading/trailing silence from a synthesized WAV chunk.
+
+        Azure TTS adds ~200–400 ms of silence at the start and end of each
+        synthesis call. Without trimming, those pad together with the explicit
+        200 ms inter-chunk gap to produce dead air at chunk boundaries.
+        """
+        lead = detect_leading_silence(segment, silence_threshold=silence_thresh, chunk_size=chunk_size)
+        trail = detect_leading_silence(segment.reverse(), silence_threshold=silence_thresh, chunk_size=chunk_size)
+        end = len(segment) - trail
+        return segment if end <= lead else segment[lead:end]
 
     chunk_audios: list[AudioSegment] = []
     with tempfile.TemporaryDirectory() as tmpdir:
         for idx, chunk in enumerate(chunks):
             chunk_file = Path(tmpdir) / f"chunk_{idx}.wav"
             ssml = build_section_ssml(chunk, voice_map=voice_map)
-            synthesize_section(ssml, chunk_file, speech_config)
-            chunk_audios.append(AudioSegment.from_file(str(chunk_file), format="wav"))
+            expected = sum(_count_words(seg["text"]) for seg in chunk)
+            synthesize_section(ssml, chunk_file, speech_config, expected_word_count=expected)
+            audio = AudioSegment.from_file(str(chunk_file), format="wav")
+            chunk_audios.append(_trim_chunk_silence(audio))
 
     combined = chunk_audios[0]
     gap = AudioSegment.silent(duration=200)

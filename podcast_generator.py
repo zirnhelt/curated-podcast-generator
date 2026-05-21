@@ -3048,9 +3048,14 @@ def parse_script_into_segments(script):
     current_speaker = None
     current_text = []
     current_gap_ms = None  # None means "use heuristic default"
+    prev_line_blank = False  # tracks whether the immediately preceding line was blank
 
     for line in script.split('\n'):
         line = line.strip()
+
+        if not line:
+            prev_line_blank = True
+            continue
 
         # Detect segment transitions (support both old "SEGMENT 1/2:" and new "NEWS ROUNDUP:/DEEP DIVE:" markers)
         if 'SEGMENT 1:' in line or '**SEGMENT 1:' in line or 'NEWS ROUNDUP' in line:
@@ -3063,6 +3068,7 @@ def parse_script_into_segments(script):
                 })
                 current_text = []
             current_section = 'news'
+            prev_line_blank = False
             continue
 
         if 'COMMUNITY SPOTLIGHT' in line or '**COMMUNITY SPOTLIGHT' in line:
@@ -3075,6 +3081,7 @@ def parse_script_into_segments(script):
                 })
                 current_text = []
             current_section = 'community_spotlight'
+            prev_line_blank = False
             continue
 
         if 'SEGMENT 2:' in line or '**SEGMENT 2:' in line or 'DEEP DIVE' in line:
@@ -3087,8 +3094,9 @@ def parse_script_into_segments(script):
                 })
                 current_text = []
             current_section = 'deep_dive'
+            prev_line_blank = False
             continue
-        
+
         # Parse speaker tags
         riley_match = re.match(r'\*\*RILEY:\*\*\s*(.*)', line)
         casey_match = re.match(r'\*\*CASEY:\*\*\s*(.*)', line)
@@ -3104,6 +3112,7 @@ def parse_script_into_segments(script):
             text_after = riley_match.group(1) or ''
             current_gap_ms, text_after = _extract_pacing_tag(text_after)
             current_text = [text_after] if text_after else []
+            prev_line_blank = False
 
         elif casey_match:
             if current_speaker and current_text:
@@ -3116,7 +3125,8 @@ def parse_script_into_segments(script):
             text_after = casey_match.group(1) or ''
             current_gap_ms, text_after = _extract_pacing_tag(text_after)
             current_text = [text_after] if text_after else []
-            
+            prev_line_blank = False
+
         elif line and current_speaker:
             # Handle standalone or inline pacing tags on continuation lines.
             # Claude sometimes writes [pause:N] on its own line between speaker turns
@@ -3135,6 +3145,7 @@ def parse_script_into_segments(script):
                 current_gap_ms = gap_ms_tag
                 if remaining.strip():
                     current_text = [remaining.strip()]
+                prev_line_blank = False
                 continue
 
             # Skip metadata and markers (non-pacing lines starting with '[' are stage
@@ -3144,7 +3155,24 @@ def parse_script_into_segments(script):
                 not 'SEGMENT' in line and
                 not line.startswith('[') and
                 not 'AD BREAK' in line):
+                # A blank-line-separated paragraph that has no speaker tag is an
+                # unattributed narrator line (the LLM wrote a transition sentence without
+                # a **RILEY:** / **CASEY:** prefix). Flush the current segment and start
+                # a new one so the narrator text is isolated rather than silently appended
+                # to the preceding speaker turn — which would cause it to play in the
+                # wrong section and at the wrong time.
+                if prev_line_blank and current_text:
+                    print(f"  ⚠️  Unattributed paragraph after blank line in {current_section} "
+                          f"(speaker={current_speaker}): '{line[:60]}...' — flushing segment")
+                    segments[current_section].append({
+                        'speaker': current_speaker,
+                        'text': ' '.join(current_text).strip(),
+                        'gap_ms': current_gap_ms,
+                    })
+                    current_text = []
+                    current_gap_ms = None
                 current_text.append(line)
+            prev_line_blank = False
     
     # Add final segment
     if current_speaker and current_text:
@@ -3188,6 +3216,22 @@ def generate_tts_for_segment(text, speaker, output_file):
 
     with open(output_file, "wb") as f:
         f.write(response.content)
+
+    # Duration-ratio checksum: warn if audio is significantly shorter than expected.
+    # OpenAI tts-1 at speed=1.0 averages ~150 wpm (400 ms/word).  A ratio below 0.80
+    # suggests a sentence or more was dropped; smaller omissions (1–3 words) won't
+    # reliably surface here but are mitigated by shorter per-segment text.
+    expected_words = len(re.findall(r"\b\w+\b", clean))
+    if expected_words > 0:
+        actual_ms = len(AudioSegment.from_mp3(output_file))
+        expected_ms = expected_words * 400  # 150 wpm ≈ 400 ms/word
+        ratio = actual_ms / expected_ms
+        if ratio < 0.80:
+            print(
+                f"  ⚠️  TTS duration check: expected ~{expected_ms // 1000}s "
+                f"for {expected_words} words, got {actual_ms // 1000}s "
+                f"({ratio:.0%}) — possible word omission"
+            )
 
 def _generate_host_line(context: str, host: str) -> str:
     """Ask Claude to write a short spoken line for the named host.
