@@ -10,13 +10,13 @@ on:
         type: choice
         options:
           - most recent
-          - 1 day ago
-          - 2 days ago
-          - 3 days ago
-          - 4 days ago
-          - 5 days ago
-          - 6 days ago
-          - 7 days ago
+          - Arts, Culture & Digital Storytelling
+          - Working Lands & Industry
+          - Gear, Gadgets & Practical Tech
+          - Indigenous Lands & Innovation
+          - Wild Spaces & Outdoor Life
+          - Cariboo Local Affairs
+          - Science, Wonder & the Natural World
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -50,10 +50,27 @@ jobs:
             echo "date=" >> "$GITHUB_OUTPUT"
             echo "Harvesting most recent episode"
           else
-            DAYS=$(echo "$INPUT_EPISODE" | grep -o '^[0-9]*')
-            DATE=$(TZ='America/Vancouver' date -d "$DAYS days ago" '+%Y-%m-%d')
+            DATE=$(python3 -c "
+import glob, json, re, sys
+theme = '$INPUT_EPISODE'
+dates = []
+for path in glob.glob('podcasts/citations_*.json'):
+    try:
+        with open(path) as f:
+            data = json.load(f)
+        if data.get('episode', {}).get('theme', '') == theme:
+            m = re.search(r'citations_(\d{4}-\d{2}-\d{2})_', path)
+            if m:
+                dates.append(m.group(1))
+    except Exception:
+        pass
+if not dates:
+    print(f'No episodes found for theme: {theme}', file=sys.stderr)
+    sys.exit(1)
+print(max(dates))
+")
             echo "date=$DATE" >> "$GITHUB_OUTPUT"
-            echo "Harvesting episode for $DATE ($INPUT_EPISODE)"
+            echo "Harvesting most recent '$INPUT_EPISODE' episode: $DATE"
           fi
 
       - name: Run episode harvest
