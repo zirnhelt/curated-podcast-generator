@@ -3,11 +3,20 @@ name: Harvest Episode
 on:
   workflow_dispatch:
     inputs:
-      date:
-        description: 'Episode date to harvest (YYYY-MM-DD). Leave empty for most recent.'
-        required: false
-        default: ''
-        type: string
+      episode:
+        description: 'Which episode to harvest'
+        required: true
+        default: 'most recent'
+        type: choice
+        options:
+          - most recent
+          - 1 day ago
+          - 2 days ago
+          - 3 days ago
+          - 4 days ago
+          - 5 days ago
+          - 6 days ago
+          - 7 days ago
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -35,15 +44,16 @@ jobs:
       - name: Resolve episode date
         id: params
         env:
-          INPUT_DATE: ${{ github.event.inputs.date }}
+          INPUT_EPISODE: ${{ github.event.inputs.episode }}
         run: |
-          DATE="${INPUT_DATE:-}"
-          if [ -n "$DATE" ]; then
-            echo "date=$DATE" >> "$GITHUB_OUTPUT"
-            echo "Harvesting episode for date: $DATE"
-          else
+          if [ "$INPUT_EPISODE" = "most recent" ]; then
             echo "date=" >> "$GITHUB_OUTPUT"
             echo "Harvesting most recent episode"
+          else
+            DAYS=$(echo "$INPUT_EPISODE" | grep -o '^[0-9]*')
+            DATE=$(TZ='America/Vancouver' date -d "$DAYS days ago" '+%Y-%m-%d')
+            echo "date=$DATE" >> "$GITHUB_OUTPUT"
+            echo "Harvesting episode for $DATE ($INPUT_EPISODE)"
           fi
 
       - name: Run episode harvest
