@@ -1,24 +1,4 @@
 {
-  "2026-05-01": {
-    "timestamp": 1777634152.71126,
-    "topics": [
-      "[Business Insider] The LifeStraw water filter deserves a pla",
-      "[Al Jazeera English] Rains revive Iraq\u2019s wetlands after year",
-      "[TechRadar] 12 gadgets that will turn your mini garden into ",
-      "[TechRadar] 'I snap them up' \u2014 award-winning wildlife photog",
-      "[The Narwhal] From $25 an hour to $4,995: salaries on either",
-      "[BC Gov News] Making wildlife trapping more humane",
-      "[WIRED] Essential Gear for an Emergency Kit\u2014for Cars or Go-B",
-      "[ScienceAlert] World First: Orangutan Filmed Using a Human-M"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech",
-      "connectivity"
-    ],
-    "date": "2026-05-01"
-  },
   "2026-05-02": {
     "timestamp": 1777719632.8321,
     "topics": [
@@ -413,5 +393,25 @@
       "Indigenous tech"
     ],
     "date": "2026-05-21"
+  },
+  "2026-05-22": {
+    "timestamp": 1779452769.580673,
+    "topics": [
+      "[New Atlas] Winnebago Ram 4x4 camper truck swings for fences",
+      "[Williams Lake Tribune] Conservation service investigates no",
+      "[WIRED] California\u2019s Wildfire Season Is Already Overactive",
+      "[ScienceDaily] Scientists use DNA from poop to save the worl",
+      "[Resilience.org] Wide boundary news: Sacrificing wilderness,",
+      "[My East Kootenay Now] Grizzly and cubs spotted near Westsid",
+      "[Williams Lake Tribune] Province readies wildfire damaged Sh",
+      "[BC Gov News] Supporting outdoor recreation, communities, lo"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-05-22"
   }
 }
