@@ -1319,6 +1319,31 @@
       "theme_day": 3,
       "status": "used",
       "used_at": "2026-05-21"
+    },
+    {
+      "id": "4d8f9abd",
+      "type": "newsletter",
+      "message_id": "<b74ee46da1eb7a8973ab45d41.9538d97182.20260522184604.bdcdf3beea.59de08b8@mail116.atl111.rsgsv.net>",
+      "from_address": "s***@canadaland.com",
+      "subject": "Does Silicon Valley hold the secret to Canada's defence?",
+      "received_at": "2026-05-22T18:46:30+00:00",
+      "body_text": "Canadaland logo ** Elaine Dewar's Last Book ------------------------------------------------------------ https://www.canadaland.com/podcast/1366-death-of-journalist-remembering-elaine-dewar/?utm_sourc",
+      "extracted_urls": [
+        "https://www.canadaland.com/podcast/1366-death-of-journalist-remembering-elaine-dewar/?utm_source=Master+Email+List&utm_campaign=bdcdf3beea-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-bdcdf3beea-379881794",
+        "https://www.canadaland.com/podcast/1367-the-canadian-defence-gold-rush/?utm_source=Master+Email+List&utm_campaign=bdcdf3beea-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-bdcdf3beea-379881794",
+        "https://fizz.ca/en/mobile?ADDONS%5B0%5D=18&CVRG=108&DATA=703&PLAN=3&SMS=223&VOICE=90&WIZARD=mobile&utm_source=canadaland&utm_medium=article&utm_term=01&utm_content=2026&utm_source=Master+Email+List&utm_campaign=bdcdf3beea-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-bdcdf3beea-379881794",
+        "https://www.canadaland.com/podcast/1368-carney-spins-the-star-bullies-erskine-smith-loses/?utm_source=Master+Email+List&utm_campaign=bdcdf3beea-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-bdcdf3beea-379881794",
+        "https://www.canadaland.com/podcast/1369-in-defence-of-cbcs-prank-show/?utm_source=Master+Email+List&utm_campaign=bdcdf3beea-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-bdcdf3beea-379881794",
+        "http://canadaland.com/live?utm_source=Master+Email+List&utm_campaign=bdcdf3beea-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-bdcdf3beea-379881794",
+        "https://docs.google.com/forms/d/e/1FAIpQLSf3HNVsewCysKU8Y5a3qGPg_7OwEFbnYnvnrHTvBSjCQGPfMQ/viewform?utm_source=Master+Email+List&utm_campaign=bdcdf3beea-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-bdcdf3beea-379881794",
+        "https://canadalandnetwork.supercast.com/?utm_source=Master+Email+List&utm_campaign=bdcdf3beea-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-bdcdf3beea-379881794",
+        "https://mailchi.mp/canadaland.com/newsletter-signup?utm_source=Master+Email+List&utm_campaign=bdcdf3beea-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-bdcdf3beea-379881794",
+        "http://www.canadaland.com/?utm_source=Master+Email+List&utm_campaign=bdcdf3beea-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-bdcdf3beea-379881794"
+      ],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
