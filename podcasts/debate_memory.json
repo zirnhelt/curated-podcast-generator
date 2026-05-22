@@ -1,30 +1,4 @@
 {
-  "2026-02-20": {
-    "timestamp": 1771592409.205856,
-    "date": "2026-02-20",
-    "theme": "Wild Spaces & Outdoor Life",
-    "central_question": "Is advancing technology genuinely improving backcountry safety accessibility for rural communities, or is it creating new barriers and false confidence?",
-    "riley_position": "Technology is democratizing backcountry safety through more affordable devices, better educational tools, and expanding satellite connectivity that makes comprehensive safety equipment accessible to more people.",
-    "riley_key_evidence": [
-      "Amazfit T-Rex Ultra 2 offers premium GPS features at half the cost of Garmin devices",
-      "Apple's Emergency SOS via satellite is built into mainstream phones without per-message fees",
-      "Starlink and cellular carriers are expanding rural connectivity infrastructure"
-    ],
-    "casey_position": "Technology creates equity barriers and false confidence while failing to address fundamental challenges like training access, connectivity gaps, and the need for hands-on backcountry skills.",
-    "casey_key_evidence": [
-      "Avalanche Canada's app was initially built for users who already understood technical terminology",
-      "Williams Lake's avalanche safety program disappeared after two seasons when the coordinator left",
-      "Satellite communicators still cost hundreds of dollars plus monthly fees, creating income-based safety tiers"
-    ],
-    "resolution": "They converged on community-based solutions that integrate technology thoughtfully, agreeing that local partnerships and rural-specific programs offer more promise than waiting for generic tech solutions.",
-    "topics_covered": [
-      "Technology equity and affordability barriers",
-      "Rural connectivity and infrastructure challenges",
-      "Training program sustainability and access",
-      "Technology literacy versus traditional backcountry skills",
-      "Community-based implementation strategies"
-    ]
-  },
   "2026-02-21": {
     "timestamp": 1771678068.28217,
     "date": "2026-02-21",
@@ -1905,6 +1879,32 @@
       "Federal funding architecture and its role as both enabler and gatekeeper",
       "Academic research partnerships and data storage/publication control",
       "AI risk to Indigenous knowledge in publicly accessible datasets"
+    ]
+  },
+  "2026-05-22": {
+    "timestamp": 1779452771.972734,
+    "date": "2026-05-22",
+    "theme": "Wild Spaces & Outdoor Life",
+    "central_question": "Should post-fire landscapes be managed back to their prior state, or monitored as dynamic systems in transition, and what role should technology play in that process?",
+    "riley_position": "Post-fire landscapes should be systematically monitored using non-invasive ecological tracking tools to understand natural regeneration and wildlife utilization, and existing provincial wildlife collar data should be integrated into public-facing systems like trail apps to improve safety and decision-making.",
+    "riley_key_evidence": [
+      "Post-fire habitats are highly productive for woodpeckers, bears, and ungulates in the first few years, but this utilization is never systematically documented",
+      "Alaska state parks have experimental integrations of bear activity data into trail navigation apps like Avenza Maps",
+      "Wildlife BC already operates collar monitoring programs; the marginal cost of creating public APIs is institutional, not technical"
+    ],
+    "casey_position": "While better data is preferable to none, institutional sustainability and liability frameworks must be addressed before deploying these systems, and BC government has a poor track record of maintaining data infrastructure after initial funding or announcements end.",
+    "casey_key_evidence": [
+      "BC's open data commitments from recent provincial terms produced only a fraction of announced initiatives",
+      "The failure mode of data integrations is people treating data absence as a safety guarantee when systems become inactive",
+      "Post-pilot maintenance questions about server costs, data validation, and updates often go unanswered in BC government projects"
+    ],
+    "resolution": "Riley and Casey agreed that institutional barriers rather than technical ones prevent data sharing, and both acknowledged that fire-driven community urgency and land use planning processes (like the Sea to Sky consultation) could create political will for change. They ended on shared concern about whether institutional change actually materializes versus remaining rhetorical.",
+    "topics_covered": [
+      "Post-fire landscape recovery and ecological monitoring strategies",
+      "Technology integration for wildlife tracking and public safety (GPS collars, eDNA, trail apps)",
+      "Data governance, liability, and sustainability of public-facing systems",
+      "First Nations data sovereignty and the T\u015dilhqot'in Yalhiyalh program",
+      "Regional land use planning processes and recreational pressure on conservation areas"
     ]
   }
 }
