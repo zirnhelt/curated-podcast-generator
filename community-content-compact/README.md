@@ -52,7 +52,7 @@ It can be embedded in a web page, run as a standalone artifact in Claude.ai, or 
 
 ## Relationship to Cariboo Signals
 
-Cariboo Signals scores **15/20 — Sound** on Track A. It is:
+Cariboo Signals scores **18/20 — Exemplary** on Track A. It is:
 
 - Self-funded (~$4/month in API fees)
 - Community-adjacent (Horsefly, BC / Secwépemc territory)

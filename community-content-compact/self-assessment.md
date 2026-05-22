@@ -21,7 +21,7 @@ Cariboo Signals qualifies for **Track A — Community-Insider Production** on al
 ## Disqualifiers
 
 |#  |Question                                                          |Status                                              |
-|---|------------------------------------------------------------------|----------------------------------------------------|
+|---|------------------------------------------------------------------|----------------------------------------------------||
 |DQ1|Content misrepresents its authorship, origin, or producer identity|✗ Clear — each episode is labeled as AI-generated   |
 |DQ2|Content attributes views to living people without explicit consent|✗ Clear — no personal attribution in episode content|
 

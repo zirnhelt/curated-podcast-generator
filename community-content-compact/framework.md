@@ -35,7 +35,7 @@ Answer all four questions. **Track A applies only if all four are Yes.** If any 
 Answer these before scoring. Any **Yes** ends the evaluation regardless of track — no score applies.
 
 |#  |Question                                                                                                                  |Yes / No|
-|---|--------------------------------------------------------------------------------------------------------------------------|--------|
+|---|--------------------------------------------------------------------------------------------------------------------------|---------|
 |DQ1|The content misrepresents its authorship, origin, or producer identity                                                    |        |
 |DQ2|The content attributes views, statements, or cultural knowledge to living people without their explicit, revocable consent|        |
 
@@ -206,15 +206,15 @@ A Sound or Exemplary score means the core accountability conditions are met. The
 
 **Low effort — worth doing regardless of scale**
 
-- Publish a brief "How we're made" statement (funding, tools, producer identity, community connection)
+- Publish a brief “How we’re made” statement (funding, tools, producer identity, community connection)
 - Document how sources and PSA/partner organizations were selected and whether they were notified
 - Establish a public corrections policy: how to submit one, how it will be handled, commitment to note corrections in subsequent episodes
-- Include a "Sources we drew from" credit in each episode or publication
+- Include a “Sources we drew from” credit in each episode or publication
 
 **Medium effort — meaningful growth**
 
 - Inventory existing creators in your space: local journalists, Indigenous media, community radio, other podcasters. Document whether you fill a gap or risk overlap. Reach out where overlap exists.
-- Add a direct subscription option (email list, RSS) alongside any platform distribution so the audience relationship isn't entirely platform-dependent
+- Add a direct subscription option (email list, RSS) alongside any platform distribution so the audience relationship isn’t entirely platform-dependent
 - Mirror your archive to a location you control independently of any hosting platform
 
 **Aspirational — Track B territory**
@@ -247,7 +247,7 @@ Score each question using the scale provided. Not all questions share the same m
 - 0 · Producer identity not disclosed or obscured
 - 1 · Producer named but relationship to community not explained
 - 2 · Producer identity, role, and relationship to community clearly disclosed
-- 3 · Producer holds accreditation *directly relevant to this content's subject matter* from a recognized authoritative institution or government body — and that relevance is disclosed alongside the credential
+- 3 · Producer holds accreditation *directly relevant to this content’s subject matter* from a recognized authoritative institution or government body — and that relevance is disclosed alongside the credential
 
 **B-T2 — Process Disclosure** *(0–2)*
 
@@ -431,13 +431,13 @@ Score each question using the scale provided. Not all questions share the same m
 
 *Record track selection rationale, low-scoring dimensions, N/A justifications, remediation commitments, conditions imposed, or follow-up actions required.*
 
- 
+ 
 
- 
+ 
 
- 
+ 
 
- 
+ 
 
 -----
 
