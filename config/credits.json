@@ -1,5 +1,5 @@
 {
-  "text": "\n--- Credits ---\nTheme Song: Cariboo Signals by Suno (suno.com)\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: Azure Neural TTS (Ava · Andrew)\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt\n\n\u00a9 2026 Erich Zirnhelt. Licensed under CC BY-NC 4.0.\nhttps://creativecommons.org/licenses/by-nc/4.0/",
+  "text": "\n--- Credits ---\nTheme Song: Cariboo Signals by Suno (suno.com)\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: Azure Neural TTS (Ava · Andrew)\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt\nFunding: Self-funded by Erich Zirnhelt, Horsefly BC — non-commercial\n\n© 2026 Erich Zirnhelt. Licensed under CC BY-NC 4.0.\nhttps://creativecommons.org/licenses/by-nc/4.0/",
   "structured": {
     "theme_song": "Cariboo Signals by Suno",
     "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
@@ -20,23 +20,63 @@
   "html": {
     "heading": "Credits",
     "items": [
-      {"label": "Theme Song", "value": "<a href='cariboo-signals-full.mp3'>Cariboo Signals by Suno</a>"},
-      {"label": "Content Curation & Script", "value": "Claude (Anthropic)"},
-      {"label": "TTS Voices", "value": "Azure Neural TTS (Ava · Andrew)"},
-      {"label": "Cover Art", "value": "ChatGPT (OpenAI)"},
-      {"label": "Podcast Coordination", "value": "Erich Zirnhelt"},
-      {"label": "License", "value": "<a href='https://creativecommons.org/licenses/by-nc/4.0/'>CC BY-NC 4.0</a> \u00a9 2026 Erich Zirnhelt"}
+      {
+        "label": "Theme Song",
+        "value": "<a href='cariboo-signals-full.mp3'>Cariboo Signals by Suno</a>"
+      },
+      {
+        "label": "Content Curation & Script",
+        "value": "Claude (Anthropic)"
+      },
+      {
+        "label": "TTS Voices",
+        "value": "Azure Neural TTS (Ava · Andrew)"
+      },
+      {
+        "label": "Cover Art",
+        "value": "ChatGPT (OpenAI)"
+      },
+      {
+        "label": "Podcast Coordination",
+        "value": "Erich Zirnhelt"
+      },
+      {
+        "label": "Funding",
+        "value": "Self-funded by Erich Zirnhelt, Horsefly BC — non-commercial"
+      },
+      {
+        "label": "License",
+        "value": "<a href='https://creativecommons.org/licenses/by-nc/4.0/'>CC BY-NC 4.0</a> © 2026 Erich Zirnhelt"
+      }
     ]
   },
   "bespoke_html": {
     "heading": "Credits",
     "items": [
-      {"label": "Theme Song", "value": "<a href='string-theory-kickoff.mp3'>String Theory Kickoff by Suno</a>"},
-      {"label": "Script", "value": "Claude (Anthropic)"},
-      {"label": "TTS Voices", "value": "Azure Neural TTS (Ava \u00b7 Andrew)"},
-      {"label": "Sources", "value": "Curated by listeners + Brave Search"},
-      {"label": "Podcast Coordination", "value": "Erich Zirnhelt"},
-      {"label": "License", "value": "<a href='https://creativecommons.org/licenses/by-nc/4.0/'>CC BY-NC 4.0</a> \u00a9 2026 Erich Zirnhelt"}
+      {
+        "label": "Theme Song",
+        "value": "<a href='string-theory-kickoff.mp3'>String Theory Kickoff by Suno</a>"
+      },
+      {
+        "label": "Script",
+        "value": "Claude (Anthropic)"
+      },
+      {
+        "label": "TTS Voices",
+        "value": "Azure Neural TTS (Ava · Andrew)"
+      },
+      {
+        "label": "Sources",
+        "value": "Curated by listeners + Brave Search"
+      },
+      {
+        "label": "Podcast Coordination",
+        "value": "Erich Zirnhelt"
+      },
+      {
+        "label": "License",
+        "value": "<a href='https://creativecommons.org/licenses/by-nc/4.0/'>CC BY-NC 4.0</a> © 2026 Erich Zirnhelt"
+      }
     ]
   }
 }

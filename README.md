@@ -323,22 +323,25 @@ Cariboo Signals is evaluated against the [TRACE Content Accountability Standard]
 
 | Dimension | Score | Max | Notes |
 |---|---|---|---|
-| T — Transparency | 3 | 4 | AI disclosure and corrections policy in place; funding source not explicitly stated in content |
+| T — Transparency | 4 | 4 | AI disclosure, corrections policy, and funding source all stated in content |
 | R — Representation | 3 | 4 | Two-host debate format surfaces genuine counterpoints; AI generation limits depth of community diversity |
-| A — Accountability | 2 | 3 | Named contact and accessible feedback channel; no documented community-driven editorial changes yet |
-| C — Consent | 2 | 4 | PSA opt-out documented; Indigenous cultural content lacks explicit community authorization |
+| A — Accountability | 3 | 3 | Named contact, accessible feedback channel, and `correction` label for community-driven editorial changes |
+| C — Consent | 3 | 4 | PSA opt-out documented; named attribution check in script review; Indigenous community authorization still pending |
 | E — Engagement | 2 | 3 | Additive to a thin Cariboo media landscape; no community collaborators in production |
 | B — Community Benefit | 2 | 2 | Free, unrestricted access; non-commercial |
-| **Total** | **14** | **20** | **Sound** |
+| **Total** | **17** | **20** | **Sound** |
 
 **Verdict: Sound (14–17)** — Meets the standard with minor gaps. Improvement plan below.
 
 ### What Earns Full Marks
 
 - **T1** AI-generated production disclosed on the website, in RSS descriptions, and in episode show notes
+- **T3** Self-funded production disclosed in RSS description and website credits
 - **T4** Corrections policy at [docs/corrections-policy.md](docs/corrections-policy.md) with a 3-day acknowledgement commitment
 - **R2/R3** Riley and Casey are designed to hold genuine counterpoints across every episode; no host speaks for "the community"
 - **A1/A2** `feedback@cariboosignals.ca` is the named contact, accessible without technical literacy
+- **A3** Community-driven corrections tracked via GitHub Issues under the `correction` label
+- **C1** Periodic script review (dimension 11 in `review_scripts.py`) flags paraphrased or fabricated statements attributed to named real individuals
 - **C3** PSA organizations can opt out at any time per the [PSA policy](docs/psa-policy.md)
 - **E1** Cariboo Signals adds to a thin local media landscape; no local creator is currently doing this work
 - **B1/B2** Free, no paywall, non-commercial; no revenue extracted from the community
@@ -347,10 +350,7 @@ Cariboo Signals is evaluated against the [TRACE Content Accountability Standard]
 
 | Criterion | Gap | Action |
 |---|---|---|
-| T3 | Funding source not stated in content | Add "Self-funded by Erich Zirnhelt, Horsefly BC" to RSS description and website credits section |
-| C1 | AI-generated dialogue could misrepresent sourced quotes | Add script review pass that flags paraphrased statements attributed to named real individuals |
 | C2 | Thursday Indigenous theme content lacks explicit community authorization | Establish outreach to regional First Nations communications staff before covering cultural knowledge |
-| A3 | No documented community-driven editorial change on record | Log corrections and format changes made in response to listener feedback via GitHub Issues under the "correction" label |
 | E2 | No community collaborators in production | Explore guest segment and on-air correction pathways for community contribution |
 
 ---

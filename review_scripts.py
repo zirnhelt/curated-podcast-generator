@@ -72,7 +72,9 @@ REVIEW_CRITERIA = """\
 
 9. **Transition Variety** — Are transitions unique each time? Any say "after the music" (banned)?
 
-10. **Rural Cariboo Lens** — Does the episode consistently ask "what does this mean for communities like ours?" or does it drift into generic tech commentary? Specifically: does the Deep Dive name at least one specific Cariboo community, First Nation, or organization in its second half? The absence of any named Cariboo entity in the final third of the Deep Dive is a score of 3 or below on this dimension, regardless of how often "rural" or "communities like ours" appears. For Indigenous-topic episodes, the named entity must be a Cariboo Nation or organization, not national Indigenous organizations alone.\
+10. **Rural Cariboo Lens** — Does the episode consistently ask "what does this mean for communities like ours?" or does it drift into generic tech commentary? Specifically: does the Deep Dive name at least one specific Cariboo community, First Nation, or organization in its second half? The absence of any named Cariboo entity in the final third of the Deep Dive is a score of 3 or below on this dimension, regardless of how often "rural" or "communities like ours" appears. For Indigenous-topic episodes, the named entity must be a Cariboo Nation or organization, not national Indigenous organizations alone.
+
+11. **Named Attribution (C1 — Consent)** — Flag any line where a real, named individual appears to be quoted or paraphrased but the phrasing goes beyond what is directly supported by the source article. Patterns to flag: (a) direct-speech quotes not present verbatim in source articles, (b) paraphrased opinions attributed to a named person ("X believes…", "X told us…", "According to X…") where no such statement exists in the citations, (c) fabricated anecdotes or positions assigned to real people. Score: 5 = no unanchored attributions; 3 = at least one paraphrased attribution that is plausible but not verifiable; 1 = a fabricated or unsupported direct quote attributed to a named real individual.\
 """
 
 
