@@ -1,24 +1,4 @@
 {
-  "2026-05-02": {
-    "timestamp": 1777719632.8321,
-    "topics": [
-      "[Williams Lake Tribune] Scheduled criminal trials at 11 B.C.",
-      "[Williams Lake Tribune] B.C. forests minister unveils new fe",
-      "[100 Mile Free Press] TABLE TALES: Back to the Underhive",
-      "[CFJC Today Kamloops] Minister says B.C. expects billions fr",
-      "[Williams Lake Tribune] Haunted 108 turns 108 Heritage Site ",
-      "[100 Mile Free Press] Fraudulent incident costs Shuswap comm",
-      "[Williams Lake Tribune] BCWS urges caution following a strin",
-      "[Williams Lake Tribune] B.C. invests in playgrounds for Ques"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-05-02"
-  },
   "2026-05-03": {
     "timestamp": 1777806178.876689,
     "topics": [
@@ -413,5 +393,24 @@
       "Indigenous tech"
     ],
     "date": "2026-05-22"
+  },
+  "2026-05-23": {
+    "timestamp": 1779535045.179295,
+    "topics": [
+      "[Williams Lake Tribune] Williams Lake RCMP seek witnesses af",
+      "[Williams Lake Tribune] Cariboo drivers reminded to use caut",
+      "[Williams Lake Tribune] Planning underway for National Indig",
+      "[Williams Lake Tribune] Early blooms for Williams Lake Harve",
+      "[Williams Lake Tribune] Williams Lake RCMP urge safe off-roa",
+      "[My Cariboo Now] Man arrested in Walmart Parking lot in Ques",
+      "[My Cariboo Now] Movie night in Lebourdais Park in Quesnel i",
+      "[Williams Lake Tribune] Cariboo Chilcotin MLA endorses Peter"
+    ],
+    "themes": [
+      "rural development",
+      "Indigenous tech",
+      "connectivity"
+    ],
+    "date": "2026-05-23"
   }
 }

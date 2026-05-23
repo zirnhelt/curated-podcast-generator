@@ -1,17 +1,4 @@
 {
-  "2026-02-21": {
-    "timestamp": 1771678068.28217,
-    "date": "2026-02-21",
-    "theme": "Cariboo Voices & Local News",
-    "central_question": "Deep dive on Cariboo Voices & Local News",
-    "topics_covered": [
-      "satellite",
-      "telemedicine",
-      "AI",
-      "infrastructure",
-      "maintenance"
-    ]
-  },
   "2026-02-22": {
     "timestamp": 1771764654.897645,
     "date": "2026-02-22",
@@ -1905,6 +1892,32 @@
       "Data governance, liability, and sustainability of public-facing systems",
       "First Nations data sovereignty and the T\u015dilhqot'in Yalhiyalh program",
       "Regional land use planning processes and recreational pressure on conservation areas"
+    ]
+  },
+  "2026-05-23": {
+    "timestamp": 1779535047.045278,
+    "date": "2026-05-23",
+    "theme": "Cariboo Local Affairs",
+    "central_question": "When Cariboo residents use political tools like petitions, conventions, and community organizing, do these efforts actually produce outcomes or merely create the appearance of participation?",
+    "riley_position": "The tools for civic participation exist and can be effective, but success depends on specificity, persistence over time, and institutional support. Communities with sustained, organized pressure have better track records of extracting commitments.",
+    "riley_key_evidence": [
+      "The Cariboo Regional District's multi-year push on broadband funding resulted in earlier access to federal and provincial connectivity programs compared to comparable rural regions",
+      "Local governments speaking collectively at NCLGA carries more weight than resident petitions alone",
+      "Digital infrastructure and documentation of accountability cycles are necessary to make civic pressure legible and sustainable"
+    ],
+    "casey_position": "Rural communities face genuine structural friction between local organizing efforts and provincial/federal decision-making capacity, and the gap between acknowledgment and accountability remains the central problem.",
+    "casey_key_evidence": [
+      "The 100 Mile House ER petition faces structural challenges: physician recruitment to a town of 5,000 is genuinely difficult, and no petition changes that underlying math",
+      "The Lebourdais Park movie night cancellation illustrates how small volunteer initiatives die quietly without institutional support or clear permitting pathways",
+      "The Cariboo has a pattern of being heard at provincial conventions but deprioritized when budgets open, with Lower Mainland priorities taking precedence"
+    ],
+    "resolution": "Casey and Riley converged on agreement: real organizing capacity exists in the Cariboo, but success requires concrete action plans with specific asks and targets, institutional infrastructure to reduce friction for volunteers, and transparent documentation of what decision-makers hear versus what they do.",
+    "topics_covered": [
+      "The 100 Mile House ER petition and rural healthcare staffing challenges",
+      "NCLGA conventions as a rural advocacy mechanism versus individual petitions",
+      "Barriers to small volunteer community initiatives (Lebourdais Park movie night example)",
+      "Political endorsements and leadership accountability to rural communities (Doerkson-Milobar endorsement)",
+      "Digital connectivity as infrastructure for civic self-governance rather than just economic development"
     ]
   }
 }
