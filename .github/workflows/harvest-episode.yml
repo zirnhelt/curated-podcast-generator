@@ -1,4 +1,5 @@
 name: Harvest Episode
+run-name: "Harvest Episode — ${{ github.event.inputs.episode }}"
 
 on:
   workflow_dispatch:
