@@ -288,6 +288,7 @@ def get_music_clip(
         used_ids.add(track_id)
 
         track_info = {
+            "track_id": track_id,
             "name": _html.unescape(track.get("name", "")),
             "artist": _html.unescape(track.get("artist_name", "")),
             "genres": track.get("musicinfo", {}).get("tags", {}).get("genres", []),
@@ -300,6 +301,41 @@ def get_music_clip(
         return clip, track_info
 
     return None, None
+
+
+def _load_recent_music_ids(days: int = 90) -> set:
+    """Return Jamendo track IDs used in closing songs within the last `days` days."""
+    cutoff = datetime.now() - timedelta(days=days)
+    used = set()
+    for path in PODCASTS_DIR.glob("citations_*.json"):
+        # Filename: citations_YYYY-MM-DD_theme.json
+        parts = path.stem.split("_", 2)
+        if len(parts) < 2:
+            continue
+        try:
+            file_date = datetime.strptime(parts[1], "%Y-%m-%d")
+        except ValueError:
+            continue
+        if file_date < cutoff:
+            continue
+        try:
+            with open(path, encoding="utf-8") as fh:
+                data = json.load(fh)
+            track_id = data.get("closing_music", {}).get("track_id")
+            if track_id:
+                used.add(str(track_id))
+                continue
+            # Fall back to parsing shareurl for older files without track_id
+            shareurl = data.get("closing_music", {}).get("shareurl", "")
+            if shareurl:
+                segment = shareurl.rstrip("/").split("/")[-1]
+                if segment.isdigit():
+                    used.add(segment)
+        except Exception:
+            continue
+    if used:
+        print(f"  [Music] Excluding {len(used)} track(s) used in the last {days} days.")
+    return used
 
 
 # Interval music duration (ms) — trim long theme to a short chime
@@ -4776,7 +4812,7 @@ def main():
                     tracks, music_cache,
                     duration_ms=240_000,
                     music_target_dbfs=TARGET_MUSIC_DBFS,
-                    used_ids=set(),
+                    used_ids=_load_recent_music_ids(days=90),
                     max_song_duration_ms=240_000,
                 )
                 if clip is not None:
@@ -4817,7 +4853,9 @@ def main():
                             else:
                                 desc += music_html
                             cdata.setdefault("episode", {})["description"] = desc
+                            t_id = track_info.get("track_id", "")
                             cdata["closing_music"] = {
+                                "track_id": t_id,
                                 "name": t_name, "artist": t_artist,
                                 "genres": genres, "shareurl": t_url,
                                 "license": "Creative Commons via Jamendo",
