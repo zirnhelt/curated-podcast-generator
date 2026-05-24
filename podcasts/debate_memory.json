@@ -1,17 +1,4 @@
 {
-  "2026-02-22": {
-    "timestamp": 1771764654.897645,
-    "date": "2026-02-22",
-    "theme": "Resilient Rural Futures",
-    "central_question": "Deep dive on Resilient Rural Futures",
-    "topics_covered": [
-      "broadband",
-      "AI",
-      "infrastructure",
-      "maintenance",
-      "funding"
-    ]
-  },
   "2026-02-23": {
     "timestamp": 1771851998.024723,
     "date": "2026-02-23",
@@ -1918,6 +1905,32 @@
       "Barriers to small volunteer community initiatives (Lebourdais Park movie night example)",
       "Political endorsements and leadership accountability to rural communities (Doerkson-Milobar endorsement)",
       "Digital connectivity as infrastructure for civic self-governance rather than just economic development"
+    ]
+  },
+  "2026-05-24": {
+    "timestamp": 1779621853.997231,
+    "date": "2026-05-24",
+    "theme": "Science, Wonder & the Natural World",
+    "central_question": "How can biodiversity monitoring infrastructure be built in the Cariboo to detect ecological changes while protecting Indigenous data sovereignty and ensuring findings actually influence resource decisions?",
+    "riley_position": "Citizen science platforms like iNaturalist can efficiently capture biodiversity data from people already working the land, and practical solutions exist (dissolved oxygen sensors, multi-stakeholder tables) if communities decide to deploy them.",
+    "riley_key_evidence": [
+      "Ptilotus senarius rediscovered in Australia through iNaturalist after 60 years of presumed extinction",
+      "Dissolved oxygen sensors are affordable (few thousand dollars) and solvable instrumentation problems",
+      "Community Futures Cariboo-Chilcotin has precedent for convening neutral multi-stakeholder tables on resource questions"
+    ],
+    "casey_position": "Data collection without clear governance architecture and control by affected communities risks serving external institutions rather than protecting territories, and attention to ecological wonder must be paired with structural justice to justify monitoring.",
+    "casey_key_evidence": [
+      "Parakneria thysi waterfall-climbing behavior was unknown to science but existed in local community knowledge, which was systematically excluded from institutional resource decisions",
+      "DFO stock assessments privilege certain data types and exclude T\u015dilhqot'in oral traditions despite Supreme Court title recognition",
+      "Horsefly River sockeye crashes are unexplained partly because continuous oxygen data doesn't exist, yet sensor deployment requires prior governance agreement"
+    ],
+    "resolution": "They converged on agreement that both wonder (what motivates looking) and governance structure (what makes looking matter) must develop simultaneously, and that the practical starting point is a single multi-stakeholder conversation between ranchers, Indigenous nations, and DFO to identify what each party knows about watershed conditions before any new infrastructure.",
+    "topics_covered": [
+      "Data sovereignty and Indigenous knowledge governance in monitoring systems",
+      "iNaturalist and citizen science as infrastructure for biodiversity observation",
+      "River dissolved oxygen decline and salmon habitat degradation in the Cariboo",
+      "Epistemic authority: what counts as evidence in resource management decisions",
+      "Multi-stakeholder convening as a pathway to integrated monitoring and decision-making"
     ]
   }
 }
