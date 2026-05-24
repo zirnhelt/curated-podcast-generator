@@ -28,6 +28,7 @@ from config_loader import (
     load_interests,
     load_prompts_config,
     load_blocklist,
+    load_disciplines_config,
     get_voice_for_host,
     get_theme_for_day
 )
@@ -385,7 +386,8 @@ CONFIG = {
     'themes': load_themes_config(),
     'credits': load_credits_config(),
     'interests': load_interests(),
-    'prompts': load_prompts_config()
+    'prompts': load_prompts_config(),
+    'disciplines': load_disciplines_config(),
 }
 
 # Batch API configuration
@@ -2178,6 +2180,49 @@ def categorize_articles_for_deep_dive(articles, theme_day):
     return deep_dive_articles
 
 
+def _infer_discipline(article, disciplines_config):
+    """Infer broad group and specific discipline from article title + summary.
+
+    Returns (group_key, discipline_key) or (None, None) if no match.
+    Keyword matching is case-insensitive; the discipline with the most hits wins.
+    """
+    if not disciplines_config:
+        return (None, None)
+    text = (article.get('title', '') + ' ' + article.get('summary', '')).lower()
+    best_group, best_discipline, best_count = None, None, 0
+    for group_key, group in disciplines_config.get('groups', {}).items():
+        for disc_key, disc in group.get('disciplines', {}).items():
+            count = sum(1 for kw in disc.get('keywords', []) if kw.lower() in text)
+            if count > best_count:
+                best_count = count
+                best_group = group_key
+                best_discipline = disc_key
+    return (best_group, best_discipline) if best_count > 0 else (None, None)
+
+
+def _group_by_discipline(articles):
+    """Re-sort articles so same broad-discipline-group articles are adjacent.
+
+    Groups are ordered by the score of their highest-scoring member (so the
+    overall lead story stays first). Score order is preserved within each group.
+    Unclassified articles (_discipline_group is None) are appended last,
+    maintaining their relative score order.
+    """
+    placed, remaining = [], list(articles)
+    seen_groups = set()
+    while remaining:
+        anchor = remaining.pop(0)
+        placed.append(anchor)
+        group = anchor.get('_discipline_group')
+        if group and group not in seen_groups:
+            seen_groups.add(group)
+            same_group = [a for a in remaining if a.get('_discipline_group') == group]
+            for a in same_group:
+                remaining.remove(a)
+                placed.append(a)
+    return placed
+
+
 def _local_theme_relevance(article, theme_keywords):
     """Score an article's theme relevance using local keyword matching.
 
@@ -2733,6 +2778,17 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         reverse=True,
     )
 
+    # Annotate articles with discipline metadata, then apply proximity sort so
+    # articles from the same broad discipline group are presented consecutively.
+    # This gives Claude explicit grouping signals and reinforces the CONNECTING
+    # THREADS instruction to place related disciplines together.
+    disciplines_config = CONFIG.get('disciplines', {})
+    for _a in on_theme_news:
+        _g, _d = _infer_discipline(_a, disciplines_config)
+        _a['_discipline_group'] = _g
+        _a['_discipline'] = _d
+    on_theme_news = _group_by_discipline(on_theme_news)
+
     def _format_news_article(a):
         """Format a news article for the script-generation prompt."""
         source = a.get('authors', [{}])[0].get('name', 'Unknown')
@@ -2743,9 +2799,19 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         score = a.get('_boosted_score', a.get('ai_score', 0))
         theme_tag = ' [✓THEME]' if a.get('_keyword_matches', 0) > 0 else ''
         cluster_tag = f' [SAME STORY: {a["_topic_cluster"]}]' if a.get('_topic_cluster') else ''
+        # Include discipline field tag so Claude can group related disciplines.
+        disc_tag = ''
+        disc_group = a.get('_discipline_group')
+        disc_key = a.get('_discipline')
+        if disc_group and disc_key:
+            groups = disciplines_config.get('groups', {})
+            group_label = groups.get(disc_group, {}).get('label', '')
+            disc_label = groups.get(disc_group, {}).get('disciplines', {}).get(disc_key, {}).get('label', '')
+            if group_label and disc_label:
+                disc_tag = f' [FIELD: {group_label} / {disc_label}]'
         body = a.get('_body', '')
         body_line = f"\n  Content: {body[:500]}" if body else ""
-        return f"- [{source}] {title}{theme_tag}{cluster_tag}\n  {summary}... (Relevance: {score}){body_line}"
+        return f"- [{source}] {title}{theme_tag}{cluster_tag}{disc_tag}\n  {summary}... (Relevance: {score}){body_line}"
 
     # Format on-theme news articles
     news_text = "\n".join([_format_news_article(a) for a in on_theme_news])

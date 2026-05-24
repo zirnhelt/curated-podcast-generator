@@ -1,0 +1,76 @@
+{
+  "groups": {
+    "physical_sciences": {
+      "label": "Physical Sciences",
+      "disciplines": {
+        "astrophysics": {
+          "label": "Astrophysics / Space",
+          "keywords": ["solar", "aurora", "magnetosphere", "star", "supernova", "galaxy", "cosmic", "spacecraft", "geomagnetic", "plasma", "orbit", "astronomical", "nebula", "pulsar", "black hole", "exoplanet"]
+        },
+        "physics": {
+          "label": "Physics",
+          "keywords": ["quantum", "particle", "string theory", "neutrino", "photon", "laser", "wavefunction", "oscillation", "collider", "boson", "scattering", "quark", "antimatter", "relativity", "thermodynamics"]
+        },
+        "materials_chemistry": {
+          "label": "Materials & Chemistry",
+          "keywords": ["chemical", "molecule", "polymer", "semiconductor", "crystal", "nanomaterial", "spintronic", "compound", "alloy", "catalyst", "reaction", "synthesis", "isotope"]
+        }
+      }
+    },
+    "life_sciences": {
+      "label": "Life Sciences",
+      "disciplines": {
+        "paleontology": {
+          "label": "Paleontology",
+          "keywords": ["fossil", "dinosaur", "prehistoric", "Jurassic", "Cretaceous", "ancient creature", "bone armor", "extinct animal", "paleontologist", "osteoderm", "tyrannosaurus", "sauropod"]
+        },
+        "evolutionary_biology": {
+          "label": "Evolutionary Biology",
+          "keywords": ["evolution", "evolutionary", "lineage", "genome", "genetic", "mutation", "speciation", "adaptation", "natural selection", "phylogeny", "ancestral", "divergence"]
+        },
+        "ecology_biology": {
+          "label": "Ecology & Biology",
+          "keywords": ["species", "animal", "whale", "shark", "fish", "bird", "insect", "marine", "behavior", "cognition", "habitat", "predator", "plant", "biodiversity", "beluga", "migration", "population", "ecosystem"]
+        },
+        "medicine_neuroscience": {
+          "label": "Medicine & Neuroscience",
+          "keywords": ["Alzheimer", "disease", "treatment", "cancer", "drug", "protein", "enzyme", "brain", "neural", "clinical", "medical", "therapy", "gene variant", "dementia", "pathology", "diagnosis", "trial"]
+        }
+      }
+    },
+    "earth_environmental": {
+      "label": "Earth & Environmental Sciences",
+      "disciplines": {
+        "geology_geophysics": {
+          "label": "Geology & Geophysics",
+          "keywords": ["tectonic", "fault", "earthquake", "seismic", "volcano", "subduction", "mountain", "geological", "ocean floor", "crust", "magma", "stratigraphy", "mantle"]
+        },
+        "climate_environment": {
+          "label": "Climate & Environment",
+          "keywords": ["climate", "glacier", "ice sheet", "warming", "PFAS", "contamination", "pollution", "carbon", "greenhouse", "sea level", "Antarctic", "Arctic", "forever chemical", "emissions", "drought", "flood"]
+        },
+        "archaeology_anthropology": {
+          "label": "Archaeology & Anthropology",
+          "keywords": ["Bronze Age", "ancient", "archaeology", "burial", "civilization", "artifact", "excavation", "human remains", "Neolithic", "anthropology", "Iron Age", "Stone Age", "tomb", "mummy", "ancient Rome", "ancient Egypt"]
+        }
+      }
+    },
+    "computing_technology": {
+      "label": "Computing & Technology",
+      "disciplines": {
+        "ai_ml": {
+          "label": "AI & Machine Learning",
+          "keywords": ["artificial intelligence", "machine learning", "neural network", "LLM", "AI model", "deep learning", "algorithm", "generative", "large language model", "transformer"]
+        },
+        "hardware_electronics": {
+          "label": "Hardware & Electronics",
+          "keywords": ["chip", "processor", "CPU", "GPU", "semiconductor", "DRAM", "transistor", "circuit", "spintronic", "memory device", "silicon wafer"]
+        },
+        "networking_communications": {
+          "label": "Networking & Communications",
+          "keywords": ["internet", "broadband", "fiber", "5G", "satellite", "Starlink", "wifi", "bandwidth", "connectivity", "latency", "spectrum"]
+        }
+      }
+    }
+  }
+}
