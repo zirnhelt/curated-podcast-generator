@@ -1344,6 +1344,20 @@
       "theme_day": 0,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "59b6b3eb",
+      "type": "feedback",
+      "message_id": "<FEE94E70-7565-4D59-B586-0BCBF489E73E@gmail.com>",
+      "from_address": "z***@gmail.com",
+      "subject": "Next Digital arts and story telling",
+      "received_at": "2026-05-23T18:21:38-07:00",
+      "body_text": "Hi, Based on your episode last week some guidelines have been developed. Let\u2019s discuss the TRACE standard. You may need to deep dive with brave. Tracestandard.org Thanks, Erich",
+      "extracted_urls": [],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
