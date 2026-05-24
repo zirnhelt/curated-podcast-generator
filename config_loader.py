@@ -67,6 +67,15 @@ def load_blocklist():
             return json.load(f)
     return {"title_keywords": []}
 
+@lru_cache(maxsize=1)
+def load_disciplines_config():
+    """Load science/topic discipline hierarchy for news roundup grouping (cached)."""
+    disciplines_path = CONFIG_DIR / "disciplines.json"
+    if disciplines_path.exists():
+        with open(disciplines_path, 'r') as f:
+            return json.load(f)
+    return {"groups": {}}
+
 def get_voice_for_host(host_key):
     """Get TTS voice for a host."""
     return load_hosts_config()[host_key]["voice"]
