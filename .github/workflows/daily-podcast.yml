@@ -2,10 +2,15 @@ name: Daily Podcast Generation
 
 on:
   schedule:
-    # Run daily at 3:00 AM Pacific Time
+    # Primary: 3:00 AM Pacific Time
     # 3:00 AM PDT = 10:00 UTC (summer)
     # 3:00 AM PST = 11:00 UTC (winter)
     - cron: '0 10 * * *'
+    # Fallback: 7:00 AM Pacific Time — catches missed primary runs.
+    # check-episode gates idempotency so a double-trigger is safe.
+    # 7:00 AM PDT = 14:00 UTC (summer)
+    # 7:00 AM PST = 15:00 UTC (winter)
+    - cron: '0 14 * * *'
   workflow_dispatch:
     inputs:
       tts_provider:
