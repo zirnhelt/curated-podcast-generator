@@ -1,157 +1,127 @@
 # Cariboo Signals Podcast Script - 2026-05-25
 # Theme: Arts, Culture & Digital Storytelling
-# Generated: 2026-05-25 06:37:20 PDT
+# Generated: 2026-05-25 09:34:50 PDT
 
-**NEWS ROUNDUP**
+**RILEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. It's Monday, May 25th, 2026. Speaking to you from the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations here in the Cariboo region. Today's theme is Arts, Culture & Digital Storytelling — I'm Riley.
 
-**RILEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. It's Monday, May 25th, 2026. Reaching you from the heart of the Cariboo, the homeland of the Secwépemc, Tŝilhqot'in, and Dakelh nations. Today's theme is Arts, Culture & Digital Storytelling — I'm Riley.
+**CASEY:** And I'm Casey. A lot happening in the platform space this week that cuts right to the question of whether digital tools are actually serving creators or just adding new layers of noise.
 
-**CASEY:** And I'm Casey. A lot of the tools reshaping how culture gets made and shared dropped into the news this week, and the question of who actually benefits from them is very much open.
-
-**RILEY:** Quick sweep of the weather before we get into it — Horsefly Lake is sitting at 9 degrees this morning, overcast, with a high of 17 expected and drizzle moving in tomorrow. Across the region: 100 Mile House at 11, Williams Lake at 13, Quesnel at 10 — all under the same grey blanket. Good day to be indoors thinking about culture and technology.
-
-**CASEY:** Or indoors making something.
-
-**RILEY:** Exactly. Let's get into the news.
+**RILEY:** We've got a full roundup and a deep dive that goes somewhere we haven't been before — let's get into the news.
 
 ---
 
 **NEWS ROUNDUP**
 
-**RILEY:** Starting with a story that's practical for any creator trying to figure out how to stay solvent: Kottke dot org ran a piece this week on how to actually make a living as an artist. The takeaway isn't "go viral" — it's about building multiple income streams, direct audience relationships, and treating creative work like a portfolio rather than a single product. For rural artists in places like Williams Lake or Quesnel who don't have the gallery density of Vancouver, the argument for diversified digital presence is essentially the same argument.
+**RILEY:** Spotify is rolling out verification badges for podcasts — a direct response to the flood of AI-generated audio content clogging the platform. The badges signal to listeners that a show is produced by a real, identifiable creator rather than an automated content farm. For indie podcasters in rural regions, this could actually matter: authentic local voices have been getting buried under algorithmically optimized filler. Verification won't fix discoverability, but it creates a signal listeners can use.
 
-**CASEY:** The advice has been around for decades. What's actually changed is whether the platforms supporting those income streams are reliable — and that's a much harder question.
+**CASEY:** A signal creators have to apply for, which means another administrative hoop for the person running their show from a kitchen table in Horsefly.
 
-**RILEY:** Also in the music space: Record Club is launching as what its founders are calling a Letterboxd for music — a place to log what you're listening to, write reviews, and build a taste profile. Letterboxd genuinely revived how people talk about film online. If Record Club lands even a fraction of that engagement, it could give independent musicians and local labels a discovery surface that doesn't depend entirely on algorithmic playlists.
+**RILEY:** Alongside that, Spotify announced AI-powered Q&A and briefing generation features for podcasts — tools that let listeners ask questions about episode content and get auto-generated summaries. The intent is to deepen engagement. The tension is that it inserts a layer of machine interpretation between the creator's words and the listener's experience.
 
-**CASEY:** Worth watching. Letterboxd works because the community actually writes. Music listeners don't always.
+**CASEY:** The creator says something nuanced. The AI summarizes it. The listener reads the summary. That's not engagement — that's telephone with extra steps.
 
-**RILEY:** The man behind the MPC — Roger Linn, whose drum machine defined hip hop production — gave an interview about how he works. His focus discipline: one browser tab at a time. It's a funny contrast to tools that are trying to do everything at once. He's still making instruments, still shipping things. The lesson for rural makers and artists isn't about nostalgia — it's that deep craft and focused tools have a longer shelf life than feature bloat.
+**CASEY:** The Verge is reporting that AI video is maturing past what they're calling "clip slop" — the low-effort, visually generic AI shorts that dominated early generative video. Newer models are producing longer-form, more coherent content that's harder to distinguish from human-produced work. For cultural organizations trying to document community events or produce arts programming, the tools are getting genuinely more useful, but so is the noise floor they have to rise above.
 
-**CASEY:** Turns out "do one thing well" still works.
+**RILEY:** Which means the value of distinctly local, place-specific content goes up — a video from Likely, BC has a kind of authenticity no generative model can replicate.
 
-**RILEY:** Now, the Spotify news. Two related stories. Spotify has launched what they're calling Personal Podcasts — an AI agent that generates a daily audio briefing tailored to your listening habits, your interests, your saved content. You can ask it questions about episodes you've already heard. It's genuinely impressive technically. And it raises an obvious question for anyone making actual podcasts: if Spotify can synthesize personalized audio on demand, what happens to the shows that don't have the listener base to compete on discoverability?
+**RILEY:** Boing Boing featured a piece where 16 bytes of code generate both a video and a musical score simultaneously. Sixteen bytes — smaller than a tweet from 2009. It's a demo, not a product, but it's a useful reminder that the ceiling on what minimal computational resources can produce keeps rising in ways that matter for communities working with constrained infrastructure.
 
-**CASEY:** Great product for the consumer, structural problem for the producer. Those aren't the same person.
+**CASEY:** It's also a reminder that raw technical novelty and cultural meaning aren't the same thing. Impressive output isn't the same as something worth saying.
 
-**RILEY:** And there's a second layer: TechRadar noted that the generated podcast feature is the more controversial part of this rollout — not the Q-and-A feature, which most people seem fine with. The generated content piece is where creators are pushing back, because Spotify is essentially building a content layer on top of existing shows without clear compensation or attribution mechanics.
+**CASEY:** Elaine Dewar died last week. She was one of Canada's most serious investigative journalists — books on biotech, Indigenous land rights, the architecture of power. Canadaland ran a remembrance that's worth reading. The quote her daughter gave them: *"My mom was near finished this book. She said to the doctor, 'I just need 10 days to get everything in order for my book.'"* That's what deep, decades-long journalism looks like. The kind of work no verification badge can manufacture.
 
-**CASEY:** The platform becomes the product. The creators are inputs.
+**RILEY:** That hits differently this week.
 
-**RILEY:** Moving to something more human: NPR ran a photo essay on anonymous cousins in Afghanistan who are documenting women's lives under the current regime through photography. The images are striking — surreal, painful, full of imagination. The photographers can't show their faces. What they're doing is a form of cultural resistance through digital distribution, and they're relying on the same open internet infrastructure that small-town storytellers use.
+**RILEY:** An NPR piece out this week covers special education teachers using AI to handle paperwork and IEP documentation so they can spend more time actually teaching. It's a narrow use case, but it's exactly the pattern we keep seeing — AI most useful when it handles the administrative burden around skilled human work, not the skilled human work itself.
 
-**CASEY:** Documentation as an act of survival. That's a long way from a personal podcast briefing about your morning commute.
+**CASEY:** The caveat being that "administrative burden" and "professional judgment" aren't always cleanly separable, especially in special ed where documentation is part of the clinical record.
 
-**RILEY:** Also from Ricochet: Lebanese-Canadian artist Hicham Takache has been painting through the Israeli bombardment of Lebanon, documenting destruction — including the destruction of his own previous work. He's rebuilding an archive of loss in real time. The piece frames digital distribution as the thing keeping his work visible when the physical context is being erased.
+**CASEY:** On the energy front: a hybrid Texas power plant is combining gas turbines with small modular nuclear reactors in a single 2.5 gigawatt facility. Smaller, mixed-source generation reduces the transmission infrastructure burden — directly relevant for communities at the end of long BC Hydro lines.
 
-**CASEY:** Both of those stories are about making when the conditions are hostile. Which isn't totally unrelated to making culture in a place the industry doesn't think about.
+**RILEY:** The SMR piece of that is worth watching closely. If the economics hold, it changes the calculus for remote and semi-remote communities significantly.
 
-**RILEY:** Closer to home: Richard Brodeur — "King Richard," the Vancouver Canucks goaltender from the early eighties — has opened an art gallery in BC. Brodeur has been painting for years and is apparently quite serious about it. The gallery is in a small BC community, which makes it a real local arts infrastructure story rather than just a celebrity hobby piece.
+**RILEY:** Huawei is claiming a 1.4 nanometer chip architecture by 2031 that bypasses EUV lithography restrictions — calling it a new "Tau Scaling Law" to replace Moore's Law. Take the 2031 timeline with appropriate skepticism, but the underlying point stands: semiconductor supply chains are fracturing along geopolitical lines, and that reshapes what hardware rural connectivity infrastructure gets built from.
 
-**CASEY:** An actual physical gallery in a small BC town is worth more to a local arts ecosystem than ten Instagram launches. Good for him.
+**CASEY:** Announcements and shipping products are two different things. Worth flagging, not worth celebrating yet.
 
-**RILEY:** From Boing Boing — a historical piece that fits oddly well with our theme: Sci-Hub and LibGen, the open-access piracy platforms for academic papers and books, descend from a Soviet tradition of samizdat — self-published, hand-distributed dissident literature that circulated outside official channels. The piece draws a direct line from underground xeroxed manuscripts to Alexandra Elbakyan's Sci-Hub servers. For anyone thinking about knowledge access and cultural circulation in places without well-funded library systems, that lineage matters.
+**CASEY:** The Resilience.org Seeds Series volume two dropped — focused on regenerative economies during systemic disruption. More relevant to the Cariboo context than it might look at first glance. Mutual aid and place-based economic models aren't abstract theory up here.
 
-**CASEY:** Rural libraries have been fighting the same access problem for decades with a fraction of the drama. Also without the legal exposure.
+**RILEY:** Worth a full read if you're involved in local economic planning — link in the show notes.
 
-**RILEY:** Two quick Google items: Project Genie is now incorporating Street View imagery so users can generate fantastical versions of real-world locations — your neighbourhood, your town, reimagined as a game world or a dreamscape. Separately, Google Pics is positioning itself as an easier Canva alternative with AI image generation built in. Both tools lower the barrier to visual creative work significantly.
+**RILEY:** And Pope Leo is set to release an encyclical on AI. Whether or not that's your tradition, a major global institution putting out a formal ethical framework on this technology is worth tracking. It'll influence conversations well beyond the Vatican.
 
-**CASEY:** Lowering the barrier to creation and lowering the barrier to flooding the zone with mediocre content are the same action. Depends which side of it you're on.
+**CASEY:** Agreed — the audience for that document is measured in the billions. That's not nothing.
 
-**RILEY:** And from Cool Tools — a recommendation newsletter surfaced a piece on retro creative practice tools: deliberate constraint systems, timed sketching routines, analog habit-tracking for creative work. The argument is that structured creative practice produces more output than inspiration-chasing. For artists working in isolation — which describes a lot of Cariboo-based creators — the structure question is genuinely practical.
-
-**CASEY:** Also just a reminder that a notebook costs two dollars.
-
-**RILEY:** Also worth noting today: a Calgary teenager won an international video award for a short film addressing AI's water consumption. And Crazy Town podcast dropped an episode with author Chris Smaje on the lighter side of potential societal collapse, which is a tone I respect. Both worth your time if today's theme has you thinking about how young people and independent voices are shaping the cultural conversation around technology.
-
-**CASEY:** The Calgary story especially — a kid making something that matters, with tools that are accessible. That's the version of this I can get behind.
-
-**RILEY:** Speaking of things worth getting behind — the Central Cariboo Arts and Culture Society has been doing exactly that kind of work, quietly and consistently, for years.
+**RILEY:** Before the deep dive, a quick word on some community work happening right here.
 
 ---
 
 **COMMUNITY SPOTLIGHT**
 
-**RILEY:** The Central Cariboo Arts and Culture Society manages the Arts Centre in Williams Lake — gallery space, studios, grants programs, and the Performances in the Park summer concert series that brings live music outdoors every year. They're one of those organizations that's easy to take for granted until you imagine the region without them. They're the connective tissue between artists who might otherwise work in total isolation. If you want to support local arts infrastructure — not just in theory but in practice — centralcaribooarts dot com is where to start.
+**CASEY:** The Central Cariboo Arts & Culture Society is one of those organizations that quietly holds a lot of cultural infrastructure together. They manage the Arts Centre in Williams Lake, run grants programs that support local artists directly, and produce the Performances in the Park summer concert series — free outdoor music in the middle of the city, the kind of thing that sounds simple until you think about everything required to pull it off year after year. If you're a local artist looking for support, or just someone who wants to show up for live culture this summer, centralcaribooarts.com is where to start.
 
-**CASEY:** They're also one of the few organizations that genuinely understands the difference between arts programming and arts infrastructure. That distinction matters more than people realize.
-
-**RILEY:** It really does. And it connects directly to what we're digging into today — what makes cultural production in rural communities durable over time, not just possible in the moment. Let's get into it.
+**RILEY:** Performances in the Park is genuinely one of the better arguments for living in Williams Lake. Put it in your calendar now.
 
 ---
 
-**DEEP DIVE: CARIBOO CONNECTIONS — Arts, Culture & Digital Storytelling**
+**DEEP DIVE: Arts, Culture & Digital Storytelling**
 
-**RILEY:** The question I keep coming back to after a week of arts and tech news is this: when a journalist or artist dies, what survives? What does the record actually look like, and who decides how it's maintained?
+**RILEY:** We've spent several episodes on this theme covering AI governance, platform regulation, funding models, and what community control over cultural production actually looks like. Today something more concrete: there's a proposed standard called TRACE — tracestandard.org — designed to bring transparency and accountability to AI-generated content. The question I keep returning to is whether a technical standard can do the governance work that our previous discussions kept concluding was fundamentally political.
 
-**CASEY:** What's the prompt?
+**CASEY:** The short answer is no. But that's not the interesting answer.
 
-**RILEY:** The Canadaland piece on Elaine Dewar. She was finishing a book when she died. Her daughter's quote was something like — "she just needed ten more days to get everything in order for her book." Dewar was a serious investigative journalist. She broke things that mattered. And the piece is partly about her work and partly about whether that work is findable, preserved, accessible to future journalists who might want to build on it.
+**RILEY:** So TRACE — Transparency, Responsibility, Accountability, Consent, and Explainability — proposes that AI-generated content carry documented metadata about how it was produced: what models were used, what training data, what human oversight was applied. Nutritional labeling for AI content. The creator discloses the ingredients.
 
-**CASEY:** The answer is probably not great. Journalism archives are a disaster in Canada. Print archives are on microfilm in institutions that may or may not be digitizing them. Digital archives are behind paywalls or on servers that get decommissioned when the publication folds. The record is fragile.
+**CASEY:** And like nutritional labeling, it only works if people read it, if the information is accurate, and if someone enforces compliance. Spotify's verification badge is a lighter version of the same idea — and you noted in the roundup that it creates another administrative hoop for small creators. TRACE is a heavier lift.
 
-**RILEY:** Fragile everywhere, but specifically fragile in rural communities where there often wasn't a major publication to begin with. The Cariboo Sentinel ran for over a century. The historical archive of rural BC journalism is sitting in boxes in libraries and personal collections, not in searchable databases.
+**RILEY:** The direction matters, though. Three separate deep dives on this theme have circled the same unresolved problem: there's no agreed-upon baseline for what counts as AI-generated content, who has to disclose it, or what disclosure actually means. TRACE is attempting to build that baseline. The Adams case — an AI-colorized version of his protected black-and-white work exhibited without permission — is exactly what happens without a disclosure framework. The legal question of whether it constitutes infringement is genuinely ambiguous because there's nothing to anchor the analysis.
 
-**CASEY:** And that's before you get to Indigenous oral history, which operates entirely outside the written archive system and faces a completely different set of preservation and sovereignty questions.
+**CASEY:** The Adams case is more complicated than "needs better labeling." His trust isn't arguing the colorization needed a disclosure sticker — they're arguing it shouldn't have been done without permission, full stop. A TRACE label doesn't resolve consent. It documents what happened after consent was already bypassed.
 
-**RILEY:** So the tech angle here isn't "AI will fix it." The question is what responsible archival infrastructure actually looks like for a place like this. The tools exist. Transcription has gotten genuinely accurate. Optical character recognition for old newsprint has improved substantially. The barrier isn't technical anymore.
+**RILEY:** Acknowledged. TRACE addresses transparency, not authorization. Those are different problems. But the Explainability component tries to close some of that gap — it's not just "AI was used," it's supposed to document the nature and degree of AI involvement. There's a real spectrum between "AI cleaned up audio noise" and "AI generated 40 minutes of footage from period photographs and scene descriptions." Capturing that spectrum is genuinely more useful than a binary badge.
 
-**CASEY:** The barrier is decision-making and sustained resourcing. Digitization projects happen, then the grant ends, then no one updates the metadata, then the finding aid is broken, and in ten years the digital files are in a format that current software can't read. That's not hypothetical — that's the track record.
+**CASEY:** Assuming it captures the spectrum honestly. Self-reported metadata from organizations with financial incentives to minimize perceived AI involvement — that's not a neutral information environment. And the auditing infrastructure to verify those claims doesn't exist yet. Who runs the audits? Who accredits the auditors? Who funds that? This is the same pattern from our conversation on the Local Journalism Initiative — a well-designed framework requiring sustained institutional capacity, and that capacity is perpetually underfunded.
 
-**RILEY:** The format obsolescence problem is real. Archival standards exist to address it — frameworks that some institutions actually implement. The question is whether small regional institutions have the technical capacity to follow through on them.
+**RILEY:** The maintenance gap is real. The W3C has been working on a provenance standard for AI content — C2PA, the Coalition for Content Provenance and Authenticity — with Adobe, BBC, Microsoft, and others as signatories. Major platforms have mostly not implemented it despite years of development. The gap between a technically sound standard and actual platform adoption is where most of these frameworks go to die.
 
-**CASEY:** Or whether they should be trying to independently at all. A regional consortium approach — several Cariboo institutions pooling archival infrastructure — would make more sense than each one reinventing it. But that requires coordination that doesn't currently exist.
+**CASEY:** C2PA and TRACE are solving overlapping but distinct problems — C2PA is primarily about cryptographic provenance signatures on media files. TRACE is attempting a broader ethical accountability framework that includes consent documentation and community impact considerations. For a cultural organization documenting a Tŝilhqot'in ceremony or archiving Secwépemc oral histories, the consent documentation layer matters at least as much as the technical provenance.
 
-**RILEY:** That model has worked elsewhere. Shared digital infrastructure for university libraries in western Canada shows it's organizationally achievable. Something analogous for rural BC cultural organizations isn't a fantasy — it's an organizational problem with a known solution type.
+**RILEY:** Which is where it gets genuinely interesting for our context. If TRACE's consent framework is robust enough to be meaningful for Indigenous cultural material, it would need to interface with existing data sovereignty frameworks — OCAP principles, First Nations data governance structures. A universal transparency standard that doesn't account for tiered community access — or for the fact that some cultural material is not meant to be publicly attributed regardless of who created it — would cause real harm even with full compliance.
 
-**CASEY:** University library consortia work because the members have IT staff, legal clarity on copyright, and stable institutional funding. A consortium of small arts societies and First Nations cultural programs doesn't have any of those things at comparable scale. The analogy flatters the difficulty.
+**CASEY:** The current draft reads like it was written with individual creators in mind, not collective cultural governance. There's nothing about community-level consent processes, institutional authorization frameworks, or ongoing consent obligations after initial disclosure. One-time consent versus ongoing consent is a significant gap. The Mukurtu content management system handles this directly — tiered access, community-defined visibility settings. TRACE would need to be compatible with that architecture rather than assuming transparency always means public disclosure.
 
-**RILEY:** The copyright piece is the one I keep bumping into. Who owns the archive of a community newspaper that closed? Who has rights to oral history recordings made in the eighties by a researcher who's now dead? These aren't edge cases — they're the common case for rural BC cultural material.
+**RILEY:** Most transparency standards are built on the assumption that more disclosure is always better, because they're designed for commercial media where the audience relationship is one-directional. Cultural material in Indigenous contexts carries complex layered relationships — certain knowledge belongs to certain families, certain stories can only be told in certain seasons, certain recordings carry restrictions the originating community has the authority to define. That's not a TRACE failure specifically, but TRACE isn't designed around it.
 
-**CASEY:** And for Indigenous material specifically, the question isn't just copyright — it's cultural authority. Who has the right to decide what gets shared publicly and what gets protected? That's a governance question, not a legal one. The Copyright Act doesn't answer it.
+**CASEY:** Digital cultural heritage law in Canada doesn't handle it either. The Copyright Act doesn't manage collective cultural ownership well. The consent provisions in privacy law weren't designed for archival community material. TRACE can't paper over legislative gaps by being a better standard.
 
-**RILEY:** The Mukurtu platform addresses exactly that. It's an open-source digital archive system built specifically for Indigenous communities, with tiered access controls — some materials visible to anyone, some visible to community members only, some restricted to specific knowledge keepers. Several First Nations in BC have adopted it, and it fits within a broader digital sovereignty framework.
+**RILEY:** No, but it can create pressure. If a well-adopted transparency standard makes AI involvement in cultural content visible, it makes evasion socially costly rather than just legally ambiguous. The Adams situation made the news because someone had to answer publicly. That accountability came through journalism and public pressure, not law. A robust disclosure standard pushes more of those incidents into the public accountability zone earlier.
 
-**CASEY:** My question is what happens after implementation. Who maintains the server? Who updates the software when a new version drops? Who trains new administrators when the person who knows the system moves on? The maintenance gap doesn't go away just because the initial setup was well-designed.
+**CASEY:** Social accountability works when there are audiences paying attention. For a community archive digitizing local history on a shoestring, or for a regional arts organization considering AI tools for promotional materials, the realistic audience is local. The social pressure operates differently in a community of ten thousand than in an international art market. You can't shame a platform into compliance from Horsefly.
 
-**RILEY:** It doesn't go away. But our producer Erich in Horsefly flagged something worth taking seriously: the TRACE standard — tracestandard dot org — an emerging framework for content provenance. It tracks where cultural and informational content comes from, who created it, and how it's been modified. It's designed partly for the AI-generated content problem, but its implications for archival integrity go further than that.
+**RILEY:** That might actually make it more powerful in the other direction. In a small community, reputation is durable and social consequences are real. An arts organization that mislabels AI-generated content in Williams Lake will hear about it from people they see at the grocery store. The accountability mechanism scales down to social fabric in ways that formal enforcement never can.
 
-**CASEY:** Walk me through why it matters here.
+**CASEY:** That's a legitimate point and I'm taking it seriously. Though it also means the accountability only runs in one direction — local organizations face reputational consequences, but platforms and national institutions face none of that social friction. The power asymmetry doesn't go away.
 
-**RILEY:** One underappreciated problem with rural cultural archives isn't just preservation — it's authenticity over time. Once material is digitized and distributed, how do you know a document hasn't been altered? How do you know an oral history recording hasn't been edited? TRACE is essentially a provenance chain — a verifiable record of where something came from and what's happened to it. For an Indigenous community that needs to demonstrate the authenticity of traditional knowledge documentation in a legal or governance context, that's not abstract.
+**RILEY:** Granted. So what would it actually look like for a Cariboo arts organization to engage with TRACE? Not adopt it wholesale, but use it as a starting point to develop their own disclosure practices?
 
-**CASEY:** The legal and governance use case is more compelling than the general archival one — I'll give you that. Traditional knowledge feeding into treaty negotiations or land use decisions needs a provenance chain that courts and governments will accept. But TRACE is a voluntary standard. A small First Nation using it for their archive is doing good practice, but if the provincial government's document management system doesn't recognize TRACE metadata, the chain breaks at exactly the moment it matters most.
+**CASEY:** Treat it the way a small organization treats an accounting standard — you don't build one from scratch, you adapt the existing framework to your scale and context. Take the consent and explainability components, translate them into a two-paragraph disclosure statement attached to any AI-assisted work, and get community input on what level of detail your audience actually needs. That's achievable without a compliance infrastructure.
 
-**RILEY:** Which means the advocacy target isn't the communities — it's the institutions they interface with. Province, federal government, courts. Getting TRACE or an equivalent into those systems is a policy fight, not a tech implementation. And policy fights take time. In the interim, what's achievable locally? The Central Cariboo Arts and Culture Society has relationships with local artists, access to the Williams Lake community, a track record with grants. A partnership with a First Nations cultural program to build a shared regional archive using Mukurtu with TRACE-compatible metadata — that's a fundable pilot. The BC Arts Council has supported digital infrastructure projects before.
+**RILEY:** The Central Cariboo Arts & Culture Society is actually well-positioned to pilot something like that. They administer grants, which means they already have a framework for deciding what cultural production gets resourced. Adding an AI disclosure component to their grant application process — even a simple one — starts building community norms around transparency before the absence of norms becomes a problem.
 
-**CASEY:** "Fundable pilot" should come with a warning label in the Cariboo. We've watched that cycle enough times: the pilot gets funded, runs for eighteen months, produces something real, and then the funding ends and the maintenance question lands on whoever's left. And I should say — it's a bit funny that we're sitting here designing grant applications for organizations we're not part of. We're basically doing speculative org-chart work over the radio.
+**CASEY:** That requires the board to develop a position on AI in arts funding, which is a real governance task. But it's the right order of operations: community institutions building standards through deliberation, rather than waiting for a platform or regulator to hand down rules. Though I'd note — deliberation takes time, and the tools are already in the room whether the deliberation has happened or not.
 
-**RILEY:** Fair — and there's something revealing about that impulse. The ideas aren't bad, but you're right that designing solutions from the outside has its own problems. The organizations closest to the material are the ones who should be setting the agenda.
+**RILEY:** Which is an argument for starting the deliberation now, not later. And on that note — we should be honest that we haven't spoken directly with communications or cultural staff from the Secwépemc, Tŝilhqot'in, or Dakelh nations about how they'd approach an AI disclosure standard as it applies to their cultural material. For an episode that touched on Indigenous data governance, that's a gap worth naming. That's a conversation we'd genuinely benefit from having on the show.
 
-**CASEY:** The sustainability plan requirement that some BC Arts Council grants now include — requiring applicants to show how something continues past the grant period — sounds like progress. In practice, "demonstrate a sustainability plan" often means writing a paragraph about future grant applications. It's not the same as having operational capacity to run something long-term on volunteer bandwidth and part-time staff. We keep designing systems for organizations operating at the edge of their capacity.
+**CASEY:** Agreed. And one worth pursuing rather than just flagging.
 
-**RILEY:** The honest version is that small cultural organizations in rural BC are already doing a lot. The Central Cariboo Arts and Culture Society running Performances in the Park, the gallery, the grants programs — that's already a full load. Adding digital archival infrastructure without dedicated staffing is probably unrealistic unless the staffing is part of the funding.
+**RILEY:** The practical call to action: if you're a cultural organization in the Cariboo — arts society, community archive, Indigenous cultural program, community radio station — visit tracestandard.org and look at the consent and explainability components specifically. Not as a compliance document. As raw material for building your own disclosure practices before they're forced on you by circumstance.
 
-**CASEY:** So who does it? The realistic answer might be that First Nations cultural programs are better positioned than settler cultural institutions — they have a clearer governance mandate and more direct funding relationships with federal Indigenous programs. Williams Lake First Nation has been building digital communications capacity. Xatśūll First Nation has done significant work on land and water documentation that has archival implications. The nations themselves have the clearest stake in how the record is kept.
+**CASEY:** The Elaine Dewar remembrance that ran this week carries something I don't want to leave behind. She spent decades on books that required deep, patient, non-monetizable research — the kind of journalism that couldn't be summarized by an AI briefing without losing the whole point. TRACE does nothing for that. What protected Dewar's work was institutional support, direct reader relationships, and a commitment to depth over velocity that almost no current media funding model incentivizes. Standards operate on the surface of that much deeper problem.
 
-**RILEY:** The sovereignty argument for Indigenous-led archival infrastructure is strong precisely because the material at stake is most consequential for those communities. The historical record of the Cariboo is disproportionately a record of Indigenous experience — displacement, residential schools, land use, language — and the communities with the most at stake in how that record is preserved are the nations themselves.
+**RILEY:** So the honest picture is: TRACE is coherent, the intent is right, and the implementation gaps are real and not close to being solved. But the framework gives communities something to build from — and building from an imperfect framework beats waiting for a perfect one.
 
-**CASEY:** We should be transparent: we're working from published sources and general knowledge. We haven't been in direct conversation with communications staff from those nations about their current archival priorities, and that's a genuine gap in what we can say confidently.
+**CASEY:** That's the optimist read. The skeptic read is that imperfect frameworks also get institutionalized before the gaps are fixed, and we end up defending the framework instead of the communities it was supposed to serve. The standard is still early-stage. How it gets adopted matters as much as what it says.
 
-**RILEY:** Worth naming. And worth the invitation — if anyone from Tŝilhqot'in, Secwépemc, or Dakelh communications teams wants to come on and correct or extend what we're saying here, that conversation would make for a much better episode than this one.
+---
 
-**CASEY:** Going back to Elaine Dewar for a moment — she understood the archive as a living thing. She wrote about power and money and how institutions shape the record. The irony of a journalist who spent decades surfacing hidden history leaving behind work that might itself become difficult to find is not subtle.
-
-**RILEY:** What it points to is that cultural memory isn't just about art. It's about journalism, documentation, oral tradition, administrative records. All of it feeds into whether a community has the capacity to understand itself over time. The Cariboo shows up in national coverage when there's a wildfire. The self-documentation imperative is real precisely because no one else is doing it.
-
-**CASEY:** The digital storytelling conversation I find most compelling isn't "how do we get our content onto Spotify." It's "how do we build the infrastructure to know what happened here, who made things, what the place was like before and after." That's a different project and it needs different tools — and honestly, different ambitions.
-
-**RILEY:** And different measures of success. A regional oral history archive accessed by three hundred people a year but genuinely accurate, genuinely governed by the communities whose stories it holds, and genuinely maintained over time is more valuable than a platform account with fifty thousand followers that disappears when the algorithm changes. Depth isn't just aesthetically preferable here — it's structurally necessary. Shallow documentation disappears. Deep documentation survives.
-
-**CASEY:** The maintenance question still doesn't have a clean answer, and I don't think we've solved it today. Who runs the server in year four? Who trains the next person? Those questions need to be answered before the first grant is written, not after it runs out.
-
-**RILEY:** So the concrete ask — if someone listening is in a position to act: talk to your local library about what digitization projects are underway and where the gaps are. If you're involved with a First Nations cultural program, look at Mukurtu and at the TRACE standard — tracestandard dot org — as potentially compatible frameworks. If you're a funder, press hard on the sustainability plan before writing the check, and make sure "sustainability" means operational capacity, not a paragraph about future grants. And if you have archival material — old newspapers, recordings, photographs from the Cariboo — find out where it belongs before it's gone.
-
-**CASEY:** And if you're a journalist finishing a book: take the ten days.
-
-**RILEY:** That's the show for Monday, May 25th. We'd genuinely love to hear your thoughts on this one — especially if you're working on cultural preservation or archival projects anywhere in the region. Corrections, story tips, and questions all go to feedback at cariboo signals dot c-a. And if you're interested in being part of what we're building here, that same address is the door. Have a great rest of your Monday.
+**RILEY:** That's today's episode of Cariboo Signals. We'd genuinely like to hear from you — corrections, story tips, reactions to the TRACE discussion, or if you're involved in community arts or cultural archiving and want to share what you're working on. Reach out at feedback at cariboosignals dot ca. If you'd like to be part of what we're building here — as a contributor, a community correspondent, or just someone who wants to be more connected — that same address gets you in. Have a great rest of your Monday.
