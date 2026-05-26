@@ -1,24 +1,4 @@
 {
-  "2026-05-05": {
-    "timestamp": 1777980219.551635,
-    "topics": [
-      "[The Guardian Global Development] Logging, murder and money:",
-      "[Al Jazeera English] Japan\u2019s Takaichi pledges deeper energy ",
-      "[Williams Lake Tribune] Cariboo Chilcotin emergency manageme",
-      "[IndigiNews] In \u2018B.C.\u2019s\u2019 interior, a syilx program is return",
-      "[Williams Lake Tribune] MP Fuhr: Canadian investments in tra",
-      "[TechRadar] 'Help cattle producers hold onto their land and ",
-      "[Williams Lake Tribune] New cherry varieties developed in Su",
-      "[Quartz] BYD's quarterly profit plunged as China's EV price "
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-05-05"
-  },
   "2026-05-06": {
     "timestamp": 1778068735.51747,
     "topics": [
@@ -412,5 +392,24 @@
       "Indigenous tech"
     ],
     "date": "2026-05-25"
+  },
+  "2026-05-26": {
+    "timestamp": 1779799711.782293,
+    "topics": [
+      "[Global News] Consultations with Sask. producers \u2018an opportu",
+      "[Williams Lake Tribune] Taseko Mines Ltd. exploring name cha",
+      "[Williams Lake Tribune] B.C. fire crew rescues ducklings fro",
+      "[Williams Lake Tribune] \u2018Will miss caring for you\u2019: Clearwat",
+      "[Williams Lake Tribune] No charges approved in 2023 Vancouve",
+      "[NYT Top Stories] A Cattle Ranch Is Doing What\u00a0Ivy League Co",
+      "[The Narwhal] For many Canadian farmers, selling land can be",
+      "[Toms Guide] When to fertilize tomatoes: the 3-step schedule"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech"
+    ],
+    "date": "2026-05-26"
   }
 }

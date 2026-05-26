@@ -95,11 +95,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-17",
-        "clue": "pilot-skepticism:x \u2014 Conceded that one-time surveys create false confidence, accepted continuity necessity",
-        "occurrences": 2
-      },
-      {
         "date": "2026-05-22",
         "clue": "tech-optimism:x \u2014 Conceded institutional barriers aren't purely technical problems",
         "occurrences": 2
@@ -140,9 +135,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-25",
-        "clue": "structural-lens:+ \u2014 Shifted from platform critique to community-level accountability mechanisms",
-        "occurrences": 1
+        "date": "2026-05-26",
+        "clue": "structural-lens:+ \u2014 Deepened focus on governance preventing financialization",
+        "occurrences": 2
       }
     ],
     "core_memories": [
@@ -279,11 +274,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-22",
-        "clue": "evidence-bar:+ \u2014 Reinforced pattern-recognition as data: repeated governance lag after crises is itself the signal",
-        "occurrences": 2
-      },
-      {
         "date": "2026-05-13",
         "clue": "rural-context:~ \u2014 Shifted from access-as-barrier to equity-as-measurement-problem for programs",
         "occurrences": 1
@@ -291,11 +281,6 @@
       {
         "date": "2026-05-17",
         "clue": "structural-lens:+ \u2014 Moved from dismissing eDNA to designing governance architecture around it",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-05-20",
-        "clue": "funding-risk:~ \u2014 Conceded long-term sustainability requires five-year structures, not events",
         "occurrences": 2
       },
       {
@@ -408,6 +393,11 @@
       {
         "formed": "2026-05-18",
         "signal": "community-trust:+ \u2014 moved from abstract principles to specific operational guardrails",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-05-26",
+        "signal": "evidence-bar:+ \u2014 Shifted from abstract problem to demanding concrete operational specifics",
         "occurrences": 3
       }
     ]

@@ -1932,5 +1932,31 @@
       "Implementation gaps in standards adoption (auditing infrastructure, platform enforcement)",
       "Community-scale accountability versus formal regulatory frameworks"
     ]
+  },
+  "2026-05-26": {
+    "timestamp": 1779799713.778837,
+    "date": "2026-05-26",
+    "theme": "Working Lands & Industry",
+    "central_question": "How can working land operations in the Cariboo maintain long-term viability and succession when land financialization and investor ownership create structural incentives to sell rather than continue farming?",
+    "riley_position": "The solution requires building institutional structures and governance models that keep land in mission-aligned hands through succession planning and training programs, as demonstrated by the ranch model that combines mentorship with economic stake rather than treating land primarily as a financial asset.",
+    "riley_key_evidence": [
+      "NYT piece describing a cattle ranch's training and residency model that combines land-based work, mentorship, and economic pathways",
+      "Williams Lake First Nation's agricultural capacity building on collectively-held lands treats land as a relationship rather than asset class",
+      "Models exist in Quebec, Scandinavia, and US Midwest for agricultural succession financing calibrated to production timelines"
+    ],
+    "casey_position": "While financing gaps are part of the problem, the deeper issue is that some sales aren't distress-driven but rational exits for aging operators with no succession plan facing land worth several times their remaining productive earning potential, making institutional solutions difficult to implement during the critical decision window.",
+    "casey_key_evidence": [
+      "Narwhal reporting on institutional investors buying agricultural land as stores of value, often converting previous owners to tenants",
+      "Operators in their sixties with no succession plan face rational incentive to sell regardless of financing availability",
+      "Investor-owned land is managed for capital preservation rather than agricultural productivity, diverging from long-term soil health and fertility goals"
+    ],
+    "resolution": "Riley and Casey agreed that while the problem is urgent and institutional solutions exist elsewhere, the core gap is organizational will and financing structures, with the practical first step being conversations within existing producer organizations (Cariboo Cattlemen's Association, credit unions, First Nations agricultural programs) rather than policy-level interventions, though neither is optimistic about timeline before further land shift to investment ownership.",
+    "topics_covered": [
+      "Land financialization and investor ownership of agricultural operations",
+      "Succession planning gaps in working land operations",
+      "Alternative ownership models: collective/Indigenous land tenure versus individual ownership",
+      "Producer data sovereignty and precision agriculture as competitive differentiation",
+      "Financing structures and credit union products designed for agricultural succession rather than liquidation"
+    ]
   }
 }
