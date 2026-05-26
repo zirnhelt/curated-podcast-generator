@@ -1,0 +1,270 @@
+{
+  "episode": {
+    "date": "2026-05-26",
+    "formatted_date": "Tuesday, May 26, 2026",
+    "theme": "Working Lands & Industry",
+    "title": "Cariboo Signals - Working Lands & Industry",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Working Lands & Industry.</p><p><b>NEWS ROUNDUP:</b> We break down [Williams Lake Tribune] ‘Will miss caring for you’: Clearwater losing 4 doctors, recruitment efforts underway and [TechCrunch] What ClickUp’s mass layoff tells us about the future of work, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> How can working land operations in the Cariboo maintain long-term viability and succession when land financialization and investor ownership create structural incentives to sell rather than continue farming? Topics include: Land financialization and investor ownership of agricultural operations, Succession planning gaps in working land operations, Alternative ownership models: collective/Indigenous land tenure versus individual ownership, Producer data sovereignty and precision agriculture as competitive differentiation, Financing structures and credit union products designed for agricultural succession rather than liquidation.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://skitimothy.com\">Mt. Timothy Ski Society</a></p><p><b>Sources discussed:</b></p><ul><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/05/25/will-miss-caring-for-you-clearwater-losing-4-doctors-recruitment-efforts-underway/\">[Williams Lake Tribune] ‘Will miss caring for you’: Clearwat...</a></li><li>Marina Temkin (TechCrunch): <a href=\"https://techcrunch.com/2026/05/25/what-clickups-mass-layoff-tells-us-about-the-future-of-work/\">[TechCrunch] What ClickUp’s mass layoff tells us about the f...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/05/20/opinion/deep-springs-college-ivy-league-education.html\">[NYT Top Stories] A Cattle Ranch Is Doing What Ivy League Co...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Global News: <a href=\"https://globalnews.ca/news/11856274/consultations-sask-producers-opportunity-collaboration-minister/\">[Global News] Consultations with Sask. producers ‘an opportu...</a></li><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/05/25/taseko-mines-ltd-exploring-name-change/\">[Williams Lake Tribune] Taseko Mines Ltd. exploring name cha...</a></li><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/05/25/b-c-fire-crew-rescues-ducklings-from-storm-drain/\">[Williams Lake Tribune] B.C. fire crew rescues ducklings fro...</a></li><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/05/25/no-charges-approved-in-2023-cowichan-police-shooting-of-man-driving-stolen-skid-steer/\">[Williams Lake Tribune] No charges approved in 2023 Vancouve...</a></li><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/05/25/saanich-police-seize-55k-worth-of-fentanyl-cocaine-meth-ghb/\">[Williams Lake Tribune] Saanich Police seize $55K worth of f...</a></li><li>Simon Spichak (Ricochet): <a href=\"https://ricochet.media/politics/inside-the-black-box-reshaping-canadas-benefits-system/\">[Ricochet] Inside the black box reshaping Canada’s benefits ...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/05/22/low-head-turbine-generates-plenty-of-power/\">[Hackaday] Low Head Turbine Generates Plenty of Power</a></li><li>Jeremy White (WIRED): <a href=\"https://www.wired.com/story/ferrari-luce-ev-is-finally-here/\">[WIRED] The Electric Ferrari Luce Is Finally Here</a></li><li>https://www.techradar.com/author/leon-poultney (TechRadar): <a href=\"https://www.techradar.com/vehicle-tech/hybrid-electric-vehicles/ive-driven-the-smallest-kia-ev-yet-and-theres-a-lot-to-love-about-the-baby-of-the-bunch\">[TechRadar] I’ve driven the smallest Kia EV yet and there’s ...</a></li><li>Andrew J. Hawkins (The Verge): <a href=\"https://www.theverge.com/transportation/936126/nuro-robotaxi-dave-ferguson-interview-uber-lucid-waymo\">[The Verge] Why Nuro thinks being a robotaxi ‘second mover’ ...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/generative-ai-inventory-management-small-business-sales-2026-5\">[Business Insider] How solo founders use AI to reduce the op...</a></li><li>Isaac Phan Nay (The Tyee): <a href=\"https://thetyee.ca/News/2026/05/26/Very-Shiny-Debt-Trap/\">[The Tyee] A Very Shiny Debt Trap</a></li><li>The Narwhal: <a href=\"https://thenarwhal.ca/saskatchewan-farmland-prices/?utm_source=rss\">[The Narwhal] For many Canadian farmers, selling land can be...</a></li><li>https://www.tomsguide.com/author/alice-carroll (Toms Guide): <a href=\"https://www.tomsguide.com/home/gardening/when-to-fertilize-your-tomatoes-and-how-to-get-a-bountiful-harvest\">[Toms Guide] When to fertilize tomatoes: the 3-step schedule...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-6<br>TTS Voices: OpenAI TTS API (Nova · Echo)<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-05-26T05:48:29.913613-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-sonnet-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 2873,
+      "voice_ratio_casey_riley": 1.27,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 1,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0
+      },
+      "total_hits": 1
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Global News] Consultations with Sask. producers ‘an opportunity’ for collaboration, says minister",
+          "url": "https://globalnews.ca/news/11856274/consultations-sask-producers-opportunity-collaboration-minister/",
+          "source": "Global News",
+          "author": "",
+          "ai_score": 17,
+          "date_published": "2026-05-20T04:07:31+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Taseko Mines Ltd. exploring name change",
+          "url": "https://wltribune.com/2026/05/25/taseko-mines-ltd-exploring-name-change/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 100,
+          "date_published": "2026-05-26T08:04:42.879262+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] B.C. fire crew rescues ducklings from storm drain",
+          "url": "https://wltribune.com/2026/05/25/b-c-fire-crew-rescues-ducklings-from-storm-drain/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 92,
+          "date_published": "2026-05-25T16:50:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] ‘Will miss caring for you’: Clearwater losing 4 doctors, recruitment efforts underway",
+          "url": "https://wltribune.com/2026/05/25/will-miss-caring-for-you-clearwater-losing-4-doctors-recruitment-efforts-underway/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 88,
+          "date_published": "2026-05-25T15:40:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] No charges approved in 2023 Vancouver Island police shooting of man driving stolen skid-steer",
+          "url": "https://wltribune.com/2026/05/25/no-charges-approved-in-2023-cowichan-police-shooting-of-man-driving-stolen-skid-steer/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 78,
+          "date_published": "2026-05-25T12:21:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Saanich Police seize $55K worth of fentanyl, cocaine, meth, GHB",
+          "url": "https://wltribune.com/2026/05/25/saanich-police-seize-55k-worth-of-fentanyl-cocaine-meth-ghb/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 75,
+          "date_published": "2026-05-25T15:02:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Ricochet] Inside the black box reshaping Canada’s benefits system",
+          "url": "https://ricochet.media/politics/inside-the-black-box-reshaping-canadas-benefits-system/",
+          "source": "Ricochet",
+          "author": "Simon Spichak",
+          "ai_score": 72,
+          "date_published": "2026-05-25T18:46:05+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Low Head Turbine Generates Plenty of Power",
+          "url": "https://hackaday.com/2026/05/22/low-head-turbine-generates-plenty-of-power/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 65,
+          "date_published": "2026-05-22T23:00:07+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] The Electric Ferrari Luce Is Finally Here",
+          "url": "https://www.wired.com/story/ferrari-luce-ev-is-finally-here/",
+          "source": "WIRED",
+          "author": "Jeremy White",
+          "ai_score": 65,
+          "date_published": "2026-05-25T21:03:01+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] I’ve driven the smallest Kia EV yet and there’s a lot to love about the baby of the bunch",
+          "url": "https://www.techradar.com/vehicle-tech/hybrid-electric-vehicles/ive-driven-the-smallest-kia-ev-yet-and-theres-a-lot-to-love-about-the-baby-of-the-bunch",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/leon-poultney",
+          "ai_score": 60,
+          "date_published": "2026-05-25T22:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Verge] Why Nuro thinks being a robotaxi ‘second mover’ gives it an advantage",
+          "url": "https://www.theverge.com/transportation/936126/nuro-robotaxi-dave-ferguson-interview-uber-lucid-waymo",
+          "source": "The Verge",
+          "author": "Andrew J. Hawkins",
+          "ai_score": 60,
+          "date_published": "2026-05-24T11:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] How solo founders use AI to reduce the operational and mental load of inventory management",
+          "url": "https://www.businessinsider.com/generative-ai-inventory-management-small-business-sales-2026-5",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-05-22T16:22:47+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Tyee] A Very Shiny Debt Trap",
+          "url": "https://thetyee.ca/News/2026/05/26/Very-Shiny-Debt-Trap/",
+          "source": "The Tyee",
+          "author": "Isaac Phan Nay",
+          "ai_score": 55,
+          "date_published": "2026-05-26T07:40:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Forget stolen passwords — this is how hackers are actually breaking into US companies in 2026",
+          "url": "https://www.techradar.com/pro/security/forget-stolen-passwords-this-is-how-hackers-are-actually-breaking-into-us-companies-in-2026",
+          "source": "TechRadar",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-05-26T01:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechCrunch] What ClickUp’s mass layoff tells us about the future of work",
+          "url": "https://techcrunch.com/2026/05/25/what-clickups-mass-layoff-tells-us-about-the-future-of-work/",
+          "source": "TechCrunch",
+          "author": "Marina Temkin",
+          "ai_score": 55,
+          "date_published": "2026-05-25T16:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[NPR Health News] Nurse convicted in patient's death is now a national speaker on hospital safety",
+          "url": "https://www.npr.org/2026/05/24/nx-s1-5822519/radonda-vaught-nurse-convicted-vanderbilt-medical-error",
+          "source": "NPR Health News",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-05-24T10:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Working Lands & Industry",
+      "articles": [
+        {
+          "title": "[NYT Top Stories] A Cattle Ranch Is Doing What Ivy League Colleges Can’t",
+          "url": "https://www.nytimes.com/2026/05/20/opinion/deep-springs-college-ivy-league-education.html",
+          "source": "NYT Top Stories",
+          "author": "",
+          "ai_score": 40,
+          "date_published": "2026-05-20T15:45:07+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[The Narwhal] For many Canadian farmers, selling land can be more profitable than farming it",
+          "url": "https://thenarwhal.ca/saskatchewan-farmland-prices/?utm_source=rss",
+          "source": "The Narwhal",
+          "author": "",
+          "ai_score": 67,
+          "date_published": "2026-05-25T12:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] When to fertilize tomatoes: the 3-step schedule for a bountiful harvest",
+          "url": "https://www.tomsguide.com/home/gardening/when-to-fertilize-your-tomatoes-and-how-to-get-a-bountiful-harvest",
+          "source": "Toms Guide",
+          "author": "https://www.tomsguide.com/author/alice-carroll",
+          "ai_score": 35,
+          "date_published": "2026-05-24T07:45:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "How can working land operations in the Cariboo maintain long-term viability and succession when land financialization and investor ownership create structural incentives to sell rather than continue farming?",
+        "riley_position": "The solution requires building institutional structures and governance models that keep land in mission-aligned hands through succession planning and training programs, as demonstrated by the ranch model that combines mentorship with economic stake rather than treating land primarily as a financial asset.",
+        "riley_key_evidence": [
+          "NYT piece describing a cattle ranch's training and residency model that combines land-based work, mentorship, and economic pathways",
+          "Williams Lake First Nation's agricultural capacity building on collectively-held lands treats land as a relationship rather than asset class",
+          "Models exist in Quebec, Scandinavia, and US Midwest for agricultural succession financing calibrated to production timelines"
+        ],
+        "casey_position": "While financing gaps are part of the problem, the deeper issue is that some sales aren't distress-driven but rational exits for aging operators with no succession plan facing land worth several times their remaining productive earning potential, making institutional solutions difficult to implement during the critical decision window.",
+        "casey_key_evidence": [
+          "Narwhal reporting on institutional investors buying agricultural land as stores of value, often converting previous owners to tenants",
+          "Operators in their sixties with no succession plan face rational incentive to sell regardless of financing availability",
+          "Investor-owned land is managed for capital preservation rather than agricultural productivity, diverging from long-term soil health and fertility goals"
+        ],
+        "resolution": "Riley and Casey agreed that while the problem is urgent and institutional solutions exist elsewhere, the core gap is organizational will and financing structures, with the practical first step being conversations within existing producer organizations (Cariboo Cattlemen's Association, credit unions, First Nations agricultural programs) rather than policy-level interventions, though neither is optimistic about timeline before further land shift to investment ownership.",
+        "topics_covered": [
+          "Land financialization and investor ownership of agricultural operations",
+          "Succession planning gaps in working land operations",
+          "Alternative ownership models: collective/Indigenous land tenure versus individual ownership",
+          "Producer data sovereignty and precision agriculture as competitive differentiation",
+          "Financing structures and credit union products designed for agricultural succession rather than liquidation"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "Azure Neural TTS (Ava · Andrew)",
+    "text_to_speech_openai": "OpenAI TTS API (Nova · Echo)",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
