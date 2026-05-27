@@ -10,7 +10,7 @@ AI-generated daily podcast about technology and society in rural BC. Two hosts (
 
 ### Cariboo Signals (Daily)
 
-The flagship show. Riley and Casey cover top stories and a themed deep dive, generated daily at 3 AM Pacific.
+The flagship show. Riley and Casey cover top stories and a themed deep dive, generated daily at 1 AM Pacific on weekdays and 3 AM Pacific on weekends.
 
 ### Cariboo Weekends
 
@@ -34,7 +34,7 @@ python generate_bespoke.py --tag "middle-east" --threshold 2
 
 ## How It Works (Daily Show)
 
-The pipeline runs daily at 3 AM Pacific via GitHub Actions:
+The pipeline runs daily via GitHub Actions (1 AM Pacific on weekdays, 3 AM Pacific on weekends):
 
 ```
 Super RSS Feed (scored articles + category feeds)

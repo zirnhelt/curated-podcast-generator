@@ -2,10 +2,14 @@ name: Daily Podcast Generation
 
 on:
   schedule:
-    # Primary: 3:00 AM Pacific Time
+    # Primary weekdays: 1:00 AM Pacific Time — ready well before 5 AM
+    # 1:00 AM PDT = 08:00 UTC (summer)
+    # 1:00 AM PST = 09:00 UTC (winter)
+    - cron: '0 8 * * 1-5'
+    # Primary weekends: 3:00 AM Pacific Time
     # 3:00 AM PDT = 10:00 UTC (summer)
     # 3:00 AM PST = 11:00 UTC (winter)
-    - cron: '0 10 * * *'
+    - cron: '0 10 * * 0,6'
     # Fallback: 7:00 AM Pacific Time — catches missed primary runs.
     # check-episode gates idempotency so a double-trigger is safe.
     # 7:00 AM PDT = 14:00 UTC (summer)
