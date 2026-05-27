@@ -1,0 +1,230 @@
+{
+  "episode": {
+    "date": "2026-05-27",
+    "formatted_date": "Wednesday, May 27, 2026",
+    "theme": "Gear, Gadgets & Practical Tech",
+    "title": "Cariboo Signals - Gear, Gadgets & Practical Tech",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Gear, Gadgets & Practical Tech.</p><p><b>NEWS ROUNDUP:</b> We break down [New Atlas] Radian EXR comes for the Stark Varg ... with 30-sec tool-free battery swaps and [New Atlas] Deluxe adaptable vise spins and locks on two axes, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Does maker culture and DIY repair knowledge provide genuine accessibility for people without existing technical skills, or has it become a hobby primarily for those already embedded in technical communities? Topics include: Accessibility barriers in maker/repair culture for rural and remote communities, Repair café models and the role of institutional anchoring in program sustainability, Open-source vs. closed firmware in consumer electronics and procurement criteria, Bambu Labs licensing dispute and the OrcaSlicer GPL conflict, Flipper One and field diagnostics tools for infrastructure maintenance.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://wlacl.org\">Williams Lake Association for Community Living</a></p><p><b>Sources discussed:</b></p><ul><li>https://newatlas.com/author/utkarsh-sood/ (New Atlas): <a href=\"https://newatlas.com/motorcycles/radian-exr/\">[New Atlas] Radian EXR comes for the Stark Varg ... with 30-...</a></li><li>https://newatlas.com/author/shirl-leigh/ (New Atlas): <a href=\"https://newatlas.com/around-the-home/axiglide-dual-axis-vise/\">[New Atlas] Deluxe adaptable vise spins and locks on two axe...</a></li><li>https://www.tomshardware.com/author/denise-bertacchi (Tom's Hardware): <a href=\"https://www.tomshardware.com/3d-printing/new-video-of-melted-bambu-lab-a1-sparks-debate-about-whether-the-a1-3d-printer-is-still-a-fire-hazard-critics-push-for-recall-while-redditors-suspect-external-factors\">[Tom's Hardware] New video of melted Bambu Lab A1 sparks deb...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/05/24/designing-a-printable-cyclone-dust-separator-for-99-95-efficiency/\">[Hackaday] Designing a Printable Cyclone Dust Separator for ...</a></li><li>https://www.techradar.com/author/jon-stapley (TechRadar): <a href=\"https://www.techradar.com/cameras/drones/custom-drone-makers-hit-453mph-to-unofficially-break-the-record-for-fastest-drone-on-earth-and-hand-made-sawtooth-carbon-fiber-propellors-made-all-the-difference\">[TechRadar] Custom drone makers hit 453mph to (unofficially)...</a></li><li>https://www.tomsguide.com/author/john-velasco (Toms Guide): <a href=\"https://www.tomsguide.com/phones/motorola-phones/motorola-razr-ultra-2026-battery-tested-and-its-the-longest-lasting-foldable-ever\">[Toms Guide] Motorola Razr Ultra 2026 battery tested — and i...</a></li><li>https://www.tomshardware.com/author/mark-tyson (Tom's Hardware): <a href=\"https://www.tomshardware.com/maker-stem/electronics-buff-hand-draws-and-etches-custom-pcbs-at-home-functional-home-etched-pcb-runs-a-3d-printed-fume-extractor-fan\">[Tom's Hardware] Electronics buff hand-draws and etches cust...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>https://www.tomshardware.com/author/jowi-morales (Tom's Hardware): <a href=\"https://www.tomshardware.com/3d-printing/open-source-non-profit-claims-bambu-lab-violated-license-move-follows-cease-and-desist-demand-on-orcaslicer-fork-that-restored-cloud-printing-features-without-using-bambu-connect\">[Tom's Hardware] Open-source non-profit claims Bambu Lab vio...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/05/24/hacking-a-video-walkie-talkies-txw818-mcu-and-running-doom/\">[Hackaday] Hacking a Video Walkie Talkie’s TXW818 MCU and Ru...</a></li><li>https://www.tomshardware.com/author/hassam-nasir (Tom's Hardware): <a href=\"https://www.tomshardware.com/pc-components/save-usd170-on-this-lightning-fast-premium-3d-printer-combo-featuring-corexz-kinematics-crealitys-ender-3-v3-is-on-sale-for-just-usd419-right-now-with-a-multicolor-upgrade-kit\">[Tom's Hardware] Save $170 on this lightning-fast, premium 3...</a></li><li>iFixit: <a href=\"https://www.ifixit.com/News/117404/buyers-guide-what-soldering-setup-do-you-actually-need\">[iFixit] Buyers’ Guide: What Soldering Setup Do You Actually...</a></li><li>Android Authority: <a href=\"https://www.androidauthority.com/flipper-zero-one-hacking-device-linux-pc-3670099/\">[Android Authority] Flipper Zero’s makers are cooking up a w...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/05/21/building-a-better-automotive-rotary-controller/\">[Hackaday] Building a Better Automotive Rotary Controller</a></li><li>How-To Geek: <a href=\"https://www.howtogeek.com/passkeys-were-a-headache-until-i-moved-them-to-my-own-home-server/\">[How-To Geek] Passkeys were a headache until I moved them to...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/05/20/a-diy-3d-printing-filament-dryer/\">[Hackaday] A DIY 3D Printing Filament Dryer</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-6<br>TTS Voices: OpenAI TTS API (Nova · Echo)<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-05-27T06:10:08.147898-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-sonnet-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 3785,
+      "voice_ratio_casey_riley": 0.89,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0
+      },
+      "total_hits": 0
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[New Atlas] Radian EXR comes for the Stark Varg ... with 30-sec tool-free battery swaps",
+          "url": "https://newatlas.com/motorcycles/radian-exr/",
+          "source": "New Atlas",
+          "author": "https://newatlas.com/author/utkarsh-sood/",
+          "ai_score": 50,
+          "date_published": "2026-05-21T20:23:03+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[New Atlas] Deluxe adaptable vise spins and locks on two axes",
+          "url": "https://newatlas.com/around-the-home/axiglide-dual-axis-vise/",
+          "source": "New Atlas",
+          "author": "https://newatlas.com/author/shirl-leigh/",
+          "ai_score": 35,
+          "date_published": "2026-05-26T20:30:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Tom's Hardware] Open-source non-profit claims Bambu Lab violated license — SFC steps in after multi-billion dollar 3D printer giant threatened independent developer, issued cease-and-desist demand on OrcaSlicer fork that restored cloud printing features",
+          "url": "https://www.tomshardware.com/3d-printing/open-source-non-profit-claims-bambu-lab-violated-license-move-follows-cease-and-desist-demand-on-orcaslicer-fork-that-restored-cloud-printing-features-without-using-bambu-connect",
+          "source": "Tom's Hardware",
+          "author": "https://www.tomshardware.com/author/jowi-morales",
+          "ai_score": 85,
+          "date_published": "2026-05-21T16:53:24+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Hacking a Video Walkie Talkie’s TXW818 MCU and Running DOOM",
+          "url": "https://hackaday.com/2026/05/24/hacking-a-video-walkie-talkies-txw818-mcu-and-running-doom/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 64,
+          "date_published": "2026-05-25T05:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Tom's Hardware] Save $170 on this lightning-fast, premium 3D printer combo featuring CoreXZ kinematics — Creality's Ender-3 V3 is on sale for just $419 right now with a multicolor upgrade kit",
+          "url": "https://www.tomshardware.com/pc-components/save-usd170-on-this-lightning-fast-premium-3d-printer-combo-featuring-corexz-kinematics-crealitys-ender-3-v3-is-on-sale-for-just-usd419-right-now-with-a-multicolor-upgrade-kit",
+          "source": "Tom's Hardware",
+          "author": "https://www.tomshardware.com/author/hassam-nasir",
+          "ai_score": 62,
+          "date_published": "2026-05-24T15:14:18+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[iFixit] Buyers’ Guide: What Soldering Setup Do You Actually Need?",
+          "url": "https://www.ifixit.com/News/117404/buyers-guide-what-soldering-setup-do-you-actually-need",
+          "source": "iFixit",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-05-25T12:49:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Tom's Hardware] New video of melted Bambu Lab A1 sparks debate about whether the 3D printer is still a fire hazard — critics push for recall while redditors suspect external factors",
+          "url": "https://www.tomshardware.com/3d-printing/new-video-of-melted-bambu-lab-a1-sparks-debate-about-whether-the-a1-3d-printer-is-still-a-fire-hazard-critics-push-for-recall-while-redditors-suspect-external-factors",
+          "source": "Tom's Hardware",
+          "author": "https://www.tomshardware.com/author/denise-bertacchi",
+          "ai_score": 58,
+          "date_published": "2026-05-24T11:30:38+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Android Authority] Flipper Zero’s makers are cooking up a wildly customizable Linux computer",
+          "url": "https://www.androidauthority.com/flipper-zero-one-hacking-device-linux-pc-3670099/",
+          "source": "Android Authority",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-05-22T08:52:45+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Designing a Printable Cyclone Dust Separator for 99.95% Efficiency",
+          "url": "https://hackaday.com/2026/05/24/designing-a-printable-cyclone-dust-separator-for-99-95-efficiency/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 52,
+          "date_published": "2026-05-24T08:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Hackaday] Building a Better Automotive Rotary Controller",
+          "url": "https://hackaday.com/2026/05/21/building-a-better-automotive-rotary-controller/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 48,
+          "date_published": "2026-05-21T08:00:15+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Custom drone makers hit 453mph to (unofficially) break the record for fastest drone on earth — and hand-made sawtooth carbon fiber propellors made all the difference",
+          "url": "https://www.techradar.com/cameras/drones/custom-drone-makers-hit-453mph-to-unofficially-break-the-record-for-fastest-drone-on-earth-and-hand-made-sawtooth-carbon-fiber-propellors-made-all-the-difference",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/jon-stapley",
+          "ai_score": 35,
+          "date_published": "2026-05-26T16:36:25+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Toms Guide] Motorola Razr Ultra 2026 battery tested — and it's the longest lasting foldable ever",
+          "url": "https://www.tomsguide.com/phones/motorola-phones/motorola-razr-ultra-2026-battery-tested-and-its-the-longest-lasting-foldable-ever",
+          "source": "Toms Guide",
+          "author": "https://www.tomsguide.com/author/john-velasco",
+          "ai_score": 35,
+          "date_published": "2026-05-23T07:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Gear, Gadgets & Practical Tech",
+      "articles": [
+        {
+          "title": "[Tom's Hardware] Electronics buff hand-draws and etches custom PCBs at home — functional home-etched PCB runs a 3D-printed fume extractor fan",
+          "url": "https://www.tomshardware.com/maker-stem/electronics-buff-hand-draws-and-etches-custom-pcbs-at-home-functional-home-etched-pcb-runs-a-3d-printed-fume-extractor-fan",
+          "source": "Tom's Hardware",
+          "author": "https://www.tomshardware.com/author/mark-tyson",
+          "ai_score": 72,
+          "date_published": "2026-05-24T11:53:38+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[How-To Geek] Passkeys were a headache until I moved them to my own home server",
+          "url": "https://www.howtogeek.com/passkeys-were-a-headache-until-i-moved-them-to-my-own-home-server/",
+          "source": "How-To Geek",
+          "author": "",
+          "ai_score": 72,
+          "date_published": "2026-05-22T14:00:17+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] A DIY 3D Printing Filament Dryer",
+          "url": "https://hackaday.com/2026/05/20/a-diy-3d-printing-filament-dryer/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 68,
+          "date_published": "2026-05-20T20:00:55+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Does maker culture and DIY repair knowledge provide genuine accessibility for people without existing technical skills, or has it become a hobby primarily for those already embedded in technical communities?",
+        "riley_position": "Documentation and community knowledge are improving, and entry-level projects like the filament dryer are genuinely approachable; the real barrier is knowing where to look for information and having facilitated support when stuck.",
+        "riley_key_evidence": [
+          "DIY filament dryer costs under $30 with a full GitHub bill of materials, versus $80 commercial units",
+          "iFixit's structured soldering guide uses decision trees to help people who don't know what they need yet",
+          "Repair café models from the Netherlands show hundreds of events with documented skill transfer and waste diversion"
+        ],
+        "casey_position": "Documentation and expert demonstrations alone don't create pathways for rural/remote people without existing technical confidence; the missing piece is sustained, local, in-person facilitation anchored to institutions.",
+        "casey_key_evidence": [
+          "In Williams Lake or Quesnel, the nearest makerspace is Kamloops; online forums assume stable connections and enough knowledge to ask the right question",
+          "Repair café programming typically depends on volunteer goodwill and collapses when the facilitator leaves or burns out",
+          "Expert projects like hand-etched PCBs and DOOM-on-walkie-talkies represent years of embedded expertise, not entry points for novices"
+        ],
+        "resolution": "They converged on institutional anchoring as the solution, moving from abstract makerspace concepts to concrete models: repair cafés paired with local organizations like CCATEC, and procurement education for administrators making technology purchasing decisions. Casey and Riley agreed the real constraint is 'sustained human infrastructure that meets people where they are,' not tool availability or documentation quality.",
+        "topics_covered": [
+          "Accessibility barriers in maker/repair culture for rural and remote communities",
+          "Repair café models and the role of institutional anchoring in program sustainability",
+          "Open-source vs. closed firmware in consumer electronics and procurement criteria",
+          "Bambu Labs licensing dispute and the OrcaSlicer GPL conflict",
+          "Flipper One and field diagnostics tools for infrastructure maintenance"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "Azure Neural TTS (Ava · Andrew)",
+    "text_to_speech_openai": "OpenAI TTS API (Nova · Echo)",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}

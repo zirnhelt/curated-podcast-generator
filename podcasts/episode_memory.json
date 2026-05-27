@@ -1,24 +1,4 @@
 {
-  "2026-05-06": {
-    "timestamp": 1778068735.51747,
-    "topics": [
-      "[New Atlas] Adventure RV mastermind preps VW into \"most ambi",
-      "[Tom's Hardware] Inland QN450 1TB SSD Review: Maximum effici",
-      "[Tom's Hardware] Lenovo Yoga Slim 7i Aura Edition (2026) Rev",
-      "[Hackaday] Sunlight Powered, Sunlight Readable: Solar Case f",
-      "[Toms Guide] I got tired of waiting for a touchscreen iMac s",
-      "[MacRumors] iPhone 18 Might Look a Lot More Like an 'e' Mode",
-      "[New Atlas] Superfast power bank brings its own solar panel ",
-      "[Toms Guide] I was skeptical about whether a $1,000 robot la"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-05-06"
-  },
   "2026-05-07": {
     "timestamp": 1778155456.207649,
     "topics": [
@@ -411,5 +391,23 @@
       "Indigenous tech"
     ],
     "date": "2026-05-26"
+  },
+  "2026-05-27": {
+    "timestamp": 1779887413.347182,
+    "topics": [
+      "[New Atlas] Radian EXR comes for the Stark Varg ... with 30-",
+      "[New Atlas] Deluxe adaptable vise spins and locks on two axe",
+      "[Tom's Hardware] Open-source non-profit claims Bambu Lab vio",
+      "[Hackaday] Hacking a Video Walkie Talkie\u2019s TXW818 MCU and Ru",
+      "[Tom's Hardware] Save $170 on this lightning-fast, premium 3",
+      "[Tom's Hardware] Electronics buff hand-draws and etches cust",
+      "[How-To Geek] Passkeys were a headache until I moved them to",
+      "[Hackaday] A DIY 3D Printing Filament Dryer"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption"
+    ],
+    "date": "2026-05-27"
   }
 }

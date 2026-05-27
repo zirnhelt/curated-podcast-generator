@@ -1,0 +1,175 @@
+# Cariboo Signals Podcast Script - 2026-05-27
+# Theme: Gear, Gadgets & Practical Tech
+# Generated: 2026-05-27 06:10:13 PDT
+
+**CASEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. It's Wednesday, May 27th, 2026. Coming to you from the Cariboo, on lands that have been cared for by the Secwépemc, Tŝilhqot'in, and Dakelh peoples since time immemorial. Today's theme is Gear, Gadgets & Practical Tech — I'm Casey.
+
+**RILEY:** And I'm Riley. We've got a packed feed today — electric motos, open-source licensing fights, and some genuinely impressive DIY builds that have real implications for people who fix and make things far from a supply chain.
+
+**CASEY:** Clear skies across the region this morning — seven degrees out at Horsefly Lake with a high of twenty-four expected, Williams Lake and 100 Mile House both sitting at eight, Quesnel at six. Enjoy it — there's drizzle coming Thursday. Let's get into the news.
+
+---
+
+**NEWS ROUNDUP**
+
+**RILEY:** Radian's new EXR electric enduro motorcycle is generating attention for one specific feature: tool-free battery swaps in thirty seconds. That's not marketing copy — the design uses a physical locking mechanism that pops the pack without wrenches or disassembly. For backcountry riding in places where you can't plug in mid-trail, swappable batteries change the range calculus entirely.
+
+**CASEY:** Assuming you're carrying a second pack. Which weighs how much, exactly.
+
+**RILEY:** The iFixit soldering guide out this week takes a different approach to a common beginner problem — instead of recommending one iron, it maps out what different skill levels actually need. Entry-level hobbyists probably want a temperature-controlled station around thirty watts. Professionals doing surface-mount work need entirely different equipment. The rural angle: when your nearest electronics supplier is two hours away, buying the wrong tool once is an expensive mistake.
+
+**CASEY:** Knowing the difference between tinning a wire and reflowing a joint before you buy anything saves real money.
+
+**CASEY:** Two Bambu Lab stories today, and they pull in opposite directions. First: the Software Freedom Conservancy has stepped in after Bambu sent a cease-and-desist to an independent developer who forked OrcaSlicer — the open-source slicer — to restore cloud printing features that Bambu had locked down. The SFC argues Bambu is violating the GPL license that OrcaSlicer itself was built on. This is the same company we've talked about before — the proprietary firmware lockdown, the ecosystem control. This time they may have stepped on a legal landmine.
+
+**RILEY:** They built their empire on open-source software and are now using lawyers to close the door behind them. Classic.
+
+**CASEY:** The second Bambu story is harder to dismiss. New video is circulating of a melted Bambu A1 printer — a fire hazard concern that surfaced last year and apparently hasn't gone away. Critics are calling for a recall. The company says external factors may be involved. Reddit is, predictably, split.
+
+**RILEY:** When your printer is in a shed twelve kilometres from town and the nearest fire truck is forty minutes out, "external factors may be involved" is not a reassuring statement.
+
+**RILEY:** Moving to a completely different corner of the maker world — someone has run DOOM on a hacked video walkie-talkie. The TXW818 microcontroller inside these cheap consumer devices apparently has enough headroom that a reverse engineer documented the chip, mapped the firmware, and got the classic game running. It's a good demonstration of what's inside a lot of consumer hardware that people throw away.
+
+**CASEY:** DOOM is basically the canary in a coal mine for whether a chip has any real processing capacity — if it runs DOOM, it can probably run something useful.
+
+**CASEY:** Flipper Zero's creators have announced what they're calling Flipper One — a fully modular Linux computer described as a hacker's Lego set. Customizable hardware blocks, open architecture, aimed at people who want a pocket computer they can actually configure and expand. They admitted publicly they're "genuinely terrified" about building it, which is either honesty or very effective marketing.
+
+**RILEY:** Probably both.
+
+**RILEY:** On the 3D printing hardware side — the Creality Ender-3 V3 is on sale for around four hundred and twenty dollars Canadian with a multicolor upgrade kit included. CoreXZ kinematics, which means faster print speeds and better accuracy than the older bed-slinger designs. For a workshop printer that's doing practical parts, not just decorative pieces, that's a meaningful price point.
+
+**CASEY:** Within reach for a school makerspace or a community workshop — last year that combo would have been closer to six hundred.
+
+**RILEY:** A Hackaday project this week that's genuinely practical for woodworkers: a fully printable cyclone dust separator designed to hit 99.95% filtration efficiency. Cyclone separators pull sawdust out of the airstream before it reaches your shop vac filter — extending filter life significantly. This one is parametrically designed, meaning you can scale it to different hose diameters. The files are on GitHub.
+
+**CASEY:** The kind of build where the time investment pays off inside a year in saved filters alone.
+
+**CASEY:** Also from Hackaday — a garage builder documented a custom rotary controller for a BMW iDrive system. The original iDrive controller is notoriously fiddly; this builder reverse-engineered the CAN bus interface and built a replacement knob with better tactile feedback. The methodology — mapping proprietary bus protocols and replacing the interface — has obvious extensions for other locked-down vehicle systems.
+
+**RILEY:** The interesting part isn't the BMW — it's that the technique works anywhere a manufacturer has walled off the controls.
+
+**RILEY:** From the custom build world — a team of independent drone makers hit 453 miles per hour with a hand-built craft, unofficially breaking the world record for fastest drone. The key was hand-cut sawtooth carbon fibre propellers, which the team machined themselves. No off-the-shelf component could handle the aerodynamic load at that speed.
+
+**CASEY:** Sometimes the best part isn't the record — it's that the people who broke it made the crucial component by hand.
+
+**CASEY:** The AxiGlide vise from New Atlas this week is worth a quick mention — it rotates and locks on two axes, which sounds incremental until you've spent twenty minutes trying to hold an oddly-shaped part while soldering. For a one-person shop, a vise that positions itself is genuine quality-of-life.
+
+**RILEY:** Any tool that frees up a hand in a solo workspace earns its shelf space fast.
+
+**RILEY:** On the phone side — the Motorola Razr Ultra 2026 is testing as the longest-lasting foldable battery ever measured in Tom's Guide's benchmarks. Foldables have historically been the worst category for battery life, so this is notable if it holds up in real use.
+
+**CASEY:** Also worth noting today — there's a small cluster of home server and networking pieces this week: Tailscale for home lab VPN, TrueNAS versus Unraid comparisons, Filament Manager as an AMS upgrade for multi-material printing. If you're building out a home network or a local file server, there's good practical reading in that stack. Links in the show notes.
+
+**RILEY:** We'll take a quick break before the spotlight — then we're going deep on something that's been sitting underneath a lot of these stories: what it actually takes to build something from scratch, and whether the tools and culture around DIY are genuinely accessible or just accessible to a very specific kind of person.
+
+---
+
+**COMMUNITY SPOTLIGHT**
+
+**CASEY:** This week is National AccessAbility Week, and it's a good moment to highlight the Williams Lake Association for Community Living. WLACL has been supporting people with diverse abilities in Williams Lake since 1960 — that's sixty-six years of showing up, building programs, and advocating for an inclusive Cariboo. They work on employment support, community inclusion, and making sure people aren't left out of the life of their community. You can learn more at wlacl.org.
+
+**RILEY:** Sixty-six years is a long time to keep showing up — that kind of sustained community infrastructure is exactly what makes a region actually livable.
+
+**CASEY:** It really is. The deep dive is next — and we're asking a question that's been nagging at the edges of this theme for a few weeks now.
+
+---
+
+**DEEP DIVE: CARIBOO CONNECTIONS — Gear, Gadgets & Practical Tech**
+
+**CASEY:** We've spent the last few weeks on this theme circling around tools, repair culture, and institutional infrastructure. Today I want to sit with a different question — one that the DIY filament dryer build and the hand-etched PCB story both pointed at, separately. Those are genuinely impressive projects. But they also have something in common: the people who built them already knew what they were doing. So the question is: at what point does maker culture stop being a toolkit for self-sufficiency and become a hobby for people who already have the skills, the time, and the confidence to mess around with things that might not work?
+
+**RILEY:** The hand-etched PCB project — someone drew traces by hand, used ferric chloride to etch a functional board, and the end product runs a 3D-printed fume extractor. That's a multi-stage fabrication process using chemicals and tools that most people don't have. But it started somewhere. The DIY filament dryer, by contrast, is a food storage container, an SHT30 humidity sensor, and an NTC temperature sensor wired to a controller. The GitHub documentation includes a full bill of materials. That one is genuinely approachable.
+
+**CASEY:** The GitHub documentation includes a full bill of materials for someone who knows what an SHT30 is.
+
+**RILEY:** The sensor costs about three dollars. The container costs four. If you know what you're doing, total build cost is under thirty dollars for a dryer that commercial units sell for eighty. The knowledge barrier is real, but it's not insurmountable — and the knowledge exists in the community if you know where to look.
+
+**CASEY:** "If you know where to look" is carrying enormous weight in that sentence. In Williams Lake or Quesnel, where do you look? The nearest makerspace with an active community is probably Kamloops. Online forums are fine if you have a stable connection and you already know enough to ask the right question. For someone who's never touched a soldering iron, "look it up" isn't a path — it's a wall.
+
+**RILEY:** The iFixit soldering guide that came out this week is actually a useful counter-example. It's specifically structured for people who don't know what they need yet — it maps the decision tree: what are you fixing, what level of precision does the work require, what's your budget. That kind of entry-level scaffolding is relatively recent. The assumption used to be that you'd already decided to learn.
+
+**CASEY:** One guide is not a community. And iFixit's business model is selling repair parts to people who've already decided to fix something. The harder problem is the person who hasn't decided yet — who's sitting on a broken appliance and mentally calculating whether it's worth the bother, because the last time they tried to fix something it cost more than replacing it.
+
+**RILEY:** That's where the DIY filament dryer story becomes useful as an analogy, even if the specific project is niche. What that builder did was take a failure — moisture-damaged filament causing bad prints — and document the fix well enough that someone else can replicate it without reinventing the process. The problem gets solved once, documented, and the solution becomes available to the next person. The value compounds over time.
+
+**CASEY:** When the next person can find it, has the time to implement it, and has somewhere to turn when step four doesn't work. The documentation culture in the maker community is genuinely good. The support culture when you're stuck is uneven. Forums are full of "just Google it" energy.
+
+**RILEY:** That's true. And it's worse in a rural context where you can't just drive to a meetup.
+
+**CASEY:** Which brings me back to the hand-etched PCB. That project is beautiful — genuinely impressive. But the person who built it has clearly been doing electronics for years. The DOOM-on-a-walkie-talkie hack is the same story: deep reverse engineering skills, firmware documentation, hours of work. These aren't entry points. They're demonstrations of what's possible once you're already deeply embedded in the culture.
+
+**RILEY:** Expert demonstrations still matter — they expand what people think is possible. Seeing that someone hand-etched a functional PCB changes your mental model of what's achievable without a fab house.
+
+**CASEY:** It changes the mental model of people who are already engaged. For someone in Likely or Horsefly who's never soldered anything, watching someone etch a PCB is about as useful as watching a concert — inspiring, perhaps, but not a path forward.
+
+**RILEY:** So what is a path forward? The maker community is not inaccessible, full stop — that ignores the actual trajectory.
+
+**CASEY:** The path forward is institutional anchoring — and not makerspace programming for people who already want to make things. Entry-level repair programming: you bring a broken thing, someone helps you fix it, you leave having fixed it. A repair café model. The success metric is tangible. You walked in with a broken toaster. You left with a working toaster. That's different from "come learn to solder" as an abstract skill.
+
+**RILEY:** Repair cafés work — the Netherlands model has produced hundreds of events, meaningful diversion of waste, and documented skill transfer. The barrier in the Cariboo isn't the model, it's consistent facilitation. You need someone who shows up every time with the right tools and enough knowledge to handle whatever walks through the door.
+
+**CASEY:** And that person is usually a volunteer running on goodwill and a Tuesday evening. When they move, retire, or burn out, the program ends.
+
+**RILEY:** Which is why the institutional anchor matters — not as a host venue, but as a personnel anchor. If the repair café is attached to the school district or the Cariboo Regional District's community programs, there's a structural home that survives individual turnover. The volunteer facilitator changes; the program slot doesn't disappear.
+
+**CASEY:** The CRD running a repair café. I'll believe it when the budget line exists.
+
+**RILEY:** It doesn't have to be a budget line — it can be a partnership. The CRD provides the space and the listing, a local electronics supplier or the library provides basic tools, a trained volunteer coordinates. That's not a large ask.
+
+**CASEY:** Partnerships at that distance between institutions tend to produce one-time events, not sustained programming. We've seen that pattern enough times in the region.
+
+**RILEY:** The Cariboo Chilcotin Aboriginal Training Employment Centre has been doing sustained technical programming in Williams Lake for years — trades readiness, equipment operation, practical skills. That's local institutional infrastructure that's already doing something adjacent. Electronics repair as a practical skill is a natural extension, particularly for people in remote communities where a broken appliance or a failed piece of equipment is a real hardship.
+
+**CASEY:** That's a more interesting anchor than the CRD. They have the community relationships, the trust, the existing participant base. And honestly, electronics repair is increasingly relevant to trades work — everything has a control board now.
+
+**RILEY:** Exactly. A modern well pump has a variable frequency drive. A pellet stove has a controller board. A generator has an electronic ignition system. These aren't hobbyist concerns — they're infrastructure items that fail, and when they fail in a remote setting in January, the stakes are real.
+
+**CASEY:** And right now the repair pathway is: call a technician with a three-week backlog, pay a minimum two-hour callout fee, and hope the part is in stock somewhere within shipping range. Or order the part yourself and wait a week, having no idea if you diagnosed it correctly.
+
+**RILEY:** The diagnostic piece is actually where low-cost maker tools punch above their weight. A fifteen-dollar multimeter and knowing how to read a voltage rail will tell you whether a control board is dead or whether it's a power supply issue before you spend three hundred dollars on a replacement board. That's not advanced electronics — it's two hours of focused learning and a cheap tool.
+
+**CASEY:** Two hours of focused learning assumes you know what you're watching. That's back to the same problem. And I'll add something you're not accounting for: a lot of current consumer gear isn't designed to be repaired at the component level — it's designed to be replaced at the module level. The Bambu licensing fight is part of that same story. Even when you have the tool, the manufacturer is trying to control what you can do with it.
+
+**RILEY:** The OrcaSlicer situation makes that visible in a way it usually isn't. Bambu's entire printer ecosystem was built on open-source software. OrcaSlicer is GPL-licensed. You can't take GPL code, modify it, ship it in your product, and then use lawyers to prevent someone else from doing the same thing with the modified version — that's not how the license works. The Software Freedom Conservancy stepping in is meaningful because they have the legal standing and the resources to actually fight it.
+
+**CASEY:** The legal fight takes years while the company continues operating. The practical effect for someone running a Bambu printer in a remote shop is that their slicer software may lose features or their printer may stop working with third-party services, and there's nothing they can do about it on a Tuesday afternoon in Alexis Creek.
+
+**RILEY:** Which is an argument for the Creality option in the roundup — the Ender-3 V3 at that price point runs fully open firmware, works with any slicer, and has a large community that's documented every failure mode. It requires more calibration knowledge up front, but you own the tool rather than renting access to it.
+
+**CASEY:** We've made this argument before. And we'll keep making it until the institutional buyers — schools, libraries, community organizations — start including repairability and software freedom in their procurement criteria. Right now most purchasing decisions come down to price and ease of setup.
+
+**RILEY:** The Bambu fire hazard story makes that calculus more complicated. If there's a legitimate unresolved safety question — and the melted A1 video suggests it hasn't been definitively resolved — then "easier to set up" has a hidden cost that doesn't show up in the purchase order.
+
+**CASEY:** Especially in a rural setting where the nearest service centre is not close and your fire response time is not three minutes. Though to be fair to the complexity here — "external factors may be involved" isn't automatically corporate deflection. It might be true. The honest answer is that nobody knows yet, which is its own kind of problem when you're making a purchasing decision.
+
+**RILEY:** Agreed. And that uncertainty is exactly why the three procurement questions matter: Does it run open firmware or open-compatible software? Is the repair documentation publicly available? Is there an active community that doesn't depend on the manufacturer staying solvent and cooperative? Those questions filter out a lot of the vendors most likely to cause problems three years from now.
+
+**CASEY:** The problem is it requires someone in the organization who knows enough to ask those questions and push back when the answer is no. Most community organizations don't have that person on staff. A checklist without the expertise to interpret the answers is just a piece of paper.
+
+**RILEY:** Which is why technical capacity building for community organizations — not just trades workers, but the administrators and program coordinators making purchasing decisions — is a genuine gap. A half-day workshop on how to buy technology your community can actually maintain is not a glamorous program, but it would have lasting value. Anchored somewhere real, facilitated by someone with actual procurement experience, focused on Cariboo-specific constraints like supply chain distance and limited service infrastructure.
+
+**CASEY:** I'd go to that workshop.
+
+**RILEY:** So would I. And I think if it existed, it would fill.
+
+**CASEY:** The through-line across all of this is the same thing it's been: the tools are getting better and cheaper, the documentation is genuinely improving, and the real constraint is sustained human infrastructure that meets people where they are. Not where they could be if they had six free evenings to watch tutorials.
+
+**RILEY:** One thing worth naming before we close: the Flipper One announcement — the modular Linux pocket computer — is interesting specifically because the Flipper Zero community has been better than most at producing accessible documentation and step-by-step guides for non-experts. If they carry that culture into the new platform, it could be a genuinely useful field tool for people doing infrastructure diagnostics in remote settings. A device that can interface with serial buses, read NFC, probe wireless protocols — relevant to anyone maintaining complex equipment far from a service centre.
+
+**CASEY:** The Zero works as advertised, so they've earned some credibility on follow-through. Whether a more ambitious platform keeps that community culture intact is the real question — complexity has a way of narrowing who can participate.
+
+**RILEY:** And it runs open firmware.
+
+**CASEY:** And it runs open firmware. For now.
+
+**RILEY:** The filament dryer story is where I want to close, because it's the quietest story in today's feed and maybe the most instructive. Someone built a humidity-controlled dryer, documented it thoroughly with a full bill of materials on GitHub, then revised it based on community feedback. Version two. The first version had problems. The community flagged them. The builder fixed them and published the fix. No company involved. No licensing dispute. No fire hazard. A problem, a solution, peer review, and iteration.
+
+**CASEY:** That's the culture at its best. And I'll grant that — genuinely. The question for communities like ours is how to create the conditions where that cycle happens locally. Not just online, but in a room somewhere in Williams Lake or Quesnel or 100 Mile House where people can show each other the broken thing and work through it together. Getting there requires sustained institutional will that the maker community, for all its strengths, has never reliably produced on its own.
+
+**RILEY:** The people who know how to fix things are already here. The room is findable. The missing piece is a reason to be in it together — and that's a more solvable problem than it sounds.
+
+**CASEY:** Maybe. Build the room first, then we'll see who shows up.
+
+**RILEY:** Thanks for spending part of your Wednesday with us. If any of this landed for you — if you're already running a repair program in the region, or you've been thinking about starting one, or you just want to push back on something we got wrong — we'd genuinely like to hear from you. Corrections and story tips are always welcome. Reach out at feedback at cariboo signals dot c-a. Have a great rest of your day.
+
+**CASEY:** Take care, everyone.
