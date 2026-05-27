@@ -3086,10 +3086,10 @@ def heuristic_gap_ms(text, prev_speaker, cur_speaker, section="deep_dive"):
         # clear breath so stories don't blend together.
         if section == "news":
             if _is_story_transition(stripped):
-                return 850   # very clear topic break
+                return 1100  # very clear topic break
             if char_count > 80:
-                return 700   # likely a new story — deliberate pause
-            return 350       # shorter continuation still gets a beat
+                return 950   # likely a new story — deliberate pause
+            return 400       # shorter continuation still gets a beat
         return 0
 
     # --- News section: slower, more measured pacing ---
@@ -3097,8 +3097,8 @@ def heuristic_gap_ms(text, prev_speaker, cur_speaker, section="deep_dive"):
         if char_count <= 25:
             return 150   # short reactions still get a beat
         if char_count <= 80:
-            return 350   # medium reactions get a clear pause
-        return 600       # full story hand-off gets a deliberate breath
+            return 400   # medium reactions get a clear pause
+        return 800       # full story hand-off gets a deliberate breath
 
     # --- Default (deep dive / welcome / other): conversational pacing ---
     # Short interjection / reaction
