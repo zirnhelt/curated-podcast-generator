@@ -1274,10 +1274,13 @@ def run_realtime_polish_and_factcheck(script, theme_name, news_articles, deep_di
         return polish_script_with_claude(script, theme_name, os.getenv('ANTHROPIC_API_KEY'))
 
     verified_sources = _build_verified_sources(news_articles, deep_dive_articles)
+    brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
+    additional_research = _resolve_script_questions_with_brave(script, brave_key, client)
     pf_prompt = pf_template.format(
         theme_name=theme_name,
         script=script,
-        verified_sources=verified_sources
+        verified_sources=verified_sources,
+        additional_research=additional_research or "(none)",
     )
 
     review_model = select_review_model(deep_dive_articles)
@@ -1311,6 +1314,63 @@ def _build_verified_sources(news_articles, deep_dive_articles):
     return "\n".join(verified_sources) if verified_sources else "(no articles provided)"
 
 
+def _resolve_script_questions_with_brave(script, brave_key, client):
+    """Detect unanswered factual questions in the script and answer them via Brave.
+
+    Uses Haiku to extract specific measurable questions that were asked but not
+    answered in the dialogue, then searches Brave for each answer.  Returns a
+    formatted Q&A block to inject as additional_research into the polish prompt,
+    or an empty string if nothing was found / Brave is not configured.
+    """
+    if not brave_key or not client or not script:
+        return ""
+
+    detect_prompt = (
+        "Review this podcast script excerpt and find any specific factual questions that are "
+        "asked by one host but NOT answered within the dialogue — e.g. 'How much does it weigh?', "
+        "'What does that cost?', 'How far is that?'. Ignore rhetorical questions and questions "
+        "that are clearly answered later in the same exchange.\n\n"
+        "Return ONLY a JSON array of concise, web-searchable search queries that would find each "
+        "answer (e.g. [\"Tesla Semi second battery weight kg\"]). "
+        "Return [] if there are no unanswered factual questions.\n\n"
+        f"SCRIPT (first 5000 chars):\n{script[:5000]}"
+    )
+
+    try:
+        resp = api_retry(lambda: client.messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=300,
+            messages=[{"role": "user", "content": detect_prompt}]
+        ))
+        raw = resp.content[0].text.strip()
+        m = re.search(r'\[.*?\]', raw, re.DOTALL)
+        if not m:
+            return ""
+        import json as _json
+        queries = _json.loads(m.group())
+        if not queries or not isinstance(queries, list):
+            return ""
+    except Exception as e:
+        print(f"  ⚠️ Question detection skipped: {e}")
+        return ""
+
+    results = []
+    for query in queries[:3]:  # Cap at 3 Brave calls
+        hits = _brave_search(query, brave_key, count=3)
+        if hits:
+            snippets = " | ".join(
+                h["description"][:150] for h in hits if h.get("description")
+            )[:400]
+            if snippets:
+                results.append(f"Q: {query}\nSearch result: {snippets}")
+
+    if not results:
+        return ""
+
+    print(f"  🔍 Resolved {len(results)} unanswered question(s) via Brave search")
+    return "\n\n".join(results)
+
+
 def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_articles):
     """Submit polish+factcheck and debate summary as a Message Batch.
 
@@ -1325,6 +1385,8 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
 
     prompts = CONFIG['prompts']
     verified_sources = _build_verified_sources(news_articles, deep_dive_articles)
+    brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
+    additional_research = _resolve_script_questions_with_brave(script, brave_key, client)
 
     # Build combined polish+factcheck prompt
     pf_template = prompts.get('polish_and_factcheck', {}).get('template')
@@ -1335,7 +1397,8 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
     pf_prompt = pf_template.format(
         theme_name=theme_name,
         script=script,
-        verified_sources=verified_sources
+        verified_sources=verified_sources,
+        additional_research=additional_research or "(none)",
     )
 
     # Build debate summary prompt — only send the deep-dive section (30% of script)
