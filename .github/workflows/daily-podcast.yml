@@ -2,15 +2,16 @@ name: Daily Podcast Generation
 
 on:
   schedule:
-    # Primary: 3:00 AM Pacific Time
-    # 3:00 AM PDT = 10:00 UTC (summer)
-    # 3:00 AM PST = 11:00 UTC (winter)
+    # Primary: 3:00 AM Pacific
+    # PDT (summer, UTC-7): 10:00 UTC  |  PST (winter, UTC-8): 11:00 UTC
     - cron: '0 10 * * *'
-    # Fallback: 7:00 AM Pacific Time — catches missed primary runs.
-    # check-episode gates idempotency so a double-trigger is safe.
-    # 7:00 AM PDT = 14:00 UTC (summer)
-    # 7:00 AM PST = 15:00 UTC (winter)
-    - cron: '0 14 * * *'
+    # Fallback 1: 3:30 AM Pacific — fires 30 min after primary
+    # PDT: 10:30 UTC  |  PST: 11:30 UTC
+    - cron: '30 10 * * *'
+    # Fallback 2: 4:00 AM Pacific — last resort, still leaves ~35 min to finish by 5 AM
+    # PDT: 11:00 UTC  |  PST: 12:00 UTC
+    # check-episode gates idempotency so duplicate triggers are safe.
+    - cron: '0 11 * * *'
   workflow_dispatch:
     inputs:
       tts_provider:
@@ -26,6 +27,10 @@ on:
         required: false
         default: false
         type: boolean
+
+concurrency:
+  group: daily-podcast
+  cancel-in-progress: false
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -166,7 +171,7 @@ jobs:
           TODAY=$(TZ='America/Vancouver' date '+%Y-%m-%d')
           YESTERDAY=$(TZ='America/Vancouver' date -d 'yesterday' '+%Y-%m-%d')
           for f in podcasts/podcast_audio_*.mp3; do
-            [[ "$f" == *"$TODAY"* || "$f" == *"$YESTERDAY"* ]] && cp "$f" output/podcasts/ && echo "  copied $f"
+            [[  "$f" == *"$TODAY"* || "$f" == *"$YESTERDAY"* ]] && cp "$f" output/podcasts/ && echo "  copied $f"
           done
           for f in podcasts/podcast_script_*.txt; do
             [[ "$f" == *"$TODAY"* || "$f" == *"$YESTERDAY"* ]] && cp "$f" output/podcasts/ && echo "  copied $f"
