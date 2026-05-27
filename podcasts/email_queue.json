@@ -1358,6 +1358,31 @@
       "theme_day": 0,
       "status": "used",
       "used_at": "2026-05-25"
+    },
+    {
+      "id": "492222cf",
+      "type": "newsletter",
+      "message_id": "<b7432e4d-963d-4328-8f3b-9d6ea513a259@mtasv.net>",
+      "from_address": "n***@animikii.com",
+      "subject": "New: Indigenous AI Advisory Circle",
+      "received_at": "2026-05-27T19:02:24+00:00",
+      "body_text": "![A graphic illustration of an urban roof top patio with flowers and plants blooming in a variety or pots along the edge. A woman in a purple top and pink pants holds a water can as the rising sun ill",
+      "extracted_urls": [
+        "https://assets.buttondown.email/images/32f798c1-fd59-4ab4-9e61-8fb9d6e26c58.jpg?w=960&fit=max",
+        "https://www.rnz.co.nz/news/science-and-technology/596199/maori-owned-data-storage-network-hailed-as-significant-step-towards-data-sovereignty?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=new-indigenous-ai-advisory-circle",
+        "https://camosun.ca/news/preserving-kwakwakawakw-carving-traditions-through-robotics-and-applied-learning?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=new-indigenous-ai-advisory-circle",
+        "https://medicalxpress.com/news/2026-05-decolonizing-health-systematic-elements-countries.html?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=new-indigenous-ai-advisory-circle",
+        "https://assets.buttondown.email/images/22285dfe-efdc-4730-a387-c775e53bc414.jpeg?w=960&amp;fit=max",
+        "https://mila.quebec/en/news/mila-and-cifar-launch-the-indigenous-ai-advisory-circle?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=new-indigenous-ai-advisory-circle",
+        "https://law.seattleu.edu/academics/degree-programs/jd/curriculum/tile/sitie/annual-innovation-and-technology-law-conference/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=new-indigenous-ai-advisory-circle",
+        "https://www.dailyuw.com/article/theresa-rocha-beardall-selected-for-william-t-grant-scholars-program-research-award-centers-data-sovereignty-in-collaboration-with-puyallup-tribe-20260522?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=new-indigenous-ai-advisory-circle",
+        "https://luma.com/2hfc6em0?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=new-indigenous-ai-advisory-circle",
+        "https://investivc.com/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=new-indigenous-ai-advisory-circle"
+      ],
+      "theme_tag": "Indigenous Lands & Innovation",
+      "theme_day": 3,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
