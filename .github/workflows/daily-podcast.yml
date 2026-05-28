@@ -107,10 +107,21 @@ jobs:
           wget https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml -O podcast-feed.xml || echo "No existing RSS feed"
           wget https://zirnhelt.github.io/curated-podcast-generator/tts-test-feed.xml -O tts-test-feed.xml || echo "No existing TTS test feed"
 
+          # Download recent audio so _recover_orphaned_episodes() (3-day lookback) finds
+          # audio for recent episodes and doesn't try to regenerate them.
+          # Audio is no longer committed to git — fetch last 5 episodes from Pages instead.
+          if [ -f podcast-feed.xml ]; then
+            grep -oP '(?<=url=")[^"]+\.mp3(?=")' podcast-feed.xml | head -5 | while read url; do
+              fname=$(basename "$url")
+              wget -q "$url" -O "podcasts/$fname" && echo "  Downloaded $fname" || echo "  Skipped $fname"
+            done
+          fi
+
           echo "Download complete"
         continue-on-error: true
 
       - name: Generate daily podcast
+        timeout-minutes: 30
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -152,8 +163,8 @@ jobs:
           # Persist email queue state (items marked "used" during generation)
           git add podcasts/email_queue.json || echo "No email queue file to add"
 
-          # Add any new episode files that were generated
-          git add podcasts/podcast_audio_*.mp3 podcasts/podcast_script_*.txt podcasts/citations_*.json podcast-feed.xml || echo "No new episode files to add"
+          # Add any new episode files that were generated (audio excluded — deployed via Pages/R2 only)
+          git add podcasts/podcast_script_*.txt podcasts/citations_*.json podcast-feed.xml || echo "No new episode files to add"
           git add tts-test-feed.xml || echo "No TTS test feed to add"
 
           # Only commit if there are changes
