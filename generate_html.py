@@ -54,6 +54,37 @@ def generate_index_html():
         for k, v in themes_config.items()
     )
     
+    trace_cfg = podcast_config.get("trace", {})
+    trace_jsonld = ""
+    if trace_cfg:
+        import json as _json
+        trace_obj = {
+            "@context": "https://tracestandard.org/schema/v1",
+            "@type": "TRACEAssessment",
+            "contentTitle": podcast_config["title"],
+            "contentURL": podcast_config["url"],
+            "contentType": "series",
+            "producer": podcast_config["author"],
+            "producerURL": trace_cfg["producer_url"],
+            "communityRepresented": trace_cfg["community"],
+            "aiGenerated": trace_cfg.get("ai_generated", False),
+            "aiTools": trace_cfg.get("ai_tools", []),
+            "aiRole": trace_cfg.get("ai_role", "none"),
+            "assessmentDate": trace_cfg["assessment_date"],
+            "assessedBy": trace_cfg["assessed_by"],
+            "track": trace_cfg["track"],
+            "disqualified": trace_cfg.get("disqualified", False),
+            "scores": {
+                cat: {"score": s["score"], "max": s["max"]}
+                for cat, s in trace_cfg.get("scores", {}).items()
+            },
+            "totalScore": trace_cfg["total_score"],
+            "maxScore": trace_cfg["total_max"],
+            "verdict": trace_cfg["verdict"],
+            "frameworkVersion": trace_cfg.get("version", "1.0"),
+        }
+        trace_jsonld = f'    <script type="application/ld+json">\n    {_json.dumps(trace_obj, indent=2, ensure_ascii=False)}\n    </script>'
+
     html_content = f'''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,6 +94,7 @@ def generate_index_html():
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <title>{podcast_config['title']} - {podcast_config['tagline']}</title>
     <meta name="description" content="{podcast_config['description']}">
+{trace_jsonld}
     <style>
         * {{
             margin: 0;
@@ -653,14 +685,16 @@ def generate_index_html():
 </body>
 </html>'''
     
-    # Compute SHA256 of the inline script block and substitute into the CSP.
-    # This removes 'unsafe-inline' and ties the CSP to the exact script content,
-    # so any unexpected modification of the script is blocked by the browser.
-    script_match = re.search(r'<script>(.*?)</script>', html_content, re.DOTALL)
-    if script_match:
-        script_body = script_match.group(1)
-        sha256_bytes = hashlib.sha256(script_body.encode('utf-8')).digest()
-        script_hash = f"'sha256-{base64.b64encode(sha256_bytes).decode()}'"
+    # Compute SHA256 of each inline <script> block and substitute into the CSP.
+    # Hashing all script blocks (including application/ld+json) ties the CSP to
+    # the exact content so any unexpected modification is blocked by the browser.
+    script_hashes = []
+    for m in re.finditer(r'<script[^>]*>(.*?)</script>', html_content, re.DOTALL):
+        body = m.group(1)
+        sha256_bytes = hashlib.sha256(body.encode('utf-8')).digest()
+        script_hashes.append(f"'sha256-{base64.b64encode(sha256_bytes).decode()}'")
+    if script_hashes:
+        script_hash = ' '.join(script_hashes)
     else:
         # Fallback (should never happen) — leave unsafe-inline rather than break the page
         script_hash = "'unsafe-inline'"

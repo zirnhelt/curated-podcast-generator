@@ -62,6 +62,32 @@ except ImportError as e:
     sys.exit(1)
 
 # Retry helper for API calls
+def _build_trace_channel_xml(trace_cfg, producer_name):
+    """Return a list of XML lines for a channel-level trace:assessment block."""
+    lines = [f'<trace:assessment version="{trace_cfg.get("version", "1.0")}">']
+    lines.append(f'<trace:producer url="{trace_cfg["producer_url"]}">{saxutils.escape(producer_name)}</trace:producer>')
+    lines.append(f'<trace:community>{saxutils.escape(trace_cfg["community"])}</trace:community>')
+    generated = "true" if trace_cfg.get("ai_generated") else "false"
+    lines.append(f'<trace:ai generated="{generated}" role="{trace_cfg.get("ai_role", "none")}">')
+    for tool in trace_cfg.get("ai_tools", []):
+        lines.append(f'<trace:tool>{saxutils.escape(tool)}</trace:tool>')
+    lines.append('</trace:ai>')
+    lines.append(f'<trace:track>{saxutils.escape(trace_cfg["track"])}</trace:track>')
+    lines.append(f'<trace:disqualified>{"true" if trace_cfg.get("disqualified") else "false"}</trace:disqualified>')
+    scores = trace_cfg.get("scores", {})
+    if scores:
+        lines.append('<trace:scores>')
+        for cat, s in scores.items():
+            lines.append(f'<trace:score category="{cat}" value="{s["score"]}" max="{s["max"]}"/>')
+        lines.append('</trace:scores>')
+    lines.append(f'<trace:total score="{trace_cfg["total_score"]}" max="{trace_cfg["total_max"]}" pct="{trace_cfg["total_pct"]}"/>')
+    lines.append(f'<trace:verdict>{saxutils.escape(trace_cfg["verdict"])}</trace:verdict>')
+    lines.append(f'<trace:assessmentDate>{trace_cfg["assessment_date"]}</trace:assessmentDate>')
+    lines.append(f'<trace:assessedBy>{saxutils.escape(trace_cfg["assessed_by"])}</trace:assessedBy>')
+    lines.append('</trace:assessment>')
+    return lines
+
+
 def api_retry(func, max_retries=3, base_delay=2):
     """Call func() with exponential backoff on transient errors."""
     import time
@@ -4279,7 +4305,8 @@ def generate_podcast_rss_feed():
     rss_lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"'
-        ' xmlns:podcast="https://podcastindex.org/namespace/1.0">',
+        ' xmlns:podcast="https://podcastindex.org/namespace/1.0"'
+        ' xmlns:trace="https://tracestandard.org/ns/trace/1.0">',
         '<channel>',
         f'<title>{saxutils.escape(podcast_config["title"])}</title>',
         f'<link>{podcast_config["url"]}index.html</link>',
@@ -4304,7 +4331,11 @@ def generate_podcast_rss_feed():
         f'<itunes:explicit>{"true" if podcast_config["explicit"] else "false"}</itunes:explicit>',
         f'<lastBuildDate>{get_pacific_now().strftime("%a, %d %b %Y %H:%M:%S GMT")}</lastBuildDate>'
     ])
-    
+
+    trace_cfg = podcast_config.get("trace", {})
+    if trace_cfg:
+        rss_lines += _build_trace_channel_xml(trace_cfg, podcast_config["author"])
+
     # Add episodes with detailed descriptions
     for episode in episodes:
         escaped_title = saxutils.escape(episode['title'])

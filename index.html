@@ -3,10 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-VlyduVqaHyNUuJKob3mYns35DY/OwFimtY0uQXvxi9M='; style-src 'unsafe-inline'; img-src 'self' https: data:; media-src https: blob:; connect-src 'self'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-+QDE5OlQz5HWICO/f24BvhoiBcbKNXDOscwH8cfSJbg=' 'sha256-3n+HTr6LcD/Ec7k2DGbOlcAS1yQdofxWrUqRjAjSp+8='; style-src 'unsafe-inline'; img-src 'self' https: data:; media-src https: blob:; connect-src 'self'">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <title>Cariboo Signals - A daily AI-generated tech review from and about rural BC</title>
-    <meta name="description" content="How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region on the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations.">
+    <meta name="description" content="How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region on the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations. Community Content Compact: 18/20 Exemplary (Track A). Self-funded, non-commercial. Producer: Erich Zirnhelt, Horsefly, BC. Corrections: feedback@cariboosignals.ca.">
+    <script type="application/ld+json">
+    {
+  "@context": "https://tracestandard.org/schema/v1",
+  "@type": "TRACEAssessment",
+  "contentTitle": "Cariboo Signals",
+  "contentURL": "https://podcast.cariboosignals.ca/",
+  "contentType": "series",
+  "producer": "Erich Zirnhelt",
+  "producerURL": "https://podcast.cariboosignals.ca/",
+  "communityRepresented": "Rural Cariboo region, BC — Secwépemc, Tŝilhqot'in, and Dakelh territories",
+  "aiGenerated": true,
+  "aiTools": [
+    "Claude",
+    "OpenAI TTS"
+  ],
+  "aiRole": "primary",
+  "assessmentDate": "2026-05-18",
+  "assessedBy": "self",
+  "track": "A",
+  "disqualified": false,
+  "scores": {
+    "transparency": {
+      "score": 4,
+      "max": 4
+    },
+    "sourceIntegrity": {
+      "score": 3,
+      "max": 3
+    },
+    "displacement": {
+      "score": 2,
+      "max": 2
+    },
+    "consentAttribution": {
+      "score": 3,
+      "max": 4
+    },
+    "benefitFlow": {
+      "score": 4,
+      "max": 5
+    },
+    "accountability": {
+      "score": 2,
+      "max": 2
+    }
+  },
+  "totalScore": 18,
+  "maxScore": 20,
+  "verdict": "Exemplary",
+  "frameworkVersion": "1.0"
+}
+    </script>
     <style>
         * {
             margin: 0;
@@ -312,75 +364,6 @@
             display: none;
         }
 
-        .accountability-section {
-            margin-top: 32px;
-            padding-top: 32px;
-            border-top: 1px solid #ddd;
-            text-align: center;
-        }
-
-        .accountability-section h3 {
-            color: #2c3e50;
-            margin-bottom: 8px;
-        }
-
-        .accountability-section .section-intro {
-            color: #666;
-            font-size: 0.9em;
-            margin-bottom: 20px;
-            max-width: 560px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .content-facts {
-            font-family: Arial, Helvetica, sans-serif;
-            width: 290px;
-            background: white;
-            border: 3px solid #1a1a1a;
-            margin: 0 auto;
-            color: #1a1a1a;
-            text-align: left;
-        }
-        .cf-hd { padding: 6px 10px 5px; border-bottom: 9px solid #1a1a1a; }
-        .cf-hd-title { font-size: 28px; font-weight: 900; line-height: 1; letter-spacing: -0.02em; color: #1a1a1a; }
-        .cf-hd-sub { font-size: 9px; font-weight: 700; color: #666; letter-spacing: 0.03em; margin-top: 2px; }
-        .cf-meta { padding: 4px 10px; border-bottom: 4px solid #1a1a1a; }
-        .cf-meta-lbl { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #999; }
-        .cf-meta-name { font-size: 13px; font-weight: 700; color: #1a1a1a; line-height: 1.25; margin-top: 1px; }
-        .cf-meta-sub { font-size: 10px; color: #777; }
-        .cf-status { display: flex; align-items: center; justify-content: space-between; padding: 3px 10px; }
-        .cf-status-lbl { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #999; }
-        .cf-status-val { font-size: 10px; font-weight: 700; color: #1a1a1a; }
-        .cf-divider { height: 4px; background: #1a1a1a; }
-        .cf-cat-hd { display: flex; justify-content: space-between; background: #1a1a1a; padding: 3px 10px; }
-        .cf-cat-hd span { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: white; }
-        .cf-pcat { display: flex; align-items: center; padding: 4px 10px; border-bottom: 1px solid #f0ece6; gap: 6px; }
-        .cf-pcat-name { font-size: 10px; color: #1a1a1a; font-weight: 500; flex: 1; }
-        .cf-pcat-bar-bg { width: 64px; height: 5px; background: #e8e4de; border-radius: 2px; flex-shrink: 0; overflow: hidden; }
-        .cf-pcat-bar { height: 100%; border-radius: 2px; background: #1a1a1a; }
-        .cf-pcat-sc { font-size: 9px; font-weight: 700; color: #1a1a1a; width: 28px; text-align: right; }
-        .cf-ptotal { display: flex; justify-content: space-between; align-items: baseline; padding: 5px 10px; border-top: 5px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; }
-        .cf-ptotal-lbl { font-size: 13px; font-weight: 900; color: #1a1a1a; }
-        .cf-ptotal-val { font-size: 22px; font-weight: 900; color: #1a1a1a; line-height: 1; }
-        .cf-pct { padding: 4px 10px 5px; border-bottom: 8px solid #1a1a1a; }
-        .cf-pct-bg { height: 6px; background: #e8e4de; border-radius: 3px; overflow: hidden; margin-bottom: 2px; }
-        .cf-pct-fill { height: 100%; border-radius: 3px; background: #145530; width: 90%; }
-        .cf-pct-lbl { font-size: 8px; color: #aaa; font-weight: 600; }
-        .cf-verdict { padding: 10px; text-align: center; }
-        .cf-verdict-text { font-size: 26px; font-weight: 900; line-height: 1; letter-spacing: -0.02em; color: #145530; }
-        .cf-verdict-rating { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-top: 3px; }
-        .cf-pfooter { padding: 4px 10px; border-top: 1px solid #e8e4de; font-size: 7px; color: #ccc; line-height: 1.5; }
-        .cf-pfooter a { color: #ccc; }
-
-        .accountability-section .section-footer {
-            color: #666;
-            font-size: 0.85em;
-            margin-top: 16px;
-        }
-
-        .accountability-section .section-footer a { color: #3498db; }
-
         @media (max-width: 768px) {
             .container {
                 padding: 24px;
@@ -426,7 +409,7 @@
         </div>
         
         <div class="theme-description">
-            <p>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region on the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations.</p>
+            <p>How do rural communities grow alongside technology? Daily conversations about responsible tech progress in the Cariboo region on the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations. Community Content Compact: 18/20 Exemplary (Track A). Self-funded, non-commercial. Producer: Erich Zirnhelt, Horsefly, BC. Corrections: feedback@cariboosignals.ca.</p>
         </div>
         
         <div class="hosts-section">
@@ -458,7 +441,7 @@
 
             <div class="schedule-day">
                 <div class="schedule-day-name">Wednesday</div>
-                <div class="schedule-theme-name">Community Tech & Governance</div>
+                <div class="schedule-theme-name">Gear, Gadgets & Practical Tech</div>
             </div>
 
             <div class="schedule-day">
@@ -473,7 +456,7 @@
 
             <div class="schedule-day">
                 <div class="schedule-day-name">Saturday</div>
-                <div class="schedule-theme-name">Cariboo Voices & Local News</div>
+                <div class="schedule-theme-name">Cariboo Local Affairs</div>
             </div>
 
             <div class="schedule-day">
@@ -495,10 +478,10 @@
                             <option value="all">All Themes</option>
                                                         <option value="0">Arts, Culture & Digital Storytelling</option>
                             <option value="1">Working Lands & Industry</option>
-                            <option value="2">Community Tech & Governance</option>
+                            <option value="2">Gear, Gadgets & Practical Tech</option>
                             <option value="3">Indigenous Lands & Innovation</option>
                             <option value="4">Wild Spaces & Outdoor Life</option>
-                            <option value="5">Cariboo Voices & Local News</option>
+                            <option value="5">Cariboo Local Affairs</option>
                             <option value="6">Science, Wonder & the Natural World</option>
                         </select>
                     </div>
@@ -540,96 +523,7 @@
                 <a href="bespoke-feed.xml" style="display:inline-block;background:#5a3fa0;color:white;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:500;margin-left:8px;">🎙️ Deep Dives RSS</a>
             </div>
         </div>
-
-        <div class="accountability-section">
-            <h3>Community Accountability</h3>
-            <p class="section-intro">Cariboo Signals scores itself against the <a href="community-content-compact/framework.md">Community Content Compact</a> — a framework for evaluating whether AI-generated content serves the communities it draws from.</p>
-
-            <div class="content-facts">
-                <div class="cf-hd">
-                    <div class="cf-hd-title">Content</div>
-                    <div class="cf-hd-title">Accountability</div>
-                    <div class="cf-hd-title">Facts</div>
-                    <div class="cf-hd-sub">The Community Content Compact</div>
-                </div>
-
-                <div class="cf-meta">
-                    <div class="cf-meta-lbl">Content</div>
-                    <div class="cf-meta-name">Cariboo Signals</div>
-                    <div class="cf-meta-sub">Erich Zirnhelt · Horsefly, BC</div>
-                </div>
-
-                <div class="cf-status" style="border-bottom:1px solid #e8e4de;">
-                    <span class="cf-status-lbl">Track</span>
-                    <span class="cf-status-val">Track A — Community-Insider</span>
-                </div>
-                <div class="cf-status">
-                    <span class="cf-status-lbl">Disqualifiers</span>
-                    <span class="cf-status-val" style="color:#1e6e40;">CLEAR</span>
-                </div>
-
-                <div class="cf-divider"></div>
-
-                <div class="cf-cat-hd">
-                    <span>Category</span>
-                    <span>Score</span>
-                </div>
-
-                <div class="cf-pcat">
-                    <span class="cf-pcat-name">Transparency</span>
-                    <div class="cf-pcat-bar-bg"><div class="cf-pcat-bar" style="width:100%;"></div></div>
-                    <span class="cf-pcat-sc">4/4</span>
-                </div>
-                <div class="cf-pcat">
-                    <span class="cf-pcat-name">Source Integrity</span>
-                    <div class="cf-pcat-bar-bg"><div class="cf-pcat-bar" style="width:100%;"></div></div>
-                    <span class="cf-pcat-sc">3/3</span>
-                </div>
-                <div class="cf-pcat">
-                    <span class="cf-pcat-name">Displacement</span>
-                    <div class="cf-pcat-bar-bg"><div class="cf-pcat-bar" style="width:100%;"></div></div>
-                    <span class="cf-pcat-sc">2/2</span>
-                </div>
-                <div class="cf-pcat">
-                    <span class="cf-pcat-name">Consent &amp; Attribution</span>
-                    <div class="cf-pcat-bar-bg"><div class="cf-pcat-bar" style="width:75%;"></div></div>
-                    <span class="cf-pcat-sc">3/4</span>
-                </div>
-                <div class="cf-pcat">
-                    <span class="cf-pcat-name">Benefit Flow</span>
-                    <div class="cf-pcat-bar-bg"><div class="cf-pcat-bar" style="width:80%;"></div></div>
-                    <span class="cf-pcat-sc">4/5</span>
-                </div>
-                <div class="cf-pcat" style="border-bottom:none;">
-                    <span class="cf-pcat-name">Accountability</span>
-                    <div class="cf-pcat-bar-bg"><div class="cf-pcat-bar" style="width:100%;"></div></div>
-                    <span class="cf-pcat-sc">2/2</span>
-                </div>
-
-                <div class="cf-ptotal">
-                    <span class="cf-ptotal-lbl">Total Score</span>
-                    <span class="cf-ptotal-val">18/20</span>
-                </div>
-
-                <div class="cf-pct">
-                    <div class="cf-pct-bg"><div class="cf-pct-fill"></div></div>
-                    <div class="cf-pct-lbl">90% of maximum</div>
-                </div>
-
-                <div class="cf-verdict">
-                    <div class="cf-verdict-text">EXEMPLARY</div>
-                    <div class="cf-verdict-rating">Community Content Compact Rating</div>
-                </div>
-
-                <div class="cf-pfooter">
-                    Cariboo Signals · Community Content Compact · May 2026<br>
-                    <a href="https://github.com/zirnhelt/curated-podcast-generator">github.com/zirnhelt/curated-podcast-generator</a>
-                </div>
-            </div>
-
-            <p class="section-footer">We score ourselves because the question matters. Remaining gap: direct subscriber list (B2). <a href="community-content-compact/self-assessment.md">Read the full self-assessment.</a></p>
-        </div>
-
+        
         <div class="footer">
             <div class="credits">
                 <h3>Credits</h3>
@@ -638,9 +532,9 @@
                 <p><strong>Content Curation & Script:</strong> Claude (Anthropic)</p>
                 <p><strong>TTS Voices:</strong> Azure Neural TTS (Ava · Andrew)</p>
                 <p><strong>Cover Art:</strong> ChatGPT (OpenAI)</p>
-                <p><strong>Podcast Coordination:</strong> Erich Zirnhelt, Horsefly, BC (Secwépemc territory)</p>
+                <p><strong>Podcast Coordination:</strong> Erich Zirnhelt</p>
+                <p><strong>Funding:</strong> Self-funded by Erich Zirnhelt, Horsefly BC — non-commercial</p>
                 <p><strong>License:</strong> <a href='https://creativecommons.org/licenses/by-nc/4.0/'>CC BY-NC 4.0</a> © 2026 Erich Zirnhelt</p>
-                <p><strong>Corrections:</strong> <a href='docs/corrections-policy.md'>corrections-policy.md</a> · <a href='docs/psa-policy.md'>psa-policy.md</a></p>
 
                 </div>
             </div>
@@ -662,7 +556,7 @@
         }
 
         // Theme configuration
-        const themes = {"0": {"name": "Arts, Culture & Digital Storytelling", "description": "Local arts scene, festivals, creative economy, media, and cultural tech", "keywords": ["arts", "culture", "storytelling", "festival", "creative", "media", "film", "music", "gallery", "museum", "digital art", "podcast", "journalism"]}, "1": {"name": "Working Lands & Industry", "description": "Cariboo forestry, ranching, mining, agriculture — tech in the resource economy", "keywords": ["forestry", "ranching", "mining", "agriculture", "lumber", "cattle", "resource", "farming", "timber", "sawmill", "crop", "harvest", "livestock", "industrial"]}, "2": {"name": "Community Tech & Governance", "description": "SD27, CRD, Williams Lake council, municipal networks, civic innovation", "keywords": ["governance", "council", "municipal", "civic", "community", "public", "policy", "bylaw", "broadband", "network", "digital equity", "open data", "smart city", "election"]}, "3": {"name": "Indigenous Lands & Innovation", "description": "Tŝilhqot'in, Secwépemc, Dakelh — language, governance, land stewardship, and tech", "keywords": ["indigenous", "first nations", "aboriginal", "reconciliation", "treaty", "land rights", "sovereignty", "guardian", "stewardship", "language revitalization", "elder", "traditional knowledge", "Haida", "Tsilhqotin", "Secwepemc", "Dakelh", "tribal"]}, "4": {"name": "Wild Spaces & Outdoor Life", "description": "Chilcotin wilderness, backcountry recreation, conservation tech, wildfire and climate", "keywords": ["wilderness", "wildfire", "conservation", "wildlife", "outdoor", "recreation", "hiking", "fishing", "hunting", "backcountry", "park", "trail", "forest fire", "climate", "salmon", "grizzly", "caribou"]}, "5": {"name": "Cariboo Voices & Local News", "description": "Williams Lake, Quesnel, 100 Mile House, Bella Coola — community stories and digital equity", "keywords": ["Williams Lake", "Quesnel", "100 Mile", "Bella Coola", "Cariboo", "local", "community", "rural", "small town", "digital equity", "Chilcotin", "Prince George"]}, "6": {"name": "Science, Wonder & the Natural World", "description": "Scientific discovery, natural phenomena, ecology, and the curiosity behind how our world works — grounded in the landscapes and living systems of the Cariboo", "keywords": ["science", "research", "discovery", "ecology", "biology", "astronomy", "physics", "evolution", "nature", "species", "salmon", "caribou", "bat", "watershed", "wetland", "grassland", "boreal", "species at risk", "wildfire science", "citizen science", "field research", "natural history", "phenomenon", "study", "biodiversity"]}};
+        const themes = {"0": {"name": "Arts, Culture & Digital Storytelling", "description": "Local arts scene, festivals, creative economy, media, and cultural tech", "keywords": ["arts", "culture", "storytelling", "festival", "creative", "media", "film", "music", "gallery", "museum", "digital art", "podcast", "journalism"]}, "1": {"name": "Working Lands & Industry", "description": "Cariboo forestry, ranching, mining, agriculture \u2014 tech in the resource economy", "keywords": ["forestry", "ranching", "mining", "agriculture", "lumber", "cattle", "resource", "farming", "timber", "sawmill", "crop", "harvest", "livestock", "industrial"]}, "2": {"name": "Gear, Gadgets & Practical Tech", "description": "Consumer devices, maker projects, homelab, practical tools \u2014 technology you can hold, build, or deploy at home or on the job", "keywords": ["gear", "gadget", "device", "hardware", "tool", "maker", "DIY", "homelab", "raspberry pi", "3D print", "camera", "drone", "sensor", "wearable", "review", "hands-on", "battery", "solar", "router", "NAS", "smart home", "Arduino", "keyboard", "headphone", "monitor", "laptop", "phone"]}, "3": {"name": "Indigenous Lands & Innovation", "description": "T\u015dilhqot'in, Secw\u00e9pemc, Dakelh \u2014 language, governance, land stewardship, and tech", "keywords": ["indigenous", "first nations", "aboriginal", "reconciliation", "treaty", "land rights", "sovereignty", "guardian", "stewardship", "language revitalization", "elder", "traditional knowledge", "Haida", "Tsilhqotin", "Secwepemc", "Dakelh", "tribal", "M\u00e9tis", "Inuit", "indigenous language", "language preservation", "language documentation", "residential school", "turtle island", "decolonization", "UNDRIP", "band council"]}, "4": {"name": "Wild Spaces & Outdoor Life", "description": "Chilcotin wilderness, backcountry recreation, conservation tech, wildfire and climate", "keywords": ["wilderness", "wildfire", "conservation", "wildlife", "outdoor", "recreation", "hiking", "fishing", "hunting", "backcountry", "park", "trail", "forest fire", "climate", "salmon", "grizzly", "caribou"]}, "5": {"name": "Cariboo Local Affairs", "description": "Williams Lake council, CRD, SD27, Quesnel, 100 Mile House, Bella Coola \u2014 civic decisions, community voices, and local development that shape everyday life in the Cariboo", "keywords": ["Williams Lake", "Quesnel", "100 Mile", "Bella Coola", "Cariboo", "local", "community", "council", "municipal", "CRD", "SD27", "bylaw", "budget", "zoning", "infrastructure", "rural", "small town", "Chilcotin", "Prince George", "development", "housing", "transit", "water", "fire hall", "mayor", "councillor", "public meeting", "referendum"]}, "6": {"name": "Science, Wonder & the Natural World", "description": "Scientific discovery, natural phenomena, ecology, and the curiosity behind how our world works \u2014 grounded in the landscapes and living systems of the Cariboo", "keywords": ["science", "research", "discovery", "ecology", "biology", "astronomy", "physics", "evolution", "nature", "species", "salmon", "caribou", "bat", "watershed", "wetland", "grassland", "boreal", "species at risk", "wildfire science", "citizen science", "field research", "natural history", "phenomenon", "study", "biodiversity"]}};
         const themeNames = Object.values(themes).map(t => t.name);
 
         // Store all episodes data
@@ -797,7 +691,8 @@
                                 </div>
                             ` : ''}
                         </div>
-                    </div>`;
+                    </div>
+                `;
             });
 
             container.innerHTML = episodesHTML;

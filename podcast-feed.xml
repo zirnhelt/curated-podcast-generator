@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0">
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0" xmlns:trace="https://tracestandard.org/ns/trace/1.0">
 <channel>
 <title>Cariboo Signals</title>
 <link>https://podcast.cariboosignals.ca/index.html</link>
@@ -21,6 +21,28 @@ Community Accountability: Cariboo Signals scores 18/20 (Exemplary) on the Commun
 <itunes:type>episodic</itunes:type>
 <itunes:explicit>false</itunes:explicit>
 <lastBuildDate>Tue, 26 May 2026 06:01:08 GMT</lastBuildDate>
+<trace:assessment version="1.0">
+<trace:producer url="https://podcast.cariboosignals.ca/">Erich Zirnhelt</trace:producer>
+<trace:community>Rural Cariboo region, BC — Secwépemc, Tŝilhqot'in, and Dakelh territories</trace:community>
+<trace:ai generated="true" role="primary">
+<trace:tool>Claude</trace:tool>
+<trace:tool>OpenAI TTS</trace:tool>
+</trace:ai>
+<trace:track>A</trace:track>
+<trace:disqualified>false</trace:disqualified>
+<trace:scores>
+<trace:score category="transparency" value="4" max="4"/>
+<trace:score category="sourceIntegrity" value="3" max="3"/>
+<trace:score category="displacement" value="2" max="2"/>
+<trace:score category="consentAttribution" value="3" max="4"/>
+<trace:score category="benefitFlow" value="4" max="5"/>
+<trace:score category="accountability" value="2" max="2"/>
+</trace:scores>
+<trace:total score="18" max="20" pct="90"/>
+<trace:verdict>Exemplary</trace:verdict>
+<trace:assessmentDate>2026-05-18</trace:assessmentDate>
+<trace:assessedBy>self</trace:assessedBy>
+</trace:assessment>
 <item>
 <title>Working Lands And Industry</title>
 <link>https://podcast.cariboosignals.ca/index.html</link>
