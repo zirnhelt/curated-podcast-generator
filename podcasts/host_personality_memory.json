@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[Engadget] Spotify now lets AI agents like OpenClaw generate",
       "[TechRadar] 'Podslop' is a real and growing problem \u2014 data s",
       "[New Atlas] Startup harnesses the power of AI in the ongoing",
       "[TechCrunch] Wirestock raises $23M to supply creative multi-",
@@ -10,7 +9,8 @@
       "Technology shouldn't sacrifice the integrity of knowledge",
       "[CNET] Scientists Warn AI Slop Is Wreaking Havoc in the Rese",
       "[The Verge] AI video is moving beyond clip slop",
-      "[TechCrunch] Spotify adds AI-powered Q&A and briefing genera"
+      "[TechCrunch] Spotify adds AI-powered Q&A and briefing genera",
+      "New: Indigenous AI Advisory Circle"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -65,9 +65,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-27",
-        "clue": "community-trust:x \u2014 Conceded CRD partnership skepticism; elevated CCATEC as legitimate infrastructure anchor",
-        "occurrences": 2
+        "date": "2026-04-22",
+        "clue": "community-trust:x \u2014 Conceded regional coordination risks gatekeeping, Indigenous representation complexity",
+        "occurrences": 1
       },
       {
         "date": "2026-04-27",
@@ -132,6 +132,11 @@
       {
         "date": "2026-05-24",
         "clue": "community-trust:~ \u2014 Acknowledged data sovereignty complexity without resolution path",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-05-28",
+        "clue": "funding-risk:x \u2014 Conceded maintenance gap reality; shifted from infrastructure-building optimism",
         "occurrences": 1
       }
     ],
@@ -269,14 +274,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-27",
-        "clue": "rural-context:~ \u2014 Deepened specificity: moved from generic access barriers to January pump failures, three-week backlogs",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-05-17",
-        "clue": "structural-lens:+ \u2014 Moved from dismissing eDNA to designing governance architecture around it",
-        "occurrences": 2
+        "date": "2026-05-13",
+        "clue": "rural-context:~ \u2014 Shifted from access-as-barrier to equity-as-measurement-problem for programs",
+        "occurrences": 1
       },
       {
         "date": "2026-05-20",
@@ -304,13 +304,18 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-27",
-        "clue": "pilot-skepticism:+ \u2014 Hardened position on partnerships producing 'one-time events' with documented pattern evidence",
-        "occurrences": 2
+        "date": "2026-05-24",
+        "clue": "pilot-skepticism:+ \u2014 Hardened stance on wonder-without-governance as insufficient for real change",
+        "occurrences": 1
       },
       {
         "date": "2026-05-25",
         "clue": "funding-risk:+ \u2014 Reinforced structural underfunding pattern across standards, auditing, journalism infrastructure",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-05-28",
+        "clue": "evidence-bar:+ \u2014 Explicitly named gap in direct community contact; deepened epistemological rigor",
         "occurrences": 1
       }
     ],

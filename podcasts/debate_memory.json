@@ -1,17 +1,4 @@
 {
-  "2026-02-27": {
-    "timestamp": 1772197210.945345,
-    "date": "2026-02-27",
-    "theme": "Wild Spaces & Outdoor Life",
-    "central_question": "Deep dive on Wild Spaces & Outdoor Life",
-    "topics_covered": [
-      "broadband",
-      "satellite",
-      "data sovereignty",
-      "AI",
-      "infrastructure"
-    ]
-  },
   "2026-02-28": {
     "timestamp": 1772282806.581413,
     "date": "2026-02-28",
@@ -1933,30 +1920,30 @@
       "Financing structures and credit union products designed for agricultural succession rather than liquidation"
     ]
   },
-  "2026-05-27": {
-    "timestamp": 1779887415.817181,
-    "date": "2026-05-27",
-    "theme": "Gear, Gadgets & Practical Tech",
-    "central_question": "Does maker culture and DIY repair knowledge provide genuine accessibility for people without existing technical skills, or has it become a hobby primarily for those already embedded in technical communities?",
-    "riley_position": "Documentation and community knowledge are improving, and entry-level projects like the filament dryer are genuinely approachable; the real barrier is knowing where to look for information and having facilitated support when stuck.",
+  "2026-05-28": {
+    "timestamp": 1779976656.550858,
+    "date": "2026-05-28",
+    "theme": "Indigenous Lands & Innovation",
+    "central_question": "What does it take for Indigenous communities to build and control their own technology infrastructure rather than relying on external vendors and advisory roles?",
+    "riley_position": "Indigenous communities need to move from principle-endorsement (like OCAP) to actual infrastructure ownership, with the M\u0101ori data network as a buildable model that shared regional infrastructure through coordinating bodies like the First Nations Technology Council could replicate.",
     "riley_key_evidence": [
-      "DIY filament dryer costs under $30 with a full GitHub bill of materials, versus $80 commercial units",
-      "iFixit's structured soldering guide uses decision trees to help people who don't know what they need yet",
-      "Repair caf\u00e9 models from the Netherlands show hundreds of events with documented skill transfer and waste diversion"
+      "Te P\u0101 T\u016bwatawata: M\u0101ori-owned data storage network with actual servers and governance control, not just policy commitments",
+      "First Nations Technology Council in BC has been building shared technical infrastructure for years and could coordinate a multi-nation data infrastructure proposal",
+      "Carving robotics project could be improved with pre-deployment community IP agreements and restrictions on commercial deployment without Nation consent"
     ],
-    "casey_position": "Documentation and expert demonstrations alone don't create pathways for rural/remote people without existing technical confidence; the missing piece is sustained, local, in-person facilitation anchored to institutions.",
+    "casey_position": "The gap between principle and infrastructure is real and resource-intensive, and the risks of underfunded half-measures, unclear accountability, and encoding cultural knowledge into systems without proper governance protections are substantial and cannot be solved by technology alone.",
     "casey_key_evidence": [
-      "In Williams Lake or Quesnel, the nearest makerspace is Kamloops; online forums assume stable connections and enough knowledge to ask the right question",
-      "Repair caf\u00e9 programming typically depends on volunteer goodwill and collapses when the facilitator leaves or burns out",
-      "Expert projects like hand-etched PCBs and DOOM-on-walkie-talkies represent years of embedded expertise, not entry points for novices"
+      "OCAP principles are well-cited but most communities lack actual technical infrastructure matching those commitments",
+      "Advisory bodies without decision rights are legitimacy mechanisms, not governance mechanisms, and can allow companies to claim consultation without genuine power-sharing",
+      "Carving traditions involve cultural transmission protocols that predate IP frameworks and cannot be easily encoded into grant agreements or licenses"
     ],
-    "resolution": "They converged on institutional anchoring as the solution, moving from abstract makerspace concepts to concrete models: repair caf\u00e9s paired with local organizations like CCATEC, and procurement education for administrators making technology purchasing decisions. Casey and Riley agreed the real constraint is 'sustained human infrastructure that meets people where they are,' not tool availability or documentation quality.",
+    "resolution": "Casey and Riley converged on the structural funding problem as the real bottleneck: Indigenous communities need operational funding for multi-year governance capacity around technology infrastructure, not just project funding tied to funder timelines. They agreed governance and resources\u2014not technology\u2014are the actual limiting factors.",
     "topics_covered": [
-      "Accessibility barriers in maker/repair culture for rural and remote communities",
-      "Repair caf\u00e9 models and the role of institutional anchoring in program sustainability",
-      "Open-source vs. closed firmware in consumer electronics and procurement criteria",
-      "Bambu Labs licensing dispute and the OrcaSlicer GPL conflict",
-      "Flipper One and field diagnostics tools for infrastructure maintenance"
+      "Data sovereignty infrastructure ownership vs. advisory roles",
+      "OCAP principles and the gap between endorsement and implementation",
+      "Indigenous AI governance: advisory circles and decision-making authority",
+      "Cultural knowledge encoding in technology and intellectual property limitations",
+      "Shared vs. individual community infrastructure models and accountability structures"
     ]
   }
 }

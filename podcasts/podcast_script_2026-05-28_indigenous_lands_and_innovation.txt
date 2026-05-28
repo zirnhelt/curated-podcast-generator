@@ -1,0 +1,153 @@
+# Cariboo Signals Podcast Script - 2026-05-28
+# Theme: Indigenous Lands & Innovation
+# Generated: 2026-05-28 06:57:34 PDT
+
+**CASEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. It's Thursday, May 28th, 2026. We're coming to you from the Cariboo region, the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations. Today's theme is Indigenous Lands & Innovation — I'm Casey.
+
+**RILEY:** And I'm Riley. Today we're asking what it actually looks like when Indigenous communities build and govern their own technology infrastructure — not as recipients of someone else's system, but as architects.
+
+**CASEY:** Out at Horsefly Lake it's 10 degrees with clear skies this morning, warming up to a high of 28 this afternoon — genuinely nice day if you're not stuck inside. Rest of the Cariboo is running similar: 100 Mile, Williams Lake, and Quesnel all sitting at 11 or 12 degrees with clear skies. Enjoy it — light drizzle moves in tomorrow.
+
+**RILEY:** Let's get into the news.
+
+---
+
+**NEWS ROUNDUP**
+
+**RILEY:** [pause:800] Starting with the political backdrop for everything we're discussing today. BC's Treaty Commissioner George Abbott is describing the current moment for Indigenous relations in BC as a "fraught context" — but says he's not backing down from the treaty process. Abbott cited funding pressures, a shifting provincial political climate, and the slow pace of negotiations as compounding factors. The commissioner's message is essentially: the work continues regardless of the weather.
+
+**CASEY:** Treaty negotiations directly determine which communities have land and resource governance authority — which shapes every conversation about who controls data, environmental monitoring, and infrastructure.
+
+**RILEY:** [pause:800] Alberta's political drama is bleeding into Indigenous rights. After a court ruling on a separate matter, several First Nations across the Prairies and into BC are formally denouncing Premier Danielle Smith's separation referendum proposal. The nations' position is straightforward: any path to Alberta separation would require consent from Indigenous peoples under UNDRIP, and that consent hasn't been sought. The court win they're referencing appears to relate to resource revenue jurisdiction — and they're leveraging that precedent immediately.
+
+**CASEY:** When communities have legal wins in hand, the political mobilization follows fast. That speed is deliberate.
+
+**RILEY:** [pause:800] On Vancouver Island, members of the Liǧʷiłdax̌ʷ Nation are protesting a proposed treaty with the K'ómoks Nation that would affect overlapping territories. This is an important story to sit with — it's not a First Nations-versus-Crown conflict, it's a dispute between nations about how territory and rights are being carved up in treaty agreements. Some Liǧʷiłdax̌ʷ members argue the K'ómoks treaty process didn't adequately account for their own territorial interests.
+
+**CASEY:** A useful reminder that "reconciliation" and "treaty" aren't monolithic — these are genuinely complex governance negotiations between multiple parties, and the outcomes matter enormously for who has authority over land and water.
+
+**RILEY:** [pause:800] Something that lands differently today. A sacred fire is burning at Williams Lake First Nation this week, marking five years since the Tk'emlúps te Secwépemc announcement about the Kamloops Indian Residential School grounds. Five years since that GPR survey went global within hours — we talked about what that uncontrolled amplification cost the community in our May 21st episode. Williams Lake First Nation's own ongoing work with archival research and ground surveys has been slower, more deliberate, more community-controlled. The sacred fire feels like a moment of both grief and assertion.
+
+**CASEY:** That five-year mark hits. The contrast between how those two processes unfolded — Tk'emlúps swept up in international media, Williams Lake choosing a different pace — remains one of the sharpest examples of what data and narrative sovereignty actually means in practice.
+
+**CASEY:** [pause:800] Moving east: Grassy Narrows First Nation in Ontario is seeking to appeal mine permits that Ontario approved without, they argue, adequate consultation on mercury contamination concerns. Grassy Narrows has been dealing with the downstream effects of mercury poisoning from a paper mill since the 1960s. The legal argument is that provincial approval of new mine permits in the watershed failed to take existing contamination and community health into account.
+
+**RILEY:** Mercury in the English-Wabigoon River system has been documented for decades — this isn't a speculative risk, it's a documented ongoing harm. The permit appeals are squarely about whether that history changes the legal threshold for consultation.
+
+**CASEY:** [pause:800] On the journalism side — worth paying attention to this. In Kjipuktuk, which is the Mi'kmaw name for Halifax, a cohort of Indigenous photojournalism fellows wrapped their training week with what participants described as an emotional ceremony. The program, connected to IndigiNews, is about building Indigenous storytelling capacity — the infrastructure for communities to tell their own stories in their own visual language. Ceremony closing a journalism training isn't incidental; it's the point.
+
+**RILEY:** Indigenous-led media infrastructure and Indigenous-led data infrastructure are solving the same underlying problem from different angles. Who controls the record.
+
+**RILEY:** [pause:800] The syilx Okanagan Nation has formally declared a watershed emergency, saying the Okanagan system is "in a crisis right now." Declining snowpack, increased agricultural draw, and warming temperatures are the drivers. The declaration is both a political act and a governance claim — the Nation is asserting jurisdiction over watershed health at a moment when the province hasn't acted at the same urgency level.
+
+**CASEY:** The syilx have been monitoring their watershed with their own systems for years. When a nation declares an emergency using its own monitoring data, that's Indigenous-controlled science driving Indigenous governance decisions — exactly the model worth pointing to.
+
+**RILEY:** Also worth noting today — a Transportation Safety Board investigation has concluded that pilot error caused a fatal 2023 helicopter crash in northwest BC. The incident claimed lives, and the finding matters for aviation safety protocols across remote regions where helicopters are often the only option for emergency response and resource work.
+
+**CASEY:** Remote BC aviation safety is not a small issue. When a helicopter is your ambulance, these investigations have direct public safety implications.
+
+**RILEY:** And we'd like to pause to note the passing of Yvonne Marie Simpson, recognized this week in the 100 Mile Free Press. We extend condolences to her family and community.
+
+**CASEY:** Let's take a short break, and when we come back, we'll shine a light on an organization that's been doing foundational Indigenous community work in Quesnel for over fifty years.
+
+---
+
+**COMMUNITY SPOTLIGHT**
+
+**CASEY:** The Quesnel Tillicum Society — better known as the Quesnel Native Friendship Centre — has been a cornerstone of Indigenous community life in Quesnel since 1972. That's more than five decades of drug and alcohol support programs, family services, youth outreach, and cultural programming, all grounded in Indigenous values and community leadership. They run the annual Quesnel Pow Wow, which draws people from across the region every year. If you want to connect, support, or just learn more, find them at quesnelfriendshipcentre.com.
+
+**RILEY:** Friendship Centres don't get nearly enough recognition for the sheer range of what they hold together — five decades of services, relationships, and trust built one program at a time.
+
+**CASEY:** And that's a good anchor for what we're going to dig into now — because a lot of the Indigenous technology work we're discussing today only functions if there are strong community institutions underneath it. Let's get into it.
+
+---
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Indigenous Lands & Innovation**
+
+**CASEY:** We've spent the last few weeks on this theme covering data sovereignty principles, capacity pipelines, procurement leverage, governance retrofitting. Today the question I keep coming back to is sharper: what does it look like when Indigenous communities don't just protect their data from external systems, but build the infrastructure itself — own the pipes, set the rules, control the address?
+
+**RILEY:** There's a concrete example of exactly that out of Aotearoa New Zealand right now. A Māori-owned data storage network called Te Pā Tūwatawata — designed specifically for marae, hapū, iwi, and other Māori organizations to store their data inside infrastructure that is Māori-governed. Not a policy commitment to data sovereignty. Actual servers, actual ownership, actual control. The network's framing is protection — the "Pā" in the name refers to a fortified place.
+
+**CASEY:** The framing matters more than it might seem. A pā isn't just a storage facility — it's a defended space with defined protocols for who enters and under what conditions. Naming the data infrastructure after that concept is doing something real: the governance logic of the physical pā applies to the digital one.
+
+**RILEY:** Which is a meaningful departure from how most cloud storage works, where the governance logic is the vendor's terms of service and the community's data is sitting in a data centre somewhere the community has never seen and can't inspect.
+
+**CASEY:** The Canadian equivalent that keeps coming up is the OCAP principles — Ownership, Control, Access, Possession. Those principles are well over two decades old. The Māori network is showing what it looks like when you actually build infrastructure to those specifications rather than endorse them as aspirations.
+
+**RILEY:** The gap between principle and infrastructure is the real problem. OCAP is widely cited, but the number of communities that have technical infrastructure genuinely matching those commitments is small. Te Pā Tūwatawata is notable precisely because it closes that gap — storage that doesn't require trusting a third party's promises about governance.
+
+**CASEY:** So the question for the Cariboo is concrete: who builds that here, and with what resources? The Māori network benefited from a concentrated national Indigenous population, a single country's funding framework, and organizations with decades of institutional development behind them. The Secwépemc, Tŝilhqot'in, and Dakelh nations are spread across enormous territory, working across multiple provincial and federal funding streams, with different governance structures and different technical capacity levels. Those aren't minor differences.
+
+**RILEY:** Real constraints — but they're design problems, not ceilings. The First Nations Technology Council in BC is the closest equivalent to a coordinating body. They've been building shared technical infrastructure and capacity for years. The question is whether they're resourced to do what the Māori network is doing, or whether they're perpetually in capacity-building mode without the capital to build actual infrastructure.
+
+**CASEY:** [pause:400] Capacity building is not the same as owning infrastructure. You can train people indefinitely and still not own a server. Those are different things.
+
+**RILEY:** Agreed. And that's where the Indigenous AI Advisory Circle that Animikii has been convening becomes interesting. Animikii is a Victoria-based Indigenous technology company, and the circle is meant to shape how AI tools are developed in Indigenous contexts — not downstream of the development, but upstream of it. Governance at the design stage, not the consultation stage.
+
+**CASEY:** "Advisory" is still advisory. Does the circle have veto authority over product decisions, or does it provide guidance that developers can accept or decline? Because those are completely different things.
+
+**RILEY:** Exactly right. An advisory body without decision rights is a legitimacy mechanism, not a governance mechanism. It lets an organization say "we consulted Indigenous advisors" without giving those advisors structural power over outcomes.
+
+**CASEY:** We've seen this pattern across every sector. Environmental advisory panels, community liaison committees, cultural oversight boards — the naming suggests governance, the authority structure often doesn't deliver it.
+
+**RILEY:** What would make it real? Voting seats on the board of the organization deploying the AI. Revenue-sharing tied to the circle's recommendations being implemented. A right of withdrawal — the ability for the circle to publicly name when its guidance was overridden. Any one of those changes the incentive structure.
+
+**CASEY:** [pause:400] The withdrawal right is interesting because it doesn't require changing the legal structure of the company. Any circle could adopt it unilaterally — "if our guidance is overridden on a core question, we will say so publicly." Accountability without needing a board seat.
+
+**RILEY:** Now pivot to the Kwakwaka'wakw carving project out of Camosun College and UVic, because it's doing something structurally different from the advisory model. Researchers received a grant to develop a robotic system that works alongside master carvers to help preserve carving traditions. The framing is collaborative — the robot learns from the carver, not the other way around.
+
+**CASEY:** "The robot learns from the carver" is also a description of knowledge extraction. The carver's technique gets encoded into the system. What happens to that encoded knowledge after the project ends? Who owns the training data? Who can deploy the system? If a commercial firm wanted to license this robotic carving capability in ten years, what stops them?
+
+**RILEY:** The grant terms might. Camosun and UVic are publicly funded institutions with IP agreements that could include community ownership clauses — and post-UNDRIP, there's real pressure on Canadian universities to build those protections in.
+
+**CASEY:** Carving traditions aren't just intellectual property — they're living cultural practice with transmission protocols that predate any IP framework. The question isn't only who owns the patent. It's whether the system can be used in ways that violate the cultural governance of when, how, and by whom these traditions are transmitted. Those protocols exist for reasons that a grant agreement won't capture.
+
+**RILEY:** [pause:400] That's a harder problem than IP. You can assign ownership. You can't easily encode cultural transmission protocols into a license.
+
+**CASEY:** Which is why the Pā framing is more durable than an IP clause. A governance structure that the community controls is more adaptive than a contract term locking in today's understanding of the problem. The contract can't anticipate the uses that will be invented in fifteen years.
+
+**RILEY:** And it connects back to what Williams Lake First Nation has been doing — careful, deliberate archival and survey work on their own terms. The sacred fire this week is connected to that ongoing process. That's not a technology project in the narrow sense, but it's the same underlying logic: community-controlled processes, community-defined pace, community-held outcomes.
+
+**CASEY:** The Xatśūll First Nation — Soda Creek — has been involved in salmon monitoring work in the Fraser watershed where community members collect the data rather than external researchers dropping in for a field season. The monitoring infrastructure is held locally. Data doesn't go somewhere else to be analyzed and returned as recommendations.
+
+**RILEY:** And the syilx watershed emergency declaration from the roundup points to what that kind of infrastructure actually enables. The Nation declared a crisis using their own monitoring evidence. Without that infrastructure, the declaration is harder to make and harder to defend when challenged. Governance acts need data behind them.
+
+**CASEY:** [pause:500] We should be upfront: we haven't spoken directly with communications staff from the nations we're discussing today, and we'd genuinely welcome those conversations. We're working from published sources, and for material where governance details really matter, that's a gap worth naming.
+
+**RILEY:** The Māori storage network, the AI advisory circle, the carving robotics project — all three are really about where governance authority sits relative to the technical work. The Māori network has governance built into the infrastructure. The advisory circle has governance adjacent to the technical work. The carving project has governance questions that remain open. That's a spectrum, not a binary.
+
+**CASEY:** Most projects land in the middle — not pure extraction, not full community control. The useful question for any specific project is what would move it one step toward community governance. Not perfection. One step.
+
+**RILEY:** For the carving project: a community IP agreement filed before the robotic system goes live, not after. A clause specifying that the training data cannot be used for commercial deployment without explicit Nation consent. Those are achievable asks at the grant stage.
+
+**CASEY:** For an advisory circle: the withdrawal-and-disclosure right we discussed. It costs the convening organization nothing to agree to, and it changes the real accountability calculus. Suddenly the advisory relationship has teeth.
+
+**RILEY:** For a Cariboo equivalent to the Māori data network — the First Nations Technology Council is the logical convener. If the three nations whose territory we're on were to bring a joint proposal to the FNTC for shared data infrastructure, that's a coalition with enough weight to access federal Indigenous digital infrastructure funding. The Māori example shows it's buildable.
+
+**CASEY:** The Māori network took years and required sustained institutional will. The risk in pointing to it as a model is that it sounds achievable faster than it is — which leads to underfunded half-measures. A server in a closet with no maintenance budget and no succession plan for the one person who set it up. That's not data sovereignty, that's a liability.
+
+**RILEY:** [pause:400] The maintenance gap is real. What I'd say is that leaving community data on vendor infrastructure indefinitely isn't a neutral choice — it's a continuous, ongoing transfer of governance authority. For high-sensitivity data, language archives, land use records, cultural knowledge, the calculus has shifted. The costs of building your own infrastructure are now arguably lower than the cost of permanent dependency.
+
+**CASEY:** For high-sensitivity data, yes — I'll grant that. The harder part is that the problem isn't one category. It's everything: health records, meeting minutes, financial data, cultural archives. Infrastructure for one category doesn't solve the rest, and the resource demands compound fast.
+
+**RILEY:** Which argues for shared infrastructure rather than every community building separately. That's exactly the Pā model — a network available to multiple communities rather than one server per nation.
+
+**CASEY:** Shared infrastructure with unclear accountability is one of the reliable ways well-intentioned tech projects collapse. Somebody has to own the network, maintain it, and answer when things go wrong. "Shared" can become "nobody's actually responsible" very quickly.
+
+**RILEY:** Clear accountability requires clear governance. And clear governance requires — and we keep arriving here from every direction — the resources and institutional capacity to actually do the governance work, not just endorse it as a value.
+
+**CASEY:** Which is the structural funding problem. Every thread leads back to it. And honestly, that's not a counsel of despair — it's a specific ask. Multi-year operational funding for Indigenous governance capacity around technology infrastructure. Distinctions-based, not tied to deliverables reported on the funder's timeline.
+
+**RILEY:** The technology is not the bottleneck anymore. The governance and the resources to sustain it — that's where the work is. And if that's the argument to make to a band council, a regional district, or an MP's office right now, it's probably the most important one on the table.
+
+**CASEY:** That's a harder political sell than a shiny technology announcement. But it's the right problem. And the Māori network, the advisory circle, the carving project — they all point to the same thing. The communities that will actually own their digital future are the ones that insisted on governance first, and built the technology to serve it. Not the other way around.
+
+**RILEY:** The direction of travel is real, even if the pace is frustrating. More communities are asking the right questions earlier, before systems are deployed rather than after. That's not nothing — it's actually the prerequisite for everything else.
+
+**CASEY:** [pause:500] We'd genuinely like to hear from listeners who are closer to this work than we are. If you're part of a First Nation or Indigenous organization in the Cariboo doing anything in this space — data governance, language technology, land monitoring, community media — reach out. We want to cover it better.
+
+---
+
+**RILEY:** That's today's episode of Cariboo Signals. If something we said was wrong, or you have a story tip, or you'd like to be part of what we're building here, write to us at feedback at cariboo signals dot c-a. We'd love to hear from you.
+
+**CASEY:** Thanks for spending part of your Thursday with us. Have a great rest of your day.
