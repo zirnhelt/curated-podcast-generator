@@ -45,7 +45,17 @@
     "team loses",
     "scores",
     "shutout",
-    "hat trick"
+    "hat trick",
+    "obituary",
+    "dies at",
+    "dead at",
+    "passed away",
+    "has died",
+    "have died",
+    "in memoriam",
+    "rest in peace",
+    "remembering the life",
+    "farewell to"
   ],
   "description": "Articles matching these keywords (case-insensitive) in the title are excluded from the podcast. Includes political content and all sports coverage — even local sports stories are excluded per editorial policy.",
   "email_subject_blocklist": {
