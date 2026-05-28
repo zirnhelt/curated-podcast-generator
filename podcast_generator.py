@@ -1282,12 +1282,30 @@ def _filter_sparse_news_articles(articles: list) -> list:
 # Batch API helpers
 # ---------------------------------------------------------------------------
 
-def run_realtime_polish_and_factcheck(script, theme_name, news_articles, deep_dive_articles):
+def _safe_template_substitute(template, **kwargs):
+    """Replace {key} placeholders in template without Python's str.format().
+
+    str.format() raises KeyError/IndexError when user-supplied text (script,
+    article summaries) contains {word} patterns.  This replaces each known
+    placeholder with a literal string search-and-replace so stray braces in
+    the content are never interpreted as format directives.
+    """
+    result = template
+    for key, value in kwargs.items():
+        result = result.replace('{' + key + '}', str(value))
+    return result
+
+
+def run_realtime_polish_and_factcheck(script, theme_name, news_articles, deep_dive_articles,
+                                       additional_research=None):
     """Real-time fallback: combined polish+factcheck in ONE call using POLISH_MODEL.
 
     Used when the Batch API times out or is disabled.  Runs the same
     combined prompt as the batch path so we only make a single API call
     instead of the old two-call sequence (polish → fact-check).
+
+    Pass additional_research to reuse a result already computed by the caller
+    (avoids running the Brave question-detection twice when the batch times out).
     """
     client = get_anthropic_client()
     if not client or not script:
@@ -1300,9 +1318,11 @@ def run_realtime_polish_and_factcheck(script, theme_name, news_articles, deep_di
         return polish_script_with_claude(script, theme_name, os.getenv('ANTHROPIC_API_KEY'))
 
     verified_sources = _build_verified_sources(news_articles, deep_dive_articles)
-    brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
-    additional_research = _resolve_script_questions_with_brave(script, brave_key, client)
-    pf_prompt = pf_template.format(
+    if additional_research is None:
+        brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
+        additional_research = _resolve_script_questions_with_brave(script, brave_key, client)
+    pf_prompt = _safe_template_substitute(
+        pf_template,
         theme_name=theme_name,
         script=script,
         verified_sources=verified_sources,
@@ -1397,13 +1417,17 @@ def _resolve_script_questions_with_brave(script, brave_key, client):
     return "\n\n".join(results)
 
 
-def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_articles):
+def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_articles,
+                                   additional_research=None):
     """Submit polish+factcheck and debate summary as a Message Batch.
 
     Returns the batch object (with batch.id for polling) or None on error.
     The batch contains two requests:
       - "polish-and-factcheck": combined Opus call (replaces 2 separate calls)
       - "debate-summary": Sonnet extraction (runs in parallel)
+
+    Pass additional_research to reuse a result already computed by the caller
+    instead of running the Brave question-detection again.
     """
     client = get_anthropic_client()
     if not client:
@@ -1411,8 +1435,9 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
 
     prompts = CONFIG['prompts']
     verified_sources = _build_verified_sources(news_articles, deep_dive_articles)
-    brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
-    additional_research = _resolve_script_questions_with_brave(script, brave_key, client)
+    if additional_research is None:
+        brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
+        additional_research = _resolve_script_questions_with_brave(script, brave_key, client)
 
     # Build combined polish+factcheck prompt
     pf_template = prompts.get('polish_and_factcheck', {}).get('template')
@@ -1420,7 +1445,8 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
         print("⚠️ polish_and_factcheck prompt not found, cannot use batch")
         return None
 
-    pf_prompt = pf_template.format(
+    pf_prompt = _safe_template_substitute(
+        pf_template,
         theme_name=theme_name,
         script=script,
         verified_sources=verified_sources,
@@ -1554,13 +1580,15 @@ def collect_batch_results(batch_id):
     return results
 
 
-def run_post_processing_batch(script, theme_name, news_articles, deep_dive_articles):
+def run_post_processing_batch(script, theme_name, news_articles, deep_dive_articles,
+                               additional_research=None):
     """Submit, poll, and collect post-processing batch results.
 
     Returns (polished_script, debate_summary) or falls back to real-time
     calls if the batch fails.
     """
-    batch = submit_post_processing_batch(script, theme_name, news_articles, deep_dive_articles)
+    batch = submit_post_processing_batch(script, theme_name, news_articles, deep_dive_articles,
+                                          additional_research=additional_research)
     if not batch:
         return None, None
 
@@ -4860,12 +4888,21 @@ def main():
             sys.exit(1)
 
         # Post-processing: polish + fact-check + debate summary
+        # Resolve unanswered factual questions once before post-processing so the
+        # result can be reused by both the batch path and the real-time fallback
+        # without running the Brave search twice.
+        _ar_client = get_anthropic_client()
+        additional_research = _resolve_script_questions_with_brave(
+            script, os.getenv("BRAVE_SEARCH_API_KEY"), _ar_client
+        ) if _ar_client else ""
+
         # Try batch API first (50% cost discount), fall back to real-time calls
         debate_summary = None
         if script and USE_BATCH_API:
             print("📦 Using Batch API for post-processing (50% cost discount)...")
             batch_script, batch_debate = run_post_processing_batch(
-                script, today_theme, news_articles, deep_dive_articles
+                script, today_theme, news_articles, deep_dive_articles,
+                additional_research=additional_research,
             )
             if batch_script:
                 script = batch_script
@@ -4874,7 +4911,8 @@ def main():
                 # (one call instead of the old two-call polish→factcheck sequence)
                 print("⚠️ Batch polish failed, falling back to single real-time call...")
                 script = run_realtime_polish_and_factcheck(
-                    script, today_theme, news_articles, deep_dive_articles
+                    script, today_theme, news_articles, deep_dive_articles,
+                    additional_research=additional_research,  # reuse — don't re-run Brave
                 )
 
             if batch_debate:
@@ -4883,7 +4921,8 @@ def main():
         elif script:
             # Real-time path (batch disabled) — single combined call
             script = run_realtime_polish_and_factcheck(
-                script, today_theme, news_articles, deep_dive_articles
+                script, today_theme, news_articles, deep_dive_articles,
+                additional_research=additional_research,
             )
 
         if not script:

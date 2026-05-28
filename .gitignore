@@ -16,3 +16,8 @@ __pycache__/
 # Test scripts (keep local only)
 check_config_status.sh
 run_full_tests.sh
+
+# Audio files — large binaries deployed via GitHub Pages and R2, not tracked in git
+podcasts/*.mp3
+podcasts/.music_cache/
+podcasts/bespoke/*.mp3
