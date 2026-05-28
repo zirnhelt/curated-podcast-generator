@@ -147,6 +147,32 @@ def api_retry(func, max_retries=3, base_delay=2):
 
 # ── Config ─────────────────────────────────────────────────────────────────
 
+def _build_trace_channel_xml(trace_cfg, producer_name):
+    """Return a list of XML lines for a channel-level trace:assessment block."""
+    lines = [f'<trace:assessment version="{trace_cfg.get("version", "1.0")}">']
+    lines.append(f'<trace:producer url="{trace_cfg["producer_url"]}">{saxutils.escape(producer_name)}</trace:producer>')
+    lines.append(f'<trace:community>{saxutils.escape(trace_cfg["community"])}</trace:community>')
+    generated = "true" if trace_cfg.get("ai_generated") else "false"
+    lines.append(f'<trace:ai generated="{generated}" role="{trace_cfg.get("ai_role", "none")}">')
+    for tool in trace_cfg.get("ai_tools", []):
+        lines.append(f'<trace:tool>{saxutils.escape(tool)}</trace:tool>')
+    lines.append('</trace:ai>')
+    lines.append(f'<trace:track>{saxutils.escape(trace_cfg["track"])}</trace:track>')
+    lines.append(f'<trace:disqualified>{"true" if trace_cfg.get("disqualified") else "false"}</trace:disqualified>')
+    scores = trace_cfg.get("scores", {})
+    if scores:
+        lines.append('<trace:scores>')
+        for cat, s in scores.items():
+            lines.append(f'<trace:score category="{cat}" value="{s["score"]}" max="{s["max"]}"/>')
+        lines.append('</trace:scores>')
+    lines.append(f'<trace:total score="{trace_cfg["total_score"]}" max="{trace_cfg["total_max"]}" pct="{trace_cfg["total_pct"]}"/>')
+    lines.append(f'<trace:verdict>{saxutils.escape(trace_cfg["verdict"])}</trace:verdict>')
+    lines.append(f'<trace:assessmentDate>{trace_cfg["assessment_date"]}</trace:assessmentDate>')
+    lines.append(f'<trace:assessedBy>{saxutils.escape(trace_cfg["assessed_by"])}</trace:assessedBy>')
+    lines.append('</trace:assessment>')
+    return lines
+
+
 def load_bespoke_hosts():
     with open(SCRIPT_DIR / "config" / "bespoke_hosts.json") as f:
         return json.load(f)["default_bespoke"]
@@ -1118,7 +1144,8 @@ def generate_bespoke_rss_feed(base_url):
 
     lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
-        '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">',
+        '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"'
+        ' xmlns:trace="https://tracestandard.org/ns/trace/1.0">',
         "<channel>",
         f"<title>{saxutils.escape(cfg['title'])}</title>",
         f"<link>{saxutils.escape(base_url)}</link>",
@@ -1134,6 +1161,14 @@ def generate_bespoke_rss_feed(base_url):
     for cat in cfg["categories"]:
         lines.append(f'<itunes:category text="{saxutils.escape(cat)}"/>')
     lines.append(f"<lastBuildDate>{now_rfc}</lastBuildDate>")
+
+    podcast_json_path = SCRIPT_DIR / "config" / "podcast.json"
+    if podcast_json_path.exists():
+        with open(podcast_json_path) as _f:
+            _podcast_cfg = json.load(_f)
+        _trace_cfg = _podcast_cfg.get("trace", {})
+        if _trace_cfg:
+            lines += _build_trace_channel_xml(_trace_cfg, _podcast_cfg.get("author", ""))
 
     for ep in episodes[:20]:
         lines += [

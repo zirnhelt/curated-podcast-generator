@@ -15,6 +15,33 @@ from config_loader import load_podcast_config, load_credits_config
 
 PODCASTS_DIR = Path(__file__).parent / "podcasts"
 
+
+def _build_trace_channel_xml(trace_cfg, producer_name):
+    """Return a list of XML lines for a channel-level trace:assessment block."""
+    lines = [f'<trace:assessment version="{trace_cfg.get("version", "1.0")}">']
+    lines.append(f'<trace:producer url="{trace_cfg["producer_url"]}">{saxutils.escape(producer_name)}</trace:producer>')
+    lines.append(f'<trace:community>{saxutils.escape(trace_cfg["community"])}</trace:community>')
+    generated = "true" if trace_cfg.get("ai_generated") else "false"
+    lines.append(f'<trace:ai generated="{generated}" role="{trace_cfg.get("ai_role", "none")}">')
+    for tool in trace_cfg.get("ai_tools", []):
+        lines.append(f'<trace:tool>{saxutils.escape(tool)}</trace:tool>')
+    lines.append('</trace:ai>')
+    lines.append(f'<trace:track>{saxutils.escape(trace_cfg["track"])}</trace:track>')
+    lines.append(f'<trace:disqualified>{"true" if trace_cfg.get("disqualified") else "false"}</trace:disqualified>')
+    scores = trace_cfg.get("scores", {})
+    if scores:
+        lines.append('<trace:scores>')
+        for cat, s in scores.items():
+            lines.append(f'<trace:score category="{cat}" value="{s["score"]}" max="{s["max"]}"/>')
+        lines.append('</trace:scores>')
+    lines.append(f'<trace:total score="{trace_cfg["total_score"]}" max="{trace_cfg["total_max"]}" pct="{trace_cfg["total_pct"]}"/>')
+    lines.append(f'<trace:verdict>{saxutils.escape(trace_cfg["verdict"])}</trace:verdict>')
+    lines.append(f'<trace:assessmentDate>{trace_cfg["assessment_date"]}</trace:assessmentDate>')
+    lines.append(f'<trace:assessedBy>{saxutils.escape(trace_cfg["assessed_by"])}</trace:assessedBy>')
+    lines.append('</trace:assessment>')
+    return lines
+
+
 def load_episode_transcript_url(episode_date, safe_theme, audio_base):
     """Return the transcript URL if a transcript HTML file exists for this episode."""
     transcript_file = PODCASTS_DIR / f"podcast_transcript_{episode_date}_{safe_theme}.html"
@@ -79,11 +106,14 @@ def generate_clean_rss():
                 'theme': theme
             })
     
+    trace_cfg = podcast_config.get("trace", {})
+
     # Generate RSS XML with proper escaping
     rss_lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"'
-        ' xmlns:podcast="https://podcastindex.org/namespace/1.0">',
+        ' xmlns:podcast="https://podcastindex.org/namespace/1.0"'
+        ' xmlns:trace="https://tracestandard.org/ns/trace/1.0">',
         '<channel>',
         f'<title>{saxutils.escape(podcast_config["title"])}</title>',
         f'<link>{podcast_config["url"]}index.html</link>',
@@ -109,7 +139,10 @@ def generate_clean_rss():
         '<itunes:type>episodic</itunes:type>',
         f'<lastBuildDate>{datetime.now().strftime("%a, %d %b %Y %H:%M:%S GMT")}</lastBuildDate>'
     ])
-    
+
+    if trace_cfg:
+        rss_lines += _build_trace_channel_xml(trace_cfg, podcast_config["author"])
+
     # Use R2 audio URL if configured, otherwise fall back to GitHub Pages
     audio_base = podcast_config.get("audio_base_url", podcast_config["url"])
 
