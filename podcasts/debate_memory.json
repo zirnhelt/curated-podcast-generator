@@ -1,43 +1,4 @@
 {
-  "2026-02-25": {
-    "timestamp": 1772024774.723517,
-    "date": "2026-02-25",
-    "theme": "Community Tech & Governance",
-    "central_question": "Deep dive on Community Tech & Governance",
-    "topics_covered": [
-      "broadband",
-      "fiber",
-      "renewable energy",
-      "solar",
-      "AI"
-    ]
-  },
-  "2026-02-26": {
-    "timestamp": 1772111207.694613,
-    "date": "2026-02-26",
-    "theme": "Indigenous Lands & Innovation",
-    "central_question": "Deep dive on Indigenous Lands & Innovation",
-    "topics_covered": [
-      "broadband",
-      "fiber",
-      "satellite",
-      "connectivity",
-      "data sovereignty"
-    ]
-  },
-  "2026-02-27": {
-    "timestamp": 1772197210.945345,
-    "date": "2026-02-27",
-    "theme": "Wild Spaces & Outdoor Life",
-    "central_question": "Deep dive on Wild Spaces & Outdoor Life",
-    "topics_covered": [
-      "broadband",
-      "satellite",
-      "data sovereignty",
-      "AI",
-      "infrastructure"
-    ]
-  },
   "2026-02-28": {
     "timestamp": 1772282806.581413,
     "date": "2026-02-28",
@@ -1957,6 +1918,32 @@
       "Alternative ownership models: collective/Indigenous land tenure versus individual ownership",
       "Producer data sovereignty and precision agriculture as competitive differentiation",
       "Financing structures and credit union products designed for agricultural succession rather than liquidation"
+    ]
+  },
+  "2026-05-28": {
+    "timestamp": 1779976656.550858,
+    "date": "2026-05-28",
+    "theme": "Indigenous Lands & Innovation",
+    "central_question": "What does it take for Indigenous communities to build and control their own technology infrastructure rather than relying on external vendors and advisory roles?",
+    "riley_position": "Indigenous communities need to move from principle-endorsement (like OCAP) to actual infrastructure ownership, with the M\u0101ori data network as a buildable model that shared regional infrastructure through coordinating bodies like the First Nations Technology Council could replicate.",
+    "riley_key_evidence": [
+      "Te P\u0101 T\u016bwatawata: M\u0101ori-owned data storage network with actual servers and governance control, not just policy commitments",
+      "First Nations Technology Council in BC has been building shared technical infrastructure for years and could coordinate a multi-nation data infrastructure proposal",
+      "Carving robotics project could be improved with pre-deployment community IP agreements and restrictions on commercial deployment without Nation consent"
+    ],
+    "casey_position": "The gap between principle and infrastructure is real and resource-intensive, and the risks of underfunded half-measures, unclear accountability, and encoding cultural knowledge into systems without proper governance protections are substantial and cannot be solved by technology alone.",
+    "casey_key_evidence": [
+      "OCAP principles are well-cited but most communities lack actual technical infrastructure matching those commitments",
+      "Advisory bodies without decision rights are legitimacy mechanisms, not governance mechanisms, and can allow companies to claim consultation without genuine power-sharing",
+      "Carving traditions involve cultural transmission protocols that predate IP frameworks and cannot be easily encoded into grant agreements or licenses"
+    ],
+    "resolution": "Casey and Riley converged on the structural funding problem as the real bottleneck: Indigenous communities need operational funding for multi-year governance capacity around technology infrastructure, not just project funding tied to funder timelines. They agreed governance and resources\u2014not technology\u2014are the actual limiting factors.",
+    "topics_covered": [
+      "Data sovereignty infrastructure ownership vs. advisory roles",
+      "OCAP principles and the gap between endorsement and implementation",
+      "Indigenous AI governance: advisory circles and decision-making authority",
+      "Cultural knowledge encoding in technology and intellectual property limitations",
+      "Shared vs. individual community infrastructure models and accountability structures"
     ]
   }
 }

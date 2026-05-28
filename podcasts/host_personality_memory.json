@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[Engadget] Spotify now lets AI agents like OpenClaw generate",
       "[TechRadar] 'Podslop' is a real and growing problem \u2014 data s",
       "[New Atlas] Startup harnesses the power of AI in the ongoing",
       "[TechCrunch] Wirestock raises $23M to supply creative multi-",
@@ -10,7 +9,8 @@
       "Technology shouldn't sacrifice the integrity of knowledge",
       "[CNET] Scientists Warn AI Slop Is Wreaking Havoc in the Rese",
       "[The Verge] AI video is moving beyond clip slop",
-      "[TechCrunch] Spotify adds AI-powered Q&A and briefing genera"
+      "[TechCrunch] Spotify adds AI-powered Q&A and briefing genera",
+      "New: Indigenous AI Advisory Circle"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -135,9 +135,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-26",
-        "clue": "structural-lens:+ \u2014 Deepened focus on governance preventing financialization",
-        "occurrences": 2
+        "date": "2026-05-28",
+        "clue": "funding-risk:x \u2014 Conceded maintenance gap reality; shifted from infrastructure-building optimism",
+        "occurrences": 1
       }
     ],
     "core_memories": [
@@ -279,11 +279,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-17",
-        "clue": "structural-lens:+ \u2014 Moved from dismissing eDNA to designing governance architecture around it",
-        "occurrences": 2
-      },
-      {
         "date": "2026-05-20",
         "clue": "tech-optimism:- \u2014 Consistently named accessibility floor where optimism breaks down",
         "occurrences": 1
@@ -316,6 +311,11 @@
       {
         "date": "2026-05-25",
         "clue": "funding-risk:+ \u2014 Reinforced structural underfunding pattern across standards, auditing, journalism infrastructure",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-05-28",
+        "clue": "evidence-bar:+ \u2014 Explicitly named gap in direct community contact; deepened epistemological rigor",
         "occurrences": 1
       }
     ],
