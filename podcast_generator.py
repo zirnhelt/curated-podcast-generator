@@ -1231,53 +1231,30 @@ def enrich_deep_dive_with_brave(deep_dive_articles, theme_name, client):
 
 
 def _brave_summarize(query, api_key):
-    """Fetch an AI-synthesized answer for a factual query via Brave's Summarizer.
+    """Fetch an AI-synthesized answer for a factual query via Brave's Answers API.
 
-    Two-step flow:
-      1. Web search with summary=1 to obtain a summarizer key.
-      2. Fetch the synthesized answer from the summarizer endpoint.
-
-    Returns a prose answer string, or empty string when the summarizer is
-    unavailable for the query (it's query-dependent and may require a specific
-    Brave plan tier).
+    Single POST to /res/v1/chat/completions with the query as a user message.
+    Returns a prose answer string, or empty string on failure.
     """
     try:
-        resp = requests.get(
-            "https://api.search.brave.com/res/v1/web/search",
+        resp = requests.post(
+            "https://api.search.brave.com/res/v1/chat/completions",
             headers={
                 "Accept": "application/json",
                 "Accept-Encoding": "gzip",
-                "X-Subscription-Token": api_key,
+                "Content-Type": "application/json",
+                "x-subscription-token": api_key,
             },
-            params={"q": query, "count": 3, "search_lang": "en", "safesearch": "moderate", "summary": 1},
-            timeout=10,
+            json={"stream": False, "messages": [{"role": "user", "content": query}]},
+            timeout=15,
         )
         resp.raise_for_status()
-        data = resp.json()
-
-        summarizer_key = data.get("summarizer", {}).get("key")
-        if not summarizer_key:
-            return ""
-
-        sum_resp = requests.get(
-            "https://api.search.brave.com/res/v1/summarizer/search",
-            headers={
-                "Accept": "application/json",
-                "Accept-Encoding": "gzip",
-                "X-Subscription-Token": api_key,
-            },
-            params={"key": summarizer_key, "entity_info": 1},
-            timeout=10,
-        )
-        sum_resp.raise_for_status()
-        segments = sum_resp.json().get("summary", [])
-        text = "".join(
-            seg.get("data", "") for seg in segments if seg.get("type") == "token"
-        ).strip()
-        return text
-
+        choices = resp.json().get("choices", [])
+        if choices:
+            return choices[0].get("message", {}).get("content", "").strip()
+        return ""
     except Exception as e:
-        print(f"  Brave summarizer failed for '{query[:50]}': {e}")
+        print(f"  Brave Answers API failed for '{query[:50]}': {e}")
         return ""
 
 
