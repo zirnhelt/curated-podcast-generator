@@ -20,11 +20,11 @@ class TestLoadAmbientConfig:
         expected = [
             "Arts, Culture & Digital Storytelling",
             "Working Lands & Industry",
-            "Community Tech & Governance",
+            "Gear, Gadgets & Practical Tech",
             "Indigenous Lands & Innovation",
             "Wild Spaces & Outdoor Life",
-            "Cariboo Voices & Local News",
-            "Resilient Rural Futures",
+            "Cariboo Local Affairs",
+            "Science, Wonder & the Natural World",
         ]
         for theme in expected:
             assert theme in themes, f"Missing theme: {theme}"

@@ -61,10 +61,14 @@ class TestFetchWeather:
     def test_williams_lake_included_on_snow(self, mock_get):
         """Williams Lake appears when there's snowfall (driving impact)."""
         horsefly = _mock_api_response(current_temp=-5, current_code=3)
+        hundred_mile = _mock_api_response(current_temp=-4, current_code=2)
         williams = _mock_api_response(current_temp=-3, current_code=73)  # moderate snowfall
+        quesnel = _mock_api_response(current_temp=-6, current_code=1)
         mock_get.side_effect = [
             MagicMock(json=MagicMock(return_value=horsefly), raise_for_status=MagicMock()),
+            MagicMock(json=MagicMock(return_value=hundred_mile), raise_for_status=MagicMock()),
             MagicMock(json=MagicMock(return_value=williams), raise_for_status=MagicMock()),
+            MagicMock(json=MagicMock(return_value=quesnel), raise_for_status=MagicMock()),
         ]
 
         result = fetch_weather()
@@ -75,10 +79,14 @@ class TestFetchWeather:
     def test_williams_lake_included_on_freezing_rain(self, mock_get):
         """Freezing rain triggers driving warning and slow-down advice."""
         horsefly = _mock_api_response(current_temp=-2, current_code=2)
+        hundred_mile = _mock_api_response(current_temp=-1, current_code=2)
         williams = _mock_api_response(current_temp=-1, current_code=66)  # freezing rain
+        quesnel = _mock_api_response(current_temp=-3, current_code=1)
         mock_get.side_effect = [
             MagicMock(json=MagicMock(return_value=horsefly), raise_for_status=MagicMock()),
+            MagicMock(json=MagicMock(return_value=hundred_mile), raise_for_status=MagicMock()),
             MagicMock(json=MagicMock(return_value=williams), raise_for_status=MagicMock()),
+            MagicMock(json=MagicMock(return_value=quesnel), raise_for_status=MagicMock()),
         ]
 
         result = fetch_weather()
@@ -89,10 +97,14 @@ class TestFetchWeather:
     def test_williams_lake_included_on_high_winds(self, mock_get):
         """High winds at Williams Lake trigger driving warning."""
         horsefly = _mock_api_response(current_temp=10, current_code=2)
+        hundred_mile = _mock_api_response(current_temp=11, current_code=2)
         williams = _mock_api_response(current_temp=12, current_code=2, max_wind=65)
+        quesnel = _mock_api_response(current_temp=9, current_code=1)
         mock_get.side_effect = [
             MagicMock(json=MagicMock(return_value=horsefly), raise_for_status=MagicMock()),
+            MagicMock(json=MagicMock(return_value=hundred_mile), raise_for_status=MagicMock()),
             MagicMock(json=MagicMock(return_value=williams), raise_for_status=MagicMock()),
+            MagicMock(json=MagicMock(return_value=quesnel), raise_for_status=MagicMock()),
         ]
 
         result = fetch_weather()

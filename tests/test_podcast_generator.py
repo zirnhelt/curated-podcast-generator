@@ -204,7 +204,7 @@ class TestHeuristicGapMs:
 
     def test_news_same_speaker_short_continuation(self):
         gap = heuristic_gap_ms("Continuing my thought here with more detail.", "riley", "riley", section="news")
-        assert gap == 350
+        assert gap == 600
 
 
 class TestParseScriptPacingTags:

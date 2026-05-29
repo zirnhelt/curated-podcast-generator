@@ -239,7 +239,7 @@ class TestIngest:
         assert len(queue["items"]) == 1
         item = queue["items"][0]
         assert item["type"] == "feedback"
-        assert item["theme_tag"] == "Cariboo Voices & Local News"
+        assert item["theme_tag"] == "Cariboo Local Affairs"
         assert item["status"] == "pending"
         assert item["subject"] == "Love the show"
 

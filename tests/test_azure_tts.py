@@ -83,8 +83,9 @@ class TestBuildSectionSsml:
 
     def test_contains_both_voice_elements(self):
         ssml = build_section_ssml(self._two_turn_segments())
-        assert "en-US-Ava:DragonHDLatestNeural" in ssml
-        assert "en-US-Andrew:DragonHDLatestNeural" in ssml
+        assert 'en-US-MultiTalker-Ava-Andrew:DragonHDLatestNeural' in ssml
+        assert 'speaker="ava"' in ssml
+        assert 'speaker="andrew"' in ssml
 
     def test_contains_mstts_namespace(self):
         ssml = build_section_ssml(self._two_turn_segments())
@@ -131,5 +132,7 @@ class TestBuildSectionSsml:
             "casey": "en-US-Other-Voice",
         }
         ssml = build_section_ssml(self._two_turn_segments(), voice_map=custom_map)
-        assert "en-US-Custom-Voice" in ssml
-        assert "en-US-Other-Voice" in ssml
+        # voice_map is unused in MultiTalker mode; MultiTalker model is always used
+        assert "en-US-MultiTalker-Ava-Andrew:DragonHDLatestNeural" in ssml
+        assert 'speaker="ava"' in ssml
+        assert 'speaker="andrew"' in ssml
