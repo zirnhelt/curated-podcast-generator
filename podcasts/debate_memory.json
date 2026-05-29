@@ -1,17 +1,4 @@
 {
-  "2026-02-28": {
-    "timestamp": 1772282806.581413,
-    "date": "2026-02-28",
-    "theme": "Cariboo Voices & Local News",
-    "central_question": "Deep dive on Cariboo Voices & Local News",
-    "topics_covered": [
-      "broadband",
-      "fiber",
-      "connectivity",
-      "AI",
-      "infrastructure"
-    ]
-  },
   "2026-03-01": {
     "timestamp": 1772369395.572029,
     "date": "2026-03-01",
@@ -1944,6 +1931,32 @@
       "Indigenous AI governance: advisory circles and decision-making authority",
       "Cultural knowledge encoding in technology and intellectual property limitations",
       "Shared vs. individual community infrastructure models and accountability structures"
+    ]
+  },
+  "2026-05-29": {
+    "timestamp": 1780059227.052897,
+    "date": "2026-05-29",
+    "theme": "Wild Spaces & Outdoor Life",
+    "central_question": "Can general-purpose AI tools reliably identify wildlife and assist with land stewardship in underrepresented geographic regions like the Cariboo, or do they require regional validation and community-controlled governance frameworks?",
+    "riley_position": "General AI models improve over time as data volume increases, and purpose-built tools like Merlin and iNaturalist demonstrate measurable regional accuracy improvements when communities contribute systematically. The distinction between purpose-built ecological tools and general assistants is what matters for practical use.",
+    "riley_key_evidence": [
+      "Gemini misidentifies Australian wildlife (cats as raccoons) because training data is overwhelmingly Northern Hemisphere-focused",
+      "Merlin's Boreal version shows meaningfully better performance on Cariboo-resident species like Boreal Chickadee and Gray Jay due to community contributions",
+      "iNaturalist explicitly tries to build biodiversity data in underrepresented regions through community contributions"
+    ],
+    "casey_position": "General AI systems deployed in the Cariboo operate with invisible confidence intervals that vary enormously by location, creating genuine safety risks; the real solution requires sustained relationships with Indigenous communities who hold centuries of territorial knowledge and data sovereignty rights, not corporate partnerships or product launches.",
+    "casey_key_evidence": [
+      "Misidentifying grizzly tracks as black bear tracks due to underrepresented training data could create real safety problems",
+      "T\u015dilhqot'in communities have explicitly stated that information gathered on their territory remains under their governance",
+      "First Journey Trails' youth mountain bike program demonstrates embodied land literacy that can't be replicated algorithmically"
+    ],
+    "resolution": "Riley and Casey agreed that purpose-built, regionally-validated tools (Merlin, iNaturalist) are significantly better than general AI assistants for outdoor use in the Cariboo. They converged on the principle that the path forward requires sustained institutional relationships with Indigenous communities under governance frameworks those communities control, rather than corporate-led initiatives. Both acknowledged the track record of tech companies on genuine long-term commitment is poor.",
+    "topics_covered": [
+      "Regional accuracy gaps in AI training datasets for underrepresented geographies",
+      "Distinction between purpose-built ecological tools vs. general-purpose AI extended into outdoor contexts",
+      "Indigenous data sovereignty and T\u015dilhqot'in territorial knowledge governance",
+      "Community science contribution to ecological baselines (iNaturalist, trail building)",
+      "Risk of treating AI outputs as certainty rather than hypothesis in safety-critical contexts like wildlife identification"
     ]
   }
 }

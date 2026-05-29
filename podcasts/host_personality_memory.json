@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] 'Podslop' is a real and growing problem \u2014 data s",
       "[New Atlas] Startup harnesses the power of AI in the ongoing",
       "[TechCrunch] Wirestock raises $23M to supply creative multi-",
       "[Neowin] Spotify will soon support Apple's technology to ope",
@@ -10,7 +9,8 @@
       "[CNET] Scientists Warn AI Slop Is Wreaking Havoc in the Rese",
       "[The Verge] AI video is moving beyond clip slop",
       "[TechCrunch] Spotify adds AI-powered Q&A and briefing genera",
-      "New: Indigenous AI Advisory Circle"
+      "New: Indigenous AI Advisory Circle",
+      "[Android Authority] Gemini\u2019s camera AI thinks Aussie wildlif"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -75,11 +75,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-10",
-        "clue": "tech-optimism:- \u2014 Conceded that research pipeline follows funding, not pure science",
-        "occurrences": 2
-      },
-      {
         "date": "2026-05-04",
         "clue": "Indigenous-tech:+ \u2014 Escalated from collaboration framing to funding parity as foundational requirement",
         "occurrences": 2
@@ -137,6 +132,11 @@
       {
         "date": "2026-05-28",
         "clue": "funding-risk:x \u2014 Conceded maintenance gap reality; shifted from infrastructure-building optimism",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-05-29",
+        "clue": "structural-lens:+ \u2014 Shifted toward governance frameworks and Indigenous data sovereignty as primary path forward",
         "occurrences": 1
       }
     ],
@@ -314,8 +314,13 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-28",
-        "clue": "evidence-bar:+ \u2014 Explicitly named gap in direct community contact; deepened epistemological rigor",
+        "date": "2026-05-29",
+        "clue": "evidence-bar:+ \u2014 Explicitly named gap in First Nations consultation; raised bar for claiming solutions exist",
+        "occurrences": 2
+      },
+      {
+        "date": "2026-05-29",
+        "clue": "pilot-skepticism:~ \u2014 Conceded First Journey Trails as proof-of-concept while resisting scale-through-centralization framing as solved",
         "occurrences": 1
       }
     ],

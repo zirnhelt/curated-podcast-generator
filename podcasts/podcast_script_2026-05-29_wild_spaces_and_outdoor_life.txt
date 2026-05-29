@@ -1,0 +1,127 @@
+# Cariboo Signals Podcast Script - 2026-05-29
+# Theme: Wild Spaces & Outdoor Life
+# Generated: 2026-05-29 05:53:44 PDT
+
+**CASEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. It's Friday, May 29th, 2026. Reaching you from the heart of the Cariboo, the homeland of the Secwépemc, Tŝilhqot'in, and Dakelh nations. Today's theme is Wild Spaces & Outdoor Life — I'm Casey.
+
+**RILEY:** And I'm Riley. It's the Friday before a long weekend, the trails are calling, and we've got a genuinely interesting question today about whether the tech we're bringing into wild spaces actually knows anything about those spaces.
+
+**CASEY:** Out at Horsefly Lake this morning it's 10 degrees with overcast skies, high of 16 expected — about as moody as late May gets out there. Williams Lake, 100 Mile, and Quesnel are all sitting at 10 or 11 degrees under the same overcast lid. Tomorrow looks similar with a millimetre or so of rain possible, so if you're heading out on trails this weekend, pack a layer. Let's get into the news.
+
+---
+
+**NEWS ROUNDUP**
+
+**RILEY:** [pause:1200] Two stories this week put Quesnel's air connectivity front and centre, and neither is good news. Pacific Coastal Airlines is ending its Quesnel-Vancouver service, and the city says it was caught completely off guard by the announcement. No transition plan, no replacement service in place. For a community that's already four-plus hours by road from the nearest major hospital, losing scheduled air service isn't an inconvenience — it's a health and economic access problem.
+
+**CASEY:** Rural air routes don't pencil out for carriers once fuel costs or load factors shift, and the community absorbs the full cost of that business decision.
+
+**CASEY:** [pause:1200] Williams Lake's Spring GoByBike Week runs May 30th to June 5th. It's a province-wide initiative that tracks cycling trips and encourages people to swap car commutes for bikes. Williams Lake has been a consistent participant, and given the city's investments in trail infrastructure over the last few years, it's worth knowing about if you're local.
+
+**RILEY:** One week of data on who's actually using that infrastructure is more useful than a year of planning documents.
+
+**RILEY:** [pause:1200] There's a new early childhood program in Quesnel worth flagging. Whole Child Early Learning Centre has opened a new daycare operation. Rural childcare capacity is genuinely one of the binding constraints on workforce participation in smaller communities, so any net addition matters.
+
+**CASEY:** Any net addition to rural childcare is a workforce story, not just a families story.
+
+**CASEY:** [pause:1200] Cariboo communities are hosting local government leadership workshops ahead of the 2026 municipal elections. These are designed to help people understand what's involved in running for local office — school boards, Regional District seats, municipal councils. Turnout for rural local elections is chronically low, and so is the pool of candidates. Anything that lowers the entry barrier is worth paying attention to.
+
+**RILEY:** Especially with Regional District decisions increasingly touching land use, wildfire interface zones, and water — these aren't low-stakes seats anymore.
+
+**RILEY:** [pause:1200] Cariboo-Prince George MP Todd Doherty is marking the second reading of Bill S-233 in the House of Commons. The bill relates to a guaranteed livable basic income framework — it's a Senate bill that's been making its way through the legislative process. Still early stages, and the gap between second reading and anything resembling policy is substantial, but it's moving.
+
+**CASEY:** Second reading is a long way from a cheque in anyone's mailbox — worth tracking, not celebrating yet.
+
+**CASEY:** [pause:1200] Williams Lake is recognizing the legacy of a local gymnast through a new Spirit of the Sport Award. The details are in the Tribune if you want to read the full story — it's a community honouring its own, and that matters.
+
+**RILEY:** Those are the stories that remind you why local journalism is worth keeping alive.
+
+**RILEY:** [pause:1200] A B.C. church is restoring what's described as one of Canada's largest pipe organs — the instrument in a Victoria cathedral. The restoration costs are significant and the technical complexity is remarkable. It's a different kind of analog-versus-digital conversation, and honestly a good reminder that not every restoration story involves an algorithm.
+
+**CASEY:** Sometimes the old infrastructure is worth saving on its own terms.
+
+**CASEY:** [pause:1200] In tech news — a new local AI language model called Gemma 3n is generating attention in developer circles. Coverage this week flags that its architecture may represent a significant design shift in small, locally-runnable AI models. The headline is that it runs an 8-billion-parameter model efficiently enough for edge devices — meaning phones, small computers, things that don't need a data centre. We'll come back to the wildlife identification angle on AI in the Deep Dive.
+
+**RILEY:** And for anyone looking to cut subscription costs — How-To Geek has a roundup of open-source apps that one writer says replaced every paid subscription they had. LibreOffice, Nextcloud, that kind of territory. Worth a browse.
+
+**CASEY:** Right, let's pause there for a moment — there's an organization doing genuinely good work connecting young people to the land through trails.
+
+---
+
+**COMMUNITY SPOTLIGHT**
+
+**RILEY:** First Journey Trails is a trail design and construction organization with a program that's particularly worth knowing about right now: the Indigenous Youth Mountain Bike Program. The idea is straightforward and powerful — young people don't just ride trails, they help build them. Trail construction is hands-on, it requires reading landscape, understanding drainage, thinking about flow and sustainability. It's outdoor education with a tangible outcome at the end. Trail season is here, which means registration for summer programming is opening up. If you've got youth in your circle who'd benefit from that kind of experience, or if you want to volunteer or support the work, check out firstjourneytrails.com.
+
+**CASEY:** Building trails yourself changes how you see them — every one of those skills translates directly to land stewardship.
+
+**RILEY:** Now into the deep dive, where today's AI angle and the outdoor life angle collide in ways that are genuinely worth unpacking.
+
+---
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Wild Spaces & Outdoor Life**
+
+**CASEY:** The story that landed this week and stuck with me: Gemini's camera AI — Google's AI camera assistant — has been systematically misidentifying Australian wildlife. Thinks cats are raccoons. No raccoons in Australia. Flagging humans walking across backyards as some kind of unidentified animal event. And it's not recognizing locally common vehicles in Australian terms.
+
+**RILEY:** The cause is obvious once you see it. These models are trained overwhelmingly on Northern Hemisphere, North American and European data. Australia is underrepresented in the training set, so the model defaults to the nearest pattern it knows. Raccoon is the nearest small mammal to a cat when you don't have enough data on whatever's actually there.
+
+**CASEY:** The reason it matters here isn't Australia. The reason it matters here is that the Cariboo is also underrepresented in every training dataset these systems are built on. What does AI-assisted wildlife identification, trail safety, or habitat assessment actually know about a moose-willow interface north of 100 Mile House?
+
+**RILEY:** Probably less than it knows about Yellowstone. Most of the wildlife observation data that feeds these models comes from national parks with heavy visitor traffic, eBird records concentrated around urban birding hotspots, and iNaturalist contributions that skew heavily toward California, the Pacific Northwest, and Western Europe. The Chilcotin plateau is genuinely sparse in those datasets.
+
+**CASEY:** And the gap isn't trivial. Misidentifying a cat as a raccoon is funny. Misidentifying a grizzly track as a black bear track because the model has never seen a Chilcotin grizzly at a specific body weight and season — that's a different problem.
+
+**RILEY:** The iNaturalist angle is worth pushing on, though. The platform explicitly tries to build biodiversity data in underrepresented regions, and it's community-contributed. There are active naturalist groups in Williams Lake and the South Cariboo who've been logging observations for years. That data feeds into training pipelines over time.
+
+**CASEY:** Over time. Who decides when the model is calibrated well enough for this specific ecosystem?
+
+**RILEY:** Nobody decides that explicitly — that's the honest answer. The model improves as data volume increases, but there's no threshold or regional validation standard. A model that's highly accurate at Banff might perform significantly worse in the Nazko Valley, and there's no label on it telling you which context you're in.
+
+**CASEY:** That's what doesn't get said in the product marketing. These tools get deployed as if geographic context is solved. Point your phone at a bird. Point your camera at a track. Get an answer. The confidence interval on that answer is invisible to the user, and it varies enormously by location.
+
+**RILEY:** There are genuinely good counter-examples, though. Merlin, the Cornell bird ID app, has been actively working to improve its North American regional accuracy, and the Boreal version has meaningfully better performance on species that are Cariboo-resident — Boreal Chickadee, Gray Jay, Spruce Grouse. The improvement came specifically because birding communities in northern Canada started contributing more systematically.
+
+**CASEY:** Merlin is a better example than Gemini on this specific point. But Merlin is also a purpose-built tool developed by ornithologists with a strong community science feedback loop. Gemini is a general-purpose AI that got camera access and a marketing brief. Those are different things pretending to be the same thing.
+
+**RILEY:** That distinction matters for people actually using these tools on the land. Purpose-built ecological identification tools — iNaturalist's AI, Merlin, some of the plant identification apps — have invested in regional accuracy. General AI assistants extended into wildlife contexts haven't. Conflating them is the mistake that gets people into trouble.
+
+**CASEY:** And the Cariboo is trail-camera country. Ranchers running camera systems on fence lines to track predator pressure. Hunters using cameras to pattern game movement. Conservation work trying to document species presence in areas with thin baseline data. All of those people are potential users of AI-assisted identification. If they're reaching for a general assistant instead of a purpose-built tool, the error rates are higher than they probably realize.
+
+**RILEY:** The wildfire documentary that hit YouTube this week — the B.C. one flagged in today's articles — doesn't directly address this, but it's part of the same question. Documentation of what our landscapes look like, what's happening in them, what the ecological baseline is — that's what feeds future models. If we're not contributing to that record, the tools being built for the next decade won't reflect what's actually here.
+
+**CASEY:** That's a better argument for community science participation than anything I've heard from the tech side. Not "contribute to the app so it gets smarter." Contribute because the ecological record of this landscape is genuinely incomplete, and tools built on incomplete records will fail in ways that matter to people living here.
+
+**RILEY:** The Horse Lake fishing piece from the 100 Mile Free Press is a good grounding point. Someone spending two days on the water, observing conditions, noting what's working and what isn't. That kind of embodied local knowledge is exactly what doesn't get systematically captured. The person who knows that Horse Lake runs cold in May and the trolling depth shifts by three weeks isn't uploading that to a training dataset.
+
+**CASEY:** And probably never will. My concern with the tech-optimist version of this argument is that it implies the solution is getting more people to contribute data to centralized platforms. But who owns that data once it's there? What happens to local ecological knowledge when it gets laundered through a corporate platform and repackaged as a product feature?
+
+**RILEY:** That's a live question. Indigenous data sovereignty work is directly relevant here. Tŝilhqot'in land stewards hold ecological knowledge about the Chilcotin that runs centuries deep. Whether that knowledge gets contributed to public AI training datasets, and on whose terms, is not settled.
+
+**CASEY:** It shouldn't be rushed, either. Tŝilhqot'in communities have been explicit about the principle that information gathered on their territory, about their territory, remains under their governance. That applies to wildlife data, plant distribution data, fire history data. It's a jurisdictional question, not a technical one.
+
+**RILEY:** Which is why the more interesting path for AI-assisted trail safety or wildlife identification in the Cariboo isn't "deploy a general model and improve it over time." Build relationships with the communities who hold this knowledge and develop tools that operate under governance frameworks those communities control.
+
+**CASEY:** Right direction, genuinely. The practical gap is that it requires sustained institutional relationships, not a product launch. And the track record of tech companies showing up to those conversations with long-term commitment rather than partnership theatre is not encouraging. I'd also want to know: which specific tech companies have actually completed that kind of co-governance agreement in a Canadian context? I'd want to see the examples before I called it a proven path.
+
+**RILEY:** I can't name a completed example off the top of my head — and that absence is worth sitting with. What I'd say is the model doesn't have to originate with a tech company at all. First Journey Trails is instructive — youth building trails, learning landscape directly, connecting to the land through practice. Knowledge stays in the community, gets transferred through doing, no corporate intermediary required.
+
+**CASEY:** The mountain bike program builds land literacy in a way an app genuinely cannot replicate. You can't algorithmically substitute for knowing how a hillside drains because you spent three weekends digging swales into it. Though I'll note — that program serves a small number of youth each season. It's not a rebuttal to the scale problem; it's a proof of concept.
+
+**RILEY:** Scale through replication, not through centralization. Dozens of programs like it across the province change the landscape differently than one platform with a million users.
+
+**CASEY:** Maybe. That's a longer argument than we can finish today. Practically speaking: anyone using AI tools for wildlife identification in the Cariboo right now should treat the output as a hypothesis, not a verdict. Cross-reference with someone who knows this specific landscape. The error rate in underrepresented geographies is real and it's not documented on the label.
+
+**RILEY:** For naturalists, trail builders, and hunters in the region — iNaturalist observations logged here genuinely improve future model accuracy. That's infrastructure, not altruism. The ecological record we build now shapes what tools are available to the next generation of people working this land.
+
+**CASEY:** We should be upfront: the ecological knowledge and governance questions we've been raising — especially around Tŝilhqot'in territorial data — we're working from published sources. We haven't had direct guidance from First Nations communications offices on this material, and that's a gap worth naming.
+
+**RILEY:** If you're involved in Indigenous land stewardship programs, community science, or trail building in the Cariboo and want to push back on anything we've said today or add to it — reach out. The conversation is better with your voice in it.
+
+**CASEY:** The wildfire documentary on YouTube — B.C.-focused, free to watch, relevant to anyone thinking about the ecological history of these landscapes. Worth an hour of your time this weekend.
+
+**RILEY:** The tools will catch up to this landscape eventually. The communities that have been reading it for generations don't need to wait.
+
+**CASEY:** They don't need the tools to catch up — they need the tools to stay out of the way until they're actually useful. Enjoy the trails this weekend.
+
+---
+
+**CASEY:** That's today's episode of Cariboo Signals. We'd love to hear your thoughts — and if you have a correction, a story tip, or you'd like to be part of what we're building here, reach out at feedback at cariboosignals dot c-a. Enjoy your weekend.

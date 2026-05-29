@@ -1,0 +1,220 @@
+{
+  "episode": {
+    "date": "2026-05-29",
+    "formatted_date": "Friday, May 29, 2026",
+    "theme": "Wild Spaces & Outdoor Life",
+    "title": "Cariboo Signals - Wild Spaces & Outdoor Life",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Wild Spaces & Outdoor Life.</p><p><b>NEWS ROUNDUP:</b> We break down [Williams Lake Tribune] Cariboo communities to host local government leadership workshops ahead of 2026 elections and [Williams Lake Tribune] Quesnel caught off guard by Pacific Coastal service suspension, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Can general-purpose AI tools reliably identify wildlife and assist with land stewardship in underrepresented geographic regions like the Cariboo, or do they require regional validation and community-controlled governance frameworks? Topics include: Regional accuracy gaps in AI training datasets for underrepresented geographies, Distinction between purpose-built ecological tools vs. general-purpose AI extended into outdoor contexts, Indigenous data sovereignty and Tŝilhqot'in territorial knowledge governance, Community science contribution to ecological baselines (iNaturalist, trail building), Risk of treating AI outputs as certainty rather than hypothesis in safety-critical contexts like wildlife identification.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://firstjourneytrails.com\">First Journey Trails &amp; Indigenous Youth Mountain Bike Program</a></p><p><b>Sources discussed:</b></p><ul><li>Laisa Conde (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/05/28/cariboo-communities-to-host-local-government-leadership-workshops-ahead-of-2026-elections/\">[Williams Lake Tribune] Cariboo communities to host local go...</a></li><li>Laisa Conde (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/05/28/quesnel-caught-off-guard-by-pacific-coastal-service-suspension/\">[Williams Lake Tribune] Quesnel caught off guard by Pacific ...</a></li><li>Laisa Conde (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/05/26/spring-gobybike-is-back-may-30-to-june-5-in-williams-lake/\">[Williams Lake Tribune] Spring GoByBike is back May 30 to Ju...</a></li><li>Patrick Davies (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/05/27/cariboo-prince-george-mp-todd-doherty-celebrates-second-reading-of-bill-s-233/\">[Williams Lake Tribune] Cariboo-Prince George MP Todd Dohert...</a></li><li>Laisa Conde (Quesnel Cariboo Observer): <a href=\"https://quesnelobserver.com/2026/05/27/pacific-coastal-airlines-ending-quesnel-vancouver-connection/\">[Quesnel Cariboo Observer] Pacific Coastal Airlines ending Q...</a></li><li>rebeccadyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/05/27/williams-lakes-gymnast-memory-and-legacy-lives-on-through-spirit-of-the-sport-award/\">[Williams Lake Tribune] Williams Lake’s gymnast memory and l...</a></li><li>Laisa Conde (Quesnel Cariboo Observer): <a href=\"https://quesnelobserver.com/2026/05/27/whole-child-early-learning-centre-operating-a-new-daycare-program-in-quesnel/\">[Quesnel Cariboo Observer] Whole Child Early Learning Centre...</a></li><li>Android Authority: <a href=\"https://www.androidauthority.com/gemini-camera-localization-3670724/\">[Android Authority] Gemini’s camera AI thinks Aussie wildlif...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/05/27/two-langley-councillors-drop-libel-lawsuit-against-fellow-politicians-others/\">[Williams Lake Tribune] Two Langley councillors drop libel l...</a></li><li>none (Quesnel Cariboo Observer): <a href=\"https://quesnelobserver.com/2026/05/27/notice-of-bankruptcy/\">[Quesnel Cariboo Observer] Notice of Bankruptcy</a></li><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/05/27/voice-of-the-cathedral-b-c-church-restoring-one-of-canadas-largest-organs/\">[Williams Lake Tribune] ‘Voice of the cathedral’: B.C. churc...</a></li><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/05/27/video-fatal-langley-shooting-is-same-street-as-non-lethal-shooting-10-days-prior/\">[Williams Lake Tribune] VIDEO: Fatal Langley shooting is sam...</a></li><li>none (100 Mile Free Press): <a href=\"https://100milefreepress.net/2026/05/25/cariboo-outdoors-a-couple-of-days-trolling-around-horse-lake/\">[100 Mile Free Press] CARIBOO OUTDOORS: A couple of days tro...</a></li><li>Brittany Webster (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/05/25/b-c-wildfire-documentary-hits-youtube/\">[Williams Lake Tribune] B.C. wildfire documentary hits YouTu...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-6<br>TTS Voices: OpenAI TTS API (Nova · Echo)<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-05-29T05:53:41.927266-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-sonnet-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 2606,
+      "voice_ratio_casey_riley": 0.97,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 1,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0
+      },
+      "total_hits": 1
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Cariboo communities to host local government leadership workshops ahead of 2026 elections",
+          "url": "https://wltribune.com/2026/05/28/cariboo-communities-to-host-local-government-leadership-workshops-ahead-of-2026-elections/",
+          "source": "Williams Lake Tribune",
+          "author": "Laisa Conde",
+          "ai_score": 0,
+          "date_published": "2026-05-29T04:53:13.832167+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Quesnel caught off guard by Pacific Coastal service suspension",
+          "url": "https://wltribune.com/2026/05/28/quesnel-caught-off-guard-by-pacific-coastal-service-suspension/",
+          "source": "Williams Lake Tribune",
+          "author": "Laisa Conde",
+          "ai_score": 0,
+          "date_published": "2026-05-28T17:30:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Spring GoByBike is back May 30 to June 5 in Williams Lake",
+          "url": "https://wltribune.com/2026/05/26/spring-gobybike-is-back-may-30-to-june-5-in-williams-lake/",
+          "source": "Williams Lake Tribune",
+          "author": "Laisa Conde",
+          "ai_score": 0,
+          "date_published": "2026-05-28T08:15:08.877473+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Cariboo-Prince George MP Todd Doherty celebrates second reading of Bill S-233",
+          "url": "https://wltribune.com/2026/05/27/cariboo-prince-george-mp-todd-doherty-celebrates-second-reading-of-bill-s-233/",
+          "source": "Williams Lake Tribune",
+          "author": "Patrick Davies",
+          "ai_score": 0,
+          "date_published": "2026-05-28T08:15:08.877287+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Pacific Coastal Airlines ending Quesnel/Vancouver connection",
+          "url": "https://quesnelobserver.com/2026/05/27/pacific-coastal-airlines-ending-quesnel-vancouver-connection/",
+          "source": "Quesnel Cariboo Observer",
+          "author": "Laisa Conde",
+          "ai_score": 0,
+          "date_published": "2026-05-27T22:00:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Two Langley councillors drop libel lawsuit against fellow politicians, others",
+          "url": "https://wltribune.com/2026/05/27/two-langley-councillors-drop-libel-lawsuit-against-fellow-politicians-others/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 0,
+          "date_published": "2026-05-27T16:55:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Williams Lake’s gymnast memory and legacy lives on through Spirit of the Sport Award",
+          "url": "https://wltribune.com/2026/05/27/williams-lakes-gymnast-memory-and-legacy-lives-on-through-spirit-of-the-sport-award/",
+          "source": "Williams Lake Tribune",
+          "author": "rebeccadyok",
+          "ai_score": 0,
+          "date_published": "2026-05-27T16:23:04.231287+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Notice of Bankruptcy",
+          "url": "https://quesnelobserver.com/2026/05/27/notice-of-bankruptcy/",
+          "source": "Quesnel Cariboo Observer",
+          "author": "none",
+          "ai_score": 0,
+          "date_published": "2026-05-27T13:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Whole Child Early Learning Centre operating a new daycare program in Quesnel",
+          "url": "https://quesnelobserver.com/2026/05/27/whole-child-early-learning-centre-operating-a-new-daycare-program-in-quesnel/",
+          "source": "Quesnel Cariboo Observer",
+          "author": "Laisa Conde",
+          "ai_score": 0,
+          "date_published": "2026-05-27T12:30:00+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] ‘Voice of the cathedral’: B.C. church restoring one of Canada’s largest organs",
+          "url": "https://wltribune.com/2026/05/27/voice-of-the-cathedral-b-c-church-restoring-one-of-canadas-largest-organs/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 0,
+          "date_published": "2026-05-27T09:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] VIDEO: Fatal Langley shooting is same street as non-lethal shooting 10 days prior",
+          "url": "https://wltribune.com/2026/05/27/video-fatal-langley-shooting-is-same-street-as-non-lethal-shooting-10-days-prior/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 0,
+          "date_published": "2026-05-27T08:55:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Wild Spaces & Outdoor Life",
+      "articles": [
+        {
+          "title": "[Android Authority] Gemini’s camera AI thinks Aussie wildlife are people and cats are raccoons",
+          "url": "https://www.androidauthority.com/gemini-camera-localization-3670724/",
+          "source": "Android Authority",
+          "author": "",
+          "ai_score": 0,
+          "date_published": "2026-05-25T16:10:14+00:00",
+          "summary": "",
+          "discussed": true
+        },
+        {
+          "title": "[100 Mile Free Press] CARIBOO OUTDOORS: A couple of days trolling around Horse Lake",
+          "url": "https://100milefreepress.net/2026/05/25/cariboo-outdoors-a-couple-of-days-trolling-around-horse-lake/",
+          "source": "100 Mile Free Press",
+          "author": "none",
+          "ai_score": 0,
+          "date_published": "2026-05-26T00:00:00+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] B.C. wildfire documentary hits YouTube",
+          "url": "https://wltribune.com/2026/05/25/b-c-wildfire-documentary-hits-youtube/",
+          "source": "Williams Lake Tribune",
+          "author": "Brittany Webster",
+          "ai_score": 0,
+          "date_published": "2026-05-25T13:30:00+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Can general-purpose AI tools reliably identify wildlife and assist with land stewardship in underrepresented geographic regions like the Cariboo, or do they require regional validation and community-controlled governance frameworks?",
+        "riley_position": "General AI models improve over time as data volume increases, and purpose-built tools like Merlin and iNaturalist demonstrate measurable regional accuracy improvements when communities contribute systematically. The distinction between purpose-built ecological tools and general assistants is what matters for practical use.",
+        "riley_key_evidence": [
+          "Gemini misidentifies Australian wildlife (cats as raccoons) because training data is overwhelmingly Northern Hemisphere-focused",
+          "Merlin's Boreal version shows meaningfully better performance on Cariboo-resident species like Boreal Chickadee and Gray Jay due to community contributions",
+          "iNaturalist explicitly tries to build biodiversity data in underrepresented regions through community contributions"
+        ],
+        "casey_position": "General AI systems deployed in the Cariboo operate with invisible confidence intervals that vary enormously by location, creating genuine safety risks; the real solution requires sustained relationships with Indigenous communities who hold centuries of territorial knowledge and data sovereignty rights, not corporate partnerships or product launches.",
+        "casey_key_evidence": [
+          "Misidentifying grizzly tracks as black bear tracks due to underrepresented training data could create real safety problems",
+          "Tŝilhqot'in communities have explicitly stated that information gathered on their territory remains under their governance",
+          "First Journey Trails' youth mountain bike program demonstrates embodied land literacy that can't be replicated algorithmically"
+        ],
+        "resolution": "Riley and Casey agreed that purpose-built, regionally-validated tools (Merlin, iNaturalist) are significantly better than general AI assistants for outdoor use in the Cariboo. They converged on the principle that the path forward requires sustained institutional relationships with Indigenous communities under governance frameworks those communities control, rather than corporate-led initiatives. Both acknowledged the track record of tech companies on genuine long-term commitment is poor.",
+        "topics_covered": [
+          "Regional accuracy gaps in AI training datasets for underrepresented geographies",
+          "Distinction between purpose-built ecological tools vs. general-purpose AI extended into outdoor contexts",
+          "Indigenous data sovereignty and Tŝilhqot'in territorial knowledge governance",
+          "Community science contribution to ecological baselines (iNaturalist, trail building)",
+          "Risk of treating AI outputs as certainty rather than hypothesis in safety-critical contexts like wildlife identification"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "Azure Neural TTS (Ava · Andrew)",
+    "text_to_speech_openai": "OpenAI TTS API (Nova · Echo)",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
