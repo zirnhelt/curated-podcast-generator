@@ -1230,6 +1230,57 @@ def enrich_deep_dive_with_brave(deep_dive_articles, theme_name, client):
     )
 
 
+def _brave_summarize(query, api_key):
+    """Fetch an AI-synthesized answer for a factual query via Brave's Summarizer.
+
+    Two-step flow:
+      1. Web search with summary=1 to obtain a summarizer key.
+      2. Fetch the synthesized answer from the summarizer endpoint.
+
+    Returns a prose answer string, or empty string when the summarizer is
+    unavailable for the query (it's query-dependent and may require a specific
+    Brave plan tier).
+    """
+    try:
+        resp = requests.get(
+            "https://api.search.brave.com/res/v1/web/search",
+            headers={
+                "Accept": "application/json",
+                "Accept-Encoding": "gzip",
+                "X-Subscription-Token": api_key,
+            },
+            params={"q": query, "count": 3, "search_lang": "en", "safesearch": "moderate", "summary": 1},
+            timeout=10,
+        )
+        resp.raise_for_status()
+        data = resp.json()
+
+        summarizer_key = data.get("summarizer", {}).get("key")
+        if not summarizer_key:
+            return ""
+
+        sum_resp = requests.get(
+            "https://api.search.brave.com/res/v1/summarizer/search",
+            headers={
+                "Accept": "application/json",
+                "Accept-Encoding": "gzip",
+                "X-Subscription-Token": api_key,
+            },
+            params={"key": summarizer_key, "entity_info": 1},
+            timeout=10,
+        )
+        sum_resp.raise_for_status()
+        segments = sum_resp.json().get("summary", [])
+        text = "".join(
+            seg.get("data", "") for seg in segments if seg.get("type") == "token"
+        ).strip()
+        return text
+
+    except Exception as e:
+        print(f"  Brave summarizer failed for '{query[:50]}': {e}")
+        return ""
+
+
 def _identify_deep_dive_research_questions(deep_dive_articles, theme_name, client):
     """Analyze deep dive articles with Sonnet to surface analytical research questions.
 
@@ -1523,6 +1574,14 @@ def _resolve_script_questions_with_brave(script, brave_key, client):
 
     results = []
     for query in queries[:3]:  # Cap at 3 Brave calls
+        # Try the Summarizer first — it returns a synthesized prose answer which is
+        # more directly useful for factual gap-fill than raw snippet concatenation.
+        answer = _brave_summarize(query, brave_key)
+        if answer:
+            results.append(f"Q: {query}\nAnswer: {answer[:500]}")
+            continue
+
+        # Fall back to raw snippets if the summarizer wasn't triggered for this query.
         hits = _brave_search(query, brave_key, count=3)
         if hits:
             snippets = " | ".join(
