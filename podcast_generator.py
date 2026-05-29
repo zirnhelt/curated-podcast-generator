@@ -1230,6 +1230,152 @@ def enrich_deep_dive_with_brave(deep_dive_articles, theme_name, client):
     )
 
 
+def _brave_summarize(query, api_key):
+    """Fetch an AI-synthesized answer for a factual query via Brave's Answers API.
+
+    Single POST to /res/v1/chat/completions with the query as a user message.
+    Returns a prose answer string, or empty string on failure.
+    """
+    try:
+        resp = requests.post(
+            "https://api.search.brave.com/res/v1/chat/completions",
+            headers={
+                "Accept": "application/json",
+                "Accept-Encoding": "gzip",
+                "Content-Type": "application/json",
+                "x-subscription-token": api_key,
+            },
+            json={"stream": False, "messages": [{"role": "user", "content": query}]},
+            timeout=15,
+        )
+        resp.raise_for_status()
+        choices = resp.json().get("choices", [])
+        if choices:
+            return choices[0].get("message", {}).get("content", "").strip()
+        return ""
+    except Exception as e:
+        print(f"  Brave Answers API failed for '{query[:50]}': {e}")
+        return ""
+
+
+def _identify_deep_dive_research_questions(deep_dive_articles, theme_name, client):
+    """Analyze deep dive articles with Sonnet to surface analytical research questions.
+
+    Returns a list of dicts with keys: question, query, angle.
+    Empty list on failure or when no useful questions are found.
+    """
+    articles_text = "\n\n".join(
+        f"ARTICLE: {a.get('title', '')}\n"
+        f"Summary: {a.get('summary', '')[:300]}\n"
+        f"Body excerpt: {(a.get('_body', '') or '')[:500]}"
+        for a in deep_dive_articles
+    )
+    prompt = (
+        f"You are preparing research for a podcast deep dive on the theme \"{theme_name}\".\n\n"
+        "The hosts will anchor on ONE central analytical question using these source articles "
+        "as raw material:\n\n"
+        f"{articles_text}\n\n"
+        "Identify 3-5 analytical research questions where a targeted web search would yield "
+        "genuinely insightful findings. Focus on questions that illuminate:\n"
+        "- Stated claims vs. what independent assessments or real-world deployments actually show\n"
+        "- The strongest counter-perspective or critical argument NOT represented in these articles\n"
+        "- Comparable rural or small-community experiences that test whether this applies locally\n"
+        "- Concrete data that grounds the debate: adoption rates, practical costs, failure rates\n"
+        "- Who the serious critics or opponents are and what their actual argument is\n\n"
+        "For each question, provide a Brave search query that would surface the most useful "
+        "results, and a brief suggested angle for how Riley (tech optimist) and Casey (skeptic) "
+        "could develop the finding in their debate.\n\n"
+        "Respond ONLY with a valid JSON array (no markdown fences):\n"
+        '[\n'
+        '  {\n'
+        '    "question": "What do independent rural co-op assessments show about broadband costs vs. ISP claims?",\n'
+        '    "query": "rural broadband cooperative real maintenance costs independent review",\n'
+        '    "angle": "Casey cites the maintenance gap; Riley reframes which programs have closed it"\n'
+        '  }\n'
+        ']\n\n'
+        "Return [] if the articles are already well-rounded and research would add no analytical value."
+    )
+    try:
+        response = api_retry(lambda: client.messages.create(
+            model=SCRIPT_MODEL,
+            max_tokens=700,
+            messages=[{"role": "user", "content": prompt}]
+        ))
+        raw = response.content[0].text.strip()
+        if raw.startswith("```"):
+            raw = re.sub(r"^```[a-z]*\n?", "", raw).rstrip("`").strip()
+        data = json.loads(raw)
+        return data[:5] if isinstance(data, list) else []
+    except Exception as e:
+        print(f"  ⚠️  Research question identification failed: {e}")
+        return []
+
+
+def _execute_deep_research(research_questions, brave_key):
+    """Run Brave searches for identified research questions and return structured findings.
+
+    Returns a formatted insights block for injection into the script generation prompt,
+    or an empty string if no results are found.
+    """
+    if not research_questions or not brave_key:
+        return ""
+
+    findings = []
+    for rq in research_questions[:4]:
+        query = rq.get("query", "")
+        question = rq.get("question", "")
+        angle = rq.get("angle", "")
+        if not query:
+            continue
+
+        print(f"    🔬 Researching: {question[:75]}")
+        hits = _brave_search(query, brave_key, count=4)
+        if not hits:
+            continue
+
+        snippets = " | ".join(
+            h["description"][:200] for h in hits[:3] if h.get("description")
+        )[:600]
+        if snippets:
+            entry = f"RESEARCH QUESTION: {question}\nFindings: {snippets}"
+            if angle:
+                entry += f"\nSuggested angle: {angle}"
+            findings.append(entry)
+
+    if not findings:
+        return ""
+
+    print(f"  🔬 {len(findings)} research insight(s) gathered for deep dive")
+    return (
+        "PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\n"
+        "These analytical threads were identified before generation. Use the findings to "
+        "ground Riley's and Casey's arguments with real evidence — develop them as substantive "
+        "exchanges, not a citation list. Cite naturally.\n\n"
+        + "\n\n".join(findings)
+        + "\n\n"
+    )
+
+
+def research_deep_dive_angles(deep_dive_articles, theme_name, client):
+    """Proactive research pass: identify analytical questions and run Brave for each.
+
+    Replaces the reactive enrich_deep_dive_with_brave() call for the deep dive.
+    Falls back to enrich_deep_dive_with_brave() when no analytical questions are found.
+    Returns empty string if BRAVE_SEARCH_API_KEY is unset or client is unavailable.
+    """
+    brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
+    if not brave_key or not client:
+        return ""
+
+    print("🔬 Identifying research angles for deep dive...")
+    questions = _identify_deep_dive_research_questions(deep_dive_articles, theme_name, client)
+    if not questions:
+        print("  ℹ️  No analytical angles identified — falling back to standard enrichment")
+        return enrich_deep_dive_with_brave(deep_dive_articles, theme_name, client)
+
+    return _execute_deep_research(questions, brave_key)
+
+
 def _filter_sparse_news_articles(articles: list) -> list:
     """Remove news articles without sufficient body text after trying Brave enrichment.
 
@@ -1297,7 +1443,7 @@ def _safe_template_substitute(template, **kwargs):
 
 
 def run_realtime_polish_and_factcheck(script, theme_name, news_articles, deep_dive_articles,
-                                       additional_research=None):
+                                       additional_research=None, research_insights=None):
     """Real-time fallback: combined polish+factcheck in ONE call using POLISH_MODEL.
 
     Used when the Batch API times out or is disabled.  Runs the same
@@ -1306,6 +1452,8 @@ def run_realtime_polish_and_factcheck(script, theme_name, news_articles, deep_di
 
     Pass additional_research to reuse a result already computed by the caller
     (avoids running the Brave question-detection twice when the batch times out).
+    Pass research_insights to carry the pre-generation research angles into the
+    polish pass so the model can verify they were meaningfully woven in.
     """
     client = get_anthropic_client()
     if not client or not script:
@@ -1327,6 +1475,7 @@ def run_realtime_polish_and_factcheck(script, theme_name, news_articles, deep_di
         script=script,
         verified_sources=verified_sources,
         additional_research=additional_research or "(none)",
+        research_insights=research_insights or "(none)",
     )
 
     review_model = select_review_model(deep_dive_articles)
@@ -1402,6 +1551,14 @@ def _resolve_script_questions_with_brave(script, brave_key, client):
 
     results = []
     for query in queries[:3]:  # Cap at 3 Brave calls
+        # Try the Summarizer first — it returns a synthesized prose answer which is
+        # more directly useful for factual gap-fill than raw snippet concatenation.
+        answer = _brave_summarize(query, brave_key)
+        if answer:
+            results.append(f"Q: {query}\nAnswer: {answer[:500]}")
+            continue
+
+        # Fall back to raw snippets if the summarizer wasn't triggered for this query.
         hits = _brave_search(query, brave_key, count=3)
         if hits:
             snippets = " | ".join(
@@ -1418,7 +1575,7 @@ def _resolve_script_questions_with_brave(script, brave_key, client):
 
 
 def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_articles,
-                                   additional_research=None):
+                                   additional_research=None, research_insights=None):
     """Submit polish+factcheck and debate summary as a Message Batch.
 
     Returns the batch object (with batch.id for polling) or None on error.
@@ -1428,6 +1585,8 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
 
     Pass additional_research to reuse a result already computed by the caller
     instead of running the Brave question-detection again.
+    Pass research_insights to carry pre-generation research angles into the polish
+    pass so the model can verify they were meaningfully woven into the deep dive.
     """
     client = get_anthropic_client()
     if not client:
@@ -1451,6 +1610,7 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
         script=script,
         verified_sources=verified_sources,
         additional_research=additional_research or "(none)",
+        research_insights=research_insights or "(none)",
     )
 
     # Build debate summary prompt — only send the deep-dive section (30% of script)
@@ -1581,14 +1741,15 @@ def collect_batch_results(batch_id):
 
 
 def run_post_processing_batch(script, theme_name, news_articles, deep_dive_articles,
-                               additional_research=None):
+                               additional_research=None, research_insights=None):
     """Submit, poll, and collect post-processing batch results.
 
     Returns (polished_script, debate_summary) or falls back to real-time
     calls if the batch fails.
     """
     batch = submit_post_processing_batch(script, theme_name, news_articles, deep_dive_articles,
-                                          additional_research=additional_research)
+                                          additional_research=additional_research,
+                                          research_insights=research_insights)
     if not batch:
         return None, None
 
@@ -4830,9 +4991,10 @@ def main():
         _enrich_articles_with_body(news_articles, label="news roundup", max_articles=20)
         news_articles, _sparse_brave_used = _filter_sparse_news_articles(news_articles)
 
-        # Conditionally enrich deep dive with Brave Search (fact-checking + story shaping)
+        # Proactive research pass: identify analytical angles and run Brave for each.
+        # Falls back to standard enrichment when no analytical questions are surfaced.
         brave_client = get_anthropic_client()
-        brave_context = enrich_deep_dive_with_brave(deep_dive_articles, today_theme, brave_client) if brave_client else ""
+        brave_context = research_deep_dive_angles(deep_dive_articles, today_theme, brave_client) if brave_client else ""
         brave_used = _sparse_brave_used or bool(brave_context)
 
         # Fetch Cariboo-wide weather
@@ -4903,6 +5065,7 @@ def main():
             batch_script, batch_debate = run_post_processing_batch(
                 script, today_theme, news_articles, deep_dive_articles,
                 additional_research=additional_research,
+                research_insights=brave_context,
             )
             if batch_script:
                 script = batch_script
@@ -4913,6 +5076,7 @@ def main():
                 script = run_realtime_polish_and_factcheck(
                     script, today_theme, news_articles, deep_dive_articles,
                     additional_research=additional_research,  # reuse — don't re-run Brave
+                    research_insights=brave_context,
                 )
 
             if batch_debate:
@@ -4923,6 +5087,7 @@ def main():
             script = run_realtime_polish_and_factcheck(
                 script, today_theme, news_articles, deep_dive_articles,
                 additional_research=additional_research,
+                research_insights=brave_context,
             )
 
         if not script:
