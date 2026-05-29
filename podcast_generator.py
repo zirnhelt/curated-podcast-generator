@@ -1425,6 +1425,23 @@ def _filter_sparse_news_articles(articles: list) -> list:
     return kept, brave_used
 
 
+def _assess_deep_dive_article_quality(deep_dive_articles):
+    """Assess body-text coverage of deep dive articles after enrichment.
+
+    Returns (quality, body_count) where quality is 'rich', 'moderate', or 'sparse'.
+    'sparse' means fewer than half the articles have substantive body text, which
+    typically indicates an upstream feed delivery issue.
+    """
+    if not deep_dive_articles:
+        return 'sparse', 0
+    with_body = sum(1 for a in deep_dive_articles if len(a.get('_body', '') or '') >= 100)
+    ratio = with_body / len(deep_dive_articles)
+    quality = 'rich' if ratio >= 0.67 else ('moderate' if ratio >= 0.34 else 'sparse')
+    tag = '⚠️  SPARSE BATCH' if quality == 'sparse' else ('📊' if quality == 'moderate' else '✅')
+    print(f"  {tag} Deep dive article quality: {with_body}/{len(deep_dive_articles)} with body text ({quality})")
+    return quality, with_body
+
+
 # ---------------------------------------------------------------------------
 # Batch API helpers
 # ---------------------------------------------------------------------------
@@ -3126,6 +3143,20 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         return f"- [{source}] {title}\n  {summary}... (AI Score: {score}){body_line}"
 
     deep_dive_text = "\n".join([_format_deep_dive_article(a) for a in deep_dive_articles])
+
+    # When most articles lack body text, warn Claude not to invent policy/bill details
+    _dd_with_body = sum(1 for a in deep_dive_articles if len(a.get('_body', '') or '') >= 100)
+    if deep_dive_articles and _dd_with_body / len(deep_dive_articles) < 0.5:
+        deep_dive_text = (
+            "⚠️ SPARSE SOURCE WARNING: Most deep dive articles have no body text — the feed "
+            "delivered thin content today. Ground the central question in the THEME's broader "
+            "landscape rather than article-specific details. Do not assert specific facts about "
+            "bills, policies, or events beyond what the article titles alone confirm. Use honest "
+            "framing: 'according to reporting,' 'if the details bear out,' 'the picture is still "
+            "coming together.' A grounded exploration with acknowledged uncertainty is better than "
+            "manufactured specifics from thin sources.\n\n"
+            + deep_dive_text
+        )
 
     # Brief news titles so the Deep Dive can reference them without repeating summaries
     news_titles_brief = "\n".join([
@@ -5005,6 +5036,7 @@ def main():
         # not just headlines and meta-description snippets.
         _enrich_articles_with_body(deep_dive_articles, label="deep dive")
         _enrich_articles_with_body(news_articles, label="news roundup", max_articles=20)
+        deep_dive_quality, deep_dive_body_count = _assess_deep_dive_article_quality(deep_dive_articles)
         news_articles, _sparse_brave_used = _filter_sparse_news_articles(news_articles)
 
         # Proactive research pass: identify analytical angles and run Brave for each.
@@ -5119,6 +5151,11 @@ def main():
         # Score the finalized script for AI speech pattern quality
         print("📊 Scoring script for AI speech patterns...")
         script_quality = score_script(script)
+        script_quality["deep_dive_article_quality"] = deep_dive_quality
+        script_quality["deep_dive_articles_with_body"] = deep_dive_body_count
+        if deep_dive_quality == 'sparse':
+            script_quality["upstream_quality_warning"] = True
+            print("⚠️  UPSTREAM WARNING: Episode generated from sparse article batch — feed may have had a bad delivery")
         print(f"   Total pattern hits: {script_quality['total_hits']}  |  "
               f"Voice ratio Casey/Riley: {script_quality['voice_ratio_casey_riley']}  |  "
               f"Words: {script_quality['word_count']}")
