@@ -1,5 +1,31 @@
 {
   "organizations": {
+    "wl-women-centre": {
+      "name": "Williams Lake Women's Centre",
+      "short_name": "WL Women's Centre",
+      "description": "Provides crisis support, advocacy, and community programming for women and families in the Williams Lake area",
+      "website": "wlwomenscentre.org",
+      "weekdays": [2, 5],
+      "tags": [
+        "women",
+        "crisis support",
+        "advocacy",
+        "community services"
+      ]
+    },
+    "habitat-for-humanity-cariboo": {
+      "name": "Habitat for Humanity Cariboo",
+      "short_name": "Habitat Cariboo",
+      "description": "Builds affordable homes for Cariboo families in need; ReStore diverts building materials from landfill while funding housing projects",
+      "website": "habitatcariboo.org",
+      "weekdays": [1, 4],
+      "tags": [
+        "housing",
+        "affordable housing",
+        "volunteers",
+        "community building"
+      ]
+    },
     "partners-for-literacy": {
       "name": "Cariboo Chilcotin Partners for Literacy",
       "short_name": "Partners for Literacy",

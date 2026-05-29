@@ -138,7 +138,7 @@ def _build_ssml_doc(inner: str) -> str:
     return (
         '<speak version="1.0"'
         ' xmlns="http://www.w3.org/2001/10/synthesis"'
-        ' xmlns:mstts="https://www.w3.org/2001/mstts"'
+        ' xmlns:mstts="http://www.w3.org/2001/mstts"'
         ' xml:lang="en-US">'
         f"{inner}"
         "</speak>"
@@ -169,7 +169,8 @@ def build_section_ssml(
             )
         else:
             content = processed
-        turn_parts.append(f'<mstts:turn speaker="{speaker}">{content}</mstts:turn>')
+        break_tag = pacing_tag_to_ssml(seg.get("gap_ms")) if i > 0 else ""
+        turn_parts.append(f'{break_tag}<mstts:turn speaker="{speaker}">{content}</mstts:turn>')
 
     inner = (
         f'<voice name="{MULTITALKER_MODEL}">'
