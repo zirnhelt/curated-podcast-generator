@@ -41,9 +41,15 @@ Super RSS Feed (scored articles + category feeds)
         │
         ▼
   Fetch & deduplicate articles
+  (optional: Cohere embeddings for semantic dedup via USE_COHERE=1)
+        │
+        ▼
+  Cluster same-story duplicates + suppress lower-scoring copies
+  (optional: Cohere embedding similarity; falls back to string matching)
         │
         ▼
   Select top stories + theme-based deep dive articles
+  (optional: Cohere Rerank orders deep-dive candidates by theme relevance)
         │
         ▼
   Claude generates podcast script (two-host conversation)
@@ -62,6 +68,32 @@ Super RSS Feed (scored articles + category feeds)
         ▼
   RSS feed (podcast-feed.xml) + citations JSON + deploy to GitHub Pages
 ```
+
+### Cohere Enrichment (Optional)
+
+Three pipeline stages can be upgraded with Cohere AI when `USE_COHERE=1`:
+
+| Stage | What Cohere does | Fallback (when disabled) |
+|---|---|---|
+| Evolving-story detection | Embeds article title+summary pairs, flags semantically similar past episodes using cosine similarity | Trigram/Levenshtein string matching |
+| Intra-batch deduplication | Clusters same-story articles by embedding similarity, suppresses lower-scoring copies | Exact-title and URL matching |
+| Deep-dive selection | Reranks theme candidates against the day's topic using `rerank-english-v3.0` | Keyword frequency sort |
+
+**Why Cohere and not an OpenAI embedding model?**
+
+- **Embedding model purpose-fit.** `embed-english-v3.0` is trained specifically for retrieval and semantic similarity tasks. OpenAI's `text-embedding-3-small` is more general-purpose; for cross-episode deduplication and intra-batch clustering the dedicated model produces tighter, more reliable clusters.
+- **Rerank is a first-class API.** Cohere ships a dedicated Rerank endpoint (`rerank-english-v3.0`). Getting equivalent output from OpenAI requires two round-trips (embed query + embed docs, then sort by cosine). The Rerank API does this in one call and returns calibrated relevance scores — which matters for picking 3–5 deep-dive articles accurately.
+- **Pricing.** Embed + Rerank at this daily volume (200–400 articles) costs well under $0.01/day. Adding it to the OpenAI bill and managing another embedding quota would be friction for no benefit.
+- **Clean opt-in.** The entire module is gated behind `USE_COHERE=1`. Every public function returns `None` on failure or when disabled, so callers fall back automatically — zero risk of breaking existing deployments.
+
+**Setup:** add `COHERE_API_KEY` as a GitHub Actions secret and set `USE_COHERE=1` in the workflow env. Thresholds are tunable without code changes:
+
+| Env var | Default | Controls |
+|---|---|---|
+| `COHERE_DEDUP_THRESHOLD` | `0.88` | Minimum cosine similarity to flag a past-episode match |
+| `COHERE_CLUSTER_THRESHOLD` | `0.85` | Minimum cosine similarity to merge two articles into the same cluster |
+
+---
 
 ### Dependencies
 
@@ -106,6 +138,7 @@ Optional (for weekend shows and bespoke):
 |---|---|
 | `JAMENDO_CLIENT_ID` | Jamendo API key — free at devportal.jamendo.com |
 | `BRAVE_SEARCH_API_KEY` | Brave Search API key — for bespoke source expansion |
+| `COHERE_API_KEY` | Cohere API key — enables semantic dedup and deep-dive reranking (set `USE_COHERE=1`) |
 
 Optional (for Cloudflare R2 audio hosting):
 
@@ -173,6 +206,7 @@ Both are AI hosts. The script explicitly avoids personal/family references and k
 | File | Purpose |
 |---|---|
 | `podcast_generator.py` | Main script — orchestrates the full daily pipeline (including weekends) |
+| `cohere_enrichment.py` | Optional Cohere AI enrichment — semantic dedup, article clustering, deep-dive reranking (enabled via `USE_COHERE=1`) |
 | `generate_bespoke.py` | Bespoke long-form debate generator — tag-driven, Brave Search expansion |
 | `azure_tts.py` | Azure Neural TTS integration (MultiTalker model) — optional alternative to OpenAI TTS |
 | `email_ingest.py` | Gmail ingest — classifies listener feedback and newsletters into the email queue |
@@ -309,7 +343,8 @@ For reference, here's the GitHub Actions flow broken into reviewable steps:
 
 - **Claude API:** ~$0.02–0.05 per episode (script generation + polish pass)
 - **OpenAI TTS:** ~$0.05–0.10 per episode (30 min of audio across two voices)
-- **Total:** roughly $0.10–0.15/day, or ~$3–4/month
+- **Cohere (optional):** <$0.01/day for embed + rerank at typical article volumes
+- **Total:** roughly $0.10–0.15/day, or ~$3–4/month (Cohere adds negligible cost)
 
 Weekend shows and bespoke episodes add to this based on usage.
 
