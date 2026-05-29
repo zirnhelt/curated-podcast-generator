@@ -1801,6 +1801,18 @@ def get_pacific_now():
         import pytz
         return datetime.now(pytz.timezone("America/Vancouver"))
 
+
+def _pacific_pub_date(date_obj):
+    """Return RFC 2822 pub_date for 05:00 Pacific time with correct PST/PDT abbreviation."""
+    try:
+        from zoneinfo import ZoneInfo
+        pacific = ZoneInfo("America/Vancouver")
+    except ImportError:
+        import pytz
+        pacific = pytz.timezone("America/Vancouver")
+    aware_dt = datetime(date_obj.year, date_obj.month, date_obj.day, 5, 0, 0, tzinfo=pacific)
+    return aware_dt.strftime("%a, %d %b %Y %H:%M:%S %Z")
+
 def load_memory(filename):
     """Load JSON memory file, return empty dict if doesn't exist."""
     if filename.exists():
@@ -4390,7 +4402,7 @@ def generate_podcast_rss_feed():
 
             try:
                 date_obj = datetime.strptime(date_str, "%Y-%m-%d")
-                pub_date = date_obj.strftime("%a, %d %b %Y 05:00:00 PST")
+                pub_date = _pacific_pub_date(date_obj)
 
                 # Load corresponding citations file
                 safe_theme = theme.replace(' ', '_').replace('&', 'and').lower()
@@ -4597,7 +4609,7 @@ def generate_tts_test_feed():
         date_str, theme = match.groups()
         try:
             date_obj = datetime.strptime(date_str, "%Y-%m-%d")
-            pub_date = date_obj.strftime("%a, %d %b %Y 05:00:00 PST")
+            pub_date = _pacific_pub_date(date_obj)
 
             safe_theme = theme.replace(' ', '_').replace('&', 'and').lower()
             citations_file = os.path.join(str(PODCASTS_DIR), f"citations_{date_str}_{safe_theme}.json")
