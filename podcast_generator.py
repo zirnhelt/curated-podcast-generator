@@ -41,6 +41,7 @@ from azure_tts import (
 
 # Import deduplication module
 from dedup_articles import deduplicate_articles, format_evolving_story_context, cluster_and_rescore_corpus
+import cohere_enrichment
 
 # Import PSA selector
 from psa_selector import select_psa
@@ -2449,7 +2450,10 @@ def categorize_articles_for_deep_dive(articles, theme_day):
 
     remaining.sort(key=theme_relevance, reverse=True)
     deep_dive_count = SATURDAY_DEEP_DIVE_COUNT if theme_day == 5 else 3
-    deep_dive_articles = remaining[:deep_dive_count]
+
+    # Try Cohere rerank for higher-quality theme alignment; fall back to keyword sort
+    reranked = cohere_enrichment.rerank_for_deep_dive(theme_name, remaining, deep_dive_count)
+    deep_dive_articles = reranked if reranked is not None else remaining[:deep_dive_count]
 
     print(f"Deep dive: selected {len(deep_dive_articles)} articles for '{theme_name}'")
     print(f"  Pool: {len(remaining)} candidates beyond top 12 news")

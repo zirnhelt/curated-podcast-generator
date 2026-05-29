@@ -11,7 +11,7 @@ import types
 
 def _install_stubs():
     """Install lightweight stubs for heavy third-party packages."""
-    for mod_name in ("anthropic", "openai", "pydub"):
+    for mod_name in ("anthropic", "openai", "pydub", "cohere"):
         if mod_name not in sys.modules:
             sys.modules[mod_name] = types.ModuleType(mod_name)
 
