@@ -12,6 +12,8 @@ from datetime import datetime, timedelta
 from difflib import SequenceMatcher
 from pathlib import Path
 
+import cohere_enrichment
+
 PODCASTS_DIR = Path(__file__).parent / "podcasts"
 
 def normalize_title(title):
@@ -65,59 +67,62 @@ def load_recent_citations(days=7):
     print(f"📚 Loaded {len(recent_citations)} articles from last {days} days")
     return recent_citations
 
+def _find_evolving_stories(articles, recent_citations, similarity_threshold=0.70):
+    """Detect evolving stories using Cohere embeddings or string similarity fallback."""
+    cohere_results = cohere_enrichment.detect_evolving_stories(articles, recent_citations)
+    if cohere_results is not None:
+        return [r for r in cohere_results if r is not None]
+
+    # Original string-similarity path
+    evolving = []
+    for article in articles:
+        article_url = article.get('url', '')
+        article_title = article.get('title', '')
+        for past_article in recent_citations:
+            similarity = title_similarity(article_title, past_article['title'])
+            if similarity >= similarity_threshold and article_url != past_article['url']:
+                evolving.append({
+                    'article': article,
+                    'original_date': past_article['episode_date'],
+                    'original_title': past_article['title'],
+                    'similarity': similarity,
+                })
+                break
+    return evolving
+
+
 def deduplicate_articles(new_articles, similarity_threshold=0.70):
     """
     Deduplicate articles against recent history.
-    
+
     Returns:
         - filtered_articles: Articles not previously covered
         - evolving_stories: Articles that are updates to previous coverage
     """
     recent_citations = load_recent_citations(days=7)
-    
+
     if not recent_citations:
         print("  ℹ️ No recent citations found, no deduplication needed")
         return new_articles, []
-    
-    # Build lookup structures
+
     covered_urls = {c['url'] for c in recent_citations}
-    
+
+    # Exact URL dedup — always fast, no API needed
     filtered_articles = []
-    evolving_stories = []
     skipped_count = 0
-    
     for article in new_articles:
-        article_url = article.get('url', '')
-        article_title = article.get('title', '')
-        
-        # Check for exact URL match (duplicate)
-        if article_url in covered_urls:
+        if article.get('url', '') in covered_urls:
             skipped_count += 1
-            continue
-        
-        # Check for evolving story (similar title, different URL)
-        is_evolving = False
-        for past_article in recent_citations:
-            similarity = title_similarity(article_title, past_article['title'])
-            
-            if similarity >= similarity_threshold and article_url != past_article['url']:
-                # This is an update to a previous story
-                evolving_stories.append({
-                    'article': article,
-                    'original_date': past_article['episode_date'],
-                    'original_title': past_article['title'],
-                    'similarity': similarity
-                })
-                is_evolving = True
-                break
-        
-        # Add article (whether evolving or new)
-        filtered_articles.append(article)
-    
+        else:
+            filtered_articles.append(article)
+
+    # Evolving story detection (Cohere semantic or string-similarity fallback)
+    evolving_stories = _find_evolving_stories(filtered_articles, recent_citations, similarity_threshold)
+
     print(f"  ✅ Filtered: {len(filtered_articles)} articles")
     print(f"  🔄 Evolving stories: {len(evolving_stories)} updates to previous coverage")
     print(f"  ⏭️  Skipped: {skipped_count} exact duplicates")
-    
+
     return filtered_articles, evolving_stories
 
 def format_evolving_story_context(evolving_stories):
@@ -139,26 +144,37 @@ def cluster_and_rescore_corpus(articles, theme_name, client=None, model=None):
     """
     Identify topic clusters within the current article batch and penalize duplicates.
 
-    Uses Claude to detect when multiple articles cover the same underlying story.
+    Tries Cohere embedding similarity first (when USE_COHERE=1), then falls back
+    to Claude Haiku if Cohere is disabled or unavailable.
+
     Within each cluster, the highest-scored article is kept at full score; the
     rest have their _boosted_score reduced to 30% of its original value and are
     tagged _cluster_suppressed=True.
 
     All clustered articles receive a _topic_cluster string label.
 
-    Falls back silently (returns articles unchanged) if client is None or if
-    Claude returns invalid JSON.
+    Falls back silently (returns articles unchanged) if both Cohere and Claude
+    are unavailable or return invalid data.
 
     Args:
         articles: list of article dicts (must have title, summary, _boosted_score or ai_score)
-        theme_name: today's theme name (used in the prompt for context)
-        client: Anthropic client instance (or None to skip)
+        theme_name: today's theme name (used in the Claude prompt for context)
+        client: Anthropic client instance (or None to skip Claude fallback)
         model: Claude model ID to use (defaults to claude-haiku-4-5-20251001)
 
     Returns:
         articles list with updated _boosted_score, _cluster_suppressed, _topic_cluster fields
     """
-    if not client or not articles:
+    if not articles:
+        return articles
+
+    # Try Cohere semantic clustering first (zero Claude tokens when it works)
+    cohere_result = cohere_enrichment.cluster_articles(articles)
+    if cohere_result is not None:
+        return cohere_result
+
+    # Fall back to Claude Haiku clustering
+    if not client:
         return articles
 
     if model is None:
