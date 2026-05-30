@@ -1,0 +1,104 @@
+{
+  "episode": {
+    "date": "2026-05-30",
+    "formatted_date": "Saturday, May 30, 2026",
+    "theme": "Cariboo Local Affairs",
+    "title": "Cariboo Signals - Cariboo Local Affairs",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Cariboo Local Affairs.</p><p><b>NEWS ROUNDUP:</b> We break down the week's top tech developments, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Can municipal enforcement tools ('drastic measures') effectively address prolific offending in small cities, or do solutions require provincial-level intervention? Topics include: Municipal jurisdiction limitations versus provincial control of criminal justice and service provision, Integrated response teams and evidence-based models (Medicine Hat, Foundry Cariboo Chilcotin, ACT teams), The accountability gap between what decision-makers hear and what they document/act on, Cumulative service contraction in small cities (airline loss, healthcare pressures, concurrent service gaps), The role of municipal politicians as translators of specific needs to senior government.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://qwrc.ca\">Quesnel Women's Resource Centre</a></p><p><b>Sources discussed:</b></p><ul><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/313876/news/municipal-news/city-of-williams-lake/williams-lake-city-councillor-calls-for-drastic-measures-to-deal-with-prolific-offenders/\">[My Cariboo Now] Williams Lake City Councillor calls for dra...</a></li></ul><p><b>Closing Music:</b> &ldquo;<a href=\"https://www.jamendo.com/track/1133992\">Give Me Hope</a>&rdquo; by Modern Pitch &mdash; rock, pop, indie. Free music via Jamendo, licensed under Creative Commons.</p><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-opus-4-6<br>TTS Voices: OpenAI TTS API (Nova · Echo)<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-05-30T03:03:36.050250-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-opus-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 2784,
+      "voice_ratio_casey_riley": 0.89,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0
+      },
+      "total_hits": 0,
+      "deep_dive_article_quality": "sparse",
+      "deep_dive_articles_with_body": 0,
+      "upstream_quality_warning": true
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": []
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Cariboo Local Affairs",
+      "articles": [
+        {
+          "title": "[My Cariboo Now] Williams Lake City Councillor calls for drastic measures to deal with prolific offenders : My Cariboo Now",
+          "url": "https://www.mycariboonow.com/313876/news/municipal-news/city-of-williams-lake/williams-lake-city-councillor-calls-for-drastic-measures-to-deal-with-prolific-offenders/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 85,
+          "date_published": "2026-05-30T07:24:28.805418+00:00",
+          "summary": "Stay connected with My Cariboo Now — delivering local news, community events, weather alerts, and live radio to Quesnel, Williams Lake, 100 Mile House, and beyond .",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Can municipal enforcement tools ('drastic measures') effectively address prolific offending in small cities, or do solutions require provincial-level intervention?",
+        "riley_position": "Municipal enforcement alone won't resolve the underlying problem; cities need provincial support for integrated response models and adult mental health services, but municipalities can play a crucial role as translators of specific, documented needs to senior government.",
+        "riley_key_evidence": [
+          "Medicine Hat's integrated Housing First program with social worker/police co-response teams showed positive outcomes data both human and cost-per-call",
+          "Foundry Cariboo Chilcotin already operates an integrated youth services model that could serve as infrastructure for adult responses",
+          "The province has invested in youth mental health infrastructure but not adult mental health and addiction recovery infrastructure"
+        ],
+        "casey_position": "Enforcement-based 'drastic measures' at the municipal level only move people around without resolving the situation, and Williams Lake lacks the political resources and provincial buy-in that made Medicine Hat's model work.",
+        "casey_key_evidence": [
+          "Medicine Hat required a decade-long political commitment and provincial buy-in that Williams Lake's different political and fiscal reality cannot replicate",
+          "The RCMP detachment model and stretched social service ecosystem in Williams Lake are fundamentally different from mid-sized Alberta municipal forces",
+          "Small rural communities have the least structural power to demand provincial responses despite being closest to the problem"
+        ],
+        "resolution": "Riley and Casey agreed that specificity and accountability matter more than the framing of 'drastic measures'—that city councillors should document concrete data, make explicit provincial asks with timelines, and use electoral accountability if the province fails to respond, rather than issuing vague enforcement calls.",
+        "topics_covered": [
+          "Municipal jurisdiction limitations versus provincial control of criminal justice and service provision",
+          "Integrated response teams and evidence-based models (Medicine Hat, Foundry Cariboo Chilcotin, ACT teams)",
+          "The accountability gap between what decision-makers hear and what they document/act on",
+          "Cumulative service contraction in small cities (airline loss, healthcare pressures, concurrent service gaps)",
+          "The role of municipal politicians as translators of specific needs to senior government"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "Azure Neural TTS (Ava · Andrew)",
+    "text_to_speech_openai": "OpenAI TTS API (Nova · Echo)",
+    "cover_art": "ChatGPT (OpenAI)",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  },
+  "closing_music": {
+    "track_id": "1133992",
+    "name": "Give Me Hope",
+    "artist": "Modern Pitch",
+    "genres": [
+      "rock",
+      "pop",
+      "indie"
+    ],
+    "shareurl": "https://www.jamendo.com/track/1133992",
+    "license": "Creative Commons via Jamendo"
+  }
+}

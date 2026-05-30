@@ -1958,5 +1958,31 @@
       "Community science contribution to ecological baselines (iNaturalist, trail building)",
       "Risk of treating AI outputs as certainty rather than hypothesis in safety-critical contexts like wildlife identification"
     ]
+  },
+  "2026-05-30": {
+    "timestamp": 1780135418.963338,
+    "date": "2026-05-30",
+    "theme": "Cariboo Local Affairs",
+    "central_question": "Can municipal enforcement tools ('drastic measures') effectively address prolific offending in small cities, or do solutions require provincial-level intervention?",
+    "riley_position": "Municipal enforcement alone won't resolve the underlying problem; cities need provincial support for integrated response models and adult mental health services, but municipalities can play a crucial role as translators of specific, documented needs to senior government.",
+    "riley_key_evidence": [
+      "Medicine Hat's integrated Housing First program with social worker/police co-response teams showed positive outcomes data both human and cost-per-call",
+      "Foundry Cariboo Chilcotin already operates an integrated youth services model that could serve as infrastructure for adult responses",
+      "The province has invested in youth mental health infrastructure but not adult mental health and addiction recovery infrastructure"
+    ],
+    "casey_position": "Enforcement-based 'drastic measures' at the municipal level only move people around without resolving the situation, and Williams Lake lacks the political resources and provincial buy-in that made Medicine Hat's model work.",
+    "casey_key_evidence": [
+      "Medicine Hat required a decade-long political commitment and provincial buy-in that Williams Lake's different political and fiscal reality cannot replicate",
+      "The RCMP detachment model and stretched social service ecosystem in Williams Lake are fundamentally different from mid-sized Alberta municipal forces",
+      "Small rural communities have the least structural power to demand provincial responses despite being closest to the problem"
+    ],
+    "resolution": "Riley and Casey agreed that specificity and accountability matter more than the framing of 'drastic measures'\u2014that city councillors should document concrete data, make explicit provincial asks with timelines, and use electoral accountability if the province fails to respond, rather than issuing vague enforcement calls.",
+    "topics_covered": [
+      "Municipal jurisdiction limitations versus provincial control of criminal justice and service provision",
+      "Integrated response teams and evidence-based models (Medicine Hat, Foundry Cariboo Chilcotin, ACT teams)",
+      "The accountability gap between what decision-makers hear and what they document/act on",
+      "Cumulative service contraction in small cities (airline loss, healthcare pressures, concurrent service gaps)",
+      "The role of municipal politicians as translators of specific needs to senior government"
+    ]
   }
 }
