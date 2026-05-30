@@ -538,12 +538,15 @@ def _fetch_url_metadata(url):
         return "", "", ""
 
 
-def _fetch_article_body(url, brave_key=None):
+def _fetch_article_body(url, brave_key=None, title=None):
     """Fetch the readable body text of an article URL.
 
     Tries a direct HTTP fetch and strips HTML to extract prose content.
-    Falls back to Brave Search snippet if the fetch fails or returns too
-    little text (e.g. paywalled pages, JS-rendered sites).
+    Falls back to Brave Search when body is absent or thin (cookie walls,
+    paywalled pages, and JS-rendered sites often return navigational junk
+    that exceeds 200 chars but carries no article content).  A title-based
+    query is tried first because it surfaces actual article coverage far
+    more reliably than a URL search.
 
     Returns a body string (up to 2000 chars); empty string on total failure.
     """
@@ -561,14 +564,25 @@ def _fetch_article_body(url, brave_key=None):
     except Exception:
         pass
 
-    if not body and brave_key:
-        # Try Brave Search for a richer snippet using the URL as query
-        results = _brave_search(url, brave_key, count=1)
-        if not results:
-            # Fallback: search by URL domain + title hint
-            results = _brave_search(f'site:{url.split("/")[2]} {url}', brave_key, count=1)
-        if results and results[0].get("description"):
-            body = results[0]["description"][:2000]
+    # Brave enrichment when body is absent or suspiciously thin.  400 chars is
+    # roughly the floor for prose content; anything shorter is likely a stub,
+    # cookie notice, or navigation dump.
+    _BRAVE_MIN = 400
+    if brave_key and len(body) < _BRAVE_MIN:
+        queries = []
+        if title:
+            queries.append(title)  # title search finds actual article coverage
+        queries.append(url)        # URL search as fallback
+        best = body
+        for q in queries:
+            for r in _brave_search(q, brave_key, count=2):
+                desc = r.get("description", "")
+                if len(desc) > len(best):
+                    best = desc
+            if len(best) >= _BRAVE_MIN:
+                break
+        if len(best) > len(body):
+            body = best[:2000]
 
     return body
 
@@ -577,7 +591,10 @@ def _enrich_articles_with_body(articles, label="", max_articles=None):
     """Fetch body text for articles in-place, adding a '_body' field.
 
     Only enriches up to max_articles (fetches the whole list if None).
-    Uses Brave Search as fallback when direct fetching fails.
+    Uses Brave Search as fallback when direct fetching fails or yields thin
+    content.  Articles that already have a rich body (>= 400 chars) are
+    skipped; articles with a pre-existing stub are re-enriched so that a
+    feed-provided summary never silently blocks a better fetch.
     """
     brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
     targets = articles if max_articles is None else articles[:max_articles]
@@ -587,10 +604,13 @@ def _enrich_articles_with_body(articles, label="", max_articles=None):
     print(f"  📄 Fetching article body text{tag} for {len(targets)} article(s)...")
     for a in targets:
         url = a.get("url", "")
-        if not url or a.get("_body"):
+        if not url:
             continue
-        body = _fetch_article_body(url, brave_key=brave_key)
-        if body:
+        existing = a.get("_body", "") or ""
+        if len(existing) >= 400:  # already richly populated — skip
+            continue
+        body = _fetch_article_body(url, brave_key=brave_key, title=a.get("title"))
+        if len(body) > len(existing):
             a["_body"] = body
 
 
