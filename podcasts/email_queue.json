@@ -1408,6 +1408,31 @@
       "theme_day": 0,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "5de79ce9",
+      "type": "newsletter",
+      "message_id": "<1135866650.23527420.1780171245916@ip-172-22-5-33.ca-central-1.compute.internal>",
+      "from_address": "c***@openmedia.org",
+      "subject": "\ud83d\udcec May 2026 Dispatch",
+      "received_at": "2026-05-30T16:00:45-04:00",
+      "body_text": "C-22, C-8, and other privacy matters you should know. (https://action.openmedia.org/s/9507472/BXS744BGN) OpenMedia Monthly | May 2026 Hi Erich, May was a big month for privacy! From Alberta\u2019s massive ",
+      "extracted_urls": [
+        "https://action.openmedia.org/s/9507472/BXS744BGN",
+        "https://action.openmedia.org/s/9507473/BXS744BGN",
+        "https://action.openmedia.org/s/9507474/BXS744BGN",
+        "https://action.openmedia.org/s/9507475/BXS744BGN",
+        "https://action.openmedia.org/s/9507476/BXS744BGN",
+        "https://action.openmedia.org/s/9507477/BXS744BGN",
+        "https://action.openmedia.org/s/9507478/BXS744BGN",
+        "https://action.openmedia.org/s/9507479/BXS744BGN",
+        "https://action.openmedia.org/s/9507480/BXS744BGN",
+        "https://action.openmedia.org/s/9507481/BXS744BGN"
+      ],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
