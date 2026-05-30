@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[New Atlas] Startup harnesses the power of AI in the ongoing",
       "[TechCrunch] Wirestock raises $23M to supply creative multi-",
       "[Neowin] Spotify will soon support Apple's technology to ope",
       "[TechRadar] US data centers use enough electricity to power ",
@@ -10,7 +9,8 @@
       "[The Verge] AI video is moving beyond clip slop",
       "[TechCrunch] Spotify adds AI-powered Q&A and briefing genera",
       "New: Indigenous AI Advisory Circle",
-      "[Android Authority] Gemini\u2019s camera AI thinks Aussie wildlif"
+      "[Android Authority] Gemini\u2019s camera AI thinks Aussie wildlif",
+      "AI"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -125,9 +125,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-24",
-        "clue": "community-trust:~ \u2014 Acknowledged data sovereignty complexity without resolution path",
-        "occurrences": 1
+        "date": "2026-05-30",
+        "clue": "community-trust:~ \u2014 Acknowledged small-town accountability cuts both ways, not automatically progressive",
+        "occurrences": 2
       },
       {
         "date": "2026-05-28",
@@ -135,9 +135,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-29",
-        "clue": "structural-lens:+ \u2014 Shifted toward governance frameworks and Indigenous data sovereignty as primary path forward",
-        "occurrences": 1
+        "date": "2026-05-30",
+        "clue": "structural-lens:+ \u2014 Moved from service-model discussion to cumulative infrastructure loss framing",
+        "occurrences": 2
       }
     ],
     "core_memories": [
@@ -244,9 +244,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-04-13",
-        "clue": "funding-risk:x \u2014 conceded distinction between deliverables and skill-building but noted difficulty",
-        "occurrences": 1
+        "date": "2026-05-30",
+        "clue": "funding-risk:x \u2014 Conceded Riley's point on specificity mattering, then immediately undercut it with provincial track record",
+        "occurrences": 2
       },
       {
         "date": "2026-04-16",
@@ -304,9 +304,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-24",
-        "clue": "pilot-skepticism:+ \u2014 Hardened stance on wonder-without-governance as insufficient for real change",
-        "occurrences": 1
+        "date": "2026-05-30",
+        "clue": "pilot-skepticism:+ \u2014 Explicitly rejected Foundry as proof-of-concept for adult services, deepened skepticism",
+        "occurrences": 2
       },
       {
         "date": "2026-05-25",
