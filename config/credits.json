@@ -10,6 +10,8 @@
     "text_to_speech": "Azure Neural TTS (Ava · Andrew)",
     "text_to_speech_openai": "OpenAI TTS API (Nova · Echo)",
     "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
     "coordination": "Erich Zirnhelt",
     "project": "github.com/zirnhelt/curated-podcast-generator",
     "license": "CC BY-NC 4.0",

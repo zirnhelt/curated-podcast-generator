@@ -2706,7 +2706,7 @@ def get_current_date_info():
     
     return weekday, date_str
 
-def generate_episode_description(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, brave_used=False):
+def generate_episode_description(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, brave_used=False, weather_used=False, cohere_used=False):
     """Generate episode description with sources and credits.
 
     When *script* is provided, citations are aligned with what was actually
@@ -2817,7 +2817,9 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
     credits = CONFIG['credits']['structured']
     review_model_label = _review_model_used or POLISH_MODEL
     tts_label = credits['text_to_speech'] if USE_AZURE_TTS else credits['text_to_speech_openai']
-    brave_credit = "Web Search: Brave Search API<br>" if brave_used else ""
+    brave_credit = "Web Search: Brave Search API<br>"
+    weather_credit = f"Weather Data: {credits['weather_data']}<br>" if weather_used else ""
+    cohere_credit = f"Content Enrichment: {credits['content_enrichment']}<br>" if cohere_used else ""
     credits_html = (
         "<p><b>Credits</b><br>"
         f"Theme Song: {credits['theme_song']}<br>"
@@ -2825,6 +2827,8 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
         f"Script Review Model: {review_model_label}<br>"
         f"TTS Voices: {tts_label}<br>"
         f"{brave_credit}"
+        f"{weather_credit}"
+        f"{cohere_credit}"
         f"Cover Art: {credits['cover_art']}<br>"
         f"Podcast Coordination: {credits['coordination']}<br>"
         f"&#169; 2026 {credits['copyright_holder']}. "
@@ -2913,7 +2917,7 @@ def score_script(script_text):
     }
 
 
-def generate_citations_file(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, quality=None, brave_used=False):
+def generate_citations_file(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, quality=None, brave_used=False, weather_used=False, cohere_used=False):
     """Generate citations file for the episode.
 
     When *script* is provided (the finalized, polished script), each citation
@@ -2932,7 +2936,8 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
     podcast_config = CONFIG['podcast']
     episode_description = generate_episode_description(
         news_articles, deep_dive_articles, theme_name, script=script,
-        debate_summary=debate_summary, psa_info=psa_info, brave_used=brave_used
+        debate_summary=debate_summary, psa_info=psa_info, brave_used=brave_used,
+        weather_used=weather_used, cohere_used=cohere_used
     )
 
     # Match articles against script
@@ -3818,7 +3823,7 @@ def _generate_parallel_azure_audio(segments, base_output_filename, theme_name=No
         print(f"  ⚠️  Azure parallel generation failed: {exc}")
 
 
-def generate_audio_from_script(script, output_filename, theme_name=None, weekend_closing=None):
+def generate_audio_from_script(script, output_filename, theme_name=None, weekend_closing=None, brave_used=False):
     """Convert script to audio with music interludes and theme-aware ambient transitions.
 
     weekend_closing: optional tuple of (clip: AudioSegment, track_info: dict, closing_host: str, day_name: str)
@@ -3936,15 +3941,20 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
             _render_section(segments['deep_dive'], "🔍 Generating deep dive section...", "deep")
 
             # Spoken credits (brief, before outro)
+            chapters.append({"startTime": round(len(combined) / 1000, 1), "title": "Credits"})
             tts_credit = (
                 "Azure Neural TTS, Ava and Andrew"
                 if USE_AZURE_TTS
                 else "OpenAI TTS"
             )
+            brave_spoken = (
+                " Today's episode included additional web research via Brave Search."
+                if brave_used else ""
+            )
             credits_text = (
                 f"Cariboo Signals is produced with Claude by Anthropic for scripting, "
-                f"{tts_credit} for audio synthesis, and Suno for our theme music. "
-                f"Find us at cariboosignals.ca."
+                f"{tts_credit} for audio synthesis, and Suno for our theme music."
+                f"{brave_spoken} Find us at cariboosignals.ca."
             )
             try:
                 if USE_AZURE_TTS:
@@ -5185,7 +5195,9 @@ def main():
         citations_file = generate_citations_file(
             news_articles, deep_dive_articles, today_theme, script=script,
             debate_summary=debate_summary, psa_info=psa_info, quality=script_quality,
-            brave_used=brave_used
+            brave_used=brave_used,
+            weather_used=bool(weather_data),
+            cohere_used=cohere_enrichment.COHERE_ENABLED,
         )
 
         # Save script
@@ -5314,6 +5326,7 @@ def main():
         audio_file = generate_audio_from_script(
             script, audio_filename, theme_name=today_theme,
             weekend_closing=weekend_closing,
+            brave_used=brave_used,
         )
 
         if audio_file:
