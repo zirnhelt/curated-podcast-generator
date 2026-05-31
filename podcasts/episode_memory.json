@@ -1,23 +1,4 @@
 {
-  "2026-05-09": {
-    "timestamp": 1778324690.511213,
-    "topics": [
-      "[Williams Lake Tribune] New exhibitions at Williams Lake Sta",
-      "[Williams Lake Tribune] Walk held from Williams Lake to Tl\u2019e",
-      "[Williams Lake Tribune] Williams Lake cadet builds leadershi",
-      "[Williams Lake Tribune] Cariboo\u2019s Margo Wagner stays on as h",
-      "[Williams Lake Tribune] Teen hospitalized after vehicle roll",
-      "[Williams Lake Tribune] Foundry Cariboo Chilcotin concludes ",
-      "[Williams Lake Tribune] Lakers Car Club Spring Round Up Show",
-      "[Williams Lake Tribune] Williams Lake council awards tender "
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech"
-    ],
-    "date": "2026-05-09"
-  },
   "2026-05-10": {
     "timestamp": 1778411201.645518,
     "topics": [
@@ -406,5 +387,25 @@
       "environmental impact"
     ],
     "date": "2026-05-30"
+  },
+  "2026-05-31": {
+    "timestamp": 1780222797.277368,
+    "topics": [
+      "[ScienceAlert] Your Blood May Contain an Evolutionary Relic ",
+      "[ScienceDaily] Queenless wasp colonies explode into chaos bu",
+      "[ScienceDaily] Adorable tiny blue octopus found nearly 6,000",
+      "[ScienceDaily] Deadly fungus and lung parasites are hammerin",
+      "[ScienceDaily] Scientists discover hidden gut-brain circuit ",
+      "[New Atlas] This plant could be the smartest carnivore on th",
+      "[ScienceAlert] A Single Dose of Psilocybin Could Ease Depres",
+      "[New Atlas] Sea creature's amputated limbs refused to die, e"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-05-31"
   }
 }
