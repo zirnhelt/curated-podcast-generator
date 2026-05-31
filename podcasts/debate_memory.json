@@ -1,17 +1,4 @@
 {
-  "2026-03-01": {
-    "timestamp": 1772369395.572029,
-    "date": "2026-03-01",
-    "theme": "Resilient Rural Futures",
-    "central_question": "Deep dive on Resilient Rural Futures",
-    "topics_covered": [
-      "broadband",
-      "fiber",
-      "connectivity",
-      "telemedicine",
-      "AI"
-    ]
-  },
   "2026-03-02": {
     "timestamp": 1772456362.643784,
     "date": "2026-03-02",
@@ -1983,6 +1970,32 @@
       "The accountability gap between what decision-makers hear and what they document/act on",
       "Cumulative service contraction in small cities (airline loss, healthcare pressures, concurrent service gaps)",
       "The role of municipal politicians as translators of specific needs to senior government"
+    ]
+  },
+  "2026-05-31": {
+    "timestamp": 1780222799.429784,
+    "date": "2026-05-31",
+    "theme": "Science, Wonder & the Natural World",
+    "central_question": "What does it mean for ecological management and knowledge systems when living organisms demonstrate capabilities and strategies more sophisticated than our scientific models predict, and who benefits from the discovery?",
+    "riley_position": "Scientific discovery of natural system sophistication (like the cobra lily's pest management strategy) is valuable and applicable to human problems; the solution is better science communication and research incentive structures, not gatekeeping knowledge.",
+    "riley_key_evidence": [
+      "Darlingtonia californica uses catch-and-release strategy with wasps, maintaining repeat visits rather than killing prey",
+      "Cobra lily research has direct applications to integrated pest management in agriculture",
+      "Longitudinal ecological datasets can be made citable publications to incentivize long-term research"
+    ],
+    "casey_position": "Scientific discovery of natural system sophistication must be understood as distinct from Indigenous knowledge that preceded it; the gap between research findings and local application remains unfilled, and the benefit flows away from communities whose territories contain these systems.",
+    "casey_key_evidence": [
+      "Psilocybin compounds found in Cariboo forests have been part of local ecological and cultural relationships for generations before Western clinical trials",
+      "Most ecological research in the Cariboo operates on 3-5 year funding cycles, too short to observe patterns that manifest over decades",
+      "Science communication infrastructure in the Cariboo is thin, creating a gap between research findings and rancher application"
+    ],
+    "resolution": "The speakers achieved partial agreement: Riley conceded the data sovereignty and knowledge distinction arguments structurally; Casey acknowledged the cobra lily research has genuine agricultural applications. They agreed the core need is longer observation windows and governance structures supporting 30-year commitments, but neither fully resolved the tension between institutional incentives and regional accountability.",
+    "topics_covered": [
+      "Carnivorous plant catch-and-release strategy and evolutionary optimization",
+      "Sea cucumber cellular autonomy and tissue regeneration without central nervous system",
+      "Indigenous knowledge systems vs. Western scientific discovery frameworks",
+      "Research funding models and institutional incentives for long-term regional presence",
+      "Science communication infrastructure gaps in rural Cariboo region"
     ]
   }
 }
