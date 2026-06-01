@@ -2,16 +2,16 @@ name: Daily Podcast Generation
 
 on:
   schedule:
-    # Primary: 1:00 AM Pacific
-    # PDT (summer, UTC-7): 08:00 UTC  |  PST (winter, UTC-8): 09:00 UTC
-    - cron: '0 8 * * *'
-    # Fallback 1: 1:30 AM Pacific — fires 30 min after primary
-    # PDT: 08:30 UTC  |  PST: 09:30 UTC
-    - cron: '30 8 * * *'
-    # Fallback 2: 2:00 AM Pacific — last resort, leaves ~3 hrs to finish by 5 AM
-    # PDT: 09:00 UTC  |  PST: 10:00 UTC
+    # Primary: 11:00 PM Pacific (previous night) — maximizes buffer before 6:30 AM wakeup
+    # PDT (summer, UTC-7): 06:00 UTC  |  PST (winter, UTC-8): 07:00 UTC
+    - cron: '0 6 * * *'
+    # Fallback 1: midnight Pacific
+    # PDT: 07:00 UTC  |  PST: 08:00 UTC
+    - cron: '0 7 * * *'
+    # Fallback 2: 1:00 AM Pacific — last resort, still 5+ hrs before 6:30 AM
+    # PDT: 08:00 UTC  |  PST: 09:00 UTC
     # check-episode gates idempotency so duplicate triggers are safe.
-    - cron: '0 9 * * *'
+    - cron: '0 8 * * *'
   workflow_dispatch:
     inputs:
       tts_provider:
@@ -44,6 +44,17 @@ jobs:
     outputs:
       episode_exists: ${{ steps.check.outputs.episode_exists }}
     steps:
+      - name: Identify trigger
+        run: |
+          case "${{ github.event.schedule }}" in
+            '0 6 * * *') label="Primary (11 PM PDT / midnight PST)" ;;
+            '0 7 * * *') label="Fallback 1 (midnight PDT / 1 AM PST)" ;;
+            '0 8 * * *') label="Fallback 2 (1 AM PDT / 2 AM PST)" ;;
+            '')           label="Manual (workflow_dispatch)" ;;
+            *)            label="Unknown: ${{ github.event.schedule }}" ;;
+          esac
+          echo "Trigger: $label"
+
       - name: Check if today's episode already exists
         id: check
         run: |
@@ -130,7 +141,15 @@ jobs:
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           R2_BUCKET_NAME: cariboo-signals
         run: |
+          case "${{ github.event.schedule }}" in
+            '0 6 * * *') label="Primary (11 PM PDT / midnight PST)" ;;
+            '0 7 * * *') label="Fallback 1 (midnight PDT / 1 AM PST)" ;;
+            '0 8 * * *') label="Fallback 2 (1 AM PDT / 2 AM PST)" ;;
+            '')           label="Manual (workflow_dispatch)" ;;
+            *)            label="Unknown: ${{ github.event.schedule }}" ;;
+          esac
           echo "Starting daily podcast generation..."
+          echo "Trigger: $label"
           echo "Current UTC time: $(date -u)"
           echo "Current Pacific time: $(TZ='America/Vancouver' date)"
 
