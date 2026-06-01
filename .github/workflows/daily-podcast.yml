@@ -2,16 +2,16 @@ name: Daily Podcast Generation
 
 on:
   schedule:
-    # Primary: 1:00 AM Pacific
-    # PDT (summer, UTC-7): 08:00 UTC  |  PST (winter, UTC-8): 09:00 UTC
-    - cron: '0 8 * * *'
-    # Fallback 1: 1:30 AM Pacific — fires 30 min after primary
-    # PDT: 08:30 UTC  |  PST: 09:30 UTC
-    - cron: '30 8 * * *'
-    # Fallback 2: 2:00 AM Pacific — last resort, leaves ~3 hrs to finish by 5 AM
-    # PDT: 09:00 UTC  |  PST: 10:00 UTC
+    # Primary: 6:30 AM Pacific
+    # PDT (summer, UTC-7): 13:30 UTC  |  PST (winter, UTC-8): 14:30 UTC
+    - cron: '30 13 * * *'
+    # Fallback 1: 7:00 AM Pacific — fires 30 min after primary
+    # PDT: 14:00 UTC  |  PST: 15:00 UTC
+    - cron: '0 14 * * *'
+    # Fallback 2: 7:30 AM Pacific — last resort
+    # PDT: 14:30 UTC  |  PST: 15:30 UTC
     # check-episode gates idempotency so duplicate triggers are safe.
-    - cron: '0 9 * * *'
+    - cron: '30 14 * * *'
   workflow_dispatch:
     inputs:
       tts_provider:
