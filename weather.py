@@ -6,10 +6,14 @@ Covers four communities spread across the Cariboo for a regional picture:
   - Williams Lake  (central Cariboo hub)
   - Quesnel        (north Cariboo)
 
+Plus a randomly selected Chilcotin plateau community for regional variety:
+  - Alexis Creek, Riske Creek, Hanceville, Tatla Lake, Anahim Lake, or Redstone
+
 Uses the Open-Meteo free API — no API key required.
 Returns a plain-English summary suitable for injection into the podcast script prompt.
 """
 
+import random
 import requests
 
 # Horsefly Lake, BC (home base)
@@ -27,6 +31,16 @@ WILLIAMS_LAKE_LON = -122.14
 # Quesnel, BC (north Cariboo)
 QUESNEL_LAT = 53.02
 QUESNEL_LON = -122.49
+
+# Chilcotin plateau communities (one selected at random each episode)
+CHILCOTIN_TOWNS = [
+    {"name": "Alexis Creek",  "lat": 52.08, "lon": -123.27},
+    {"name": "Riske Creek",   "lat": 51.97, "lon": -122.53},
+    {"name": "Hanceville",    "lat": 51.90, "lon": -123.07},
+    {"name": "Tatla Lake",    "lat": 51.99, "lon": -124.42},
+    {"name": "Anahim Lake",   "lat": 52.46, "lon": -125.31},
+    {"name": "Redstone",      "lat": 51.82, "lon": -123.70},
+]
 
 TIMEZONE = "America/Vancouver"
 
@@ -143,9 +157,10 @@ def _describe(code):
 
 
 def fetch_weather():
-    """Fetch weather for four key Cariboo communities and return a regional summary.
+    """Fetch weather for Cariboo communities and return a regional summary.
 
-    Locations: Horsefly Lake (home), 100 Mile House, Williams Lake, Quesnel.
+    Locations: Horsefly Lake (home), 100 Mile House, Williams Lake, Quesnel,
+    plus a randomly selected Chilcotin plateau community for variety.
 
     Returns:
         dict with 'summary' string for the script prompt, plus raw data per location.
@@ -155,6 +170,11 @@ def fetch_weather():
     hundred_mile = _fetch_location(HUNDRED_MILE_LAT, HUNDRED_MILE_LON)
     williams = _fetch_location(WILLIAMS_LAKE_LAT, WILLIAMS_LAKE_LON)
     quesnel = _fetch_location(QUESNEL_LAT, QUESNEL_LON)
+
+    # Pick one Chilcotin plateau community at random
+    chilcotin_town = random.choice(CHILCOTIN_TOWNS)
+    chilcotin = _fetch_location(chilcotin_town["lat"], chilcotin_town["lon"])
+    chilcotin_name = chilcotin_town["name"]
 
     if not horsefly:
         return None
@@ -179,12 +199,14 @@ def fetch_weather():
     if hf["precip"] > 0:
         summary += f" About {hf['precip']:.0f} millimetres of precipitation."
 
-    # Regional snapshot: brief conditions for each Cariboo community
+    # Regional snapshot: brief conditions for each Cariboo community,
+    # including the random Chilcotin plateau pick
     regional_parts = []
     for loc_name, loc in [
         ("100 Mile House", hundred_mile),
         ("Williams Lake", williams),
         ("Quesnel", quesnel),
+        (chilcotin_name, chilcotin),
     ]:
         if loc:
             regional_parts.append(
@@ -195,7 +217,7 @@ def fetch_weather():
         summary += " Across the Cariboo — " + ", ".join(regional_parts) + "."
 
     # Seasonal advisories — based on the coldest/hottest spot in the region
-    all_locs = [l for l in [horsefly, hundred_mile, williams, quesnel] if l]
+    all_locs = [l for l in [horsefly, hundred_mile, williams, quesnel, chilcotin] if l]
     max_high = max(l["high"] for l in all_locs)
     min_low = min(l["low"] for l in all_locs)
 
@@ -234,6 +256,8 @@ def fetch_weather():
         "hundred_mile": hundred_mile,
         "williams_lake": williams,
         "quesnel": quesnel,
+        "chilcotin_town": chilcotin,
+        "chilcotin_town_name": chilcotin_name,
         "williams_lake_driving_impact": williams is not None and _has_driving_impact(williams),
         "summary": summary,
     }
@@ -251,10 +275,15 @@ def format_weather_for_prompt(weather_data):
     if not weather_data:
         return ""
 
+    chilcotin_name = weather_data.get("chilcotin_town_name", "")
+    chilcotin_note = (
+        f" Today's Chilcotin plateau spot: {chilcotin_name}." if chilcotin_name else ""
+    )
     return (
         "WEATHER CHECK (Cariboo-wide — for the hosts to deliver naturally in the welcome "
         "section. Cover the regional highlights: home base at Horsefly Lake, then a brief "
-        "sweep across 100 Mile House, Williams Lake, and Quesnel. Keep it to 2-3 sentences, "
-        "conversational, not a formal forecast. Flag any driving alerts if noted below):\n"
-        f"{weather_data['summary']}\n\n"
+        f"sweep across 100 Mile House, Williams Lake, Quesnel, and today's Chilcotin plateau "
+        f"community ({chilcotin_name}). Keep it to 2-3 sentences, conversational, not a formal "
+        "forecast. Flag any driving alerts if noted below):\n"
+        f"{weather_data['summary']}{chilcotin_note}\n\n"
     )
