@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechCrunch] Wirestock raises $23M to supply creative multi-",
-      "[Neowin] Spotify will soon support Apple's technology to ope",
       "[TechRadar] US data centers use enough electricity to power ",
       "Technology shouldn't sacrifice the integrity of knowledge",
       "[CNET] Scientists Warn AI Slop Is Wreaking Havoc in the Rese",
@@ -10,7 +8,9 @@
       "[TechCrunch] Spotify adds AI-powered Q&A and briefing genera",
       "New: Indigenous AI Advisory Circle",
       "[Android Authority] Gemini\u2019s camera AI thinks Aussie wildlif",
-      "AI"
+      "AI",
+      "[The Verge] A $2,000 AI-generated film will make its debut a",
+      "[TechRadar] New Apple TV sci-fi series Star City will be 'to"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -90,19 +90,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-22",
-        "clue": "tech-optimism:x \u2014 Conceded institutional barriers aren't purely technical problems",
-        "occurrences": 2
-      },
-      {
         "date": "2026-05-12",
         "clue": "funding-risk:~ \u2014 Acknowledged wood products precedent reveals political calculation lag.",
         "occurrences": 1
-      },
-      {
-        "date": "2026-05-18",
-        "clue": "pilot-skepticism:+ \u2014 'maintenance gap applies here too' deepened skepticism",
-        "occurrences": 2
       },
       {
         "date": "2026-05-19",
@@ -289,9 +279,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-23",
-        "clue": "structural-lens:~ \u2014 Acknowledged broadband/digital infrastructure genuinely enables accountability, softened pure skepticism",
-        "occurrences": 1
+        "date": "2026-06-01",
+        "clue": "structural-lens:~ \u2014 moved from infrastructure choice to governance-first sequencing",
+        "occurrences": 2
       },
       {
         "date": "2026-05-23",
@@ -309,9 +299,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-05-25",
-        "clue": "funding-risk:+ \u2014 Reinforced structural underfunding pattern across standards, auditing, journalism infrastructure",
-        "occurrences": 1
+        "date": "2026-06-01",
+        "clue": "funding-risk:+ \u2014 deepened critique from budget gaps to maintenance-as-operating-function",
+        "occurrences": 2
       },
       {
         "date": "2026-05-29",

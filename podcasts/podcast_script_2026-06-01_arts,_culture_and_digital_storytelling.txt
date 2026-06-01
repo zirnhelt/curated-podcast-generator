@@ -1,0 +1,119 @@
+# Cariboo Signals Podcast Script - 2026-06-01
+# Theme: Arts, Culture & Digital Storytelling
+# Generated: 2026-06-01 06:41:39 PDT
+
+**CASEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. It's Monday, June 1st, 2026. Coming to you from the Cariboo, on lands that have been cared for by the Secwépemc, Tŝilhqot'in, and Dakelh peoples since time immemorial. Today's theme is Arts, Culture & Digital Storytelling — I'm Casey.
+
+**RILEY:** And I'm Riley. There's a lot happening at the intersection of storytelling and technology right now — some of it genuinely useful for small communities, some of it hype dressed up in a film festival press release.
+
+**CASEY:** Quick weather check before we dive in — out at Horsefly Lake it's 7 degrees with overcast skies, high of 20 expected today, low of 5 overnight. Across the Cariboo: 100 Mile House sitting at 7 with partly cloudy, Williams Lake at 8 with mainly clear skies, and Quesnel clear at 7. Not a bad start to June. Let's get into the news.
+
+---
+
+**NEWS ROUNDUP**
+
+**RILEY:** [pause:1200] The big policy story this week touches every digital communicator, every community storyteller, every podcaster in Canada. The federal government has introduced Bill C-22, a sweeping surveillance proposal that would require every internet provider, messaging app, and cloud service to retain a year's worth of metadata — who you're talking to, where you're travelling digitally — and to build backdoors into their systems. Open Media is raising alarm bells, pointing out that foreign state actors have already exploited similar legislative backdoors in other countries. For arts and media organizations handling sensitive community stories, the implications are real.
+
+**CASEY:** Metadata surveillance doesn't just chill journalism — it chills sources, and that's how community storytelling dies quietly.
+
+**CASEY:** [pause:1200] On the AI filmmaking front: a 75-minute feature called *Dreams of Violets* is making its debut at next month's Tribeca Festival — and it was made for two thousand dollars. The film dramatizes the Iranian government's mass killings of political prisoners in 1988, using AI generation throughout. It's the kind of story that might never get funded through traditional documentary channels given the political sensitivity.
+
+**RILEY:** Two thousand dollars is a real number. The question is what it cost in terms of the human creative labour that trained those models.
+
+**RILEY:** [pause:1200] Spotify dropped two related updates this week. First, a new clipping tool: a scissors icon lets listeners grab specific moments from any podcast and share them directly. Second, YouTube is making a parallel move — a new "on-the-go mode" rolling out to Premium subscribers on Android shifts the interface toward audio-first listening, with background play and a simplified screen. Two platforms, same direction.
+
+**CASEY:** The clip feature is genuinely useful for small producers — a strong 90-second moment from a local show can travel a lot farther than a full episode link. The YouTube feature still requires Premium, though, so the access story is more complicated than the pitch.
+
+**RILEY:** [pause:1200] There's a fascinating historical sidebar from Nautilus this week — the piece traces how Pope Leo XIII, the late 19th century Leo, weighed in on emerging media technology, seeing both its promise and its danger. A reminder that every major media shift generates the same anxious institutional response.
+
+**CASEY:** Which leads neatly to Pope Leo XIV, who cited Tolkien's *Lord of the Rings* in his encyclical on AI — Wired's take is that it's an expert, if accidental, troll of tech billionaires who keep misreading the series as a celebration of power.
+
+**CASEY:** [pause:1200] A quieter story that deserves a moment: veteran programmer Colin Porch, now in his eighties, just published a sequel to the 1987 isometric puzzler *Head Over Heels* — a game he started coding in 1989 and shelved for 37 years when the console market pivoted. He finished it. That's the whole story.
+
+**RILEY:** Thirty-seven years. Every creative project I've ever abandoned now feels inexcusable.
+
+**RILEY:** [pause:1200] And on the digital preservation side — a project called the Virtual OS Museum has assembled what may be the most comprehensive browsable collection of historical operating systems online. Windows Vista notably didn't make the cut, which honestly seems like an editorial decision rather than an oversight.
+
+**CASEY:** A mercy, really.
+
+**RILEY:** Also worth noting today — Christy Bond, MLA for Cariboo North, has commented on BC Conservative leader John Rustad's leadership win, calling it "now the really hard work begins." My Cariboo Now has the regional reaction. We'll link it in the episode notes for those following provincial politics.
+
+**CASEY:** Before we move on — Station House Gallery in Williams Lake deserves a moment.
+
+---
+
+**COMMUNITY SPOTLIGHT**
+
+**CASEY:** Station House Gallery is Williams Lake's primary visual arts space, showcasing painters, sculptors, and mixed-media artists from across the Cariboo region. It's one of those institutions that quietly anchors a community's cultural identity — a place where regional voices get wall space, not just a social media post. They support emerging artists alongside established ones, and they're a genuine gathering point for the arts community in a city of just over ten thousand people. Find them at stationhousegallery.com.
+
+**RILEY:** If you haven't been in lately, the summer programming is worth the trip — local galleries like Station House are where you actually encounter the Cariboo's creative life, not through an algorithm.
+
+**CASEY:** And that's exactly the tension we're going to dig into right now.
+
+---
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Arts, Culture & Digital Storytelling**
+
+**CASEY:** We've spent several episodes on this theme — governance frameworks, sustainability models, funding gaps. Today's question is one we haven't fully confronted: what does a rural community actually do when the dominant distribution platforms start making editorial decisions that affect what gets found? Not just AI content flooding the space. The specific problem of platform dependency — whether Spotify, YouTube, or any other intermediary is a tool a community storyteller uses, or a landlord they're renting from.
+
+**RILEY:** The Spotify clip feature and the YouTube podcast mode are both genuinely useful. A Cariboo storyteller who drops a 90-second clip of an elder's oral history onto social media reaches people who'd never find the full episode. That's not nothing.
+
+**CASEY:** It's not nothing. It's also not a strategy. Clippability optimizes for the moment that travels, not the story that matters. And the moments that travel on those platforms are the ones the algorithm decides to amplify — trained on engagement patterns from populations that look nothing like Horsefly or Anahim Lake.
+
+**RILEY:** The alternative isn't "ignore the platforms." Canadaland built a multi-show network through direct listener relationships, but they still distribute on Spotify. The platforms are distribution infrastructure. You don't have to surrender editorial control just because you use their pipes.
+
+**CASEY:** Canadaland has a legal team and a full-time staff. A community radio producer in 100 Mile House does not. When Spotify changes its discovery algorithm — which it does regularly, without notice — a small show doesn't have the capacity to adapt. They disappear from recommendations. The pipe metaphor assumes the pipe is neutral. It isn't.
+
+**RILEY:** Okay, so what's the actual structural alternative? "Don't use the platforms" isn't viable. The question is what ownership layer you can build underneath the platform layer.
+
+**CASEY:** RSS. It's twenty-five years old and it still works. A podcast distributed via open RSS doesn't depend on any single platform's algorithm. YouTube can change its model, Spotify can restructure — the feed still exists. The problem is discoverability without the algorithm.
+
+**RILEY:** Which brings us back to the clip feature — a well-placed clip on a platform with reach is how you pull people into the RSS ecosystem. You use the platform for discovery and own the distribution.
+
+**CASEY:** That's a coherent model if you have the production capacity to run both. Most small Cariboo cultural producers are already stretched making the content once. Repurposing it for platform-optimized clips is a second job.
+
+**RILEY:** The $2,000 AI film at Tribeca is relevant here. Not because AI filmmaking is the answer for Quesnel — but because the production cost floor has dropped dramatically. Labour that used to go into technical production can increasingly go into community relationships, story development, archival work. That's a real shift for digital storytelling in under-resourced communities.
+
+**CASEY:** The $2,000 figure covers AI generation costs. It doesn't include the filmmaker's time, archival research, or rights negotiations. And it doesn't account for the fact that the training data those AI tools ran on was built from human creative work — most of which wasn't compensated. The cost savings are real for the producer and invisible for the people whose work made the tool possible.
+
+**RILEY:** That's a legitimate critique of the model. It's not a critique of the output. *Dreams of Violets* tells a story about Iranian political prisoners — a story that might not have found traditional documentary funding. The question isn't whether the technology is ethically clean. The question is whether the story gets told.
+
+**CASEY:** And who gets to decide that trade-off. In a community context — say, a Tŝilhqot'in cultural organization deciding whether to use AI tools to help document oral histories — that decision involves cultural protocols, governance structures, questions about who owns the output. The $2,000 film is a useful data point. It's not a template.
+
+**RILEY:** Though I'd resist the assumption that Indigenous communities are only on the receiving end of this conversation. The Secwépemc Education Institute runs language programming that involves digital tools. These aren't communities waiting to be told how AI filmmaking works — they're navigating these questions on their own terms, often ahead of the broader conversation.
+
+**CASEY:** Which is exactly why the platform dependency question matters more in that context than anywhere else. If a Secwépemc language archive is hosted on YouTube, YouTube's content policies and algorithmic decisions apply to it. There are documented cases of Indigenous language content being flagged or demonetized by automated systems that didn't recognize it as language at all. That's not hypothetical.
+
+**RILEY:** So what's the actual infrastructure alternative? We keep identifying the dependency problem clearly and then the solution is either "build your own infrastructure" — which requires capital — or "use open-source tools" — which requires technical capacity — or "get a grant" — which brings us back to the funding treadmill.
+
+**CASEY:** The piece that's different now is local hosting. A small cultural archive doesn't have to live on a commercial server in Virginia. Low-cost local servers running open-source software can host audio and video archives that are accessible locally without any platform intermediary. Indigenous-controlled data infrastructure models in other countries — including Māori-led approaches in Aotearoa New Zealand — are built on exactly this principle: community-owned storage that doesn't route through commercial platforms at all.
+
+**RILEY:** Those models are genuinely impressive, but they've typically developed with backing from governance structures that have significant institutional capacity. The question for a community like Williams Lake is whether that scales down. A single locally hosted archive is technically achievable on hardware that costs a few hundred dollars. But someone has to maintain it. Someone has to ensure the backups run and the security patches get applied.
+
+**CASEY:** That's the maintenance gap argument, and it remains unresolved — but flip it: the maintenance requirement isn't a reason not to build the archive. It's a reason to build the maintenance capacity deliberately. A community that owns its archive infrastructure and has one trained person who knows how to keep it running is in a fundamentally different position than a community whose irreplaceable cultural material lives on YouTube because that was easier to set up.
+
+**RILEY:** The resilience asymmetry is real. A YouTube channel can be deleted tomorrow. A locally hosted archive survives as long as the hardware does. For oral histories, for ceremony recordings held under community-controlled access protocols, that difference is not abstract.
+
+**CASEY:** We should be straight with listeners: we haven't spoken directly with communications staff from the Secwépemc, Tŝilhqot'in, or Dakelh nations about how they're thinking through these specific infrastructure questions, and that's a gap in today's conversation. Published sources get us partway there. Direct engagement would get us further.
+
+**RILEY:** So let's try to land somewhere concrete. The platform dependency problem is real. Open infrastructure is technically achievable but requires maintenance capacity. The key question isn't "grant versus no grant" — it's whether you can embed the maintenance function in an existing institution rather than standing up something new.
+
+**CASEY:** Station House Gallery already has staff. It already has relationships with regional artists. It's not a stretch to imagine a digital archiving function attached to an existing gallery or arts society — not as a new program requiring new funding every year, but as an expansion of what the institution already does. The technical barrier is lower than it's ever been. The governance question is harder: who has editorial authority over what gets preserved and how it's accessed?
+
+**RILEY:** That's where tiered-access, community-controlled permission models keep coming back — the approach that's been deployed in Indigenous archiving contexts for well over a decade. It's not new technology. The question is whether a regional arts institution like Station House has the relationships with local First Nations to implement it collaboratively rather than extractively.
+
+**CASEY:** "Collaboratively rather than extractively" — that relationship doesn't exist just because someone proposes it. It has to be built on terms set by the nations, not by the gallery. The first question isn't what software to use. It's whether those conversations are happening at all.
+
+**RILEY:** And that's a question a listener in Williams Lake could actually raise — at a town council meeting, a Station House board meeting, or a direct conversation with Xatśūll or Williams Lake First Nation communications staff.
+
+**CASEY:** The Colin Porch story keeps nagging at me in this context. He spent 37 years carrying a creative project that nobody else knew about, finished it entirely on his own terms, and released it without a platform strategy or a grant application. The archive was in his head. The question for communities is whether irreplaceable cultural knowledge has that same patience. In most cases, it doesn't. The knowledge holders age. Languages contract. The urgency is real in a way that a retro game sequel — charming as it is — simply isn't.
+
+**RILEY:** That's the strongest case for imperfect action over perfect conditions. A locally hosted archive with one trained maintainer, built on open-source software, governed through a collaborative protocol with regional First Nations — that's achievable this year. Not waiting for the ideal funding structure or the ideal platform to emerge. Arts and digital storytelling infrastructure in the Cariboo doesn't have 37 years.
+
+**CASEY:** The structural question worth putting to any cultural organization in this region: could the maintenance function live inside an existing operating budget rather than in perpetual grant dependency? A regional arts society, a library, a band council communications office. Not a new line item requiring new approval every year — an operating function budgeted the same way internet access is.
+
+**RILEY:** Internet access used to be a project. Now it's a utility. Digital cultural infrastructure could follow the same arc — but only if communities treat it that way from the start, rather than building it as a pilot and hoping it converts. That shift in framing is something any institution could choose to make right now, before the next funding cycle opens.
+
+**CASEY:** If you're involved with a cultural organization in the Cariboo and you're wrestling with exactly this — where your archive lives, who controls access, what happens when a platform changes its terms — we'd genuinely want to hear what you're working through. Reach us at feedback at cariboosignals dot c-a, and we'll bring those conversations into the show. Happy June 1st, everyone.
+
+**RILEY:** Take care out there.

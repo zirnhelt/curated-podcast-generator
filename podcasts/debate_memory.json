@@ -1,30 +1,4 @@
 {
-  "2026-03-02": {
-    "timestamp": 1772456362.643784,
-    "date": "2026-03-02",
-    "theme": "Arts, Culture & Digital Storytelling",
-    "central_question": "Deep dive on Arts, Culture & Digital Storytelling",
-    "topics_covered": [
-      "connectivity",
-      "data sovereignty",
-      "AI",
-      "infrastructure",
-      "funding"
-    ]
-  },
-  "2026-03-03": {
-    "timestamp": 1772542776.777901,
-    "date": "2026-03-03",
-    "theme": "Working Lands & Industry",
-    "central_question": "Deep dive on Working Lands & Industry",
-    "topics_covered": [
-      "satellite",
-      "precision agriculture",
-      "solar",
-      "data sovereignty",
-      "AI"
-    ]
-  },
   "2026-03-04": {
     "timestamp": 1772629141.601019,
     "date": "2026-03-04",
@@ -1996,6 +1970,32 @@
       "Indigenous knowledge systems vs. Western scientific discovery frameworks",
       "Research funding models and institutional incentives for long-term regional presence",
       "Science communication infrastructure gaps in rural Cariboo region"
+    ]
+  },
+  "2026-06-01": {
+    "timestamp": 1780321301.350678,
+    "date": "2026-06-01",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "central_question": "How can rural Indigenous communities maintain editorial control and long-term resilience of cultural archives without depending on commercial platforms whose algorithms and policies they cannot control?",
+    "riley_position": "Commercial platforms are necessary distribution infrastructure that can coexist with owned distribution channels; communities should use platforms for discovery while maintaining RSS-based ownership, and declining production costs create new opportunities for storytelling.",
+    "riley_key_evidence": [
+      "Canadaland built a multi-show network through direct listener relationships while still distributing on Spotify",
+      "The $2,000 AI film at Tribeca demonstrates dramatically lowered production cost floors",
+      "M\u0101ori-owned data storage network demonstrates Indigenous-controlled infrastructure is achievable"
+    ],
+    "casey_position": "Platform dependency is structurally unequal for under-resourced communities; small producers lack the capacity to adapt to algorithmic changes, and open infrastructure alternatives require maintenance capacity that must be deliberately built rather than assumed.",
+    "casey_key_evidence": [
+      "When Spotify changes its discovery algorithm without notice, small shows disappear from recommendations without adaptation capacity",
+      "YouTube has flagged Indigenous language content as non-language through automated systems",
+      "The $2,000 AI film cost ignores filmmaker time, archival research, and uncompensated training data sourced from human creative work"
+    ],
+    "resolution": "They converged on a concrete proposal: embed digital archival and maintenance functions into existing regional institutions (arts galleries, libraries, band councils) as operating budgets rather than grant-dependent pilots, using open-source tools like Nextcloud while building collaborative governance with local First Nations through models like Mukurtu.",
+    "topics_covered": [
+      "Platform dependency and algorithmic control in content discovery",
+      "Open infrastructure alternatives (RSS, local hosting, mesh networks) versus commercial platforms",
+      "AI tools in cultural production and the ethics of training data",
+      "Indigenous data sovereignty and tiered access protocols",
+      "Maintenance capacity as the critical barrier to sustainable community archives"
     ]
   }
 }
