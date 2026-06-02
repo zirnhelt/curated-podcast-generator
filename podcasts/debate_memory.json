@@ -1972,30 +1972,37 @@
       "Science communication infrastructure gaps in rural Cariboo region"
     ]
   },
-  "2026-06-01": {
-    "timestamp": 1780321301.350678,
-    "date": "2026-06-01",
-    "theme": "Arts, Culture & Digital Storytelling",
-    "central_question": "How can rural Indigenous communities maintain editorial control and long-term resilience of cultural archives without depending on commercial platforms whose algorithms and policies they cannot control?",
-    "riley_position": "Commercial platforms are necessary distribution infrastructure that can coexist with owned distribution channels; communities should use platforms for discovery while maintaining RSS-based ownership, and declining production costs create new opportunities for storytelling.",
+  "2026-06-02": {
+    "timestamp": 1780396005.33335,
+    "date": "2026-06-02",
+    "theme": "Working Lands & Industry",
+    "central_question": "What are the fundamental operational and structural gaps preventing Cariboo agricultural producers from accessing modern tools, markets, and infrastructure\u2014and which gaps are actually solvable?",
+    "riley_position": "The operational gaps (weather data, processing, traceability, market access) are solvable through cooperative infrastructure models and existing technologies; the pieces and coordination mechanisms already exist, requiring mainly a decision to fund the translation work and proposal-writing.",
     "riley_key_evidence": [
-      "Canadaland built a multi-show network through direct listener relationships while still distributing on Spotify",
-      "The $2,000 AI film at Tribeca demonstrates dramatically lowered production cost floors",
-      "M\u0101ori-owned data storage network demonstrates Indigenous-controlled infrastructure is achievable"
+      "North Dakota's mesonet in the early 2000s demonstrated meaningful returns from reduced crop loss and improved input timing, with station costs now dropped to a fraction of that era's prices",
+      "Low-cost sensor arrays running on solar with satellite transmission are now available and affordable for a cooperative of 30 ranches to share across shared range territory",
+      "Saskatchewan agricultural co-operatives have hired their own agronomists through levy structures on commodity sales, a model the Cariboo beef sector has sufficient volume to explore"
     ],
-    "casey_position": "Platform dependency is structurally unequal for under-resourced communities; small producers lack the capacity to adapt to algorithmic changes, and open infrastructure alternatives require maintenance capacity that must be deliberately built rather than assumed.",
+    "casey_position": "While operational tools exist, the Cariboo's economic scale and structural constraints (thin margins, climate variability, extension capacity cuts, crown lease dependency) make implementation unlikely without major institutional commitment; First Nations partnerships offer structural advantages but risk being described primarily in terms of what they offer non-Indigenous partners.",
     "casey_key_evidence": [
-      "When Spotify changes its discovery algorithm without notice, small shows disappear from recommendations without adaptation capacity",
-      "YouTube has flagged Indigenous language content as non-language through automated systems",
-      "The $2,000 AI film cost ignores filmmaker time, archival research, and uncompensated training data sourced from human creative work"
+      "Extension services in BC have been cut so far back that the agricultural advisory function barely exists at the provincial level, eliminating the capacity to translate research into operational recommendations",
+      "A rancher producing grass-fed beef in the Chilcotin has no regional processing capacity or cold-chain infrastructure, meaning margins get eaten by transport costs despite perfect product quality and traceability",
+      "Crown lease dependency is a structural vulnerability for Cariboo ranchers\u2014operations live or die on lease renewal decisions made in Victoria, whereas First Nations have fundamentally different land security"
     ],
-    "resolution": "They converged on a concrete proposal: embed digital archival and maintenance functions into existing regional institutions (arts galleries, libraries, band councils) as operating budgets rather than grant-dependent pilots, using open-source tools like Nextcloud while building collaborative governance with local First Nations through models like Mukurtu.",
+    "resolution": "No full resolution; they agreed that operational gaps are technically solvable but acknowledged that piece-proximity isn't enough\u2014someone must decide to close the gap through institutional and political commitment. They also agreed that First Nations partnerships deserve to be framed from Nations' own governance priorities rather than as complementary gaps filling non-Indigenous operators' needs, and that the conversation requires First Nations voices, not just external analysis.",
     "topics_covered": [
-      "Platform dependency and algorithmic control in content discovery",
-      "Open infrastructure alternatives (RSS, local hosting, mesh networks) versus commercial platforms",
-      "AI tools in cultural production and the ethics of training data",
-      "Indigenous data sovereignty and tiered access protocols",
-      "Maintenance capacity as the critical barrier to sustainable community archives"
+      "Agricultural-grade weather data infrastructure and mesonet models",
+      "Processing capacity and cold-chain infrastructure constraints for direct-to-consumer/regional beef markets",
+      "Blockchain-based traceability systems and provenance verification for regional producers",
+      "First Nations agricultural enterprises as alternative capital and land-tenure models",
+      "Extension service capacity and co-operative proposal-development as institutional gaps"
+    ],
+    "calls_to_action": [
+      "The Cariboo Agricultural Research Alliance should consider whether expanding into co-operative proposal-writing (for shared infrastructure like weather networks) is within their mandate or capacity\u2014and this should be raised directly and loudly given how thin extension capacity is.",
+      "The Cariboo Cattlemen's Association and a regional credit union could get serious about a shared services model to fund an agronomist position without waiting for provincial programs, using levy structures similar to Saskatchewan commodity sectors.",
+      "Producers, ranchers, or agricultural development workers in the Cariboo with knowledge of existing partnership proposals, feasibility concerns, or on-the-ground realities should reach out to the podcast (feedback at cariboo signals dot c-a) to correct analysis or report on progress.",
+      "First Nations agricultural enterprises and private ranchers should explore partnership models designed from First Nations' own governance and land stewardship priorities, rather than framing the relationship primarily in terms of gap-filling for non-Indigenous operators.",
+      "Regional stakeholders should examine whether a Williams Lake-area mobile or permanent processing facility could be capitalized through a Nation-level agricultural enterprise partnership, which could change the risk profile for individual operators."
     ]
   }
 }

@@ -1,0 +1,301 @@
+{
+  "episode": {
+    "date": "2026-06-02",
+    "formatted_date": "Tuesday, June 02, 2026",
+    "theme": "Working Lands & Industry",
+    "title": "Cariboo Signals - Working Lands & Industry",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Working Lands & Industry.</p><p><b>NEWS ROUNDUP:</b> We break down [Boing Boing] Harvard students cheer graduation speaker encouraging them to mercilessly destroy AI and [The Tyee] BC’s Family Doctor Crisis Gets Even Worse, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> What are the fundamental operational and structural gaps preventing Cariboo agricultural producers from accessing modern tools, markets, and infrastructure—and which gaps are actually solvable? Topics include: Agricultural-grade weather data infrastructure and mesonet models, Processing capacity and cold-chain infrastructure constraints for direct-to-consumer/regional beef markets, Blockchain-based traceability systems and provenance verification for regional producers, First Nations agricultural enterprises as alternative capital and land-tenure models, Extension service capacity and co-operative proposal-development as institutional gaps.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://cariboo-agricultural-research.ca\">Cariboo Agricultural Research Alliance</a></p><p><b>Sources discussed:</b></p><ul><li>Rob Beschizza (Boing Boing): <a href=\"https://boingboing.net/2026/05/31/harvard-students-cheer.html\">[Boing Boing] Harvard students cheer graduation speaker enco...</a></li><li>Andrew MacLeod (The Tyee): <a href=\"https://thetyee.ca/News/2026/05/31/BC-Family-Doctor-Crisis-Gets-Even-Worse/\">[The Tyee] BC’s Family Doctor Crisis Gets Even Worse</a></li><li>NPR Health News: <a href=\"https://www.npr.org/2026/05/31/nx-s1-5837626/amid-a-slew-of-chemical-accidents-the-agency-that-investigates-them-is-under-threat\">[NPR Health News] Amid a slew of chemical accidents, the age...</a></li><li>https://newatlas.com/author/david-szondy/ (New Atlas): <a href=\"https://newatlas.com/aircraft/quarterhorse-mk-2-1-prototype-breaks-sound-barrier/\">[New Atlas] SR-71 successor? Quarterhorse Mk 2.1 prototype c...</a></li><li>Anna Heim (TechCrunch): <a href=\"https://techcrunch.com/2026/05/27/payroll-startup-remote-says-it-grew-revenue-50-per-employee-without-adding-headcount/\">[TechCrunch] Payroll startup Remote says it grew revenue 50%...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>https://www.facebook.com/CNBC (CNBC): <a href=\"https://www.cnbc.com/2026/06/01/berkshire-hathaway-alphabet-investment.html\">[CNBC] Berkshire Hathaway invests extra $10 billion in Alpha...</a></li><li>Jordy Cunningham (100 Mile Free Press): <a href=\"https://100milefreepress.net/2026/06/01/fore-golfer-struck-by-cart-in-kelowna/\">[100 Mile Free Press] Fore: Golfer struck by cart in Kelowna</a></li><li>https://www.tomsguide.com/author/jason-england (Toms Guide): <a href=\"https://www.tomsguide.com/computing/laptops/msi-prestige-14-flip-ai-vincent-van-gogh-edition-hands-on-review\">[Toms Guide] I just held the most beautiful laptop, but I’m ...</a></li><li>Taipei Times: <a href=\"https://www.taipeitimes.com/News/biz/archives/2026/06/02/2003858365\">[Taipei Times] Hon Hai partners with France’s Bull for AI ex...</a></li><li>https://www.tomsguide.com/author/david-crookes (Toms Guide): <a href=\"https://www.tomsguide.com/computing/want-a-new-pc-but-hate-current-prices-heres-5-smart-ways-to-build-or-buy-for-less\">[Toms Guide] Want a new PC but hate current prices? Here's 5...</a></li><li>Android Authority: <a href=\"https://www.androidauthority.com/apps-i-gladly-pay-for-3671537/\">[Android Authority] I’m trying to cut down my subscriptions,...</a></li><li>BC Gov News: <a href=\"https://news.gov.bc.ca/releases/2026PREM0027-000605\">[BC Gov News] Premier’s, parliamentary secretary’s statement...</a></li><li>https://www.tomsguide.com/author/zoran-danilovic (Toms Guide): <a href=\"https://www.tomsguide.com/computing/vpns/tech-companies-are-scraping-your-personal-data-to-train-their-ai-heres-how-to-block-aggressive-trackers-and-lock-down-your-privacy\">[Toms Guide] Tech companies are scraping your personal data ...</a></li><li>CNET: <a href=\"https://www.cnet.com/tech/gaming/todays-nyt-strands-hints-answers-and-help-for-june-2-821/\">[CNET] Today's NYT Strands Hints, Answers and Help for June ...</a></li><li>Maria Popova (The Marginalian): <a href=\"https://www.themarginalian.org/2026/05/31/general-theory-of-love-music-emotion/\">[The Marginalian] Music, the Neural Harmonics of Emotion, an...</a></li><li>Nathan Yau (FlowingData): <a href=\"https://flowingdata.com/2026/06/01/u-s-names-with-the-oldest-population/\">[FlowingData] U.S. names with the oldest population</a></li><li>Rob Beschizza (Boing Boing): <a href=\"https://boingboing.net/2026/05/31/loony-toon-sentenced.html\">[Boing Boing] Loony Toon sentenced to 20 years in prison for...</a></li><li>Jason Weisberger (Boing Boing): <a href=\"https://boingboing.net/2026/05/31/man-who-stole-11-million-from-prison-has-a-new-trick-escaping.html\">[Boing Boing] Man who stole $11 million from prison has a ne...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-6<br>TTS Voices: OpenAI TTS API (Nova · Echo)<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-06-02T03:26:39.859029-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-sonnet-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 2686,
+      "voice_ratio_casey_riley": 0.91,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0
+      },
+      "total_hits": 0,
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[CNBC] Berkshire Hathaway invests extra $10 billion in Alphabet, deepening bet on AI",
+          "url": "https://www.cnbc.com/2026/06/01/berkshire-hathaway-alphabet-investment.html",
+          "source": "CNBC",
+          "author": "https://www.facebook.com/CNBC",
+          "ai_score": 80,
+          "date_published": "2026-06-01T20:57:10+00:00",
+          "summary": "Berkshire Hathaway invests extra $10 billion in Alphabet, deepening bet on AI CNBC",
+          "discussed": false
+        },
+        {
+          "title": "[100 Mile Free Press] Fore: Golfer struck by cart in Kelowna",
+          "url": "https://100milefreepress.net/2026/06/01/fore-golfer-struck-by-cart-in-kelowna/",
+          "source": "100 Mile Free Press",
+          "author": "Jordy Cunningham",
+          "ai_score": 79,
+          "date_published": "2026-06-01T18:32:00+00:00",
+          "summary": "The incident took place on the Black Mountain golf course on Saturday, May 30",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] I just held the most beautiful laptop, but I’m not sure Vincent van Gogh would be happy with his name connected to AI",
+          "url": "https://www.tomsguide.com/computing/laptops/msi-prestige-14-flip-ai-vincent-van-gogh-edition-hands-on-review",
+          "source": "Toms Guide",
+          "author": "https://www.tomsguide.com/author/jason-england",
+          "ai_score": 77,
+          "date_published": "2026-06-01T03:00:00+00:00",
+          "summary": "MSI’s trend of putting works of art on its laptops continues with the Prestige 14 Flip AI+ Vincent van Gogh Edition, and it’s downright beautiful. I’m never the guy to call tech beautiful, but this is...",
+          "discussed": false
+        },
+        {
+          "title": "[Taipei Times] Hon Hai partners with France’s Bull for AI expansion in Europe",
+          "url": "https://www.taipeitimes.com/News/biz/archives/2026/06/02/2003858365",
+          "source": "Taipei Times",
+          "author": "",
+          "ai_score": 72,
+          "date_published": "2026-06-01T16:00:00+00:00",
+          "summary": "Hon Hai partners with France’s Bull for AI expansion in Europe Taipei Times",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] Want a new PC but hate current prices? Here's 5 smart ways to build or buy for less",
+          "url": "https://www.tomsguide.com/computing/want-a-new-pc-but-hate-current-prices-heres-5-smart-ways-to-build-or-buy-for-less",
+          "source": "Toms Guide",
+          "author": "https://www.tomsguide.com/author/david-crookes",
+          "ai_score": 70,
+          "date_published": "2026-06-01T06:15:00+00:00",
+          "summary": "Between the RAM crisis and AI tax, getting a new PC is brutal. Here’s how to build or buy without breaking the bank.",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] Harvard students cheer graduation speaker encouraging them to mercilessly destroy AI",
+          "url": "https://boingboing.net/2026/05/31/harvard-students-cheer.html",
+          "source": "Boing Boing",
+          "author": "Rob Beschizza",
+          "ai_score": 73,
+          "date_published": "2026-05-31T23:51:27+00:00",
+          "summary": "Various business stiffs wheeled out lately to tell graduates to \"deal\" with AI were surprised to find themselves booed and jeered. Former Google CEO Eric Schmidt , private equity strategist Gloria Cau...",
+          "discussed": true
+        },
+        {
+          "title": "[Android Authority] I’m trying to cut down my subscriptions, but I still gladly pay for these apps",
+          "url": "https://www.androidauthority.com/apps-i-gladly-pay-for-3671537/",
+          "source": "Android Authority",
+          "author": "",
+          "ai_score": 72,
+          "date_published": "2026-05-31T12:30:26+00:00",
+          "summary": "They cost me $38 per month.",
+          "discussed": false
+        },
+        {
+          "title": "[BC Gov News] Premier’s, parliamentary secretary’s statements about Pride season",
+          "url": "https://news.gov.bc.ca/releases/2026PREM0027-000605",
+          "source": "BC Gov News",
+          "author": "",
+          "ai_score": 66,
+          "date_published": "2026-05-31T14:30:00+00:00",
+          "summary": "Premier David Eby has issued the following statement marking Pride season:",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] Tech companies are scraping your personal data to train their AI – here’s how to block aggressive trackers and lock down your privacy",
+          "url": "https://www.tomsguide.com/computing/vpns/tech-companies-are-scraping-your-personal-data-to-train-their-ai-heres-how-to-block-aggressive-trackers-and-lock-down-your-privacy",
+          "source": "Toms Guide",
+          "author": "https://www.tomsguide.com/author/zoran-danilovic",
+          "ai_score": 63,
+          "date_published": "2026-05-31T15:00:00+00:00",
+          "summary": "NordVPN Plus adds tracker blocking, next-gen antivirus, and breach alerts to our top-rated VPN",
+          "discussed": false
+        },
+        {
+          "title": "[CNET] Today's NYT Strands Hints, Answers and Help for June 2 #821",
+          "url": "https://www.cnet.com/tech/gaming/todays-nyt-strands-hints-answers-and-help-for-june-2-821/",
+          "source": "CNET",
+          "author": "",
+          "ai_score": 59,
+          "date_published": "2026-06-01T23:44:00+00:00",
+          "summary": "Here are hints and answers for the NYT Strands puzzle for June 2 No. 821.",
+          "discussed": false
+        },
+        {
+          "title": "[The Marginalian] Music, the Neural Harmonics of Emotion, and How Love Recomposes the Brain",
+          "url": "https://www.themarginalian.org/2026/05/31/general-theory-of-love-music-emotion/",
+          "source": "The Marginalian",
+          "author": "Maria Popova",
+          "ai_score": 58,
+          "date_published": "2026-06-01T01:17:50+00:00",
+          "summary": "\"Who we are and who we become depends, in part, on whom we love.\"",
+          "discussed": false
+        },
+        {
+          "title": "[The Tyee] BC’s Family Doctor Crisis Gets Even Worse",
+          "url": "https://thetyee.ca/News/2026/05/31/BC-Family-Doctor-Crisis-Gets-Even-Worse/",
+          "source": "The Tyee",
+          "author": "Andrew MacLeod",
+          "ai_score": 59,
+          "date_published": "2026-05-31T17:20:00+00:00",
+          "summary": "Despite measures, almost one in four people lack access to primary care.",
+          "discussed": true
+        },
+        {
+          "title": "[FlowingData] U.S. names with the oldest population",
+          "url": "https://flowingdata.com/2026/06/01/u-s-names-with-the-oldest-population/",
+          "source": "FlowingData",
+          "author": "Nathan Yau",
+          "ai_score": 52,
+          "date_published": "2026-06-01T09:52:48+00:00",
+          "summary": "Erin Davis calculated the average age of people with a given name to… Tags: age , Erin Davis , names",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] Loony Toon sentenced to 20 years in prison for shooting at cops",
+          "url": "https://boingboing.net/2026/05/31/loony-toon-sentenced.html",
+          "source": "Boing Boing",
+          "author": "Rob Beschizza",
+          "ai_score": 51,
+          "date_published": "2026-05-31T19:24:40+00:00",
+          "summary": "A man was sentenced to 20 years imprisonment after admitting he took shots at police in Milwaukie, Oregon, while fleeing a traffic stop. Loony Tune, 43, pleaded guilty to four counts of first-degree a...",
+          "discussed": false
+        },
+        {
+          "title": "[The Atlantic Culture] Memories of Green",
+          "url": "https://www.theatlantic.com/books/2026/05/poem-adam-harris-memories-of-green/687365/?utm_source=feed",
+          "source": "The Atlantic Culture",
+          "author": "",
+          "ai_score": 51,
+          "date_published": "2026-05-31T16:00:00+00:00",
+          "summary": "A poem",
+          "discussed": false
+        },
+        {
+          "title": "[NPR Health News] Amid a slew of chemical accidents, the agency that investigates them is under threat",
+          "url": "https://www.npr.org/2026/05/31/nx-s1-5837626/amid-a-slew-of-chemical-accidents-the-agency-that-investigates-them-is-under-threat",
+          "source": "NPR Health News",
+          "author": "",
+          "ai_score": 53,
+          "date_published": "2026-05-31T12:09:27+00:00",
+          "summary": "NPR's Ayesha Rascoe speaks with former member of the U.S. Chemical Safety Board Rick Engler about the current state of chemical safety following a string of incidents in the U.S.",
+          "discussed": true
+        },
+        {
+          "title": "[digitimes] India's corporate giants race to build backbone of its AI economy",
+          "url": "https://www.digitimes.com/news/a20260601VL207/infrastructure-adani-business-data-reliance.html",
+          "source": "digitimes",
+          "author": "",
+          "ai_score": 49,
+          "date_published": "2026-06-01T22:59:09+00:00",
+          "summary": "India's corporate giants race to build backbone of its AI economy digitimes",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] I just found this $24 plant stand in IKEA that instantly doubled my outdoor space",
+          "url": "https://www.tomsguide.com/home/i-just-found-this-usd24-plant-stand-in-ikea-that-instantly-doubled-my-outdoor-space",
+          "source": "Toms Guide",
+          "author": "",
+          "ai_score": 48,
+          "date_published": "2026-06-01T10:21:22+00:00",
+          "summary": "I just found this indoor IKEA wall-mounted plant stand that is perfect for tiny yards and patios — and it’s only $24.",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Working Lands & Industry",
+      "articles": [
+        {
+          "title": "[Boing Boing] Man who stole $11 million from prison has a new trick: escaping",
+          "url": "https://boingboing.net/2026/05/31/man-who-stole-11-million-from-prison-has-a-new-trick-escaping.html",
+          "source": "Boing Boing",
+          "author": "Jason Weisberger",
+          "ai_score": 71,
+          "date_published": "2026-05-31T19:28:03+00:00",
+          "summary": "Arthur Cofield was already famous for running an $11 million fraud scheme from prison with contraband phones, gold coins, and a private security company. Now he has improved the story by not being in ...",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] SR-71 successor? Quarterhorse Mk 2.1 prototype cracks the sound barrier",
+          "url": "https://newatlas.com/aircraft/quarterhorse-mk-2-1-prototype-breaks-sound-barrier/",
+          "source": "New Atlas",
+          "author": "https://newatlas.com/author/david-szondy/",
+          "ai_score": 45,
+          "date_published": "2026-05-28T08:03:00+00:00",
+          "summary": "The venerable Cold War SR-71 Blackbird may be looking nervously at its laurels after Hermeus's latest Quarterhorse Mk 2.1 uncrewed prototype broke the sound barrier at Spaceport America over the White...",
+          "discussed": true
+        },
+        {
+          "title": "[TechCrunch] Payroll startup Remote says it grew revenue 50% per employee without adding headcount",
+          "url": "https://techcrunch.com/2026/05/27/payroll-startup-remote-says-it-grew-revenue-50-per-employee-without-adding-headcount/",
+          "source": "TechCrunch",
+          "author": "Anna Heim",
+          "ai_score": 45,
+          "date_published": "2026-05-27T19:39:45+00:00",
+          "summary": "Payroll service provider Remote recently surpassed $300 million in annual recurring revenue (ARR) and became cash-flow positive, thanks to a 50% increase in revenue per employee resulting from AI adop...",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "What are the fundamental operational and structural gaps preventing Cariboo agricultural producers from accessing modern tools, markets, and infrastructure—and which gaps are actually solvable?",
+        "riley_position": "The operational gaps (weather data, processing, traceability, market access) are solvable through cooperative infrastructure models and existing technologies; the pieces and coordination mechanisms already exist, requiring mainly a decision to fund the translation work and proposal-writing.",
+        "riley_key_evidence": [
+          "North Dakota's mesonet in the early 2000s demonstrated meaningful returns from reduced crop loss and improved input timing, with station costs now dropped to a fraction of that era's prices",
+          "Low-cost sensor arrays running on solar with satellite transmission are now available and affordable for a cooperative of 30 ranches to share across shared range territory",
+          "Saskatchewan agricultural co-operatives have hired their own agronomists through levy structures on commodity sales, a model the Cariboo beef sector has sufficient volume to explore"
+        ],
+        "casey_position": "While operational tools exist, the Cariboo's economic scale and structural constraints (thin margins, climate variability, extension capacity cuts, crown lease dependency) make implementation unlikely without major institutional commitment; First Nations partnerships offer structural advantages but risk being described primarily in terms of what they offer non-Indigenous partners.",
+        "casey_key_evidence": [
+          "Extension services in BC have been cut so far back that the agricultural advisory function barely exists at the provincial level, eliminating the capacity to translate research into operational recommendations",
+          "A rancher producing grass-fed beef in the Chilcotin has no regional processing capacity or cold-chain infrastructure, meaning margins get eaten by transport costs despite perfect product quality and traceability",
+          "Crown lease dependency is a structural vulnerability for Cariboo ranchers—operations live or die on lease renewal decisions made in Victoria, whereas First Nations have fundamentally different land security"
+        ],
+        "resolution": "No full resolution; they agreed that operational gaps are technically solvable but acknowledged that piece-proximity isn't enough—someone must decide to close the gap through institutional and political commitment. They also agreed that First Nations partnerships deserve to be framed from Nations' own governance priorities rather than as complementary gaps filling non-Indigenous operators' needs, and that the conversation requires First Nations voices, not just external analysis.",
+        "topics_covered": [
+          "Agricultural-grade weather data infrastructure and mesonet models",
+          "Processing capacity and cold-chain infrastructure constraints for direct-to-consumer/regional beef markets",
+          "Blockchain-based traceability systems and provenance verification for regional producers",
+          "First Nations agricultural enterprises as alternative capital and land-tenure models",
+          "Extension service capacity and co-operative proposal-development as institutional gaps"
+        ],
+        "calls_to_action": [
+          "The Cariboo Agricultural Research Alliance should consider whether expanding into co-operative proposal-writing (for shared infrastructure like weather networks) is within their mandate or capacity—and this should be raised directly and loudly given how thin extension capacity is.",
+          "The Cariboo Cattlemen's Association and a regional credit union could get serious about a shared services model to fund an agronomist position without waiting for provincial programs, using levy structures similar to Saskatchewan commodity sectors.",
+          "Producers, ranchers, or agricultural development workers in the Cariboo with knowledge of existing partnership proposals, feasibility concerns, or on-the-ground realities should reach out to the podcast (feedback at cariboo signals dot c-a) to correct analysis or report on progress.",
+          "First Nations agricultural enterprises and private ranchers should explore partnership models designed from First Nations' own governance and land stewardship priorities, rather than framing the relationship primarily in terms of gap-filling for non-Indigenous operators.",
+          "Regional stakeholders should examine whether a Williams Lake-area mobile or permanent processing facility could be capitalized through a Nation-level agricultural enterprise partnership, which could change the risk profile for individual operators."
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "Azure Neural TTS (Ava · Andrew)",
+    "text_to_speech_openai": "OpenAI TTS API (Nova · Echo)",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
