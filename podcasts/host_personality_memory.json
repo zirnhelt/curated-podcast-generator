@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechCrunch] Wirestock raises $23M to supply creative multi-",
-      "[Neowin] Spotify will soon support Apple's technology to ope",
       "[TechRadar] US data centers use enough electricity to power ",
       "Technology shouldn't sacrifice the integrity of knowledge",
       "[CNET] Scientists Warn AI Slop Is Wreaking Havoc in the Rese",
@@ -10,7 +8,9 @@
       "[TechCrunch] Spotify adds AI-powered Q&A and briefing genera",
       "New: Indigenous AI Advisory Circle",
       "[Android Authority] Gemini\u2019s camera AI thinks Aussie wildlif",
-      "AI"
+      "AI",
+      "[Taipei Times] Hon Hai partners with France\u2019s Bull for AI ex",
+      "[TechCrunch] Payroll startup Remote says it grew revenue 50%"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -80,11 +80,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-05-25",
-        "clue": "Indigenous-tech:x \u2014 Conceded knowledge governance gaps in TRACE, named it as gap",
-        "occurrences": 2
-      },
-      {
         "date": "2026-05-08",
         "clue": "evidence-bar:~ \u2014 Conceded drone BVLOS regulatory lag despite sector optimism",
         "occurrences": 1
@@ -102,11 +97,6 @@
       {
         "date": "2026-05-18",
         "clue": "pilot-skepticism:+ \u2014 'maintenance gap applies here too' deepened skepticism",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-05-19",
-        "clue": "tech-optimism:~ \u2014 Acknowledged innovation pipeline shaped by external priorities, not local need",
         "occurrences": 2
       },
       {
@@ -205,6 +195,11 @@
         "formed": "2026-05-16",
         "signal": "evidence-bar:x \u2014 Conceded correlation-not-causation but repositioned it as actionable hypothesis",
         "occurrences": 3
+      },
+      {
+        "formed": "2026-06-02",
+        "signal": "Indigenous-tech:x \u2014 Conceded partnership framing risks extractive logic without Nation governance primacy",
+        "occurrences": 3
       }
     ]
   },
@@ -254,9 +249,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-25",
-        "clue": "community-trust:- \u2014 Softened skepticism of volunteer infrastructure value",
-        "occurrences": 1
+        "date": "2026-06-02",
+        "clue": "community-trust:- \u2014 Softened skepticism about co-operative will by naming CARA as credible translator institution",
+        "occurrences": 2
       },
       {
         "date": "2026-04-27",
@@ -324,9 +319,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-31",
-        "clue": "structural-lens:+ \u2014 Moved from abstract concern to specific infrastructure gaps (analyst role)",
-        "occurrences": 1
+        "date": "2026-06-02",
+        "clue": "structural-lens:+ \u2014 Deepened focus on extension-capacity gap as root blocker, not just one constraint",
+        "occurrences": 2
       }
     ],
     "core_memories": [
