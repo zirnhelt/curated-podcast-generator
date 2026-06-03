@@ -1433,6 +1433,31 @@
       "theme_day": 0,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "265d99fd",
+      "type": "newsletter",
+      "message_id": "<f83692b9-e4e0-45d7-893a-c8c53655be3b@mtasv.net>",
+      "from_address": "n***@animikii.com",
+      "subject": "Psst -  Jeff\u2019s  hosting a circle on June 17th",
+      "received_at": "2026-06-03T19:35:32+00:00",
+      "body_text": "![A graphic illustration of an urban roof top patio with flowers and plants blooming in a variety or pots along the edge. A woman in a purple top and pink pants holds a water can as the rising sun ill",
+      "extracted_urls": [
+        "https://assets.buttondown.email/images/32f798c1-fd59-4ab4-9e61-8fb9d6e26c58.jpg?w=960&fit=max",
+        "https://environmentjournal.ca/feds-support-six-new-projects-to-explore-impacts-of-plastic-pollution-on-indigenous-communities/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=jeff-hosting-a-circle-on-june-17th",
+        "https://yukon-news.com/2026/05/29/yukon-founder-joins-national-indigenous-ai-program-as-fireweed-gains-traction/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=jeff-hosting-a-circle-on-june-17th",
+        "https://news.uoguelph.ca/2026/06/meet-some-of-canadas-first-indigenous-environmental-science-program-grads/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=jeff-hosting-a-circle-on-june-17th",
+        "https://assets.buttondown.email/images/93addbc1-496a-4933-a792-986479ea24ed.jpg?w=960&fit=max",
+        "https://us02web.zoom.us/meeting/register/vkPcndIVQcW5aOEMzmN5Xg?mtm_campaign=SVS-Q2-2026&amp;mtm_kwd=LAUNCH&amp;mtm_source=NWR&amp;utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=jeff-hosting-a-circle-on-june-17th",
+        "https://us02web.zoom.us/meeting/register/vkPcndIVQcW5aOEMzmN5Xg?mtm_campaign=SVS-Q2-2026&amp;amp;mtm_kwd=LAUNCH&amp;amp;mtm_source=NWR&amp;amp;utm_source=newsriver&amp;amp;utm_medium=email&amp;amp;utm_campaign=jeff-hosting-a-circle-on-june-17th",
+        "https://anishinabeknews.ca/2026/05/panelists-discuss-data-sovereignty-at-toronto-conference/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=jeff-hosting-a-circle-on-june-17th",
+        "https://aicivilsociety.ca/sched.html?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=jeff-hosting-a-circle-on-june-17th",
+        "https://www.ansto.gov.au/news/what-indigenous-cultural-intellectual-property-an-explainer?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=jeff-hosting-a-circle-on-june-17th"
+      ],
+      "theme_tag": "Indigenous Lands & Innovation",
+      "theme_day": 3,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
