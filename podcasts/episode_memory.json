@@ -1,24 +1,4 @@
 {
-  "2026-05-12": {
-    "timestamp": 1778587379.597189,
-    "topics": [
-      "[InsideEVs] While You Stop For A 30-Minute Charge, Nio Just ",
-      "[NPR Health News] Forest therapy: Why a physician wants more",
-      "[InsideEVs] BMW Has Built Way More EVs Than You Think",
-      "[Toms Guide] A $340,000 bonus isn't enough \u2014 Samsung workers",
-      "[The Narwhal] Inside Haida Gwaii\u2019s historic plan to ditch di",
-      "[New Atlas] Startup harnesses the power of AI in the ongoing",
-      "[Quartz] USDA is giving California peach farmers $9 million ",
-      "[Williams Lake Tribune] $12M coming from province to support"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-05-12"
-  },
   "2026-05-13": {
     "timestamp": 1778674402.814872,
     "topics": [
@@ -388,5 +368,24 @@
       "connectivity"
     ],
     "date": "2026-06-02"
+  },
+  "2026-06-03": {
+    "timestamp": 1780484115.987847,
+    "topics": [
+      "[STAT News] STAT+: Blood pressure tech floods the market aft",
+      "[The Verge] This sound card could give gamers a competitive ",
+      "[CNET] Best Windows Antivirus 2026: Keep Your Devices Safe W",
+      "[Hackaday] Testing LFP Battery Failure Modes With Overchargi",
+      "[The Verge] You can print, slice, and engrave using this des",
+      "[New Atlas] Record-breaking apartment building 3D printed in",
+      "[CNET] I Hope Intel's Arc G3 Chips for Windows Gaming Handhe",
+      "[TechCrunch] Cyberdecks are having a moment, rejecting big t"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech"
+    ],
+    "date": "2026-06-03"
   }
 }
