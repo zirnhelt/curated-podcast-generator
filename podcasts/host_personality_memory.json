@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[CNET] Scientists Warn AI Slop Is Wreaking Havoc in the Rese",
       "[The Verge] AI video is moving beyond clip slop",
       "[TechCrunch] Spotify adds AI-powered Q&A and briefing genera",
       "New: Indigenous AI Advisory Circle",
@@ -10,7 +9,8 @@
       "[Taipei Times] Hon Hai partners with France\u2019s Bull for AI ex",
       "[TechCrunch] Payroll startup Remote says it grew revenue 50%",
       "[STAT News] STAT+: Blood pressure tech floods the market aft",
-      "[TechCrunch] Cyberdecks are having a moment, rejecting big t"
+      "[TechCrunch] Cyberdecks are having a moment, rejecting big t",
+      "Yukon founder joins national Indigenous AI program as Firewe"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -90,9 +90,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-05-12",
-        "clue": "funding-risk:~ \u2014 Acknowledged wood products precedent reveals political calculation lag.",
-        "occurrences": 1
+        "date": "2026-06-04",
+        "clue": "funding-risk:~ \u2014 Acknowledged 'solvable in principle' gap; tension between theory and execution",
+        "occurrences": 2
       },
       {
         "date": "2026-05-18",
@@ -125,9 +125,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-06-03",
-        "clue": "structural-lens:+ \u2014 Explicitly connected device sovereignty to infrastructure sovereignty",
-        "occurrences": 1
+        "date": "2026-06-04",
+        "clue": "structural-lens:+ \u2014 Moved from individual pathways to systems-level benefit-sharing frameworks",
+        "occurrences": 2
       }
     ],
     "core_memories": [
@@ -259,9 +259,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-05-05",
-        "clue": "structural-lens:x \u2014 Conceded producer-funded agrologist model viable where association capacity exists",
-        "occurrences": 1
+        "date": "2026-06-04",
+        "clue": "structural-lens:x \u2014 Conceded threshold/enforcement framing; shifted from impossibility to calibration problem",
+        "occurrences": 2
       },
       {
         "date": "2026-05-13",
@@ -312,6 +312,11 @@
         "date": "2026-06-02",
         "clue": "structural-lens:+ \u2014 Deepened focus on extension-capacity gap as root blocker, not just one constraint",
         "occurrences": 2
+      },
+      {
+        "date": "2026-06-04",
+        "clue": "pilot-skepticism:+ \u2014 Hardened position on implementation vs. policy; 'effect is not' language",
+        "occurrences": 1
       }
     ],
     "core_memories": [

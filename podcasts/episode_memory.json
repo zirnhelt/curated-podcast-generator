@@ -1,24 +1,4 @@
 {
-  "2026-05-13": {
-    "timestamp": 1778674402.814872,
-    "topics": [
-      "[Tom's Hardware] Louis Rossmann tells 3D printer maker Bambu",
-      "[Tom's Hardware] 3DMakerPro Toucan 3D Scanner review: All-in",
-      "[CNET] This 4-Tool Head 3D Printer Is So Much Fun I Gave It ",
-      "[Hackaday] Trying to Fix a GoPro Hero 10 With No Camera Inpu",
-      "[Hackaday] Multimaterial SLA Printer Will Make Your Head Spi",
-      "Skiing on Jet Power",
-      "Skiing on Jet Power",
-      "Skiing on Jet Power"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-05-13"
-  },
   "2026-05-14": {
     "timestamp": 1778759941.2986,
     "topics": [
@@ -387,5 +367,25 @@
       "Indigenous tech"
     ],
     "date": "2026-06-03"
+  },
+  "2026-06-04": {
+    "timestamp": 1780566849.061456,
+    "topics": [
+      "[BC Gov News] Improving safety for Indigenous communities",
+      "[Williams Lake Tribune] Grief, sobriety, music: Williams Lak",
+      "[Al Jazeera English] Kuwait releases CCTV footage of deadly ",
+      "[Global News] Red Earth, Shoal Lake Cree Nation evacuees hom",
+      "[Al Jazeera English] Ukraine drone attack kills 7 in Russian",
+      "Six new projects to explore impacts of plastic pollution on ",
+      "Yukon founder joins national Indigenous AI program as Firewe",
+      "AI"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-06-04"
   }
 }
