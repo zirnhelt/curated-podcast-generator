@@ -1,17 +1,4 @@
 {
-  "2026-03-05": {
-    "timestamp": 1772715747.50464,
-    "date": "2026-03-05",
-    "theme": "Indigenous Lands & Innovation",
-    "central_question": "Deep dive on Indigenous Lands & Innovation",
-    "topics_covered": [
-      "fiber",
-      "connectivity",
-      "AI",
-      "infrastructure",
-      "maintenance"
-    ]
-  },
   "2026-03-06": {
     "timestamp": 1772801885.062447,
     "date": "2026-03-06",
@@ -2016,6 +2003,32 @@
       "3D-printed construction as labor-cost solution for rural housing crises",
       "Digital sovereignty for First Nations and Indigenous data management",
       "Institutional procurement policies and technology governance frameworks"
+    ]
+  },
+  "2026-06-04": {
+    "timestamp": 1780566851.174278,
+    "date": "2026-06-04",
+    "theme": "Indigenous Lands & Innovation",
+    "central_question": "How can Indigenous communities build genuine leadership and governance authority over technology systems rather than merely participating in systems designed by others?",
+    "riley_position": "Indigenous tech capacity must be built through models that keep institutional knowledge and decision-making authority within communities, and procurement/governance policies should structurally advantage Indigenous-led tech providers rather than waiting for external funding.",
+    "riley_key_evidence": [
+      "Indigenous-led research projects produce institutional capacity that stays with communities, unlike individual scholarships that often lead to brain drain",
+      "The 2014 T\u015dilhqot'in Supreme Court decision established Aboriginal title conferring decision-making authority over land use, including data and AI systems trained on territorial data",
+      "EU uses procurement policy and regulatory preference to make digital infrastructure self-sustaining rather than relying on market forces"
+    ],
+    "casey_position": "While the legal and policy frameworks exist to enable Indigenous tech governance, the persistent gap between what's theoretically possible and what's operationalized reflects underfunded capacity for negotiation, auditing, and enforcement\u2014and governance authority is the key retention mechanism that makes communities compelling places to return to after training.",
+    "casey_key_evidence": [
+      "Communities need budget, technical staff, and legal expertise to enforce data-sharing agreements\u2014all resource problems, not technology problems",
+      "Indigenous health programs with return-to-community obligations and genuine decision-making authority show significantly higher retention rates",
+      "BC Indigenous procurement policies exist but have weak implementation and low thresholds that allow circumvention"
+    ],
+    "resolution": "They identified a shared design problem rather than resolving debate: whether programs like the Montr\u00e9al AI accelerator will produce people with sufficient governance authority to make staying in their communities structurally compelling, or whether the path of least resistance continues to be urban relocation. They agreed the question is worth naming explicitly at Nation and board tables.",
+    "topics_covered": [
+      "Leadership vs. participation in Indigenous tech governance",
+      "Brain drain and retention mechanisms in capacity-building programs",
+      "Governance authority as prerequisite for sustainable Indigenous tech development",
+      "Data sovereignty and benefit-sharing frameworks for territorial knowledge",
+      "Procurement policy as tool for structural advantage and self-sustainability"
     ]
   }
 }
