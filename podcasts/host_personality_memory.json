@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[The Verge] AI video is moving beyond clip slop",
-      "[TechCrunch] Spotify adds AI-powered Q&A and briefing genera",
       "New: Indigenous AI Advisory Circle",
       "[Android Authority] Gemini\u2019s camera AI thinks Aussie wildlif",
       "AI",
@@ -10,7 +8,9 @@
       "[TechCrunch] Payroll startup Remote says it grew revenue 50%",
       "[STAT News] STAT+: Blood pressure tech floods the market aft",
       "[TechCrunch] Cyberdecks are having a moment, rejecting big t",
-      "Yukon founder joins national Indigenous AI program as Firewe"
+      "Yukon founder joins national Indigenous AI program as Firewe",
+      "[TechRadar] 'Who wouldn't want a large-scale industrial poll",
+      "[Business Insider] Satya Nadella defends Microsoft AI data c"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -128,6 +128,16 @@
         "date": "2026-06-04",
         "clue": "structural-lens:+ \u2014 Moved from individual pathways to systems-level benefit-sharing frameworks",
         "occurrences": 2
+      },
+      {
+        "date": "2026-06-05",
+        "clue": "structural-lens:~ \u2014 Moved from grid-siting abstractions to capacity gaps",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-06-05",
+        "clue": "Indigenous-tech:x \u2014 Conceded lack of direct T\u015dilhqot'in input mid-argument",
+        "occurrences": 1
       }
     ],
     "core_memories": [
@@ -316,6 +326,16 @@
       {
         "date": "2026-06-04",
         "clue": "pilot-skepticism:+ \u2014 Hardened position on implementation vs. policy; 'effect is not' language",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-06-05",
+        "clue": "evidence-bar:- \u2014 Softened regulatory skepticism; acknowledged negotiation-before-approval pragmatism",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-06-05",
+        "clue": "community-trust:~ \u2014 Connected artist-as-monitor to formal governance standing problem",
         "occurrences": 1
       }
     ],

@@ -1,16 +1,4 @@
 {
-  "2026-03-06": {
-    "timestamp": 1772801885.062447,
-    "date": "2026-03-06",
-    "theme": "Wild Spaces & Outdoor Life",
-    "central_question": "Deep dive on Wild Spaces & Outdoor Life",
-    "topics_covered": [
-      "AI",
-      "infrastructure",
-      "maintenance",
-      "funding"
-    ]
-  },
   "2026-03-07": {
     "timestamp": 1772887627.923122,
     "date": "2026-03-07",
@@ -2029,6 +2017,32 @@
       "Governance authority as prerequisite for sustainable Indigenous tech development",
       "Data sovereignty and benefit-sharing frameworks for territorial knowledge",
       "Procurement policy as tool for structural advantage and self-sustainability"
+    ]
+  },
+  "2026-06-05": {
+    "timestamp": 1780652489.841138,
+    "date": "2026-06-05",
+    "theme": "Wild Spaces & Outdoor Life",
+    "central_question": "How should communities balance AI data center development promises against environmental and landscape protection, and who should have decision-making authority?",
+    "riley_position": "Data centers are inevitable and will be sited somewhere; the strategic approach is to negotiate better conditions and leverage Indigenous title as a more durable protection mechanism than municipal bans, rather than refuse engagement entirely.",
+    "riley_key_evidence": [
+      "International Energy Agency revised forecasts showing data centers will account for meaningful share of global electricity demand through end of decade",
+      "Rural data center builds in Washington/Oregon generated 30-50 permanent positions for tens of megawatts",
+      "T\u015dilhqot'in Aboriginal title decision (2014) established legal jurisdiction requiring consent, not just consultation"
+    ],
+    "casey_position": "Tech industry systematically overstates job creation and environmental benefits while avoiding costs; regulatory capacity in BC is insufficient to extract meaningful concessions, and landscape value rarely has formal standing in approvals processes.",
+    "casey_key_evidence": [
+      "Satya Nadella's 'lower environmental impact' claims lack transparent baseline comparisons",
+      "Permanent job numbers are poor relative to capital investment compared to what gets sold in pitch decks",
+      "BC environmental assessment process has had mixed record on extracting meaningful concessions"
+    ],
+    "resolution": "They converged on the necessity of Indigenous governance frameworks as the structural lever, acknowledged a capacity gap requiring further direct engagement with T\u015dilhqot'in Government, and agreed the actionable approach is tracking First Nation positions and demanding specific accountability in public comment processes.",
+    "topics_covered": [
+      "Grid capacity and water demand impacts of data center expansion",
+      "Overstated permanent employment claims in tech industry siting proposals",
+      "T\u015dilhqot'in Aboriginal title as legal protection mechanism",
+      "Regulatory capacity gaps in BC industrial approvals",
+      "Landscape and cultural value as unformalized stakes in approvals processes"
     ]
   }
 }
