@@ -1,0 +1,236 @@
+{
+  "episode": {
+    "date": "2026-06-06",
+    "formatted_date": "Saturday, June 06, 2026",
+    "theme": "Cariboo Local Affairs",
+    "title": "Cariboo Signals - Cariboo Local Affairs",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Cariboo Local Affairs.</p><p><b>NEWS ROUNDUP:</b> We break down [100 Mile Free Press] Stunting driver pulled over, ticketed near Lac La Hache and [Williams Lake Tribune] Openly transgender woman announces intent to run for Williams Lake City Council, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Can Williams Lake convert multiple simultaneous civic initiatives (jail forum, chamber crime resolution, municipal election) into meaningful outcomes, or is it activity without momentum? Topics include: Williams Lake jail closure forum and provincial political authority, Chamber of Commerce crime resolution escalation strategy, 2026 municipal election and candidate specificity on public safety, Infrastructure maintenance and active transportation initiatives, Community expertise, resilience, and the limits of knowledge extraction without compensation.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://qdhpca.org\">Quesnel &amp; District Hospice Palliative Care Association</a></p><p><b>Sources discussed:</b></p><ul><li>Patrick Davies (100 Mile Free Press): <a href=\"https://100milefreepress.net/2026/06/02/stunting-driver-pulled-over-ticketed-near-lac-la-hache/\">[100 Mile Free Press] Stunting driver pulled over, ticketed ...</a></li><li>rebeccadyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/06/04/openly-transgender-woman-announces-intent-to-run-for-williams-lake-city-council/\">[Williams Lake Tribune] Openly transgender woman announces i...</a></li><li>rebeccadyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/06/05/williams-lake-council-backs-forum-on-controversial-jail-closure-proposal/\">[Williams Lake Tribune] Williams Lake council backs forum on...</a></li><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/06/04/bc-chamber-of-commerce-endorses-crime-policy-shaped-by-williams-lake-businesses/\">[Williams Lake Tribune] BC Chamber of Commerce endorses crim...</a></li><li>Barbara Roden (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/06/05/lytton-plays-host-to-emerging-leaders-from-across-canada/\">[Williams Lake Tribune] Lytton plays host to emerging leader...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/313954/news/municipal-news/city-of-williams-lake/contractor-set-to-begin-paving-between-rose-pine-streets-in-williams-lake/\">[My Cariboo Now] Contractor set to begin paving between Rose...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/313922/news/lifestyle/get-active-reduce-greenhouse-gas-emissions-and-win-prizes/\">[My Cariboo Now] Get active, reduce Greenhouse gas emissions...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/313936/news/politics-news/prince-george-north-cariboo-mla-applauds-his-candidates-win/\">[My Cariboo Now] Prince George-North Cariboo MLA applauds hi...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/313931/news/emergency-services/search-and-rescue/quesnel-search-and-rescue-respond-to-distressed-paddler-in-the-bowren-lake-chain/\">[My Cariboo Now] Quesnel Search and Rescue respond to distre...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Laisa Conde (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/06/02/bc-hydro-relocates-two-williams-lake-osprey-nests/\">[Williams Lake Tribune] BC Hydro relocates two Williams Lake...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/anthropic-openai-spacex-ipo-ai-giants-public-market-impact-2026-6\">[Business Insider] Three AI giants are on track to upend the...</a></li><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/06/03/gian-zanette/\">[Williams Lake Tribune] Gian Zanette</a></li><li>Patrick Davies (100 Mile Free Press): <a href=\"https://100milefreepress.net/2026/06/05/paper-quips-do-you-remember-when/\">[100 Mile Free Press] PAPER QUIPS: Do you remember when…?</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/313946/win/dads-big-day-giveaway-announcement/\">[My Cariboo Now] Dad's Big Day Giveaway - Announcement : My ...</a></li></ul><p><b>Closing Music:</b> &ldquo;<a href=\"https://www.jamendo.com/track/1174820\">Street Signs and White Lies</a>&rdquo; by madelyn munsell &mdash; pop, indie. Free music via Jamendo, licensed under Creative Commons.</p><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-6<br>TTS Voices: OpenAI TTS API (Nova · Echo)<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-06-06T01:31:37.035536-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-sonnet-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 2582,
+      "voice_ratio_casey_riley": 0.86,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0
+      },
+      "total_hits": 0,
+      "deep_dive_article_quality": "sparse",
+      "deep_dive_articles_with_body": 0,
+      "upstream_quality_warning": true
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[100 Mile Free Press] Stunting driver pulled over, ticketed near Lac La Hache",
+          "url": "https://100milefreepress.net/2026/06/02/stunting-driver-pulled-over-ticketed-near-lac-la-hache/",
+          "source": "100 Mile Free Press",
+          "author": "Patrick Davies",
+          "ai_score": 85,
+          "date_published": "2026-06-02T23:00:00+00:00",
+          "summary": "A collection of incidents the 100 Mile House RCMP responded to between May 26-31, 2026",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Openly transgender woman announces intent to run for Williams Lake City Council",
+          "url": "https://wltribune.com/2026/06/04/openly-transgender-woman-announces-intent-to-run-for-williams-lake-city-council/",
+          "source": "Williams Lake Tribune",
+          "author": "rebeccadyok",
+          "ai_score": 100,
+          "date_published": "2026-06-05T08:32:14.252006+00:00",
+          "summary": "Billie Sheridan plans to run in 2026 municipal election",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Williams Lake council backs forum on controversial jail closure proposal",
+          "url": "https://wltribune.com/2026/06/05/williams-lake-council-backs-forum-on-controversial-jail-closure-proposal/",
+          "source": "Williams Lake Tribune",
+          "author": "rebeccadyok",
+          "ai_score": 100,
+          "date_published": "2026-06-06T07:34:41.357507+00:00",
+          "summary": "The recommendation by Councillor Scott Nelson was supported last week",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] BC Chamber of Commerce endorses crime policy shaped by Williams Lake businesses",
+          "url": "https://wltribune.com/2026/06/04/bc-chamber-of-commerce-endorses-crime-policy-shaped-by-williams-lake-businesses/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 100,
+          "date_published": "2026-06-05T08:32:14.252356+00:00",
+          "summary": "Resolution unanimously supported at this week’s annual general meeting and policy session",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] BC Hydro relocates two Williams Lake osprey nests",
+          "url": "https://wltribune.com/2026/06/02/bc-hydro-relocates-two-williams-lake-osprey-nests/",
+          "source": "Williams Lake Tribune",
+          "author": "Laisa Conde",
+          "ai_score": 100,
+          "date_published": "2026-06-03T09:16:24.273158+00:00",
+          "summary": "2 MIN READ",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Lytton plays host to emerging leaders from across Canada",
+          "url": "https://wltribune.com/2026/06/05/lytton-plays-host-to-emerging-leaders-from-across-canada/",
+          "source": "Williams Lake Tribune",
+          "author": "Barbara Roden",
+          "ai_score": 84,
+          "date_published": "2026-06-05T05:00:00+00:00",
+          "summary": "Participants said fire-ravaged town a prime example of resiliency and connection to community",
+          "discussed": true
+        },
+        {
+          "title": "[Business Insider] Three AI giants are on track to upend the public markets",
+          "url": "https://www.businessinsider.com/anthropic-openai-spacex-ipo-ai-giants-public-market-impact-2026-6",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 68,
+          "date_published": "2026-06-02T13:41:23+00:00",
+          "summary": "Three companies likely worth more than $1 trillion going public in quick succession is bound to have a significant short-term impact on the market.",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Gian Zanette",
+          "url": "https://wltribune.com/2026/06/03/gian-zanette/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 83,
+          "date_published": "2026-06-03T15:30:00+00:00",
+          "summary": "In Loving Memory ~",
+          "discussed": false
+        },
+        {
+          "title": "[100 Mile Free Press] PAPER QUIPS: Do you remember when…?",
+          "url": "https://100milefreepress.net/2026/06/05/paper-quips-do-you-remember-when/",
+          "source": "100 Mile Free Press",
+          "author": "Patrick Davies",
+          "ai_score": 48,
+          "date_published": "2026-06-06T00:00:00+00:00",
+          "summary": "100 Mile Free Press editor Patrick Davies’ regular column",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Cariboo Local Affairs",
+      "articles": [
+        {
+          "title": "[My Cariboo Now] Contractor set to begin paving between Rose & Pine Streets in Williams Lake : My Cariboo Now",
+          "url": "https://www.mycariboonow.com/313954/news/municipal-news/city-of-williams-lake/contractor-set-to-begin-paving-between-rose-pine-streets-in-williams-lake/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 85,
+          "date_published": "2026-06-03T17:27:07.631723+00:00",
+          "summary": "Stay connected with My Cariboo Now — delivering local news, community events, weather alerts, and live radio to Quesnel, Williams Lake, 100 Mile House, and beyond .",
+          "discussed": true
+        },
+        {
+          "title": "[My Cariboo Now] Get active, reduce Greenhouse gas emissions and win prizes : My Cariboo Now",
+          "url": "https://www.mycariboonow.com/313922/news/lifestyle/get-active-reduce-greenhouse-gas-emissions-and-win-prizes/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 85,
+          "date_published": "2026-06-03T09:15:31.788668+00:00",
+          "summary": "Stay connected with My Cariboo Now — delivering local news, community events, weather alerts, and live radio to Quesnel, Williams Lake, 100 Mile House, and beyond .",
+          "discussed": true
+        },
+        {
+          "title": "[My Cariboo Now] Prince George-North Cariboo MLA applauds his candidate’s win : My Cariboo Now",
+          "url": "https://www.mycariboonow.com/313936/news/politics-news/prince-george-north-cariboo-mla-applauds-his-candidates-win/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 85,
+          "date_published": "2026-06-03T09:15:31.790701+00:00",
+          "summary": "Stay connected with My Cariboo Now — delivering local news, community events, weather alerts, and live radio to Quesnel, Williams Lake, 100 Mile House, and beyond .",
+          "discussed": true
+        },
+        {
+          "title": "[My Cariboo Now] Quesnel Search and Rescue respond to distressed paddler in the Bowren Lake Chain : My Cariboo Now",
+          "url": "https://www.mycariboonow.com/313931/news/emergency-services/search-and-rescue/quesnel-search-and-rescue-respond-to-distressed-paddler-in-the-bowren-lake-chain/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 85,
+          "date_published": "2026-06-05T15:34:13.258620+00:00",
+          "summary": "Stay connected with My Cariboo Now — delivering local news, community events, weather alerts, and live radio to Quesnel, Williams Lake, 100 Mile House, and beyond .",
+          "discussed": true
+        },
+        {
+          "title": "[My Cariboo Now] Dad's Big Day Giveaway - Announcement : My Cariboo Now",
+          "url": "https://www.mycariboonow.com/313946/win/dads-big-day-giveaway-announcement/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 85,
+          "date_published": "2026-06-04T08:40:03.987884+00:00",
+          "summary": "Stay connected with My Cariboo Now — delivering local news, community events, weather alerts, and live radio to Quesnel, Williams Lake, 100 Mile House, and beyond .",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Can Williams Lake convert multiple simultaneous civic initiatives (jail forum, chamber crime resolution, municipal election) into meaningful outcomes, or is it activity without momentum?",
+        "riley_position": "The convergence of three distinct issues in an 18-month window represents a community actively working to sort something out, and the chamber escalation to provincial level is a significant lever that shifts the authority question into provincial debate.",
+        "riley_key_evidence": [
+          "BC Chamber unanimous provincial resolution on crime changes political math by putting Williams Lake businesses' position on ministry desks",
+          "Three simultaneous threads (jail closure, crime resolution, municipal candidacy) converging suggests intentional problem-solving rather than coincidence",
+          "Prince George-North Cariboo MLA recent activity shows NDP caucus is paying attention to the riding"
+        ],
+        "casey_position": "Forums and resolutions are low-commitment performance without written, specific positions and named decision-makers; the real test is whether these initiatives produce documented asks that force provincial accountability.",
+        "casey_key_evidence": [
+          "Forums ending with 'we heard concerns' without written positions to the province constitute performance rather than accountability",
+          "Chamber resolutions are easily passed but require either sympathetic ministers or political pressure to generate action",
+          "Williams Lake lacks a provincial minister—only MLAs—and infrastructure maintenance like road paving is unglamorous but foundational to municipal function"
+        ],
+        "resolution": "They agreed to disagree on what distinguishes genuine momentum from performance, instead establishing three concrete indicators to watch over six months: whether the jail forum produces written positions, whether the chamber resolution receives ministerial response, and whether 2026 candidates offer specific platform commitments rather than generalities.",
+        "topics_covered": [
+          "Williams Lake jail closure forum and provincial political authority",
+          "Chamber of Commerce crime resolution escalation strategy",
+          "2026 municipal election and candidate specificity on public safety",
+          "Infrastructure maintenance and active transportation initiatives",
+          "Community expertise, resilience, and the limits of knowledge extraction without compensation"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "Azure Neural TTS (Ava · Andrew)",
+    "text_to_speech_openai": "OpenAI TTS API (Nova · Echo)",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  },
+  "closing_music": {
+    "track_id": "1174820",
+    "name": "Street Signs and White Lies",
+    "artist": "madelyn munsell",
+    "genres": [
+      "pop",
+      "indie"
+    ],
+    "shareurl": "https://www.jamendo.com/track/1174820",
+    "license": "Creative Commons via Jamendo"
+  }
+}
