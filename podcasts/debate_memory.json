@@ -1,16 +1,4 @@
 {
-  "2026-03-07": {
-    "timestamp": 1772887627.923122,
-    "date": "2026-03-07",
-    "theme": "Cariboo Voices & Local News",
-    "central_question": "Deep dive on Cariboo Voices & Local News",
-    "topics_covered": [
-      "broadband",
-      "AI",
-      "digital divide",
-      "infrastructure"
-    ]
-  },
   "2026-03-08": {
     "timestamp": 1772974171.63298,
     "date": "2026-03-08",
@@ -2043,6 +2031,32 @@
       "T\u015dilhqot'in Aboriginal title as legal protection mechanism",
       "Regulatory capacity gaps in BC industrial approvals",
       "Landscape and cultural value as unformalized stakes in approvals processes"
+    ]
+  },
+  "2026-06-06": {
+    "timestamp": 1780734699.772894,
+    "date": "2026-06-06",
+    "theme": "Cariboo Local Affairs",
+    "central_question": "Can Williams Lake convert multiple simultaneous civic initiatives (jail forum, chamber crime resolution, municipal election) into meaningful outcomes, or is it activity without momentum?",
+    "riley_position": "The convergence of three distinct issues in an 18-month window represents a community actively working to sort something out, and the chamber escalation to provincial level is a significant lever that shifts the authority question into provincial debate.",
+    "riley_key_evidence": [
+      "BC Chamber unanimous provincial resolution on crime changes political math by putting Williams Lake businesses' position on ministry desks",
+      "Three simultaneous threads (jail closure, crime resolution, municipal candidacy) converging suggests intentional problem-solving rather than coincidence",
+      "Prince George-North Cariboo MLA recent activity shows NDP caucus is paying attention to the riding"
+    ],
+    "casey_position": "Forums and resolutions are low-commitment performance without written, specific positions and named decision-makers; the real test is whether these initiatives produce documented asks that force provincial accountability.",
+    "casey_key_evidence": [
+      "Forums ending with 'we heard concerns' without written positions to the province constitute performance rather than accountability",
+      "Chamber resolutions are easily passed but require either sympathetic ministers or political pressure to generate action",
+      "Williams Lake lacks a provincial minister\u2014only MLAs\u2014and infrastructure maintenance like road paving is unglamorous but foundational to municipal function"
+    ],
+    "resolution": "They agreed to disagree on what distinguishes genuine momentum from performance, instead establishing three concrete indicators to watch over six months: whether the jail forum produces written positions, whether the chamber resolution receives ministerial response, and whether 2026 candidates offer specific platform commitments rather than generalities.",
+    "topics_covered": [
+      "Williams Lake jail closure forum and provincial political authority",
+      "Chamber of Commerce crime resolution escalation strategy",
+      "2026 municipal election and candidate specificity on public safety",
+      "Infrastructure maintenance and active transportation initiatives",
+      "Community expertise, resilience, and the limits of knowledge extraction without compensation"
     ]
   }
 }
