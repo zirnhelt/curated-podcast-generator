@@ -1462,6 +1462,56 @@ def _assess_deep_dive_article_quality(deep_dive_articles):
     return quality, with_body
 
 
+def _ensure_deep_dive_substance(deep_dive_articles, news_articles, theme_keywords=None):
+    """Swap thin deep-dive articles for substantive candidates from the news pool.
+
+    A deep-dive slot anchors a full segment — too prominent to run on headline-only
+    material when richer candidates exist. Any deep-dive article whose _body falls
+    below NEWS_BODY_MIN_CHARS is swapped for the most relevant substantive article
+    still in news_articles (scored the same way select_deep_dive_from_feed already
+    ranks deep-dive candidates: keyword matches, then theme relevance, then boosted
+    score); the displaced thin article is demoted into the news pool, where a brief
+    mention is a lower-stakes use of it and _filter_sparse_news_articles still gets
+    final say. Nothing is dropped — articles are only repositioned. Falls back to
+    leaving thin articles in place when the pool has no substantive candidates left,
+    at which point the SPARSE SOURCE NOTE is the (now rare) last resort.
+    """
+    thin = [a for a in deep_dive_articles if len(a.get('_body', '') or '') < NEWS_BODY_MIN_CHARS]
+    if not thin:
+        return deep_dive_articles, news_articles
+
+    print(f"  🔍 Confirming deep dive substance: {len(thin)}/{len(deep_dive_articles)} "
+          f"article(s) below the {NEWS_BODY_MIN_CHARS}-char substance floor")
+
+    def _candidate_score(a):
+        kw = a.get('_keyword_matches', 0)
+        local = _local_theme_relevance(a, theme_keywords) if theme_keywords else 0
+        boosted = a.get('_boosted_score', a.get('ai_score', 0))
+        return (kw, local, boosted)
+
+    swapped = 0
+    for thin_article in thin:
+        candidates = [a for a in news_articles if len(a.get('_body', '') or '') >= NEWS_BODY_MIN_CHARS]
+        if not candidates:
+            break
+        best = max(candidates, key=_candidate_score)
+        di = deep_dive_articles.index(thin_article)
+        deep_dive_articles[di] = best
+        news_articles.remove(best)
+        news_articles.append(thin_article)
+        swapped += 1
+        print(f"     🔁 Swapped in \"{best.get('title', '')[:60]}\" "
+              f"({len(best.get('_body', ''))} chars) for \"{thin_article.get('title', '')[:60]}\" "
+              f"({len(thin_article.get('_body', '') or '')} chars)")
+
+    if swapped:
+        print(f"  ✅ Substituted {swapped} thin deep-dive article(s) with substantive alternatives")
+    else:
+        print(f"  ℹ️  No substantive alternatives in the news pool — {len(thin)} thin deep-dive article(s) remain")
+
+    return deep_dive_articles, news_articles
+
+
 # ---------------------------------------------------------------------------
 # Batch API helpers
 # ---------------------------------------------------------------------------
@@ -2875,6 +2925,16 @@ def score_script(script_text):
         "structural_announcements": [
             r'\bLet me (?:flag|push|note|be clear|be honest|try|engage|pull|put)\b',
         ],
+        "sourcing_meta_commentary": [
+            r"\bwe (?:only|just) have the headline\b",
+            r"\bif the details bear out\b",
+            r"\bthe picture is still coming together\b",
+            r"\baccording to reporting\b",
+            r"\bthe headline (?:alone|only)\b",
+            r"\bthe full body text wasn't in (?:today's|the) feed\b",
+            r"\bbeing honest about what we don't know\b",
+            r"\bwe'll be honest about what we (?:don't|do not) know\b",
+        ],
     }
 
     hits = {}
@@ -3173,13 +3233,20 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
     _dd_with_body = sum(1 for a in deep_dive_articles if len(a.get('_body', '') or '') >= 100)
     if deep_dive_articles and _dd_with_body / len(deep_dive_articles) < 0.5:
         deep_dive_text = (
-            "⚠️ SPARSE SOURCE WARNING: Most deep dive articles have no body text — the feed "
-            "delivered thin content today. Ground the central question in the THEME's broader "
-            "landscape rather than article-specific details. Do not assert specific facts about "
-            "bills, policies, or events beyond what the article titles alone confirm. Use honest "
-            "framing: 'according to reporting,' 'if the details bear out,' 'the picture is still "
-            "coming together.' A grounded exploration with acknowledged uncertainty is better than "
-            "manufactured specifics from thin sources.\n\n"
+            "⚠️ SPARSE SOURCE NOTE (internal — do not voice this on air): Most deep dive "
+            "articles in this batch have limited body text. This is a note to YOU, the "
+            "writer, not something to narrate to listeners. Never describe what you do or "
+            "don't have access to, what the feed delivered, or how confident you are in "
+            "your sources — phrases like 'we only have the headline,' 'if the details bear "
+            "out,' 'according to reporting,' or 'the picture is still coming together' are "
+            "FORBIDDEN; they sound like an AI describing its own limitations rather than a "
+            "host discussing a story. Instead: discuss only what the titles and any "
+            "available summaries actually establish, build the segment around the THEME's "
+            "broader landscape and stakes rather than article-specific claims, and let the "
+            "central question come from that landscape — not from the thin articles "
+            "themselves. State confirmed facts plainly and move on, or simply don't raise "
+            "an uncertain claim at all. The listener should never sense that the sourcing "
+            "was thin.\n\n"
             + deep_dive_text
         )
 
@@ -5065,7 +5132,17 @@ def main():
         # Fetch article body text so Claude has real content to work from,
         # not just headlines and meta-description snippets.
         _enrich_articles_with_body(deep_dive_articles, label="deep dive")
-        _enrich_articles_with_body(news_articles, label="news roundup", max_articles=20)
+        _enrich_articles_with_body(news_articles, label="news roundup", max_articles=40)
+
+        # Confirm substance — not just attempted enrichment — before the deep dive
+        # locks in: swap any thin deep-dive article for a substantive alternative
+        # from the broader news pool so Claude is never put in a position where
+        # it has to hedge about sourcing on air.
+        theme_keywords_for_substitution = _build_theme_keywords(today_theme)
+        deep_dive_articles, news_articles = _ensure_deep_dive_substance(
+            deep_dive_articles, news_articles, theme_keywords=theme_keywords_for_substitution
+        )
+
         deep_dive_quality, deep_dive_body_count = _assess_deep_dive_article_quality(deep_dive_articles)
         news_articles, _sparse_brave_used = _filter_sparse_news_articles(news_articles)
 
@@ -5113,6 +5190,11 @@ def main():
             consumed_email_ids.extend(i["id"] for i in email_feedback)
 
         # Generate script
+        _dd_substantive = sum(1 for a in deep_dive_articles if len(a.get('_body', '') or '') >= NEWS_BODY_MIN_CHARS)
+        _news_substantive = sum(1 for a in news_articles if len(a.get('_body', '') or '') >= NEWS_BODY_MIN_CHARS)
+        print(f"✅ Substance confirmed: {_dd_substantive}/{len(deep_dive_articles)} deep dive + "
+              f"{_news_substantive}/{len(news_articles)} news articles have full content pulled")
+
         script = generate_podcast_script(
             news_articles, deep_dive_articles, today_theme,
             episode_memory, host_memory, evolving_context,
