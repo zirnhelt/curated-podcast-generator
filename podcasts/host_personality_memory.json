@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "New: Indigenous AI Advisory Circle",
-      "[Android Authority] Gemini\u2019s camera AI thinks Aussie wildlif",
       "AI",
       "[Taipei Times] Hon Hai partners with France\u2019s Bull for AI ex",
       "[TechCrunch] Payroll startup Remote says it grew revenue 50%",
@@ -10,7 +8,9 @@
       "[TechCrunch] Cyberdecks are having a moment, rejecting big t",
       "Yukon founder joins national Indigenous AI program as Firewe",
       "[TechRadar] 'Who wouldn't want a large-scale industrial poll",
-      "[Business Insider] Satya Nadella defends Microsoft AI data c"
+      "[Business Insider] Satya Nadella defends Microsoft AI data c",
+      "[Business Insider] The AI industry's profit problem is getti",
+      "[ScienceAlert] AI Could Soon Use More Water Than Humanity Dr"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -75,11 +75,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-04",
-        "clue": "Indigenous-tech:+ \u2014 Escalated from collaboration framing to funding parity as foundational requirement",
-        "occurrences": 2
-      },
-      {
         "date": "2026-05-08",
         "clue": "evidence-bar:~ \u2014 Conceded drone BVLOS regulatory lag despite sector optimism",
         "occurrences": 1
@@ -137,6 +132,11 @@
       {
         "date": "2026-06-05",
         "clue": "Indigenous-tech:x \u2014 Conceded lack of direct T\u015dilhqot'in input mid-argument",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-06-07",
+        "clue": "tech-optimism:~ \u2014 acknowledged acoustic monitoring requires five-to-ten-year infrastructure build, not quick deployment",
         "occurrences": 1
       }
     ],
@@ -269,11 +269,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-06-04",
-        "clue": "structural-lens:x \u2014 Conceded threshold/enforcement framing; shifted from impossibility to calibration problem",
-        "occurrences": 2
-      },
-      {
         "date": "2026-05-13",
         "clue": "rural-context:~ \u2014 Shifted from access-as-barrier to equity-as-measurement-problem for programs",
         "occurrences": 1
@@ -294,9 +289,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-23",
-        "clue": "funding-risk:- \u2014 Moved from blanket dismissal to 'real capacity, real organizing' before friction point",
-        "occurrences": 1
+        "date": "2026-06-07",
+        "clue": "funding-risk:- \u2014 shifted from dismissing community AI as unfunded mandate to engaging seriously with co-investment and cooperative sustainability models",
+        "occurrences": 2
       },
       {
         "date": "2026-05-24",

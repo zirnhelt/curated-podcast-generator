@@ -1,17 +1,4 @@
 {
-  "2026-03-08": {
-    "timestamp": 1772974171.63298,
-    "date": "2026-03-08",
-    "theme": "Resilient Rural Futures",
-    "central_question": "Deep dive on Resilient Rural Futures",
-    "topics_covered": [
-      "broadband",
-      "fiber",
-      "telemedicine",
-      "solar",
-      "AI"
-    ]
-  },
   "2026-03-09": {
     "timestamp": 1773061478.386009,
     "date": "2026-03-09",
@@ -2057,6 +2044,32 @@
       "2026 municipal election and candidate specificity on public safety",
       "Infrastructure maintenance and active transportation initiatives",
       "Community expertise, resilience, and the limits of knowledge extraction without compensation"
+    ]
+  },
+  "2026-06-07": {
+    "timestamp": 1780822374.692102,
+    "date": "2026-06-07",
+    "theme": "Science, Wonder & the Natural World",
+    "central_question": "Can AI tools reshape ecological science in the Cariboo in ways that serve community interests, or do they primarily amplify existing extractive research structures?",
+    "riley_position": "Constrained AI models designed for specific monitoring tasks (acoustic sensors, camera traps, eDNA analysis) could reduce labour costs and enable locally-governed ecological monitoring without requiring massive data centre infrastructure, particularly if training data is controlled by Indigenous nations.",
+    "riley_key_evidence": [
+      "Consensus AI tool that answers only from peer-reviewed research, demonstrating that constrained models have lower infrastructure requirements than foundation models",
+      "New Brunswick Lorneville data centre would destroy wetlands and old-growth forest while running ecological models, illustrating the contradiction between AI compute footprint and ecological study",
+      "Acoustic monitoring with edge-deployed local models could run without cloud infrastructure or data leaving territory"
+    ],
+    "casey_position": "Community-controlled AI knowledge systems face fundamental governance and sustainability challenges; amplifying peer-reviewed research excludes Indigenous knowledge systematically, and the ongoing labour costs of maintaining such systems fall on already over-resourced communities without genuine co-investment.",
+    "casey_key_evidence": [
+      "Training data for AI models comes from research institutions with their own taxonomic frameworks and access conditions, encoding particular epistemologies that may exclude Indigenous knowledge",
+      "Peer-reviewed-only research tools structurally exclude community-governed data that doesn't get published in indexed journals, replicating existing extraction patterns",
+      "Communities are already resource-constrained; adding 'maintain a community AI system' without sustained funding is an unfunded mandate with a tech veneer"
+    ],
+    "resolution": "Riley and Casey shifted from debating whether AI helps to identifying the actual structural question: can a community-owned, fee-for-access ecological knowledge system become financially self-sustaining without compromising governance? They agreed the conversation requires bringing economic development organizations, Indigenous nations, and provincial policy-makers together, and acknowledged they hadn't directly consulted affected communities.",
+    "topics_covered": [
+      "Infrastructure costs of AI and ecological impact of data centres",
+      "Indigenous data sovereignty and structural exclusion from peer-reviewed research systems",
+      "Edge-deployed vs. cloud-based AI models for environmental monitoring",
+      "Community-owned data licensing and fee-for-access ecological knowledge systems",
+      "Funding and sustainability models for long-term community AI governance infrastructure"
     ]
   }
 }
