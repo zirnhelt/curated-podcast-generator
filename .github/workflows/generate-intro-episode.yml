@@ -1,0 +1,160 @@
+name: Generate Intro Episode
+
+# One-off generator for the "Introducing the Show" welcome episode — a short
+# Riley & Casey conversation that introduces the hosts and walks new listeners
+# through the 7 recurring daily themes, published into the MAIN "Cariboo
+# Signals" feed (NOT the separate Deep Dives / bespoke show).
+#
+# Trigger manually via the Actions tab ("Run workflow") and pick a mode:
+#   dry-run      — generate and print the script only; nothing is written or spent on TTS
+#   skip-publish — generate script + audio + citations locally, but don't touch the live feed/site
+#   full         — generate everything AND publish (regenerate feed, deploy site, sync to R2)
+#
+# Output files (in podcasts/):
+#   podcast_audio_{date}_introducing_the_show.mp3
+#   podcast_script_{date}_introducing_the_show.txt
+#   citations_{date}_introducing_the_show.json
+#
+# Intended to be run once; safe to re-run with dry-run/skip-publish while
+# reviewing the script and audio before doing a final "full" publish run.
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'dry-run (script only), skip-publish (generate locally), or full (generate + publish live)'
+        required: false
+        default: dry-run
+        type: choice
+        options:
+          - dry-run
+          - skip-publish
+          - full
+      date:
+        description: 'Override episode date as YYYY-MM-DD (leave blank to use today, Pacific time)'
+        required: false
+        type: string
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  generate-intro-episode:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Log trigger
+        env:
+          INPUT_MODE: ${{ inputs.mode }}
+          INPUT_DATE: ${{ inputs.date }}
+        run: |
+          echo "Mode: ${INPUT_MODE:-dry-run}"
+          echo "Date override: ${INPUT_DATE:-<today, Pacific>}"
+          echo "UTC time: $(date -u)"
+
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.11'
+
+      - name: Install system dependencies
+        run: |
+          sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list /etc/apt/sources.list.d/*.list 2>/dev/null || true
+          sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list.d/*.sources 2>/dev/null || true
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-lock.txt
+
+      - name: Generate intro episode
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          PODCAST_BASE_URL: https://podcast.cariboosignals.ca/
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET_NAME: cariboo-signals
+          # Pass user-supplied inputs via env vars, not inline ${{ }} expansion,
+          # to prevent expression-injection if values contain shell metacharacters.
+          INPUT_MODE: ${{ inputs.mode }}
+          INPUT_DATE: ${{ inputs.date }}
+        run: |
+          MODE="${INPUT_MODE:-dry-run}"
+          ARGS=()
+          [ -n "$INPUT_DATE" ] && ARGS+=(--date "$INPUT_DATE")
+          case "$MODE" in
+            dry-run)      ARGS+=(--dry-run) ;;
+            skip-publish) ARGS+=(--skip-publish) ;;
+            full)         ;;
+            *) echo "Unknown mode '$MODE'" >&2; exit 1 ;;
+          esac
+          python generate_intro_episode.py "${ARGS[@]}"
+
+      - name: List generated files
+        if: ${{ inputs.mode != 'dry-run' }}
+        run: |
+          echo "Intro episode files:"
+          ls -la podcasts/*introducing_the_show* 2>/dev/null || echo "No intro episode files found"
+
+      - name: Commit episode files
+        if: ${{ inputs.mode == 'full' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Audio excluded — deployed via Pages/R2 only, matching daily episodes
+          git add podcasts/podcast_script_*introducing_the_show*.txt podcasts/citations_*introducing_the_show*.json podcast-feed.xml || echo "No new episode files to add"
+
+          git diff --staged --quiet && echo "No changes to commit" && exit 0
+          git commit -m "intro: generate 'Introducing the Show' episode"
+          git pull --rebase origin main
+          git push
+
+      - name: Prepare output for GitHub Pages
+        if: ${{ inputs.mode == 'full' }}
+        run: |
+          mkdir -p output/podcasts
+
+          for f in podcasts/*introducing_the_show*; do
+            [ -f "$f" ] && cp "$f" output/podcasts/ && echo "  copied $f"
+          done
+
+          cp index.html output/
+          cp podcast-feed.xml output/
+          cp cariboo-signals.png output/
+
+          echo "Output:"
+          ls -lh output/
+          ls -lh output/podcasts/
+
+      - name: Deploy to GitHub Pages
+        if: ${{ inputs.mode == 'full' }}
+        uses: peaceiris/actions-gh-pages@373f7f263a76c20808c831209c920827a82a2847 # v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output
+          publish_branch: gh-pages
+          keep_files: true
+          commit_message: "intro: deploy 'Introducing the Show' episode - ${{ github.run_id }}"
+
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: intro-episode-${{ inputs.mode }}-${{ github.run_id }}
+          path: |
+            podcasts/*introducing_the_show*
+            podcast-feed.xml
+          retention-days: 30
