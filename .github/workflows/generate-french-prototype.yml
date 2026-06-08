@@ -1,0 +1,142 @@
+name: Generate French (fr-CA) Episode Prototype
+
+# One-off LISTENING SAMPLE generator for the bilingual exploration — adapts
+# the latest English daily-episode script into natural, broadcast-neutral
+# Canadian French (fr-CA) and synthesizes a sample with Azure fr-CA neural
+# voices. This NEVER touches the live feed, R2, citations, or any published
+# output: everything lands in podcasts/french_prototype/, for listening/
+# reading review only, while deciding whether to build out a twin French feed.
+#
+# generate_french_prototype.py runs as two forced, reviewable stages, the
+# second building on the first's saved output:
+#   1. dry-run    — adapt + save the French script, print it for review/editing
+#   2. synthesize — render sample audio from that reviewed script
+#
+# Every Actions run starts from a fresh checkout, so the saved script doesn't
+# persist on disk between separate runs the way it would on a local machine.
+# To bridge that, each run uploads whatever it produced as a workflow artifact
+# named "french-prototype-state", and the synthesize stage starts by restoring
+# the most recent such artifact (found via the Actions API across all prior
+# runs of this workflow) into podcasts/french_prototype/ — so dry-run ->
+# synthesize chain together correctly even though they're two separate
+# "Run workflow" clicks, possibly days apart.
+#
+# Trigger manually via the Actions tab ("Run workflow"), in order:
+#   1. mode=dry-run    — review the adapted script (download the
+#                        "french-prototype-state" artifact, or read the job log)
+#   2. mode=synthesize — review the sample audio (download
+#                        "french-prototype-state" from the run summary to listen)
+#
+# Output files (in podcasts/french_prototype/):
+#   script_fr_{date}_{theme}.txt
+#   sample_audio_fr_{date}_{theme}.mp3
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Run in order: dry-run (adapt + save script for review) -> synthesize (render sample audio from that script)'
+        required: false
+        default: dry-run
+        type: choice
+        options:
+          - dry-run
+          - synthesize
+      source:
+        description: 'dry-run only: filename (under podcasts/) of the English script to adapt; blank = most recent daily episode script'
+        required: false
+        type: string
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  generate-french-prototype:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Log trigger
+        env:
+          INPUT_MODE: ${{ inputs.mode }}
+          INPUT_SOURCE: ${{ inputs.source }}
+        run: |
+          echo "Mode: ${INPUT_MODE:-dry-run}"
+          echo "Source override: ${INPUT_SOURCE:-<most recent podcast_script_*.txt>}"
+          echo "UTC time: $(date -u)"
+
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.11'
+
+      - name: Install system dependencies
+        run: |
+          sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list /etc/apt/sources.list.d/*.list 2>/dev/null || true
+          sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list.d/*.sources 2>/dev/null || true
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-lock.txt
+
+      - name: Restore saved script from the dry-run stage
+        if: ${{ inputs.mode == 'synthesize' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ARTIFACT_ID=$(gh api "repos/${{ github.repository }}/actions/artifacts?per_page=100" \
+            --jq '[.artifacts[] | select(.name == "french-prototype-state" and .expired == false)] | sort_by(.created_at) | last | .id // empty')
+          if [ -z "$ARTIFACT_ID" ]; then
+            echo "::error::No saved 'french-prototype-state' artifact found from a prior run."
+            echo "Run mode=dry-run first (and review the adapted script) before running mode=synthesize."
+            exit 1
+          fi
+          echo "Restoring artifact #$ARTIFACT_ID..."
+          mkdir -p podcasts/french_prototype
+          gh api "repos/${{ github.repository }}/actions/artifacts/$ARTIFACT_ID/zip" > /tmp/french-state.zip
+          unzip -o /tmp/french-state.zip -d podcasts/french_prototype/
+          rm /tmp/french-state.zip
+          echo "Restored:"
+          ls -la podcasts/french_prototype/script_fr_* 2>/dev/null || { echo "::error::Restored artifact contained no adapted script"; exit 1; }
+
+      - name: Generate French prototype
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
+          AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
+          # Pass user-supplied inputs via env vars, not inline ${{ }} expansion,
+          # to prevent expression-injection if values contain shell metacharacters.
+          INPUT_MODE: ${{ inputs.mode }}
+          INPUT_SOURCE: ${{ inputs.source }}
+        run: |
+          MODE="${INPUT_MODE:-dry-run}"
+          ARGS=()
+          case "$MODE" in
+            dry-run)    ARGS+=(--dry-run); [ -n "$INPUT_SOURCE" ] && ARGS+=(--source "$INPUT_SOURCE") ;;
+            synthesize) ;;
+            *) echo "Unknown mode '$MODE'" >&2; exit 1 ;;
+          esac
+          python generate_french_prototype.py "${ARGS[@]}"
+
+      - name: Save sample for review / handoff to the next stage
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: french-prototype-state
+          path: podcasts/french_prototype/
+          retention-days: 14
+          if-no-files-found: warn
+
+      - name: List generated files
+        run: |
+          echo "French prototype files:"
+          ls -la podcasts/french_prototype/ 2>/dev/null || echo "No prototype files found"
