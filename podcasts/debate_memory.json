@@ -1,29 +1,4 @@
 {
-  "2026-03-09": {
-    "timestamp": 1773061478.386009,
-    "date": "2026-03-09",
-    "theme": "Arts, Culture & Digital Storytelling",
-    "central_question": "Deep dive on Arts, Culture & Digital Storytelling",
-    "topics_covered": [
-      "AI",
-      "infrastructure",
-      "maintenance",
-      "funding"
-    ]
-  },
-  "2026-03-10": {
-    "timestamp": 1773147783.636599,
-    "date": "2026-03-10",
-    "theme": "Working Lands & Industry",
-    "central_question": "Deep dive on Working Lands & Industry",
-    "topics_covered": [
-      "fiber",
-      "satellite",
-      "precision agriculture",
-      "solar",
-      "AI"
-    ]
-  },
   "2026-03-11": {
     "timestamp": 1773234149.050636,
     "date": "2026-03-11",
@@ -2070,6 +2045,32 @@
       "Edge-deployed vs. cloud-based AI models for environmental monitoring",
       "Community-owned data licensing and fee-for-access ecological knowledge systems",
       "Funding and sustainability models for long-term community AI governance infrastructure"
+    ]
+  },
+  "2026-06-08": {
+    "timestamp": 1780928368.7136,
+    "date": "2026-06-08",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "central_question": "When platforms choose not to filter or label AI-generated content despite having the technical capability, who bears the cost and how can authentic regional cultural production survive?",
+    "riley_position": "Platform filters are a design choice, not a technical limitation; the real lever for change is user-controlled filtering and platform accountability, but the more promising path is building platform-independent cultural infrastructure through shared digital coordination at regional scale.",
+    "riley_key_evidence": [
+      "Suno raised $400 million while copyright cases remain unresolved, and the platform decision not to filter AI content is a product choice, not technical limitation",
+      "The reggae band case from May shows that direct channels and live events create audience relationships that survive AI-diluted streaming better than algorithmic discovery",
+      "A shared Cariboo arts database and cooperative funding model for a regional digital coordinator could make cultural programming discoverable without relying on platform recommendation surfaces"
+    ],
+    "casey_position": "The structural problem is that rural communities lack the capacity and audience to differentiate authentically in a synthetic-content-flooded environment; even legal frameworks that penalize AI companies won't reduce volume or improve discoverability for local artists.",
+    "casey_key_evidence": [
+      "Rural organizations like Station House Gallery depend entirely on uncontrolled discoverability ecosystems and lack PR and distribution capacity that major institutions have",
+      "The cold-start problem means new Indigenous filmmakers starting from zero face a measurably more hostile content environment than three years ago",
+      "Suno's $5.4 billion valuation exceeds the entire BC Arts Council's historical funding, creating structural asymmetry in resources shaping the content environment"
+    ],
+    "resolution": "Riley and Casey converged on the cooperative funding model as a concrete structural intervention worth investigating, agreeing the real question is whether regional cultural organizations can pool resources for shared digital infrastructure the way rural broadband co-ops do, rather than waiting for platforms to change. They acknowledged resource and governance gaps remain but committed to gathering examples of where this has been attempted.",
+    "topics_covered": [
+      "Platform design choices around AI content filtering and their impact on authentic regional cultural visibility",
+      "Capital asymmetry between AI companies and regional arts organizations",
+      "Discovery algorithms as a mechanism that makes synthetic content more visible than authentic local storytelling",
+      "Cooperative digital infrastructure models as alternative to platform-dependent distribution",
+      "Indigenous cultural production and platform-independent knowledge systems as structural resistance to AI generation"
     ]
   }
 }

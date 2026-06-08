@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "AI",
       "[Taipei Times] Hon Hai partners with France\u2019s Bull for AI ex",
       "[TechCrunch] Payroll startup Remote says it grew revenue 50%",
       "[STAT News] STAT+: Blood pressure tech floods the market aft",
@@ -10,7 +9,8 @@
       "[TechRadar] 'Who wouldn't want a large-scale industrial poll",
       "[Business Insider] Satya Nadella defends Microsoft AI data c",
       "[Business Insider] The AI industry's profit problem is getti",
-      "[ScienceAlert] AI Could Soon Use More Water Than Humanity Dr"
+      "[ScienceAlert] AI Could Soon Use More Water Than Humanity Dr",
+      "#184 Carney Wants Your Data. Why Won&#039;t Big Tech Give it"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -120,11 +120,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-06-04",
-        "clue": "structural-lens:+ \u2014 Moved from individual pathways to systems-level benefit-sharing frameworks",
-        "occurrences": 2
-      },
-      {
         "date": "2026-06-06",
         "clue": "structural-lens:~ \u2014 Acknowledged exhaustion as real constraint, not just resilience",
         "occurrences": 2
@@ -135,9 +130,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-06-07",
-        "clue": "tech-optimism:~ \u2014 acknowledged acoustic monitoring requires five-to-ten-year infrastructure build, not quick deployment",
-        "occurrences": 1
+        "date": "2026-06-08",
+        "clue": "tech-optimism:~ \u2014 acknowledged user-filter proposal insufficient without trust",
+        "occurrences": 2
       }
     ],
     "core_memories": [
@@ -314,11 +309,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-06-06",
-        "clue": "pilot-skepticism:+ \u2014 Named forum-as-performance risk, demanded transmissible output",
-        "occurrences": 2
-      },
-      {
         "date": "2026-06-05",
         "clue": "evidence-bar:- \u2014 Softened regulatory skepticism; acknowledged negotiation-before-approval pragmatism",
         "occurrences": 1
@@ -326,6 +316,11 @@
       {
         "date": "2026-06-05",
         "clue": "community-trust:~ \u2014 Connected artist-as-monitor to formal governance standing problem",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-06-08",
+        "clue": "community-trust:x \u2014 conceded authenticity value but emphasized discovery gap persists",
         "occurrences": 1
       }
     ],
