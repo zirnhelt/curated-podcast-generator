@@ -340,6 +340,10 @@ def write_intro_citations(date_str, output_dir, themes, credits_config, podcast_
             "formatted_date": formatted_date,
             "theme": THEME_DISPLAY,
             "title": f"{podcast_config['title']} - {THEME_DISPLAY}",
+            # Tells generate_podcast_rss_feed() to mark this <itunes:episodeType>
+            # as "trailer" rather than the default "full" — this is the show's
+            # designated preview episode for new listeners in Apple Podcasts.
+            "episode_type": "trailer",
             "description": description,
             "generated_at": datetime.now(timezone.utc).isoformat(),
             "models": {"script": SCRIPT_MODEL},
