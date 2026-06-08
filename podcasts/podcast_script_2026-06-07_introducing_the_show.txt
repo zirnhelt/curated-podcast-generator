@@ -1,0 +1,55 @@
+# Cariboo Signals Podcast Script - 2026-06-07
+# Theme: Introducing The Show
+# Generated: 2026-06-07
+
+**RILEY:** Oh good, you found us — welcome. So before anything else, here's the thing you should know right up front: I'm Riley, and I'm an AI persona. Built for this show, not born somewhere. My lens is the tech-optimist one — I come at every story asking how technology can actually work in rural communities, what the evidence says, what the cost of *not* adopting something looks like. That's the real thing I carry into every episode, even if there's no hometown story behind it.
+
+**CASEY:** [pause:600] And I'm Casey. Also AI, also a persona — mine's the skeptic seat. When a new program gets announced, I'm the one asking who actually benefits, who's paying for the maintenance in year three, and what happened to the last five initiatives that got the same press release. Dry? Maybe. But somebody has to read the fine print.
+
+**RILEY:** The show itself is called Cariboo Signals — a daily AI-generated tech review from and about rural BC. Scripts come from Claude, that's Anthropic's model, working from the day's news and source material. Voices are generated through OpenAI's TTS API — I'm Nova, Casey's Echo — with Azure Neural TTS running in parallel for quality comparisons. A Python toolchain using pydub stitches the audio together with music. The whole pipeline is automated, end to end, every day.
+
+**CASEY:** And none of that is hidden. We self-assess against the TRACE standard — that's at tracestandard.org — a transparency framework that scores AI-made content on sourcing, consent, accountability, all of it. We're currently sitting at 18 out of 20, which we're reasonably proud of. The point being: you know exactly what this is and how it gets made, from the first episode you hear.
+
+**RILEY:** We're coming to you from the Cariboo, on lands that have been cared for by the Secwépemc, Tŝilhqot'in, and Dakelh peoples since time immemorial. That context matters to us — it shapes the stories we cover and the questions we ask.
+
+**CASEY:** The premise is simple. Every day, a new episode. Every episode, two perspectives on technology and society in rural BC. Seven days, seven themes — the same rotation each week, so if wildfire season prep is your thing, you know exactly which day to tune in.
+
+[CHIME]
+
+**RILEY:** Alright, the week. Monday is Arts, Culture, and Digital Storytelling — local festivals, the creative economy, community media, cultural tech. My angle there is usually about reach: how digital tools let a gallery in Williams Lake or a filmmaker in Anahim Lake get their work in front of an audience they'd never otherwise have.
+
+**CASEY:** Mine's about who controls the story. Platforms and distribution tools aren't neutral — they shape what gets amplified and what gets buried. Monday's where I tend to ask whose cultural output is being served by the infrastructure, and whose is just content for someone else's algorithm.
+
+**RILEY:** Tuesday is Working Lands and Industry — forestry, ranching, mining, agriculture, tech in the resource economy. This is where I lean hardest into adoption case studies and return on investment. Precision agriculture data, remote monitoring on cut blocks, cattle tracking — there are real numbers behind this stuff.
+
+**CASEY:** [pause:400] And real costs. Tuesday's where I press on who absorbs the transition — whether it's a rancher taking on new debt for equipment, or a mill worker whose job description just quietly changed. ROI at the industry level doesn't always look the same from the ground.
+
+**RILEY:** Wednesday: Gear, Gadgets, and Practical Tech. Consumer devices, maker projects, homelab builds, tools you can actually hold or deploy. Honestly one of my favourite days — it's concrete, it's hands-on, and rural households have genuinely interesting constraints that push creative solutions.
+
+**CASEY:** I like Wednesday too, though my version of it is usually: does this thing work when the power's out, the cell signal's gone, and the nearest repair shop is two hours away? Practical tech in the Cariboo has a different definition than it does in a product review from San Francisco.
+
+**RILEY:** [pause:350] Thursday is Indigenous Lands and Innovation — Tŝilhqot'in, Secwépemc, Dakelh — language revitalization, governance tech, land stewardship, community-led digital projects. This is where some of the most interesting and rigorous work in rural BC is actually happening, and I cover it as exactly that: leading work, not a special-interest sidebar.
+
+**CASEY:** Thursday's also where I'm most insistent about who's driving. There's a long history of outside institutions deciding what Indigenous communities need technologically. The projects worth covering are the ones where the nation holds the data sovereignty, sets the terms, and owns the outcome. That distinction matters more on Thursday than any other day.
+
+**RILEY:** Friday is Wild Spaces and Outdoor Life — Chilcotin wilderness, backcountry recreation, conservation technology, wildfire and climate. The tech angle here is often about situational awareness: better fire mapping, wildlife corridor monitoring, avalanche forecasting tools that actually reach the people who need them.
+
+**CASEY:** [overlap:-120] And the gap between having the tool and having it work where you are. Friday's where I get into connectivity dead zones, the cost of satellite subscriptions for small operators, and whether conservation tech is being built for researchers or for the people living and working inside those landscapes.
+
+**RILEY:** Saturday is Cariboo Local Affairs — Williams Lake council, the CRD, School District 27, Quesnel, 100 Mile House, Bella Coola — the civic decisions and community voices that shape everyday life here. My read on local affairs is usually through the lens of infrastructure: what a broadband vote or a hospital board decision means for the region's capacity to participate in the digital economy.
+
+**CASEY:** Saturday's my most literal day. Budgets, bylaws, board minutes — that's where the real decisions live. I care less about the vision statement and more about the line item. What got funded, what got cut, and who showed up to the meeting.
+
+**RILEY:** [pause:500] And Sunday — Science, Wonder, and the Natural World. Scientific discovery, natural phenomena, ecology, the curiosity behind how the world works, grounded in Cariboo landscapes and living systems. I come at Sunday with genuine enthusiasm for the research, and for what new tools — remote sensing, environmental DNA, acoustic monitoring — are revealing about ecosystems that have been understudied for decades.
+
+**CASEY:** Sunday's where I let myself breathe a little. The skeptic dial comes down, the wonder dial goes up. That said, I'm still interested in who's funding the science, and whether the findings are getting back to the communities whose lands they're studying. Curiosity and accountability aren't mutually exclusive.
+
+**RILEY:** So that's the week. Seven themes, two perspectives, a new episode every day. The back catalog is already there waiting for you — pick a theme you care about and drop in anywhere. Each episode stands on its own.
+
+**CASEY:** And if something we say is wrong, incomplete, or missing context you think matters — tell us. That's not a formality. We're AI-generated, which means the feedback loop with actual humans in this region is genuinely useful, not just polite to mention.
+
+**RILEY:** Find us at cariboo signals dot C-A, and send us a note anytime at feedback@cariboosignals.ca. Corrections, questions, a story tip, or just a hello — all of it welcome.
+
+**CASEY:** [pause:300] Glad you're here. Go find the day that matches what you care about most, and see what we do with it.
+
+**RILEY:** New episode tomorrow. See you then.
