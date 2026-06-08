@@ -5,24 +5,39 @@ name: Generate Intro Episode
 # through the 7 recurring daily themes, published into the MAIN "Cariboo
 # Signals" feed (NOT the separate Deep Dives / bespoke show).
 #
-# Trigger manually via the Actions tab ("Run workflow") and pick a mode:
-#   dry-run      — generate and print the script only; nothing is written or spent on TTS
-#   skip-publish — generate script + audio + citations locally, but don't touch the live feed/site
-#   full         — generate everything AND publish (regenerate feed, deploy site, sync to R2)
+# generate_intro_episode.py runs as three forced, reviewable stages, each
+# building on the last stage's saved output:
+#   1. dry-run      — generate + save the script, print it for review/editing
+#   2. skip-publish — build audio + citations from that reviewed script
+#   3. full         — publish the reviewed audio + citations live
+#
+# Every Actions run starts from a fresh checkout, so the saved
+# script/audio/citations don't persist on disk between separate runs the way
+# they would on a local machine. To bridge that, each run uploads whatever it
+# produced as a workflow artifact named "intro-episode-state", and any run
+# past stage 1 starts by restoring the most recent such artifact (found via
+# the Actions API across all prior runs of this workflow) into podcasts/ —
+# so dry-run -> skip-publish -> full chain together correctly even though
+# they're three separate "Run workflow" clicks, possibly days apart.
+#
+# Trigger manually via the Actions tab ("Run workflow"), in order:
+#   1. mode=dry-run      — review the script printed in the job log (edit the
+#                          downloaded "intro-episode-state" artifact's .txt
+#                          file and re-run dry-run if you want to revise it)
+#   2. mode=skip-publish — review the generated audio (download
+#                          "intro-episode-state" from the run summary to listen)
+#   3. mode=full         — publish live and deploy
 #
 # Output files (in podcasts/):
 #   podcast_audio_{date}_introducing_the_show.mp3
 #   podcast_script_{date}_introducing_the_show.txt
 #   citations_{date}_introducing_the_show.json
-#
-# Intended to be run once; safe to re-run with dry-run/skip-publish while
-# reviewing the script and audio before doing a final "full" publish run.
 
 on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'dry-run (script only), skip-publish (generate locally), or full (generate + publish live)'
+        description: 'Run in order: dry-run (review script) -> skip-publish (review audio) -> full (publish live)'
         required: false
         default: dry-run
         type: choice
@@ -31,7 +46,7 @@ on:
           - skip-publish
           - full
       date:
-        description: 'Override episode date as YYYY-MM-DD (leave blank to use today, Pacific time)'
+        description: 'dry-run only: override the date stamp baked into the script filename (YYYY-MM-DD); blank = today (Pacific). Later stages reuse whatever date the saved script carries.'
         required: false
         type: string
 
@@ -54,7 +69,7 @@ jobs:
           INPUT_DATE: ${{ inputs.date }}
         run: |
           echo "Mode: ${INPUT_MODE:-dry-run}"
-          echo "Date override: ${INPUT_DATE:-<today, Pacific>}"
+          echo "Date override: ${INPUT_DATE:-<today, Pacific — dry-run only>}"
           echo "UTC time: $(date -u)"
 
       - name: Checkout repository
@@ -76,6 +91,26 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements-lock.txt
+
+      - name: Restore saved progress from a prior stage
+        if: ${{ inputs.mode != 'dry-run' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ARTIFACT_ID=$(gh api "repos/${{ github.repository }}/actions/artifacts?per_page=100" \
+            --jq '[.artifacts[] | select(.name == "intro-episode-state" and .expired == false)] | sort_by(.created_at) | last | .id // empty')
+          if [ -z "$ARTIFACT_ID" ]; then
+            echo "::error::No saved 'intro-episode-state' artifact found from a prior run."
+            echo "Run mode=dry-run first (and review the script), then mode=skip-publish (and review the audio), before running this mode."
+            exit 1
+          fi
+          echo "Restoring artifact #$ARTIFACT_ID..."
+          mkdir -p podcasts
+          gh api "repos/${{ github.repository }}/actions/artifacts/$ARTIFACT_ID/zip" > /tmp/intro-state.zip
+          unzip -o /tmp/intro-state.zip -d podcasts/
+          rm /tmp/intro-state.zip
+          echo "Restored:"
+          ls -la podcasts/*introducing_the_show* 2>/dev/null || { echo "::error::Restored artifact contained no matching files"; exit 1; }
 
       - name: Generate intro episode
         env:
@@ -101,6 +136,15 @@ jobs:
             *) echo "Unknown mode '$MODE'" >&2; exit 1 ;;
           esac
           python generate_intro_episode.py "${ARGS[@]}"
+
+      - name: Save progress for the next stage
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: intro-episode-state
+          path: podcasts/*introducing_the_show*
+          retention-days: 14
+          if-no-files-found: warn
 
       - name: List generated files
         if: ${{ inputs.mode != 'dry-run' }}
@@ -148,13 +192,3 @@ jobs:
           publish_branch: gh-pages
           keep_files: true
           commit_message: "intro: deploy 'Introducing the Show' episode - ${{ github.run_id }}"
-
-      - name: Upload artifacts
-        if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        with:
-          name: intro-episode-${{ inputs.mode }}-${{ github.run_id }}
-          path: |
-            podcasts/*introducing_the_show*
-            podcast-feed.xml
-          retention-days: 30

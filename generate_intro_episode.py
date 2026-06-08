@@ -14,15 +14,19 @@ generate_bespoke.py, but writes into the MAIN show's namespace
 (podcasts/podcast_audio_*.mp3, citations_*.json, podcast-feed.xml) rather than
 the separate "Deep Dives" bespoke feed.
 
-Usage:
-    python generate_intro_episode.py --dry-run         # script only, nothing written
-    python generate_intro_episode.py --skip-publish    # write files locally, skip feed/site/R2
-    python generate_intro_episode.py                   # full run: generate, write, publish
+Three forced stages — run them in order, reviewing each stage's output before
+moving to the next (each stage reuses the previous stage's saved files rather
+than regenerating them, so edits to the script are honored downstream):
+
+    python generate_intro_episode.py --dry-run         # 1. generate + save script, print for review
+    python generate_intro_episode.py --skip-publish    # 2. build audio + citations from that script
+    python generate_intro_episode.py                   # 3. publish the reviewed audio + citations
 """
 
 import argparse
 import json
 import os
+import re
 import sys
 import tempfile
 from datetime import datetime, timezone
@@ -260,6 +264,33 @@ def write_intro_script_file(script, date_str, output_dir, podcast_config):
     return script_file
 
 
+def _read_script_file(script_file):
+    """Read back a script written by write_intro_script_file, stripping its '#' header lines."""
+    with open(script_file, encoding="utf-8") as f:
+        lines = f.readlines()
+    i = 0
+    while i < len(lines) and (lines[i].startswith("#") or not lines[i].strip()):
+        i += 1
+    return "".join(lines[i:])
+
+
+_SCRIPT_FILENAME_RE = re.compile(r"^podcast_script_(\d{4}-\d{2}-\d{2})_" + re.escape(SLUG) + r"\.txt$")
+
+
+def _find_reviewed_script():
+    """Locate the script saved by a prior --dry-run, regardless of its date stamp.
+
+    This is a one-off episode, so there should only ever be one such file —
+    looking it up this way means stage 2/3 don't need --date to match the
+    stage that generated the script (e.g. reviewing across a day boundary).
+    """
+    matches = sorted(p for p in PODCASTS_DIR.glob(f"podcast_script_*_{SLUG}.txt") if _SCRIPT_FILENAME_RE.match(p.name))
+    if not matches:
+        return None, None
+    script_file = matches[-1]
+    return _SCRIPT_FILENAME_RE.match(script_file.name).group(1), script_file
+
+
 def _credits_html_block(credits_config):
     c = credits_config["structured"]
     return (
@@ -337,21 +368,29 @@ def publish():
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Generate the one-off 'Introducing the Show' welcome episode for Cariboo Signals."
+        description=(
+            "Generate the one-off 'Introducing the Show' welcome episode for Cariboo Signals, "
+            "in three forced stages — each one builds on the previous stage's reviewed output:\n"
+            "  1. --dry-run       generate + save the script, print it for review/editing\n"
+            "  2. --skip-publish  build audio + citations from that reviewed script file\n"
+            "  3. (no flags)      publish the reviewed audio + citations"
+        ),
+        formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument("--dry-run", action="store_true",
-                        help="Generate and print the script only — no audio, no files written")
+                        help="Stage 1: generate a fresh script, save it for review, and print it — stops there")
     parser.add_argument("--skip-publish", action="store_true",
-                        help="Write script/audio/citations locally but skip feed regen, site rebuild, and R2 upload")
+                        help="Stage 2: build audio + citations from the saved script — stops before publishing")
     parser.add_argument("--date", default=None,
-                        help="Override the episode date (YYYY-MM-DD); defaults to today's Pacific date")
+                        help="Stage 1 only: override the date stamp baked into the script's filename "
+                             "(YYYY-MM-DD); defaults to today's Pacific date. Stages 2 and 3 reuse "
+                             "whatever date the saved script was stamped with.")
     args = parser.parse_args()
 
-    date_str = args.date or _pacific_today_str()
+    PODCASTS_DIR.mkdir(parents=True, exist_ok=True)
 
     print(f"\n{'='*50}")
     print("  Introducing the Show — one-off welcome episode")
-    print(f"  Date: {date_str}")
     print(f"{'='*50}\n")
 
     hosts = load_hosts_config()
@@ -359,41 +398,68 @@ def main():
     podcast_config = load_podcast_config()
     credits_config = load_credits_config()
 
-    client = get_anthropic_client()
-    if not client:
-        print("ANTHROPIC_API_KEY not set. Exiting.")
-        sys.exit(1)
-
-    print("Generating script...")
-    script = generate_intro_script(client, hosts, themes, podcast_config, credits_config)
-    word_count = len(script.split())
-    turn_count = script.count("**RILEY:**") + script.count("**CASEY:**")
-    print(f"  Draft: {word_count} words, {turn_count} turns")
-
+    # ── Stage 1: generate + save a fresh script for review ─────────────────
     if args.dry_run:
-        print(f"\n{'='*50}\n  SCRIPT (dry run — nothing written)\n{'='*50}\n")
+        date_str = args.date or _pacific_today_str()
+        script_file = PODCASTS_DIR / f"podcast_script_{date_str}_{SLUG}.txt"
+
+        client = get_anthropic_client()
+        if not client:
+            print("ANTHROPIC_API_KEY not set. Exiting.")
+            sys.exit(1)
+
+        print(f"Generating script (date stamp: {date_str})...")
+        script = generate_intro_script(client, hosts, themes, podcast_config, credits_config)
+        word_count = len(script.split())
+        turn_count = script.count("**RILEY:**") + script.count("**CASEY:**")
+        print(f"  Draft: {word_count} words, {turn_count} turns")
+        write_intro_script_file(script, date_str, PODCASTS_DIR, podcast_config)
+
+        print(f"\n{'='*50}")
+        print(f"  SCRIPT (review/edit {script_file.name}, then run --skip-publish)")
+        print(f"{'='*50}\n")
         print(script)
         return
 
-    PODCASTS_DIR.mkdir(parents=True, exist_ok=True)
-    write_intro_script_file(script, date_str, PODCASTS_DIR, podcast_config)
+    # Stages 2 and 3 both pick up whichever script stage 1 saved — there's
+    # only ever one for this one-off episode, so its date stamp now governs
+    # the audio/citations filenames too (no need for --date to match here).
+    date_str, script_file = _find_reviewed_script()
+    if not script_file:
+        print(f"No reviewed script found (expected podcasts/podcast_script_<date>_{SLUG}.txt).")
+        print("Run with --dry-run first to generate and review one.")
+        sys.exit(1)
 
-    print("\nGenerating audio...")
     audio_file = PODCASTS_DIR / f"podcast_audio_{date_str}_{SLUG}.mp3"
-    generate_intro_audio(script, audio_file, hosts)
+    citations_file = PODCASTS_DIR / f"citations_{date_str}_{SLUG}.json"
 
-    print("\nWriting citations...")
-    write_intro_citations(date_str, PODCASTS_DIR, themes, credits_config, podcast_config)
-
+    # ── Stage 2: build audio + citations from the reviewed script ──────────
     if args.skip_publish:
-        print("\n--skip-publish set — feed, site, and R2 left untouched.")
+        script = _read_script_file(script_file)
+        print(f"Using reviewed script: {script_file.name}")
+
+        print("\nGenerating audio...")
+        generate_intro_audio(script, audio_file, hosts)
+
+        print("\nWriting citations...")
+        write_intro_citations(date_str, PODCASTS_DIR, themes, credits_config, podcast_config)
+
+        print(f"\n--skip-publish set — review {audio_file.name}, then run with no flags to publish.")
         return
 
+    # ── Stage 3: publish the reviewed audio + citations ────────────────────
+    if not audio_file.exists() or not citations_file.exists():
+        print(f"Missing reviewed audio/citations for {script_file.name}.")
+        print("Run --skip-publish first to generate and review them.")
+        sys.exit(1)
+
+    print(f"Using reviewed script: {script_file.name}")
+    print(f"Using reviewed audio:  {audio_file.name}")
     publish()
 
     print(f"\n{'='*50}")
     print("  Episode complete: Introducing The Show")
-    print(f"  Output: podcasts/podcast_audio_{date_str}_{SLUG}.mp3")
+    print(f"  Output: podcasts/{audio_file.name}")
     print("  Feed:   podcast-feed.xml")
     print(f"{'='*50}\n")
 
