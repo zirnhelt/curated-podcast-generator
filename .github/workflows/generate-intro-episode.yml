@@ -92,6 +92,27 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements-lock.txt
 
+      - name: Download existing episodes for feed regeneration
+        # publish() -> generate_podcast_rss_feed() rebuilds podcast-feed.xml from
+        # whatever podcasts/podcast_audio_*.mp3 files it finds on disk. On a fresh
+        # Actions checkout that's normally just THIS run's new episode (daily
+        # episode audio lives on R2/Pages, not in git), so without this step,
+        # publishing the intro episode would overwrite the feed with a single
+        # item and silently drop every other episode — exactly what
+        # daily-podcast.yml's "Download existing files from GitHub Pages" step
+        # exists to prevent for the regular daily run.
+        if: ${{ inputs.mode == 'full' }}
+        run: |
+          mkdir -p podcasts
+          wget https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml -O /tmp/existing-feed.xml || echo "No existing RSS feed"
+          if [ -f /tmp/existing-feed.xml ]; then
+            grep -oP '(?<=url=")[^"]+\.mp3(?=")' /tmp/existing-feed.xml | head -9 | while read url; do
+              fname=$(basename "$url")
+              wget -q "$url" -O "podcasts/$fname" && echo "  Downloaded $fname" || echo "  Skipped $fname"
+            done
+          fi
+        continue-on-error: true
+
       - name: Restore saved progress from a prior stage
         if: ${{ inputs.mode != 'dry-run' }}
         env:

@@ -4537,12 +4537,19 @@ def generate_podcast_rss_feed():
                 citations_file = os.path.join(podcasts_dir, f"citations_{date_str}_{safe_theme}.json")
 
                 episode_description = podcast_config["description"]
+                episode_type = "full"
 
                 # Add citations if file exists
                 if os.path.exists(citations_file):
                     try:
                         with open(citations_file, 'r', encoding='utf-8') as f:
                             citations_data = json.load(f)
+
+                        # Apple's <itunes:episodeType> — "full" (the default) for
+                        # regular episodes, "trailer" for show previews, "bonus"
+                        # for extras. Episode generators record this in citations
+                        # when it differs from the default.
+                        episode_type = citations_data.get('episode', {}).get('episode_type', 'full')
 
                         # Use the pre-built HTML description if available (preserves
                         # paragraph formatting in Apple Podcasts and other apps)
@@ -4592,7 +4599,8 @@ def generate_podcast_rss_feed():
                     'pub_date': pub_date,
                     'file_size': os.path.getsize(audio_file),
                     'duration': get_audio_duration(audio_file),
-                    'description': episode_description
+                    'description': episode_description,
+                    'episode_type': episode_type
                 })
             except ValueError:
                 continue
@@ -4686,6 +4694,7 @@ def generate_podcast_rss_feed():
             f'<guid isPermaLink="false">{podcast_config["title"].lower().replace(" ", "-")}-{os.path.basename(episode["audio_file"]).replace("podcast_audio_", "").replace(".mp3", "")}</guid>',
             f'<itunes:duration>{episode["duration"]}</itunes:duration>',
             f'<itunes:explicit>{"true" if podcast_config["explicit"] else "false"}</itunes:explicit>',
+            f'<itunes:episodeType>{episode["episode_type"]}</itunes:episodeType>',
         ]
         if episode.get('vtt_transcript_url'):
             escaped_vtt_url = saxutils.escape(episode['vtt_transcript_url'], {chr(34): "&quot;"})
