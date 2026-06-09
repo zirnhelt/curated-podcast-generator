@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[Taipei Times] Hon Hai partners with France\u2019s Bull for AI ex",
-      "[TechCrunch] Payroll startup Remote says it grew revenue 50%",
       "[STAT News] STAT+: Blood pressure tech floods the market aft",
       "[TechCrunch] Cyberdecks are having a moment, rejecting big t",
       "Yukon founder joins national Indigenous AI program as Firewe",
@@ -10,7 +8,9 @@
       "[Business Insider] Satya Nadella defends Microsoft AI data c",
       "[Business Insider] The AI industry's profit problem is getti",
       "[ScienceAlert] AI Could Soon Use More Water Than Humanity Dr",
-      "#184 Carney Wants Your Data. Why Won&#039;t Big Tech Give it"
+      "#184 Carney Wants Your Data. Why Won&#039;t Big Tech Give it",
+      "[Business Insider] A consulting firm is now using AI to give",
+      "[TechRadar] 'Some places carry the costs and other places ca"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -110,9 +110,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-28",
-        "clue": "funding-risk:x \u2014 Conceded maintenance gap reality; shifted from infrastructure-building optimism",
-        "occurrences": 1
+        "date": "2026-06-09",
+        "clue": "funding-risk:x \u2014 Conceded grant-dependency creates permanent capacity vulnerability",
+        "occurrences": 2
       },
       {
         "date": "2026-05-31",
@@ -133,6 +133,11 @@
         "date": "2026-06-08",
         "clue": "tech-optimism:~ \u2014 acknowledged user-filter proposal insufficient without trust",
         "occurrences": 2
+      },
+      {
+        "date": "2026-06-09",
+        "clue": "structural-lens:+ \u2014 Moved from project-level to system-level value capture analysis",
+        "occurrences": 1
       }
     ],
     "core_memories": [
@@ -299,13 +304,8 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-29",
-        "clue": "pilot-skepticism:~ \u2014 Conceded First Journey Trails as proof-of-concept while resisting scale-through-centralization framing as solved",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-06-02",
-        "clue": "structural-lens:+ \u2014 Deepened focus on extension-capacity gap as root blocker, not just one constraint",
+        "date": "2026-06-09",
+        "clue": "pilot-skepticism:~ \u2014 Acknowledged sixteen projects as foothold, not destination; added ownership permanence concern",
         "occurrences": 2
       },
       {
