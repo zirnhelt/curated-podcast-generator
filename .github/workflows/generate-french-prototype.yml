@@ -1,35 +1,22 @@
-name: Generate French (fr-CA) Episode Prototype
+name: Generate French Episode (Aurélie & Kaël)
 
-# One-off LISTENING SAMPLE generator for the bilingual exploration — adapts
-# the latest English daily-episode script into natural, broadcast-neutral
-# Canadian French (fr-CA) and synthesizes a sample with Azure fr-CA neural
-# voices. This NEVER touches the live feed, R2, citations, or any published
-# output: everything lands in podcasts/french_prototype/, for listening/
-# reading review only, while deciding whether to build out a twin French feed.
+# Generates a full French (fr-CA) Cariboo Signals episode with Dragon HD voices
+# (Aurélie/Sylvie fr-CA, Kaël/Thierry fr-FR) and Cariboo Signals theme songs.
+# Runs in two reviewable stages; optionally publishes to R2 + GitHub Pages.
 #
-# generate_french_prototype.py runs as two forced, reviewable stages, the
-# second building on the first's saved output:
-#   1. dry-run    — adapt + save the French script, print it for review/editing
-#   2. synthesize — render sample audio from that reviewed script
+# Two stages, reviewed in order:
+#   1. mode=dry-run    — adapt English script to French, save for review
+#                        (download "french-prototype-state" artifact or read job log)
+#   2. mode=synthesize — render full episode audio with theme songs
+#                        (download artifact to listen; optionally set publish=true)
 #
-# Every Actions run starts from a fresh checkout, so the saved script doesn't
-# persist on disk between separate runs the way it would on a local machine.
-# To bridge that, each run uploads whatever it produced as a workflow artifact
-# named "french-prototype-state", and the synthesize stage starts by restoring
-# the most recent such artifact (found via the Actions API across all prior
-# runs of this workflow) into podcasts/french_prototype/ — so dry-run ->
-# synthesize chain together correctly even though they're two separate
-# "Run workflow" clicks, possibly days apart.
-#
-# Trigger manually via the Actions tab ("Run workflow"), in order:
-#   1. mode=dry-run    — review the adapted script (download the
-#                        "french-prototype-state" artifact, or read the job log)
-#   2. mode=synthesize — review the sample audio (download
-#                        "french-prototype-state" from the run summary to listen)
+# Every Actions run starts from a fresh checkout. The artifact bridge persists
+# the saved script between runs so dry-run → synthesize works across separate clicks.
 #
 # Output files (in podcasts/french_prototype/):
 #   script_fr_{date}_{theme}.txt
 #   sample_audio_fr_{date}_{theme}.mp3
+# When publish=true: also updates podcast-fr-feed.xml, syncs to R2, deploys to Pages.
 
 on:
   workflow_dispatch:
@@ -46,12 +33,19 @@ on:
         description: 'dry-run only: filename (under podcasts/) of the English script to adapt; blank = most recent daily episode script'
         required: false
         type: string
+      publish:
+        description: 'synthesize only: update podcast-fr-feed.xml, sync audio to R2, and deploy to GitHub Pages'
+        required: false
+        default: false
+        type: boolean
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 permissions:
-  contents: read
+  contents: write
+  pages: write
+  id-token: write
   actions: read
 
 jobs:
@@ -108,7 +102,7 @@ jobs:
           echo "Restored:"
           ls -la podcasts/french_prototype/script_fr_* 2>/dev/null || { echo "::error::Restored artifact contained no adapted script"; exit 1; }
 
-      - name: Generate French prototype
+      - name: Generate French episode
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
@@ -117,17 +111,69 @@ jobs:
           # to prevent expression-injection if values contain shell metacharacters.
           INPUT_MODE: ${{ inputs.mode }}
           INPUT_SOURCE: ${{ inputs.source }}
+          INPUT_PUBLISH: ${{ inputs.publish }}
         run: |
           MODE="${INPUT_MODE:-dry-run}"
           ARGS=()
           case "$MODE" in
             dry-run)    ARGS+=(--dry-run); [ -n "$INPUT_SOURCE" ] && ARGS+=(--source "$INPUT_SOURCE") ;;
-            synthesize) ;;
+            synthesize) [ "${INPUT_PUBLISH}" = "true" ] && ARGS+=(--publish) ;;
             *) echo "Unknown mode '$MODE'" >&2; exit 1 ;;
           esac
           python generate_french_prototype.py "${ARGS[@]}"
 
-      - name: Save sample for review / handoff to the next stage
+      - name: Commit French script and RSS feed
+        if: ${{ inputs.mode == 'synthesize' && inputs.publish == true }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add podcast-fr-feed.xml || true
+          git add podcasts/french_prototype/script_fr_*.txt || true
+          git diff --staged --quiet && echo "Nothing to commit" && exit 0
+          git commit -m "french: publish episode $(date -u +%Y-%m-%d)"
+          git pull --rebase origin main
+          git push
+
+      - name: Sync audio and feed to Cloudflare R2
+        if: ${{ inputs.mode == 'synthesize' && inputs.publish == true }}
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_ENDPOINT_URL: https://${{ secrets.CF_ACCOUNT_ID }}.r2.cloudflarestorage.com
+        run: |
+          BUCKET="cariboo-signals"
+          aws s3 cp podcast-fr-feed.xml "s3://${BUCKET}/podcast-fr-feed.xml" \
+            --content-type "application/rss+xml" \
+            --cache-control "no-cache"
+          aws s3 sync podcasts/french_prototype/ "s3://${BUCKET}/podcasts/french/" \
+            --exclude "*" \
+            --include "sample_audio_fr_*.mp3" \
+            --content-type "audio/mpeg"
+          echo "R2 sync complete"
+        continue-on-error: true
+
+      - name: Prepare output for GitHub Pages
+        if: ${{ inputs.mode == 'synthesize' && inputs.publish == true }}
+        run: |
+          mkdir -p output/podcasts/french
+          cp podcasts/french_prototype/sample_audio_fr_*.mp3 output/podcasts/french/ 2>/dev/null || true
+          cp podcasts/french_prototype/script_fr_*.txt       output/podcasts/french/ 2>/dev/null || true
+          cp podcast-fr-feed.xml output/ 2>/dev/null || true
+          echo "Output:"
+          ls -lh output/
+          ls -lh output/podcasts/french/ 2>/dev/null || true
+
+      - name: Deploy to GitHub Pages
+        if: ${{ inputs.mode == 'synthesize' && inputs.publish == true }}
+        uses: peaceiris/actions-gh-pages@373f7f263a76c20808c831209c920827a82a2847 # v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output
+          publish_branch: gh-pages
+          keep_files: true
+          commit_message: "french: deploy episode - ${{ github.run_id }}"
+
+      - name: Save episode for review / handoff to the next stage
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
