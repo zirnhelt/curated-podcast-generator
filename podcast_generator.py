@@ -3139,6 +3139,30 @@ def format_memory_for_prompt(episode_memory, host_memory):
     return context
 
 
+def _detect_production_company_mentions(articles, credits_config):
+    """Return list of (name, disclosure) for production companies mentioned in articles."""
+    production_companies = credits_config.get('production_companies', [])
+    if not production_companies:
+        return []
+
+    article_text = ' '.join(
+        (
+            a.get('title', '') + ' ' +
+            a.get('summary', '') + ' ' +
+            a.get('_body', '')
+        ).lower()
+        for a in articles
+    )
+
+    found = []
+    for company in production_companies:
+        for keyword in company.get('keywords', []):
+            if keyword.lower() in article_text:
+                found.append((company['name'], company['disclosure']))
+                break
+    return found
+
+
 def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None, feed_meta=None, bonus_articles=None, debate_memory=None, cta_memory=None, thought_seeds=None, weather_data=None, brave_context="", feedback_emails=None):
     """Generate conversational podcast script using Claude."""
     print("🎙️ Generating podcast script with Claude...")
@@ -3330,6 +3354,34 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
                 + "\n".join(lines)
                 + "\n\n"
             )
+
+    # Detect if today's articles mention companies used to produce this podcast.
+    # When found, inject a transparency instruction so the hosts disclose the
+    # relationship naturally at the point where the company comes up in the episode.
+    _all_episode_articles = list(all_articles) + list(deep_dive_articles)
+    _production_disclosures = _detect_production_company_mentions(
+        _all_episode_articles, CONFIG['credits']
+    )
+    if _production_disclosures:
+        _disclosure_lines = [
+            f"- {name}: {disclosure}"
+            for name, disclosure in _production_disclosures
+        ]
+        memory_context += (
+            "PRODUCTION TOOL DISCLOSURE (transparency requirement): Today's articles "
+            "cover one or more companies that are part of how this podcast is produced. "
+            "When those companies come up in the episode, the hosts must briefly "
+            "acknowledge the relationship — one natural sentence, woven into the "
+            "conversation at a relevant moment (not a formal announcement, not skipped). "
+            "Listeners deserve to know. The specific disclosures needed:\n"
+            + "\n".join(_disclosure_lines)
+            + "\n\nExample phrasings (vary — do not use verbatim):\n"
+            "  'Worth flagging — Suno made the music you hear opening this show.'\n"
+            "  'Full transparency: Claude writes our scripts, so we\\'re essentially "
+            "reviewing our own production stack.'\n"
+            "  'Disclosure: we rely on Brave Search ourselves for research on this show.'\n"
+            "Keep it brief, honest, and drop it naturally where the company is discussed.\n\n"
+        )
 
     # Build PSA context for the Community Spotlight segment
     if psa_info and psa_info.get('org_name'):

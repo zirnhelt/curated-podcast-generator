@@ -52,6 +52,38 @@
       }
     ]
   },
+  "production_companies": [
+    {
+      "keywords": ["suno"],
+      "name": "Suno",
+      "disclosure": "Suno generated this show's theme song, Cariboo Signals — the music listeners hear at the top of every episode"
+    },
+    {
+      "keywords": ["anthropic"],
+      "name": "Anthropic",
+      "disclosure": "Anthropic's Claude writes and curates every script on this show"
+    },
+    {
+      "keywords": ["openai", "chatgpt", "open ai"],
+      "name": "OpenAI",
+      "disclosure": "OpenAI's ChatGPT generated this show's cover art, and OpenAI TTS voices our hosts on some episodes"
+    },
+    {
+      "keywords": ["cohere"],
+      "name": "Cohere",
+      "disclosure": "Cohere's embedding and reranking tools power our article deduplication pipeline"
+    },
+    {
+      "keywords": ["brave search"],
+      "name": "Brave Search",
+      "disclosure": "Brave Search is used to enrich our fact-checking and deep-dive research for each episode"
+    },
+    {
+      "keywords": ["open-meteo"],
+      "name": "Open-Meteo",
+      "disclosure": "Open-Meteo provides the weather data used in our episode openings"
+    }
+  ],
   "bespoke_html": {
     "heading": "Credits",
     "items": [
