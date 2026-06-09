@@ -3843,10 +3843,10 @@ def generate_tts_for_segment(text, speaker, output_file):
 
     # Duration-ratio checksum: warn if audio is significantly shorter than expected.
     # OpenAI tts-1 at speed=1.0 averages ~150 wpm (400 ms/word).  A ratio below 0.80
-    # suggests a sentence or more was dropped; smaller omissions (1–3 words) won't
-    # reliably surface here but are mitigated by shorter per-segment text.
+    # suggests a sentence or more was dropped; shorter segments are excluded because
+    # pacing variability and ms-level rounding produce false positives there.
     expected_words = len(re.findall(r"\b\w+\b", clean))
-    if expected_words > 0:
+    if expected_words >= 10:
         actual_ms = len(AudioSegment.from_mp3(output_file))
         expected_ms = expected_words * 400  # 150 wpm ≈ 400 ms/word
         ratio = actual_ms / expected_ms
