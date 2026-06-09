@@ -18,6 +18,7 @@ from pathlib import Path
 import requests
 import re
 import tempfile
+import httpx
 
 # Import configuration loader
 from config_loader import (
@@ -199,6 +200,10 @@ TARGET_MUSIC_DBFS = -28.0   # Music ducked beneath speech
 # Azure TTS feature flags
 USE_AZURE_TTS = bool(os.getenv("USE_AZURE_TTS"))              # full switch to Azure
 USE_AZURE_PARALLEL = bool(os.getenv("AZURE_TTS_PARALLEL"))   # generate both, save _azure.wav for comparison
+
+# Maximum characters per OpenAI TTS call. Segments above this are pre-split at
+# sentence boundaries so no single call carries enough text to risk a hang.
+TTS_SEGMENT_MAX_CHARS = 300
 
 # ---------------------------------------------------------------------------
 # Jamendo music helpers (weekend closing song)
@@ -1003,7 +1008,10 @@ def get_openai_client():
         api_key = os.getenv('OPENAI_API_KEY')
         if not api_key:
             return None
-        get_openai_client._client = OpenAI(api_key=api_key, timeout=60.0)
+        get_openai_client._client = OpenAI(
+            api_key=api_key,
+            timeout=httpx.Timeout(connect=5.0, read=30.0, write=10.0, pool=5.0),
+        )
     return get_openai_client._client
 
 def polish_script_with_claude(script, theme_name, api_key):
@@ -3765,6 +3773,49 @@ def parse_script_into_segments(script):
     
     return segments
 
+def _split_at_sentences(text, max_chars=TTS_SEGMENT_MAX_CHARS):
+    """Split text into chunks at sentence boundaries, each under max_chars.
+
+    Falls back to word-boundary splitting when a single sentence exceeds the limit.
+    """
+    if len(text) <= max_chars:
+        return [text]
+
+    sentences = re.split(r'(?<=[.!?])\s+', text)
+    raw_chunks = []
+    current = ""
+    for sentence in sentences:
+        if not current:
+            current = sentence
+        elif len(current) + 1 + len(sentence) <= max_chars:
+            current += " " + sentence
+        else:
+            raw_chunks.append(current)
+            current = sentence
+    if current:
+        raw_chunks.append(current)
+
+    # Guard: a single sentence longer than max_chars gets word-split
+    result = []
+    for chunk in raw_chunks:
+        if len(chunk) <= max_chars:
+            result.append(chunk)
+        else:
+            words = chunk.split()
+            sub = ""
+            for word in words:
+                if not sub:
+                    sub = word
+                elif len(sub) + 1 + len(word) <= max_chars:
+                    sub += " " + word
+                else:
+                    result.append(sub)
+                    sub = word
+            if sub:
+                result.append(sub)
+    return result
+
+
 def generate_tts_for_segment(text, speaker, output_file):
     """Generate TTS audio for a text segment via OpenAI."""
     client = get_openai_client()
@@ -3778,12 +3829,14 @@ def generate_tts_for_segment(text, speaker, output_file):
     for word, alias in AZURE_PRONUNCIATION_DICT.items():
         clean = clean.replace(word, alias)
 
+    # TTS timeouts are network blips, not API overload — 2 retries with a short
+    # base delay is enough; the pre-split in _render_section keeps each call small.
     response = api_retry(lambda: client.audio.speech.create(
         model="tts-1",
         voice=voice,
         input=clean,
         speed=1.0
-    ))
+    ), max_retries=2, base_delay=1)
 
     with open(output_file, "wb") as f:
         f.write(response.content)
@@ -4020,11 +4073,17 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
                 # OpenAI: per-segment calls with heuristic gap stitching
                 prev_speaker = None
                 for i, segment in enumerate(seg_list):
-                    temp_file = os.path.join(tmpdir, f"{prefix}_{i}.mp3")
-                    print(f"    {segment['speaker']}: {len(segment['text'])} chars")
-                    generate_tts_for_segment(segment['text'], segment['speaker'], temp_file)
-                    speech = normalize_segment(AudioSegment.from_mp3(temp_file), TARGET_SPEECH_DBFS)
-                    speech = trim_tts_silence(speech)
+                    chunks = _split_at_sentences(segment['text'])
+                    chunk_label = f" ({len(chunks)} chunks)" if len(chunks) > 1 else ""
+                    print(f"    {segment['speaker']}: {len(segment['text'])} chars{chunk_label}")
+
+                    chunk_audios = []
+                    for j, chunk_text in enumerate(chunks):
+                        temp_file = os.path.join(tmpdir, f"{prefix}_{i}_{j}.mp3")
+                        generate_tts_for_segment(chunk_text, segment['speaker'], temp_file)
+                        chunk_audio = normalize_segment(AudioSegment.from_mp3(temp_file), TARGET_SPEECH_DBFS)
+                        chunk_audios.append(trim_tts_silence(chunk_audio))
+                    speech = sum(chunk_audios[1:], chunk_audios[0])
 
                     # Determine gap: explicit tag > heuristic
                     gap = segment.get('gap_ms')
