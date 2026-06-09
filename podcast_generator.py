@@ -1003,7 +1003,7 @@ def get_openai_client():
         api_key = os.getenv('OPENAI_API_KEY')
         if not api_key:
             return None
-        get_openai_client._client = OpenAI(api_key=api_key)
+        get_openai_client._client = OpenAI(api_key=api_key, timeout=60.0)
     return get_openai_client._client
 
 def polish_script_with_claude(script, theme_name, api_key):
