@@ -8,6 +8,7 @@ Detects evolving stories (same topic, different URL) for contextual references.
 import os
 import json
 import glob
+import time
 from datetime import datetime, timedelta
 from difflib import SequenceMatcher
 from pathlib import Path
@@ -49,11 +50,13 @@ def load_recent_citations(days=7):
                 if file_date >= cutoff_date:
                     with open(filename, 'r', encoding='utf-8') as f:
                         data = json.load(f)
-                        episode_date = data['episode']['date']
-                        
+                        episode_date = data.get('episode', {}).get('date', '')
+                        if not episode_date:
+                            continue
+
                         # Collect all articles from this episode
-                        for segment_name, segment_data in data['segments'].items():
-                            for article in segment_data['articles']:
+                        for segment_name, segment_data in data.get('segments', {}).items():
+                            for article in segment_data.get('articles', []):
                                 recent_citations.append({
                                     'url': article['url'],
                                     'title': article['title'],
@@ -205,17 +208,27 @@ def cluster_and_rescore_corpus(articles, theme_name, client=None, model=None):
         "- Labels should be concise (5 words or fewer)."
     )
 
-    try:
-        response = client.messages.create(
-            model=model,
-            max_tokens=600,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        raw = response.content[0].text.strip()
-        data = json.loads(raw)
-        clusters = data.get("clusters", [])
-    except Exception as e:
-        print(f"  ⚠️  cluster_and_rescore_corpus: Claude call failed ({e}), skipping")
+    last_exc = None
+    for attempt in range(2):
+        try:
+            response = client.messages.create(
+                model=model,
+                max_tokens=600,
+                messages=[{"role": "user", "content": prompt}],
+            )
+            raw = response.content[0].text.strip()
+            if not raw:
+                raise ValueError("empty response from API")
+            data = json.loads(raw)
+            clusters = data.get("clusters", [])
+            last_exc = None
+            break
+        except Exception as e:
+            last_exc = e
+            if attempt == 0:
+                time.sleep(2)
+    if last_exc is not None:
+        print(f"  ⚠️  cluster_and_rescore_corpus: Claude call failed ({last_exc}), skipping")
         return articles
 
     if not clusters:
