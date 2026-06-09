@@ -90,7 +90,7 @@ def generate_index_html():
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src SCRIPT_HASH_PLACEHOLDER; style-src 'unsafe-inline'; img-src 'self' https: data:; media-src https: blob:; connect-src 'self'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src SCRIPT_HASH_PLACEHOLDER; style-src 'unsafe-inline'; img-src 'self' https: data:; media-src https: blob:; connect-src 'self' {podcast_config['url'].rstrip('/')}">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <title>{podcast_config['title']} - {podcast_config['tagline']}</title>
     <meta name="description" content="{podcast_config['description']}">
@@ -542,7 +542,7 @@ def generate_index_html():
 
         async function loadEpisodes() {{
             try {{
-                const response = await fetch('podcast-feed.xml');
+                const response = await fetch('{podcast_config["feed_url"]}');
                 const xmlText = await response.text();
 
                 const parser = new DOMParser();
