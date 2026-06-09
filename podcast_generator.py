@@ -4263,6 +4263,7 @@ CONTENT_TYPES = {
     ".txt": "text/plain",
     ".css": "text/css",
     ".js": "application/javascript",
+    ".vtt": "text/vtt",
 }
 
 
@@ -4388,8 +4389,11 @@ def sync_site_to_r2(max_age_days: float = 2.0):
     else:
         print("   No audio files to upload")
 
-    # Transcript files — same recency filter.
-    transcript_files = sorted(glob.glob(str(PODCASTS_DIR / "podcast_transcript_*.html")))
+    # Transcript files (HTML and VTT) — same recency filter.
+    transcript_files = sorted(
+        glob.glob(str(PODCASTS_DIR / "podcast_transcript_*.html"))
+        + glob.glob(str(PODCASTS_DIR / "podcast_transcript_*.vtt"))
+    )
     recent_transcripts = [f for f in transcript_files if _is_recent(f)]
     skipped_transcripts = len(transcript_files) - len(recent_transcripts)
     if recent_transcripts:
