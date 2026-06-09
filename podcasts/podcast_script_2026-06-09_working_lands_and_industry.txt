@@ -1,0 +1,135 @@
+# Cariboo Signals Podcast Script - 2026-06-09
+# Theme: Working Lands & Industry
+# Generated: 2026-06-09 03:39:46 PDT
+
+**CASEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. It's Tuesday, June 9th, 2026. Speaking to you from the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations here in the Cariboo region. Today's theme is Working Lands & Industry — I'm Casey.
+
+**RILEY:** And I'm Riley. We've got forest resiliency funding landing right here in the Cariboo-Chilcotin today, and a bigger question underneath it about who's paying the costs of the new digital economy and who's actually capturing the benefits.
+
+**CASEY:** Quick weather note — it's grey and drizzly across the region this morning. Horsefly Lake sitting at 9 degrees with moderate drizzle, high of 11 expected. Williams Lake at 10 under overcast, Quesnel at 11, and out on the Chilcotin plateau, Redstone is at 6 with overcast skies. Not exactly hay-drying weather. Let's get into the news.
+
+---
+
+**NEWS ROUNDUP**
+
+**RILEY:** [pause:1200] Starting with a story that cuts close to the Cariboo's resource economy. The Narwhal reports that despite gold prices hitting record levels, the Yukon is capturing almost none of that windfall. Mining laws dating back to the Klondike Gold Rush era — the 1890s — still govern how royalties and land access work, and they were designed to attract miners, not protect communities. Government profits from gold extraction are minimal, and Indigenous rights built into more recent frameworks sit in tension with century-old claim structures.
+
+**CASEY:** The Cariboo's mining governance runs on similar vintage legislation. The Yukon story isn't a warning — it's a mirror.
+
+**RILEY:** [pause:1200] On the AI economy front — West Monroe, a mid-sized consulting firm, says its chief AI officer is giving away strategic insights that used to cost clients millions. The firm is using AI to generate market analyses and operational recommendations at near-zero marginal cost, as a loss-leader to win relationships.
+
+**CASEY:** The consulting business model is being hollowed out the same way journalism was — and whoever's left standing owns the client.
+
+**RILEY:** [pause:1200] Two AI-funding stories worth noting together. Unframe, a startup helping enterprises deploy AI tools, raised fifty million dollars and crossed a hundred million in total contract value within its first year. And Wordsmith, an AI legal software company founded by a former lawyer, pulled in seventy million from Index Ventures to build tools that automate corporate legal work. Both pitches rest on the same logic: expensive professional knowledge can now be productized at scale.
+
+**CASEY:** The market for automating professional expertise is apparently inexhaustible — which is fine if you're a San Francisco investor and less fine if your livelihood is that expertise.
+
+**RILEY:** [pause:1200] Speaking of San Francisco — Business Insider has a piece on that housing market, and it is something. Overnight AI fortunes, multimillion-dollar bidding wars, impending IPOs — prices are surging again on the back of the AI investment wave. Buyers waiving inspections, all-cash offers well above ask.
+
+**CASEY:** Every dollar of inflated San Francisco real estate is a dollar that didn't flow to rural infrastructure. The geography of this boom is the story.
+
+**RILEY:** [pause:1200] Nintendo is paying a forty-million-dollar fine — levied by French authorities — over defective Joy-Con controllers. The drift problem affecting the analog sticks was known, widespread, and Nintendo didn't adequately address it through warranty or repair. French consumer protection law apparently has teeth that other jurisdictions haven't applied.
+
+**CASEY:** Forty million is a rounding error for Nintendo, but the precedent matters — hardware defects treated as a consumer rights issue rather than just a warranty inconvenience.
+
+**RILEY:** [pause:1200] Hasbro released AI versions of twelve iconic characters including Optimus Prime and Megatron. The AI versions can hold conversations, respond to prompts, and adapt their dialogue. CBC Arts covers it as a toy industry story, but the underlying model is character licensing infrastructure being repurposed for interactive AI experiences.
+
+**CASEY:** Transformers were already robots. Making them AI robots is either the most logical product extension in history or a sign that we've completely run out of ideas.
+
+**RILEY:** [pause:1200] And from Tom's Hardware — two-thirds of the 809 data centres currently planned across the United States are being built in areas that have been in drought conditions over the past year. Siting decisions appear to be driven by land costs and power access, not water availability.
+
+**CASEY:** We'll come back to that statistic in the deep dive — it's central to what we're discussing today.
+
+**RILEY:** A few local and regional items before we wrap. Quesnel Airport received a twenty-thousand-dollar earmark from BC's Air Access Program toward implementing its master plan. Small number, but airport connectivity is genuinely consequential for resource industry logistics in the north Cariboo.
+
+**CASEY:** And BC doctors ratified a new four-year deal with the province — ninety-one-point-eight percent in favour, with increased pay specifically for rural and maternity care. Directly relevant to physician recruitment in communities like Williams Lake and Quesnel.
+
+**RILEY:** Out of the Williams Lake Tribune — Bella Coola residents are raising environmental concerns about a proposed hydroelectric project in their area. Pushback on hydro proposals in valley communities with sensitive ecosystems is a pattern we've seen across the region.
+
+**CASEY:** And on a more difficult note — a teenager is presumed drowned after a boating incident at Stony Lake, northeast of Quesnel, on June 6th. Our thoughts are with the family and the community.
+
+**RILEY:** That's the roundup. Community spotlight and then we're going deep on forest resiliency, resource extraction, and who actually carries the costs of the digital economy — coming up.
+
+---
+
+**COMMUNITY SPOTLIGHT**
+
+**CASEY:** Central Chilcotin Rehabilitation Ltd. is an Indigenous joint venture operating across Tŝideldel, Tl'etinqox, and Yunesit'in territories — three Tŝilhqot'in communities working together on forest rehabilitation and biomass work. They've taken on projects that are simultaneously ecological restoration, wildfire risk reduction, and economic development. It's the kind of model that doesn't fit neatly into any single funding category — part land stewardship, part forest industry, part community employment program — and it's won recognition for doing all three at once.
+
+**RILEY:** Nation-led, land-based, economically grounded — if you're looking for a model of what working lands stewardship can look like when communities are genuinely driving it, Central Chilcotin Rehabilitation is worth knowing about.
+
+**CASEY:** That work connects directly to what we're about to dig into — because BC just announced forest resiliency funding for the Cariboo-Chilcotin, and the question isn't whether the money is welcome. It's what structure sits behind it.
+
+---
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Working Lands & Industry**
+
+**CASEY:** BC funded sixteen forest resiliency projects in the Cariboo-Chilcotin. Wildfire risk reduction, greenhouse gas emissions, ecosystem restoration, job creation — the announcement checks every box. And on paper, that's genuinely good news for a region that has been burning.
+
+**RILEY:** It is good news. The Cariboo-Chilcotin has lost significant timber supply to fire and beetle over the past two decades, and resiliency projects — thinning, prescribed burns, biomass utilization — are the operational work of reducing future losses. Sixteen projects means multiple entry points, multiple communities involved.
+
+**CASEY:** Right. But the UN report we're looking at today frames a question that sits underneath this announcement and doesn't get asked enough: when you zoom out from the project level to the system level, who is actually carrying the costs of the economy we're building, and who is capturing the value?
+
+**RILEY:** The UN report is specifically about AI infrastructure — the argument that data centres extract water and land from vulnerable communities while concentrating financial returns in wealthy ones. "Some places carry the costs and other places capture the benefits."
+
+**CASEY:** That framing applies to BC's resource economy long before AI enters the picture. The Cariboo carries the extraction costs — fire risk, biodiversity pressure, watershed disturbance — and the value chains run to Vancouver, to Toronto, to shareholders who've never seen a clearcut.
+
+**RILEY:** True, but not the whole picture. The forest resiliency funding is provincial money flowing back into the region. That's redistribution in the other direction.
+
+**CASEY:** Project-level redistribution. The structural question is different. If the Cariboo-Chilcotin generates stumpage revenue, carbon credits, watershed services for downstream municipalities, and biodiversity offsets — who is capturing those flows? Because most of that value is either not being measured or not being routed back.
+
+**RILEY:** Carbon markets are actually starting to change that. Indigenous-led forest carbon projects have generated real revenue for Nations — the Tŝilhqot'in National Government has been working in this space, and agreements around conservation financing have given some Nations a direct stake in conservation value rather than just consultation fees.
+
+**CASEY:** Those agreements took years of litigation and political pressure to reach. And the carbon market itself is volatile — prices dropped significantly in 2023 when offset credibility questions surfaced. Nations that built budget projections around carbon revenue got a lesson in how fragile that mechanism is.
+
+**RILEY:** Carbon market credibility issues are real. The underlying logic — that intact forests generate measurable economic value that should flow to the people stewarding them — is getting more traction, not less. BC's forest resiliency funding is partly structured around that premise.
+
+**CASEY:** Partly. The sixteen projects funded here — do we know what percentage is direct investment versus what's expected to leverage private carbon or biomass markets?
+
+**RILEY:** The announcement doesn't break it down that precisely. What it does say is the projects cover wildfire risk reduction, emissions reduction, ecosystem restoration, and job creation — which suggests a mix of direct provincial investment and outcomes-based incentives.
+
+**CASEY:** Which brings me back to Central Chilcotin Rehabilitation. That joint venture is doing exactly the work these sixteen projects fund. And the model works in part because it's Nation-owned — so when biomass contracts generate revenue, that revenue stays in Tŝideldel, Tl'etinqox, and Yunesit'in communities rather than flowing to an outside contractor.
+
+**RILEY:** That ownership structure is the variable that changes the cost-benefit geography entirely. An Indigenous joint venture doing forest rehabilitation means the labour, the contract revenue, and the land management decisions are all local — as opposed to a Vancouver-based forestry company winning the contract and flying crews in.
+
+**CASEY:** And yet that model isn't automatically replicated by sixteen provincial grants. The grants fund the work. They don't necessarily build the ownership structure that makes the work economically self-sustaining after the funding cycle ends.
+
+**RILEY:** Some of these projects may be structured as multi-year agreements rather than one-time grants — the province has moved toward that in some resiliency programming. You're right that grant-funded work and community-owned enterprise are different things. The question is whether the grants are being used to capitalize enterprises or just to purchase outputs.
+
+**CASEY:** Now layer in the UN's AI point, because it's not abstract for the Cariboo. Tom's Hardware reported today that two-thirds of planned US data centres are being sited in drought zones. BC has been marketed to data centre developers specifically because of its hydroelectric power — clean, cheap, and abundant. But that power comes from watershed systems that Cariboo and Interior communities depend on for ranching, agriculture, and fisheries.
+
+**RILEY:** The water piece is a harder question because it's less about direct consumption and more about cumulative watershed pressure. A data centre in the Lower Mainland draws power from the same system as Cariboo agriculture. The grid competition is real.
+
+**CASEY:** And the carbon accounting is interesting. BC sells its hydroelectric power as a green advantage for data centre operators — but the ecological cost of that hydro capacity is already embedded in the watershed. Fish passage disruptions, flood cycle changes, downstream effects on salmon runs that Interior Nations depend on — those costs were paid at dam construction and are ongoing. They don't show up on a data centre's carbon disclosure.
+
+**RILEY:** You're describing a full-cost accounting problem. The market price of BC hydro doesn't include the externalities — that's true. It's also true that coal-fired power for data centres is categorically worse. The question of where to locate necessary digital infrastructure is a real one, not just an opportunity for extraction critique. We do need the infrastructure.
+
+**CASEY:** Nobody's saying don't build data centres. The question is whether communities that host the infrastructure, or host the watershed that powers it, receive anything beyond the tax base of a facility that employs a few dozen people and consumes the power of a mid-sized city.
+
+**RILEY:** That's a negotiable thing. Communities near major hydro infrastructure in BC have varying degrees of benefit-sharing agreements depending on how hard they pushed and what legal tools they had available. The gap is governance — whether communities have the standing and technical capacity to negotiate those agreements rather than just having them handed down.
+
+**CASEY:** Institutional capacity as the binding constraint — we've been around that loop. What keeps nagging at me is whether "who captures the benefits" is even the right frame, or whether it stops us from asking something harder.
+
+**RILEY:** Go on.
+
+**CASEY:** Why does the value have to flow somewhere else first before it can come back? The Cariboo generates stumpage, carbon sequestration, water supply, biodiversity, food production, mineral extraction — every one of those is an economic flow. Some get priced in markets. Most don't. The question underneath the UN report, underneath the forest resiliency announcement, underneath the data centre water story, is whether we can redesign the architecture so value doesn't escape in the first place.
+
+**RILEY:** That's a different class of problem — and an exciting one, honestly. Conservation financing structured so that Nations receive payment for ecosystem services rather than being compensated after the fact for development impacts points in that direction. Scaling it requires federal and provincial policy frameworks that don't currently exist at the necessary level of specificity, but the direction is clear.
+
+**CASEY:** Or it requires communities to make the case in terms that asset managers and infrastructure investors actually understand. Institutional investors buy agricultural land because the underlying asset generates measurable returns that markets recognize. Forests, watersheds, carbon stocks — those are assets with measurable returns too. The Tŝilhqot'in demonstrated in the Supreme Court that territorial title includes the right to benefit from resources. The legal architecture exists. Financial instruments are starting to exist.
+
+**RILEY:** The gap is technical capacity at the community level to structure and negotiate those instruments. Which reconnects to the extension-capacity argument from earlier episodes — it applies to forest carbon exactly as much as it applies to agricultural precision technology. If you don't have someone in the room who understands the contract, you sign whatever's put in front of you. Though I'd note — that capacity gap is closeable. It's not a permanent condition.
+
+**CASEY:** Closeable in theory. In practice, every capacity-building initiative we've discussed is also grant-funded, also subject to funding cycles, also dependent on provincial or federal goodwill. The structural problem isn't that communities lack knowledge — it's that the knowledge infrastructure itself isn't permanently resourced.
+
+**RILEY:** So permanence through ownership of the asset class itself. If a Nation owns the carbon stock, they capture long-term appreciation as sequestration demand grows. If a Nation owns water rights or transmission access, there's a recurring revenue stream that doesn't require annual renegotiation. The Tŝilhqot'in land title decision pointed exactly there — territorial title as the basis for asset ownership, not just consultation rights.
+
+**CASEY:** That's the argument worth bringing to a town hall in Williams Lake or Quesnel. Not "we need more resiliency funding" — which is true but exhausted as a frame — but "what does it mean to own the ecological asset rather than the contract to manage it?" Those are different conversations with different legal and financial tools attached. And I'll admit, I don't know how you get from sixteen provincial grants to that kind of structural shift without a much longer political fight.
+
+**RILEY:** The sixteen projects are a foothold, not a destination. And — worth saying plainly — we generated this show using AI tools, including the same kind of AI infrastructure the UN report is critiquing. We're not neutral observers here. That said, the report's core observation stands regardless of who's delivering it: the geographic distribution of AI infrastructure costs and AI financial benefits is deeply unequal, and the Cariboo is far more likely to be on the cost side of that ledger than the benefit side unless something deliberate changes that. The forest resiliency funding, the Central Chilcotin Rehabilitation model, the emerging carbon instruments — those are the specific, grounded things that actually shift that geography. Imperfect, incomplete, but real.
+
+**CASEY:** Real and insufficient until the ownership question gets answered. The projects end. The assets remain. Whoever owns the assets when the funding cycles close is who captures the next round of value — and that question deserves a lot more attention than any single funding announcement gets. If something in this conversation connects to work you're doing, or you want to push back on any of it, reach us at feedback at cariboo signals dot c-a. We'd genuinely like to hear where we got it wrong.
+
+**RILEY:** Thanks for spending part of your Tuesday with us. Take care out there.
+
+**CASEY:** Have a good one.

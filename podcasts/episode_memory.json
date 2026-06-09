@@ -1,23 +1,4 @@
 {
-  "2026-05-18": {
-    "timestamp": 1779114124.354106,
-    "topics": [
-      "[TechCrunch] Wirestock raises $23M to supply creative multi-",
-      "[Open Culture] When the Nobel Prize Committee Rejected The L",
-      "[Hackaday] Mixapps: The Mixtape of The Internet Age",
-      "[Neowin] Spotify will soon support Apple's technology to ope",
-      "[The Tyee] We\u2019re Only Human. And That\u2019ll Do",
-      "[NPR Health News] Engaging with the arts can slow biological",
-      "[TechRadar] \u201cI cannot divorce the two\u201d: How Star Wars is ble",
-      "[IndigiNews] A new GyaaG\u0332ang (totem pole) is raised in Haida"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech"
-    ],
-    "date": "2026-05-18"
-  },
   "2026-05-19": {
     "timestamp": 1779196557.289099,
     "topics": [
@@ -384,5 +365,25 @@
       "connectivity"
     ],
     "date": "2026-06-08"
+  },
+  "2026-06-09": {
+    "timestamp": 1781001586.307176,
+    "topics": [
+      "[Business Insider] A consulting firm is now using AI to give",
+      "[Business Insider] San Francisco homebuyers have officially ",
+      "[Business Insider] Read the pitch deck startup Unframe used ",
+      "[Engadget] Nintendo will pay a $40 million fine for faulty J",
+      "[Business Insider] An ex-lawyer has raised $70 million from ",
+      "[TechRadar] 'Some places carry the costs and other places ca",
+      "[Williams Lake Tribune] B.C. funds 16 forest resiliency proj",
+      "[Al Jazeera English] Monsoon rain reaches Kerala 3 days late"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-06-09"
   }
 }
