@@ -1483,6 +1483,31 @@
       "theme_day": 0,
       "status": "used",
       "used_at": "2026-06-08"
+    },
+    {
+      "id": "4a05a393",
+      "type": "newsletter",
+      "message_id": "<8fa7a11e-298f-4188-aa86-c079a2b3a76b@mtasv.net>",
+      "from_address": "n***@animikii.com",
+      "subject": "Robots behaving badly VS what the land knows",
+      "received_at": "2026-06-10T19:31:24+00:00",
+      "body_text": "![A graphic illustration of an urban roof top patio with flowers and plants blooming in a variety or pots along the edge. A woman in a purple top and pink pants holds a water can as the rising sun ill",
+      "extracted_urls": [
+        "https://assets.buttondown.email/images/32f798c1-fd59-4ab4-9e61-8fb9d6e26c58.jpg?w=960&fit=max",
+        "https://biomb.ca/genome-canada-genome-prairie-launch-50m-national-resources-initiative/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=robots-behaving-badly-vs-what-the-land-knows",
+        "https://climateinstitute.ca/publications/what-the-land-knows-metis-harvesting-narratives-as-climate-knowledge/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=robots-behaving-badly-vs-what-the-land-knows",
+        "https://journals.sagepub.com/doi/10.1177/14407833261451525?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=robots-behaving-badly-vs-what-the-land-knows",
+        "https://assets.buttondown.email/images/93addbc1-496a-4933-a792-986479ea24ed.jpg?w=960&fit=max",
+        "https://us02web.zoom.us/meeting/register/vkPcndIVQcW5aOEMzmN5Xg?mtm_campaign=SVS-Q2-2026&amp;mtm_kwd=LAUNCH&amp;mtm_source=NWR&amp;utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=robots-behaving-badly-vs-what-the-land-knows",
+        "https://us02web.zoom.us/meeting/register/vkPcndIVQcW5aOEMzmN5Xg?mtm_campaign=SVS-Q2-2026&amp;amp;mtm_kwd=LAUNCH&amp;amp;mtm_source=NWR&amp;amp;utm_source=newsriver&amp;amp;utm_medium=email&amp;amp;utm_campaign=robots-behaving-badly-vs-what-the-land-knows",
+        "https://nit.com.au/05-06-2026/24652/kimberley-aboriginal-law-and-culture-centre-champions-indigenous-data-rights-at-aiatsis-summit?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=robots-behaving-badly-vs-what-the-land-knows",
+        "https://www.unesco.org/en/articles/indigenous-knowledge-digital-age-learning-preserving-sharing?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=robots-behaving-badly-vs-what-the-land-knows",
+        "https://assets.buttondown.email/images/e6728a05-6499-4d7b-afff-b55d4d3bbdca.jpg?w=960&fit=max"
+      ],
+      "theme_tag": "Indigenous Lands & Innovation",
+      "theme_day": 3,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
