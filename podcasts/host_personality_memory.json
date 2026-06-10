@@ -90,11 +90,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-05-18",
-        "clue": "pilot-skepticism:+ \u2014 'maintenance gap applies here too' deepened skepticism",
-        "occurrences": 2
-      },
-      {
         "date": "2026-05-20",
         "clue": "rural-context:+ \u2014 Deepened geographic specificity of proprietary lock-in stakes",
         "occurrences": 1
@@ -118,11 +113,6 @@
         "date": "2026-05-31",
         "clue": "pilot-skepticism:~ \u2014 Acknowledged publish-or-perish tension won't resolve via funding alone",
         "occurrences": 1
-      },
-      {
-        "date": "2026-06-06",
-        "clue": "structural-lens:~ \u2014 Acknowledged exhaustion as real constraint, not just resilience",
-        "occurrences": 2
       },
       {
         "date": "2026-06-05",
@@ -289,11 +279,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-06-07",
-        "clue": "funding-risk:- \u2014 shifted from dismissing community AI as unfunded mandate to engaging seriously with co-investment and cooperative sustainability models",
-        "occurrences": 2
-      },
-      {
         "date": "2026-05-24",
         "clue": "evidence-bar:~ \u2014 Conceded that shared incomplete data beats isolated expertise",
         "occurrences": 1
@@ -319,9 +304,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-06-08",
-        "clue": "community-trust:x \u2014 conceded authenticity value but emphasized discovery gap persists",
-        "occurrences": 1
+        "date": "2026-06-10",
+        "clue": "community-trust:x \u2014 Conceded to Riley's 'seed with existing voices' after initially raising moderation concerns",
+        "occurrences": 2
       }
     ],
     "core_memories": [
@@ -408,6 +393,11 @@
       {
         "formed": "2026-06-03",
         "signal": "evidence-bar:x \u2014 Conceded cyberdeck skill floor is addressable, then pivoted to internet access constraint",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-06-10",
+        "signal": "funding-risk:- \u2014 Shifted from grant-dependency criticism to accepting 'slow but workable' volunteer review threshold",
         "occurrences": 3
       }
     ]

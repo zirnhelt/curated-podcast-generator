@@ -1,17 +1,4 @@
 {
-  "2026-03-11": {
-    "timestamp": 1773234149.050636,
-    "date": "2026-03-11",
-    "theme": "Community Tech & Governance",
-    "central_question": "Deep dive on Community Tech & Governance",
-    "topics_covered": [
-      "broadband",
-      "data sovereignty",
-      "AI",
-      "infrastructure",
-      "community ownership"
-    ]
-  },
   "2026-03-12": {
     "timestamp": 1773320458.973087,
     "date": "2026-03-12",
@@ -2097,6 +2084,38 @@
       "Data centre infrastructure costs to watersheds and power systems versus concentrated financial benefits",
       "Asset ownership versus management contracts as pathways to permanent value capture",
       "Technical and institutional capacity constraints preventing communities from negotiating favorable terms"
+    ]
+  },
+  "2026-06-10": {
+    "timestamp": 1781085620.259545,
+    "date": "2026-06-10",
+    "theme": "Gear, Gadgets & Practical Tech",
+    "central_question": "How can rural communities like the Cariboo access reliable information about which gear and gadgets actually perform durably in remote, cold conditions without manufacturer support or institutional resources?",
+    "riley_position": "Rural tech knowledge exists informally across communities but lacks discoverable, persistent infrastructure; a structured regional hardware evaluation database with standardized searchable fields would make tacit knowledge accessible and preserve it beyond individual contributors.",
+    "riley_key_evidence": [
+      "Lithium iron phosphate (LiFePO4) chemistry handles cold significantly better than standard Li-ion, losing only modest capacity below minus 20, but this information isn't in product listings",
+      "iFixit's repair guide database is self-sustaining because contributing guides is embedded in community culture, not a maintenance task requiring ongoing labor",
+      "Backcountry forums and hunting networks contain scattered evaluation information but lack structured query layers to filter by 'operates below minus 20' or 'battery user-replaceable'"
+    ],
+    "casey_position": "Community knowledge databases face hard structural problems around editorial quality control, the transition from student projects to persistent infrastructure, and ongoing hosting that typically kills projects when grants expire or volunteers burn out.",
+    "casey_key_evidence": [
+      "Lithium ion capacity drops 20-40% at minus 20 degrees Celsius \u2014 a physics constraint that doesn't show up in standard benchmarks and users aren't told about",
+      "Durability and repairability have been decoupled in consumer markets \u2014 devices can be physically robust but become paperweights when batteries swell or ports corrode because components are bonded and unavailable for replacement",
+      "Community database projects commonly fail when the first wave of bad submissions or misinformation hits and no paid editorial staff exists to maintain quality"
+    ],
+    "resolution": "They converged on a concrete three-step implementation path: approach regional library or CNA Williams Lake to seed a student project creating 100 verified evaluations, push the Cariboo Regional District to host it as permanent municipal infrastructure (eliminating the grant-dependency death spiral), and recruit early reviewers from existing off-grid and SAR communities using a low-friction submission form. Casey acknowledged this was 'the most plausible version of the launch problem' they'd discussed.",
+    "topics_covered": [
+      "Battery chemistry performance in cold climates and manufacturer lock-in practices",
+      "The gap between institutional equipment specifications (SAR, wildfire) and what individual rural users can access",
+      "Formal vs. informal knowledge infrastructure and the discoverability problem",
+      "Structural sustainability of community databases and the handoff from student projects to permanent hosting",
+      "Municipal infrastructure as a persistence layer for community knowledge versus grant-dependent websites"
+    ],
+    "calls_to_action": [
+      "Bring the rural hardware evaluation database proposal to your regional library or CNA Williams Lake campus and ask whether a structured student project could seed initial entries.",
+      "Push the Cariboo Regional District to consider hosting a device evaluation database as permanent public infrastructure bundled into existing municipal hosting rather than as a separate grant-dependent website.",
+      "If you're running equipment in hard conditions, reach out to feedback@cariboosignals.ca with your opinions about what gear holds up, what has let you down, and what you'd never replace \u2014 this real-world field data is how the database starts.",
+      "Two experienced contributors should review each submission before it goes live rather than publishing all submissions immediately, creating a two-person threshold for quality control while building a network of contributors."
     ]
   }
 }

@@ -1,24 +1,4 @@
 {
-  "2026-05-19": {
-    "timestamp": 1779196557.289099,
-    "topics": [
-      "[Williams Lake Tribune] Environmental advocates call pipelin",
-      "[Williams Lake Tribune] Wild world record broken by barefoot",
-      "[NYT Business] A Start-Up Aiming to Make Geothermal Energy M",
-      "[ScienceDaily] Scientists just unlocked a cheaper way to mak",
-      "[Hackaday] RS-485 Sprinkler Control: Scaling Irrigation Acro",
-      "[New Atlas] Genetic discovery could change how rice is grown",
-      "[TechRadar] US data centers use enough electricity to power ",
-      "[Tom's Hardware] OpenClaw creator burned through $1.3 millio"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-05-19"
-  },
   "2026-05-20": {
     "timestamp": 1779280959.099454,
     "topics": [
@@ -385,5 +365,24 @@
       "Indigenous tech"
     ],
     "date": "2026-06-09"
+  },
+  "2026-06-10": {
+    "timestamp": 1781085618.073876,
+    "topics": [
+      "[Al Jazeera English] South Korean police break up 35-hour po",
+      "[Al Jazeera English] Ebola border shutdown leaves goods rott",
+      "[Al Jazeera English] Families clear rubble after overnight I",
+      "[Al Jazeera English] Bolivia approves military measures agai",
+      "[Al Jazeera English] Palestinians confront Israeli settlers ",
+      "[Engadget] Astronomers measure the mass of a dormant black h",
+      "[Al Jazeera English] Protesters torch cars, buildings in Bel",
+      "[Al Jazeera English] Video shows Israeli soldier and settler"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact"
+    ],
+    "date": "2026-06-10"
   }
 }
