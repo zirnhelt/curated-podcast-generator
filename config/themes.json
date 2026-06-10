@@ -12,7 +12,8 @@
   "2": {
     "name": "Gear, Gadgets & Practical Tech",
     "description": "Consumer devices, maker projects, homelab, practical tools — technology you can hold, build, or deploy at home or on the job",
-    "keywords": ["gear", "gadget", "device", "hardware", "tool", "maker", "DIY", "homelab", "raspberry pi", "3D print", "camera", "drone", "sensor", "wearable", "review", "hands-on", "battery", "solar", "router", "NAS", "smart home", "Arduino", "keyboard", "headphone", "monitor", "laptop", "phone"]
+    "keywords": ["gadget", "hardware", "maker", "DIY", "homelab", "raspberry pi", "3D printer", "3D printing", "sensor", "wearable", "hands-on review", "solar panel", "router", "NAS", "smart home", "Arduino", "mechanical keyboard", "headphone", "laptop", "right to repair", "repair guide", "GPS unit", "battery pack", "battery chemistry", "power tool", "action camera", "smartphone", "consumer drone", "smart device", "tech gadget", "e-bike", "power station"],
+    "source_boost": ["Hackaday", "Engadget", "The Verge", "TechRadar", "Ars Technica", "Make Magazine", "iFixit", "Tom's Hardware", "New Atlas", "XDA Developers", "Wirecutter", "Android Authority", "Gizmodo", "PCMag", "Digital Trends", "MakeUseOf", "Cool Tools"]
   },
   "3": {
     "name": "Indigenous Lands & Innovation",

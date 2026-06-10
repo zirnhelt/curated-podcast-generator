@@ -75,6 +75,74 @@ Compare `feed-podcast.json` output across several days. The bonus article set sh
 
 ---
 
+## 3. Wednesday ("Gear, Gadgets & Practical Tech") theme pool runs dry
+
+### Problem
+
+The 2026-06-10 episode (Wednesday, theme "Gear, Gadgets & Practical Tech") had **zero
+genuinely gadget-related news articles**. The GitHub Actions log for that run
+(workflow run `27267722640`) shows:
+
+```
+📌 Feed theme: Gear, Gadgets & Practical Tech
+✓ Theme articles: 5
+✓ Bonus articles: 28
+✅ Loaded 40 articles from podcast feed
+```
+
+Only 5 of 40 articles in `feed-podcast-wednesday.json` were theme-matched, and none of
+those 5 were actually about gear/gadgets — the news roundup ended up 100% Al Jazeera
+world news, and the deep dive had to be carried by the hosts' own knowledge rather than
+grounded in an article.
+
+`podcast_shown_cache.json` shows several Hackaday articles tagged `:::wednesday` from
+May 27 (e.g. `inside-dysons-over-engineered-...-hand-dryer`,
+`autopsy-of-a-failed-vintage-carbon-resistor`) — these were already used for a previous
+Wednesday and have since aged out of the rolling 7-day cache, leaving the Wednesday pool
+without fresh replacements. Meanwhile `feed-homelab.json` / `feed-science.json` /
+`feed-climate.json` *do* contain recent Hackaday content (late May/early June), so the
+gadget-source feeds (Hackaday, Make Magazine, Cool Tools — already in `feeds.opml`) are
+being polled; the issue looks like a cache/scoring timing gap specific to the Wednesday
+theme pool rather than a missing-source problem.
+
+### What to change
+
+- Check whether `podcast_schedule.json`'s Wednesday `min_score: 42` is filtering out
+  gadget/maker articles that score lower on the general-interest rubric than world-news
+  items, even when they're a strong topical match for "Gear, Gadgets & Practical Tech."
+  Consider a per-theme score floor, or a relevance boost for gadget-source articles
+  similar to the `source_boost` allowlist added on the consumer side (see below).
+- Confirm the rolling 7-day cache + `podcast_shown_cache.json` aren't exhausting the
+  small pool of gadget-source articles before fresh ones are scored and ingested for a
+  given theme day. If Hackaday/Make/Cool Tools publish only a handful of articles per
+  week, a 7-day window with `:::wednesday`-tagged exclusions can leave Wednesday with
+  too few candidates even though the sources are healthy.
+
+### Consumer-side context (already fixed in `curated-podcast-generator`)
+
+This run also surfaced a false-positive keyword match: `config/themes.json` theme 2
+included the bare keyword `"gear"`, which matched **"[NYT Business] Nose Gear on Boeing
+787-9 Dreamliner Collapses"** (aircraft landing gear, not consumer gadgets) as a "strong
+keyword match." Several other generic single-word keywords (`tool`, `camera`, `monitor`,
+`battery`, `drone`, `device`, `review`, `phone`) had the same problem. These have been
+replaced with more specific multi-word phrases (`"3D printer"`, `"right to repair"`,
+`"battery chemistry"`, `"GPS unit"`, etc.), and a `source_boost` allowlist of gadget/maker
+outlets (Hackaday, Engadget, The Verge, TechRadar, iFixit, etc.) now gives a small
+relevance boost to articles from those sources.
+
+If a similar `source_boost`-style allowlist or per-source scoring boost is added
+upstream in `super-rss-feed`'s scoring pass, it should use the same source names so the
+two repos stay aligned (see [ROADMAP.md](../ROADMAP.md) "Cross-project: shared
+interest/scoring config").
+
+### Verification
+
+On a future Wednesday, check `feed-podcast-wednesday.json`'s theme-matched article count
+and confirm it includes at least a few gadget/maker-source articles (Hackaday, Make,
+Cool Tools, etc.), not just whatever scored highest on the general rubric.
+
+---
+
 ## Implementation order
 
 These fixes are independent and can be done in either order, but **fix 1 (local sources) has higher impact** because it addresses a content gap that no amount of filtering can solve — you can't surface local Cariboo news if the feed doesn't contain any.
@@ -83,6 +151,8 @@ Suggested sequence:
 1. Add local news sources and verify they appear in feeds
 2. Add category diversity filtering to the bonus article set
 3. Add `_source_category` field to `feed-podcast.json` items
+4. Investigate the Wednesday gadget-theme pool (issue 3 above) — check `min_score`
+   and rolling-cache interaction for gadget-source feeds
 
 After each change, follow the [deployment verification steps](../SIBLING_REPOS.md#monitoring-and-failure) to confirm the podcast generator consumes the updated feed correctly.
 

@@ -1470,7 +1470,7 @@ def _assess_deep_dive_article_quality(deep_dive_articles):
     return quality, with_body
 
 
-def _ensure_deep_dive_substance(deep_dive_articles, news_articles, theme_keywords=None):
+def _ensure_deep_dive_substance(deep_dive_articles, news_articles, theme_keywords=None, source_boost=None):
     """Swap thin deep-dive articles for substantive candidates from the news pool.
 
     A deep-dive slot anchors a full segment — too prominent to run on headline-only
@@ -1483,6 +1483,11 @@ def _ensure_deep_dive_substance(deep_dive_articles, news_articles, theme_keyword
     final say. Nothing is dropped — articles are only repositioned. Falls back to
     leaving thin articles in place when the pool has no substantive candidates left,
     at which point the SPARSE SOURCE NOTE is the (now rare) last resort.
+
+    Replacement candidates are restricted to articles with at least one theme
+    keyword hit or a source on the theme's gadget/maker allowlist — otherwise a
+    swap can silently drag in an off-theme article and the quality metrics would
+    misreport the deep dive as "rich" despite being thematically empty.
     """
     thin = [a for a in deep_dive_articles if len(a.get('_body', '') or '') < NEWS_BODY_MIN_CHARS]
     if not thin:
@@ -1493,15 +1498,30 @@ def _ensure_deep_dive_substance(deep_dive_articles, news_articles, theme_keyword
 
     def _candidate_score(a):
         kw = a.get('_keyword_matches', 0)
-        local = _local_theme_relevance(a, theme_keywords) if theme_keywords else 0
+        local = _local_theme_relevance(a, theme_keywords, source_boost) if theme_keywords else 0
         boosted = a.get('_boosted_score', a.get('ai_score', 0))
         return (kw, local, boosted)
 
+    def _is_on_theme(a):
+        if not theme_keywords:
+            return True  # no theme info available — fall back to old behavior
+        text = f"{a.get('title', '')} {a.get('summary', '')}".lower()
+        if any(kw in text for kw in theme_keywords):
+            return True
+        if source_boost and a.get('source', '').lower() in source_boost:
+            return True
+        return False
+
     swapped = 0
     for thin_article in thin:
-        candidates = [a for a in news_articles if len(a.get('_body', '') or '') >= NEWS_BODY_MIN_CHARS]
+        candidates = [
+            a for a in news_articles
+            if len(a.get('_body', '') or '') >= NEWS_BODY_MIN_CHARS and _is_on_theme(a)
+        ]
         if not candidates:
-            break
+            print(f"     ⚠️ Deep dive thematically thin — no on-theme article with "
+                  f"retrievable body text to replace \"{thin_article.get('title', '')[:60]}\"")
+            continue
         best = max(candidates, key=_candidate_score)
         di = deep_dive_articles.index(thin_article)
         deep_dive_articles[di] = best
@@ -1515,7 +1535,7 @@ def _ensure_deep_dive_substance(deep_dive_articles, news_articles, theme_keyword
     if swapped:
         print(f"  ✅ Substituted {swapped} thin deep-dive article(s) with substantive alternatives")
     else:
-        print(f"  ℹ️  No substantive alternatives in the news pool — {len(thin)} thin deep-dive article(s) remain")
+        print(f"  ℹ️  No substantive on-theme alternatives in the news pool — {len(thin)} thin deep-dive article(s) remain")
 
     return deep_dive_articles, news_articles
 
@@ -2537,6 +2557,7 @@ def categorize_articles_for_deep_dive(articles, theme_day):
     theme_keywords = [w.lower() for w in theme_name.split() if len(w) > 3]
     if 'keywords' in theme_info:
         theme_keywords.extend([k.lower() for k in theme_info['keywords']])
+    source_boost = [s.lower() for s in theme_info.get('source_boost', [])]
 
     # News pool size — Saturday runs a longer roundup
     pool_size = SATURDAY_NEWS_ROUNDUP_COUNT if theme_day == 5 else 12
@@ -2553,7 +2574,11 @@ def categorize_articles_for_deep_dive(articles, theme_day):
         keyword_hits = sum(len(kw.split()) for kw in theme_keywords if kw in text)
         ai_score_normalized = article.get('ai_score', 0) / 100.0  # 0-1 range
         # Keyword hits weighted heavier (each hit = 2 points), AI score as tiebreaker
-        return keyword_hits * 2 + ai_score_normalized
+        score = keyword_hits * 2 + ai_score_normalized
+        # Small boost for known gadget/maker outlets (e.g. Hackaday, Engadget)
+        if source_boost and article.get('source', '').lower() in source_boost:
+            score += 1
+        return score
 
     remaining.sort(key=theme_relevance, reverse=True)
     deep_dive_count = SATURDAY_DEEP_DIVE_COUNT if theme_day == 5 else 3
@@ -2612,15 +2637,20 @@ def _group_by_discipline(articles):
     return placed
 
 
-def _local_theme_relevance(article, theme_keywords):
+def _local_theme_relevance(article, theme_keywords, source_boost=None):
     """Score an article's theme relevance using local keyword matching.
 
-    Returns a float: keyword_hits * 2 + boosted_score / 100.0
+    Returns a float: keyword_hits * 2 + boosted_score / 100.0 (+1 if the
+    article's source is on the theme's source_boost allowlist, e.g. a
+    gadget outlet like Hackaday/Engadget for the "Gear, Gadgets" theme).
     """
     text = f"{article.get('title', '')} {article.get('summary', '')}".lower()
     keyword_hits = sum(len(kw.split()) for kw in theme_keywords if kw in text)
     boosted = article.get('_boosted_score', article.get('ai_score', 0)) / 100.0
-    return keyword_hits * 2 + boosted
+    score = keyword_hits * 2 + boosted
+    if source_boost and article.get('source', '').lower() in source_boost:
+        score += 1
+    return score
 
 
 def _build_theme_keywords(theme_name):
@@ -2654,6 +2684,15 @@ def _build_theme_keywords(theme_name):
             seen.add(kw)
             unique.append(kw)
     return unique
+
+
+def _build_theme_source_boost(theme_name):
+    """Return the lowercased source-name allowlist that gets a relevance boost
+    for this theme (e.g. gadget outlets like Hackaday/Engadget for theme 2)."""
+    for info in CONFIG['themes'].values():
+        if info['name'] == theme_name:
+            return [s.lower() for s in info.get('source_boost', [])]
+    return []
 
 
 def select_deep_dive_from_feed(theme_articles, theme_name, count=3):
@@ -5263,8 +5302,11 @@ def main():
         # from the broader news pool so Claude is never put in a position where
         # it has to hedge about sourcing on air.
         theme_keywords_for_substitution = _build_theme_keywords(today_theme)
+        source_boost_for_substitution = _build_theme_source_boost(today_theme)
         deep_dive_articles, news_articles = _ensure_deep_dive_substance(
-            deep_dive_articles, news_articles, theme_keywords=theme_keywords_for_substitution
+            deep_dive_articles, news_articles,
+            theme_keywords=theme_keywords_for_substitution,
+            source_boost=source_boost_for_substitution,
         )
 
         deep_dive_quality, deep_dive_body_count = _assess_deep_dive_article_quality(deep_dive_articles)
