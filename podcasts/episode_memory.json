@@ -1,24 +1,4 @@
 {
-  "2026-05-20": {
-    "timestamp": 1779280959.099454,
-    "topics": [
-      "[Hackaday] Turning a Junk Laptop Screen Into a Portable Moni",
-      "[Hackaday] Using a Nintendo Switch to Speed Up a 3D Printer",
-      "[Hackaday] preFlight Slicer Brings Added Part Strength Featu",
-      "[Hackaday] Y-zipper: 3D Printing Flexible\u2013Rigid Transition M",
-      "[Hackaday] 21st Century Punch Cards are 3D Printed and Read ",
-      "[Hackaday] Teardown: ChargeTab Emergency Phone Charger",
-      "[How-To Geek] 4 3D printer upgrades you can build with a $5 ",
-      "[Tom's Hardware] Louis Rossmann taunts Bambu Lab by hosting "
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "connectivity"
-    ],
-    "date": "2026-05-20"
-  },
   "2026-05-21": {
     "timestamp": 1779367907.065201,
     "topics": [
@@ -384,5 +364,25 @@
       "environmental impact"
     ],
     "date": "2026-06-10"
+  },
+  "2026-06-11": {
+    "timestamp": 1781173126.797706,
+    "topics": [
+      "[Williams Lake Tribune] Clearwater mayor speaks at national ",
+      "[BC Gov News] Opening new homes for Indigenous families in P",
+      "[Boing Boing] Nancy Pelosi has no time for Mike Lindell's ha",
+      "[The Verge] Congress just gave DHS another $70 billion",
+      "[Williams Lake Tribune] Rotary Peace Pole to be installed in",
+      "Robots behaving badly VS what the land knows",
+      "Genome Canada, Genome Prairie Launch $50M National Resources",
+      "[Williams Lake Tribune] Indigenous policing accountability p"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-06-11"
   }
 }

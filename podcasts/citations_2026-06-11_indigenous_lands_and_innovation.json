@@ -1,0 +1,205 @@
+{
+  "episode": {
+    "date": "2026-06-11",
+    "formatted_date": "Thursday, June 11, 2026",
+    "theme": "Indigenous Lands & Innovation",
+    "title": "Cariboo Signals - Indigenous Lands & Innovation",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Indigenous Lands & Innovation.</p><p><b>NEWS ROUNDUP:</b> We break down [BC Gov News] Opening new homes for Indigenous families in Prince Rupert and [Engadget] German court holds Google liable for false AI Overview answers, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Should Indigenous knowledge systems be integrated into existing technology and data infrastructure, or should the conceptual framework itself be fundamentally reimagined starting from Indigenous land-based governance? Topics include: Integration vs. foundational reimagining of Indigenous knowledge systems in technology, Data sovereignty, OCAP principles, and the limits of encoding relational knowledge, Institutional independence and funding relationships as constraints on accountability, Community-led infrastructure ownership versus service delivery models, Specific case studies: Animikii, FirstVoices, Tŝilhqot'in, Lhtako Dené Nation, and BCFNJC Police Accountability Unit.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://denisiqi.org\">Denisiqi Services Society</a></p><p><b>Sources discussed:</b></p><ul><li>BC Gov News: <a href=\"https://news.gov.bc.ca/releases/2026HMA0066-000658\">[BC Gov News] Opening new homes for Indigenous families in P...</a></li><li>Lawrence Bonk (Engadget): <a href=\"https://www.engadget.com/2191469/german-court-holds-google-liable-for-false-ai-overview-answers/\">[Engadget] German court holds Google liable for false AI Ove...</a></li><li>Newsletter: n***@animikii.com: <a href=\"https://assets.buttondown.email/images/32f798c1-fd59-4ab4-9e61-8fb9d6e26c58.jpg?w=960&fit=max\">Robots behaving badly VS what the land knows</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/06/09/clearwater-mayor-calls-for-renewable-energy-at-national-climate-summit/\">[Williams Lake Tribune] Clearwater mayor speaks at national ...</a></li><li>Jason Weisberger (Boing Boing): <a href=\"https://boingboing.net/2026/06/04/nancy-pelosi-has-no-time-for-mike-lindells-hallway-goblins.html\">[Boing Boing] Nancy Pelosi has no time for Mike Lindell's ha...</a></li><li>Gaby Del Valle (The Verge): <a href=\"https://www.theverge.com/policy/947146/dhs-funding-congress-budget-reconciliation\">[The Verge] Congress just gave DHS another $70 billion</a></li><li>rebeccadyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/06/10/rotary-peace-pole-to-be-installed-in-williams-lake/\">[Williams Lake Tribune] Rotary Peace Pole to be installed in...</a></li><li>BC Gov News: <a href=\"https://news.gov.bc.ca/releases/2026HLTH0057-000670\">[BC Gov News] Sharing local farm harvests through coupon pro...</a></li><li>https://www.tomsguide.com/author/ruth-jones (Toms Guide): <a href=\"https://www.tomsguide.com/wellness/sleep/anxiety-and-stress-were-keeping-me-awake-until-experts-shared-a-simple-bedtime-rule-to-help-me-fall-asleep-fast\">[Toms Guide] Anxiety and stress were keeping me awake — unti...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/long-term-care-retirement-alzheimers-quit-job-2026-6\">[Business Insider] I gave up my career at a Fortune 500 comp...</a></li><li>Chloe Gerrard (Newsletter: n***@animikii.com): <a href=\"https://biomb.ca/genome-canada-genome-prairie-launch-50m-national-resources-initiative/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=robots-behaving-badly-vs-what-the-land-knows\">Genome Canada, Genome Prairie Launch $50M National Resources...</a></li><li>Jordy Cunningham (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/06/10/indigenous-policing-accountability-program-launched-in-b-c/\">[Williams Lake Tribune] Indigenous policing accountability p...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-6<br>TTS Voices: OpenAI TTS API (Nova · Echo)<br>Web Search: Brave Search API<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-06-11T03:18:44.960880-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-sonnet-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 2508,
+      "voice_ratio_casey_riley": 0.88,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 1,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0
+      },
+      "total_hits": 1,
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Clearwater mayor speaks at national climate summit, calls for renewable energy",
+          "url": "https://wltribune.com/2026/06/09/clearwater-mayor-calls-for-renewable-energy-at-national-climate-summit/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 84,
+          "date_published": "2026-06-09T09:10:00+00:00",
+          "summary": "A summit hosted by Elbows Up For Climate was hosted in Edmonton on June 4",
+          "discussed": false
+        },
+        {
+          "title": "[BC Gov News] Opening new homes for Indigenous families in Prince Rupert",
+          "url": "https://news.gov.bc.ca/releases/2026HMA0066-000658",
+          "source": "BC Gov News",
+          "author": "",
+          "ai_score": 70,
+          "date_published": "2026-06-05T18:15:00+00:00",
+          "summary": "More than 130 new homes open or underway for Indigenous people in Prince Rupert",
+          "discussed": true
+        },
+        {
+          "title": "[Boing Boing] Nancy Pelosi has no time for Mike Lindell's hallway goblins",
+          "url": "https://boingboing.net/2026/06/04/nancy-pelosi-has-no-time-for-mike-lindells-hallway-goblins.html",
+          "source": "Boing Boing",
+          "author": "Jason Weisberger",
+          "ai_score": 69,
+          "date_published": "2026-06-04T17:59:33+00:00",
+          "summary": "Raw Story reports that LindellTV correspondent Alison Steinberg confronted Pelosi with the old MAGA claim that Pelosi turned away the National Guard on January 6. Pelosi answered with the efficiency o...",
+          "discussed": false
+        },
+        {
+          "title": "[The Verge] Congress just gave DHS another $70 billion",
+          "url": "https://www.theverge.com/policy/947146/dhs-funding-congress-budget-reconciliation",
+          "source": "The Verge",
+          "author": "Gaby Del Valle",
+          "ai_score": 65,
+          "date_published": "2026-06-09T21:34:46+00:00",
+          "summary": "Congress narrowly voted to fund President Donald Trump's mass deportation agenda, giving the Department of Homeland Security $70 billion over the next three years. The house voted 214 to 212 in favor ...",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Rotary Peace Pole to be installed in Williams Lake",
+          "url": "https://wltribune.com/2026/06/10/rotary-peace-pole-to-be-installed-in-williams-lake/",
+          "source": "Williams Lake Tribune",
+          "author": "rebeccadyok",
+          "ai_score": 100,
+          "date_published": "2026-06-11T09:02:58.168752+00:00",
+          "summary": "The pole will promote peace in the world and community",
+          "discussed": false
+        },
+        {
+          "title": "[Engadget] German court holds Google liable for false AI Overview answers",
+          "url": "https://www.engadget.com/2191469/german-court-holds-google-liable-for-false-ai-overview-answers/",
+          "source": "Engadget",
+          "author": "Lawrence Bonk",
+          "ai_score": 87,
+          "date_published": "2026-06-10T16:10:45+00:00",
+          "summary": "A recent study found that Google's AI Overviews regularly provide incorrect information and contain facts not supported by cited sources.",
+          "discussed": true
+        },
+        {
+          "title": "[BC Gov News] Sharing local farm harvests through coupon program",
+          "url": "https://news.gov.bc.ca/releases/2026HLTH0057-000670",
+          "source": "BC Gov News",
+          "author": "",
+          "ai_score": 81,
+          "date_published": "2026-06-08T16:30:00+00:00",
+          "summary": "BC Farmers’ Market Nutrition Coupon Program promotes access to fresh foods",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] Anxiety and stress were keeping me awake — until experts shared a simple bedtime rule to help me fall asleep fast",
+          "url": "https://www.tomsguide.com/wellness/sleep/anxiety-and-stress-were-keeping-me-awake-until-experts-shared-a-simple-bedtime-rule-to-help-me-fall-asleep-fast",
+          "source": "Toms Guide",
+          "author": "https://www.tomsguide.com/author/ruth-jones",
+          "ai_score": 74,
+          "date_published": "2026-06-06T05:15:00+00:00",
+          "summary": "Struggling to sleep due to anxiety and stress? Discover the simple, expert-backed bedtime rule that eased my racing mind so that I could fall asleep faster.",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] I gave up my career at a Fortune 500 company to care for my mom full-time. Now, I struggle to pay my bills.",
+          "url": "https://www.businessinsider.com/long-term-care-retirement-alzheimers-quit-job-2026-6",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 73,
+          "date_published": "2026-06-10T11:15:01+00:00",
+          "summary": "Kathy Mullen, 64, left her job at a Fortune 500 company to care for her mother with Alzheimer's, negatively impacting her health and finances.",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Indigenous Lands & Innovation",
+      "articles": [
+        {
+          "title": "Robots behaving badly VS what the land knows",
+          "url": "https://assets.buttondown.email/images/32f798c1-fd59-4ab4-9e61-8fb9d6e26c58.jpg?w=960&fit=max",
+          "source": "Newsletter: n***@animikii.com",
+          "author": "",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Robots behaving badly VS what the land knows",
+          "discussed": true
+        },
+        {
+          "title": "Genome Canada, Genome Prairie Launch $50M National Resources Initiative - Bioscience Association Manitoba",
+          "url": "https://biomb.ca/genome-canada-genome-prairie-launch-50m-national-resources-initiative/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=robots-behaving-badly-vs-what-the-land-knows",
+          "source": "Newsletter: n***@animikii.com",
+          "author": "Chloe Gerrard",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Saskatoon, SK: Winnipeg, MB – June 1, 2026:&nbsp;Genome Canada, in partnership with Canada’s genomics enterprise, including Genome Prairie, today unveiled its latest large-scale mission-driven researc...",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Indigenous policing accountability program launched in B.C.",
+          "url": "https://wltribune.com/2026/06/10/indigenous-policing-accountability-program-launched-in-b-c/",
+          "source": "Williams Lake Tribune",
+          "author": "Jordy Cunningham",
+          "ai_score": 72,
+          "date_published": "2026-06-10T09:00:00+00:00",
+          "summary": "BC First Nations Justice Council (BCFNJC) has launched a Police Accountability Unit (PAU) on June 10",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Should Indigenous knowledge systems be integrated into existing technology and data infrastructure, or should the conceptual framework itself be fundamentally reimagined starting from Indigenous land-based governance?",
+        "riley_position": "The integration model is structurally wrong because it treats Indigenous knowledge as an enhancement layer to existing systems rather than questioning whether those systems should exist at all. Instead, we should start from what the land knows—relational, place-specific knowledge held over generations—and build infrastructure from that foundation.",
+        "riley_key_evidence": [
+          "Animikii's framing of 'Robots Behaving Badly VS What the Land Knows' contrasts AI trained on extracted, decontextualized data with Indigenous ecological monitoring systems spanning thousands of years",
+          "Genome Canada's $50 million genomics initiative risks reproducing the pattern where Nations are late-stage stakeholders responding to externally-generated data about their own territories",
+          "Tŝilhqot'in National Government's watershed and wildlife monitoring as primary institution generating knowledge rather than as consultant to provincial processes"
+        ],
+        "casey_position": "The structural design problem is institutional independence and funding relationships; even well-intentioned initiatives fail when communities depend on external funding from the entities they're meant to hold accountable. The question isn't technical capacity but whether governance structures can insulate data work from political constraints.",
+        "casey_key_evidence": [
+          "BC First Nations Justice Council's Police Accountability Unit faces structural tension between provincial government funding and investigating provincial actors",
+          "Housing infrastructure 'built for' communities differs fundamentally from infrastructure 'owned and operated by' communities in terms of sovereignty outcomes",
+          "First Nations historically positioned as late-stage stakeholders in environmental assessments, forestry tenure decisions, and species-at-risk listings in BC"
+        ],
+        "resolution": "Riley and Casey converge on the same structural problem from different angles and agree that the distinction between co-design and late-stage consultation is the operative question. They jointly recommend that regional institutions publicly clarify Nations' governance role in any provincial/federal data initiatives before signing on, and acknowledge gaps in their own reporting while inviting community corrections.",
+        "topics_covered": [
+          "Integration vs. foundational reimagining of Indigenous knowledge systems in technology",
+          "Data sovereignty, OCAP principles, and the limits of encoding relational knowledge",
+          "Institutional independence and funding relationships as constraints on accountability",
+          "Community-led infrastructure ownership versus service delivery models",
+          "Specific case studies: Animikii, FirstVoices, Tŝilhqot'in, Lhtako Dené Nation, and BCFNJC Police Accountability Unit"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "Azure Neural TTS (Ava · Andrew)",
+    "text_to_speech_openai": "OpenAI TTS API (Nova · Echo)",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}

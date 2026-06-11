@@ -80,11 +80,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-22",
-        "clue": "tech-optimism:x \u2014 Conceded institutional barriers aren't purely technical problems",
-        "occurrences": 2
-      },
-      {
         "date": "2026-06-04",
         "clue": "funding-risk:~ \u2014 Acknowledged 'solvable in principle' gap; tension between theory and execution",
         "occurrences": 2
@@ -127,6 +122,11 @@
       {
         "date": "2026-06-09",
         "clue": "structural-lens:+ \u2014 Moved from project-level to system-level value capture analysis",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-06-11",
+        "clue": "structural-lens:~ \u2014 Added 'epistemic advantage' framing, complicating power analysis",
         "occurrences": 1
       }
     ],
@@ -307,6 +307,16 @@
         "date": "2026-06-10",
         "clue": "community-trust:x \u2014 Conceded to Riley's 'seed with existing voices' after initially raising moderation concerns",
         "occurrences": 2
+      },
+      {
+        "date": "2026-06-11",
+        "clue": "evidence-bar:+ \u2014 Reinforced requirement for governance documents, not press releases",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-06-11",
+        "clue": "structural-lens:- \u2014 Softened determinism ('can be true simultaneously') vs. earlier harder positions",
+        "occurrences": 1
       }
     ],
     "core_memories": [
