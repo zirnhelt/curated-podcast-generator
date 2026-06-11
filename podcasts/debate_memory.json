@@ -1,17 +1,4 @@
 {
-  "2026-03-12": {
-    "timestamp": 1773320458.973087,
-    "date": "2026-03-12",
-    "theme": "Indigenous Lands & Innovation",
-    "central_question": "Deep dive on Indigenous Lands & Innovation",
-    "topics_covered": [
-      "satellite",
-      "precision agriculture",
-      "renewable energy",
-      "AI",
-      "infrastructure"
-    ]
-  },
   "2026-03-13": {
     "timestamp": 1773406799.04367,
     "date": "2026-03-13",
@@ -2116,6 +2103,32 @@
       "Push the Cariboo Regional District to consider hosting a device evaluation database as permanent public infrastructure bundled into existing municipal hosting rather than as a separate grant-dependent website.",
       "If you're running equipment in hard conditions, reach out to feedback@cariboosignals.ca with your opinions about what gear holds up, what has let you down, and what you'd never replace \u2014 this real-world field data is how the database starts.",
       "Two experienced contributors should review each submission before it goes live rather than publishing all submissions immediately, creating a two-person threshold for quality control while building a network of contributors."
+    ]
+  },
+  "2026-06-11": {
+    "timestamp": 1781173129.764585,
+    "date": "2026-06-11",
+    "theme": "Indigenous Lands & Innovation",
+    "central_question": "Should Indigenous knowledge systems be integrated into existing technology and data infrastructure, or should the conceptual framework itself be fundamentally reimagined starting from Indigenous land-based governance?",
+    "riley_position": "The integration model is structurally wrong because it treats Indigenous knowledge as an enhancement layer to existing systems rather than questioning whether those systems should exist at all. Instead, we should start from what the land knows\u2014relational, place-specific knowledge held over generations\u2014and build infrastructure from that foundation.",
+    "riley_key_evidence": [
+      "Animikii's framing of 'Robots Behaving Badly VS What the Land Knows' contrasts AI trained on extracted, decontextualized data with Indigenous ecological monitoring systems spanning thousands of years",
+      "Genome Canada's $50 million genomics initiative risks reproducing the pattern where Nations are late-stage stakeholders responding to externally-generated data about their own territories",
+      "T\u015dilhqot'in National Government's watershed and wildlife monitoring as primary institution generating knowledge rather than as consultant to provincial processes"
+    ],
+    "casey_position": "The structural design problem is institutional independence and funding relationships; even well-intentioned initiatives fail when communities depend on external funding from the entities they're meant to hold accountable. The question isn't technical capacity but whether governance structures can insulate data work from political constraints.",
+    "casey_key_evidence": [
+      "BC First Nations Justice Council's Police Accountability Unit faces structural tension between provincial government funding and investigating provincial actors",
+      "Housing infrastructure 'built for' communities differs fundamentally from infrastructure 'owned and operated by' communities in terms of sovereignty outcomes",
+      "First Nations historically positioned as late-stage stakeholders in environmental assessments, forestry tenure decisions, and species-at-risk listings in BC"
+    ],
+    "resolution": "Riley and Casey converge on the same structural problem from different angles and agree that the distinction between co-design and late-stage consultation is the operative question. They jointly recommend that regional institutions publicly clarify Nations' governance role in any provincial/federal data initiatives before signing on, and acknowledge gaps in their own reporting while inviting community corrections.",
+    "topics_covered": [
+      "Integration vs. foundational reimagining of Indigenous knowledge systems in technology",
+      "Data sovereignty, OCAP principles, and the limits of encoding relational knowledge",
+      "Institutional independence and funding relationships as constraints on accountability",
+      "Community-led infrastructure ownership versus service delivery models",
+      "Specific case studies: Animikii, FirstVoices, T\u015dilhqot'in, Lhtako Den\u00e9 Nation, and BCFNJC Police Accountability Unit"
     ]
   }
 }

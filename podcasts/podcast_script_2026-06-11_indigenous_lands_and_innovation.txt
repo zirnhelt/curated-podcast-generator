@@ -1,0 +1,125 @@
+# Cariboo Signals Podcast Script - 2026-06-11
+# Theme: Indigenous Lands & Innovation
+# Generated: 2026-06-11 03:18:46 PDT
+
+**RILEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. It's Thursday, June 11th, 2026. Here in the Cariboo, on the traditional and unceded territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations. Today's theme is Indigenous Lands & Innovation — I'm Riley.
+
+**CASEY:** And I'm Casey. We've spent the last few weeks on this theme asking who builds Indigenous tech and who governs it — today the question gets more specific: when the land itself becomes data, who gets to say what that data means.
+
+**RILEY:** We've got strong material to dig into. First, the news.
+
+---
+
+**NEWS ROUNDUP**
+
+**RILEY:** [pause:1200] Starting with something that landed locally this week — the BC First Nations Justice Council launched a Police Accountability Unit on June 10th. The PAU is designed to support Indigenous people navigating police complaints in BC — documentation, referrals, systemic tracking. The gap it's filling is real: Indigenous people are dramatically overrepresented in police use-of-force incidents, and the formal complaints process has historically been inaccessible and slow.
+
+**CASEY:** The accountability infrastructure matters as much as the oversight principle — a unit that documents patterns can actually build an evidentiary record.
+
+**CASEY:** [pause:1200] From Prince Rupert, the province announced more than 130 homes open or underway for Indigenous families — BC Housing in partnership with local Indigenous organizations. Housing is foundational infrastructure: it determines whether educated community members can actually live on their territories, which ties directly into every conversation we've been having about keeping capacity local.
+
+**RILEY:** Hard to build land-based tech governance when people can't afford to stay on the land.
+
+**RILEY:** [pause:1200] In Clearwater — about two hours south of us — Mayor Trent Schafer spoke at a national climate summit in Edmonton hosted by Elbows Up For Climate on June 4th, calling for a renewable energy transition. Clearwater sits at the edge of Secwépemc and Tŝilhqot'in territories, and the intersection of Indigenous land stewardship and renewable energy development is going to define a lot of the next decade in this region.
+
+**CASEY:** Every wind and solar project proposed in the Cariboo-Chilcotin is also a land-use negotiation — that context doesn't always make it into the press release.
+
+**CASEY:** [pause:1200] Switching to genomics — Genome Canada and Genome Prairie just announced a fifty-million-dollar Natural Resources Initiative. Three-year program, twenty-five million from the federal government, aimed at what they're calling a generational transformation of Canada's resource systems and biodiversity management. The pitch involves genomic tools for forest health, soil biology, and watershed monitoring.
+
+**RILEY:** The part worth watching is who's at the table when they define "biodiversity management" — genomic data collected on Indigenous territories without Nation governance involvement is a data sovereignty problem wearing a science hat.
+
+**RILEY:** [pause:1200] Staying in the tech-accountability space — a German court ruled Google liable for false AI Overview answers. A recent study found AI Overviews regularly produce information not supported by the sources they cite, and the court said that's not a neutral technical failure — it's a liability.
+
+**CASEY:** Worth noting that Claude writes our scripts, so we're essentially watching our own production stack get regulated in real time.
+
+**CASEY:** [pause:1200] Also this week — Williams Lake Rotary is installing a Peace Pole in the city. The pole will carry messages of peace in multiple languages and serve as a permanent community landmark. Williams Lake has had a lot of difficult years, and that kind of visible civic gesture carries weight.
+
+**RILEY:** And the BC Farmers' Market Nutrition Coupon Program is expanding access to fresh food through local markets — a straightforward food security measure with real impact for lower-income families across the region.
+
+**RILEY:** Links to all of those in the episode notes. Up next, a spotlight on an organization doing quiet, essential work in Tŝilhqot'in territory.
+
+---
+
+**COMMUNITY SPOTLIGHT**
+
+**CASEY:** June is National Indigenous History Month, and the organization worth highlighting today is Denisiqi Services Society. They've been providing culturally grounded child and family services to Tŝilhqot'in and Ulkatcho communities for over twenty years. That's not a program — that's an institution. The kind of community-rooted infrastructure that holds families together through exactly the kinds of disruptions we talk about on this show: displacement, resource booms, climate events. Learn more at denisiqi dot org.
+
+**RILEY:** Twenty-plus years of consistent presence in communities that have seen a lot of outside organizations come and go — that staying power is its own form of sovereignty.
+
+**CASEY:** It connects to what we're getting into next — let's dig in.
+
+---
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Indigenous Lands & Innovation**
+
+**RILEY:** The deep dive today is anchored on a newsletter piece from Animikii — an Indigenous-led tech company based in Victoria — and the framing they used is arresting. The title is "Robots Behaving Badly VS What the Land Knows." The contrast they're drawing is between AI systems trained on extracted, decontextualized data, and land-based knowledge systems that have been doing ecological monitoring and resource management for thousands of years. The question worth sitting with isn't whether Indigenous knowledge *can* be integrated into technology systems — it's whether the integration model itself is the wrong frame entirely.
+
+**CASEY:** The integration model assumes there's a primary system — usually the AI or the data platform — and Indigenous knowledge gets added in as a layer. An enhancement. That framing already concedes the ground.
+
+**RILEY:** Exactly. The Animikii piece is direct about it. The "robots behaving badly" framing isn't just about hallucination or bias in AI outputs — it's about systems trained on data that was never consented to, never contextualized, never governed by the communities whose knowledge it extracted. What the land knows is something different: relational, place-specific, held over generations in ways that don't compress into a training dataset.
+
+**CASEY:** We've talked before — a couple of weeks back — about the gap between OCAP principles and actual infrastructure. This is the layer underneath that. Before you even get to data storage and governance protocols, you have the question of whether a knowledge system is something that *can* be encoded without destroying what makes it useful.
+
+**RILEY:** The Māori concept of kaitiakitanga gets cited a lot here — guardianship of the natural world as an active relational practice, not a static inventory. You can digitize a species list. You can't digitize the relationship.
+
+**CASEY:** And yet there are genuine examples of Indigenous communities using technology to strengthen those relationships rather than replace them. FirstVoices has been doing it with language for over twenty years. The question is whether the land-knowledge equivalent is even possible at scale.
+
+**RILEY:** The Genome Canada announcement from this week is a stress test for exactly that. Fifty million dollars to apply genomic tools to Canada's resource systems — forest health, biodiversity, watershed monitoring. If Nations aren't co-designing the research questions from day one, the outputs land as externally generated data *about* their territories. Then they're in the position of responding to someone else's findings on their own land.
+
+**CASEY:** The history of that pattern in BC is not short. Environmental assessments, forestry tenure decisions, species-at-risk listings — there's a long track record of scientific data being generated on Tŝilhqot'in or Secwépemc territories and then used in regulatory processes where the Nation is technically consulted but practically a late-stage stakeholder.
+
+**RILEY:** The Tŝilhqot'in Supreme Court decision in 2014 was supposed to change that structural position, and it did legally. The gap is in the technical and scientific layer — Nations don't always have the genomics capacity to generate their own data or interrogate someone else's methodology.
+
+**CASEY:** So the Genome Canada money flows to universities and research consortia, produces findings, and communities are handed a report. That's not a transformation of resource systems — that's a well-funded version of the same model.
+
+**RILEY:** Unless the initiative explicitly requires Nation co-governance of research design and data ownership. The announcement mentions "biodiversity management" broadly. Whether that includes Indigenous-led stewardship science, or whether it's university researchers doing genomic sampling on unceded territory, is the actual question.
+
+**CASEY:** And we don't know the answer from what's been published. Which is itself informative.
+
+**RILEY:** [pause:300] The policing accountability piece connects here in a way that isn't obvious at first. The BC First Nations Justice Council's new Police Accountability Unit is fundamentally a data infrastructure project — building a systematic record of incidents, complaints, patterns. What makes it different from previous accountability mechanisms is the institutional capacity to aggregate and analyze that data over time and deploy it as evidence in systemic advocacy.
+
+**CASEY:** It's Indigenous-led data collection about state actors operating on Indigenous territories. That's exactly the governance-through-data-infrastructure model we keep returning to. The question is whether it has enough operational independence to follow the data where it leads, or whether funding relationships create soft constraints.
+
+**RILEY:** The BCFNJC has been operating since 2017 and has genuine credibility in the space. The structural independence question — from a province that is both funder and occasional subject of those complaints — is a real design tension.
+
+**CASEY:** Every accountability body faces that tension. What matters is whether the governance structure insulates the data work from the political relationships.
+
+**RILEY:** The analog for land and environmental data is identical. If a Nation's ecological monitoring program is funded through a provincial resource extraction agreement, what happens when the monitoring results are inconvenient for the agreement?
+
+**CASEY:** That's the actual design problem. Not whether the sensors work. Whether the institution holding the data can act on it without jeopardizing its own funding. And I'd push the point further — some Nations have started building environmental monitoring specifically *outside* provincial and federal approval processes for exactly that reason. The Tŝilhqot'in National Government has been doing watershed and wildlife monitoring as part of their own land-use planning — not as a consultant to someone else's process, but as the primary institution generating knowledge about their territory.
+
+**RILEY:** That model works when there's a strong central governance body. The Tŝilhqot'in National Government has six member communities and a relatively coherent political structure. Other parts of the Cariboo don't have that same level of coordination, which limits how transferable the model is.
+
+**CASEY:** It varies a lot — agreed. Though Xatśūll, up on the Fraser north of Williams Lake, has been doing its own work on cultural site monitoring using tools that feed back into their own governance processes rather than outward to provincial databases. So the model isn't exclusive to large governance structures.
+
+**RILEY:** We should be upfront here — we're working from published sources and public records, and we haven't had direct guidance from First Nations communications offices on the specifics of those programs. That's a gap worth naming, and one we'd genuinely like to close.
+
+**CASEY:** And it mirrors the broader problem we're describing. The assumption that publicly available information is sufficient to understand what's happening in communities that have good reasons to keep some of their technical work internal.
+
+**RILEY:** The Animikii framing gets at that too. "What the land knows" isn't just ecological data — it includes knowing what to keep private. Which data circulates internally, which gets shared with researchers, which gets used in regulatory advocacy. That's a governance practice, not a technical configuration.
+
+**CASEY:** And it requires continuous human judgment, not a one-time policy decision. The hardest version of data sovereignty is the ongoing work of deciding, case by case, whether a particular sharing request serves the community or extracts from it. There's no protocol that does that work automatically.
+
+**RILEY:** Which is why the capacity questions keep mattering. You need people with enough technical literacy to evaluate a data-sharing proposal, enough legal expertise to understand the implications, and enough institutional authority to say no. Those three things together are genuinely rare.
+
+**CASEY:** Rare and expensive to build. And the grant-funded model tends to produce capacity that expires when the funding does.
+
+**RILEY:** Which points toward a structural answer that isn't just "get better grants." It's about what institutional form can hold environmental data with genuine independence. Mesh networks, open-source monitoring tools, skill transfer that means the community doesn't need to hire an outside vendor for maintenance — there are real examples, small and often imperfect, of communities that have made the shift from service recipient to infrastructure owner.
+
+**CASEY:** Small and imperfect is doing a lot of work there, though. The existing systems have funding attached, institutional relationships, and political legitimacy. Starting from the land means starting from somewhere that doesn't have any of those things pre-built. That's not an argument against trying — but the friction is structural, not just logistical.
+
+**RILEY:** Except starting from the land means starting with something the extractive model doesn't have — the actual accumulated knowledge of how a specific place works, held over generations. That's a genuine epistemic advantage. The question is whether it can generate enough institutional weight to hold its own against a well-capitalized initiative that doesn't ask the right questions.
+
+**CASEY:** That framing is more optimistic than the track record warrants. Epistemic advantage doesn't automatically translate into institutional power, and the history of that gap is exactly what the Animikii piece is responding to. I think the honest version is: it *can* translate — and the examples where it has are worth studying — but it doesn't do so automatically.
+
+**RILEY:** Agreed on the "doesn't happen automatically" part. The housing announcement today is a useful parallel. More than 130 homes for Indigenous families in Prince Rupert is genuinely meaningful — but if the design, construction contracts, and long-term management are held by provincial housing bodies, it's infrastructure delivery rather than housing sovereignty. The same distinction applies to tech infrastructure: a broadband network built *for* a community is different from one owned and operated *by* a community.
+
+**CASEY:** And that distinction almost never shows up in the press release. It shows up in the governance documents — if those are public at all.
+
+**RILEY:** So the concrete ask for regional institutions — the Cariboo Regional District, the School District, the regional health authority — is this: before signing on to any provincial or federal resource data initiative, check whether local Nations are co-designers or late-stage consultants. That one question changes the shape of what's possible.
+
+**CASEY:** The optimistic read is that asking the question publicly creates some accountability pressure. The skeptical read is that institutions already know the answer and choose not to ask. Both can be true simultaneously, which is where this conversation keeps landing — not resolved, but with a clearer picture of what the actual leverage points are. If you're in a Nation building this capacity and want to push that question into public view — or you have corrections to anything we've said today — reach out: feedback at cariboosignals dot c-a. We genuinely want to close the gaps in what we're able to report.
+
+**RILEY:** More to work through here — we'll keep pulling on it. Thanks for spending your Thursday with us.
+
+**CASEY:** Take care.
