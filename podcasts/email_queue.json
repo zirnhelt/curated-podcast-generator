@@ -1508,6 +1508,20 @@
       "theme_day": 3,
       "status": "used",
       "used_at": "2026-06-11"
+    },
+    {
+      "id": "9f1c3935",
+      "type": "feedback",
+      "message_id": "<B81A91F5-0814-4B1F-9B3D-CDB10C7B7E53@firstjourneytrails.com>",
+      "from_address": "t***@firstjourneytrails.com",
+      "subject": "Comments on today\u2019s episode ",
+      "received_at": "2026-06-11T09:10:53-07:00",
+      "body_text": "Hello, I am writing today to provide some feedback on today\u2019s episode. I\u2019d like to correct you in regards to a statement made about the village of Clearwater, BC. You mentioned Clearwater sit at the territorial border of the Tsilcotin and the Secwepmecw nations. This is incorrect. Clearwater, located in the heart of.Simpcw Simp territory is nowhere near the Tsilquotin territory. In general that territory starts west of the Fraser river. This just as a friendly correction. In addition, I\u2019d like t",
+      "extracted_urls": [],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
