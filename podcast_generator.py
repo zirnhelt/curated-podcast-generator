@@ -3293,11 +3293,22 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         on_theme_news = all_articles
         bonus_articles = []
 
-    # Sort on-theme news by boosted score (theme relevance) so the most
-    # relevant articles appear first and get picked up by Claude's selection.
+    # Sort on-theme news by the same local theme-relevance scoring used to pick
+    # Deep Dive articles (keyword hits, anti_keyword penalties, source_boost) so
+    # the News Roundup ordering stays consistent with what got selected for the
+    # Deep Dive — articles that score poorly against today's theme (e.g. ones
+    # that really belong to a neighboring theme) sink toward the bonus end of
+    # the roundup instead of leading it.
+    _roundup_theme_keywords = _build_theme_keywords(theme_name)
+    _roundup_anti_keywords = _build_theme_anti_keywords(theme_name)
+    _roundup_source_boost = _build_theme_source_boost(theme_name)
     on_theme_news = sorted(
         on_theme_news,
-        key=lambda a: a.get('_boosted_score', a.get('ai_score', 0)),
+        key=lambda a: _local_theme_relevance(
+            a, _roundup_theme_keywords,
+            source_boost=_roundup_source_boost,
+            anti_keywords=_roundup_anti_keywords,
+        ),
         reverse=True,
     )
 
