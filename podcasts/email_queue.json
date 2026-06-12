@@ -1522,6 +1522,31 @@
       "theme_day": 0,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "b2125339",
+      "type": "newsletter",
+      "message_id": "<b74ee46da1eb7a8973ab45d41.9538d97182.20260612171602.3a150a7c3c.c989c6d6@mail116.atl111.rsgsv.net>",
+      "from_address": "s***@canadaland.com",
+      "subject": "Killer robots and nerdy rock stars",
+      "received_at": "2026-06-12T17:16:29+00:00",
+      "body_text": "Canadaland logo ** A.I.n't Seen Nothing Yet ------------------------------------------------------------ https://www.canadaland.com/podcast/1378-a-cohere-founder-on-what-a-i-critics-get-wrong/?utm_sou",
+      "extracted_urls": [
+        "https://www.canadaland.com/podcast/1378-a-cohere-founder-on-what-a-i-critics-get-wrong/?utm_source=Master+Email+List&utm_campaign=3a150a7c3c-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-3a150a7c3c-379881794",
+        "https://www.canadaland.com/podcast/185-ottawas-killer-robot-problem/?utm_source=Master+Email+List&utm_campaign=3a150a7c3c-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-3a150a7c3c-379881794",
+        "https://fizz.ca/en/mobile?ADDONS%5B0%5D=18&CVRG=108&DATA=703&PLAN=3&SMS=223&VOICE=90&WIZARD=mobile&utm_source=canadaland&utm_medium=article&utm_term=01&utm_content=2026&utm_source=Master+Email+List&utm_campaign=3a150a7c3c-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-3a150a7c3c-379881794",
+        "https://www.canadaland.com/podcast/1380-did-carney-invest-in-a-i-right-before-it-crashes/?utm_source=Master+Email+List&utm_campaign=3a150a7c3c-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-3a150a7c3c-379881794",
+        "https://www.canadaland.com/podcast/1381-the-conservaties-are-giddy-about-the-technical-recession/?utm_source=Master+Email+List&utm_campaign=3a150a7c3c-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-3a150a7c3c-379881794",
+        "http://canadaland.com/live?utm_source=Master+Email+List&utm_campaign=3a150a7c3c-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-3a150a7c3c-379881794",
+        "https://www.google.com/maps/place/Halifax+Convention+Centre/data=!4m2!3m1!1s0x0:0xad669e3b49f39d63?sa=X&ved=1t:2428&ictx=111&utm_source=Master+Email+List&utm_campaign=3a150a7c3c-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-3a150a7c3c-379881794",
+        "https://canadalandnetwork.supercast.com?utm_source=Master+Email+List&utm_campaign=3a150a7c3c-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-3a150a7c3c-379881794",
+        "https://docs.google.com/forms/d/e/1FAIpQLSchDeMalewZgQ5N6zd8gPFBzm9Lf4RK2MLoWlj7azZ-eDBcqw/viewform?utm_source=Master+Email+List&utm_campaign=3a150a7c3c-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-3a150a7c3c-379881794",
+        "https://www.canadaland.com/live/?utm_source=Master+Email+List&utm_campaign=3a150a7c3c-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-3a150a7c3c-379881794"
+      ],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
