@@ -619,13 +619,30 @@ def _enrich_articles_with_body(articles, label="", max_articles=None):
             a["_body"] = body
 
 
+def _anti_keyword_penalty(text_lower, theme):
+    """Return the keyword-weighted penalty for a theme's anti_keywords found in text_lower.
+
+    anti_keywords flag terms that signal an article really belongs to a
+    neighboring theme (e.g. Indigenous data-sovereignty terms for the
+    Science, Wonder & the Natural World theme), so they count against a
+    theme's relevance with the same per-word weighting as positive keywords.
+    """
+    return sum(len(kw.split()) for kw in theme.get("anti_keywords", []) if kw.lower() in text_lower)
+
+
 def _score_text_against_themes(text, themes_config):
-    """Return {day_int: keyword_count} for each theme in themes_config."""
+    """Return {day_int: keyword_count} for each theme in themes_config.
+
+    Positive keyword hits are weighted by word count; anti_keyword hits
+    (terms that signal the content really belongs to a neighboring theme)
+    are subtracted with the same weighting, floored at 0.
+    """
     text_lower = text.lower()
-    return {
-        int(day): sum(len(kw.split()) for kw in theme.get("keywords", []) if kw.lower() in text_lower)
-        for day, theme in themes_config.items()
-    }
+    scores = {}
+    for day, theme in themes_config.items():
+        hits = sum(len(kw.split()) for kw in theme.get("keywords", []) if kw.lower() in text_lower)
+        scores[int(day)] = max(0, hits - _anti_keyword_penalty(text_lower, theme))
+    return scores
 
 
 def _claude_theme_match(text: str, themes_config: dict) -> tuple:
@@ -2575,6 +2592,9 @@ def categorize_articles_for_deep_dive(articles, theme_day):
         ai_score_normalized = article.get('ai_score', 0) / 100.0  # 0-1 range
         # Keyword hits weighted heavier (each hit = 2 points), AI score as tiebreaker
         score = keyword_hits * 2 + ai_score_normalized
+        # Penalize anti_keyword hits — terms signaling the article really
+        # belongs to a neighboring theme (same weighting as positive hits)
+        score -= _anti_keyword_penalty(text, theme_info) * 2
         # Small boost for known gadget/maker outlets (e.g. Hackaday, Engadget)
         if source_boost and article.get('source', '').lower() in source_boost:
             score += 1
@@ -2637,17 +2657,22 @@ def _group_by_discipline(articles):
     return placed
 
 
-def _local_theme_relevance(article, theme_keywords, source_boost=None):
+def _local_theme_relevance(article, theme_keywords, source_boost=None, anti_keywords=None):
     """Score an article's theme relevance using local keyword matching.
 
     Returns a float: keyword_hits * 2 + boosted_score / 100.0 (+1 if the
     article's source is on the theme's source_boost allowlist, e.g. a
-    gadget outlet like Hackaday/Engadget for the "Gear, Gadgets" theme).
+    gadget outlet like Hackaday/Engadget for the "Gear, Gadgets" theme),
+    minus 2 points per anti_keyword hit (terms signaling the article really
+    belongs to a neighboring theme).
     """
     text = f"{article.get('title', '')} {article.get('summary', '')}".lower()
     keyword_hits = sum(len(kw.split()) for kw in theme_keywords if kw in text)
     boosted = article.get('_boosted_score', article.get('ai_score', 0)) / 100.0
     score = keyword_hits * 2 + boosted
+    if anti_keywords:
+        anti_hits = sum(len(kw.split()) for kw in anti_keywords if kw in text)
+        score -= anti_hits * 2
     if source_boost and article.get('source', '').lower() in source_boost:
         score += 1
     return score
@@ -2695,6 +2720,29 @@ def _build_theme_source_boost(theme_name):
     return []
 
 
+def _build_theme_anti_keywords(theme_name):
+    """Return the lowercased anti_keywords list for this theme — terms that
+    signal content really belongs to a neighboring theme (e.g. Indigenous
+    data-sovereignty terms for the Science, Wonder & the Natural World theme)."""
+    for info in CONFIG['themes'].values():
+        if info['name'] == theme_name:
+            return [k.lower() for k in info.get('anti_keywords', [])]
+    return []
+
+
+def _build_theme_lens(theme_name):
+    """Return the theme's "lens" guidance string (empty if not configured).
+
+    The lens is a short instruction distinguishing this theme from its most
+    overlapping neighbor(s), injected into the Deep Dive prompt to keep the
+    episode anchored to its assigned theme.
+    """
+    for info in CONFIG['themes'].values():
+        if info['name'] == theme_name:
+            return info.get('lens', '')
+    return ''
+
+
 def select_deep_dive_from_feed(theme_articles, theme_name, count=3):
     """Select deep dive articles from pre-curated podcast feed theme articles.
 
@@ -2711,6 +2759,7 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=3):
     weak_match = [a for a in theme_articles if a.get('_keyword_matches', 0) == 0]
 
     theme_keywords = _build_theme_keywords(theme_name)
+    theme_anti_keywords = _build_theme_anti_keywords(theme_name)
     used_local_scoring = False
 
     if strong_match:
@@ -2724,7 +2773,11 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=3):
         print(f"  ⚠️  No feed keyword matches; applying local theme scoring")
         print(f"  📎 Local keywords: {theme_keywords[:10]}{'...' if len(theme_keywords) > 10 else ''}")
 
-        scored = sorted(theme_articles, key=lambda a: _local_theme_relevance(a, theme_keywords), reverse=True)
+        scored = sorted(
+            theme_articles,
+            key=lambda a: _local_theme_relevance(a, theme_keywords, anti_keywords=theme_anti_keywords),
+            reverse=True,
+        )
         deep_dive = scored[:count]
 
     deep_dive_urls = {a.get('url', '') for a in deep_dive}
@@ -2732,7 +2785,10 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=3):
 
     # When using local scoring, also sort news by theme relevance
     if used_local_scoring:
-        news_articles.sort(key=lambda a: _local_theme_relevance(a, theme_keywords), reverse=True)
+        news_articles.sort(
+            key=lambda a: _local_theme_relevance(a, theme_keywords, anti_keywords=theme_anti_keywords),
+            reverse=True,
+        )
 
     print(f"Deep dive: selected {len(deep_dive)} articles for '{theme_name}'")
     print(f"  Strong keyword matches (from feed): {len(strong_match)}")
@@ -3464,6 +3520,7 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             other_host_upper=other_host_name.upper(),
             other_host_name=other_host_name,
             theme_name=theme_name,
+            theme_lens=_build_theme_lens(theme_name),
             news_text=news_text,
             deep_dive_text=deep_dive_text,
             news_titles_brief=news_titles_brief,
