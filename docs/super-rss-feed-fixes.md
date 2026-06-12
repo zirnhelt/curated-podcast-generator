@@ -143,6 +143,67 @@ Cool Tools, etc.), not just whatever scored highest on the general rubric.
 
 ---
 
+## 4. Apply anti-keyword penalties when assigning articles to theme-day buckets
+
+### Problem
+
+`config/themes.json` now includes an `anti_keywords` field for themes whose
+keyword sets overlap with a neighboring theme day. For example, theme 6
+(Science, Wonder & the Natural World) penalizes Indigenous data-sovereignty
+terms (`"data sovereignty"`, `"OCAP"`, `"land title"`, `"treaty negotiation"`,
+etc.) because that content really belongs to theme 3 (Indigenous Lands &
+Innovation, Thursday). The consumer side (`podcast_generator.py`) already
+applies this penalty in three places:
+
+- `_score_text_against_themes()` — scoring articles against all 7 themes
+- `_local_theme_relevance()` — picking Deep Dive articles from a theme's bucket
+- News Roundup ordering — sorting the remaining theme-bucket articles for the
+  roundup (added alongside this doc update)
+
+But the **upstream bucket assignment** — whichever scoring pass in
+super-rss-feed decides which `feed-podcast-{day}.json` an article lands in,
+and sets its initial `_keyword_matches` / `_boosted_score` — does not know
+about `anti_keywords`. An article that scores well on theme-6 keywords purely
+because it mentions Indigenous governance in a science context can still be
+bucketed into Sunday's feed as a strong theme match, and the consumer-side
+penalty only gets a chance to demote it within that bucket — it can't move it
+to a different day's bucket where it'd actually fit better.
+
+### What to change
+
+When scoring an article against a theme day's keyword set, also check that
+theme's `anti_keywords` (from `config/themes.json`, the source of truth for
+both repos) and subtract the same per-word-weighted penalty before computing
+`_keyword_matches` / `_boosted_score` for that theme-day bucket:
+
+```
+theme_score = positive_keyword_hits - anti_keyword_hits   # floored at 0
+```
+
+If an article scores higher against a *different* theme's keyword set once
+anti_keywords are applied (e.g. it scores low for Sunday/Science but high for
+Thursday/Indigenous Lands), prefer bucketing it under the theme it actually
+fits — same logic as `_claude_theme_match()`'s "hold for the most relevant
+upcoming episode" fallback in the consumer.
+
+### How the podcast generator uses this
+
+This closes the loop the consumer side opened: `_score_text_against_themes()`,
+`_local_theme_relevance()`, and the News Roundup sort all already subtract
+`anti_keywords` hits. Doing the same at bucket-assignment time means
+misclassified articles never enter the wrong day's `_is_bonus=false` set in
+the first place, instead of relying on the consumer to merely de-prioritize
+them within that day.
+
+### Verification
+
+Pick a theme with `anti_keywords` configured (currently theme 6, Science,
+Wonder & the Natural World) and confirm that articles whose text is dominated
+by that theme's `anti_keywords` terms either score lower for that theme-day's
+bucket or get reassigned to the theme day whose keywords they actually match.
+
+---
+
 ## Implementation order
 
 These fixes are independent and can be done in either order, but **fix 1 (local sources) has higher impact** because it addresses a content gap that no amount of filtering can solve — you can't surface local Cariboo news if the feed doesn't contain any.
@@ -153,6 +214,10 @@ Suggested sequence:
 3. Add `_source_category` field to `feed-podcast.json` items
 4. Investigate the Wednesday gadget-theme pool (issue 3 above) — check `min_score`
    and rolling-cache interaction for gadget-source feeds
+5. Apply `anti_keywords` penalties from `config/themes.json` at bucket-assignment
+   time (issue 4 above) — lowest effort of the five since the keyword lists and
+   penalty formula already exist on the consumer side; mainly a matter of reading
+   the same config and applying the same subtraction during upstream scoring
 
 After each change, follow the [deployment verification steps](../SIBLING_REPOS.md#monitoring-and-failure) to confirm the podcast generator consumes the updated feed correctly.
 
@@ -162,5 +227,5 @@ After each change, follow the [deployment verification steps](../SIBLING_REPOS.m
 
 These fixes also advance several items tracked in the podcast generator's [ROADMAP.md](../ROADMAP.md):
 
-- **Medium-term:** "Better theme-to-article matching" — category metadata enables this
-- **Long-term:** "Cross-project: shared interest/scoring config" — local source scoring aligns with this goal
+- **Medium-term:** "Better theme-to-article matching" — category metadata enables this; `anti_keywords`-aware bucketing (fix 4) is a direct instance of it
+- **Long-term:** "Cross-project: shared interest/scoring config" — local source scoring aligns with this goal; `config/themes.json`'s `keywords`/`anti_keywords`/`lens` fields should be treated as the shared source of truth for theme-day scoring in both repos
