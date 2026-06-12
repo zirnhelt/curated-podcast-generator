@@ -1,17 +1,4 @@
 {
-  "2026-03-13": {
-    "timestamp": 1773406799.04367,
-    "date": "2026-03-13",
-    "theme": "Wild Spaces & Outdoor Life",
-    "central_question": "Deep dive on Wild Spaces & Outdoor Life",
-    "topics_covered": [
-      "satellite",
-      "renewable energy",
-      "solar",
-      "AI",
-      "infrastructure"
-    ]
-  },
   "2026-03-14": {
     "timestamp": 1773492844.929165,
     "date": "2026-03-14",
@@ -2129,6 +2116,32 @@
       "Institutional independence and funding relationships as constraints on accountability",
       "Community-led infrastructure ownership versus service delivery models",
       "Specific case studies: Animikii, FirstVoices, T\u015dilhqot'in, Lhtako Den\u00e9 Nation, and BCFNJC Police Accountability Unit"
+    ]
+  },
+  "2026-06-12": {
+    "timestamp": 1781258747.665726,
+    "date": "2026-06-12",
+    "theme": "Wild Spaces & Outdoor Life",
+    "central_question": "How can wildlife management frameworks keep pace with changing wild spaces, particularly regarding grizzly population recovery and human encroachment in the Chilcotin?",
+    "riley_position": "Modern monitoring technology (camera traps, acoustic systems, occupancy models) can enable preventive wildlife management by providing real-time data on animal movement before incidents occur, and the costs of deployment have become accessible to community organizations.",
+    "riley_key_evidence": [
+      "Grizzly populations in Greater Yellowstone Ecosystem recovered significantly over 30 years but now compete with humans for same corridors",
+      "Parks Canada uses camera trap arrays and occupancy models in some areas to flag elevated activity before incidents",
+      "Trail camera network costs have dropped dramatically, deployable by community groups for thousands of dollars"
+    ],
+    "casey_position": "Technology alone cannot solve systemic governance failures; the real problem is that provincial wildlife management frameworks ignore T\u015dilhqot'in Aboriginal title and stewardship authority, and monitoring systems fail without sustained funding and institutional commitment.",
+    "casey_key_evidence": [
+      "Cariboo-Chilcotin management frameworks haven't been updated despite grizzly population pressures from habitat fragmentation and increased backcountry traffic",
+      "Recreation site signage reflects province-approved information that contradicts current T\u015dilhqot'in land use decisions",
+      "Community monitoring systems like iNaturalist concentrate data in most-visited corridors, not highest-risk areas, and grant-funded monitoring stops functioning when funding ends"
+    ],
+    "resolution": "They reached partial agreement that the core goal should be establishing formal governance standing and communication channels for T\u015dilhqot'in stewardship information (like Haida's Gwaii Haanas co-management model), with Riley conceding that political agreement is harder than technology implementation and Casey acknowledging such a system is achievable without new platforms.",
+    "topics_covered": [
+      "Yellowstone camping ban and grizzly population recovery as management case study",
+      "Jurisdictional gaps between provincial wildlife management and T\u015dilhqot'in Aboriginal title in the Chilcotin",
+      "Remote monitoring technology capabilities and cost-benefit analysis",
+      "Sustainability challenges of grant-dependent monitoring infrastructure",
+      "Pre-trip stewardship communication protocols as governance model"
     ]
   }
 }

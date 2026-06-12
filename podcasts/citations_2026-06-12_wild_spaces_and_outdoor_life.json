@@ -1,0 +1,185 @@
+{
+  "episode": {
+    "date": "2026-06-12",
+    "formatted_date": "Friday, June 12, 2026",
+    "theme": "Wild Spaces & Outdoor Life",
+    "title": "Cariboo Signals - Wild Spaces & Outdoor Life",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Wild Spaces & Outdoor Life.</p><p><b>NEWS ROUNDUP:</b> We break down [Al Jazeera English] Bolivian farmers clash with police as ex-president vows resistance and [Boing Boing] In 1932, John W. Campbell imagined machines outliving humanity, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> How can wildlife management frameworks keep pace with changing wild spaces, particularly regarding grizzly population recovery and human encroachment in the Chilcotin? Topics include: Yellowstone camping ban and grizzly population recovery as management case study, Jurisdictional gaps between provincial wildlife management and Tŝilhqot'in Aboriginal title in the Chilcotin, Remote monitoring technology capabilities and cost-benefit analysis, Sustainability challenges of grant-dependent monitoring infrastructure, Pre-trip stewardship communication protocols as governance model.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://cariboofamily.org\">Cariboo Family Enrichment Centre</a></p><p><b>Sources discussed:</b></p><ul><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/video/newsfeed/2026/6/11/bolivian-farmers-clash-with-police-as-ex-president-vows-resistance?traffic_source=rss\">[Al Jazeera English] Bolivian farmers clash with police as e...</a></li><li>Ellsworth Toohey (Boing Boing): <a href=\"https://boingboing.net/2026/06/11/in-1932-john-w-campbell-imagined-machines-outliving-humanity.html\">[Boing Boing] In 1932, John W. Campbell imagined machines ou...</a></li><li>Anna Washenko (Engadget): <a href=\"https://www.engadget.com/2192493/another-parent-has-filed-a-wrongful-death-suit-against-openai/\">[Engadget] Another parent has filed a wrongful death suit ag...</a></li><li>Associated Press (STAT News): <a href=\"https://www.statnews.com/2026/06/09/new-sunscreen-ingredient-bemotrizinol-fda/?utm_campaign=rss\">[STAT News] FDA OKs first new sunscreen ingredient in more t...</a></li><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/06/11/xatsull-first-nation-bringing-calling-our-people-home-event-to-williams-lake/\">[Williams Lake Tribune] Xat’sull First Nation bringing Calli...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/06/10/b-c-man-fined-6000-for-illegally-transporting-protected-snapping-turtle/\">[Williams Lake Tribune] B.C. man fined $6,000 for illegally ...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/google-deepmind-vivek-natarajan-ai-chase-cures-2026-6\">[Business Insider] After seeing Parkinson's take his father,...</a></li><li>Mohamed Hussein (Al Jazeera English): <a href=\"https://www.aljazeera.com/features/2026/6/9/irans-lakes-are-vanishing-satellite-images-show-a-deepening-water-crisis-2?traffic_source=rss\">[Al Jazeera English] Iran’s lakes are vanishing: Satellite i...</a></li><li>Madison Dapcevich (Outside Online): <a href=\"https://www.outsideonline.com/outdoor-adventure/environment/grizzly-bear-camping-restrictions-montana-wyoming/\">[Outside Online] Officials Have Officially Banned Tents at a...</a></li><li>https://www.techradar.com/author/craig-hale (TechRadar): <a href=\"https://www.techradar.com/pro/nashville-zoo-leads-fight-against-mega-ai-data-center-over-375-000-sign-petition-against-69-000-square-foot-building-set-to-overlook-animal-habitats\">[TechRadar] Nashville Zoo leads fight against mega AI data c...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-6<br>TTS Voices: OpenAI TTS API (Nova · Echo)<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-06-12T03:05:44.408183-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-sonnet-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 2673,
+      "voice_ratio_casey_riley": 0.95,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0
+      },
+      "total_hits": 0,
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] B.C. man fined $6,000 for illegally transporting protected snapping turtle",
+          "url": "https://wltribune.com/2026/06/10/b-c-man-fined-6000-for-illegally-transporting-protected-snapping-turtle/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 86,
+          "date_published": "2026-06-10T16:03:00+00:00",
+          "summary": "Thai Hoang Khoi Le pled guilty to two wildlife offences",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] After seeing Parkinson's take his father, this Googler found a new mission: teaching AI to chase cures",
+          "url": "https://www.businessinsider.com/google-deepmind-vivek-natarajan-ai-chase-cures-2026-6",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 77,
+          "date_published": "2026-06-11T09:00:01+00:00",
+          "summary": "Vivek Natarajan is using AI to help doctors and scientists chase new cures, inspired by his father's battle with Parkinson's disease.",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] Iran’s lakes are vanishing: Satellite images show a deepening water crisis",
+          "url": "https://www.aljazeera.com/features/2026/6/9/irans-lakes-are-vanishing-satellite-images-show-a-deepening-water-crisis-2?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "Mohamed Hussein",
+          "ai_score": 66,
+          "date_published": "2026-06-09T06:38:49+00:00",
+          "summary": "Years of drought, falling rainfall and unsustainable water use have been worsened further by the US-Israel war.",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] Bolivian farmers clash with police as ex-president vows resistance",
+          "url": "https://www.aljazeera.com/video/newsfeed/2026/6/11/bolivian-farmers-clash-with-police-as-ex-president-vows-resistance?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "",
+          "ai_score": 80,
+          "date_published": "2026-06-11T05:20:55+00:00",
+          "summary": "Bolivian farmers clash with police as ex-president vows resistance.",
+          "discussed": true
+        },
+        {
+          "title": "[Boing Boing] In 1932, John W. Campbell imagined machines outliving humanity",
+          "url": "https://boingboing.net/2026/06/11/in-1932-john-w-campbell-imagined-machines-outliving-humanity.html",
+          "source": "Boing Boing",
+          "author": "Ellsworth Toohey",
+          "ai_score": 77,
+          "date_published": "2026-06-11T20:19:48+00:00",
+          "summary": "In 1932, a 22-year-old John W. Campbell — later the Astounding editor who shaped midcentury science fiction, and, as has been well documented, an open fascist — published \"The Last Evolution\" in Amazi...",
+          "discussed": true
+        },
+        {
+          "title": "[Engadget] Another parent has filed a wrongful death suit against OpenAI",
+          "url": "https://www.engadget.com/2192493/another-parent-has-filed-a-wrongful-death-suit-against-openai/",
+          "source": "Engadget",
+          "author": "Anna Washenko",
+          "ai_score": 78,
+          "date_published": "2026-06-11T18:34:03+00:00",
+          "summary": "Yet another parent is suing OpenAI, claiming its chatbot did not do enough to prevent their child's death by suicide.",
+          "discussed": true
+        },
+        {
+          "title": "[STAT News] FDA OKs first new sunscreen ingredient in more than 25 years",
+          "url": "https://www.statnews.com/2026/06/09/new-sunscreen-ingredient-bemotrizinol-fda/?utm_campaign=rss",
+          "source": "STAT News",
+          "author": "Associated Press",
+          "ai_score": 70,
+          "date_published": "2026-06-09T18:43:15+00:00",
+          "summary": "Federal health regulators on Tuesday signed off on the first new sunscreen ingredient for the U.S. market in more than 25 years.",
+          "discussed": true
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Wild Spaces & Outdoor Life",
+      "articles": [
+        {
+          "title": "[Outside Online] Officials Have Officially Banned Tents at a Popular Yellowstone-Area Camp Amid Growing Grizzly Concerns",
+          "url": "https://www.outsideonline.com/outdoor-adventure/environment/grizzly-bear-camping-restrictions-montana-wyoming/",
+          "source": "Outside Online",
+          "author": "Madison Dapcevich",
+          "ai_score": 72,
+          "date_published": "2026-06-08T23:10:13+00:00",
+          "summary": "Following heightened grizzly activity, the government has banned tents and soft-sided trailers at a Yellowstone-area campsite in Montana. The post Officials Have Officially Banned Tents at a Popular Y...",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Nashville Zoo leads fight against mega AI data center — over 375,000 sign petition against 69,000 square foot building set to overlook animal habitats",
+          "url": "https://www.techradar.com/pro/nashville-zoo-leads-fight-against-mega-ai-data-center-over-375-000-sign-petition-against-69-000-square-foot-building-set-to-overlook-animal-habitats",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/craig-hale",
+          "ai_score": 81,
+          "date_published": "2026-06-10T20:25:00+00:00",
+          "summary": "Nashville Zoo collects 375k signatures against a proposed data center, citing potential animal welfare and conservation risks.",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Xat’sull First Nation bringing Calling Our People Home event to Williams Lake",
+          "url": "https://wltribune.com/2026/06/11/xatsull-first-nation-bringing-calling-our-people-home-event-to-williams-lake/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 100,
+          "date_published": "2026-06-11T16:35:43.318142+00:00",
+          "summary": "Everyone is invited to visit Boitanio Park on June 17",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "How can wildlife management frameworks keep pace with changing wild spaces, particularly regarding grizzly population recovery and human encroachment in the Chilcotin?",
+        "riley_position": "Modern monitoring technology (camera traps, acoustic systems, occupancy models) can enable preventive wildlife management by providing real-time data on animal movement before incidents occur, and the costs of deployment have become accessible to community organizations.",
+        "riley_key_evidence": [
+          "Grizzly populations in Greater Yellowstone Ecosystem recovered significantly over 30 years but now compete with humans for same corridors",
+          "Parks Canada uses camera trap arrays and occupancy models in some areas to flag elevated activity before incidents",
+          "Trail camera network costs have dropped dramatically, deployable by community groups for thousands of dollars"
+        ],
+        "casey_position": "Technology alone cannot solve systemic governance failures; the real problem is that provincial wildlife management frameworks ignore Tŝilhqot'in Aboriginal title and stewardship authority, and monitoring systems fail without sustained funding and institutional commitment.",
+        "casey_key_evidence": [
+          "Cariboo-Chilcotin management frameworks haven't been updated despite grizzly population pressures from habitat fragmentation and increased backcountry traffic",
+          "Recreation site signage reflects province-approved information that contradicts current Tŝilhqot'in land use decisions",
+          "Community monitoring systems like iNaturalist concentrate data in most-visited corridors, not highest-risk areas, and grant-funded monitoring stops functioning when funding ends"
+        ],
+        "resolution": "They reached partial agreement that the core goal should be establishing formal governance standing and communication channels for Tŝilhqot'in stewardship information (like Haida's Gwaii Haanas co-management model), with Riley conceding that political agreement is harder than technology implementation and Casey acknowledging such a system is achievable without new platforms.",
+        "topics_covered": [
+          "Yellowstone camping ban and grizzly population recovery as management case study",
+          "Jurisdictional gaps between provincial wildlife management and Tŝilhqot'in Aboriginal title in the Chilcotin",
+          "Remote monitoring technology capabilities and cost-benefit analysis",
+          "Sustainability challenges of grant-dependent monitoring infrastructure",
+          "Pre-trip stewardship communication protocols as governance model"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "Azure Neural TTS (Ava · Andrew)",
+    "text_to_speech_openai": "OpenAI TTS API (Nova · Echo)",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}

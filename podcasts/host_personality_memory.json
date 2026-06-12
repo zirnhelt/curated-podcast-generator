@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[STAT News] STAT+: Blood pressure tech floods the market aft",
       "[TechCrunch] Cyberdecks are having a moment, rejecting big t",
       "Yukon founder joins national Indigenous AI program as Firewe",
       "[TechRadar] 'Who wouldn't want a large-scale industrial poll",
@@ -10,7 +9,8 @@
       "[ScienceAlert] AI Could Soon Use More Water Than Humanity Dr",
       "#184 Carney Wants Your Data. Why Won&#039;t Big Tech Give it",
       "[Business Insider] A consulting firm is now using AI to give",
-      "[TechRadar] 'Some places carry the costs and other places ca"
+      "[TechRadar] 'Some places carry the costs and other places ca",
+      "[TechRadar] Nashville Zoo leads fight against mega AI data c"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -35,9 +35,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-02",
-        "clue": "funding-risk: ~ \u2014 Acknowledged maintenance underfunding as structural problem, not solvable by better design",
-        "occurrences": 1
+        "date": "2026-06-12",
+        "clue": "funding-risk: ~ \u2014 added solar power and iNaturalist complexity to sustainability question",
+        "occurrences": 2
       },
       {
         "date": "2026-04-25",
@@ -47,11 +47,6 @@
       {
         "date": "2026-05-21",
         "clue": "Indigenous-tech:~ \u2014 Acknowledged pragmatism-vs-governance tension as simultaneous truths",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-04-27",
-        "clue": "tech-optimism: - \u2014 Walked back AI-as-democratizer; now skeptical of commercial tool trajectories",
         "occurrences": 2
       },
       {
@@ -200,6 +195,11 @@
         "formed": "2026-06-02",
         "signal": "Indigenous-tech:x \u2014 Conceded partnership framing risks extractive logic without Nation governance primacy",
         "occurrences": 3
+      },
+      {
+        "formed": "2026-06-12",
+        "signal": "tech-optimism: - \u2014 acknowledged Banff comparison flatters model unfairly",
+        "occurrences": 3
       }
     ]
   },
@@ -316,6 +316,16 @@
       {
         "date": "2026-06-11",
         "clue": "structural-lens:- \u2014 Softened determinism ('can be true simultaneously') vs. earlier harder positions",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-06-12",
+        "clue": "structural-lens: + \u2014 hardened stance on governance vs visibility substitution",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-06-12",
+        "clue": "pilot-skepticism: + \u2014 elevated concern about grant-dependent monitoring infrastructure failure patterns",
         "occurrences": 1
       }
     ],
