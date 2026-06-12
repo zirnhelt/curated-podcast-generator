@@ -97,7 +97,7 @@ Each script below is labeled with the theme its date is assigned. Use that label
 
 11. **Named Attribution (C1 — Consent)** — Flag any line where a real, named individual appears to be quoted or paraphrased but the phrasing goes beyond what is directly supported by the source article. Patterns to flag: (a) direct-speech quotes not present verbatim in source articles, (b) paraphrased opinions attributed to a named person ("X believes…", "X told us…", "According to X…") where no such statement exists in the citations, (c) fabricated anecdotes or positions assigned to real people. Score: 5 = no unanchored attributions; 3 = at least one paraphrased attribution that is plausible but not verifiable; 1 = a fabricated or unsupported direct quote attributed to a named real individual.
 
-12. **Theme Adherence** — Does the episode actually commit to *its assigned* daily theme (labeled above each script), from Welcome through Deep Dive — or does it drift into another day's theme territory, lean on generic tech commentary, or land on an angle that could air under any theme without changing a word? Name the specific point where the episode drifts off-theme, and call out when a segment would honestly belong to a different day's theme. Score 5 = the theme visibly shapes the episode's choices throughout; 3 = the theme is present but thin or front-loaded then abandoned; 1 = the theme is a label only — the content is interchangeable with another day's episode.\
+12. **Theme Adherence** — Does the episode actually commit to *its assigned* daily theme (labeled above each script), from Welcome through Deep Dive — or does it drift into another day's theme territory, lean on generic tech commentary, or land on an angle that could air under any theme without changing a word? Name the specific point where the episode drifts off-theme, and call out when a segment would honestly belong to a different day's theme. Score 5 = the theme visibly shapes the episode's choices throughout; 3 = the theme is present but thin or front-loaded then abandoned; 1 = the theme is a label only — the content is interchangeable with another day's episode. Episodes marked **Format: Standalone introduction/trailer** are not part of the daily theme rotation — score Theme Adherence N/A for these rather than penalizing them against a date-based theme.\
 """
 
 
@@ -125,8 +125,44 @@ def load_config() -> dict:
     }
 
 
+def is_trailer_episode(filename: str, themes_config: dict) -> bool:
+    """True if the script's sibling citations file marks it as a standalone trailer
+    (e.g. the "introducing the show" episode), which is exempt from the daily
+    theme rotation and should not be scored against a date-derived theme.
+
+    Detected either via an explicit `episode_type: "trailer"` field, or by the
+    citations' declared theme not matching any theme in the weekday rotation
+    (e.g. "Introducing The Show").
+    """
+    match = re.match(r"podcast_script_(\d{4}-\d{2}-\d{2})_(.+)\.txt$", filename)
+    if not match:
+        return False
+    date_str, slug = match.groups()
+    citations_path = SCRIPTS_DIR / f"citations_{date_str}_{slug}.json"
+    if not citations_path.exists():
+        return False
+    try:
+        with open(citations_path) as f:
+            citations = json.load(f)
+    except (json.JSONDecodeError, OSError):
+        return False
+    episode = citations.get("episode", {})
+    if episode.get("episode_type") == "trailer":
+        return True
+    declared_theme = episode.get("theme")
+    rotation_theme_names = {theme["name"] for theme in themes_config.values()}
+    return bool(declared_theme) and declared_theme not in rotation_theme_names
+
+
 def assigned_theme_for(filename: str, themes_config: dict) -> str | None:
-    """The theme this script's date is assigned under the fixed weekday rotation."""
+    """The theme this script's date is assigned under the fixed weekday rotation.
+
+    Returns None for standalone/trailer episodes (e.g. the show intro), which
+    are not part of the rotation and should not be scored against whatever
+    theme happens to own that date.
+    """
+    if is_trailer_episode(filename, themes_config):
+        return None
     match = re.search(r"(\d{4}-\d{2}-\d{2})", filename)
     if not match:
         return None
@@ -167,10 +203,17 @@ def excerpt_script(content: str, max_chars: int = 8000) -> str:
     pre_dd = content[:dd_idx]
     deep_dive = content[dd_idx:]
 
+    # The Welcome (including the land acknowledgement) is short — always keep
+    # it verbatim so it doesn't get scored as "omitted" even when the rest of
+    # the News Roundup has to be dropped for length.
+    news_roundup_marker = "**NEWS ROUNDUP**"
+    nr_idx = pre_dd.find(news_roundup_marker)
+    welcome = pre_dd[:nr_idx] if nr_idx != -1 else ""
+
     pre_budget = max_chars - len(deep_dive)
     if pre_budget < 1000:
-        # Deep Dive alone exceeds budget — just take it all (Deep Dive is most important)
-        return "[Welcome + News Roundup omitted for length]\n\n" + deep_dive
+        # Deep Dive alone exceeds budget — keep the Welcome, drop the rest
+        return welcome + "\n\n[News Roundup omitted for length]\n\n" + deep_dive
     if pre_budget >= len(pre_dd):
         return content
 
@@ -268,7 +311,12 @@ def build_review_prompt(scripts: list[tuple[str, str]], config: dict, recent_cha
     for filename, content in scripts:
         excerpt = excerpt_script(content)
         theme = assigned_theme_for(filename, themes_config)
-        theme_line = f"**Assigned theme for this date:** {theme}\n\n" if theme else ""
+        if theme:
+            theme_line = f"**Assigned theme for this date:** {theme}\n\n"
+        elif is_trailer_episode(filename, themes_config):
+            theme_line = "**Format:** Standalone introduction/trailer episode — not part of the daily theme rotation.\n\n"
+        else:
+            theme_line = ""
         script_blocks.append(f"### {filename}\n\n{theme_line}{excerpt}")
 
     scripts_text = "\n\n---\n\n".join(script_blocks)
