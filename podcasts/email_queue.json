@@ -1572,6 +1572,31 @@
       "theme_day": 0,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "cb2a2a66",
+      "type": "newsletter",
+      "message_id": "<1021726406.1770883.1781380837633@ip-172-22-1-42.ca-central-1.compute.internal>",
+      "from_address": "c***@openmedia.org",
+      "subject": "Rogers-Shaw deal would benefit YOU? \ud83e\udd21",
+      "received_at": "2026-06-13T16:00:37-04:00",
+      "body_text": "Tell ISED: Enforce Rogers-Shaw commitments. (https://action.openmedia.org/s/9564415/BXS744BGN) Hi Erich,The government promised to watch Rogers \"like a hawk\" When Ottawa approved the $26-billion Roger",
+      "extracted_urls": [
+        "https://action.openmedia.org/s/9564415/BXS744BGN",
+        "https://action.openmedia.org/s/9564416/BXS744BGN",
+        "https://action.openmedia.org/s/9564417/BXS744BGN",
+        "https://action.openmedia.org/s/9564418/BXS744BGN",
+        "https://action.openmedia.org/s/9564419/BXS744BGN",
+        "https://action.openmedia.org/s/9564420/BXS744BGN",
+        "https://www.cbc.ca/news/business/rogers-shaw-approval-1.6797175",
+        "https://www.cbc.ca/news/business/rogers-communications-staff-buyouts-9.7178929",
+        "https://www.theglobeandmail.com/business/article-rogers-communications-buyouts-april-27/",
+        "https://www.theglobeandmail.com/business/article-rogers-earnings-results-capital-expenditures-free-cash-flow-mlse/"
+      ],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
