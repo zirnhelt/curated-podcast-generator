@@ -84,6 +84,10 @@ def get_azure_voice_for_host(host_key):
     """Get Azure Neural TTS voice name for a host."""
     return load_hosts_config()[host_key]["azure_voice"]
 
+def get_voice_instructions_for_host(host_key):
+    """Get OpenAI TTS delivery/emotion instructions for a host."""
+    return load_hosts_config()[host_key]["voice_instructions"]
+
 def get_theme_for_day(weekday):
     """Get theme for specific day of week (0=Monday, 6=Sunday)."""
     return load_themes_config()[str(weekday)]["name"]
