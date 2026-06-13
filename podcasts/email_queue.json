@@ -1547,6 +1547,31 @@
       "theme_day": 0,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "858f3cad",
+      "type": "newsletter",
+      "message_id": "<20260613.140635.900c32d3@mta49>",
+      "from_address": "f***@mail.beehiiv.com",
+      "subject": "What the Americans Said",
+      "received_at": "2026-06-13T14:06:35+00:00",
+      "body_text": "View image: (https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/f04e8ec0-0b90-4c58-bcc0-e1f61a974fa8/Census_Photo_8068694.jpg?t=178129266",
+      "extracted_urls": [
+        "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/f04e8ec0-0b90-4c58-bcc0-e1f61a974fa8/Census_Photo_8068694.jpg?t=1781292669",
+        "https://todmaffin.com/",
+        "https://bsky.app/profile/todmaffin.com",
+        "https://beacons.ai/todmaffin/socials",
+        "https://www.youtube.com/todmaffinvideo/?sub_confirmation=1",
+        "https://discord.todmaffin.com",
+        "https://tally.so/r/kdK2Kd",
+        "https://www.merriam-webster.com/dictionary/imperialism",
+        "https://thewalrus.ca/americans-still-like-canada-yes-even-republicans/",
+        "https://teentherapycenter.com/supporting-indifferent-teens/"
+      ],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
