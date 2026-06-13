@@ -40,11 +40,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-04-25",
-        "clue": "structural-lens:x \u2014 Conceded coordinator salary funding deserves priority",
-        "occurrences": 2
-      },
-      {
         "date": "2026-05-21",
         "clue": "Indigenous-tech:~ \u2014 Acknowledged pragmatism-vs-governance tension as simultaneous truths",
         "occurrences": 2
@@ -123,6 +118,11 @@
         "date": "2026-06-11",
         "clue": "structural-lens:~ \u2014 Added 'epistemic advantage' framing, complicating power analysis",
         "occurrences": 1
+      },
+      {
+        "date": "2026-06-13",
+        "clue": "pilot-skepticism:+ \u2014 Emphasized anecdotes need 'right people' to shift policy framing",
+        "occurrences": 1
       }
     ],
     "core_memories": [
@@ -199,6 +199,11 @@
       {
         "formed": "2026-06-12",
         "signal": "tech-optimism: - \u2014 acknowledged Banff comparison flatters model unfairly",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-06-13",
+        "signal": "structural-lens:x \u2014 Conceded Casey's point that partial corrections perpetuate structural problems",
         "occurrences": 3
       }
     ]
@@ -299,9 +304,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-06-05",
-        "clue": "community-trust:~ \u2014 Connected artist-as-monitor to formal governance standing problem",
-        "occurrences": 1
+        "date": "2026-06-13",
+        "clue": "community-trust:~ \u2014 Acknowledged cultural infrastructure's role in retention, softening pure policy-focused view",
+        "occurrences": 2
       },
       {
         "date": "2026-06-10",
@@ -326,6 +331,11 @@
       {
         "date": "2026-06-12",
         "clue": "pilot-skepticism: + \u2014 elevated concern about grant-dependent monitoring infrastructure failure patterns",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-06-13",
+        "clue": "structural-lens:+ \u2014 Moved from 'services gap' framing to systemic design failure analysis",
         "occurrences": 1
       }
     ],

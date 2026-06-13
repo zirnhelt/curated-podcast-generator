@@ -1,0 +1,227 @@
+{
+  "episode": {
+    "date": "2026-06-13",
+    "formatted_date": "Saturday, June 13, 2026",
+    "theme": "Cariboo Local Affairs",
+    "title": "Cariboo Signals - Cariboo Local Affairs",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Cariboo Local Affairs.</p><p><b>NEWS ROUNDUP:</b> We break down [Williams Lake Tribune] Williams Lake rejects jail closure idea, seeks government support on repeat crime and [Boing Boing] Man jailed after throwing ninja star at woman, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Can a provincial Seniors Advocate's visit to rural Cariboo communities meaningfully improve policy outcomes, or will it remain performative without sustained follow-up and community preparation? Topics include: Role of the BC Seniors Advocate and measurable past policy outcomes, Capacity gaps in local media and their impact on accountability reporting, Organizational preparation required for rural communities to effectively engage with provincial officials, The broader civic infrastructure of rural communities (agricultural shows, cultural events, volunteer capacity), Structural design failures in how provincial government reaches rural populations.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://southcariboo.cmha.bc.ca\">CMHA South Cariboo</a></p><p><b>Sources discussed:</b></p><ul><li>rebeccadyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/06/10/williams-lake-rejects-jail-closure-idea-seeks-government-support-on-repeat-crime/\">[Williams Lake Tribune] Williams Lake rejects jail closure i...</a></li><li>Rob Beschizza (Boing Boing): <a href=\"https://boingboing.net/2026/06/09/man-jailed-after-throwing-ninja-star-at-woman.html\">[Boing Boing] Man jailed after throwing ninja star at woman</a></li><li>none (100 Mile Free Press): <a href=\"https://100milefreepress.net/2026/06/11/forster-mountain-spruce-community-centre-rebuilding-following-recent-arsons/\">[100 Mile Free Press] FORSTER: Mountain Spruce Community Cen...</a></li><li>Patrick Davies (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/06/12/seniors-advocate-of-b-c-coming-to-the-cariboo/\">[Williams Lake Tribune] Senior’s Advocate of B.C. coming to ...</a></li><li>rebeccadyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/06/10/5th-annual-cariboo-classic-jr-steer-and-heifer-show-a-hit-in-williams-lake/\">[Williams Lake Tribune] 5th annual Cariboo Classic Jr Steer ...</a></li><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/06/12/williams-lake-writer-shortlisted-for-new-award-recognizing-outstanding-books-in-b-c/\">[Williams Lake Tribune] Williams Lake writer shortlisted for...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/06/11/inomin-mines-continues-exploration-near-williams-lake/\">[Williams Lake Tribune] Inomin Mines continues exploration n...</a></li><li>Laisa Conde (Quesnel Cariboo Observer): <a href=\"https://quesnelobserver.com/2026/06/11/hometown-hero-lisa-mccargar-keeps-the-sounds-of-bagpipes-and-drums-alive-in-quesnel/\">[Quesnel Cariboo Observer] HOMETOWN HERO: Lisa McCargar keep...</a></li><li>Laisa Conde (Quesnel Cariboo Observer): <a href=\"https://quesnelobserver.com/2026/06/12/quesnel-river-rush-celebrates-early-success-while-raising-concerns-over-new-league-costs/\">[Quesnel Cariboo Observer] Quesnel River Rush celebrates ear...</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/news/2026/6/12/alarm-as-ebola-spreads-into-new-areas-of-dr-congo?traffic_source=rss\">[Al Jazeera English] Alarm as Ebola spreads into new areas o...</a></li><li>https://www.nytimes.com/by/jancee-dunn (NYT Well): <a href=\"https://www.nytimes.com/interactive/2026/06/11/well/summer-challenge-phone-digital-detox-sleep.html\">[NYT Well] Summer Challenge: Put Your Phone Away for Better ...</a></li><li>Lachlan Labere (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/06/12/condolences-pour-in-following-death-of-longtime-city-of-salmon-arm-councillor-kevin-flynn/\">[Williams Lake Tribune] Condolences pour in following death ...</a></li><li>none (100 Mile Free Press): <a href=\"https://100milefreepress.net/2026/06/12/cariboo-outdoors-why-are-lakes-stocked/\">[100 Mile Free Press] CARIBOO OUTDOORS: Why are lakes stocke...</a></li></ul><p><b>Closing Music:</b> &ldquo;<a href=\"https://www.jamendo.com/track/1214597\">To Die For</a>&rdquo; by JARA &mdash; pop, indie, rocknroll. Free music via Jamendo, licensed under Creative Commons.</p><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-6<br>TTS Voices: OpenAI TTS API (Nova · Echo)<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-06-13T01:55:27.673071-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-sonnet-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 2655,
+      "voice_ratio_casey_riley": 1.13,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 1,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0
+      },
+      "total_hits": 1,
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 5
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Inomin Mines continues exploration near Williams Lake",
+          "url": "https://wltribune.com/2026/06/11/inomin-mines-continues-exploration-near-williams-lake/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 100,
+          "date_published": "2026-06-12T08:47:49.949184+00:00",
+          "summary": "2 MIN READ",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Williams Lake rejects jail closure idea, seeks government support on repeat crime",
+          "url": "https://wltribune.com/2026/06/10/williams-lake-rejects-jail-closure-idea-seeks-government-support-on-repeat-crime/",
+          "source": "Williams Lake Tribune",
+          "author": "rebeccadyok",
+          "ai_score": 100,
+          "date_published": "2026-06-11T09:02:58.168941+00:00",
+          "summary": "7 MIN READ",
+          "discussed": true
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] HOMETOWN HERO: Lisa McCargar keeps the sounds of bagpipes and drums alive in Quesnel",
+          "url": "https://quesnelobserver.com/2026/06/11/hometown-hero-lisa-mccargar-keeps-the-sounds-of-bagpipes-and-drums-alive-in-quesnel/",
+          "source": "Quesnel Cariboo Observer",
+          "author": "Laisa Conde",
+          "ai_score": 85,
+          "date_published": "2026-06-11T16:00:00+00:00",
+          "summary": "What began as a celebration of Scottish heritage has become so much more",
+          "discussed": false
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Quesnel River Rush celebrates early success while raising concerns over new league costs",
+          "url": "https://quesnelobserver.com/2026/06/12/quesnel-river-rush-celebrates-early-success-while-raising-concerns-over-new-league-costs/",
+          "source": "Quesnel Cariboo Observer",
+          "author": "Laisa Conde",
+          "ai_score": 85,
+          "date_published": "2026-06-12T21:50:00+00:00",
+          "summary": "The hockey club says its growth has boosted Quesnel’s economy, but increased travel amongst other expenses are straining finances",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] Man jailed after throwing ninja star at woman",
+          "url": "https://boingboing.net/2026/06/09/man-jailed-after-throwing-ninja-star-at-woman.html",
+          "source": "Boing Boing",
+          "author": "Rob Beschizza",
+          "ai_score": 68,
+          "date_published": "2026-06-09T18:08:53+00:00",
+          "summary": "An Iowa man faces up to 10 years in prison after he allegedly threw a ninja star at a woman in Independence, writes Michael Hohenbrink at the Oelwein Daily Register. A Buchanan County deputy responded...",
+          "discussed": true
+        },
+        {
+          "title": "[100 Mile Free Press] FORSTER: Mountain Spruce Community Centre rebuilding following recent arsons",
+          "url": "https://100milefreepress.net/2026/06/11/forster-mountain-spruce-community-centre-rebuilding-following-recent-arsons/",
+          "source": "100 Mile Free Press",
+          "author": "none",
+          "ai_score": 66,
+          "date_published": "2026-06-12T00:00:00+00:00",
+          "summary": "Diana Forster’s regular column to the 100 Mile Free Press",
+          "discussed": true
+        },
+        {
+          "title": "[Al Jazeera English] Alarm as Ebola spreads into new areas of DR Congo",
+          "url": "https://www.aljazeera.com/news/2026/6/12/alarm-as-ebola-spreads-into-new-areas-of-dr-congo?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "",
+          "ai_score": 73,
+          "date_published": "2026-06-12T15:37:25+00:00",
+          "summary": "Cases are being identified in new health zones on a near-daily basis, warns WHO's head of epidemiology.",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Well] Summer Challenge: Put Your Phone Away for Better Sleep",
+          "url": "https://www.nytimes.com/interactive/2026/06/11/well/summer-challenge-phone-digital-detox-sleep.html",
+          "source": "NYT Well",
+          "author": "https://www.nytimes.com/by/jancee-dunn",
+          "ai_score": 69,
+          "date_published": "2026-06-11T20:55:53+00:00",
+          "summary": "It only takes a few minutes.",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Cariboo Local Affairs",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Senior’s Advocate of B.C. coming to the Cariboo",
+          "url": "https://wltribune.com/2026/06/12/seniors-advocate-of-b-c-coming-to-the-cariboo/",
+          "source": "Williams Lake Tribune",
+          "author": "Patrick Davies",
+          "ai_score": 100,
+          "date_published": "2026-06-12T15:46:42.950036+00:00",
+          "summary": "Dan Levitt will be visiting 100 Mile House, Williams Lake and Ashcroft from June 22-23",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] 5th annual Cariboo Classic Jr Steer and Heifer Show a hit in Williams Lake",
+          "url": "https://wltribune.com/2026/06/10/5th-annual-cariboo-classic-jr-steer-and-heifer-show-a-hit-in-williams-lake/",
+          "source": "Williams Lake Tribune",
+          "author": "rebeccadyok",
+          "ai_score": 100,
+          "date_published": "2026-06-10T16:15:12.873626+00:00",
+          "summary": "The event took place June 5-7",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Condolences pour in following death of longtime Salmon Arm Councillor Kevin Flynn",
+          "url": "https://wltribune.com/2026/06/12/condolences-pour-in-following-death-of-longtime-city-of-salmon-arm-councillor-kevin-flynn/",
+          "source": "Williams Lake Tribune",
+          "author": "Lachlan Labere",
+          "ai_score": 92,
+          "date_published": "2026-06-12T14:17:00+00:00",
+          "summary": "‘We honour Kevin’s remarkable life, his lasting contributions to the community…’",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Williams Lake writer shortlisted for new award recognizing outstanding books in B.C.",
+          "url": "https://wltribune.com/2026/06/12/williams-lake-writer-shortlisted-for-new-award-recognizing-outstanding-books-in-b-c/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 100,
+          "date_published": "2026-06-13T03:30:04.161191+00:00",
+          "summary": "Sage Birchwater a finalist for the Al and Eurithe Purdy BC Award for Excellence",
+          "discussed": true
+        },
+        {
+          "title": "[100 Mile Free Press] CARIBOO OUTDOORS: Why are lakes stocked?",
+          "url": "https://100milefreepress.net/2026/06/12/cariboo-outdoors-why-are-lakes-stocked/",
+          "source": "100 Mile Free Press",
+          "author": "none",
+          "ai_score": 85,
+          "date_published": "2026-06-13T00:00:00+00:00",
+          "summary": "Doug Porter’s regular column to the 100 Mile Free Press",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Can a provincial Seniors Advocate's visit to rural Cariboo communities meaningfully improve policy outcomes, or will it remain performative without sustained follow-up and community preparation?",
+        "riley_position": "Partial corrections to structural problems can accumulate into real change over time, and the Advocate's visit creates a moment where documented asks can reach provincial decision-makers with actual authority.",
+        "riley_key_evidence": [
+          "Levitt's office triggered a measurable revision to the home support funding formula after documenting rural delivery cost gaps",
+          "The office's previous rural tour influenced policy conversation around long-term care bed ratios in smaller communities",
+          "Communities that show up prepared with specific, named gaps land differently than general statements about feeling forgotten"
+        ],
+        "casey_position": "Rural communities are perpetually expected to do extra work to access baseline services, and without sustained accountability reporting and follow-up infrastructure, the visit will generate anecdotes rather than systemic change.",
+        "casey_key_evidence": [
+          "Local media capacity is stretched too thin—the Tribune has one reporter for 10,000 people and cannot do six-month accountability follow-ups",
+          "Without follow-up coverage, there is no public pressure and no political consequence for ignoring what was heard",
+          "Rural communities already have thin organizational capacity—stretching it further for documentation and follow-up is a non-trivial ask"
+        ],
+        "resolution": "They agreed that the visit itself is valuable but is only a starting point; the real outcome depends on whether community organizations, local media, and government coordinate to document what is heard and pursue six-month follow-up. Neither conceded their position but recognized the gap lies in preparation and post-visit accountability infrastructure.",
+        "topics_covered": [
+          "Role of the BC Seniors Advocate and measurable past policy outcomes",
+          "Capacity gaps in local media and their impact on accountability reporting",
+          "Organizational preparation required for rural communities to effectively engage with provincial officials",
+          "The broader civic infrastructure of rural communities (agricultural shows, cultural events, volunteer capacity)",
+          "Structural design failures in how provincial government reaches rural populations"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "Azure Neural TTS (Ava · Andrew)",
+    "text_to_speech_openai": "OpenAI TTS API (Nova · Echo)",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  },
+  "closing_music": {
+    "track_id": "1214597",
+    "name": "To Die For",
+    "artist": "JARA",
+    "genres": [
+      "pop",
+      "indie",
+      "rocknroll"
+    ],
+    "shareurl": "https://www.jamendo.com/track/1214597",
+    "license": "Creative Commons via Jamendo"
+  }
+}
