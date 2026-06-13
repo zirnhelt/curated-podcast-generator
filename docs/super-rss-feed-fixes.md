@@ -204,6 +204,68 @@ bucket or get reassigned to the theme day whose keywords they actually match.
 
 ---
 
+## 5. My Cariboo Now items carry generic boilerplate instead of per-article summaries
+
+### Problem
+
+Fixes 1–4 above are largely working: the 2026-06-13 (Saturday) `feed-podcast-saturday.json`
+includes `_keyword_matches`, `_boosted_score`, `_is_bonus`, `_source_category`, and a
+populated `_podcast.theme_description`, and Cariboo-region sources (Williams Lake
+Tribune, Quesnel Cariboo Observer, 100 Mile Free Press, My Cariboo Now, My East
+Kootenay Now) now appear in the feed as intended.
+
+However, that same feed surfaced a new issue: the top 8 items (all from "My Cariboo
+Now", all with `_boosted_score: 100`, the maximum) share one identical boilerplate
+`summary`/`content_html`:
+
+> "Stay connected with My Cariboo Now — delivering local news, community events,
+> weather alerts, and live radio to Quesnel, Williams Lake, 100 Mile House, and
+> beyond."
+
+This is My Cariboo Now's generic site description, not a per-article summary — their
+RSS feed apparently doesn't provide real item descriptions. This causes two problems:
+
+1. **It games the scoring.** The boilerplate text itself contains "Quesnel",
+   "Williams Lake", "100 Mile House", "local", and "community", plus "Cariboo" from
+   the `[My Cariboo Now]` source tag — enough to hit `_keyword_matches: 6` and max
+   out `_boosted_score: 100` for *every* My Cariboo Now item, regardless of the
+   actual article topic (a school district hiring, a 911 operator contract dispute,
+   a junior hockey funding story, etc.). These 8 content-free items occupy the
+   entire top of the sort order, ahead of genuinely on-topic, well-summarized
+   Williams Lake Tribune stories (the jail closure debate, Inomin Mines exploration,
+   the Xat'sull First Nation event, Bella Coola hydro concerns) which score lower
+   (45–90) because their real, concise summaries contain fewer literal keyword hits.
+
+2. **It gives the podcast generator nothing to talk about.** Items with
+   `_boosted_score: 100` tend to be picked first for the deep dive and the top of
+   the news roundup — boilerplate-only items there leave Claude with just a headline
+   and no real article content to discuss.
+
+### What to change
+
+Either:
+1. Fetch full article content for My Cariboo Now items to produce a real
+   per-article summary before scoring, or
+2. Detect when an item's `summary`/`content_html` matches the feed-level/generic
+   site description and exclude that boilerplate text from the
+   `_keyword_matches`/`_boosted_score` computation (and/or exclude such items from
+   the theme-matched set until a real summary exists).
+
+### How the podcast generator uses this
+
+Items with `_boosted_score: 100` and high keyword-match counts are prioritized for
+the deep dive and the front of the news roundup. Boilerplate-only items ranked there
+crowd out genuinely on-topic local stories and leave the hosts with no real content
+to ground the discussion.
+
+### Verification
+
+On a future Saturday, confirm My Cariboo Now items have distinct, article-specific
+summaries, and that `_boosted_score` reflects genuine topical relevance rather than
+a fixed maximum applied to every item from the source.
+
+---
+
 ## Implementation order
 
 These fixes are independent and can be done in either order, but **fix 1 (local sources) has higher impact** because it addresses a content gap that no amount of filtering can solve — you can't surface local Cariboo news if the feed doesn't contain any.
@@ -218,6 +280,8 @@ Suggested sequence:
    time (issue 4 above) — lowest effort of the five since the keyword lists and
    penalty formula already exist on the consumer side; mainly a matter of reading
    the same config and applying the same subtraction during upstream scoring
+6. Fix My Cariboo Now boilerplate summaries (issue 5 above) — newly discovered;
+   address once the higher-impact items above are in place
 
 After each change, follow the [deployment verification steps](../SIBLING_REPOS.md#monitoring-and-failure) to confirm the podcast generator consumes the updated feed correctly.
 
