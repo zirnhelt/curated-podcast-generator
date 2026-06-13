@@ -1,17 +1,4 @@
 {
-  "2026-03-14": {
-    "timestamp": 1773492844.929165,
-    "date": "2026-03-14",
-    "theme": "Cariboo Voices & Local News",
-    "central_question": "Deep dive on Cariboo Voices & Local News",
-    "topics_covered": [
-      "broadband",
-      "fiber",
-      "satellite",
-      "connectivity",
-      "telemedicine"
-    ]
-  },
   "2026-03-15": {
     "timestamp": 1773579349.786848,
     "date": "2026-03-15",
@@ -2142,6 +2129,32 @@
       "Remote monitoring technology capabilities and cost-benefit analysis",
       "Sustainability challenges of grant-dependent monitoring infrastructure",
       "Pre-trip stewardship communication protocols as governance model"
+    ]
+  },
+  "2026-06-13": {
+    "timestamp": 1781340932.280091,
+    "date": "2026-06-13",
+    "theme": "Cariboo Local Affairs",
+    "central_question": "Can a provincial Seniors Advocate's visit to rural Cariboo communities meaningfully improve policy outcomes, or will it remain performative without sustained follow-up and community preparation?",
+    "riley_position": "Partial corrections to structural problems can accumulate into real change over time, and the Advocate's visit creates a moment where documented asks can reach provincial decision-makers with actual authority.",
+    "riley_key_evidence": [
+      "Levitt's office triggered a measurable revision to the home support funding formula after documenting rural delivery cost gaps",
+      "The office's previous rural tour influenced policy conversation around long-term care bed ratios in smaller communities",
+      "Communities that show up prepared with specific, named gaps land differently than general statements about feeling forgotten"
+    ],
+    "casey_position": "Rural communities are perpetually expected to do extra work to access baseline services, and without sustained accountability reporting and follow-up infrastructure, the visit will generate anecdotes rather than systemic change.",
+    "casey_key_evidence": [
+      "Local media capacity is stretched too thin\u2014the Tribune has one reporter for 10,000 people and cannot do six-month accountability follow-ups",
+      "Without follow-up coverage, there is no public pressure and no political consequence for ignoring what was heard",
+      "Rural communities already have thin organizational capacity\u2014stretching it further for documentation and follow-up is a non-trivial ask"
+    ],
+    "resolution": "They agreed that the visit itself is valuable but is only a starting point; the real outcome depends on whether community organizations, local media, and government coordinate to document what is heard and pursue six-month follow-up. Neither conceded their position but recognized the gap lies in preparation and post-visit accountability infrastructure.",
+    "topics_covered": [
+      "Role of the BC Seniors Advocate and measurable past policy outcomes",
+      "Capacity gaps in local media and their impact on accountability reporting",
+      "Organizational preparation required for rural communities to effectively engage with provincial officials",
+      "The broader civic infrastructure of rural communities (agricultural shows, cultural events, volunteer capacity)",
+      "Structural design failures in how provincial government reaches rural populations"
     ]
   }
 }
