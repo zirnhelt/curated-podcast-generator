@@ -31,6 +31,7 @@ from config_loader import (
     load_blocklist,
     load_disciplines_config,
     get_voice_for_host,
+    get_voice_instructions_for_host,
     get_theme_for_day
 )
 from azure_tts import (
@@ -3664,13 +3665,17 @@ def heuristic_gap_ms(text, prev_speaker, cur_speaker, section="deep_dive"):
     stripped = text.strip()
     char_count = len(stripped)
 
+    # A detected story transition gets a deliberate beat regardless of
+    # whether the same host continues or the other host picks up the
+    # next story — the topic break is what matters, not the handoff.
+    if section == "news" and _is_story_transition(stripped):
+        return 1800  # very clear topic break
+
     # Same speaker continuation
     if cur_speaker and prev_speaker == cur_speaker:
         # In the news section the same host moving to a new story needs a
         # clear breath so stories don't blend together.
         if section == "news":
-            if _is_story_transition(stripped):
-                return 1800  # very clear topic break
             if char_count > 80:
                 return 1500  # likely a new story — deliberate pause
             return 600       # shorter continuation still gets a beat
@@ -3930,6 +3935,7 @@ def generate_tts_for_segment(text, speaker, output_file):
         raise ValueError("OPENAI_API_KEY not found")
 
     voice = get_voice_for_host(speaker)
+    instructions = get_voice_instructions_for_host(speaker)
 
     # Apply shared pronunciation substitutions
     clean = text
@@ -3938,10 +3944,13 @@ def generate_tts_for_segment(text, speaker, output_file):
 
     # TTS timeouts are network blips, not API overload — 2 retries with a short
     # base delay is enough; the pre-split in _render_section keeps each call small.
+    # gpt-4o-mini-tts supports an "instructions" field for delivery/emotion
+    # control, which tts-1 lacked entirely.
     response = api_retry(lambda: client.audio.speech.create(
-        model="tts-1",
+        model="gpt-4o-mini-tts",
         voice=voice,
         input=clean,
+        instructions=instructions,
         speed=1.0
     ), max_retries=2, base_delay=1)
 
