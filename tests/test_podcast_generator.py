@@ -4,6 +4,8 @@ Heavy third-party dependencies (anthropic, openai, pydub) are stubbed in
 tests/conftest.py at import time so podcast_generator can be imported safely.
 """
 
+from unittest.mock import MagicMock
+
 import pytest
 
 from podcast_generator import (
@@ -13,6 +15,7 @@ from podcast_generator import (
     select_welcome_host,
     _extract_pacing_tag,
     heuristic_gap_ms,
+    _run_agentic_loop,
 )
 
 
@@ -241,3 +244,93 @@ class TestSelectWelcomeHost:
         for _ in range(20):
             host = select_welcome_host()
             assert host in ("riley", "casey")
+
+
+def _text_block(text):
+    block = MagicMock()
+    block.type = "text"
+    block.text = text
+    return block
+
+
+def _tool_use_block(name, tool_input, tool_id="tool_1"):
+    block = MagicMock()
+    block.type = "tool_use"
+    block.name = name
+    block.input = tool_input
+    block.id = tool_id
+    return block
+
+
+def _response(stop_reason, content):
+    response = MagicMock()
+    response.stop_reason = stop_reason
+    response.content = content
+    return response
+
+
+class TestRunAgenticLoop:
+    def test_returns_text_with_no_tool_use(self):
+        client = MagicMock()
+        client.messages.create.return_value = _response("end_turn", [_text_block("final script")])
+
+        result = _run_agentic_loop(
+            client, "test-model", "system prompt", "user content",
+            tools=[], tool_executors={},
+        )
+
+        assert result == "final script"
+        assert client.messages.create.call_count == 1
+
+    def test_executes_tool_then_returns_text(self):
+        client = MagicMock()
+        client.messages.create.side_effect = [
+            _response("tool_use", [_tool_use_block("web_search", {"query": "rural broadband"}, "tool_1")]),
+            _response("end_turn", [_text_block("polished script")]),
+        ]
+        executor = MagicMock(return_value="search results here")
+
+        result = _run_agentic_loop(
+            client, "test-model", "system prompt", "user content",
+            tools=[{"name": "web_search"}], tool_executors={"web_search": executor},
+        )
+
+        assert result == "polished script"
+        executor.assert_called_once_with({"query": "rural broadband"})
+
+        # The tool result should have been fed back as a user message
+        second_call_messages = client.messages.create.call_args_list[1].kwargs["messages"]
+        tool_result_message = second_call_messages[-1]
+        assert tool_result_message["role"] == "user"
+        assert tool_result_message["content"][0]["tool_use_id"] == "tool_1"
+        assert tool_result_message["content"][0]["content"] == "search results here"
+
+    def test_returns_none_when_iterations_exhausted(self):
+        client = MagicMock()
+        client.messages.create.return_value = _response(
+            "tool_use", [_tool_use_block("web_search", {"query": "x"})]
+        )
+        executor = MagicMock(return_value="some results")
+
+        result = _run_agentic_loop(
+            client, "test-model", "system prompt", "user content",
+            tools=[{"name": "web_search"}], tool_executors={"web_search": executor},
+            max_iterations=2,
+        )
+
+        assert result is None
+        assert client.messages.create.call_count == 2
+        # Final iteration should be called without tools, forcing a text response
+        final_call_kwargs = client.messages.create.call_args_list[-1].kwargs
+        assert final_call_kwargs["tools"] == []
+
+    def test_returns_none_on_api_error(self):
+        client = MagicMock()
+        client.messages.create.side_effect = Exception("boom")
+
+        result = _run_agentic_loop(
+            client, "test-model", "system prompt", "user content",
+            tools=[], tool_executors={}, max_iterations=1,
+        )
+
+        assert result is None

@@ -1305,6 +1305,111 @@ def _brave_summarize(query, api_key):
         return ""
 
 
+# ---------------------------------------------------------------------------
+# Generic agentic tool-use loop
+# ---------------------------------------------------------------------------
+
+def _run_agentic_loop(client, model, system_prompt, user_content, tools, tool_executors,
+                      max_iterations=6, max_tokens=8000):
+    """Run a bounded agentic tool-use loop and return the final text response.
+
+    Repeatedly calls client.messages.create, executing any requested tools via
+    tool_executors and feeding the results back as tool_result blocks, until
+    the model stops requesting tools (stop_reason != "tool_use") or
+    max_iterations is reached. On the final iteration, tools are withheld so
+    the model is forced to produce a text response.
+
+    Returns the concatenated text of the final response, or None if the loop
+    errors out or never produces text.
+    """
+    messages = [{"role": "user", "content": user_content}]
+
+    for iteration in range(max_iterations):
+        available_tools = tools if iteration < max_iterations - 1 else []
+        try:
+            response = api_retry(lambda: client.messages.create(
+                model=model,
+                max_tokens=max_tokens,
+                system=system_prompt,
+                tools=available_tools,
+                messages=messages,
+            ))
+        except Exception as e:
+            print(f"  ⚠️ Agentic loop error: {e}")
+            return None
+
+        if response.stop_reason != "tool_use":
+            text = "".join(block.text for block in response.content if block.type == "text")
+            return text or None
+
+        messages.append({"role": "assistant", "content": response.content})
+
+        tool_results = []
+        for block in response.content:
+            if block.type != "tool_use":
+                continue
+            executor = tool_executors.get(block.name)
+            result_text = executor(block.input) if executor else "Unknown tool."
+            if os.getenv("PODCAST_DEBUG_AGENT"):
+                print(f"    🔧 {block.name}({block.input}) -> {result_text[:200]}")
+            tool_results.append({
+                "type": "tool_result",
+                "tool_use_id": block.id,
+                "content": result_text,
+            })
+
+        messages.append({"role": "user", "content": tool_results})
+
+    return None
+
+
+WEB_SEARCH_TOOL = {
+    "name": "web_search",
+    "description": (
+        "Search the web for current information, fact-checking, or recent "
+        "developments. Use targeted, specific queries."
+    ),
+    "input_schema": {
+        "type": "object",
+        "properties": {
+            "query": {"type": "string", "description": "The search query."},
+            "mode": {
+                "type": "string",
+                "enum": ["results", "answer"],
+                "description": (
+                    "'results' returns web snippets (default, good for broad "
+                    "context); 'answer' returns a synthesized prose answer "
+                    "(best for direct factual questions like specs or prices)."
+                ),
+            },
+        },
+        "required": ["query"],
+    },
+}
+
+
+def _web_search_tool_executor(tool_input):
+    """Execute a web_search tool call via Brave Search. Never returns empty."""
+    brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
+    query = tool_input.get("query", "")
+    if not query or not brave_key:
+        return "Web search is not available."
+
+    if tool_input.get("mode") == "answer":
+        answer = _brave_summarize(query, brave_key)
+        if answer:
+            return answer
+
+    hits = _brave_search(query, brave_key, count=4)
+    if not hits:
+        return "No results found."
+
+    return "\n".join(
+        f"- {h['title']}\n  {h['description'][:200]}\n  Source: {h['url']}"
+        for h in hits
+    )
+
+
 def _identify_deep_dive_research_questions(deep_dive_articles, theme_name, client):
     """Analyze deep dive articles with Sonnet to surface analytical research questions.
 
@@ -1421,6 +1526,83 @@ def research_deep_dive_angles(deep_dive_articles, theme_name, client):
         return enrich_deep_dive_with_brave(deep_dive_articles, theme_name, client)
 
     return _execute_deep_research(questions, brave_key)
+
+
+def research_deep_dive_with_agent(deep_dive_articles, theme_name, client):
+    """Agentic pre-generation research pass for the deep dive.
+
+    Gives Claude the deep dive articles plus a web_search tool and lets it
+    decide whether live research would meaningfully enrich the segment, run
+    0-4 targeted searches, and return a "PRE-RESEARCHED INSIGHTS" block ready
+    for injection into the script generation prompt — or "" if no research
+    was warranted or found.
+
+    Falls back to research_deep_dive_angles() (the previous hand-orchestrated
+    implementation) if the agentic loop errors out. Returns "" if
+    BRAVE_SEARCH_API_KEY is unset or client is unavailable, same as before.
+    """
+    brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
+    if not brave_key or not client:
+        return ""
+
+    print("🔬 Researching deep dive angles (agentic)...")
+
+    articles_text = "\n\n".join(
+        f"ARTICLE: {a.get('title', '')}\n"
+        f"Summary: {a.get('summary', '')[:300]}\n"
+        f"Body excerpt: {(a.get('_body', '') or '')[:500]}"
+        for a in deep_dive_articles
+    )
+
+    system_prompt = (
+        f"You are preparing research for a podcast deep dive on the theme \"{theme_name}\".\n\n"
+        "First, decide whether live web research would meaningfully enrich this deep dive. "
+        "Research is warranted when:\n"
+        "1. There are likely recent developments, breaking news, or rapidly evolving facts\n"
+        "2. The topic involves contested claims, policy disputes, or scientific findings "
+        "that benefit from independent verification\n"
+        "3. Current events or broader context would materially enrich the story\n"
+        "4. There's a strong counter-perspective or critical argument not represented in "
+        "the articles, or a comparable rural/small-community case that tests whether this "
+        "applies locally\n\n"
+        "If research IS warranted, use the web_search tool for up to 4 targeted searches — "
+        "fact-checking specific claims, finding recent developments, or surfacing "
+        "counterpoints/comparable cases. Then respond with insights formatted as:\n\n"
+        "PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\n"
+        "These analytical threads were identified before generation. Use the findings to "
+        "ground Riley's and Casey's arguments with real evidence — develop them as "
+        "substantive exchanges, not a citation list. Cite naturally.\n\n"
+        "RESEARCH QUESTION: <question>\nFindings: <findings>\nSuggested angle: <how Riley "
+        "(tech optimist) and Casey (skeptic) could develop this in their debate>\n\n"
+        "(repeat for each useful finding)\n\n"
+        "If research is NOT warranted, or your searches turn up nothing useful, respond "
+        "with exactly: NONE"
+    )
+
+    user_content = f"Deep dive articles:\n\n{articles_text}"
+
+    tools = [WEB_SEARCH_TOOL]
+    tool_executors = {"web_search": _web_search_tool_executor}
+
+    result = _run_agentic_loop(
+        client, SCRIPT_MODEL,
+        system_prompt=system_prompt,
+        user_content=user_content,
+        tools=tools, tool_executors=tool_executors,
+        max_iterations=5, max_tokens=2000,
+    )
+
+    if result is None:
+        print("  ⚠️ Agentic research failed, falling back to standard enrichment")
+        return research_deep_dive_angles(deep_dive_articles, theme_name, client)
+
+    result = result.strip()
+    if result == "NONE" or not result:
+        print("  ℹ️  No research warranted for this deep dive")
+        return ""
+
+    print("  ✅ Research insights gathered")
+    return result + "\n\n"
 
 
 def _filter_sparse_news_articles(articles: list) -> list:
@@ -1706,6 +1888,68 @@ def _resolve_script_questions_with_brave(script, brave_key, client):
 
     print(f"  🔍 Resolved {len(results)} unanswered question(s) via Brave search")
     return "\n\n".join(results)
+
+
+def polish_and_factcheck_with_agent(script, theme_name, news_articles, deep_dive_articles,
+                                     research_insights=None, model=None):
+    """Agentic polish + fact-check pass — real-time fallback for post-processing.
+
+    Gives Claude the script, verified sources, and research insights directly
+    in the prompt (same content as run_realtime_polish_and_factcheck), plus a
+    web_search tool it can use (up to a few calls) to resolve unanswered
+    factual questions before finalizing. This replaces both
+    run_realtime_polish_and_factcheck and the separate
+    _resolve_script_questions_with_brave precompute for this path — Claude
+    only searches when it decides it actually needs to.
+
+    Returns the original script unchanged on any failure or validation
+    failure, same contract as the functions it replaces.
+    """
+    client = get_anthropic_client()
+    if not client or not script:
+        return script
+
+    prompts = CONFIG['prompts']
+    pf_prompts = prompts.get('agentic_polish_and_factcheck', {})
+    system_template = pf_prompts.get('system_template')
+    user_template = pf_prompts.get('user_template')
+    if not system_template or not user_template:
+        print("⚠️ agentic_polish_and_factcheck prompt not found, using legacy real-time path")
+        return run_realtime_polish_and_factcheck(
+            script, theme_name, news_articles, deep_dive_articles,
+            research_insights=research_insights,
+        )
+
+    verified_sources = _build_verified_sources(news_articles, deep_dive_articles)
+    system_prompt = _safe_template_substitute(system_template, theme_name=theme_name)
+    user_content = _safe_template_substitute(
+        user_template,
+        theme_name=theme_name,
+        script=script,
+        verified_sources=verified_sources,
+        research_insights=research_insights or "(none)",
+    )
+
+    review_model = model or select_review_model(deep_dive_articles)
+    brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
+    tools = [WEB_SEARCH_TOOL] if brave_key else []
+    tool_executors = {"web_search": _web_search_tool_executor} if brave_key else {}
+
+    print(f"✨ Running polish+factcheck (agentic) with {review_model}...")
+    result = _run_agentic_loop(
+        client, review_model,
+        system_prompt=system_prompt,
+        user_content=user_content,
+        tools=tools, tool_executors=tool_executors,
+        max_iterations=4, max_tokens=8000,
+    )
+
+    if result and "**RILEY:**" in result and "**CASEY:**" in result:
+        print("✅ Script polished and fact-checked (agentic)!")
+        return result
+
+    print("⚠️ Agentic polish+factcheck failed validation/error, using original")
+    return script
 
 
 def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_articles,
@@ -5392,7 +5636,7 @@ def main():
         # Proactive research pass: identify analytical angles and run Brave for each.
         # Falls back to standard enrichment when no analytical questions are surfaced.
         brave_client = get_anthropic_client()
-        brave_context = research_deep_dive_angles(deep_dive_articles, today_theme, brave_client) if brave_client else ""
+        brave_context = research_deep_dive_with_agent(deep_dive_articles, today_theme, brave_client) if brave_client else ""
         brave_used = _sparse_brave_used or bool(brave_context)
 
         # Fetch Cariboo-wide weather
@@ -5453,18 +5697,19 @@ def main():
             sys.exit(1)
 
         # Post-processing: polish + fact-check + debate summary
-        # Resolve unanswered factual questions once before post-processing so the
-        # result can be reused by both the batch path and the real-time fallback
-        # without running the Brave search twice.
-        _ar_client = get_anthropic_client()
-        additional_research = _resolve_script_questions_with_brave(
-            script, os.getenv("BRAVE_SEARCH_API_KEY"), _ar_client
-        ) if _ar_client else ""
-
-        # Try batch API first (50% cost discount), fall back to real-time calls
+        # Try batch API first (50% cost discount), fall back to the agentic
+        # real-time polish+factcheck loop (which resolves unanswered factual
+        # questions itself via web_search, only when it decides it needs to).
         debate_summary = None
         if script and USE_BATCH_API:
             print("📦 Using Batch API for post-processing (50% cost discount)...")
+            # Resolve unanswered factual questions once for the batch request
+            # (the batch path can't run an agentic tool loop).
+            _ar_client = get_anthropic_client()
+            additional_research = _resolve_script_questions_with_brave(
+                script, os.getenv("BRAVE_SEARCH_API_KEY"), _ar_client
+            ) if _ar_client else ""
+
             batch_script, batch_debate = run_post_processing_batch(
                 script, today_theme, news_articles, deep_dive_articles,
                 additional_research=additional_research,
@@ -5473,12 +5718,10 @@ def main():
             if batch_script:
                 script = batch_script
             else:
-                # Batch polish failed — fall back to a single combined real-time call
-                # (one call instead of the old two-call polish→factcheck sequence)
-                print("⚠️ Batch polish failed, falling back to single real-time call...")
-                script = run_realtime_polish_and_factcheck(
+                # Batch polish failed — fall back to the agentic real-time loop
+                print("⚠️ Batch polish failed, falling back to agentic polish+factcheck...")
+                script = polish_and_factcheck_with_agent(
                     script, today_theme, news_articles, deep_dive_articles,
-                    additional_research=additional_research,  # reuse — don't re-run Brave
                     research_insights=brave_context,
                 )
 
@@ -5486,10 +5729,9 @@ def main():
                 debate_summary = batch_debate
 
         elif script:
-            # Real-time path (batch disabled) — single combined call
-            script = run_realtime_polish_and_factcheck(
+            # Real-time path (batch disabled) — agentic polish+factcheck loop
+            script = polish_and_factcheck_with_agent(
                 script, today_theme, news_articles, deep_dive_articles,
-                additional_research=additional_research,
                 research_insights=brave_context,
             )
 
