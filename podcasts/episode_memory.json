@@ -1,23 +1,4 @@
 {
-  "2026-05-23": {
-    "timestamp": 1779535045.179295,
-    "topics": [
-      "[Williams Lake Tribune] Williams Lake RCMP seek witnesses af",
-      "[Williams Lake Tribune] Cariboo drivers reminded to use caut",
-      "[Williams Lake Tribune] Planning underway for National Indig",
-      "[Williams Lake Tribune] Early blooms for Williams Lake Harve",
-      "[Williams Lake Tribune] Williams Lake RCMP urge safe off-roa",
-      "[My Cariboo Now] Man arrested in Walmart Parking lot in Ques",
-      "[My Cariboo Now] Movie night in Lebourdais Park in Quesnel i",
-      "[Williams Lake Tribune] Cariboo Chilcotin MLA endorses Peter"
-    ],
-    "themes": [
-      "rural development",
-      "Indigenous tech",
-      "connectivity"
-    ],
-    "date": "2026-05-23"
-  },
   "2026-05-24": {
     "timestamp": 1779621851.975763,
     "topics": [
@@ -380,5 +361,24 @@
       "rural development"
     ],
     "date": "2026-06-13"
+  },
+  "2026-06-14": {
+    "timestamp": 1781429274.822226,
+    "topics": [
+      "[Engadget] Anthropic backtracks on policy that 'sabotaged' r",
+      "[Engadget] Parker Solar Probe makes another flyby of the sun",
+      "[Kagi Small Web] Living life like a video game",
+      "[Business Insider] Workers are spending over 6 hours a week ",
+      "[Kagi Small Web] Verify",
+      "[100 Mile Free Press] District of 100 Mile House debates use",
+      "[Al Jazeera English] Albania protests escalate over Kushner-",
+      "[EarthSky] Tonight | EarthSky"
+    ],
+    "themes": [
+      "rural development",
+      "environmental impact",
+      "connectivity"
+    ],
+    "date": "2026-06-14"
   }
 }

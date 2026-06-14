@@ -1,17 +1,4 @@
 {
-  "2026-03-15": {
-    "timestamp": 1773579349.786848,
-    "date": "2026-03-15",
-    "theme": "Resilient Rural Futures",
-    "central_question": "Deep dive on Resilient Rural Futures",
-    "topics_covered": [
-      "broadband",
-      "telemedicine",
-      "renewable energy",
-      "solar",
-      "AI"
-    ]
-  },
   "2026-03-16": {
     "timestamp": 1773666831.838235,
     "date": "2026-03-16",
@@ -2155,6 +2142,32 @@
       "Organizational preparation required for rural communities to effectively engage with provincial officials",
       "The broader civic infrastructure of rural communities (agricultural shows, cultural events, volunteer capacity)",
       "Structural design failures in how provincial government reaches rural populations"
+    ]
+  },
+  "2026-06-14": {
+    "timestamp": 1781429276.577687,
+    "date": "2026-06-14",
+    "theme": "Science, Wonder & the Natural World",
+    "central_question": "How can rural communities like the Cariboo build sustainable, locally-valuable scientific and experiential infrastructure around their natural assets without depending on external funding cycles?",
+    "riley_position": "The Cariboo's exceptional dark skies represent an underrecognized asset that could be formalized through International Dark-Sky Association designations, creating durable local value through ecotourism and citizen science while requiring minimal ongoing capital investment.",
+    "riley_key_evidence": [
+      "100 Mile House council has $68,000 in discretionary REDIP funds available for reallocation",
+      "Jasper National Park's dark sky programming demonstrates a proven, multi-year tourism model",
+      "Globe at Night platform allows communities to contribute named, credited observations to research databases"
+    ],
+    "casey_position": "While dark sky preservation is valuable, the structural challenges of governance, Indigenous knowledge integration, and ensuring scientific benefits stay local rather than flowing to external institutions remain unresolved by designation alone.",
+    "casey_key_evidence": [
+      "Federal infrastructure controls space weather warnings with no local monitoring capacity in rural areas",
+      "Informal observational networks depend on sustained enthusiasm of a small number of people",
+      "The Secw\u00e9pemc and T\u015dilhqot'in Nations hold deep navigational and ceremonial knowledge of these skies that must be centered from design stage onward"
+    ],
+    "resolution": "Riley and Casey converged on the value of framing a dark sky designation as a structural question worth raising at community and council tables, acknowledging that genuine implementation requires Indigenous partnership from the outset. They agreed to disagree on whether current citizen science platforms adequately keep benefits local versus flowing to external institutions.",
+    "topics_covered": [
+      "Dark sky preservation and International Dark-Sky Association designation process",
+      "Citizen science platforms (Globe at Night) and data governance",
+      "Space weather infrastructure gaps in rural communities",
+      "Ecotourism economics and sustainability models versus grant-cycle dependency",
+      "Indigenous knowledge systems and territorial relationships to the sky"
     ]
   }
 }

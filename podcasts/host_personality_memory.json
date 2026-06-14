@@ -110,9 +110,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-06-09",
-        "clue": "structural-lens:+ \u2014 Moved from project-level to system-level value capture analysis",
-        "occurrences": 1
+        "date": "2026-06-14",
+        "clue": "structural-lens:+ \u2014 Shifted from abstract governance talk to concrete funding mechanics",
+        "occurrences": 2
       },
       {
         "date": "2026-06-11",
@@ -122,6 +122,11 @@
       {
         "date": "2026-06-13",
         "clue": "pilot-skepticism:+ \u2014 Emphasized anecdotes need 'right people' to shift policy framing",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-06-14",
+        "clue": "community-trust:~ \u2014 Acknowledged knowledge gap with Indigenous nations, named it honestly",
         "occurrences": 1
       }
     ],
@@ -274,9 +279,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-21",
-        "clue": "pilot-skepticism:x \u2014 Conceded uncertainty about Williams Lake process details mid-argument",
-        "occurrences": 1
+        "date": "2026-06-14",
+        "clue": "pilot-skepticism:x \u2014 Conceded that dark sky model escapes typical grant-cycle vulnerabilities",
+        "occurrences": 2
       },
       {
         "date": "2026-05-23",
@@ -336,6 +341,11 @@
       {
         "date": "2026-06-13",
         "clue": "structural-lens:+ \u2014 Moved from 'services gap' framing to systemic design failure analysis",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-06-14",
+        "clue": "Indigenous-tech:+ \u2014 Introduced territorial knowledge systems as non-negotiable design requirement, not afterthought",
         "occurrences": 1
       }
     ],
