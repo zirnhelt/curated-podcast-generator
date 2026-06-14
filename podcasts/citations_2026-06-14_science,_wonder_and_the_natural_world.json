@@ -1,0 +1,247 @@
+{
+  "episode": {
+    "date": "2026-06-14",
+    "formatted_date": "Sunday, June 14, 2026",
+    "theme": "Science, Wonder & the Natural World",
+    "title": "Cariboo Signals - Science, Wonder & the Natural World",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Science, Wonder & the Natural World.</p><p><b>NEWS ROUNDUP:</b> We break down [Engadget] Parker Solar Probe makes another flyby of the sun, solar energy bags a win, and more science stories and [Business Insider] Anthropic CEO Dario Amodei warned Mythos posed a national security threat. Washington just responded., and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> How can rural communities like the Cariboo build sustainable, locally-valuable scientific and experiential infrastructure around their natural assets without depending on external funding cycles? Topics include: Dark sky preservation and International Dark-Sky Association designation process, Citizen science platforms (Globe at Night) and data governance, Space weather infrastructure gaps in rural communities, Ecotourism economics and sustainability models versus grant-cycle dependency, Indigenous knowledge systems and territorial relationships to the sky.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> Salvation Army Williams Lake</p><p><b>Sources discussed:</b></p><ul><li>Cheyenne MacDonald (Engadget): <a href=\"https://www.engadget.com/2193686/parker-solar-probe-makes-another-flyby-of-the-sun-solar-energy-bags-a-win-science-news/\">[Engadget] Parker Solar Probe makes another flyby of the sun...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/dario-amodei-ai-warnings-mythos-fable-blocked-2026-6\">[Business Insider] Anthropic CEO Dario Amodei warned Mythos ...</a></li><li>Patrick Davies (100 Mile Free Press): <a href=\"https://100milefreepress.net/2026/06/13/district-of-100-mile-house-debates-use-of-leftover-redip-funds/\">[100 Mile Free Press] District of 100 Mile House debates use...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Steve Dent (Engadget): <a href=\"https://www.engadget.com/2192004/anthropic-walks-back-policy-sabotaging-research/\">[Engadget] Anthropic backtracks on policy that 'sabotaged' r...</a></li><li>Kagi Small Web: <a href=\"https://theoo.dev/notes/living-life-like-a-video-game-13\">[Kagi Small Web] Living life like a video game</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/botsitting-ai-hidden-human-labor-at-work-2026-6\">[Business Insider] Workers are spending over 6 hours a week ...</a></li><li>Jasper Mayone (Kagi Small Web): <a href=\"https://jaspermayone.com/verify\">[Kagi Small Web] Verify</a></li><li>Android Authority: <a href=\"https://www.androidauthority.com/battery-anxiety-poll-results-3676257/\">[Android Authority] Reader survey suggests modern smartphone...</a></li><li>Helen Branswell (STAT News): <a href=\"https://www.statnews.com/2026/06/13/who-director-general-in-drc-war-greater-concern-than-ebola/?utm_campaign=rss\">[STAT News] WHO director-general is profoundly concerned aft...</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/video/newsfeed/2026/6/11/dahiyeh-crowds-rally-in-favour-of-iranian-support-against-israel?traffic_source=rss\">[Al Jazeera English] Dahiyeh crowds rally in favour of Irani...</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/video/newsfeed/2026/6/13/yemens-spider-man-dies-while-scaling-volcanic-crater?traffic_source=rss\">[Al Jazeera English] Yemen’s ‘Spider-Man’ dies while scaling...</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/video/newsfeed/2026/6/12/family-mourn-indian-sailor-killed-in-us-strike-on-oil-tanker?traffic_source=rss\">[Al Jazeera English] Family mourn Indian sailor killed in US...</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/video/newsfeed/2026/6/11/funerals-held-after-deadly-pakistani-strikes-in-afghanistan?traffic_source=rss\">[Al Jazeera English] Funerals held after deadly Pakistani st...</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/video/newsfeed/2026/6/13/albania-protests-escalate-over-kushner-backed-coastal-development?traffic_source=rss\">[Al Jazeera English] Albania protests escalate over Kushner-...</a></li><li>EarthSky: <a href=\"https://earthsky.org/tonight/\">[EarthSky] Tonight | EarthSky</a></li></ul><p><b>Closing Music:</b> &ldquo;<a href=\"https://www.jamendo.com/track/1882706\">Julius Marx - Vices</a>&rdquo; by Julius Marx &mdash; indie, pop, folk. Free music via Jamendo, licensed under Creative Commons.</p><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-6<br>TTS Voices: OpenAI TTS API (Nova · Echo)<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-06-14T02:27:51.677766-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-sonnet-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 2753,
+      "voice_ratio_casey_riley": 0.76,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 2,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0
+      },
+      "total_hits": 2,
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Engadget] Anthropic backtracks on policy that 'sabotaged' researchers' work",
+          "url": "https://www.engadget.com/2192004/anthropic-walks-back-policy-sabotaging-research/",
+          "source": "Engadget",
+          "author": "Steve Dent",
+          "ai_score": 74,
+          "date_published": "2026-06-11T09:00:29+00:00",
+          "summary": "Anthropic is walking back a hidden policy that researchers say sabotaged their work.",
+          "discussed": false
+        },
+        {
+          "title": "[Engadget] Parker Solar Probe makes another flyby of the sun, solar energy bags a win, and more science stories",
+          "url": "https://www.engadget.com/2193686/parker-solar-probe-makes-another-flyby-of-the-sun-solar-energy-bags-a-win-science-news/",
+          "source": "Engadget",
+          "author": "Cheyenne MacDonald",
+          "ai_score": 72,
+          "date_published": "2026-06-13T13:30:00+00:00",
+          "summary": "This week's science news.",
+          "discussed": true
+        },
+        {
+          "title": "[Kagi Small Web] Living life like a video game",
+          "url": "https://theoo.dev/notes/living-life-like-a-video-game-13",
+          "source": "Kagi Small Web",
+          "author": "",
+          "ai_score": 70,
+          "date_published": "2026-06-13T00:00:00+00:00",
+          "summary": "A couple weeks ago, I went on an adventure. I used to do go on adventures all the time as a teenager, but I don't get around to doing it as much these days, work and responsibilities got in the way. (...",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] Workers are spending over 6 hours a week 'botsitting' AI, fueling job frustration",
+          "url": "https://www.businessinsider.com/botsitting-ai-hidden-human-labor-at-work-2026-6",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 73,
+          "date_published": "2026-06-11T11:48:08+00:00",
+          "summary": "Workers are spending an average of 6.4 hours a week — almost a full working day — \"botsitting\" AI, pushing some to look for an exit, researchers say.",
+          "discussed": false
+        },
+        {
+          "title": "[Kagi Small Web] Verify",
+          "url": "https://jaspermayone.com/verify",
+          "source": "Kagi Small Web",
+          "author": "Jasper Mayone",
+          "ai_score": 65,
+          "date_published": "2026-06-12T22:11:12+00:00",
+          "summary": "Verify my identity and cryptographic signatures",
+          "discussed": false
+        },
+        {
+          "title": "[Android Authority] Reader survey suggests modern smartphones still don’t have enough battery life",
+          "url": "https://www.androidauthority.com/battery-anxiety-poll-results-3676257/",
+          "source": "Android Authority",
+          "author": "",
+          "ai_score": 65,
+          "date_published": "2026-06-10T14:00:25+00:00",
+          "summary": "You can never have too much battery power, right?",
+          "discussed": false
+        },
+        {
+          "title": "[STAT News] WHO director-general is profoundly concerned after visit to Ebola outbreak area",
+          "url": "https://www.statnews.com/2026/06/13/who-director-general-in-drc-war-greater-concern-than-ebola/?utm_campaign=rss",
+          "source": "STAT News",
+          "author": "Helen Branswell",
+          "ai_score": 80,
+          "date_published": "2026-06-13T13:00:00+00:00",
+          "summary": "The director-general of the World Health Organization is profoundly worried about the Ebola outbreak in the DRC, he told STAT in an interview.",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] Anthropic CEO Dario Amodei warned Mythos posed a national security threat. Washington just responded.",
+          "url": "https://www.businessinsider.com/dario-amodei-ai-warnings-mythos-fable-blocked-2026-6",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 80,
+          "date_published": "2026-06-13T16:31:13+00:00",
+          "summary": "Anthropic's Dario Amodei warned his AI model, Mythos, was so powerful it posed serious threats. Then the government stepped in and Anthropic shut it down.",
+          "discussed": true
+        },
+        {
+          "title": "[Al Jazeera English] Dahiyeh crowds rally in favour of Iranian support against Israel",
+          "url": "https://www.aljazeera.com/video/newsfeed/2026/6/11/dahiyeh-crowds-rally-in-favour-of-iranian-support-against-israel?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "",
+          "ai_score": 79,
+          "date_published": "2026-06-11T03:49:06+00:00",
+          "summary": "Dahiyeh crowds rally in favour of Iranian support against Israel.",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] Yemen’s ‘Spider-Man’ dies while scaling volcanic crater",
+          "url": "https://www.aljazeera.com/video/newsfeed/2026/6/13/yemens-spider-man-dies-while-scaling-volcanic-crater?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "",
+          "ai_score": 77,
+          "date_published": "2026-06-13T11:08:34+00:00",
+          "summary": "Yemen’s 'Spider-Man' dies while scaling volcanic crater",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] Family mourn Indian sailor killed in US strike on oil tanker",
+          "url": "https://www.aljazeera.com/video/newsfeed/2026/6/12/family-mourn-indian-sailor-killed-in-us-strike-on-oil-tanker?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "",
+          "ai_score": 79,
+          "date_published": "2026-06-12T09:51:11+00:00",
+          "summary": "The wife and family of an Indian sailor killed in a US strike on a tanker off Oman this week have gathered in mourning.",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] Funerals held after deadly Pakistani strikes in Afghanistan",
+          "url": "https://www.aljazeera.com/video/newsfeed/2026/6/11/funerals-held-after-deadly-pakistani-strikes-in-afghanistan?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "",
+          "ai_score": 78,
+          "date_published": "2026-06-11T05:00:17+00:00",
+          "summary": "Hundreds gathered in eastern Afghanistan for the funerals of civilians killed in Pakistani airstrikes.",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Science, Wonder & the Natural World",
+      "articles": [
+        {
+          "title": "[100 Mile Free Press] District of 100 Mile House debates use of leftover REDIP funds",
+          "url": "https://100milefreepress.net/2026/06/13/district-of-100-mile-house-debates-use-of-leftover-redip-funds/",
+          "source": "100 Mile Free Press",
+          "author": "Patrick Davies",
+          "ai_score": 85,
+          "date_published": "2026-06-13T12:00:00+00:00",
+          "summary": "Council has $68,000 left over from a previous project that needs to be spent",
+          "discussed": true
+        },
+        {
+          "title": "[Al Jazeera English] Albania protests escalate over Kushner-backed coastal development",
+          "url": "https://www.aljazeera.com/video/newsfeed/2026/6/13/albania-protests-escalate-over-kushner-backed-coastal-development?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "",
+          "ai_score": 80,
+          "date_published": "2026-06-13T17:57:16+00:00",
+          "summary": "![](/wp-content/uploads/2026/06/image-1781373408.jpg?resize=730%2C410&quality=80) Albania protests escalate over Kushner-backed coastal development Protesters clashed with Albanian police at the site ...",
+          "discussed": false
+        },
+        {
+          "title": "[EarthSky] Tonight | EarthSky",
+          "url": "https://earthsky.org/tonight/",
+          "source": "EarthSky",
+          "author": "",
+          "ai_score": 80,
+          "date_published": "2026-06-13T17:54:00.525706+00:00",
+          "summary": "A daily update by email. Science news, great photos, sky alerts",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "How can rural communities like the Cariboo build sustainable, locally-valuable scientific and experiential infrastructure around their natural assets without depending on external funding cycles?",
+        "riley_position": "The Cariboo's exceptional dark skies represent an underrecognized asset that could be formalized through International Dark-Sky Association designations, creating durable local value through ecotourism and citizen science while requiring minimal ongoing capital investment.",
+        "riley_key_evidence": [
+          "100 Mile House council has $68,000 in discretionary REDIP funds available for reallocation",
+          "Jasper National Park's dark sky programming demonstrates a proven, multi-year tourism model",
+          "Globe at Night platform allows communities to contribute named, credited observations to research databases"
+        ],
+        "casey_position": "While dark sky preservation is valuable, the structural challenges of governance, Indigenous knowledge integration, and ensuring scientific benefits stay local rather than flowing to external institutions remain unresolved by designation alone.",
+        "casey_key_evidence": [
+          "Federal infrastructure controls space weather warnings with no local monitoring capacity in rural areas",
+          "Informal observational networks depend on sustained enthusiasm of a small number of people",
+          "The Secwépemc and Tŝilhqot'in Nations hold deep navigational and ceremonial knowledge of these skies that must be centered from design stage onward"
+        ],
+        "resolution": "Riley and Casey converged on the value of framing a dark sky designation as a structural question worth raising at community and council tables, acknowledging that genuine implementation requires Indigenous partnership from the outset. They agreed to disagree on whether current citizen science platforms adequately keep benefits local versus flowing to external institutions.",
+        "topics_covered": [
+          "Dark sky preservation and International Dark-Sky Association designation process",
+          "Citizen science platforms (Globe at Night) and data governance",
+          "Space weather infrastructure gaps in rural communities",
+          "Ecotourism economics and sustainability models versus grant-cycle dependency",
+          "Indigenous knowledge systems and territorial relationships to the sky"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "Azure Neural TTS (Ava · Andrew)",
+    "text_to_speech_openai": "OpenAI TTS API (Nova · Echo)",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  },
+  "closing_music": {
+    "track_id": "1882706",
+    "name": "Julius Marx - Vices",
+    "artist": "Julius Marx",
+    "genres": [
+      "indie",
+      "pop",
+      "folk"
+    ],
+    "shareurl": "https://www.jamendo.com/track/1882706",
+    "license": "Creative Commons via Jamendo"
+  }
+}
