@@ -137,7 +137,8 @@ Optional (for weekend shows and bespoke):
 | Secret | Value |
 |---|---|
 | `JAMENDO_CLIENT_ID` | Jamendo API key — free at devportal.jamendo.com |
-| `BRAVE_SEARCH_API_KEY` | Brave Search API key — for bespoke source expansion |
+| `BRAVE_SEARCH_API_KEY` | Brave Search API key — for bespoke source expansion and the agentic deep-dive research/fact-check loop |
+| `PODCAST_DEBUG_AGENT` | Set to `1` to log each tool call/result made by the agentic research and polish/fact-check loops |
 | `COHERE_API_KEY` | Cohere API key — enables semantic dedup and deep-dive reranking (set `USE_COHERE=1`) |
 
 Optional (for Cloudflare R2 audio hosting):
