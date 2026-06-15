@@ -883,17 +883,28 @@ def consume_seeds(seed_ids):
         print(f"  ⚠️  Could not update seeds file: {e}")
 
 
-def build_email_newsletter_article(item: dict, url: str) -> dict:
+def build_email_newsletter_article(item: dict, url: str, theme_keywords=None, anti_keywords=None) -> dict:
     """Convert an email newsletter item + URL into a synthetic article dict.
 
     Mirrors build_seed_article() — the returned dict slots directly into the
     theme_articles pool.  ai_score 88 sits between high-priority seeds (90)
     and normal seeds (82), giving newsletter content good but not dominant
     selection priority.
+
+    _keyword_matches is computed against the day's theme keywords (same as
+    any other feed article) rather than hardcoded, so a newsletter only
+    counts as a "strong match" — and competes for a deep-dive slot — if its
+    linked content actually fits today's theme.
     """
     title, desc, author = _fetch_url_metadata(url)
     if not title:
         title = item.get("subject") or url
+
+    text = f"{title} {desc}".lower()
+    keyword_matches = sum(len(kw.split()) for kw in (theme_keywords or []) if kw in text)
+    if anti_keywords:
+        keyword_matches = max(0, keyword_matches - sum(len(kw.split()) for kw in anti_keywords if kw in text))
+
     return {
         "title": title,
         "url": url,
@@ -901,7 +912,7 @@ def build_email_newsletter_article(item: dict, url: str) -> dict:
         "ai_score": 88,
         "authors": [{"name": f"Newsletter: {item.get('from_address', 'unknown')}"}],
         "_article_author": author,
-        "_keyword_matches": 2,
+        "_keyword_matches": keyword_matches,
         "_boosted_score": 88,
         "_is_bonus": False,
         "_is_seeded": True,
@@ -939,6 +950,9 @@ def _build_newsletter_articles(newsletter_items: list, today_theme: str, brave_c
     enrich_deep_dive_with_brave() on each article so Claude has real content to
     work from rather than just a URL.  Up to 3 URLs per newsletter are used.
     """
+    theme_keywords = _build_theme_keywords(today_theme)
+    anti_keywords = _build_theme_anti_keywords(today_theme)
+
     articles = []
     for item in newsletter_items:
         is_url_only = len((item.get("body_text") or "").strip()) < EMAIL_BODY_MIN_CHARS
@@ -948,7 +962,7 @@ def _build_newsletter_articles(newsletter_items: list, today_theme: str, brave_c
         else:
             print(f"  📧 Newsletter: \"{subject_preview}\" ({len(item.get('extracted_urls', []))} URL(s))")
         for url in item.get("extracted_urls", [])[:3]:
-            art = build_email_newsletter_article(item, url)
+            art = build_email_newsletter_article(item, url, theme_keywords, anti_keywords)
             if is_url_only and brave_client:
                 brave_ctx = enrich_deep_dive_with_brave([art], today_theme, brave_client)
                 if brave_ctx:
@@ -2999,9 +3013,16 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=3):
     When the feed provides no keyword matches, falls back to local keyword
     scoring against the theme name and config keywords.
     """
-    # Articles are already sorted by boosted score from the feed.
-    # Prefer articles with keyword matches for deep dive.
-    strong_match = [a for a in theme_articles if a.get('_keyword_matches', 0) > 0]
+    # Articles are mostly sorted by boosted score from the feed, but seeded/
+    # newsletter articles are prepended ahead of the feed and shouldn't win a
+    # deep-dive slot purely by virtue of being first. Re-sort strong matches by
+    # (keyword matches, boosted score) so genuinely on-theme feed articles can
+    # outrank a weakly-matching newsletter or seed.
+    strong_match = sorted(
+        (a for a in theme_articles if a.get('_keyword_matches', 0) > 0),
+        key=lambda a: (a.get('_keyword_matches', 0), a.get('_boosted_score', a.get('ai_score', 0))),
+        reverse=True,
+    )
     weak_match = [a for a in theme_articles if a.get('_keyword_matches', 0) == 0]
 
     theme_keywords = _build_theme_keywords(theme_name)
