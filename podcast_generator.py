@@ -32,6 +32,7 @@ from config_loader import (
     load_disciplines_config,
     get_voice_for_host,
     get_voice_instructions_for_host,
+    get_speed_for_host,
     get_theme_for_day
 )
 from azure_tts import (
@@ -3923,7 +3924,7 @@ def heuristic_gap_ms(text, prev_speaker, cur_speaker, section="deep_dive"):
             if char_count > 80:
                 return 1500  # likely a new story — deliberate pause
             return 600       # shorter continuation still gets a beat
-        return 0
+        return 100           # brief breath before continuing the thought
 
     # --- News section: slower, more measured pacing ---
     if section == "news":
@@ -3936,14 +3937,14 @@ def heuristic_gap_ms(text, prev_speaker, cur_speaker, section="deep_dive"):
     # --- Default (deep dive / welcome / other): conversational pacing ---
     # Short interjection / reaction
     if char_count <= 25:
-        return 50  # very tight – almost overlapping
+        return 120  # tight, but a perceptible beat
 
     # Medium-length reaction (one sentence)
     if char_count <= 80:
-        return 150
+        return 220
 
     # Standard speaker change
-    return 350
+    return 450
 
 
 def _append_with_gap(combined, speech, gap_ms):
@@ -4180,6 +4181,7 @@ def generate_tts_for_segment(text, speaker, output_file):
 
     voice = get_voice_for_host(speaker)
     instructions = get_voice_instructions_for_host(speaker)
+    speed = get_speed_for_host(speaker)
 
     # Apply shared pronunciation substitutions
     clean = text
@@ -4195,7 +4197,7 @@ def generate_tts_for_segment(text, speaker, output_file):
         voice=voice,
         input=clean,
         instructions=instructions,
-        speed=1.0
+        speed=speed
     ), max_retries=2, base_delay=1)
 
     with open(output_file, "wb") as f:
