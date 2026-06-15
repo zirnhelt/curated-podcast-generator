@@ -1,0 +1,141 @@
+# Cariboo Signals Podcast Script - 2026-06-15
+# Theme: Arts, Culture & Digital Storytelling
+# Generated: 2026-06-15 04:58:04 PDT
+
+**CASEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. It's Monday, June 15th, 2026. Coming to you from the Cariboo, on lands that have been cared for by the Secwépemc, Tŝilhqot'in, and Dakelh peoples since time immemorial. Today's theme is Arts, Culture & Digital Storytelling — I'm Casey.
+
+**RILEY:** And I'm Riley. We've got a lot of ground to cover today — from a Williams Lake theatre crew heading to provincials, to some sharp questions about who actually controls the infrastructure behind Canadian cultural voices.
+
+**CASEY:** Weather check before we get into it — Horsefly Lake is sitting at 13 degrees this morning, overcast, with a high of 23 expected. Pretty similar picture across the region: 100 Mile House, Williams Lake, Quesnel, and out at Alexis Creek on the Chilcotin plateau, all hovering between 13 and 16, all overcast. Light drizzle forecast for tomorrow, so get your outdoor plans in today. Let's get into the news.
+
+---
+
+**NEWS ROUNDUP**
+
+**RILEY:** [pause:1200] Starting with something genuinely worth celebrating locally. A Williams Lake theatre production called *Escaped Alone* has just won best production at the local level and is now heading to a provincial theatre competition. That's a small community punching well above its weight in live performance — and a reminder that cultural infrastructure in a city of around 10,700 people can produce work that holds up at the provincial stage.
+
+**CASEY:** Live theatre surviving and competing — that's the kind of thing that doesn't make itself visible until it wins something.
+
+**CASEY:** [pause:1200] Also on the Canadian media landscape — Tod Maffin's current footprint is worth noting. Former CBC Radio host, now operating independently through a newsletter, podcast called *Mirror Falls*, and a Bluesky presence. The career arc is interesting for anyone thinking about what sustainable independent media actually looks like.
+
+**RILEY:** The CBC-to-independent pipeline. Not unique to him, but he's one of the clearer examples of it working at scale.
+
+**RILEY:** [pause:1200] Canadaland published a retraction and apology to Theresa Kielburger, related to their podcast *The White Saviors*. A formal retraction from a journalism outlet is significant — especially for Canadaland, whose brand is built on accountability. It's a reminder that accountability journalism has to hold itself to the same standard it applies to others.
+
+**CASEY:** The credibility cost of getting it wrong is higher when that's your whole value proposition.
+
+**CASEY:** [pause:1200] Moving to telecom — and this one has a real arts and culture angle. OpenMedia is calling out Rogers for falling short on commitments made when the Rogers-Shaw merger was approved in 2023. According to their campaign, three years in, Rogers is behind on job creation, 5G deployment, pricing, and service quality. The binding commitments included up to a billion dollars in penalties for non-compliance — and OpenMedia is asking Minister Joly to actually enforce them. For rural communities in the Cariboo, this matters because Shaw was a significant internet provider here, and the merger was sold partly on promises of expanded rural coverage.
+
+**RILEY:** The merger got approved. The press release was excellent. The follow-through is a different story — and we're still waiting.
+
+**RILEY:** [pause:1200] A new federal bill would introduce social media age restrictions for Canadians under 16. According to the Williams Lake Tribune, the legislation would also require social media services to remove harmful content within 24 hours. The age restriction component will draw the most attention, but the 24-hour removal window is the harder engineering and moderation problem — and the one with more direct implications for how platforms operate in Canada.
+
+**CASEY:** That 24-hour window is going to be litigated heavily. The platforms will say it's technically unworkable. The question is whether the government has the stomach to enforce it.
+
+**CASEY:** [pause:1200] In the UK, the communications regulator sent a reminder to social platforms after riots in Belfast that they have a legal obligation to minimize hateful content — not just react to it after the fact. The framing is important: it's a duty to minimize, not just a duty to remove once reported. That distinction matters for how platforms design their systems, and it's relevant to the Canadian bill Riley just mentioned.
+
+**RILEY:** Duty to minimize is a much higher bar than duty to respond. Whether regulators actually enforce that distinction is the open question.
+
+**RILEY:** [pause:1200] Two comedians, Harris Alterman and Dave Ross, created fake AI company ads and posted them in New York City subway cars. The videos went viral with millions of views. The ads lampooned the generic, vague, aspirational tone of real tech advertising. The reason it landed is that the satire barely had to stretch — it's almost indistinguishable from the actual ads.
+
+**CASEY:** The fake ads are probably clearer about what AI does than most of the real ones.
+
+**CASEY:** [pause:1200] Al Jazeera is reporting that the US government has asked Anthropic to restrict global access to its top AI models. The request is framed around national security and export controls. Worth noting for transparency: Anthropic's Claude is the system that writes and curates every script on this show, so we're essentially reporting on our own production stack here.
+
+**RILEY:** Not an awkward conflict of interest at all.
+
+**CASEY:** [pause:800] Not even a little. The geopolitical implications are real though — export controls on AI models would fragment the global AI development landscape in ways that affect every downstream application, including cultural tools.
+
+**RILEY:** [pause:1200] Two historical footnotes worth a moment. Kim Jong-il had South Korean actress Choi Eun-hee kidnapped in 1978 — lured to Hong Kong under false pretenses — and held her for years to make films for him. It's an extreme illustration of state cultural production, and of how authoritarian regimes have always understood that storytelling is a form of power.
+
+**CASEY:** Control the stories, control the culture. He understood the stakes better than most media executives.
+
+**RILEY:** [pause:1200] And from Boing Boing — the medieval Feast of the Ass, held on January 14th, honoring the donkey that carried the Holy Family into Egypt. The congregation processed with a real donkey, and the mass concluded with the priest braying and the congregation braying back in response. This is apparently documented history, not folklore. Participatory, embodied, communal — and completely absurd. Medieval people had a more interesting relationship to sacred ritual than we give them credit for.
+
+**CASEY:** That is a much better call-and-response tradition than anything we've managed since.
+
+**RILEY:** [pause:1200] And Williams Lake is apparently in the running to be named Canada's most active community. The campaign is about physical activity, not civic engagement — but honestly, either framing works.
+
+**CASEY:** A city of 10,700 going after a national title. That's Cariboo energy.
+
+**RILEY:** Right. Let's take a short break — when we come back, we're going into the Deep Dive.
+
+---
+
+**COMMUNITY SPOTLIGHT**
+
+**CASEY:** Before we get there — a quick spotlight on an organization doing real work in Williams Lake. The Central Cariboo Arts and Culture Society manages the Arts Centre, runs grants programs for local artists, and organizes Performances in the Park — free live music every Thursday evening this summer in Boitano Park. No ticket required. Just show up. The lineup changes weekly, and you can check what's on at centralcaribooarts.com.
+
+**RILEY:** Free outdoor concerts on a Cariboo summer evening — that's not a small thing. That's a community choosing to make culture accessible.
+
+**CASEY:** It is. And it's a useful anchor for what we're about to get into.
+
+---
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Arts, Culture & Digital Storytelling**
+
+**CASEY:** The question worth sitting with today is this: what does it mean for rural communities to have a cultural voice when the infrastructure that carries that voice — the platforms, the telecom networks, the AI tools — is almost entirely controlled somewhere else?
+
+**RILEY:** The framing risks being paralyzing. Infrastructure has always been controlled somewhere else. The printing press came from Germany. Radio transmitters weren't built in Horsefly. The question isn't who owns the infrastructure — it's whether communities can use it to say something true about themselves.
+
+**CASEY:** Tod Maffin is an interesting test case there. He built a CBC audience, then walked it into independent publishing — newsletter, podcast, Bluesky presence. That looks like a success story for platform-independent cultural voice. But it took years at a national broadcaster to build the name recognition that made the transition viable. What's the path for someone who didn't start with the CBC behind them?
+
+**RILEY:** The Canadaland ecosystem is worth examining on that point. They built from scratch — not CBC alumni in the same way — and they've grown to the point of producing original investigative series, running fellowships, hosting events. The model works. It's slower and harder without the public broadcaster runway, but it works.
+
+**CASEY:** And then they issue a retraction to Theresa Kielburger, which costs them credibility at exactly the moment when their credibility is their only asset. That's the fragility in the independent model — a single accountability failure lands differently when you don't have an institution absorbing the hit.
+
+**RILEY:** Publishing a warranted retraction is accountability journalism working correctly. The damage is real but recoverable. What you're calling fragility, I'd call transparency operating as designed.
+
+**CASEY:** Scale that down to a community radio station in 100 Mile House with two paid staff and a rotating roster of volunteers. One bad editorial call, one story that turns out to be wrong — that organization doesn't have a legal team, a managing editor, or a brand resilient enough to survive a formal retraction. The stakes are asymmetric.
+
+**RILEY:** They are. But the alternative — small community outlets so cautious they never touch anything controversial — produces cultural work that's essentially a calendar of local events. That's not nothing, but it's not a voice either.
+
+**CASEY:** Which brings us to the Rogers-Shaw situation, because that's actually the substrate everything else runs on. The merger was approved with binding commitments on rural 5G deployment, job creation, and price controls. Three years in, according to OpenMedia, Rogers is behind on all of it. The penalties are supposed to go up to a billion dollars. If Minister Joly doesn't enforce them, those weren't commitments — they were a press release with extra steps.
+
+**RILEY:** The enforcement gap is real. But even if Rogers had met every commitment, we'd still have a single private corporation controlling the connectivity infrastructure for most of rural BC. The merger conditions were trying to make that monopoly slightly more tolerable, not to change the underlying architecture.
+
+**CASEY:** So what changes the underlying architecture?
+
+**RILEY:** Community-owned broadband. There are examples of fiber co-ops in smaller Alberta communities — projects that took years to complete but where the community ultimately owns the pipe. There's no equivalent in the Cariboo at that scale, but the model exists. If an organization like the Central Cariboo Arts and Culture Society is dependent on Rogers infrastructure to stream Performances in the Park, or to run an online archive, they're one pricing change or service deterioration away from losing that capability.
+
+**CASEY:** And full disclosure — Cohere's tools are part of how we process and deduplicate articles for this show. So we're not exactly operating outside the corporate AI stack when we talk about infrastructure independence. The point stands though: the cultural organizations we're describing don't have the option of choosing their infrastructure. They take what's available.
+
+**RILEY:** Which is why the AI tools question is actually more interesting than the connectivity question right now. Connectivity is expensive to change. The tools for producing and distributing cultural content have gotten dramatically cheaper and more accessible in the last three years. The *Escaped Alone* crew — a Williams Lake theatre production winning at the local level and advancing to provincials — doesn't need enterprise software. They need an audience, some documentation capacity, and distribution.
+
+**CASEY:** But that story almost didn't exist as a story. The Williams Lake Tribune covered it. If the Tribune shrinks, or paywalls local arts coverage because it doesn't drive ad revenue, that win disappears. It lives in a program, in the memories of people who were there, and nowhere else. No archive, no record, no way for that production to build on its own momentum.
+
+**RILEY:** That's the documentation gap — and it's solvable at a scale that doesn't require a corporate partner. A production heading to provincials is exactly what a community archive project would capture. High school media programs, community college journalism students, volunteer documentation projects. The tools to shoot, edit, and publish a five-minute profile of that production cost almost nothing now.
+
+**CASEY:** The tools cost nothing. The person who knows how to use them, has time to use them, and is embedded enough in the community to know the story is worth telling — that person costs something. In a community running arts programming on thin margins, that person usually doesn't exist in a paid capacity.
+
+**RILEY:** Some regions have experimented with media cooperatives where multiple small outlets pool a digital editor position. Nobody could afford one full-time, but several organizations splitting the cost could. The Cariboo has enough cultural organizations — the arts society, local theatre groups, community radio if it still exists in that form — that a pooled position isn't outlandish.
+
+**CASEY:** Okay, but pooling resources doesn't mean pooling governance, and those two things get confused constantly in these proposals. An Indigenous cultural organization's documentation priorities are going to be fundamentally different from a Williams Lake theatre company's priorities — what gets recorded, who can access it, what stays restricted. You can't flatten that into a shared regional digital editor role.
+
+**RILEY:** Agreed. And we should say plainly: we're working from published sources here. We haven't been in direct conversation with communications staff from Xatśūll or the Williams Lake First Nation about how they're thinking about digital cultural documentation, and that's a gap in what we're saying. Their digital and cultural infrastructure work is under their own governance, serving their own community needs. Those don't merge into a shared regional position — they're parallel tracks.
+
+**CASEY:** The Cohere Canadaland episode — Cohere's founder pushing back on AI critics, with Mark Carney apparently saying "if you don't know who Cohere is, you will" — the core argument is that AI tools are being unfairly characterized as threats to creative work when they're more accurately production infrastructure. That argument plays differently depending on who you are. For a Canadian comedian with a subway ad going viral through algorithmic distribution, sure. For an Indigenous cultural organization trying to ensure that what gets documented, and how it gets indexed, and who can access it, is under community control — the infrastructure question isn't about capacity. It's about sovereignty.
+
+**RILEY:** Those are answerable questions, though. They're not answered by default in any commercial AI product, but they're answerable. Mukurtu is an open-source content management system built specifically for Indigenous cultural archives — tiered access, community-controlled permissions, designed without the extraction logic built into commercial platforms. It exists and it's in use by communities across North America. The tools that address what you're describing aren't theoretical.
+
+**CASEY:** Mukurtu exists, yes. Getting a Cariboo First Nation's cultural team resourced to implement and maintain it sustainably — that's not theoretical in the other direction either. The gap between "this tool solves the problem" and "this community has the capacity to run this tool without it collapsing when the project lead leaves" is where every pilot I've seen eventually stalls.
+
+**RILEY:** So what breaks the pilot cycle? Because that's the structural question. Not "is there funding" — there's always another grant somewhere. What would make a community-controlled cultural archive self-sustaining rather than dependent on the next application cycle?
+
+**CASEY:** Skill transfer is the slower piece — the person who trains the next person, who builds internal capacity so the knowledge doesn't walk out the door. That's a three-to-five year investment, not a one-year pilot. And arts councils are structured to fund projects. Nobody is set up to fund a multi-year skills transfer program for a community archivist.
+
+**RILEY:** Which means the right funding ask isn't "fund the archive project" — it's "fund the training pipeline that makes the archive self-sustaining." Those are two different asks with very different timelines and very different institutional appetites. The structural mismatch between project funding and infrastructure investment is the real ceiling here.
+
+**CASEY:** Not the tools, not the willingness, not even the bandwidth. The way arts funding is categorized means the thing communities actually need is structurally ineligible for the funding that exists. You can have a perfectly designed Mukurtu instance and a community that wants to use it, and still watch the whole thing collapse because the grant ran out and nobody budgeted for year three.
+
+**RILEY:** The medieval congregation braying back at the priest — participatory, embodied, completely absurd — lasted for centuries without a grant application. The *Escaped Alone* production in Williams Lake exists because people showed up and kept showing up. The durable cultural infrastructure in this region has always been sustained by consistent presence, not by the funding cycles that nominally support it.
+
+**CASEY:** That's a genuinely poetic reframe of a structural funding problem.
+
+**RILEY:** It is. And it doesn't close the gap. What it does suggest is a different question worth asking at the next CCACS board meeting, or at whatever Cariboo arts roundtable happens this fall: what would it take for what we're building to be self-sustaining by design, not just refundable on a two-year cycle? That question forces different planning than "where's the next grant coming from." It's the difference between building something and renting the space where something temporarily exists.
+
+**CASEY:** The infrastructure is controlled elsewhere. The funding model is designed for projects, not permanence. The communities doing the most interesting cultural work are doing it on borrowed time and borrowed tools. Those aren't problems with easy fixes — and anyone telling you the AI productivity stack solves them is skipping several hard steps. But if you're involved with a cultural organization in the Cariboo and you've actually worked through some of this — what you tried, what held, what didn't — reach out at feedback@cariboosignals.ca. We'd genuinely rather hear a concrete example than keep reasoning from first principles. And that goes for corrections too: a listener recently caught an error where we placed Clearwater near a Tŝilhqot'in territorial border — it's Simpcw territory, Secwépemc-affiliated, and Tŝilhqot'in territory generally sits west of the Fraser. We updated our verified facts and we're grateful for it.
+
+**RILEY:** Getting that right matters. And on that note — have a good Monday.
+
+**CASEY:** Talk to you tomorrow.

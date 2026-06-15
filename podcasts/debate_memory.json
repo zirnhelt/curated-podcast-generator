@@ -1,17 +1,4 @@
 {
-  "2026-03-16": {
-    "timestamp": 1773666831.838235,
-    "date": "2026-03-16",
-    "theme": "Arts, Culture & Digital Storytelling",
-    "central_question": "Deep dive on Arts, Culture & Digital Storytelling",
-    "topics_covered": [
-      "broadband",
-      "AI",
-      "infrastructure",
-      "community ownership",
-      "funding"
-    ]
-  },
   "2026-03-17": {
     "timestamp": 1773753190.187749,
     "date": "2026-03-17",
@@ -2168,6 +2155,32 @@
       "Space weather infrastructure gaps in rural communities",
       "Ecotourism economics and sustainability models versus grant-cycle dependency",
       "Indigenous knowledge systems and territorial relationships to the sky"
+    ]
+  },
+  "2026-06-15": {
+    "timestamp": 1781524686.487188,
+    "date": "2026-06-15",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "central_question": "How can rural communities maintain authentic cultural voices and documentation when the infrastructure\u2014connectivity, platforms, and AI tools\u2014is controlled by external corporations?",
+    "riley_position": "The question isn't who owns infrastructure, but whether communities can use it to tell true stories about themselves; cultural production tools have become cheap and accessible enough that communities can produce and distribute content independently.",
+    "riley_key_evidence": [
+      "Tod Maffin built 10 million weekly readers across newsletter, podcast, and Bluesky after leaving CBC",
+      "Canadaland grew from scratch without CBC alumni backing to create original investigative series and fellowships",
+      "Mukurtu is an open-source content management system built specifically for Indigenous cultural archives with community-controlled permissions"
+    ],
+    "casey_position": "Rural cultural organizations face asymmetric accountability risks and resource constraints; the real ceiling isn't tools or willingness but structural funding mismatches that treat infrastructure investments as short-term projects rather than multi-year capacity building.",
+    "casey_key_evidence": [
+      "A 100 Mile House community radio station with two staff and volunteers cannot absorb accountability failures the way larger outlets can",
+      "Rogers is behind on rural 5G deployment commitments made at the Shaw merger approval",
+      "Arts councils fund projects, not the 3-5 year training pipelines needed to make tools like Mukurtu self-sustaining"
+    ],
+    "resolution": "They agreed to disagree on whether funding gaps are solvable but converged on the core insight: the structural problem is funding being categorized for projects rather than infrastructure, and the real question is designing cultural organizations to be self-sustaining by design rather than refundable on two-year cycles.",
+    "topics_covered": [
+      "Platform-independent publishing and the Tod Maffin/Canadaland models",
+      "Rural broadband infrastructure monopolies and the Rogers-Shaw merger enforcement gap",
+      "Community-owned broadband alternatives and the Olds, Alberta fiber co-op model",
+      "Indigenous cultural documentation and governance through tools like Mukurtu",
+      "Funding structures for cultural organizations and the project-versus-infrastructure mismatch"
     ]
   }
 }
