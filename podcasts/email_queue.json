@@ -1597,6 +1597,24 @@
       "theme_day": 0,
       "status": "used",
       "used_at": "2026-06-15"
+    },
+    {
+      "id": "7de3666b",
+      "type": "newsletter",
+      "message_id": "<202606151434.35958662895@smtp-relay.mailin.fr>",
+      "from_address": "d***@bre.podview.com",
+      "subject": "Everything your podcast needs to grow, in one place",
+      "received_at": "2026-06-15T14:34:12+00:00",
+      "body_text": "Hi there, \"Cariboo Signals\" deserves more than a feed link. PodView is the all-in-one home for your podcast \u2014 built by podcasters, for podcasters: Get cited by AI \u2014 PodView helps ChatGPT, Perplexity, ",
+      "extracted_urls": [
+        "https://bbbhabdi.r.tsp1-brevo.net/tr/op/YRF5umNbnhbxtxFBJXsLoUdFKcvF-vncV4MYAGjo0MNBnaSCl5R9ExGruWMgBSlLLPvTSd-Mu7Bln8baWPNkR9pRd50wydZ6eKKlDMWrX8q0USrsfRjKdznOtkE6S2CxGb3Wn08bogzO9iv79iZ3BHqyxi6R8xkRloyZQhe5XVlwQiryMdluYUYAhemn5KUA7XJuJ4Py__1xR-lS0LcAhgsWlWvjiVZJaQ",
+        "https://bbbhabdi.r.tsp1-brevo.net/tr/cl/SabWU2Cr-bQZlNoZKCXgFpF0BE316RcltS3LlkcQytr99JlV-0I8e3O6kGNheG6KxlsO6YcWfheVpkCnAYXQP0I2gz9UUa3EgZav4pfjni9F0OvLkubq9Bv75uE-gTdfPB4fEA_TMa5EcZNIeLO9JZNr5PIcnx6MYkeLOEMGYau7-c-WH_gS_7DxkFVCHgWCAacx3uhtAXGQzrnTwJ5MAZKAHou5gGkuAbKQc6IueqawIbxT11KqFtTGOPq9HVZzlanqWbEjrFTMrttYzOHJb7zK7WYPiGMJDLNk6_ov0qke_NvVj2p4awT0oJ-UvqGIoXiXdbo7hxr6pCCl_tQdbacFqv_v9SxvcSTg5iVvYEhGmUe_-Zs7ylEIjDoDeyQ",
+        "https://bbbhabdi.r.tsp1-brevo.net/tr/cl/5Zcr6nqt37tJiGRm4Mz3aQmhoqPaQRCoWUZth4vSn4n-Lp601V8qukMXwIP57PY6S-7g8HBuXSg0xJVEoWCjGJyMhX5suWqH8zqXfVLFWWqbi0MOgOAfKHWu__aLKz61p337g1lSgluN-rFvLz4isrPfCuLcYB7u__W6cmXw4sW84Pfc1xa-76TIymU2_hQaTsgIZPc2oIdda9z8KJrJpirluFHNNpOdWcIRkMDoBJEkPFkdBO0hFe8oFLb7G8Fl4pX1rArFi8rFMtoiWmhXYSaN7m9GZRtOqWO0JjGtSf14EcglerQkVSKbVd8sL_p7zSCE9Iuao3ywjGPkh0Och0qmxMojzZsGLDK_s3xCqrpAV5gB65gwMLSbB5FMxE8qFgOUG0r8VSDbVcgHQsrqBxuVNBKpjYWNkvAIFq-czANr4QkKAoX1ht4cTQ"
+      ],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
