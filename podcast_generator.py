@@ -4985,7 +4985,8 @@ def generate_podcast_rss_feed():
         cover_image = podcast_config["cover_image"]
 
     podcasts_dir = str(PODCASTS_DIR)
-    audio_files = glob.glob(os.path.join(podcasts_dir, "podcast_audio_*.mp3"))
+    audio_base = podcast_config.get("audio_base_url", podcast_config["url"])
+    citations_files = glob.glob(os.path.join(podcasts_dir, "citations_*.json"))
     episodes = []
 
     # Try to load pydub for actual duration; fall back to config default
@@ -4997,93 +4998,127 @@ def generate_podcast_rss_feed():
         except Exception:
             return podcast_config["episode_duration"]
 
-    for audio_file in sorted(audio_files, reverse=True):
-        audio_basename = os.path.basename(audio_file)
-        match = re.search(r'podcast_audio_(\d{4}-\d{2}-\d{2})_(.+)\.mp3', audio_basename)
-        if match:
-            date_str, theme = match.groups()
+    # For archived episodes whose audio isn't checked out locally (it lives on
+    # R2/Pages, not git), fetch the file size via HEAD so the feed can still
+    # include them with a correct <enclosure length>.
+    def remote_content_length(url):
+        try:
+            resp = requests.head(url, timeout=5, allow_redirects=True)
+            if resp.status_code != 200:
+                return 0
+            length = resp.headers.get('Content-Length')
+            return int(length) if length else 0
+        except Exception:
+            return 0
 
-            try:
-                date_obj = datetime.strptime(date_str, "%Y-%m-%d")
-                pub_date = _pacific_pub_date(date_obj)
+    # Build the episode list from every citations file (the full archive),
+    # not just whatever .mp3 files happen to be checked out locally.
+    for citations_file in sorted(citations_files, reverse=True):
+        citations_basename = os.path.basename(citations_file)
+        match = re.match(r'citations_(\d{4}-\d{2}-\d{2})_(.+)\.json', citations_basename)
+        if not match:
+            continue
+        date_str, theme = match.groups()
 
-                # Load corresponding citations file
-                safe_theme = theme.replace(' ', '_').replace('&', 'and').lower()
-                citations_file = os.path.join(podcasts_dir, f"citations_{date_str}_{safe_theme}.json")
+        try:
+            date_obj = datetime.strptime(date_str, "%Y-%m-%d")
+        except ValueError:
+            continue
+        pub_date = _pacific_pub_date(date_obj)
 
-                episode_description = podcast_config["description"]
-                episode_type = "full"
+        audio_basename = f"podcast_audio_{date_str}_{theme}.mp3"
+        audio_file = os.path.join(podcasts_dir, audio_basename)
 
-                # Add citations if file exists
-                if os.path.exists(citations_file):
-                    try:
-                        with open(citations_file, 'r', encoding='utf-8') as f:
-                            citations_data = json.load(f)
+        episode_description = podcast_config["description"]
+        episode_type = "full"
+        citations_data = {}
 
-                        # Apple's <itunes:episodeType> — "full" (the default) for
-                        # regular episodes, "trailer" for show previews, "bonus"
-                        # for extras. Episode generators record this in citations
-                        # when it differs from the default.
-                        episode_type = citations_data.get('episode', {}).get('episode_type', 'full')
+        try:
+            with open(citations_file, 'r', encoding='utf-8') as f:
+                citations_data = json.load(f)
 
-                        # Use the pre-built HTML description if available (preserves
-                        # paragraph formatting in Apple Podcasts and other apps)
-                        if citations_data.get('episode', {}).get('description'):
-                            episode_description = citations_data['episode']['description']
-                        else:
-                            # Fallback: build plain-text description from segments
-                            theme_display = theme.replace('_', ' ').title()
-                            episode_description += f"\n\nToday's focus: {theme_display}"
+            # Apple's <itunes:episodeType> — "full" (the default) for
+            # regular episodes, "trailer" for show previews, "bonus"
+            # for extras. Episode generators record this in citations
+            # when it differs from the default.
+            episode_type = citations_data.get('episode', {}).get('episode_type', 'full')
 
-                            deep_dive = citations_data.get('segments', {}).get('deep_dive', {})
-                            discussion = deep_dive.get('discussion', {})
-                            if discussion.get('central_question'):
-                                episode_description += f"\n\nDEEP DIVE: {discussion['central_question']}"
-                                topics = discussion.get('topics_covered', [])
-                                if topics:
-                                    episode_description += f"\nTopics: {', '.join(topics)}"
+            # Use the pre-built HTML description if available (preserves
+            # paragraph formatting in Apple Podcasts and other apps)
+            if citations_data.get('episode', {}).get('description'):
+                episode_description = citations_data['episode']['description']
+            else:
+                # Fallback: build plain-text description from segments
+                theme_display = theme.replace('_', ' ').title()
+                episode_description += f"\n\nToday's focus: {theme_display}"
 
-                            if citations_data.get('segments'):
-                                episode_description += "\n\nSources cited in this episode:\n"
-                                source_num = 1
-                                for segment_name, segment_data in citations_data['segments'].items():
-                                    for article in segment_data.get('articles', []):
-                                        source_name = article.get('source', 'Unknown')
-                                        title = article.get('title', '')[:60]
-                                        if len(article.get('title', '')) > 60:
-                                            title += "..."
-                                        url = article.get('url', '')
-                                        if url:
-                                            episode_description += f'{source_num}. {source_name}: <a href="{url}">{title}</a>\n'
-                                        else:
-                                            episode_description += f"{source_num}. {source_name}: {title}\n"
-                                        source_num += 1
-                            # Add credits to fallback plain-text description
-                            episode_description += credits_config['text']
-                    except Exception as e:
-                        print(f"   ⚠️ Could not load citations for {audio_file}: {e}")
-                        episode_description += credits_config['text']
-                else:
-                    # No citations file — append credits to base description
-                    episode_description += credits_config['text']
-                
-                episodes.append({
-                    'title': f"{theme.replace('_', ' ').title()}",
-                    'audio_url_path': f"podcasts/{audio_basename}",
-                    'audio_file': audio_file,
-                    'pub_date': pub_date,
-                    'file_size': os.path.getsize(audio_file),
-                    'duration': get_audio_duration(audio_file),
-                    'description': episode_description,
-                    'episode_type': episode_type
-                })
-            except ValueError:
-                continue
+                deep_dive = citations_data.get('segments', {}).get('deep_dive', {})
+                discussion = deep_dive.get('discussion', {})
+                if discussion.get('central_question'):
+                    episode_description += f"\n\nDEEP DIVE: {discussion['central_question']}"
+                    topics = discussion.get('topics_covered', [])
+                    if topics:
+                        episode_description += f"\nTopics: {', '.join(topics)}"
 
-    episodes = episodes[:10]  # Keep last 10 episodes
+                if citations_data.get('segments'):
+                    episode_description += "\n\nSources cited in this episode:\n"
+                    source_num = 1
+                    for segment_name, segment_data in citations_data['segments'].items():
+                        for article in segment_data.get('articles', []):
+                            source_name = article.get('source', 'Unknown')
+                            title = article.get('title', '')[:60]
+                            if len(article.get('title', '')) > 60:
+                                title += "..."
+                            url = article.get('url', '')
+                            if url:
+                                episode_description += f'{source_num}. {source_name}: <a href="{url}">{title}</a>\n'
+                            else:
+                                episode_description += f"{source_num}. {source_name}: {title}\n"
+                            source_num += 1
+                # Add credits to fallback plain-text description
+                episode_description += credits_config['text']
+        except Exception as e:
+            print(f"   ⚠️ Could not load citations file {citations_file}: {e}")
+            episode_description += credits_config['text']
+
+        # Determine audio file size/duration, preferring the local file,
+        # then a cached value from a previous run, then a fresh HEAD request
+        # against the hosted copy.
+        episode_meta = citations_data.get('episode', {})
+        if os.path.exists(audio_file):
+            file_size = os.path.getsize(audio_file)
+            duration = get_audio_duration(audio_file)
+        elif episode_meta.get('audio_file_size'):
+            file_size = episode_meta['audio_file_size']
+            duration = episode_meta.get('audio_duration', podcast_config["episode_duration"])
+        else:
+            file_size = remote_content_length(f"{audio_base}podcasts/{audio_basename}")
+            duration = podcast_config["episode_duration"]
+            if file_size:
+                citations_data.setdefault('episode', {})['audio_file_size'] = file_size
+                citations_data['episode']['audio_duration'] = duration
+                try:
+                    with open(citations_file, 'w', encoding='utf-8') as f:
+                        json.dump(citations_data, f, indent=2, ensure_ascii=False)
+                except Exception as e:
+                    print(f"   ⚠️ Could not cache audio metadata for {citations_file}: {e}")
+
+        if not file_size:
+            print(f"   ⚠️ No audio found locally or remotely for {audio_basename} — skipping")
+            continue
+
+        episodes.append({
+            'title': f"{theme.replace('_', ' ').title()}",
+            'audio_url_path': f"podcasts/{audio_basename}",
+            'audio_file': audio_file,
+            'pub_date': pub_date,
+            'file_size': file_size,
+            'duration': duration,
+            'description': episode_description,
+            'episode_type': episode_type
+        })
 
     # Attach transcript paths for each episode (VTT for Apple Podcasts, HTML for others)
-    audio_base = podcast_config.get("audio_base_url", podcast_config["url"])
     for episode in episodes:
         audio_basename = os.path.basename(episode['audio_file'])
         m = re.search(r'podcast_audio_(\d{4}-\d{2}-\d{2})_(.+)\.mp3', audio_basename)
@@ -5246,8 +5281,6 @@ def generate_tts_test_feed():
             })
         except ValueError:
             continue
-
-    episodes = episodes[:10]
 
     rss_lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
