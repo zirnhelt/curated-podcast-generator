@@ -88,6 +88,10 @@ def get_voice_instructions_for_host(host_key):
     """Get OpenAI TTS delivery/emotion instructions for a host."""
     return load_hosts_config()[host_key]["voice_instructions"]
 
+def get_speed_for_host(host_key):
+    """Get OpenAI TTS speed multiplier for a host (defaults to 1.0)."""
+    return load_hosts_config()[host_key].get("speed", 1.0)
+
 def get_theme_for_day(weekday):
     """Get theme for specific day of week (0=Monday, 6=Sunday)."""
     return load_themes_config()[str(weekday)]["name"]
