@@ -5864,6 +5864,7 @@ def main():
         print(f"🔄 Using existing script: {script_filename}")
         with open(script_filename, 'r', encoding='utf-8') as f:
             script = f.read()
+        brave_used = False
     
     # On weekends, fetch one Jamendo track for the closing song
     weekend_closing = None
