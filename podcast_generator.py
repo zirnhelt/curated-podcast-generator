@@ -204,6 +204,10 @@ TARGET_MUSIC_DBFS = -28.0   # Music ducked beneath speech
 USE_AZURE_TTS = bool(os.getenv("USE_AZURE_TTS"))              # full switch to Azure
 USE_AZURE_PARALLEL = bool(os.getenv("AZURE_TTS_PARALLEL"))   # generate both, save _azure.wav for comparison
 
+# Set to True if a TTS call fails due to an OpenAI billing quota limit.
+# Checked at exit so the CI run fails and triggers a GitHub notification.
+_openai_quota_exceeded = False
+
 # Maximum characters per OpenAI TTS call. Segments above this are pre-split at
 # sentence boundaries so no single call carries enough text to risk a hang.
 TTS_SEGMENT_MAX_CHARS = 300
@@ -4615,17 +4619,19 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
         
     except Exception as e:
         print(f"❌ Error generating audio with music: {e}")
-        if 'insufficient_quota' in str(e) and not USE_AZURE_TTS and get_azure_speech_config():
-            print("⚠️  OpenAI quota exceeded — switching to Azure TTS")
-            return generate_audio_tts_only(script, output_filename, _force_azure=True)
+        if 'insufficient_quota' in str(e):
+            global _openai_quota_exceeded
+            _openai_quota_exceeded = True
+            print("💳 OpenAI billing quota exceeded — skipping audio generation")
+            return None
         print("⚠️  Falling back to TTS-only mode")
         return generate_audio_tts_only(script, output_filename)
 
-def generate_audio_tts_only(script, output_filename, _force_openai=False, _force_azure=False):
+def generate_audio_tts_only(script, output_filename, _force_openai=False):
     """Fallback: Generate audio without music (TTS only)."""
     print("📊 Generating TTS-only audio...")
 
-    use_azure = (USE_AZURE_TTS or _force_azure) and not _force_openai
+    use_azure = USE_AZURE_TTS and not _force_openai
     if use_azure:
         if not get_azure_speech_config():
             print("❌ Azure TTS enabled but credentials not set")
@@ -4693,9 +4699,11 @@ def generate_audio_tts_only(script, output_filename, _force_openai=False, _force
 
     except Exception as e:
         print(f"❌ Error generating TTS audio: {e}")
-        if not use_azure and 'insufficient_quota' in str(e) and get_azure_speech_config():
-            print("⚠️  OpenAI quota exceeded — switching to Azure TTS")
-            return generate_audio_tts_only(script, output_filename, _force_azure=True)
+        if not use_azure and 'insufficient_quota' in str(e):
+            global _openai_quota_exceeded
+            _openai_quota_exceeded = True
+            print("💳 OpenAI billing quota exceeded — skipping audio generation")
+            return None
         if use_azure and not _force_openai and get_openai_client():
             print("⚠️  Azure TTS failed — falling back to OpenAI TTS")
             return generate_audio_tts_only(script, output_filename, _force_openai=True)
@@ -5980,6 +5988,12 @@ def main():
     sync_site_to_r2()
 
     print("✅ Generation complete!")
+
+    if _openai_quota_exceeded:
+        print()
+        print("❌ OpenAI billing quota exceeded — audio was not generated.")
+        print("   Add credits or raise the spending limit at platform.openai.com to restore service.")
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
