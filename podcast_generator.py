@@ -200,6 +200,10 @@ OUTRO_MUSIC = SCRIPT_DIR / "cariboo-signals-outro.mp3"
 TARGET_SPEECH_DBFS = -20.0  # Speech louder and clear
 TARGET_MUSIC_DBFS = -28.0   # Music ducked beneath speech
 
+# Short fade applied to the end of each speech section before the ambient transition gap.
+# Prevents a click/pop caused by TTS voices ending on a non-zero sample when silence follows.
+SECTION_BOUNDARY_FADE_MS = 40
+
 # Azure TTS feature flags
 USE_AZURE_TTS = bool(os.getenv("USE_AZURE_TTS"))              # full switch to Azure
 USE_AZURE_PARALLEL = bool(os.getenv("AZURE_TTS_PARALLEL"))   # generate both, save _azure.wav for comparison
@@ -4484,6 +4488,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
 
             # Welcome section
             _render_section(segments['welcome'], "🎤 Generating welcome section...", "welcome")
+            combined = combined[:-SECTION_BOUNDARY_FADE_MS] + combined[-SECTION_BOUNDARY_FADE_MS:].fade_out(SECTION_BOUNDARY_FADE_MS)
 
             # Add themed chime into news (falls back to generic interval music if no ambient file)
             combined += section_gap + ambient_transition + section_gap
@@ -4491,6 +4496,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
             # News section
             chapters.append({"startTime": round(len(combined) / 1000, 1), "title": "News Roundup"})
             _render_section(segments['news'], "📰 Generating news section...", "news")
+            combined = combined[:-SECTION_BOUNDARY_FADE_MS] + combined[-SECTION_BOUNDARY_FADE_MS:].fade_out(SECTION_BOUNDARY_FADE_MS)
 
             # Add ambient transition before community spotlight / deep dive
             combined += section_gap + ambient_transition + section_gap
@@ -4499,6 +4505,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
             if segments['community_spotlight']:
                 chapters.append({"startTime": round(len(combined) / 1000, 1), "title": "Community Spotlight"})
                 _render_section(segments['community_spotlight'], "🏘️  Generating community spotlight...", "spotlight")
+                combined = combined[:-SECTION_BOUNDARY_FADE_MS] + combined[-SECTION_BOUNDARY_FADE_MS:].fade_out(SECTION_BOUNDARY_FADE_MS)
                 # Add ambient transition after community spotlight, before deep dive
                 combined += section_gap + ambient_transition + section_gap
 
