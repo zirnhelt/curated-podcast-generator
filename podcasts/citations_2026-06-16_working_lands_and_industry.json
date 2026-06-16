@@ -1,0 +1,155 @@
+{
+  "episode": {
+    "date": "2026-06-16",
+    "formatted_date": "Tuesday, June 16, 2026",
+    "theme": "Working Lands & Industry",
+    "title": "Cariboo Signals - Working Lands & Industry",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Working Lands & Industry.</p><p><b>NEWS ROUNDUP:</b> We break down [Kagi Small Web] The Startup That Charges More on Day One Usually Wins, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> What structural changes are needed to allow Cariboo working-lands producers to escape commodity pricing and capture more value from their products? Topics include: Commodity pricing dependency versus price differentiation in ranching and forestry, Processing infrastructure gaps and the role of regional abattoirs versus mobile units, Vertical integration and the capture of value margins by external processors, Producer coordination and institutional governance barriers in the Cariboo, Cybersecurity risks for digitizing agricultural operations in rural areas.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://williamslakestampede.com\">Williams Lake Stampede Association</a></p><p><b>Sources discussed:</b></p><ul><li>Kagi Small Web: <a href=\"https://siliconopera.com/the-startup-that-charges-more-on-day-one-usually-wins/\">[Kagi Small Web] The Startup That Charges More on Day One Us...</a></li><li>Lorenzo Franceschi-Bicchierai (TechCrunch): <a href=\"https://techcrunch.com/2026/06/12/chinese-cybercrime-operation-that-used-ai-to-scam-hundreds-of-thousands-of-victims-sued-by-google/\">[TechCrunch] Chinese cybercrime operation that used AI to sc...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Ellsworth Toohey (Boing Boing): <a href=\"https://boingboing.net/2026/06/10/in-1896-a-railroad-crashed-two-trains-head-on-for-fun-and-killed-two-spectators.html\">[Boing Boing] In 1896 a railroad crashed two trains head-on ...</a></li><li>Jason Weisberger (Boing Boing): <a href=\"https://boingboing.net/2026/06/12/mel-fishers-treasure-hunters-find-another-chunk-of-atocha-silver.html\">[Boing Boing] Mel Fisher's treasure hunters find another chu...</a></li><li>Laisa Conde (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/06/15/end-of-b-c-rural-healthcare-bonus-could-worsen-staffing-challenges-union-says/\">[Williams Lake Tribune] End of B.C. rural healthcare bonus c...</a></li><li>Zack Whittaker (TechCrunch): <a href=\"https://techcrunch.com/2026/06/11/south-korea-hits-coupang-with-400m-fine-for-data-breach-that-affected-millions/\">[TechCrunch] South Korea hits Coupang with $400M+ fine for d...</a></li><li>https://www.techradar.com/author/sead-fadilpai (TechRadar): <a href=\"https://www.techradar.com/pro/security/fbi-takes-out-huge-ai-powered-phishing-service-outsider-enterprise-was-using-over-a-million-phishing-urls-to-steal-credit-card-data-and-passwords\">[TechRadar] FBI takes out huge AI-powered phishing service: ...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-6<br>TTS Voices: OpenAI TTS API (Nova · Echo)<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-06-16T04:04:42.155908-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-sonnet-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 2292,
+      "voice_ratio_casey_riley": 0.95,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0
+      },
+      "total_hits": 0,
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Boing Boing] In 1896 a railroad crashed two trains head-on for fun and killed two spectators",
+          "url": "https://boingboing.net/2026/06/10/in-1896-a-railroad-crashed-two-trains-head-on-for-fun-and-killed-two-spectators.html",
+          "source": "Boing Boing",
+          "author": "Ellsworth Toohey",
+          "ai_score": 75,
+          "date_published": "2026-06-10T22:51:07+00:00",
+          "summary": "On September 15, 1896, the Missouri–Kansas–Texas Railroad crashed two unmanned locomotives into each other at speed as a public spectacle. The Crash at Crush was the idea of passenger agent William Cr...",
+          "discussed": false
+        },
+        {
+          "title": "[Kagi Small Web] The Startup That Charges More on Day One Usually Wins",
+          "url": "https://siliconopera.com/the-startup-that-charges-more-on-day-one-usually-wins/",
+          "source": "Kagi Small Web",
+          "author": "",
+          "ai_score": 68,
+          "date_published": "2026-06-14T17:11:00+00:00",
+          "summary": "The Seduction of the Low Price The instinct to underprice at launch is almost universal. A new startup has no brand, no track record, and no proof that anyone wants what it’s selling. Charging less fe...",
+          "discussed": true
+        },
+        {
+          "title": "[Boing Boing] Mel Fisher's treasure hunters find another chunk of Atocha silver",
+          "url": "https://boingboing.net/2026/06/12/mel-fishers-treasure-hunters-find-another-chunk-of-atocha-silver.html",
+          "source": "Boing Boing",
+          "author": "Jason Weisberger",
+          "ai_score": 68,
+          "date_published": "2026-06-12T17:42:03+00:00",
+          "summary": "Mel Fisher's treasure hunters are still pulling Spanish Empire leftovers out of the Florida Keys, and this time the ocean coughed up a 22-pound silver bar. After hitting the object with a knife and ex...",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] End of B.C. rural healthcare bonus could worsen staffing challenges, Union says",
+          "url": "https://wltribune.com/2026/06/15/end-of-b-c-rural-healthcare-bonus-could-worsen-staffing-challenges-union-says/",
+          "source": "Williams Lake Tribune",
+          "author": "Laisa Conde",
+          "ai_score": 64,
+          "date_published": "2026-06-16T05:51:43.430079+00:00",
+          "summary": "## End of B.C. rural healthcare bonus could worsen staffing challenges, Union says Published 11:30 am Monday, June 15, 2026 **By Laísa Condé** ![G.R. Baker",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Working Lands & Industry",
+      "articles": [
+        {
+          "title": "[TechCrunch] South Korea hits Coupang with $400M+ fine for data breach that affected millions",
+          "url": "https://techcrunch.com/2026/06/11/south-korea-hits-coupang-with-400m-fine-for-data-breach-that-affected-millions/",
+          "source": "TechCrunch",
+          "author": "Zack Whittaker",
+          "ai_score": 71,
+          "date_published": "2026-06-11T13:18:51+00:00",
+          "summary": "South Korean authorities issued the record-breaking fine following a data breach that affected over 30 million customers.",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] FBI takes out huge AI-powered phishing service: Outsider Enterprise was using over a million phishing URLs to steal credit card data and passwords",
+          "url": "https://www.techradar.com/pro/security/fbi-takes-out-huge-ai-powered-phishing-service-outsider-enterprise-was-using-over-a-million-phishing-urls-to-steal-credit-card-data-and-passwords",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/sead-fadilpai",
+          "ai_score": 89,
+          "date_published": "2026-06-15T12:25:00+00:00",
+          "summary": "Servers, Telegram bots, and money, all seized by the authorities.",
+          "discussed": false
+        },
+        {
+          "title": "[TechCrunch] Chinese cybercrime operation that used AI to scam ‘hundreds of thousands of victims’ sued by Google",
+          "url": "https://techcrunch.com/2026/06/12/chinese-cybercrime-operation-that-used-ai-to-scam-hundreds-of-thousands-of-victims-sued-by-google/",
+          "source": "TechCrunch",
+          "author": "Lorenzo Franceschi-Bicchierai",
+          "ai_score": 75,
+          "date_published": "2026-06-12T20:38:09+00:00",
+          "summary": "The tech giant said a group called \"Outsider Enterprise\" used AI to scam hundreds of thousands of victims, sending 2.5 million text messages over a span of two weeks.",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "What structural changes are needed to allow Cariboo working-lands producers to escape commodity pricing and capture more value from their products?",
+        "riley_position": "The key constraint is vertical integration and processing infrastructure; regional cooperative processing facilities (including mobile units) anchored by First Nations institutional demand could be implemented within three years without requiring permanent grant dependency.",
+        "riley_key_evidence": [
+          "Quebec agricultural cooperatives and Atlantic Canada have functioning models of cooperatively-owned regional abattoirs",
+          "Small-scale USDA-inspected mobile slaughter units have decreased in price significantly and have BC regulatory equivalents",
+          "Williams Lake First Nation agricultural programs and BC First Nations Health Authority food procurement could serve as demand anchors"
+        ],
+        "casey_position": "Ownership and processing infrastructure are necessary but insufficient; the real barrier is that decades of attempts at cooperative processing solutions have failed in practice due to coordination problems and the geographic reality of sparse producer density across the Cariboo.",
+        "casey_key_evidence": [
+          "Mobile processing models have been tried in BC with mixed results—scheduling conflicts, underutilization, and maintenance cost disputes",
+          "The geography that makes Cariboo land productive (vast range territory, low input costs) also means producers are spread across enormous areas with thin throughput",
+          "These governance problems have gone unsolved for approximately four decades despite repeated discussion"
+        ],
+        "resolution": "They converged on the need for demand anchors to make processing solutions viable, but disagreed on urgency and feasibility. Casey emphasized the gap between policy direction and actual procurement contracts, while Riley proposed a specific three-year action plan requiring direct conversation with the Cariboo Cattlemen's Association to identify concrete barriers rather than generic coordination challenges.",
+        "topics_covered": [
+          "Commodity pricing dependency versus price differentiation in ranching and forestry",
+          "Processing infrastructure gaps and the role of regional abattoirs versus mobile units",
+          "Vertical integration and the capture of value margins by external processors",
+          "Producer coordination and institutional governance barriers in the Cariboo",
+          "Cybersecurity risks for digitizing agricultural operations in rural areas"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "Azure Neural TTS (Ava · Andrew)",
+    "text_to_speech_openai": "OpenAI TTS API (Nova · Echo)",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}

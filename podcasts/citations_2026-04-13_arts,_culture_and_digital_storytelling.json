@@ -10,7 +10,9 @@
       "script": "claude-sonnet-4-6",
       "review": "claude-sonnet-4-6",
       "summary": "claude-haiku-4-5-20251001"
-    }
+    },
+    "audio_file_size": 19162989,
+    "audio_duration": "30:00"
   },
   "segments": {
     "news_roundup": {
