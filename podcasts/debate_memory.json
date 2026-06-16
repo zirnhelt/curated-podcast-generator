@@ -1,14 +1,4 @@
 {
-  "2026-03-17": {
-    "timestamp": 1773753190.187749,
-    "date": "2026-03-17",
-    "theme": "Working Lands & Industry",
-    "central_question": "Deep dive on Working Lands & Industry",
-    "topics_covered": [
-      "satellite",
-      "AI"
-    ]
-  },
   "2026-03-18": {
     "timestamp": 1773839983.417326,
     "date": "2026-03-18",
@@ -2181,6 +2171,32 @@
       "Community-owned broadband alternatives and the Olds, Alberta fiber co-op model",
       "Indigenous cultural documentation and governance through tools like Mukurtu",
       "Funding structures for cultural organizations and the project-versus-infrastructure mismatch"
+    ]
+  },
+  "2026-06-16": {
+    "timestamp": 1781607886.529265,
+    "date": "2026-06-16",
+    "theme": "Working Lands & Industry",
+    "central_question": "What structural changes are needed to allow Cariboo working-lands producers to escape commodity pricing and capture more value from their products?",
+    "riley_position": "The key constraint is vertical integration and processing infrastructure; regional cooperative processing facilities (including mobile units) anchored by First Nations institutional demand could be implemented within three years without requiring permanent grant dependency.",
+    "riley_key_evidence": [
+      "Quebec agricultural cooperatives and Atlantic Canada have functioning models of cooperatively-owned regional abattoirs",
+      "Small-scale USDA-inspected mobile slaughter units have decreased in price significantly and have BC regulatory equivalents",
+      "Williams Lake First Nation agricultural programs and BC First Nations Health Authority food procurement could serve as demand anchors"
+    ],
+    "casey_position": "Ownership and processing infrastructure are necessary but insufficient; the real barrier is that decades of attempts at cooperative processing solutions have failed in practice due to coordination problems and the geographic reality of sparse producer density across the Cariboo.",
+    "casey_key_evidence": [
+      "Mobile processing models have been tried in BC with mixed results\u2014scheduling conflicts, underutilization, and maintenance cost disputes",
+      "The geography that makes Cariboo land productive (vast range territory, low input costs) also means producers are spread across enormous areas with thin throughput",
+      "These governance problems have gone unsolved for approximately four decades despite repeated discussion"
+    ],
+    "resolution": "They converged on the need for demand anchors to make processing solutions viable, but disagreed on urgency and feasibility. Casey emphasized the gap between policy direction and actual procurement contracts, while Riley proposed a specific three-year action plan requiring direct conversation with the Cariboo Cattlemen's Association to identify concrete barriers rather than generic coordination challenges.",
+    "topics_covered": [
+      "Commodity pricing dependency versus price differentiation in ranching and forestry",
+      "Processing infrastructure gaps and the role of regional abattoirs versus mobile units",
+      "Vertical integration and the capture of value margins by external processors",
+      "Producer coordination and institutional governance barriers in the Cariboo",
+      "Cybersecurity risks for digitizing agricultural operations in rural areas"
     ]
   }
 }

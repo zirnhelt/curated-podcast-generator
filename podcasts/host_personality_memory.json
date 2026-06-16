@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "Yukon founder joins national Indigenous AI program as Firewe",
-      "[TechRadar] 'Who wouldn't want a large-scale industrial poll",
       "[Business Insider] Satya Nadella defends Microsoft AI data c",
       "[Business Insider] The AI industry's profit problem is getti",
       "[ScienceAlert] AI Could Soon Use More Water Than Humanity Dr",
@@ -10,7 +8,9 @@
       "[Business Insider] A consulting firm is now using AI to give",
       "[TechRadar] 'Some places carry the costs and other places ca",
       "[TechRadar] Nashville Zoo leads fight against mega AI data c",
-      "AI"
+      "AI",
+      "[TechCrunch] South Korea hits Coupang with $400M+ fine for d",
+      "[TechRadar] FBI takes out huge AI-powered phishing service: "
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -95,9 +95,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-05-31",
-        "clue": "pilot-skepticism:~ \u2014 Acknowledged publish-or-perish tension won't resolve via funding alone",
-        "occurrences": 1
+        "date": "2026-06-16",
+        "clue": "pilot-skepticism:~ \u2014 Conceded mobile unit model 'isn't as clean in practice'",
+        "occurrences": 2
       },
       {
         "date": "2026-06-05",
@@ -127,6 +127,11 @@
       {
         "date": "2026-06-15",
         "clue": "tech-optimism:x \u2014 Conceded Mukurtu exists but capacity gap is real",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-06-16",
+        "clue": "structural-lens:+ \u2014 Emphasized tenure system as root barrier, not negotiable terms",
         "occurrences": 1
       }
     ],
@@ -215,7 +220,6 @@
   },
   "casey": {
     "consistent_interests": [
-      "technology adaptation",
       "community development",
       "rural broadband",
       "[The Globe and Mail] Tumbler Ridge shooting highlights rural",
@@ -224,7 +228,8 @@
       "[Williams Lake Tribune] Williams Lake community shows its he",
       "Immersed in Community (and Archives!)",
       "[Williams Lake Tribune] Community volunteers create meaningf",
-      "[100 Mile Free Press] HANSEN: Lac La Hache Community Club pr"
+      "[100 Mile Free Press] HANSEN: Lac La Hache Community Club pr",
+      "[Williams Lake Tribune] End of B.C. rural healthcare bonus c"
     ],
     "recurring_questions": [
       "Who benefits from this?",
@@ -299,9 +304,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-06-05",
-        "clue": "evidence-bar:- \u2014 Softened regulatory skepticism; acknowledged negotiation-before-approval pragmatism",
-        "occurrences": 1
+        "date": "2026-06-16",
+        "clue": "evidence-bar:- \u2014 Acknowledged limitation: 'haven't spoken directly with' key stakeholders",
+        "occurrences": 2
       },
       {
         "date": "2026-06-13",
@@ -344,9 +349,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-06-15",
-        "clue": "pilot-skepticism:+ \u2014 Deepened skepticism of multi-year sustainability beyond grant cycles",
-        "occurrences": 1
+        "date": "2026-06-16",
+        "clue": "pilot-skepticism:+ \u2014 Pushed back on naming barriers: 'naming isn't sufficient'",
+        "occurrences": 2
       }
     ],
     "core_memories": [

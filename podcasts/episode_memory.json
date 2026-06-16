@@ -1,24 +1,4 @@
 {
-  "2026-05-25": {
-    "timestamp": 1779726890.227061,
-    "topics": [
-      "[Engadget] Spotify is launching verification badges for podc",
-      "[The Verge] AI video is moving beyond clip slop",
-      "[TechCrunch] Spotify adds AI-powered Q&A and briefing genera",
-      "[Boing Boing] 16 bytes of code generate this video and the m",
-      "[NPR Health News] Overworked and understaffed: Special ed te",
-      "#1366 Death of a Journalist: Remembering Elaine Dewar",
-      "#182 The Canadian Defence Gold Rush",
-      "Discover Our Cell Phone Plans | Fizz"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-05-25"
-  },
   "2026-05-26": {
     "timestamp": 1779799711.782293,
     "topics": [
@@ -379,5 +359,24 @@
       "connectivity"
     ],
     "date": "2026-06-15"
+  },
+  "2026-06-16": {
+    "timestamp": 1781607882.834224,
+    "topics": [
+      "[Boing Boing] In 1896 a railroad crashed two trains head-on ",
+      "[Kagi Small Web] The Startup That Charges More on Day One Us",
+      "[Boing Boing] Mel Fisher's treasure hunters find another chu",
+      "[Williams Lake Tribune] End of B.C. rural healthcare bonus c",
+      "[TechCrunch] South Korea hits Coupang with $400M+ fine for d",
+      "[TechRadar] FBI takes out huge AI-powered phishing service: ",
+      "[TechCrunch] Chinese cybercrime operation that used AI to sc",
+      "AI"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech"
+    ],
+    "date": "2026-06-16"
   }
 }
