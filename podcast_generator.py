@@ -100,7 +100,8 @@ def api_retry(func, max_retries=3, base_delay=2):
             return func()
         except Exception as e:
             err_str = str(e)
-            is_transient = any(s in err_str for s in ['429', '503', '502', 'timeout', 'Connection'])
+            is_quota = 'insufficient_quota' in err_str
+            is_transient = not is_quota and any(s in err_str for s in ['429', '503', '502', 'timeout', 'Connection'])
             if attempt < max_retries and is_transient:
                 delay = base_delay * (2 ** attempt)
                 print(f"  ⚠️  Retrying in {delay}s (attempt {attempt+1}/{max_retries}): {e}")
@@ -4614,14 +4615,17 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
         
     except Exception as e:
         print(f"❌ Error generating audio with music: {e}")
+        if 'insufficient_quota' in str(e) and not USE_AZURE_TTS and get_azure_speech_config():
+            print("⚠️  OpenAI quota exceeded — switching to Azure TTS")
+            return generate_audio_tts_only(script, output_filename, _force_azure=True)
         print("⚠️  Falling back to TTS-only mode")
         return generate_audio_tts_only(script, output_filename)
 
-def generate_audio_tts_only(script, output_filename, _force_openai=False):
+def generate_audio_tts_only(script, output_filename, _force_openai=False, _force_azure=False):
     """Fallback: Generate audio without music (TTS only)."""
     print("📊 Generating TTS-only audio...")
 
-    use_azure = USE_AZURE_TTS and not _force_openai
+    use_azure = (USE_AZURE_TTS or _force_azure) and not _force_openai
     if use_azure:
         if not get_azure_speech_config():
             print("❌ Azure TTS enabled but credentials not set")
@@ -4689,7 +4693,10 @@ def generate_audio_tts_only(script, output_filename, _force_openai=False):
 
     except Exception as e:
         print(f"❌ Error generating TTS audio: {e}")
-        if use_azure and get_openai_client():
+        if not use_azure and 'insufficient_quota' in str(e) and get_azure_speech_config():
+            print("⚠️  OpenAI quota exceeded — switching to Azure TTS")
+            return generate_audio_tts_only(script, output_filename, _force_azure=True)
+        if use_azure and not _force_openai and get_openai_client():
             print("⚠️  Azure TTS failed — falling back to OpenAI TTS")
             return generate_audio_tts_only(script, output_filename, _force_openai=True)
         return None
