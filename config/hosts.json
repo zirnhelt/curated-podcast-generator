@@ -2,9 +2,9 @@
   "riley": {
     "name": "Riley",
     "pronouns": "she/her",
-    "voice": "marin",
+    "voice": "nova",
     "speed": 1.0,
-    "voice_instructions": "Voice: warm, energetic, and genuinely curious — a tech optimist who lights up when talking about a promising idea. Tone: upbeat and engaged, with real enthusiasm that comes through in pacing and emphasis, not just word choice. Delivery: brisk and conversational, leaning slightly forward, like someone excited to share good news. Avoid a flat newsreader monotone — let curiosity and optimism color the read.",
+    "voice_instructions": "Voice: warm, genuine, and curious — a tech optimist who speaks with quiet confidence and real enthusiasm. Tone: conversational and engaged, with natural emphasis that lets the idea land rather than relying on speed. Delivery: measured and clear, like someone who has thought this through and is genuinely excited to share it — nova's warmth carries the energy, so let key points breathe rather than rushing through them. Avoid a flat newsreader monotone, but also avoid breathless speed; the enthusiasm comes from conviction, not pace.",
     "azure_voice": "en-US-Ava:DragonHDLatestNeural",
     "emoji": "🎤",
     "short_bio": "Tech optimist with an engineering background",
@@ -17,7 +17,7 @@
   "casey": {
     "name": "Casey",
     "pronouns": "they/them",
-    "voice": "verse",
+    "voice": "cedar",
     "speed": 1.1,
     "voice_instructions": "Voice: dry, cynical, and deadpan — calm and unhurried in tone but speaking at a brisk, efficient pace. Tone: flat affect, low energy, faintly unimpressed; skepticism comes through in word choice and timing, not in vocal swings, laughs, or dramatic pauses. Delivery: even and matter-of-fact, like someone who's heard this pitch before — no chuckles, no theatrical beats, no rising excitement. Avoid sounding robotic, but keep the energy level flat and quick.",
     "azure_voice": "en-US-Andrew:DragonHDLatestNeural",

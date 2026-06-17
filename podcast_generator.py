@@ -3964,7 +3964,15 @@ def heuristic_gap_ms(text, prev_speaker, cur_speaker, section="deep_dive"):
             return 600   # medium reactions get a clear pause
         return 1300      # full story hand-off gets a deliberate breath
 
-    # --- Default (deep dive / welcome / other): conversational pacing ---
+    # --- Welcome section: wider gaps so introductions and land ack breathe ---
+    if section == "welcome":
+        if char_count <= 25:
+            return 200
+        if char_count <= 80:
+            return 400
+        return 700  # standard speaker change; land-ack pause handled via [pause:1000] tag
+
+    # --- Default (deep dive / other): conversational pacing ---
     # Short interjection / reaction
     if char_count <= 25:
         return 120  # tight, but a perceptible beat
