@@ -1615,6 +1615,31 @@
       "theme_day": 0,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "83f41436",
+      "type": "newsletter",
+      "message_id": "<9b3dbcf9-2588-4b15-ac68-c19e25373f21@mtasv.net>",
+      "from_address": "n***@animikii.com",
+      "subject": "EARLY EDITION: In conversation with Jeff",
+      "received_at": "2026-06-17T16:22:48+00:00",
+      "body_text": "![A graphic illustration of an urban roof top patio with flowers and plants blooming in a variety or pots along the edge. A woman in a purple top and pink pants holds a water can as the rising sun ill",
+      "extracted_urls": [
+        "https://assets.buttondown.email/images/32f798c1-fd59-4ab4-9e61-8fb9d6e26c58.jpg?w=960&fit=max",
+        "https://us02web.zoom.us/meeting/register/vkPcndIVQcW5aOEMzmN5Xg?mtm_campaign=SVS-Q2-2026&amp;mtm_kwd=LAUNCH&amp;mtm_source=NWR&amp;utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=early-edition-in-conversation-with-jeff",
+        "https://educationnewscanada.com/article/education/level/university/1/1205976/uottawa-and-vanderbilt-university-forge-new-partnership-on-indigenous-digital-archives-and-mobile-history-research.html?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=early-edition-in-conversation-with-jeff",
+        "https://ucalgary.ca/news/indigenous-interdisciplinary-land-based-research-space-created-kananaskis-country-first-its-kind?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=early-edition-in-conversation-with-jeff",
+        "https://www.openaccessgovernment.org/article/community-led-indigenous-archaeology-in-canada/210609/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=early-edition-in-conversation-with-jeff",
+        "https://assets.buttondown.email/images/2752795d-20c5-42c3-94f8-3e89621c3e71.jpg?w=960&fit=max",
+        "https://nationalnewswatch.com/2026/06/12/canada-cannot-be-a-global-technology-leader-when-indigenous-communities-are-left-offline?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=early-edition-in-conversation-with-jeff",
+        "https://akademie.dw.com/en/a-group-of-mayan-women-are-using-ai-and-digital-skills-to-teach-and-support-others-in-their-rural-communities/a-77526202?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=early-edition-in-conversation-with-jeff",
+        "https://cabinradio.ca/295061/news/environment/concern-in-nwt-about-impact-of-kevin-olearys-alberta-ai-data-centre/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=early-edition-in-conversation-with-jeff",
+        "https://assets.buttondown.email/images/e6728a05-6499-4d7b-afff-b55d4d3bbdca.jpg?w=960&fit=max"
+      ],
+      "theme_tag": "Indigenous Lands & Innovation",
+      "theme_day": 3,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
