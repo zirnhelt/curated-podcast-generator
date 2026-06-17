@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[Business Insider] Satya Nadella defends Microsoft AI data c",
-      "[Business Insider] The AI industry's profit problem is getti",
       "[ScienceAlert] AI Could Soon Use More Water Than Humanity Dr",
       "#184 Carney Wants Your Data. Why Won&#039;t Big Tech Give it",
       "[Business Insider] A consulting firm is now using AI to give",
@@ -10,7 +8,9 @@
       "[TechRadar] Nashville Zoo leads fight against mega AI data c",
       "AI",
       "[TechCrunch] South Korea hits Coupang with $400M+ fine for d",
-      "[TechRadar] FBI takes out huge AI-powered phishing service: "
+      "[TechRadar] FBI takes out huge AI-powered phishing service: ",
+      "[STAT News] STAT+: AMA and lawmakers push back on AI care de",
+      "[TechRadar] Half of workers worry AI will still take their j"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -48,11 +48,6 @@
         "date": "2026-04-16",
         "clue": "structural-lens: x \u2014 Accepted Casey's point about temporal asymmetry between building and extraction.",
         "occurrences": 1
-      },
-      {
-        "date": "2026-06-06",
-        "clue": "community-trust:+ \u2014 Positioned local expertise as transferable knowledge with value",
-        "occurrences": 2
       },
       {
         "date": "2026-04-22",
@@ -110,9 +105,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-06-11",
-        "clue": "structural-lens:~ \u2014 Added 'epistemic advantage' framing, complicating power analysis",
-        "occurrences": 1
+        "date": "2026-06-17",
+        "clue": "structural-lens:~ \u2014 Shifted from device specs to systemic design choices (repairability, documentation, service dependency)",
+        "occurrences": 2
       },
       {
         "date": "2026-06-13",
@@ -279,11 +274,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-06-14",
-        "clue": "pilot-skepticism:x \u2014 Conceded that dark sky model escapes typical grant-cycle vulnerabilities",
-        "occurrences": 2
-      },
-      {
         "date": "2026-05-23",
         "clue": "structural-lens:~ \u2014 Acknowledged broadband/digital infrastructure genuinely enables accountability, softened pure skepticism",
         "occurrences": 1
@@ -344,9 +334,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-06-14",
-        "clue": "Indigenous-tech:+ \u2014 Introduced territorial knowledge systems as non-negotiable design requirement, not afterthought",
-        "occurrences": 1
+        "date": "2026-06-17",
+        "clue": "Indigenous-tech:+ \u2014 Named First Nations data sovereignty as hard constraint, not abstract concern",
+        "occurrences": 2
       },
       {
         "date": "2026-06-16",

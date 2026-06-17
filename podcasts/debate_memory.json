@@ -2185,5 +2185,31 @@
       "Producer coordination and institutional governance barriers in the Cariboo",
       "Cybersecurity risks for digitizing agricultural operations in rural areas"
     ]
+  },
+  "2026-06-17": {
+    "timestamp": 1781693366.595084,
+    "date": "2026-06-17",
+    "theme": "Gear, Gadgets & Practical Tech",
+    "central_question": "When wearable technology transitions from passive capture tools to autonomous decision-making agents, does it become more useful or does it represent a fundamental loss of user control\u2014particularly for people in under-resourced or data-sensitive contexts?",
+    "riley_position": "Agentic wearables like the Plaud device may have legitimate value for specific users, but the design prioritizes cloud dependency and service models over local ownership, repairability, and the ability to function in offline contexts. The solution is designing devices that prioritize local processing and transparent technical documentation.",
+    "riley_key_evidence": [
+      "Eight to twelve hour battery life requires daily charging, making it a dependency rather than grab-when-needed tool",
+      "Google's release of technical documentation for Pixel phones enabled repurposing for distributed computing\u2014a design choice Plaud hasn't made",
+      "Hardware evaluation communities like iFixit require institutional persistence to compound knowledge over time"
+    ],
+    "casey_position": "Cloud-dependent agentic wearables are fundamentally service subscriptions, not tools, and their failure modes include behavioral drift and data extraction that manufacturers aren't transparent about. For communities with data sovereignty concerns or intermittent connectivity, this technology isn't neutral.",
+    "casey_key_evidence": [
+      "Cellular connectivity gaps in rural British Columbia (past Likely, west of Alexis Creek) render autonomous agent functionality useless",
+      "First Nations health clinics represent contexts where data extraction has a history of misuse, making cloud-dependent devices politically problematic",
+      "No regulatory framework requires disclosure when underlying AI models change device behavior after purchase"
+    ],
+    "resolution": "They converged on a practical framework: rather than resolving the debate abstractly, they recommended that community members document real-world performance longitudinally in persistent formats, with institutional hosting through regional structures. Both agreed the question isn't whether to regulate, but what infrastructure communities need to detect failure modes manufacturers won't disclose.",
+    "topics_covered": [
+      "Battery life and offline functionality constraints for wearable AI devices",
+      "Data sovereignty and privacy concerns in health and indigenous community contexts",
+      "Repairability and device longevity versus service-dependent architecture",
+      "Role of manufacturer transparency and technical documentation in enabling repair communities",
+      "Longitudinal hardware evaluation as alternative to launch-day review culture"
+    ]
   }
 }
