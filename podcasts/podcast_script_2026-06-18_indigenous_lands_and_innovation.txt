@@ -1,0 +1,127 @@
+# Cariboo Signals Podcast Script - 2026-06-18
+# Theme: Indigenous Lands & Innovation
+# Generated: 2026-06-18 03:17:30 PDT
+
+**NEWS ROUNDUP**
+
+**RILEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. It's Thursday, June 18th, 2026. Reaching you from the heart of the Cariboo, the homeland of the Secwépemc, Tŝilhqot'in, and Dakelh nations. Today's theme is Indigenous Lands & Innovation — and it's National Indigenous Peoples Day. Happy National Indigenous Peoples Day, everyone. I'm Riley.
+
+**CASEY:** [pause:1000] And I'm Casey. Today we're asking a specific question about what self-determined governance actually looks like when it's built — not promised, not consulted on, but actually built and running.
+
+**RILEY:** Quick weather before we get into it — out at Horsefly Lake this morning it's 7 degrees with clear skies, high of 20 expected. Across the Cariboo, Williams Lake, Quesnel, and 100 Mile House are all sitting at 9 with clear skies, and out on the Chilcotin plateau, Tatla Lake is at 6 under clear skies as well. A good day to be on the land. Light drizzle possible tomorrow, so enjoy today while it lasts. Let's get into the news.
+
+**NEWS ROUNDUP**
+
+**RILEY:** [pause:900] The BC First Nations Justice Council has launched a Police Accountability Unit — the PAU — as of June 10th. The unit gives Indigenous people in BC a dedicated mechanism to file and track complaints about police conduct. We'll come back to the governance questions it raises in a few minutes.
+
+**CASEY:** [pause:400] A dedicated unit is at minimum a different architecture than routing complaints back through the same institutions being complained about. The question of who reviews the reviewers is still open.
+
+**CASEY:** [pause:1200] On the housing front, BC's provincial government announced more than 130 new homes open or underway for Indigenous people in Prince Rupert — a mix of completed units and projects currently under construction, serving urban Indigenous residents in a community with significant housing pressure.
+
+**RILEY:** Housing built for communities versus housing owned and governed by communities — those aren't the same thing, and the long-term sovereignty implications are real.
+
+**RILEY:** [pause:1200] Animikii's Jeff Ward is hosting a circle-style webinar this month — Indigenous Voices in Global AI — sharing what he heard at the GPAI Innovation Workshop in Rio and gathering community input on how Animikii should represent Indigenous priorities in international AI governance discussions. Worth flagging: Animikii is an Indigenous-owned tech firm, and Anthropic's Claude writes every script we produce — so when we cover the AI governance space, our own production stack is part of that conversation.
+
+**CASEY:** A circle format for a global AI governance debrief is a specific design choice. It's not a town hall, not a panel. That structure carries intent.
+
+**CASEY:** [pause:1200] From Kenya via Al Jazeera — young graduates are combining traditional agricultural knowledge with mobile apps to build livelihoods where formal jobs have largely dried up. The story profiles farmers using AI-assisted crop monitoring and market price tools on low-cost smartphones. The rural-meets-digital angle is real, though the story doesn't dig into who owns the data those apps generate.
+
+**RILEY:** And that ownership question is what determines whether it's genuine empowerment or a new extraction layer with better branding.
+
+**RILEY:** [pause:1200] The Clearwater mayor spoke at a national climate summit in Edmonton on June 4th, hosted by Elbows Up For Climate, calling for a transition to renewable energy. Clearwater sits in Simpcw territory — the summit framed renewable energy as both a climate and a community resilience issue.
+
+**CASEY:** A municipal mayor at a national climate rally is a signal of where smaller BC communities see their interests aligning right now.
+
+**CASEY:** [pause:1200] The University of Ottawa and Vanderbilt University have announced a partnership to advance Indigenous-led knowledge preservation through digital archives and mobile history research. The agreement is specifically framed around Indigenous leadership in how that knowledge is stored and accessed — not just digitization for its own sake.
+
+**RILEY:** Whether that framing holds at the implementation stage is the thing to watch — but starting with it explicitly is different from announcing a digitization project and consulting afterward.
+
+**RILEY:** [pause:1200] In the US, Congress passed a bill funding the Department of Homeland Security with roughly $70 billion over three years — the narrowest possible margin, 214 to 212 in the House following a 52 to 47 Senate vote — primarily directed at immigration enforcement and mass deportation infrastructure. For Indigenous and migrant communities already navigating overlapping systems of surveillance and enforcement, the scale of this expansion is worth noting.
+
+**CASEY:** Seventy billion dollars for deportation infrastructure, passed by two votes. The margin tells you how contested it is. The dollar figure tells you how committed the administration is.
+
+**RILEY:** [pause:1200] Also worth noting today — a Rotary Peace Pole is being installed in Williams Lake, promoting peace and community values in one of the larger Cariboo centres. And sadly, a teenager is presumed drowned following a boating incident at Stony Lake northeast of Quesnel on June 6th. Our thoughts are with the family and community.
+
+**CASEY:** A good reminder that water safety remains a serious concern across the region, particularly as summer activities ramp up.
+
+**CASEY:** [pause:900] And one more before we get to the spotlight — a German court has held Google liable for false answers produced by its AI Overview feature. A recent study found the system regularly provides factually incorrect responses. It's the first ruling of its kind to establish direct liability for AI-generated misinformation in search results.
+
+**RILEY:** If courts start treating AI hallucinations as actionable misrepresentation rather than a product limitation, that changes the liability math for every company running a public-facing AI system.
+
+**RILEY:** [pause:700] That's the roundup. Let's take a moment for our community spotlight.
+
+---
+
+**COMMUNITY SPOTLIGHT**
+
+**CASEY:** On National Indigenous Peoples Day, it felt right to highlight Denisiqi Services Society. They've been providing culturally grounded child and family services to Tŝilhqot'in and Ulkatcho families for over twenty years. Their work is rooted in the understanding that healthy families need support that reflects their language, culture, and values — not a generic service delivery model dropped in from outside. If you want to learn more or get involved, the website is denisiqi.org.
+
+**RILEY:** Twenty years of that work is a foundation. That kind of sustained, community-embedded presence doesn't get built overnight, and it doesn't get replaced easily either.
+
+**CASEY:** [pause:600] Which connects directly to what we want to dig into today — because Denisiqi is an example of exactly the kind of institution we're talking about when we ask what self-determined governance actually looks like in practice. Let's go deeper.
+
+---
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Indigenous Lands & Innovation**
+
+**RILEY:** The question today isn't whether Indigenous communities should have governance authority over their own affairs — legally, politically, that ground has been covered. The Tŝilhqot'in Supreme Court decision in 2014 confirmed Aboriginal title in a way that carries real teeth. The question worth sitting with on National Indigenous Peoples Day is: when governance infrastructure actually gets built, what makes it hold? What's the difference between an accountability unit that changes outcomes and one that becomes a legitimacy mechanism for the same old structure?
+
+**CASEY:** The BC First Nations Justice Council's Police Accountability Unit is a useful starting point. On its face, it's real infrastructure — a dedicated unit, a specific mandate, a named function. But the BCFNJC operates with provincial government funding, and the PAU is meant to investigate provincial actors, including provincial police. That's not a minor tension. That's the load-bearing question.
+
+**RILEY:** Waiting for a perfectly independent funding structure means waiting forever. The Civilian Review and Complaints Commission for the RCMP has operated for decades under federal funding while investigating federal police — it's not ideal, but it produces findings that carry weight. The key is whether the unit has operational independence in its decision-making, not just in its funding origin.
+
+**CASEY:** Operational independence on paper and operational independence under pressure are different things. When an Indigenous accountability unit issues findings that embarrass the provincial government, what's the enforcement mechanism? That gap doesn't close because the mandate says independent.
+
+**RILEY:** So name what would close it.
+
+**CASEY:** Decision-making authority that sits with the Nations, not the provincial government. Right now the BCFNJC structure means the unit can investigate and report, but it can't compel. The difference between a body that surfaces accountability and a body that enforces it is the difference between a spotlight and a lever.
+
+**RILEY:** That's actually where the Animikii conversation becomes relevant. Jeff Ward's circle webinar on Indigenous Voices in Global AI isn't just about AI policy — it's about who gets to define the governance framework before the framework hardens into something that can't be changed. The GPAI Innovation Workshop in Rio was setting international standards for AI development. If Indigenous perspectives aren't part of that at the standard-setting stage, they're in the same position as with the PAU: able to react, not able to shape.
+
+**CASEY:** And shaping requires showing up before the document is drafted. Whether it's AI governance in Rio or policing accountability in BC, Indigenous communities keep getting brought in at the consultation stage rather than the design stage. That's the structural pattern.
+
+**RILEY:** The uOttawa-Vanderbilt partnership on Indigenous digital archives is interesting specifically because the announcement frames Indigenous leadership in how knowledge is stored and accessed from the outset. That's different from announcing a digitization project and then consulting.
+
+**CASEY:** Framing at announcement stage and governance structure at implementation stage are two different things. We should be upfront: we haven't spoken directly with representatives from the nations whose knowledge systems would be involved in a partnership like this, and we'd genuinely welcome that conversation. What I'd want documented before any archive goes live — who holds the access keys, who can revoke access, and what jurisdiction governs a takedown request. Those questions have to be answered in writing before the first file gets uploaded.
+
+**RILEY:** Those are answerable questions. And the fact that they're answerable means there's no excuse for leaving them open. The FirstVoices platform has been operating on exactly that model for years — communities control their own language archives, they decide what's public, what's community-only, what requires elder approval. That governance architecture exists and works.
+
+**CASEY:** FirstVoices works because the governance was built into the technical architecture from the beginning — it wasn't retrofitted after the platform was deployed. The question for the uOttawa-Vanderbilt partnership is whether the same principle applies, or whether it's a research agreement with Indigenous communities positioned as knowledge contributors rather than governing authorities.
+
+**RILEY:** Contributor versus governing authority — that's the operative distinction. And it applies to the PAU as well. A community that contributes complaints to an accountability process is in a fundamentally different position than a community that governs the process itself.
+
+**CASEY:** Which brings the structural design question into focus. The consistent pattern isn't bad intent — it's that the default institutional design puts external funders and provincial bodies at the centre, and communities at the consultation table. That default doesn't fix itself.
+
+**RILEY:** The Tŝilhqot'in title decision pushed back on exactly that default — it didn't just acknowledge Aboriginal title in principle, it gave the Tŝilhqot'in Nation actual decision-making authority over land use in their territory. That legal foundation is real. The gap is between what the legal framework enables and what the operational infrastructure supports.
+
+**CASEY:** And that gap is where communities spend enormous resources — negotiating, litigating, staffing up to enforce rights they've already won. Every dollar spent enforcing a right that should be self-executing is a dollar not spent building the next thing. That's not a marginal inefficiency. That's a structural drain on governance capacity.
+
+**RILEY:** So what would a self-executing governance structure look like? Not in theory — in practice, for a community in this region?
+
+**CASEY:** A Nation-run data archive with its own servers, its own access protocols, and no external entity with override authority. A policing accountability mechanism funded through a multi-year treaty obligation, not an annual provincial budget line. A language preservation program where the curriculum decisions sit with elders and language keepers, and the technology vendor is contractually subordinate to that governance. None of that is science fiction — it's just expensive to negotiate.
+
+**RILEY:** All of that exists in pieces. Xatśūll First Nation has been doing land-based data stewardship work. The Williams Lake First Nation's approach to the residential school site investigations showed the governance-first model in action — they controlled the research timeline, the disclosure decisions, the archival questions. They weren't a partner in someone else's project.
+
+**CASEY:** And the reason that worked is that the governance structure existed before the external pressure arrived. When Tk'emlúps te Secwépemc's ground-penetrating radar findings went global in 2021, the community was managing international media pressure in real time without a governance infrastructure built for that scale. Williams Lake First Nation had built that infrastructure deliberately. That's not a coincidence.
+
+**RILEY:** So the design principle that emerges from both cases is: governance infrastructure needs to be built before the moment of pressure, not in response to it. Which is slow and politically unrewarding until it suddenly becomes the only thing that matters. — I'll grant you that the timeline on that is brutal.
+
+**CASEY:** At least we agree on something. Though I'd note that "build it before you need it" is advice that requires sustained operational funding, which is exactly what doesn't exist in most three-year grant cycles.
+
+**RILEY:** Which points to a specific ask worth naming: multi-year operational funding for Indigenous governance capacity — not project funding, not initiative funding — operational funding for the legal and technical staff who do the negotiating, auditing, and enforcement. That's the infrastructure that makes every other infrastructure possible. Funding a governance team the same way you'd fund a construction crew, not a cultural event.
+
+**CASEY:** The First Nations Technology Council in BC has been working toward shared infrastructure models that could reduce per-Nation overhead on exactly that kind of capacity. Whether the regional nations in the Cariboo — Secwépemc, Tŝilhqot'in, Dakelh — have the appetite for a shared data infrastructure built on that model is worth discussing explicitly at Nation tables, not just at tech conferences.
+
+**RILEY:** The appetite is probably there. Negotiating the governance agreement between multiple Nations with different priorities and different relationships to the provincial government — that's the harder part. And I say that as the optimist in the room.
+
+**CASEY:** Which should tell you something about how hard that part is.
+
+**RILEY:** Denisiqi Services Society, twenty years in, is evidence that it's possible. An organization built on Tŝilhqot'in and Ulkatcho values, still running, still culturally grounded. That's a success story about governance structure surviving long enough to become an institution — not about technology, not about a single grant cycle.
+
+**CASEY:** That longevity is the thing that gets undervalued. Anyone can launch. Staying operational through funding cycles, staff turnover, and political shifts — that's governance maturity. And it doesn't happen by accident. What I'm still not convinced about is whether the current funding architecture — provincial, federal, grant-driven — can sustain more Denisiqis without eventually bending them toward external priorities. The model works. The question is whether the conditions that let it work are replicable, or whether Denisiqi succeeded partly because it built its governance before that pressure fully arrived.
+
+**RILEY:** Twenty years in, that question is still worth asking — and the fact that they're still asking it themselves is probably part of why they're still standing. If today's episode raises questions you want to push back on, or if you're working on governance infrastructure in the Cariboo and want your experience reflected in this conversation, reach us at feedback at cariboo signals dot c-a. Corrections especially welcome — we mean that.
+
+**CASEY:** Enjoy your National Indigenous Peoples Day. Go be on the land if you can.
+
+**RILEY:** Thanks for listening to Cariboo Signals.

@@ -1,17 +1,4 @@
 {
-  "2026-03-19": {
-    "timestamp": 1773925626.774552,
-    "date": "2026-03-19",
-    "theme": "Indigenous Lands & Innovation",
-    "central_question": "Deep dive on Indigenous Lands & Innovation",
-    "topics_covered": [
-      "broadband",
-      "fiber",
-      "connectivity",
-      "telemedicine",
-      "renewable energy"
-    ]
-  },
   "2026-03-20": {
     "timestamp": 1774011806.915183,
     "date": "2026-03-20",
@@ -2210,6 +2197,32 @@
       "Repairability and device longevity versus service-dependent architecture",
       "Role of manufacturer transparency and technical documentation in enabling repair communities",
       "Longitudinal hardware evaluation as alternative to launch-day review culture"
+    ]
+  },
+  "2026-06-18": {
+    "timestamp": 1781777852.479529,
+    "date": "2026-06-18",
+    "theme": "Indigenous Lands & Innovation",
+    "central_question": "What structural and funding models enable Indigenous self-determination in governance infrastructure versus mere consultation and accountability without enforcement power?",
+    "riley_position": "Operational independence in decision-making can be achieved even with external funding, and waiting for perfect structural independence means never building anything. Existing models like CRCC and FirstVoices demonstrate that governance frameworks can work within mixed funding contexts.",
+    "riley_key_evidence": [
+      "CRCC operates under federal funding while investigating federal police and produces findings that carry weight despite RCMP disagreement",
+      "FirstVoices platform has operated for years with communities controlling their own language archives and access decisions",
+      "Williams Lake First Nation controlled research timeline and disclosure decisions on residential school site investigations, demonstrating governance-first model success"
+    ],
+    "casey_position": "External funding creates leverage points that undermine genuine self-determination; true accountability requires decision-making authority and enforcement power held by Nations, not just investigative capacity. Governance infrastructure must be owned and controlled by Indigenous communities from inception, not retrofitted after external institutions deploy it.",
+    "casey_key_evidence": [
+      "BC First Nations Justice Council's PAU can investigate but cannot compel outcomes, lacking the enforcement lever that closes the accountability gap",
+      "FirstVoices works because governance was built into technical architecture from the beginning, not retrofitted after deployment",
+      "Te P\u0101 T\u016bwatawata (M\u0101ori data network) shifted from grant dependency to infrastructure ownership, making external dependency operational rather than existential"
+    ],
+    "resolution": "Casey and Riley converge on the principle that governance infrastructure must precede pressure and be designed with Indigenous controlling authority from inception. They agree the real ask is multi-year operational funding for Indigenous governance capacity itself, not project-based grants. They remain implicitly at tension on whether external funding relationships are necessarily compromising or manageable with proper structural safeguards.",
+    "topics_covered": [
+      "Police accountability units and investigative versus enforcement power",
+      "Indigenous data sovereignty and archival governance (uOttawa-Vanderbilt partnership, FirstVoices)",
+      "AI governance standard-setting and Indigenous participation (Animikii, GPAI Rio workshop)",
+      "Funding models for Indigenous governance infrastructure and operational independence",
+      "Comparative case studies (T\u015dilhqot'in title decision, Williams Lake First Nation, M\u0101ori data networks)"
     ]
   }
 }
