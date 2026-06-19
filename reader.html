@@ -835,6 +835,12 @@ async function loadFeeds() {
 
   await loadPodcastFeeds();
 
+  // Backfill podcast_day on regular articles that also appear in a podcast day feed
+  const podcastDayByUrl = new Map(podcastArts.map(a => [a.url, a.podcast_day]));
+  for (const a of arts) {
+    if (podcastDayByUrl.has(a.url)) a.podcast_day = podcastDayByUrl.get(a.url);
+  }
+
   renderSidebar();
   renderArts();
   badge();
