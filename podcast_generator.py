@@ -1056,48 +1056,6 @@ def get_openai_client():
         )
     return get_openai_client._client
 
-def polish_script_with_claude(script, theme_name, api_key):
-    """Use Claude to polish the script for better flow and less repetition."""
-    print("✨ Polishing script with Claude...")
-
-    if not script or not api_key:
-        return script
-
-    try:
-        client = get_anthropic_client()
-        if not client:
-            return script
-
-        # Load prompt template from config
-        prompt_template = CONFIG['prompts']['script_polish']['template']
-
-        # Format the template with actual values
-        polish_prompt = prompt_template.format(
-            theme_name=theme_name,
-            script=script
-        )
-
-        print(f"   Using model: {POLISH_MODEL}")
-        response = api_retry(lambda: client.messages.create(
-            model=POLISH_MODEL,
-            max_tokens=8000,
-            messages=[{"role": "user", "content": polish_prompt}]
-        ))
-
-        polished_script = response.content[0].text
-
-        # Quick validation
-        if "**RILEY:**" in polished_script and "**CASEY:**" in polished_script:
-            print("✅ Script polished successfully!")
-            return polished_script
-        else:
-            print("⚠️ Polishing may have broken script format, using original")
-            return script
-
-    except Exception as e:
-        print(f"⚠️ Error polishing script: {e}")
-        return script
-
 def fact_check_deep_dive(script, news_articles, deep_dive_articles):
     """Review the deep dive section for unverifiable claims and soften them.
 
@@ -1434,124 +1392,6 @@ def _web_search_tool_executor(tool_input):
     )
 
 
-def _identify_deep_dive_research_questions(deep_dive_articles, theme_name, client):
-    """Analyze deep dive articles with Sonnet to surface analytical research questions.
-
-    Returns a list of dicts with keys: question, query, angle.
-    Empty list on failure or when no useful questions are found.
-    """
-    articles_text = "\n\n".join(
-        f"ARTICLE: {a.get('title', '')}\n"
-        f"Summary: {a.get('summary', '')[:300]}\n"
-        f"Body excerpt: {(a.get('_body', '') or '')[:500]}"
-        for a in deep_dive_articles
-    )
-    prompt = (
-        f"You are preparing research for a podcast deep dive on the theme \"{theme_name}\".\n\n"
-        "The hosts will anchor on ONE central analytical question using these source articles "
-        "as raw material:\n\n"
-        f"{articles_text}\n\n"
-        "Identify 3-5 analytical research questions where a targeted web search would yield "
-        "genuinely insightful findings. Focus on questions that illuminate:\n"
-        "- Stated claims vs. what independent assessments or real-world deployments actually show\n"
-        "- The strongest counter-perspective or critical argument NOT represented in these articles\n"
-        "- Comparable rural or small-community experiences that test whether this applies locally\n"
-        "- Concrete data that grounds the debate: adoption rates, practical costs, failure rates\n"
-        "- Who the serious critics or opponents are and what their actual argument is\n\n"
-        "For each question, provide a Brave search query that would surface the most useful "
-        "results, and a brief suggested angle for how Riley (tech optimist) and Casey (skeptic) "
-        "could develop the finding in their debate.\n\n"
-        "Respond ONLY with a valid JSON array (no markdown fences):\n"
-        '[\n'
-        '  {\n'
-        '    "question": "What do independent rural co-op assessments show about broadband costs vs. ISP claims?",\n'
-        '    "query": "rural broadband cooperative real maintenance costs independent review",\n'
-        '    "angle": "Casey cites the maintenance gap; Riley reframes which programs have closed it"\n'
-        '  }\n'
-        ']\n\n'
-        "Return [] if the articles are already well-rounded and research would add no analytical value."
-    )
-    try:
-        response = api_retry(lambda: client.messages.create(
-            model=SCRIPT_MODEL,
-            max_tokens=700,
-            messages=[{"role": "user", "content": prompt}]
-        ))
-        raw = response.content[0].text.strip()
-        if raw.startswith("```"):
-            raw = re.sub(r"^```[a-z]*\n?", "", raw).rstrip("`").strip()
-        data = json.loads(raw)
-        return data[:5] if isinstance(data, list) else []
-    except Exception as e:
-        print(f"  ⚠️  Research question identification failed: {e}")
-        return []
-
-
-def _execute_deep_research(research_questions, brave_key):
-    """Run Brave searches for identified research questions and return structured findings.
-
-    Returns a formatted insights block for injection into the script generation prompt,
-    or an empty string if no results are found.
-    """
-    if not research_questions or not brave_key:
-        return ""
-
-    findings = []
-    for rq in research_questions[:4]:
-        query = rq.get("query", "")
-        question = rq.get("question", "")
-        angle = rq.get("angle", "")
-        if not query:
-            continue
-
-        print(f"    🔬 Researching: {question[:75]}")
-        hits = _brave_search(query, brave_key, count=4)
-        if not hits:
-            continue
-
-        snippets = " | ".join(
-            h["description"][:200] for h in hits[:3] if h.get("description")
-        )[:600]
-        if snippets:
-            entry = f"RESEARCH QUESTION: {question}\nFindings: {snippets}"
-            if angle:
-                entry += f"\nSuggested angle: {angle}"
-            findings.append(entry)
-
-    if not findings:
-        return ""
-
-    print(f"  🔬 {len(findings)} research insight(s) gathered for deep dive")
-    return (
-        "PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\n"
-        "These analytical threads were identified before generation. Use the findings to "
-        "ground Riley's and Casey's arguments with real evidence — develop them as substantive "
-        "exchanges, not a citation list. Cite naturally.\n\n"
-        + "\n\n".join(findings)
-        + "\n\n"
-    )
-
-
-def research_deep_dive_angles(deep_dive_articles, theme_name, client):
-    """Proactive research pass: identify analytical questions and run Brave for each.
-
-    Replaces the reactive enrich_deep_dive_with_brave() call for the deep dive.
-    Falls back to enrich_deep_dive_with_brave() when no analytical questions are found.
-    Returns empty string if BRAVE_SEARCH_API_KEY is unset or client is unavailable.
-    """
-    brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
-    if not brave_key or not client:
-        return ""
-
-    print("🔬 Identifying research angles for deep dive...")
-    questions = _identify_deep_dive_research_questions(deep_dive_articles, theme_name, client)
-    if not questions:
-        print("  ℹ️  No analytical angles identified — falling back to standard enrichment")
-        return enrich_deep_dive_with_brave(deep_dive_articles, theme_name, client)
-
-    return _execute_deep_research(questions, brave_key)
-
-
 def research_deep_dive_with_agent(deep_dive_articles, theme_name, client):
     """Agentic pre-generation research pass for the deep dive.
 
@@ -1617,8 +1457,8 @@ def research_deep_dive_with_agent(deep_dive_articles, theme_name, client):
     )
 
     if result is None:
-        print("  ⚠️ Agentic research failed, falling back to standard enrichment")
-        return research_deep_dive_angles(deep_dive_articles, theme_name, client)
+        print("  ⚠️ Agentic research failed, skipping research enrichment")
+        return ""
 
     result = result.strip()
     if result == "NONE" or not result:
@@ -1782,62 +1622,6 @@ def _safe_template_substitute(template, **kwargs):
     return result
 
 
-def run_realtime_polish_and_factcheck(script, theme_name, news_articles, deep_dive_articles,
-                                       additional_research=None, research_insights=None):
-    """Real-time fallback: combined polish+factcheck in ONE call using POLISH_MODEL.
-
-    Used when the Batch API times out or is disabled.  Runs the same
-    combined prompt as the batch path so we only make a single API call
-    instead of the old two-call sequence (polish → fact-check).
-
-    Pass additional_research to reuse a result already computed by the caller
-    (avoids running the Brave question-detection twice when the batch times out).
-    Pass research_insights to carry the pre-generation research angles into the
-    polish pass so the model can verify they were meaningfully woven in.
-    """
-    client = get_anthropic_client()
-    if not client or not script:
-        return script
-
-    prompts = CONFIG['prompts']
-    pf_template = prompts.get('polish_and_factcheck', {}).get('template')
-    if not pf_template:
-        # No combined template — fall back to legacy polish-only call
-        return polish_script_with_claude(script, theme_name, os.getenv('ANTHROPIC_API_KEY'))
-
-    verified_sources = _build_verified_sources(news_articles, deep_dive_articles)
-    if additional_research is None:
-        brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
-        additional_research = _resolve_script_questions_with_brave(script, brave_key, client)
-    pf_prompt = _safe_template_substitute(
-        pf_template,
-        theme_name=theme_name,
-        script=script,
-        verified_sources=verified_sources,
-        additional_research=additional_research or "(none)",
-        research_insights=research_insights or "(none)",
-    )
-
-    review_model = select_review_model(deep_dive_articles)
-    print(f"✨ Running polish+factcheck real-time...")
-    try:
-        response = api_retry(lambda: client.messages.create(
-            model=review_model,
-            max_tokens=8000,
-            messages=[{"role": "user", "content": pf_prompt}]
-        ))
-        result = response.content[0].text
-        if "**RILEY:**" in result and "**CASEY:**" in result:
-            print("✅ Script polished and fact-checked successfully!")
-            return result
-        else:
-            print("⚠️ Polish+factcheck may have broken script format, using original")
-            return script
-    except Exception as e:
-        print(f"⚠️ Error in polish+factcheck: {e}")
-        return script
-
-
 def _build_verified_sources(news_articles, deep_dive_articles):
     """Build the verified-sources reference string for fact-checking."""
     verified_sources = []
@@ -1938,11 +1722,8 @@ def polish_and_factcheck_with_agent(script, theme_name, news_articles, deep_dive
     system_template = pf_prompts.get('system_template')
     user_template = pf_prompts.get('user_template')
     if not system_template or not user_template:
-        print("⚠️ agentic_polish_and_factcheck prompt not found, using legacy real-time path")
-        return run_realtime_polish_and_factcheck(
-            script, theme_name, news_articles, deep_dive_articles,
-            research_insights=research_insights,
-        )
+        print("⚠️ agentic_polish_and_factcheck prompt missing from config — skipping polish pass")
+        return script
 
     verified_sources = _build_verified_sources(news_articles, deep_dive_articles)
     system_prompt = _safe_template_substitute(system_template, theme_name=theme_name)
