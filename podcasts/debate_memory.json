@@ -1,17 +1,4 @@
 {
-  "2026-03-20": {
-    "timestamp": 1774011806.915183,
-    "date": "2026-03-20",
-    "theme": "Wild Spaces & Outdoor Life",
-    "central_question": "Deep dive on Wild Spaces & Outdoor Life",
-    "topics_covered": [
-      "satellite",
-      "AI",
-      "infrastructure",
-      "maintenance",
-      "funding"
-    ]
-  },
   "2026-03-21": {
     "timestamp": 1774097441.004625,
     "date": "2026-03-21",
@@ -2223,6 +2210,32 @@
       "AI governance standard-setting and Indigenous participation (Animikii, GPAI Rio workshop)",
       "Funding models for Indigenous governance infrastructure and operational independence",
       "Comparative case studies (T\u015dilhqot'in title decision, Williams Lake First Nation, M\u0101ori data networks)"
+    ]
+  },
+  "2026-06-19": {
+    "timestamp": 1781864557.020523,
+    "date": "2026-06-19",
+    "theme": "Wild Spaces & Outdoor Life",
+    "central_question": "Has improved backcountry gear and technology actually enhanced safety in remote BC wilderness, or merely given people unwarranted confidence without the judgment to match it?",
+    "riley_position": "Technological and gear improvements are meaningfully trickling down to expand backcountry access, and data infrastructure solutions (like integrated fire/evacuation platforms) exist and are deployable if politically prioritized.",
+    "riley_key_evidence": [
+      "Satellite communicators like Garmin inReach Mini 2 now cost under $400 CAD with subscriptions under $30/month",
+      "BC Wildfire Service fire maps, DriveBC alerts, and similar data already exist in usable form",
+      "South Africa's FireWatch and Australia's Fires Near Me app demonstrate working integrated data models that BC could adopt"
+    ],
+    "casey_position": "The real gap isn't gear or data availability\u2014it's governance integration and judgment under uncertainty; premium innovation benefits the already-equipped while core preparedness costs remain burdensome, and fragmented data silos fail to reach people when decisions matter most.",
+    "casey_key_evidence": [
+      "Base backcountry preparedness costs (satellite communicator, bear spray, navigation, first aid) haven't meaningfully decreased",
+      "Rural households bear disproportionate connectivity cost burdens even with cheaper devices",
+      "Kullagh Creek fire escalated from reported to 149 hectares with evacuations in days, with no integrated real-time situational awareness available to travelers"
+    ],
+    "resolution": "Both agreed the status quo is unsafe by default and that the barrier in BC is political choice rather than technical capacity\u2014the NWT's Dehcho First Nations successfully implemented co-governance fire management, proving the model works but requires institutional will rather than app innovation.",
+    "topics_covered": [
+      "Gear innovation and market accessibility in backcountry preparedness",
+      "Data integration gaps between provincial agencies managing fire, roads, and evacuation zones",
+      "Governance frameworks and First Nations stewardship decision-making authority in wildfire management",
+      "Information delivery failures in rapid-onset fire scenarios (Kullagh Creek case study)",
+      "Community-sourced versus formal information ecosystems for backcountry conditions"
     ]
   }
 }

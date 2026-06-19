@@ -115,8 +115,13 @@
         "occurrences": 1
       },
       {
-        "date": "2026-06-16",
-        "clue": "structural-lens:+ \u2014 Emphasized tenure system as root barrier, not negotiable terms",
+        "date": "2026-06-19",
+        "clue": "structural-lens:+ \u2014 Shifted focus from data existence to political will",
+        "occurrences": 2
+      },
+      {
+        "date": "2026-06-19",
+        "clue": "tech-optimism:- \u2014 Moved from gear-as-solution to governance-as-crux",
         "occurrences": 1
       }
     ],
@@ -319,14 +324,19 @@
         "occurrences": 1
       },
       {
-        "date": "2026-06-13",
-        "clue": "structural-lens:+ \u2014 Moved from 'services gap' framing to systemic design failure analysis",
-        "occurrences": 1
+        "date": "2026-06-19",
+        "clue": "structural-lens:+ \u2014 Connected NWT co-governance model as proof of political choice, not capacity",
+        "occurrences": 2
       },
       {
         "date": "2026-06-17",
         "clue": "Indigenous-tech:+ \u2014 Named First Nations data sovereignty as hard constraint, not abstract concern",
         "occurrences": 2
+      },
+      {
+        "date": "2026-06-19",
+        "clue": "pilot-skepticism:x \u2014 Conceded satellite communicator market actually moved downmarket",
+        "occurrences": 1
       }
     ],
     "core_memories": [
