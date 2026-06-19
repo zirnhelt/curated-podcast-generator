@@ -16,6 +16,7 @@ from podcast_generator import (
     _extract_pacing_tag,
     heuristic_gap_ms,
     _run_agentic_loop,
+    apply_bad_news_filter,
 )
 
 
@@ -334,3 +335,52 @@ class TestRunAgenticLoop:
         )
 
         assert result is None
+
+
+class TestApplyBadNewsFilter:
+    TUESDAY = 1   # Working Lands & Industry
+    SATURDAY = 5  # Cariboo Local Affairs
+
+    def _article(self, title, description="", body=""):
+        return {"title": title, "description": description, "body": body}
+
+    def test_neutral_article_passes_through(self):
+        arts = [self._article("New sensor tech helps BC loggers map terrain")]
+        result = apply_bad_news_filter(arts, self.TUESDAY)
+        assert len(result) == 1
+
+    def test_generic_fatal_crash_filtered(self):
+        arts = [self._article("Fatal crash closes Highway 97 south of Williams Lake")]
+        result = apply_bad_news_filter(arts, self.TUESDAY)
+        assert len(result) == 0
+
+    def test_shooting_filtered(self):
+        arts = [self._article("Shooting injures two in Williams Lake parking lot")]
+        result = apply_bad_news_filter(arts, self.SATURDAY)
+        assert len(result) == 0
+
+    def test_theme_relevant_bad_news_kept(self):
+        # "killed" in title, but agriculture keywords push score >= 2
+        arts = [self._article(
+            "Autonomous harvester killed farmer in Saskatchewan field",
+            description="The agricultural robot was operating during crop harvest when the farming accident occurred.",
+        )]
+        result = apply_bad_news_filter(arts, self.TUESDAY)
+        assert len(result) == 1
+
+    def test_generic_homicide_filtered(self):
+        arts = [self._article("Homicide investigation underway in Quesnel")]
+        result = apply_bad_news_filter(arts, self.SATURDAY)
+        assert len(result) == 0
+
+    def test_empty_list_returns_empty(self):
+        assert apply_bad_news_filter([], self.TUESDAY) == []
+
+    def test_multiple_articles_only_bad_news_removed(self):
+        arts = [
+            self._article("Solar-powered irrigation boosts Cariboo cattle ranching"),
+            self._article("Fatal accident on logging road near 100 Mile House"),
+        ]
+        result = apply_bad_news_filter(arts, self.TUESDAY)
+        assert len(result) == 1
+        assert result[0]["title"].startswith("Solar")

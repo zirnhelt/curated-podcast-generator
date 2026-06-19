@@ -2743,6 +2743,53 @@ def apply_blocklist(articles):
     return filtered
 
 
+def apply_bad_news_filter(articles, today_weekday):
+    """Remove bad-news articles (deaths, crashes, tragedies) unless they score
+    >= theme_relevance_threshold keyword-word-points for today's theme.
+
+    The idea: a fatal tractor malfunction is a Working Lands story; a random
+    highway crash is not a Cariboo Signals story at all. Title is checked for
+    bad-news phrases; the full article text (title + description + body) is
+    then scored against today's theme keywords to decide whether to keep it.
+    """
+    blocklist = load_blocklist()
+    filter_cfg = blocklist.get("bad_news_filter", {})
+    phrases = [p.lower() for p in filter_cfg.get("phrases", [])]
+    threshold = filter_cfg.get("theme_relevance_threshold", 2)
+
+    if not phrases:
+        return articles
+
+    themes_config = load_themes_config()
+
+    kept, removed = [], 0
+    for article in articles:
+        title = article.get("title", "").lower()
+        if not any(phrase in title for phrase in phrases):
+            kept.append(article)
+            continue
+
+        # Bad-news phrase in title — check theme relevance on full text
+        text = " ".join(filter(None, [
+            article.get("title", ""),
+            article.get("description", ""),
+            article.get("body", ""),
+        ]))
+        scores = _score_text_against_themes(text, themes_config)
+        today_score = scores.get(today_weekday, 0)
+
+        if today_score >= threshold:
+            print(f"  ⚠️  Bad news kept (theme score {today_score}): {article.get('title', '')[:70]}")
+            kept.append(article)
+        else:
+            print(f"  🚫 Bad news filtered (score {today_score}): {article.get('title', '')[:70]}")
+            removed += 1
+
+    if removed:
+        print(f"  🚫 Bad news filter removed {removed} article(s)")
+    return kept
+
+
 def fetch_podcast_feed(weekday):
     """Fetch the curated podcast feed for a specific day of the week.
 
@@ -2796,6 +2843,8 @@ def fetch_podcast_feed(weekday):
         # Apply blocklist filtering
         theme_articles = apply_blocklist(theme_articles)
         bonus_articles = apply_blocklist(bonus_articles)
+        theme_articles = apply_bad_news_filter(theme_articles, weekday)
+        bonus_articles = apply_bad_news_filter(bonus_articles, weekday)
 
         print(f"  📌 Feed theme: {feed_meta['theme']}")
         print(f"  ✓ Theme articles: {len(theme_articles)}")
@@ -5611,6 +5660,7 @@ def main():
 
             scored_articles = get_article_scores(current_articles, scoring_data)
             scored_articles = apply_blocklist(scored_articles)
+            scored_articles = apply_bad_news_filter(scored_articles, today_weekday)
             scored_articles, evolving_stories = deduplicate_articles(scored_articles)
             deep_dive_articles = categorize_articles_for_deep_dive(scored_articles, today_weekday)
             # In the fallback path, inject eligible URL seeds directly into deep dive.
