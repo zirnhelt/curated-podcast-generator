@@ -214,7 +214,7 @@ _openai_quota_exceeded = False
 
 # Maximum characters per OpenAI TTS call. Segments above this are pre-split at
 # sentence boundaries so no single call carries enough text to risk a hang.
-TTS_SEGMENT_MAX_CHARS = 300
+TTS_SEGMENT_MAX_CHARS = 500
 
 # ---------------------------------------------------------------------------
 # Jamendo music helpers (weekend closing song)
@@ -3975,14 +3975,14 @@ def heuristic_gap_ms(text, prev_speaker, cur_speaker, section="deep_dive"):
     # --- Default (deep dive / other): conversational pacing ---
     # Short interjection / reaction
     if char_count <= 25:
-        return 120  # tight, but a perceptible beat
+        return 180  # perceptible beat without sounding cut off
 
     # Medium-length reaction (one sentence)
     if char_count <= 80:
-        return 220
+        return 320
 
-    # Standard speaker change
-    return 450
+    # Standard speaker change — give the thought room to land
+    return 600
 
 
 def _append_with_gap(combined, speech, gap_ms):
@@ -4033,9 +4033,16 @@ def parse_script_into_segments(script):
 
         # Detect segment transitions (support both old "SEGMENT 1/2:" and new "NEWS ROUNDUP:/DEEP DIVE:" markers)
         if 'SEGMENT 1:' in line or '**SEGMENT 1:' in line or 'NEWS ROUNDUP' in line:
-            # Save welcome section
+            # Guard: skip premature markers that appear before any welcome content.
+            # When the LLM emits **NEWS ROUNDUP** at the top of the file (before the
+            # opening turns), ignore it and wait for the real marker that appears
+            # after the welcome section has been written.
+            if current_section == 'welcome' and not segments['welcome'] and current_speaker is None:
+                prev_line_blank = False
+                continue
+            # Save in-progress segment to its actual current section (not hardcoded to welcome).
             if current_speaker and current_text:
-                segments['welcome'].append({
+                segments[current_section].append({
                     'speaker': current_speaker,
                     'text': ' '.join(current_text).strip(),
                     'gap_ms': current_gap_ms,
