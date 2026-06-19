@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Feed Reader</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-180.png">
+  <meta name="theme-color" content="#1e1e3f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary:        #667eea;
+      --primary-dark:   #5568d3;
+      --secondary:      #764ba2;
+      --sidebar-bg:     #1e1e3f;
+      --sidebar-text:   #c7c9e8;
+      --sidebar-muted:  #8385a8;
+      --sidebar-hover:  rgba(102,126,234,0.18);
+      --sidebar-active: rgba(102,126,234,0.35);
+      --sidebar-w:      220px;
+      --panel-w:        370px;
+      --bg:             #eef0f9;
+      --card:           #ffffff;
+      --text:           #1a1a2e;
+      --muted:          #6b7280;
+      --border:         #e5e7eb;
+      --score-hi:       #22c55e;
+      --score-mid:      #f59e0b;
+      --score-lo:       #9ca3af;
+      --star:           #f59e0b;
+      --radius:         8px;
+    }
+
+    html, body { height: 100%; overflow: hidden; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    /* ── App shell ── */
+    #app {
+      display: grid;
+      grid-template-columns: var(--sidebar-w) 1fr;
+      height: 100vh;
+      overflow: hidden;
+      transition: grid-template-columns 0.2s ease;
+    }
+    #app.panel-open {
+      grid-template-columns: var(--sidebar-w) 1fr var(--panel-w);
+    }
+
+    /* ── Sidebar ── */
+    #sidebar {
+      background: var(--sidebar-bg);
+      color: var(--sidebar-text);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+      z-index: 10;
+    }
+
+    .sb-head {
+      padding: calc(14px + env(safe-area-inset-top, 0px)) 16px 10px calc(16px + env(safe-area-inset-left, 0px));
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      flex-shrink: 0;
+    }
+    .sb-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 9px;
+    }
+    .sb-actions { display: flex; gap: 5px; }
+
+    .ib {
+      background: rgba(255,255,255,0.08);
+      border: none;
+      border-radius: 6px;
+      color: var(--sidebar-text);
+      cursor: pointer;
+      padding: 5px 8px;
+      font-size: 0.82rem;
+      transition: background 0.12s;
+      line-height: 1;
+    }
+    .ib:hover { background: rgba(255,255,255,0.16); }
+    .ib.spin { animation: spin 0.8s linear infinite; }
+
+    /* hidden on desktop, shown on mobile bottom bar */
+    .mob-hide-toggle { display: none; }
+
+    #cat-nav {
+      flex: 1;
+      overflow-y: auto;
+      padding: 6px 0;
+    }
+    #cat-nav::-webkit-scrollbar { width: 3px; }
+    #cat-nav::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 2px; }
+
+    .cat-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      padding: 7px 16px;
+      background: none;
+      border: none;
+      color: var(--sidebar-text);
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.1s;
+    }
+    .cat-btn:hover { background: var(--sidebar-hover); }
+    .cat-btn.active { background: var(--sidebar-active); color: #fff; font-weight: 600; }
+    .cat-em  { width: 20px; text-align: center; flex-shrink: 0; font-size: 1rem; }
+    .cat-nm  { flex: 1; }
+    .cat-ct  {
+      font-size: 0.7rem; font-weight: 700;
+      background: rgba(102,126,234,0.35); color: #c7d2fe;
+      padding: 1px 5px; border-radius: 10px; min-width: 18px; text-align: center;
+    }
+    .cat-btn.active .cat-ct { background: var(--primary); color: #fff; }
+    .cat-div { height: 1px; background: rgba(255,255,255,0.07); margin: 5px 16px; }
+    .sb-section-label {
+      padding: 5px 16px 2px;
+      font-size: 0.65rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.07em;
+      color: var(--sidebar-muted);
+    }
+
+    .sb-foot {
+      padding: 10px 14px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      flex-shrink: 0;
+    }
+    .kbd-hint {
+      font-size: 0.68rem;
+      color: var(--sidebar-muted);
+      line-height: 1.9;
+    }
+    .kk {
+      display: inline-block;
+      background: rgba(255,255,255,0.1);
+      border-radius: 3px;
+      padding: 0 3px;
+      font-family: monospace;
+      font-size: 0.72rem;
+    }
+
+    /* ── Article List ── */
+    #article-list {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    #toolbar {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 14px;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    #toolbar-cat-label {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--text);
+      margin-right: 4px;
+      white-space: nowrap;
+    }
+    #search {
+      flex: 1;
+      padding: 5px 9px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.83rem;
+      background: var(--bg);
+      color: var(--text);
+      min-width: 0;
+    }
+    #search:focus { outline: none; border-color: var(--primary); background: #fff; }
+
+    .tb-btn {
+      padding: 5px 9px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 0.78rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.1s;
+    }
+    .tb-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .tb-btn.on { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+    #arts-wrap {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px;
+    }
+    #arts-wrap::-webkit-scrollbar { width: 5px; }
+    #arts-wrap::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    /* ── Article Card ── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 10px 12px;
+      margin-bottom: 5px;
+      cursor: default;
+      transition: border-color 0.12s, box-shadow 0.12s, opacity 0.2s;
+    }
+    .card:hover { border-color: #b4c0f5; }
+    .card.focused { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(102,126,234,0.14); }
+    .card.is-read { opacity: 0.52; }
+    .card.is-read:hover { opacity: 0.75; }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      margin-bottom: 4px;
+    }
+    .udot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--primary);
+      flex-shrink: 0;
+      margin-top: 5px;
+      transition: opacity 0.15s;
+    }
+    .card.is-read .udot { opacity: 0; }
+
+    .card-meta {
+      flex: 1;
+      font-size: 0.73rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px;
+      min-width: 0;
+    }
+    .meta-src { font-weight: 600; color: var(--text); }
+    .meta-sep { color: var(--border); }
+
+    .sbadge {
+      font-size: 0.68rem; font-weight: 700;
+      padding: 1px 4px; border-radius: 4px; color: #fff;
+    }
+    .sh { background: var(--score-hi); }
+    .sm { background: var(--score-mid); color: #1a1a1a; }
+    .sl { background: var(--score-lo); }
+
+    .cbadge {
+      font-size: 0.68rem; padding: 1px 5px; border-radius: 4px;
+      background: #e0e7ff; color: var(--primary); font-weight: 500;
+    }
+
+    .dbadge {
+      font-size: 0.68rem; padding: 1px 5px; border-radius: 4px;
+      background: #f3e8ff; color: #7c3aed; font-weight: 600;
+      cursor: pointer;
+    }
+    .dbadge:hover { background: #ede9fe; }
+
+    /* Bonus badge — shown on off-theme articles in podcast day views */
+    .bbadge {
+      font-size: 0.68rem; padding: 1px 5px; border-radius: 4px;
+      background: #fef9c3; color: #92400e; font-weight: 600;
+    }
+
+    .card-acts { display: flex; gap: 3px; flex-shrink: 0; }
+    .act {
+      background: none; border: none; cursor: pointer;
+      padding: 2px 4px; border-radius: 4px;
+      font-size: 0.82rem; color: var(--muted); line-height: 1;
+      transition: background 0.1s, color 0.1s;
+    }
+    .act:hover { background: var(--bg); color: var(--primary); }
+    .act.starred { color: var(--star); }
+    .act.done    { color: var(--score-hi); }
+
+    .card-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 3px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .card-title a { color: var(--text); text-decoration: none; }
+    .card-title a:hover { color: var(--primary); text-decoration: underline; }
+    .card.is-read .card-title a { color: var(--muted); }
+
+    .card-exc {
+      font-size: 0.78rem; color: var(--muted); line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-body { display: flex; gap: 8px; align-items: flex-start; }
+    .card-text { flex: 1; min-width: 0; }
+    .card-img {
+      width: 80px; height: 58px;
+      object-fit: cover; border-radius: 5px;
+      flex-shrink: 0;
+      background: var(--border);
+    }
+
+    /* ── Empty / loading ── */
+    .msg {
+      text-align: center; padding: 60px 20px; color: var(--muted);
+    }
+    .msg .ic { font-size: 2.2rem; margin-bottom: 10px; }
+    .msg p { font-size: 0.88rem; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spinner {
+      width: 22px; height: 22px;
+      border: 2.5px solid var(--border);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.65s linear infinite;
+      margin: 0 auto 14px;
+    }
+
+    /* ── Detail / Correction Panel ── */
+    #panel {
+      background: #fff;
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    #panel.hidden { display: none; }
+
+    .panel-head {
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .panel-head h2 { font-size: 0.88rem; font-weight: 700; flex: 1; color: var(--text); }
+    .panel-close {
+      background: none; border: none;
+      font-size: 1.1rem; cursor: pointer;
+      color: var(--muted); padding: 2px 5px; border-radius: 4px;
+    }
+    .panel-close:hover { background: var(--bg); }
+    .pc-back { display: none; }
+
+    .panel-body { flex: 1; overflow-y: auto; padding: 14px; }
+    .panel-body::-webkit-scrollbar { width: 5px; }
+    .panel-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    .panel-art {
+      background: var(--bg);
+      border-radius: var(--radius);
+      padding: 10px 12px;
+      margin-bottom: 14px;
+    }
+    .panel-art .pa-title {
+      font-size: 0.88rem; font-weight: 600; margin-bottom: 5px;
+    }
+    .panel-art .pa-title a { color: var(--primary); text-decoration: none; }
+    .panel-art .pa-title a:hover { text-decoration: underline; }
+    .panel-art .pa-meta { font-size: 0.73rem; color: var(--muted); }
+
+    .pf { margin-bottom: 13px; }
+    .pl {
+      font-size: 0.72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      color: var(--muted); margin-bottom: 5px;
+    }
+
+    .rbs { display: flex; gap: 5px; }
+    .rb {
+      flex: 1; padding: 7px 4px;
+      border: 1.5px solid var(--border);
+      border-radius: 6px; background: #fff;
+      color: var(--muted); font-size: 0.78rem; font-weight: 600;
+      cursor: pointer; text-align: center; transition: all 0.1s;
+    }
+    .rb:hover { border-color: var(--primary); color: var(--primary); }
+    .rb.sg { background: #f0fdf4; border-color: #22c55e; color: #16a34a; }
+    .rb.sb { background: #fef2f2; border-color: #ef4444; color: #dc2626; }
+    .rb.ss { background: #f9fafb; border-color: #9ca3af; color: #6b7280; }
+
+    .day-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+    .dc {
+      padding: 4px 7px;
+      border: 1px solid var(--border);
+      border-radius: 6px; background: #fff;
+      color: var(--muted); font-size: 0.72rem;
+      cursor: pointer; line-height: 1.35;
+      transition: all 0.1s; text-align: center;
+    }
+    .dc:hover { border-color: var(--primary); color: var(--primary); }
+    .dc.is-today { border-color: var(--secondary); color: var(--secondary); }
+    .dc.sel { background: var(--primary); border-color: var(--primary); color: #fff; font-weight: 600; }
+    .dc.is-today.sel { background: var(--secondary); border-color: var(--secondary); }
+
+    .cat-sel {
+      width: 100%; padding: 6px 9px;
+      border: 1px solid var(--border); border-radius: 6px;
+      font-size: 0.83rem; color: var(--text); background: #fff;
+    }
+    .cat-sel:focus { outline: none; border-color: var(--primary); }
+
+    .panel-ta {
+      width: 100%; padding: 7px 9px;
+      border: 1px solid var(--border); border-radius: 6px;
+      font-size: 0.8rem; resize: vertical; min-height: 56px;
+      font-family: inherit; color: var(--text);
+    }
+    .panel-ta:focus { outline: none; border-color: var(--primary); }
+
+    .btn-save {
+      width: 100%; padding: 9px;
+      background: var(--primary); color: #fff;
+      border: none; border-radius: 6px;
+      font-size: 0.85rem; font-weight: 700; cursor: pointer;
+      transition: background 0.12s;
+    }
+    .btn-save:hover { background: var(--primary-dark); }
+    .btn-save:disabled { opacity: 0.45; cursor: not-allowed; }
+
+    .save-st {
+      font-size: 0.77rem; margin-top: 5px; text-align: center; color: var(--muted);
+    }
+    .save-st.ok  { color: #16a34a; }
+    .save-st.err { color: #dc2626; }
+
+    /* ── Settings modal ── */
+    .overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.45);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 100;
+    }
+    .overlay.hidden { display: none; }
+    .modal {
+      background: #fff; border-radius: 12px;
+      padding: 22px; width: 420px;
+      max-width: calc(100vw - 28px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.28);
+    }
+    .modal h2 { font-size: 1rem; margin-bottom: 3px; color: var(--primary); }
+    .modal > p { font-size: 0.8rem; color: var(--muted); margin-bottom: 14px; }
+    .mf { margin-bottom: 12px; }
+    .mf label { display: block; font-size: 0.77rem; font-weight: 600; color: var(--muted); margin-bottom: 3px; }
+    .mf input {
+      width: 100%; padding: 7px 9px;
+      border: 1px solid var(--border); border-radius: 6px;
+      font-size: 0.83rem;
+    }
+    .mf input:focus { outline: none; border-color: var(--primary); }
+    .mf .hint { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+    .modal-foot { display: flex; gap: 7px; justify-content: flex-end; margin-top: 14px; }
+    .btn-sec {
+      padding: 7px 14px; border: 1px solid var(--border);
+      border-radius: 6px; background: #fff; color: var(--muted);
+      font-size: 0.83rem; cursor: pointer;
+    }
+    .btn-pri {
+      padding: 7px 14px; background: var(--primary); color: #fff;
+      border: none; border-radius: 6px; font-size: 0.83rem; font-weight: 700; cursor: pointer;
+    }
+
+    /* ── Toast ── */
+    #toast {
+      position: fixed; bottom: 22px; left: 50%;
+      transform: translateX(-50%) translateY(70px);
+      background: #1e1e3f; color: #fff;
+      padding: 7px 15px; border-radius: 20px;
+      font-size: 0.82rem; opacity: 0;
+      transition: all 0.22s ease; z-index: 200;
+      pointer-events: none; white-space: nowrap;
+    }
+    #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ── Mobile ── */
+    @media (max-width: 600px) {
+      #app,
+      #app.panel-open {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: 1fr calc(56px + env(safe-area-inset-bottom, 0px));
+        height: 100dvh;
+      }
+      #toolbar {
+        padding-top: calc(9px + env(safe-area-inset-top, 0px));
+      }
+      #sidebar {
+        order: 2;
+        flex-direction: row;
+        border-right: none;
+        border-top: 1px solid rgba(255,255,255,0.07);
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      .sb-head, .sb-foot, .kbd-hint, .cat-div { display: none; }
+      #cat-nav {
+        display: flex; flex-direction: row;
+        overflow-x: auto; overflow-y: hidden;
+        padding: 0; flex: 1;
+      }
+      #cat-nav::-webkit-scrollbar { height: 0; }
+      .cat-btn {
+        flex-direction: column; gap: 2px;
+        padding: 8px 10px; font-size: 0.65rem;
+        white-space: nowrap; min-width: 52px;
+        align-items: center;
+      }
+      .cat-nm { display: none; }
+      .cat-em { font-size: 1.25rem; }
+      .cat-ct { font-size: 0.6rem; }
+      #article-list { order: 1; }
+      #panel {
+        position: fixed; inset: 0; z-index: 50;
+        display: flex !important;
+      }
+      #panel.hidden { display: none !important; }
+      .panel-close {
+        order: -1;
+        font-size: 0.82rem; font-weight: 600;
+        padding: 6px 11px; border-radius: 6px;
+        background: var(--bg); color: var(--primary);
+        min-width: max-content;
+      }
+      .pc-back { display: inline; }
+      .pc-x    { display: none; }
+
+      /* show/hide-read toggle in mobile bottom bar */
+      .mob-hide-toggle {
+        display: flex; align-items: center; justify-content: center;
+        width: 48px; min-width: 48px; flex-shrink: 0;
+        background: none; border: none;
+        border-left: 1px solid rgba(255,255,255,0.1);
+        color: var(--sidebar-muted); font-size: 1.15rem; cursor: pointer;
+        transition: color 0.1s;
+      }
+      .mob-hide-toggle.on { color: var(--primary); }
+    }
+  </style>
+</head>
+<body>
+
+<div id="app">
+  <!-- Sidebar -->
+  <aside id="sidebar">
+    <div class="sb-head">
+      <div class="sb-title">📡 Feed Reader</div>
+      <div class="sb-actions">
+        <button class="ib" id="btn-refresh" title="Refresh (r)">↻</button>
+        <button class="ib" id="btn-settings" title="Settings">⚙</button>
+      </div>
+    </div>
+    <nav id="cat-nav"></nav>
+    <!-- visible only on mobile bottom bar -->
+    <button id="btn-hide-read-mob" class="mob-hide-toggle" title="Show / hide read articles">👁</button>
+    <div class="sb-foot">
+      <div class="kbd-hint">
+        <span class="kk">j</span>/<span class="kk">k</span> nav &nbsp;
+        <span class="kk">o</span> open &nbsp;
+        <span class="kk">m</span> read &nbsp;
+        <span class="kk">s</span> star &nbsp;
+        <span class="kk">c</span> correct<br>
+        <span class="kk">u</span> unread only &nbsp;
+        <span class="kk">r</span> refresh &nbsp;
+        <span class="kk">Esc</span> close
+      </div>
+    </div>
+  </aside>
+
+  <!-- Article List -->
+  <main id="article-list">
+    <div id="toolbar">
+      <span id="toolbar-cat-label"></span>
+      <input type="search" id="search" placeholder="Search…" autocomplete="off">
+      <button class="tb-btn" id="btn-unread">Hide read</button>
+      <button class="tb-btn" id="btn-mark-all">Mark all read</button>
+    </div>
+    <div id="arts-wrap">
+      <div class="msg"><div class="spinner"></div><p>Loading feeds…</p></div>
+    </div>
+  </main>
+
+  <!-- Correction Panel -->
+  <aside id="panel" class="hidden">
+    <div class="panel-head">
+      <h2>Correct Article</h2>
+      <button class="panel-close" id="btn-close-panel" title="Close (Esc)"><span class="pc-back">← Back</span><span class="pc-x">✕</span></button>
+    </div>
+    <div class="panel-body" id="panel-body"></div>
+  </aside>
+</div>
+
+<!-- Settings Modal -->
+<div class="overlay hidden" id="settings-modal">
+  <div class="modal">
+    <h2>⚙ Settings</h2>
+    <p id="sync-status-msg"></p>
+    <div class="modal-foot">
+      <button class="btn-pri" id="btn-cfg-cancel">Close</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+'use strict';
+
+// ── Constants ─────────────────────────────────────────────────────────────────
+const REPO_OWNER  = 'zirnhelt';
+const REPO_NAME   = 'super-rss-feed';
+const FEED_BASE   = 'https://zirnhelt.github.io/super-rss-feed';
+const BAKED_TOKEN = (() => {
+  const e = '__BAKED_GH_TOKEN__';
+  return e.startsWith('__') ? null : e.split('').reverse().join('');
+})();
+
+const CATS = [
+  { slug:'local',   name:'Local News',       emoji:'🏔️' },
+  { slug:'ai-tech', name:'AI & Tech',         emoji:'🤖' },
+  { slug:'climate', name:'Climate & Energy',  emoji:'🌍' },
+  { slug:'homelab', name:'Homelab & DIY',     emoji:'🏠' },
+  { slug:'wellness',name:'Health & Wellness', emoji:'🌿' },
+  { slug:'science', name:'Science',           emoji:'🔬' },
+  { slug:'scifi',   name:'Sci-Fi & Culture',  emoji:'🚀' },
+  { slug:'news',    name:'General News',      emoji:'📰' },
+];
+
+const DAYS = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'];
+const DAY_SHORT = {monday:'Mon',tuesday:'Tue',wednesday:'Wed',thursday:'Thu',friday:'Fri',saturday:'Sat',sunday:'Sun'};
+const DAY_THEME = {
+  monday:'Arts & Culture', tuesday:'Working Lands', wednesday:'Community Tech',
+  thursday:'Indigenous Lands', friday:'Wild Spaces', saturday:'Cariboo Voices', sunday:'Science & Wonder'
+};
+
+// ── State ─────────────────────────────────────────────────────────────────────
+let arts       = [];
+let readUrls   = new Set();
+let starUrls   = new Set();
+let corrs      = {};
+let ratings    = {};
+
+let selCat     = 'all';
+let unreadOnly = true;   // default: hide read articles
+let query      = '';
+let focusIdx   = -1;
+let panelUrl   = null;
+
+let ghStateSha  = null;
+let ghSaveTimer = null;
+let podcastArts = [];
+let autoReadObserver = null;
+
+// ── Utils ─────────────────────────────────────────────────────────────────────
+const $  = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+function rel(iso) {
+  if (!iso) return '';
+  const m = Math.floor((Date.now() - new Date(iso)) / 60000);
+  if (m < 2)  return 'just now';
+  if (m < 60) return `${m}m ago`;
+  const h = Math.floor(m / 60);
+  if (h < 24) return `${h}h ago`;
+  const d = Math.floor(h / 24);
+  if (d < 7)  return `${d}d ago`;
+  return new Date(iso).toLocaleDateString('en-US', {month:'short',day:'numeric'});
+}
+
+function scoreClass(n) {
+  return n >= 70 ? 'sh' : n >= 40 ? 'sm' : 'sl';
+}
+
+function todayName() {
+  return new Date().toLocaleDateString('en-US', {timeZone:'America/Vancouver', weekday:'long'}).toLowerCase();
+}
+function todayKey() {
+  return new Date().toLocaleDateString('en-CA', {timeZone:'America/Vancouver'});
+}
+
+let toastTimer;
+function toast(msg, ms = 2000) {
+  const el = $('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), ms);
+}
+
+// ── Local persistence ─────────────────────────────────────────────────────────
+function saveLocal() {
+  localStorage.setItem('read_urls',   JSON.stringify([...readUrls]));
+  localStorage.setItem('star_urls',   JSON.stringify([...starUrls]));
+  localStorage.setItem('corrs',       JSON.stringify(corrs));
+  localStorage.setItem('unread_only', unreadOnly ? '1' : '0');
+}
+function loadLocal() {
+  try { readUrls   = new Set(JSON.parse(localStorage.getItem('read_urls') || '[]')); } catch {}
+  try { starUrls   = new Set(JSON.parse(localStorage.getItem('star_urls') || '[]')); } catch {}
+  try { corrs      = JSON.parse(localStorage.getItem('corrs') || '{}'); }             catch {}
+  const stored = localStorage.getItem('unread_only');
+  // default true (hide read), only false if user explicitly turned it off
+  unreadOnly = stored === null ? true : stored !== '0';
+}
+
+// ── GitHub sync ───────────────────────────────────────────────────────────────
+async function syncGitHub() {
+  if (!BAKED_TOKEN) return;
+  try {
+    const r = await fetch(
+      `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/reader-state.json`,
+      { headers: { 'Authorization': `Bearer ${BAKED_TOKEN}`, 'Accept': 'application/vnd.github+json' } }
+    );
+    if (r.status === 404) return;
+    if (!r.ok) return;
+    const meta = await r.json();
+    ghStateSha = meta.sha;
+    const data = JSON.parse(atob(meta.content.replace(/\n/g, '')));
+    for (const url of data.read    || []) readUrls.add(url);
+    for (const url of data.starred || []) starUrls.add(url);
+    Object.assign(corrs, data.corrs || {});
+    saveLocal();
+  } catch {}
+}
+
+function scheduleGhSave() {
+  if (!BAKED_TOKEN) return;
+  clearTimeout(ghSaveTimer);
+  ghSaveTimer = setTimeout(ghSaveState, 8000);
+}
+
+async function ghSaveState() {
+  if (!BAKED_TOKEN) return;
+  const payload = {
+    version: 1,
+    updated_at: new Date().toISOString(),
+    read: [...readUrls],
+    starred: [...starUrls],
+    corrs,
+  };
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 2))));
+  const body = {
+    message: `Update reader state [skip ci]`,
+    content,
+    ...(ghStateSha ? { sha: ghStateSha } : {}),
+  };
+  try {
+    const r = await fetch(
+      `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/reader-state.json`,
+      {
+        method: 'PUT',
+        keepalive: true,
+        headers: {
+          'Authorization': `Bearer ${BAKED_TOKEN}`,
+          'Content-Type': 'application/json',
+          'Accept': 'application/vnd.github+json',
+        },
+        body: JSON.stringify(body),
+      }
+    );
+    if (r.ok) {
+      const data = await r.json();
+      ghStateSha = data.content.sha;
+    } else if (r.status === 409 || r.status === 422) {
+      await syncGitHub();
+      setTimeout(ghSaveState, 1000);
+    }
+  } catch {}
+}
+
+// ── Actions ───────────────────────────────────────────────────────────────────
+function markRead(url)   { readUrls.add(url);    saveLocal(); scheduleGhSave(); badge(); renderSidebar(); patchCard(url); }
+function markUnread(url) { readUrls.delete(url); saveLocal(); scheduleGhSave(); badge(); renderSidebar(); patchCard(url); }
+function toggleRead(url) { readUrls.has(url) ? markUnread(url) : markRead(url); }
+
+function toggleStar(url) {
+  if (starUrls.has(url)) { starUrls.delete(url); toast('Unstarred'); }
+  else                    { starUrls.add(url);    toast('⭐ Starred'); }
+  saveLocal();
+  scheduleGhSave();
+  patchCard(url);
+  renderSidebar();
+}
+
+function markAllRead() {
+  const vs = visible();
+  vs.forEach(a => readUrls.add(a.url));
+  saveLocal();
+  scheduleGhSave();
+  badge();
+  renderSidebar();
+  renderArts();
+  toast(`Marked ${vs.length} as read`);
+}
+
+// ── Feed loading ──────────────────────────────────────────────────────────────
+async function loadFeeds() {
+  $('arts-wrap').innerHTML = '<div class="msg"><div class="spinner"></div><p>Loading feeds…</p></div>';
+  arts = [];
+
+  const results = await Promise.allSettled(CATS.map(c => loadFeed(c.slug)));
+  for (const r of results) if (r.status === 'fulfilled') arts.push(...r.value);
+
+  arts.sort((a, b) => new Date(b.date_published || 0) - new Date(a.date_published || 0));
+
+  await loadPodcastFeeds();
+
+  renderSidebar();
+  renderArts();
+  badge();
+}
+
+async function loadFeed(slug) {
+  try {
+    const r = await fetch(`${FEED_BASE}/feed-${slug}.json`);
+    if (!r.ok) return [];
+    const feed = await r.json();
+    return (feed.items || []).map(it => ({
+      url:  it.url || it.id,
+      title: it.title || '',
+      excerpt: (it.content_html || it.content_text || '').replace(/<[^>]+>/g,'').trim().slice(0,160),
+      date_published: it.date_published,
+      source: it.authors?.[0]?.name || '',
+      score:  it._score || 0,
+      category: slug,
+      image: it.image || null,
+      podcast_day: null,
+      is_bonus: false,
+    }));
+  } catch { return []; }
+}
+
+async function loadPodcastFeeds() {
+  podcastArts = [];
+  await Promise.allSettled(DAYS.map(async day => {
+    try {
+      const r = await fetch(`${FEED_BASE}/feed-podcast-${day}.json`);
+      if (!r.ok) return;
+      const feed = await r.json();
+      for (const it of (feed.items || [])) {
+        const url = it.url || it.id;
+        if (!url) continue;
+        podcastArts.push({
+          url,
+          title: it.title || '',
+          excerpt: (it._excerpt || it.summary || it.content_html || '').replace(/<[^>]+>/g,'').trim().slice(0,160),
+          date_published: it.date_published,
+          source: it.authors?.[0]?.name || '',
+          score: null,
+          category: `podcast-${day}`,
+          image: null,
+          podcast_day: { day, short: DAY_SHORT[day], theme: DAY_THEME[day] },
+          is_bonus: it._is_bonus === true,
+        });
+      }
+    } catch {}
+  }));
+  podcastArts.sort((a, b) => new Date(b.date_published || 0) - new Date(a.date_published || 0));
+}
+
+// ── Auto-read on scroll ───────────────────────────────────────────────────────
+function setupAutoReadObserver() {
+  if (autoReadObserver) { autoReadObserver.disconnect(); autoReadObserver = null; }
+  const wrap = $('arts-wrap');
+  autoReadObserver = new IntersectionObserver(entries => {
+    for (const e of entries) {
+      // card has fully scrolled off the top → mark read
+      if (!e.isIntersecting && e.boundingClientRect.top < 0) {
+        const url = e.target.dataset.url;
+        if (url && !readUrls.has(url)) autoMarkRead(url, e.target);
+      }
+    }
+  }, { root: wrap, threshold: 0 });
+  wrap.querySelectorAll('.card[data-url]').forEach(c => autoReadObserver.observe(c));
+}
+
+function autoMarkRead(url, cardEl) {
+  readUrls.add(url);
+  saveLocal();
+  scheduleGhSave();
+  badge();
+  renderSidebar();
+  if (unreadOnly) {
+    // fade out and remove just this card — avoids a full re-render mid-scroll
+    cardEl.style.opacity = '0';
+    setTimeout(() => { if (cardEl.parentNode) cardEl.remove(); }, 210);
+  } else {
+    cardEl.classList.add('is-read');
+  }
+}
+
+// ── Filtering ─────────────────────────────────────────────────────────────────
+function visible() {
+  let list;
+  if (selCat === 'starred') {
+    list = [...arts, ...podcastArts].filter(a => starUrls.has(a.url));
+  } else if (selCat.startsWith('podcast-')) {
+    list = podcastArts.filter(a => a.category === selCat);
+  } else if (selCat === 'all') {
+    list = arts;
+  } else {
+    list = arts.filter(a => (corrs[a.url]?.category_override || a.category) === selCat);
+  }
+  if (unreadOnly) list = list.filter(a => !readUrls.has(a.url));
+  if (query) {
+    const q = query.toLowerCase();
+    list = list.filter(a =>
+      a.title.toLowerCase().includes(q) ||
+      a.source.toLowerCase().includes(q) ||
+      a.excerpt.toLowerCase().includes(q)
+    );
+  }
+  return list;
+}
+
+function unreadCt(slug) {
+  if (slug === 'all')            return arts.filter(a => !readUrls.has(a.url)).length;
+  if (slug === 'starred')        return [...starUrls].filter(u => !readUrls.has(u)).length;
+  if (slug.startsWith('podcast-')) return podcastArts.filter(a => a.category === slug && !readUrls.has(a.url)).length;
+  return arts.filter(a => (corrs[a.url]?.category_override || a.category) === slug && !readUrls.has(a.url)).length;
+}
+
+// ── Sidebar render ────────────────────────────────────────────────────────────
+function renderSidebar() {
+  const nav = $('cat-nav');
+  let h = '';
+  h += catBtn('all', '📡', 'All Feeds', unreadCt('all'));
+  h += '<div class="cat-div"></div>';
+  CATS.forEach(c => { h += catBtn(c.slug, c.emoji, c.name, unreadCt(c.slug)); });
+  h += '<div class="cat-div"></div>';
+  h += catBtn('starred', '⭐', 'Starred', unreadCt('starred'));
+  h += '<div class="cat-div"></div>';
+  h += `<div class="sb-section-label">Podcasts</div>`;
+  DAYS.forEach(d => {
+    const slug = `podcast-${d}`;
+    h += catBtn(slug, '🎙', DAY_SHORT[d], unreadCt(slug));
+  });
+  nav.innerHTML = h;
+  nav.querySelectorAll('.cat-btn').forEach(el => {
+    el.addEventListener('click', () => {
+      selCat = el.dataset.slug;
+      focusIdx = -1;
+      renderSidebar();
+      renderArts();
+    });
+  });
+}
+
+function catBtn(slug, emoji, name, ct) {
+  const cls = 'cat-btn' + (selCat === slug ? ' active' : '');
+  const badge = ct > 0 ? `<span class="cat-ct">${ct > 999 ? '999+' : ct}</span>` : '';
+  return `<button class="${cls}" data-slug="${slug}">
+    <span class="cat-em">${emoji}</span>
+    <span class="cat-nm">${esc(name)}</span>
+    ${badge}
+  </button>`;
+}
+
+// ── Toolbar label ─────────────────────────────────────────────────────────────
+function toolbarLabel() {
+  if (selCat === 'all')     return '📡 All Feeds';
+  if (selCat === 'starred') return '⭐ Starred';
+  if (selCat.startsWith('podcast-')) {
+    const d = selCat.slice('podcast-'.length);
+    return `🎙 ${DAY_SHORT[d]} — ${DAY_THEME[d]}`;
+  }
+  const c = CATS.find(x => x.slug === selCat);
+  return c ? `${c.emoji} ${c.name}` : '';
+}
+
+// ── Sync hide-read toggle state across desktop + mobile buttons ───────────────
+function syncHideReadButtons() {
+  $('btn-unread').classList.toggle('on', unreadOnly);
+  $('btn-hide-read-mob').classList.toggle('on', unreadOnly);
+}
+
+// ── Articles render ───────────────────────────────────────────────────────────
+function renderArts() {
+  const vs = visible();
+  $('toolbar-cat-label').textContent = toolbarLabel();
+  syncHideReadButtons();
+
+  const w = $('arts-wrap');
+  if (vs.length === 0) {
+    if (!arts.length)        w.innerHTML = '<div class="msg"><div class="ic">📭</div><p>No feeds loaded.</p></div>';
+    else if (unreadOnly)     w.innerHTML = '<div class="msg"><div class="ic">✅</div><p>All caught up!</p></div>';
+    else if (query)          w.innerHTML = `<div class="msg"><div class="ic">🔍</div><p>No results for "<strong>${esc(query)}</strong>"</p></div>`;
+    else                     w.innerHTML = '<div class="msg"><div class="ic">📭</div><p>Nothing here.</p></div>';
+    setupAutoReadObserver();
+    return;
+  }
+
+  w.innerHTML = vs.map((a, i) => cardHtml(a, i)).join('');
+
+  w.querySelectorAll('.card').forEach((el, i) => {
+    const a = vs[i];
+    el.addEventListener('click', e => {
+      if (e.target.closest('.act') || e.target.closest('.dbadge')) return;
+      focusIdx = i;
+      refocusCards();
+    });
+    el.querySelector('.card-title a')?.addEventListener('click', () => markRead(a.url));
+    el.querySelector('[data-act="star"]')?.addEventListener('click',    e => { e.stopPropagation(); toggleStar(a.url); });
+    el.querySelector('[data-act="read"]')?.addEventListener('click',    e => { e.stopPropagation(); toggleRead(a.url); });
+    el.querySelectorAll('[data-act="correct"]').forEach(btn =>
+      btn.addEventListener('click', e => { e.stopPropagation(); openPanel(a.url); })
+    );
+  });
+
+  setupAutoReadObserver();
+}
+
+function cardHtml(a, i) {
+  const isRead    = readUrls.has(a.url);
+  const isStar    = starUrls.has(a.url);
+  const isFocused = focusIdx === i;
+  const score     = corrs[a.url]?.score_override ?? a.score;
+  const cat       = corrs[a.url]?.category_override || a.category;
+  const catInfo   = CATS.find(c => c.slug === cat);
+  const showScore = score !== null;
+
+  const pd  = a.podcast_day;
+  const inPodcastView = selCat.startsWith('podcast-');
+  const cls = ['card', isRead ? 'is-read' : '', isFocused ? 'focused' : ''].filter(Boolean).join(' ');
+  return `<div class="${cls}" data-url="${esc(a.url)}">
+    <div class="card-top">
+      <div class="udot"></div>
+      <div class="card-meta">
+        <span class="meta-src">${esc(a.source)}</span>
+        <span class="meta-sep">·</span>
+        <span>${rel(a.date_published)}</span>
+        ${selCat === 'all' && catInfo ? `<span class="cbadge">${catInfo.emoji} ${esc(catInfo.name)}</span>` : ''}
+        ${showScore ? `<span class="sbadge ${scoreClass(score)}">${score}</span>` : ''}
+        ${pd && !inPodcastView ? `<span class="dbadge" data-act="correct" title="${esc(pd.theme)}">${pd.short}</span>` : ''}
+        ${pd && inPodcastView && a.is_bonus ? `<span class="bbadge" title="Off-theme bonus article">Bonus</span>` : ''}
+      </div>
+      <div class="card-acts">
+        <button class="act${isStar ? ' starred' : ''}" data-act="star"    title="Star (s)">${isStar ? '⭐' : '☆'}</button>
+        <button class="act${isRead ? ' done'   : ''}" data-act="read"    title="Toggle read (m)">${isRead ? '✓' : '○'}</button>
+        <button class="act"                            data-act="correct" title="Correct (c)">✎</button>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-text">
+        <div class="card-title"><a href="${esc(a.url)}" target="_blank" rel="noopener noreferrer">${esc(a.title)}</a></div>
+        ${a.excerpt ? `<div class="card-exc">${esc(a.excerpt)}</div>` : ''}
+      </div>
+      ${a.image ? `<img class="card-img" src="${esc(a.image)}" loading="lazy" onerror="this.style.display='none'" alt="">` : ''}
+    </div>
+  </div>`;
+}
+
+function refocusCards() {
+  $('arts-wrap').querySelectorAll('.card').forEach((el, i) => {
+    el.classList.toggle('focused', i === focusIdx);
+  });
+  const focused = $('arts-wrap').querySelectorAll('.card')[focusIdx];
+  if (focused) focused.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+}
+
+function patchCard(url) {
+  const vs  = visible();
+  const idx = vs.findIndex(a => a.url === url);
+  if (idx < 0) { renderArts(); return; }
+  const cards = $('arts-wrap').querySelectorAll('.card');
+  if (!cards[idx]) { renderArts(); return; }
+
+  const tmp = document.createElement('div');
+  tmp.innerHTML = cardHtml(vs[idx], idx);
+  const newEl = tmp.firstElementChild;
+  cards[idx].replaceWith(newEl);
+
+  const a = vs[idx];
+  newEl.addEventListener('click', e => {
+    if (e.target.closest('.act') || e.target.closest('.dbadge')) return;
+    focusIdx = idx; refocusCards();
+  });
+  newEl.querySelector('.card-title a')?.addEventListener('click', () => markRead(a.url));
+  newEl.querySelector('[data-act="star"]')?.addEventListener('click',    e => { e.stopPropagation(); toggleStar(a.url); });
+  newEl.querySelector('[data-act="read"]')?.addEventListener('click',    e => { e.stopPropagation(); toggleRead(a.url); });
+  newEl.querySelectorAll('[data-act="correct"]').forEach(btn =>
+    btn.addEventListener('click', e => { e.stopPropagation(); openPanel(a.url); })
+  );
+  // keep auto-read observer watching the new card element
+  if (autoReadObserver && newEl.dataset.url) autoReadObserver.observe(newEl);
+}
+
+// ── Correction panel ──────────────────────────────────────────────────────────
+function openPanel(url) {
+  panelUrl = url;
+  if (!ratings[url]) ratings[url] = {};
+  const a   = arts.find(x => x.url === url) || podcastArts.find(x => x.url === url);
+  const r   = ratings[url];
+  const td  = todayName();
+  const ex  = corrs[url] || {};
+
+  const catOpts = CATS.map(c =>
+    `<option value="${c.slug}"${(ex.category_override || a?.category) === c.slug ? ' selected' : ''}>${c.emoji} ${c.name}</option>`
+  ).join('');
+
+  const chips = DAYS.map(d => {
+    const isT = d === td;
+    const isSel = r.better_theme === d;
+    return `<button class="dc${isT ? ' is-today' : ''}${isSel ? ' sel' : ''}" data-day="${d}">
+      ${DAY_SHORT[d]}${isT ? ' ★' : ''}<br><small style="font-size:0.65em;opacity:0.8">${DAY_THEME[d]}</small>
+    </button>`;
+  }).join('');
+
+  $('panel-body').innerHTML = `
+    <div class="panel-art">
+      <div class="pa-title"><a href="${esc(url)}" target="_blank" rel="noopener">${esc(a?.title || url)}</a></div>
+      <div class="pa-meta">${esc(a?.source || '')} · ${rel(a?.date_published)} · Score ${a?.score ?? '?'}</div>
+    </div>
+
+    <div class="pf">
+      <div class="pl">Rating</div>
+      <div class="rbs">
+        <button class="rb${r.rating==='good'&&!r.better_theme?' sg':''}" data-rate="good">✓ Good</button>
+        <button class="rb${r.rating==='bad'?' sb':''}"                   data-rate="bad">✗ Bad</button>
+        <button class="rb${r.rating==='skip'?' ss':''}"                  data-rate="skip">→ Skip</button>
+      </div>
+    </div>
+
+    <div class="pf">
+      <div class="pl">Category override</div>
+      <select class="cat-sel" id="panel-cat">${catOpts}</select>
+    </div>
+
+    <div class="pf">
+      <div class="pl">Better fit for…</div>
+      <div class="day-chips">${chips}</div>
+    </div>
+
+    <div class="pf">
+      <div class="pl">Note</div>
+      <textarea class="panel-ta" id="panel-note" placeholder="Why good or bad?" maxlength="200">${esc(r.note || '')}</textarea>
+    </div>
+
+    <button class="btn-save" id="panel-submit">💾 Save &amp; Submit Feedback</button>
+    <div class="save-st" id="panel-st"></div>
+  `;
+
+  $('panel-body').querySelectorAll('[data-rate]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      ratings[url] = {...ratings[url], rating: btn.dataset.rate, better_theme: null};
+      openPanel(url);
+    });
+  });
+
+  $('panel-body').querySelectorAll('[data-day]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const day = btn.dataset.day;
+      const was = ratings[url].better_theme === day;
+      ratings[url] = {...ratings[url], rating: 'good', better_theme: was ? null : day};
+      openPanel(url);
+    });
+  });
+
+  $('panel-note')?.addEventListener('input', () => {
+    ratings[url] = {...ratings[url], note: $('panel-note').value};
+  });
+
+  $('panel-submit')?.addEventListener('click', () => submitCorrection(url));
+
+  $('panel').classList.remove('hidden');
+  $('app').classList.add('panel-open');
+}
+
+function closePanel() {
+  panelUrl = null;
+  $('panel').classList.add('hidden');
+  $('app').classList.remove('panel-open');
+}
+
+async function submitCorrection(url) {
+  const a   = arts.find(x => x.url === url) || podcastArts.find(x => x.url === url);
+  const r   = ratings[url] || {};
+  const cat = $('panel-cat')?.value;
+  const note = $('panel-note')?.value || '';
+  const stEl = $('panel-st');
+  const btn  = $('panel-submit');
+
+  if (cat && cat !== a?.category) {
+    corrs[url] = {...corrs[url], category_override: cat};
+    saveLocal();
+    scheduleGhSave();
+    renderSidebar();
+    renderArts();
+  }
+
+  if (!BAKED_TOKEN) {
+    stEl.className = 'save-st';
+    stEl.textContent = 'Saved locally (no GitHub token configured).';
+    toast('Saved locally');
+    saveLocal();
+    return;
+  }
+
+  btn.disabled = true;
+  stEl.className = 'save-st';
+  stEl.textContent = 'Saving…';
+
+  const dk     = todayKey();
+  const payload = {
+    url, title: a?.title || '', source: a?.source || '',
+    category: a?.category || '', category_override: cat || null,
+    score: a?.score || 0,
+    rating: r.rating || null, better_theme: r.better_theme || null,
+    note: note || null, rated_at: new Date().toISOString(),
+  };
+
+  const apiBase = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/feedback/${dk}.json`;
+  const hdrs = {
+    'Authorization': `Bearer ${BAKED_TOKEN}`,
+    'Content-Type': 'application/json',
+    'Accept': 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28',
+  };
+
+  try {
+    let sha = null, existing = [];
+    const cur = await fetch(apiBase, {headers: hdrs});
+    if (cur.ok) {
+      const data = await cur.json();
+      sha = data.sha;
+      try {
+        const dec = JSON.parse(atob(data.content.replace(/\n/g,'')));
+        existing = dec.ratings || [];
+      } catch {}
+    }
+    const byUrl = Object.fromEntries(existing.map(x => [x.url, x]));
+    byUrl[url] = payload;
+    const body = {
+      message: `Add review feedback ${dk} [skip ci]`,
+      content: btoa(unescape(encodeURIComponent(JSON.stringify({date:dk, submitted_at:new Date().toISOString(), ratings:Object.values(byUrl)}, null, 2)))),
+      ...(sha ? {sha} : {}),
+    };
+    const res = await fetch(apiBase, {method:'PUT', headers:hdrs, body:JSON.stringify(body)});
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    stEl.className = 'save-st ok';
+    stEl.textContent = '✅ Saved to GitHub!';
+    toast('✅ Feedback saved');
+    saveLocal();
+  } catch(e) {
+    stEl.className = 'save-st err';
+    stEl.textContent = '❌ ' + e.message;
+    btn.disabled = false;
+  }
+}
+
+// ── PWA badge + title ─────────────────────────────────────────────────────────
+function badge() {
+  const n = unreadCt('all');
+  // title fallback works everywhere; setAppBadge only works when installed as PWA
+  document.title = n > 0 ? `(${n}) Feed Reader` : 'Feed Reader';
+  if ('setAppBadge' in navigator) navigator.setAppBadge(n).catch(() => {});
+}
+
+// ── Keyboard ──────────────────────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.target.matches('input,textarea,select')) return;
+  const vs = visible();
+  switch (e.key) {
+    case 'j': case 'ArrowDown':
+      e.preventDefault();
+      focusIdx = Math.min(focusIdx + 1, vs.length - 1);
+      refocusCards();
+      break;
+    case 'k': case 'ArrowUp':
+      e.preventDefault();
+      focusIdx = Math.max(focusIdx - 1, 0);
+      refocusCards();
+      break;
+    case 'o':
+      if (focusIdx >= 0 && vs[focusIdx]) {
+        markRead(vs[focusIdx].url);
+        window.open(vs[focusIdx].url, '_blank', 'noopener,noreferrer');
+      }
+      break;
+    case 'm':
+      if (focusIdx >= 0 && vs[focusIdx]) toggleRead(vs[focusIdx].url);
+      break;
+    case 's':
+      if (focusIdx >= 0 && vs[focusIdx]) toggleStar(vs[focusIdx].url);
+      break;
+    case 'c':
+      if (focusIdx >= 0 && vs[focusIdx]) openPanel(vs[focusIdx].url);
+      break;
+    case 'u':
+      unreadOnly = !unreadOnly;
+      saveLocal();
+      syncHideReadButtons();
+      focusIdx = -1;
+      renderArts();
+      break;
+    case 'r':
+      refresh();
+      break;
+    case 'Escape':
+      closePanel();
+      break;
+  }
+});
+
+// ── Toolbar events ────────────────────────────────────────────────────────────
+$('btn-unread').addEventListener('click', () => {
+  unreadOnly = !unreadOnly;
+  saveLocal();
+  syncHideReadButtons();
+  focusIdx = -1;
+  renderArts();
+});
+
+$('btn-hide-read-mob').addEventListener('click', () => {
+  unreadOnly = !unreadOnly;
+  saveLocal();
+  syncHideReadButtons();
+  focusIdx = -1;
+  renderArts();
+});
+
+$('btn-mark-all').addEventListener('click', markAllRead);
+
+$('search').addEventListener('input', () => {
+  query    = $('search').value.trim();
+  focusIdx = -1;
+  renderArts();
+});
+
+$('btn-close-panel').addEventListener('click', closePanel);
+
+// ── Settings ──────────────────────────────────────────────────────────────────
+function openSettings() {
+  $('sync-status-msg').textContent = BAKED_TOKEN
+    ? '✅ GitHub sync active — read/star state syncs across devices automatically.'
+    : '⚠️ No GitHub token. Open this page from the deployed GitHub Pages site for cross-device sync. State is saved locally in this browser only.';
+  $('settings-modal').classList.remove('hidden');
+}
+$('btn-settings').addEventListener('click', openSettings);
+
+$('btn-cfg-cancel').addEventListener('click', () => $('settings-modal').classList.add('hidden'));
+$('settings-modal').addEventListener('click', e => {
+  if (e.target === $('settings-modal')) $('settings-modal').classList.add('hidden');
+});
+
+// ── Refresh ───────────────────────────────────────────────────────────────────
+async function refresh() {
+  const btn = $('btn-refresh');
+  btn.classList.add('spin');
+  btn.disabled = true;
+  await Promise.all([loadFeeds(), syncGitHub()]);
+  renderSidebar();
+  renderArts();
+  badge();
+  btn.classList.remove('spin');
+  btn.disabled = false;
+  toast('Refreshed');
+}
+$('btn-refresh').addEventListener('click', refresh);
+
+// ── Boot ──────────────────────────────────────────────────────────────────────
+async function init() {
+  loadLocal();
+  syncHideReadButtons();
+  renderSidebar();
+  await syncGitHub();
+  await loadFeeds();
+  setInterval(async () => { await syncGitHub(); renderSidebar(); badge(); }, 5 * 60 * 1000);
+}
+
+window.addEventListener('beforeunload', () => {
+  if (ghSaveTimer) { clearTimeout(ghSaveTimer); ghSaveState(); }
+});
+
+init();
+</script>
+</body>
+</html>
