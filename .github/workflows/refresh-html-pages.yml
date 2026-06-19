@@ -32,6 +32,7 @@ jobs:
           # Copy generated HTML pages
           cp index.html output/
           cp bespoke.html output/
+          cp reader.html output/
 
           # Copy static assets — all cover images referenced by the HTML pages
           cp cariboo-signals.png output/
@@ -52,7 +53,7 @@ jobs:
           BUCKET="cariboo-signals"
           echo "Syncing HTML pages to R2..."
 
-          for page in index.html bespoke.html; do
+          for page in index.html bespoke.html reader.html; do
             [ -f "$page" ] && aws s3 cp "$page" "s3://${BUCKET}/${page}" \
               --content-type "text/html" \
               --cache-control "no-cache" \
