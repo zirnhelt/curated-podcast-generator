@@ -58,6 +58,27 @@
     "farewell to"
   ],
   "description": "Articles matching these keywords (case-insensitive) in the title are excluded from the podcast. Includes political content and all sports coverage — even local sports stories are excluded per editorial policy.",
+  "bad_news_filter": {
+    "description": "Articles matching these phrases in the title are removed unless the article scores at least theme_relevance_threshold keyword-word-points for today's theme — meaning the bad event is fundamentally about the theme topic (e.g. a fatal tractor accident on Working Lands day, or digital polling errors on Cariboo Local Affairs day).",
+    "phrases": [
+      "killed",
+      "fatal",
+      "fatality",
+      "fatalities",
+      "death toll",
+      "found dead",
+      "body found",
+      "shooting",
+      "stabbing",
+      "homicide",
+      "murder",
+      "crash kills",
+      "deadly crash",
+      "deadly accident",
+      "deadly fire"
+    ],
+    "theme_relevance_threshold": 3
+  },
   "email_subject_blocklist": {
     "description": "Emails whose subject starts with one of these words/phrases (case-insensitive) are skipped at ingest. Used to filter test emails sent to verify the address works.",
     "patterns": [
