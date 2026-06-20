@@ -1,17 +1,4 @@
 {
-  "2026-03-21": {
-    "timestamp": 1774097441.004625,
-    "date": "2026-03-21",
-    "theme": "Cariboo Voices & Local News",
-    "central_question": "Deep dive on Cariboo Voices & Local News",
-    "topics_covered": [
-      "broadband",
-      "data sovereignty",
-      "AI",
-      "digital divide",
-      "infrastructure"
-    ]
-  },
   "2026-03-22": {
     "timestamp": 1774184079.517456,
     "date": "2026-03-22",
@@ -2236,6 +2223,32 @@
       "Governance frameworks and First Nations stewardship decision-making authority in wildfire management",
       "Information delivery failures in rapid-onset fire scenarios (Kullagh Creek case study)",
       "Community-sourced versus formal information ecosystems for backcountry conditions"
+    ]
+  },
+  "2026-06-20": {
+    "timestamp": 1781952152.491299,
+    "date": "2026-06-20",
+    "theme": "Cariboo Local Affairs",
+    "central_question": "What structural capacity does a small city like Williams Lake actually have to respond to public safety crises when provincial services and funding decisions remain outside municipal control?",
+    "riley_position": "While the province holds most power over crime response and integrated services, municipalities can increase accountability and effectiveness by documenting all requests, service gaps, and provincial responses publicly, and by recognizing that slow institutional investments (like social worker training) build the connective capacity needed for faster crisis recovery.",
+    "riley_key_evidence": [
+      "The Foundry Cariboo Chilcotin demonstrates integrated service delivery is possible in Williams Lake despite constraints",
+      "The home support funding formula revision shows the province does respond when political pressure is specific enough",
+      "Communities with strong social networks recover faster and are more civically engaged because they have connective tissue to mobilize"
+    ],
+    "casey_position": "The province appears to have structurally deprioritized investment in small rural cities, making specificity-based advocacy ineffective; without local media capacity to track outcomes and connect funding decisions to results, communities cannot create the political feedback loops needed to reward good provincial investments or punish failures.",
+    "casey_key_evidence": [
+      "Williams Lake Tribune operates with one reporter for a city of 10,700 residents",
+      "The jail closure forum from June produced positions for the province that were either not covered or not produced, showing accountability gap",
+      "The Water Factory fire represents real human costs (lost livelihood) of provincial response gaps, but the six-month follow-up on business outcome won't be written"
+    ],
+    "resolution": "They agreed to disagree on whether insufficient provincial response is due to unclear municipal asks or deliberate deprioritization, but converged on a practical solution: municipalities should document all service requests and provincial responses publicly to create civic memory and accountability infrastructure, independent of whether the province responds\u2014this shifts focus from petition to self-accountability.",
+    "topics_covered": [
+      "Municipal vs. provincial jurisdiction limits in crime response and service delivery",
+      "The role of local media capacity in creating accountability feedback loops",
+      "Governance differences between inter-jurisdictional coordination (cities) and unified governance (First Nations)",
+      "Slow institutional investment (social worker training, library renovation) vs. acute crisis coverage in news cycles",
+      "Public documentation as an accountability tool separate from provincial funding decisions"
     ]
   }
 }
