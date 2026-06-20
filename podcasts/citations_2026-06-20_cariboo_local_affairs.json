@@ -1,0 +1,177 @@
+{
+  "episode": {
+    "date": "2026-06-20",
+    "formatted_date": "Saturday, June 20, 2026",
+    "theme": "Cariboo Local Affairs",
+    "title": "Cariboo Signals - Cariboo Local Affairs",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Cariboo Local Affairs.</p><p><b>NEWS ROUNDUP:</b> We break down [CFJC Today Kamloops] Counterfeit bills in circulation in 100 Mile area and [Quesnel Cariboo Observer] ‘We were always in it together’: UNBC graduates celebrate success in Quesnel, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> What structural capacity does a small city like Williams Lake actually have to respond to public safety crises when provincial services and funding decisions remain outside municipal control? Topics include: Municipal vs. provincial jurisdiction limits in crime response and service delivery, The role of local media capacity in creating accountability feedback loops, Governance differences between inter-jurisdictional coordination (cities) and unified governance (First Nations), Slow institutional investment (social worker training, library renovation) vs. acute crisis coverage in news cycles, Public documentation as an accountability tool separate from provincial funding decisions.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://wlwomenscentre.org\">Williams Lake Women's Centre</a></p><p><b>Sources discussed:</b></p><ul><li>CFJC Today Kamloops: <a href=\"https://cfjctoday.com/2026/06/18/counterfeit-bills-in-circulation-in-100-mile-area/\">[CFJC Today Kamloops] Counterfeit bills in circulation in 10...</a></li><li>Laisa Conde (Quesnel Cariboo Observer): <a href=\"https://quesnelobserver.com/2026/06/15/we-were-always-in-it-together-unbc-graduates-celebrate-success-in-quesnel/\">[Quesnel Cariboo Observer] ‘We were always in it together’: ...</a></li><li>Shanal Otchere (Resilience.org): <a href=\"https://www.resilience.org/stories/2026-06-16/social-capital-and-community-resilience-a-conversation-with-daniel-aldrich/\">[Resilience.org] Social capital and community resilience: A ...</a></li><li>CFJC Today Kamloops: <a href=\"https://cfjctoday.com/2026/06/17/police-identify-suspect-looking-for-person-of-interest-in-two-suspicious-fires-in-williams-lake/\">[CFJC Today Kamloops] Police identify suspect, looking for p...</a></li><li>Laisa Conde (100 Mile Free Press): <a href=\"https://100milefreepress.net/2026/06/19/lac-la-hache-library-temporarily-closing-this-summer-for-renovations/\">[100 Mile Free Press] Lac La Hache Library temporarily closi...</a></li><li>Yashvika Grover (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/06/18/williams-lake-first-nation-powwow-to-include-weekend-full-of-activities/\">[Williams Lake Tribune] Williams Lake First Nation Powwow to...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>rebeccadyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/06/17/williams-lake-business-owner-devastated-after-delivery-van-fire-deemed-suspicious/\">[Williams Lake Tribune] Williams Lake business owner devasta...</a></li><li>Laisa Conde (Quesnel Cariboo Observer): <a href=\"https://quesnelobserver.com/2026/06/15/quesnel-dancer-wins-provincial-modern-dance-title-in-prince-george/\">[Quesnel Cariboo Observer] Quesnel dancer wins provincial mo...</a></li></ul><p><b>Closing Music:</b> &ldquo;<a href=\"https://www.jamendo.com/track/1214596\">Hold Me Tonight</a>&rdquo; by JARA &mdash; pop, rocknroll, indie. Free music via Jamendo, licensed under Creative Commons.</p><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-6<br>TTS Voices: OpenAI TTS API (Nova · Echo)<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-06-20T03:42:28.766595-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-sonnet-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 2807,
+      "voice_ratio_casey_riley": 0.84,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 1,
+        "contrastive_negation": 1,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0
+      },
+      "total_hits": 2,
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 5
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[CFJC Today Kamloops] Counterfeit bills in circulation in 100 Mile area",
+          "url": "https://cfjctoday.com/2026/06/18/counterfeit-bills-in-circulation-in-100-mile-area/",
+          "source": "CFJC Today Kamloops",
+          "author": "",
+          "ai_score": 65,
+          "date_published": "2026-06-18T14:12:54+00:00",
+          "summary": "File photo. (Image Credit: CFJC Today) By Aaron Schulze Counterfeit Bills # Counterfeit bills in circulation in 100 Mile area Jun 18, 2026 | 7:12 AM 100 MILE HOUSE, B.C. — RCMP are receiving reports o...",
+          "discussed": true
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] ‘We were always in it together’: UNBC graduates celebrate success in Quesnel",
+          "url": "https://quesnelobserver.com/2026/06/15/we-were-always-in-it-together-unbc-graduates-celebrate-success-in-quesnel/",
+          "source": "Quesnel Cariboo Observer",
+          "author": "Laisa Conde",
+          "ai_score": 85,
+          "date_published": "2026-06-15T15:40:00+00:00",
+          "summary": "## ‘We were always in it together’: UNBC graduates celebrate success in Quesnel Published 8:40 am Monday, June 15, 2026 **By Laísa Condé** ![Students from the Bachelor of Social Work and Bachelor of S...",
+          "discussed": true
+        },
+        {
+          "title": "[Resilience.org] Social capital and community resilience: A conversation with Daniel Aldrich",
+          "url": "https://www.resilience.org/stories/2026-06-16/social-capital-and-community-resilience-a-conversation-with-daniel-aldrich/",
+          "source": "Resilience.org",
+          "author": "Shanal Otchere",
+          "ai_score": 80,
+          "date_published": "2026-06-16T08:00:24+00:00",
+          "summary": "Daniel Aldrich is a leading expert on how social ties shape disaster recovery, his perspective shaped by his family’s flight from Katrina and his work at USAID. In this interview, he explains why soci...",
+          "discussed": true
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Cariboo Local Affairs",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Williams Lake business owner devastated after delivery van fire deemed suspicious",
+          "url": "https://wltribune.com/2026/06/17/williams-lake-business-owner-devastated-after-delivery-van-fire-deemed-suspicious/",
+          "source": "Williams Lake Tribune",
+          "author": "rebeccadyok",
+          "ai_score": 90,
+          "date_published": "2026-06-17T15:34:45.478133+00:00",
+          "summary": "## Williams Lake business owner devastated after delivery van fire deemed suspicious Published 8:30 am Wednesday, June 17, 2026 **By Rebecca Dyok** Firefighters work to extinguish a vehicle fire at th...",
+          "discussed": false
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Quesnel dancer wins provincial modern dance title in Prince George",
+          "url": "https://quesnelobserver.com/2026/06/15/quesnel-dancer-wins-provincial-modern-dance-title-in-prince-george/",
+          "source": "Quesnel Cariboo Observer",
+          "author": "Laisa Conde",
+          "ai_score": 85,
+          "date_published": "2026-06-15T21:00:00+00:00",
+          "summary": "## Quesnel dancer wins provincial modern dance title in Prince George Published 2:00 pm Monday, June 15, 2026 **By Delaine Milette President of the Quesnel Festival of the Performing Arts** ![Quesnel ...",
+          "discussed": false
+        },
+        {
+          "title": "[CFJC Today Kamloops] Police identify suspect, looking for person of interest in two suspicious fires in Williams Lake",
+          "url": "https://cfjctoday.com/2026/06/17/police-identify-suspect-looking-for-person-of-interest-in-two-suspicious-fires-in-williams-lake/",
+          "source": "CFJC Today Kamloops",
+          "author": "",
+          "ai_score": 75,
+          "date_published": "2026-06-17T15:03:03+00:00",
+          "summary": "File photo. (Image Credit: CFJC Today) By Aaron Schulze Suspicious Fires # Police identify suspect, looking for person of interest in two suspicious fires in Williams Lake Jun 17, 2026 | 8:03 AM WILLI...",
+          "discussed": true
+        },
+        {
+          "title": "[100 Mile Free Press] Lac La Hache Library temporarily closing this summer for renovations",
+          "url": "https://100milefreepress.net/2026/06/19/lac-la-hache-library-temporarily-closing-this-summer-for-renovations/",
+          "source": "100 Mile Free Press",
+          "author": "Laisa Conde",
+          "ai_score": 85,
+          "date_published": "2026-06-19T22:30:00+00:00",
+          "summary": "## Lac La Hache Library temporarily closing this summer for renovations Published 3:30 pm Friday, June 19, 2026 **By Laísa Condé** (Lac la Hache Community Club/Facebook) (Lac la Hache Community Club/F...",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Williams Lake First Nation Powwow to include weekend full of activities",
+          "url": "https://wltribune.com/2026/06/18/williams-lake-first-nation-powwow-to-include-weekend-full-of-activities/",
+          "source": "Williams Lake Tribune",
+          "author": "Yashvika Grover",
+          "ai_score": 90,
+          "date_published": "2026-06-18T16:00:07.662406+00:00",
+          "summary": "## Williams Lake First Nation Powwow to include weekend full of activities Published 5:00 am Thursday, June 18, 2026 **By Yashvika Grover Local Journalism Initiative** The 2026 Williams Lake Tradition...",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "What structural capacity does a small city like Williams Lake actually have to respond to public safety crises when provincial services and funding decisions remain outside municipal control?",
+        "riley_position": "While the province holds most power over crime response and integrated services, municipalities can increase accountability and effectiveness by documenting all requests, service gaps, and provincial responses publicly, and by recognizing that slow institutional investments (like social worker training) build the connective capacity needed for faster crisis recovery.",
+        "riley_key_evidence": [
+          "The Foundry Cariboo Chilcotin demonstrates integrated service delivery is possible in Williams Lake despite constraints",
+          "The home support funding formula revision shows the province does respond when political pressure is specific enough",
+          "Communities with strong social networks recover faster and are more civically engaged because they have connective tissue to mobilize"
+        ],
+        "casey_position": "The province appears to have structurally deprioritized investment in small rural cities, making specificity-based advocacy ineffective; without local media capacity to track outcomes and connect funding decisions to results, communities cannot create the political feedback loops needed to reward good provincial investments or punish failures.",
+        "casey_key_evidence": [
+          "Williams Lake Tribune operates with one reporter for a city of 10,700 residents",
+          "The jail closure forum from June produced positions for the province that were either not covered or not produced, showing accountability gap",
+          "The Water Factory fire represents real human costs (lost livelihood) of provincial response gaps, but the six-month follow-up on business outcome won't be written"
+        ],
+        "resolution": "They agreed to disagree on whether insufficient provincial response is due to unclear municipal asks or deliberate deprioritization, but converged on a practical solution: municipalities should document all service requests and provincial responses publicly to create civic memory and accountability infrastructure, independent of whether the province responds—this shifts focus from petition to self-accountability.",
+        "topics_covered": [
+          "Municipal vs. provincial jurisdiction limits in crime response and service delivery",
+          "The role of local media capacity in creating accountability feedback loops",
+          "Governance differences between inter-jurisdictional coordination (cities) and unified governance (First Nations)",
+          "Slow institutional investment (social worker training, library renovation) vs. acute crisis coverage in news cycles",
+          "Public documentation as an accountability tool separate from provincial funding decisions"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "Azure Neural TTS (Ava · Andrew)",
+    "text_to_speech_openai": "OpenAI TTS API (Nova · Echo)",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  },
+  "closing_music": {
+    "track_id": "1214596",
+    "name": "Hold Me Tonight",
+    "artist": "JARA",
+    "genres": [
+      "pop",
+      "rocknroll",
+      "indie"
+    ],
+    "shareurl": "https://www.jamendo.com/track/1214596",
+    "license": "Creative Commons via Jamendo"
+  }
+}

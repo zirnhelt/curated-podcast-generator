@@ -60,9 +60,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-08",
-        "clue": "evidence-bar:~ \u2014 Conceded drone BVLOS regulatory lag despite sector optimism",
-        "occurrences": 1
+        "date": "2026-06-20",
+        "clue": "evidence-bar:~ \u2014 Conceded 'thin reed' metaphor acknowledges limits of advocacy channels",
+        "occurrences": 2
       },
       {
         "date": "2026-06-04",
@@ -113,11 +113,6 @@
         "date": "2026-06-15",
         "clue": "tech-optimism:x \u2014 Conceded Mukurtu exists but capacity gap is real",
         "occurrences": 1
-      },
-      {
-        "date": "2026-06-19",
-        "clue": "structural-lens:+ \u2014 Shifted focus from data existence to political will",
-        "occurrences": 2
       },
       {
         "date": "2026-06-19",
@@ -210,7 +205,6 @@
   },
   "casey": {
     "consistent_interests": [
-      "community development",
       "rural broadband",
       "[The Globe and Mail] Tumbler Ridge shooting highlights rural",
       "[The Tyee] Half of BC\u2019s Community Paramedic Positions Are Un",
@@ -219,7 +213,8 @@
       "Immersed in Community (and Archives!)",
       "[Williams Lake Tribune] Community volunteers create meaningf",
       "[100 Mile Free Press] HANSEN: Lac La Hache Community Club pr",
-      "[Williams Lake Tribune] End of B.C. rural healthcare bonus c"
+      "[Williams Lake Tribune] End of B.C. rural healthcare bonus c",
+      "[Resilience.org] Social capital and community resilience: A "
     ],
     "recurring_questions": [
       "Who benefits from this?",
@@ -299,19 +294,14 @@
         "occurrences": 2
       },
       {
-        "date": "2026-06-10",
-        "clue": "community-trust:x \u2014 Conceded to Riley's 'seed with existing voices' after initially raising moderation concerns",
-        "occurrences": 2
-      },
-      {
         "date": "2026-06-11",
         "clue": "evidence-bar:+ \u2014 Reinforced requirement for governance documents, not press releases",
         "occurrences": 1
       },
       {
-        "date": "2026-06-11",
-        "clue": "structural-lens:- \u2014 Softened determinism ('can be true simultaneously') vs. earlier harder positions",
-        "occurrences": 1
+        "date": "2026-06-20",
+        "clue": "structural-lens:- \u2014 Shifted from 'province not listening' to 'province decided small cities unworthy'\u2014harder attribution",
+        "occurrences": 2
       },
       {
         "date": "2026-06-12",
