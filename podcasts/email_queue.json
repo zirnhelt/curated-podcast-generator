@@ -1665,6 +1665,31 @@
       "theme_day": 0,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "874654bd",
+      "type": "newsletter",
+      "message_id": "<20260620.140451.8629cc92@mta45>",
+      "from_address": "f***@mail.beehiiv.com",
+      "subject": "Top-Notch, Bottom-Shelf",
+      "received_at": "2026-06-20T14:04:51+00:00",
+      "body_text": "View image: (https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/6bbf23f2-1507-47e5-b3ea-aae1b3d0c1a6/gemini-image-2_a_wide_shot_of_grocer",
+      "extracted_urls": [
+        "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/6bbf23f2-1507-47e5-b3ea-aae1b3d0c1a6/gemini-image-2_a_wide_shot_of_grocery_store_shelves_and_only_the_bottom_row_has_shelf-talker_st-1.jpg?t=1781889358",
+        "https://todmaffin.com/",
+        "https://bsky.app/profile/todmaffin.com",
+        "https://beacons.ai/todmaffin/socials",
+        "https://www.youtube.com/todmaffinvideo/?sub_confirmation=1",
+        "https://discord.todmaffin.com",
+        "https://www.buzzfeed.com/mjs538/trump-g7-group-photo",
+        "https://en.wikipedia.org/wiki/Timeline_of_the_2025%E2%80%932026_United_States_trade_war_with_Canada",
+        "https://madeinca.ca/",
+        "https://www.primofoods.com/primo/products.php?id=141&catid=44"
+      ],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
