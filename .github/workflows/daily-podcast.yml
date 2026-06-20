@@ -2,16 +2,13 @@ name: Daily Podcast Generation
 
 on:
   schedule:
-    # Primary: 11:00 PM Pacific (previous night) — maximizes buffer before 6:30 AM wakeup
-    # PDT (summer, UTC-7): 06:00 UTC  |  PST (winter, UTC-8): 07:00 UTC
-    - cron: '0 6 * * *'
-    # Fallback 1: midnight Pacific
-    # PDT: 07:00 UTC  |  PST: 08:00 UTC
-    - cron: '0 7 * * *'
-    # Fallback 2: 1:00 AM Pacific — last resort, still 5+ hrs before 6:30 AM
-    # PDT: 08:00 UTC  |  PST: 09:00 UTC
+    # Primary: 1:05 AM Pacific (UTC-7, permanent — BC no longer observes DST)
     # check-episode gates idempotency so duplicate triggers are safe.
-    - cron: '0 8 * * *'
+    - cron: '5 8 * * *'
+    # Fallback 1: 2:05 AM Pacific
+    - cron: '5 9 * * *'
+    # Fallback 2: 3:05 AM Pacific — still 3+ hrs before 6:30 AM wakeup
+    - cron: '5 10 * * *'
   workflow_dispatch:
     inputs:
       tts_provider:
@@ -47,9 +44,9 @@ jobs:
       - name: Identify trigger
         run: |
           case "${{ github.event.schedule }}" in
-            '0 6 * * *') label="Primary (11 PM PDT / midnight PST)" ;;
-            '0 7 * * *') label="Fallback 1 (midnight PDT / 1 AM PST)" ;;
-            '0 8 * * *') label="Fallback 2 (1 AM PDT / 2 AM PST)" ;;
+            '5 8 * * *') label="Primary (1:05 AM Pacific)" ;;
+            '5 9 * * *') label="Fallback 1 (2:05 AM Pacific)" ;;
+            '5 10 * * *') label="Fallback 2 (3:05 AM Pacific)" ;;
             '')           label="Manual (workflow_dispatch)" ;;
             *)            label="Unknown: ${{ github.event.schedule }}" ;;
           esac
@@ -145,9 +142,9 @@ jobs:
           USE_AZURE_TTS: ${{ inputs.tts_provider == 'azure' && 'true' || '' }}
         run: |
           case "${{ github.event.schedule }}" in
-            '0 6 * * *') label="Primary (11 PM PDT / midnight PST)" ;;
-            '0 7 * * *') label="Fallback 1 (midnight PDT / 1 AM PST)" ;;
-            '0 8 * * *') label="Fallback 2 (1 AM PDT / 2 AM PST)" ;;
+            '5 8 * * *') label="Primary (1:05 AM Pacific)" ;;
+            '5 9 * * *') label="Fallback 1 (2:05 AM Pacific)" ;;
+            '5 10 * * *') label="Fallback 2 (3:05 AM Pacific)" ;;
             '')           label="Manual (workflow_dispatch)" ;;
             *)            label="Unknown: ${{ github.event.schedule }}" ;;
           esac
