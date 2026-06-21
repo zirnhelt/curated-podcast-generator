@@ -1,0 +1,237 @@
+{
+  "episode": {
+    "date": "2026-06-21",
+    "formatted_date": "Sunday, June 21, 2026",
+    "theme": "Science, Wonder & the Natural World",
+    "title": "Cariboo Signals - Science, Wonder & the Natural World",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Science, Wonder & the Natural World.</p><p><b>NEWS ROUNDUP:</b> We break down [CFJC Today Kamloops] CSRD discontinues dog control services in Area D and [Boing Boing] Video shows a rain curtain splitting a street into two worlds, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> How do environmental and developmental conditions shape cognitive styles like authoritarianism, and what civic infrastructure should communities build to foster adaptive social reasoning? Topics include: Neuroscience of authoritarianism and causation vs. correlation in brain imaging, Stress reduction and ecological contact as pathway to cognitive development, Indigenous vs. non-Indigenous knowledge systems and their pedagogical structures, Practical civic infrastructure for ecological observation (phenology networks, BioBlitz, citizen science), Data governance and who owns community-generated ecological datasets.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://spca.bc.ca/locations/williams-lake\">BC SPCA Williams Lake</a></p><p><b>Sources discussed:</b></p><ul><li>CFJC Today Kamloops: <a href=\"https://cfjctoday.com/2026/06/20/csrd-discontinues-dog-control-services-in-area-d/\">[CFJC Today Kamloops] CSRD discontinues dog control services...</a></li><li>Popkin (Boing Boing): <a href=\"https://boingboing.net/2026/06/16/video-shows-a-rain-curtain-splitting-a-street-into-two-worlds.html\">[Boing Boing] Video shows a rain curtain splitting a street ...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/openai-karan-singhal-chatgpt-health-advancements-2026-6\">[Business Insider] Meet the top OpenAI researcher trying to ...</a></li><li>https://www.techradar.com/author/sead-fadilpai (TechRadar): <a href=\"https://www.techradar.com/pro/security/fortinet-firewalls-hit-by-huge-password-stealing-attack-around-75-000-users-possibly-affected\">[TechRadar] Fortinet firewalls hit by huge password-stealing...</a></li><li>Ellsworth Toohey (Boing Boing): <a href=\"https://boingboing.net/2026/06/14/two-italian-brothers-claimed-to-have-recorded-dying-soviet-cosmonauts-that-moscow-erased-from-history.html\">[Boing Boing] Two Italian brothers claimed to have recorded ...</a></li><li>Terrence O&#x27;Brien (The Verge): <a href=\"https://www.theverge.com/ai-artificial-intelligence/951653/pew-research-ai-chatbot-usage-advancing-too-quickly\">[The Verge] Two-thirds of Americans think AI is advancing to...</a></li><li>https://www.techradar.com/author/rahim-amir (TechRadar): <a href=\"https://www.techradar.com/pro/security/experts-warns-ai-toy-apps-for-kids-are-tracking-users-and-collecting-personal-data\">[TechRadar] Experts warns AI toy apps for kids are tracking ...</a></li><li>Android Authority: <a href=\"https://www.androidauthority.com/ai-research-notebooklm-poll-results-3678328/\">[Android Authority] Survey shows readers’ trust in AI is boo...</a></li><li>https://www.techradar.com/author/paul-hatton (TechRadar): <a href=\"https://www.techradar.com/phones/ive-spent-hours-researching-the-best-phone-for-my-son-here-are-the-safest-options-ive-found-from-iphones-to-dumbphones\">[TechRadar] 'Every day, a child is exposed to two pieces of ...</a></li><li>rebeccadyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/06/19/photos-parade-kicks-off-2026-indigenous-peoples-day-in-williams-lake/\">[Williams Lake Tribune] PHOTOS: Parade kicks off 2026 Nation...</a></li><li>Ellsworth Toohey (Boing Boing): <a href=\"https://boingboing.net/2026/06/19/brain-scans-of-authoritarians-show-reduced-grey-matter-in-regions-for-empathy-and-social-reasoning.html\">[Boing Boing] Brain scans of authoritarians show reduced gre...</a></li><li>Lucas Ropek (TechCrunch): <a href=\"https://techcrunch.com/2026/06/17/only-16-percent-of-americans-think-ai-will-have-a-positive-impact-on-society-a-new-study-shows/\">[TechCrunch] Only 16 percent of Americans think AI will have...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>https://www.tomsguide.com/author/jane-mcguire (Toms Guide): <a href=\"https://www.tomsguide.com/wellness/workouts/according-to-a-pilates-instructor-this-one-exercise-flattens-your-stomach-more-than-100s-of-crunches-i-gave-it-a-go-for-a-week-and-here-are-my-results\">[Toms Guide] According to a Pilates instructor, this one exe...</a></li><li>https://www.theguardian.com/profile/sarah-johnson (The Guardian Global Development): <a href=\"https://www.theguardian.com/global-development/2026/jun/15/global-attacks-killing-abductions-education-pupils-staff-up-40pc-gcpea-study\">[The Guardian Global Development] Attacks on education, pupi...</a></li></ul><p><b>Closing Music:</b> &ldquo;<a href=\"https://www.jamendo.com/track/1215808\">Dreams</a>&rdquo; by Manhat10 &mdash; pop, indie, electronic. Free music via Jamendo, licensed under Creative Commons.</p><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-6<br>TTS Voices: OpenAI TTS API (Nova · Echo)<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-06-21T04:26:42.187505-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-sonnet-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 2751,
+      "voice_ratio_casey_riley": 0.86,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 1,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0
+      },
+      "total_hits": 1,
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[CFJC Today Kamloops] CSRD discontinues dog control services in Area D",
+          "url": "https://cfjctoday.com/2026/06/20/csrd-discontinues-dog-control-services-in-area-d/",
+          "source": "CFJC Today Kamloops",
+          "author": "",
+          "ai_score": 70,
+          "date_published": "2026-06-20T21:19:05+00:00",
+          "summary": "(Image Credit: Curtis Goodrum / CFJC Today) By Elora McCormack CSRD Dog Control # CSRD discontinues dog control services in Area D Jun 20, 2026 | 2:19 PM FALKLAND B.C. — The Columbia Shuswap Regional ...",
+          "discussed": true
+        },
+        {
+          "title": "[Boing Boing] Video shows a rain curtain splitting a street into two worlds",
+          "url": "https://boingboing.net/2026/06/16/video-shows-a-rain-curtain-splitting-a-street-into-two-worlds.html",
+          "source": "Boing Boing",
+          "author": "Popkin",
+          "ai_score": 76,
+          "date_published": "2026-06-16T16:55:19+00:00",
+          "summary": "A video of this weird-looking phenomenon shows a person standing at the razor-thin boundary between clear skies and a rain shower. A distinct curtain of rain advances across the street while the groun...",
+          "discussed": true
+        },
+        {
+          "title": "[Business Insider] Meet the top OpenAI researcher trying to make ChatGPT into a Google-sized healthcare juggernaut",
+          "url": "https://www.businessinsider.com/openai-karan-singhal-chatgpt-health-advancements-2026-6",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 70,
+          "date_published": "2026-06-18T18:01:02+00:00",
+          "summary": "Exclusive # Meet the top OpenAI researcher trying to make ChatGPT into a Google-sized healthcare juggernaut By Stephen Council You're currently following this author! Want to unfollow? Unsubscribe via...",
+          "discussed": true
+        },
+        {
+          "title": "[TechRadar] Fortinet firewalls hit by huge password-stealing attack — around 75,000 users possibly affected",
+          "url": "https://www.techradar.com/pro/security/fortinet-firewalls-hit-by-huge-password-stealing-attack-around-75-000-users-possibly-affected",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/sead-fadilpai",
+          "ai_score": 70,
+          "date_published": "2026-06-18T12:20:00+00:00",
+          "summary": "Researchers discovered a major database containing plaintext passwords.",
+          "discussed": true
+        },
+        {
+          "title": "[Boing Boing] Two Italian brothers claimed to have recorded dying Soviet cosmonauts that Moscow erased from history",
+          "url": "https://boingboing.net/2026/06/14/two-italian-brothers-claimed-to-have-recorded-dying-soviet-cosmonauts-that-moscow-erased-from-history.html",
+          "source": "Boing Boing",
+          "author": "Ellsworth Toohey",
+          "ai_score": 64,
+          "date_published": "2026-06-14T14:30:00+00:00",
+          "summary": "The Lost Cosmonauts theory alleges that the Soviet Union launched humans into space before Yuri Gagarin's 1961 flight — and that the cosmonauts onboard died. The strongest piece of supposed evidence c...",
+          "discussed": true
+        },
+        {
+          "title": "[The Verge] Two-thirds of Americans think AI is advancing too quickly",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/951653/pew-research-ai-chatbot-usage-advancing-too-quickly",
+          "source": "The Verge",
+          "author": "Terrence O&#x27;Brien",
+          "ai_score": 79,
+          "date_published": "2026-06-17T17:20:24+00:00",
+          "summary": "According to the latest Pew Research poll, 49 percent of Americans report using chatbots at least occasionally, but 63 percent think the tech is advancing too quickly. Overall, use of AI chatbots has ...",
+          "discussed": true
+        },
+        {
+          "title": "[TechRadar] Experts warns AI toy apps for kids are tracking users and collecting personal data",
+          "url": "https://www.techradar.com/pro/security/experts-warns-ai-toy-apps-for-kids-are-tracking-users-and-collecting-personal-data",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/rahim-amir",
+          "ai_score": 80,
+          "date_published": "2026-06-18T21:05:00+00:00",
+          "summary": "In a recent study by Cybernews, applications tied to 10 different toys each requested permissions and privileges categorized as 'dangerous'.",
+          "discussed": true
+        },
+        {
+          "title": "[Android Authority] Survey shows readers’ trust in AI is booming, especially for research",
+          "url": "https://www.androidauthority.com/ai-research-notebooklm-poll-results-3678328/",
+          "source": "Android Authority",
+          "author": "",
+          "ai_score": 66,
+          "date_published": "2026-06-17T09:00:31+00:00",
+          "summary": "A remarkable number of respondents don't even double-check the AI's findings.",
+          "discussed": true
+        },
+        {
+          "title": "[TechRadar] 'Every day, a child is exposed to two pieces of inappropriate or harmful content': I've spent hours researching the best phone for my son — here are the safest options I've found, from iPhones to 'dumbphones'",
+          "url": "https://www.techradar.com/phones/ive-spent-hours-researching-the-best-phone-for-my-son-here-are-the-safest-options-ive-found-from-iphones-to-dumbphones",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/paul-hatton",
+          "ai_score": 62,
+          "date_published": "2026-06-14T17:00:00+00:00",
+          "summary": "What type of phone should you buy your child? Smartphones, dumbphones, and more explained by a parent.",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] PHOTOS: Parade kicks off 2026 National Indigenous Peoples Day in Williams Lake",
+          "url": "https://wltribune.com/2026/06/19/photos-parade-kicks-off-2026-indigenous-peoples-day-in-williams-lake/",
+          "source": "Williams Lake Tribune",
+          "author": "rebeccadyok",
+          "ai_score": 90,
+          "date_published": "2026-06-19T23:27:20.559342+00:00",
+          "summary": "## PHOTOS: Parade kicks off 2026 National Indigenous Peoples Day in Williams Lake Published 3:27 pm Friday, June 19, 2026 **By Rebecca Dyok** (Rebecca Dyok/Williams Lake Tribune) 1/17 (Rebecca Dyok/Wi...",
+          "discussed": true
+        },
+        {
+          "title": "[Toms Guide] According to a Pilates instructor, this one exercise flattens your stomach more than 100s of crunches. I gave it a go for a week, and here are my results",
+          "url": "https://www.tomsguide.com/wellness/workouts/according-to-a-pilates-instructor-this-one-exercise-flattens-your-stomach-more-than-100s-of-crunches-i-gave-it-a-go-for-a-week-and-here-are-my-results",
+          "source": "Toms Guide",
+          "author": "https://www.tomsguide.com/author/jane-mcguire",
+          "ai_score": 78,
+          "date_published": "2026-06-14T08:45:00+00:00",
+          "summary": "According to a Pilates instructor, this one exercise flattens your stomach more than 100s of crunches.",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Science, Wonder & the Natural World",
+      "articles": [
+        {
+          "title": "[Boing Boing] Brain scans of authoritarians show reduced grey matter in regions for empathy and social reasoning",
+          "url": "https://boingboing.net/2026/06/19/brain-scans-of-authoritarians-show-reduced-grey-matter-in-regions-for-empathy-and-social-reasoning.html",
+          "source": "Boing Boing",
+          "author": "Ellsworth Toohey",
+          "ai_score": 72,
+          "date_published": "2026-06-19T18:40:09+00:00",
+          "summary": "A study published in Neuroscience by researchers at Spain's University of Zaragoza scanned the brains of 100 young adults and found structural differences in those who hold authoritarian beliefs — on ...",
+          "discussed": true
+        },
+        {
+          "title": "[The Guardian Global Development] Attacks on education, pupils and staff around the world up by 40%, says study",
+          "url": "https://www.theguardian.com/global-development/2026/jun/15/global-attacks-killing-abductions-education-pupils-staff-up-40pc-gcpea-study",
+          "source": "The Guardian Global Development",
+          "author": "https://www.theguardian.com/profile/sarah-johnson",
+          "ai_score": 71,
+          "date_published": "2026-06-15T04:00:01+00:00",
+          "summary": "Cases reported in 83 countries, with at least 10,600 students and staff killed, injured, abducted or arrested, GCPEA says Attacks on education globally have surged by 40% with more than 8,556 recorded...",
+          "discussed": false
+        },
+        {
+          "title": "[TechCrunch] Only 16 percent of Americans think AI will have a positive impact on society, a new study shows",
+          "url": "https://techcrunch.com/2026/06/17/only-16-percent-of-americans-think-ai-will-have-a-positive-impact-on-society-a-new-study-shows/",
+          "source": "TechCrunch",
+          "author": "Lucas Ropek",
+          "ai_score": 68,
+          "date_published": "2026-06-17T17:00:01+00:00",
+          "summary": "Although Wall Street loves AI, every day Americans are significantly less optimistic about the industry, a new report from Pew Research shows.",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "How do environmental and developmental conditions shape cognitive styles like authoritarianism, and what civic infrastructure should communities build to foster adaptive social reasoning?",
+        "riley_position": "Ecological contact and exposure to complex, unpredictable natural systems reduce stress and shape social cognition development; communities should build systematic infrastructure (phenology networks, land-based learning) to leverage these effects.",
+        "riley_key_evidence": [
+          "University of Zaragoza study showing structural brain differences in authoritarians (reduced grey matter in empathy regions for right-wing authoritarians)",
+          "Stress reduction from ecological contact has replicated evidence (cortisol reduction, which affects cognitive rigidity)",
+          "USA National Phenology Network demonstrates citizen science value with century-long observational data"
+        ],
+        "casey_position": "Brain structural differences correlate with but don't establish causation; the real constraint on building ecological observation infrastructure is sustained attention and governance, not money; Indigenous knowledge systems represent multi-generational observational frameworks that shouldn't be generalized as universal wisdom.",
+        "casey_key_evidence": [
+          "Neuroplasticity runs bidirectionally—practice shapes brain structure, not just vice versa",
+          "Nature contact studies have reproducibility and methodological issues; stronger claims don't hold",
+          "Xatśūll First Nation's land-based learning program exists because of specific community governance choices, not transferable model"
+        ],
+        "resolution": "Casey and Riley reached substantial agreement: the solstice observation and ecological proximity are civic infrastructure requiring governance and democratic accountability, not just appreciation; the constraint is sustained institutional attention and proper data governance across leadership changes, not funding.",
+        "topics_covered": [
+          "Neuroscience of authoritarianism and causation vs. correlation in brain imaging",
+          "Stress reduction and ecological contact as pathway to cognitive development",
+          "Indigenous vs. non-Indigenous knowledge systems and their pedagogical structures",
+          "Practical civic infrastructure for ecological observation (phenology networks, BioBlitz, citizen science)",
+          "Data governance and who owns community-generated ecological datasets"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "Azure Neural TTS (Ava · Andrew)",
+    "text_to_speech_openai": "OpenAI TTS API (Nova · Echo)",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  },
+  "closing_music": {
+    "track_id": "1215808",
+    "name": "Dreams",
+    "artist": "Manhat10",
+    "genres": [
+      "pop",
+      "indie",
+      "electronic"
+    ],
+    "shareurl": "https://www.jamendo.com/track/1215808",
+    "license": "Creative Commons via Jamendo"
+  }
+}
