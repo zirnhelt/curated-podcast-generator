@@ -4436,9 +4436,11 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
 
                 # Full song — no fade out
                 if track_name:
-                    track_label = f"Music — {track_name} by {track_artist}"
+                    track_label = f"Music — \"{track_name}\" by {track_artist} (via Jamendo)"
+                elif track_artist:
+                    track_label = f"Closing Music by {track_artist} (via Jamendo)"
                 else:
-                    track_label = "Closing Music"
+                    track_label = "Closing Music (via Jamendo)"
                 chapters.append({"startTime": round(len(combined) / 1000, 1), "title": track_label})
                 if closing_track_info.get("shareurl"):
                     chapters[-1]["url"] = closing_track_info["shareurl"]
