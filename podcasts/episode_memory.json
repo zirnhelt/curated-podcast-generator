@@ -1,24 +1,4 @@
 {
-  "2026-05-31": {
-    "timestamp": 1780222797.277368,
-    "topics": [
-      "[ScienceAlert] Your Blood May Contain an Evolutionary Relic ",
-      "[ScienceDaily] Queenless wasp colonies explode into chaos bu",
-      "[ScienceDaily] Adorable tiny blue octopus found nearly 6,000",
-      "[ScienceDaily] Deadly fungus and lung parasites are hammerin",
-      "[ScienceDaily] Scientists discover hidden gut-brain circuit ",
-      "[New Atlas] This plant could be the smartest carnivore on th",
-      "[ScienceAlert] A Single Dose of Psilocybin Could Ease Depres",
-      "[New Atlas] Sea creature's amputated limbs refused to die, e"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-05-31"
-  },
   "2026-06-02": {
     "timestamp": 1780396003.352913,
     "topics": [
@@ -380,5 +360,25 @@
       "rural development"
     ],
     "date": "2026-06-20"
+  },
+  "2026-06-21": {
+    "timestamp": 1782041203.580481,
+    "topics": [
+      "[CFJC Today Kamloops] CSRD discontinues dog control services",
+      "[Boing Boing] Video shows a rain curtain splitting a street ",
+      "[Business Insider] Meet the top OpenAI researcher trying to ",
+      "[TechRadar] Fortinet firewalls hit by huge password-stealing",
+      "[Boing Boing] Two Italian brothers claimed to have recorded ",
+      "[Boing Boing] Brain scans of authoritarians show reduced gre",
+      "[The Guardian Global Development] Attacks on education, pupi",
+      "[TechCrunch] Only 16 percent of Americans think AI will have"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-06-21"
   }
 }

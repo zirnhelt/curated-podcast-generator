@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "#184 Carney Wants Your Data. Why Won&#039;t Big Tech Give it",
-      "[Business Insider] A consulting firm is now using AI to give",
       "[TechRadar] 'Some places carry the costs and other places ca",
       "[TechRadar] Nashville Zoo leads fight against mega AI data c",
       "AI",
@@ -10,7 +8,9 @@
       "[TechRadar] FBI takes out huge AI-powered phishing service: ",
       "[STAT News] STAT+: AMA and lawmakers push back on AI care de",
       "[TechRadar] Half of workers worry AI will still take their j",
-      "[Al Jazeera English] Kenyan graduates turn to AI tools for f"
+      "[Al Jazeera English] Kenyan graduates turn to AI tools for f",
+      "[Business Insider] Meet the top OpenAI researcher trying to ",
+      "[TechRadar] Fortinet firewalls hit by huge password-stealing"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -24,11 +24,6 @@
       "concedes when evidence is compelling"
     ],
     "personality_clues": [
-      {
-        "date": "2026-04-25",
-        "clue": "evidence-bar:+ \u2014 Reinforced volunteer-delivered palliative care through research",
-        "occurrences": 2
-      },
       {
         "date": "2026-04-02",
         "clue": "tech-optimism: x \u2014 Conceded that technology-first approaches risk embedding dependency",
@@ -118,6 +113,11 @@
         "date": "2026-06-19",
         "clue": "tech-optimism:- \u2014 Moved from gear-as-solution to governance-as-crux",
         "occurrences": 1
+      },
+      {
+        "date": "2026-06-21",
+        "clue": "structural-lens:~ \u2014 Acknowledges data governance as unresolved, genuinely thorny",
+        "occurrences": 1
       }
     ],
     "core_memories": [
@@ -199,6 +199,11 @@
       {
         "formed": "2026-06-13",
         "signal": "structural-lens:x \u2014 Conceded Casey's point that partial corrections perpetuate structural problems",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-06-21",
+        "signal": "evidence-bar:+ \u2014 Explicitly demands concrete specificity over generalization",
         "occurrences": 3
       }
     ]
@@ -294,9 +299,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-06-11",
-        "clue": "evidence-bar:+ \u2014 Reinforced requirement for governance documents, not press releases",
-        "occurrences": 1
+        "date": "2026-06-21",
+        "clue": "evidence-bar:+ \u2014 Consistently interrogates causation, replicability, methodological limits",
+        "occurrences": 2
       },
       {
         "date": "2026-06-20",
@@ -326,6 +331,11 @@
       {
         "date": "2026-06-19",
         "clue": "pilot-skepticism:x \u2014 Conceded satellite communicator market actually moved downmarket",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-06-21",
+        "clue": "structural-lens:x \u2014 Conceded educational interventions framing as 'more useful' than neuroscience",
         "occurrences": 1
       }
     ],

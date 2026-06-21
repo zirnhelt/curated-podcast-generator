@@ -1,17 +1,4 @@
 {
-  "2026-03-22": {
-    "timestamp": 1774184079.517456,
-    "date": "2026-03-22",
-    "theme": "Resilient Rural Futures",
-    "central_question": "Deep dive on Resilient Rural Futures",
-    "topics_covered": [
-      "broadband",
-      "satellite",
-      "connectivity",
-      "renewable energy",
-      "solar"
-    ]
-  },
   "2026-03-23": {
     "timestamp": 1774271413.015575,
     "date": "2026-03-23",
@@ -2249,6 +2236,32 @@
       "Governance differences between inter-jurisdictional coordination (cities) and unified governance (First Nations)",
       "Slow institutional investment (social worker training, library renovation) vs. acute crisis coverage in news cycles",
       "Public documentation as an accountability tool separate from provincial funding decisions"
+    ]
+  },
+  "2026-06-21": {
+    "timestamp": 1782041205.507981,
+    "date": "2026-06-21",
+    "theme": "Science, Wonder & the Natural World",
+    "central_question": "How do environmental and developmental conditions shape cognitive styles like authoritarianism, and what civic infrastructure should communities build to foster adaptive social reasoning?",
+    "riley_position": "Ecological contact and exposure to complex, unpredictable natural systems reduce stress and shape social cognition development; communities should build systematic infrastructure (phenology networks, land-based learning) to leverage these effects.",
+    "riley_key_evidence": [
+      "University of Zaragoza study showing structural brain differences in authoritarians (reduced grey matter in empathy regions for right-wing authoritarians)",
+      "Stress reduction from ecological contact has replicated evidence (cortisol reduction, which affects cognitive rigidity)",
+      "USA National Phenology Network demonstrates citizen science value with century-long observational data"
+    ],
+    "casey_position": "Brain structural differences correlate with but don't establish causation; the real constraint on building ecological observation infrastructure is sustained attention and governance, not money; Indigenous knowledge systems represent multi-generational observational frameworks that shouldn't be generalized as universal wisdom.",
+    "casey_key_evidence": [
+      "Neuroplasticity runs bidirectionally\u2014practice shapes brain structure, not just vice versa",
+      "Nature contact studies have reproducibility and methodological issues; stronger claims don't hold",
+      "Xat\u015b\u016bll First Nation's land-based learning program exists because of specific community governance choices, not transferable model"
+    ],
+    "resolution": "Casey and Riley reached substantial agreement: the solstice observation and ecological proximity are civic infrastructure requiring governance and democratic accountability, not just appreciation; the constraint is sustained institutional attention and proper data governance across leadership changes, not funding.",
+    "topics_covered": [
+      "Neuroscience of authoritarianism and causation vs. correlation in brain imaging",
+      "Stress reduction and ecological contact as pathway to cognitive development",
+      "Indigenous vs. non-Indigenous knowledge systems and their pedagogical structures",
+      "Practical civic infrastructure for ecological observation (phenology networks, BioBlitz, citizen science)",
+      "Data governance and who owns community-generated ecological datasets"
     ]
   }
 }
