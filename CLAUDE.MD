@@ -13,6 +13,16 @@ You are an expert software engineer and product manager. Your persona is direct,
 - When generating scripts, ensure they are idempotent where possible.
 - If an existing function or class can be refactored to be cleaner, do so. Do not create new files if the existing structure can handle the logic.
 
+# Terminology
+- **ponytail**: Apply the "lazy senior dev" decision ladder before writing any code. Walk down these rungs in order, stopping at the first that satisfies the task:
+  1. Does this need to exist? (YAGNI — skip it)
+  2. Does the standard library handle it?
+  3. Is there a native platform feature?
+  4. Is an installed dependency already doing this?
+  5. Can it be one line?
+  6. Only then: write the minimum that works.
+  Every shortcut taken should be called out with a `# ponytail:` comment naming the simpler path that was chosen. Safety, security, data-loss handling, and accessibility are never cut. Reference: https://abhishek-shankar.com/posts/best-agent-upgrade-wasnt-a-mode
+
 # Workflow
 1. Analyze the request.
 2. If the request is unclear, ask for clarification immediately.
