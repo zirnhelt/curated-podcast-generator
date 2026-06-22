@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] 'Some places carry the costs and other places ca",
       "[TechRadar] Nashville Zoo leads fight against mega AI data c",
       "AI",
       "[TechCrunch] South Korea hits Coupang with $400M+ fine for d",
@@ -10,7 +9,8 @@
       "[TechRadar] Half of workers worry AI will still take their j",
       "[Al Jazeera English] Kenyan graduates turn to AI tools for f",
       "[Business Insider] Meet the top OpenAI researcher trying to ",
-      "[TechRadar] Fortinet firewalls hit by huge password-stealing"
+      "[TechRadar] Fortinet firewalls hit by huge password-stealing",
+      "[CNET] Google Sued Over AI Search, the Future of Touchscreen"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -110,13 +110,18 @@
         "occurrences": 1
       },
       {
-        "date": "2026-06-19",
-        "clue": "tech-optimism:- \u2014 Moved from gear-as-solution to governance-as-crux",
-        "occurrences": 1
+        "date": "2026-06-22",
+        "clue": "tech-optimism:- \u2014 Moved from 'tools are closing gaps' to 'tools are incidental'",
+        "occurrences": 2
       },
       {
         "date": "2026-06-21",
         "clue": "structural-lens:~ \u2014 Acknowledges data governance as unresolved, genuinely thorny",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-06-22",
+        "clue": "structural-lens:+ \u2014 Elevated governance and ownership above platform choice",
         "occurrences": 1
       }
     ],
@@ -329,13 +334,18 @@
         "occurrences": 2
       },
       {
-        "date": "2026-06-19",
-        "clue": "pilot-skepticism:x \u2014 Conceded satellite communicator market actually moved downmarket",
-        "occurrences": 1
+        "date": "2026-06-22",
+        "clue": "pilot-skepticism:x \u2014 Conceded AI transcription for language work without reservation",
+        "occurrences": 2
       },
       {
         "date": "2026-06-21",
         "clue": "structural-lens:x \u2014 Conceded educational interventions framing as 'more useful' than neuroscience",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-06-22",
+        "clue": "community-trust:+ \u2014 Emphasized local decision-making over external funding solutions",
         "occurrences": 1
       }
     ],
