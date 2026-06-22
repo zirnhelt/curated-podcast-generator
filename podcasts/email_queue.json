@@ -1715,6 +1715,31 @@
       "theme_day": 0,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "8386a0b2",
+      "type": "newsletter",
+      "message_id": "<1902995799.6040091.1782158443818@ip-172-22-1-42.ca-central-1.compute.internal>",
+      "from_address": "c***@openmedia.org",
+      "subject": "Canada\u2019s latest bill on online harms",
+      "received_at": "2026-06-22T16:00:43-04:00",
+      "body_text": "Bill C-34 needs major fixes. Hi Erich,Canada\u2019s latest bill on online harms could become another surveillance bill1 The Carney government just introduced Bill C-34 to move forward long overdue measures",
+      "extracted_urls": [
+        "https://action.openmedia.org/s/9594587/BXS744BGN",
+        "https://action.openmedia.org/s/9594588/BXS744BGN",
+        "https://action.openmedia.org/s/9594589/BXS744BGN",
+        "https://action.openmedia.org/s/9594590/BXS744BGN",
+        "https://action.openmedia.org/s/9594591/BXS744BGN",
+        "https://openmedia.org/press/item/new-digital-safety-act-needs-major-fixes",
+        "https://www.parl.ca/DocumentViewer/en/45-1/bill/C-34/first-reading",
+        "https://openmedia.org/press/item/now-online-harms-bill-c-63-can-be-a-win-for-canada",
+        "https://openmedia.org/article/item/explaining-bill-c-63-the-online-harms-act-an-openmedia-faq",
+        "https://openmedia.org/article/item/social-media-ban-for-youth-and-children-protection-or-punishment"
+      ],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
