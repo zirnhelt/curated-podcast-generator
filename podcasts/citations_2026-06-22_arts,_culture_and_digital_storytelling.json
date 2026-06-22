@@ -1,0 +1,215 @@
+{
+  "episode": {
+    "date": "2026-06-22",
+    "formatted_date": "Monday, June 22, 2026",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "title": "Cariboo Signals - Arts, Culture & Digital Storytelling",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Arts, Culture & Digital Storytelling.</p><p><b>NEWS ROUNDUP:</b> We break down Top-Notch, Bottom-Shelf and [Global News] Retired EPS officer Bill Clark sentenced for leaking confidential info to media, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Can rural artists build sustainable creative practices and reach audiences independent of major urban centers and institutional backing, or are the structural barriers to audience-building and resource sustainability still insurmountable? Topics include: Audience-building dynamics and algorithmic discoverability for rural creators, Live events and community gatherings as audience-development mechanisms, Indigenous storytelling, language archiving, and community-controlled digital governance (Mukurtu, Tŝilhqot'in model), Funding models: donations, grants, co-ops, and infrastructure classification, AI-assisted production tools as capacity multipliers without editorial risk.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://centralcaribooarts.com\">Central Cariboo Arts &amp; Culture Society</a></p><p><b>Sources discussed:</b></p><ul><li>Newsletter: f***@mail.beehiiv.com: <a href=\"https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/6bbf23f2-1507-47e5-b3ea-aae1b3d0c1a6/gemini-image-2_a_wide_shot_of_grocery_store_shelves_and_only_the_bottom_row_has_shelf-talker_st-1.jpg?t=1781889358\">Top-Notch, Bottom-Shelf</a></li><li>Global News: <a href=\"https://globalnews.ca/news/11906572/edmonton-police-bill-clark-data-leak-sentence/\">[Global News] Retired EPS officer Bill Clark sentenced for l...</a></li><li>rebeccadyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/06/19/board-of-governors-postpone-tru-williams-lake-campus-decision-to-december/\">[Williams Lake Tribune] Board of Governors postpone TRU Will...</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/video/newsfeed/2026/6/19/search-continues-for-kidnapped-mexican-journalist-roxana-guzman?traffic_source=rss\">[Al Jazeera English] Search continues for kidnapped Mexican ...</a></li><li>ricochet.media: <a href=\"https://ricochet.media/\">[ricochet.media] Ricochet Media</a></li><li>CNET: <a href=\"https://www.cnet.com/videos/google-sued-over-ai-search-the-future-of-touchscreen-macbooks-and-canada-targets-teen-social-media-use-tech-today/\">[CNET] Google Sued Over AI Search, the Future of Touchscreen...</a></li><li>Newsletter: f***@mail.beehiiv.com: <a href=\"https://todmaffin.com/\">Tod Maffin - Official Web Site</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Newsletter: s***@canadaland.com: <a href=\"https://www.canadaland.com/podcast/1382-kick-to-the-balls-magas-world-cup/?utm_source=Master+Email+List&utm_campaign=d976645e2b-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-d976645e2b-379881794\">#1382 Kick to the Balls: MAGA’s World Cup</a></li><li>Newsletter: s***@canadaland.com: <a href=\"https://www.canadaland.com/podcast/1383-shouty-carney-gets-sht-done/?utm_source=Master+Email+List&utm_campaign=d976645e2b-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-d976645e2b-379881794\">#1383 Shouty Carney Gets Sh*t Done</a></li><li>Newsletter: s***@canadaland.com: <a href=\"https://fizz.ca/en/mobile?ADDONS%5B0%5D=18&CVRG=108&DATA=703&PLAN=3&SMS=223&VOICE=90&WIZARD=mobile&utm_source=canadaland&utm_medium=article&utm_term=01&utm_content=2026&utm_source=Master+Email+List&utm_campaign=d976645e2b-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-d976645e2b-379881794\">Discover Our Cell Phone Plans | Fizz</a></li><li>Newsletter: f***@mail.beehiiv.com: <a href=\"https://bsky.app/profile/todmaffin.com\">Tod Maffin 🇨🇦 (@todmaffin.com)</a></li><li>Al Jazeera Staff (Al Jazeera English): <a href=\"https://www.aljazeera.com/news/2026/6/16/former-car-president-on-trial-in-absentia-over-crimes-against-humanity?traffic_source=rss\">[Al Jazeera English] Former CAR president on trial in absent...</a></li><li>Ellsworth Toohey (Boing Boing): <a href=\"https://boingboing.net/2026/06/15/in-532-ad-a-chariot-racing-riot-nearly-toppled-the-byzantine-empire.html\">[Boing Boing] In 532 AD, a chariot racing riot nearly topple...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-6<br>TTS Voices: OpenAI TTS API (Nova · Echo)<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-06-22T06:41:55.735810-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-sonnet-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 2884,
+      "voice_ratio_casey_riley": 0.95,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 1,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0
+      },
+      "total_hits": 1,
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "#1382 Kick to the Balls: MAGA’s World Cup",
+          "url": "https://www.canadaland.com/podcast/1382-kick-to-the-balls-magas-world-cup/?utm_source=Master+Email+List&utm_campaign=d976645e2b-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-d976645e2b-379881794",
+          "source": "Newsletter: s***@canadaland.com",
+          "author": "",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "“Nothing about this World Cup is uniting the world. If anything, it&#039;s dividing it further.” -Karim Zidan",
+          "discussed": false
+        },
+        {
+          "title": "#1383 Shouty Carney Gets Sh*t Done",
+          "url": "https://www.canadaland.com/podcast/1383-shouty-carney-gets-sht-done/?utm_source=Master+Email+List&utm_campaign=d976645e2b-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-d976645e2b-379881794",
+          "source": "Newsletter: s***@canadaland.com",
+          "author": "",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "“He yells.”",
+          "discussed": false
+        },
+        {
+          "title": "Discover Our Cell Phone Plans | Fizz",
+          "url": "https://fizz.ca/en/mobile?ADDONS%5B0%5D=18&CVRG=108&DATA=703&PLAN=3&SMS=223&VOICE=90&WIZARD=mobile&utm_source=canadaland&utm_medium=article&utm_term=01&utm_content=2026&utm_source=Master+Email+List&utm_campaign=d976645e2b-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-d976645e2b-379881794",
+          "source": "Newsletter: s***@canadaland.com",
+          "author": "",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Customize your mobile plan based on your needs and budget and since there’s no fixed-term contract, you get to change it whenever you need to. Plus, you get rewards on day 1.",
+          "discussed": false
+        },
+        {
+          "title": "Top-Notch, Bottom-Shelf",
+          "url": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/6bbf23f2-1507-47e5-b3ea-aae1b3d0c1a6/gemini-image-2_a_wide_shot_of_grocery_store_shelves_and_only_the_bottom_row_has_shelf-talker_st-1.jpg?t=1781889358",
+          "source": "Newsletter: f***@mail.beehiiv.com",
+          "author": "",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Top-Notch, Bottom-Shelf",
+          "discussed": true
+        },
+        {
+          "title": "Tod Maffin 🇨🇦 (@todmaffin.com)",
+          "url": "https://bsky.app/profile/todmaffin.com",
+          "source": "Newsletter: f***@mail.beehiiv.com",
+          "author": "",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Your Emotional Support Canadian 🇨🇦 ♥️\n\n📰 𝗡𝗘𝗪𝗦𝗟𝗘𝗧𝗧𝗘𝗥: newsletter.todmaffin.com\n👕 𝗠𝗘𝗥𝗖𝗛: shop.todmaffin.com\n🎙️ 𝗣𝗢𝗗𝗖𝗔𝗦𝗧: mirrorfalls.com\n\nSupport my work: support.todmaffin.com\nContact my team: contact.t...",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] Former CAR president on trial in absentia over crimes against humanity",
+          "url": "https://www.aljazeera.com/news/2026/6/16/former-car-president-on-trial-in-absentia-over-crimes-against-humanity?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "Al Jazeera Staff",
+          "ai_score": 65,
+          "date_published": "2026-06-16T08:40:02+00:00",
+          "summary": "Listen (2 mins) Click here to share on social media",
+          "discussed": false
+        },
+        {
+          "title": "[Global News] Retired EPS officer Bill Clark sentenced for leaking confidential info to media",
+          "url": "https://globalnews.ca/news/11906572/edmonton-police-bill-clark-data-leak-sentence/",
+          "source": "Global News",
+          "author": "",
+          "ai_score": 67,
+          "date_published": "2026-06-15T23:15:13+00:00",
+          "summary": "The Edmonton Police Service searched Bill Clark's work phone and found he had been sending photos, videos and tips about numerous high-profile incidents and crimes to Global News.",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Board of Governors postpone TRU Williams Lake campus decision to December",
+          "url": "https://wltribune.com/2026/06/19/board-of-governors-postpone-tru-williams-lake-campus-decision-to-december/",
+          "source": "Williams Lake Tribune",
+          "author": "rebeccadyok",
+          "ai_score": 90,
+          "date_published": "2026-06-20T02:42:12.902479+00:00",
+          "summary": "## Board of Governors postpone TRU Williams Lake campus decision to December Published 6:16 pm Friday, June 19, 2026 **By Rebecca Dyok** Thompson Rivers University Williams Lake Campus. (File photo) T...",
+          "discussed": true
+        },
+        {
+          "title": "[Boing Boing] In 532 AD, a chariot racing riot nearly toppled the Byzantine Empire",
+          "url": "https://boingboing.net/2026/06/15/in-532-ad-a-chariot-racing-riot-nearly-toppled-the-byzantine-empire.html",
+          "source": "Boing Boing",
+          "author": "Ellsworth Toohey",
+          "ai_score": 80,
+          "date_published": "2026-06-15T16:26:02+00:00",
+          "summary": "On January 13, 532 AD, fans of Constantinople's chariot racing factions — the Blues and the Greens — stopped fighting each other and turned on Emperor Justinian I. The Nika riots started when two conv...",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] Search continues for kidnapped Mexican journalist Roxana Guzman",
+          "url": "https://www.aljazeera.com/video/newsfeed/2026/6/19/search-continues-for-kidnapped-mexican-journalist-roxana-guzman?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "",
+          "ai_score": 80,
+          "date_published": "2026-06-19T12:16:14+00:00",
+          "summary": "Search continues for kidnapped Mexican journalist Roxana Guzman",
+          "discussed": true
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Arts, Culture & Digital Storytelling",
+      "articles": [
+        {
+          "title": "[ricochet.media] Ricochet Media",
+          "url": "https://ricochet.media/",
+          "source": "ricochet.media",
+          "author": "",
+          "ai_score": 80,
+          "date_published": "2026-06-17T03:53:04.908057+00:00",
+          "summary": "No paywalls. No shareholders. No Big Tech agendas. Ricochet Media is free, accessible, public-interest journalism. ... No paywalls. No shareholders. No Big Tech agendas. Ricochet Media is free, access...",
+          "discussed": true
+        },
+        {
+          "title": "[CNET] Google Sued Over AI Search, the Future of Touchscreen MacBooks, and Canada Targets Teen Social Media Use | Tech Today video",
+          "url": "https://www.cnet.com/videos/google-sued-over-ai-search-the-future-of-touchscreen-macbooks-and-canada-targets-teen-social-media-use-tech-today/",
+          "source": "CNET",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-06-17T12:01:11+00:00",
+          "summary": "Owen Poole covers today's biggest tech stories, including Google's AI Overview lawsuit. Plus, a touchscreen MacBook is said to be on the way, and Canada's new push to ban social media for teens.",
+          "discussed": true
+        },
+        {
+          "title": "Tod Maffin - Official Web Site",
+          "url": "https://todmaffin.com/",
+          "source": "Newsletter: f***@mail.beehiiv.com",
+          "author": "",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Canadian culture commentator, agency owner, business journalist.",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Can rural artists build sustainable creative practices and reach audiences independent of major urban centers and institutional backing, or are the structural barriers to audience-building and resource sustainability still insurmountable?",
+        "riley_position": "Digital tools have fundamentally changed the economics of audience-building, and platform-independent distribution models (direct email, community radio, live events, cooperative infrastructure) can enable rural creators to reach audiences without relying on algorithmic amplification or institutional credibility.",
+        "riley_key_evidence": [
+          "Tod Maffin built a 10 million weekly reach audience independently via newsletter and podcast after leaving CBC",
+          "Tŝilhqot'in Nation uses community screening events combined with online release to create distribution leverage",
+          "Cariboo Imagine initiative demonstrates shared infrastructure without requiring new institutions or mergers"
+        ],
+        "casey_position": "The accessibility of tools masks persistent structural barriers: rural creators face a cold-start problem with no local audience base to bootstrap from, local/specific content doesn't perform well algorithmically, live events don't scale geographically, and cooperative/donation models lack sustainable funding at regional scale.",
+        "casey_key_evidence": [
+          "Most successful independent creators are city-based writing about national/international topics with high search volume",
+          "A Cariboo regional publication drawing from 65,000 people has a fundamentally smaller donor pool than national outlets",
+          "Resource-constrained arts organizations already operating at capacity can't add production responsibilities to shared platforms"
+        ],
+        "resolution": "Riley and Casey converged on 'governance before gear'—both agreed that the core issue isn't technology access but ownership structure and sustainability models. They aligned that community-controlled archives and projects designed with communal production processes matter more than platform choice, and that treating cultural infrastructure as permanent (like roads or CBC) rather than project-funded is the real structural shift needed.",
+        "topics_covered": [
+          "Audience-building dynamics and algorithmic discoverability for rural creators",
+          "Live events and community gatherings as audience-development mechanisms",
+          "Indigenous storytelling, language archiving, and community-controlled digital governance (Mukurtu, Tŝilhqot'in model)",
+          "Funding models: donations, grants, co-ops, and infrastructure classification",
+          "AI-assisted production tools as capacity multipliers without editorial risk"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "Azure Neural TTS (Ava · Andrew)",
+    "text_to_speech_openai": "OpenAI TTS API (Nova · Echo)",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}

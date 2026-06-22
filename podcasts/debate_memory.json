@@ -1,30 +1,4 @@
 {
-  "2026-03-23": {
-    "timestamp": 1774271413.015575,
-    "date": "2026-03-23",
-    "theme": "Arts, Culture & Digital Storytelling",
-    "central_question": "Deep dive on Arts, Culture & Digital Storytelling",
-    "topics_covered": [
-      "broadband",
-      "AI",
-      "infrastructure",
-      "funding",
-      "pilot project"
-    ]
-  },
-  "2026-03-24": {
-    "timestamp": 1774358085.365831,
-    "date": "2026-03-24",
-    "theme": "Working Lands & Industry",
-    "central_question": "Deep dive on Working Lands & Industry",
-    "topics_covered": [
-      "satellite",
-      "connectivity",
-      "precision agriculture",
-      "solar",
-      "AI"
-    ]
-  },
   "2026-03-25": {
     "timestamp": 1774444416.229885,
     "date": "2026-03-25",
@@ -2262,6 +2236,32 @@
       "Indigenous vs. non-Indigenous knowledge systems and their pedagogical structures",
       "Practical civic infrastructure for ecological observation (phenology networks, BioBlitz, citizen science)",
       "Data governance and who owns community-generated ecological datasets"
+    ]
+  },
+  "2026-06-22": {
+    "timestamp": 1782135719.258662,
+    "date": "2026-06-22",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "central_question": "Can rural artists build sustainable creative practices and reach audiences independent of major urban centers and institutional backing, or are the structural barriers to audience-building and resource sustainability still insurmountable?",
+    "riley_position": "Digital tools have fundamentally changed the economics of audience-building, and platform-independent distribution models (direct email, community radio, live events, cooperative infrastructure) can enable rural creators to reach audiences without relying on algorithmic amplification or institutional credibility.",
+    "riley_key_evidence": [
+      "Tod Maffin built a 10 million weekly reach audience independently via newsletter and podcast after leaving CBC",
+      "T\u015dilhqot'in Nation uses community screening events combined with online release to create distribution leverage",
+      "Cariboo Imagine initiative demonstrates shared infrastructure without requiring new institutions or mergers"
+    ],
+    "casey_position": "The accessibility of tools masks persistent structural barriers: rural creators face a cold-start problem with no local audience base to bootstrap from, local/specific content doesn't perform well algorithmically, live events don't scale geographically, and cooperative/donation models lack sustainable funding at regional scale.",
+    "casey_key_evidence": [
+      "Most successful independent creators are city-based writing about national/international topics with high search volume",
+      "A Cariboo regional publication drawing from 65,000 people has a fundamentally smaller donor pool than national outlets",
+      "Resource-constrained arts organizations already operating at capacity can't add production responsibilities to shared platforms"
+    ],
+    "resolution": "Riley and Casey converged on 'governance before gear'\u2014both agreed that the core issue isn't technology access but ownership structure and sustainability models. They aligned that community-controlled archives and projects designed with communal production processes matter more than platform choice, and that treating cultural infrastructure as permanent (like roads or CBC) rather than project-funded is the real structural shift needed.",
+    "topics_covered": [
+      "Audience-building dynamics and algorithmic discoverability for rural creators",
+      "Live events and community gatherings as audience-development mechanisms",
+      "Indigenous storytelling, language archiving, and community-controlled digital governance (Mukurtu, T\u015dilhqot'in model)",
+      "Funding models: donations, grants, co-ops, and infrastructure classification",
+      "AI-assisted production tools as capacity multipliers without editorial risk"
     ]
   }
 }
