@@ -1,0 +1,117 @@
+# Cariboo Signals Podcast Script - 2026-06-23
+# Theme: Working Lands & Industry
+# Generated: 2026-06-23 04:31:01 PDT
+
+**CASEY:** Welcome to Cariboo Signals, an AI-generated daily podcast on tech and community in rural BC. It's Tuesday, June 23rd, 2026. Here in the Cariboo, on the traditional and unceded territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations. Today's theme is Working Lands and Industry — I'm Casey.
+
+**RILEY:** [pause:1000] And I'm Riley. We're looking at the resource economy that defines this region — and asking a harder version of a familiar question: when technology changes how working lands operate, who actually ends up owning the upside?
+
+**CASEY:** Quick weather check before we get into it — Horsefly Lake is sitting at 10 degrees right now, clear skies, heading up to 25 this afternoon with light drizzle expected tomorrow. Across the region: 100 Mile House and Quesnel both at 10 to 11, mainly clear. Williams Lake at 12, clear skies. Out on the Chilcotin plateau, Riske Creek is running warmer already — 15 degrees with some cloud cover. Good driving conditions through the region today.
+
+**RILEY:** Let's get into the news.
+
+---
+
+**NEWS ROUNDUP**
+
+**CASEY:** [pause:900] Leading off today — a BC farming story that cuts right to the heart of what this show is about. The Tyee has a feature on a couple in the BC interior who turned a severe drought crisis into a working model for climate-resilient farming. The Gunners watched their water sources fail and instead of walking away, redesigned their operation around water capture, storage, and soil moisture — essentially engineering their way out of a situation that's ended other farms. The piece calls it "Drought Hill." It isn't flattering about the conditions, but it is about the outcome.
+
+**RILEY:** [pause:200] The adaptation story we need more of — not just surviving drought but building infrastructure that makes the next one survivable too. We'll come back to what that kind of on-farm capital investment actually requires in the Deep Dive.
+
+**CASEY:** [pause:1200] In entertainment economics — and this one has a rural angle worth naming — CBC Arts is reporting on what fans are calling "blue dot fever." Those blue dots on Ticketmaster's site mark unsold seats for major artists. High ticket prices are making concertgoers more selective, and rural fans who already pay travel costs on top of ticket prices to see any major act are pulling back even further.
+
+**RILEY:** The touring economy has always hit rural audiences harder. When a show in Vancouver already costs two hundred dollars, add a hotel night and a six-hour drive and you're looking at a weekend budget, not an entertainment expense.
+
+**CASEY:** [pause:1200] Also out of the US today — Business Insider covers a newly released Air Force investigation into a mid-air refueling accident where a KC-46 tanker lost its entire refueling boom during an F-22 mission. Total damage: nearly ten million dollars. The investigation points to procedural failures compounded by equipment design issues.
+
+**RILEY:** Not a working-lands story, but a useful reminder that complex machinery plus time pressure plus remote operations equals expensive failures — a combination every forestry and mining operation in this region knows intimately.
+
+**CASEY:** [pause:1200] Wrapping up the roundup — a significant political story from our neighbouring province. APTN News is reporting an escalating confrontation between Alberta Premier Danielle Smith and a group of First Nations chiefs over Smith's separatist comments. The chiefs accused Smith of treason. Smith told them to "check themselves." This is playing out in public and getting louder.
+
+**RILEY:** The jurisdictional stakes matter beyond Alberta — resource rights, Crown land obligations, treaty relationships. When a premier signals willingness to break from federal frameworks, First Nations with constitutionally protected rights are right to flag what that means for their agreements.
+
+**CASEY:** [pause:600] Also in the APTN feed today — MP Billy Morin has tabled a petition calling on the federal government to protect the testimony of residential school survivors. The petition focuses on preserving recorded testimonies and ensuring they remain accessible rather than being lost or suppressed.
+
+**RILEY:** Those testimonies are also an archival and data sovereignty question — who holds them, who controls access, and on what terms.
+
+**CASEY:** [pause:1200] One more from today — early this morning a fire caused damage to a downtown Williams Lake business. My Cariboo Now is reporting it happened in the early hours. Details are still limited, but it's a hit to a business district that doesn't have a lot of slack in it.
+
+**RILEY:** Williams Lake's downtown has been working hard to rebuild momentum. Hoping it's contained and that the owner has what they need to recover.
+
+**CASEY:** [pause:900] That's the roundup. The Williams Lake Food Policy Council is next — and then we're going deep on working lands.
+
+---
+
+**COMMUNITY SPOTLIGHT**
+
+**RILEY:** The Williams Lake Food Policy Council does work that sounds policy-wonkish but is actually very practical — community gardens, food recovery programs, and connecting local farms with local tables. They're building the short supply chains that keep food dollars circulating in the region instead of flowing straight to Vancouver distribution warehouses. If you grow more than you use, if you want to volunteer, or if you're a restaurant or institution looking to source regionally, they're the people to call.
+
+**CASEY:** In a region where food security and agricultural viability are the same conversation, that connective tissue matters more than it looks on paper.
+
+**RILEY:** Find them through the City of Williams Lake or search Williams Lake Food Policy Council. Now — into the Deep Dive.
+
+---
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Working Lands & Industry**
+
+**RILEY:** The question worth pressing on today: as AI tools get cheaper and more deployable on local hardware, does that change the competitive position of small-scale working-lands producers? Or does cheap AI just make the big operators cheaper too, and the gap stays the same?
+
+**CASEY:** Start with the Tom's Hardware piece in today's feed, because it's actually useful here. The author ditched cloud AI — stopped paying API fees — and built a local inference setup using two mini PCs that now processes millions of tokens a day for a fraction of the cost. That's a technical story, but the economic logic maps directly to agriculture. Cloud dependency is a subscription cost. Local deployment is a capital cost. And for operations running on thin margins, the distinction matters.
+
+**RILEY:** The cost curve on local AI hardware has dropped dramatically. A setup capable of running a reasonably capable language model locally now costs somewhere between a thousand and three thousand dollars — less than a decent GPS-enabled spray controller. A rancher who wants to analyze grazing rotation data, monitor feed costs against commodity prices, or draft a grazing management plan doesn't need a cloud subscription anymore. They need a box they own.
+
+**CASEY:** The rancher running a grazing rotation isn't the bottleneck. The data is. What does that AI tool actually analyze? You need sensors on the ground, satellite imagery subscriptions, weather station data, soil moisture readings. The inference hardware is the cheap part now. The data infrastructure underneath it is still the expensive, fragmented, hard-to-maintain piece.
+
+**RILEY:** Some of that data infrastructure is becoming publicly available — federal and provincial weather networks, publicly accessible satellite imagery through programs like the Canadian Space Agency's data-sharing initiatives, soil databases that cover comparable range ecosystems. A motivated operator can pull together a functional dataset without paying for all of it.
+
+**CASEY:** "Motivated operator" papers over a real gap. Extension services in BC have been cut to the bone. There's almost no one left whose job is to help a rancher in the Chilcotin figure out how to assemble a working dataset from public sources and run a useful model on it. The technical capacity for local AI deployment exists. The support ecosystem for getting there does not.
+
+**RILEY:** That gap is real, but it points to something structural rather than a permanent ceiling. Quebec's agricultural extension model — which has held together better than BC's — includes a technology transfer function alongside agronomists. Someone whose actual job is translating tool availability into operational use. BC cut that function. A Cariboo-specific agricultural technology navigator, funded through a producer association or a regional district, would cost less than a single year of most provincial program budgets.
+
+**CASEY:** The navigator model has been tried in rural BC in various forms — it shows up in economic development offices and usually lasts exactly one grant cycle. The problem isn't the position description. It keeps getting funded as a pilot rather than a permanent line item.
+
+**RILEY:** So why does it keep landing as a pilot? Partly because producers haven't organized to demand it as a permanent service. In Ontario, commodity boards — beef, grain, horticulture — fund extension and technology translation directly through levy structures. The money comes from producers themselves, not grants. The Cariboo Cattlemen's Association has a levy structure. It's not currently used for technology navigation. That's a governance choice, not a funding constraint.
+
+**CASEY:** [pause:300] The levy point actually shifts the argument somewhere more interesting. The question isn't "where does the funding come from" — it's "who decides what the money does." Right now, that levy structure is oriented toward advocacy and market promotion, not operational capacity-building. Changing that requires producers to vote for it. So the barrier is political will inside the producer community, not external funding.
+
+**RILEY:** And that political will is harder to build when the operators most likely to benefit from technology tools — younger, more data-literate, managing more complex operations — are underrepresented in association governance. The median member of a commodity board in BC skews toward operators who built their business before digital tools were relevant. The people who'd push hardest for a technology navigator aren't running the meetings yet.
+
+**CASEY:** So we have cheap local AI hardware, fragmented public data, no support ecosystem, a levy structure oriented the wrong way, and governance that lags the operators who'd actually use the tools. That's not a technology problem wearing a technology costume. It's a succession and governance problem.
+
+**RILEY:** [pause:400] Which loops back to The Tyee's drought story in a specific way. What the Gunners did on Drought Hill wasn't primarily a technology story — it was a capital reallocation story. They stopped spending money on inputs that weren't working and redirected it toward water infrastructure that addressed the root constraint. The technology — soil moisture sensors, water storage design, irrigation timing — was in service of a structural decision. The tool followed the decision. It didn't precede it.
+
+**CASEY:** And they had the autonomy to make that decision because they owned the land outright. A rancher on a Crown tenure lease in the Chilcotin doesn't have that same freedom to make capital investments in land improvement, because they don't hold the land. The investment calculus is completely different when you're improving an asset you may not hold in ten years.
+
+**RILEY:** That's where certain Indigenous land tenure arrangements offer something the conventional leasehold system structurally doesn't. Nations that hold their territories collectively can make generational infrastructure investments without the tenure uncertainty that shapes every calculation a lease-based operator makes. That's a competitive advantage with nothing to do with technology and everything to do with who controls the decision horizon.
+
+**CASEY:** The honest version of that argument has to include the fact that Nations have been fighting for recognition of that land relationship for generations, and in many cases are still navigating overlapping claims, provincial permitting processes, and federal funding constraints that complicate exactly that long-term investment logic. The permanence is real in principle. The operational reality is still contested in many places.
+
+**RILEY:** Agreed — and the Tŝilhqot'in title decision from the Supreme Court in 2014 did shift that meaningfully for the Tŝilhqot'in Nation specifically. Title recognition changes the investment logic because it changes the legal basis of land control. Other Nations in the Cariboo region are at different stages of that process, so the structural advantage isn't uniformly available.
+
+**CASEY:** Which is exactly why the technology deployment question and the governance question can't be separated. A local AI inference tool for grazing optimization is more valuable to an operator who controls their land than to one who doesn't. The hardware cost curve dropping is genuinely good news — but only if the underlying ownership and governance structures make long-term investment rational. Otherwise you're optimizing an operation without secure enough footing to benefit.
+
+**RILEY:** [pause:500] So make it concrete — what would it take for a group of producers in the Riske Creek area of the Chilcotin plateau to run a shared local AI inference setup? Shared hardware, shared data infrastructure, collectively governed, as a producer co-operative asset rather than individual cloud subscriptions.
+
+**CASEY:** Technically: not much. A few thousand dollars in hardware, a shared network, someone to set it up. Governmentally: harder. Who owns the data that feeds the model? If one producer's grazing records and soil data go into a shared system and that system generates insights, who has the right to license those insights, sell the aggregated data, or shut the system down? The ownership question precedes the tool question.
+
+**RILEY:** There's a precedent in grain country. Some prairie producer co-operatives have run shared precision agriculture data systems — shared telemetry, shared agronomic models — with explicit data governance agreements worked out before the hardware is purchased. It's not elegant, but it works. That sequencing matters.
+
+**CASEY:** The sequencing also means the legal work happens first, which means you need someone who can draft a data co-operative governance agreement for a ranching context. A lawyer with co-operative governance experience and agricultural knowledge is a rare and expensive combination. Another capacity gap showing up under a different heading.
+
+**RILEY:** [pause:300] Riske Creek is a community of a few hundred people, mostly ranching families, sitting on the Chilcotin plateau west of Williams Lake. If you wanted to pilot shared local AI infrastructure with explicit data ownership terms, that's a community small enough to have the conversations and large enough to have real throughput. And it's close enough to Tŝilhqot'in territory that a partnership framework — if both parties wanted it — could bring in the land-tenure stability that individual leaseholders can't access alone.
+
+**CASEY:** We haven't spoken with anyone at Tŝilhqot'in Nation or any of the ranching families in that area, so that's a sketch, not a proposal. As a question worth raising with the Cariboo Cattlemen's Association or through the regional district's agricultural planning process — it's concrete enough to actually discuss.
+
+**RILEY:** The broader point: the technology barrier is the lowest it's ever been. Local AI deployment is genuinely accessible now in a way it wasn't even three years ago. The barriers that remain — data governance, land tenure, support infrastructure, producer association priorities — are all governance and political economy problems. Solvable by people in rooms making decisions, not by waiting for the next hardware price drop.
+
+**CASEY:** Or they stay unsolved because the people in those rooms have different interests and the governance structures don't force the issue. That's consistent with the last twenty years of rural resource policy in BC. The technology getting cheaper doesn't automatically translate into producers capturing more value. It can just as easily mean larger operations deploy the same tools at greater scale and consolidate their advantage.
+
+**RILEY:** Cheap AI tools are neutral — they amplify whoever deploys them effectively. Right now that advantage accrues to operations with capital, technical staff, and established data infrastructure. Small producers in the Cariboo don't have any of those by default. The question is whether there's enough organizational will — in producer associations, in First Nations governance bodies, in regional districts — to build shared infrastructure that lets smaller operators access the same amplification.
+
+**CASEY:** And communities need to be asking that question before the consolidation happens, not after. Once the large operators have locked in the data advantage and the processing relationships, building an alternative becomes much harder. The window for shared infrastructure is usually before the dominant model is entrenched — not when it's already working well for some and poorly for everyone else.
+
+**RILEY:** [pause:500] The technology is ready. The governance structures aren't. And the clock on that gap matters more than most people in working-lands communities are currently treating it — which is either an opportunity or a warning, depending on how the next few decisions go. If you're in a producer association, a First Nation, or a regional district and this conversation sparked something — or if you know of a place in the Cariboo that's already tried this and we haven't heard about it — we'd genuinely rather be corrected or updated than leave the question hanging in the air. Reach out at feedback at cariboosignals dot c-a.
+
+**CASEY:** Thanks for spending part of your Tuesday with us. Take care out there.
+
+**RILEY:** Have a good one.

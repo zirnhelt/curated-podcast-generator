@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] Nashville Zoo leads fight against mega AI data c",
-      "AI",
       "[TechCrunch] South Korea hits Coupang with $400M+ fine for d",
       "[TechRadar] FBI takes out huge AI-powered phishing service: ",
       "[STAT News] STAT+: AMA and lawmakers push back on AI care de",
@@ -10,7 +8,9 @@
       "[Al Jazeera English] Kenyan graduates turn to AI tools for f",
       "[Business Insider] Meet the top OpenAI researcher trying to ",
       "[TechRadar] Fortinet firewalls hit by huge password-stealing",
-      "[CNET] Google Sued Over AI Search, the Future of Touchscreen"
+      "[CNET] Google Sued Over AI Search, the Future of Touchscreen",
+      "[Tom's Hardware] Ditching the cloud for local AI \u2014 how I use",
+      "[Engadget] A24 takes on Google money to build AI tools"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -95,9 +95,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-06-13",
-        "clue": "pilot-skepticism:+ \u2014 Emphasized anecdotes need 'right people' to shift policy framing",
-        "occurrences": 1
+        "date": "2026-06-23",
+        "clue": "pilot-skepticism:+ \u2014 Explicitly named pilot funding cycles as structural trap",
+        "occurrences": 2
       },
       {
         "date": "2026-06-14",
@@ -120,9 +120,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-06-22",
-        "clue": "structural-lens:+ \u2014 Elevated governance and ownership above platform choice",
-        "occurrences": 1
+        "date": "2026-06-23",
+        "clue": "structural-lens:+ \u2014 Moved from tech capacity gap to governance/succession problem",
+        "occurrences": 2
       }
     ],
     "core_memories": [
@@ -324,18 +324,8 @@
         "occurrences": 1
       },
       {
-        "date": "2026-06-19",
-        "clue": "structural-lens:+ \u2014 Connected NWT co-governance model as proof of political choice, not capacity",
-        "occurrences": 2
-      },
-      {
         "date": "2026-06-17",
         "clue": "Indigenous-tech:+ \u2014 Named First Nations data sovereignty as hard constraint, not abstract concern",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-06-22",
-        "clue": "pilot-skepticism:x \u2014 Conceded AI transcription for language work without reservation",
         "occurrences": 2
       },
       {

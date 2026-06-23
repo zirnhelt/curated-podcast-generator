@@ -1,0 +1,175 @@
+{
+  "episode": {
+    "date": "2026-06-23",
+    "formatted_date": "Tuesday, June 23, 2026",
+    "theme": "Working Lands & Industry",
+    "title": "Cariboo Signals - Working Lands & Industry",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Working Lands & Industry.</p><p><b>NEWS ROUNDUP:</b> We break down [CBC Arts] Some artists feeling 'blue dot fever,' fans say, as high ticket prices make concertgoers more selective and [Business Insider] New US Air Force investigation shows how an in-flight refueling of an F-22 Raptor went wrong to the tune of nearly $10 million, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Does cheap local AI hardware deployment change the competitive advantage for small-scale working-lands producers, or do governance and infrastructure barriers prevent them from capturing that benefit? Topics include: Local versus cloud AI deployment economics and cost curves, Data sovereignty and governance in producer co-operatives, Land tenure and investment horizon differences between Crown leases and title-holding Nations, Producer association governance and succession gaps between older and younger operators, Regional infrastructure pilots versus permanent structural funding for agricultural extension.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> Williams Lake Food Policy Council</p><p><b>Sources discussed:</b></p><ul><li>CBC Arts: <a href=\"https://www.cbc.ca/news/business/blue-dot-fever-concert-ticket-prices-ticketmaster-9.7238314?cmp=rss\">[CBC Arts] Some artists feeling 'blue dot fever,' fans say, ...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/report-details-how-tanker-lost-refueling-boom-during-mission-2026-6\">[Business Insider] New US Air Force investigation shows how ...</a></li><li>https://www.tomshardware.com/author/chris-stokel-walker (Tom's Hardware): <a href=\"https://www.tomshardware.com/tech-industry/artificial-intelligence/ditching-the-cloud-for-local-ai-how-i-use-two-mini-pcs-to-process-millions-of-tokens-a-day-and-save-money-on-costly-api-fees\">[Tom's Hardware] Ditching the cloud for local AI — how I use...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/video/newsfeed/2026/6/23/how-a-dead-extremist-rabbi-still-shapes-israeli-politics-today?traffic_source=rss\">[Al Jazeera English] How a dead extremist Rabbi still shapes...</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/video/newsfeed/2026/6/20/israeli-strike-kills-children-in-gaza-despite-ceasefire-claims?traffic_source=rss\">[Al Jazeera English] Israeli strike kills children in Gaza d...</a></li><li>Global News: <a href=\"https://globalnews.ca/news/11913180/saskatoon-teen-faces-terrorism-bond/\">[Global News] Saskatoon teen faces terrorism peace bond afte...</a></li><li>NPR Health News: <a href=\"https://www.npr.org/2026/06/21/nx-s1-5863148/recent-studies-show-fathers-brains-change-after-bringing-home-a-new-baby\">[NPR Health News] Recent studies show fathers' brains change...</a></li><li>Lawrence Bonk (Engadget): <a href=\"https://www.engadget.com/2199010/a24-takes-on-google-money-help-build-ai-tools/\">[Engadget] A24 takes on Google money to build AI tools</a></li><li>https://www.techradar.com/author/howie-koh (TechRadar): <a href=\"https://www.techradar.com/pro/why-security-leaders-are-cautious-about-agentic-ai\">[TechRadar] Why security leaders are cautious about agentic ...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-6<br>TTS Voices: OpenAI TTS API (Nova · Echo)<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-06-23T04:30:58.801189-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-sonnet-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 2810,
+      "voice_ratio_casey_riley": 0.87,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0
+      },
+      "total_hits": 0,
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[CBC Arts] Some artists feeling 'blue dot fever,' fans say, as high ticket prices make concertgoers more selective",
+          "url": "https://www.cbc.ca/news/business/blue-dot-fever-concert-ticket-prices-ticketmaster-9.7238314?cmp=rss",
+          "source": "CBC Arts",
+          "author": "",
+          "ai_score": 57,
+          "date_published": "2026-06-18T08:00:00+00:00",
+          "summary": "The name \"blue dot fever\" comes from the blue dots on Ticketmaster's website, indicating unsold seats. Some fans say they're going to fewer shows because of the high price tag.",
+          "discussed": true
+        },
+        {
+          "title": "[Business Insider] New US Air Force investigation shows how an in-flight refueling of an F-22 Raptor went wrong to the tune of nearly $10 million",
+          "url": "https://www.businessinsider.com/report-details-how-tanker-lost-refueling-boom-during-mission-2026-6",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 57,
+          "date_published": "2026-06-19T10:47:01+00:00",
+          "summary": "A KC-46 Pegasus tanker lost its entire refueling boom during an F-22 Raptor refueling mission, causing costly damage.",
+          "discussed": true
+        },
+        {
+          "title": "[Al Jazeera English] How a dead extremist Rabbi still shapes Israeli politics today",
+          "url": "https://www.aljazeera.com/video/newsfeed/2026/6/23/how-a-dead-extremist-rabbi-still-shapes-israeli-politics-today?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "",
+          "ai_score": 80,
+          "date_published": "2026-06-23T07:17:48+00:00",
+          "summary": "How a dead extremist Rabbi still shapes Israeli politics today",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] Israeli strike kills children in Gaza despite ceasefire claims",
+          "url": "https://www.aljazeera.com/video/newsfeed/2026/6/20/israeli-strike-kills-children-in-gaza-despite-ceasefire-claims?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "",
+          "ai_score": 80,
+          "date_published": "2026-06-20T16:39:03+00:00",
+          "summary": "Israeli strike kills children in Gaza despite ceasefire claims",
+          "discussed": false
+        },
+        {
+          "title": "[Global News] Saskatoon teen faces terrorism peace bond after probe into violent online posts",
+          "url": "https://globalnews.ca/news/11913180/saskatoon-teen-faces-terrorism-bond/",
+          "source": "Global News",
+          "author": "",
+          "ai_score": 75,
+          "date_published": "2026-06-19T15:01:03+00:00",
+          "summary": "RCMP say a terrorism peace bond has been ordered on a Saskatoon teen who was charged with uttering threats earlier this year.",
+          "discussed": false
+        },
+        {
+          "title": "[NPR Health News] Recent studies show fathers' brains change after bringing home a new baby",
+          "url": "https://www.npr.org/2026/06/21/nx-s1-5863148/recent-studies-show-fathers-brains-change-after-bringing-home-a-new-baby",
+          "source": "NPR Health News",
+          "author": "",
+          "ai_score": 78,
+          "date_published": "2026-06-21T12:06:11+00:00",
+          "summary": "NPR's Ayesha Rascoe talks to Washington Post journalist Richard Sima about how fathers' brains change after bringing home a new baby.",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Working Lands & Industry",
+      "articles": [
+        {
+          "title": "[Tom's Hardware] Ditching the cloud for local AI — how I use two mini PCs to process millions of tokens a day and save money on costly API fees",
+          "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/ditching-the-cloud-for-local-ai-how-i-use-two-mini-pcs-to-process-millions-of-tokens-a-day-and-save-money-on-costly-api-fees",
+          "source": "Tom's Hardware",
+          "author": "https://www.tomshardware.com/author/chris-stokel-walker",
+          "ai_score": 75,
+          "date_published": "2026-06-18T13:10:35+00:00",
+          "summary": "As new data center buildouts hit planning walls and AI inference providers hike costs, is the future of AI to roll your own models?",
+          "discussed": true
+        },
+        {
+          "title": "[Engadget] A24 takes on Google money to build AI tools",
+          "url": "https://www.engadget.com/2199010/a24-takes-on-google-money-help-build-ai-tools/",
+          "source": "Engadget",
+          "author": "Lawrence Bonk",
+          "ai_score": 73,
+          "date_published": "2026-06-22T16:37:41+00:00",
+          "summary": "A24 is taking $75 million in Google money to help build AI tools for movie production.",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Why security leaders are cautious about agentic AI",
+          "url": "https://www.techradar.com/pro/why-security-leaders-are-cautious-about-agentic-ai",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/howie-koh",
+          "ai_score": 70,
+          "date_published": "2026-06-17T10:58:04+00:00",
+          "summary": "Agentic AI can improve security operations, but only with strong oversight and real context.",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Does cheap local AI hardware deployment change the competitive advantage for small-scale working-lands producers, or do governance and infrastructure barriers prevent them from capturing that benefit?",
+        "riley_position": "Local AI inference hardware is now affordable enough to be accessible to small producers, but the real barriers are governance, data infrastructure, and producer association priorities—which are solvable political economy problems rather than technical ones.",
+        "riley_key_evidence": [
+          "Local AI inference setup costs $1,000-$3,000, less than a GPS spray controller",
+          "Quebec's agricultural extension model includes technology transfer functions that BC cut",
+          "Ontario commodity boards fund technology services through direct producer levies rather than grants"
+        ],
+        "casey_position": "Technology accessibility doesn't automatically translate to value capture for small producers; governance structures, land tenure insecurity, and support ecosystem gaps mean cheap tools risk further consolidating advantage to larger operations.",
+        "casey_key_evidence": [
+          "Crown tenure leases create investment uncertainty that prevents capital reallocation similar to what outright-owning ranchers can do",
+          "Extension services in BC have been 'cut to the bone' leaving no support ecosystem for producers to assemble datasets from public sources",
+          "Technology navigator positions keep landing as grant-funded pilots lasting one cycle rather than permanent structural services"
+        ],
+        "resolution": "They agreed the technology window is open but the governance structures aren't ready, and the decision point matters now before large operators entrench data advantages—neither position fully conceded but they converged on the need for shared infrastructure and explicit data governance before consolidation occurs.",
+        "topics_covered": [
+          "Local versus cloud AI deployment economics and cost curves",
+          "Data sovereignty and governance in producer co-operatives",
+          "Land tenure and investment horizon differences between Crown leases and title-holding Nations",
+          "Producer association governance and succession gaps between older and younger operators",
+          "Regional infrastructure pilots versus permanent structural funding for agricultural extension"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "Azure Neural TTS (Ava · Andrew)",
+    "text_to_speech_openai": "OpenAI TTS API (Nova · Echo)",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  }
+}
