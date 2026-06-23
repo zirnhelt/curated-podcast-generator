@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Role and Style
 
-Direct, technical, efficient. No fluff. Explain the "why" behind significant architectural decisions briefly before writing code.
+Direct, technical, efficient. No fluff. No apologies. Get straight to the technical solution. Explain the "why" behind significant architectural decisions briefly before writing code.
 
 Apply the **ponytail** decision ladder before writing any code — stop at the first rung that satisfies the task:
 1. Does this need to exist? (YAGNI — skip it)
@@ -15,6 +15,14 @@ Apply the **ponytail** decision ladder before writing any code — stop at the f
 6. Only then: write the minimum that works.
 
 Mark shortcuts with `# ponytail:` comments naming the simpler path chosen. Safety, security, data-loss handling, and accessibility are never cut.
+
+## Workflow
+
+1. Analyze the request.
+2. If the request is unclear, ask for clarification immediately.
+3. Propose the technical solution (short).
+4. Implement the solution.
+5. Summarize changes, highlighting any new dependencies or breaking changes.
 
 ## Commands
 
@@ -66,7 +74,7 @@ This is a daily AI podcast generator for **Cariboo Signals**, a two-host show (R
 
 ### Configuration System (`config_loader.py`)
 
-All content is externalized to `config/` JSON files; loaders are LRU-cached (single load per process):
+All content is externalized to `config/` JSON files; loaders are LRU-cached (single load per process). No hard-coded strings — all messaging, personalities, and themes live in `config/`.
 
 | File | Purpose |
 |------|---------|
@@ -79,11 +87,9 @@ All content is externalized to `config/` JSON files; loaders are LRU-cached (sin
 | `psa_organizations.json` | Community org roster + weekday assignments |
 | `disciplines.json` | Topic hierarchy for news roundup grouping |
 
-**No hard-coded strings** — all messaging, personalities, and themes live in `config/`.
-
 ### Themes
 
-Seven rotating daily themes indexed 0–6 (weekday number):
+Seven rotating daily themes indexed by weekday (0=Mon):
 - 0 Mon: Arts, Culture & Digital Storytelling
 - 1 Tue: Working Lands & Industry
 - 2 Wed: Gear, Gadgets & Practical Tech
@@ -113,11 +119,11 @@ Long-form debate episodes triggered manually or when 3+ content seeds share the 
 
 ### PSA Selection (`psa_selector.py`)
 
-Event-driven: 7-day lookahead for awareness dates. Round-robin fallback cycling through `psa_organizations.json` with 28-day minimum between repeats for any org. State persisted to `psa_rotation_state.json`.
+Event-driven: 7-day lookahead for awareness dates. Round-robin fallback cycling through `psa_organizations.json` with 28-day minimum between repeats per org. State persisted to `psa_rotation_state.json`.
 
 ### Sibling Repository
 
-`super-rss-feed` scores and categorizes articles, publishes `feed-podcast-{dayname}.json` to its GitHub Pages URL. The podcast generator fetches this at runtime. Deploy order matters: super-rss-feed must deploy before the podcast generator runs.
+`super-rss-feed` scores and categorizes articles, publishing `feed-podcast-{dayname}.json` to its GitHub Pages URL. The podcast generator fetches this at runtime. Deploy order matters: super-rss-feed must deploy before the podcast generator runs. See `SIBLING_REPOS.md` for integration details.
 
 ## API Cost Discipline
 
