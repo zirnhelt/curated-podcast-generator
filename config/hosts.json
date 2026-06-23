@@ -17,7 +17,7 @@
   "casey": {
     "name": "Casey",
     "pronouns": "they/them",
-    "voice": "cedar",
+    "voice": "echo",
     "speed": 1.1,
     "voice_instructions": "Voice: dry, cynical, and deadpan — calm and unhurried in tone but speaking at a brisk, efficient pace. Tone: flat affect, low energy, faintly unimpressed; skepticism comes through in word choice and timing, not in vocal swings, laughs, or dramatic pauses. Delivery: even and matter-of-fact, like someone who's heard this pitch before — no chuckles, no theatrical beats, no rising excitement. Avoid sounding robotic, but keep the energy level flat and quick. Deliver as a continuous low-energy stream — sentences connect without restarts or any shift in register between them.",
     "azure_voice": "en-US-Andrew:DragonHDLatestNeural",
