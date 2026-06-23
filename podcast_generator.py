@@ -4055,7 +4055,6 @@ def generate_tts_for_segment(text, speaker, output_file):
         raise ValueError("OPENAI_API_KEY not found")
 
     voice = get_voice_for_host(speaker)
-    instructions = get_voice_instructions_for_host(speaker)
     speed = get_speed_for_host(speaker)
 
     # Apply shared pronunciation substitutions
@@ -4065,13 +4064,10 @@ def generate_tts_for_segment(text, speaker, output_file):
 
     # TTS timeouts are network blips, not API overload — 2 retries with a short
     # base delay is enough; the pre-split in _render_section keeps each call small.
-    # gpt-4o-mini-tts supports an "instructions" field for delivery/emotion
-    # control, which tts-1 lacked entirely.
     response = api_retry(lambda: client.audio.speech.create(
-        model="gpt-4o-mini-tts",
+        model="tts-1",
         voice=voice,
         input=clean,
-        instructions=instructions,
         speed=speed
     ), max_retries=2, base_delay=1)
 
