@@ -1740,6 +1740,25 @@
       "theme_day": 0,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "5fc05e8e",
+      "type": "feedback",
+      "message_id": "<BBB54569-7483-4088-A142-DED829B87CC9@gmail.com>",
+      "from_address": "z***@gmail.com",
+      "subject": "Re: easyfinancial -- List of Documents!",
+      "received_at": "2026-06-22T16:50:57-07:00",
+      "body_text": "I hope this works - can\u2019t find statements for those loans. Thanks, Erich On Jun 22, 2026, at 16:45, Erich Zirnhelt wrote: \ufeffFull mortgage doc! Thanks, Erich On Jun 22, 2026, at 16:42, Branch2129 wrote: \ufeff Hi Erich. Another quick reminder: All 5 pages for the mortgage statement (Optional, but may help with the interest) Statements for your CIBC loans, LOC, and Credit cards. Regards, Felipe easyfinancial | goeasy Ltd. Branch 2129 1185 Prosperity Way Unit 430, Williams Lake, BC, V2G 0A6 e. Branch2129",
+      "extracted_urls": [
+        "https://www.goeasy.com/",
+        "https://www.easyfinancial.com/",
+        "https://easyhome.ca/",
+        "http://www.goeasy.com/unsubscribe"
+      ],
+      "theme_tag": "Cariboo Local Affairs",
+      "theme_day": 5,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
