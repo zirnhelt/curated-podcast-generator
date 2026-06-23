@@ -1,24 +1,4 @@
 {
-  "2026-06-02": {
-    "timestamp": 1780396003.352913,
-    "topics": [
-      "[CNBC] Berkshire Hathaway invests extra $10 billion in Alpha",
-      "[100 Mile Free Press] Fore: Golfer struck by cart in Kelowna",
-      "[Toms Guide] I just held the most beautiful laptop, but I\u2019m ",
-      "[Taipei Times] Hon Hai partners with France\u2019s Bull for AI ex",
-      "[Toms Guide] Want a new PC but hate current prices? Here's 5",
-      "[Boing Boing] Man who stole $11 million from prison has a ne",
-      "[New Atlas] SR-71 successor? Quarterhorse Mk 2.1 prototype c",
-      "[TechCrunch] Payroll startup Remote says it grew revenue 50%"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech",
-      "connectivity"
-    ],
-    "date": "2026-06-02"
-  },
   "2026-06-03": {
     "timestamp": 1780484115.987847,
     "topics": [
@@ -400,5 +380,24 @@
       "Indigenous tech"
     ],
     "date": "2026-06-22"
+  },
+  "2026-06-23": {
+    "timestamp": 1782214261.696123,
+    "topics": [
+      "[CBC Arts] Some artists feeling 'blue dot fever,' fans say, ",
+      "[Business Insider] New US Air Force investigation shows how ",
+      "[Al Jazeera English] How a dead extremist Rabbi still shapes",
+      "[Al Jazeera English] Israeli strike kills children in Gaza d",
+      "[Global News] Saskatoon teen faces terrorism peace bond afte",
+      "[Tom's Hardware] Ditching the cloud for local AI \u2014 how I use",
+      "[Engadget] A24 takes on Google money to build AI tools",
+      "[TechRadar] Why security leaders are cautious about agentic "
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech"
+    ],
+    "date": "2026-06-23"
   }
 }

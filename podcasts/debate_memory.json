@@ -2263,5 +2263,31 @@
       "Funding models: donations, grants, co-ops, and infrastructure classification",
       "AI-assisted production tools as capacity multipliers without editorial risk"
     ]
+  },
+  "2026-06-23": {
+    "timestamp": 1782214264.067481,
+    "date": "2026-06-23",
+    "theme": "Working Lands & Industry",
+    "central_question": "Does cheap local AI hardware deployment change the competitive advantage for small-scale working-lands producers, or do governance and infrastructure barriers prevent them from capturing that benefit?",
+    "riley_position": "Local AI inference hardware is now affordable enough to be accessible to small producers, but the real barriers are governance, data infrastructure, and producer association priorities\u2014which are solvable political economy problems rather than technical ones.",
+    "riley_key_evidence": [
+      "Local AI inference setup costs $1,000-$3,000, less than a GPS spray controller",
+      "Quebec's agricultural extension model includes technology transfer functions that BC cut",
+      "Ontario commodity boards fund technology services through direct producer levies rather than grants"
+    ],
+    "casey_position": "Technology accessibility doesn't automatically translate to value capture for small producers; governance structures, land tenure insecurity, and support ecosystem gaps mean cheap tools risk further consolidating advantage to larger operations.",
+    "casey_key_evidence": [
+      "Crown tenure leases create investment uncertainty that prevents capital reallocation similar to what outright-owning ranchers can do",
+      "Extension services in BC have been 'cut to the bone' leaving no support ecosystem for producers to assemble datasets from public sources",
+      "Technology navigator positions keep landing as grant-funded pilots lasting one cycle rather than permanent structural services"
+    ],
+    "resolution": "They agreed the technology window is open but the governance structures aren't ready, and the decision point matters now before large operators entrench data advantages\u2014neither position fully conceded but they converged on the need for shared infrastructure and explicit data governance before consolidation occurs.",
+    "topics_covered": [
+      "Local versus cloud AI deployment economics and cost curves",
+      "Data sovereignty and governance in producer co-operatives",
+      "Land tenure and investment horizon differences between Crown leases and title-holding Nations",
+      "Producer association governance and succession gaps between older and younger operators",
+      "Regional infrastructure pilots versus permanent structural funding for agricultural extension"
+    ]
   }
 }
