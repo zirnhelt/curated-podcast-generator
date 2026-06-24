@@ -1759,6 +1759,31 @@
       "theme_day": 5,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "8db2fbe8",
+      "type": "newsletter",
+      "message_id": "<a64841ce-be91-4444-9b8d-91a5de02af79@mtasv.net>",
+      "from_address": "n***@animikii.com",
+      "subject": "Indigenous-led futures in the north",
+      "received_at": "2026-06-24T19:03:38+00:00",
+      "body_text": "![Graphic illustration featuring a youth and elder sitting in a forested landscape, with the sun and mountains in the background, the text on far left reads Animikii News River.](https://assets.button",
+      "extracted_urls": [
+        "https://assets.buttondown.email/images/42ea3d90-a073-48c4-9aff-303d06bca8c4.jpg?w=960&fit=max",
+        "https://arcticportal.org/ap-library/news/4113-new-arctic-observing-summit-report-calls-for-indigenous-led-future-in-arctic-science?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=indigenous-led-futures-in-the-north",
+        "https://policyoptions.irpp.org/2026/06/evaluating-major-project-losses/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=indigenous-led-futures-in-the-north",
+        "https://www.digitaljournal.com/article/10m-backs-northern-research-facility-and-indigenous-data-platform/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=indigenous-led-futures-in-the-north",
+        "https://assets.buttondown.email/images/70769718-742a-4a38-a7b1-2bc972ea1b79.jpg?w=960&fit=max",
+        "https://niiwin.app/why-niiwin?mtm_campaign=SVS-Q2-2026&amp;mtm_kwd=KNC&amp;mtm_source=NWR&amp;utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=indigenous-led-futures-in-the-north",
+        "https://theconversation.com/canadas-ai-strategy-must-reckon-with-the-environmental-implications-of-data-centres-285333?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=indigenous-led-futures-in-the-north",
+        "https://www.dlsph.utoronto.ca/2026/06/18/indigenous-youth-climate-change-mental-health-graphic-novel/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=indigenous-led-futures-in-the-north",
+        "https://www.internetsociety.org/community/news-and-opportunities/online-trust-and-safety-training-workshop-matawa-tribal-council-canada/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=indigenous-led-futures-in-the-north",
+        "https://assets.buttondown.email/images/62449f71-4c02-416b-b625-45e71a736658.jpg?w=960&fit=max"
+      ],
+      "theme_tag": "Indigenous Lands & Innovation",
+      "theme_day": 3,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
