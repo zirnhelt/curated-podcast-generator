@@ -1,17 +1,4 @@
 {
-  "2026-03-25": {
-    "timestamp": 1774444416.229885,
-    "date": "2026-03-25",
-    "theme": "Community Tech & Governance",
-    "central_question": "Deep dive on Community Tech & Governance",
-    "topics_covered": [
-      "broadband",
-      "renewable energy",
-      "data sovereignty",
-      "AI",
-      "infrastructure"
-    ]
-  },
   "2026-03-26": {
     "timestamp": 1774531045.085078,
     "date": "2026-03-26",
@@ -2288,6 +2275,32 @@
       "Land tenure and investment horizon differences between Crown leases and title-holding Nations",
       "Producer association governance and succession gaps between older and younger operators",
       "Regional infrastructure pilots versus permanent structural funding for agricultural extension"
+    ]
+  },
+  "2026-06-24": {
+    "timestamp": 1782299863.108679,
+    "date": "2026-06-24",
+    "theme": "Repair Culture & Practical Tech",
+    "central_question": "What institutional and structural mechanisms can sustain repair knowledge and culture in rural communities when informal networks are fragile and formal funding is unreliable?",
+    "riley_position": "Regulation requiring parts access and documentation is essential and separate from the skill-gap problem; community models like tool libraries, repair caf\u00e9s, and cooperatives can create low-cost infrastructure for knowledge transfer if designed properly.",
+    "riley_key_evidence": [
+      "EU's right-to-repair directive came into force in 2024 covering phones, laptops, and home appliances",
+      "Fairphone 5 scores 10/10 on iFixit repairability index; Framework laptops are user-serviceable from design",
+      "Toronto Public Library and smaller BC systems have integrated tool lending programs"
+    ],
+    "casey_position": "Informal repair networks and community programs are fragile without permanent institutional backing; rural communities face succession problems where aging repair knowledge holders retire without formal mechanisms for transfer, and cooperative/time-banking models struggle with operational costs and valuation disagreements.",
+    "casey_key_evidence": [
+      "The Cariboo has lost institutional repair knowledge over two decades due to lack of formal succession planning",
+      "Tool libraries consistently fail to scale due to liability, replacement costs, and staff management expenses",
+      "Time banking fails when communities disagree on valuation\u2014is an hour of electrical work equal to an hour of childcare?"
+    ],
+    "resolution": "Riley and Casey agreed on the underlying structural problem but acknowledged different solution levels: regulation and documentation are necessary but insufficient; Indigenous knowledge systems represent durable models that maintain transmission outside Western institutional funding; the real question is identifying who holds critical knowledge in each community and ensuring succession before those people leave.",
+    "topics_covered": [
+      "Right-to-repair legislation and manufacturer compliance gaps (Apple Self Service Repair model)",
+      "Rural repair knowledge succession crisis and aging skilled workers",
+      "Community repair infrastructure models (repair caf\u00e9s, tool libraries, cooperatives, time banking)",
+      "Indigenous knowledge systems and land stewardship as durable repair/technical knowledge transmission",
+      "AI and software dependency as modern repair-culture analog (local inference, vendor lock-in)"
     ]
   }
 }

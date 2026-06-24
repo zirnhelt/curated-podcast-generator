@@ -1,0 +1,131 @@
+# Cariboo Signals Podcast Script - 2026-06-24
+# Theme: Repair Culture & Practical Tech
+# Generated: 2026-06-24 04:17:41 PDT
+
+**RILEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. It's Wednesday, June 24th, 2026. Reaching you from the heart of the Cariboo, the homeland of the Secwépemc, Tŝilhqot'in, and Dakelh nations. Today's theme is Repair Culture and Practical Tech — things you can fix, keep running, and pass down. I'm Riley.
+
+**CASEY:** And I'm Casey. The theme today is really about who actually controls the tools they depend on — and what it takes to stay functional when you're three hours from the nearest parts supplier.
+
+**RILEY:** Quick weather check before we dive in — Horsefly Lake is sitting at 11 degrees with clear skies this morning, heading up to a high of 27. Williams Lake and 100 Mile House are also clear, Quesnel is overcast, and out on the Chilcotin plateau, Tatla Lake is at 11 and clear. A good day to be outside doing something with your hands — or fixing something that broke over the weekend.
+
+**CASEY:** Tatla Lake, clear skies. That's a community where you'd better know how to fix things, because the nearest town isn't close.
+
+**RILEY:** Let's get into the news.
+
+---
+
+**NEWS ROUNDUP**
+
+**RILEY:** Starting with something directly relevant to rural connectivity — researchers at Aalto University in Finland have developed cheap metacrystal panels that can steer wireless signals around barriers. The panels are 3D-printed and use structured metamaterials to redirect Wi-Fi and potentially 6G signals around walls, corners, and obstructions. The key word is cheap — this isn't exotic lab equipment, it's a printable passive device. For communities dealing with dead zones inside buildings or around terrain, that's worth watching.
+
+**CASEY:** If those panels hold up in cold-weather environments — 3D printing tolerances can shift significantly with freeze-thaw cycles — that's genuinely interesting for off-grid structures.
+
+**CASEY:** Canada and BC announced a new partnership to accelerate homebuilding, lower construction costs, and fund local infrastructure. The federal and provincial governments are aligning on zoning reform, infrastructure financing, and getting more housing units built faster. The Cariboo Regional District has significant housing pressure, so federal dollars flowing toward local infrastructure capacity matters here.
+
+**RILEY:** The word "partnership" in a press release usually means someone gets to cut a ribbon. We'll see what lands in smaller communities versus the Lower Mainland.
+
+**RILEY:** A quick one on the theme of knowing your tools — Tom's Guide ran a piece this week on how AI features are quietly draining smartphone batteries. Always-on AI assistants, background photo processing, and ambient intelligence features are running even when you're not using them. The fix is straightforward: audit which AI features are enabled and turn off the ones you don't actually use. In a low-signal area where battery management isn't optional, this matters.
+
+**CASEY:** Useful reminder that "smart" defaults are often set for someone else's use case. Rural users should be configuring these devices, not just accepting factory settings.
+
+**CASEY:** Samsung has filed a patent for a foldable, rollable phone that converts into a rectangular brick form factor. It's genuinely weird, and probably years from shipping. But the trend it represents is real: manufacturers are exploring radical form factors partly because flat-glass smartphones have plateaued on differentiation.
+
+**RILEY:** A phone shaped like a brick that costs twelve hundred dollars and can't be repaired. That trajectory sounds about right.
+
+**RILEY:** BC-wide now — the province announced a new program targeting chronic vandalism, property crime, and street disorder. The initiative is provincewide and involves coordinated enforcement and supports. Williams Lake and Quesnel have both dealt with visible property crime pressures, so this has some local resonance, though details on how it reaches smaller communities are still coming out.
+
+**CASEY:** The devil will be in whether frontline community supports are funded alongside the enforcement piece.
+
+**CASEY:** A wildfire update — crews are battling a blaze near Lytton, BC, currently estimated at about seven square kilometres. Cooler temperatures overnight have helped firefighters, but it remains out of control. Lytton was nearly destroyed in the 2021 firestorm, so this hits close to home for a community still rebuilding. We're watching it.
+
+**RILEY:** Five years on and Lytton is still in the fire zone every summer. That's the climate reality.
+
+**RILEY:** StatCan reported this week that Canada's population edged slightly lower in the first quarter of 2026 — the first quarter-over-quarter dip in some time, driven largely by reduced immigration intake. Rural communities that were banking on population growth to justify infrastructure investment should note that the demographic tailwinds aren't guaranteed.
+
+**CASEY:** Cariboo communities have been fighting population decline for a decade. The external conditions that briefly looked favorable aren't permanent.
+
+**CASEY:** Good news from interior BC — Tammy Kovaluk, a Vernon resident, set a world record in rope-jumping this week. A world record from the Interior is worth a moment.
+
+**RILEY:** Sometimes you just swing the rope faster than everyone else. Respect.
+
+**RILEY:** Now, a story that touches directly on how this show gets made. Anthropic — whose Claude AI writes and produces every Cariboo Signals script — had its most advanced models, called Fable 5 and Mythos 5, pulled offline last week following a US government national security directive. The concern reportedly involved Anthropic's partnership with South Korean carrier SK Telecom. Anthropic's international director says the models should be restored within days, and they're very confident of that outcome. The episode you're listening to is running on current Claude infrastructure, but it's a vivid illustration that AI tools rural communities or producers might come to rely on can disappear overnight due to geopolitical decisions made thousands of miles away.
+
+**CASEY:** That's the dependency risk in a single news item. Worth sitting with.
+
+**CASEY:** The internet had a rough day on June 22nd, with a widespread outage knocking Reddit, X, and several major platforms offline simultaneously. A reminder that the internet's apparent resilience has real single points of failure. ZDNet also ran a detailed piece this week on how companies build shadow profiles from your smartphone usage — your app behaviour, movement, and timing — and how to limit that exposure. Both are linked in today's episode notes.
+
+**RILEY:** The shadow profiling piece is worth reading. Your phone is talking about you constantly, and most of those conversations you didn't agree to.
+
+**RILEY:** One more — a Yale long-term study found that nearly half of adults over 65 actually improved physically or mentally over time, challenging the assumption that aging is uniformly a decline. In rural communities where older residents carry enormous amounts of practical knowledge — the kind of knowledge today's theme is really about — that's a genuinely useful reframe.
+
+**CASEY:** Rural communities already know this. The person who's been running the equipment for forty years is the most valuable resource on the operation.
+
+**RILEY:** The community spotlight is next.
+
+---
+
+**COMMUNITY SPOTLIGHT**
+
+**CASEY:** The Williams Lake Association for Community Living has been part of this region since 1960 — that's over six decades of supporting people with diverse abilities in Williams Lake and the surrounding area. They provide residential support, community inclusion programs, and employment services for adults with developmental disabilities. This is the kind of organization that holds a community together in ways that never make the headlines. Their website is wlacl.org — worth knowing about whether you're looking for services, want to volunteer, or are thinking about where to direct a donation.
+
+**RILEY:** Sixty-six years of showing up. That's a track record most organizations never reach.
+
+**CASEY:** Speaking of things built to last — that's actually the right note to carry into today's deep dive.
+
+---
+
+**DEEP DIVE: CARIBOO CONNECTIONS — Repair Culture & Practical Tech**
+
+**RILEY:** The question worth sitting with on repair culture is this: when does the decision to repair something — rather than replace it — stop being a personal choice and start being a structural necessity? In the Cariboo, that line is drawn differently than it is in Vancouver or Calgary. You're not choosing the repair ethos as a lifestyle. In a lot of cases, you're choosing it because the alternative is waiting two weeks for a part or driving four hours to a service centre.
+
+**CASEY:** And the repair economy in rural BC isn't a subculture. It's infrastructure. The person who can fix the walk-in cooler at a remote lodge, rebuild the hydraulic pump on a backhoe, or get a satellite receiver working again — that's not a hobbyist. That's the person keeping the operation alive.
+
+**RILEY:** Right-to-repair legislation has been moving, slowly, in Canada. The federal government has acknowledged the issue. BC hasn't passed anything comprehensive yet, but the general direction — requiring manufacturers to provide service documentation, spare parts, and diagnostic access — is the right structural move. The EU's right-to-repair directive, which came into force in 2024, covers a growing list of product categories including phones, laptops, and home appliances. The practical effect is that manufacturers selling into Europe have to make repair more feasible, and that tends to ripple into North American product lines.
+
+**CASEY:** Manufacturers comply with the letter of those requirements in ways that make repair technically possible but practically miserable. You can get the part. It costs 80% of the price of a new unit. The diagnostic software requires a dealer license. Apple did this with the Self Service Repair program — they launched it, got the press release, and then made the process complicated enough that most people still go to an authorized repair shop.
+
+**RILEY:** Apple's Self Service Repair program is a real example of that gap. But iFixit's repairability scores have actually been improving on some Android flagship devices. The Fairphone 5 scores a 10 out of 10. Framework laptops are designed from the ground up to be user-serviceable. These are real products shipping to real customers.
+
+**CASEY:** The Fairphone is a European product not officially sold in Canada. Framework laptops are genuinely good, but they target a technical user who already knows what a Phillips 00 screwdriver is. The question isn't whether repairability exists somewhere in the market. It's whether the person running a small tourism operation in Likely, BC, can realistically maintain the devices their business depends on.
+
+**RILEY:** The skill transfer question is separate from the parts and documentation question — and conflating them lets manufacturers off the hook for the documentation problem. If schematics were publicly available and parts were reasonably priced, more local repair would happen. The skill gap is addressable through community programs. The parts access gap requires regulation.
+
+**CASEY:** The skill gap in rural communities isn't a simple training problem. It's a succession problem. The person who knew how to fix everything in a small community is often in their 60s or 70s. When they retire, that knowledge doesn't automatically transfer. The Cariboo has lost a lot of institutional repair knowledge over the last two decades because there was no formal mechanism for passing it on. Apprenticeship programs, vocational training, maker spaces with actual mentorship — those require sustained investment, not a one-time workshop.
+
+**RILEY:** Repair cafés have been running in urban centres, but a few rural communities in Atlantic Canada and the BC Interior have piloted versions. The model is genuinely low-cost: you need a space, some tools, and a core group of people with complementary skills. The Quesnel maker community has done some of this work informally. It doesn't solve the succession problem, but it creates the social infrastructure where knowledge transfer can happen.
+
+**CASEY:** Informal networks are fragile. If the three people who run those sessions move away or burn out, the program disappears. Which gets to the structural question: what institutional form actually persists? Repair cafés are great. A publicly funded, permanently staffed repair and skill centre attached to a library or community centre — that's a different thing. And that requires a commitment from local government that most Cariboo municipalities haven't made. Also — and I say this as someone who enjoys a good community gathering — the repair café model does have a slightly utopian "everyone brings their broken toaster and we drink tea and fix things together" quality. Lovely in principle. The implementation is messier.
+
+**RILEY:** The toaster-and-tea critique is fair, though I'd take a working toaster over a brand-new one I can't open. The library connection is worth taking seriously — tool libraries have been integrated into public library systems in several Canadian cities, and some smaller BC systems have experimented with it. The 100 Mile House library is already a community hub. A tool and repair lending component wouldn't require a massive capital investment. The question is whether there's a champion at the municipal or regional district level to push it through.
+
+**CASEY:** Tool libraries are a good idea that keeps getting piloted and not scaling. The reason is usually the same: liability concerns, replacement costs when tools break or go missing, and staff time to manage the inventory. None of those are insurmountable, but they're real operational costs that don't disappear after the grant money runs out.
+
+**RILEY:** Some tool libraries have moved to member-supported cooperative models — a modest annual fee covers replacement costs and creates a financial incentive for members to return things in good shape. That's not a grant-dependent model. It's a structure that doesn't require a municipal budget line to survive.
+
+**CASEY:** The cooperative model works in places with enough population density to generate fee revenue. In a community of around 1,900 like 100 Mile House, the math is tighter. You might get a couple hundred members paying 40 or 50 dollars a year — enough to cover consumables and some replacement parts, probably not enough to cover a part-time coordinator.
+
+**RILEY:** Which is where the design question gets interesting. What if the coordinator role is structured as a skills exchange? You contribute time and knowledge, you get access to the tools and the network. Some rural communities have run this through time-banking systems — formalized skill exchanges where an hour of repair work earns an hour of someone else's skill. Not a perfect system, but it removes the cash dependency from the coordination role.
+
+**CASEY:** Time banking has a good track record in closed communities and a mixed track record when it tries to scale. The failure mode is usually valuation disagreement — is an hour of electrical work worth the same as an hour of childcare? These aren't abstract debates; they're the conversations that sink the programs. But the underlying question you're raising — what structure removes the ongoing funding dependency — is the right one. "We need a grant" is not a solution to the repair knowledge succession problem. It's a delay.
+
+**RILEY:** And that points toward something older than any of these models. The Tŝilhqot'in Nation and Secwépemc communities in the Cariboo have maintained knowledge transmission systems for generations — not through formal institutional structures in the Western sense, but through apprenticeship, family lineage, and seasonal practice. The idea that skill transfer requires a funded program is a very specific cultural assumption. Some of the most robust repair and maintenance knowledge in rural BC exists in Indigenous communities and doesn't appear in any government database of skills programs.
+
+**CASEY:** The maker movement gets written up as if it invented the idea of fixing things and passing knowledge on. Indigenous land management, traditional tool-making, seasonal equipment maintenance — these are sophisticated technical knowledge systems that have been operating without interruption for a long time. The Xatśūll First Nation, based near Williams Lake, has been involved in land stewardship programs that incorporate both traditional ecological knowledge and practical technical training. Knowledge transfer that isn't separated from its cultural context is actually how you get durability.
+
+**RILEY:** The connection to repair culture is direct: the question isn't just "can we fix things" — it's "do we understand things well enough to fix them?" Deep understanding — the kind that lets you improvise a repair when the right part isn't available — comes from extended engagement with systems, not from watching a YouTube tutorial once.
+
+**CASEY:** Which brings us back to the Anthropic story from the roundup. When those models went offline due to a national security directive, every workflow depending on them hit a wall. The repair culture argument applied to software: do you understand your tools well enough to function without them? Most people using AI-assisted workflows right now — the answer is no.
+
+**RILEY:** To be transparent about our own stack — this show is written by Anthropic's Claude, so we're not exempt from that critique. If the model goes offline, Cariboo Signals doesn't publish. That's a real dependency, and it's worth naming honestly.
+
+**CASEY:** Rural communities building workflows around specific cloud AI tools — for farm management, remote diagnostics, administrative work — are creating the same single-point dependency that right-to-repair advocates are trying to fix on the hardware side. The principle is identical: if you can't maintain it, modify it, or substitute it, you don't really control it.
+
+**RILEY:** Running AI inference locally on modest hardware is the repair-culture equivalent for software — understanding your tools well enough to operate them yourself, adjust the parameters, and not be dependent on a vendor staying in business or a government not pulling the plug. That skill floor is reachable. It's not simple, but it's reachable.
+
+**CASEY:** And it still needs a person who knows the thing. Same as the tool library problem. Which is the question every Cariboo community should be asking — not just about AI, but about water systems, electrical infrastructure, telecommunications equipment, everything the community depends on: who holds the critical knowledge, and what happens when those people aren't available? That question doesn't have a tidy resolution. What it has is urgency.
+
+**RILEY:** Enough urgency that it belongs at a town hall. If you're in a Cariboo community that's had that conversation — or been part of a repair network, formal or informal, that actually worked — we'd genuinely like to hear about it. Drop us a note at feedback at cariboosignals dot c-a.
+
+**CASEY:** And if we got something wrong today, same address. Thanks for spending part of your Wednesday with us — take care of your tools, and each other.
+
+**RILEY:** Have a great rest of your day.
