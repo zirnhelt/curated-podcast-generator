@@ -1,17 +1,4 @@
 {
-  "2026-03-26": {
-    "timestamp": 1774531045.085078,
-    "date": "2026-03-26",
-    "theme": "Indigenous Lands & Innovation",
-    "central_question": "Deep dive on Indigenous Lands & Innovation",
-    "topics_covered": [
-      "renewable energy",
-      "solar",
-      "data sovereignty",
-      "AI",
-      "infrastructure"
-    ]
-  },
   "2026-03-27": {
     "timestamp": 1774608950.755916,
     "date": "2026-03-27",
@@ -2301,6 +2288,32 @@
       "Community repair infrastructure models (repair caf\u00e9s, tool libraries, cooperatives, time banking)",
       "Indigenous knowledge systems and land stewardship as durable repair/technical knowledge transmission",
       "AI and software dependency as modern repair-culture analog (local inference, vendor lock-in)"
+    ]
+  },
+  "2026-06-25": {
+    "timestamp": 1782384899.480301,
+    "date": "2026-06-25",
+    "theme": "Indigenous Lands & Innovation",
+    "central_question": "Is 'Indigenous-led' project delivery without underlying governance authority a meaningful step toward Indigenous self-determination, or does it obscure persistent authority gaps?",
+    "riley_position": "The gap between legal Aboriginal title and actual decision-making authority on the ground remains substantial; projects like Palmer Lake demonstrate this by showing Indigenous-led delivery that still operates within provincial decision-making frameworks.",
+    "riley_key_evidence": [
+      "T\u015dilhqot'in title decision (2014) established decision-making authority, but 12 years later the gap between law and ground-level practice at Palmer Lake remains substantial",
+      "BC's expanded First Nations-led addictions treatment is Indigenous-led delivery within a provincially funded framework, not Indigenous governance authority",
+      "Arctic Observing Summit report recommends funding Indigenous organizations that hold governance authority over data, not just those participating in data collection"
+    ],
+    "casey_position": "The real question is 'who can say no?' \u2014 governance authority must be established before programs launch, not negotiated afterward; Indigenous-led delivery is cosmetic unless the Nation retains final decision-making power.",
+    "casey_key_evidence": [
+      "Denisiqi Services Society's 20+ years of operational continuity was built because communities insisted on community-controlled governance, not because the funding model was designed to produce it",
+      "At Palmer Lake, urgent provincial needs for slope stabilization and erosion control create conditions where substantive decisions (species selection, timeline, endpoints) remain with the Ministry of Forests despite Indigenous project leadership",
+      "Nations need standing legal and technical capacity before negotiation starts, not as project line items; the pattern differentiating stronger outcomes isn't funding size but pre-existing institutional capacity"
+    ],
+    "resolution": "Both agreed that governance authority must precede program delivery and that 'Indigenous-led' covers three distinct things (delivery, design, governance) often conflated. They aligned on moving from defensive veto power to generative standards-setting as a structural model for authority, with Casey proposing data revenue models and certification frameworks as self-sustaining alternatives to grant dependency.",
+    "topics_covered": [
+      "The distinction between Indigenous-led delivery, design, and governance authority",
+      "Post-wildfire forest rehabilitation at Palmer Lake as a case study in governance gaps",
+      "Data ownership and control as the next frontier of Indigenous authority",
+      "Funding models: grants vs. revenue generation vs. regulatory necessity",
+      "Standing institutional capacity as prerequisite to effective negotiation"
     ]
   }
 }

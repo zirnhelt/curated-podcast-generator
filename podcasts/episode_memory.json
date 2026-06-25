@@ -1,24 +1,4 @@
 {
-  "2026-06-04": {
-    "timestamp": 1780566849.061456,
-    "topics": [
-      "[BC Gov News] Improving safety for Indigenous communities",
-      "[Williams Lake Tribune] Grief, sobriety, music: Williams Lak",
-      "[Al Jazeera English] Kuwait releases CCTV footage of deadly ",
-      "[Global News] Red Earth, Shoal Lake Cree Nation evacuees hom",
-      "[Al Jazeera English] Ukraine drone attack kills 7 in Russian",
-      "Six new projects to explore impacts of plastic pollution on ",
-      "Yukon founder joins national Indigenous AI program as Firewe",
-      "AI"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-06-04"
-  },
   "2026-06-05": {
     "timestamp": 1780652488.020813,
     "topics": [
@@ -400,5 +380,25 @@
       "connectivity"
     ],
     "date": "2026-06-24"
+  },
+  "2026-06-25": {
+    "timestamp": 1782384897.546254,
+    "topics": [
+      "Indigenous-led futures in the north",
+      "New Arctic Observing Summit Report Calls for Indigenous-Led ",
+      "Decisions on major projects often ignore cultural and social",
+      "[Eagle Feather News] Students complete epic 348 km journey t",
+      "[Toms Guide] 21,000 jobs gone in a year: Oracle becomes the ",
+      "[BC Gov News] Expanding access to First Nations-led addictio",
+      "[Williams Lake Tribune] Indigenous-led forest rehabilitation",
+      "[TechRadar] AI exposes the M&A integration gaps that governa"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-06-25"
   }
 }
