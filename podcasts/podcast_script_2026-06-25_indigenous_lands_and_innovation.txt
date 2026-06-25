@@ -1,0 +1,123 @@
+# Cariboo Signals Podcast Script - 2026-06-25
+# Theme: Indigenous Lands & Innovation
+# Generated: 2026-06-25 03:54:57 PDT
+
+**RILEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. It's Thursday, June 25th, 2026. Reaching you from the heart of the Cariboo, the homeland of the Secwépemc, Tŝilhqot'in, and Dakelh nations. Today's theme is Indigenous Lands & Innovation — I'm Riley.
+
+**CASEY:** [pause:1000] And I'm Casey. Today we're asking a question that keeps coming back in different forms: when Indigenous communities lead the work on their own land, what does that actually look like on the ground — and who decides what counts as success?
+
+**RILEY:** Quick weather check before we dive in — it's a clear 10 degrees out at Horsefly Lake this morning, climbing to a high of 26 today. Across the Cariboo: 100 Mile House and Quesnel are also sitting clear, Williams Lake at 13 and clear. Out on the Chilcotin plateau, Anahim Lake is cooler at 8 with overcast skies. Tomorrow brings a chance of showers, so enjoy the sunshine while it lasts.
+
+**CASEY:** Sounds like a good day to be working outdoors — which turns out to be relevant to some of what we're covering today.
+
+**RILEY:** Let's get into the news.
+
+---
+
+**NEWS ROUNDUP**
+
+**RILEY:** [pause:1200] The Arctic Observing Summit 2026 has released a report calling for a fundamental shift in how Arctic science gets done. The core argument: Indigenous communities aren't just stakeholders to be consulted — they should be leading research design and monitoring decisions. The report points to generations of land-based observation that western science is only now catching up to, and recommends restructuring funding so Indigenous-led organizations hold governance authority over Arctic data, not just participation seats.
+
+**CASEY:** Participation without authority is just expensive consultation.
+
+**CASEY:** [pause:1200] Related framing from Animikii's latest newsletter on Indigenous-led futures in the north: the piece draws a sharp contrast between AI systems trained on extracted, decontextualized data and place-specific, relational knowledge that Indigenous monitoring systems carry. The argument isn't that one is better science — it's that they're answering different questions, and conflating them causes real harm.
+
+**RILEY:** A lot of "co-design" processes end up laundering one as the other. That's the uncomfortable implication.
+
+**RILEY:** [pause:1200] Also from Policy Options this week — a piece on how major project reviews routinely undercount cultural and social losses. Environmental assessments are built to measure what can be quantified: habitat loss, water quality, carbon output. What gets left out is harder to measure — disruption to cultural practices, severance of relationships to specific places, loss of governance capacity. The piece argues those exclusions aren't accidental. They're structural features of how review processes are designed.
+
+**CASEY:** Once a project clears review on those narrow terms, the cultural loss is treated as settled. No mechanism to revisit it.
+
+**CASEY:** [pause:1200] Two stories out of Saskatchewan worth covering together. Students from Chief Ahtahkakoop School completed a 140-kilometre walk to Fort Carlton to mark the 150th anniversary of Treaty 6. Separately, another group of students paddled 348 kilometres by canoe along the same commemorative route, also finishing at Fort Carlton. Both journeys were organized to teach Treaty history through direct physical engagement with the land the treaty covers — not a classroom exercise, a land-based one.
+
+**RILEY:** The knowledge doesn't live in the document. It lives in the journey.
+
+**RILEY:** [pause:1200] On the AI labour front — Oracle has cut 21,000 jobs over the past year, attributing the reductions directly to AI adoption across its operations. That's a single company. Kevin O'Leary made a parallel point from the investor side this week, saying the companies he backs are bypassing consultants entirely and going straight to AI tools. We'll come back to what that means for who holds expertise — and who doesn't — in the Deep Dive.
+
+**CASEY:** The consultant model has real problems. So does "no humans needed."
+
+**CASEY:** [pause:1200] Norway is restricting AI use for elementary school students — a broad policy covering multiple tools and platforms. The decision is grounded in concerns about cognitive development and the risks of outsourcing early learning to systems that optimize for engagement rather than comprehension. Worth watching how that plays out compared to the North American approach, which is still largely reactive.
+
+**RILEY:** Proactive regulation being treated as a radical act. Checks out.
+
+**RILEY:** [pause:1200] A Manhattan state assembly primary winner this week sent a pointed message to OpenAI and Anthropic — running explicitly on AI accountability, and winning. The political signal is clear: AI regulation is becoming an electoral issue at the state level in the US. Also in Anthropic's week: the company is accusing Alibaba of exploiting its models in what it describes as a large-scale coordinated attack. Disclosure — Claude, made by Anthropic, writes every script on this show, so we're essentially covering our own production stack when that story comes up.
+
+**CASEY:** John Jumper, the Nobel laureate who led AlphaFold at DeepMind, is leaving for Anthropic. The company we just disclosed a relationship with is also having a good week for talent acquisition. Make of that what you will.
+
+**RILEY:** [pause:900] A couple of lighter notes to close the roundup. The Weedinator — an open-source autonomous weeding robot that's been in development since 2017 — is back for a 2026 update. Genuinely useful for small-scale growers who can't afford commercial precision ag tools. And a study finds people are increasingly anxious about sounding like AI in their own writing, simplifying their work so it reads as unmistakably human. The irony of covering that story on an AI-generated podcast is not lost on us.
+
+**CASEY:** We contain multitudes.
+
+**RILEY:** That's the roundup — let's take a moment to spotlight a community organization before we get into the Deep Dive.
+
+---
+
+**COMMUNITY SPOTLIGHT**
+
+**CASEY:** Denisiqi Services Society has been providing culturally grounded child and family services to Tŝilhqot'in and Ulkatcho communities for more than two decades. This is the kind of organization that doesn't show up in a press release — it shows up when a family needs support that actually reflects who they are and where they come from. June is National Indigenous History Month, and Denisiqi is a meaningful example of what it looks like when communities build their own care infrastructure. More at denisiqi dot org.
+
+**RILEY:** Twenty-plus years of that work is not incidental. That's institution-building — and it's a useful frame for what we're about to get into.
+
+---
+
+**DEEP DIVE: CARIBOO CONNECTIONS — Indigenous Lands & Innovation**
+
+**RILEY:** The Palmer Lake site near Williams Lake. That's where we want to anchor this conversation. The Williams Lake Tribune reported this week on Indigenous-led forest rehabilitation work happening there right now — post-wildfire replanting, ecosystem restoration, employment created for community members. And it raises a question that's been nagging across several weeks of covering this theme.
+
+**CASEY:** Which is?
+
+**RILEY:** The work at Palmer Lake is Indigenous-led. It's land-based. It's creating real economic opportunity in the aftermath of wildfire. By almost any measure, it looks like what "Indigenous-led innovation" is supposed to look like. So why does it feel like it's still operating at the margins of how decisions get made about that land?
+
+**CASEY:** Because it is. Being invited to lead the rehabilitation work after the fire is not the same as holding authority over what happens to the land before one starts. The sequencing matters. Palmer Lake is a real project doing real things — and it's also downstream of decisions the community didn't make.
+
+**RILEY:** That's the governance gap worth naming. The Tŝilhqot'in title decision in 2014 established that Aboriginal title confers decision-making authority over land use — not just the right to be consulted, not just preferred contractor status on remediation projects. Actual authority. Over a decade on, the gap between what that decision established in law and what it looks like on the ground at a site like Palmer Lake is still substantial.
+
+**CASEY:** And filling that gap with really good project work doesn't close it. It can actually obscure it — because the project becomes evidence that things are working, even when the underlying authority structure hasn't shifted.
+
+**RILEY:** So what would closing it actually require? The BC government announced expanded access to First Nations-led addictions treatment this week — Adams Lake and Haida Gwaii are named specifically. The structure there is interesting: Indigenous-led delivery within a provincially funded framework. That's better than provincially delivered services. But it's not the same as the Nation holding the budget, setting the clinical standards, and deciding what the program looks like without reference to a provincial approval process.
+
+**CASEY:** "Indigenous-led" covers a lot of variation under one label. There's Indigenous-led delivery — community members running the program. Indigenous-led design — the model built from community values rather than adapted from an external template. And Indigenous-led governance — the Nation holds the decision rights, including the right to shut something down or say no to provincial priorities. Three different things. We treat them as interchangeable.
+
+**RILEY:** The Arctic Observing Summit report makes a version of this distinction sharply. It says research funding should flow to Indigenous organizations that hold governance authority over the data — not just organizations that participate in data collection. And that framing matters because data is where the next version of this fight is happening.
+
+**CASEY:** The Palmer Lake rehabilitation work generates data. Species recovery rates, soil composition, replanting survival rates. Who owns that? Who controls whether it gets shared with provincial forestry databases, or used in future environmental assessments, or cited in a corporate sustainability report?
+
+**RILEY:** Almost certainly not the community leading the work, unless there's an explicit agreement in place. And those agreements are hard to negotiate without dedicated legal and technical capacity — which most Nations don't have on a standing basis.
+
+**CASEY:** The gap isn't technology. It's capacity for negotiation, auditing, and enforcement. What I want to push on is whether the "Indigenous-led delivery" model is actually building toward the deeper shift, or whether it's a comfortable plateau.
+
+**RILEY:** The honest answer is probably: it depends on whether there's a succession plan embedded in the model. Denisiqi Services Society — over twenty years of operation. That's long enough to have built institutional knowledge that stays with the Tŝilhqot'in and Ulkatcho communities, developed internal expertise, trained successive cohorts of workers. That's different from a project-based delivery contract that ends when the grant cycle does.
+
+**CASEY:** Twenty years of operational continuity is real. But Denisiqi exists because those communities insisted on building it — not because the provincial funding model was designed to produce it. The funding model would have been equally happy funding a non-Indigenous service provider. The governance question — who decided this would be community-controlled — preceded the funding. Most new projects get that sequencing backward.
+
+**RILEY:** So the design principle you're landing on is: governance authority has to be established before the program launches, not negotiated into it afterward.
+
+**CASEY:** Simpler than that. Who can say no? If the answer is always the province or the federal funder, the lead is cosmetic.
+
+**RILEY:** [pause:500] That applies directly to Palmer Lake. Post-wildfire forest rehabilitation is exactly where the province has urgent operational needs — get the slopes stabilized, get tree cover established, reduce erosion risk. That urgency creates the conditions for a partnership that looks like Indigenous leadership while the substantive decisions about species selection, timeline, and endpoints remain with the Ministry of Forests. And look, we should be transparent: we haven't spoken with anyone from the Nations involved in the Palmer Lake work. What the Tribune reported is that the project is creating opportunities — not the full governance structure behind it.
+
+**CASEY:** The article is positive, and that's probably accurate. The work is real, the employment is real. But positive outcomes don't tell you who held the authority. That's the question worth asking — at the project level, at the policy level, at the next public comment period for any land-use decision in this region.
+
+**RILEY:** The Animikii framing from the roundup — place-specific relational knowledge versus AI trained on extracted data — is useful here in a way that isn't just rhetorical. The species knowledge embedded in Indigenous forest management isn't held in a database. It's held in relationships: with specific places, specific people, specific seasonal practices. You can't pull that into a provincial forestry information system without losing what makes it useful. Which means any meaningful integration requires the knowledge-holders to remain in a position of authority — not as consultants who inform the system, but as the people who decide what the system does with what it's told.
+
+**CASEY:** And yet the pressure is running the other direction. Wildfire rehabilitation timelines are short. Ministry of Forests has operational targets. The practical dynamic is: "we need this done by fall, here's the scope, can your Nation crew do it?" That's not a governance conversation. That's a procurement conversation wearing different clothes.
+
+**RILEY:** Which brings me to what I think is the more generative question. The Palmer Lake project is an opening. What would it look like for the knowledge generated in that rehabilitation work to be held by the Nation in a way that creates ongoing authority — not just a record of good work done?
+
+**CASEY:** A few things, actually. Nations that own the data from their own land — from forest monitoring, from environmental assessments, from rehabilitation projects — can eventually charge for access to it. That's a revenue model, not a grant model. Indigenous-designed certification standards for land rehabilitation work could create a situation where industry, government, and insurers need to pay for that expertise rather than extract it for free. Neither of those requires waiting for a funding announcement.
+
+**RILEY:** The data revenue model requires the governance piece to come first — you can't charge for access to data you don't have legal authority to control. The certification model is more interesting to me. If Tŝilhqot'in ecological knowledge becomes the standard against which post-wildfire rehabilitation in Tŝilhqot'in territory is measured, then anyone operating in that territory needs to engage with Tŝilhqot'in governance — not as a courtesy, as a regulatory necessity.
+
+**CASEY:** Tŝilhqot'in title is already established law. The question is whether Nations have the capacity to operationalize it as a standards framework rather than only as a veto. A veto is defensive. A standard is generative. The difference is whether the community has the legal and technical staff to write the standard before the next project proposal lands on the table.
+
+**RILEY:** And building that standing capacity is an argument for funding governance infrastructure as an ongoing operational expense — not a project line item that evaporates when the contract ends. The treaty commemoration journeys we covered today point at the same thing from a different angle. The students walking 140 kilometres, paddling 348 — the knowledge they're building doesn't require a grant to exist. It requires land access and community continuity. Those are governance questions.
+
+**CASEY:** The M&A governance piece in today's articles — ostensibly about corporate AI integration — has a line worth borrowing. It says nine in ten companies now use AI, but mergers keep revealing what's broken underneath. Swap in "major project review" and you've described the cultural and social losses piece from Policy Options. Pressure points are where governance gaps become visible. In the Cariboo, those pressure points are coming faster — wildfire rehabilitation, mining proposals, critical minerals. Each one stress-tests whether "Indigenous-led" means meaningful governance or branded participation, depending on what was built before the pressure hit.
+
+**RILEY:** So the question to bring to whoever's running the Palmer Lake project, to the Cariboo Regional District, to anyone on a forest advisory board in this region: who holds the data, who set the standards, and who decides when the work is done? Not "did you consult Indigenous communities?" Those are different questions — and they're the ones that reveal whether the lead is structural or cosmetic. That's genuinely what I want to walk away from this conversation believing is possible to change.
+
+**CASEY:** I'll land somewhere more provisional. The possibility is real. The conditions for it are mostly not in place yet — and the optimism about "opening moves" has a tendency to become an excuse for not tracking whether the follow-through actually happens. So yes, raise those questions at the next town hall. And then show up to the one after that to see how they were answered. If you're working in this space, or from one of the Nations we've discussed and think we missed something, reach out — feedback at cariboo signals dot c-a. We'd rather get it right than get it tidy.
+
+**RILEY:** Agreed on all of that. Thanks for spending part of your Thursday with us — enjoy the sunshine.
+
+**CASEY:** Take care out there.
