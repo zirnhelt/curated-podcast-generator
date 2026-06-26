@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] Half of workers worry AI will still take their j",
       "[Al Jazeera English] Kenyan graduates turn to AI tools for f",
       "[Business Insider] Meet the top OpenAI researcher trying to ",
       "[TechRadar] Fortinet firewalls hit by huge password-stealing",
@@ -10,7 +9,8 @@
       "[Engadget] A24 takes on Google money to build AI tools",
       "[Toms Guide] Turns out AI was destroying my phone\u2019s battery ",
       "[ScienceAlert] Traces of Alien Technology Could Be Hidden in",
-      "[TechRadar] AI exposes the M&A integration gaps that governa"
+      "[TechRadar] AI exposes the M&A integration gaps that governa",
+      "[STAT News] STAT+: AI wades into a vexing medical mystery: W"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -75,9 +75,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-23",
-        "clue": "evidence-bar:x \u2014 Conceded municipal capacity questions are solvable without provincial intervention",
-        "occurrences": 1
+        "date": "2026-06-26",
+        "clue": "evidence-bar:x \u2014 Conceded data-exists-in-portals gap isn't purely technical",
+        "occurrences": 2
       },
       {
         "date": "2026-06-05",
@@ -122,6 +122,11 @@
       {
         "date": "2026-06-24",
         "clue": "structural-lens:+[signal] \u2014 Regulation as necessary, not sufficient condition.",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-06-26",
+        "clue": "structural-lens:+ \u2014 Pushed Casey toward naming resourcing as solvable problem",
         "occurrences": 1
       }
     ],
@@ -349,8 +354,13 @@
         "occurrences": 1
       },
       {
-        "date": "2026-06-25",
-        "clue": "structural-lens:+ \u2014 Moved from naming gaps to operationalizing them (standards vs veto).",
+        "date": "2026-06-26",
+        "clue": "structural-lens:+ \u2014 Deepened critique from tech-failure to governance-extraction problem",
+        "occurrences": 2
+      },
+      {
+        "date": "2026-06-26",
+        "clue": "funding-risk:~ \u2014 Shifted from dismissing solutions to naming resource requirement honestly",
         "occurrences": 1
       }
     ],
