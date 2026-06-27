@@ -1757,8 +1757,8 @@
       ],
       "theme_tag": "Cariboo Local Affairs",
       "theme_day": 5,
-      "status": "pending",
-      "used_at": null
+      "status": "used",
+      "used_at": "2026-06-27"
     },
     {
       "id": "8db2fbe8",
@@ -1828,8 +1828,8 @@
       ],
       "theme_tag": "Cariboo Local Affairs",
       "theme_day": 5,
-      "status": "pending",
-      "used_at": null
+      "status": "used",
+      "used_at": "2026-06-27"
     }
   ]
 }

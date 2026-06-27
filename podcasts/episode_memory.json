@@ -1,21 +1,4 @@
 {
-  "2026-06-06": {
-    "timestamp": 1780734698.009135,
-    "topics": [
-      "[100 Mile Free Press] Stunting driver pulled over, ticketed ",
-      "[Williams Lake Tribune] Openly transgender woman announces i",
-      "[Williams Lake Tribune] Williams Lake council backs forum on",
-      "[Williams Lake Tribune] BC Chamber of Commerce endorses crim",
-      "[Williams Lake Tribune] BC Hydro relocates two Williams Lake",
-      "[My Cariboo Now] Contractor set to begin paving between Rose",
-      "[My Cariboo Now] Get active, reduce Greenhouse gas emissions",
-      "[My Cariboo Now] Prince George-North Cariboo MLA applauds hi"
-    ],
-    "themes": [
-      "rural development"
-    ],
-    "date": "2026-06-06"
-  },
   "2026-06-07": {
     "timestamp": 1780822372.121896,
     "topics": [
@@ -401,5 +384,23 @@
       "Indigenous tech"
     ],
     "date": "2026-06-26"
+  },
+  "2026-06-27": {
+    "timestamp": 1782555772.843258,
+    "topics": [
+      "[BC Gov News] Connecting more people in crisis to supports",
+      "[ScienceDaily] Major review finds vaping likely causes lung ",
+      "[BC Gov News] Inviting residents of 100 Mile House to commen",
+      "[The Guardian Global Development] Outrage as woman jailed fo",
+      "[CBC Arts] Is your name Janice? Drake would like to apologiz",
+      "[100 Mile Free Press] ORV use on 100 Mile House roads subjec",
+      "[Williams Lake Tribune] Williams Lake mayor to seek another ",
+      "[Williams Lake Tribune] Williams Lake urged to expand suppor"
+    ],
+    "themes": [
+      "rural development",
+      "connectivity"
+    ],
+    "date": "2026-06-27"
   }
 }
