@@ -1809,6 +1809,27 @@
       "theme_day": 0,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "58872829",
+      "type": "feedback",
+      "message_id": "<6a3f66e0b263e_5ac4416bc014975@a48252a3c1cc435d85363efce1c7f012-2513319767.mail>",
+      "from_address": "s***@canadaland.com",
+      "subject": "Your subscription to Canadaland is about to end",
+      "received_at": "2026-06-27T06:00:00+00:00",
+      "body_text": "This is a friendly reminder that your Canadaland subscription will end in 3 days as requested. To continue to enjoy your ad-free listening, premium content, and Discord community access, you can undo your cancellation by managing your subscription. Manage subscription ( https://canadalandnetwork.supercast.com/subscriber_v2/ ) Contact: support@canadaland.com | \u00a9 Canadaland Powered by Supercast ( https://supercast.com ) | Manage your account ( https://canadalandnetwork.supercast.com )",
+      "extracted_urls": [
+        "https://canadalandnetwork.supercast.com/subscriber_v2/",
+        "https://supercast.com",
+        "https://canadalandnetwork.supercast.com",
+        "https://supercast-storage-assets.b-cdn.net/landingpage/766/logo/2b852da86ba63a85cb1c146dba271671.png?height=75",
+        "https://app.supercast.com/assets/icon_red-7c2de289.png",
+        "https://ea.pstmrk.it/open?m=v3_1.Nk6BVhc61s0qN6hqAuJ1vw.tWLrzvzM0MRc0fryinCwQAqAEcU2Ioa30apv_tKw2ViNnP4VfZv3xirCUT2orj0T1FuVaLlR0iIj1MKEss_ysHdixPR5mfUfiPd7o_QxwxoUE0D6GiJoccvU8CmWNQl3nl3-i-2HB-iQMLkQlyG2c_DpZjLly6QWwqKmbdfz3LafsHXGdcFn9UE-Cl4APvqLuZ12M0qSFMew4fxu1VJAL-4Z7SYRnQ3qNDwFctFWXQV8UXs9GVGJl5SlyAjFNgW8q92HNteVM4iBZ8ouVHPfmsj_DGKUNqavZ1CvCwKbgpafXtH2eqaknfSD6rPcVXwZVXxvpPCZ_i5xgajIopaskFEgP50vm7DqVxl3opEwuOD5xUP7f4Y9lpbfYI42oLfyzmJ4xs48UZGTwIggaZjK62qjplqaOoTAdWOo5NX_N4ECW_zmCfeLBgaYmctWRSHD3PASm4dwc6VSYcIG-zzTTOQCAMuAlWsSCvZsARZebV3R-n4pup-tS9Ht_JFdAZogvYSkjOI2x2_Ox2JeFQqNzlK4LURRQ6LMAtdsxf73mkBCze9sI5JctZYAkAgO0RcA"
+      ],
+      "theme_tag": "Cariboo Local Affairs",
+      "theme_day": 5,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
