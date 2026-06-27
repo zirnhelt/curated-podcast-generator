@@ -1880,6 +1880,25 @@
       "theme_day": 0,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "609a8ef9",
+      "type": "feedback",
+      "message_id": "<DM4PR18MB43507D15268AF5CEC579D5B1AFEA2@DM4PR18MB4350.namprd18.prod.outlook.com>",
+      "from_address": "B***@goeasy.com",
+      "subject": "Re: easyfinancial -- Application Status",
+      "received_at": "2026-06-27T16:11:04+00:00",
+      "body_text": "Thank you for letting me know. I just had the title pulled on my end, and there seems to be a builder's lien on the house. What happened there, and how much is the lien for? I will need to pay that out with the proceeds of the loan potentially, to proceed. The title does not show me the most accurate information regarding that. Regards, Felipe easyfinancial | goeasy Ltd. Branch 2129 1185 Prosperity Way Unit 430, Williams Lake, BC, V2G 0A6 e. Branch2129@goeasy.com | t. (778) 799-2000 goeasy.com |",
+      "extracted_urls": [
+        "https://www.goeasy.com/",
+        "https://www.easyfinancial.com/",
+        "https://easyhome.ca/",
+        "http://www.goeasy.com/unsubscribe"
+      ],
+      "theme_tag": "Cariboo Local Affairs",
+      "theme_day": 5,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
