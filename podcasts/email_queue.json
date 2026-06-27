@@ -1830,6 +1830,56 @@
       "theme_day": 5,
       "status": "used",
       "used_at": "2026-06-27"
+    },
+    {
+      "id": "4a93a26c",
+      "type": "newsletter",
+      "message_id": "<20260627.140501.6712e057@mta12>",
+      "from_address": "f***@mail.beehiiv.com",
+      "subject": "Catch Me If You Coin",
+      "received_at": "2026-06-27T14:05:01+00:00",
+      "body_text": "View image: (https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/7b1c85f4-b8e9-4a4c-b058-5739be376865/Truck_Flipped_Coins.jpg?t=1782492765",
+      "extracted_urls": [
+        "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/7b1c85f4-b8e9-4a4c-b058-5739be376865/Truck_Flipped_Coins.jpg?t=1782492765",
+        "https://todmaffin.com/",
+        "https://bsky.app/profile/todmaffin.com",
+        "https://beacons.ai/todmaffin/socials",
+        "https://www.youtube.com/todmaffinvideo/?sub_confirmation=1",
+        "https://discord.todmaffin.com",
+        "https://www.mtl.org/en",
+        "https://www.mint.ca/en/discover/canadian-circulation/2-dollars?srsltid=AfmBOoqVx8y3PaMzi7wocZc6KKCv4iUPEVkbXcFEj-KLyXh0XjMshS6k",
+        "https://www.cbc.ca/archives/the-day-thieves-drove-off-with-1-5-million-brand-new-toonies-1.5647971",
+        "https://www.mint.ca/en?rcmeid=Agency_PBM_SEM_898758681_46497371498_309768252857&gclsrc=aw.ds&gad_source=1&gad_campaignid=898758681&gbraid=0AAAAAD6Jyyj3cB2b6pIdiUU95MUW9nScX&gclid=Cj0KCQjwxvjRBhC2ARIsAI7KJa3AcfQe6IZYSlEGJcI1Bz9j05iECFN6weM64zZaFojTw4vRbRA30FAaAoJnEALw_wcB"
+      ],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
+    },
+    {
+      "id": "b941c921",
+      "type": "newsletter",
+      "message_id": "<1114456774.671961.1782568869043@ip-172-22-1-42.ca-central-1.compute.internal>",
+      "from_address": "c***@openmedia.org",
+      "subject": "Did gov lie to us about Rogers-Shaw? \ud83e\udd14",
+      "received_at": "2026-06-27T10:01:09-04:00",
+      "body_text": "Tell ISED to hold Rogers accountable. Hi Erich,Roger is flouting the rules in real time! Just days after the CRTC implemented new rules banning telecoms from charging extra fees to activate, change or",
+      "extracted_urls": [
+        "https://action.openmedia.org/s/9619097/BXS744BGN",
+        "https://action.openmedia.org/s/9619098/BXS744BGN",
+        "https://action.openmedia.org/s/9619099/BXS744BGN",
+        "https://action.openmedia.org/s/9619100/BXS744BGN",
+        "https://action.openmedia.org/s/9619101/BXS744BGN",
+        "https://www.cbc.ca/news/business/bell-telus-fees-rules-9.7236312",
+        "https://www.castanet.net/news/Business/620292/CRTC-issues-warning-to-Rogers-over-three-fees-after-ban-takes-effect",
+        "https://mobilesyrup.com/2026/06/19/rogers-bell-telus-tell-crtc-keep-charging-fees/",
+        "https://www.cbc.ca/news/business/rogers-shaw-approval-1.6797175",
+        "https://www.cbc.ca/news/business/rogers-communications-staff-buyouts-9.7178929"
+      ],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
