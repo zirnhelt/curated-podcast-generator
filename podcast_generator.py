@@ -146,6 +146,10 @@ SUMMARY_MODEL = os.getenv("CLAUDE_SUMMARY_MODEL", "claude-haiku-4-5-20251001")
 # than this many source articles.  Thin sourcing means the generator had more
 # creative latitude, so there are more potential hallucinations to catch.
 OPUS_REVIEW_ARTICLE_THRESHOLD = int(os.getenv("OPUS_REVIEW_ARTICLE_THRESHOLD", "3"))
+# Threshold: escalate polish+factcheck to Opus when raw pattern hits exceed this value.
+# High pattern counts on the pre-polish script mean the generator made multiple stylistic
+# errors, making a more capable polish model worth the cost.
+OPUS_QUALITY_HIT_THRESHOLD = int(os.getenv("OPUS_QUALITY_HIT_THRESHOLD", "3"))
 
 # Saturday (Cariboo Local Affairs) runs a deeper, longer episode.
 SATURDAY_DEEP_DIVE_COUNT = 5   # vs. standard 3
@@ -153,19 +157,25 @@ SATURDAY_NEWS_ROUNDUP_COUNT = 15  # vs. standard 12
 
 # Tracks which review model was actually used this run; read by citation/description generators.
 _review_model_used = None
+# Pre-polish quality score set in main() before the polish call; read by select_review_model.
+_raw_quality_score = None
 
 
 def select_review_model(deep_dive_articles):
     """Return the model to use for the polish+factcheck pass.
 
-    Escalates to Opus when source coverage is thin (few deep-dive articles)
-    because less verified material means the script generator relied more on
-    training-data recall, increasing hallucination risk.
+    Escalates to Opus when either signal indicates the polish pass needs more
+    capability:
+      - Thin sourcing (few deep-dive articles): less verified material means the
+        generator relied more on training-data recall, increasing hallucination risk.
+      - High raw quality hits: the pre-polish script had many AI speech pattern
+        violations, meaning the polish model has more stylistic work to do.
 
     Override behaviour via environment variables:
-      PODCAST_FORCE_OPUS_REVIEW=1   — always use Opus
-      PODCAST_FORCE_OPUS_REVIEW=0   — always use Sonnet (POLISH_MODEL)
-      OPUS_REVIEW_ARTICLE_THRESHOLD — article count below which Opus is used
+      PODCAST_FORCE_OPUS_REVIEW=1     — always use Opus
+      PODCAST_FORCE_OPUS_REVIEW=0     — always use Sonnet (POLISH_MODEL)
+      OPUS_REVIEW_ARTICLE_THRESHOLD   — article count below which Opus is used
+      OPUS_QUALITY_HIT_THRESHOLD      — pattern hit count above which Opus is used
     """
     global _review_model_used
     force = os.getenv("PODCAST_FORCE_OPUS_REVIEW")
@@ -179,15 +189,26 @@ def select_review_model(deep_dive_articles):
         return POLISH_MODEL
 
     article_count = len(deep_dive_articles) if deep_dive_articles else 0
-    if article_count < OPUS_REVIEW_ARTICLE_THRESHOLD:
-        print(
-            f"   Review model: {OPUS_REVIEW_MODEL} "
-            f"(thin sourcing: {article_count} deep-dive articles < threshold {OPUS_REVIEW_ARTICLE_THRESHOLD})"
-        )
+    thin_sourcing = article_count < OPUS_REVIEW_ARTICLE_THRESHOLD
+
+    quality_hits = _raw_quality_score.get("total_hits", 0) if _raw_quality_score else 0
+    poor_quality = quality_hits > OPUS_QUALITY_HIT_THRESHOLD
+
+    if thin_sourcing or poor_quality:
+        reasons = []
+        if thin_sourcing:
+            reasons.append(
+                f"thin sourcing: {article_count} deep-dive articles < threshold {OPUS_REVIEW_ARTICLE_THRESHOLD}"
+            )
+        if poor_quality:
+            reasons.append(
+                f"quality hits: {quality_hits} > threshold {OPUS_QUALITY_HIT_THRESHOLD}"
+            )
+        print(f"   Review model: {OPUS_REVIEW_MODEL} ({', '.join(reasons)})")
         _review_model_used = OPUS_REVIEW_MODEL
         return OPUS_REVIEW_MODEL
 
-    print(f"   Review model: {POLISH_MODEL} ({article_count} deep-dive articles, threshold met)")
+    print(f"   Review model: {POLISH_MODEL} ({article_count} articles, {quality_hits} quality hits)")
     _review_model_used = POLISH_MODEL
     return POLISH_MODEL
 
@@ -3156,6 +3177,14 @@ def score_script(script_text):
         hits[category] = count
         total += count
 
+    # ponytail: last-350-word window catches closing repetition without scanning the full script.
+    tail = " ".join(script_text.split()[-350:])
+    url_count = len(_re.findall(
+        r'cariboo signals dot c[\-\s]?a|cariboosignals\.ca', tail, _re.IGNORECASE
+    ))
+    hits["closing_url_repetition"] = max(0, url_count - 1)
+    total += hits["closing_url_repetition"]
+
     # Voice length ratio (Casey avg / Riley avg) in Deep Dive only
     voice_ratio = None
     dd_start = script_text.find("**DEEP DIVE:")
@@ -5617,6 +5646,12 @@ def main():
         if not script:
             print("❌ Failed to generate script. Exiting.")
             sys.exit(1)
+
+        # Score the raw script so select_review_model can factor quality into model choice.
+        global _raw_quality_score
+        _raw_quality_score = score_script(script)
+        print(f"   Pre-polish quality scan: {_raw_quality_score['total_hits']} pattern hits "
+              f"(closing URL repeats: {_raw_quality_score['pattern_hits'].get('closing_url_repetition', 0)})")
 
         # Post-processing: polish + fact-check + debate summary
         # Try batch API first (50% cost discount), fall back to the agentic
