@@ -75,7 +75,19 @@
       "crash kills",
       "deadly crash",
       "deadly accident",
-      "deadly fire"
+      "deadly fire",
+      "died in",
+      "died of",
+      "dies in",
+      "man dies",
+      "woman dies",
+      "person dies",
+      "teen dies",
+      "child dies",
+      "resident dies",
+      "worker dies",
+      "dies following",
+      "died following"
     ],
     "theme_relevance_threshold": 3
   },
