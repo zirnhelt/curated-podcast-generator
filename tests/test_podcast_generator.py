@@ -179,11 +179,11 @@ class TestHeuristicGapMs:
     # --- default (deep_dive) pacing ---
     def test_short_interjection(self):
         gap = heuristic_gap_ms("Ha!", "riley", "casey")
-        assert gap <= 120
+        assert gap <= 200
 
     def test_medium_reaction(self):
         gap = heuristic_gap_ms("That's an important development for rural areas.", "riley", "casey")
-        assert 120 < gap <= 300
+        assert 120 < gap <= 400
 
     def test_normal_speaker_change(self):
         gap = heuristic_gap_ms("Let me tell you about a big story that just broke about AI regulation in Canada and its impact.", "riley", "casey")

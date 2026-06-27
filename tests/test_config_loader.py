@@ -27,8 +27,8 @@ class TestConfigLoader:
         hosts = load_hosts_config()
         assert "riley" in hosts
         assert "casey" in hosts
-        assert hosts["riley"]["voice"] == "marin"
-        assert hosts["casey"]["voice"] == "verse"
+        assert hosts["riley"]["voice"] == "nova"
+        assert hosts["casey"]["voice"] == "echo"
 
     def test_load_themes_config(self):
         themes = load_themes_config()
@@ -54,8 +54,8 @@ class TestConfigLoader:
         assert "template" in prompts["script_generation"]
 
     def test_get_voice_for_host(self):
-        assert get_voice_for_host("riley") == "marin"
-        assert get_voice_for_host("casey") == "verse"
+        assert get_voice_for_host("riley") == "nova"
+        assert get_voice_for_host("casey") == "echo"
 
     def test_get_theme_for_day(self):
         theme = get_theme_for_day(0)
