@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Curated Podcast Generator - Cariboo Tech Progress Edition with Music & Memory
+Curated Podcast Generator — daily episode pipeline.
 Converts RSS feed scoring data into conversational podcast scripts and generates audio with music.
 All text content loaded from config/ directory for easy updates.
 """
@@ -30,10 +30,11 @@ from config_loader import (
     load_prompts_config,
     load_blocklist,
     load_disciplines_config,
+    load_bespoke_hosts,
     get_voice_for_host,
     get_voice_instructions_for_host,
     get_speed_for_host,
-    get_theme_for_day
+    get_theme_for_day,
 )
 from azure_tts import (
     generate_azure_tts_for_section,
@@ -109,9 +110,18 @@ def api_retry(func, max_retries=3, base_delay=2):
             else:
                 raise
 
+
+def _log_api_call(service: str, unit: str, count: int) -> None:
+    """Log an API call for cost metering. Always runs; detail gated on PODCAST_DEBUG_AGENT."""
+    ts = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    print(f"  [api] {ts} service={service} {unit}={count}")
+
 # Configuration
 SCRIPT_DIR = Path(__file__).parent
-PODCASTS_DIR = SCRIPT_DIR / "podcasts"
+# ponytail: MEMORY_DIR lets a future multi-tenant deployment point each show at
+# its own state directory without changing any other code.
+_MEMORY_BASE = Path(os.environ.get("MEMORY_DIR", SCRIPT_DIR))
+PODCASTS_DIR = _MEMORY_BASE / "podcasts"
 PODCASTS_DIR.mkdir(exist_ok=True)
 SUPER_RSS_BASE_URL = "https://zirnhelt.github.io/super-rss-feed"
 SCORING_CACHE_URL = f"{SUPER_RSS_BASE_URL}/scored_articles_cache.json"
@@ -423,23 +433,19 @@ MEMORY_RETENTION_DAYS = 21
 DEBATE_MEMORY_RETENTION_DAYS = 90
 CTA_MEMORY_RETENTION_DAYS = 365
 
-# Host personality evolution settings
-# Anchors are distilled from bespoke_hosts.json — the richer character definitions
-# used in long-form episodes. These seed the daily show's foundational traits.
-_BESPOKE_ANCHORS = {
-    'riley': [
-        "technology_optimist_empiricist",
-        "tracks record of predictions",
-        "holds self to same evidentiary standard",
-        "concedes when evidence is compelling",
-    ],
-    'casey': [
-        "community_skeptic_systems_thinker",
-        "follows incentives and power structures",
-        "situates claims in historical context",
-        "demands full picture — not just press releases",
-    ],
-}
+# Host personality evolution settings — seeded from bespoke_hosts.json so that
+# the daily show inherits the richer character definitions used in long-form episodes.
+def _build_bespoke_anchors() -> dict:
+    hosts = load_bespoke_hosts()
+    return {
+        key: [
+            host.get("debate_stance", ""),
+            host.get("debate_style", ""),
+        ]
+        for key, host in hosts.items()
+    }
+
+_BESPOKE_ANCHORS = _build_bespoke_anchors()
 _CLUE_PROMOTION_THRESHOLD = 3  # occurrences before a signal becomes a core memory
 _MAX_PERSONALITY_CLUES = 30    # rolling buffer depth per host
 
@@ -694,8 +700,9 @@ def _claude_theme_match(text: str, themes_config: dict) -> tuple:
         f"{day}: {theme['name']} — {theme['description']}"
         for day, theme in sorted(themes_config.items(), key=lambda x: int(x[0]))
     )
+    show_title = CONFIG['podcast'].get('title', 'the podcast')
     prompt = (
-        "You are a theme classifier for a regional podcast called Cariboo Signals.\n\n"
+        f"You are a theme classifier for a regional podcast called {show_title}.\n\n"
         "Given the content below, which of the 7 podcast themes is the BEST fit?\n"
         "Reply with ONLY the theme day number (0–6), or 'none' if it truly fits none.\n\n"
         f"THEMES:\n{theme_lines}\n\n"
@@ -707,6 +714,7 @@ def _claude_theme_match(text: str, themes_config: dict) -> tuple:
             max_tokens=10,
             messages=[{"role": "user", "content": prompt}]
         ))
+        _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
         raw = response.content[0].text.strip().lower()
         if raw == "none":
             return None, None
@@ -1141,6 +1149,7 @@ def fact_check_deep_dive(script, news_articles, deep_dive_articles):
             max_tokens=8000,
             messages=[{"role": "user", "content": prompt}]
         ))
+        _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
 
         checked_script = response.content[0].text
 
@@ -1217,6 +1226,7 @@ def _assess_deep_dive_for_enrichment(deep_dive_articles, theme_name, client):
             max_tokens=300,
             messages=[{"role": "user", "content": prompt}]
         ))
+        _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
         raw = response.content[0].text.strip()
         # Strip markdown code fences if the model adds them anyway
         if raw.startswith("```"):
@@ -1341,6 +1351,7 @@ def _run_agentic_loop(client, model, system_prompt, user_content, tools, tool_ex
             print(f"  ⚠️ Agentic loop error: {e}")
             return None
 
+        _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
         if response.stop_reason != "tool_use":
             text = "".join(block.text for block in response.content if block.type == "text")
             return text or None
@@ -1441,6 +1452,8 @@ def research_deep_dive_with_agent(deep_dive_articles, theme_name, client):
 
     system_prompt = (
         f"You are preparing research for a podcast deep dive on the theme \"{theme_name}\".\n\n"
+        "Never fabricate organization names, person names, or event details — "
+        "only reference entities found in the source articles or verified by your web searches.\n\n"
         "First, decide whether live web research would meaningfully enrich this deep dive. "
         "Research is warranted when:\n"
         "1. There are likely recent developments, breaking news, or rapidly evolving facts\n"
@@ -1682,6 +1695,7 @@ def _resolve_script_questions_with_brave(script, brave_key, client):
             max_tokens=300,
             messages=[{"role": "user", "content": detect_prompt}]
         ))
+        _log_api_call("claude", "input_tokens", getattr(getattr(resp, "usage", None), "input_tokens", 0))
         raw = resp.content[0].text.strip()
         m = re.search(r'\[.*?\]', raw, re.DOTALL)
         if not m:
@@ -2262,6 +2276,7 @@ def extract_debate_summary(script, theme_name):
             max_tokens=1000,
             messages=[{"role": "user", "content": prompt}]
         ))
+        _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
         text = response.content[0].text.strip()
         # Strip markdown code fences if present
         if text.startswith("```"):
@@ -2352,6 +2367,7 @@ def extract_personality_clues(script):
             max_tokens=200,
             messages=[{"role": "user", "content": prompt}]
         ))
+        _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
         text = response.content[0].text.strip()
         if text.startswith("```"):
             text = text.split("\n", 1)[1] if "\n" in text else text[3:]
@@ -3113,7 +3129,7 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
         f"Automation: {credits['automation']}<br>"
         f"Hosting: {credits['hosting']}<br>"
         f"Producer: {credits['producer']}<br>"
-        f"Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. "
+        f"Community Engagement: {CONFIG['podcast'].get('title', 'This show')} covers Secwépemc, Tŝilhqot'in, and Dakelh territories. "
         f"We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>"
         f"&#169; 2026 {credits['copyright_holder']}. "
         f"Licensed under <a href=\"{credits['license_url']}\">{credits['license']}</a>.</p>"
@@ -3183,9 +3199,9 @@ def score_script(script_text):
 
     # ponytail: last-350-word window catches closing repetition without scanning the full script.
     tail = " ".join(script_text.split()[-350:])
-    url_count = len(_re.findall(
-        r'cariboo signals dot c[\-\s]?a|cariboosignals\.ca', tail, _re.IGNORECASE
-    ))
+    _show_url_raw = CONFIG['podcast'].get('url', '').rstrip('/').replace('https://', '').replace('http://', '')
+    _show_url_pat = _re.escape(_show_url_raw) if _show_url_raw else r'(?!x)x'
+    url_count = len(_re.findall(_show_url_pat, tail, _re.IGNORECASE))
     hits["closing_url_repetition"] = max(0, url_count - 1)
     total += hits["closing_url_repetition"]
 
@@ -3727,6 +3743,7 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
                 messages=[{"role": "user", "content": user_prompt}]
             ))
 
+        _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
         script = response.content[0].text
         print("✅ Generated podcast script successfully!")
         return script
@@ -4098,6 +4115,7 @@ def generate_tts_for_segment(text, speaker, output_file):
         input=clean,
         speed=speed
     ), max_retries=2, base_delay=1)
+    _log_api_call("openai-tts", "chars", len(clean))
 
     with open(output_file, "wb") as f:
         f.write(response.content)
@@ -4130,15 +4148,19 @@ def _generate_host_line(context: str, host: str) -> str:
 
     hosts_config = CONFIG.get('hosts', {})
     host_cfg = hosts_config.get(host, {})
-    bio = host_cfg.get('full_bio', f"{host}, a Cariboo Signals radio host")
+    show_title = CONFIG['podcast'].get('title', 'the podcast')
+    show_url = CONFIG['podcast'].get('url', '')
+    bio = host_cfg.get('full_bio', f"{host}, a {show_title} radio host")
 
     prompt = (
         f"You are writing a short spoken line for {host_cfg.get('name', host.title())}, "
-        f"co-host of Cariboo Signals on cariboosignals.ca.\n\n"
+        f"co-host of {show_title}{f' on {show_url}' if show_url else ''}.\n\n"
         f"Host personality: {bio}\n\n"
         "Speak naturally — like a real radio host, not a newsreader. "
         "No emojis, no stage directions, no quotation marks. "
         "Just the words they would say on air. Under 3 sentences.\n\n"
+        "Never fabricate organization names, person names, or event details — "
+        "only reference entities found in the provided context.\n\n"
         f"Context: {context}"
     )
     try:
@@ -4147,6 +4169,7 @@ def _generate_host_line(context: str, host: str) -> str:
             max_tokens=200,
             messages=[{"role": "user", "content": prompt}],
         ))
+        _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
         return response.content[0].text.strip()
     except Exception as exc:
         print(f"  ⚠️  Claude host-line generation failed: {exc}")
@@ -4155,7 +4178,7 @@ def _generate_host_line(context: str, host: str) -> str:
 
 def _append_comparison_log(entry):
     """Append a TTS comparison entry to podcasts/tts_comparison_log.json."""
-    log_path = Path("podcasts") / "tts_comparison_log.json"
+    log_path = PODCASTS_DIR / "tts_comparison_log.json"
     try:
         existing = json.loads(log_path.read_text()) if log_path.exists() else []
         existing.append(entry)
@@ -4214,10 +4237,11 @@ def _generate_parallel_azure_audio(segments, base_output_filename, theme_name=No
                 combined += section_gap + ambient_transition + section_gap
             _render("deep_dive")
 
+            _pc = CONFIG['podcast']
             credits_text = (
-                "Cariboo Signals is produced with Claude by Anthropic for scripting, "
+                f"{_pc.get('title', 'This show')} is produced with Claude by Anthropic for scripting, "
                 "Azure Neural TTS, Ava and Andrew for audio synthesis, and Suno for our theme music. "
-                "Find us at cariboosignals.ca."
+                f"Find us at {_pc.get('url', '')}."
             )
             try:
                 credits_wav = os.path.join(tmpdir, "credits.wav")
@@ -4384,9 +4408,10 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
 
             # Thursday: brief spoken indigenous community engagement acknowledgment before credits
             if get_pacific_now().weekday() == 3:
+                _show_name = CONFIG['podcast'].get('title', 'The show')
                 c2_context = (
                     "Casey briefly and honestly notes — in one short, natural sentence — "
-                    "that Cariboo Signals hasn't spoken directly with First Nations "
+                    f"that {_show_name} hasn't spoken directly with First Nations "
                     "communications staff for today's episode, and that they'd welcome "
                     "that conversation. Matter-of-fact, not performative. "
                     "This is a genuine aside as the episode winds down, not a formal disclaimer."
@@ -4431,12 +4456,14 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
                 " Weekend closing music via Jamendo under Creative Commons."
                 if weekend_closing is not None else ""
             )
+            _credits_cfg = CONFIG['credits']
+            _pc_cfg = CONFIG['podcast']
             credits_text = (
-                f"Cariboo Signals is produced by Erich Zirnhelt — "
+                f"{_pc_cfg.get('title', 'This show')} is produced by {_credits_cfg.get('producer', _pc_cfg.get('author', ''))} — "
                 f"scripts by Claude, audio by {tts_credit}, theme by Suno."
                 f"{brave_spoken}{jamendo_spoken}"
                 f" Automated with GitHub Actions, hosted on Cloudflare Pages."
-                f" Find us at cariboosignals.ca."
+                f" Find us at {_pc_cfg.get('url', '')}."
             )
             try:
                 if USE_AZURE_TTS:
@@ -4481,12 +4508,14 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
                 )
 
                 # Host: farewell + song introduction (song ID comes before the music)
+                _show_url = CONFIG['podcast'].get('url', '')
+                _show_title = CONFIG['podcast'].get('title', 'the show')
                 closing_context = (
-                    f"{closing_host.title()} warmly signs off the {closing_day_name} Cariboo Signals episode, "
+                    f"{closing_host.title()} warmly signs off the {closing_day_name} {_show_title} episode, "
                     f"thanks listeners, and introduces the closing song: "
                     f"'{track_name}' by {track_artist}{genres_str}. "
                     f"The farewell and song description are woven together naturally — "
-                    f"one or two sentences, mentioning cariboosignals.ca."
+                    f"one or two sentences{f', mentioning {_show_url}' if _show_url else ''}."
                 )
                 closing_text = _generate_host_line(closing_context, closing_host)
                 if closing_text:

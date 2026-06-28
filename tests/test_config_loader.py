@@ -10,6 +10,9 @@ from config_loader import (
     load_prompts_config,
     load_psa_organizations,
     load_psa_events,
+    load_bespoke_hosts,
+    load_bespoke_config,
+    load_notable_dates,
     get_voice_for_host,
     get_theme_for_day,
     get_all_config,
@@ -86,4 +89,35 @@ class TestConfigLoader:
         """Verify lru_cache returns the same object on repeated calls."""
         a = load_podcast_config()
         b = load_podcast_config()
+        assert a is b
+
+    def test_load_bespoke_hosts(self):
+        hosts = load_bespoke_hosts()
+        assert isinstance(hosts, dict)
+        assert len(hosts) > 0
+        for key, host in hosts.items():
+            assert "name" in host
+            assert "voice" in host
+
+    def test_load_bespoke_hosts_cached(self):
+        a = load_bespoke_hosts()
+        b = load_bespoke_hosts()
+        assert a is b
+
+    def test_load_bespoke_config(self):
+        cfg = load_bespoke_config()
+        assert isinstance(cfg, dict)
+
+    def test_load_bespoke_config_cached(self):
+        a = load_bespoke_config()
+        b = load_bespoke_config()
+        assert a is b
+
+    def test_load_notable_dates(self):
+        dates = load_notable_dates()
+        assert isinstance(dates, list)
+
+    def test_load_notable_dates_cached(self):
+        a = load_notable_dates()
+        b = load_notable_dates()
         assert a is b

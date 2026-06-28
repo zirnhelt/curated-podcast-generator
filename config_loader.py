@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Configuration loader for Cariboo Tech Progress podcast
-Loads all text content from config/ directory
+Configuration loader — loads all show content from config/ directory.
+Single-file swap point for a future DB-backed or per-tenant config layer.
 """
 
 import json
@@ -75,6 +75,30 @@ def load_disciplines_config():
         with open(disciplines_path, 'r') as f:
             return json.load(f)
     return {"groups": {}}
+
+@lru_cache(maxsize=1)
+def load_bespoke_hosts():
+    """Load bespoke (long-form) host personalities (cached)."""
+    with open(CONFIG_DIR / "bespoke_hosts.json", 'r') as f:
+        return json.load(f)["default_bespoke"]
+
+@lru_cache(maxsize=1)
+def load_bespoke_config():
+    """Load bespoke episode generation config (cached). Returns {} if file absent."""
+    path = CONFIG_DIR / "bespoke_config.json"
+    if not path.exists():
+        return {}
+    with open(path, 'r') as f:
+        return json.load(f)
+
+@lru_cache(maxsize=1)
+def load_notable_dates():
+    """Load notable dates calendar for theme-aligned secondary mentions (cached)."""
+    path = CONFIG_DIR / "notable_dates.json"
+    if path.exists():
+        with open(path, 'r') as f:
+            return json.load(f)["dates"]
+    return []
 
 def get_voice_for_host(host_key):
     """Get TTS voice for a host."""

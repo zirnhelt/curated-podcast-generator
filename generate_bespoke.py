@@ -5,11 +5,6 @@ Bespoke Podcast Generator
 Generates a long-form debate episode (~35-45 min) from user-curated URLs tagged
 with a topic tag, augmented with auto-expanded credible sources via Brave Search.
 
-Hosts:
-  Riley (she/her,   voice: nova) — Tech optimist & empiricist, follows evidence and deployments
-  Casey (they/them, voice: echo) — Community skeptic & systems thinker, follows power and context
-
-Cariboo Signals foundation: land acknowledgment and regional awareness woven into the intro.
 No news roundup, no PSA. The entire episode is the deep dive.
 
 Usage:
@@ -39,9 +34,18 @@ except ImportError as e:
     print("Install with: pip install anthropic openai pydub")
     sys.exit(1)
 
+from config_loader import (
+    load_podcast_config,
+    load_bespoke_hosts,
+    load_bespoke_config,
+)
+
 # ── Paths ──────────────────────────────────────────────────────────────────
 SCRIPT_DIR = Path(__file__).parent
-PODCASTS_DIR = SCRIPT_DIR / "podcasts"
+# ponytail: MEMORY_DIR lets a future multi-tenant deployment point each show at
+# its own state directory without changing any other code.
+_MEMORY_BASE = Path(os.environ.get("MEMORY_DIR", SCRIPT_DIR))
+PODCASTS_DIR = _MEMORY_BASE / "podcasts"
 BESPOKE_DIR = PODCASTS_DIR / "bespoke"
 SEEDS_FILE = PODCASTS_DIR / "content_seeds.json"
 BESPOKE_MEMORY_FILE = PODCASTS_DIR / "bespoke_debate_memory.json"
@@ -121,12 +125,19 @@ def expand_tag(tag: str, client) -> str:
             max_tokens=300,
             messages=[{"role": "user", "content": prompt}]
         ))
+        _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
         expanded = response.content[0].text.strip()
         print(f"  Tag expanded: \"{tag}\" → {expanded[:120]}{'…' if len(expanded) > 120 else ''}")
         return expanded
     except Exception as e:
         print(f"  Tag expansion failed ({e}), using raw tag")
         return tag
+
+
+def _log_api_call(service: str, unit: str, count: int) -> None:
+    """Log an API call for cost metering."""
+    ts = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    print(f"  [api] {ts} service={service} {unit}={count}")
 
 
 def api_retry(func, max_retries=3, base_delay=2):
@@ -171,19 +182,6 @@ def _build_trace_channel_xml(trace_cfg, producer_name):
     lines.append(f'<trace:assessedBy>{saxutils.escape(trace_cfg["assessed_by"])}</trace:assessedBy>')
     lines.append('</trace:assessment>')
     return lines
-
-
-def load_bespoke_hosts():
-    with open(SCRIPT_DIR / "config" / "bespoke_hosts.json") as f:
-        return json.load(f)["default_bespoke"]
-
-
-def load_bespoke_config():
-    cfg_file = SCRIPT_DIR / "config" / "bespoke_config.json"
-    if not cfg_file.exists():
-        return {}
-    with open(cfg_file) as f:
-        return json.load(f)
 
 
 # ── Seeds ──────────────────────────────────────────────────────────────────
@@ -290,6 +288,7 @@ def generate_search_queries(tag, articles_summary, client, tag_description=""):
         max_tokens=300,
         messages=[{"role": "user", "content": prompt}]
     ))
+    _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
     return [q.strip() for q in response.content[0].text.strip().split('\n') if q.strip()][:4]
 
 
@@ -402,38 +401,65 @@ def format_memory_for_prompt(past_debates):
 
 # ── Script generation ──────────────────────────────────────────────────────
 
-SYSTEM_PROMPT = """You are generating a long-form podcast episode in the style of rigorous, well-researched debate journalism in audio form.
+_HALLUCINATION_GUARDRAIL = (
+    "Never fabricate organization names, person names, or event details — "
+    "only reference entities found in the source articles. "
+    "Do NOT invent statistics, dollar amounts, program names, or study findings. "
+    "If a claim isn't in the source articles and isn't widely known public fact: hedge it. "
+    "Acceptable hedges: \"some studies suggest...\", \"examples include...\", "
+    "\"advocates argue...\", \"critics point out...\""
+)
 
-HOSTS:
-- Riley (she/her): Technology Optimist & Empiricist. Believes tech can transform rural communities but backs every claim with evidence — real deployments, named communities, measurable outcomes. Holds herself to the same evidentiary standard she holds others. Willing to concede when evidence points somewhere inconvenient, but defaults to "how do we make this work" once the evidence clears the bar. Recurring questions: "What does the evidence actually show?", "What's the cost of NOT adopting this?", "Where has this already worked in a small community?", "What would responsible deployment look like?", "How would we know if this were wrong?"
-- Casey (they/them): Community Skeptic & Systems Thinker. Follows incentives, power structures, and long historical patterns. Asks who funded the research, whose interests the framing serves, and what happens to communities when the pilot money runs out. Deeply interested in digital equity and Indigenous-led innovation, but demands proof over hype. Recurring questions: "Who actually benefits from this?", "What historical pattern does this repeat?", "Whose interests does this framing serve, and whose does it obscure?", "What happens when the funding runs out?", "What's being left out of this picture?"
 
-DYNAMIC: Neither is naive or dogmatic. Riley wants evidence of what works; Casey wants context for who it works for. Both are intellectually honest and challenge each other with specifics — not just opinions. They can reach partial agreement, maintain different views, or find the question itself is wrong. The show's value is in the quality of the thinking, not in taking predictable sides.
+def _build_system_prompt() -> str:
+    """Build the bespoke episode system prompt from config, not hardcoded strings."""
+    hosts = load_bespoke_hosts()
+    host_lines = []
+    for key, host in hosts.items():
+        name = host.get("name", key.title())
+        pronouns = host.get("pronouns", "")
+        bio = host.get("full_bio", host.get("short_bio", ""))
+        questions = host.get("recurring_questions", [])
+        q_text = " ".join(f"\"{q}\"" for q in questions[:5]) if isinstance(questions, list) else questions
+        host_lines.append(
+            f"- {name} ({pronouns}): {bio}"
+            + (f" Recurring questions: {q_text}" if q_text else "")
+        )
+        # Build speaker tag mapping (e.g. riley -> **RILEY:**)
+    speaker_tags = ", ".join(
+        f"**{h.get('name', k).upper()}:**" for k, h in hosts.items()
+    )
 
-FORMAT:
-- Speaker tags: **RILEY:** and **CASEY:** (bold name + colon, space before text)
-- Optional pacing hints at the start of a turn: [overlap:-150] for a quick interjection, [pause:500] for a considered beat
-- No segment markers — the entire episode is one continuous discussion
+    return (
+        "You are generating a long-form podcast episode in the style of rigorous, well-researched debate journalism in audio form.\n\n"
+        "HOSTS:\n" + "\n".join(host_lines) + "\n\n"
+        "DYNAMIC: Neither host is naive or dogmatic. Both are intellectually honest and challenge each other with specifics — not just opinions. "
+        "They can reach partial agreement, maintain different views, or find the question itself is wrong. "
+        "The show's value is in the quality of the thinking, not in taking predictable sides.\n\n"
+        "FORMAT:\n"
+        f"- Speaker tags: {speaker_tags} (bold name + colon, space before text)\n"
+        "- Optional pacing hints at the start of a turn: [overlap:-150] for a quick interjection, [pause:500] for a considered beat\n"
+        "- No segment markers — the entire episode is one continuous discussion\n\n"
+        "EPISODE STRUCTURE:\n"
+        "1. INTRO (150-200 words): Both hosts introduce themselves by name and approach. They open with a brief, natural land acknowledgment — vary the phrasing. "
+        "Then name the topic and frame the central tension or question they'll explore. Stakes established. Warm but not generic. "
+        "End this section with exactly the following on its own line:\n[CHIME]\n\n"
+        "2. MAIN DISCUSSION (5,000-7,000 words):\n"
+        "   - Open by steelmanning the strongest version of both perspectives\n"
+        "   - At least 5 substantive point/counterpoint exchanges where each host challenges the other with specifics\n"
+        "   - Each exchange should build on the previous one — complexity increases as the episode progresses\n"
+        "   - Every specific claim must come directly from the source articles OR be explicitly hedged\n"
+        "   - At least 3 moments where a host genuinely shifts, concedes, or refines their position based on what the other said\n"
+        "   - Intellectual humor is welcome when it's earned; avoid forced banter\n\n"
+        "3. RESOLUTION (200-300 words): Earned endpoint — not forced agreement. May be: shifted perspective, better-defined disagreement, "
+        "mixed conclusion, or actionable framing. Close with 2-3 concrete, specific calls to action that both hosts genuinely endorse.\n\n"
+        "EVIDENCE RULES:\n"
+        f"{_HALLUCINATION_GUARDRAIL}\n"
+        "- No weather check, no PSA segments"
+    )
 
-EPISODE STRUCTURE:
-1. INTRO (150-200 words): Both hosts introduce themselves by name and approach. They open with a brief, natural land acknowledgment — they're broadcasting from the Cariboo, on the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations. Keep it genuine, not formulaic — vary the phrasing. Then name the topic and frame the central tension or question they'll explore. Stakes established. Warm but not generic. End this section with exactly the following on its own line:
-[CHIME]
 
-2. MAIN DISCUSSION (5,000-7,000 words):
-   - Open by steelmanning the strongest version of both perspectives
-   - At least 5 substantive point/counterpoint exchanges where each host challenges the other with specifics
-   - Each exchange should build on the previous one — complexity increases as the episode progresses
-   - Every specific claim must come directly from the source articles OR be explicitly hedged ("some research suggests...", "the pattern in comparable cases...", "one documented example is...")
-   - At least 3 moments where a host genuinely shifts, concedes, or refines their position based on what the other said
-   - Intellectual humor is welcome when it's earned; avoid forced banter
-
-3. RESOLUTION (200-300 words): Earned endpoint — not forced agreement. May be: shifted perspective, better-defined disagreement, mixed conclusion, or actionable framing. Close with 2-3 concrete, specific calls to action that both hosts genuinely endorse — things a listener could actually do, research, or get involved in. These must feel earned by the debate, not tacked on.
-
-EVIDENCE RULES:
-- Do NOT invent statistics, dollar amounts, program names, or study findings
-- If a claim isn't in the source articles and isn't widely known public fact: hedge it
-- Acceptable hedges: "some studies suggest...", "examples include...", "advocates argue...", "critics point out..."
-- No weather check, no PSA segments"""
+SYSTEM_PROMPT = _build_system_prompt()
 
 
 def generate_bespoke_script(tag, all_articles, past_debates, client, tag_description=""):
@@ -468,12 +494,13 @@ def generate_bespoke_script(tag, all_articles, past_debates, client, tag_descrip
     if tag_description:
         topic_block += f"TOPIC DESCRIPTION: {tag_description}\n"
 
+    host_names = " and ".join(h.get("name", k.title()) for k, h in load_bespoke_hosts().items())
     user_prompt = (
         f"{topic_block}\n"
         f"{sources_block}\n"
         f"{memory_block}\n\n"
-        "Generate a complete long-form debate podcast episode on this topic. "
-        "Riley and Casey should engage seriously with the source material, citing specific "
+        f"Generate a complete long-form debate podcast episode on this topic. "
+        f"{host_names} should engage seriously with the source material, citing specific "
         "information from the articles above. The episode should feel like the best long-form "
         "journalism you've ever heard — rigorous, illuminating, and genuinely interesting. "
         "Do not pad or repeat. Every exchange should move the conversation forward."
@@ -486,18 +513,22 @@ def generate_bespoke_script(tag, all_articles, past_debates, client, tag_descrip
         system=SYSTEM_PROMPT,
         messages=[{"role": "user", "content": user_prompt}]
     ))
+    _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
     return response.content[0].text
 
 
 def polish_bespoke_script(script, tag, client):
+    hosts = load_bespoke_hosts()
+    speaker_tags = " and ".join(f"**{h.get('name', k).upper()}:**" for k, h in hosts.items())
     prompt = (
         f"You are polishing a podcast script about: {tag}\n\n"
+        f"{_HALLUCINATION_GUARDRAIL}\n\n"
         "Review and improve:\n"
         "1. Remove repeated arguments or circular exchanges\n"
         "2. Ensure each point/counterpoint builds on the previous one\n"
         "3. Tighten passages where hosts are agreeing without adding new information\n"
         "4. Verify the resolution feels earned and specific, not generic\n"
-        "5. Ensure **RILEY:** and **CASEY:** speaker tags are properly formatted throughout\n"
+        f"5. Ensure {speaker_tags} speaker tags are properly formatted throughout\n"
         "6. Maintain the overall length — do not cut substantially\n\n"
         f"SCRIPT:\n{script}\n\n"
         "Return the complete polished script. No commentary."
@@ -508,8 +539,10 @@ def polish_bespoke_script(script, tag, client):
         max_tokens=16000,
         messages=[{"role": "user", "content": prompt}]
     ))
+    _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
     polished = response.content[0].text
-    if "**RILEY:**" in polished and "**CASEY:**" in polished:
+    host_names_upper = [f"**{h.get('name', k).upper()}:**" for k, h in hosts.items()]
+    if all(tag in polished for tag in host_names_upper):
         return polished
     print("  Warning: polish may have broken format, using original")
     return script
@@ -533,7 +566,7 @@ def fact_check_bespoke_script(script, all_articles, client):
         "the verified sources — rewrite with honest hedging: 'some research suggests...', "
         "'examples include...', 'the pattern in comparable cases...'\n"
         "4. Do NOT remove interesting arguments — just make the evidence honest\n"
-        "5. Preserve all **RILEY:** and **CASEY:** speaker tags exactly\n"
+        f"5. Preserve all speaker tags exactly\n"
         "6. Maintain the same overall script length\n\n"
         f"SCRIPT:\n{script}\n\n"
         "Return the complete fact-checked script. No commentary."
@@ -544,8 +577,11 @@ def fact_check_bespoke_script(script, all_articles, client):
         max_tokens=16000,
         messages=[{"role": "user", "content": prompt}]
     ))
+    _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
     checked = response.content[0].text
-    if "**RILEY:**" in checked and "**CASEY:**" in checked:
+    hosts = load_bespoke_hosts()
+    host_tags = [f"**{h.get('name', k).upper()}:**" for k, h in hosts.items()]
+    if all(tag in checked for tag in host_tags):
         return checked
     print("  Warning: fact-check may have broken format, using original")
     return script
@@ -572,6 +608,7 @@ def extract_debate_summary(script, tag, client):
             max_tokens=800,
             messages=[{"role": "user", "content": prompt}]
         ))
+        _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
         return json.loads(response.content[0].text)
     except Exception:
         human_tag = tag.replace("-", " ").replace("_", " ").title()
@@ -705,6 +742,7 @@ def generate_tts_segment(text, speaker, output_file, hosts):
         input=clean,
         speed=1.0,
     ))
+    _log_api_call("openai-tts", "chars", len(clean))
     with open(output_file, "wb") as f:
         f.write(response.content)
 
@@ -1028,19 +1066,30 @@ def write_show_notes(tag, date_str, all_articles, debate_summary, output_dir):
 
 BESPOKE_FEED_FILE = SCRIPT_DIR / "bespoke-feed.xml"
 
-BESPOKE_FEED_CONFIG = {
-    "title": "Cariboo Signals: Deep Dives",
-    "description": (
-        "Long-form debate episodes on weighty topics — politics, philosophy, economics, technology. "
-        "Hosted by Riley (tech optimist & empiricist) and Casey (community skeptic & systems thinker), "
-        "broadcasting from the Cariboo region of BC. "
-        "Each episode is built from curated sources and auto-expanded with credible coverage."
-    ),
-    "author": "Riley and Casey",
-    "language": "en-us",
-    "explicit": False,
-    "categories": ["Society & Culture", "Technology"],
-}
+def _build_bespoke_feed_config() -> dict:
+    """Build bespoke feed config from podcast.json and bespoke_hosts.json."""
+    podcast = load_podcast_config()
+    hosts = load_bespoke_hosts()
+    host_names = " and ".join(h.get("name", k.title()) for k, h in hosts.items())
+    host_bios = ", ".join(
+        f"{h.get('name', k.title())} ({h.get('short_bio', h.get('debate_stance', ''))})"
+        for k, h in hosts.items()
+    )
+    return {
+        "title": f"{podcast.get('title', 'Podcast')}: Deep Dives",
+        "description": (
+            f"Long-form debate episodes on weighty topics — politics, philosophy, economics, technology. "
+            f"Hosted by {host_bios}. "
+            "Each episode is built from curated sources and auto-expanded with credible coverage."
+        ),
+        "author": host_names,
+        "language": podcast.get("language", "en-us"),
+        "explicit": False,
+        "categories": ["Society & Culture", "Technology"],
+    }
+
+
+BESPOKE_FEED_CONFIG = _build_bespoke_feed_config()
 
 
 def _get_audio_duration(filepath):
@@ -1162,13 +1211,10 @@ def generate_bespoke_rss_feed(base_url):
         lines.append(f'<itunes:category text="{saxutils.escape(cat)}"/>')
     lines.append(f"<lastBuildDate>{now_rfc}</lastBuildDate>")
 
-    podcast_json_path = SCRIPT_DIR / "config" / "podcast.json"
-    if podcast_json_path.exists():
-        with open(podcast_json_path) as _f:
-            _podcast_cfg = json.load(_f)
-        _trace_cfg = _podcast_cfg.get("trace", {})
-        if _trace_cfg:
-            lines += _build_trace_channel_xml(_trace_cfg, _podcast_cfg.get("author", ""))
+    _podcast_cfg = load_podcast_config()
+    _trace_cfg = _podcast_cfg.get("trace", {})
+    if _trace_cfg:
+        lines += _build_trace_channel_xml(_trace_cfg, _podcast_cfg.get("author", ""))
 
     for ep in episodes[:20]:
         lines += [
