@@ -1899,6 +1899,31 @@
       "theme_day": 5,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "b4ba7986",
+      "type": "newsletter",
+      "message_id": "<1267819518.1818591.1782676908167@ip-172-22-1-42.ca-central-1.compute.internal>",
+      "from_address": "c***@openmedia.org",
+      "subject": "2 days left: Your gift x2",
+      "received_at": "2026-06-28T16:01:48-04:00",
+      "body_text": "Double your impact with Windscribe\u2019s $5,000 matching. (https://action.openmedia.org/s/9620107/BXS744BGN) Hi Erich, Two days left to DOUBLE your impact! We\u2019re reaching the final stretch of our June fun",
+      "extracted_urls": [
+        "https://action.openmedia.org/s/9620107/BXS744BGN",
+        "https://windscribe.com/c22",
+        "https://action.openmedia.org/s/9620108/BXS744BGN",
+        "https://action.openmedia.org/s/9620109/BXS744BGN",
+        "https://action.openmedia.org/s/9620110/BXS744BGN",
+        "https://action.openmedia.org/s/9620111/BXS744BGN",
+        "https://action.openmedia.org/s/9620112/BXS744BGN",
+        "https://openmedia.org/press/item/government-prematurely-ends-debate-on-bill-c-22-without-dealing-with-dangerous-surveillance-powers",
+        "https://openmedia.org/press/item/new-digital-safety-act-needs-major-fixes",
+        "https://openmedia.org/article/item/young-canadians-are-ready-for-privacy-reform-is-parliament"
+      ],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
