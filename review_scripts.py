@@ -24,8 +24,8 @@ from pathlib import Path
 
 import anthropic
 
-SCRIPTS_DIR = Path("podcasts")
-CONFIG_DIR = Path("config")
+SCRIPTS_DIR = Path(os.environ.get("MEMORY_DIR", Path(__file__).parent)) / "podcasts"
+CONFIG_DIR = Path(__file__).parent / "config"
 REVIEWS_DIR = Path("reviews")
 
 REVIEW_MODEL = "claude-sonnet-4-6"

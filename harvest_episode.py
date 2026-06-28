@@ -16,6 +16,7 @@ Usage:
 import argparse
 import glob
 import json
+import os
 import re
 import sys
 from datetime import datetime
@@ -23,7 +24,7 @@ from pathlib import Path
 
 import anthropic
 
-PODCASTS_DIR = Path("podcasts")
+PODCASTS_DIR = Path(os.environ.get("MEMORY_DIR", Path(__file__).parent)) / "podcasts"
 REVIEWS_DIR = Path("reviews")
 
 DEFAULT_MODEL = "claude-sonnet-4-6"

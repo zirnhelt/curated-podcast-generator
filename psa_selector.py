@@ -1,42 +1,30 @@
 #!/usr/bin/env python3
 """
-PSA selector for Cariboo Signals podcast.
+PSA selector — show-agnostic community organization rotation.
 Selects a community organization to feature based on:
 1. Event-driven: upcoming awareness dates or local events
 2. Round-robin fallback: cycles through the day's roster
 """
 
 import json
+import os
 from datetime import date
 from pathlib import Path
 
-CONFIG_DIR = Path(__file__).parent / "config"
-PODCASTS_DIR = Path(__file__).parent / "podcasts"
+from config_loader import (
+    load_psa_organizations,
+    load_psa_events,
+    load_notable_dates,
+)
+
+# ponytail: MEMORY_DIR lets a future multi-tenant deployment point each show at
+# its own state directory without changing any other code.
+_MEMORY_BASE = Path(os.environ.get("MEMORY_DIR", Path(__file__).parent))
+PODCASTS_DIR = _MEMORY_BASE / "podcasts"
 PSA_STATE_FILE = PODCASTS_DIR / "psa_rotation_state.json"
 
 EVENT_LOOKAHEAD_DAYS = 7
 MIN_DAYS_BETWEEN_REPEATS = 28
-
-
-def load_psa_organizations():
-    """Load PSA organizations config."""
-    with open(CONFIG_DIR / "psa_organizations.json", "r") as f:
-        return json.load(f)["organizations"]
-
-
-def load_psa_events():
-    """Load PSA events calendar."""
-    with open(CONFIG_DIR / "psa_events.json", "r") as f:
-        return json.load(f)["events"]
-
-
-def load_notable_dates():
-    """Load notable dates calendar for theme-aligned secondary mentions."""
-    notable_file = CONFIG_DIR / "notable_dates.json"
-    if notable_file.exists():
-        with open(notable_file, "r") as f:
-            return json.load(f)["dates"]
-    return []
 
 
 def load_rotation_state():
