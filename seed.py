@@ -41,7 +41,7 @@ SEEDS_FILE = Path(__file__).parent / "podcasts" / "content_seeds.json"
 TAGS_FILE  = Path(__file__).parent / "tags.json"
 TAGS_TXT   = Path(__file__).parent / "tags.txt"
 
-_BLOCKED_HOSTS = {"localhost", "127.0.0.1", "0.0.0.0", "::1", "169.254.169.254"}
+_BLOCKED_HOSTS = {"localhost", "127.0.0.1", "0.0.0.0", "::1", "169.254.169.254"}  # nosec B104 – deny-list, not a bind address
 
 
 def _validate_url(url: str) -> str:
@@ -170,6 +170,7 @@ def check_bespoke_trigger(data: dict, tag: str) -> None:
         print(f"  Threshold reached! Run manually: python generate_bespoke.py --tag {tag_lower}")
         return
 
+    import ssl
     import urllib.error
     import urllib.request
     url = f"https://api.github.com/repos/{repo}/actions/workflows/generate-bespoke.yml/dispatches"
@@ -186,7 +187,7 @@ def check_bespoke_trigger(data: dict, tag: str) -> None:
         method="POST",
     )
     try:
-        with urllib.request.urlopen(req) as resp:
+        with urllib.request.urlopen(req, context=ssl.create_default_context()) as resp:  # nosec B310 – HTTPS-only, GitHub API, cert-validated
             if resp.status == 204:
                 print(f"  Auto-triggered bespoke episode for tag '{tag_lower}'!")
             else:

@@ -6,7 +6,7 @@ import hashlib
 import json
 import re
 
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from config_loader import load_podcast_config, load_hosts_config, load_credits_config, load_themes_config
 
@@ -51,7 +51,7 @@ def generate_index_html():
     credits_config = load_credits_config()
     themes_config = load_themes_config()
 
-    env = Environment(loader=FileSystemLoader("templates"), autoescape=False)
+    env = Environment(loader=FileSystemLoader("templates"), autoescape=select_autoescape(["html"]))
     template = env.get_template("index.html.j2")
 
     html_content = template.render(

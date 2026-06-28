@@ -202,7 +202,7 @@ def generate_clean_rss():
     # Quick validation
     try:
         import xml.etree.ElementTree as ET
-        ET.parse('podcast-feed.xml')
+        ET.parse('podcast-feed.xml')  # nosec B314 – parsing our own generated output, not external input
         print("✅ XML validation passed!")
     except ET.ParseError as e:
         print(f"❌ XML validation failed: {e}")

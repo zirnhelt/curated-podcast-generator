@@ -153,7 +153,7 @@ def _sanitize(text: str, max_chars: int) -> str:
 # ---------------------------------------------------------------------------
 
 _URL_PATTERN = re.compile(r"https?://[^\s<>\"')\]]+")
-_BLOCKED_HOSTS = {"localhost", "127.0.0.1", "0.0.0.0", "::1", "169.254.169.254"}
+_BLOCKED_HOSTS = {"localhost", "127.0.0.1", "0.0.0.0", "::1", "169.254.169.254"}  # nosec B104 – deny-list, not a bind address
 
 
 def _is_safe_url(url: str) -> bool:

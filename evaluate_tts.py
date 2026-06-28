@@ -169,7 +169,7 @@ def main():
         choices=["welcome", "news", "community_spotlight", "deep_dive", "all"],
         default="all",
     )
-    parser.add_argument("--output-dir", default="/tmp/tts-eval")
+    parser.add_argument("--output-dir", default=os.path.join(tempfile.gettempdir(), "tts-eval"))
     parser.add_argument("--skip-openai", action="store_true")
     parser.add_argument("--skip-azure", action="store_true")
     parser.add_argument("--podcasts-dir", default="podcasts")

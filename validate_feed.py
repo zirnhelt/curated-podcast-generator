@@ -18,7 +18,7 @@ def validate_feed(feed_path=FEED_PATH):
         return False, [], [f"Feed file not found: {feed_path}"]
 
     try:
-        tree = ET.parse(feed_path)
+        tree = ET.parse(feed_path)  # nosec B314 – parses locally generated RSS, not external input
     except ET.ParseError as e:
         return False, [], [f"XML parse error: {e}"]
 
