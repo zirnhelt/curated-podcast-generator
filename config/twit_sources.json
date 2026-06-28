@@ -1,9 +1,9 @@
 {
-  "_comment": "Feed URL: verify at twit.tv/shows/intelligent-machines — TWIT RSS feeds follow https://feeds.twit.tv/{abbreviation}.xml",
+  "_comment": "Intelligent Machines was rebranded from 'This Week in Google' (TWiG) in early 2025; feed slug kept as twig.xml",
   "feeds": [
     {
       "name": "Intelligent Machines",
-      "url": "https://feeds.twit.tv/intelligentmachines.xml",
+      "url": "https://feeds.twit.tv/twig.xml",
       "enabled": true,
       "max_episodes": 8
     }
