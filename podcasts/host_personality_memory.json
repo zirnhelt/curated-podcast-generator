@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[Al Jazeera English] Kenyan graduates turn to AI tools for f",
       "[Business Insider] Meet the top OpenAI researcher trying to ",
       "[TechRadar] Fortinet firewalls hit by huge password-stealing",
       "[CNET] Google Sued Over AI Search, the Future of Touchscreen",
@@ -10,7 +9,8 @@
       "[Toms Guide] Turns out AI was destroying my phone\u2019s battery ",
       "[ScienceAlert] Traces of Alien Technology Could Be Hidden in",
       "[TechRadar] AI exposes the M&A integration gaps that governa",
-      "[STAT News] STAT+: AI wades into a vexing medical mystery: W"
+      "[STAT News] STAT+: AI wades into a vexing medical mystery: W",
+      "[TechCrunch] AI researchers continue to leave Google for its"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -95,11 +95,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-06-27",
-        "clue": "community-trust:~ \u2014 Acknowledged elected officials absorb personal conflict without buffers",
-        "occurrences": 2
-      },
-      {
         "date": "2026-06-15",
         "clue": "tech-optimism:x \u2014 Conceded Mukurtu exists but capacity gap is real",
         "occurrences": 1
@@ -123,11 +118,6 @@
         "date": "2026-06-24",
         "clue": "structural-lens:+[signal] \u2014 Regulation as necessary, not sufficient condition.",
         "occurrences": 1
-      },
-      {
-        "date": "2026-06-27",
-        "clue": "structural-lens:+ \u2014 Shifted from procedural skepticism to process design advocacy",
-        "occurrences": 2
       }
     ],
     "core_memories": [
@@ -334,9 +324,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-06-21",
-        "clue": "structural-lens:x \u2014 Conceded educational interventions framing as 'more useful' than neuroscience",
-        "occurrences": 1
+        "date": "2026-06-28",
+        "clue": "structural-lens:x \u2014 Conceded rancher observation model reframes participation incentives entirely",
+        "occurrences": 2
       },
       {
         "date": "2026-06-22",
@@ -361,6 +351,11 @@
       {
         "date": "2026-06-27",
         "clue": "pilot-skepticism:x \u2014 Conceded ORV bylaw is 'genuinely more tractable' than other issues",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-06-28",
+        "clue": "pilot-skepticism:+ \u2014 Concrete failure example (Kamloops staff turnover) deepened skepticism",
         "occurrences": 1
       }
     ],

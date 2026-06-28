@@ -1,17 +1,4 @@
 {
-  "2026-03-29": {
-    "timestamp": 1774780770.219047,
-    "date": "2026-03-29",
-    "theme": "Resilient Rural Futures",
-    "central_question": "Deep dive on Resilient Rural Futures",
-    "topics_covered": [
-      "broadband",
-      "connectivity",
-      "telemedicine",
-      "renewable energy",
-      "solar"
-    ]
-  },
   "2026-03-30": {
     "timestamp": 1774868857.087596,
     "date": "2026-03-30",
@@ -2340,6 +2327,32 @@
       "2026 municipal election timing and candidate accountability",
       "Provincial funding bottlenecks versus municipal political will in housing policy",
       "Institutional continuity and public servant retention in small communities"
+    ]
+  },
+  "2026-06-28": {
+    "timestamp": 1782643085.43557,
+    "date": "2026-06-28",
+    "theme": "Science, Wonder & the Natural World",
+    "central_question": "How can the Cariboo region build sustained ecological observation infrastructure that generates long-term baseline data while keeping data governance and pattern recognition locally accountable?",
+    "riley_position": "The Cariboo needs to integrate distributed observation into existing community roles (ranchers, fire crews, conservation officers) and partner with local institutions like UNBC to keep analytical work regional rather than extracting data to external platforms.",
+    "riley_key_evidence": [
+      "LIGO detected gravitational waves from black hole mergers billions of light-years away, demonstrating that sustained observation infrastructure can detect signals at extreme scales",
+      "The Cariboo lacks a 50-year baseline for ecological conditions like river height changes or elk migration timing shifts",
+      "Range riders, cattle operations, and fire crews already move through the landscape and could serve as distributed observers without new grant-funded positions"
+    ],
+    "casey_position": "Data governance and long-term institutional commitment are the actual constraints, not technology; observation networks require trust, relationships, and incentive structures that make participation valuable to the observer, particularly when multiple sovereignties and competing interests are involved.",
+    "casey_key_evidence": [
+      "Xat\u015b\u016bll First Nation maintains longitudinal salmon and river data within local governance structures, demonstrating that observation can stay locally accountable",
+      "Citizen science platforms like eBird and iNaturalist extract data to external institutions (Cornell, California Academy of Sciences) rather than keeping analytical capacity regional",
+      "LIGO required international treaty-level cooperation between research institutions across four continents to negotiate governance frameworks"
+    ],
+    "resolution": "Riley and Casey converged on agreeing that data governance\u2014not wonder, technology, or sensors\u2014is the core constraint, and they jointly identified a actionable question for communities: what 30-year ecological baseline commitment would require at the table, what data governance framework enables First Nations participation, and which existing regional roles could carry observation forward.",
+    "topics_covered": [
+      "Gravitational wave detection and the distinction between pure curiosity-driven research and applied research funding",
+      "Indigenous longitudinal ecological knowledge systems versus citizen science extraction dynamics",
+      "Data governance architecture and institutional partnerships for regional ecological monitoring",
+      "Integration of observation into existing economic roles rather than creating new grant-dependent positions",
+      "Sovereignty, trust, and incentive structures required for multi-party ecological data systems"
     ]
   }
 }

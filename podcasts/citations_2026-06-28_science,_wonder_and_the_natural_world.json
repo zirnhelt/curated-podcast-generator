@@ -1,0 +1,257 @@
+{
+  "episode": {
+    "date": "2026-06-28",
+    "formatted_date": "Sunday, June 28, 2026",
+    "theme": "Science, Wonder & the Natural World",
+    "title": "Cariboo Signals - Science, Wonder & the Natural World",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Science, Wonder & the Natural World.</p><p><b>NEWS ROUNDUP:</b> We break down [Williams Lake Tribune] Researchers say Kitimat LNG facility’s flare problems causing massive pollution plume and [New Atlas] Dead lithium batteries revived to 95% capacity via electrochemical bath, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> How can the Cariboo region build sustained ecological observation infrastructure that generates long-term baseline data while keeping data governance and pattern recognition locally accountable? Topics include: Gravitational wave detection and the distinction between pure curiosity-driven research and applied research funding, Indigenous longitudinal ecological knowledge systems versus citizen science extraction dynamics, Data governance architecture and institutional partnerships for regional ecological monitoring, Integration of observation into existing economic roles rather than creating new grant-dependent positions, Sovereignty, trust, and incentive structures required for multi-party ecological data systems.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://quesnelfoundation.ca\">Quesnel Community Foundation</a></p><p><b>Sources discussed:</b></p><ul><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/06/26/researchers-say-kitimat-lng-facilitys-flare-problems-causing-massive-pollution-plume/\">[Williams Lake Tribune] Researchers say Kitimat LNG facility...</a></li><li>https://newatlas.com/author/etiido-uko/ (New Atlas): <a href=\"https://newatlas.com/energy/electrode-restoring-bath-lithium-batteries/\">[New Atlas] Dead lithium batteries revived to 95% capacity v...</a></li><li>The Conversation (ScienceAlert): <a href=\"https://www.sciencealert.com/scientists-found-microplastics-in-hedgehogs-and-the-explanation-is-disturbing\">[ScienceAlert] Scientists Found Microplastics in Hedgehogs, ...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/brad-paisley-nashville-zoo-data-center-2026-6\">[Business Insider] Country music star Brad Paisley calls a p...</a></li><li>https://refractor.io/author/the-conversation/ (New Atlas): <a href=\"https://refractor.io/space/largest-black-hole-collision/\">[New Atlas] Largest black hole collision on record reveals c...</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/06/260622091515.htm\">[ScienceDaily] Massive study links teen marijuana use to dou...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>https://www.tomsguide.com/author/cynthia-lawrence (Toms Guide): <a href=\"https://www.tomsguide.com/home/how-often-should-you-clean-your-bathroom-to-prevent-black-or-pink-mold-i-asked-an-expert\">[Toms Guide] How often should you clean your bathroom to pre...</a></li><li>Amanda Silberling, Lucas Ropek (TechCrunch): <a href=\"https://techcrunch.com/2026/06/24/ai-researchers-continue-to-leave-google-for-its-rivals/\">[TechCrunch] AI researchers continue to leave Google for its...</a></li><li>https://www.techradar.com/author/david-nield (TechRadar): <a href=\"https://www.techradar.com/ai-platforms-assistants/ai-just-helped-researchers-read-a-2-000-year-old-mount-vesuvius-scroll-thats-too-charred-to-ever-be-opened-as-x-ray-images-reveal-ancient-stoic-philosophy\">[TechRadar] AI just helped researchers read a 2,000-year-old...</a></li><li>Meghana Keshavan (STAT News): <a href=\"https://www.statnews.com/2026/06/25/biotech-news-the-china-debate-gets-louder-in-washington/?utm_campaign=rss\">[STAT News] STAT+: The China debate gets louder in Washingto...</a></li><li>Ally Jaksen (Outside Online): <a href=\"https://www.outsideonline.com/adventure-travel/destinations/north-america/road-tripping-west-virginias-seneca-skyway/\">[Outside Online] Road Tripping West Virginia’s Seneca Skyway</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/bodycam-footage-of-domo-ceos-dui-arrest-2026-6\">[Business Insider] Bodycam footage of Domo CEO's DUI arrest</a></li><li>CBC Arts: <a href=\"https://www.cbc.ca/news/world/harvey-weinstein-california-appeals-court-upholds-conviction-2022-resentencing-9.7251018?cmp=rss\">[CBC Arts] California appeals court upholds Weinstein's rape...</a></li><li>Global News: <a href=\"https://globalnews.ca/news/11941666/wildfire-mandatory-evacuation-lynn-lake/\">[Global News] Manitoba wildfire forces mandatory evacuation ...</a></li><li>Global News: <a href=\"https://globalnews.ca/news/11941707/canada-weather-outlook/\">[Global News] Flooding concerns, tornado threats sweep acros...</a></li><li>https://refractor.io/author/bronwyn-thompson/ (New Atlas): <a href=\"https://refractor.io/mental-health/low-intensity-workout-depression/\">[New Atlas] Unusual low-impact workout alleviates depression...</a></li></ul><p><b>Closing Music:</b> &ldquo;<a href=\"https://www.jamendo.com/track/2272481\">Dont Run Away</a>&rdquo; by Jon Worthy &mdash; dreampop, indie. Free music via Jamendo, licensed under Creative Commons.</p><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-4-6<br>TTS Voices: OpenAI TTS API (Nova · Echo)<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-06-28T03:38:01.105264-07:00",
+    "models": {
+      "script": "claude-sonnet-4-6",
+      "review": "claude-sonnet-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 3016,
+      "voice_ratio_casey_riley": 0.8,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "closing_url_repetition": 0
+      },
+      "total_hits": 0,
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Researchers say Kitimat LNG facility’s flare problems causing massive pollution plume",
+          "url": "https://wltribune.com/2026/06/26/researchers-say-kitimat-lng-facilitys-flare-problems-causing-massive-pollution-plume/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 70,
+          "date_published": "2026-06-26T17:05:00+00:00",
+          "summary": "## Researchers say Kitimat LNG facility’s flare problems causing massive pollution plume Published 5:05 pm Friday, June 26, 2026 **By Mark Page** An LNG Canada Kitimat flare tower shown through Tim Do...",
+          "discussed": true
+        },
+        {
+          "title": "[New Atlas] Dead lithium batteries revived to 95% capacity via electrochemical bath",
+          "url": "https://newatlas.com/energy/electrode-restoring-bath-lithium-batteries/",
+          "source": "New Atlas",
+          "author": "https://newatlas.com/author/etiido-uko/",
+          "ai_score": 36,
+          "date_published": "2026-06-25T13:04:57+00:00",
+          "summary": "You know how rejuvenating a bath feels after a long day of work? Almost like you're renewed. Turns out that's not exclusive to humans. Scientists at Cornell University have developed an electrochemica...",
+          "discussed": true
+        },
+        {
+          "title": "[ScienceAlert] Scientists Found Microplastics in Hedgehogs, And The Explanation Is Disturbing",
+          "url": "https://www.sciencealert.com/scientists-found-microplastics-in-hedgehogs-and-the-explanation-is-disturbing",
+          "source": "ScienceAlert",
+          "author": "The Conversation",
+          "ai_score": 30,
+          "date_published": "2026-06-27T02:00:00+00:00",
+          "summary": "This hits close to home. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+          "discussed": true
+        },
+        {
+          "title": "[Toms Guide] How often should you clean your bathroom to prevent black or pink mold? I asked an expert",
+          "url": "https://www.tomsguide.com/home/how-often-should-you-clean-your-bathroom-to-prevent-black-or-pink-mold-i-asked-an-expert",
+          "source": "Toms Guide",
+          "author": "https://www.tomsguide.com/author/cynthia-lawrence",
+          "ai_score": 50,
+          "date_published": "2026-06-27T07:02:00+00:00",
+          "summary": "How to stop pink and black mold in its tracks — expert reveals how often you should really be cleaning your bathroom.",
+          "discussed": false
+        },
+        {
+          "title": "[TechCrunch] AI researchers continue to leave Google for its rivals",
+          "url": "https://techcrunch.com/2026/06/24/ai-researchers-continue-to-leave-google-for-its-rivals/",
+          "source": "TechCrunch",
+          "author": "Amanda Silberling, Lucas Ropek",
+          "ai_score": 76,
+          "date_published": "2026-06-24T21:42:07+00:00",
+          "summary": "Top AI researchers Jonas Adler and Alexander Pritzel are leaving Google for Anthropic, following departures from top scientists Noam Shazeer and John Jumper.",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] AI just helped researchers read a 2,000-year-old Mount Vesuvius scroll that’s too charred to ever be opened — as X-ray images reveal ancient stoic philosophy",
+          "url": "https://www.techradar.com/ai-platforms-assistants/ai-just-helped-researchers-read-a-2-000-year-old-mount-vesuvius-scroll-thats-too-charred-to-ever-be-opened-as-x-ray-images-reveal-ancient-stoic-philosophy",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/david-nield",
+          "ai_score": 68,
+          "date_published": "2026-06-25T19:28:57+00:00",
+          "summary": "Researchers are getting new insights into life and literature from the first century, via previously inaccessible text.",
+          "discussed": false
+        },
+        {
+          "title": "[STAT News] STAT+: The China debate gets louder in Washington",
+          "url": "https://www.statnews.com/2026/06/25/biotech-news-the-china-debate-gets-louder-in-washington/?utm_campaign=rss",
+          "source": "STAT News",
+          "author": "Meghana Keshavan",
+          "ai_score": 30,
+          "date_published": "2026-06-25T14:20:37+00:00",
+          "summary": "A boom in GLP-1s and health care costs, AI-designed hair growth drugs, and more biotech news from The Readout",
+          "discussed": false
+        },
+        {
+          "title": "[Outside Online] Road Tripping West Virginia’s Seneca Skyway",
+          "url": "https://www.outsideonline.com/adventure-travel/destinations/north-america/road-tripping-west-virginias-seneca-skyway/",
+          "source": "Outside Online",
+          "author": "Ally Jaksen",
+          "ai_score": 52,
+          "date_published": "2026-06-25T20:29:15+00:00",
+          "summary": "Explore the Seneca Skyway and you’ll know why this state is called “Almost Heaven” The post Road Tripping West Virginia’s Seneca Skyway appeared first on Outside Online .",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] Bodycam footage of Domo CEO's DUI arrest",
+          "url": "https://www.businessinsider.com/bodycam-footage-of-domo-ceos-dui-arrest-2026-6",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 79,
+          "date_published": "2026-06-27T02:15:08+00:00",
+          "summary": "Business Insider obtained bodycam footage of Domo CEO and Founder Josh James' DUI arrest.",
+          "discussed": false
+        },
+        {
+          "title": "[CBC Arts] California appeals court upholds Weinstein's rape conviction, orders resentencing",
+          "url": "https://www.cbc.ca/news/world/harvey-weinstein-california-appeals-court-upholds-conviction-2022-resentencing-9.7251018?cmp=rss",
+          "source": "CBC Arts",
+          "author": "",
+          "ai_score": 66,
+          "date_published": "2026-06-26T22:27:36+00:00",
+          "summary": "An appeals court on Friday upheld Harvey Weinstein's 2022 rape and sexual assault conviction in California, but ordered his trial judge to resentence him.",
+          "discussed": false
+        },
+        {
+          "title": "[Global News] Manitoba wildfire forces mandatory evacuation of Lynn Lake",
+          "url": "https://globalnews.ca/news/11941666/wildfire-mandatory-evacuation-lynn-lake/",
+          "source": "Global News",
+          "author": "",
+          "ai_score": 68,
+          "date_published": "2026-06-27T21:58:11+00:00",
+          "summary": "A mandatory evacuation has been ordered for Lynn Lake as a rapidly advancing wildfire threatens the community. Residents and visitors have been told to leave immediately.",
+          "discussed": false
+        },
+        {
+          "title": "[Global News] Flooding concerns, tornado threats sweep across Canadian Prairies",
+          "url": "https://globalnews.ca/news/11941707/canada-weather-outlook/",
+          "source": "Global News",
+          "author": "",
+          "ai_score": 65,
+          "date_published": "2026-06-27T22:34:42+00:00",
+          "summary": "Flooding concerns are mounting in Alberta as Edmonton nears a June rainfall record, while tornado watches and severe storms threaten parts of Saskatchewan.",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] Country music star Brad Paisley calls a proposed data center near the Nashville Zoo 'a monstrosity'",
+          "url": "https://www.businessinsider.com/brad-paisley-nashville-zoo-data-center-2026-6",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 66,
+          "date_published": "2026-06-27T18:39:18+00:00",
+          "summary": "14-time Country Music Award winner Brad Paisley is calling on Nashville to prevent the construction of a data center near the city's zoo.",
+          "discussed": true
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Science, Wonder & the Natural World",
+      "articles": [
+        {
+          "title": "[New Atlas] Largest black hole collision on record reveals clues on spacetime whirlpools",
+          "url": "https://refractor.io/space/largest-black-hole-collision/",
+          "source": "New Atlas",
+          "author": "https://refractor.io/author/the-conversation/",
+          "ai_score": 68,
+          "date_published": "2026-06-26T03:13:00+00:00",
+          "summary": "Neil Lu, Australian National University/The Conversation Continue Reading Category: Astronomy , Science Tags: gravitational waves , Black hole , Relativity Space , Time , LIGO",
+          "discussed": true
+        },
+        {
+          "title": "[ScienceDaily] Massive study links teen marijuana use to double the risk of serious mental illness",
+          "url": "https://www.sciencedaily.com/releases/2026/06/260622091515.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-06-28T03:54:50+00:00",
+          "summary": "Teens who use cannabis may face a substantially greater risk of developing serious mental health conditions, including psychotic and bipolar disorders, according to a study of more than 463,000 adoles...",
+          "discussed": true
+        },
+        {
+          "title": "[New Atlas] Unusual low-impact workout alleviates depression symptoms in weeks",
+          "url": "https://refractor.io/mental-health/low-intensity-workout-depression/",
+          "source": "New Atlas",
+          "author": "https://refractor.io/author/bronwyn-thompson/",
+          "ai_score": 33,
+          "date_published": "2026-06-27T08:23:00+00:00",
+          "summary": "Five weeks of walking around armed with poles in each hand could have a surprising effect on anyone with depression symptoms. What's more, it's also a low-impact workout that can suit people who are l...",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "How can the Cariboo region build sustained ecological observation infrastructure that generates long-term baseline data while keeping data governance and pattern recognition locally accountable?",
+        "riley_position": "The Cariboo needs to integrate distributed observation into existing community roles (ranchers, fire crews, conservation officers) and partner with local institutions like UNBC to keep analytical work regional rather than extracting data to external platforms.",
+        "riley_key_evidence": [
+          "LIGO detected gravitational waves from black hole mergers billions of light-years away, demonstrating that sustained observation infrastructure can detect signals at extreme scales",
+          "The Cariboo lacks a 50-year baseline for ecological conditions like river height changes or elk migration timing shifts",
+          "Range riders, cattle operations, and fire crews already move through the landscape and could serve as distributed observers without new grant-funded positions"
+        ],
+        "casey_position": "Data governance and long-term institutional commitment are the actual constraints, not technology; observation networks require trust, relationships, and incentive structures that make participation valuable to the observer, particularly when multiple sovereignties and competing interests are involved.",
+        "casey_key_evidence": [
+          "Xatśūll First Nation maintains longitudinal salmon and river data within local governance structures, demonstrating that observation can stay locally accountable",
+          "Citizen science platforms like eBird and iNaturalist extract data to external institutions (Cornell, California Academy of Sciences) rather than keeping analytical capacity regional",
+          "LIGO required international treaty-level cooperation between research institutions across four continents to negotiate governance frameworks"
+        ],
+        "resolution": "Riley and Casey converged on agreeing that data governance—not wonder, technology, or sensors—is the core constraint, and they jointly identified a actionable question for communities: what 30-year ecological baseline commitment would require at the table, what data governance framework enables First Nations participation, and which existing regional roles could carry observation forward.",
+        "topics_covered": [
+          "Gravitational wave detection and the distinction between pure curiosity-driven research and applied research funding",
+          "Indigenous longitudinal ecological knowledge systems versus citizen science extraction dynamics",
+          "Data governance architecture and institutional partnerships for regional ecological monitoring",
+          "Integration of observation into existing economic roles rather than creating new grant-dependent positions",
+          "Sovereignty, trust, and incentive structures required for multi-party ecological data systems"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "Azure Neural TTS (Ava · Andrew)",
+    "text_to_speech_openai": "OpenAI TTS API (Nova · Echo)",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "coordination": "Erich Zirnhelt",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  },
+  "closing_music": {
+    "track_id": "2272481",
+    "name": "Dont Run Away",
+    "artist": "Jon Worthy",
+    "genres": [
+      "dreampop",
+      "indie"
+    ],
+    "shareurl": "https://www.jamendo.com/track/2272481",
+    "license": "Creative Commons via Jamendo"
+  }
+}
