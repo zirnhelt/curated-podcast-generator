@@ -12,7 +12,11 @@
     "cover_art": "ChatGPT (OpenAI)",
     "weather_data": "Open-Meteo",
     "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
     "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "weekend_music": "Jamendo (jamendo.com)",
     "project": "github.com/zirnhelt/curated-podcast-generator",
     "license": "CC BY-NC 4.0",
     "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
@@ -39,7 +43,15 @@
         "value": "ChatGPT (OpenAI)"
       },
       {
-        "label": "Podcast Coordination",
+        "label": "Automation",
+        "value": "GitHub Actions"
+      },
+      {
+        "label": "Hosting",
+        "value": "Cloudflare Pages"
+      },
+      {
+        "label": "Producer",
         "value": "Erich Zirnhelt"
       },
       {
@@ -104,7 +116,7 @@
         "value": "Curated by listeners + Brave Search"
       },
       {
-        "label": "Podcast Coordination",
+        "label": "Producer",
         "value": "Erich Zirnhelt"
       },
       {

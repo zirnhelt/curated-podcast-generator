@@ -3110,7 +3110,11 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
         f"{weather_credit}"
         f"{cohere_credit}"
         f"Cover Art: {credits['cover_art']}<br>"
-        f"Podcast Coordination: {credits['coordination']}<br>"
+        f"Automation: {credits['automation']}<br>"
+        f"Hosting: {credits['hosting']}<br>"
+        f"Producer: {credits['producer']}<br>"
+        f"Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. "
+        f"We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>"
         f"&#169; 2026 {credits['copyright_holder']}. "
         f"Licensed under <a href=\"{credits['license_url']}\">{credits['license']}</a>.</p>"
     )
@@ -3617,19 +3621,14 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             for name, disclosure in _production_disclosures
         ]
         memory_context += (
-            "PRODUCTION TOOL DISCLOSURE (transparency requirement): Today's articles "
-            "cover one or more companies that are part of how this podcast is produced. "
-            "When those companies come up in the episode, the hosts must briefly "
-            "acknowledge the relationship — one natural sentence, woven into the "
-            "conversation at a relevant moment (not a formal announcement, not skipped). "
-            "Listeners deserve to know. The specific disclosures needed:\n"
+            "PRODUCTION TOOL DISCLOSURE: Today's articles mention one or more companies "
+            "used to produce this podcast. When that company comes up naturally in the "
+            "conversation, one host may drop a brief clause acknowledging it "
+            "(e.g. 'we use their tools ourselves' or 'worth noting we rely on them') — "
+            "half a sentence is enough. Do not make it a standalone announcement. "
+            "Full attribution is in the episode show notes. Disclosures:\n"
             + "\n".join(_disclosure_lines)
-            + "\n\nExample phrasings (vary — do not use verbatim):\n"
-            "  'Worth flagging — Suno made the music you hear opening this show.'\n"
-            "  'Full transparency: Claude writes our scripts, so we\\'re essentially "
-            "reviewing our own production stack.'\n"
-            "  'Disclosure: we rely on Brave Search ourselves for research on this show.'\n"
-            "Keep it brief, honest, and drop it naturally where the company is discussed.\n\n"
+            + "\n\n"
         )
 
     # Build PSA context for the Community Spotlight segment
@@ -4383,6 +4382,40 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
             chapters.append({"startTime": round(len(combined) / 1000, 1), "title": "Deep Dive"})
             _render_section(segments['deep_dive'], "🔍 Generating deep dive section...", "deep")
 
+            # Thursday: brief spoken indigenous community engagement acknowledgment before credits
+            if get_pacific_now().weekday() == 3:
+                c2_context = (
+                    "Casey briefly and honestly notes — in one short, natural sentence — "
+                    "that Cariboo Signals hasn't spoken directly with First Nations "
+                    "communications staff for today's episode, and that they'd welcome "
+                    "that conversation. Matter-of-fact, not performative. "
+                    "This is a genuine aside as the episode winds down, not a formal disclaimer."
+                )
+                c2_text = _generate_host_line(c2_context, "casey")
+                if c2_text:
+                    print(f"  [Casey/C2] {c2_text}")
+                    try:
+                        if USE_AZURE_TTS:
+                            c2_wav = os.path.join(tmpdir, "c2_acknowledgment.wav")
+                            generate_azure_tts_for_section(
+                                [{"speaker": "casey", "text": c2_text, "gap_ms": None}],
+                                c2_wav,
+                            )
+                            c2_audio = normalize_segment(
+                                trim_tts_silence(AudioSegment.from_file(c2_wav, format="wav")),
+                                TARGET_SPEECH_DBFS,
+                            )
+                        else:
+                            c2_file = os.path.join(tmpdir, "c2_acknowledgment.mp3")
+                            generate_tts_for_segment(c2_text, "casey", c2_file)
+                            c2_audio = normalize_segment(
+                                trim_tts_silence(AudioSegment.from_mp3(c2_file)), TARGET_SPEECH_DBFS
+                            )
+                        combined += AudioSegment.silent(duration=600) + c2_audio
+                        print("  ✅ Added indigenous engagement acknowledgment")
+                    except Exception as c2e:
+                        print(f"  ⚠️  C2 acknowledgment skipped: {c2e}")
+
             # Spoken credits (brief, before outro)
             chapters.append({"startTime": round(len(combined) / 1000, 1), "title": "Credits"})
             tts_credit = (
@@ -4394,10 +4427,16 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
                 " Today's episode included additional web research via Brave Search."
                 if brave_used else ""
             )
+            jamendo_spoken = (
+                " Weekend closing music via Jamendo under Creative Commons."
+                if weekend_closing is not None else ""
+            )
             credits_text = (
-                f"Cariboo Signals is produced with Claude by Anthropic for scripting, "
-                f"{tts_credit} for audio synthesis, and Suno for our theme music."
-                f"{brave_spoken} Find us at cariboosignals.ca."
+                f"Cariboo Signals is produced by Erich Zirnhelt — "
+                f"scripts by Claude, audio by {tts_credit}, theme by Suno."
+                f"{brave_spoken}{jamendo_spoken}"
+                f" Automated with GitHub Actions, hosted on Cloudflare Pages."
+                f" Find us at cariboosignals.ca."
             )
             try:
                 if USE_AZURE_TTS:
