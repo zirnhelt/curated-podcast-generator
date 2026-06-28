@@ -1,0 +1,12 @@
+{
+  "_comment": "Feed URL: verify at twit.tv/shows/intelligent-machines — TWIT RSS feeds follow https://feeds.twit.tv/{abbreviation}.xml",
+  "feeds": [
+    {
+      "name": "Intelligent Machines",
+      "url": "https://feeds.twit.tv/intelligentmachines.xml",
+      "enabled": true,
+      "max_episodes": 8
+    }
+  ],
+  "max_inspiration_age_days": 30
+}

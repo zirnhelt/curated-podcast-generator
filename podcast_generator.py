@@ -20,6 +20,11 @@ import re
 import tempfile
 import httpx
 
+try:
+    from twit_harvest import load_relevant_inspiration as _load_twit_inspiration
+except ImportError:
+    _load_twit_inspiration = None  # ponytail: graceful fallback if module absent
+
 # Import configuration loader
 from config_loader import (
     load_podcast_config,
@@ -896,6 +901,32 @@ def format_thought_seeds_for_prompt(thought_seeds):
         if s.get("note"):
             line += f"  [{s['note']}]"
         lines.append(line)
+    return "\n".join(lines) + "\n\n"
+
+
+def format_twit_inspiration_for_prompt(items: list[dict]) -> str:
+    """
+    Format harvested Intelligent Machines debate angles as an editorial inspiration block.
+    Hosts should adapt angles to Cariboo context — not reference the source show.
+    """
+    if not items:
+        return ""
+    lines = [
+        "EDITORIAL INSPIRATION (adapt all angles to Cariboo context — do NOT reference the source show):"
+    ]
+    for item in items:
+        q = item.get("question") or ""
+        perspectives = item.get("perspectives") or []
+        open_qs = item.get("open_questions") or []
+        if not q:
+            continue
+        lines.append(f'- "{q}"')
+        if len(perspectives) >= 2:
+            lines.append(f"  Angles: {perspectives[0]} | {perspectives[1]}")
+        for oq in open_qs[:1]:
+            lines.append(f"  Open: {oq}")
+    if len(lines) == 1:
+        return ""
     return "\n".join(lines) + "\n\n"
 
 
@@ -3421,7 +3452,7 @@ def _detect_production_company_mentions(articles, credits_config):
     return found
 
 
-def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None, feed_meta=None, bonus_articles=None, debate_memory=None, cta_memory=None, thought_seeds=None, weather_data=None, brave_context="", feedback_emails=None):
+def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None, feed_meta=None, bonus_articles=None, debate_memory=None, cta_memory=None, thought_seeds=None, weather_data=None, brave_context="", feedback_emails=None, twit_items=None):
     """Generate conversational podcast script using Claude."""
     print("🎙️ Generating podcast script with Claude...")
 
@@ -3593,6 +3624,10 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
     # Inject user-seeded thoughts as exploration prompts for the hosts
     if thought_seeds:
         memory_context += format_thought_seeds_for_prompt(thought_seeds)
+
+    # Inject harvested Intelligent Machines editorial angles as debate inspiration
+    if twit_items:
+        memory_context += format_twit_inspiration_for_prompt(twit_items)
 
     # Inject sanitized listener feedback emails (untrusted external content)
     if feedback_emails:
@@ -5460,6 +5495,11 @@ def main():
     debate_memory = get_debate_memory()
     cta_memory = get_cta_memory()
 
+    # Load TWIT Intelligent Machines editorial inspiration (weekly harvest, no API call)
+    twit_items = _load_twit_inspiration() if _load_twit_inspiration else []
+    if twit_items:
+        print(f"🎙️  TWIT inspiration: {len(twit_items)} item(s) loaded")
+
     # Load pending content seeds (URLs and thoughts bookmarked by the user)
     pending_seeds = load_content_seeds()
     url_seeds = [s for s in pending_seeds if s.get("type") == "url"]
@@ -5708,7 +5748,7 @@ def main():
             bonus_articles=bonus_articles, debate_memory=debate_memory,
             cta_memory=cta_memory, thought_seeds=active_thought_seeds,
             weather_data=weather_data, brave_context=brave_context,
-            feedback_emails=email_feedback
+            feedback_emails=email_feedback, twit_items=twit_items
         )
 
         if not script:
