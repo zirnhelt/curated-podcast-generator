@@ -185,7 +185,7 @@ jobs:
           git add podcasts/email_queue.json || echo "No email queue file to add"
 
           # Add any new episode files that were generated (audio excluded — deployed via Pages/R2 only)
-          git add podcasts/podcast_script_*.txt podcasts/citations_*.json podcast-feed.xml || echo "No new episode files to add"
+          git add podcasts/podcast_script_*.txt podcasts/citations_*.json podcasts/podcast_transcript_*.html podcasts/podcast_transcript_*.vtt podcast-feed.xml || echo "No new episode files to add"
           git add tts-test-feed.xml || echo "No TTS test feed to add"
 
           # Only commit if there are changes
@@ -209,6 +209,12 @@ jobs:
             [[ "$f" == *"$TODAY"* || "$f" == *"$YESTERDAY"* ]] && cp "$f" output/podcasts/ && echo "  copied $f"
           done
           for f in podcasts/citations_*.json; do
+            [[ "$f" == *"$TODAY"* || "$f" == *"$YESTERDAY"* ]] && cp "$f" output/podcasts/ && echo "  copied $f"
+          done
+          for f in podcasts/podcast_transcript_*.html; do
+            [[ "$f" == *"$TODAY"* || "$f" == *"$YESTERDAY"* ]] && cp "$f" output/podcasts/ && echo "  copied $f"
+          done
+          for f in podcasts/podcast_transcript_*.vtt; do
             [[ "$f" == *"$TODAY"* || "$f" == *"$YESTERDAY"* ]] && cp "$f" output/podcasts/ && echo "  copied $f"
           done
 
