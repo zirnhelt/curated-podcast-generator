@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[Business Insider] Meet the top OpenAI researcher trying to ",
-      "[TechRadar] Fortinet firewalls hit by huge password-stealing",
       "[CNET] Google Sued Over AI Search, the Future of Touchscreen",
       "[Tom's Hardware] Ditching the cloud for local AI \u2014 how I use",
       "[Engadget] A24 takes on Google money to build AI tools",
@@ -10,7 +8,9 @@
       "[ScienceAlert] Traces of Alien Technology Could Be Hidden in",
       "[TechRadar] AI exposes the M&A integration gaps that governa",
       "[STAT News] STAT+: AI wades into a vexing medical mystery: W",
-      "[TechCrunch] AI researchers continue to leave Google for its"
+      "[TechCrunch] AI researchers continue to leave Google for its",
+      "[TechRadar] This app turned me into the music creator that G",
+      "AI"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -85,11 +85,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-06-08",
-        "clue": "tech-optimism:~ \u2014 acknowledged user-filter proposal insufficient without trust",
-        "occurrences": 2
-      },
-      {
         "date": "2026-06-23",
         "clue": "pilot-skepticism:+ \u2014 Explicitly named pilot funding cycles as structural trap",
         "occurrences": 2
@@ -117,6 +112,11 @@
       {
         "date": "2026-06-24",
         "clue": "structural-lens:+[signal] \u2014 Regulation as necessary, not sufficient condition.",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-06-29",
+        "clue": "structural-lens:+ \u2014 Reinforced infrastructure-over-projects framing throughout",
         "occurrences": 1
       }
     ],
@@ -354,8 +354,13 @@
         "occurrences": 1
       },
       {
-        "date": "2026-06-28",
-        "clue": "pilot-skepticism:+ \u2014 Concrete failure example (Kamloops staff turnover) deepened skepticism",
+        "date": "2026-06-29",
+        "clue": "pilot-skepticism:+ \u2014 Deepened skepticism about coordination models and institutional follow-through",
+        "occurrences": 2
+      },
+      {
+        "date": "2026-06-29",
+        "clue": "evidence-bar:x \u2014 Conceded that local subscription math 'actually holds up' at regional scale",
         "occurrences": 1
       }
     ],
