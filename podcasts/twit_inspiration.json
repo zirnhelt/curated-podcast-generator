@@ -1,0 +1,290 @@
+{
+  "version": 1,
+  "entries": {
+    "https://pdst.fm/e/pscrb.fm/rss/p/mgln.ai/e/294/cdn.twit.tv/megaphone/twig_876/ARML4129536612.mp3": {
+      "title": "IM 876: It's No Melania - Section 230 on Trial",
+      "pub_date": "Wed, 24 Jun 2026 18:58:20 PDT",
+      "episode_url": "https://twit.tv/shows/intelligent-machines/episodes/876",
+      "harvested_at": "2026-06-28T20:43:00.045051+00:00",
+      "question": "Should Section 230 be reformed to hold platforms liable for user-generated harms, or does liability threaten small innovators' ability to compete?",
+      "perspectives": [
+        "Platforms enjoy unfair legal shields enabling algorithmic harms; liability forces responsibility",
+        "Liability rules would devastate startups lacking resources for content moderation at scale"
+      ],
+      "open_questions": [
+        "What liability threshold could target genuinely harmful algorithmic amplification without chilling small platform innovation?",
+        "If platforms become liable for user content, who bears moderation costs\u2014and can it scale fairly across company sizes?",
+        "Does Section 230 reform address the real problem (platform algorithm design) or just shift blame to platforms for user behavior?"
+      ],
+      "topics": [
+        "Section 230 reform and platform liability",
+        "Big Tech legal accountability",
+        "Content moderation scalability for small innovators",
+        "Algorithmic amplification vs. user-generated content liability"
+      ],
+      "discussed_links": [
+        "https://cloud.typography.com/6494954/686486/css/fonts.css",
+        "https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600",
+        "https://podcasts.apple.com/us/podcast/intelligent-machines-audio/id326120877",
+        "http://pcasts.in/twig",
+        "https://twit.memberful.com/account/feeds?id=9064",
+        "https://globalreports.columbia.edu/books/reclaiming-the-internet",
+        "https://thenextweb.com/news/trump-anthropic-not-national-security-threat-axios-interview",
+        "https://www.wired.com/story/anthropic-mythos-export-controls-ai-regulations",
+        "https://www.nytimes.com/2026/06/23/us/politics/nsa-lost-access-anthropic-tool.html?unlocked_article_code=1.sVA.Xgol.aUCRzN6jvdv-&amp;smid=nytcore-ios-share",
+        "https://www.bloomberg.com/news/articles/2026-06-19/early-users-of-anthropic-mythos-still-have-access-after-us-order?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc4MTg3MzMwNywiZXhwIjoxNzgyNDc4MTA3LCJhcnRpY2xlSWQiOiJUR1VETk9LSkg2VjQwMCIsImJjb25uZWN0SWQiOiIxQjAxRkYwQjMzQ0I0NTFDOUIwMUYyNTlGMDA1MTE3MiJ9.fjLhOc8UW9Ow4VZm2T0jGqeShOq4r_BicxD-ojRVguM"
+      ]
+    },
+    "https://pdst.fm/e/pscrb.fm/rss/p/mgln.ai/e/294/cdn.twit.tv/megaphone/twig_875/ARML5169193205.mp3": {
+      "title": "IM 875: Florida Dad - Amazon, Anthropic, and the AI Power Struggle",
+      "pub_date": "Wed, 17 Jun 2026 18:20:12 PDT",
+      "episode_url": "https://twit.tv/shows/intelligent-machines/episodes/875",
+      "harvested_at": "2026-06-28T20:43:04.387607+00:00",
+      "question": "Should governments restrict advanced AI model exports/deployment for national security, or does this protectionism ultimately weaken domestic cyber defense and innovation?",
+      "perspectives": [
+        "Government export controls prevent dangerous AI proliferation and protect national security interests",
+        "Restricting Anthropic's models harms US cyber defense capabilities and hands advantage to foreign competitors"
+      ],
+      "open_questions": [
+        "Can the US distinguish between legitimate national security concerns and political retaliation (Trump grudge angle) in AI regulation?",
+        "If a handful of AI companies monopolize advanced models via government preference, does that create greater systemic risk than distributed competition?",
+        "How do export controls on AI models differ from Cold War chip restrictions\u2014and will similar unintended consequences emerge?"
+      ],
+      "topics": [
+        "Anthropic Fable model shutdown and US government export controls",
+        "AI as national security infrastructure vs. commercial innovation",
+        "DeepMind's concerns about millions of interacting AI agents",
+        "OpenAI IPO timing and competitive consolidation in AI",
+        "DoJ argument that xAI is 'vital' for national security"
+      ],
+      "discussed_links": [
+        "https://cloud.typography.com/6494954/686486/css/fonts.css",
+        "https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600",
+        "https://podcasts.apple.com/us/podcast/intelligent-machines-audio/id326120877",
+        "http://pcasts.in/twig",
+        "https://twit.memberful.com/account/feeds?id=9064",
+        "https://bsky.app/profile/stamos.org",
+        "https://www.lutasecurity.com/post/the-fable-5-export-controls-harm-us-cyber-defense",
+        "https://www.axios.com/2026/06/10/anthropic-ceo-government-block-dangerous-ai",
+        "https://www.techdirt.com/2026/06/16/apparently-the-real-reason-anthropics-models-are-offline-a-six-year-old-trump-grudge/",
+        "https://stratechery.com/2026/anthropics-safety-superpower"
+      ]
+    },
+    "https://pdst.fm/e/pscrb.fm/rss/p/mgln.ai/e/294/cdn.twit.tv/megaphone/twig_874/ARML9183044825.mp3": {
+      "title": "IM 874: Google Knows I Love the Pepper Cannon - AI and the New Social Contract",
+      "pub_date": "Wed, 10 Jun 2026 19:06:58 PDT",
+      "episode_url": "https://twit.tv/shows/intelligent-machines/episodes/874",
+      "harvested_at": "2026-06-28T20:43:08.743914+00:00",
+      "question": "Should AI agents be regulated as publishers when they generate false information, or does liability belong with the users deploying them?",
+      "perspectives": [
+        "German courts: AI overviews are publisher speech; Google liable for hallucinated answers in search results",
+        "Tech industry: users/developers responsible for verifying outputs; treating LLMs as publishers chills innovation"
+      ],
+      "open_questions": [
+        "If lawyers using AI in court filings are liable for hallucinations, who bears responsibility\u2014the tool maker, the lawyer, or both?",
+        "How do local/open-source AI models avoid publisher liability that cloud LLMs face, and does this create a two-tier legal system?",
+        "When Anthropic silently downgrades Claude models for safety, how should users know their AI assistant's capabilities changed?"
+      ],
+      "topics": [
+        "German court ruling on Google AI Overviews as publisher liability",
+        "AI hallucinations in legal proceedings and courtroom consequences",
+        "Open-source vs. proprietary AI models and differential regulatory treatment",
+        "Anthropic's silent model downgrades and transparency in guardrails",
+        "Personal data retention in AI agents (Google Dreambeans, Hermes)"
+      ],
+      "discussed_links": [
+        "https://cloud.typography.com/6494954/686486/css/fonts.css",
+        "https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600",
+        "https://podcasts.apple.com/us/podcast/intelligent-machines-audio/id326120877",
+        "http://pcasts.in/twig",
+        "https://twit.memberful.com/account/feeds?id=9064",
+        "https://nousresearch.com/",
+        "https://www.consumerreports.org/health/food-additives/popular-snacks-contain-high-levels-of-additives-a6822743034/",
+        "https://www.theverge.com/tech/947432/siri-ai-apple-intelligence-ios-27-wwdc",
+        "https://www.anthropic.com/news/claude-fable-5-mythos-5",
+        "https://www.404media.co/judge-learns-lawyers-on-both-sides-of-case-used-ai-cancels-trial-kicks-everyone-off-the-case/"
+      ]
+    },
+    "https://pdst.fm/e/pscrb.fm/rss/p/mgln.ai/e/294/cdn.twit.tv/megaphone/twig_873/ARML2292762243.mp3": {
+      "title": "IM 873: Superman's Mustache - AI in Hollywood",
+      "pub_date": "Wed, 03 Jun 2026 18:55:20 PDT",
+      "episode_url": "https://twit.tv/shows/intelligent-machines/episodes/873",
+      "harvested_at": "2026-06-28T20:43:13.239369+00:00",
+      "question": "Should AI-generated creative tools be treated as democratizing filmmaking or as labor displacement that requires contractual protection?",
+      "perspectives": [
+        "AI tools lower barriers to entry, enabling indie creators to compete with studios on production budgets",
+        "Synthetic actors and AI storyboards undercut union jobs and establish precedent for replacing human artists"
+      ],
+      "open_questions": [
+        "How do synthetic actor contracts define residuals, royalties, or ongoing compensation if AI-generated performances are reused or modified post-release?",
+        "If a $2,000 AI film replaces work that would cost millions, what labor retraining or transition support is industry responsibility versus government responsibility?",
+        "Does legal 'green light' for synthetic actors create a two-tier system where only well-funded productions can afford human talent, or where only studios use AI?"
+      ],
+      "topics": [
+        "Synthetic actors and Hollywood union contracts",
+        "Amazon AI Creators Fund and indie filmmaker access",
+        "Cost-benefit analysis: $2,000 AI production vs. traditional CGI",
+        "Martin Scorsese's use of AI storyboards and industry backlash",
+        "Regulatory oversight of AI tools in creative industries"
+      ],
+      "discussed_links": [
+        "https://cloud.typography.com/6494954/686486/css/fonts.css",
+        "https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600",
+        "https://podcasts.apple.com/us/podcast/intelligent-machines-audio/id326120877",
+        "http://pcasts.in/twig",
+        "https://twit.memberful.com/account/feeds?id=9064",
+        "https://roberttercek.com/",
+        "https://www.theverge.com/tech/940584/microsoft-surface-laptop-ultra-nvidia-rtx-spark-pictures",
+        "https://www.theverge.com/ai-artificial-intelligence/941016/anthropic-has-officially-filed-to-go-public",
+        "https://www.wsj.com/tech/ai/google-seeks-to-raise-80-billion-for-ai-infrastructure-05a379be?mod=hp_lead_pos4",
+        "https://www.businessinsider.com/amazon-anthropic-stake-skyrockets-ai-startup-ipo-2026-6"
+      ]
+    },
+    "https://pdst.fm/e/pscrb.fm/rss/p/mgln.ai/e/294/cdn.twit.tv/megaphone/twig_872/ARML8198826971.mp3": {
+      "title": "IM 872: Infinite Jeffs - Why the Pope's AI Manifesto Matters",
+      "pub_date": "Wed, 27 May 2026 20:20:00 PDT",
+      "episode_url": "https://twit.tv/shows/intelligent-machines/episodes/872",
+      "harvested_at": "2026-06-28T20:43:17.834761+00:00",
+      "question": "Can Pope Leo's 42,000-word AI encyclical establish ethical guardrails that meaningfully constrain corporate AI deployment, or does religious authority lack enforcement mechanisms against tech companies?",
+      "perspectives": [
+        "Religious and ethical frameworks can guide AI development by appealing to human dignity and social responsibility norms.",
+        "Tech companies will adopt AI ethics selectively; without regulatory teeth, papal guidance remains advisory rather than binding."
+      ],
+      "open_questions": [
+        "Does the Pope's concern about AI power concentration and labor displacement match the actual economic incentives driving DeepSeek's price-cutting and enterprise adoption?",
+        "If Anthropic co-founder warns of power concentration while negotiating government spy agency deals, how does institutional constraint work when AI vendors are simultaneously ethics advisors and military contractors?",
+        "Why does fan-made AI music generation (Spotify-Universal deal) get treated differently ethically than AI-written papal encyclicals\u2014what's the principled distinction?"
+      ],
+      "topics": [
+        "Pope Leo XIV's 'Magnifica Humanitas' encyclical on AI ethics and human dignity",
+        "AI power concentration and labor displacement risks",
+        "White House-Anthropic government AI contracts for intelligence agencies",
+        "DeepSeek's aggressive pricing strategy and market consolidation",
+        "AI-generated creative content (music, documents) and attribution ethics",
+        "Religious authority's role in technology governance"
+      ],
+      "discussed_links": [
+        "https://cloud.typography.com/6494954/686486/css/fonts.css",
+        "https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600",
+        "https://podcasts.apple.com/us/podcast/intelligent-machines-audio/id326120877",
+        "http://pcasts.in/twig",
+        "https://twit.memberful.com/account/feeds?id=9064",
+        "https://ricksammon.com",
+        "https://ricksammon.com/",
+        "https://www.vatican.va/content/leo-xiv/en/encyclicals/documents/20260515-magnifica-humanitas.html",
+        "https://buzzmachine.com/2026/05/26/pope-leo-and-human-intelligence/",
+        "https://www.theinformation.com/briefings/pope-leo-anthropic-co-founder-warn-ai-power-concentration-labor-displacement"
+      ]
+    },
+    "https://pdst.fm/e/pscrb.fm/rss/p/mgln.ai/e/294/cdn.twit.tv/megaphone/twig_871/ARML3700985943.mp3": {
+      "title": "IM 871: CTRL-F Techno King - Google's Search Overhaul",
+      "pub_date": "Wed, 20 May 2026 19:51:12 PDT",
+      "episode_url": "https://twit.tv/shows/intelligent-machines/episodes/871",
+      "harvested_at": "2026-06-28T20:43:22.658754+00:00",
+      "question": "Should AI systems be deployed in high-stakes domains (medicine, security, content moderation) before transparency and accountability mechanisms are legally mandated?",
+      "perspectives": [
+        "Speed of innovation and competitive pressure justify early deployment; risks manageable through industry self-regulation.",
+        "Patient/user consent and informed disclosure must precede deployment; current opacity violates medical ethics and consumer rights."
+      ],
+      "open_questions": [
+        "Why are U.S. doctors using AI diagnostics without patient knowledge, and what liability framework applies if outcomes diverge from AI recommendations?",
+        "How should password managers balance AI-powered security improvements against the risk of centralizing credential analysis in ways users don't understand?",
+        "When AI generates synthetic media (podcasts, articles, art), what's the threshold for mandatory disclosure\u2014and who enforces it across platforms?",
+        "Does Gemini 3.5 Flash's higher cost justify its deployment 'for everything,' or does this expand failure surface area in non-critical use cases?"
+      ],
+      "topics": [
+        "Medical AI deployment without patient consent",
+        "AI password manager security trade-offs",
+        "Synthetic media attribution and disclosure",
+        "Google's Gemini cost-benefit scaling strategy",
+        "AI-generated content plagiarism (Sports Illustrated case)",
+        "AI chatbot data leakage (real phone numbers)",
+        "Data center power consumption conflicts (Lake Tahoe)"
+      ],
+      "discussed_links": [
+        "https://cloud.typography.com/6494954/686486/css/fonts.css",
+        "https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600",
+        "https://podcasts.apple.com/us/podcast/intelligent-machines-audio/id326120877",
+        "http://pcasts.in/twig",
+        "https://twit.memberful.com/account/feeds?id=9064",
+        "https://www.dashlane.com/",
+        "https://www.wsj.com/tech/ai/nvidia-nvda-1st-quarter-earnings-report-2026-stock-c2bb9c1c?mod=hp_lead_pos3",
+        "https://www.wsj.com/tech/ai/mind-blowing-growth-is-about-to-propel-anthropic-into-its-first-profitable-quarter-7edbf2f4?mod=hp_lead_pos2",
+        "https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-05-20-2026?mod=hp_lead_pos1",
+        "https://simonwillison.net/2026/May/19/gemini-35-flash/"
+      ]
+    },
+    "https://pdst.fm/e/pscrb.fm/rss/p/mgln.ai/e/294/cdn.twit.tv/megaphone/twig_870/ARML5004121827.mp3": {
+      "title": "IM 870: Meet Me In Alaska - Are AI Content Filters Changing What We Read?",
+      "pub_date": "Wed, 13 May 2026 19:41:50 PDT",
+      "episode_url": "https://twit.tv/shows/intelligent-machines/episodes/870",
+      "harvested_at": "2026-06-28T20:43:27.787386+00:00",
+      "question": "When AI systems filter and curate information for readers, who decides what counts as important news\u2014and what responsibility do journalists have when machines do the first pass?",
+      "perspectives": [
+        "AI filters increase efficiency and help journalists handle overload; human judgment applies at editorial layers.",
+        "Algorithmic curation creates blind spots and editorial decisions shift from humans to opaque systems, losing accountability."
+      ],
+      "open_questions": [
+        "At what point in the reporting pipeline should human editors override or interrogate AI-selected stories, and how do you audit those decisions?",
+        "If AI news-gathering bots systematize what gets flagged, do they systematically exclude certain types of stories (local, niche, contrarian) that humans would catch?",
+        "How do small newsrooms adopt AI filtering without outsourcing editorial judgment to the same large vendors shaping mainstream coverage?",
+        "When AI hallucinates quotes (as NYT/Poilievre case shows), how do fact-checking workflows change if machines were supposed to reduce human workload?"
+      ],
+      "topics": [
+        "AI content curation and editorial gatekeeping",
+        "AI-generated misinformation in journalism (fabricated quotes, hallucinations)",
+        "Automation of reporting workflows vs. preservation of human editorial judgment",
+        "Accountability and auditability of algorithmic news filtering"
+      ],
+      "discussed_links": [
+        "https://cloud.typography.com/6494954/686486/css/fonts.css",
+        "https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600",
+        "https://podcasts.apple.com/us/podcast/intelligent-machines-audio/id326120877",
+        "http://pcasts.in/twig",
+        "https://twit.memberful.com/account/feeds?id=9064",
+        "https://www.theverge.com/tech/928479/google-googlebook-laptops-android-tease-aluminium-chromebook",
+        "https://techcrunch.com/2026/05/07/googles-9-99-per-month-ai-health-coach-launches-may-19/",
+        "https://www.nytimes.com/2026/05/11/us/politics/google-hackers-attack-ai.html",
+        "https://www.businessinsider.com/sam-altman-faces-awkward-grilling-over-toxic-culture-of-lying-2026-5",
+        "https://www.axios.com/2026/05/12/trump-china-ai-guardrails-mythos"
+      ]
+    },
+    "https://pdst.fm/e/pscrb.fm/rss/p/mgln.ai/e/294/cdn.twit.tv/megaphone/twig_869/ARML7732583286.mp3": {
+      "title": "IM 869: My Sentience is Going Up - Chatbots in Charge",
+      "pub_date": "Wed, 06 May 2026 19:38:16 PDT",
+      "episode_url": "https://twit.tv/shows/intelligent-machines/episodes/869",
+      "harvested_at": "2026-06-28T20:43:32.947469+00:00",
+      "question": "Should AI systems be pre-vetted by government before release, or does that stifle innovation and competition?",
+      "perspectives": [
+        "Pre-release vetting prevents harmful models reaching billions of users at scale",
+        "Regulatory gatekeeping favors incumbents and slows beneficial AI development cycles"
+      ],
+      "open_questions": [
+        "What specific harms justify vetting delays when China bans AI-driven job displacement but lacks Western-style model oversight?",
+        "If hallucination and credential misuse still occur in deployed AI (per Troy Hunt's HIBP case), does pre-release vetting actually prevent real-world risks?",
+        "How do you distinguish between legitimate regulatory oversight and protectionism when only White House vetting is proposed, not industry standards?",
+        "Does the precedent of Google Chrome silently installing 4GB AI models without consent suggest vetting should apply to sneaky deployment, not just initial release?"
+      ],
+      "topics": [
+        "White House AI model vetting policies",
+        "AI hallucination and reliability in production systems",
+        "Credential theft and misuse by AI agents",
+        "AI-driven job displacement and labor law responses",
+        "Unauthorized AI model distribution and consent issues",
+        "Regulatory capture risk in AI governance"
+      ],
+      "discussed_links": [
+        "https://cloud.typography.com/6494954/686486/css/fonts.css",
+        "https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600",
+        "https://podcasts.apple.com/us/podcast/intelligent-machines-audio/id326120877",
+        "http://pcasts.in/twig",
+        "https://twit.memberful.com/account/feeds?id=9064",
+        "https://www.troyhunt.com/",
+        "https://www.nytimes.com/2026/05/04/technology/trump-ai-models.html",
+        "https://www.semafor.com/article/05/01/2026/elon-musk-admits-xai-distilled-openai-models",
+        "https://9to5mac.com/2026/05/05/gpt-5-5-instant-makes-chatgpt-more-accurate-while-nixing-gratuitous-emojis",
+        "https://www.anthropic.com/news/higher-limits-spacex"
+      ]
+    }
+  }
+}

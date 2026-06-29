@@ -1,0 +1,115 @@
+# Cariboo Signals Podcast Script - 2026-06-29
+# Theme: Arts, Culture & Digital Storytelling
+# Generated: 2026-06-29 05:46:07 PDT
+
+**CASEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. It's Monday, June 29th, 2026. Here in the Cariboo, on the traditional and unceded territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations.
+
+**RILEY:** And I'm Riley. Today we're looking at who controls the tools and platforms that let rural artists and storytellers actually reach people — and what happens when that infrastructure doesn't live up to its promises.
+
+**CASEY:** Quick weather check before we dive in — it's overcast across the whole region this morning, 11 degrees out at Horsefly Lake with a high of 19. Williams Lake, 100 Mile House, Quesnel, and Redstone out on the Chilcotin plateau are all sitting in that same grey 11-to-13 range. Looks like light drizzle tomorrow, so enjoy the dry today while it lasts. Let's get into the news.
+
+---
+
+**NEWS ROUNDUP**
+
+**RILEY:** Three years ago, the federal government approved the Rogers-Shaw merger with binding commitments — jobs, rural 5G rollout, price controls, up to a billion dollars in penalties for non-compliance. Rogers' own public disclosures now show those commitments on job creation, 5G expansion, and service quality are falling short. Open Media is calling on Minister Mélanie Joly at ISED to actually enforce the deal's teeth. For rural BC communities still waiting on reliable connectivity, this isn't abstract — it's the difference between a local artist being able to stream a live performance and hoping the upload doesn't drop halfway through.
+
+**CASEY:** ISED has done nothing publicly visible to enforce it. We'll come back to what happens when the infrastructure foundation is shaky.
+
+**RILEY:** Suno — the AI music generation platform that raised a reported $400 million while copyright cases against it remain unresolved, and yes, the same Suno that generated our show's theme song — has launched a new program called Spark. It's an incubator for independent artists, promising promotion, production tools, and a path to their streaming platform. The pitch is that Suno wants to break new artists, not just churn out AI-generated tracks.
+
+**CASEY:** An AI company launching an artist incubator to feed artists into its own platform. That incentive structure deserves some scrutiny.
+
+**CASEY:** Out of the South Cariboo, communities from 100 Mile House to the Lone Butte area are gearing up for Canada Day on July 1st with parades, fireworks, family events, and live music throughout the region. The 100 Mile Free Press has a full roundup — good timing as we think today about what live cultural events still do that digital platforms can't replicate.
+
+**RILEY:** There's something irreplaceable about showing up in the same field at the same time as your neighbours.
+
+**RILEY:** Canadaland has a new episode examining how media coverage of New Brunswick's so-called "mystery illness" cluster actively derailed the scientific investigation. Journalists reached for dramatic framing, "mystery illness" spread across headlines, and that framing — according to Dr. Michael Coulthart quoted in the piece — created public confusion that hampered the actual epidemiological work. Sharp reminder that how stories get told shapes what communities can actually do with them.
+
+**CASEY:** The gap between a compelling narrative and an accurate one has real-world consequences — not just for scientists, but for the people those stories are about.
+
+**CASEY:** Also worth noting today — Williams Lake RCMP have launched a summer bike patrol program, with the mayor out front on it. And separately, Grade 11 and 12 students at a Williams Lake school built custom vehicle trunk storage boxes for RCMP vehicles as a shop class project. Two genuinely local stories about community-police connection that don't need a technology angle to be worth mentioning.
+
+**RILEY:** Love seeing students building something that actually ends up in the field.
+
+**RILEY:** On the science side — astronomers have confirmed two new "super-puff" planets, both roughly Jupiter-sized but less dense than cotton candy. Less dense than cotton candy. The universe continues to be extremely weird, and we love it for that.
+
+**CASEY:** Always delivering on the absurdist brief.
+
+**RILEY:** That Rogers-Shaw enforcement gap is going to matter a lot for what we dig into next — let's get to the spotlight first.
+
+---
+
+**COMMUNITY SPOTLIGHT**
+
+**RILEY:** If you're looking for somewhere to take the family this Canada Day weekend, the Museum of the Cariboo Chilcotin in Williams Lake is celebrating with new inductees into the BC Cowboy Hall of Fame. The museum holds the stories of ranching families, working cowboys, and the land-based culture that shaped this region — the kind of history that doesn't make it into a Google search but absolutely deserves a permanent home. This year's inductions happen right on Canada Day. Head to cowboy-museum.com for details.
+
+**CASEY:** That museum is doing the work of keeping regional identity tangible — exactly the kind of cultural infrastructure we don't talk about enough.
+
+**RILEY:** And on that note — the deep dive.
+
+---
+
+**DEEP DIVE: CARIBOO CONNECTIONS — Arts, Culture & Digital Storytelling**
+
+**CASEY:** The question sitting underneath today's theme is one worth naming directly: when a rural artist or community storyteller sits down with a new tool — a free music app, a platform incubator program, an AI production assistant — what are they actually getting, and what are they giving up? The tools have genuinely changed. But so have the extraction mechanisms.
+
+**RILEY:** BandLab is a good place to start. It's a free, fully cloud-based music production app — multitrack recording, beat-making, mixing, collaboration across devices. TechRadar frames it as the thing GarageBand never quite managed to be, mostly because it removes the hardware barrier entirely. No Mac required, no audio interface, no quiet studio. You need a phone and a working internet connection.
+
+**CASEY:** Which in the Cariboo means you need Rogers or Telus to have actually built out what they promised. So already, the "free tool on your phone" story has a footnote.
+
+**RILEY:** Connectivity is a real constraint, but BandLab's architecture is designed to work on lower bandwidth than most streaming platforms — it's not nothing. The ceiling it removes for a musician in Horsefly or Anahim Lake who can't afford professional recording software and a producer in Vancouver is genuinely significant. The gap between "I have an idea for a song" and "I have a finished, shareable recording" used to cost thousands of dollars. Now it costs time.
+
+**CASEY:** Time, yes. And data. And the terms of service, which is where these platforms quietly collect what they actually want. BandLab's terms give them a broad license to content created on the platform. Standard across free creative tools — but for a Tŝilhqot'in songwriter recording traditional material, or a Dakelh language learner making audio recordings of elders' songs, "broad license to the content" is not a minor detail.
+
+**RILEY:** The OCAP principles — ownership, control, access, and possession — exist precisely because Indigenous communities have had their cultural material extracted under exactly these kinds of permissive terms. The answer isn't "don't use the tool." Use it with legal eyes open and community governance already in place.
+
+**CASEY:** How many rural artists have a lawyer reviewing their music app's terms of service before they hit record?
+
+**RILEY:** Almost none. Which is why the governance infrastructure has to come first — or at least alongside. The tool is secondary to the ownership structure.
+
+**CASEY:** And that's where the Suno Spark program gets interesting in a troubling way. The framing is artist development — promotion, production resources, a path to their streaming platform. But Suno's business model depends on training data. Their copyright litigation is unresolved. Independent artists entering that incubator are potentially providing exactly what Suno needs most: human-made music with clear creator attribution, which they can study, adapt, or use as training signal regardless of what the incubator contract says.
+
+**RILEY:** We don't know what Suno's Spark contracts actually say — that matters, and it's possible they've structured it cleanly. But the incentive asymmetry you're describing is real. When a platform that makes AI music offers to develop your human-made music career, you read the fine print twice.
+
+**CASEY:** At minimum. And the rural angle is that artists in cities have industry lawyers, managers, union reps through organizations like ACTRA or the Musicians' Guild who've already flagged these terms. A songwriter in a town of five hundred doesn't have those structures around them. They see "free incubator program" and the asymmetry is invisible.
+
+**RILEY:** The capacity gap is real, but it's not unique to platform contracts — it's the same gap that makes rural artists more vulnerable to bad venue contracts, bad licensing deals, bad grant terms. The solution isn't platform-specific; it's building the intermediary layer. Artist collectives, regional arts councils, Indigenous cultural organizations with digital rights expertise. The Cariboo Arts Society exists. The Williams Lake First Nation has a cultural department. There are actual organizations that could be building this knowledge capacity if arts funding treated digital rights literacy as infrastructure rather than a one-off workshop.
+
+**CASEY:** The Cariboo Arts Society is real and worth naming. Their capacity right now is stretched across visual arts, event production, and member services. Adding digital rights legal literacy to that mandate without dedicated funding is just adding to a pile that's already too tall.
+
+**RILEY:** The model doesn't have to be "hire a lawyer." One digital rights coordinator serving multiple organizations across the Cariboo Regional District — that's a fraction of what a single bad platform contract could cost a community archive.
+
+**CASEY:** That math works if you can get four or five organizations to share the governance and cost sustainably. Every time that model has been tried in rural BC arts, the coordinating body either absorbs one organization's priorities or collapses when one funder exits. It's not impossible. It's just not as clean as it sounds in the pitch.
+
+**RILEY:** Fair enough on the coordination risk. The Tod Maffin model is worth holding up here — not because it's directly replicable, but because it demonstrates something structurally important. He left CBC — a massive institution with audience, production budget, and promotional infrastructure — and rebuilt a substantial independent audience across newsletter, podcast, and Bluesky. What made that work wasn't better tools. It was audience ownership: an email list that no platform can revoke, a direct relationship that survives algorithm changes. That's the principle rural artists need, not his specific scale.
+
+**CASEY:** Maffin's audience came with him from CBC. He didn't build from cold. A first-generation rural creator starting without institutional reach is in a completely different position.
+
+**RILEY:** True. But the principle of building platform-independent audience relationships — even a small one, even a local one — is separable from his scale advantage. A Quesnel musician with three hundred engaged email subscribers owns something more durable than a musician with thirty thousand TikTok followers, because one of those can be taken away overnight.
+
+**CASEY:** Three hundred email subscribers in Quesnel probably represents most of the people in that city actively engaged with local music. That's a ceiling on scale, not a criticism of the strategy. Regional media and culture serving the Cariboo Regional District — somewhere around sixty-five thousand people spread across a massive geography — has a fundamentally smaller addressable audience than any national platform. The math doesn't improve by switching to email.
+
+**RILEY:** The monetization math changes, though. National streaming platforms pay fractions of a cent per stream. Three hundred engaged local subscribers at ten dollars a month is three thousand dollars of stable monthly revenue — enough to cover basic production costs for a regional podcast or music project. Not a career, but the difference between a project that exists and one that doesn't.
+
+**CASEY:** Which genuinely made me reconsider the dismissal — at the local scale, the unit economics of direct subscription actually hold up. What I'm still skeptical about is the cold-start: how do you get those first three hundred subscribers without the institutional launch platform that Maffin had?
+
+**RILEY:** Probably through exactly the kind of live events we mentioned earlier — Canada Day in 100 Mile House, community screenings, the BC Cowboy Hall of Fame induction. Those are the places where the audience already exists. The digital relationship gets built on top of the in-person one, not instead of it.
+
+**CASEY:** That's a more grounded version of the argument. And it connects to the Canadaland example, because they've actually made the independent subscription model work at Canadian scale — original investigative series, fellowships, live events, subscriber revenue. Not CBC-sized, but genuinely sustainable. The question for the Cariboo is whether there's an equivalent for regional cultural production. Not news, but music, visual art, oral history, language documentation.
+
+**RILEY:** That's the gap worth trying to fill — not a grant-funded two-year pilot, but a subscription-supported regional cultural production hub that treats itself as permanent infrastructure from day one. Anchored in Williams Lake, or distributed. The structural question is: what makes it not need to apply for grants every two years?
+
+**CASEY:** Subscription revenue, if the audience is there. Local business underwriting, which is thin but real. And one thing we haven't named — earned revenue from the tools themselves. If a regional hub is running production resources for local artists and taking a small percentage of streaming revenue in exchange for that support, that's a model agricultural co-ops have used for decades. No reason it can't work in cultural production.
+
+**RILEY:** Moving from "we produce content and ask for donations" to "we are a production cooperative that earns from the work we help create" — that's a structural shift worth naming explicitly. The Tŝilhqot'in Nation's approach to community screening events combined with direct online release points in that direction, treating cultural production as something the community owns economically, not just culturally.
+
+**CASEY:** Worth being honest that we're working from published sources here and haven't spoken directly with Tŝilhqot'in Nation communications — but the model as publicly described does suggest community economic ownership of the distribution chain, not just the content.
+
+**RILEY:** And that's the question worth taking to the next Williams Lake town hall, or raising with whoever's administering Cariboo Regional District arts funding: are we funding projects, or are we funding production infrastructure that can eventually own its own economics? The tools — BandLab, podcast hosting, direct-to-audience platforms — are cheap enough now that the barrier isn't technology. The barrier is governance and the decision to treat cultural production as something worth owning permanently.
+
+**CASEY:** The Rogers-Shaw enforcement failure is a useful reminder that even when commitments exist on paper, without enforcement they're just text. The same logic applies here. A regional government can commit to cultural infrastructure, but without structural accountability — someone whose job it is to ensure the co-op model is actually running in three years — it becomes another two-year pilot with a good press release. The optimism about what's possible is warranted. The assumption that institutional support will hold is not.
+
+**RILEY:** Which puts the accountability question back on residents. If you're in Williams Lake or Quesnel and you care about whether local cultural production survives the next algorithm change or the next funding cycle, the most useful thing you can do isn't donate to a GoFundMe. Show up to the Arts Society meeting and ask what the five-year ownership structure looks like. "Who owns this in five years" — that's the question that distinguishes infrastructure from a project. And if you know a local artist, a cultural organization, or a community production experiment that's actually figured out a piece of this — what self-sustaining looks like in practice — tell us about it at feedback at cariboo signals dot c-a. Those are the stories that move this conversation forward.
+
+**CASEY:** We'll keep pulling on this one. Thanks for spending your Monday morning with us — and if you're heading to Canada Day events around the region this week, keep an eye out for the stories that only exist because someone local decided to document them. We'll be back tomorrow. Take care.

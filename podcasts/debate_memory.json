@@ -1,43 +1,4 @@
 {
-  "2026-03-30": {
-    "timestamp": 1774868857.087596,
-    "date": "2026-03-30",
-    "theme": "Arts, Culture & Digital Storytelling",
-    "central_question": "Deep dive on Arts, Culture & Digital Storytelling",
-    "topics_covered": [
-      "data sovereignty",
-      "AI",
-      "infrastructure",
-      "community ownership",
-      "maintenance"
-    ]
-  },
-  "2026-03-31": {
-    "timestamp": 1774954914.393301,
-    "date": "2026-03-31",
-    "theme": "Working Lands & Industry",
-    "central_question": "How can the Cariboo build a working landscape that is economically viable, ecologically sustainable, and socially equitable when these three goals are often in tension?",
-    "riley_position": "Technology and market instruments (BCTS, soil health science, carbon markets, precision monitoring) can meaningfully improve land management outcomes if deployed through organized collective structures rather than atomized individual operators.",
-    "riley_key_evidence": [
-      "BC Timber Sales designed to create competition and prevent tenure concentration through smaller operator bidding",
-      "Soil health measurement technology has become vastly cheaper through remote sensing and precision sampling in the last 5 years",
-      "Alberta's mobile slaughter program demonstrates regulatory pathways for processing infrastructure that BC could adopt"
-    ],
-    "casey_position": "Instruments alone are insufficient; they must be designed with explicit consideration of power structures and who captures value, requiring indigenous co-governance and organizational capacity that currently doesn't exist in the Cariboo.",
-    "casey_key_evidence": [
-      "BC Timber Sales theory of competition doesn't guarantee outcomes\u2014large players often dominate BCTS auctions anyway in isolated districts",
-      "Carbon market transaction costs are prohibitively expensive for small family operations without aggregation infrastructure",
-      "Traditional ecological knowledge frameworks for managing stressors like mountain pine beetle and drought are underintegrated into commercial forestry and ranching"
-    ],
-    "resolution": "Riley and Casey achieve substantial agreement that the core answer requires organized collective action (co-ops, Nation-led structures, regional funds) to access infrastructure and capital\u2014disagreeing primarily on degree of optimism rather than fundamental diagnosis. They align on the need for unglamorous institutional work to translate good ideas into durable structures.",
-    "topics_covered": [
-      "BC Timber Sales policy design and competitive market dynamics in forestry",
-      "Soil health science, microbial inoculants, and measurement challenges for ranching",
-      "Carbon markets, ecosystem service payments, and aggregation models for smallholder operations",
-      "Indigenous co-governance, traditional ecological knowledge, and tenure restructuring",
-      "Infrastructure gaps: connectivity, processing facilities, long-term capital, and organizational capacity"
-    ]
-  },
   "2026-04-01": {
     "timestamp": 1775041668.743743,
     "date": "2026-04-01",
@@ -2353,6 +2314,32 @@
       "Data governance architecture and institutional partnerships for regional ecological monitoring",
       "Integration of observation into existing economic roles rather than creating new grant-dependent positions",
       "Sovereignty, trust, and incentive structures required for multi-party ecological data systems"
+    ]
+  },
+  "2026-06-29": {
+    "timestamp": 1782737169.616585,
+    "date": "2026-06-29",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "central_question": "How can rural artists and communities safely adopt digital tools and platforms while maintaining ownership and control of their cultural content?",
+    "riley_position": "Digital tools like BandLab are genuinely transformative for rural artists despite legitimate concerns; the solution is building governance infrastructure and audience ownership structures alongside tool adoption, not avoiding the tools themselves.",
+    "riley_key_evidence": [
+      "BandLab removes the hardware/cost barrier that made music production inaccessible ('gap between idea and finished recording used to cost thousands, now costs time')",
+      "Tod Maffin's model demonstrates platform-independent audience ownership through email lists survives algorithm changes better than platform followers",
+      "Three hundred engaged local email subscribers at $10/month generates $3,000 monthly revenue\u2014enough for basic production costs"
+    ],
+    "casey_position": "Rural artists face structural capacity disadvantages (no lawyers, no industry representatives) that make platform contract risks invisible to them, and building sustainable regional cultural infrastructure requires permanent funding commitment, not temporary grants.",
+    "casey_key_evidence": [
+      "BandLab's broad content licensing ToS poses real extraction risk for Indigenous cultural material under OCAP principles",
+      "Rural artists lack access to industry lawyers and union protections that urban artists have when evaluating platform terms",
+      "Regional coordinating bodies in rural BC repeatedly collapse when funders exit or organizational priorities absorb others' interests"
+    ],
+    "resolution": "They moved toward agreement that the gap isn't technology but governance\u2014specifically, whether communities can build permanent, self-sustaining cultural production infrastructure (like a Canadaland model) that owns its economics rather than chasing two-year grant cycles.",
+    "topics_covered": [
+      "Free creative tools (BandLab) and their hidden extraction mechanisms through terms of service",
+      "Indigenous data sovereignty and OCAP principles applied to digital cultural production",
+      "Platform incubator programs (Suno Spark) as potential data-harvesting mechanisms disguised as artist development",
+      "Sustainable revenue models for regional cultural production (subscriptions, cooperative earnings-sharing, audience ownership)",
+      "Accountability and infrastructure vs. project-based funding in rural arts ecosystems"
     ]
   }
 }
