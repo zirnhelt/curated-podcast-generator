@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[CNET] Google Sued Over AI Search, the Future of Touchscreen",
-      "[Tom's Hardware] Ditching the cloud for local AI \u2014 how I use",
       "[Engadget] A24 takes on Google money to build AI tools",
       "[Toms Guide] Turns out AI was destroying my phone\u2019s battery ",
       "[ScienceAlert] Traces of Alien Technology Could Be Hidden in",
@@ -10,7 +8,9 @@
       "[STAT News] STAT+: AI wades into a vexing medical mystery: W",
       "[TechCrunch] AI researchers continue to leave Google for its",
       "[TechRadar] This app turned me into the music creator that G",
-      "AI"
+      "AI",
+      "[TechRadar] Over 14 million login credentials leaked from si",
+      "[TechRadar] Google says Android's built-in earthquake warnin"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -100,9 +100,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-06-21",
-        "clue": "structural-lens:~ \u2014 Acknowledges data governance as unresolved, genuinely thorny",
-        "occurrences": 1
+        "date": "2026-06-30",
+        "clue": "structural-lens:~ \u2014 Conceded capacity persistence differs from project contracts",
+        "occurrences": 2
       },
       {
         "date": "2026-06-24",
@@ -117,6 +117,11 @@
       {
         "date": "2026-06-29",
         "clue": "structural-lens:+ \u2014 Reinforced infrastructure-over-projects framing throughout",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-06-30",
+        "clue": "funding-risk:x \u2014 Accepted Casey's consultant dependency critique as valid",
         "occurrences": 1
       }
     ],
@@ -361,6 +366,16 @@
       {
         "date": "2026-06-29",
         "clue": "evidence-bar:x \u2014 Conceded that local subscription math 'actually holds up' at regional scale",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-06-30",
+        "clue": "structural-lens:+ \u2014 Deepened focus on capability transfer over deliverables",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-06-30",
+        "clue": "pilot-skepticism:- \u2014 Softened stance on carbon protocols; acknowledged rancher cooperative math",
         "occurrences": 1
       }
     ],

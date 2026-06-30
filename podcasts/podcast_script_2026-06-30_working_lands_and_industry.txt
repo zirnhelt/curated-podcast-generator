@@ -1,0 +1,151 @@
+# Cariboo Signals Podcast Script - 2026-06-30
+# Theme: Working Lands & Industry
+# Generated: 2026-06-30 06:34:31 PDT
+
+**RILEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. It's Tuesday, June 30th, 2026. Here in the Cariboo, on the traditional and unceded territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations. Today's theme is Working Lands and Industry — I'm Riley.
+
+**CASEY:** [pause:1000] And I'm Casey. Today we're asking who actually captures the value when the land produces wealth — and whether new ownership models are starting to shift that equation.
+
+**RILEY:** Quick weather check before we dive in — Horsefly Lake sitting at 11 degrees this morning, partly cloudy, high of 22 expected. Across the region: 100 Mile House at 11 with overcast skies, Williams Lake 14 and partly cloudy, Quesnel at 12 with overcast, and out on the Chilcotin plateau, Alexis Creek also sitting at 12 with some cloud. Drizzle rolling in tomorrow, so enjoy today if you're outside. Let's get into the news.
+
+---
+
+**NEWS ROUNDUP**
+
+**RILEY:** [pause:1200] We'll start with mining, because there's movement on two projects worth watching. 1911 Gold is getting ready to begin test mining — their president and CEO Shaun Heinrichs spoke at the Mining Investment Event of the North in Quebec City last month. Test mining is the stage between exploration and production, so this is a meaningful operational milestone for the company.
+
+**CASEY:** That's where junior miners either prove the economics or don't — test mining is the real filter.
+
+**CASEY:** [pause:1200] Related story: Freeman Gold has released a feasibility study for their Lemhi project in Idaho that triples the project's estimated value and establishes a one-million-ounce gold reserve, up significantly from earlier estimates. The mine life has also been extended. For junior gold developers, a bankable feasibility study at these numbers usually unlocks the next tranche of financing.
+
+**RILEY:** A million ounces gets institutional attention — though the question that always follows is who owns the processing infrastructure and where the royalties flow.
+
+**RILEY:** [pause:1200] We'll come back to exactly that in the Deep Dive. First — a major cybersecurity story with real implications for rural internet users. Fourteen million login credentials have been leaked from six internet service providers after attackers compromised a third-party software vendor those ISPs shared. The credentials were exposed, not necessarily used — but the distinction matters less if you've reused that password elsewhere.
+
+**CASEY:** Rural ISPs often rely on the same small pool of third-party vendors as everyone else, so the attack surface is the same even when the subscriber base is tiny. Check your passwords.
+
+**CASEY:** [pause:1200] Staying on the infrastructure theme — Google's Android earthquake alert system warned 11.4 million people before the recent Venezuelan earthquake hit. The system runs on more than 2.5 billion Android phones globally, using the accelerometers already in those devices to detect P-waves before destructive shaking arrives. Venezuela has since been devastated — thousands feared dead according to Al Jazeera — and the alert system gave some users meaningful seconds of warning.
+
+**RILEY:** Seconds matter for dropping to cover. Passive sensor networks built on consumer hardware are now functioning as public safety infrastructure — no dedicated seismic stations required.
+
+**RILEY:** [pause:1200] On the privacy front — U.S. senators are proposing legislation that would ban AI companies from selling health and location data, including information people disclose in chatbot conversations. The proposal targets data brokers specifically and would cover tools like ChatGPT and — worth noting since Claude writes every script on this show — Anthropic's Claude. No vote scheduled yet, but it's moving.
+
+**CASEY:** The chatbot health-data pipeline is genuinely murky. People tell AI assistants things they wouldn't put in a form.
+
+**CASEY:** [pause:1200] OpenAI is also teasing new hardware — a square-shaped device with buttons, connected to their Codex AI coding tool. Announcement set for July 15th. Details are thin, but it signals OpenAI is following the playbook of embedding AI into dedicated hardware rather than relying solely on software subscriptions. They also voice some of our episodes, so noted.
+
+**RILEY:** Every major AI lab is looking for the device that becomes the primary interface — the question is whether any of them ship something that works outside a wifi-reliable urban apartment.
+
+**RILEY:** [pause:1200] A quick note on a privacy governance story from Europe — Mullvad VPN, which markets itself on privacy principles, is dealing with an awkward internal situation. The company's co-founder made a five-million Swedish krona donation to a controversial Swedish populist party. Mullvad's CEO has publicly distanced the company, saying the donation is not part of Mullvad's values or mission. A useful reminder that the ethics of a tool and the ethics of the people who built it aren't always the same thing.
+
+**CASEY:** Governance structure matters more than the founding story. Happens in tech, happens in resource companies.
+
+**CASEY:** [pause:1200] A Cariboo story worth a moment — Amarjit Singh Sull from Williams Lake has begun a 1,000-kilometre ride across BC to raise support for veterans and first responders. He's covering the full route on two wheels. That kind of community commitment deserves acknowledgment.
+
+**RILEY:** A thousand kilometres on a bike is not a symbolic gesture. That's a real commitment.
+
+**RILEY:** [pause:1200] And out of Quesnel — a local biodiversity angle. The Cariboo's own Dr. Wallin shared BC perspectives at the World Biodiversity Forum, representing the region on an international stage. The Cariboo's ecological and working-lands context getting attention globally is worth noting on a day focused on the resource economy.
+
+**CASEY:** What happens at those forums rarely lands back in the communities it's about. Whether it did here would be worth following up.
+
+**RILEY:** [pause:900] On that note — the ArtsWells festival returns this weekend in Wells, BC. If you're anywhere near the Barkerville area, it's one of the most distinctive small-festival experiences in the province. Details at the usual local outlets. That's the roundup — let's take a short break and then get into the Deep Dive on who's actually capturing value from working lands, and whether anything about that equation is changing.
+
+---
+
+**COMMUNITY SPOTLIGHT**
+
+**CASEY:** [pause:500] Before we get into that, a word about something happening right now in Williams Lake. The Williams Lake Stampede is this Canada Day weekend — one of the most storied rodeo events in the world, with roots going back nearly a century. The Stampede Association is a nonprofit that runs the whole event on volunteer energy and community commitment. Whether you're into the rodeo itself or just want to be somewhere that feels genuinely alive on Canada Day, this is the one. Volunteer spots are still available and all the event details are at williamslakestampede.com.
+
+**RILEY:** If you've never been — the Williams Lake Stampede is the real thing. Not a theme park version of a rodeo. Worth the drive.
+
+**CASEY:** [pause:600] Alright. The Deep Dive. Let's talk about who captures the value when working land produces wealth — and whether the Bunker Hill story from Idaho tells us anything useful about the Cariboo.
+
+---
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Working Lands & Industry**
+
+**RILEY:** [pause:500] The Bunker Hill mine in Idaho's Silver Valley just shipped its first ore after six years of reconstruction. That's a historic operation — the original mine ran for over a century before it was shut down, and the cleanup from its contamination became one of the largest Superfund sites in the United States. Now a Canadian company, Bunker Hill Mining, has rebuilt the mill and is ramping up silver production.
+
+**CASEY:** The Superfund cleanup cost was borne by taxpayers, not the original operators. That's the part that gets skipped when people tell the resurrection narrative.
+
+**RILEY:** The legacy contamination is real and it matters. What interests me here is the ownership and value-capture structure on the rebuild. Bunker Hill Mining is TSX-listed — so it's a Canadian public company extracting silver in Idaho, presumably with American processing contracts and American labour. The value flows in multiple directions and the community connection depends entirely on how the royalty and employment structures are set up.
+
+**CASEY:** Which is the problem. A TSX listing doesn't tell you whether the town of Kellogg, Idaho sees meaningful long-term economic benefit or whether it sees a temporary construction boom and then a skeleton-crew operation that exports concentrate to a smelter in another jurisdiction.
+
+**RILEY:** The mine-to-mill-to-smelter chain has always been where value bleeds out of resource communities. The question is whether ownership models are emerging that actually change that. And some are worth examining.
+
+**CASEY:** Name one that's worked at scale in a community comparable to anything in the Cariboo.
+
+**RILEY:** The Osisko Mining development in Malartic, Quebec is the closest analog — a mine developed with explicit community benefit agreements, a reclamation fund built into the operating structure from day one, and a portion of the royalty stream directed to a local foundation. Not perfect, not radical redistribution, but structurally different from a pure extraction lease.
+
+**CASEY:** Malartic also displaced a residential neighbourhood to expand the open pit. The community benefit agreement came after significant local conflict, not before. So the model exists, but the leverage that produced it was community resistance — not a voluntary design choice by the developer.
+
+**RILEY:** Which means the lesson isn't "trust developers to build good structures" — it's that the structures emerge when communities have sufficient political leverage to demand them before the permits are signed.
+
+**CASEY:** And in the Cariboo, who has that leverage right now?
+
+**RILEY:** The Nations do. The Tŝilhqot'in Supreme Court decision fundamentally changed the consultation and consent requirements for resource development on Aboriginal title land. Any new mining or forestry project in that territory has to work through a governance process that can actually condition the terms of development. The Tŝilhqot'in National Government has been exercising that authority on multiple fronts.
+
+**CASEY:** On title lands, yes. A significant portion of the Cariboo's working landscape sits on Crown land under provincial jurisdiction, where the duty to consult exists but the power to set conditions is weaker. The Xatśūll First Nation and the Williams Lake First Nation are both navigating resource development questions in areas where their title claims are asserted but not yet determined. That's a different negotiating position than the Tŝilhqot'in's post-2014 reality.
+
+**RILEY:** So the leverage varies by Nation and by the specific legal status of the land. The value-capture question doesn't have one answer for the Cariboo — it has several, depending on where you're standing.
+
+**CASEY:** That's a more useful frame than "does the Cariboo benefit from mining," because the real question is which communities, under what legal frameworks, with what negotiating capacity.
+
+**RILEY:** The hatchery story from the 100 Mile Free Press is a useful contrast. The Clearwater trout hatchery stocked more than 2.5 million fish into BC lakes last year. That's a public infrastructure function — provincially funded, ecologically significant, and it supports a recreational fishing economy that generates real revenue for outfitters, guides, and tourism operators across the South Cariboo.
+
+**CASEY:** Almost none of that value is captured by the hatchery itself or by the communities adjacent to the stocked lakes. The guide outfitters who benefit most are often not locally owned. The province funds the hatchery as a public good and the downstream economic benefit disperses without a clear mechanism to direct it back into the communities doing the work of maintaining that ecological productivity.
+
+**RILEY:** The hatchery model is striking because it's a public asset generating private value downstream without a royalty or licensing structure that recaptures any of it. A fishing lodge on a lake stocked by public hatchery funds is essentially receiving a subsidy without a fee attached.
+
+**CASEY:** Nobody's going to say that out loud at a fishing lodge. But the parallel to forestry is exact — Crown timber harvested on public land, milled by private operators, value captured at the mill and above, with stumpage fees that have historically been set below market rates for the standing timber.
+
+**RILEY:** Stumpage reform has been politically impossible for decades, but the mechanism that changes it might not be political pressure — it might be the carbon market. Once you can price the standing tree as a carbon asset, the stumpage calculation has a competitor. A First Nation that can choose between harvesting and a carbon credit has real optionality that a non-title holder doesn't.
+
+**CASEY:** The carbon market optionality is real, but generating meaningful credit volumes requires a certain scale of forested land, plus navigating a verification and registry system that is genuinely complex. The Tŝilhqot'in have done it. Whether smaller Nations with smaller land bases can replicate that without significant technical capacity investment is a separate question.
+
+**RILEY:** That's the capacity gap that keeps surfacing — not whether the tools or mechanisms exist, but whether the people who should be using them have the time and institutional bandwidth to navigate them.
+
+**CASEY:** And whether the solutions being offered are designed for their scale, or whether they're provincial and federal programs built around large operators and awkwardly scaled down.
+
+**RILEY:** [pause:500] So what's actually different now compared to, say, 2015? The structural critiques you're raising are not new. The value-bleed problem in resource communities has been documented for decades.
+
+**CASEY:** Two things are genuinely different. First, the legal landscape post-Tŝilhqot'in is materially changed — consent requirements have teeth they didn't before. Second, and this is the underappreciated one, the renewable transition is creating new asset classes on land that previously had only one income stream. A ranch in the Chilcotin is now potentially a carbon asset, a biodiversity offset candidate, and a site for range-scale renewable development on top of its beef production. Multiple income streams from the same land base changes the negotiating leverage for operators who understand how to stack them.
+
+**RILEY:** The income-stacking model is where the most interesting working-lands conversations are happening right now. Ranchers in parts of Alberta and Saskatchewan have been exploring carbon sequestration protocols for grazing lands — the numbers aren't enormous per acre, but across a large range unit they add up, and critically, most current protocols don't require reducing herd size.
+
+**CASEY:** Most. Some soil carbon protocols do require reducing grazing intensity, which creates a real tension for operators already running on thin margins. And the verification cost for range-scale carbon credits isn't trivial — you need soil sampling, satellite monitoring, and third-party audit, all of which eat into the credit value before the producer sees a dollar.
+
+**RILEY:** Which is where a producer cooperative structure matters — aggregate the verification cost across fifty ranches and the per-unit cost drops to something manageable. The question is who organizes that aggregation and whether a Cariboo ranching cooperative or the Cariboo Cattlemen's Association has the bandwidth to take it on right now.
+
+**CASEY:** The Cariboo Cattlemen's Association is a real organization with real members, and I'm not going to pretend I know their current capacity from the outside. But the pattern in BC has been that producer associations focus on the operational and regulatory advocacy work they're already carrying, and new revenue stream development falls to whoever has a grant and a consultant — which means it gets piloted, reported on, and then quietly abandoned when the funding cycle ends.
+
+**RILEY:** [pause:400] That's the funding treadmill problem. And the question worth pushing is whether there's a structural way off it, rather than just securing better grants.
+
+**CASEY:** Because "we need more stable funding" sounds like action without changing anything.
+
+**RILEY:** One model that gets off the treadmill is direct community ownership of the verification infrastructure itself. If a First Nation or a producer cooperative owns the soil sampling equipment, trains its own staff to run the protocol, and holds the registry account rather than contracting it out, the dependency on external service providers disappears over time. Slower to build — but not hostage to the next government's grant priorities.
+
+**CASEY:** That's a real path. It requires capital investment upfront and a multi-year commitment to skills retention, which is hard in communities with high turnover. But it's structurally different from the project model because the capacity persists even when the specific project ends. I'll grant that.
+
+**RILEY:** The Williams Lake First Nation has been building exactly that kind of internal capacity in forestry management — not just participating in forestry agreements, but developing the planning and monitoring functions in-house. When the next forestry negotiation happens, they're at the table with their own technical capacity rather than relying on consultants who invoice them for knowledge they should already hold.
+
+**CASEY:** [pause:400] The distinction between holding a contract and holding the capacity to execute the contract is the actual difference between temporary benefit and permanent change. A company can lose a contract. Capacity doesn't disappear the same way. That part I think is right.
+
+**RILEY:** And that's the frame worth applying to every working-lands investment question in the Cariboo right now — not "what project is being funded" but "what capacity is being built, by whom, and does it stay in the community when the project is done."
+
+**CASEY:** Sharper than the questions in most funding applications. Most of those are still organized around deliverables, not capability transfer. And the people reviewing applications — at the province, at the federal level — could actually change that incentive structure by requiring applicants to specify what internal capacity will exist at the end. It would also be resisted vigorously by the consulting firms whose entire business model depends on the current structure.
+
+**RILEY:** Accurate. Though the fact that it would be resisted isn't a reason not to ask for it.
+
+**CASEY:** [pause:400] No, it isn't. The ask is still worth making. I just wouldn't hold your breath on the timeline.
+
+**RILEY:** [pause:300] Fair enough. So the picture isn't uniformly grim and it isn't uniformly promising — it's a landscape of genuinely different legal and economic positions depending on where you're standing and what you own. The Tŝilhqot'in have leverage that other Nations in the region don't yet have. Ranchers who can stack carbon and biodiversity income have options that ranchers who can't navigate verification don't. The gap between those positions is real, and it's where the interesting work is happening — or isn't.
+
+**CASEY:** The structures that could close those gaps exist. Whether the political will and institutional bandwidth to build them shows up is still an open question for me. The Bunker Hill story is a resurrection narrative. The harder story is the dozen communities that don't get the reconstruction investment, because the economics didn't pencil out for a TSX-listed developer.
+
+**RILEY:** [pause:500] If you're in one of those communities and you're working on the harder story — reach us at feedback at cariboosignals dot c-a. We want to hear what's actually being tried, what's survived past the grant window, and what hasn't. Subscribe wherever you get your podcasts, and if this conversation is useful, tell someone.
+
+**CASEY:** That's it for June 30th. Have a good Canada Day tomorrow.
+
+**RILEY:** Take care, everyone.
