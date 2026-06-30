@@ -1924,6 +1924,39 @@
       "theme_day": 0,
       "status": "used",
       "used_at": "2026-06-29"
+    },
+    {
+      "id": "963c1238",
+      "type": "feedback",
+      "message_id": "<DM4PR18MB4350AFFC63A5368F45C5F2CBAFF72@DM4PR18MB4350.namprd18.prod.outlook.com>",
+      "from_address": "B***@goeasy.com",
+      "subject": "Re: easyfinancial -- Application Status",
+      "received_at": "2026-06-30T17:56:40+00:00",
+      "body_text": "You haven't wasted my time at all! Also, that sounds awful. I have seen that happen in the past with relatives doing building. I definitely would not get a family member to do it after all the stuff I have seen in this line of work! Anyways, keep me posted. I am more than happy to help once we have some kind of paperwork showing the lien has been dealt with. Regards, Felipe easyfinancial | goeasy Ltd. Branch 2129 1185 Prosperity Way Unit 430, Williams Lake, BC, V2G 0A6 e. Branch2129@goeasy.com |",
+      "extracted_urls": [
+        "https://www.goeasy.com/",
+        "https://www.easyfinancial.com/",
+        "https://easyhome.ca/",
+        "http://www.goeasy.com/unsubscribe"
+      ],
+      "theme_tag": "Cariboo Local Affairs",
+      "theme_day": 5,
+      "status": "pending",
+      "used_at": null
+    },
+    {
+      "id": "28c1b282",
+      "type": "feedback",
+      "message_id": "<3E845105-BB66-4338-BF10-906B9A8BA35F@firstjourneytrails.com>",
+      "from_address": "t***@firstjourneytrails.com",
+      "subject": "Important correction",
+      "received_at": "2026-06-30T09:36:23-07:00",
+      "body_text": "Hello, Listening to today\u2019s episode I need to send you an important and very urgent. Correction! This is in regards to the festival you mentioned. The Arts Wells festival already happened and is not upcoming as you stated. This could lead to confusion for the nonprofit and to potential podcast listeners traveling to the community. I highly suggest you double check the dates, confirm this comment is correct and update your listeners. Warm regards, Thomas Schoen 250.305.4464 tom@firstjourneytrails",
+      "extracted_urls": [],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
