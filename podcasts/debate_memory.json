@@ -1,30 +1,4 @@
 {
-  "2026-04-01": {
-    "timestamp": 1775041668.743743,
-    "date": "2026-04-01",
-    "theme": "Community Tech & Governance",
-    "central_question": "How do information systems and governance structures in rural communities determine who has access to decision-making power, and whose interests do transparency measures actually serve?",
-    "riley_position": "Information infrastructure is critical but communities shouldn't wait for perfect systems\u2014pragmatic volunteer-led solutions (like Facebook groups) work well enough in the interim, and the risk of over-waiting for ideal governance can leave people uninformed during crises.",
-    "riley_key_evidence": [
-      "Facebook groups maintained by volunteers are currently the fastest and most reliable way to disseminate urgent safety information like cougar sightings in small communities",
-      "Labor law analogy showing mandatory disclosure of union organizing was framed as transparency but actually enabled employer counter-campaigns",
-      "The Heiltsuk Nation's post-Deepwater Horizon alert system demonstrates that community-controlled information infrastructure is buildable and effective"
-    ],
-    "casey_position": "Informal, volunteer-dependent information systems are fragile and ultimately reinforce information asymmetries that disadvantage rural communities; transparency measures can be designed to benefit powerful actors rather than empower communities, particularly Indigenous communities protecting negotiation positions.",
-    "casey_key_evidence": [
-      "Canada Post's cost-per-route analysis doesn't account for bundled services like mail carriers performing informal wellness checks on isolated seniors",
-      "The Aboriginal Title Transparency Act could expose sensitive negotiating positions to resource extraction interests, turning transparency into a pressure tool against Indigenous rights",
-      "Rural municipalities lack the capacity to commission the social infrastructure research needed to advocate effectively against top-down federal decisions"
-    ],
-    "resolution": "They agreed that community-controlled information infrastructure is the goal and identified concrete middle-path solutions (SMS broadcast systems, municipal emergency contact databases, regional district-commissioned community mapping) rather than continuing to debate the perfect versus pragmatic tension.",
-    "topics_covered": [
-      "Cougar alert systems and emergency communication infrastructure in rural BC",
-      "Canada Post mail delivery consolidation and loss of bundled community services",
-      "Aboriginal Title Transparency Act and strategic disclosure in Indigenous governance",
-      "Epistemic infrastructure and who controls information about community needs",
-      "Heiltsuk and other Indigenous-led information sovereignty models"
-    ]
-  },
   "2026-04-02": {
     "timestamp": 1775127726.331018,
     "date": "2026-04-02",
@@ -2340,6 +2314,32 @@
       "Platform incubator programs (Suno Spark) as potential data-harvesting mechanisms disguised as artist development",
       "Sustainable revenue models for regional cultural production (subscriptions, cooperative earnings-sharing, audience ownership)",
       "Accountability and infrastructure vs. project-based funding in rural arts ecosystems"
+    ]
+  },
+  "2026-06-30": {
+    "timestamp": 1782826473.870558,
+    "date": "2026-06-30",
+    "theme": "Working Lands & Industry",
+    "central_question": "Who captures economic value from working lands in the Cariboo, and what structural changes are actually enabling communities to retain more of that value?",
+    "riley_position": "New mechanisms exist to change value capture in resource development\u2014particularly Indigenous title rights, carbon markets, and income stacking models\u2014and the question is whether communities have the capacity and leverage to use them effectively.",
+    "riley_key_evidence": [
+      "Osisko Mining in Malartic, Quebec developed explicit community benefit agreements and reclamation funds built into operating structures",
+      "T\u015dilhqot'in Supreme Court decision fundamentally changed consultation and consent requirements for resource development on Aboriginal title land",
+      "Ranches can now stack multiple income streams: beef production, carbon sequestration, biodiversity offsets, and renewable energy development on the same land base"
+    ],
+    "casey_position": "The structural critiques about value bleeding from resource communities are not new, and real change requires communities to build permanent internal capacity rather than becoming dependent on external consultants and grant cycles.",
+    "casey_key_evidence": [
+      "Bunker Hill mine cleanup costs were borne by taxpayers, not original operators, and the TSX-listed rebuild doesn't guarantee the town of Kellogg sees meaningful long-term economic benefit",
+      "The Malartic community benefit agreement emerged from resistance and conflict, not voluntary developer design, suggesting leverage matters more than goodwill",
+      "Most producer associations focus on regulatory advocacy and let new revenue development fall to whoever has a grant, leading to pilots that are abandoned when funding ends"
+    ],
+    "resolution": "They converged on the importance of permanent capacity-building over temporary projects, agreeing that internal ownership of verification infrastructure and planning functions\u2014rather than external contracting\u2014is what distinguishes temporary benefit from permanent change, and that grant-dependent project models should be replaced with evaluation criteria requiring documented internal capacity transfer.",
+    "topics_covered": [
+      "Mining value capture and the Bunker Hill Idaho-to-Cariboo comparison",
+      "Indigenous title and legal leverage in resource negotiations post-T\u015dilhqot'in decision",
+      "Carbon markets and income stacking on working lands",
+      "Capacity building and internal institutional ownership versus consultant dependency",
+      "Funding and grant treadmill problems in economic development projects"
     ]
   }
 }
