@@ -1957,6 +1957,22 @@
       "theme_day": 0,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "72b735a8",
+      "type": "feedback",
+      "message_id": "<8DB249A7-1D84-4278-A04D-82C8105C0DF1@gmail.com>",
+      "from_address": "z***@gmail.com",
+      "subject": "What's On \u2014 Williams Lake Stampede",
+      "received_at": "2026-06-30T19:32:58-07:00",
+      "body_text": "https://williamslakestampede.com/whats-on Today\u2019s episode said the stampede was on this \u201cCanada Day long weekend\u201d but it\u2019s already over! Thanks, Erich",
+      "extracted_urls": [
+        "https://williamslakestampede.com/whats-on"
+      ],
+      "theme_tag": "Cariboo Local Affairs",
+      "theme_day": 5,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
