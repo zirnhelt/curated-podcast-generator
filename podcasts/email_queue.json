@@ -1973,6 +1973,31 @@
       "theme_day": 5,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "1e935486",
+      "type": "newsletter",
+      "message_id": "<dd43ddca-57e8-4be9-8864-895e715ae3a2@mtasv.net>",
+      "from_address": "n***@animikii.com",
+      "subject": "How Animikii observe statutory holidays",
+      "received_at": "2026-07-01T19:06:30+00:00",
+      "body_text": "![Graphic illustration featuring a youth and elder sitting in a forested landscape, with the sun and mountains in the background, the text on far left reads Animikii News River.](https://assets.button",
+      "extracted_urls": [
+        "https://assets.buttondown.email/images/42ea3d90-a073-48c4-9aff-303d06bca8c4.jpg?w=960&fit=max",
+        "https://www.ctvnews.ca/canada/article/a-collection-of-sacred-indigenous-artifacts-could-soon-be-sold-after-museum-closure/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=how-animikii-observe-statutory-holidays",
+        "https://www.ualberta.ca/en/folio/2026/06/feds-invest-3m-in-uofa-initiative-to-help-businesses-with-data-sovereignty-compliance.html?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=how-animikii-observe-statutory-holidays",
+        "https://www.auckland.ac.nz/en/news/2026/06/29/ai-in-health-scholar-brings-clarity-and-caution-to-pacific-symposium.html?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=how-animikii-observe-statutory-holidays",
+        "https://assets.buttondown.email/images/e50552b5-fcad-412f-95d4-2e6171566231.png?w=960&fit=max",
+        "http://open.animikii.com?utm_source=newsriver&amp;amp;utm_medium=email&amp;amp;utm_campaign=how-animikii-observe-statutory-holidays",
+        "https://www.seegreatart.art/marilou-schultz-combines-digital-technology-with-navajo-weaving/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=how-animikii-observe-statutory-holidays",
+        "https://www.apraamcos.com.au/about-us/news-and-events/open-letter-to-government?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=how-animikii-observe-statutory-holidays",
+        "https://assets.buttondown.email/images/62449f71-4c02-416b-b625-45e71a736658.jpg?w=960&fit=max",
+        "https://akii.ca/m/links"
+      ],
+      "theme_tag": "Indigenous Lands & Innovation",
+      "theme_day": 3,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
