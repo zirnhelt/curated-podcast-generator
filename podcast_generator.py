@@ -18,6 +18,7 @@ from pathlib import Path
 import requests
 import re
 import tempfile
+import zlib
 import httpx
 
 try:
@@ -3236,6 +3237,24 @@ def score_script(script_text):
     hits["closing_url_repetition"] = max(0, url_count - 1)
     total += hits["closing_url_repetition"]
 
+    # Soft style tics — reported in pattern_hits for the weekly review loop but
+    # excluded from total_hits so they can't push runs over OPUS_QUALITY_HIT_THRESHOLD.
+    hits["worth_gerund"] = max(
+        0, len(_re.findall(r"\bworth \w+ing\b", script_text, _re.IGNORECASE)) - 1
+    )
+    hits["roundup_seam"] = sum(
+        len(_re.findall(p, script_text, _re.IGNORECASE))
+        for p in (
+            r"\bfrom the (?:news )?roundup\b",
+            r"\bfrom today's feed\b",
+            r"\bfrom earlier in the (?:show|episode)\b",
+        )
+    )
+    hits["thats_closer"] = max(
+        0,
+        len(_re.findall(r"\bThat's [^.!?\n]{2,60}[.!?][\"']?\s*$", script_text, _re.MULTILINE)) - 2,
+    )
+
     # Voice length ratio (Casey avg / Riley avg) in Deep Dive only
     voice_ratio = None
     dd_start = script_text.find("**DEEP DIVE:")
@@ -3834,19 +3853,46 @@ def _is_story_transition(text):
     return any(lower.startswith(phrase) for phrase in transition_starters)
 
 
-def heuristic_gap_ms(text, prev_speaker, cur_speaker, section="deep_dive"):
+def _jitter_gap_ms(gap_ms, text):
+    """Apply deterministic ±15% jitter so gaps don't fall on a metronomic grid.
+
+    Seeded from a CRC of the text (not hash(), which is salted per process)
+    so reruns produce identical audio. Short gaps are left untouched.
+    """
+    if gap_ms < 300:
+        return gap_ms
+    frac = (zlib.crc32(text.encode("utf-8")) % 1000) / 1000.0
+    return int(gap_ms * (0.85 + 0.30 * frac))
+
+
+def heuristic_gap_ms(text, prev_speaker, cur_speaker, section="deep_dive", prev_text=None):
     """Return a sensible inter-segment gap based on the upcoming text.
 
     * Very short interjections (< 25 chars, e.g. "Ha!", "Right?", "Exactly.")
       get a tight overlap or minimal gap.
     * Same speaker continuing in the news section gets a deliberate
       pause (new story).  In other sections it gets no gap.
-    * Normal speaker change gets a moderate gap.
+    * Normal speaker change gets a moderate gap; a reply to a direct
+      question gets a tighter one — people answer questions faster than
+      they raise new points.
 
     The *section* parameter adjusts pacing per segment type.  The news
     section uses wider gaps so it sounds deliberate and authoritative
     (NPR/CBC anchor style) rather than rushed.
     """
+    base = _heuristic_gap_base(text, prev_speaker, cur_speaker, section)
+    if (
+        base >= 600
+        and section not in ("news", "welcome")
+        and prev_text
+        and prev_speaker and cur_speaker and prev_speaker != cur_speaker
+        and prev_text.rstrip().rstrip('"”\'').endswith("?")
+    ):
+        base = 300
+    return _jitter_gap_ms(base, text)
+
+
+def _heuristic_gap_base(text, prev_speaker, cur_speaker, section):
     stripped = text.strip()
     char_count = len(stripped)
 
@@ -4392,6 +4438,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
 
                 # OpenAI: per-segment calls with heuristic gap stitching
                 prev_speaker = None
+                prev_text = None
                 for i, segment in enumerate(seg_list):
                     chunks = _split_at_sentences(segment['text'])
                     chunk_label = f" ({len(chunks)} chunks)" if len(chunks) > 1 else ""
@@ -4408,9 +4455,10 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
                     # Determine gap: explicit tag > heuristic
                     gap = segment.get('gap_ms')
                     if gap is None:
-                        gap = heuristic_gap_ms(segment['text'], prev_speaker, segment['speaker'], section=prefix)
+                        gap = heuristic_gap_ms(segment['text'], prev_speaker, segment['speaker'], section=prefix, prev_text=prev_text)
                     combined = _append_with_gap(combined, speech, gap)
                     prev_speaker = segment['speaker']
+                    prev_text = segment['text']
 
             chapters = [{"startTime": 0, "title": "Introduction"}]
 
@@ -4646,6 +4694,7 @@ def generate_audio_tts_only(script, output_filename, _force_openai=False):
                 )
             else:
                 prev_speaker = None
+                prev_text = None
                 for i, segment in enumerate(segments):
                     print(f"  🎤 Generating audio {i+1}/{len(segments)} ({segment['speaker']}: {len(segment['text'])} chars)")
                     temp_file = os.path.join(tmpdir, f"seg_{i:03d}.mp3")
@@ -4653,9 +4702,10 @@ def generate_audio_tts_only(script, output_filename, _force_openai=False):
                     speech = trim_tts_silence(AudioSegment.from_mp3(temp_file))
                     gap = segment.get('gap_ms')
                     if gap is None:
-                        gap = heuristic_gap_ms(segment['text'], prev_speaker, segment['speaker'])
+                        gap = heuristic_gap_ms(segment['text'], prev_speaker, segment['speaker'], prev_text=prev_text)
                     combined = _append_with_gap(combined, speech, gap)
                     prev_speaker = segment['speaker']
+                    prev_text = segment['text']
 
         # Append outro music even in TTS-only mode so fallback episodes aren't cut off
         if OUTRO_MUSIC.exists():
