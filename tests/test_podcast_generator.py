@@ -15,6 +15,7 @@ from podcast_generator import (
     select_welcome_host,
     _extract_pacing_tag,
     heuristic_gap_ms,
+    score_script,
     _run_agentic_loop,
     apply_bad_news_filter,
 )
@@ -208,7 +209,83 @@ class TestHeuristicGapMs:
 
     def test_news_same_speaker_short_continuation(self):
         gap = heuristic_gap_ms("Continuing my thought here with more detail.", "riley", "riley", section="news")
-        assert gap == 600
+        # base 600ms with ±15% deterministic jitter
+        assert 510 <= gap <= 690
+
+    # --- question→answer tightening ---
+    def test_question_gets_faster_answer(self):
+        text = "Let me tell you about a big story that just broke about AI regulation in Canada and its impact."
+        plain = heuristic_gap_ms(text, "riley", "casey", prev_text="The costs keep climbing.")
+        answer = heuristic_gap_ms(text, "riley", "casey", prev_text="Who maintains the server?")
+        assert answer < plain
+        assert answer <= 345  # base 300 + jitter ceiling
+
+    def test_question_tightening_skips_news_section(self):
+        text = "Let me tell you about a big story that just broke about AI regulation in Canada and its impact."
+        gap = heuristic_gap_ms(text, "riley", "casey", section="news", prev_text="Who pays for it?")
+        assert gap >= 500  # news keeps its measured pacing
+
+    def test_question_tightening_requires_speaker_change(self):
+        gap = heuristic_gap_ms("Continuing my thought here with more detail.", "riley", "riley", prev_text="Who pays for it?")
+        assert gap == 100
+
+    # --- deterministic jitter ---
+    def test_jitter_is_deterministic(self):
+        text = "Let me tell you about a big story that just broke about AI regulation in Canada and its impact."
+        gaps = {heuristic_gap_ms(text, "riley", "casey") for _ in range(5)}
+        assert len(gaps) == 1
+
+    def test_jitter_varies_by_text(self):
+        texts = [
+            "The maintenance gap doesn't close though, and that matters for every small community here.",
+            "Shipping takes a week, and you might need the node tomorrow, which changes the whole equation.",
+            "Documentation is a form of infrastructure that outlasts any single volunteer or grant cycle.",
+        ]
+        gaps = {heuristic_gap_ms(t, "riley", "casey") for t in texts}
+        assert len(gaps) > 1  # gaps no longer land on a single metronomic value
+
+    def test_short_gaps_not_jittered(self):
+        gap = heuristic_gap_ms("Ha!", "riley", "casey")
+        assert gap == 180
+
+
+class TestScoreScriptSoftTics:
+    def _script(self, body):
+        return "**DEEP DIVE: CARIBOO CONNECTIONS - Test**\n" + body
+
+    def test_worth_gerund_counts_above_one(self):
+        body = (
+            "**RILEY:** This is worth noting for every community in the region today.\n"
+            "**CASEY:** And that part is worth flagging too, along with something worth watching.\n"
+        )
+        quality = score_script(self._script(body))
+        assert quality["pattern_hits"]["worth_gerund"] == 2  # 3 hits, 1 allowed
+
+    def test_roundup_seam_detected(self):
+        body = (
+            "**RILEY:** The Meshtastic story from the roundup is a solid entry point for this.\n"
+            "**CASEY:** And the mining piece from today's feed connects as well.\n"
+        )
+        quality = score_script(self._script(body))
+        assert quality["pattern_hits"]["roundup_seam"] == 2
+
+    def test_thats_closer_counts_above_two(self):
+        body = (
+            "**RILEY:** The schematics are public and the data is portable. That's a design philosophy.\n"
+            "**CASEY:** Rural workshops never stopped doing it. That's applied engineering.\n"
+            "**RILEY:** Local-first operation and open standards win out. That's the pattern.\n"
+        )
+        quality = score_script(self._script(body))
+        assert quality["pattern_hits"]["thats_closer"] == 1  # 3 hits, 2 allowed
+
+    def test_soft_tics_excluded_from_total_hits(self):
+        body = (
+            "**RILEY:** The story from the roundup is worth noting and worth flagging here today.\n"
+            "**CASEY:** Open standards keep the data portable for everyone. That's the pattern.\n"
+        )
+        quality = score_script(self._script(body))
+        clean = score_script(self._script("**RILEY:** Open standards keep data portable.\n"))
+        assert quality["total_hits"] == clean["total_hits"]
 
 
 class TestParseScriptPacingTags:
