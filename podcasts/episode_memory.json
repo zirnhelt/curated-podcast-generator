@@ -1,23 +1,4 @@
 {
-  "2026-06-10": {
-    "timestamp": 1781085618.073876,
-    "topics": [
-      "[Al Jazeera English] South Korean police break up 35-hour po",
-      "[Al Jazeera English] Ebola border shutdown leaves goods rott",
-      "[Al Jazeera English] Families clear rubble after overnight I",
-      "[Al Jazeera English] Bolivia approves military measures agai",
-      "[Al Jazeera English] Palestinians confront Israeli settlers ",
-      "[Engadget] Astronomers measure the mass of a dormant black h",
-      "[Al Jazeera English] Protesters torch cars, buildings in Bel",
-      "[Al Jazeera English] Video shows Israeli soldier and settler"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact"
-    ],
-    "date": "2026-06-10"
-  },
   "2026-06-11": {
     "timestamp": 1781173126.797706,
     "topics": [
@@ -399,5 +380,24 @@
       "rural development"
     ],
     "date": "2026-06-30"
+  },
+  "2026-07-01": {
+    "timestamp": 1782906239.449248,
+    "topics": [
+      "[New Atlas] 1 in 30 may have a condition that gets them lost",
+      "Engadget review recap: MSI Claw 8 EX AI+, Sony A7R VI, Ray-B",
+      "[Williams Lake Tribune] B.C. Nurses\u2019 Union files 72-hour str",
+      "Hackaday Europe 2026 \u2013 Building A Retro PC From Scratch",
+      "[TechRadar] Adobe and Disney are teaming up to design the ne",
+      "[BC Gov News] Overnight intersection closure at Keating Cros",
+      "[TechCrunch] Wayve launches $85M employee tender offer at $8",
+      "[LoRaMeshDevices] How to Export Meshtastic Tracks as GPX Fil"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech"
+    ],
+    "date": "2026-07-01"
   }
 }

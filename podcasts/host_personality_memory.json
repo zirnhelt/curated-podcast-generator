@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[Engadget] A24 takes on Google money to build AI tools",
-      "[Toms Guide] Turns out AI was destroying my phone\u2019s battery ",
       "[ScienceAlert] Traces of Alien Technology Could Be Hidden in",
       "[TechRadar] AI exposes the M&A integration gaps that governa",
       "[STAT News] STAT+: AI wades into a vexing medical mystery: W",
@@ -10,7 +8,9 @@
       "[TechRadar] This app turned me into the music creator that G",
       "AI",
       "[TechRadar] Over 14 million login credentials leaked from si",
-      "[TechRadar] Google says Android's built-in earthquake warnin"
+      "[TechRadar] Google says Android's built-in earthquake warnin",
+      "Engadget review recap: MSI Claw 8 EX AI+, Sony A7R VI, Ray-B",
+      "[TechRadar] Adobe and Disney are teaming up to design the ne"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -45,9 +45,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-04-22",
-        "clue": "community-trust:x \u2014 Conceded regional coordination risks gatekeeping, Indigenous representation complexity",
-        "occurrences": 1
+        "date": "2026-07-01",
+        "clue": "community-trust:x \u2014 Conceded bootstrapping paradox; acknowledged genuine philosophical knot exists",
+        "occurrences": 2
       },
       {
         "date": "2026-04-27",
@@ -115,9 +115,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-06-29",
-        "clue": "structural-lens:+ \u2014 Reinforced infrastructure-over-projects framing throughout",
-        "occurrences": 1
+        "date": "2026-07-01",
+        "clue": "structural-lens:+ \u2014 Moved from design-as-solution to systemic dependency as core problem",
+        "occurrences": 2
       },
       {
         "date": "2026-06-30",
@@ -294,11 +294,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-06-09",
-        "clue": "pilot-skepticism:~ \u2014 Acknowledged sixteen projects as foothold, not destination; added ownership permanence concern",
-        "occurrences": 2
-      },
-      {
         "date": "2026-06-13",
         "clue": "community-trust:~ \u2014 Acknowledged cultural infrastructure's role in retention, softening pure policy-focused view",
         "occurrences": 2
@@ -376,6 +371,11 @@
       {
         "date": "2026-06-30",
         "clue": "pilot-skepticism:- \u2014 Softened stance on carbon protocols; acknowledged rancher cooperative math",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-07-01",
+        "clue": "evidence-bar:- \u2014 Shifted from demanding proof of capability transfer to accepting person-to-person teaching works",
         "occurrences": 1
       }
     ],

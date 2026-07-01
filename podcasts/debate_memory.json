@@ -1,30 +1,4 @@
 {
-  "2026-04-02": {
-    "timestamp": 1775127726.331018,
-    "date": "2026-04-02",
-    "theme": "Indigenous Lands & Innovation",
-    "central_question": "What does it mean for technology and institutional processes to genuinely serve Indigenous self-determination rather than adding complexity or enabling external control?",
-    "riley_position": "Technology and governance work can advance in parallel if the community owns the tools and makes decisions about deployment for its own purposes, and well-designed information systems can distribute administrative burden more equitably between institutions and Indigenous nations.",
-    "riley_key_evidence": [
-      "First Peoples' Language Revitalization and Reclamation (First Voices) platform has sustained dozens of B.C. Indigenous language archives over two decades through community ownership and ongoing institutional support",
-      "T\u015dilhqot'in National Government developed sophisticated land use planning and monitoring infrastructure following the William case Aboriginal title decision, demonstrating that legal standing enables effective technology deployment",
-      "First Nations community-owned broadband networks in Northern Ontario and Manitoba show better long-term sustainability than commercially deployed services"
-    ],
-    "casey_position": "Governance and legal rights must precede technology deployment; without decision-making power and adequate institutional capacity, technology becomes surveillance or dependency rather than enablement, and maintenance funding is chronically underfunded compared to initial construction.",
-    "casey_key_evidence": [
-      "DRIPA consultation failures stem from operational underfunding and inadequate staffing, not lack of notification tools\u2014small First Nations with three staff cannot respond to 60 simultaneous consultation requests regardless of digital systems",
-      "KI First Nation's housing and fire safety deficiencies were documented for years with human rights complaints filed, yet institutional remediation moved slowly enough that homes burned before changes occurred",
-      "Sensor networks on territories where nations lack recognized decision-making authority over resource extraction produce data that enables more efficient extraction rather than advancing sovereignty"
-    ],
-    "resolution": "Casey and Riley converge on the principle that technology is a multiplier on existing capacity and rights rather than a substitute for them, and both emphasize that maintenance funding and community ownership determine whether deployments create durable infrastructure or spectacle. They agree that sequencing matters: governance foundations and decision-making power must be in place for technology to meaningfully serve sovereignty.",
-    "topics_covered": [
-      "DRIPA implementation failures and capacity constraints in consultation processes",
-      "Indigenous language revitalization technology and maintenance sustainability",
-      "Data sovereignty and environmental monitoring with regulatory authority",
-      "Community-owned versus externally-deployed infrastructure models",
-      "Maintenance funding as the critical but underfunded layer of technology sustainability"
-    ]
-  },
   "2026-04-03": {
     "timestamp": 1775213562.107483,
     "date": "2026-04-03",
@@ -2340,6 +2314,32 @@
       "Carbon markets and income stacking on working lands",
       "Capacity building and internal institutional ownership versus consultant dependency",
       "Funding and grant treadmill problems in economic development projects"
+    ]
+  },
+  "2026-07-01": {
+    "timestamp": 1782906242.516261,
+    "date": "2026-07-01",
+    "theme": "Repair Culture & Practical Tech",
+    "central_question": "Can technology be designed to make repair knowledge inherently portable and structurally persistent in rural communities, or will capacity constraints and succession problems inevitably undermine even well-designed systems?",
+    "riley_position": "Technology designed with open standards, local-first operation, and systematic documentation can create repair knowledge that outlasts individuals and informal networks. Rural communities already possess the engineering capability to adapt and fabricate solutions; the gap is in building apprenticeship-like structures and using tools to lower documentation barriers.",
+    "riley_key_evidence": [
+      "Meshtastic's open-source design, public schematics, and GPX export enable sub-$50 deployable nodes that don't lock users into proprietary systems",
+      "Xat\u015b\u016bll First Nation built digital capacity designed to be community-maintained rather than consultant-dependent",
+      "Cheap action cameras and automatic transcription can make repair documentation as simple as talking through a repair on a phone"
+    ],
+    "casey_position": "Design philosophy alone cannot overcome the real constraint of thin technical capacity in small rural communities; documentation requires discipline volunteers often lack, infrastructure like local servers need maintenance, and capability transfer is rarer in practice than programs claim.",
+    "casey_key_evidence": [
+      "The Cariboo lost institutional repair knowledge not from lack of caring but from absent formal handoff mechanisms and no succession planning",
+      "People good at fixing things are often not people good at documenting them, and this is a real tension not solvable through better program design",
+      "Most technology deployments and repair programs don't systematically measure whether communities end up understanding more at the end than the beginning"
+    ],
+    "resolution": "Riley and Casey move toward convergence, agreeing that the real constraint is human capacity and will-to-try rather than funding or design alone, and that School District 27's integration of practical tech offers a structural path forward by building the next generation's capacity. They end by redirecting focus from programs to people: retired mechanics and knowledge-holders should find one person to teach, and communities should activate feedback loops with schools about which skills are actually scarce.",
+    "topics_covered": [
+      "Open-source hardware design and portability of repair knowledge",
+      "Rural logistics and the bootstrapping problem for distributed infrastructure",
+      "Succession planning and institutional knowledge transfer in small communities",
+      "Documentation strategies and the role of scaffolding (AI, video, apprenticeship) in capability building",
+      "School systems as structural assets for long-term capacity building in rural regions"
     ]
   }
 }
