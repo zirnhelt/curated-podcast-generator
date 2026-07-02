@@ -231,6 +231,18 @@ def _is_blocked_subject(subject: str, patterns: list) -> bool:
     return False
 
 
+_CORRECTION_SUBJECT_PREFIX = "correction:"
+
+
+def _is_correction_subject(subject: str) -> bool:
+    """True if the subject follows the documented correction convention.
+
+    docs/corrections-policy.md instructs listeners to use the subject line
+    "Correction: [episode date or title]" — matched case-insensitively.
+    """
+    return subject.strip().lower().startswith(_CORRECTION_SUBJECT_PREFIX)
+
+
 def _is_blocked_sender(from_address: str, blocklist: dict) -> bool:
     """Return True if the sender should be rejected based on domain or pattern."""
     addr_lower = from_address.lower()
@@ -524,12 +536,19 @@ def ingest(dry_run: bool = False) -> int:
                 _mark_read(service, msg_id)
             continue
 
-        # Classify: newsletter = has List-Unsubscribe header
-        is_newsletter = bool(msg.get("List-Unsubscribe"))
-        item_type = "newsletter" if is_newsletter else "feedback"
-
         subject = _decode_header_value(msg.get("Subject", ""))
         from_address = _decode_header_value(msg.get("From", ""))
+
+        # Classify: newsletter = has List-Unsubscribe header; correction = documented
+        # "Correction: ..." subject convention (see docs/corrections-policy.md);
+        # anything else is general feedback.
+        is_newsletter = bool(msg.get("List-Unsubscribe"))
+        if is_newsletter:
+            item_type = "newsletter"
+        elif _is_correction_subject(subject):
+            item_type = "correction"
+        else:
+            item_type = "feedback"
 
         if _is_blocked_sender(from_address, sender_blocklist):
             print(f"  ⏭  Blocked sender, skipping: \"{from_address[:60]}\"")
@@ -558,7 +577,10 @@ def ingest(dry_run: bool = False) -> int:
 
         theme_tag, theme_day = _score_themes(f"{from_address} {subject} {body_text}", themes)
 
-        if theme_tag is None:
+        # Corrections must air in the next episode regardless of theme, so a
+        # missing theme match (common — corrections reference a past claim,
+        # not today's keywords) must not drop the item.
+        if theme_tag is None and item_type != "correction":
             print(f"  ⏭  No theme match, skipping: \"{subject[:60]}\"")
             if not dry_run:
                 _mark_read(service, msg_id)
