@@ -15,7 +15,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from email_ingest import (
     _is_blocked_sender,
     _is_blocked_subject,
-    _is_correction_subject,
+    _looks_like_correction,
     _score_themes,
     ingest,
 )
@@ -144,27 +144,53 @@ class TestIsBlockedSubject:
 
 
 # ---------------------------------------------------------------------------
-# _is_correction_subject
+# _looks_like_correction
 # ---------------------------------------------------------------------------
 
-class TestIsCorrectionSubject:
+class TestLooksLikeCorrection:
     def test_matches_documented_convention(self):
-        assert _is_correction_subject("Correction: July 1 episode")
+        assert _looks_like_correction("Correction: July 1 episode", "")
 
     def test_case_insensitive(self):
-        assert _is_correction_subject("CORRECTION: wrong population figure")
+        assert _looks_like_correction("CORRECTION: wrong population figure", "")
 
     def test_ignores_leading_whitespace(self):
-        assert _is_correction_subject("  Correction: dates were off")
+        assert _looks_like_correction("  Correction: dates were off", "")
 
-    def test_does_not_match_mid_subject(self):
-        assert not _is_correction_subject("Re: Correction: dates were off")
+    def test_matches_correction_word_anywhere_in_subject(self):
+        # Real miss: "Important correction" about the ArtsWells festival.
+        assert _looks_like_correction("Important correction", "")
 
-    def test_does_not_match_unrelated_subject(self):
-        assert not _is_correction_subject("Great episode this week")
+    def test_matches_correction_word_in_body(self):
+        assert _looks_like_correction(
+            "Comments on today's episode",
+            "Hello, I'd like to correct you — that's an important correction to make.",
+        )
 
-    def test_does_not_match_bare_word(self):
-        assert not _is_correction_subject("Corrections")
+    def test_matches_already_over_phrasing_in_body(self):
+        # Real miss: stampede email with no correction wording in the subject.
+        assert _looks_like_correction(
+            "What's On — Williams Lake Stampede",
+            "Today's episode said the stampede was on this weekend but it's already over! Thanks, Erich",
+        )
+
+    def test_matches_you_said_wrong_phrasing(self):
+        assert _looks_like_correction(
+            "About Clearwater",
+            "You mentioned Clearwater sits at the territorial border. This is wrong.",
+        )
+
+    def test_does_not_match_unrelated_subject_and_body(self):
+        assert not _looks_like_correction(
+            "Great episode this week",
+            "Loved the deep dive on trail cameras. Keep it up!",
+        )
+
+    def test_ignores_signal_words_deep_in_body(self):
+        # Only the first 500 chars of the body are scanned.
+        assert not _looks_like_correction(
+            "Newsletter thoughts", "x" * 600 + " correction"
+        )
 
 
 # ---------------------------------------------------------------------------

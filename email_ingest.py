@@ -233,14 +233,35 @@ def _is_blocked_subject(subject: str, patterns: list) -> bool:
 
 _CORRECTION_SUBJECT_PREFIX = "correction:"
 
+# Conservative phrases that flag a listener correction even without the
+# documented "Correction:" subject convention. Real misses that motivated
+# this: subjects "Important correction" and a body saying "it's already over!"
+_CORRECTION_BODY_PATTERNS = [
+    re.compile(r"\bcorrections?\b", re.IGNORECASE),
+    re.compile(r"\bincorrect(ly)?\b", re.IGNORECASE),
+    re.compile(r"\balready\s+(happened|over|passed|ended|occurred|took\s+place)\b", re.IGNORECASE),
+    re.compile(
+        r"\byou\s+(said|stated|mentioned)\b.{0,120}?\b(wrong|incorrect|not\s+true|already|error)\b",
+        re.IGNORECASE | re.DOTALL,
+    ),
+]
 
-def _is_correction_subject(subject: str) -> bool:
-    """True if the subject follows the documented correction convention.
+
+def _looks_like_correction(subject: str, body_text: str) -> bool:
+    """True if the email is a listener correction.
 
     docs/corrections-policy.md instructs listeners to use the subject line
-    "Correction: [episode date or title]" — matched case-insensitively.
+    "Correction: [episode date or title]", but real corrections often arrive
+    without it — so also match the word "correction" anywhere in the subject,
+    or correction-signal phrasing early in the body.
     """
-    return subject.strip().lower().startswith(_CORRECTION_SUBJECT_PREFIX)
+    subj = subject.strip().lower()
+    if subj.startswith(_CORRECTION_SUBJECT_PREFIX):
+        return True
+    if re.search(r"\bcorrections?\b", subj):
+        return True
+    head = (body_text or "")[:500]
+    return any(p.search(head) for p in _CORRECTION_BODY_PATTERNS)
 
 
 def _is_blocked_sender(from_address: str, blocklist: dict) -> bool:
@@ -539,16 +560,9 @@ def ingest(dry_run: bool = False) -> int:
         subject = _decode_header_value(msg.get("Subject", ""))
         from_address = _decode_header_value(msg.get("From", ""))
 
-        # Classify: newsletter = has List-Unsubscribe header; correction = documented
-        # "Correction: ..." subject convention (see docs/corrections-policy.md);
-        # anything else is general feedback.
+        # Newsletter = has List-Unsubscribe header. Correction vs feedback is
+        # decided below once the body text is available (see docs/corrections-policy.md).
         is_newsletter = bool(msg.get("List-Unsubscribe"))
-        if is_newsletter:
-            item_type = "newsletter"
-        elif _is_correction_subject(subject):
-            item_type = "correction"
-        else:
-            item_type = "feedback"
 
         if _is_blocked_sender(from_address, sender_blocklist):
             print(f"  ⏭  Blocked sender, skipping: \"{from_address[:60]}\"")
@@ -574,6 +588,13 @@ def ingest(dry_run: bool = False) -> int:
         max_chars = NEWSLETTER_MAX_CHARS if is_newsletter else FEEDBACK_MAX_CHARS
         raw_text = plain_body if plain_body.strip() else _strip_html(html_body)
         body_text = _sanitize(raw_text, max_chars)
+
+        if is_newsletter:
+            item_type = "newsletter"
+        elif _looks_like_correction(subject, body_text):
+            item_type = "correction"
+        else:
+            item_type = "feedback"
 
         theme_tag, theme_day = _score_themes(f"{from_address} {subject} {body_text}", themes)
 
