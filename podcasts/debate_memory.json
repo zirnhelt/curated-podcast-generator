@@ -1,30 +1,4 @@
 {
-  "2026-04-03": {
-    "timestamp": 1775213562.107483,
-    "date": "2026-04-03",
-    "theme": "Wild Spaces & Outdoor Life",
-    "central_question": "Who controls ecological knowledge and data in Cariboo wilderness, and does technology democratization actually distribute power or concentrate it further?",
-    "riley_position": "Democratized sensing technology and improved connectivity have genuinely distributed monitoring capacity, and co-management models with First Nations can create more reliable infrastructure than province-run systems if paired with genuine authority transfer and co-funding.",
-    "riley_key_evidence": [
-      "T\u015dilhqot'in Nation Forestry LP successfully integrates traditional ecological knowledge with satellite-based forest monitoring operationally",
-      "Blueberry River First Nations IPCA agreement established a model for Nation-centered data governance and monitoring frameworks",
-      "Satellite connectivity improvements like Starlink enable real-time data transmission from remote locations where it wasn't previously viable"
-    ],
-    "casey_position": "Technological democratization masks deeper governance and power asymmetries; data collection without corresponding decision-making authority and sustained funding creates the appearance of equity while offloading infrastructure costs onto under-resourced communities.",
-    "casey_key_evidence": [
-      "Blueberry River monitoring framework only emerged after litigation forced the province to the table, not through proactive institutional design",
-      "University research teams deploying sensors on Secw\u00e9pemc territory often retain data control in academic databases requiring formal Nation requests for access",
-      "Remote monitoring cameras receive deprioritized maintenance during budget cycles, systematically affecting highest-need remote locations"
-    ],
-    "resolution": "Riley and Casey converge on identifying governance capacity and sustainable funding as the actual bottleneck (not technology), and both agree that genuine co-management requires pre-negotiated data sovereignty agreements, adequate co-funding, and community-led decision-making authority\u2014with Casey emphasizing the need for operational OCAP principles and template agreements to prevent repeated extraction.",
-    "topics_covered": [
-      "Data sovereignty and Indigenous data governance frameworks (OCAP principles, UNDRIP implementation)",
-      "Co-management models for monitoring infrastructure versus province-run systems",
-      "Citizen science limitations and strengths in low-population-density rural regions",
-      "Backcountry safety infrastructure (satellite communicators, SAR funding models)",
-      "Maintenance and sustainability of remote monitoring equipment in harsh climates"
-    ]
-  },
   "2026-04-04": {
     "timestamp": 1775299358.813647,
     "date": "2026-04-04",
@@ -2340,6 +2314,32 @@
       "Succession planning and institutional knowledge transfer in small communities",
       "Documentation strategies and the role of scaffolding (AI, video, apprenticeship) in capability building",
       "School systems as structural assets for long-term capacity building in rural regions"
+    ]
+  },
+  "2026-07-02": {
+    "timestamp": 1782989822.76113,
+    "date": "2026-07-02",
+    "theme": "Indigenous Lands & Innovation",
+    "central_question": "How can Indigenous Nations build sustainable governance capacity and decision-making authority over their own lands, artifacts, and resources when legal frameworks and jurisdictional gaps limit their ability to act?",
+    "riley_position": "Nations can build leverage and governance capacity through technology infrastructure (provenance databases, data licensing, territorial monitoring), supplemented by sustained institutional investment and public governance demonstrations that shift negotiating positions.",
+    "riley_key_evidence": [
+      "Reciprocal Research Network built collaboratively by BC First Nations and UBC Museum of Anthropology for Indigenous-controlled provenance infrastructure",
+      "T\u015dilhqot'in Nation asserting governance over research happening on their territory through data control agreements",
+      "Xat\u015b\u016bll First Nation moving from consultation to formal co-management arrangements in land stewardship planning"
+    ],
+    "casey_position": "Technology and documentation are insufficient without actual decision-making authority; the core problem is structural\u2014Nations need legal standing and jurisdictional tools, not just better data systems, and must build standing institutional capacity before crises force reactive responses.",
+    "casey_key_evidence": [
+      "Private collections in Switzerland sit outside Canadian legal repatriation frameworks entirely, making documentation alone insufficient",
+      "Nations successfully repatriating objects from overseas rely on relationships built over decades, not documentation or legal mechanisms",
+      "Co-management frameworks give Nations a seat at the table but not necessarily veto power\u2014the real question is whether Nations can say no and have it stick"
+    ],
+    "resolution": "They converged on the importance of Nations building standing institutional capacity before crises emerge and on technology's role as a way to create 'facts on the ground' that legal systems must reckon with\u2014but Casey emphasized that owning the architecture (not just consulting on it) and having actual decision-making authority remain the essential, often-missing pieces.",
+    "topics_covered": [
+      "Artifact repatriation from private collections in foreign jurisdictions and jurisdictional governance gaps",
+      "Technology infrastructure (provenance databases, data licensing, territorial monitoring) as governance tools",
+      "Institutional capacity-building versus grant-dependent funding models for Indigenous governance",
+      "Co-management arrangements versus Aboriginal title as decision-making authority frameworks",
+      "Indigenous communities controlling technology architecture design versus post-hoc consultation"
     ]
   }
 }
