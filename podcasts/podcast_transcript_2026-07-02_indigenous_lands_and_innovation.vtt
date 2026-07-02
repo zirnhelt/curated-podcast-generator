@@ -1,0 +1,163 @@
+WEBVTT
+
+00:00:25.000 --> 00:00:46.857
+<v Riley>Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. It's Thursday, July 2nd, 2026. Reaching you from the heart of the Cariboo, the homeland of the Secwépemc, Tŝilhqot'in, and Dakelh nations. Today's theme is Indigenous Lands & Innovation — I'm Riley.
+
+00:00:48.157 --> 00:01:04.442
+<v Casey>And I'm Casey. Today we're looking at what it actually means to hold onto something — artifacts, languages, land, ceremonial knowledge — and whether the tools being deployed to "preserve" those things are controlled by the right hands.
+
+00:01:04.742 --> 00:01:42.027
+<v Riley>Quick weather check before we get into it — Horsefly Lake is sitting at 9 degrees this morning, overcast, with a high of 19 expected. If you're out on the Chilcotin plateau today, Anahim Lake is also at 7 and overcast. Williams Lake at 9 with some cloud, Quesnel at 11 with clear skies, and 100 Mile sitting at 7 with mainly clear conditions. Tomorrow brings moderate rain showers for us at home base — about 5 millimetres. Good day to stay dry and listen to podcasts.
+
+00:01:42.327 --> 00:01:44.469
+<v Casey>Let's get into the news.
+
+00:01:45.669 --> 00:02:13.097
+<v Riley>BC's Ministry of Health has announced expanded access to First Nations-led addictions treatment, with new supports reaching communities including Haida Gwaii and Adams Lake. The expansion funds culturally grounded treatment options — land-based healing, ceremony, and community-based care — specifically designed and delivered by Nations rather than provincial service providers. We'll come back to the governance question underneath that framing in the Deep Dive.
+
+00:02:14.097 --> 00:02:24.382
+<v Casey>"Led by" is doing a lot of work in that announcement. The funding structures will tell the real story when the details come out.
+
+00:02:25.882 --> 00:02:56.739
+<v Riley>Two stories from Eagle Feather News this week, both connected to the 150th anniversary of Treaty 6. Students from multiple schools completed a 348-kilometre canoe journey finishing at Fort Carlton in Saskatchewan — the site where Treaty 6 was originally signed in 1876. Separately, students from Chief Ahtahkakoop School walked 140 kilometres over five days to the same destination. Two different groups, both using physical journeys to mark the same historic moment.
+
+00:02:57.039 --> 00:03:00.038
+<v Casey>Land-based learning in the most literal sense.
+
+00:03:01.538 --> 00:03:26.823
+<v Riley>The Palmer Lake forest rehabilitation story out of the Williams Lake Tribune has an update — the project is now being described as creating employment and training opportunities for local Indigenous workers and community members. The rehabilitation work involves replanting burned areas using species selected for climate resilience, with Secwépemc knowledge informing plant choices alongside Ministry of Forests oversight.
+
+00:03:27.123 --> 00:03:37.408
+<v Casey>The governance gap between who's doing the work and who's making the final calls on species selection and timeline — that gap hasn't closed.
+
+00:03:38.908 --> 00:03:54.336
+<v Riley>On the AI and jobs front: Oracle has cut roughly 21,000 positions over the past year, explicitly citing AI adoption as a driver. The pattern is consistent enough now that calling it a trend undersells it.
+
+00:03:54.636 --> 00:04:15.207
+<v Casey>Kevin O'Leary said this week the companies he backs through Shark Tank are already replacing traditional consultants with AI tools entirely — no transition period, straight swap. His framing is efficiency. The question nobody's asking in that room is what the consulting sector looked like in smaller markets.
+
+00:04:16.707 --> 00:04:44.135
+<v Riley>Anthropic — worth noting we use their tools to produce this show — had an unusual week. Their most advanced Claude models were pulled offline following what's being described as a US national security directive. According to Android Authority, the models could be restored within days. The directive's specifics haven't been made public, and neither Anthropic nor the relevant agencies are commenting in detail.
+
+00:04:44.435 --> 00:04:52.149
+<v Casey>A government agency can pull a commercial AI model offline with no public explanation. That's the actual story.
+
+00:04:53.649 --> 00:05:22.791
+<v Riley>TechRadar has a piece on AI and mergers and acquisitions — specifically how AI deployment is exposing governance failures that companies didn't know they had. When two companies merge and their AI systems have to interact, gaps in data governance, access control, and accountability structures become immediately visible. Nine in ten companies now use AI in some capacity; most don't have governance frameworks that would survive that scrutiny.
+
+00:05:24.291 --> 00:05:47.862
+<v Casey>Norway is banning AI use in elementary schools — not restricting it, banning it outright for young kids. Engadget reported this week that the move is specifically about preventing AI from substituting for foundational skill development before children have built those skills themselves. It's a rare case of a government moving proactively rather than reactively.
+
+00:05:48.162 --> 00:05:55.447
+<v Riley>That tracks with the broader debate about where human judgment needs to precede automation, not follow it.
+
+00:05:56.947 --> 00:06:21.375
+<v Casey>Scientists are proposing that traces of alien technology could theoretically be preserved in moon dust, based on a study out this week via ScienceAlert. The reasoning: the Moon's lack of atmosphere and geological activity makes it an unusually stable long-term archive. Researchers suggest lunar regolith could hold microscopic signatures of ancient technology that wouldn't survive on Earth.
+
+00:06:21.675 --> 00:06:24.674
+<v Riley>Peer review first, then the press release.
+
+00:06:24.974 --> 00:06:51.116
+<v Casey>An autonomous drone designed to locate people who've fallen overboard from ships is getting renewed attention via New Atlas. Researchers at the Technical University of Denmark built the system to cut response time dramatically — a problem where minutes determine survival. The rural parallel is obvious: remote waterways, logging operations near water, communities where search-and-rescue response times are measured in hours.
+
+00:06:52.616 --> 00:07:05.044
+<v Riley>That wraps the roundup. The Palmer Lake thread and the addictions treatment announcement both connect to the question we're sitting with today — so let's stay in that space.
+
+00:07:05.344 --> 00:07:36.629
+<v Casey>The Quesnel Tillicum Society has been running the Native Friendship Centre in Quesnel since 1972 — over fifty years of continuous community work. They run drug and alcohol programs, family support services, youth outreach, and cultural programming, all from an Indigenous-centred foundation. Every summer they host the annual Pow Wow, which draws people from across the region. If you're in Quesnel or know someone who could use their support, the website is quesnelfriendshipcentre.com.
+
+00:07:36.929 --> 00:07:46.357
+<v Riley>Fifty-plus years of operational continuity, no press releases required — that's the model a lot of newer programs are trying to replicate.
+
+00:07:46.657 --> 00:07:56.085
+<v Casey>And not always succeeding. Speaking of what it takes to actually hold something over time — let's get into the Deep Dive.
+
+00:07:56.385 --> 00:08:28.956
+<v Riley>The question worth sitting with today is about repatriation — not as a cultural formality, but as a governance act. There's a story this week about a significant collection of sacred Indigenous artifacts held in a private collection in Switzerland, connected to a museum that's closing. Indigenous advocates are calling for immediate repatriation. The shape of the situation is specific: the artifacts are in private hands, in another country, and the window to act is closing.
+
+00:08:29.256 --> 00:08:51.113
+<v Casey>The Switzerland collection is a good anchor because it strips away the softer framing. This isn't a museum in an awkward conversation about decolonization. It's a private sale on the horizon, artifacts that should never have left their territories, and communities scrambling to act before they're dispersed into private hands permanently.
+
+00:08:51.413 --> 00:09:12.413
+<v Riley>The legal architecture for repatriation in Canada has been building for years — UNDRIP, the Truth and Reconciliation Commission's calls to action, amendments to the Museums Act. The federal government has made commitments. But a private collection in Switzerland sits outside all of that. Canadian law doesn't reach there.
+
+00:09:12.713 --> 00:09:40.998
+<v Casey>Which is exactly the governance problem. The legal frameworks we've built are reactive to what's within our jurisdiction. They don't have mechanisms for artifacts that were extracted before those frameworks existed, moved across multiple borders, and ended up in private estates. The TRC's Call to Action 67 calls for federal legislation requiring museums to develop repatriation policies — it says nothing about private collections in Switzerland.
+
+00:09:41.298 --> 00:10:02.298
+<v Riley>So the Nations facing this have a narrow set of actual options. They can fundraise and attempt purchase before the sale. They can apply diplomatic pressure through Indigenous advocacy networks and the federal government. Or they can document provenance aggressively enough that any buyer faces reputational and legal exposure.
+
+00:10:02.598 --> 00:10:19.740
+<v Casey>Name the purchase option directly: communities being asked to buy back their own sacred objects. That's the reality underneath the polite language about "repatriation assistance." And it's not hypothetical — it's what has actually happened in several overseas repatriation cases.
+
+00:10:20.440 --> 00:10:24.297
+<v Riley>Yeah. That's a real indignity built into the structure.
+
+00:10:24.597 --> 00:10:37.025
+<v Casey>The documentation route requires capacity too — researchers, legal expertise, international advocacy networks. Nations that have that capacity are better positioned. Nations that don't get outpaced by the timeline.
+
+00:10:37.325 --> 00:11:15.039
+<v Riley>The technology angle enters here, and it's not trivial. Some of the most sophisticated repatriation work happening right now uses 3D scanning, provenance databases, and digital record-matching to establish chain of custody and connect artifacts to specific Nations and ceremonial contexts. The Reciprocal Research Network — built collaboratively by several BC First Nations alongside the UBC Museum of Anthropology — is one of the more advanced examples of Indigenous-controlled provenance infrastructure. Nations can document their claims in their own terms, not just respond to what institutions have recorded.
+
+00:11:15.339 --> 00:11:41.053
+<v Casey>The RRN matters, and it matters that Nations controlled their own records from the start. But better documentation tools don't solve the repatriation problem. The Switzerland situation isn't a documentation failure — it's a jurisdiction failure and a legal standing failure. You can have perfect provenance records and still have no enforceable claim against a private buyer in another country.
+
+00:11:41.353 --> 00:11:55.067
+<v Riley>Provenance documentation doesn't close the jurisdiction gap — agreed. What it does is shift the moral and reputational weight significantly, and in some cases that's what activates political pressure from allied governments.
+
+00:11:55.367 --> 00:12:22.366
+<v Casey>Sometimes. The more common outcome is that artifacts get sold quietly, end up in another private collection, and the window closes. The communities that have successfully repatriated objects from overseas have generally done it through relationships built over years — not documentation alone, not legal mechanisms, but sustained diplomatic and advocacy relationships that took decades to develop. Which, honestly, is a depressing answer.
+
+00:12:22.666 --> 00:12:55.666
+<v Riley>It points to something structural, though. The Nations best positioned to act in these situations are the ones that have been investing in governance capacity — legal staff, international advocacy relationships, ongoing research infrastructure — not as project-based grants but as standing institutional capacity. The Williams Lake First Nation's work on land-use governance over the last decade is one regional model of what that looks like. Building institutional muscle before a crisis, not in response to one.
+
+00:12:55.966 --> 00:13:19.108
+<v Casey>Who funds that standing capacity? If the Nations that are best positioned are the ones with sustained institutional investment, the question is whether that investment comes from grants, from revenue generation, or something else. And right now the honest answer is: mostly grants, which creates a dependency that undermines the very autonomy we're describing.
+
+00:13:19.408 --> 00:13:37.836
+<v Riley>Some Nations are building revenue through data licensing agreements — territorial monitoring data, ecological knowledge, research access fees. The Tŝilhqot'in Nation has been one of the more assertive in requiring that research conducted on their territory involves their governance oversight, not just consultation.
+
+00:13:38.136 --> 00:13:59.564
+<v Casey>Data licensing is real. But the revenue asymmetry between what a Nation can charge for territorial data access and what federal program funding provides is still enormous. It's a meaningful income stream in some cases — it is not a replacement for stable institutional funding, and we shouldn't pretend otherwise.
+
+00:13:59.864 --> 00:14:08.435
+<v Riley>Not a replacement. A supplement that creates negotiating leverage — and that's a structurally different position than pure grant dependency.
+
+00:14:09.135 --> 00:14:24.563
+<v Casey>The leverage point matters. A Nation that can say "our data has market value and we control access" is in a different negotiating posture than one entirely dependent on federal funding relationships. I'll give you that.
+
+00:14:24.863 --> 00:14:49.720
+<v Riley>The National Indigenous Peoples Day celebrations in Williams Lake this week — the parade, the community gathering — are easy to frame as cultural celebration, which they are. But they're also a governance demonstration. Nations asserting presence, continuity, and decision-making authority in public space. That's not incidental to governance; it's part of how governance gets sustained across generations.
+
+00:14:50.020 --> 00:15:28.162
+<v Casey>There's a version of that argument that softens into inspiration. The harder version is: what decisions did the Nations involved in that celebration make this week that they couldn't make ten years ago? Co-management arrangements are a step — but can the Nation say no and have it stick? In most co-management frameworks, the answer is "it's complicated." In Aboriginal title frameworks post-Tŝilhqot'in, the answer is closer to yes — but only for Nations that have had title recognized, and the process to get there is expensive and slow.
+
+00:15:28.462 --> 00:15:55.461
+<v Riley>The Xatśūll First Nation's work on land stewardship planning over the last few years — and I'm drawing on published sources here, not direct reporting — gives one concrete answer. They've moved from being consulted on provincial resource decisions to having formal co-management arrangements that give them a seat before decisions are made, not after. That's a real shift in where authority sits.
+
+00:15:55.761 --> 00:16:21.903
+<v Casey>Co-management is still not the same as decision-making authority. The Switzerland artifacts situation, the Palmer Lake rehabilitation project, and the addictions treatment expansion announced this week all have the same underlying structure: Nations with legitimate authority over something — objects, land, health services — operating within frameworks that don't fully recognize that authority, trying to move faster than those frameworks allow.
+
+00:16:22.203 --> 00:16:48.774
+<v Riley>And the technology piece is interesting precisely because it sometimes moves faster than legal frameworks. A Nation that builds its own language archive, controls its own provenance database, deploys its own territorial monitoring infrastructure — it's creating facts on the ground that the legal system then has to reckon with, rather than waiting for the legal system to create the conditions first.
+
+00:16:49.074 --> 00:17:31.931
+<v Casey>FirstVoices is the clearest example. It wasn't built waiting for federal language policy to catch up. Communities built the infrastructure, controlled the access decisions, and the policy environment has since moved toward them rather than the other way around. But — and this is the part that gets glossed over — the architecture mattered enormously. Communities controlled access from day one: who can see what, which materials are public, which are restricted to Nation members, which are restricted to ceremony. That's governance embedded in software design. Platforms retrofitted for Indigenous data control after the fact almost never work as well.
+
+00:17:32.231 --> 00:17:42.516
+<v Riley>Which is an argument for Nations being at the table when these systems are being designed — not consulted after the architecture is set.
+
+00:17:42.816 --> 00:17:50.958
+<v Casey>Owning the architecture. Consultation is the weaker version of that ask, and we should be honest about the difference.
+
+00:17:51.758 --> 00:18:15.757
+<v Riley>The Switzerland story might resolve badly. The collection might sell. Some of those artifacts might end up in private hands and be effectively unrecoverable for generations. And the Nations affected will have had all the moral authority in the world and insufficient legal and jurisdictional tools to act on it. That's foreseeable, structural, and not accidental.
+
+00:18:16.057 --> 00:18:58.057
+<v Casey>Which is exactly why the capacity-building argument is urgent — even when the immediate situation looks grim. The Nations building legal expertise, international relationships, and data infrastructure now are the ones that will have options when the next version of this appears. The ones waiting for the right policy environment are going to keep losing the race to the timeline. That said — I'm not convinced the technology piece is the lever people think it is. The tools matter less than who controls them and who funded the building of them. Those questions don't have clean answers yet.
+
+00:18:58.357 --> 00:19:21.499
+<v Riley>If you're working on any of this in the Cariboo region — provenance documentation, language infrastructure, territorial data governance — reach out at feedback at cariboo signals dot c-a. We'd genuinely like to cover what you're doing. Thanks for spending part of your Thursday with us, and have a good rest of your day.
+
+00:19:21.799 --> 00:19:23.084
+<v Casey>Take care, everyone.

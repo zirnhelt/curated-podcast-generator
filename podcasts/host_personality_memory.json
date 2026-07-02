@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[ScienceAlert] Traces of Alien Technology Could Be Hidden in",
       "[TechRadar] AI exposes the M&A integration gaps that governa",
       "[STAT News] STAT+: AI wades into a vexing medical mystery: W",
       "[TechCrunch] AI researchers continue to leave Google for its",
@@ -10,7 +9,8 @@
       "[TechRadar] Over 14 million login credentials leaked from si",
       "[TechRadar] Google says Android's built-in earthquake warnin",
       "Engadget review recap: MSI Claw 8 EX AI+, Sony A7R VI, Ray-B",
-      "[TechRadar] Adobe and Disney are teaming up to design the ne"
+      "[TechRadar] Adobe and Disney are teaming up to design the ne",
+      "[Android Authority] Anthropic\u2019s most advanced AI models coul"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -80,9 +80,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-06-05",
-        "clue": "Indigenous-tech:x \u2014 Conceded lack of direct T\u015dilhqot'in input mid-argument",
-        "occurrences": 1
+        "date": "2026-07-02",
+        "clue": "Indigenous-tech:x \u2014 Conceded that provenance tools don't solve legal standing, adopted Casey's skepticism",
+        "occurrences": 2
       },
       {
         "date": "2026-06-23",
@@ -113,11 +113,6 @@
         "date": "2026-06-24",
         "clue": "structural-lens:+[signal] \u2014 Regulation as necessary, not sufficient condition.",
         "occurrences": 1
-      },
-      {
-        "date": "2026-07-01",
-        "clue": "structural-lens:+ \u2014 Moved from design-as-solution to systemic dependency as core problem",
-        "occurrences": 2
       },
       {
         "date": "2026-06-30",
@@ -279,9 +274,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-05-23",
-        "clue": "structural-lens:~ \u2014 Acknowledged broadband/digital infrastructure genuinely enables accountability, softened pure skepticism",
-        "occurrences": 1
+        "date": "2026-07-02",
+        "clue": "structural-lens:~ \u2014 Acknowledged data licensing as leverage point after initial dismissal, added genuine complexity to revenue argument",
+        "occurrences": 2
       },
       {
         "date": "2026-06-18",
@@ -289,9 +284,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-05-25",
-        "clue": "funding-risk:+ \u2014 Reinforced structural underfunding pattern across standards, auditing, journalism infrastructure",
-        "occurrences": 1
+        "date": "2026-07-02",
+        "clue": "funding-risk:+ \u2014 Deepened critique of grant dependency as undermining autonomy, moved beyond observation to structural indictment",
+        "occurrences": 2
       },
       {
         "date": "2026-06-13",
