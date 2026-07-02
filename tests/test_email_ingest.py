@@ -12,7 +12,13 @@ import pytest
 
 # email_ingest only uses stdlib at import time; no stubs needed
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from email_ingest import _is_blocked_sender, _is_blocked_subject, _score_themes, ingest
+from email_ingest import (
+    _is_blocked_sender,
+    _is_blocked_subject,
+    _is_correction_subject,
+    _score_themes,
+    ingest,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -135,6 +141,30 @@ class TestIsBlockedSubject:
 
     def test_empty_blocklist_blocks_nothing(self):
         assert not _is_blocked_subject("Test", [])
+
+
+# ---------------------------------------------------------------------------
+# _is_correction_subject
+# ---------------------------------------------------------------------------
+
+class TestIsCorrectionSubject:
+    def test_matches_documented_convention(self):
+        assert _is_correction_subject("Correction: July 1 episode")
+
+    def test_case_insensitive(self):
+        assert _is_correction_subject("CORRECTION: wrong population figure")
+
+    def test_ignores_leading_whitespace(self):
+        assert _is_correction_subject("  Correction: dates were off")
+
+    def test_does_not_match_mid_subject(self):
+        assert not _is_correction_subject("Re: Correction: dates were off")
+
+    def test_does_not_match_unrelated_subject(self):
+        assert not _is_correction_subject("Great episode this week")
+
+    def test_does_not_match_bare_word(self):
+        assert not _is_correction_subject("Corrections")
 
 
 # ---------------------------------------------------------------------------
@@ -305,6 +335,49 @@ class TestIngest:
 
         assert added == 0
         assert not queue_file.exists()
+
+    def test_correction_subject_is_typed_as_correction(self, tmp_path, monkeypatch):
+        """A 'Correction: ...' subject is classified as type 'correction'."""
+        raw = _make_raw_email(
+            subject="Correction: July 1 episode",
+            from_addr="listener@example.com",
+            body="You said the wrong population figure for Horsefly.",
+        )
+        svc = _mock_gmail_service([raw])
+
+        queue_file = tmp_path / "email_queue.json"
+        monkeypatch.setenv("GMAIL_LABEL", "podcast")
+        monkeypatch.setattr("email_ingest._build_gmail_service", lambda: svc)
+        monkeypatch.setattr("email_ingest.QUEUE_FILE", queue_file)
+
+        added = ingest(dry_run=False)
+
+        assert added == 1
+        item = json.loads(queue_file.read_text())["items"][0]
+        assert item["type"] == "correction"
+
+    def test_correction_with_no_theme_match_is_not_skipped(self, tmp_path, monkeypatch):
+        """Unlike feedback/newsletter, a correction is queued even with no theme
+        keyword match — corrections must not be dropped or theme-gated."""
+        raw = _make_raw_email(
+            subject="Correction: episode fact check",
+            from_addr="listener@example.com",
+            body="Nothing here matches any theme keyword at all, sorry.",
+        )
+        svc = _mock_gmail_service([raw])
+
+        queue_file = tmp_path / "email_queue.json"
+        monkeypatch.setenv("GMAIL_LABEL", "podcast")
+        monkeypatch.setattr("email_ingest._build_gmail_service", lambda: svc)
+        monkeypatch.setattr("email_ingest.QUEUE_FILE", queue_file)
+
+        added = ingest(dry_run=False)
+
+        assert added == 1
+        item = json.loads(queue_file.read_text())["items"][0]
+        assert item["type"] == "correction"
+        assert item["theme_tag"] is None
+        assert item["status"] == "pending"
 
     def test_dry_run_does_not_write_queue(self, tmp_path, monkeypatch):
         """dry_run=True parses emails but never writes the queue file."""
