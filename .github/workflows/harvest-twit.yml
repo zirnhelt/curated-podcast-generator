@@ -55,13 +55,12 @@ jobs:
       - name: Run TWIT harvest
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MAX_EP: ${{ github.event.inputs.max_episodes || '0' }}
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
         run: |
-          MAX_EP="${{ github.event.inputs.max_episodes || '0' }}"
-          DRY_RUN="${{ github.event.inputs.dry_run == 'true' && '--dry-run' || '' }}"
-
           ARGS=""
-          [ "$MAX_EP" != "0" ] && ARGS="$ARGS --max-episodes $MAX_EP"
-          [ -n "$DRY_RUN" ]    && ARGS="$ARGS --dry-run"
+          [ "$MAX_EP" != "0" ]    && ARGS="$ARGS --max-episodes $MAX_EP"
+          [ "$DRY_RUN" = "true" ] && ARGS="$ARGS --dry-run"
 
           python twit_harvest.py $ARGS
 
