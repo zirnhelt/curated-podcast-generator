@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
 Article Deduplication Module for Range Signals Podcast
-Checks last 7 days of citations to avoid repeating stories.
+Checks last 8 days of citations to avoid repeating stories (8, not 7, so the
+same-weekday episode a week ago is always inside the window).
 Detects evolving stories (same topic, different URL) for contextual references.
 """
 
@@ -31,9 +32,15 @@ def title_similarity(title1, title2):
     norm2 = normalize_title(title2)
     return SequenceMatcher(None, norm1, norm2).ratio()
 
-def load_recent_citations(days=7):
-    """Load citations from the last N days."""
-    cutoff_date = datetime.now() - timedelta(days=days)
+def load_recent_citations(days=8):
+    """Load citations from the last N days.
+
+    The cutoff is normalized to midnight so the episode from exactly N days
+    ago is included — citation filenames carry dates, not times, so a
+    time-of-day cutoff silently dropped the same-weekday episode a week ago,
+    which draws from the same rolling 7-day feed cache as today.
+    """
+    cutoff_date = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0) - timedelta(days=days)
     citations_files = glob.glob(str(PODCASTS_DIR / "citations_*.json"))
     
     recent_citations = []
@@ -102,7 +109,7 @@ def deduplicate_articles(new_articles, similarity_threshold=0.70):
         - filtered_articles: Articles not previously covered
         - evolving_stories: Articles that are updates to previous coverage
     """
-    recent_citations = load_recent_citations(days=7)
+    recent_citations = load_recent_citations()
 
     if not recent_citations:
         print("  ℹ️ No recent citations found, no deduplication needed")
@@ -275,7 +282,7 @@ def cluster_and_rescore_corpus(articles, theme_name, client=None, model=None):
 if __name__ == "__main__":
     # Test the deduplication
     print("Testing deduplication module...")
-    recent = load_recent_citations(days=7)
+    recent = load_recent_citations()
     print(f"\nFound {len(recent)} articles in recent history")
 
     if recent:

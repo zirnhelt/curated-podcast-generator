@@ -132,6 +132,13 @@ PODCASTS_DIR.mkdir(exist_ok=True)
 SUPER_RSS_BASE_URL = "https://zirnhelt.github.io/super-rss-feed"
 SCORING_CACHE_URL = f"{SUPER_RSS_BASE_URL}/scored_articles_cache.json"
 
+# Fail fast when the upstream day feed hasn't been refreshed (stale deploy in
+# super-rss-feed): a stale feed replays last week's same-weekday episode.
+# The feed is rebuilt 3x daily, so anything without a <48h article is broken.
+FEED_MAX_AGE_HOURS = 48
+# Minimum articles that must survive dedup before spending Claude/TTS budget.
+MIN_FRESH_ARTICLES = 5
+
 # Day names for feed URLs (0=Monday, 6=Sunday)
 DAY_NAMES = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
 
@@ -2700,6 +2707,41 @@ def apply_bad_news_filter(articles, today_weekday):
     return kept
 
 
+def _assert_feed_fresh(items: list, feed_url: str) -> None:
+    """Exit non-zero before any API spend if the day feed looks stale.
+
+    On 2026-07-03 the Friday feed still held last week's articles (upstream
+    deploy failure) and the pipeline aired a near-verbatim rerun. A healthy
+    feed is rebuilt 3x daily, so its newest article is always recent.
+    Set ALLOW_STALE_FEED=1 to override for a deliberate manual run.
+    """
+    if os.environ.get('ALLOW_STALE_FEED'):
+        return
+    pub_dates = []
+    for item in items:
+        raw = item.get('date_published') or ''
+        try:
+            parsed = datetime.fromisoformat(str(raw).replace('Z', '+00:00'))
+        except ValueError:
+            continue
+        if parsed.tzinfo is None:
+            parsed = parsed.replace(tzinfo=timezone.utc)
+        pub_dates.append(parsed)
+    if not pub_dates:
+        # No parseable dates — can't judge freshness; don't block on that alone
+        return
+    newest = max(pub_dates)
+    age_hours = (datetime.now(timezone.utc) - newest).total_seconds() / 3600
+    if age_hours > FEED_MAX_AGE_HOURS:
+        print(
+            f"❌ Stale feed: newest article in {feed_url} is {age_hours / 24:.1f} days old "
+            f"(limit {FEED_MAX_AGE_HOURS}h). super-rss-feed likely failed to deploy — "
+            f"generating now would replay already-covered stories. "
+            f"Set ALLOW_STALE_FEED=1 to override."
+        )
+        sys.exit(1)
+
+
 def fetch_podcast_feed(weekday):
     """Fetch the curated podcast feed for a specific day of the week.
 
@@ -2736,6 +2778,7 @@ def fetch_podcast_feed(weekday):
         }
 
         items = feed_data.get('items', [])
+        _assert_feed_fresh(items, feed_url)
 
         # Split into theme articles and bonus (off-theme) articles
         theme_articles = []
@@ -5698,6 +5741,15 @@ def main():
             scored_articles = apply_blocklist(scored_articles)
             scored_articles = apply_bad_news_filter(scored_articles, today_weekday)
             scored_articles, evolving_stories = deduplicate_articles(scored_articles)
+
+            if len(scored_articles) < MIN_FRESH_ARTICLES:
+                print(
+                    f"❌ Only {len(scored_articles)} articles survived dedup "
+                    f"(minimum {MIN_FRESH_ARTICLES}) — category feeds are replaying "
+                    f"already-covered stories. Exiting before API spend."
+                )
+                sys.exit(1)
+
             deep_dive_articles = categorize_articles_for_deep_dive(scored_articles, today_weekday)
             # In the fallback path, inject eligible URL seeds directly into deep dive.
             # High-priority seeds are always eligible (bypass theme day filter) so
@@ -5735,6 +5787,14 @@ def main():
             # Deduplicate all articles against recent episodes
             all_feed_articles = theme_articles + bonus_articles
             all_feed_articles, evolving_stories = deduplicate_articles(all_feed_articles)
+
+            if len(all_feed_articles) < MIN_FRESH_ARTICLES:
+                print(
+                    f"❌ Only {len(all_feed_articles)} articles survived dedup "
+                    f"(minimum {MIN_FRESH_ARTICLES}) — today's feed is replaying "
+                    f"already-covered stories. Exiting before API spend."
+                )
+                sys.exit(1)
 
             # Cluster same-story duplicates within today's batch and penalize extras
             all_feed_articles = cluster_and_rescore_corpus(

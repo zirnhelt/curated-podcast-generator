@@ -1,9 +1,13 @@
 """Tests for dedup_articles module."""
 
 import json
+from datetime import datetime, timedelta
+
 import pytest
 from unittest.mock import MagicMock
-from dedup_articles import normalize_title, title_similarity, format_evolving_story_context, cluster_and_rescore_corpus
+
+import dedup_articles
+from dedup_articles import normalize_title, title_similarity, format_evolving_story_context, cluster_and_rescore_corpus, load_recent_citations
 
 
 class TestNormalizeTitle:
@@ -57,6 +61,42 @@ class TestFormatEvolvingStoryContext:
         assert "EVOLVING STORIES" in result
         assert "New Update on AI Law" in result
         assert "2026-01-30" in result
+
+
+def _write_citations(directory, date_str, url="https://example.com/story"):
+    payload = {
+        "episode": {"date": date_str},
+        "segments": {
+            "news": {"articles": [{"url": url, "title": f"Story from {date_str}"}]}
+        },
+    }
+    path = directory / f"citations_{date_str}_some_theme.json"
+    path.write_text(json.dumps(payload), encoding="utf-8")
+
+
+class TestLoadRecentCitations:
+    """Window regression tests: the same-weekday episode exactly 7 days ago
+    fed by the same rolling feed cache must always be inside the window
+    (it was silently excluded by a time-of-day cutoff on 2026-07-03)."""
+
+    def test_exactly_seven_days_ago_included(self, tmp_path, monkeypatch):
+        monkeypatch.setattr(dedup_articles, "PODCASTS_DIR", tmp_path)
+        date_str = (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
+        _write_citations(tmp_path, date_str)
+        citations = load_recent_citations()
+        assert [c["episode_date"] for c in citations] == [date_str]
+
+    def test_exactly_eight_days_ago_included(self, tmp_path, monkeypatch):
+        monkeypatch.setattr(dedup_articles, "PODCASTS_DIR", tmp_path)
+        date_str = (datetime.now() - timedelta(days=8)).strftime("%Y-%m-%d")
+        _write_citations(tmp_path, date_str)
+        assert len(load_recent_citations()) == 1
+
+    def test_nine_days_ago_excluded(self, tmp_path, monkeypatch):
+        monkeypatch.setattr(dedup_articles, "PODCASTS_DIR", tmp_path)
+        date_str = (datetime.now() - timedelta(days=9)).strftime("%Y-%m-%d")
+        _write_citations(tmp_path, date_str)
+        assert load_recent_citations() == []
 
 
 def _make_client(clusters):
