@@ -105,16 +105,18 @@ jobs:
           # Ensure podcasts directory exists
           mkdir -p podcasts
 
-          # Try to download memory files into podcasts/ (don't fail if they don't exist)
-          wget https://zirnhelt.github.io/curated-podcast-generator/podcasts/episode_memory.json -O podcasts/episode_memory.json || echo "No episode memory found"
-          wget https://zirnhelt.github.io/curated-podcast-generator/podcasts/host_personality_memory.json -O podcasts/host_personality_memory.json || echo "No host memory found"
-          wget https://zirnhelt.github.io/curated-podcast-generator/podcasts/debate_memory.json -O podcasts/debate_memory.json || echo "No debate memory found"
-          wget https://zirnhelt.github.io/curated-podcast-generator/podcasts/psa_rotation_state.json -O podcasts/psa_rotation_state.json || echo "No PSA rotation state found"
-          wget https://zirnhelt.github.io/curated-podcast-generator/podcasts/twit_inspiration.json -O podcasts/twit_inspiration.json || echo "No TWIT inspiration cache found"
-
-          # Download RSS feed for episode detection
-          wget https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml -O podcast-feed.xml || echo "No existing RSS feed"
-          wget https://zirnhelt.github.io/curated-podcast-generator/tts-test-feed.xml -O tts-test-feed.xml || echo "No existing TTS test feed"
+          # Memory/state files and feeds are committed to git, so the checkout is
+          # the source of truth — Pages lags git by minutes after a push, and a
+          # queued fallback run once overwrote fresh memory with stale Pages
+          # copies (2026-07-03), rolling back the day's episode memory.
+          # Only fetch from Pages as a fallback when a file is missing entirely.
+          for f in episode_memory.json host_personality_memory.json debate_memory.json psa_rotation_state.json twit_inspiration.json; do
+            if [ ! -f "podcasts/$f" ]; then
+              wget "https://zirnhelt.github.io/curated-podcast-generator/podcasts/$f" -O "podcasts/$f" || { rm -f "podcasts/$f"; echo "No $f found"; }
+            fi
+          done
+          [ -f podcast-feed.xml ] || wget https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml -O podcast-feed.xml || { rm -f podcast-feed.xml; echo "No existing RSS feed"; }
+          [ -f tts-test-feed.xml ] || wget https://zirnhelt.github.io/curated-podcast-generator/tts-test-feed.xml -O tts-test-feed.xml || { rm -f tts-test-feed.xml; echo "No existing TTS test feed"; }
 
           # Download recent audio so _recover_orphaned_episodes() (3-day lookback) finds
           # audio for recent episodes and doesn't try to regenerate them.
@@ -153,6 +155,16 @@ jobs:
           echo "Trigger: $label"
           echo "Current UTC time: $(date -u)"
           echo "Current Pacific time: $(TZ='America/Vancouver' date)"
+
+          # Re-check idempotency against the committed feed. The check-episode
+          # job reads the live Pages feed, which lags git — a queued fallback
+          # run can pass that check minutes after the primary run pushed, then
+          # regenerate audio and clobber state (happened 2026-07-03).
+          TODAY=$(TZ='America/Vancouver' date '+%Y-%m-%d')
+          if [ "${{ github.event_name }}" = "schedule" ] && grep -q "$TODAY" podcast-feed.xml; then
+            echo "✅ Episode for $TODAY already committed to git — skipping duplicate generation."
+            exit 0
+          fi
 
           python podcast_generator.py
 

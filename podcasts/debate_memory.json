@@ -2315,5 +2315,31 @@
       "Co-management arrangements versus Aboriginal title as decision-making authority frameworks",
       "Indigenous communities controlling technology architecture design versus post-hoc consultation"
     ]
+  },
+  "2026-07-03": {
+    "timestamp": 1783075974.955682,
+    "date": "2026-07-03",
+    "theme": "Wild Spaces & Outdoor Life",
+    "central_question": "Are modern tools and technology adequately closing the gap between recreational backcountry users' confidence and their actual competence, and what infrastructure is needed to make wild spaces safer?",
+    "riley_position": "Technology and data-collection tools are solving real problems, but the focus should be on better-designed interfaces for actual users and institutional infrastructure (kiosks, APIs, mesh networks) embedded in existing programs like Guardian initiatives rather than standalone projects.",
+    "riley_key_evidence": [
+      "Garmin inReach devices now cost under $400 with subscriptions under $30/month, making rescue technology more accessible",
+      "High-end cameras like the Canon R6 enable detailed field documentation that aggregates into useful land management data",
+      "BC Parks reservation system provides an existing contact point where trip briefings and skills requirements could be attached"
+    ],
+    "casey_position": "Technology alone does not transfer judgment or competence; the real problems are governance gaps between recreational data generation and decision-making institutions, insufficient funding for Guardian programs, and unaffiliated solo travelers who lack protocols and accountability systems.",
+    "casey_key_evidence": [
+      "Recreational wildlife documentation often sits on hard drives with no pipeline to T\u015dilhqot'in National Government or BC Parks decision-makers",
+      "iNaturalist is underrepresented in remote areas like the Chilcotin because users there aren't incentivized to use such apps",
+      "Guardian programs are under-resourced relative to territory they cover and face unstable year-to-year funding"
+    ],
+    "resolution": "Riley and Casey converged on the structural funding problem as the real constraint: Guardian programs are the best model for embedded infrastructure maintenance and monitoring, but require stable, multi-year federal and provincial funding commitments that currently don't exist. They agreed that technology works when paired with governance authority and institutional commitment.",
+    "topics_covered": [
+      "Satellite communicators and rescue technology accessibility vs. judgment transfer",
+      "Data sovereignty and governance pipelines between recreational documentation and Indigenous land management",
+      "Kiosk infrastructure design and automated data-feed solutions for backcountry conditions",
+      "Guardian program funding gaps and embedding monitoring into existing patrols",
+      "Trip registration, check-in protocols, and mesh networks for solo traveler accountability"
+    ]
   }
 }

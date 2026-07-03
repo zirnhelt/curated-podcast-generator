@@ -585,3 +585,52 @@ class TestFormatPubDateTag:
 
     def test_malformed_date_returns_empty(self):
         assert _format_pub_date_tag({"date_published": "next Tuesday"}) == ""
+
+
+class TestAssertFeedFresh:
+    """Stale-feed fail-fast: a feed whose newest article exceeds
+    FEED_MAX_AGE_HOURS means super-rss-feed didn't deploy — generating
+    would replay the previous same-weekday episode (2026-07-03 incident)."""
+
+    @staticmethod
+    def _items(hours_old):
+        from datetime import datetime, timedelta, timezone
+
+        stamp = (datetime.now(timezone.utc) - timedelta(hours=hours_old)).isoformat()
+        return [{"title": "A story", "url": "https://x.com", "date_published": stamp}]
+
+    def test_fresh_feed_passes(self):
+        from podcast_generator import _assert_feed_fresh
+
+        _assert_feed_fresh(self._items(hours_old=6), "https://feed.example/friday.json")
+
+    def test_stale_feed_exits(self):
+        from podcast_generator import _assert_feed_fresh
+
+        with pytest.raises(SystemExit) as exc:
+            _assert_feed_fresh(self._items(hours_old=7 * 24), "https://feed.example/friday.json")
+        assert exc.value.code == 1
+
+    def test_env_override_allows_stale_feed(self, monkeypatch):
+        from podcast_generator import _assert_feed_fresh
+
+        monkeypatch.setenv("ALLOW_STALE_FEED", "1")
+        _assert_feed_fresh(self._items(hours_old=7 * 24), "https://feed.example/friday.json")
+
+    def test_unparseable_dates_do_not_block(self):
+        from podcast_generator import _assert_feed_fresh
+
+        items = [{"title": "A story", "url": "https://x.com", "date_published": "next Tuesday"}]
+        _assert_feed_fresh(items, "https://feed.example/friday.json")
+
+    def test_naive_timestamps_assumed_utc(self):
+        from datetime import datetime, timedelta
+
+        from podcast_generator import _assert_feed_fresh
+
+        stamp = (datetime.utcnow() - timedelta(days=7)).strftime("%Y-%m-%dT%H:%M:%S")
+        with pytest.raises(SystemExit):
+            _assert_feed_fresh(
+                [{"title": "A story", "url": "https://x.com", "date_published": stamp}],
+                "https://feed.example/friday.json",
+            )
