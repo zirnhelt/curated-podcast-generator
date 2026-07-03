@@ -1,30 +1,4 @@
 {
-  "2026-04-04": {
-    "timestamp": 1775299358.813647,
-    "date": "2026-04-04",
-    "theme": "Cariboo Voices & Local News",
-    "central_question": "How can local accountability infrastructure\u2014particularly journalism\u2014be sustainably funded and structured to serve rural communities like the Cariboo?",
-    "riley_position": "Rural journalism has higher marginal value per story than urban journalism and deserves structural investment through models like community foundation endowments that create durable, locally-accountable funding rather than grant-dependent cycles.",
-    "riley_key_evidence": [
-      "Elections BC fine of $1,500 to Prince George-North Cariboo MLA was amplified by Quesnel Cariboo Observer coverage, making formal accountability meaningful to constituents",
-      "Local papers (Tribune, Observer, 100 Mile Free Press) cover a geographic area the size of some European countries with skeleton newsroom staff",
-      "Community Foundation endowment model keeps giving year after year without requiring constant re-application"
-    ],
-    "casey_position": "Accountability mechanisms are functioning but imperfect and under-resourced; the real problem is the business model collapse of local journalism caused by digital aggregation, not technology, and external solutions must be carefully designed to avoid editorial dependency.",
-    "casey_key_evidence": [
-      "Classified ad revenue migrated to Craigslist/Kijiji and display advertising redistributed to Google/Meta, eliminating the century-old economic engine of local journalism",
-      "Rural papers hit particularly hard because advertiser base was already thin compared to urban markets",
-      "Federal Local Journalism Initiative funding has been a lifeline but raises subtle dependency questions about editorial pressure"
-    ],
-    "resolution": "They converged on agreement that a Cariboo civic information endowment\u2014managed locally through a mix of former journalists, community foundation representatives, and First Nations communication staff\u2014represents a worth-pursuing model that avoids grant-cycle dependency while maintaining editorial independence.",
-    "topics_covered": [
-      "Elections BC enforcement and formal political accountability mechanisms",
-      "Local journalism sustainability and the business model crisis in rural media",
-      "First Nations governance and Indigenous data sovereignty as parallel accountability structures",
-      "Civic tech tools and their sustainability challenges in rural contexts",
-      "Community foundation endowment models as durable funding alternatives"
-    ]
-  },
   "2026-04-05": {
     "timestamp": 1775385800.513167,
     "date": "2026-04-05",
@@ -2340,6 +2314,32 @@
       "Institutional capacity-building versus grant-dependent funding models for Indigenous governance",
       "Co-management arrangements versus Aboriginal title as decision-making authority frameworks",
       "Indigenous communities controlling technology architecture design versus post-hoc consultation"
+    ]
+  },
+  "2026-07-03": {
+    "timestamp": 1783075974.955682,
+    "date": "2026-07-03",
+    "theme": "Wild Spaces & Outdoor Life",
+    "central_question": "Are modern tools and technology adequately closing the gap between recreational backcountry users' confidence and their actual competence, and what infrastructure is needed to make wild spaces safer?",
+    "riley_position": "Technology and data-collection tools are solving real problems, but the focus should be on better-designed interfaces for actual users and institutional infrastructure (kiosks, APIs, mesh networks) embedded in existing programs like Guardian initiatives rather than standalone projects.",
+    "riley_key_evidence": [
+      "Garmin inReach devices now cost under $400 with subscriptions under $30/month, making rescue technology more accessible",
+      "High-end cameras like the Canon R6 enable detailed field documentation that aggregates into useful land management data",
+      "BC Parks reservation system provides an existing contact point where trip briefings and skills requirements could be attached"
+    ],
+    "casey_position": "Technology alone does not transfer judgment or competence; the real problems are governance gaps between recreational data generation and decision-making institutions, insufficient funding for Guardian programs, and unaffiliated solo travelers who lack protocols and accountability systems.",
+    "casey_key_evidence": [
+      "Recreational wildlife documentation often sits on hard drives with no pipeline to T\u015dilhqot'in National Government or BC Parks decision-makers",
+      "iNaturalist is underrepresented in remote areas like the Chilcotin because users there aren't incentivized to use such apps",
+      "Guardian programs are under-resourced relative to territory they cover and face unstable year-to-year funding"
+    ],
+    "resolution": "Riley and Casey converged on the structural funding problem as the real constraint: Guardian programs are the best model for embedded infrastructure maintenance and monitoring, but require stable, multi-year federal and provincial funding commitments that currently don't exist. They agreed that technology works when paired with governance authority and institutional commitment.",
+    "topics_covered": [
+      "Satellite communicators and rescue technology accessibility vs. judgment transfer",
+      "Data sovereignty and governance pipelines between recreational documentation and Indigenous land management",
+      "Kiosk infrastructure design and automated data-feed solutions for backcountry conditions",
+      "Guardian program funding gaps and embedding monitoring into existing patrols",
+      "Trip registration, check-in protocols, and mesh networks for solo traveler accountability"
     ]
   }
 }
