@@ -1998,6 +1998,31 @@
       "theme_day": 3,
       "status": "used",
       "used_at": "2026-07-02"
+    },
+    {
+      "id": "c5ab6b66",
+      "type": "newsletter",
+      "message_id": "<b74ee46da1eb7a8973ab45d41.9538d97182.20260703190214.1ba079ab29.130f15df@mail116.atl111.rsgsv.net>",
+      "from_address": "s***@canadaland.com",
+      "subject": "What's Ontario's beef with undercover reporting?",
+      "received_at": "2026-07-03T19:02:54+00:00",
+      "body_text": "Canadaland logo ** Let sleeping cows lie ------------------------------------------------------------ https://www.canadaland.com/podcast/1390-why-its-illegal-to-spy-on-cows-in-ontario/?utm_source=Mast",
+      "extracted_urls": [
+        "https://www.canadaland.com/podcast/1390-why-its-illegal-to-spy-on-cows-in-ontario/?utm_source=Master+Email+List&utm_campaign=1ba079ab29-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-1ba079ab29-379881794",
+        "https://www.canadaland.com/podcast/1391-is-iran-behind-attacks-in-canada/?utm_source=Master+Email+List&utm_campaign=1ba079ab29-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-1ba079ab29-379881794",
+        "https://fizz.ca/en/mobile?ADDONS%5B0%5D=18&CVRG=108&DATA=703&PLAN=3&SMS=223&VOICE=90&WIZARD=mobile&utm_source=canadaland&utm_medium=article&utm_term=01&utm_content=2026&utm_source=Master+Email+List&utm_campaign=1ba079ab29-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-1ba079ab29-379881794",
+        "https://www.canadaland.com/podcast/1392-the-risks-and-rewards-of-tolerating-fifa/?utm_source=Master+Email+List&utm_campaign=1ba079ab29-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-1ba079ab29-379881794",
+        "https://www.canadaland.com/podcast/bonus-state-of-the-podcast/?utm_source=Master+Email+List&utm_campaign=1ba079ab29-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-1ba079ab29-379881794",
+        "https://canadalandnetwork.supercast.com?utm_source=Master+Email+List&utm_campaign=1ba079ab29-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-1ba079ab29-379881794",
+        "https://www.canadaland.com/podcast/1393-the-end-of-the-true-crime-industrial-complex/?utm_source=Master+Email+List&utm_campaign=1ba079ab29-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-1ba079ab29-379881794",
+        "https://www.canadaland.com/shows/shortcuts/?utm_source=Master+Email+List&utm_campaign=1ba079ab29-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-1ba079ab29-379881794",
+        "https://www.labs.canadaland.com/audio-journalism-fellowship-program?utm_source=Master+Email+List&utm_campaign=1ba079ab29-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-1ba079ab29-379881794",
+        "https://canadalandnetwork.supercast.com/?utm_source=Master+Email+List&utm_campaign=1ba079ab29-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-1ba079ab29-379881794"
+      ],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
