@@ -1,22 +1,4 @@
 {
-  "2026-06-12": {
-    "timestamp": 1781258745.720997,
-    "topics": [
-      "[Williams Lake Tribune] B.C. man fined $6,000 for illegally ",
-      "[Business Insider] After seeing Parkinson's take his father,",
-      "[Al Jazeera English] Iran\u2019s lakes are vanishing: Satellite i",
-      "[Al Jazeera English] Bolivian farmers clash with police as e",
-      "[Boing Boing] In 1932, John W. Campbell imagined machines ou",
-      "[Outside Online] Officials Have Officially Banned Tents at a",
-      "[TechRadar] Nashville Zoo leads fight against mega AI data c",
-      "[Williams Lake Tribune] Xat\u2019sull First Nation bringing Calli"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption"
-    ],
-    "date": "2026-06-12"
-  },
   "2026-06-13": {
     "timestamp": 1781340930.199767,
     "topics": [
@@ -399,5 +381,25 @@
       "Indigenous tech"
     ],
     "date": "2026-07-02"
+  },
+  "2026-07-03": {
+    "timestamp": 1783075973.208741,
+    "topics": [
+      "[CFJC Today Kamloops] CSRD discontinues dog control services",
+      "[New Atlas] Cheap metacrystal panels could easily steer wire",
+      "[CFJC Today Kamloops] CFJC Midday \u2013 \u2018The Pit\u2019 exhibition tra",
+      "[New Atlas] Skyscraper-style tiny house sleeps two in a comp",
+      "[STAT News] STAT+: AI wades into a vexing medical mystery: W",
+      "[Toms Guide] I\u2019ve taken over 6,000 photos on the Canon EOS R",
+      "[Kagi Small Web] Paying for climate damage under proposed UN",
+      "[Tom's Hardware] Dramatically redesigned GMKtec EVO-X3 shown"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech",
+      "connectivity"
+    ],
+    "date": "2026-07-03"
   }
 }

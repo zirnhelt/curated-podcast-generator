@@ -118,6 +118,16 @@
         "date": "2026-06-30",
         "clue": "funding-risk:x \u2014 Accepted Casey's consultant dependency critique as valid",
         "occurrences": 1
+      },
+      {
+        "date": "2026-07-03",
+        "clue": "structural-lens:+ \u2014 Shifted from tool-design framing to funding as primary constraint.",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-07-03",
+        "clue": "pilot-skepticism:x \u2014 Conceded kiosk maintenance problem, pivoted to Guardian embedding model.",
+        "occurrences": 1
       }
     ],
     "core_memories": [
@@ -339,9 +349,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-06-26",
-        "clue": "funding-risk:~ \u2014 Shifted from dismissing solutions to naming resource requirement honestly",
-        "occurrences": 1
+        "date": "2026-07-03",
+        "clue": "funding-risk:~ \u2014 Deepened from project critique to systemic underfunding as core limiter.",
+        "occurrences": 2
       },
       {
         "date": "2026-06-27",
@@ -359,9 +369,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-06-30",
-        "clue": "structural-lens:+ \u2014 Deepened focus on capability transfer over deliverables",
-        "occurrences": 1
+        "date": "2026-07-03",
+        "clue": "structural-lens:+ \u2014 Moved beyond tech barriers to governance/accountability as real bottleneck.",
+        "occurrences": 2
       },
       {
         "date": "2026-06-30",
