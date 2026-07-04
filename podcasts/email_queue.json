@@ -2023,6 +2023,31 @@
       "theme_day": 0,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "a2fcb6c7",
+      "type": "newsletter",
+      "message_id": "<20260704.140450.ffb06c32@mta27>",
+      "from_address": "f***@mail.beehiiv.com",
+      "subject": "Confederation (in Three Minutes)",
+      "received_at": "2026-07-04T14:04:50+00:00",
+      "body_text": "View image: (https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/8f867fd0-f5ba-4c56-9dc0-e5ba41c70569/2.jpg?t=1783107662) Caption: -------",
+      "extracted_urls": [
+        "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/8f867fd0-f5ba-4c56-9dc0-e5ba41c70569/2.jpg?t=1783107662",
+        "https://todmaffin.com/",
+        "https://bsky.app/profile/todmaffin.com",
+        "https://beacons.ai/todmaffin/socials",
+        "https://www.youtube.com/todmaffinvideo/?sub_confirmation=1",
+        "https://discord.todmaffin.com",
+        "https://www.canada.ca/en/canadian-heritage/campaigns/canada-day.html",
+        "https://thecanadianencyclopedia.ca/en/article/british-north-america",
+        "https://thecanadianencyclopedia.ca/en/article/province-of-canada-1841-67",
+        "https://www.destinationontario.com/en-ca"
+      ],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
