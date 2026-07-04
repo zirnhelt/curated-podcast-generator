@@ -60,8 +60,8 @@ _CARIBOO_OUTRO = SCRIPT_DIR / "cariboo-signals-outro.mp3"
 _CARIBOO_INTERVAL = SCRIPT_DIR / "cariboo-signals-interval.mp3"
 
 # ── Models ─────────────────────────────────────────────────────────────────
-SCRIPT_MODEL = os.getenv("CLAUDE_SCRIPT_MODEL", "claude-sonnet-4-6")
-POLISH_MODEL = os.getenv("CLAUDE_POLISH_MODEL", "claude-sonnet-4-6")
+SCRIPT_MODEL = os.getenv("CLAUDE_SCRIPT_MODEL", "claude-sonnet-5")
+POLISH_MODEL = os.getenv("CLAUDE_POLISH_MODEL", "claude-sonnet-5")
 
 # ── Audio levels ───────────────────────────────────────────────────────────
 TARGET_SPEECH_DBFS = -20.0

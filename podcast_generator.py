@@ -161,8 +161,8 @@ def get_podcast_feed_url(weekday):
 # Claude model selection (override via environment variables)
 # Cost hierarchy (cheapest to most expensive): Haiku → Sonnet → Opus
 # Opus is ~5x the cost of Sonnet — only use it if quality clearly demands it.
-SCRIPT_MODEL = os.getenv("CLAUDE_SCRIPT_MODEL", "claude-sonnet-4-6")
-POLISH_MODEL = os.getenv("CLAUDE_POLISH_MODEL", "claude-sonnet-4-6")
+SCRIPT_MODEL = os.getenv("CLAUDE_SCRIPT_MODEL", "claude-sonnet-5")
+POLISH_MODEL = os.getenv("CLAUDE_POLISH_MODEL", "claude-sonnet-5")
 OPUS_REVIEW_MODEL = os.getenv("CLAUDE_OPUS_REVIEW_MODEL", "claude-opus-4-6")
 SUMMARY_MODEL = os.getenv("CLAUDE_SUMMARY_MODEL", "claude-haiku-4-5-20251001")
 
