@@ -24,6 +24,10 @@ from podcast_generator import (
     format_corrections_for_prompt,
     _format_pub_date_tag,
     get_pacific_now,
+    script_to_vtt_transcript,
+    generate_episode_transcript,
+    generate_podcast_rss_feed,
+    sync_site_to_r2,
 )
 
 
@@ -634,3 +638,127 @@ class TestAssertFeedFresh:
                 [{"title": "A story", "url": "https://x.com", "date_published": stamp}],
                 "https://feed.example/friday.json",
             )
+
+
+class TestScriptToVttTranscript:
+    def test_returns_none_without_speaker_lines(self):
+        assert script_to_vtt_transcript("Just some prose with no speaker tags.") is None
+
+    def test_produces_cues_for_speaker_lines(self):
+        script = "**RILEY:** Welcome to the show.\n**CASEY:** Great to be here today."
+        vtt = script_to_vtt_transcript(script)
+        assert vtt.startswith("WEBVTT")
+        assert "<v Riley>Welcome to the show." in vtt
+        assert "<v Casey>Great to be here today." in vtt
+        assert "-->" in vtt
+
+
+class TestGenerateEpisodeTranscript:
+    def test_writes_html_and_vtt_files(self, tmp_path, monkeypatch):
+        monkeypatch.setattr("podcast_generator.PODCASTS_DIR", tmp_path)
+        script_file = tmp_path / "script.txt"
+        script_file.write_text(
+            "**RILEY:** Welcome to the show, it's Monday.\n"
+            "**CASEY:** Good to be here, let's get started.\n"
+        )
+
+        result = generate_episode_transcript(str(script_file), "2026-01-01", "test_theme")
+
+        html_file = tmp_path / "podcast_transcript_2026-01-01_test_theme.html"
+        vtt_file = tmp_path / "podcast_transcript_2026-01-01_test_theme.vtt"
+        assert result == str(html_file)
+        assert "Riley" in html_file.read_text()
+        assert vtt_file.read_text().startswith("WEBVTT")
+
+    def test_returns_none_for_missing_script_file(self, tmp_path, monkeypatch):
+        monkeypatch.setattr("podcast_generator.PODCASTS_DIR", tmp_path)
+        result = generate_episode_transcript(
+            str(tmp_path / "does_not_exist.txt"), "2026-01-01", "test_theme"
+        )
+        assert result is None
+
+    def test_no_vtt_file_when_no_speaker_lines(self, tmp_path, monkeypatch):
+        monkeypatch.setattr("podcast_generator.PODCASTS_DIR", tmp_path)
+        script_file = tmp_path / "script.txt"
+        script_file.write_text("Just some prose, no speaker tags at all here.")
+
+        generate_episode_transcript(str(script_file), "2026-01-01", "test_theme")
+
+        vtt_file = tmp_path / "podcast_transcript_2026-01-01_test_theme.vtt"
+        assert not vtt_file.exists()
+
+
+class TestGeneratePodcastRssFeedTranscriptTags:
+    """The <podcast:transcript> tags Apple Podcasts reads to skip auto-transcription."""
+
+    @staticmethod
+    def _write_episode(tmp_path, date_str, theme, with_transcripts):
+        (tmp_path / f"podcast_audio_{date_str}_{theme}.mp3").write_bytes(b"fake-audio")
+        citations_file = tmp_path / f"citations_{date_str}_{theme}.json"
+        citations_file.write_text(json.dumps({
+            "episode": {"description": "Test episode description.", "episode_type": "full"}
+        }))
+        if with_transcripts:
+            (tmp_path / f"podcast_transcript_{date_str}_{theme}.vtt").write_text("WEBVTT\n\n")
+            (tmp_path / f"podcast_transcript_{date_str}_{theme}.html").write_text("<html></html>")
+
+    def test_transcript_tags_present_when_files_exist(self, tmp_path, monkeypatch):
+        monkeypatch.setattr("podcast_generator.PODCASTS_DIR", tmp_path)
+        monkeypatch.chdir(tmp_path)
+        self._write_episode(tmp_path, "2026-01-01", "test_theme", with_transcripts=True)
+
+        generate_podcast_rss_feed()
+
+        feed = (tmp_path / "podcast-feed.xml").read_text()
+        assert 'url="https://podcast.cariboosignals.ca/podcasts/podcast_transcript_2026-01-01_test_theme.vtt" type="text/vtt" language="en-CA"' in feed
+        assert 'url="https://podcast.cariboosignals.ca/podcasts/podcast_transcript_2026-01-01_test_theme.html" type="text/html" language="en-CA"' in feed
+
+    def test_transcript_tags_absent_when_files_missing(self, tmp_path, monkeypatch):
+        monkeypatch.setattr("podcast_generator.PODCASTS_DIR", tmp_path)
+        monkeypatch.chdir(tmp_path)
+        self._write_episode(tmp_path, "2026-01-02", "test_theme", with_transcripts=False)
+
+        generate_podcast_rss_feed()
+
+        feed = (tmp_path / "podcast-feed.xml").read_text()
+        assert "podcast:transcript" not in feed
+
+
+class TestSyncSiteToR2Ordering:
+    """The feed must not go live before the audio/transcript files it links to,
+    or a crawler (Apple Podcasts) can fetch a podcast:transcript URL that 404s."""
+
+    def test_feed_uploaded_after_audio_and_transcripts(self, tmp_path, monkeypatch):
+        monkeypatch.setattr("podcast_generator.PODCASTS_DIR", tmp_path)
+        (tmp_path / "podcast_audio_2026-01-01_test_theme.mp3").write_bytes(b"fake-audio")
+        (tmp_path / "podcast_transcript_2026-01-01_test_theme.vtt").write_text("WEBVTT\n\n")
+        (tmp_path / "podcast_transcript_2026-01-01_test_theme.html").write_text("<html></html>")
+
+        monkeypatch.setattr(
+            "podcast_generator._get_r2_client", lambda: (MagicMock(), "test-bucket")
+        )
+        uploaded_keys = []
+
+        def fake_upload(r2_client, bucket, file_path, object_key):
+            uploaded_keys.append(object_key)
+            return True
+
+        monkeypatch.setattr("podcast_generator._upload_file_to_r2", fake_upload)
+
+        sync_site_to_r2(max_age_days=0)
+
+        feed_index = uploaded_keys.index("podcast-feed.xml")
+        audio_index = uploaded_keys.index("podcasts/podcast_audio_2026-01-01_test_theme.mp3")
+        transcript_indices = [
+            i for i, k in enumerate(uploaded_keys) if "podcast_transcript" in k
+        ]
+
+        assert audio_index < feed_index
+        assert transcript_indices and all(i < feed_index for i in transcript_indices)
+
+    def test_skips_with_ci_warning_when_credentials_missing(self, monkeypatch, capsys):
+        monkeypatch.setattr("podcast_generator._get_r2_client", lambda: (None, None))
+
+        sync_site_to_r2()
+
+        assert "::warning::" in capsys.readouterr().out
