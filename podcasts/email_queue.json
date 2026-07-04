@@ -2048,6 +2048,31 @@
       "theme_day": 0,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "58183594",
+      "type": "newsletter",
+      "message_id": "<1073401836.12205133.1783195256718@ip-172-22-5-33.ca-central-1.compute.internal>",
+      "from_address": "c***@openmedia.org",
+      "subject": "Breakdown: Major bills that landed this June",
+      "received_at": "2026-07-04T16:00:56-04:00",
+      "body_text": "What are we doing to deal with the bills launched this month? (https://action.openmedia.org/s/9646296/BXS744BGN) OpenMedia Monthly | June 2026 Hi Erich, June was a lot, and you showed up for it. This ",
+      "extracted_urls": [
+        "https://action.openmedia.org/s/9646296/BXS744BGN",
+        "https://action.openmedia.org/s/9646297/BXS744BGN",
+        "https://action.openmedia.org/s/9646298/BXS744BGN",
+        "https://action.openmedia.org/s/9646299/BXS744BGN",
+        "https://action.openmedia.org/s/9646300/BXS744BGN",
+        "https://action.openmedia.org/s/9646301/BXS744BGN",
+        "https://action.openmedia.org/s/9646302/BXS744BGN",
+        "https://action.openmedia.org/s/9646303/BXS744BGN",
+        "https://action.openmedia.org/s/9646304/BXS744BGN",
+        "https://action.openmedia.org/s/9646305/BXS744BGN"
+      ],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
