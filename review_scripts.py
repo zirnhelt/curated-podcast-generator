@@ -28,7 +28,7 @@ SCRIPTS_DIR = Path(os.environ.get("MEMORY_DIR", Path(__file__).parent)) / "podca
 CONFIG_DIR = Path(__file__).parent / "config"
 REVIEWS_DIR = Path("reviews")
 
-REVIEW_MODEL = "claude-sonnet-4-6"
+REVIEW_MODEL = "claude-sonnet-5"
 
 WEEKDAY_NAMES = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 

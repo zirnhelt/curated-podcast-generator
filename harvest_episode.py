@@ -27,7 +27,7 @@ import anthropic
 PODCASTS_DIR = Path(os.environ.get("MEMORY_DIR", Path(__file__).parent)) / "podcasts"
 REVIEWS_DIR = Path("reviews")
 
-DEFAULT_MODEL = "claude-sonnet-4-6"
+DEFAULT_MODEL = "claude-sonnet-5"
 
 SYSTEM_PROMPT = """\
 You are a content analyst for Cariboo Signals, a daily AI-generated podcast from
