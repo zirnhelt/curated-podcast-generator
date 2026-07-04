@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] AI exposes the M&A integration gaps that governa",
       "[STAT News] STAT+: AI wades into a vexing medical mystery: W",
       "[TechCrunch] AI researchers continue to leave Google for its",
       "[TechRadar] This app turned me into the music creator that G",
@@ -10,7 +9,8 @@
       "[TechRadar] Google says Android's built-in earthquake warnin",
       "Engadget review recap: MSI Claw 8 EX AI+, Sony A7R VI, Ray-B",
       "[TechRadar] Adobe and Disney are teaming up to design the ne",
-      "[Android Authority] Anthropic\u2019s most advanced AI models coul"
+      "[Android Authority] Anthropic\u2019s most advanced AI models coul",
+      "[TechRadar] Fires linked to solar panels force Suffolk counc"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -120,13 +120,18 @@
         "occurrences": 1
       },
       {
-        "date": "2026-07-03",
-        "clue": "structural-lens:+ \u2014 Shifted from tool-design framing to funding as primary constraint.",
-        "occurrences": 1
+        "date": "2026-07-04",
+        "clue": "structural-lens:+ \u2014 Moved from process critique to architectural solutions",
+        "occurrences": 2
       },
       {
         "date": "2026-07-03",
         "clue": "pilot-skepticism:x \u2014 Conceded kiosk maintenance problem, pivoted to Guardian embedding model.",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-07-04",
+        "clue": "community-trust:~ \u2014 Acknowledged fourteen-month continuity problem as real",
         "occurrences": 1
       }
     ],
@@ -354,9 +359,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-06-27",
-        "clue": "pilot-skepticism:x \u2014 Conceded ORV bylaw is 'genuinely more tractable' than other issues",
-        "occurrences": 1
+        "date": "2026-07-04",
+        "clue": "pilot-skepticism:x \u2014 Conceded rotating committee distributes editorial exposure risk",
+        "occurrences": 2
       },
       {
         "date": "2026-06-29",
@@ -367,11 +372,6 @@
         "date": "2026-06-29",
         "clue": "evidence-bar:x \u2014 Conceded that local subscription math 'actually holds up' at regional scale",
         "occurrences": 1
-      },
-      {
-        "date": "2026-07-03",
-        "clue": "structural-lens:+ \u2014 Moved beyond tech barriers to governance/accountability as real bottleneck.",
-        "occurrences": 2
       },
       {
         "date": "2026-06-30",

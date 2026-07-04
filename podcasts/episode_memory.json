@@ -1,21 +1,4 @@
 {
-  "2026-06-13": {
-    "timestamp": 1781340930.199767,
-    "topics": [
-      "[Williams Lake Tribune] Inomin Mines continues exploration n",
-      "[Williams Lake Tribune] Williams Lake rejects jail closure i",
-      "[Quesnel Cariboo Observer] HOMETOWN HERO: Lisa McCargar keep",
-      "[Quesnel Cariboo Observer] Quesnel River Rush celebrates ear",
-      "[Boing Boing] Man jailed after throwing ninja star at woman",
-      "[Williams Lake Tribune] Senior\u2019s Advocate of B.C. coming to ",
-      "[Williams Lake Tribune] 5th annual Cariboo Classic Jr Steer ",
-      "[Williams Lake Tribune] Condolences pour in following death "
-    ],
-    "themes": [
-      "rural development"
-    ],
-    "date": "2026-06-13"
-  },
   "2026-06-14": {
     "timestamp": 1781429274.822226,
     "topics": [
@@ -401,5 +384,25 @@
       "connectivity"
     ],
     "date": "2026-07-03"
+  },
+  "2026-07-04": {
+    "timestamp": 1783160821.87419,
+    "topics": [
+      "[CFJC Today Kamloops] Kamloops mayor Hamer-Jackson calls on ",
+      "[CFJC Today Kamloops] Second 13-hour overnight closure comin",
+      "[TechRadar] Fires linked to solar panels force Suffolk counc",
+      "[BC Gov News] Temporary lane reduction planned for Clearbroo",
+      "[Al Jazeera English] NASA launches robotic mission to save t",
+      "[Williams Lake Tribune] PROGRESS 2026: Coulson Aviation\u2019s ni",
+      "[100 Mile Free Press] Marie Dianne Matwick (Wolfe)",
+      "[Williams Lake Tribune] Donations support Williams Lake cros"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech",
+      "connectivity"
+    ],
+    "date": "2026-07-04"
   }
 }
