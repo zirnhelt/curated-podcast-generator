@@ -19,7 +19,7 @@ Please include: the episode date, the specific claim you believe is incorrect, a
 
 1. **Acknowledgement** — We will acknowledge receipt within 3 business days.
 2. **Review** — We will assess the correction against available sources.
-3. **If the correction is valid** — We will note it in the next episode's Community Spotlight segment — right after the News Roundup, before the community PSA — and, where possible, update any written transcript or citations file associated with the original episode.
+3. **If the correction is valid** — We will note it at the end of the next episode's News Roundup — before the Community Spotlight segment is mentioned — stating clearly which episode the original error aired in and what the correct information is, and, where possible, update any written transcript or citations file associated with the original episode.
 4. **If we disagree** — We will respond with our reasoning. If you believe we've got it wrong, we welcome further discussion.
 
 ---
