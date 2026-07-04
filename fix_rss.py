@@ -42,12 +42,13 @@ def _build_trace_channel_xml(trace_cfg, producer_name):
     return lines
 
 
-def load_episode_transcript_url(episode_date, safe_theme, audio_base):
-    """Return the transcript URL if a transcript HTML file exists for this episode."""
-    transcript_file = PODCASTS_DIR / f"podcast_transcript_{episode_date}_{safe_theme}.html"
-    if transcript_file.exists():
-        return f"{audio_base}podcasts/podcast_transcript_{episode_date}_{safe_theme}.html"
-    return None
+def load_episode_transcript_urls(episode_date, safe_theme, audio_base):
+    """Return (html_url, vtt_url) for this episode's transcript files, or None where missing."""
+    html_file = PODCASTS_DIR / f"podcast_transcript_{episode_date}_{safe_theme}.html"
+    vtt_file = PODCASTS_DIR / f"podcast_transcript_{episode_date}_{safe_theme}.vtt"
+    html_url = f"{audio_base}podcasts/podcast_transcript_{episode_date}_{safe_theme}.html" if html_file.exists() else None
+    vtt_url = f"{audio_base}podcasts/podcast_transcript_{episode_date}_{safe_theme}.vtt" if vtt_file.exists() else None
+    return html_url, vtt_url
 
 
 def load_episode_description(episode_date, theme):
@@ -162,7 +163,7 @@ def generate_clean_rss():
             print(f"  ⚠️  Using generic description for {episode['episode_date']}")
 
         safe_theme = episode['theme'].replace(" ", "_").replace("&", "and").lower()
-        transcript_url = load_episode_transcript_url(episode['episode_date'], safe_theme, audio_base)
+        transcript_url, vtt_transcript_url = load_episode_transcript_urls(episode['episode_date'], safe_theme, audio_base)
 
         # Use CDATA so line breaks render in podcast apps
         item_lines = [
@@ -179,9 +180,12 @@ def generate_clean_rss():
             f'<itunes:explicit>{"true" if podcast_config["explicit"] else "false"}</itunes:explicit>',
             '<itunes:episodeType>full</itunes:episodeType>',
         ]
+        if vtt_transcript_url:
+            escaped_vtt_url = saxutils.escape(vtt_transcript_url, {chr(34): "&quot;"})
+            item_lines.append(f'<podcast:transcript url="{escaped_vtt_url}" type="text/vtt" language="en-CA"/>')
         if transcript_url:
             escaped_transcript_url = saxutils.escape(transcript_url, {chr(34): "&quot;"})
-            item_lines.append(f'<podcast:transcript url="{escaped_transcript_url}" type="text/html"/>')
+            item_lines.append(f'<podcast:transcript url="{escaped_transcript_url}" type="text/html" language="en-CA"/>')
         item_lines.append('</item>')
         rss_lines.extend(item_lines)
     

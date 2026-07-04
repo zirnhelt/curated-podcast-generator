@@ -5009,6 +5009,7 @@ def _upload_file_to_r2(r2_client, bucket, file_path, object_key):
         return True
     except Exception as e:
         print(f"   ⚠️  R2 upload failed for {object_key}: {e}")
+        print(f"::warning::R2 upload failed for {object_key}: {e}")
         return False
 
 
@@ -5049,23 +5050,11 @@ def sync_site_to_r2(max_age_days: float = 2.0):
     r2, bucket = _get_r2_client()
     if r2 is None:
         print("⏭️  R2 credentials not configured, skipping site sync")
+        print("::warning::R2 credentials not configured — site sync skipped, live feed will not be updated")
         return
 
     print("☁️  Syncing site to R2...")
     base_dir = Path(__file__).parent
-
-    # Site assets — always upload; they are regenerated each run.
-    site_files = [
-        ("index.html", "index.html"),
-        ("podcast-feed.xml", "podcast-feed.xml"),
-        ("cariboo-signals.png", "cariboo-signals.png"),
-    ]
-    for local_name, r2_key in site_files:
-        local_path = base_dir / local_name
-        if local_path.exists():
-            _upload_file_to_r2(r2, bucket, str(local_path), r2_key)
-        else:
-            print(f"   ⚠️  {local_name} not found, skipping")
 
     # Use filename-embedded date (YYYY-MM-DD) rather than filesystem mtime so that
     # a fresh git checkout in CI (which resets all mtimes to "now") does not cause
@@ -5080,7 +5069,10 @@ def sync_site_to_r2(max_age_days: float = 2.0):
             return datetime.strptime(m.group(1), "%Y-%m-%d").date() >= cutoff_date
         return os.path.getmtime(path) >= (time.time() - max_age_days * 86400)
 
-    # Podcast audio files — skip old ones already in R2.
+    # Podcast audio files — skip old ones already in R2. Uploaded before the
+    # feed/site files below so that the feed never goes live referencing
+    # audio/transcript URLs that don't exist in R2 yet (Apple's crawler can
+    # fetch the feed the instant it changes).
     audio_files = sorted(glob.glob(str(PODCASTS_DIR / "podcast_audio_*.mp3")))
     recent_audio = [f for f in audio_files if _is_recent(f)]
     skipped_audio = len(audio_files) - len(recent_audio)
@@ -5095,7 +5087,7 @@ def sync_site_to_r2(max_age_days: float = 2.0):
     else:
         print("   No audio files to upload")
 
-    # Transcript files (HTML and VTT) — same recency filter.
+    # Transcript files (HTML and VTT) — same recency filter, also before the feed.
     transcript_files = sorted(
         glob.glob(str(PODCASTS_DIR / "podcast_transcript_*.html"))
         + glob.glob(str(PODCASTS_DIR / "podcast_transcript_*.vtt"))
@@ -5110,6 +5102,22 @@ def sync_site_to_r2(max_age_days: float = 2.0):
             _upload_file_to_r2(r2, bucket, transcript_file, r2_key)
     elif transcript_files:
         print(f"   All {len(transcript_files)} transcript(s) already up to date, skipping")
+
+    # Site assets — always upload; they are regenerated each run. Uploaded
+    # LAST: podcast-feed.xml is what makes new audio/transcript URLs "live"
+    # to podcast crawlers, so it must not be published before the files it
+    # references.
+    site_files = [
+        ("index.html", "index.html"),
+        ("podcast-feed.xml", "podcast-feed.xml"),
+        ("cariboo-signals.png", "cariboo-signals.png"),
+    ]
+    for local_name, r2_key in site_files:
+        local_path = base_dir / local_name
+        if local_path.exists():
+            _upload_file_to_r2(r2, bucket, str(local_path), r2_key)
+        else:
+            print(f"   ⚠️  {local_name} not found, skipping")
 
 
 def _ms_to_vtt_ts(ms):
