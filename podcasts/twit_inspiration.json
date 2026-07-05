@@ -285,6 +285,43 @@
         "https://9to5mac.com/2026/05/05/gpt-5-5-instant-makes-chatgpt-more-accurate-while-nixing-gratuitous-emojis",
         "https://www.anthropic.com/news/higher-limits-spacex"
       ]
+    },
+    "https://pdst.fm/e/pscrb.fm/rss/p/mgln.ai/e/294/cdn.twit.tv/megaphone/twig_877/ARML9261336513.mp3": {
+      "title": "IM 877: Model Now Available - The Race for Smarter, Freer AI Models",
+      "pub_date": "Wed, 01 Jul 2026 18:47:11 PDT",
+      "episode_url": "https://twit.tv/shows/intelligent-machines/episodes/877",
+      "harvested_at": "2026-07-05T08:55:48.570006+00:00",
+      "question": "Should AI model development prioritize open-source accessibility or proprietary safety controls given geopolitical competition?",
+      "perspectives": [
+        "Open models democratize AI benefits, prevent monopolies, enable rural/resource-constrained communities to participate",
+        "Proprietary models with safety controls prevent misuse, maintain quality standards, protect against illicit capability extraction"
+      ],
+      "open_questions": [
+        "How do we verify Chinese domestic AI models meet safety standards without access to training data or architecture?",
+        "If Ford rehires engineers to fix automation errors, what's the actual cost-benefit threshold for human oversight vs. autonomous systems?",
+        "Can 'invisible AI failures' (undetected breakdowns) be systematically audited, or are they inherently unobservable until they cause harm?",
+        "Does IP litigation (NYT vs OpenAI, Anthropic vs Alibaba) actually protect model creators, or just delay commoditization?"
+      ],
+      "topics": [
+        "Chinese AI models (Meituan) competing with Anthropic/OpenAI on domestic chips",
+        "Model capability extraction and IP theft (Alibaba/Claude, illegal training)",
+        "Silent AI failures and undetected system breakdowns in production",
+        "Custom AI chip design arms race (OpenAI/Broadcom, geopolitical implications)",
+        "Automation errors requiring human re-intervention (Ford engineering rehires)",
+        "Open-source vs proprietary AI trade-offs"
+      ],
+      "discussed_links": [
+        "https://cloud.typography.com/6494954/686486/css/fonts.css",
+        "https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600",
+        "https://podcasts.apple.com/us/podcast/intelligent-machines-audio/id326120877",
+        "http://pcasts.in/twig",
+        "https://twit.memberful.com/account/feeds?id=9064",
+        "https://bigspin.ai/",
+        "https://www.anthropic.com/news/redeploying-fable-5",
+        "https://thenextweb.com/news/chinas-meituan-says-its-new-ai-model-was-trained-on-domestic-chips",
+        "https://www.nytimes.com/2026/06/25/technology/zai-china-artificial-intelligence-models.html",
+        "https://www.technologyreview.com/2026/06/30/1139987/claude-science-is-anthropics-newest-flagship-product"
+      ]
     }
   }
 }

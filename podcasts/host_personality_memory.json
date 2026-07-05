@@ -120,11 +120,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-07-04",
-        "clue": "structural-lens:+ \u2014 Moved from process critique to architectural solutions",
-        "occurrences": 2
-      },
-      {
         "date": "2026-07-03",
         "clue": "pilot-skepticism:x \u2014 Conceded kiosk maintenance problem, pivoted to Guardian embedding model.",
         "occurrences": 1
@@ -132,6 +127,11 @@
       {
         "date": "2026-07-04",
         "clue": "community-trust:~ \u2014 Acknowledged fourteen-month continuity problem as real",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-07-05",
+        "clue": "tech-optimism:~ \u2014 Acknowledged specimen backlogs undermine data-pipeline optimism",
         "occurrences": 1
       }
     ],
@@ -369,9 +369,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-06-29",
-        "clue": "evidence-bar:x \u2014 Conceded that local subscription math 'actually holds up' at regional scale",
-        "occurrences": 1
+        "date": "2026-07-05",
+        "clue": "evidence-bar:x \u2014 Conceded Christmas bird count as valid continuity model",
+        "occurrences": 2
       },
       {
         "date": "2026-06-30",
@@ -381,6 +381,11 @@
       {
         "date": "2026-07-01",
         "clue": "evidence-bar:- \u2014 Shifted from demanding proof of capability transfer to accepting person-to-person teaching works",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-07-05",
+        "clue": "Indigenous-tech:~ \u2014 Named knowledge-credentialing gap as parallel to detection methodology blindness",
         "occurrences": 1
       }
     ],
