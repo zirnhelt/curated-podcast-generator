@@ -124,6 +124,29 @@ def _log_api_call(service: str, unit: str, count: int) -> None:
     ts = datetime.now(timezone.utc).isoformat(timespec="seconds")
     print(f"  [api] {ts} service={service} {unit}={count}")
 
+# Bounded adaptive thinking for the Sonnet-5/Opus generative calls. Env-tunable:
+# "low" is cheapest, "high" is Sonnet-5's default. Do NOT use on Haiku calls —
+# Haiku 4.5 rejects the effort parameter.
+THINKING_EFFORT = os.getenv("CLAUDE_THINKING_EFFORT", "medium")
+
+def create_message(client, stream=False, **kwargs):
+    """client.messages.create/stream with adaptive thinking + bounded effort.
+
+    Sonnet 5 runs adaptive thinking when `thinking` is omitted, and thinking
+    shares the max_tokens budget — on a large prompt it can consume the whole
+    budget and truncate the answer. Keep thinking on for quality, cap spend via
+    effort, and stream large-output calls so thinking + full text both fit.
+
+    Returns the full Message (content blocks + stop_reason + usage), so callers
+    that inspect stop_reason or extract text via message_text() are unaffected.
+    """
+    kwargs.setdefault("thinking", {"type": "adaptive"})
+    kwargs.setdefault("output_config", {"effort": THINKING_EFFORT})
+    if stream:
+        with client.messages.stream(**kwargs) as s:
+            return s.get_final_message()
+    return client.messages.create(**kwargs)
+
 # Configuration
 SCRIPT_DIR = Path(__file__).parent
 # ponytail: MEMORY_DIR lets a future multi-tenant deployment point each show at
@@ -1322,9 +1345,10 @@ def fact_check_deep_dive(script, news_articles, deep_dive_articles):
     )
 
     try:
-        response = api_retry(lambda: client.messages.create(
+        response = api_retry(lambda: create_message(
+            client, stream=True,
             model=POLISH_MODEL,
-            max_tokens=8000,
+            max_tokens=16000,
             messages=[{"role": "user", "content": prompt}]
         ))
         _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
@@ -1513,15 +1537,25 @@ def _run_agentic_loop(client, model, system_prompt, user_content, tools, tool_ex
     Returns the concatenated text of the final response, or None if the loop
     errors out or never produces text.
     """
-    messages = [{"role": "user", "content": user_content}]
+    # Cache the large static prefix (system + tools + the initial article
+    # context). This loop re-sends that prefix on every tool-call iteration
+    # within one invocation — well inside the 5-minute cache TTL — so each
+    # iteration after the first reads it at ~0.1x instead of full price.
+    cached_system = [{"type": "text", "text": system_prompt,
+                      "cache_control": {"type": "ephemeral"}}]
+    messages = [{"role": "user", "content": [
+        {"type": "text", "text": user_content,
+         "cache_control": {"type": "ephemeral"}}
+    ]}]
 
     for iteration in range(max_iterations):
         available_tools = tools if iteration < max_iterations - 1 else []
         try:
-            response = api_retry(lambda: client.messages.create(
+            response = api_retry(lambda: create_message(
+                client, stream=True,
                 model=model,
                 max_tokens=max_tokens,
-                system=system_prompt,
+                system=cached_system,
                 tools=available_tools,
                 messages=messages,
             ))
@@ -1665,7 +1699,7 @@ def research_deep_dive_with_agent(deep_dive_articles, theme_name, client):
         system_prompt=system_prompt,
         user_content=user_content,
         tools=tools, tool_executors=tool_executors,
-        max_iterations=5, max_tokens=2000,
+        max_iterations=5, max_tokens=6000,
     )
 
     if result is None:
@@ -1985,7 +2019,7 @@ def polish_and_factcheck_with_agent(script, theme_name, news_articles, deep_dive
         system_prompt=system_prompt,
         user_content=user_content,
         tools=tools, tool_executors=tool_executors,
-        max_iterations=4, max_tokens=8000,
+        max_iterations=4, max_tokens=16000,
     )
 
     if result and "**RILEY:**" in result and "**CASEY:**" in result:
@@ -2067,7 +2101,9 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
                     "custom_id": "polish-and-factcheck",
                     "params": {
                         "model": review_model,
-                        "max_tokens": 8000,
+                        "max_tokens": 16000,
+                        "thinking": {"type": "adaptive"},
+                        "output_config": {"effort": THINKING_EFFORT},
                         "messages": [{"role": "user", "content": pf_prompt}]
                     }
                 },
@@ -4002,21 +4038,27 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         print(f"   Using model: {SCRIPT_MODEL}")
 
         if use_cached:
-            response = api_retry(lambda: client.messages.create(
+            response = api_retry(lambda: create_message(
+                client, stream=True,
                 model=SCRIPT_MODEL,
-                max_tokens=8000,
+                max_tokens=24000,
                 system=system_prompt,
                 messages=[{"role": "user", "content": user_prompt}]
             ))
         else:
-            response = api_retry(lambda: client.messages.create(
+            response = api_retry(lambda: create_message(
+                client, stream=True,
                 model=SCRIPT_MODEL,
-                max_tokens=8000,
+                max_tokens=24000,
                 messages=[{"role": "user", "content": user_prompt}]
             ))
 
         _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
         script = message_text(response)
+        if not script.strip():
+            stop = getattr(response, "stop_reason", None)
+            print(f"❌ Script generation returned empty text (stop_reason={stop}).")
+            return None
         print("✅ Generated podcast script successfully!")
         return script
 
