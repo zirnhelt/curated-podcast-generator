@@ -30,7 +30,7 @@ except ImportError as e:
     print("Install with: pip install pydub")
     sys.exit(1)
 
-from config_loader import load_prompts_config
+from config_loader import load_prompts_config, message_text
 from generate_bespoke import (
     SCRIPT_MODEL,
     TARGET_SPEECH_DBFS,
@@ -123,7 +123,7 @@ def localize_script_to_french(client, english_script, theme_name):
         max_tokens=12000,
         messages=[{"role": "user", "content": prompt}],
     ))
-    return response.content[0].text.strip()
+    return message_text(response).strip()
 
 
 def write_french_script_file(french_script, date_str, theme_slug, podcast_title):

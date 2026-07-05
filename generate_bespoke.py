@@ -38,6 +38,7 @@ from config_loader import (
     load_podcast_config,
     load_bespoke_hosts,
     load_bespoke_config,
+    message_text,
 )
 
 # ── Paths ──────────────────────────────────────────────────────────────────
@@ -126,7 +127,7 @@ def expand_tag(tag: str, client) -> str:
             messages=[{"role": "user", "content": prompt}]
         ))
         _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
-        expanded = response.content[0].text.strip()
+        expanded = message_text(response).strip()
         print(f"  Tag expanded: \"{tag}\" → {expanded[:120]}{'…' if len(expanded) > 120 else ''}")
         return expanded
     except Exception as e:
@@ -289,7 +290,7 @@ def generate_search_queries(tag, articles_summary, client, tag_description=""):
         messages=[{"role": "user", "content": prompt}]
     ))
     _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
-    return [q.strip() for q in response.content[0].text.strip().split('\n') if q.strip()][:4]
+    return [q.strip() for q in message_text(response).strip().split('\n') if q.strip()][:4]
 
 
 def brave_search(query, api_key, count=5):
@@ -514,7 +515,7 @@ def generate_bespoke_script(tag, all_articles, past_debates, client, tag_descrip
         messages=[{"role": "user", "content": user_prompt}]
     ))
     _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
-    return response.content[0].text
+    return message_text(response)
 
 
 def polish_bespoke_script(script, tag, client):
@@ -540,7 +541,7 @@ def polish_bespoke_script(script, tag, client):
         messages=[{"role": "user", "content": prompt}]
     ))
     _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
-    polished = response.content[0].text
+    polished = message_text(response)
     host_names_upper = [f"**{h.get('name', k).upper()}:**" for k, h in hosts.items()]
     if all(tag in polished for tag in host_names_upper):
         return polished
@@ -578,7 +579,7 @@ def fact_check_bespoke_script(script, all_articles, client):
         messages=[{"role": "user", "content": prompt}]
     ))
     _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
-    checked = response.content[0].text
+    checked = message_text(response)
     hosts = load_bespoke_hosts()
     host_tags = [f"**{h.get('name', k).upper()}:**" for k, h in hosts.items()]
     if all(tag in checked for tag in host_tags):
@@ -609,7 +610,7 @@ def extract_debate_summary(script, tag, client):
             messages=[{"role": "user", "content": prompt}]
         ))
         _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
-        return json.loads(response.content[0].text)
+        return json.loads(message_text(response))
     except Exception:
         human_tag = tag.replace("-", " ").replace("_", " ").title()
         return {"central_question": f"Discussion of {human_tag}", "resolution": "See episode", "calls_to_action": []}

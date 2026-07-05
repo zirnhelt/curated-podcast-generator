@@ -39,7 +39,7 @@ except ImportError as e:
     print("Install with: pip install pydub")
     sys.exit(1)
 
-from config_loader import load_hosts_config, load_themes_config, load_podcast_config, load_credits_config
+from config_loader import load_hosts_config, load_themes_config, load_podcast_config, load_credits_config, message_text
 from generate_bespoke import (
     SCRIPT_MODEL,
     TARGET_SPEECH_DBFS,
@@ -176,7 +176,7 @@ def generate_intro_script(client, hosts, themes, podcast_config, credits_config)
         system=system_prompt,
         messages=[{"role": "user", "content": user_prompt}],
     ))
-    return response.content[0].text
+    return message_text(response)
 
 
 # ── Audio assembly ─────────────────────────────────────────────────────────

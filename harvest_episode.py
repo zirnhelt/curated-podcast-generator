@@ -24,6 +24,8 @@ from pathlib import Path
 
 import anthropic
 
+from config_loader import message_text
+
 PODCASTS_DIR = Path(os.environ.get("MEMORY_DIR", Path(__file__).parent)) / "podcasts"
 REVIEWS_DIR = Path("reviews")
 
@@ -251,7 +253,7 @@ def run_harvest(data: dict, model: str) -> str:
         messages=[{"role": "user", "content": prompt}],
     )
 
-    return response.content[0].text
+    return message_text(response)
 
 
 def save_harvest(document: str, episode_date: str, theme_slug: str) -> Path:

@@ -14,6 +14,7 @@ from datetime import datetime, timedelta
 from difflib import SequenceMatcher
 from pathlib import Path
 
+from config_loader import message_text
 import cohere_enrichment
 
 PODCASTS_DIR = Path(__file__).parent / "podcasts"
@@ -223,7 +224,7 @@ def cluster_and_rescore_corpus(articles, theme_name, client=None, model=None):
                 max_tokens=600,
                 messages=[{"role": "user", "content": prompt}],
             )
-            raw = response.content[0].text.strip()
+            raw = message_text(response).strip()
             if not raw:
                 raise ValueError("empty response from API")
             data = json.loads(raw)

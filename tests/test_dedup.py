@@ -102,7 +102,7 @@ class TestLoadRecentCitations:
 def _make_client(clusters):
     """Return a mock Anthropic client whose messages.create returns the given clusters."""
     response = MagicMock()
-    response.content = [MagicMock(text=json.dumps({"clusters": clusters}))]
+    response.content = [MagicMock(type="text", text=json.dumps({"clusters": clusters}))]
     client = MagicMock()
     client.messages.create.return_value = response
     return client
@@ -170,7 +170,7 @@ class TestClusterAndRescore:
 
     def test_invalid_json_fallback_returns_unchanged(self):
         response = MagicMock()
-        response.content = [MagicMock(text="this is not json {{{{")]
+        response.content = [MagicMock(type="text", text="this is not json {{{{")]
         client = MagicMock()
         client.messages.create.return_value = response
         articles = self._articles()
