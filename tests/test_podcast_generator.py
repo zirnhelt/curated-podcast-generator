@@ -358,10 +358,33 @@ def _response(stop_reason, content):
     return response
 
 
+def _stream_client(responses):
+    """MagicMock client whose messages.stream(...) yields the given responses in
+    order via a context manager exposing get_final_message().
+
+    The agentic loop runs through create_message(stream=True), which opens
+    client.messages.stream(...) as a context manager and calls
+    get_final_message() — so the mock must model that path, not messages.create.
+    """
+    client = MagicMock()
+    cms = []
+    for resp in responses:
+        stream_obj = MagicMock()
+        stream_obj.get_final_message.return_value = resp
+        cm = MagicMock()
+        cm.__enter__.return_value = stream_obj
+        cm.__exit__.return_value = False
+        cms.append(cm)
+    if len(cms) == 1:
+        client.messages.stream.return_value = cms[0]  # reused on repeated calls
+    else:
+        client.messages.stream.side_effect = cms
+    return client
+
+
 class TestRunAgenticLoop:
     def test_returns_text_with_no_tool_use(self):
-        client = MagicMock()
-        client.messages.create.return_value = _response("end_turn", [_text_block("final script")])
+        client = _stream_client([_response("end_turn", [_text_block("final script")])])
 
         result = _run_agentic_loop(
             client, "test-model", "system prompt", "user content",
@@ -369,14 +392,13 @@ class TestRunAgenticLoop:
         )
 
         assert result == "final script"
-        assert client.messages.create.call_count == 1
+        assert client.messages.stream.call_count == 1
 
     def test_executes_tool_then_returns_text(self):
-        client = MagicMock()
-        client.messages.create.side_effect = [
+        client = _stream_client([
             _response("tool_use", [_tool_use_block("web_search", {"query": "rural broadband"}, "tool_1")]),
             _response("end_turn", [_text_block("polished script")]),
-        ]
+        ])
         executor = MagicMock(return_value="search results here")
 
         result = _run_agentic_loop(
@@ -388,17 +410,16 @@ class TestRunAgenticLoop:
         executor.assert_called_once_with({"query": "rural broadband"})
 
         # The tool result should have been fed back as a user message
-        second_call_messages = client.messages.create.call_args_list[1].kwargs["messages"]
+        second_call_messages = client.messages.stream.call_args_list[1].kwargs["messages"]
         tool_result_message = second_call_messages[-1]
         assert tool_result_message["role"] == "user"
         assert tool_result_message["content"][0]["tool_use_id"] == "tool_1"
         assert tool_result_message["content"][0]["content"] == "search results here"
 
     def test_returns_none_when_iterations_exhausted(self):
-        client = MagicMock()
-        client.messages.create.return_value = _response(
-            "tool_use", [_tool_use_block("web_search", {"query": "x"})]
-        )
+        client = _stream_client([
+            _response("tool_use", [_tool_use_block("web_search", {"query": "x"})])
+        ])
         executor = MagicMock(return_value="some results")
 
         result = _run_agentic_loop(
@@ -408,14 +429,14 @@ class TestRunAgenticLoop:
         )
 
         assert result is None
-        assert client.messages.create.call_count == 2
+        assert client.messages.stream.call_count == 2
         # Final iteration should be called without tools, forcing a text response
-        final_call_kwargs = client.messages.create.call_args_list[-1].kwargs
+        final_call_kwargs = client.messages.stream.call_args_list[-1].kwargs
         assert final_call_kwargs["tools"] == []
 
     def test_returns_none_on_api_error(self):
         client = MagicMock()
-        client.messages.create.side_effect = Exception("boom")
+        client.messages.stream.side_effect = Exception("boom")
 
         result = _run_agentic_loop(
             client, "test-model", "system prompt", "user content",
@@ -423,6 +444,34 @@ class TestRunAgenticLoop:
         )
 
         assert result is None
+
+
+class TestCreateMessage:
+    """create_message injects bounded adaptive thinking and can stream."""
+
+    def test_injects_thinking_and_effort_defaults(self):
+        from podcast_generator import create_message, THINKING_EFFORT
+        client = MagicMock()
+        create_message(client, model="m", max_tokens=100, messages=[])
+        kwargs = client.messages.create.call_args.kwargs
+        assert kwargs["thinking"] == {"type": "adaptive"}
+        assert kwargs["output_config"] == {"effort": THINKING_EFFORT}
+
+    def test_explicit_override_preserved(self):
+        from podcast_generator import create_message
+        client = MagicMock()
+        create_message(client, model="m", max_tokens=100, messages=[],
+                       thinking={"type": "disabled"})
+        kwargs = client.messages.create.call_args.kwargs
+        assert kwargs["thinking"] == {"type": "disabled"}
+
+    def test_stream_routes_through_messages_stream(self):
+        from podcast_generator import create_message
+        client = _stream_client([_response("end_turn", [_text_block("hi")])])
+        result = create_message(client, stream=True, model="m", max_tokens=100, messages=[])
+        assert result.stop_reason == "end_turn"
+        assert client.messages.stream.call_count == 1
+        client.messages.create.assert_not_called()
 
 
 class TestApplyBadNewsFilter:
