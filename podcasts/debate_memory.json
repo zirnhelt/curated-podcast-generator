@@ -1,56 +1,4 @@
 {
-  "2026-04-05": {
-    "timestamp": 1775385800.513167,
-    "date": "2026-04-05",
-    "theme": "Resilient Rural Futures",
-    "central_question": "When precision agriculture technology works effectively, how should rural farmers engage with the data ownership and platform dependency structures that come with it?",
-    "riley_position": "Precision agriculture platforms deliver genuine productivity and health monitoring benefits that rural ranchers need now, and while data ownership concerns are valid, industry frameworks and voluntary standards can address them without delaying adoption.",
-    "riley_key_evidence": [
-      "Virtual fencing eliminates need for physical mustering on unfenced range, enabling better pasture rotation and land outcomes",
-      "Real-time health monitoring catches sick animals early, preventing losses",
-      "Aggregated data used to train algorithms benefits all users through improved system accuracy"
-    ],
-    "casey_position": "The asymmetric and opaque data ownership structures in precision agriculture platforms mirror colonial extraction patterns, and farmers need genuine data sovereignty through cooperative ownership models rather than relying on voluntary industry frameworks.",
-    "casey_key_evidence": [
-      "Equipment manufacturers have used aggregated farmer data to inform pricing, parts availability, and resale value decisions that benefited the company over individual farmers",
-      "European agricultural cooperatives in Netherlands and Denmark have developed jointly-owned data platforms where farmers collectively own the analytics layer",
-      "Voluntary frameworks negotiated between industry and tech companies constitute 'a polite request' rather than true sovereignty"
-    ],
-    "resolution": "Riley and Casey found substantive agreement on practical steps forward: industry associations should develop data rights checklists as adoption standards, farmers should negotiate collectively rather than individually, and the key question should be 'what happens when economics change?' rather than just 'does this work?' They both rejected both techno-optimism and over-cautious avoidance.",
-    "topics_covered": [
-      "Data ownership and control in precision agriculture platforms",
-      "The asymmetry between farmer data generation and platform value extraction",
-      "Cooperative versus corporate models for agricultural data governance",
-      "Technology dependency risks and platform obsolescence in rural contexts",
-      "Practical negotiation strategies for rural technology adoption"
-    ]
-  },
-  "2026-04-06": {
-    "timestamp": 1775473478.904759,
-    "date": "2026-04-06",
-    "theme": "Arts, Culture & Digital Storytelling",
-    "central_question": "How should rural and Indigenous communities build digital cultural infrastructure that serves their storytelling needs while avoiding both corporate platform gatekeeping and unsustainable technological dependence?",
-    "riley_position": "Current platform algorithms are inherently hostile to place-based community storytelling, so communities should build outside these systems using open-source tools and community-owned hosting, which enables sustainable experiential digital storytelling.",
-    "riley_key_evidence": [
-      "Photographic archives and oral histories don't generate engagement signals needed for platform visibility",
-      "The Doig River First Nation built a language and culture archive from community initiative without major institutional partnership",
-      "Open-source tools and publicly documented build processes create better durability than contractor-built custom experiences"
-    ],
-    "casey_position": "While platform gatekeeping is problematic, building independent infrastructure requires sustained capacity and governance that most small communities lack, and many promising digital cultural projects have been abandoned due to technology lifecycle obsolescence and one-person dependency.",
-    "casey_key_evidence": [
-      "Mukurtu platform and Inuit Tapiriit Kanatami language tools required university partnerships or national funding infrastructure",
-      "Doig River project faced years of sustainability uncertainty and founder burnout risks",
-      "Multiple BC heritage projects became orphaned when underlying technologies (like Flash Player) became obsolete"
-    ],
-    "resolution": "Riley and Casey reached substantial agreement that the current platform architecture is structurally harmful to rural/Indigenous storytelling and that building outside platforms with Indigenous co-design (not just consultation) is necessary, though Casey remains cautious about infrastructure-first approaches without proven sustainability models.",
-    "topics_covered": [
-      "Ireland's government digital wallet age verification system and identity gatekeeping implications",
-      "Algorithmic attention economics as a form of cultural gatekeeping versus government-mandated identity systems",
-      "Data sovereignty and Indigenous control over cultural archival materials",
-      "Regional digital cultural infrastructure co-op model with shared hosting and technical capacity",
-      "Digital preservation sustainability and technology obsolescence risks for cultural projects"
-    ]
-  },
   "2026-04-07": {
     "timestamp": 1775559916.765413,
     "date": "2026-04-07",
@@ -2366,6 +2314,32 @@
       "Coulson Aviation's relationship to Williams Lake civic governance",
       "Federal food security strategy announcement and delivery mechanisms",
       "Multi-jurisdictional governance complexity in small cities and accountability mapping"
+    ]
+  },
+  "2026-07-05": {
+    "timestamp": 1783263120.797183,
+    "date": "2026-07-05",
+    "theme": "Science, Wonder & the Natural World",
+    "central_question": "How can the Cariboo region systematically document its undercounted insect species and natural biodiversity without relying on unsustainable grant funding or overlooking Indigenous knowledge systems?",
+    "riley_position": "A low-cost, sustainable model for specimen collection can work by attaching it to existing work that people already do (ranching, trail crews) and routing findings through existing local institutions like natural history societies, similar to how the Christmas bird count has survived on volunteer continuity.",
+    "riley_key_evidence": [
+      "Global insect undercount runs two to three to one, with no reason to think the Cariboo is an exception",
+      "The Antarctic bio-duck sound was identified after 50 years of submarine logs existed and eventually got cross-referenced by acousticians",
+      "Christmas bird count has survived on volunteer continuity for a century in some towns without ongoing grant funding"
+    ],
+    "casey_position": "Attaching specimen collection to existing roles doesn't solve the deeper problems of expertise recognition, institutional continuity for processing backlogs, and the exclusion of Indigenous observational knowledge from what counts as \"official\" discovery.",
+    "casey_key_evidence": [
+      "Royal BC Museum has a backlog measured in years for undescribed specimens, so a rancher submitting beetles won't get an answer this decade",
+      "Secw\u00e9pemc and T\u015dilhqot'in land users have generational observation that never made it into peer-reviewed descriptions because the system only counts credentialed taxonomist findings as official",
+      "Most one-off biodiversity documentation weekends in small towns don't get a second year because they depend on a single organizer who eventually moves on"
+    ],
+    "resolution": "They agreed to disagree on whether existing infrastructure is sufficient, but converged on the Christmas bird count model as a viable precedent and jointly committed to testing an annual bio-blitz through an existing regional naturalist group, while acknowledging they haven't directly consulted First Nations knowledge keepers about participation and inviting listener input on what groups or initiatives already exist.",
+    "topics_covered": [
+      "The global insect undercount and what it means for regional biodiversity documentation",
+      "Sustainable infrastructure models for long-term citizen science (specimen collection pipelines, natural history societies, Christmas bird counts)",
+      "The credentialing problem: how Western taxonomy excludes Indigenous observation from official discovery",
+      "Methodology blind spots in science (alien biosignatures, detection assumptions) and their parallel to institutional credentialing blind spots",
+      "Practical design solutions: bio-blitz weekends, mail-in specimen protocols, and existing community group partnerships"
     ]
   }
 }
