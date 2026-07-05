@@ -16,7 +16,34 @@ from config_loader import (
     get_voice_for_host,
     get_theme_for_day,
     get_all_config,
+    message_text,
 )
+from types import SimpleNamespace
+
+
+class TestMessageText:
+    """message_text must survive non-text leading blocks (e.g. ThinkingBlock
+    from reasoning models like claude-sonnet-5), not crash on content[0].text."""
+
+    def _block(self, btype, text=None):
+        # ThinkingBlock has no .text attribute at all — SimpleNamespace omits it.
+        return SimpleNamespace(type=btype, text=text) if text is not None else SimpleNamespace(type=btype)
+
+    def test_plain_text_block(self):
+        resp = SimpleNamespace(content=[self._block("text", "hello")])
+        assert message_text(resp) == "hello"
+
+    def test_skips_leading_thinking_block(self):
+        resp = SimpleNamespace(content=[self._block("thinking"), self._block("text", "answer")])
+        assert message_text(resp) == "answer"
+
+    def test_joins_multiple_text_blocks(self):
+        resp = SimpleNamespace(content=[self._block("text", "a"), self._block("text", "b")])
+        assert message_text(resp) == "ab"
+
+    def test_no_text_blocks_returns_empty(self):
+        resp = SimpleNamespace(content=[self._block("thinking")])
+        assert message_text(resp) == ""
 
 
 class TestConfigLoader:

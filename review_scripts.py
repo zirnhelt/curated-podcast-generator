@@ -24,6 +24,8 @@ from pathlib import Path
 
 import anthropic
 
+from config_loader import message_text
+
 SCRIPTS_DIR = Path(os.environ.get("MEMORY_DIR", Path(__file__).parent)) / "podcasts"
 CONFIG_DIR = Path(__file__).parent / "config"
 REVIEWS_DIR = Path("reviews")
@@ -396,7 +398,7 @@ def run_review(days: int) -> str:
         messages=[{"role": "user", "content": build_review_prompt(scripts, config, recent_changes)}],
     )
 
-    return response.content[0].text
+    return message_text(response)
 
 
 def save_report(report: str, days: int) -> Path:

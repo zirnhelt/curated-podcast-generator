@@ -26,6 +26,8 @@ from pathlib import Path
 
 import requests
 
+from config_loader import message_text
+
 PODCASTS_DIR = Path("podcasts")
 CACHE_FILE = PODCASTS_DIR / "twit_inspiration.json"
 CONFIG_FILE = Path("config/twit_sources.json")
@@ -195,7 +197,7 @@ def extract_inspiration(episode: dict, page_body: str, client) -> dict | None:
         usage = response.usage
         print(f"    Haiku: {usage.input_tokens} in / {usage.output_tokens} out tokens")
 
-        raw = response.content[0].text.strip()
+        raw = message_text(response).strip()
         # Strip markdown code fences if the model wraps its response
         raw = re.sub(r"^```(?:json)?\s*", "", raw)
         raw = re.sub(r"\s*```$", "", raw)

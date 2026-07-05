@@ -42,6 +42,7 @@ from config_loader import (
     get_voice_instructions_for_host,
     get_speed_for_host,
     get_theme_for_day,
+    message_text,
 )
 from azure_tts import (
     generate_azure_tts_for_section,
@@ -732,7 +733,7 @@ def _claude_theme_match(text: str, themes_config: dict) -> tuple:
             messages=[{"role": "user", "content": prompt}]
         ))
         _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
-        raw = response.content[0].text.strip().lower()
+        raw = message_text(response).strip().lower()
         if raw == "none":
             return None, None
         m = re.search(r'\b([0-6])\b', raw)
@@ -1328,7 +1329,7 @@ def fact_check_deep_dive(script, news_articles, deep_dive_articles):
         ))
         _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
 
-        checked_script = response.content[0].text
+        checked_script = message_text(response)
 
         # Validate the output
         if "**RILEY:**" in checked_script and "**CASEY:**" in checked_script:
@@ -1404,7 +1405,7 @@ def _assess_deep_dive_for_enrichment(deep_dive_articles, theme_name, client):
             messages=[{"role": "user", "content": prompt}]
         ))
         _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
-        raw = response.content[0].text.strip()
+        raw = message_text(response).strip()
         # Strip markdown code fences if the model adds them anyway
         if raw.startswith("```"):
             raw = re.sub(r"^```[a-z]*\n?", "", raw).rstrip("`").strip()
@@ -1897,7 +1898,7 @@ def _resolve_script_questions_with_brave(script, brave_key, client):
             messages=[{"role": "user", "content": detect_prompt}]
         ))
         _log_api_call("claude", "input_tokens", getattr(getattr(resp, "usage", None), "input_tokens", 0))
-        raw = resp.content[0].text.strip()
+        raw = message_text(resp).strip()
         m = re.search(r'\[.*?\]', raw, re.DOTALL)
         if not m:
             return ""
@@ -2149,7 +2150,7 @@ def collect_batch_results(batch_id):
             custom_id = result.custom_id
 
             if result.result.type == "succeeded":
-                text = result.result.message.content[0].text
+                text = message_text(result.result.message)
                 results[custom_id] = text
             else:
                 error_type = result.result.type
@@ -2482,7 +2483,7 @@ def extract_debate_summary(script, theme_name):
             messages=[{"role": "user", "content": prompt}]
         ))
         _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
-        text = response.content[0].text.strip()
+        text = message_text(response).strip()
         # Strip markdown code fences if present
         if text.startswith("```"):
             text = text.split("\n", 1)[1] if "\n" in text else text[3:]
@@ -2573,7 +2574,7 @@ def extract_personality_clues(script):
             messages=[{"role": "user", "content": prompt}]
         ))
         _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
-        text = response.content[0].text.strip()
+        text = message_text(response).strip()
         if text.startswith("```"):
             text = text.split("\n", 1)[1] if "\n" in text else text[3:]
             if text.endswith("```"):
@@ -4015,7 +4016,7 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             ))
 
         _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
-        script = response.content[0].text
+        script = message_text(response)
         print("✅ Generated podcast script successfully!")
         return script
 
@@ -4468,7 +4469,7 @@ def _generate_host_line(context: str, host: str) -> str:
             messages=[{"role": "user", "content": prompt}],
         ))
         _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
-        return response.content[0].text.strip()
+        return message_text(response).strip()
     except Exception as exc:
         print(f"  ⚠️  Claude host-line generation failed: {exc}")
         return ""

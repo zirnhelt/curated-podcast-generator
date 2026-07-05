@@ -120,6 +120,15 @@ def get_theme_for_day(weekday):
     """Get theme for specific day of week (0=Monday, 6=Sunday)."""
     return load_themes_config()[str(weekday)]["name"]
 
+def message_text(response) -> str:
+    """Concatenate all text blocks from an Anthropic message response.
+
+    Reasoning-capable models (e.g. claude-sonnet-5) may lead with a
+    ThinkingBlock, so response.content[0] is not guaranteed to be a text block.
+    Join every text block instead of indexing, which crashes on non-text leads.
+    """
+    return "".join(block.text for block in response.content if block.type == "text")
+
 def get_all_config():
     """Load all configuration at once."""
     return {
