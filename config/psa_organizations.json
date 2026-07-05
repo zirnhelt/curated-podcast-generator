@@ -46,8 +46,7 @@
       "description": "Nonprofit with volunteer board supporting rural entrepreneurs and community economic development",
       "website": "cfdccariboo.com",
       "weekdays": [
-        2,
-        6
+        2
       ],
       "tags": [
         "economic development",
@@ -219,7 +218,8 @@
       "description": "Volunteer-run nature education centre operated by the Williams Lake Field Naturalists — birding, kids programs, Salmon in the Classroom",
       "website": "scoutisland.ca",
       "weekdays": [
-        4
+        4,
+        6
       ],
       "tags": [
         "nature education",
@@ -308,7 +308,7 @@
       "description": "Food bank, emergency shelter, free meals, and Christmas hamper program for Williams Lake families",
       "website": null,
       "weekdays": [
-        6
+        5
       ],
       "tags": [
         "food security",
@@ -322,7 +322,7 @@
       "description": "Animal welfare, shelter, and adoption services in Williams Lake",
       "website": "spca.bc.ca/locations/williams-lake",
       "weekdays": [
-        6
+        5
       ],
       "tags": [
         "animal welfare",
@@ -424,8 +424,7 @@
       "description": "Community foundation supporting Quesnel-area nonprofits and local projects through grants and endowments",
       "website": "quesnelfoundation.ca",
       "weekdays": [
-        5,
-        6
+        5
       ],
       "tags": [
         "community foundation",
@@ -529,7 +528,7 @@
       "description": "Minimal-barrier emergency shelter, transitional housing, and supportive recovery in Quesnel — founded 2006, operating Seasons House and Bridges Supportive Housing",
       "website": "qsss.ca",
       "weekdays": [
-        6
+        5
       ],
       "tags": [
         "housing",
@@ -605,7 +604,7 @@
       "description": "Volunteer-run food bank serving the South Cariboo — 20 dedicated volunteers distributing weekly hampers and perishable food to families in need in 100 Mile House",
       "website": "100milehousefoodbank.ca",
       "weekdays": [
-        6
+        5
       ],
       "tags": [
         "food security",
@@ -680,7 +679,7 @@
       "description": "100 Mile House volunteer society providing emergency food, clothing, and household goods every Wednesday to South Cariboo families facing hardship",
       "website": null,
       "weekdays": [
-        6
+        5
       ],
       "tags": [
         "food security",
@@ -695,7 +694,8 @@
       "description": "Sustainable living advocacy in 100 Mile House since 2008 — community gardens, environmental film series, and education on waste reduction and ecological resilience",
       "website": null,
       "weekdays": [
-        4
+        4,
+        6
       ],
       "tags": [
         "sustainability",
