@@ -2089,6 +2089,45 @@
       "theme_day": 0,
       "status": "used",
       "used_at": "2026-07-06"
+    },
+    {
+      "id": "08c787ae",
+      "type": "newsletter",
+      "message_id": "<b74ee46da1eb7a8973ab45d41.9538d97182.20260706154543.fe2ab7b8da.dd5377ab@mail116.atl111.rsgsv.net>",
+      "from_address": "s***@canadaland.com",
+      "subject": "Here's the news you missed last week.",
+      "received_at": "2026-07-06T15:46:24+00:00",
+      "body_text": "Canadaland logo ** Let sleeping cows lie ------------------------------------------------------------ https://www.canadaland.com/podcast/1390-why-its-illegal-to-spy-on-cows-in-ontario/?utm_source=Mast",
+      "extracted_urls": [
+        "https://www.canadaland.com/podcast/1390-why-its-illegal-to-spy-on-cows-in-ontario/?utm_source=Master+Email+List&utm_campaign=fe2ab7b8da-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-fe2ab7b8da-379881794",
+        "https://www.canadaland.com/podcast/1391-is-iran-behind-attacks-in-canada/?utm_source=Master+Email+List&utm_campaign=fe2ab7b8da-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-fe2ab7b8da-379881794",
+        "https://fizz.ca/en/mobile?ADDONS%5B0%5D=18&CVRG=108&DATA=703&PLAN=3&SMS=223&VOICE=90&WIZARD=mobile&utm_source=canadaland&utm_medium=article&utm_term=01&utm_content=2026&utm_source=Master+Email+List&utm_campaign=fe2ab7b8da-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-fe2ab7b8da-379881794",
+        "https://www.canadaland.com/podcast/1392-the-risks-and-rewards-of-tolerating-fifa/?utm_source=Master+Email+List&utm_campaign=fe2ab7b8da-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-fe2ab7b8da-379881794",
+        "https://www.canadaland.com/podcast/bonus-state-of-the-podcast/?utm_source=Master+Email+List&utm_campaign=fe2ab7b8da-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-fe2ab7b8da-379881794",
+        "https://canadalandnetwork.supercast.com?utm_source=Master+Email+List&utm_campaign=fe2ab7b8da-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-fe2ab7b8da-379881794",
+        "https://www.canadaland.com/podcast/1393-the-end-of-the-true-crime-industrial-complex/?utm_source=Master+Email+List&utm_campaign=fe2ab7b8da-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-fe2ab7b8da-379881794",
+        "https://www.canadaland.com/shows/shortcuts/?utm_source=Master+Email+List&utm_campaign=fe2ab7b8da-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-fe2ab7b8da-379881794",
+        "https://www.labs.canadaland.com/audio-journalism-fellowship-program?utm_source=Master+Email+List&utm_campaign=fe2ab7b8da-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-fe2ab7b8da-379881794",
+        "https://canadalandnetwork.supercast.com/?utm_source=Master+Email+List&utm_campaign=fe2ab7b8da-the-weekly-01-16_COPY_01&utm_medium=email&utm_term=0_456bc9800d-fe2ab7b8da-379881794"
+      ],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
+    },
+    {
+      "id": "0f7b23a3",
+      "type": "feedback",
+      "message_id": "<E90D2224-30CC-45A1-8329-929A9605888F@gmail.com>",
+      "from_address": "z***@gmail.com",
+      "subject": "Episode cut short",
+      "received_at": "2026-07-06T06:47:07-07:00",
+      "body_text": "Looks like today\u2019s episode was cut short due to some budget controls that have since been fixed. We should acknowledge the issue and share that we believe it\u2019s been resolved Thanks, Erich",
+      "extracted_urls": [],
+      "theme_tag": "Cariboo Local Affairs",
+      "theme_day": 5,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
