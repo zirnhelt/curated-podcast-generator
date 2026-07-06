@@ -445,6 +445,19 @@ class TestRunAgenticLoop:
 
         assert result is None
 
+    def test_returns_none_when_truncated_at_max_tokens(self):
+        client = _stream_client([
+            _response("max_tokens", [_text_block("script cut off mid-sen")])
+        ])
+
+        result = _run_agentic_loop(
+            client, "test-model", "system prompt", "user content",
+            tools=[], tool_executors={},
+        )
+
+        assert result is None
+        assert client.messages.stream.call_count == 1
+
 
 class TestCreateMessage:
     """create_message injects bounded adaptive thinking and can stream."""
@@ -472,6 +485,127 @@ class TestCreateMessage:
         assert result.stop_reason == "end_turn"
         assert client.messages.stream.call_count == 1
         client.messages.create.assert_not_called()
+
+
+class TestTruncationGuards:
+    """Guards added after the 2026-07-06 episode shipped a script truncated
+    at max_tokens (adaptive thinking shares the output budget)."""
+
+    def test_truncated_detects_max_tokens(self):
+        from podcast_generator import _truncated
+        assert _truncated(_response("max_tokens", [])) is True
+        assert _truncated(_response("end_turn", [])) is False
+        assert _truncated(object()) is False  # no stop_reason attribute
+
+    def test_polish_valid_accepts_full_rewrite(self):
+        from podcast_generator import _polish_valid
+        original = "**RILEY:** hello there\n**CASEY:** hi back\n" * 50
+        polished = "**RILEY:** hello!\n**CASEY:** hey!\n" * 50
+        assert _polish_valid(original, polished) is True
+
+    def test_polish_valid_rejects_missing_host_tags(self):
+        from podcast_generator import _polish_valid
+        original = "**RILEY:** hello\n**CASEY:** hi\n" * 50
+        assert _polish_valid(original, "**RILEY:** monologue " * 100) is False
+
+    def test_polish_valid_rejects_drastically_shorter_rewrite(self):
+        from podcast_generator import _polish_valid
+        original = "**RILEY:** hello there friend\n**CASEY:** hi back now\n" * 100
+        truncated = "**RILEY:** hello\n**CASEY:** hi, and the cost dropped from"
+        assert _polish_valid(original, truncated) is False
+
+
+class TestGenerateScriptTruncationGuard:
+    """generate_podcast_script must never return a max_tokens-truncated or
+    suspiciously short script."""
+
+    def _run(self, monkeypatch, client):
+        import podcast_generator as pg
+        monkeypatch.setenv("ANTHROPIC_API_KEY", "test-key")
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        return pg.generate_podcast_script([], [], "Working Lands & Industry", {}, {})
+
+    def test_retry_then_fail_when_still_truncated(self, monkeypatch):
+        client = _stream_client([
+            _response("max_tokens", [_text_block("partial script")]),
+            _response("max_tokens", [_text_block("partial script")]),
+        ])
+
+        assert self._run(monkeypatch, client) is None
+        assert client.messages.stream.call_count == 2
+        retry_kwargs = client.messages.stream.call_args_list[1].kwargs
+        assert retry_kwargs["max_tokens"] == 32000
+        assert retry_kwargs["output_config"] == {"effort": "low"}
+
+    def test_retry_succeeds_with_full_script(self, monkeypatch):
+        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 2500)
+        client = _stream_client([
+            _response("max_tokens", [_text_block("partial script")]),
+            _response("end_turn", [_text_block(full_script)]),
+        ])
+
+        result = self._run(monkeypatch, client)
+        assert result == full_script
+        assert client.messages.stream.call_count == 2
+
+    def test_rejects_script_below_word_floor(self, monkeypatch):
+        from podcast_generator import MIN_SCRIPT_WORDS
+        short_script = "**RILEY:** hi\n**CASEY:** hello\n" + ("word " * 500)
+        assert len(short_script.split()) < MIN_SCRIPT_WORDS
+        client = _stream_client([_response("end_turn", [_text_block(short_script)])])
+
+        assert self._run(monkeypatch, client) is None
+        assert client.messages.stream.call_count == 1
+
+    def test_accepts_normal_length_script(self, monkeypatch):
+        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 2500)
+        client = _stream_client([_response("end_turn", [_text_block(full_script)])])
+
+        assert self._run(monkeypatch, client) == full_script
+        assert client.messages.stream.call_count == 1
+
+
+class TestBatchPolishTruncationGuard:
+    """run_post_processing_batch must discard a polish result that was
+    truncated at max_tokens so main() falls back to the agentic polish."""
+
+    def _run_batch(self, monkeypatch, pf_result):
+        import podcast_generator as pg
+        batch = MagicMock()
+        batch.id = "batch_1"
+        monkeypatch.setattr(pg, "submit_post_processing_batch", lambda *a, **k: batch)
+        monkeypatch.setattr(pg, "poll_batch_completion", lambda bid: batch)
+        monkeypatch.setattr(pg, "collect_batch_results", lambda bid: {
+            "polish-and-factcheck": pf_result,
+            "debate-summary": {"text": '{"central_question": "q"}', "truncated": False},
+        })
+        original = "**RILEY:** hello there\n**CASEY:** hi back\n" * 50
+        return pg.run_post_processing_batch(original, "Theme", [], []), original
+
+    def test_truncated_polish_discarded(self, monkeypatch):
+        polished_text = "**RILEY:** hello\n**CASEY:** hi and then the cost dropped from"
+        (polished, debate), _ = self._run_batch(
+            monkeypatch, {"text": polished_text, "truncated": True})
+
+        assert polished is None
+        assert debate == {"central_question": "q"}
+
+    def test_valid_polish_accepted(self, monkeypatch):
+        polished_text = "**RILEY:** hello friend\n**CASEY:** hi there\n" * 50
+        (polished, debate), _ = self._run_batch(
+            monkeypatch, {"text": polished_text, "truncated": False})
+
+        assert polished == polished_text
+        assert debate == {"central_question": "q"}
+
+    def test_short_untruncated_polish_rejected(self, monkeypatch):
+        # stop_reason looked fine but the rewrite lost most of the script
+        polished_text = "**RILEY:** hello\n**CASEY:** hi"
+        (polished, _), original = self._run_batch(
+            monkeypatch, {"text": polished_text, "truncated": False})
+
+        assert len(polished_text) < 0.6 * len(original)
+        assert polished is None
 
 
 class TestApplyBadNewsFilter:
