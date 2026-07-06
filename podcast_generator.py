@@ -147,6 +147,20 @@ def create_message(client, stream=False, **kwargs):
             return s.get_final_message()
     return client.messages.create(**kwargs)
 
+def _truncated(response) -> bool:
+    """True when the response was cut off by the max_tokens budget.
+
+    Adaptive thinking shares max_tokens with the output, so a heavy prompt can
+    silently truncate the answer mid-sentence — callers must treat that as a
+    failure, never as a usable result (2026-07-06 shipped a 7-minute episode
+    because nobody checked this).
+    """
+    return getattr(response, "stop_reason", None) == "max_tokens"
+
+# Reject generated scripts shorter than this — a healthy episode is ~2,600+
+# words; anything under 2,200 means generation was cut off or malformed.
+MIN_SCRIPT_WORDS = 2200
+
 # Configuration
 SCRIPT_DIR = Path(__file__).parent
 # ponytail: MEMORY_DIR lets a future multi-tenant deployment point each show at
@@ -1564,6 +1578,9 @@ def _run_agentic_loop(client, model, system_prompt, user_content, tools, tool_ex
             return None
 
         _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
+        if _truncated(response):
+            print("  ⚠️ Agentic loop response truncated at max_tokens — discarding partial output")
+            return None
         if response.stop_reason != "tool_use":
             text = "".join(block.text for block in response.content if block.type == "text")
             return text or None
@@ -1969,6 +1986,17 @@ def _resolve_script_questions_with_brave(script, brave_key, client):
     return "\n\n".join(results)
 
 
+def _polish_valid(original: str, polished: str) -> bool:
+    """Validate a polished script before accepting it over the original.
+
+    Both host tags must survive the rewrite, and the polished script must not
+    be drastically shorter than the input — a big shrink means the rewrite was
+    truncated or lossy, and the full-length original is the safer output.
+    """
+    return ("**RILEY:**" in polished and "**CASEY:**" in polished
+            and len(polished) >= 0.6 * len(original))
+
+
 def polish_and_factcheck_with_agent(script, theme_name, news_articles, deep_dive_articles,
                                      research_insights=None, model=None):
     """Agentic polish + fact-check pass — real-time fallback for post-processing.
@@ -2022,7 +2050,7 @@ def polish_and_factcheck_with_agent(script, theme_name, news_articles, deep_dive
         max_iterations=4, max_tokens=16000,
     )
 
-    if result and "**RILEY:**" in result and "**CASEY:**" in result:
+    if result and _polish_valid(script, result):
         print("✅ Script polished and fact-checked (agentic)!")
         return result
 
@@ -2174,7 +2202,7 @@ def poll_batch_completion(batch_id):
 def collect_batch_results(batch_id):
     """Retrieve results from a completed batch.
 
-    Returns a dict mapping custom_id -> result content (text or parsed JSON).
+    Returns a dict mapping custom_id -> {"text": str, "truncated": bool}.
     """
     client = get_anthropic_client()
     if not client:
@@ -2186,8 +2214,11 @@ def collect_batch_results(batch_id):
             custom_id = result.custom_id
 
             if result.result.type == "succeeded":
-                text = message_text(result.result.message)
-                results[custom_id] = text
+                message = result.result.message
+                results[custom_id] = {
+                    "text": message_text(message),
+                    "truncated": _truncated(message),
+                }
             else:
                 error_type = result.result.type
                 print(f"   ⚠️ Batch request '{custom_id}' failed: {error_type}")
@@ -2223,18 +2254,21 @@ def run_post_processing_batch(script, theme_name, news_articles, deep_dive_artic
 
     # Extract polished+factchecked script
     polished_script = None
-    pf_text = results.get("polish-and-factcheck")
-    if pf_text and "**RILEY:**" in pf_text and "**CASEY:**" in pf_text:
+    pf_result = results.get("polish-and-factcheck") or {}
+    pf_text = pf_result.get("text")
+    if pf_result.get("truncated"):
+        print("⚠️ Batch: polish+factcheck truncated at max_tokens, discarding")
+    elif pf_text and _polish_valid(script, pf_text):
         polished_script = pf_text
         print("✅ Batch: script polished and fact-checked successfully!")
     elif pf_text:
-        print("⚠️ Batch: polish+factcheck may have broken format, using original")
+        print("⚠️ Batch: polish+factcheck may have broken format or been cut short, using original")
     else:
         print("⚠️ Batch: polish+factcheck request failed")
 
     # Extract debate summary
     debate_summary = None
-    debate_text = results.get("debate-summary")
+    debate_text = (results.get("debate-summary") or {}).get("text")
     if debate_text:
         try:
             text = debate_text.strip()
@@ -4037,27 +4071,39 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
 
         print(f"   Using model: {SCRIPT_MODEL}")
 
+        request = {
+            "model": SCRIPT_MODEL,
+            "max_tokens": 24000,
+            "messages": [{"role": "user", "content": user_prompt}],
+        }
         if use_cached:
-            response = api_retry(lambda: create_message(
-                client, stream=True,
-                model=SCRIPT_MODEL,
-                max_tokens=24000,
-                system=system_prompt,
-                messages=[{"role": "user", "content": user_prompt}]
-            ))
-        else:
-            response = api_retry(lambda: create_message(
-                client, stream=True,
-                model=SCRIPT_MODEL,
-                max_tokens=24000,
-                messages=[{"role": "user", "content": user_prompt}]
-            ))
+            request["system"] = system_prompt
 
+        response = api_retry(lambda: create_message(client, stream=True, **request))
         _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
+
+        if _truncated(response):
+            # Thinking ate the shared budget. Retry once with more headroom
+            # and low thinking effort so the full script fits.
+            print("⚠️ Script truncated at max_tokens — retrying with larger budget, low thinking effort...")
+            response = api_retry(lambda: create_message(
+                client, stream=True,
+                output_config={"effort": "low"},
+                **{**request, "max_tokens": 32000},
+            ))
+            _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
+            if _truncated(response):
+                print("❌ Script generation truncated at max_tokens after retry.")
+                return None
+
         script = message_text(response)
         if not script.strip():
             stop = getattr(response, "stop_reason", None)
             print(f"❌ Script generation returned empty text (stop_reason={stop}).")
+            return None
+        word_count = len(script.split())
+        if word_count < MIN_SCRIPT_WORDS:
+            print(f"❌ Script too short ({word_count} words < {MIN_SCRIPT_WORDS} minimum) — refusing to publish a truncated episode.")
             return None
         print("✅ Generated podcast script successfully!")
         return script
