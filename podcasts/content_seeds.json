@@ -205,7 +205,9 @@
       "theme_hint": null,
       "tag": null,
       "status": "pending",
-      "used_on": null
+      "used_on": null,
+      "best_theme_day": 5,
+      "best_theme_name": "Cariboo Local Affairs"
     },
     {
       "id": "8f064f36",
@@ -218,7 +220,9 @@
       "theme_hint": null,
       "tag": null,
       "status": "pending",
-      "used_on": null
+      "used_on": null,
+      "best_theme_day": 5,
+      "best_theme_name": "Cariboo Local Affairs"
     },
     {
       "id": "5e6c96cf",
@@ -231,7 +235,9 @@
       "theme_hint": null,
       "tag": null,
       "status": "pending",
-      "used_on": null
+      "used_on": null,
+      "best_theme_day": 5,
+      "best_theme_name": "Cariboo Local Affairs"
     },
     {
       "id": "5e01710f",
@@ -244,7 +250,9 @@
       "theme_hint": null,
       "tag": null,
       "status": "pending",
-      "used_on": null
+      "used_on": null,
+      "best_theme_day": 5,
+      "best_theme_name": "Cariboo Local Affairs"
     }
   ]
 }

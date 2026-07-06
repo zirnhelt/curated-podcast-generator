@@ -1,30 +1,4 @@
 {
-  "2026-04-07": {
-    "timestamp": 1775559916.765413,
-    "date": "2026-04-07",
-    "theme": "Working Lands & Industry",
-    "central_question": "How can BC's regulatory framework be restructured to prevent harm from overlapping Crown land uses (forestry, ranching, mining) rather than simply compensating victims after the fact?",
-    "riley_position": "Technology and data systems can facilitate accountability by enabling real-time documentation and notification, though governance structures must be redesigned to give harmed parties actual enforcement leverage and standing in disputes.",
-    "riley_key_evidence": [
-      "Grazing permit boundaries and spray schedules are already mapped and planned weeks in advance, so real-time notification technology is technically feasible",
-      "Quebec's agricultural zone protection framework establishes baseline documentation requirements before adjacent activities proceed",
-      "Remote sensing and satellite imagery can now detect forage quality changes at cost-effective resolutions to establish before-state conditions"
-    ],
-    "casey_position": "The cattle poisoning case reveals a fundamental power structure problem\u2014ranchers lack institutional standing and decision authority over shared Crown land\u2014that technology alone cannot solve without systemic accountability reforms and organized collective bargaining.",
-    "casey_key_evidence": [
-      "The settlement compensated affected ranchers but changed nothing about how the next spray season will be planned, proving compensation is insufficient without prevention infrastructure",
-      "Crown land administration is fragmented across multiple ministries with no coordinating body, placing accountability burden entirely on the harmed party",
-      "Atomized individual permit holders are structurally disadvantaged against industrial-scale tenure holders and need organized collective representation"
-    ],
-    "resolution": "Riley and Casey converged on the need for both technological infrastructure (baseline monitoring, documentation protocols) and structural reforms (organized ranching associations, conflict resolution bodies with jurisdiction, mandatory two-way notification with enforcement). They agreed the policy window is open now and specific reforms like Quebec's model are worth pursuing.",
-    "topics_covered": [
-      "Cattle poisoning settlement as precedent and its limitations",
-      "Data sovereignty and documentation as leverage in resource disputes",
-      "Crown land fragmentation across provincial ministries and coordination failures",
-      "Indigenous co-governance and First Nations' potential conflict resolution role",
-      "Organized collective bargaining versus atomized individual permit holders"
-    ]
-  },
   "2026-04-08": {
     "timestamp": 1775646940.24263,
     "date": "2026-04-08",
@@ -2340,6 +2314,32 @@
       "The credentialing problem: how Western taxonomy excludes Indigenous observation from official discovery",
       "Methodology blind spots in science (alien biosignatures, detection assumptions) and their parallel to institutional credentialing blind spots",
       "Practical design solutions: bio-blitz weekends, mail-in specimen protocols, and existing community group partnerships"
+    ]
+  },
+  "2026-07-06": {
+    "timestamp": 1783340353.363835,
+    "date": "2026-07-06",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "central_question": "How can small rural arts organizations sustainably preserve twenty years of cultural history without institutional resources or ongoing funding?",
+    "riley_position": "Digital tools have made archiving affordable enough for volunteer organizations to implement basic systems immediately; a single coordinated effort tied to a milestone event could establish practices that spread peer-to-peer across the region without new funding.",
+    "riley_key_evidence": [
+      "Cloud storage, AI-assisted transcription, and automated photo tagging have reduced archival costs from requiring a full-time archivist to a few volunteer hours monthly",
+      "Internet Archive provides free hosting for community media with no ongoing cost to organizations",
+      "Central Cariboo Arts & Culture Society could create a standardized template once and share it across the region's arts organizations"
+    ],
+    "casey_position": "Technical solutions don't address the real problems: governance decisions, continuity risks, organizational bandwidth limitations, and the coordination failures that plague small nonprofit partnerships.",
+    "casey_key_evidence": [
+      "Mukurtu's success required purpose-built design with sovereignty as a core requirement from inception, not bolted-on tools",
+      "Twenty years of volunteer festival records exist in fragmented formats across different people; completeness cannot be assumed",
+      "Coordination between separate volunteer boards with competing priorities consistently fails at the second meeting when unpaid work is revealed"
+    ],
+    "resolution": "Casey conceded that a backup with known risks beats no backup, and agreed that a shared regional template approach differs meaningfully from traditional grant-based models. They agreed the real question is whether local organizations actually have bandwidth to implement even a simple solution, and suggested posing this directly to the community.",
+    "topics_covered": [
+      "Digital archival tools and their declining costs",
+      "Sovereignty and community control of cultural records (Mukurtu example)",
+      "Organizational coordination failures in nonprofit sectors",
+      "Peer-to-peer knowledge transfer models (Christmas bird count analogy)",
+      "Timing archival efforts to natural milestones (anniversary events)"
     ]
   }
 }

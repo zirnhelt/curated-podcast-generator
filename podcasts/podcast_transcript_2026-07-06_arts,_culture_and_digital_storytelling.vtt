@@ -1,0 +1,91 @@
+WEBVTT
+
+00:00:25.000 --> 00:00:49.857
+<v Riley>Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. It's Monday, July 6th, 2026. Coming to you from the Cariboo, on lands that have been cared for by the Secwépemc, Tŝilhqot'in, and Dakelh peoples since time immemorial. Today's theme is Arts, Culture & Digital Storytelling — I'm Riley.
+
+00:00:51.157 --> 00:01:25.014
+<v Casey>And I'm Casey. We're talking about who gets to make culture out here, and what tools actually help versus just look good in a press release. Quick weather check — Horsefly Lake is sitting at 8 degrees this morning with overcast skies, high of 26 later. Around the region: 100 Mile House at 8 and partly cloudy, Williams Lake at 9 and overcast, Quesnel at 11 and overcast, and out on the Chilcotin plateau, Hanceville's at 9, also overcast.
+
+00:01:25.314 --> 00:01:27.885
+<v Riley>Let's get into what's actually happening.
+
+00:01:29.385 --> 00:01:46.099
+<v Riley>Open Culture has a piece today marking Einstein and Charlie Chaplin's 1930 meeting — the physicist and the silent-film star, apparently fast friends, bonded over the idea that if you can't explain something simply, you don't really understand it.
+
+00:01:46.399 --> 00:01:53.684
+<v Casey>Ninety-six years later, and that's still the best test for any AI explainer tool on the market.
+
+00:01:55.184 --> 00:02:17.469
+<v Casey>The Marginalian has a piece on cellist Pablo Casals, who at 93 was still practicing for hours a day, arguing that work done with love is what keeps a person going. Worth noting the outlet running that piece is itself a one-woman operation funded entirely by reader patronage, no ads, no AI.
+
+00:02:18.969 --> 00:02:48.540
+<v Riley>On the corporate media side — Comcast is spinning NBCUniversal off entirely, ending twenty-five years of arguing that broadband and content belonged under one roof. Internal memos to staff talk up "strong balance sheets" for both halves. The rural angle is real, though: if broadband and content ownership formally separate at the corporate level, that's one less excuse for providers slow-walking rural fiber to protect a content division's leverage.
+
+00:02:48.840 --> 00:02:53.554
+<v Casey>Translation: cable's dying and content's a headache, so split the risk.
+
+00:02:55.054 --> 00:03:09.196
+<v Casey>CNET has new polling data linking AI chatbot health advice with vaccine misinformation spread — people using apps and AI for medical questions show measurably higher distrust of vaccines than those who don't.
+
+00:03:09.496 --> 00:03:17.210
+<v Riley>Rough, when the nearest clinic's an hour away and a chatbot's the easiest thing to ask at midnight.
+
+00:03:18.710 --> 00:03:36.281
+<v Riley>And a name we've flagged before — Tod Maffin's still building his independent media operation, newsletter, podcast, social presence, all outside any legacy broadcaster. We'll come back to that model in a minute — it's relevant to where we're headed today.
+
+00:03:36.581 --> 00:03:57.152
+<v Casey>Also today — a wildfire designated "of note" west of the Fraser River has grown to about 100 hectares, and the Williams Lake Tribune reports more evacuation orders issued for the Brunswick Creek fire in the Fraser Canyon. Stay tuned to local alerts if you're in that corridor.
+
+00:03:57.452 --> 00:04:10.309
+<v Riley>And on the political side, My Cariboo Now reports independent MLA Amelia Boultbee has crossed the floor to join the B.C. NDP — we'll leave the horse-race commentary to others.
+
+00:04:10.609 --> 00:04:21.751
+<v Casey>TechRadar flagged a NordVPN discovery — an adware campaign hidden across roughly 50,000 pirate streaming sites, harvesting device data from anyone looking for a free movie.
+
+00:04:22.051 --> 00:04:23.765
+<v Riley>Free movie, not-so-free data.
+
+00:04:24.065 --> 00:04:35.207
+<v Riley>And for something lighter — New Atlas reports daddy longlegs have been documented catching and eating live frogs in South American rainforests. No venom, just patience.
+
+00:04:35.507 --> 00:04:37.221
+<v Casey>No venom needed, apparently.
+
+00:04:38.421 --> 00:05:03.278
+<v Riley>Before we move on — a correction. In a recent episode, we referenced the Arts Wells festival as an upcoming event. Listener Thomas Schoen wrote in to flag that Arts Wells had already taken place this season, not upcoming, so if you were planning a trip to Wells based on what we said, please double-check current listings first.
+
+00:05:03.578 --> 00:05:16.435
+<v Casey>Thanks for that, Thomas — that's exactly the kind of catch that matters when a small nonprofit's event calendar gets misquoted. We'll be more careful with festival dates going forward.
+
+00:05:16.735 --> 00:05:24.020
+<v Riley>With that cleared up, let's talk about an organization doing exactly that kind of community programming right.
+
+00:05:24.320 --> 00:05:46.605
+<v Casey>The Central Cariboo Arts & Culture Society runs the Arts Centre, manages local grants programs, and puts on Performances in the Park — free live music every Thursday evening this summer at Boitano Park. No ticket, no cover, just a blanket and whoever's playing that week. Check centralcaribooarts.com for this week's lineup.
+
+00:05:46.905 --> 00:05:57.619
+<v Riley>That's the kind of low-barrier cultural infrastructure that doesn't need a press release to matter — it just needs someone showing up with an amp.
+
+00:05:58.419 --> 00:06:10.418
+<v Casey>Which is a decent bridge into today's Deep Dive, actually — because showing up is one thing. Keeping a record of twenty years of showing up is another.
+
+00:06:10.718 --> 00:06:23.575
+<v Riley>The Williams Lake Tribune has a piece today on Arts on the Fly, the Horsefly music and arts festival — this year marks twenty years running, July 10th and 11th.
+
+00:06:23.875 --> 00:06:30.732
+<v Casey>Twenty years is longer than most rural festivals survive, let alone thrive without a title sponsor.
+
+00:06:31.032 --> 00:06:55.460
+<v Riley>That raises a question worth pressing on directly. We keep talking about funding models and platform ownership, but a festival that's already made it twenty years has clearly solved that problem, whatever it is. The more interesting question is what happens to twenty years of recordings, photos, posters, and lineups — where does that history actually live?
+
+00:06:55.760 --> 00:07:01.331
+<v Casey>Probably in somebody's garage on external hard drives, if I had to bet.
+
+00:07:01.631 --> 00:07:08.916
+<v Riley>It's simply the norm for a volunteer-run festival. The Rolling Stones have an archival department. Horsefly doesn't.
+
+00:07:09.216 --> 00:07:19.930
+<v Casey>The storytelling problem is who's responsible for the fact that year six's headliner or year eleven's poster art no longer exists, because a laptop died.
+
+00:07:20.230 --> 00:07:39.944
+<v Riley>Right. And this is where digital tools actually change the math in a way that's hard to argue with. Cloud storage, AI-assisted transcription of old interview tapes, automated photo tagging — the cost of building a searchable archive has dropped from something that needed a full-time
