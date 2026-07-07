@@ -1,30 +1,4 @@
 {
-  "2026-04-08": {
-    "timestamp": 1775646940.24263,
-    "date": "2026-04-08",
-    "theme": "Community Tech & Governance",
-    "central_question": "What governance failures are revealed when Indigenous communities must resort to litigation to protect their territories from industrial contamination, and what infrastructure would enable proactive rather than reactive protection?",
-    "riley_position": "Environmental governance systems fail when they produce plans and timelines without binding operational triggers, forcing communities into expensive litigation; communities need independent monitoring capacity and pre-established legal relationships to shift from reactive to proactive defense.",
-    "riley_key_evidence": [
-      "Teck's Water Quality Centre treatment facility exists but deployment timeline is slow, allowing interim harm while regulations shift",
-      "Selenium from Elk Valley coal mines is lethal to fish and disrupts reproduction in the Oldman River watershed",
-      "Nation-controlled monitoring networks are technically feasible at grant-fundable scales and establish data authority"
-    ],
-    "casey_position": "Data without binding authority to trigger operational changes is merely documentation of harm; governance capacity lags behind legal rights frameworks, and this gap may be structurally maintained by actors who benefit from dependency.",
-    "casey_key_evidence": [
-      "T\u015dilhqot'in Nation has 2014 Supreme Court title declaration but still requires years of negotiation to convert legal rights into operational control",
-      "Monitoring programs funded through initial grants often become non-functional when operational funding ends, creating governance shells",
-      "Session-cookie malware and cybersecurity threats disproportionately affect under-resourced rural institutions"
-    ],
-    "resolution": "No winner emerged; instead they converged on a framework that litigation, treaty negotiation, monitoring infrastructure, and legal capacity-building are complementary tools rather than alternatives. They agreed the Piikani lawsuit's precedent value matters regardless of outcome, and that communities should diagnose their own governance gaps rather than adopt a single solution.",
-    "topics_covered": [
-      "Monitoring authority and data control as governance levers",
-      "Litigation as a governance mechanism when regulatory systems fail",
-      "Funding sustainability for nation-led environmental infrastructure",
-      "The gap between legal rights frameworks and operational capacity to exercise them",
-      "Treaty negotiation versus alternative pathways to jurisdiction"
-    ]
-  },
   "2026-04-09": {
     "timestamp": 1775734532.79569,
     "date": "2026-04-09",
@@ -2340,6 +2314,32 @@
       "Organizational coordination failures in nonprofit sectors",
       "Peer-to-peer knowledge transfer models (Christmas bird count analogy)",
       "Timing archival efforts to natural milestones (anniversary events)"
+    ]
+  },
+  "2026-07-07": {
+    "timestamp": 1783431567.780847,
+    "date": "2026-07-07",
+    "theme": "Working Lands & Industry",
+    "central_question": "Can member-owned mutual insurance pools and permanent institutional funding structures help small producers survive climate-driven wildfire costs, or will consolidation pressure inevitably favor larger operators regardless of policy interventions?",
+    "riley_position": "Wildfire risk is now a structural operating cost across resource industries, and smaller producers can survive it through member-owned mutual insurance pools and permanent institutional capacity\u2014models that Prairie provinces have already proven viable, though they require long-term institution-building rather than one-off grants.",
+    "riley_key_evidence": [
+      "Gibraltar Mine has budgeted air quality monitoring, helicopter contracts, and revised schedules as permanent operating costs",
+      "Central Chilcotin Rehabilitation's Nation-owned forestry venture internalizes fire risk mitigation into baseline operating contracts",
+      "Prairie hail insurance mutuals successfully spread agricultural risk across membership bases and took decades to build but are now durable"
+    ],
+    "casey_position": "Structural consolidation pressure from climate costs is inevitable and will eliminate smaller producers before institution-building solutions can scale; even member-owned mutuals require permanent staff and actuarial capacity that thin-population regions cannot sustainably support, and multi-year timelines don't help ranchers facing immediate fire season threats.",
+    "casey_key_evidence": [
+      "Cariboo Regional District has 65,000 people across enormous land base with insufficient membership density for viable mutual modeling",
+      "U.S. rangeland consolidation is already documented and measurable, with insurers declining renewal after repeat wildfire claims",
+      "Agricultural extension services in the region are already cut to the bone, leaving no institutional capacity to run ongoing actuarial work"
+    ],
+    "resolution": "They agreed that permanent institutional funding structures (mutuals, producer association-hosted functions) are theoretically necessary but genuinely uncertain in practice; they disagreed on timeline feasibility and whether the Cariboo has sufficient producer density to capitalize a mutual, and closed by inviting listener feedback on whether regional producers have already attempted such models.",
+    "topics_covered": [
+      "Asymmetry in climate cost absorption between large capital-backed operators and small independent producers",
+      "Member-owned mutual insurance as alternative to grant-cycle dependency and consolidation pressure",
+      "Institutional capacity and governance requirements for risk-pooling versus one-off resilience projects",
+      "Tenure structure incentives and whether Crown forest licensees should bear more wildfire suppression cost",
+      "Producer self-capitalization versus government funding for cooperative risk institutions"
     ]
   }
 }
