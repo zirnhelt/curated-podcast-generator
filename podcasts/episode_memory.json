@@ -1,23 +1,4 @@
 {
-  "2026-06-16": {
-    "timestamp": 1781607882.834224,
-    "topics": [
-      "[Boing Boing] In 1896 a railroad crashed two trains head-on ",
-      "[Kagi Small Web] The Startup That Charges More on Day One Us",
-      "[Boing Boing] Mel Fisher's treasure hunters find another chu",
-      "[Williams Lake Tribune] End of B.C. rural healthcare bonus c",
-      "[TechCrunch] South Korea hits Coupang with $400M+ fine for d",
-      "[TechRadar] FBI takes out huge AI-powered phishing service: ",
-      "[TechCrunch] Chinese cybercrime operation that used AI to sc",
-      "AI"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech"
-    ],
-    "date": "2026-06-16"
-  },
   "2026-06-17": {
     "timestamp": 1781693364.605166,
     "topics": [
@@ -402,5 +383,23 @@
       "connectivity"
     ],
     "date": "2026-07-06"
+  },
+  "2026-07-07": {
+    "timestamp": 1783431564.045651,
+    "topics": [
+      "[Business Insider] Why the ultrarich spend millions on custo",
+      "[Boing Boing] In 1872 a ship was found drifting, empty. The ",
+      "[STAT News] STAT+: Elevance sues government over $115 millio",
+      "[Global News] A wet June in Saskatchewan delays Saskatoon be",
+      "[New Atlas] Decoding the verbal language of birds earns scie",
+      "[The Northern Miner] Mine operators face worsening wildfire\u00a0",
+      "[Al Jazeera English] Cuba loses power across nation for thir",
+      "[WIRED] What if the Universe Isn\u2019t as Uniform as Scientists "
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption"
+    ],
+    "date": "2026-07-07"
   }
 }
