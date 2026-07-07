@@ -1992,9 +1992,12 @@ def _polish_valid(original: str, polished: str) -> bool:
     Both host tags must survive the rewrite, and the polished script must not
     be drastically shorter than the input — a big shrink means the rewrite was
     truncated or lossy, and the full-length original is the safer output.
+    The absolute MIN_SCRIPT_WORDS floor also applies: a script that barely
+    cleared generation QA must not be polished below publishable length.
     """
     return ("**RILEY:**" in polished and "**CASEY:**" in polished
-            and len(polished) >= 0.6 * len(original))
+            and len(polished) >= 0.6 * len(original)
+            and len(polished.split()) >= MIN_SCRIPT_WORDS)
 
 
 def polish_and_factcheck_with_agent(script, theme_name, news_articles, deep_dive_articles,
@@ -4102,6 +4105,29 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             print(f"❌ Script generation returned empty text (stop_reason={stop}).")
             return None
         word_count = len(script.split())
+        if word_count < MIN_SCRIPT_WORDS:
+            # The model can finish naturally (stop_reason=end_turn) well under
+            # the ~5,000-6,500 word target (2026-07-07: 1,984 words), which the
+            # truncation guard above doesn't catch. Retry once with the short
+            # draft and explicit length feedback — the system prompt prefix
+            # stays cached, so the retry is mostly cache reads.
+            print(f"⚠️ Script complete but short ({word_count} words < {MIN_SCRIPT_WORDS}) — retrying with length feedback...")
+            expand_prompt = prompts['script_expand_retry']['template'].format(word_count=word_count)
+            retry_request = {
+                **request,
+                "max_tokens": 32000,
+                "messages": request["messages"] + [
+                    {"role": "assistant", "content": script},
+                    {"role": "user", "content": expand_prompt},
+                ],
+            }
+            response = api_retry(lambda: create_message(client, stream=True, **retry_request))
+            _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
+            if _truncated(response):
+                print("❌ Script expansion retry truncated at max_tokens.")
+                return None
+            script = message_text(response)
+            word_count = len(script.split())
         if word_count < MIN_SCRIPT_WORDS:
             print(f"❌ Script too short ({word_count} words < {MIN_SCRIPT_WORDS} minimum) — refusing to publish a truncated episode.")
             return None

@@ -499,20 +499,30 @@ class TestTruncationGuards:
 
     def test_polish_valid_accepts_full_rewrite(self):
         from podcast_generator import _polish_valid
-        original = "**RILEY:** hello there\n**CASEY:** hi back\n" * 50
-        polished = "**RILEY:** hello!\n**CASEY:** hey!\n" * 50
+        original = "**RILEY:** hello there\n**CASEY:** hi back\n" * 600
+        polished = "**RILEY:** hello friend!\n**CASEY:** hey there!\n" * 600
         assert _polish_valid(original, polished) is True
 
     def test_polish_valid_rejects_missing_host_tags(self):
         from podcast_generator import _polish_valid
-        original = "**RILEY:** hello\n**CASEY:** hi\n" * 50
-        assert _polish_valid(original, "**RILEY:** monologue " * 100) is False
+        original = "**RILEY:** hello\n**CASEY:** hi\n" * 600
+        assert _polish_valid(original, "**RILEY:** monologue " * 1200) is False
 
     def test_polish_valid_rejects_drastically_shorter_rewrite(self):
         from podcast_generator import _polish_valid
-        original = "**RILEY:** hello there friend\n**CASEY:** hi back now\n" * 100
+        original = "**RILEY:** hello there friend\n**CASEY:** hi back now\n" * 600
         truncated = "**RILEY:** hello\n**CASEY:** hi, and the cost dropped from"
         assert _polish_valid(original, truncated) is False
+
+    def test_polish_valid_rejects_below_absolute_word_floor(self):
+        # Polished keeps tags and >60% of the chars, but lands under
+        # MIN_SCRIPT_WORDS — must be rejected so polish can't shrink a
+        # barely-passing script below publishable length.
+        from podcast_generator import _polish_valid, MIN_SCRIPT_WORDS
+        original = "**RILEY:** hello\n**CASEY:** hi\n" * 500
+        polished = "**RILEY:** hello\n**CASEY:** hi\n" * 500
+        assert len(polished.split()) < MIN_SCRIPT_WORDS
+        assert _polish_valid(original, polished) is False
 
 
 class TestGenerateScriptTruncationGuard:
@@ -548,14 +558,47 @@ class TestGenerateScriptTruncationGuard:
         assert result == full_script
         assert client.messages.stream.call_count == 2
 
-    def test_rejects_script_below_word_floor(self, monkeypatch):
+    def test_short_script_retried_with_feedback_then_accepted(self, monkeypatch):
+        # 2026-07-07: the model finished naturally (end_turn) at 1,984 words.
+        # A complete-but-short script must trigger one feedback retry.
         from podcast_generator import MIN_SCRIPT_WORDS
         short_script = "**RILEY:** hi\n**CASEY:** hello\n" + ("word " * 500)
         assert len(short_script.split()) < MIN_SCRIPT_WORDS
-        client = _stream_client([_response("end_turn", [_text_block(short_script)])])
+        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 2500)
+        client = _stream_client([
+            _response("end_turn", [_text_block(short_script)]),
+            _response("end_turn", [_text_block(full_script)]),
+        ])
+
+        assert self._run(monkeypatch, client) == full_script
+        assert client.messages.stream.call_count == 2
+        retry_kwargs = client.messages.stream.call_args_list[1].kwargs
+        assert retry_kwargs["max_tokens"] == 32000
+        messages = retry_kwargs["messages"]
+        assert len(messages) == 3
+        assert messages[1] == {"role": "assistant", "content": short_script}
+        assert messages[2]["role"] == "user"
+        assert str(len(short_script.split())) in messages[2]["content"]
+
+    def test_rejects_script_still_short_after_retry(self, monkeypatch):
+        short_script = "**RILEY:** hi\n**CASEY:** hello\n" + ("word " * 500)
+        client = _stream_client([
+            _response("end_turn", [_text_block(short_script)]),
+            _response("end_turn", [_text_block(short_script)]),
+        ])
 
         assert self._run(monkeypatch, client) is None
-        assert client.messages.stream.call_count == 1
+        assert client.messages.stream.call_count == 2
+
+    def test_rejects_short_retry_truncated_at_max_tokens(self, monkeypatch):
+        short_script = "**RILEY:** hi\n**CASEY:** hello\n" + ("word " * 500)
+        client = _stream_client([
+            _response("end_turn", [_text_block(short_script)]),
+            _response("max_tokens", [_text_block("partial expansion")]),
+        ])
+
+        assert self._run(monkeypatch, client) is None
+        assert client.messages.stream.call_count == 2
 
     def test_accepts_normal_length_script(self, monkeypatch):
         full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 2500)
@@ -579,7 +622,7 @@ class TestBatchPolishTruncationGuard:
             "polish-and-factcheck": pf_result,
             "debate-summary": {"text": '{"central_question": "q"}', "truncated": False},
         })
-        original = "**RILEY:** hello there\n**CASEY:** hi back\n" * 50
+        original = "**RILEY:** hello there\n**CASEY:** hi back\n" * 600
         return pg.run_post_processing_batch(original, "Theme", [], []), original
 
     def test_truncated_polish_discarded(self, monkeypatch):
@@ -591,7 +634,7 @@ class TestBatchPolishTruncationGuard:
         assert debate == {"central_question": "q"}
 
     def test_valid_polish_accepted(self, monkeypatch):
-        polished_text = "**RILEY:** hello friend\n**CASEY:** hi there\n" * 50
+        polished_text = "**RILEY:** hello friend\n**CASEY:** hi there\n" * 600
         (polished, debate), _ = self._run_batch(
             monkeypatch, {"text": polished_text, "truncated": False})
 

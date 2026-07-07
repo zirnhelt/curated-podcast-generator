@@ -9,6 +9,7 @@ Detects evolving stories (same topic, different URL) for contextual references.
 import os
 import json
 import glob
+import re
 import time
 from datetime import datetime, timedelta
 from difflib import SequenceMatcher
@@ -227,6 +228,9 @@ def cluster_and_rescore_corpus(articles, theme_name, client=None, model=None):
             raw = message_text(response).strip()
             if not raw:
                 raise ValueError("empty response from API")
+            # Strip markdown code fences if the model adds them anyway
+            if raw.startswith("```"):
+                raw = re.sub(r"^```[a-z]*\n?", "", raw).rstrip("`").strip()
             data = json.loads(raw)
             clusters = data.get("clusters", [])
             last_exc = None
