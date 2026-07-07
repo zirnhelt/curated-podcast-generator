@@ -159,6 +159,22 @@ class TestClusterAndRescore:
         assert result[1]["_topic_cluster"] == "EFF quitting X"
         assert result[2]["_topic_cluster"] == "EFF quitting X"
 
+    def test_fenced_json_response_parsed(self):
+        # 2026-07-07: Haiku wrapped the JSON in ```json fences despite the
+        # prompt, and the bare json.loads failed both attempts.
+        articles = self._articles()
+        fenced = "```json\n" + json.dumps(
+            {"clusters": [{"label": "EFF quitting X", "indices": [0, 1, 2]}]}) + "\n```"
+        response = MagicMock()
+        response.content = [MagicMock(type="text", text=fenced)]
+        client = MagicMock()
+        client.messages.create.return_value = response
+
+        result = cluster_and_rescore_corpus(articles, "Tech", client=client)
+        assert client.messages.create.call_count == 1
+        assert result[1]["_cluster_suppressed"] is True
+        assert result[0]["_topic_cluster"] == "EFF quitting X"
+
     def test_singleton_articles_unaffected(self):
         articles = self._articles()
         client = _make_client([{"label": "EFF quitting X", "indices": [0, 1, 2]}])
