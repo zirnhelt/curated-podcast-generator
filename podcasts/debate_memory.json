@@ -2341,5 +2341,32 @@
       "Tenure structure incentives and whether Crown forest licensees should bear more wildfire suppression cost",
       "Producer self-capitalization versus government funding for cooperative risk institutions"
     ]
+  },
+  "2026-07-08": {
+    "timestamp": 1783507100.506718,
+    "date": "2026-07-08",
+    "theme": "Repair Culture & Practical Tech",
+    "central_question": "Is repair culture and durable tech a viable solution for rural resilience, or merely a lifestyle choice for the already-affluent?",
+    "riley_position": "Repairability isn't inherently expensive\u2014it's a market failure caused by lack of scale and regulatory pressure. Multiple levers exist outside grant cycles: co-purchasing, DIY design, procurement policy, and open-source tools can shift incentives without waiting for manufacturers to voluntarily change.",
+    "riley_key_evidence": [
+      "Fairphone and Framework proved market demand exists; scale is what's missing, not feasibility",
+      "Hackaday sailing kit uses off-the-shelf hardware and requires only an afternoon and basic skills",
+      "EU right-to-repair rules forced manufacturers to change without relying on market generosity"
+    ],
+    "casey_position": "Repairable tech costs significantly more upfront than disposable alternatives, and knowledge/capacity gaps prevent rural residents from actually using repair solutions. The real structural barriers aren't solved by procurement policy or library programs\u2014they require either funding or someone volunteering unpaid labor.",
+    "casey_key_evidence": [
+      "Jackery power station, rugged smartphone, and flip phone all cost substantially more than disposable versions",
+      "Cariboo Regional District (65,000 people) lacks volume to move manufacturer production lines",
+      "Most people don't think 'I could build this'\u2014knowledge gap prevents adoption of DIY solutions"
+    ],
+    "resolution": "They agreed to disagree on affordability but converged on concrete, low-cost levers: provincial procurement policy, small-scale library pilots (one session, one branch), and pushing MLA representatives on equipment standards. Casey insisted on pilot testing before claiming scalability; Riley acknowledged the affordability question remains unresolved by any single lever.",
+    "topics_covered": [
+      "Premium pricing of durable/repairable tech vs. disposable alternatives",
+      "Regional co-purchasing as a volume strategy for rural areas",
+      "DIY/open-design solutions as manufacturer-independent repair approaches",
+      "Library programs and repair caf\u00e9s as community knowledge infrastructure",
+      "Open-source AI models running on older hardware as repair-culture infrastructure",
+      "Provincial procurement policy as a lever to shift manufacturer incentives"
+    ]
   }
 }

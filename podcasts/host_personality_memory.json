@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[STAT News] STAT+: AI wades into a vexing medical mystery: W",
-      "[TechCrunch] AI researchers continue to leave Google for its",
       "[TechRadar] This app turned me into the music creator that G",
       "AI",
       "[TechRadar] Over 14 million login credentials leaked from si",
@@ -10,7 +8,9 @@
       "Engadget review recap: MSI Claw 8 EX AI+, Sony A7R VI, Ray-B",
       "[TechRadar] Adobe and Disney are teaming up to design the ne",
       "[Android Authority] Anthropic\u2019s most advanced AI models coul",
-      "[TechRadar] Fires linked to solar panels force Suffolk counc"
+      "[TechRadar] Fires linked to solar panels force Suffolk counc",
+      "[TechCrunch] Station F ramps up as a launchpad for Europe\u2019s ",
+      "[TechRadar] Web hosting giant claims you can now sell online"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -110,9 +110,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-07-03",
-        "clue": "pilot-skepticism:x \u2014 Conceded kiosk maintenance problem, pivoted to Guardian embedding model.",
-        "occurrences": 1
+        "date": "2026-07-08",
+        "clue": "pilot-skepticism:x \u2014 Conceded Casey's demand for small-scale testing first",
+        "occurrences": 2
       },
       {
         "date": "2026-07-04",
@@ -122,6 +122,11 @@
       {
         "date": "2026-07-05",
         "clue": "tech-optimism:~ \u2014 Acknowledged specimen backlogs undermine data-pipeline optimism",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-07-08",
+        "clue": "structural-lens:+ \u2014 Shifted from market solutions to regulatory/procurement leverage",
         "occurrences": 1
       }
     ],
@@ -277,16 +282,6 @@
         "date": "2026-05-20",
         "clue": "tech-optimism:- \u2014 Consistently named accessibility floor where optimism breaks down",
         "occurrences": 1
-      },
-      {
-        "date": "2026-06-18",
-        "clue": "evidence-bar:~ \u2014 Shifted from naming problems to demanding written pre-deployment answers",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-07-02",
-        "clue": "funding-risk:+ \u2014 Deepened critique of grant dependency as undermining autonomy, moved beyond observation to structural indictment",
-        "occurrences": 2
       },
       {
         "date": "2026-06-13",
