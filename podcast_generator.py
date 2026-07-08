@@ -157,9 +157,16 @@ def _truncated(response) -> bool:
     """
     return getattr(response, "stop_reason", None) == "max_tokens"
 
-# Reject generated scripts shorter than this — a healthy episode is ~2,600+
-# words; anything under 2,200 means generation was cut off or malformed.
-MIN_SCRIPT_WORDS = 2200
+# The pipeline renders at roughly 140-155 spoken words/minute (2026-07-08:
+# 2,212 words shipped 14:07; 2026-07-04: 3,423 words shipped 26:00). The show's
+# broadcast minimum is 22 minutes, ideal ~25.
+#
+# MIN_SCRIPT_WORDS is the hard publish floor (~19 min) — below this the episode
+# is unpublishably short and the run aborts rather than shipping it.
+# TARGET_SCRIPT_WORDS (~22-23 min) triggers the expand retry: any script under
+# it gets one length-feedback rewrite before the publish floor is checked.
+MIN_SCRIPT_WORDS = 2800
+TARGET_SCRIPT_WORDS = 3400
 
 # Configuration
 SCRIPT_DIR = Path(__file__).parent
@@ -213,9 +220,14 @@ OPUS_REVIEW_ARTICLE_THRESHOLD = int(os.getenv("OPUS_REVIEW_ARTICLE_THRESHOLD", "
 # errors, making a more capable polish model worth the cost.
 OPUS_QUALITY_HIT_THRESHOLD = int(os.getenv("OPUS_QUALITY_HIT_THRESHOLD", "3"))
 
+# News roundup pool size. Raised 12 → 15 on 2026-07-08: a 406-word roundup
+# shipped a 14-minute episode — the roundup carries the runtime alongside the
+# Deep Dive, so it needs more stories to draw from.
+NEWS_ROUNDUP_COUNT = 15
+
 # Saturday (Cariboo Local Affairs) runs a deeper, longer episode.
 SATURDAY_DEEP_DIVE_COUNT = 5   # vs. standard 3
-SATURDAY_NEWS_ROUNDUP_COUNT = 15  # vs. standard 12
+SATURDAY_NEWS_ROUNDUP_COUNT = 15
 
 # Tracks which review model was actually used this run; read by citation/description generators.
 _review_model_used = None
@@ -3014,7 +3026,7 @@ def get_article_scores(articles, scoring_data):
 def categorize_articles_for_deep_dive(articles, theme_day):
     """Select deep dive articles from beyond the news pool, matched to theme.
 
-    News pool = top 12 scored articles (used in Segment 1).
+    News pool = top NEWS_ROUNDUP_COUNT scored articles (used in Segment 1).
     Deep dive pulls from the remainder, scored by theme keyword overlap
     blended with AI score so we get relevance without being purely keyword-driven.
     """
@@ -3028,7 +3040,7 @@ def categorize_articles_for_deep_dive(articles, theme_day):
     source_boost = [s.lower() for s in theme_info.get('source_boost', [])]
 
     # News pool size — Saturday runs a longer roundup
-    pool_size = SATURDAY_NEWS_ROUNDUP_COUNT if theme_day == 5 else 12
+    pool_size = SATURDAY_NEWS_ROUNDUP_COUNT if theme_day == 5 else NEWS_ROUNDUP_COUNT
     news_urls = set(a.get('url', '') for a in articles[:pool_size])
     remaining = [a for a in articles if a.get('url', '') not in news_urls]
 
@@ -3386,8 +3398,8 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
     # Add sources — discussed articles first, then additional sources
     # Citations are formatted as HTML list items for podcast apps and RSS readers
 
-    discussed_all = discussed_news[:12] + discussed_deep
-    extra_all = extra_news[:12] + extra_deep
+    discussed_all = discussed_news[:NEWS_ROUNDUP_COUNT] + discussed_deep
+    extra_all = extra_news[:NEWS_ROUNDUP_COUNT] + extra_deep
 
     # Enrich cited articles with individual author data (best-effort, feed articles only)
     for article in discussed_all + extra_all:
@@ -4105,13 +4117,14 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             print(f"❌ Script generation returned empty text (stop_reason={stop}).")
             return None
         word_count = len(script.split())
-        if word_count < MIN_SCRIPT_WORDS:
+        if word_count < TARGET_SCRIPT_WORDS:
             # The model can finish naturally (stop_reason=end_turn) well under
-            # the ~5,000-6,500 word target (2026-07-07: 1,984 words), which the
-            # truncation guard above doesn't catch. Retry once with the short
-            # draft and explicit length feedback — the system prompt prefix
-            # stays cached, so the retry is mostly cache reads.
-            print(f"⚠️ Script complete but short ({word_count} words < {MIN_SCRIPT_WORDS}) — retrying with length feedback...")
+            # the ~5,000-6,500 word target (2026-07-07: 1,984 words; 2026-07-08:
+            # 2,212 words → a 14-minute episode), which the truncation guard
+            # above doesn't catch. Retry once with the short draft and explicit
+            # length feedback — the system prompt prefix stays cached, so the
+            # retry is mostly cache reads.
+            print(f"⚠️ Script complete but short ({word_count} words < {TARGET_SCRIPT_WORDS} target) — retrying with length feedback...")
             expand_prompt = prompts['script_expand_retry']['template'].format(word_count=word_count)
             retry_request = {
                 **request,
@@ -4298,8 +4311,9 @@ def _append_with_gap(combined, speech, gap_ms):
 
 
 def parse_script_into_segments(script):
-    """Parse script into welcome, news, and deep dive segments."""
+    """Parse script into preamble (cold open), welcome, news, and deep dive segments."""
     segments = {
+        'preamble': [],
         'welcome': [],
         'news': [],
         'community_spotlight': [],
@@ -4317,6 +4331,34 @@ def parse_script_into_segments(script):
 
         if not line:
             prev_line_blank = True
+            continue
+
+        # Cold open teaser marker — the pre-intro-music tease plays before the
+        # theme song. **WELCOME** closes it and returns to the welcome section.
+        # Both matches are case-sensitive and anchored so spoken lines like
+        # "**RILEY:** Welcome to..." can never trigger them.
+        if re.match(r'\*{0,2}COLD OPEN\b', line):
+            if current_speaker and current_text:
+                segments[current_section].append({
+                    'speaker': current_speaker,
+                    'text': ' '.join(current_text).strip(),
+                    'gap_ms': current_gap_ms,
+                })
+                current_text = []
+            current_section = 'preamble'
+            prev_line_blank = False
+            continue
+
+        if re.match(r'\*{0,2}WELCOME\b[^a-z]*$', line):
+            if current_speaker and current_text:
+                segments[current_section].append({
+                    'speaker': current_speaker,
+                    'text': ' '.join(current_text).strip(),
+                    'gap_ms': current_gap_ms,
+                })
+                current_text = []
+            current_section = 'welcome'
+            prev_line_blank = False
             continue
 
         # Detect segment transitions (support both old "SEGMENT 1/2:" and new "NEWS ROUNDUP:/DEEP DIVE:" markers)
@@ -4451,11 +4493,25 @@ def parse_script_into_segments(script):
             'gap_ms': current_gap_ms,
         })
 
+    # Cold-open safety net: if the model emitted **COLD OPEN** but never closed
+    # it with **WELCOME**, the actual welcome turns land in the preamble and the
+    # welcome section comes up empty. Same if a "cold open" balloons past a
+    # teaser's length (target is 35-55 words; anything over 90 is a misparse,
+    # not a 15-second tease). In both cases fold the preamble back into the
+    # welcome so the episode still opens with the theme music.
+    preamble_words = sum(len(s['text'].split()) for s in segments['preamble'])
+    if segments['preamble'] and (not segments['welcome'] or preamble_words > 90):
+        print(f"  ⚠️  Cold open misparse ({len(segments['preamble'])} segments, "
+              f"{preamble_words} words) — folding into welcome section")
+        segments['welcome'] = segments['preamble'] + segments['welcome']
+        segments['preamble'] = []
+
     # Clean up segments
     for section in segments:
         segments[section] = [s for s in segments[section] if len(s['text']) > 10]
-    
+
     print(f"🎭 Parsed script into segments:")
+    print(f"   Cold open: {len(segments['preamble'])} segments")
     print(f"   Welcome: {len(segments['welcome'])} segments")
     print(f"   News: {len(segments['news'])} segments")
     print(f"   Community Spotlight: {len(segments['community_spotlight'])} segments")
@@ -4624,7 +4680,7 @@ def _generate_parallel_azure_audio(segments, base_output_filename, theme_name=No
         ambient_transition = get_ambient_transition(theme_name, fallback_segment=interval_music)
         section_gap = AudioSegment.silent(duration=400)
 
-        combined = intro_music + section_gap
+        combined = AudioSegment.empty()
 
         with tempfile.TemporaryDirectory() as tmpdir:
             def _render(section_name):
@@ -4640,6 +4696,12 @@ def _generate_parallel_azure_audio(segments, base_output_filename, theme_name=No
                     trim_tts_silence(AudioSegment.from_file(section_wav, format="wav")),
                     TARGET_SPEECH_DBFS,
                 )
+
+            # Cold open teaser before the theme music (optional)
+            if segments.get("preamble"):
+                _render("preamble")
+                combined += AudioSegment.silent(duration=500)
+            combined += intro_music + section_gap
 
             _render("welcome")
             combined += section_gap + ambient_transition + section_gap
@@ -4676,7 +4738,7 @@ def _generate_parallel_azure_audio(segments, base_output_filename, theme_name=No
         duration_min = len(combined) / 1000 / 60
         total_chars = sum(
             sum(len(s["text"]) for s in segments.get(sec, []))
-            for sec in ("welcome", "news", "community_spotlight", "deep_dive")
+            for sec in ("preamble", "welcome", "news", "community_spotlight", "deep_dive")
         )
         _append_comparison_log({
             "date": datetime.now().isoformat(),
@@ -4747,8 +4809,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
         section_gap = AudioSegment.silent(duration=400)
 
         with tempfile.TemporaryDirectory() as tmpdir:
-            # Start with intro music
-            combined = intro_music + section_gap
+            combined = AudioSegment.empty()
 
             def _render_section(seg_list, label, prefix):
                 """Render a list of parsed segments into combined audio."""
@@ -4792,9 +4853,19 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
                     prev_speaker = segment['speaker']
                     prev_text = segment['text']
 
-            chapters = [{"startTime": 0, "title": "Introduction"}]
+            chapters = []
 
-            # Welcome section
+            # Cold open teaser — plays before the theme music (optional)
+            if segments['preamble']:
+                chapters.append({"startTime": 0, "title": "Cold Open"})
+                _render_section(segments['preamble'], "🎬 Generating cold open teaser...", "preamble")
+                # Beat between the tease and the theme music hit
+                combined += AudioSegment.silent(duration=500)
+
+            # Intro music, then the welcome section
+            chapters.append({"startTime": round(len(combined) / 1000, 1), "title": "Introduction"})
+            combined += intro_music + section_gap
+
             _render_section(segments['welcome'], "🎤 Generating welcome section...", "welcome")
             combined = combined[:-SECTION_BOUNDARY_FADE_MS] + combined[-SECTION_BOUNDARY_FADE_MS:].fade_out(SECTION_BOUNDARY_FADE_MS)
 
@@ -5005,7 +5076,8 @@ def generate_audio_tts_only(script, output_filename, _force_openai=False):
     try:
         # Reuse the structured parser and flatten all sections
         parsed = parse_script_into_segments(script)
-        segments = parsed['welcome'] + parsed['news'] + parsed['community_spotlight'] + parsed['deep_dive']
+        segments = (parsed.get('preamble', []) + parsed['welcome'] + parsed['news']
+                    + parsed['community_spotlight'] + parsed['deep_dive'])
         segments = [s for s in segments if len(s['text']) > 10]
 
         if not segments:
@@ -5252,11 +5324,18 @@ def script_to_vtt_transcript(script_content, intro_offset_ms=25000):
     """
     WORDS_PER_MS = 140 / 60000
     cues = []
-    current_ms = intro_offset_ms
+    # A cold open plays before the intro music: start cues near 0 and add the
+    # intro offset when the **WELCOME** marker hands over to the theme song.
+    has_cold_open = bool(re.search(r'^\*{0,2}COLD OPEN\b', script_content, re.MULTILINE))
+    current_ms = 500 if has_cold_open else intro_offset_ms
 
     for line in script_content.splitlines():
         stripped = line.strip()
         if stripped.startswith("#") or not stripped:
+            continue
+
+        if has_cold_open and re.match(r'\*{0,2}WELCOME\b[^a-z]*$', stripped):
+            current_ms += intro_offset_ms
             continue
 
         extra_pause = sum(int(m.group(1)) for m in re.finditer(r'\[pause:(\d+)\]', stripped))
@@ -5298,6 +5377,7 @@ def script_to_friendly_transcript(script_content):
     ]
 
     SECTION_HEADERS = {
+        "COLD OPEN", "WELCOME",
         "NEWS ROUNDUP", "COMMUNITY SPOTLIGHT", "DEEP DIVE",
         "SEGMENT 1", "SEGMENT 2", "CARIBOO CONNECTIONS",
     }
@@ -6002,7 +6082,7 @@ def main():
                 )
                 deep_dive_articles = newsletter_articles + deep_dive_articles
                 consumed_email_ids.extend(i["id"] for i in email_newsletters)
-            news_articles = scored_articles[:12]
+            news_articles = scored_articles[:NEWS_ROUNDUP_COUNT]
             feed_meta = None
         else:
             # Use the curated podcast feed

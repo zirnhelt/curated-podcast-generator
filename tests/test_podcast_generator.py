@@ -134,6 +134,66 @@ class TestParseScriptIntoSegments:
         total = sum(len(v) for v in segments.values())
         assert total == 0
 
+    SCRIPT_WITH_COLD_OPEN = """
+**COLD OPEN**
+**RILEY:** A broadband co-op just cut rates in half, and we ask whether repair cafés can outlast their volunteers. That and more, coming right up.
+
+**WELCOME**
+**RILEY:** Welcome to the show, it's Wednesday.
+**CASEY:** Good to be here, let's get started.
+
+**NEWS ROUNDUP**
+**RILEY:** First up, a big story about AI regulation in Canada.
+**CASEY:** That's an important development for rural communities.
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Repair Culture**
+**CASEY:** Let's talk about repair cafés in the Cariboo.
+**RILEY:** Great topic. Several communities have launched them.
+"""
+
+    def test_cold_open_parsed_into_preamble(self):
+        segments = parse_script_into_segments(self.SCRIPT_WITH_COLD_OPEN)
+        assert len(segments["preamble"]) == 1
+        assert segments["preamble"][0]["speaker"] == "riley"
+        assert "broadband co-op" in segments["preamble"][0]["text"]
+
+    def test_cold_open_does_not_leak_into_welcome(self):
+        segments = parse_script_into_segments(self.SCRIPT_WITH_COLD_OPEN)
+        assert len(segments["welcome"]) == 2
+        for seg in segments["welcome"]:
+            assert "broadband co-op" not in seg["text"]
+
+    def test_no_cold_open_gives_empty_preamble(self):
+        segments = parse_script_into_segments(self.SAMPLE_SCRIPT)
+        assert segments["preamble"] == []
+        assert len(segments["welcome"]) == 2
+
+    def test_cold_open_without_welcome_marker_folds_into_welcome(self):
+        """If the model never closes the cold open with **WELCOME**, everything
+        before the roundup lands in the preamble — the parser must fold it back
+        into the welcome so the episode still opens with the theme music."""
+        script = """
+**COLD OPEN**
+**RILEY:** A broadband co-op just cut rates in half. That and more, coming right up.
+**RILEY:** Welcome to the show, it's Wednesday, and here is a long opening turn with a land acknowledgement.
+**CASEY:** Good to be here, let's get started with everything.
+
+**NEWS ROUNDUP**
+**RILEY:** First up, a big story about AI regulation in Canada.
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Repair Culture**
+**CASEY:** Let's talk about repair cafés in the Cariboo today.
+"""
+        segments = parse_script_into_segments(script)
+        assert segments["preamble"] == []
+        assert len(segments["welcome"]) == 3
+
+    def test_spoken_welcome_line_does_not_trigger_marker(self):
+        """A host saying 'Welcome to...' must never be mistaken for the
+        **WELCOME** section marker."""
+        segments = parse_script_into_segments(self.SCRIPT_WITH_COLD_OPEN)
+        assert segments["welcome"][0]["text"].startswith("Welcome to the show")
+
 
 class TestExtractTopicsAndThemes:
     def test_extracts_keywords(self):
@@ -548,7 +608,7 @@ class TestGenerateScriptTruncationGuard:
         assert retry_kwargs["output_config"] == {"effort": "low"}
 
     def test_retry_succeeds_with_full_script(self, monkeypatch):
-        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 2500)
+        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3500)
         client = _stream_client([
             _response("max_tokens", [_text_block("partial script")]),
             _response("end_turn", [_text_block(full_script)]),
@@ -561,10 +621,10 @@ class TestGenerateScriptTruncationGuard:
     def test_short_script_retried_with_feedback_then_accepted(self, monkeypatch):
         # 2026-07-07: the model finished naturally (end_turn) at 1,984 words.
         # A complete-but-short script must trigger one feedback retry.
-        from podcast_generator import MIN_SCRIPT_WORDS
+        from podcast_generator import TARGET_SCRIPT_WORDS
         short_script = "**RILEY:** hi\n**CASEY:** hello\n" + ("word " * 500)
-        assert len(short_script.split()) < MIN_SCRIPT_WORDS
-        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 2500)
+        assert len(short_script.split()) < TARGET_SCRIPT_WORDS
+        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3500)
         client = _stream_client([
             _response("end_turn", [_text_block(short_script)]),
             _response("end_turn", [_text_block(full_script)]),
@@ -601,11 +661,26 @@ class TestGenerateScriptTruncationGuard:
         assert client.messages.stream.call_count == 2
 
     def test_accepts_normal_length_script(self, monkeypatch):
-        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 2500)
+        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3500)
         client = _stream_client([_response("end_turn", [_text_block(full_script)])])
 
         assert self._run(monkeypatch, client) == full_script
         assert client.messages.stream.call_count == 1
+
+    def test_retries_below_target_and_accepts_above_publish_floor(self, monkeypatch):
+        # A script between MIN_SCRIPT_WORDS and TARGET_SCRIPT_WORDS (e.g. ~20
+        # minutes) triggers the expand retry; if the retry still lands in that
+        # band, it publishes — above the hard floor beats no episode at all.
+        from podcast_generator import MIN_SCRIPT_WORDS, TARGET_SCRIPT_WORDS
+        mid_script = "**RILEY:** hi\n**CASEY:** hello\n" + ("word " * 3000)
+        assert MIN_SCRIPT_WORDS <= len(mid_script.split()) < TARGET_SCRIPT_WORDS
+        client = _stream_client([
+            _response("end_turn", [_text_block(mid_script)]),
+            _response("end_turn", [_text_block(mid_script)]),
+        ])
+
+        assert self._run(monkeypatch, client) == mid_script
+        assert client.messages.stream.call_count == 2
 
 
 class TestBatchPolishTruncationGuard:
