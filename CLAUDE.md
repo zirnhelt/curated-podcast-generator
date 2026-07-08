@@ -61,9 +61,9 @@ This is a daily AI podcast generator for **Cariboo Signals**, a two-host show (R
 2. Pull scored articles from sibling repo `super-rss-feed` (fetches `feed-podcast-{dayname}.json` from its GitHub Pages URL)
 3. Deduplicate against last 7 days of citations (`dedup_articles.py`, optionally Cohere embeddings via `cohere_enrichment.py`)
 4. Cluster same-story articles; select top stories + theme-matched deep-dive articles
-5. Claude generates raw two-host script → Claude polishes script (flow, repetition)
+5. Claude generates raw two-host script → Claude polishes script (flow, repetition). Length QA: scripts under `TARGET_SCRIPT_WORDS` (~22-min floor) get one expand retry; under `MIN_SCRIPT_WORDS` after retry the run aborts. Target runtime 22–25+ min.
 6. OpenAI TTS (or Azure Neural TTS) renders each speaker segment in parallel
-7. pydub assembles: intro → welcome → interval → news roundup → interval → deep dive debate → outro
+7. pydub assembles: cold open teaser (10–20 s, before the music) → intro → welcome → interval → news roundup → interval → deep dive debate → outro
 8. Writes citations JSON, RSS entry, pushes commit, deploys to `gh-pages`
 
 **Memory state** (JSON files in `podcasts/`):
