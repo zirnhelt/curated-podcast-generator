@@ -4654,7 +4654,7 @@ def _generate_parallel_azure_audio(segments, base_output_filename, theme_name=No
             credits_text = (
                 f"{_pc.get('title', 'This show')} is produced with Claude by Anthropic for scripting, "
                 "Azure Neural TTS, Ava and Andrew for audio synthesis, and Suno for our theme music. "
-                f"Find us at {_pc.get('url', '')}."
+                f"Find us at {_pc.get('url_spoken', 'cariboo signals dot c-a')}."
             )
             try:
                 credits_wav = os.path.join(tmpdir, "credits.wav")
@@ -4878,7 +4878,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
                 f"scripts by Claude, audio by {tts_credit}, theme by Suno."
                 f"{brave_spoken}{jamendo_spoken}"
                 f" Automated with GitHub Actions, hosted on Cloudflare Pages."
-                f" Find us at {_pc_cfg.get('url', '')}."
+                f" Find us at {_pc_cfg.get('url_spoken', 'cariboo signals dot c-a')}."
             )
             try:
                 if USE_AZURE_TTS:
