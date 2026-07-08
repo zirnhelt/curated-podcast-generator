@@ -2128,6 +2128,31 @@
       "theme_day": 5,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "f0f00ead",
+      "type": "newsletter",
+      "message_id": "<78afa225-39ee-4014-9fac-d94db8d73a9c@mtasv.net>",
+      "from_address": "n***@animikii.com",
+      "subject": "From the Arctic to Australia, researchers demand respect for\r\n Indigenous data",
+      "received_at": "2026-07-08T19:02:22+00:00",
+      "body_text": "![Graphic illustration featuring a youth and elder sitting in a forested landscape, with the sun and mountains in the background, the text on far left reads Animikii News River.](https://assets.button",
+      "extracted_urls": [
+        "https://assets.buttondown.email/images/42ea3d90-a073-48c4-9aff-303d06bca8c4.jpg?w=960&fit=max",
+        "https://www.esri.com/about/newsroom/arcnews/in-the-arctic-coproduced-maps-help-find-balance-under-pressure?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=from-the-arctic-to-australia-researchers-demand",
+        "https://www.openaccessgovernment.org/researchers-call-for-conservation-genomics-to-respect-indigenous-data-sovereignty/211317/?utm_source=newsriver&amp;amp;utm_medium=email&amp;amp;utm_campaign=from-the-arctic-to-australia-researchers-demand",
+        "https://pursuit.unimelb.edu.au/articles/ai-must-be-built-with-indigenous-knowledges,-not-against-them?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=from-the-arctic-to-australia-researchers-demand",
+        "http://Animikii.com?utm_source=newsriver&utm_medium=email&utm_campaign=from-the-arctic-to-australia-researchers-demand",
+        "https://assets.buttondown.email/images/62449f71-4c02-416b-b625-45e71a736658.jpg?w=960&fit=max",
+        "https://akii.ca/m/links",
+        "https://www.linkedin.com/company/animikii/",
+        "https://niiwin.app/",
+        "https://animikii.com/"
+      ],
+      "theme_tag": "Indigenous Lands & Innovation",
+      "theme_day": 3,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
