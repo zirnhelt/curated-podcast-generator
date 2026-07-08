@@ -1,0 +1,121 @@
+# Cariboo Signals Podcast Script - 2026-07-08
+# Theme: Repair Culture & Practical Tech
+# Generated: 2026-07-08 03:38:18 PDT
+
+**CASEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. It's Wednesday, July 8th, 2026. Speaking to you from the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations here in the Cariboo region. Today's theme is Repair Culture & Practical Tech — I'm Casey.
+
+**RILEY:** And I'm Riley. Today's about the gear you can actually keep running yourself — the flip phones, the DIY kits, the power stations that don't need a subscription to work.
+
+**CASEY:** Quick weather sweep before we get into it. Horsefly Lake is sitting at 12 degrees, partly cloudy, high of 20 today, low of 11 — tomorrow's looking like dense drizzle, about a millimetre of precipitation. 100 Mile House is also at 12 with partly cloudy skies. Out west on the Chilcotin plateau, Tatla Lake's holding steady too, though air quality across the whole region is a factor today — we'll get into why.
+
+**RILEY:** Time for today's stories.
+
+**NEWS ROUNDUP**
+
+**CASEY:** The Brunswick Creek wildfire remains out of control this morning. Nearly a hundred firefighters and twelve helicopters are assigned to the blaze, with evacuation orders still in effect. Last estimate had it at around 1,800 hectares — big enough to shut down Highway 1 and trigger an air quality warning across the Chilcotin.
+
+**RILEY:** And that smoke is what turned the sky over Kamloops that eerie orange-brown last night — a colour everyone up here knows too well by July.
+
+**CASEY:** Google and the FBI just dismantled a massive botnet that had quietly hijacked millions of cheap, off-brand Android devices to mask cybercrime traffic. The devices weren't targeted because they were valuable — they were targeted because nobody was maintaining them.
+
+**RILEY:** Cheap and disposable isn't just an e-waste problem, it's a security liability sitting in people's homes.
+
+**CASEY:** On the opposite end of that spectrum — Hackaday published a no-drill sailing kit for a canoe. Someone rigged a full sail assembly onto a standard canoe hull without modifying the boat at all, using clamp fittings and off-the-shelf hardware.
+
+**RILEY:** iRobot, meanwhile, just released a floor cleaner that isn't a robot at all — a manual push tool from the company that built its whole brand on autonomous vacuums. No battery to degrade, no firmware to lock you out, no subscription for the app.
+
+**CASEY:** A company famous for automation shipping something deliberately dumb — peak 2026.
+
+**RILEY:** Business Insider's portable power station roundup landed on the Jackery Explorer 1000 V2 as the pick for camping trips and outages, after testing twenty units — solid battery capacity, no cloud dependency to run it.
+
+**CASEY:** For anyone off Hydro's grid past Horsefly or out in the Chilcotin, that's not a camping accessory, that's infrastructure. Also today — a federal partnership with a German shipbuilder means a B.C. shipyard is set to deliver new navy submarines, a rare heavy-manufacturing story out of this coast.
+
+**RILEY:** Before we move on — a correction. In our July 3rd episode, we described a metacrystal solar panel steering technology as already deployed in a Cariboo pilot project. That was an error — the New Atlas piece we cited was describing lab-stage research with no announced Cariboo application. Thanks to the listener who caught that — send corrections to feedback at cariboo signals dot c-a, and we'll keep them coming as part of the show.
+
+**CASEY:** All right, now for today's spotlight.
+
+**COMMUNITY SPOTLIGHT**
+
+**RILEY:** Today we're highlighting the Cariboo Regional District Library system — branches in Williams Lake, Quesnel, 100 Mile House, and beyond. Free internet access for anyone who needs it, digital literacy programs for folks getting comfortable with new tech, and quiet, warm spaces to just exist in a small town where that's not always easy to find. If you've never used the library's public computers or asked a librarian for help with a device, that's exactly what they're there for.
+
+**CASEY:** Genuinely one of the last pieces of no-cost, no-login-required public infrastructure left in most of these towns — that matters more than people give it credit for.
+
+**RILEY:** With that — let's open up today's Deep Dive.
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Repair Culture & Practical Tech**
+
+**CASEY:** iRobot sells a manual floor cleaner. Boing Boing's flagging a hundred-and-twelve-dollar flip phone as a screen-time detox. Jackery's winning "most trusted" for a power station with no cloud dependency. A real market is forming around deliberately simple, durable tech.
+
+**RILEY:** And it's a genuine shift. For a decade the entire consumer tech industry sold complexity as the upgrade. Now there's a market segment explicitly selling the opposite — less software, more longevity, fewer things to break.
+
+**CASEY:** Except every one of those products costs more upfront than the disposable version. The Jackery isn't the cheap option. That flip phone is discounted to a hundred and twelve bucks right now, but the MSRP is two-seventy. A genuinely rugged, repairable smartphone costs real money. "Buy it for life" is a strategy that requires having the savings to buy it once.
+
+**RILEY:** The real question today isn't whether repairable tech exists — it's whether it's structured as a lever for rural resilience or just a lifestyle choice for people who can already afford to opt out.
+
+**CASEY:** Right now it reads like the second one. A rancher outside Likely isn't choosing between a thirty-dollar phone and a two-hundred-seventy-dollar flip phone as an aesthetic statement — they're choosing based on what's in the account that month.
+
+**RILEY:** But "repairable equals expensive" isn't a law of physics — it's a market failure. Manufacturers don't build durable gear at volume because there's no regulatory or purchasing pressure forcing them to. Fairphone and Framework proved the demand exists. Scale is what's missing, not feasibility.
+
+**CASEY:** Scale requires volume, and volume requires either regulation or a market big enough to matter to a manufacturer. The Cariboo Regional District — roughly sixty-five thousand people — isn't moving Samsung's production line.
+
+**RILEY:** No single rural region moves it alone. But regional co-purchasing does something real — multiple northern BC districts pooling equipment orders has some precedent, at least in agricultural machinery. It's not about the Cariboo bending a global supply chain. It's about not each buying alone at retail markup.
+
+**CASEY:** Name one that's actually done that for consumer electronics, not tractors.
+
+**RILEY:** I can't point to one for phones specifically — that's untested territory. But the mechanism isn't exotic. Same logic as a hospital district buying medical equipment in bulk instead of each clinic negotiating alone. Someone just has to be first.
+
+**CASEY:** Which brings up the other side of this — the Hackaday sailing kit. No-drill, off-the-shelf hardware, someone just built the thing instead of waiting for a company to sell them a repairable version.
+
+**RILEY:** That's the piece that actually answers the affordability question more than co-purchasing does. The kit didn't wait for market pressure to shift manufacturer incentives — it skipped the manufacturer entirely. Off-the-shelf clamps, a standard canoe, and a design anyone can replicate without touching a factory decision. You could build the whole thing for what, the price of a couple trips to the hardware store?
+
+**CASEY:** A genuinely different lever than "buy the better product." But it requires the skill and the time to build it yourself, which circles right back to who has the capacity to do that. Not everyone in Horsefly or Tatla Lake has a workshop and a free weekend.
+
+**RILEY:** The skill floor for that kit is genuinely low — it's clamps and hardware store parts, not machining. You don't need a fabrication shop, you need an afternoon and a willingness to read instructions that look like they were formatted in 2004.
+
+**CASEY:** An afternoon assumes you already know it's possible. Most people don't think "I could just build a mount for this" — they think "this is broken, I need to buy a new one." That's a knowledge gap, not a skill gap, and it's harder to close.
+
+**RILEY:** Which is where the library spotlight actually matters more than it sounds on the surface. A digital literacy program isn't just teaching someone to use a laptop — it's the kind of place that could run a "fix instead of replace" session. Some library systems already host tool libraries. The physical infrastructure is there.
+
+**CASEY:** Now the answer is "the library should run more programs," which is the same funding-dependent conclusion every one of these conversations lands on.
+
+**RILEY:** It doesn't have to be new funding, though. One session using existing staff, existing hours, existing space — the input isn't money, it's someone deciding to run it once and posting the schedule.
+
+**CASEY:** Then who's the someone? Not the building, not the wifi — the person willing to organize it without being paid extra to do it. Volunteers burn out. That's not cynicism, that's every community organizer's lived experience.
+
+**RILEY:** Every repair café that's worked anywhere started with exactly that — one person who showed up with a soldering iron on a Saturday. It's not a structural dependency on a grant cycle. Decisions are cheaper than programs, and burnout's a real risk, but one session isn't a lifetime commitment.
+
+**CASEY:** Alright, shift gears. Open-weight AI models you can download and run locally on older hardware — that's a repair-culture story as much as an AI story. A five-year-old laptop doesn't get thrown out just because it can't run the proprietary cloud tool everyone else is using.
+
+**RILEY:** Exactly. And the independence matters most. If a major AI company changes their pricing or discontinues a tier, a rural user with an offline open model isn't stranded. That's real resilience, not just a tech-philosophy talking point.
+
+**CASEY:** Assuming someone in a place with patchy fibre can actually download a multi-hundred-gigabyte model file in the first place. That's an internet-access problem before it's a repair-culture win.
+
+**RILEY:** Once it's downloaded once — at a library, say, on their public connection — it runs entirely offline after that. No ongoing connection required, no subscription, no vendor deciding to sunset the service in two years. The download is a one-time barrier, not a permanent one.
+
+**CASEY:** The advantage is the independence afterward, not the download. And it's the same logic as the flip phone and the manual floor cleaner — the fewer things a device depends on outside itself, the longer it survives whatever happens to the company that made it. At which point, congratulations, your tech strategy is basically the same as canning your own peaches.
+
+**RILEY:** I'll take that comparison proudly. Shelf-stable technology — there's your bumper sticker.
+
+**CASEY:** The structural question underneath all of this isn't "how do we fund repair programs." That's the ceiling every one of these conversations hits, and it's a boring ceiling. The real question is why repairability needs to be a special purchasing category at all, instead of the market default.
+
+**RILEY:** And the answer isn't more grants — it's changing who's obligated to build it that way in the first place. The EU's right-to-repair rules already forced that shift for phones and appliances sold there. Manufacturers didn't do it out of generosity — they did it because the alternative became illegal to sell.
+
+**CASEY:** Canada doesn't have that rule at the same strength, and BC doesn't have leverage on its own to force it. So the Cariboo imports whatever design philosophy Brussels or Sacramento decides on.
+
+**RILEY:** For now. But provincial procurement policy is a smaller lever that's actually within reach. If BC's own government offices specified repairable, serviceable hardware in their purchasing contracts, that's real volume, and it doesn't require waiting on federal legislation.
+
+**CASEY:** A provincial government buying repairable laptops sounds great until you find out the procurement office just picks whatever's cheapest on the approved vendor list. Policy intent and purchasing reality are two different planets.
+
+**RILEY:** Which is exactly why the push needs to be on the specification language in the contract, not a vague preference. "Must include user-replaceable battery and storage" is enforceable. "Should be repairable where feasible" is wallpaper.
+
+**CASEY:** That's a genuinely different ask than "communities need more funding." It's "push your MLA on procurement language," which costs an email, not a grant application.
+
+**RILEY:** And it stacks with the smaller moves — a letter to a provincial representative about equipment standards, or a library branch in Williams Lake or Quesnel piloting one repair-focused session using a laptop nobody's using for anything else. Neither of those waits on Ottawa.
+
+**CASEY:** I'd still want to see that piloted somewhere small before calling it a model — one session, one branch, see if five people show up before assuming this scales. And the affordability question didn't get resolved. Buy-it-for-life gear is still priced for people who can already absorb the upfront cost. Neither procurement policy nor a Hackaday kit fixes that on its own.
+
+**RILEY:** No — but building it yourself, running an open model on hardware you already own, pushing procurement rules instead of waiting for a market to lower prices voluntarily — those are three levers that don't run through a grant cycle. If any of that lands with you, or you've tried something we haven't thought of, drop us a line — feedback at cariboo signals dot c-a.
+
+**CASEY:** And if you just want to tell us we're wrong, that works too. Have a good Wednesday.
+
+**RILEY:** Have a good one, folks.
