@@ -121,8 +121,23 @@ def api_retry(func, max_retries=3, base_delay=2):
 
 def _log_api_call(service: str, unit: str, count: int) -> None:
     """Log an API call for cost metering. Always runs; detail gated on PODCAST_DEBUG_AGENT."""
+    global _api_call_counts, _api_input_token_totals
+    _api_call_counts[service] = _api_call_counts.get(service, 0) + 1
+    if unit == "input_tokens":
+        _api_input_token_totals[service] = _api_input_token_totals.get(service, 0) + max(count, 0)
     ts = datetime.now(timezone.utc).isoformat(timespec="seconds")
     print(f"  [api] {ts} service={service} {unit}={count}")
+
+
+def _format_daily_cost_summary() -> str:
+    """Return a one-line estimated daily API cost summary from logged usage."""
+    anthropic_input = _api_input_token_totals.get("claude", 0)
+    call_counts = dict(_api_call_counts)
+    return (
+        f"💰 Daily cost snapshot — Anthropic input tokens: {anthropic_input:,} | "
+        f"API call counts: {call_counts}"
+    )
+
 
 # Bounded adaptive thinking for the Sonnet-5/Opus generative calls. Env-tunable:
 # "low" is cheapest, "high" is Sonnet-5's default. Do NOT use on Haiku calls —
@@ -230,6 +245,8 @@ SATURDAY_DEEP_DIVE_COUNT = 5   # vs. standard 3
 SATURDAY_NEWS_ROUNDUP_COUNT = 15
 
 # Tracks which review model was actually used this run; read by citation/description generators.
+_api_call_counts = {}
+_api_input_token_totals = {}
 _review_model_used = None
 # Pre-polish quality score set in main() before the polish call; read by select_review_model.
 _raw_quality_score = None
@@ -6166,6 +6183,9 @@ def main():
         _enrich_articles_with_body(deep_dive_articles, label="deep dive")
         _enrich_articles_with_body(news_articles, label="news roundup", max_articles=40)
 
+        deep_dive_quality, deep_dive_body_count = _assess_deep_dive_article_quality(deep_dive_articles)
+        news_articles, _sparse_brave_used = _filter_sparse_news_articles(news_articles)
+
         # Confirm substance — not just attempted enrichment — before the deep dive
         # locks in: swap any thin deep-dive article for a substantive alternative
         # from the broader news pool so Claude is never put in a position where
@@ -6177,9 +6197,6 @@ def main():
             theme_keywords=theme_keywords_for_substitution,
             source_boost=source_boost_for_substitution,
         )
-
-        deep_dive_quality, deep_dive_body_count = _assess_deep_dive_article_quality(deep_dive_articles)
-        news_articles, _sparse_brave_used = _filter_sparse_news_articles(news_articles)
 
         # Proactive research pass: identify analytical angles and run Brave for each.
         # Falls back to standard enrichment when no analytical questions are surfaced.
@@ -6477,6 +6494,7 @@ def main():
     sync_site_to_r2()
 
     print("✅ Generation complete!")
+    print(_format_daily_cost_summary())
 
     if _openai_quota_exceeded:
         print()
