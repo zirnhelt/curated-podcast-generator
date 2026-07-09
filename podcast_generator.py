@@ -239,6 +239,11 @@ OPUS_REVIEW_ARTICLE_THRESHOLD = int(os.getenv("OPUS_REVIEW_ARTICLE_THRESHOLD", "
 # errors, making a more capable polish model worth the cost.
 OPUS_QUALITY_HIT_THRESHOLD = int(os.getenv("OPUS_QUALITY_HIT_THRESHOLD", "3"))
 
+# When PODCAST_SKIP_CLEAN_POLISH=1 and total_hits <= CLEAN_POLISH_MAX_HITS,
+# the polish/rewrite pass is skipped. Default is off to preserve existing behavior.
+PODCAST_SKIP_CLEAN_POLISH = os.getenv("PODCAST_SKIP_CLEAN_POLISH", "0") == "1"
+CLEAN_POLISH_MAX_HITS = int(os.getenv("CLEAN_POLISH_MAX_HITS", "1"))
+
 # News roundup pool size. Raised 12 → 15 on 2026-07-08: a 406-word roundup
 # shipped a 14-minute episode — the roundup carries the runtime alongside the
 # Deep Dive, so it needs more stories to draw from.
@@ -1235,9 +1240,13 @@ def _build_newsletter_articles(newsletter_items: list, today_theme: str, brave_c
     For URL-only newsletters (body too short to be meaningful) this calls
     enrich_deep_dive_with_brave() on each article so Claude has real content to
     work from rather than just a URL.  Up to 3 URLs per newsletter are used.
+
+    Uses a short-lived in-memory cache so repeated newsletter evaluations
+    don't re-run the same Brave+Claude fetch for identical URLs within one run.
     """
     theme_keywords = _build_theme_keywords(today_theme)
     anti_keywords = _build_theme_anti_keywords(today_theme)
+    brave_cache: dict[str, str] = {}
 
     articles = []
     for item in newsletter_items:
@@ -1250,7 +1259,9 @@ def _build_newsletter_articles(newsletter_items: list, today_theme: str, brave_c
         for url in item.get("extracted_urls", [])[:3]:
             art = build_email_newsletter_article(item, url, theme_keywords, anti_keywords)
             if is_url_only and brave_client:
-                brave_ctx = enrich_deep_dive_with_brave([art], today_theme, brave_client)
+                if url not in brave_cache:
+                    brave_cache[url] = enrich_deep_dive_with_brave([art], today_theme, brave_client)
+                brave_ctx = brave_cache[url]
                 if brave_ctx:
                     art["_brave_context"] = brave_ctx
             articles.append(art)
@@ -6427,6 +6438,10 @@ def main():
         print(f"   Pre-polish quality scan: {_raw_quality_score['total_hits']} pattern hits "
               f"(closing URL repeats: {_raw_quality_score['pattern_hits'].get('closing_url_repetition', 0)})")
 
+        # Optional fast-path: skip rewrite when the script is already clean.
+        if PODCAST_SKIP_CLEAN_POLISH and _raw_quality_score.get("total_hits", 999) <= CLEAN_POLISH_MAX_HITS:
+            print("✨ Skipping polish: clean script fast-path enabled")
+            debate_summary = None
         # Post-processing: polish + fact-check + debate summary
         # Try batch API first (50% cost discount), fall back to the agentic
         # real-time polish+factcheck loop (which resolves unanswered factual
