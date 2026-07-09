@@ -240,9 +240,36 @@ OPUS_REVIEW_ARTICLE_THRESHOLD = int(os.getenv("OPUS_REVIEW_ARTICLE_THRESHOLD", "
 OPUS_QUALITY_HIT_THRESHOLD = int(os.getenv("OPUS_QUALITY_HIT_THRESHOLD", "3"))
 
 # When PODCAST_SKIP_CLEAN_POLISH=1 and total_hits <= CLEAN_POLISH_MAX_HITS,
-# the polish/rewrite pass is skipped. Default is off to preserve existing behavior.
+# skip the full polish+factcheck rewrite and keep the raw script.
 PODCAST_SKIP_CLEAN_POLISH = os.getenv("PODCAST_SKIP_CLEAN_POLISH", "0") == "1"
-CLEAN_POLISH_MAX_HITS = int(os.getenv("CLEAN_POLISH_MAX_HITS", "1"))
+CLEAN_POLISH_MAX_HITS = int(os.getenv("CLEAN_POLISH_MAX_HITS", "2"))
+# Cap per-run Brave API fan-out. Search path and deep-dive path each respect their own limit/cooling:
+#   PODCAST_BRAVE_SEARCH_CALL_LIMIT=6      — max search calls across newsletter coverage
+#   PODCAST_BRAVE_SEARCH_COOLDOWN_SECS=0   — minimum seconds between calls; 0 disables
+#   PODCAST_BRAVE_DEEP_DIVE_CALL_LIMIT=8   — max deep-dive research calls
+#   PODCAST_BRAVE_DEEP_DIVE_COOLDOWN_SECS=0
+BRAVE_SEARCH_CALL_LIMIT = int(os.getenv("PODCAST_BRAVE_SEARCH_CALL_LIMIT", "0"))  # 0=disabled
+BRAVE_SEARCH_COOLDOWN_SECS = float(os.getenv("PODCAST_BRAVE_SEARCH_COOLDOWN_SECS", "0"))
+BRAVE_DEEP_DIVE_CALL_LIMIT = int(os.getenv("PODCAST_BRAVE_DEEP_DIVE_CALL_LIMIT", "0"))
+BRAVE_DEEP_DIVE_COOLDOWN_SECS = float(os.getenv("PODCAST_BRAVE_DEEP_DIVE_COOLDOWN_SECS", "0"))
+DEEP_DIVE_INJECT_DISCIPLINE_TAGS = os.getenv("PODCAST_DEEP_DIVE_INJECT_DISCIPLINE_TAGS", "0") == "1"
+
+# prompt slice registry — only append injected context when caller opts in
+_PROMPT_SLICES = {
+    "weather": False,
+    "psa_notable_dates": False,
+    "production_disclosures": False,
+    "discipline_note": False,
+    "sparse_source_note": False,
+}
+
+
+def _register_prompt_slice(name: str, enabled: bool):
+    _PROMPT_SLICES[name] = enabled
+
+
+def _is_prompt_slice_enabled(name: str) -> bool:
+    return _PROMPT_SLICES.get(name, False)
 
 # News roundup pool size. Raised 12 → 15 on 2026-07-08: a 406-word roundup
 # shipped a 14-minute episode — the roundup carries the runtime alongside the
@@ -711,7 +738,7 @@ def _fetch_article_body(url, brave_key=None, title=None):
         queries.append(url)        # URL search as fallback
         best = body
         for q in queries:
-            for r in _brave_search(q, brave_key, count=2):
+            for r in _brave_search_rate_limit(q, brave_key, count=2):
                 desc = r.get("description", "")
                 if len(desc) > len(best):
                     best = desc
@@ -1430,6 +1457,41 @@ def fact_check_deep_dive(script, news_articles, deep_dive_articles):
 # Brave Search enrichment for daily deep dives
 # ---------------------------------------------------------------------------
 
+_BRAVE_SEARCH_STATE = {"search_calls": 0, "search_ts": 0.0, "deep_calls": 0, "deep_ts": 0.0}
+
+
+def _brave_search_rate_limit(query, api_key, count=5):
+    now = time.time()
+    state = _BRAVE_SEARCH_STATE
+    limit = BRAVE_SEARCH_CALL_LIMIT
+    if limit > 0 and state["search_calls"] >= limit:
+        print("  Brave search call limit reached; skipping additional searches")
+        return []
+    if BRAVE_SEARCH_COOLDOWN_SECS > 0 and (now - state["search_ts"]) < BRAVE_SEARCH_COOLDOWN_SECS:
+        wait = BRAVE_SEARCH_COOLDOWN_SECS - (now - state["search_ts"])
+        print(f"  Brave search cooldown: sleeping {wait:.1f}s")
+        time.sleep(wait)
+    state["search_calls"] += 1
+    state["search_ts"] = now
+    return _brave_search(query, api_key, count=count)
+
+
+def _brave_deep_dive_rate_limit(query, api_key, count=5):
+    now = time.time()
+    state = _BRAVE_SEARCH_STATE
+    limit = BRAVE_DEEP_DIVE_CALL_LIMIT
+    if limit > 0 and state["deep_calls"] >= limit:
+        print("  Brave deep-dive call limit reached; stopping additional searches")
+        return []
+    if BRAVE_DEEP_DIVE_COOLDOWN_SECS > 0 and (now - state["deep_ts"]) < BRAVE_DEEP_DIVE_COOLDOWN_SECS:
+        wait = BRAVE_DEEP_DIVE_COOLDOWN_SECS - (now - state["deep_ts"])
+        print(f"  Brave deep-dive cooldown: sleeping {wait:.1f}s")
+        time.sleep(wait)
+    state["deep_calls"] += 1
+    state["deep_ts"] = now
+    return _brave_search(query, api_key, count=count)
+
+
 def _brave_search(query, api_key, count=5):
     """Call Brave Search API and return a list of result dicts."""
     try:
@@ -1527,7 +1589,7 @@ def enrich_deep_dive_with_brave(deep_dive_articles, theme_name, client):
     results = []
     for query in queries:
         print(f"    🌐 Searching: {query[:70]}")
-        for r in _brave_search(query, brave_key, count=4):
+        for r in _brave_search_rate_limit(query, brave_key, count=4):
             if r["url"] not in existing_urls:
                 existing_urls.add(r["url"])
                 results.append(r)
@@ -1687,7 +1749,7 @@ def _web_search_tool_executor(tool_input):
         if answer:
             return answer
 
-    hits = _brave_search(query, brave_key, count=4)
+    hits = _brave_search_rate_limit(query, brave_key, count=4)
     if not hits:
         return "No results found."
 
@@ -2015,7 +2077,7 @@ def _resolve_script_questions_with_brave(script, brave_key, client):
             continue
 
         # Fall back to raw snippets if the summarizer wasn't triggered for this query.
-        hits = _brave_search(query, brave_key, count=3)
+        hits = _brave_search_rate_limit(query, brave_key, count=3)
         if hits:
             snippets = " | ".join(
                 h["description"][:150] for h in hits if h.get("description")
@@ -4003,6 +4065,18 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         return f"- [{source}] {title}{pub_tag}\n  {summary}... (AI Score: {score}){body_line}"
 
     deep_dive_text = "\n".join([_format_deep_dive_article(a) for a in deep_dive_articles])
+
+    # Suppress thin discipline metadata on deep-dive prompt inputs unless opted in.
+    if not DEEP_DIVE_INJECT_DISCIPLINE_TAGS and deep_dive_articles:
+        _grouped = {}
+        for a in deep_dive_articles:
+            _k = a.get('_discipline')
+            if _k:
+                _grouped.setdefault(_k, []).append(a)
+        if _grouped:
+            for key, group in _grouped.items():
+                if len(group) == 1:
+                    group[0]['_discipline'] = None
 
     # When most articles lack body text, warn Claude not to invent policy/bill details
     _dd_with_body = sum(1 for a in deep_dive_articles if len(a.get('_body', '') or '') >= 100)
