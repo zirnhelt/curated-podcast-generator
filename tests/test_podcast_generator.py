@@ -29,6 +29,8 @@ from podcast_generator import (
     generate_episode_transcript,
     generate_podcast_rss_feed,
     sync_site_to_r2,
+    get_weekly_changelog,
+    generate_meta_moment_text,
 )
 
 
@@ -127,6 +129,49 @@ class TestParseScriptIntoSegments:
     def test_empty_spotlight_when_absent(self):
         segments = parse_script_into_segments(self.SAMPLE_SCRIPT)
         assert segments["community_spotlight"] == []
+
+    SCRIPT_WITH_META_MOMENT = """
+**RILEY:** Welcome to the show, it's Sunday.
+**CASEY:** Good to be here, let's get started.
+
+**NEWS ROUNDUP**
+**RILEY:** First up, a big story about AI regulation in Canada.
+**CASEY:** That's an important development for rural communities.
+
+**META MOMENT**
+**RILEY:** Quick meta moment before we move on — we tightened up the news roundup rules this week.
+**CASEY:** Nice, that transition always felt a little clunky.
+
+**COMMUNITY SPOTLIGHT**
+**CASEY:** Before we dive deeper, a quick shout-out to Scout Island Nature Centre, a volunteer-run gem right here in Williams Lake.
+**RILEY:** They do fantastic work with kids and nature education.
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Wild Spaces & Outdoor Life**
+**CASEY:** Let's talk about trail infrastructure in the Cariboo.
+**RILEY:** Great topic. Several communities have launched new trail projects.
+"""
+
+    def test_meta_moment_section(self):
+        segments = parse_script_into_segments(self.SCRIPT_WITH_META_MOMENT)
+        assert len(segments["meta_moment"]) == 2
+        assert segments["meta_moment"][0]["speaker"] == "riley"
+        assert "tightened up the news roundup" in segments["meta_moment"][0]["text"]
+
+    def test_meta_moment_does_not_leak_into_news_or_spotlight(self):
+        segments = parse_script_into_segments(self.SCRIPT_WITH_META_MOMENT)
+        for seg in segments["news"]:
+            assert "meta moment" not in seg["text"].lower()
+        for seg in segments["community_spotlight"]:
+            assert "meta moment" not in seg["text"].lower()
+
+    def test_community_spotlight_still_parses_after_meta_moment(self):
+        segments = parse_script_into_segments(self.SCRIPT_WITH_META_MOMENT)
+        assert len(segments["community_spotlight"]) == 2
+        assert "Scout Island" in segments["community_spotlight"][0]["text"]
+
+    def test_empty_meta_moment_when_absent(self):
+        segments = parse_script_into_segments(self.SAMPLE_SCRIPT)
+        assert segments["meta_moment"] == []
 
     def test_filters_short_text(self):
         """Segments with <= 10 chars of text should be dropped."""
@@ -1116,3 +1161,52 @@ class TestSyncSiteToR2Ordering:
         sync_site_to_r2()
 
         assert "::warning::" in capsys.readouterr().out
+
+
+class TestGetWeeklyChangelog:
+    def test_empty_git_log_returns_empty_string(self, monkeypatch):
+        monkeypatch.setattr("podcast_generator._git", lambda *a, **k: "")
+        assert get_weekly_changelog() == ""
+
+    def test_formats_commit_subjects_as_bullets(self, monkeypatch):
+        monkeypatch.setattr(
+            "podcast_generator._git",
+            lambda *a, **k: "Tighten news roundup transition rules\nAdd Meta Moment segment",
+        )
+        result = get_weekly_changelog()
+        assert result == (
+            "- Tighten news roundup transition rules\n"
+            "- Add Meta Moment segment"
+        )
+
+
+class TestGenerateMetaMomentText:
+    def test_empty_changelog_returns_empty_string(self):
+        assert generate_meta_moment_text("") == ""
+
+    def test_no_host_line_available_returns_empty_string(self, monkeypatch):
+        monkeypatch.setattr("podcast_generator._generate_host_line", lambda *a, **k: "")
+        assert generate_meta_moment_text("- Some change") == ""
+
+    def test_builds_block_with_both_hosts(self, monkeypatch):
+        responses = iter([
+            "Quick meta moment before we move on — we cleaned up the transitions.",
+            "Nice, that always felt a little clunky.",
+        ])
+        monkeypatch.setattr(
+            "podcast_generator._generate_host_line", lambda *a, **k: next(responses)
+        )
+        block = generate_meta_moment_text("- Tighten news roundup transitions")
+        assert block == (
+            "**META MOMENT**\n"
+            "**RILEY:** Quick meta moment before we move on — we cleaned up the transitions.\n"
+            "**CASEY:** Nice, that always felt a little clunky."
+        )
+
+    def test_builds_riley_only_block_when_casey_line_missing(self, monkeypatch):
+        responses = iter(["Quick meta moment before we move on.", ""])
+        monkeypatch.setattr(
+            "podcast_generator._generate_host_line", lambda *a, **k: next(responses)
+        )
+        block = generate_meta_moment_text("- Tighten news roundup transitions")
+        assert block == "**META MOMENT**\n**RILEY:** Quick meta moment before we move on."
