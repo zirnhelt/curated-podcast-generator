@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] This app turned me into the music creator that G",
       "AI",
       "[TechRadar] Over 14 million login credentials leaked from si",
       "[TechRadar] Google says Android's built-in earthquake warnin",
@@ -10,7 +9,8 @@
       "[Android Authority] Anthropic\u2019s most advanced AI models coul",
       "[TechRadar] Fires linked to solar panels force Suffolk counc",
       "[TechCrunch] Station F ramps up as a launchpad for Europe\u2019s ",
-      "[TechRadar] Web hosting giant claims you can now sell online"
+      "[TechRadar] Web hosting giant claims you can now sell online",
+      "[TechCrunch] US government says it got hacked \u2014 again"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -32,11 +32,6 @@
       {
         "date": "2026-06-12",
         "clue": "funding-risk: ~ \u2014 added solar power and iNaturalist complexity to sustainability question",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-05-21",
-        "clue": "Indigenous-tech:~ \u2014 Acknowledged pragmatism-vs-governance tension as simultaneous truths",
         "occurrences": 2
       },
       {
@@ -125,9 +120,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-07-08",
-        "clue": "structural-lens:+ \u2014 Shifted from market solutions to regulatory/procurement leverage",
-        "occurrences": 1
+        "date": "2026-07-09",
+        "clue": "structural-lens:+ \u2014 Moved from abstract coproduction critique to concrete governance test",
+        "occurrences": 2
       }
     ],
     "core_memories": [
@@ -219,6 +214,11 @@
       {
         "formed": "2026-06-25",
         "signal": "pilot-skepticism:~ \u2014 Acknowledged 'opening moves' optimism can mask non-follow-through.",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-07-09",
+        "signal": "Indigenous-tech:~ \u2014 Acknowledged Osoyoos action as distinct from data partnership models",
         "occurrences": 3
       }
     ]
@@ -334,11 +334,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-06-29",
-        "clue": "pilot-skepticism:+ \u2014 Deepened skepticism about coordination models and institutional follow-through",
-        "occurrences": 2
-      },
-      {
         "date": "2026-07-05",
         "clue": "evidence-bar:x \u2014 Conceded Christmas bird count as valid continuity model",
         "occurrences": 2
@@ -356,6 +351,11 @@
       {
         "date": "2026-07-05",
         "clue": "Indigenous-tech:~ \u2014 Named knowledge-credentialing gap as parallel to detection methodology blindness",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-07-09",
+        "clue": "funding-risk:+ \u2014 Explicitly named server costs as structural accountability trap",
         "occurrences": 1
       }
     ],
