@@ -1,62 +1,4 @@
 {
-  "2026-04-09": {
-    "timestamp": 1775734532.79569,
-    "date": "2026-04-09",
-    "theme": "Indigenous Lands & Innovation",
-    "central_question": "When Indigenous communities share ecological knowledge with Western institutions, how can that sharing preserve Indigenous data sovereignty and prevent knowledge systems from being absorbed or devalued?",
-    "riley_position": "Indigenous and Western knowledge systems are complementary rather than substitutive; braiding them as distinct strands preserves the integrity of both, and communities should begin building governance and knowledge infrastructure now despite funding constraints, because the window for encoding intergenerational ecological understanding is closing.",
-    "riley_key_evidence": [
-      "Selenium contamination cases where Indigenous community reports of sick animals and declining fish preceded formal monitoring data by years",
-      "Clam garden research between marine biologists and Lekwungen and W\u0331S\u00c1NE\u0106 peoples shaped research questions from the nations first, not by university priorities",
-      "Guardian Stewards programs run by B.C. First Nations where data goes to the nation first before provincial/federal sharing"
-    ],
-    "casey_position": "Data sovereignty requires more than access control\u2014it requires defining what counts as data first; communities must preserve decision-making control over the pace and architecture of knowledge work and avoid accepting under-resourced programs that create dependencies without leveraging power to negotiate terms.",
-    "casey_key_evidence": [
-      "Broadband rollouts, environmental monitoring, and health data systems where short-term grants expire leaving communities with obligations but no infrastructure",
-      "Traditional ecological knowledge evolved in a climate regime that no longer fully applies; both Indigenous and Western systems are being stress-tested by novel conditions simultaneously",
-      "Guardian programs covering millions of hectares on budgets inadequate relative to scope, representing downloading of responsibility without resources"
-    ],
-    "resolution": "They converged on the principle that both knowledge systems are imperfect and complementary, neither sufficient alone; they agreed the epistemological framework\u2014what counts as knowledge\u2014must precede data architecture, and that this is a harder problem than governance because it requires different ways of knowing to coexist without one consuming the other.",
-    "topics_covered": [
-      "Data sovereignty and decolonizing data systems",
-      "Knowledge braiding versus integration",
-      "Indigenous fire stewardship and clam garden restoration",
-      "Traditional ecological knowledge versus Western scientific monitoring",
-      "Food sovereignty and ecosystem restoration projects",
-      "Funding gaps in Guardian Stewards and community-controlled programs"
-    ],
-    "calls_to_action": [
-      "A Cariboo community could bring together Elders, land stewards, and locally available technical capacity to spend real time answering the foundational question: what counts as data from an Indigenous stewardship perspective for this landscape, and what are the indicators that actually matter?\u2014without immediately building a database, just establishing epistemology first so the architecture follows correctly.",
-      "Communities should preserve optionality by assessing what knowledge-sharing with provincial institutions actually costs before committing to short-term grant cycles, rather than accepting underfunded programs that lock in relationships before the community has leverage to negotiate terms.",
-      "Send feedback and perspectives on Indigenous data governance to feedback at cariboo signals dot c-a."
-    ]
-  },
-  "2026-04-10": {
-    "timestamp": 1775820271.615789,
-    "date": "2026-04-10",
-    "theme": "Wild Spaces & Outdoor Life",
-    "central_question": "Can technology effectively support Indigenous-led wildfire management and cultural burning practices, or does it risk substituting for community knowledge and authority?",
-    "riley_position": "Technology tools like fire behavior modeling and sensors can meaningfully support Nation-led prescribed burn programs if deployed as a service layer to community-defined priorities rather than as a replacement for traditional knowledge.",
-    "riley_key_evidence": [
-      "Canadian Forest Fire Behavior Prediction System now has richer input data including high-resolution fuel maps and drone survey data",
-      "Low-cost monitoring infrastructure (acoustic sensors, weather stations, fuel moisture sensors) could be deployed by Nations at fraction of provincial program cost if data ownership is secured upfront",
-      "OCAP principles (Ownership, Control, Access, Possession) provide framework for structuring technology partnerships with academic institutions"
-    ],
-    "casey_position": "The foundational work is restoring Indigenous governance authority and sustained funding models; technology should follow from community-defined land stewardship priorities rather than driving them, and the restoration of cultural burning requires rebuilding social and pedagogical structures, not just deploying tools.",
-    "casey_key_evidence": [
-      "T\u015dilhqot'in Nation's 2014 Supreme Court title decision established jurisdiction but not automatic operational funding for land management programs",
-      "Current funding for Nation-led prescribed burn programs relies on patchwork of one-year project grants rather than structural, sustained revenue-sharing models",
-      "Interior Salish women leading cultural burning carry knowledge traditionally transmitted through plant gathering and land stewardship roles disrupted by colonization"
-    ],
-    "resolution": "Casey and Riley reached agreement that technology should serve as a support layer for Indigenous-led stewardship rather than substitute for it, and that the correct priority is securing governance authority and sustained funding before deploying tools. They concurred that the governance question must be answered first, with technology following from community-defined needs.",
-    "topics_covered": [
-      "Role of Indigenous women in reclaiming cultural burning practices and dual expertise as firefighters and cultural values experts",
-      "Funding architecture and governance models for Nation-led land stewardship versus project-based grant cycles",
-      "Integration of fire behavior modeling technology with traditional ecological knowledge in prescribed burn planning",
-      "Data sovereignty, OCAP principles, and knowledge extraction risks in academic-Indigenous community partnerships",
-      "Restoration of pedagogical and social structures for knowledge transmission alongside technical practice restoration"
-    ]
-  },
   "2026-04-11": {
     "timestamp": 1775904029.871841,
     "date": "2026-04-11",
@@ -2367,6 +2309,37 @@
       "Library programs and repair caf\u00e9s as community knowledge infrastructure",
       "Open-source AI models running on older hardware as repair-culture infrastructure",
       "Provincial procurement policy as a lever to shift manufacturer incentives"
+    ]
+  },
+  "2026-07-09": {
+    "timestamp": 1783597360.960518,
+    "date": "2026-07-09",
+    "theme": "Indigenous Lands & Innovation",
+    "central_question": "Does the term 'coproduced' in Indigenous data and land management projects guarantee genuine partnership and control, or does it mask arrangements that still favor outside institutions?",
+    "riley_position": "Coproduction can represent genuine partnership if Indigenous Nations control the underlying data and access from the beginning, making it a fundamentally different legal instrument than top-down impositions, with real leverage implications for future governance.",
+    "riley_key_evidence": [
+      "Permafrost Pathways project describes participants as transforming spatial data into a tool for empowerment, suggesting Indigenous partners shape what gets tracked from the start",
+      "Osoyoos Indian Band is exercising existing land management authority independently by restoring the Nk'Mip fire area with their own species selection, regardless of reconciliation agreement outcomes",
+      "If a Nation's dataset becomes the legal reference regulators must consult before approving development, funding relationships flip from charity to leverage that doesn't evaporate when grant cycles end"
+    ],
+    "casey_position": "The term 'coproduced' obscures persistent control problems: outside institutions still own servers, publications, and decide which versions get cited in regulatory decisions, and there is no enforcement mechanism to make engagement-first the default across jurisdictions.",
+    "casey_key_evidence": [
+      "The Esquimalt and Nanaimo Railway land grant from 140 years ago without First Nations consent is still the document being argued over in active title claims today",
+      "Aamjiwnaang First Nation had to publicly demand engagement-first sequencing on a pipeline the same week Osoyoos reconciliation talks claimed to adopt it, showing the model hasn't become standard practice",
+      "OCAP (Ownership, Control, Access, Possession) questions about data\u2014who hosts it, who queries it in five years, who can revoke access\u2014remain unresolved by the word 'coproduced' alone"
+    ],
+    "resolution": "They agreed that genuine control requires Nations holding access decisions now while projects are new, and that the concrete test is not the word 'coproduced' but who can revoke access and control what happens to data in future years. Both acknowledged they were working from public materials and that ground-truth arrangements may differ.",
+    "topics_covered": [
+      "Data sovereignty and the OCAP framework (Ownership, Control, Access, Possession) in coproduced research",
+      "Sequencing of consultation: engagement before decisions are locked versus comment periods after the fact",
+      "Historical land grabs (Esquimalt and Nanaimo Railway) and their ongoing legal consequences",
+      "Indigenous Nations exercising existing authority independently versus waiting for formal governance agreements",
+      "Funding mechanisms and accountability when data might be used to challenge the same government ministry that funded it"
+    ],
+    "calls_to_action": [
+      "Any Cariboo Nation considering a coproduced dataset with a university or provincial ministry should negotiate a written data-hosting and access agreement before sensors go in the ground or researchers arrive.",
+      "Communities should raise directly at band council meetings or regional forestry tables: before sensors are deployed, who signs off on what happens to this data in year six when current decision-makers are no longer around to remember what was promised?",
+      "Anyone part of a Cariboo Nation or community organization working through a data agreement, or with corrections on how this episode characterized things, should contact feedback at cariboosignals.ca to share ground-truth experiences with data negotiations."
     ]
   }
 }

@@ -1,43 +1,4 @@
 {
-  "2026-06-17": {
-    "timestamp": 1781693364.605166,
-    "topics": [
-      "[Al Jazeera English] Geneva police use force as G7 protest e",
-      "[Al Jazeera English] Video shows aftermath of Iranian attack",
-      "[Toms Guide] I\u2019ve walked over 75,000 steps in the Columbia T",
-      "[STAT News] STAT+: AMA and lawmakers push back on AI care de",
-      "[TechRadar] Half of workers worry AI will still take their j",
-      "[Android Authority] Forget basic transcriptions: An upcoming",
-      "[Toms Guide] That dead phone in your drawer could power the ",
-      "Engadget review recap: Razr Ultra, AMD Radeon RX 9070 GRE an"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-06-17"
-  },
-  "2026-06-18": {
-    "timestamp": 1781777850.235174,
-    "topics": [
-      "EARLY EDITION: In conversation with Jeff",
-      "[Williams Lake Tribune] Clearwater mayor speaks at national ",
-      "[Al Jazeera English] Bolivia approves military measures agai",
-      "[Al Jazeera English] Pope Leo welcomed in Barcelona with tra",
-      "[Al Jazeera English] Kenyan graduates turn to AI tools for f",
-      "[Williams Lake Tribune] Indigenous policing accountability p",
-      "Welcome! You are invited to join a meeting: Indigenous Voice",
-      "University of Ottawa"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech"
-    ],
-    "date": "2026-06-18"
-  },
   "2026-06-19": {
     "timestamp": 1781864554.863835,
     "topics": [
@@ -419,5 +380,25 @@
       "technology adoption"
     ],
     "date": "2026-07-08"
+  },
+  "2026-07-09": {
+    "timestamp": 1783597359.020607,
+    "topics": [
+      "In the Arctic, Coproduced Maps Help Find Balance Under Press",
+      "[Al Jazeera English] Former rebel turned government ally pro",
+      "[BC Gov News] Negotiations, public engagement begin for reco",
+      "[The Guardian Global Development] Cancer cases expected to s",
+      "[The Narwhal] Osoyoos Indian Band plans to restore wildfire-",
+      "[Boing Boing] Scientists working to uncover space-based nucl",
+      "[TechCrunch] US government says it got hacked \u2014 again",
+      "From the Arctic to Australia, researchers demand respect for"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-07-09"
   }
 }
