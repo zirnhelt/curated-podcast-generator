@@ -6335,6 +6335,7 @@ def main():
             source_boost=source_boost_for_substitution,
         )
 
+<<<<<<< HEAD
         # Curate the roundup pool: cap to the segment budget, keep every
         # on-theme and BC-regional story, and prefer off-theme stories that
         # arrive with same-field siblings so the roundup's back half plays as
@@ -6349,6 +6350,8 @@ def main():
             for a in _roundup_dropped:
                 print(f"   ✂️  {a.get('title', '')[:70]}")
 
+=======
+>>>>>>> c8cf0b4 (perf: episode cost telemetry and sparse-news reorder)
         # Proactive research pass: identify analytical angles and run Brave for each.
         # Falls back to standard enrichment when no analytical questions are surfaced.
         brave_client = get_anthropic_client()
