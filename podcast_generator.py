@@ -20,6 +20,7 @@ import re
 import tempfile
 import zlib
 import httpx
+from itertools import groupby
 from urllib.parse import urlparse
 
 try:
@@ -3117,27 +3118,141 @@ def _infer_discipline(article, disciplines_config):
     return (best_group, best_discipline) if best_count > 0 else (None, None)
 
 
-def _group_by_discipline(articles):
-    """Re-sort articles so same broad-discipline-group articles are adjacent.
+def _article_source_name(article: dict) -> str:
+    """Best-effort source/outlet name for an article."""
+    authors = article.get('authors') or [{}]
+    return (authors[0].get('name') or article.get('source') or '').strip()
 
-    Groups are ordered by the score of their highest-scoring member (so the
-    overall lead story stays first). Score order is preserved within each group.
-    Unclassified articles (_discipline_group is None) are appended last,
-    maintaining their relative score order.
+
+def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
+    """Order News Roundup articles into labeled coherence blocks.
+
+    Sets `_roundup_block` on every non-bonus article and returns a new list
+    ordered block by block:
+    - 'theme': net-positive theme relevance (feed keyword matches, or local
+      keyword hits outweighing anti-keyword penalties) — the roundup's lead arc
+    - 'local': BC/regional outlets (podcast.json `local_sources`) — the show
+      never drops or buries local stories
+    - discipline group keys (e.g. 'physical_sciences'): off-theme articles
+      sharing a discipline group with at least one sibling, kept adjacent so
+      the roundup's back half plays as clusters instead of one-offs
+    - 'standalone': everything else, best feed score first
+    Bonus (_is_bonus) articles pass through unannotated at the end.
     """
-    placed, remaining = [], list(articles)
-    seen_groups = set()
-    while remaining:
-        anchor = remaining.pop(0)
-        placed.append(anchor)
-        group = anchor.get('_discipline_group')
-        if group and group not in seen_groups:
-            seen_groups.add(group)
-            same_group = [a for a in remaining if a.get('_discipline_group') == group]
-            for a in same_group:
-                remaining.remove(a)
-                placed.append(a)
-    return placed
+    # Strict keyword set: theme-name words + explicit config keywords only.
+    # _build_theme_keywords also folds in theme-description words, which are
+    # too generic ('tech', 'land', 'language') to gate block membership.
+    theme_info = next(
+        (i for i in CONFIG['themes'].values() if i['name'] == theme_name), None
+    )
+    theme_keywords = [w.lower() for w in theme_name.split() if len(w) > 3]
+    if theme_info:
+        theme_keywords.extend(k.lower() for k in theme_info.get('keywords', []))
+    anti_keywords = _build_theme_anti_keywords(theme_name)
+    source_boost = _build_theme_source_boost(theme_name)
+    local_sources = [s.lower() for s in CONFIG['podcast'].get('local_sources', [])]
+    disciplines_config = CONFIG.get('disciplines', {})
+
+    def relevance(a):
+        return _local_theme_relevance(
+            a, theme_keywords, source_boost=source_boost, anti_keywords=anti_keywords
+        )
+
+    def boosted(a):
+        return a.get('_boosted_score', a.get('ai_score', 0))
+
+    pool = [a for a in articles if not a.get('_is_bonus')]
+    bonus = [a for a in articles if a.get('_is_bonus')]
+
+    theme_block, local_block, rest = [], [], []
+    for a in pool:
+        # relevance ≥ 2 means at least one net keyword hit survives the
+        # anti-keyword penalty — score alone (boosted/100 + source boost)
+        # cannot reach 2 without a keyword hit.
+        if a.get('_keyword_matches', 0) > 0 or relevance(a) >= 2:
+            a['_roundup_block'] = 'theme'
+            theme_block.append(a)
+        elif any(s in _article_source_name(a).lower() for s in local_sources):
+            a['_roundup_block'] = 'local'
+            local_block.append(a)
+        else:
+            rest.append(a)
+
+    clusters, standalone = {}, []
+    for a in rest:
+        group, _ = _infer_discipline(a, disciplines_config)
+        if group:
+            clusters.setdefault(group, []).append(a)
+        else:
+            standalone.append(a)
+    # A cluster of one connects to nothing — demote to standalone
+    for group in list(clusters):
+        if len(clusters[group]) < 2:
+            standalone.extend(clusters.pop(group))
+
+    for group, members in clusters.items():
+        for a in members:
+            a['_roundup_block'] = group
+        members.sort(key=boosted, reverse=True)
+    for a in standalone:
+        a['_roundup_block'] = 'standalone'
+
+    theme_block.sort(key=relevance, reverse=True)
+    local_block.sort(key=boosted, reverse=True)
+    standalone.sort(key=boosted, reverse=True)
+    # Bigger clusters first — the most connective material leads the back half
+    ordered_clusters = sorted(
+        clusters.values(), key=lambda ms: (len(ms), boosted(ms[0])), reverse=True
+    )
+    clustered = [a for members in ordered_clusters for a in members]
+    return theme_block + local_block + clustered + standalone + bonus
+
+
+def _curate_roundup_pool(articles: list, theme_name: str, pool_size: int) -> tuple:
+    """Cap the News Roundup pool at `pool_size` while maximizing coherence.
+
+    Keeps every on-theme and local/regional article (even past the cap), then
+    fills remaining slots with off-theme discipline clusters (never stranding
+    a lone cluster member) and finally the best standalones. Bonus articles
+    pass through uncapped. Returns (kept, dropped); dropped articles never
+    reach citations, so dedup lets them resurface on a better-matched theme day.
+    """
+    ordered = _annotate_roundup_blocks(articles, theme_name)
+    bonus = [a for a in ordered if a.get('_is_bonus')]
+    pool = [a for a in ordered if not a.get('_is_bonus')]
+    if len(pool) <= pool_size:
+        return pool + bonus, []
+
+    protected = [a for a in pool if a['_roundup_block'] in ('theme', 'local')]
+    fillers = [a for a in pool if a['_roundup_block'] not in ('theme', 'local')]
+
+    kept_fill, dropped = [], []
+    for block, members_iter in groupby(fillers, key=lambda a: a['_roundup_block']):
+        members = list(members_iter)
+        room = pool_size - len(protected) - len(kept_fill)
+        # Don't strand a single cluster member with nothing to bridge to
+        if room <= 0 or (block != 'standalone' and room < 2):
+            dropped.extend(members)
+            continue
+        kept_fill.extend(members[:room])
+        dropped.extend(members[room:])
+    return protected + kept_fill + bonus, dropped
+
+
+def _keyword_hit_count(text: str, keywords) -> int:
+    """Count word-boundary keyword hits in text (tolerating a plural 's').
+
+    Word boundaries stop substring false positives ('land' in "island",
+    'tech' in "TechCrunch"); the optional trailing 's' keeps singular
+    keywords matching plural mentions ('first nation' → "First Nations").
+    Multi-word keywords count once per word, matching the historical
+    substring scorer's weighting.
+    """
+    hits = 0
+    for kw in keywords:
+        if re.search(r'\b' + re.escape(kw) + r's?\b', text):
+            hits += len(kw.split())
+    return hits
 
 
 def _local_theme_relevance(article, theme_keywords, source_boost=None, anti_keywords=None):
@@ -3149,13 +3264,15 @@ def _local_theme_relevance(article, theme_keywords, source_boost=None, anti_keyw
     minus 2 points per anti_keyword hit (terms signaling the article really
     belongs to a neighboring theme).
     """
-    text = f"{article.get('title', '')} {article.get('summary', '')}".lower()
-    keyword_hits = sum(len(kw.split()) for kw in theme_keywords if kw in text)
+    # Strip a leading "[Source]" tag so outlet names never count as theme
+    # keywords (e.g. 'guardian' matching "[The Guardian ...]")
+    title = re.sub(r'^\W*\[[^\]]*\]\s*', '', article.get('title', ''))
+    text = f"{title} {article.get('summary', '')}".lower()
+    keyword_hits = _keyword_hit_count(text, theme_keywords)
     boosted = article.get('_boosted_score', article.get('ai_score', 0)) / 100.0
     score = keyword_hits * 2 + boosted
     if anti_keywords:
-        anti_hits = sum(len(kw.split()) for kw in anti_keywords if kw in text)
-        score -= anti_hits * 2
+        score -= _keyword_hit_count(text, anti_keywords) * 2
     if source_boost and article.get('source', '').lower() in source_boost:
         score += 1
     return score
@@ -3813,35 +3930,13 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         on_theme_news = all_articles
         bonus_articles = []
 
-    # Sort on-theme news by the same local theme-relevance scoring used to pick
-    # Deep Dive articles (keyword hits, anti_keyword penalties, source_boost) so
-    # the News Roundup ordering stays consistent with what got selected for the
-    # Deep Dive — articles that score poorly against today's theme (e.g. ones
-    # that really belong to a neighboring theme) sink toward the bonus end of
-    # the roundup instead of leading it.
-    _roundup_theme_keywords = _build_theme_keywords(theme_name)
-    _roundup_anti_keywords = _build_theme_anti_keywords(theme_name)
-    _roundup_source_boost = _build_theme_source_boost(theme_name)
-    on_theme_news = sorted(
-        on_theme_news,
-        key=lambda a: _local_theme_relevance(
-            a, _roundup_theme_keywords,
-            source_boost=_roundup_source_boost,
-            anti_keywords=_roundup_anti_keywords,
-        ),
-        reverse=True,
-    )
-
-    # Annotate articles with discipline metadata, then apply proximity sort so
-    # articles from the same broad discipline group are presented consecutively.
-    # This gives Claude explicit grouping signals and reinforces the CONNECTING
-    # THREADS instruction to place related disciplines together.
-    disciplines_config = CONFIG.get('disciplines', {})
-    for _a in on_theme_news:
-        _g, _d = _infer_discipline(_a, disciplines_config)
-        _a['_discipline_group'] = _g
-        _a['_discipline'] = _d
-    on_theme_news = _group_by_discipline(on_theme_news)
+    # Order the roundup into labeled coherence blocks (on-theme arc, local/
+    # regional, same-field clusters, standalones) so the prompt carries
+    # explicit grouping structure instead of a flat theme-sorted list. Main
+    # already curates/caps the pool via _curate_roundup_pool; annotation here
+    # is deterministic, so re-running it reproduces the same block order.
+    on_theme_news = _annotate_roundup_blocks(on_theme_news, theme_name)
+    disciplines_groups = CONFIG.get('disciplines', {}).get('groups', {})
 
     def _format_news_article(a):
         """Format a news article for the script-generation prompt."""
@@ -3853,23 +3948,32 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         score = a.get('_boosted_score', a.get('ai_score', 0))
         theme_tag = ' [✓THEME]' if a.get('_keyword_matches', 0) > 0 else ''
         cluster_tag = f' [SAME STORY: {a["_topic_cluster"]}]' if a.get('_topic_cluster') else ''
-        # Include discipline field tag so Claude can group related disciplines.
-        disc_tag = ''
-        disc_group = a.get('_discipline_group')
-        disc_key = a.get('_discipline')
-        if disc_group and disc_key:
-            groups = disciplines_config.get('groups', {})
-            group_label = groups.get(disc_group, {}).get('label', '')
-            disc_label = groups.get(disc_group, {}).get('disciplines', {}).get(disc_key, {}).get('label', '')
-            if group_label and disc_label:
-                disc_tag = f' [FIELD: {group_label} / {disc_label}]'
         body = a.get('_body', '')
         body_line = f"\n  Content: {body[:500]}" if body else ""
         pub_tag = _format_pub_date_tag(a)
-        return f"- [{source}] {title}{theme_tag}{cluster_tag}{disc_tag}{pub_tag}\n  {summary}... (Relevance: {score}){body_line}"
+        return f"- [{source}] {title}{theme_tag}{cluster_tag}{pub_tag}\n  {summary}... (Relevance: {score}){body_line}"
 
-    # Format on-theme news articles
-    news_text = "\n".join([_format_news_article(a) for a in on_theme_news])
+    def _roundup_block_header(block, count):
+        if block == 'theme':
+            return (f"◆ ON-THEME ({count}) — these stories share today's lens; "
+                    f"open the roundup with them as one connected arc")
+        if block == 'local':
+            return (f"◆ CLOSER TO HOME ({count}) — BC and regional stories; "
+                    f"cover every one")
+        if block == 'standalone':
+            return (f"◆ ALSO NOTEWORTHY ({count}) — standalone stories; brief "
+                    f"coverage, clean pivots, no forced segues")
+        label = disciplines_groups.get(block, {}).get('label', block)
+        return (f"◆ CLUSTER: {label.upper()} ({count}) — same field; cover "
+                f"back-to-back and bridge on what they share")
+
+    # Format on-theme news articles under their block headers
+    _sections = []
+    for _block, _members in groupby(on_theme_news, key=lambda a: a.get('_roundup_block', 'standalone')):
+        _members = list(_members)
+        _articles_text = "\n".join(_format_news_article(a) for a in _members)
+        _sections.append(f"{_roundup_block_header(_block, len(_members))}\n{_articles_text}")
+    news_text = "\n\n".join(_sections)
 
     # Format bonus (off-theme) articles separately
     if bonus_articles:
@@ -6230,6 +6334,20 @@ def main():
             theme_keywords=theme_keywords_for_substitution,
             source_boost=source_boost_for_substitution,
         )
+
+        # Curate the roundup pool: cap to the segment budget, keep every
+        # on-theme and BC-regional story, and prefer off-theme stories that
+        # arrive with same-field siblings so the roundup's back half plays as
+        # connected mini-arcs instead of disconnected one-offs. Dropped
+        # articles never reach citations, so dedup lets them resurface on a
+        # better-matched theme day.
+        _pool_size = SATURDAY_NEWS_ROUNDUP_COUNT if today_weekday == 5 else NEWS_ROUNDUP_COUNT
+        news_articles, _roundup_dropped = _curate_roundup_pool(news_articles, today_theme, _pool_size)
+        if _roundup_dropped:
+            print(f"🧵 Roundup pool: kept {len(news_articles)} articles, "
+                  f"dropped {len(_roundup_dropped)} unconnected off-theme:")
+            for a in _roundup_dropped:
+                print(f"   ✂️  {a.get('title', '')[:70]}")
 
         # Proactive research pass: identify analytical angles and run Brave for each.
         # Falls back to standard enrichment when no analytical questions are surfaced.
