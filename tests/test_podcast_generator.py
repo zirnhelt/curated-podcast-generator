@@ -31,6 +31,8 @@ from podcast_generator import (
     sync_site_to_r2,
     get_weekly_changelog,
     generate_meta_moment_text,
+    _annotate_roundup_blocks,
+    _curate_roundup_pool,
 )
 
 
@@ -1210,3 +1212,85 @@ class TestGenerateMetaMomentText:
         )
         block = generate_meta_moment_text("- Tighten news roundup transitions")
         assert block == "**META MOMENT**\n**RILEY:** Quick meta moment before we move on."
+
+
+# Synthetic theme name absent from themes.json so only its name words
+# ("zebra", "gardening") act as theme keywords — keeps these tests
+# independent of the real theme keyword/description lists.
+_FAKE_THEME = "Zebra Gardening"
+
+
+def _roundup_fixture_articles():
+    return [
+        {"title": "Celebrity fashion week highlights", "url": "https://s1.com",
+         "_boosted_score": 80},
+        {"title": "Solar storm hits the magnetosphere", "url": "https://c1.com",
+         "_boosted_score": 60},
+        {"title": "Feed says on-theme", "url": "https://t2.com",
+         "_keyword_matches": 1, "_boosted_score": 50},
+        {"title": "Arena roof approved", "url": "https://l1.com",
+         "authors": [{"name": "Williams Lake Tribune"}], "_boosted_score": 40},
+        {"title": "Astronomers watch supernova explode in distant galaxy",
+         "url": "https://c2.com", "_boosted_score": 30},
+        {"title": "Zebra gardening breakthrough", "url": "https://t1.com",
+         "_boosted_score": 20},
+        {"title": "Bonus pick", "url": "https://b1.com", "_is_bonus": True},
+    ]
+
+
+class TestAnnotateRoundupBlocks:
+    def test_block_order_theme_local_cluster_standalone_bonus(self):
+        ordered = _annotate_roundup_blocks(_roundup_fixture_articles(), _FAKE_THEME)
+        blocks = [a.get("_roundup_block") for a in ordered]
+        assert blocks[:2] == ["theme", "theme"]
+        assert blocks[2] == "local"
+        assert blocks[3] == blocks[4] == "physical_sciences"
+        assert blocks[5] == "standalone"
+        assert ordered[-1]["title"] == "Bonus pick"
+        assert "_roundup_block" not in ordered[-1]
+
+    def test_keyword_hit_beats_feed_flag_in_theme_ordering(self):
+        ordered = _annotate_roundup_blocks(_roundup_fixture_articles(), _FAKE_THEME)
+        # Two local keyword hits (relevance ~4) outrank the feed-flagged
+        # article whose local relevance is only its boosted score
+        assert ordered[0]["title"] == "Zebra gardening breakthrough"
+        assert ordered[1]["title"] == "Feed says on-theme"
+
+    def test_lone_cluster_member_demoted_to_standalone(self):
+        articles = [
+            {"title": "Solar storm hits the magnetosphere", "url": "https://c1.com",
+             "_boosted_score": 60},
+            {"title": "Celebrity fashion week highlights", "url": "https://s1.com",
+             "_boosted_score": 80},
+        ]
+        ordered = _annotate_roundup_blocks(articles, _FAKE_THEME)
+        assert all(a["_roundup_block"] == "standalone" for a in ordered)
+        # Standalones sort by boosted score
+        assert ordered[0]["title"] == "Celebrity fashion week highlights"
+
+
+class TestCurateRoundupPool:
+    def test_no_drop_when_under_cap(self):
+        kept, dropped = _curate_roundup_pool(_roundup_fixture_articles(), _FAKE_THEME, 10)
+        assert dropped == []
+        assert len(kept) == 7
+
+    def test_theme_and_local_never_dropped(self):
+        kept, dropped = _curate_roundup_pool(_roundup_fixture_articles(), _FAKE_THEME, 3)
+        kept_blocks = [a.get("_roundup_block") for a in kept if not a.get("_is_bonus")]
+        assert kept_blocks == ["theme", "theme", "local"]
+        assert len(dropped) == 3  # cluster pair + standalone
+
+    def test_cluster_not_stranded_when_one_slot_left(self):
+        # pool_size 4 leaves one filler slot after the 3 protected articles:
+        # the two-member cluster is skipped whole, the standalone fills it
+        kept, dropped = _curate_roundup_pool(_roundup_fixture_articles(), _FAKE_THEME, 4)
+        kept_titles = {a["title"] for a in kept}
+        assert "Celebrity fashion week highlights" in kept_titles
+        assert "Solar storm hits the magnetosphere" not in kept_titles
+        assert "Astronomers watch supernova explode in distant galaxy" not in kept_titles
+
+    def test_bonus_passes_through_uncapped(self):
+        kept, dropped = _curate_roundup_pool(_roundup_fixture_articles(), _FAKE_THEME, 3)
+        assert kept[-1]["title"] == "Bonus pick"
+        assert all(not a.get("_is_bonus") for a in dropped)
