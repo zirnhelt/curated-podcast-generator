@@ -62,6 +62,9 @@ from psa_selector import select_psa
 from weather import fetch_weather, format_weather_for_prompt
 from ambient import get_ambient_transition
 
+# Reuse the git-log plumbing already built for the Sunday quality-review job
+from review_scripts import _git, GENERATION_PATHS
+
 
 # Try importing required libraries
 try:
@@ -4334,6 +4337,7 @@ def parse_script_into_segments(script):
         'welcome': [],
         'news': [],
         'community_spotlight': [],
+        'meta_moment': [],
         'deep_dive': []
     }
 
@@ -4396,6 +4400,19 @@ def parse_script_into_segments(script):
                 })
                 current_text = []
             current_section = 'news'
+            prev_line_blank = False
+            continue
+
+        if 'META MOMENT' in line or '**META MOMENT' in line:
+            # Save news section
+            if current_speaker and current_text:
+                segments[current_section].append({
+                    'speaker': current_speaker,
+                    'text': ' '.join(current_text).strip(),
+                    'gap_ms': current_gap_ms,
+                })
+                current_text = []
+            current_section = 'meta_moment'
             prev_line_blank = False
             continue
 
@@ -4531,6 +4548,7 @@ def parse_script_into_segments(script):
     print(f"   Cold open: {len(segments['preamble'])} segments")
     print(f"   Welcome: {len(segments['welcome'])} segments")
     print(f"   News: {len(segments['news'])} segments")
+    print(f"   Meta Moment: {len(segments['meta_moment'])} segments")
     print(f"   Community Spotlight: {len(segments['community_spotlight'])} segments")
     print(f"   Deep Dive: {len(segments['deep_dive'])} segments")
     
@@ -4660,6 +4678,44 @@ def _generate_host_line(context: str, host: str) -> str:
     except Exception as exc:
         print(f"  ⚠️  Claude host-line generation failed: {exc}")
         return ""
+
+
+def get_weekly_changelog(days: int = 7) -> str:
+    """Commit subjects touching generator-shaping files in the last N days, for the Sunday Meta Moment."""
+    since = (datetime.now() - timedelta(days=days)).strftime("%Y-%m-%d")
+    log = _git("log", "--reverse", f"--since={since}", "--pretty=format:%s", "--", *GENERATION_PATHS)
+    if not log:
+        return ""
+    return "\n".join(f"- {line.strip()}" for line in log.splitlines() if line.strip())
+
+
+def generate_meta_moment_text(changelog: str) -> str:
+    """Sunday-only 'Meta Moment' block: **RILEY:**/**CASEY:** turns recapping the
+    week's tweaks to the show itself. Returns '' when there's nothing to report or
+    generation fails — caller skips the segment entirely.
+    """
+    if not changelog:
+        return ""
+    riley_text = _generate_host_line(
+        "Meta Moment segment: give a short, casual, non-technical recap of what the "
+        "Cariboo Signals team tweaked about the show itself this past week — translate "
+        "the raw commit list below into plain language, no jargon/filenames/hashes. "
+        "Open with a brief natural label (e.g. 'Quick meta moment before we move on') "
+        "so listeners know what this is. One to two sentences, 40-70 words total.\n\n"
+        f"This week's changes:\n{changelog}",
+        "riley",
+    )
+    if not riley_text:
+        return ""
+    casey_text = _generate_host_line(
+        f"Casey just heard Riley say this during the Meta Moment segment: \"{riley_text}\". "
+        "Add one brief, genuine reaction sentence.",
+        "casey",
+    )
+    block = f"**META MOMENT**\n**RILEY:** {riley_text}"
+    if casey_text:
+        block += f"\n**CASEY:** {casey_text}"
+    return block
 
 
 def _append_comparison_log(entry):
@@ -4894,6 +4950,13 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
             _render_section(segments['news'], "📰 Generating news section...", "news")
             combined = combined[:-SECTION_BOUNDARY_FADE_MS] + combined[-SECTION_BOUNDARY_FADE_MS:].fade_out(SECTION_BOUNDARY_FADE_MS)
 
+            # Meta Moment (Sunday only — present in the script when generated)
+            if segments['meta_moment']:
+                combined += section_gap + ambient_transition + section_gap
+                chapters.append({"startTime": round(len(combined) / 1000, 1), "title": "Meta Moment"})
+                _render_section(segments['meta_moment'], "🔁 Generating Meta Moment...", "meta_moment")
+                combined = combined[:-SECTION_BOUNDARY_FADE_MS] + combined[-SECTION_BOUNDARY_FADE_MS:].fade_out(SECTION_BOUNDARY_FADE_MS)
+
             # Add ambient transition before community spotlight / deep dive
             combined += section_gap + ambient_transition + section_gap
 
@@ -4909,40 +4972,10 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
             chapters.append({"startTime": round(len(combined) / 1000, 1), "title": "Deep Dive"})
             _render_section(segments['deep_dive'], "🔍 Generating deep dive section...", "deep")
 
-            # Thursday: brief spoken indigenous community engagement acknowledgment before credits
-            if get_pacific_now().weekday() == 3:
-                _show_name = CONFIG['podcast'].get('title', 'The show')
-                c2_context = (
-                    "Casey briefly and honestly notes — in one short, natural sentence — "
-                    f"that {_show_name} hasn't spoken directly with First Nations "
-                    "communications staff for today's episode, and that they'd welcome "
-                    "that conversation. Matter-of-fact, not performative. "
-                    "This is a genuine aside as the episode winds down, not a formal disclaimer."
-                )
-                c2_text = _generate_host_line(c2_context, "casey")
-                if c2_text:
-                    print(f"  [Casey/C2] {c2_text}")
-                    try:
-                        if USE_AZURE_TTS:
-                            c2_wav = os.path.join(tmpdir, "c2_acknowledgment.wav")
-                            generate_azure_tts_for_section(
-                                [{"speaker": "casey", "text": c2_text, "gap_ms": None}],
-                                c2_wav,
-                            )
-                            c2_audio = normalize_segment(
-                                trim_tts_silence(AudioSegment.from_file(c2_wav, format="wav")),
-                                TARGET_SPEECH_DBFS,
-                            )
-                        else:
-                            c2_file = os.path.join(tmpdir, "c2_acknowledgment.mp3")
-                            generate_tts_for_segment(c2_text, "casey", c2_file)
-                            c2_audio = normalize_segment(
-                                trim_tts_silence(AudioSegment.from_mp3(c2_file)), TARGET_SPEECH_DBFS
-                            )
-                        combined += AudioSegment.silent(duration=600) + c2_audio
-                        print("  ✅ Added indigenous engagement acknowledgment")
-                    except Exception as c2e:
-                        print(f"  ⚠️  C2 acknowledgment skipped: {c2e}")
+            # Note: the Thursday indigenous-engagement acknowledgment (Casey, brief aside)
+            # is generated in main() and appended as a trailing turn onto the script's
+            # Deep Dive section before this function runs — so it's already rendered as
+            # part of the "deep dive" section above, and shows up in the transcript/VTT.
 
             # Spoken credits (brief, before outro)
             chapters.append({"startTime": round(len(combined) / 1000, 1), "title": "Credits"})
@@ -5395,7 +5428,7 @@ def script_to_friendly_transcript(script_content):
 
     SECTION_HEADERS = {
         "COLD OPEN", "WELCOME",
-        "NEWS ROUNDUP", "COMMUNITY SPOTLIGHT", "DEEP DIVE",
+        "NEWS ROUNDUP", "META MOMENT", "COMMUNITY SPOTLIGHT", "DEEP DIVE",
         "SEGMENT 1", "SEGMENT 2", "CARIBOO CONNECTIONS",
     }
 
@@ -6343,6 +6376,26 @@ def main():
             weather_used=bool(weather_data),
             cohere_used=cohere_enrichment.COHERE_ENABLED,
         )
+
+        # Thursday: brief spoken acknowledgment that the show hasn't yet spoken
+        # directly with First Nations communications staff this episode.
+        if today_weekday == 3:
+            c2_text = _generate_host_line(
+                "Casey briefly and honestly notes — in one short, natural sentence — "
+                f"that {CONFIG['podcast'].get('title', 'the show')} hasn't spoken directly "
+                "with First Nations communications staff for today's episode, and that "
+                "they'd welcome that conversation. Matter-of-fact, not performative. "
+                "This is a genuine aside as the episode winds down, not a formal disclaimer.",
+                "casey",
+            )
+            if c2_text:
+                script = script.rstrip() + f"\n\n**CASEY:** {c2_text}\n"
+
+        # Sunday: "Meta Moment" — light recap of the week's tweaks to the show itself
+        if today_weekday == 6:
+            meta_text = generate_meta_moment_text(get_weekly_changelog())
+            if meta_text and "**COMMUNITY SPOTLIGHT**" in script:
+                script = script.replace("**COMMUNITY SPOTLIGHT**", meta_text + "\n\n**COMMUNITY SPOTLIGHT**", 1)
 
         # Save script
         script_filename = save_script_to_file(script, today_theme)
