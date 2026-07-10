@@ -110,19 +110,14 @@
         "occurrences": 2
       },
       {
-        "date": "2026-07-04",
-        "clue": "community-trust:~ \u2014 Acknowledged fourteen-month continuity problem as real",
-        "occurrences": 1
+        "date": "2026-07-10",
+        "clue": "community-trust:~ \u2014 Acknowledged information gap as distinct from governance gap, added signage complexity",
+        "occurrences": 2
       },
       {
         "date": "2026-07-05",
         "clue": "tech-optimism:~ \u2014 Acknowledged specimen backlogs undermine data-pipeline optimism",
         "occurrences": 1
-      },
-      {
-        "date": "2026-07-09",
-        "clue": "structural-lens:+ \u2014 Moved from abstract coproduction critique to concrete governance test",
-        "occurrences": 2
       }
     ],
     "core_memories": [
@@ -329,11 +324,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-07-04",
-        "clue": "pilot-skepticism:x \u2014 Conceded rotating committee distributes editorial exposure risk",
-        "occurrences": 2
-      },
-      {
         "date": "2026-07-05",
         "clue": "evidence-bar:x \u2014 Conceded Christmas bird count as valid continuity model",
         "occurrences": 2
@@ -356,6 +346,11 @@
       {
         "date": "2026-07-09",
         "clue": "funding-risk:+ \u2014 Explicitly named server costs as structural accountability trap",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-07-10",
+        "clue": "structural-lens:+ \u2014 Deepened focus on accountability ownership over time, away from single decision-makers",
         "occurrences": 1
       }
     ],

@@ -1,24 +1,4 @@
 {
-  "2026-06-19": {
-    "timestamp": 1781864554.863835,
-    "topics": [
-      "[Quesnel Cariboo Observer] Scooter driver hospitalized after",
-      "[Al Jazeera English] Food shortages spark scuffles outside s",
-      "[Outside Online] After a String of Tragedies, Rescuers Issue",
-      "[Boing Boing] In 1810, a prankster sent 4,000 letters to flo",
-      "[Williams Lake Tribune] Evacuation alert issued after wildfi",
-      "[New Atlas] Expandable camper nearly triples living space wi",
-      "[Williams Lake Tribune] Large response to 30-hectare wildfir",
-      "[BC Gov News] Urging preparedness as wildfire, drought risks"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech",
-      "connectivity"
-    ],
-    "date": "2026-06-19"
-  },
   "2026-06-20": {
     "timestamp": 1781952150.232326,
     "topics": [
@@ -400,5 +380,25 @@
       "Indigenous tech"
     ],
     "date": "2026-07-09"
+  },
+  "2026-07-10": {
+    "timestamp": 1783697901.939324,
+    "topics": [
+      "[BC Gov News] Protecting new wetland habitat in Omineca regi",
+      "[The Verge] America\u2019s greatest idea is still under threat",
+      "[Williams Lake Tribune] Local orchardists propose drilling i",
+      "[Williams Lake Tribune] 3 sent to hospital after tornado tou",
+      "[Outside Online] In Defense of a Little Loneliness: A Lesson",
+      "[Outside Online] Steve Pearce Just Took Over the BLM. We Ask",
+      "[Outside Online] The Life-Saving Summer Hiking Trick Every D",
+      "[The Northern Miner] Deep-sea mining threatens 60% of vent s"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-07-10"
   }
 }

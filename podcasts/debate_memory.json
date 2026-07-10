@@ -1,30 +1,4 @@
 {
-  "2026-04-11": {
-    "timestamp": 1775904029.871841,
-    "date": "2026-04-11",
-    "theme": "Cariboo Voices & Local News",
-    "central_question": "What constitutes community resilience infrastructure in rural Cariboo communities, and who actually maintains it?",
-    "riley_position": "Community resilience depends on distributed informal infrastructure\u2014relationships, institutions, and local knowledge networks\u2014that work behind the scenes and are chronically underrecognized by formal funding systems.",
-    "riley_key_evidence": [
-      "Abel Lake Road fire containment resulted from years of training and local knowledge in South Cariboo fire coverage",
-      "Williams Lake Film Club screening of 'H is for Hawk' serves documented psychological resilience function in wildfire-prone communities",
-      "2017 wildfire response was most effective in communities with strong pre-existing social connections between informal leaders"
-    ],
-    "casey_position": "While informal resilience infrastructure is real and important, formal systems have significant limitations and gaps\u2014passive monitoring without downstream social support, and volunteer-dependent networks lack sustainability or succession planning.",
-    "casey_key_evidence": [
-      "Air quality advisories serve people with options (cars, sealed windows) but not vulnerable rural populations lacking resources to act on warnings",
-      "2017 wildfire Facebook admin who coordinated critical information was unfunded, unrecognized, and created succession planning fragility",
-      "Endowment and community-based funding models face barriers in smaller communities like Likely and Alexis Creek"
-    ],
-    "resolution": "Riley and Casey achieved consensus that Cariboo communities need both formal infrastructure (fire trucks, monitoring systems) and informal relational infrastructure simultaneously, and agreed that mapping and connecting existing informal leaders in non-crisis time is a high-leverage, low-cost intervention.",
-    "topics_covered": [
-      "Fire response infrastructure and volunteer emergency services",
-      "Air quality monitoring and vulnerable population access to health information",
-      "Cultural institutions as psychological resilience resources",
-      "Community foundation endowment models for sustaining local infrastructure",
-      "Indigenous Guardian programs as models for sustained locally-rooted capacity"
-    ]
-  },
   "2026-04-12": {
     "timestamp": 1775990770.513682,
     "date": "2026-04-12",
@@ -2340,6 +2314,37 @@
       "Any Cariboo Nation considering a coproduced dataset with a university or provincial ministry should negotiate a written data-hosting and access agreement before sensors go in the ground or researchers arrive.",
       "Communities should raise directly at band council meetings or regional forestry tables: before sensors are deployed, who signs off on what happens to this data in year six when current decision-makers are no longer around to remember what was promised?",
       "Anyone part of a Cariboo Nation or community organization working through a data agreement, or with corrections on how this episode characterized things, should contact feedback at cariboosignals.ca to share ground-truth experiences with data negotiations."
+    ]
+  },
+  "2026-07-10": {
+    "timestamp": 1783697903.804784,
+    "date": "2026-07-10",
+    "theme": "Wild Spaces & Outdoor Life",
+    "central_question": "How can wild spaces and public land be protected from extraction and development pressure while remaining accessible to recreationalists and communities, and what governance model\u2014federal appointee-driven or title-based\u2014actually delivers durable protection?",
+    "riley_position": "Regulatory frameworks and legal structures already exist to protect wild spaces; the real problem is institutional accountability for maintaining those protections over time rather than concentrating decision-making power in a single appointed official. Design choices like co-decision clauses can make protections durable without requiring complete governance overhauls.",
+    "riley_key_evidence": [
+      "Stevan Pearce's appointment to the BLM (overseeing 245 million acres) represents concentrated discretion that rotates with election cycles, unlike title-based governance",
+      "Courts and public comment periods constrain even industry-friendly appointees from unilaterally weakening protections",
+      "Narrower legislative asks (like co-decision language in new designations) clear legislatures more often than sweeping overhauls"
+    ],
+    "casey_position": "Current regulatory protections are fundamentally weaker than they appear because they can be unilaterally downgraded by cabinet order, and extraction pressure erodes protection at the edges over time. Title-based governance with nations as decision-makers is structurally superior because it survives political cycles and doesn't depend on a single appointee's priorities.",
+    "casey_key_evidence": [
+      "Wildlife management areas are provincial designations that can be redrawn by cabinet order whenever priorities shift, unlike Aboriginal title",
+      "Osisko's gold drilling is actively extending zones deeper at the Cariboo project in real time, showing extraction pressure doesn't wait for perfect governance",
+      "Protection erodes slowly at the edges until permitted extraction becomes active haul roads, at which point change accelerates"
+    ],
+    "resolution": "The debate shifted toward concrete implementation rather than governance philosophy: both agreed that the missing piece isn't legal tools but ongoing institutional accountability for maintenance and updates. They converged on asking specifically how Cariboo designations handle updates six months or two years after initial announcement, and who actually owns that responsibility.",
+    "topics_covered": [
+      "How concentrated appointee authority (BLM model) compares to title-based distributed governance (T\u015dilhqot'in model)",
+      "The difference between regulatory protection on paper versus durable protection that survives political cycles",
+      "Active extraction pressure as a real-time phenomenon (Osisko drilling, seabed mining) versus hypothetical future risks",
+      "Structural safeguards that could make designations harder to downgrade (co-decision clauses requiring bilateral agreement for future changes)",
+      "Information and signage infrastructure as the gap between written titles/designations and ground-level knowledge for actual land users"
+    ],
+    "calls_to_action": [
+      "Write to the Ministry of Forests or bring a question to Cariboo Regional District board meetings asking specifically whether new wildlife management area designations include co-decision language with relevant nations for any future downgrade, not just initial announcement.",
+      "If you have a concrete example of how a specific Cariboo designation actually handles ongoing accountability\u2014whether through T\u015dilhqot'in National Government, Williams Lake First Nation, Xat\u015b\u016bll, or another nation with a working answer\u2014send it to cariboo signals dot c-a.",
+      "Propose updated trailhead panels and recreation site postings that note title areas alongside standard provincial boundaries, making the durable authority relationships visible to people actually using the landscapes."
     ]
   }
 }
