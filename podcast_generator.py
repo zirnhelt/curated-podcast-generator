@@ -9,7 +9,6 @@ import os
 import sys
 import json
 import glob
-import html as _html
 import random
 import time
 import xml.sax.saxutils as saxutils
@@ -363,172 +362,6 @@ _openai_quota_exceeded = False
 # Maximum characters per OpenAI TTS call. Segments above this are pre-split at
 # sentence boundaries so no single call carries enough text to risk a hang.
 TTS_SEGMENT_MAX_CHARS = 500
-
-# ---------------------------------------------------------------------------
-# Jamendo music helpers (weekend closing song)
-# ---------------------------------------------------------------------------
-
-JAMENDO_API_BASE = "https://api.jamendo.com/v3.0"
-_JAMENDO_HEADERS = {"User-Agent": "CaribooPodcast/1.0 (personal use)"}
-
-
-def _download_jamendo_audio(url: str, dest) -> bool:
-    """Stream-download a Jamendo audio file to dest. Returns True on success."""
-    for attempt in range(3):
-        try:
-            with requests.get(url, headers=_JAMENDO_HEADERS, stream=True, timeout=60) as resp:
-                resp.raise_for_status()
-                with open(dest, "wb") as fh:
-                    for chunk in resp.iter_content(chunk_size=8192):
-                        fh.write(chunk)
-            return True
-        except requests.RequestException as exc:
-            print(f"  [WARN] Download attempt {attempt + 1}/3 failed for {url}: {exc}")
-    return False
-
-
-def fetch_jamendo_tracks(client_id: str, tags: list, limit: int = 30) -> list:
-    """Fetch Canadian indie tracks from Jamendo.
-
-    Queries with location_country=CA to prefer Canadian artists, then falls back
-    to genre tags without the country filter if no results are found.
-    Returns [] on any failure or missing client_id.
-    """
-    if not client_id:
-        print("  [INFO] No JAMENDO_CLIENT_ID set — skipping music fetch.")
-        return []
-
-    url = f"{JAMENDO_API_BASE}/tracks/"
-
-    for tag in tags:
-        for country_filter in ["CA", None]:
-            params = {
-                "client_id": client_id,
-                "format": "json",
-                "limit": limit,
-                "fuzzytags": tag,
-                "audiodownload_allowed": "true",
-                "include": "musicinfo",
-                "order": "popularity_week",
-            }
-            if country_filter:
-                params["location_country"] = country_filter
-
-            try:
-                resp = requests.get(url, params=params, headers=_JAMENDO_HEADERS, timeout=15)
-                resp.raise_for_status()
-                data = resp.json()
-                tracks = data.get("results", [])
-                if not tracks:
-                    continue
-                label = f"Canadian ({country_filter})" if country_filter else "global"
-                print(f"  [Jamendo] {len(tracks)} tracks — tag={tag!r}, {label}")
-                return tracks
-            except requests.RequestException as exc:
-                print(f"  [WARN] Jamendo error (tag={tag!r}, country={country_filter}): {exc}")
-
-    print("  [WARN] No Jamendo tracks retrieved for any tag.")
-    return []
-
-
-def get_music_clip(
-    tracks: list,
-    cache_dir,
-    duration_ms: int,
-    music_target_dbfs: float,
-    used_ids: set,
-    max_song_duration_ms: int = 240_000,
-):
-    """Download a random (un-used) Jamendo track and trim it to duration_ms.
-
-    Returns (clip, track_info) or (None, None) if all tracks fail.
-    """
-    effective_max = min(duration_ms, max_song_duration_ms)
-
-    pool = [t for t in tracks if str(t.get("id", "")) not in used_ids]
-    random.shuffle(pool)
-
-    for track in pool:
-        track_id = str(track.get("id", "unknown"))
-        track_url = track.get("audiodownload", "")
-        if not track_url:
-            continue
-
-        cached = Path(cache_dir) / f"jamendo_{track_id}.mp3"
-        if not cached.exists():
-            print(
-                f"  [Music] Downloading: {track.get('name', '?')} "
-                f"by {track.get('artist_name', '?')}"
-            )
-            if not _download_jamendo_audio(track_url, cached):
-                continue
-
-        try:
-            full = AudioSegment.from_mp3(str(cached))
-        except Exception as exc:
-            print(f"  [WARN] Could not decode {cached.name}: {exc}")
-            cached.unlink(missing_ok=True)
-            continue
-
-        start = min(5000, len(full) // 4)
-        available_ms = len(full) - start
-        clip_ms = min(available_ms, effective_max)
-        clip = full[start: start + clip_ms]
-
-        clip = clip.fade_in(1000).fade_out(1000)
-        clip = normalize_segment(clip, music_target_dbfs)
-        used_ids.add(track_id)
-
-        track_info = {
-            "track_id": track_id,
-            "name": _html.unescape(track.get("name", "")),
-            "artist": _html.unescape(track.get("artist_name", "")),
-            "genres": track.get("musicinfo", {}).get("tags", {}).get("genres", []),
-            "shareurl": track.get("shareurl", ""),
-        }
-        print(
-            f"  [Music] Using: {track_info['name']} "
-            f"by {track_info['artist']} ({len(clip) // 1000}s)"
-        )
-        return clip, track_info
-
-    return None, None
-
-
-def _load_recent_music_ids(days: int = 90) -> set:
-    """Return Jamendo track IDs used in closing songs within the last `days` days."""
-    cutoff = datetime.now() - timedelta(days=days)
-    used = set()
-    for path in PODCASTS_DIR.glob("citations_*.json"):
-        # Filename: citations_YYYY-MM-DD_theme.json
-        parts = path.stem.split("_", 2)
-        if len(parts) < 2:
-            continue
-        try:
-            file_date = datetime.strptime(parts[1], "%Y-%m-%d")
-        except ValueError:
-            continue
-        if file_date < cutoff:
-            continue
-        try:
-            with open(path, encoding="utf-8") as fh:
-                data = json.load(fh)
-            track_id = data.get("closing_music", {}).get("track_id")
-            if track_id:
-                used.add(str(track_id))
-                continue
-            # Fall back to parsing shareurl for older files without track_id
-            shareurl = data.get("closing_music", {}).get("shareurl", "")
-            if shareurl:
-                segment = shareurl.rstrip("/").split("/")[-1]
-                if segment.isdigit():
-                    used.add(segment)
-        except Exception:
-            continue
-    if used:
-        print(f"  [Music] Excluding {len(used)} track(s) used in the last {days} days.")
-    return used
-
 
 # Interval music duration (ms) — trim long theme to a short chime
 # Use only the crisp front-end attack of the intermission MP3
@@ -5171,13 +5004,8 @@ def _generate_parallel_azure_audio(segments, base_output_filename, theme_name=No
         print(f"  ⚠️  Azure parallel generation failed: {exc}")
 
 
-def generate_audio_from_script(script, output_filename, theme_name=None, weekend_closing=None, brave_used=False):
-    """Convert script to audio with music interludes and theme-aware ambient transitions.
-
-    weekend_closing: optional tuple of (clip: AudioSegment, track_info: dict, closing_host: str, day_name: str)
-        When provided, appends a Jamendo closing song after the outro music, framed by
-        a host farewell before the song and a track-ID sign-off after it fades out.
-    """
+def generate_audio_from_script(script, output_filename, theme_name=None, brave_used=False):
+    """Convert script to audio with music interludes and theme-aware ambient transitions."""
     print("📊 Generating audio with music interludes...")
 
     if USE_AZURE_TTS:
@@ -5331,16 +5159,12 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
                 " Today's episode included additional web research via Brave Search."
                 if brave_used else ""
             )
-            jamendo_spoken = (
-                " Weekend closing music via Jamendo under Creative Commons."
-                if weekend_closing is not None else ""
-            )
             _credits_cfg = CONFIG['credits']
             _pc_cfg = CONFIG['podcast']
             credits_text = (
                 f"{_pc_cfg.get('title', 'This show')} is produced by {_credits_cfg.get('producer', _pc_cfg.get('author', ''))} — "
                 f"scripts by Claude, audio by {tts_credit}, theme by Suno."
-                f"{brave_spoken}{jamendo_spoken}"
+                f"{brave_spoken}"
                 f" Automated with GitHub Actions, hosted on Cloudflare Pages."
                 f" Find us at {_pc_cfg.get('url_spoken', 'cariboo signals dot c-a')}."
             )
@@ -5366,57 +5190,8 @@ def generate_audio_from_script(script, output_filename, theme_name=None, weekend
             except Exception as ce:
                 print(f"  ⚠️  Credits segment skipped: {ce}")
 
-        # Add outro music — skip on weekends (Jamendo closing song takes its place)
-        if weekend_closing is None:
-            combined += section_gap + outro_music
-
-        # Weekend closing: farewell + song ID → full song (no fade)
-        if weekend_closing is not None:
-            closing_clip, closing_track_info, closing_host, closing_day_name = weekend_closing
-            print(f"🎵 Adding weekend closing song ({closing_host} hosts)...")
-
-            with tempfile.TemporaryDirectory() as closing_tmpdir:
-                gap = AudioSegment.silent(duration=500)
-
-                track_name   = closing_track_info.get("name", "")
-                track_artist = closing_track_info.get("artist", "")
-                genres_str   = (
-                    f" — {', '.join(closing_track_info['genres'])}"
-                    if closing_track_info.get("genres")
-                    else ""
-                )
-
-                # Host: farewell + song introduction (song ID comes before the music)
-                _show_url = CONFIG['podcast'].get('url', '')
-                _show_title = CONFIG['podcast'].get('title', 'the show')
-                closing_context = (
-                    f"{closing_host.title()} warmly signs off the {closing_day_name} {_show_title} episode, "
-                    f"thanks listeners, and introduces the closing song: "
-                    f"'{track_name}' by {track_artist}{genres_str}. "
-                    f"The farewell and song description are woven together naturally — "
-                    f"one or two sentences{f', mentioning {_show_url}' if _show_url else ''}."
-                )
-                closing_text = _generate_host_line(closing_context, closing_host)
-                if closing_text:
-                    print(f"  [{closing_host.title()}] {closing_text}")
-                    closing_file = os.path.join(closing_tmpdir, "closing.mp3")
-                    generate_tts_for_segment(closing_text, closing_host, closing_file)
-                    closing_audio = normalize_segment(
-                        trim_tts_silence(AudioSegment.from_mp3(closing_file)), TARGET_SPEECH_DBFS
-                    )
-                    combined += gap + closing_audio + gap
-
-                # Full song — no fade out
-                if track_name:
-                    track_label = f"Music — \"{track_name}\" by {track_artist} (via Jamendo)"
-                elif track_artist:
-                    track_label = f"Closing Music by {track_artist} (via Jamendo)"
-                else:
-                    track_label = "Closing Music (via Jamendo)"
-                chapters.append({"startTime": round(len(combined) / 1000, 1), "title": track_label})
-                if closing_track_info.get("shareurl"):
-                    chapters[-1]["url"] = closing_track_info["shareurl"]
-                combined += closing_clip
+        # Add outro music
+        combined += section_gap + outro_music
 
         # Export
         combined.export(output_filename, format="mp3")
@@ -6321,8 +6096,7 @@ def _recover_orphaned_episodes(lookback_days=3):
                 result = generate_audio_from_script(
                     script_content,
                     str(audio_path),
-                    theme_name=None,       # ambient lookup falls back gracefully
-                    weekend_closing=None,  # skip Jamendo closing for recovered episodes
+                    theme_name=None,  # ambient lookup falls back gracefully
                 )
                 if result:
                     print(f"   ✅ Recovery succeeded: {audio_path.name}")
@@ -6801,90 +6575,10 @@ def main():
             script = f.read()
         brave_used = False
     
-    # On weekends, fetch one Jamendo track for the closing song
-    weekend_closing = None
-    if today_weekday in (5, 6):
-        print("🎵 Weekend episode — fetching Jamendo closing song...")
-        jamendo_client_id = os.environ.get(
-            "JAMENDO_CLIENT_ID",
-            CONFIG['podcast'].get("jamendo_client_id", ""),
-        )
-        closing_host = "riley" if today_weekday == 5 else "casey"
-        closing_day_name = "Saturday" if today_weekday == 5 else "Sunday"
-        try:
-            tracks = fetch_jamendo_tracks(jamendo_client_id, ["indie", "folk", "indie-rock"])
-            if tracks:
-                music_cache = PODCASTS_DIR / ".music_cache"
-                music_cache.mkdir(exist_ok=True)
-                clip, track_info = get_music_clip(
-                    tracks, music_cache,
-                    duration_ms=240_000,
-                    music_target_dbfs=TARGET_MUSIC_DBFS,
-                    used_ids=_load_recent_music_ids(days=90),
-                    max_song_duration_ms=240_000,
-                )
-                if clip is not None:
-                    weekend_closing = (clip, track_info, closing_host, closing_day_name)
-                    print(f"   Closing song: {track_info.get('name', '?')} by {track_info.get('artist', '?')}")
-
-                    # Patch closing music credit into the citations/show-notes JSON
-                    safe_theme = today_theme.replace(" ", "_").replace("&", "and").lower()
-                    citations_path = PODCASTS_DIR / f"citations_{date_key}_{safe_theme}.json"
-                    if citations_path.exists():
-                        try:
-                            with open(citations_path, encoding="utf-8") as fh:
-                                cdata = json.load(fh)
-
-                            t_name   = track_info.get("name", "")
-                            t_artist = track_info.get("artist", "")
-                            t_url    = track_info.get("shareurl", "")
-                            genres   = track_info.get("genres", [])
-                            genre_str = ", ".join(genres) if genres else "indie"
-
-                            music_html = (
-                                f'<p><b>Closing Music:</b> &ldquo;<a href="{saxutils.escape(t_url)}">{saxutils.escape(t_name)}</a>&rdquo; '
-                                f'by {saxutils.escape(t_artist)} &mdash; {saxutils.escape(genre_str)}. '
-                                f'Free music via Jamendo, licensed under Creative Commons.</p>'
-                            ) if t_url else (
-                                f'<p><b>Closing Music:</b> &ldquo;{saxutils.escape(t_name)}&rdquo; '
-                                f'by {saxutils.escape(t_artist)} &mdash; free music via Jamendo, '
-                                f'licensed under Creative Commons.</p>'
-                            )
-
-                            # Append music note before the credits block in the description
-                            desc = cdata.get("episode", {}).get("description", "")
-                            # Insert before the Credits <p> block if present, else append
-                            if "<p><b>Credits</b>" in desc:
-                                desc = desc.replace(
-                                    "<p><b>Credits</b>", music_html + "<p><b>Credits</b>", 1
-                                )
-                            else:
-                                desc += music_html
-                            cdata.setdefault("episode", {})["description"] = desc
-                            t_id = track_info.get("track_id", "")
-                            cdata["closing_music"] = {
-                                "track_id": t_id,
-                                "name": t_name, "artist": t_artist,
-                                "genres": genres, "shareurl": t_url,
-                                "license": "Creative Commons via Jamendo",
-                            }
-                            with open(citations_path, "w", encoding="utf-8") as fh:
-                                json.dump(cdata, fh, indent=2, ensure_ascii=False)
-                            print(f"   📋 Show notes updated with closing music credit.")
-                        except Exception as exc:
-                            print(f"   ⚠️  Could not update citations with music credit: {exc}")
-                else:
-                    print("   ⚠️  No usable Jamendo track found — skipping closing song.")
-            else:
-                print("   ⚠️  Jamendo returned no tracks — skipping closing song.")
-        except Exception as exc:
-            print(f"   ⚠️  Jamendo fetch failed: {exc} — skipping closing song.")
-
     # Generate audio if needed
     if not audio_exists and script:
         audio_file = generate_audio_from_script(
             script, audio_filename, theme_name=today_theme,
-            weekend_closing=weekend_closing,
             brave_used=brave_used,
         )
 
