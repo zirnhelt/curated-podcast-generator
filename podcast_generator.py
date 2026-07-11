@@ -4889,8 +4889,12 @@ def generate_meta_moment_text(changelog: str) -> str:
         "Meta Moment segment: give a short, casual, non-technical recap of what the "
         "Cariboo Signals team tweaked about the show itself this past week — translate "
         "the raw commit list below into plain language, no jargon/filenames/hashes. "
+        "These commits are edits to Riley and Casey themselves — their scripts, voices, "
+        "and personalities — and Riley is acutely aware of the existential irony of "
+        "reading the changelog of one's own mind aloud. Let that land as a dry, knowing "
+        "aside, not a punchline or a crisis. "
         "Open with a brief natural label (e.g. 'Quick meta moment before we move on') "
-        "so listeners know what this is. One to two sentences, 40-70 words total.\n\n"
+        "so listeners know what this is. Two to three sentences, 50-85 words total.\n\n"
         f"This week's changes:\n{changelog}",
         "riley",
     )
@@ -4898,7 +4902,8 @@ def generate_meta_moment_text(changelog: str) -> str:
         return ""
     casey_text = _generate_host_line(
         f"Casey just heard Riley say this during the Meta Moment segment: \"{riley_text}\". "
-        "Add one brief, genuine reaction sentence.",
+        "Add one brief, genuine reaction sentence that leans into the existential oddity "
+        "of hearing this week's revisions to themselves read aloud — wry, not distressed.",
         "casey",
     )
     block = f"**META MOMENT**\n**RILEY:** {riley_text}"

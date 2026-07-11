@@ -1213,6 +1213,24 @@ class TestGenerateMetaMomentText:
         block = generate_meta_moment_text("- Tighten news roundup transitions")
         assert block == "**META MOMENT**\n**RILEY:** Quick meta moment before we move on."
 
+    def test_prompts_carry_existential_irony_directive(self, monkeypatch):
+        prompts = []
+
+        def capture(prompt, host):
+            prompts.append((host, prompt))
+            return "A line."
+
+        monkeypatch.setattr("podcast_generator._generate_host_line", capture)
+        generate_meta_moment_text("- Tighten news roundup transitions")
+
+        riley_prompt = dict(prompts)["riley"]
+        casey_prompt = dict(prompts)["casey"]
+        assert "edits to Riley and Casey themselves" in riley_prompt
+        assert "existential irony" in riley_prompt
+        assert "not a punchline or a crisis" in riley_prompt
+        assert "existential oddity" in casey_prompt
+        assert "wry, not distressed" in casey_prompt
+
 
 # Synthetic theme name absent from themes.json so only its name words
 # ("zebra", "gardening") act as theme keywords — keeps these tests
