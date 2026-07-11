@@ -19,5 +19,4 @@ run_full_tests.sh
 
 # Audio files — large binaries deployed via GitHub Pages and R2, not tracked in git
 podcasts/*.mp3
-podcasts/.music_cache/
 podcasts/bespoke/*.mp3
