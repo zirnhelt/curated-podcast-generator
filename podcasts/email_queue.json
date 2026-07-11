@@ -2153,6 +2153,45 @@
       "theme_day": 3,
       "status": "used",
       "used_at": "2026-07-09"
+    },
+    {
+      "id": "7b221f2c",
+      "type": "newsletter",
+      "message_id": "<20260711.140330.3608a314@mta41>",
+      "from_address": "f***@mail.beehiiv.com",
+      "subject": "The Great Toronto Circus Riot",
+      "received_at": "2026-07-11T14:03:30+00:00",
+      "body_text": "View image: (https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/50eaf609-5c53-48e7-8c21-e165c8a6d0d4/gemini-image-2_a_drawing_from_1850_i",
+      "extracted_urls": [
+        "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/50eaf609-5c53-48e7-8c21-e165c8a6d0d4/gemini-image-2_a_drawing_from_1850_in_a_brothel._a_firefighter_and_a_circus_clown_angrily_squar-0.jpg?t=1783704306",
+        "https://todmaffin.com/",
+        "https://bsky.app/profile/todmaffin.com",
+        "https://beacons.ai/todmaffin/socials",
+        "https://www.youtube.com/todmaffinvideo/?sub_confirmation=1",
+        "https://discord.todmaffin.com",
+        "https://www.heritagetoronto.org/explore/creating-toronto-history-tour/st-lawrence-hall-clown-riots/",
+        "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGczdnlxZndhb2h1OHJjOXJ3cG4yeHJ6aW5jdm5jZ3R0MHczbzh6MSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/9ExfSUr8c1xaOqlDZs/giphy.gif",
+        "https://www.beerandbrewing.com/dictionary/9qVj08mAiJ",
+        "https://en.wikipedia.org/wiki/Orange_Order"
+      ],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
+    },
+    {
+      "id": "7719a55e",
+      "type": "feedback",
+      "message_id": "<019f514e-6147-71bd-b539-d4e3267c051c@novamediapodcasts.com>",
+      "from_address": "t***@novamediapodcasts.com",
+      "subject": "We build top ten podcasts - interested in yours.",
+      "received_at": "2026-07-11T13:11:59+00:00",
+      "body_text": "Six months in is where most podcasts quietly fail. The launch energy fades, growth plateaus, and hosts start wondering if anyone's actually listening. The shows that push through almost always have one thing in common: a specific goal beyond the audience itself. That's what took our clients to Netflix, Apple Top 10, and 500% ROI. Cariboo Signals is coming up to that moment. So, one question: What matters more right now, growing the audience or the reason you started the show in the first place? ",
+      "extracted_urls": [],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
