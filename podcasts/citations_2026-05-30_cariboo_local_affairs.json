@@ -4,7 +4,7 @@
     "formatted_date": "Saturday, May 30, 2026",
     "theme": "Cariboo Local Affairs",
     "title": "Cariboo Signals - Cariboo Local Affairs",
-    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Cariboo Local Affairs.</p><p><b>NEWS ROUNDUP:</b> We break down the week's top tech developments, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Can municipal enforcement tools ('drastic measures') effectively address prolific offending in small cities, or do solutions require provincial-level intervention? Topics include: Municipal jurisdiction limitations versus provincial control of criminal justice and service provision, Integrated response teams and evidence-based models (Medicine Hat, Foundry Cariboo Chilcotin, ACT teams), The accountability gap between what decision-makers hear and what they document/act on, Cumulative service contraction in small cities (airline loss, healthcare pressures, concurrent service gaps), The role of municipal politicians as translators of specific needs to senior government.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://qwrc.ca\">Quesnel Women's Resource Centre</a></p><p><b>Sources discussed:</b></p><ul><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/313876/news/municipal-news/city-of-williams-lake/williams-lake-city-councillor-calls-for-drastic-measures-to-deal-with-prolific-offenders/\">[My Cariboo Now] Williams Lake City Councillor calls for dra...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-opus-4-6<br>TTS Voices: OpenAI TTS API (Nova · Echo)<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Cariboo Local Affairs.</p><p><b>NEWS ROUNDUP:</b> We break down the week's top tech developments, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Can municipal enforcement tools ('drastic measures') effectively address prolific offending in small cities, or do solutions require provincial-level intervention? Topics include: Municipal jurisdiction limitations versus provincial control of criminal justice and service provision, Integrated response teams and evidence-based models (Medicine Hat, Foundry Cariboo Chilcotin, ACT teams), The accountability gap between what decision-makers hear and what they document/act on, Cumulative service contraction in small cities (airline loss, healthcare pressures, concurrent service gaps), The role of municipal politicians as translators of specific needs to senior government.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://qwrc.ca\">Quesnel Women's Resource Centre</a></p><p><b>Sources discussed:</b></p><ul><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/313876/news/municipal-news/city-of-williams-lake/williams-lake-city-councillor-calls-for-drastic-measures-to-deal-with-prolific-offenders/\">[My Cariboo Now] Williams Lake City Councillor calls for dra...</a></li></ul><p><b>Closing Music:</b> &ldquo;<a href=\"https://www.jamendo.com/track/1133992\">Give Me Hope</a>&rdquo; by Modern Pitch &mdash; rock, pop, indie. Free music via Jamendo, licensed under Creative Commons.</p><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-opus-4-6<br>TTS Voices: OpenAI TTS API (Nova · Echo)<br>Cover Art: ChatGPT (OpenAI)<br>Podcast Coordination: Erich Zirnhelt<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
     "generated_at": "2026-05-30T03:03:36.050250-07:00",
     "models": {
       "script": "claude-sonnet-4-6",
@@ -90,5 +90,17 @@
     "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
     "copyright_holder": "Erich Zirnhelt",
     "copyright_year": "2026"
+  },
+  "closing_music": {
+    "track_id": "1133992",
+    "name": "Give Me Hope",
+    "artist": "Modern Pitch",
+    "genres": [
+      "rock",
+      "pop",
+      "indie"
+    ],
+    "shareurl": "https://www.jamendo.com/track/1133992",
+    "license": "Creative Commons via Jamendo"
   }
 }
