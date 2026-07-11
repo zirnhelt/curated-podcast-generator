@@ -118,6 +118,16 @@
         "date": "2026-07-05",
         "clue": "tech-optimism:~ \u2014 Acknowledged specimen backlogs undermine data-pipeline optimism",
         "occurrences": 1
+      },
+      {
+        "date": "2026-07-11",
+        "clue": "structural-lens:+ \u2014 Moved from 'funding problem' diagnosis to architectural design flaw",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-07-11",
+        "clue": "pilot-skepticism:+ \u2014 Proposed mesh-radio model but acknowledged zero local precedent",
+        "occurrences": 1
       }
     ],
     "core_memories": [
@@ -349,8 +359,13 @@
         "occurrences": 1
       },
       {
-        "date": "2026-07-10",
-        "clue": "structural-lens:+ \u2014 Deepened focus on accountability ownership over time, away from single decision-makers",
+        "date": "2026-07-11",
+        "clue": "structural-lens:+ \u2014 Deepened from 'who decides' to 'what survives beyond volunteers'",
+        "occurrences": 2
+      },
+      {
+        "date": "2026-07-11",
+        "clue": "community-trust:x \u2014 Conceded SAR formalization as 'solvable design problem' after initial skepticism",
         "occurrences": 1
       }
     ],

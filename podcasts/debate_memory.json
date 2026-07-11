@@ -2346,5 +2346,31 @@
       "If you have a concrete example of how a specific Cariboo designation actually handles ongoing accountability\u2014whether through T\u015dilhqot'in National Government, Williams Lake First Nation, Xat\u015b\u016bll, or another nation with a working answer\u2014send it to cariboo signals dot c-a.",
       "Propose updated trailhead panels and recreation site postings that note title areas alongside standard provincial boundaries, making the durable authority relationships visible to people actually using the landscapes."
     ]
+  },
+  "2026-07-11": {
+    "timestamp": 1783763764.907397,
+    "date": "2026-07-11",
+    "theme": "Cariboo Local Affairs",
+    "central_question": "When crises cross multiple jurisdictions in rural areas, how can local communities ensure they have a voice in decisions that affect them, and who should be responsible for closing information and institutional gaps?",
+    "riley_position": "Existing volunteer institutions like Search and Rescue already have the trust and training to serve as information nodes; the solution isn't new funding but formalizing relationships that already work informally and adopting proven low-tech models like mesh-radio networks.",
+    "riley_key_evidence": [
+      "Ontario restructured wildfire response after 2023 with real-time data-sharing agreements that cut translation lag from hours to near-real-time",
+      "Rural U.S. counties use mesh-radio repeater networks maintained by volunteer fire departments that don't require ongoing grants or cell coverage",
+      "Central Cariboo Search and Rescue already functions as an informal last-mile information network during emergencies"
+    ],
+    "casey_position": "Simply formalizing existing volunteer capacity masks a deeper structural failure: rural governance institutions are quietly relying on unpaid labour to cover gaps they should solve deliberately, and person-dependent arrangements don't survive leadership transitions.",
+    "casey_key_evidence": [
+      "The regional district lacks communication capacity to localize fast-moving smoke advisories for every hamlet in real time",
+      "Horsefly's festival permitting depends on institutional memory of informal relationships that would be lost if current organizers stepped away",
+      "Provincial bargaining processes like the nurses' mediation don't have mechanisms to surface what outcomes mean specifically for a town of 10,000 versus a city of a million"
+    ],
+    "resolution": "Both agreed that the underlying problem is whether institutions build durable structures or rely on volunteers to fill gaps informally. They converged on the idea that 'built deliberately' doesn't require new bureaucracy\u2014sometimes just documenting what already works (like formalizing SAR relationships, publishing festival checklists) would solve continuity problems before they start.",
+    "topics_covered": [
+      "Fragmented emergency alert systems across wildfire, health authority, and municipal jurisdictions",
+      "Unincorporated community governance and informal permitting relationships",
+      "Institutional reliance on unpaid volunteer labour for essential services",
+      "Provincial policy outcomes landing differently in rural vs. urban contexts",
+      "Low-tech infrastructure solutions (mesh radio networks) vs. grant-dependent models"
+    ]
   }
 }

@@ -1,0 +1,485 @@
+{
+  "episode": {
+    "date": "2026-07-11",
+    "formatted_date": "Saturday, July 11, 2026",
+    "theme": "Cariboo Local Affairs",
+    "title": "Cariboo Signals - Cariboo Local Affairs",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Cariboo Local Affairs.</p><p><b>NEWS ROUNDUP:</b> We break down [100 Mile Free Press] Sheep help mitigate fire, invasive species in 108 Mile Ranch Greenbelt and [Williams Lake Tribune] Special mediators appointed amid B.C. Nurses’ Union job action, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> When crises cross multiple jurisdictions in rural areas, how can local communities ensure they have a voice in decisions that affect them, and who should be responsible for closing information and institutional gaps? Topics include: Fragmented emergency alert systems across wildfire, health authority, and municipal jurisdictions, Unincorporated community governance and informal permitting relationships, Institutional reliance on unpaid volunteer labour for essential services, Provincial policy outcomes landing differently in rural vs. urban contexts, Low-tech infrastructure solutions (mesh radio networks) vs. grant-dependent models.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://ccsar.ca\">Central Cariboo Search and Rescue</a></p><p><b>Sources discussed:</b></p><ul><li>Patrick Davies (100 Mile Free Press): <a href=\"https://100milefreepress.net/2026/07/10/sheep-help-mitigate-fire-invasive-species-in-108-mile-ranch-greenbelt/\">[100 Mile Free Press] Sheep help mitigate fire, invasive spe...</a></li><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/07/10/special-mediators-appointed-amid-b-c-nurses-union-job-action/\">[Williams Lake Tribune] Special mediators appointed amid B.C...</a></li><li>CFJC Today Kamloops: <a href=\"https://cfjctoday.com/2026/07/05/british-military-says-cargo-ship-reports-being-under-attack-in-the-red-sea-off-the-coast-of-yemen/\">[CFJC Today Kamloops] British military says cargo ship repor...</a></li><li>ZDNet: <a href=\"https://www.zdnet.com/article/spacex-wants-to-launch-100000-more-starlink-satellites/\">[ZDNet] SpaceX wants to launch 100,000 more Starlink satelli...</a></li><li>CNET: <a href=\"https://www.cnet.com/roadshow/news/driverless-cars-steering-wheel-requirement-us-nhtsa/\">[CNET] US Weighs Removing Steering Wheel Requirement for Dri...</a></li><li>Matt Tate (Engadget): <a href=\"https://www.engadget.com/2212213/volkswagen-will-shrink-model-lineup-and-factory-footprint/\">[Engadget] Volkswagen will dramatically shrink its model lin...</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/video/newsfeed/2026/7/11/meta-backtracks-on-ai-image-feature-for-instagram-due-to-privacy-backlash?traffic_source=rss\">[Al Jazeera English] Meta backtracks on AI-image feature for...</a></li><li>Ian Carlos Campbell (Engadget): <a href=\"https://www.engadget.com/2212600/fcc-grants-approval-for-sun-reflecting-space-mirror/\">[Engadget] FCC grants approval for sun-reflecting space mirr...</a></li><li>Rob Beschizza (Boing Boing): <a href=\"https://boingboing.net/2026/07/10/coffee-machines-with-no-plastics-in-the-brew-path.html\">[Boing Boing] Coffee machines with no plastics in the brew p...</a></li><li>Seeded Content: <a href=\"https://artsonthefly.com/\">Home</a></li><li>Seeded Content: <a href=\"https://artsonthefly.com/\">Home</a></li><li>Seeded Content: <a href=\"https://artsonthefly.com/\">Home</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/07/10/patricia-mildred-moortele/\">[Williams Lake Tribune] Patricia Mildred Moortele</a></li><li>https://refractor.io/author/bronwyn-thompson/ (New Atlas): <a href=\"https://refractor.io/chronic-pain/migraine-relief-ear-acupuncture/\">[New Atlas] Migraine pain drops after targeted ear acupunctu...</a></li><li>Fiona MacDonald (ScienceAlert): <a href=\"https://www.sciencealert.com/this-huge-galactic-structure-is-23-million-light-years-long-and-we-cant-comprehend-it\">[ScienceAlert] This Huge Galactic Structure Is 23 Million Li...</a></li><li>David Nield (ScienceAlert): <a href=\"https://www.sciencealert.com/common-virus-can-trigger-parkinsons-like-brain-damage-in-mice\">[ScienceAlert] Common Virus Triggers Parkinson's-Like Brain ...</a></li><li>Al Jazeera Staff (Al Jazeera English): <a href=\"https://www.aljazeera.com/news/2026/7/10/under-lula-amazon-deforestation-falls-to-lowest-level-in-a-decade?traffic_source=rss\">[Al Jazeera English] Under Lula, Amazon deforestation falls ...</a></li><li>Shanal Otchere (Resilience.org): <a href=\"https://www.resilience.org/stories/2026-07-09/growth-mania-is-fueling-dangerous-advances-in-ai-and-its-existential-risks/\">[Resilience.org] Growth mania is fueling dangerous advances ...</a></li><li>Global News: <a href=\"https://globalnews.ca/news/11961952/kananaskis-drying-up-recent-floods-trails-remain-closed/\">[Global News] Kananaskis drying up after recent floods but s...</a></li><li>Séamus Bellamy (Boing Boing): <a href=\"https://boingboing.net/2026/07/10/israeli-soldier-shot-an-unarmed-gaza-aid-driver-witnesses-say.html\">[Boing Boing] Israeli soldier shot an unarmed Gaza aid drive...</a></li><li>https://refractor.io/author/the-conversation/ (New Atlas): <a href=\"https://refractor.io/brain/alzheimers-dementia/truth-mild-cognitive-impairment/\">[New Atlas] Mild cognitive impairment: Any early warning sig...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/07/05/extract-fumes-in-midcentury-style-with-nixie-tubes-and-military-surplus/\">[Hackaday] Extract Fumes in Midcentury Style With Nixie Tube...</a></li><li>https://newatlas.com/author/abhimanyu-ghoshal/ (New Atlas): <a href=\"https://newatlas.com/consumer-tech/mondo-beni-robot-action-cam/\">[New Atlas] Tenacious tiny bot speeds, leaps and climbs stai...</a></li><li>Gabriela Vătu (Engadget): <a href=\"https://www.engadget.com/2208395/how-to-protect-your-tech-from-lightning-strikes/\">[Engadget] How to protect your tech from lightning strikes</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/07/10/hackaday-podcast-episode-ep-377-parallel-pixels-wiggly-consoles-and-seven-segments/\">Hackaday Podcast Episode Ep 377: Parallel Pixels, Wiggly Con...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/penelope-cruz-parenting-kids-judgment-free-home-social-media-2026-7\">[Business Insider] Penélope Cruz says one thing matters most...</a></li><li>Outside Online: <a href=\"https://www.outsideonline.com/outdoor-gear/run/if-youre-ambitious-about-running-get-a-shoe-to-match/\">[Outside Online] If You’re Ambitious About Running, Get a Sh...</a></li><li>Barbara Roden (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/07/10/heavy-wildfire-smoke-prompts-health-warning-and-safety-tips/\">[Williams Lake Tribune] Heavy wildfire smoke prompts health ...</a></li><li>Laisa Conde (Quesnel Cariboo Observer): <a href=\"https://quesnelobserver.com/2026/07/10/quesnel-safeway-opens-hidden-time-capsule-after-nearly-40-years/\">[Quesnel Cariboo Observer] Quesnel Safeway opens hidden time...</a></li></ul><p><b>Closing Music:</b> &ldquo;<a href=\"https://www.jamendo.com/track/1213626\">Drive</a>&rdquo; by HEARTSKIN &mdash; indie, electronic, synthpop. Free music via Jamendo, licensed under Creative Commons.</p><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5<br>TTS Voices: OpenAI TTS API (Nova · Echo)<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-07-11T02:55:57.060639-07:00",
+    "models": {
+      "script": "claude-sonnet-5",
+      "review": "claude-sonnet-5",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 3719,
+      "voice_ratio_casey_riley": 0.85,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 1,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 9,
+        "roundup_seam": 0,
+        "thats_closer": 0
+      },
+      "total_hits": 1,
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 5
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[100 Mile Free Press] Sheep help mitigate fire, invasive species in 108 Mile Ranch Greenbelt",
+          "url": "https://100milefreepress.net/2026/07/10/sheep-help-mitigate-fire-invasive-species-in-108-mile-ranch-greenbelt/",
+          "source": "100 Mile Free Press",
+          "author": "Patrick Davies",
+          "ai_score": 90,
+          "date_published": "2026-07-10T12:00:00+00:00",
+          "summary": "## Sheep help mitigate fire, invasive species in 108 Mile Ranch Greenbelt Published 5:00 am Friday, July 10, 2026 **By Patrick Davies** 1/8 A curious sheep approaches the camera in the 108 Mile Ranch ...",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Special mediators appointed amid B.C. Nurses’ Union job action",
+          "url": "https://wltribune.com/2026/07/10/special-mediators-appointed-amid-b-c-nurses-union-job-action/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 82,
+          "date_published": "2026-07-10T20:33:00+00:00",
+          "summary": "## Special mediators appointed amid B.C. Nurses’ Union job action Published 1:33 pm Friday, July 10, 2026 **By Lauren Collins** Nurses and other health care workers walking the picket line outside of ...",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] Patricia Mildred Moortele",
+          "url": "https://wltribune.com/2026/07/10/patricia-mildred-moortele/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 73,
+          "date_published": "2026-07-10T15:30:00+00:00",
+          "summary": "# Patricia Mildred Moortele 1 Published July 10, 2026 In Loving Memory \\~ **November 12, 1944 – June 30, 2026** It is with profound sadness that we announce the passing of Patricia Mildred Moortele on...",
+          "discussed": false
+        },
+        {
+          "title": "[CFJC Today Kamloops] British military says cargo ship reports being under attack in the Red Sea off the coast of Yemen",
+          "url": "https://cfjctoday.com/2026/07/05/british-military-says-cargo-ship-reports-being-under-attack-in-the-red-sea-off-the-coast-of-yemen/",
+          "source": "CFJC Today Kamloops",
+          "author": "",
+          "ai_score": 61,
+          "date_published": "2026-07-05T09:08:12+00:00",
+          "summary": "CAIRO (AP) - A cargo ship came under attack Sunday off the coast of Yemen in the Red Sea, the British military said, the latest maritime attack off th...",
+          "discussed": true
+        },
+        {
+          "title": "[New Atlas] Migraine pain drops after targeted ear acupuncture",
+          "url": "https://refractor.io/chronic-pain/migraine-relief-ear-acupuncture/",
+          "source": "New Atlas",
+          "author": "https://refractor.io/author/bronwyn-thompson/",
+          "ai_score": 46,
+          "date_published": "2026-07-10T23:49:00+00:00",
+          "summary": "A new treatment has shown promise in reducing migraine pain with targeted ear acupuncture, opening the door to therapy that could be used as a complementary procedure alongside existing medication pre...",
+          "discussed": false
+        },
+        {
+          "title": "[ZDNet] SpaceX wants to launch 100,000 more Starlink satellites - for 100x the bandwidth",
+          "url": "https://www.zdnet.com/article/spacex-wants-to-launch-100000-more-starlink-satellites/",
+          "source": "ZDNet",
+          "author": "",
+          "ai_score": 57,
+          "date_published": "2026-07-10T17:15:00+00:00",
+          "summary": "It could mean faster internet for rural customers, but not everyone is happy.",
+          "discussed": true
+        },
+        {
+          "title": "[ScienceAlert] This Huge Galactic Structure Is 23 Million Light-Years Long, And We Can't Comprehend It",
+          "url": "https://www.sciencealert.com/this-huge-galactic-structure-is-23-million-light-years-long-and-we-cant-comprehend-it",
+          "source": "ScienceAlert",
+          "author": "Fiona MacDonald",
+          "ai_score": 41,
+          "date_published": "2026-07-10T20:00:00+00:00",
+          "summary": "But how? ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Common Virus Triggers Parkinson's-Like Brain Damage in Mice",
+          "url": "https://www.sciencealert.com/common-virus-can-trigger-parkinsons-like-brain-damage-in-mice",
+          "source": "ScienceAlert",
+          "author": "David Nield",
+          "ai_score": 47,
+          "date_published": "2026-07-10T13:00:00+00:00",
+          "summary": "Here's the evidence. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+          "discussed": false
+        },
+        {
+          "title": "[CNET] US Weighs Removing Steering Wheel Requirement for Driverless Cars",
+          "url": "https://www.cnet.com/roadshow/news/driverless-cars-steering-wheel-requirement-us-nhtsa/",
+          "source": "CNET",
+          "author": "",
+          "ai_score": 42,
+          "date_published": "2026-07-10T14:01:00+00:00",
+          "summary": "The move would benefit companies such as Tesla, which are already moving in that direction.",
+          "discussed": true
+        },
+        {
+          "title": "[Engadget] Volkswagen will dramatically shrink its model lineup and factory footprint",
+          "url": "https://www.engadget.com/2212213/volkswagen-will-shrink-model-lineup-and-factory-footprint/",
+          "source": "Engadget",
+          "author": "Matt Tate",
+          "ai_score": 21,
+          "date_published": "2026-07-10T13:40:00+00:00",
+          "summary": "It follows reports of 100,000 jobs being under threat at the German automaker.",
+          "discussed": true
+        },
+        {
+          "title": "[Al Jazeera English] Under Lula, Amazon deforestation falls to lowest level in a decade",
+          "url": "https://www.aljazeera.com/news/2026/7/10/under-lula-amazon-deforestation-falls-to-lowest-level-in-a-decade?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "Al Jazeera Staff",
+          "ai_score": 47,
+          "date_published": "2026-07-10T22:36:18+00:00",
+          "summary": "The figures come months before Brazil’s presidential election, with Lula promising to end illegal deforestation by 2030.",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] Meta backtracks on AI-image feature for Instagram due to privacy backlash",
+          "url": "https://www.aljazeera.com/video/newsfeed/2026/7/11/meta-backtracks-on-ai-image-feature-for-instagram-due-to-privacy-backlash?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "",
+          "ai_score": 43,
+          "date_published": "2026-07-11T05:34:53+00:00",
+          "summary": "Meta has rolled back its ‘Muse Image’ AI feature after widespread backlash over privacy and consent.",
+          "discussed": true
+        },
+        {
+          "title": "[Resilience.org] Growth mania is fueling dangerous advances in AI – and its existential risks",
+          "url": "https://www.resilience.org/stories/2026-07-09/growth-mania-is-fueling-dangerous-advances-in-ai-and-its-existential-risks/",
+          "source": "Resilience.org",
+          "author": "Shanal Otchere",
+          "ai_score": 57,
+          "date_published": "2026-07-09T08:00:55+00:00",
+          "summary": "AI risk represents the apex of growth mania, where a few tech elites gamble with humanity’s future. They take these risks without our consent and without our interests in mind. The result could be hum...",
+          "discussed": false
+        },
+        {
+          "title": "[Global News] Kananaskis drying up after recent floods but some trails remain closed",
+          "url": "https://globalnews.ca/news/11961952/kananaskis-drying-up-recent-floods-trails-remain-closed/",
+          "source": "Global News",
+          "author": "",
+          "ai_score": 27,
+          "date_published": "2026-07-11T04:49:57+00:00",
+          "summary": "It's been two weeks since heavy rainfall flooded parts of Kananaskis, resulting in evacuations and a bridge collapse. Now the land is recovering and drying up for summer.",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] Israeli soldier shot an unarmed Gaza aid driver, witnesses say",
+          "url": "https://boingboing.net/2026/07/10/israeli-soldier-shot-an-unarmed-gaza-aid-driver-witnesses-say.html",
+          "source": "Boing Boing",
+          "author": "Séamus Bellamy",
+          "ai_score": 18,
+          "date_published": "2026-07-10T11:09:00+00:00",
+          "summary": "There's so much shitty stuff happening in the United States, Iran, and Europe that it's easy to forget there's really shitty stuff still going on in Gaza that the United States is complicit in . But h...",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] Mild cognitive impairment: Any early warning sign of dementia?",
+          "url": "https://refractor.io/brain/alzheimers-dementia/truth-mild-cognitive-impairment/",
+          "source": "New Atlas",
+          "author": "https://refractor.io/author/the-conversation/",
+          "ai_score": 42,
+          "date_published": "2026-07-10T16:42:00+00:00",
+          "summary": "Nikki-Anne Wilson, UNSW Sydney; Neuroscience Research Australia/The Conversation Continue Reading Category: Alzheimer's & Dementia , Brain Health , Body and Mind , Refractor: Science & Health Tags: Un...",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Extract Fumes in Midcentury Style With Nixie Tubes and Military Surplus",
+          "url": "https://hackaday.com/2026/07/05/extract-fumes-in-midcentury-style-with-nixie-tubes-and-military-surplus/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 15,
+          "date_published": "2026-07-06T05:00:34+00:00",
+          "summary": "Nobody wants to breathe solder fumes; that’s a given. For most of us, an industrial-looking fan-and-filter made in China and picked up cheap feels like more than enough to keep …read more",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] Tenacious tiny bot speeds, leaps and climbs stairs to capture footage",
+          "url": "https://newatlas.com/consumer-tech/mondo-beni-robot-action-cam/",
+          "source": "New Atlas",
+          "author": "https://newatlas.com/author/abhimanyu-ghoshal/",
+          "ai_score": 13,
+          "date_published": "2026-07-10T18:37:09+00:00",
+          "summary": "Beni looks like just another cute little toy robot, but it's actually a roving camera – raring to follow you around and capture fun times. Oh, and it can jump. Continue Reading Category: Consumer Tech...",
+          "discussed": false
+        },
+        {
+          "title": "[Engadget] How to protect your tech from lightning strikes",
+          "url": "https://www.engadget.com/2208395/how-to-protect-your-tech-from-lightning-strikes/",
+          "source": "Engadget",
+          "author": "Gabriela Vătu",
+          "ai_score": 16,
+          "date_published": "2026-07-07T13:30:00+00:00",
+          "summary": "Doing a little work ahead of time will help keep your gadgets from being fried in an electrical storm.",
+          "discussed": false
+        },
+        {
+          "title": "Hackaday Podcast Episode Ep 377: Parallel Pixels, Wiggly Consoles, and Seven Segments",
+          "url": "https://hackaday.com/2026/07/10/hackaday-podcast-episode-ep-377-parallel-pixels-wiggly-consoles-and-seven-segments/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 14,
+          "date_published": "2026-07-10T16:30:56+00:00",
+          "summary": "This week’s podcast sees Elliot joined by Jenny List, as both suffer silently in the European summer heat because the sound of a desk fan would come over on the …read more",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] Penélope Cruz says one thing matters most when raising teens in the social media age",
+          "url": "https://www.businessinsider.com/penelope-cruz-parenting-kids-judgment-free-home-social-media-2026-7",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 14,
+          "date_published": "2026-07-10T13:05:39+00:00",
+          "summary": "Penélope Cruz said the messages kids encounter on social media are \"a type of manipulation that confuses even adults.\"",
+          "discussed": false
+        },
+        {
+          "title": "[Outside Online] If You’re Ambitious About Running, Get a Shoe to Match",
+          "url": "https://www.outsideonline.com/outdoor-gear/run/if-youre-ambitious-about-running-get-a-shoe-to-match/",
+          "source": "Outside Online",
+          "author": "",
+          "ai_score": 14,
+          "date_published": "2026-07-09T19:57:47+00:00",
+          "summary": "The new HOKA Clifton PRO is for runners who put in the work The post If You’re Ambitious About Running, Get a Shoe to Match appeared first on Outside Online .",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceDaily] This frog bacterium wiped out cancer tumors in mice with a single dose",
+          "url": "https://www.sciencedaily.com/releases/2026/07/260709160655.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-07-10T04:13:15+00:00",
+          "summary": "A naturally occurring bacterium from amphibian intestines completely eliminated colorectal tumors in mice with a single treatment by both attacking cancer cells and activating the immune system. The f...",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Microsoft discovers new multi-malware package 'GigaWiper' capable of deploying wipers and ransomware",
+          "url": "https://www.techradar.com/pro/security/microsoft-discovers-new-multi-malware-package-gigawiper-capable-of-deploying-wipers-and-ransomware",
+          "source": "TechRadar",
+          "author": "",
+          "ai_score": 32,
+          "date_published": "2026-07-10T16:50:00+00:00",
+          "summary": "One wiper can destroy a computer in different ways, but it can also spy on users.",
+          "discussed": false
+        },
+        {
+          "title": "[Android Authority] Another power bank is getting recalled for overheating and fire risks",
+          "url": "https://www.androidauthority.com/flaunt-recalls-magsafe-battery-charger-3686453/",
+          "source": "Android Authority",
+          "author": "",
+          "ai_score": 13,
+          "date_published": "2026-07-10T16:47:45+00:00",
+          "summary": "If you have this power bank, you'll want to stop using it immediately.",
+          "discussed": false
+        },
+        {
+          "title": "[The Northern Miner] Fortuna bets $71M on Latin America gold growth",
+          "url": "https://www.northernminer.com/news/fortuna-bets-71m-on-latin-america-gold-growth/1003892924/",
+          "source": "The Northern Miner",
+          "author": "",
+          "ai_score": 37,
+          "date_published": "2026-07-10T16:40:00+00:00",
+          "summary": "Fortuna Mining (TSX: FT; NYSE: FSM) plans to invest $71 million (C$101 million) in Argentina and Peru this year as the Canadian precious metals producer targets higher gold output and... The post Fort...",
+          "discussed": false
+        },
+        {
+          "title": "[Engadget] FCC grants approval for sun-reflecting space mirror that's been widely criticized by astronomers",
+          "url": "https://www.engadget.com/2212600/fcc-grants-approval-for-sun-reflecting-space-mirror/",
+          "source": "Engadget",
+          "author": "Ian Carlos Campbell",
+          "ai_score": 34,
+          "date_published": "2026-07-10T19:08:38+00:00",
+          "summary": "Reflect Orbital wants to direct sunlight at night with a network of satellites.",
+          "discussed": true
+        },
+        {
+          "title": "[Boing Boing] Coffee machines with no plastics in the brew path",
+          "url": "https://boingboing.net/2026/07/10/coffee-machines-with-no-plastics-in-the-brew-path.html",
+          "source": "Boing Boing",
+          "author": "Rob Beschizza",
+          "ai_score": 33,
+          "date_published": "2026-07-10T18:08:57+00:00",
+          "summary": "Simply Good's \"The Brewer\" is a drip machine with a simple pitch to the coffee addict: it has no plastic parts that come into contact with coffee. It's mostly glass and stainless steel, looks like a M...",
+          "discussed": true
+        },
+        {
+          "title": "[Nautilus] See the Odd-Looking Barreleye Fish in Its Natural Habitat for the First Time",
+          "url": "https://nautil.us/see-the-odd-looking-barreleye-fish-in-its-natural-habitat-for-the-first-time-1282610/",
+          "source": "Nautilus",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-07-10T14:31:44+00:00",
+          "summary": "A 35-day expedition revealed hidden wonders of the deep The post See the Odd-Looking Barreleye Fish in Its Natural Habitat for the First Time appeared first on Nautilus .",
+          "discussed": false
+        },
+        {
+          "title": "[The Atlantic Culture] The Rosenberg Boys",
+          "url": "https://www.theatlantic.com/magazine/2026/08/ethel-julius-rosenberg-boys/687631/?utm_source=feed",
+          "source": "The Atlantic Culture",
+          "author": "",
+          "ai_score": 46,
+          "date_published": "2026-07-10T11:00:00+00:00",
+          "summary": "When Ethel and Julius Rosenberg were executed by the U.S. government, they left behind two sons, ages 6 and 10. All these years later, Robby and Michael are still trying to make sense of what happened...",
+          "discussed": false
+        },
+        {
+          "title": "[The Northern Miner] BHP strike threat fuels iron ore’s best week since May",
+          "url": "https://www.northernminer.com/news/bhp-strike-threat-fuels-iron-ores-best-week-since-may/1003892901/",
+          "source": "The Northern Miner",
+          "author": "",
+          "ai_score": 34,
+          "date_published": "2026-07-10T21:10:02+00:00",
+          "summary": "Iron ore prices are headed for their biggest weekly gain since early May as a looming strike at BHP‘s (NYSE, LSE, ASX: BHP) Port Hedland export terminal raises supply concerns... The post BHP strike t...",
+          "discussed": false
+        },
+        {
+          "title": "[Resilience.org] ‘Let’s call it earth grief’: Naming pain and loss in the age of climate crisis",
+          "url": "https://www.resilience.org/stories/2026-07-10/lets-call-it-earth-grief-naming-pain-and-loss-in-the-age-of-climate-crisis/",
+          "source": "Resilience.org",
+          "author": "",
+          "ai_score": 48,
+          "date_published": "2026-07-10T08:00:43+00:00",
+          "summary": "For decades, climate professionals and the informed public have been living with the disturbing knowledge of what is coming. Now, as the impacts of climate predictions begin to come true, we live with...",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Scientists Just Made Contact Lenses That Fix Their Own Scratches – Without Needing Replacing",
+          "url": "https://www.sciencealert.com/new-self-healing-contact-lenses-can-repair-themselves-in-uv-light",
+          "source": "ScienceAlert",
+          "author": "",
+          "ai_score": 42,
+          "date_published": "2026-07-10T22:00:00+00:00",
+          "summary": "No need to throw them away. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Cariboo Local Affairs",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Heavy wildfire smoke prompts health warning and safety tips",
+          "url": "https://wltribune.com/2026/07/10/heavy-wildfire-smoke-prompts-health-warning-and-safety-tips/",
+          "source": "Williams Lake Tribune",
+          "author": "Barbara Roden",
+          "ai_score": 92,
+          "date_published": "2026-07-11T06:21:10.145263+00:00",
+          "summary": "## Heavy wildfire smoke prompts health warning and safety tips Published 12:43 pm Friday, July 10, 2026 **By Barbara Roden** Smoke from wildfires as seen at Sheridan Lake, east of 100 Mile House in th...",
+          "discussed": false
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Quesnel Safeway opens hidden time capsule after nearly 40 years",
+          "url": "https://quesnelobserver.com/2026/07/10/quesnel-safeway-opens-hidden-time-capsule-after-nearly-40-years/",
+          "source": "Quesnel Cariboo Observer",
+          "author": "Laisa Conde",
+          "ai_score": 87,
+          "date_published": "2026-07-10T17:13:41+00:00",
+          "summary": "## Quesnel Safeway opens hidden time capsule after nearly 40 years Published 10:13 am Friday, July 10, 2026 **By Laisa Conde** 1/7 A few of the items that were kept in the time capsule found at Quesne...",
+          "discussed": false
+        },
+        {
+          "title": "Home",
+          "url": "https://artsonthefly.com/",
+          "source": "Seeded Content",
+          "author": "",
+          "ai_score": 82,
+          "date_published": "",
+          "summary": "Coming this weekend  —  Arts on the Fly is a family- and nature-oriented celebration of the arts, set in the lively rural town of Horsefly, BC. Beloved for its intimate vibe, it gets the whole communi...",
+          "discussed": true
+        },
+        {
+          "title": "Home",
+          "url": "https://artsonthefly.com/",
+          "source": "Seeded Content",
+          "author": "",
+          "ai_score": 82,
+          "date_published": "",
+          "summary": "Next weekend!  —  Arts on the Fly is a family- and nature-oriented celebration of the arts, set in the lively rural town of Horsefly, BC. Beloved for its intimate vibe, it gets the whole community inv...",
+          "discussed": true
+        },
+        {
+          "title": "Home",
+          "url": "https://artsonthefly.com/",
+          "source": "Seeded Content",
+          "author": "",
+          "ai_score": 82,
+          "date_published": "",
+          "summary": "Next weekend!  —  Arts on the Fly is a family- and nature-oriented celebration of the arts, set in the lively rural town of Horsefly, BC. Beloved for its intimate vibe, it gets the whole community inv...",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "When crises cross multiple jurisdictions in rural areas, how can local communities ensure they have a voice in decisions that affect them, and who should be responsible for closing information and institutional gaps?",
+        "riley_position": "Existing volunteer institutions like Search and Rescue already have the trust and training to serve as information nodes; the solution isn't new funding but formalizing relationships that already work informally and adopting proven low-tech models like mesh-radio networks.",
+        "riley_key_evidence": [
+          "Ontario restructured wildfire response after 2023 with real-time data-sharing agreements that cut translation lag from hours to near-real-time",
+          "Rural U.S. counties use mesh-radio repeater networks maintained by volunteer fire departments that don't require ongoing grants or cell coverage",
+          "Central Cariboo Search and Rescue already functions as an informal last-mile information network during emergencies"
+        ],
+        "casey_position": "Simply formalizing existing volunteer capacity masks a deeper structural failure: rural governance institutions are quietly relying on unpaid labour to cover gaps they should solve deliberately, and person-dependent arrangements don't survive leadership transitions.",
+        "casey_key_evidence": [
+          "The regional district lacks communication capacity to localize fast-moving smoke advisories for every hamlet in real time",
+          "Horsefly's festival permitting depends on institutional memory of informal relationships that would be lost if current organizers stepped away",
+          "Provincial bargaining processes like the nurses' mediation don't have mechanisms to surface what outcomes mean specifically for a town of 10,000 versus a city of a million"
+        ],
+        "resolution": "Both agreed that the underlying problem is whether institutions build durable structures or rely on volunteers to fill gaps informally. They converged on the idea that 'built deliberately' doesn't require new bureaucracy—sometimes just documenting what already works (like formalizing SAR relationships, publishing festival checklists) would solve continuity problems before they start.",
+        "topics_covered": [
+          "Fragmented emergency alert systems across wildfire, health authority, and municipal jurisdictions",
+          "Unincorporated community governance and informal permitting relationships",
+          "Institutional reliance on unpaid volunteer labour for essential services",
+          "Provincial policy outcomes landing differently in rural vs. urban contexts",
+          "Low-tech infrastructure solutions (mesh radio networks) vs. grant-dependent models"
+        ]
+      }
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech": "Azure Neural TTS (Ava · Andrew)",
+    "text_to_speech_openai": "OpenAI TTS API (Nova · Echo)",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "weekend_music": "Jamendo (jamendo.com)",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026"
+  },
+  "closing_music": {
+    "track_id": "1213626",
+    "name": "Drive",
+    "artist": "HEARTSKIN",
+    "genres": [
+      "indie",
+      "electronic",
+      "synthpop"
+    ],
+    "shareurl": "https://www.jamendo.com/track/1213626",
+    "license": "Creative Commons via Jamendo"
+  }
+}
