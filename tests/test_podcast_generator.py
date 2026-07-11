@@ -23,6 +23,7 @@ from podcast_generator import (
     load_pending_email_items,
     format_corrections_for_prompt,
     find_correction_source_context,
+    resolve_referenced_episode_date,
     _format_pub_date_tag,
     get_pacific_now,
     script_to_vtt_transcript,
@@ -940,11 +941,134 @@ class TestFormatCorrectionsForPrompt:
         assert "not found in available scripts" in prompt
 
 
+class TestFormatFeedbackEmailsForPrompt:
+    def test_stamps_received_date_and_referenced_episode(self):
+        from podcast_generator import format_feedback_emails_for_prompt
+
+        item = {
+            "subject": "Episode cut short",
+            "body_text": "Looks like today's episode was cut short.",
+            "received_at": "2026-07-06T06:47:07-07:00",
+        }
+
+        prompt = format_feedback_emails_for_prompt([item])
+
+        assert "on 2026-07-06" in prompt
+        assert "referring to the 2026-07-06 episode" in prompt
+        assert "NEVER to today's episode" in prompt
+
+    def test_item_without_received_date_still_included(self):
+        from podcast_generator import format_feedback_emails_for_prompt
+
+        prompt = format_feedback_emails_for_prompt([{"body_text": "great show"}])
+
+        assert '[Listener wrote]: "great show"' in prompt
+
+
+class TestResolveReferencedEpisodeDate:
+    """Relative time references must resolve against received_at, never the
+    generation date — 2026-07-11 incident: a "today's episode was cut short"
+    email received 07-06 sat theme-gated until 07-11 and aired misattributed
+    as "yesterday's episode"."""
+
+    def test_todays_episode_resolves_to_received_date(self):
+        item = {
+            "subject": "Episode cut short",
+            "body_text": "Looks like today's episode was cut short due to some budget controls.",
+            "received_at": "2026-07-06T06:47:07-07:00",
+        }
+        assert resolve_referenced_episode_date(item) == "2026-07-06"
+
+    def test_yesterday_resolves_to_day_before_received(self):
+        item = {
+            "subject": "Feedback",
+            "body_text": "In yesterday's episode you mispronounced Tsilhqot'in.",
+            "received_at": "2026-07-06T06:47:07-07:00",
+        }
+        assert resolve_referenced_episode_date(item) == "2026-07-05"
+
+    def test_weekday_with_episode_context_resolves_backwards(self):
+        # Received Wednesday 2026-07-08; "Saturday's episode" → 2026-07-04
+        item = {
+            "subject": "Correction",
+            "body_text": "Saturday's episode got the ranch name wrong.",
+            "received_at": "2026-07-08T10:00:00-07:00",
+        }
+        assert resolve_referenced_episode_date(item) == "2026-07-04"
+
+    def test_bare_weekday_without_episode_context_is_ignored(self):
+        item = {
+            "subject": "Correction",
+            "body_text": "The market you mentioned is actually happening Saturday.",
+            "received_at": "2026-07-08T10:00:00-07:00",
+        }
+        assert resolve_referenced_episode_date(item) == ""
+
+    def test_explicit_date_in_subject_wins_over_relative_words(self):
+        item = {
+            "subject": "Correction: 2026-07-02 episode",
+            "body_text": "Listening today, I noticed an error.",
+            "received_at": "2026-07-06T06:47:07-07:00",
+        }
+        assert resolve_referenced_episode_date(item) == "2026-07-02"
+
+    def test_month_name_date_near_episode_word_in_body(self):
+        item = {
+            "subject": "Correction",
+            "body_text": "The July 2 episode misnamed the fire chief.",
+            "received_at": "2026-07-06T06:47:07-07:00",
+        }
+        assert resolve_referenced_episode_date(item) == "2026-07-02"
+
+    def test_event_date_without_episode_context_is_ignored(self):
+        item = {
+            "subject": "Correction",
+            "body_text": "You said the festival starts July 15 but that lineup is wrong.",
+            "received_at": "2026-07-06T06:47:07-07:00",
+        }
+        assert resolve_referenced_episode_date(item) == ""
+
+    def test_no_received_date_and_no_explicit_date_returns_empty(self):
+        assert resolve_referenced_episode_date({"body_text": "today's episode was wrong"}) == ""
+
+
 class TestFindCorrectionSourceContext:
     def test_returns_empty_when_no_keywords(self, tmp_path, monkeypatch):
         monkeypatch.setattr("podcast_generator.PODCASTS_DIR", tmp_path)
 
         assert find_correction_source_context({"body_text": "that's wrong"}) == {}
+
+    def test_date_reference_pins_episode_even_without_keyword_match(self, tmp_path, monkeypatch):
+        monkeypatch.setattr("podcast_generator.PODCASTS_DIR", tmp_path)
+        (tmp_path / "podcast_script_2026-07-06_arts,_culture_and_digital_storytelling.txt").write_text(
+            "**RILEY:** Welcome back to the show.\n"
+        )
+        (tmp_path / "podcast_script_2026-07-05_science,_wonder_and_the_natural_world.txt").write_text(
+            "**CASEY:** Budget talk and other stories.\n"
+        )
+        item = {
+            "subject": "Episode cut short",
+            "body_text": "Looks like today's episode was cut short due to some budget controls.",
+            "received_at": "2026-07-06T06:47:07-07:00",
+        }
+
+        assert find_correction_source_context(item)["date_str"] == "2026-07-06"
+
+    def test_date_reference_without_matching_script_falls_back_to_keywords(self, tmp_path, monkeypatch):
+        monkeypatch.setattr("podcast_generator.PODCASTS_DIR", tmp_path)
+        (tmp_path / "podcast_script_2026-07-03_wild_spaces_and_outdoor_life.txt").write_text(
+            "**RILEY:** The Williams Lake Stampede runs this weekend.\n"
+        )
+        item = {
+            "subject": "Williams Lake Stampede correction",
+            "body_text": "Today's episode said the Williams Lake Stampede is this weekend — it's over.",
+            "received_at": "2026-07-06T06:47:07-07:00",  # no 07-06 script exists
+        }
+
+        source = find_correction_source_context(item)
+
+        assert source["date_str"] == "2026-07-03"
+        assert "Williams Lake Stampede" in source["quoted_line"]
 
     def test_ignores_scripts_dated_after_the_email(self, tmp_path, monkeypatch):
         monkeypatch.setattr("podcast_generator.PODCASTS_DIR", tmp_path)
