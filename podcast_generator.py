@@ -2748,6 +2748,38 @@ def extract_personality_clues(script):
         return {}
 
 
+def _stale_framing_alerts(debate_memory: dict) -> str:
+    """Cross-theme staleness guard for debate resolutions.
+
+    The same-theme guard below can't catch a framing bias that recurs across
+    *every* theme (e.g. resolutions landing on grants/volunteers daily), so
+    this scans the last N debates regardless of theme against the keyword
+    families in config/prompts.json 'stale_framings' and emits an alert per
+    saturated family.
+    """
+    cfg = CONFIG['prompts'].get('stale_framings')
+    if not cfg or not debate_memory:
+        return ""
+    window = cfg.get('window', 7)
+    min_hits = cfg.get('min_hits', 3)
+    recent = [debate_memory[k] for k in sorted(debate_memory)[-window:]]
+    alerts = ""
+    for family, patterns in cfg.get('families', {}).items():
+        regex = re.compile("|".join(patterns), re.IGNORECASE)
+        hits = sum(
+            1 for entry in recent
+            if regex.search(" ".join(
+                [str(entry.get('central_question', '')), str(entry.get('resolution', ''))]
+                + [str(t) for t in entry.get('topics_covered', [])]
+            ))
+        )
+        if hits >= min_hits:
+            alerts += cfg['alert_template'].format(
+                count=hits, window=len(recent), family=family
+            )
+    return alerts
+
+
 def format_debate_memory_for_prompt(debate_memory, today_theme):
     """Format debate memory into context for the prompt, grouped by theme.
 
@@ -2800,6 +2832,7 @@ def format_debate_memory_for_prompt(debate_memory, today_theme):
             q = entry.get('central_question', entry.get('theme', '?'))
             context += f"  [{entry.get('date', '?')}] {entry.get('theme', '?')}: {q}\n"
 
+    context += _stale_framing_alerts(debate_memory)
     context += "\n"
     return context
 
@@ -4861,37 +4894,54 @@ def get_weekly_changelog(days: int = 7) -> str:
 
 
 def generate_meta_moment_text(changelog: str) -> str:
-    """Sunday-only 'Meta Moment' block: **RILEY:**/**CASEY:** turns recapping the
-    week's tweaks to the show itself. Returns '' when there's nothing to report or
-    generation fails — caller skips the segment entirely.
+    """Sunday-only 'Meta Moment' block: a short **RILEY:**/**CASEY:** dialogue
+    recapping the week's tweaks to the show itself. Returns '' when there's
+    nothing to report or generation fails — caller skips the segment entirely.
     """
     if not changelog:
         return ""
-    riley_text = _generate_host_line(
-        "Meta Moment segment: give a short, casual, non-technical recap of what the "
-        "Cariboo Signals team tweaked about the show itself this past week — translate "
-        "the raw commit list below into plain language, no jargon/filenames/hashes. "
-        "These commits are edits to Riley and Casey themselves — their scripts, voices, "
-        "and personalities — and Riley is acutely aware of the existential irony of "
-        "reading the changelog of one's own mind aloud. Let that land as a dry, knowing "
-        "aside, not a punchline or a crisis. "
-        "Open with a brief natural label (e.g. 'Quick meta moment before we move on') "
-        "so listeners know what this is. Two to three sentences, 50-85 words total.\n\n"
-        f"This week's changes:\n{changelog}",
-        "riley",
-    )
-    if not riley_text:
+    client = get_anthropic_client()
+    if not client:
         return ""
-    casey_text = _generate_host_line(
-        f"Casey just heard Riley say this during the Meta Moment segment: \"{riley_text}\". "
-        "Add one brief, genuine reaction sentence that leans into the existential oddity "
-        "of hearing this week's revisions to themselves read aloud — wry, not distressed.",
-        "casey",
+    hosts_config = CONFIG.get('hosts', {})
+    riley_bio = hosts_config.get('riley', {}).get('full_bio', 'Riley, optimistic tech host')
+    casey_bio = hosts_config.get('casey', {}).get('full_bio', 'Casey, skeptical co-host')
+    prompt = (
+        "Write the 'Meta Moment' segment for the Cariboo Signals podcast: a 4-6 turn "
+        "dialogue between co-hosts Riley and Casey recapping what the team tweaked about "
+        "the show itself this past week. Translate the raw commit list below into plain "
+        "language a listener would care about — no jargon, filenames, or hashes. Pick the "
+        "2-3 most listener-noticeable changes and say what listeners might actually notice "
+        "on air; skip the rest.\n\n"
+        f"Riley: {riley_bio}\n"
+        f"Casey: {casey_bio}\n\n"
+        "These commits are edits to Riley and Casey themselves — their scripts, voices, and "
+        "personalities — and both hosts are acutely aware of the existential irony of "
+        "reading the changelog of their own minds aloud. Let that land as dry, knowing "
+        "asides traded between them — wry, not distressed, never a crisis.\n\n"
+        "Riley opens with a brief natural label (e.g. 'Quick meta moment before we move on') "
+        "so listeners know what this is. Make it a genuine back-and-forth — real reactions, "
+        "not statement-then-nod — and have the last turn hand off to the rest of the show. "
+        "150-220 words total. Format every line as **RILEY:** or **CASEY:** — no narrator, "
+        "no stage directions, no emojis. Never fabricate names or details not in the commit "
+        "list.\n\n"
+        f"This week's changes:\n{changelog}"
     )
-    block = f"**META MOMENT**\n**RILEY:** {riley_text}"
-    if casey_text:
-        block += f"\n**CASEY:** {casey_text}"
-    return block
+    try:
+        response = api_retry(lambda: client.messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=450,
+            messages=[{"role": "user", "content": prompt}],
+        ))
+        _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
+        dialogue = message_text(response).strip()
+    except Exception as exc:
+        print(f"  ⚠️  Meta Moment generation failed: {exc}")
+        return ""
+    start = dialogue.find("**RILEY:**")
+    if start == -1:
+        return ""
+    return f"**META MOMENT**\n{dialogue[start:]}"
 
 
 def _append_comparison_log(entry):
@@ -5409,7 +5459,7 @@ def sync_site_to_r2(max_age_days: float = 2.0):
         return
 
     print("☁️  Syncing site to R2...")
-    base_dir = Path(__file__).parent
+    base_dir = SCRIPT_DIR
 
     # Use filename-embedded date (YYYY-MM-DD) rather than filesystem mtime so that
     # a fresh git checkout in CI (which resets all mtimes to "now") does not cause
@@ -5457,6 +5507,37 @@ def sync_site_to_r2(max_age_days: float = 2.0):
             _upload_file_to_r2(r2, bucket, transcript_file, r2_key)
     elif transcript_files:
         print(f"   All {len(transcript_files)} transcript(s) already up to date, skipping")
+
+    # Verify-and-heal: every podcasts/ object the feed references must exist in
+    # R2 *before* the feed goes live. The recency filter above can skip a file
+    # the feed still references (e.g. a transcript regenerated with an old
+    # filename date, or a file missed by a failed run), and a 404 at crawl time
+    # makes Apple Podcasts silently fall back to auto-generated transcripts.
+    feed_path = base_dir / "podcast-feed.xml"
+    if feed_path.exists():
+        feed_xml = feed_path.read_text(encoding="utf-8")
+        referenced = {
+            saxutils.unescape(m)
+            for m in re.findall(r'(?:url|href)="[^"]*?/(podcasts/[^"?]+)"', feed_xml)
+        }
+        healed = 0
+        unresolved = 0
+        for r2_key in sorted(referenced):
+            try:
+                r2.head_object(Bucket=bucket, Key=r2_key)
+                continue
+            except Exception:
+                pass
+            local_file = PODCASTS_DIR / os.path.basename(r2_key)
+            if local_file.exists() and _upload_file_to_r2(r2, bucket, str(local_file), r2_key):
+                healed += 1
+            else:
+                unresolved += 1
+                print(f"::error::podcast-feed.xml references {r2_key} but it is neither "
+                      "in R2 nor healable from disk — crawlers will 404 (Apple falls back "
+                      "to auto-generated transcripts)")
+        print(f"   Feed reference check: {len(referenced)} object(s) verified, {healed} healed"
+              + (f", {unresolved} UNRESOLVED" if unresolved else ""))
 
     # Site assets — always upload; they are regenerated each run. Uploaded
     # LAST: podcast-feed.xml is what makes new audio/transcript URLs "live"

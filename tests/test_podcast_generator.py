@@ -34,7 +34,10 @@ from podcast_generator import (
     generate_meta_moment_text,
     _annotate_roundup_blocks,
     _curate_roundup_pool,
+    _stale_framing_alerts,
+    format_debate_memory_for_prompt,
 )
+from config_loader import load_prompts_config
 
 
 class TestGetArticleScores:
@@ -1289,6 +1292,86 @@ class TestSyncSiteToR2Ordering:
         assert "::warning::" in capsys.readouterr().out
 
 
+class TestSyncSiteToR2FeedReferenceHeal:
+    """Objects referenced by podcast-feed.xml must exist in R2 before the feed
+    is uploaded, even when the recency filter would skip them — a 404 at crawl
+    time makes Apple Podcasts fall back to auto-generated transcripts."""
+
+    FEED = (
+        '<rss><channel><item>'
+        '<enclosure url="https://podcast.example.ca/podcasts/podcast_audio_2026-01-01_old_theme.mp3"/>'
+        '<podcast:transcript url="https://podcast.example.ca/podcasts/podcast_transcript_2026-01-01_old_theme.vtt"'
+        ' type="text/vtt" language="en-CA"/>'
+        '<podcast:transcript url="https://podcast.example.ca/podcasts/podcast_transcript_2025-12-25_gone_theme.vtt"'
+        ' type="text/vtt" language="en-CA"/>'
+        '</item></channel></rss>'
+    )
+
+    def _run(self, tmp_path, monkeypatch, r2_keys):
+        podcasts_dir = tmp_path / "podcasts"
+        podcasts_dir.mkdir()
+        monkeypatch.setattr("podcast_generator.SCRIPT_DIR", tmp_path)
+        monkeypatch.setattr("podcast_generator.PODCASTS_DIR", podcasts_dir)
+        (tmp_path / "podcast-feed.xml").write_text(self.FEED)
+        # Old filename dates: the recency filter (max_age_days=2) skips both,
+        # so only the heal step can upload them.
+        (podcasts_dir / "podcast_audio_2026-01-01_old_theme.mp3").write_bytes(b"audio")
+        (podcasts_dir / "podcast_transcript_2026-01-01_old_theme.vtt").write_text("WEBVTT\n\n")
+
+        r2 = MagicMock()
+
+        def head_object(Bucket, Key):
+            if Key not in r2_keys:
+                raise Exception("404 not found")
+
+        r2.head_object.side_effect = head_object
+        monkeypatch.setattr("podcast_generator._get_r2_client", lambda: (r2, "test-bucket"))
+
+        uploaded_keys = []
+
+        def fake_upload(r2_client, bucket, file_path, object_key):
+            uploaded_keys.append(object_key)
+            return True
+
+        monkeypatch.setattr("podcast_generator._upload_file_to_r2", fake_upload)
+        sync_site_to_r2(max_age_days=2)
+        return uploaded_keys
+
+    def test_missing_referenced_files_healed_before_feed_upload(self, tmp_path, monkeypatch):
+        uploaded = self._run(tmp_path, monkeypatch, r2_keys=set())
+
+        vtt_key = "podcasts/podcast_transcript_2026-01-01_old_theme.vtt"
+        audio_key = "podcasts/podcast_audio_2026-01-01_old_theme.mp3"
+        assert vtt_key in uploaded and audio_key in uploaded
+        feed_index = uploaded.index("podcast-feed.xml")
+        assert uploaded.index(vtt_key) < feed_index
+        assert uploaded.index(audio_key) < feed_index
+
+    def test_unhealable_reference_emits_ci_error_but_feed_still_uploads(
+        self, tmp_path, monkeypatch, capsys
+    ):
+        uploaded = self._run(tmp_path, monkeypatch, r2_keys=set())
+
+        out = capsys.readouterr().out
+        assert "::error::" in out
+        assert "podcast_transcript_2025-12-25_gone_theme.vtt" in out
+        assert "podcast-feed.xml" in uploaded
+
+    def test_no_reupload_when_objects_already_in_r2(self, tmp_path, monkeypatch, capsys):
+        uploaded = self._run(
+            tmp_path,
+            monkeypatch,
+            r2_keys={
+                "podcasts/podcast_audio_2026-01-01_old_theme.mp3",
+                "podcasts/podcast_transcript_2026-01-01_old_theme.vtt",
+                "podcasts/podcast_transcript_2025-12-25_gone_theme.vtt",
+            },
+        )
+
+        assert uploaded == ["podcast-feed.xml"]
+        assert "::error::" not in capsys.readouterr().out
+
+
 class TestGetWeeklyChangelog:
     def test_empty_git_log_returns_empty_string(self, monkeypatch):
         monkeypatch.setattr("podcast_generator._git", lambda *a, **k: "")
@@ -1307,53 +1390,139 @@ class TestGetWeeklyChangelog:
 
 
 class TestGenerateMetaMomentText:
+    _DIALOGUE = (
+        "**RILEY:** Quick meta moment before we move on — the team rewired how we open the show.\n"
+        "**CASEY:** So the awkward introductions were a bug. Good to know.\n"
+        "**RILEY:** And the Sunday recap you're hearing right now got a little longer.\n"
+        "**CASEY:** Longer readings from the changelog of my own mind. Wonderful. Back to the show."
+    )
+
+    @staticmethod
+    def _client_returning(text):
+        client = MagicMock()
+        response = _response("end_turn", [_text_block(text)])
+        response.usage.input_tokens = 10
+        client.messages.create.return_value = response
+        return client
+
     def test_empty_changelog_returns_empty_string(self):
         assert generate_meta_moment_text("") == ""
 
-    def test_no_host_line_available_returns_empty_string(self, monkeypatch):
-        monkeypatch.setattr("podcast_generator._generate_host_line", lambda *a, **k: "")
+    def test_no_client_returns_empty_string(self, monkeypatch):
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: None)
         assert generate_meta_moment_text("- Some change") == ""
 
-    def test_builds_block_with_both_hosts(self, monkeypatch):
-        responses = iter([
-            "Quick meta moment before we move on — we cleaned up the transitions.",
-            "Nice, that always felt a little clunky.",
-        ])
+    def test_builds_multi_turn_dialogue_block(self, monkeypatch):
         monkeypatch.setattr(
-            "podcast_generator._generate_host_line", lambda *a, **k: next(responses)
+            "podcast_generator.get_anthropic_client",
+            lambda: self._client_returning(self._DIALOGUE),
         )
-        block = generate_meta_moment_text("- Tighten news roundup transitions")
-        assert block == (
-            "**META MOMENT**\n"
-            "**RILEY:** Quick meta moment before we move on — we cleaned up the transitions.\n"
-            "**CASEY:** Nice, that always felt a little clunky."
-        )
+        block = generate_meta_moment_text("- Rework welcome intro order\n- Beef up meta moment")
+        assert block == f"**META MOMENT**\n{self._DIALOGUE}"
+        assert block.count("**RILEY:**") == 2
+        assert block.count("**CASEY:**") == 2
 
-    def test_builds_riley_only_block_when_casey_line_missing(self, monkeypatch):
-        responses = iter(["Quick meta moment before we move on.", ""])
+    def test_strips_preamble_before_first_riley_line(self, monkeypatch):
         monkeypatch.setattr(
-            "podcast_generator._generate_host_line", lambda *a, **k: next(responses)
+            "podcast_generator.get_anthropic_client",
+            lambda: self._client_returning(f"Here is the segment:\n{self._DIALOGUE}"),
         )
-        block = generate_meta_moment_text("- Tighten news roundup transitions")
-        assert block == "**META MOMENT**\n**RILEY:** Quick meta moment before we move on."
+        block = generate_meta_moment_text("- Some change")
+        assert block.startswith("**META MOMENT**\n**RILEY:**")
+        assert "Here is the segment" not in block
 
-    def test_prompts_carry_existential_irony_directive(self, monkeypatch):
-        prompts = []
+    def test_returns_empty_when_no_speaker_lines(self, monkeypatch):
+        monkeypatch.setattr(
+            "podcast_generator.get_anthropic_client",
+            lambda: self._client_returning("A recap with no speaker markers at all."),
+        )
+        assert generate_meta_moment_text("- Some change") == ""
 
-        def capture(prompt, host):
-            prompts.append((host, prompt))
-            return "A line."
-
-        monkeypatch.setattr("podcast_generator._generate_host_line", capture)
+    def test_prompt_carries_dialogue_and_irony_directives(self, monkeypatch):
+        client = self._client_returning(self._DIALOGUE)
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
         generate_meta_moment_text("- Tighten news roundup transitions")
 
-        riley_prompt = dict(prompts)["riley"]
-        casey_prompt = dict(prompts)["casey"]
-        assert "edits to Riley and Casey themselves" in riley_prompt
-        assert "existential irony" in riley_prompt
-        assert "not a punchline or a crisis" in riley_prompt
-        assert "existential oddity" in casey_prompt
-        assert "wry, not distressed" in casey_prompt
+        prompt = client.messages.create.call_args.kwargs["messages"][0]["content"]
+        assert "4-6 turn" in prompt
+        assert "150-220 words" in prompt
+        assert "edits to Riley and Casey themselves" in prompt
+        assert "existential irony" in prompt
+        assert "wry, not distressed" in prompt
+        assert "- Tighten news roundup transitions" in prompt
+
+
+class TestStaleFramingAlerts:
+    @staticmethod
+    def _memory(resolutions):
+        return {
+            f"2026-06-{i + 1:02d}": {
+                "date": f"2026-06-{i + 1:02d}",
+                "theme": f"Theme {i % 7}",
+                "central_question": "A question",
+                "resolution": resolution,
+                "topics_covered": [],
+            }
+            for i, resolution in enumerate(resolutions)
+        }
+
+    _DIVERSE = [
+        "Who owns the tower infrastructure",
+        "A policy lever at the regional district",
+        "Bring the repair skills in-house",
+        "A different technology choice removes the dependency",
+        "A small experiment worth trying",
+        "Data governance question",
+        "Procurement transparency",
+    ]
+
+    def test_alert_when_funding_framing_saturates(self):
+        memory = self._memory(
+            ["Needs another grant cycle to survive"] * 5 + self._DIVERSE[:2]
+        )
+        out = _stale_framing_alerts(memory)
+        assert "STALE FRAMING ALERT" in out
+        assert "funding and grants" in out
+
+    def test_no_alert_for_diverse_resolutions(self):
+        assert _stale_framing_alerts(self._memory(self._DIVERSE)) == ""
+
+    def test_word_boundaries_avoid_false_positives(self):
+        # "immigrant" contains "grant"; must not trip the funding family
+        assert _stale_framing_alerts(
+            self._memory(["Immigrant support services"] * 7)
+        ) == ""
+
+    def test_only_recent_window_considered(self):
+        # 7 stale funding debates followed by 7 diverse ones: window has moved on
+        memory = self._memory(
+            ["Secure more funding"] * 7 + self._DIVERSE
+        )
+        assert _stale_framing_alerts(memory) == ""
+
+    def test_alert_appended_to_debate_history_context(self):
+        memory = self._memory(["Volunteers are stretched thin"] * 6 + self._DIVERSE[:1])
+        out = format_debate_memory_for_prompt(memory, "Theme 0")
+        assert "STALE FRAMING ALERT" in out
+        assert "volunteer capacity" in out
+
+
+class TestWelcomeIntroOrder:
+    def test_self_intro_front_loaded_in_both_templates(self):
+        prompts = load_prompts_config()
+        for key in ("script_generation_user", "script_generation"):
+            template = prompts[key]["template"]
+            intro = template.find("I'm {welcome_host_name}")
+            cohost = template.find("And I'm {other_host_name}")
+            date = template.find("It's {weekday}")
+            assert 0 < intro < cohost, key
+            assert intro < date, key
+            assert "INTRO ORDER RULE" in template, key
+
+    def test_resolution_rule_does_not_seed_funding_vocabulary(self):
+        template = load_prompts_config()["script_generation_system"]["template"]
+        assert "funding treadmill" not in template
+        assert "**Resolution endpoint rule:**" in template
 
 
 # Synthetic theme name absent from themes.json so only its name words
