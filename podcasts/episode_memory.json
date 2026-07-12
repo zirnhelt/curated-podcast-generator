@@ -1,21 +1,4 @@
 {
-  "2026-06-20": {
-    "timestamp": 1781952150.232326,
-    "topics": [
-      "[CFJC Today Kamloops] Counterfeit bills in circulation in 10",
-      "[Quesnel Cariboo Observer] \u2018We were always in it together\u2019: ",
-      "[Resilience.org] Social capital and community resilience: A ",
-      "[Williams Lake Tribune] Williams Lake business owner devasta",
-      "[Quesnel Cariboo Observer] Quesnel dancer wins provincial mo",
-      "[CFJC Today Kamloops] Police identify suspect, looking for p",
-      "[100 Mile Free Press] Lac La Hache Library temporarily closi",
-      "[Williams Lake Tribune] Williams Lake First Nation Powwow to"
-    ],
-    "themes": [
-      "rural development"
-    ],
-    "date": "2026-06-20"
-  },
   "2026-06-21": {
     "timestamp": 1782041203.580481,
     "topics": [
@@ -420,5 +403,24 @@
       "Indigenous tech"
     ],
     "date": "2026-07-11"
+  },
+  "2026-07-12": {
+    "timestamp": 1783851111.773014,
+    "topics": [
+      "[WIRED] El Ni\u00f1o Is Already Wreaking Havoc on Pacific Fisheri",
+      "[ScienceDaily] Scientists warn invasive Asian mantises are t",
+      "[ScienceDaily] Heavy marijuana smoking may increase cancer r",
+      "[The Verge] Oregon\u2019s Attorney General withdraws effort to de",
+      "[CNET] Artemis II Shows How Off-the-Shelf Cameras Are Becomi",
+      "[New Atlas] Intermittent fasting trial settles the 'optimal ",
+      "[ScienceAlert] There Are 2 Biologicially Distinct Forms of M",
+      "[The Verge] White House taps the guy who keeps crying \u2018alien"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech"
+    ],
+    "date": "2026-07-12"
   }
 }

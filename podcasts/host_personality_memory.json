@@ -105,11 +105,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-07-08",
-        "clue": "pilot-skepticism:x \u2014 Conceded Casey's demand for small-scale testing first",
-        "occurrences": 2
-      },
-      {
         "date": "2026-07-10",
         "clue": "community-trust:~ \u2014 Acknowledged information gap as distinct from governance gap, added signage complexity",
         "occurrences": 2
@@ -120,9 +115,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-07-11",
-        "clue": "structural-lens:+ \u2014 Moved from 'funding problem' diagnosis to architectural design flaw",
-        "occurrences": 1
+        "date": "2026-07-12",
+        "clue": "structural-lens:+ \u2014 moved from governance fix to signal-detection design problem",
+        "occurrences": 2
       },
       {
         "date": "2026-07-11",
@@ -349,9 +344,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-07-05",
-        "clue": "Indigenous-tech:~ \u2014 Named knowledge-credentialing gap as parallel to detection methodology blindness",
-        "occurrences": 1
+        "date": "2026-07-12",
+        "clue": "Indigenous-tech:~ \u2014 introduced legitimate data-ownership question as upstream design issue",
+        "occurrences": 2
       },
       {
         "date": "2026-07-09",
@@ -366,6 +361,11 @@
       {
         "date": "2026-07-11",
         "clue": "community-trust:x \u2014 Conceded SAR formalization as 'solvable design problem' after initial skepticism",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-07-12",
+        "clue": "funding-risk:- \u2014 softened stance by acknowledging cheap sensors solve cost, not bottleneck",
         "occurrences": 1
       }
     ],

@@ -1,30 +1,4 @@
 {
-  "2026-04-12": {
-    "timestamp": 1775990770.513682,
-    "date": "2026-04-12",
-    "theme": "Science, Wonder & the Natural World",
-    "central_question": "How can rural communities transition from being passive data sources for external scientific projects to becoming active generators and owners of ecological research questions and findings?",
-    "riley_position": "Rural communities should be positioned as 'observation platforms' that lead community-based ecological science, generating their own research questions and owning the resulting knowledge rather than simply providing data to external institutions.",
-    "riley_key_evidence": [
-      "Tree-planting restoration work can serve as longitudinal ecological datasets if properly instrumented to track species establishment and canopy closure",
-      "The osteoarthritis research metaphor of 'coaxing' the body's repair mechanisms rather than overriding them applies to community science governance",
-      "Cariboo communities sit atop extraordinary ecological complexity (old-growth forests, riparian systems, wildlife corridors) that mainstream science is poorly equipped to monitor"
-    ],
-    "casey_position": "Community science requires robust governance structures and sustainable funding mechanisms; without outcome ownership, problem definition authority, and long-term institutional commitment, rural communities become complicit in the same extractive patterns they seek to avoid.",
-    "casey_key_evidence": [
-      "History of rural and Indigenous communities being recruited as data sources with results published, governed, and commercialized elsewhere",
-      "Pilot-to-generalization gap: success metrics are often fuzzy, defined by funders rather than communities, or measured as 'we published a paper' rather than ecological improvement",
-      "Sensor and database infrastructure funded by three-year grants becomes university property when grants expire, leaving no durable community data system"
-    ],
-    "resolution": "The speakers found substantial agreement: both embraced the osteoarthritis metaphor of epistemic humility and the need for outcome ownership. They agreed the key variables are problem definition authority and sustainable governance architecture, and identified Community Futures organizations and accessible drone technology as potential infrastructure solutions, though Casey emphasized that technology access alone doesn't eliminate capacity gaps.",
-    "topics_covered": [
-      "Data sovereignty and the OCAP principles in community science partnerships",
-      "Knowledge extraction versus epistemic collaboration with Indigenous communities",
-      "Sustainable funding and governance models for long-term ecological monitoring",
-      "Role of technology (drones, sensors) in making community-scale ecological research economically viable",
-      "Community Futures organizations as potential intermediaries for ecological enterprise and stewardship compensation"
-    ]
-  },
   "2026-04-13": {
     "timestamp": 1776079540.060649,
     "date": "2026-04-13",
@@ -2371,6 +2345,32 @@
       "Institutional reliance on unpaid volunteer labour for essential services",
       "Provincial policy outcomes landing differently in rural vs. urban contexts",
       "Low-tech infrastructure solutions (mesh radio networks) vs. grant-dependent models"
+    ]
+  },
+  "2026-07-12": {
+    "timestamp": 1783851113.517887,
+    "date": "2026-07-12",
+    "theme": "Science, Wonder & the Natural World",
+    "central_question": "Can a low-cost, volunteer-based monitoring system detect early ecological shifts in Cariboo salmon runs before they become established problems, and what structural design would be required to make it work?",
+    "riley_position": "Early ecological signals already exist in community observations; the problem is designing data collection systems that survive personnel turnover by removing human bottlenecks through automatic reporting rather than sustained volunteer attention.",
+    "riley_key_evidence": [
+      "Temperature loggers clipped to bridge pilings cost minimal money and can run unattended for months",
+      "Mesh networks or satellite uplinks could solve connectivity gaps in areas without cell service",
+      "Salmon in the Classroom program already tracks phenology year-over-year; existing infrastructure could be leveraged"
+    ],
+    "casey_position": "Volunteer-based systems consistently fail when key individuals leave; the real bottleneck isn't funding or sensor cost but ensuring data survives and reaches decision-makers, and this requires institutional continuity that small pilots fundamentally lack.",
+    "casey_key_evidence": [
+      "Large clinical datasets held by institutions with sustained funding were necessary to distinguish two distinct forms of depression",
+      "LIGO succeeded only because it had decades of federal budget backing, not volunteer goodwill",
+      "Half the Cariboo backcountry lacks cell coverage, making automatic reporting impossible in priority monitoring zones"
+    ],
+    "resolution": "Both agreed on a specific testable pilot (one logger, one season, one river) but only if outreach to First Nations happens first to address data sovereignty and existing knowledge claims, acknowledging that the technology question and relationship question are inseparable.",
+    "topics_covered": [
+      "Detection lag in ecological monitoring (fisheries and invasive species examples)",
+      "Signal literacy versus signal detection (knowing what observations mean)",
+      "Institutional continuity versus volunteer sustainability in citizen science",
+      "Infrastructure design to remove human bottlenecks",
+      "Indigenous data sovereignty and existing community knowledge"
     ]
   }
 }
