@@ -2192,6 +2192,22 @@
       "theme_day": 0,
       "status": "used",
       "used_at": "2026-07-13"
+    },
+    {
+      "id": "72e70d46",
+      "type": "feedback",
+      "message_id": "<96DF170D-0236-44E1-ABEA-7CE198A56804@firstjourneytrails.com>",
+      "from_address": "t***@firstjourneytrails.com",
+      "subject": "A Tiny BC Farming Town\u2019s Fight Against Billionaire Speculators | The Tyee",
+      "received_at": "2026-07-13T12:51:39-07:00",
+      "body_text": "Hello you two, attached is a link to a very interesting article in the T\u00fcr about foreign landownership. This also concerns the Cariboo as the article mentions. This is a worthwhile article to dive into. https://thetyee.ca/News/2026/07/13/BC-Farming-Town-Fight-Billionaire-Speculators/ Thomas Schoen 250.305.4464 tom@firstjourneytrails.com Sent from iPhone",
+      "extracted_urls": [
+        "https://thetyee.ca/News/2026/07/13/BC-Farming-Town-Fight-Billionaire-Speculators/"
+      ],
+      "theme_tag": "Working Lands & Industry",
+      "theme_day": 1,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
