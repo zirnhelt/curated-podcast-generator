@@ -1,30 +1,4 @@
 {
-  "2026-04-13": {
-    "timestamp": 1776079540.060649,
-    "date": "2026-04-13",
-    "theme": "Arts, Culture & Digital Storytelling",
-    "central_question": "What foundational conditions must exist in rural communities before digital storytelling infrastructure can meaningfully address the underrepresentation of their narratives?",
-    "riley_position": "Rural storytelling ecosystems need intentional capacity-building and local infrastructure nodes (like libraries and community organizations) to develop sustainable cultural production, rather than waiting for market forces or external platforms to solve the problem.",
-    "riley_key_evidence": [
-      "Indigenous language revitalization projects have inherent cultural urgency that sustains storytelling work beyond grant cycles",
-      "The T\u015dilhqot'in Nation has demonstrated sophistication in structuring agreements on their own terms for research and knowledge management",
-      "Existing community infrastructure like Cariboo Regional District library system represents underutilized civic nodes for storytelling fellowship programs"
-    ],
-    "casey_position": "The real bottleneck is capacity and presence\u2014communities are losing people who stay and develop local expertise\u2014and durable storytelling ecosystems require either self-generating value (like Nardwuar's historically valuable archive) or intentional structural investment to overcome market undervaluation of rural content.",
-    "casey_key_evidence": [
-      "Nardwuar's success depended on Vancouver's 1990s infrastructure of independent venues and touring acts, not just personal obsession",
-      "Rural BC stories are under-resourced and under-distributed rather than unpopular, and the algorithm amplifies what's already been funded",
-      "Current storytelling nodes (Film Club, Barkerville, Quesnel arts positions) are all grant or heritage-tourism dependent with no stable foundation"
-    ],
-    "resolution": "Both agreed that the storytelling ecosystem question is inseparable from community infrastructure and presence questions, and converged on the Nardwuar model of custodianship\u2014asking how stories stay accessible to their originating communities for decades rather than how quickly they reach external audiences.",
-    "topics_covered": [
-      "The gap between cultural production capacity and platform/distribution infrastructure",
-      "Distinguishing between grant-dependent tools versus sustainable internal capacity-building",
-      "Indigenous communities' approach to language documentation as self-sustaining storytelling practice",
-      "Existing Cariboo cultural institutions as underutilized infrastructure nodes",
-      "Long-term custodianship and archival accessibility as core design principle"
-    ]
-  },
   "2026-04-14": {
     "timestamp": 1776166762.818051,
     "date": "2026-04-14",
@@ -2371,6 +2345,32 @@
       "Institutional continuity versus volunteer sustainability in citizen science",
       "Infrastructure design to remove human bottlenecks",
       "Indigenous data sovereignty and existing community knowledge"
+    ]
+  },
+  "2026-07-13": {
+    "timestamp": 1783942520.460722,
+    "date": "2026-07-13",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "central_question": "Does cheaper digital production tools actually change who tells stories in rural communities, or do they just widen the gap between infinitely reproducible digital content and irreplaceable physical art?",
+    "riley_position": "Cheaper mocap technology removes real barriers to entry for rural creators, enabling filmmakers in smaller towns to produce visually ambitious work without flying in technicians or renting expensive gear from major cities.",
+    "riley_key_evidence": [
+      "Single-camera mocap technology reduces production costs from six figures and travel requirements to a laptop and tripod",
+      "School District 27 and the college media programs historically hit gear costs as a barrier, which this tool removes",
+      "Physical events like Performances in the Park demonstrate that live, non-algorithmic experiences aren't losing ground to digital content"
+    ],
+    "casey_position": "Cheaper tools don't address the actual constraints rural creators face: coordination, bandwidth, and available hours to do the work; moreover, cheaper digital tools risk producing high-volume, low-meaning content while physical art remains irreplaceable once destroyed.",
+    "casey_key_evidence": [
+      "Sand sculpture vandalism in Parksville demonstrates that physical art has no undo button or backup file, unlike digital renders",
+      "No local Cariboo filmmakers have actually adopted the mocap technology yet despite its availability, suggesting the tool isn't the real bottleneck",
+      "CBC Arts review of live-action Moana called it 'slop from the trough,' showing cheaper tools enable quantity without guaranteeing quality or originality"
+    ],
+    "resolution": "Riley and Casey agreed that the central variable isn't the tool itself but whether there's sustainable economic reason for local creators to continue past the first project, and that the real structural gap is whether arts organizations treat documentation as a core job rather than an afterthought. They agreed to test whether one volunteer with a phone documenting Performances in the Park each week could solve the documentation problem.",
+    "topics_covered": [
+      "Motion capture technology democratization and its actual barriers to local adoption",
+      "Physical versus digital art and their different preservation risks",
+      "Documentation as a structural responsibility for arts organizations",
+      "Economic sustainability for rural creators versus tool cost reduction",
+      "Quality and originality as separate from accessibility to production tools"
     ]
   }
 }

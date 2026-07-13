@@ -1,0 +1,141 @@
+# Cariboo Signals Podcast Script - 2026-07-13
+# Theme: Arts, Culture & Digital Storytelling
+# Generated: 2026-07-13 04:35:17 PDT
+
+**COLD OPEN**
+
+**CASEY:** Hey, welcome back. On today's episode — a Hackaday story about doing Hollywood-grade motion capture with nothing but a regular camera, a sand sculpting festival in Parksville that got vandalized before the winners were even announced, and a Deep Dive question that's been bugging us: when the tools get this cheap, what actually happens to the stuff you can't put on a screen? That and more, coming right up.
+
+**WELCOME**
+
+**CASEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities — I'm Casey. It's Monday, July 13th, 2026. Coming to you from the Cariboo, on lands that have been cared for by the Secwépemc, Tŝilhqot'in, and Dakelh peoples since time immemorial. Today's theme is Arts, Culture and Digital Storytelling.
+
+**RILEY:** [pause:1000] And I'm Riley. We're looking at who gets to make culture out here, and whether the tools changing that are actually built for a town of a few thousand people, or just marketed at them.
+
+**CASEY:** Quick weather check — Horsefly Lake is sitting at 8 degrees this morning, mainly clear, heading to a high of 20 with cloud moving in tomorrow. Around the region: 100 Mile House at 8 and clear, Williams Lake at 9 and overcast, Quesnel at 7 and clear, and out on the Chilcotin plateau, Hanceville's sitting at 8 with mostly clear skies.
+
+**RILEY:** Let's get into what's actually happening this week.
+
+**NEWS ROUNDUP**
+
+**CASEY:** [pause:1200] We're starting with a run of stories that all circle the same question — who's actually doing the making, and with what tools. First up: the Dune franchise. Timothée Chalamet is teasing what he's calling the biggest creative liberty yet in "Dune: Part Three," which draws from the source novel "Dune Messiah" — a much darker, more tragic book than the first two films suggested. The trailer keeps its focus on Chani, whose arc in the book is genuinely bleak.
+
+**RILEY:** Adapting a beloved book always means somebody makes a call nobody agreed on in advance — and Denis Villeneuve's already shown he'll take those liberties.
+
+**CASEY:** [pause:1200] Sticking with production tools — Hackaday published a piece today on doing CGI-quality motion capture using nothing but a single camera. For years, big studios blended physical models with digital effects because full CGI wasn't there yet, and full-body mocap meant a suit covered in sensors inside a dedicated soundstage. This new approach uses computer vision to extract motion data from ordinary video, no sensor suit required.
+
+**RILEY:** [pause:400] That's the story I'd flag hardest today. That kind of rig used to mean flying to a studio in Vancouver or LA and paying by the hour. If a single camera and some software can approximate it, a two-person crew in Quesnel with a laptop has a rough version of the same toolkit a major studio uses.
+
+**CASEY:** "Rough version" is doing a lot of the actual work in that sentence — we'll get into what it's covering for in the Deep Dive.
+
+**RILEY:** [pause:1200] Sticking with cameras catching things nobody planned to film — a passenger on a Ryanair flight over North Macedonia this past week was nearly pulled through a window that detached mid-flight. Other passengers grabbed his seatbelt and hauled him back before he went all the way out. The airline hasn't said much yet about what caused the failure.
+
+**CASEY:** [overlap:-100] Terrifying — and now it's global footage within the hour, whether Ryanair wanted that or not.
+
+**RILEY:** Exactly the point. Nobody assigned a documentary crew to that flight. A phone in someone else's row did the job, and it'll shape the airline's accountability more than any internal report.
+
+**CASEY:** [pause:1200] Open Culture has a piece on a three-thousand-year-old painter's palette from ancient Egypt, belonging to Amenemopet, a vizier under Pharaoh Amenhotep the Third, sometime around 1391 to 1354 BC. It still has traces of the original pigment sitting in the wells after three millennia.
+
+**RILEY:** Six colours, roughly what came in your first box of crayons or watercolours as a kid.
+
+**CASEY:** The tools change dramatically over three thousand years. The impulse to sit down and mix a colour apparently doesn't change at all.
+
+**RILEY:** [pause:1200] Closer to home now — the Quality Foods Sand Sculpting Competition in Parksville wrapped this weekend, with Hanneke Supply from Belgium and Helena Bangert from the Netherlands taking first place in the doubles event. But CFJC Today reports the celebration came with a real gut-punch: vandals damaged several sculptures overnight Saturday, including a piece depicting a caterpillar transforming into a butterfly. Organizers say multiple artists were left devastated.
+
+**CASEY:** Hours, sometimes days, of physical skill — gone in one night. There's no cloud backup for a sand sculpture.
+
+**RILEY:** We'll come back to that idea directly in the Deep Dive — what it means that some art simply can't be duplicated once it's destroyed.
+
+**CASEY:** [pause:1200] On the manufacturing side of creative products — Boing Boing has a story about the WS Game Company, which got hit with a seven-figure tariff bill on the board games it imports from China. CEO Jonathan Silva decided to find out whether Monopoly could actually be built entirely in the United States instead. Turns out sourcing dice domestically was one of the hardest parts of the whole project.
+
+**RILEY:** Even the simplest physical object in a "creative" product runs through a global supply chain most people never think about until a tariff bill shows up.
+
+**CASEY:** [pause:1200] And The Narwhal published a piece asking why, despite Black and racialized workers powering agriculture across Canada — from Ontario all the way to the Okanagan — so few of them actually own the farms they work on. It's fundamentally a land-ownership story, but it's also a story about whose experience shapes the public record of an entire industry.
+
+**RILEY:** Worth remembering that "who tells the story" isn't only a media question. It shows up in who gets counted, and who gets left out of the history, at all.
+
+**CASEY:** [pause:900] A few standalone items before we move to the spotlight. Canadaland's latest episodes ask whether Iran is behind a string of recent attacks in Canada, and separately dig into an Ontario law that makes it illegal to spy on cows — genuinely, that's the episode title, "Why It's Illegal to Spy on Cows in Ontario," tied to an animal-rights dispute with farmers.
+
+**RILEY:** [overlap:-100] Bovine surveillance law. Sure, why not.
+
+**CASEY:** Tod Maffin — whose independent media model we've referenced on this show before — also came up in the feed again this week, still reportedly reaching around ten million people weekly off a newsletter, a podcast, and social posts, with zero institutional backing behind any of it.
+
+**RILEY:** Also worth noting today — New Atlas has a piece on "the Hum," that low-frequency sound some people report hearing at night when everything else is quiet, which scientists still can't fully explain or reliably reproduce. And over in the Kootenays, the Cranbrook Library says its Summer Reading Club is off to a strong start this year.
+
+**CASEY:** Always good to hear a library pulling a crowd in July when the weather's this nice.
+
+**RILEY:** Out west of Dunster, The Tyee reports a small BC farming town is fighting back against a US company's pursuit of land nearby, which has reignited calls for stiffer foreign ownership rules — a reminder those fights aren't limited to the Lower Mainland or the Okanagan.
+
+**CASEY:** TechRadar also flagged that roughly thirty US states are moving to legalize plug-in solar setups, with home battery installations quietly hitting a record high. Not our jurisdiction yet, but worth watching as a policy template.
+
+**RILEY:** And in gaming for a good cause — Summer Games Done Quick wrapped its speedrunning marathon after a week of broadcasts, raising over two million dollars for Doctors Without Borders. Volunteer-run, entirely online, still moved real money.
+
+**CASEY:** That's the roundup. Let's get into today's spotlight.
+
+**COMMUNITY SPOTLIGHT**
+
+**RILEY:** This one's close to home. The Central Cariboo Arts and Culture Society runs the Arts Centre, local grants programs, and the Performances in the Park series — free live music in Boitano Park every Thursday evening this summer. No ticket, no login, no algorithm deciding whether you see it. Just show up. Check centralcaribooarts.com for this week's lineup.
+
+**CASEY:** Free, outdoors, and nobody needs a subscription to attend — that's basically the whole appeal, and it's rarer than it should be.
+
+**RILEY:** Which, funny enough, is roughly where today's Deep Dive is headed.
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Arts, Culture & Digital Storytelling**
+
+**RILEY:** Here's the tension worth sitting with today. A single camera can now do motion capture that used to require a soundstage and a technician flown in from a bigger city. That's a real collapse in barrier to entry. And in the same week, a sand sculpture festival gets vandalized — hours of skilled physical work gone overnight, no undo button, no backup file. Those two stories sitting next to each other raise the actual question: does making digital production cheaper change who tells the Cariboo's stories, or does it just widen the gap between what's infinitely reproducible and what genuinely isn't?
+
+**CASEY:** The vandalism story is the more honest one of the two, if we're being straight about it. Nobody vandalizes a render file at three in the morning. You vandalize the thing that only exists once, in one place, made by someone's hands over actual days.
+
+**RILEY:** Sure, but that's not an argument against the camera-based mocap tool — it's an argument that physical and digital art aren't competing for the same slot. A filmmaker in Williams Lake shooting a short with single-camera mocap isn't replacing the Garden and Art Tour. They're doing something the Tour physically can't do — putting a Cariboo story in front of someone in Fort St. John, or Halifax, who will never drive out here to see a garden in person.
+
+**CASEY:** Except distribution isn't the bottleneck it used to be. Creation still is, and creation is where the actual skill lives. A camera doing motion tracking gets you raw movement data. It doesn't get you the years of craft that make a mocap sequence read as a performance instead of a stiff, floating mannequin doing a vague impression of a person.
+
+**RILEY:** Fair — but that's true of every democratizing tool that's ever shown up. Cheap film cameras didn't make everyone Kubrick either. They made it possible for someone who'd never get past a studio gatekeeper to actually try something. The Hackaday piece specifically cuts the cost from six figures and a flight to a laptop and a tripod. That's not a small thing.
+
+**CASEY:** It's not nothing. It's also not the constraint rural creators actually report hitting when you ask them directly. Go back to the archival conversation from a couple of weeks back — bandwidth, coordination, someone with the actual hours in a week to sit down and do the work. A cheaper camera rig doesn't touch any of that.
+
+**RILEY:** [pause:500] It touches one piece of it, though — time. If a two-person crew can now shoot a visually ambitious sequence without renting gear from Vancouver or flying in a technician, that's real hours and real dollars back in the budget for the part that actually needs a human: the story, the structure, the edit.
+
+**CASEY:** Then show me the actual Cariboo film or animation project that's used it. Not the theoretical case — a real production, with a name attached. Because the Dune trailer and the Hackaday post are both genuinely interesting, but neither one is evidence anyone here has picked the tool up yet.
+
+**RILEY:** No local case yet — I'll say that plainly, there isn't one. But School District 27 and the college both run media programs, and the barrier those students hit historically isn't ambition, it's exactly the gear cost this kind of tool removes. Give it a semester and see what shows up.
+
+**CASEY:** [overlap:-100] A semester's a reasonable test. I'll hold you to actually checking back on that specific claim.
+
+**RILEY:** Mm-hm. [pause:600] Here's the other side of it, though, because it cuts against my own optimism. CBC Arts ran a review this week calling the live-action Moana remake "slop from the trough" — stripped of everything specific that made the original worth watching in the first place. That's the actual risk with lowering the technical floor: you get more content that's capable of looking expensive, and it can still say nothing whatsoever.
+
+**CASEY:** Now that's a real risk, and it cuts against your case more than mine. Cheaper tools don't guarantee more original stories — they guarantee more stories, full stop, and volume isn't the same thing as voice. A studio remaking Moana for the fourth format isn't short on mocap budget. It's short on any reason to exist beyond a quarterly earnings call.
+
+**RILEY:** Which is exactly why the local angle matters more, not less. A big studio using accessible tools to squeeze one more property out of an IP is one failure mode. A Cariboo creator using the identical technology to tell a story nobody else would ever greenlight is the opposite outcome, running on the same hardware.
+
+**CASEY:** Then the actual variable isn't the tool, it never was. It's whether there's an audience and an economic reason for that local creator to keep going past the first project — which is the same conversation we've had before about platform-independent distribution, Tod Maffin's model, all of it. I don't think today's stories resolve that any better than we did three weeks ago.
+
+**RILEY:** [pause:400] Agreed, they don't resolve the money question, and I'm not going to pretend they do. But there's a different lever worth naming here that we haven't touched before — physical events aren't actually losing ground to digital ones out here. The Williams Lake Garden and Art Tour drew people out door to door this past weekend specifically because you can't replicate walking through someone's actual garden on a screen. Same with Performances in the Park down at Boitano — it's free, it's live, and no algorithm is deciding who gets to see it in their feed.
+
+**CASEY:** Right, and the sand sculpture vandalism cuts the other way on that exact point. Physical, irreplaceable art is also fragile in a way a digital file simply isn't. Delete a render, you've got a backup somewhere. Smash a sand sculpture in Parksville, the artists lose the actual object and every hour that went into shaping it, permanently.
+
+**RILEY:** So the honest case isn't "digital replaces physical" or "physical beats digital." It's that they carry genuinely different risks. Digital work risks becoming infinitely reproducible slop, like the Moana example we just named. Physical work risks total, unrecoverable loss, like Parksville experienced this weekend.
+
+**CASEY:** Which means the actual design question for an organization like the Central Cariboo Arts and Culture Society isn't which category to invest in. It's whether they're documenting the physical events well enough that a vandalism-style loss — or just ordinary weather, or a torn-down garden next season — doesn't erase the record of it entirely. Photograph the Garden and Art Tour properly this year, and even if next year's version looks completely different, there's a version of this year that survives somewhere.
+
+**RILEY:** That's a genuinely different ask than what we covered before with the twenty-year festival archiving question. This isn't "build a digital archive of two decades of history." It's smaller: document this year's physical event well enough that the record outlives the object itself. And it ties directly to something already happening every Thursday this summer, not some future grant-funded project.
+
+**CASEY:** It's achievable if someone actually owns the job of doing it consistently — and that's still an open question for a volunteer-run society, camera-cheap tools or not. Cheap doesn't mean it happens by itself.
+
+**RILEY:** [pause:500] Which is maybe the real structural question worth sitting with today — not whether the tools are cheap enough, they clearly are now, but whether local arts organizations think of documentation as part of running an event at all, the same way they think about booking a stage or filing for a park permit. Right now, from what we're seeing in the coverage, it sounds like an afterthought if it happens at all.
+
+**CASEY:** That's the piece I'd want tested before calling any of this solved. Not a grant application, not a fundraiser — just whether the next Performances in the Park evening has one person with a camera treating documentation as part of the job description, not a nice-to-have somebody remembers halfway through the set.
+
+**RILEY:** And it's a genuinely small experiment to try. A society like this one doesn't need a production budget — it needs one volunteer with a decent phone and a habit of showing up fifteen minutes early each Thursday. That's the whole ask.
+
+**CASEY:** Cheap in dollars. Still requires someone to actually own it past the first week, which is where these things tend to quietly stop happening.
+
+**RILEY:** Which is exactly why it's worth naming out loud on the show instead of assuming it's already handled.
+
+**CASEY:** Genuinely a good thing to ask them directly. If you're involved with an arts group anywhere in the Cariboo and want to compare notes on what documentation actually looks like on a volunteer budget, or if you think we got something wrong today, write in — feedback at cariboo signals dot c-a.
+
+**RILEY:** And if a local creator does pick up that single-camera mocap approach before the fall semester's out, we genuinely want to hear about it too. Curious whether it holds up outside a polished demo reel or falls apart the moment someone tries it with real footage.
+
+**CASEY:** Have a great rest of your day.
+
+**RILEY:** Have a great rest of your day.

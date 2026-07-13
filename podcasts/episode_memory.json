@@ -1,24 +1,4 @@
 {
-  "2026-06-21": {
-    "timestamp": 1782041203.580481,
-    "topics": [
-      "[CFJC Today Kamloops] CSRD discontinues dog control services",
-      "[Boing Boing] Video shows a rain curtain splitting a street ",
-      "[Business Insider] Meet the top OpenAI researcher trying to ",
-      "[TechRadar] Fortinet firewalls hit by huge password-stealing",
-      "[Boing Boing] Two Italian brothers claimed to have recorded ",
-      "[Boing Boing] Brain scans of authoritarians show reduced gre",
-      "[The Guardian Global Development] Attacks on education, pupi",
-      "[TechCrunch] Only 16 percent of Americans think AI will have"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-06-21"
-  },
   "2026-06-22": {
     "timestamp": 1782135716.614423,
     "topics": [
@@ -422,5 +402,23 @@
       "Indigenous tech"
     ],
     "date": "2026-07-12"
+  },
+  "2026-07-13": {
+    "timestamp": 1783942517.775327,
+    "topics": [
+      "[Gizmodo] Timoth\u00e9e Chalamet Teases the Biggest Creative Libe",
+      "[Hackaday] CGI Motion Capture with only a Camera",
+      "[Boing Boing] Passenger nearly pulled out a Ryanair window i",
+      "[Open Culture] A 3,000-Year-Old Painter\u2019s Palette from Ancie",
+      "[CFJC Today Kamloops] Sand sculptures damaged by vandals at ",
+      "[Williams Lake Tribune] Winners unveiled at B.C.\u2019s internati",
+      "[Williams Lake Tribune] Garden and Art Tour adds colourful f",
+      "AI"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption"
+    ],
+    "date": "2026-07-13"
   }
 }

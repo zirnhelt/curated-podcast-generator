@@ -85,11 +85,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-06-22",
-        "clue": "tech-optimism:- \u2014 Moved from 'tools are closing gaps' to 'tools are incidental'",
-        "occurrences": 2
-      },
-      {
         "date": "2026-06-24",
         "clue": "tech-optimism:-[signal] \u2014 Acknowledged Claude dependency creates real vulnerability.",
         "occurrences": 1
@@ -122,6 +117,11 @@
       {
         "date": "2026-07-11",
         "clue": "pilot-skepticism:+ \u2014 Proposed mesh-radio model but acknowledged zero local precedent",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-07-13",
+        "clue": "pilot-skepticism:x  \u2014 Accepted Casey's demand for real local case, not theoretical",
         "occurrences": 1
       }
     ],
@@ -366,6 +366,16 @@
       {
         "date": "2026-07-12",
         "clue": "funding-risk:- \u2014 softened stance by acknowledging cheap sensors solve cost, not bottleneck",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-07-13",
+        "clue": "evidence-bar:+  \u2014 Hardened requirement: named action (documentation job) before declaring solved",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-07-13",
+        "clue": "structural-lens:~  \u2014 Shifted from tools-as-bottleneck to volunteer-accountability as real constraint",
         "occurrences": 1
       }
     ],
