@@ -70,11 +70,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-06-26",
-        "clue": "evidence-bar:x \u2014 Conceded data-exists-in-portals gap isn't purely technical",
-        "occurrences": 2
-      },
-      {
         "date": "2026-07-02",
         "clue": "Indigenous-tech:x \u2014 Conceded that provenance tools don't solve legal standing, adopted Casey's skepticism",
         "occurrences": 2
@@ -108,11 +103,6 @@
         "date": "2026-07-05",
         "clue": "tech-optimism:~ \u2014 Acknowledged specimen backlogs undermine data-pipeline optimism",
         "occurrences": 1
-      },
-      {
-        "date": "2026-07-12",
-        "clue": "structural-lens:+ \u2014 moved from governance fix to signal-detection design problem",
-        "occurrences": 2
       },
       {
         "date": "2026-07-11",
@@ -355,11 +345,6 @@
       },
       {
         "date": "2026-07-11",
-        "clue": "structural-lens:+ \u2014 Deepened from 'who decides' to 'what survives beyond volunteers'",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-07-11",
         "clue": "community-trust:x \u2014 Conceded SAR formalization as 'solvable design problem' after initial skepticism",
         "occurrences": 1
       },
@@ -376,6 +361,11 @@
       {
         "date": "2026-07-13",
         "clue": "structural-lens:~  \u2014 Shifted from tools-as-bottleneck to volunteer-accountability as real constraint",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-07-14",
+        "clue": "pilot-skepticism:~ \u2014 Added nuance: registry exists but unused, not nonexistent",
         "occurrences": 1
       }
     ],
