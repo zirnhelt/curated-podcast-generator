@@ -2208,6 +2208,31 @@
       "theme_day": 1,
       "status": "used",
       "used_at": "2026-07-14"
+    },
+    {
+      "id": "64ef8d46",
+      "type": "newsletter",
+      "message_id": "<35573e03-3105-4e27-8b7b-df4e21361b4e@mtasv.net>",
+      "from_address": "n***@animikii.com",
+      "subject": "Three Articles Connected to Indigenous Data Sovereignty",
+      "received_at": "2026-07-15T19:00:50+00:00",
+      "body_text": "![Graphic illustration featuring a youth and elder sitting in a forested landscape, with the sun and mountains in the background, the text on far left reads Animikii News River.](https://assets.button",
+      "extracted_urls": [
+        "https://assets.buttondown.email/images/42ea3d90-a073-48c4-9aff-303d06bca8c4.jpg?w=960&fit=max",
+        "https://nit.com.au/13-07-2026/25344/governance-key-to-realising-indigenous-data-sovereignty?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=three-articles-connected-to-indigenous-data",
+        "https://news.mcmaster.ca/analysis-the-ethics-of-being-left-out-of-health-research/?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=three-articles-connected-to-indigenous-data",
+        "https://www.cbc.ca/news/indigenous/fireguardian-firemap-software-stevens-9.7262962?utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=three-articles-connected-to-indigenous-data",
+        "https://animikii.com/project-request?mtm_campaign=SVS-Q3-2026&amp;mtm_kwd=KNC&amp;mtm_source=NWR&amp;utm_source=newsriver&amp;utm_medium=email&amp;utm_campaign=three-articles-connected-to-indigenous-data",
+        "https://assets.buttondown.email/images/62449f71-4c02-416b-b625-45e71a736658.jpg?w=960&fit=max",
+        "https://akii.ca/m/links",
+        "https://www.linkedin.com/company/animikii/",
+        "https://niiwin.app/",
+        "https://animikii.com/"
+      ],
+      "theme_tag": "Indigenous Lands & Innovation",
+      "theme_day": 3,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
