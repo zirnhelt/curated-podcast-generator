@@ -4510,6 +4510,15 @@ def _heuristic_gap_base(text, prev_speaker, cur_speaker, section):
     return 600
 
 
+def derive_episode_sidecar_path(audio_filename: str, prefix: str) -> str:
+    """Derive a sidecar JSON path from an episode audio path.
+
+    podcast_audio_{date}_{theme}.mp3 → {prefix}_{date}_{theme}.json
+    """
+    p = Path(audio_filename)
+    return str(p.with_name(p.name.replace('podcast_audio_', f'{prefix}_').replace('.mp3', '.json')))
+
+
 def _append_with_gap(combined, speech, gap_ms):
     """Append *speech* to *combined* using the given gap.
 
@@ -5121,6 +5130,14 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                         TARGET_SPEECH_DBFS,
                     )
                     combined += section_audio
+                    # Whole-section synthesis has no per-turn boundaries; speaker=None
+                    # tells the video renderer to skip speaker badges for this span.
+                    video_timeline.append({
+                        "speaker": None,
+                        "section": prefix,
+                        "start_ms": len(combined) - len(section_audio),
+                        "dur_ms": len(section_audio),
+                    })
                     return
 
                 # OpenAI: per-segment calls with heuristic gap stitching
@@ -5143,11 +5160,19 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                     gap = segment.get('gap_ms')
                     if gap is None:
                         gap = heuristic_gap_ms(segment['text'], prev_speaker, segment['speaker'], section=prefix, prev_text=prev_text)
+                    turn_start_ms = max(len(combined) + gap, 0)
                     combined = _append_with_gap(combined, speech, gap)
+                    video_timeline.append({
+                        "speaker": segment['speaker'],
+                        "section": prefix,
+                        "start_ms": turn_start_ms,
+                        "dur_ms": len(speech),
+                    })
                     prev_speaker = segment['speaker']
                     prev_text = segment['text']
 
             chapters = []
+            video_timeline = []  # per-turn {speaker, section, start_ms, dur_ms} for the video renderer
 
             # Cold open teaser — plays before the theme music (optional)
             if segments['preamble']:
@@ -5236,6 +5261,12 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                         trim_tts_silence(AudioSegment.from_mp3(credits_file)), TARGET_SPEECH_DBFS
                     )
                 combined += AudioSegment.silent(duration=600) + credits_audio
+                video_timeline.append({
+                    "speaker": None if USE_AZURE_TTS else "riley",
+                    "section": "credits",
+                    "start_ms": len(combined) - len(credits_audio),
+                    "dur_ms": len(credits_audio),
+                })
                 print("  ✅ Added spoken credits")
             except Exception as ce:
                 print(f"  ⚠️  Credits segment skipped: {ce}")
@@ -5252,12 +5283,16 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
 
         # Save chapters JSON
         chapters_data = {"version": "1.2.0", "chapters": chapters}
-        chapters_filename = str(Path(output_filename).with_name(
-            Path(output_filename).name.replace('podcast_audio_', 'podcast_chapters_').replace('.mp3', '.json')
-        ))
+        chapters_filename = derive_episode_sidecar_path(output_filename, 'podcast_chapters')
         with open(chapters_filename, 'w', encoding='utf-8') as f:
             json.dump(chapters_data, f, indent=2)
         print(f"📑 Saved chapters: {chapters_filename}")
+
+        # Save per-turn timeline for the video renderer (speaker badges)
+        timeline_filename = derive_episode_sidecar_path(output_filename, 'video_timeline')
+        with open(timeline_filename, 'w', encoding='utf-8') as f:
+            json.dump({"turns": video_timeline}, f, indent=2)
+        print(f"🎞️  Saved video timeline: {timeline_filename}")
 
         duration_minutes = len(combined) / 1000 / 60
         file_size_mb = os.path.getsize(output_filename) / 1024 / 1024

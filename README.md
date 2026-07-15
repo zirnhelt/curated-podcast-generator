@@ -145,6 +145,33 @@ Optional (for Cloudflare R2 audio hosting):
 | `R2_ACCESS_KEY_ID` | R2 access key |
 | `R2_SECRET_ACCESS_KEY` | R2 secret key |
 
+Optional (for YouTube video upload — see below):
+
+| Secret | Value |
+|---|---|
+| `YT_CLIENT_ID` | Google OAuth desktop-app client ID |
+| `YT_CLIENT_SECRET` | Google OAuth client secret |
+| `YT_REFRESH_TOKEN` | Refresh token from `scripts/youtube_oauth_setup.py` |
+
+**YouTube video (optional):** every run renders a slide-based MP4 of the episode
+(section slides synced to the audio, speaker badges, waveform). With the `YT_*`
+secrets **unset**, the run is in *test mode*: the MP4 is attached to the workflow
+run as the `episode-video` artifact (3-day retention) for review, and nothing is
+uploaded. To go live:
+
+1. Create a Google Cloud project and enable **YouTube Data API v3**.
+2. Configure the OAuth consent screen (External) and **publish** the app —
+   apps left in "Testing" expire refresh tokens after 7 days.
+3. Create an OAuth client ID of type **Desktop app**.
+4. Run `python scripts/youtube_oauth_setup.py` locally and copy the refresh token.
+5. Add the three `YT_*` secrets above. The next daily run uploads automatically,
+   attaches the episode transcript as closed captions, and records the video ID
+   in `podcasts/youtube_uploads.json`.
+
+Note: until the Cloud project passes YouTube's API audit, uploaded videos are
+forced to **private** regardless of the requested privacy — publish them manually
+from YouTube Studio in the meantime.
+
 ### 3. Enable GitHub Pages
 
 **Settings → Pages → Source:** Deploy from branch `gh-pages`, root `/`

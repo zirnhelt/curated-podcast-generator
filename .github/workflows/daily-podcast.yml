@@ -172,6 +172,31 @@ jobs:
 
           echo "Generation complete!"
 
+      # Video is additive: the step is continue-on-error AND video_generator.py
+      # itself exits 0 on any failure, so audio always ships. Without the YT_*
+      # secrets the script runs render-only and leaves the MP4 in podcasts/,
+      # which the "Upload video for review" step below attaches to the run.
+      # Once the secrets are added, the MP4 is uploaded to YouTube and removed.
+      - name: Render video and upload to YouTube
+        timeout-minutes: 25
+        continue-on-error: true
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          YT_PRIVACY: unlisted
+        run: python video_generator.py
+
+      # No-op when the video was uploaded to YouTube (the MP4 is deleted after
+      # upload); in render-only/test mode this is how you review the video.
+      - name: Upload video for review (render-only mode)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: episode-video
+          path: podcasts/podcast_video_*.mp4
+          retention-days: 3
+          if-no-files-found: ignore
+
       - name: List generated files
         run: |
           echo "Files in directory:"
@@ -200,6 +225,9 @@ jobs:
 
           # Add any new episode files that were generated (audio excluded — deployed via Pages/R2 only)
           git add podcasts/podcast_script_*.txt podcasts/citations_*.json podcasts/podcast_transcript_*.html podcasts/podcast_transcript_*.vtt podcast-feed.xml || echo "No new episode files to add"
+
+          # YouTube upload ledger (idempotency record for the video step)
+          git add podcasts/youtube_uploads.json || echo "No YouTube ledger to add"
           git add tts-test-feed.xml || echo "No TTS test feed to add"
 
           # Only commit if there are changes
@@ -269,6 +297,8 @@ jobs:
             podcasts/podcast_audio_*.mp3
             podcasts/podcast_script_*.txt
             podcasts/citations_*.json
+            podcasts/video_timeline_*.json
+            podcasts/youtube_uploads.json
             podcasts/episode_memory.json
             podcasts/host_personality_memory.json
             podcasts/debate_memory.json

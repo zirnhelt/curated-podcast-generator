@@ -29,6 +29,22 @@ def _install_stubs():
         if mod_name not in sys.modules:
             sys.modules[mod_name] = types.ModuleType(mod_name)
 
+    # Google API client stubs — youtube_upload.py imports these inside functions,
+    # so tests exercise metadata/ledger logic without network or credentials.
+    for mod_name in (
+        "googleapiclient", "googleapiclient.discovery", "googleapiclient.http",
+        "google", "google.oauth2", "google.oauth2.credentials",
+    ):
+        if mod_name not in sys.modules:
+            sys.modules[mod_name] = types.ModuleType(mod_name)
+    sys.modules["googleapiclient.discovery"].build = lambda *a, **k: None
+    sys.modules["googleapiclient.http"].MediaFileUpload = type("MediaFileUpload", (), {
+        "__init__": lambda self, *a, **k: None,
+    })
+    sys.modules["google.oauth2.credentials"].Credentials = type("Credentials", (), {
+        "__init__": lambda self, *a, **k: None,
+    })
+
 
 # Run at import time so stubs are ready before test modules are collected
 _install_stubs()
