@@ -11,6 +11,7 @@ import pytest
 import json
 
 from podcast_generator import (
+    derive_episode_sidecar_path,
     get_article_scores,
     extract_topics_and_themes,
     parse_script_into_segments,
@@ -38,6 +39,20 @@ from podcast_generator import (
     format_debate_memory_for_prompt,
 )
 from config_loader import load_prompts_config
+
+
+class TestDeriveEpisodeSidecarPath:
+    def test_chapters_sidecar(self):
+        result = derive_episode_sidecar_path(
+            "podcasts/podcast_audio_2026-07-14_working_lands.mp3", "podcast_chapters"
+        )
+        assert result.endswith("podcasts/podcast_chapters_2026-07-14_working_lands.json")
+
+    def test_video_timeline_sidecar(self):
+        result = derive_episode_sidecar_path(
+            "/abs/path/podcasts/podcast_audio_2026-07-14_theme.mp3", "video_timeline"
+        )
+        assert result == "/abs/path/podcasts/video_timeline_2026-07-14_theme.json"
 
 
 class TestGetArticleScores:
