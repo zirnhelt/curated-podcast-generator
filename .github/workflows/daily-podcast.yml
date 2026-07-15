@@ -134,6 +134,7 @@ jobs:
         continue-on-error: true
 
       - name: Generate daily podcast
+        id: generate
         timeout-minutes: 60
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -165,37 +166,14 @@ jobs:
           TODAY=$(TZ='America/Vancouver' date '+%Y-%m-%d')
           if [ "${{ github.event_name }}" = "schedule" ] && grep -q "$TODAY" podcast-feed.xml; then
             echo "✅ Episode for $TODAY already committed to git — skipping duplicate generation."
+            echo "generated=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
           python podcast_generator.py
+          echo "generated=true" >> "$GITHUB_OUTPUT"
 
           echo "Generation complete!"
-
-      # Video is additive: the step is continue-on-error AND video_generator.py
-      # itself exits 0 on any failure, so audio always ships. Without the YT_*
-      # secrets the script runs render-only and leaves the MP4 in podcasts/,
-      # which the "Upload video for review" step below attaches to the run.
-      # Once the secrets are added, the MP4 is uploaded to YouTube and removed.
-      - name: Render video and upload to YouTube
-        timeout-minutes: 25
-        continue-on-error: true
-        env:
-          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
-          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
-          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
-          YT_PRIVACY: unlisted
-        run: python video_generator.py
-
-      # No-op when the video was uploaded to YouTube (the MP4 is deleted after
-      # upload); in render-only/test mode this is how you review the video.
-      - name: Upload video for review (render-only mode)
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        with:
-          name: episode-video
-          path: podcasts/podcast_video_*.mp4
-          retention-days: 3
-          if-no-files-found: ignore
 
       - name: List generated files
         run: |
@@ -226,8 +204,6 @@ jobs:
           # Add any new episode files that were generated (audio excluded — deployed via Pages/R2 only)
           git add podcasts/podcast_script_*.txt podcasts/citations_*.json podcasts/podcast_transcript_*.html podcasts/podcast_transcript_*.vtt podcast-feed.xml || echo "No new episode files to add"
 
-          # YouTube upload ledger (idempotency record for the video step)
-          git add podcasts/youtube_uploads.json || echo "No YouTube ledger to add"
           git add tts-test-feed.xml || echo "No TTS test feed to add"
 
           # Only commit if there are changes
@@ -288,6 +264,55 @@ jobs:
           publish_branch: gh-pages
           keep_files: true
           commit_message: 'Daily podcast deployment - ${{ github.run_id }}'
+
+      # Video is strictly additive and runs LAST, only after the episode has
+      # been committed and deployed to Pages, and only when this run actually
+      # generated a new episode (fallback cron runs that skipped generation
+      # don't re-render). A 2026-07-15 run showed why: the runner killed the
+      # ffmpeg render with SIGTERM (exit 143), and because the video step then
+      # sat before commit/deploy, the runner death cancelled every remaining
+      # step — the generated episode never shipped. continue-on-error still
+      # covers ordinary failures; the ordering covers runner death.
+      # Without the YT_* secrets the script runs render-only and leaves the
+      # MP4 in podcasts/ for the review-artifact step below. Once the secrets
+      # are added, the MP4 is uploaded to YouTube and removed.
+      - name: Render video and upload to YouTube
+        if: steps.generate.outputs.generated == 'true'
+        timeout-minutes: 25
+        continue-on-error: true
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          YT_PRIVACY: unlisted
+        run: python video_generator.py
+
+      # The upload ledger (idempotency record) is written by the video step,
+      # which now runs after the main state commit — so it gets its own commit.
+      - name: Commit YouTube upload ledger
+        if: steps.generate.outputs.generated == 'true'
+        continue-on-error: true
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add podcasts/youtube_uploads.json 2>/dev/null || true
+          if ! git diff --staged --quiet; then
+            git commit -m "Record YouTube upload - $(TZ='America/Vancouver' date '+%Y-%m-%d %A')"
+            git pull --rebase origin main || true
+            git push
+          else
+            echo "No ledger change to commit"
+          fi
+
+      # No-op when the video was uploaded to YouTube (the MP4 is deleted after
+      # upload); in render-only/test mode this is how you review the video.
+      - name: Upload video for review (render-only mode)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: episode-video
+          path: podcasts/podcast_video_*.mp4
+          retention-days: 3
+          if-no-files-found: ignore
 
       - name: Upload artifacts (for debugging)
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
