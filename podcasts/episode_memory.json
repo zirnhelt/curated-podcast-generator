@@ -1,43 +1,4 @@
 {
-  "2026-06-23": {
-    "timestamp": 1782214261.696123,
-    "topics": [
-      "[CBC Arts] Some artists feeling 'blue dot fever,' fans say, ",
-      "[Business Insider] New US Air Force investigation shows how ",
-      "[Al Jazeera English] How a dead extremist Rabbi still shapes",
-      "[Al Jazeera English] Israeli strike kills children in Gaza d",
-      "[Global News] Saskatoon teen faces terrorism peace bond afte",
-      "[Tom's Hardware] Ditching the cloud for local AI \u2014 how I use",
-      "[Engadget] A24 takes on Google money to build AI tools",
-      "[TechRadar] Why security leaders are cautious about agentic "
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech"
-    ],
-    "date": "2026-06-23"
-  },
-  "2026-06-24": {
-    "timestamp": 1782299861.413827,
-    "topics": [
-      "[New Atlas] Cheap metacrystal panels could easily steer wire",
-      "[BC Gov News] Canada and British Columbia forge new partners",
-      "[Toms Guide] Turns out AI was destroying my phone\u2019s battery ",
-      "[ScienceAlert] Traces of Alien Technology Could Be Hidden in",
-      "[Boing Boing] There is a real Swiss political party devoted ",
-      "[TechRadar] After testing Dreo\u2019s new smart misting fan, I co",
-      "[Android Authority] Anthropic\u2019s most advanced AI models coul",
-      "[Boing Boing] Sid Caesar built the writers' room that taught"
-    ],
-    "themes": [
-      "rural development",
-      "environmental impact",
-      "Indigenous tech",
-      "connectivity"
-    ],
-    "date": "2026-06-24"
-  },
   "2026-06-25": {
     "timestamp": 1782384897.546254,
     "topics": [
@@ -420,5 +381,25 @@
       "Indigenous tech"
     ],
     "date": "2026-07-14"
+  },
+  "2026-07-16": {
+    "timestamp": 1784198331.213522,
+    "topics": [
+      "Three Articles Connected to Indigenous Data Sovereignty",
+      "[ScienceDaily] NASA captured the Black Sea turning brilliant",
+      "[CFJC Today Kamloops] Kamloops\u2019 joins national Tim Hortons\u2019 ",
+      "[Boing Boing] Elon Musk's legal problems have gone internati",
+      "[CNET] 3D-Printed, Customized Contact Lenses Are Possible, a",
+      "Three Articles Connected to Indigenous Data Sovereignty",
+      "[Boing Boing] Swiss Yodelers retreat to fountains to beat br",
+      "[The Guardian Global Development] Blockades, marches and hum"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-07-16"
   }
 }
