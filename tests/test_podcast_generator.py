@@ -22,6 +22,9 @@ from podcast_generator import (
     _run_agentic_loop,
     apply_bad_news_filter,
     load_pending_email_items,
+    _is_article_url,
+    build_email_newsletter_article,
+    _build_newsletter_articles,
     format_corrections_for_prompt,
     find_correction_source_context,
     resolve_referenced_episode_date,
@@ -839,6 +842,126 @@ class TestApplyBadNewsFilter:
         result = apply_bad_news_filter(arts, self.TUESDAY)
         assert len(result) == 1
         assert result[0]["title"].startswith("Solar")
+
+
+class TestIsArticleUrl:
+    def test_rejects_image_asset(self):
+        assert not _is_article_url("https://assets.buttondown.email/images/abc.jpg?w=960&fit=max")
+
+    def test_rejects_social_profile(self):
+        assert not _is_article_url("https://www.linkedin.com/company/animikii/")
+
+    def test_rejects_bare_homepage(self):
+        assert not _is_article_url("https://animikii.com/")
+        assert not _is_article_url("http://2025.animikii.com?utm_source=newsriver")
+
+    def test_accepts_article_path(self):
+        assert _is_article_url(
+            "https://nit.com.au/13-07-2026/25344/governance-key-to-realising-indigenous-data-sovereignty"
+        )
+
+
+class TestBuildEmailNewsletterArticle:
+    ITEM = {"id": "abc123", "subject": "Three Articles", "from_address": "n***@animikii.com"}
+
+    def test_omitted_when_no_content_retrievable(self, monkeypatch):
+        monkeypatch.setattr("podcast_generator._fetch_url_metadata", lambda url: ("", "", ""))
+        monkeypatch.setattr(
+            "podcast_generator._fetch_article_body",
+            lambda url, brave_key=None, title=None: "",
+        )
+        assert build_email_newsletter_article(self.ITEM, "https://example.com/gone") is None
+
+    def test_body_fallback_populates_summary(self, monkeypatch):
+        monkeypatch.setattr("podcast_generator._fetch_url_metadata", lambda url: ("", "", ""))
+        monkeypatch.setattr(
+            "podcast_generator._fetch_article_body",
+            lambda url, brave_key=None, title=None: "Real article prose about data governance. " * 5,
+        )
+        art = build_email_newsletter_article(self.ITEM, "https://example.com/story")
+        assert art is not None
+        assert art["title"] == "Three Articles"  # subject fallback for title only
+        assert art["summary"].startswith("Real article prose")
+        assert art["_body"]
+
+    def test_metadata_success_keeps_existing_shape(self, monkeypatch):
+        monkeypatch.setattr(
+            "podcast_generator._fetch_url_metadata",
+            lambda url: ("Governance key to IDS", "Long description", "A. Author"),
+        )
+        monkeypatch.setattr(
+            "podcast_generator._fetch_article_body",
+            lambda url, brave_key=None, title=None: "",
+        )
+        art = build_email_newsletter_article(self.ITEM, "https://example.com/story")
+        assert art["title"] == "Governance key to IDS"
+        assert art["summary"] == "Long description"
+        assert art["ai_score"] == 88
+        assert art["_email_item_id"] == "abc123"
+
+
+class TestBuildNewsletterArticles:
+    """Link-roundup newsletters must spend their 3 slots on real articles."""
+
+    def _item(self, urls):
+        return {
+            "id": "i1",
+            "subject": "Three Articles Connected to Indigenous Data Sovereignty",
+            "from_address": "n***@animikii.com",
+            "body_text": "short",
+            "extracted_urls": urls,
+        }
+
+    def _patch_theme(self, monkeypatch):
+        monkeypatch.setattr("podcast_generator._build_theme_keywords", lambda t: [])
+        monkeypatch.setattr("podcast_generator._build_theme_anti_keywords", lambda t: [])
+
+    def test_junk_urls_do_not_consume_slots(self, monkeypatch):
+        self._patch_theme(monkeypatch)
+        monkeypatch.setattr(
+            "podcast_generator._fetch_url_metadata", lambda url: ("Title", "Desc", "")
+        )
+        urls = [
+            "https://assets.buttondown.email/images/head.jpg?w=960",  # header image
+            "https://nit.com.au/story-1",
+            "https://news.mcmaster.ca/story-2",
+            "https://www.cbc.ca/news/indigenous/story-3",
+            "https://animikii.com/",  # homepage
+        ]
+        arts = _build_newsletter_articles(
+            [self._item(urls)], "Indigenous Lands & Innovation", brave_client=None
+        )
+        assert [a["url"] for a in arts] == [
+            "https://nit.com.au/story-1",
+            "https://news.mcmaster.ca/story-2",
+            "https://www.cbc.ca/news/indigenous/story-3",
+        ]
+
+    def test_unretrievable_urls_omitted(self, monkeypatch):
+        self._patch_theme(monkeypatch)
+        monkeypatch.setattr("podcast_generator._fetch_url_metadata", lambda url: ("", "", ""))
+        monkeypatch.setattr(
+            "podcast_generator._fetch_article_body",
+            lambda url, brave_key=None, title=None: "",
+        )
+        arts = _build_newsletter_articles(
+            [self._item(["https://nit.com.au/bot-blocked"])], "Any Theme", brave_client=None
+        )
+        assert arts == []
+
+    def test_amp_entities_unescaped_before_fetch(self, monkeypatch):
+        self._patch_theme(monkeypatch)
+        fetched = []
+
+        def fake_meta(url):
+            fetched.append(url)
+            return ("Title", "Desc", "")
+
+        monkeypatch.setattr("podcast_generator._fetch_url_metadata", fake_meta)
+        item = self._item(["https://nit.com.au/story?a=1&amp;amp;b=2"])
+        arts = _build_newsletter_articles([item], "Any Theme", brave_client=None)
+        assert fetched == ["https://nit.com.au/story?a=1&b=2"]
+        assert arts[0]["url"] == "https://nit.com.au/story?a=1&b=2"
 
 
 class TestLoadPendingEmailItems:

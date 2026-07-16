@@ -154,6 +154,11 @@ def _sanitize(text: str, max_chars: int) -> str:
 
 _URL_PATTERN = re.compile(r"https?://[^\s<>\"')\]]+")
 _BLOCKED_HOSTS = {"localhost", "127.0.0.1", "0.0.0.0", "::1", "169.254.169.254"}  # nosec B104 – deny-list, not a bind address
+# Image/media assets in newsletter HTML (header graphics, inline photos) are
+# not articles — they waste the 10-URL budget and can surface downstream as
+# content-less "articles" (2026-07-16: a Buttondown header JPG aired as the
+# deep-dive anchor with the newsletter subject as its only content).
+_ASSET_URL_RE = re.compile(r"\.(?:jpe?g|png|gif|webp|svg|ico|bmp|mp3|mp4|pdf)$", re.IGNORECASE)
 
 
 def _is_safe_url(url: str) -> bool:
@@ -178,10 +183,16 @@ def _extract_urls(plain: str, html: str) -> list:
     raw = _URL_PATTERN.findall(plain + " " + html)
     seen, result = set(), []
     for url in raw:
+        # URLs lifted from HTML attributes carry (possibly nested) &amp; entities
+        while "&amp;" in url:
+            url = url.replace("&amp;", "&")
         url = url.rstrip(".,;:!?\"'")
-        if url not in seen and _is_safe_url(url):
-            seen.add(url)
-            result.append(url)
+        if url in seen or not _is_safe_url(url):
+            continue
+        seen.add(url)
+        if _ASSET_URL_RE.search(urlparse(url).path):
+            continue
+        result.append(url)
         if len(result) >= 10:
             break
     return result

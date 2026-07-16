@@ -900,7 +900,30 @@ def consume_seeds(seed_ids):
         print(f"  ⚠️  Could not update seeds file: {e}")
 
 
-def build_email_newsletter_article(item: dict, url: str, theme_keywords=None, anti_keywords=None) -> dict:
+# Newsletter links that can never be podcast sources: image/media assets,
+# social profiles, and bare homepages.  Filtered at consumption time (not only
+# at ingest) so items already sitting in the queue are covered too.
+_NON_ARTICLE_ASSET_RE = re.compile(
+    r"\.(?:jpe?g|png|gif|webp|svg|ico|bmp|mp3|mp4|pdf)$", re.IGNORECASE
+)
+_NON_ARTICLE_HOSTS = ("linkedin.com", "facebook.com", "instagram.com", "twitter.com", "x.com")
+
+
+def _is_article_url(url: str) -> bool:
+    """True if a newsletter URL plausibly points at article content."""
+    try:
+        parts = urlparse(url)
+    except ValueError:
+        return False
+    if _NON_ARTICLE_ASSET_RE.search(parts.path):
+        return False
+    host = parts.netloc.split(":")[0].lower().removeprefix("www.")
+    if any(host == h or host.endswith("." + h) for h in _NON_ARTICLE_HOSTS):
+        return False
+    return bool(parts.path.strip("/"))  # bare homepage carries no article
+
+
+def build_email_newsletter_article(item: dict, url: str, theme_keywords=None, anti_keywords=None):
     """Convert an email newsletter item + URL into a synthetic article dict.
 
     Mirrors build_seed_article() — the returned dict slots directly into the
@@ -912,20 +935,34 @@ def build_email_newsletter_article(item: dict, url: str, theme_keywords=None, an
     any other feed article) rather than hardcoded, so a newsletter only
     counts as a "strong match" — and competes for a deep-dive slot — if its
     linked content actually fits today's theme.
+
+    Returns None when the URL yields no retrievable content: metadata fetch
+    and the Brave-backed body fetch both came up empty, so airing it would
+    mean discussing a bare link with the newsletter subject as its only
+    substance (2026-07-16 incident: a newsletter header image anchored the
+    deep dive with zero content behind it).
     """
     title, desc, author = _fetch_url_metadata(url)
+    body = ""
+    if not (title and desc):
+        # Deeper research before giving up: direct body fetch, Brave fallback.
+        body = _fetch_article_body(
+            url, brave_key=os.getenv("BRAVE_SEARCH_API_KEY"), title=title or None
+        )
+        if not title and not desc and not body:
+            return None
     if not title:
         title = item.get("subject") or url
 
-    text = f"{title} {desc}".lower()
+    text = f"{title} {desc} {body}".lower()
     keyword_matches = sum(len(kw.split()) for kw in (theme_keywords or []) if kw in text)
     if anti_keywords:
         keyword_matches = max(0, keyword_matches - sum(len(kw.split()) for kw in anti_keywords if kw in text))
 
-    return {
+    article = {
         "title": title,
         "url": url,
-        "summary": desc or item.get("subject", ""),
+        "summary": desc or body[:400] or item.get("subject", ""),
         "ai_score": 88,
         "authors": [{"name": f"Newsletter: {item.get('from_address', 'unknown')}"}],
         "_article_author": author,
@@ -936,6 +973,9 @@ def build_email_newsletter_article(item: dict, url: str, theme_keywords=None, an
         "_email_item_id": item["id"],
         "_seed_note": "",
     }
+    if body:
+        article["_body"] = body
+    return article
 
 
 def format_feedback_emails_for_prompt(feedback_items: list) -> str:
@@ -1248,7 +1288,12 @@ def _build_newsletter_articles(newsletter_items: list, today_theme: str, brave_c
 
     For URL-only newsletters (body too short to be meaningful) this calls
     enrich_deep_dive_with_brave() on each article so Claude has real content to
-    work from rather than just a URL.  Up to 3 URLs per newsletter are used.
+    work from rather than just a URL.  Up to 3 content-bearing URLs per
+    newsletter are used: image assets, social profiles, and homepages are
+    filtered out before the cap so link-roundup newsletters spend their slots
+    on actual articles, and URLs whose content can't be retrieved at all
+    (build_email_newsletter_article returns None) are omitted rather than
+    aired as bare links.
 
     Uses a short-lived in-memory cache so repeated newsletter evaluations
     don't re-run the same Brave+Claude fetch for identical URLs within one run.
@@ -1261,12 +1306,25 @@ def _build_newsletter_articles(newsletter_items: list, today_theme: str, brave_c
     for item in newsletter_items:
         is_url_only = len((item.get("body_text") or "").strip()) < EMAIL_BODY_MIN_CHARS
         subject_preview = item.get("subject", "")[:60]
+        candidate_urls = []
+        for url in item.get("extracted_urls", []):
+            # Older queue entries carry (possibly nested) HTML-escaped ampersands
+            while "&amp;" in url:
+                url = url.replace("&amp;", "&")
+            if _is_article_url(url):
+                candidate_urls.append(url)
         if is_url_only:
             print(f"  📧 Newsletter (URL-only): \"{subject_preview}\" — will Brave-enrich")
         else:
-            print(f"  📧 Newsletter: \"{subject_preview}\" ({len(item.get('extracted_urls', []))} URL(s))")
-        for url in item.get("extracted_urls", [])[:3]:
+            print(f"  📧 Newsletter: \"{subject_preview}\" ({len(candidate_urls)} article URL(s))")
+        built = 0
+        for url in candidate_urls:
+            if built >= 3:
+                break
             art = build_email_newsletter_article(item, url, theme_keywords, anti_keywords)
+            if art is None:
+                print(f"    ⏭  Omitted — no retrievable content: {url[:80]}")
+                continue
             if is_url_only and brave_client:
                 if url not in brave_cache:
                     brave_cache[url] = enrich_deep_dive_with_brave([art], today_theme, brave_client)
@@ -1274,6 +1332,7 @@ def _build_newsletter_articles(newsletter_items: list, today_theme: str, brave_c
                 if brave_ctx:
                     art["_brave_context"] = brave_ctx
             articles.append(art)
+            built += 1
     return articles
 
 
