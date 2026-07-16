@@ -1,65 +1,4 @@
 {
-  "2026-04-15": {
-    "timestamp": 1776252966.572871,
-    "date": "2026-04-15",
-    "theme": "Community Tech & Governance",
-    "central_question": "What does it mean for communities\u2014particularly Indigenous nations in BC\u2014to govern technology itself, rather than simply using it, and what institutional capacity is required to sustain that governance?",
-    "riley_position": "Community-controlled digital infrastructure is achievable and sustainable if designed with embedded local expertise and supported by shared regional technical capacity networks. The design problem can be mitigated through intentional capacity-building models and pooled technical resources.",
-    "riley_key_evidence": [
-      "Animikii's approach of embedding team members inside communities acknowledges that technology systems reflect the values of designers, so outside contractors produce systems that don't fit community needs",
-      "A few BC First Nations have successfully moved toward shared IT arrangements without surrendering data sovereignty",
-      "The First Nations Technology Council has been building connective tissue and capacity pipelines provincially"
-    ],
-    "casey_position": "Indigenous-led digital governance platforms face a critical sustainability paradox: the sovereignty design that restricts outside access for security also limits the pool of trusted technical partners available during emergencies. Funding waves produce orphaned infrastructure, and digital capacity cannot be grafted onto communities already struggling with basic institutional health.",
-    "casey_key_evidence": [
-      "Pattern repeats across Indigenous digital infrastructure projects: systems are abandoned when grant funding ends and the person who understood the system leaves",
-      "First Nations with community-controlled data governance platforms have far less recourse than municipalities when systems break, because sovereignty design explicitly limits outside access",
-      "Archival governance failures carry asymmetric stakes\u2014a First Nation losing twenty years of resource use documentation could materially weaken treaty negotiations or Aboriginal title claims"
-    ],
-    "resolution": "Casey and Riley converged on a systems-level argument: digital governance capacity grows from overall institutional health, not as an isolated project. They agreed the most practical entry point is a governance capacity audit (not a tech audit) before platform selection, and they both emphasized that strong civic participation and institutional accountability must precede and enable digital tools.",
-    "topics_covered": [
-      "Distinction between using technology for governance versus governing technology itself",
-      "Design sustainability: the tension between data sovereignty restrictions and emergency technical support access",
-      "Archival governance and the asymmetric stakes of data loss for Indigenous nations versus municipalities",
-      "Funding models: grant dependency versus revenue-generating data governance and education-based capacity pipelines",
-      "The relationship between overall institutional health and digital governance capacity"
-    ],
-    "calls_to_action": [
-      "Community Futures Cariboo Chilcotin is actively looking for volunteers with financial, legal, or community development experience to join their board and committees\u2014a high-leverage way to support rural economic development locally.",
-      "Before investing in a digital governance platform, conduct a governance capacity audit: document who has authority over data decisions, who has technical skills, and whether institutional memory is held in documents or people.",
-      "Explore revenue-generating data governance models\u2014license carefully anonymized data from monitoring or health programs to researchers or government agencies on community-controlled terms to generate operational funding independent of grants.",
-      "Integrate digital skills into community education programs to train the next generation as technical administrators of their own systems, reducing vulnerability to key-person dependency.",
-      "Consider regional technical capacity arrangements and shared help desk support networks through organizations like the First Nations Technology Council, pooling expertise without surrendering data sovereignty.",
-      "Document your organization's institutional knowledge\u2014if it exists primarily in people's heads rather than in accessible form, that is a governance vulnerability that precedes and shapes any technology decision.",
-      "Contact Cariboo Signals at feedback@cariboosignals.ca if you are involved in a digital governance project in the region; they are actively interested in learning about such work."
-    ]
-  },
-  "2026-04-16": {
-    "timestamp": 1776337890.410976,
-    "date": "2026-04-16",
-    "theme": "Indigenous Lands & Innovation",
-    "central_question": "What infrastructure, governance, and safeguards must be in place before Indigenous communities build digital archives to ensure long-term functionality, community control, and protection from data extraction?",
-    "riley_position": "Digital archives require shared infrastructure models (like Niiwin), machine-readable governance metadata (TK Labels), and community representation in platform governance to balance dependency risks with sustainability.",
-    "riley_key_evidence": [
-      "Format migration and open standards are sovereignty questions, not just technical preferences",
-      "Local Contexts TK Labels are machine-readable metadata that can legally restrict AI training data scraping",
-      "Shared platform governance through co-operative models reduces per-community maintenance burden while preserving control"
-    ],
-    "casey_position": "Archives are literal infrastructure requiring years of relationship-building and governance protocols, but face a dangerous temporal asymmetry where knowledge takes years to build trust but minutes to extract\u2014requiring succession planning and careful sequencing before going online.",
-    "casey_key_evidence": [
-      "TMU residential school testimony project illustrates how digitization is easy but 50-year preservation is the real challenge",
-      "University digital library projects have failed, causing materials to disappear into institutional limbo",
-      "A language recording requiring three years of relationship-building can be scraped for AI training in seconds"
-    ],
-    "resolution": "Both speakers converged on the necessity of community data governance policies, TK Labels, written succession plans, and strategic partnerships before launch. Riley acknowledged the risk of moving too fast; Casey agreed that tools exist and waiting creates its own risk of knowledge-holder loss. They agreed the tension between careful governance and urgency cannot be cleanly resolved but can be managed through proper sequencing.",
-    "topics_covered": [
-      "Format obsolescence and technical sovereignty in digital preservation",
-      "Shared infrastructure governance models versus isolated community systems",
-      "AI extractivism and machine-readable metadata protection (TK Labels)",
-      "Temporal asymmetry between knowledge preservation and data extraction",
-      "Regional Indigenous consortium potential for shared technical capacity in the Cariboo"
-    ]
-  },
   "2026-04-17": {
     "timestamp": 1776425602.165115,
     "date": "2026-04-17",
@@ -2364,6 +2303,43 @@
       "Impact Benefit Agreements as a mechanism that survives ownership changes",
       "Comparison of public vs. private ownership structures and accountability mechanisms",
       "Policy solutions: Land Owner Transparency Registry cross-referencing and title-based agreements"
+    ]
+  },
+  "2026-07-16": {
+    "timestamp": 1784198332.921212,
+    "date": "2026-07-16",
+    "theme": "Indigenous Lands & Innovation",
+    "central_question": "For Indigenous Nations, is exclusion from data collection the bigger problem, or is inclusion on non-Indigenous terms while losing control over interpretation and application?",
+    "riley_position": "Exclusion is the more urgent problem because missing data actively produces bad downstream outcomes for decades; the real fix is ensuring Indigenous control over research questions through frameworks like OCAP, and Nations should build internal analytical capacity rather than stay out of data collection entirely.",
+    "riley_key_evidence": [
+      "Drug trials excluding populations produce dosing guidelines that don't work for those bodies; land-use surveys skipping territories produce environmental baselines that don't account for actual ecological conditions",
+      "OCAP (Ownership, Control, Access, Possession) makes inclusion conditional on Indigenous control of research design",
+      "FirstVoices language archiving platform built governance into architecture from day one, allowing communities to maintain control over language archives years into the project",
+      "CCATEC's training pipelines toward health, resource management, and land administration roles let Nations train their own epidemiologists and GIS technicians"
+    ],
+    "casey_position": "Inclusion without control is extractive and potentially more harmful than exclusion because data collected by outside institutions gets used to justify policies Nations never requested, and enforcement gaps mean frameworks like OCAP fail when stakes rise and money becomes involved.",
+    "casey_key_evidence": [
+      "Health and land data collected for decades by outside institutions was used to justify residential school-era policies and child-welfare models communities opposed",
+      "Health records and land-use data get pulled into underwriting, resource permitting, and policy modelling where real money creates incentives for outside institutions to retain control",
+      "Secw\u00e9pemc communities have invested in internal capacity but still hit federal and provincial systems that only recognize data formatted through government-controlled channels",
+      "In permitting decisions, Nation-collected baseline data gets treated as one input among several while tie-breaking defaults to consultant reports from government's existing procurement relationships"
+    ],
+    "resolution": "They agreed to disagree on whether the problem is solvable through capacity-building alone, but converged on a concrete next step: the actual research needed is an audit of how many times Nation-collected data was actually weighted equally against consultant data in real permitting decisions under deadline pressure, and they called for listeners to identify signed agreements or confirm the gap persists.",
+    "topics_covered": [
+      "Exclusion versus inclusion as competing harms in Indigenous data sovereignty",
+      "OCAP framework and its enforcement gaps in practice",
+      "FirstVoices as a counterexample of governance-first platform design",
+      "Commercial incentives that undermine Indigenous data control in health and environmental contexts",
+      "Regulatory recognition and legal standing of Nation-collected data in permitting processes",
+      "Internal capacity-building versus structural barriers in government intake systems",
+      "Governance infrastructure as permanent operational funding versus project-based grant cycles"
+    ],
+    "calls_to_action": [
+      "Conduct a funded audit of real permitting decisions in the Cariboo region to document how many times Nation-collected environmental baseline data received equal weight against consultant reports when genuine deadline pressure and money were at stake.",
+      "Any Nation or tribal council should negotiate a formal, named data-sharing agreement with a neighbouring health authority or resource ministry that specifies in advance which technical format and methodology gets automatic standing in decisions, rather than relying on general reconciliation commitments.",
+      "Build data infrastructure that a ministry cannot weigh against external decision-makers in the first place through parallel systems design, following the FirstVoices model of making outside extraction structurally impossible from architecture inception.",
+      "Advocate for standing institutional funding for governance capacity and legal work (data-sharing agreement negotiation, technical standard drafting) as permanent infrastructure like water treatment or road maintenance, rather than as sunset-dated project grants.",
+      "Listeners with knowledge of signed agreements establishing equal admissibility of Nation-collected data in provincial permitting, or confirmation that no such agreements exist, should contact the show at feedback@cariboosignals.ca to ground future analysis in documented outcomes rather than anecdote."
     ]
   }
 }

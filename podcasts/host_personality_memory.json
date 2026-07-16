@@ -75,9 +75,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-06-15",
-        "clue": "tech-optimism:x \u2014 Conceded Mukurtu exists but capacity gap is real",
-        "occurrences": 1
+        "date": "2026-07-16",
+        "clue": "tech-optimism:x \u2014 Conceded FirstVoices exception, not rule elsewhere",
+        "occurrences": 2
       },
       {
         "date": "2026-06-24",
@@ -112,6 +112,11 @@
       {
         "date": "2026-07-13",
         "clue": "pilot-skepticism:x  \u2014 Accepted Casey's demand for real local case, not theoretical",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-07-16",
+        "clue": "evidence-bar:+ \u2014 Pushed hard for audit data on admissibility outcomes",
         "occurrences": 1
       }
     ],
@@ -349,9 +354,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-07-12",
-        "clue": "funding-risk:- \u2014 softened stance by acknowledging cheap sensors solve cost, not bottleneck",
-        "occurrences": 1
+        "date": "2026-07-16",
+        "clue": "funding-risk:- \u2014 Softened on whether governance-first design actually survives budget cycles",
+        "occurrences": 2
       },
       {
         "date": "2026-07-13",
@@ -359,9 +364,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-07-13",
-        "clue": "structural-lens:~  \u2014 Shifted from tools-as-bottleneck to volunteer-accountability as real constraint",
-        "occurrences": 1
+        "date": "2026-07-16",
+        "clue": "structural-lens:~ \u2014 Shifted from capacity-gap to recognition-gap as deeper problem",
+        "occurrences": 2
       },
       {
         "date": "2026-07-14",
