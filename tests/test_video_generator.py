@@ -146,6 +146,16 @@ class TestFfmpegCommand:
         assert script.count("between(t,") >= 3
         assert script.rstrip().endswith("[vout]")
 
+    def test_format_conversion_precedes_fps(self, tmp_path):
+        # Regression: without format= before fps, the fps filter's duplicate-
+        # frame bursts get materialized per-frame downstream and OOM the CI
+        # runner (2026-07-15/16 runner deaths, exit 143).
+        vg.build_ffmpeg_command("ep.mp3", "slides.txt", {}, [], "out.mp4", str(tmp_path))
+        script = open(os.path.join(str(tmp_path), "filters.txt")).read()
+        slides_chain = script.splitlines()[0]
+        assert "format=yuv420p" in slides_chain
+        assert slides_chain.index("format=yuv420p") < slides_chain.index("fps=")
+
     def test_no_badges_still_produces_vout(self, tmp_path):
         cmd = vg.build_ffmpeg_command("ep.mp3", "slides.txt", {}, [], "out.mp4", str(tmp_path))
         script = open(os.path.join(str(tmp_path), "filters.txt")).read()

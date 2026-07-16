@@ -268,11 +268,13 @@ jobs:
       # Video is strictly additive and runs LAST, only after the episode has
       # been committed and deployed to Pages, and only when this run actually
       # generated a new episode (fallback cron runs that skipped generation
-      # don't re-render). A 2026-07-15 run showed why: the runner killed the
-      # ffmpeg render with SIGTERM (exit 143), and because the video step then
-      # sat before commit/deploy, the runner death cancelled every remaining
-      # step — the generated episode never shipped. continue-on-error still
-      # covers ordinary failures; the ordering covers runner death.
+      # don't re-render). The 2026-07-15/16 runs showed why: the ffmpeg render
+      # had unbounded memory growth (fixed in build_ffmpeg_command — see the
+      # format-before-fps comment) that OOM-killed the runner VM (SIGTERM,
+      # exit 143), and because the video step then sat before commit/deploy,
+      # the runner death cancelled every remaining step — the generated
+      # episode never shipped. continue-on-error still covers ordinary
+      # failures; the ordering covers runner death.
       # Without the YT_* secrets the script runs render-only and leaves the
       # MP4 in podcasts/ for the review-artifact step below. Once the secrets
       # are added, the MP4 is uploaded to YouTube and removed.
@@ -281,6 +283,9 @@ jobs:
         timeout-minutes: 25
         continue-on-error: true
         env:
+          # Flush progress prints immediately — the OOM kills above produced
+          # zero log output because Python block-buffers stdout in CI.
+          PYTHONUNBUFFERED: '1'
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}

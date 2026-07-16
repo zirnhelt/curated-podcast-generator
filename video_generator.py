@@ -353,7 +353,13 @@ def build_ffmpeg_command(audio: str, concat_file: str, badges: dict,
     wave_colors = "|".join(c.replace("#", "0x") for c in colors.values())
 
     filters = [
-        f"[1:v]setsar=1,fps={FPS}[slides]",
+        # format=yuv420p MUST come before fps: fps fills the long gaps between
+        # slides by bursting thousands of duplicate frames at once, and any
+        # per-frame conversion downstream of it materializes each duplicate
+        # (~1.4 MB/frame) faster than the encoder drains them — unbounded
+        # memory growth that OOM-killed the CI runner (exit 143, 2026-07-15/16).
+        # Converting first makes the duplicates zero-copy refs (~250 MB flat).
+        f"[1:v]setsar=1,format=yuv420p,fps={FPS}[slides]",
         f"[0:a]showwaves=s={WIDTH}x{WAVE_HEIGHT}:mode=cline:rate={FPS}:colors={wave_colors}[wave]",
         f"[slides][wave]overlay=0:{HEIGHT - WAVE_HEIGHT}:shortest=1[base]",
     ]
