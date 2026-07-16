@@ -13,6 +13,7 @@ import pytest
 # email_ingest only uses stdlib at import time; no stubs needed
 sys.path.insert(0, str(Path(__file__).parent.parent))
 from email_ingest import (
+    _extract_urls,
     _is_blocked_sender,
     _is_blocked_subject,
     _looks_like_correction,
@@ -110,6 +111,29 @@ class TestIsBlockedSender:
         assert _is_blocked_sender(
             "Andrea De Marsi <demars@podseo.com>", SAMPLE_BLOCKLIST
         )
+
+
+# ---------------------------------------------------------------------------
+# _extract_urls
+# ---------------------------------------------------------------------------
+
+class TestExtractUrls:
+    def test_skips_image_assets(self):
+        plain = (
+            "see https://assets.buttondown.email/images/abc.jpg?w=960&fit=max "
+            "and https://example.com/real-story"
+        )
+        assert _extract_urls(plain, "") == ["https://example.com/real-story"]
+
+    def test_unescapes_nested_amp_entities(self):
+        html = '<a href="https://example.com/story?a=1&amp;amp;b=2">read</a>'
+        assert _extract_urls("", html) == ["https://example.com/story?a=1&b=2"]
+
+    def test_assets_do_not_consume_url_budget(self):
+        parts = [f"https://cdn.example.com/img{i}.png" for i in range(10)]
+        parts += [f"https://example.com/story{i}" for i in range(3)]
+        urls = _extract_urls(" ".join(parts), "")
+        assert urls == [f"https://example.com/story{i}" for i in range(3)]
 
 
 # ---------------------------------------------------------------------------
