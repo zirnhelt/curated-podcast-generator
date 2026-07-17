@@ -111,6 +111,24 @@ class TestSectionGeneration:
             assert wav.getnframes() > 0
 
 
+class TestEvaluateScriptLoader:
+    def test_prefers_podcast_data_json(self, tmp_path):
+        from evaluate_tts import _find_latest_script
+        (tmp_path / "podcast_data_2026-07-01.json").write_text('{"script": "from json"}')
+        (tmp_path / "podcast_script_2026-07-16_theme.txt").write_text("from txt")
+        assert _find_latest_script(tmp_path) == {"script": "from json"}
+
+    def test_falls_back_to_committed_script_txt(self, tmp_path):
+        from evaluate_tts import _find_latest_script
+        (tmp_path / "podcast_script_2026-07-15_theme.txt").write_text("older")
+        (tmp_path / "podcast_script_2026-07-16_theme.txt").write_text("**RILEY:** hi")
+        assert _find_latest_script(tmp_path) == {"script": "**RILEY:** hi"}
+
+    def test_none_when_empty(self, tmp_path):
+        from evaluate_tts import _find_latest_script
+        assert _find_latest_script(tmp_path) is None
+
+
 class TestStripStageDirections:
     def test_whitelisted_cue_removed(self):
         result = strip_stage_directions("(wry) Sure it will.")
