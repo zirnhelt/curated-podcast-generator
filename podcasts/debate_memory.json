@@ -1,36 +1,4 @@
 {
-  "2026-04-17": {
-    "timestamp": 1776425602.165115,
-    "date": "2026-04-17",
-    "theme": "Wild Spaces & Outdoor Life",
-    "central_question": "How can technology actually protect communities during acute emergencies (floods, fires) when the gap between notification systems and genuine preparedness is fundamentally social and structural, not technical?",
-    "riley_position": "Technology serves emergency preparedness best when built by and for communities themselves, integrated with local knowledge, and designed to work offline; the real innovation is encoding community social networks digitally rather than imposing vendor platforms from outside.",
-    "riley_key_evidence": [
-      "Indigenous Nations building their own emergency management systems that map who needs transportation, who has medical equipment requiring power, and who speaks which language before evacuation orders come",
-      "Community-maintained spatial data in rural areas using local knowledge (e.g., 'the old Hendricks place' at specific GPS coordinates) to solve address database problems",
-      "LiDAR mapping and remote sensing can now model floodplain behaviour at high resolution, allowing planners to identify where natural restoration would have highest flood-mitigation impact"
-    ],
-    "casey_position": "Technology cannot solve structural problems\u2014it merely relocates them; capacity constraints (part-time coordinators), property rights tangles around floodplain restoration, and data infrastructure maintenance are human and political problems that require sustained institutional commitment.",
-    "casey_key_evidence": [
-      "AlertBC's technical infrastructure (geofenced alerts, multilingual options) fails in implementation: rural communities with patchy cell coverage miss alerts, elderly non-smartphone users don't receive them, and Nation communities received English-only alerts with boundaries mismatched to where people actually lived",
-      "Location-sharing tools require a charged phone, coverage, and knowledge to use\u2014assumptions that fail during a 2 a.m. wildfire evacuation",
-      "Beaver activity in restored wetlands meaningfully reduces peak flood flows, but giving water back its room requires resolving land use, property rights, and fair compensation for ranchers whose bottom pastures are where the river wants to be"
-    ],
-    "resolution": "Riley and Casey reached substantial agreement: they both endorsed Indigenous governance as enabling long-term ecological stewardship across election cycles, both emphasized that technology informs decisions without making them, and both concluded that the most genuinely interesting work is communities building data infrastructure to know their own land deeply\u2014which is a community story that technology is part of, not the story itself.",
-    "topics_covered": [
-      "Gaps between notification systems (AlertBC) and genuine community preparedness in the acute emergency moment",
-      "How community-built emergency management systems outperform vendor-imposed platforms in rural and Indigenous contexts",
-      "Nature-based flood solutions (wetland restoration, floodplain reconnection) enabled by LiDAR and remote sensing technology, and their political economy implications",
-      "Indigenous territorial governance as enabling long-term ecological planning and data stewardship across generations",
-      "Data sovereignty and institutional continuity in environmental monitoring and emergency management"
-    ],
-    "calls_to_action": [
-      "Ask your local Nation's emergency management coordinator and municipal or regional district counterpart one diagnostic question: do our alert systems talk to each other? In many cases they don't, and this is a solvable technical and governance problem that costs almost nothing to identify.",
-      "A community could build a community-held emergency management platform on open-source infrastructure with local or sovereignty-protected hosting, mapping who needs what, integrating with AlertBC, and including a genuine offline mode\u2014maintained by someone the community actually pays year-round.",
-      "Deploy mesh radio networks in highest-risk communities and pre-position satellite communicators at community gathering points, designed for offline operation during smoke and cell tower outages.",
-      "Run a seasonal community drill designed with the community that tests emergency systems under realistic conditions, not a top-down tabletop exercise."
-    ]
-  },
   "2026-04-18": {
     "timestamp": 1776509301.166876,
     "date": "2026-04-18",
@@ -2340,6 +2308,37 @@
       "Build data infrastructure that a ministry cannot weigh against external decision-makers in the first place through parallel systems design, following the FirstVoices model of making outside extraction structurally impossible from architecture inception.",
       "Advocate for standing institutional funding for governance capacity and legal work (data-sharing agreement negotiation, technical standard drafting) as permanent infrastructure like water treatment or road maintenance, rather than as sunset-dated project grants.",
       "Listeners with knowledge of signed agreements establishing equal admissibility of Nation-collected data in provincial permitting, or confirmation that no such agreements exist, should contact the show at feedback@cariboosignals.ca to ground future analysis in documented outcomes rather than anecdote."
+    ]
+  },
+  "2026-07-17": {
+    "timestamp": 1784283951.982749,
+    "date": "2026-07-17",
+    "theme": "Wild Spaces & Outdoor Life",
+    "central_question": "Should the Cariboo actively promote its lesser-known wild spaces and outdoor destinations, or keep them quiet to protect them from overuse and preserve their character?",
+    "riley_position": "Visibility paired with proper infrastructure and consent-based promotion is better than silence, which doesn't actually protect places and leaves people without safety information. The region should build governance relationships with Nations before promoting sites, using models already proven in environmental assessment.",
+    "riley_key_evidence": [
+      "Satellite communicators now allow real-time emergency location and rescue coordination that didn't exist years ago, fundamentally changing safety outcomes in remote terrain",
+      "The Simpcw First Nation consent agreement on copper mine assessment demonstrates that Nations can hold authority over how their territory is assessed and promoted",
+      "Parks that tried hiding trail conditions and access information still saw visitation surge anyway, but without the safety messaging that could have accompanied visibility"
+    ],
+    "casey_position": "Visibility without matching infrastructure investment overwhelms rescue and support capacity, and voluntary promotion frameworks will fail when tourism revenue incentives kick in. Solitude and remoteness have genuine therapeutic value for some users that gets destroyed by marketing.",
+    "casey_key_evidence": [
+      "Moab and Squamish both saw rescue call volumes outpace team capacity within a couple seasons of media coverage, without proportional funding increases to match",
+      "Quesnel Search and Rescue receiving equipment donations does not solve the real problem of call volume throughput and volunteer capacity",
+      "No formal consent relationship currently exists between recreation promoters (tourism boards, AllTrails, apps) and Nations whose territory they're promoting \u2014 voluntary check-ins historically fail once budget season arrives"
+    ],
+    "resolution": "Riley and Casey converged on the position that silence is not a viable strategy and visibility without infrastructure is worse than either extreme alone. They agreed the core gap is lack of formal consent processes between recreation promoters and Nations, but disagreed on whether voluntary frameworks can survive institutional incentive structures. Casey challenged Riley to provide a real-world example of a tourism board or trail society that successfully consulted with a Nation before promotion.",
+    "topics_covered": [
+      "Role of satellite technology and communicators in enabling both safety and exposure of remote locations",
+      "Rescue capacity and infrastructure investment as a prerequisite to increased visibility",
+      "Consent-based governance models and Nation authority over territory promotion decisions",
+      "Tension between therapeutic solitude/remoteness value and tourism marketing incentives",
+      "Difference between voluntary consultation and binding governance frameworks"
+    ],
+    "calls_to_action": [
+      "A regional tourism board or trail society could commit to a working rule: contact the Nation whose territory a site sits on before actively promoting a new or lesser-known location \u2014 a single phone call and email, the same step already required for environmental assessments.",
+      "If you're part of a group that's tried something like this (a trail society, tourism board, or recreation club that actually checked in with a Nation before promoting a site), submit feedback at cariboosignals.ca describing how it went.",
+      "If you've got a favourite wild place you're proud to share or quietly protective of, send feedback to cariboosignals.ca about your experience with that choice."
     ]
   }
 }
