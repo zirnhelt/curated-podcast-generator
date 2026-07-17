@@ -5,6 +5,7 @@ Single-file swap point for a future DB-backed or per-tenant config layer.
 """
 
 import json
+import re
 from functools import lru_cache
 from pathlib import Path
 
@@ -108,6 +109,10 @@ def get_azure_voice_for_host(host_key):
     """Get Azure Neural TTS voice name for a host."""
     return load_hosts_config()[host_key]["azure_voice"]
 
+def get_gemini_voice_for_host(host_key):
+    """Get Gemini TTS prebuilt voice name for a host."""
+    return load_hosts_config()[host_key]["gemini_voice"]
+
 def get_voice_instructions_for_host(host_key):
     """Get OpenAI TTS delivery/emotion instructions for a host."""
     return load_hosts_config()[host_key]["voice_instructions"]
@@ -115,6 +120,30 @@ def get_voice_instructions_for_host(host_key):
 def get_speed_for_host(host_key):
     """Get OpenAI TTS speed multiplier for a host (defaults to 1.0)."""
     return load_hosts_config()[host_key].get("speed", 1.0)
+
+@lru_cache(maxsize=1)
+def _stage_direction_pattern():
+    """Compiled pattern matching whitelisted (cue) stage directions, or None."""
+    cues = (load_prompts_config().get("gemini_tts", {})
+            .get("stage_directions", {}).get("whitelist", []))
+    if not cues:
+        return None
+    alternatives = "|".join(re.escape(c) for c in cues)
+    return re.compile(r"\s*\((?:" + alternatives + r")\)", re.IGNORECASE)
+
+def strip_stage_directions(text):
+    """Remove whitelisted (cue) delivery hints from *text*.
+
+    Gemini TTS performs these cues; every other provider would read them
+    aloud, so their synthesis paths strip them first. Whitelist-driven so
+    genuine parenthetical dialog is never touched.
+    """
+    pattern = _stage_direction_pattern()
+    return pattern.sub("", text) if pattern else text
+
+def render_credits_text(tts_credit):
+    """Plain-text credits block with the TTS provider line filled in."""
+    return load_credits_config()["text"].replace("{tts_credit}", tts_credit)
 
 def get_theme_for_day(weekday):
     """Get theme for specific day of week (0=Monday, 6=Sunday)."""

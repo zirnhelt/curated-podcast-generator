@@ -17,6 +17,8 @@ import re
 import xml.sax.saxutils as saxutils
 from pathlib import Path
 
+from config_loader import strip_stage_directions
+
 MULTITALKER_MODEL = "en-US-MultiTalker-Ava-Andrew:DragonHDLatestNeural"
 
 # Maps host keys to mstts:turn speaker identifiers used by the MultiTalker model
@@ -159,7 +161,8 @@ def build_section_ssml(
     turn_parts: list[str] = []
     for i, seg in enumerate(segments):
         speaker = MULTITALKER_SPEAKER_MAP.get(seg["speaker"], "ava")
-        processed = apply_pronunciation(seg["text"])
+        # Gemini-only delivery cues would be spoken by the Multi-Talker voice
+        processed = apply_pronunciation(strip_stage_directions(seg["text"]))
         expr = HOST_EXPRESSION.get(speaker)
         if expr:
             content = (
@@ -208,8 +211,8 @@ def _split_segments_by_char_limit(
 
 
 def _count_words(text: str) -> int:
-    """Count words in *text* using word-boundary tokenization."""
-    return len(re.findall(r"\b\w+\b", text))
+    """Count synthesizable words in *text* (stage-direction cues excluded)."""
+    return len(re.findall(r"\b\w+\b", strip_stage_directions(text)))
 
 
 def synthesize_section(

@@ -1,5 +1,5 @@
 {
-  "text": "\n--- Credits ---\nTheme Song: Cariboo Signals by Suno (suno.com)\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: Azure Neural TTS (Ava · Andrew)\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt\nFunding: Self-funded by Erich Zirnhelt, Horsefly BC — non-commercial\n\n© 2026 Erich Zirnhelt. Licensed under CC BY-NC 4.0.\nhttps://creativecommons.org/licenses/by-nc/4.0/",
+  "text": "\n--- Credits ---\nTheme Song: Cariboo Signals by Suno (suno.com)\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: {tts_credit}\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt\nFunding: Self-funded by Erich Zirnhelt, Horsefly BC — non-commercial\n\n© 2026 Erich Zirnhelt. Licensed under CC BY-NC 4.0.\nhttps://creativecommons.org/licenses/by-nc/4.0/",
   "structured": {
     "theme_song": "Cariboo Signals by Suno",
     "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
@@ -7,8 +7,9 @@
     "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
     "content_curation": "Claude (Anthropic)",
     "script_generation": "Claude (Anthropic)",
-    "text_to_speech": "Azure Neural TTS (Ava · Andrew)",
+    "text_to_speech_azure": "Azure Neural TTS (Ava · Andrew)",
     "text_to_speech_openai": "OpenAI TTS API (Nova · Echo)",
+    "text_to_speech_gemini": "Gemini TTS (Sulafat · Orus)",
     "cover_art": "ChatGPT (OpenAI)",
     "weather_data": "Open-Meteo",
     "content_enrichment": "Cohere",
@@ -35,7 +36,7 @@
       },
       {
         "label": "TTS Voices",
-        "value": "Azure Neural TTS (Ava · Andrew)"
+        "value": "OpenAI, Azure, or Gemini TTS — each episode's notes credit the voices used"
       },
       {
         "label": "Cover Art",
@@ -80,6 +81,11 @@
       "disclosure": "OpenAI's ChatGPT generated this show's cover art, and OpenAI TTS voices our hosts on some episodes"
     },
     {
+      "keywords": ["gemini", "google"],
+      "name": "Google",
+      "disclosure": "Google's Gemini text-to-speech voices our hosts on some episodes"
+    },
+    {
       "keywords": ["cohere"],
       "name": "Cohere",
       "disclosure": "Cohere's embedding and reranking tools power our article deduplication pipeline"
@@ -108,7 +114,7 @@
       },
       {
         "label": "TTS Voices",
-        "value": "Azure Neural TTS (Ava · Andrew)"
+        "value": "OpenAI, Azure, or Gemini TTS — each episode's notes credit the voices used"
       },
       {
         "label": "Sources",

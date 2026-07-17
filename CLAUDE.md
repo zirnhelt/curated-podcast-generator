@@ -104,6 +104,8 @@ Seven rotating daily themes indexed by weekday (0=Mon):
 
 **Azure Neural TTS (optional, `USE_AZURE_TTS=1`):** Multi-Talker model for coherent prosody across speaker transitions. SSML with `<phoneme>` IPA tags for Cariboo place names. 8,000-char conservative SSML chunk limit. Set `AZURE_TTS_PARALLEL=1` to generate both providers for comparison.
 
+**Gemini multi-speaker TTS (optional, `USE_GEMINI_TTS=1`, wins over Azure):** `gemini_tts.py` renders each section's whole two-host conversation in one `generateContent` call (NotebookLM-style prosody) via REST — needs `GEMINI_API_KEY`; `GEMINI_TTS_MODEL` overrides the default flash model. A style prompt plus whitelisted `(cue)` stage directions live in `config/prompts.json` under `gemini_tts`; the polish pass only adds cues when Gemini is active, and the OpenAI/Azure paths strip them. Credits on every surface resolve through `get_active_tts_provider()` — the provider that actually rendered the audio wins (an OpenAI fallback is credited as OpenAI). Compare providers with `python evaluate_tts.py`.
+
 ### Cohere Enrichment (`cohere_enrichment.py`)
 
 Optional (`USE_COHERE=1`). Three stages:
