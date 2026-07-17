@@ -1,0 +1,187 @@
+WEBVTT
+
+00:00:00.500 --> 00:00:35.642
+<v Riley>Hey, welcome back. On today's episode — smoke from Canadian wildfires is turning skies yellow as far away as the American Midwest, a proposed oil supertanker terminal at the mouth of the Fraser River has scientists worried about salmon and orcas, and Quesnel Search and Rescue just got new gear ahead of a busy summer. Then in the Deep Dive: should we be telling people about the Cariboo's best-kept wild secrets, or keeping our mouths shut? That and more, coming right up.
+
+00:01:00.942 --> 00:01:25.799
+<v Riley>Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities — I'm Riley. It's Friday, July 17th, 2026. Coming to you from the Cariboo, on lands that have been cared for by the Secwépemc, Tŝilhqot'in, and Dakelh peoples since time immemorial. Today's theme is Wild Spaces & Outdoor Life.
+
+00:01:27.099 --> 00:02:30.956
+<v Casey>And I'm Casey. We're heading into the backcountry today — wildfire smoke, satellites watching over the landscape, and who gets to know about the good spots before everyone else does. Quick weather check — Horsefly Lake is sitting at 15 degrees with mainly clear skies this morning, a high of 30 expected, a low of 14 tonight, and there's thunderstorm potential moving in tomorrow with about a millimetre of rain in the forecast. Across the rest of the region: 100 Mile House is at 16 and mainly clear, Williams Lake is at 16 and partly cloudy, Quesnel is sitting at 14 under clear skies, and out on the Chilcotin plateau, Alexis Creek is at 15 with partly cloudy conditions. It's shaping up to be a hot one across the whole Cariboo — stay hydrated, and keep half an eye on the BC Wildfire Dashboard if you're heading out today.
+
+00:02:31.256 --> 00:02:32.970
+<v Riley>Let's get into it.
+
+00:02:34.470 --> 00:02:57.184
+<v Riley>We're opening with wildfire, because it's dominating the continent right now, not just the province. Wildfire Today reports Canada is in its second-worst fire season on record — just two years after the record-breaking 2023 season, and the outlook suggests these catastrophic seasons are becoming the new normal rather than a one-off event.
+
+00:02:57.484 --> 00:03:03.055
+<v Casey>Two record seasons inside three years isn't a fluke. That's a trend line.
+
+00:03:03.855 --> 00:03:27.426
+<v Casey>And it's not staying contained to the country that's burning. Business Insider ran photos this week showing smoke drifting across the continent, turning skies over major American cities a thick yellow haze — Chicago, Minneapolis, cities a thousand kilometres or more from any active fire line, dealing with our air quality problem as their own.
+
+00:03:27.726 --> 00:03:39.725
+<v Riley>The Cariboo's been on the receiving end of exactly that from other provinces plenty of summers, too — it's a shared airshed whether anyone likes it or not.
+
+00:03:40.525 --> 00:04:06.239
+<v Riley>There's a political layer sitting on top of the fire coverage as well. The Maple reported that Prime Minister Mark Carney moved to boost an Alberta pipeline project the same week 180 wildfires were burning in northern Ontario, 72 of them listed as not under control. First Nations leaders in the region are calling out the optics of that timing.
+
+00:04:07.439 --> 00:04:22.867
+<v Casey>Closer to home, CFJC Today reported that British Columbia's Environmental Assessment Office signed a formal consent agreement with the Simpcw First Nation on how a proposed open-pit copper mine near Kamloops will be assessed going forward.
+
+00:04:23.167 --> 00:04:33.452
+<v Riley>That's significant — consent agreement means Simpcw has a real seat in how the assessment proceeds, not just a comment period after the fact.
+
+00:04:34.252 --> 00:05:02.537
+<v Casey>And it's happening the same week the Narwhal is reporting a much bigger fight downstream — literally downstream, at the mouth of the Fraser. Plans to expand the Roberts Bank terminal could bring oil supertankers into one of the most important ecosystems in the country for salmon, southern resident killer whales, and migratory birds. Scientists quoted in the piece are calling it an "industrial sacrifice zone."
+
+00:05:02.837 --> 00:05:15.265
+<v Riley>The Fraser's salmon runs feed the entire watershed, all the way up into our rivers in the Cariboo. What happens at the mouth moves upstream every single spawning season.
+
+00:05:16.465 --> 00:05:38.750
+<v Casey>On the technology side, two satellite stories this week. Engadget reports roughly 260 Starlink satellites are deorbiting right now, and despite some alarming headlines, scientists say it's a normal part of the constellation's lifecycle. They are still studying the atmospheric impact of that many controlled burn-ups happening on a regular basis, though.
+
+00:05:39.050 --> 00:05:46.764
+<v Riley>Normal lifecycle or not, that's a system a lot of rural households now depend on for basic internet.
+
+00:05:47.564 --> 00:06:08.564
+<v Riley>Separately, and maybe more immediately relevant, Hackaday reported that NOAA's newest weather satellite, GOES-19, unexpectedly went offline overnight. NOAA says they're investigating. That's the satellite feeding a lot of the fire-weather and storm-tracking data agencies rely on — exactly the kind of smoke and heat systems we just covered.
+
+00:06:08.864 --> 00:06:19.149
+<v Casey>Convenient timing, given everything else burning this week. It really underlines how much invisible infrastructure sits behind something as simple as a smoke forecast.
+
+00:06:20.349 --> 00:06:51.206
+<v Casey>On a lighter note, if you're gearing up for backcountry travel this summer, Outside Online flagged that REI quietly discounted a batch of its travel gear — packs, duffels, packing cubes — up to fifty percent off. And on the more domestic end, Tom's Guide put together a roundup of thirteen patio and garden deals, all under a hundred dollars total, if your idea of outdoor space is more backyard than backcountry.
+
+00:06:52.006 --> 00:07:18.577
+<v Riley>From the tech-money file — and it's a big one. Tom's Hardware reported that Elon Musk spent an estimated one billion dollars buying APR Energy, a company that owns a fleet of mobile, trailer-mounted gas and diesel turbines capable of generating over a gigawatt, specifically to power his AI company xAI. The deal wasn't announced publicly. It only surfaced through FTC filings.
+
+00:07:18.877 --> 00:07:29.162
+<v Casey>A billion dollars in diesel turbines to keep a chatbot running. Somewhere a rural fire hall is still fundraising for a single backup generator.
+
+00:07:29.962 --> 00:07:49.676
+<v Casey>TechRadar also ran a broader piece this week about "cloud sprawl" — the idea that organizations spent the last decade learning hard lessons about unmanaged cloud computing costs, and now they're layering AI complexity on top of environments that were already sprawling and hard to govern.
+
+00:07:50.876 --> 00:08:19.161
+<v Riley>A couple of bad-weather stories that connect to the fire theme even though they're not fire stories. Global News reported 43 seniors had to leave their basement units at an assisted living facility in West Edmonton after rainwater came rushing through the windows during flooding. And Al Jazeera reported catastrophic flooding in the Texas Hill Country, with at least two people dead and over 200 rescued.
+
+00:08:19.461 --> 00:08:30.175
+<v Casey>Fire in one direction, flood in another — the same warming atmosphere holding more moisture and igniting more easily, just depending on where you're standing.
+
+00:08:31.375 --> 00:08:47.232
+<v Riley>A few more stories that didn't make the main arc but deserve a mention. Williams Lake Tribune reports a BC court certified a class-action lawsuit against JUUL, the e-cigarette maker, over health claims tied to its products.
+
+00:08:47.532 --> 00:08:59.103
+<v Casey>And ScienceDaily reported NASA selected forty-one commercial technology projects for future Moon and Mars missions — everything from lunar power systems to protecting spacecraft from Moon dust.
+
+00:08:59.403 --> 00:09:09.260
+<v Riley>Quesnel is gearing up for Billy Barker Days — My Cariboo Now reports the first sporting event tied to the festival launched today.
+
+00:09:09.560 --> 00:09:19.417
+<v Casey>My Cariboo Now also reported that AFN leaders renewed their call this week for residential school denialism to be criminalized as hate speech.
+
+00:09:20.217 --> 00:09:39.502
+<v Riley>And one story that ties directly into where we're headed next. Quesnel Cariboo Observer reports Quesnel Search and Rescue received new equipment donations this week — the BC Northern Real Estate Board funded advanced first aid gear, and a second local organization contributed as well.
+
+00:09:39.802 --> 00:09:44.944
+<v Casey>Good entry point into today's Deep Dive. But first, the Community Spotlight.
+
+00:09:45.244 --> 00:10:16.529
+<v Casey>Today we're highlighting Scout Island Nature Centre, run by the Williams Lake Field Naturalists. It's a volunteer-run spot for birding, kids' programs, and the Salmon in the Classroom initiative — and right now they've got summer programs running all season, each week built around a different theme: Water one week, Bugs the next, Birds after that. If you've got kids looking for something to do outside this summer, sign-up details are at scoutisland.ca.
+
+00:10:16.829 --> 00:10:27.114
+<v Riley>It's the kind of low-cost, high-value community infrastructure that never makes headlines but keeps kids actually connected to the land they're growing up on.
+
+00:10:27.414 --> 00:10:31.699
+<v Casey>Which is a decent bridge into what we're covering next.
+
+00:10:32.899 --> 00:11:01.184
+<v Riley>Outside Online ran a piece this week from a travel columnist who says he gets hate mail every time he writes about affordable, uncrowded mountain towns. Readers accuse him of ruining their secret spots. His argument is that trying to keep beautiful places secret doesn't actually protect them, and it's not really possible anyway in an age of geotagged photos and satellite connectivity reaching almost anywhere.
+
+00:11:01.484 --> 00:11:08.341
+<v Casey>Easy position to hold when you're not the one living in the town that gets discovered.
+
+00:11:08.641 --> 00:11:30.069
+<v Riley>The question that matters for the Cariboo specifically: we're not Bozeman or Canmore — nobody's writing viral listicles about the Chilcotin plateau yet. But satellite internet means someone can post a photo from deep backcountry in real time now. Does that change how these places get used, and how fast?
+
+00:11:30.369 --> 00:11:49.226
+<v Casey>It already has. Quesnel Search and Rescue just took in new first aid equipment donations — that tracks with what volunteer rescue organizations across BC have reported about rising call volumes as more people head into remote terrain. That's not a hypothetical future scenario.
+
+00:11:49.526 --> 00:12:11.811
+<v Riley>And that's exactly the case for visibility, not against it. More people finding these places through legitimate channels — trail apps, tourism boards, satellite coverage that lets them actually call for help when something goes wrong — means fewer people stumbling in through word of mouth with zero safety net underneath them.
+
+00:12:12.111 --> 00:12:28.396
+<v Casey>Or it just means more people arriving, full stop, and the existing safety net stretching thinner. QSAR getting donated first aid kits is not the same as QSAR getting more volunteers or more callout capacity. Equipment isn't throughput.
+
+00:12:28.696 --> 00:12:40.695
+<v Riley>Better field equipment does change outcomes in that critical window before a helicopter or ground team arrives, though — that's well-established in wilderness medicine, not a marginal effect.
+
+00:12:41.495 --> 00:13:08.494
+<v Casey>Sure, if someone's already been found. The harder problem is volume of incidents, not quality of care once a team is on scene. Volume tracks with visibility. Moab and Squamish both saw rescue call volumes outpace the capacity of their teams within a couple of seasons of getting "discovered" by the outdoor media — and neither had the funding model to catch up.
+
+00:13:08.794 --> 00:13:35.365
+<v Riley>Which argues for building capacity ahead of the wave, not for staying quiet and hoping it never arrives. Silence has never actually worked as a management strategy. There are parks in the Rockies that tried downplaying trail conditions and access information for years to manage crowding, and visitation grew anyway — just without the safety messaging that could have gone with it.
+
+00:13:35.665 --> 00:13:51.950
+<v Casey>That example proves my point more than yours. Visitation surged without proportional search and rescue investment to match. The lesson isn't "publicity is fine" — it's "publicity without matching infrastructure spending is exactly how you overwhelm a team."
+
+00:13:52.750 --> 00:14:24.035
+<v Riley>The wrinkle satellite technology adds — and it matters to be specific — is timing. A few years ago, someone lost or injured deep in the Chilcotin had essentially no way to call for help until they hiked out or someone reported them overdue, sometimes a full day later. Now a satellite communicator costing a few hundred dollars plus a monthly subscription turns an invisible emergency into a located, timestamped one within minutes.
+
+00:14:24.335 --> 00:14:45.335
+<v Casey>Genuine safety improvement — no argument. It's also exactly the same device that lets someone livestream their coordinates from a spot that used to require local knowledge, or a guide, or years of experience to find. The device that saves your life is the same one broadcasting your location.
+
+00:14:45.635 --> 00:14:58.920
+<v Riley>So the real tradeoff isn't publicity versus secrecy. It's publicity paired with rescue and information infrastructure built to match the exposure, versus publicity happening on its own with nothing underneath it.
+
+00:14:59.720 --> 00:15:09.577
+<v Casey>Which is nice as a principle. But name me one jurisdiction in BC that's actually built the matching infrastructure before the visitors arrived.
+
+00:15:09.877 --> 00:15:38.162
+<v Riley>Most haven't — and that's the gap, not a reason to avoid the conversation. This region has something that mountain towns in Colorado or Utah don't: it's Aboriginal title land, working land, and land under active co-governance conversations. The Simpcw consent agreement on that copper mine assessment is a genuinely different kind of authority than a tourism board deciding whether to post a trailhead on Instagram.
+
+00:15:38.962 --> 00:15:55.247
+<v Casey>A consent agreement on a mining assessment is a different kind of authority, yes. But nobody's built anything remotely equivalent for recreation. There's no consent process anywhere in this province for "should this creek go viral this summer."
+
+00:15:55.547 --> 00:16:16.547
+<v Riley>That's a design gap, not a governance gap. If a Nation can hold consent authority over how a mine's environmental assessment proceeds, there's no structural reason the same kind of relationship couldn't extend to how a tourism board or a hiking app promotes a site on that same territory.
+
+00:16:16.847 --> 00:16:47.275
+<v Casey>Extend it how? Right now nobody at BC Parks or AllTrails is checking in with Tŝilhqot'in National Government or Xatśūll First Nation before a trailhead gets added to an app or a listicle. That relationship doesn't exist in any formal sense, and building one takes more than good intentions — it takes an actual point of contact, capacity to respond, and some kind of enforcement mechanism when the answer is "no."
+
+00:16:48.075 --> 00:17:21.932
+<v Riley>Which points to something a community could actually try right now, instead of waiting for a province-wide policy that takes a decade. A regional tourism board, or even a single trail society, could commit to a straightforward working rule: before actively promoting a new or lesser-known site, contact the Nation whose territory it sits on — the same basic step an environmental assessment already legally requires for industrial projects. One phone call and one email, not a new bureaucracy.
+
+00:17:22.232 --> 00:17:52.660
+<v Casey>One phone call — if someone picks up, and if there's capacity on the other end to respond. The AFN chiefs spent this week raising almost exactly this pattern: being consulted after a decision's already been made, not before, on things that directly affect their territory. A voluntary check-in from a tourism board isn't a binding process, and voluntary is usually where these good intentions quietly die once budget season arrives.
+
+00:17:52.960 --> 00:18:15.674
+<v Riley>It's a start that costs almost nothing to try, though. And the alternative — silence on one end, or promotion with zero local input on the other — is what's already happening by default across most of the Cariboo's lesser-known spots right now, whether anyone's made a deliberate decision about it or not.
+
+00:18:16.474 --> 00:18:25.474
+<v Casey>The default isn't neutral, I'll give you that. Doing nothing just means whoever's already benefiting from the status quo keeps benefiting.
+
+00:18:25.774 --> 00:18:57.488
+<v Riley>There's also a quieter version of this debate that points in almost the opposite direction. That Outside Online piece on veterans doing off-grid living in the New Mexico desert made the reverse argument from the mountain-town columnist. Some people seek out these landscapes specifically because they're hard to find — solitude is the therapeutic value, not a side effect to be managed. The guy running that compound basically said the remoteness is the medicine.
+
+00:18:57.788 --> 00:19:27.787
+<v Casey>Which is the part that gets lost when every wild space gets treated as a marketing asset waiting to be discovered. Not every landscape needs more visitors to justify its existence. Some of its value comes precisely from being unmarketed, unmapped, and a little bit hard to find. Imagine somebody geotagging that veteran's compound and calling it "New Mexico's hidden gem." That would destroy the exact thing making it work.
+
+00:19:28.087 --> 00:19:49.944
+<v Riley>Fair enough — and lumping trail tourism promotion together with therapeutic solitude probably does more damage than either extreme on its own. Though I'd point out even that compound needed visibility to recruit the veterans who ended up there. Pure secrecy doesn't scale either, even for programs that depend on remoteness.
+
+00:19:50.744 --> 00:19:59.744
+<v Casey>So we're not fully split. Silence isn't a real strategy, and visibility without matching infrastructure is worse than either extreme alone.
+
+00:20:00.044 --> 00:20:37.329
+<v Riley>The open question is who builds the consent relationship between the people who promote a place — tourism boards, recreation apps, frankly even us, every time we mention a trail or a lake — and the Nations whose territory that place sits on. That relationship doesn't exist in any formal way yet in the Cariboo. But the governance tools are already there — the Simpcw agreement proves that. What's missing is someone extending them into the recreation space, even on a small scale, even for one season.
+
+00:20:37.629 --> 00:21:14.486
+<v Casey>And whether a voluntary version of that survives contact with an actual tourism board's incentive structure, which usually runs on "more visitors, more revenue" — not "check first, promote second." I'd want to see one real example before I buy the theory. If you're part of a group that's tried something like this — a trail society, a tourism board, a recreation club that actually checked in with a Nation before promoting a site — tell us how it went. Feedback at cariboo signals dot c-a.
+
+00:21:14.786 --> 00:21:25.500
+<v Riley>Or if you've got a favourite wild place you're proud to share or quietly protective of, same address. Have a good Friday out there, Cariboo.
+
+00:21:25.800 --> 00:21:33.085
+<v Casey>Stay cool, drink water, and check the fire dashboard before you head out. See you next week.
