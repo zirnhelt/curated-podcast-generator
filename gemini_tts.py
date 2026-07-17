@@ -124,6 +124,20 @@ def _build_payload(segments: list[dict]) -> dict:
     }
 
 
+def _log_speech_config(speech_config: dict) -> None:
+    """Print which speech config is being sent, as proof of multi-speaker usage."""
+    multi = speech_config.get("multiSpeakerVoiceConfig")
+    if multi:
+        voices = ", ".join(
+            f"{c['speaker']}={c['voiceConfig']['prebuiltVoiceConfig']['voiceName']}"
+            for c in multi["speakerVoiceConfigs"]
+        )
+        print(f"  [gemini-tts] multi-speaker: {voices}")
+    else:
+        voice = speech_config["voiceConfig"]["prebuiltVoiceConfig"]["voiceName"]
+        print(f"  [gemini-tts] single-speaker: {voice}")
+
+
 def _synthesize_chunk(segments: list[dict]) -> tuple[bytes, int]:
     """One generateContent call. Returns (pcm_bytes, sample_rate).
 
@@ -134,6 +148,7 @@ def _synthesize_chunk(segments: list[dict]) -> tuple[bytes, int]:
         raise ValueError("GEMINI_API_KEY not set")
 
     payload = _build_payload(segments)
+    _log_speech_config(payload["generationConfig"]["speechConfig"])
     prompt_chars = len(payload["contents"][0]["parts"][0]["text"])
     if prompt_chars > MAX_REQUEST_CHARS:
         raise RuntimeError(
