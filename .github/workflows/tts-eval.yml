@@ -61,12 +61,14 @@ jobs:
           OPENAI_API_KEY: ${{ inputs.providers == 'all' && secrets.OPENAI_API_KEY || '' }}
           AZURE_SPEECH_KEY: ${{ inputs.providers == 'all' && secrets.AZURE_SPEECH_KEY || '' }}
           AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
+          TTS_PROVIDERS: ${{ inputs.providers }}
+          TTS_SECTION: ${{ inputs.section }}
         run: |
           SKIP_FLAGS=""
-          if [ "${{ inputs.providers }}" = "gemini" ]; then
+          if [ "$TTS_PROVIDERS" = "gemini" ]; then
             SKIP_FLAGS="--skip-openai --skip-azure"
           fi
-          python evaluate_tts.py --section "${{ inputs.section }}" $SKIP_FLAGS --output-dir tts-eval
+          python evaluate_tts.py --section "$TTS_SECTION" $SKIP_FLAGS --output-dir tts-eval
 
       - name: Upload audio artifact
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
