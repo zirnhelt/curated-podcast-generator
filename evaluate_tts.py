@@ -31,12 +31,22 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 
 def _find_latest_script(podcasts_dir: Path) -> dict | None:
-    """Return the parsed JSON of the most recently saved podcast episode."""
+    """Return {"script": ...} for the most recently saved podcast episode.
+
+    Prefers podcast_data_*.json (local pipeline runs); falls back to the
+    committed podcast_script_*.txt files so the eval works on a fresh clone.
+    """
     candidates = sorted(podcasts_dir.glob("podcast_data_*.json"), reverse=True)
-    if not candidates:
-        return None
-    with open(candidates[0]) as f:
-        return json.load(f)
+    if candidates:
+        with open(candidates[0]) as f:
+            return json.load(f)
+
+    scripts = sorted(podcasts_dir.glob("podcast_script_*.txt"), reverse=True)
+    if scripts:
+        print(f"  Using committed script: {scripts[0].name}")
+        return {"script": scripts[0].read_text()}
+
+    return None
 
 
 def _load_segments(script_text: str) -> dict:
@@ -216,7 +226,7 @@ def main():
     print(f"Loading latest podcast script from {podcasts_dir}/...")
     data = _find_latest_script(podcasts_dir)
     if not data:
-        print(f"❌ No podcast_data_*.json found in {podcasts_dir}/")
+        print(f"❌ No podcast_data_*.json or podcast_script_*.txt found in {podcasts_dir}/")
         sys.exit(1)
 
     script_text = data.get("script") or data.get("raw_script") or ""
