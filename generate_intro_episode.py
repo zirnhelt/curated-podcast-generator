@@ -132,7 +132,7 @@ EPISODE ARC (~1,400-2,200 words total):
 
 1. INTRODUCTIONS — SAY WHAT THEY ARE, PLAINLY, NOT WHO THEY'RE PRETENDING TO BE:
    - Riley and Casey state plainly, near the top — not as a twist saved for later — that they ARE AI-generated hosts / personas, not real people with hometowns, careers, or personal histories. Concretely, Riley must NOT say things like "I've got an engineering background, I grew up in the Cariboo" or "I'm Cariboo-based" — those are a human host's claims, and making them first (then "revealing" the AI angle later) reads as misdirection, not warmth. Instead, something like "I'm Riley — I'm one of the two AI personas built for this show, and my lens is the tech-optimist one" (paraphrased in her own voice, not read like a spec sheet). What's real and worth conveying vividly is the PERSPECTIVE each persona was built to carry — Riley's optimism-backed-by-data (paraphrase her stance from the bio above), Casey's skeptical show-me-the-maintenance-budget lens (paraphrase Casey's stance). The perspective is the real thing here, even when the person isn't — say so directly. Riley's opening lines in particular should sound bright, warm, and a little eager from the very first word — her optimism is a TONE as much as a stance, and a flat, heavy, or solemn opener undercuts it before she's said anything substantive; keep her opener light, quick, and glad-to-be-here, not weighty or declarative.
-   - In that same breath — not as a separate, later disclaimer — they explain, plainly and with evident pride rather than hand-wringing, how the show is actually made: {structured['script_generation']} writes the scripts from the day's news and source material, {structured['text_to_speech_openai']} voices the two of them day to day (Riley = Nova, Casey = Echo), with {structured['text_to_speech']} run in parallel for quality comparisons, and the finished audio is mixed together with music using a Python toolchain (pydub)
+   - In that same breath — not as a separate, later disclaimer — they explain, plainly and with evident pride rather than hand-wringing, how the show is actually made: {structured['script_generation']} writes the scripts from the day's news and source material, {structured['text_to_speech_openai']} voices the two of them day to day (Riley = Nova, Casey = Echo), with {structured['text_to_speech_azure']} run in parallel for quality comparisons, and the finished audio is mixed together with music using a Python toolchain (pydub)
    - They can mention, in passing and without sounding like a press release, that {podcast_config['title']} self-assesses at "18/20 — Exemplary" against the TRACE standard (tracestandard.org) — a transparency framework that scores AI-made content on things like sourcing, consent, and accountability — the point being that nothing about how this show gets made is hidden
    - REQUIRED somewhere in the script (here, or in the sign-off if it flows more naturally there — but it must land once, in full, not get crowded out): they tell new listeners exactly how to reach the show — both the email, {podcast_config['email']}, AND the website. Write the website the way a host would actually SAY it out loud — something like "find us at cariboo signals dot C-A" — never as a literal URL string to be sounded out letter by letter (no "https," "www," or trailing slash; those read terribly aloud). Framed as a standing, genuine invitation to send corrections, feedback, or just say hello
 
@@ -297,7 +297,7 @@ def _credits_html_block(credits_config):
         "<p><b>Credits</b><br>"
         f"Theme Song: {c['theme_song']}<br>"
         f"Content Curation &amp; Script: {c['content_curation']}<br>"
-        f"TTS Voices: {c['text_to_speech_openai']} (with {c['text_to_speech']} for comparison)<br>"
+        f"TTS Voices: {c['text_to_speech_openai']} (with {c['text_to_speech_azure']} for comparison)<br>"
         f"Cover Art: {c['cover_art']}<br>"
         f"Podcast Coordination: {c['coordination']}<br>"
         f"&#169; {c['copyright_year']} {c['copyright_holder']}. "
@@ -323,7 +323,7 @@ def write_intro_citations(date_str, output_dir, themes, credits_config, podcast_
         f"about it. {structured['script_generation']} writes the scripts, "
         f"{structured['text_to_speech_openai']} voices them day to day "
         "(Riley = Nova, Casey = Echo), with "
-        f"{structured['text_to_speech']} run in parallel for quality comparisons, and the "
+        f"{structured['text_to_speech_azure']} run in parallel for quality comparisons, and the "
         f"finished audio is mixed with music in Python (pydub). {podcast_config['title']} "
         "self-assesses at 18/20 (\"Exemplary\") on the Community Content Compact, a "
         "transparency framework for AI-made content.</p>"

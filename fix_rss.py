@@ -11,7 +11,7 @@ import json
 import xml.sax.saxutils as saxutils
 from datetime import datetime
 from pathlib import Path
-from config_loader import load_podcast_config, load_credits_config
+from config_loader import load_podcast_config, render_credits_text
 
 PODCASTS_DIR = Path(__file__).parent / "podcasts"
 
@@ -73,7 +73,6 @@ def generate_clean_rss():
     
     # Load configuration
     podcast_config = load_podcast_config()
-    credits_config = load_credits_config()
     
     # Find all episode files in podcasts/ subfolder
     audio_files = glob.glob(str(PODCASTS_DIR / "podcast_audio_*.mp3"))
@@ -159,7 +158,10 @@ def generate_clean_rss():
             print(f"  ✅ Using episode-specific description for {episode['episode_date']}")
         else:
             # Fallback to generic description + credits
-            raw_description = podcast_config["description"] + "\n\n" + credits_config['text']
+            # Generic fallback can't know which provider voiced a given episode
+            raw_description = podcast_config["description"] + "\n\n" + render_credits_text(
+                "OpenAI, Azure, or Gemini TTS (varies by episode)"
+            )
             print(f"  ⚠️  Using generic description for {episode['episode_date']}")
 
         safe_theme = episode['theme'].replace(" ", "_").replace("&", "and").lower()

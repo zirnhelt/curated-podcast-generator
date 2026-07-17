@@ -43,6 +43,8 @@ from config_loader import (
     get_speed_for_host,
     get_theme_for_day,
     message_text,
+    strip_stage_directions,
+    render_credits_text,
 )
 from azure_tts import (
     generate_azure_tts_for_section,
@@ -50,6 +52,7 @@ from azure_tts import (
     PRONUNCIATION_DICT as AZURE_PRONUNCIATION_DICT,
     get_azure_speech_config,
 )
+from gemini_tts import generate_gemini_tts_for_section, get_gemini_api_key
 
 # Import deduplication module
 from dedup_articles import deduplicate_articles, format_evolving_story_context, cluster_and_rescore_corpus
@@ -351,9 +354,53 @@ TARGET_MUSIC_DBFS = -28.0   # Music ducked beneath speech
 # Prevents a click/pop caused by TTS voices ending on a non-zero sample when silence follows.
 SECTION_BOUNDARY_FADE_MS = 40
 
-# Azure TTS feature flags
+# TTS provider feature flags — gemini > azure > openai (see get_active_tts_provider)
 USE_AZURE_TTS = bool(os.getenv("USE_AZURE_TTS"))              # full switch to Azure
 USE_AZURE_PARALLEL = bool(os.getenv("AZURE_TTS_PARALLEL"))   # generate both, save _azure.wav for comparison
+USE_GEMINI_TTS = bool(os.getenv("USE_GEMINI_TTS"))           # full switch to Gemini multi-speaker
+
+# Provider that actually rendered this run's audio, set on rendering success.
+# An OpenAI fallback after an Azure/Gemini failure must be credited as OpenAI.
+_tts_provider_used: str | None = None
+
+
+def get_active_tts_provider() -> str:
+    """Active TTS provider key: 'gemini' | 'azure' | 'openai'.
+
+    Single source of truth for provider-dependent behaviour (rendering,
+    credits) so published credits can never drift from the audio path.
+    Once audio has been rendered, the provider that actually produced it
+    wins over the env-flag selection.
+    """
+    if _tts_provider_used:
+        return _tts_provider_used
+    if USE_GEMINI_TTS:
+        return "gemini"
+    if USE_AZURE_TTS:
+        return "azure"
+    return "openai"
+
+
+def get_tts_credit() -> str:
+    """Credit label for the active TTS provider, from config/credits.json."""
+    return CONFIG['credits']['structured'][f"text_to_speech_{get_active_tts_provider()}"]
+
+
+def _stage_direction_addendum() -> str:
+    """Polish-prompt addendum allowing sparse TTS delivery cues.
+
+    Only Gemini performs (rather than reads) parenthetical cues, so the
+    instruction is prompt-gated on the provider — no tokens spent polishing
+    cues another provider's path would just strip.
+    """
+    if not USE_GEMINI_TTS:
+        return ""
+    cfg = CONFIG['prompts'].get('gemini_tts', {}).get('stage_directions', {})
+    instruction = cfg.get('polish_instruction')
+    cues = cfg.get('whitelist')
+    if not instruction or not cues:
+        return ""
+    return "\n\n" + instruction.replace("{cue_list}", ", ".join(f"({c})" for c in cues))
 
 # Set to True if a TTS call fails due to an OpenAI billing quota limit.
 # Checked at exit so the CI run fails and triggers a GitHub notification.
@@ -2184,7 +2231,7 @@ def polish_and_factcheck_with_agent(script, theme_name, news_articles, deep_dive
         verified_sources=verified_sources,
         research_insights=research_insights or "(none)",
         air_date=f"{weekday}, {date_str}",
-    )
+    ) + _stage_direction_addendum()
 
     review_model = model or select_review_model(deep_dive_articles)
     brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
@@ -2247,7 +2294,7 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
         additional_research=additional_research or "(none)",
         research_insights=research_insights or "(none)",
         air_date=f"{weekday}, {date_str}",
-    )
+    ) + _stage_direction_addendum()
 
     # Build debate summary prompt — only send the deep-dive section (30% of script)
     deep_dive_section = _extract_deep_dive_section(script)
@@ -3723,7 +3770,7 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
     # Build HTML credits block
     credits = CONFIG['credits']['structured']
     review_model_label = _review_model_used or POLISH_MODEL
-    tts_label = credits['text_to_speech'] if USE_AZURE_TTS else credits['text_to_speech_openai']
+    tts_label = get_tts_credit()
     brave_credit = "Web Search: Brave Search API<br>"
     weather_credit = f"Weather Data: {credits['weather_data']}<br>" if weather_used else ""
     cohere_credit = f"Content Enrichment: {credits['content_enrichment']}<br>" if cohere_used else ""
@@ -3917,7 +3964,8 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
                 "discussion": debate_summary or {}
             }
         },
-        "credits": CONFIG['credits']['structured']
+        # text_to_speech resolves to the provider that actually rendered this episode
+        "credits": {**CONFIG['credits']['structured'], "text_to_speech": get_tts_credit()}
     }
 
     def _build_citation(article, discussed):
@@ -4878,8 +4926,9 @@ def generate_tts_for_segment(text, speaker, output_file):
     voice = get_voice_for_host(speaker)
     speed = get_speed_for_host(speaker)
 
-    # Apply shared pronunciation substitutions
-    clean = text
+    # Drop Gemini-only delivery cues (tts-1 would read them aloud), then apply
+    # shared pronunciation substitutions
+    clean = strip_stage_directions(text)
     for word, alias in AZURE_PRONUNCIATION_DICT.items():
         clean = clean.replace(word, alias)
 
@@ -5126,7 +5175,11 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
     """Convert script to audio with music interludes and theme-aware ambient transitions."""
     print("📊 Generating audio with music interludes...")
 
-    if USE_AZURE_TTS:
+    if USE_GEMINI_TTS:
+        if not get_gemini_api_key():
+            print("❌ Gemini TTS enabled but GEMINI_API_KEY not set")
+            return None
+    elif USE_AZURE_TTS:
         if not get_azure_speech_config():
             print("❌ Azure TTS enabled but AZURE_SPEECH_KEY/AZURE_SPEECH_REGION not set")
             return None
@@ -5178,12 +5231,19 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                 nonlocal combined
                 print(f"  {label}")
 
-                if USE_AZURE_TTS:
-                    # Azure Multi-Talker: one synthesis call for the entire section
-                    section_wav = os.path.join(tmpdir, f"{prefix}_azure.wav")
+                provider = get_active_tts_provider()
+                if provider in ("azure", "gemini"):
+                    # One whole-section synthesis call for coherent cross-speaker prosody
+                    synth_fn, provider_label = {
+                        "azure": (generate_azure_tts_for_section, "Azure Multi-Talker"),
+                        "gemini": (generate_gemini_tts_for_section, "Gemini multi-speaker"),
+                    }[provider]
+                    section_wav = os.path.join(tmpdir, f"{prefix}_{provider}.wav")
                     total_chars = sum(len(s['text']) for s in seg_list)
-                    print(f"    Azure Multi-Talker: {len(seg_list)} turns, {total_chars} chars")
-                    generate_azure_tts_for_section(seg_list, section_wav)
+                    print(f"    {provider_label}: {len(seg_list)} turns, {total_chars} chars")
+                    if provider == "gemini":
+                        _log_api_call("gemini-tts", "chars", total_chars)
+                    synth_fn(seg_list, section_wav)
                     section_audio = normalize_segment(
                         trim_tts_silence(AudioSegment.from_file(section_wav, format="wav")),
                         TARGET_SPEECH_DBFS,
@@ -5284,11 +5344,9 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
 
             # Spoken credits (brief, before outro)
             chapters.append({"startTime": round(len(combined) / 1000, 1), "title": "Credits"})
-            tts_credit = (
-                "Azure Neural TTS, Ava and Andrew"
-                if USE_AZURE_TTS
-                else "OpenAI TTS"
-            )
+            # Spoken form of the active provider's credit label, e.g.
+            # "Azure Neural TTS (Ava · Andrew)" → "Azure Neural TTS, Ava and Andrew"
+            tts_credit = get_tts_credit().replace(" (", ", ").replace(")", "").replace(" · ", " and ")
             brave_spoken = (
                 " Today's episode included additional web research via Brave Search."
                 if brave_used else ""
@@ -5303,9 +5361,12 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                 f" Find us at {_pc_cfg.get('url_spoken', 'cariboo signals dot c-a')}."
             )
             try:
-                if USE_AZURE_TTS:
+                _credits_provider = get_active_tts_provider()
+                if _credits_provider in ("azure", "gemini"):
+                    _credits_section_fn = (generate_azure_tts_for_section if _credits_provider == "azure"
+                                           else generate_gemini_tts_for_section)
                     credits_wav = os.path.join(tmpdir, "credits.wav")
-                    generate_azure_tts_for_section(
+                    _credits_section_fn(
                         [{"speaker": "riley", "text": credits_text, "gap_ms": None}],
                         credits_wav,
                     )
@@ -5321,7 +5382,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                     )
                 combined += AudioSegment.silent(duration=600) + credits_audio
                 video_timeline.append({
-                    "speaker": None if USE_AZURE_TTS else "riley",
+                    "speaker": "riley" if _credits_provider == "openai" else None,
                     "section": "credits",
                     "start_ms": len(combined) - len(credits_audio),
                     "dur_ms": len(credits_audio),
@@ -5360,8 +5421,10 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
         print(f"   Duration: {duration_minutes:.1f} minutes")
         print(f"   File size: {file_size_mb:.1f} MB")
 
+        global _tts_provider_used
+        _tts_provider_used = get_active_tts_provider()
         return output_filename
-        
+
     except Exception as e:
         print(f"❌ Error generating audio with music: {e}")
         if 'insufficient_quota' in str(e):
@@ -5376,8 +5439,12 @@ def generate_audio_tts_only(script, output_filename, _force_openai=False):
     """Fallback: Generate audio without music (TTS only)."""
     print("📊 Generating TTS-only audio...")
 
-    use_azure = USE_AZURE_TTS and not _force_openai
-    if use_azure:
+    provider = "openai" if _force_openai else get_active_tts_provider()
+    if provider == "gemini":
+        if not get_gemini_api_key():
+            print("❌ Gemini TTS enabled but GEMINI_API_KEY not set")
+            return None
+    elif provider == "azure":
         if not get_azure_speech_config():
             print("❌ Azure TTS enabled but credentials not set")
             return None
@@ -5399,11 +5466,15 @@ def generate_audio_tts_only(script, output_filename, _force_openai=False):
         with tempfile.TemporaryDirectory() as tmpdir:
             combined = AudioSegment.empty()
 
-            if use_azure:
-                # Azure Multi-Talker: one call for the full flat segment list
-                print(f"  🔵 Azure Multi-Talker: {len(segments)} turns")
-                section_wav = os.path.join(tmpdir, "all_azure.wav")
-                generate_azure_tts_for_section(segments, section_wav)
+            if provider in ("azure", "gemini"):
+                # Whole-conversation synthesis: one call for the full flat segment list
+                section_fn = (generate_azure_tts_for_section if provider == "azure"
+                              else generate_gemini_tts_for_section)
+                print(f"  🔵 {provider.title()} section synthesis: {len(segments)} turns")
+                if provider == "gemini":
+                    _log_api_call("gemini-tts", "chars", sum(len(s['text']) for s in segments))
+                section_wav = os.path.join(tmpdir, f"all_{provider}.wav")
+                section_fn(segments, section_wav)
                 combined = normalize_segment(
                     trim_tts_silence(AudioSegment.from_file(section_wav, format="wav")),
                     TARGET_SPEECH_DBFS,
@@ -5443,17 +5514,19 @@ def generate_audio_tts_only(script, output_filename, _force_openai=False):
         print(f"   Duration: {duration_minutes:.1f} minutes")
         print(f"   File size: {file_size_mb:.1f} MB")
 
+        global _tts_provider_used
+        _tts_provider_used = provider
         return output_filename
 
     except Exception as e:
         print(f"❌ Error generating TTS audio: {e}")
-        if not use_azure and 'insufficient_quota' in str(e):
+        if provider == "openai" and 'insufficient_quota' in str(e):
             global _openai_quota_exceeded
             _openai_quota_exceeded = True
             print("💳 OpenAI billing quota exceeded — skipping audio generation")
             return None
-        if use_azure and not _force_openai and get_openai_client():
-            print("⚠️  Azure TTS failed — falling back to OpenAI TTS")
+        if provider != "openai" and not _force_openai and get_openai_client():
+            print(f"⚠️  {provider.title()} TTS failed — falling back to OpenAI TTS")
             return generate_audio_tts_only(script, output_filename, _force_openai=True)
         return None
 
@@ -5909,10 +5982,10 @@ def generate_podcast_rss_feed():
                                 episode_description += f"{source_num}. {source_name}: {title}\n"
                             source_num += 1
                 # Add credits to fallback plain-text description
-                episode_description += credits_config['text']
+                episode_description += render_credits_text(get_tts_credit())
         except Exception as e:
             print(f"   ⚠️ Could not load citations file {citations_file}: {e}")
-            episode_description += credits_config['text']
+            episode_description += render_credits_text(get_tts_credit())
 
         # Determine audio file size/duration, preferring the local file,
         # then a cached value from a previous run, then a fresh HEAD request
