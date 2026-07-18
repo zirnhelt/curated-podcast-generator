@@ -12,9 +12,9 @@ on:
   workflow_dispatch:
     inputs:
       tts_provider:
-        description: 'TTS provider — openai (default) uses OpenAI primary + Azure parallel; azure uses Azure only (no parallel); gemini uses Gemini multi-speaker only'
+        description: 'TTS provider — gemini (default) uses Gemini multi-speaker with OpenAI fallback; openai uses OpenAI primary + Azure parallel; azure uses Azure only (no parallel)'
         required: false
-        default: openai
+        default: gemini
         type: choice
         options:
           - openai
@@ -74,9 +74,7 @@ jobs:
     if: |
       needs.check-episode.outputs.episode_exists != 'true' ||
       inputs.force == true ||
-      inputs.tts_provider == 'both' ||
-      inputs.tts_provider == 'azure' ||
-      inputs.tts_provider == 'gemini'
+      inputs.tts_provider == 'azure'
 
     steps:
       - name: Checkout repository
@@ -149,7 +147,7 @@ jobs:
           AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
           USE_AZURE_TTS: ${{ inputs.tts_provider == 'azure' && 'true' || '' }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          USE_GEMINI_TTS: ${{ inputs.tts_provider == 'gemini' && 'true' || '' }}
+          USE_GEMINI_TTS: ${{ (inputs.tts_provider == 'gemini' || inputs.tts_provider == '') && 'true' || '' }}
         run: |
           case "${{ github.event.schedule }}" in
             '5 8 * * *') label="Primary (1:05 AM Pacific)" ;;
