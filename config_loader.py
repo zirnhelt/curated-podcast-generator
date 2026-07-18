@@ -6,6 +6,7 @@ Single-file swap point for a future DB-backed or per-tenant config layer.
 
 import json
 import re
+from datetime import date, timedelta
 from functools import lru_cache
 from pathlib import Path
 
@@ -93,6 +94,15 @@ def load_bespoke_config():
         return json.load(f)
 
 @lru_cache(maxsize=1)
+def load_super_cycles_config():
+    """Load multi-week focus cycles within daily themes (cached). Returns {} if file absent."""
+    path = CONFIG_DIR / "super_cycles.json"
+    if not path.exists():
+        return {}
+    with open(path, 'r') as f:
+        return json.load(f)
+
+@lru_cache(maxsize=1)
 def load_notable_dates():
     """Load notable dates calendar for theme-aligned secondary mentions (cached)."""
     path = CONFIG_DIR / "notable_dates.json"
@@ -149,6 +159,37 @@ def get_theme_for_day(weekday):
     """Get theme for specific day of week (0=Monday, 6=Sunday)."""
     return load_themes_config()[str(weekday)]["name"]
 
+def get_focus_for_day(weekday: int, d: date):
+    """Return the super-cycle focus dict for *weekday* on date *d*, or None.
+
+    Cycle position is calendar-derived — (toordinal // 7) % cycle length — so it
+    is stateless, idempotent across re-runs, and predictable weeks ahead. Days
+    without a configured cycle (e.g. Saturday) return None and run the plain
+    daily theme.
+    """
+    cycle = load_super_cycles_config().get(str(weekday), {}).get("cycle", [])
+    if not cycle:
+        return None
+    index = (d.toordinal() // 7) % len(cycle)
+    focus = dict(cycle[index])
+    focus["index"] = index
+    focus["cycle_length"] = len(cycle)
+    return focus
+
+def get_upcoming_focus_slots(d: date, horizon_days: int = 14) -> list:
+    """Enumerate (date, weekday, focus) for each day after *d* within the horizon.
+
+    Used by the article-holding router to find the soonest day whose rotation
+    focus matches an off-theme article. Excludes *d* itself.
+    """
+    slots = []
+    for offset in range(1, horizon_days + 1):
+        day = d + timedelta(days=offset)
+        focus = get_focus_for_day(day.weekday(), day)
+        if focus:
+            slots.append((day, day.weekday(), focus))
+    return slots
+
 def message_text(response) -> str:
     """Concatenate all text blocks from an Anthropic message response.
 
@@ -169,7 +210,8 @@ def get_all_config():
         'prompts': load_prompts_config(),
         'psa_organizations': load_psa_organizations(),
         'psa_events': load_psa_events(),
-        'blocklist': load_blocklist()
+        'blocklist': load_blocklist(),
+        'super_cycles': load_super_cycles_config()
     }
 
 if __name__ == "__main__":

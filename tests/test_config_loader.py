@@ -110,7 +110,7 @@ class TestConfigLoader:
 
     def test_get_all_config(self):
         config = get_all_config()
-        assert set(config.keys()) == {"podcast", "hosts", "themes", "credits", "interests", "prompts", "psa_organizations", "psa_events", "blocklist"}
+        assert set(config.keys()) == {"podcast", "hosts", "themes", "credits", "interests", "prompts", "psa_organizations", "psa_events", "blocklist", "super_cycles"}
 
     def test_configs_are_cached(self):
         """Verify lru_cache returns the same object on repeated calls."""

@@ -60,17 +60,18 @@ This is a daily AI podcast generator for **Cariboo Signals**, a two-host show (R
 1. Idempotency check — exits if today's episode already exists in the RSS feed
 2. Pull scored articles from sibling repo `super-rss-feed` (fetches `feed-podcast-{dayname}.json` from its GitHub Pages URL)
 3. Deduplicate against last 7 days of citations (`dedup_articles.py`, optionally Cohere embeddings via `cohere_enrichment.py`)
-4. Cluster same-story articles; select top stories + theme-matched deep-dive articles
+4. Cluster same-story articles; super-cycle routing (release matured held articles, hold off-theme ones for their focus day); select top stories + theme/focus-matched deep-dive articles
 5. Claude generates raw two-host script → Claude polishes script (flow, repetition). Length QA: scripts under `TARGET_SCRIPT_WORDS` (~22-min floor) get one expand retry; under `MIN_SCRIPT_WORDS` after retry the run aborts. Target runtime 22–25+ min.
 6. OpenAI TTS (or Azure Neural TTS) renders each speaker segment in parallel
 7. pydub assembles: cold open teaser (10–20 s, before the music) → intro → welcome → interval → news roundup → interval → deep dive debate → outro
 8. Writes citations JSON, RSS entry, pushes commit, deploys to `gh-pages`
 
 **Memory state** (JSON files in `podcasts/`):
-- `episode_memory.json` — 21-day sliding window for story continuity
+- `episode_memory.json` — 35-day sliding window for story continuity (spans a full 4-week super cycle; entries record the day's focus slug)
 - `host_personality_memory.json` — Evolving host traits
-- `debate_memory.json` — 90-day window to avoid repeating debate angles
+- `debate_memory.json` — 90-day window to avoid repeating debate angles; must-differ filter keys on (theme, focus)
 - `psa_rotation_state.json` — Round-robin PSA org rotation state
+- `article_holding.json` — Super-cycle holding pen + aired-early callback ledger
 
 ### Configuration System (`config_loader.py`)
 
@@ -81,6 +82,7 @@ All content is externalized to `config/` JSON files; loaders are LRU-cached (sin
 | `podcast.json` | Title, RSS metadata, TRACE accountability scores |
 | `hosts.json` | Riley & Casey — bios, voices, personalities, debate stances |
 | `themes.json` | 7 rotating daily themes (Mon–Sun), keywords, editorial lenses |
+| `super_cycles.json` | Multi-week focus rotations within each daily theme (slug, keywords, lens per focus) |
 | `prompts.json` | All Claude prompt templates (~100 KB, cached in one call) |
 | `interests.txt` | Article relevance scoring rubric (primary/secondary/avoid) |
 | `blocklist.json` | Excluded domains and keywords |
@@ -97,6 +99,15 @@ Seven rotating daily themes indexed by weekday (0=Mon):
 - 4 Fri: Wild Spaces & Outdoor Life
 - 5 Sat: Cariboo Local Affairs (longer episode, 15 articles)
 - 6 Sun: Science, Wonder & the Natural World
+
+### Super Cycles (`config/super_cycles.json`)
+
+Each daily theme (except Saturday, deliberately uncycled) rotates through a multi-week **focus** — e.g. Tuesday cycles agriculture → forestry → mining → tourism, one focus per week. Friday runs a 3-week cycle, all other cycled days 4-week. The cycle position is calendar-derived (`(date.toordinal() // 7) % cycle_length` per weekday via `get_focus_for_day`) — stateless, idempotent on re-runs, predictable ahead of time.
+
+- **Selection:** the deep dive prefers focus-matching articles; a thin focus week (<3 matches) degrades to plain theme selection (logged `focus_fallback`). The focus lens is appended to the theme lens in the script prompt.
+- **Subtlety:** the focus is deliberately unannounced on air — it shapes selection and emphasis only. Hosts name and acknowledge the weekday theme, never a rotating sub-theme; every focus-derived prompt block carries a do-not-announce instruction.
+- **Article holding (`route_articles_for_focus`):** off-theme, non-urgent articles matching an upcoming focus within 14 days are held in `podcasts/article_holding.json` and released (flagged `_held_from`, framed as "earlier this week") on their focus day. Urgent ones (`_boosted_score ≥ 85`) air same-day in the bonus bucket (never deep-dive) and are remembered in the aired-early ledger for an on-air callback when their focus day arrives. Holding never shrinks the pool below the roundup + deep-dive budget.
+- **Repeat-topic guard (`format_prior_coverage_for_prompt`):** local word-overlap check of deep-dive titles against recent episode topics and debate questions; on a match, hosts are instructed to acknowledge the earlier discussion and center what's new. Evolving-story context carries the same instruction.
 
 ### TTS Providers
 

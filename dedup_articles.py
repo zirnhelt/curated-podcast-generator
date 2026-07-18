@@ -142,14 +142,20 @@ def format_evolving_story_context(evolving_stories):
     if not evolving_stories:
         return ""
     
-    context_lines = ["\n**EVOLVING STORIES - Updates to Previous Coverage:**"]
-    
+    context_lines = [
+        "\n**EVOLVING STORIES - Updates to Previous Coverage:**",
+        "(On air, explicitly acknowledge the earlier coverage — e.g. 'we covered "
+        "this last week' — then center what has CHANGED since. Never present "
+        "these as brand-new stories or rehash the original discussion.)",
+    ]
+
     for story in evolving_stories:
         article = story['article']
         context_lines.append(
-            f"- \"{article.get('title', '')}\" is an update to coverage from {story['original_date']}"
+            f"- \"{article.get('title', '')}\" is an update to \"{story.get('original_title', '')}\" "
+            f"covered on {story['original_date']}"
         )
-    
+
     return "\n".join(context_lines)
 
 def cluster_and_rescore_corpus(articles, theme_name, client=None, model=None):
