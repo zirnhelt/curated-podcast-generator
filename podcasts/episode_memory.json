@@ -1,24 +1,4 @@
 {
-  "2026-06-26": {
-    "timestamp": 1782472633.733806,
-    "topics": [
-      "[CFJC Today Kamloops] CFJC Midday \u2013 \u2018The Pit\u2019 exhibition tra",
-      "[New Atlas] Skyscraper-style tiny house sleeps two in a comp",
-      "[STAT News] STAT+: AI wades into a vexing medical mystery: W",
-      "[Business Insider] Drones that Ukraine built to spy and atta",
-      "[Al Jazeera English] France seizes fifth Russian \u2018shadow fle",
-      "[Toms Guide] I\u2019ve taken over 6,000 photos on the Canon EOS R",
-      "[Kagi Small Web] Paying for climate damage under proposed UN",
-      "[Tom's Hardware] Dramatically redesigned GMKtec EVO-X3 shown"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-06-26"
-  },
   "2026-06-27": {
     "timestamp": 1782555772.843258,
     "topics": [
@@ -401,5 +381,23 @@
       "Indigenous tech"
     ],
     "date": "2026-07-17"
+  },
+  "2026-07-18": {
+    "timestamp": 1784368810.850686,
+    "topics": [
+      "[The Verge] Florida man arrested for allegedly stealing over",
+      "[Williams Lake Tribune] UPDATE: Fiftynine Creek wildfire gro",
+      "[CFJC Today Kamloops] \u2018We\u2019re not going to forget our veteran",
+      "[ScienceDaily] Sun-like star caught after eating one of its ",
+      "[ScienceAlert] International Group of Researchers Says We're",
+      "[Quesnel Cariboo Observer] Severe thunderstorm warning in ef",
+      "[Williams Lake Tribune] 2-phase art installation coming to C",
+      "[Williams Lake Tribune] 2 wildfires north of Anahim Lake cur"
+    ],
+    "themes": [
+      "rural development",
+      "environmental impact"
+    ],
+    "date": "2026-07-18"
   }
 }
