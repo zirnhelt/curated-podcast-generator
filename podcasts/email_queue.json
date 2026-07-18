@@ -2233,6 +2233,31 @@
       "theme_day": 3,
       "status": "used",
       "used_at": "2026-07-16"
+    },
+    {
+      "id": "8ba8e50e",
+      "type": "newsletter",
+      "message_id": "<20260718.140649.9c8d5ec3@mta31>",
+      "from_address": "f***@mail.beehiiv.com",
+      "subject": "Blame Canada",
+      "received_at": "2026-07-18T14:06:49+00:00",
+      "body_text": "---------- **NEW:**** **[**Discuss this newsletter issue**](https://community.todmaffin.com/)[** **](https://community.todmaffin.com/)**with fellow readers!** ----------View image: (https://media.beeh",
+      "extracted_urls": [
+        "https://community.todmaffin.com/",
+        "https://todmaffin.com/",
+        "https://bsky.app/profile/todmaffin.com",
+        "https://beacons.ai/todmaffin/socials",
+        "https://www.youtube.com/todmaffinvideo/?sub_confirmation=1",
+        "https://discord.todmaffin.com",
+        "https://www.bbc.com/news/articles/cwyq93j34lgo",
+        "https://en.wikipedia.org/wiki/Jet_stream",
+        "https://www.ctvnews.ca/climate-and-environment/article/michigan-republicans-say-canadas-apologies-wont-clear-michigan-skies-as-wildfire-smoke-drifts-across-border/",
+        "https://www.merriam-webster.com/slang/karen"
+      ],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
