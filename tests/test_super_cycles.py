@@ -73,7 +73,7 @@ MINING_FOCUS = {
     "slug": "mining-energy",
     "name": "Mining & Energy",
     "keywords": ["mining", "mine", "copper", "gold", "exploration", "drilling", "tailings"],
-    "lens": "This week's rotation focus is mining and energy.",
+    "lens": "Center the deep dive on mining and energy.",
 }
 
 
@@ -121,6 +121,13 @@ class TestFocusAwareDeepDive:
         with_focus = pg._build_theme_lens("Working Lands & Industry", focus=MINING_FOCUS)
         assert with_focus.startswith(base)
         assert MINING_FOCUS["lens"] in with_focus
+        # Subtlety guardrail: focus steers curation but is never announced on air
+        assert "never announce" in with_focus
+
+    def test_no_prompt_surface_names_the_rotation(self):
+        lens = pg._build_theme_lens("Working Lands & Industry", focus=MINING_FOCUS)
+        for phrase in ("rotation", "this week's focus", "focus week", "super cycle"):
+            assert phrase not in lens.lower()
 
 
 # ---------------------------------------------------------------------------
@@ -344,8 +351,9 @@ class TestFocusMemory:
                            "focus": "agriculture-ranching"},
         }
         context = pg.format_memory_for_prompt(episode_memory, {}, today_focus=MINING_FOCUS)
-        assert "LAST TIME ON THIS FOCUS" in context
+        assert "RELATED EARLIER EPISODE" in context
         assert "2026-06-23" in context
+        assert "rotation" not in context.split("RELATED EARLIER EPISODE")[0].lower()
 
     def test_no_focus_no_recall_line(self):
         episode_memory = {
@@ -353,7 +361,7 @@ class TestFocusMemory:
                            "focus": "mining-energy"},
         }
         context = pg.format_memory_for_prompt(episode_memory, {}, today_focus=None)
-        assert "LAST TIME ON THIS FOCUS" not in context
+        assert "RELATED EARLIER EPISODE" not in context
 
     def test_debate_must_differ_keys_on_theme_and_focus(self):
         debate_memory = {

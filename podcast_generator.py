@@ -2883,11 +2883,12 @@ def format_focus_callbacks_for_prompt(focus):
     if not lines:
         return "", []
     context = (
-        f"EARLIER QUICK HITS ON TODAY'S FOCUS ({focus['name']}) — these stories "
-        "aired as brief roundup/bonus items before their focus day arrived. Where "
-        "today's deep dive or roundup touches these topics, explicitly call back "
-        "to that earlier coverage ('we touched on this the other day') and go "
-        "deeper — do NOT reintroduce them as brand-new stories:\n"
+        "EARLIER BRIEF COVERAGE RELEVANT TODAY — these stories got quick mentions "
+        "recently and today's episode is the right place to go deeper. Where the "
+        "deep dive or roundup touches these topics, call back naturally ('we "
+        "touched on this the other day') and expand — do NOT reintroduce them as "
+        "brand-new stories, and do not explain why today is the day to return to "
+        "them:\n"
         + "\n".join(lines) + "\n\n"
     )
     return context, urls
@@ -3122,8 +3123,7 @@ def format_debate_memory_for_prompt(debate_memory, today_theme, today_focus=None
     if same_theme:
         # Sort by date, most recent first
         same_theme.sort(key=lambda x: x.get('date', ''), reverse=True)
-        focus_label = f", focus \"{today_focus['name']}\"" if focus_slug else ""
-        context += f"\nPrevious debates on \"{today_theme}\"{focus_label} (same territory — you MUST take a different angle):\n"
+        context += f"\nPrevious debates on \"{today_theme}\" (same territory — you MUST take a different angle):\n"
         for entry in same_theme[:4]:  # Show last 4 debates on same theme
             context += f"  [{entry.get('date', '?')}]\n"
             if entry.get('central_question'):
@@ -3816,7 +3816,13 @@ def _build_theme_lens(theme_name, focus=None):
             lens = info.get('lens', '')
             break
     if focus and focus.get('lens'):
-        lens = (lens + ' ' if lens else '') + focus['lens']
+        # The focus stays subtle on air: it steers curation and emphasis only.
+        lens = (
+            (lens + ' ' if lens else '') + focus['lens']
+            + " (This narrowed emphasis is internal curation — never announce it "
+            "on air or present today as a special themed week or sub-theme; the "
+            f"only theme the hosts name is \"{theme_name}\".)"
+        )
     return lens
 
 
@@ -4363,10 +4369,10 @@ def format_memory_for_prompt(episode_memory, host_memory, today_focus=None):
             last = same_focus[-1]
             topics = ', '.join(last.get('topics', [])[:6])
             context += (
-                f"LAST TIME ON THIS FOCUS ({today_focus['name']}, {last.get('date', '?')}): "
-                f"{topics}\n"
-                "Reference naturally for continuity (e.g. 'last month when we dug into...') "
-                "and pick up threads worth advancing.\n\n"
+                f"RELATED EARLIER EPISODE ({last.get('date', '?')}): {topics}\n"
+                "Weave in continuity naturally (e.g. 'a few weeks back when we dug "
+                "into...') and pick up threads worth advancing — without referencing "
+                "any schedule, rotation, or recurring sub-theme.\n\n"
             )
 
     hosts_config = CONFIG['hosts']
@@ -4487,9 +4493,9 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         theme_tag = ' [✓THEME]' if a.get('_keyword_matches', 0) > 0 else ''
         cluster_tag = f' [SAME STORY: {a["_topic_cluster"]}]' if a.get('_topic_cluster') else ''
         # Held-and-released article: aired today because it matches this week's
-        # rotation focus — the hosts must not frame it as breaking news.
-        held_tag = (f' [HELD SINCE {a["_held_from"]}: saved for today\'s focus — '
-                    f'frame as "earlier this week/month", not as breaking]'
+        # rotation focus — hosts must not frame it as breaking, nor explain the timing.
+        held_tag = (f' [FROM {a["_held_from"]}: frame as "earlier this week", not '
+                    f'breaking — do not explain why it airs today]'
                     if a.get('_held_from') else '')
         body = a.get('_body', '')
         body_line = f"\n  Content: {body[:500]}" if body else ""
