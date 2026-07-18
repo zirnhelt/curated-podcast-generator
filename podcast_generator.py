@@ -3779,7 +3779,7 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
         f"Theme Song: {credits['theme_song']}<br>"
         f"Content Curation &amp; Script: {credits['content_curation']}<br>"
         f"Script Review Model: {review_model_label}<br>"
-        f"TTS Voices: {tts_label}<br>"
+        f"Today's Voices: {tts_label}<br>"
         f"{brave_credit}"
         f"{weather_credit}"
         f"{cohere_credit}"
@@ -5344,9 +5344,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
 
             # Spoken credits (brief, before outro)
             chapters.append({"startTime": round(len(combined) / 1000, 1), "title": "Credits"})
-            # Spoken form of the active provider's credit label, e.g.
-            # "Azure Neural TTS (Ava · Andrew)" → "Azure Neural TTS, Ava and Andrew"
-            tts_credit = get_tts_credit().replace(" (", ", ").replace(")", "").replace(" · ", " and ")
+            tts_credit = get_tts_credit()
             brave_spoken = (
                 " Today's episode included additional web research via Brave Search."
                 if brave_used else ""
@@ -5355,7 +5353,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
             _pc_cfg = CONFIG['podcast']
             credits_text = (
                 f"{_pc_cfg.get('title', 'This show')} is produced by {_credits_cfg.get('producer', _pc_cfg.get('author', ''))} — "
-                f"scripts by Claude, audio by {tts_credit}, theme by Suno."
+                f"scripts by Claude, today's voices by {tts_credit}, theme by Suno."
                 f"{brave_spoken}"
                 f" Automated with GitHub Actions, hosted on Cloudflare Pages."
                 f" Find us at {_pc_cfg.get('url_spoken', 'cariboo signals dot c-a')}."

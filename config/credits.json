@@ -1,5 +1,5 @@
 {
-  "text": "\n--- Credits ---\nTheme Song: Cariboo Signals by Suno (suno.com)\nContent Curation & Script: Claude (Anthropic)\nTTS Voices: {tts_credit}\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt\nFunding: Self-funded by Erich Zirnhelt, Horsefly BC — non-commercial\n\n© 2026 Erich Zirnhelt. Licensed under CC BY-NC 4.0.\nhttps://creativecommons.org/licenses/by-nc/4.0/",
+  "text": "\n--- Credits ---\nTheme Song: Cariboo Signals by Suno (suno.com)\nContent Curation & Script: Claude (Anthropic)\nToday's Voices: {tts_credit}\nCover Art: ChatGPT (OpenAI)\nPodcast Coordination: Erich Zirnhelt\nFunding: Self-funded by Erich Zirnhelt, Horsefly BC — non-commercial\n\n© 2026 Erich Zirnhelt. Licensed under CC BY-NC 4.0.\nhttps://creativecommons.org/licenses/by-nc/4.0/",
   "structured": {
     "theme_song": "Cariboo Signals by Suno",
     "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
@@ -7,9 +7,9 @@
     "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
     "content_curation": "Claude (Anthropic)",
     "script_generation": "Claude (Anthropic)",
-    "text_to_speech_azure": "Azure Neural TTS (Ava · Andrew)",
-    "text_to_speech_openai": "OpenAI TTS API (Nova · Echo)",
-    "text_to_speech_gemini": "Gemini TTS (Sulafat · Orus)",
+    "text_to_speech_azure": "Azure Neural TTS",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
     "cover_art": "ChatGPT (OpenAI)",
     "weather_data": "Open-Meteo",
     "content_enrichment": "Cohere",
@@ -36,7 +36,7 @@
       },
       {
         "label": "TTS Voices",
-        "value": "OpenAI, Azure, or Gemini TTS — each episode's notes credit the voices used"
+        "value": "OpenAI, Azure, or Gemini TTS — each episode's notes credit the provider used"
       },
       {
         "label": "Cover Art",
@@ -114,7 +114,7 @@
       },
       {
         "label": "TTS Voices",
-        "value": "OpenAI, Azure, or Gemini TTS — each episode's notes credit the voices used"
+        "value": "OpenAI, Azure, or Gemini TTS — each episode's notes credit the provider used"
       },
       {
         "label": "Sources",

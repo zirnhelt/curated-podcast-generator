@@ -169,7 +169,7 @@ class TestProviderResolution:
     def test_gemini_flag_wins_over_azure(self, monkeypatch):
         pg = self._fresh(monkeypatch, gemini=True, azure=True)
         assert pg.get_active_tts_provider() == "gemini"
-        assert pg.get_tts_credit() == "Gemini TTS (Sulafat · Orus)"
+        assert pg.get_tts_credit() == "Gemini TTS"
 
     def test_rendered_provider_beats_flags(self, monkeypatch):
         # Gemini requested, but the run fell back to OpenAI — credit OpenAI
@@ -180,7 +180,7 @@ class TestProviderResolution:
     def test_plain_text_credits_reflect_provider(self, monkeypatch):
         pg = self._fresh(monkeypatch, gemini=True)
         text = render_credits_text(pg.get_tts_credit())
-        assert "TTS Voices: Gemini TTS (Sulafat · Orus)" in text
+        assert "Today's Voices: Gemini TTS" in text
         assert "{tts_credit}" not in text
 
 
