@@ -1,30 +1,4 @@
 {
-  "2026-04-18": {
-    "timestamp": 1776509301.166876,
-    "date": "2026-04-18",
-    "theme": "Cariboo Voices & Local News",
-    "central_question": "How do small rural communities like those in the Cariboo actually make public decisions, and are the formal mechanisms available to them functioning effectively?",
-    "riley_position": "The technological and procedural tools for better local democracy exist and are workable in small communities; the real constraint is not technology but the political will and sustained commitment to implement and use these tools effectively.",
-    "riley_key_evidence": [
-      "AI-assisted meeting transcription and civic tech platforms like OpenMuni have been successfully piloted in smaller Canadian municipalities with good technical results",
-      "Participatory budgeting models have shown positive engagement results in smaller municipalities, particularly reaching people who don't typically attend council meetings",
-      "Community organizations can implement participatory processes at smaller scales (like the Williams Lake Community Foundation) without waiting for full municipal adoption"
-    ],
-    "casey_position": "Small municipalities lack the institutional capacity and sustained staff resources to effectively implement transparency tools or participatory processes, making capacity the true bottleneck rather than a solvable technology problem.",
-    "casey_key_evidence": [
-      "Smaller councils typically don't formalize decision reasoning in written records the way larger municipalities do, creating a transparency gap rooted in institutional capacity",
-      "Participatory budgeting pilots often stall when initial champions move on, requiring dedicated staffing and political commitment that small communities struggle to sustain",
-      "Rural communities have less civic engagement infrastructure (journalists, advocacy groups, engaged residents with spare time) to actually use and act on transparent records"
-    ],
-    "resolution": "Riley and Casey converge on the diagnosis that capacity is the real constraint, but disagree on the solution's locus: Riley argues technology can reduce labor burden and communities should try smaller experiments, while Casey emphasizes that sustained provincial infrastructure investment\u2014not one-time grants\u2014is necessary for genuine change.",
-    "topics_covered": [
-      "Williams Lake cannabis licensing decision as a case study in local democratic procedure versus substance",
-      "Canada Post service changes as an example of decisions made remotely without meaningful local input",
-      "Civic technology tools (meeting transcription, decision dashboards, participatory budgeting) and their applicability to small municipalities",
-      "The gap between consultation and genuine decision-making power in rural governance",
-      "Indigenous governance models (T\u015dilhqot'in Nation) as contrasts to current non-Indigenous local democratic processes"
-    ]
-  },
   "2026-04-19": {
     "timestamp": 1776595525.273187,
     "date": "2026-04-19",
@@ -2339,6 +2313,37 @@
       "A regional tourism board or trail society could commit to a working rule: contact the Nation whose territory a site sits on before actively promoting a new or lesser-known location \u2014 a single phone call and email, the same step already required for environmental assessments.",
       "If you're part of a group that's tried something like this (a trail society, tourism board, or recreation club that actually checked in with a Nation before promoting a site), submit feedback at cariboosignals.ca describing how it went.",
       "If you've got a favourite wild place you're proud to share or quietly protective of, send feedback to cariboosignals.ca about your experience with that choice."
+    ]
+  },
+  "2026-07-18": {
+    "timestamp": 1784368813.221909,
+    "date": "2026-07-18",
+    "theme": "Cariboo Local Affairs",
+    "central_question": "Can ordinary residents in Cariboo communities actually trace how local decisions get made and find those decision records after the fact?",
+    "riley_position": "The real governance question isn't whether decisions are made, but whether they leave a traceable record that non-insiders can access; formal processes don't automatically mean public legibility, and both incorporated and unincorporated areas struggle with publishing decisions in accessible ways.",
+    "riley_key_evidence": [
+      "Williams Lake has a mayor and six councillors (city of ~10,700 people) with ward-level accountability, but mural approval processes may be buried in PDFs or arts society minutes that residents don't know exist",
+      "Horsefly is unincorporated within the Cariboo Regional District electoral area system, with one director representing a huge geographic area and multiple communities",
+      "BC's regional district system already includes community advisory bodies in some electoral areas \u2014 a tool that could exist for Horsefly but isn't confirmed as active"
+    ],
+    "casey_position": "Incorporation matters structurally because it creates recourse: incorporated residents can show up to council meetings and put objections on public record tied to election cycles, while unincorporated residents have no equivalent lever against a director representing geographically dispersed constituencies.",
+    "casey_key_evidence": [
+      "A Williams Lake resident angry about the mural knows exactly whose name goes on the ballot next election; a Horsefly resident with concerns about the festival stage has no comparable political recourse",
+      "Arts on the Fly runs on solar power at the Horsefly River (a salmon-spawning site) entirely by volunteers with no city hall involvement or formal approval checkpoints",
+      "The regional district director for Horsefly represents dozens of scattered communities competing for limited attention"
+    ],
+    "resolution": "Both hosts agreed that incorporation versus non-incorporation isn't the real dividing line \u2014 the actual test is whether any local institution publishes decisions in a form ordinary residents would actually find and understand. They landed on this being a traceability problem, not an authority problem, and agreed that two concrete fact-finding steps could answer the real questions without either of them guessing.",
+    "topics_covered": [
+      "Formal approval processes vs. volunteer-based decision-making in local governance",
+      "Electoral accountability structures: ward-based (Williams Lake) vs. regional district areas (Horsefly)",
+      "Public access to and legibility of municipal and regional district records",
+      "Provincial regulations (Riparian Areas Protection Regulation, Water Sustainability Act) and their enforcement by regional districts",
+      "Community advisory bodies as a governance tool in BC's unincorporated electoral areas"
+    ],
+    "calls_to_action": [
+      "Someone should file a records request or email the Cariboo Regional District asking two plain questions: (1) Is there a registered advisory body for Horsefly specifically? (2) Where does the Central Cariboo Arts and Culture Society publish its internal approval process for public installations? This costs nothing and actually answers the traceability question.",
+      "A Horsefly resident could raise these questions directly with the regional district director at a public meeting rather than assuming the answers.",
+      "If listeners have corrections about how the regional district's electoral area advisory structure actually works, or know of a local decision that never made it into any public record, they should send it to feedback@cariboosignals.ca."
     ]
   }
 }

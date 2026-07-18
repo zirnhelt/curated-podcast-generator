@@ -115,9 +115,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-07-16",
-        "clue": "evidence-bar:+ \u2014 Pushed hard for audit data on admissibility outcomes",
-        "occurrences": 1
+        "date": "2026-07-18",
+        "clue": "evidence-bar:+ \u2014 Shifted from process critique to traceability as measurable test",
+        "occurrences": 2
       },
       {
         "date": "2026-07-17",
@@ -127,6 +127,11 @@
       {
         "date": "2026-07-17",
         "clue": "pilot-skepticism:~ \u2014 Acknowledged voluntary approach fragility, pivoted to 'start costs nothing'",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-07-18",
+        "clue": "structural-lens:~ \u2014 Conceded formal processes aren't inherently more legible than informal ones",
         "occurrences": 1
       }
     ],
@@ -369,9 +374,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-07-13",
-        "clue": "evidence-bar:+  \u2014 Hardened requirement: named action (documentation job) before declaring solved",
-        "occurrences": 1
+        "date": "2026-07-18",
+        "clue": "evidence-bar:+ \u2014 Pushed back on assumption-based analysis, demanded concrete records request instead",
+        "occurrences": 2
       },
       {
         "date": "2026-07-16",
@@ -381,6 +386,11 @@
       {
         "date": "2026-07-14",
         "clue": "pilot-skepticism:~ \u2014 Added nuance: registry exists but unused, not nonexistent",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-07-18",
+        "clue": "structural-lens:x \u2014 Accepted Riley's point that incorporation alone doesn't determine accountability",
         "occurrences": 1
       }
     ],
