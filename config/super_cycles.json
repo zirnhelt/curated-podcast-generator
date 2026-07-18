@@ -1,0 +1,165 @@
+{
+  "_comment": "Multi-week rotating focus within each daily theme. Cycle position is calendar-derived: (date.toordinal() // 7) % cycle_length per weekday — stateless and predictable. Saturday (5) is intentionally absent: Cariboo Local Affairs stays broad and acts as the release valve for urgent local stories. Focus keywords narrow the base theme; base theme keywords remain the fallback when a focus week is thin.",
+  "0": {
+    "cycle": [
+      {
+        "slug": "film-screen",
+        "name": "Film & Screen",
+        "keywords": ["film", "documentary", "filmmaker", "cinema", "screening", "movie", "streaming series", "TV series", "video production", "animation", "film festival", "screenwriter"],
+        "lens": "This week's rotation focus is film and screen media — who is making moving pictures in and about rural places, and how streaming economics and production tools change that."
+      },
+      {
+        "slug": "music-performance",
+        "name": "Music & Live Performance",
+        "keywords": ["music", "musician", "concert", "band", "album", "live performance", "theatre", "stage", "songwriter", "recording", "venue", "open mic", "choir"],
+        "lens": "This week's rotation focus is music and live performance — the economics and tech of making, recording, and staging music and theatre far from the big-city circuit."
+      },
+      {
+        "slug": "visual-arts-heritage",
+        "name": "Visual Arts & Heritage",
+        "keywords": ["gallery", "museum", "exhibit", "painting", "sculpture", "photography", "artisan", "craft", "heritage", "archive", "public art", "mural", "carving"],
+        "lens": "This week's rotation focus is visual arts and heritage — galleries, museums, makers, and how communities preserve and show their visual culture."
+      },
+      {
+        "slug": "words-journalism",
+        "name": "Writing, Journalism & Podcasting",
+        "keywords": ["journalism", "newspaper", "newsroom", "podcast", "author", "book", "writing", "publishing", "local news", "reporter", "newsletter", "library", "literacy"],
+        "lens": "This week's rotation focus is the written and spoken word — local journalism, books, and podcasting, and who sustains storytelling infrastructure in small communities."
+      }
+    ]
+  },
+  "1": {
+    "cycle": [
+      {
+        "slug": "agriculture-ranching",
+        "name": "Agriculture & Ranching",
+        "keywords": ["ranching", "agriculture", "cattle", "farming", "crop", "harvest", "livestock", "hay", "grazing", "beef", "dairy", "greenhouse", "agtech", "food security", "abattoir", "rangeland"],
+        "lens": "This week's rotation focus is agriculture and ranching — who grows and raises food on Cariboo working lands, and how technology, markets, and climate reshape that work."
+      },
+      {
+        "slug": "forestry",
+        "name": "Forestry & Timber",
+        "keywords": ["forestry", "lumber", "timber", "sawmill", "logging", "silviculture", "pulp", "mill", "wood products", "reforestation", "fibre", "forest tenure", "value-added wood"],
+        "lens": "This week's rotation focus is forestry — timber supply, mills, tenure, and how the forest economy adapts as the industry restructures."
+      },
+      {
+        "slug": "mining-energy",
+        "name": "Mining & Energy",
+        "keywords": ["mining", "mine", "mineral", "copper", "gold", "exploration", "drilling", "tailings", "smelter", "critical minerals", "energy project", "hydroelectric", "natural gas", "transmission line"],
+        "lens": "This week's rotation focus is mining and energy — extraction, permitting, reclamation, and who captures the value from what comes out of the ground."
+      },
+      {
+        "slug": "tourism-outdoor-economy",
+        "name": "Tourism & the Outdoor Economy",
+        "keywords": ["tourism", "tourist", "guide outfitter", "lodge", "resort", "visitor economy", "guest ranch", "eco-tourism", "backcountry lodge", "hospitality", "destination", "campground", "trail network", "visitor centre"],
+        "lens": "This week's rotation focus is tourism and the outdoor economy — the businesses that turn landscape into livelihood, from guest ranches to guiding, and what sustains them."
+      }
+    ]
+  },
+  "2": {
+    "cycle": [
+      {
+        "slug": "maker-repair",
+        "name": "Maker & Repair",
+        "keywords": ["maker", "DIY", "3D printing", "3D printer", "Arduino", "raspberry pi", "right to repair", "repair guide", "iFixit", "soldering", "CNC", "workshop", "hackerspace", "fix it"],
+        "lens": "This week's rotation focus is making and repairing — building, modifying, and fixing your own gear instead of replacing it."
+      },
+      {
+        "slug": "homestead-offgrid",
+        "name": "Homestead & Off-Grid Tech",
+        "keywords": ["solar panel", "off-grid", "battery pack", "power station", "generator", "homelab", "NAS", "smart home", "starlink", "satellite internet", "well pump", "wood stove", "heat pump", "backup power"],
+        "lens": "This week's rotation focus is homestead and off-grid technology — power, connectivity, and self-reliance systems for rural properties where the grid is thin."
+      },
+      {
+        "slug": "digital-life-security",
+        "name": "Digital Life & Security",
+        "keywords": ["cybercrime", "scam", "phishing", "fraud", "ransomware", "privacy", "password", "data breach", "identity theft", "online safety", "cybersecurity", "malware", "two-factor", "digital literacy"],
+        "lens": "This week's rotation focus is digital life and security — scams, breaches, privacy, and the practical habits that keep rural households and small businesses safe online."
+      },
+      {
+        "slug": "vehicles-field-gear",
+        "name": "Vehicles & Field Gear",
+        "keywords": ["e-bike", "ATV", "snowmobile", "truck", "EV", "electric vehicle", "GPS unit", "action camera", "satellite messenger", "radio", "winch", "trailer", "chainsaw", "field gear"],
+        "lens": "This week's rotation focus is vehicles and field gear — the machines and equipment that get work done and get people into the backcountry, and what it's like to own and maintain them."
+      }
+    ]
+  },
+  "3": {
+    "cycle": [
+      {
+        "slug": "governance-title",
+        "name": "Governance, Title & Treaty",
+        "keywords": ["land title", "treaty", "sovereignty", "self-government", "band council", "UNDRIP", "land rights", "jurisdiction", "consultation", "land claim", "rights and title", "governance agreement", "data sovereignty"],
+        "lens": "This week's rotation focus is governance, title, and treaty — who holds decision-making power over lands and data, and how title and self-government are being asserted in practice."
+      },
+      {
+        "slug": "language-culture",
+        "name": "Language & Culture",
+        "keywords": ["language revitalization", "indigenous language", "language preservation", "elder", "traditional knowledge", "cultural camp", "storytelling", "drumming", "regalia", "language documentation", "immersion", "fluent speaker"],
+        "lens": "This week's rotation focus is language and cultural revitalization — how communities are bringing languages and cultural practice back to strength, and the tools helping or hindering."
+      },
+      {
+        "slug": "economic-development",
+        "name": "Economic Development",
+        "keywords": ["economic development", "indigenous business", "first nations business", "joint venture", "own-source revenue", "development corporation", "equity stake", "partnership agreement", "procurement", "indigenous tourism", "impact benefit"],
+        "lens": "This week's rotation focus is Indigenous-led economic development — businesses, partnerships, and revenue models where Nations set the terms."
+      },
+      {
+        "slug": "guardians-stewardship",
+        "name": "Guardians & Land Stewardship",
+        "keywords": ["guardian", "stewardship", "land guardians", "monitoring", "restoration", "traditional territory", "conservation area", "IPCA", "protected area", "fire keeping", "cultural burning", "watershed protection"],
+        "lens": "This week's rotation focus is guardians and land stewardship — Indigenous-led monitoring, restoration, and care of territory, and the science and technology woven into it."
+      }
+    ]
+  },
+  "4": {
+    "cycle": [
+      {
+        "slug": "wildfire-resilience",
+        "name": "Wildfire & Climate Resilience",
+        "keywords": ["wildfire", "forest fire", "fire season", "evacuation", "fuel management", "prescribed burn", "firefighter", "fire smart", "drought", "flood", "climate adaptation", "emergency preparedness"],
+        "lens": "This week's rotation focus is wildfire and climate resilience — how communities and landscapes prepare for, live through, and recover from fire and a changing climate."
+      },
+      {
+        "slug": "wildlife-conservation",
+        "name": "Wildlife & Conservation",
+        "keywords": ["wildlife", "salmon", "grizzly", "caribou", "moose", "conservation", "habitat", "species at risk", "spawning", "predator", "wildlife corridor", "population survey", "endangered"],
+        "lens": "This week's rotation focus is wildlife and conservation — the animals that define these landscapes, the state of their populations, and what protecting them asks of people."
+      },
+      {
+        "slug": "recreation-access",
+        "name": "Recreation & Backcountry Access",
+        "keywords": ["hiking", "fishing", "hunting", "backcountry", "trail", "camping", "paddling", "skiing", "recreation site", "access road", "outdoor recreation", "park", "campsite"],
+        "lens": "This week's rotation focus is recreation and backcountry access — how people get out into wild places, and the trails, roads, and rules that shape that access."
+      }
+    ]
+  },
+  "6": {
+    "cycle": [
+      {
+        "slug": "sky-cosmos",
+        "name": "Sky & Cosmos",
+        "keywords": ["astronomy", "aurora", "northern lights", "meteor", "eclipse", "comet", "stargazing", "telescope", "space", "satellite", "planet", "night sky", "solar storm"],
+        "lens": "This week's rotation focus is the sky and cosmos — astronomy, aurora, and space science as seen from dark rural skies."
+      },
+      {
+        "slug": "living-world",
+        "name": "The Living World",
+        "keywords": ["biology", "species", "biodiversity", "ecology", "migration", "hibernation", "evolution", "bat", "insect", "fungi", "wetland", "grassland", "natural history"],
+        "lens": "This week's rotation focus is the living world — the biology and ecology of species and ecosystems, and what field research reveals about how they work."
+      },
+      {
+        "slug": "earth-systems",
+        "name": "Earth Systems & Climate Science",
+        "keywords": ["geology", "glacier", "permafrost", "watershed", "climate science", "fossil", "earthquake", "volcano", "hydrology", "soil", "carbon", "atmosphere", "wildfire science"],
+        "lens": "This week's rotation focus is earth systems — geology, water, ice, and climate science, and how the physical world under our feet is changing."
+      },
+      {
+        "slug": "discovery-health",
+        "name": "Discovery, Health & How Science Works",
+        "keywords": ["research", "study", "discovery", "medicine", "health research", "physics", "citizen science", "field research", "laboratory", "peer review", "scientific method", "breakthrough"],
+        "lens": "This week's rotation focus is discovery and the practice of science itself — health research, physics, citizen science, and how we come to know what we know."
+      }
+    ]
+  }
+}

@@ -38,10 +38,13 @@ from config_loader import (
     load_blocklist,
     load_disciplines_config,
     load_bespoke_hosts,
+    load_super_cycles_config,
     get_voice_for_host,
     get_voice_instructions_for_host,
     get_speed_for_host,
     get_theme_for_day,
+    get_focus_for_day,
+    get_upcoming_focus_slots,
     message_text,
     strip_stage_directions,
     render_credits_text,
@@ -55,7 +58,7 @@ from azure_tts import (
 from gemini_tts import generate_gemini_tts_for_section, get_gemini_api_key
 
 # Import deduplication module
-from dedup_articles import deduplicate_articles, format_evolving_story_context, cluster_and_rescore_corpus
+from dedup_articles import deduplicate_articles, format_evolving_story_context, cluster_and_rescore_corpus, load_recent_citations
 import cohere_enrichment
 
 # Import PSA selector
@@ -422,11 +425,21 @@ DEBATE_MEMORY_FILE = PODCASTS_DIR / "debate_memory.json"
 CTA_MEMORY_FILE = PODCASTS_DIR / "cta_memory.json"
 SEEDS_FILE = PODCASTS_DIR / "content_seeds.json"
 EMAIL_QUEUE_FILE = PODCASTS_DIR / "email_queue.json"
+# Super-cycle article holding: off-focus, non-urgent articles wait here for the
+# upcoming rotation day they actually belong to (e.g. a mining story fetched on
+# Saturday waits for the next mining-focus Tuesday).
+HOLDING_FILE = PODCASTS_DIR / "article_holding.json"
+HOLD_MAX_DAYS = 14              # max days an article may wait for its focus day
+AIRED_EARLY_RETENTION_DAYS = 30 # how long the aired-early callback ledger keeps entries
+HOLD_MIN_FOCUS_HITS = 2         # focus-keyword hits required before holding
+URGENT_SCORE_THRESHOLD = 85     # _boosted_score at/above this always airs same-day
 # Newsletter bodies below this length are treated as URL-only → Brave enrichment
 EMAIL_BODY_MIN_CHARS = 300
 # News articles with less body text than this are treated as sparse; Brave is tried before skipping
 NEWS_BODY_MIN_CHARS = 150
-MEMORY_RETENTION_DAYS = 21
+# 35 days (was 21) so episode memory spans a full 4-week super cycle and the
+# previous same-focus episode is always recallable for continuity.
+MEMORY_RETENTION_DAYS = 35
 DEBATE_MEMORY_RETENTION_DAYS = 90
 CTA_MEMORY_RETENTION_DAYS = 365
 
@@ -455,6 +468,7 @@ CONFIG = {
     'interests': load_interests(),
     'prompts': load_prompts_config(),
     'disciplines': load_disciplines_config(),
+    'super_cycles': load_super_cycles_config(),
 }
 
 # Batch API configuration
@@ -2543,14 +2557,16 @@ def get_host_personality_memory():
     """Load host personality evolution memory."""
     return load_memory(HOST_MEMORY_FILE)
 
-def update_episode_memory(date_key, topics, themes):
-    """Update episode memory with new episode data."""
+def update_episode_memory(date_key, topics, themes, focus=None):
+    """Update episode memory with new episode data (focus = super-cycle focus dict)."""
     memory = get_episode_memory()
     memory[date_key] = {
         "timestamp": get_pacific_now().timestamp(),
         "topics": topics,
         "themes": themes,
-        "date": date_key
+        "date": date_key,
+        "focus": focus.get("slug") if focus else None,
+        "focus_name": focus.get("name") if focus else None,
     }
     save_memory(EPISODE_MEMORY_FILE, memory)
 
@@ -2656,13 +2672,14 @@ def get_debate_memory():
 
     return cleaned
 
-def update_debate_memory(date_key, theme, debate_summary):
+def update_debate_memory(date_key, theme, debate_summary, focus=None):
     """Update debate memory with summary of today's deep dive debate."""
     memory = get_debate_memory()
     memory[date_key] = {
         "timestamp": get_pacific_now().timestamp(),
         "date": date_key,
         "theme": theme,
+        "focus": focus.get("slug") if focus else None,
         **debate_summary
     }
     save_memory(DEBATE_MEMORY_FILE, memory)
@@ -2700,6 +2717,190 @@ def update_cta_memory(date_key, theme, calls_to_action):
         "calls_to_action": calls_to_action,
     }
     save_memory(CTA_MEMORY_FILE, memory)
+
+
+# ---------------------------------------------------------------------------
+# Super-cycle article holding & aired-early callback ledger
+# ---------------------------------------------------------------------------
+
+def _load_article_holding(today_date: date) -> dict:
+    """Load HOLDING_FILE and prune stale entries.
+
+    Drops: held entries past HOLD_MAX_DAYS or whose target focus day has
+    passed; released entries from previous days; aired-early ledger entries
+    past AIRED_EARLY_RETENTION_DAYS or past their callback day; and held
+    entries whose URL already aired per recent citations.
+    """
+    holding = load_memory(HOLDING_FILE)
+    if not holding:
+        return {}
+    covered = {c['url'] for c in load_recent_citations(days=HOLD_MAX_DAYS)}
+    today_iso = today_date.isoformat()
+    pruned = {}
+    for url, entry in holding.items():
+        if not isinstance(entry, dict):
+            continue
+        status = entry.get('status')
+        target_date = entry.get('target_date', '')
+        try:
+            held_age = (today_date - date.fromisoformat(entry.get('held_date', today_iso))).days
+        except ValueError:
+            held_age = 999
+        if status == 'held':
+            if url in covered or held_age > HOLD_MAX_DAYS or (target_date and target_date < today_iso):
+                continue
+        elif status == 'released':
+            # Kept only for same-day re-runs (idempotent release); drop after
+            if entry.get('release_date', '') < today_iso:
+                continue
+        elif status == 'aired_early':
+            if held_age > AIRED_EARLY_RETENTION_DAYS or (target_date and target_date < today_iso):
+                continue
+        else:
+            continue
+        pruned[url] = entry
+    if len(pruned) != len(holding):
+        save_memory(HOLDING_FILE, pruned)
+        print(f"🧹 Article holding: pruned {len(holding) - len(pruned)} stale entr(ies)")
+    return pruned
+
+
+def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_theme, focus):
+    """Super-cycle content routing: release matured holds and hold off-theme articles.
+
+    Off-theme, non-urgent articles that strongly match a rotation focus
+    occurring within HOLD_MAX_DAYS are removed from today's pool and persisted
+    until that day. Urgent ones (boosted score >= URGENT_SCORE_THRESHOLD) stay
+    for timely coverage but move to the bonus bucket (never deep-dive) and are
+    remembered in the aired-early ledger for a callback on their focus day.
+    Previously held articles whose focus day is today are injected back into
+    the pool flagged _held_from.
+
+    Returns (theme_articles, bonus_articles).
+    """
+    today_iso = today_date.isoformat()
+    holding = _load_article_holding(today_date)
+
+    # --- Release matured holds into today's pool ---------------------------
+    released = []
+    existing_urls = {a.get('url', '') for a in theme_articles + bonus_articles}
+    for url, entry in holding.items():
+        matured = entry.get('status') == 'held' and entry.get('target_date') == today_iso
+        rerun = entry.get('status') == 'released' and entry.get('release_date') == today_iso
+        if not (matured or rerun):
+            continue
+        entry['status'] = 'released'
+        entry['release_date'] = today_iso
+        if url in existing_urls:
+            continue  # article reappeared in today's feed — prefer the fresh copy
+        article = dict(entry.get('article', {}))
+        article['_held_from'] = entry.get('held_date', '')
+        released.append(article)
+        print(f"  📤 Released from holding (held {article['_held_from']}): {article.get('title', '')[:70]}")
+    theme_articles = released + theme_articles
+
+    # --- Hold / divert off-theme articles matching an upcoming focus -------
+    # Slots looked up over a full 4-week cycle: holds are limited to
+    # HOLD_MAX_DAYS (freshness), but the aired-early ledger may target any
+    # slot in the cycle since a callback references past coverage.
+    slot_keywords = [
+        (slot_date, f, _build_focus_keywords(f))
+        for slot_date, _wd, f in get_upcoming_focus_slots(today_date, horizon_days=28)
+    ]
+    today_theme_keywords = _build_theme_keywords(today_theme)
+    today_focus_keywords = _build_focus_keywords(focus)
+    # Never shrink the pool below what the roundup + deep dive need
+    max_holds = max(0, len(theme_articles) + len(bonus_articles) - (NEWS_ROUNDUP_COUNT + 3))
+
+    kept_theme = []
+    bonus_articles = list(bonus_articles)
+    held_count = 0
+    for a in theme_articles:
+        url = a.get('url', '')
+        title = re.sub(r'^\W*\[[^\]]*\]\s*', '', a.get('title', ''))
+        text = f"{title} {a.get('summary', '')}".lower()
+        weak_today = (a.get('_keyword_matches', 0) == 0
+                      and _keyword_hit_count(text, today_theme_keywords) <= 1)
+        on_todays_focus = bool(today_focus_keywords) and _keyword_hit_count(text, today_focus_keywords) > 0
+        if not url or not weak_today or on_todays_focus or a.get('_held_from') or a.get('_seed_id'):
+            kept_theme.append(a)
+            continue
+        matches = [(sd, f) for sd, f, fkw in slot_keywords
+                   if _keyword_hit_count(text, fkw) >= HOLD_MIN_FOCUS_HITS]
+        if not matches:
+            kept_theme.append(a)
+            continue
+        target_date, target_focus = matches[0]
+        boosted = a.get('_boosted_score', a.get('ai_score', 0))
+        entry = {
+            'article': a,
+            'held_date': today_iso,
+            'target_date': target_date.isoformat(),
+            'target_weekday': target_date.weekday(),
+            'target_focus_slug': target_focus['slug'],
+            'target_focus_name': target_focus['name'],
+        }
+        if boosted >= URGENT_SCORE_THRESHOLD:
+            # Timely coverage now (bonus bucket, never deep-dive), callback later
+            a['_no_deep_dive'] = True
+            bonus_articles.append(a)
+            holding[url] = {**entry, 'status': 'aired_early'}
+            print(f"  📌 Urgent off-theme, airing in bonus + callback on "
+                  f"{target_date.isoformat()} ({target_focus['name']}): {a.get('title', '')[:60]}")
+        elif (target_date - today_date).days <= HOLD_MAX_DAYS and held_count < max_holds:
+            holding[url] = {**entry, 'status': 'held'}
+            held_count += 1
+            print(f"  📥 Held for {target_date.isoformat()} ({target_focus['name']}): "
+                  f"{a.get('title', '')[:60]}")
+        else:
+            # Next matching focus day too far out (or pool too thin) — air today
+            kept_theme.append(a)
+
+    save_memory(HOLDING_FILE, holding)
+    if released or held_count:
+        print(f"🔀 Focus routing: released {len(released)}, held {held_count} article(s)")
+    return kept_theme, bonus_articles
+
+
+def format_focus_callbacks_for_prompt(focus):
+    """Prompt block for aired-early stories whose proper focus day is today.
+
+    Returns (context, urls) — urls are consumed via consume_focus_callbacks()
+    after the script is safely written.
+    """
+    if not focus:
+        return "", []
+    holding = load_memory(HOLDING_FILE)
+    lines, urls = [], []
+    for url, entry in holding.items():
+        if not isinstance(entry, dict) or entry.get('status') != 'aired_early':
+            continue
+        if entry.get('target_focus_slug') != focus.get('slug'):
+            continue
+        title = entry.get('article', {}).get('title', '')
+        lines.append(f"- \"{title}\" (covered briefly on {entry.get('held_date', '?')})")
+        urls.append(url)
+    if not lines:
+        return "", []
+    context = (
+        f"EARLIER QUICK HITS ON TODAY'S FOCUS ({focus['name']}) — these stories "
+        "aired as brief roundup/bonus items before their focus day arrived. Where "
+        "today's deep dive or roundup touches these topics, explicitly call back "
+        "to that earlier coverage ('we touched on this the other day') and go "
+        "deeper — do NOT reintroduce them as brand-new stories:\n"
+        + "\n".join(lines) + "\n\n"
+    )
+    return context, urls
+
+
+def consume_focus_callbacks(urls):
+    """Remove aired-early ledger entries whose callback just aired."""
+    if not urls:
+        return
+    holding = load_memory(HOLDING_FILE)
+    for url in urls:
+        holding.pop(url, None)
+    save_memory(HOLDING_FILE, holding)
 
 
 def _extract_deep_dive_section(script):
@@ -2886,11 +3087,14 @@ def _stale_framing_alerts(debate_memory: dict) -> str:
     return alerts
 
 
-def format_debate_memory_for_prompt(debate_memory, today_theme):
+def format_debate_memory_for_prompt(debate_memory, today_theme, today_focus=None):
     """Format debate memory into context for the prompt, grouped by theme.
 
     Shows previous debates on the same theme so hosts can build on past
-    arguments rather than repeating them.
+    arguments rather than repeating them. With a super-cycle focus active,
+    the must-differ bucket keys on (theme, focus): same-theme debates from a
+    *different* rotation focus drop to the brief cross-reference list, while
+    legacy entries without a focus stay in the strict bucket to be safe.
     """
     if not debate_memory:
         return ""
@@ -2904,6 +3108,12 @@ def format_debate_memory_for_prompt(debate_memory, today_theme):
         else:
             other_recent.append(entry)
 
+    focus_slug = today_focus.get('slug') if today_focus else None
+    if focus_slug:
+        other_focus = [e for e in same_theme if e.get('focus') and e.get('focus') != focus_slug]
+        same_theme = [e for e in same_theme if not e.get('focus') or e.get('focus') == focus_slug]
+        other_recent = other_focus + other_recent
+
     if not same_theme and not other_recent:
         return ""
 
@@ -2912,7 +3122,8 @@ def format_debate_memory_for_prompt(debate_memory, today_theme):
     if same_theme:
         # Sort by date, most recent first
         same_theme.sort(key=lambda x: x.get('date', ''), reverse=True)
-        context += f"\nPrevious debates on \"{today_theme}\" (same theme — you MUST take a different angle):\n"
+        focus_label = f", focus \"{today_focus['name']}\"" if focus_slug else ""
+        context += f"\nPrevious debates on \"{today_theme}\"{focus_label} (same territory — you MUST take a different angle):\n"
         for entry in same_theme[:4]:  # Show last 4 debates on same theme
             context += f"  [{entry.get('date', '?')}]\n"
             if entry.get('central_question'):
@@ -2941,6 +3152,67 @@ def format_debate_memory_for_prompt(debate_memory, today_theme):
     context += _stale_framing_alerts(debate_memory)
     context += "\n"
     return context
+
+
+_PRIOR_COVERAGE_STOPWORDS = frozenset(
+    "this that with from have will been they their there what when where which "
+    "about into over under after before between while during against more most "
+    "some such than then them these those your should would could cariboo "
+    "williams lake local community says said news story new".split()
+)
+
+
+def _significant_words(text: str) -> set:
+    """Lowercased content words (>3 chars, minus stopwords) for topic overlap."""
+    return {
+        w for w in re.findall(r"[a-z']+", text.lower())
+        if len(w) > 3 and w not in _PRIOR_COVERAGE_STOPWORDS
+    }
+
+
+def format_prior_coverage_for_prompt(deep_dive_articles, episode_memory, debate_memory):
+    """Repeat-topic guard: flag deep-dive material that overlaps recent coverage.
+
+    Purely local (no API): compares significant words in today's deep-dive
+    titles against recent episode topics and debate questions. On a match the
+    hosts are instructed to acknowledge the earlier discussion on air and
+    center what's new — instead of rehashing it as if for the first time.
+    """
+    matches = []
+    seen = set()
+    for article in deep_dive_articles:
+        title = re.sub(r'^\W*\[[^\]]*\]\s*', '', article.get('title', ''))
+        words = _significant_words(title)
+        if not words:
+            continue
+        for entry in (episode_memory or {}).values():
+            for topic in entry.get('topics', []):
+                if len(words & _significant_words(topic)) >= 2:
+                    key = (entry.get('date'), topic)
+                    if key not in seen:
+                        seen.add(key)
+                        matches.append((entry.get('date', '?'), topic, title))
+        for entry in (debate_memory or {}).values():
+            question = entry.get('central_question', '')
+            if question and len(words & _significant_words(question)) >= 2:
+                key = (entry.get('date'), question)
+                if key not in seen:
+                    seen.add(key)
+                    matches.append((entry.get('date', '?'), question, title))
+
+    if not matches:
+        return ""
+    matches.sort(reverse=True)
+    context = (
+        "PRIOR COVERAGE ALERT — today's deep-dive material overlaps with recent "
+        "coverage. On air, explicitly acknowledge the earlier discussion (e.g. "
+        "'we got into this a couple of weeks back') and center what is NEW or "
+        "different in today's conversation — do NOT re-litigate the same ground "
+        "as if covering it for the first time:\n"
+    )
+    for match_date, prior, title in matches[:5]:
+        context += f"- \"{title}\" overlaps with [{match_date}] {prior}\n"
+    return context + "\n"
 
 
 def format_cta_history_for_prompt(cta_memory, today_theme):
@@ -3238,15 +3510,17 @@ def get_article_scores(articles, scoring_data):
     scored_articles.sort(key=lambda x: x.get('ai_score', 0), reverse=True)
     return scored_articles
 
-def categorize_articles_for_deep_dive(articles, theme_day):
+def categorize_articles_for_deep_dive(articles, theme_day, focus=None):
     """Select deep dive articles from beyond the news pool, matched to theme.
 
     News pool = top NEWS_ROUNDUP_COUNT scored articles (used in Segment 1).
     Deep dive pulls from the remainder, scored by theme keyword overlap
     blended with AI score so we get relevance without being purely keyword-driven.
+    An active super-cycle *focus* weights its keywords above base theme hits.
     """
     theme_info = CONFIG['themes'][str(theme_day)]
     theme_name = theme_info['name']
+    focus_keywords = _build_focus_keywords(focus)
 
     # Build keyword list from theme name + any explicit keywords in config
     theme_keywords = [w.lower() for w in theme_name.split() if len(w) > 3]
@@ -3270,6 +3544,9 @@ def categorize_articles_for_deep_dive(articles, theme_day):
         ai_score_normalized = article.get('ai_score', 0) / 100.0  # 0-1 range
         # Keyword hits weighted heavier (each hit = 2 points), AI score as tiebreaker
         score = keyword_hits * 2 + ai_score_normalized
+        # This week's super-cycle focus outweighs base theme hits (3 vs 2)
+        if focus_keywords:
+            score += sum(1 for kw in focus_keywords if kw in text) * 3
         # Penalize anti_keyword hits — terms signaling the article really
         # belongs to a neighboring theme (same weighting as positive hits)
         score -= _anti_keyword_penalty(text, theme_info) * 2
@@ -3524,25 +3801,52 @@ def _build_theme_anti_keywords(theme_name):
     return []
 
 
-def _build_theme_lens(theme_name):
+def _build_theme_lens(theme_name, focus=None):
     """Return the theme's "lens" guidance string (empty if not configured).
 
     The lens is a short instruction distinguishing this theme from its most
     overlapping neighbor(s), injected into the Deep Dive prompt to keep the
-    episode anchored to its assigned theme.
+    episode anchored to its assigned theme. When a super-cycle *focus* is
+    active, its narrower lens is appended so the episode centers this week's
+    rotation slice of the theme.
     """
+    lens = ''
     for info in CONFIG['themes'].values():
         if info['name'] == theme_name:
-            return info.get('lens', '')
-    return ''
+            lens = info.get('lens', '')
+            break
+    if focus and focus.get('lens'):
+        lens = (lens + ' ' if lens else '') + focus['lens']
+    return lens
 
 
-def select_deep_dive_from_feed(theme_articles, theme_name, count=3):
+def _build_focus_keywords(focus) -> list:
+    """Lowercased keyword list for a super-cycle focus (name words + config keywords)."""
+    if not focus:
+        return []
+    keywords = [w.lower() for w in focus.get('name', '').split() if len(w) > 3]
+    keywords.extend(k.lower() for k in focus.get('keywords', []))
+    seen = set()
+    return [k for k in keywords if not (k in seen or seen.add(k))]
+
+
+def _focus_hit_count(article, focus_keywords) -> int:
+    """Focus-keyword hits in an article's title+summary (source tag stripped)."""
+    title = re.sub(r'^\W*\[[^\]]*\]\s*', '', article.get('title', ''))
+    text = f"{title} {article.get('summary', '')}".lower()
+    return _keyword_hit_count(text, focus_keywords)
+
+
+def select_deep_dive_from_feed(theme_articles, theme_name, count=3, focus=None):
     """Select deep dive articles from pre-curated podcast feed theme articles.
 
     The feed already sorts articles by boosted score (theme relevance).
     Articles with _keyword_matches > 0 are strongly on-theme.
     Top `count` theme articles become the deep dive; the rest go to news.
+
+    When a super-cycle *focus* is active and enough articles match it, the
+    deep dive is drawn from focus-matching articles first; a thin focus week
+    degrades gracefully to plain theme selection (logged as focus_fallback).
 
     When the feed provides no keyword matches, falls back to local keyword
     scoring against the theme name and config keywords.
@@ -3563,7 +3867,28 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=3):
     theme_anti_keywords = _build_theme_anti_keywords(theme_name)
     used_local_scoring = False
 
-    if strong_match:
+    # Super-cycle focus: prefer articles matching this week's rotation slice.
+    focus_keywords = _build_focus_keywords(focus)
+    deep_dive = None
+    if focus_keywords:
+        for a in theme_articles:
+            a['_focus_matches'] = _focus_hit_count(a, focus_keywords)
+        focus_strong = sorted(
+            (a for a in theme_articles if a.get('_focus_matches', 0) > 0),
+            key=lambda a: (a.get('_focus_matches', 0), a.get('_keyword_matches', 0),
+                           a.get('_boosted_score', a.get('ai_score', 0))),
+            reverse=True,
+        )
+        if len(focus_strong) >= count:
+            deep_dive = focus_strong[:count]
+            print(f"  🎯 Focus '{focus['name']}': {len(focus_strong)} matching article(s) — deep dive centered on focus")
+        else:
+            print(f"  🎯 focus_fallback: only {len(focus_strong)} article(s) matched focus "
+                  f"'{focus['name']}' (<{count}) — using base theme selection")
+
+    if deep_dive is not None:
+        pass
+    elif strong_match:
         # Feed provided keyword matches — use them
         deep_dive = strong_match[:count]
         if len(deep_dive) < count:
@@ -3597,8 +3922,9 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=3):
     print(f"  Remaining for news: {len(news_articles)}")
     for a in deep_dive:
         kw = a.get('_keyword_matches', 0)
+        fm = a.get('_focus_matches', 0)
         local_score = _local_theme_relevance(a, theme_keywords)
-        print(f"  - [kw={kw}, local={local_score:.1f}] {a.get('title', '')[:70]}...")
+        print(f"  - [kw={kw}, focus={fm}, local={local_score:.1f}] {a.get('title', '')[:70]}...")
     return deep_dive, news_articles
 
 def match_articles_to_script(articles, script):
@@ -4013,7 +4339,7 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
         print(f"❌ Error saving citations: {e}")
         return None
 
-def format_memory_for_prompt(episode_memory, host_memory):
+def format_memory_for_prompt(episode_memory, host_memory, today_focus=None):
     """Format memory into context for Claude prompt."""
     context = ""
 
@@ -4025,6 +4351,23 @@ def format_memory_for_prompt(episode_memory, host_memory):
             if topics:
                 context += f"- {episode['date']}: {', '.join(topics)}\n"
         context += "\n"
+
+    # Super-cycle continuity: recall the previous episode on this same focus
+    # (typically 3-5 weeks back — beyond the last-5 window above).
+    if today_focus:
+        same_focus = [
+            e for e in episode_memory.values()
+            if e.get('focus') == today_focus.get('slug')
+        ]
+        if same_focus:
+            last = same_focus[-1]
+            topics = ', '.join(last.get('topics', [])[:6])
+            context += (
+                f"LAST TIME ON THIS FOCUS ({today_focus['name']}, {last.get('date', '?')}): "
+                f"{topics}\n"
+                "Reference naturally for continuity (e.g. 'last month when we dug into...') "
+                "and pick up threads worth advancing.\n\n"
+            )
 
     hosts_config = CONFIG['hosts']
     if host_memory:
@@ -4098,7 +4441,7 @@ def _detect_production_company_mentions(articles, credits_config):
     return found
 
 
-def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None, feed_meta=None, bonus_articles=None, debate_memory=None, cta_memory=None, thought_seeds=None, weather_data=None, brave_context="", feedback_emails=None, twit_items=None, corrections=None):
+def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None, feed_meta=None, bonus_articles=None, debate_memory=None, cta_memory=None, thought_seeds=None, weather_data=None, brave_context="", feedback_emails=None, twit_items=None, corrections=None, focus=None):
     """Generate conversational podcast script using Claude."""
     print("🎙️ Generating podcast script with Claude...")
 
@@ -4143,10 +4486,15 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         score = a.get('_boosted_score', a.get('ai_score', 0))
         theme_tag = ' [✓THEME]' if a.get('_keyword_matches', 0) > 0 else ''
         cluster_tag = f' [SAME STORY: {a["_topic_cluster"]}]' if a.get('_topic_cluster') else ''
+        # Held-and-released article: aired today because it matches this week's
+        # rotation focus — the hosts must not frame it as breaking news.
+        held_tag = (f' [HELD SINCE {a["_held_from"]}: saved for today\'s focus — '
+                    f'frame as "earlier this week/month", not as breaking]'
+                    if a.get('_held_from') else '')
         body = a.get('_body', '')
         body_line = f"\n  Content: {body[:500]}" if body else ""
         pub_tag = _format_pub_date_tag(a)
-        return f"- [{source}] {title}{theme_tag}{cluster_tag}{pub_tag}\n  {summary}... (Relevance: {score}){body_line}"
+        return f"- [{source}] {title}{theme_tag}{cluster_tag}{held_tag}{pub_tag}\n  {summary}... (Relevance: {score}){body_line}"
 
     def _roundup_block_header(block, count):
         if block == 'theme':
@@ -4252,13 +4600,13 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
     else:
         sign_off = "Have a great rest of your day."
 
-    memory_context = format_memory_for_prompt(episode_memory, host_memory)
+    memory_context = format_memory_for_prompt(episode_memory, host_memory, today_focus=focus)
     if evolving_context:
         memory_context += evolving_context + "\n"
 
     # Add debate history so hosts don't repeat the same arguments
     if debate_memory:
-        memory_context += format_debate_memory_for_prompt(debate_memory, theme_name)
+        memory_context += format_debate_memory_for_prompt(debate_memory, theme_name, today_focus=focus)
 
     # Add one-year CTA history so hosts don't recycle the same suggestions
     if cta_memory:
@@ -4369,7 +4717,7 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             other_host_upper=other_host_name.upper(),
             other_host_name=other_host_name,
             theme_name=theme_name,
-            theme_lens=_build_theme_lens(theme_name),
+            theme_lens=_build_theme_lens(theme_name, focus=focus),
             news_text=news_text,
             deep_dive_text=deep_dive_text,
             news_titles_brief=news_titles_brief,
@@ -6370,9 +6718,14 @@ def main():
     pacific_now = get_pacific_now()
     today_weekday = pacific_now.weekday()
     today_theme = get_theme_for_day(today_weekday)
+    # Super-cycle rotation focus for today (None on uncycled days, e.g. Saturday)
+    today_focus = get_focus_for_day(today_weekday, pacific_now.date())
     weekday, date_str = get_current_date_info()
-    
+
     print(f"📅 {weekday}, {date_str} - Theme: {today_theme}")
+    if today_focus:
+        print(f"🎯 Focus (week {today_focus['index'] + 1}/{today_focus['cycle_length']}): "
+              f"{today_focus['name']}")
     
     # Load memories
     episode_memory = get_episode_memory()
@@ -6474,7 +6827,8 @@ def main():
                 )
                 sys.exit(1)
 
-            deep_dive_articles = categorize_articles_for_deep_dive(scored_articles, today_weekday)
+            deep_dive_articles = categorize_articles_for_deep_dive(
+                scored_articles, today_weekday, focus=today_focus)
             # In the fallback path, inject eligible URL seeds directly into deep dive.
             # High-priority seeds are always eligible (bypass theme day filter) so
             # they appear in the very next episode, as the shortcut advertises.
@@ -6530,6 +6884,13 @@ def main():
             theme_articles = [a for a in all_feed_articles if a.get('url', '') not in bonus_urls]
             bonus_articles = [a for a in all_feed_articles if a.get('url', '') in bonus_urls]
 
+            # Super-cycle routing: release matured held articles into today's
+            # pool; hold off-theme, non-urgent articles for their focus day;
+            # divert urgent off-theme stories to the bonus bucket + callback ledger.
+            theme_articles, bonus_articles = route_articles_for_focus(
+                theme_articles, bonus_articles, pacific_now.date(), today_theme, today_focus
+            )
+
             # Inject user-seeded URLs into the article pool.
             # High-priority seeds are always eligible (bypass theme day filter) so
             # they appear in the very next episode, as the shortcut advertises.
@@ -6558,7 +6919,8 @@ def main():
 
             # Select deep dive from theme articles; rest go to news
             deep_dive_count = SATURDAY_DEEP_DIVE_COUNT if today_weekday == 5 else 3
-            deep_dive_articles, news_articles = select_deep_dive_from_feed(theme_articles, today_theme, count=deep_dive_count)
+            deep_dive_articles, news_articles = select_deep_dive_from_feed(
+                theme_articles, today_theme, count=deep_dive_count, focus=today_focus)
 
             # Track which seeded articles landed in the deep dive
             for a in deep_dive_articles:
@@ -6627,6 +6989,22 @@ def main():
         # Inject evolving story context into memory for the prompt
         evolving_context = format_evolving_story_context(evolving_stories)
 
+        # Repeat-topic guard: flag deep-dive overlap with recent coverage so
+        # hosts acknowledge prior discussions and center what's new (local, no API)
+        prior_coverage = format_prior_coverage_for_prompt(
+            deep_dive_articles, episode_memory, debate_memory
+        )
+        if prior_coverage:
+            print("🔁 Prior coverage overlap detected — acknowledgment instruction injected")
+            evolving_context += "\n" + prior_coverage
+
+        # Focus-day callbacks: stories that aired early in a bonus slot and
+        # whose rotation focus day is today
+        callback_context, callback_urls = format_focus_callbacks_for_prompt(today_focus)
+        if callback_context:
+            print(f"📞 Focus callbacks: {len(callback_urls)} aired-early stor(ies) to reference")
+            evolving_context += "\n" + callback_context
+
         # Select today's PSA / Community Spotlight
         psa_info = select_psa(pacific_now.date())
         if psa_info and psa_info.get('org_name'):
@@ -6672,7 +7050,7 @@ def main():
             cta_memory=cta_memory, thought_seeds=active_thought_seeds,
             weather_data=weather_data, brave_context=brave_context,
             feedback_emails=email_feedback, twit_items=twit_items,
-            corrections=email_corrections
+            corrections=email_corrections, focus=today_focus
         )
 
         if not script:
@@ -6791,10 +7169,13 @@ def main():
         if consumed_email_ids:
             consume_email_items(consumed_email_ids)
 
+        # Retire aired-early ledger entries whose callback just aired
+        consume_focus_callbacks(callback_urls)
+
         # Update memory
         if script:
             topics, themes = extract_topics_and_themes(script, news_articles, deep_dive_articles)
-            update_episode_memory(date_key, topics, themes)
+            update_episode_memory(date_key, topics, themes, focus=today_focus)
 
             # Update host memory with topic insights and personality clues
             host_insights = {
@@ -6810,7 +7191,7 @@ def main():
             update_host_memory(host_insights, clues=personality_clues)
 
             # Update debate memory
-            update_debate_memory(date_key, today_theme, debate_summary)
+            update_debate_memory(date_key, today_theme, debate_summary, focus=today_focus)
 
             # Update one-year CTA cache
             ctas = debate_summary.get('calls_to_action', []) if debate_summary else []
