@@ -33,6 +33,13 @@ from config_loader import get_gemini_voice_for_host, load_hosts_config, load_pro
 GEMINI_TTS_MODEL = os.getenv("GEMINI_TTS_MODEL", "gemini-2.5-flash-preview-tts")
 GEMINI_TTS_URL = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 
+# Each script section (and any char-limit chunk within it) is its own
+# generateContent call. Without a pinned seed/temperature, every call samples
+# delivery independently and the hosts' voices drift across sections. A fixed
+# seed plus low temperature keeps timbre/pacing consistent call-to-call.
+GEMINI_TTS_SEED = int(os.getenv("GEMINI_TTS_SEED", "42"))
+GEMINI_TTS_TEMPERATURE = float(os.getenv("GEMINI_TTS_TEMPERATURE", "0.6"))
+
 # Per-request transcript budget (chars). TTS models have a small context and a
 # capped audio output length; ~6 000 chars ≈ 6–7 min of speech stays safely
 # under both. Longer sections are split at speaker-turn boundaries.
@@ -120,6 +127,8 @@ def _build_payload(segments: list[dict]) -> dict:
         "generationConfig": {
             "responseModalities": ["AUDIO"],
             "speechConfig": speech_config,
+            "temperature": GEMINI_TTS_TEMPERATURE,
+            "seed": GEMINI_TTS_SEED,
         },
     }
 
