@@ -234,6 +234,7 @@ SCRIPT_MODEL = os.getenv("CLAUDE_SCRIPT_MODEL", "claude-sonnet-5")
 POLISH_MODEL = os.getenv("CLAUDE_POLISH_MODEL", "claude-sonnet-5")
 OPUS_REVIEW_MODEL = os.getenv("CLAUDE_OPUS_REVIEW_MODEL", "claude-opus-4-6")
 SUMMARY_MODEL = os.getenv("CLAUDE_SUMMARY_MODEL", "claude-haiku-4-5-20251001")
+COLD_OPEN_MODEL = os.getenv("CLAUDE_COLD_OPEN_MODEL", "claude-sonnet-5")
 
 # Threshold: escalate polish+factcheck to Opus when the deep dive had fewer
 # than this many source articles.  Thin sourcing means the generator had more
@@ -2914,6 +2915,76 @@ def _extract_deep_dive_section(script):
     if idx != -1:
         return script[idx:]
     return script
+
+
+def _find_welcome_host(script):
+    """Return 'RILEY' or 'CASEY' — whichever speaks first after the **WELCOME** marker."""
+    in_welcome = False
+    for line in script.split('\n'):
+        stripped = line.strip()
+        if not stripped:
+            continue
+        if re.match(r'\*{0,2}WELCOME\b[^a-z]*$', stripped):
+            in_welcome = True
+            continue
+        if in_welcome:
+            m = re.match(r'\*{0,2}(RILEY|CASEY):\*{0,2}', stripped)
+            return m.group(1) if m else None
+    return None
+
+
+def generate_cold_open(script, theme_name):
+    """Generate the COLD OPEN teaser after the script is fully drafted and polished.
+
+    Grounded in the finalized script text so the teaser can only reference
+    stories/threads that actually survived into the News Roundup or Deep
+    Dive — writing the cold open before those sections exist (the old
+    approach) let the model tease an article the rest of the episode never
+    ended up covering. On any failure, returns the script unchanged;
+    downstream code already handles an episode with no COLD OPEN marker.
+    """
+    client = get_anthropic_client()
+    if not client or not script:
+        return script
+
+    welcome_host = _find_welcome_host(script)
+    if not welcome_host:
+        print("  ⚠️  Could not find welcome host in script — skipping cold open")
+        return script
+
+    prompts = CONFIG['prompts']
+    if 'cold_open_generation' not in prompts:
+        print("  ⚠️  cold_open_generation prompt missing from config — skipping cold open")
+        return script
+
+    prompt = prompts['cold_open_generation']['template'].format(
+        theme_name=theme_name,
+        welcome_host_upper=welcome_host,
+        finalized_script=script,
+    )
+
+    try:
+        response = api_retry(lambda: client.messages.create(
+            model=COLD_OPEN_MODEL,
+            max_tokens=300,
+            messages=[{"role": "user", "content": prompt}]
+        ))
+        _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
+        teaser = message_text(response).strip()
+        m = re.match(r'\*{0,2}(RILEY|CASEY):\*{0,2}\s*(.+)', teaser, re.DOTALL)
+        if not m or not m.group(2).strip():
+            print("  ⚠️  Cold open generation returned unusable output — skipping cold open")
+            return script
+        host, text = m.group(1), ' '.join(m.group(2).split())
+        word_count = len(text.split())
+        if word_count > 90:
+            print(f"  ⚠️  Cold open too long ({word_count} words) — skipping cold open")
+            return script
+        print(f"  🎙️  Generated cold open ({word_count} words)")
+        return f"**COLD OPEN**\n**{host}:** {text}\n\n{script}"
+    except Exception as e:
+        print(f"  ⚠️  Cold open generation failed, skipping: {e}")
+        return script
 
 
 def extract_debate_summary(script, theme_name):
@@ -7132,6 +7203,12 @@ def main():
         if not script:
             print("❌ Failed to generate script. Exiting.")
             sys.exit(1)
+
+        # Generate the cold open last, now that the News Roundup and Deep
+        # Dive are final — grounds the teaser in what the episode actually
+        # covers instead of what was merely curated for it.
+        print("🎬 Generating cold open teaser...")
+        script = generate_cold_open(script, today_theme)
 
         # Extract debate summary if not already obtained from batch
         if not debate_summary:
