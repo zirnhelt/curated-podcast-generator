@@ -64,6 +64,11 @@ class TestBuildPayload:
         # Style prompt from config/prompts.json leads, transcript follows
         assert prompt.index("community-radio") < prompt.index("Riley: ")
 
+    def test_seed_and_temperature_pinned_for_voice_consistency(self):
+        cfg = _build_payload(SEGS)["generationConfig"]
+        assert cfg["seed"] == gemini_tts.GEMINI_TTS_SEED
+        assert cfg["temperature"] == gemini_tts.GEMINI_TTS_TEMPERATURE
+
 
 class TestSynthesizeGuards:
     def test_missing_api_key_raises(self, monkeypatch):
