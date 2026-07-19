@@ -357,6 +357,10 @@ TARGET_MUSIC_DBFS = -28.0   # Music ducked beneath speech
 # Prevents a click/pop caused by TTS voices ending on a non-zero sample when silence follows.
 SECTION_BOUNDARY_FADE_MS = 40
 
+# Speech after intro/interval music starts this far before the music ends,
+# talking over the fade-out (radio-style) instead of waiting for silence.
+MUSIC_SPEECH_OVERLAP_MS = 500
+
 # TTS provider feature flags — gemini > azure > openai (see get_active_tts_provider)
 USE_AZURE_TTS = bool(os.getenv("USE_AZURE_TTS"))              # full switch to Azure
 USE_AZURE_PARALLEL = bool(os.getenv("AZURE_TTS_PARALLEL"))   # generate both, save _azure.wav for comparison
@@ -416,7 +420,7 @@ TTS_SEGMENT_MAX_CHARS = 500
 # Interval music duration (ms) — trim long theme to a short chime
 # Use only the crisp front-end attack of the intermission MP3
 INTERVAL_MUSIC_DURATION_MS = 1200
-INTERVAL_FADE_OUT_MS = 400
+INTERVAL_FADE_OUT_MS = 500  # matches MUSIC_SPEECH_OVERLAP_MS so speech enters as the fade begins
 
 # Memory Configuration (stored in podcasts/ alongside episodes)
 EPISODE_MEMORY_FILE = PODCASTS_DIR / "episode_memory.json"
@@ -5444,6 +5448,7 @@ def _generate_parallel_azure_audio(segments, base_output_filename, theme_name=No
 
     try:
         intro_music    = normalize_segment(AudioSegment.from_mp3(str(INTRO_MUSIC)),    TARGET_MUSIC_DBFS)
+        intro_music    = intro_music.fade_out(800)
         interval_music = normalize_segment(AudioSegment.from_mp3(str(INTERVAL_MUSIC)), TARGET_MUSIC_DBFS)
         interval_music = interval_music[:INTERVAL_MUSIC_DURATION_MS].fade_out(INTERVAL_FADE_OUT_MS)
         outro_music    = normalize_segment(AudioSegment.from_mp3(str(OUTRO_MUSIC)),    TARGET_MUSIC_DBFS)
@@ -5453,7 +5458,7 @@ def _generate_parallel_azure_audio(segments, base_output_filename, theme_name=No
         combined = AudioSegment.empty()
 
         with tempfile.TemporaryDirectory() as tmpdir:
-            def _render(section_name):
+            def _render(section_name, overlap_ms=0):
                 nonlocal combined
                 seg_list = segments.get(section_name, [])
                 if not seg_list:
@@ -5462,25 +5467,26 @@ def _generate_parallel_azure_audio(segments, base_output_filename, theme_name=No
                 print(f"  Azure {section_name}: {len(seg_list)} turns, {total_chars} chars")
                 section_wav = os.path.join(tmpdir, f"{section_name}.wav")
                 generate_azure_tts_for_section(seg_list, section_wav)
-                combined += normalize_segment(
+                section_audio = normalize_segment(
                     trim_tts_silence(AudioSegment.from_file(section_wav, format="wav")),
                     TARGET_SPEECH_DBFS,
                 )
+                combined = _append_with_gap(combined, section_audio, -overlap_ms)
 
             # Cold open teaser before the theme music (optional)
             if segments.get("preamble"):
                 _render("preamble")
                 combined += AudioSegment.silent(duration=500)
-            combined += intro_music + section_gap
+            combined += intro_music
 
-            _render("welcome")
-            combined += section_gap + ambient_transition + section_gap
-            _render("news")
-            combined += section_gap + ambient_transition + section_gap
+            _render("welcome", overlap_ms=MUSIC_SPEECH_OVERLAP_MS)
+            combined += section_gap + ambient_transition
+            _render("news", overlap_ms=MUSIC_SPEECH_OVERLAP_MS)
+            combined += section_gap + ambient_transition
             if segments.get("community_spotlight"):
-                _render("community_spotlight")
-                combined += section_gap + ambient_transition + section_gap
-            _render("deep_dive")
+                _render("community_spotlight", overlap_ms=MUSIC_SPEECH_OVERLAP_MS)
+                combined += section_gap + ambient_transition
+            _render("deep_dive", overlap_ms=MUSIC_SPEECH_OVERLAP_MS)
 
             _pc = CONFIG['podcast']
             credits_text = (
@@ -5567,6 +5573,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
 
         # Load and normalize music to target level (ducked below speech)
         intro_music    = normalize_segment(AudioSegment.from_mp3(str(INTRO_MUSIC)),    TARGET_MUSIC_DBFS)
+        intro_music    = intro_music.fade_out(800)  # guarantee a fading tail for the speech overlap
         interval_music = normalize_segment(AudioSegment.from_mp3(str(INTERVAL_MUSIC)), TARGET_MUSIC_DBFS)
         interval_music = interval_music[:INTERVAL_MUSIC_DURATION_MS].fade_out(INTERVAL_FADE_OUT_MS)
         outro_music    = normalize_segment(AudioSegment.from_mp3(str(OUTRO_MUSIC)),    TARGET_MUSIC_DBFS)
@@ -5580,8 +5587,12 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
         with tempfile.TemporaryDirectory() as tmpdir:
             combined = AudioSegment.empty()
 
-            def _render_section(seg_list, label, prefix):
-                """Render a list of parsed segments into combined audio."""
+            def _render_section(seg_list, label, prefix, overlap_ms=0):
+                """Render a list of parsed segments into combined audio.
+
+                overlap_ms > 0 starts the section's speech that far before the
+                current tail of *combined* ends (talking over the music fade).
+                """
                 nonlocal combined
                 print(f"  {label}")
 
@@ -5602,7 +5613,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                         trim_tts_silence(AudioSegment.from_file(section_wav, format="wav")),
                         TARGET_SPEECH_DBFS,
                     )
-                    combined += section_audio
+                    combined = _append_with_gap(combined, section_audio, -overlap_ms)
                     # Whole-section synthesis has no per-turn boundaries; speaker=None
                     # tells the video renderer to skip speaker badges for this span.
                     video_timeline.append({
@@ -5629,10 +5640,13 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                         chunk_audios.append(trim_tts_silence(chunk_audio))
                     speech = sum(chunk_audios[1:], chunk_audios[0])
 
-                    # Determine gap: explicit tag > heuristic
-                    gap = segment.get('gap_ms')
-                    if gap is None:
-                        gap = heuristic_gap_ms(segment['text'], prev_speaker, segment['speaker'], section=prefix, prev_text=prev_text)
+                    # Determine gap: music overlap (first turn) > explicit tag > heuristic
+                    if i == 0 and overlap_ms:
+                        gap = -overlap_ms
+                    else:
+                        gap = segment.get('gap_ms')
+                        if gap is None:
+                            gap = heuristic_gap_ms(segment['text'], prev_speaker, segment['speaker'], section=prefix, prev_text=prev_text)
                     turn_start_ms = max(len(combined) + gap, 0)
                     combined = _append_with_gap(combined, speech, gap)
                     video_timeline.append({
@@ -5654,42 +5668,47 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                 # Beat between the tease and the theme music hit
                 combined += AudioSegment.silent(duration=500)
 
-            # Intro music, then the welcome section
+            # Intro music, then the welcome section (speech enters over the music fade)
             chapters.append({"startTime": round(len(combined) / 1000, 1), "title": "Introduction"})
-            combined += intro_music + section_gap
+            combined += intro_music
 
-            _render_section(segments['welcome'], "🎤 Generating welcome section...", "welcome")
+            _render_section(segments['welcome'], "🎤 Generating welcome section...", "welcome",
+                            overlap_ms=MUSIC_SPEECH_OVERLAP_MS)
             combined = combined[:-SECTION_BOUNDARY_FADE_MS] + combined[-SECTION_BOUNDARY_FADE_MS:].fade_out(SECTION_BOUNDARY_FADE_MS)
 
             # Add themed chime into news (falls back to generic interval music if no ambient file)
-            combined += section_gap + ambient_transition + section_gap
+            combined += section_gap + ambient_transition
 
-            # News section
-            chapters.append({"startTime": round(len(combined) / 1000, 1), "title": "News Roundup"})
-            _render_section(segments['news'], "📰 Generating news section...", "news")
+            # News section (chapter mark lands on speech onset, inside the music fade)
+            chapters.append({"startTime": round(max(len(combined) - MUSIC_SPEECH_OVERLAP_MS, 0) / 1000, 1), "title": "News Roundup"})
+            _render_section(segments['news'], "📰 Generating news section...", "news",
+                            overlap_ms=MUSIC_SPEECH_OVERLAP_MS)
             combined = combined[:-SECTION_BOUNDARY_FADE_MS] + combined[-SECTION_BOUNDARY_FADE_MS:].fade_out(SECTION_BOUNDARY_FADE_MS)
 
             # Meta Moment (Sunday only — present in the script when generated)
             if segments['meta_moment']:
-                combined += section_gap + ambient_transition + section_gap
-                chapters.append({"startTime": round(len(combined) / 1000, 1), "title": "Meta Moment"})
-                _render_section(segments['meta_moment'], "🔁 Generating Meta Moment...", "meta_moment")
+                combined += section_gap + ambient_transition
+                chapters.append({"startTime": round(max(len(combined) - MUSIC_SPEECH_OVERLAP_MS, 0) / 1000, 1), "title": "Meta Moment"})
+                _render_section(segments['meta_moment'], "🔁 Generating Meta Moment...", "meta_moment",
+                                overlap_ms=MUSIC_SPEECH_OVERLAP_MS)
                 combined = combined[:-SECTION_BOUNDARY_FADE_MS] + combined[-SECTION_BOUNDARY_FADE_MS:].fade_out(SECTION_BOUNDARY_FADE_MS)
 
             # Add ambient transition before community spotlight / deep dive
-            combined += section_gap + ambient_transition + section_gap
+            combined += section_gap + ambient_transition
 
             # Community spotlight section (if present)
             if segments['community_spotlight']:
-                chapters.append({"startTime": round(len(combined) / 1000, 1), "title": "Community Spotlight"})
-                _render_section(segments['community_spotlight'], "🏘️  Generating community spotlight...", "spotlight")
+                chapters.append({"startTime": round(max(len(combined) - MUSIC_SPEECH_OVERLAP_MS, 0) / 1000, 1), "title": "Community Spotlight"})
+                _render_section(segments['community_spotlight'], "🏘️  Generating community spotlight...", "spotlight",
+                                overlap_ms=MUSIC_SPEECH_OVERLAP_MS)
                 combined = combined[:-SECTION_BOUNDARY_FADE_MS] + combined[-SECTION_BOUNDARY_FADE_MS:].fade_out(SECTION_BOUNDARY_FADE_MS)
                 # Add ambient transition after community spotlight, before deep dive
-                combined += section_gap + ambient_transition + section_gap
+                combined += section_gap + ambient_transition
 
             # Deep dive section
-            chapters.append({"startTime": round(len(combined) / 1000, 1), "title": "Deep Dive"})
-            _render_section(segments['deep_dive'], "🔍 Generating deep dive section...", "deep")
+            chapters.append({"startTime": round(max(len(combined) - MUSIC_SPEECH_OVERLAP_MS, 0) / 1000, 1), "title": "Deep Dive"})
+            _render_section(segments['deep_dive'], "🔍 Generating deep dive section...", "deep",
+                            overlap_ms=MUSIC_SPEECH_OVERLAP_MS)
 
             # Note: the Thursday indigenous-engagement acknowledgment (Casey, brief aside)
             # is generated in main() and appended as a trailing turn onto the script's

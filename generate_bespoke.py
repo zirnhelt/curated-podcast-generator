@@ -75,6 +75,10 @@ POLISH_MODEL = os.getenv("CLAUDE_POLISH_MODEL", "claude-sonnet-5")
 TARGET_SPEECH_DBFS = -20.0
 TARGET_MUSIC_DBFS = -28.0
 
+# Speech after intro/chime music starts this far before the music ends,
+# talking over the fade-out instead of waiting for silence.
+MUSIC_SPEECH_OVERLAP_MS = 500
+
 # ── Azure TTS feature flags ────────────────────────────────────────────────
 USE_AZURE_TTS      = bool(os.getenv("USE_AZURE_TTS"))
 USE_AZURE_PARALLEL = bool(os.getenv("AZURE_TTS_PARALLEL"))
@@ -666,10 +670,14 @@ def _append_with_gap(combined, speech, gap_ms):
     elif gap_ms == 0:
         combined = combined + speech
     else:
-        overlap_ms = abs(gap_ms)
-        if overlap_ms >= len(combined):
-            return speech
-        combined = combined[:-overlap_ms].append(speech, crossfade=0)
+        # Negative gap → true overlap: speech starts before the previous
+        # segment (e.g. a music fade) ends, both audible via overlay.
+        overlap = min(-gap_ms, len(combined))
+        position = len(combined) - overlap
+        needed_len = position + len(speech)
+        if needed_len > len(combined):
+            combined += AudioSegment.silent(duration=needed_len - len(combined))
+        combined = combined.overlay(speech, position=position)
     return combined
 
 
@@ -772,6 +780,7 @@ def _generate_parallel_azure(turns, base_output_path, use_chime, interval_path):
         combined = AudioSegment.empty()
         chunk_turns: list[dict] = []
         azure_idx = 0
+        pending_overlap_ms = 0
 
         with tempfile.TemporaryDirectory() as tmpdir:
             for turn in turns:
@@ -784,12 +793,14 @@ def _generate_parallel_azure(turns, base_output_path, use_chime, interval_path):
                             trim_tts_silence(AudioSegment.from_file(chunk_wav, format="wav")),
                             TARGET_SPEECH_DBFS,
                         )
-                        combined += chunk_audio
+                        combined = _append_with_gap(combined, chunk_audio, -pending_overlap_ms)
+                        pending_overlap_ms = 0
                         chunk_turns = []
                     if use_chime and interval_path.exists():
                         chime_raw = AudioSegment.from_mp3(str(interval_path))
                         chime = normalize_segment(chime_raw[:1450], TARGET_MUSIC_DBFS).fade_out(400)
-                        combined += AudioSegment.silent(duration=300) + chime + AudioSegment.silent(duration=300)
+                        combined += AudioSegment.silent(duration=300) + chime
+                        pending_overlap_ms = MUSIC_SPEECH_OVERLAP_MS
                     else:
                         combined += AudioSegment.silent(duration=800)
                 else:
@@ -803,7 +814,8 @@ def _generate_parallel_azure(turns, base_output_path, use_chime, interval_path):
                     trim_tts_silence(AudioSegment.from_file(chunk_wav, format="wav")),
                     TARGET_SPEECH_DBFS,
                 )
-                combined += chunk_audio
+                combined = _append_with_gap(combined, chunk_audio, -pending_overlap_ms)
+                pending_overlap_ms = 0
 
         combined.export(str(azure_path), format="mp3")
         elapsed = time.time() - t0
@@ -847,10 +859,14 @@ def generate_audio(script, output_path, hosts, config):
         with tempfile.TemporaryDirectory() as tmpdir:
             combined = AudioSegment.empty()
 
+            # When set, the next speech starts this far before the music tail ends
+            pending_overlap_ms = 0
+
             if use_theme:
                 theme_full = normalize_segment(AudioSegment.from_mp3(str(intro_path)), TARGET_MUSIC_DBFS)
                 theme = theme_full[:10000].fade_out(500)
-                combined = theme + AudioSegment.silent(duration=500)
+                combined = theme
+                pending_overlap_ms = MUSIC_SPEECH_OVERLAP_MS
                 print(f"  Added intro music: {intro_path.name} ({len(theme)/1000:.1f}s, trimmed to 10s)")
 
             if USE_AZURE_TTS and speech_turns:
@@ -872,12 +888,14 @@ def generate_audio(script, output_path, hosts, config):
                                 trim_tts_silence(AudioSegment.from_file(chunk_wav, format="wav")),
                                 TARGET_SPEECH_DBFS,
                             )
-                            combined += chunk_audio
+                            combined = _append_with_gap(combined, chunk_audio, -pending_overlap_ms)
+                            pending_overlap_ms = 0
                             chunk_turns = []
                         if use_chime:
                             chime_raw = AudioSegment.from_mp3(str(interval_path))
                             chime = normalize_segment(chime_raw[:1450], TARGET_MUSIC_DBFS).fade_out(400)
-                            combined += AudioSegment.silent(duration=300) + chime + AudioSegment.silent(duration=300)
+                            combined += AudioSegment.silent(duration=300) + chime
+                            pending_overlap_ms = MUSIC_SPEECH_OVERLAP_MS
                             print(f"  Added intermission chime ({len(chime)/1000:.1f}s)")
                         else:
                             combined += AudioSegment.silent(duration=800)
@@ -892,7 +910,8 @@ def generate_audio(script, output_path, hosts, config):
                         trim_tts_silence(AudioSegment.from_file(chunk_wav, format="wav")),
                         TARGET_SPEECH_DBFS,
                     )
-                    combined += chunk_audio
+                    combined = _append_with_gap(combined, chunk_audio, -pending_overlap_ms)
+                    pending_overlap_ms = 0
             else:
                 prev_speaker = None
                 tts_idx = 0
@@ -901,7 +920,8 @@ def generate_audio(script, output_path, hosts, config):
                         if use_chime:
                             chime_raw = AudioSegment.from_mp3(str(interval_path))
                             chime = normalize_segment(chime_raw[:1450], TARGET_MUSIC_DBFS).fade_out(400)
-                            combined += AudioSegment.silent(duration=300) + chime + AudioSegment.silent(duration=300)
+                            combined += AudioSegment.silent(duration=300) + chime
+                            pending_overlap_ms = MUSIC_SPEECH_OVERLAP_MS
                             print(f"  Added intermission chime ({len(chime)/1000:.1f}s)")
                         else:
                             combined += AudioSegment.silent(duration=800)
@@ -915,9 +935,13 @@ def generate_audio(script, output_path, hosts, config):
                     generate_tts_segment(turn['text'], turn['speaker'], temp_file, hosts)
                     speech = normalize_segment(AudioSegment.from_mp3(temp_file), TARGET_SPEECH_DBFS)
                     speech = trim_tts_silence(speech)
-                    gap = turn.get('gap_ms')
-                    if gap is None:
-                        gap = heuristic_gap_ms(turn['text'], prev_speaker, turn['speaker'])
+                    if pending_overlap_ms:
+                        gap = -pending_overlap_ms
+                        pending_overlap_ms = 0
+                    else:
+                        gap = turn.get('gap_ms')
+                        if gap is None:
+                            gap = heuristic_gap_ms(turn['text'], prev_speaker, turn['speaker'])
                     combined = _append_with_gap(combined, speech, gap)
                     prev_speaker = turn['speaker']
 
