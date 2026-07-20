@@ -3,7 +3,7 @@
 from unittest.mock import patch, MagicMock, call
 
 from weather import (
-    fetch_weather, format_weather_for_prompt, WMO_CODES,
+    fetch_weather, format_weather_for_prompt, weather_slide_data, WMO_CODES,
     DRIVING_IMPACT_CODES, _has_driving_impact,
 )
 
@@ -202,3 +202,47 @@ class TestWMOCodes:
     def test_all_driving_impact_codes_exist_in_wmo(self):
         for code in DRIVING_IMPACT_CODES:
             assert code in WMO_CODES, f"Driving impact code {code} not in WMO_CODES"
+
+
+def _slide_loc(temp=15, code=2):
+    return {
+        "current_temp": temp, "current_code": code, "current_wind": 5,
+        "high": temp + 5, "low": temp - 8, "precip": 0,
+        "daily_code": 1, "tomorrow_code": 1, "max_wind": 10,
+    }
+
+
+class TestWeatherSlideData:
+    def test_none_input_returns_none(self):
+        assert weather_slide_data(None) is None
+
+    def test_builds_locations_and_source(self):
+        data = weather_slide_data({
+            "horsefly": _slide_loc(15), "hundred_mile": _slide_loc(14),
+            "williams_lake": _slide_loc(17), "quesnel": _slide_loc(16),
+            "chilcotin_town": _slide_loc(10), "chilcotin_town_name": "Tatla Lake",
+            "summary": "unused",
+        })
+        assert data["source"] == "Open-Meteo"
+        names = [loc["name"] for loc in data["locations"]]
+        assert names == ["Horsefly Lake", "100 Mile House", "Williams Lake",
+                         "Quesnel", "Tatla Lake"]
+        hf = data["locations"][0]
+        assert hf == {"name": "Horsefly Lake", "temp": 15,
+                      "conditions": WMO_CODES[2], "high": 20, "low": 7}
+
+    def test_failed_location_skipped(self):
+        data = weather_slide_data({
+            "horsefly": _slide_loc(15), "hundred_mile": None,
+            "williams_lake": None, "quesnel": None,
+            "chilcotin_town": None, "chilcotin_town_name": "Nemiah Valley",
+            "summary": "unused",
+        })
+        assert [loc["name"] for loc in data["locations"]] == ["Horsefly Lake"]
+
+    def test_all_locations_failed_returns_none(self):
+        assert weather_slide_data({
+            "horsefly": None, "hundred_mile": None, "williams_lake": None,
+            "quesnel": None, "chilcotin_town": None, "chilcotin_town_name": "",
+            "summary": "",
+        }) is None

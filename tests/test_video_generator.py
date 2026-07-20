@@ -32,7 +32,8 @@ def sample_chapters():
         {"startTime": 0, "title": "Cold Open"},
         {"startTime": 15.0, "title": "Introduction"},
         {"startTime": 60.0, "title": "News Roundup"},
-        {"startTime": 300.0, "title": "Deep Dive"},
+        {"startTime": 300.0, "title": "Community Spotlight"},
+        {"startTime": 360.0, "title": "Deep Dive"},
         {"startTime": 500.0, "title": "Credits"},
     ]
 
@@ -61,8 +62,29 @@ def sample_citations():
                 ],
                 "discussion": {"central_question": "Does ownership structure matter more than technology?"},
             },
+            "weather": {
+                "title": "Weather Check",
+                "source": "Open-Meteo",
+                "locations": [
+                    {"name": "Horsefly Lake", "temp": 18, "conditions": "partly cloudy", "high": 24, "low": 9},
+                    {"name": "Williams Lake", "temp": 20, "conditions": "clear sky", "high": 25, "low": 11},
+                ],
+            },
+            "community_spotlight": {
+                "title": "Community Spotlight",
+                "org_name": "Williams Lake Women's Centre",
+                "description": "Drop-in support, advocacy, and community programs for women across the Cariboo.",
+                "website": "https://example.org",
+                "psa_angle": "",
+                "event_name": "",
+            },
         },
     }
+
+
+def _render(chapters, citations, dur, outdir):
+    return vg.render_slides(chapters, citations, dur,
+                            vg.ASSETS_DIR / "cariboo-signals.png", str(outdir))
 
 
 class TestSpeakerSpans:
@@ -86,33 +108,81 @@ class TestSpeakerSpans:
 
 
 class TestSlides:
-    def test_renders_one_slide_per_chapter(self, sample_chapters, sample_citations, tmp_path):
-        slides = vg.render_slides(sample_chapters, sample_citations, 600.0,
-                                  vg.ASSETS_DIR / "cariboo-signals.png", str(tmp_path))
-        assert len(slides) == len(sample_chapters)
-        # Full coverage: first starts at 0, last ends at audio duration, contiguous
+    def test_full_timeline_coverage(self, sample_chapters, sample_citations, tmp_path):
+        slides = _render(sample_chapters, sample_citations, 600.0, tmp_path)
+        # First starts at 0, last ends at audio duration, contiguous throughout
         assert slides[0][1] == 0
         assert slides[-1][2] == 600.0
         for (_, _, prev_end), (_, start, _) in zip(slides, slides[1:]):
             assert prev_end == start
+        # Each chapter's first slide starts exactly at its startTime
+        slide_starts = {start for _, start, _ in slides}
+        assert {c["startTime"] for c in sample_chapters} <= slide_starts
+
+    def test_roundup_emits_one_slide_per_article(self, sample_citations, tmp_path):
+        chapters = [{"startTime": 0, "title": "News Roundup"}]
+        slides = _render(chapters, sample_citations, 240.0, tmp_path)
+        assert len(slides) == 1 + 6  # lead list slide + one per article
+
+    def test_deep_dive_emits_one_slide_per_article(self, sample_citations, tmp_path):
+        chapters = [{"startTime": 0, "title": "Deep Dive"}]
+        slides = _render(chapters, sample_citations, 200.0, tmp_path)
+        assert len(slides) == 1 + 1
+
+    def test_introduction_gets_weather_slide(self, sample_citations, tmp_path):
+        chapters = [{"startTime": 0, "title": "Introduction"}]
+        slides = _render(chapters, sample_citations, 45.0, tmp_path)
+        assert len(slides) == 2
+
+    def test_introduction_without_weather_is_single_slide(self, sample_citations, tmp_path):
+        del sample_citations["segments"]["weather"]
+        chapters = [{"startTime": 0, "title": "Introduction"}]
+        slides = _render(chapters, sample_citations, 45.0, tmp_path)
+        assert len(slides) == 1
+
+    def test_cold_open_never_gets_weather_slide(self, sample_citations, tmp_path):
+        chapters = [{"startTime": 0, "title": "Cold Open"}]
+        slides = _render(chapters, sample_citations, 45.0, tmp_path)
+        assert len(slides) == 1
+
+    def test_short_chapter_respects_min_slide_duration(self, sample_citations, tmp_path):
+        # 8s span can't hold a lead slide plus 6 article slides at MIN_SLIDE_S
+        chapters = [{"startTime": 0, "title": "News Roundup"}]
+        slides = _render(chapters, sample_citations, 8.0, tmp_path)
+        assert len(slides) == 1
+        assert all(e - s >= vg.MIN_SLIDE_S for _, s, e in slides)
+
+    def test_spotlight_renders_org_description(self, sample_citations, tmp_path):
+        chapters = [{"startTime": 0, "title": "Community Spotlight"}]
+        (tmp_path / "a").mkdir()
+        (tmp_path / "b").mkdir()
+        with_org = _render(chapters, sample_citations, 30.0, tmp_path / "a")
+        del sample_citations["segments"]["community_spotlight"]
+        without_org = _render(chapters, sample_citations, 30.0, tmp_path / "b")
+        assert len(with_org) == len(without_org) == 1
+        # Org branch draws different content than the generic fallback slide
+        assert open(with_org[0][0], "rb").read() != open(without_org[0][0], "rb").read()
+
+    def test_meta_moment_uses_generic_slide(self, sample_citations, tmp_path):
+        chapters = [{"startTime": 0, "title": "Meta Moment"}]
+        slides = _render(chapters, sample_citations, 30.0, tmp_path)
+        assert len(slides) == 1
 
     def test_slides_are_720p_pngs(self, sample_chapters, sample_citations, tmp_path):
-        slides = vg.render_slides(sample_chapters, sample_citations, 600.0,
-                                  vg.ASSETS_DIR / "cariboo-signals.png", str(tmp_path))
+        slides = _render(sample_chapters, sample_citations, 600.0, tmp_path)
         for png, _, _ in slides:
             with Image.open(png) as img:
                 assert img.size == (vg.WIDTH, vg.HEIGHT)
 
-    def test_no_chapters_falls_back_to_single_slide(self, sample_citations, tmp_path):
-        slides = vg.render_slides([], sample_citations, 120.0,
-                                  vg.ASSETS_DIR / "cariboo-signals.png", str(tmp_path))
-        assert len(slides) == 1
-        assert slides[0][1:] == (0.0, 120.0)
+    def test_no_chapters_falls_back_to_intro_coverage(self, sample_citations, tmp_path):
+        slides = _render([], sample_citations, 120.0, tmp_path)
+        assert slides[0][1] == 0.0
+        assert slides[-1][2] == 120.0
 
     def test_missing_cover_art_tolerated(self, sample_chapters, sample_citations, tmp_path):
         slides = vg.render_slides(sample_chapters, sample_citations, 600.0,
                                   tmp_path / "nonexistent.png", str(tmp_path))
-        assert len(slides) == len(sample_chapters)
+        assert len(slides) >= len(sample_chapters)
 
     def test_badges_rendered_per_host(self, tmp_path):
         badges = vg.render_speaker_badges(str(tmp_path))

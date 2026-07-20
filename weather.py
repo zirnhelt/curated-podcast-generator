@@ -263,6 +263,43 @@ def fetch_weather():
     }
 
 
+def weather_slide_data(weather_data: dict | None) -> dict | None:
+    """Compact per-location summary for the video weather slide, or None.
+
+    Args:
+        weather_data: dict from fetch_weather(), or None
+
+    Returns:
+        {"locations": [{"name", "temp", "conditions", "high", "low"}, ...],
+         "source": "Open-Meteo"} — or None if no weather data.
+    """
+    if not weather_data:
+        return None
+
+    d = weather_data
+    locations = []
+    for name, loc in [
+        ("Horsefly Lake", d.get("horsefly")),
+        ("100 Mile House", d.get("hundred_mile")),
+        ("Williams Lake", d.get("williams_lake")),
+        ("Quesnel", d.get("quesnel")),
+        (d.get("chilcotin_town_name"), d.get("chilcotin_town")),
+    ]:
+        if not name or not loc:
+            continue
+        locations.append({
+            "name": name,
+            "temp": loc["current_temp"],
+            "conditions": _describe(loc["current_code"]),
+            "high": loc["high"],
+            "low": loc["low"],
+        })
+
+    if not locations:
+        return None
+    return {"locations": locations, "source": "Open-Meteo"}
+
+
 def format_weather_for_prompt(weather_data):
     """Format weather data as a prompt section for script generation.
 
