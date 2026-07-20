@@ -2297,6 +2297,24 @@
       "theme_day": 5,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "af628ea2",
+      "type": "feedback",
+      "message_id": "<eAGbYPrDHA3bGN2fP8ySNg@notifications.google.com>",
+      "from_address": "n***@accounts.google.com",
+      "subject": "Security alert",
+      "received_at": "2026-07-20T01:47:43+00:00",
+      "body_text": "[image: Google] New passkey added to your account youtube@cariboosignals.ca If you didn\u2019t add a passkey, someone might be using your account. Check and secure your account now. Check activity You can also see security activity at https://myaccount.google.com/notifications You received this email to let you know about important changes to your Google Account and services. \u00a9 2026 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA",
+      "extracted_urls": [
+        "https://accounts.google.com/AccountChooser?Email=youtube@cariboosignals.ca&continue=https://myaccount.google.com/alert/nt/1784512063637?rfn%3D364%26rfnc%3D1%26eid%3D-5903007800424509308%26et%3D0",
+        "https://myaccount.google.com/notifications",
+        "https://lh3.googleusercontent.com/a/ACg8ocICDoU-aZ111HAcGLs1YtwqyMZipfrhIkPV2Jh4Yvus1m4DIg=s96-c"
+      ],
+      "theme_tag": "Wild Spaces & Outdoor Life",
+      "theme_day": 4,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
