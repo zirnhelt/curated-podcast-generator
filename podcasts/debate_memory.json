@@ -1,56 +1,4 @@
 {
-  "2026-04-20": {
-    "timestamp": 1776684493.18282,
-    "date": "2026-04-20",
-    "theme": "Arts, Culture & Digital Storytelling",
-    "central_question": "How can rural Cariboo communities build lasting digital storytelling capacity that preserves cultural memory while maintaining sovereignty over their own narratives?",
-    "riley_position": "The real opportunity lies not in digitizing existing materials but in building new storytelling capacity through accessible technology and clear governance structures that communities can control themselves.",
-    "riley_key_evidence": [
-      "Mukurtu CMS has sustained community archive projects for 15+ years through granular access controls rather than flashy technology",
-      "Hardware costs for digitization and storage have dropped dramatically, making consumer-grade equipment viable for community organizations",
-      "AI tools can assist with metadata (facial recognition, transcription, tagging) but cannot generate the interpretive meaning that lived experience provides"
-    ],
-    "casey_position": "The critical missing layer is the interpretive work\u2014the contextualization of digital materials\u2014which requires pairing digitization with structured oral history collection and depends on time-sensitive knowledge from elders and community knowledge-keepers.",
-    "casey_key_evidence": [
-      "Digital files without narrative context are not meaningful archives; a folder of 10,000 JPEGs requires someone who lived the experience to provide meaning",
-      "Indigenous-led tech projects are systematically under-resourced compared to venture-funded urban AI tools, creating asymmetry in whose stories get told",
-      "DRIPA delay leaves Indigenous communities in a governance vacuum while physical cultural materials continue to deteriorate"
-    ],
-    "resolution": "Casey and Riley converged on a shared framework: community-scale memory sprints pairing digitization with recorded narration, governed locally without waiting for provincial frameworks, with equal partnership between cultural offices and libraries rather than top-down institutional models.",
-    "topics_covered": [
-      "Digitization infrastructure vs. storytelling capacity building",
-      "Cultural sovereignty and governance in digital archiving",
-      "Interpretive labor and the role of elders in meaning-making",
-      "Technology accessibility for rural communities",
-      "Institutional partnerships and power dynamics in cultural preservation"
-    ]
-  },
-  "2026-04-21": {
-    "timestamp": 1776770049.211084,
-    "date": "2026-04-21",
-    "theme": "Working Lands & Industry",
-    "central_question": "Can electric equipment effectively replace gas-powered tools in Cariboo working landscapes, and who bears the costs and risks of that transition?",
-    "riley_position": "Electric equipment is technically viable for working landscapes and can achieve lower total cost of ownership through reduced maintenance, with infrastructure solutions like solar charging stations making the transition feasible.",
-    "riley_key_evidence": [
-      "KTM Freeride E electric trail bike now street legal across all 50 US states with near-silent operation and instant torque advantages for ranching",
-      "Solar charging infrastructure at remote cabins is cost-effective precedent already deployed in Alberta and Montana ranching operations",
-      "Applied research pilots through CARA could generate evidence to inform purchasing decisions across the region"
-    ],
-    "casey_position": "While electrification may be inevitable, the transition burden falls disproportionately on individual small operators who lack capital, local repair expertise, and reference points for rural adaptation of equipment designed for affluent urban/competitive markets.",
-    "casey_key_evidence": [
-      "KTM Freeride E costs $15,000 CAD versus $7,500 for comparable gas bikes\u2014a premium difficult for family operations on thin margins",
-      "Electric drivetrain repair skills are concentrated in urban centres while rural small-engine mechanics are widely distributed",
-      "Equipment is designed for enduro racers and urban commuters, not conceived with Cariboo fence riders in mind"
-    ],
-    "resolution": "Both agreed the real problem is organizational and institutional rather than technical: the transition needs coordinated workforce development, collective structures like ranching co-ops with shared equipment depots, and decade-long funding horizons rather than annual grant cycles.",
-    "topics_covered": [
-      "Electric off-road motorcycles (KTM Freeride E) for ranch operations",
-      "Total cost of ownership and maintenance differentials between electric and gas equipment",
-      "Rural service infrastructure and field-serviceability of electric vehicles",
-      "Workforce development and skills transition for electric drivetrain repair",
-      "Collective procurement and co-operative models for equipment transition"
-    ]
-  },
   "2026-04-22": {
     "timestamp": 1776865595.087688,
     "date": "2026-04-22",
@@ -2345,6 +2293,33 @@
       "Wildfire smoke as an emerging constraint on summer dark-sky tourism",
       "Winter versus summer viability of aurora and astronomy viewing in the Cariboo",
       "Role of institutional advocacy in moving local policy agendas"
+    ]
+  },
+  "2026-07-20": {
+    "timestamp": 1784546488.595675,
+    "date": "2026-07-20",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "focus": "film-screen",
+    "central_question": "Do cheaper production tools and streaming platforms fundamentally democratize rural filmmaking, or do they simply relocate gatekeeping to algorithms and attention economies?",
+    "riley_position": "Streaming platforms have created new distribution pathways that don't require institutional backing, and rural creators can build regional audiences through owned archives and community channels without needing national algorithmic promotion.",
+    "riley_key_evidence": [
+      "Connor Ratliff built a genuine following doing video essays directly to audience with no broadcaster backing",
+      "IndigiNews ReFocus program trains Indigenous photojournalists who distribute work under their own names on their own terms",
+      "Regional audiences can be reached through community screenings and local channels without national distribution"
+    ],
+    "casey_position": "Attention economy gatekeeping has simply moved from broadcasters to algorithms; rural creators now compete against infinite machine-generated content and broadcaster-backed films with marketing budgets they can't match.",
+    "casey_key_evidence": [
+      "AI-generated songs from Suno flood feeds at volumes no individual human creator can match, drowning out small creators",
+      "Clement Virgo's 'Steal Away' gets algorithmic promotion partly because a broadcaster paid for visibility, not because algorithms are neutral arbiters",
+      "A two-hundred-person regional audience generates nearly zero revenue on streaming platforms that reward scale over specificity"
+    ],
+    "resolution": "They agreed that streaming platforms are useful as free hosting mechanisms but irrelevant as economic engines; the real gap isn't funding or gear but governance\u2014whether communities own and control archives of their own cultural content, and whether training happens collectively rather than individually.",
+    "topics_covered": [
+      "Distribution gatekeeping: broadcast era vs. algorithmic era",
+      "Economic models vs. cultural value in streaming platforms",
+      "Owned vs. platform-dependent archives for local content",
+      "Skill training as infrastructure (IndigiNews model vs. individual gear access)",
+      "Performances in the Park as a concrete test case for documentation"
     ]
   }
 }
