@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "AI",
       "[TechRadar] Over 14 million login credentials leaked from si",
       "[TechRadar] Google says Android's built-in earthquake warnin",
       "Engadget review recap: MSI Claw 8 EX AI+, Sony A7R VI, Ray-B",
@@ -10,7 +9,8 @@
       "[TechRadar] Fires linked to solar panels force Suffolk counc",
       "[TechCrunch] Station F ramps up as a launchpad for Europe\u2019s ",
       "[TechRadar] Web hosting giant claims you can now sell online",
-      "[TechCrunch] US government says it got hacked \u2014 again"
+      "[TechCrunch] US government says it got hacked \u2014 again",
+      "[TechCrunch] Nonprofit Current AI is racing to build the Wor"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -100,9 +100,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-07-05",
-        "clue": "tech-optimism:~ \u2014 Acknowledged specimen backlogs undermine data-pipeline optimism",
-        "occurrences": 1
+        "date": "2026-07-20",
+        "clue": "tech-optimism:~ \u2014 Connor Ratliff example adds nuance to access argument",
+        "occurrences": 2
       },
       {
         "date": "2026-07-11",
@@ -117,11 +117,6 @@
       {
         "date": "2026-07-18",
         "clue": "evidence-bar:+ \u2014 Shifted from process critique to traceability as measurable test",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-07-19",
-        "clue": "structural-lens:+ \u2014 Shifted from individual resource to governance mechanism",
         "occurrences": 2
       },
       {
@@ -391,6 +386,16 @@
       {
         "date": "2026-07-19",
         "clue": "rural-context:+ \u2014 Deepened emphasis on cell coverage gaps as real constraint",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-07-20",
+        "clue": "pilot-skepticism:x \u2014 Conceded regional reach viable without national distribution needs",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-07-20",
+        "clue": "structural-lens:+ \u2014 Moved conversation from funding gaps to ownership/governance questions",
         "occurrences": 1
       }
     ],
