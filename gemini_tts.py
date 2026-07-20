@@ -37,13 +37,22 @@ GEMINI_TTS_URL = "https://generativelanguage.googleapis.com/v1beta/models/{model
 # generateContent call. Without a pinned seed/temperature, every call samples
 # delivery independently and the hosts' voices drift across sections. A fixed
 # seed plus low temperature keeps timbre/pacing consistent call-to-call.
+# Temperature is kept tight (favoring determinism over prosodic variety) since
+# call-to-call drift is the dominant voice-consistency risk in this pipeline.
 GEMINI_TTS_SEED = int(os.getenv("GEMINI_TTS_SEED", "42"))
-GEMINI_TTS_TEMPERATURE = float(os.getenv("GEMINI_TTS_TEMPERATURE", "0.6"))
+GEMINI_TTS_TEMPERATURE = float(os.getenv("GEMINI_TTS_TEMPERATURE", "0.35"))
 
 # Per-request transcript budget (chars). TTS models have a small context and a
-# capped audio output length; ~6 000 chars ≈ 6–7 min of speech stays safely
-# under both. Longer sections are split at speaker-turn boundaries.
-TRANSCRIPT_CHAR_LIMIT = 6_000
+# capped audio output length; ~8 500 chars ≈ 8–9 min of speech stays safely
+# under both, while cutting the needless extra chunk (and extra independent
+# sampling draw) that 6 000 caused for sections just over that mark. Longer
+# sections are split at speaker-turn boundaries.
+TRANSCRIPT_CHAR_LIMIT = 8_500
+
+# Chars of the previous chunk/section's transcript carried forward as
+# already-spoken context so the next call continues in the same voice
+# instead of resampling delivery from a cold start.
+CONTEXT_TAIL_CHARS = 400
 
 # Fail-fast ceiling — no single section should ever approach this; hitting it
 # means a parsing bug upstream, not a long section. Raise instead of spending.
@@ -87,7 +96,7 @@ def build_transcript(segments: list[dict]) -> str:
     return "\n".join(lines)
 
 
-def _build_payload(segments: list[dict]) -> dict:
+def _build_payload(segments: list[dict], context_tail: str = "") -> dict:
     """Build the generateContent request body for a section's segments."""
     speakers = list(dict.fromkeys(seg["speaker"] for seg in segments))
     if len(speakers) > 2:
@@ -96,8 +105,14 @@ def _build_payload(segments: list[dict]) -> dict:
     transcript = build_transcript(segments)
     style = _style_prompt()
     names = " and ".join(_display_name(s) for s in speakers)
+    context = (
+        f"CONTEXT — already spoken immediately before this, do not repeat, "
+        f"continue in the exact same voice and energy:\n{context_tail}\n\n"
+        if context_tail else ""
+    )
     prompt = (
         (style + "\n\n" if style else "")
+        + context
         + f"TTS the following conversation between {names}:\n{transcript}"
     )
 
@@ -147,7 +162,7 @@ def _log_speech_config(speech_config: dict) -> None:
         print(f"  [gemini-tts] single-speaker: {voice}")
 
 
-def _synthesize_chunk(segments: list[dict]) -> tuple[bytes, int]:
+def _synthesize_chunk(segments: list[dict], context_tail: str = "") -> tuple[bytes, int]:
     """One generateContent call. Returns (pcm_bytes, sample_rate).
 
     Retries transient failures (429/5xx/timeouts) twice with backoff.
@@ -156,7 +171,7 @@ def _synthesize_chunk(segments: list[dict]) -> tuple[bytes, int]:
     if not api_key:
         raise ValueError("GEMINI_API_KEY not set")
 
-    payload = _build_payload(segments)
+    payload = _build_payload(segments, context_tail)
     _log_speech_config(payload["generationConfig"]["speechConfig"])
     prompt_chars = len(payload["contents"][0]["parts"][0]["text"])
     if prompt_chars > MAX_REQUEST_CHARS:
@@ -220,20 +235,28 @@ def _duration_check(pcm: bytes, sample_rate: int, segments: list[dict]) -> None:
         )
 
 
-def generate_gemini_tts_for_section(segments: list[dict], output_file: str | Path) -> None:
+def generate_gemini_tts_for_section(
+    segments: list[dict], output_file: str | Path, context_tail: str = ""
+) -> str:
     """High-level entry: transcript build → synthesize → write WAV to output_file.
 
     Handles transcript character-limit chunking automatically; chunks are
-    concatenated with a short silence between them.
+    concatenated with a short silence between them. `context_tail` carries
+    already-spoken text from the previous section into the first chunk here,
+    so delivery continues rather than resampling cold; each subsequent chunk
+    gets the previous chunk's tail the same way. Returns this section's own
+    trailing transcript text for the caller to pass into the *next* section.
     """
     chunks = _split_segments_by_char_limit(segments, limit=TRANSCRIPT_CHAR_LIMIT)
 
     pcm_parts: list[bytes] = []
     sample_rate = DEFAULT_SAMPLE_RATE
+    tail = context_tail
     for chunk in chunks:
-        pcm, sample_rate = _synthesize_chunk(chunk)
+        pcm, sample_rate = _synthesize_chunk(chunk, tail)
         _duration_check(pcm, sample_rate, chunk)
         pcm_parts.append(pcm)
+        tail = build_transcript(chunk)[-CONTEXT_TAIL_CHARS:]
 
     gap = b"\x00" * int(sample_rate * SAMPLE_WIDTH_BYTES * INTER_CHUNK_GAP_MS / 1000)
     audio = gap.join(pcm_parts)
@@ -243,3 +266,5 @@ def generate_gemini_tts_for_section(segments: list[dict], output_file: str | Pat
         wav.setsampwidth(SAMPLE_WIDTH_BYTES)
         wav.setframerate(sample_rate)
         wav.writeframes(audio)
+
+    return tail
