@@ -37,6 +37,8 @@ ASSETS_DIR = Path(__file__).parent
 WIDTH, HEIGHT = 1280, 720
 FPS = 24
 WAVE_HEIGHT = 100
+# Floor for per-slide screen time when a chapter is subdivided into N slides
+MIN_SLIDE_S = 5.0
 BADGE_MARGIN_X = 48
 # Badge sits just above the waveform strip
 BADGE_Y = HEIGHT - WAVE_HEIGHT - 88
@@ -173,9 +175,39 @@ def _new_slide(cover: Image.Image | None, kicker: str, accent: tuple) -> tuple:
     return img, draw, text_x
 
 
+def _article_slide(cover: Image.Image | None, kicker: str, accent: tuple, art: dict) -> Image.Image:
+    """One full slide for a single cited article: headline, source, summary, URL."""
+    img, draw, x = _new_slide(cover, kicker, accent)
+    font_h2 = _load_font(34, bold=True)
+    font_body = _load_font(28)
+    font_small = _load_font(22)
+    max_w = WIDTH - x - 80
+    y = 200
+    for line in _wrap_text(draw, art.get("title", ""), font_h2, max_w, max_lines=3):
+        draw.text((x, y), line, font=font_h2, fill=FG_COLOR)
+        y += 44
+    if art.get("source"):
+        draw.text((x, y), f"— {art['source']}", font=font_small, fill=MUTED_COLOR)
+        y += 34
+    y += 12
+    for line in _wrap_text(draw, art.get("summary", ""), font_body, max_w, max_lines=4):
+        draw.text((x, y), line, font=font_body, fill=MUTED_COLOR)
+        y += 38
+    url = art.get("url", "")
+    if url:
+        # URLs have no spaces, so word-wrap can't break them — truncate instead
+        if draw.textlength(url, font=font_small) > max_w:
+            while url and draw.textlength(url + "…", font=font_small) > max_w:
+                url = url[:-1]
+            url += "…"
+        draw.text((x, HEIGHT - WAVE_HEIGHT - 40), url, font=font_small, fill=MUTED_COLOR)
+    return img
+
+
 def render_slides(chapters: list, citations: dict, audio_dur_s: float,
                   cover_path: Path, outdir: str) -> list:
-    """Render one PNG per chapter. Returns [(png_path, start_s, end_s), ...]."""
+    """Render one or more PNGs per chapter (weather + per-article slides
+    subdivide the chapter span). Returns [(png_path, start_s, end_s), ...]."""
     podcast_cfg = load_podcast_config()
     title = podcast_cfg.get("title", "Cariboo Signals")
     tagline = podcast_cfg.get("tagline", "")
@@ -206,6 +238,9 @@ def render_slides(chapters: list, citations: dict, audio_dur_s: float,
         if end <= start:
             continue
         section = chapter["title"]
+        # Max slides this chapter's span can hold at MIN_SLIDE_S each
+        budget = max(1, int((end - start) // MIN_SLIDE_S))
+        imgs: list = []
         img, draw, x = _new_slide(cover, section, accent)
         y = 200
 
@@ -223,11 +258,32 @@ def render_slides(chapters: list, citations: dict, audio_dur_s: float,
                 y += 48
             if formatted_date:
                 draw.text((x, y), formatted_date, font=font_body, fill=MUTED_COLOR)
+            imgs.append(img)
+
+            # Weather is spoken during the welcome — give it the back half of
+            # the Introduction span when the citations carry slide data.
+            weather = segments.get("weather") or {}
+            if section == "Introduction" and weather.get("locations") and budget >= 2:
+                wimg, wdraw, wx = _new_slide(cover, weather.get("title", "Weather Check"), accent)
+                wy = 200
+                wdraw.text((wx, wy), "Cariboo Weather", font=font_h2, fill=FG_COLOR)
+                wy += 58
+                for loc in weather["locations"][:6]:
+                    line = f"{loc['name']} — {loc['temp']}°, {loc['conditions']}"
+                    for wrapped in _wrap_text(wdraw, line, font_body, WIDTH - wx - 240, max_lines=1):
+                        wdraw.text((wx, wy), wrapped, font=font_body, fill=FG_COLOR)
+                    wdraw.text((WIDTH - 210, wy + 4), f"H {loc['high']} / L {loc['low']}",
+                               font=font_small, fill=MUTED_COLOR)
+                    wy += 44
+                wdraw.text((wx, HEIGHT - WAVE_HEIGHT - 40),
+                           f"Weather data by {weather.get('source', 'Open-Meteo')}",
+                           font=font_small, fill=MUTED_COLOR)
+                imgs.append(wimg)
 
         elif section == "News Roundup":
             draw.text((x, y), "Today's stories", font=font_h2, fill=FG_COLOR)
             y += 58
-            articles = segments.get("news_roundup", {}).get("articles", [])[:5]
+            articles = segments.get("news_roundup", {}).get("articles", [])
             for art in articles:
                 headline = art.get("title", "")
                 source = art.get("source", "")
@@ -242,6 +298,10 @@ def render_slides(chapters: list, citations: dict, audio_dur_s: float,
                 y += 10
                 if y > HEIGHT - WAVE_HEIGHT - 90:
                     break
+            imgs.append(img)
+            for idx, art in enumerate(articles[:budget - 1], 1):
+                imgs.append(_article_slide(
+                    cover, f"News Roundup · {idx}/{len(articles)}", accent, art))
 
         elif section == "Deep Dive":
             dd = segments.get("deep_dive", {})
@@ -265,6 +325,27 @@ def render_slides(chapters: list, citations: dict, audio_dur_s: float,
                     draw.text((x, y), f"— {art['source']}", font=font_small, fill=MUTED_COLOR)
                     y += 30
                 y += 8
+            imgs.append(img)
+            for idx, art in enumerate(arts[:budget - 1], 1):
+                imgs.append(_article_slide(
+                    cover, f"Deep Dive · {idx}/{len(arts)}", accent, art))
+
+        elif section == "Community Spotlight" and segments.get("community_spotlight", {}).get("org_name"):
+            spot = segments["community_spotlight"]
+            for line in _wrap_text(draw, spot["org_name"], font_h1, WIDTH - x - 80, max_lines=2):
+                draw.text((x, y), line, font=font_h1, fill=FG_COLOR)
+                y += 64
+            y += 12
+            for line in _wrap_text(draw, spot.get("description", ""), font_body, WIDTH - x - 80, max_lines=6):
+                draw.text((x, y), line, font=font_body, fill=FG_COLOR)
+                y += 38
+            y += 16
+            if spot.get("event_name"):
+                draw.text((x, y), spot["event_name"], font=font_body, fill=MUTED_COLOR)
+                y += 40
+            if spot.get("website"):
+                draw.text((x, y), spot["website"], font=font_small, fill=accent)
+            imgs.append(img)
 
         elif section == "Credits":
             draw.text((x, y), title, font=font_h2, fill=FG_COLOR)
@@ -279,16 +360,23 @@ def render_slides(chapters: list, citations: dict, audio_dur_s: float,
                     for wrapped in _wrap_text(draw, line, font_body, WIDTH - x - 80, max_lines=2):
                         draw.text((x, y), wrapped, font=font_body, fill=MUTED_COLOR)
                         y += 40
+            imgs.append(img)
 
-        else:  # Meta Moment, Community Spotlight, anything new
+        else:  # Meta Moment, Spotlight without org data, anything new
             draw.text((x, y), section, font=font_h1, fill=FG_COLOR)
             y += 80
             if theme:
                 draw.text((x, y), theme, font=font_body, fill=MUTED_COLOR)
+            imgs.append(img)
 
-        png = os.path.join(outdir, f"slide_{i:02d}.png")
-        img.save(png)
-        slides.append((png, start, end))
+        # Subdivide the chapter span evenly across its slides
+        n = len(imgs)
+        for j, im in enumerate(imgs):
+            s = start + (end - start) * j / n
+            e = start + (end - start) * (j + 1) / n
+            png = os.path.join(outdir, f"slide_{i:02d}_{j:02d}.png")
+            im.save(png)
+            slides.append((png, s, e))
     return slides
 
 

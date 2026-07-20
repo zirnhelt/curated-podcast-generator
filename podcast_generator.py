@@ -65,7 +65,7 @@ import cohere_enrichment
 from psa_selector import select_psa
 
 # Import weather and ambient audio modules
-from weather import fetch_weather, format_weather_for_prompt
+from weather import fetch_weather, format_weather_for_prompt, weather_slide_data
 from ambient import get_ambient_transition
 
 # Reuse the git-log plumbing already built for the Sunday quality-review job
@@ -4318,7 +4318,7 @@ def score_script(script_text):
     }
 
 
-def generate_citations_file(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, quality=None, brave_used=False, weather_used=False, cohere_used=False):
+def generate_citations_file(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, quality=None, brave_used=False, weather_used=False, cohere_used=False, weather_data=None):
     """Generate citations file for the episode.
 
     When *script* is provided (the finalized, polished script), each citation
@@ -4374,6 +4374,21 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
         # text_to_speech resolves to the provider that actually rendered this episode
         "credits": {**CONFIG['credits']['structured'], "text_to_speech": get_tts_credit()}
     }
+
+    # Video-slide data: weather + community spotlight ride in citations so the
+    # renderer can show them; absent keys degrade to plain slides.
+    slide_weather = weather_slide_data(weather_data)
+    if slide_weather:
+        citations_data["segments"]["weather"] = {"title": "Weather Check", **slide_weather}
+    if psa_info and psa_info.get("org_name"):
+        citations_data["segments"]["community_spotlight"] = {
+            "title": "Community Spotlight",
+            "org_name": psa_info["org_name"],
+            "description": psa_info.get("org_description") or "",
+            "website": psa_info.get("org_website") or "",
+            "psa_angle": psa_info.get("psa_angle") or "",
+            "event_name": psa_info.get("event_name") or "",
+        }
 
     def _build_citation(article, discussed):
         citation = {
@@ -7243,6 +7258,7 @@ def main():
             brave_used=brave_used,
             weather_used=bool(weather_data),
             cohere_used=cohere_enrichment.COHERE_ENABLED,
+            weather_data=weather_data,
         )
 
         # Thursday: brief spoken acknowledgment that the show hasn't yet spoken

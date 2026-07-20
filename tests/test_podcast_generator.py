@@ -1743,3 +1743,72 @@ class TestCurateRoundupPool:
         kept, dropped = _curate_roundup_pool(_roundup_fixture_articles(), _FAKE_THEME, 3)
         assert kept[-1]["title"] == "Bonus pick"
         assert all(not a.get("_is_bonus") for a in dropped)
+
+
+class TestGenerateCitationsFileSlideSegments:
+    def _generate(self, monkeypatch, tmp_path, **kwargs):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        path = pg.generate_citations_file([], [], "Working Lands & Industry", **kwargs)
+        assert path is not None
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+
+    @staticmethod
+    def _weather_data():
+        loc = {
+            "current_temp": 15, "current_code": 2, "current_wind": 5,
+            "high": 20, "low": 7, "precip": 0,
+            "daily_code": 1, "tomorrow_code": 1, "max_wind": 10,
+        }
+        return {
+            "horsefly": loc, "hundred_mile": loc, "williams_lake": None,
+            "quesnel": loc, "chilcotin_town": loc,
+            "chilcotin_town_name": "Tatla Lake", "summary": "unused",
+        }
+
+    def test_weather_and_spotlight_segments_written(self, monkeypatch, tmp_path):
+        psa_info = {
+            "org_id": "wl-women-centre",
+            "org_name": "Williams Lake Women's Centre",
+            "org_short_name": "Women's Centre",
+            "org_description": "Drop-in support and advocacy for women in the Cariboo.",
+            "org_website": "https://example.org",
+            "psa_angle": "Reach out if you need support.",
+            "source": "rotation",
+        }
+        data = self._generate(monkeypatch, tmp_path,
+                              weather_data=self._weather_data(), psa_info=psa_info)
+
+        weather = data["segments"]["weather"]
+        assert weather["title"] == "Weather Check"
+        assert weather["source"] == "Open-Meteo"
+        names = [loc["name"] for loc in weather["locations"]]
+        assert names == ["Horsefly Lake", "100 Mile House", "Quesnel", "Tatla Lake"]
+
+        spot = data["segments"]["community_spotlight"]
+        assert spot["org_name"] == "Williams Lake Women's Centre"
+        assert spot["description"] == "Drop-in support and advocacy for women in the Cariboo."
+        assert spot["website"] == "https://example.org"
+        # Rotation PSAs carry no event_name — persisted as empty string
+        assert spot["event_name"] == ""
+
+    def test_segments_absent_without_data(self, monkeypatch, tmp_path):
+        data = self._generate(monkeypatch, tmp_path)
+        assert "weather" not in data["segments"]
+        assert "community_spotlight" not in data["segments"]
+
+    def test_no_spotlight_when_psa_has_no_org(self, monkeypatch, tmp_path):
+        # select_psa can return org_name=None when the roster is empty
+        data = self._generate(monkeypatch, tmp_path,
+                              psa_info={"org_name": None, "psa_angle": None})
+        assert "community_spotlight" not in data["segments"]
+
+    def test_new_segments_carry_no_articles_key(self, monkeypatch, tmp_path):
+        # dedup_articles iterates segments with .get('articles', []) — the new
+        # segments must not look like article lists
+        data = self._generate(monkeypatch, tmp_path,
+                              weather_data=self._weather_data(),
+                              psa_info={"org_name": "Org", "org_description": "d"})
+        for key in ("weather", "community_spotlight"):
+            assert "articles" not in data["segments"][key]
