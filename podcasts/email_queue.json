@@ -2258,6 +2258,45 @@
       "theme_day": 0,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "3560fc9b",
+      "type": "feedback",
+      "message_id": "<ead73e99a6d9a0464511aaa93b2f329503699c01-20113407-111430648@google.com>",
+      "from_address": "n***@google.com",
+      "subject": "Cariboo Signals, finish setting up your new Google Account",
+      "received_at": "2026-07-19T17:36:36-07:00",
+      "body_text": "Hi Cariboo Signals, Welcome to Google. Your new account comes with access to Google products, apps, and services. Here are a few tips to get you started. Get the most out of your Google Account We'll send you personalized tips, news and recommendations from Google. Yes, keep me updated Stay in the know with the Google app Find quick answers, explore your interests, and stay up to date. Try it More from Google Discover the latest apps from Google. For Android For iOS Confirm your options are righ",
+      "extracted_urls": [
+        "https://c.gle/AKMee0fWN6zFo0F3mpUfO7uOI28ZjJbiqBFt20DOmWOBZD5bo-VjpMJku5dpMDj7duCHDTQ8CcvZH6KgyYI2oMKmE2iKw1oXNs7JQrbi3198YgAYt31aBVaypx4pvhKU1QSi8-DNIgPBLCDH9YN3yIjgwDbqRk22gw-d2Vzkq72ebLYHH8o-ber4l1IkX9R8tENhyzaggk1QZRKM6SL3gxZQKTcanggJJR-IunXQXwDpjHhG-Mg8te8qsEyqPsv9V5kpWo968cARBs-hEtQLBMV_RlZ-dSwWrblrl6xMDJW5K-6Wnpf3-0ffRD_GDSdcDBAsHn7zsTWRk2jrSXDHR2Uzc1OljF8EvX5iukNEqZ-uL5cELeuQQzkQIkNRpxy9MeznGA4gndqQvKx7tUggtZALCPp52m-h6gfwcJOQe-7LRYfzslybW7GeVuHRUDYsY_TY-JUJ5yapJem3CDYa5puissOTl9RlwPf9pYFvDmdYOLK_1o0McJ6rtp0dOKAZpnMHEFA55cVZ1Yhi0uQ-C3pKzyJZP-zOrBBure6Ll6WR0rDSq1LX5rgqSShv",
+        "https://c.gle/AKMee0dMvApzHxRWyc1BJ2qBq9SnqQSFKzzqj5WE-ZgiRf8RpqVv1isVrmz24zd9oYHjCU7aU785MgQ4kDFB92WyhGOmEL4QTf_QpWDuwnSeTUj4UIjQVtO9B9oDhYbtJOmwi_hwkm5fwEGmBQ0CFRefF2ItvqdHsEerxZaM4MLplovu4ehzT-Wn5USnRi-8oP8gQ2i4bVxhbVjwnG9b4FoG98gh4RCQEHlOmb-CmMqHoGAzn6e7_2fBdxLKuaxLs5xQdlyhByu4Ys-0CaIedsGhD0g75EsJk31NJEs",
+        "https://c.gle/AKMee0dMUmyiJJpevsYdVTe5BcBgLpRb-_3toEWOqwutBSgIIw1dJHDN4IvsmpzwUXvIQ71iKNCWa_AoAjlw5SKPbXQFPCVKkpkLuDNWWuq1Nb-ilRsIx0JJII_M6pO1hmNRa3z9Cpbzl0-5liM_HWAx9qT3BVPhATJfd_ZysfO3zqgtGcnMuk4J7jqHh6UCN1pgUexW_tlskefxYCsfHr_aO7cY4Qq11oIK1OFF31ALMowz4GN7xfh0DrGJeWDtV-ibVC6NRhmzeyKJ1CZ2-lC6hJ3qSuvlOxtpJCIhGdxFuVUFUrgkEGWSOwhMINMKtlyB3B6xJCseKy4Gx3ZSp-znwxQUdC5Ncf1wBQ85I7-mi9HgDZq7hZsoGIwVdI_WGfJSXBWSJkuNO6H-oHVDlDGucgSOq5qZdZdfX8gihcDU6_J1k_bHRKFGPd8LvHQ_0UdgGB4mJ9sntkOwibj617bHZ8O0l0_DlOv5VU3LpUZVt_BQl_K5w09O84mW6YURmR18qFRt7_YqHyXtSLq25iEABESJDjCqpIwDnXMxvHKKETsOMCZbi6QmugBC50kOCX9kOCE6",
+        "https://c.gle/AKMee0e9x6J3SC5NmgNB2zGHJq8TSpi4a_lEzaabQ_4f2GFeKFKNU9Tn8rMCaj5mvGVIrwD2LhSAiXHqqJoRNo0pfHuEtshory2yBLjxc_IGcvPvjSnOeFL6Sen_GsAqhkM-gzP3cD6YBvTnqtMPnnBMwxDfaUwHXIv_g9g-PI25yoWi6jM7-PgTY6jel1p1dKM-eQ0u_vWOHdeoTPs7uOGeQEiwfUj_CnZoumT1PuYf21aej04rcwj07oEQwABgcLUVOuYA3f8UU2p_y_nRY_dCKLL9jykVFRUFDjKDuNHEhYNi47tKVoUVAok",
+        "https://c.gle/AKMee0fpMtNOaA7IhnkJBrpTk1SunHfapnMpMNMVEtnZkMpqJTnFrQCtF7GQJpzMqu7XnMmSdHXZPAIvVkBCvLoBZ18o40spS0fGbM0KXEtIqU-xYdoHuVVtQ41NO5_DbssDhLs4KHuDHfd3yqPO9hcHIul9HSkeTsOjocoKLsBBKiz1UqQP4SxIFNRGgzcOn-fm8C0FJ7Z8T1_UAzJjeN6ZljyYMow510cpGCo0puDDfFFRjTFSeTQIrvbDUfuP2Q",
+        "https://c.gle/AKMee0eaxxGl67f9vRvNZJq3F6ZJ9tM4JM1Tm8WBccFykq_NzPvH51VNvA0dVY74vFEbxGgM72qFcu1SfBLPnDtDrfxAazCvU7N8SNFsikmkwLUxOQ9qj5XLpXmppaL4WH6o-r4Lkm6_wnbkm6Dp30EtYdZ8_mAs3HKNIILIyPTEpFywNPORFVaVByfeuuyyVyO43pqkBVQAmzi82xmtQ6wsFTy35Q",
+        "https://c.gle/AKMee0ej9KZE3KiJLhG8T8DLPl8uM5tPtcmi7G_-8Kk4oVsxfLAmw8aMLoa-26eUTSYNTr5u0tJ8-gpUo22yHi7t88hV6b03teSMrLtMEOhKMnNaMXtur60fs31PKEb2ztJW8FNJ7-HDyEXbFzuKCfjqY1Rx8OTi7iet77cOviAJ3XXgcC2ailk9k_n3LF9gmr5-mL2p_QuLoozHV4gKLa50LM51vd6ta8KWXA",
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd",
+        "http://www.w3.org/1999/xhtml",
+        "https://fonts.gstatic.com/ea/notonaskharabic/v4/NotoNaskhArabic-Regular.eot"
+      ],
+      "theme_tag": "Cariboo Local Affairs",
+      "theme_day": 5,
+      "status": "pending",
+      "used_at": null
+    },
+    {
+      "id": "956d1baa",
+      "type": "feedback",
+      "message_id": "<autogen-java-d41ed09d-d52a-4f4b-b849-6c84743b7500@google.com>",
+      "from_address": "n***@google.com",
+      "subject": "Verify your email address",
+      "received_at": "2026-07-20T00:30:32+00:00",
+      "body_text": "Verify this email is yours youtube@cariboosignals.ca This email address was recently entered to verify your email address. You can use this code to verify that this email belongs to you. 295623 If this wasn't you, someone may have mistyped their email address. Keep this code to yourself, and no other action is needed at this moment. The Google Accounts team You received this email to let you know about important changes to your Google Account and services. \u00a9 2026 Google Inc.,1600 Amphitheatre Pa",
+      "extracted_urls": [],
+      "theme_tag": "Cariboo Local Affairs",
+      "theme_day": 5,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
