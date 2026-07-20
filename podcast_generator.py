@@ -353,6 +353,8 @@ OUTRO_MUSIC = SCRIPT_DIR / "cariboo-signals-outro.mp3"
 # Audio normalization targets (dBFS)
 TARGET_SPEECH_DBFS = -20.0  # Speech louder and clear
 TARGET_MUSIC_DBFS = -28.0   # Music ducked beneath speech
+# Intro theme runs ~10% louder (+1.5 dB) than other music to sit closer to voice level
+TARGET_INTRO_MUSIC_DBFS = -26.5
 
 # Short fade applied to the end of each speech section before the ambient transition gap.
 # Prevents a click/pop caused by TTS voices ending on a non-zero sample when silence follows.
@@ -5533,7 +5535,7 @@ def _generate_parallel_azure_audio(segments, base_output_filename, theme_name=No
     t0 = time.time()
 
     try:
-        intro_music    = normalize_segment(AudioSegment.from_mp3(str(INTRO_MUSIC)),    TARGET_MUSIC_DBFS)
+        intro_music    = normalize_segment(AudioSegment.from_mp3(str(INTRO_MUSIC)),    TARGET_INTRO_MUSIC_DBFS)
         intro_music    = intro_music.fade_out(800)
         interval_music = normalize_segment(AudioSegment.from_mp3(str(INTERVAL_MUSIC)), TARGET_MUSIC_DBFS)
         interval_music = interval_music[:INTERVAL_MUSIC_DURATION_MS].fade_out(INTERVAL_FADE_OUT_MS)
@@ -5657,8 +5659,8 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                 raise FileNotFoundError(f"Music file missing: {music_path}")
             print(f"   ✅ Found: {music_path} ({music_path.stat().st_size} bytes)")
 
-        # Load and normalize music to target level (ducked below speech)
-        intro_music    = normalize_segment(AudioSegment.from_mp3(str(INTRO_MUSIC)),    TARGET_MUSIC_DBFS)
+        # Load and normalize music to target level (ducked below speech; intro runs hotter)
+        intro_music    = normalize_segment(AudioSegment.from_mp3(str(INTRO_MUSIC)),    TARGET_INTRO_MUSIC_DBFS)
         intro_music    = intro_music.fade_out(800)  # guarantee a fading tail for the speech overlap
         interval_music = normalize_segment(AudioSegment.from_mp3(str(INTERVAL_MUSIC)), TARGET_MUSIC_DBFS)
         interval_music = interval_music[:INTERVAL_MUSIC_DURATION_MS].fade_out(INTERVAL_FADE_OUT_MS)
