@@ -69,6 +69,15 @@ class TestBuildPayload:
         assert cfg["seed"] == gemini_tts.GEMINI_TTS_SEED
         assert cfg["temperature"] == gemini_tts.GEMINI_TTS_TEMPERATURE
 
+    def test_no_context_block_by_default(self):
+        prompt = _build_payload(SEGS)["contents"][0]["parts"][0]["text"]
+        assert "CONTEXT" not in prompt
+
+    def test_context_tail_prepended_before_transcript(self):
+        prompt = _build_payload(SEGS, context_tail="Casey: ...earlier line.")["contents"][0]["parts"][0]["text"]
+        assert "already spoken" in prompt
+        assert prompt.index("earlier line") < prompt.index("Riley: ")
+
 
 class TestSynthesizeGuards:
     def test_missing_api_key_raises(self, monkeypatch):
@@ -91,7 +100,7 @@ class TestSectionGeneration:
     def test_writes_wav_and_chunks_long_sections(self, monkeypatch, tmp_path):
         calls = []
 
-        def fake_synthesize(chunk):
+        def fake_synthesize(chunk, context_tail=""):
             calls.append(chunk)
             return b"\x00\x00" * 2400, 24_000  # 100 ms of silence
 
@@ -114,6 +123,33 @@ class TestSectionGeneration:
             assert wav.getsampwidth() == 2
             assert wav.getframerate() == 24_000
             assert wav.getnframes() > 0
+
+    def test_context_tail_threads_across_chunks_and_sections(self, monkeypatch, tmp_path):
+        """Each chunk after the first gets the previous chunk's transcript tail,
+        the first chunk gets the caller-supplied context_tail, and the section's
+        own trailing transcript is returned for the next section to use."""
+        received_tails = []
+
+        def fake_synthesize(chunk, context_tail=""):
+            received_tails.append(context_tail)
+            return b"\x00\x00" * 2400, 24_000
+
+        monkeypatch.setattr(gemini_tts, "_synthesize_chunk", fake_synthesize)
+
+        long_text = "word " * 400
+        segments = [
+            {"speaker": "riley" if i % 2 == 0 else "casey", "text": long_text, "gap_ms": None}
+            for i in range(6)
+        ]
+
+        out = tmp_path / "section.wav"
+        returned_tail = generate_gemini_tts_for_section(segments, out, context_tail="prior section context")
+
+        assert len(received_tails) > 1
+        assert received_tails[0] == "prior section context"
+        # Every later chunk is primed with non-empty context from the one before it
+        assert all(t for t in received_tails[1:])
+        assert returned_tail and len(returned_tail) <= gemini_tts.CONTEXT_TAIL_CHARS
 
 
 class TestEvaluateScriptLoader:

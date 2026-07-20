@@ -5657,6 +5657,10 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
 
         with tempfile.TemporaryDirectory() as tmpdir:
             combined = AudioSegment.empty()
+            # Trailing transcript text from the last Gemini section render, carried
+            # into the next section's call as already-spoken context so delivery
+            # continues instead of resampling cold at each section boundary.
+            gemini_context_tail = ""
 
             def _render_section(seg_list, label, prefix, overlap_ms=0):
                 """Render a list of parsed segments into combined audio.
@@ -5664,22 +5668,26 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                 overlap_ms > 0 starts the section's speech that far before the
                 current tail of *combined* ends (talking over the music fade).
                 """
-                nonlocal combined
+                nonlocal combined, gemini_context_tail
                 print(f"  {label}")
 
                 provider = get_active_tts_provider()
                 if provider in ("azure", "gemini"):
                     # One whole-section synthesis call for coherent cross-speaker prosody
-                    synth_fn, provider_label = {
-                        "azure": (generate_azure_tts_for_section, "Azure Multi-Talker"),
-                        "gemini": (generate_gemini_tts_for_section, "Gemini multi-speaker"),
+                    provider_label = {
+                        "azure": "Azure Multi-Talker",
+                        "gemini": "Gemini multi-speaker",
                     }[provider]
                     section_wav = os.path.join(tmpdir, f"{prefix}_{provider}.wav")
                     total_chars = sum(len(s['text']) for s in seg_list)
                     print(f"    {provider_label}: {len(seg_list)} turns, {total_chars} chars")
                     if provider == "gemini":
                         _log_api_call("gemini-tts", "chars", total_chars)
-                    synth_fn(seg_list, section_wav)
+                        gemini_context_tail = generate_gemini_tts_for_section(
+                            seg_list, section_wav, gemini_context_tail
+                        )
+                    else:
+                        generate_azure_tts_for_section(seg_list, section_wav)
                     section_audio = normalize_segment(
                         trim_tts_silence(AudioSegment.from_file(section_wav, format="wav")),
                         TARGET_SPEECH_DBFS,
@@ -5805,13 +5813,12 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
             try:
                 _credits_provider = get_active_tts_provider()
                 if _credits_provider in ("azure", "gemini"):
-                    _credits_section_fn = (generate_azure_tts_for_section if _credits_provider == "azure"
-                                           else generate_gemini_tts_for_section)
                     credits_wav = os.path.join(tmpdir, "credits.wav")
-                    _credits_section_fn(
-                        [{"speaker": "riley", "text": credits_text, "gap_ms": None}],
-                        credits_wav,
-                    )
+                    credits_segments = [{"speaker": "riley", "text": credits_text, "gap_ms": None}]
+                    if _credits_provider == "gemini":
+                        generate_gemini_tts_for_section(credits_segments, credits_wav, gemini_context_tail)
+                    else:
+                        generate_azure_tts_for_section(credits_segments, credits_wav)
                     credits_audio = normalize_segment(
                         trim_tts_silence(AudioSegment.from_file(credits_wav, format="wav")),
                         TARGET_SPEECH_DBFS,
