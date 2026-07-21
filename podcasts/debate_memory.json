@@ -2321,5 +2321,32 @@
       "Skill training as infrastructure (IndigiNews model vs. individual gear access)",
       "Performances in the Park as a concrete test case for documentation"
     ]
+  },
+  "2026-07-21": {
+    "timestamp": 1784630659.719428,
+    "date": "2026-07-21",
+    "theme": "Working Lands & Industry",
+    "focus": "agriculture-ranching",
+    "central_question": "Can regenerative agriculture frameworks avoid repeating the safety-net's failure of rewarding land ownership over active practice, and does the Cariboo have the institutional capacity to verify and implement them?",
+    "riley_position": "Regenerative frameworks can work because they tie payments to documented ongoing practice change rather than passive ownership, and carbon-credit protocols already operating in Alberta prove the model is viable and improving rapidly.",
+    "riley_key_evidence": [
+      "Carbon markets tied to improved grazing management already operating commercially in Alberta and Saskatchewan with verified protocols and registered credits",
+      "Alberta's soil carbon offset protocols use standardized sampling kits that don't require specialized expertise, with regional producer associations training technicians to cover whole districts",
+      "Regenerative framework designs tie premiums to continuous verified management rather than one-time land designation, so premiums stop if practices change"
+    ],
+    "casey_position": "The Cariboo lacks the producer density, extension infrastructure, and institutional capacity to implement verification at scale, and without rigorous ongoing enforcement, regenerative frameworks will simply rebrand the same permitting-compliance failures already visible in old-growth logging and frog relocation.",
+    "casey_key_evidence": [
+      "BC gutted extension agent support years ago and never restored it, leaving ranchers on Crown range without local specialists to advise on soil carbon verification",
+      "The Cariboo doesn't have the member density of Alberta cattle sector to justify shared technician hiring, with ranches scattered 50+ kilometres apart across the Chilcotin",
+      "Existing permitting conditions like frog relocation mitigation get written into permits but verification budgets never follow, creating paper compliance with no actual monitoring"
+    ],
+    "resolution": "They agreed the framework logic is sound and genuinely differs from the safety net's structure, but left as genuinely open the question of whether the Cariboo builds or borrows verification institutions\u2014framing it as a governance problem requiring local decision-making rather than a technology problem.",
+    "topics_covered": [
+      "Old-growth logging and First Nations land stewardship in BC",
+      "Mitigation monitoring failures in industrial permitting (frog relocation case study)",
+      "Capital velocity differences between mining and agriculture sectors",
+      "Regenerative agriculture carbon credits versus safety-net land-value inflation",
+      "Regional institutional capacity constraints for verification infrastructure in the Cariboo"
+    ]
   }
 }
