@@ -5621,6 +5621,7 @@ def _generate_parallel_azure_audio(segments, base_output_filename, theme_name=No
 
 def generate_audio_from_script(script, output_filename, theme_name=None, brave_used=False):
     """Convert script to audio with music interludes and theme-aware ambient transitions."""
+    global _tts_provider_used
     print("📊 Generating audio with music interludes...")
 
     if USE_GEMINI_TTS:
@@ -5688,6 +5689,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                 nonlocal combined, gemini_context_tail
                 print(f"  {label}")
 
+                global _tts_provider_used
                 provider = get_active_tts_provider()
                 if provider in ("azure", "gemini"):
                     # One whole-section synthesis call for coherent cross-speaker prosody
@@ -5698,27 +5700,41 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                     section_wav = os.path.join(tmpdir, f"{prefix}_{provider}.wav")
                     total_chars = sum(len(s['text']) for s in seg_list)
                     print(f"    {provider_label}: {len(seg_list)} turns, {total_chars} chars")
-                    if provider == "gemini":
-                        _log_api_call("gemini-tts", "chars", total_chars)
-                        gemini_context_tail = generate_gemini_tts_for_section(
-                            seg_list, section_wav, gemini_context_tail
+                    try:
+                        if provider == "gemini":
+                            _log_api_call("gemini-tts", "chars", total_chars)
+                            gemini_context_tail = generate_gemini_tts_for_section(
+                                seg_list, section_wav, gemini_context_tail
+                            )
+                        else:
+                            generate_azure_tts_for_section(seg_list, section_wav)
+                        section_audio = normalize_segment(
+                            trim_tts_silence(AudioSegment.from_file(section_wav, format="wav")),
+                            TARGET_SPEECH_DBFS,
                         )
-                    else:
-                        generate_azure_tts_for_section(seg_list, section_wav)
-                    section_audio = normalize_segment(
-                        trim_tts_silence(AudioSegment.from_file(section_wav, format="wav")),
-                        TARGET_SPEECH_DBFS,
-                    )
-                    combined = _append_with_gap(combined, section_audio, -overlap_ms)
-                    # Whole-section synthesis has no per-turn boundaries; speaker=None
-                    # tells the video renderer to skip speaker badges for this span.
-                    video_timeline.append({
-                        "speaker": None,
-                        "section": prefix,
-                        "start_ms": len(combined) - len(section_audio),
-                        "dur_ms": len(section_audio),
-                    })
-                    return
+                        combined = _append_with_gap(combined, section_audio, -overlap_ms)
+                        # Whole-section synthesis has no per-turn boundaries; speaker=None
+                        # tells the video renderer to skip speaker badges for this span.
+                        video_timeline.append({
+                            "speaker": None,
+                            "section": prefix,
+                            "start_ms": len(combined) - len(section_audio),
+                            "dur_ms": len(section_audio),
+                        })
+                        return
+                    except Exception as se:
+                        # Degrade to OpenAI in place (per-section) rather than tearing
+                        # down the whole music+credits assembly. combined is untouched on
+                        # failure (only mutated after a successful synth above), so the
+                        # OpenAI fall-through re-renders this section cleanly. Pinning
+                        # _tts_provider_used routes remaining sections + credits (spoken
+                        # and written) to OpenAI so the episode stays voice-consistent.
+                        if not get_openai_client():
+                            raise
+                        print(f"    ⚠️  {provider_label} failed ({se}) — degrading to "
+                              f"OpenAI TTS for the rest of the episode (keeping music/credits)")
+                        _tts_provider_used = "openai"
+                        # fall through to the OpenAI per-segment path below
 
                 # OpenAI: per-segment calls with heuristic gap stitching
                 prev_speaker = None
@@ -5813,39 +5829,56 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
 
             # Spoken credits (brief, before outro)
             chapters.append({"startTime": round(len(combined) / 1000, 1), "title": "Credits"})
-            tts_credit = get_tts_credit()
             brave_spoken = (
                 " Today's episode included additional web research via Brave Search."
                 if brave_used else ""
             )
             _credits_cfg = CONFIG['credits']
             _pc_cfg = CONFIG['podcast']
-            credits_text = (
-                f"{_pc_cfg.get('title', 'This show')} is produced by {_credits_cfg.get('producer', _pc_cfg.get('author', ''))} — "
-                f"scripts by Claude, today's voices by {tts_credit}, theme by Suno."
-                f"{brave_spoken}"
-                f" Automated with GitHub Actions, hosted on Cloudflare Pages."
-                f" Find us at {_pc_cfg.get('url_spoken', 'cariboo signals dot c-a')}."
-            )
+
+            def _build_credits_text() -> str:
+                # get_tts_credit() reads the live provider, so rebuilding after a
+                # degrade keeps the spoken "voices by …" line matching the audio.
+                return (
+                    f"{_pc_cfg.get('title', 'This show')} is produced by {_credits_cfg.get('producer', _pc_cfg.get('author', ''))} — "
+                    f"scripts by Claude, today's voices by {get_tts_credit()}, theme by Suno."
+                    f"{brave_spoken}"
+                    f" Automated with GitHub Actions, hosted on Cloudflare Pages."
+                    f" Find us at {_pc_cfg.get('url_spoken', 'cariboo signals dot c-a')}."
+                )
+
+            def _render_credits_openai() -> "AudioSegment":
+                credits_file = os.path.join(tmpdir, "credits.mp3")
+                generate_tts_for_segment(_build_credits_text(), "riley", credits_file)
+                return normalize_segment(
+                    trim_tts_silence(AudioSegment.from_mp3(credits_file)), TARGET_SPEECH_DBFS
+                )
+
             try:
                 _credits_provider = get_active_tts_provider()
                 if _credits_provider in ("azure", "gemini"):
-                    credits_wav = os.path.join(tmpdir, "credits.wav")
-                    credits_segments = [{"speaker": "riley", "text": credits_text, "gap_ms": None}]
-                    if _credits_provider == "gemini":
-                        generate_gemini_tts_for_section(credits_segments, credits_wav, gemini_context_tail)
-                    else:
-                        generate_azure_tts_for_section(credits_segments, credits_wav)
-                    credits_audio = normalize_segment(
-                        trim_tts_silence(AudioSegment.from_file(credits_wav, format="wav")),
-                        TARGET_SPEECH_DBFS,
-                    )
+                    try:
+                        credits_wav = os.path.join(tmpdir, "credits.wav")
+                        credits_segments = [{"speaker": "riley", "text": _build_credits_text(), "gap_ms": None}]
+                        if _credits_provider == "gemini":
+                            generate_gemini_tts_for_section(credits_segments, credits_wav, gemini_context_tail)
+                        else:
+                            generate_azure_tts_for_section(credits_segments, credits_wav)
+                        credits_audio = normalize_segment(
+                            trim_tts_silence(AudioSegment.from_file(credits_wav, format="wav")),
+                            TARGET_SPEECH_DBFS,
+                        )
+                    except Exception as ce:
+                        # Never drop credits on a provider failure: degrade to OpenAI
+                        # (and re-credit as OpenAI so the spoken line stays accurate).
+                        if not get_openai_client():
+                            raise
+                        print(f"  ⚠️  {_credits_provider.title()} credits failed ({ce}) — degrading to OpenAI")
+                        _tts_provider_used = "openai"
+                        _credits_provider = "openai"
+                        credits_audio = _render_credits_openai()
                 else:
-                    credits_file = os.path.join(tmpdir, "credits.mp3")
-                    generate_tts_for_segment(credits_text, "riley", credits_file)
-                    credits_audio = normalize_segment(
-                        trim_tts_silence(AudioSegment.from_mp3(credits_file)), TARGET_SPEECH_DBFS
-                    )
+                    credits_audio = _render_credits_openai()
                 combined += AudioSegment.silent(duration=600) + credits_audio
                 video_timeline.append({
                     "speaker": "riley" if _credits_provider == "openai" else None,
@@ -5887,7 +5920,6 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
         print(f"   Duration: {duration_minutes:.1f} minutes")
         print(f"   File size: {file_size_mb:.1f} MB")
 
-        global _tts_provider_used
         _tts_provider_used = get_active_tts_provider()
         return output_filename
 
