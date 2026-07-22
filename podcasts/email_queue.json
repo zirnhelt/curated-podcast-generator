@@ -2315,6 +2315,31 @@
       "theme_day": 4,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "ae80c22a",
+      "type": "newsletter",
+      "message_id": "<67372ac7-2cd2-4b41-9606-b74e0aaca04c@mtasv.net>",
+      "from_address": "n***@animikii.com",
+      "subject": "\"AI moves fast. Human hearts move slow.\"",
+      "received_at": "2026-07-22T22:22:48+00:00",
+      "body_text": "![Graphic illustration featuring a youth and elder sitting in a forested landscape, with the sun and mountains in the background, the text on far left reads Animikii News River.](https://assets.button",
+      "extracted_urls": [
+        "https://betakit.com/how-indigenous-technologists-are-building-data-sovereignty-into-ai/?utm_source=newsriver&utm_medium=email&utm_campaign=ai-moves-fast-human-hearts-move-slow",
+        "https://www.linkedin.com/in/evan-solomon-31906a8b/?utm_source=newsriver&utm_medium=email&utm_campaign=ai-moves-fast-human-hearts-move-slow",
+        "https://grist.org/global-indigenous-affairs-desk/data-centers-are-booming-indigenous-leaders-want-help-protecting-their-lands/?utm_source=newsriver&utm_medium=email&utm_campaign=ai-moves-fast-human-hearts-move-slow",
+        "https://wikimedia.org.au/wiki/Respecting_First_Nations_knowledge_on_Wikimedia_platforms?utm_source=newsriver&utm_medium=email&utm_campaign=ai-moves-fast-human-hearts-move-slow",
+        "https://www.linkedin.com/feed/update/urn:li:activity:7485418176130977792/?utm_source=newsriver&utm_medium=email&utm_campaign=ai-moves-fast-human-hearts-move-slow",
+        "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ09bJZhUjWAeYBozlJT1Z7Cs7JwcnWhFFvf_hv6nmkjUncsdco7J6YhiwNpEuEfYIxiFq5E03s7?utm_source=newsriver&utm_medium=email&utm_campaign=ai-moves-fast-human-hearts-move-slow",
+        "https://akii.ca/m/links",
+        "https://www.linkedin.com/company/animikii/",
+        "https://niiwin.app/",
+        "https://animikii.com/"
+      ],
+      "theme_tag": "Indigenous Lands & Innovation",
+      "theme_day": 3,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
