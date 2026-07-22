@@ -6,6 +6,8 @@ verify the canvas-extension math that makes negative gaps (overlaps)
 produce the right episode length.
 """
 
+import json
+
 import pytest
 
 import generate_bespoke
@@ -207,3 +209,48 @@ class TestGeminiFailoverKeepsMusicAndCredits:
         logs = capsys.readouterr().out
         assert "degrading to OpenAI" in logs
         assert "Added spoken credits" in logs
+
+
+class TestTtsOnlyEmitsSidecars:
+    """Regression: the bare TTS-only fallback must still write chapters + timeline
+    sidecars with real section boundaries, else the video renderer collapses the
+    whole episode into one 'Introduction' chapter and parks the weather slide at
+    the mid-point (the ~10-min bug)."""
+
+    def test_per_segment_path_writes_chapters_and_timeline(self, monkeypatch, tmp_path):
+        pg = podcast_generator
+        monkeypatch.setattr(pg, "AudioSegment", RichFakeSegment)
+        monkeypatch.setattr(pg, "normalize_segment", lambda seg, *a, **k: seg)
+        monkeypatch.setattr(pg, "trim_tts_silence", lambda seg, *a, **k: seg)
+        monkeypatch.setattr(pg, "heuristic_gap_ms", lambda *a, **k: 0)
+        monkeypatch.setattr(pg, "get_openai_client", lambda: object())
+        monkeypatch.setattr(pg, "OUTRO_MUSIC", _FakeMusicPath("outro"))
+        monkeypatch.setattr(pg, "derive_episode_sidecar_path",
+                            lambda audio, prefix: str(tmp_path / f"{prefix}.json"))
+        monkeypatch.setattr(pg, "parse_script_into_segments", lambda script: {
+            "preamble": [],
+            "welcome": _turns("Welcome to the show everyone.", "Great to be here today."),
+            "news": _turns("First headline of the day.", "An interesting development indeed."),
+            "meta_moment": [],
+            "community_spotlight": [],
+            "deep_dive": _turns("Let's dig into the main topic.", "Plenty to unpack here."),
+        })
+        monkeypatch.setattr(pg, "generate_tts_for_segment",
+                            lambda text, speaker, out: open(out, "wb").write(b"\x00"))
+
+        out = str(tmp_path / "episode.mp3")
+        result = pg.generate_audio_tts_only("script", out, _force_openai=True)
+        assert result == out
+
+        chapters = json.load(open(tmp_path / "podcast_chapters.json"))["chapters"]
+        assert [c["title"] for c in chapters] == ["Introduction", "News Roundup", "Deep Dive"]
+        starts = [c["startTime"] for c in chapters]
+        # Real, monotonically advancing boundaries — not one whole-episode chapter
+        assert starts[0] == 0
+        assert starts == sorted(starts)
+        assert starts[1] > 0 and starts[2] > starts[1]
+
+        turns = json.load(open(tmp_path / "video_timeline.json"))["turns"]
+        assert len(turns) == 6
+        assert {t["speaker"] for t in turns} == {"riley", "casey"}
+        assert [t["section"] for t in turns[:2]] == ["Introduction", "Introduction"]
