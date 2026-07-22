@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] Over 14 million login credentials leaked from si",
-      "[TechRadar] Google says Android's built-in earthquake warnin",
       "Engadget review recap: MSI Claw 8 EX AI+, Sony A7R VI, Ray-B",
       "[TechRadar] Adobe and Disney are teaming up to design the ne",
       "[Android Authority] Anthropic\u2019s most advanced AI models coul",
@@ -10,7 +8,9 @@
       "[TechCrunch] Station F ramps up as a launchpad for Europe\u2019s ",
       "[TechRadar] Web hosting giant claims you can now sell online",
       "[TechCrunch] US government says it got hacked \u2014 again",
-      "[TechCrunch] Nonprofit Current AI is racing to build the Wor"
+      "[TechCrunch] Nonprofit Current AI is racing to build the Wor",
+      "[CNET] We\u2019re Asking All the Wrong Questions About AI Compani",
+      "[WIRED] A Sneaky Hacking Tool Targeting AI Infrastructure Is"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -122,6 +122,16 @@
       {
         "date": "2026-07-18",
         "clue": "structural-lens:~ \u2014 Conceded formal processes aren't inherently more legible than informal ones",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-07-22",
+        "clue": "structural-lens:+ \u2014 Shifted from object-level (Steam case) to pattern recognition",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-07-22",
+        "clue": "structural-lens:x \u2014 Conceded Casey's legal-vs-skill distinction as 'actual gap'",
         "occurrences": 1
       }
     ],
@@ -379,8 +389,13 @@
         "occurrences": 1
       },
       {
-        "date": "2026-07-20",
-        "clue": "structural-lens:+ \u2014 Moved conversation from funding gaps to ownership/governance questions",
+        "date": "2026-07-22",
+        "clue": "structural-lens:+ \u2014 Moved from blocking criticism to identifying the precise lever (CIPO exemption process)",
+        "occurrences": 2
+      },
+      {
+        "date": "2026-07-22",
+        "clue": "evidence-bar:~ \u2014 Acknowledged informal forums as real infrastructure, then immediately questioned their durability",
         "occurrences": 1
       }
     ],

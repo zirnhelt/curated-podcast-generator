@@ -462,5 +462,26 @@
     "date": "2026-07-21",
     "focus": "agriculture-ranching",
     "focus_name": "Agriculture & Ranching"
+  },
+  "2026-07-22": {
+    "timestamp": 1784716987.442607,
+    "topics": [
+      "[CNET] We\u2019re Asking All the Wrong Questions About AI Compani",
+      "[WIRED] A Sneaky Hacking Tool Targeting AI Infrastructure Is",
+      "[Krebs on Security] LG to Ban Residential Proxies from Smart",
+      "[Boing Boing] Why 85% of tall buildings skip the 13th floor",
+      "[Business Insider] A startup building a map to help you make",
+      "[TechRadar] Ill-fated Companion Cube case for Steam Machine ",
+      "[Business Insider] Ukraine's arms makers say they need to fi",
+      "[New Atlas] Norton Motorcycles amplifies comeback with gutsy"
+    ],
+    "themes": [
+      "rural development",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-07-22",
+    "focus": "maker-repair",
+    "focus_name": "Maker & Repair"
   }
 }
