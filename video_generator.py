@@ -39,6 +39,11 @@ FPS = 24
 WAVE_HEIGHT = 100
 # Floor for per-slide screen time when a chapter is subdivided into N slides
 MIN_SLIDE_S = 5.0
+# Cap on a single slide's screen time. Only bites when a chapter span is
+# pathologically long (e.g. a missing chapters file collapses the whole episode
+# into one synthetic chapter) — the first slide absorbs the overflow so a later
+# slide such as weather can't get parked at the episode mid-point.
+MAX_SLIDE_S = 240.0
 BADGE_MARGIN_X = 48
 # Badge sits just above the waveform strip
 BADGE_Y = HEIGHT - WAVE_HEIGHT - 88
@@ -369,11 +374,23 @@ def render_slides(chapters: list, citations: dict, audio_dur_s: float,
                 draw.text((x, y), theme, font=font_body, fill=MUTED_COLOR)
             imgs.append(img)
 
-        # Subdivide the chapter span evenly across its slides
+        # Subdivide the chapter span across its slides — evenly, unless the span
+        # is pathologically long (a missing chapters file collapsed the whole
+        # episode into one chapter). Then cap subsidiary slides at MAX_SLIDE_S and
+        # let the first (section/cover) slide hold the remainder, so a later slide
+        # such as weather can't be parked at the episode mid-point.
+        # Absolute boundaries (not an accumulator) so chapters stay contiguous
+        # without float drift; force the last one to `end`.
         n = len(imgs)
+        span = end - start
+        if n > 1 and span / n > MAX_SLIDE_S:
+            first = span - (n - 1) * MAX_SLIDE_S
+            bounds = [start] + [start + first + k * MAX_SLIDE_S for k in range(n)]
+        else:
+            bounds = [start + span * k / n for k in range(n + 1)]
+        bounds[-1] = end
         for j, im in enumerate(imgs):
-            s = start + (end - start) * j / n
-            e = start + (end - start) * (j + 1) / n
+            s, e = bounds[j], bounds[j + 1]
             png = os.path.join(outdir, f"slide_{i:02d}_{j:02d}.png")
             im.save(png)
             slides.append((png, s, e))

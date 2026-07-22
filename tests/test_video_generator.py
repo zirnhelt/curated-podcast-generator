@@ -179,6 +179,20 @@ class TestSlides:
         assert slides[0][1] == 0.0
         assert slides[-1][2] == 120.0
 
+    def test_pathological_span_caps_slide_and_spares_weather(self, sample_citations, tmp_path):
+        # A degenerate chapters file collapses the whole episode into one long
+        # "Introduction" chapter. The weather slide must not be parked at the
+        # mid-point (the ~10-min bug): no slide exceeds MAX_SLIDE_S, and weather
+        # (the second slide) starts within the final MAX_SLIDE_S window.
+        chapters = [{"startTime": 0, "title": "Introduction"}]
+        slides = _render(chapters, sample_citations, 1200.0, tmp_path)
+        assert len(slides) == 2
+        # The cover slide absorbs the overflow; the weather slide is capped at
+        # MAX_SLIDE_S and pushed to the end rather than parked at the ~600s mid-point.
+        assert slides[1][2] - slides[1][1] <= vg.MAX_SLIDE_S + 0.01
+        assert slides[1][1] >= 1200.0 - vg.MAX_SLIDE_S - 0.01
+        assert slides[-1][2] == 1200.0
+
     def test_missing_cover_art_tolerated(self, sample_chapters, sample_citations, tmp_path):
         slides = vg.render_slides(sample_chapters, sample_citations, 600.0,
                                   tmp_path / "nonexistent.png", str(tmp_path))

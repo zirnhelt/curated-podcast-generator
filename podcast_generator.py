@@ -5951,15 +5951,32 @@ def generate_audio_tts_only(script, output_filename, _force_openai=False):
         return None
 
     try:
-        # Reuse the structured parser and flatten all sections
+        # Reuse the structured parser, but keep section identity so the video
+        # renderer still gets real chapter boundaries in fallback mode. Without a
+        # chapters sidecar it collapses the whole episode into one synthetic
+        # "Introduction" chapter and parks the weather slide at the mid-point.
         parsed = parse_script_into_segments(script)
-        segments = (parsed.get('preamble', []) + parsed['welcome'] + parsed['news']
-                    + parsed['community_spotlight'] + parsed['deep_dive'])
-        segments = [s for s in segments if len(s['text']) > 10]
+        # Ordered (chapter_title, segments), mirroring the music-path chapter labels.
+        raw_sections = [
+            ("Cold Open", parsed.get('preamble', [])),
+            ("Introduction", parsed['welcome']),
+            ("News Roundup", parsed['news']),
+            ("Community Spotlight", parsed['community_spotlight']),
+            ("Deep Dive", parsed['deep_dive']),
+        ]
+        sections = [
+            (title, [s for s in segs if len(s['text']) > 10])
+            for title, segs in raw_sections
+        ]
+        sections = [(title, segs) for title, segs in sections if segs]
+        segments = [s for _, segs in sections for s in segs]
 
         if not segments:
             print("❌ No speaking segments found in script")
             return None
+
+        chapters = []
+        video_timeline = []  # per-turn {speaker, section, start_ms, dur_ms} for the video renderer
 
         with tempfile.TemporaryDirectory() as tmpdir:
             combined = AudioSegment.empty()
@@ -5977,20 +5994,42 @@ def generate_audio_tts_only(script, output_filename, _force_openai=False):
                     trim_tts_silence(AudioSegment.from_file(section_wav, format="wav")),
                     TARGET_SPEECH_DBFS,
                 )
+                # ponytail: a single synthesis call has no per-turn boundaries, so
+                # apportion chapter marks by each section's share of total chars.
+                # Approximate, but enough to keep the video's section slides from
+                # collapsing onto one whole-episode chapter.
+                total_chars = sum(len(s['text']) for s in segments) or 1
+                elapsed_ms = 0.0
+                for title, segs in sections:
+                    chapters.append({"startTime": round(elapsed_ms / 1000, 1), "title": title})
+                    dur = len(combined) * sum(len(s['text']) for s in segs) / total_chars
+                    video_timeline.append({
+                        "speaker": None, "section": title,
+                        "start_ms": round(elapsed_ms), "dur_ms": round(dur),
+                    })
+                    elapsed_ms += dur
             else:
                 prev_speaker = None
                 prev_text = None
-                for i, segment in enumerate(segments):
-                    print(f"  🎤 Generating audio {i+1}/{len(segments)} ({segment['speaker']}: {len(segment['text'])} chars)")
-                    temp_file = os.path.join(tmpdir, f"seg_{i:03d}.mp3")
-                    generate_tts_for_segment(segment['text'], segment['speaker'], temp_file)
-                    speech = trim_tts_silence(AudioSegment.from_mp3(temp_file))
-                    gap = segment.get('gap_ms')
-                    if gap is None:
-                        gap = heuristic_gap_ms(segment['text'], prev_speaker, segment['speaker'], prev_text=prev_text)
-                    combined = _append_with_gap(combined, speech, gap)
-                    prev_speaker = segment['speaker']
-                    prev_text = segment['text']
+                idx = 0
+                for title, segs in sections:
+                    chapters.append({"startTime": round(len(combined) / 1000, 1), "title": title})
+                    for segment in segs:
+                        idx += 1
+                        print(f"  🎤 Generating audio {idx}/{len(segments)} ({segment['speaker']}: {len(segment['text'])} chars)")
+                        temp_file = os.path.join(tmpdir, f"seg_{idx:03d}.mp3")
+                        generate_tts_for_segment(segment['text'], segment['speaker'], temp_file)
+                        speech = trim_tts_silence(AudioSegment.from_mp3(temp_file))
+                        gap = segment.get('gap_ms')
+                        if gap is None:
+                            gap = heuristic_gap_ms(segment['text'], prev_speaker, segment['speaker'], prev_text=prev_text)
+                        combined = _append_with_gap(combined, speech, gap)
+                        video_timeline.append({
+                            "speaker": segment['speaker'], "section": title,
+                            "start_ms": len(combined) - len(speech), "dur_ms": len(speech),
+                        })
+                        prev_speaker = segment['speaker']
+                        prev_text = segment['text']
 
         # Append outro music even in TTS-only mode so fallback episodes aren't cut off
         if OUTRO_MUSIC.exists():
@@ -6004,6 +6043,18 @@ def generate_audio_tts_only(script, output_filename, _force_openai=False):
                 print(f"  ⚠️  Outro skipped in TTS-only mode: {outro_err}")
 
         combined.export(output_filename, format="mp3")
+
+        # Sidecars: even in fallback mode the video renderer needs real chapter
+        # boundaries and a turn timeline, else section slides collapse onto one
+        # whole-episode chapter and the weather slide lands mid-episode.
+        chapters_filename = derive_episode_sidecar_path(output_filename, 'podcast_chapters')
+        with open(chapters_filename, 'w', encoding='utf-8') as f:
+            json.dump({"version": "1.2.0", "chapters": chapters}, f, indent=2)
+        print(f"📑 Saved chapters: {chapters_filename}")
+        timeline_filename = derive_episode_sidecar_path(output_filename, 'video_timeline')
+        with open(timeline_filename, 'w', encoding='utf-8') as f:
+            json.dump({"turns": video_timeline}, f, indent=2)
+        print(f"🎞️  Saved video timeline: {timeline_filename}")
 
         duration_minutes = len(combined) / 1000 / 60
         file_size_mb = os.path.getsize(output_filename) / 1024 / 1024
