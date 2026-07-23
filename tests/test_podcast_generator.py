@@ -38,6 +38,9 @@ from podcast_generator import (
     generate_meta_moment_text,
     _annotate_roundup_blocks,
     _curate_roundup_pool,
+    _script_match_position,
+    match_articles_to_script,
+    order_articles_by_script,
     _stale_framing_alerts,
     format_debate_memory_for_prompt,
 )
@@ -1812,3 +1815,82 @@ class TestGenerateCitationsFileSlideSegments:
                               psa_info={"org_name": "Org", "org_description": "d"})
         for key in ("weather", "community_spotlight"):
             assert "articles" not in data["segments"][key]
+
+    def test_news_roundup_citations_follow_script_order(self, monkeypatch, tmp_path):
+        # The curated pool order (input) differs from the narrated order; the
+        # written citations (which drive the video slides) must match narration.
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        news = [
+            {"title": "[Src] Alpha widget recall spreads", "url": "u-alpha"},
+            {"title": "[Src] Beta reactor goes online", "url": "u-beta"},
+            {"title": "[Src] Gamma ray telescope funded", "url": "u-gamma"},
+        ]
+        # Script narrates gamma, then alpha, then beta.
+        script = ("Riley: First up, the Gamma ray telescope funded by the "
+                  "province. Casey: Then there's the Alpha widget recall "
+                  "spreads across three provinces. Riley: And the Beta reactor "
+                  "goes online next month.")
+        path = pg.generate_citations_file(
+            news, [], "Working Lands & Industry", script=script)
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f)
+        titles = [a["title"] for a in data["segments"]["news_roundup"]["articles"]]
+        assert titles == [
+            "[Src] Gamma ray telescope funded",
+            "[Src] Alpha widget recall spreads",
+            "[Src] Beta reactor goes online",
+        ]
+
+
+class TestOrderArticlesByScript:
+    def test_reorders_by_first_mention(self):
+        arts = [
+            {"title": "[X] Solar farm approved in Cariboo"},
+            {"title": "[Y] Bridge repairs begin downtown"},
+        ]
+        matched = [(arts[0], True), (arts[1], True)]
+        script = "We start with the bridge repairs begin, then the solar farm approved."
+        ordered = order_articles_by_script(matched, script)
+        assert [a["title"] for a, _ in ordered] == [
+            "[Y] Bridge repairs begin downtown",
+            "[X] Solar farm approved in Cariboo",
+        ]
+
+    def test_undiscussed_trail_in_original_order(self):
+        arts = [
+            {"title": "[X] Never mentioned at all here"},
+            {"title": "[Y] Second unmentioned filler item"},
+            {"title": "[Z] Mentioned lakeside cleanup effort"},
+        ]
+        matched = match_articles_to_script(
+            arts, "Today: the lakeside cleanup effort wraps up.")
+        ordered = order_articles_by_script(
+            matched, "Today: the lakeside cleanup effort wraps up.")
+        # Discussed one leads; the two unmatched keep their input order at the tail.
+        assert [a["title"] for a, _ in ordered] == [
+            "[Z] Mentioned lakeside cleanup effort",
+            "[X] Never mentioned at all here",
+            "[Y] Second unmentioned filler item",
+        ]
+
+    def test_no_script_is_identity(self):
+        matched = [({"title": "a"}, True), ({"title": "b"}, True)]
+        assert order_articles_by_script(matched, "") == matched
+
+
+class TestScriptMatchPosition:
+    def test_full_title_offset(self):
+        script = "intro words then the exact headline here appears".lower()
+        art = {"title": "[Src] the exact headline here"}
+        assert _script_match_position(art, script) == script.find("the exact headline")
+
+    def test_subphrase_fallback(self):
+        # Full title absent, but a 3+ word window matches.
+        script = "hosts discuss the mountain rescue operation in detail".lower()
+        art = {"title": "[Src] Dramatic mountain rescue operation near peak"}
+        assert _script_match_position(art, script) is not None
+
+    def test_absent_returns_none(self):
+        art = {"title": "[Src] Completely unrelated subject matter"}
+        assert _script_match_position(art, "nothing relevant is said here") is None
