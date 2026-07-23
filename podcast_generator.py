@@ -4010,6 +4010,42 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=3, focus=None):
         print(f"  - [kw={kw}, focus={fm}, local={local_score:.1f}] {a.get('title', '')[:70]}...")
     return deep_dive, news_articles
 
+def _script_match_position(article, script_lower):
+    """First character offset where *article*'s title is mentioned in the
+    lowercased script, or None if it isn't discussed.
+
+    Tries the full cleaned title first, then falls back to the earliest 3–5
+    word sub-phrase window — the same matching the discussion check uses, so
+    "discussed" and "position" always agree. Titles too short to match
+    reliably return None (the caller decides how to treat them).
+    """
+    raw_title = article.get('title', '')
+    # Strip source prefix like "[TechCrunch] " or "🏔️ [Source] "
+    cleaned = re.sub(r'^[^\[]*\[[^\]]*\]\s*', '', raw_title).strip()
+    # Also strip trailing " - Source Name"
+    cleaned = re.split(r'\s*[-–—]\s*(?=[A-Z])', cleaned)[0].strip()
+    if not cleaned or len(cleaned) < 6:
+        return None
+
+    idx = script_lower.find(cleaned.lower())
+    if idx != -1:
+        return idx
+
+    # Earliest meaningful sub-phrase (sliding windows of 3-5 words)
+    words = cleaned.split()
+    best = None
+    for window_size in range(min(5, len(words)), 2, -1):
+        for i in range(len(words) - window_size + 1):
+            phrase = ' '.join(words[i:i + window_size]).lower()
+            # Skip very generic phrases
+            if len(phrase) < 10:
+                continue
+            pos = script_lower.find(phrase)
+            if pos != -1:
+                best = pos if best is None else min(best, pos)
+    return best
+
+
 def match_articles_to_script(articles, script):
     """Match input articles against the finalized script to find which were actually discussed.
 
@@ -4035,31 +4071,32 @@ def match_articles_to_script(articles, script):
             results.append((article, True))  # Too short to match; keep it
             continue
 
-        # Build search terms: the full cleaned title and significant sub-phrases
-        # (3+ word windows) to handle partial matches
-        words = cleaned.split()
-        discussed = False
-
-        # Check full cleaned title (case-insensitive)
-        if cleaned.lower() in script_lower:
-            discussed = True
-        else:
-            # Check meaningful sub-phrases (sliding windows of 3-5 words)
-            for window_size in range(min(5, len(words)), 2, -1):
-                for i in range(len(words) - window_size + 1):
-                    phrase = ' '.join(words[i:i + window_size]).lower()
-                    # Skip very generic phrases
-                    if len(phrase) < 10:
-                        continue
-                    if phrase in script_lower:
-                        discussed = True
-                        break
-                if discussed:
-                    break
-
-        results.append((article, discussed))
+        results.append((article, _script_match_position(article, script_lower) is not None))
 
     return results
+
+
+def order_articles_by_script(matched, script):
+    """Reorder (article, discussed) pairs to follow the finalized script's
+    narration order — first-mention position ascending.
+
+    The prompt suggests a block order (on-theme arc, local, clusters,
+    standalones), but the script's actual flow can diverge, so citations —
+    which drive the video slides — must track what listeners hear, not the
+    pre-script curation order. Undiscussed / unmatched articles keep their
+    original relative order at the tail.
+    """
+    if not script:
+        return matched
+    script_lower = script.lower()
+    inf = float('inf')
+    decorated = [
+        (_script_match_position(a, script_lower), i, (a, d))
+        for i, (a, d) in enumerate(matched)
+    ]
+    # Secondary key = original index → stable for ties and the unmatched tail.
+    decorated.sort(key=lambda t: (inf if t[0] is None else t[0], t[1]))
+    return [pair for _, _, pair in decorated]
 
 def get_current_date_info():
     """Get properly formatted current date and day in Pacific timezone."""
@@ -4343,8 +4380,13 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
         weather_used=weather_used, cohere_used=cohere_used
     )
 
-    # Match articles against script
-    news_matched = match_articles_to_script(news_articles, script)
+    # Match articles against script, then reorder the roundup to follow the
+    # narrated order. The video slides render citations in list order, so
+    # aligning citations with what's actually spoken keeps slides in sync with
+    # narration (the prompt's block order can diverge from the final script).
+    news_matched = order_articles_by_script(
+        match_articles_to_script(news_articles, script), script
+    )
     deep_matched = match_articles_to_script(deep_dive_articles, script)
 
     citations_data = {
