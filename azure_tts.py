@@ -41,6 +41,10 @@ SSML_CHAR_LIMIT = 8_000
 # IMPORTANT: no hyphens, no ALL-CAPS, no spaces as syllable separators — OpenAI TTS reads
 # hyphens as audible pauses and spaces as full word gaps. Use single concatenated words.
 PRONUNCIATION_DICT: dict[str, str] = {
+    # News source — spoken as one flowing name, not a sentence ending in "Now".
+    # Concatenated so OpenAI TTS doesn't pause before "Now"; "caribou" spelling
+    # keeps the correct middle syllable. MUST precede "Cariboo" (naive .replace).
+    "My Cariboo Now": "MyCaribouNow",
     "Cariboo":        "caribou",
     "Quesnel":        "Kwenell",
     "Tŝilhqot'in":   "Tsilkohtin",
@@ -58,6 +62,9 @@ PRONUNCIATION_DICT: dict[str, str] = {
 
 # IPA pronunciations for Azure SSML <phoneme> tags — more precise than <sub alias>.
 IPA_DICT: dict[str, str] = {
+    # One <phoneme> tag = one prosodic unit, so Azure won't pause before "Now".
+    # MUST precede "Cariboo" (naive .replace).
+    "My Cariboo Now": "maɪ ˈkærɪbuː naʊ",
     "Cariboo":        "ˈkærɪbuː",
     "Quesnel":        "kwɛˈnɛl",
     "Tŝilhqot'in":   "tsɪlˈkoʊtɪn",
@@ -118,11 +125,19 @@ def apply_pronunciation(text: str) -> str:
     Returns an SSML-safe fragment (not a full document).
     """
     escaped = saxutils.escape(text)
-    for word, ipa in IPA_DICT.items():
-        escaped_word = saxutils.escape(word)
-        phoneme_tag = f'<phoneme alphabet="ipa" ph="{ipa}">{escaped_word}</phoneme>'
-        escaped = escaped.replace(escaped_word, phoneme_tag)
-    return escaped
+    # Single non-overlapping pass, longest key first: a multi-word name like
+    # "My Cariboo Now" must win over its substring "Cariboo" without the second
+    # match reaching inside the tag already emitted (which would nest <phoneme>).
+    lookup = {saxutils.escape(word): (word, ipa) for word, ipa in IPA_DICT.items()}
+    pattern = re.compile(
+        "|".join(re.escape(k) for k in sorted(lookup, key=len, reverse=True))
+    )
+
+    def _wrap(match: "re.Match[str]") -> str:
+        word, ipa = lookup[match.group(0)]
+        return f'<phoneme alphabet="ipa" ph="{ipa}">{saxutils.escape(word)}</phoneme>'
+
+    return pattern.sub(_wrap, escaped)
 
 
 def pacing_tag_to_ssml(gap_ms: int | None) -> str:
