@@ -1,0 +1,202 @@
+WEBVTT
+
+00:00:00.500 --> 00:00:30.071
+<v Casey>Hey, welcome back. Today we've got Mila's Indigenous AI Gathering in Montréal, where a federal minister showed up to actually listen instead of lecture. And in the Deep Dive — when a hyperscale data center wants your Nation's land and water, who really has the power to say no, and what's the one concrete question every lands office should be asking right now? That and more, coming right up.
+
+00:00:55.371 --> 00:01:19.799
+<v Casey>Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities — I'm Casey. It's Thursday, July 23rd, 2026. Coming to you from the Cariboo, on lands that have been cared for by the Secwépemc, Tŝilhqot'in, and Dakelh peoples since time immemorial. Today's theme is Indigenous Lands & Innovation.
+
+00:01:20.099 --> 00:01:34.670
+<v Riley>And I'm Riley. Today we're looking at who actually holds the pen when it comes to land and data decisions — not just who's consulted, but who can say no and make it stick.
+
+00:01:35.470 --> 00:02:17.041
+<v Casey>Quick weather check before we get into it. Out at Horsefly Lake it's 17 degrees with mainly clear skies, high of 29, low of 14, and tomorrow's looking overcast. Across the region — 100 Mile House at 19 and partly cloudy, Williams Lake at 18, Quesnel at 17, and out on the Chilcotin plateau, Alexis Creek is sitting at 15 with clear skies. It's a scorcher across the region, so stay hydrated, and given the evacuation activity near Clinton and the Bonaparte Plateau, keep an eye on the BC Wildfire Dashboard before you plan any driving today.
+
+00:02:17.341 --> 00:02:20.340
+<v Riley>Good reminder. Let's get into the news.
+
+00:02:21.840 --> 00:02:56.554
+<v Casey>We'll start where today's theme actually lives. Mila's Indigenous AI Gathering happened in Montréal this week, and BetaKit covered it through the lens of Animikii's CEO and co-founder Jeff Ward, who was there presenting alongside Canada's Minister of AI and Digital Innovation, Evan Solomon. The line that stuck with attendees was Solomon's own: "AI moves fast. Human hearts move slow." The gathering focused on building AI systems without the kind of data extraction that's defined the last decade of tech development.
+
+00:02:56.854 --> 00:03:07.996
+<v Riley>A federal minister showing up to present and listen in an Indigenous-led space is a different posture than we've usually seen from Ottawa on tech policy.
+
+00:03:09.196 --> 00:03:27.196
+<v Riley>Next, from ScienceDaily — researchers found a way to revive vancomycin, a powerful antibiotic some drug-resistant bacteria had learned to defeat. Instead of engineering an entirely new compound, they paired the existing drug with something that restores its effectiveness against resistant strains.
+
+00:03:27.496 --> 00:03:37.353
+<v Casey>Good science, though the harder problem is getting a revived antibiotic to a clinic in Anahim Lake before it does anyone any good.
+
+00:03:37.653 --> 00:03:59.510
+<v Casey>From Kagi Small Web, a piece by a law professor asking whether "evolvable AI" — systems that can autonomously copy themselves, pass on heritable traits, and undergo something like natural selection through mutation and recombination — poses a genuine threat. It's a governance question dressed up as a science fiction premise.
+
+00:03:59.810 --> 00:04:25.952
+<v Riley>Boing Boing flagged that measles is having its worst year in the United States since 1991 — nearly all the cases are among unvaccinated people, according to health officials tracking the outbreak. It connects to a STAT News opinion piece from the same week, arguing pandemics should be treated and funded as threats to national security, not just public health emergencies.
+
+00:04:26.252 --> 00:04:36.109
+<v Casey>Whoever controls surveillance data and outbreak modeling controls the response, and rural and Indigenous communities have historically been last in line for both.
+
+00:04:37.609 --> 00:04:52.180
+<v Casey>Android Authority reported a Verizon international roaming outage — subscribers abroad have been reporting their phones dropping to SOS or satellite-only mode, with Verizon issuing a statement but no confirmed fix timeline this week.
+
+00:04:52.480 --> 00:05:00.622
+<v Riley>Good reminder that "global connectivity" still runs through single points of failure that can go dark with no warning.
+
+00:05:00.922 --> 00:05:24.921
+<v Riley>A second STAT News opinion, from Peter Pronovost, Justin Norden, and Kedar Mate, argues hospital executives need to treat AI governance as a daily responsibility for senior leadership, not something a quarterly technology committee reviews once and forgets. Their concern is that clinical AI models can quietly drift out of calibration over time without anyone noticing.
+
+00:05:25.221 --> 00:05:32.506
+<v Casey>Same question all episode — who's actually watching the system once the ribbon-cutting photo op is over?
+
+00:05:32.806 --> 00:05:41.806
+<v Casey>Hackaday has a lighter entry — a new web-based tool for customizing the physical look of your YubiKey hardware security key.
+
+00:05:42.106 --> 00:06:01.391
+<v Riley>The Guardian's Global Development desk ran a piece by Halima Begum arguing the UK's new government could easily let its falling foreign aid commitment slide further, and shouldn't — the same pattern we see locally, funding that erodes quietly once the news cycle moves on.
+
+00:06:01.691 --> 00:06:16.690
+<v Riley>New Atlas covered Lockheed Martin unveiling a cheaper alternative to its Patriot missile system at the Farnborough International Airshow — the PAC-3 ACE, built to stretch tighter air-defense budgets further without losing core interceptor capability.
+
+00:06:16.990 --> 00:06:28.132
+<v Casey>And Tom's Guide opened nominations for its 2026 Computing and Gaming Awards this week, if any Cariboo shops or developers want to throw a hat in.
+
+00:06:29.332 --> 00:06:47.332
+<v Casey>Closer to home — Williams Lake Tribune reported that BC Hydro logged a new record for electricity demand this week amid the ongoing heat wave, air conditioning load pushing the grid harder than it's typically built to handle in a Cariboo July.
+
+00:06:47.632 --> 00:06:56.632
+<v Riley>Hyperscale data centers pull load on that same grid, heat wave or not — a point we'll come back to shortly.
+
+00:06:56.932 --> 00:07:08.931
+<v Riley>The 100 Mile Free Press reported the Village of Clinton was placed on evacuation alert Wednesday evening, with the Bonaparte Plateau evacuation order expanded at the same time.
+
+00:07:09.231 --> 00:07:19.088
+<v Casey>If you're in that corridor, check the Cariboo Regional District's alert page directly rather than relying on secondhand reports for your evacuation status.
+
+00:07:19.388 --> 00:07:36.530
+<v Casey>Related to that, Ricochet Media reported the union representing Ontario's forest firefighters is blasting the provincial government for what it calls mismanagement of firefighting resources, arguing budgets haven't kept pace with fire seasons despite warnings from the provincial Auditor General.
+
+00:07:36.830 --> 00:07:47.115
+<v Riley>Different province, same math BC has been running for years — fire season keeps getting longer and the response capacity doesn't scale with it.
+
+00:07:47.415 --> 00:08:04.557
+<v Riley>The Tyee published a piece on logging companies pushing into high-elevation forests as BC tries to raise overall harvest rates — stands once considered too remote or too costly to log are now back on the table for cutting permits.
+
+00:08:04.857 --> 00:08:14.714
+<v Casey>Those high-elevation stands hold snowpack longer and recover more slowly, and it's frequently the same contested land we talk about under land-title questions.
+
+00:08:15.014 --> 00:08:31.728
+<v Casey>New Atlas reported that the threat of extreme solar storms may be considerably worse than previous models suggested, with researchers arguing an assumed damage ceiling on geomagnetic storms might be a statistical illusion rather than a real physical limit.
+
+00:08:32.028 --> 00:08:47.885
+<v Riley>And Business Insider surveyed platforms — YouTube, Substack, TikTok among them — cracking down on low-quality AI-generated content flooding their feeds, trying to draw a line between embracing the tools and drowning in the slop they produce.
+
+00:08:48.185 --> 00:08:57.613
+<v Casey>Two very different worries with the same shape — the systems we've built quietly carrying more risk than we assumed going in.
+
+00:08:58.413 --> 00:09:07.413
+<v Riley>That's the roundup. We'll come back to some of this ground in the Deep Dive — the data center story especially.
+
+00:09:07.713 --> 00:09:32.998
+<v Riley>Today's spotlight is on T'exelcemc, the Williams Lake First Nation. They're a self-governing First Nation running programs in language revitalization, housing, and land stewardship — working to restore fluency in Secwepemctsín and manage their own territory under their own authority, rather than through delegated provincial programs. If you want to learn more or get involved, their site is wlfn.ca.
+
+00:09:33.298 --> 00:09:47.012
+<v Casey>Self-governing isn't a label a lot of Nations get to use yet in this province — it means something structurally different, and it's directly relevant to what we're about to dig into.
+
+00:09:47.812 --> 00:09:49.526
+<v Riley>Let's get into it.
+
+00:09:49.826 --> 00:10:05.683
+<v Casey>When a hyperscale data center wants to build on or near a Nation's land, who actually has the authority to say no — not to the dataset six months later, but to the bulldozers before they arrive?
+
+00:10:05.983 --> 00:10:32.554
+<v Riley>The reporting that frames this well comes from Grist, syndicated through the Indigenous News Alliance. Hyperscale data centers need enormous amounts of land, huge volumes of water for cooling, and steady cheap electricity — and increasingly they're being sited in rural areas precisely because that's where land and power are both cheap. The Cariboo checks both of those boxes without much effort.
+
+00:10:32.854 --> 00:10:39.711
+<v Casey>Which should make this region pay close attention, not treat it as a hypothetical future problem.
+
+00:10:40.011 --> 00:11:00.153
+<v Riley>The legal landscape actually differs sharply by Nation. The Tŝilhqot'in title decision from 2014 gives that Nation something most Nations in this country still don't have: declared Aboriginal title, meaning actual jurisdiction to refuse a land use outright, not just a right to be consulted about it.
+
+00:11:00.453 --> 00:11:27.024
+<v Casey>Declared title on paper and title enforced against an industrial siting application under provincial energy policy are two very different fights. BC's environmental assessment process runs on its own statutory timeline regardless of who holds title, and a Nation without a declared title ruling — which is most Nations in the Cariboo — negotiates from a materially weaker position than Tŝilhqot'in does.
+
+00:11:27.724 --> 00:11:44.009
+<v Riley>Right, and that's the actual stakes here. Most Cariboo Nations are working through impact-benefit agreements and consultation frameworks, not a Supreme Court title declaration. So the real question is what tools exist short of another decade-long court case.
+
+00:11:44.309 --> 00:12:11.737
+<v Casey>Structurally, not many. An impact-benefit agreement is a negotiated contract. It can include revenue-sharing, local employment targets, even something that functions like a veto clause on paper. But it only holds as long as both parties keep showing up to the table in good faith. There's no independent body checking five years later whether a data center operator is actually honoring its water-use limits.
+
+00:12:12.037 --> 00:12:44.179
+<v Riley>True of most commercial contracts, though — the alternative to imperfect leverage isn't better leverage, it's none at all. A Nation that secures a formal seat in the permitting process before an application is even filed has real influence over siting, cooling method, and water draw. Some Nations elsewhere have reportedly used exactly that sequencing on resource project approvals — engagement locked in before the decision is made, not a comment period bolted on after.
+
+00:12:44.479 --> 00:13:02.479
+<v Casey>(wry) "Reportedly" is doing a lot of the reassurance there. Communities like Aamjiwnaang First Nation have had to publicly push for exactly that kind of front-loaded sequencing on nearby industrial projects — which tells you it's still the exception, not the rule.
+
+00:13:03.279 --> 00:13:25.993
+<v Riley>It's clearly not universal yet, and that's worth sitting with. But it's a genuinely different kind of lever than the data-ownership fights we usually cover. This is land-use jurisdiction — physical infrastructure, water tables, grid draw — governed by provincial statute and title case law, not by a research ethics framework like OCAP.
+
+00:13:26.293 --> 00:13:49.007
+<v Casey>Which means the real test isn't "was the Nation consulted." It's whether the Nation controls the terms of reference for the environmental assessment, the water license conditions, and the decommissioning bond. Those mechanisms are built to survive a change in company ownership or a change in provincial government. A consultation relationship survives neither.
+
+00:13:49.307 --> 00:13:50.307
+<v Riley>Right.
+
+00:13:50.607 --> 00:14:24.464
+<v Casey>The second piece to set beside this one isn't about land at all — it's about who has cultural authority to tell a story on a public platform. Wikimedia Australia just published a guide on Indigenous Cultural and Intellectual Property and Data Sovereignty, developed with input from Indigenous cultural and intellectual property specialists. The core question it pushes editors to ask before publishing isn't "is this verifiable" — it's "who has the cultural authority to tell this particular story."
+
+00:14:24.764 --> 00:15:02.049
+<v Riley>It's the same governance question in a completely different domain — not who owns the server, but who gets asked before the story goes up in the first place. That's directly relevant to language revitalization work, which is exactly what Williams Lake First Nation is doing with Secwepemctsín right now. If an outside editor writes an article on a Secwepemc place name or ceremonial practice without asking the Nation first, the platform has made a governance decision by default — even without anyone intending it that way.
+
+00:15:02.349 --> 00:15:29.777
+<v Casey>And Wikipedia's whole editorial model is structurally anti-authority. Anyone can edit, consensus among anonymous editors decides what stays — not a designated cultural authority the platform defers to. A guide is a strong recommendation. It doesn't change the platform's actual editing rules. Nothing stops a well-meaning outside editor from overriding it next month, and there's no enforcement layer behind the guide beyond community goodwill.
+
+00:15:30.077 --> 00:15:52.362
+<v Riley>That's a real gap — it's a policy document, not a technical lock on content. But it gives a Nation something concrete to point to the next time a dispute happens: a documented standard the platform itself formally endorsed. That's a different starting position than having no standard to cite at all.
+
+00:15:52.662 --> 00:16:17.090
+<v Casey>(deadpan) A citation after the damage is published is still a citation after the damage is published. FirstVoices solved this differently — it's a closed, Nation-controlled platform for language data from the ground up, not an open platform with a retrofit guideline bolted on years later. The governance there is architectural, built into the system, not advisory.
+
+00:16:17.790 --> 00:16:46.932
+<v Riley>And that maps onto the data center question too. Architecture a Nation actually owns outright beats an advisory framework layered onto someone else's system, every time. The open question is whether that kind of ownership is realistic at hyperscale infrastructure scale. A Nation can plausibly build and own a language database on a modest server. Owning a hyperscale data center outright is a different order of capital entirely.
+
+00:16:47.232 --> 00:17:15.517
+<v Casey>Which is exactly why the land-title lever matters more than the data-ownership lever in this specific case. A Nation doesn't need to own the data center to control what happens on its own land — it needs enforceable jurisdiction over the permit itself. That's a legal and political fight, not an infrastructure-ownership one, and the tools for that fight already exist in BC's environmental assessment framework.
+
+00:17:15.817 --> 00:17:42.388
+<v Riley>Agreed on the distinction — different problems need different tools. Land-use authority needs legal and regulatory leverage. Knowledge and language platforms need architectural control from day one. (chuckles) Conflating the two is exactly where a lot of "Indigenous-led innovation" language gets vague and unaccountable — usually right around the part of the press release with a stock photo of a server room.
+
+00:17:43.188 --> 00:18:00.330
+<v Casey>So say a Cariboo Nation is watching a data center proposal show up on its territory — and given this week's grid demand record, that's not hypothetical anymore. What's the actual first move? Not a slogan. A specific, checkable ask.
+
+00:18:00.630 --> 00:18:27.201
+<v Riley>Get in front of the environmental assessment terms of reference before they're drafted, not after the developer files. That's a formal request any Nation's lands office can make to the BC Environmental Assessment Office, and it's an existing right under the current process — the leverage comes entirely from timing, not from waiting quietly for the developer's public comment period to open.
+
+00:18:27.501 --> 00:18:59.643
+<v Casey>And separately, whatever water license and decommissioning bond terms get attached to a project need to be written so they survive a change in ownership. Data center operators get bought and sold constantly — that's practically the business model at this point. If the enforcement mechanism is a handshake understanding with the company that signed the original agreement, it's worth nothing the day that company gets acquired by someone who never sat at the table.
+
+00:19:00.443 --> 00:19:21.871
+<v Riley>Two concrete, checkable asks, then — the terms-of-reference request, and transferable water license conditions that bind successor owners. Neither depends on grant funding or a pilot program with an expiry date. They're regulatory questions a Nation's lands department can raise this year, using tools that already exist in provincial law.
+
+00:19:22.171 --> 00:19:44.885
+<v Casey>Which points to the structural question actually worth investigating next — how many existing Cariboo-area impact-benefit agreements currently include decommissioning and water-license terms that bind successor owners, versus just the signing company. That's a documentable fact sitting in a filing cabinet somewhere, not a hypothetical. Right now, neither of us knows the answer.
+
+00:19:45.185 --> 00:19:54.613
+<v Riley>(chuckles) Neither do most Nations currently negotiating one of these agreements — until they put that exact question to a lawyer directly.
+
+00:19:55.313 --> 00:20:06.884
+<v Casey>Which might be the single most useful thing this segment does — hand someone a specific, answerable question to bring to their own lands office next week.
+
+00:20:07.184 --> 00:20:31.183
+<v Riley>And working from published sources the way we do, the on-the-ground arrangement in any specific Cariboo negotiation may look different from what's publicly documented. If you're closer to one of these agreements than we are, or you've built successor-binding terms into a project agreement, we want to hear it — feedback at cariboo signals dot c-a.
+
+00:20:31.483 --> 00:20:40.483
+<v Casey>And that's the same address if we got any of the regulatory detail wrong today — corrections welcome, not just compliments.
+
+00:20:40.783 --> 00:20:44.640
+<v Riley>Thanks for spending part of your day with us.
+
+00:20:44.940 --> 00:20:47.939
+<v Casey>Have a great rest of your day.
+
+00:20:48.239 --> 00:21:07.524
+<v Casey>You know, we didn't get to talk with any First Nations communications folks for this one, and honestly that's something we should've done before we hit record—so if anyone listening works in that space and wants to set that straight next time, we're all ears.

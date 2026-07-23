@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "Engadget review recap: MSI Claw 8 EX AI+, Sony A7R VI, Ray-B",
-      "[TechRadar] Adobe and Disney are teaming up to design the ne",
       "[Android Authority] Anthropic\u2019s most advanced AI models coul",
       "[TechRadar] Fires linked to solar panels force Suffolk counc",
       "[TechCrunch] Station F ramps up as a launchpad for Europe\u2019s ",
@@ -10,7 +8,9 @@
       "[TechCrunch] US government says it got hacked \u2014 again",
       "[TechCrunch] Nonprofit Current AI is racing to build the Wor",
       "[CNET] We\u2019re Asking All the Wrong Questions About AI Compani",
-      "[WIRED] A Sneaky Hacking Tool Targeting AI Infrastructure Is"
+      "[WIRED] A Sneaky Hacking Tool Targeting AI Infrastructure Is",
+      "How Indigenous technologists are building data sovereignty i",
+      "[Kagi Small Web] Is evolvable AI a threat?"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -105,11 +105,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-07-21",
-        "clue": "pilot-skepticism:x \u2014 Conceded Cariboo producer density genuinely constrains model viability",
-        "occurrences": 2
-      },
-      {
         "date": "2026-07-18",
         "clue": "evidence-bar:+ \u2014 Shifted from process critique to traceability as measurable test",
         "occurrences": 2
@@ -125,9 +120,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-07-22",
-        "clue": "structural-lens:+ \u2014 Shifted from object-level (Steam case) to pattern recognition",
-        "occurrences": 1
+        "date": "2026-07-23",
+        "clue": "structural-lens:+ \u2014 Explicitly distinguished land-use jurisdiction from data-ownership fights",
+        "occurrences": 2
       },
       {
         "date": "2026-07-22",
@@ -274,11 +269,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-06-02",
-        "clue": "community-trust:- \u2014 Softened skepticism about co-operative will by naming CARA as credible translator institution",
-        "occurrences": 2
-      },
-      {
         "date": "2026-04-27",
         "clue": "pilot-skepticism: x \u2014 Conceded Local 58 outlier exists; strengthened 'owned infrastructure' position instead",
         "occurrences": 1
@@ -390,11 +380,6 @@
       },
       {
         "date": "2026-07-22",
-        "clue": "structural-lens:+ \u2014 Moved from blocking criticism to identifying the precise lever (CIPO exemption process)",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-07-22",
         "clue": "evidence-bar:~ \u2014 Acknowledged informal forums as real infrastructure, then immediately questioned their durability",
         "occurrences": 1
       }
@@ -498,6 +483,11 @@
       {
         "formed": "2026-06-25",
         "signal": "evidence-bar:- \u2014 Conceded Palmer Lake reporting accuracy without full governance data.",
+        "occurrences": 3
+      },
+      {
+        "formed": "2026-07-23",
+        "signal": "community-trust:- \u2014 Acknowledged gap between published policy and actual on-the-ground arrangements, invited correction",
         "occurrences": 3
       }
     ]
