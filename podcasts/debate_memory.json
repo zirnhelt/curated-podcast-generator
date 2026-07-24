@@ -2297,31 +2297,31 @@
       "Agricultural co-ops and regional institutions as potential legal applicants for copyright exemptions"
     ]
   },
-  "2026-07-23": {
-    "timestamp": 1784816060.824398,
-    "date": "2026-07-23",
-    "theme": "Indigenous Lands & Innovation",
-    "focus": "governance-title",
-    "central_question": "What regulatory and governance tools can Indigenous Nations in the Cariboo region use to control land-use decisions around hyperscale data center development before construction begins?",
-    "riley_position": "Existing provincial regulatory frameworks and environmental assessment processes provide concrete, actionable levers for Nations to influence data center siting decisions if they engage at the terms-of-reference stage before developer applications are filed.",
+  "2026-07-24": {
+    "timestamp": 1784889580.870172,
+    "date": "2026-07-24",
+    "theme": "Wild Spaces & Outdoor Life",
+    "focus": "wildlife-conservation",
+    "central_question": "Can real-time wildlife and environmental monitoring technology effectively close the gap between understanding ecological problems and acting on them fast enough to protect animals and fish populations?",
+    "riley_position": "Better monitoring technology provides genuine diagnostic value that enables more informed decision-making, even if it doesn't directly solve underlying problems like climate change or habitat loss. Real-time data shared across decision-makers can improve response times and outcomes.",
     "riley_key_evidence": [
-      "Ontario Nations have successfully used early engagement sequencing on mining project approvals to influence decisions before applications are filed",
-      "The BC Environmental Assessment Office allows Nations to formally request involvement in terms-of-reference drafting before the developer submits",
-      "T\u015dilhqot'in's 2014 Aboriginal title declaration demonstrates the jurisdictional difference between Nations with declared title versus those negotiating impact-benefit agreements"
+      "Peace region caribou recovery used GPS collar telemetry and maternal penning to bring a herd from dozens to several times that number",
+      "Real-time temperature loggers on the Fraser can transmit hourly data instead of requiring weeks to retrieve, enabling mid-run responses rather than post-facto analysis",
+      "Orca behavior documentation shows that enough monitoring eyes over time can catch previously unknown behaviors"
     ],
-    "casey_position": "Architectural control and enforceable legal mechanisms that bind successor owners are necessary because consultation frameworks and impact-benefit agreements lack independent enforcement and collapse when companies are acquired or ownership changes.",
+    "casey_position": "Monitoring technology is diagnostic, not curative, and the critical gap isn't data collection but the authority and speed to act on that data. Climate-driven problems (winter ticks, river temperatures) and jurisdictional bottlenecks (overlapping DFO/First Nations authority) often cannot be solved by better information.",
     "casey_key_evidence": [
-      "Impact-benefit agreements only hold as long as both parties maintain good faith\u2014there is no independent body checking compliance five years later",
-      "Aamjiwnaang First Nation had to publicly demand engagement-first sequencing on a pipeline project in 2024, showing it is not yet standard practice",
-      "FirstVoices solved platform governance through architectural ownership (closed Nation-controlled system) rather than retrofit advisory guidelines on open platforms"
+      "Caribou herds around Cariboo Mountains, Wells Gray, and Barkerville may be past recovery\u2014at some point honesty requires calling it 'management of a remnant population' rather than 'recovery'",
+      "Winter ticks killing moose are a climate problem showing up as parasites, and no provincial wildlife branch can engineer a colder winter",
+      "Even with improved temperature data, federal DFO emergency closure authority moves slower than heat spikes, making instrumentation that measures a problem faster than anyone can respond to it"
     ],
-    "resolution": "Riley and Casey reached substantive agreement that different problems require different tools: land-use authority requires legal/regulatory leverage (which already exists in BC law), while knowledge platforms require architectural control from inception. They agreed the most actionable near-term move is requesting early environmental assessment involvement and ensuring water-license terms survive company ownership changes.",
+    "resolution": "Riley and Casey agree to hold the orca behavior question as genuinely open rather than resolved, and they converge on a concrete structural ask: public, real-time water temperature data on Fraser tributaries shared simultaneously across all decision-makers (DFO, Nations, local fisheries offices) rather than locked in separate systems. They acknowledge technology improves diagnosis without necessarily enabling cure, particularly for climate-driven problems where the underlying cause remains beyond control.",
     "topics_covered": [
-      "Aboriginal title and jurisdiction: T\u015dilhqot'in versus Nations negotiating impact-benefit agreements",
-      "Environmental assessment process timing and terms-of-reference engagement as a regulatory lever",
-      "Decommissioning bonds and water-license conditions that bind successor owners",
-      "Platform governance for Indigenous knowledge: Wikipedia retrofit guidelines versus FirstVoices architectural control",
-      "Language revitalization platforms and cultural authority to tell stories on public platforms"
+      "Caribou habitat fragmentation and current population bottlenecks in the Cariboo Mountains",
+      "Winter tick populations as a climate-driven threat to moose populations",
+      "Fraser River salmon run temperatures and jurisdiction gaps between DFO and First Nations fisheries authority",
+      "Real-time monitoring technology capabilities and their limits in wildlife management",
+      "The gap between data collection and decision-making authority in environmental protection"
     ]
   }
 }
