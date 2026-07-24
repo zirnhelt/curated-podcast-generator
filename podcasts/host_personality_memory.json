@@ -95,11 +95,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-07-20",
-        "clue": "tech-optimism:~ \u2014 Connor Ratliff example adds nuance to access argument",
-        "occurrences": 2
-      },
-      {
         "date": "2026-07-11",
         "clue": "pilot-skepticism:+ \u2014 Proposed mesh-radio model but acknowledged zero local precedent",
         "occurrences": 1
@@ -132,6 +127,11 @@
       {
         "date": "2026-07-22",
         "clue": "structural-lens:x \u2014 Conceded Casey's legal-vs-skill distinction as 'actual gap'",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-07-24",
+        "clue": "evidence-bar:x \u2014 Conceded orca behavior discovery proves monitoring doesn't guarantee understanding",
         "occurrences": 1
       }
     ],
@@ -339,9 +339,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-06-30",
-        "clue": "pilot-skepticism:- \u2014 Softened stance on carbon protocols; acknowledged rancher cooperative math",
-        "occurrences": 1
+        "date": "2026-07-24",
+        "clue": "pilot-skepticism:- \u2014 Moved from dismissing pilots to proposing testable tributary temperature setup",
+        "occurrences": 2
       },
       {
         "date": "2026-07-07",
@@ -387,11 +387,6 @@
         "date": "2026-07-20",
         "clue": "pilot-skepticism:x \u2014 Conceded regional reach viable without national distribution needs",
         "occurrences": 1
-      },
-      {
-        "date": "2026-07-22",
-        "clue": "structural-lens:+ \u2014 Moved from blocking criticism to identifying the precise lever (CIPO exemption process)",
-        "occurrences": 2
       },
       {
         "date": "2026-07-22",

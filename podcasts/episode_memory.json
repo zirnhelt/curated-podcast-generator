@@ -483,5 +483,26 @@
     "date": "2026-07-22",
     "focus": "maker-repair",
     "focus_name": "Maker & Repair"
+  },
+  "2026-07-24": {
+    "timestamp": 1784889578.884227,
+    "topics": [
+      "[New Atlas] Mini packs all the essentials into a towable tin",
+      "[The Narwhal] As Canadian politicians promise a carbon emiss",
+      "[Williams Lake Tribune] Clinton business steps up to feed fi",
+      "B.C. officials brace for worsening drought conditions and mo",
+      "[Global News] Wildfire smoke blankets Kelowna, prompting hea",
+      "Evacuations in Spain as wildfire triggers regional emergency",
+      "[Kottke.org] New orca behavior unlocked. They\u2019ve been known ",
+      "[Williams Lake Tribune] Hwy. 1 through Fraser Canyon, Hwy. 3"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech"
+    ],
+    "date": "2026-07-24",
+    "focus": "wildlife-conservation",
+    "focus_name": "Wildlife & Conservation"
   }
 }
