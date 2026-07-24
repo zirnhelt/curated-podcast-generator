@@ -4603,6 +4603,38 @@ def _detect_production_company_mentions(articles, credits_config):
     return found
 
 
+# US-policy jurisdiction framing. The upstream curator flags US-policy stories
+# deterministically (_us_policy, _us_policy_scope) so scope → on-air framing is a
+# static lookup here, never a model call: cross-border stories lead with the
+# local hook; pure out-of-jurisdiction stories air as an explicit "not ours to
+# vote on" call-out.
+US_POLICY_SCOPE_FRAMING = {
+    "cross-border-impact": (
+        "US policy that also lands here — lead with the local hook (trade, mills, "
+        "prices); the decision reaches BC/Canada directly"
+    ),
+    "out-of-jurisdiction": (
+        "pure US policy — frame as an explicit call-out: not ours to vote on, but "
+        "worth watching for precedent or inspiration"
+    ),
+}
+
+
+def us_policy_framing_tag(article) -> str:
+    """Inline prompt tag steering how hosts frame a US-policy story.
+
+    Returns '' for stories the curator did not flag (normal coverage, no
+    jurisdiction preamble). Scope → framing is a static lookup; a flagged story
+    with missing/unknown scope falls back to the out-of-jurisdiction call-out —
+    the conservative default that never implies a US-only story affects BC.
+    """
+    if not (article.get('_us_policy') or article.get('_us_policy_scope')):
+        return ''
+    scope = article.get('_us_policy_scope')
+    framing = US_POLICY_SCOPE_FRAMING.get(scope) or US_POLICY_SCOPE_FRAMING['out-of-jurisdiction']
+    return f' [US POLICY — {framing}]'
+
+
 def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None, feed_meta=None, bonus_articles=None, debate_memory=None, cta_memory=None, thought_seeds=None, weather_data=None, brave_context="", feedback_emails=None, twit_items=None, corrections=None, focus=None):
     """Generate conversational podcast script using Claude."""
     print("🎙️ Generating podcast script with Claude...")
@@ -4653,10 +4685,11 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         held_tag = (f' [FROM {a["_held_from"]}: frame as "earlier this week", not '
                     f'breaking — do not explain why it airs today]'
                     if a.get('_held_from') else '')
+        jurisdiction_tag = us_policy_framing_tag(a)
         body = a.get('_body', '')
         body_line = f"\n  Content: {body[:500]}" if body else ""
         pub_tag = _format_pub_date_tag(a)
-        return f"- [{source}] {title}{theme_tag}{cluster_tag}{held_tag}{pub_tag}\n  {summary}... (Relevance: {score}){body_line}"
+        return f"- [{source}] {title}{theme_tag}{cluster_tag}{held_tag}{jurisdiction_tag}{pub_tag}\n  {summary}... (Relevance: {score}){body_line}"
 
     def _roundup_block_header(block, count):
         if block == 'theme':
@@ -4691,10 +4724,11 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         title = a.get('title', '')
         summary = a.get('summary', '')[:300]
         score = a.get('_boosted_score', a.get('ai_score', 0))
+        jurisdiction_tag = us_policy_framing_tag(a)
         body = a.get('_body', '')
         body_line = f"\n  Content: {body[:1000]}" if body else ""
         pub_tag = _format_pub_date_tag(a)
-        return f"- [{source}] {title}{pub_tag}\n  {summary}... (AI Score: {score}){body_line}"
+        return f"- [{source}] {title}{jurisdiction_tag}{pub_tag}\n  {summary}... (AI Score: {score}){body_line}"
 
     deep_dive_text = "\n".join([_format_deep_dive_article(a) for a in deep_dive_articles])
 
