@@ -58,6 +58,7 @@ jobs:
       - name: Render sections
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_MODEL || secrets.GEMINI_TTS_MODEL }}
           OPENAI_API_KEY: ${{ inputs.providers == 'all' && secrets.OPENAI_API_KEY || '' }}
           AZURE_SPEECH_KEY: ${{ inputs.providers == 'all' && secrets.AZURE_SPEECH_KEY || '' }}
           AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}

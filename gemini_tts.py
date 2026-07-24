@@ -30,7 +30,9 @@ import requests
 from azure_tts import PRONUNCIATION_DICT, _split_segments_by_char_limit
 from config_loader import get_gemini_voice_for_host, load_hosts_config, load_prompts_config
 
-GEMINI_TTS_MODEL = os.getenv("GEMINI_TTS_MODEL", "gemini-2.5-flash-preview-tts")
+# `or` (not a getenv default) so a present-but-empty env var — e.g. an unset
+# workflow secret expanding to "" — still falls back to the default model.
+GEMINI_TTS_MODEL = os.getenv("GEMINI_TTS_MODEL") or "gemini-2.5-flash-preview-tts"
 GEMINI_TTS_URL = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 
 # Each script section (and any char-limit chunk within it) is its own
@@ -182,42 +184,42 @@ def _synthesize_chunk(segments: list[dict], context_tail: str = "") -> tuple[byt
     url = GEMINI_TTS_URL.format(model=GEMINI_TTS_MODEL)
     headers = {"x-goog-api-key": api_key, "Content-Type": "application/json"}
 
-    last_err: Exception | None = None
     for attempt in range(3):
         try:
             resp = requests.post(url, headers=headers, json=payload, timeout=600)
             if resp.status_code in (429, 500, 502, 503, 504):
                 raise RuntimeError(f"Gemini TTS HTTP {resp.status_code}: {resp.text[:300]}")
             resp.raise_for_status()
-            break
+
+            data = resp.json()
+            usage = data.get("usageMetadata", {})
+            ts = datetime.now(timezone.utc).isoformat(timespec="seconds")
+            print(
+                f"  [api] {ts} service=gemini-tts chars={prompt_chars} "
+                f"total_tokens={usage.get('totalTokenCount', 0)}"
+            )
+
+            # A 200 with no inlineData (finishReason OTHER) is a known transient
+            # server defect of the Gemini TTS models — retryable like a 5xx.
+            try:
+                part = data["candidates"][0]["content"]["parts"][0]["inlineData"]
+            except (KeyError, IndexError) as e:
+                raise RuntimeError(
+                    f"Gemini TTS response had no audio: {str(data)[:300]}"
+                ) from e
+
+            mime = part.get("mimeType", "")
+            rate_match = re.search(r"rate=(\d+)", mime)
+            sample_rate = int(rate_match.group(1)) if rate_match else DEFAULT_SAMPLE_RATE
+            return base64.b64decode(part["data"]), sample_rate
         except (requests.RequestException, RuntimeError) as e:
-            last_err = e
             if attempt < 2:
                 delay = 5 * (2 ** attempt)
                 print(f"  ⚠️  Gemini TTS retrying in {delay}s (attempt {attempt + 1}/2): {e}")
                 time.sleep(delay)
             else:
                 raise
-    else:  # pragma: no cover — loop always breaks or raises
-        raise last_err
-
-    data = resp.json()
-    usage = data.get("usageMetadata", {})
-    ts = datetime.now(timezone.utc).isoformat(timespec="seconds")
-    print(
-        f"  [api] {ts} service=gemini-tts chars={prompt_chars} "
-        f"total_tokens={usage.get('totalTokenCount', 0)}"
-    )
-
-    try:
-        part = data["candidates"][0]["content"]["parts"][0]["inlineData"]
-    except (KeyError, IndexError) as e:
-        raise RuntimeError(f"Gemini TTS response had no audio: {str(data)[:300]}") from e
-
-    mime = part.get("mimeType", "")
-    rate_match = re.search(r"rate=(\d+)", mime)
-    sample_rate = int(rate_match.group(1)) if rate_match else DEFAULT_SAMPLE_RATE
-    return base64.b64decode(part["data"]), sample_rate
+    raise AssertionError("unreachable")  # pragma: no cover
 
 
 def _duration_check(pcm: bytes, sample_rate: int, segments: list[dict]) -> None:

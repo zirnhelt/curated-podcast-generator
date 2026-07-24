@@ -4479,6 +4479,28 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
         print(f"❌ Error saving citations: {e}")
         return None
 
+def refresh_citations_tts_credit(citations_path) -> None:
+    """Re-sync the citations file's TTS credit after audio rendering.
+
+    Citations are written before audio is rendered, so their credit reflects
+    the env-flag provider selection. A provider fallback during rendering
+    (e.g. Gemini → OpenAI) changes get_active_tts_provider(); this rewrites
+    the published credit to the provider that actually rendered the audio.
+    """
+    path = Path(citations_path)
+    if not path.exists():
+        return
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        live_credit = get_tts_credit()
+        if data.get("credits", {}).get("text_to_speech") == live_credit:
+            return
+        data.setdefault("credits", {})["text_to_speech"] = live_credit
+        path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+        print(f"📋 Citations TTS credit updated to actual renderer: {live_credit}")
+    except Exception as e:
+        print(f"⚠️  Could not refresh citations TTS credit: {e}")
+
 def format_memory_for_prompt(episode_memory, host_memory, today_focus=None):
     """Format memory into context for Claude prompt."""
     context = ""
@@ -7465,6 +7487,9 @@ def main():
             print(f"🎉 Podcast complete!")
             print(f"   Script: {script_filename}")
             print(f"   Audio:  {audio_file}")
+            refresh_citations_tts_credit(
+                PODCASTS_DIR / f"citations_{date_key}_{safe_theme}.json"
+            )
         else:
             print(f"📝 Script ready: {script_filename}")
             print("📊 Audio generation failed")

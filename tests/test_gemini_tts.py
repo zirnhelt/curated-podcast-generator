@@ -1,5 +1,6 @@
 """Unit tests for gemini_tts.py and TTS provider/credits resolution — no API keys."""
 
+import base64
 import wave
 
 import pytest
@@ -12,7 +13,11 @@ from gemini_tts import (
     generate_gemini_tts_for_section,
     TRANSCRIPT_CHAR_LIMIT,
 )
-from config_loader import strip_stage_directions, render_credits_text
+from config_loader import (
+    get_gemini_voice_for_host,
+    strip_stage_directions,
+    render_credits_text,
+)
 
 
 SEGS = [
@@ -45,14 +50,18 @@ class TestBuildPayload:
             c["speaker"]: c["voiceConfig"]["prebuiltVoiceConfig"]["voiceName"]
             for c in cfg["speakerVoiceConfigs"]
         }
-        assert voices == {"Riley": "Sulafat", "Casey": "Orus"}
+        assert voices == {
+            "Riley": get_gemini_voice_for_host("riley"),
+            "Casey": get_gemini_voice_for_host("casey"),
+        }
         assert payload["generationConfig"]["responseModalities"] == ["AUDIO"]
 
     def test_single_speaker_uses_plain_voice_config(self):
         payload = _build_payload([SEGS[0]])
         speech = payload["generationConfig"]["speechConfig"]
         assert "multiSpeakerVoiceConfig" not in speech
-        assert speech["voiceConfig"]["prebuiltVoiceConfig"]["voiceName"] == "Sulafat"
+        voice = speech["voiceConfig"]["prebuiltVoiceConfig"]["voiceName"]
+        assert voice == get_gemini_voice_for_host("riley")
 
     def test_three_speakers_raises(self):
         segs = SEGS + [{"speaker": "guest", "text": "Hi.", "gap_ms": None}]
@@ -94,6 +103,70 @@ class TestSynthesizeGuards:
         huge = [{"speaker": "riley", "text": "x" * 50_000, "gap_ms": None}]
         with pytest.raises(RuntimeError, match="refusing to spend"):
             _synthesize_chunk(huge)
+
+
+class TestSynthesizeRetries:
+    """A 200 with no inlineData (finishReason OTHER) is a known transient
+    Gemini TTS defect and must be retried like a 5xx, not fail the section."""
+
+    AUDIO_RESPONSE = {
+        "candidates": [{"content": {"parts": [{"inlineData": {
+            "mimeType": "audio/L16;rate=24000",
+            "data": base64.b64encode(b"\x00\x01").decode(),
+        }}]}}],
+        "usageMetadata": {"totalTokenCount": 100},
+    }
+    NO_AUDIO_RESPONSE = {
+        "candidates": [{"finishReason": "OTHER", "index": 0}],
+        "usageMetadata": {"totalTokenCount": 285},
+    }
+
+    class _FakeResp:
+        def __init__(self, payload, status=200):
+            self.status_code = status
+            self.text = str(payload)
+            self._payload = payload
+
+        def raise_for_status(self):
+            pass
+
+        def json(self):
+            return self._payload
+
+    def _patch(self, monkeypatch, responses):
+        monkeypatch.setenv("GEMINI_API_KEY", "test-key")
+        monkeypatch.setattr(gemini_tts.time, "sleep", lambda s: None)
+        monkeypatch.setattr(
+            gemini_tts.requests, "post", lambda *a, **k: responses.pop(0)
+        )
+
+    def test_no_audio_response_retried_then_succeeds(self, monkeypatch):
+        responses = [
+            self._FakeResp(self.NO_AUDIO_RESPONSE),
+            self._FakeResp(self.AUDIO_RESPONSE),
+        ]
+        self._patch(monkeypatch, responses)
+        pcm, rate = _synthesize_chunk(SEGS)
+        assert pcm == b"\x00\x01"
+        assert rate == 24000
+        assert not responses  # both attempts consumed
+
+    def test_no_audio_exhausts_retries_and_raises(self, monkeypatch):
+        responses = [self._FakeResp(self.NO_AUDIO_RESPONSE) for _ in range(3)]
+        self._patch(monkeypatch, responses)
+        with pytest.raises(RuntimeError, match="no audio"):
+            _synthesize_chunk(SEGS)
+        assert not responses  # all three attempts consumed
+
+    def test_http_500_then_success(self, monkeypatch):
+        responses = [
+            self._FakeResp({}, status=500),
+            self._FakeResp(self.AUDIO_RESPONSE),
+        ]
+        self._patch(monkeypatch, responses)
+        pcm, rate = _synthesize_chunk(SEGS)
+        assert pcm == b"\x00\x01"
+        assert rate == 24000
 
 
 class TestSectionGeneration:
@@ -223,6 +296,23 @@ class TestProviderResolution:
         text = render_credits_text(pg.get_tts_credit())
         assert "Today's Voices: Gemini TTS" in text
         assert "{tts_credit}" not in text
+
+    def test_citations_credit_refreshed_after_fallback(self, monkeypatch, tmp_path):
+        # Citations were written while Gemini was the flagged provider, then
+        # rendering fell back to OpenAI — the file must be re-credited.
+        import json
+        pg = self._fresh(monkeypatch, gemini=True, used="openai")
+        citations = tmp_path / "citations_2026-07-23_test_theme.json"
+        citations.write_text(json.dumps(
+            {"credits": {"text_to_speech": "Gemini TTS"}}
+        ), encoding="utf-8")
+        pg.refresh_citations_tts_credit(citations)
+        data = json.loads(citations.read_text(encoding="utf-8"))
+        assert "OpenAI" in data["credits"]["text_to_speech"]
+
+    def test_citations_refresh_missing_file_is_noop(self, monkeypatch, tmp_path):
+        pg = self._fresh(monkeypatch, gemini=True, used="openai")
+        pg.refresh_citations_tts_credit(tmp_path / "nope.json")  # must not raise
 
 
 class TestStageDirectionAddendum:
