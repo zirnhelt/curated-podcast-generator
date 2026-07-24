@@ -43,6 +43,8 @@ from podcast_generator import (
     order_articles_by_script,
     _stale_framing_alerts,
     format_debate_memory_for_prompt,
+    us_policy_framing_tag,
+    US_POLICY_SCOPE_FRAMING,
 )
 from config_loader import load_prompts_config
 
@@ -1894,3 +1896,39 @@ class TestScriptMatchPosition:
     def test_absent_returns_none(self):
         art = {"title": "[Src] Completely unrelated subject matter"}
         assert _script_match_position(art, "nothing relevant is said here") is None
+
+
+class TestUSPolicyFramingTag:
+    def test_cross_border_impact_leads_with_local_hook(self):
+        tag = us_policy_framing_tag(
+            {"_us_policy": True, "_us_policy_scope": "cross-border-impact"}
+        )
+        assert tag.startswith(" [US POLICY — ")
+        assert "local hook" in tag
+
+    def test_out_of_jurisdiction_is_explicit_callout(self):
+        tag = us_policy_framing_tag(
+            {"_us_policy": True, "_us_policy_scope": "out-of-jurisdiction"}
+        )
+        assert "not ours to vote on" in tag
+
+    def test_unflagged_article_gets_no_preamble(self):
+        assert us_policy_framing_tag({"title": "Local mill reopens"}) == ""
+
+    def test_flagged_but_unknown_scope_defaults_to_out_of_jurisdiction(self):
+        # Conservative default: never imply a US-only story affects BC.
+        tag = us_policy_framing_tag({"_us_policy": True})
+        assert tag == us_policy_framing_tag(
+            {"_us_policy": True, "_us_policy_scope": "out-of-jurisdiction"}
+        )
+
+    def test_scope_present_without_flag_still_tagged(self):
+        tag = us_policy_framing_tag({"_us_policy_scope": "cross-border-impact"})
+        assert "local hook" in tag
+
+    def test_lookup_table_drives_framing_no_model_call(self):
+        # Both on-air scopes resolve through the static lookup table.
+        assert set(US_POLICY_SCOPE_FRAMING) == {
+            "cross-border-impact",
+            "out-of-jurisdiction",
+        }
