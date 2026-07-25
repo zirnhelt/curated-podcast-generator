@@ -16,6 +16,7 @@ from email_ingest import (
     _extract_urls,
     _is_blocked_sender,
     _is_blocked_subject,
+    _is_recipient_allowed,
     _looks_like_correction,
     _score_themes,
     ingest,
@@ -45,12 +46,19 @@ SAMPLE_BLOCKLIST = {
         "paypal.com",
         "intl.paypal.com",
         "cira.ca",
+        "google.com",
+        "accounts.google.com",
+        "notifications.google.com",
     ],
     "patterns": [
         "mailer-daemon",
         "mail delivery subsystem",
         "postmaster@",
     ],
+}
+
+SAMPLE_RECIPIENT_ALLOWLIST = {
+    "domains": ["cariboosignals.ca"],
 }
 
 
@@ -111,6 +119,50 @@ class TestIsBlockedSender:
         assert _is_blocked_sender(
             "Andrea De Marsi <demars@podseo.com>", SAMPLE_BLOCKLIST
         )
+
+    def test_blocks_google_account_security(self):
+        assert _is_blocked_sender(
+            "Google <no-reply@accounts.google.com>", SAMPLE_BLOCKLIST
+        )
+
+    def test_blocks_google_notifications(self):
+        assert _is_blocked_sender(
+            "Google <no-reply@notifications.google.com>", SAMPLE_BLOCKLIST
+        )
+
+    def test_blocks_bare_google_domain(self):
+        assert _is_blocked_sender(
+            "Google Accounts <verify@google.com>", SAMPLE_BLOCKLIST
+        )
+
+
+# ---------------------------------------------------------------------------
+# _is_recipient_allowed
+# ---------------------------------------------------------------------------
+
+class TestIsRecipientAllowed:
+    def test_allows_matching_to_domain(self):
+        assert _is_recipient_allowed(
+            "feedback@cariboosignals.ca", SAMPLE_RECIPIENT_ALLOWLIST
+        )
+
+    def test_allows_matching_domain_case_insensitive(self):
+        assert _is_recipient_allowed(
+            "Feedback@CaribooSignals.CA", SAMPLE_RECIPIENT_ALLOWLIST
+        )
+
+    def test_rejects_personal_address_only(self):
+        assert not _is_recipient_allowed(
+            "zirnhelt@gmail.com", SAMPLE_RECIPIENT_ALLOWLIST
+        )
+
+    def test_empty_allowlist_allows_all(self):
+        assert _is_recipient_allowed("anyone@anything.com", {})
+
+    def test_matches_within_combined_header_text(self):
+        # Simulates To + Delivered-To + Cc joined together; match anywhere in it.
+        headers = "zirnhelt@gmail.com youtube@cariboosignals.ca"
+        assert _is_recipient_allowed(headers, SAMPLE_RECIPIENT_ALLOWLIST)
 
 
 # ---------------------------------------------------------------------------
@@ -275,12 +327,12 @@ class TestScoreThemes:
 # ingest() — full pipeline with mocked Gmail service
 # ---------------------------------------------------------------------------
 
-def _make_raw_email(subject, from_addr, body, message_id=None):
+def _make_raw_email(subject, from_addr, body, message_id=None, to_addr="podcast@cariboosignals.ca"):
     """Build a base64url-encoded raw email dict as returned by the Gmail API."""
     msg = MIMEText(body)
     msg["Subject"] = subject
     msg["From"] = from_addr
-    msg["To"] = "podcast@example.com"
+    msg["To"] = to_addr
     msg["Date"] = "Thu, 01 Jan 2026 00:00:00 +0000"
     msg["Message-ID"] = message_id or f"<{uuid.uuid4().hex}@example.com>"
     return {"raw": base64.urlsafe_b64encode(msg.as_bytes()).decode()}
@@ -428,6 +480,55 @@ class TestIngest:
         assert item["type"] == "correction"
         assert item["theme_tag"] is None
         assert item["status"] == "pending"
+
+    def test_email_not_addressed_to_allowed_domain_is_skipped(self, tmp_path, monkeypatch):
+        """A themed email addressed only to a personal address is skipped when a
+        recipient allowlist is configured — even though it would otherwise queue."""
+        raw = _make_raw_email(
+            subject="Verify your email address",
+            from_addr="verify@google.com",
+            body="Williams Lake and Cariboo rural communities need your verification.",
+            to_addr="zirnhelt@gmail.com",
+        )
+        svc = _mock_gmail_service([raw])
+
+        queue_file = tmp_path / "email_queue.json"
+        monkeypatch.setenv("GMAIL_LABEL", "podcast")
+        monkeypatch.setattr("email_ingest._build_gmail_service", lambda: svc)
+        monkeypatch.setattr("email_ingest.QUEUE_FILE", queue_file)
+        monkeypatch.setattr(
+            "email_ingest._load_email_recipient_allowlist",
+            lambda: SAMPLE_RECIPIENT_ALLOWLIST,
+        )
+
+        added = ingest(dry_run=False)
+
+        assert added == 0
+        assert not queue_file.exists()
+
+    def test_email_addressed_to_allowed_domain_is_added(self, tmp_path, monkeypatch):
+        """A themed email addressed to an allowed domain is queued as usual when a
+        recipient allowlist is configured."""
+        raw = _make_raw_email(
+            subject="Story idea",
+            from_addr="listener@example.com",
+            body="Williams Lake and Cariboo rural communities story idea.",
+            to_addr="feedback@cariboosignals.ca",
+        )
+        svc = _mock_gmail_service([raw])
+
+        queue_file = tmp_path / "email_queue.json"
+        monkeypatch.setenv("GMAIL_LABEL", "podcast")
+        monkeypatch.setattr("email_ingest._build_gmail_service", lambda: svc)
+        monkeypatch.setattr("email_ingest.QUEUE_FILE", queue_file)
+        monkeypatch.setattr(
+            "email_ingest._load_email_recipient_allowlist",
+            lambda: SAMPLE_RECIPIENT_ALLOWLIST,
+        )
+
+        added = ingest(dry_run=False)
+
+        assert added == 1
 
     def test_dry_run_does_not_write_queue(self, tmp_path, monkeypatch):
         """dry_run=True parses emails but never writes the queue file."""

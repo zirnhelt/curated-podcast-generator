@@ -108,12 +108,21 @@
       "notify.cloudflare.com",
       "paypal.com",
       "intl.paypal.com",
-      "cira.ca"
+      "cira.ca",
+      "google.com",
+      "accounts.google.com",
+      "notifications.google.com"
     ],
     "patterns": [
       "mailer-daemon",
       "mail delivery subsystem",
       "postmaster@"
+    ]
+  },
+  "email_recipient_allowlist": {
+    "description": "If non-empty, only emails whose To/Delivered-To/Cc headers contain one of these domains are ingested. Prevents personal account-management mail (e.g. Google security alerts) from being queued as listener feedback just because it landed in the same inbox the ingest script polls.",
+    "domains": [
+      "cariboosignals.ca"
     ]
   }
 }
