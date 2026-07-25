@@ -5,6 +5,9 @@ venv/
 
 #test files
 *test*
+# ...but never the CI workflow. An ignored workflow file is silently never
+# pushed, which is the failure mode this job exists to prevent.
+!.github/workflows/tests.yml
 
 # Backup files from refactoring
 *.pre-config
