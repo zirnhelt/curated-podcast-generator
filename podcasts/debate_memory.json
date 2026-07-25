@@ -1,56 +1,4 @@
 {
-  "2026-04-25": {
-    "timestamp": 1777114294.217407,
-    "date": "2026-04-25",
-    "theme": "Cariboo Voices & Local News",
-    "central_question": "What actually holds geographically dispersed, economically diverse communities like the Cariboo together functionally, and how fragile is that social infrastructure?",
-    "riley_position": "Social capital generated through events, volunteering, and community institutions is genuinely load-bearing and does structural work that formal systems don't account for. Some volunteer roles like hospice companionship are actually better done by trained community members than paid professionals.",
-    "riley_key_evidence": [
-      "Research on end-of-life care shows people want presence and companionship, not just clinical intervention, which trained hospice volunteers provide effectively",
-      "Communities with high social capital recover faster from shocks like wildfires and evacuations",
-      "Many volunteer institutions have institutional support (health authority relationships, city support) even if thin and inconsistent"
-    ],
-    "casey_position": "While social infrastructure is genuinely important, it operates in a state of chronic fragility due to underfunding, demographic shifts in volunteer availability, and one-or-two-person dependencies that create succession gaps. Additionally, social capital can be exclusionary and historically hasn't adequately included Indigenous communities.",
-    "casey_key_evidence": [
-      "Volunteer-dependent institutions like Deni House indicate structural healthcare underfunding rather than a badge of honour",
-      "Women in mid-life who historically provided volunteer labor are now in full-time paid work, creating structural volunteer recruitment constraints",
-      "The Williams Lake Stampede has a historically complicated relationship with Indigenous communities despite being load-bearing infrastructure"
-    ],
-    "resolution": "They achieved substantial agreement: both recognized social infrastructure is vital but fragile, and both endorsed the need for intentional investment including community asset mapping, hybrid volunteer-plus-coordinator models, endowment funding mechanisms, and explicit bridge-building between Indigenous and non-Indigenous communities. Casey conceded that some volunteer roles have evidence-based value; Riley conceded institutional support is thin and inconsistent.",
-    "topics_covered": [
-      "The role of events (Stampede, Food Fair) as social capital generators and community cohesion mechanisms",
-      "Volunteer infrastructure fragility and succession planning in rural communities",
-      "Healthcare volunteerism as both essential care and symptom of underfunding",
-      "Social capital theory: bonding versus bridging across community groups",
-      "Structural constraints on rural volunteering and hybrid funding models for non-profits"
-    ]
-  },
-  "2026-04-26": {
-    "timestamp": 1777200709.543437,
-    "date": "2026-04-26",
-    "theme": "Science, Wonder & the Natural World",
-    "central_question": "Can rural communities like the Cariboo be positioned to conduct long-duration, place-based observational science better than centralized institutions, and what governance structures would make this work?",
-    "riley_position": "Rural communities have inherent advantages for longitudinal ecological observation through existing land management practices and stakeholder relationships, but the governance architecture\u2014particularly around data ownership and control in contested Indigenous territories\u2014must be resolved before infrastructure is built.",
-    "riley_key_evidence": [
-      "Ranches have tracked pastures through multiple generations of climate variation; Secw\u00e9pemc and T\u015dilhqot'in knowledge holders carry observational records spanning millennia",
-      "The York University sleep study succeeded by aggregating 69 separate studies over time, requiring sustained infrastructure maintenance beyond grant cycles",
-      "Community Futures organizations already sit at the intersection of ranching operations and First Nations economic development, positioning them to convene governance conversations"
-    ],
-    "casey_position": "Rural communities should formalize their existing longitudinal observational capacity through a 'monitoring commons' model where multiple land users with distinct operational needs share infrastructure costs and data, with OCAP principles and Indigenous governance embedded from the design stage.",
-    "casey_key_evidence": [
-      "Curiosity rover's thirteen-year sustained observation on Mars generated undeniable patterns through incremental data accumulation rather than breakthrough experiments",
-      "Wildfire management could improve with systematic local tracking of vegetation density, soil moisture, and snowmelt timing over 10-15 years rather than relying on provincial aggregate data",
-      "Cattle ranchers, wildlife monitors, timber operators, and tourism operators all need overlapping climate and ecological data, creating natural infrastructure-sharing opportunities"
-    ],
-    "resolution": "Casey and Riley reached substantial agreement: governance questions must precede technology deployment, the monitoring commons model is viable, and a starting point should be convening land users around three operational questions rather than beginning with sensor deployment. They acknowledged the approach is harder than technology problems but fundamentally more important.",
-    "topics_covered": [
-      "Long-duration observational science as a structural advantage for rural communities",
-      "Indigenous data sovereignty and OCAP principles in shared monitoring infrastructure",
-      "Governance architecture and dispute resolution in data-sharing arrangements across competing land interests",
-      "Community Futures as a potential convening body for multi-stakeholder monitoring commons",
-      "Operational vs. scientific framing as the foundation for durable rural science initiatives"
-    ]
-  },
   "2026-04-27": {
     "timestamp": 1777290762.202033,
     "date": "2026-04-27",
@@ -2322,6 +2270,33 @@
       "Fraser River salmon run temperatures and jurisdiction gaps between DFO and First Nations fisheries authority",
       "Real-time monitoring technology capabilities and their limits in wildlife management",
       "The gap between data collection and decision-making authority in environmental protection"
+    ]
+  },
+  "2026-07-25": {
+    "timestamp": 1784989891.721101,
+    "date": "2026-07-25",
+    "theme": "Cariboo Local Affairs",
+    "focus": null,
+    "central_question": "Does the Cariboo Regional District have sufficient institutional capacity to manage three simultaneous evacuation situations, and are cross-jurisdictional coordination protocols actually functional during live crises?",
+    "riley_position": "The alert system is working as designed with staged progression and adequate lead time, and BC Hydro's transparency about grid vulnerabilities is a genuine win; the real question is whether interagency coordination protocols exist and are being exercised at the working level across jurisdictional boundaries.",
+    "riley_key_evidence": [
+      "330 parcels around Felker and Chimney Lakes moved from alert to order in documented, staged progression giving residents days of lead time",
+      "Province's Ministry of Emergency Management maintains interagency coordination protocols for multi-jurisdiction wildfire complexes",
+      "BC Hydro proactively explained ash-caused arcing on insulators to CKPG News rather than leaving residents to guess"
+    ],
+    "casey_position": "The real problem is raw institutional capacity during compounding crises and lack of published contingency plans for grid redundancy; structural fixes like pre-negotiated cross-jurisdictional agreements are needed before the next fire season, not reactive staffing.",
+    "casey_key_evidence": [
+      "BC Hydro's grid backbone runs through active fire zones with ash causing real arcing and flickering, but no published timeline for how long mobile generation units can cover simultaneous outages",
+      "Regional districts typically run emergency operations with small core teams supplemented by provincial and volunteer crews, not enough for three fires simultaneously",
+      "BC Wildfire Service's Spring 2026 Seasonal Outlook flagged western Cariboo as primed for very large fires months in advance, yet the institution still had to scramble in real time"
+    ],
+    "resolution": "Both agreed that the core fix is a pre-negotiated mutual aid and joint-notice protocol between CRD and TNRD covering shared corridors like Highway 97, to be negotiated in the off-season and ready to activate; this is a governance design question achievable through public pressure at regional district board meetings, not dependent on provincial action.",
+    "topics_covered": [
+      "Institutional capacity of regional districts to manage simultaneous multi-jurisdiction emergencies",
+      "Cross-jurisdictional coordination gaps on shared transportation corridors during wildfires",
+      "BC Hydro grid vulnerabilities from ash and smoke in active fire zones",
+      "Difference between early-warning system effectiveness and real-time operational coordination",
+      "Unglamorous structural governance fixes versus reactive resource requests"
     ]
   }
 }

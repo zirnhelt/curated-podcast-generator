@@ -504,5 +504,25 @@
     "date": "2026-07-24",
     "focus": "wildlife-conservation",
     "focus_name": "Wildlife & Conservation"
+  },
+  "2026-07-25": {
+    "timestamp": 1784989889.681833,
+    "topics": [
+      "Enbridge breaks ground on $4B Sunrise Expansion project in P",
+      "Heat and smoke relief available in Invermere : My East Koote",
+      "[100 Mile Free Press] Wildfire smoke cancels 2026 100 Mile P",
+      "[CFJC Today Kamloops] CFJC Midday \u2013 Growing demand at Kamloo",
+      "New Rule Ties Potential Green Card Approval to SNAP Benefits",
+      "Felker Lake and area residents under an evacuation order bec",
+      "[Williams Lake Tribune] Flickering lights in Cariboo caused ",
+      "[Kagi Small Web] Protecting our FLOSS commons from LLMs"
+    ],
+    "themes": [
+      "rural development",
+      "Indigenous tech"
+    ],
+    "date": "2026-07-25",
+    "focus": null,
+    "focus_name": null
   }
 }
