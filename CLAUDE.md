@@ -58,6 +58,8 @@ python generate_bespoke.py --tag <topic-tag>
 
 Tests require no API keys — `tests/conftest.py` installs lightweight stubs for `anthropic`, `openai`, `pydub`, and `azure` at import time.
 
+**State-file isolation:** the live memory/state JSON files in `podcasts/` (PSA rotation, episode/debate memory, article holding) are production data committed daily by CI — code under test that persists state will rewrite them in place. An autouse fixture in `tests/conftest.py` already redirects `psa_selector.PSA_STATE_FILE` to a tmp copy; any new test (or code path) that touches a `podcasts/` state file must get the same treatment (monkeypatch the path/`PODCASTS_DIR` into `tmp_path`). After any local test run, check `git status` — a modified state file is test leakage to be reverted (`git checkout -- podcasts/<file>`), never committed.
+
 ## Architecture
 
 ### High-Level Flow
