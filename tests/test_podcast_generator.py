@@ -494,10 +494,16 @@ def _tool_use_block(name, tool_input, tool_id="tool_1"):
     return block
 
 
-def _response(stop_reason, content):
+def _response(stop_reason, content, input_tokens=1234):
+    """Stand-in for an anthropic Message.
+
+    usage.input_tokens has to be a real int, not a bare MagicMock attribute:
+    every call site hands it to _log_api_call for cost metering, which sums it.
+    """
     response = MagicMock()
     response.stop_reason = stop_reason
     response.content = content
+    response.usage.input_tokens = input_tokens
     return response
 
 
