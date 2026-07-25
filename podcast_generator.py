@@ -5,6 +5,7 @@ Converts RSS feed scoring data into conversational podcast scripts and generates
 All text content loaded from config/ directory for easy updates.
 """
 
+import argparse
 import os
 import sys
 import json
@@ -6879,11 +6880,17 @@ def generate_tts_test_feed():
     print(f"✅ Generated TTS test feed with {len(episodes)} Azure episodes → tts-test-feed.xml")
 
 
-def save_script_to_file(script, theme_name):
-    """Save the generated script to a file."""
+def save_script_to_file(script: str, theme_name: str, brave_used: bool = False) -> str | None:
+    """Save the generated script to a file.
+
+    The header carries the metadata the audio stage needs, since it runs as a
+    separate process and cannot inherit locals: the theme (which the feed can
+    override, so it is not always what get_theme_for_day() returns) and whether
+    Brave research was used (which gates a line in the spoken credits).
+    """
     if not script:
         return None
-    
+
     pacific_now = get_pacific_now()
     date_str = pacific_now.strftime("%Y-%m-%d")
     safe_theme = theme_name.replace(" ", "_").replace("&", "and").lower()
@@ -6893,15 +6900,42 @@ def save_script_to_file(script, theme_name):
         with open(script_filename, 'w', encoding='utf-8') as f:
             f.write(f"# {CONFIG['podcast']['title']} Podcast Script - {date_str}\n")
             f.write(f"# Theme: {theme_name}\n")
+            f.write(f"# Brave: {'yes' if brave_used else 'no'}\n")
             f.write(f"# Generated: {pacific_now.strftime('%Y-%m-%d %H:%M:%S %Z')}\n\n")
             f.write(script)
-        
+
         print(f"💾 Saved script to: {script_filename}")
         return script_filename
-        
+
     except Exception as e:
         print(f"❌ Error saving script: {e}")
         return None
+
+
+def read_script_metadata(script_path) -> dict:
+    """Parse the `# Key: value` header written by save_script_to_file().
+
+    Returns {"theme": str | None, "brave_used": bool}. Scripts written before
+    the header carried `# Brave:` degrade to brave_used=False, and any script
+    without a `# Theme:` line degrades to theme=None — both are what the
+    downstream callers already tolerate.
+    """
+    metadata: dict = {"theme": None, "brave_used": False}
+    try:
+        with open(script_path, "r", encoding="utf-8") as fh:
+            for line in fh:
+                if not line.startswith("#"):
+                    break  # header ends at the first non-comment line
+                key, _, value = line.lstrip("#").strip().partition(":")
+                key = key.strip().lower()
+                value = value.strip()
+                if key == "theme" and value:
+                    metadata["theme"] = value
+                elif key == "brave":
+                    metadata["brave_used"] = value.lower() in ("yes", "true", "1")
+    except OSError as exc:
+        print(f"⚠️  Could not read script metadata from {script_path}: {exc}")
+    return metadata
 
 def extract_topics_and_themes(script, news_articles=None, deep_dive_articles=None):
     """Extract main topics from script and source articles for memory."""
@@ -6987,11 +7021,15 @@ def _recover_orphaned_episodes(lookback_days=3):
                 continue
 
             print(f"   🔄 Attempting recovery for {date_str}...")
+            # Recover theme and Brave usage from the script header so the
+            # ambient beds and spoken credits match the original episode.
+            metadata = read_script_metadata(script_path)
             try:
                 result = generate_audio_from_script(
                     script_content,
                     str(audio_path),
-                    theme_name=None,  # ambient lookup falls back gracefully
+                    theme_name=metadata["theme"],  # None falls back gracefully
+                    brave_used=metadata["brave_used"],
                 )
                 if result:
                     print(f"   ✅ Recovery succeeded: {audio_path.name}")
@@ -7004,11 +7042,17 @@ def _recover_orphaned_episodes(lookback_days=3):
     return recovered_any
 
 
-def main():
-    """Main podcast generation workflow."""
-    print("🎙️ Starting Cariboo Tech Progress generation...")
+def run_script_stage() -> tuple[str, str] | None:
+    """Stage 1: curate articles and generate the episode script.
+
+    Ends with the script on disk plus citations and every memory/state file
+    updated, so the caller can commit that work before any TTS spend. Returns
+    (script_filename, theme_name) — the theme is returned because the feed can
+    override today's weekday theme, which changes the filename slug.
+    """
+    print("🎙️ Starting Cariboo Tech Progress script generation...")
     print("=" * 60)
-    
+
     # Load configuration
     podcast_config = CONFIG['podcast']
     print(f"📻 Podcast: {podcast_config['title']}")
@@ -7053,44 +7097,13 @@ def main():
               f"for today's theme, {len(email_corrections)} correction(s)")
     consumed_email_ids = []
 
-    # Recover any past episodes whose script exists but audio was never generated
-    _recover_orphaned_episodes(lookback_days=3)
-
-    # Check for existing files (stored in podcasts/ subfolder)
+    # Check for an existing script (stored in podcasts/ subfolder)
     date_key = pacific_now.strftime("%Y-%m-%d")
     safe_theme = today_theme.replace(" ", "_").replace("&", "and").lower()
     script_filename = str(PODCASTS_DIR / f"podcast_script_{date_key}_{safe_theme}.txt")
-    audio_filename = str(PODCASTS_DIR / f"podcast_audio_{date_key}_{safe_theme}.mp3")
 
     script_exists = os.path.exists(script_filename)
-    audio_exists = os.path.exists(audio_filename)
-    
-    if script_exists and audio_exists:
-        print(f"✅ Today's episode already exists:")
-        print(f"   Script: {script_filename}")
-        print(f"   Audio: {audio_filename}")
 
-        # If Azure TTS is active (either parallel comparison or full-switch mode) and
-        # the _azure.mp3 is missing, generate it now from the existing script so
-        # re-runs catch up without regenerating everything.
-        if USE_AZURE_PARALLEL or USE_AZURE_TTS:
-            azure_filename = str(Path(audio_filename).with_suffix("")) + "_azure.mp3"
-            if not os.path.exists(azure_filename):
-                print(f"🔵 Azure parallel file missing — generating from existing script...")
-                with open(script_filename, "r", encoding="utf-8") as fh:
-                    existing_script = fh.read()
-                segments = parse_script_into_segments(existing_script)
-                _generate_parallel_azure_audio(segments, audio_filename, theme_name=today_theme)
-            else:
-                print(f"✅ Azure parallel file already exists: {Path(azure_filename).name}")
-
-        generate_episode_transcript(script_filename, date_key, safe_theme)
-        generate_podcast_rss_feed()
-        generate_tts_test_feed()
-        _regenerate_index_html()
-        sync_site_to_r2()
-        return
-    
     # Generate script if needed
     if not script_exists:
         print("🆕 Generating new script...")
@@ -7159,7 +7172,6 @@ def main():
                 today_theme = feed_meta['theme']
                 safe_theme = today_theme.replace(" ", "_").replace("&", "and").lower()
                 script_filename = str(PODCASTS_DIR / f"podcast_script_{date_key}_{safe_theme}.txt")
-                audio_filename = str(PODCASTS_DIR / f"podcast_audio_{date_key}_{safe_theme}.mp3")
 
             # Deduplicate all articles against recent episodes
             all_feed_articles = theme_articles + bonus_articles
@@ -7464,8 +7476,9 @@ def main():
             if meta_text and "**COMMUNITY SPOTLIGHT**" in script:
                 script = script.replace("**COMMUNITY SPOTLIGHT**", meta_text + "\n\n**COMMUNITY SPOTLIGHT**", 1)
 
-        # Save script
-        script_filename = save_script_to_file(script, today_theme)
+        # Save script — brave_used rides in the header so the audio stage can
+        # keep the spoken Brave credit accurate across the process boundary.
+        script_filename = save_script_to_file(script, today_theme, brave_used=brave_used)
 
         # Mark consumed seeds as used
         if consumed_seed_ids:
@@ -7505,13 +7518,89 @@ def main():
                 update_cta_memory(date_key, today_theme, ctas)
                 print(f"💡 Saved {len(ctas)} calls to action to CTA cache")
     else:
-        print(f"🔄 Using existing script: {script_filename}")
-        with open(script_filename, 'r', encoding='utf-8') as f:
-            script = f.read()
-        brave_used = False
-    
-    # Generate audio if needed
-    if not audio_exists and script:
+        print(f"🔄 Script already exists, reusing: {script_filename}")
+
+    print("✅ Script stage complete!")
+    print(_format_daily_cost_summary())
+    return script_filename, today_theme
+
+
+def resolve_script_for_audio(script_path: str = None, date_str: str = None) -> str | None:
+    """Find the script the audio stage should render.
+
+    Resolution order: an explicit --script path, then a --date glob, then
+    today's Pacific date. The glob mirrors _recover_orphaned_episodes() so a
+    feed-overridden theme slug is still found.
+    """
+    if script_path:
+        if not os.path.exists(script_path):
+            print(f"❌ Script not found: {script_path}")
+            return None
+        return script_path
+
+    if not date_str:
+        date_str = get_pacific_now().strftime("%Y-%m-%d")
+
+    matches = sorted(PODCASTS_DIR.glob(f"podcast_script_{date_str}_*.txt"))
+    if not matches:
+        print(f"❌ No script found for {date_str} in {PODCASTS_DIR}")
+        return None
+    if len(matches) > 1:
+        print(f"⚠️  Multiple scripts for {date_str}, using {matches[-1].name}")
+    return str(matches[-1])
+
+
+def run_audio_stage(script_path: str = None, date_str: str = None) -> bool:
+    """Stage 2: render audio from a saved script and publish the episode.
+
+    Reads the script from disk rather than taking it as an argument, so it runs
+    standalone against a past or hand-edited script. Returns True when the
+    episode's audio is in place.
+    """
+    print("🎵 Starting Cariboo Tech Progress audio generation...")
+    print("=" * 60)
+
+    # Recover any past episodes whose script exists but audio was never
+    # generated. Audio work, so it belongs to this stage.
+    _recover_orphaned_episodes(lookback_days=3)
+
+    script_filename = resolve_script_for_audio(script_path, date_str)
+    if not script_filename:
+        return False
+
+    # The audio path comes from the script's own filename, not from a
+    # recomputed theme slug — the feed can override today's theme, and this is
+    # the same mapping _recover_orphaned_episodes() already relies on.
+    slug = Path(script_filename).stem.replace("podcast_script_", "", 1)
+    audio_filename = str(PODCASTS_DIR / f"podcast_audio_{slug}.mp3")
+    date_key, _, safe_theme = slug.partition("_")
+
+    metadata = read_script_metadata(script_filename)
+    today_theme = metadata["theme"]
+    brave_used = metadata["brave_used"]
+    print(f"📄 Script: {Path(script_filename).name}")
+    print(f"   Theme: {today_theme or 'unknown (ambient lookup will fall back)'}")
+
+    with open(script_filename, 'r', encoding='utf-8') as f:
+        script = f.read()
+
+    audio_exists = os.path.exists(audio_filename)
+
+    if audio_exists:
+        print(f"🎵 Audio already exists: {audio_filename}")
+
+        # If Azure TTS is active (either parallel comparison or full-switch mode) and
+        # the _azure.mp3 is missing, generate it now from the existing script so
+        # re-runs catch up without regenerating everything.
+        if USE_AZURE_PARALLEL or USE_AZURE_TTS:
+            azure_filename = str(Path(audio_filename).with_suffix("")) + "_azure.mp3"
+            if not os.path.exists(azure_filename):
+                print(f"🔵 Azure parallel file missing — generating from existing script...")
+                segments = parse_script_into_segments(script)
+                _generate_parallel_azure_audio(segments, audio_filename, theme_name=today_theme)
+            else:
+                print(f"✅ Azure parallel file already exists: {Path(azure_filename).name}")
+    else:
         audio_file = generate_audio_from_script(
             script, audio_filename, theme_name=today_theme,
             brave_used=brave_used,
@@ -7527,8 +7616,6 @@ def main():
         else:
             print(f"📝 Script ready: {script_filename}")
             print("📊 Audio generation failed")
-    elif audio_exists:
-        print(f"🎵 Audio already exists: {audio_filename}")
 
     # Generate HTML transcript for Apple Podcasts
     generate_episode_transcript(script_filename, date_key, safe_theme)
@@ -7539,7 +7626,7 @@ def main():
     _regenerate_index_html()
     sync_site_to_r2()
 
-    print("✅ Generation complete!")
+    print("✅ Audio stage complete!")
     print(_format_daily_cost_summary())
 
     if _openai_quota_exceeded:
@@ -7547,6 +7634,50 @@ def main():
         print("❌ OpenAI billing quota exceeded — audio was not generated.")
         print("   Add credits or raise the spending limit at platform.openai.com to restore service.")
         sys.exit(1)
+
+    return os.path.exists(audio_filename)
+
+
+def main(argv: list[str] = None) -> None:
+    """Dispatch to the requested stage.
+
+    `--stage all` (the default) runs both back to back, matching the behaviour
+    of the single-process pipeline this replaced.
+    """
+    parser = argparse.ArgumentParser(
+        description="Generate the daily Cariboo Signals episode."
+    )
+    parser.add_argument(
+        "--stage", choices=("all", "script", "audio"), default="all",
+        help="Which half to run: 'script' curates and writes the script, "
+             "'audio' renders and publishes it, 'all' does both (default).",
+    )
+    parser.add_argument(
+        "--date", metavar="YYYY-MM-DD",
+        help="Audio stage only: render the script saved for this date "
+             "instead of today's.",
+    )
+    parser.add_argument(
+        "--script", metavar="PATH",
+        help="Audio stage only: render this exact script file.",
+    )
+    args = parser.parse_args(argv)
+
+    if args.stage != "audio" and (args.date or args.script):
+        parser.error("--date and --script only apply to --stage audio")
+
+    if args.stage == "audio":
+        run_audio_stage(script_path=args.script, date_str=args.date)
+        return
+
+    result = run_script_stage()
+    if not result or not result[0]:
+        print("❌ Script stage produced no script. Exiting.")
+        sys.exit(1)
+
+    if args.stage == "all":
+        run_audio_stage(script_path=result[0])
+
 
 if __name__ == "__main__":
     main()

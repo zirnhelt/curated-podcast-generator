@@ -45,6 +45,10 @@ from podcast_generator import (
     format_debate_memory_for_prompt,
     us_policy_framing_tag,
     US_POLICY_SCOPE_FRAMING,
+    save_script_to_file,
+    read_script_metadata,
+    resolve_script_for_audio,
+    main,
 )
 from config_loader import load_prompts_config
 
@@ -1932,3 +1936,259 @@ class TestUSPolicyFramingTag:
             "cross-border-impact",
             "out-of-jurisdiction",
         }
+
+
+class TestScriptMetadataHeader:
+    """The script header is how theme + brave_used cross the stage boundary.
+
+    The audio stage runs as a separate process, so it cannot inherit these as
+    locals — it reads them back out of the file save_script_to_file wrote.
+    """
+
+    def _save(self, tmp_path, monkeypatch, theme, brave_used):
+        import podcast_generator as pg
+
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        return save_script_to_file("**RILEY:** Hello.\n", theme, brave_used=brave_used)
+
+    def test_round_trips_theme_and_brave_used(self, tmp_path, monkeypatch):
+        path = self._save(tmp_path, monkeypatch, "Working Lands & Industry", True)
+        assert read_script_metadata(path) == {
+            "theme": "Working Lands & Industry",
+            "brave_used": True,
+        }
+
+    def test_round_trips_brave_unused(self, tmp_path, monkeypatch):
+        path = self._save(tmp_path, monkeypatch, "Wild Spaces & Outdoor Life", False)
+        assert read_script_metadata(path)["brave_used"] is False
+
+    def test_feed_overridden_theme_survives_slug_mismatch(self, tmp_path, monkeypatch):
+        # The feed can hand back a theme unrelated to the weekday rotation. The
+        # audio stage must recover it from the header, not recompute it.
+        path = self._save(tmp_path, monkeypatch, "Special Feed Theme", False)
+        assert "special_feed_theme" in path
+        assert read_script_metadata(path)["theme"] == "Special Feed Theme"
+
+    def test_header_does_not_leak_into_script_body(self, tmp_path, monkeypatch):
+        path = self._save(tmp_path, monkeypatch, "Theme", True)
+        body = open(path, encoding="utf-8").read()
+        assert "# Brave: yes" in body
+        assert body.rstrip().endswith("**RILEY:** Hello.")
+
+    def test_legacy_script_without_brave_header_degrades(self, tmp_path):
+        # Scripts written before the header carried `# Brave:` must still parse.
+        legacy = tmp_path / "podcast_script_2026-07-01_legacy.txt"
+        legacy.write_text(
+            "# Cariboo Signals Podcast Script - 2026-07-01\n"
+            "# Theme: Legacy Theme\n"
+            "# Generated: 2026-07-01 01:00:00 PDT\n\n"
+            "**RILEY:** Hi.\n",
+            encoding="utf-8",
+        )
+        assert read_script_metadata(legacy) == {
+            "theme": "Legacy Theme",
+            "brave_used": False,
+        }
+
+    def test_missing_file_degrades_without_raising(self, tmp_path):
+        assert read_script_metadata(tmp_path / "nope.txt") == {
+            "theme": None,
+            "brave_used": False,
+        }
+
+    def test_stops_parsing_at_first_non_comment_line(self, tmp_path):
+        # A '# Theme:' inside the dialogue must not override the real header.
+        f = tmp_path / "podcast_script_2026-07-01_x.txt"
+        f.write_text(
+            "# Theme: Real Theme\n\n**RILEY:** Quoting a header: # Theme: Fake\n",
+            encoding="utf-8",
+        )
+        assert read_script_metadata(f)["theme"] == "Real Theme"
+
+
+class TestResolveScriptForAudio:
+    def _write(self, tmp_path, name):
+        p = tmp_path / name
+        p.write_text("# Theme: T\n\n**RILEY:** Hi.\n", encoding="utf-8")
+        return p
+
+    def test_explicit_script_path_wins(self, tmp_path, monkeypatch):
+        import podcast_generator as pg
+
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        target = self._write(tmp_path, "podcast_script_2026-01-01_a.txt")
+        assert resolve_script_for_audio(script_path=str(target)) == str(target)
+
+    def test_missing_explicit_path_returns_none(self, tmp_path, monkeypatch):
+        import podcast_generator as pg
+
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        assert resolve_script_for_audio(script_path=str(tmp_path / "gone.txt")) is None
+
+    def test_date_globs_unknown_theme_slug(self, tmp_path, monkeypatch):
+        import podcast_generator as pg
+
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        self._write(tmp_path, "podcast_script_2026-07-24_working_lands_and_industry.txt")
+        result = resolve_script_for_audio(date_str="2026-07-24")
+        assert result.endswith("podcast_script_2026-07-24_working_lands_and_industry.txt")
+
+    def test_defaults_to_today_pacific(self, tmp_path, monkeypatch):
+        import podcast_generator as pg
+
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        today = get_pacific_now().strftime("%Y-%m-%d")
+        self._write(tmp_path, f"podcast_script_{today}_some_theme.txt")
+        assert resolve_script_for_audio() is not None
+
+    def test_no_match_returns_none(self, tmp_path, monkeypatch):
+        import podcast_generator as pg
+
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        assert resolve_script_for_audio(date_str="1999-01-01") is None
+
+
+class TestStageDispatch:
+    """--stage routing: neither half may run the other's work."""
+
+    def _patch_stages(self, monkeypatch):
+        import podcast_generator as pg
+
+        calls = []
+        monkeypatch.setattr(
+            pg, "run_script_stage",
+            lambda: (calls.append("script"), ("s.txt", "Theme"))[1],
+        )
+        monkeypatch.setattr(
+            pg, "run_audio_stage",
+            lambda **kw: (calls.append("audio"), True)[1],
+        )
+        return calls
+
+    def test_script_stage_never_generates_audio(self, monkeypatch):
+        calls = self._patch_stages(monkeypatch)
+        main(["--stage", "script"])
+        assert calls == ["script"]
+
+    def test_audio_stage_never_generates_script(self, monkeypatch):
+        calls = self._patch_stages(monkeypatch)
+        main(["--stage", "audio"])
+        assert calls == ["audio"]
+
+    def test_all_runs_both_in_order(self, monkeypatch):
+        calls = self._patch_stages(monkeypatch)
+        main(["--stage", "all"])
+        assert calls == ["script", "audio"]
+
+    def test_default_matches_all(self, monkeypatch):
+        # Bare `python podcast_generator.py` must behave as it always has.
+        calls = self._patch_stages(monkeypatch)
+        main([])
+        assert calls == ["script", "audio"]
+
+    def test_all_passes_script_path_to_audio_stage(self, monkeypatch):
+        import podcast_generator as pg
+
+        seen = {}
+        monkeypatch.setattr(pg, "run_script_stage", lambda: ("/p/script.txt", "Theme"))
+        monkeypatch.setattr(pg, "run_audio_stage", lambda **kw: seen.update(kw) or True)
+        main(["--stage", "all"])
+        assert seen == {"script_path": "/p/script.txt"}
+
+    def test_all_exits_when_script_stage_produces_nothing(self, monkeypatch):
+        import podcast_generator as pg
+
+        monkeypatch.setattr(pg, "run_script_stage", lambda: None)
+        monkeypatch.setattr(
+            pg, "run_audio_stage",
+            lambda **kw: pytest.fail("audio must not run without a script"),
+        )
+        with pytest.raises(SystemExit) as exc:
+            main(["--stage", "all"])
+        assert exc.value.code == 1
+
+    @pytest.mark.parametrize("flag", (["--date", "2026-07-24"], ["--script", "x.txt"]))
+    def test_audio_only_flags_rejected_on_other_stages(self, monkeypatch, flag):
+        self._patch_stages(monkeypatch)
+        with pytest.raises(SystemExit) as exc:
+            main(["--stage", "script"] + flag)
+        assert exc.value.code == 2
+
+    def test_audio_stage_forwards_date_and_script(self, monkeypatch):
+        import podcast_generator as pg
+
+        seen = {}
+        monkeypatch.setattr(pg, "run_audio_stage", lambda **kw: seen.update(kw) or True)
+        main(["--stage", "audio", "--date", "2026-07-24"])
+        assert seen == {"script_path": None, "date_str": "2026-07-24"}
+
+
+class TestAudioStageCrossBoundary:
+    """The audio stage must reconstruct what the single-process run had in locals."""
+
+    def _prepare(self, tmp_path, monkeypatch, brave_used):
+        import podcast_generator as pg
+
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        monkeypatch.setattr(pg, "_recover_orphaned_episodes", lambda **kw: False)
+        monkeypatch.setattr(pg, "generate_episode_transcript", lambda *a, **k: None)
+        monkeypatch.setattr(pg, "generate_podcast_rss_feed", lambda *a, **k: None)
+        monkeypatch.setattr(pg, "generate_tts_test_feed", lambda *a, **k: None)
+        monkeypatch.setattr(pg, "_regenerate_index_html", lambda *a, **k: None)
+        monkeypatch.setattr(pg, "sync_site_to_r2", lambda *a, **k: None)
+        monkeypatch.setattr(pg, "refresh_citations_tts_credit", lambda *a, **k: None)
+
+        script = save_script_to_file(
+            "**RILEY:** Hello.\n", "Working Lands & Industry", brave_used=brave_used
+        )
+
+        captured = {}
+
+        def fake_audio(script_text, output_filename, theme_name=None, brave_used=False):
+            captured["theme_name"] = theme_name
+            captured["brave_used"] = brave_used
+            captured["output_filename"] = output_filename
+            open(output_filename, "wb").write(b"\x00")
+            return output_filename
+
+        monkeypatch.setattr(pg, "generate_audio_from_script", fake_audio)
+        return pg, script, captured
+
+    def test_brave_used_survives_the_stage_boundary(self, tmp_path, monkeypatch):
+        # Regression: the old resume path hardcoded brave_used=False, silently
+        # dropping the Brave line from the spoken credits.
+        pg, script, captured = self._prepare(tmp_path, monkeypatch, brave_used=True)
+        assert pg.run_audio_stage(script_path=script) is True
+        assert captured["brave_used"] is True
+
+    def test_brave_unused_stays_false(self, tmp_path, monkeypatch):
+        pg, script, captured = self._prepare(tmp_path, monkeypatch, brave_used=False)
+        pg.run_audio_stage(script_path=script)
+        assert captured["brave_used"] is False
+
+    def test_theme_recovered_from_header(self, tmp_path, monkeypatch):
+        pg, script, captured = self._prepare(tmp_path, monkeypatch, brave_used=False)
+        pg.run_audio_stage(script_path=script)
+        assert captured["theme_name"] == "Working Lands & Industry"
+
+    def test_audio_path_derived_from_script_filename(self, tmp_path, monkeypatch):
+        pg, script, captured = self._prepare(tmp_path, monkeypatch, brave_used=False)
+        pg.run_audio_stage(script_path=script)
+        expected = script.replace("podcast_script_", "podcast_audio_").replace(
+            ".txt", ".mp3"
+        )
+        assert captured["output_filename"] == expected
+
+    def test_missing_script_returns_false_without_rendering(self, tmp_path, monkeypatch):
+        pg, _script, captured = self._prepare(tmp_path, monkeypatch, brave_used=False)
+        assert pg.run_audio_stage(script_path=str(tmp_path / "absent.txt")) is False
+        assert captured == {}
+
+    def test_existing_audio_is_not_re_rendered(self, tmp_path, monkeypatch):
+        pg, script, captured = self._prepare(tmp_path, monkeypatch, brave_used=False)
+        audio = script.replace("podcast_script_", "podcast_audio_").replace(
+            ".txt", ".mp3"
+        )
+        open(audio, "wb").write(b"\x00")
+        assert pg.run_audio_stage(script_path=script) is True
+        assert captured == {}
