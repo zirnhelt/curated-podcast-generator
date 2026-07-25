@@ -222,6 +222,17 @@ def _load_email_sender_blocklist() -> dict:
         return {}
 
 
+def _load_email_recipient_allowlist() -> dict:
+    blocklist_file = SCRIPT_DIR / "config" / "blocklist.json"
+    try:
+        with open(blocklist_file) as f:
+            data = json.load(f)
+        return data.get("email_recipient_allowlist", {})
+    except (OSError, json.JSONDecodeError) as e:
+        print(f"  ⚠️  Could not load recipient allowlist: {e}", file=sys.stderr)
+        return {}
+
+
 def _load_subject_blocklist() -> list:
     blocklist_file = SCRIPT_DIR / "config" / "blocklist.json"
     try:
@@ -289,6 +300,19 @@ def _is_blocked_sender(from_address: str, blocklist: dict) -> bool:
             if domain == blocked_lower or domain.endswith("." + blocked_lower):
                 return True
     return False
+
+
+def _is_recipient_allowed(headers_text: str, allowlist: dict) -> bool:
+    """Return True if the email was addressed to an allowed domain.
+
+    An empty allowlist means no restriction is configured, so everything is allowed —
+    this keeps deployments/tests that don't set email_recipient_allowlist unaffected.
+    """
+    domains = allowlist.get("domains", [])
+    if not domains:
+        return True
+    headers_lower = headers_text.lower()
+    return any(domain.lower() in headers_lower for domain in domains)
 
 
 def _score_themes(text: str, themes: dict) -> tuple:
@@ -510,6 +534,7 @@ def ingest(dry_run: bool = False) -> int:
     themes = _load_themes()
     sender_blocklist = _load_email_sender_blocklist()
     subject_blocklist = _load_subject_blocklist()
+    recipient_allowlist = _load_email_recipient_allowlist()
 
     print(f"📧 Connecting to Gmail API (label: {label!r})...", flush=True)
     service = _build_gmail_service()
@@ -583,6 +608,15 @@ def ingest(dry_run: bool = False) -> int:
 
         if _is_blocked_subject(subject, subject_blocklist):
             print(f"  ⏭  Blocked subject, skipping: \"{subject[:60]}\"")
+            if not dry_run:
+                _mark_read(service, msg_id)
+            continue
+
+        to_cc_headers = " ".join(
+            _decode_header_value(msg.get(h, "")) for h in ("To", "Delivered-To", "Cc")
+        )
+        if not _is_recipient_allowed(to_cc_headers, recipient_allowlist):
+            print(f"  ⏭  Not addressed to an allowed domain, skipping: \"{subject[:60]}\"")
             if not dry_run:
                 _mark_read(service, msg_id)
             continue
