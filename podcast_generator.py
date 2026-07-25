@@ -7149,12 +7149,21 @@ def run_script_stage() -> tuple[str, str] | None:
               f"for today's theme, {len(email_corrections)} correction(s)")
     consumed_email_ids = []
 
-    # Check for an existing script (stored in podcasts/ subfolder)
+    # Check for an existing script (stored in podcasts/ subfolder).
+    # Glob on date only — the theme slug isn't known until the feed responds
+    # (it can override the weekday default), and a fallback run checking only
+    # the default-theme filename would miss an already-saved override-theme
+    # script and redo the whole fetch/enrichment pipeline. Mirrors the same
+    # date-only glob in resolve_script_for_audio()/_recover_orphaned_episodes().
     date_key = pacific_now.strftime("%Y-%m-%d")
     safe_theme = today_theme.replace(" ", "_").replace("&", "and").lower()
     script_filename = str(PODCASTS_DIR / f"podcast_script_{date_key}_{safe_theme}.txt")
 
-    script_exists = os.path.exists(script_filename)
+    existing_matches = sorted(PODCASTS_DIR.glob(f"podcast_script_{date_key}_*.txt"))
+    script_exists = bool(existing_matches)
+    if script_exists:
+        script_filename = str(existing_matches[-1])
+        today_theme = read_script_metadata(script_filename).get("theme") or today_theme
 
     # Generate script if needed
     if not script_exists:
