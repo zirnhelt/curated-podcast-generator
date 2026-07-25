@@ -51,14 +51,20 @@ def sample_citations():
             "news_roundup": {
                 "title": "News",
                 "articles": [
-                    {"title": f"Headline number {i} about a rural technology story", "source": f"Source {i}", "url": f"https://example.com/{i}"}
+                    # 4 narrated stories with narration-offset fracs, 2 curated
+                    # but never discussed — mirrors real citation files.
+                    {"title": f"Headline number {i} about a rural technology story",
+                     "source": f"Source {i}", "url": f"https://example.com/{i}",
+                     "discussed": i < 4,
+                     **({"mention_offset_frac": [0.05, 0.30, 0.55, 0.80][i]} if i < 4 else {})}
                     for i in range(6)
                 ],
             },
             "deep_dive": {
                 "title": "Deep Dive",
                 "articles": [
-                    {"title": "Farmland ownership and technology", "source": "The Narwhal", "url": "https://example.com/dd"}
+                    {"title": "Farmland ownership and technology", "source": "The Narwhal", "url": "https://example.com/dd", "discussed": True},
+                    {"title": "An unused deep dive candidate", "source": "Elsewhere", "url": "https://example.com/dd2", "discussed": False},
                 ],
                 "discussion": {"central_question": "Does ownership structure matter more than technology?"},
             },
@@ -119,12 +125,52 @@ class TestSlides:
         slide_starts = {start for _, start, _ in slides}
         assert {c["startTime"] for c in sample_chapters} <= slide_starts
 
-    def test_roundup_emits_one_slide_per_article(self, sample_citations, tmp_path):
+    def test_roundup_emits_one_slide_per_discussed_article(self, sample_citations, tmp_path):
         chapters = [{"startTime": 0, "title": "News Roundup"}]
         slides = _render(chapters, sample_citations, 240.0, tmp_path)
-        assert len(slides) == 1 + 6  # lead list slide + one per article
+        assert len(slides) == 1 + 4  # lead list slide + one per narrated story
 
-    def test_deep_dive_emits_one_slide_per_article(self, sample_citations, tmp_path):
+    def test_roundup_slide_starts_follow_fracs(self, sample_citations, tmp_path):
+        chapters = [{"startTime": 0, "title": "News Roundup"}]
+        slides = _render(chapters, sample_citations, 240.0, tmp_path)
+        # Fracs 0.05/0.30/0.55/0.80 of 240s; the first is floored at MIN_SLIDE_S
+        starts = [round(s, 3) for _, s, _ in slides]
+        assert starts == [0.0, 12.0, 72.0, 132.0, 192.0]
+        assert slides[-1][2] == 240.0
+
+    def test_roundup_legacy_citations_show_all_articles(self, sample_citations, tmp_path):
+        # Pre-flag citation files carry neither `discussed` nor fracs: every
+        # article gets a slide and the span splits evenly, exactly as before.
+        for art in sample_citations["segments"]["news_roundup"]["articles"]:
+            art.pop("discussed", None)
+            art.pop("mention_offset_frac", None)
+        chapters = [{"startTime": 0, "title": "News Roundup"}]
+        slides = _render(chapters, sample_citations, 240.0, tmp_path)
+        assert len(slides) == 1 + 6
+        durations = {round(e - s, 3) for _, s, e in slides}
+        assert durations == {round(240.0 / 7, 3)}
+
+    def test_roundup_all_undiscussed_falls_back_to_full_list(self, sample_citations, tmp_path):
+        for art in sample_citations["segments"]["news_roundup"]["articles"]:
+            art["discussed"] = False
+            art.pop("mention_offset_frac", None)
+        chapters = [{"startTime": 0, "title": "News Roundup"}]
+        slides = _render(chapters, sample_citations, 240.0, tmp_path)
+        assert len(slides) == 1 + 6
+
+    def test_roundup_missing_frac_interpolates(self, sample_citations, tmp_path):
+        arts = sample_citations["segments"]["news_roundup"]["articles"]
+        del arts[1]["mention_offset_frac"]
+        chapters = [{"startTime": 0, "title": "News Roundup"}]
+        slides = _render(chapters, sample_citations, 240.0, tmp_path)
+        assert len(slides) == 1 + 4
+        starts = [s for _, s, _ in slides]
+        assert starts == sorted(starts)
+        assert all(e - s >= vg.MIN_SLIDE_S for _, s, e in slides)
+        # Interpolated slide (index 2) starts between its neighbours' fracs
+        assert 240.0 * 0.05 < starts[2] < 240.0 * 0.55
+
+    def test_deep_dive_emits_one_slide_per_discussed_article(self, sample_citations, tmp_path):
         chapters = [{"startTime": 0, "title": "Deep Dive"}]
         slides = _render(chapters, sample_citations, 200.0, tmp_path)
         assert len(slides) == 1 + 1
@@ -203,6 +249,32 @@ class TestSlides:
         assert set(badges) == {"riley", "casey"}
         for png in badges.values():
             assert os.path.exists(png)
+
+
+class TestFracBounds:
+    def test_monotonic_clamps_inversions(self):
+        bounds = vg._frac_bounds(0.0, 100.0, [0.5, 0.2, 0.9])
+        assert bounds[0] == 0.0 and bounds[-1] == 100.0
+        for a, b in zip(bounds, bounds[1:]):
+            assert b - a >= vg.MIN_SLIDE_S - 1e-9
+
+    def test_zero_first_frac_keeps_lead_floor(self):
+        bounds = vg._frac_bounds(0.0, 100.0, [0.0, 0.5])
+        assert bounds[1] == vg.MIN_SLIDE_S
+
+    def test_last_slide_ends_at_chapter_end(self):
+        # Backward clamp must bite: 0.98 of 100s leaves <MIN_SLIDE_S for the tail
+        bounds = vg._frac_bounds(0.0, 100.0, [0.1, 0.98])
+        assert bounds[-1] == 100.0
+        assert bounds[-1] - bounds[-2] >= vg.MIN_SLIDE_S - 1e-9
+
+    def test_all_missing_fracs_spread_evenly(self):
+        bounds = vg._frac_bounds(0.0, 90.0, [None, None])
+        assert bounds == [0.0, 30.0, 60.0, 90.0]
+
+    def test_nonzero_chapter_start_offsets(self):
+        bounds = vg._frac_bounds(60.0, 300.0, [0.25, 0.75])
+        assert bounds == [60.0, 120.0, 240.0, 300.0]
 
 
 class TestConcatFile:

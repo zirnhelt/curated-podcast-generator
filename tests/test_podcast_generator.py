@@ -9,6 +9,7 @@ from unittest.mock import MagicMock
 import pytest
 
 import json
+import re
 
 from podcast_generator import (
     derive_episode_sidecar_path,
@@ -1326,7 +1327,23 @@ class TestAssertFeedFresh:
             )
 
 
+def _vtt_ts_ms(ts: str) -> int:
+    """'00:01:30.250' → 90250."""
+    h, m, rest = ts.split(":")
+    s, ms = rest.split(".")
+    return ((int(h) * 60 + int(m)) * 60 + int(s)) * 1000 + int(ms)
+
+
 class TestScriptToVttTranscript:
+    SCRIPT = "\n".join([
+        "**RILEY:** Welcome to the show everyone, glad you could join.",
+        "**CASEY:** Great to be here with lots of news to cover.",
+        "**NEWS ROUNDUP**",
+        "**RILEY:** First story about something interesting happening today.",
+        "**DEEP DIVE**",
+        "**CASEY:** Our deep dive begins with a big question.",
+    ])
+
     def test_returns_none_without_speaker_lines(self):
         assert script_to_vtt_transcript("Just some prose with no speaker tags.") is None
 
@@ -1337,6 +1354,116 @@ class TestScriptToVttTranscript:
         assert "<v Riley>Welcome to the show." in vtt
         assert "<v Casey>Great to be here today." in vtt
         assert "-->" in vtt
+
+    def test_legacy_first_cue_pinned_without_timeline(self):
+        vtt = script_to_vtt_transcript("**RILEY:** Hello out there in radio land.")
+        assert "00:00:25.000 -->" in vtt
+        cold = "**COLD OPEN**\n**RILEY:** A tease of what's coming.\n**WELCOME**\n**CASEY:** And now the show."
+        assert "00:00:00.500 -->" in script_to_vtt_transcript(cold)
+
+    def test_per_turn_timeline_yields_exact_cue_times(self):
+        timeline = [
+            {"speaker": "riley", "section": "welcome", "start_ms": 27400, "dur_ms": 3000},
+            {"speaker": "casey", "section": "welcome", "start_ms": 30700, "dur_ms": 3500},
+            {"speaker": "riley", "section": "news", "start_ms": 40000, "dur_ms": 5000},
+            {"speaker": "casey", "section": "deep", "start_ms": 60000, "dur_ms": 4000},
+        ]
+        vtt = script_to_vtt_transcript(self.SCRIPT, timeline=timeline)
+        assert "00:00:27.400 --> 00:00:30.400\n<v Riley>Welcome to the show everyone" in vtt
+        assert "00:00:30.700 --> 00:00:34.200\n<v Casey>Great to be here" in vtt
+        assert "00:00:40.000 --> 00:00:45.000\n<v Riley>First story" in vtt
+        assert "00:01:00.000 --> 00:01:04.000\n<v Casey>Our deep dive" in vtt
+
+    def test_tts_only_labels_pair_after_short_turn_filter(self):
+        script = "\n".join([
+            "**RILEY:** Welcome to the show everyone, glad you could join.",
+            "**CASEY:** Yes.",  # ≤10 chars — dropped from TTS-only audio
+            "**RILEY:** Plenty to talk about in this episode.",
+        ])
+        timeline = [
+            {"speaker": "riley", "section": "Introduction", "start_ms": 1000, "dur_ms": 3000},
+            {"speaker": "riley", "section": "Introduction", "start_ms": 4500, "dur_ms": 2500},
+        ]
+        vtt = script_to_vtt_transcript(script, timeline=timeline)
+        assert "Yes." not in vtt
+        assert "00:00:01.000 --> 00:00:04.000" in vtt
+        assert "00:00:04.500 --> 00:00:07.000\n<v Riley>Plenty to talk about" in vtt
+
+    def test_whole_section_spans_scale_to_fill_each_span(self):
+        timeline = [
+            {"speaker": None, "section": "welcome", "start_ms": 20000, "dur_ms": 30000},
+            {"speaker": None, "section": "news", "start_ms": 50000, "dur_ms": 60000},
+            {"speaker": None, "section": "deep", "start_ms": 110000, "dur_ms": 30000},
+        ]
+        vtt = script_to_vtt_transcript(self.SCRIPT, timeline=timeline)
+        times = [(_vtt_ts_ms(a), _vtt_ts_ms(b)) for a, b in
+                 re.findall(r"(\d\d:\d\d:\d\d\.\d\d\d) --> (\d\d:\d\d:\d\d\.\d\d\d)", vtt)]
+        # First welcome cue at the measured onset, not the 25s legacy guess
+        assert times[0][0] == 20000
+        # Welcome's two cues fill its span; news starts exactly at its span
+        assert abs(times[1][1] - 50000) <= 1
+        assert times[2][0] == 50000
+        assert abs(times[2][1] - 110000) <= 1
+        # Monotonic within and across sections
+        flat = [v for pair in times for v in pair]
+        assert flat == sorted(flat)
+
+    def test_welcome_cues_start_at_measured_onset_not_25s(self):
+        timeline = [{"speaker": None, "section": "welcome", "start_ms": 27400, "dur_ms": 10000}]
+        script = "**RILEY:** Welcome to the show everyone, glad you could join."
+        vtt = script_to_vtt_transcript(script, timeline=timeline)
+        assert "00:00:27.400 -->" in vtt
+        assert "00:00:25.000" not in vtt
+
+    def test_turn_count_mismatch_scales_within_span(self):
+        # Speakered turns that pair with neither the full nor filtered parse:
+        # degrade to span-scaling for that section, no exception.
+        timeline = [
+            {"speaker": "riley", "section": "welcome", "start_ms": 20000, "dur_ms": 3000},
+            {"speaker": "casey", "section": "welcome", "start_ms": 23500, "dur_ms": 3000},
+            {"speaker": "riley", "section": "welcome", "start_ms": 27000, "dur_ms": 3000},
+        ]
+        script = "**RILEY:** Welcome to the show everyone, glad you could join."
+        vtt = script_to_vtt_transcript(script, timeline=timeline)
+        start, end = re.search(r"(\d\d:\d\d:\d\d\.\d\d\d) --> (\d\d:\d\d:\d\d\.\d\d\d)", vtt).groups()
+        assert _vtt_ts_ms(start) == 20000
+        assert abs(_vtt_ts_ms(end) - 30000) <= 1
+
+    def test_credits_span_ignored(self):
+        timeline = [
+            {"speaker": "riley", "section": "welcome", "start_ms": 27400, "dur_ms": 3000},
+            {"speaker": "casey", "section": "welcome", "start_ms": 30700, "dur_ms": 3500},
+            {"speaker": "riley", "section": "credits", "start_ms": 90000, "dur_ms": 8000},
+        ]
+        script = ("**RILEY:** Welcome to the show everyone, glad you could join.\n"
+                  "**CASEY:** Great to be here with lots of news to cover.")
+        vtt = script_to_vtt_transcript(script, timeline=timeline)
+        assert "00:00:27.400 -->" in vtt
+        assert "00:01:30.000" not in vtt
+
+    def test_timeline_script_mismatch_falls_back_to_legacy(self):
+        script = "**RILEY:** Hello out there in radio land."  # welcome only
+        timeline = [{"speaker": "riley", "section": "news", "start_ms": 5000, "dur_ms": 2000}]
+        assert (script_to_vtt_transcript(script, timeline=timeline)
+                == script_to_vtt_transcript(script))
+
+    def test_script_section_missing_from_timeline_is_omitted(self):
+        script = "\n".join([
+            "**RILEY:** Welcome to the show everyone, glad you could join.",
+            "**META MOMENT**",
+            "**CASEY:** A moment about how this show gets made.",
+        ])
+        timeline = [{"speaker": "riley", "section": "welcome", "start_ms": 27400, "dur_ms": 3000}]
+        vtt = script_to_vtt_transcript(script, timeline=timeline)
+        assert "00:00:27.400 -->" in vtt
+        assert "how this show gets made" not in vtt
+
+    def test_timeline_cues_escape_text_for_webvtt(self):
+        script = "**RILEY:** Time for Q&A on R&D <live> everyone."
+        timeline = [{"speaker": "riley", "section": "welcome", "start_ms": 27400, "dur_ms": 3000}]
+        vtt = script_to_vtt_transcript(script, timeline=timeline)
+        assert "00:00:27.400 -->" in vtt
+        assert "<v Riley>Time for Q&amp;A on R&amp;D &lt;live&gt; everyone." in vtt
 
     def test_escapes_cue_text_for_webvtt(self):
         # A bare & or < in cue text is a WebVTT parse error; Apple discards the
@@ -1387,6 +1514,27 @@ class TestGenerateEpisodeTranscript:
             str(tmp_path / "does_not_exist.txt"), "2026-01-01", "test_theme"
         )
         assert result is None
+
+    def test_vtt_uses_video_timeline_sidecar(self, tmp_path, monkeypatch):
+        monkeypatch.setattr("podcast_generator.PODCASTS_DIR", tmp_path)
+        script_file = tmp_path / "script.txt"
+        script_file.write_text(
+            "**RILEY:** Welcome to the show, it's Monday.\n"
+            "**CASEY:** Good to be here, let's get started.\n"
+        )
+        (tmp_path / "video_timeline_2026-01-01_test_theme.json").write_text(json.dumps({
+            "turns": [
+                {"speaker": "riley", "section": "welcome", "start_ms": 27400, "dur_ms": 3000},
+                {"speaker": "casey", "section": "welcome", "start_ms": 30700, "dur_ms": 3500},
+            ]
+        }))
+
+        generate_episode_transcript(str(script_file), "2026-01-01", "test_theme")
+
+        vtt = (tmp_path / "podcast_transcript_2026-01-01_test_theme.vtt").read_text()
+        assert "00:00:27.400 --> 00:00:30.400" in vtt
+        assert "00:00:30.700 --> 00:00:34.200" in vtt
+        assert "00:00:25.000" not in vtt
 
     def test_no_vtt_file_when_no_speaker_lines(self, tmp_path, monkeypatch):
         monkeypatch.setattr("podcast_generator.PODCASTS_DIR", tmp_path)
@@ -1884,6 +2032,35 @@ class TestGenerateCitationsFileSlideSegments:
             "[Src] Beta reactor goes online",
         ]
 
+    def test_discussed_citations_carry_mention_fracs(self, monkeypatch, tmp_path):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        news = [
+            {"title": "[Src] Beta reactor goes online", "url": "u-beta"},
+            {"title": "[Src] Alpha widget recall spreads", "url": "u-alpha"},
+            {"title": "[Src] Omega story never aired anywhere", "url": "u-omega"},
+        ]
+        # Cold open teases Beta first; the roundup narrates Alpha before Beta.
+        script = "\n".join([
+            "**COLD OPEN**",
+            "**RILEY:** Tonight the Beta reactor goes online at last.",
+            "**WELCOME**",
+            "**CASEY:** Welcome to the show, lots to get through today.",
+            "**NEWS ROUNDUP**",
+            "**RILEY:** First, the Alpha widget recall spreads across three provinces.",
+            "**CASEY:** And later in the hour, the Beta reactor goes online.",
+            "**DEEP DIVE**",
+            "**RILEY:** Now our main discussion about something else entirely.",
+        ])
+        path = pg.generate_citations_file(news, [], "Working Lands & Industry", script=script)
+        with open(path, encoding="utf-8") as f:
+            arts = json.load(f)["segments"]["news_roundup"]["articles"]
+        # Section-relative order: Alpha (narrated first) before Beta (teased first)
+        assert [a["title"].split()[1] for a in arts] == ["Alpha", "Beta", "Omega"]
+        fracs = [a.get("mention_offset_frac") for a in arts]
+        assert fracs[2] is None and not arts[2]["discussed"]
+        assert 0 <= fracs[0] < fracs[1] < 1
+
 
 class TestOrderArticlesByScript:
     def test_reorders_by_first_mention(self):
@@ -1919,6 +2096,28 @@ class TestOrderArticlesByScript:
     def test_no_script_is_identity(self):
         matched = [({"title": "a"}, True), ({"title": "b"}, True)]
         assert order_articles_by_script(matched, "") == matched
+
+    def test_section_text_overrides_teaser_order(self):
+        # The cold open teases B before A, but the roundup narrates A first.
+        # Whole-script offsets follow the teaser; section offsets must win.
+        arts = [
+            {"title": "[X] Solar farm approved in Cariboo"},
+            {"title": "[Y] Bridge repairs begin downtown"},
+        ]
+        matched = [(arts[0], True), (arts[1], True)]
+        script = ("Teaser: bridge repairs begin soon, and a solar farm approved. "
+                  "Later: the solar farm approved by council, then bridge repairs begin.")
+        section = "First the solar farm approved by council, then bridge repairs begin."
+        teaser_order = order_articles_by_script(matched, script)
+        assert [a["title"] for a, _ in teaser_order] == [
+            "[Y] Bridge repairs begin downtown",
+            "[X] Solar farm approved in Cariboo",
+        ]
+        narrated_order = order_articles_by_script(matched, script, section_text=section)
+        assert [a["title"] for a, _ in narrated_order] == [
+            "[X] Solar farm approved in Cariboo",
+            "[Y] Bridge repairs begin downtown",
+        ]
 
 
 class TestScriptMatchPosition:

@@ -4128,7 +4128,7 @@ def match_articles_to_script(articles, script):
     return results
 
 
-def order_articles_by_script(matched, script):
+def order_articles_by_script(matched, script, section_text=None):
     """Reorder (article, discussed) pairs to follow the finalized script's
     narration order — first-mention position ascending.
 
@@ -4137,17 +4137,29 @@ def order_articles_by_script(matched, script):
     which drive the video slides — must track what listeners hear, not the
     pre-script curation order. Undiscussed / unmatched articles keep their
     original relative order at the tail.
+
+    When *section_text* is given (e.g. the news-roundup narration only),
+    positions within it take precedence over whole-script positions: the cold
+    open teases top stories, so whole-script first mentions can reflect teaser
+    order rather than the order the roundup actually narrates.
     """
     if not script:
         return matched
     script_lower = script.lower()
+    section_lower = section_text.lower() if section_text else None
     inf = float('inf')
-    decorated = [
-        (_script_match_position(a, script_lower), i, (a, d))
-        for i, (a, d) in enumerate(matched)
-    ]
-    # Secondary key = original index → stable for ties and the unmatched tail.
-    decorated.sort(key=lambda t: (inf if t[0] is None else t[0], t[1]))
+
+    def _keys(a):
+        script_pos = _script_match_position(a, script_lower)
+        section_pos = _script_match_position(a, section_lower) if section_lower else None
+        return (
+            inf if section_pos is None else section_pos,
+            inf if script_pos is None else script_pos,
+        )
+
+    decorated = [(_keys(a), i, (a, d)) for i, (a, d) in enumerate(matched)]
+    # Final key = original index → stable for ties and the unmatched tail.
+    decorated.sort(key=lambda t: (*t[0], t[1]))
     return [pair for _, _, pair in decorated]
 
 def get_current_date_info():
@@ -4436,8 +4448,14 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
     # narrated order. The video slides render citations in list order, so
     # aligning citations with what's actually spoken keeps slides in sync with
     # narration (the prompt's block order can diverge from the final script).
+    # Ordering and mention fracs key on the news section's own narration so
+    # cold-open teaser mentions can't skew them.
+    news_section = " ".join(
+        t["text"] for t in parse_script_into_segments(script)["news"]
+    ) if script else ""
     news_matched = order_articles_by_script(
-        match_articles_to_script(news_articles, script), script
+        match_articles_to_script(news_articles, script), script,
+        section_text=news_section,
     )
     deep_matched = match_articles_to_script(deep_dive_articles, script)
 
@@ -4499,11 +4517,17 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
         }
         return citation
 
-    # Add articles with discussion status
+    # Add articles with discussion status. Discussed roundup entries also get
+    # their fractional first-mention offset within the roundup narration —
+    # the video renderer times each story's slide from it.
+    news_lower = news_section.lower()
     for article, discussed in news_matched:
-        citations_data["segments"]["news_roundup"]["articles"].append(
-            _build_citation(article, discussed)
-        )
+        citation = _build_citation(article, discussed)
+        if discussed and news_lower:
+            pos = _script_match_position(article, news_lower)
+            if pos is not None:
+                citation["mention_offset_frac"] = round(pos / len(news_lower), 4)
+        citations_data["segments"]["news_roundup"]["articles"].append(citation)
 
     for article, discussed in deep_matched:
         citations_data["segments"]["deep_dive"]["articles"].append(
@@ -6112,6 +6136,7 @@ def generate_audio_tts_only(script, output_filename, _force_openai=False):
             ("Cold Open", parsed.get('preamble', [])),
             ("Introduction", parsed['welcome']),
             ("News Roundup", parsed['news']),
+            ("Meta Moment", parsed.get('meta_moment', [])),
             ("Community Spotlight", parsed['community_spotlight']),
             ("Deep Dive", parsed['deep_dive']),
         ]
@@ -6431,16 +6456,126 @@ def _ms_to_vtt_ts(ms):
     return f"{h:02d}:{m:02d}:{s:02d}.{ms:03d}"
 
 
-def script_to_vtt_transcript(script_content, intro_offset_ms=25000, audio_duration_ms=None):
-    """Convert a raw podcast script to WebVTT format with estimated timestamps.
+_VTT_WORDS_PER_MS = 140 / 60000
+_VTT_TAG_RE = r'\[(?:overlap|pause):-?\d+\]\s*'
 
-    Timestamps are approximated at ~140 wpm starting after the intro music offset,
+# Timeline section labels → parse_script_into_segments keys. The music path
+# writes parser prefixes ('welcome', 'deep', ...); the TTS-only path writes
+# chapter titles ('Introduction', 'Deep Dive', ...). None = no cues (credits
+# speech is config-generated, never in the script).
+_VTT_SECTION_KEYS = {
+    'preamble': 'preamble', 'Cold Open': 'preamble',
+    'welcome': 'welcome', 'Introduction': 'welcome',
+    'news': 'news', 'News Roundup': 'news',
+    'meta_moment': 'meta_moment', 'Meta Moment': 'meta_moment',
+    'spotlight': 'community_spotlight', 'Community Spotlight': 'community_spotlight',
+    'deep': 'deep_dive', 'Deep Dive': 'deep_dive',
+    'credits': None, 'Credits': None,
+}
+
+
+def _vtt_cue(start_ms: float, end_ms: float, speaker: str, text: str) -> str:
+    # A bare & or < in cue text is a WebVTT parse error — Apple's strict
+    # parser discards the whole file and falls back to auto-transcription.
+    text = saxutils.escape(re.sub(_VTT_TAG_RE, '', text).strip())
+    return (f"{_ms_to_vtt_ts(int(start_ms))} --> {_ms_to_vtt_ts(int(end_ms))}\n"
+            f"<v {speaker.title()}>{text}")
+
+
+def _vtt_cues_from_timeline(script_content: str, turns: list) -> list | None:
+    """Build VTT cues anchored to the measured video_timeline turns.
+
+    Per section: exact per-turn cues when the timeline has speakered turns that
+    pair 1:1 with the parsed script; otherwise the section's parsed turns are
+    wpm-weighted and scaled to exactly fill the section's measured span, so
+    estimation error never crosses a section boundary. Returns None when the
+    timeline doesn't describe this script (caller falls back to the legacy
+    whole-episode estimator).
+    """
+    parsed = parse_script_into_segments(script_content)
+
+    by_section: dict = {}
+    for t in turns:
+        key = _VTT_SECTION_KEYS.get(t.get('section'), '?')
+        if key == '?':
+            return None  # unknown sidecar schema — don't guess
+        if key is not None:
+            by_section.setdefault(key, []).append(t)
+
+    cues = []
+    for key in ('preamble', 'welcome', 'news', 'meta_moment', 'community_spotlight', 'deep_dive'):
+        P = [p for p in parsed.get(key, []) if p.get('text')]
+        T = by_section.get(key, [])
+        if not T and not P:
+            continue
+        if T and not P:
+            return None  # timeline describes speech this script doesn't have
+        if not T:
+            continue  # speech absent from the audio (e.g. old fallback renders)
+
+        if all(t.get('speaker') for t in T):
+            # Exact path: pair timeline turns with parsed turns. The TTS-only
+            # path drops turns of ≤10 chars before rendering, so retry the
+            # pairing against that filtered view.
+            for cand in (P, [p for p in P if len(p['text']) > 10]):
+                if len(T) == len(cand) and all(
+                        t['speaker'] == p['speaker'] for t, p in zip(T, cand)):
+                    cues += [_vtt_cue(t['start_ms'], t['start_ms'] + t['dur_ms'],
+                                      t['speaker'], p['text'])
+                             for t, p in zip(T, cand)]
+                    break
+            else:
+                cues += _vtt_span_cues(P, T)
+        else:
+            cues += _vtt_span_cues(P, T)
+    return cues
+
+
+def _vtt_span_cues(P: list, T: list) -> list:
+    """Estimate per-turn cues inside a section's measured span: wpm speech
+    weights plus inter-turn gaps, scaled so the turns exactly fill the span."""
+    span_start = min(t['start_ms'] for t in T)
+    span_end = max(t['start_ms'] + t['dur_ms'] for t in T)
+    if span_end <= span_start:
+        return []
+    weights = []  # (gap_before, speech) per turn
+    for i, p in enumerate(P):
+        pauses = sum(int(m.group(1)) for m in re.finditer(r'\[pause:(\d+)\]', p['text']))
+        gap = 0 if i == 0 else (p.get('gap_ms') if (p.get('gap_ms') or 0) > 0 else 300) + pauses
+        speech = max(1000, len(p['text'].split()) / _VTT_WORDS_PER_MS)
+        weights.append((gap, speech))
+    total = sum(g + s for g, s in weights)
+    scale = (span_end - span_start) / total
+    cues, cursor = [], span_start
+    for p, (gap, speech) in zip(P, weights):
+        cursor += gap * scale
+        cues.append(_vtt_cue(cursor, cursor + speech * scale, p['speaker'], p['text']))
+        cursor += speech * scale
+    return cues
+
+
+def script_to_vtt_transcript(script_content, intro_offset_ms=25000,
+                             audio_duration_ms=None, timeline=None):
+    """Convert a raw podcast script to WebVTT format.
+
+    When *timeline* (the video_timeline sidecar's turns, measured during audio
+    assembly) is given and matches the script, cues anchor to real audio times.
+    Otherwise timestamps are approximated at ~140 wpm after the intro offset,
     then linearly rescaled to fit *audio_duration_ms* when known — Apple rejects
     transcripts whose cues run past the end of the audio and silently falls back
     to auto-generation. Apple Podcasts requires text/vtt to display a provided
     transcript instead of generating one.
     """
-    WORDS_PER_MS = 140 / 60000
+    if timeline:
+        try:
+            cues = _vtt_cues_from_timeline(script_content, timeline)
+        except Exception as e:
+            print(f"⚠️  Timeline-anchored VTT failed ({e}) — using estimates")
+            cues = None
+        if cues:
+            return "WEBVTT\n\n" + "\n\n".join(cues)
+
+    WORDS_PER_MS = _VTT_WORDS_PER_MS
     cues = []
     # A cold open plays before the intro music: start cues near 0 and add the
     # intro offset when the **WELCOME** marker hands over to the theme song.
@@ -6587,7 +6722,21 @@ def generate_episode_transcript(script_filename, date_str, safe_theme, audio_fil
             f.write(html)
         print(f"📄 Saved HTML transcript to: {html_filename}")
 
-        vtt = script_to_vtt_transcript(script_content, audio_duration_ms=audio_duration_ms)
+        # Anchor VTT cues to the measured turn timings when the audio stage
+        # wrote them; absent/stale sidecars degrade to the wpm estimator
+        # (rescaled to the real audio duration when known).
+        timeline = None
+        audio_path = audio_filename or str(
+            PODCASTS_DIR / f"podcast_audio_{date_str}_{safe_theme}.mp3")
+        try:
+            with open(derive_episode_sidecar_path(audio_path, 'video_timeline'),
+                      encoding='utf-8') as f:
+                timeline = json.load(f).get('turns') or None
+        except (OSError, ValueError):
+            pass
+
+        vtt = script_to_vtt_transcript(script_content, audio_duration_ms=audio_duration_ms,
+                                       timeline=timeline)
         if vtt:
             with open(vtt_filename, 'w', encoding='utf-8') as f:
                 f.write(vtt)
