@@ -1859,6 +1859,35 @@ class TestGenerateCitationsFileSlideSegments:
             "[Src] Beta reactor goes online",
         ]
 
+    def test_discussed_citations_carry_mention_fracs(self, monkeypatch, tmp_path):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        news = [
+            {"title": "[Src] Beta reactor goes online", "url": "u-beta"},
+            {"title": "[Src] Alpha widget recall spreads", "url": "u-alpha"},
+            {"title": "[Src] Omega story never aired anywhere", "url": "u-omega"},
+        ]
+        # Cold open teases Beta first; the roundup narrates Alpha before Beta.
+        script = "\n".join([
+            "**COLD OPEN**",
+            "**RILEY:** Tonight the Beta reactor goes online at last.",
+            "**WELCOME**",
+            "**CASEY:** Welcome to the show, lots to get through today.",
+            "**NEWS ROUNDUP**",
+            "**RILEY:** First, the Alpha widget recall spreads across three provinces.",
+            "**CASEY:** And later in the hour, the Beta reactor goes online.",
+            "**DEEP DIVE**",
+            "**RILEY:** Now our main discussion about something else entirely.",
+        ])
+        path = pg.generate_citations_file(news, [], "Working Lands & Industry", script=script)
+        with open(path, encoding="utf-8") as f:
+            arts = json.load(f)["segments"]["news_roundup"]["articles"]
+        # Section-relative order: Alpha (narrated first) before Beta (teased first)
+        assert [a["title"].split()[1] for a in arts] == ["Alpha", "Beta", "Omega"]
+        fracs = [a.get("mention_offset_frac") for a in arts]
+        assert fracs[2] is None and not arts[2]["discussed"]
+        assert 0 <= fracs[0] < fracs[1] < 1
+
 
 class TestOrderArticlesByScript:
     def test_reorders_by_first_mention(self):
@@ -1894,6 +1923,28 @@ class TestOrderArticlesByScript:
     def test_no_script_is_identity(self):
         matched = [({"title": "a"}, True), ({"title": "b"}, True)]
         assert order_articles_by_script(matched, "") == matched
+
+    def test_section_text_overrides_teaser_order(self):
+        # The cold open teases B before A, but the roundup narrates A first.
+        # Whole-script offsets follow the teaser; section offsets must win.
+        arts = [
+            {"title": "[X] Solar farm approved in Cariboo"},
+            {"title": "[Y] Bridge repairs begin downtown"},
+        ]
+        matched = [(arts[0], True), (arts[1], True)]
+        script = ("Teaser: bridge repairs begin soon, and a solar farm approved. "
+                  "Later: the solar farm approved by council, then bridge repairs begin.")
+        section = "First the solar farm approved by council, then bridge repairs begin."
+        teaser_order = order_articles_by_script(matched, script)
+        assert [a["title"] for a, _ in teaser_order] == [
+            "[Y] Bridge repairs begin downtown",
+            "[X] Solar farm approved in Cariboo",
+        ]
+        narrated_order = order_articles_by_script(matched, script, section_text=section)
+        assert [a["title"] for a, _ in narrated_order] == [
+            "[X] Solar farm approved in Cariboo",
+            "[Y] Bridge repairs begin downtown",
+        ]
 
 
 class TestScriptMatchPosition:

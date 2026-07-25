@@ -4128,7 +4128,7 @@ def match_articles_to_script(articles, script):
     return results
 
 
-def order_articles_by_script(matched, script):
+def order_articles_by_script(matched, script, section_text=None):
     """Reorder (article, discussed) pairs to follow the finalized script's
     narration order — first-mention position ascending.
 
@@ -4137,17 +4137,29 @@ def order_articles_by_script(matched, script):
     which drive the video slides — must track what listeners hear, not the
     pre-script curation order. Undiscussed / unmatched articles keep their
     original relative order at the tail.
+
+    When *section_text* is given (e.g. the news-roundup narration only),
+    positions within it take precedence over whole-script positions: the cold
+    open teases top stories, so whole-script first mentions can reflect teaser
+    order rather than the order the roundup actually narrates.
     """
     if not script:
         return matched
     script_lower = script.lower()
+    section_lower = section_text.lower() if section_text else None
     inf = float('inf')
-    decorated = [
-        (_script_match_position(a, script_lower), i, (a, d))
-        for i, (a, d) in enumerate(matched)
-    ]
-    # Secondary key = original index → stable for ties and the unmatched tail.
-    decorated.sort(key=lambda t: (inf if t[0] is None else t[0], t[1]))
+
+    def _keys(a):
+        script_pos = _script_match_position(a, script_lower)
+        section_pos = _script_match_position(a, section_lower) if section_lower else None
+        return (
+            inf if section_pos is None else section_pos,
+            inf if script_pos is None else script_pos,
+        )
+
+    decorated = [(_keys(a), i, (a, d)) for i, (a, d) in enumerate(matched)]
+    # Final key = original index → stable for ties and the unmatched tail.
+    decorated.sort(key=lambda t: (*t[0], t[1]))
     return [pair for _, _, pair in decorated]
 
 def get_current_date_info():
@@ -4436,8 +4448,14 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
     # narrated order. The video slides render citations in list order, so
     # aligning citations with what's actually spoken keeps slides in sync with
     # narration (the prompt's block order can diverge from the final script).
+    # Ordering and mention fracs key on the news section's own narration so
+    # cold-open teaser mentions can't skew them.
+    news_section = " ".join(
+        t["text"] for t in parse_script_into_segments(script)["news"]
+    ) if script else ""
     news_matched = order_articles_by_script(
-        match_articles_to_script(news_articles, script), script
+        match_articles_to_script(news_articles, script), script,
+        section_text=news_section,
     )
     deep_matched = match_articles_to_script(deep_dive_articles, script)
 
@@ -4499,11 +4517,17 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
         }
         return citation
 
-    # Add articles with discussion status
+    # Add articles with discussion status. Discussed roundup entries also get
+    # their fractional first-mention offset within the roundup narration —
+    # the video renderer times each story's slide from it.
+    news_lower = news_section.lower()
     for article, discussed in news_matched:
-        citations_data["segments"]["news_roundup"]["articles"].append(
-            _build_citation(article, discussed)
-        )
+        citation = _build_citation(article, discussed)
+        if discussed and news_lower:
+            pos = _script_match_position(article, news_lower)
+            if pos is not None:
+                citation["mention_offset_frac"] = round(pos / len(news_lower), 4)
+        citations_data["segments"]["news_roundup"]["articles"].append(citation)
 
     for article, discussed in deep_matched:
         citations_data["segments"]["deep_dive"]["articles"].append(

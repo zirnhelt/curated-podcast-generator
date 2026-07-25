@@ -105,7 +105,9 @@ def build_metadata(citations: dict, chapters: list, privacy: str, date_str: str)
         lines.append("")
 
     for seg_key, heading in (("news_roundup", "Stories covered"), ("deep_dive", "Deep dive sources")):
-        articles = segments.get(seg_key, {}).get("articles", [])
+        all_articles = segments.get(seg_key, {}).get("articles", [])
+        # Only narrated stories (missing `discussed` key = pre-flag citations)
+        articles = [a for a in all_articles if a.get("discussed", True)] or all_articles
         if articles:
             lines.append(f"{heading}:")
             lines += [f"• {a.get('title', '')} ({a.get('source', '')}) — {a.get('url', '')}"

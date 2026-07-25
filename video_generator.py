@@ -209,6 +209,40 @@ def _article_slide(cover: Image.Image | None, kicker: str, accent: tuple, art: d
     return img
 
 
+def _discussed(articles: list) -> list:
+    """Citation entries that were actually narrated. Entries without a
+    `discussed` key (pre-flag citation files) count as discussed; an all-False
+    result falls back to the full list rather than rendering nothing."""
+    return [a for a in articles if a.get("discussed", True)] or articles
+
+
+def _frac_bounds(start: float, end: float, fracs: list) -> list:
+    """Boundaries [start, t1, ..., tn, end] for a lead slide plus len(fracs)
+    article slides, where each frac is the story's 0..1 character offset into
+    the section's narration (None = unknown, filled by interpolation).
+
+    Char share is a proxy for time share — the whole-section TTS paths leave
+    no per-turn audio timings to do better. Clamps keep bounds monotone with
+    MIN_SLIDE_S spacing; the caller passes at most (span // MIN_SLIDE_S) - 1
+    fracs, so the backward pass can never push bound 1 below start.
+    """
+    n = len(fracs)
+    span = end - start
+    anchors = [(-1, 0.0)] + [(i, f) for i, f in enumerate(fracs) if f is not None] + [(n, 1.0)]
+    filled = list(fracs)
+    for i in range(n):
+        if filled[i] is None:
+            (i0, f0), (i1, f1) = next(
+                (a, b) for a, b in zip(anchors, anchors[1:]) if a[0] < i < b[0])
+            filled[i] = f0 + (f1 - f0) * (i - i0) / (i1 - i0)
+    bounds = [start] + [start + span * f for f in filled] + [end]
+    for k in range(1, n + 1):
+        bounds[k] = max(bounds[k], bounds[k - 1] + MIN_SLIDE_S)
+    for k in range(n, 0, -1):
+        bounds[k] = min(bounds[k], bounds[k + 1] - MIN_SLIDE_S)
+    return bounds
+
+
 def render_slides(chapters: list, citations: dict, audio_dur_s: float,
                   cover_path: Path, outdir: str) -> list:
     """Render one or more PNGs per chapter (weather + per-article slides
@@ -246,6 +280,7 @@ def render_slides(chapters: list, citations: dict, audio_dur_s: float,
         # Max slides this chapter's span can hold at MIN_SLIDE_S each
         budget = max(1, int((end - start) // MIN_SLIDE_S))
         imgs: list = []
+        explicit_bounds: list | None = None
         img, draw, x = _new_slide(cover, section, accent)
         y = 200
 
@@ -288,7 +323,9 @@ def render_slides(chapters: list, citations: dict, audio_dur_s: float,
         elif section == "News Roundup":
             draw.text((x, y), "Today's stories", font=font_h2, fill=FG_COLOR)
             y += 58
-            articles = segments.get("news_roundup", {}).get("articles", [])
+            # Citations carry the whole curated pool; only narrated stories
+            # get screen time, or slides run ahead of the audio.
+            articles = _discussed(segments.get("news_roundup", {}).get("articles", []))
             for art in articles:
                 headline = art.get("title", "")
                 source = art.get("source", "")
@@ -304,9 +341,13 @@ def render_slides(chapters: list, citations: dict, audio_dur_s: float,
                 if y > HEIGHT - WAVE_HEIGHT - 90:
                     break
             imgs.append(img)
-            for idx, art in enumerate(articles[:budget - 1], 1):
+            slide_arts = articles[:budget - 1]
+            for idx, art in enumerate(slide_arts, 1):
                 imgs.append(_article_slide(
                     cover, f"News Roundup · {idx}/{len(articles)}", accent, art))
+            fracs = [a.get("mention_offset_frac") for a in slide_arts]
+            if any(f is not None for f in fracs):
+                explicit_bounds = _frac_bounds(start, end, fracs)
 
         elif section == "Deep Dive":
             dd = segments.get("deep_dive", {})
@@ -315,7 +356,7 @@ def render_slides(chapters: list, citations: dict, audio_dur_s: float,
                 draw.text((x, y), line, font=font_h2, fill=FG_COLOR)
                 y += 44
             y += 14
-            arts = dd.get("articles", [])
+            arts = _discussed(dd.get("articles", []))
             question = dd.get("discussion", {}).get("central_question", "")
             if question:
                 for line in _wrap_text(draw, question, font_body, WIDTH - x - 80, max_lines=5):
@@ -383,7 +424,12 @@ def render_slides(chapters: list, citations: dict, audio_dur_s: float,
         # without float drift; force the last one to `end`.
         n = len(imgs)
         span = end - start
-        if n > 1 and span / n > MAX_SLIDE_S:
+        if explicit_bounds:
+            # Narration-offset bounds (news roundup with mention fracs). No
+            # MAX_SLIDE_S here: a long slide means a long story, and the
+            # degenerate one-chapter case never reaches the roundup branch.
+            bounds = explicit_bounds
+        elif n > 1 and span / n > MAX_SLIDE_S:
             first = span - (n - 1) * MAX_SLIDE_S
             bounds = [start] + [start + first + k * MAX_SLIDE_S for k in range(n)]
         else:
