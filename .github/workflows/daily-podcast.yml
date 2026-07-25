@@ -133,21 +133,24 @@ jobs:
           echo "Download complete"
         continue-on-error: true
 
-      - name: Generate daily podcast
+      # Generation runs in two stages so the expensive half is durable before
+      # the fragile half starts. Script generation is where the API spend lives
+      # (Sonnet script + polish + fact-check + cold open); audio generation is
+      # where the runner dies (see the OOM note on the video step below). With
+      # a commit between them, a failed render no longer discards the script,
+      # citations, and memory updates that were already paid for.
+      - name: Generate episode script
         id: generate
-        timeout-minutes: 60
+        timeout-minutes: 35
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-          R2_BUCKET_NAME: cariboo-signals
-          AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
-          AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
+          BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
+          COHERE_API_KEY: ${{ secrets.COHERE_API_KEY }}
+          # The TTS provider flags (not the keys) must be set on this stage too:
+          # the polish prompt is provider-gated — only Gemini performs `(cue)`
+          # stage directions, so _stage_direction_addendum() would omit them and
+          # the credit written into citations would name the wrong provider.
           USE_AZURE_TTS: ${{ inputs.tts_provider == 'azure' && 'true' || '' }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_MODEL || secrets.GEMINI_TTS_MODEL }}
           USE_GEMINI_TTS: ${{ (inputs.tts_provider == 'gemini' || inputs.tts_provider == '') && 'true' || '' }}
         run: |
           case "${{ github.event.schedule }}" in
@@ -157,7 +160,7 @@ jobs:
             '')           label="Manual (workflow_dispatch)" ;;
             *)            label="Unknown: ${{ github.event.schedule }}" ;;
           esac
-          echo "Starting daily podcast generation..."
+          echo "Starting daily podcast script generation..."
           echo "Trigger: $label"
           echo "Current UTC time: $(date -u)"
           echo "Current Pacific time: $(TZ='America/Vancouver' date)"
@@ -173,10 +176,60 @@ jobs:
             exit 0
           fi
 
-          python podcast_generator.py
+          python podcast_generator.py --stage script
           echo "generated=true" >> "$GITHUB_OUTPUT"
 
-          echo "Generation complete!"
+          echo "Script generation complete!"
+
+      # The whole point of the stage split: get the Claude spend onto main
+      # before TTS runs, so an audio failure costs only the render.
+      - name: Commit script, citations and memory
+        if: steps.generate.outputs.generated == 'true'
+        continue-on-error: true
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add podcasts/podcast_script_*.txt podcasts/citations_*.json || echo "No script/citations to add"
+          git add podcasts/episode_memory.json podcasts/host_personality_memory.json podcasts/debate_memory.json podcasts/psa_rotation_state.json
+          # article_holding.json is the super-cycle holding pen — written by
+          # route_articles_for_focus and previously never committed, so held
+          # articles were silently lost between runs.
+          git add podcasts/article_holding.json || echo "No article holding pen to add"
+          git add podcasts/twit_inspiration.json || true
+          git add podcasts/content_seeds.json || echo "No seeds file to add"
+          git add podcasts/email_queue.json || echo "No email queue file to add"
+
+          if ! git diff --staged --quiet; then
+            git commit -m "Episode script - $(TZ='America/Vancouver' date '+%Y-%m-%d %A')"
+            git push
+          else
+            echo "No script changes to commit"
+          fi
+
+      - name: Generate episode audio
+        if: steps.generate.outputs.generated == 'true'
+        timeout-minutes: 40
+        env:
+          # Claude is still reachable from the audio path for provider-fallback
+          # bookkeeping, so the key stays.
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET_NAME: cariboo-signals
+          AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
+          AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
+          USE_AZURE_TTS: ${{ inputs.tts_provider == 'azure' && 'true' || '' }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_MODEL || secrets.GEMINI_TTS_MODEL }}
+          USE_GEMINI_TTS: ${{ (inputs.tts_provider == 'gemini' || inputs.tts_provider == '') && 'true' || '' }}
+        run: |
+          echo "Starting daily podcast audio generation..."
+          python podcast_generator.py --stage audio
+
+          echo "Audio generation complete!"
 
       - name: List generated files
         run: |

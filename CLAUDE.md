@@ -40,7 +40,15 @@ python -m pytest tests/test_psa_selector.py::TestPSASelector::test_round_robin -
 python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 # ffmpeg must be installed (apt install ffmpeg / brew install ffmpeg)
-python podcast_generator.py
+python podcast_generator.py                    # both stages (default)
+
+# Run one stage at a time
+python podcast_generator.py --stage script     # curate + write script, no TTS spend
+python podcast_generator.py --stage audio      # render + publish today's saved script
+
+# Re-render a past or hand-edited script
+python podcast_generator.py --stage audio --date 2026-07-24
+python podcast_generator.py --stage audio --script podcasts/podcast_script_2026-07-24_theme.txt
 
 # Bespoke episode
 python generate_bespoke.py --tag <topic-tag>
@@ -62,9 +70,32 @@ This is a daily AI podcast generator for **Cariboo Signals**, a two-host show (R
 3. Deduplicate against last 7 days of citations (`dedup_articles.py`, optionally Cohere embeddings via `cohere_enrichment.py`)
 4. Cluster same-story articles; super-cycle routing (release matured held articles, hold off-theme ones for their focus day); select top stories + theme/focus-matched deep-dive articles
 5. Claude generates raw two-host script → Claude polishes script (flow, repetition). Length QA: scripts under `TARGET_SCRIPT_WORDS` (~22-min floor) get one expand retry; under `MIN_SCRIPT_WORDS` after retry the run aborts. Target runtime 22–25+ min.
-6. OpenAI TTS (or Azure Neural TTS) renders each speaker segment in parallel
-7. pydub assembles: cold open teaser (10–20 s, before the music) → intro → welcome → interval → news roundup → interval → deep dive debate → outro
-8. Writes citations JSON, RSS entry, pushes commit, deploys to `gh-pages`
+6. Writes citations JSON and every memory/state file, saves the script to `podcasts/podcast_script_{date}_{theme}.txt`
+   — **end of the script stage** (`run_script_stage`); the workflow commits and pushes here
+7. OpenAI TTS (or Azure Neural TTS) renders each speaker segment in parallel
+8. pydub assembles: cold open teaser (10–20 s, before the music) → intro → welcome → interval → news roundup → interval → deep dive debate → outro
+9. Writes transcript + RSS entry, pushes commit, deploys to `gh-pages`
+
+### Two-Stage Split
+
+Steps 1–6 are the **script stage** (`run_script_stage`); steps 7–9 are the **audio stage**
+(`run_audio_stage`). `--stage` selects one or both; `all` is the default and behaves exactly
+like the original single-process run.
+
+The split exists because the halves fail differently. Script generation is where the API
+spend lives; audio generation is where the runner dies (an unbounded-memory ffmpeg render
+once OOM-killed the VM, cancelling every remaining step so the episode never shipped). The
+daily workflow commits and pushes the script, citations, and memory state *between* the two
+steps, so a failed render costs only the render. `_recover_orphaned_episodes` (3-day
+lookback) remains the backstop for scripts whose audio never landed.
+
+Because the stages are separate processes, two values cannot ride in locals and are carried
+in the script file's `#` header instead, read back by `read_script_metadata`:
+- **`# Theme:`** — the feed can override the weekday theme, which changes the filename slug,
+  so the audio stage must never recompute it. Audio paths are derived from the script's own
+  filename.
+- **`# Brave:`** — gates one sentence in the spoken credits. Scripts predating this header
+  degrade to `no`.
 
 **Memory state** (JSON files in `podcasts/`):
 - `episode_memory.json` — 35-day sliding window for story continuity (spans a full 4-week super cycle; entries record the day's focus slug)
