@@ -2340,6 +2340,31 @@
       "theme_day": 3,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "497634c0",
+      "type": "newsletter",
+      "message_id": "<20260725.140501.5133be32@mta43>",
+      "from_address": "f***@mail.beehiiv.com",
+      "subject": "The Hair Dryer Question",
+      "received_at": "2026-07-25T14:05:01+00:00",
+      "body_text": "---------- ### **I built a Clubhouse. Come hang out!** View image: (https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/f16c8d23-afdb-466c",
+      "extracted_urls": [
+        "https://clubhouse.todmaffin.com/",
+        "https://clubhouse.todmaffin.com",
+        "https://todmaffin.com/",
+        "https://bsky.app/profile/todmaffin.com",
+        "https://beacons.ai/todmaffin/socials",
+        "https://www.youtube.com/todmaffinvideo/?sub_confirmation=1",
+        "https://discord.todmaffin.com",
+        "https://www.facebook.com/todmaffinpage/videos/finally-an-answer-to-why-dont-we-just-blow-the-smoke-back/1385105010466555/",
+        "https://dailyhive.com/calgary/calgary-air-quality-wildfire-smoke-iqair",
+        "https://www150.statcan.gc.ca/n1/daily-quotidien/251028/dq251028d-eng.htm"
+      ],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ]
 }
