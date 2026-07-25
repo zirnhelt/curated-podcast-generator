@@ -32,7 +32,9 @@ from config_loader import get_gemini_voice_for_host, load_hosts_config, load_pro
 
 # `or` (not a getenv default) so a present-but-empty env var — e.g. an unset
 # workflow secret expanding to "" — still falls back to the default model.
-GEMINI_TTS_MODEL = os.getenv("GEMINI_TTS_MODEL") or "gemini-2.5-flash-preview-tts"
+# .strip() guards against a trailing-whitespace secret/variable value, which
+# otherwise lands in the URL as a literal "%20" and Gemini 400s on it.
+GEMINI_TTS_MODEL = (os.getenv("GEMINI_TTS_MODEL") or "").strip() or "gemini-2.5-flash-preview-tts"
 GEMINI_TTS_URL = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 
 # Each script section (and any char-limit chunk within it) is its own

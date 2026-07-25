@@ -88,6 +88,39 @@ class TestBuildPayload:
         assert prompt.index("earlier line") < prompt.index("Riley: ")
 
 
+class TestModelEnvResolution:
+    """GEMINI_TTS_MODEL is resolved once at import time, so reload the module
+    under each env value and reload again afterward to restore real state."""
+
+    @pytest.fixture(autouse=True)
+    def _reload_module_after(self):
+        import importlib
+
+        yield
+        importlib.reload(gemini_tts)
+
+    def _reload_with(self, monkeypatch, value):
+        import importlib
+
+        if value is None:
+            monkeypatch.delenv("GEMINI_TTS_MODEL", raising=False)
+        else:
+            monkeypatch.setenv("GEMINI_TTS_MODEL", value)
+        importlib.reload(gemini_tts)
+
+    def test_trailing_whitespace_stripped(self, monkeypatch):
+        self._reload_with(monkeypatch, "gemini-2.5-flash-preview-tts \n")
+        assert gemini_tts.GEMINI_TTS_MODEL == "gemini-2.5-flash-preview-tts"
+
+    def test_empty_falls_back_to_default(self, monkeypatch):
+        self._reload_with(monkeypatch, "   ")
+        assert gemini_tts.GEMINI_TTS_MODEL == "gemini-2.5-flash-preview-tts"
+
+    def test_unset_falls_back_to_default(self, monkeypatch):
+        self._reload_with(monkeypatch, None)
+        assert gemini_tts.GEMINI_TTS_MODEL == "gemini-2.5-flash-preview-tts"
+
+
 class TestSynthesizeGuards:
     def test_missing_api_key_raises(self, monkeypatch):
         monkeypatch.delenv("GEMINI_API_KEY", raising=False)
