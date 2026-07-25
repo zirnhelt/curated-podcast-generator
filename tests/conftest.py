@@ -48,3 +48,25 @@ def _install_stubs():
 
 # Run at import time so stubs are ready before test modules are collected
 _install_stubs()
+
+
+import shutil
+
+import pytest
+
+
+@pytest.fixture(autouse=True)
+def _isolate_psa_state(tmp_path, monkeypatch):
+    """Redirect PSA rotation state to a tmp copy for every test.
+
+    select_psa() persists round-robin state on each call; without this, a local
+    test run silently rewrites podcasts/psa_rotation_state.json — live rotation
+    state that CI commits daily (tripped us twice: dirty working trees and a
+    near-miss committing rolled-back org dates).
+    """
+    import psa_selector
+
+    tmp_state = tmp_path / "psa_rotation_state.json"
+    if psa_selector.PSA_STATE_FILE.exists():
+        shutil.copy(psa_selector.PSA_STATE_FILE, tmp_state)
+    monkeypatch.setattr(psa_selector, "PSA_STATE_FILE", tmp_state)

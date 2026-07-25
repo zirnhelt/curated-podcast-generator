@@ -6475,7 +6475,9 @@ _VTT_SECTION_KEYS = {
 
 
 def _vtt_cue(start_ms: float, end_ms: float, speaker: str, text: str) -> str:
-    text = re.sub(_VTT_TAG_RE, '', text).strip()
+    # A bare & or < in cue text is a WebVTT parse error — Apple's strict
+    # parser discards the whole file and falls back to auto-transcription.
+    text = saxutils.escape(re.sub(_VTT_TAG_RE, '', text).strip())
     return (f"{_ms_to_vtt_ts(int(start_ms))} --> {_ms_to_vtt_ts(int(end_ms))}\n"
             f"<v {speaker.title()}>{text}")
 
@@ -6552,14 +6554,17 @@ def _vtt_span_cues(P: list, T: list) -> list:
     return cues
 
 
-def script_to_vtt_transcript(script_content, intro_offset_ms=25000, timeline=None):
+def script_to_vtt_transcript(script_content, intro_offset_ms=25000,
+                             audio_duration_ms=None, timeline=None):
     """Convert a raw podcast script to WebVTT format.
 
     When *timeline* (the video_timeline sidecar's turns, measured during audio
     assembly) is given and matches the script, cues anchor to real audio times.
-    Otherwise timestamps are approximated at ~140 wpm after the intro offset.
-    Apple Podcasts requires text/vtt to display a provided transcript instead of
-    prompting the user to generate one.
+    Otherwise timestamps are approximated at ~140 wpm after the intro offset,
+    then linearly rescaled to fit *audio_duration_ms* when known — Apple rejects
+    transcripts whose cues run past the end of the audio and silently falls back
+    to auto-generation. Apple Podcasts requires text/vtt to display a provided
+    transcript instead of generating one.
     """
     if timeline:
         try:
@@ -6604,10 +6609,26 @@ def script_to_vtt_transcript(script_content, intro_offset_ms=25000, timeline=Non
         current_ms += extra_pause
         duration_ms = max(1000, int(len(text.split()) / WORDS_PER_MS))
         end_ms = current_ms + duration_ms
-        cues.append(f"{_ms_to_vtt_ts(current_ms)} --> {_ms_to_vtt_ts(end_ms)}\n<v {speaker}>{text}")
+        # WebVTT cue text may not contain a bare & or < — a strict parser
+        # (Apple's is) treats it as a parse error and discards the whole file.
+        cues.append((current_ms, end_ms, speaker, saxutils.escape(text)))
         current_ms = end_ms + 300
 
-    return "WEBVTT\n\n" + "\n\n".join(cues) if cues else None
+    if not cues:
+        return None
+
+    # Rescale the estimated timeline onto the real audio length so no cue ends
+    # past the audio (the 140 wpm estimate drifts minutes over a 20-min episode).
+    scale = 1.0
+    last_end = cues[-1][1]
+    if audio_duration_ms and last_end > 0:
+        scale = max(audio_duration_ms - 500, 1) / last_end
+
+    rendered = [
+        f"{_ms_to_vtt_ts(int(start * scale))} --> {_ms_to_vtt_ts(int(end * scale))}\n<v {speaker}>{text}"
+        for start, end, speaker, text in cues
+    ]
+    return "WEBVTT\n\n" + "\n\n".join(rendered)
 
 
 def script_to_friendly_transcript(script_content):
@@ -6673,16 +6694,24 @@ def script_to_friendly_transcript(script_content):
     return "\n".join(html_parts)
 
 
-def generate_episode_transcript(script_filename, date_str, safe_theme):
+def generate_episode_transcript(script_filename, date_str, safe_theme, audio_filename=None):
     """Generate HTML and WebVTT transcripts from a podcast script file.
 
-    Returns the HTML transcript file path on success, or None on failure.
+    When *audio_filename* exists, the VTT timeline is scaled to its real
+    duration. Returns the HTML transcript file path on success, or None on failure.
     """
     if not script_filename or not os.path.exists(script_filename):
         return None
 
     html_filename = str(PODCASTS_DIR / f"podcast_transcript_{date_str}_{safe_theme}.html")
     vtt_filename = str(PODCASTS_DIR / f"podcast_transcript_{date_str}_{safe_theme}.vtt")
+
+    audio_duration_ms = None
+    if audio_filename and os.path.exists(audio_filename):
+        try:
+            audio_duration_ms = len(AudioSegment.from_mp3(audio_filename))
+        except Exception as e:
+            print(f"⚠️  Could not read audio duration for VTT scaling: {e}")
 
     try:
         with open(script_filename, 'r', encoding='utf-8') as f:
@@ -6694,9 +6723,11 @@ def generate_episode_transcript(script_filename, date_str, safe_theme):
         print(f"📄 Saved HTML transcript to: {html_filename}")
 
         # Anchor VTT cues to the measured turn timings when the audio stage
-        # wrote them; absent/stale sidecars degrade to the wpm estimator.
+        # wrote them; absent/stale sidecars degrade to the wpm estimator
+        # (rescaled to the real audio duration when known).
         timeline = None
-        audio_path = str(PODCASTS_DIR / f"podcast_audio_{date_str}_{safe_theme}.mp3")
+        audio_path = audio_filename or str(
+            PODCASTS_DIR / f"podcast_audio_{date_str}_{safe_theme}.mp3")
         try:
             with open(derive_episode_sidecar_path(audio_path, 'video_timeline'),
                       encoding='utf-8') as f:
@@ -6704,7 +6735,8 @@ def generate_episode_transcript(script_filename, date_str, safe_theme):
         except (OSError, ValueError):
             pass
 
-        vtt = script_to_vtt_transcript(script_content, timeline=timeline)
+        vtt = script_to_vtt_transcript(script_content, audio_duration_ms=audio_duration_ms,
+                                       timeline=timeline)
         if vtt:
             with open(vtt_filename, 'w', encoding='utf-8') as f:
                 f.write(vtt)
@@ -7827,7 +7859,7 @@ def run_audio_stage(script_path: str = None, date_str: str = None) -> bool:
             print("📊 Audio generation failed")
 
     # Generate HTML transcript for Apple Podcasts
-    generate_episode_transcript(script_filename, date_key, safe_theme)
+    generate_episode_transcript(script_filename, date_key, safe_theme, audio_filename=audio_filename)
 
     # Generate RSS feed, regenerate index.html, and sync everything to R2
     generate_podcast_rss_feed()

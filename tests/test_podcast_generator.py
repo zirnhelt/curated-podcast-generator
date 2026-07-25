@@ -1458,6 +1458,38 @@ class TestScriptToVttTranscript:
         assert "00:00:27.400 -->" in vtt
         assert "how this show gets made" not in vtt
 
+    def test_timeline_cues_escape_text_for_webvtt(self):
+        script = "**RILEY:** Time for Q&A on R&D <live> everyone."
+        timeline = [{"speaker": "riley", "section": "welcome", "start_ms": 27400, "dur_ms": 3000}]
+        vtt = script_to_vtt_transcript(script, timeline=timeline)
+        assert "00:00:27.400 -->" in vtt
+        assert "<v Riley>Time for Q&amp;A on R&amp;D &lt;live&gt; everyone." in vtt
+
+    def test_escapes_cue_text_for_webvtt(self):
+        # A bare & or < in cue text is a WebVTT parse error; Apple discards the
+        # whole file and falls back to its own auto-generated transcript.
+        script = "**RILEY:** Time for Q&A <live> on R&D."
+        vtt = script_to_vtt_transcript(script)
+        assert "<v Riley>Time for Q&amp;A &lt;live&gt; on R&amp;D." in vtt
+
+    def test_scales_timeline_to_audio_duration(self):
+        import re as _re
+        # ~700 words ≈ 5 min at 140 wpm; real audio says 60 s.
+        script = "**RILEY:** " + "word " * 700
+        vtt = script_to_vtt_transcript(script, audio_duration_ms=60000)
+        stamps = _re.findall(r"(\d+):(\d+):(\d+)\.(\d+)", vtt)
+        last_ms = max(
+            int(h) * 3600000 + int(m) * 60000 + int(s) * 1000 + int(ms)
+            for h, m, s, ms in stamps
+        )
+        assert last_ms <= 60000
+
+    def test_unscaled_without_audio_duration(self):
+        script = "**RILEY:** Welcome to the show."
+        assert script_to_vtt_transcript(script) == script_to_vtt_transcript(
+            script, audio_duration_ms=None
+        )
+
 
 class TestGenerateEpisodeTranscript:
     def test_writes_html_and_vtt_files(self, tmp_path, monkeypatch):
