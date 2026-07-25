@@ -254,3 +254,42 @@ class TestTtsOnlyEmitsSidecars:
         assert len(turns) == 6
         assert {t["speaker"] for t in turns} == {"riley", "casey"}
         assert [t["section"] for t in turns[:2]] == ["Introduction", "Introduction"]
+
+    def test_meta_moment_included_in_fallback_sidecars(self, monkeypatch, tmp_path):
+        # Regression: raw_sections used to omit meta_moment, silently dropping
+        # that speech from TTS-only episodes.
+        pg = podcast_generator
+        monkeypatch.setattr(pg, "AudioSegment", RichFakeSegment)
+        monkeypatch.setattr(pg, "normalize_segment", lambda seg, *a, **k: seg)
+        monkeypatch.setattr(pg, "trim_tts_silence", lambda seg, *a, **k: seg)
+        monkeypatch.setattr(pg, "heuristic_gap_ms", lambda *a, **k: 0)
+        monkeypatch.setattr(pg, "get_openai_client", lambda: object())
+        monkeypatch.setattr(pg, "OUTRO_MUSIC", _FakeMusicPath("outro"))
+        monkeypatch.setattr(pg, "derive_episode_sidecar_path",
+                            lambda audio, prefix: str(tmp_path / f"{prefix}.json"))
+        monkeypatch.setattr(pg, "parse_script_into_segments", lambda script: {
+            "preamble": [],
+            "welcome": _turns("Welcome to the show everyone.", "Great to be here today."),
+            "news": _turns("First headline of the day.", "An interesting development indeed."),
+            "meta_moment": _turns("A word about how this show is made.", "Full details in the notes."),
+            "community_spotlight": [],
+            "deep_dive": _turns("Let's dig into the main topic.", "Plenty to unpack here."),
+        })
+        monkeypatch.setattr(pg, "generate_tts_for_segment",
+                            lambda text, speaker, out: open(out, "wb").write(b"\x00"))
+
+        out = str(tmp_path / "episode.mp3")
+        assert pg.generate_audio_tts_only("script", out, _force_openai=True) == out
+
+        chapters = json.load(open(tmp_path / "podcast_chapters.json"))["chapters"]
+        assert [c["title"] for c in chapters] == [
+            "Introduction", "News Roundup", "Meta Moment", "Deep Dive"]
+        starts = [c["startTime"] for c in chapters]
+        assert starts == sorted(starts) and starts[2] > starts[1]
+
+        turns = json.load(open(tmp_path / "video_timeline.json"))["turns"]
+        meta_idx = [i for i, t in enumerate(turns) if t["section"] == "Meta Moment"]
+        assert len(meta_idx) == 2
+        # Meta Moment turns sit between the news and deep-dive turns
+        assert turns[meta_idx[0] - 1]["section"] == "News Roundup"
+        assert turns[meta_idx[-1] + 1]["section"] == "Deep Dive"
