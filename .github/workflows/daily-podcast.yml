@@ -176,7 +176,22 @@ jobs:
             exit 0
           fi
 
+          set +e
           python podcast_generator.py --stage script
+          rc=$?
+          set -e
+
+          # Exit 75 = Anthropic spend cap reached. The account stays blocked
+          # until a stated date, so the 2:05 and 3:05 fallback crons would
+          # repeat the same curation spend and fail identically (2026-07-25).
+          # Skip the day as a warning rather than a red run.
+          if [ "$rc" -eq 75 ]; then
+            echo "::warning::Anthropic usage limit reached — no episode generated today."
+            echo "generated=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          [ "$rc" -eq 0 ] || exit "$rc"
+
           echo "generated=true" >> "$GITHUB_OUTPUT"
 
           echo "Script generation complete!"
