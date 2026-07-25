@@ -111,6 +111,57 @@ def _build_trace_channel_xml(trace_cfg, producer_name):
     return lines
 
 
+# An Anthropic spend cap blocks the whole account until a stated reset date, so
+# it is a "come back later", not a failure to diagnose. Exit distinctly
+# (EX_TEMPFAIL) so the workflow can skip the day instead of going red.
+EXIT_BUDGET_EXHAUSTED = 75
+
+
+def _usage_limit_reset(exc: Exception) -> str | None:
+    """Return the stated reset time when exc is the account usage-limit refusal.
+
+    Distinct from a 429 rate limit: no amount of backoff clears it, and the
+    fallback crons will hit the same wall.
+    """
+    text = str(exc)
+    if 'usage limit' not in text.lower():
+        return None
+    m = re.search(r"regain access on ([^.'\"}]+)", text)
+    return m.group(1).strip() if m else "an unspecified date"
+
+
+def _abort_if_usage_limit(exc: Exception) -> None:
+    """Exit the run cleanly when exc is the account usage-limit wall."""
+    reset = _usage_limit_reset(exc)
+    if not reset:
+        return
+    print(f"🛑 Anthropic usage limit reached — access returns {reset}.")
+    print("   Skipping today's episode: no script, no Brave enrichment, no TTS spend.")
+    sys.exit(EXIT_BUDGET_EXHAUSTED)
+
+
+def check_api_budget() -> None:
+    """Preflight the Anthropic account before any paid work begins.
+
+    The 2026-07-25 run spent 32 Brave lookups, 45 article fetches and two
+    research calls assembling a prompt for an account that was already locked
+    out for the week. One minimum-size Haiku call up front turns that into a
+    two-second skip. Anything other than the usage-limit wall is left alone —
+    the real error should surface where it actually happens.
+    """
+    client = get_anthropic_client()
+    if not client:
+        return
+    try:
+        client.messages.create(
+            model=SUMMARY_MODEL, max_tokens=1,
+            messages=[{"role": "user", "content": "ok"}],
+        )
+    except Exception as e:
+        _abort_if_usage_limit(e)
+        print(f"⚠️  API preflight inconclusive ({e}) — continuing.")
+
+
 def api_retry(func, max_retries=3, base_delay=2):
     """Call func() with exponential backoff on transient errors."""
     import time
@@ -119,7 +170,7 @@ def api_retry(func, max_retries=3, base_delay=2):
             return func()
         except Exception as e:
             err_str = str(e)
-            is_quota = 'insufficient_quota' in err_str
+            is_quota = 'insufficient_quota' in err_str or _usage_limit_reset(e) is not None
             is_transient = not is_quota and any(s in err_str for s in ['429', '503', '502', 'timeout', 'Connection'])
             if attempt < max_retries and is_transient:
                 delay = base_delay * (2 ** attempt)
@@ -5024,6 +5075,7 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         return script
 
     except Exception as e:
+        _abort_if_usage_limit(e)
         print(f"❌ Error generating script: {e}")
         return None
 
@@ -7107,6 +7159,11 @@ def run_script_stage() -> tuple[str, str] | None:
     # Generate script if needed
     if not script_exists:
         print("🆕 Generating new script...")
+
+        # Everything below this line costs money — seed rating, the feed's
+        # Brave enrichment, article body fetches — and all of it is wasted if
+        # the account is over its cap. Check first.
+        check_api_budget()
 
         # Rate any unrated seeds against all themes and persist results.
         # Seeds are only eligible on the day whose theme best matches their content.

@@ -20,6 +20,11 @@ from podcast_generator import (
     heuristic_gap_ms,
     score_script,
     _run_agentic_loop,
+    _usage_limit_reset,
+    _abort_if_usage_limit,
+    check_api_budget,
+    api_retry,
+    EXIT_BUDGET_EXHAUSTED,
     apply_bad_news_filter,
     load_pending_email_items,
     _is_article_url,
@@ -489,10 +494,16 @@ def _tool_use_block(name, tool_input, tool_id="tool_1"):
     return block
 
 
-def _response(stop_reason, content):
+def _response(stop_reason, content, input_tokens=1234):
+    """Stand-in for an anthropic Message.
+
+    usage.input_tokens has to be a real int, not a bare MagicMock attribute:
+    every call site hands it to _log_api_call for cost metering, which sums it.
+    """
     response = MagicMock()
     response.stop_reason = stop_reason
     response.content = content
+    response.usage.input_tokens = input_tokens
     return response
 
 
@@ -2192,3 +2203,82 @@ class TestAudioStageCrossBoundary:
         open(audio, "wb").write(b"\x00")
         assert pg.run_audio_stage(script_path=script) is True
         assert captured == {}
+
+
+# The real 400 body Anthropic returned on 2026-07-25, when the account spend
+# cap silently blocked the daily run for the rest of the week.
+USAGE_LIMIT_ERROR = (
+    "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', "
+    "'message': 'You have reached your specified API usage limits. You will regain "
+    "access on 2026-08-01 at 00:00 UTC.'}, 'request_id': 'req_011CdNag5Z35UfPRHinn6Yuj'}"
+)
+
+
+class TestUsageLimitDetection:
+    def test_extracts_reset_time(self):
+        assert _usage_limit_reset(Exception(USAGE_LIMIT_ERROR)) == "2026-08-01 at 00:00 UTC"
+
+    def test_reset_time_optional(self):
+        assert _usage_limit_reset(Exception("hit your usage limit")) == "an unspecified date"
+
+    def test_ignores_rate_limit(self):
+        err = Exception("Error code: 429 - number of request tokens has exceeded your per-minute rate limit")
+        assert _usage_limit_reset(err) is None
+
+    def test_ignores_unrelated_errors(self):
+        assert _usage_limit_reset(Exception("Connection reset by peer")) is None
+
+    def test_abort_exits_with_budget_code(self):
+        with pytest.raises(SystemExit) as exc:
+            _abort_if_usage_limit(Exception(USAGE_LIMIT_ERROR))
+        assert exc.value.code == EXIT_BUDGET_EXHAUSTED
+
+    def test_abort_is_a_noop_for_other_errors(self):
+        assert _abort_if_usage_limit(Exception("some other 500")) is None
+
+    def test_api_retry_does_not_back_off_on_usage_limit(self):
+        """A spend cap is not transient — retrying only delays the inevitable."""
+        calls = []
+
+        def blocked():
+            calls.append(1)
+            raise Exception(USAGE_LIMIT_ERROR)
+
+        with pytest.raises(Exception):
+            api_retry(blocked)
+        assert len(calls) == 1
+
+
+class TestCheckApiBudget:
+    def test_aborts_before_any_paid_work(self, monkeypatch):
+        client = MagicMock()
+        client.messages.create.side_effect = Exception(USAGE_LIMIT_ERROR)
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
+        with pytest.raises(SystemExit) as exc:
+            check_api_budget()
+        assert exc.value.code == EXIT_BUDGET_EXHAUSTED
+
+    def test_passes_through_when_account_is_healthy(self, monkeypatch):
+        client = MagicMock()
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
+        check_api_budget()
+        assert client.messages.create.call_count == 1
+
+    def test_preflight_uses_one_token_of_the_cheapest_model(self, monkeypatch):
+        client = MagicMock()
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
+        check_api_budget()
+        kwargs = client.messages.create.call_args.kwargs
+        assert kwargs["max_tokens"] == 1
+        assert "haiku" in kwargs["model"]
+
+    def test_other_failures_do_not_stop_the_run(self, monkeypatch):
+        """Only the spend cap skips the day; real errors surface where they happen."""
+        client = MagicMock()
+        client.messages.create.side_effect = Exception("Error code: 503")
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
+        check_api_budget()
+
+    def test_no_client_is_not_an_abort(self, monkeypatch):
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: None)
+        check_api_budget()
