@@ -2272,31 +2272,37 @@
       "The gap between data collection and decision-making authority in environmental protection"
     ]
   },
-  "2026-07-25": {
-    "timestamp": 1784989891.721101,
-    "date": "2026-07-25",
-    "theme": "Cariboo Local Affairs",
-    "focus": null,
-    "central_question": "Does the Cariboo Regional District have sufficient institutional capacity to manage three simultaneous evacuation situations, and are cross-jurisdictional coordination protocols actually functional during live crises?",
-    "riley_position": "The alert system is working as designed with staged progression and adequate lead time, and BC Hydro's transparency about grid vulnerabilities is a genuine win; the real question is whether interagency coordination protocols exist and are being exercised at the working level across jurisdictional boundaries.",
+  "2026-07-26": {
+    "timestamp": 1785061649.299248,
+    "date": "2026-07-26",
+    "theme": "Science, Wonder & the Natural World",
+    "focus": "living-world",
+    "central_question": "Who pays for long-term, unglamorous scientific research that could benefit humanity but offers no commercial profit incentive?",
+    "riley_position": "The science showing old drugs like metformin and rapamycin slow aging is real and conserved across species; the barrier isn't biology but funding incentives, and wonder about natural processes (like salmon senescence) is the pipeline that creates future researchers.",
     "riley_key_evidence": [
-      "330 parcels around Felker and Chimney Lakes moved from alert to order in documented, staged progression giving residents days of lead time",
-      "Province's Ministry of Emergency Management maintains interagency coordination protocols for multi-jurisdiction wildfire complexes",
-      "BC Hydro proactively explained ash-caused arcing on insulators to CKPG News rather than leaving residents to guess"
+      "Rapamycin extended maximum lifespan in mice by ~14% in females and 9% in males in NIA-funded studies",
+      "mTOR inhibition slows aging across yeast, worms, flies, and mice\u2014a conserved biological pathway",
+      "Scout Island's Salmon in the Classroom lets kids watch the entire arc of salmon life including post-spawn collapse within one school year"
     ],
-    "casey_position": "The real problem is raw institutional capacity during compounding crises and lack of published contingency plans for grid redundancy; structural fixes like pre-negotiated cross-jurisdictional agreements are needed before the next fire season, not reactive staffing.",
+    "casey_position": "Early promising signals aren't the same as finished peer-reviewed results; the real problem is that no pharmaceutical company will fund Phase 3 trials for unpatentable generics, and wonder alone doesn't create evidence\u2014long institutional baselines and proper data continuity do.",
     "casey_key_evidence": [
-      "BC Hydro's grid backbone runs through active fire zones with ash causing real arcing and flickering, but no published timeline for how long mobile generation units can cover simultaneous outages",
-      "Regional districts typically run emergency operations with small core teams supplemented by provincial and volunteer crews, not enough for three fires simultaneously",
-      "BC Wildfire Service's Spring 2026 Seasonal Outlook flagged western Cariboo as primed for very large fires months in advance, yet the institution still had to scramble in real time"
+      "Phase 3 trials cost hundreds of millions of dollars and no company recoups that cost proving a fifty-year-old generic drug works",
+      "The TAME trial is structured through NIH and academic channels rather than industry precisely because manufacturers have no commercial incentive",
+      "A single-season classroom project teaches wonder but not pattern recognition; the Xat\u015b\u016bll's multi-generational salmon observations are the kind of long baseline that actually reveals trends"
     ],
-    "resolution": "Both agreed that the core fix is a pre-negotiated mutual aid and joint-notice protocol between CRD and TNRD covering shared corridors like Highway 97, to be negotiated in the off-season and ready to activate; this is a governance design question achievable through public pressure at regional district board meetings, not dependent on provincial action.",
+    "resolution": "Riley and Casey agreed that the structural funding gap is real and affects both pharmaceutical and ecological research equally; they converged on distinguishing between wonder (which builds future scientists) and evidence (which requires institutional continuity), and agreed that pairing volunteer efforts with established institutions like the Xat\u015b\u016bll or UNBC is the practical solution.",
     "topics_covered": [
-      "Institutional capacity of regional districts to manage simultaneous multi-jurisdiction emergencies",
-      "Cross-jurisdictional coordination gaps on shared transportation corridors during wildfires",
-      "BC Hydro grid vulnerabilities from ash and smoke in active fire zones",
-      "Difference between early-warning system effectiveness and real-time operational coordination",
-      "Unglamorous structural governance fixes versus reactive resource requests"
+      "Metformin and rapamycin as potential aging-slowing drugs and the funding barrier to proving efficacy at scale",
+      "Programmed senescence in Pacific salmon as an evolutionary contrast to human longevity research",
+      "How the same molecular pathway (mTOR signaling) serves opposite purposes across different species",
+      "The institutional continuity problem in long-term volunteer science projects",
+      "Wonder versus evidence as different but complementary components of scientific literacy"
+    ],
+    "calls_to_action": [
+      "Scout Island Nature Centre's Salmon in the Classroom program runs summer themes (Water, Bugs, Birds) weekly; sign up at scoutisland.ca to watch fry raise and release.",
+      "If a local naturalist group wanted to build a long-term salmon baseline, install simple tools like temperature loggers on bridge pilings paired with institutional homes (like the Xat\u015b\u016bll's governance structure or UNBC) to ensure data continuity beyond individual volunteers.",
+      "Send story tips, corrections, or information about local monitoring efforts to cariboo signals dot c-a.",
+      "Community groups considering long-term science projects should design handoff and institutional continuity into the project from day one, not treat it as an afterthought."
     ]
   }
 }
