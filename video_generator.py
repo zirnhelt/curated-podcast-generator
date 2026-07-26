@@ -256,6 +256,9 @@ def render_slides(chapters: list, citations: dict, audio_dur_s: float,
     segments = (citations or {}).get("segments", {})
     theme = episode.get("theme", "")
     formatted_date = episode.get("formatted_date", "")
+    # The audio stage repairs this key to name whoever actually rendered, so it
+    # is the only trustworthy source for the credits slide.
+    tts_credit = (citations or {}).get("credits", {}).get("text_to_speech", "OpenAI TTS")
 
     try:
         cover = Image.open(cover_path)
@@ -398,7 +401,7 @@ def render_slides(chapters: list, citations: dict, audio_dur_s: float,
             y += 56
             for line in [
                 f"Produced by {podcast_cfg.get('author', '')}",
-                "Scripts by Claude · Audio by OpenAI TTS · Theme by Suno",
+                f"Scripts by Claude · Audio by {tts_credit} · Theme by Suno",
                 podcast_cfg.get("url", ""),
                 podcast_cfg.get("copyright", ""),
             ]:

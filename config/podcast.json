@@ -22,6 +22,10 @@
     "apple_podcasts": "https://podcasts.apple.com/ca/podcast/cariboo-signals/id1877128326",
     "spotify": "https://open.spotify.com/show/37ss1f0PZFdCLhGmRJzCCC"
   },
+  "embargoed_surfaces": {
+    "_comment": "Delivery surfaces still in test that the hosts must not mention on air. Commit subjects matching these terms are dropped from the Sunday Meta Moment changelog. Remove this block once the surface is publicly launched.",
+    "terms": ["video", "youtube", "slide", "mp4", "thumbnail"]
+  },
   "trace": {
     "namespace": "https://tracestandard.org/ns/trace/1.0",
     "version": "1.0",

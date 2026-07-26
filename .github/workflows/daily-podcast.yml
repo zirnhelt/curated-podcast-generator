@@ -169,8 +169,15 @@ jobs:
           # job reads the live Pages feed, which lags git — a queued fallback
           # run can pass that check minutes after the primary run pushed, then
           # regenerate audio and clobber state (happened 2026-07-03).
+          #
+          # Read origin/main, not the checkout. actions/checkout uses the run's
+          # trigger-time SHA, so a run queued behind the concurrency group sees
+          # the repo as it was *before* the earlier run shipped the episode —
+          # which is how 2026-07-26 rendered the same episode three times.
           TODAY=$(TZ='America/Vancouver' date '+%Y-%m-%d')
-          if [ "${{ github.event_name }}" = "schedule" ] && grep -q "$TODAY" podcast-feed.xml; then
+          git fetch --depth=1 origin main || echo "::warning::Could not fetch origin/main — idempotency check falls back to the checked-out feed"
+          FEED_AT_HEAD=$(git show origin/main:podcast-feed.xml 2>/dev/null || cat podcast-feed.xml)
+          if [ "${{ github.event_name }}" = "schedule" ] && echo "$FEED_AT_HEAD" | grep -q "$TODAY"; then
             echo "✅ Episode for $TODAY already committed to git — skipping duplicate generation."
             echo "generated=false" >> "$GITHUB_OUTPUT"
             exit 0
@@ -217,7 +224,15 @@ jobs:
 
           if ! git diff --staged --quiet; then
             git commit -m "Episode script - $(TZ='America/Vancouver' date '+%Y-%m-%d %A')"
-            git push
+            # Other workflows (periodic review, email ingest) push to main while
+            # this one runs, so a plain push can be rejected non-fast-forward.
+            # continue-on-error would then swallow it silently — rebase, retry,
+            # and make a real failure loud. See the 2026-07-26 triple render.
+            git pull --rebase origin main || true
+            git push || {
+              echo "::warning::Failed to push the episode script — the audio stage still has it locally, but a duplicate run may not see it."
+              exit 0
+            }
           else
             echo "No script changes to commit"
           fi
@@ -279,7 +294,17 @@ jobs:
 
           # Only commit if there are changes
           git diff --quiet && git diff --staged --quiet || git commit -m "Daily podcast generation - $(TZ='America/Vancouver' date '+%Y-%m-%d %A')"
-          git push
+
+          # This push carries podcast-feed.xml — the record that today's episode
+          # shipped, and the input to the next run's idempotency gate. On
+          # 2026-07-26 it was rejected non-fast-forward (a review workflow had
+          # pushed mid-render), continue-on-error hid it, and the next queued
+          # cron re-rendered the whole episode. Rebase, retry, and be loud.
+          git pull --rebase origin main || true
+          git push || {
+            echo "::warning::Failed to push podcast-feed.xml and memory state — today's episode is deployed but not recorded on main, so a queued duplicate run may re-render it."
+            exit 0
+          }
         continue-on-error: true
 
       - name: Copy files to output directory

@@ -421,9 +421,17 @@ USE_AZURE_TTS = bool(os.getenv("USE_AZURE_TTS"))              # full switch to A
 USE_AZURE_PARALLEL = bool(os.getenv("AZURE_TTS_PARALLEL"))   # generate both, save _azure.wav for comparison
 USE_GEMINI_TTS = bool(os.getenv("USE_GEMINI_TTS"))           # full switch to Gemini multi-speaker
 
-# Provider that actually rendered this run's audio, set on rendering success.
-# An OpenAI fallback after an Azure/Gemini failure must be credited as OpenAI.
+# Routing pin: the provider every *remaining* section should render with. Set
+# when a fallback re-routes the run (Gemini/Azure failure → OpenAI) so the rest
+# of the episode stays voice-consistent. This is a routing decision, not a
+# credit — see _tts_providers_rendered for who actually spoke.
 _tts_provider_used: str | None = None
+
+# Providers that actually produced audio this run, in render order. A mid-run
+# fallback leaves the already-rendered sections in the earlier provider's voice,
+# so the episode is genuinely mixed and the credit must name every contributor.
+# Empty until something renders — the script stage has nothing to report yet.
+_tts_providers_rendered: list[str] = []
 
 
 def get_active_tts_provider() -> str:
@@ -443,9 +451,31 @@ def get_active_tts_provider() -> str:
     return "openai"
 
 
+def record_tts_render(provider: str) -> None:
+    """Note that *provider* successfully rendered some of this run's audio."""
+    if provider not in _tts_providers_rendered:
+        _tts_providers_rendered.append(provider)
+
+
+def _compose_tts_credit() -> str:
+    """Credit label naming every provider that rendered audio, in render order.
+
+    Before anything renders (the whole script stage) the list is empty and we
+    fall back to the requested provider — the best guess available at that point.
+    Callers on the audio side get the truth, including "A and B" after a
+    mid-episode fallback left the episode genuinely mixed.
+    """
+    labels = CONFIG['credits']['structured']
+    providers = _tts_providers_rendered or [get_active_tts_provider()]
+    names = [labels[f"text_to_speech_{p}"] for p in providers]
+    if len(names) == 1:
+        return names[0]
+    return f"{', '.join(names[:-1])} and {names[-1]}"
+
+
 def get_tts_credit() -> str:
-    """Credit label for the active TTS provider, from config/credits.json."""
-    return CONFIG['credits']['structured'][f"text_to_speech_{get_active_tts_provider()}"]
+    """Credit label for the TTS provider(s), from config/credits.json."""
+    return _compose_tts_credit()
 
 
 def _stage_direction_addendum() -> str:
@@ -4555,13 +4585,20 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
         print(f"❌ Error saving citations: {e}")
         return None
 
+# The one line in the episode description carrying the TTS credit. Kept next to
+# the writer in generate_episode_description() — both must agree.
+_VOICES_LINE_RE = re.compile(r"(Today's Voices: )([^<]*)")
+
+
 def refresh_citations_tts_credit(citations_path) -> None:
     """Re-sync the citations file's TTS credit after audio rendering.
 
     Citations are written before audio is rendered, so their credit reflects
     the env-flag provider selection. A provider fallback during rendering
-    (e.g. Gemini → OpenAI) changes get_active_tts_provider(); this rewrites
-    the published credit to the provider that actually rendered the audio.
+    (e.g. Gemini → OpenAI) changes what actually spoke; this rewrites both
+    places the credit is stored — the structured `credits` key *and* the
+    "Today's Voices:" line inside the episode description, which is what the
+    RSS feed publishes verbatim and what listeners actually read.
     """
     path = Path(citations_path)
     if not path.exists():
@@ -4569,9 +4606,21 @@ def refresh_citations_tts_credit(citations_path) -> None:
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
         live_credit = get_tts_credit()
-        if data.get("credits", {}).get("text_to_speech") == live_credit:
-            return
+
+        changed = data.get("credits", {}).get("text_to_speech") != live_credit
         data.setdefault("credits", {})["text_to_speech"] = live_credit
+
+        description = data.get("episode", {}).get("description")
+        if description:
+            repaired = _VOICES_LINE_RE.sub(
+                lambda m: f"{m.group(1)}{live_credit}", description
+            )
+            if repaired != description:
+                data["episode"]["description"] = repaired
+                changed = True
+
+        if not changed:
+            return
         path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
         print(f"📋 Citations TTS credit updated to actual renderer: {live_credit}")
     except Exception as e:
@@ -5622,13 +5671,29 @@ def _generate_host_line(context: str, host: str) -> str:
         return ""
 
 
+def _is_embargoed_subject(subject: str) -> bool:
+    """True if a commit subject touches a delivery surface that isn't public yet.
+
+    YouTube publishing is still in test, so slide/video work must not reach the
+    Meta Moment prompt — Haiku translates it into on-air lines like "the video
+    version", advertising a surface listeners can't get.
+    """
+    terms = CONFIG['podcast'].get('embargoed_surfaces', {}).get('terms', [])
+    lowered = subject.lower()
+    return any(term in lowered for term in terms)
+
+
 def get_weekly_changelog(days: int = 7) -> str:
     """Commit subjects touching generator-shaping files in the last N days, for the Sunday Meta Moment."""
     since = (datetime.now() - timedelta(days=days)).strftime("%Y-%m-%d")
     log = _git("log", "--reverse", f"--since={since}", "--pretty=format:%s", "--", *GENERATION_PATHS)
     if not log:
         return ""
-    return "\n".join(f"- {line.strip()}" for line in log.splitlines() if line.strip())
+    subjects = [line.strip() for line in log.splitlines() if line.strip()]
+    kept = [s for s in subjects if not _is_embargoed_subject(s)]
+    if len(kept) < len(subjects):
+        print(f"   🔇 Meta Moment: withheld {len(subjects) - len(kept)} unreleased-surface commit(s)")
+    return "\n".join(f"- {s}" for s in kept)
 
 
 def generate_meta_moment_text(changelog: str) -> str:
@@ -5663,6 +5728,10 @@ def generate_meta_moment_text(changelog: str) -> str:
         "150-220 words total. Format every line as **RILEY:** or **CASEY:** — no narrator, "
         "no stage directions, no emojis. Never fabricate names or details not in the commit "
         "list.\n\n"
+        "This is an audio show only. Never mention video, YouTube, a visual or watchable "
+        "version of the show, or anything a listener would have to look at. Describe caption "
+        "or transcript work as transcripts in your podcast app — never as captions you watch. "
+        "If a change only makes sense visually, skip it and pick another.\n\n"
         f"This week's changes:\n{changelog}"
     )
     try:
@@ -5799,6 +5868,11 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
     global _tts_provider_used
     print("📊 Generating audio with music interludes...")
 
+    # This call owns the whole episode's audio, so it owns the credit. Clearing
+    # keeps a second render in the same process (Azure parallel comparison, or
+    # the TTS-only fallback) from inheriting the previous attempt's providers.
+    _tts_providers_rendered.clear()
+
     if USE_GEMINI_TTS:
         if not get_gemini_api_key():
             print("❌ Gemini TTS enabled but GEMINI_API_KEY not set")
@@ -5888,6 +5962,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                             TARGET_SPEECH_DBFS,
                         )
                         combined = _append_with_gap(combined, section_audio, -overlap_ms)
+                        record_tts_render(provider)
                         # Whole-section synthesis has no per-turn boundaries; speaker=None
                         # tells the video renderer to skip speaker badges for this span.
                         video_timeline.append({
@@ -5936,6 +6011,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                             gap = heuristic_gap_ms(segment['text'], prev_speaker, segment['speaker'], section=prefix, prev_text=prev_text)
                     turn_start_ms = max(len(combined) + gap, 0)
                     combined = _append_with_gap(combined, speech, gap)
+                    record_tts_render("openai")
                     video_timeline.append({
                         "speaker": segment['speaker'],
                         "section": prefix,
@@ -6044,8 +6120,11 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                             TARGET_SPEECH_DBFS,
                         )
                     except Exception as ce:
-                        # Never drop credits on a provider failure: degrade to OpenAI
-                        # (and re-credit as OpenAI so the spoken line stays accurate).
+                        # Never drop credits on a provider failure: degrade to OpenAI.
+                        # Deliberately not recorded via record_tts_render — the credit
+                        # names the voices of the episode body, and the spoken line is
+                        # built before this renders, so recording here would make the
+                        # spoken and written credits disagree.
                         if not get_openai_client():
                             raise
                         print(f"  ⚠️  {_credits_provider.title()} credits failed ({ce}) — degrading to OpenAI")
@@ -6111,6 +6190,10 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
 def generate_audio_tts_only(script, output_filename, _force_openai=False):
     """Fallback: Generate audio without music (TTS only)."""
     print("📊 Generating TTS-only audio...")
+
+    # This path re-renders the whole episode from scratch, discarding anything a
+    # failed music-path attempt produced — so its providers must not be credited.
+    _tts_providers_rendered.clear()
 
     provider = "openai" if _force_openai else get_active_tts_provider()
     if provider == "gemini":
@@ -6241,6 +6324,7 @@ def generate_audio_tts_only(script, output_filename, _force_openai=False):
 
         global _tts_provider_used
         _tts_provider_used = provider
+        record_tts_render(provider)
         return output_filename
 
     except Exception as e:
