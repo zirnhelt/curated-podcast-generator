@@ -296,11 +296,13 @@ class TestStripStageDirections:
 
 
 class TestProviderResolution:
-    def _fresh(self, monkeypatch, gemini=False, azure=False, used=None):
+    def _fresh(self, monkeypatch, gemini=False, azure=False, used=None, rendered=()):
         import podcast_generator as pg
         monkeypatch.setattr(pg, "USE_GEMINI_TTS", gemini)
         monkeypatch.setattr(pg, "USE_AZURE_TTS", azure)
         monkeypatch.setattr(pg, "_tts_provider_used", used)
+        # Module-level list — reset it or renders from earlier tests leak in.
+        monkeypatch.setattr(pg, "_tts_providers_rendered", list(rendered))
         return pg
 
     def test_default_is_openai(self, monkeypatch):
@@ -346,6 +348,79 @@ class TestProviderResolution:
     def test_citations_refresh_missing_file_is_noop(self, monkeypatch, tmp_path):
         pg = self._fresh(monkeypatch, gemini=True, used="openai")
         pg.refresh_citations_tts_credit(tmp_path / "nope.json")  # must not raise
+
+    def test_rendered_providers_beat_the_routing_pin(self, monkeypatch):
+        # Gemini rendered the cold open before the 429, OpenAI rendered the rest
+        # (2026-07-26). The audio is genuinely mixed — credit both.
+        pg = self._fresh(monkeypatch, gemini=True, used="openai",
+                         rendered=("gemini", "openai"))
+        assert pg.get_tts_credit() == "Gemini TTS and OpenAI TTS"
+        # The routing pin still routes remaining work to OpenAI.
+        assert pg.get_active_tts_provider() == "openai"
+
+    def test_single_rendered_provider_is_named_alone(self, monkeypatch):
+        pg = self._fresh(monkeypatch, gemini=True, rendered=("gemini",))
+        assert pg.get_tts_credit() == "Gemini TTS"
+
+    def test_script_stage_falls_back_to_requested_provider(self, monkeypatch):
+        # Nothing has rendered yet — the requested provider is the best guess.
+        pg = self._fresh(monkeypatch, gemini=True)
+        assert pg.get_tts_credit() == "Gemini TTS"
+
+    def test_record_tts_render_dedupes_and_keeps_order(self, monkeypatch):
+        pg = self._fresh(monkeypatch, gemini=True)
+        for provider in ("gemini", "openai", "gemini", "openai"):
+            pg.record_tts_render(provider)
+        assert pg._tts_providers_rendered == ["gemini", "openai"]
+
+    def test_three_providers_use_serial_comma(self, monkeypatch):
+        pg = self._fresh(monkeypatch, rendered=("gemini", "azure", "openai"))
+        assert pg.get_tts_credit() == "Gemini TTS, Azure Neural TTS and OpenAI TTS"
+
+    def test_refresh_repairs_description_not_just_credits_key(self, monkeypatch, tmp_path):
+        # The 2026-07-26 defect: refresh fixed credits.text_to_speech and left
+        # the description saying Gemini — and the RSS publishes the description.
+        import json
+        pg = self._fresh(monkeypatch, gemini=True, used="openai", rendered=("openai",))
+        citations = tmp_path / "citations_2026-07-26_test_theme.json"
+        citations.write_text(json.dumps({
+            "credits": {"text_to_speech": "Gemini TTS"},
+            "episode": {"description": "<p>Notes</p><p><b>Credits</b><br>"
+                                       "Today's Voices: Gemini TTS<br>"
+                                       "Cover Art: someone<br></p>"},
+        }), encoding="utf-8")
+        pg.refresh_citations_tts_credit(citations)
+        data = json.loads(citations.read_text(encoding="utf-8"))
+        assert data["credits"]["text_to_speech"] == "OpenAI TTS"
+        assert "Today's Voices: OpenAI TTS" in data["episode"]["description"]
+        assert "Gemini" not in data["episode"]["description"]
+
+    def test_refresh_repairs_description_when_credits_key_already_correct(
+            self, monkeypatch, tmp_path):
+        # Regression: the old early-return bailed as soon as the credits key
+        # matched, which is exactly when the description was left stale.
+        import json
+        pg = self._fresh(monkeypatch, gemini=True, used="openai", rendered=("openai",))
+        citations = tmp_path / "citations_2026-07-26_test_theme.json"
+        citations.write_text(json.dumps({
+            "credits": {"text_to_speech": "OpenAI TTS"},
+            "episode": {"description": "Today's Voices: Gemini TTS<br>"},
+        }), encoding="utf-8")
+        pg.refresh_citations_tts_credit(citations)
+        data = json.loads(citations.read_text(encoding="utf-8"))
+        assert "Today's Voices: OpenAI TTS" in data["episode"]["description"]
+
+    def test_refresh_leaves_a_consistent_file_untouched(self, monkeypatch, tmp_path):
+        import json
+        pg = self._fresh(monkeypatch, gemini=True, rendered=("gemini",))
+        citations = tmp_path / "citations_2026-07-26_test_theme.json"
+        original = json.dumps({
+            "credits": {"text_to_speech": "Gemini TTS"},
+            "episode": {"description": "Today's Voices: Gemini TTS<br>"},
+        })
+        citations.write_text(original, encoding="utf-8")
+        pg.refresh_citations_tts_credit(citations)
+        assert citations.read_text(encoding="utf-8") == original
 
 
 class TestStageDirectionAddendum:

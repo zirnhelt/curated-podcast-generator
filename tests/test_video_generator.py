@@ -214,6 +214,25 @@ class TestSlides:
         slides = _render(chapters, sample_citations, 30.0, tmp_path)
         assert len(slides) == 1
 
+    def test_credits_slide_follows_the_citations_tts_credit(self, sample_citations, tmp_path):
+        # The slide used to hardcode "Audio by OpenAI TTS", so it was wrong on
+        # every Gemini or Azure episode. It must track the citations credit.
+        chapters = [{"startTime": 0, "title": "Credits"}]
+        (tmp_path / "a").mkdir()
+        (tmp_path / "b").mkdir()
+        sample_citations["credits"] = {"text_to_speech": "OpenAI TTS"}
+        openai_slide = _render(chapters, sample_citations, 30.0, tmp_path / "a")
+        sample_citations["credits"] = {"text_to_speech": "Gemini TTS and OpenAI TTS"}
+        mixed_slide = _render(chapters, sample_citations, 30.0, tmp_path / "b")
+        assert len(openai_slide) == len(mixed_slide) == 1
+        assert open(openai_slide[0][0], "rb").read() != open(mixed_slide[0][0], "rb").read()
+
+    def test_credits_slide_renders_without_a_credits_block(self, sample_citations, tmp_path):
+        # Older citations files predate the credits key — must not crash.
+        sample_citations.pop("credits", None)
+        slides = _render([{"startTime": 0, "title": "Credits"}], sample_citations, 30.0, tmp_path)
+        assert len(slides) == 1
+
     def test_slides_are_720p_pngs(self, sample_chapters, sample_citations, tmp_path):
         slides = _render(sample_chapters, sample_citations, 600.0, tmp_path)
         for png, _, _ in slides:
