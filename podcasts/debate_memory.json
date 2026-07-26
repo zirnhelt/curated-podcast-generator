@@ -1,56 +1,4 @@
 {
-  "2026-04-25": {
-    "timestamp": 1777114294.217407,
-    "date": "2026-04-25",
-    "theme": "Cariboo Voices & Local News",
-    "central_question": "What actually holds geographically dispersed, economically diverse communities like the Cariboo together functionally, and how fragile is that social infrastructure?",
-    "riley_position": "Social capital generated through events, volunteering, and community institutions is genuinely load-bearing and does structural work that formal systems don't account for. Some volunteer roles like hospice companionship are actually better done by trained community members than paid professionals.",
-    "riley_key_evidence": [
-      "Research on end-of-life care shows people want presence and companionship, not just clinical intervention, which trained hospice volunteers provide effectively",
-      "Communities with high social capital recover faster from shocks like wildfires and evacuations",
-      "Many volunteer institutions have institutional support (health authority relationships, city support) even if thin and inconsistent"
-    ],
-    "casey_position": "While social infrastructure is genuinely important, it operates in a state of chronic fragility due to underfunding, demographic shifts in volunteer availability, and one-or-two-person dependencies that create succession gaps. Additionally, social capital can be exclusionary and historically hasn't adequately included Indigenous communities.",
-    "casey_key_evidence": [
-      "Volunteer-dependent institutions like Deni House indicate structural healthcare underfunding rather than a badge of honour",
-      "Women in mid-life who historically provided volunteer labor are now in full-time paid work, creating structural volunteer recruitment constraints",
-      "The Williams Lake Stampede has a historically complicated relationship with Indigenous communities despite being load-bearing infrastructure"
-    ],
-    "resolution": "They achieved substantial agreement: both recognized social infrastructure is vital but fragile, and both endorsed the need for intentional investment including community asset mapping, hybrid volunteer-plus-coordinator models, endowment funding mechanisms, and explicit bridge-building between Indigenous and non-Indigenous communities. Casey conceded that some volunteer roles have evidence-based value; Riley conceded institutional support is thin and inconsistent.",
-    "topics_covered": [
-      "The role of events (Stampede, Food Fair) as social capital generators and community cohesion mechanisms",
-      "Volunteer infrastructure fragility and succession planning in rural communities",
-      "Healthcare volunteerism as both essential care and symptom of underfunding",
-      "Social capital theory: bonding versus bridging across community groups",
-      "Structural constraints on rural volunteering and hybrid funding models for non-profits"
-    ]
-  },
-  "2026-04-26": {
-    "timestamp": 1777200709.543437,
-    "date": "2026-04-26",
-    "theme": "Science, Wonder & the Natural World",
-    "central_question": "Can rural communities like the Cariboo be positioned to conduct long-duration, place-based observational science better than centralized institutions, and what governance structures would make this work?",
-    "riley_position": "Rural communities have inherent advantages for longitudinal ecological observation through existing land management practices and stakeholder relationships, but the governance architecture\u2014particularly around data ownership and control in contested Indigenous territories\u2014must be resolved before infrastructure is built.",
-    "riley_key_evidence": [
-      "Ranches have tracked pastures through multiple generations of climate variation; Secw\u00e9pemc and T\u015dilhqot'in knowledge holders carry observational records spanning millennia",
-      "The York University sleep study succeeded by aggregating 69 separate studies over time, requiring sustained infrastructure maintenance beyond grant cycles",
-      "Community Futures organizations already sit at the intersection of ranching operations and First Nations economic development, positioning them to convene governance conversations"
-    ],
-    "casey_position": "Rural communities should formalize their existing longitudinal observational capacity through a 'monitoring commons' model where multiple land users with distinct operational needs share infrastructure costs and data, with OCAP principles and Indigenous governance embedded from the design stage.",
-    "casey_key_evidence": [
-      "Curiosity rover's thirteen-year sustained observation on Mars generated undeniable patterns through incremental data accumulation rather than breakthrough experiments",
-      "Wildfire management could improve with systematic local tracking of vegetation density, soil moisture, and snowmelt timing over 10-15 years rather than relying on provincial aggregate data",
-      "Cattle ranchers, wildlife monitors, timber operators, and tourism operators all need overlapping climate and ecological data, creating natural infrastructure-sharing opportunities"
-    ],
-    "resolution": "Casey and Riley reached substantial agreement: governance questions must precede technology deployment, the monitoring commons model is viable, and a starting point should be convening land users around three operational questions rather than beginning with sensor deployment. They acknowledged the approach is harder than technology problems but fundamentally more important.",
-    "topics_covered": [
-      "Long-duration observational science as a structural advantage for rural communities",
-      "Indigenous data sovereignty and OCAP principles in shared monitoring infrastructure",
-      "Governance architecture and dispute resolution in data-sharing arrangements across competing land interests",
-      "Community Futures as a potential convening body for multi-stakeholder monitoring commons",
-      "Operational vs. scientific framing as the foundation for durable rural science initiatives"
-    ]
-  },
   "2026-04-27": {
     "timestamp": 1777290762.202033,
     "date": "2026-04-27",
@@ -2322,6 +2270,39 @@
       "Fraser River salmon run temperatures and jurisdiction gaps between DFO and First Nations fisheries authority",
       "Real-time monitoring technology capabilities and their limits in wildlife management",
       "The gap between data collection and decision-making authority in environmental protection"
+    ]
+  },
+  "2026-07-26": {
+    "timestamp": 1785061649.299248,
+    "date": "2026-07-26",
+    "theme": "Science, Wonder & the Natural World",
+    "focus": "living-world",
+    "central_question": "Who pays for long-term, unglamorous scientific research that could benefit humanity but offers no commercial profit incentive?",
+    "riley_position": "The science showing old drugs like metformin and rapamycin slow aging is real and conserved across species; the barrier isn't biology but funding incentives, and wonder about natural processes (like salmon senescence) is the pipeline that creates future researchers.",
+    "riley_key_evidence": [
+      "Rapamycin extended maximum lifespan in mice by ~14% in females and 9% in males in NIA-funded studies",
+      "mTOR inhibition slows aging across yeast, worms, flies, and mice\u2014a conserved biological pathway",
+      "Scout Island's Salmon in the Classroom lets kids watch the entire arc of salmon life including post-spawn collapse within one school year"
+    ],
+    "casey_position": "Early promising signals aren't the same as finished peer-reviewed results; the real problem is that no pharmaceutical company will fund Phase 3 trials for unpatentable generics, and wonder alone doesn't create evidence\u2014long institutional baselines and proper data continuity do.",
+    "casey_key_evidence": [
+      "Phase 3 trials cost hundreds of millions of dollars and no company recoups that cost proving a fifty-year-old generic drug works",
+      "The TAME trial is structured through NIH and academic channels rather than industry precisely because manufacturers have no commercial incentive",
+      "A single-season classroom project teaches wonder but not pattern recognition; the Xat\u015b\u016bll's multi-generational salmon observations are the kind of long baseline that actually reveals trends"
+    ],
+    "resolution": "Riley and Casey agreed that the structural funding gap is real and affects both pharmaceutical and ecological research equally; they converged on distinguishing between wonder (which builds future scientists) and evidence (which requires institutional continuity), and agreed that pairing volunteer efforts with established institutions like the Xat\u015b\u016bll or UNBC is the practical solution.",
+    "topics_covered": [
+      "Metformin and rapamycin as potential aging-slowing drugs and the funding barrier to proving efficacy at scale",
+      "Programmed senescence in Pacific salmon as an evolutionary contrast to human longevity research",
+      "How the same molecular pathway (mTOR signaling) serves opposite purposes across different species",
+      "The institutional continuity problem in long-term volunteer science projects",
+      "Wonder versus evidence as different but complementary components of scientific literacy"
+    ],
+    "calls_to_action": [
+      "Scout Island Nature Centre's Salmon in the Classroom program runs summer themes (Water, Bugs, Birds) weekly; sign up at scoutisland.ca to watch fry raise and release.",
+      "If a local naturalist group wanted to build a long-term salmon baseline, install simple tools like temperature loggers on bridge pilings paired with institutional homes (like the Xat\u015b\u016bll's governance structure or UNBC) to ensure data continuity beyond individual volunteers.",
+      "Send story tips, corrections, or information about local monitoring efforts to cariboo signals dot c-a.",
+      "Community groups considering long-term science projects should design handoff and institutional continuity into the project from day one, not treat it as an afterthought."
     ]
   }
 }

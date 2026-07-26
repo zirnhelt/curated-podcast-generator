@@ -504,5 +504,25 @@
     "date": "2026-07-24",
     "focus": "wildlife-conservation",
     "focus_name": "Wildlife & Conservation"
+  },
+  "2026-07-26": {
+    "timestamp": 1785061647.488209,
+    "topics": [
+      "[ScienceAlert] This Week in Science: A Grim Measles Mileston",
+      "[Kagi Small Web] Even more science fiction and fantasy novel",
+      "[Engadget] Amazon accused of poaching HBO employees in Warne",
+      "[Neowin] How and why do we even exist? Science may finally h",
+      "[MacRumors] Top Stories: 'Apple Upgrade' Program, Apple Musi",
+      "[MacRumors] Lawsuit Filed After Apple's A12 and A13 Chips Hi",
+      "[ScienceAlert] Medications Already in Pharmacies May Slow Ag",
+      "[InsideEVs] EV Drivers Are Happier With Their Cars Than Gas "
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption"
+    ],
+    "date": "2026-07-26",
+    "focus": "living-world",
+    "focus_name": "The Living World"
   }
 }
