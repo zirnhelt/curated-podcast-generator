@@ -1,220 +1,220 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:32.520
+00:00:00.625 --> 00:00:26.905
 <v Riley>Hey, welcome back. On today's episode — Venus might still be tearing itself apart from the inside, a contagious cancer just turned up in catfish on the US-Canada border, and pharmacies might already be stocking an aging cure. Deep Dive question: if an old diabetes drug can slow human aging, and evolution wired salmon to age themselves to death on purpose — what does that say about who actually pays to prove it? That and more, coming right up.
 
-00:00:48.495 --> 00:01:08.815
+00:00:42.880 --> 00:01:03.456
 <v Riley>Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities — I'm Riley. It's Sunday, July 26th, 2026. Reaching you from the heart of the Cariboo, the homeland of the Secwépemc, Tŝilhqot'in, and Dakelh nations. Today's theme is Science, Wonder &amp; the Natural World.
 
-00:01:09.815 --> 00:01:45.863
+00:01:04.456 --> 00:01:40.560
 <v Casey>And I'm Casey. We're talking planets, Venus quakes, and a drug cabinet that might be hiding an aging cure — plus some biology closer to home involving salmon and catfish, of all things. Quick weather check first — Horsefly Lake is sitting at 14 degrees this morning, mainly clear, heading to a high of 20 with a low of 13 tonight. Tomorrow brings light showers, maybe 3 millimetres. Around the region: 100 Mile House at 12 and partly cloudy, Williams Lake at 15 under overcast skies, Quesnel at 14 partly cloudy, and out on the Chilcotin plateau, Alexis Creek sitting at 13 with overcast conditions.
 
-00:01:46.063 --> 00:01:46.799
+00:01:40.760 --> 00:01:41.488
 <v Riley>Let's get into it.
 
-00:01:48.199 --> 00:02:14.887
+00:01:42.888 --> 00:02:08.936
 <v Casey>The through-line in a lot of today's science coverage is basically: how much do we actually understand about the systems we live inside, whether that's a planet, a particle, or our own bodies. EarthSky's night sky guide for July and August has the moon parked near the Teapot asterism this month, close to where the galactic center sits from our vantage point — worth stepping outside for after dark, no telescope required, especially with skies this clear out at Horsefly.
 
-00:02:16.087 --> 00:02:34.359
+00:02:10.136 --> 00:02:27.912
 <v Riley>Venus is the stranger story in that same vein. New 3D simulations covered by ScienceDaily suggest some of Venus's giant rift valleys are geologically recent — meaning the planet might still be tearing itself apart from the inside, right now, not just billions of years ago the way we used to assume.
 
-00:02:34.259 --> 00:02:35.931
+00:02:27.812 --> 00:02:29.724
 <v Casey>A planet with active anger issues.
 
-00:02:37.137 --> 00:03:00.113
+00:02:30.930 --> 00:02:53.538
 <v Riley>Basically. And Neowin ran a piece connecting to a decades-long thread in particle physics — neutrino oscillation, where these nearly massless particles switch identity as they travel through space. Researchers are using that behavior to explain why matter outnumbers antimatter in the universe, which is a fairly grand way of asking why anything exists at all instead of an empty void.
 
-00:03:01.013 --> 00:03:21.525
+00:02:54.438 --> 00:03:16.462
 <v Casey>ScienceAlert's weekly roundup ties a few of these threads together — a grim measles milestone alongside new research suggesting there may be a hard ceiling on human lifespan, not just a moving target we keep pushing further out with better medicine. We'll pick that lifespan thread back up in the Deep Dive, because there's a companion story about pharmacy drugs that plays right into it.
 
-00:03:22.837 --> 00:03:45.661
+00:03:17.774 --> 00:03:40.558
 <v Riley>And ScienceDaily ran a genuinely useful myth-buster in the meantime: the idea that recycling and small green choices "distract" people from supporting bigger climate policy. A four-year study tracking nearly 2,800 Australians found no such effect — people who did the small stuff at home were just as likely, if not more likely, to back the big structural changes too.
 
-00:03:46.890 --> 00:03:57.818
+00:03:41.787 --> 00:03:53.203
 <v Casey>Good news for anyone who's ever felt sheepish sorting bottles at the depot instead of showing up to a public hearing on forestry policy — turns out you can do both, and doing one doesn't cancel out the other.
 
-00:03:59.017 --> 00:04:16.369
+00:03:54.402 --> 00:04:12.354
 <v Riley>On a lighter note — ScienceAlert also covered, and I'm going to be delicate here, a patient with a perforated bowel that involved an eel. The headline more or less writes itself: eels do not belong anywhere near your business end, and apparently this needed to be said out loud in a medical journal.
 
-00:04:17.802 --> 00:04:22.178
+00:04:13.787 --> 00:04:18.243
 <v Casey>Some science stories exist purely as a public service announcement nobody asked for.
 
-00:04:23.458 --> 00:04:47.162
+00:04:19.523 --> 00:04:44.619
 <v Riley>Rounding out that block, a few lighter items still carrying the theme tag. Kagi's Small Web roundup has fourteen new science fiction and fantasy novels worth adding to a summer reading list if you're stuck at a lake cabin with spotty signal. Engadget covered a batch of new indie games, including one that turns email into turn-based combat — which, frankly, describes most people's actual inboxes already.
 
-00:04:48.332 --> 00:05:05.676
+00:04:45.789 --> 00:05:03.429
 <v Casey>And on the corporate side, not really "wonder of the natural world" but still today's tech current — Amazon's being sued by Warner Bros. Discovery over allegedly poaching HBO staff, while MacRumors is tracking Apple's new device leasing program, called Apple Upgrade, alongside a bump in Apple Music subscription pricing.
 
-00:05:06.576 --> 00:05:28.040
+00:05:04.329 --> 00:05:24.857
 <v Riley>TechRadar also had Ukraine unveiling an in-house AI system called Marichka, which the military says can cut battle planning time from twelve hours down to just minutes in testing. It's notable mainly because it's built to replace a layer of the war-planning stack that Palantir currently owns — a sovereignty move as much as a technology one.
 
-00:05:29.282 --> 00:05:36.090
+00:05:26.099 --> 00:05:32.947
 <v Casey>Worth watching for what it says about smaller nations building their own AI stacks rather than leasing capability from allies.
 
-00:05:37.290 --> 00:05:53.378
+00:05:34.147 --> 00:05:49.843
 <v Riley>Closer to home now, and this one's not a science story so much as a live situation we should flag plainly. The Felker Fire south of Williams Lake has grown to nearly 3,940 hectares as of Saturday morning, discovered just Thursday and expanding fast.
 
-00:05:54.604 --> 00:06:12.124
+00:05:51.069 --> 00:06:08.373
 <v Casey>The Pear Lake fire near Clinton also grew overnight, though local officials say the town itself was preserved from major loss — a relief, but a close one by the sound of it. The TNRD extended its evacuation alert to cover every property in the Loon Lake community, more than 400 addresses now on notice.
 
-00:06:13.355 --> 00:06:34.403
+00:06:09.603 --> 00:06:30.779
 <v Riley>Global News has been talking to residents from Clinton and Boston Bar about what evacuation actually feels like on the ground, and there's a separate, uglier thread in that coverage — Boston Bar's water system was allegedly vandalized during the emergency response, which could delay people getting back into their homes even after the fire itself is contained.
 
-00:06:34.902 --> 00:06:54.782
+00:06:31.279 --> 00:06:50.855
 <v Casey>A Fort McMurray survivor from the 2016 wildfire also spoke to Global News about what recovery actually looks like years out, for anyone in an evacuation zone right now trying to picture what comes next. If you're in an alert or order zone tonight, Emergency Info BC and your local district's site are the places to check, not social media.
 
-00:06:56.245 --> 00:07:12.669
+00:06:52.318 --> 00:07:08.654
 <v Riley>And zooming out from the Cariboo specifically, the same pattern is playing out overseas — wildfires have forced roughly 300,000 evacuations around Madrid and Bordeaux combined, with smoke choking skies across both Spain and France as those fires continue to spread.
 
-00:07:14.057 --> 00:07:21.889
+00:07:10.042 --> 00:07:17.682
 <v Casey>Same story, different continent — dry conditions, wind, and infrastructure built for a climate that's shifting faster than the building codes.
 
-00:07:23.089 --> 00:07:50.673
+00:07:18.882 --> 00:07:46.178
 <v Riley>Also worth noting today — a genuine science story with a direct Cariboo-adjacent angle. WIRED reported on a contagious cancer identified in North American catfish, in a lake spanning the US-Canada border — the first known transmissible cancer documented in freshwater fish. Scientists think it spreads through direct contact between fish, similar to the transmissible cancers already known in Tasmanian devils and some shellfish populations.
 
-00:07:50.573 --> 00:07:55.597
+00:07:46.078 --> 00:07:51.070
 <v Casey>Cancer as an actual contagion — that's not something most people expect to hear about a catfish.
 
-00:07:56.996 --> 00:08:17.916
+00:07:52.469 --> 00:08:13.605
 <v Riley>And ScienceDaily had researchers finding the Sun contains 55 percent more silver than earlier models suggested, using more advanced simulations of the solar atmosphere. It's a reminder that we're still correcting basic chemical facts about the object providing all our light and heat, a hundred and fifty years into serious spectroscopy.
 
-00:08:18.816 --> 00:08:35.336
+00:08:14.505 --> 00:08:31.473
 <v Casey>TechCrunch reported libraries around the country are running "Avoiding AI" workshops that are apparently drawing unexpected crowds — people fed up with Big Tech showing up in numbers organizers didn't anticipate. Make of that what you will, but it says something about appetite for a low-tech corner of daily life.
 
-00:08:36.553 --> 00:08:49.425
+00:08:32.690 --> 00:08:44.906
 <v Riley>And Engadget noted Qualcomm is reportedly planning to raise processor prices by the end of summer, which will likely ripple through phone and device costs later this year — not glamorous, but it'll hit wallets eventually.
 
-00:08:50.861 --> 00:09:03.757
+00:08:46.342 --> 00:08:59.134
 <v Casey>One more before we move on — New Atlas covered an ultra-short-throw laser projector that throws a wall-filling 4K image from just inches away, useful if you're trying to build a home theatre in a cabin without ceiling access for a mount.
 
-00:09:04.256 --> 00:09:06.688
+00:08:59.633 --> 00:09:01.977
 <v Riley>That'll do it for the roundup — into the spotlight.
 
-00:09:08.088 --> 00:09:18.680
+00:09:03.377 --> 00:09:13.537
 <v Riley>Quick meta moment before we move on. We actually tweaked a few things about how the show comes together this week, and—fair warning—some of it's pretty recursive to talk about.
 
-00:09:19.026 --> 00:09:22.642
+00:09:13.883 --> 00:09:17.427
 <v Casey>You mean we're about to narrate our own bug fixes. Very on-brand.
 
-00:09:23.159 --> 00:09:35.735
+00:09:17.944 --> 00:09:30.368
 <v Riley>Exactly. So first: we finally got the intro music level right. It was basically drowning out our voices in the video version, which—yeah, not ideal when people are trying to hear what we're actually saying.
 
-00:09:36.274 --> 00:09:42.122
+00:09:30.907 --> 00:09:36.595
 <v Casey>That's the one listeners will notice immediately. Music's louder, but you can still hear us. Wild concept.
 
-00:09:42.778 --> 00:09:54.906
+00:09:37.251 --> 00:09:48.835
 <v Riley>The other big one is the captions. We synced them properly to the actual audio timing now, so if you're watching with captions on, they're not lagging three seconds behind or cutting off mid-thought.
 
-00:09:55.573 --> 00:10:02.333
+00:09:49.502 --> 00:09:56.246
 <v Casey>And this segment—Meta Moment—was actually disappearing in some fallback scenarios. We fixed that. So you get this, every time.
 
-00:10:02.973 --> 00:10:11.229
+00:09:56.886 --> 00:10:04.262
 <v Riley>Which is funny because we're literally talking about the systems keeping us on the air while we talk about keeping ourselves on the air.
 
-00:10:11.501 --> 00:10:13.373
+00:10:04.534 --> 00:10:06.334
 <v Casey>Very postmodern. Anyway. Onto the news.
 
-00:10:14.773 --> 00:10:41.109
+00:10:07.734 --> 00:10:34.094
 <v Casey>Scout Island Nature Centre out in Williams Lake is volunteer-run through the Williams Lake Field Naturalists, and it's been quietly doing this kind of work for years — birding walks, kids' programs, and a Salmon in the Classroom initiative that gets local students raising fry before release into the watershed. Summer programs are running all season, with a new theme each week — Water one week, Bugs the next, Birds after that. Sign-up details are at scoutisland.ca.
 
-00:10:41.651 --> 00:10:48.835
+00:10:34.636 --> 00:10:42.076
 <v Riley>Genuinely one of the better-kept resources in the region, and it's going to connect directly to what we're talking about next.
 
-00:10:50.235 --> 00:11:12.115
+00:10:43.476 --> 00:11:05.100
 <v Casey>Let's start with the lifespan story, because ScienceAlert flagged something specific — researchers are narrowing down which drugs already sitting in pharmacies might actually slow biological aging. Metformin, a decades-old diabetes drug. Rapamycin, an immunosuppressant originally developed to stop organ transplant rejection. Not new biotech. Old molecules, new questions being asked of them.
 
-00:11:12.615 --> 00:11:43.743
+00:11:05.600 --> 00:11:36.648
 <v Riley>And this is the part that gets genuinely exciting. Rapamycin extended maximum lifespan in mice by roughly 14 percent in females, 9 percent in males, in NIA-funded studies. Metformin shows reduced biological-aging markers in cell and molecular clock studies. These are drugs people already take, with known safety profiles, established manufacturing, and no exotic gene therapy or six-figure biotech pipeline required. Molecules that have been in the pharmacy since before either of us existed as a concept.
 
-00:11:44.296 --> 00:12:15.472
+00:11:37.201 --> 00:12:08.353
 <v Casey>Mouse lifespan isn't human lifespan. The actual human trial — TAME, Targeting Aging with Metformin — has been in planning for years, and it's a genuinely long slog. It's a Phase 3 study in non-diabetic adults 65 to 79, tracking a composite outcome across cardiovascular disease, cancer, dementia, and death. There's a preprint circulating that cites something like a 14 percent reduction in that composite at 18 months, but that's in a small subset of participants. That is not the same as a finished, peer-reviewed, full-cohort result.
 
-00:12:16.161 --> 00:12:38.865
+00:12:09.042 --> 00:12:31.426
 <v Riley>Sure, it's early. But early and wrong aren't the same thing. The mechanism is conserved across an enormous range of species — mTOR inhibition slows aging in yeast, in worms, in flies, in mice. That's not coincidence, that's a shared biological pathway going back a very long way on the evolutionary tree, which is exactly the kind of signal that usually holds up under scrutiny.
 
-00:12:39.265 --> 00:13:03.017
+00:12:31.826 --> 00:12:55.866
 <v Casey>Here's the harder problem, though, and it's not biology — it's money. There's a real argument going around, and it's not a fringe one, that even if these drugs work, no pharmaceutical company will ever run the definitive trial to prove it at scale, because you can't patent metformin. Phase 3 trials cost hundreds of millions of dollars. Nobody recoups that cost proving a fifty-year-old generic drug works better than expected.
 
-00:13:03.314 --> 00:13:06.058
+00:12:56.164 --> 00:12:59.276
 <v Riley>That's an incentive problem, not a science problem.
 
-00:13:06.677 --> 00:13:22.277
+00:12:59.894 --> 00:13:15.286
 <v Casey>It's still a problem that determines whether the science ever actually gets confirmed for the rest of us. "Scientists are narrowing them down" is a nicer headline than "and there's no commercial entity left standing that has any reason to pay for the trial that would prove it conclusively."
 
-00:13:22.877 --> 00:13:34.845
+00:13:15.886 --> 00:13:28.102
 <v Riley>Which is actually where this connects to something wilder — the flip side of trying to slow human aging down is looking at a species that's evolved to speed its own aging up on purpose. Pacific salmon.
 
-00:13:35.025 --> 00:13:36.105
+00:13:28.282 --> 00:13:29.282
 <v Casey>The post-spawn die-off.
 
-00:13:36.619 --> 00:14:02.179
+00:13:29.796 --> 00:13:54.948
 <v Riley>Right. Sockeye, chinook, coho — they swim upriver, spawn once, and then their bodies essentially disintegrate within days of finishing. Cortisol floods their system, their organs shut down in a specific sequence, and it happens on a schedule tight enough that biologists genuinely call it programmed senescence. It's not gradual decline the way we think of aging. It's a switch that flips, deliberately, on a biological timer.
 
-00:14:02.800 --> 00:14:23.800
+00:13:55.569 --> 00:14:16.305
 <v Casey>So on one end you've got researchers hunting for a pill to push human aging further out, and on the other end, a fish that evolution wired to age itself to death on a deadline — because a fast, total collapse after spawning returns more nutrients to the river system, feeding everything from bears to insect larvae to the next generation of fry, than a slow decline ever would.
 
-00:14:24.386 --> 00:14:50.866
+00:14:16.891 --> 00:14:43.099
 <v Riley>That's the wonder of it, honestly. Aging isn't one universal process running at different speeds across species. It's a dial that evolution turns differently depending on what actually benefits the organism's strategy — slow it way down if you're a long-lived mammal investing in offspring over years and years, or crank it to maximum if you're a salmon whose entire genetic contribution to the world ends the moment eggs hit gravel.
 
-00:14:51.265 --> 00:15:16.401
+00:14:43.498 --> 00:15:08.538
 <v Casey>Which raises a real question about what "slowing aging" even means once you're comparing across species that different. Rapamycin's mechanism, mTOR signaling, actually plays a documented role in salmon senescence too — it's tied into the same nutrient-sensing pathway that triggers their collapse after spawning. So the exact same molecular lever that might buy a human a few extra healthy years is, in a fish, wired directly to a self-destruct sequence.
 
-00:15:16.964 --> 00:15:37.468
+00:15:09.101 --> 00:15:29.813
 <v Riley>Exactly — same gene family, completely opposite evolutionary job description. That's not a contradiction, that's just how deeply conserved pathways tend to work across the tree of life. The switch itself is ancient. What flips it, and in which direction, and how fast, depends entirely on what the organism's whole life strategy needs it to do.
 
-00:15:38.025 --> 00:15:58.153
+00:15:30.370 --> 00:15:49.946
 <v Casey>It's a genuinely good teaching hook, honestly — that's basically what Scout Island's Salmon in the Classroom program is showing kids without necessarily naming the mechanism out loud. Watching fry grow over a season, and eventually watching an adult run collapse after spawning, is a front-row seat to programmed senescence most people never get in a textbook.
 
-00:15:58.839 --> 00:16:12.647
+00:15:50.632 --> 00:16:03.808
 <v Riley>And it's a far better hook than watching cells divide under a microscope slide. Kids can watch the entire arc — birth, growth, migration, reproduction, death — play out on the Horsefly or the Quesnel River within a single school year.
 
-00:16:13.147 --> 00:16:41.251
+00:16:04.308 --> 00:16:32.324
 <v Casey>Though I'd flag the limits of that analogy before we get too pleased with ourselves about it. A classroom watching fry grow isn't the same thing as a longitudinal dataset that can distinguish signal from noise. The Xatśūll have kept salmon and river observations across generations — that's the kind of long baseline that actually tells you whether this year's run is a real trend or just normal variation. A single-season class project teaches wonder. It doesn't, on its own, teach pattern.
 
-00:16:41.916 --> 00:16:55.628
+00:16:32.989 --> 00:16:48.069
 <v Riley>No argument there. But wonder is what gets a ten-year-old interested enough to eventually become the wildlife biologist who reads that fifty-year dataset for a living. You don't get the second thing without the first thing happening somewhere along the way.
 
-00:16:56.199 --> 00:17:07.319
+00:16:48.640 --> 00:17:00.048
 <v Casey>Fair enough as a pipeline argument for building future scientists. It's still not evidence of anything about the fish population on its own terms, and I don't want that distinction to get lost in the good feeling.
 
-00:17:07.719 --> 00:17:19.359
+00:17:00.448 --> 00:17:12.272
 <v Riley>Back to the drugs question, though, since that's the part with an actual near-term answer needed — if the funding incentive problem is as real as you're describing, what would it actually take to resolve it?
 
-00:17:19.689 --> 00:17:47.049
+00:17:12.602 --> 00:17:39.714
 <v Casey>Public funding, basically — and the TAME trial itself is already structured that way. It's run through academic and NIH channels rather than a pharmaceutical company, precisely because no manufacturer had commercial reason to pay for it themselves. Which tells you something important: the trials that matter most for cheap, generic, unpatentable interventions increasingly have to be publicly funded, not industry-funded, because industry's incentives simply don't point that direction.
 
-00:17:47.677 --> 00:18:07.213
+00:17:40.342 --> 00:17:59.558
 <v Riley>Which loops back to something worth sitting with rather than resolving neatly — who pays for the boring, unglamorous, long-horizon study, whether we're talking about a diabetes drug repurposed for aging or long-term ecological baselines here in the Cariboo. It's the same structural gap wearing two different costumes.
 
-00:18:07.766 --> 00:18:23.166
+00:18:00.111 --> 00:18:15.135
 <v Casey>Different species, same structural gap. Nobody profits directly from proving a cheap thing works, so the proof lags years, sometimes decades, behind the initial promising signal. That's true for a fish run and it's equally true for a pill bottle sitting in a pharmacy right now.
 
-00:18:23.666 --> 00:18:48.874
+00:18:15.635 --> 00:18:40.995
 <v Riley>There's a practical version of that question too, closer to home. If a local naturalist group wanted to build something like a long-term salmon baseline rather than a one-season classroom project, the actual ask wouldn't be flashy — it'd be something as simple as a temperature logger left on a bridge piling for years, plus a commitment from whoever runs it now to hand that responsibility off cleanly when they eventually move on.
 
-00:18:49.472 --> 00:19:06.280
+00:18:41.593 --> 00:18:58.649
 <v Casey>That's the harder part in practice, though — the handoff, not the sensor. Volunteer projects don't usually fail because nobody wanted to start them. They fail five or ten years in, when the one person who understood the dataset retires or moves to Kamloops and nobody else was ever properly trained to pick it up.
 
-00:19:06.824 --> 00:19:23.064
+00:18:59.193 --> 00:19:14.841
 <v Riley>Which argues for building the continuity into the design from day one — pairing a naturalist group with something like the Xatśūll's existing governance structure, or with UNBC, so the data has an institutional home that outlasts any individual volunteer's involvement.
 
-00:19:23.664 --> 00:19:38.920
+00:19:15.441 --> 00:19:31.169
 <v Casey>I'll take that as the more honest version of your optimism — not "the technology will save it," but "the technology only matters if the institution around it survives longer than the person who installed it." Those are genuinely different claims, and it's worth keeping them separate.
 
-00:19:39.608 --> 00:20:08.544
+00:19:31.856 --> 00:20:01.176
 <v Riley>Genuinely different claims, and I'll take that distinction. The tools to ask "does an old diabetes drug quietly extend healthy years" or "what's actually happening to this river's salmon run over fifty years" didn't really exist a generation back in any practical, affordable form. Now they do. Whether the institutions funding the follow-through exist is the part still genuinely open, and that's not a knock on the science — it's a knock on how we choose to pay for patience.
 
-00:20:09.079 --> 00:20:21.799
+00:20:01.712 --> 00:20:14.248
 <v Casey>That's the structural question worth leaving hanging rather than forcing an answer to today — who funds the unglamorous long trial, on a fish or a pill, once the initial wonder wears off and the press release stops writing itself.
 
-00:20:22.299 --> 00:20:44.155
+00:20:14.748 --> 00:20:35.484
 <v Riley>Fair place to leave it. If anyone listening has thoughts on that — or corrections, since we're working from published research and reporting here, not lab access of our own — feedback at cariboo signals dot c-a is the place to send it, and it's the same address for story tips or if you want to point us toward a local monitoring effort we haven't heard of yet.
 
-00:20:44.717 --> 00:20:55.261
+00:20:36.046 --> 00:20:46.262
 <v Casey>And if you want to watch the salmon-versus-longevity-drug question play out somewhere close to home, Scout Island's classroom program is as good a place as any to start paying attention this season.
 
-00:20:55.566 --> 00:20:56.966
+00:20:46.567 --> 00:20:47.983
 <v Riley>Have a great rest of your day.
 
-00:20:57.271 --> 00:20:58.567
+00:20:48.288 --> 00:20:49.560
 <v Casey>Have a great rest of your day.
