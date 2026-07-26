@@ -53,8 +53,15 @@ name: Seed Content
 #     7. Use Chosen Tag as the "tag" field in the dispatch body
 #
 # ── Debugging ────────────────────────────────────────────────────────────────
-#   Run scripts/debug-seed-dispatch.sh to check your PAT scopes and see the
-#   actual HTTP status (iOS Shortcuts silently swallows 403/422 errors).
+#   Run the diagnostic to check your PAT and see the actual HTTP status
+#   (iOS Shortcuts silently swallows 401/403/422 errors):
+#
+#     SEED_PAT=<token> ./scripts/debug-seed-dispatch.sh
+#
+#   "Bad credentials" (HTTP 401) means the PAT expired or was revoked — the
+#   Shortcut works right up to the token's expiry date and then stops seeding
+#   with no visible sign. Regenerate at github.com/settings/tokens and paste
+#   the new token into the Shortcut's Authorization header.
 
 on:
   workflow_dispatch:

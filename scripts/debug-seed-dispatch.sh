@@ -2,11 +2,15 @@
 # debug-seed-dispatch.sh — Verify your GitHub PAT and seed-content workflow dispatch
 #
 # Usage:
-#   ./scripts/debug-seed-dispatch.sh <PAT> [content]
+#   SEED_PAT=ghp_xxxx ./scripts/debug-seed-dispatch.sh [content]
+#   ./scripts/debug-seed-dispatch.sh <PAT> [content]        # legacy, see note
 #
 # Example:
-#   ./scripts/debug-seed-dispatch.sh ghp_xxxx "https://example.com/article"
-#   ./scripts/debug-seed-dispatch.sh ghp_xxxx "What if communities owned their LTE towers?" --type thought
+#   SEED_PAT=ghp_xxxx ./scripts/debug-seed-dispatch.sh "https://example.com/article"
+#   SEED_PAT=ghp_xxxx ./scripts/debug-seed-dispatch.sh "What if communities owned their LTE towers?" --type thought
+#
+# Prefer SEED_PAT: a token passed as an argument is visible to every other
+# process on the box via `ps` and lands in your shell history.
 #
 # What this checks:
 #   1. PAT has the 'workflow' scope (required for workflow_dispatch)
@@ -14,6 +18,10 @@
 #   3. The dispatch API call returns 204 (real success), not 4xx (silent failure)
 #
 # Common failures:
+#   401  — "Bad credentials": PAT is expired or revoked. PATs expire on a fixed
+#          date; the iOS Shortcut keeps working until that day and then silently
+#          stops seeding. Regenerate at github.com/settings/tokens and update
+#          the Authorization header in the Shortcut.
 #   403  — PAT is missing the 'workflow' scope (add it at github.com/settings/tokens)
 #   404  — Workflow file not found on 'main', or wrong repo owner/name
 #   422  — Invalid inputs (check required fields: type, content)
@@ -24,23 +32,32 @@ REPO="zirnhelt/curated-podcast-generator"
 WORKFLOW="seed-content.yml"
 REF="main"
 
-PAT="${1:-}"
-CONTENT="${2:-https://example.com/test-article}"
+PAT="${SEED_PAT:-}"
+CONTENT=""
 TYPE="url"
 
-# Parse optional --type flag
-while [[ $# -gt 2 ]]; do
-  case "$3" in
-    --type) TYPE="$4"; shift 2 ;;
-    *) shift ;;
+# When SEED_PAT is unset, the first positional argument is the PAT (legacy form).
+if [[ -z "$PAT" && $# -gt 0 ]]; then
+  PAT="$1"
+  shift
+fi
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --type) TYPE="${2:-url}"; shift 2 ;;
+    *) CONTENT="$1"; shift ;;
   esac
 done
 
+CONTENT="${CONTENT:-https://example.com/test-article}"
+
 if [[ -z "$PAT" ]]; then
-  echo "Usage: $0 <PAT> [content] [--type url|thought]"
+  echo "Usage: SEED_PAT=<token> $0 [content] [--type url|thought]"
+  echo "       $0 <PAT> [content] [--type url|thought]"
   echo ""
   echo "Get a PAT at: https://github.com/settings/tokens"
-  echo "Required scopes: repo + workflow"
+  echo "Classic token scopes: repo + workflow"
+  echo "Fine-grained token permissions: Contents (read/write) + Actions (read/write)"
   exit 1
 fi
 
@@ -59,8 +76,20 @@ SCOPE_RESPONSE=$(curl -si \
   -H "Accept: application/vnd.github+json" \
   "https://api.github.com/user" 2>&1)
 
-HTTP_STATUS=$(echo "$SCOPE_RESPONSE" | grep -i "^HTTP/" | tail -1 | awk '{print $2}')
-SCOPES=$(echo "$SCOPE_RESPONSE" | grep -i "x-oauth-scopes:" | sed 's/.*: //' | tr -d '\r')
+# Both greps must tolerate "no match": a 401 body carries no x-oauth-scopes
+# header, and under `set -euo pipefail` a bare failing grep in a command
+# substitution aborts the script before the 401 handler below can report it.
+HTTP_STATUS=$(echo "$SCOPE_RESPONSE" | grep -i "^HTTP/" | tail -1 | awk '{print $2}' || true)
+SCOPES=$(echo "$SCOPE_RESPONSE" | grep -i "x-oauth-scopes:" | sed 's/.*: //' | tr -d '\r' || true)
+
+if [[ "$HTTP_STATUS" == "401" ]]; then
+  echo "ERROR: 401 Bad credentials — the PAT is expired or revoked."
+  echo "This is the failure mode where seeding just stops working one day:"
+  echo "the token hit its expiry date and every dispatch now 401s."
+  echo "Fix: regenerate at https://github.com/settings/tokens, then update the"
+  echo "     Authorization header in the iOS Shortcut with the new token."
+  exit 1
+fi
 
 if [[ "$HTTP_STATUS" != "200" ]]; then
   echo "ERROR: PAT authentication failed (HTTP $HTTP_STATUS)"
@@ -69,16 +98,22 @@ if [[ "$HTTP_STATUS" != "200" ]]; then
 fi
 
 echo "HTTP status: $HTTP_STATUS (OK)"
-echo "Scopes:      ${SCOPES:-<none>}"
+echo "Scopes:      ${SCOPES:-<none — fine-grained token>}"
 
-if ! echo "$SCOPES" | grep -q "workflow"; then
+# Fine-grained tokens send no x-oauth-scopes header; their permissions can only
+# be checked by making the real call, which Step 3 does.
+if [[ -z "$SCOPES" ]]; then
+  echo "Fine-grained token detected — scopes cannot be read from the API."
+  echo "It needs Actions: read/write on $REPO. Step 3 is the real check."
+elif ! echo "$SCOPES" | grep -q "workflow"; then
   echo ""
   echo "ERROR: PAT is missing the 'workflow' scope!"
   echo "Without this scope, GitHub silently accepts the API call but never fires the action."
   echo "Fix: Go to github.com/settings/tokens → regenerate token with 'workflow' scope enabled."
   exit 1
+else
+  echo "✓ 'workflow' scope present"
 fi
-echo "✓ 'workflow' scope present"
 echo ""
 
 # Step 2: Check workflow exists on main
@@ -88,7 +123,7 @@ WF_RESPONSE=$(curl -si \
   -H "Accept: application/vnd.github+json" \
   "https://api.github.com/repos/$REPO/contents/.github/workflows/$WORKFLOW?ref=$REF" 2>&1)
 
-WF_STATUS=$(echo "$WF_RESPONSE" | grep -i "^HTTP/" | tail -1 | awk '{print $2}')
+WF_STATUS=$(echo "$WF_RESPONSE" | grep -i "^HTTP/" | tail -1 | awk '{print $2}' || true)
 
 if [[ "$WF_STATUS" == "200" ]]; then
   echo "✓ Workflow file found on '$REF' (HTTP $WF_STATUS)"
@@ -126,7 +161,7 @@ DISPATCH_RESPONSE=$(curl -si \
   -d "$PAYLOAD" \
   "https://api.github.com/repos/$REPO/actions/workflows/$WORKFLOW/dispatches" 2>&1)
 
-DISPATCH_STATUS=$(echo "$DISPATCH_RESPONSE" | grep -i "^HTTP/" | tail -1 | awk '{print $2}')
+DISPATCH_STATUS=$(echo "$DISPATCH_RESPONSE" | grep -i "^HTTP/" | tail -1 | awk '{print $2}' || true)
 DISPATCH_BODY=$(echo "$DISPATCH_RESPONSE" | tail -5)
 
 echo "HTTP status: $DISPATCH_STATUS"
