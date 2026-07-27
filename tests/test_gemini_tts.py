@@ -201,6 +201,37 @@ class TestSynthesizeRetries:
         assert pcm == b"\x00\x01"
         assert rate == 24000
 
+    def test_timeout_fails_fast_not_600s(self, monkeypatch):
+        """A hung server must cost the (connect, read) timeout, not 10 minutes."""
+        monkeypatch.setenv("GEMINI_API_KEY", "test-key")
+        monkeypatch.setattr(gemini_tts.time, "sleep", lambda s: None)
+        seen = []
+
+        def fake_post(*args, **kwargs):
+            seen.append(kwargs.get("timeout"))
+            return self._FakeResp(self.AUDIO_RESPONSE)
+
+        monkeypatch.setattr(gemini_tts.requests, "post", fake_post)
+        _synthesize_chunk(SEGS)
+        assert seen == [
+            (gemini_tts.REQUEST_CONNECT_TIMEOUT, gemini_tts.REQUEST_READ_TIMEOUT)
+        ]
+        assert gemini_tts.REQUEST_READ_TIMEOUT <= 120
+
+    def test_429_error_body_not_truncated_before_quota_details(self, monkeypatch):
+        """The quota name in error.details sits past 300 chars — keep it."""
+        body = (
+            '{"error": {"code": 429, "message": "'
+            + "x" * 400
+            + '", "details": [{"quotaId": "GenerateRequestsPerDayPerProjectPerModel"}]}}'
+        )
+        responses = [self._FakeResp({}, status=429) for _ in range(3)]
+        for r in responses:
+            r.text = body
+        self._patch(monkeypatch, responses)
+        with pytest.raises(RuntimeError, match="GenerateRequestsPerDayPerProjectPerModel"):
+            _synthesize_chunk(SEGS)
+
 
 class TestSectionGeneration:
     def test_writes_wav_and_chunks_long_sections(self, monkeypatch, tmp_path):
