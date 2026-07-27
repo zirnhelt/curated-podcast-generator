@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "Engadget review recap: MSI Claw 8 EX AI+, Sony A7R VI, Ray-B",
-      "[TechRadar] Adobe and Disney are teaming up to design the ne",
       "[Android Authority] Anthropic\u2019s most advanced AI models coul",
       "[TechRadar] Fires linked to solar panels force Suffolk counc",
       "[TechCrunch] Station F ramps up as a launchpad for Europe\u2019s ",
@@ -10,7 +8,9 @@
       "[TechCrunch] US government says it got hacked \u2014 again",
       "[TechCrunch] Nonprofit Current AI is racing to build the Wor",
       "[CNET] We\u2019re Asking All the Wrong Questions About AI Compani",
-      "[WIRED] A Sneaky Hacking Tool Targeting AI Infrastructure Is"
+      "[WIRED] A Sneaky Hacking Tool Targeting AI Infrastructure Is",
+      "[TechRadar] Experts warn 2.2 million cars could be at risk o",
+      "AI"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -120,11 +120,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-07-26",
-        "clue": "structural-lens:+ \u2014 Reinforced funding incentive problem as core barrier",
-        "occurrences": 2
-      },
-      {
         "date": "2026-07-22",
         "clue": "structural-lens:x \u2014 Conceded Casey's legal-vs-skill distinction as 'actual gap'",
         "occurrences": 1
@@ -135,9 +130,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-07-26",
-        "clue": "tech-optimism:~ \u2014 Added genuine complexity to wonder-as-pipeline argument",
-        "occurrences": 1
+        "date": "2026-07-27",
+        "clue": "tech-optimism:~ \u2014 Acknowledged vertical video doesn't reliably build durable audiences alone",
+        "occurrences": 2
       }
     ],
     "core_memories": [
@@ -391,6 +386,16 @@
       {
         "date": "2026-07-22",
         "clue": "evidence-bar:~ \u2014 Acknowledged informal forums as real infrastructure, then immediately questioned their durability",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-07-27",
+        "clue": "evidence-bar:x \u2014 Conceded full-length archive solves preservation, narrowed objection to discovery only",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-07-27",
+        "clue": "pilot-skepticism:+ \u2014 Moved from opposing idea to proposing testable one-Thursday experiment without permission",
         "occurrences": 1
       }
     ],

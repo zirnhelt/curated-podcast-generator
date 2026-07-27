@@ -1,0 +1,237 @@
+{
+  "episode": {
+    "date": "2026-07-27",
+    "formatted_date": "Monday, July 27, 2026",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "title": "Cariboo Signals - Arts, Culture & Digital Storytelling",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Arts, Culture & Digital Storytelling.</p><p><b>NEWS ROUNDUP:</b> We break down The Hair Dryer Question and Tod Maffin, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Should small arts organizations in rural areas prioritize platform-native vertical video distribution, or invest in community-owned digital archives with clips as secondary marketing? Topics include: Platform homogenization vs. format as neutral distribution tool, Cold-start problem for rural artists without established credibility, Preservation vs. discovery in digital archives, How algorithmic pressure reshapes creative output (songwriting, performance structure), Community-owned infrastructure as alternative to platform dependency.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://centralcaribooarts.com\">Central Cariboo Arts &amp; Culture Society</a></p><p><b>Sources discussed:</b></p><ul><li>Newsletter: f***@mail.beehiiv.com: <a href=\"https://beacons.ai/todmaffin/socials\">The Hair Dryer Question</a></li><li>Newsletter: f***@mail.beehiiv.com: <a href=\"https://www.youtube.com/todmaffinvideo/?sub_confirmation=1\">Tod Maffin</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/moved-to-rural-japan-retire-bought-akiya-home-vacant-affordable-2026-7\">[Business Insider] Priced out of Hawaii, this couple bought ...</a></li><li>Vancouver Sun: <a href=\"https://vancouversun.com/news/local-news/we-just-got-a-random-vehicle-in-the-middle-of-the-runway-motorhome-crashes-through-fence-at-abbotsford-airport\">[Vancouver Sun] &#039;We just got a random vehicle in the mi...</a></li><li>David Pierce (The Verge): <a href=\"https://www.theverge.com/column/970756/vertical-video-tiktok-youtube-instagram-streaming-facebook\">[The Verge] The vertical video takeover is here</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Maria Popova (The Marginalian): <a href=\"https://www.themarginalian.org/2026/07/25/brian-doyle-humility-love/\">[The Marginalian] How to Live a Miraculous Life</a></li><li>https://www.techradar.com/author/christian-cawley (TechRadar): <a href=\"https://www.techradar.com/pro/security/experts-warn-2-2-million-cars-could-be-at-risk-of-hijacking-via-bluetooth\">[TechRadar] Experts warn 2.2 million cars could be at risk o...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/you-too-can-make-this-amazing-raspberry-pi-music-box-that-plays-tunes-from-colored-strips/\">[XDA Developers] You, too, can make this amazing Raspberry P...</a></li><li>Newsletter: f***@mail.beehiiv.com: <a href=\"https://bsky.app/profile/todmaffin.com\">Tod Maffin 🇨🇦 (@todmaffin.com)</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-07-27T04:46:23.037273-07:00",
+    "models": {
+      "script": "claude-sonnet-5",
+      "review": "claude-sonnet-5",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 3083,
+      "voice_ratio_casey_riley": 1.14,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 2,
+        "roundup_seam": 0,
+        "thats_closer": 0
+      },
+      "total_hits": 0,
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Vancouver Sun] &#039;We just got a random vehicle in the middle of the runway&#039;: Motor home crashes through fence at Abbotsford airport",
+          "url": "https://vancouversun.com/news/local-news/we-just-got-a-random-vehicle-in-the-middle-of-the-runway-motorhome-crashes-through-fence-at-abbotsford-airport",
+          "source": "Vancouver Sun",
+          "author": "",
+          "ai_score": 38,
+          "date_published": "2026-07-26T03:29:43+00:00",
+          "summary": "Police say the 53-year-old driver was not impaired when he crashed through the airport's perimeter fence and drove onto an active runway.",
+          "discussed": true,
+          "mention_offset_frac": 0.2635
+        },
+        {
+          "title": "[Business Insider] Priced out of Hawaii, this couple bought a home in rural Japan instead",
+          "url": "https://www.businessinsider.com/moved-to-rural-japan-retire-bought-akiya-home-vacant-affordable-2026-7",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 38,
+          "date_published": "2026-07-26T23:47:01+00:00",
+          "summary": "\"In Hawaii, I could never ever afford to buy a home, especially one with a view of the sea,\" Jeff Layfield told Business Insider. He bought a vacant home in Japan for about $25,000.",
+          "discussed": true,
+          "mention_offset_frac": 0.3592
+        },
+        {
+          "title": "The Hair Dryer Question",
+          "url": "https://beacons.ai/todmaffin/socials",
+          "source": "Newsletter: f***@mail.beehiiv.com",
+          "author": "",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Your Emotional Support Canadian 🇨🇦Like Mr. Rogers. But for adults.📰 NEWSLETTER https://join.FarAndWide.news✅ MY LINKTREE: https://beacons.ai/todmaffin",
+          "discussed": true,
+          "mention_offset_frac": 0.61
+        },
+        {
+          "title": "Tod Maffin",
+          "url": "https://www.youtube.com/todmaffinvideo/?sub_confirmation=1",
+          "source": "Newsletter: f***@mail.beehiiv.com",
+          "author": "",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Your Emotional Support Canadian 🇨🇦 ♥️\n\n📰 𝗡𝗘𝗪𝗦𝗟𝗘𝗧𝗧𝗘𝗥: newsletter.todmaffin.com\n👕 𝗠𝗘𝗥𝗖𝗛: shop.todmaffin.com\n🎙️ 𝗣𝗢𝗗𝗖𝗔𝗦𝗧: mirrorfalls.com\n\nSupport my work: support.todmaffin.com\nContact my team: contact.t...",
+          "discussed": true,
+          "mention_offset_frac": 0.7308
+        },
+        {
+          "title": "[The Marginalian] How to Live a Miraculous Life",
+          "url": "https://www.themarginalian.org/2026/07/25/brian-doyle-humility-love/",
+          "source": "The Marginalian",
+          "author": "Maria Popova",
+          "ai_score": 38,
+          "date_published": "2026-07-25T22:04:02+00:00",
+          "summary": "Suppose we agree that we are here to love anyway — to love even though the work is almost unbearably difficult, even though we know that everything alive is dying, that everything beautiful is perisha...",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Experts warn 2.2 million cars could be at risk of hijacking via Bluetooth",
+          "url": "https://www.techradar.com/pro/security/experts-warn-2-2-million-cars-could-be-at-risk-of-hijacking-via-bluetooth",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/christian-cawley",
+          "ai_score": 73,
+          "date_published": "2026-07-27T00:05:00+00:00",
+          "summary": "Researchers find dealer-installed KARR and SWDS security systems are open to a Bluetooth-based hack which can remotely unlock doors and stop a vehicle from starting.",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Arts, Culture & Digital Storytelling",
+      "articles": [
+        {
+          "title": "[The Verge] The vertical video takeover is here",
+          "url": "https://www.theverge.com/column/970756/vertical-video-tiktok-youtube-instagram-streaming-facebook",
+          "source": "The Verge",
+          "author": "David Pierce",
+          "ai_score": 40,
+          "date_published": "2026-07-26T12:00:00+00:00",
+          "summary": "This is The Stepback, a weekly newsletter breaking down one essential story from the tech world. For more on all things vertical video, follow David Pierce. The Stepback arrives in our subscribers' in...",
+          "discussed": true
+        },
+        {
+          "title": "[XDA Developers] You, too, can make this amazing Raspberry Pi music box that plays tunes from colored strips",
+          "url": "https://www.xda-developers.com/you-too-can-make-this-amazing-raspberry-pi-music-box-that-plays-tunes-from-colored-strips/",
+          "source": "XDA Developers",
+          "author": "",
+          "ai_score": 38,
+          "date_published": "2026-07-27T06:15:35+00:00",
+          "summary": "A modern take on a classic device.",
+          "discussed": false
+        },
+        {
+          "title": "Tod Maffin 🇨🇦 (@todmaffin.com)",
+          "url": "https://bsky.app/profile/todmaffin.com",
+          "source": "Newsletter: f***@mail.beehiiv.com",
+          "author": "",
+          "ai_score": 88,
+          "date_published": "",
+          "summary": "Your Emotional Support Canadian 🇨🇦 ♥️\n\n📰 𝗡𝗘𝗪𝗦𝗟𝗘𝗧𝗧𝗘𝗥: newsletter.todmaffin.com\n👕 𝗠𝗘𝗥𝗖𝗛: shop.todmaffin.com\n🎙️ 𝗣𝗢𝗗𝗖𝗔𝗦𝗧: mirrorfalls.com\n\nSupport my work: support.todmaffin.com\nContact my team: contact.t...",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Should small arts organizations in rural areas prioritize platform-native vertical video distribution, or invest in community-owned digital archives with clips as secondary marketing?",
+        "riley_position": "Vertical video is a necessary distribution tool that reaches new audiences; the key is treating it as a door to the work, not the work itself, while maintaining independent archives as the durable master record.",
+        "riley_key_evidence": [
+          "HubSpot report showing vertical short-form is the most-used and successful content format in marketing",
+          "Tod Maffin's model of consistent weekly output on controlled platforms building genuine, durable reach over years",
+          "Netflix expanding vertical video formats because audiences have already moved to that consumption pattern"
+        ],
+        "casey_position": "Platform-dependent distribution restructures artistic production around algorithmic incentives and creates preservation risk; community-owned master recordings should be the primary goal, with platform clips as optional secondary exports only.",
+        "casey_key_evidence": [
+          "Most viral impressions evaporate without converting to ticket sales or audience building—vertical video builds impressions, not durable audiences",
+          "Commercial pop songwriting has restructured itself around algorithmic skip windows and streaming metrics, showing how platform pressure reshapes creative work itself",
+          "Rural creators face a cold-start problem that cheaper tools don't solve—established credibility still matters more than format accessibility"
+        ],
+        "resolution": "They reached partial agreement: own the full-length recording first as the durable asset, treat vertical clips as disposable secondary marketing, and recommend a testable one-camera experiment for the Arts Centre without waiting for permission or funding. Casey conceded the packaging framing but insisted the preservation problem must be solved before discovery, while Riley acknowledged organizational discipline is critical to preventing metrics-driven mission drift.",
+        "topics_covered": [
+          "Platform homogenization vs. format as neutral distribution tool",
+          "Cold-start problem for rural artists without established credibility",
+          "Preservation vs. discovery in digital archives",
+          "How algorithmic pressure reshapes creative output (songwriting, performance structure)",
+          "Community-owned infrastructure as alternative to platform dependency"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 12,
+          "conditions": "mainly clear",
+          "high": 22,
+          "low": 11
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 11,
+          "conditions": "mainly clear",
+          "high": 20,
+          "low": 10
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 12,
+          "conditions": "overcast",
+          "high": 24,
+          "low": 11
+        },
+        {
+          "name": "Quesnel",
+          "temp": 11,
+          "conditions": "partly cloudy",
+          "high": 22,
+          "low": 11
+        },
+        {
+          "name": "Redstone",
+          "temp": 9,
+          "conditions": "partly cloudy",
+          "high": 18,
+          "low": 8
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Central Cariboo Arts & Culture Society",
+      "description": "Manages the Arts Centre, grants programs, and Performances in the Park summer concert series",
+      "website": "centralcaribooarts.com",
+      "psa_angle": "CCACS Performances in the Park brings free live music to Boitano Park every Thursday evening this summer. Check centralcaribooarts.com for this week's lineup.",
+      "event_name": "Performances in the Park"
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_azure": "Azure Neural TTS",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  }
+}
