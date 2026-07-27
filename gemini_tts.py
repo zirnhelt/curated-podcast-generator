@@ -70,6 +70,17 @@ INTER_CHUNK_GAP_MS = 200
 # ~150 wpm ≈ 400 ms/word — same duration-ratio checksum as the OpenAI path
 EXPECTED_MS_PER_WORD = 400
 
+# (connect, read) timeouts in seconds. Worst case across all 3 attempts plus
+# backoff is ~7 min, vs the 15 min a hung server cost with the old 600 s read
+# timeout (2026-07-27 run: three ~5-min stalls before RemoteDisconnected).
+REQUEST_CONNECT_TIMEOUT = 15
+REQUEST_READ_TIMEOUT = 120
+
+# Chars of an HTTP error body to surface. Gemini's structured error.details
+# (e.g. the QuotaFailure block naming the exceeded quota) sits past the 300-char
+# mark that logs used to truncate at.
+ERROR_BODY_CHARS = 2_000
+
 
 def get_gemini_api_key() -> str | None:
     """Return the Gemini API key, or None if not configured."""
@@ -188,9 +199,18 @@ def _synthesize_chunk(segments: list[dict], context_tail: str = "") -> tuple[byt
 
     for attempt in range(3):
         try:
-            resp = requests.post(url, headers=headers, json=payload, timeout=600)
+            # A ~8.5k-char TTS request renders in well under two minutes; a longer
+            # wait means the preview model is hanging server-side (observed: ~5 min
+            # stalls ended by Google closing the connection), so fail fast and retry
+            # instead of holding the runner.
+            resp = requests.post(
+                url, headers=headers, json=payload, timeout=(REQUEST_CONNECT_TIMEOUT, REQUEST_READ_TIMEOUT)
+            )
             if resp.status_code in (429, 500, 502, 503, 504):
-                raise RuntimeError(f"Gemini TTS HTTP {resp.status_code}: {resp.text[:300]}")
+                # Keep enough of the body to include error.details — a 429's
+                # QuotaFailure names the exceeded quota and its limit, which is
+                # the whole diagnosis; 300 chars cut it off exactly there.
+                raise RuntimeError(f"Gemini TTS HTTP {resp.status_code}: {resp.text[:ERROR_BODY_CHARS]}")
             resp.raise_for_status()
 
             data = resp.json()
