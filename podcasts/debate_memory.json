@@ -1,30 +1,4 @@
 {
-  "2026-04-27": {
-    "timestamp": 1777290762.202033,
-    "date": "2026-04-27",
-    "theme": "Arts, Culture & Digital Storytelling",
-    "central_question": "How should Canada regulate digital platforms to protect rural and Indigenous cultural storytelling in the absence of platform accountability structures?",
-    "riley_position": "Platform regulation alone won't solve the distribution problem for rural creators; communities should build direct audience relationships and owned infrastructure independent of platforms, using AI as connective tissue rather than production capacity.",
-    "riley_key_evidence": [
-      "Algorithms systematically favor emotionally provocative content over carefully produced oral histories, creating a structural disadvantage for community storytellers",
-      "Email lists and direct podcast feeds bypass algorithmic suppression and cannot be taken away by platforms",
-      "AI search tools with data sovereignty protections (like searching oral history footage by plain language) could solve archive interpretation bottlenecks without extracting community data"
-    ],
-    "casey_position": "Canada's regulatory gap creates measurable harms to cultural diversity; a duty of care framework with procedural protections and data portability rights could level the playing field while platform power continuously expands.",
-    "casey_key_evidence": [
-      "Meta blocked Canadian news entirely rather than pay link fees under the Online News Act, demonstrating real harms from regulatory gaps",
-      "The UK has the Online Safety Act, Australia has platform duty of care, and the EU has the Digital Services Act\u2014Canada has none",
-      "AI-generated content automation is widening the gap between industrial content factories and community producers, making the regulatory timeline urgent"
-    ],
-    "resolution": "They converged on a both/and position: communities need both federal duty of care regulation and immediate local action (owned infrastructure, direct relationships), with platforms used as 'doors, not houses.' Casey conceded regulation moves slowly; Riley conceded platform reach is genuinely valuable and shouldn't be abandoned.",
-    "topics_covered": [
-      "Platform algorithms as non-neutral distribution infrastructure that shapes what gets created",
-      "Data portability and creator sovereignty as components of duty of care frameworks",
-      "Community-owned alternative infrastructure (newsletters, podcasts, local archives) as durable alternatives to platform dependency",
-      "AI's role in cultural production: generation vs. connective discovery for community storytellers",
-      "Risks of overregulation creating automated content moderation harms to marginalized creators"
-    ]
-  },
   "2026-04-28": {
     "timestamp": 1777378956.847028,
     "date": "2026-04-28",
@@ -2303,6 +2277,33 @@
       "If a local naturalist group wanted to build a long-term salmon baseline, install simple tools like temperature loggers on bridge pilings paired with institutional homes (like the Xat\u015b\u016bll's governance structure or UNBC) to ensure data continuity beyond individual volunteers.",
       "Send story tips, corrections, or information about local monitoring efforts to cariboo signals dot c-a.",
       "Community groups considering long-term science projects should design handoff and institutional continuity into the project from day one, not treat it as an afterthought."
+    ]
+  },
+  "2026-07-27": {
+    "timestamp": 1785152786.222548,
+    "date": "2026-07-27",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "focus": "music-performance",
+    "central_question": "Should small arts organizations in rural areas prioritize platform-native vertical video distribution, or invest in community-owned digital archives with clips as secondary marketing?",
+    "riley_position": "Vertical video is a necessary distribution tool that reaches new audiences; the key is treating it as a door to the work, not the work itself, while maintaining independent archives as the durable master record.",
+    "riley_key_evidence": [
+      "HubSpot report showing vertical short-form is the most-used and successful content format in marketing",
+      "Tod Maffin's model of consistent weekly output on controlled platforms building genuine, durable reach over years",
+      "Netflix expanding vertical video formats because audiences have already moved to that consumption pattern"
+    ],
+    "casey_position": "Platform-dependent distribution restructures artistic production around algorithmic incentives and creates preservation risk; community-owned master recordings should be the primary goal, with platform clips as optional secondary exports only.",
+    "casey_key_evidence": [
+      "Most viral impressions evaporate without converting to ticket sales or audience building\u2014vertical video builds impressions, not durable audiences",
+      "Commercial pop songwriting has restructured itself around algorithmic skip windows and streaming metrics, showing how platform pressure reshapes creative work itself",
+      "Rural creators face a cold-start problem that cheaper tools don't solve\u2014established credibility still matters more than format accessibility"
+    ],
+    "resolution": "They reached partial agreement: own the full-length recording first as the durable asset, treat vertical clips as disposable secondary marketing, and recommend a testable one-camera experiment for the Arts Centre without waiting for permission or funding. Casey conceded the packaging framing but insisted the preservation problem must be solved before discovery, while Riley acknowledged organizational discipline is critical to preventing metrics-driven mission drift.",
+    "topics_covered": [
+      "Platform homogenization vs. format as neutral distribution tool",
+      "Cold-start problem for rural artists without established credibility",
+      "Preservation vs. discovery in digital archives",
+      "How algorithmic pressure reshapes creative output (songwriting, performance structure)",
+      "Community-owned infrastructure as alternative to platform dependency"
     ]
   }
 }
