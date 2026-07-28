@@ -191,6 +191,31 @@ class TestSynthesizeRetries:
             _synthesize_chunk(SEGS)
         assert not responses  # all three attempts consumed
 
+    def test_no_audio_retry_perturbs_seed(self, monkeypatch):
+        """A pinned seed makes generation deterministic — retrying with the
+        exact same seed would just reproduce the same no-audio dud (observed
+        2026-07-28: 3/3 attempts came back identical). Only the retries
+        should change the seed; attempt 0 keeps the configured value."""
+        seen_seeds = []
+        responses = [
+            self._FakeResp(self.NO_AUDIO_RESPONSE),
+            self._FakeResp(self.NO_AUDIO_RESPONSE),
+            self._FakeResp(self.AUDIO_RESPONSE),
+        ]
+
+        def fake_post(*args, **kwargs):
+            seen_seeds.append(kwargs["json"]["generationConfig"]["seed"])
+            return responses.pop(0)
+
+        monkeypatch.setenv("GEMINI_API_KEY", "test-key")
+        monkeypatch.setattr(gemini_tts.time, "sleep", lambda s: None)
+        monkeypatch.setattr(gemini_tts.requests, "post", fake_post)
+
+        _synthesize_chunk(SEGS)
+
+        assert seen_seeds[0] == gemini_tts.GEMINI_TTS_SEED
+        assert len(set(seen_seeds)) == 3  # every attempt sampled a different seed
+
     def test_http_500_then_success(self, monkeypatch):
         responses = [
             self._FakeResp({}, status=500),
