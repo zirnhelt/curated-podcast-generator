@@ -199,6 +199,15 @@ def _synthesize_chunk(segments: list[dict], context_tail: str = "") -> tuple[byt
 
     for attempt in range(3):
         try:
+            if attempt > 0:
+                # The pinned seed makes generation deterministic, so a no-audio
+                # dud (finishReason OTHER) reproduces byte-for-byte on retry
+                # unless the seed changes too — observed 2026-07-28: 3/3
+                # attempts returned the identical response (same token count).
+                # Attempt 0 keeps the configured seed for normal-case voice
+                # consistency; only retries perturb it.
+                payload["generationConfig"]["seed"] = GEMINI_TTS_SEED + attempt
+
             # A ~8.5k-char TTS request renders in well under two minutes; a longer
             # wait means the preview model is hanging server-side (observed: ~5 min
             # stalls ended by Google closing the connection), so fail fast and retry
