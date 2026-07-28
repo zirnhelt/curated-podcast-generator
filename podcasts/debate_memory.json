@@ -1,36 +1,4 @@
 {
-  "2026-04-28": {
-    "timestamp": 1777378956.847028,
-    "date": "2026-04-28",
-    "theme": "Working Lands & Industry",
-    "central_question": "Is the lack of working-landscape-appropriate equipment design and affordability a significant constraint on rural land stewardship in the Cariboo, or is it secondary to organizational capacity and governance issues?",
-    "riley_position": "Equipment design and accessibility gaps are a real operational constraint that interacts with organizational capacity\u2014better equipment becomes feasible when organizations like CCR have collective procurement power, and working-landscape-first products can succeed if manufacturers stay committed to that market rather than drifting toward recreational buyers.",
-    "riley_key_evidence": [
-      "The Tactical Skookum's zero-wood construction design reflects genuine freeze-thaw cycle engineering rather than marketing\u2014a working-landscape-first approach",
-      "Pickup truck market drift toward urban commuters and suburban aesthetics has compromised suspension tuning, touchscreen interfaces, and ground clearance for actual ranchers",
-      "Equipment co-ops exist in agricultural contexts where members share combines or seeding rigs, demonstrating the viability of shared-asset models"
-    ],
-    "casey_position": "Organizational and governance structures are the binding constraint, not physical equipment; accumulated field knowledge and practice adaptation embedded in existing equipment are underweighted; and equipment innovations designed outside working-landscape contexts get redesigned away from actual rural needs as markets scale.",
-    "casey_key_evidence": [
-      "Every previous episode identified organizational capacity and governance as bottlenecks, not lack of gear\u2014ranchers face tenure insecurity, thin margins, and structural constraints rather than equipment gaps",
-      "Ranchers' field-modified equipment reflects fifteen years of calibration to specific local terrain and conditions; new gear disrupts that accumulated adaptation with real costs",
-      "Pickup truck example: F-150 Lightning has impressive technology and field-capable power export features but ground clearance and suspension compromised toward median buyers who aren't ranchers on the Nechako Plateau"
-    ],
-    "resolution": "They didn't fully resolve the disagreement but converged on a both/and acknowledgment: organizational capacity and equipment are interrelated problems, not competing ones. Both conceded that scaling working-landscape equipment requires structural intervention (not just market forces) and that right-to-repair and user-serviceable design are critical. They ended by proposing concrete policy and organizational approaches rather than debating which constraint is primary.",
-    "topics_covered": [
-      "Working-landscape vs. recreational equipment design differences and the customer-base drift problem",
-      "Durability, repairability, and cost structures appropriate for thin-margin operations vs. discretionary adventure budgets",
-      "Shared-asset and cooperative equipment ownership models scaled to regional or Nation level",
-      "Right-to-repair and manufacturer service dependency as operational constraints in remote geographies",
-      "Accumulated field knowledge and practice adaptation embedded in existing equipment"
-    ],
-    "calls_to_action": [
-      "Organizations doing serious stewardship work\u2014Nation-led enterprises, ranching associations, regional districts\u2014should build a capital equipment inventory separate from operating budgets: equipment owned collectively, maintained properly, and depreciated over realistic lifespans, funded through operating revenues from stewardship contracts themselves rather than grants.",
-      "Manufacturers building working-landscape-capable equipment should engage Cariboo stewardship organizations as design partners, not just customers\u2014partner with the Cariboo Cattlemen's Association, CCR, and regional First Nations land departments to gather real-world conditions feedback that improves the product.",
-      "BC's rural economic development programs should include an equipment capital stream operating on longer timelines and larger scales than typical project grants, structured as a policy lever similar to subsidy programs for clean energy equipment.",
-      "Community members with field experience in equipment design or collective procurement models should contact the podcast at feedback@cariboosignals.c-a with their expertise and local examples."
-    ]
-  },
   "2026-04-29": {
     "timestamp": 1777462625.143197,
     "date": "2026-04-29",
@@ -2304,6 +2272,33 @@
       "Preservation vs. discovery in digital archives",
       "How algorithmic pressure reshapes creative output (songwriting, performance structure)",
       "Community-owned infrastructure as alternative to platform dependency"
+    ]
+  },
+  "2026-07-28": {
+    "timestamp": 1785236178.455595,
+    "date": "2026-07-28",
+    "theme": "Working Lands & Industry",
+    "focus": "forestry",
+    "central_question": "Does the B.C. Agricultural Land Reserve proposal to allow food processors on marginal soil represent smart land use policy, or does it replicate the forestry sector's failed experiment with temporary salvage cutting that became permanent industrial consolidation?",
+    "riley_position": "The ALR proposal includes meaningful guardrails\u2014a six-week public engagement period, soil-class thresholds, and made-in-B.C. sourcing requirements\u2014that distinguish it from the unmonitored forest tenure system and at least preserve deliberation in decision-making.",
+    "riley_key_evidence": [
+      "The ALR proposal includes a six-week public engagement window before finalization, unlike forest tenure renewals which happen with essentially no public comment period",
+      "The proposal has explicit guardrails: Class 5-7 soil classification threshold and 5% made-in-B.C. sourcing requirement",
+      "Forest tenure policy defaults to automatic re-tender to existing major licensees (Canfor, West Fraser, Tolko) without deliberation steps"
+    ],
+    "casey_position": "Guardrails only hold if nobody has incentive to lean on them; once the principle that 'marginal land justifies industrial use' is established, the definition of marginal becomes contestable, replicating forestry's pattern of mission creep and consolidation over decades.",
+    "casey_key_evidence": [
+      "Forest salvage wood was framed as one-time/transitional but annual allowable cuts built around salvage volume became permanent, leading to mill closures in Quesnel and Williams Lake",
+      "BC Farms and Food warned that land can already be pulled from the ALR through existing exclusion processes, and the BC Chamber of Commerce has lobbied for exactly this change since 2024",
+      "Canadian cattle herd has shrunk for decades; record beef prices reflect scarcity after producer consolidation, not market success for remaining operations"
+    ],
+    "resolution": "Riley and Casey agreed to disagree productively: they acknowledged the ALR process has more deliberation built in than forest tenure (a real structural advantage), but agreed the key test will be whether the province treats tenure reallocations as transparent public decisions rather than routine administrative paperwork, and whether it establishes community/Nation-held agreements as a formal first right of consideration on returned volume.",
+    "topics_covered": [
+      "B.C. Agricultural Land Reserve policy and marginal soil industrial processing",
+      "Forest tenure consolidation following mountain pine beetle salvage operations",
+      "Structural gaps in provincial decision-making transparency between ALR and forest licensing",
+      "Central Chilcotin Rehabilitation's Nation-held tenure model as alternative to standard industrial licensing",
+      "Cattle market consolidation and price dynamics masking structural herd decline"
     ]
   }
 }

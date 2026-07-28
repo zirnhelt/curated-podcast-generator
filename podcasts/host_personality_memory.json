@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[Android Authority] Anthropic\u2019s most advanced AI models coul",
       "[TechRadar] Fires linked to solar panels force Suffolk counc",
       "[TechCrunch] Station F ramps up as a launchpad for Europe\u2019s ",
       "[TechRadar] Web hosting giant claims you can now sell online",
@@ -10,7 +9,8 @@
       "[CNET] We\u2019re Asking All the Wrong Questions About AI Compani",
       "[WIRED] A Sneaky Hacking Tool Targeting AI Infrastructure Is",
       "[TechRadar] Experts warn 2.2 million cars could be at risk o",
-      "AI"
+      "AI",
+      "[TechCrunch] Thea Energy lands $20M federal grant to build i"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -105,19 +105,14 @@
         "occurrences": 2
       },
       {
-        "date": "2026-07-18",
-        "clue": "evidence-bar:+ \u2014 Shifted from process critique to traceability as measurable test",
-        "occurrences": 2
-      },
-      {
         "date": "2026-07-19",
         "clue": "pilot-skepticism:~ \u2014 Conceded that Arizona precedent requires actual local testing",
         "occurrences": 2
       },
       {
-        "date": "2026-07-18",
-        "clue": "structural-lens:~ \u2014 Conceded formal processes aren't inherently more legible than informal ones",
-        "occurrences": 1
+        "date": "2026-07-28",
+        "clue": "structural-lens:~ \u2014 acknowledged both ranching scarcity AND current solvent conditions",
+        "occurrences": 2
       },
       {
         "date": "2026-07-22",
@@ -379,11 +374,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-07-26",
-        "clue": "pilot-skepticism:x \u2014 Conceded wonder's necessity for future scientist pipeline",
-        "occurrences": 2
-      },
-      {
         "date": "2026-07-22",
         "clue": "evidence-bar:~ \u2014 Acknowledged informal forums as real infrastructure, then immediately questioned their durability",
         "occurrences": 1
@@ -396,6 +386,11 @@
       {
         "date": "2026-07-27",
         "clue": "pilot-skepticism:+ \u2014 Moved from opposing idea to proposing testable one-Thursday experiment without permission",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-07-28",
+        "clue": "structural-lens:+ \u2014 deepened pattern recognition across forestry, ranching, ALR as unified mechanism",
         "occurrences": 1
       }
     ],
