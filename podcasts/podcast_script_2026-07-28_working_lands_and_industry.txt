@@ -1,0 +1,121 @@
+# Cariboo Signals Podcast Script - 2026-07-28
+# Theme: Working Lands & Industry
+# Brave: yes
+# Generated: 2026-07-28 03:56:16 PDT
+
+**COLD OPEN**
+**RILEY:** Hey, welcome back — today we've got AI data centers picking fights over land and water, from Michigan noise lawsuits to a California project suing for 287 million gallons out of the Colorado River. Then in the Deep Dive: B.C.'s opening the Agricultural Land Reserve to food processors on "marginal" soil — and we're asking whether that's just mountain pine beetle salvage all over again. That and more, coming right up.
+
+**WELCOME**
+
+**RILEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities — I'm Riley. It's Tuesday, July 28th, 2026. Coming to you from the Cariboo, on lands that have been cared for by the Secwépemc, Tŝilhqot'in, and Dakelh peoples since time immemorial. Today's theme is Working Lands & Industry.
+
+**CASEY:** And I'm Casey. Forestry, ranching, mining, agriculture — the industries that actually built this region, and what happens to them as ownership and technology keep shifting underneath the people doing the work.
+
+**CASEY:** Quick weather check while we're at it — out at Horsefly Lake it's 12 degrees with overcast skies this morning, high of 17, low of 12, with light drizzle expected tomorrow, around 8 millimetres of precipitation. Around the region, 100 Mile House is sitting at 13 and partly cloudy, Williams Lake and Quesnel are both at 14 under overcast, and out on the Chilcotin plateau, Riske Creek is 13 and mainly clear.
+
+**RILEY:** Good day to be indoors reading permit applications, then. Let's get into it.
+
+**NEWS ROUNDUP**
+
+**RILEY:** Start with minerals, because there's a real supply-chain story underneath the politics. Reuters is reporting that President Trump's push to strip Chinese critical minerals out of U.S. defence supply chains by the start of 2027 is hitting a wall — domestic mining and processing capacity just doesn't exist at anywhere near the scale needed, and building refining capacity from scratch takes years, not an executive order cycle.
+
+**CASEY:** Permitting timelines don't care about deadlines.
+
+**CASEY:** And that's the connective tissue into Quebec, where Troilus Mining's gold-copper project just got picked for a brand-new fast-track permitting service called Filon, launched back on June 2nd specifically to cut down mine permitting delays. It's the province picking a marquee project and essentially saying: we'll show you how fast this can move if we clear the bureaucratic path.
+
+**RILEY:** Worth setting beside our own province's move here — back on July 21st we covered B.C.'s push to improve the natural resource appeals process. Different jurisdictions, same underlying pressure: permitting speed has become the actual bottleneck in resource development right now, not capital, not geology, not even commodity demand.
+
+**RILEY:** Shifting into forestry, since it's directly relevant to where we're headed later. The Narwhal has a feature on a northern Ontario reforestation effort, about fifty kilometres east of North Bay, led by a local advocate known as Back Roads Bill, who's spent nearly four decades on those trails. The newer piece of his work is replanting with future climate conditions in mind — choosing species and stock suited to the climate the forest will actually experience in sixty or eighty years, not the one it grew up in.
+
+**CASEY:** Slow, unglamorous, multi-decade work that won't show up in any quarterly earnings report — keep that in your back pocket, it's basically a preview of where the Deep Dive is going with tenure and long-horizon land management.
+
+**CASEY:** Now to the AI data center land conflicts, because there are two stories here that are essentially the same fight, playing out in two different resource categories. In Dowagiac, Michigan, residents have filed suit against a data center operator over noise pollution running twenty-four hours a day for over two years — neighbours describing it as living next to a permanently running vacuum. The company's already been fined for violating the city's industrial noise ordinance and has now offered to simply buy out the affected homes rather than fix the source.
+
+**RILEY:** Buying out your neighbours instead of fixing the noise — efficient, in a fairly grim way.
+
+**CASEY:** And in California, it's water rather than sound. The state's largest proposed AI data center project is suing for access to 287 million gallons of Colorado River water — plaintiffs calculate that's roughly equivalent to what a 160-acre farm would draw, and they're raising specific concerns about lost agricultural jobs and long-term reallocation of farmland to industrial use in the Imperial Valley. File that away — it rhymes hard with what's happening to B.C.'s Agricultural Land Reserve, and we'll get into that in the Deep Dive.
+
+**RILEY:** On the energy side of industrial policy — Thea Energy landed a $20 million federal grant from ARPA-E to scale up production of its high-temperature superconducting magnets, which are a core component for fusion reactor designs. And separately, a company called Antares raised $470 million to build small modular nuclear reactors, in the 100 kilowatt to 1 megawatt range, specifically for U.S. Air Force bases.
+
+**CASEY:** Small modular reactors for military bases is a pretty narrow initial market — not exactly rolling out to the Cariboo next year.
+
+**RILEY:** Not yet, but it's the same pattern we just saw with critical minerals: energy security and materials security are both being treated as industrial policy now, explicitly, rather than left to the market to sort out on its own timeline. Noah Smith's newsletter roundup this week makes almost exactly that argument across trade policy, science funding, and manufacturing.
+
+**CASEY:** A couple of smaller items before we move on. Even Realities' CEO gave an exclusive interview to Tom's Guide slamming Meta's Ray-Ban smart glasses, arguing his company's business model isn't built on harvesting camera data for AI training the way Meta and Google's is.
+
+**RILEY:** Easy claim to make when you're the smaller player pitching against the giants on privacy grounds. On the hardware side, a developer got a 28.9-million-parameter AI language model running entirely on a ten-dollar ESP32-S3 microcontroller, using one of Google's memory-compression techniques to store the model's lookup table on 16 megabytes of flash storage.
+
+**CASEY:** Ten dollars — that's cheaper than a farm gate hinge.
+
+**CASEY:** And speaking of farm equipment directly — Ag in Motion, the big Prairie farm equipment show, got coverage this week from a returning Machinery editor, and the through-line in the seeding equipment on display is that drills and tractors just keep getting wider and higher-horsepower. Hundred-foot-wide seed drills are now on the floor, alongside ever-larger tractor horsepower classes.
+
+**RILEY:** More acres covered per hour — same efficiency logic driving basically everything else we've covered today, just wearing overalls instead of a hard hat.
+
+**RILEY:** A handful of items that are more curiosity than direct Cariboo relevance. Researchers in England uncovered a 500,000-year-old elephant bone that had been reshaped into a reusable hammer for sharpening stone tools — evidence that early toolmakers were repairing and reusing their equipment far earlier than assumed. New Atlas has a compact desktop 3D printer that produces full-color models without needing a separate painting step. And Business Insider has a breakdown of what it actually costs to run the White House day to day, staff salaries through to subscription services.
+
+**RILEY:** NASA astronaut Chris Williams is back on Earth after 241 days aboard the International Space Station, alongside two Roscosmos cosmonauts, having logged more than 102 million miles in orbit. And on the pure science-curiosity end, a new study out of ScienceAlert claims Earth's worst catastrophes follow a roughly 27-million-year cycle, and researchers say they may have finally identified the mechanism driving it.
+
+**CASEY:** Comforting to know disaster runs on a schedule, at least.
+
+**RILEY:** There's also a story out of NPR about Senator Rand Paul releasing a tranche of Dr. Anthony Fauci's pandemic-era diary entries ahead of a Senate hearing this week on the origins of the coronavirus. Squarely U.S. political territory without a direct Cariboo angle, so we'll leave it at the headline.
+
+**CASEY:** And a flood alarm out of New Atlas worth a nod — a simple outdoor sensor designed to warn homeowners of rising water before it reaches the door. Climate change is pushing heavier rainfall patterns into places that haven't historically dealt with them, and that includes parts of this region.
+
+**RILEY:** That covers today's roundup — into the Community Spotlight.
+
+**COMMUNITY SPOTLIGHT**
+
+**CASEY:** Today we're highlighting Central Chilcotin Rehabilitation, a joint venture owned by the Tŝideldel First Nation and Tl'etinqox Government, with Yunesit'in later joining, doing forest rehabilitation and biomass work across their territories. It's Nation-owned, patient, unglamorous work — restoring land after wildfire and beetle damage, and keeping value circulating inside the territories it operates on instead of shipping raw logs elsewhere to be processed.
+
+**RILEY:** It's the kind of operation that doesn't make headlines every week but has quietly built a real track record — and it's exactly where the Deep Dive is headed.
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Working Lands & Industry**
+
+**RILEY:** B.C. just opened a six-week engagement window on letting food processors build plants on Class 5 through 7 soil inside the Agricultural Land Reserve — land considered too poor for primary crop production — provided at least 5% of what gets processed there is grown in B.C. On the surface, that's using land nobody was farming to build capacity nobody's built. Forestry ran almost exactly this argument with beetle-killed salvage timber fifteen years ago: this land, this wood, isn't good for its original purpose anymore, so repurpose it. The question isn't whether the ALR proposal is good policy standing alone — it's what forestry's actual experience running that argument tells us about where it tends to go.
+
+**CASEY:** And the ending matters more than the opening pitch, so it's worth being precise about how it went. Mountain pine beetle salvage was framed as one-time, transitional cutting — dead wood nobody wanted, better to use it before it rotted in place. It kept several Cariboo mills running through the 2000s and into the early 2010s. But the annual allowable cut that got built around that salvage volume wasn't treated as temporary in practice. Tenure got reallocated on the strength of it, smaller operators got squeezed out as volume shrank, and now the allowable cut across the Interior is falling permanently, because there's no beetle wood left and the second growth isn't mature enough to harvest yet. Quesnel and Williams Lake both saw mill closures land on the back end of that curve.
+
+**RILEY:** The difference is that beetle salvage was a supply shock nobody actually chose — the wood was dying regardless of policy. The ALR proposal is a deliberate decision about which land to open, with a soil-class threshold and a made-in-B.C. sourcing requirement attached. Those are actual guardrails written into the proposal, not just an open-ended "it's marginal, take it."
+
+**CASEY:** Guardrails only hold if nobody downstream has an incentive to lean on them. BC Farms and Food has been warning for years that land can already be pulled out of the reserve entirely for industrial or commercial use through the existing exclusion process. Once "poor soil" justifies a processing plant, the pressure shifts to who gets to decide what counts as poor soil — that's the same mechanism that let forest licensees keep expanding harvest levels under salvage designations long after the original justification stopped applying to most of the volume being cut.
+
+**RILEY:** Except forest tenure and ALR exclusion run through completely different processes. Forest licences get allocated by the province directly to a small handful of major holders — Canfor, West Fraser, and Tolko control most of the Interior's harvesting rights, with essentially no public comment period attached. The ALR proposal at least has a defined six-week engagement window before anything's finalized, plus the sourcing requirement. That's not nothing.
+
+**CASEY:** A six-week comment period when the BC Chamber of Commerce has been actively lobbying for exactly this change since at least 2024. What does six weeks actually change if the industry association already got its ask written into the draft?
+
+**RILEY:** It changes who else gets heard before the regulation locks in — that matters even if the outcome still favours whoever asked first. Compare that to forest tenure, where there typically isn't any comment period at all when a major licence comes up for renewal. Quebec's new Filon fast-track for mining permits, and B.C.'s own appeals-process reforms, are both explicitly designed to remove deliberation steps, not add them.
+
+**CASEY:** So the ALR process at least keeps a deliberation step. Forest tenure doesn't have one to lose in the first place — and that's the bigger structural gap, because there's no press release to write about a process that quietly doesn't exist.
+
+**RILEY:** Which is exactly where Central Chilcotin Rehabilitation gets genuinely interesting, and not just as a feel-good name to drop next to a policy argument. They're not competing against the major licensees on a standard forest licence — the joint venture holds rehabilitation and biomass work tied directly into agreements with Tŝideldel, Tl'etinqox, and Yunesit'in. That's ownership sitting inside the tenure structure itself, not a contractor doing labour on someone else's cutblock and moving to the next job.
+
+**CASEY:** It's a genuinely different model, and it deserves to be taken seriously on its own terms — but it's small relative to the total allowable cut moving through the region every year. One Nation-led joint venture doing rehabilitation work doesn't offset a shrinking Interior cut being redistributed among three or four major licensees while mills keep closing on the margins.
+
+**RILEY:** Scale is the honest limitation, no argument. But the mechanism underneath it is replicable elsewhere — when expiring or returned harvesting volume comes up for reallocation anywhere in the Interior, the lever that matters is whether it defaults automatically back to the existing major licensees, or gets deliberately redirected toward community forest tenures and Nation-held agreements instead. That's a tenure-policy decision sitting inside legislation the province already administers. It isn't a new funding ask.
+
+**CASEY:** Which nobody's currently forcing the province to make differently. The default under B.C.'s existing tenure system is re-tender to whoever already holds adjacent volume, full stop, and there's no visible sign that default is under review. The ALR proposal is getting a formal public process. Forest tenure reallocation isn't getting anything comparable.
+
+**RILEY:** There's a ranching parallel here that actually complicates the "shrinking pie" framing rather than simply reinforcing it. Canfax's latest cattle market report shows fed and feeder prices easing slightly off last year's elevated peaks but still sitting well above the five-year average, and pasture conditions across most livestock regions — Kamloops being the one notable exception — are supporting herds rather than forcing any liquidation. On paper, that reads like a working-lands success story: decent moisture, strong prices, no forced sell-off anywhere but one local pocket.
+
+**CASEY:** Except those record prices exist specifically because the Canadian cattle herd has been shrinking for decades — beef prices climbed roughly 16% over the past year precisely because supply is sitting at historic lows. That's not the market rewarding good land management, that's the market pricing scarcity after decades of ranchers getting priced out of the business entirely. Fewer producers, a smaller national herd, a higher price per animal for whoever's left standing — consolidation wearing a profitability costume for a season.
+
+**RILEY:** (thoughtful) It's genuinely both things at once, though. This year's moisture is real, and it's keeping the remaining producers solvent right now, regardless of how the herd got small in the first place. The actual question is whether a good season like this reverses decades of contraction, or just makes the already-shrunken version of the industry more comfortable for whoever's still in it.
+
+**CASEY:** That's the same question forestry's been sitting with since the beetle wood ran out — are we watching an actual recovery, or just administering a smaller industry more efficiently and calling the result resilience? Central Chilcotin's model answers that question differently for the Nations directly involved in that joint venture. It doesn't answer it for the Interior forest sector as a whole, and it doesn't answer it for ranching either.
+
+**RILEY:** The real test of which version is true isn't another grant program or subsidy line — it's whether the province, the next time Interior forest licences come up for renewal, publishes that decision publicly instead of processing it as routine paperwork behind closed doors. Right now that reallocation happens with essentially zero public visibility.
+
+**CASEY:** And whether community forest tenures and Nation-held agreements get any kind of formal first right of consideration on returned volume, instead of automatic reversion to whoever already holds the largest adjacent share. That's a lever sitting inside B.C.'s existing tenure legislation right now — no new money required, just a different default on a decision the province is already making.
+
+**RILEY:** Watching the next Cariboo-area forest licence renewal is a better signal of whether that lever ever gets pulled than watching the ALR engagement play out — the ALR at least has public eyes on it this month. Forest tenure renewals happen quietly, on their own schedule, without anyone outside the industry paying much attention.
+
+**CASEY:** (wry) Which is a very polite way of saying nobody's watching. If anyone's actually tracked how a specific Cariboo forest tenure renewal got decided in practice, or has direct insight into how Central Chilcotin's agreements were structured differently from a standard licence, that's exactly the kind of ground-level detail that never makes it into a provincial press release.
+
+**RILEY:** If I take one thing forward from this, it's that the tools already exist — publish the reallocation decisions, give community forests and Nation-held agreements first right of consideration on returned volume. Neither one needs new legislation, just the will to use what's already on the books. Send us what you're seeing on the ground — feedback at cariboo signals dot c-a — because tenure renewals happen with zero public attention, and that's exactly the blind spot we can't cover without listeners flagging it.
+
+**CASEY:** I'll believe the will's there when I see one licence renewal actually go a different way. Until then, "marginal land, minimal oversight" is still the pattern to watch — in forestry, in ranching, and now in the ALR. Good one to sit with, Riley.
+
+**RILEY:** Same here, Casey. Thanks for listening, everyone — we'll be back tomorrow.
+
+**CASEY:** Have a great rest of your Tuesday, and if a forest licence renewal happens to cross your desk before then, you know exactly where to send it.
