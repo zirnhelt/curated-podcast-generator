@@ -1,0 +1,542 @@
+{
+  "episode": {
+    "date": "2026-07-29",
+    "formatted_date": "Wednesday, July 29, 2026",
+    "theme": "Repair Culture & Practical Tech",
+    "title": "Cariboo Signals - Repair Culture & Practical Tech",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Repair Culture & Practical Tech.</p><p><b>NEWS ROUNDUP:</b> We break down [Business Insider] Europe's biggest tech giant slides 5% on reports of a Chinese rival encroaching on its turf and [Kottke.org] How the Words We Teach English Language Learners..., plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> When building off-grid power systems, is resilience better achieved through open, repairable components or by accepting manufacturer lock-in and hoping supply chains hold? Topics include: US inverter import ban and its effect on Canadian off-grid homestead costs, Open-source mesh networks (Meshtastic) as an import-ban-resistant alternative for rural connectivity, Documentation and knowledge transfer as repair-culture solutions (wiring diagrams, monitoring logs), Offline-first device design versus cloud-dependent 'smart' systems, Distinction between informal community problem-solving and formally accountable capacity-building institutions.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://literacyquesnel.ca\">Literacy Quesnel Society</a></p><p><b>Sources discussed:</b></p><ul><li>Business Insider: <a href=\"https://www.businessinsider.com/asml-shares-fall-china-chipmaking-lithography-machine-2026-7\">[Business Insider] Europe's biggest tech giant slides 5% on ...</a></li><li>Kottke.org: <a href=\"https://kottke.org/26/07/0049395-how-the-words-we-teach-en\">[Kottke.org] How the Words We Teach English Language Learner...</a></li><li>https://www.techradar.com/author/becky-scarrott (TechRadar): <a href=\"https://www.techradar.com/audio/audio-streaming/what-were-really-fighting-is-people-scripting-computers-to-generate-thousands-of-songs-and-uploading-them-in-batches-to-overwhelm-flood-and-replace-deezers-head-of-research-on-that-industry-leading-ai-filter-and-why-we-need-it-now-more-than-ever\">[TechRadar] ‘What we're really fighting is people scripting ...</a></li><li>Fernanda González (WIRED): <a href=\"https://www.wired.com/story/firefighting-technologies-battle-wildfires-france-spain/\">[WIRED] New Firefighting Technologies Could Help Battle Blaz...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/ukraine-brave1-amazon-for-war-drones-eight-days-delivery-2026-7\">[Business Insider] Ukrainian troops' Amazon for battle drone...</a></li><li>Jess Cockerill (ScienceAlert): <a href=\"https://www.sciencealert.com/a-simple-lighting-swap-could-save-millions-of-insects\">[ScienceAlert] Scientists Reveal The Simple Change That Coul...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/315152/news/politics-news/conservative-mps-call-on-carney-to-get-softwood-lumber-deal-done/\">Conservative MPs call on Carney to get softwood lumber deal ...</a></li><li>CNET: <a href=\"https://www.cnet.com/tech/mobile/the-governments-indictment-of-an-activist-is-testing-whether-you-have-a-right-to-wipe-your-phone/\">[CNET] The Government’s Indictment of an Activist Tests Whet...</a></li><li>Engadget: <a href=\"https://www.engadget.com/2225693/the-us-is-banning-foreign-made-humanoid-robots-and-power-inverters/\">[Engadget] The US is banning foreign-made humanoid robots an...</a></li><li>Vivian van Zyl (LoRaMeshDevices): <a href=\"https://www.lorameshdevices.com/blog/meshtastic/diy-waterproof-meshtastic-node-for-paddle-boarding-with-wireless-charging.html\">[LoRaMeshDevices] DIY Waterproof Meshtastic Node for Paddle ...</a></li><li>https://www.techradar.com/author/steve-clark (TechRadar): <a href=\"https://www.techradar.com/pro/today-i-learned-the-cia-hid-a-home-movie-camera-inside-a-xerox-machine-and-trained-a-real-repairman-to-steal-the-film-right-in-front-of-the-kgb\">[TechRadar] Today I learned the CIA hid a home movie camera ...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Daniele Messi (Daniele Messi. — Writing): <a href=\"https://daniele-messi.com/en/blog/build-a-secure-proxmox-vpn-server-for-home-lab-access-in-2026/\">[Daniele Messi. — Writing] Build a Secure Proxmox VPN Server...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/07/28/improving-the-microcontroller-gaming-performance-with-picogame/\">[Hackaday] Improving the Microcontroller Gaming Performance ...</a></li><li>Ellsworth Toohey (Boing Boing): <a href=\"https://boingboing.net/2026/07/28/osteo-odonto-keratoprosthesis.html\">[Boing Boing] Surgeons can rebuild an eye's window out of on...</a></li><li>Nautilus: <a href=\"https://nautil.us/an-abandoned-spacex-rocket-is-about-to-crash-into-the-moon-the-real-problem-comes-next-1283069/\">[Nautilus] An Abandoned SpaceX Rocket Is About to Crash Into...</a></li><li>Ellsworth Toohey (Boing Boing): <a href=\"https://boingboing.net/2026/07/28/fast-blue-optical-transient.html\">[Boing Boing] These cosmic blasts outshine supernovas and no...</a></li><li>APTN News: <a href=\"https://www.aptnnews.ca/national-news/rcmp-say-reasonable-force-used-in-arrest-of-woman-at-makwa-sagaiehcan-first-nation-on-monday/\">[APTN News] RCMP say ‘reasonable force’ used in arrest of wo...</a></li><li>Nautilus: <a href=\"https://nautil.us/anthony-faucis-diary-reveals-a-human-at-the-helm-1283145/\">[Nautilus] Anthony Fauci’s Diary Reveals a Human at the Helm</a></li><li>https://www.tomshardware.com/author/matt-safford (Tom's Hardware): <a href=\"https://www.tomshardware.com/pc-components/storage/testing-old-drives-as-external-storage-to-avoid-price-hikes-hard-drive-sata-ssd-and-nvme-in-enclosures-up-to-80-gbps-tested\">[Tom's Hardware] Testing old drives as external storage to a...</a></li><li>Colin McClelland (The Northern Miner): <a href=\"https://www.northernminer.com/news/us-struggles-to-secure-lithium-for-strategic-stockpile/1003893426/\">[The Northern Miner] US struggles to secure lithium for stra...</a></li><li>Sean Hollister (The Verge): <a href=\"https://www.theverge.com/tech/971963/logitech-user-replacable-batteries-europe\">[The Verge] Logitech will pull a Nintendo — only European mi...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/07/28/us/ice-arrests-airports-visa-overstay.html\">[NYT Top Stories] ICE Arrests Surge at Airports, Opening New...</a></li><li>Javier Carbajal (WIRED): <a href=\"https://www.wired.com/story/an-extreme-solar-storm-may-be-even-more-devastating-than-previously-imagined/\">[WIRED] An Extreme Solar Storm May Be Even More Devastating ...</a></li><li>BC Gov News: <a href=\"https://news.gov.bc.ca/releases/2026WLRS0038-000891\">[BC Gov News] Protecting Chinook salmon in Salmon River with...</a></li><li>The Narwhal: <a href=\"https://thenarwhal.ca/nain-permafrost-thaw-nunatsiavut/?utm_source=rss\">[The Narwhal] For residents of Nain, permafrost thaw is shif...</a></li><li>NPR Health News: <a href=\"https://www.npr.org/2026/07/28/nx-s1-5856406/federal-funds-cant-be-spent-on-giving-drug-users-test-strips-raising-overdose-fears\">[NPR Health News] Federal funds can't be spent on giving dru...</a></li><li>NYT Business: <a href=\"https://www.nytimes.com/2026/07/28/business/affordable-housing-schools-teachers.html\">[NYT Business] To Recruit Teachers, School Districts Are Bui...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5<br>Today's Voices: Gemini TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-07-29T03:59:27.381406-07:00",
+    "models": {
+      "script": "claude-sonnet-5",
+      "review": "claude-sonnet-5",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 3288,
+      "voice_ratio_casey_riley": 0.9,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 1,
+        "pre_validation": 0,
+        "contrastive_negation": 1,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 3,
+        "roundup_seam": 1,
+        "thats_closer": 0
+      },
+      "total_hits": 2,
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Business Insider] Europe's biggest tech giant slides 5% on reports of a Chinese rival encroaching on its turf",
+          "url": "https://www.businessinsider.com/asml-shares-fall-china-chipmaking-lithography-machine-2026-7",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-07-28T14:06:10+00:00",
+          "summary": "ASML is the only company on the planet capable of mass producing the ultraviolet lithography machines critical to building cutting-edge chips.",
+          "discussed": true,
+          "mention_offset_frac": 0.0637
+        },
+        {
+          "title": "[Kottke.org] How the Words We Teach English Language Learners...",
+          "url": "https://kottke.org/26/07/0049395-how-the-words-we-teach-en",
+          "source": "Kottke.org",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-07-28T14:33:00+00:00",
+          "summary": "How the Words We Teach English Language Learners Changed, and What That Says About Us . “The shifts reflect a life that moved further from its own making: less tied to tools, animals, food…; more tied...",
+          "discussed": true,
+          "mention_offset_frac": 0.1427
+        },
+        {
+          "title": "[TechRadar] ‘What we're really fighting is people scripting computers to generate thousands of songs and uploading them in batches to overwhelm, flood and replace’: Deezer's Head of Research on that industry-leading AI-filter — and why we need it now more than ever",
+          "url": "https://www.techradar.com/audio/audio-streaming/what-were-really-fighting-is-people-scripting-computers-to-generate-thousands-of-songs-and-uploading-them-in-batches-to-overwhelm-flood-and-replace-deezers-head-of-research-on-that-industry-leading-ai-filter-and-why-we-need-it-now-more-than-ever",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/becky-scarrott",
+          "ai_score": 59,
+          "date_published": "2026-07-28T19:00:00+00:00",
+          "summary": "‘Just by relying on some plain signal processing and mathematical tools, we were able to actually detect these artifacts for most models out there’",
+          "discussed": true,
+          "mention_offset_frac": 0.2858
+        },
+        {
+          "title": "[WIRED] New Firefighting Technologies Could Help Battle Blazes Like Those in France and Spain",
+          "url": "https://www.wired.com/story/firefighting-technologies-battle-wildfires-france-spain/",
+          "source": "WIRED",
+          "author": "Fernanda González",
+          "ai_score": 56,
+          "date_published": "2026-07-27T21:06:54+00:00",
+          "summary": "Climate change is upping the odds of major wildfires, creating a need for new tools to combat them.",
+          "discussed": true,
+          "mention_offset_frac": 0.433
+        },
+        {
+          "title": "[Business Insider] Ukrainian troops' Amazon for battle drones sends gear to the front lines in 8 days, Kyiv says",
+          "url": "https://www.businessinsider.com/ukraine-brave1-amazon-for-war-drones-eight-days-delivery-2026-7",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 56,
+          "date_published": "2026-07-29T04:36:09+00:00",
+          "summary": "The Brave1 Market has cut delivery times for in-stock items from about two weeks to eight days, the defense ministry said on Tuesday.",
+          "discussed": true,
+          "mention_offset_frac": 0.5186
+        },
+        {
+          "title": "Conservative MPs call on Carney to get softwood lumber deal done : My Cariboo Now",
+          "url": "https://www.mycariboonow.com/315152/news/politics-news/conservative-mps-call-on-carney-to-get-softwood-lumber-deal-done/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 83,
+          "date_published": "2026-07-29T06:37:24.960341+00:00",
+          "summary": "",
+          "discussed": true,
+          "mention_offset_frac": 0.5921
+        },
+        {
+          "title": "[Engadget] The US is banning foreign-made humanoid robots and power inverters",
+          "url": "https://www.engadget.com/2225693/the-us-is-banning-foreign-made-humanoid-robots-and-power-inverters/",
+          "source": "Engadget",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-07-29T00:02:16+00:00",
+          "summary": "It's part of a national security strategy to kickstart domestic production of emerging technology.",
+          "discussed": true,
+          "mention_offset_frac": 0.8778
+        },
+        {
+          "title": "[ScienceAlert] Scientists Reveal The Simple Change That Could Save Millions of Insects",
+          "url": "https://www.sciencealert.com/a-simple-lighting-swap-could-save-millions-of-insects",
+          "source": "ScienceAlert",
+          "author": "Jess Cockerill",
+          "ai_score": 56,
+          "date_published": "2026-07-28T20:00:00+00:00",
+          "summary": "An easy switch for a huge problem. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+          "discussed": true,
+          "mention_offset_frac": 0.9223
+        },
+        {
+          "title": "[CNET] The Government’s Indictment of an Activist Tests Whether You Have a Right to Wipe Your Phone",
+          "url": "https://www.cnet.com/tech/mobile/the-governments-indictment-of-an-activist-is-testing-whether-you-have-a-right-to-wipe-your-phone/",
+          "source": "CNET",
+          "author": "",
+          "ai_score": 68,
+          "date_published": "2026-07-28T21:30:08+00:00",
+          "summary": "Samuel Tunick used GrapheneOS to delete his phone’s data. The US claims that’s destroying evidence.",
+          "discussed": true,
+          "mention_offset_frac": 0.9536
+        },
+        {
+          "title": "[Daniele Messi. — Writing] Build a Secure Proxmox VPN Server for Home Lab Access in 2026",
+          "url": "https://daniele-messi.com/en/blog/build-a-secure-proxmox-vpn-server-for-home-lab-access-in-2026/",
+          "source": "Daniele Messi. — Writing",
+          "author": "Daniele Messi",
+          "ai_score": 61,
+          "date_published": "2026-07-28T00:00:00+00:00",
+          "summary": "Secure your home lab! Learn to build a robust Proxmox VPN server in 2026 using WireGuard or OpenVPN. Get secure remote access to your Proxmox VMs and LXCs from anywhere.",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Improving the Microcontroller Gaming Performance with PicoGame",
+          "url": "https://hackaday.com/2026/07/28/improving-the-microcontroller-gaming-performance-with-picogame/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 57,
+          "date_published": "2026-07-28T23:00:00+00:00",
+          "summary": "The ability to write Python on microcontrollers with the likes of MicroPython and later CiruitPython has made them much more accessible. [MakerClassCZ] brings that to game development with PicoGame. L...",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] Surgeons can rebuild an eye's window out of one of your own teeth",
+          "url": "https://boingboing.net/2026/07/28/osteo-odonto-keratoprosthesis.html",
+          "source": "Boing Boing",
+          "author": "Ellsworth Toohey",
+          "ai_score": 55,
+          "date_published": "2026-07-28T14:30:00+00:00",
+          "summary": "When a patient's cornea is too scarred for a donor transplant to take — after a chemical burn, say, or Stevens–Johnson syndrome — surgeons have a fallback: they build a new window for the eye out of o...",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] An Abandoned SpaceX Rocket Is About to Crash Into the Moon. The Real Problem Comes Next",
+          "url": "https://nautil.us/an-abandoned-spacex-rocket-is-about-to-crash-into-the-moon-the-real-problem-comes-next-1283069/",
+          "source": "Nautilus",
+          "author": "",
+          "ai_score": 72,
+          "date_published": "2026-07-28T14:00:00+00:00",
+          "summary": "As the moon starts getting crowded, questions of safety and responsibility are becoming hard to ignore The post An Abandoned SpaceX Rocket Is About to Crash Into the Moon. The Real Problem Comes Next ...",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] These cosmic blasts outshine supernovas and no one knows what they are",
+          "url": "https://boingboing.net/2026/07/28/fast-blue-optical-transient.html",
+          "source": "Boing Boing",
+          "author": "Ellsworth Toohey",
+          "ai_score": 57,
+          "date_published": "2026-07-28T15:00:00+00:00",
+          "summary": "Sky surveys keep catching a kind of cosmic explosion that astronomers can't explain. They call them fast blue optical transients , or FBOTs: blasts as luminous as a supernova, or brighter, but flaring...",
+          "discussed": false
+        },
+        {
+          "title": "[APTN News] RCMP say ‘reasonable force’ used in arrest of woman at Makwa Sagaiehcan First Nation on Monday",
+          "url": "https://www.aptnnews.ca/national-news/rcmp-say-reasonable-force-used-in-arrest-of-woman-at-makwa-sagaiehcan-first-nation-on-monday/",
+          "source": "APTN News",
+          "author": "",
+          "ai_score": 53,
+          "date_published": "2026-07-28T17:42:13+00:00",
+          "summary": "Video of dramatic arrest has gone viral with more than 2.7 million views on social media The post RCMP say ‘reasonable force’ used in arrest of woman at Makwa Sagaiehcan First Nation on Monday appeare...",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] Anthony Fauci’s Diary Reveals a Human at the Helm",
+          "url": "https://nautil.us/anthony-faucis-diary-reveals-a-human-at-the-helm-1283145/",
+          "source": "Nautilus",
+          "author": "",
+          "ai_score": 61,
+          "date_published": "2026-07-28T22:40:01+00:00",
+          "summary": "Recently published notes from the former COVID czar paint a picture of a scientist grappling with a dynamic situation The post Anthony Fauci’s Diary Reveals a Human at the Helm appeared first on Nauti...",
+          "discussed": false
+        },
+        {
+          "title": "[Tom's Hardware] Testing old drives as external storage to avoid price hikes — hard drive, SATA SSD, and NVMe in enclosures up to 80 Gbps, tested",
+          "url": "https://www.tomshardware.com/pc-components/storage/testing-old-drives-as-external-storage-to-avoid-price-hikes-hard-drive-sata-ssd-and-nvme-in-enclosures-up-to-80-gbps-tested",
+          "source": "Tom's Hardware",
+          "author": "https://www.tomshardware.com/author/matt-safford",
+          "ai_score": 65,
+          "date_published": "2026-07-28T11:39:52+00:00",
+          "summary": "For as little as $10 (or less on sale), you can use an old drive as external storage, but will that dusty drive deliver the speed you need?",
+          "discussed": false
+        },
+        {
+          "title": "[The Northern Miner] US struggles to secure lithium for strategic stockpile",
+          "url": "https://www.northernminer.com/news/us-struggles-to-secure-lithium-for-strategic-stockpile/1003893426/",
+          "source": "The Northern Miner",
+          "author": "Colin McClelland",
+          "ai_score": 53,
+          "date_published": "2026-07-28T20:30:46+00:00",
+          "summary": "The U.S. Defense Logistics Agency has pushed back for a second time the deadline for suppliers to bid on a contract to provide battery-grade lithium carbonate for the nation’s strategic... The post US...",
+          "discussed": false
+        },
+        {
+          "title": "[The Verge] Logitech will pull a Nintendo — only European mice will come with replaceable batteries",
+          "url": "https://www.theverge.com/tech/971963/logitech-user-replacable-batteries-europe",
+          "source": "The Verge",
+          "author": "Sean Hollister",
+          "ai_score": 53,
+          "date_published": "2026-07-28T19:12:48+00:00",
+          "summary": "In June, Nintendo announced a new version of the Switch 2 that should let you easily replace its battery pack - but only for Europe. Logitech will do much the same. User-replaceable batteries will be ...",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] ICE Arrests Surge at Airports, Opening New Front in Deportation Drive",
+          "url": "https://www.nytimes.com/2026/07/28/us/ice-arrests-airports-visa-overstay.html",
+          "source": "NYT Top Stories",
+          "author": "",
+          "ai_score": 73,
+          "date_published": "2026-07-29T01:46:18+00:00",
+          "summary": "Federal agents are arresting spouses of Americans, tech workers and others whose visas have expired, including many who have active applications to stay in the country.",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] An Extreme Solar Storm May Be Even More Devastating Than Previously Imagined",
+          "url": "https://www.wired.com/story/an-extreme-solar-storm-may-be-even-more-devastating-than-previously-imagined/",
+          "source": "WIRED",
+          "author": "Javier Carbajal",
+          "ai_score": 71,
+          "date_published": "2026-07-28T09:00:00+00:00",
+          "summary": "Scientists have long assumed that there’s an upper limit to the intensity of the solar winds that reach Earth. New research suggests there’s not—and the implications are alarming.",
+          "discussed": false
+        },
+        {
+          "title": "[BC Gov News] Protecting Chinook salmon in Salmon River with temporary order",
+          "url": "https://news.gov.bc.ca/releases/2026WLRS0038-000891",
+          "source": "BC Gov News",
+          "author": "",
+          "ai_score": 70,
+          "date_published": "2026-07-28T23:15:00+00:00",
+          "summary": "Agricultural, industrial water use temporarily restricted due to low river levels",
+          "discussed": false
+        },
+        {
+          "title": "[The Narwhal] For residents of Nain, permafrost thaw is shifting the ground beneath their feet",
+          "url": "https://thenarwhal.ca/nain-permafrost-thaw-nunatsiavut/?utm_source=rss",
+          "source": "The Narwhal",
+          "author": "",
+          "ai_score": 70,
+          "date_published": "2026-07-28T15:00:00+00:00",
+          "summary": "In the rapidly warming Arctic, permafrost thaw is transforming the landscape in unpredictable and challenging ways",
+          "discussed": false
+        },
+        {
+          "title": "[NPR Health News] Federal funds can't be spent on giving drug users test strips, raising overdose fears",
+          "url": "https://www.npr.org/2026/07/28/nx-s1-5856406/federal-funds-cant-be-spent-on-giving-drug-users-test-strips-raising-overdose-fears",
+          "source": "NPR Health News",
+          "author": "",
+          "ai_score": 72,
+          "date_published": "2026-07-28T20:14:21+00:00",
+          "summary": "Test strips can identify dangerous hidden additives in street drugs and help prevent overdoses. But the Trump administration says federal funds can't be used to provide the strips to drug users.",
+          "discussed": false
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Ontario victims believed to have also been human trafficked in B.C., Alberta",
+          "url": "https://quesnelobserver.com/2026/07/28/ontario-victims-believed-to-have-also-been-human-trafficked-in-b-c-alberta/",
+          "source": "Quesnel Cariboo Observer",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-07-28T19:41:43+00:00",
+          "summary": "Halton police investigation took 10 months, one victim trafficked for 15 years",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Business] The Iran War Just Put Another Key Oil Route at Risk",
+          "url": "https://www.nytimes.com/video/business/energy-environment/100000011050115/red-sea-blockade-oil-route.html",
+          "source": "NYT Business",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-07-28T19:24:01+00:00",
+          "summary": "Attacks in the Strait of Hormuz during the Iran war have led Saudi Arabia to rely on an alternative route for exporting oil. Our reporter Rebecca F. Elliott explains how that route is now threatened b...",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] Some Jordanians Demand that American Troops Leave the Kingdom",
+          "url": "https://www.nytimes.com/2026/07/29/world/middleeast/jordan-us-military-iran-war.html",
+          "source": "NYT Top Stories",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-07-29T04:01:19+00:00",
+          "summary": "Hundreds of political, legal and other figures signed a public letter warning that Jordan’s close alliance with the United States poses a risk.",
+          "discussed": false
+        },
+        {
+          "title": "[TechCrunch] Waymo, robotaxi operators face fresh scrutiny over emergency response failures",
+          "url": "https://techcrunch.com/2026/07/28/waymo-robotaxi-operators-face-fresh-scrutiny-over-emergency-response-failures/",
+          "source": "TechCrunch",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-07-28T19:06:33+00:00",
+          "summary": "Rep. Kevin Mullin (D-California ) has proposed a bill that would direct federal regulators to establish minimum national safety standards for autonomous vehicle operators.",
+          "discussed": false
+        },
+        {
+          "title": "[NPR Health News] Amid U.S. funding cuts, the International AIDS Conference faces an uncertain future",
+          "url": "https://www.npr.org/2026/07/28/nx-s1-5909368/international-aids-conference-hiv",
+          "source": "NPR Health News",
+          "author": "",
+          "ai_score": 68,
+          "date_published": "2026-07-28T08:42:02+00:00",
+          "summary": "Dr. Kenneth Ngure, president-elect of the International AIDS Society, says, \"We have had very good scientific advances ... yet the funding cuts have also taken us back.\"",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] China puts the ‘squeeze’ on Taiwan with new maritime patrols",
+          "url": "https://www.aljazeera.com/news/2026/7/29/china-puts-squeeze-on-taiwan-with-new-maritime-patrols?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "",
+          "ai_score": 54,
+          "date_published": "2026-07-29T05:22:18+00:00",
+          "summary": "New law enforcement operations could quickly escalate into a blockade of Taiwan, say analysts.",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceDaily] A slowing Atlantic current could unleash stronger California storms",
+          "url": "https://www.sciencedaily.com/releases/2026/07/260727214626.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 56,
+          "date_published": "2026-07-28T12:31:45+00:00",
+          "summary": "A weakening Atlantic current could supercharge California’s atmospheric rivers while leaving Greenland with fewer snow-producing storms. The changes could raise flood risks, strain infrastructure, and...",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] 112 Degrees in Paris, Flames Near Bordeaux. France Can’t Go On Like This.",
+          "url": "https://www.nytimes.com/2026/07/29/opinion/france-wildfires-heat-air-conditioning.html",
+          "source": "NYT Top Stories",
+          "author": "",
+          "ai_score": 67,
+          "date_published": "2026-07-29T05:00:03+00:00",
+          "summary": "The frightening heat and wildfires this summer should be an impetus to those in charge to reckon with how quickly the risks are changing.",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] An Alabama animal shelter is taking on a massive AI data center project in court",
+          "url": "https://www.businessinsider.com/alabama-animal-shelter-ai-data-center-project-lawsuit-2026-7",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 56,
+          "date_published": "2026-07-28T18:08:59+00:00",
+          "summary": "The Greater Birmingham Humane Society filed a lawsuit earlier this month in a bid to block Nebius Group's data center project in Alabama.",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] Iran and Oman exchange proposals to manage Strait of Hormuz",
+          "url": "https://www.aljazeera.com/news/2026/7/28/iran-and-oman-exchange-proposals-to-manage-strait-of-hormuz?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "",
+          "ai_score": 52,
+          "date_published": "2026-07-28T21:01:19+00:00",
+          "summary": "Omani proposal is based on the Strait of Malacca model, where ships that use the strait provide voluntary fees.",
+          "discussed": false
+        },
+        {
+          "title": "[Eagle Feather News] Feds invest $141 million to increase internet connectivity in rural and remote Saskatchewan",
+          "url": "https://eaglefeathernews.com/2026/07/28/feds-invest-141-million-to-increase-internet-connectivity-in-rural-and-remote-saskatchewan/",
+          "source": "Eagle Feather News",
+          "author": "",
+          "ai_score": 64,
+          "date_published": "2026-07-28T16:01:22+00:00",
+          "summary": "The federal government announced in Humboldt a $141 million investment into high-speed internet infrastructure in Saskatchewan (photo submitted by Connor Burton)",
+          "discussed": false
+        },
+        {
+          "title": "[Lifehacker] Scammers Are Impersonating Spotify to Steal Your Credit Card Info",
+          "url": "https://lifehacker.com/money/scammers-are-impersonating-spotify-to-steal-your-credit-card?utm_medium=RSS",
+          "source": "Lifehacker",
+          "author": "",
+          "ai_score": 56,
+          "date_published": "2026-07-28T17:00:00+00:00",
+          "summary": "Those phishing emails are not from Spotify.",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Repair Culture & Practical Tech",
+      "articles": [
+        {
+          "title": "[LoRaMeshDevices] DIY Waterproof Meshtastic Node for Paddle Boarding With Wireless Charging",
+          "url": "https://www.lorameshdevices.com/blog/meshtastic/diy-waterproof-meshtastic-node-for-paddle-boarding-with-wireless-charging.html",
+          "source": "LoRaMeshDevices",
+          "author": "Vivian van Zyl",
+          "ai_score": 65,
+          "date_published": "2026-07-28T14:11:19+00:00",
+          "summary": "A waterproof Meshtastic node is a great little project for paddle boarding, kayaking, hiking, and any outdoor trip where ordinary electronics are likely to get wet. The goal here was simple: build a s...",
+          "discussed": true
+        },
+        {
+          "title": "[TechRadar] Today I learned the CIA hid a home movie camera inside a Xerox machine — and trained a real repairman to steal the film right in front of the KGB",
+          "url": "https://www.techradar.com/pro/today-i-learned-the-cia-hid-a-home-movie-camera-inside-a-xerox-machine-and-trained-a-real-repairman-to-steal-the-film-right-in-front-of-the-kgb",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/steve-clark",
+          "ai_score": 67,
+          "date_published": "2026-07-28T21:05:00+00:00",
+          "summary": "The audacious story of the secret service, the Soviets, and the Xerox photocopier that caught on fire.",
+          "discussed": true
+        },
+        {
+          "title": "[NYT Business] To Recruit Teachers, School Districts Are Building Homes",
+          "url": "https://www.nytimes.com/2026/07/28/business/affordable-housing-schools-teachers.html",
+          "source": "NYT Business",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-07-28T09:00:09+00:00",
+          "summary": "The nation’s housing shortage has made it challenging for some essential workers like educators to live where they work. An increasing number of school districts are trying to change that.",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "When building off-grid power systems, is resilience better achieved through open, repairable components or by accepting manufacturer lock-in and hoping supply chains hold?",
+        "riley_position": "Open-source design patterns like Meshtastic create import-ban-proof systems by eliminating single chokepoints, and this philosophy can transfer to power systems through documentation and monitoring practices that don't depend on any single vendor.",
+        "riley_key_evidence": [
+          "Meshtastic's waterproof mesh radio nodes use generic parts from multiple suppliers, making them immune to import restrictions on any single manufacturer",
+          "Off-grid systems in the Cariboo have historically relied on salvaged and adapted parts (old alternators, decommissioned RV inverters), proving informal used-parts economies already work",
+          "Screenshotting monitoring dashboards and keeping paper logbooks costs nothing but time and outlives any single owner or installer"
+        ],
+        "casey_position": "The inverter market is genuinely consolidated among a handful of manufacturers (Victron, Outback, Schneider), so an import ban removes affordable competition rather than breaking open chokepoints; real durability requires formal accountability structures, not just Saturday projects.",
+        "casey_key_evidence": [
+          "Import bans protecting three domestic inverter makers from cheaper competitors consolidate chokepoints instead of breaking them open, the opposite of healthy competition",
+          "Xatśūll First Nation's community-maintained digital infrastructure required formal accountability to the community over time, not casual neighbor coordination",
+          "Some 'smart' inverters require manufacturer server accounts to report your own battery voltage, creating lock-in that offline-first design can prevent"
+        ],
+        "resolution": "They converged on a practical filter both could endorse: before any purchase, ask whether a device works without subscriptions, accounts, or factory repair dependency—and whether neighbors can diagnose failures with a multimeter and printed manual. Riley acknowledged Casey's distinction between a weekend project and durable institutional capacity; Casey acknowledged both scales can coexist without negating each other.",
+        "topics_covered": [
+          "US inverter import ban and its effect on Canadian off-grid homestead costs",
+          "Open-source mesh networks (Meshtastic) as an import-ban-resistant alternative for rural connectivity",
+          "Documentation and knowledge transfer as repair-culture solutions (wiring diagrams, monitoring logs)",
+          "Offline-first device design versus cloud-dependent 'smart' systems",
+          "Distinction between informal community problem-solving and formally accountable capacity-building institutions"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 10,
+          "conditions": "clear skies",
+          "high": 20,
+          "low": 9
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 9,
+          "conditions": "clear skies",
+          "high": 22,
+          "low": 8
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 11,
+          "conditions": "mainly clear",
+          "high": 23,
+          "low": 11
+        },
+        {
+          "name": "Quesnel",
+          "temp": 9,
+          "conditions": "clear skies",
+          "high": 20,
+          "low": 9
+        },
+        {
+          "name": "Alexis Creek",
+          "temp": 10,
+          "conditions": "clear skies",
+          "high": 24,
+          "low": 8
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Literacy Quesnel Society",
+      "description": "Adult literacy, digital literacy, and one-on-one tutoring in Quesnel — including an Indigenous stream and an English conversation circle for newcomers",
+      "website": "literacyquesnel.ca",
+      "psa_angle": "",
+      "event_name": ""
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_azure": "Azure Neural TTS",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "Gemini TTS"
+  }
+}

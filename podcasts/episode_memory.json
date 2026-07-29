@@ -564,5 +564,26 @@
     "date": "2026-07-28",
     "focus": "forestry",
     "focus_name": "Forestry & Timber"
+  },
+  "2026-07-29": {
+    "timestamp": 1785322773.765506,
+    "topics": [
+      "[Business Insider] Europe's biggest tech giant slides 5% on ",
+      "[Kottke.org] How the Words We Teach English Language Learner",
+      "[Daniele Messi. \u2014 Writing] Build a Secure Proxmox VPN Server",
+      "[TechRadar] \u2018What we're really fighting is people scripting ",
+      "[Hackaday] Improving the Microcontroller Gaming Performance ",
+      "[LoRaMeshDevices] DIY Waterproof Meshtastic Node for Paddle ",
+      "[TechRadar] Today I learned the CIA hid a home movie camera ",
+      "[NYT Business] To Recruit Teachers, School Districts Are Bui"
+    ],
+    "themes": [
+      "rural development",
+      "Indigenous tech",
+      "connectivity"
+    ],
+    "date": "2026-07-29",
+    "focus": "homestead-offgrid",
+    "focus_name": "Homestead & Off-Grid Tech"
   }
 }

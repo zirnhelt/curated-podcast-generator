@@ -1,30 +1,4 @@
 {
-  "2026-04-29": {
-    "timestamp": 1777462625.143197,
-    "date": "2026-04-29",
-    "theme": "Community Tech & Governance",
-    "central_question": "When rural communities adopt external technology solutions (commercial or government-funded), what governance structures must exist to ensure sustainable, community-controlled outcomes?",
-    "riley_position": "Commercial hybrid solutions like T-Mobile's Starlink backup offer practical connectivity improvements that most rural communities couldn't achieve through independent infrastructure projects, but governance capacity\u2014not technology ownership\u2014is the determining factor in success.",
-    "riley_key_evidence": [
-      "T-Mobile's hybrid connectivity model formalizes an architecture rural communities have improvised for years, with Starlink latency improvements making it genuinely viable for emergency communications backup",
-      "Olds, Alberta's MRNet fiber co-op took eight years and significant municipal capital, a runway most Cariboo communities don't have",
-      "Governance readiness checklist could be a practical tool for Indigenous and municipal decision-makers without requiring external consultants"
-    ],
-    "casey_position": "Adopting external technology without pre-existing governance infrastructure\u2014including operations budgets, technical maintenance capacity, and data sovereignty protocols\u2014transfers risk from institutions to communities and creates orphaned systems when external partners exit.",
-    "casey_key_evidence": [
-      "Vancouver's lifeguard funding cuts transfer risk from public budgets to individuals and liability claims, mirroring how grant-dependent tech projects fail at year-five when maintenance costs weren't budgeted",
-      "Indigenous language technology projects require epistemological sovereignty over data that standard licensing frameworks don't address, and require embedded technical training\u2014not just workshops\u2014to prevent knowledge remaining external",
-      "Williams Lake Association for Community Living sustained community programming for 66 years through institutional durability rather than grant cycles"
-    ],
-    "resolution": "Riley conceded that technology optimism ('adopt early, iterate fast') fails without governance infrastructure, and both agreed that the core question before any technology adoption should be 'can we govern this five years from now without the external partner?'\u2014shifting focus from technology choice to governance capacity design.",
-    "topics_covered": [
-      "Commercial vs. community-owned infrastructure as a false binary disguising the real variable of governance capacity",
-      "Indigenous language technology sustainability: funding, technical maintenance, and data sovereignty in federally-funded projects like CILT",
-      "Regional coordination models for Indigenous technical services and the risk of pooled decision-making erasing smaller communities' urgencies",
-      "Operations budget and embedded technical training as necessary conditions for technology adoption in resource-constrained communities",
-      "Governance readiness standards for rural digital infrastructure decisions across municipalities and First Nations"
-    ]
-  },
   "2026-04-30": {
     "timestamp": 1777549174.940469,
     "date": "2026-04-30",
@@ -2299,6 +2273,33 @@
       "Structural gaps in provincial decision-making transparency between ALR and forest licensing",
       "Central Chilcotin Rehabilitation's Nation-held tenure model as alternative to standard industrial licensing",
       "Cattle market consolidation and price dynamics masking structural herd decline"
+    ]
+  },
+  "2026-07-29": {
+    "timestamp": 1785322775.637059,
+    "date": "2026-07-29",
+    "theme": "Repair Culture & Practical Tech",
+    "focus": "homestead-offgrid",
+    "central_question": "When building off-grid power systems, is resilience better achieved through open, repairable components or by accepting manufacturer lock-in and hoping supply chains hold?",
+    "riley_position": "Open-source design patterns like Meshtastic create import-ban-proof systems by eliminating single chokepoints, and this philosophy can transfer to power systems through documentation and monitoring practices that don't depend on any single vendor.",
+    "riley_key_evidence": [
+      "Meshtastic's waterproof mesh radio nodes use generic parts from multiple suppliers, making them immune to import restrictions on any single manufacturer",
+      "Off-grid systems in the Cariboo have historically relied on salvaged and adapted parts (old alternators, decommissioned RV inverters), proving informal used-parts economies already work",
+      "Screenshotting monitoring dashboards and keeping paper logbooks costs nothing but time and outlives any single owner or installer"
+    ],
+    "casey_position": "The inverter market is genuinely consolidated among a handful of manufacturers (Victron, Outback, Schneider), so an import ban removes affordable competition rather than breaking open chokepoints; real durability requires formal accountability structures, not just Saturday projects.",
+    "casey_key_evidence": [
+      "Import bans protecting three domestic inverter makers from cheaper competitors consolidate chokepoints instead of breaking them open, the opposite of healthy competition",
+      "Xat\u015b\u016bll First Nation's community-maintained digital infrastructure required formal accountability to the community over time, not casual neighbor coordination",
+      "Some 'smart' inverters require manufacturer server accounts to report your own battery voltage, creating lock-in that offline-first design can prevent"
+    ],
+    "resolution": "They converged on a practical filter both could endorse: before any purchase, ask whether a device works without subscriptions, accounts, or factory repair dependency\u2014and whether neighbors can diagnose failures with a multimeter and printed manual. Riley acknowledged Casey's distinction between a weekend project and durable institutional capacity; Casey acknowledged both scales can coexist without negating each other.",
+    "topics_covered": [
+      "US inverter import ban and its effect on Canadian off-grid homestead costs",
+      "Open-source mesh networks (Meshtastic) as an import-ban-resistant alternative for rural connectivity",
+      "Documentation and knowledge transfer as repair-culture solutions (wiring diagrams, monitoring logs)",
+      "Offline-first device design versus cloud-dependent 'smart' systems",
+      "Distinction between informal community problem-solving and formally accountable capacity-building institutions"
     ]
   }
 }

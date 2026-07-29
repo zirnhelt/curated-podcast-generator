@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] Fires linked to solar panels force Suffolk counc",
-      "[TechCrunch] Station F ramps up as a launchpad for Europe\u2019s ",
       "[TechRadar] Web hosting giant claims you can now sell online",
       "[TechCrunch] US government says it got hacked \u2014 again",
       "[TechCrunch] Nonprofit Current AI is racing to build the Wor",
@@ -10,7 +8,9 @@
       "[WIRED] A Sneaky Hacking Tool Targeting AI Infrastructure Is",
       "[TechRadar] Experts warn 2.2 million cars could be at risk o",
       "AI",
-      "[TechCrunch] Thea Energy lands $20M federal grant to build i"
+      "[TechCrunch] Thea Energy lands $20M federal grant to build i",
+      "[Business Insider] Europe's biggest tech giant slides 5% on ",
+      "[TechRadar] \u2018What we're really fighting is people scripting "
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -95,9 +95,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-07-11",
-        "clue": "pilot-skepticism:+ \u2014 Proposed mesh-radio model but acknowledged zero local precedent",
-        "occurrences": 1
+        "date": "2026-07-29",
+        "clue": "pilot-skepticism:+ \u2014 shifted toward documentation over brand choice",
+        "occurrences": 2
       },
       {
         "date": "2026-07-21",
@@ -115,9 +115,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-07-22",
-        "clue": "structural-lens:x \u2014 Conceded Casey's legal-vs-skill distinction as 'actual gap'",
-        "occurrences": 1
+        "date": "2026-07-29",
+        "clue": "structural-lens:x \u2014 conceded ASML monopoly break \u2260 import ban pattern",
+        "occurrences": 2
       },
       {
         "date": "2026-07-24",
@@ -289,11 +289,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-06-13",
-        "clue": "community-trust:~ \u2014 Acknowledged cultural infrastructure's role in retention, softening pure policy-focused view",
-        "occurrences": 2
-      },
-      {
         "date": "2026-06-20",
         "clue": "structural-lens:- \u2014 Shifted from 'province not listening' to 'province decided small cities unworthy'\u2014harder attribution",
         "occurrences": 2
@@ -369,9 +364,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-07-19",
-        "clue": "rural-context:+ \u2014 Deepened emphasis on cell coverage gaps as real constraint",
-        "occurrences": 1
+        "date": "2026-07-29",
+        "clue": "rural-context:+ \u2014 pressed inverter code-compliance over informal salvage logic",
+        "occurrences": 2
       },
       {
         "date": "2026-07-22",

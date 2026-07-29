@@ -1,0 +1,159 @@
+# Cariboo Signals Podcast Script - 2026-07-29
+# Theme: Repair Culture & Practical Tech
+# Brave: no
+# Generated: 2026-07-29 03:59:33 PDT
+
+**COLD OPEN**
+**RILEY:** Hey, welcome back. Today we've got a US ban on foreign-made humanoid robots and power inverters that hits closer to home than it sounds — think off-grid solar shelves near you — plus surgeons rebuilding a cornea from a patient's own tooth. And our Deep Dive question: out here, do you build your own repairable power and connectivity, or trust the manufacturer's supply chain to hold? That and more, coming right up.
+
+**WELCOME**
+
+**RILEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities — I'm Riley. It's Wednesday, July 29th, 2026. Coming to you from the Cariboo, on lands that have been cared for by the Secwépemc, Tŝilhqot'in, and Dakelh peoples since time immemorial. Today's theme is Repair Culture & Practical Tech.
+
+**CASEY:** [pause:1000] And I'm Casey. Today's about the stuff you can actually fix with your own two hands when the truck won't start and the nearest shop is ninety minutes away.
+
+**RILEY:** Quick weather check before we get into it. Out at Horsefly Lake it's 10 degrees this morning with clear skies, heading toward a high of 20 today and down to a low of 9 tonight. Tomorrow's shaping up overcast, with next to no precipitation expected either way.
+
+**CASEY:** Around the rest of the region — 100 Mile House is sitting at 9 with clear skies, Williams Lake is at 11 and mainly clear, Quesnel's at 9 and clear, and out on the Chilcotin plateau, Alexis Creek is sitting at 10, also clear. Good driving weather region-wide, no advisories that we're seeing.
+
+**RILEY:** Let's get into what's happening today.
+
+**NEWS ROUNDUP**
+
+**RILEY:** [pause:1200] There's a thread running through a lot of today's stories about who actually controls the tools we depend on, and what happens when that control shifts or breaks. We'll start there. ASML is the Dutch company that builds the extreme ultraviolet lithography machines used to print the most advanced computer chips on the planet — it's the only company in the world that can do it at that level. Business Insider reported this week that ASML shares slid five percent on reports a Chinese rival may have made real progress toward comparable chipmaking capability.
+
+**CASEY:** So the one company nobody could route around might not be the only game in town for much longer.
+
+**RILEY:** Right — and that's the sovereignty question sitting under a lot of what we cover on this show. When one company, one supply chain, holds a monopoly on a tool that everything else depends on, that's fragility wearing efficiency's clothes. If a rival breaks that monopoly, prices could fall — but so could Western leverage over who gets the best chips first.
+
+**CASEY:** [pause:900] Kottke ran a piece this week on how the vocabulary we teach English language learners has shifted over the decades. Fewer words tied to tools, animals, growing your own food — more words tied to screens, apps, and services. It's not really a linguistics story. It's a fingerprint of how far daily life has drifted from making things with your own hands, which is basically the whole premise of today's episode in one paragraph.
+
+**RILEY:** That's a strange kind of evidence — a dictionary as an artifact of what a culture stopped doing.
+
+**CASEY:** A blog post out of Geneva walked through building a secure VPN server on a home lab setup, using Proxmox with WireGuard or OpenVPN, so you can reach your own virtual machines securely from anywhere. It's a fourteen-minute read, heavy on technical steps, but the underlying point is simple: if you run your own remote access instead of renting it from a cloud provider, you own the failure points and you own the fixes. Nobody can revoke your account or change the pricing on you.
+
+**RILEY:** [pause:800] That's homestead self-reliance applied to your data instead of your power supply — same instinct, different wire. Deezer's head of research gave TechRadar a rundown on the AI-filter the streaming platform built to catch songs generated in bulk by scripts and uploaded in batches to flood the platform and drown out actual human artists.
+
+**CASEY:** How does a filter even catch that? A generated song doesn't come with a barcode.
+
+**RILEY:** According to their research team, plain signal processing and mathematical analysis are enough to detect artifacts most AI models leave behind, even without knowing which model made the track. It's essentially a repair tool built to protect the integrity of a system that's being gamed at scale, rather than blocking AI entirely.
+
+**CASEY:** Hackaday covered a project called PicoGame — someone squeezing serious gaming performance out of microcontrollers using MicroPython and CircuitPython, languages that used to be considered too slow for real-time graphics. Cheap chips, accessible languages, real playable results out of hardware that used to be strictly industrial.
+
+**RILEY:** That's maker culture in miniature — a five-dollar board doing what used to require a real console. [pause:1000] WIRED had a piece on new firefighting technologies being developed to battle blazes like the ones currently burning through France and Spain — better sensors, better deployment tools, gear engineered to survive conditions that destroy ordinary electronics in minutes.
+
+**CASEY:** Climate's forcing an upgrade cycle nobody budgeted for, and it's not optional.
+
+**RILEY:** Business Insider also covered Ukraine's Brave1 Market, essentially a wartime marketplace connecting drone manufacturers directly to soldiers on the front. Kyiv says it's cut delivery time for in-stock battle drone parts from around two weeks down to eight days.
+
+**CASEY:** Logistics as survival infrastructure — get the fix to the front before the need expires.
+
+**RILEY:** [pause:600] And then Boing Boing had the story that'll stick with people longest today — surgeons rebuilding a scarred cornea using a piece of the patient's own tooth, when the eye is too damaged for a standard donor transplant to take. It's used for cases like chemical burns or Stevens-Johnson syndrome, where a donor cornea simply won't hold.
+
+**CASEY:** That's repair culture taken to its most literal extreme — you become your own spare parts inventory.
+
+**RILEY:** [overlap:-100] Grim premise, remarkable outcome.
+
+**CASEY:** [pause:900] Let's pivot closer to home for a moment. My Cariboo Now reported that Conservative MPs are pressing the federal government to finalize a long-stalled softwood lumber deal with the United States, pointing out it's been roughly ten years since the last serious push under the previous Liberal government. That comes against the backdrop of two mill closures announced in the Cariboo just this month.
+
+**RILEY:** Not strictly a tech story, but it's the economic floor everything else in this region sits on — a community's capacity to invest in infrastructure or repair programs depends on whether the mill down the road is still running payroll.
+
+**CASEY:** And Eagle Feather News reported the federal government announced a hundred-and-forty-one million dollar investment into rural broadband infrastructure in Saskatchewan, unveiled in Humboldt. It's not our region, but it's the same funding lever British Columbia communities keep asking Ottawa to pull here.
+
+**RILEY:** Worth watching as a precedent — if Saskatchewan gets that kind of commitment, it strengthens the case for similar asks in the Cariboo Regional District.
+
+**CASEY:** [pause:800] A few stories worth a lighter touch before we move to the spotlight. The Verge reported Logitech is following Nintendo's lead — the next generation of its mice will ship with user-replaceable batteries, but only in the European market, thanks to right-to-repair rules there. North American buyers don't get the same design.
+
+**RILEY:** Which tells you regulation, not goodwill, is what actually moves manufacturers.
+
+**CASEY:** Tom's Hardware ran real-world tests on turning old hard drives, SATA SSDs, and NVMe drives into external storage using inexpensive enclosures, some rated up to eighty gigabits per second — for as little as ten dollars, a drive gathering dust in a drawer becomes useful again instead of landfill.
+
+**RILEY:** That's the single cheapest, most actionable repair-culture tip in today's whole lineup. The Northern Miner reported the US Defense Logistics Agency has pushed back, for a second time now, the bidding deadline for suppliers to provide battery-grade lithium carbonate for the country's strategic stockpile — a sign of just how tight that supply chain has gotten.
+
+**CASEY:** And Engadget reported the US is banning foreign-made humanoid robots and power inverters as part of a national security push to kickstart domestic production — that one we're coming back to in the Deep Dive, because it touches off-grid solar setups more directly than the headline suggests.
+
+**RILEY:** [pause:700] ScienceAlert had a genuinely hopeful one — researchers found a simple change that could save millions of insects, tied to how outdoor lighting is designed and positioned. Small fix, big downstream effect on pollinator populations.
+
+**CASEY:** And CNET covered a legal case testing whether an activist has the right to wipe his own phone — the US government is arguing that deleting your own data during an investigation counts as destroying evidence, using GrapheneOS as the flashpoint.
+
+**RILEY:** That's a right-to-repair question in disguise, really — who actually owns the data on a device you paid for.
+
+**CASEY:** That's the roundup for today. Let's get into the spotlight.
+
+**COMMUNITY SPOTLIGHT**
+
+**RILEY:** Today we're highlighting Literacy Quesnel Society. They run adult literacy support, digital literacy training, and one-on-one tutoring right in Quesnel — including a dedicated Indigenous stream and an English conversation circle for newcomers finding their footing in the region. If reading a lease, filling out a government form online, or getting comfortable with a keyboard has ever felt like hitting a wall, this is a low-pressure place to start, no judgment attached. Find them at literacyquesnel.ca.
+
+**CASEY:** Digital literacy is repair culture too, in its own way — you can't fix what you can't read the manual for, and you can't fill out the form for the grant that pays for the fix either.
+
+**RILEY:** [pause:500] Which is actually a good bridge into today's Deep Dive.
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Repair Culture & Practical Tech**
+
+**RILEY:** Here's the question worth sitting with today: when your property is off the grid, or close to it, is the resilient move to build your own power and connectivity systems out of open, repairable parts — or to buy the manufacturer's turnkey product and hope the supply chain holds?
+
+**CASEY:** And that's not hypothetical anymore. The Engadget piece on the US banning foreign-made power inverters isn't really a geopolitics story for us. It's a story about what shows up on the shelf at your local solar installer next spring.
+
+**RILEY:** Power inverters are the piece of equipment that turns your solar panels' DC output into usable AC power for your cabin, your well pump, your fridge. Ban the cheap imported ones, and either domestic production scales up fast to fill the gap, or prices on off-grid solar kits jump for everyone building a homestead system out here.
+
+**CASEY:** Which is the same pattern we keep hitting on this show — a policy decision made in Washington lands on a property outside Horsefly with zero say in the matter, and nobody asked the person paying the bill.
+
+**RILEY:** [pause:600] Except this time there's a design response available that doesn't have to wait on policy. The Meshtastic community — the open-source mesh radio project we've covered before — just published a build for a waterproof node, sealed in an IP67 enclosure with wireless charging, originally designed for paddleboarding and kayaking. It's a fully self-contained GPS unit built from generic parts, and it answers to no import restriction because there's no single company or country controlling the supply.
+
+**CASEY:** That solves connectivity. It does nothing for the inverter problem. A LoRa radio draws milliwatts. Keeping a homestead's fridge, well pump, and heat running off-grid needs real power electronics, and those aren't something you assemble in an evening with a soldering iron.
+
+**RILEY:** Fair — but the design pattern still transfers. The people building these Meshtastic nodes aren't buying a proprietary satellite communicator tied to a monthly subscription. They're using open schematics and parts sourced from multiple suppliers. That's exactly the structure that makes something import-ban-proof: no single chokepoint anyone can squeeze.
+
+**CASEY:** Inverters aren't LoRa chips, Riley. The market for grid-tie and off-grid inverters that actually pass Canadian electrical code is a handful of manufacturers — Victron, Outback, Schneider, a few others. An import ban on a cheaper competitor doesn't create three new domestic options overnight. It removes the affordable option and leaves the same three names free to charge what they want.
+
+**RILEY:** [pause:500] Which is exactly the ASML problem from the roundup, just playing out at homestead scale.
+
+**CASEY:** Right, except the ASML story cuts the other way from how you're using it. A monopoly getting disrupted by a rival is supposed to be good news for buyers — more competition, lower prices. An import ban protecting three domestic inverter makers from a cheaper import is the opposite move. It consolidates the chokepoint instead of breaking it open.
+
+**RILEY:** [overlap:-100] Hm. That's actually a real distinction worth sitting with — I was treating both as the same kind of fragility, and they're not.
+
+**CASEY:** [pause:700] The Tom's Hardware piece on repurposing old drives points somewhere more useful, honestly. Ten dollars, an enclosure, and a drive sitting in a drawer becomes real storage again. That's the repair-culture instinct working at a scale an actual household budget can act on this month, no policy fight required.
+
+**RILEY:** Agreed, and it scales further than storage, too. Homestead power systems in the Cariboo already run on a version of that same logic. People keep an old truck alternator around, salvage an inverter out of a decommissioned RV, take spare panels off a friend who's upgrading. The used-and-adapted parts economy for off-grid power has existed here for decades. It's just informal.
+
+**CASEY:** Informal is doing a lot of work in that sentence. Informal means no warranty, no code-compliance inspection, and no guarantee the guy who wired your battery bank back in 2019 is still around to explain what he actually did when something trips at two in the morning in January.
+
+**RILEY:** [pause:600] Which is exactly where documentation matters more than which brand of inverter you bought. A property with a laminated wiring diagram taped inside the panel box survives an owner change. A property that only survives because one guy remembers the layout in his head does not.
+
+**CASEY:** That's the same succession problem we've hammered on in past episodes about repair culture generally — knowledge dying with the one person who held it. Off-grid power just sharpens the stakes, because the failure mode isn't inconvenient. It's your well pump not running in the middle of August.
+
+**RILEY:** Right, and there's a fix that costs nothing but a bit of time. Most off-grid battery and inverter systems now ship with basic monitoring, sometimes even a local web interface you can check without needing cloud access at all. Screenshotting that dashboard once a season, keeping a paper logbook of what the system's actually drawing — that's free, and it outlives any single owner or installer.
+
+**CASEY:** Assuming the monitoring interface doesn't require an account with the manufacturer's server first, which some absolutely do. That's the trap — "smart" inverters that phone home to verify a firmware license before they'll even report your own battery voltage back to you.
+
+**RILEY:** That's a real and specific problem, and it's solvable with one question asked before any money changes hands: does this device work fully offline, with no account and no app requirement? Victron's older Blue Solar line does. Some newer smart inverters from other manufacturers don't. That's a five-minute spec check before a purchase — not a systemic fix, but it's the actual lever a homesteader has in their own hands.
+
+**CASEY:** [pause:500] Which loops straight back to connectivity, because knowing your system needs a fix in the first place assumes you can get a signal out to ask for help, or at least pull up the manual when you're standing in front of a blinking fault light with no cell bars.
+
+**RILEY:** That's exactly where a mesh network earns its keep beyond paddleboards and hiking trips. A handful of solar-powered nodes strung along a rural road can carry a text-length message — "inverter's throwing a fault code, need the manual" — out to the nearest point with cell coverage, even when the property itself has none.
+
+**CASEY:** How many nodes, realistically, to cover something like the stretch between Horsefly and Likely?
+
+**RILEY:** LoRa range in open terrain runs several kilometres line-of-sight, less through heavy timber, so a chain across that stretch would likely need something in the range of half a dozen relay points — mounted wherever there's a rooftop, a barn, or a tall tree with some elevation to work with. That's not a massive build. It's the kind of thing a handful of neighbours could split between them over a summer.
+
+**CASEY:** That's a real project worth someone actually trying, not just a hypothetical for a podcast script. The work we've referenced before around Xatśūll First Nation building community-maintained digital infrastructure is the closest local precedent for something designed to survive without one person propping the whole thing up.
+
+**RILEY:** [pause:600] And it doesn't need to be Indigenous-led specifically to borrow that design principle — build it so the next person who shows up can maintain it without a manual only one person understands.
+
+**CASEY:** Sure, but "borrow the principle" is doing a lot of work in that sentence. Xatśūll built that capacity deliberately, over time, with people formally accountable to the community for keeping it running. A few Horsefly neighbours stringing radios along a road is a nice Saturday project. It is not the same kind of durable institution, and conflating the two undersells what real capacity-building actually requires.
+
+**RILEY:** Granted — scale and accountability aren't the same thing, and I'm not claiming they are. But the Saturday project is still the thing that could exist this year, versus the institution that might exist in five. Both things can be true at once without one cancelling the other out.
+
+**CASEY:** [pause:500] Okay. Where this actually lands, I think, is less about which brand of inverter or which mesh radio to buy, and more about a habit worth building before any purchase: does it work without a subscription, without an account, and is the failure mode something you or a neighbour can diagnose with a multimeter and a printed manual — not something that requires shipping a part back to a factory that might not answer the phone in three years.
+
+**RILEY:** That's a genuinely useful filter, and it's one a person can apply themselves without waiting for provincial procurement policy or a federal import law to sort itself out on its own timeline. The Cariboo Regional District doesn't need a program to make this happen. It needs a few dozen households actually comparing notes on what held up and what didn't.
+
+**CASEY:** Which is a much smaller ask than the last few times we've landed here on this exact theme. No grant application required.
+
+**RILEY:** [overlap:-150] Ha — noted, and fair.
+
+**CASEY:** If you've built something like this — a mesh node, an off-grid power setup, a wiring diagram you're actually proud of — send it our way. Feedback at cariboo signals dot c-a. We'd genuinely like to hear what's actually holding up out there, not just what looked good on launch day.
+
+**RILEY:** And if it fell apart in year two, tell us that too — that's usually the more useful story. Have a great rest of your day.
+
+**CASEY:** Try not to let the inverter question keep you up tonight. We'll see you tomorrow.
