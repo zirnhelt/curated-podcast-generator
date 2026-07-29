@@ -142,10 +142,14 @@ class TestSynthesizeRetries:
     """A 200 with no inlineData (finishReason OTHER) is a known transient
     Gemini TTS defect and must be retried like a 5xx, not fail the section."""
 
+    # SEGS is 11 words → expects ~4.4s (400 ms/word). 200_000 bytes of s16le @
+    # 24kHz is ~4.17s (ratio ~0.95) — comfortably plausible, so these fixtures
+    # don't themselves trip the duration-severity check added below.
+    AUDIO_PCM = b"\x00" * 200_000
     AUDIO_RESPONSE = {
         "candidates": [{"content": {"parts": [{"inlineData": {
             "mimeType": "audio/L16;rate=24000",
-            "data": base64.b64encode(b"\x00\x01").decode(),
+            "data": base64.b64encode(AUDIO_PCM).decode(),
         }}]}}],
         "usageMetadata": {"totalTokenCount": 100},
     }
@@ -180,7 +184,7 @@ class TestSynthesizeRetries:
         ]
         self._patch(monkeypatch, responses)
         pcm, rate = _synthesize_chunk(SEGS)
-        assert pcm == b"\x00\x01"
+        assert pcm == self.AUDIO_PCM
         assert rate == 24000
         assert not responses  # both attempts consumed
 
@@ -223,7 +227,7 @@ class TestSynthesizeRetries:
         ]
         self._patch(monkeypatch, responses)
         pcm, rate = _synthesize_chunk(SEGS)
-        assert pcm == b"\x00\x01"
+        assert pcm == self.AUDIO_PCM
         assert rate == 24000
 
     def test_timeout_fails_fast_not_600s(self, monkeypatch):
@@ -256,6 +260,48 @@ class TestSynthesizeRetries:
         self._patch(monkeypatch, responses)
         with pytest.raises(RuntimeError, match="GenerateRequestsPerDayPerProjectPerModel"):
             _synthesize_chunk(SEGS)
+
+    @staticmethod
+    def _audio_response(pcm_bytes: bytes) -> dict:
+        return {
+            "candidates": [{"content": {"parts": [{"inlineData": {
+                "mimeType": "audio/L16;rate=24000",
+                "data": base64.b64encode(pcm_bytes).decode(),
+            }}]}}],
+            "usageMetadata": {"totalTokenCount": 100},
+        }
+
+    def test_severely_truncated_audio_retried_then_succeeds(self, monkeypatch):
+        """2026-07-29: a retried news chunk came back 200 OK with audio at 21%
+        of the expected length — a technically-successful response missing
+        most of its content. That must retry, not ship as-is."""
+        # SEGS expects ~4.4s; 10_000 bytes @ 24kHz/s16le is ~0.2s (ratio ~0.05).
+        truncated = self._FakeResp(self._audio_response(b"\x00" * 10_000))
+        responses = [truncated, self._FakeResp(self.AUDIO_RESPONSE)]
+        self._patch(monkeypatch, responses)
+        pcm, rate = _synthesize_chunk(SEGS)
+        assert pcm == self.AUDIO_PCM
+        assert not responses  # both attempts consumed
+
+    def test_severely_truncated_audio_exhausts_retries_and_raises(self, monkeypatch):
+        responses = [
+            self._FakeResp(self._audio_response(b"\x00" * 10_000)) for _ in range(3)
+        ]
+        self._patch(monkeypatch, responses)
+        with pytest.raises(RuntimeError, match="severely truncated"):
+            _synthesize_chunk(SEGS)
+        assert not responses  # all three attempts consumed
+
+    def test_mild_duration_shortfall_not_retried(self, monkeypatch):
+        """Ratio between the 0.80 warning line and the 0.50 severity line is
+        plausible pacing variance (quick banter), not a dropped-content defect
+        — must not burn a retry."""
+        # ~3.1s of ~4.4s expected = ratio ~0.71
+        responses = [self._FakeResp(self._audio_response(b"\x00" * 150_000))]
+        self._patch(monkeypatch, responses)
+        pcm, rate = _synthesize_chunk(SEGS)
+        assert len(pcm) == 150_000
+        assert not responses  # only one attempt made
 
 
 class TestSectionGeneration:
