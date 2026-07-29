@@ -70,6 +70,17 @@ INTER_CHUNK_GAP_MS = 200
 # ~150 wpm ≈ 400 ms/word — same duration-ratio checksum as the OpenAI path
 EXPECTED_MS_PER_WORD = 400
 
+# Below this ratio the response isn't fast pacing, it's dropped content — a technically
+# successful call whose audio is a fraction of what the transcript requires. Observed
+# 2026-07-29: a retried news chunk (978 words) came back as 83s of audio (21% of the
+# ~391s expected) and shipped in the published episode, because the duration check only
+# printed a warning. Treated as retryable, same as a no-audio dud (below) — the per-attempt
+# seed offset means a retry actually samples a different response instead of reproducing
+# the same truncated one. The wider 0.80 threshold in _duration_check stays warning-only:
+# quick back-and-forth banter genuinely renders faster than the flat 400 ms/word estimate,
+# so it's expected to trip sometimes and isn't worth burning a retry over.
+SEVERE_TRUNCATION_RATIO = 0.5
+
 # (connect, read) timeouts in seconds. Worst case across all 3 attempts plus
 # backoff is ~7 min, vs the 15 min a hung server cost with the old 600 s read
 # timeout (2026-07-27 run: three ~5-min stalls before RemoteDisconnected).
@@ -242,7 +253,17 @@ def _synthesize_chunk(segments: list[dict], context_tail: str = "") -> tuple[byt
             mime = part.get("mimeType", "")
             rate_match = re.search(r"rate=(\d+)", mime)
             sample_rate = int(rate_match.group(1)) if rate_match else DEFAULT_SAMPLE_RATE
-            return base64.b64decode(part["data"]), sample_rate
+            pcm = base64.b64decode(part["data"])
+
+            duration = _duration_ratio(pcm, sample_rate, segments)
+            if duration is not None and duration[0] < SEVERE_TRUNCATION_RATIO:
+                ratio, words = duration
+                raise RuntimeError(
+                    f"Gemini TTS severely truncated audio: {words} words expected "
+                    f"~{words * EXPECTED_MS_PER_WORD // 1000}s, got "
+                    f"{len(pcm) / SAMPLE_WIDTH_BYTES / sample_rate:.0f}s ({ratio:.0%})"
+                )
+            return pcm, sample_rate
         except (requests.RequestException, RuntimeError) as e:
             if attempt < 2:
                 delay = 5 * (2 ** attempt)
@@ -253,15 +274,25 @@ def _synthesize_chunk(segments: list[dict], context_tail: str = "") -> tuple[byt
     raise AssertionError("unreachable")  # pragma: no cover
 
 
-def _duration_check(pcm: bytes, sample_rate: int, segments: list[dict]) -> None:
-    """Warn when audio is far shorter than the word count predicts (dropped text)."""
+def _duration_ratio(pcm: bytes, sample_rate: int, segments: list[dict]) -> tuple[float, int] | None:
+    """(actual/expected duration ratio, word count), or None when too few words to judge."""
     words = sum(len(re.findall(r"\b\w+\b", seg["text"])) for seg in segments)
     if words < 10:
-        return
+        return None
     actual_ms = len(pcm) / SAMPLE_WIDTH_BYTES / sample_rate * 1000
     expected_ms = words * EXPECTED_MS_PER_WORD
-    ratio = actual_ms / expected_ms
+    return actual_ms / expected_ms, words
+
+
+def _duration_check(pcm: bytes, sample_rate: int, segments: list[dict]) -> None:
+    """Warn when audio is far shorter than the word count predicts (dropped text)."""
+    duration = _duration_ratio(pcm, sample_rate, segments)
+    if duration is None:
+        return
+    ratio, words = duration
     if ratio < 0.80:
+        expected_ms = words * EXPECTED_MS_PER_WORD
+        actual_ms = ratio * expected_ms
         print(
             f"  ⚠️  Gemini TTS duration check: expected ~{expected_ms // 1000:.0f}s "
             f"for {words} words, got {actual_ms // 1000:.0f}s ({ratio:.0%}) — possible omission"
