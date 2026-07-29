@@ -21,6 +21,7 @@ from podcast_generator import (
     heuristic_gap_ms,
     score_script,
     _run_agentic_loop,
+    _brave_summarize,
     _usage_limit_reset,
     _abort_if_usage_limit,
     check_api_budget,
@@ -595,9 +596,27 @@ class TestRunAgenticLoop:
 
         assert result is None
 
-    def test_returns_none_when_truncated_at_max_tokens(self):
+    def test_retries_with_larger_budget_and_succeeds_after_truncation(self):
         client = _stream_client([
-            _response("max_tokens", [_text_block("script cut off mid-sen")])
+            _response("max_tokens", [_text_block("script cut off mid-sen")]),
+            _response("end_turn", [_text_block("full script on retry")]),
+        ])
+
+        result = _run_agentic_loop(
+            client, "test-model", "system prompt", "user content",
+            tools=[], tool_executors={}, max_tokens=1000,
+        )
+
+        assert result == "full script on retry"
+        assert client.messages.stream.call_count == 2
+        retry_kwargs = client.messages.stream.call_args_list[1].kwargs
+        assert retry_kwargs["max_tokens"] == 1500
+        assert retry_kwargs["output_config"] == {"effort": "low"}
+
+    def test_returns_none_when_still_truncated_after_retry(self):
+        client = _stream_client([
+            _response("max_tokens", [_text_block("script cut off mid-sen")]),
+            _response("max_tokens", [_text_block("still cut off")]),
         ])
 
         result = _run_agentic_loop(
@@ -606,7 +625,44 @@ class TestRunAgenticLoop:
         )
 
         assert result is None
-        assert client.messages.stream.call_count == 1
+        assert client.messages.stream.call_count == 2
+
+
+class TestBraveSummarize:
+    """Brave's chat/completions endpoint 400s without a "model" field (2026-07-29)."""
+
+    def test_sends_required_model_field(self, monkeypatch):
+        import podcast_generator as pg
+
+        captured = {}
+
+        class _Resp:
+            def raise_for_status(self):
+                pass
+
+            def json(self):
+                return {"choices": [{"message": {"content": "42 km"}}]}
+
+        def fake_post(url, headers=None, json=None, timeout=None):
+            captured["json"] = json
+            return _Resp()
+
+        monkeypatch.setattr(pg.requests, "post", fake_post)
+
+        result = _brave_summarize("distance to Horsefly Lake", "fake-key")
+
+        assert result == "42 km"
+        assert captured["json"]["model"] == "brave"
+
+    def test_returns_empty_string_on_error(self, monkeypatch):
+        import podcast_generator as pg
+
+        def fake_post(*args, **kwargs):
+            raise pg.requests.exceptions.HTTPError("400 Client Error: Bad Request")
+
+        monkeypatch.setattr(pg.requests, "post", fake_post)
+
+        assert _brave_summarize("some query", "fake-key") == ""
 
 
 class TestCreateMessage:
