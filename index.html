@@ -732,7 +732,7 @@
                             <div class="episode-date">${escHtml(episode.formattedDate)}</div>
                             ${episode.audioUrl ? `
                                 <div class="episode-audio">
-                                    <audio controls style="width: 100%; max-width: 300px;">
+                                    <audio controls style="width: 300px; max-width: 100%;">
                                         <source src="${escHtml(episode.audioUrl)}" type="audio/mpeg">
                                         Your browser does not support the audio element.
                                     </audio>
