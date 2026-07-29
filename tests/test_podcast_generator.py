@@ -595,9 +595,27 @@ class TestRunAgenticLoop:
 
         assert result is None
 
-    def test_returns_none_when_truncated_at_max_tokens(self):
+    def test_retries_with_larger_budget_and_succeeds_after_truncation(self):
         client = _stream_client([
-            _response("max_tokens", [_text_block("script cut off mid-sen")])
+            _response("max_tokens", [_text_block("script cut off mid-sen")]),
+            _response("end_turn", [_text_block("full script on retry")]),
+        ])
+
+        result = _run_agentic_loop(
+            client, "test-model", "system prompt", "user content",
+            tools=[], tool_executors={}, max_tokens=1000,
+        )
+
+        assert result == "full script on retry"
+        assert client.messages.stream.call_count == 2
+        retry_kwargs = client.messages.stream.call_args_list[1].kwargs
+        assert retry_kwargs["max_tokens"] == 1500
+        assert retry_kwargs["output_config"] == {"effort": "low"}
+
+    def test_returns_none_when_still_truncated_after_retry(self):
+        client = _stream_client([
+            _response("max_tokens", [_text_block("script cut off mid-sen")]),
+            _response("max_tokens", [_text_block("still cut off")]),
         ])
 
         result = _run_agentic_loop(
@@ -606,7 +624,7 @@ class TestRunAgenticLoop:
         )
 
         assert result is None
-        assert client.messages.stream.call_count == 1
+        assert client.messages.stream.call_count == 2
 
 
 class TestCreateMessage:

@@ -1845,6 +1845,11 @@ def _run_agentic_loop(client, model, system_prompt, user_content, tools, tool_ex
     max_iterations is reached. On the final iteration, tools are withheld so
     the model is forced to produce a text response.
 
+    A truncated final-iteration response (thinking ate the shared max_tokens
+    budget — see create_message docstring) gets one retry with 1.5x the
+    budget and low thinking effort, same recovery as generate_podcast_script's
+    truncation retry, before giving up.
+
     Returns the concatenated text of the final response, or None if the loop
     errors out or never produces text.
     """
@@ -1861,23 +1866,36 @@ def _run_agentic_loop(client, model, system_prompt, user_content, tools, tool_ex
 
     for iteration in range(max_iterations):
         available_tools = tools if iteration < max_iterations - 1 else []
-        try:
-            response = api_retry(lambda: create_message(
+
+        def call(tokens, **overrides):
+            return api_retry(lambda: create_message(
                 client, stream=True,
                 model=model,
-                max_tokens=max_tokens,
+                max_tokens=tokens,
                 system=cached_system,
                 tools=available_tools,
                 messages=messages,
+                **overrides,
             ))
+
+        try:
+            response = call(max_tokens)
         except Exception as e:
             print(f"  ⚠️ Agentic loop error: {e}")
             return None
 
         _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
         if _truncated(response):
-            print("  ⚠️ Agentic loop response truncated at max_tokens — discarding partial output")
-            return None
+            print("  ⚠️ Agentic loop response truncated at max_tokens — retrying with larger budget, low thinking effort...")
+            try:
+                response = call(int(max_tokens * 1.5), output_config={"effort": "low"})
+            except Exception as e:
+                print(f"  ⚠️ Agentic loop error: {e}")
+                return None
+            _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
+            if _truncated(response):
+                print("  ⚠️ Agentic loop response truncated at max_tokens after retry — discarding partial output")
+                return None
         if response.stop_reason != "tool_use":
             text = "".join(block.text for block in response.content if block.type == "text")
             return text or None
@@ -2429,9 +2447,15 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
                     "custom_id": "polish-and-factcheck",
                     "params": {
                         "model": review_model,
-                        "max_tokens": 16000,
+                        # 16000/medium truncated 2026-07-29 — the rewrite has
+                        # to reproduce the whole script (thousands of words)
+                        # plus fact-check reasoning, and a batch request can't
+                        # be inspected and retried like the real-time path.
+                        # Low effort leaves the budget for output instead of
+                        # thinking, same tradeoff as the script-gen retry.
+                        "max_tokens": 24000,
                         "thinking": {"type": "adaptive"},
-                        "output_config": {"effort": THINKING_EFFORT},
+                        "output_config": {"effort": "low"},
                         "messages": [{"role": "user", "content": pf_prompt}]
                     }
                 },

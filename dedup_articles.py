@@ -237,7 +237,9 @@ def cluster_and_rescore_corpus(articles, theme_name, client=None, model=None):
             # Strip markdown code fences if the model adds them anyway
             if raw.startswith("```"):
                 raw = re.sub(r"^```[a-z]*\n?", "", raw).rstrip("`").strip()
-            data = json.loads(raw)
+            # raw_decode (not loads) — Haiku sometimes appends trailing prose
+            # after the JSON object, which loads() rejects as "Extra data".
+            data, _ = json.JSONDecoder().raw_decode(raw)
             clusters = data.get("clusters", [])
             last_exc = None
             break
