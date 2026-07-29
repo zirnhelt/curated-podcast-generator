@@ -21,6 +21,7 @@ from podcast_generator import (
     heuristic_gap_ms,
     score_script,
     _run_agentic_loop,
+    _brave_summarize,
     _usage_limit_reset,
     _abort_if_usage_limit,
     check_api_budget,
@@ -625,6 +626,43 @@ class TestRunAgenticLoop:
 
         assert result is None
         assert client.messages.stream.call_count == 2
+
+
+class TestBraveSummarize:
+    """Brave's chat/completions endpoint 400s without a "model" field (2026-07-29)."""
+
+    def test_sends_required_model_field(self, monkeypatch):
+        import podcast_generator as pg
+
+        captured = {}
+
+        class _Resp:
+            def raise_for_status(self):
+                pass
+
+            def json(self):
+                return {"choices": [{"message": {"content": "42 km"}}]}
+
+        def fake_post(url, headers=None, json=None, timeout=None):
+            captured["json"] = json
+            return _Resp()
+
+        monkeypatch.setattr(pg.requests, "post", fake_post)
+
+        result = _brave_summarize("distance to Horsefly Lake", "fake-key")
+
+        assert result == "42 km"
+        assert captured["json"]["model"] == "brave"
+
+    def test_returns_empty_string_on_error(self, monkeypatch):
+        import podcast_generator as pg
+
+        def fake_post(*args, **kwargs):
+            raise pg.requests.exceptions.HTTPError("400 Client Error: Bad Request")
+
+        monkeypatch.setattr(pg.requests, "post", fake_post)
+
+        assert _brave_summarize("some query", "fake-key") == ""
 
 
 class TestCreateMessage:

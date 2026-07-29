@@ -1818,7 +1818,9 @@ def _brave_summarize(query, api_key):
                 "Content-Type": "application/json",
                 "x-subscription-token": api_key,
             },
-            json={"stream": False, "messages": [{"role": "user", "content": query}]},
+            # "model" is required by Brave's OpenAI-compatible chat/completions
+            # schema — omitting it 400s every call (2026-07-29).
+            json={"model": "brave", "stream": False, "messages": [{"role": "user", "content": query}]},
             timeout=15,
         )
         resp.raise_for_status()
