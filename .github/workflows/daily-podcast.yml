@@ -237,18 +237,18 @@ jobs:
             echo "No script changes to commit"
           fi
 
-      - name: Generate episode audio
+      # The audio half is three steps, not one. They fail for different reasons
+      # — back-catalogue TTS, today's TTS, and publishing surfaces (R2
+      # credentials, disk, network) — and used to share a single failure
+      # boundary, so a broken R2 sync cost a full 40-minute re-render to retry.
+      # Each stage writes its per-segment table to the job summary.
+      - name: Recover orphaned episodes
         if: steps.generate.outputs.generated == 'true'
-        timeout-minutes: 40
+        timeout-minutes: 15
+        continue-on-error: true
         env:
-          # Claude is still reachable from the audio path for provider-fallback
-          # bookkeeping, so the key stays.
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-          R2_BUCKET_NAME: cariboo-signals
           AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
           AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
           USE_AZURE_TTS: ${{ inputs.tts_provider == 'azure' && 'true' || '' }}
@@ -256,10 +256,81 @@ jobs:
           GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_MODEL || secrets.GEMINI_TTS_MODEL }}
           USE_GEMINI_TTS: ${{ (inputs.tts_provider == 'gemini' || inputs.tts_provider == '') && 'true' || '' }}
         run: |
-          echo "Starting daily podcast audio generation..."
-          python podcast_generator.py --stage audio
+          echo "Re-rendering any past episodes whose audio never landed..."
+          python podcast_generator.py --stage recover
 
-          echo "Audio generation complete!"
+      - name: Render episode audio
+        id: render
+        if: steps.generate.outputs.generated == 'true'
+        timeout-minutes: 40
+        env:
+          # Claude is still reachable from the audio path for provider-fallback
+          # bookkeeping, so the key stays.
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
+          AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
+          USE_AZURE_TTS: ${{ inputs.tts_provider == 'azure' && 'true' || '' }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_MODEL || secrets.GEMINI_TTS_MODEL }}
+          USE_GEMINI_TTS: ${{ (inputs.tts_provider == 'gemini' || inputs.tts_provider == '') && 'true' || '' }}
+        run: |
+          echo "Starting daily podcast audio render..."
+          # Exit 77 = no audio produced. Deliberately not continue-on-error:
+          # this previously exited 0 and the run went green on a broken episode.
+          python podcast_generator.py --stage render
+
+          echo "Audio render complete!"
+
+      # Bank the render before publishing. The sidecars are the video
+      # renderer's input and are cheap to lose but expensive to recreate.
+      - name: Commit audio sidecars
+        if: always() && steps.generate.outputs.generated == 'true'
+        continue-on-error: true
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Audio itself is deployed via Pages/R2, never committed.
+          git add podcasts/podcast_chapters_*.json podcasts/video_timeline_*.json || echo "No sidecars to add"
+
+          if ! git diff --staged --quiet; then
+            git commit -m "Episode audio sidecars - $(TZ='America/Vancouver' date '+%Y-%m-%d %A')"
+            git pull --rebase origin main || true
+            git push || {
+              echo "::warning::Failed to push audio sidecars — the publish step still has them locally."
+              exit 0
+            }
+          else
+            echo "No sidecar changes to commit"
+          fi
+
+      # Always worth attempting: publishing what exists keeps the feed and site
+      # current even when the render degraded, and the step above already
+      # banked whatever the render produced.
+      - name: Publish episode
+        if: always() && steps.generate.outputs.generated == 'true'
+        timeout-minutes: 15
+        continue-on-error: true
+        env:
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET_NAME: cariboo-signals
+        run: |
+          echo "Writing transcript, feeds and site, then syncing to R2..."
+          # Exit 78 = one or more publish surfaces degraded. Surfaced as a
+          # warning rather than a red run: the episode audio is safe, and the
+          # per-segment table in the job summary names what failed.
+          set +e
+          python podcast_generator.py --stage publish
+          rc=$?
+          set -e
+          if [ "$rc" -eq 78 ]; then
+            echo "::warning::One or more publish steps degraded — see the segment table in the job summary."
+            exit 0
+          fi
+          [ "$rc" -eq 0 ] || exit "$rc"
 
       - name: List generated files
         run: |
