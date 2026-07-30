@@ -4409,6 +4409,45 @@ def score_script(script_text):
             r"\bbeing honest about what we don't know\b",
             r"\bwe'll be honest about what we (?:don't|do not) know\b",
         ],
+        "ai_vocabulary_tics": [
+            r"\b(?:delve[sd]?|delving|utiliz(?:e|es|ing|ed)|leverag(?:e|es|ing|ed)|robust|streamlin(?:e|es|ing)|harness(?:es|ing)?|tapestry|paradigm|synerg(?:y|ies)|ecosystem)\b",
+        ],
+        "serves_as_dodge": [
+            r"\bserves as\b", r"\bstands as\b", r"\b(?:marks|represents) (?:a|an|the)\b",
+        ],
+        "pedagogical_voice": [
+            r"\bLet's (?:break this down|unpack|explore|dive in)\b",
+        ],
+        "filler_transitions": [
+            r"\bIt'?s worth noting\b", r"\bit bears mentioning\b",
+            r"\bImportantly,", r"\bInterestingly,", r"\bNotably,",
+        ],
+        "signposted_conclusion": [
+            r"\bIn conclusion\b", r"\bTo sum up\b", r"\bIn summary\b",
+        ],
+        "cliched_idioms": [
+            r"\bsmoking gun\b", r"\bperfect storm\b", r"\bmove the needle\b",
+            r"\bgame changer\b", r"\btip of the iceberg\b",
+        ],
+        "dismissive_concession": [
+            r"\bDespite (?:its|these|those) challenges,",
+        ],
+        "false_exclusivity": [
+            r"\bwhat most people miss\b", r"\bnobody'?s talking about\b", r"\bthe secret is\b",
+        ],
+        "patronizing_analogy": [
+            r"\bThink of (?:it|this|that) as\b",
+        ],
+        "futuristic_invitation": [
+            r"\bImagine a world where\b",
+        ],
+        "vague_attribution": [
+            r"\bexperts (?:say|believe|argue)\b", r"\bobservers (?:say|note)\b",
+            r"\bindustry reports (?:show|suggest)\b",
+        ],
+        "dramatic_countdown": [
+            r"\bNot [^.!?]{2,40}\.\s+Not [^.!?]{2,40}\.\s+Just\b",
+        ],
     }
 
     hits = {}
