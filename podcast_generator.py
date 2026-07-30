@@ -7568,12 +7568,37 @@ def run_script_stage() -> tuple[str, str] | None:
             all_feed_articles, evolving_stories = deduplicate_articles(all_feed_articles)
 
             if len(all_feed_articles) < MIN_FRESH_ARTICLES:
+                # Curated feed came back too thin (e.g. a low-volume theme day) —
+                # top it up from the legacy category feeds as bonus articles
+                # before giving up, rather than aborting on a non-empty feed.
                 print(
-                    f"❌ Only {len(all_feed_articles)} articles survived dedup "
-                    f"(minimum {MIN_FRESH_ARTICLES}) — today's feed is replaying "
-                    f"already-covered stories. Exiting before API spend."
+                    f"⚠️  Only {len(all_feed_articles)} articles survived dedup — "
+                    f"curated feed is thin, supplementing from legacy category feeds..."
                 )
-                sys.exit(1)
+                scoring_data = fetch_scoring_data()
+                legacy_raw = fetch_feed_data()
+                if scoring_data and legacy_raw:
+                    legacy_scored = get_article_scores(legacy_raw, scoring_data)
+                    legacy_scored = apply_blocklist(legacy_scored)
+                    legacy_scored = apply_bad_news_filter(legacy_scored, today_weekday)
+                    existing_urls = {a.get('url', '') for a in all_feed_articles}
+                    legacy_candidates = [
+                        a for a in legacy_scored if a.get('url', '') not in existing_urls
+                    ]
+                    legacy_fresh, legacy_evolving = deduplicate_articles(legacy_candidates)
+                    bonus_articles = bonus_articles + legacy_fresh
+                    all_feed_articles = all_feed_articles + legacy_fresh
+                    evolving_stories = evolving_stories + legacy_evolving
+
+                if len(all_feed_articles) < MIN_FRESH_ARTICLES:
+                    print(
+                        f"❌ Only {len(all_feed_articles)} articles survived dedup "
+                        f"(minimum {MIN_FRESH_ARTICLES}) even after supplementing from "
+                        f"legacy category feeds — today's feed is replaying "
+                        f"already-covered stories. Exiting before API spend."
+                    )
+                    sys.exit(1)
+                print(f"✅ Supplemented to {len(all_feed_articles)} fresh articles — proceeding.")
 
             # Cluster same-story duplicates within today's batch and penalize extras
             all_feed_articles = cluster_and_rescore_corpus(
