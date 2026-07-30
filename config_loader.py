@@ -5,12 +5,50 @@ Single-file swap point for a future DB-backed or per-tenant config layer.
 """
 
 import json
+import os
 import re
+import tempfile
 from datetime import date, timedelta
 from functools import lru_cache
 from pathlib import Path
 
 CONFIG_DIR = Path(__file__).parent / "config"
+
+
+# Lives here rather than in podcast_generator so psa_selector can use it too
+# without a circular import — this is the module every other one already loads.
+def atomic_write_text(path, text: str, encoding: str = "utf-8") -> None:
+    """Write text to path via a sibling temp file + os.replace.
+
+    Every state file in this project was previously opened 'w' and truncated in
+    place. A crash or OOM mid-write left truncated JSON, which the loaders
+    swallow as {} — silently discarding a 35- or 90-day history. os.replace is
+    atomic within a filesystem, so a reader sees either the old file or the new.
+    """
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fd, tmp_name = tempfile.mkstemp(
+        dir=str(path.parent), prefix=f".{path.name}.", suffix=".tmp"
+    )
+    try:
+        with os.fdopen(fd, "w", encoding=encoding) as f:
+            f.write(text)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp_name, path)
+    except BaseException:
+        # Leaving .tmp files behind would accumulate in podcasts/ over months.
+        try:
+            os.unlink(tmp_name)
+        except OSError:
+            pass
+        raise
+
+
+def atomic_write_json(path, data, **dump_kwargs) -> None:
+    """json.dump to path atomically. Defaults match the call sites it replaces."""
+    dump_kwargs.setdefault("indent", 2)
+    atomic_write_text(path, json.dumps(data, **dump_kwargs))
 
 @lru_cache(maxsize=1)
 def load_podcast_config():

@@ -13,6 +13,7 @@ import glob
 import random
 import time
 import xml.sax.saxutils as saxutils
+from contextlib import contextmanager
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 import requests
@@ -49,6 +50,8 @@ from config_loader import (
     message_text,
     strip_stage_directions,
     render_credits_text,
+    atomic_write_text as _atomic_write_text,
+    atomic_write_json as _atomic_write_json,
 )
 from azure_tts import (
     generate_azure_tts_for_section,
@@ -115,6 +118,111 @@ def _build_trace_channel_xml(trace_cfg, producer_name):
 # it is a "come back later", not a failure to diagnose. Exit distinctly
 # (EX_TEMPFAIL) so the workflow can skip the day instead of going red.
 EXIT_BUDGET_EXHAUSTED = 75
+# Upstream handed us nothing usable — not our bug, and the fallback crons will
+# hit the same empty feed. Distinct from a crash so CI can tell them apart.
+EXIT_NO_ARTICLES = 76
+# TTS/assembly produced no audio file. Previously this exited 0 and CI went green
+# on a broken episode; a render stage that can't report its own failure is not a
+# boundary.
+EXIT_RENDER_FAILED = 77
+# The episode rendered but one or more publish steps (transcript, RSS, index, R2)
+# degraded. The audio is safe; the site is stale.
+EXIT_PUBLISH_DEGRADED = 78
+
+
+# ---------------------------------------------------------------------------
+# Segment instrumentation
+#
+# The pipeline used to be two ~500-line stages in which any failure was a total
+# failure: a weather timeout discarded a paid-for script, a chapters-JSON write
+# error triggered a full re-render. Each phase now runs inside segment(), which
+# owns three things the old structure had nowhere to put: whether the phase is
+# allowed to fail, what the log looks like when it does, and a machine-readable
+# record of what actually ran.
+# ---------------------------------------------------------------------------
+
+_RUN_SEGMENTS: list[dict] = []
+
+
+@contextmanager
+def segment(name: str, *, critical: bool = True, exit_code: int | None = None):
+    """Run a named pipeline phase with isolated failure handling and reporting.
+
+    critical=False means the phase is allowed to fail: the exception is swallowed
+    and the caller continues with whatever fallback it pre-assigned *before* the
+    `with` block. That pre-assignment is the contract — a non-critical segment
+    must never be the only place a downstream variable gets bound.
+
+    A `with` block does not create a scope, so wrapping existing code changes no
+    variable lifetimes. That is why this is a context manager and not a set of
+    extracted functions.
+
+    exit_code turns a critical failure into that exit status instead of a
+    traceback, so the workflow can distinguish "upstream was empty" from "we
+    crashed".
+
+    SystemExit passes through untouched so the deliberate sys.exit() aborts
+    (budget cap, empty feed) keep their exit codes.
+    """
+    print(f"::group::{name}")
+    started = time.monotonic()
+    record = {"name": name, "status": "ok", "seconds": 0.0, "error": ""}
+    _RUN_SEGMENTS.append(record)
+    try:
+        yield record
+    except SystemExit as exc:
+        record["status"] = "aborted"
+        record["error"] = f"exit {exc.code}"
+        raise
+    except Exception as exc:
+        record["error"] = f"{type(exc).__name__}: {exc}"
+        if critical:
+            record["status"] = "failed"
+            print(f"::error::Segment '{name}' failed: {record['error']}")
+            if exit_code is not None:
+                sys.exit(exit_code)
+            raise
+        record["status"] = "degraded"
+        print(f"::warning::Segment '{name}' degraded: {record['error']}")
+    finally:
+        record["seconds"] = round(time.monotonic() - started, 1)
+        print("::endgroup::")
+
+
+def write_run_report(stage: str) -> None:
+    """Append the segment table to $GITHUB_STEP_SUMMARY; print it when unset.
+
+    Called from a `finally` in every stage entry point so a crashed run still
+    reports which phase died and how far the run got before it.
+    """
+    if not _RUN_SEGMENTS:
+        return
+
+    icons = {"ok": "✅", "degraded": "⚠️", "failed": "❌", "aborted": "🛑"}
+    lines = [
+        f"### Pipeline segments — `{stage}`",
+        "",
+        "| Segment | Status | Duration | Detail |",
+        "|---|---|---|---|",
+    ]
+    for rec in _RUN_SEGMENTS:
+        icon = icons.get(rec["status"], "•")
+        detail = rec["error"].replace("|", "\\|")[:200] or "—"
+        lines.append(
+            f"| `{rec['name']}` | {icon} {rec['status']} | {rec['seconds']}s | {detail} |"
+        )
+    lines += ["", _format_daily_cost_summary(), ""]
+    report = "\n".join(lines)
+
+    summary_path = os.getenv("GITHUB_STEP_SUMMARY")
+    if summary_path:
+        try:
+            with open(summary_path, "a", encoding="utf-8") as f:
+                f.write(report + "\n")
+            return
+        except OSError as exc:
+            print(f"⚠️  Could not write step summary: {exc}")
+    print(report)
 
 
 def _usage_limit_reset(exc: Exception) -> str | None:
@@ -931,8 +1039,7 @@ def rate_pending_seeds(pending_seeds):
                 if stored["id"] in id_map and "best_theme_day" in id_map[stored["id"]]:
                     stored["best_theme_day"] = id_map[stored["id"]]["best_theme_day"]
                     stored["best_theme_name"] = id_map[stored["id"]].get("best_theme_name")
-            with open(SEEDS_FILE, "w") as f:
-                json.dump(data, f, indent=2)
+            _atomic_write_json(SEEDS_FILE, data)
         except (json.JSONDecodeError, OSError) as e:
             print(f"  ⚠️  Could not persist seed ratings: {e}")
 
@@ -1042,8 +1149,7 @@ def consume_seeds(seed_ids):
                 s["status"] = "used"
                 s["used_on"] = today
                 consumed.append(s["id"])
-        with open(SEEDS_FILE, "w") as f:
-            json.dump(data, f, indent=2)
+        _atomic_write_json(SEEDS_FILE, data)
         if consumed:
             print(f"  🌱 Consumed {len(consumed)} seed(s): {', '.join(consumed)}")
     except (json.JSONDecodeError, OSError) as e:
@@ -1500,8 +1606,7 @@ def consume_email_items(item_ids: list) -> None:
                 item["status"] = "used"
                 item["used_at"] = today
                 consumed.append(item["id"])
-        with open(EMAIL_QUEUE_FILE, "w") as f:
-            json.dump(data, f, indent=2)
+        _atomic_write_json(EMAIL_QUEUE_FILE, data)
         if consumed:
             print(f"  📧 Consumed {len(consumed)} email queue item(s): {', '.join(consumed)}")
     except (json.JSONDecodeError, OSError) as e:
@@ -2643,9 +2748,12 @@ def load_memory(filename):
     return {}
 
 def save_memory(filename, data):
-    """Save memory data to JSON file."""
-    with open(filename, 'w') as f:
-        json.dump(data, f, indent=2)
+    """Save memory data to JSON file.
+
+    Atomic: these files carry 35- and 90-day windows that cannot be rebuilt, and
+    a truncated one reads back as {} without raising.
+    """
+    _atomic_write_json(filename, data)
 
 def get_episode_memory():
     """Load and clean episode memory (keep last MEMORY_RETENTION_DAYS)."""
@@ -4640,9 +4748,8 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
     citations_filename = PODCASTS_DIR / f"citations_{date_str}_{safe_theme}.json"
     
     try:
-        with open(citations_filename, 'w', encoding='utf-8') as f:
-            json.dump(citations_data, f, indent=2, ensure_ascii=False)
-        
+        _atomic_write_json(citations_filename, citations_data, ensure_ascii=False)
+
         print(f"📋 Saved citations to: {citations_filename.name}")
         return citations_filename
         
@@ -4686,7 +4793,7 @@ def refresh_citations_tts_credit(citations_path) -> None:
 
         if not changed:
             return
-        path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+        _atomic_write_json(path, data, ensure_ascii=False)
         print(f"📋 Citations TTS credit updated to actual renderer: {live_credit}")
     except Exception as e:
         print(f"⚠️  Could not refresh citations TTS credit: {e}")
@@ -6215,33 +6322,6 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
         # Export
         combined.export(output_filename, format="mp3")
 
-        # Parallel Azure comparison (week-1 evaluation: generate both, keep OpenAI as main)
-        if USE_AZURE_PARALLEL and not USE_AZURE_TTS:
-            _generate_parallel_azure_audio(segments, output_filename, theme_name=theme_name)
-
-        # Save chapters JSON
-        chapters_data = {"version": "1.2.0", "chapters": chapters}
-        chapters_filename = derive_episode_sidecar_path(output_filename, 'podcast_chapters')
-        with open(chapters_filename, 'w', encoding='utf-8') as f:
-            json.dump(chapters_data, f, indent=2)
-        print(f"📑 Saved chapters: {chapters_filename}")
-
-        # Save per-turn timeline for the video renderer (speaker badges)
-        timeline_filename = derive_episode_sidecar_path(output_filename, 'video_timeline')
-        with open(timeline_filename, 'w', encoding='utf-8') as f:
-            json.dump({"turns": video_timeline}, f, indent=2)
-        print(f"🎞️  Saved video timeline: {timeline_filename}")
-
-        duration_minutes = len(combined) / 1000 / 60
-        file_size_mb = os.path.getsize(output_filename) / 1024 / 1024
-
-        print(f"✅ Generated podcast audio with music!")
-        print(f"   Duration: {duration_minutes:.1f} minutes")
-        print(f"   File size: {file_size_mb:.1f} MB")
-
-        _tts_provider_used = get_active_tts_provider()
-        return output_filename
-
     except Exception as e:
         print(f"❌ Error generating audio with music: {e}")
         if 'insufficient_quota' in str(e):
@@ -6251,6 +6331,37 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
             return None
         print("⚠️  Falling back to TTS-only mode")
         return generate_audio_tts_only(script, output_filename)
+
+    # Everything below runs only once the mp3 is on disk, and is deliberately
+    # outside the TTS-only fallback above: these are sidecar writes and an
+    # optional comparison render, and a failure in any of them used to discard a
+    # finished episode and re-synthesize the whole thing without music.
+    with segment("render/azure-parallel", critical=False):
+        # Parallel Azure comparison (week-1 evaluation: generate both, keep OpenAI as main)
+        if USE_AZURE_PARALLEL and not USE_AZURE_TTS:
+            _generate_parallel_azure_audio(segments, output_filename, theme_name=theme_name)
+
+    with segment("render/sidecars", critical=False):
+        # Save chapters JSON
+        chapters_data = {"version": "1.2.0", "chapters": chapters}
+        chapters_filename = derive_episode_sidecar_path(output_filename, 'podcast_chapters')
+        _atomic_write_json(chapters_filename, chapters_data)
+        print(f"📑 Saved chapters: {chapters_filename}")
+
+        # Save per-turn timeline for the video renderer (speaker badges)
+        timeline_filename = derive_episode_sidecar_path(output_filename, 'video_timeline')
+        _atomic_write_json(timeline_filename, {"turns": video_timeline})
+        print(f"🎞️  Saved video timeline: {timeline_filename}")
+
+    duration_minutes = len(combined) / 1000 / 60
+    file_size_mb = os.path.getsize(output_filename) / 1024 / 1024
+
+    print(f"✅ Generated podcast audio with music!")
+    print(f"   Duration: {duration_minutes:.1f} minutes")
+    print(f"   File size: {file_size_mb:.1f} MB")
+
+    _tts_provider_used = get_active_tts_provider()
+    return output_filename
 
 def generate_audio_tts_only(script, output_filename, _force_openai=False):
     """Fallback: Generate audio without music (TTS only)."""
@@ -6372,12 +6483,10 @@ def generate_audio_tts_only(script, output_filename, _force_openai=False):
         # boundaries and a turn timeline, else section slides collapse onto one
         # whole-episode chapter and the weather slide lands mid-episode.
         chapters_filename = derive_episode_sidecar_path(output_filename, 'podcast_chapters')
-        with open(chapters_filename, 'w', encoding='utf-8') as f:
-            json.dump({"version": "1.2.0", "chapters": chapters}, f, indent=2)
+        _atomic_write_json(chapters_filename, {"version": "1.2.0", "chapters": chapters})
         print(f"📑 Saved chapters: {chapters_filename}")
         timeline_filename = derive_episode_sidecar_path(output_filename, 'video_timeline')
-        with open(timeline_filename, 'w', encoding='utf-8') as f:
-            json.dump({"turns": video_timeline}, f, indent=2)
+        _atomic_write_json(timeline_filename, {"turns": video_timeline})
         print(f"🎞️  Saved video timeline: {timeline_filename}")
 
         duration_minutes = len(combined) / 1000 / 60
@@ -6867,8 +6976,7 @@ def generate_episode_transcript(script_filename, date_str, safe_theme, audio_fil
             script_content = f.read()
 
         html = script_to_friendly_transcript(script_content)
-        with open(html_filename, 'w', encoding='utf-8') as f:
-            f.write(html)
+        _atomic_write_text(html_filename, html)
         print(f"📄 Saved HTML transcript to: {html_filename}")
 
         # Anchor VTT cues to the measured turn timings when the audio stage
@@ -6887,8 +6995,7 @@ def generate_episode_transcript(script_filename, date_str, safe_theme, audio_fil
         vtt = script_to_vtt_transcript(script_content, audio_duration_ms=audio_duration_ms,
                                        timeline=timeline)
         if vtt:
-            with open(vtt_filename, 'w', encoding='utf-8') as f:
-                f.write(vtt)
+            _atomic_write_text(vtt_filename, vtt)
             print(f"📄 Saved VTT transcript to: {vtt_filename}")
 
         return html_filename
@@ -7028,8 +7135,7 @@ def generate_podcast_rss_feed():
                 citations_data.setdefault('episode', {})['audio_file_size'] = file_size
                 citations_data['episode']['audio_duration'] = duration
                 try:
-                    with open(citations_file, 'w', encoding='utf-8') as f:
-                        json.dump(citations_data, f, indent=2, ensure_ascii=False)
+                    _atomic_write_json(citations_file, citations_data, ensure_ascii=False)
                 except Exception as e:
                     print(f"   ⚠️ Could not cache audio metadata for {citations_file}: {e}")
 
@@ -7153,9 +7259,10 @@ def generate_podcast_rss_feed():
         '</rss>'
     ])
     
-    with open('podcast-feed.xml', 'w', encoding='utf-8') as f:
-        f.write('\n'.join(rss_lines))
-    
+    # Atomic: a 2 MB feed truncated mid-write is the single worst loss here —
+    # every podcast client would see a malformed or half-empty catalogue.
+    _atomic_write_text('podcast-feed.xml', '\n'.join(rss_lines))
+
     print(f"✅ Generated RSS feed with {len(episodes)} episodes (with citations)")
 
 
@@ -7250,8 +7357,7 @@ def generate_tts_test_feed():
 
     rss_lines.extend(['</channel>', '</rss>'])
 
-    with open('tts-test-feed.xml', 'w', encoding='utf-8') as f:
-        f.write('\n'.join(rss_lines))
+    _atomic_write_text('tts-test-feed.xml', '\n'.join(rss_lines))
 
     print(f"✅ Generated TTS test feed with {len(episodes)} Azure episodes → tts-test-feed.xml")
 
@@ -7273,12 +7379,15 @@ def save_script_to_file(script: str, theme_name: str, brave_used: bool = False) 
     script_filename = str(PODCASTS_DIR / f"podcast_script_{date_str}_{safe_theme}.txt")
 
     try:
-        with open(script_filename, 'w', encoding='utf-8') as f:
-            f.write(f"# {CONFIG['podcast']['title']} Podcast Script - {date_str}\n")
-            f.write(f"# Theme: {theme_name}\n")
-            f.write(f"# Brave: {'yes' if brave_used else 'no'}\n")
-            f.write(f"# Generated: {pacific_now.strftime('%Y-%m-%d %H:%M:%S %Z')}\n\n")
-            f.write(script)
+        # Atomic: a half-written script is worse than none — the date-only glob
+        # in resolve_script_for_audio() would find it and render the fragment.
+        _atomic_write_text(script_filename, "".join([
+            f"# {CONFIG['podcast']['title']} Podcast Script - {date_str}\n",
+            f"# Theme: {theme_name}\n",
+            f"# Brave: {'yes' if brave_used else 'no'}\n",
+            f"# Generated: {pacific_now.strftime('%Y-%m-%d %H:%M:%S %Z')}\n\n",
+            script,
+        ]))
 
         print(f"💾 Saved script to: {script_filename}")
         return script_filename
@@ -7429,232 +7538,247 @@ def run_script_stage() -> tuple[str, str] | None:
     print("🎙️ Starting Cariboo Tech Progress script generation...")
     print("=" * 60)
 
-    # Load configuration
-    podcast_config = CONFIG['podcast']
-    print(f"📻 Podcast: {podcast_config['title']}")
-    
-    # Get today's theme
-    pacific_now = get_pacific_now()
-    today_weekday = pacific_now.weekday()
-    today_theme = get_theme_for_day(today_weekday)
-    # Super-cycle rotation focus for today (None on uncycled days, e.g. Saturday)
-    today_focus = get_focus_for_day(today_weekday, pacific_now.date())
-    weekday, date_str = get_current_date_info()
+    with segment("script/setup"):
+        # Load configuration
+        podcast_config = CONFIG['podcast']
+        print(f"📻 Podcast: {podcast_config['title']}")
 
-    print(f"📅 {weekday}, {date_str} - Theme: {today_theme}")
-    if today_focus:
-        print(f"🎯 Focus (week {today_focus['index'] + 1}/{today_focus['cycle_length']}): "
-              f"{today_focus['name']}")
-    
-    # Load memories
-    episode_memory = get_episode_memory()
-    host_memory = get_host_personality_memory()
-    debate_memory = get_debate_memory()
-    cta_memory = get_cta_memory()
+        # Get today's theme
+        pacific_now = get_pacific_now()
+        today_weekday = pacific_now.weekday()
+        today_theme = get_theme_for_day(today_weekday)
+        # Super-cycle rotation focus for today (None on uncycled days, e.g. Saturday)
+        today_focus = get_focus_for_day(today_weekday, pacific_now.date())
+        weekday, date_str = get_current_date_info()
 
-    # Load TWIT Intelligent Machines editorial inspiration (weekly harvest, no API call)
-    twit_items = _load_twit_inspiration() if _load_twit_inspiration else []
-    if twit_items:
-        print(f"🎙️  TWIT inspiration: {len(twit_items)} item(s) loaded")
+        print(f"📅 {weekday}, {date_str} - Theme: {today_theme}")
+        if today_focus:
+            print(f"🎯 Focus (week {today_focus['index'] + 1}/{today_focus['cycle_length']}): "
+                  f"{today_focus['name']}")
 
-    # Load pending content seeds (URLs and thoughts bookmarked by the user)
-    pending_seeds = load_content_seeds()
-    url_seeds = [s for s in pending_seeds if s.get("type") == "url"]
-    thought_seeds = [s for s in pending_seeds if s.get("type") == "thought"]
-    if pending_seeds:
-        print(f"🌱 Content seeds: {len(url_seeds)} URL(s), {len(thought_seeds)} thought(s)")
+        # Load memories
+        episode_memory = get_episode_memory()
+        host_memory = get_host_personality_memory()
+        debate_memory = get_debate_memory()
+        cta_memory = get_cta_memory()
+
+    # Optional inputs: nothing here is required to make an episode, so a
+    # malformed cache or queue file degrades to "no extras" rather than
+    # aborting a run that has not spent anything yet.
+    twit_items, pending_seeds, url_seeds, thought_seeds = [], [], [], []
+    email_newsletters, email_feedback, email_corrections = [], [], []
     consumed_seed_ids = []
-
-    # Load email queue items auto-ingested by email_ingest.py: newsletters/feedback
-    # matched to today's theme, plus every pending correction (never theme-gated)
-    email_newsletters, email_feedback, email_corrections = load_pending_email_items(today_theme)
-    if email_newsletters or email_feedback or email_corrections:
-        print(f"📧 Email queue: {len(email_newsletters)} newsletter(s), {len(email_feedback)} feedback(s) "
-              f"for today's theme, {len(email_corrections)} correction(s)")
     consumed_email_ids = []
 
-    # Check for an existing script (stored in podcasts/ subfolder).
-    # Glob on date only — the theme slug isn't known until the feed responds
-    # (it can override the weekday default), and a fallback run checking only
-    # the default-theme filename would miss an already-saved override-theme
-    # script and redo the whole fetch/enrichment pipeline. Mirrors the same
-    # date-only glob in resolve_script_for_audio()/_recover_orphaned_episodes().
-    date_key = pacific_now.strftime("%Y-%m-%d")
-    safe_theme = today_theme.replace(" ", "_").replace("&", "and").lower()
-    script_filename = str(PODCASTS_DIR / f"podcast_script_{date_key}_{safe_theme}.txt")
+    with segment("script/inputs", critical=False):
+        # Load TWIT Intelligent Machines editorial inspiration (weekly harvest, no API call)
+        twit_items = _load_twit_inspiration() if _load_twit_inspiration else []
+        if twit_items:
+            print(f"🎙️  TWIT inspiration: {len(twit_items)} item(s) loaded")
 
-    existing_matches = sorted(PODCASTS_DIR.glob(f"podcast_script_{date_key}_*.txt"))
-    script_exists = bool(existing_matches)
-    if script_exists:
-        script_filename = str(existing_matches[-1])
-        today_theme = read_script_metadata(script_filename).get("theme") or today_theme
+        # Load pending content seeds (URLs and thoughts bookmarked by the user)
+        pending_seeds = load_content_seeds()
+        url_seeds = [s for s in pending_seeds if s.get("type") == "url"]
+        thought_seeds = [s for s in pending_seeds if s.get("type") == "thought"]
+        if pending_seeds:
+            print(f"🌱 Content seeds: {len(url_seeds)} URL(s), {len(thought_seeds)} thought(s)")
+
+        # Load email queue items auto-ingested by email_ingest.py: newsletters/feedback
+        # matched to today's theme, plus every pending correction (never theme-gated)
+        email_newsletters, email_feedback, email_corrections = load_pending_email_items(today_theme)
+        if email_newsletters or email_feedback or email_corrections:
+            print(f"📧 Email queue: {len(email_newsletters)} newsletter(s), {len(email_feedback)} feedback(s) "
+                  f"for today's theme, {len(email_corrections)} correction(s)")
+
+    with segment("script/idempotency"):
+        # Check for an existing script (stored in podcasts/ subfolder).
+        # Glob on date only — the theme slug isn't known until the feed responds
+        # (it can override the weekday default), and a fallback run checking only
+        # the default-theme filename would miss an already-saved override-theme
+        # script and redo the whole fetch/enrichment pipeline. Mirrors the same
+        # date-only glob in resolve_script_for_audio()/_recover_orphaned_episodes().
+        date_key = pacific_now.strftime("%Y-%m-%d")
+        safe_theme = today_theme.replace(" ", "_").replace("&", "and").lower()
+        script_filename = str(PODCASTS_DIR / f"podcast_script_{date_key}_{safe_theme}.txt")
+
+        existing_matches = sorted(PODCASTS_DIR.glob(f"podcast_script_{date_key}_*.txt"))
+        script_exists = bool(existing_matches)
+        if script_exists:
+            script_filename = str(existing_matches[-1])
+            today_theme = read_script_metadata(script_filename).get("theme") or today_theme
 
     # Generate script if needed
     if not script_exists:
         print("🆕 Generating new script...")
 
-        # Everything below this line costs money — seed rating, the feed's
-        # Brave enrichment, article body fetches — and all of it is wasted if
-        # the account is over its cap. Check first.
-        check_api_budget()
+        with segment("script/budget-preflight"):
+            # Everything below this line costs money — seed rating, the feed's
+            # Brave enrichment, article body fetches — and all of it is wasted if
+            # the account is over its cap. Check first.
+            check_api_budget()
 
-        # Rate any unrated seeds against all themes and persist results.
-        # Seeds are only eligible on the day whose theme best matches their content.
-        if pending_seeds:
-            rate_pending_seeds(pending_seeds)
+            # Rate any unrated seeds against all themes and persist results.
+            # Seeds are only eligible on the day whose theme best matches their content.
+            if pending_seeds:
+                rate_pending_seeds(pending_seeds)
 
         # Fetch curated podcast feed for today's day of week (pre-scored, theme-sorted)
-        feed_meta, theme_articles, bonus_articles = fetch_podcast_feed(today_weekday)
+        with segment("script/feed", exit_code=EXIT_NO_ARTICLES):
+            feed_meta, theme_articles, bonus_articles = fetch_podcast_feed(today_weekday)
 
-        if feed_meta is None or not theme_articles:
-            # Fallback: use legacy multi-category fetch if podcast feed unavailable
-            print("⚠️  Podcast feed unavailable, falling back to category feeds...")
-            scoring_data = fetch_scoring_data()
-            current_articles = fetch_feed_data()
-
-            if not scoring_data or not current_articles:
-                print("❌ Failed to fetch data. Exiting.")
-                sys.exit(1)
-
-            scored_articles = get_article_scores(current_articles, scoring_data)
-            scored_articles = apply_blocklist(scored_articles)
-            scored_articles = apply_bad_news_filter(scored_articles, today_weekday)
-            scored_articles, evolving_stories = deduplicate_articles(scored_articles)
-
-            if len(scored_articles) < MIN_FRESH_ARTICLES:
-                print(
-                    f"❌ Only {len(scored_articles)} articles survived dedup "
-                    f"(minimum {MIN_FRESH_ARTICLES}) — category feeds are replaying "
-                    f"already-covered stories. Exiting before API spend."
-                )
-                sys.exit(1)
-
-            deep_dive_articles = categorize_articles_for_deep_dive(
-                scored_articles, today_weekday, focus=today_focus)
-            # In the fallback path, inject eligible URL seeds directly into deep dive.
-            # High-priority seeds are always eligible (bypass theme day filter) so
-            # they appear in the very next episode, as the shortcut advertises.
-            if url_seeds:
-                eligible_url_seeds = [
-                    s for s in url_seeds
-                    if s.get("priority") == "high"
-                    or s.get("best_theme_day") is None
-                    or s.get("best_theme_day") == today_weekday
-                ]
-                eligible_url_seeds.sort(key=lambda s: 0 if s.get("priority") == "high" else 1)
-                seed_articles = [build_seed_article(s) for s in eligible_url_seeds]
-                deep_dive_articles = seed_articles + deep_dive_articles
-                for a in seed_articles:
-                    consumed_seed_ids.append(a["_seed_id"])
-            # Inject email newsletter URLs into article pool (fallback path)
-            if email_newsletters:
-                newsletter_articles = _build_newsletter_articles(
-                    email_newsletters, today_theme, brave_client=None
-                )
-                deep_dive_articles = newsletter_articles + deep_dive_articles
-                consumed_email_ids.extend(i["id"] for i in email_newsletters)
-            news_articles = scored_articles[:NEWS_ROUNDUP_COUNT]
-            feed_meta = None
-        else:
-            # Use the curated podcast feed
-            # Override theme from feed if available
-            if feed_meta.get('theme'):
-                today_theme = feed_meta['theme']
-                safe_theme = today_theme.replace(" ", "_").replace("&", "and").lower()
-                script_filename = str(PODCASTS_DIR / f"podcast_script_{date_key}_{safe_theme}.txt")
-
-            # Deduplicate all articles against recent episodes
-            all_feed_articles = theme_articles + bonus_articles
-            all_feed_articles, evolving_stories = deduplicate_articles(all_feed_articles)
-
-            if len(all_feed_articles) < MIN_FRESH_ARTICLES:
-                # Curated feed came back too thin (e.g. a low-volume theme day) —
-                # top it up from the legacy category feeds as bonus articles
-                # before giving up, rather than aborting on a non-empty feed.
-                print(
-                    f"⚠️  Only {len(all_feed_articles)} articles survived dedup — "
-                    f"curated feed is thin, supplementing from legacy category feeds..."
-                )
+        # Article acquisition — the curated feed with a legacy-category
+        # fallback. Critical: an episode with no articles is not an episode,
+        # and the fallback crons would hit the same empty upstream.
+        with segment("script/curate", exit_code=EXIT_NO_ARTICLES):
+            if feed_meta is None or not theme_articles:
+                # Fallback: use legacy multi-category fetch if podcast feed unavailable
+                print("⚠️  Podcast feed unavailable, falling back to category feeds...")
                 scoring_data = fetch_scoring_data()
-                legacy_raw = fetch_feed_data()
-                if scoring_data and legacy_raw:
-                    legacy_scored = get_article_scores(legacy_raw, scoring_data)
-                    legacy_scored = apply_blocklist(legacy_scored)
-                    legacy_scored = apply_bad_news_filter(legacy_scored, today_weekday)
-                    existing_urls = {a.get('url', '') for a in all_feed_articles}
-                    legacy_candidates = [
-                        a for a in legacy_scored if a.get('url', '') not in existing_urls
-                    ]
-                    legacy_fresh, legacy_evolving = deduplicate_articles(legacy_candidates)
-                    bonus_articles = bonus_articles + legacy_fresh
-                    all_feed_articles = all_feed_articles + legacy_fresh
-                    evolving_stories = evolving_stories + legacy_evolving
+                current_articles = fetch_feed_data()
 
-                if len(all_feed_articles) < MIN_FRESH_ARTICLES:
+                if not scoring_data or not current_articles:
+                    print("❌ Failed to fetch data. Exiting.")
+                    sys.exit(EXIT_NO_ARTICLES)
+
+                scored_articles = get_article_scores(current_articles, scoring_data)
+                scored_articles = apply_blocklist(scored_articles)
+                scored_articles = apply_bad_news_filter(scored_articles, today_weekday)
+                scored_articles, evolving_stories = deduplicate_articles(scored_articles)
+
+                if len(scored_articles) < MIN_FRESH_ARTICLES:
                     print(
-                        f"❌ Only {len(all_feed_articles)} articles survived dedup "
-                        f"(minimum {MIN_FRESH_ARTICLES}) even after supplementing from "
-                        f"legacy category feeds — today's feed is replaying "
+                        f"❌ Only {len(scored_articles)} articles survived dedup "
+                        f"(minimum {MIN_FRESH_ARTICLES}) — category feeds are replaying "
                         f"already-covered stories. Exiting before API spend."
                     )
-                    sys.exit(1)
-                print(f"✅ Supplemented to {len(all_feed_articles)} fresh articles — proceeding.")
+                    sys.exit(EXIT_NO_ARTICLES)
 
-            # Cluster same-story duplicates within today's batch and penalize extras
-            all_feed_articles = cluster_and_rescore_corpus(
-                all_feed_articles, today_theme, get_anthropic_client(), model=SUMMARY_MODEL
-            )
+                deep_dive_articles = categorize_articles_for_deep_dive(
+                    scored_articles, today_weekday, focus=today_focus)
+                # In the fallback path, inject eligible URL seeds directly into deep dive.
+                # High-priority seeds are always eligible (bypass theme day filter) so
+                # they appear in the very next episode, as the shortcut advertises.
+                if url_seeds:
+                    eligible_url_seeds = [
+                        s for s in url_seeds
+                        if s.get("priority") == "high"
+                        or s.get("best_theme_day") is None
+                        or s.get("best_theme_day") == today_weekday
+                    ]
+                    eligible_url_seeds.sort(key=lambda s: 0 if s.get("priority") == "high" else 1)
+                    seed_articles = [build_seed_article(s) for s in eligible_url_seeds]
+                    deep_dive_articles = seed_articles + deep_dive_articles
+                    for a in seed_articles:
+                        consumed_seed_ids.append(a["_seed_id"])
+                # Inject email newsletter URLs into article pool (fallback path)
+                if email_newsletters:
+                    newsletter_articles = _build_newsletter_articles(
+                        email_newsletters, today_theme, brave_client=None
+                    )
+                    deep_dive_articles = newsletter_articles + deep_dive_articles
+                    consumed_email_ids.extend(i["id"] for i in email_newsletters)
+                news_articles = scored_articles[:NEWS_ROUNDUP_COUNT]
+                feed_meta = None
+            else:
+                # Use the curated podcast feed
+                # Override theme from feed if available
+                if feed_meta.get('theme'):
+                    today_theme = feed_meta['theme']
+                    safe_theme = today_theme.replace(" ", "_").replace("&", "and").lower()
+                    script_filename = str(PODCASTS_DIR / f"podcast_script_{date_key}_{safe_theme}.txt")
 
-            # Re-split after dedup
-            bonus_urls = {a.get('url', '') for a in bonus_articles}
-            theme_articles = [a for a in all_feed_articles if a.get('url', '') not in bonus_urls]
-            bonus_articles = [a for a in all_feed_articles if a.get('url', '') in bonus_urls]
+                # Deduplicate all articles against recent episodes
+                all_feed_articles = theme_articles + bonus_articles
+                all_feed_articles, evolving_stories = deduplicate_articles(all_feed_articles)
 
-            # Super-cycle routing: release matured held articles into today's
-            # pool; hold off-theme, non-urgent articles for their focus day;
-            # divert urgent off-theme stories to the bonus bucket + callback ledger.
-            theme_articles, bonus_articles = route_articles_for_focus(
-                theme_articles, bonus_articles, pacific_now.date(), today_theme, today_focus
-            )
+                if len(all_feed_articles) < MIN_FRESH_ARTICLES:
+                    # Curated feed came back too thin (e.g. a low-volume theme day) —
+                    # top it up from the legacy category feeds as bonus articles
+                    # before giving up, rather than aborting on a non-empty feed.
+                    print(
+                        f"⚠️  Only {len(all_feed_articles)} articles survived dedup — "
+                        f"curated feed is thin, supplementing from legacy category feeds..."
+                    )
+                    scoring_data = fetch_scoring_data()
+                    legacy_raw = fetch_feed_data()
+                    if scoring_data and legacy_raw:
+                        legacy_scored = get_article_scores(legacy_raw, scoring_data)
+                        legacy_scored = apply_blocklist(legacy_scored)
+                        legacy_scored = apply_bad_news_filter(legacy_scored, today_weekday)
+                        existing_urls = {a.get('url', '') for a in all_feed_articles}
+                        legacy_candidates = [
+                            a for a in legacy_scored if a.get('url', '') not in existing_urls
+                        ]
+                        legacy_fresh, legacy_evolving = deduplicate_articles(legacy_candidates)
+                        bonus_articles = bonus_articles + legacy_fresh
+                        all_feed_articles = all_feed_articles + legacy_fresh
+                        evolving_stories = evolving_stories + legacy_evolving
 
-            # Inject user-seeded URLs into the article pool.
-            # High-priority seeds are always eligible (bypass theme day filter) so
-            # they appear in the very next episode, as the shortcut advertises.
-            # Theme-agnostic seeds (no keyword match) are also always eligible.
-            # Normal-priority seeds queued for a different day wait their turn.
-            if url_seeds:
-                eligible_url_seeds = [
-                    s for s in url_seeds
-                    if s.get("priority") == "high"
-                    or s.get("best_theme_day") is None
-                    or s.get("best_theme_day") == today_weekday
-                ]
-                eligible_url_seeds.sort(key=lambda s: 0 if s.get("priority") == "high" else 1)
-                seed_articles = [build_seed_article(s) for s in eligible_url_seeds]
-                # Prepend seeds so select_deep_dive_from_feed sees them first
-                theme_articles = seed_articles + theme_articles
+                    if len(all_feed_articles) < MIN_FRESH_ARTICLES:
+                        print(
+                            f"❌ Only {len(all_feed_articles)} articles survived dedup "
+                            f"(minimum {MIN_FRESH_ARTICLES}) even after supplementing from "
+                            f"legacy category feeds — today's feed is replaying "
+                            f"already-covered stories. Exiting before API spend."
+                        )
+                        sys.exit(EXIT_NO_ARTICLES)
+                    print(f"✅ Supplemented to {len(all_feed_articles)} fresh articles — proceeding.")
 
-            # Inject email newsletter URLs into the article pool (curated feed path).
-            # URL-only newsletters get Brave enrichment so Claude has real article content.
-            if email_newsletters:
-                newsletter_articles = _build_newsletter_articles(
-                    email_newsletters, today_theme, brave_client=get_anthropic_client()
+                # Cluster same-story duplicates within today's batch and penalize extras
+                all_feed_articles = cluster_and_rescore_corpus(
+                    all_feed_articles, today_theme, get_anthropic_client(), model=SUMMARY_MODEL
                 )
-                theme_articles = newsletter_articles + theme_articles
-                consumed_email_ids.extend(i["id"] for i in email_newsletters)
 
-            # Select deep dive from theme articles; rest go to news
-            deep_dive_count = SATURDAY_DEEP_DIVE_COUNT if today_weekday == 5 else 3
-            deep_dive_articles, news_articles = select_deep_dive_from_feed(
-                theme_articles, today_theme, count=deep_dive_count, focus=today_focus)
+                # Re-split after dedup
+                bonus_urls = {a.get('url', '') for a in bonus_articles}
+                theme_articles = [a for a in all_feed_articles if a.get('url', '') not in bonus_urls]
+                bonus_articles = [a for a in all_feed_articles if a.get('url', '') in bonus_urls]
 
-            # Track which seeded articles landed in the deep dive
-            for a in deep_dive_articles:
-                if a.get("_seed_id"):
-                    consumed_seed_ids.append(a["_seed_id"])
+                # Super-cycle routing: release matured held articles into today's
+                # pool; hold off-theme, non-urgent articles for their focus day;
+                # divert urgent off-theme stories to the bonus bucket + callback ledger.
+                theme_articles, bonus_articles = route_articles_for_focus(
+                    theme_articles, bonus_articles, pacific_now.date(), today_theme, today_focus
+                )
 
-            # Append bonus articles to news, flagged for separate intro
-            news_articles = news_articles + bonus_articles
+                # Inject user-seeded URLs into the article pool.
+                # High-priority seeds are always eligible (bypass theme day filter) so
+                # they appear in the very next episode, as the shortcut advertises.
+                # Theme-agnostic seeds (no keyword match) are also always eligible.
+                # Normal-priority seeds queued for a different day wait their turn.
+                if url_seeds:
+                    eligible_url_seeds = [
+                        s for s in url_seeds
+                        if s.get("priority") == "high"
+                        or s.get("best_theme_day") is None
+                        or s.get("best_theme_day") == today_weekday
+                    ]
+                    eligible_url_seeds.sort(key=lambda s: 0 if s.get("priority") == "high" else 1)
+                    seed_articles = [build_seed_article(s) for s in eligible_url_seeds]
+                    # Prepend seeds so select_deep_dive_from_feed sees them first
+                    theme_articles = seed_articles + theme_articles
+
+                # Inject email newsletter URLs into the article pool (curated feed path).
+                # URL-only newsletters get Brave enrichment so Claude has real article content.
+                if email_newsletters:
+                    newsletter_articles = _build_newsletter_articles(
+                        email_newsletters, today_theme, brave_client=get_anthropic_client()
+                    )
+                    theme_articles = newsletter_articles + theme_articles
+                    consumed_email_ids.extend(i["id"] for i in email_newsletters)
+
+                # Select deep dive from theme articles; rest go to news
+                deep_dive_count = SATURDAY_DEEP_DIVE_COUNT if today_weekday == 5 else 3
+                deep_dive_articles, news_articles = select_deep_dive_from_feed(
+                    theme_articles, today_theme, count=deep_dive_count, focus=today_focus)
+
+                # Track which seeded articles landed in the deep dive
+                for a in deep_dive_articles:
+                    if a.get("_seed_id"):
+                        consumed_seed_ids.append(a["_seed_id"])
+
+                # Append bonus articles to news, flagged for separate intro
+                news_articles = news_articles + bonus_articles
 
         print(f"📊 Ready to generate podcast:")
         print(f"   News roundup: {len(news_articles)} articles")
@@ -7664,253 +7788,291 @@ def run_script_stage() -> tuple[str, str] | None:
             print(f"   Theme description: {feed_meta['theme_description'][:80]}...")
         print(f"   Memory context: {len(episode_memory)} recent episodes")
 
-        # Fetch article body text so Claude has real content to work from,
-        # not just headlines and meta-description snippets.
-        _enrich_articles_with_body(deep_dive_articles, label="deep dive")
-        _enrich_articles_with_body(news_articles, label="news roundup", max_articles=40)
+        deep_dive_quality, deep_dive_body_count = "unknown", 0
+        _sparse_brave_used = False
+        with segment("script/bodies"):
+            # Fetch article body text so Claude has real content to work from,
+            # not just headlines and meta-description snippets.
+            _enrich_articles_with_body(deep_dive_articles, label="deep dive")
+            _enrich_articles_with_body(news_articles, label="news roundup", max_articles=40)
 
-        deep_dive_quality, deep_dive_body_count = _assess_deep_dive_article_quality(deep_dive_articles)
-        news_articles, _sparse_brave_used = _filter_sparse_news_articles(news_articles)
+            deep_dive_quality, deep_dive_body_count = _assess_deep_dive_article_quality(deep_dive_articles)
+            news_articles, _sparse_brave_used = _filter_sparse_news_articles(news_articles)
 
-        # Confirm substance — not just attempted enrichment — before the deep dive
-        # locks in: swap any thin deep-dive article for a substantive alternative
-        # from the broader news pool so Claude is never put in a position where
-        # it has to hedge about sourcing on air.
-        theme_keywords_for_substitution = _build_theme_keywords(today_theme)
-        source_boost_for_substitution = _build_theme_source_boost(today_theme)
-        deep_dive_articles, news_articles = _ensure_deep_dive_substance(
-            deep_dive_articles, news_articles,
-            theme_keywords=theme_keywords_for_substitution,
-            source_boost=source_boost_for_substitution,
-        )
+            # Confirm substance — not just attempted enrichment — before the deep dive
+            # locks in: swap any thin deep-dive article for a substantive alternative
+            # from the broader news pool so Claude is never put in a position where
+            # it has to hedge about sourcing on air.
+            theme_keywords_for_substitution = _build_theme_keywords(today_theme)
+            source_boost_for_substitution = _build_theme_source_boost(today_theme)
+            deep_dive_articles, news_articles = _ensure_deep_dive_substance(
+                deep_dive_articles, news_articles,
+                theme_keywords=theme_keywords_for_substitution,
+                source_boost=source_boost_for_substitution,
+            )
 
-        # Curate the roundup pool: cap to the segment budget, keep every
-        # on-theme and BC-regional story, and prefer off-theme stories that
-        # arrive with same-field siblings so the roundup's back half plays as
-        # connected mini-arcs instead of disconnected one-offs. Dropped
-        # articles never reach citations, so dedup lets them resurface on a
-        # better-matched theme day.
-        _pool_size = SATURDAY_NEWS_ROUNDUP_COUNT if today_weekday == 5 else NEWS_ROUNDUP_COUNT
-        news_articles, _roundup_dropped = _curate_roundup_pool(news_articles, today_theme, _pool_size)
-        if _roundup_dropped:
-            print(f"🧵 Roundup pool: kept {len(news_articles)} articles, "
-                  f"dropped {len(_roundup_dropped)} unconnected off-theme:")
-            for a in _roundup_dropped:
-                print(f"   ✂️  {a.get('title', '')[:70]}")
+            # Curate the roundup pool: cap to the segment budget, keep every
+            # on-theme and BC-regional story, and prefer off-theme stories that
+            # arrive with same-field siblings so the roundup's back half plays as
+            # connected mini-arcs instead of disconnected one-offs. Dropped
+            # articles never reach citations, so dedup lets them resurface on a
+            # better-matched theme day.
+            _pool_size = SATURDAY_NEWS_ROUNDUP_COUNT if today_weekday == 5 else NEWS_ROUNDUP_COUNT
+            news_articles, _roundup_dropped = _curate_roundup_pool(news_articles, today_theme, _pool_size)
+            if _roundup_dropped:
+                print(f"🧵 Roundup pool: kept {len(news_articles)} articles, "
+                      f"dropped {len(_roundup_dropped)} unconnected off-theme:")
+                for a in _roundup_dropped:
+                    print(f"   ✂️  {a.get('title', '')[:70]}")
 
-        # Proactive research pass: identify analytical angles and run Brave for each.
-        # Falls back to standard enrichment when no analytical questions are surfaced.
-        brave_client = get_anthropic_client()
-        brave_context = research_deep_dive_with_agent(deep_dive_articles, today_theme, brave_client) if brave_client else ""
+        # Everything from here to the script prompt enriches the episode without
+        # being load-bearing for it. Each degrades to the value pre-assigned
+        # above its block rather than discarding an already-curated corpus.
+        brave_context = ""
+        with segment("script/research", critical=False):
+            # Proactive research pass: identify analytical angles and run Brave for each.
+            # Falls back to standard enrichment when no analytical questions are surfaced.
+            brave_client = get_anthropic_client()
+            brave_context = research_deep_dive_with_agent(deep_dive_articles, today_theme, brave_client) if brave_client else ""
         brave_used = _sparse_brave_used or bool(brave_context)
 
-        # Fetch Cariboo-wide weather
-        print("🌤️  Fetching Cariboo-wide weather...")
-        weather_data = fetch_weather()
-        if weather_data:
-            print(f"   {weather_data['summary']}")
-        else:
-            print("   Weather unavailable — skipping weather check")
-
-        # Inject evolving story context into memory for the prompt
-        evolving_context = format_evolving_story_context(evolving_stories)
-
-        # Repeat-topic guard: flag deep-dive overlap with recent coverage so
-        # hosts acknowledge prior discussions and center what's new (local, no API)
-        prior_coverage = format_prior_coverage_for_prompt(
-            deep_dive_articles, episode_memory, debate_memory
-        )
-        if prior_coverage:
-            print("🔁 Prior coverage overlap detected — acknowledgment instruction injected")
-            evolving_context += "\n" + prior_coverage
-
-        # Focus-day callbacks: stories that aired early in a bonus slot and
-        # whose rotation focus day is today
-        callback_context, callback_urls = format_focus_callbacks_for_prompt(today_focus)
-        if callback_context:
-            print(f"📞 Focus callbacks: {len(callback_urls)} aired-early stor(ies) to reference")
-            evolving_context += "\n" + callback_context
-
-        # Select today's PSA / Community Spotlight
-        psa_info = select_psa(pacific_now.date())
-        if psa_info and psa_info.get('org_name'):
-            print(f"🏘️  Community Spotlight: {psa_info['org_name']} ({psa_info['source']})")
-            if psa_info.get('event_name'):
-                print(f"   Event: {psa_info['event_name']}")
-        else:
-            print("🏘️  No community spotlight for today")
-        if psa_info and psa_info.get('notable_dates'):
-            names = [nd['name'] for nd in psa_info['notable_dates']]
-            print(f"📅 Notable dates: {', '.join(names)}")
-
-        # Filter thought seeds to those rated for today's theme (or theme-agnostic)
-        active_thought_seeds = [
-            s for s in thought_seeds
-            if s.get("best_theme_day") is None or s.get("best_theme_day") == today_weekday
-        ]
-        if active_thought_seeds:
-            print(f"  💭 Injecting {len(active_thought_seeds)} thought seed(s) into script prompt")
-            consumed_seed_ids.extend(s["id"] for s in active_thought_seeds)
-
-        # Inject listener feedback emails for today's theme
-        if email_feedback:
-            print(f"  💌 Injecting {len(email_feedback)} listener feedback email(s) into script prompt")
-            consumed_email_ids.extend(i["id"] for i in email_feedback)
-
-        # Inject pending listener corrections — always, regardless of theme
-        if email_corrections:
-            print(f"  ⚠️  Injecting {len(email_corrections)} listener correction(s) into script prompt")
-            consumed_email_ids.extend(i["id"] for i in email_corrections)
-
-        # Generate script
-        _dd_substantive = sum(1 for a in deep_dive_articles if len(a.get('_body', '') or '') >= NEWS_BODY_MIN_CHARS)
-        _news_substantive = sum(1 for a in news_articles if len(a.get('_body', '') or '') >= NEWS_BODY_MIN_CHARS)
-        print(f"✅ Substance confirmed: {_dd_substantive}/{len(deep_dive_articles)} deep dive + "
-              f"{_news_substantive}/{len(news_articles)} news articles have full content pulled")
-
-        script = generate_podcast_script(
-            news_articles, deep_dive_articles, today_theme,
-            episode_memory, host_memory, evolving_context,
-            psa_info=psa_info, feed_meta=feed_meta,
-            bonus_articles=bonus_articles, debate_memory=debate_memory,
-            cta_memory=cta_memory, thought_seeds=active_thought_seeds,
-            weather_data=weather_data, brave_context=brave_context,
-            feedback_emails=email_feedback, twit_items=twit_items,
-            corrections=email_corrections, focus=today_focus
-        )
-
-        if not script:
-            print("❌ Failed to generate script. Exiting.")
-            sys.exit(1)
-
-        # Score the raw script so select_review_model can factor quality into model choice.
-        global _raw_quality_score
-        _raw_quality_score = score_script(script)
-        print(f"   Pre-polish quality scan: {_raw_quality_score['total_hits']} pattern hits "
-              f"(closing URL repeats: {_raw_quality_score['pattern_hits'].get('closing_url_repetition', 0)})")
-
-        # Optional fast-path: skip rewrite when the script is already clean.
-        if PODCAST_SKIP_CLEAN_POLISH and _raw_quality_score.get("total_hits", 999) <= CLEAN_POLISH_MAX_HITS:
-            print("✨ Skipping polish: clean script fast-path enabled")
-            debate_summary = None
-        # Post-processing: polish + fact-check + debate summary
-        # Try batch API first (50% cost discount), fall back to the agentic
-        # real-time polish+factcheck loop (which resolves unanswered factual
-        # questions itself via web_search, only when it decides it needs to).
-        debate_summary = None
-        if script and USE_BATCH_API:
-            print("📦 Using Batch API for post-processing (50% cost discount)...")
-            # Resolve unanswered factual questions once for the batch request
-            # (the batch path can't run an agentic tool loop).
-            _ar_client = get_anthropic_client()
-            additional_research = _resolve_script_questions_with_brave(
-                script, os.getenv("BRAVE_SEARCH_API_KEY"), _ar_client
-            ) if _ar_client else ""
-
-            batch_script, batch_debate = run_post_processing_batch(
-                script, today_theme, news_articles, deep_dive_articles,
-                additional_research=additional_research,
-                research_insights=brave_context,
-            )
-            if batch_script:
-                script = batch_script
+        weather_data = None
+        with segment("script/weather", critical=False):
+            # Fetch Cariboo-wide weather
+            print("🌤️  Fetching Cariboo-wide weather...")
+            weather_data = fetch_weather()
+            if weather_data:
+                print(f"   {weather_data['summary']}")
             else:
-                # Batch polish failed — fall back to the agentic real-time loop
-                print("⚠️ Batch polish failed, falling back to agentic polish+factcheck...")
+                print("   Weather unavailable — skipping weather check")
+
+        evolving_context = ""
+        callback_urls = []
+        with segment("script/context", critical=False):
+            # Inject evolving story context into memory for the prompt
+            evolving_context = format_evolving_story_context(evolving_stories)
+
+            # Repeat-topic guard: flag deep-dive overlap with recent coverage so
+            # hosts acknowledge prior discussions and center what's new (local, no API)
+            prior_coverage = format_prior_coverage_for_prompt(
+                deep_dive_articles, episode_memory, debate_memory
+            )
+            if prior_coverage:
+                print("🔁 Prior coverage overlap detected — acknowledgment instruction injected")
+                evolving_context += "\n" + prior_coverage
+
+            # Focus-day callbacks: stories that aired early in a bonus slot and
+            # whose rotation focus day is today
+            callback_context, callback_urls = format_focus_callbacks_for_prompt(today_focus)
+            if callback_context:
+                print(f"📞 Focus callbacks: {len(callback_urls)} aired-early stor(ies) to reference")
+                evolving_context += "\n" + callback_context
+
+        psa_info = None
+        with segment("script/psa", critical=False):
+            # Select today's PSA / Community Spotlight
+            psa_info = select_psa(pacific_now.date())
+            if psa_info and psa_info.get('org_name'):
+                print(f"🏘️  Community Spotlight: {psa_info['org_name']} ({psa_info['source']})")
+                if psa_info.get('event_name'):
+                    print(f"   Event: {psa_info['event_name']}")
+            else:
+                print("🏘️  No community spotlight for today")
+            if psa_info and psa_info.get('notable_dates'):
+                names = [nd['name'] for nd in psa_info['notable_dates']]
+                print(f"📅 Notable dates: {', '.join(names)}")
+
+        active_thought_seeds = []
+        with segment("script/listener-inputs", critical=False):
+            # Filter thought seeds to those rated for today's theme (or theme-agnostic)
+            active_thought_seeds = [
+                s for s in thought_seeds
+                if s.get("best_theme_day") is None or s.get("best_theme_day") == today_weekday
+            ]
+            if active_thought_seeds:
+                print(f"  💭 Injecting {len(active_thought_seeds)} thought seed(s) into script prompt")
+                consumed_seed_ids.extend(s["id"] for s in active_thought_seeds)
+
+            # Inject listener feedback emails for today's theme
+            if email_feedback:
+                print(f"  💌 Injecting {len(email_feedback)} listener feedback email(s) into script prompt")
+                consumed_email_ids.extend(i["id"] for i in email_feedback)
+
+            # Inject pending listener corrections — always, regardless of theme
+            if email_corrections:
+                print(f"  ⚠️  Injecting {len(email_corrections)} listener correction(s) into script prompt")
+                consumed_email_ids.extend(i["id"] for i in email_corrections)
+
+        with segment("script/generate"):
+            _dd_substantive = sum(1 for a in deep_dive_articles if len(a.get('_body', '') or '') >= NEWS_BODY_MIN_CHARS)
+            _news_substantive = sum(1 for a in news_articles if len(a.get('_body', '') or '') >= NEWS_BODY_MIN_CHARS)
+            print(f"✅ Substance confirmed: {_dd_substantive}/{len(deep_dive_articles)} deep dive + "
+                  f"{_news_substantive}/{len(news_articles)} news articles have full content pulled")
+
+            script = generate_podcast_script(
+                news_articles, deep_dive_articles, today_theme,
+                episode_memory, host_memory, evolving_context,
+                psa_info=psa_info, feed_meta=feed_meta,
+                bonus_articles=bonus_articles, debate_memory=debate_memory,
+                cta_memory=cta_memory, thought_seeds=active_thought_seeds,
+                weather_data=weather_data, brave_context=brave_context,
+                feedback_emails=email_feedback, twit_items=twit_items,
+                corrections=email_corrections, focus=today_focus
+            )
+
+            if not script:
+                print("❌ Failed to generate script. Exiting.")
+                sys.exit(1)
+
+            # Score the raw script so select_review_model can factor quality into model choice.
+            global _raw_quality_score
+            _raw_quality_score = score_script(script)
+            print(f"   Pre-polish quality scan: {_raw_quality_score['total_hits']} pattern hits "
+                  f"(closing URL repeats: {_raw_quality_score['pattern_hits'].get('closing_url_repetition', 0)})")
+
+        # Polish is an improvement pass, not a producer: on failure the raw
+        # script generated above still ships. Aborting here would discard the
+        # single most expensive call in the pipeline over a rewrite.
+        debate_summary = None
+        with segment("script/polish", critical=False):
+            # Optional fast-path: skip rewrite when the script is already clean.
+            if PODCAST_SKIP_CLEAN_POLISH and _raw_quality_score.get("total_hits", 999) <= CLEAN_POLISH_MAX_HITS:
+                print("✨ Skipping polish: clean script fast-path enabled")
+                debate_summary = None
+            # Post-processing: polish + fact-check + debate summary
+            # Try batch API first (50% cost discount), fall back to the agentic
+            # real-time polish+factcheck loop (which resolves unanswered factual
+            # questions itself via web_search, only when it decides it needs to).
+            if script and USE_BATCH_API:
+                print("📦 Using Batch API for post-processing (50% cost discount)...")
+                # Resolve unanswered factual questions once for the batch request
+                # (the batch path can't run an agentic tool loop).
+                _ar_client = get_anthropic_client()
+                additional_research = _resolve_script_questions_with_brave(
+                    script, os.getenv("BRAVE_SEARCH_API_KEY"), _ar_client
+                ) if _ar_client else ""
+
+                batch_script, batch_debate = run_post_processing_batch(
+                    script, today_theme, news_articles, deep_dive_articles,
+                    additional_research=additional_research,
+                    research_insights=brave_context,
+                )
+                if batch_script:
+                    script = batch_script
+                else:
+                    # Batch polish failed — fall back to the agentic real-time loop
+                    print("⚠️ Batch polish failed, falling back to agentic polish+factcheck...")
+                    script = polish_and_factcheck_with_agent(
+                        script, today_theme, news_articles, deep_dive_articles,
+                        research_insights=brave_context,
+                    )
+
+                if batch_debate:
+                    debate_summary = batch_debate
+
+            elif script:
+                # Real-time path (batch disabled) — agentic polish+factcheck loop
                 script = polish_and_factcheck_with_agent(
                     script, today_theme, news_articles, deep_dive_articles,
                     research_insights=brave_context,
                 )
 
-            if batch_debate:
-                debate_summary = batch_debate
-
-        elif script:
-            # Real-time path (batch disabled) — agentic polish+factcheck loop
-            script = polish_and_factcheck_with_agent(
-                script, today_theme, news_articles, deep_dive_articles,
-                research_insights=brave_context,
-            )
-
         if not script:
             print("❌ Failed to generate script. Exiting.")
             sys.exit(1)
 
-        # Generate the cold open last, now that the News Roundup and Deep
-        # Dive are final — grounds the teaser in what the episode actually
-        # covers instead of what was merely curated for it.
-        print("🎬 Generating cold open teaser...")
-        script = generate_cold_open(script, today_theme)
+        with segment("script/cold-open", critical=False):
+            # Generate the cold open last, now that the News Roundup and Deep
+            # Dive are final — grounds the teaser in what the episode actually
+            # covers instead of what was merely curated for it.
+            print("🎬 Generating cold open teaser...")
+            script = generate_cold_open(script, today_theme)
 
-        # Extract debate summary if not already obtained from batch
-        if not debate_summary:
-            print("🗂️  Extracting debate summary for memory and citations...")
-            debate_summary = extract_debate_summary(script, today_theme)
-        print(f"   Debate question: {debate_summary.get('central_question', 'N/A')}")
+        with segment("script/debate-summary", critical=False):
+            # Extract debate summary if not already obtained from batch
+            if not debate_summary:
+                print("🗂️  Extracting debate summary for memory and citations...")
+                debate_summary = extract_debate_summary(script, today_theme)
+            print(f"   Debate question: {debate_summary.get('central_question', 'N/A')}")
 
-        # Score the finalized script for AI speech pattern quality
-        print("📊 Scoring script for AI speech patterns...")
-        script_quality = score_script(script)
-        script_quality["deep_dive_article_quality"] = deep_dive_quality
-        script_quality["deep_dive_articles_with_body"] = deep_dive_body_count
-        if deep_dive_quality == 'sparse':
-            script_quality["upstream_quality_warning"] = True
-            print("⚠️  UPSTREAM WARNING: Episode generated from sparse article batch — feed may have had a bad delivery")
-        print(f"   Total pattern hits: {script_quality['total_hits']}  |  "
-              f"Voice ratio Casey/Riley: {script_quality['voice_ratio_casey_riley']}  |  "
-              f"Words: {script_quality['word_count']}")
+        script_quality = None
+        with segment("script/quality-score", critical=False):
+            # Score the finalized script for AI speech pattern quality
+            print("📊 Scoring script for AI speech patterns...")
+            script_quality = score_script(script)
+            script_quality["deep_dive_article_quality"] = deep_dive_quality
+            script_quality["deep_dive_articles_with_body"] = deep_dive_body_count
+            if deep_dive_quality == 'sparse':
+                script_quality["upstream_quality_warning"] = True
+                print("⚠️  UPSTREAM WARNING: Episode generated from sparse article batch — feed may have had a bad delivery")
+            print(f"   Total pattern hits: {script_quality['total_hits']}  |  "
+                  f"Voice ratio Casey/Riley: {script_quality['voice_ratio_casey_riley']}  |  "
+                  f"Words: {script_quality['word_count']}")
 
-        # Generate citations *after* script is finalized so they align with
-        # what was actually discussed, not just the input article list.
-        citations_file = generate_citations_file(
-            news_articles, deep_dive_articles, today_theme, script=script,
-            debate_summary=debate_summary, psa_info=psa_info, quality=script_quality,
-            brave_used=brave_used,
-            weather_used=bool(weather_data),
-            cohere_used=cohere_enrichment.COHERE_ENABLED,
-            weather_data=weather_data,
-        )
-
-        # Thursday: brief spoken acknowledgment that the show hasn't yet spoken
-        # directly with First Nations communications staff this episode.
-        if today_weekday == 3:
-            c2_text = _generate_host_line(
-                "Casey briefly and honestly notes — in one short, natural sentence — "
-                f"that {CONFIG['podcast'].get('title', 'the show')} hasn't spoken directly "
-                "with First Nations communications staff for today's episode, and that "
-                "they'd welcome that conversation. Matter-of-fact, not performative. "
-                "This is a genuine aside as the episode winds down, not a formal disclaimer.",
-                "casey",
+        with segment("script/citations", critical=False):
+            # Generate citations *after* script is finalized so they align with
+            # what was actually discussed, not just the input article list.
+            generate_citations_file(
+                news_articles, deep_dive_articles, today_theme, script=script,
+                debate_summary=debate_summary, psa_info=psa_info, quality=script_quality,
+                brave_used=brave_used,
+                weather_used=bool(weather_data),
+                cohere_used=cohere_enrichment.COHERE_ENABLED,
+                weather_data=weather_data,
             )
-            if c2_text:
-                script = script.rstrip() + f"\n\n**CASEY:** {c2_text}\n"
 
-        # Sunday: "Meta Moment" — light recap of the week's tweaks to the show itself
-        if today_weekday == 6:
-            meta_text = generate_meta_moment_text(get_weekly_changelog())
-            if meta_text and "**COMMUNITY SPOTLIGHT**" in script:
-                script = script.replace("**COMMUNITY SPOTLIGHT**", meta_text + "\n\n**COMMUNITY SPOTLIGHT**", 1)
+        with segment("script/day-specific-inserts", critical=False):
+            # Thursday: brief spoken acknowledgment that the show hasn't yet spoken
+            # directly with First Nations communications staff this episode.
+            if today_weekday == 3:
+                c2_text = _generate_host_line(
+                    "Casey briefly and honestly notes — in one short, natural sentence — "
+                    f"that {CONFIG['podcast'].get('title', 'the show')} hasn't spoken directly "
+                    "with First Nations communications staff for today's episode, and that "
+                    "they'd welcome that conversation. Matter-of-fact, not performative. "
+                    "This is a genuine aside as the episode winds down, not a formal disclaimer.",
+                    "casey",
+                )
+                if c2_text:
+                    script = script.rstrip() + f"\n\n**CASEY:** {c2_text}\n"
 
-        # Save script — brave_used rides in the header so the audio stage can
-        # keep the spoken Brave credit accurate across the process boundary.
-        script_filename = save_script_to_file(script, today_theme, brave_used=brave_used)
+            # Sunday: "Meta Moment" — light recap of the week's tweaks to the show itself
+            if today_weekday == 6:
+                meta_text = generate_meta_moment_text(get_weekly_changelog())
+                if meta_text and "**COMMUNITY SPOTLIGHT**" in script:
+                    script = script.replace("**COMMUNITY SPOTLIGHT**", meta_text + "\n\n**COMMUNITY SPOTLIGHT**", 1)
 
-        # Mark consumed seeds as used
-        if consumed_seed_ids:
-            consume_seeds(consumed_seed_ids)
+        # The script file is the stage's product and the audio stage's only
+        # input. If this cannot be written there is nothing to commit and
+        # nothing to render, so it is the one persistence step that aborts.
+        with segment("script/save"):
+            # brave_used rides in the header so the audio stage can keep the
+            # spoken Brave credit accurate across the process boundary.
+            script_filename = save_script_to_file(script, today_theme, brave_used=brave_used)
 
-        # Mark consumed email queue items as used
-        if consumed_email_ids:
-            consume_email_items(consumed_email_ids)
+        # Each state file gets its own segment. These were one unbroken run of
+        # writes: a failure partway through marked seeds and email consumed
+        # while leaving three memory files unwritten, with nothing in the log
+        # naming which. Isolated, the rest still land and the report names the
+        # one that did not.
+        with segment("script/persist-seeds", critical=False):
+            if consumed_seed_ids:
+                consume_seeds(consumed_seed_ids)
 
-        # Retire aired-early ledger entries whose callback just aired
-        consume_focus_callbacks(callback_urls)
+        with segment("script/persist-email", critical=False):
+            if consumed_email_ids:
+                consume_email_items(consumed_email_ids)
 
-        # Update memory
-        if script:
+        with segment("script/persist-callbacks", critical=False):
+            # Retire aired-early ledger entries whose callback just aired
+            consume_focus_callbacks(callback_urls)
+
+        topics = []
+        with segment("script/persist-episode-memory", critical=False):
             topics, themes = extract_topics_and_themes(script, news_articles, deep_dive_articles)
             update_episode_memory(date_key, topics, themes, focus=today_focus)
 
+        with segment("script/persist-host-memory", critical=False):
             # Update host memory with topic insights and personality clues
             host_insights = {
                 'riley': [t for t in topics if 'tech' in t.lower() or 'AI' in t][:2],
@@ -7924,9 +8086,10 @@ def run_script_stage() -> tuple[str, str] | None:
                         print(f"   {host}: {'; '.join(host_clues)}")
             update_host_memory(host_insights, clues=personality_clues)
 
-            # Update debate memory
+        with segment("script/persist-debate-memory", critical=False):
             update_debate_memory(date_key, today_theme, debate_summary, focus=today_focus)
 
+        with segment("script/persist-cta-memory", critical=False):
             # Update one-year CTA cache
             ctas = debate_summary.get('calls_to_action', []) if debate_summary else []
             if ctas:
@@ -7965,81 +8128,161 @@ def resolve_script_for_audio(script_path: str = None, date_str: str = None) -> s
     return str(matches[-1])
 
 
-def run_audio_stage(script_path: str = None, date_str: str = None) -> bool:
-    """Stage 2: render audio from a saved script and publish the episode.
+def _episode_paths(script_filename: str) -> tuple[str, str, str]:
+    """Derive (audio_filename, date_key, safe_theme) from a script filename.
+
+    The audio path comes from the script's own filename, not from a recomputed
+    theme slug — the feed can override today's theme, and this is the same
+    mapping _recover_orphaned_episodes() already relies on.
+    """
+    slug = Path(script_filename).stem.replace("podcast_script_", "", 1)
+    audio_filename = str(PODCASTS_DIR / f"podcast_audio_{slug}.mp3")
+    date_key, _, safe_theme = slug.partition("_")
+    return audio_filename, date_key, safe_theme
+
+
+def run_recover_stage(lookback_days: int = 3) -> bool:
+    """Stage: re-render past episodes whose script landed but audio never did.
+
+    Its own stage because it is unbounded TTS work on the back catalogue that
+    has nothing to do with today's episode — running it inline meant a bad
+    --script path still spent three days of render budget before failing.
+    """
+    with segment("recover/orphans", critical=False):
+        return _recover_orphaned_episodes(lookback_days=lookback_days)
+    return False
+
+
+def run_render_stage(script_path: str = None, date_str: str = None) -> bool:
+    """Stage: turn a saved script into the episode mp3 and its sidecars.
 
     Reads the script from disk rather than taking it as an argument, so it runs
     standalone against a past or hand-edited script. Returns True when the
     episode's audio is in place.
     """
-    print("🎵 Starting Cariboo Tech Progress audio generation...")
-    print("=" * 60)
-
-    # Recover any past episodes whose script exists but audio was never
-    # generated. Audio work, so it belongs to this stage.
-    _recover_orphaned_episodes(lookback_days=3)
-
     script_filename = resolve_script_for_audio(script_path, date_str)
     if not script_filename:
         return False
 
-    # The audio path comes from the script's own filename, not from a
-    # recomputed theme slug — the feed can override today's theme, and this is
-    # the same mapping _recover_orphaned_episodes() already relies on.
-    slug = Path(script_filename).stem.replace("podcast_script_", "", 1)
-    audio_filename = str(PODCASTS_DIR / f"podcast_audio_{slug}.mp3")
-    date_key, _, safe_theme = slug.partition("_")
+    audio_filename, date_key, safe_theme = _episode_paths(script_filename)
 
-    metadata = read_script_metadata(script_filename)
-    today_theme = metadata["theme"]
-    brave_used = metadata["brave_used"]
-    print(f"📄 Script: {Path(script_filename).name}")
-    print(f"   Theme: {today_theme or 'unknown (ambient lookup will fall back)'}")
+    with segment("render/resolve"):
+        metadata = read_script_metadata(script_filename)
+        today_theme = metadata["theme"]
+        brave_used = metadata["brave_used"]
+        print(f"📄 Script: {Path(script_filename).name}")
+        print(f"   Theme: {today_theme or 'unknown (ambient lookup will fall back)'}")
 
-    with open(script_filename, 'r', encoding='utf-8') as f:
-        script = f.read()
+        with open(script_filename, 'r', encoding='utf-8') as f:
+            script = f.read()
 
-    audio_exists = os.path.exists(audio_filename)
-
-    if audio_exists:
+    if os.path.exists(audio_filename):
         print(f"🎵 Audio already exists: {audio_filename}")
 
         # If Azure TTS is active (either parallel comparison or full-switch mode) and
         # the _azure.mp3 is missing, generate it now from the existing script so
         # re-runs catch up without regenerating everything.
         if USE_AZURE_PARALLEL or USE_AZURE_TTS:
-            azure_filename = str(Path(audio_filename).with_suffix("")) + "_azure.mp3"
-            if not os.path.exists(azure_filename):
-                print(f"🔵 Azure parallel file missing — generating from existing script...")
-                segments = parse_script_into_segments(script)
-                _generate_parallel_azure_audio(segments, audio_filename, theme_name=today_theme)
-            else:
-                print(f"✅ Azure parallel file already exists: {Path(azure_filename).name}")
+            with segment("render/azure-parallel", critical=False):
+                azure_filename = str(Path(audio_filename).with_suffix("")) + "_azure.mp3"
+                if not os.path.exists(azure_filename):
+                    print(f"🔵 Azure parallel file missing — generating from existing script...")
+                    segments = parse_script_into_segments(script)
+                    _generate_parallel_azure_audio(segments, audio_filename, theme_name=today_theme)
+                else:
+                    print(f"✅ Azure parallel file already exists: {Path(azure_filename).name}")
     else:
-        audio_file = generate_audio_from_script(
-            script, audio_filename, theme_name=today_theme,
-            brave_used=brave_used,
-        )
+        audio_file = None
+        with segment("render/tts"):
+            audio_file = generate_audio_from_script(
+                script, audio_filename, theme_name=today_theme,
+                brave_used=brave_used,
+            )
 
         if audio_file:
             print(f"🎉 Podcast complete!")
             print(f"   Script: {script_filename}")
             print(f"   Audio:  {audio_file}")
-            refresh_citations_tts_credit(
-                PODCASTS_DIR / f"citations_{date_key}_{safe_theme}.json"
-            )
+            # Bookkeeping only — the episode is already rendered, so a failure
+            # here must not cost the render.
+            with segment("render/citations-credit", critical=False):
+                refresh_citations_tts_credit(
+                    PODCASTS_DIR / f"citations_{date_key}_{safe_theme}.json"
+                )
         else:
             print(f"📝 Script ready: {script_filename}")
             print("📊 Audio generation failed")
 
+    return os.path.exists(audio_filename)
+
+
+def run_publish_stage(script_path: str = None, date_str: str = None) -> bool:
+    """Stage: transcript, feeds, index page and R2 sync for a rendered episode.
+
+    Separate from the render because these steps fail for entirely different
+    reasons (credentials, network, disk) and used to force a full re-render to
+    retry. Every step is independent, so one broken surface does not stop the
+    others. Returns True when all of them succeeded.
+    """
+    script_filename = resolve_script_for_audio(script_path, date_str)
+    if not script_filename:
+        return False
+
+    audio_filename, date_key, safe_theme = _episode_paths(script_filename)
+    statuses = []
+
     # Generate HTML transcript for Apple Podcasts
-    generate_episode_transcript(script_filename, date_key, safe_theme, audio_filename=audio_filename)
+    with segment("publish/transcript", critical=False) as rec:
+        generate_episode_transcript(
+            script_filename, date_key, safe_theme, audio_filename=audio_filename
+        )
+    statuses.append(rec)
 
     # Generate RSS feed, regenerate index.html, and sync everything to R2
-    generate_podcast_rss_feed()
-    generate_tts_test_feed()
-    _regenerate_index_html()
-    sync_site_to_r2()
+    with segment("publish/rss", critical=False) as rec:
+        generate_podcast_rss_feed()
+    statuses.append(rec)
+
+    with segment("publish/tts-test-feed", critical=False) as rec:
+        generate_tts_test_feed()
+    statuses.append(rec)
+
+    with segment("publish/index", critical=False) as rec:
+        _regenerate_index_html()
+    statuses.append(rec)
+
+    with segment("publish/r2-sync", critical=False) as rec:
+        sync_site_to_r2()
+    statuses.append(rec)
+
+    degraded = [r["name"] for r in statuses if r["status"] != "ok"]
+    if degraded:
+        print(f"⚠️  Publish degraded: {', '.join(degraded)}")
+    return not degraded
+
+
+def run_audio_stage(script_path: str = None, date_str: str = None) -> bool:
+    """Stage 2: render audio from a saved script and publish the episode.
+
+    Kept as the composition of recover → render → publish so `--stage audio`
+    behaves exactly as it did before those became addressable on their own.
+    Returns True when the episode's audio is in place.
+    """
+    print("🎵 Starting Cariboo Tech Progress audio generation...")
+    print("=" * 60)
+
+    # Resolve before recovering: an unresolvable --script path should cost
+    # nothing, not three days of back-catalogue TTS.
+    script_filename = resolve_script_for_audio(script_path, date_str)
+    if not script_filename:
+        return False
+
+    # Recover any past episodes whose script exists but audio was never
+    # generated. Audio work, so it belongs to this stage.
+    run_recover_stage(lookback_days=3)
+
+    rendered = run_render_stage(script_path=script_filename)
+    run_publish_stage(script_path=script_filename)
 
     print("✅ Audio stage complete!")
     print(_format_daily_cost_summary())
@@ -8050,48 +8293,79 @@ def run_audio_stage(script_path: str = None, date_str: str = None) -> bool:
         print("   Add credits or raise the spending limit at platform.openai.com to restore service.")
         sys.exit(1)
 
-    return os.path.exists(audio_filename)
+    return rendered
 
 
 def main(argv: list[str] = None) -> None:
     """Dispatch to the requested stage.
 
-    `--stage all` (the default) runs both back to back, matching the behaviour
-    of the single-process pipeline this replaced.
+    `--stage all` (the default) runs the whole pipeline back to back, matching
+    the behaviour of the single-process run this replaced. The finer stages are
+    addressable individually so CI can put a commit — and a failure boundary —
+    between them.
     """
     parser = argparse.ArgumentParser(
         description="Generate the daily Cariboo Signals episode."
     )
     parser.add_argument(
-        "--stage", choices=("all", "script", "audio"), default="all",
-        help="Which half to run: 'script' curates and writes the script, "
-             "'audio' renders and publishes it, 'all' does both (default).",
+        "--stage",
+        choices=("all", "script", "audio", "render", "publish", "recover"),
+        default="all",
+        help="Which part to run: 'script' curates and writes the script, "
+             "'render' turns it into audio, 'publish' writes the transcript, "
+             "feeds and site and syncs to R2, 'recover' re-renders past "
+             "episodes whose audio never landed, 'audio' does "
+             "recover+render+publish, 'all' does everything (default).",
     )
     parser.add_argument(
         "--date", metavar="YYYY-MM-DD",
-        help="Audio stage only: render the script saved for this date "
+        help="Audio stages only: act on the script saved for this date "
              "instead of today's.",
     )
     parser.add_argument(
         "--script", metavar="PATH",
-        help="Audio stage only: render this exact script file.",
+        help="Audio stages only: act on this exact script file.",
     )
     args = parser.parse_args(argv)
 
-    if args.stage != "audio" and (args.date or args.script):
-        parser.error("--date and --script only apply to --stage audio")
+    episode_stages = ("audio", "render", "publish")
+    if args.stage not in episode_stages and (args.date or args.script):
+        parser.error(
+            "--date and --script only apply to --stage "
+            + "/".join(episode_stages)
+        )
 
-    if args.stage == "audio":
-        run_audio_stage(script_path=args.script, date_str=args.date)
-        return
+    try:
+        if args.stage == "recover":
+            run_recover_stage()
+            return
 
-    result = run_script_stage()
-    if not result or not result[0]:
-        print("❌ Script stage produced no script. Exiting.")
-        sys.exit(1)
+        if args.stage == "render":
+            if not run_render_stage(script_path=args.script, date_str=args.date):
+                print("❌ Render produced no audio.")
+                sys.exit(EXIT_RENDER_FAILED)
+            return
 
-    if args.stage == "all":
-        run_audio_stage(script_path=result[0])
+        if args.stage == "publish":
+            if not run_publish_stage(script_path=args.script, date_str=args.date):
+                sys.exit(EXIT_PUBLISH_DEGRADED)
+            return
+
+        if args.stage == "audio":
+            run_audio_stage(script_path=args.script, date_str=args.date)
+            return
+
+        result = run_script_stage()
+        if not result or not result[0]:
+            print("❌ Script stage produced no script. Exiting.")
+            sys.exit(1)
+
+        if args.stage == "all":
+            run_audio_stage(script_path=result[0])
+    finally:
+        # Runs on the abort paths too — a crashed run still reports which
+        # segment died and how far it got.
+        write_run_report(args.stage)
 
 
 if __name__ == "__main__":

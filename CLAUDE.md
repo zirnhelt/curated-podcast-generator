@@ -44,11 +44,18 @@ python podcast_generator.py                    # both stages (default)
 
 # Run one stage at a time
 python podcast_generator.py --stage script     # curate + write script, no TTS spend
-python podcast_generator.py --stage audio      # render + publish today's saved script
+python podcast_generator.py --stage render     # TTS + assembly only, no publishing
+python podcast_generator.py --stage publish    # transcript, feeds, index.html, R2 sync
+python podcast_generator.py --stage recover    # re-render past episodes missing audio
+python podcast_generator.py --stage audio      # recover + render + publish (back-compat)
 
-# Re-render a past or hand-edited script
-python podcast_generator.py --stage audio --date 2026-07-24
+# Re-render or re-publish a past or hand-edited script
+python podcast_generator.py --stage render --date 2026-07-24
+python podcast_generator.py --stage publish --date 2026-07-24
 python podcast_generator.py --stage audio --script podcasts/podcast_script_2026-07-24_theme.txt
+
+# See the per-segment status table locally (CI writes it to the job summary)
+GITHUB_STEP_SUMMARY=/tmp/summary.md python podcast_generator.py --stage publish
 
 # Bespoke episode
 python generate_bespoke.py --tag <topic-tag>
@@ -78,26 +85,74 @@ This is a daily AI podcast generator for **Cariboo Signals**, a two-host show (R
 8. pydub assembles: cold open teaser (10–20 s, before the music) → intro → welcome → interval → news roundup → interval → deep dive debate → outro
 9. Writes transcript + RSS entry, pushes commit, deploys to `gh-pages`
 
-### Two-Stage Split
+### Stages and Segments
 
-Steps 1–6 are the **script stage** (`run_script_stage`); steps 7–9 are the **audio stage**
-(`run_audio_stage`). `--stage` selects one or both; `all` is the default and behaves exactly
-like the original single-process run.
+The pipeline is split at two levels: **stages** are separate processes with a git commit
+between them, **segments** are named phases inside one process with their own failure policy.
 
-The split exists because the halves fail differently. Script generation is where the API
-spend lives; audio generation is where the runner dies (an unbounded-memory ffmpeg render
-once OOM-killed the VM, cancelling every remaining step so the episode never shipped). The
-daily workflow commits and pushes the script, citations, and memory state *between* the two
-steps, so a failed render costs only the render. `_recover_orphaned_episodes` (3-day
-lookback) remains the backstop for scripts whose audio never landed.
+#### Stages (`--stage`)
 
-Because the stages are separate processes, two values cannot ride in locals and are carried
-in the script file's `#` header instead, read back by `read_script_metadata`:
+| Stage | Entry point | Steps | Notes |
+|-------|-------------|-------|-------|
+| `script` | `run_script_stage` | 1–6 | Where the API spend lives |
+| `recover` | `run_recover_stage` | — | `_recover_orphaned_episodes`, 3-day lookback |
+| `render` | `run_render_stage` | 7–8 | TTS + pydub assembly + sidecars |
+| `publish` | `run_publish_stage` | 9 | Transcript, RSS, tts-test feed, `index.html`, R2 |
+| `audio` | `run_audio_stage` | 7–9 | `recover` + `render` + `publish` (back-compat) |
+| `all` | — | 1–9 | Default; behaves like the original single-process run |
+
+The stages fail differently, which is the whole reason they are separate. Script generation
+is where the API spend lives; rendering is where the runner dies (an unbounded-memory ffmpeg
+render once OOM-killed the VM); publishing fails on credentials, network and disk, and used
+to force a full 40-minute re-render to retry. The daily workflow commits between each, so a
+failure costs only its own stage.
+
+Because stages are separate processes, two values cannot ride in locals and are carried in
+the script file's `#` header instead, read back by `read_script_metadata`:
 - **`# Theme:`** — the feed can override the weekday theme, which changes the filename slug,
-  so the audio stage must never recompute it. Audio paths are derived from the script's own
-  filename.
+  so the audio stages must never recompute it. Audio paths are derived from the script's own
+  filename (`_episode_paths`).
 - **`# Brave:`** — gates one sentence in the spoken credits. Scripts predating this header
   degrade to `no`.
+
+#### Segments (`segment()`)
+
+Every phase inside a stage runs in a `with segment(name, critical=...)` block — a context
+manager, not an extracted function, so wrapping existing code changes no variable lifetimes.
+
+- **`critical=True`** (default): the exception propagates; pass `exit_code=` to convert it
+  into a distinct process exit status instead of a traceback.
+- **`critical=False`**: the exception is swallowed and the run continues. **The caller must
+  pre-assign the block's outputs to their fallback value before the `with`** — a non-critical
+  segment must never be the only place a downstream variable gets bound.
+- `SystemExit` always passes through untouched, so the deliberate aborts keep their codes.
+
+Roughly: article acquisition, script generation and saving the script are critical; weather,
+Brave research, PSA selection, polish, cold open, quality scoring, publishing surfaces and
+every individual state-file write are not. Each memory/state file gets its own segment — a
+failure partway through the persistence run used to mark seeds and email consumed while
+leaving three memory files unwritten, with nothing in the log naming which.
+
+`write_run_report()` appends a per-segment table (status, duration, error) to
+`$GITHUB_STEP_SUMMARY`, printing to stdout when that is unset. It is called from a `finally`
+in `main()`, so a crashed run still reports which segment died.
+
+#### Exit codes
+
+| Code | Meaning |
+|------|---------|
+| 75 | `EXIT_BUDGET_EXHAUSTED` — Anthropic spend cap; the workflow skips the day as a warning |
+| 76 | `EXIT_NO_ARTICLES` — upstream feed gave us nothing usable; not a crash |
+| 77 | `EXIT_RENDER_FAILED` — no audio produced; the run goes red |
+| 78 | `EXIT_PUBLISH_DEGRADED` — audio is safe, one or more publish surfaces failed |
+
+#### Atomic state writes
+
+Every memory/state/feed write goes through `config_loader.atomic_write_text` /
+`atomic_write_json` (temp file + `os.replace`). It lives in `config_loader` so
+`psa_selector` can share it without a circular import. This is not optional: the loaders
+swallow a truncated JSON as `{}`, so a crash mid-write silently discarded a 35- or 90-day
+history, and a truncated `podcast-feed.xml` breaks every podcast client at once.
 
 **Memory state** (JSON files in `podcasts/`):
 - `episode_memory.json` — 35-day sliding window for story continuity (spans a full 4-week super cycle; entries record the day's focus slug)

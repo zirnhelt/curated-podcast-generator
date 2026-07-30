@@ -15,6 +15,7 @@ from config_loader import (
     load_psa_organizations,
     load_psa_events,
     load_notable_dates,
+    atomic_write_json,
 )
 
 # ponytail: MEMORY_DIR lets a future multi-tenant deployment point each show at
@@ -51,8 +52,7 @@ def load_rotation_state():
 def save_rotation_state(state):
     """Persist rotation state to disk."""
     PODCASTS_DIR.mkdir(exist_ok=True)
-    with open(PSA_STATE_FILE, "w") as f:
-        json.dump(state, f, indent=2)
+    atomic_write_json(PSA_STATE_FILE, state)
 
 
 def record_aired(org_id, today, state):

@@ -10,6 +10,7 @@ import pytest
 
 import json
 import re
+import sys
 
 from podcast_generator import (
     derive_episode_sidecar_path,
@@ -55,6 +56,14 @@ from podcast_generator import (
     save_script_to_file,
     read_script_metadata,
     resolve_script_for_audio,
+    segment,
+    write_run_report,
+    run_publish_stage,
+    run_render_stage,
+    run_recover_stage,
+    EXIT_NO_ARTICLES,
+    EXIT_RENDER_FAILED,
+    EXIT_PUBLISH_DEGRADED,
     main,
 )
 from config_loader import load_prompts_config
@@ -2604,3 +2613,368 @@ class TestCheckApiBudget:
     def test_no_client_is_not_an_abort(self, monkeypatch):
         monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: None)
         check_api_budget()
+
+
+@pytest.fixture(autouse=False)
+def clean_segments():
+    """Isolate the module-level segment ledger between tests."""
+    import podcast_generator as pg
+
+    pg._RUN_SEGMENTS.clear()
+    yield pg._RUN_SEGMENTS
+    pg._RUN_SEGMENTS.clear()
+
+
+class TestSegment:
+    """Segment isolation: which phases are allowed to fail, and what gets recorded."""
+
+    def test_success_records_ok(self, clean_segments):
+        with segment("phase/one"):
+            pass
+        assert [(r["name"], r["status"]) for r in clean_segments] == [("phase/one", "ok")]
+
+    def test_critical_failure_reraises(self, clean_segments):
+        with pytest.raises(ValueError):
+            with segment("phase/critical"):
+                raise ValueError("boom")
+        assert clean_segments[0]["status"] == "failed"
+        assert "ValueError: boom" in clean_segments[0]["error"]
+
+    def test_non_critical_failure_is_swallowed(self, clean_segments):
+        reached = False
+        with segment("phase/optional", critical=False):
+            raise RuntimeError("flaky upstream")
+        reached = True  # execution must resume after the block
+        assert reached
+        assert clean_segments[0]["status"] == "degraded"
+
+    def test_non_critical_leaves_preassigned_fallback_intact(self, clean_segments):
+        # The contract callers rely on: pre-assign, then let the block overwrite.
+        weather = None
+        with segment("script/weather", critical=False):
+            weather = {"summary": "clear"}
+            raise ConnectionError("timeout")
+        assert weather == {"summary": "clear"}
+
+    def test_system_exit_passes_through_with_its_code(self, clean_segments):
+        with pytest.raises(SystemExit) as exc:
+            with segment("phase/abort", critical=False):
+                sys.exit(EXIT_BUDGET_EXHAUSTED)
+        assert exc.value.code == EXIT_BUDGET_EXHAUSTED
+        assert clean_segments[0]["status"] == "aborted"
+
+    def test_exit_code_converts_a_critical_failure(self, clean_segments):
+        with pytest.raises(SystemExit) as exc:
+            with segment("script/feed", exit_code=EXIT_NO_ARTICLES):
+                raise OSError("feed unreachable")
+        assert exc.value.code == EXIT_NO_ARTICLES
+        assert clean_segments[0]["status"] == "failed"
+
+    def test_duration_is_recorded(self, clean_segments):
+        with segment("phase/timed"):
+            pass
+        assert clean_segments[0]["seconds"] >= 0
+
+    def test_groups_are_emitted_for_log_folding(self, clean_segments, capsys):
+        with segment("phase/grouped"):
+            pass
+        out = capsys.readouterr().out
+        assert "::group::phase/grouped" in out
+        assert "::endgroup::" in out
+
+
+class TestRunReport:
+    def test_table_is_appended_to_step_summary(self, clean_segments, tmp_path, monkeypatch):
+        summary = tmp_path / "summary.md"
+        monkeypatch.setenv("GITHUB_STEP_SUMMARY", str(summary))
+
+        with segment("a/ok"):
+            pass
+        with segment("a/degraded", critical=False):
+            raise RuntimeError("nope")
+
+        write_run_report("publish")
+        text = summary.read_text(encoding="utf-8")
+        assert "`a/ok`" in text and "`a/degraded`" in text
+        assert "degraded" in text and "RuntimeError: nope" in text
+        assert "publish" in text
+
+    def test_pipe_in_error_does_not_break_the_table(self, clean_segments, tmp_path, monkeypatch):
+        monkeypatch.setenv("GITHUB_STEP_SUMMARY", str(tmp_path / "s.md"))
+        with segment("a/pipes", critical=False):
+            raise RuntimeError("a | b | c")
+        write_run_report("script")
+        row = [
+            l for l in (tmp_path / "s.md").read_text().splitlines()
+            if "a/pipes" in l
+        ][0]
+        # 4 columns => 5 pipes; escaped pipes in the message must not add cells.
+        assert row.count("|") - row.count("\\|") == 5
+
+    def test_falls_back_to_stdout_when_unset(self, clean_segments, monkeypatch, capsys):
+        monkeypatch.delenv("GITHUB_STEP_SUMMARY", raising=False)
+        with segment("a/ok"):
+            pass
+        write_run_report("script")
+        assert "`a/ok`" in capsys.readouterr().out
+
+    def test_no_segments_writes_nothing(self, clean_segments, tmp_path, monkeypatch):
+        summary = tmp_path / "summary.md"
+        monkeypatch.setenv("GITHUB_STEP_SUMMARY", str(summary))
+        write_run_report("script")
+        assert not summary.exists()
+
+
+class TestAtomicWrites:
+    """State files must survive a crash mid-write — a truncated JSON reads back as {}."""
+
+    def test_existing_file_survives_a_failed_write(self, tmp_path, monkeypatch):
+        import config_loader
+
+        target = tmp_path / "episode_memory.json"
+        target.write_text('{"2026-07-29": {"topics": ["a"]}}', encoding="utf-8")
+        original = target.read_bytes()
+
+        monkeypatch.setattr(
+            config_loader.os, "replace",
+            lambda *a, **k: (_ for _ in ()).throw(OSError("disk full")),
+        )
+        with pytest.raises(OSError):
+            config_loader.atomic_write_json(target, {"wiped": True})
+
+        assert target.read_bytes() == original
+
+    def test_no_temp_file_is_left_behind_on_failure(self, tmp_path, monkeypatch):
+        import config_loader
+
+        # Own directory: the autouse PSA fixture drops its state file in tmp_path.
+        home = tmp_path / "state-dir"
+        target = home / "state.json"
+        home.mkdir()
+        target.write_text("{}", encoding="utf-8")
+        monkeypatch.setattr(
+            config_loader.os, "replace",
+            lambda *a, **k: (_ for _ in ()).throw(OSError("disk full")),
+        )
+        with pytest.raises(OSError):
+            config_loader.atomic_write_json(target, {"a": 1})
+
+        assert [p.name for p in home.iterdir()] == ["state.json"]
+
+    def test_write_round_trips(self, tmp_path):
+        import config_loader
+
+        target = tmp_path / "nested" / "state.json"
+        config_loader.atomic_write_json(target, {"a": [1, 2], "b": "é"})
+        assert json.loads(target.read_text(encoding="utf-8")) == {"a": [1, 2], "b": "é"}
+
+    def test_save_memory_is_atomic(self, tmp_path, monkeypatch):
+        import config_loader
+        import podcast_generator as pg
+
+        target = tmp_path / "debate_memory.json"
+        target.write_text('{"keep": 1}', encoding="utf-8")
+        monkeypatch.setattr(
+            config_loader.os, "replace",
+            lambda *a, **k: (_ for _ in ()).throw(OSError("disk full")),
+        )
+        with pytest.raises(OSError):
+            pg.save_memory(target, {"clobber": 2})
+        assert json.loads(target.read_text()) == {"keep": 1}
+
+
+class TestPublishStageIsolation:
+    """One broken publish surface must not stop the others."""
+
+    def _prepare(self, tmp_path, monkeypatch):
+        import podcast_generator as pg
+
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        called = []
+        for name in (
+            "generate_episode_transcript",
+            "generate_podcast_rss_feed",
+            "generate_tts_test_feed",
+            "_regenerate_index_html",
+            "sync_site_to_r2",
+        ):
+            monkeypatch.setattr(
+                pg, name, (lambda n: lambda *a, **k: called.append(n))(name)
+            )
+        script = save_script_to_file("**RILEY:** Hi.\n", "Wild Spaces & Outdoor Life")
+        return pg, script, called
+
+    def test_all_steps_run_and_report_success(self, tmp_path, monkeypatch, clean_segments):
+        pg, script, called = self._prepare(tmp_path, monkeypatch)
+        assert run_publish_stage(script_path=script) is True
+        assert len(called) == 5
+        assert all(r["status"] == "ok" for r in clean_segments)
+
+    def test_a_failing_step_does_not_stop_the_rest(self, tmp_path, monkeypatch, clean_segments):
+        pg, script, called = self._prepare(tmp_path, monkeypatch)
+        monkeypatch.setattr(
+            pg, "generate_podcast_rss_feed",
+            lambda *a, **k: (_ for _ in ()).throw(RuntimeError("xml boom")),
+        )
+        assert run_publish_stage(script_path=script) is False
+        # transcript ran before it; the three after it still ran.
+        assert called == [
+            "generate_episode_transcript",
+            "generate_tts_test_feed",
+            "_regenerate_index_html",
+            "sync_site_to_r2",
+        ]
+        by_name = {r["name"]: r["status"] for r in clean_segments}
+        assert by_name["publish/rss"] == "degraded"
+        assert by_name["publish/r2-sync"] == "ok"
+
+    def test_r2_failure_alone_degrades_the_stage(self, tmp_path, monkeypatch, clean_segments):
+        pg, script, called = self._prepare(tmp_path, monkeypatch)
+        monkeypatch.setattr(
+            pg, "sync_site_to_r2",
+            lambda *a, **k: (_ for _ in ()).throw(RuntimeError("bad credentials")),
+        )
+        assert run_publish_stage(script_path=script) is False
+        assert len(called) == 4
+
+    def test_missing_script_returns_false(self, tmp_path, monkeypatch, clean_segments):
+        pg, _script, called = self._prepare(tmp_path, monkeypatch)
+        assert run_publish_stage(script_path=str(tmp_path / "absent.txt")) is False
+        assert called == []
+
+
+class TestFinerStageDispatch:
+    """render / publish / recover are addressable on their own, with real exit codes."""
+
+    def _patch(self, monkeypatch, **overrides):
+        import podcast_generator as pg
+
+        calls = []
+        defaults = {
+            "run_script_stage": lambda: (calls.append("script"), ("s.txt", "T"))[1],
+            "run_audio_stage": lambda **kw: (calls.append("audio"), True)[1],
+            "run_render_stage": lambda **kw: (calls.append("render"), True)[1],
+            "run_publish_stage": lambda **kw: (calls.append("publish"), True)[1],
+            "run_recover_stage": lambda **kw: (calls.append("recover"), True)[1],
+        }
+        defaults.update(overrides)
+        for name, fn in defaults.items():
+            monkeypatch.setattr(pg, name, fn)
+        return calls
+
+    def test_recover_runs_alone(self, monkeypatch):
+        calls = self._patch(monkeypatch)
+        main(["--stage", "recover"])
+        assert calls == ["recover"]
+
+    def test_render_runs_alone(self, monkeypatch):
+        calls = self._patch(monkeypatch)
+        main(["--stage", "render"])
+        assert calls == ["render"]
+
+    def test_publish_runs_alone(self, monkeypatch):
+        calls = self._patch(monkeypatch)
+        main(["--stage", "publish"])
+        assert calls == ["publish"]
+
+    def test_failed_render_exits_77(self, monkeypatch):
+        self._patch(monkeypatch, run_render_stage=lambda **kw: False)
+        with pytest.raises(SystemExit) as exc:
+            main(["--stage", "render"])
+        assert exc.value.code == EXIT_RENDER_FAILED
+
+    def test_degraded_publish_exits_78(self, monkeypatch):
+        self._patch(monkeypatch, run_publish_stage=lambda **kw: False)
+        with pytest.raises(SystemExit) as exc:
+            main(["--stage", "publish"])
+        assert exc.value.code == EXIT_PUBLISH_DEGRADED
+
+    @pytest.mark.parametrize("stage", ("render", "publish"))
+    def test_date_and_script_forwarded(self, monkeypatch, stage):
+        import podcast_generator as pg
+
+        seen = {}
+        self._patch(monkeypatch)
+        monkeypatch.setattr(
+            pg, f"run_{stage}_stage", lambda **kw: seen.update(kw) or True
+        )
+        main(["--stage", stage, "--date", "2026-07-24"])
+        assert seen == {"script_path": None, "date_str": "2026-07-24"}
+
+    @pytest.mark.parametrize("stage", ("script", "all", "recover"))
+    def test_date_rejected_on_non_episode_stages(self, monkeypatch, stage):
+        self._patch(monkeypatch)
+        with pytest.raises(SystemExit) as exc:
+            main(["--stage", stage, "--date", "2026-07-24"])
+        assert exc.value.code == 2
+
+    def test_report_is_written_even_when_a_stage_aborts(self, monkeypatch, tmp_path, clean_segments):
+        import podcast_generator as pg
+
+        summary = tmp_path / "s.md"
+        monkeypatch.setenv("GITHUB_STEP_SUMMARY", str(summary))
+
+        def exploding_render(**kw):
+            with segment("render/tts"):
+                raise RuntimeError("ffmpeg died")
+
+        self._patch(monkeypatch, run_render_stage=exploding_render)
+        with pytest.raises(RuntimeError):
+            main(["--stage", "render"])
+        assert "render/tts" in summary.read_text(encoding="utf-8")
+
+
+class TestRecoverStage:
+    def test_delegates_to_orphan_recovery(self, monkeypatch, clean_segments):
+        import podcast_generator as pg
+
+        seen = {}
+        monkeypatch.setattr(
+            pg, "_recover_orphaned_episodes",
+            lambda **kw: seen.update(kw) or True,
+        )
+        assert run_recover_stage(lookback_days=5) is True
+        assert seen == {"lookback_days": 5}
+
+    def test_a_broken_back_catalogue_never_fails_the_run(self, monkeypatch, clean_segments):
+        import podcast_generator as pg
+
+        monkeypatch.setattr(
+            pg, "_recover_orphaned_episodes",
+            lambda **kw: (_ for _ in ()).throw(RuntimeError("corrupt mp3")),
+        )
+        assert run_recover_stage() is False
+        assert clean_segments[0]["status"] == "degraded"
+
+
+class TestRenderStageIsolation:
+    def test_missing_script_renders_nothing(self, tmp_path, monkeypatch, clean_segments):
+        import podcast_generator as pg
+
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        monkeypatch.setattr(
+            pg, "generate_audio_from_script",
+            lambda *a, **k: pytest.fail("must not render without a script"),
+        )
+        assert run_render_stage(script_path=str(tmp_path / "absent.txt")) is False
+
+    def test_citations_credit_failure_does_not_lose_the_render(
+        self, tmp_path, monkeypatch, clean_segments
+    ):
+        import podcast_generator as pg
+
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        script = save_script_to_file("**RILEY:** Hi.\n", "Working Lands & Industry")
+
+        def fake_audio(script_text, output_filename, **kw):
+            open(output_filename, "wb").write(b"\x00")
+            return output_filename
+
+        monkeypatch.setattr(pg, "generate_audio_from_script", fake_audio)
+        monkeypatch.setattr(
+            pg, "refresh_citations_tts_credit",
+            lambda *a, **k: (_ for _ in ()).throw(RuntimeError("no citations")),
+        )
+        assert run_render_stage(script_path=script) is True
+        by_name = {r["name"]: r["status"] for r in clean_segments}
+        assert by_name["render/citations-credit"] == "degraded"
