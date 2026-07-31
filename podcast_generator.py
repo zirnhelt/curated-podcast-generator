@@ -6,6 +6,7 @@ All text content loaded from config/ directory for easy updates.
 """
 
 import argparse
+import io
 import os
 import sys
 import json
@@ -5776,32 +5777,51 @@ def generate_tts_for_segment(text, speaker, output_file):
 
     # TTS timeouts are network blips, not API overload — 2 retries with a short
     # base delay is enough; the pre-split in _render_section keeps each call small.
-    response = api_retry(lambda: client.audio.speech.create(
-        model="tts-1",
-        voice=voice,
-        input=clean,
-        speed=speed
-    ), max_retries=2, base_delay=1)
-    _log_api_call("openai-tts", "chars", len(clean))
+    def _synthesize() -> bytes:
+        response = api_retry(lambda: client.audio.speech.create(
+            model="tts-1",
+            voice=voice,
+            input=clean,
+            speed=speed
+        ), max_retries=2, base_delay=1)
+        _log_api_call("openai-tts", "chars", len(clean))
+        return response.content
 
+    content = _synthesize()
     with open(output_file, "wb") as f:
-        f.write(response.content)
+        f.write(content)
 
-    # Duration-ratio checksum: warn if audio is significantly shorter than expected.
-    # OpenAI tts-1 at speed=1.0 averages ~150 wpm (400 ms/word).  A ratio below 0.80
-    # suggests a sentence or more was dropped; shorter segments are excluded because
-    # pacing variability and ms-level rounding produce false positives there.
+    # Duration-ratio checksum: OpenAI tts-1 at speed=1.0 averages ~150 wpm
+    # (400 ms/word); the host's speed multiplier scales that estimate directly.
+    # A ratio below 0.80 suggests a sentence or more was dropped — this used to
+    # only log a warning, leaving the published transcript (built from the
+    # segment's real measured duration) captioning words that were never
+    # actually spoken. A truncated take is a generation fluke, not a systemic
+    # one, so one retry usually recovers the full line; either way we keep
+    # whichever take is longer.
     expected_words = len(re.findall(r"\b\w+\b", clean))
     if expected_words >= 10:
+        expected_ms = expected_words * 400 / speed
         actual_ms = len(AudioSegment.from_mp3(output_file))
-        expected_ms = expected_words * 400  # 150 wpm ≈ 400 ms/word
         ratio = actual_ms / expected_ms
         if ratio < 0.80:
             print(
                 f"  ⚠️  TTS duration check: expected ~{expected_ms // 1000}s "
                 f"for {expected_words} words, got {actual_ms // 1000}s "
-                f"({ratio:.0%}) — possible word omission"
+                f"({ratio:.0%}) — possible word omission, retrying once"
             )
+            retry_content = _synthesize()
+            retry_ms = len(AudioSegment.from_file(io.BytesIO(retry_content), format="mp3"))
+            if retry_ms > actual_ms:
+                with open(output_file, "wb") as f:
+                    f.write(retry_content)
+                actual_ms = retry_ms
+            new_ratio = actual_ms / expected_ms
+            if new_ratio < 0.80:
+                print(
+                    f"  ⚠️  Retry didn't recover the missing words either "
+                    f"({new_ratio:.0%}) — keeping the longer take"
+                )
 
 def _generate_host_line(context: str, host: str) -> str:
     """Ask Claude to write a short spoken line for the named host.
