@@ -2274,5 +2274,32 @@
       "infrastructure",
       "funding"
     ]
+  },
+  "2026-07-31": {
+    "timestamp": 1785495424.803182,
+    "date": "2026-07-31",
+    "theme": "Wild Spaces & Outdoor Life",
+    "focus": "recreation-access",
+    "central_question": "How do wildfire-driven highway closures expose structural gaps in regional access infrastructure, and what actionable steps can communities take to address single-corridor vulnerability?",
+    "riley_position": "The problem is partly a data and forecasting gap; better predictive modeling and real-time routing can improve outcomes even without new infrastructure, and regional districts should formally document their single-corridor exposure through provincial resolutions to force long-term planning conversations.",
+    "riley_key_evidence": [
+      "Riley Creek fire re-ignited and spread from 72 to 1,150 hectares\u2014a flare-up predictable via publicly accessible satellite thermal imaging and BC Wildfire hotspot data",
+      "Highway 1 closed at multiple points, Highway 3 closed east of Hope, and Highway 24 absorbed overflow traffic from province-wide corridor squeeze",
+      "Regional districts can submit resolutions to the Union of BC Municipalities to shape provincial priorities over successive budget cycles"
+    ],
+    "casey_position": "Better data doesn't solve the core problem\u2014communities like 70 Mile House with evacuation orders and single roads out face genuine life-safety constraints, and process accountability matters as much as infrastructure; skipping review cycles (as with the Lake Mead data center) normalizes cuts to public input on landscape access.",
+    "casey_key_evidence": [
+      "Fraser Canyon had both major routes closed simultaneously with expanding evacuation orders near Boston Bar",
+      "Lake Mead BLM approved an 86-acre data center with 167 megawatts peak demand and diesel backup near a drought-stressed reservoir by skipping environmental review under a federal executive order",
+      "Places like 100 Mile House and plateau communities have less route redundancy than Williams Lake or Quesnel and are least likely to get attention without deliberate data submission"
+    ],
+    "resolution": "Riley and Casey converged on a concrete near-term action: regional districts should document single-corridor exposure this fall using current fire season data and submit it to the province via UBCM resolutions\u2014not a funding fix, but naming the structural gap while evidence is fresh. Casey remained skeptical about whether it would actually be submitted versus merely discussed.",
+    "topics_covered": [
+      "Wildfire-driven highway closures and corridor bottlenecks in BC Interior",
+      "Single-corridor vulnerability for both recreation access and emergency evacuation",
+      "Predictive modeling and real-time data tools for traffic forecasting",
+      "Process accountability and public input in land-use decisions (Lake Mead data center case)",
+      "Regional district advocacy mechanisms and provincial budget prioritization"
+    ]
   }
 }

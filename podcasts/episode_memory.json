@@ -606,5 +606,27 @@
     "date": "2026-07-30",
     "focus": "language-culture",
     "focus_name": "Language & Culture"
+  },
+  "2026-07-31": {
+    "timestamp": 1785495422.580898,
+    "topics": [
+      "[ScienceDaily] AI reveals explosive bursts in bird evolution",
+      "[Williams Lake Tribune] BC Hydro begins restoration work rel",
+      "[The Guardian Global Development] \u2018The number of remains is ",
+      "Fourth wildland firefighter dies from Knowles Fire entrapmen",
+      "[ricochet.media] Running the blockade: evacuation orders cha",
+      "[Williams Lake Tribune] BC Highway Patrol requests motorists",
+      "[Outside Online] The Feds Just Opened Public Lands to AI Dat",
+      "[CFJC Today Kamloops] Danger from month-old Lillooet-area wi"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-07-31",
+    "focus": "recreation-access",
+    "focus_name": "Recreation & Backcountry Access"
   }
 }
