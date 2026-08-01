@@ -7621,8 +7621,17 @@ def run_script_stage() -> tuple[str, str] | None:
         safe_theme = today_theme.replace(" ", "_").replace("&", "and").lower()
         script_filename = str(PODCASTS_DIR / f"podcast_script_{date_key}_{safe_theme}.txt")
 
+        # Reuse requires the script *and* the episode-memory entry the same run
+        # writes: every memory/state write lives in the generation branch below
+        # and needs locals (script, topics, debate_summary, consumed seed/email
+        # ids) that the reuse branch never binds. A run killed between
+        # script/save and the persist segments therefore left a script on disk
+        # that no later run would ever back with memory — the day silently fell
+        # out of the continuity window and the debate must-differ filter.
+        # Treating that half-finished state as "not done" costs a regeneration,
+        # which is the cheaper of the two failures.
         existing_matches = sorted(PODCASTS_DIR.glob(f"podcast_script_{date_key}_*.txt"))
-        script_exists = bool(existing_matches)
+        script_exists = bool(existing_matches) and date_key in episode_memory
         if script_exists:
             script_filename = str(existing_matches[-1])
             today_theme = read_script_metadata(script_filename).get("theme") or today_theme
