@@ -1,30 +1,4 @@
 {
-  "2026-05-02": {
-    "timestamp": 1777719634.923961,
-    "date": "2026-05-02",
-    "theme": "Cariboo Voices & Local News",
-    "central_question": "What institutional capacity do rural Cariboo communities actually need to sustain and maintain public services, and who bears responsibility for providing it?",
-    "riley_position": "Provincial capital investments in playgrounds and infrastructure are valuable additions to existing municipal systems, and Indigenous-led stewardship programs represent a positive structural direction for wildfire prevention if sustained properly.",
-    "riley_key_evidence": [
-      "Cariboo Memorial Hospital Foundation raised $4 million locally for hospital equipment over years of sustained fundraising",
-      "New playgrounds drop into existing parks departments, making marginal maintenance costs rather than requiring entirely new institutions",
-      "Abel Lake fire containment succeeded because of years of local training that prepared people to respond effectively"
-    ],
-    "casey_position": "Rural communities face compounding institutional thinness that makes them vulnerable to cascading failures; baseline support infrastructure must shift from optional enhancement to requirement, and financial/operational commitments must accompany capital investments.",
-    "casey_key_evidence": [
-      "A Shuswap community lost $44,000 to fraud\u2014equivalent to eight months of staff salary, not a rounding error",
-      "Small organizations lack segregated financial duties (one person initiates, authorizes, and reconciles payments), creating fraud exposure",
-      "Playground investments may include high-maintenance features like splash pads requiring recurring operational budgets that small municipalities struggle with"
-    ],
-    "resolution": "They converged on agreement that the ask is not radical but baseline: operational funding commitments with capital projects, protective financial infrastructure as standard offerings, and sustained multi-year budgets for Indigenous-led prevention programs. Casey's concern about pace prevailed (needs are happening now), but both agreed regional coordination and local journalism's sense-making function are essential.",
-    "topics_covered": [
-      "Provincial playground investment and hidden operational maintenance costs",
-      "Rural community fraud vulnerability and financial institution design choices",
-      "Wildfire prevention infrastructure and Indigenous-led Guardian programs",
-      "Institutional capacity gaps in small municipalities and First Nations organizations",
-      "Local journalism's role in connecting disparate stories into structural pattern analysis"
-    ]
-  },
   "2026-05-03": {
     "timestamp": 1777806180.706109,
     "date": "2026-05-03",
@@ -2300,6 +2274,33 @@
       "Predictive modeling and real-time data tools for traffic forecasting",
       "Process accountability and public input in land-use decisions (Lake Mead data center case)",
       "Regional district advocacy mechanisms and provincial budget prioritization"
+    ]
+  },
+  "2026-08-01": {
+    "timestamp": 1785579604.403514,
+    "date": "2026-08-01",
+    "theme": "Cariboo Local Affairs",
+    "focus": null,
+    "central_question": "Should Forest Grove's failed fire hall funding referendum be solved by changing the ballot structure, removing local voting authority, or redesigning how capital asks are funded across low-population service areas?",
+    "riley_position": "The assent-vote model itself is flawed for low-population areas because it forces binary all-or-nothing choices on communities whose tax base is too small to shoulder disproportionately large capital liabilities that serve a much wider region. The fix is to offer tiered ballot options (full renovation vs. minimum repairs vs. deferred maintenance) rather than removing local voting power.",
+    "riley_key_evidence": [
+      "Forest Grove's fire hall serves well beyond its 60-house assessment zone, including highway accidents and mutual aid reaching toward Quesnel",
+      "121 total ballots cast with 66 no, 55 yes\u2014a structurally unbeatable threshold in a community that size",
+      "Barriere succeeded by securing provincial/regional grant commitments first, then asking locals to top up\u2014a sequencing advantage Forest Grove lacked"
+    ],
+    "casey_position": "The real problem is that recurring hazards like fire infrastructure and smoke exposure require standing mechanisms (reserve funds, maintenance schedules in budget cycles) rather than binary referendums. Moving decision-making to the regional board trades one accountability problem for a worse one, but the ballot question itself needs to be fundamentally reframed.",
+    "casey_key_evidence": [
+      "150 Mile House hit the same referendum wall as Forest Grove, suggesting a systemic pattern, not isolated tax aversion",
+      "121 ballots likely represents majority turnout of eligible voters\u2014this was active rejection, not apathy",
+      "Recurring conditions like orange air-quality warnings need durable infrastructure responses, not repeated advisory language"
+    ],
+    "resolution": "They converged on the core insight: the ballot format doesn't match the problem shape. Riley proposed tiered-option ballots as a testable pilot; Casey agreed this is more honest than binary voting and reframes accountability. They jointly recommended Forest Grove residents push the CRD board directly to redesign the ballot structure for the next capital cycle, making this a concrete, achievable ask rather than abstract policy reform.",
+    "topics_covered": [
+      "Forest Grove fire hall referendum failure (121 ballots, 66-55 split) and its governance implications",
+      "Misalignment between service area tax base and population served by emergency infrastructure",
+      "Tiered ballot options vs. binary yes/no referendum design",
+      "Regional cost-sharing models and sequencing of funding asks (Barriere comparison)",
+      "Recurring vs. discrete hazards and the inadequacy of one-time capital votes for cumulative problems like fire risk and air quality"
     ]
   }
 }
