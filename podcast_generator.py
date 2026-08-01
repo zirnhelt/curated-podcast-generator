@@ -7955,15 +7955,19 @@ def run_script_stage() -> tuple[str, str] | None:
         # single most expensive call in the pipeline over a rewrite.
         debate_summary = None
         with segment("script/polish", critical=False):
+            # Post-processing: polish + fact-check + debate summary.
+            # One chain, not three independent ifs: the fast-path branch below
+            # only skips the rewrite because the batch/agentic branches are
+            # elifs of it. debate_summary stays None on the fast path and
+            # script/debate-summary extracts it from the raw script instead.
+            #
             # Optional fast-path: skip rewrite when the script is already clean.
             if PODCAST_SKIP_CLEAN_POLISH and _raw_quality_score.get("total_hits", 999) <= CLEAN_POLISH_MAX_HITS:
                 print("✨ Skipping polish: clean script fast-path enabled")
-                debate_summary = None
-            # Post-processing: polish + fact-check + debate summary
             # Try batch API first (50% cost discount), fall back to the agentic
             # real-time polish+factcheck loop (which resolves unanswered factual
             # questions itself via web_search, only when it decides it needs to).
-            if script and USE_BATCH_API:
+            elif script and USE_BATCH_API:
                 print("📦 Using Batch API for post-processing (50% cost discount)...")
                 # Resolve unanswered factual questions once for the batch request
                 # (the batch path can't run an agentic tool loop).
