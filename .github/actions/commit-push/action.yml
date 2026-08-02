@@ -1,0 +1,132 @@
+name: Commit and push
+description: >
+  Stage pathspecs, commit, rebase onto the remote branch and push — retrying the
+  rebase+push when a concurrent workflow pushed first.
+
+# Nine workflows used to hand-roll this block, with a different bug in most of
+# them. The three that mattered:
+#
+#   1. `git pull --rebase origin main || true` — a rebase refuses outright when
+#      the tree is dirty ("cannot pull with rebase: You have unstaged changes"),
+#      and `|| true` swallowed the refusal, leaving the push un-rebased and free
+#      to be rejected non-fast-forward. That is the 2026-07-26 triple render and
+#      the 2026-08-02 sidecar failure, same root cause.
+#   2. `git add a_* b_*` — git aborts the whole add when *any* pathspec is
+#      unmatched, staging nothing, while the `|| echo "No ... to add"` fallback
+#      made it read like there had been nothing to stage.
+#   3. `git diff --quiet && git diff --staged --quiet || git commit` — the first
+#      test reads *unstaged* changes, so a permanently dirty working file (the
+#      regenerated index.html) forced the commit to run even with nothing
+#      staged, and its non-zero exit aborted the step before the push.
+
+inputs:
+  paths:
+    description: >
+      Pathspecs to stage, one per line. Passed to git as-is, so git-style globs
+      work; a pathspec matching nothing is reported and skipped rather than
+      aborting the others.
+    required: true
+  message:
+    description: Commit message.
+    required: true
+  branch:
+    description: Remote branch to rebase onto and push to.
+    required: false
+    default: main
+  fatal:
+    description: >
+      When "true", a push that never lands fails the step. Otherwise it is a
+      ::warning:: — but only after three genuine rebase+push attempts.
+    required: false
+    default: 'false'
+  attempts:
+    description: How many rebase+push attempts before giving up.
+    required: false
+    default: '3'
+
+outputs:
+  pushed:
+    description: >
+      "true" when a commit was pushed, "false" when the push never landed,
+      "nothing" when there was nothing staged to commit.
+    value: ${{ steps.commit-push.outputs.pushed }}
+
+runs:
+  using: composite
+  steps:
+    - id: commit-push
+      shell: bash
+      # Inputs travel via env, never through ${{ }} interpolation into the
+      # script body: several callers pass user-supplied dispatch inputs as the
+      # commit message.
+      env:
+        INPUT_PATHS: ${{ inputs.paths }}
+        INPUT_MESSAGE: ${{ inputs.message }}
+        INPUT_BRANCH: ${{ inputs.branch }}
+        INPUT_FATAL: ${{ inputs.fatal }}
+        INPUT_ATTEMPTS: ${{ inputs.attempts }}
+      run: |
+        set +e
+        set -uo pipefail
+
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+
+        # One `git add` per pathspec so an unmatched glob costs only itself.
+        # Quoted, so git expands the wildcard rather than the shell — that keeps
+        # the pathspec intact when nothing matches yet.
+        while read -r spec; do
+          [ -z "$spec" ] && continue
+          if git add -- "$spec"; then
+            echo "  staged: $spec"
+          else
+            echo "  no match, skipped: $spec"
+          fi
+        done <<< "$INPUT_PATHS"
+
+        if git diff --cached --quiet; then
+          echo "Nothing staged — no commit."
+          echo "pushed=nothing" >> "$GITHUB_OUTPUT"
+          exit 0
+        fi
+
+        if ! git commit -m "$INPUT_MESSAGE"; then
+          echo "::error::git commit failed for \"$INPUT_MESSAGE\" despite a non-empty index."
+          echo "pushed=false" >> "$GITHUB_OUTPUT"
+          exit 1
+        fi
+
+        # Most callers check out at the default fetch-depth of 1. Rebasing in a
+        # shallow clone can fail to find a merge base with the remote branch, so
+        # deepen once up front rather than discovering it inside the retry loop.
+        if [ "$(git rev-parse --is-shallow-repository)" = "true" ]; then
+          echo "Shallow clone — deepening before rebase."
+          git fetch --unshallow origin "$INPUT_BRANCH" || git fetch --deepen=100 origin "$INPUT_BRANCH"
+        fi
+
+        for attempt in $(seq 1 "$INPUT_ATTEMPTS"); do
+          # --autostash is the fix for the reported error: the render and publish
+          # stages rewrite tracked files this step does not stage (the citations
+          # TTS credit, the regenerated index.html), and a plain rebase refuses
+          # to start against them. Stash, rebase, restore — deterministically,
+          # instead of skipping the rebase and hoping the push fast-forwards.
+          if ! git pull --rebase --autostash origin "$INPUT_BRANCH"; then
+            echo "  attempt $attempt: rebase onto origin/$INPUT_BRANCH failed"
+            git rebase --abort 2>/dev/null
+          elif git push origin "HEAD:$INPUT_BRANCH"; then
+            echo "✅ Pushed \"$INPUT_MESSAGE\" to $INPUT_BRANCH"
+            echo "pushed=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          else
+            echo "  attempt $attempt: push to $INPUT_BRANCH rejected"
+          fi
+          [ "$attempt" -lt "$INPUT_ATTEMPTS" ] && sleep $((attempt * 5))
+        done
+
+        echo "pushed=false" >> "$GITHUB_OUTPUT"
+        MSG="Could not push \"$INPUT_MESSAGE\" to $INPUT_BRANCH after $INPUT_ATTEMPTS rebase+push attempts — the commit exists on this runner only."
+        if [ "$INPUT_FATAL" = "true" ]; then
+          echo "::error::$MSG"
+          exit 1
+        fi
+        echo "::warning::$MSG"

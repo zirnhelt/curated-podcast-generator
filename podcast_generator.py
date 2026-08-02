@@ -190,6 +190,36 @@ def segment(name: str, *, critical: bool = True, exit_code: int | None = None):
         print("::endgroup::")
 
 
+def degrade(name: str, detail: str) -> None:
+    """Record a degradation that was handled in place rather than raised.
+
+    segment() can only downgrade a phase whose exception *escapes* the block,
+    but every fallback in the render and publish paths handles its own — the
+    TTS provider fallback, music-less mode, a missing R2 credential. The phase
+    then finished "successfully" having produced a materially different result,
+    the segment table showed a clean run, and CI went green. On 2026-08-02 that
+    was a whole episode re-rendered on OpenAI after Gemini died, visible only as
+    one line of stdout and a changed credit string in the citations file.
+
+    Pass the enclosing segment's own name to downgrade that phase in place —
+    publish/r2-sync reporting its own missing credentials, say. Any other name
+    gets a row of its own, which is how a fallback that has no segment of its
+    own (render/music-fallback) still reaches the table. Repeat calls under one
+    name merge, so a failure inside a per-episode loop is one row, not fifty.
+    """
+    existing = next(
+        (r for r in reversed(_RUN_SEGMENTS) if r["name"] == name), None
+    )
+    if existing is None:
+        _RUN_SEGMENTS.append(
+            {"name": name, "status": "degraded", "seconds": 0.0, "error": detail}
+        )
+    else:
+        existing["status"] = "degraded"
+        existing["error"] = f"{existing['error']}; {detail}" if existing["error"] else detail
+    print(f"::warning::Degraded '{name}': {detail}")
+
+
 def write_run_report(stage: str) -> None:
     """Append the segment table to $GITHUB_STEP_SUMMARY; print it when unset.
 
@@ -6085,6 +6115,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
     
     if not music_files_exist:
         print("⚠️  Music files not found — falling back to TTS-only mode")
+        degrade("render/music-fallback", "music files missing — episode rendered without music beds")
         return generate_audio_tts_only(script, output_filename)
     
     try:
@@ -6093,6 +6124,11 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
         
         if not segments['welcome'] or not segments['news'] or not segments['deep_dive']:
             print("⚠️  Segment parsing failed - falling back to TTS-only mode")
+            degrade(
+                "render/music-fallback",
+                "script did not parse into welcome/news/deep-dive — episode rendered "
+                "without music beds or section structure",
+            )
             return generate_audio_tts_only(script, output_filename)
         
         # Verify music files exist before loading
@@ -6175,6 +6211,12 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                             raise
                         print(f"    ⚠️  {provider_label} failed ({se}) — degrading to "
                               f"OpenAI TTS for the rest of the episode (keeping music/credits)")
+                        degrade(
+                            "render/tts-provider-fallback",
+                            f"{provider_label} failed on section '{prefix}' "
+                            f"({type(se).__name__}: {se}) — remaining sections and "
+                            "credits rendered on OpenAI",
+                        )
                         _tts_provider_used = "openai"
                         # fall through to the OpenAI per-segment path below
 
@@ -6350,6 +6392,14 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
             print("💳 OpenAI billing quota exceeded — skipping audio generation")
             return None
         print("⚠️  Falling back to TTS-only mode")
+        # This catch covers the entire music-assembly path, so any bug in chapter
+        # maths, ambient beds or the weather insert lands here and ships a
+        # structurally different, shorter episode. The render must not report ok.
+        degrade(
+            "render/music-fallback",
+            f"music assembly failed ({type(e).__name__}: {e}) — episode rendered "
+            "without music beds",
+        )
         return generate_audio_tts_only(script, output_filename)
 
     # Everything below runs only once the mp3 is on disk, and is deliberately
@@ -6530,6 +6580,15 @@ def generate_audio_tts_only(script, output_filename, _force_openai=False):
             return None
         if provider != "openai" and not _force_openai and get_openai_client():
             print(f"⚠️  {provider.title()} TTS failed — falling back to OpenAI TTS")
+            # The episode still ships, in a different voice — which is worth
+            # knowing about. This used to be the print alone, so the render
+            # segment reported ok and the only trace of a dead provider was the
+            # credit string in the citations file (2026-08-02).
+            degrade(
+                "render/tts-provider-fallback",
+                f"{provider} TTS failed ({type(e).__name__}: {e}) — whole episode "
+                "re-rendered on OpenAI",
+            )
             return generate_audio_tts_only(script, output_filename, _force_openai=True)
         return None
 
@@ -6604,12 +6663,16 @@ def upload_to_r2(file_path, object_key):
 
 
 def _regenerate_index_html():
-    """Regenerate index.html so the latest episodes are reflected."""
-    try:
-        from generate_html import generate_index_html
-        generate_index_html()
-    except Exception as e:
-        print(f"   ⚠️  Could not regenerate index.html: {e}")
+    """Regenerate index.html so the latest episodes are reflected.
+
+    Deliberately lets exceptions escape: the only caller runs inside a
+    non-critical segment("publish/index"), which records the failure, annotates
+    it and continues. Catching here instead meant publish/index could never
+    report anything but ok, which is part of why EXIT_PUBLISH_DEGRADED was
+    effectively unreachable.
+    """
+    from generate_html import generate_index_html
+    generate_index_html()
 
 
 def sync_site_to_r2(max_age_days: float = 2.0):
@@ -6625,11 +6688,28 @@ def sync_site_to_r2(max_age_days: float = 2.0):
     r2, bucket = _get_r2_client()
     if r2 is None:
         print("⏭️  R2 credentials not configured, skipping site sync")
-        print("::warning::R2 credentials not configured — site sync skipped, live feed will not be updated")
+        # R2 is the live feed's origin. Returning normally here left
+        # publish/r2-sync recorded as ok, so a run that published nothing at all
+        # still exited 0 with a green tick and a stale feed.
+        degrade(
+            "publish/r2-sync",
+            "R2 credentials not configured — site sync skipped, live feed not updated",
+        )
         return
 
     print("☁️  Syncing site to R2...")
     base_dir = SCRIPT_DIR
+
+    # _upload_file_to_r2 reports its own failures and returns False, and every
+    # caller below discarded that return — so a sync that uploaded nothing still
+    # left publish/r2-sync recorded as ok. Count them and degrade once at the end.
+    failed_uploads: list[str] = []
+
+    def _upload(path: str, key: str) -> bool:
+        if _upload_file_to_r2(r2, bucket, path, key):
+            return True
+        failed_uploads.append(key)
+        return False
 
     # Use filename-embedded date (YYYY-MM-DD) rather than filesystem mtime so that
     # a fresh git checkout in CI (which resets all mtimes to "now") does not cause
@@ -6656,7 +6736,7 @@ def sync_site_to_r2(max_age_days: float = 2.0):
               + (f" ({skipped_audio} unchanged, skipped)" if skipped_audio else "") + "...")
         for audio_file in recent_audio:
             r2_key = f"podcasts/{os.path.basename(audio_file)}"
-            _upload_file_to_r2(r2, bucket, audio_file, r2_key)
+            _upload(audio_file, r2_key)
     elif audio_files:
         print(f"   All {len(audio_files)} audio episode(s) already up to date, skipping")
     else:
@@ -6674,7 +6754,7 @@ def sync_site_to_r2(max_age_days: float = 2.0):
               + (f" ({skipped_transcripts} unchanged, skipped)" if skipped_transcripts else "") + "...")
         for transcript_file in recent_transcripts:
             r2_key = f"podcasts/{os.path.basename(transcript_file)}"
-            _upload_file_to_r2(r2, bucket, transcript_file, r2_key)
+            _upload(transcript_file, r2_key)
     elif transcript_files:
         print(f"   All {len(transcript_files)} transcript(s) already up to date, skipping")
 
@@ -6699,7 +6779,7 @@ def sync_site_to_r2(max_age_days: float = 2.0):
             except Exception:
                 pass
             local_file = PODCASTS_DIR / os.path.basename(r2_key)
-            if local_file.exists() and _upload_file_to_r2(r2, bucket, str(local_file), r2_key):
+            if local_file.exists() and _upload(str(local_file), r2_key):
                 healed += 1
             else:
                 unresolved += 1
@@ -6708,6 +6788,12 @@ def sync_site_to_r2(max_age_days: float = 2.0):
                       "to auto-generated transcripts)")
         print(f"   Feed reference check: {len(referenced)} object(s) verified, {healed} healed"
               + (f", {unresolved} UNRESOLVED" if unresolved else ""))
+        if unresolved:
+            degrade(
+                "publish/r2-sync",
+                f"{unresolved} object(s) referenced by podcast-feed.xml are missing "
+                "from R2 and unhealable from disk — crawlers will 404",
+            )
 
     # Site assets — always upload; they are regenerated each run. Uploaded
     # LAST: podcast-feed.xml is what makes new audio/transcript URLs "live"
@@ -6721,9 +6807,18 @@ def sync_site_to_r2(max_age_days: float = 2.0):
     for local_name, r2_key in site_files:
         local_path = base_dir / local_name
         if local_path.exists():
-            _upload_file_to_r2(r2, bucket, str(local_path), r2_key)
+            _upload(str(local_path), r2_key)
         else:
             print(f"   ⚠️  {local_name} not found, skipping")
+            failed_uploads.append(r2_key)
+
+    if failed_uploads:
+        shown = ", ".join(failed_uploads[:5])
+        more = f" (+{len(failed_uploads) - 5} more)" if len(failed_uploads) > 5 else ""
+        degrade(
+            "publish/r2-sync",
+            f"{len(failed_uploads)} object(s) did not reach R2: {shown}{more}",
+        )
 
 
 def _ms_to_vtt_ts(ms):
@@ -6976,7 +7071,8 @@ def generate_episode_transcript(script_filename, date_str, safe_theme, audio_fil
     """Generate HTML and WebVTT transcripts from a podcast script file.
 
     When *audio_filename* exists, the VTT timeline is scaled to its real
-    duration. Returns the HTML transcript file path on success, or None on failure.
+    duration. Returns the HTML transcript file path, or None when there is no
+    script to transcribe. Anything else raises — see the note in the body.
     """
     if not script_filename or not os.path.exists(script_filename):
         return None
@@ -6991,38 +7087,37 @@ def generate_episode_transcript(script_filename, date_str, safe_theme, audio_fil
         except Exception as e:
             print(f"⚠️  Could not read audio duration for VTT scaling: {e}")
 
+    # Exceptions deliberately escape: the caller runs this inside a non-critical
+    # segment("publish/transcript"), which records and annotates the failure and
+    # lets the other publish surfaces proceed. Catching here made that segment
+    # incapable of reporting anything but ok.
+    with open(script_filename, 'r', encoding='utf-8') as f:
+        script_content = f.read()
+
+    html = script_to_friendly_transcript(script_content)
+    _atomic_write_text(html_filename, html)
+    print(f"📄 Saved HTML transcript to: {html_filename}")
+
+    # Anchor VTT cues to the measured turn timings when the audio stage
+    # wrote them; absent/stale sidecars degrade to the wpm estimator
+    # (rescaled to the real audio duration when known).
+    timeline = None
+    audio_path = audio_filename or str(
+        PODCASTS_DIR / f"podcast_audio_{date_str}_{safe_theme}.mp3")
     try:
-        with open(script_filename, 'r', encoding='utf-8') as f:
-            script_content = f.read()
+        with open(derive_episode_sidecar_path(audio_path, 'video_timeline'),
+                  encoding='utf-8') as f:
+            timeline = json.load(f).get('turns') or None
+    except (OSError, ValueError):
+        pass
 
-        html = script_to_friendly_transcript(script_content)
-        _atomic_write_text(html_filename, html)
-        print(f"📄 Saved HTML transcript to: {html_filename}")
+    vtt = script_to_vtt_transcript(script_content, audio_duration_ms=audio_duration_ms,
+                                   timeline=timeline)
+    if vtt:
+        _atomic_write_text(vtt_filename, vtt)
+        print(f"📄 Saved VTT transcript to: {vtt_filename}")
 
-        # Anchor VTT cues to the measured turn timings when the audio stage
-        # wrote them; absent/stale sidecars degrade to the wpm estimator
-        # (rescaled to the real audio duration when known).
-        timeline = None
-        audio_path = audio_filename or str(
-            PODCASTS_DIR / f"podcast_audio_{date_str}_{safe_theme}.mp3")
-        try:
-            with open(derive_episode_sidecar_path(audio_path, 'video_timeline'),
-                      encoding='utf-8') as f:
-                timeline = json.load(f).get('turns') or None
-        except (OSError, ValueError):
-            pass
-
-        vtt = script_to_vtt_transcript(script_content, audio_duration_ms=audio_duration_ms,
-                                       timeline=timeline)
-        if vtt:
-            _atomic_write_text(vtt_filename, vtt)
-            print(f"📄 Saved VTT transcript to: {vtt_filename}")
-
-        return html_filename
-
-    except Exception as e:
-        print(f"⚠️  Could not generate transcript: {e}")
-        return None
+    return html_filename
 
 
 def generate_podcast_rss_feed():
@@ -7045,6 +7140,9 @@ def generate_podcast_rss_feed():
     audio_base = podcast_config.get("audio_base_url", podcast_config["url"])
     citations_files = glob.glob(os.path.join(podcasts_dir, "citations_*.json"))
     episodes = []
+    # Episodes the feed silently omitted because their audio was neither on disk
+    # nor reachable. Reported once at the end rather than per episode.
+    dropped_episodes: list[str] = []
 
     # Try to load pydub for actual duration; fall back to config default
     def get_audio_duration(filepath):
@@ -7052,7 +7150,16 @@ def generate_podcast_rss_feed():
             audio = AudioSegment.from_mp3(filepath)
             total_secs = len(audio) // 1000
             return f"{total_secs // 60}:{total_secs % 60:02d}"
-        except Exception:
+        except Exception as e:
+            # Only reached when the mp3 exists but will not decode, so the feed
+            # is about to publish a config constant as the episode's real
+            # <itunes:duration>. Worth saying out loud — a truncated or corrupt
+            # render otherwise looks like a normal episode in every surface.
+            degrade(
+                "publish/rss",
+                f"could not read duration of {os.path.basename(filepath)} ({e}) — "
+                f"publishing the configured default {podcast_config['episode_duration']}",
+            )
             return podcast_config["episode_duration"]
 
     # For archived episodes whose audio isn't checked out locally (it lives on
@@ -7161,6 +7268,7 @@ def generate_podcast_rss_feed():
 
         if not file_size:
             print(f"   ⚠️ No audio found locally or remotely for {audio_basename} — skipping")
+            dropped_episodes.append(audio_basename)
             continue
 
         episodes.append({
@@ -7173,6 +7281,15 @@ def generate_podcast_rss_feed():
             'description': episode_description,
             'episode_type': episode_type
         })
+
+    if dropped_episodes:
+        shown = ", ".join(dropped_episodes[:5])
+        more = f" (+{len(dropped_episodes) - 5} more)" if len(dropped_episodes) > 5 else ""
+        degrade(
+            "publish/rss",
+            f"{len(dropped_episodes)} episode(s) omitted from the feed — audio "
+            f"neither on disk nor reachable: {shown}{more}",
+        )
 
     # Attach transcript paths for each episode (VTT for Apple Podcasts, HTML for others)
     for episode in episodes:
@@ -7541,8 +7658,16 @@ def _recover_orphaned_episodes(lookback_days=3):
                     recovered_any = True
                 else:
                     print(f"   ⚠️  Recovery failed for {date_str} — will retry next run")
+                    degrade(
+                        "recover/orphan-failed",
+                        f"{script_path.name} still has no audio after a recovery attempt",
+                    )
             except Exception as exc:
                 print(f"   ⚠️  Recovery error for {date_str}: {exc} — skipping")
+                degrade(
+                    "recover/orphan-failed",
+                    f"{script_path.name} recovery raised {type(exc).__name__}: {exc}",
+                )
 
     return recovered_any
 
@@ -8262,33 +8387,34 @@ def run_publish_stage(script_path: str = None, date_str: str = None) -> bool:
         return False
 
     audio_filename, date_key, safe_theme = _episode_paths(script_filename)
-    statuses = []
 
     # Generate HTML transcript for Apple Podcasts
-    with segment("publish/transcript", critical=False) as rec:
+    with segment("publish/transcript", critical=False):
         generate_episode_transcript(
             script_filename, date_key, safe_theme, audio_filename=audio_filename
         )
-    statuses.append(rec)
 
     # Generate RSS feed, regenerate index.html, and sync everything to R2
-    with segment("publish/rss", critical=False) as rec:
+    with segment("publish/rss", critical=False):
         generate_podcast_rss_feed()
-    statuses.append(rec)
 
-    with segment("publish/tts-test-feed", critical=False) as rec:
+    with segment("publish/tts-test-feed", critical=False):
         generate_tts_test_feed()
-    statuses.append(rec)
 
-    with segment("publish/index", critical=False) as rec:
+    with segment("publish/index", critical=False):
         _regenerate_index_html()
-    statuses.append(rec)
 
-    with segment("publish/r2-sync", critical=False) as rec:
+    with segment("publish/r2-sync", critical=False):
         sync_site_to_r2()
-    statuses.append(rec)
 
-    degraded = [r["name"] for r in statuses if r["status"] != "ok"]
+    # Read from _RUN_SEGMENTS rather than each block's own record: a
+    # surface that handled its own failure records via degrade(), which appends
+    # a separate entry those handles never see. Scoped to this stage's segments
+    # so a degraded render earlier in the same process is not counted twice.
+    degraded = sorted({
+        r["name"] for r in _RUN_SEGMENTS
+        if r["name"].startswith("publish/") and r["status"] != "ok"
+    })
     if degraded:
         print(f"⚠️  Publish degraded: {', '.join(degraded)}")
     return not degraded
@@ -8384,8 +8510,14 @@ def main(argv: list[str] = None) -> None:
                 sys.exit(EXIT_PUBLISH_DEGRADED)
             return
 
+        # run_audio_stage's return value used to be discarded here, so a render
+        # that produced no audio at all exited 0 under both the composite stage
+        # and the documented bare `python podcast_generator.py` invocation —
+        # the exact green-on-a-broken-episode that EXIT_RENDER_FAILED exists for.
         if args.stage == "audio":
-            run_audio_stage(script_path=args.script, date_str=args.date)
+            if not run_audio_stage(script_path=args.script, date_str=args.date):
+                print("❌ Render produced no audio.")
+                sys.exit(EXIT_RENDER_FAILED)
             return
 
         result = run_script_stage()
@@ -8394,7 +8526,9 @@ def main(argv: list[str] = None) -> None:
             sys.exit(1)
 
         if args.stage == "all":
-            run_audio_stage(script_path=result[0])
+            if not run_audio_stage(script_path=result[0]):
+                print("❌ Render produced no audio.")
+                sys.exit(EXIT_RENDER_FAILED)
     finally:
         # Runs on the abort paths too — a crashed run still reports which
         # segment died and how far it got.

@@ -175,17 +175,15 @@ jobs:
 
       - name: Commit episode files
         if: ${{ inputs.mode == 'full' }}
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
+        uses: ./.github/actions/commit-push
+        with:
+          message: "intro: generate 'Introducing the Show' episode"
+          fatal: 'true'
           # Audio excluded — deployed via Pages/R2 only, matching daily episodes
-          git add podcasts/podcast_script_*introducing_the_show*.txt podcasts/citations_*introducing_the_show*.json podcast-feed.xml || echo "No new episode files to add"
-
-          git diff --staged --quiet && echo "No changes to commit" && exit 0
-          git commit -m "intro: generate 'Introducing the Show' episode"
-          git pull --rebase origin main
-          git push
+          paths: |
+            podcasts/podcast_script_*introducing_the_show*.txt
+            podcasts/citations_*introducing_the_show*.json
+            podcast-feed.xml
 
       - name: Prepare output for GitHub Pages
         if: ${{ inputs.mode == 'full' }}

@@ -8,6 +8,10 @@ venv/
 # ...but never the CI workflow. An ignored workflow file is silently never
 # pushed, which is the failure mode this job exists to prevent.
 !.github/workflows/tests.yml
+# ...nor the TTS comparison feed, which is a published site surface, not a test
+# artifact. The blanket rule above caught it, so `git add tts-test-feed.xml` in
+# daily-podcast.yml failed on every run and reported "No TTS test feed to add".
+!tts-test-feed.xml
 
 # Backup files from refactoring
 *.pre-config
