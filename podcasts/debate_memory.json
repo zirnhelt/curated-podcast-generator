@@ -1,30 +1,4 @@
 {
-  "2026-05-03": {
-    "timestamp": 1777806180.706109,
-    "date": "2026-05-03",
-    "theme": "Science, Wonder & the Natural World",
-    "central_question": "How can systematic ecological observation and community science build both scientific resilience and territorial sovereignty in the Cariboo region?",
-    "riley_position": "Wonder and careful observation, increasingly distributed through citizen science platforms like iNaturalist, provide the motivational and practical infrastructure for ecological monitoring and community resilience.",
-    "riley_key_evidence": [
-      "iNaturalist has 200 million global observations with significant BC biodiversity data for rare species tracking",
-      "Watershed councils in the American Southwest have maintained continuous monitoring for over two decades through multi-stakeholder cost-sharing",
-      "Photography competitions show distributed high-quality observation capacity that can be translated into scientific data"
-    ],
-    "casey_position": "Wonder is less operationally important than relationships and obligations to place; the Cariboo's most sophisticated ecological knowledge comes from Indigenous and multi-generational community relationships, not Western scientific frameworks, and any monitoring system must be governed to protect data sovereignty.",
-    "casey_key_evidence": [
-      "The 4.5-million-year-old Ecuadorian frog persisted because surrounding communities maintained protective relationships with the landscape",
-      "Cariboo amphibian baseline population data is insufficient to determine species status or population trends",
-      "The TVA farm story shows how documented relationships with place create legal and political standing against extraction pressure"
-    ],
-    "resolution": "They reached substantial agreement that multi-stakeholder, sustained monitoring networks with Indigenous governance are necessary; Casey and Riley converged on Community Futures as a potential convener and agreed that longitudinal observation requires funding resilience and explicit data-broker roles rather than short-term grants.",
-    "topics_covered": [
-      "Citizen science platforms and distributed observation infrastructure",
-      "Data sovereignty and Indigenous-governed biodiversity data",
-      "Multi-stakeholder funding models for sustained environmental monitoring",
-      "The role of wonder versus obligation in driving long-term ecological observation",
-      "Community Futures' potential role as a regional convener"
-    ]
-  },
   "2026-05-04": {
     "timestamp": 1777896109.325825,
     "date": "2026-05-04",
@@ -2301,6 +2275,33 @@
       "Tiered ballot options vs. binary yes/no referendum design",
       "Regional cost-sharing models and sequencing of funding asks (Barriere comparison)",
       "Recurring vs. discrete hazards and the inadequacy of one-time capital votes for cumulative problems like fire risk and air quality"
+    ]
+  },
+  "2026-08-02": {
+    "timestamp": 1785665941.112003,
+    "date": "2026-08-02",
+    "theme": "Science, Wonder & the Natural World",
+    "focus": "earth-systems",
+    "central_question": "How should we build monitoring systems for slow-moving environmental threats like groundwater depletion, and what prevents us from detecting problems until they become crises?",
+    "riley_position": "Existing data held by Indigenous nations and government agencies could be repurposed to create groundwater early-warning systems without building new infrastructure; the constraint is governance and relationships, not technology.",
+    "riley_key_evidence": [
+      "Xat\u015b\u016bll First Nation already monitors river flow and temperature near Soda Creek for salmon management, which could serve as a proxy for aquifer health if data were shared",
+      "ALMA's reuse of astronomical archives for SETI found millions of previously unsearched stars, demonstrating how existing infrastructure can reveal overlooked signals",
+      "Surrey battery research overturned a decades-old assumption about water in sodium vanadium oxide electrodes, showing how untested assumptions hide in plain sight"
+    ],
+    "casey_position": "We systematically build monitoring only for acute threats (fires, spills) that demand immediate attention, while chronic threats (groundwater decline) compound quietly for years because they lack urgency and press visibility; this is a structural failure worth naming.",
+    "casey_key_evidence": [
+      "The diesel spill near Williams Lake had fast, precise public reporting because spill protocols are established; groundwater monitoring has no equivalent standing system",
+      "SETI's fifty-year reliance on the 'waterhole' frequency band is a cautionary example of methodology becoming entrenched without proof it covers the meaningful search space",
+      "Cariboo Regional District lacks continuous, publicly updated groundwater maps despite having real-time fire perimeter data"
+    ],
+    "resolution": "The speakers reached substantive agreement: the real constraint is establishing governance habits and relationships that prompt data-sharing before crisis hits, not technological barriers. Casey added a crucial caveat that new battery research is years from deployment and shouldn't replicate previous overpromising cycles.",
+    "topics_covered": [
+      "Monitoring infrastructure gaps for groundwater versus fire management",
+      "How assumptions become invisible until deliberately re-tested (SETI methodology, battery chemistry)",
+      "Data-sharing between Indigenous nations and regional governments as a governance question",
+      "The difference between 'we haven't found anything' and 'there's nothing there'",
+      "Building proactive rather than reactive decision-making structures"
     ]
   }
 }

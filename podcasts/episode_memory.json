@@ -1,22 +1,4 @@
 {
-  "2026-06-27": {
-    "timestamp": 1782555772.843258,
-    "topics": [
-      "[BC Gov News] Connecting more people in crisis to supports",
-      "[ScienceDaily] Major review finds vaping likely causes lung ",
-      "[BC Gov News] Inviting residents of 100 Mile House to commen",
-      "[The Guardian Global Development] Outrage as woman jailed fo",
-      "[CBC Arts] Is your name Janice? Drake would like to apologiz",
-      "[100 Mile Free Press] ORV use on 100 Mile House roads subjec",
-      "[Williams Lake Tribune] Williams Lake mayor to seek another ",
-      "[Williams Lake Tribune] Williams Lake urged to expand suppor"
-    ],
-    "themes": [
-      "rural development",
-      "connectivity"
-    ],
-    "date": "2026-06-27"
-  },
   "2026-06-28": {
     "timestamp": 1782643083.404799,
     "topics": [
@@ -649,5 +631,27 @@
     "date": "2026-08-01",
     "focus": null,
     "focus_name": null
+  },
+  "2026-08-02": {
+    "timestamp": 1785665939.459347,
+    "topics": [
+      "[ScienceAlert] Hell-World Venus May Have Once Had Oceans Acr",
+      "[Tom's Hardware] Firm that uses AI to locate ancient lost sh",
+      "[ScienceDaily] AI can tell if your brain is aging faster tha",
+      "[Kagi Small Web] Second Place in Tech Is Usually the More Pr",
+      "[Vancouver Sun] B.C. wildfires: Cooler weather forecast but ",
+      "[ScienceDaily] Alien signals may be hiding where we rarely l",
+      "[ScienceDaily] Scientists left water inside a battery and ne",
+      "[Engadget] What is a silicon carbon battery and is it the an"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-08-02",
+    "focus": "earth-systems",
+    "focus_name": "Earth Systems & Climate Science"
   }
 }

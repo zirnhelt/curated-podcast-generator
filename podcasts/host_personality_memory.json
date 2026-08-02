@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[CNET] We\u2019re Asking All the Wrong Questions About AI Compani",
-      "[WIRED] A Sneaky Hacking Tool Targeting AI Infrastructure Is",
       "[TechRadar] Experts warn 2.2 million cars could be at risk o",
       "AI",
       "[TechCrunch] Thea Energy lands $20M federal grant to build i",
@@ -10,7 +8,9 @@
       "[TechRadar] \u2018What we're really fighting is people scripting ",
       "How Indigenous technologists are building data sovereignty i",
       "[ScienceDaily] AI reveals explosive bursts in bird evolution",
-      "[Outside Online] The Feds Just Opened Public Lands to AI Dat"
+      "[Outside Online] The Feds Just Opened Public Lands to AI Dat",
+      "[Tom's Hardware] Firm that uses AI to locate ancient lost sh",
+      "[ScienceDaily] AI can tell if your brain is aging faster tha"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -85,11 +85,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-07-10",
-        "clue": "community-trust:~ \u2014 Acknowledged information gap as distinct from governance gap, added signage complexity",
-        "occurrences": 2
-      },
-      {
         "date": "2026-07-29",
         "clue": "pilot-skepticism:+ \u2014 shifted toward documentation over brand choice",
         "occurrences": 2
@@ -117,11 +112,6 @@
       {
         "date": "2026-07-27",
         "clue": "tech-optimism:~ \u2014 Acknowledged vertical video doesn't reliably build durable audiences alone",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-08-01",
-        "clue": "structural-lens:+ \u2014 Deepened commitment to systemic redesign over individual choice",
         "occurrences": 2
       }
     ],
@@ -369,13 +359,8 @@
         "occurrences": 1
       },
       {
-        "date": "2026-07-27",
-        "clue": "evidence-bar:x \u2014 Conceded full-length archive solves preservation, narrowed objection to discovery only",
-        "occurrences": 1
-      },
-      {
-        "date": "2026-07-31",
-        "clue": "pilot-skepticism:+ \u2014 Deepened doubt that resolutions convert to actual funding",
+        "date": "2026-08-02",
+        "clue": "evidence-bar:x \u2014 Conceded ALMA null result 'still matters on its own terms'",
         "occurrences": 2
       },
       {
