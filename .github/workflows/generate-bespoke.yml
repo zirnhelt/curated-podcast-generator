@@ -137,21 +137,15 @@ jobs:
           ls -la podcasts/bespoke/ 2>/dev/null || echo "No bespoke files found"
 
       - name: Commit episode files and updated seeds
-        env:
-          COMMIT_TAG: ${{ inputs.tag || github.event.client_payload.tag }}
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          git add podcasts/bespoke/ || echo "No bespoke dir to add"
-          git add podcasts/content_seeds.json || echo "No seeds file to add"
-          git add podcasts/bespoke_debate_memory.json || echo "No bespoke memory to add"
-          git add bespoke-feed.xml || echo "No feed file to add"
-
-          git diff --staged --quiet && echo "No changes to commit" && exit 0
-          git commit -m "bespoke: generate episode for tag '$COMMIT_TAG'"
-          git pull --rebase origin main
-          git push
+        uses: ./.github/actions/commit-push
+        with:
+          message: "bespoke: generate episode for tag '${{ inputs.tag || github.event.client_payload.tag }}'"
+          fatal: 'true'
+          paths: |
+            podcasts/bespoke/
+            podcasts/content_seeds.json
+            podcasts/bespoke_debate_memory.json
+            bespoke-feed.xml
 
       - name: Sync bespoke files to Cloudflare R2
         env:

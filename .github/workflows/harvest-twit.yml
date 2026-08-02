@@ -64,14 +64,16 @@ jobs:
 
           python twit_harvest.py $ARGS
 
+      - name: Stamp harvest date
+        id: stamp
+        if: github.event.inputs.dry_run != 'true'
+        run: echo "date=$(date -u '+%Y-%m-%d')" >> "$GITHUB_OUTPUT"
+
       - name: Commit updated inspiration cache
         if: github.event.inputs.dry_run != 'true'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add podcasts/twit_inspiration.json
-          git diff --staged --quiet \
-            && echo "No new entries to commit" \
-            || git commit -m "Weekly TWIT inspiration harvest — $(date -u '+%Y-%m-%d')"
-          git push origin HEAD
+        uses: ./.github/actions/commit-push
+        with:
+          message: Weekly TWIT inspiration harvest — ${{ steps.stamp.outputs.date }}
+          fatal: 'true'
+          paths: podcasts/twit_inspiration.json
         continue-on-error: true

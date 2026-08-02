@@ -122,17 +122,20 @@ jobs:
           esac
           python generate_french_prototype.py "${ARGS[@]}"
 
+      - name: Stamp episode date
+        id: stamp
+        if: ${{ inputs.mode == 'synthesize' && inputs.publish == true }}
+        run: echo "date=$(date -u +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+
       - name: Commit French script and RSS feed
         if: ${{ inputs.mode == 'synthesize' && inputs.publish == true }}
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add podcast-fr-feed.xml || true
-          git add podcasts/french_prototype/script_fr_*.txt || true
-          git diff --staged --quiet && echo "Nothing to commit" && exit 0
-          git commit -m "french: publish episode $(date -u +%Y-%m-%d)"
-          git pull --rebase origin main
-          git push
+        uses: ./.github/actions/commit-push
+        with:
+          message: 'french: publish episode ${{ steps.stamp.outputs.date }}'
+          fatal: 'true'
+          paths: |
+            podcast-fr-feed.xml
+            podcasts/french_prototype/script_fr_*.txt
 
       - name: Sync audio and feed to Cloudflare R2
         if: ${{ inputs.mode == 'synthesize' && inputs.publish == true }}

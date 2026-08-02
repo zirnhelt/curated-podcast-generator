@@ -76,11 +76,16 @@ jobs:
             --body-file /tmp/issue_body.md \
             --label "script-review"
 
+      - name: Stamp review date
+        id: stamp
+        run: echo "date=$(TZ='America/Vancouver' date '+%Y-%m-%d')" >> "$GITHUB_OUTPUT"
+
+      # Pushed with no rebase at all until now. This workflow runs while the
+      # daily podcast job is mid-render, so it is one of the pushes that made
+      # the daily run's own push get rejected non-fast-forward (2026-07-26).
       - name: Commit review report
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add reviews/
-          git diff --staged --quiet && echo "No new review file to commit" || \
-            git commit -m "Add script review $(TZ='America/Vancouver' date '+%Y-%m-%d')"
-          git push origin HEAD
+        uses: ./.github/actions/commit-push
+        with:
+          message: Add script review ${{ steps.stamp.outputs.date }}
+          fatal: 'true'
+          paths: reviews/

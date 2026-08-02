@@ -133,6 +133,25 @@ every individual state-file write are not. Each memory/state file gets its own s
 failure partway through the persistence run used to mark seeds and email consumed while
 leaving three memory files unwritten, with nothing in the log naming which.
 
+#### Handled degradations (`degrade()`)
+
+`segment()` can only downgrade a phase whose exception *escapes* the block, but most
+fallbacks handle their own: the TTS provider fallback, music-less mode, a missing R2
+credential, an episode dropped from the feed. The phase then finished "successfully"
+having produced a materially different result, and the run went green — on 2026-08-02 a
+whole episode was re-rendered on OpenAI after Gemini died, visible only in stdout.
+
+`degrade(name, detail)` records that. Passing the enclosing segment's own name downgrades
+that phase in place; any other name gets its own row, which is how a fallback with no
+segment of its own still reaches the table. Repeat calls under one name merge, so a
+failure inside a per-episode loop is one row rather than fifty. Every call emits a
+`::warning::` annotation.
+
+**When you add a fallback, add a `degrade()` call.** A silent fallback is the failure mode
+this exists to prevent — the fallback itself is usually right, the silence never is.
+`run_publish_stage` derives `EXIT_PUBLISH_DEGRADED` from these records, so a publish
+surface that swallows its own failure makes that exit code unreachable.
+
 `write_run_report()` appends a per-segment table (status, duration, error) to
 `$GITHUB_STEP_SUMMARY`, printing to stdout when that is unset. It is called from a `finally`
 in `main()`, so a crashed run still reports which segment died.
@@ -142,9 +161,27 @@ in `main()`, so a crashed run still reports which segment died.
 | Code | Meaning |
 |------|---------|
 | 75 | `EXIT_BUDGET_EXHAUSTED` — Anthropic spend cap; the workflow skips the day as a warning |
-| 76 | `EXIT_NO_ARTICLES` — upstream feed gave us nothing usable; not a crash |
+| 76 | `EXIT_NO_ARTICLES` — upstream feed gave us nothing usable; the workflow skips the day as a warning |
 | 77 | `EXIT_RENDER_FAILED` — no audio produced; the run goes red |
 | 78 | `EXIT_PUBLISH_DEGRADED` — audio is safe, one or more publish surfaces failed |
+
+#### Committing between stages
+
+Every workflow that commits uses the `./.github/actions/commit-push` composite action —
+never an inline `git add`/`commit`/`push` block. It stages each pathspec separately (a
+single unmatched glob used to abort the whole `git add` and stage nothing), commits only
+when the index is non-empty, then rebases with `--autostash` and retries the push three
+times. `fatal: 'true'` makes a push that never lands fail the step; the default is a
+`::warning::`.
+
+`--autostash` is load-bearing: the render and publish stages rewrite tracked files the
+commit step does not stage, and a plain `git pull --rebase` refuses to start against a
+dirty tree. That refusal was swallowed by `|| true`, which sent the push out un-rebased —
+the 2026-07-26 triple render and the 2026-08-02 sidecar failure.
+
+**If a stage writes a tracked file, some step must stage it.** `index.html` was
+regenerated on every publish and staged by nothing, so it sat permanently dirty and broke
+the rebase on every single run.
 
 #### Atomic state writes
 
