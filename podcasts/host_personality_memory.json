@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] Experts warn 2.2 million cars could be at risk o",
       "AI",
       "[TechCrunch] Thea Energy lands $20M federal grant to build i",
       "[Business Insider] Europe's biggest tech giant slides 5% on ",
@@ -10,7 +9,8 @@
       "[ScienceDaily] AI reveals explosive bursts in bird evolution",
       "[Outside Online] The Feds Just Opened Public Lands to AI Dat",
       "[Tom's Hardware] Firm that uses AI to locate ancient lost sh",
-      "[ScienceDaily] AI can tell if your brain is aging faster tha"
+      "[ScienceDaily] AI can tell if your brain is aging faster tha",
+      "\ud83d\udd13 [The Verge] The major labels propose rules to keep AI slop"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -85,11 +85,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-07-29",
-        "clue": "pilot-skepticism:+ \u2014 shifted toward documentation over brand choice",
-        "occurrences": 2
-      },
-      {
         "date": "2026-07-19",
         "clue": "pilot-skepticism:~ \u2014 Conceded that Arizona precedent requires actual local testing",
         "occurrences": 2
@@ -108,11 +103,6 @@
         "date": "2026-07-24",
         "clue": "evidence-bar:x \u2014 Conceded orca behavior discovery proves monitoring doesn't guarantee understanding",
         "occurrences": 1
-      },
-      {
-        "date": "2026-07-27",
-        "clue": "tech-optimism:~ \u2014 Acknowledged vertical video doesn't reliably build durable audiences alone",
-        "occurrences": 2
       }
     ],
     "core_memories": [
@@ -344,11 +334,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-07-31",
-        "clue": "structural-lens:x \u2014 Conceded regional districts lack leverage over provincial budgets",
-        "occurrences": 2
-      },
-      {
         "date": "2026-07-29",
         "clue": "rural-context:+ \u2014 pressed inverter code-compliance over informal salvage logic",
         "occurrences": 2
@@ -371,6 +356,11 @@
       {
         "date": "2026-08-01",
         "clue": "structural-lens:~ \u2014 Shifted from accountability-via-voting to accountability-via-standing-mechanisms",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-08-03",
+        "clue": "evidence-bar:+ \u2014 Reinforced institutional weight/paper trail over detection tech",
         "occurrences": 1
       }
     ],

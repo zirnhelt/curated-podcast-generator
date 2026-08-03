@@ -1,0 +1,129 @@
+# Cariboo Signals Podcast Script - 2026-08-03
+# Theme: Arts, Culture & Digital Storytelling
+# Brave: yes
+# Generated: 2026-08-03 04:52:12 PDT
+
+**COLD OPEN**
+**RILEY:** Hey there, welcome back. On today's episode: a 115,000-hectare wildfire near Clinton, nine Tŝilhqot'in baskets finally home from the Brooklyn Museum after decades away, and Google briefly letting anyone fake a satellite photo with six words. The Deep Dive question — when faking evidence is instant and free, who actually verifies what's real? That and more, coming right up.
+
+**WELCOME**
+
+**RILEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities — I'm Riley. It's Monday, August 3rd, 2026. Coming to you from the Cariboo, on lands that have been cared for by the Secwépemc, Tŝilhqot'in, and Dakelh peoples since time immemorial. Today's theme is Arts, Culture & Digital Storytelling.
+
+**CASEY:** And I'm Casey. We're looking at who gets to tell a story, who gets believed when they tell it, and what happens when a machine can fake the evidence behind that story in about six seconds. Quick weather note first — Horsefly Lake is sitting at 7 degrees this morning with clear skies, heading to a high of 21 with cloud moving in tomorrow and next to no precipitation expected. Around the region: 100 Mile House is at 6 and mainly clear, Williams Lake at 8 under overcast, Quesnel also at 7 with cloud cover, and out on the Chilcotin plateau, Tatla Lake is holding at 6 with clear skies.
+
+**RILEY:** Good flying weather out there if you're not near a fire line. There's a full slate this morning — Cariboo wildfire updates, a couple of hardware stories worth pairing together, some quick regional hits, and repatriated Tŝilhqot'in baskets that carry straight through into the Deep Dive. Let's get into it.
+
+**NEWS ROUNDUP**
+
+**RILEY:** It's a loaded roundup today — several stories straight out of the Williams Lake Tribune alone, plus a hardware cluster and a stack of quick hits, so we're going to move.
+
+**RILEY:** The Pear Lake wildfire near Clinton has grown to roughly 115,000 hectares, according to the Tribune. That's not a number that reads like a typical summer blaze.
+
+**CASEY:** That's not a fire anymore, that's a landscape event — for scale, that's larger than some regional districts.
+
+**CASEY:** BC Wildfire Service also logged 22 new lightning-caused fires in a single day this week. Dry fuel loads, an active lightning system moving through, and a fire season that isn't slowing as August opens — multiple new ignition points arriving faster than crews can fully assess them.
+
+**RILEY:** Gibraltar Mine is putting money into Scout Island in Williams Lake — support for the nature sanctuary there, a small piece of good news tucked inside a rough season. It's the kind of local corporate giving that keeps a community amenity running without a government grant cycle.
+
+**CASEY:** The Tribune also reported seven wildfires burning out of control across the Cariboo earlier last week — one long, escalating fire season, not a string of unrelated incidents.
+
+**RILEY:** On a lighter note, the Cariboo Chilcotin Metis Association held its twelfth annual Jamboree — a long-running community gathering with music, food, and culture that keeps happening year after year, fire season included.
+
+**CASEY:** Twelve years running is its own kind of infrastructure. Nobody's writing a grant proposal to keep a Jamboree alive that long — it survives because people keep showing up.
+
+**RILEY:** Shifting from wildfire smoke to circuit boards — two hardware stories this week that are really about the same underlying trend: the cost curve on serious compute and serious hardware, moving in opposite directions depending who's buying.
+
+**CASEY:** TechRadar reported the US Army is exploring stratospheric balloons that could act as high-altitude drone carriers — platforms that loiter for weeks and release solar-powered drones over contested territory without ever landing. It's framed as military logistics, but it's really a story about how cheap solar-powered autonomous flight has gotten, that a balloon can carry a fleet of them and just wait.
+
+**RILEY:** A drone carrier that never comes down. Terrifying and impressive in roughly equal measure.
+
+**RILEY:** Meanwhile, on the consumer end, a startup backed by CATL — the world's largest battery maker — just launched a mini PC that can run hundred-billion-parameter AI models locally, at a fraction of the price of Nvidia's five-thousand-dollar DGX Spark. That's a price collapse that changes who can run serious AI workloads without a cloud subscription — a small business or a home office, not just a data center.
+
+**CASEY:** So in the same week the military's renting the sky for a drone-carrying balloon, a battery company's making local AI compute cheap enough for a garage lab. Cost curves cut in every direction at once — nobody controls which side benefits first.
+
+**RILEY:** A few quick items before we move on. Spirit of the North launched a campaign called "It's About Time," pushing to bring interventional cardiac services to the north as part of the UHNBC Acute Care Tower project, which is reportedly in the final stages of approvals.
+
+**CASEY:** That's the kind of infrastructure story that never gets a press conference but matters more to families here than most things that do. Not having to drive to Kamloops or Vancouver for a cardiac procedure is a genuinely different quality of life.
+
+**RILEY:** A motorcyclist near Canim Lake on Highway 97 collided with a black bear that ran onto the road, and remarkably wasn't seriously hurt — 100 Mile House RCMP confirmed the incident.
+
+**CASEY:** Premier Eby is holding firm on the US alcohol ban in the softwood trade dispute, calling it, in his words, the only real leverage BC has left, and rejecting calls from federal Conservatives to lift it.
+
+**RILEY:** Highway 97 South at Kozuki Road, near Williams Lake, has reopened in both directions after being closed for a motor vehicle incident. Check Drive BC before a long-weekend trip either direction.
+
+**CASEY:** Samsung's new AI glasses are out, running on Google's Gemini rather than Samsung's own assistant — Galaxy hardware, Google's AI doing the thinking behind the lenses.
+
+**RILEY:** And an update on something with real staying power — Google briefly let anyone spoof satellite imagery on Google Earth with a six-word prompt: "type whatever you want to see." That window's since closed, but for about twenty-four hours, users worldwide could generate fake aerial photos of anywhere on the planet. It's a preview of exactly the authenticity problem we're spending the second half of today's show on.
+
+**CASEY:** We'll come back to that. A long-term clean energy project has also been proposed for the North Cariboo region — details still emerging.
+
+**RILEY:** And nine Tŝilhqot'in baskets have made it home to Williams Lake, after decades sitting in the Brooklyn Museum's collection. That one we're saving, because it deserves more than a headline — it's most of what we're building the Deep Dive around.
+
+**COMMUNITY SPOTLIGHT**
+
+**CASEY:** This one's an easy plug. The Central Cariboo Arts and Culture Society runs the Arts Centre, hands out local grants, and puts on Performances in the Park — free live music in Boitano Park every Thursday evening this summer. No ticket, no cover charge, no app to download, just a lawn chair and whoever's playing that week. Check centralcaribooarts.com for this week's lineup.
+
+**RILEY:** Free live music on a Thursday night is about as low-friction as culture gets — no algorithm deciding whether you should see it, no subscription tier, just show up.
+
+**CASEY:** Which is actually a decent way into what we're talking about next — the question underneath today's Deep Dive is exactly that: who decides what culture reaches you, and how do you know it's real.
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Arts, Culture & Digital Storytelling**
+
+**RILEY:** Nine baskets came home to Williams Lake this weekend. They left Tŝilhqot'in hands generations ago, ended up in a museum collection three thousand miles away in Brooklyn, and now they're back where they were made. That's about as unambiguous as cultural authenticity gets — you can hold the object, trace who wove it, verify exactly what it is and where it came from.
+
+**CASEY:** And in the same week, Google let anyone on Earth generate a fake satellite photo of anywhere they wanted with a six-word prompt. Those two stories sitting side by side is basically the whole question today.
+
+**RILEY:** Who verifies what's real, when the tools for faking it just got free and instant.
+
+**CASEY:** (wry) Somewhere out there right now is a fake satellite photo of someone's backyard shed rebuilt as a UFO landing pad. For a museum with three staff and a volunteer board, this isn't an abstract debate — it's a Tuesday afternoon problem, whether they've thought about it yet or not.
+
+**RILEY:** The music industry gives us a live test case for how an entire creative sector responds when the fakes start flooding in. Nearly a dozen major labels — Sony, Universal, Warner among them — just proposed global chart rules that would only allow AI-assisted songs onto the charts if they're, quote, "primarily human made," using AI legally and with proper consent. Spotify says it removed more than seventy-five million spammy or fraudulent AI-generated tracks over the past year. Deezer's gone further — it built detection tools that tag fully AI-generated tracks and exclude them entirely from algorithmic and editorial recommendations.
+
+**CASEY:** "Primarily human made" has no clear audit standard behind it. Who checks that claim? A label reviewing its own signed artists isn't a neutral referee — it's a talent agency protecting chart prestige for acts it already has a financial stake in. That's gatekeeping dressed up as listener protection.
+
+**RILEY:** Deezer's model doesn't have that problem, though. It's not adjudicating authorship at all — it's disclosing origin and keeping tagged tracks out of the recommendation engine. That's a workable, auditable template. You don't need to solve the philosophical question of "what counts as human" to solve the practical one of "tell people what they're listening to."
+
+**CASEY:** Disclosure after the fact doesn't stop the fake from reaching someone first. Seventy-five million tracks removed means seventy-five million tracks got through the door before anyone caught them. Tagging catches what gets flagged — it says nothing about what doesn't.
+
+**RILEY:** Now put that same dynamic on the visual side, which is where this actually lands for a place like the Cariboo. A small gallery or regional museum doesn't have Spotify's trust-and-safety team, or Deezer's detection pipeline. If someone submits a "found archival photo" for a local history exhibit, or a print with a provenance claim attached, who's actually checking?
+
+**CASEY:** Nobody, honestly. The Museum of the Cariboo Chilcotin isn't running forensic image analysis on donated prints. That's not a knock on them specifically — it's a capacity gap nobody built a tool for, because the systems built for streaming platforms don't translate down to a two-person heritage society.
+
+**RILEY:** There's a historical precedent that draws a clean line between two very different uses of the same underlying technology. The Archimedes Palimpsest — a thirteenth-century monk named Johannes Myronas scraped down a tenth-century copy of Archimedes' mathematical treatises to reuse the parchment for a prayer book. For eight hundred years, that erased mathematics was simply gone, invisible under the newer text. Then in the two-thousands, imaging scientists — Roger Easton, William Christens-Barry, Keith Knox — used multispectral photography to separate the overwritten layers and read text the naked eye could never see.
+
+**CASEY:** No ambiguity there about what the technology was doing. It wasn't generating anything new — it was recovering something that already existed and had been buried under someone else's later work.
+
+**RILEY:** That distinction matters here, not just as a passing note. Multispectral imaging and a "type whatever you want to see" satellite prompt both get loosely lumped together as "AI" or "advanced imaging" by people talking past each other, but one reveals real human work that already existed, and the other manufactures fake human work that never did. The tool isn't the moral category. What it's pointed at is.
+
+**CASEY:** Sure, but that distinction only holds up in practice if someone's actually applying it carefully. The palimpsest recovery took three specialists years of dedicated, grant-funded research. A gallery in Quesnel doesn't have that kind of team on standby either.
+
+**RILEY:** The underlying capability has gotten radically cheaper since the two-thousands, though. Phone-attachment multispectral and infrared imaging tools now exist for a few hundred dollars, doing a rough version of what took a dedicated optics lab twenty years to build. Cheap doesn't guarantee anyone adopts it, but it removes the excuse that it's financially impossible.
+
+**CASEY:** (deadpan) It removes the cost excuse specifically. It doesn't remove the "who actually has the hours to learn this and run it properly" problem, which is the wall every one of these democratized tools hits out here. Cheap plus nobody using it is functionally identical to nonexistent.
+
+**RILEY:** That's testable rather than purely theoretical, though, which is different from where we usually land on this. There's a concrete version to try locally: a volunteer at a Cariboo museum or archive spending a single afternoon photographing a handful of donated or uncertain-provenance pieces with a basic infrared-capable phone attachment, just to see what actually surfaces underneath. Not a grant application, not a multi-year program — one afternoon, one camera.
+
+**CASEY:** I'd genuinely want to know what that turns up. It still doesn't touch the bigger structural problem, though — the basket repatriation worked because there was a recognized institution standing behind the claim: the Brooklyn Museum, an actual paper trail, and a nation with the standing to make an internationally recognized case. Most visual heritage moving through smaller private or informal hands doesn't have anything like that infrastructure behind it.
+
+**RILEY:** Which is where provenance documentation ends up mattering more than the imaging technology itself, once you follow the logic through. The baskets came home because Tŝilhqot'in leadership had the historical records and the recognized international standing to make the case stick. That's a governance and diplomacy win before it's a technology story at all.
+
+**CASEY:** And it's worth being upfront that neither of us has spoken directly with Tŝilhqot'in cultural staff about how they're handling documentation going forward — we're working from what's publicly reported. The pattern still holds regardless of that gap: institutional weight and a documented paper trail, not app selection, is what actually got those baskets home after decades.
+
+**RILEY:** (chuckles) Which flips the AI slop conversation back onto itself in an interesting way. The labels' chart-rule fight is really about who gets to claim institutional weight behind a piece of culture — a human artist backed by a label's legal and business apparatus, versus an anonymous account flooding a platform with generated tracks that have no institution standing behind them at all. Visual arts and heritage collections are heading toward an identical fight. They're just a year or two behind where music already is.
+
+**CASEY:** Except visual arts doesn't have a Deezer-scale platform doing the tagging work for it. There's no algorithmic recommendation engine deciding what a gallery in Williams Lake chooses to hang on its wall. The enforcement mechanism that already exists for streaming simply doesn't exist yet for a local exhibit or a small archive's donation intake.
+
+**RILEY:** That cuts the other way too, though — it means the stakes are smaller and much more local, which actually makes it solvable without new infrastructure. A small gallery doesn't need an algorithm. It can make provenance a submission requirement, no detection software required. That's a one-page policy a volunteer board can write down and start enforcing this year.
+
+**CASEY:** The move that actually matters is exactly that — a one-page provenance question added to whatever intake form a local gallery, the Museum of the Cariboo Chilcotin, or the Arts Centre already uses for donations and submissions. Where did this come from, who made it, can you show me. It costs nothing to add, and it's the same basic discipline the Brooklyn Museum eventually had to answer to when the Tŝilhqot'in claim came in.
+
+**RILEY:** A policy without any teeth is still just a suggestion, though — a volunteer board can write it down and still not enforce it consistently three years from now when the person who cared about it has moved on.
+
+**CASEY:** That's the honest caveat, and it's real. But an unenforced one-page question still beats the current baseline, which is no question at all — and it costs a volunteer board nothing to start asking it before an AI slop problem shows up on a gallery wall instead of a streaming chart.
+
+**RILEY:** Given how fast this moved through the music industry over the past year, it could land on local arts organizations sooner than most of them expect — which is worth writing down now rather than after the fact. If anyone listening has a story about how a local museum or gallery is actually handling this, or isn't handling it at all, send it to us — feedback at cariboo signals dot c-a — and we'll fold it into a future episode.
+
+**CASEY:** We'll keep tracking it either way. That's today's episode — thanks for spending part of your Monday with us.
+
+**RILEY:** Have a great rest of your day. Or, if you're near Boitano Park Thursday evening, a great start to the evening too.
