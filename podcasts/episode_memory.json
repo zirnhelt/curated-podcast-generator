@@ -1,24 +1,4 @@
 {
-  "2026-06-28": {
-    "timestamp": 1782643083.404799,
-    "topics": [
-      "[Williams Lake Tribune] Researchers say Kitimat LNG facility",
-      "[New Atlas] Dead lithium batteries revived to 95% capacity v",
-      "[ScienceAlert] Scientists Found Microplastics in Hedgehogs, ",
-      "[Toms Guide] How often should you clean your bathroom to pre",
-      "[TechCrunch] AI researchers continue to leave Google for its",
-      "[New Atlas] Largest black hole collision on record reveals c",
-      "[ScienceDaily] Massive study links teen marijuana use to dou",
-      "[New Atlas] Unusual low-impact workout alleviates depression"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-06-28"
-  },
   "2026-06-29": {
     "timestamp": 1782737167.139581,
     "topics": [
@@ -653,5 +633,25 @@
     "date": "2026-08-02",
     "focus": "earth-systems",
     "focus_name": "Earth Systems & Climate Science"
+  },
+  "2026-08-03": {
+    "timestamp": 1785757932.839195,
+    "topics": [
+      "\ud83d\udd13 [Williams Lake Tribune] Repatriated Tsilhqot\u2019in baskets ar",
+      "\ud83d\udd13 [Williams Lake Tribune] Pear Lake wildfire near Clinton gr",
+      "\ud83d\udd13 [Williams Lake Tribune] 22 lightning-caused fires started ",
+      "\ud83d\udd13 [Williams Lake Tribune] Gibraltar Mine supports Scout Isla",
+      "\ud83d\udd13 [Williams Lake Tribune] Seven out-of-control fires burn in",
+      "\ud83d\udd13 [The Verge] The major labels propose rules to keep AI slop",
+      "\ud83d\udd13 [Outside Online] The Northern Lights Could Be Visible Acro",
+      "[Open Culture] How a 13th-Century Monk Created a Prayer Manu"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption"
+    ],
+    "date": "2026-08-03",
+    "focus": "visual-arts-heritage",
+    "focus_name": "Visual Arts & Heritage"
   }
 }
