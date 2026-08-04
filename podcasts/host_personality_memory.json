@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "AI",
       "[TechCrunch] Thea Energy lands $20M federal grant to build i",
       "[Business Insider] Europe's biggest tech giant slides 5% on ",
       "[TechRadar] \u2018What we're really fighting is people scripting ",
@@ -10,7 +9,8 @@
       "[Outside Online] The Feds Just Opened Public Lands to AI Dat",
       "[Tom's Hardware] Firm that uses AI to locate ancient lost sh",
       "[ScienceDaily] AI can tell if your brain is aging faster tha",
-      "\ud83d\udd13 [The Verge] The major labels propose rules to keep AI slop"
+      "\ud83d\udd13 [The Verge] The major labels propose rules to keep AI slop",
+      "[The Northern Miner] AI\u00a0boom lifts mining while competing fo"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -90,11 +90,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-07-28",
-        "clue": "structural-lens:~ \u2014 acknowledged both ranching scarcity AND current solvent conditions",
-        "occurrences": 2
-      },
-      {
         "date": "2026-07-29",
         "clue": "structural-lens:x \u2014 conceded ASML monopoly break \u2260 import ban pattern",
         "occurrences": 2
@@ -102,6 +97,11 @@
       {
         "date": "2026-07-24",
         "clue": "evidence-bar:x \u2014 Conceded orca behavior discovery proves monitoring doesn't guarantee understanding",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-08-04",
+        "clue": "pilot-skepticism:+ \u2014 Emphasized durability question for bilateral treaty once political incentive fades",
         "occurrences": 1
       }
     ],
@@ -309,11 +309,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-07-07",
-        "clue": "evidence-bar:- \u2014 Softened rancher skepticism slightly when Prairie hail mutual precedent presented with detail",
-        "occurrences": 2
-      },
-      {
         "date": "2026-07-12",
         "clue": "Indigenous-tech:~ \u2014 introduced legitimate data-ownership question as upstream design issue",
         "occurrences": 2
@@ -349,9 +344,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-07-28",
-        "clue": "structural-lens:+ \u2014 deepened pattern recognition across forestry, ranching, ALR as unified mechanism",
-        "occurrences": 1
+        "date": "2026-08-04",
+        "clue": "structural-lens:+ \u2014 Deepened focus on accountability gaps between rhetorical speed and governance speed",
+        "occurrences": 2
       },
       {
         "date": "2026-08-01",
