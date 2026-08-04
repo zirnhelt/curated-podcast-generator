@@ -1,24 +1,4 @@
 {
-  "2026-06-29": {
-    "timestamp": 1782737167.139581,
-    "topics": [
-      "#1382 Kick to the Balls: MAGA\u2019s World Cup",
-      "#1383 Shouty Carney Gets Sh*t Done",
-      "Discover Our Cell Phone Plans | Fizz",
-      "#1387 Is the Era of Conservative Premiers Over?",
-      "Discover Our Cell Phone Plans | Fizz",
-      "[TechRadar] This app turned me into the music creator that G",
-      "#1386 Cluster-F**ked! How Media Derailed Scientists in New B",
-      "AI"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech",
-      "connectivity"
-    ],
-    "date": "2026-06-29"
-  },
   "2026-06-30": {
     "timestamp": 1782826471.849095,
     "topics": [
@@ -653,5 +633,26 @@
     "date": "2026-08-03",
     "focus": "visual-arts-heritage",
     "focus_name": "Visual Arts & Heritage"
+  },
+  "2026-08-04": {
+    "timestamp": 1785840954.702651,
+    "topics": [
+      "[The Northern Miner] AI\u00a0boom lifts mining while competing fo",
+      "[WIRED] ICE Collected Nearly 1 Million People\u2019s DNA Last Yea",
+      "[ScienceDaily] Scientists went looking for giant trees in Ta",
+      "[Toms Guide] I drove the Subaru Forester and Mazda CX-5 for ",
+      "[Williams Lake Tribune] 500 wildland, structural firefighter",
+      "[The Northern Miner] Editorial: Industrial power returns",
+      "[Williams Lake Tribune] More than 100 Mexican wildfire perso",
+      "[The Guardian Global Development] \u2018Danger no longer only com"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact"
+    ],
+    "date": "2026-08-04",
+    "focus": "mining-energy",
+    "focus_name": "Mining & Energy"
   }
 }
