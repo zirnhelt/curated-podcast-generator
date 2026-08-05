@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechCrunch] Thea Energy lands $20M federal grant to build i",
-      "[Business Insider] Europe's biggest tech giant slides 5% on ",
       "[TechRadar] \u2018What we're really fighting is people scripting ",
       "How Indigenous technologists are building data sovereignty i",
       "[ScienceDaily] AI reveals explosive bursts in bird evolution",
@@ -10,7 +8,9 @@
       "[Tom's Hardware] Firm that uses AI to locate ancient lost sh",
       "[ScienceDaily] AI can tell if your brain is aging faster tha",
       "\ud83d\udd13 [The Verge] The major labels propose rules to keep AI slop",
-      "[The Northern Miner] AI\u00a0boom lifts mining while competing fo"
+      "[The Northern Miner] AI\u00a0boom lifts mining while competing fo",
+      "[WIRED] Is This Poker Player Bluffing? The AI Thinks So",
+      "[TechRadar] New malware disguised as popular Roblox cheat to"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -65,11 +65,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-07-16",
-        "clue": "tech-optimism:x \u2014 Conceded FirstVoices exception, not rule elsewhere",
-        "occurrences": 2
-      },
-      {
         "date": "2026-06-24",
         "clue": "tech-optimism:-[signal] \u2014 Acknowledged Claude dependency creates real vulnerability.",
         "occurrences": 1
@@ -102,6 +97,11 @@
       {
         "date": "2026-08-04",
         "clue": "pilot-skepticism:+ \u2014 Emphasized durability question for bilateral treaty once political incentive fades",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-08-05",
+        "clue": "evidence-bar:~ \u2014 acknowledged Apple's volume problem as real complexity",
         "occurrences": 1
       }
     ],
@@ -344,11 +344,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-08-04",
-        "clue": "structural-lens:+ \u2014 Deepened focus on accountability gaps between rhetorical speed and governance speed",
-        "occurrences": 2
-      },
-      {
         "date": "2026-08-01",
         "clue": "structural-lens:~ \u2014 Shifted from accountability-via-voting to accountability-via-standing-mechanisms",
         "occurrences": 1
@@ -356,6 +351,11 @@
       {
         "date": "2026-08-03",
         "clue": "evidence-bar:+ \u2014 Reinforced institutional weight/paper trail over detection tech",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-08-05",
+        "clue": "pilot-skepticism:+ \u2014 e-skin headlines 'circulating for over a decade' reinforced",
         "occurrences": 1
       }
     ],

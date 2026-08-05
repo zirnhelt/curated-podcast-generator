@@ -1,0 +1,353 @@
+{
+  "episode": {
+    "date": "2026-08-05",
+    "formatted_date": "Wednesday, August 05, 2026",
+    "theme": "Repair Culture & Practical Tech",
+    "title": "Cariboo Signals - Repair Culture & Practical Tech",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Repair Culture & Practical Tech.</p><p><b>NEWS ROUNDUP:</b> We break down [Tom's Hardware] Three major PC makers now using Chinese memory to fight 'unprecedented memory shortage,' report claims — HP, Asus, and Acer using 'small amounts' of CXMT chips in limited number of notebooks for non-US market and [Engadget] Apple caps bug bounty program due to deluge of AI submissions, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Should rural cybersecurity rely on automated technological solutions (self-healing systems, AI detection) or on human habits and compliance enforcement (multi-factor authentication, updates, inspection regimes)? Topics include: Cybersecurity vulnerabilities in rural households and small businesses, Automated vs. habit-based approaches to digital safety, Self-healing materials research and its practical timeline, The bottleneck of human judgment in scaled security systems, Repair culture and durability through knowledge rather than new purchases.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://cedarcrestsociety.com\">Cedar Crest Society for Community Living</a></p><p><b>Sources discussed:</b></p><ul><li>https://www.tomshardware.com/author/stephen-warwick (Tom's Hardware): <a href=\"https://www.tomshardware.com/tech-industry/three-major-pc-makers-now-using-chinese-memory-to-fight-unprecedented-memory-shortage-report-claims-hp-asus-and-acer-using-small-amounts-of-cxmt-chips-in-limited-number-of-notebooks-for-non-us-market\">[Tom's Hardware] Three major PC makers now using Chinese mem...</a></li><li>Anna Washenko (Engadget): <a href=\"https://www.engadget.com/2230256/apple-caps-bug-bounty-program-due-to-deluge-of-ai-submissions/\">[Engadget] Apple caps bug bounty program due to deluge of AI...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/315260/news/emergency-services/fire/wildfires/big-bar-comples-wildfires-see-growth-with-erratic-winds-in-the-south-cariboo/\">Big Bar Complex wildfires see more growth over long weekend ...</a></li><li>Ali Harb (Al Jazeera English): <a href=\"https://www.aljazeera.com/news/2026/8/5/abdul-el-sayed-wins-michigan-democratic-primary-for-senate-in-blow-to-aipac?traffic_source=rss\">[Al Jazeera English] Abdul El-Sayed wins Michigan Democratic...</a></li><li>Vancouver Sun: <a href=\"https://vancouversun.com/news/ubcs-sauder-school-loses-ranking-graduates-struggle-jobs\">[Vancouver Sun] UBC&#039;s Sauder School of Business loses r...</a></li><li>The Narwhal: <a href=\"https://thenarwhal.ca/migrant-workers-rally/?utm_source=rss\">[The Narwhal] ‘Working past exhaustion in extreme heat’: mig...</a></li><li>Anna Washenko (Engadget): <a href=\"https://www.engadget.com/2230511/texas-governor-orders-audit-of-new-data-centers-after-realizing-over-400-gigawatts-of-power-is-a-lot/\">[Engadget] Texas governor orders audit of new data centers a...</a></li><li>The Maple: <a href=\"https://www.readthemaple.com/bank-of-canada-is-addicted-to-illegally-using-scabs/\">[The Maple] Bank Of Canada Is Addicted To Illegally Using Sc...</a></li><li>https://www.techradar.com/author/sead-fadilpai (TechRadar): <a href=\"https://www.techradar.com/pro/security/new-malware-disguised-as-popular-roblox-cheat-tool-could-give-hackers-full-control-of-your-pc-including-the-webcam\">[TechRadar] New malware disguised as popular Roblox cheat to...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>MakeUseOf: <a href=\"https://www.makeuseof.com/turned-every-old-speaker-in-house-into-one-perfectly-synced-sound-system/\">[MakeUseOf] I turned every old speaker in my house into one ...</a></li><li>Ben Dowsett (WIRED): <a href=\"https://www.wired.com/story/ai-tells-detection-world-series-of-poker-espn/\">[WIRED] Is This Poker Player Bluffing? The AI Thinks So</a></li><li>Barbara Roden (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/08/04/extent-of-loss-due-to-big-bar-fires-becoming-clearer/\">[Williams Lake Tribune] Extent of loss due to Big Bar fires ...</a></li><li>CFJC Today Kamloops: <a href=\"https://cfjctoday.com/2026/08/04/1112547/\">[CFJC Today Kamloops] ‘I’m describing it as a nightmare’: Pe...</a></li><li>https://newatlas.com/author/david-szondy/ (New Atlas): <a href=\"https://newatlas.com/aircraft/meet-halo-civilian-version-thunder-loyal-wingman/\">[New Atlas] Archer Aviation debuts Halo autonomous VTOL, Thu...</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/video/newsfeed/2026/8/5/bolivia-sends-troops-to-stop-brazilian-gang-violence-along-border?traffic_source=rss\">[Al Jazeera English] Bolivia sends troops to stop Brazilian ...</a></li><li>Luis Parrales (The Atlantic Culture): <a href=\"https://www.theatlantic.com/culture/2026/08/catholic-church-sspx-schism/688166/?utm_source=feed\">[The Atlantic Culture] The Catholic Church’s New Schism</a></li><li>Noah Smith (Noahpinion): <a href=\"https://www.noahpinion.blog/p/the-end-of-the-age-of-heroes\">[Noahpinion] The end of the age of heroes</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/08/04/nyregion/nyc-buildings-violations-conversions.html\">[NYT Top Stories] After Midtown Building Buckles, Violations...</a></li><li>https://newatlas.com/author/etiido-uko/ (New Atlas): <a href=\"https://newatlas.com/technology/underwater-electronic-skin-detect-damage-self-repair/\">[New Atlas] Magnetoelectric underwater skin senses damage, r...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-opus-4-6<br>Today's Voices: Gemini TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-08-05T03:58:21.653202-07:00",
+    "models": {
+      "script": "claude-sonnet-5",
+      "review": "claude-opus-4-6",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 3212,
+      "voice_ratio_casey_riley": 0.87,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 1,
+        "serves_as_dodge": 1,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 0,
+        "roundup_seam": 0,
+        "thats_closer": 0
+      },
+      "total_hits": 2,
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Tom's Hardware] Three major PC makers now using Chinese memory to fight 'unprecedented memory shortage,' report claims — HP, Asus, and Acer using 'small amounts' of CXMT chips in limited number of notebooks for non-US market",
+          "url": "https://www.tomshardware.com/tech-industry/three-major-pc-makers-now-using-chinese-memory-to-fight-unprecedented-memory-shortage-report-claims-hp-asus-and-acer-using-small-amounts-of-cxmt-chips-in-limited-number-of-notebooks-for-non-us-market",
+          "source": "Tom's Hardware",
+          "author": "https://www.tomshardware.com/author/stephen-warwick",
+          "ai_score": 61,
+          "date_published": "2026-08-04T10:15:23+00:00",
+          "summary": "A new report claims that HP, Asus, and Acer have started to use a small amount of CXMT memory chips in notebooks for non-US markets.",
+          "discussed": true,
+          "mention_offset_frac": 0.1506
+        },
+        {
+          "title": "Big Bar Complex wildfires see more growth over long weekend : My Cariboo Now",
+          "url": "https://www.mycariboonow.com/315260/news/emergency-services/fire/wildfires/big-bar-comples-wildfires-see-growth-with-erratic-winds-in-the-south-cariboo/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 90,
+          "date_published": "2026-08-05T06:34:29.023132+00:00",
+          "summary": "The BC Wildfire Service says the Big Bar Complex wildfires have seen growth overnight and throughout the weekend, as strong winds with the cold front have increased fire behaviour.",
+          "discussed": true,
+          "mention_offset_frac": 0.3016
+        },
+        {
+          "title": "[Engadget] Apple caps bug bounty program due to deluge of AI submissions",
+          "url": "https://www.engadget.com/2230256/apple-caps-bug-bounty-program-due-to-deluge-of-ai-submissions/",
+          "source": "Engadget",
+          "author": "Anna Washenko",
+          "ai_score": 63,
+          "date_published": "2026-08-04T18:43:40+00:00",
+          "summary": "Apple caps bug bounty program due to deluge of AI submissions.",
+          "discussed": true,
+          "mention_offset_frac": 0.5674
+        },
+        {
+          "title": "[Al Jazeera English] Abdul El-Sayed wins Michigan Democratic primary for Senate, NBC projects",
+          "url": "https://www.aljazeera.com/news/2026/8/5/abdul-el-sayed-wins-michigan-democratic-primary-for-senate-in-blow-to-aipac?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "Ali Harb",
+          "ai_score": 58,
+          "date_published": "2026-08-05T06:10:20+00:00",
+          "summary": "Progressive advocate overcomes over $60m in spending to defeat pro-Israel Congresswoman Haley Stevens.",
+          "discussed": true,
+          "mention_offset_frac": 0.6277
+        },
+        {
+          "title": "[Vancouver Sun] UBC&#039;s Sauder School of Business loses ranking as graduates struggle to get jobs",
+          "url": "https://vancouversun.com/news/ubcs-sauder-school-loses-ranking-graduates-struggle-jobs",
+          "source": "Vancouver Sun",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-08-04T23:17:13+00:00",
+          "summary": "A survey of recent MBA grads found only 53 per cent reported getting a job within three months after graduation",
+          "discussed": true,
+          "mention_offset_frac": 0.6733
+        },
+        {
+          "title": "[The Narwhal] ‘Working past exhaustion in extreme heat’: migrant farm workers rally in Toronto",
+          "url": "https://thenarwhal.ca/migrant-workers-rally/?utm_source=rss",
+          "source": "The Narwhal",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-04T11:00:00+00:00",
+          "summary": "About 50 temporary foreign workers and allies gathered outside Ontario’s Labour Ministry, calling for better protections for labourers on the frontlines of a changing climate",
+          "discussed": true,
+          "mention_offset_frac": 0.7614
+        },
+        {
+          "title": "[The Maple] Bank Of Canada Is Addicted To Illegally Using Scabs",
+          "url": "https://www.readthemaple.com/bank-of-canada-is-addicted-to-illegally-using-scabs/",
+          "source": "The Maple",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-08-04T11:30:12+00:00",
+          "summary": "The Bank was found to have used scabs against striking workers again after being ordered to stop.",
+          "discussed": true,
+          "mention_offset_frac": 0.8017
+        },
+        {
+          "title": "[Engadget] Texas governor orders audit of new data centers after realizing over 400 gigawatts of power is a lot",
+          "url": "https://www.engadget.com/2230511/texas-governor-orders-audit-of-new-data-centers-after-realizing-over-400-gigawatts-of-power-is-a-lot/",
+          "source": "Engadget",
+          "author": "Anna Washenko",
+          "ai_score": 63,
+          "date_published": "2026-08-04T22:48:48+00:00",
+          "summary": "The state already hosts more than 500 data centers.",
+          "discussed": true,
+          "mention_offset_frac": 0.8425
+        },
+        {
+          "title": "[MakeUseOf] I turned every old speaker in my house into one perfectly synced sound system",
+          "url": "https://www.makeuseof.com/turned-every-old-speaker-in-house-into-one-perfectly-synced-sound-system/",
+          "source": "MakeUseOf",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-04T23:00:13+00:00",
+          "summary": "I transformed my mismatched audio gear into a seamlessly synced whole-home audio system using Snapcast, an open-source multi-room audio solution.",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] Is This Poker Player Bluffing? The AI Thinks So",
+          "url": "https://www.wired.com/story/ai-tells-detection-world-series-of-poker-espn/",
+          "source": "WIRED",
+          "author": "Ben Dowsett",
+          "ai_score": 60,
+          "date_published": "2026-08-04T11:00:00+00:00",
+          "summary": "ESPN unveiled an “AI tells detection” tool during broadcasts of the 2026 World Series of Poker. Is it a neat computer-powered party trick, or a real threat to poker’s future?",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Extent of loss due to Big Bar fires becoming clearer",
+          "url": "https://wltribune.com/2026/08/04/extent-of-loss-due-to-big-bar-fires-becoming-clearer/",
+          "source": "Williams Lake Tribune",
+          "author": "Barbara Roden",
+          "ai_score": 93,
+          "date_published": "2026-08-05T06:35:28.786073+00:00",
+          "summary": "## Extent of loss due to Big Bar fires becoming clearer Published 10:44 am Tuesday, August 4, 2026 **By Barbara Roden** The northwest corner of the Pear Lake wildfire near Clinton, pictured on July 31...",
+          "discussed": false
+        },
+        {
+          "title": "[CFJC Today Kamloops] ‘I’m describing it as a nightmare’: Pear Lake wildfire evacuees find refuge in Kamloops",
+          "url": "https://cfjctoday.com/2026/08/04/1112547/",
+          "source": "CFJC Today Kamloops",
+          "author": "",
+          "ai_score": 64,
+          "date_published": "2026-08-05T02:44:35+00:00",
+          "summary": "Teri Patterson (Image Credit: CFJC Today) By Marty Hastings Reception centre help ‘I’m describing it as a nightmare’: Pear Lake wildfire evacuees find refuge in Kamloops Aug 4, 2026 | 7:44 PM Share on...",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] Archer Aviation debuts Halo autonomous VTOL, Thunder's commercial twin",
+          "url": "https://newatlas.com/aircraft/meet-halo-civilian-version-thunder-loyal-wingman/",
+          "source": "New Atlas",
+          "author": "https://newatlas.com/author/david-szondy/",
+          "ai_score": 58,
+          "date_published": "2026-08-04T18:37:44+00:00",
+          "summary": "Which came first, the chicken or the egg? In aviation circles, the debate is often which came first: the military or civilian variant? Case in point: Archer Aviation's announcement at Farnborough of H...",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] Bolivia sends troops to stop Brazilian gang violence along border",
+          "url": "https://www.aljazeera.com/video/newsfeed/2026/8/5/bolivia-sends-troops-to-stop-brazilian-gang-violence-along-border?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-08-05T03:58:12+00:00",
+          "summary": "Footage shows some of the more than 200 Bolivian police and military officers patrolling its border with Brazil.",
+          "discussed": false
+        },
+        {
+          "title": "[The Atlantic Culture] The Catholic Church’s New Schism",
+          "url": "https://www.theatlantic.com/culture/2026/08/catholic-church-sspx-schism/688166/?utm_source=feed",
+          "source": "The Atlantic Culture",
+          "author": "Luis Parrales",
+          "ai_score": 63,
+          "date_published": "2026-08-04T12:00:00+00:00",
+          "summary": "The Vatican excommunicated 700 arch-traditionalist bishops and priests—a rupture that touches on broader disputes in the Church today.",
+          "discussed": false
+        },
+        {
+          "title": "[Noahpinion] The end of the age of heroes",
+          "url": "https://www.noahpinion.blog/p/the-end-of-the-age-of-heroes",
+          "source": "Noahpinion",
+          "author": "Noah Smith",
+          "ai_score": 62,
+          "date_published": "2026-08-04T07:36:17+00:00",
+          "summary": "AI will soon be better at math than any human. What does that mean?",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Repair Culture & Practical Tech",
+      "articles": [
+        {
+          "title": "[NYT Top Stories] After Midtown Building Buckles, Violations Are Found at Many Other Sites",
+          "url": "https://www.nytimes.com/2026/08/04/nyregion/nyc-buildings-violations-conversions.html",
+          "source": "NYT Top Stories",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-08-04T22:22:44+00:00",
+          "summary": "New York City officials conducted inspections at 180 construction sites. None of the violations posed an immediate danger to the public, they said.",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] New malware disguised as popular Roblox cheat tool could give hackers full control of your PC — including the webcam",
+          "url": "https://www.techradar.com/pro/security/new-malware-disguised-as-popular-roblox-cheat-tool-could-give-hackers-full-control-of-your-pc-including-the-webcam",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/sead-fadilpai",
+          "ai_score": 63,
+          "date_published": "2026-08-04T18:15:00+00:00",
+          "summary": "A new \"invisible\" Xeno Executor is actually a highly capable RAT and a potent infostealer.",
+          "discussed": true
+        },
+        {
+          "title": "[New Atlas] Magnetoelectric underwater skin senses damage, repairs itself",
+          "url": "https://newatlas.com/technology/underwater-electronic-skin-detect-damage-self-repair/",
+          "source": "New Atlas",
+          "author": "https://newatlas.com/author/etiido-uko/",
+          "ai_score": 62,
+          "date_published": "2026-08-04T20:19:27+00:00",
+          "summary": "Researchers at the National University of Singapore (NUS) have developed a sensing electronic skin that functions underwater, detects nearby objects, senses physical contact, recognizes when it has be...",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Should rural cybersecurity rely on automated technological solutions (self-healing systems, AI detection) or on human habits and compliance enforcement (multi-factor authentication, updates, inspection regimes)?",
+        "riley_position": "Both technological advancement and human behavior matter, but automated defenses and self-healing materials represent a genuine progress curve that will eventually solve infrastructure problems humans can't constantly monitor. The trajectory from minutes to seconds in self-healing materials over five years is measurable progress worth pursuing.",
+        "riley_key_evidence": [
+          "NUS underwater e-skin self-healing material reduced repair time from minutes to ~10 seconds in recent iterations",
+          "Microsoft security data shows multi-factor authentication blocks overwhelming majority of account-compromise attempts regardless of attacker sophistication",
+          "Windows Defender baseline detection has improved dramatically and doesn't require new hardware purchases"
+        ],
+        "casey_position": "The real fix for rural households and small businesses is unglamorous compliance and habits, not impressive lab results. Most people fall victim to social engineering (fake cheat tools, phishing), not technical failures, and no automation closes the gap when human judgment is the bottleneck.",
+        "casey_key_evidence": [
+          "Xeno Executor targets children seeking free game cheats—a social engineering problem, not a signature detection failure",
+          "Apple's bug bounty program capped due to AI-generated submissions drowning human reviewers, showing automation creates bottlenecks at human judgment layer",
+          "Manhattan construction inspections found code violations at meaningful number of sites—the fix is enforcement of existing rules, not new technology"
+        ],
+        "resolution": "They agreed to disagree on timelines rather than outcomes: Riley conceded lab research operates on a different timeline than immediate practical needs, while Casey acknowledged both streams of work matter. They found consensus that boring compliance (multi-factor authentication, automatic updates, local IT retainers, knowledge-sharing) solves the actual problem facing rural businesses this week, while lab advances address future infrastructure problems on a longer curve.",
+        "topics_covered": [
+          "Cybersecurity vulnerabilities in rural households and small businesses",
+          "Automated vs. habit-based approaches to digital safety",
+          "Self-healing materials research and its practical timeline",
+          "The bottleneck of human judgment in scaled security systems",
+          "Repair culture and durability through knowledge rather than new purchases"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 12,
+          "conditions": "partly cloudy",
+          "high": 27,
+          "low": 12
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 13,
+          "conditions": "clear skies",
+          "high": 27,
+          "low": 12
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 12,
+          "conditions": "clear skies",
+          "high": 29,
+          "low": 11
+        },
+        {
+          "name": "Quesnel",
+          "temp": 12,
+          "conditions": "overcast",
+          "high": 27,
+          "low": 11
+        },
+        {
+          "name": "Redstone",
+          "temp": 8,
+          "conditions": "clear skies",
+          "high": 27,
+          "low": 6
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Cedar Crest Society for Community Living",
+      "description": "100 Mile House nonprofit ensuring full community citizenship for adults with developmental disabilities — employment support, independent living, and community inclusion programs",
+      "website": "cedarcrestsociety.com",
+      "psa_angle": "",
+      "event_name": ""
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_azure": "Azure Neural TTS",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "Gemini TTS"
+  }
+}
