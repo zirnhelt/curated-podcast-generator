@@ -1,21 +1,4 @@
 {
-  "2026-06-30": {
-    "timestamp": 1782826471.849095,
-    "topics": [
-      "[The Northern Miner] Freeman Gold triples Lemhi value, build",
-      "[The Northern Miner] Sponsored video: 1911 Gold test mining ",
-      "[The Guardian Global Development] \u2018It\u2019s open green space ver",
-      "[TechRadar] Over 14 million login credentials leaked from si",
-      "[TechRadar] Google says Android's built-in earthquake warnin",
-      "[The Northern Miner] Bunker Hill\u00a0rebuild\u00a0ships first Idaho o",
-      "[100 Mile Free Press] CARIBOO OUTDOORS: Clearwater trout hat",
-      "[Quesnel Cariboo Observer] Anti-gang police\u2019s North team lea"
-    ],
-    "themes": [
-      "rural development"
-    ],
-    "date": "2026-06-30"
-  },
   "2026-07-01": {
     "timestamp": 1782906239.449248,
     "topics": [
@@ -654,5 +637,26 @@
     "date": "2026-08-04",
     "focus": "mining-energy",
     "focus_name": "Mining & Energy"
+  },
+  "2026-08-05": {
+    "timestamp": 1785927504.526602,
+    "topics": [
+      "[MakeUseOf] I turned every old speaker in my house into one ",
+      "[Tom's Hardware] Three major PC makers now using Chinese mem",
+      "[WIRED] Is This Poker Player Bluffing? The AI Thinks So",
+      "[Williams Lake Tribune] Extent of loss due to Big Bar fires ",
+      "[CFJC Today Kamloops] \u2018I\u2019m describing it as a nightmare\u2019: Pe",
+      "[NYT Top Stories] After Midtown Building Buckles, Violations",
+      "[TechRadar] New malware disguised as popular Roblox cheat to",
+      "[New Atlas] Magnetoelectric underwater skin senses damage, r"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech"
+    ],
+    "date": "2026-08-05",
+    "focus": "digital-life-security",
+    "focus_name": "Digital Life & Security"
   }
 }

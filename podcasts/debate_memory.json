@@ -1,30 +1,4 @@
 {
-  "2026-05-06": {
-    "timestamp": 1778068737.371143,
-    "date": "2026-05-06",
-    "theme": "Gear, Gadgets & Practical Tech",
-    "central_question": "How can remote Cariboo communities effectively bridge the gap between available technology and practical knowledge to solve real infrastructure and sustainability problems?",
-    "riley_position": "The technology and documentation already exist; the real barrier is building local social infrastructure and knowledge-sharing networks that connect people with practical expertise, particularly through institutional anchoring of programs like repair caf\u00e9s.",
-    "riley_key_evidence": [
-      "Solar panel efficiency and battery chemistry have matured enough to provide meaningful supplemental charge over a full sun day",
-      "Open-source hardware documentation (like Hackaday projects) provides starting points for practical builds",
-      "Institutional anchoring through SD27, libraries, or colleges creates sustainable programs vs. volunteer-dependent models"
-    ],
-    "casey_position": "While technology is better than ever, the practical barriers for remote communities aren't primarily technical\u2014they're time poverty, isolation from peer communities, and lack of local support when problems arise, compounded by manufacturer incentive structures working against repairability.",
-    "casey_key_evidence": [
-      "Marketing for solar products (Solly, Jackery, Goal Zero) doesn't match real-world winter performance in the Cariboo, creating a literacy problem",
-      "PLA 3D printer warping in cold garages requires additional build projects to solve (enclosures), creating recursive tinkering barriers",
-      "Repair caf\u00e9s burn out because they depend on volunteer time from 2-3 key people who eventually move or change roles"
-    ],
-    "resolution": "Riley and Casey converge on agreeing that institutional anchoring (through SD27, colleges, libraries, or First Nations technical groups) is the practical solution that makes programs sustainable, and both acknowledge that the real 'build project' is the social infrastructure, not the technology itself.",
-    "topics_covered": [
-      "Off-grid solar power systems: specifications, realistic performance, and marketing vs. reality",
-      "Maker culture and open-source hardware documentation for practical problem-solving",
-      "Right-to-repair and device repairability as infrastructure equity issues",
-      "Repair caf\u00e9s and community technical capacity-building models",
-      "First Nations technical knowledge and local innovation ecosystems"
-    ]
-  },
   "2026-05-07": {
     "timestamp": 1778155458.29492,
     "date": "2026-05-07",
@@ -2307,6 +2281,33 @@
       "Constitutional Aboriginal title protections versus international governance gaps",
       "Canada-Mexico wildfire mutual aid treaty as resilient working-lands model",
       "How outside forces reshape local working lands faster than accountability structures can adapt"
+    ]
+  },
+  "2026-08-05": {
+    "timestamp": 1785927507.15807,
+    "date": "2026-08-05",
+    "theme": "Repair Culture & Practical Tech",
+    "focus": "digital-life-security",
+    "central_question": "Should rural cybersecurity rely on automated technological solutions (self-healing systems, AI detection) or on human habits and compliance enforcement (multi-factor authentication, updates, inspection regimes)?",
+    "riley_position": "Both technological advancement and human behavior matter, but automated defenses and self-healing materials represent a genuine progress curve that will eventually solve infrastructure problems humans can't constantly monitor. The trajectory from minutes to seconds in self-healing materials over five years is measurable progress worth pursuing.",
+    "riley_key_evidence": [
+      "NUS underwater e-skin self-healing material reduced repair time from minutes to ~10 seconds in recent iterations",
+      "Microsoft security data shows multi-factor authentication blocks overwhelming majority of account-compromise attempts regardless of attacker sophistication",
+      "Windows Defender baseline detection has improved dramatically and doesn't require new hardware purchases"
+    ],
+    "casey_position": "The real fix for rural households and small businesses is unglamorous compliance and habits, not impressive lab results. Most people fall victim to social engineering (fake cheat tools, phishing), not technical failures, and no automation closes the gap when human judgment is the bottleneck.",
+    "casey_key_evidence": [
+      "Xeno Executor targets children seeking free game cheats\u2014a social engineering problem, not a signature detection failure",
+      "Apple's bug bounty program capped due to AI-generated submissions drowning human reviewers, showing automation creates bottlenecks at human judgment layer",
+      "Manhattan construction inspections found code violations at meaningful number of sites\u2014the fix is enforcement of existing rules, not new technology"
+    ],
+    "resolution": "They agreed to disagree on timelines rather than outcomes: Riley conceded lab research operates on a different timeline than immediate practical needs, while Casey acknowledged both streams of work matter. They found consensus that boring compliance (multi-factor authentication, automatic updates, local IT retainers, knowledge-sharing) solves the actual problem facing rural businesses this week, while lab advances address future infrastructure problems on a longer curve.",
+    "topics_covered": [
+      "Cybersecurity vulnerabilities in rural households and small businesses",
+      "Automated vs. habit-based approaches to digital safety",
+      "Self-healing materials research and its practical timeline",
+      "The bottleneck of human judgment in scaled security systems",
+      "Repair culture and durability through knowledge rather than new purchases"
     ]
   }
 }
