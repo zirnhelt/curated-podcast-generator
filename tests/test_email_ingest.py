@@ -10,7 +10,8 @@ from unittest.mock import MagicMock
 
 import pytest
 
-# email_ingest only uses stdlib at import time; no stubs needed
+# email_ingest imports only stdlib plus config_loader (itself stdlib-only at
+# import time); no stubs needed
 sys.path.insert(0, str(Path(__file__).parent.parent))
 from email_ingest import (
     _extract_urls,
@@ -338,15 +339,25 @@ def _make_raw_email(subject, from_addr, body, message_id=None, to_addr="podcast@
     return {"raw": base64.urlsafe_b64encode(msg.as_bytes()).decode()}
 
 
-def _mock_gmail_service(raw_email_dicts):
-    """Return a MagicMock Gmail service that yields the given raw email dicts."""
+def _mock_gmail_service(raw_email_dicts, gmail_ids=None):
+    """Return a MagicMock Gmail service that yields the given raw email dicts.
+
+    gmail_ids overrides the stub ids returned by list() so tests can exercise
+    the "already processed" ledger, which keys on Gmail's own message id.
+    """
+    ids = gmail_ids or [str(i) for i in range(len(raw_email_dicts))]
     svc = MagicMock()
     svc.users().messages().list().execute.return_value = {
-        "messages": [{"id": str(i)} for i in range(len(raw_email_dicts))]
+        "messages": [{"id": i} for i in ids]
     }
     svc.users().messages().get().execute.side_effect = raw_email_dicts
     svc.users().messages().modify().execute.return_value = {}
     return svc
+
+
+def _get_call_count(svc):
+    """How many times a full raw message download was requested."""
+    return svc.users().messages().get().execute.call_count
 
 
 class TestIngest:
@@ -392,7 +403,9 @@ class TestIngest:
         added = ingest(dry_run=False)
 
         assert added == 0
-        assert not queue_file.exists()
+        # The file is written even though nothing queued — it now carries the
+        # rejection ledger — so assert on the items, not the file's existence.
+        assert json.loads(queue_file.read_text())["items"] == []
 
     def test_duplicate_email_is_skipped(self, tmp_path, monkeypatch):
         """An email whose Message-ID is already in the queue is not re-added."""
@@ -436,7 +449,7 @@ class TestIngest:
         added = ingest(dry_run=False)
 
         assert added == 0
-        assert not queue_file.exists()
+        assert json.loads(queue_file.read_text())["items"] == []
 
     def test_correction_subject_is_typed_as_correction(self, tmp_path, monkeypatch):
         """A 'Correction: ...' subject is classified as type 'correction'."""
@@ -504,7 +517,7 @@ class TestIngest:
         added = ingest(dry_run=False)
 
         assert added == 0
-        assert not queue_file.exists()
+        assert json.loads(queue_file.read_text())["items"] == []
 
     def test_email_addressed_to_allowed_domain_is_added(self, tmp_path, monkeypatch):
         """A themed email addressed to an allowed domain is queued as usual when a
@@ -548,3 +561,148 @@ class TestIngest:
 
         assert added == 1
         assert not queue_file.exists()
+
+
+# ---------------------------------------------------------------------------
+# Already-processed ledger (seen_gmail_ids)
+# ---------------------------------------------------------------------------
+
+class TestSeenGmailIds:
+    """The ingest re-listed every message in the label on every run and only
+    discovered it had already handled one *after* a full raw download — so a
+    steady-state run cost ~2 API calls per message and produced nothing. On
+    2026-08-06 that loop stalled for 15 minutes. Gmail's stub id is free from
+    list(), so the decision is now made before any download."""
+
+    def _run(self, tmp_path, monkeypatch, svc, queue=None):
+        queue_file = tmp_path / "email_queue.json"
+        if queue is not None:
+            queue_file.write_text(json.dumps(queue))
+        monkeypatch.setenv("GMAIL_LABEL", "podcast")
+        monkeypatch.setattr("email_ingest._build_gmail_service", lambda: svc)
+        monkeypatch.setattr("email_ingest.QUEUE_FILE", queue_file)
+        added = ingest(dry_run=False)
+        return added, json.loads(queue_file.read_text())
+
+    def test_queued_message_is_recorded_in_ledger(self, tmp_path, monkeypatch):
+        raw = _make_raw_email(
+            subject="Story idea",
+            from_addr="listener@example.com",
+            body="Williams Lake and Cariboo rural communities story idea.",
+        )
+        svc = _mock_gmail_service([raw], gmail_ids=["gmail-abc"])
+
+        added, queue = self._run(tmp_path, monkeypatch, svc)
+
+        assert added == 1
+        assert queue["seen_gmail_ids"] == ["gmail-abc"]
+
+    def test_known_id_is_skipped_without_downloading(self, tmp_path, monkeypatch):
+        """The whole point of the fix: no get() call for a message already decided."""
+        raw = _make_raw_email(
+            subject="Story idea",
+            from_addr="listener@example.com",
+            body="Williams Lake and Cariboo rural communities story idea.",
+        )
+        svc = _mock_gmail_service([raw], gmail_ids=["gmail-abc"])
+
+        added, queue = self._run(
+            tmp_path, monkeypatch, svc,
+            queue={"version": 1, "items": [], "seen_gmail_ids": ["gmail-abc"]},
+        )
+
+        assert added == 0
+        assert _get_call_count(svc) == 0
+        svc.users().messages().modify().execute.assert_not_called()
+
+    def test_rejected_message_is_remembered(self, tmp_path, monkeypatch):
+        """A blocked sender is never queued, so before the ledger it was
+        re-downloaded on every run forever."""
+        raw = _make_raw_email(
+            subject="Cariboo community update",
+            from_addr="noreply@podmatch.com",
+            body="Williams Lake local news and community stories.",
+        )
+        svc = _mock_gmail_service([raw], gmail_ids=["gmail-blocked"])
+        monkeypatch.setattr(
+            "email_ingest._load_email_sender_blocklist", lambda: SAMPLE_BLOCKLIST
+        )
+
+        added, queue = self._run(tmp_path, monkeypatch, svc)
+
+        assert added == 0
+        assert queue["items"] == []
+        assert queue["seen_gmail_ids"] == ["gmail-blocked"]
+
+    def test_ledger_persists_when_nothing_was_added(self, tmp_path, monkeypatch):
+        """A rejection-only run must still write — it is precisely the run whose
+        work would otherwise be repeated next time."""
+        raw = _make_raw_email(
+            subject="Hello",
+            from_addr="sender@example.com",
+            body="Generic message with no matching keywords whatsoever.",
+        )
+        svc = _mock_gmail_service([raw], gmail_ids=["gmail-unthemed"])
+
+        added, queue = self._run(tmp_path, monkeypatch, svc)
+
+        assert added == 0
+        assert queue["seen_gmail_ids"] == ["gmail-unthemed"]
+
+    def test_ledger_is_capped(self, tmp_path, monkeypatch):
+        """Committed daily, so it must not grow without bound."""
+        import email_ingest
+
+        monkeypatch.setattr(email_ingest, "SEEN_IDS_MAX", 3)
+        raw = _make_raw_email(
+            subject="Story idea",
+            from_addr="listener@example.com",
+            body="Williams Lake and Cariboo rural communities story idea.",
+        )
+        svc = _mock_gmail_service([raw], gmail_ids=["gmail-new"])
+
+        added, queue = self._run(
+            tmp_path, monkeypatch, svc,
+            queue={"version": 1, "items": [], "seen_gmail_ids": ["a", "b", "c"]},
+        )
+
+        assert added == 1
+        # Oldest dropped, newest kept.
+        assert queue["seen_gmail_ids"] == ["b", "c", "gmail-new"]
+
+    def test_dry_run_does_not_persist_ledger(self, tmp_path, monkeypatch):
+        raw = _make_raw_email(
+            subject="Story idea",
+            from_addr="listener@example.com",
+            body="Williams Lake and Cariboo rural communities story idea.",
+        )
+        svc = _mock_gmail_service([raw], gmail_ids=["gmail-abc"])
+
+        queue_file = tmp_path / "email_queue.json"
+        monkeypatch.setenv("GMAIL_LABEL", "podcast")
+        monkeypatch.setattr("email_ingest._build_gmail_service", lambda: svc)
+        monkeypatch.setattr("email_ingest.QUEUE_FILE", queue_file)
+
+        assert ingest(dry_run=True) == 1
+        assert not queue_file.exists()
+
+    def test_legacy_queue_without_ledger_still_dedups_by_header(self, tmp_path, monkeypatch):
+        """Existing queue entries predate the ledger, so the header check must
+        still catch them — and record the id so the next run skips early."""
+        mid = "<already-seen@example.com>"
+        raw = _make_raw_email(
+            subject="Cariboo community update",
+            from_addr="sender@example.com",
+            body="Williams Lake local news and community stories.",
+            message_id=mid,
+        )
+        svc = _mock_gmail_service([raw], gmail_ids=["gmail-legacy"])
+
+        added, queue = self._run(
+            tmp_path, monkeypatch, svc,
+            queue={"version": 1, "items": [{"message_id": mid, "status": "pending"}]},
+        )
+
+        assert added == 0
+        assert _get_call_count(svc) == 1  # downloaded once to read the header
+        assert queue["seen_gmail_ids"] == ["gmail-legacy"]  # not again next run

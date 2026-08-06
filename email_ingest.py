@@ -50,6 +50,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlparse
 
+from config_loader import atomic_write_json
+
 
 SCRIPT_DIR = Path(__file__).parent
 QUEUE_FILE = SCRIPT_DIR / "podcasts" / "email_queue.json"
@@ -63,6 +65,10 @@ FEEDBACK_MAX_CHARS = 500
 # Newsletter preview kept short — only used for theme scoring
 NEWSLETTER_MAX_CHARS = 200
 URL_MIN_LEN = 10
+# Gmail ids of messages already decided on (queued or deliberately rejected).
+# Capped so the committed queue file cannot grow without bound; only needs to
+# cover the newest `maxResults` window the list call can return.
+SEEN_IDS_MAX = 500
 
 
 # ---------------------------------------------------------------------------
@@ -517,8 +523,9 @@ def _load_queue() -> dict:
 
 def _save_queue(data: dict) -> None:
     QUEUE_FILE.parent.mkdir(exist_ok=True)
-    with open(QUEUE_FILE, "w") as f:
-        json.dump(data, f, indent=2)
+    # Atomic: _load_queue swallows a truncated file as an empty queue, so a crash
+    # mid-write would silently discard every pending item.
+    atomic_write_json(QUEUE_FILE, data)
 
 
 # ---------------------------------------------------------------------------
@@ -545,6 +552,13 @@ def ingest(dry_run: bool = False) -> int:
         for item in queue.get("items", [])
         if item.get("message_id")
     }
+    # Gmail ids of messages already decided on in an earlier run. The dedup key
+    # proper is the RFC Message-ID header, but that is only readable *after* a
+    # full raw download — so header-only dedup meant every run re-downloaded the
+    # whole label to re-derive decisions it had already made. Rejected messages
+    # were worse: never queued, so never remembered, so re-fetched forever.
+    seen_gmail_ids = list(queue.get("seen_gmail_ids", []))
+    seen_gmail_lookup = set(seen_gmail_ids)
 
     # Build Gmail search query: all messages in the target label.
     # Deduplication is handled via seen_message_ids; dropping is:unread ensures
@@ -566,9 +580,23 @@ def ingest(dry_run: bool = False) -> int:
 
     print(f"  Found {len(messages)} unread message(s).")
     added = 0
+    skipped_known = 0
+
+    def _remember(gmail_id: str) -> None:
+        """Record a decided message so later runs skip it before downloading."""
+        if gmail_id not in seen_gmail_lookup:
+            seen_gmail_lookup.add(gmail_id)
+            seen_gmail_ids.append(gmail_id)
 
     for msg_stub in messages:
         msg_id = msg_stub["id"]
+
+        # Gmail's own id arrives free with list(). Checking it here is what keeps
+        # a steady-state run to a single API call instead of one full raw
+        # download plus one modify per message in the label.
+        if msg_id in seen_gmail_lookup:
+            skipped_known += 1
+            continue
 
         try:
             raw_msg = service.users().messages().get(
@@ -589,6 +617,7 @@ def ingest(dry_run: bool = False) -> int:
 
         if message_id_header in seen_message_ids:
             print(f"  ⏭  Duplicate, skipping: {message_id_header[:60]}")
+            _remember(msg_id)
             if not dry_run:
                 _mark_read(service, msg_id)
             continue
@@ -602,12 +631,14 @@ def ingest(dry_run: bool = False) -> int:
 
         if _is_blocked_sender(from_address, sender_blocklist):
             print(f"  ⏭  Blocked sender, skipping: \"{from_address[:60]}\"")
+            _remember(msg_id)
             if not dry_run:
                 _mark_read(service, msg_id)
             continue
 
         if _is_blocked_subject(subject, subject_blocklist):
             print(f"  ⏭  Blocked subject, skipping: \"{subject[:60]}\"")
+            _remember(msg_id)
             if not dry_run:
                 _mark_read(service, msg_id)
             continue
@@ -617,6 +648,7 @@ def ingest(dry_run: bool = False) -> int:
         )
         if not _is_recipient_allowed(to_cc_headers, recipient_allowlist):
             print(f"  ⏭  Not addressed to an allowed domain, skipping: \"{subject[:60]}\"")
+            _remember(msg_id)
             if not dry_run:
                 _mark_read(service, msg_id)
             continue
@@ -648,6 +680,7 @@ def ingest(dry_run: bool = False) -> int:
         # not today's keywords) must not drop the item.
         if theme_tag is None and item_type != "correction":
             print(f"  ⏭  No theme match, skipping: \"{subject[:60]}\"")
+            _remember(msg_id)
             if not dry_run:
                 _mark_read(service, msg_id)
             continue
@@ -669,6 +702,7 @@ def ingest(dry_run: bool = False) -> int:
 
         queue["items"].append(item)
         seen_message_ids.add(message_id_header)
+        _remember(msg_id)
         added += 1
 
         theme_label = theme_tag or "no strong theme match (will not be used)"
@@ -677,8 +711,17 @@ def ingest(dry_run: bool = False) -> int:
         if not dry_run:
             _mark_read(service, msg_id)
 
-    if added and not dry_run:
+    if skipped_known:
+        print(f"  ⏭  Skipped {skipped_known} already-processed message(s) without downloading.")
+
+    # The ledger must persist even on a run that added nothing — a run that only
+    # rejected messages is exactly the one whose work would otherwise be redone.
+    ledger_grew = len(seen_gmail_ids) != len(queue.get("seen_gmail_ids", []))
+    queue["seen_gmail_ids"] = seen_gmail_ids[-SEEN_IDS_MAX:]
+
+    if (added or ledger_grew) and not dry_run:
         _save_queue(queue)
+    if added and not dry_run:
         print(f"\n📧 Added {added} new item(s) to email queue.")
     elif added and dry_run:
         print(f"\n📧 [DRY RUN] Would have added {added} item(s) — queue not written.")

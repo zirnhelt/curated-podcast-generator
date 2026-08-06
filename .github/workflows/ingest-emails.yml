@@ -15,6 +15,12 @@ permissions:
 jobs:
   ingest:
     runs-on: ubuntu-latest
+    # A healthy run finishes in 30-80s. On 2026-08-06 one stalled inside the
+    # Gmail fetch loop and sat there until it was killed at 15 minutes, landing
+    # as an ambiguous "cancelled" with its logs already expired. Without a bound
+    # the ceiling is GitHub's 6-hour default, so the next stall would burn a
+    # runner all day and still explain nothing. Fail fast and legibly instead.
+    timeout-minutes: 10
 
     steps:
       - name: Checkout repository
