@@ -1,43 +1,4 @@
 {
-  "2026-07-01": {
-    "timestamp": 1782906239.449248,
-    "topics": [
-      "[New Atlas] 1 in 30 may have a condition that gets them lost",
-      "Engadget review recap: MSI Claw 8 EX AI+, Sony A7R VI, Ray-B",
-      "[Williams Lake Tribune] B.C. Nurses\u2019 Union files 72-hour str",
-      "Hackaday Europe 2026 \u2013 Building A Retro PC From Scratch",
-      "[TechRadar] Adobe and Disney are teaming up to design the ne",
-      "[BC Gov News] Overnight intersection closure at Keating Cros",
-      "[TechCrunch] Wayve launches $85M employee tender offer at $8",
-      "[LoRaMeshDevices] How to Export Meshtastic Tracks as GPX Fil"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech"
-    ],
-    "date": "2026-07-01"
-  },
-  "2026-07-02": {
-    "timestamp": 1782989819.785305,
-    "topics": [
-      "How Animikii observe statutory holidays",
-      "[New Atlas] Physicists made a tiny expanding universe to wat",
-      "[Android Authority] Anthropic\u2019s most advanced AI models coul",
-      "[Williams Lake Tribune] Indigenous-led forest rehabilitation",
-      "[BC Gov News] Expanding access to First Nations-led addictio",
-      "[Williams Lake Tribune] PHOTOS: Parade kicks off 2026 Nation",
-      "A collection of sacred Indigenous artifacts could soon be so",
-      "[Eagle Feather News] Events around the province to celebrate"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-07-02"
-  },
   "2026-07-03": {
     "timestamp": 1783075973.208741,
     "topics": [
@@ -658,5 +619,27 @@
     "date": "2026-08-05",
     "focus": "digital-life-security",
     "focus_name": "Digital Life & Security"
+  },
+  "2026-08-06": {
+    "timestamp": 1786016086.357281,
+    "topics": [
+      "[MacRumors] Apple's iCloud Private Relay is Leaking Users' R",
+      "[The Guardian Global Development] Peruvian cardinal hails $1",
+      "[Outside Online] What\u2019s at Stake as Fires Threaten Mount Hoo",
+      "[WIRED] The National Design Studio Became a DOGE Landing Pad",
+      "[ScienceDaily] Europe\u2019s wildfires became so intense they cre",
+      "[APTN News] British Columbia is logging its last old growth ",
+      "[Williams Lake Tribune] Donations sought for South Cariboo f",
+      "[Williams Lake Tribune] Celebrate National Pickleball Day wi"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-08-06",
+    "focus": "economic-development",
+    "focus_name": "Economic Development"
   }
 }
