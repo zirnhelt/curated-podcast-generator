@@ -1545,6 +1545,9 @@ def format_corrections_for_prompt(correction_items: list) -> str:
         "(use the original air date below if given, converted to natural spoken "
         "form; if none is given, say 'a recent episode' rather than guessing a "
         "date), what's actually correct, and thank the listener for the catch. "
+        "Name the subject, the wrong detail as the show stated it, and the "
+        "correct detail — a vague beat about 'a detail we got wrong' is worse "
+        "than no beat at all. "
         "Do not wait for a more 'on-theme' episode; these must air today.",
         "---",
     ]
@@ -1568,6 +1571,73 @@ def format_corrections_for_prompt(correction_items: list) -> str:
             )
     lines.append("---")
     return "\n".join(lines) + "\n\n"
+
+
+# First-person admissions of an on-air error. Deliberately narrow: every pattern
+# requires the show to be owning a mistake ("we got that wrong", "a listener
+# pointed out"), so the standing outro CTA ("that's the address for corrections,
+# tips...") and ordinary prose ("a methodology correction", "doing its job
+# correctly", "publish first and correct later") never match.
+_UNSOURCED_CORRECTION_RES = [
+    re.compile(p, re.IGNORECASE) for p in (
+        r"\bwe (?:got|had) (?:that|it|this) wrong\b",
+        r"\bwe (?:mis-?stated|misspoke|misreported|misattributed)\b",
+        r"\bwe(?:'ve|’ve| have) (?:since )?corrected\b",
+        r"\bwe owe (?:you|listeners?|a listener) (?:an? )?(?:correction|apology)\b",
+        r"\ba (?:quick|small|brief|short) correction\b",
+        r"\bto correct (?:the|our) record\b",
+        r"\bsetting the record straight\b",
+        r"\bthank(?:s| you)? to the listener who (?:flagged|caught|wrote|pointed)\b",
+        r"\bthanks? for catching (?:it|that|this)\b",
+        r"\ba listener (?:pointed out|flagged|caught|wrote in|noticed)\b",
+    )
+]
+
+# Splits a turn into sentences without consuming the delimiter, so surviving
+# sentences keep their punctuation when the beat is only part of a turn.
+_SENTENCE_SPLIT_RE = re.compile(r"(?<=[.!?])\s+")
+_SPEAKER_TURN_RE = re.compile(r"^\*\*([A-Z]+):\*\*\s*(.*)$")
+
+
+def strip_unsourced_correction(script: str, corrections: list | None) -> tuple[str, int]:
+    """Delete correction beats that no listener correction supports.
+
+    The generation and polish prompts both already forbid inventing a
+    correction, and both failed on 2026-08-04 — the episode thanked a listener
+    for flagging an error when the queue held no correction at all. The polish
+    pass structurally cannot catch it either: it sees the script but never the
+    LISTENER CORRECTIONS context block, so "is this sourced?" is unanswerable
+    there. This is the deterministic backstop.
+
+    No-op when `corrections` is non-empty — a real correction must survive
+    untouched. Otherwise every first-person correction sentence is removed, and
+    a speaker turn is dropped entirely only when nothing else remains in it.
+
+    Returns (script, beats_removed).
+    """
+    if corrections:
+        return script, 0
+
+    removed = 0
+    out_lines: list[str] = []
+    for line in script.splitlines():
+        m = _SPEAKER_TURN_RE.match(line.strip())
+        if not m or not any(r.search(line) for r in _UNSOURCED_CORRECTION_RES):
+            out_lines.append(line)
+            continue
+
+        speaker, body = m.group(1), m.group(2)
+        kept = [s for s in _SENTENCE_SPLIT_RE.split(body)
+                if not any(r.search(s) for r in _UNSOURCED_CORRECTION_RES)]
+        removed += 1
+        if kept:
+            out_lines.append(f"**{speaker}:** {' '.join(kept).strip()}")
+        # else: the turn was nothing but the fabricated beat — drop it whole,
+        # along with the blank line that trailed it, so the roundup reads clean.
+        elif out_lines and out_lines[-1] == "":
+            out_lines.pop()
+
+    return "\n".join(out_lines), removed
 
 
 def _build_newsletter_articles(newsletter_items: list, today_theme: str, brave_client) -> list:
@@ -2453,8 +2523,30 @@ def _polish_valid(original: str, polished: str) -> bool:
             and len(polished.split()) >= MIN_SCRIPT_WORDS)
 
 
+def _corrections_ground_truth(corrections: list | None) -> str:
+    """Tell the polish pass whether a correction beat can possibly be legitimate.
+
+    The polish prompts carry a FABRICATION CHECK instructing the model to delete
+    any correction it cannot trace to a real listener email — but the polish call
+    is handed the script alone, never the LISTENER CORRECTIONS context block, so
+    that check was unanswerable and a fabricated beat survived on 2026-08-04.
+    This addendum supplies the missing fact. A few tokens; makes the existing
+    instruction actually enforceable.
+    """
+    if not corrections:
+        return ("\n\nLISTENER CORRECTIONS SUPPLIED FOR THIS EPISODE: none. Any correction "
+                "beat in this script — any line admitting the show got something wrong, or "
+                "thanking a listener for flagging an error — is fabricated. Delete it and "
+                "smooth the transition.")
+    subjects = "; ".join(f'"{(c.get("subject") or "untitled").strip()}"' for c in corrections)
+    return (f"\n\nLISTENER CORRECTIONS SUPPLIED FOR THIS EPISODE: {len(corrections)} "
+            f"({subjects}). A correction beat tied to these is legitimate — keep it, and "
+            f"keep it specific about what was wrong and what is correct. Delete any "
+            f"correction beat that does not match one of them.")
+
+
 def polish_and_factcheck_with_agent(script, theme_name, news_articles, deep_dive_articles,
-                                     research_insights=None, model=None):
+                                     research_insights=None, model=None, corrections=None):
     """Agentic polish + fact-check pass — real-time fallback for post-processing.
 
     Gives Claude the script, verified sources, and research insights directly
@@ -2490,7 +2582,7 @@ def polish_and_factcheck_with_agent(script, theme_name, news_articles, deep_dive
         verified_sources=verified_sources,
         research_insights=research_insights or "(none)",
         air_date=f"{weekday}, {date_str}",
-    ) + _stage_direction_addendum()
+    ) + _stage_direction_addendum() + _corrections_ground_truth(corrections)
 
     review_model = model or select_review_model(deep_dive_articles)
     brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
@@ -2515,7 +2607,8 @@ def polish_and_factcheck_with_agent(script, theme_name, news_articles, deep_dive
 
 
 def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_articles,
-                                   additional_research=None, research_insights=None):
+                                   additional_research=None, research_insights=None,
+                                   corrections=None):
     """Submit polish+factcheck and debate summary as a Message Batch.
 
     Returns the batch object (with batch.id for polling) or None on error.
@@ -2694,7 +2787,8 @@ def collect_batch_results(batch_id):
 
 
 def run_post_processing_batch(script, theme_name, news_articles, deep_dive_articles,
-                               additional_research=None, research_insights=None):
+                               additional_research=None, research_insights=None,
+                               corrections=None):
     """Submit, poll, and collect post-processing batch results.
 
     Returns (polished_script, debate_summary) or falls back to real-time
@@ -2702,7 +2796,8 @@ def run_post_processing_batch(script, theme_name, news_articles, deep_dive_artic
     """
     batch = submit_post_processing_batch(script, theme_name, news_articles, deep_dive_articles,
                                           additional_research=additional_research,
-                                          research_insights=research_insights)
+                                          research_insights=research_insights,
+                                          corrections=corrections)
     if not batch:
         return None, None
 
@@ -3919,6 +4014,12 @@ def _article_source_name(article: dict) -> str:
     return (authors[0].get('name') or article.get('source') or '').strip()
 
 
+# The blocks that open the roundup. Distinct for ordering, pool protection and
+# the order check; rendered to the prompt as one arc so the episode leads with
+# everything that ties to today rather than three separately-announced runs.
+ROUNDUP_ARC_BLOCKS = ('theme', 'theme_adjacent', 'local')
+
+
 def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
     """Order News Roundup articles into labeled coherence blocks.
 
@@ -3926,8 +4027,17 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
     ordered block by block:
     - 'theme': net-positive theme relevance (feed keyword matches, or local
       keyword hits outweighing anti-keyword penalties) — the roundup's lead arc
+    - 'theme_adjacent': the theme keyword is in the article body rather than its
+      title or summary. `_local_theme_relevance` only scans title+summary, so a
+      story whose theme tie lives one layer down used to fall through to
+      'standalone' — on 2026-08-04 a LiDAR forestry story landed there on a
+      Working Lands day, leaving a one-article theme block
     - 'local': BC/regional outlets (podcast.json `local_sources`) — the show
       never drops or buries local stories
+
+    The first three blocks render as a single opening arc (see
+    `_roundup_block_header`); they stay distinct here because the roundup-order
+    check and the pool cap both need to tell them apart.
     - discipline group keys (e.g. 'physical_sciences'): off-theme articles
       sharing a discipline group with at least one sibling, kept adjacent so
       the roundup's back half plays as clusters instead of one-offs
@@ -3959,7 +4069,15 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
     pool = [a for a in articles if not a.get('_is_bonus')]
     bonus = [a for a in articles if a.get('_is_bonus')]
 
-    theme_block, local_block, rest = [], [], []
+    def body_theme_hits(a):
+        """Net theme-keyword hits in the article body, which relevance() ignores."""
+        body = (a.get('_body') or '').lower()
+        if not body:
+            return 0
+        return (_keyword_hit_count(body, theme_keywords)
+                - _keyword_hit_count(body, anti_keywords or []))
+
+    theme_block, adjacent_block, local_block, rest = [], [], [], []
     for a in pool:
         # relevance ≥ 2 means at least one net keyword hit survives the
         # anti-keyword penalty — score alone (boosted/100 + source boost)
@@ -3967,6 +4085,9 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
         if a.get('_keyword_matches', 0) > 0 or relevance(a) >= 2:
             a['_roundup_block'] = 'theme'
             theme_block.append(a)
+        elif body_theme_hits(a) > 0:
+            a['_roundup_block'] = 'theme_adjacent'
+            adjacent_block.append(a)
         elif any(s in _article_source_name(a).lower() for s in local_sources):
             a['_roundup_block'] = 'local'
             local_block.append(a)
@@ -3993,6 +4114,7 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
         a['_roundup_block'] = 'standalone'
 
     theme_block.sort(key=relevance, reverse=True)
+    adjacent_block.sort(key=body_theme_hits, reverse=True)
     local_block.sort(key=boosted, reverse=True)
     standalone.sort(key=boosted, reverse=True)
     # Bigger clusters first — the most connective material leads the back half
@@ -4000,17 +4122,18 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
         clusters.values(), key=lambda ms: (len(ms), boosted(ms[0])), reverse=True
     )
     clustered = [a for members in ordered_clusters for a in members]
-    return theme_block + local_block + clustered + standalone + bonus
+    return theme_block + adjacent_block + local_block + clustered + standalone + bonus
 
 
 def _curate_roundup_pool(articles: list, theme_name: str, pool_size: int) -> tuple:
     """Cap the News Roundup pool at `pool_size` while maximizing coherence.
 
-    Keeps every on-theme and local/regional article (even past the cap), then
-    fills remaining slots with off-theme discipline clusters (never stranding
-    a lone cluster member) and finally the best standalones. Bonus articles
-    pass through uncapped. Returns (kept, dropped); dropped articles never
-    reach citations, so dedup lets them resurface on a better-matched theme day.
+    Keeps every opening-arc article — on-theme, theme-adjacent and
+    local/regional — even past the cap, then fills remaining slots with
+    off-theme discipline clusters (never stranding a lone cluster member) and
+    finally the best standalones. Bonus articles pass through uncapped. Returns
+    (kept, dropped); dropped articles never reach citations, so dedup lets them
+    resurface on a better-matched theme day.
     """
     ordered = _annotate_roundup_blocks(articles, theme_name)
     bonus = [a for a in ordered if a.get('_is_bonus')]
@@ -4018,10 +4141,16 @@ def _curate_roundup_pool(articles: list, theme_name: str, pool_size: int) -> tup
     if len(pool) <= pool_size:
         return pool + bonus, []
 
-    protected = [a for a in pool if a['_roundup_block'] in ('theme', 'local')]
-    fillers = [a for a in pool if a['_roundup_block'] not in ('theme', 'local')]
+    protected = [a for a in pool if a['_roundup_block'] in ROUNDUP_ARC_BLOCKS]
+    fillers = [a for a in pool if a['_roundup_block'] not in ROUNDUP_ARC_BLOCKS]
 
     kept_fill, dropped = [], []
+    # A wide arc still can't blow past the segment budget — the arc is ordered
+    # strongest tie first, so the tail is what gives.
+    if len(protected) > pool_size:
+        dropped.extend(protected[pool_size:])
+        protected = protected[:pool_size]
+
     for block, members_iter in groupby(fillers, key=lambda a: a['_roundup_block']):
         members = list(members_iter)
         room = pool_size - len(protected) - len(kept_fill)
@@ -4032,6 +4161,143 @@ def _curate_roundup_pool(articles: list, theme_name: str, pool_size: int) -> tup
         kept_fill.extend(members[:room])
         dropped.extend(members[room:])
     return protected + kept_fill + bonus, dropped
+
+
+# A section header occupies its whole line ("**NEWS ROUNDUP**"); a speaker turn
+# never does ("**CASEY:** ..."), which is what separates the two.
+_SECTION_HEADER_RE = re.compile(r"^\*\*[^*]+\*\*$")
+
+
+def _slice_roundup(script: str) -> tuple:
+    """Return (before, roundup_body, after) around the News Roundup section.
+
+    roundup_body excludes the **NEWS ROUNDUP** header itself. Returns
+    (script, '', '') when the section can't be found, so callers no-op safely.
+    """
+    lines = script.splitlines()
+    start = next((i for i, l in enumerate(lines)
+                  if l.strip().upper() == "**NEWS ROUNDUP**"), None)
+    if start is None:
+        return script, "", ""
+    end = next((i for i in range(start + 1, len(lines))
+                if _SECTION_HEADER_RE.match(lines[i].strip())), len(lines))
+    return ("\n".join(lines[:start + 1]),
+            "\n".join(lines[start + 1:end]),
+            "\n".join(lines[end:]))
+
+
+def _article_first_mention(article: dict, turns: list) -> int | None:
+    """Index of the first roundup turn that covers this article, or None.
+
+    Matches on the outlet name or on two content words from the headline —
+    one word alone ('mining' on a mining day) collides across stories.
+    """
+    source = _article_source_name(article).lower()
+    title = re.sub(r'^\W*\[[^\]]*\]\s*', '', article.get('title', ''))
+    title_words = _significant_words(title)
+    for i, turn in enumerate(turns):
+        lowered = turn.lower()
+        if source and len(source) > 3 and source in lowered:
+            return i
+        if len(title_words & _significant_words(turn)) >= 2:
+            return i
+    return None
+
+
+def check_roundup_order(script: str, ordered_articles: list) -> list:
+    """Find opening-arc stories the script aired after off-arc ones.
+
+    The block order handed to the prompt is advisory to a model that has its own
+    ideas — on 2026-08-04 it moved the entire local block to the tail of the
+    roundup to set up a Deep Dive handoff, so the episode opened on-theme,
+    wandered through three off-theme stories, then came back to a local wildfire.
+    Returns one dict per displaced arc story (empty list when the order holds).
+    """
+    _, body, _ = _slice_roundup(script)
+    if not body:
+        return []
+    turns = [l for l in body.splitlines() if _SPEAKER_TURN_RE.match(l.strip())]
+    if not turns:
+        return []
+
+    placed = []
+    for a in ordered_articles:
+        if a.get('_is_bonus'):
+            continue  # bonus picks are meant to sit at the end
+        pos = _article_first_mention(a, turns)
+        if pos is not None:
+            placed.append((pos, a))
+
+    off_arc = [p for p, a in placed
+               if a.get('_roundup_block') not in ROUNDUP_ARC_BLOCKS]
+    if not off_arc:
+        return []
+    first_off_arc = min(off_arc)
+
+    return [
+        {
+            "title": a.get('title', ''),
+            "block": a.get('_roundup_block'),
+            "position": pos,
+            "first_off_arc_position": first_off_arc,
+        }
+        for pos, a in sorted(placed)
+        if a.get('_roundup_block') in ROUNDUP_ARC_BLOCKS and pos > first_off_arc
+    ]
+
+
+def repair_roundup_order(script: str, ordered_articles: list) -> str:
+    """Re-sequence a roundup that ignored block order, rewriting only its bridges.
+
+    Sends the roundup section alone (~1,200-1,500 words), not the whole script —
+    the Deep Dive and spotlight have nothing to do with the defect. Returns the
+    script unchanged on any failure: a mis-ordered episode still ships.
+    """
+    client = get_anthropic_client()
+    template = CONFIG['prompts'].get('roundup_reorder', {}).get('template')
+    if not client or not template:
+        print("  ⚠️  roundup_reorder prompt missing from config — skipping reorder")
+        return script
+
+    before, body, after = _slice_roundup(script)
+    if not body.strip():
+        return script
+
+    def _required_line(i, a):
+        title = re.sub(r'^\W*\[[^\]]*\]\s*', '', a.get('title', ''))
+        arc = '  ← opening arc' if a.get('_roundup_block') in ROUNDUP_ARC_BLOCKS else ''
+        return f"{i}. [{_article_source_name(a)}] {title}{arc}"
+
+    required = "\n".join(
+        _required_line(i, a)
+        for i, a in enumerate(
+            [a for a in ordered_articles if not a.get('_is_bonus')], start=1)
+    )
+    prompt = _safe_template_substitute(
+        template, required_order=required, roundup=body,
+    )
+
+    try:
+        response = api_retry(lambda: client.messages.create(
+            model=POLISH_MODEL,
+            max_tokens=4000,
+            messages=[{"role": "user", "content": prompt}],
+        ))
+        _log_api_call("claude", "input_tokens",
+                      getattr(getattr(response, "usage", None), "input_tokens", 0))
+        if _truncated(response):
+            print("  ⚠️  Roundup reorder truncated at max_tokens, discarding")
+            return script
+        reordered = message_text(response).strip()
+    except Exception as e:
+        print(f"  ⚠️  Roundup reorder failed, keeping original order: {e}")
+        return script
+
+    # A reorder that loses material is a rewrite, not a reorder.
+    if len(reordered.split()) < 0.85 * len(body.split()):
+        print("  ⚠️  Roundup reorder came back short, keeping original order")
+        return script
+    return f"{before}\n{reordered}\n{after}" if after else f"{before}\n{reordered}"
 
 
 def _keyword_hit_count(text: str, keywords) -> int:
@@ -5020,12 +5286,14 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         return f"- [{source}] {title}{theme_tag}{cluster_tag}{held_tag}{jurisdiction_tag}{pub_tag}\n  {summary}... (Relevance: {score}){body_line}"
 
     def _roundup_block_header(block, count):
-        if block == 'theme':
-            return (f"◆ ON-THEME ({count}) — these stories share today's lens; "
-                    f"open the roundup with them as one connected arc")
-        if block == 'local':
-            return (f"◆ CLOSER TO HOME ({count}) — BC and regional stories; "
-                    f"cover every one")
+        if block == 'opening_arc':
+            return (f"◆ TODAY'S THEME & CLOSE TO HOME ({count}) — these open the "
+                    f"roundup, in the order listed and consecutively: the theme "
+                    f"stories first (strongest tie first), then the BC/regional "
+                    f"ones. Play them as ONE arc — say each story's tie to today "
+                    f"out loud in a clause, and bridge between them on what they "
+                    f"genuinely share. Cover every one. Leave the arc exactly "
+                    f"once, on a half-sentence pivot that names the shift")
         if block == 'standalone':
             return (f"◆ ALSO NOTEWORTHY ({count}) — standalone stories; brief "
                     f"coverage, clean pivots, no forced segues")
@@ -5035,7 +5303,12 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
 
     # Format on-theme news articles under their block headers
     _sections = []
-    for _block, _members in groupby(on_theme_news, key=lambda a: a.get('_roundup_block', 'standalone')):
+    def _prompt_block(a):
+        """Collapse the arc blocks into one section header."""
+        block = a.get('_roundup_block', 'standalone')
+        return 'opening_arc' if block in ROUNDUP_ARC_BLOCKS else block
+
+    for _block, _members in groupby(on_theme_news, key=_prompt_block):
         _members = list(_members)
         _articles_text = "\n".join(_format_news_article(a) for a in _members)
         _sections.append(f"{_roundup_block_header(_block, len(_members))}\n{_articles_text}")
@@ -8114,6 +8387,7 @@ def run_script_stage() -> tuple[str, str] | None:
                     script, today_theme, news_articles, deep_dive_articles,
                     additional_research=additional_research,
                     research_insights=brave_context,
+                    corrections=email_corrections,
                 )
                 if batch_script:
                     script = batch_script
@@ -8123,6 +8397,7 @@ def run_script_stage() -> tuple[str, str] | None:
                     script = polish_and_factcheck_with_agent(
                         script, today_theme, news_articles, deep_dive_articles,
                         research_insights=brave_context,
+                        corrections=email_corrections,
                     )
 
                 if batch_debate:
@@ -8133,11 +8408,41 @@ def run_script_stage() -> tuple[str, str] | None:
                 script = polish_and_factcheck_with_agent(
                     script, today_theme, news_articles, deep_dive_articles,
                     research_insights=brave_context,
+                    corrections=email_corrections,
                 )
 
         if not script:
             print("❌ Failed to generate script. Exiting.")
             sys.exit(1)
+
+        with segment("script/correction-guard", critical=False):
+            # Last line of defence against an invented on-air correction — both
+            # the generation and polish prompts already forbid it and both have
+            # been observed to let one through.
+            script, _stripped = strip_unsourced_correction(script, email_corrections)
+            if _stripped:
+                print(f"🧹 Removed {_stripped} unsourced correction beat(s)")
+                degrade("script/correction-guard",
+                        f"removed {_stripped} correction beat(s) with no listener correction queued")
+
+        with segment("script/roundup-order", critical=False):
+            # The prompt hands the model a fixed block order; it has been seen
+            # resequencing anyway. Repair before the cold open so the teaser
+            # describes the episode that actually airs.
+            _violations = check_roundup_order(script, news_articles)
+            if _violations:
+                _worst = _violations[0]
+                print(f"🔀 Roundup out of order — {len(_violations)} opening-arc "
+                      f"story(ies) aired after off-theme ones, e.g. "
+                      f"{_worst['title'][:70]!r}; repairing...")
+                script = repair_roundup_order(script, news_articles)
+                _violations = check_roundup_order(script, news_articles)
+                if _violations:
+                    degrade("script/roundup-order",
+                            f"{len(_violations)} opening-arc story(ies) still aired after "
+                            f"off-theme ones after one repair pass")
+                else:
+                    print("✅ Roundup re-sequenced into block order")
 
         with segment("script/cold-open", critical=False):
             # Generate the cold open last, now that the News Roundup and Deep
