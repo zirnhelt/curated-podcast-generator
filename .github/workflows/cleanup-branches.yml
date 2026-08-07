@@ -13,6 +13,11 @@ permissions:
 jobs:
   cleanup:
     runs-on: ubuntu-latest
+    # On 2026-08-06 this job (and Tests, Security Audit, pages build and deployment)
+    # sat cancelled after ~15 minutes with no log output — a GitHub-side runner-queue
+    # stall, not application code. Without a bound the ceiling is GitHub's 6-hour
+    # default; same fix already applied to ingest-emails.yml and tests.yml.
+    timeout-minutes: 10
     steps:
       - name: Delete stale claude/ branches
         env:
