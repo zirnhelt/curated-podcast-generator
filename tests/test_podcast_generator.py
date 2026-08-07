@@ -2287,6 +2287,16 @@ class TestStripUnsourcedCorrection:
         assert removed == 0
         assert out == script
 
+    def test_removes_the_2026_08_07_fabricated_beat(self):
+        # The exact beat that aired on 2026-08-07 with an empty correction queue.
+        # "a listener correction" / "thanks for the catch" slipped past the
+        # narrower 2026-08-04 patterns entirely.
+        script = ("**RILEY:** Now — a listener correction. The capacity gap we'd "
+                  "flagged earlier remains exactly where it was. Thanks for the catch.")
+        out, removed = strip_unsourced_correction(script, [])
+        assert removed == 1
+        assert out == ""
+
 
 class TestGenerateCitationsFileSlideSegments:
     def _generate(self, monkeypatch, tmp_path, **kwargs):

@@ -1584,12 +1584,13 @@ _UNSOURCED_CORRECTION_RES = [
         r"\bwe (?:mis-?stated|misspoke|misreported|misattributed)\b",
         r"\bwe(?:'ve|’ve| have) (?:since )?corrected\b",
         r"\bwe owe (?:you|listeners?|a listener) (?:an? )?(?:correction|apology)\b",
-        r"\ba (?:quick|small|brief|short) correction\b",
+        r"\ba (?:quick|small|brief|short|listener) correction\b",
         r"\bto correct (?:the|our) record\b",
         r"\bsetting the record straight\b",
         r"\bthank(?:s| you)? to the listener who (?:flagged|caught|wrote|pointed)\b",
-        r"\bthanks? for catching (?:it|that|this)\b",
+        r"\bthanks? for (?:catching (?:it|that|this)|the catch)\b",
         r"\ba listener (?:pointed out|flagged|caught|wrote in|noticed)\b",
+        r"\bwe['’]d flagged (?:earlier|before|previously)\b",
     )
 ]
 
