@@ -1,0 +1,29 @@
+{
+  "version": "1.2.0",
+  "chapters": [
+    {
+      "startTime": 0,
+      "title": "Cold Open"
+    },
+    {
+      "startTime": 21.1,
+      "title": "Introduction"
+    },
+    {
+      "startTime": 105.5,
+      "title": "News Roundup"
+    },
+    {
+      "startTime": 465.4,
+      "title": "Community Spotlight"
+    },
+    {
+      "startTime": 516.3,
+      "title": "Deep Dive"
+    },
+    {
+      "startTime": 1032.3,
+      "title": "Credits"
+    }
+  ]
+}
