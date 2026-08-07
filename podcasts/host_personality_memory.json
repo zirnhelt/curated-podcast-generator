@@ -113,6 +113,16 @@
         "date": "2026-08-06",
         "clue": "pilot-skepticism:x \u2014 Conceded Casey's point on deferrals as stalling; emphasized time-buying instead",
         "occurrences": 1
+      },
+      {
+        "date": "2026-08-07",
+        "clue": "evidence-bar:+ \u2014 Repeatedly anchors arguments to peer-contact study data",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-08-07",
+        "clue": "tech-optimism:x \u2014 Concedes real-time alerts won't fix behavioral complacency alone",
+        "occurrences": 1
       }
     ],
     "core_memories": [
@@ -220,7 +230,6 @@
   },
   "casey": {
     "consistent_interests": [
-      "rural broadband",
       "[The Globe and Mail] Tumbler Ridge shooting highlights rural",
       "[The Tyee] Half of BC\u2019s Community Paramedic Positions Are Un",
       "[The Tyee] Tumbler Ridge Shows We Can\u2019t Take Rural Medicine ",
@@ -229,7 +238,8 @@
       "[Williams Lake Tribune] Community volunteers create meaningf",
       "[100 Mile Free Press] HANSEN: Lac La Hache Community Club pr",
       "[Williams Lake Tribune] End of B.C. rural healthcare bonus c",
-      "[Resilience.org] Social capital and community resilience: A "
+      "[Resilience.org] Social capital and community resilience: A ",
+      "[globalnews.ca] Chief says community was left \u2018a war zone\u2019 a"
     ],
     "recurring_questions": [
       "Who benefits from this?",
@@ -334,9 +344,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-07-14",
-        "clue": "pilot-skepticism:~ \u2014 Added nuance: registry exists but unused, not nonexistent",
-        "occurrences": 1
+        "date": "2026-08-07",
+        "clue": "pilot-skepticism:~ \u2014 Acknowledges grassroots effectiveness while deepening concern about precarity",
+        "occurrences": 2
       },
       {
         "date": "2026-07-29",
@@ -369,9 +379,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-08-06",
-        "clue": "structural-lens:+ \u2014 Deepened from 'constrained menu' to internal governance legitimacy as unfinalizable question",
-        "occurrences": 1
+        "date": "2026-08-07",
+        "clue": "structural-lens:+ \u2014 Escalates from critique to concrete accountability tracking framework",
+        "occurrences": 2
       }
     ],
     "core_memories": [

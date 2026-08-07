@@ -641,5 +641,26 @@
     "date": "2026-08-06",
     "focus": "economic-development",
     "focus_name": "Economic Development"
+  },
+  "2026-08-07": {
+    "timestamp": 1786094495.088483,
+    "topics": [
+      "[globalnews.ca] Chief says community was left \u2018a war zone\u2019 a",
+      "[Williams Lake Tribune] Wildfire smoke to impact aviation op",
+      "[T\u015dilhqot\u2019in National Government] T\u015dilhqot\u2019in Respond to Rem",
+      "B.C. wildfires force thousands from their homes : My Cariboo",
+      "Pilot injured after helicopter crash into lake while battlin",
+      "[The Narwhal] Interior Salish culture camps create \u2018a safe h",
+      "[The Narwhal] Falling trees and helicopter crashes: Alberta ",
+      "[Williams Lake Tribune] West Kelowna campers \u2018blissfully una"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech"
+    ],
+    "date": "2026-08-07",
+    "focus": "wildfire-resilience",
+    "focus_name": "Wildfire & Climate Resilience"
   }
 }
