@@ -1584,12 +1584,13 @@ _UNSOURCED_CORRECTION_RES = [
         r"\bwe (?:mis-?stated|misspoke|misreported|misattributed)\b",
         r"\bwe(?:'ve|’ve| have) (?:since )?corrected\b",
         r"\bwe owe (?:you|listeners?|a listener) (?:an? )?(?:correction|apology)\b",
-        r"\ba (?:quick|small|brief|short) correction\b",
+        r"\ba (?:quick|small|brief|short|listener) correction\b",
         r"\bto correct (?:the|our) record\b",
         r"\bsetting the record straight\b",
         r"\bthank(?:s| you)? to the listener who (?:flagged|caught|wrote|pointed)\b",
-        r"\bthanks? for catching (?:it|that|this)\b",
+        r"\bthanks? for (?:catching (?:it|that|this)|the catch)\b",
         r"\ba listener (?:pointed out|flagged|caught|wrote in|noticed)\b",
+        r"\bwe['’]d flagged (?:earlier|before|previously)\b",
     )
 ]
 
@@ -2524,14 +2525,20 @@ def _polish_valid(original: str, polished: str) -> bool:
 
 
 def _corrections_ground_truth(corrections: list | None) -> str:
-    """Tell the polish pass whether a correction beat can possibly be legitimate.
+    """State the ground-truth fact of how many real listener corrections exist.
 
-    The polish prompts carry a FABRICATION CHECK instructing the model to delete
-    any correction it cannot trace to a real listener email — but the polish call
-    is handed the script alone, never the LISTENER CORRECTIONS context block, so
-    that check was unanswerable and a fabricated beat survived on 2026-08-04.
-    This addendum supplies the missing fact. A few tokens; makes the existing
-    instruction actually enforceable.
+    Shared by script generation and polish. The polish prompts carry a
+    FABRICATION CHECK instructing the model to delete any correction it cannot
+    trace to a real listener email — but the polish call is handed the script
+    alone, never the LISTENER CORRECTIONS context block, so that check was
+    unanswerable and a fabricated beat survived on 2026-08-04. Generation sees
+    the block itself when corrections exist, but when it doesn't, generation
+    previously got no per-episode signal at all — only a static, generic
+    system-prompt bullet ("if the context includes NO listener corrections,
+    skip") that depends on the model noticing an absence; that alone didn't
+    stop a fabricated beat on 2026-08-07 either. This addendum supplies the
+    fact directly in both cases. A few tokens; makes the existing instructions
+    actually enforceable instead of merely stated.
     """
     if not corrections:
         return ("\n\nLISTENER CORRECTIONS SUPPLIED FOR THIS EPISODE: none. Any correction "
@@ -2646,7 +2653,7 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
         additional_research=additional_research or "(none)",
         research_insights=research_insights or "(none)",
         air_date=f"{weekday}, {date_str}",
-    ) + _stage_direction_addendum()
+    ) + _stage_direction_addendum() + _corrections_ground_truth(corrections)
 
     # Build debate summary prompt — only send the deep-dive section (30% of script)
     deep_dive_section = _extract_deep_dive_section(script)
@@ -5423,9 +5430,13 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
 
     # Inject pending listener corrections first — these air as the final beat of
     # the News Roundup (before the Community Spotlight is ever mentioned) and
-    # take priority over general feedback in the memory context.
+    # take priority over general feedback in the memory context. The
+    # ground-truth fact is appended unconditionally — including when there are
+    # no corrections — so the writer is told directly rather than having to
+    # infer fabrication is off-limits from the block's mere absence.
     if corrections:
         memory_context += format_corrections_for_prompt(corrections)
+    memory_context += _corrections_ground_truth(corrections)
 
     # Inject sanitized listener feedback emails (untrusted external content)
     if feedback_emails:
