@@ -2284,5 +2284,32 @@
       "Provincial deferral frameworks as temporary vs. permanent protections",
       "The distinction between visibility to one's own community versus visibility to external government and industry actors"
     ]
+  },
+  "2026-08-07": {
+    "timestamp": 1786094498.098572,
+    "date": "2026-08-07",
+    "theme": "Wild Spaces & Outdoor Life",
+    "focus": "wildfire-resilience",
+    "central_question": "Who should be responsible for building the systems that protect people during wildfire season, and what happens when institutions fail to act while communities improvise their own solutions?",
+    "riley_position": "Systemic problems can be solved through formalization and policy\u2014if data shows peer support works within 48 hours, governments should mandate and fund it; better real-time alerting tied to live fire data could improve safety outcomes.",
+    "riley_key_evidence": [
+      "Alberta cohort study showing firefighters receiving peer contact within 48 hours of deployment had measurably lower anxiety and depression scores",
+      "Quilpituk Creek wildfire grew from 40 hectares to over 200 hectares while campers remained unaware, suggesting alerting systems could improve real-time communication",
+      "Documentation and formal statements by Indigenous Nations create accountability leverage on the record during active emergencies"
+    ],
+    "casey_position": "Institutional failures reveal deeper problems that procedural fixes cannot solve\u2014complacency and risk normalization require culture change, not better technology; real leverage comes from direct authority and action, not consultation processes or government language.",
+    "casey_key_evidence": [
+      "Alberta Forestry Ministry took two years to charge wildland-fire employer with safety violations after Morgan Kitchen's death in August 2024",
+      "Smoke rolling visibly into Bear Creek Park while campers stayed on the beach demonstrates normalized risk behavior that no app can fix",
+      "Province unilaterally rescinded vehicle hunting restrictions on T\u015dilhqot'in territory during active emergency without consultation, contradicting stated partnership commitments"
+    ],
+    "resolution": "They converged on a shared conclusion: institutional and technological fixes matter, but real change requires either direct Indigenous authority over cultural burning permits on Crown land or genuine behavioral/cultural shifts in how communities perceive fire risk\u2014both of which lie beyond what policy documents or detection systems alone can accomplish.",
+    "topics_covered": [
+      "Wildland firefighter trauma and peer-support networks as institutional failure and grassroots solution",
+      "Real-time fire alerting and the gap between information availability and behavioral complacency",
+      "Indigenous-led cultural burning and tenure/permitting barriers on Crown land",
+      "T\u015dilhqot'in Nation accountability and direct action versus consultation-based governance",
+      "Risk normalization among recreationalists and the limits of technological solutions to cultural problems"
+    ]
   }
 }

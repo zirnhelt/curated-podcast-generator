@@ -1,0 +1,845 @@
+{
+  "episode": {
+    "date": "2026-08-07",
+    "formatted_date": "Friday, August 07, 2026",
+    "theme": "Wild Spaces & Outdoor Life",
+    "title": "Cariboo Signals - Wild Spaces & Outdoor Life",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Wild Spaces & Outdoor Life.</p><p><b>NEWS ROUNDUP:</b> We break down [globalnews.ca] Chief says community was left ‘a war zone’ after Bradley Creek wildfire and [Williams Lake Tribune] Wildfire smoke to impact aviation operations around Pear Lake fire, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Who should be responsible for building the systems that protect people during wildfire season, and what happens when institutions fail to act while communities improvise their own solutions? Topics include: Wildland firefighter trauma and peer-support networks as institutional failure and grassroots solution, Real-time fire alerting and the gap between information availability and behavioral complacency, Indigenous-led cultural burning and tenure/permitting barriers on Crown land, Tŝilhqot'in Nation accountability and direct action versus consultation-based governance, Risk normalization among recreationalists and the limits of technological solutions to cultural problems.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://scoutisland.ca\">Scout Island Nature Centre</a></p><p><b>Sources discussed:</b></p><ul><li>globalnews.ca: <a href=\"https://globalnews.ca/news/12010757/chief-says-community-a-war-zone-bradley-creek-wildfire/\">[globalnews.ca] Chief says community was left ‘a war zone’ a...</a></li><li>Patrick Davies (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/08/06/wildfire-smoke-to-impact-aviation-operations-around-pear-lake-fire/\">[Williams Lake Tribune] Wildfire smoke to impact aviation op...</a></li><li>Isabelle Call (Tŝilhqot’in National Government): <a href=\"https://tsilhqotin.ca/tsilhqotin-respond-to-removal-of-vehicle-hunting-restrictions/\">[Tŝilhqot’in National Government] Tŝilhqot’in Respond to Rem...</a></li><li>Brendan Shykora (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/08/06/calgary-man-says-beachside-heroics-saved-his-son-from-drowning-in-enderby-river/\">[Williams Lake Tribune] Calgary man says beachside heroics s...</a></li><li>globalnews.ca: <a href=\"https://globalnews.ca/news/12012485/wildfires-90-year-old-okanagan-man-dementia/\">[globalnews.ca] As wildfire flames closed in, a 90-year-old ...</a></li><li>globalnews.ca: <a href=\"https://globalnews.ca/news/12012424/okanagan-resident-flames-surrounding-house-bradley-creek-wildfire/\">[globalnews.ca] Okanagan resident says flames were surroundi...</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/08/260805082457.htm\">[ScienceDaily] A star’s violent death exposed a hidden super...</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/08/260805082510.htm\">[ScienceDaily] Major study challenges long-held fears about ...</a></li><li>Patrick Davies (100 Mile Free Press): <a href=\"https://100milefreepress.net/2026/08/06/100-mile-district-general-hospitals-emergency-room-to-be-closed-friday-sunday/\">[100 Mile Free Press] 100 Mile District General Hospital’s e...</a></li><li>https://www.tomshardware.com/author/jowi-morales (Tom's Hardware): <a href=\"https://www.tomshardware.com/tech-industry/data-centers/after-severe-76-percent-electricity-price-hikes-due-to-ai-data-centers-virginia-requires-firms-to-pay-for-all-dedicated-upstream-electrical-infrastructure-state-regulators-crack-down-governor-says-move-will-save-civilians-hundreds-of-millions-of-dollars\">[Tom's Hardware] After severe 76% electricity price hikes du...</a></li><li>The Narwhal: <a href=\"https://thenarwhal.ca/indigenous-culture-camps-bc/?utm_source=rss\">[The Narwhal] Interior Salish culture camps create ‘a safe h...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/315292/news/emergency-services/fire/wildfires/b-c-wildfires-force-thousands-from-their-homes/\">B.C. wildfires force thousands from their homes : My Cariboo...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/315306/news/emergency-services/fire/wildfires/pilot-injured-after-helicopter-crash-into-lake-while-battling-b-c-wildfires/\">Pilot injured after helicopter crash into lake while battlin...</a></li><li>Tara Mahoney (ricochet.media): <a href=\"https://ricochet.media/media/canada-is-burning-why-wont-cbc-tell-us-why\">[ricochet.media] Canada is burning. Why won’t CBC tell us wh...</a></li><li>Kristy Hamilton (Outside Online): <a href=\"https://www.outsideonline.com/outdoor-adventure/environment/melissa-dalley-national-park-signs-censorship/\">[Outside Online] Former Ranger Melisa Dalley Left the Nation...</a></li><li>Vancouver Sun: <a href=\"https://vancouversun.com/news/local-news/wildfire-smoke-what-you-need-know-protect-your-health\">[Vancouver Sun] Wildfire smoke is back in B.C.: What you nee...</a></li><li>NYT Business: <a href=\"https://www.nytimes.com/2026/08/06/business/rhine-drought-germany-economy.html\">[NYT Business] Drought Threatens a Vital Economic Artery in ...</a></li><li>Christina Noriega in Bogotá (The Guardian Global Development): <a href=\"https://www.theguardian.com/global-development/2026/aug/06/bikes-city-of-cycling-gender-barriers-colombias-capital-bogota-emissions\">[The Guardian Global Development] ‘They were told bikes were...</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/news/2026/8/7/after-the-floods-hunger-mozambiques-second-disaster?traffic_source=rss\">[Al Jazeera English] After the floods, hunger: Mozambique’s ...</a></li><li>FlowingData: <a href=\"https://flowingdata.com/2026/08/06/vehicles-with-the-highest-and-lowest-death-rates/\">[FlowingData] Vehicles with the highest and lowest death rat...</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/08/260805082454.htm\">[ScienceDaily] The AMOC stayed strong even as a major ocean ...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/08/06/cncd-cnc-inspired-adjustable-wrench-wont-round-your-bolts/\">[Hackaday] CNC’d, CNC-inspired Adjustable Wrench Won’t Round...</a></li><li>Mariella Moon (Engadget): <a href=\"https://www.engadget.com/2227779/smartphone-developers-stop-making-removable-batteries-reason/\">[Engadget] Why smartphone makers stopped using removable bat...</a></li><li>Ellsworth Toohey (Boing Boing): <a href=\"https://boingboing.net/2026/08/06/tesla-headlights-too-bright-recall.html\">[Boing Boing] Tesla headlights were twice as bright as legal</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/video/newsfeed/2026/8/7/exclusive-report-with-the-308-people-rescued-by-nigerian-forces?traffic_source=rss\">[Al Jazeera English] Exclusive report with the 308 people re...</a></li><li>AgWeb: <a href=\"https://www.agweb.com/opinion/impact-2026-27-super-el-nino-global-agriculture\">Impact of 2026/27 'Super' El Nino on Global Agriculture - Ag...</a></li><li>The Narwhal: <a href=\"https://thenarwhal.ca/wildfire-fighter-mental-health-support/?utm_source=rss\">[The Narwhal] Falling trees and helicopter crashes: Alberta ...</a></li><li>Brittany Webster (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/08/06/west-kelowna-campers-blissfully-unaware-of-nearby-growing-wildfire/\">[Williams Lake Tribune] West Kelowna campers ‘blissfully una...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-08-07T02:21:29.689603-07:00",
+    "models": {
+      "script": "claude-sonnet-5",
+      "review": "claude-sonnet-5",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 2821,
+      "voice_ratio_casey_riley": 0.93,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 2,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 1,
+        "roundup_seam": 0,
+        "thats_closer": 0
+      },
+      "total_hits": 2,
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[globalnews.ca] Chief says community was left ‘a war zone’ after Bradley Creek wildfire",
+          "url": "https://globalnews.ca/news/12010757/chief-says-community-a-war-zone-bradley-creek-wildfire/",
+          "source": "globalnews.ca",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-08-05T22:29:53+00:00",
+          "summary": "\"There are some structures that, I'll be turning 67 in November and those structures were there all my life and to see them suddenly gone, it's just devastating,\" Dan Wilson said.",
+          "discussed": true,
+          "mention_offset_frac": 0.0342
+        },
+        {
+          "title": "[Williams Lake Tribune] Wildfire smoke to impact aviation operations around Pear Lake fire",
+          "url": "https://wltribune.com/2026/08/06/wildfire-smoke-to-impact-aviation-operations-around-pear-lake-fire/",
+          "source": "Williams Lake Tribune",
+          "author": "Patrick Davies",
+          "ai_score": 85,
+          "date_published": "2026-08-07T05:46:31.262476+00:00",
+          "summary": "## Wildfire smoke to impact aviation operations around Pear Lake fire Published 12:29 pm Thursday, August 6, 2026 **By Patrick Davies** The Pear Lake fire as of Friday, July 31\\. (BC Wildfire Service)...",
+          "discussed": true,
+          "mention_offset_frac": 0.0814
+        },
+        {
+          "title": "[Tŝilhqot’in National Government] Tŝilhqot’in Respond to Removal of Vehicle Hunting Restrictions",
+          "url": "https://tsilhqotin.ca/tsilhqotin-respond-to-removal-of-vehicle-hunting-restrictions/",
+          "source": "Tŝilhqot’in National Government",
+          "author": "Isabelle Call",
+          "ai_score": 85,
+          "date_published": "2026-08-06T15:35:55+00:00",
+          "summary": "August 06, 2026 — Williams Lake, BC The Tŝilhqot’in National Government (TNG) is deeply concerned following the Province of British Columbia’s decision to rescind three Closed Motor Vehicle Hunting pr...",
+          "discussed": true,
+          "mention_offset_frac": 0.1454
+        },
+        {
+          "title": "[Williams Lake Tribune] Calgary man says beachside heroics saved his son from drowning in Enderby river",
+          "url": "https://wltribune.com/2026/08/06/calgary-man-says-beachside-heroics-saved-his-son-from-drowning-in-enderby-river/",
+          "source": "Williams Lake Tribune",
+          "author": "Brendan Shykora",
+          "ai_score": 65,
+          "date_published": "2026-08-06T20:30:00+00:00",
+          "summary": "## Calgary man says beachside heroics saved his son from drowning in Enderby river Published 1:30 pm Thursday, August 6, 2026 **By Brendan Shykora** Tuey Park on the Shuswap River in Enderby, pictured...",
+          "discussed": true,
+          "mention_offset_frac": 0.3594
+        },
+        {
+          "title": "[globalnews.ca] As wildfire flames closed in, a 90-year-old Okanagan man with dementia was left behind",
+          "url": "https://globalnews.ca/news/12012485/wildfires-90-year-old-okanagan-man-dementia/",
+          "source": "globalnews.ca",
+          "author": "",
+          "ai_score": 65,
+          "date_published": "2026-08-07T01:42:04+00:00",
+          "summary": "The Desert Cove resident, who lives with dementia, hadn't evacuated as the fire rapidly approached. His daughter, Shiloh, who lives in Vancouver, soon realized",
+          "discussed": true,
+          "mention_offset_frac": 0.4646
+        },
+        {
+          "title": "[globalnews.ca] Okanagan resident says flames were surrounding their house as they fled",
+          "url": "https://globalnews.ca/news/12012424/okanagan-resident-flames-surrounding-house-bradley-creek-wildfire/",
+          "source": "globalnews.ca",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-08-07T01:55:45+00:00",
+          "summary": "They had just minutes to escape their property on the Benchland above Okanagan Lake when the Bradley Lake wildfire tore through the property.",
+          "discussed": true,
+          "mention_offset_frac": 0.5843
+        },
+        {
+          "title": "[ScienceDaily] A star’s violent death exposed a hidden supermassive black hole",
+          "url": "https://www.sciencedaily.com/releases/2026/08/260805082457.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-08-06T12:16:32+00:00",
+          "summary": "A supermassive black hole has been found lurking about 30,000 light-years from the center of its galaxy—the first dormant black hole detected so far from a galactic core. It revealed itself only after...",
+          "discussed": true,
+          "mention_offset_frac": 0.7417
+        },
+        {
+          "title": "[ScienceDaily] Major study challenges long-held fears about acetaminophen and ibuprofen use in babies",
+          "url": "https://www.sciencedaily.com/releases/2026/08/260805082510.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 54,
+          "date_published": "2026-08-06T12:43:09+00:00",
+          "summary": "A landmark study of nearly 4,000 babies found that acetaminophen and ibuprofen were equally safe during infancy. Neither medicine was linked to eczema or bronchiolitis, and no serious side effects wer...",
+          "discussed": true,
+          "mention_offset_frac": 0.7779
+        },
+        {
+          "title": "[100 Mile Free Press] 100 Mile District General Hospital’s emergency room to be closed Friday, Sunday",
+          "url": "https://100milefreepress.net/2026/08/06/100-mile-district-general-hospitals-emergency-room-to-be-closed-friday-sunday/",
+          "source": "100 Mile Free Press",
+          "author": "Patrick Davies",
+          "ai_score": 84,
+          "date_published": "2026-08-06T22:47:00+00:00",
+          "summary": "The 100 Mile House ER has been closed 34 times this year, so far",
+          "discussed": true,
+          "mention_offset_frac": 0.805
+        },
+        {
+          "title": "[Tom's Hardware] After severe 76% electricity price hikes due to AI data centers, Virginia requires firms to pay for all dedicated upstream electrical infrastructure — state regulators crack down, governor says move will save civilians ‘hundreds of millions of dollars’",
+          "url": "https://www.tomshardware.com/tech-industry/data-centers/after-severe-76-percent-electricity-price-hikes-due-to-ai-data-centers-virginia-requires-firms-to-pay-for-all-dedicated-upstream-electrical-infrastructure-state-regulators-crack-down-governor-says-move-will-save-civilians-hundreds-of-millions-of-dollars",
+          "source": "Tom's Hardware",
+          "author": "https://www.tomshardware.com/author/jowi-morales",
+          "ai_score": 59,
+          "date_published": "2026-08-06T15:32:08+00:00",
+          "summary": "Virginia's public utility regulator now requires all data center projects to pay for the infrastructure needed to supply their power. This makes it one of the first states to convert the 'ratepayer pr...",
+          "discussed": true,
+          "mention_offset_frac": 0.9327
+        },
+        {
+          "title": "B.C. wildfires force thousands from their homes : My Cariboo Now",
+          "url": "https://www.mycariboonow.com/315292/news/emergency-services/fire/wildfires/b-c-wildfires-force-thousands-from-their-homes/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 83,
+          "date_published": "2026-08-07T05:45:34.738176+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "Pilot injured after helicopter crash into lake while battling B.C. wildfires : My Cariboo Now",
+          "url": "https://www.mycariboonow.com/315306/news/emergency-services/fire/wildfires/pilot-injured-after-helicopter-crash-into-lake-while-battling-b-c-wildfires/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 81,
+          "date_published": "2026-08-07T05:45:34.738206+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ricochet.media] Canada is burning. Why won’t CBC tell us why? - Ricochet",
+          "url": "https://ricochet.media/media/canada-is-burning-why-wont-cbc-tell-us-why",
+          "source": "ricochet.media",
+          "author": "Tara Mahoney",
+          "ai_score": 66,
+          "date_published": "2026-08-07T05:46:31.263174+00:00",
+          "summary": "When the public broadcaster reports on wildfires, heat, and extreme weather without connecting the dots to fossil fuels, it leaves Canadians without the context they need to understand the crisis unfo...",
+          "discussed": false
+        },
+        {
+          "title": "[Outside Online] Former Ranger Melisa Dalley Left the National Park Service. Now She Gives Rogue Tours They Can’t Control.",
+          "url": "https://www.outsideonline.com/outdoor-adventure/environment/melissa-dalley-national-park-signs-censorship/",
+          "source": "Outside Online",
+          "author": "Kristy Hamilton",
+          "ai_score": 63,
+          "date_published": "2026-08-06T23:51:28+00:00",
+          "summary": "Former park ranger Melissa Dalley is visiting national parks to hand visitors the historical signs Trump removed. The post Former Ranger Melisa Dalley Left the National Park Service. Now She Gives Rog...",
+          "discussed": false
+        },
+        {
+          "title": "[Vancouver Sun] Wildfire smoke is back in B.C.: What you need to know to protect your health",
+          "url": "https://vancouversun.com/news/local-news/wildfire-smoke-what-you-need-know-protect-your-health",
+          "source": "Vancouver Sun",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-08-06T21:53:30+00:00",
+          "summary": "From checking air quality levels to choosing the right mask, here's what you need to know about smoke exposure",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Business] Drought Threatens a Vital Economic Artery in the Heart of Europe",
+          "url": "https://www.nytimes.com/2026/08/06/business/rhine-drought-germany-economy.html",
+          "source": "NYT Business",
+          "author": "",
+          "ai_score": 61,
+          "date_published": "2026-08-06T16:32:53+00:00",
+          "summary": "The Rhine conveys vessels and cargo that power European industry. Record low water levels are disrupting supply chains, adding costs and presenting fresh risks to growth.",
+          "discussed": false
+        },
+        {
+          "title": "[The Guardian Global Development] ‘They were told bikes were for men’: how Latin America’s city of cycling is breaking gender barriers",
+          "url": "https://www.theguardian.com/global-development/2026/aug/06/bikes-city-of-cycling-gender-barriers-colombias-capital-bogota-emissions",
+          "source": "The Guardian Global Development",
+          "author": "Christina Noriega in Bogotá",
+          "ai_score": 57,
+          "date_published": "2026-08-06T10:00:46+00:00",
+          "summary": "With less than a third of cycling journeys taken by women, Colombia’s capital, Bogotá, is installing bike lanes, teaching cycling and making sure ‘stereotypes are left behind’ Eliana González has a bu...",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] After the floods, hunger: Mozambique’s second disaster",
+          "url": "https://www.aljazeera.com/news/2026/8/7/after-the-floods-hunger-mozambiques-second-disaster?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-08-07T00:12:16+00:00",
+          "summary": "Lost harvests and disrupted supply routes have pushed many families deeper into food insecurity.",
+          "discussed": false
+        },
+        {
+          "title": "[FlowingData] Vehicles with the highest and lowest death rates",
+          "url": "https://flowingdata.com/2026/08/06/vehicles-with-the-highest-and-lowest-death-rates/",
+          "source": "FlowingData",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-06T10:48:35+00:00",
+          "summary": "The Insurance Institute for Highway Safety has been estimating death rates by vehicle… Tags: death , fatal crashes , HLDI , IIHS , vehicles",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceDaily] The AMOC stayed strong even as a major ocean “lifeline” nearly shut down",
+          "url": "https://www.sciencedaily.com/releases/2026/08/260805082454.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-08-06T05:40:11+00:00",
+          "summary": "Ancient seafloor sediments have revealed a surprising twist in how the Atlantic’s massive circulation system works. During a cold period about 3.4 million years ago, the flow of warm, salty water from...",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] CNC’d, CNC-inspired Adjustable Wrench Won’t Round Your Bolts",
+          "url": "https://hackaday.com/2026/08/06/cncd-cnc-inspired-adjustable-wrench-wont-round-your-bolts/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-08-06T18:30:27+00:00",
+          "summary": "We’ve probably all got one item in our toolboxes or chests that we really, really don’t like, but find too handy to toss. For [Someone Should Make That], that item …read more",
+          "discussed": false
+        },
+        {
+          "title": "[Engadget] Why smartphone makers stopped using removable batteries, and why they're making a comeback",
+          "url": "https://www.engadget.com/2227779/smartphone-developers-stop-making-removable-batteries-reason/",
+          "source": "Engadget",
+          "author": "Mariella Moon",
+          "ai_score": 67,
+          "date_published": "2026-08-06T16:30:00+00:00",
+          "summary": "Changes are on the horizon. Soon, we'll be seeing more phones with batteries that the user can remove and replace.",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] Tesla headlights were twice as bright as legal",
+          "url": "https://boingboing.net/2026/08/06/tesla-headlights-too-bright-recall.html",
+          "source": "Boing Boing",
+          "author": "Ellsworth Toohey",
+          "ai_score": 55,
+          "date_published": "2026-08-06T17:15:00+00:00",
+          "summary": "Tesla told federal regulators that the headlights on 19,900 Model 3 and Model Y cars were up to nearly twice as bright as the law allows, then argued it shouldn't have to fix them because the defect w...",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] Exclusive report with the 308 people rescued by Nigerian forces",
+          "url": "https://www.aljazeera.com/video/newsfeed/2026/8/7/exclusive-report-with-the-308-people-rescued-by-nigerian-forces?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "",
+          "ai_score": 52,
+          "date_published": "2026-08-07T02:30:23+00:00",
+          "summary": "Nigerian security forces have rescued 308 people abducted in separate attacks in northern Niger and Kwara states.",
+          "discussed": false
+        },
+        {
+          "title": "Impact of 2026/27 'Super' El Nino on Global Agriculture - AgWeb",
+          "url": "https://www.agweb.com/opinion/impact-2026-27-super-el-nino-global-agriculture",
+          "source": "AgWeb",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-08-07T05:45:55.156221+00:00",
+          "summary": "Both crop farmers and pastoralists were devastated, leading to an estimated 10 million additional Ethiopians facing severe food insecurity. Globally, the number of food insecure people rose by an esti...",
+          "discussed": false
+        },
+        {
+          "title": "[Engadget] The California Teamsters union is suing the state over self-driving trucks",
+          "url": "https://www.engadget.com/2231699/california-teamsters-union-is-suing-the-state-over-self-driving-trucks/",
+          "source": "Engadget",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-08-06T15:58:56+00:00",
+          "summary": "The California Teamsters union says that new self-driving truck regulations could eventually cause around 400,000 people to lose their jobs.",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] An Entire Continent Runs on Rivers You Can't See. Scientists Just Mapped Them",
+          "url": "https://www.sciencealert.com/scientists-have-mapped-the-invisible-rivers-flowing-through-the-sky-above-south-america",
+          "source": "ScienceAlert",
+          "author": "",
+          "ai_score": 54,
+          "date_published": "2026-08-06T20:00:00+00:00",
+          "summary": "Cool. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+          "discussed": false
+        },
+        {
+          "title": "[Kottke.org] How Does an Enigma Machine Work?",
+          "url": "https://kottke.org/26/08/how-does-an-enigma-machine-work",
+          "source": "Kottke.org",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-06T14:45:00+00:00",
+          "summary": "This is a completely fantastic look at how the Enigma Machine works . Jared Owen constructed a 3D model of the German cipher device and clearly walks the viewer through how the electricity flows throu...",
+          "discussed": false
+        },
+        {
+          "title": "[The Verge] Suno shares plans to combat spammy AI music",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/976289/suno-ai-music-spam-watermark",
+          "source": "The Verge",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-08-06T17:39:43+00:00",
+          "summary": "Suno announced plans to implement a new watermarking technology and download policy to limit the spread of spammy AI tracks and increase transparency. In a lengthy blog post, CEO and co-founder Mikey ...",
+          "discussed": false
+        },
+        {
+          "title": "[Engadget] Suno is adding audio watermarks so AI-generated songs are more easily identifiable",
+          "url": "https://www.engadget.com/2231870/suno-adding-audio-watermarks-ai-generated-songs-identifiable/",
+          "source": "Engadget",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-08-06T17:51:42+00:00",
+          "summary": "Suno is adding audio watermarks so AI-generated songs are more easily identifiable",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] How Japan Minimized Deaths from a Major Earthquake",
+          "url": "https://www.nytimes.com/2026/08/07/world/asia/japan-earthquake-kumamoto-preparation.html",
+          "source": "NYT Top Stories",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-08-07T04:01:15+00:00",
+          "summary": "After deadly tremors a decade ago, Kumamoto built earthquake-resistant buildings and even trained locals in search and rescue.",
+          "discussed": false
+        },
+        {
+          "title": "[The Verge] Brendan Carr officially unleashes broadcast consolidation",
+          "url": "https://www.theverge.com/policy/976287/fcc-broadcast-ownership-rule-ends",
+          "source": "The Verge",
+          "author": "",
+          "ai_score": 67,
+          "date_published": "2026-08-06T17:35:38+00:00",
+          "summary": "The era of set broadcast ownership limits is officially over, after the Federal Communications Commission (FCC) voted Thursday to end the national ownership cap rule. The agency's two Republicans, Cha...",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Going Full Fruity with Apple’s 1999 High-End Power Mac G3",
+          "url": "https://hackaday.com/2026/08/06/going-full-fruity-with-apples-1999-high-end-power-mac-g3/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 67,
+          "date_published": "2026-08-06T15:30:20+00:00",
+          "summary": "Back in the late 90s, Apple was definitely a pretty fruity company, with its aggressively translucent shades of colored plastic that often got described in terms of such fruit variants. …read more",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] Hackers Stalked Me by Hijacking a Smartwatch for Kids",
+          "url": "https://www.wired.com/story/hackers-stalked-me-by-hijacking-a-smartwatch-for-kids/",
+          "source": "WIRED",
+          "author": "",
+          "ai_score": 61,
+          "date_published": "2026-08-06T21:35:00+00:00",
+          "summary": "Security researchers tracked and eavesdropped on a WIRED reporter using vulnerabilities in a pink plastic smartwatch. It’s just one piece of a deeply insecure supply chain of GPS-enabled gadgets.",
+          "discussed": false
+        },
+        {
+          "title": "[The Northern Miner] Codelco’s El Teniente setback deepens copper fears",
+          "url": "https://www.northernminer.com/news/codelcos-el-teniente-setback-deepens-copper-fears/1003893748/",
+          "source": "The Northern Miner",
+          "author": "",
+          "ai_score": 53,
+          "date_published": "2026-08-06T15:24:22+00:00",
+          "summary": "Codelco’s decision to suspend development of the Andes Norte section at its flagship El Teniente mine could last as long as two years, according to a union leader, compounding production... The post C...",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Phantomdrive Keeps Your Secrets Out of Sight",
+          "url": "https://hackaday.com/2026/08/06/phantomdrive-keeps-your-secrets-out-of-sight/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-08-06T20:00:35+00:00",
+          "summary": "It’s a complex world out there, and more than ever folks may find themselves in a situation where they want to keep particular bits of information away from prying eyes. …read more",
+          "discussed": false
+        },
+        {
+          "title": "[Being Patient] Genetic Testing for Alzheimer’s: What Your Genes Can Tell You",
+          "url": "https://beingpatient.com/genetic-testing-for-alzheimers-what-your-genes-can-tell-you/",
+          "source": "Being Patient",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-07T05:00:59+00:00",
+          "summary": "When Robin McIntyre was 29 she started thinking seriously about what her DNA might already know. Since 2010, 16 of her relatives had died of Alzheimer’s disease before the age of 60 — including her mo...",
+          "discussed": false
+        },
+        {
+          "title": "[ArchDaily] Grand Paris Express Advances Urban Renewal Through 68 Architect-Designed Stations",
+          "url": "https://www.archdaily.com/1182298/grand-paris-express-advances-urban-renewal-through-68-architect-designed-stations",
+          "source": "ArchDaily",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-08-06T05:30:00+00:00",
+          "summary": "The Grand Paris Express project consists of 200 kilometers of new, fully automated metro lines, 68 new stations, and four new orbital lines (15, 16, 17, and 18), in addition to the extension of Line 1...",
+          "discussed": false
+        },
+        {
+          "title": "[Vancouver Sun] B.C. coroner&#039;s inquest recommends review of policing standards for wellness checks",
+          "url": "https://vancouversun.com/news/bc-coroner-inquest-jury-recommends-review-policing-standards-wellness-checks",
+          "source": "Vancouver Sun",
+          "author": "",
+          "ai_score": 59,
+          "date_published": "2026-08-06T22:22:08+00:00",
+          "summary": "Jimmie Johannesson, 61, was shot and killed by RCMP in Surrey outside a rooming house during a wellness check in 2022.",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] 35 years ago today, the World Wide Web changed our lives forever — as Tim Berners-Lee says, ‘trading personal data for use certainly does not fit with my vision for a free web’",
+          "url": "https://www.techradar.com/computing/internet/35-years-ago-today-the-world-wide-web-changed-our-lives-forever-as-tim-berners-lee-says-trading-personal-data-for-use-certainly-does-not-fit-with-my-vision-for-a-free-web",
+          "source": "TechRadar",
+          "author": "",
+          "ai_score": 53,
+          "date_published": "2026-08-06T17:20:16+00:00",
+          "summary": "The World Wide Web was first announced by computer scientist Tim Berners-Lee 35 years ago today.",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] France bans cold-calling telemarketers",
+          "url": "https://boingboing.net/2026/08/06/france-bans-cold-calling-telemarketers.html",
+          "source": "Boing Boing",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-08-06T14:52:02+00:00",
+          "summary": "France's ban on unsolicited solicitations comes into effect next week , protecting consumers from telemarketers and other intrusive sales pitches. Acknowledging that its \"opt-out\" system (as found in ...",
+          "discussed": false
+        },
+        {
+          "title": "[CNET] How Fast Should Your Home Internet Be?",
+          "url": "https://www.cnet.com/paid-content/how-fast-should-your-home-internet-be/",
+          "source": "CNET",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-08-06T18:21:48+00:00",
+          "summary": "Here’s how to figure out how much speed your household needs, and when it might be time to switch to a new provider.",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] Flock Highlighted Police Departments Using Its Tech. Now 4 Face Allegations of Misuse",
+          "url": "https://www.wired.com/story/flock-videos-highlighted-police-departments-that-face-misuse/",
+          "source": "WIRED",
+          "author": "",
+          "ai_score": 54,
+          "date_published": "2026-08-06T19:31:07+00:00",
+          "summary": "Flock posted videos on its YouTube channel highlighting at least four police departments whose officers have faced allegations of misusing the company’s tech.",
+          "discussed": false
+        },
+        {
+          "title": "[InsideEVs] Clemson's Solar-Powered EV Project Looks Like A Cardboard Shoe. But It's A Lot More Clever Than It Looks",
+          "url": "https://insideevs.com/news/804099/clemson-bmw-energy-positive-ev/",
+          "source": "InsideEVs",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-06T20:42:03+00:00",
+          "summary": "BMW challenged graduate students from Clemson University to create an energy-positive car that produces more electricity than it uses. This is what they came up with.",
+          "discussed": false
+        },
+        {
+          "title": "[TechCrunch] Google says hackers are calling financial firm employees to hack and extort victims",
+          "url": "https://techcrunch.com/2026/08/06/google-says-hackers-are-calling-financial-firm-employees-to-hack-and-extort-victims/",
+          "source": "TechCrunch",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-06T19:40:46+00:00",
+          "summary": "Groups of hackers are breaking into large U.S. financial firms to steal sensitive data and extort victims, Google’s security researchers report.",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Google Blogger locks out thousands of users after malware false positive",
+          "url": "https://www.techradar.com/pro/security/google-blogger-locks-out-thousands-of-users-after-malware-false-positive",
+          "source": "TechRadar",
+          "author": "",
+          "ai_score": 53,
+          "date_published": "2026-08-06T14:25:00+00:00",
+          "summary": "Google is aware of the situation and is working on a fix, it confirms as hundreds of bloggers report issues with their websites.",
+          "discussed": false
+        },
+        {
+          "title": "[Outside Online] How the New Science of Social Energetics Explains the Magic of Group Exercise",
+          "url": "https://www.outsideonline.com/health/training-performance/benefits-group-exercise-science/",
+          "source": "Outside Online",
+          "author": "",
+          "ai_score": 67,
+          "date_published": "2026-08-06T09:54:46+00:00",
+          "summary": "Your workout buddies change how you experience fatigue—and in the process, your friendships grow stronger. The post How the New Science of Social Energetics Explains the Magic of Group Exercise appear...",
+          "discussed": false
+        },
+        {
+          "title": "[iFixit] Apple Could Give “Obsolete” iPads New Life with This One Weird Trick",
+          "url": "https://www.ifixit.com/News/118176/apple-could-give-obsolete-ipads-new-life-with-this-one-weird-trick",
+          "source": "iFixit",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-08-06T20:42:32+00:00",
+          "summary": "This fall, Apple will cut off millions of iPads from further OS updates. This will leave owners of perfectly-good hardware with no choice but to watch it slowly wither its…",
+          "discussed": false
+        },
+        {
+          "title": "[Open Culture] How Ancient Greek Warships Worked: The Engineering of the Trireme Explained in 3D Animation",
+          "url": "https://www.openculture.com/2026/08/how-ancient-greek-warships-worked-the-engineering-of-the-trireme-explained-in-3d-animation.html",
+          "source": "Open Culture",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-08-06T16:46:01+00:00",
+          "summary": "Recall, if you will, the first time you read Book 2 of Homer’s Iliad. The section likely to have given you the most trouble — unless, of course, you’re blessed with an obsessive interest in ancient na...",
+          "discussed": false
+        },
+        {
+          "title": "[Lifehacker] AI Note-Taking Apps Are Violating User Privacy",
+          "url": "https://lifehacker.com/tech/ai-note-taking-apps-are-violating-user-privacy?utm_medium=RSS",
+          "source": "Lifehacker",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-08-06T14:30:00+00:00",
+          "summary": "Apps like Granola and Otter.ai are facing class action lawsuits over user privacy and consent.",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Microsoft quietly stops recommending 32GB of RAM, as even Apple reportedly struggles to secure memory for iPhones and MacBooks",
+          "url": "https://www.techradar.com/computing/memory/microsoft-quietly-stops-recommending-32gb-of-ram-as-even-apple-reportedly-struggles-to-secure-memory-for-iphones-and-macbooks",
+          "source": "TechRadar",
+          "author": "",
+          "ai_score": 57,
+          "date_published": "2026-08-06T13:32:59+00:00",
+          "summary": "32GB is the 'no-worries zone'? Not anymore as Microsoft backtracks on past RAM recommendations, while Apple's seemingly having troubles of its own.",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] How Much Do We Really Want to Know About UFOs?",
+          "url": "https://nautil.us/how-much-do-we-really-want-to-know-about-ufos-1283450/",
+          "source": "Nautilus",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-08-06T16:00:00+00:00",
+          "summary": "What disaster psychology research, a few Cold War UFO files, and a Spielberg movie say about how we might handle first contact The post How Much Do We Really Want to Know About UFOs? appeared first on...",
+          "discussed": false
+        },
+        {
+          "title": "[NPR Health News] Most U.S. doctors avoid treating patients with addiction, leaving millions vulnerable",
+          "url": "https://www.npr.org/2026/08/06/nx-s1-5918040/most-u-s-doctors-avoid-treating-patients-with-addiction-leaving-millions-vulnerable",
+          "source": "NPR Health News",
+          "author": "",
+          "ai_score": 59,
+          "date_published": "2026-08-06T08:39:55+00:00",
+          "summary": "Despite a deadly public health crisis, most U.S. doctors, nurses and other health workers turn away many patients with alcohol and drug addiction without offering them science-based medications.",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] Google’s Top AI Brains Are Leaving to Launch Discovery Loop",
+          "url": "https://www.wired.com/story/jeff-dean-google-discovery-loop-startup/",
+          "source": "WIRED",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-08-05T16:00:00+00:00",
+          "summary": "Jeff Dean and other high-profile Google executives have founded Discovery Loop, a startup that will seek AI-powered breakthroughs in everything from drug discovery to chip design.",
+          "discussed": false
+        },
+        {
+          "title": "[Gizmodo] Archaeologists Thought This Was a Roman Temple. It Might Actually Be a 1,700-Year-Old Library",
+          "url": "https://gizmodo.com/archaeologists-thought-this-was-a-roman-temple-it-might-actually-be-a-1700-year-old-library-2000794958",
+          "source": "Gizmodo",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-07T05:45:20.095475+00:00",
+          "summary": "Using an innovative approach, scientists reevaluated a room thought to be a cult shrine, finding more evidence that this was actually a rare library.",
+          "discussed": false
+        },
+        {
+          "title": "[ZDNet] 75% of European businesses fear a US tech kill switch - American companies should, too",
+          "url": "https://www.zdnet.com/article/most-european-businesses-fear-us-tech-kill-switch-american-companies-should-too/",
+          "source": "ZDNet",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-06T11:59:00+00:00",
+          "summary": "Businesses on both sides of the Atlantic may be too dependent on a handful of tech providers, leaving them vulnerable to being cut off.",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] 'Exceeded Our Expectations': One Antioxidant Could Be Key to Keeping Aging Muscles Strong",
+          "url": "https://www.sciencealert.com/exceeded-our-expectations-one-antioxidant-could-be-key-to-keeping-aging-muscles-strong",
+          "source": "ScienceAlert",
+          "author": "",
+          "ai_score": 56,
+          "date_published": "2026-08-06T08:00:00+00:00",
+          "summary": "It supercharges a muscle-repair protein. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+          "discussed": false
+        },
+        {
+          "title": "[STAT News] STAT+: Medicare quietly gave blockbuster AbbVie drug seven extra years before price negotiations, advocacy group asserts",
+          "url": "https://www.statnews.com/pharmalot/2026/08/06/medicare-gave-blockbuster-abbvie-drug-seven-extra-years-before-price-negotiations/?utm_campaign=rss",
+          "source": "STAT News",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-08-06T19:00:00+00:00",
+          "summary": "A little-noticed government policy shift caused a seven-year delay in choosing a costly medicine for Medicare price negotiations, an advocacy group says.",
+          "discussed": false
+        },
+        {
+          "title": "[ZDNet] DuckDuckGo's new iPhone feature is a privacy win - I recommend getting it now",
+          "url": "https://www.zdnet.com/article/duckduckgo-is-adding-a-feature-for-iphone-that-everyone-should-have/",
+          "source": "ZDNet",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-08-06T02:00:43+00:00",
+          "summary": "The iPhone version of the DuckDuckGo app has a new feature that makes sharing links easier and safer.",
+          "discussed": false
+        },
+        {
+          "title": "[MacRumors] Apple Vision Pro Speeds Up Surgery by Almost 20%",
+          "url": "https://www.macrumors.com/2026/08/05/apple-vision-pro-speeds-up-surgery/",
+          "source": "MacRumors",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-08-05T15:47:58+00:00",
+          "summary": "Surgeons who wore an Apple Vision Pro as their primary display during a tear duct procedure finished operations 19% faster than surgeons using a traditional monitor, according to a peer-reviewed study...",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] NBN 500 is the new broadband sweet spot — here's why I recommend a 500Mbps plan for most Aussie households",
+          "url": "https://www.tomsguide.com/computing/internet/nbn-500-is-the-new-broadband-sweet-spot-heres-why-i-recommend-a-500mbps-plan-for-most-aussie-households",
+          "source": "Toms Guide",
+          "author": "",
+          "ai_score": 52,
+          "date_published": "2026-08-07T03:26:39+00:00",
+          "summary": "Thinking of switching your NBN plan? Here's why I recommend 500Mbps for most Australian households.",
+          "discussed": false
+        },
+        {
+          "title": "[Dezeen] Dress made of living mycelium can renew and repair itself",
+          "url": "https://www.dezeen.com/2026/08/05/dress-living-mycelium-renew-repair/",
+          "source": "Dezeen",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-05T05:00:39+00:00",
+          "summary": "Researchers in China have created a textile from living mycelium that is self-cleaning, near self-repairing and can be coloured or made UV protective through \"plug-and-play\" add-ons of different fungi...",
+          "discussed": false
+        },
+        {
+          "title": "[The Tyee] Vancouver’s SROs Are Changing Hands. And Tenants Are Being Pushed Out",
+          "url": "https://thetyee.ca/News/2026/08/06/Vancouver-SROs-Changing-Hands/",
+          "source": "The Tyee",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-08-06T07:20:00+00:00",
+          "summary": "Advocates warn of a coming increase in homelessness without government action.",
+          "discussed": false
+        },
+        {
+          "title": "[ZDNet] Desktop Linux just cracked 10% market share - and Windows 11 is mostly to blame",
+          "url": "https://www.zdnet.com/article/the-linux-desktop-finally-cracks-the-10-market-share-barrier/",
+          "source": "ZDNet",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-08-05T12:42:03+00:00",
+          "summary": "Windows is in decline, and both Macs and Linux are gaining ground at its expense.",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] I gave a local LLM control of my entire homelab, and nothing ever touched the cloud",
+          "url": "https://www.xda-developers.com/gave-local-llm-control-homelab-nothing-touched-cloud/",
+          "source": "XDA Developers",
+          "author": "",
+          "ai_score": 65,
+          "date_published": "2026-08-05T21:00:10+00:00",
+          "summary": "And everything still worked fine.",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Wild Spaces & Outdoor Life",
+      "articles": [
+        {
+          "title": "[The Narwhal] Interior Salish culture camps create ‘a safe haven’ amid provincial wildfires",
+          "url": "https://thenarwhal.ca/indigenous-culture-camps-bc/?utm_source=rss",
+          "source": "The Narwhal",
+          "author": "",
+          "ai_score": 67,
+          "date_published": "2026-08-06T16:00:00+00:00",
+          "summary": "As wildfires and evacuations collide with summer culture camps in B.C., organizers are moving ahead with caution and asserting their right to be on the land",
+          "discussed": true
+        },
+        {
+          "title": "[The Narwhal] Falling trees and helicopter crashes: Alberta wildfire fighters create their own support system",
+          "url": "https://thenarwhal.ca/wildfire-fighter-mental-health-support/?utm_source=rss",
+          "source": "The Narwhal",
+          "author": "",
+          "ai_score": 65,
+          "date_published": "2026-08-06T12:00:00+00:00",
+          "summary": "Workplace safety charges have been laid against Alberta’s Forestry Ministry over a firefighter death during the 2024 Jasper wildfire. Such fatalities are one reason why crew members compare returning ...",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] West Kelowna campers ‘blissfully unaware’ of nearby growing wildfire",
+          "url": "https://wltribune.com/2026/08/06/west-kelowna-campers-blissfully-unaware-of-nearby-growing-wildfire/",
+          "source": "Williams Lake Tribune",
+          "author": "Brittany Webster",
+          "ai_score": 58,
+          "date_published": "2026-08-07T03:53:00+00:00",
+          "summary": "## West Kelowna campers ‘blissfully unaware’ of nearby growing wildfire Published 8:53 pm Thursday, August 6, 2026 **By Brittany Webster** Families continued to enjoy the beach at Bear Creek Park on A...",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Who should be responsible for building the systems that protect people during wildfire season, and what happens when institutions fail to act while communities improvise their own solutions?",
+        "riley_position": "Systemic problems can be solved through formalization and policy—if data shows peer support works within 48 hours, governments should mandate and fund it; better real-time alerting tied to live fire data could improve safety outcomes.",
+        "riley_key_evidence": [
+          "Alberta cohort study showing firefighters receiving peer contact within 48 hours of deployment had measurably lower anxiety and depression scores",
+          "Quilpituk Creek wildfire grew from 40 hectares to over 200 hectares while campers remained unaware, suggesting alerting systems could improve real-time communication",
+          "Documentation and formal statements by Indigenous Nations create accountability leverage on the record during active emergencies"
+        ],
+        "casey_position": "Institutional failures reveal deeper problems that procedural fixes cannot solve—complacency and risk normalization require culture change, not better technology; real leverage comes from direct authority and action, not consultation processes or government language.",
+        "casey_key_evidence": [
+          "Alberta Forestry Ministry took two years to charge wildland-fire employer with safety violations after Morgan Kitchen's death in August 2024",
+          "Smoke rolling visibly into Bear Creek Park while campers stayed on the beach demonstrates normalized risk behavior that no app can fix",
+          "Province unilaterally rescinded vehicle hunting restrictions on Tŝilhqot'in territory during active emergency without consultation, contradicting stated partnership commitments"
+        ],
+        "resolution": "They converged on a shared conclusion: institutional and technological fixes matter, but real change requires either direct Indigenous authority over cultural burning permits on Crown land or genuine behavioral/cultural shifts in how communities perceive fire risk—both of which lie beyond what policy documents or detection systems alone can accomplish.",
+        "topics_covered": [
+          "Wildland firefighter trauma and peer-support networks as institutional failure and grassroots solution",
+          "Real-time fire alerting and the gap between information availability and behavioral complacency",
+          "Indigenous-led cultural burning and tenure/permitting barriers on Crown land",
+          "Tŝilhqot'in Nation accountability and direct action versus consultation-based governance",
+          "Risk normalization among recreationalists and the limits of technological solutions to cultural problems"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 15,
+          "conditions": "clear skies",
+          "high": 28,
+          "low": 13
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 17,
+          "conditions": "clear skies",
+          "high": 27,
+          "low": 15
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 15,
+          "conditions": "mainly clear",
+          "high": 31,
+          "low": 14
+        },
+        {
+          "name": "Quesnel",
+          "temp": 13,
+          "conditions": "partly cloudy",
+          "high": 28,
+          "low": 13
+        },
+        {
+          "name": "Alexis Creek",
+          "temp": 14,
+          "conditions": "overcast",
+          "high": 29,
+          "low": 13
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Scout Island Nature Centre",
+      "description": "Volunteer-run nature education centre operated by the Williams Lake Field Naturalists — birding, kids programs, Salmon in the Classroom",
+      "website": "scoutisland.ca",
+      "psa_angle": "Scout Island Nature Centre is running kids' summer programs all season — each week has a different theme like Water, Bugs, or Birds. Sign up at scoutisland.ca.",
+      "event_name": "Scout Island summer programs"
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_azure": "Azure Neural TTS",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  }
+}
