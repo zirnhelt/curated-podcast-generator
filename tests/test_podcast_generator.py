@@ -842,6 +842,34 @@ class TestGenerateScriptTruncationGuard:
         assert client.messages.stream.call_count == 2
 
 
+class TestGenerateScriptCorrectionsGroundTruth:
+    """Raw generation must be told directly whether real listener corrections
+    exist this episode, not left to infer fabrication is off-limits from an
+    absent LISTENER CORRECTIONS block — that static prohibition alone didn't
+    stop a fabricated correction beat on 2026-08-04 or 2026-08-07."""
+
+    def _run(self, monkeypatch, tmp_path, **kwargs):
+        import podcast_generator as pg
+        monkeypatch.setenv("ANTHROPIC_API_KEY", "test-key")
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3500)
+        client = _stream_client([_response("end_turn", [_text_block(full_script)])])
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        pg.generate_podcast_script([], [], "Working Lands & Industry", {}, {}, **kwargs)
+        return client.messages.stream.call_args.kwargs["messages"][0]["content"]
+
+    def test_states_none_supplied_when_no_corrections_queued(self, monkeypatch, tmp_path):
+        sent = self._run(monkeypatch, tmp_path)
+
+        assert "LISTENER CORRECTIONS SUPPLIED FOR THIS EPISODE: none" in sent
+
+    def test_states_count_when_corrections_queued(self, monkeypatch, tmp_path):
+        sent = self._run(monkeypatch, tmp_path,
+                          corrections=[{"subject": "Correction", "body_text": "You got it wrong."}])
+
+        assert "LISTENER CORRECTIONS SUPPLIED FOR THIS EPISODE: 1" in sent
+
+
 class TestBatchPolishTruncationGuard:
     """run_post_processing_batch must discard a polish result that was
     truncated at max_tokens so main() falls back to the agentic polish."""
@@ -883,6 +911,38 @@ class TestBatchPolishTruncationGuard:
 
         assert len(polished_text) < 0.6 * len(original)
         assert polished is None
+
+
+class TestSubmitPostProcessingBatchCorrectionsGroundTruth:
+    """The default (batch) polish path — USE_BATCH_API defaults on — must tell
+    the model whether real listener corrections exist. Without this, the
+    polish prompt's own FABRICATION CHECK is unanswerable and a fabricated
+    correction beat can survive polish untouched, as happened on 2026-08-04
+    and 2026-08-07: `corrections` reached this function but was never used."""
+
+    def _submit(self, monkeypatch, corrections):
+        import podcast_generator as pg
+        client = MagicMock()
+        client.messages.batches.create.return_value = MagicMock(id="batch_1")
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        script = "**RILEY:** hello\n**CASEY:** hi\n" * 50
+        pg.submit_post_processing_batch(
+            script, "Working Lands & Industry", [], [],
+            additional_research="", research_insights="",
+            corrections=corrections,
+        )
+        requests = {r["custom_id"]: r for r in client.messages.batches.create.call_args.kwargs["requests"]}
+        return requests["polish-and-factcheck"]["params"]["messages"][0]["content"]
+
+    def test_states_none_supplied_when_queue_empty(self, monkeypatch):
+        content = self._submit(monkeypatch, [])
+
+        assert "LISTENER CORRECTIONS SUPPLIED FOR THIS EPISODE: none" in content
+
+    def test_states_count_when_corrections_queued(self, monkeypatch):
+        content = self._submit(monkeypatch, [{"id": "x", "subject": "Correction"}])
+
+        assert "LISTENER CORRECTIONS SUPPLIED FOR THIS EPISODE: 1" in content
 
 
 class TestApplyBadNewsFilter:
