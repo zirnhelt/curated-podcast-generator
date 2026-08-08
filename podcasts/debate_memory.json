@@ -1,30 +1,4 @@
 {
-  "2026-05-09": {
-    "timestamp": 1778324692.467782,
-    "date": "2026-05-09",
-    "theme": "Cariboo Local Affairs",
-    "central_question": "What actually holds a rural community together, and how can external programs and policymakers effectively support the social and institutional infrastructure that enables this resilience?",
-    "riley_position": "Rural community resilience emerges from the visible accumulation of institutional capacity, sustained relationships, and public acts of both celebration and grief operating simultaneously, with proven models like Foundry's integrated youth services and Indigenous-led economic stewardship demonstrating effective approaches.",
-    "riley_key_evidence": [
-      "Foundry Cariboo Chilcotin's integrated low-barrier service model with 16 centres across BC provides measurable gap-filling for youth mental health where conventional waitlists stretch months",
-      "Indigenous-led stewardship models like Lhtako Dene Nation at Barkerville can build local economic capacity and potentially attract different visitor profiles through cultural tourism",
-      "Recreational community events like car shows and slo-pitch leagues provide measurable reduction in acute health system utilization"
-    ],
-    "casey_position": "Rural resilience depends critically on unsexy sustained institutional maintenance (like watermain infrastructure decisions and NDIT leadership continuity) alongside visible social infrastructure, but faces persistent constraints around workforce recruitment and funding sustainability that multi-year commitments alone cannot solve.",
-    "casey_key_evidence": [
-      "Scout Island watermain replacement is a several-hundred-thousand-dollar municipal decision representing the unglamorous foundation everything else sits on",
-      "Margo Wagner's continuity at NDIT preserves institutional knowledge about which communities and projects are genuinely viable versus press-release-bait that takes years to recover if lost",
-      "Rural youth centres can have stable program funding yet still fail due to inability to hire and retain staff\u2014a gap that doesn't close through funding envelope stability alone"
-    ],
-    "resolution": "Casey and Riley reach substantive agreement that both material infrastructure and social capital matter equally, and that effective external support requires multi-year operational funding for nonprofits, procurement structures enabling Indigenous-led primary operations, and sustained political will beyond announcement cycles\u2014with no fundamental disagreement remaining, only acknowledgment that workforce challenges remain unsolved.",
-    "topics_covered": [
-      "The role of unglamorous infrastructure maintenance decisions in rural community resilience",
-      "Institutional leadership continuity and its non-transferable knowledge in rural development bodies",
-      "Low-barrier integrated youth mental health service models and funding sustainability",
-      "Indigenous-led economic development and cultural tourism as alternative rural capacity-building",
-      "The gap between program funding and workforce retention capacity in rural service delivery"
-    ]
-  },
   "2026-05-10": {
     "timestamp": 1778411203.680399,
     "date": "2026-05-10",
@@ -2310,6 +2284,33 @@
       "Indigenous-led cultural burning and tenure/permitting barriers on Crown land",
       "T\u015dilhqot'in Nation accountability and direct action versus consultation-based governance",
       "Risk normalization among recreationalists and the limits of technological solutions to cultural problems"
+    ]
+  },
+  "2026-08-08": {
+    "timestamp": 1786179677.68846,
+    "date": "2026-08-08",
+    "theme": "Cariboo Local Affairs",
+    "focus": null,
+    "central_question": "Does the Cariboo Regional District have adequate standing governance infrastructure for fire-season response and communication, or does it reinvent its approach every summer?",
+    "riley_position": "The CRD's early-warning system and mutual aid coordination (like requesting Mexican firefighters in advance) demonstrates functioning crisis response, and building boring, reliable communication channels like DriveBC model is the key to institutional durability.",
+    "riley_key_evidence": [
+      "Mexico sent 100 firefighters to Clinton weeks in advance based on early CRD request",
+      "Ontario built real-time data-sharing protocols after 2023 to avoid reinventing coordination every fire season",
+      "T\u015dilhqot'in National Government publishes consistent, regular fire-season updates residents already know to check"
+    ],
+    "casey_position": "The CRD lacks visible, persistent communication infrastructure between crises and appears to restart its response strategy every fire season, creating governance gaps that residents end up filling themselves.",
+    "casey_key_evidence": [
+      "CRD emergency program page shows no standing budget line for fire-season coordination visible to the public",
+      "Clinton lost 120 properties despite mutual aid, indicating the system is reactive rather than preventative",
+      "Residents must stitch together separate Environment Canada and Interior Health alert systems without a shared coordination protocol"
+    ],
+    "resolution": "Riley and Casey largely agreed the core issue is whether the CRD maintains written, funded communication commitments between crises. They converged on a concrete ask: residents should ask at a public CRD board meeting whether a standing communication protocol exists with a named budget line, rather than waiting for the next emergency.",
+    "topics_covered": [
+      "CRD fire-season governance infrastructure and budget accountability",
+      "Regional communication protocols versus ad-hoc crisis response",
+      "Coordination between provincial weather warnings and health authority advisories",
+      "Institutional durability: boring, reliable systems versus new tools deployed mid-crisis",
+      "Public transparency and residents' ability to verify emergency response mechanisms"
     ]
   }
 }

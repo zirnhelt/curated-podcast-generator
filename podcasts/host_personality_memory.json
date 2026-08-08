@@ -85,11 +85,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-07-29",
-        "clue": "structural-lens:x \u2014 conceded ASML monopoly break \u2260 import ban pattern",
-        "occurrences": 2
-      },
-      {
         "date": "2026-07-24",
         "clue": "evidence-bar:x \u2014 Conceded orca behavior discovery proves monitoring doesn't guarantee understanding",
         "occurrences": 1
@@ -122,6 +117,11 @@
       {
         "date": "2026-08-07",
         "clue": "tech-optimism:x \u2014 Concedes real-time alerts won't fix behavioral complacency alone",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-08-08",
+        "clue": "community-trust:+ \u2014 Warmed to mutual aid effectiveness mid-pushback.",
         "occurrences": 1
       }
     ],
@@ -369,14 +369,14 @@
         "occurrences": 1
       },
       {
-        "date": "2026-08-03",
-        "clue": "evidence-bar:+ \u2014 Reinforced institutional weight/paper trail over detection tech",
-        "occurrences": 1
+        "date": "2026-08-08",
+        "clue": "evidence-bar:+ \u2014 Escalated demand for visible budget lines, not promises.",
+        "occurrences": 2
       },
       {
-        "date": "2026-08-05",
-        "clue": "pilot-skepticism:+ \u2014 e-skin headlines 'circulating for over a decade' reinforced",
-        "occurrences": 1
+        "date": "2026-08-08",
+        "clue": "pilot-skepticism:+ \u2014 Hardened stance on ad-hoc tools over standing infrastructure.",
+        "occurrences": 2
       },
       {
         "date": "2026-08-07",
