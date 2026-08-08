@@ -1,17 +1,42 @@
+## Context
+
+Why this change was needed. What problem does it solve? Any architectural tradeoffs or constraints worth noting?
+
 ## Summary
-<!-- What changed and why. -->
+
+What changed. Keep this concise — the Context section explains the motivation and tradeoffs above.
 
 ## New dependencies or breaking changes
-<!-- Anything added to requirements.txt? Any output/config/state-file format change? None if not applicable. -->
+
+- Any additions to `requirements.txt`? Version pinned? Compatibility notes?
+- Any changes to output/config format? Schema updates to the memory/state JSON in `podcasts/`, citations, or the feed XML?
+- None if not applicable.
 
 ## API cost impact
-<!-- Does this change Claude/OpenAI/Azure/Gemini/Cohere call volume, model choice, prompt size, or batch sizes? None if not applicable. -->
+
+- Did Claude model choice, prompt size, batch size, or call frequency change?
+- OpenAI/Azure/Gemini TTS or Cohere/Brave call volume changes?
+- Net impact on per-episode/daily API costs?
+- None if not applicable.
 
 ## Config changes
-<!-- Any files under config/ touched (prompts.json, themes.json, super_cycles.json, etc.)? None if not applicable. -->
+
+- Files under `config/` touched? Which ones?
+- Prompt changes in `prompts.json` — which pass (generation, polish, cold open, Gemini TTS style)?
+- Any changes to themes, super-cycle focuses, the scoring rubric, or the blocklist?
+- None if not applicable.
 
 ## Stages, segments & degrade()
-<!-- Which stage(s) are affected (script/render/publish/recover)? New segment() blocks or degrade() calls added for new fallbacks? None if not applicable. -->
+
+- Which stage(s) are affected (script/recover/render/publish)?
+- New `segment()` blocks — critical or non-critical, and are the block's outputs pre-assigned to their fallback?
+- New fallback paths — does each one call `degrade()`?
+- Any change to exit codes 75–78?
+- None if not applicable.
 
 ## Testing
-<!-- How was this verified — pytest, a local --stage run, etc. Confirm `git status` is clean (no leaked podcasts/ state-file writes). -->
+
+- What test? (pytest, a local `--stage` run, a re-render against a past date, etc.)
+- Command or steps to reproduce verification?
+- `git status` clean afterwards — no leaked `podcasts/` state-file writes?
+- None if verification is obvious from the diff and commit message.
