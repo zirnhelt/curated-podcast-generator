@@ -265,6 +265,7 @@ jobs:
           USE_AZURE_TTS: ${{ inputs.tts_provider == 'azure' && 'true' || '' }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_MODEL || secrets.GEMINI_TTS_MODEL }}
+          GEMINI_TTS_FALLBACK_MODEL: ${{ vars.GEMINI_TTS_FALLBACK_MODEL }}
           USE_GEMINI_TTS: ${{ (inputs.tts_provider == 'gemini' || inputs.tts_provider == '') && 'true' || '' }}
         run: |
           echo "Re-rendering any past episodes whose audio never landed..."
@@ -284,6 +285,7 @@ jobs:
           USE_AZURE_TTS: ${{ inputs.tts_provider == 'azure' && 'true' || '' }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_MODEL || secrets.GEMINI_TTS_MODEL }}
+          GEMINI_TTS_FALLBACK_MODEL: ${{ vars.GEMINI_TTS_FALLBACK_MODEL }}
           USE_GEMINI_TTS: ${{ (inputs.tts_provider == 'gemini' || inputs.tts_provider == '') && 'true' || '' }}
         run: |
           echo "Starting daily podcast audio render..."
