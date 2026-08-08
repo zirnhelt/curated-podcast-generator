@@ -26,6 +26,11 @@ on:
         options:
           - gemini
           - all
+      probe_gemini:
+        description: 'Diagnose instead of render: ask Gemini the same text with progressively less prompt around it, to find which element it rejects. Produces no audio.'
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -59,12 +64,25 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_MODEL || secrets.GEMINI_TTS_MODEL }}
+          GEMINI_TTS_FALLBACK_MODEL: ${{ vars.GEMINI_TTS_FALLBACK_MODEL }}
           OPENAI_API_KEY: ${{ inputs.providers == 'all' && secrets.OPENAI_API_KEY || '' }}
           AZURE_SPEECH_KEY: ${{ inputs.providers == 'all' && secrets.AZURE_SPEECH_KEY || '' }}
           AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
           TTS_PROVIDERS: ${{ inputs.providers }}
           TTS_SECTION: ${{ inputs.section }}
+          TTS_PROBE: ${{ inputs.probe_gemini }}
         run: |
+          if [ "$TTS_PROBE" = "true" ]; then
+            # Diagnostic run: no audio, so the result is the table itself —
+            # put it in the job summary rather than only in the log.
+            {
+              echo '## Gemini prompt-shape probe'
+              echo '```'
+              python evaluate_tts.py --section "$TTS_SECTION" --probe-gemini 2>&1 || true
+              echo '```'
+            } | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
           SKIP_FLAGS=""
           if [ "$TTS_PROVIDERS" = "gemini" ]; then
             SKIP_FLAGS="--skip-openai --skip-azure"
@@ -72,6 +90,7 @@ jobs:
           python evaluate_tts.py --section "$TTS_SECTION" $SKIP_FLAGS --output-dir tts-eval
 
       - name: Upload audio artifact
+        if: ${{ !inputs.probe_gemini }}
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
           name: tts-eval-${{ inputs.section }}-${{ inputs.providers }}

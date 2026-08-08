@@ -60,7 +60,13 @@ from azure_tts import (
     PRONUNCIATION_DICT as AZURE_PRONUNCIATION_DICT,
     get_azure_speech_config,
 )
-from gemini_tts import generate_gemini_tts_for_section, get_gemini_api_key
+from gemini_tts import (
+    canary as gemini_canary,
+    drain_degradations as gemini_drain_degradations,
+    generate_gemini_tts_for_section,
+    get_gemini_api_key,
+    set_render_deadline as gemini_set_render_deadline,
+)
 
 # Import deduplication module
 from dedup_articles import deduplicate_articles, format_evolving_story_context, cluster_and_rescore_corpus, load_recent_citations
@@ -632,6 +638,51 @@ def _stage_direction_addendum() -> str:
     if not instruction or not cues:
         return ""
     return "\n\n" + instruction.replace("{cue_list}", ", ".join(f"({c})" for c in cues))
+
+# Wall-clock ceiling for all Gemini synthesis in one render, well inside the
+# workflow's 40-minute render step. Past it, gemini_tts refuses to start another
+# attempt and sections fall back to OpenAI — so a provider that dies *after* the
+# canary passed cannot eat the render step one section at a time.
+GEMINI_RENDER_DEADLINE_S = float(os.getenv("GEMINI_RENDER_DEADLINE_S", "1500"))
+
+
+def _report_gemini_degradations(name: str) -> None:
+    """Surface any retry rungs gemini_tts took, as rows in the run report.
+
+    gemini_tts cannot call degrade() itself without a circular import, so it
+    collects its degradations and the render path drains them here. A retry that
+    had to shed the style prompt or change model still produced the episode —
+    the fallback is usually right, the silence never is.
+    """
+    for detail in gemini_drain_degradations():
+        degrade(name, detail)
+
+
+def _run_gemini_canary() -> None:
+    """Decide this episode's provider once, from one tiny throwaway synthesis.
+
+    A failed canary pins the whole render to OpenAI before a single section is
+    written, which is what makes the mixed-voice episode impossible rather than
+    merely unlikely. Never raises: a canary that cannot run is a reason to fall
+    back, not a reason to lose the episode.
+    """
+    global _tts_provider_used
+    print("  🐤 Gemini TTS pre-flight check...")
+    try:
+        model = gemini_canary()
+    except Exception as e:  # noqa: BLE001 — a broken probe must not cost the render
+        model = None
+        print(f"  ⚠️  Gemini TTS canary errored: {e}")
+    _report_gemini_degradations("render/gemini-canary")
+    if model:
+        return
+    _tts_provider_used = "openai"
+    degrade(
+        "render/gemini-canary",
+        "Gemini TTS did not answer the pre-flight check — whole episode rendered "
+        "on OpenAI rather than risking a mid-episode voice change",
+    )
+
 
 # Set to True if a TTS call fails due to an OpenAI billing quota limit.
 # Checked at exit so the CI run fails and triggers a GitHub notification.
@@ -6383,6 +6434,12 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
         if not get_gemini_api_key():
             print("❌ Gemini TTS enabled but GEMINI_API_KEY not set")
             return None
+        # Bound every Gemini call in this render, then decide once — before any
+        # audio exists — whether this is a Gemini episode at all. Both guards
+        # exist because the per-section fallback alone let a dead provider cost
+        # either the whole render step or the episode's voice consistency.
+        gemini_set_render_deadline(GEMINI_RENDER_DEADLINE_S)
+        _run_gemini_canary()
     elif USE_AZURE_TTS:
         if not get_azure_speech_config():
             print("❌ Azure TTS enabled but AZURE_SPEECH_KEY/AZURE_SPEECH_REGION not set")
@@ -6467,6 +6524,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                             gemini_context_tail = generate_gemini_tts_for_section(
                                 seg_list, section_wav, gemini_context_tail
                             )
+                            _report_gemini_degradations("render/gemini-retry")
                         else:
                             generate_azure_tts_for_section(seg_list, section_wav)
                         section_audio = normalize_segment(
@@ -6631,6 +6689,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                         credits_segments = [{"speaker": "riley", "text": _build_credits_text(), "gap_ms": None}]
                         if _credits_provider == "gemini":
                             generate_gemini_tts_for_section(credits_segments, credits_wav, gemini_context_tail)
+                            _report_gemini_degradations("render/gemini-retry")
                         else:
                             generate_azure_tts_for_section(credits_segments, credits_wav)
                         credits_audio = normalize_segment(
@@ -6779,6 +6838,8 @@ def generate_audio_tts_only(script, output_filename, _force_openai=False):
                     _log_api_call("gemini-tts", "chars", sum(len(s['text']) for s in segments))
                 section_wav = os.path.join(tmpdir, f"all_{provider}.wav")
                 section_fn(segments, section_wav)
+                if provider == "gemini":
+                    _report_gemini_degradations("render/gemini-retry")
                 combined = normalize_segment(
                     trim_tts_silence(AudioSegment.from_file(section_wav, format="wav")),
                     TARGET_SPEECH_DBFS,

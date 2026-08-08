@@ -205,6 +205,47 @@ def _print_report(section: str, openai_result, azure_result, gemini_result=None)
         print(f"  {name}: {path}")
 
 
+def _probe_gemini_rungs(seg_list: list[dict], repeats: int) -> None:
+    """Report which prompt shapes Gemini actually accepts, rung by rung.
+
+    `finishReason: OTHER` comes back with promptTokenCount == totalTokenCount —
+    the request was accepted and tokenized and the model produced nothing, which
+    is a rejection of *what* was asked rather than of when. This isolates which
+    part of the prompt is responsible by asking the same text with progressively
+    less wrapped around it, several times each so a one-off 500 is not mistaken
+    for a rejection. If a single rung turns out to be the culprit, fixing that is
+    worth more than the whole retry ladder.
+
+    Each row is one live synthesis call — this spends real API budget, which is
+    why it is a flag rather than part of the default eval.
+    """
+    import gemini_tts
+
+    print(f"\n▶ Gemini prompt-shape probe: {len(seg_list)} turns, "
+          f"{_char_count(seg_list)} chars, {repeats}x per rung")
+    print(f"  {'rung':<34} {'ok':>5}  detail")
+
+    for i, rung in enumerate(gemini_tts.RETRY_LADDER):
+        ok = 0
+        errors: list[str] = []
+        for attempt in range(repeats):
+            try:
+                gemini_tts._attempt(
+                    seg_list, "", rung,
+                    seed=gemini_tts.GEMINI_TTS_SEED + attempt,
+                    read_timeout=gemini_tts.REQUEST_READ_TIMEOUT,
+                )
+                ok += 1
+            except Exception as e:
+                errors.append(type(e).__name__ + ": " + str(e)[:80])
+        label = f"{i} {gemini_tts._rung_label(rung)}"
+        print(f"  {label:<34} {ok:>2}/{repeats}  {errors[0] if errors else ''}")
+
+    print("\n  Read it like this: rung 0 failing while a later rung passes names the")
+    print("  prompt element Gemini is rejecting. Every rung failing equally is an")
+    print("  outage or a quota wall, not a prompt problem — check the error text.")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Compare OpenAI vs Azure TTS for Cariboo Signals")
     parser.add_argument(
@@ -217,6 +258,15 @@ def main():
     parser.add_argument("--skip-azure", action="store_true")
     parser.add_argument("--skip-gemini", action="store_true")
     parser.add_argument("--podcasts-dir", default="podcasts")
+    parser.add_argument(
+        "--probe-gemini", action="store_true",
+        help="Instead of comparing providers, ask Gemini the same text with "
+             "progressively less prompt around it, to find which element it rejects",
+    )
+    parser.add_argument(
+        "--probe-repeats", type=int, default=3,
+        help="Calls per rung in --probe-gemini mode (each one spends budget)",
+    )
     args = parser.parse_args()
 
     output_dir = Path(args.output_dir)
@@ -242,6 +292,18 @@ def main():
         if args.section == "all"
         else [args.section]
     )
+
+    if args.probe_gemini:
+        if not os.getenv("GEMINI_API_KEY"):
+            print("❌ --probe-gemini needs GEMINI_API_KEY")
+            sys.exit(1)
+        for section in sections_to_eval:
+            seg_list = all_segments.get(section, [])
+            if not seg_list:
+                print(f"  Skipping {section}: no segments found")
+                continue
+            _probe_gemini_rungs(seg_list, args.probe_repeats)
+        return
 
     for section in sections_to_eval:
         seg_list = all_segments.get(section, [])

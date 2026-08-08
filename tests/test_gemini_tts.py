@@ -26,6 +26,20 @@ SEGS = [
 ]
 
 
+@pytest.fixture(autouse=True)
+def _reset_gemini_module_state():
+    """gemini_tts keeps the render deadline, model pin and pending degradations
+    in module globals — leaking any of them across tests would make a later test
+    silently skip attempts or inherit another test's model."""
+    gemini_tts.set_render_deadline(None)
+    gemini_tts.set_model_override(None)
+    gemini_tts.drain_degradations()
+    yield
+    gemini_tts.set_render_deadline(None)
+    gemini_tts.set_model_override(None)
+    gemini_tts.drain_degradations()
+
+
 class TestBuildTranscript:
     def test_speaker_labels_use_display_names(self):
         transcript = build_transcript(SEGS)
@@ -63,6 +77,20 @@ class TestBuildPayload:
         voice = speech["voiceConfig"]["prebuiltVoiceConfig"]["voiceName"]
         assert voice == get_gemini_voice_for_host("riley")
 
+    def test_single_speaker_is_not_asked_for_a_conversation(self):
+        """A one-turn section (the cold open) is not a conversation, and asking
+        for one 'between Riley' is a malformed request — it was also the call
+        that failed most often in the week of 2026-08-01."""
+        prompt = _build_payload([SEGS[0]])["contents"][0]["parts"][0]["text"]
+        # Not a blanket "conversation between" check — the style prompt legitimately
+        # describes the show as a conversation. It's the *instruction* that was malformed.
+        assert "conversation between Riley:" not in prompt
+        assert "read aloud by Riley" in prompt
+
+    def test_two_speakers_still_asked_for_a_conversation(self):
+        prompt = _build_payload(SEGS)["contents"][0]["parts"][0]["text"]
+        assert "conversation between Riley and Casey" in prompt
+
     def test_three_speakers_raises(self):
         segs = SEGS + [{"speaker": "guest", "text": "Hi.", "gap_ms": None}]
         with pytest.raises(ValueError):
@@ -86,6 +114,68 @@ class TestBuildPayload:
         prompt = _build_payload(SEGS, context_tail="Casey: ...earlier line.")["contents"][0]["parts"][0]["text"]
         assert "already spoken" in prompt
         assert prompt.index("earlier line") < prompt.index("Riley: ")
+
+
+class TestRetryLadderShape:
+    """Each rung must change *what is asked*, not just the sampling seed —
+    finishReason:OTHER comes back with zero output tokens, so re-asking the same
+    question cannot fix it (2026-08-05: two reseeded attempts, identical 272
+    tokens)."""
+
+    def _prompt(self, rung, context_tail="Casey: ...earlier line."):
+        segs = [{"speaker": "casey", "text": "(wry) Sure it will.", "gap_ms": None}]
+        return _build_payload(segs, context_tail=context_tail, rung=rung)["contents"][0]["parts"][0]["text"]
+
+    def test_first_rung_is_the_full_quality_request(self):
+        rung = gemini_tts.RETRY_LADDER[0]
+        assert (rung.keep_context, rung.keep_style, rung.keep_cues) == (True, True, True)
+        assert rung.backoff_s == 0
+        assert not rung.fallback_model
+
+    def test_every_rung_sheds_something_or_changes_model(self):
+        first = gemini_tts.RETRY_LADDER[0]
+        for rung in gemini_tts.RETRY_LADDER[1:]:
+            differs = rung.fallback_model != first.fallback_model or (
+                rung.keep_context, rung.keep_style, rung.keep_cues
+            ) != (first.keep_context, first.keep_style, first.keep_cues)
+            assert differs, f"rung {rung} re-asks the identical question"
+
+    def test_backoff_outlasts_the_observed_failure_windows(self):
+        """The 5s/10s ladder this replaces always died inside a capacity window
+        that lasted one to three minutes."""
+        assert sum(r.backoff_s for r in gemini_tts.RETRY_LADDER) >= 180
+
+    def test_dropping_context_removes_the_context_block(self):
+        rung = gemini_tts._Rung(0, False, True, True, False)
+        assert "already spoken" not in self._prompt(rung)
+
+    def test_dropping_style_removes_the_style_prompt(self):
+        rung = gemini_tts._Rung(0, True, False, True, False)
+        assert "community-radio" not in self._prompt(rung)
+
+    def test_dropping_cues_strips_stage_directions(self):
+        # Style dropped too, so the only possible source of "(wry)" is the
+        # transcript — the style prompt names the cue when explaining it.
+        rung = gemini_tts._Rung(0, True, False, False, False)
+        prompt = self._prompt(rung)
+        assert "(wry)" not in prompt
+        assert "Sure it will." in prompt
+
+    def test_cues_survive_when_the_rung_keeps_them(self):
+        rung = gemini_tts._Rung(0, True, False, True, False)
+        assert "(wry)" in self._prompt(rung)
+
+    def test_fallback_model_tried_before_a_bare_transcript(self):
+        """Voices are pinned by speechConfig on every rung, so a model change
+        keeps the hosts sounding like themselves while a stripped prompt loses
+        the direction — reach for the model first."""
+        ladder = gemini_tts.RETRY_LADDER
+        first_fallback_model = next(i for i, r in enumerate(ladder) if r.fallback_model)
+        first_bare = next(
+            i for i, r in enumerate(ladder)
+            if not r.keep_style and not r.keep_cues
+        )
+        assert first_fallback_model < first_bare
 
 
 class TestModelEnvResolution:
@@ -188,12 +278,13 @@ class TestSynthesizeRetries:
         assert rate == 24000
         assert not responses  # both attempts consumed
 
-    def test_no_audio_exhausts_retries_and_raises(self, monkeypatch):
-        responses = [self._FakeResp(self.NO_AUDIO_RESPONSE) for _ in range(3)]
+    def test_no_audio_exhausts_the_ladder_and_raises(self, monkeypatch):
+        rungs = len(gemini_tts.RETRY_LADDER)
+        responses = [self._FakeResp(self.NO_AUDIO_RESPONSE) for _ in range(rungs)]
         self._patch(monkeypatch, responses)
         with pytest.raises(RuntimeError, match="no audio"):
             _synthesize_chunk(SEGS)
-        assert not responses  # all three attempts consumed
+        assert not responses  # every rung consumed
 
     def test_no_audio_retry_perturbs_seed(self, monkeypatch):
         """A pinned seed makes generation deterministic — retrying with the
@@ -254,7 +345,9 @@ class TestSynthesizeRetries:
             + "x" * 400
             + '", "details": [{"quotaId": "GenerateRequestsPerDayPerProjectPerModel"}]}}'
         )
-        responses = [self._FakeResp({}, status=429) for _ in range(3)]
+        responses = [
+            self._FakeResp({}, status=429) for _ in range(len(gemini_tts.RETRY_LADDER))
+        ]
         for r in responses:
             r.text = body
         self._patch(monkeypatch, responses)
@@ -285,12 +378,13 @@ class TestSynthesizeRetries:
 
     def test_severely_truncated_audio_exhausts_retries_and_raises(self, monkeypatch):
         responses = [
-            self._FakeResp(self._audio_response(b"\x00" * 10_000)) for _ in range(3)
+            self._FakeResp(self._audio_response(b"\x00" * 10_000))
+            for _ in range(len(gemini_tts.RETRY_LADDER))
         ]
         self._patch(monkeypatch, responses)
         with pytest.raises(RuntimeError, match="severely truncated"):
             _synthesize_chunk(SEGS)
-        assert not responses  # all three attempts consumed
+        assert not responses  # every rung consumed
 
     def test_mild_duration_shortfall_not_retried(self, monkeypatch):
         """Ratio between the 0.80 warning line and the 0.50 severity line is
@@ -302,6 +396,205 @@ class TestSynthesizeRetries:
         pcm, rate = _synthesize_chunk(SEGS)
         assert len(pcm) == 150_000
         assert not responses  # only one attempt made
+
+
+class TestTimeBudget:
+    """Five rungs of read timeouts plus backoff could otherwise hold one section
+    for ~15 min, and a six-section episode would blow the 40-minute render step."""
+
+    def _always_fails(self, monkeypatch):
+        calls = []
+        monkeypatch.setenv("GEMINI_API_KEY", "test-key")
+        monkeypatch.setattr(gemini_tts.time, "sleep", lambda s: None)
+
+        def fake_post(*args, **kwargs):
+            calls.append(kwargs["json"]["generationConfig"]["seed"])
+            raise gemini_tts.requests.ConnectionError("boom")
+
+        monkeypatch.setattr(gemini_tts.requests, "post", fake_post)
+        return calls
+
+    def test_section_budget_stops_the_ladder_early(self, monkeypatch):
+        calls = self._always_fails(monkeypatch)
+        # Budget smaller than the first retry's backoff — only attempt 0 fits.
+        with pytest.raises(Exception):
+            _synthesize_chunk(SEGS, budget_s=1)
+        assert len(calls) == 1
+
+    def test_full_ladder_runs_within_the_default_budget(self, monkeypatch):
+        calls = self._always_fails(monkeypatch)
+        with pytest.raises(Exception):
+            _synthesize_chunk(SEGS)
+        assert len(calls) == len(gemini_tts.RETRY_LADDER)
+
+    def test_render_deadline_blocks_further_attempts(self, monkeypatch):
+        """A provider that dies after the canary passed must not eat the render
+        step one section at a time."""
+        calls = self._always_fails(monkeypatch)
+        gemini_tts.set_render_deadline(0)  # already expired
+        with pytest.raises(Exception):
+            _synthesize_chunk(SEGS)
+        assert len(calls) == 1  # attempt 0 runs, nothing after it
+
+    def test_cleared_render_deadline_does_not_bound_anything(self, monkeypatch):
+        calls = self._always_fails(monkeypatch)
+        gemini_tts.set_render_deadline(None)
+        with pytest.raises(Exception):
+            _synthesize_chunk(SEGS)
+        assert len(calls) == len(gemini_tts.RETRY_LADDER)
+
+
+class TestModelSelection:
+    def test_primary_model_used_by_default(self):
+        assert gemini_tts._model_for(gemini_tts.RETRY_LADDER[0]) == gemini_tts.GEMINI_TTS_MODEL
+
+    def test_fallback_rung_uses_the_fallback_model(self):
+        rung = next(r for r in gemini_tts.RETRY_LADDER if r.fallback_model)
+        assert gemini_tts._model_for(rung) == gemini_tts.GEMINI_TTS_FALLBACK_MODEL
+
+    def test_fallback_model_differs_from_primary(self):
+        """Falling to the same model would just be a slower retry."""
+        assert gemini_tts.GEMINI_TTS_FALLBACK_MODEL != gemini_tts.GEMINI_TTS_MODEL
+
+    def test_override_pins_every_rung(self):
+        gemini_tts.set_model_override("pinned-model")
+        assert all(
+            gemini_tts._model_for(r) == "pinned-model" for r in gemini_tts.RETRY_LADDER
+        )
+
+    def test_requested_model_reaches_the_url(self, monkeypatch):
+        seen = []
+        monkeypatch.setenv("GEMINI_API_KEY", "test-key")
+        monkeypatch.setattr(gemini_tts.time, "sleep", lambda s: None)
+
+        def fake_post(url, **kwargs):
+            seen.append(url)
+            return TestSynthesizeRetries._FakeResp(TestSynthesizeRetries.AUDIO_RESPONSE)
+
+        monkeypatch.setattr(gemini_tts.requests, "post", fake_post)
+        gemini_tts.set_model_override("some-other-tts")
+        _synthesize_chunk(SEGS)
+        assert "some-other-tts" in seen[0]
+
+
+class TestDegradationReporting:
+    """A retry that had to shed the style prompt or change model still produced
+    the episode — the fallback is usually right, the silence never is."""
+
+    def _patch(self, monkeypatch, responses):
+        monkeypatch.setenv("GEMINI_API_KEY", "test-key")
+        monkeypatch.setattr(gemini_tts.time, "sleep", lambda s: None)
+        monkeypatch.setattr(gemini_tts.requests, "post", lambda *a, **k: responses.pop(0))
+
+    def test_clean_first_attempt_records_nothing(self, monkeypatch):
+        self._patch(monkeypatch, [
+            TestSynthesizeRetries._FakeResp(TestSynthesizeRetries.AUDIO_RESPONSE)
+        ])
+        _synthesize_chunk(SEGS)
+        assert gemini_tts.drain_degradations() == []
+
+    def test_a_retry_rung_is_recorded(self, monkeypatch):
+        self._patch(monkeypatch, [
+            TestSynthesizeRetries._FakeResp(TestSynthesizeRetries.NO_AUDIO_RESPONSE),
+            TestSynthesizeRetries._FakeResp(TestSynthesizeRetries.AUDIO_RESPONSE),
+        ])
+        _synthesize_chunk(SEGS)
+        recorded = gemini_tts.drain_degradations()
+        assert len(recorded) == 1
+        assert "retry 1" in recorded[0]
+
+    def test_drain_clears_the_buffer(self, monkeypatch):
+        self._patch(monkeypatch, [
+            TestSynthesizeRetries._FakeResp(TestSynthesizeRetries.NO_AUDIO_RESPONSE),
+            TestSynthesizeRetries._FakeResp(TestSynthesizeRetries.AUDIO_RESPONSE),
+        ])
+        _synthesize_chunk(SEGS)
+        assert gemini_tts.drain_degradations()
+        assert gemini_tts.drain_degradations() == []
+
+
+class TestCanary:
+    """The provider decision is made once, before any audio exists. Three of
+    seven episodes in the week of 2026-08-01 shipped with a Gemini cold open and
+    an OpenAI show because the fallback fired per-section mid-render."""
+
+    def _patch(self, monkeypatch, responder):
+        monkeypatch.setenv("GEMINI_API_KEY", "test-key")
+        monkeypatch.setattr(gemini_tts.time, "sleep", lambda s: None)
+        monkeypatch.setattr(gemini_tts.requests, "post", responder)
+
+    def test_returns_primary_model_when_it_answers(self, monkeypatch):
+        self._patch(monkeypatch, lambda *a, **k: TestSynthesizeRetries._FakeResp(
+            TestSynthesizeRetries.AUDIO_RESPONSE))
+        assert gemini_tts.canary() == gemini_tts.GEMINI_TTS_MODEL
+
+    def test_primary_success_leaves_the_ladder_free_to_climb(self, monkeypatch):
+        """Pinning the primary here would strand a struggling section on a model
+        that is failing it, when a model change keeps the same prebuilt voices."""
+        self._patch(monkeypatch, lambda *a, **k: TestSynthesizeRetries._FakeResp(
+            TestSynthesizeRetries.AUDIO_RESPONSE))
+        gemini_tts.canary()
+        assert gemini_tts._model_override is None
+
+    def test_falls_to_the_second_model_and_pins_it(self, monkeypatch):
+        """If the primary is down for the run, stop spending attempts on it."""
+        seen = []
+
+        def responder(url, **kwargs):
+            seen.append(url)
+            if gemini_tts.GEMINI_TTS_MODEL in url:
+                raise gemini_tts.requests.ConnectionError("flash is down")
+            return TestSynthesizeRetries._FakeResp(TestSynthesizeRetries.AUDIO_RESPONSE)
+
+        self._patch(monkeypatch, responder)
+        assert gemini_tts.canary() == gemini_tts.GEMINI_TTS_FALLBACK_MODEL
+        assert gemini_tts._model_override == gemini_tts.GEMINI_TTS_FALLBACK_MODEL
+        assert len(seen) == 2
+
+    def test_returns_none_when_no_model_answers(self, monkeypatch):
+        def responder(*args, **kwargs):
+            raise gemini_tts.requests.ConnectionError("all down")
+
+        self._patch(monkeypatch, responder)
+        assert gemini_tts.canary() is None
+        assert gemini_tts._model_override is None
+
+    def test_no_api_key_is_a_failed_canary_not_an_exception(self, monkeypatch):
+        monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+        assert gemini_tts.canary() is None
+
+    def test_canary_is_one_call_per_model_not_a_full_ladder(self, monkeypatch):
+        """The probe answers 'is Gemini up', so it must stay cheap — climbing the
+        whole ladder twice would cost minutes before a single word is rendered."""
+        calls = []
+
+        def responder(*args, **kwargs):
+            calls.append(1)
+            raise gemini_tts.requests.ConnectionError("down")
+
+        self._patch(monkeypatch, responder)
+        gemini_tts.canary()
+        assert len(calls) == 2  # primary once, fallback once
+
+    def test_canary_uses_a_short_read_timeout(self, monkeypatch):
+        seen = []
+
+        def responder(url, **kwargs):
+            seen.append(kwargs.get("timeout"))
+            return TestSynthesizeRetries._FakeResp(TestSynthesizeRetries.AUDIO_RESPONSE)
+
+        self._patch(monkeypatch, responder)
+        gemini_tts.canary()
+        assert seen[0] == (gemini_tts.REQUEST_CONNECT_TIMEOUT, gemini_tts.CANARY_READ_TIMEOUT)
+        assert gemini_tts.CANARY_READ_TIMEOUT < gemini_tts.REQUEST_READ_TIMEOUT
+
+    def test_canary_text_is_short_enough_to_skip_the_duration_check(self):
+        """A tiny probe clip must not be failed by the truncation guard, which
+        would report a healthy provider as dead."""
+        words = sum(
+            len(s["text"].split()) for s in gemini_tts.CANARY_SEGMENTS
+        )
+        assert words < 10
 
 
 class TestSectionGeneration:

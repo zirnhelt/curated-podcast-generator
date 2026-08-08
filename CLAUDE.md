@@ -242,6 +242,21 @@ Each daily theme (except Saturday, deliberately uncycled) rotates through a mult
 
 **Gemini multi-speaker TTS (optional, `USE_GEMINI_TTS=1`, wins over Azure):** `gemini_tts.py` renders each section's whole two-host conversation in one `generateContent` call (NotebookLM-style prosody) via REST — needs `GEMINI_API_KEY`; `GEMINI_TTS_MODEL` overrides the default flash model. A style prompt plus whitelisted `(cue)` stage directions live in `config/prompts.json` under `gemini_tts`; the polish pass only adds cues when Gemini is active, and the OpenAI/Azure paths strip them. Credits on every surface resolve through `get_active_tts_provider()` — the provider that actually rendered the audio wins (an OpenAI fallback is credited as OpenAI). Compare providers with `python evaluate_tts.py`.
 
+#### Getting Gemini through a whole episode
+
+An episode is 6–9 independent Gemini calls, so per-call reliability compounds — in the week of 2026-08-01, seven of seven episodes fell back to OpenAI at or before the welcome section, and three shipped a Gemini cold open with an OpenAI show. Four mechanisms exist to stop that, in the order they fire:
+
+- **Canary (`gemini_tts.canary()`).** One tiny throwaway synthesis before any audio exists, run from `generate_audio_from_script`. It decides the provider for the whole episode: a failed canary pins OpenAI up front, which is what makes a mixed-voice episode *unrepresentable* rather than merely unlikely. It probes the fallback model too, and pins it only if the primary is the one that's down.
+- **Retry ladder (`RETRY_LADDER`).** Each rung changes the *shape* of the request, not just the seed — `finishReason: OTHER` returns `promptTokenCount == totalTokenCount`, i.e. a rejection of what was asked, which reseeding cannot fix. Rungs shed the context tail, then the style prompt, then the cues. Backoff (0/15/45/90/90 s) is sized to outlast the minutes-long capacity windows the old 5 s/10 s ladder always died inside.
+- **Model ladder.** `GEMINI_TTS_FALLBACK_MODEL` (default pro TTS) is tried at rung 3, *before* the primary model with a bare transcript: voices are pinned by `speechConfig` on every rung, so a model change keeps the hosts sounding like themselves while a stripped prompt loses the direction. Pro costs more than flash, which is why it sits behind three primary failures.
+- **Budgets.** `SECTION_BUDGET_S` bounds one chunk's ladder; `set_render_deadline()` (called with `GEMINI_RENDER_DEADLINE_S`) bounds all Gemini work in a render, so a provider that dies *after* the canary passed cannot eat the 40-minute render step one section at a time.
+
+**Ordering rule:** degrade delivery nuance before voice identity. Anything that changes *who the hosts sound like* is the last resort, which is why the whole-episode OpenAI decision is made up front rather than drifted into mid-show.
+
+`gemini_tts` cannot import `degrade()` without a circular import, so it records degradations and the render path drains them via `_report_gemini_degradations()`. **A new fallback in `gemini_tts` must append to `_degradations`** or it will not reach the run report.
+
+Diagnose a rejection with `python evaluate_tts.py --probe-gemini` (or the `probe_gemini` input on the `TTS Eval` workflow, which writes the table to the job summary): it asks the same text with progressively less prompt around it. Rung 0 failing while a later rung passes names the element Gemini is rejecting; every rung failing equally is an outage or a quota wall.
+
 ### Cohere Enrichment (`cohere_enrichment.py`)
 
 Optional (`USE_COHERE=1`). Three stages:

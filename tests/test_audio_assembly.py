@@ -144,10 +144,15 @@ class TestGeminiFailoverKeepsMusicAndCredits:
     keeping intro music, interstitials, and spoken credits — instead of falling
     back to the bare TTS-only path (which dropped all three)."""
 
-    def _setup(self, monkeypatch, tmp_path):
+    def _setup(self, monkeypatch, tmp_path, canary_model="gemini-2.5-flash-preview-tts"):
         pg = podcast_generator
         monkeypatch.setattr(pg, "AudioSegment", RichFakeSegment)
         monkeypatch.setattr(pg, "USE_GEMINI_TTS", True)
+        # The pre-flight canary decides the provider before any section renders.
+        # Default: it passes, so these tests exercise the *per-section* fallback
+        # that still has to work when Gemini dies mid-episode.
+        monkeypatch.setattr(pg, "gemini_canary", lambda: canary_model)
+        monkeypatch.setattr(pg, "gemini_set_render_deadline", lambda s: None)
         monkeypatch.setattr(pg, "USE_AZURE_PARALLEL", False)
         monkeypatch.setattr(pg, "_tts_provider_used", None)
         monkeypatch.setattr(pg, "get_gemini_api_key", lambda: "key")
@@ -209,6 +214,45 @@ class TestGeminiFailoverKeepsMusicAndCredits:
         logs = capsys.readouterr().out
         assert "degrading to OpenAI" in logs
         assert "Added spoken credits" in logs
+
+    def test_failed_canary_routes_the_whole_episode_to_openai(self, monkeypatch, tmp_path, capsys):
+        """The mixed-voice episode this prevents: three of seven episodes in the
+        week of 2026-08-01 shipped a Gemini cold open and an OpenAI show, because
+        the provider fallback fires per-section mid-render. A canary that cannot
+        get a note out of Gemini pins OpenAI before a single section exists."""
+        pg = podcast_generator
+        openai_calls, tts_only_calls = self._setup(monkeypatch, tmp_path, canary_model=None)
+        gemini_calls = []
+        monkeypatch.setattr(pg, "generate_gemini_tts_for_section",
+                            lambda *a, **k: gemini_calls.append(True))
+        out = str(tmp_path / "episode.mp3")
+
+        assert pg.generate_audio_from_script("script", out, theme_name="Test Theme") == out
+
+        assert gemini_calls == [], "no section may reach Gemini after a failed canary"
+        assert openai_calls, "the whole episode should render on OpenAI"
+        assert pg._tts_provider_used == "openai"
+        assert tts_only_calls == [], "music and credits must survive the canary decision"
+        assert "Degraded 'render/gemini-canary'" in capsys.readouterr().out
+
+    def test_passing_canary_lets_sections_reach_gemini(self, monkeypatch, tmp_path):
+        """The canary must not become a second way to lose Gemini."""
+        pg = podcast_generator
+        self._setup(monkeypatch, tmp_path)
+        gemini_calls = []
+
+        def _fake_gemini(seg_list, output_file, context_tail=""):
+            gemini_calls.append(len(seg_list))
+            with open(output_file, "wb") as f:
+                f.write(b"\x00")
+            return "tail"
+
+        monkeypatch.setattr(pg, "generate_gemini_tts_for_section", _fake_gemini)
+        out = str(tmp_path / "episode.mp3")
+
+        assert pg.generate_audio_from_script("script", out, theme_name="Test Theme") == out
+        assert gemini_calls, "sections should render on Gemini when the canary passes"
+        assert pg.get_active_tts_provider() == "gemini"
 
 
 class TestTtsOnlyEmitsSidecars:
