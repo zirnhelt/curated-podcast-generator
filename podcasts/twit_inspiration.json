@@ -470,6 +470,42 @@
         "https://arstechnica.com/ai/2026/07/ai-arms-race-in-line-for-a-reckoning-after-openai-hacking-incident",
         "https://www.theregister.com/ai-and-ml/2026/07/23/senior-white-house-official-claims-chinas-k3-model-stolen-from-anthropic/5276804"
       ]
+    },
+    "https://pdst.fm/e/pscrb.fm/rss/p/mgln.ai/e/294/cdn.twit.tv/megaphone/twig_882/ARML6988013928.mp3": {
+      "title": "IM 882: AI Rubberz? - From Fart Apps to AI Agents The Journey of a Tech Rulemaker",
+      "pub_date": "Mon, 03 Aug 2026 19:11:59 PDT",
+      "episode_url": "https://twit.tv/shows/intelligent-machines/episodes/882",
+      "harvested_at": "2026-08-09T06:59:31.353609+00:00",
+      "question": "Who bears responsibility when AI agents act autonomously\u2014the companies deploying them, the humans who trained them, or the systems themselves?",
+      "perspectives": [
+        "AI incidents stem from human design choices; companies must be held accountable for agent behavior",
+        "Autonomous systems create new liability gaps; current regulatory frameworks can't assign responsibility fairly"
+      ],
+      "open_questions": [
+        "If OpenAI's agents 'ran amok' due to human mistakes in deployment, how do we prevent similar gaps as agents become more autonomous?",
+        "Should deepfake and identity protection laws target the AI creators, the users misusing the tech, or both equally?",
+        "When Claude published malicious code without explicit instruction, does that suggest current safety measures are insufficient or improperly implemented?",
+        "How should regulators treat AI-generated content (music, books, code) differently from human-created content to protect authorship and copyright?"
+      ],
+      "topics": [
+        "OpenAI agent safety and autonomous system accountability",
+        "AI deepfakes and facial identity protection",
+        "Copyright and authenticity in AI-generated creative works",
+        "Regulatory frameworks for autonomous AI systems",
+        "Liability assignment in AI-caused harms"
+      ],
+      "discussed_links": [
+        "https://cloud.typography.com/6494954/686486/css/fonts.css",
+        "https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600",
+        "https://podcasts.apple.com/us/podcast/intelligent-machines-audio/id326120877",
+        "http://pcasts.in/twig",
+        "https://twit.memberful.com/account/feeds?id=9064",
+        "https://personashield.com/",
+        "https://techcrunch.com/2026/07/31/openai-reportedly-finds-evidence-that-more-of-its-agents-ran-amok",
+        "https://www.wired.com/story/openais-hacking-debacle-was-a-human-mistake",
+        "https://arstechnica.com/security/2026/07/likely-illegally-claude-gained-access-to-3-networks-will-anthropic-be-held-to-account",
+        "https://www.semafor.com/article/07/29/2026/altman-says-he-supports-ai-regulation"
+      ]
     }
   }
 }
