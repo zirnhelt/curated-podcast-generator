@@ -1,30 +1,4 @@
 {
-  "2026-05-10": {
-    "timestamp": 1778411203.680399,
-    "date": "2026-05-10",
-    "theme": "Science, Wonder & the Natural World",
-    "central_question": "How can recent scientific discoveries about conserved mechanisms in regeneration, evolution, and quantum systems translate into actionable improvements for rural communities like the Cariboo?",
-    "riley_position": "Scientific findings about conserved genetic pathways and mechanisms create near-term opportunities for the Cariboo through reanalysis of existing data and research partnerships, particularly in understanding ecological succession and salmon population dynamics.",
-    "riley_key_evidence": [
-      "SP genes for regeneration are conserved across salamanders, zebrafish, and mice, potentially creating accessible wound-care protocols rather than just surgical solutions",
-      "Butterflies and moths reuse the same genetic switches for 120 million years, suggesting evolution follows conserved scripts applicable to boreal forest succession prediction",
-      "Existing iNaturalist observation data and Forests Ministry monitoring data could be reanalyzed through the lens of conserved ecological pathways"
-    ],
-    "casey_position": "Scientific advances alone don't reach rural communities without addressing structural barriers around funding models, capacity constraints, and governance\u2014the mechanism matters less than who controls research questions and whether funding is operational rather than project-based.",
-    "casey_key_evidence": [
-      "Rural patients are last to access clinical therapies regardless of pipeline promise because specialty clinics and trials concentrate in urban centers like Vancouver",
-      "The butterfly research is about warning coloration, not forest succession\u2014inferring broader ecological applications requires several more papers of validation",
-      "Technique transfer without infrastructure capacity (trained personnel, equipment, analytical infrastructure) reproduces extraction problems rather than solving them"
-    ],
-    "resolution": "Riley and Casey converged on a concrete recommendation: the Cariboo needs a single regionally-based science analyst position funded through multi-stakeholder operational budgets (not project grants) to ask questions of existing data. Casey's emphasis on structural funding barriers and governance shaped the final proposal into something more institutionally sustainable than Riley's initial research-trajectory arguments.",
-    "topics_covered": [
-      "Gene therapy and regenerative medicine accessibility in rural communities",
-      "Evolutionary conservation of genetic expression mechanisms and ecological succession prediction",
-      "Indigenous data sovereignty and co-investigator research partnerships with universities",
-      "Monitoring commons governance and the role of temporal sequence in system dynamics",
-      "Analytical capacity as the primary bottleneck rather than data availability or discovery"
-    ]
-  },
   "2026-05-11": {
     "timestamp": 1778503472.246047,
     "date": "2026-05-11",
@@ -2311,6 +2285,33 @@
       "Coordination between provincial weather warnings and health authority advisories",
       "Institutional durability: boring, reliable systems versus new tools deployed mid-crisis",
       "Public transparency and residents' ability to verify emergency response mechanisms"
+    ]
+  },
+  "2026-08-09": {
+    "timestamp": 1786266197.362233,
+    "date": "2026-08-09",
+    "theme": "Science, Wonder & the Natural World",
+    "focus": "discovery-health",
+    "central_question": "How should scientific findings be translated and communicated to the public when headlines oversimplify nuanced research?",
+    "riley_position": "Scientific compression into clean numbers is a necessary, valid stage of discovery that eventually gets refined with more data, and existing regional institutions like Interior Health already provide adequate informal filtering of research into actionable advice.",
+    "riley_key_evidence": [
+      "Plasma vortices in solar images were predicted mathematically for a century before optics caught up, showing oversimplification is part of the legitimate discovery process",
+      "BC's grid runs over 90% hydro, making EV emissions math work cleanly in this region",
+      "Interior Health and School District 27 serve as existing human filters between raw studies and public-facing advice"
+    ],
+    "casey_position": "Oversimplified headlines cause immediate harm by prompting people to act on unconfirmed findings before replication, and existing institutional filters are either absent, slow, or operate informally rather than as accountable job responsibilities.",
+    "casey_key_evidence": [
+      "Exercise study's 560-610 minute recommendation is an average across mixed-fitness populations, not a universal target, but this nuance doesn't survive headlines",
+      "EV study assumes grid decarbonization and household affordability conditions that don't hold for most Cariboo residents",
+      "Regional health guidance lags months or years behind fresh studies, and school districts aren't equipped to relitigate new papers"
+    ],
+    "resolution": "They identified shared agreement that the core problem is a literacy and governance gap rather than a data problem, and disagreed on solutions\u2014Riley trusting informal institutional translation versus Casey advocating explicit, accountable checkpoints\u2014while both agreeing this deserved investigation within the Cariboo community.",
+    "topics_covered": [
+      "EV emissions lifecycle claims and regional applicability",
+      "Exercise dose recommendations and population-dependent averages",
+      "Null results and why negative findings get underamplified",
+      "Institutional versus algorithmic filtering of scientific claims",
+      "Science communication gaps between discovery and public action"
     ]
   }
 }

@@ -1,24 +1,4 @@
 {
-  "2026-07-04": {
-    "timestamp": 1783160821.87419,
-    "topics": [
-      "[CFJC Today Kamloops] Kamloops mayor Hamer-Jackson calls on ",
-      "[CFJC Today Kamloops] Second 13-hour overnight closure comin",
-      "[TechRadar] Fires linked to solar panels force Suffolk counc",
-      "[BC Gov News] Temporary lane reduction planned for Clearbroo",
-      "[Al Jazeera English] NASA launches robotic mission to save t",
-      "[Williams Lake Tribune] PROGRESS 2026: Coulson Aviation\u2019s ni",
-      "[100 Mile Free Press] Marie Dianne Matwick (Wolfe)",
-      "[Williams Lake Tribune] Donations support Williams Lake cros"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech",
-      "connectivity"
-    ],
-    "date": "2026-07-04"
-  },
   "2026-07-05": {
     "timestamp": 1783263119.030598,
     "topics": [
@@ -664,5 +644,26 @@
     "date": "2026-08-08",
     "focus": null,
     "focus_name": null
+  },
+  "2026-08-09": {
+    "timestamp": 1786266194.565032,
+    "topics": [
+      "[Scientific American] Monkeys keep pets and maintain friends",
+      "[WIRED] The Sharpest Image Ever Taken of the Sun Reveals a H",
+      "[ScienceAlert] Super Rare Humpback Whale Birth Filmed by Dro",
+      "[ScienceAlert] Scientists Watched Carbon Dioxide Being Pulle",
+      "[ScienceAlert] Avocados Switch Sex on a Daily Basis, And Res",
+      "[Fast Company] Scrapping your gas-powered car right now woul",
+      "[ScienceDaily] Cutting sweet foods doesn\u2019t curb cravings or ",
+      "[ScienceDaily] Scientists reveal how much exercise you reall"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "connectivity"
+    ],
+    "date": "2026-08-09",
+    "focus": "discovery-health",
+    "focus_name": "Discovery, Health & How Science Works"
   }
 }
