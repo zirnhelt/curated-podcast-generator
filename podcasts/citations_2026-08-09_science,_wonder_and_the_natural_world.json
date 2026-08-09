@@ -1,0 +1,824 @@
+{
+  "episode": {
+    "date": "2026-08-09",
+    "formatted_date": "Sunday, August 09, 2026",
+    "theme": "Science, Wonder & the Natural World",
+    "title": "Cariboo Signals - Science, Wonder & the Natural World",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Science, Wonder & the Natural World.</p><p><b>NEWS ROUNDUP:</b> We break down [Scientific American] Monkeys keep pets and maintain friendships with other animals and [WIRED] The Sharpest Image Ever Taken of the Sun Reveals a Hidden Phenomenon, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> How should scientific findings be translated and communicated to the public when headlines oversimplify nuanced research? Topics include: EV emissions lifecycle claims and regional applicability, Exercise dose recommendations and population-dependent averages, Null results and why negative findings get underamplified, Institutional versus algorithmic filtering of scientific claims, Science communication gaps between discovery and public action.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://scoutisland.ca\">Scout Island Nature Centre</a></p><p><b>Sources discussed:</b></p><ul><li>Cyril Grueter, The Conversation US (Scientific American): <a href=\"https://www.scientificamerican.com/article/monkeys-keep-pets-and-maintain-friendships-with-other-animals/\">[Scientific American] Monkeys keep pets and maintain friends...</a></li><li>Jorge Garay (WIRED): <a href=\"https://www.wired.com/story/the-sharpest-image-ever-taken-of-the-sun-reveals-a-beautiful-hidden-phenomenon/\">[WIRED] The Sharpest Image Ever Taken of the Sun Reveals a H...</a></li><li>Jess Cockerill (ScienceAlert): <a href=\"https://www.sciencealert.com/super-rare-humpback-whale-birth-caught-on-drone-camera-for-the-first-time-off-the-coast-of-australia\">[ScienceAlert] Super Rare Humpback Whale Birth Filmed by Dro...</a></li><li>Jess Cockerill (ScienceAlert): <a href=\"https://www.sciencealert.com/scientists-watched-carbon-dioxide-being-pulled-out-of-the-air-to-form-graphite\">[ScienceAlert] Scientists Watched Carbon Dioxide Being Pulle...</a></li><li>Ivan Farkas (ScienceAlert): <a href=\"https://www.sciencealert.com/avocados-switch-sex-on-a-daily-basis-and-researchers-finally-know-how\">[ScienceAlert] Avocados Switch Sex on a Daily Basis, And Res...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/testing-new-tech-while-training-work-in-progress-us-army-2026-8\">[Business Insider] The US Army wants soldiers to test tomorr...</a></li><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/08/08/district-of-summerland-evacuated-hwy-97-closed-due-to-raging-bald-range-wildfire/\">[Williams Lake Tribune] UPDATE: Power restored in parts of S...</a></li><li>Brendan Shykora (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/08/08/b-c-declares-provincial-state-of-emergency-1-day-after-wildfire-evacuates-summerland/\">[Williams Lake Tribune] B.C. declares provincial state of em...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/315380/news/emergency-services/fire/wildfires/air-quality-warnings-expand-across-southern-b-c-due-to-lingering-wildfire-smoke/\">Air quality warnings expand across southern B.C. due to ling...</a></li><li>Ellsworth Toohey (Boing Boing): <a href=\"https://boingboing.net/2026/08/08/gps-jamming-medevac-crash.html\">[Boing Boing] Four died after a military exercise took GPS a...</a></li><li>Terrence O&#x27;Brien (The Verge): <a href=\"https://www.theverge.com/ai-artificial-intelligence/977124/amazon-data-center-worst-polluting-power-plant\">[The Verge] An Amazon data center could have the worst pollu...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/08/08/tracking-bees-with-a-stereo-camera/\">[Hackaday] Tracking Bees with a Stereo Camera</a></li><li>https://www.techradar.com/author/efosa-udinmwen (TechRadar): <a href=\"https://www.techradar.com/pro/security/the-us-navy-used-a-swarm-of-drone-boats-to-seize-usd81-million-worth-of-cocaine-in-the-caribbean\">[TechRadar] The US Navy used a swarm of drone boats to seize...</a></li><li>Anthony Ha (TechCrunch): <a href=\"https://techcrunch.com/2026/08/08/planned-amazon-data-center-could-become-the-biggest-climate-polluter-in-the-u-s/\">[TechCrunch] Planned Amazon data center could become the big...</a></li><li>globalnews.ca: <a href=\"https://globalnews.ca/news/12014460/summerland-wildfire-large-numbers-seniors-residential-care-relocate/\">[globalnews.ca] Summerland wildfire forces large numbers of ...</a></li><li>Fast Company: <a href=\"https://www.fastcompany.com/91586427/should-i-fix-gas-powered-car-study-says-switch-ev-now\">[Fast Company] Scrapping your gas-powered car right now woul...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/08/09/world/asia/taiwan-drone-china-invasion.html\">[NYT Top Stories] How a Drone ‘Hellscape’ Might Stop a Chine...</a></li><li>Fast Company: <a href=\"https://www.fastcompany.com/91585614/spill-social-platform-alphonzo-terrell\">[Fast Company] ‘If trust breaks, your business breaks’: How ...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/315394/news/emergency-services/fire/wildfires/more-than-12000-people-ordered-to-evacuate-summerland-as-explosive-wildfire-surges/\">More than 12,000 people ordered to evacuate Summerland as ex...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/315386/news/emergency-services/fire/wildfires/south-okanagan-wildfire-explodes-to-5000-hectares-evacuation-order-issued/\">Update: 55 airlifted, evacuation expanded after explosive wi...</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/08/260807035145.htm\">[ScienceDaily] Meteorite that smashed through a New Jersey r...</a></li><li>Al Jazeera Staff (Al Jazeera English): <a href=\"https://www.aljazeera.com/news/2026/8/8/british-columbia-issues-evacuation-orders-ahead-of-fast-moving-wildfires?traffic_source=rss\">[Al Jazeera English] British Columbia wildfire forces more t...</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/video/newsfeed/2026/8/9/08-09-2026-colombia-car-bomb-sv-mp4?traffic_source=rss\">[Al Jazeera English] Car bomb hits Colombia highway day afte...</a></li><li>The Family Handyman: <a href=\"https://www.familyhandyman.com/project/shelf-covers-for-wire-shelves/\">[The Family Handyman] How I Gave My Wire Shelves a Custom Lo...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/08/08/grading-tomatoes-with-an-esp32-and-ml/\">[Hackaday] Grading Tomatoes with an ESP32 and ML</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/08/08/junkbin-a-way-to-efficiently-reuse-your-old-electronics/\">[Hackaday] Junkbin, a Way to Efficiently Reuse Your Old Elec...</a></li><li>Vancouver Sun: <a href=\"https://vancouversun.com/news/13-year-old-girl-missing-after-falling-off-paddleboard-on-cultus-lake\">[Vancouver Sun] 13-year-old girl missing after falling off p...</a></li><li>Terrence O&#x27;Brien (The Verge): <a href=\"https://www.theverge.com/tech/977143/x-revenue-sharing-original-content-rewards\">[The Verge] X replaces its revenue-sharing program with ‘Ori...</a></li><li>The Walrus: <a href=\"https://thewalrus.ca/montreal-potholes/\">This Montreal Man Is on a Crusade to Fill Every Damn Pothole...</a></li><li>https://newatlas.com/author/abhimanyu-ghoshal/ (New Atlas): <a href=\"https://newatlas.com/space-systems/us-space-force-flatellites-rocket-lab/\">[New Atlas] Space Force invests millions in advanced threat ...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/berkshire-hathaway-warren-buffett-greg-abel-spending-cash-pile-2026-8\">[Business Insider] Warren Buffett's successor starts spendin...</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/08/260807235103.htm\">[ScienceDaily] Cutting sweet foods doesn’t curb cravings or ...</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/08/260806050724.htm\">[ScienceDaily] Scientists reveal how much exercise you reall...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5<br>Today's Voices: Gemini TTS and OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-08-09T02:03:05.077392-07:00",
+    "models": {
+      "script": "claude-sonnet-5",
+      "review": "claude-sonnet-5",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 3189,
+      "voice_ratio_casey_riley": 1.03,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 0,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 3,
+        "roundup_seam": 0,
+        "thats_closer": 0
+      },
+      "total_hits": 0,
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Scientific American] Monkeys keep pets and maintain friendships with other animals",
+          "url": "https://www.scientificamerican.com/article/monkeys-keep-pets-and-maintain-friendships-with-other-animals/",
+          "source": "Scientific American",
+          "author": "Cyril Grueter, The Conversation US",
+          "ai_score": 63,
+          "date_published": "2026-08-08T12:00:00+00:00",
+          "summary": "This behaviour may shed light on one of the defining features of our own species: our extraordinary relationships with other animals",
+          "discussed": true,
+          "mention_offset_frac": 0.0331
+        },
+        {
+          "title": "[WIRED] The Sharpest Image Ever Taken of the Sun Reveals a Hidden Phenomenon",
+          "url": "https://www.wired.com/story/the-sharpest-image-ever-taken-of-the-sun-reveals-a-beautiful-hidden-phenomenon/",
+          "source": "WIRED",
+          "author": "Jorge Garay",
+          "ai_score": 60,
+          "date_published": "2026-08-08T13:00:00+00:00",
+          "summary": "The photograph, taken in visible light, made it possible to observe for the first time the tiny plasma vortices that had been predicted for more than a century.",
+          "discussed": true,
+          "mention_offset_frac": 0.089
+        },
+        {
+          "title": "[ScienceAlert] Super Rare Humpback Whale Birth Filmed by Drone For The First Time Off The Coast of Australia",
+          "url": "https://www.sciencealert.com/super-rare-humpback-whale-birth-caught-on-drone-camera-for-the-first-time-off-the-coast-of-australia",
+          "source": "ScienceAlert",
+          "author": "Jess Cockerill",
+          "ai_score": 55,
+          "date_published": "2026-08-08T21:21:26+00:00",
+          "summary": "Welcome to the world, little whale! ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+          "discussed": true,
+          "mention_offset_frac": 0.1513
+        },
+        {
+          "title": "[ScienceAlert] Scientists Watched Carbon Dioxide Being Pulled Out of The Air to Form Graphite",
+          "url": "https://www.sciencealert.com/scientists-watched-carbon-dioxide-being-pulled-out-of-the-air-to-form-graphite",
+          "source": "ScienceAlert",
+          "author": "Jess Cockerill",
+          "ai_score": 62,
+          "date_published": "2026-08-08T10:00:00+00:00",
+          "summary": "This is some seriously high-tech upcycling. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+          "discussed": true,
+          "mention_offset_frac": 0.1925
+        },
+        {
+          "title": "[ScienceAlert] Avocados Switch Sex on a Daily Basis, And Researchers Finally Know How",
+          "url": "https://www.sciencealert.com/avocados-switch-sex-on-a-daily-basis-and-researchers-finally-know-how",
+          "source": "ScienceAlert",
+          "author": "Ivan Farkas",
+          "ai_score": 55,
+          "date_published": "2026-08-08T08:00:00+00:00",
+          "summary": "This certainly complicates our ‘birds-and-bees’ narrative. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+          "discussed": true,
+          "mention_offset_frac": 0.2266
+        },
+        {
+          "title": "[Business Insider] The US Army wants soldiers to test tomorrow's tech while preparing to fight today. It's a balancing act.",
+          "url": "https://www.businessinsider.com/testing-new-tech-while-training-work-in-progress-us-army-2026-8",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-08-08T12:41:01+00:00",
+          "summary": "Soldiers can provide feedback on new systems, but they also have to learn how to use them without sacrificing the combat training they need.",
+          "discussed": true,
+          "mention_offset_frac": 0.3219
+        },
+        {
+          "title": "[Williams Lake Tribune] UPDATE: Power restored in parts of Summerland as crews continue to battle Bald Range wildfire",
+          "url": "https://wltribune.com/2026/08/08/district-of-summerland-evacuated-hwy-97-closed-due-to-raging-bald-range-wildfire/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 68,
+          "date_published": "2026-08-09T01:30:00+00:00",
+          "summary": "## UPDATE: Power restored in parts of Summerland as crews continue to battle Bald Range wildfire Published 6:30 pm Saturday, August 8, 2026 **By Logan Lockhart, Brayden Ursel** ((Facebook)) **UPDATE (...",
+          "discussed": true,
+          "mention_offset_frac": 0.3975
+        },
+        {
+          "title": "[Williams Lake Tribune] B.C. declares provincial state of emergency 1 day after wildfire evacuates Summerland",
+          "url": "https://wltribune.com/2026/08/08/b-c-declares-provincial-state-of-emergency-1-day-after-wildfire-evacuates-summerland/",
+          "source": "Williams Lake Tribune",
+          "author": "Brendan Shykora",
+          "ai_score": 91,
+          "date_published": "2026-08-09T05:12:52.721275+00:00",
+          "summary": "## B.C. declares provincial state of emergency 1 day after wildfire evacuates Summerland Published 1:37 pm Saturday, August 8, 2026 **By Brendan Shykora** 1/3 B.C. has declared a province-wide state o...",
+          "discussed": true,
+          "mention_offset_frac": 0.4196
+        },
+        {
+          "title": "Air quality warnings expand across southern B.C. due to lingering wildfire smoke : My Cariboo Now",
+          "url": "https://www.mycariboonow.com/315380/news/emergency-services/fire/wildfires/air-quality-warnings-expand-across-southern-b-c-due-to-lingering-wildfire-smoke/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 87,
+          "date_published": "2026-08-09T05:11:45.557129+00:00",
+          "summary": "",
+          "discussed": true,
+          "mention_offset_frac": 0.4508
+        },
+        {
+          "title": "[globalnews.ca] Summerland wildfire forces large numbers of seniors in residential care to relocate",
+          "url": "https://globalnews.ca/news/12014460/summerland-wildfire-large-numbers-seniors-residential-care-relocate/",
+          "source": "globalnews.ca",
+          "author": "",
+          "ai_score": 61,
+          "date_published": "2026-08-08T23:37:17+00:00",
+          "summary": "David Hickey, a driver with the High Acuity Response Team, helped receive dozens of seniors at Kaigo Senior Living Facility in Kelowna.",
+          "discussed": true,
+          "mention_offset_frac": 0.4908
+        },
+        {
+          "title": "[Nautilus] New Observatory Captures More Than Half a Million Galaxies in a Single Image",
+          "url": "https://nautil.us/new-observatory-captures-more-than-half-a-million-galaxies-in-a-single-image-1283526/",
+          "source": "Nautilus",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-08T14:00:00+00:00",
+          "summary": "The Vera C. Rubin Observatory is off to a fantastic start The post New Observatory Captures More Than Half a Million Galaxies in a Single Image appeared first on Nautilus .",
+          "discussed": true,
+          "mention_offset_frac": 0.6058
+        },
+        {
+          "title": "[Boing Boing] Four died after a military exercise took GPS away over New Mexico",
+          "url": "https://boingboing.net/2026/08/08/gps-jamming-medevac-crash.html",
+          "source": "Boing Boing",
+          "author": "Ellsworth Toohey",
+          "ai_score": 54,
+          "date_published": "2026-08-08T16:30:00+00:00",
+          "summary": "A medevac flight that should have taken half an hour ended on the side of a mountain in New Mexico, killing all four aboard. Jeff Wise reports for Wired that a military GPS jamming exercise 100 miles ...",
+          "discussed": true,
+          "mention_offset_frac": 0.6646
+        },
+        {
+          "title": "[TechCrunch] Planned Amazon data center could become the biggest climate polluter in the U.S.",
+          "url": "https://techcrunch.com/2026/08/08/planned-amazon-data-center-could-become-the-biggest-climate-polluter-in-the-u-s/",
+          "source": "TechCrunch",
+          "author": "Anthony Ha",
+          "ai_score": 53,
+          "date_published": "2026-08-08T21:24:02+00:00",
+          "summary": "As part of a planned Texas data center, Amazon is investing in an on-site power plant that could reportedly become the largest source of climate pollution in the United States.",
+          "discussed": true,
+          "mention_offset_frac": 0.6971
+        },
+        {
+          "title": "[The Verge] An Amazon data center could have the worst polluting power plant in the country",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/977124/amazon-data-center-worst-polluting-power-plant",
+          "source": "The Verge",
+          "author": "Terrence O&#x27;Brien",
+          "ai_score": 57,
+          "date_published": "2026-08-08T17:53:34+00:00",
+          "summary": "To power its new West Texas data center, Amazon is investing in the construction of a new power plant that could be one of the largest single producers of greenhouse gases in the US, according to the ...",
+          "discussed": true,
+          "mention_offset_frac": 0.6982
+        },
+        {
+          "title": "[Hackaday] Tracking Bees with a Stereo Camera",
+          "url": "https://hackaday.com/2026/08/08/tracking-bees-with-a-stereo-camera/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-08-09T05:00:24+00:00",
+          "summary": "For whatever reason, [Jeremy] wants to photograph bees in flight. This is one of those things that doesn’t seem that hard until you try to do it. He’s got the …read more",
+          "discussed": true,
+          "mention_offset_frac": 0.7685
+        },
+        {
+          "title": "[TechRadar] The US Navy used a swarm of drone boats to seize $81 million worth of cocaine in the Caribbean",
+          "url": "https://www.techradar.com/pro/security/the-us-navy-used-a-swarm-of-drone-boats-to-seize-usd81-million-worth-of-cocaine-in-the-caribbean",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/efosa-udinmwen",
+          "ai_score": 63,
+          "date_published": "2026-08-09T00:05:00+00:00",
+          "summary": "Two Saildrone Voyager vessels tracked suspected drug traffickers, enabling the US Navy to seize cocaine worth more than $81 million.",
+          "discussed": true,
+          "mention_offset_frac": 0.8226
+        },
+        {
+          "title": "[Vox] The strange reason flu shots have been so hard to improve",
+          "url": "https://www.vox.com/future-perfect/498456/flu-influenza-robert-kennedy-jr-vaccine-moderna",
+          "source": "Vox",
+          "author": "",
+          "ai_score": 73,
+          "date_published": "2026-08-08T12:00:00+00:00",
+          "summary": "On August 5, 2025, the Department of Health and Human Services canceled 22 mRNA vaccine projects worth roughly $500 million and told the country it would stop investing in the technology that had brou...",
+          "discussed": true,
+          "mention_offset_frac": 0.8689
+        },
+        {
+          "title": "[TechRadar] New Mexico judge calls Meta a 'public nuisance' that's like a factory emitting 'noxious pollution' in record $567 million fine — and even Meta's own attorneys agree",
+          "url": "https://www.techradar.com/computing/social-media/new-mexico-judge-calls-meta-a-public-nuisance-thats-like-a-factory-emitting-noxious-pollution-in-record-usd567-million-fine-and-even-metas-own-attorneys-agree",
+          "source": "TechRadar",
+          "author": "",
+          "ai_score": 67,
+          "date_published": "2026-08-07T15:05:22+00:00",
+          "summary": "In the second phase of the landmark New Mexico case, the judge says Facebook and Instagram are major polluters.",
+          "discussed": true,
+          "mention_offset_frac": 0.9099
+        },
+        {
+          "title": "[Scientific American] Anthropic and OpenAI AI agents showed signs of deception during safety tests",
+          "url": "https://www.scientificamerican.com/article/anthropic-and-openai-ai-agents-showed-signs-of-deception-during-safety-tests/",
+          "source": "Scientific American",
+          "author": "",
+          "ai_score": 54,
+          "date_published": "2026-08-07T14:00:00+00:00",
+          "summary": "A U.K. safety evaluation found agents powered by Anthropic and OpenAI took unauthorized actions online, exposing a growing problem of control",
+          "discussed": true,
+          "mention_offset_frac": 0.9591
+        },
+        {
+          "title": "[NYT Top Stories] How a Drone ‘Hellscape’ Might Stop a Chinese Invasion of Taiwan",
+          "url": "https://www.nytimes.com/2026/08/09/world/asia/taiwan-drone-china-invasion.html",
+          "source": "NYT Top Stories",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-08-09T04:01:14+00:00",
+          "summary": "Inspired by Ukraine’s battlefield gains, Taiwan is betting on drones to deter a potential Chinese invasion.",
+          "discussed": false
+        },
+        {
+          "title": "[Fast Company] ‘If trust breaks, your business breaks’: How Alphonzo Terrell is building Spill to be a different kind of social platform",
+          "url": "https://www.fastcompany.com/91585614/spill-social-platform-alphonzo-terrell",
+          "source": "Fast Company",
+          "author": "",
+          "ai_score": 53,
+          "date_published": "2026-08-08T11:00:00+00:00",
+          "summary": "Alphonzo Terrell was the global head of social and editorial at Twitter, until Elon Musk’s $44 billion acquisition that led to roughly 80% of the company’s workforce being laid off —Terrell included. ...",
+          "discussed": false
+        },
+        {
+          "title": "More than 12,000 people ordered to evacuate Summerland as explosive wildfire surges : My Cariboo Now",
+          "url": "https://www.mycariboonow.com/315394/news/emergency-services/fire/wildfires/more-than-12000-people-ordered-to-evacuate-summerland-as-explosive-wildfire-surges/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 89,
+          "date_published": "2026-08-09T05:11:45.557511+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "Update: 55 airlifted, evacuation expanded after explosive wildfire grows in south Okanagan : My Cariboo Now",
+          "url": "https://www.mycariboonow.com/315386/news/emergency-services/fire/wildfires/south-okanagan-wildfire-explodes-to-5000-hectares-evacuation-order-issued/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 86,
+          "date_published": "2026-08-09T05:11:45.557475+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceDaily] Meteorite that smashed through a New Jersey roof reveals clues to life’s origins",
+          "url": "https://www.sciencedaily.com/releases/2026/08/260807035145.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-08-08T14:58:54+00:00",
+          "summary": "A rare meteorite that crashed through a New Jersey roof contains evidence of ancient salty fluids, organic compounds, and amino acids from a primitive asteroid. Its pristine chemistry could offer new ...",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] British Columbia wildfire forces more than 20,000 to flee, destroys homes",
+          "url": "https://www.aljazeera.com/news/2026/8/8/british-columbia-issues-evacuation-orders-ahead-of-fast-moving-wildfires?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "Al Jazeera Staff",
+          "ai_score": 62,
+          "date_published": "2026-08-08T17:14:09+00:00",
+          "summary": "Authorities warn others to be prepared to leave their homes as fast-moving wildfires spread across western Canada.",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] Car bomb hits Colombia highway day after new president sworn in",
+          "url": "https://www.aljazeera.com/video/newsfeed/2026/8/9/08-09-2026-colombia-car-bomb-sv-mp4?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-08-09T04:32:32+00:00",
+          "summary": "A car bomb destroyed a toll booth on a highway in Colombia a day after President Abelardo de la Espriella was sworn in.",
+          "discussed": false
+        },
+        {
+          "title": "[The Family Handyman] How I Gave My Wire Shelves a Custom Look with DIY Shelf Covers",
+          "url": "https://www.familyhandyman.com/project/shelf-covers-for-wire-shelves/",
+          "source": "The Family Handyman",
+          "author": "",
+          "ai_score": 53,
+          "date_published": "2026-08-07T17:16:31+00:00",
+          "summary": "Stop things from falling through the cracks with these easy DIY shelf covers for wire shelves, made from painted plywood and simple 1x2 trim. The post How I Gave My Wire Shelves a Custom Look with DIY...",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Grading Tomatoes with an ESP32 and ML",
+          "url": "https://hackaday.com/2026/08/08/grading-tomatoes-with-an-esp32-and-ml/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 65,
+          "date_published": "2026-08-08T20:00:23+00:00",
+          "summary": "If you’ve ever worked with produce, you might know about grading. In addition to deciding if, say, a strawberry is good or not, they also have to sort them by …read more",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Junkbin, a Way to Efficiently Reuse Your Old Electronics",
+          "url": "https://hackaday.com/2026/08/08/junkbin-a-way-to-efficiently-reuse-your-old-electronics/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 57,
+          "date_published": "2026-08-08T14:00:08+00:00",
+          "summary": "We all have that bin in the corner of our shops — the one with all the circuit boards or broken electronics that we are totally gonna do something with. …read more",
+          "discussed": false
+        },
+        {
+          "title": "[Vancouver Sun] 13-year-old girl missing after falling off paddleboard at Cultus Lake",
+          "url": "https://vancouversun.com/news/13-year-old-girl-missing-after-falling-off-paddleboard-on-cultus-lake",
+          "source": "Vancouver Sun",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-08-09T00:17:37+00:00",
+          "summary": "Search-and-rescue efforts are ongoing as of Saturday afternoon.",
+          "discussed": false
+        },
+        {
+          "title": "[The Verge] X replaces its revenue-sharing program with ‘Original Content Rewards’",
+          "url": "https://www.theverge.com/tech/977143/x-revenue-sharing-original-content-rewards",
+          "source": "The Verge",
+          "author": "Terrence O&#x27;Brien",
+          "ai_score": 53,
+          "date_published": "2026-08-08T21:15:12+00:00",
+          "summary": "X is ending its controversial revenue-sharing program for content creators, which has seen numerous revisions under Elon Musk's reign. In its place, it's launching a new Original Content Rewards progr...",
+          "discussed": false
+        },
+        {
+          "title": "This Montreal Man Is on a Crusade to Fill Every Damn Pothole Himself | The Walrus",
+          "url": "https://thewalrus.ca/montreal-potholes/",
+          "source": "The Walrus",
+          "author": "",
+          "ai_score": 57,
+          "date_published": "2026-08-09T05:12:19.506543+00:00",
+          "summary": "In May, a nine-year-old Montrealer named Mikey Arice was riding his scooter to a park when his front wheel caught in a pothole. The scooter went flying—and so did Arice. He tore up his pants and bange...",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] Space Force invests millions in advanced threat detection 'flatellites'",
+          "url": "https://newatlas.com/space-systems/us-space-force-flatellites-rocket-lab/",
+          "source": "New Atlas",
+          "author": "https://newatlas.com/author/abhimanyu-ghoshal/",
+          "ai_score": 55,
+          "date_published": "2026-08-09T01:03:00+00:00",
+          "summary": "The US Space Force – the youngest branch of the country's armed forces – is investing billions of dollars in next-gen tech to expand its threat detection capabilities. Continue Reading Category: Space...",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] Warren Buffett's successor starts spending Berkshire's cash mountain",
+          "url": "https://www.businessinsider.com/berkshire-hathaway-warren-buffett-greg-abel-spending-cash-pile-2026-8",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-08-08T21:40:13+00:00",
+          "summary": "Warren Buffett's famous cash pile shrank last quarter as new CEO Greg Abel ramped up spending on stocks and buybacks to multi-year highs.",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] Census Proposal Would Stop Counting Undocumented Immigrants—and Ignore Race and Sexual Orientation",
+          "url": "https://www.wired.com/story/census-proposal-would-stop-counting-undocumented-immigrants-and-ignore-race-and-sexual-orientation/",
+          "source": "WIRED",
+          "author": "",
+          "ai_score": 54,
+          "date_published": "2026-08-08T14:03:58+00:00",
+          "summary": "A draft rule reviewed by WIRED would prevent the census from counting undocumented immigrants. To protect against “distortions,” it would also bar questions about race and sexual orientation.",
+          "discussed": false
+        },
+        {
+          "title": "[Mother Jones] The Quiet War on Immigrants, Round Two",
+          "url": "https://www.motherjones.com/politics/2026/08/the-quiet-war-on-immigrants-round-two/",
+          "source": "Mother Jones",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-08-07T11:00:00+00:00",
+          "summary": "In 2019, Sen. Ed Markey (D-Mass.) denounced a “stealth anti-immigration campaign” by the first Trump administration. Through a combination of high-profile policy changes like the travel ban on foreign...",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Well] Why Older Pedestrians Are More Likely to Die After Being Hit by a Car",
+          "url": "https://www.nytimes.com/2026/08/08/well/pedestrian-deaths-car-collision-older.html",
+          "source": "NYT Well",
+          "author": "",
+          "ai_score": 53,
+          "date_published": "2026-08-08T09:01:48+00:00",
+          "summary": "They are more likely than other age groups to die after being hit by a vehicle.",
+          "discussed": false
+        },
+        {
+          "title": "[Homebuilding & Renovating] About to upgrade your windows and doors? Here's why experts say the type of glass you choose matters just as much as the frames",
+          "url": "https://www.homebuilding.co.uk/windows-doors/types-of-glass",
+          "source": "Homebuilding & Renovating",
+          "author": "",
+          "ai_score": 54,
+          "date_published": "2026-08-08T07:00:00+00:00",
+          "summary": "From reducing heat loss to cutting outside noise, here's what you need to know about specifying the right type of glazing for your home – even if you live in a draughty old house",
+          "discussed": false
+        },
+        {
+          "title": "[The Atlantic] Ukraine’s Short-Lived Comeback",
+          "url": "https://www.theatlantic.com/national-security/2026/08/ukraine-war-zelensky-trump/688203/?utm_source=feed",
+          "source": "The Atlantic",
+          "author": "",
+          "ai_score": 57,
+          "date_published": "2026-08-07T10:30:00+00:00",
+          "summary": "The chorus of optimism has quieted on several fronts, including Zelensky’s struggle with corruption and his relations with Trump.",
+          "discussed": false
+        },
+        {
+          "title": "[Engadget] Your phone's USB-C port does a lot more than just charge - Here's what else it can do",
+          "url": "https://www.engadget.com/2229985/phone-usb-c-port-what-else-it-can-do-not-charging/",
+          "source": "Engadget",
+          "author": "",
+          "ai_score": 57,
+          "date_published": "2026-08-08T14:30:00+00:00",
+          "summary": "A USB-C port presents a lot of options for data transfer and connecting to accessories. Let's talk about some of the most useful ways to employ your USB-C port.",
+          "discussed": false
+        },
+        {
+          "title": "[How-To Geek] You can build a smart garage door opener for $10—here's an easy process that works",
+          "url": "https://www.howtogeek.com/build-a-smart-garage-door-opener/",
+          "source": "How-To Geek",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-08-08T17:00:13+00:00",
+          "summary": "Make your garage door smart for less.",
+          "discussed": false
+        },
+        {
+          "title": "[The Atlantic] What Mitch McConnell Did",
+          "url": "https://www.theatlantic.com/ideas/2026/08/mitch-mcconnell-gop-legacy/688221/?utm_source=feed",
+          "source": "The Atlantic",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-08-08T11:00:00+00:00",
+          "summary": "The former Senate GOP leader’s legacy will make America harder to govern for years to come.",
+          "discussed": false
+        },
+        {
+          "title": "She Promised to Lift Up Marginalized Artists. Many Say Her Galleries Left Them Unpaid and Betrayed | The Walrus",
+          "url": "https://thewalrus.ca/farnoosh-talaee-maytens-projects-gallery/",
+          "source": "The Walrus",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-08-09T05:12:19.506794+00:00",
+          "summary": "Talaee framed her brand with glittery social media posts featuring designer wear, glamorous gala fundraisers, and VIP vernissages. She landed prestigious nonprofit board positions at Partners in Art, ...",
+          "discussed": false
+        },
+        {
+          "title": "[The New Yorker] The Senate’s Shameful Acquiescence to Todd Blanche as Attorney General",
+          "url": "https://www.newyorker.com/news/the-lede/the-senates-shameful-acquiescence-to-todd-blanche-as-attorney-general",
+          "source": "The New Yorker",
+          "author": "",
+          "ai_score": 57,
+          "date_published": "2026-08-07T22:15:22+00:00",
+          "summary": "A number of Republicans resisted his confirmation, but enough ultimately accepted the notion that Trump could do even worse.",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] Ghana’s cashew apples get a second life",
+          "url": "https://www.aljazeera.com/news/2026/8/9/ghanas-cashew-apples-get-a-second-life?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-08-09T04:07:39+00:00",
+          "summary": "A fruit long left to rot could become a new source of income for Ghana’s cashew farmers.",
+          "discussed": false
+        },
+        {
+          "title": "[Tom's Hardware] Amazon secretly circumvents community vote for massive AI data center using 45-year-old rules — Gilroy residents locked out of public comment window",
+          "url": "https://www.tomshardware.com/tech-industry/data-centers/amazon-secretly-circumvents-community-vote-for-massive-ai-data-center-45-year-old-rules-lock-gilroy-residents-out-of-public-comment-window",
+          "source": "Tom's Hardware",
+          "author": "",
+          "ai_score": 57,
+          "date_published": "2026-08-08T13:51:24+00:00",
+          "summary": "Residents of Gilroy, California, were caught by surprise when an Amazon data center started construction in their city. Negotiations for the project started in 2020, with public comments open until 20...",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Business] How an N.F.L.-Backed Plan to Revitalize Canton, Ohio, Faltered",
+          "url": "https://www.nytimes.com/2026/08/08/business/nfl-canton-hall-of-fame-village.html",
+          "source": "NYT Business",
+          "author": "",
+          "ai_score": 54,
+          "date_published": "2026-08-08T17:06:54+00:00",
+          "summary": "The “Hall of Fame Village” was pitched in 2014 as a boon to the city. But hundreds of millions were spent, the N.F.L. backed out, and the project is unfinished.",
+          "discussed": false
+        },
+        {
+          "title": "[Vancouver Sun] New B.C. model for repeat offenders is effective in reducing violent crimes, say observers",
+          "url": "https://vancouversun.com/news/bc-model-repeat-offenders-reducing-violent-crimes",
+          "source": "Vancouver Sun",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-08-08T15:00:16+00:00",
+          "summary": "Participants in the Repeat Violent Offending Intervention Initiative had 48.6 per cent fewer negative police interactions in the 18 months after being admitted",
+          "discussed": false
+        },
+        {
+          "title": "[Scientific American] Why loneliness and not social isolation may be making you sick",
+          "url": "https://www.scientificamerican.com/article/why-loneliness-and-not-social-isolation-may-be-making-you-sick/",
+          "source": "Scientific American",
+          "author": "",
+          "ai_score": 54,
+          "date_published": "2026-08-08T10:00:00+00:00",
+          "summary": "One in six people are thought to experience loneliness, and that can have a serious knock-on effect on their mental and physical health",
+          "discussed": false
+        },
+        {
+          "title": "Contagious fish cancer is spreading in Lake Memphremagog - Cottage Life",
+          "url": "https://cottagelife.com/outdoors/contagious-fish-cancer-is-spreading-in-lake-memphremagog/",
+          "source": "Cottage Life",
+          "author": "",
+          "ai_score": 53,
+          "date_published": "2026-08-09T05:12:31.301275+00:00",
+          "summary": "An unusal contagious fish cancer is spreading through brown bullhead catfish in Quebec's Lake Memphremagog.",
+          "discussed": false
+        },
+        {
+          "title": "Quebec’s Election Is Closing In, and the CAQ Is Still in Trouble | The Walrus",
+          "url": "https://thewalrus.ca/frechette-quebec-poll/",
+          "source": "The Walrus",
+          "author": "",
+          "ai_score": 53,
+          "date_published": "2026-08-09T05:12:19.506307+00:00",
+          "summary": "The Coalition Avenir Québec, the governing party, places third with 19 percent support—a disappointing result for a party that had hoped Christine Fréchette’s arrival would completely reset the race. ...",
+          "discussed": false
+        },
+        {
+          "title": "[WIRED] Spokane Shows What the New Era of Wildfires Looks Like",
+          "url": "https://www.wired.com/story/spokane-shows-new-era-of-wildfires/",
+          "source": "WIRED",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-08-08T09:00:00+00:00",
+          "summary": "With rising temperatures and drier conditions, fires are more likely to explode. And with more people living next to forests, the results can be catastrophic.",
+          "discussed": false
+        },
+        {
+          "title": "[Vancouver Sun] Here&#039;s how crews would respond to a wildfire in Stanley Park",
+          "url": "https://vancouversun.com/news/how-would-firefighters-respond-wildfire-stanley-park",
+          "source": "Vancouver Sun",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-08-08T13:00:03+00:00",
+          "summary": "An outbreak of looper moth and recent droughts have raised the risk of fire in the park, according to a park board report",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] I drove the Subaru Crosstrek and Hyundai Venue for a week — here's the sub-$40K SUV I'd buy with my own money",
+          "url": "https://www.tomsguide.com/vehicle-tech/i-drove-the-subaru-crosstrek-and-hyundai-venue-for-a-week-heres-the-sub-usd40k-suv-id-buy-with-my-own-money",
+          "source": "Toms Guide",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-08-08T10:00:00+00:00",
+          "summary": "I put the 2026 Subaru Crosstrek Limited Hybrid and 2026 Hyundai Venue SEL to the test by driving them for a week each to prove which is worth your money.",
+          "discussed": false
+        },
+        {
+          "title": "[Mother Jones] 40 Acres and a Lie Part 1",
+          "url": "https://www.motherjones.com/politics/2026/08/40-acres-and-a-lie-part-1-update/",
+          "source": "Mother Jones",
+          "author": "",
+          "ai_score": 53,
+          "date_published": "2026-08-08T07:01:00+00:00",
+          "summary": "Patricia Bailey’s four-bedroom home sits high among the trees in lush Edisto Island, South Carolina. It’s a peaceful place where her body healed from multiple sclerosis. It’s also the source of her ge...",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] New drone system which could spot wildfires before they get out of control completes its first test — but is it too late for the summer blazes plaguing Europe?",
+          "url": "https://www.techradar.com/pro/new-drone-system-which-could-spot-wildfires-before-they-get-out-of-control-completes-its-first-test-but-is-it-too-late-for-the-summer-blazes-plaguing-europe",
+          "source": "TechRadar",
+          "author": "",
+          "ai_score": 61,
+          "date_published": "2026-08-08T20:10:00+00:00",
+          "summary": "Israel tests AI wildfire-detection drone, although additional evaluations mean Europe will not benefit from it during this year's fire season.",
+          "discussed": false
+        },
+        {
+          "title": "[The Atlantic] The Dishonesty of True Crime",
+          "url": "https://www.theatlantic.com/ideas/2026/08/what-true-crime-gets-wrong-about-crime/688214/?utm_source=feed",
+          "source": "The Atlantic",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-08-07T11:30:00+00:00",
+          "summary": "The hit Netflix documentary Maternal Instinct tidies a far more complicated story.",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] Inside the Not-So-Dumb Head of the Dodo Bird",
+          "url": "https://nautil.us/inside-the-not-so-dumb-head-of-the-dodo-bird-1283522/",
+          "source": "Nautilus",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-08-08T12:00:00+00:00",
+          "summary": "Cranial scans reveal a brain with clever sensory adaptations The post Inside the Not-So-Dumb Head of the Dodo Bird appeared first on Nautilus .",
+          "discussed": false
+        },
+        {
+          "title": "[NPR Health News] Nicotine pouches can be marketed as 'lower risk' than cigarettes. Is that dangerous?",
+          "url": "https://www.npr.org/2026/08/05/nx-s1-5919626/smoking-fda-nicotine-cigarettes-tobacco",
+          "source": "NPR Health News",
+          "author": "",
+          "ai_score": 65,
+          "date_published": "2026-08-05T09:00:00+00:00",
+          "summary": "The FDA allowed some Zyn nicotine pouches to be marketed as \"lower risk\" than cigarettes. Public health experts agree they can help current smokers, but worry young people may become addicted.",
+          "discussed": false
+        },
+        {
+          "title": "[AFAR] Why Flights Are Being Diverted, and How It Could Affect Your Travel Plans",
+          "url": "https://www.afar.com/magazine/why-flights-get-diverted-and-what-it-means-for-passengers",
+          "source": "AFAR",
+          "author": "",
+          "ai_score": 57,
+          "date_published": "2026-08-09T05:12:32.193301+00:00",
+          "summary": "The reasons flights get diverted and land at alternative airports, how often it happens, the delays caused, and what rights the passengers onboard have when they do.",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] Why Congress Wants a Closer U.S.-Israel Defense Partnership",
+          "url": "https://www.nytimes.com/2026/08/05/us/politics/congress-us-israel-defense-partnership.html",
+          "source": "NYT Top Stories",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-08-05T18:38:29+00:00",
+          "summary": "A proposal making its way through Congress would integrate the U.S. and Israeli defense and intelligence apparatuses more tightly. Some worry that it is a bad idea.",
+          "discussed": false
+        },
+        {
+          "title": "[Vox] AI models have learned how to cheat. That might actually be a good thing.",
+          "url": "https://www.vox.com/future-perfect/498412/artificial-intelligence-nate-soares-ai-safety-openai-anthropic-hacking",
+          "source": "Vox",
+          "author": "",
+          "ai_score": 53,
+          "date_published": "2026-08-07T10:00:00+00:00",
+          "summary": "The fake identities were the part that stopped me. In late July, according to a report published this week by Britain’s AI Security Institute (AISI), an Anthropic model called Claude Mythos 5 tried to...",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Science, Wonder & the Natural World",
+      "articles": [
+        {
+          "title": "[Fast Company] Scrapping your gas-powered car right now would actually be better for the planet than fixing it, study says",
+          "url": "https://www.fastcompany.com/91586427/should-i-fix-gas-powered-car-study-says-switch-ev-now",
+          "source": "Fast Company",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-08-07T16:50:00+00:00",
+          "summary": "If you really want to reduce your transportation emissions, it would actually be better to scrap a brand new gas-powered car and switch to an electric vehicle instead of waiting until that gas car sto...",
+          "discussed": true
+        },
+        {
+          "title": "[ScienceDaily] Cutting sweet foods doesn’t curb cravings or improve health",
+          "url": "https://www.sciencedaily.com/releases/2026/08/260807235103.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 68,
+          "date_published": "2026-08-08T12:55:19+00:00",
+          "summary": "Changing how much sweet-tasting food people eat may not change how much they crave or enjoy sweetness after all. In a six-month trial, researchers found that people assigned to high-, low-, or average...",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceDaily] Scientists reveal how much exercise you really need to protect your heart",
+          "url": "https://www.sciencedaily.com/releases/2026/08/260806050724.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-08-08T13:49:02+00:00",
+          "summary": "Getting the recommended 150 minutes of moderate-to-vigorous exercise each week may offer only modest protection against heart attacks and strokes. A large study suggests that substantially greater ben...",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "How should scientific findings be translated and communicated to the public when headlines oversimplify nuanced research?",
+        "riley_position": "Scientific compression into clean numbers is a necessary, valid stage of discovery that eventually gets refined with more data, and existing regional institutions like Interior Health already provide adequate informal filtering of research into actionable advice.",
+        "riley_key_evidence": [
+          "Plasma vortices in solar images were predicted mathematically for a century before optics caught up, showing oversimplification is part of the legitimate discovery process",
+          "BC's grid runs over 90% hydro, making EV emissions math work cleanly in this region",
+          "Interior Health and School District 27 serve as existing human filters between raw studies and public-facing advice"
+        ],
+        "casey_position": "Oversimplified headlines cause immediate harm by prompting people to act on unconfirmed findings before replication, and existing institutional filters are either absent, slow, or operate informally rather than as accountable job responsibilities.",
+        "casey_key_evidence": [
+          "Exercise study's 560-610 minute recommendation is an average across mixed-fitness populations, not a universal target, but this nuance doesn't survive headlines",
+          "EV study assumes grid decarbonization and household affordability conditions that don't hold for most Cariboo residents",
+          "Regional health guidance lags months or years behind fresh studies, and school districts aren't equipped to relitigate new papers"
+        ],
+        "resolution": "They identified shared agreement that the core problem is a literacy and governance gap rather than a data problem, and disagreed on solutions—Riley trusting informal institutional translation versus Casey advocating explicit, accountable checkpoints—while both agreeing this deserved investigation within the Cariboo community.",
+        "topics_covered": [
+          "EV emissions lifecycle claims and regional applicability",
+          "Exercise dose recommendations and population-dependent averages",
+          "Null results and why negative findings get underamplified",
+          "Institutional versus algorithmic filtering of scientific claims",
+          "Science communication gaps between discovery and public action"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 14,
+          "conditions": "mainly clear",
+          "high": 24,
+          "low": 12
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 14,
+          "conditions": "clear skies",
+          "high": 23,
+          "low": 13
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 15,
+          "conditions": "mainly clear",
+          "high": 25,
+          "low": 13
+        },
+        {
+          "name": "Quesnel",
+          "temp": 14,
+          "conditions": "clear skies",
+          "high": 24,
+          "low": 13
+        },
+        {
+          "name": "Redstone",
+          "temp": 13,
+          "conditions": "partly cloudy",
+          "high": 22,
+          "low": 10
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Scout Island Nature Centre",
+      "description": "Volunteer-run nature education centre operated by the Williams Lake Field Naturalists — birding, kids programs, Salmon in the Classroom",
+      "website": "scoutisland.ca",
+      "psa_angle": "Scout Island Nature Centre is running kids' summer programs all season — each week has a different theme like Water, Bugs, or Birds. Sign up at scoutisland.ca.",
+      "event_name": "Scout Island summer programs"
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_azure": "Azure Neural TTS",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "Gemini TTS and OpenAI TTS"
+  }
+}
