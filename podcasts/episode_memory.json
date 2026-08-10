@@ -1,22 +1,4 @@
 {
-  "2026-07-05": {
-    "timestamp": 1783263119.030598,
-    "topics": [
-      "[ScienceAlert] Disturbing Case Study Shows Why You Should Ne",
-      "[Nautilus] There May Be Three Times More Insect Species Than",
-      "[ScienceDaily] Scientists may have finally found how Alzheim",
-      "[ScienceDaily] A massive asteroid slammed into the North Sea",
-      "[MacRumors] WhatsApp Now Lets You Reserve a Username",
-      "[New Atlas] The International Space Station keeps leaking. S",
-      "[New Atlas] Study predicts when the last plants on Earth wil",
-      "[ScienceDaily] Why scientists fear we're missing evidence of"
-    ],
-    "themes": [
-      "rural development",
-      "Indigenous tech"
-    ],
-    "date": "2026-07-05"
-  },
   "2026-07-06": {
     "timestamp": 1783340350.751934,
     "topics": [
@@ -665,5 +647,26 @@
     "date": "2026-08-09",
     "focus": "discovery-health",
     "focus_name": "Discovery, Health & How Science Works"
+  },
+  "2026-08-10": {
+    "timestamp": 1786355647.623354,
+    "topics": [
+      "[Hackaday] Continously Extruding 3D Printed Tubes with Compr",
+      "Evacuation area shrinks as crews gain ground on Wait Creek f",
+      "[NPR Health News] It's been a record summer for foodborne il",
+      "Penticton on edge as Bald Range evacuation alerts reach city",
+      "[The Tyee] For Canada\u2019s \u2018Major Projects,\u2019 Consultation Is Th",
+      "[The Atlantic Culture] The Mysterious Art of Conducting",
+      "[MakeUseOf] Your headphones support better audio, but your p",
+      "AI"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech"
+    ],
+    "date": "2026-08-10",
+    "focus": "words-journalism",
+    "focus_name": "Writing, Journalism & Podcasting"
   }
 }

@@ -1,0 +1,227 @@
+{
+  "episode": {
+    "date": "2026-08-10",
+    "formatted_date": "Monday, August 10, 2026",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "title": "Cariboo Signals - Arts, Culture & Digital Storytelling",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Arts, Culture & Digital Storytelling.</p><p><b>NEWS ROUNDUP:</b> We break down [NPR Health News] It's been a record summer for foodborne illness and Penticton on edge as Bald Range evacuation alerts reach city boundary : My Cariboo Now, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> How can rural communities sustain trustworthy local storytelling when publishing barriers have collapsed but editorial accountability structures have disappeared? Topics include: Editorial gatekeeping vs. democratized publishing in rural media ecosystems, Accountability structures in legacy journalism vs. independent digital platforms, Discovery and indexing problems for locally-produced podcasts, newsletters, and self-published books, Beat reporting and institutional memory as irreplaceable journalistic functions, Sustained governance and staffing as the real barrier to local storytelling infrastructure.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://centralcaribooarts.com\">Central Cariboo Arts &amp; Culture Society</a></p><p><b>Sources discussed:</b></p><ul><li>NPR Health News: <a href=\"https://www.npr.org/2026/08/09/nx-s1-5923912/its-been-a-record-summer-for-foodborne-illness\">[NPR Health News] It's been a record summer for foodborne il...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/315438/news/emergency-services/fire/wildfires/penticton-on-edge-as-bald-range-evacuation-alerts-reach-city-boundary/\">Penticton on edge as Bald Range evacuation alerts reach city...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Hackaday: <a href=\"https://hackaday.com/2026/08/09/continously-extruding-3d-printed-tubes-with-compressed-air/\">[Hackaday] Continously Extruding 3D Printed Tubes with Compr...</a></li><li>My East Kootenay Now: <a href=\"https://www.myeastkootenaynow.com/57178/news/emergency/fire/wildfires/evacuation-area-shrinks-as-crews-gain-ground-on-wait-creek-fire/\">Evacuation area shrinks as crews gain ground on Wait Creek f...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/Opinion/2026/08/10/Canada-Major-Projects-Consultation-Theatre/\">[The Tyee] For Canada’s ‘Major Projects,’ Consultation Is Th...</a></li><li>Matthew Aucoin (The Atlantic Culture): <a href=\"https://www.theatlantic.com/magazine/2026/09/orchestra-conductor-profession/687962/?utm_source=feed\">[The Atlantic Culture] The Mysterious Art of Conducting</a></li><li>MakeUseOf: <a href=\"https://www.makeuseof.com/headphones-support-better-audio-but-phone-probably-isnt-using-it/\">[MakeUseOf] Your headphones support better audio, but your p...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5<br>Today's Voices: Gemini TTS and OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-08-10T02:54:06.419436-07:00",
+    "models": {
+      "script": "claude-sonnet-5",
+      "review": "claude-sonnet-5",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 3115,
+      "voice_ratio_casey_riley": 0.9,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 2,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 1,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 11,
+        "roundup_seam": 0,
+        "thats_closer": 0
+      },
+      "total_hits": 3,
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "Penticton on edge as Bald Range evacuation alerts reach city boundary : My Cariboo Now",
+          "url": "https://www.mycariboonow.com/315438/news/emergency-services/fire/wildfires/penticton-on-edge-as-bald-range-evacuation-alerts-reach-city-boundary/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 85,
+          "date_published": "2026-08-10T05:38:44.811709+00:00",
+          "summary": "",
+          "discussed": true,
+          "mention_offset_frac": 0.6024
+        },
+        {
+          "title": "[NPR Health News] It's been a record summer for foodborne illness",
+          "url": "https://www.npr.org/2026/08/09/nx-s1-5923912/its-been-a-record-summer-for-foodborne-illness",
+          "source": "NPR Health News",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-08-09T21:27:15+00:00",
+          "summary": "Heat and tainted produce have made this a record summer for foodborne illness. Cases of cyclosporiasis have topped 10,000, and the CDC just traced a new salmonella outbreak to Mexican jalapeños.",
+          "discussed": true,
+          "mention_offset_frac": 0.7967
+        },
+        {
+          "title": "[Hackaday] Continously Extruding 3D Printed Tubes with Compressed Air",
+          "url": "https://hackaday.com/2026/08/09/continously-extruding-3d-printed-tubes-with-compressed-air/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-08-09T11:00:50+00:00",
+          "summary": "[Jan] of [Roetz 4.0] has a unique approach to multi-material 3D printing: he’s designed an extruder which takes two different materials and extrudes one as a shell around the other. …read more",
+          "discussed": false
+        },
+        {
+          "title": "Evacuation area shrinks as crews gain ground on Wait Creek fire : My East Kootenay Now",
+          "url": "https://www.myeastkootenaynow.com/57178/news/emergency/fire/wildfires/evacuation-area-shrinks-as-crews-gain-ground-on-wait-creek-fire/",
+          "source": "My East Kootenay Now",
+          "author": "",
+          "ai_score": 59,
+          "date_published": "2026-08-10T05:38:46.971159+00:00",
+          "summary": "",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Arts, Culture & Digital Storytelling",
+      "articles": [
+        {
+          "title": "[The Tyee] For Canada’s ‘Major Projects,’ Consultation Is Theatre",
+          "url": "https://thetyee.ca/Opinion/2026/08/10/Canada-Major-Projects-Consultation-Theatre/",
+          "source": "The Tyee",
+          "author": "",
+          "ai_score": 67,
+          "date_published": "2026-08-10T07:10:00+00:00",
+          "summary": "A summer info session on Alberta’s pipeline left a chill in the room for First Nations.",
+          "discussed": false
+        },
+        {
+          "title": "[The Atlantic Culture] The Mysterious Art of Conducting",
+          "url": "https://www.theatlantic.com/magazine/2026/09/orchestra-conductor-profession/687962/?utm_source=feed",
+          "source": "The Atlantic Culture",
+          "author": "Matthew Aucoin",
+          "ai_score": 60,
+          "date_published": "2026-08-09T12:00:00+00:00",
+          "summary": "An inside look at music’s widely misunderstood profession",
+          "discussed": false
+        },
+        {
+          "title": "[MakeUseOf] Your headphones support better audio, but your phone probably isn't using it",
+          "url": "https://www.makeuseof.com/headphones-support-better-audio-but-phone-probably-isnt-using-it/",
+          "source": "MakeUseOf",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-08-09T23:00:12+00:00",
+          "summary": "If you have a pair of premium hi-res headphones and a hi-res streaming music subscription, your phone still might not be leveraging it.",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "How can rural communities sustain trustworthy local storytelling when publishing barriers have collapsed but editorial accountability structures have disappeared?",
+        "riley_position": "Digital tools have democratized publishing and created genuine opportunities for independent creators to reach audiences legacy outlets cannot; the format itself doesn't prevent accountability—it requires deliberate choice from individual creators.",
+        "riley_key_evidence": [
+          "Podcasting eliminates printing costs, delivery trucks, and ad-sales overhead that traditional outlets require",
+          "First Nations and governments can now publish primary statements directly, bypassing traditional media framing",
+          "Some independent journalists have built explicit correction policies and transparency into newsletters and podcasts through deliberate effort"
+        ],
+        "casey_position": "Tools alone don't create editorial discipline; institutional accountability structures (editor accountability, corrections columns, legal review, job consequences) historically enforced trustworthiness in ways individual creators rarely replicate without external pressure.",
+        "casey_key_evidence": [
+          "Newsroom staffing at regional papers has been shrinking for over a decade, leaving gaps filled by unedited social posts",
+          "A newspaper's credibility came from a chain of accountability—editors who could be fired, corrections in the same physical paper, lawyers on retainer",
+          "Beat reporting requires sustained institutional memory across multiple meetings months apart, which single podcast episodes reacting to press releases cannot provide"
+        ],
+        "resolution": "They agreed that the core problem is not technological but structural: someone must be paid or formally assigned to do sustained curation and maintenance work. They pivoted toward a shared solution—a regional index of local storytelling that would require one part-time position to maintain, and asked listeners whether such infrastructure should exist and who would maintain it.",
+        "topics_covered": [
+          "Editorial gatekeeping vs. democratized publishing in rural media ecosystems",
+          "Accountability structures in legacy journalism vs. independent digital platforms",
+          "Discovery and indexing problems for locally-produced podcasts, newsletters, and self-published books",
+          "Beat reporting and institutional memory as irreplaceable journalistic functions",
+          "Sustained governance and staffing as the real barrier to local storytelling infrastructure"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 14,
+          "conditions": "overcast",
+          "high": 21,
+          "low": 13
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 13,
+          "conditions": "partly cloudy",
+          "high": 21,
+          "low": 11
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 15,
+          "conditions": "light drizzle",
+          "high": 23,
+          "low": 14
+        },
+        {
+          "name": "Quesnel",
+          "temp": 13,
+          "conditions": "overcast",
+          "high": 22,
+          "low": 12
+        },
+        {
+          "name": "Alexis Creek",
+          "temp": 14,
+          "conditions": "mainly clear",
+          "high": 23,
+          "low": 12
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Central Cariboo Arts & Culture Society",
+      "description": "Manages the Arts Centre, grants programs, and Performances in the Park summer concert series",
+      "website": "centralcaribooarts.com",
+      "psa_angle": "CCACS Performances in the Park brings free live music to Boitano Park every Thursday evening this summer. Check centralcaribooarts.com for this week's lineup.",
+      "event_name": "Performances in the Park"
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_azure": "Azure Neural TTS",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "Gemini TTS and OpenAI TTS"
+  }
+}

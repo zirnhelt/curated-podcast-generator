@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] \u2018What we're really fighting is people scripting ",
       "How Indigenous technologists are building data sovereignty i",
       "[ScienceDaily] AI reveals explosive bursts in bird evolution",
       "[Outside Online] The Feds Just Opened Public Lands to AI Dat",
@@ -10,7 +9,8 @@
       "\ud83d\udd13 [The Verge] The major labels propose rules to keep AI slop",
       "[The Northern Miner] AI\u00a0boom lifts mining while competing fo",
       "[WIRED] Is This Poker Player Bluffing? The AI Thinks So",
-      "[TechRadar] New malware disguised as popular Roblox cheat to"
+      "[TechRadar] New malware disguised as popular Roblox cheat to",
+      "AI"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -110,9 +110,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-08-07",
-        "clue": "evidence-bar:+ \u2014 Repeatedly anchors arguments to peer-contact study data",
-        "occurrences": 1
+        "date": "2026-08-10",
+        "clue": "evidence-bar:+ \u2014 Reinforced importance of primary documents, direct publication over paraphrasing",
+        "occurrences": 2
       },
       {
         "date": "2026-08-07",
@@ -132,6 +132,11 @@
       {
         "date": "2026-08-09",
         "clue": "evidence-bar:[~] Added genuine complexity: acknowledged null results matter equally to positive findings, shifts from solution-focused framing",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-08-10",
+        "clue": "structural-lens:~ \u2014 Conceded that self-published statements need external verification equally",
         "occurrences": 1
       }
     ],
@@ -381,16 +386,6 @@
       {
         "date": "2026-08-08",
         "clue": "evidence-bar:+ \u2014 Escalated demand for visible budget lines, not promises.",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-08-08",
-        "clue": "pilot-skepticism:+ \u2014 Hardened stance on ad-hoc tools over standing infrastructure.",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-08-07",
-        "clue": "structural-lens:+ \u2014 Escalates from critique to concrete accountability tracking framework",
         "occurrences": 2
       },
       {
