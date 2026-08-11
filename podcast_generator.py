@@ -3248,8 +3248,13 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
             'target_focus_name': target_focus['name'],
         }
         if boosted >= URGENT_SCORE_THRESHOLD:
-            # Timely coverage now (bonus bucket, never deep-dive), callback later
+            # Timely coverage now (bonus bucket, never deep-dive), callback later.
+            # `_is_bonus` makes this the same bucket the feed's own bonus picks
+            # land in — uncapped by the pool curator, blocked as 'bonus', and
+            # exempt from the roundup order check, which the URL-only split at
+            # render time claimed but the curation path did not honour.
             a['_no_deep_dive'] = True
+            a['_is_bonus'] = True
             bonus_articles.append(a)
             holding[url] = {**entry, 'status': 'aired_early'}
             print(f"  📌 Urgent off-theme, airing in bonus + callback on "
@@ -4072,35 +4077,54 @@ def _article_source_name(article: dict) -> str:
     return (authors[0].get('name') or article.get('source') or '').strip()
 
 
-# The blocks that open the roundup. Distinct for ordering, pool protection and
-# the order check; rendered to the prompt as one arc so the episode leads with
-# everything that ties to today rather than three separately-announced runs.
-ROUNDUP_ARC_BLOCKS = ('theme', 'theme_adjacent', 'local')
+# The blocks that open the roundup, in the order they air: close to home, then
+# today's theme. Kept distinct for ordering, pool protection and the order check.
+ROUNDUP_ARC_BLOCKS = ('local', 'theme', 'theme_adjacent')
+
+# Rank per block for the order check: everything in rank 0 airs before rank 1,
+# rank 1 before rank 2. 'theme' and 'theme_adjacent' share a rank because they
+# render to the prompt as one section — their internal order is advisory.
+ROUNDUP_BLOCK_RANK = {'local': 0, 'theme': 1, 'theme_adjacent': 1}
+ROUNDUP_TAIL_RANK = 2
+
+# Theme slots the pool cap reserves when the local block alone would fill the
+# segment. Local leads the show, but a themed episode with no theme stories in
+# its roundup is a worse outcome than a shorter local block.
+ROUNDUP_THEME_FLOOR = 3
+
+
+def _roundup_block_rank(block: str) -> int:
+    """Airing rank for a `_roundup_block` value; unknown blocks are the tail."""
+    return ROUNDUP_BLOCK_RANK.get(block, ROUNDUP_TAIL_RANK)
 
 
 def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
     """Order News Roundup articles into labeled coherence blocks.
 
-    Sets `_roundup_block` on every non-bonus article and returns a new list
-    ordered block by block:
+    Sets `_roundup_block` on every article and returns a new list ordered block
+    by block. The episode runs close to home, then today's theme, then the rest:
+    - 'local': a Cariboo/BC place name in the title or summary (podcast.json
+      `local_places`), or a BC/regional outlet (`local_sources`). Tested BEFORE
+      theme relevance — a story that is both local and on-theme is the strongest
+      way to open, and while theme won this test the 'local' block collected only
+      the off-theme remainder and aired it third
     - 'theme': net-positive theme relevance (feed keyword matches, or local
-      keyword hits outweighing anti-keyword penalties) — the roundup's lead arc
+      keyword hits outweighing anti-keyword penalties)
     - 'theme_adjacent': the theme keyword is in the article body rather than its
       title or summary. `_local_theme_relevance` only scans title+summary, so a
       story whose theme tie lives one layer down used to fall through to
       'standalone' — on 2026-08-04 a LiDAR forestry story landed there on a
-      Working Lands day, leaving a one-article theme block
-    - 'local': BC/regional outlets (podcast.json `local_sources`) — the show
-      never drops or buries local stories
-
-    The first three blocks render as a single opening arc (see
-    `_roundup_block_header`); they stay distinct here because the roundup-order
-    check and the pool cap both need to tell them apart.
+      Working Lands day, leaving a one-article theme block. It sorts under
+      'theme' rather than beside it: on 2026-08-11 a ScienceDaily piece on the
+      history of dogs matched 'livestock' in its body alone and opened the show
     - discipline group keys (e.g. 'physical_sciences'): off-theme articles
       sharing a discipline group with at least one sibling, kept adjacent so
       the roundup's back half plays as clusters instead of one-offs
     - 'standalone': everything else, best feed score first
-    Bonus (_is_bonus) articles pass through unannotated at the end.
+    - 'bonus': off-theme feed picks and aired-early super-cycle articles, last
+
+    The blocks are curation metadata — `_roundup_block_header` renders them into
+    three prompt sections, none of which the hosts ever name on air.
     """
     # Strict keyword set: theme-name words + explicit config keywords only.
     # _build_theme_keywords also folds in theme-description words, which are
@@ -4114,6 +4138,7 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
     anti_keywords = _build_theme_anti_keywords(theme_name)
     source_boost = _build_theme_source_boost(theme_name)
     local_sources = [s.lower() for s in CONFIG['podcast'].get('local_sources', [])]
+    local_places = [p.lower() for p in CONFIG['podcast'].get('local_places', [])]
     disciplines_config = CONFIG.get('disciplines', {})
 
     def relevance(a):
@@ -4124,8 +4149,28 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
     def boosted(a):
         return a.get('_boosted_score', a.get('ai_score', 0))
 
+    def place_hits(a):
+        """Cariboo/BC place-name hits in title+summary.
+
+        Outlet name alone is a weak proxy for geography — on 2026-08-11 a
+        Williams Lake Tribune story about Spallumcheen and a My Cariboo Now
+        story about Summerland both read as local while a wire story naming
+        Williams Lake would not have.
+        """
+        if not local_places:
+            return 0
+        title = re.sub(r'^\W*\[[^\]]*\]\s*', '', a.get('title', ''))
+        return _keyword_hit_count(
+            f"{title} {a.get('summary', '')}".lower(), local_places)
+
+    def is_local(a):
+        return (place_hits(a) > 0
+                or any(s in _article_source_name(a).lower() for s in local_sources))
+
     pool = [a for a in articles if not a.get('_is_bonus')]
     bonus = [a for a in articles if a.get('_is_bonus')]
+    for a in bonus:
+        a['_roundup_block'] = 'bonus'
 
     def body_theme_hits(a):
         """Net theme-keyword hits in the article body, which relevance() ignores."""
@@ -4137,18 +4182,19 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
 
     theme_block, adjacent_block, local_block, rest = [], [], [], []
     for a in pool:
+        # Local wins over theme: a story that is both is the strongest opener.
         # relevance ≥ 2 means at least one net keyword hit survives the
         # anti-keyword penalty — score alone (boosted/100 + source boost)
         # cannot reach 2 without a keyword hit.
-        if a.get('_keyword_matches', 0) > 0 or relevance(a) >= 2:
+        if is_local(a):
+            a['_roundup_block'] = 'local'
+            local_block.append(a)
+        elif a.get('_keyword_matches', 0) > 0 or relevance(a) >= 2:
             a['_roundup_block'] = 'theme'
             theme_block.append(a)
         elif body_theme_hits(a) > 0:
             a['_roundup_block'] = 'theme_adjacent'
             adjacent_block.append(a)
-        elif any(s in _article_source_name(a).lower() for s in local_sources):
-            a['_roundup_block'] = 'local'
-            local_block.append(a)
         else:
             rest.append(a)
 
@@ -4171,27 +4217,32 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
     for a in standalone:
         a['_roundup_block'] = 'standalone'
 
+    # Place-name hits lead outlet-only matches, and among those an on-theme
+    # local story opens the episode — the local block is the show's front door.
+    local_block.sort(key=lambda a: (place_hits(a), relevance(a), boosted(a)),
+                     reverse=True)
     theme_block.sort(key=relevance, reverse=True)
     adjacent_block.sort(key=body_theme_hits, reverse=True)
-    local_block.sort(key=boosted, reverse=True)
     standalone.sort(key=boosted, reverse=True)
     # Bigger clusters first — the most connective material leads the back half
     ordered_clusters = sorted(
         clusters.values(), key=lambda ms: (len(ms), boosted(ms[0])), reverse=True
     )
     clustered = [a for members in ordered_clusters for a in members]
-    return theme_block + adjacent_block + local_block + clustered + standalone + bonus
+    return local_block + theme_block + adjacent_block + clustered + standalone + bonus
 
 
 def _curate_roundup_pool(articles: list, theme_name: str, pool_size: int) -> tuple:
     """Cap the News Roundup pool at `pool_size` while maximizing coherence.
 
-    Keeps every opening-arc article — on-theme, theme-adjacent and
-    local/regional — even past the cap, then fills remaining slots with
+    Keeps every opening-arc article — local/regional, on-theme and
+    theme-adjacent — even past the cap, then fills remaining slots with
     off-theme discipline clusters (never stranding a lone cluster member) and
-    finally the best standalones. Bonus articles pass through uncapped. Returns
-    (kept, dropped); dropped articles never reach citations, so dedup lets them
-    resurface on a better-matched theme day.
+    finally the best standalones. An arc wider than the cap trims the local
+    block first, down to a `ROUNDUP_THEME_FLOOR` reservation for theme stories.
+    Bonus articles pass through uncapped. Returns (kept, dropped); dropped
+    articles never reach citations, so dedup lets them resurface on a
+    better-matched theme day.
     """
     ordered = _annotate_roundup_blocks(articles, theme_name)
     bonus = [a for a in ordered if a.get('_is_bonus')]
@@ -4203,11 +4254,20 @@ def _curate_roundup_pool(articles: list, theme_name: str, pool_size: int) -> tup
     fillers = [a for a in pool if a['_roundup_block'] not in ROUNDUP_ARC_BLOCKS]
 
     kept_fill, dropped = [], []
-    # A wide arc still can't blow past the segment budget — the arc is ordered
-    # strongest tie first, so the tail is what gives.
+    # A wide arc still can't blow past the segment budget. Trimming the arc tail
+    # alone would let a heavy local day (a fire week, a flood week) push the
+    # theme off a themed episode entirely, so reserve a floor of theme slots and
+    # trim the local block's weakest — its lowest place-name/relevance — first.
     if len(protected) > pool_size:
-        dropped.extend(protected[pool_size:])
-        protected = protected[:pool_size]
+        local_arc = [a for a in protected if a['_roundup_block'] == 'local']
+        theme_arc = [a for a in protected if a['_roundup_block'] != 'local']
+        theme_keep = min(len(theme_arc), ROUNDUP_THEME_FLOOR, pool_size)
+        local_keep = max(0, pool_size - theme_keep)
+        dropped.extend(local_arc[local_keep:])
+        local_arc = local_arc[:local_keep]
+        theme_room = pool_size - len(local_arc)
+        dropped.extend(theme_arc[theme_room:])
+        protected = local_arc + theme_arc[:theme_room]
 
     for block, members_iter in groupby(fillers, key=lambda a: a['_roundup_block']):
         members = list(members_iter)
@@ -4263,13 +4323,18 @@ def _article_first_mention(article: dict, turns: list) -> int | None:
 
 
 def check_roundup_order(script: str, ordered_articles: list) -> list:
-    """Find opening-arc stories the script aired after off-arc ones.
+    """Find stories the script aired after a story from a later block.
 
     The block order handed to the prompt is advisory to a model that has its own
     ideas — on 2026-08-04 it moved the entire local block to the tail of the
     roundup to set up a Deep Dive handoff, so the episode opened on-theme,
     wandered through three off-theme stories, then came back to a local wildfire.
-    Returns one dict per displaced arc story (empty list when the order holds).
+
+    Compares by block rank (`_roundup_block_rank`) rather than arc membership, so
+    a theme story opening ahead of the local block is caught too — on 2026-08-11
+    the roundup opened on a ScienceDaily piece about dogs and reached the Cariboo
+    evacuation orders third, entirely within the then-undifferentiated arc.
+    Returns one dict per displaced story (empty list when the order holds).
     """
     _, body, _ = _slice_roundup(script)
     if not body:
@@ -4286,22 +4351,28 @@ def check_roundup_order(script: str, ordered_articles: list) -> list:
         if pos is not None:
             placed.append((pos, a))
 
-    off_arc = [p for p, a in placed
-               if a.get('_roundup_block') not in ROUNDUP_ARC_BLOCKS]
-    if not off_arc:
-        return []
-    first_off_arc = min(off_arc)
+    # Earliest airing position seen for each rank; a story is displaced when
+    # some later-ranked story already aired before it.
+    earliest = {}
+    for pos, a in placed:
+        rank = _roundup_block_rank(a.get('_roundup_block'))
+        earliest[rank] = min(earliest.get(rank, pos), pos)
 
-    return [
-        {
+    violations = []
+    for pos, a in sorted(placed):
+        rank = _roundup_block_rank(a.get('_roundup_block'))
+        blockers = [(p, r) for r, p in earliest.items() if r > rank and p < pos]
+        if not blockers:
+            continue
+        blocked_by_position, blocked_by_rank = min(blockers)
+        violations.append({
             "title": a.get('title', ''),
             "block": a.get('_roundup_block'),
             "position": pos,
-            "first_off_arc_position": first_off_arc,
-        }
-        for pos, a in sorted(placed)
-        if a.get('_roundup_block') in ROUNDUP_ARC_BLOCKS and pos > first_off_arc
-    ]
+            "blocked_by_position": blocked_by_position,
+            "blocked_by_rank": blocked_by_rank,
+        })
+    return violations
 
 
 def repair_roundup_order(script: str, ordered_articles: list) -> str:
@@ -4321,10 +4392,18 @@ def repair_roundup_order(script: str, ordered_articles: list) -> str:
     if not body.strip():
         return script
 
+    # Block markers, not block names to read out — the reorder prompt says so
+    # explicitly, since these lines are the model's only view of the structure.
+    _BLOCK_MARKERS = {
+        'local': '  ← close to home',
+        'theme': "  ← today's theme",
+        'theme_adjacent': "  ← today's theme",
+    }
+
     def _required_line(i, a):
         title = re.sub(r'^\W*\[[^\]]*\]\s*', '', a.get('title', ''))
-        arc = '  ← opening arc' if a.get('_roundup_block') in ROUNDUP_ARC_BLOCKS else ''
-        return f"{i}. [{_article_source_name(a)}] {title}{arc}"
+        marker = _BLOCK_MARKERS.get(a.get('_roundup_block'), '')
+        return f"{i}. [{_article_source_name(a)}] {title}{marker}"
 
     required = "\n".join(
         _required_line(i, a)
@@ -5314,13 +5393,15 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         on_theme_news = all_articles
         bonus_articles = []
 
-    # Order the roundup into labeled coherence blocks (on-theme arc, local/
-    # regional, same-field clusters, standalones) so the prompt carries
-    # explicit grouping structure instead of a flat theme-sorted list. Main
-    # already curates/caps the pool via _curate_roundup_pool; annotation here
-    # is deterministic, so re-running it reproduces the same block order.
+    # Order the roundup into coherence blocks (close to home, today's theme,
+    # then same-field clusters and standalones) so the prompt carries explicit
+    # grouping structure instead of a flat theme-sorted list. Main already
+    # curates/caps the pool via _curate_roundup_pool; annotation here is
+    # deterministic, so re-running it reproduces the same block order.
     on_theme_news = _annotate_roundup_blocks(on_theme_news, theme_name)
-    disciplines_groups = CONFIG.get('disciplines', {}).get('groups', {})
+    for _a in bonus_articles:
+        _a['_roundup_block'] = 'bonus'
+    roundup_articles = on_theme_news + bonus_articles
 
     def _format_news_article(a):
         """Format a news article for the script-generation prompt."""
@@ -5331,6 +5412,7 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         # fall back to ai_score so legacy articles still show a value.
         score = a.get('_boosted_score', a.get('ai_score', 0))
         theme_tag = ' [✓THEME]' if a.get('_keyword_matches', 0) > 0 else ''
+        bonus_tag = ' [BONUS]' if a.get('_roundup_block') == 'bonus' else ''
         cluster_tag = f' [SAME STORY: {a["_topic_cluster"]}]' if a.get('_topic_cluster') else ''
         # Held-and-released article: aired today because it matches this week's
         # rotation focus — hosts must not frame it as breaking, nor explain the timing.
@@ -5341,42 +5423,50 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         body = a.get('_body', '')
         body_line = f"\n  Content: {body[:500]}" if body else ""
         pub_tag = _format_pub_date_tag(a)
-        return f"- [{source}] {title}{theme_tag}{cluster_tag}{held_tag}{jurisdiction_tag}{pub_tag}\n  {summary}... (Relevance: {score}){body_line}"
+        return f"- [{source}] {title}{theme_tag}{bonus_tag}{cluster_tag}{held_tag}{jurisdiction_tag}{pub_tag}\n  {summary}... (Relevance: {score}){body_line}"
+
+    # These headers are curation metadata. They tell the model what order to air
+    # stories in — never what to say about them. Naming a block on air, or
+    # labelling a story's relationship to the theme, is the failure they exist
+    # to avoid: on 2026-08-11 a bridge read "Closer to today's theme — the
+    # evacuation order for the Gang Ranch area has been lifted".
+    _NEVER_ANNOUNCE = ("Never name this block on air or say a story is on- or "
+                       "off-theme; bridge on what the stories concretely share")
 
     def _roundup_block_header(block, count):
-        if block == 'opening_arc':
-            return (f"◆ TODAY'S THEME & CLOSE TO HOME ({count}) — these open the "
-                    f"roundup, in the order listed and consecutively: the theme "
-                    f"stories first (strongest tie first), then the BC/regional "
-                    f"ones. Play them as ONE arc — say each story's tie to today "
-                    f"out loud in a clause, and bridge between them on what they "
-                    f"genuinely share. Cover every one. Leave the arc exactly "
-                    f"once, on a half-sentence pivot that names the shift")
-        if block == 'standalone':
-            return (f"◆ ALSO NOTEWORTHY ({count}) — standalone stories; brief "
-                    f"coverage, clean pivots, no forced segues")
-        label = disciplines_groups.get(block, {}).get('label', block)
-        return (f"◆ CLUSTER: {label.upper()} ({count}) — same field; cover "
-                f"back-to-back and bridge on what they share")
+        if block == 'close_to_home':
+            return (f"◆ CLOSE TO HOME ({count}) — Cariboo and BC stories. These "
+                    f"open the roundup, every one of them, consecutively, in the "
+                    f"order listed. {_NEVER_ANNOUNCE}")
+        if block == 'todays_theme':
+            return (f"◆ TODAY'S THEME ({count}) — second, strongest tie first, "
+                    f"consecutively. Enter on a half-sentence pivot carried by "
+                    f"the subject matter itself. {_NEVER_ANNOUNCE}")
+        return (f"◆ ALSO WORTH NOTING ({count}) — the tail, last, lighter touch "
+                f"(2-3 sentences each). Same-field stories are already adjacent "
+                f"— bridge those on what they share and use clean, direct pivots "
+                f"elsewhere; no forced segues. [BONUS] items are off-theme "
+                f"extras: one sentence each, at the very end. {_NEVER_ANNOUNCE}")
 
-    # Format on-theme news articles under their block headers
+    # Format news articles under their block headers. Three sections: the two
+    # arc blocks lead, everything else — clusters, standalones and bonus picks —
+    # folds into one tail, with cluster members left adjacent inside it.
     _sections = []
-    def _prompt_block(a):
-        """Collapse the arc blocks into one section header."""
-        block = a.get('_roundup_block', 'standalone')
-        return 'opening_arc' if block in ROUNDUP_ARC_BLOCKS else block
 
-    for _block, _members in groupby(on_theme_news, key=_prompt_block):
+    def _prompt_block(a):
+        """Map a `_roundup_block` to its prompt section."""
+        block = a.get('_roundup_block', 'standalone')
+        if block == 'local':
+            return 'close_to_home'
+        if block in ('theme', 'theme_adjacent'):
+            return 'todays_theme'
+        return 'also_worth_noting'
+
+    for _block, _members in groupby(roundup_articles, key=_prompt_block):
         _members = list(_members)
         _articles_text = "\n".join(_format_news_article(a) for a in _members)
         _sections.append(f"{_roundup_block_header(_block, len(_members))}\n{_articles_text}")
     news_text = "\n\n".join(_sections)
-
-    # Format bonus (off-theme) articles separately
-    if bonus_articles:
-        bonus_text = "\n\nBONUS PICKS (off-theme but noteworthy — introduce these separately, e.g. \"Also worth noting today...\"):\n"
-        bonus_text += "\n".join([_format_news_article(a) for a in bonus_articles])
-        news_text += bonus_text
 
     def _format_deep_dive_article(a):
         source = a.get('authors', [{}])[0].get('name', 'Unknown')
@@ -8504,15 +8594,17 @@ def run_script_stage() -> tuple[str, str] | None:
             _violations = check_roundup_order(script, news_articles)
             if _violations:
                 _worst = _violations[0]
-                print(f"🔀 Roundup out of order — {len(_violations)} opening-arc "
-                      f"story(ies) aired after off-theme ones, e.g. "
-                      f"{_worst['title'][:70]!r}; repairing...")
+                print(f"🔀 Roundup out of order — {len(_violations)} story(ies) "
+                      f"aired after a later block, e.g. {_worst['block']!r} story "
+                      f"{_worst['title'][:70]!r} at turn {_worst['position']} "
+                      f"behind a rank-{_worst['blocked_by_rank']} story at turn "
+                      f"{_worst['blocked_by_position']}; repairing...")
                 script = repair_roundup_order(script, news_articles)
                 _violations = check_roundup_order(script, news_articles)
                 if _violations:
                     degrade("script/roundup-order",
-                            f"{len(_violations)} opening-arc story(ies) still aired after "
-                            f"off-theme ones after one repair pass")
+                            f"{len(_violations)} story(ies) still aired after a later "
+                            f"block after one repair pass")
                 else:
                     print("✅ Roundup re-sequenced into block order")
 
