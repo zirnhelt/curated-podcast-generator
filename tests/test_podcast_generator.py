@@ -46,6 +46,7 @@ from podcast_generator import (
     generate_meta_moment_text,
     _annotate_roundup_blocks,
     _curate_roundup_pool,
+    _roundup_block_rank,
     strip_unsourced_correction,
     check_roundup_order,
     repair_roundup_order,
@@ -2052,22 +2053,66 @@ def _roundup_fixture_articles():
 
 
 class TestAnnotateRoundupBlocks:
-    def test_block_order_theme_local_cluster_standalone_bonus(self):
+    def test_block_order_local_theme_cluster_standalone_bonus(self):
         ordered = _annotate_roundup_blocks(_roundup_fixture_articles(), _FAKE_THEME)
         blocks = [a.get("_roundup_block") for a in ordered]
-        assert blocks[:2] == ["theme", "theme"]
-        assert blocks[2] == "local"
+        assert blocks[0] == "local"
+        assert blocks[1:3] == ["theme", "theme"]
         assert blocks[3] == blocks[4] == "physical_sciences"
         assert blocks[5] == "standalone"
         assert ordered[-1]["title"] == "Bonus pick"
-        assert "_roundup_block" not in ordered[-1]
+        assert ordered[-1]["_roundup_block"] == "bonus"
 
     def test_keyword_hit_beats_feed_flag_in_theme_ordering(self):
         ordered = _annotate_roundup_blocks(_roundup_fixture_articles(), _FAKE_THEME)
         # Two local keyword hits (relevance ~4) outrank the feed-flagged
         # article whose local relevance is only its boosted score
-        assert ordered[0]["title"] == "Zebra gardening breakthrough"
-        assert ordered[1]["title"] == "Feed says on-theme"
+        assert ordered[1]["title"] == "Zebra gardening breakthrough"
+        assert ordered[2]["title"] == "Feed says on-theme"
+
+    def test_local_outlet_leads_even_when_off_theme(self):
+        ordered = _annotate_roundup_blocks(_roundup_fixture_articles(), _FAKE_THEME)
+        assert ordered[0]["title"] == "Arena roof approved"
+
+    def test_local_and_on_theme_opens_the_roundup(self):
+        """2026-08-11: local+on-theme stories were classified 'theme' and buried.
+
+        The Gang Ranch evacuation was a working-ranch story on a Working Lands
+        day and still aired second, behind a ScienceDaily piece about dogs.
+        """
+        articles = [
+            {"title": "Zebra gardening breakthrough", "url": "https://t1.com",
+             "_boosted_score": 90},
+            {"title": "Zebra gardening trial starts in Williams Lake",
+             "url": "https://l1.com", "_boosted_score": 20},
+        ]
+        ordered = _annotate_roundup_blocks(articles, _FAKE_THEME)
+        assert ordered[0]["title"] == "Zebra gardening trial starts in Williams Lake"
+        assert ordered[0]["_roundup_block"] == "local"
+        assert ordered[1]["_roundup_block"] == "theme"
+
+    def test_place_name_makes_a_wire_story_local(self):
+        """Locality is geography, not just the outlet's masthead."""
+        articles = [
+            {"title": "Reuters: evacuation alert expands across the Chilcotin",
+             "url": "https://w1.com", "authors": [{"name": "Reuters"}],
+             "_boosted_score": 30},
+            {"title": "Celebrity fashion week highlights", "url": "https://s1.com",
+             "_boosted_score": 80},
+        ]
+        ordered = _annotate_roundup_blocks(articles, _FAKE_THEME)
+        assert ordered[0]["_roundup_block"] == "local"
+        assert ordered[1]["_roundup_block"] == "standalone"
+
+    def test_place_name_hits_lead_outlet_only_matches(self):
+        articles = [
+            {"title": "Arena roof approved", "url": "https://l1.com",
+             "authors": [{"name": "Williams Lake Tribune"}], "_boosted_score": 90},
+            {"title": "Quesnel council funds a new well", "url": "https://l2.com",
+             "authors": [{"name": "Williams Lake Tribune"}], "_boosted_score": 10},
+        ]
+        ordered = _annotate_roundup_blocks(articles, _FAKE_THEME)
+        assert ordered[0]["title"] == "Quesnel council funds a new well"
 
     def test_lone_cluster_member_demoted_to_standalone(self):
         articles = [
@@ -2091,7 +2136,7 @@ class TestCurateRoundupPool:
     def test_theme_and_local_never_dropped(self):
         kept, dropped = _curate_roundup_pool(_roundup_fixture_articles(), _FAKE_THEME, 3)
         kept_blocks = [a.get("_roundup_block") for a in kept if not a.get("_is_bonus")]
-        assert kept_blocks == ["theme", "theme", "local"]
+        assert kept_blocks == ["local", "theme", "theme"]
         assert len(dropped) == 3  # cluster pair + standalone
 
     def test_cluster_not_stranded_when_one_slot_left(self):
@@ -2121,6 +2166,37 @@ class TestCurateRoundupPool:
         # The arc is ordered strongest tie first, so the tail is what gives
         assert dropped[0]["title"] == "Zebra gardening story 4"
 
+    def test_wide_local_block_still_leaves_room_for_the_theme(self):
+        """A fire week shouldn't push the theme off a themed episode."""
+        articles = [
+            {"title": f"Williams Lake evacuation update {i}", "url": f"https://l{i}.com",
+             "_boosted_score": 90 - i}
+            for i in range(8)
+        ] + [
+            {"title": f"Zebra gardening story {i}", "url": f"https://t{i}.com",
+             "_boosted_score": 50 - i}
+            for i in range(4)
+        ]
+        kept, dropped = _curate_roundup_pool(articles, _FAKE_THEME, 6)
+        blocks = [a["_roundup_block"] for a in kept]
+        assert len(kept) == 6
+        assert blocks == ["local"] * 3 + ["theme"] * 3
+        # The local block gives, not the theme floor
+        assert all(a["_roundup_block"] == "local" for a in dropped[:5])
+
+    def test_theme_floor_does_not_reserve_slots_it_cannot_fill(self):
+        articles = [
+            {"title": f"Williams Lake evacuation update {i}", "url": f"https://l{i}.com",
+             "_boosted_score": 90 - i}
+            for i in range(8)
+        ] + [
+            {"title": "Zebra gardening story", "url": "https://t1.com",
+             "_boosted_score": 50},
+        ]
+        kept, _ = _curate_roundup_pool(articles, _FAKE_THEME, 5)
+        # Only one theme article exists — the other four slots stay local
+        assert [a["_roundup_block"] for a in kept] == ["local"] * 4 + ["theme"]
+
 
 class TestThemeAdjacentBlock:
     """The theme keyword lives in the body, not the title or summary.
@@ -2143,8 +2219,26 @@ class TestThemeAdjacentBlock:
         ]
         ordered = _annotate_roundup_blocks(articles, _FAKE_THEME)
         assert [a["_roundup_block"] for a in ordered] == [
-            "theme", "theme_adjacent", "local",
+            "local", "theme", "theme_adjacent",
         ]
+
+    def test_body_only_keyword_does_not_outrank_a_local_story(self):
+        """2026-08-11: a body-only theme hit opened the roundup.
+
+        A ScienceDaily piece on the history of dogs matched 'livestock' in its
+        body alone, landed in theme_adjacent — then inside the protected arc —
+        and aired ahead of the Cariboo evacuation orders.
+        """
+        articles = [
+            {"title": "For 15,000 years humans and dogs changed each other",
+             "url": "https://a1.com", "_boosted_score": 65,
+             "_body": "Herding breeds worked alongside zebra keepers for millennia."},
+            {"title": "Evacuation order lifted for the Gang Ranch area",
+             "url": "https://l1.com", "_boosted_score": 79},
+        ]
+        ordered = _annotate_roundup_blocks(articles, _FAKE_THEME)
+        assert ordered[0]["_roundup_block"] == "local"
+        assert ordered[1]["_roundup_block"] == "theme_adjacent"
 
     def test_body_keyword_outweighed_by_anti_keywords_stays_out(self):
         # No theme keyword anywhere: the body mentions neither zebra nor gardening
@@ -2168,6 +2262,18 @@ class TestThemeAdjacentBlock:
         kept, dropped = _curate_roundup_pool(articles, _FAKE_THEME, 2)
         assert [a["_roundup_block"] for a in kept] == ["theme", "theme_adjacent"]
         assert [a["title"] for a in dropped] == ["Celebrity fashion week highlights"]
+
+
+class TestRoundupBlockRank:
+    def test_local_outranks_theme_which_outranks_the_tail(self):
+        assert (_roundup_block_rank("local")
+                < _roundup_block_rank("theme")
+                == _roundup_block_rank("theme_adjacent")
+                < _roundup_block_rank("standalone"))
+
+    def test_unknown_blocks_are_tail(self):
+        assert _roundup_block_rank("physical_sciences") == _roundup_block_rank("bonus")
+        assert _roundup_block_rank(None) == _roundup_block_rank("standalone")
 
 
 _ROUNDUP_SCRIPT = """# Header line
@@ -2210,14 +2316,29 @@ class TestCheckRoundupOrder:
             third="Williams Lake Tribune says 500 firefighters are at Pear Lake.",
         )
         violations = check_roundup_order(script, _order_articles())
-        assert len(violations) == 1
-        assert violations[0]["block"] == "local"
-        assert violations[0]["position"] > violations[0]["first_off_arc_position"]
+        # The local story is behind both the theme story and the standalone
+        assert [v["block"] for v in violations] == ["local"]
+        assert violations[0]["position"] > violations[0]["blocked_by_position"]
 
-    def test_correct_order_reports_clean(self):
+    def test_flags_theme_story_aired_before_a_local_one(self):
+        """2026-08-11: both blocks sat inside one undifferentiated arc.
+
+        An arc-vs-off-arc check saw nothing wrong when the roundup opened on
+        theme and reached the Cariboo stories third.
+        """
         script = _ROUNDUP_SCRIPT.format(
             first="The Northern Miner reports the AI boom lifts mining.",
             second="Williams Lake Tribune says 500 firefighters are at Pear Lake.",
+            third="WIRED reports ICE collected DNA from nearly a million people.",
+        )
+        violations = check_roundup_order(script, _order_articles())
+        assert [v["block"] for v in violations] == ["local"]
+        assert violations[0]["blocked_by_rank"] == 1
+
+    def test_correct_order_reports_clean(self):
+        script = _ROUNDUP_SCRIPT.format(
+            first="Williams Lake Tribune says 500 firefighters are at Pear Lake.",
+            second="The Northern Miner reports the AI boom lifts mining.",
             third="WIRED reports ICE collected DNA from nearly a million people.",
         )
         assert check_roundup_order(script, _order_articles()) == []
@@ -2225,6 +2346,7 @@ class TestCheckRoundupOrder:
     def test_bonus_articles_are_allowed_at_the_end(self):
         articles = _order_articles()
         articles[1]["_is_bonus"] = True
+        articles[1]["_roundup_block"] = "bonus"
         script = _ROUNDUP_SCRIPT.format(
             first="The Northern Miner reports the AI boom lifts mining.",
             second="WIRED reports ICE collected DNA from nearly a million people.",
@@ -2273,8 +2395,8 @@ class TestRepairRoundupOrder:
             second="WIRED reports ICE collected DNA from nearly a million people.",
             third="Williams Lake Tribune says 500 firefighters are at Pear Lake.",
         )
-        fixed = ("**RILEY:** The Northern Miner reports the AI boom lifts mining.\n\n"
-                 "**CASEY:** Williams Lake Tribune says 500 firefighters are at Pear Lake.\n\n"
+        fixed = ("**RILEY:** Williams Lake Tribune says 500 firefighters are at Pear Lake.\n\n"
+                 "**CASEY:** The Northern Miner reports the AI boom lifts mining.\n\n"
                  "**RILEY:** WIRED reports ICE collected DNA from nearly a million people.")
         monkeypatch.setattr(pg, "get_anthropic_client", lambda: object())
         monkeypatch.setattr(pg, "api_retry", lambda fn, **kw: object())
