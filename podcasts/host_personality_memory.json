@@ -100,9 +100,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-08-06",
-        "clue": "structural-lens:+ \u2014 Moved from abstract infrastructure concerns to concrete tenure-holding as governance fact",
-        "occurrences": 1
+        "date": "2026-08-11",
+        "clue": "structural-lens:+ \u2014 emphasized legal teeth over labeling repeatedly",
+        "occurrences": 2
       },
       {
         "date": "2026-08-06",
@@ -137,6 +137,11 @@
       {
         "date": "2026-08-10",
         "clue": "structural-lens:~ \u2014 Conceded that self-published statements need external verification equally",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-08-11",
+        "clue": "tech-optimism:~ \u2014 monitoring tools matter 'at margins' despite enforcement gaps",
         "occurrences": 1
       }
     ],
@@ -384,11 +389,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-08-08",
-        "clue": "evidence-bar:+ \u2014 Escalated demand for visible budget lines, not promises.",
-        "occurrences": 2
-      },
-      {
         "date": "2026-08-09",
         "clue": "structural-lens:[+] Reinforced institutional skepticism \u2014 pushed for explicit accountability checkpoints rather than trusting informal translation happens",
         "occurrences": 1
@@ -396,6 +396,11 @@
       {
         "date": "2026-08-09",
         "clue": "evidence-bar:[+] Deepened confidence in population-literacy approach, but remained unconvinced it scales faster than formal intervention",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-08-11",
+        "clue": "pilot-skepticism:x \u2014 conceded monitoring *could* change outcomes, demanded accountability proof",
         "occurrences": 1
       }
     ],

@@ -1,22 +1,4 @@
 {
-  "2026-07-06": {
-    "timestamp": 1783340350.751934,
-    "topics": [
-      "#1390 Why it&#039;s Illegal to Spy on Cows in Ontario",
-      "#1391 Is Iran Behind Attacks in Canada?",
-      "Discover Our Cell Phone Plans | Fizz",
-      "Confederation (in Three Minutes)",
-      "Tod Maffin \ud83c\udde8\ud83c\udde6 (@todmaffin.com)",
-      "[Williams Lake Tribune] 20 years of celebrating music and ar",
-      "[MacRumors] Apple Says India's Antitrust Case Against It Is ",
-      "AI"
-    ],
-    "themes": [
-      "rural development",
-      "connectivity"
-    ],
-    "date": "2026-07-06"
-  },
   "2026-07-07": {
     "timestamp": 1783431564.045651,
     "topics": [
@@ -668,5 +650,26 @@
     "date": "2026-08-10",
     "focus": "words-journalism",
     "focus_name": "Writing, Journalism & Podcasting"
+  },
+  "2026-08-11": {
+    "timestamp": 1786439807.360089,
+    "topics": [
+      "[ScienceDaily] For 15,000 years, humans and dogs have been c",
+      "[100 Mile Free Press] Evacuation order for Gang Ranch area l",
+      "[Williams Lake Tribune] Perseid meteor shower set to light u",
+      "[Williams Lake Tribune] Evacuations lifted in Spallumcheen a",
+      "[Williams Lake Tribune] New partnership to strengthen health",
+      "[Fast Company] Sustainability\u2019s skeptics keep declaring vict",
+      "[Scientific American] How the \u2018happy ending problem\u2019 launche",
+      "[NYT Well] Workers Complain of Mold and Bugs at Airline Cate"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact"
+    ],
+    "date": "2026-08-11",
+    "focus": "tourism-outdoor-economy",
+    "focus_name": "Tourism & the Outdoor Economy"
   }
 }

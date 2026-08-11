@@ -1,30 +1,4 @@
 {
-  "2026-05-12": {
-    "timestamp": 1778587381.436554,
-    "date": "2026-05-12",
-    "theme": "Working Lands & Industry",
-    "central_question": "Can BC deploy AI-driven mineral exploration technology responsibly, or must governance capacity be built before the technology accelerates discovery?",
-    "riley_position": "AI exploration technology is already operational and necessary for BC to develop critical minerals for the clean energy transition; the solution is to build institutional capacity in parallel with technology deployment, not to suppress the technology while waiting for capacity.",
-    "riley_key_evidence": [
-      "KoBold Metals' Zambia copper discovery identified a target human analysts had missed by assembling disparate data sources",
-      "Tahltan Nation's established environmental monitoring and consultation protocols demonstrate that Nations can develop faster processes than provincial ones",
-      "BC wood products funding announcement shows the province already invests in industry-specific data and market development"
-    ],
-    "casey_position": "The pace of AI-driven discovery will overwhelm existing governance, consultation, and environmental assessment systems that weren't designed for rapid acceleration; capacity-building should precede or run in genuine parallel with deployment, not follow it.",
-    "casey_key_evidence": [
-      "BC's Ministry of Mines is chronically understaffed and First Nations consultation offices are already overwhelmed with the current project queue",
-      "Tahltan's capacity took twenty-plus years of sustained political organization and cannot be copy-pasted to Nations dealing with underfunded band administration and treaty backlogs",
-      "Building required expertise at BC Geological Survey requires 2-3 senior positions that have gone unfilled for five years in the current fiscal environment"
-    ],
-    "resolution": "Riley and Casey converged on supporting Nation-level technical capacity building as the priority intervention\u2014if Nations develop their own AI prospecting capability, they shift from subjects of the process to users with analytical control. They disagreed on enforcement feasibility but agreed the governance question is urgent and the window to act before exploration claims accelerate is narrow.",
-    "topics_covered": [
-      "AI mineral exploration technology and KoBold Metals' competitive advantages",
-      "Institutional capacity gaps in provincial and Indigenous consultation and assessment processes",
-      "Data sovereignty and public value capture from publicly-funded geological data",
-      "Nation-level technical capacity building as a structural intervention in resource governance",
-      "Sequencing of technology deployment versus governance system readiness"
-    ]
-  },
   "2026-05-13": {
     "timestamp": 1778674404.818318,
     "date": "2026-05-13",
@@ -2313,6 +2287,33 @@
       "Discovery and indexing problems for locally-produced podcasts, newsletters, and self-published books",
       "Beat reporting and institutional memory as irreplaceable journalistic functions",
       "Sustained governance and staffing as the real barrier to local storytelling infrastructure"
+    ]
+  },
+  "2026-08-11": {
+    "timestamp": 1786439811.287827,
+    "date": "2026-08-11",
+    "theme": "Working Lands & Industry",
+    "focus": "tourism-outdoor-economy",
+    "central_question": "When ESG branding retreats, do the underlying sustainability commitments in working lands survive, or does removing the label signal that substance becomes optional?",
+    "riley_position": "Sustainability work persists even when the label gets dropped, and technology monitoring systems can create real accountability structures that improve outcomes on the ground, particularly for rural operations.",
+    "riley_key_evidence": [
+      "TerraCycle survives ESG retreat because it has a direct paying customer for waste streams regardless of fashion",
+      "Traceability systems and real-time monitoring dashboards change accountability structures by surfacing problems before they require multiple citations",
+      "Central Chilcotin Rehabilitation's Nation-owned forestry operation internalizes fire mitigation costs into baseline contracts rather than treating them as discretionary add-ons"
+    ],
+    "casey_position": "The collapse in sustainable fund labeling and major investor pullback from ESG commitments signals that voluntary substance evaporates when it becomes inconvenient; meaningful change requires legal teeth, not monitoring technology.",
+    "casey_key_evidence": [
+      "Generation Investment Management data shows sustainable funds dropped from 59% in 2021 to 21% by 2024",
+      "Flying Food Group had six prior serious Cal/OSHA citations yet continued identical violations when workers filed again\u2014showing information wasn't the gap, enforcement consequence was",
+      "BlackRock and Vanguard pulling back from ESG represents a capital signal that substance is becoming optional, not just cosmetic rebranding"
+    ],
+    "resolution": "Riley and Casey agreed to disagree on technology's role but converged on the core insight: commitments written into contracts, permits, or ownership stakes survive market swings, while voluntary management preferences evaporate. They left unresolved whether monitoring systems materially improve outcomes without enforcement capacity.",
+    "topics_covered": [
+      "ESG label retreat as marketing collapse versus substance collapse",
+      "Flying Food Group labor enforcement case as test of information versus consequence",
+      "WorkSafeBC inspection capacity shortages in rural BC as structural constraint",
+      "Contractual versus voluntary commitments in working-lands operations",
+      "Impact Benefit Agreements and Nation-owned forestry as durable alternative models"
     ]
   }
 }
