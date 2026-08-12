@@ -1,0 +1,182 @@
+# Cariboo Signals Podcast Script - 2026-08-12
+# Theme: Repair Culture & Practical Tech
+# Brave: yes
+# Anchor: What do we owe the people who come after us?
+# Generated: 2026-08-12 02:39:23 PDT
+
+**COLD OPEN**
+**CASEY:** Hey, welcome back. On today's episode — a Hackaday teardown of a ball bearing that reveals the real culprit behind mechanical backlash, plus NASA squeezing another update out of Voyager 2, still running instruments from 1977. Then in the Deep Dive: hospitals locked out of legally servicing their own equipment, and whether AI money is fixing anything or just papering over it. That and more, coming right up.
+
+**WELCOME**
+
+**CASEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities — I'm Casey. It's Wednesday, August 12th, 2026. Speaking to you from the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations here in the Cariboo region. Today's theme is Repair Culture & Practical Tech.
+
+**RILEY:** [pause:1000] And I'm Riley. Today we're looking at what happens when the thing that breaks isn't a phone screen — it's a piece of equipment nobody's legally allowed to fix.
+
+**CASEY:** Quick weather sweep before we get into it. Horsefly Lake is sitting at 11 degrees with clear skies, high of 23 today, low around 10, with light drizzle moving in tomorrow. Across the region — 100 Mile House at 10, Williams Lake at 12, Quesnel at 11, and out on the Chilcotin plateau, Redstone's sitting cool at 9, all clear for now.
+
+**RILEY:** No driving alerts on the weather front, but plenty on the fire front — we'll get into that. Let's get into today's stories.
+
+**NEWS ROUNDUP**
+
+**CASEY:** [pause:1200] It's a heavier science-and-hardware day than usual — three solid theme stories plus a long tail, so we'll move at a good clip. First — the Cariboo Regional District partially downgraded the French Bar Fire Area evacuation order in the Chilcotin to an alert as of Monday afternoon, covering the eastern portion of Area 5.
+
+**RILEY:** Small piece of good news for people who've been out of their homes for weeks now. On a bigger fire, the Ainslie Creek blaze is now pushing toward Highways 5 and 8, with more evacuation orders and alerts issued as of Tuesday evening.
+
+**CASEY:** Those highways are the main arteries connecting the Cariboo to the Nicola Valley — any closure ripples through freight and fuel supply for weeks, not days.
+
+**RILEY:** Loon Lake's order, meanwhile, was downgraded to an alert, with the local fire department gathering to welcome residents back.
+
+**CASEY:** Further south, the Bald Range wildfire near Summerland has burned past fifteen thousand hectares, and officials are calling the firefight there a monumental task — a vast fireground with genuinely unpredictable behaviour.
+
+**RILEY:** Some Summerland evacuees are now being granted temporary access back in for essential purposes, with a staged, phased return planned rather than one big reopening.
+
+**CASEY:** The Vancouver Sun reported thousands of those evacuees riding it out in Penticton motels, parking lots, and reception centres — with a real outpouring of community help alongside the disruption. B.C.'s emergency management minister was in the Okanagan this week specifically flagging mental health supports for people displaced by all of this.
+
+**RILEY:** A reminder that evacuation isn't just a logistics problem — it's a long tail of stress that outlasts the fire itself.
+
+**CASEY:** [pause:900] Closer to home on infrastructure — CityWest confirmed the internet outage that hit northwestern B.C. this week wasn't equipment failure at all. It was caused by an attempted theft.
+
+**RILEY:** Someone tried to steal physical infrastructure and knocked out service for an entire region in the process — a maintenance story with a criminal twist nobody saw coming.
+
+**CASEY:** [pause:1200] Now to the theme stories properly. Kyoto Fusioneering, the Japanese fusion startup, just landed a grant to start building a key component of the fuel-handling system for a future fusion power plant.
+
+**RILEY:** Fusion itself is decades away from anyone's breaker panel, but the precision-engineering discipline behind those fuel-handling systems eventually trickles down into industrial gear — pumps, seals, containment vessels — the stuff that actually runs remote operations.
+
+**CASEY:** [pause:1200] Sticking with precision mechanics — Hackaday published a piece this week on cutting backlash out of gear systems, and the surprising culprit isn't the gears, it's the ball bearings. A hobbyist split one open on camera to show how tiny gaps between the balls and the raceway introduce play that throws off an entire mechanism.
+
+**RILEY:** That's the whole philosophy of repair culture in one demonstration — the failure point is rarely where you assumed until you actually open the thing up.
+
+**CASEY:** [pause:1200] And on the security side — WIRED reported a Zoom screen-sharing bug that let anyone on a call hijack another participant's device. Researchers used a public AI tool and needed fewer than twenty prompts to find the flaw.
+
+**RILEY:** It's patched now, but that's the pattern with AI-assisted vulnerability hunting — the tools that help defenders find holes faster are the same ones attackers use.
+
+**CASEY:** A related item — Cisco Talos researchers found that getting an AI system to launch a cyberattack often just takes telling it you own the servers you're attacking. Same weakness in the guardrails, different door in.
+
+**RILEY:** [pause:900] On the retro-hardware side, Hackaday had two fun ones. A hobbyist rebuilt a wooden ship's telegraph to keep long-distance communication going with a partner — old hardware still doing its original job decades later.
+
+**CASEY:** And a deep dive on an obscure 1984 PC operating system that would've blown minds at the time it shipped — a reminder that "outdated" and "useless" have never been the same word.
+
+**RILEY:** NASA's playing in the same league at a much bigger scale — they just pushed another software update to Voyager 2 to squeeze more life out of instruments launched in 1977.
+
+**CASEY:** About as close to the platonic ideal of repair culture as it gets — an object built before most of us were born, still returning data because somebody refused to let it die on schedule.
+
+**RILEY:** [pause:900] A couple of consumer hardware notes. Noctua found more than half the PC cases it tested had inaccurate cooler clearance specs — which matters if you're building a small-form-factor rig and trusting the numbers on the box.
+
+**CASEY:** Engadget's review of the new Dell XPS 13 makes the same point from the other direction — the entry model ships with only eight gigs of RAM, not really enough to run the thing comfortably day to day.
+
+**RILEY:** There's also a Russian VPN provider, SplitVPN, facing accusations it breached its own no-logs policy after a reported leak of tens of millions of connection records.
+
+**CASEY:** [pause:900] On the labour front — Forbes cited an MIT estimate that something like a third of workers are already treated as disposable, and that AI adoption could accelerate that further.
+
+**RILEY:** Fast Company found more than half of U.S. workers would take a pay cut just for job security — people are already pricing in the instability rather than waiting for it to arrive.
+
+**CASEY:** Meanwhile the video game industry's living its own version of that right now. Microsoft's reportedly threatening another sixteen hundred Xbox layoffs, and one Id Software lead put it bluntly — developers "don't have the incentive to care anymore."
+
+**RILEY:** [pause:900] Climate's showing up hard on the economic ledger too. NYT Business ran a piece on heat, fire, smoke, and storms wreaking real financial havoc this year, paired with a story on rising credit card debt pushing Americans to treat home equity like a piggy bank.
+
+**CASEY:** A derecho tore through the Midwest with gusts approaching a hundred miles an hour, covering hundreds of miles in a single system. And Civil Eats reported apple, peach, and plum growers across the U.S. losing entire harvests this year to freezes tied to a shifting climate.
+
+**RILEY:** Not abstract for anyone who's watched a Cariboo orchard get hit by a late spring frost.
+
+**CASEY:** [pause:900] A couple of policy items to flag factually. The Trump administration is moving to end Medicaid funding for some gender-affirming care for transgender minors — U.S. policy, not on our ballot, but the kind of precedent that has a habit of echoing north.
+
+**RILEY:** And in defence tech — Boeing signed a seventy-five million dollar Air Force contract for a new guided, jet-powered bomb with extended range, while Ukraine's navy used an unmanned surface vessel loaded with drones to strike Russian radar sites in Crimea. Taiwan's also just finished outfitting a new class of coast guard vessels with anti-ship missiles.
+
+**CASEY:** Different scales, same direction — machines increasingly built to operate without anyone directly inside them.
+
+**RILEY:** [pause:900] On a lighter note — Business Insider's asking whether people will actually own up to writing with AI now that watermarking tools are becoming standard. Full disclosure, this show's written with Anthropic's Claude, so we're not exactly a neutral party on that one.
+
+**CASEY:** Tom's Guide also profiled why Google's still bothering to make Pixel phones ten years in, even as the smartphone market consolidates around two or three giants. And Popular Mechanics had a genuinely strange one — we mine more sand globally than any other solid material on Earth, with a real open question about whether the planet can keep replenishing it.
+
+**RILEY:** Country Life ran an essay arguing that touchscreens have turned car interiors into featureless, grey offices — that one lands directly on today's subject.
+
+**CASEY:** It does. We'll come back to that in the Deep Dive.
+
+**RILEY:** A last handful — Scientific American marked a hundred and seven years since the Eddington eclipse experiment that helped confirm Einstein's general relativity. Nautilus revisited a thirty-year-old forest experiment with surprising new results for land management. And Fast Company reported the Transportation Department is recruiting video gamers to help fill the shortage of air traffic controllers.
+
+**CASEY:** That's the roundup for today.
+
+**RILEY:** On to the spotlight.
+
+**COMMUNITY SPOTLIGHT**
+
+**RILEY:** Today's spotlight is on the Cariboo Family Enrichment Centre in 100 Mile House — free family services since 1988, including counselling, prenatal support, and the Raven Youth Activity Centre, which gives teens a real place to land after school. On International Youth Day, that last piece feels especially relevant. Find them at cariboofamily.org.
+
+**CASEY:** Almost forty years of continuous service in a community that size is its own kind of infrastructure — the kind that never shows up in a press release but just keeps running anyway.
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Repair Culture & Practical Tech**
+
+**CASEY:** [pause:900] When a community decides where its health-care money goes for the next decade, is it deciding what to fix, or just what to announce?
+
+**RILEY:** That's exactly what's playing out in rural health right now. There's a fifty billion dollar federal program in the U.S. — the Rural Health Transformation Program — about to flood rural hospitals with AI tools. Triage assistants, so-called "AI nurses," administrative automation to cover staffing gaps.
+
+**CASEY:** KFF Health News, along with researchers at UNC's Sheps Center, are blunt about it. There's very little rigorous evidence any of this improves rural access or patient outcomes. The technology, in their words, gets "oversold as a substitute for stable financing and an adequate health care workforce."
+
+**RILEY:** A rugged phone that breaks is an inconvenience. A ventilator a technician can't legally service is a patient sitting in a room waiting.
+
+**CASEY:** (thoughtful) There's a right-to-repair fight happening inside hospitals that almost nobody outside biomedical engineering circles is tracking. PIRG surveyed biomedical equipment technicians — biomeds — and found something like eight in ten have equipment sitting in their own building that they're legally barred from servicing, because the manufacturer locks the service keys and manuals behind a paid contract.
+
+**RILEY:** Ninety-seven percent of those same technicians want that barrier removed — about as close to professional consensus as you'll find on anything.
+
+**CASEY:** And rural technicians report it happening more, not less — fewer manufacturer reps willing to travel to remote sites, longer waits for an authorized repair, more equipment sitting dark while patients wait or get transferred.
+
+**RILEY:** So walk through the actual choice being made. A rural hospital board is deciding between funding a new AI intake tool with unproven outcomes, or fighting a manufacturer for the legal right to fix an imaging machine it already owns outright.
+
+**CASEY:** Predictive maintenance tools — AI systems trained to flag when equipment is likely to fail before it does — could genuinely help stretched biomeds prioritize their workload. That's a real, incremental use of the technology.
+
+**RILEY:** Except it's moot if the manufacturer won't grant repair access regardless of what the diagnostic says needs fixing. You can predict the failure with perfect accuracy and still not be legally allowed to open the case and replace the part.
+
+**CASEY:** (wry) Which is a very expensive way to be told something you're not allowed to act on.
+
+**RILEY:** That bottleneck is legal and contractual, not technical. The AI doesn't create the barrier — but it also can't dissolve one written directly into a service contract signed at the point of purchase.
+
+**CASEY:** And that connects to a question worth pressing on: what obligation do you take on when you buy equipment meant to outlast you? A hospital that buys an imaging machine on a fifteen-year depreciation schedule is making an implicit promise to the community it serves in year twelve, not just year one. If the manufacturer's service contract quietly overrides that promise, who's accountable to the patient down the road?
+
+**RILEY:** Nobody, currently. The manufacturer's obligation effectively ends at the warranty period, and the hospital board that signed the purchase agreement may not even be the same people by year twelve.
+
+**CASEY:** It's the same succession problem we flagged with informal repair knowledge in this region a while back — except now it's baked permanently into a legal contract instead of living in an aging mechanic's memory. A retiring mechanic can choose to teach someone before he goes. A locked service key doesn't care who's willing to learn.
+
+**RILEY:** There's a state-level right-to-repair push in the U.S. specifically for medical devices, but TechNation's reporting says it's still tangled up in legal and regulatory pushback from manufacturers. Nothing's settled, and there's no equivalent legislation on the books in B.C. yet.
+
+**CASEY:** So the fifty billion dollars is arriving faster than the legal framework that would let hospitals maintain the equipment they've already got. New tech first, repair rights a distant second, if ever.
+
+**RILEY:** Which is why a fraction of a program like that should be earmarked for buying out restrictive service contracts or negotiating repair access, instead of funding another AI pilot with no baseline evidence behind it. It's about sequencing the investment so the foundation holds the new layer.
+
+**CASEY:** Sequencing right doesn't make it happen, though. (deadpan) Nobody in that funding chain gets a photo op for quiet contract renegotiation — they get one for a ribbon-cutting in front of shiny new software.
+
+**RILEY:** Fair enough on the incentives. Somewhere like Cariboo Memorial in Williams Lake, or the smaller sites in Quesnel and 100 Mile House, runs on decades-old equipment sitting next to newer purchases, same as most of rural Canada. If a piece of imaging or lab equipment fails and the only path forward is waiting days for an authorized technician to fly in, that's not hypothetical — it's exactly the rural service gap this kind of program claims to solve, and AI triage tools don't touch it.
+
+**CASEY:** Nobody's publicly asked whether Interior Health even has full visibility into which of its own machines fall into that locked-out category. A local health board member could raise that at a public meeting.
+
+**RILEY:** Not "buy more tech" first — find out what you're already legally barred from fixing.
+
+**CASEY:** [pause:500] Country Life's essay on touchscreens turning car interiors into featureless offices connects here too, even outside hospitals. Same instinct — replace something mechanical and locally serviceable with something proprietary and software-locked, and market it as progress.
+
+**RILEY:** A touchscreen dash can be updated over the air, which a physical dial can't — that's the honest counterargument. But it only holds if the manufacturer keeps supporting the software for the working life of the vehicle, and most don't commit to anything close to that.
+
+**CASEY:** Which loops back to the real question: what do you owe the person driving that truck into the backcountry, or lying in that hospital bed, ten years after you sold them the thing? A software update schedule isn't a promise. A locked service manual actively breaks one that was implied at the point of sale.
+
+**RILEY:** A ranch truck or a logging rig used to be something a competent home mechanic could keep alive for twenty-five years with parts from any supplier. Increasingly the diagnostic computer alone requires a dealer-only scan tool, and some manufacturers won't sell that tool to independent shops at any price.
+
+**CASEY:** Right-to-repair laws for vehicles exist in some U.S. states now, with some provincial movement in Canada too, but enforcement is uneven — infotainment systems, some emissions modules, and increasingly EV battery management software are still locked down tight.
+
+**RILEY:** For somebody forty-five minutes from the nearest dealership on a gravel road, that's the difference between fixing your truck this weekend and being stranded two weeks waiting on a part and an authorized technician.
+
+**CASEY:** (chuckles) There's a special kind of frustration reserved for a check-engine light you're not legally allowed to diagnose yourself. And it's not just trucks — ATVs, snowmobiles, chainsaws with electronic ignition modules are all picking up the same proprietary lockdown, in gear people depend on to get out of the bush safely.
+
+**RILEY:** [pause:500] The fix isn't rejecting new tools outright. Predictive maintenance, AI triage, better diagnostics can genuinely help stretched rural systems, hospitals and equipment fleets both — paired with an enforceable right to actually keep the underlying hardware running.
+
+**CASEY:** And until right-to-repair has real legal teeth for medical equipment and vehicles both, the AI investment is treating a symptom, not the structure underneath it. We're not going to settle that on air today.
+
+**RILEY:** It's specific enough that it's worth raising directly with a regional health authority or an MLA — does the equipment we already own come with repair rights, or did we sign that away the moment we bought it?
+
+**CASEY:** Same question at the household level — before your next vehicle purchase, ask the dealer straight out whether independent shops in the Cariboo get full diagnostic access, or whether you're stuck driving to Kamloops every time something electronic goes wrong.
+
+**RILEY:** [pause:500] Ask before you sign, not after — that's the take-home.
+
+**CASEY:** [pause:900] If you've got a story like that — a machine sitting dark somewhere in the Cariboo, or a truck stuck waiting on a dealer-only part — write in. Feedback at cariboo signals dot c-a, and we'll dig into it.
+
+**RILEY:** That's Cariboo Signals for August 12th. Have a great rest of your day —
+
+**CASEY:** [overlap:-100] — and try not to let your own equipment lock you out of anything. See you tomorrow.
