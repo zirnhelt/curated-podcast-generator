@@ -1,30 +1,4 @@
 {
-  "2026-05-13": {
-    "timestamp": 1778674404.818318,
-    "date": "2026-05-13",
-    "theme": "Gear, Gadgets & Practical Tech",
-    "central_question": "How can rural communities build sustainable, maintainable technology infrastructure when manufacturers increasingly restrict ownership rights and technical expertise is geographically concentrated?",
-    "riley_position": "Communities can develop technological capability through layered learning and hybrid DIY/commercial approaches\u2014starting with simple repairs, progressing to understanding which system components require precision manufacturing versus local fabrication, supported by accessible institutional infrastructure like tool-lending libraries.",
-    "riley_key_evidence": [
-      "Ducted fan housings and mounts can be 3D printed while precision-machined blades cannot, creating a hybrid manufacturing model",
-      "CRDL has already expanded digital programming and could leverage existing momentum for targeted provincial rural tech access grants",
-      "Skills compound progressively: GoPro repairs build component troubleshooting, NAS builds teach power budgeting and thermal management"
-    ],
-    "casey_position": "Legal right-to-repair protections and knowledge infrastructure are necessary but insufficient; the persistent gap is practical geographic distance to maintenance expertise and the capability threshold required to evaluate complex systems independently.",
-    "casey_key_evidence": [
-      "Bambu Lab escalated from open-ecosystem company to using legal threats within 'a few years,' following the John Deere pattern",
-      "Most small community organizations lack procurement sophistication to conduct five-year repairability audits before purchasing equipment",
-      "Ducted fan maintenance requires debris sensitivity awareness and replacement part access\u2014manageable in shops but challenging four hours from nearest hobby shop"
-    ],
-    "resolution": "They agreed that both layers matter\u2014legislation and knowledge infrastructure are necessary conditions but insufficient alone\u2014and identified a concrete action: advocating to the province for expanded rural tool-lending and digital fabrication access at CRDL, while monitoring federal right-to-repair committee processes for community input opportunities.",
-    "topics_covered": [
-      "Bambu Lab lawsuit and proprietary ecosystem lock-in versus right-to-repair",
-      "Hybrid DIY/commercial manufacturing models for complex systems",
-      "Rural technology equity and geographic access barriers",
-      "Federal and provincial right-to-repair legislation landscape",
-      "Tool-lending libraries and institutional infrastructure for rural tech access"
-    ]
-  },
   "2026-05-14": {
     "timestamp": 1778759943.439435,
     "date": "2026-05-14",
@@ -2314,6 +2288,39 @@
       "WorkSafeBC inspection capacity shortages in rural BC as structural constraint",
       "Contractual versus voluntary commitments in working-lands operations",
       "Impact Benefit Agreements and Nation-owned forestry as durable alternative models"
+    ]
+  },
+  "2026-08-12": {
+    "timestamp": 1786527566.185152,
+    "date": "2026-08-12",
+    "theme": "Repair Culture & Practical Tech",
+    "focus": "vehicles-field-gear",
+    "anchor": "owe-those-after",
+    "central_question": "When AI funding arrives faster than repair rights legislation, are we solving rural health and equipment problems or papering over them with technology that can't legally be maintained?",
+    "riley_position": "Rural hospitals and technicians are being offered AI tools as substitutes for stable financing and repair access, but the technology can't solve problems that are fundamentally legal and contractual, not technical\u2014predictive maintenance is useless if you're barred from actually fixing what fails.",
+    "riley_key_evidence": [
+      "Eight in ten biomedical technicians have equipment in their own hospitals they're legally barred from servicing due to manufacturer-locked service keys and manuals",
+      "Ninety-seven percent of those technicians want repair access barriers removed",
+      "Rural technicians report lockdown happening more frequently, with fewer manufacturer reps willing to travel to remote sites"
+    ],
+    "casey_position": "The sequencing of investment is backwards\u2014hospitals should first establish what they're legally barred from fixing in their existing equipment, then negotiate repair rights, before funding new AI pilots with unproven outcomes; the real accountability question is what obligation a hospital takes on when buying equipment meant to outlast the current board.",
+    "casey_key_evidence": [
+      "KFF Health News and UNC Sheps Center found little rigorous evidence that AI tools improve rural access or patient outcomes, and the technology gets 'oversold as a substitute for stable financing'",
+      "State-level right-to-repair legislation for medical devices in the U.S. is still tangled in legal pushback with no equivalent on B.C. books",
+      "Nobody gets a photo op for quiet contract renegotiation, so funding chains prioritize ribbon-cuttings for new software over maintenance of existing equipment"
+    ],
+    "resolution": "No concession, but unified agreement on next steps: the real question is not whether to reject new tools but to enforce repair rights *alongside* AI investment; both speakers agree the takeaway is to ask specific questions before purchasing\u2014ask dealers about independent shop diagnostic access, and ask regional health authorities whether their equipment comes with repair rights before new funding arrives.",
+    "topics_covered": [
+      "Right-to-repair barriers in rural hospital biomedical equipment",
+      "Disconnect between AI funding timelines and legal repair-access legislation",
+      "Proprietary lockdown creeping into vehicles, ATVs, and consumer equipment in rural areas",
+      "Accountability and implicit promises when purchasing long-lived infrastructure",
+      "Incentive misalignment in funding decisions favoring announcements over maintenance"
+    ],
+    "calls_to_action": [
+      "A local health board member could raise the question publicly: Does Interior Health have full visibility into which machines fall into the locked-out category, and has anyone asked before funding new tech?",
+      "Before your next vehicle purchase, ask the dealer straight out whether independent shops in the Cariboo get full diagnostic access, or whether you're stuck driving to Kamloops every time something electronic goes wrong\u2014ask before you sign, not after.",
+      "If you have a story of a machine sitting dark somewhere in the Cariboo or a truck stuck waiting on a dealer-only part, write in to feedback at cariboosignals.ca and the team will dig into it."
     ]
   }
 }

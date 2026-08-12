@@ -1,0 +1,758 @@
+{
+  "episode": {
+    "date": "2026-08-12",
+    "formatted_date": "Wednesday, August 12, 2026",
+    "theme": "Repair Culture & Practical Tech",
+    "title": "Cariboo Signals - Repair Culture & Practical Tech",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Repair Culture & Practical Tech.</p><p><b>THIS WEEK WE'RE ASKING:</b> What do we owe the people who come after us?</p><p><b>NEWS ROUNDUP:</b> We break down [TechCrunch] Kyoto Fusioneering starts work on key fusion power plant device and [Hackaday] Splitting a Ball Bearing to Cut Out Backlash, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> When AI funding arrives faster than repair rights legislation, are we solving rural health and equipment problems or papering over them with technology that can't legally be maintained? Topics include: Right-to-repair barriers in rural hospital biomedical equipment, Disconnect between AI funding timelines and legal repair-access legislation, Proprietary lockdown creeping into vehicles, ATVs, and consumer equipment in rural areas, Accountability and implicit promises when purchasing long-lived infrastructure, Incentive misalignment in funding decisions favoring announcements over maintenance.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://cariboofamily.org\">Cariboo Family Enrichment Centre</a></p><p><b>Sources discussed:</b></p><ul><li>Tim De Chant (TechCrunch): <a href=\"https://techcrunch.com/2026/08/11/kyoto-fusioneering-starts-work-on-key-fusion-power-plant-device/\">[TechCrunch] Kyoto Fusioneering starts work on key fusion po...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/08/11/splitting-a-ball-bearing-to-cut-out-backlash/\">[Hackaday] Splitting a Ball Bearing to Cut Out Backlash</a></li><li>Lily Hay Newman (WIRED): <a href=\"https://www.wired.com/story/a-zoom-screen-sharing-bug-let-anyone-take-over-other-devices-on-a-call/\">[WIRED] A Zoom Screen-Sharing Bug Let Anyone Take Over Other...</a></li><li>David Nield (ScienceAlert): <a href=\"https://www.sciencealert.com/never-before-seen-type-of-amyloid-may-explain-a-devastating-form-of-alzheimers\">[ScienceAlert] Never-Before-Seen Type of Amyloid May Explain...</a></li><li>Barbara Roden (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/08/11/ainslie-creek-fire-moving-towards-highways-5-and-8-as-more-orders-alerts-issued/\">[Williams Lake Tribune] Ainslie Creek fire moving towards Hi...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/315487/news/municipal-news/cariboo-regional-district/french-bar-fire-area-alert-partially-rescinded-in-the-south-cariboo/\">French Bar Fire Area Alert partially rescinded in the Chilco...</a></li><li>Associated Press (STAT News): <a href=\"https://www.statnews.com/2026/08/11/medicaid-to-end-funding-gender-affirming-care-transgender-youth/?utm_campaign=rss\">[STAT News] Medicaid will stop paying for some gender-affirm...</a></li><li>NYT Business: <a href=\"https://www.nytimes.com/2026/08/11/business/home-equity-credit-card-debt.html\">[NYT Business] As Credit Card Debt Mounts, Home Becomes a Pi...</a></li><li>https://www.gamesradar.com/author/anna-koselke/ (Edge (GamesRadar)): <a href=\"https://www.gamesradar.com/games/id-software-lead-says-devs-dont-have-the-incentive-to-care-anymore-with-microsoft-threatening-another-1-600-xbox-layoffs-after-latest-bloodbath/\">[Edge (GamesRadar)] Id Software lead says devs \"don't have t...</a></li><li>Fast Company: <a href=\"https://www.fastcompany.com/91588574/transportation-department-recruiting-gamers-air-taffic-controller-shortage\">[Fast Company] The Transportation Department is recruiting g...</a></li><li>NYT Business: <a href=\"https://www.nytimes.com/2026/08/11/business/economy/climate-change-costs-economy-businesses.html\">[NYT Business] Heat, Fire, Smoke and Storms Are Wreaking Hav...</a></li><li>Fast Company: <a href=\"https://www.fastcompany.com/91588563/more-than-half-of-workers-would-take-a-pay-cut-for-job-security\">[Fast Company] More than half of workers would take a pay cu...</a></li><li>Mariella Moon (Engadget): <a href=\"https://www.engadget.com/2234376/nasa-updates-voyager-2-keep-operating/\">[Engadget] NASA updates Voyager 2 to extend the 1977 probe's...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/315498/news/emergency-services/fire/wildfires/some-summerland-evacuees-granted-temporary-access-as-re-entry-planning-begins/\">Some Summerland evacuees granted temporary access as re-entr...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/taiwan-coast-guard-vessels-anti-ship-missiles-han-kuang-china-2026-8\">[Business Insider] Taiwan packed its new coast guard vessels...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Marisca Bakker (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/08/11/internet-outage-affects-northern-bc-once-again/\">[Williams Lake Tribune] UPDATE: Today’s Northwest B.C. Inter...</a></li><li>Wildfire Today: <a href=\"https://wildfiretoday.com/arson-spikes-possible-due-to-prediction-markets-rise-us-senators-warn/\">Arson spikes possible due to prediction markets’ rise, US se...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/08/11/titanic-esqe-telegraph-keeps-relationship-afloat/\">[Hackaday] Titanic-esqe Telegraph Keeps Relationship Afloat</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/08/11/the-pc-os-that-would-have-blown-your-mind-back-in-1984/\">[Hackaday] The PC OS That Would Have Blown Your Mind Back In...</a></li><li>Barbara Roden (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/08/11/evacuation-order-downgraded-to-alert-for-loon-lake-residents/\">[Williams Lake Tribune] Evacuation order downgraded to alert...</a></li><li>The Narwhal: <a href=\"https://thenarwhal.ca/bc-renters-extreme-heat-right-to-cool/?utm_source=rss\">[The Narwhal] B.C. renters remain vulnerable to extreme heat</a></li><li>NYT Well: <a href=\"https://www.nytimes.com/2026/08/11/well/family/children-safety-independence-laws.html\">[NYT Well] Should Letting Children Play Alone Outside Be a C...</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/video/newsfeed/2026/8/12/aje-onl-nf_overloaded-ferry-capsizes-in-zimbabwe-110826?traffic_source=rss\">[Al Jazeera English] Dozens dead and missing after ferry cap...</a></li><li>Nautilus: <a href=\"https://nautil.us/researchers-return-to-a-forgotten-forest-experiment-30-years-later-with-astounding-results-1283623/\">[Nautilus] Researchers Return to a Forgotten Forest Experime...</a></li><li>https://www.tomsguide.com/author/mark-spoonauer (Toms Guide): <a href=\"https://www.tomsguide.com/phones/google-pixel-phones/after-10-years-of-pixels-why-is-google-still-making-phones\">[Toms Guide] After 10 years of Pixels, why is Google still m...</a></li><li>Jennifer Smith (Regional News Archives - Williams Lake Tribune): <a href=\"https://wltribune.com/2026/08/11/mental-health-among-supports-shared-by-minister-in-okanagan-amid-wildfire-emergency/\">[Regional News Archives - Williams Lake Tribune] Mental heal...</a></li><li>Courtney Connley-Hampton (Forbes Innovation): <a href=\"https://www.forbes.com/sites/courtney-connley-hampton/2026/08/11/employers-are-treating-more-workers-as-disposable-ai-could-speed-up-that-trend/\">[Forbes Innovation] Employers Are Treating More Workers As D...</a></li><li>Al Jazeera Staff (Al Jazeera English): <a href=\"https://www.aljazeera.com/news/2026/8/12/israeli-raids-demolitions-continue-as-un-warns-west-bank-at-breaking-point?traffic_source=rss\">[Al Jazeera English] Israeli raids, demolitions continue as ...</a></li><li>Vancouver Sun: <a href=\"https://vancouversun.com/news/bc-wildfires-summerland-evacuees-face-lineups-uncertainty-and-an-outpouring-of-help\">[Vancouver Sun] Summerland evacuees face lineups, uncertaint...</a></li><li>Adam Kovac (Scientific American): <a href=\"https://www.scientificamerican.com/article/107-years-ago-the-eddington-total-eclipse-experiment-helped-prove-einsteins-theory-of-relativity/\">[Scientific American] 107 years ago, the Eddington total ecl...</a></li><li>Arielle Zionts, Darius Tahir (KFF Health News): <a href=\"https://kffhealthnews.org/rural-health/rural-healthcare-artificial-intelligence-patients-wary/\">[KFF Health News] Patients Wary of Governments, Companies Pu...</a></li><li>https://www.techradar.com/author/efosa-udinmwen (TechRadar): <a href=\"https://www.techradar.com/pro/boeing-and-us-air-force-sign-deal-to-build-guided-jet-powered-bombs-capable-of-traveling-300-nautical-miles\">[TechRadar] Boeing and US Air Force sign deal to build guide...</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/video/newsfeed/2026/8/12/on-the-ground-in-cali-colombias-worst-hit-city-after-the-quake?traffic_source=rss\">[Al Jazeera English] On the ground in Cali, Colombia’s worst...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5<br>Today's Voices: Gemini TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-08-12T02:39:17.814635-07:00",
+    "models": {
+      "script": "claude-sonnet-5",
+      "review": "claude-sonnet-5",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 3180,
+      "voice_ratio_casey_riley": 1.09,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 1,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 0,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 1,
+        "roundup_seam": 0,
+        "thats_closer": 0
+      },
+      "total_hits": 1,
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    },
+    "anchor": {
+      "id": "owe-those-after",
+      "question": "What do we owe the people who come after us?"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "French Bar Fire Area Alert partially rescinded in the Chilcotin : My Cariboo Now",
+          "url": "https://www.mycariboonow.com/315487/news/municipal-news/cariboo-regional-district/french-bar-fire-area-alert-partially-rescinded-in-the-south-cariboo/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 83,
+          "date_published": "2026-08-12T05:42:05.408956+00:00",
+          "summary": "",
+          "discussed": true,
+          "mention_offset_frac": 0.0234
+        },
+        {
+          "title": "[Williams Lake Tribune] Ainslie Creek fire moving towards Highways 5 and 8 as more orders, alerts issued",
+          "url": "https://wltribune.com/2026/08/11/ainslie-creek-fire-moving-towards-highways-5-and-8-as-more-orders-alerts-issued/",
+          "source": "Williams Lake Tribune",
+          "author": "Barbara Roden",
+          "ai_score": 92,
+          "date_published": "2026-08-12T05:43:21.324136+00:00",
+          "summary": "## Ainslie Creek fire moving towards Highways 5 and 8 as more orders, alerts issued Published 4:37 pm Tuesday, August 11, 2026 **By Barbara Roden** More evacuation orders and alerts have been issued i...",
+          "discussed": true,
+          "mention_offset_frac": 0.0574
+        },
+        {
+          "title": "Some Summerland evacuees granted temporary access as re-entry planning begins : My Cariboo Now",
+          "url": "https://www.mycariboonow.com/315498/news/emergency-services/fire/wildfires/some-summerland-evacuees-granted-temporary-access-as-re-entry-planning-begins/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 85,
+          "date_published": "2026-08-12T05:42:05.408930+00:00",
+          "summary": "",
+          "discussed": true,
+          "mention_offset_frac": 0.1301
+        },
+        {
+          "title": "[TechCrunch] Kyoto Fusioneering starts work on key fusion power plant device",
+          "url": "https://techcrunch.com/2026/08/11/kyoto-fusioneering-starts-work-on-key-fusion-power-plant-device/",
+          "source": "TechCrunch",
+          "author": "Tim De Chant",
+          "ai_score": 62,
+          "date_published": "2026-08-11T15:00:00+00:00",
+          "summary": "Fusion power startups are turning to Kyoto Fusioneering to supply components for future power plants. The Japan-based startup just received a grant to build a part of the fuel system.",
+          "discussed": true,
+          "mention_offset_frac": 0.2722
+        },
+        {
+          "title": "[WIRED] A Zoom Screen-Sharing Bug Let Anyone Take Over Other Devices on a Call",
+          "url": "https://www.wired.com/story/a-zoom-screen-sharing-bug-let-anyone-take-over-other-devices-on-a-call/",
+          "source": "WIRED",
+          "author": "Lily Hay Newman",
+          "ai_score": 60,
+          "date_published": "2026-08-11T12:37:12+00:00",
+          "summary": "Researchers say it took fewer than 20 prompts for a public AI tool to find a flaw (now fixed) allowing anyone on a Zoom call to hijack another participants’ device.",
+          "discussed": true,
+          "mention_offset_frac": 0.3716
+        },
+        {
+          "title": "[Engadget] NASA updates Voyager 2 to extend the 1977 probe's lifespan yet again",
+          "url": "https://www.engadget.com/2234376/nasa-updates-voyager-2-keep-operating/",
+          "source": "Engadget",
+          "author": "Mariella Moon",
+          "ai_score": 63,
+          "date_published": "2026-08-11T11:58:34+00:00",
+          "summary": "NASA successfully executed a plan to extend the life of Voyager 2's scientific instruments.",
+          "discussed": true,
+          "mention_offset_frac": 0.501
+        },
+        {
+          "title": "[Fast Company] More than half of workers would take a pay cut for job security",
+          "url": "https://www.fastcompany.com/91588563/more-than-half-of-workers-would-take-a-pay-cut-for-job-security",
+          "source": "Fast Company",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-08-11T18:00:00+00:00",
+          "summary": "Employees in 2026 are seriously worried about how unstable their jobs may be. So worried, in fact, that more than half say they’d willingly swap part of their paycheck for greater job security. Accord...",
+          "discussed": true,
+          "mention_offset_frac": 0.5384
+        },
+        {
+          "title": "[Engadget] Dell XPS 13 (2026) review: A MacBook Neo alternative that needs more RAM",
+          "url": "https://www.engadget.com/2231708/dell-xps-13-2026-review/",
+          "source": "Engadget",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-08-10T12:30:00+00:00",
+          "summary": "There's a lot to like about the XPS 13, but most people should shell out for 16GB of RAM.",
+          "discussed": true,
+          "mention_offset_frac": 0.5631
+        },
+        {
+          "title": "[Edge (GamesRadar)] Id Software lead says devs \"don't have the incentive to care anymore\" with Microsoft threatening another 1,600 Xbox layoffs after latest bloodbath",
+          "url": "https://www.gamesradar.com/games/id-software-lead-says-devs-dont-have-the-incentive-to-care-anymore-with-microsoft-threatening-another-1-600-xbox-layoffs-after-latest-bloodbath/",
+          "source": "Edge (GamesRadar)",
+          "author": "https://www.gamesradar.com/author/anna-koselke/",
+          "ai_score": 63,
+          "date_published": "2026-08-11T15:42:36+00:00",
+          "summary": "\"No one's growing, no one's learning\"",
+          "discussed": true,
+          "mention_offset_frac": 0.6678
+        },
+        {
+          "title": "[NYT Business] Heat, Fire, Smoke and Storms Are Wreaking Havoc on the Economy",
+          "url": "https://www.nytimes.com/2026/08/11/business/economy/climate-change-costs-economy-businesses.html",
+          "source": "NYT Business",
+          "author": "",
+          "ai_score": 59,
+          "date_published": "2026-08-11T16:58:58+00:00",
+          "summary": "Businesses are reckoning with the financial toll of this year’s brutal climate shocks.",
+          "discussed": true,
+          "mention_offset_frac": 0.6888
+        },
+        {
+          "title": "[NYT Business] As Credit Card Debt Mounts, Home Becomes a Piggy Bank",
+          "url": "https://www.nytimes.com/2026/08/11/business/home-equity-credit-card-debt.html",
+          "source": "NYT Business",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-08-11T17:48:39+00:00",
+          "summary": "A rise in home equity to record levels has led many Americans to refinance their mortgages to pay their bills.",
+          "discussed": true,
+          "mention_offset_frac": 0.7012
+        },
+        {
+          "title": "[STAT News] Medicaid will stop paying for some gender-affirming care for transgender minors",
+          "url": "https://www.statnews.com/2026/08/11/medicaid-to-end-funding-gender-affirming-care-transgender-youth/?utm_campaign=rss",
+          "source": "STAT News",
+          "author": "Associated Press",
+          "ai_score": 62,
+          "date_published": "2026-08-11T22:18:55+00:00",
+          "summary": "The Trump administration plans to end federal funding for some care for transgender minors.",
+          "discussed": true,
+          "mention_offset_frac": 0.7675
+        },
+        {
+          "title": "[Business Insider] Taiwan packed its new coast guard vessels with anti-ship missiles. Now it's readying them for a fight with China.",
+          "url": "https://www.businessinsider.com/taiwan-coast-guard-vessels-anti-ship-missiles-han-kuang-china-2026-8",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-11T04:01:07+00:00",
+          "summary": "The Bali, one of 12 new Anping-class ships, can outfitted to fire 16 anti-ship missiles in times of war.",
+          "discussed": true,
+          "mention_offset_frac": 0.8237
+        },
+        {
+          "title": "[Fast Company] The Transportation Department is recruiting gamers to solve its air traffic controller shortage",
+          "url": "https://www.fastcompany.com/91588574/transportation-department-recruiting-gamers-air-taffic-controller-shortage",
+          "source": "Fast Company",
+          "author": "",
+          "ai_score": 70,
+          "date_published": "2026-08-11T16:29:29+00:00",
+          "summary": "For more than a decade there has been a shortage of air traffic controllers in the U.S., which has resulted in flight delays and increased risks for air travelers. And the Department of Transportation...",
+          "discussed": true,
+          "mention_offset_frac": 0.9802
+        },
+        {
+          "title": "[Hackaday] Splitting a Ball Bearing to Cut Out Backlash",
+          "url": "https://hackaday.com/2026/08/11/splitting-a-ball-bearing-to-cut-out-backlash/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-08-11T20:00:50+00:00",
+          "summary": "Gears are usually the biggest contributors to backlash in a mechanical system, but they’re far from the only culprits. Ball bearings are a less obvious source of imprecision, since any …read more",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] UPDATE: Today’s Northwest B.C. Internet outage caused by attempted theft",
+          "url": "https://wltribune.com/2026/08/11/internet-outage-affects-northern-bc-once-again/",
+          "source": "Williams Lake Tribune",
+          "author": "Marisca Bakker",
+          "ai_score": 88,
+          "date_published": "2026-08-12T05:43:21.324545+00:00",
+          "summary": "## UPDATE: Today’s Northwest B.C. Internet outage caused by attempted theft Published 2:17 pm Tuesday, August 11, 2026 **By Marisca Bakker** CityWest service is out in northwestern B.C. (File photo) C...",
+          "discussed": false
+        },
+        {
+          "title": "Arson spikes possible due to prediction markets’ rise, US senators warn – Wildfire Today",
+          "url": "https://wildfiretoday.com/arson-spikes-possible-due-to-prediction-markets-rise-us-senators-warn/",
+          "source": "Wildfire Today",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-12T05:42:31.910342+00:00",
+          "summary": "“By offering contracts on fires, prediction market sites run the risk of encouraging people to influence fires that have already started, creating additional concerns around public safety and insider ...",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Titanic-esqe Telegraph Keeps Relationship Afloat",
+          "url": "https://hackaday.com/2026/08/11/titanic-esqe-telegraph-keeps-relationship-afloat/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-08-12T05:00:15+00:00",
+          "summary": "When people say the key to a happy, long-lasting marriage is communication, they generally mean the verbal kind: talking things out with your spouse, sharing your feelings, and all that …read more",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Never-Before-Seen Type of Amyloid May Explain a Devastating Form of Alzheimer's",
+          "url": "https://www.sciencealert.com/never-before-seen-type-of-amyloid-may-explain-a-devastating-form-of-alzheimers",
+          "source": "ScienceAlert",
+          "author": "David Nield",
+          "ai_score": 75,
+          "date_published": "2026-08-12T00:48:45+00:00",
+          "summary": "Alzheimer's just gave up another one of its secrets. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+          "discussed": true
+        },
+        {
+          "title": "[Hackaday] The PC OS That Would Have Blown Your Mind Back In 1984",
+          "url": "https://hackaday.com/2026/08/11/the-pc-os-that-would-have-blown-your-mind-back-in-1984/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 70,
+          "date_published": "2026-08-11T15:30:37+00:00",
+          "summary": "As far as desktop microcomputers for mere mortals went in the first half of the 1980s, there was a sharp distinction between home computers such as the many 8-bit machines …read more",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Evacuation order downgraded to alert for Loon Lake residents",
+          "url": "https://wltribune.com/2026/08/11/evacuation-order-downgraded-to-alert-for-loon-lake-residents/",
+          "source": "Williams Lake Tribune",
+          "author": "Barbara Roden",
+          "ai_score": 88,
+          "date_published": "2026-08-12T05:43:21.324860+00:00",
+          "summary": "## Evacuation order downgraded to alert for Loon Lake residents Published 10:21 am Tuesday, August 11, 2026 **By Barbara Roden** 1/2 Members of the Loon Lake Fire Department gather to welcome resident...",
+          "discussed": false
+        },
+        {
+          "title": "[The Narwhal] B.C. renters remain vulnerable to extreme heat",
+          "url": "https://thenarwhal.ca/bc-renters-extreme-heat-right-to-cool/?utm_source=rss",
+          "source": "The Narwhal",
+          "author": "",
+          "ai_score": 73,
+          "date_published": "2026-08-11T11:00:00+00:00",
+          "summary": "Five years after a deadly heat dome, most B.C. renters still don’t have a right to keep their homes cool. Some municipalities are stepping up — and wish the province would too",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Well] Should Letting Children Play Alone Outside Be a Crime?",
+          "url": "https://www.nytimes.com/2026/08/11/well/family/children-safety-independence-laws.html",
+          "source": "NYT Well",
+          "author": "",
+          "ai_score": 67,
+          "date_published": "2026-08-11T16:47:11+00:00",
+          "summary": "Some parents have been surprised to find themselves in the legal system’s cross hairs.",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] Dozens dead and missing after ferry capsizes in Zimbabwe",
+          "url": "https://www.aljazeera.com/video/newsfeed/2026/8/12/aje-onl-nf_overloaded-ferry-capsizes-in-zimbabwe-110826?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-12T02:47:36+00:00",
+          "summary": "An overloaded ferry capsized on Zimbabwe’s Lake Kariba, killing at least 15 people and leaving 27 missing.",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] Researchers Return to a Forgotten Forest Experiment 30 Years Later—With “Astounding” Results",
+          "url": "https://nautil.us/researchers-return-to-a-forgotten-forest-experiment-30-years-later-with-astounding-results-1283623/",
+          "source": "Nautilus",
+          "author": "",
+          "ai_score": 59,
+          "date_published": "2026-08-11T16:00:00+00:00",
+          "summary": "A new look at the trees revealed an overlooked “win-win-win” scenario for forest maintenance The post Researchers Return to a Forgotten Forest Experiment 30 Years Later—With “Astounding” Results appea...",
+          "discussed": false
+        },
+        {
+          "title": "[Toms Guide] After 10 years of Pixels, why is Google still making phones?",
+          "url": "https://www.tomsguide.com/phones/google-pixel-phones/after-10-years-of-pixels-why-is-google-still-making-phones",
+          "source": "Toms Guide",
+          "author": "https://www.tomsguide.com/author/mark-spoonauer",
+          "ai_score": 62,
+          "date_published": "2026-08-11T15:12:36+00:00",
+          "summary": "With the Google Pixel 11 launch imminent, I asked three analysts why Google is still making phones.",
+          "discussed": false
+        },
+        {
+          "title": "[Regional News Archives - Williams Lake Tribune] Mental health among supports shared by minister in Okanagan amid wildfire emergency",
+          "url": "https://wltribune.com/2026/08/11/mental-health-among-supports-shared-by-minister-in-okanagan-amid-wildfire-emergency/",
+          "source": "Regional News Archives - Williams Lake Tribune",
+          "author": "Jennifer Smith",
+          "ai_score": 74,
+          "date_published": "2026-08-11T19:16:00+00:00",
+          "summary": "Emergency Management and Climate Readiness Minister Kelly Greene urging preparedness by all residents",
+          "discussed": false
+        },
+        {
+          "title": "[Forbes Innovation] Employers Are Treating More Workers As Disposable. AI Could Speed Up That Trend",
+          "url": "https://www.forbes.com/sites/courtney-connley-hampton/2026/08/11/employers-are-treating-more-workers-as-disposable-ai-could-speed-up-that-trend/",
+          "source": "Forbes Innovation",
+          "author": "Courtney Connley-Hampton",
+          "ai_score": 60,
+          "date_published": "2026-08-11T18:19:08+00:00",
+          "summary": "MIT emeritus professor Paul Osterman estimates 35% of workers are already treated as disposable and artificial intelligence could create an even less secure workforce.",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] Israeli raids, demolitions continue as UN warns West Bank at breaking point",
+          "url": "https://www.aljazeera.com/news/2026/8/12/israeli-raids-demolitions-continue-as-un-warns-west-bank-at-breaking-point?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "Al Jazeera Staff",
+          "ai_score": 62,
+          "date_published": "2026-08-12T04:59:19+00:00",
+          "summary": "Israeli forces arrest 23 Palestinians and demolish home of man killed in confrontation with Israeli settlers in July.",
+          "discussed": false
+        },
+        {
+          "title": "[Vancouver Sun] Summerland evacuees face lineups, uncertainty — and an outpouring of help",
+          "url": "https://vancouversun.com/news/bc-wildfires-summerland-evacuees-face-lineups-uncertainty-and-an-outpouring-of-help",
+          "source": "Vancouver Sun",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-12T00:15:49+00:00",
+          "summary": "Thousands of Summerland evacuees wait out the out-of-control Bald Range wildfire in Penticton motels, parking lots and a reception centre",
+          "discussed": false
+        },
+        {
+          "title": "[Scientific American] 107 years ago, the Eddington total eclipse experiment helped prove Einstein’s theory of relativity",
+          "url": "https://www.scientificamerican.com/article/107-years-ago-the-eddington-total-eclipse-experiment-helped-prove-einsteins-theory-of-relativity/",
+          "source": "Scientific American",
+          "author": "Adam Kovac",
+          "ai_score": 60,
+          "date_published": "2026-08-11T15:00:00+00:00",
+          "summary": "The Eddington experiment used a solar eclipse to prove Albert Einstein’s general theory of relativity",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Business] How Social Media Sparked a Refugee Crisis Between Spain and Morocco",
+          "url": "https://www.nytimes.com/2026/08/11/technology/social-media-ceuta-spain-morocco.html",
+          "source": "NYT Business",
+          "author": "",
+          "ai_score": 59,
+          "date_published": "2026-08-11T13:23:38+00:00",
+          "summary": "A wave of disinformation online contributed to a surge of migrants in the Spanish enclave of Ceuta who were trying to reach Europe, resulting in about 90 deaths.",
+          "discussed": false
+        },
+        {
+          "title": "In These Orchards, Fruit Has All But Disappeared This Year | Civil Eats",
+          "url": "https://civileats.com/2026/08/11/in-these-orchards-fruit-has-all-but-disappeared-this-year/",
+          "source": "Civil Eats",
+          "author": "",
+          "ai_score": 65,
+          "date_published": "2026-08-12T05:42:21.569431+00:00",
+          "summary": "Across the country, farmers who grow apples, peaches, and plums had catastrophic losses tied to freezes and a changing climate.",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Top Stories] Powerful ‘Derecho’ Storms Tear Through Midwest",
+          "url": "https://www.nytimes.com/2026/08/11/weather/storms-midwest-derecho.html",
+          "source": "NYT Top Stories",
+          "author": "",
+          "ai_score": 65,
+          "date_published": "2026-08-12T02:15:40+00:00",
+          "summary": "Strong storms covered hundreds of miles and brought winds nearing 100 miles per hour.",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Ukraine hits Russian Crimea targets with unmanned ship carrying FPV drones",
+          "url": "https://www.techradar.com/pro/ukraine-hits-russian-crimea-targets-with-unmanned-ship-carrying-fpv-drones",
+          "source": "TechRadar",
+          "author": "",
+          "ai_score": 70,
+          "date_published": "2026-08-11T23:40:00+00:00",
+          "summary": "Ukraine used a MAGURA unmanned vessel to carry FPV drones against Russian radar installations while expanding its broader drone production ambitions.",
+          "discussed": false
+        },
+        {
+          "title": "[Country Life] Touchscreens are a window into a hell of our own making",
+          "url": "https://www.countrylife.co.uk/lifestyle/motoring/touchscreens-are-a-window-into-a-hell-of-our-own-making",
+          "source": "Country Life",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-08-11T10:05:00+00:00",
+          "summary": "Too minimal, too boring, too grey. The interior of a car used to be a sacred space, and now it's just another office. But it doesn't have to be like this, argues James Fisher.",
+          "discussed": false
+        },
+        {
+          "title": "[The Atlantic] Are Men to Blame for the Birth-Rate Collapse?",
+          "url": "https://www.theatlantic.com/ideas/2026/08/fertility-men-housework-goldin/688238/?utm_source=feed",
+          "source": "The Atlantic",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-08-11T11:00:00+00:00",
+          "summary": "Whether dads do their fair share of the housework appears to have no effect on fertility.",
+          "discussed": false
+        },
+        {
+          "title": "[The New Yorker] If A.I. Takes the Jobs of Young People, How Will They React?",
+          "url": "https://www.newyorker.com/news/fault-lines/if-ai-takes-the-jobs-of-young-people-how-will-they-react",
+          "source": "The New Yorker",
+          "author": "",
+          "ai_score": 67,
+          "date_published": "2026-08-11T10:00:00+00:00",
+          "summary": "The Democratic electorate is already moving left, but that may be nothing compared with what happens when unemployment really starts to rise.",
+          "discussed": false
+        },
+        {
+          "title": "[Business Insider] Claude's watermarking poses the question: Are you willing to proudly own that you write with AI?",
+          "url": "https://www.businessinsider.com/claude-watermarking-ai-writing-unmasking-2026-8",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-11T22:38:08+00:00",
+          "summary": "The rise of AI watermarking makes me wonder: aside from students and creative writers, how much do people care if their AI use is outed?",
+          "discussed": false
+        },
+        {
+          "title": "[Popular Mechanics] Uh, We’re Running Out of Sand—And It’s a Bigger Problem than You Might Think",
+          "url": "https://www.popularmechanics.com/science/environment/a73393351/sand-extraction-problem/",
+          "source": "Popular Mechanics",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-11T12:00:00+00:00",
+          "summary": "We mine more sand every year than any other solid material, and scientists warn that we’re taking more than the planet can replenish.",
+          "discussed": false
+        },
+        {
+          "title": "[The New Yorker] An Israeli Satirist’s Bid to Save His Country’s Democracy",
+          "url": "https://www.newyorker.com/news/the-lede/an-israeli-satirists-bid-to-save-his-countrys-democracy",
+          "source": "The New Yorker",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-08-11T15:25:35+00:00",
+          "summary": "Lior Schleien used to host hit TV shows. Now he posts videos of discussions with young people, the majority of whom currently tend right, which garner millions of views.",
+          "discussed": false
+        },
+        {
+          "title": "‘It’s a monumental task’: B.C. Wildfire crews face major fight on Bald Range blaze : My Cariboo Now",
+          "url": "https://www.mycariboonow.com/315493/news/emergency-services/fire/wildfires/its-a-monumental-task-b-c-wildfire-crews-face-major-fight-on-bald-range-blaze/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 86,
+          "date_published": "2026-08-12T05:42:05.409002+00:00",
+          "summary": "",
+          "discussed": false
+        },
+        {
+          "title": "[The Atlantic Culture] The Man Who Refused to Sit on the Sidelines",
+          "url": "https://www.theatlantic.com/magazine/2026/09/fallen-september-11-firefighter-family/687964/?utm_source=feed",
+          "source": "The Atlantic Culture",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-08-11T11:00:00+00:00",
+          "summary": "Kevin Dowdell, a lieutenant in an elite FDNY rescue unit, taught his sons to take action. When he disappeared on 9/11, they went to Ground Zero to search for him.",
+          "discussed": false
+        },
+        {
+          "title": "[Scientific American] Can AI make mathematics more human?",
+          "url": "https://www.scientificamerican.com/article/can-ai-make-mathematics-more-human/",
+          "source": "Scientific American",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-08-11T18:00:00+00:00",
+          "summary": "Mathematician Yang-Hui He explains why artificial intelligence is fundamentally transforming mathematical work—and that's a good thing",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] This Russian VPN has been accused of breaching its no-log policy — here's what we know",
+          "url": "https://www.techradar.com/vpn/vpn-privacy-security/this-russian-vpn-has-been-accused-of-breaching-its-no-log-policy-heres-what-we-know",
+          "source": "TechRadar",
+          "author": "",
+          "ai_score": 69,
+          "date_published": "2026-08-07T14:37:59+00:00",
+          "summary": "SplitVPN has been accused of breaching its no-log policy, allegedly leaking 58 million connection logs. While SplitVPN claims the allegations are fabricated, the incident exposes the limits of no-log ...",
+          "discussed": false
+        },
+        {
+          "title": "[Edge (GamesRadar)] \"This is precisely why it’s so important to take actual measurements\" - Noctua discovers over 50 PC cases with false cooler clearance details: \"every millimetre can count\"",
+          "url": "https://www.gamesradar.com/hardware/desktop-pc/this-is-precisely-why-its-so-important-to-take-actual-measurements-noctua-discovers-over-50-pc-cases-with-false-cooler-clearance-details-every-millimetre-can-count/",
+          "source": "Edge (GamesRadar)",
+          "author": "",
+          "ai_score": 67,
+          "date_published": "2026-08-11T11:20:07+00:00",
+          "summary": "Noctua has found that over 50% of the PC cases it's tested have inaccurate CPU cooler clearance.",
+          "discussed": false
+        },
+        {
+          "title": "[MakeUseOf] Firefox has a panic button for runaway tabs and almost nobody uses it",
+          "url": "https://www.makeuseof.com/firefox-has-panic-button-for-runaway-tabs-almost-nobody-uses-it/",
+          "source": "MakeUseOf",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-11T19:01:12+00:00",
+          "summary": "Take control of Firefox memory before your browser slows to a crawl.",
+          "discussed": false
+        },
+        {
+          "title": "[Tom's Hardware] Laser wireless charging could keep drones airborne indefinitely — improved receiver converts at 38.49% efficiency and uses nanocrystalline material for thermals",
+          "url": "https://www.tomshardware.com/tech-industry/drones/wireless-ota-charging-with-lasers-could-keep-drones-airborne-indefinitely-improved-receiver-converts-at-38-49-percent-efficiency-and-uses-nanocrystalline-material-for-thermals",
+          "source": "Tom's Hardware",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-11T10:30:00+00:00",
+          "summary": "Researchers use a ground-based laser to wirelessly deliver power to drones, potentially allowing them to stay airborne without landing to recharge.",
+          "discussed": false
+        },
+        {
+          "title": "[STAT News] STAT+: Heart failure drug from Tenax Therapeutics fails in pivotal study",
+          "url": "https://www.statnews.com/2026/08/10/tenax-heart-failure-drug-trail-failure-levosimendan-ph-hfpef/?utm_campaign=rss",
+          "source": "STAT News",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-10T11:38:20+00:00",
+          "summary": "A Tenax Therapeutics drug designed to treat a type of heart failure associated with high blood pressure in the lungs failed in a closely watched study.",
+          "discussed": false
+        },
+        {
+          "title": "[ZDNet] I ran a dumpstate analysis on my Samsung phone and found 3 useful system diagnostics",
+          "url": "https://www.zdnet.com/article/how-to-run-dumpstate-analysis-on-android-phone/",
+          "source": "ZDNet",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-06T00:24:00+00:00",
+          "summary": "The hidden diagnostic file breaks down all the logging your Pixel, Samsung, or even Motorola does daily. Here's how I've been using it.",
+          "discussed": false
+        },
+        {
+          "title": "[The Tyee] Can Eby Manage Growing NDP Divisions on LNG and Pipelines?",
+          "url": "https://thetyee.ca/Opinion/2026/08/06/Can-Eby-Manage-NDP-Divisions-LNG-Pipelines/",
+          "source": "The Tyee",
+          "author": "",
+          "ai_score": 65,
+          "date_published": "2026-08-06T07:10:00+00:00",
+          "summary": "Duelling cabinet statements on the Tilbury project expose growing fault lines on emissions and risk of pollution.",
+          "discussed": false
+        },
+        {
+          "title": "[The New Yorker] The Delusions of John Roberts",
+          "url": "https://www.newyorker.com/magazine/2026/08/17/john-roberts-profile",
+          "source": "The New Yorker",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-08-10T10:00:00+00:00",
+          "summary": "The Chief Justice insists that his Supreme Court isn’t biased even as it keeps making dramatic leaps rightward.",
+          "discussed": false
+        },
+        {
+          "title": "[Country Living UK] Can you paint your side of the fence if you don't own it? What homeowners need to know",
+          "url": "https://www.countryliving.com/uk/homes-interiors/gardens/a73364065/can-you-paint-your-fence-side/",
+          "source": "Country Living UK",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-08-08T06:30:00+00:00",
+          "summary": "Experts explain the rules on ownership, permission and avoiding neighbour disputes",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceDaily] A colossal magma system has been hiding beneath Tuscany",
+          "url": "https://www.sciencedaily.com/releases/2026/08/260804034645.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 59,
+          "date_published": "2026-08-05T09:19:43+00:00",
+          "summary": "A massive magma reservoir has been detected deep beneath Tuscany, despite showing no obvious signs at the surface. Scientists mapped the roughly 6,000-cubic-kilometer body using natural ground vibrati...",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] \"I'm allowed to do this\": how attackers talk past AI safeguards",
+          "url": "https://boingboing.net/2026/08/05/ai-guardrails-easy-bypass.html",
+          "source": "Boing Boing",
+          "author": "",
+          "ai_score": 59,
+          "date_published": "2026-08-05T20:56:17+00:00",
+          "summary": "Getting an AI model to launch a cyberattack usually just takes asking the right way. Cisco Talos researchers say that claiming you own the servers you are attacking often works, and so does calling th...",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Repair Culture & Practical Tech",
+      "articles": [
+        {
+          "title": "[KFF Health News] Patients Wary of Governments, Companies Pushing AI as a Rural Healthcare Solution",
+          "url": "https://kffhealthnews.org/rural-health/rural-healthcare-artificial-intelligence-patients-wary/",
+          "source": "KFF Health News",
+          "author": "Arielle Zionts, Darius Tahir",
+          "ai_score": 68,
+          "date_published": "2026-08-11T09:00:00+00:00",
+          "summary": "The $50 billion federal Rural Health Transformation Program is set to flood rural America with new AI health tools. That’s despite little evidence on whether health-related AI can improve access to ca...",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Boeing and US Air Force sign deal to build guided jet-powered bombs capable of traveling 300 nautical miles",
+          "url": "https://www.techradar.com/pro/boeing-and-us-air-force-sign-deal-to-build-guided-jet-powered-bombs-capable-of-traveling-300-nautical-miles",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/efosa-udinmwen",
+          "ai_score": 67,
+          "date_published": "2026-08-12T00:25:00+00:00",
+          "summary": "Boeing secures $75 million Air Force contract to produce its GBU-75 turbojet-powered JDAM, extending bomb range past 300 nautical miles.",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] On the ground in Cali, Colombia’s worst-hit city after the quake",
+          "url": "https://www.aljazeera.com/video/newsfeed/2026/8/12/on-the-ground-in-cali-colombias-worst-hit-city-after-the-quake?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "",
+          "ai_score": 65,
+          "date_published": "2026-08-12T01:40:33+00:00",
+          "summary": "Reporting from the rubble of an apartment building, Al Jazeera’s Latin America Editor Lucia Newman describes the scene.",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "When AI funding arrives faster than repair rights legislation, are we solving rural health and equipment problems or papering over them with technology that can't legally be maintained?",
+        "riley_position": "Rural hospitals and technicians are being offered AI tools as substitutes for stable financing and repair access, but the technology can't solve problems that are fundamentally legal and contractual, not technical—predictive maintenance is useless if you're barred from actually fixing what fails.",
+        "riley_key_evidence": [
+          "Eight in ten biomedical technicians have equipment in their own hospitals they're legally barred from servicing due to manufacturer-locked service keys and manuals",
+          "Ninety-seven percent of those technicians want repair access barriers removed",
+          "Rural technicians report lockdown happening more frequently, with fewer manufacturer reps willing to travel to remote sites"
+        ],
+        "casey_position": "The sequencing of investment is backwards—hospitals should first establish what they're legally barred from fixing in their existing equipment, then negotiate repair rights, before funding new AI pilots with unproven outcomes; the real accountability question is what obligation a hospital takes on when buying equipment meant to outlast the current board.",
+        "casey_key_evidence": [
+          "KFF Health News and UNC Sheps Center found little rigorous evidence that AI tools improve rural access or patient outcomes, and the technology gets 'oversold as a substitute for stable financing'",
+          "State-level right-to-repair legislation for medical devices in the U.S. is still tangled in legal pushback with no equivalent on B.C. books",
+          "Nobody gets a photo op for quiet contract renegotiation, so funding chains prioritize ribbon-cuttings for new software over maintenance of existing equipment"
+        ],
+        "resolution": "No concession, but unified agreement on next steps: the real question is not whether to reject new tools but to enforce repair rights *alongside* AI investment; both speakers agree the takeaway is to ask specific questions before purchasing—ask dealers about independent shop diagnostic access, and ask regional health authorities whether their equipment comes with repair rights before new funding arrives.",
+        "topics_covered": [
+          "Right-to-repair barriers in rural hospital biomedical equipment",
+          "Disconnect between AI funding timelines and legal repair-access legislation",
+          "Proprietary lockdown creeping into vehicles, ATVs, and consumer equipment in rural areas",
+          "Accountability and implicit promises when purchasing long-lived infrastructure",
+          "Incentive misalignment in funding decisions favoring announcements over maintenance"
+        ],
+        "calls_to_action": [
+          "A local health board member could raise the question publicly: Does Interior Health have full visibility into which machines fall into the locked-out category, and has anyone asked before funding new tech?",
+          "Before your next vehicle purchase, ask the dealer straight out whether independent shops in the Cariboo get full diagnostic access, or whether you're stuck driving to Kamloops every time something electronic goes wrong—ask before you sign, not after.",
+          "If you have a story of a machine sitting dark somewhere in the Cariboo or a truck stuck waiting on a dealer-only part, write in to feedback at cariboosignals.ca and the team will dig into it."
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 11,
+          "conditions": "clear skies",
+          "high": 23,
+          "low": 10
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 10,
+          "conditions": "clear skies",
+          "high": 21,
+          "low": 9
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 12,
+          "conditions": "clear skies",
+          "high": 25,
+          "low": 10
+        },
+        {
+          "name": "Quesnel",
+          "temp": 11,
+          "conditions": "clear skies",
+          "high": 23,
+          "low": 10
+        },
+        {
+          "name": "Redstone",
+          "temp": 9,
+          "conditions": "clear skies",
+          "high": 21,
+          "low": 8
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Cariboo Family Enrichment Centre",
+      "description": "Free family services in 100 Mile House since 1988 — counselling, prenatal support, childcare resource and referral, and the Raven Youth Activity Centre for teens",
+      "website": "cariboofamily.org",
+      "psa_angle": "",
+      "event_name": ""
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_azure": "Azure Neural TTS",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "Gemini TTS"
+  }
+}

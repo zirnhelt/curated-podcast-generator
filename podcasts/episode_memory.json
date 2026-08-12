@@ -1,22 +1,4 @@
 {
-  "2026-07-07": {
-    "timestamp": 1783431564.045651,
-    "topics": [
-      "[Business Insider] Why the ultrarich spend millions on custo",
-      "[Boing Boing] In 1872 a ship was found drifting, empty. The ",
-      "[STAT News] STAT+: Elevance sues government over $115 millio",
-      "[Global News] A wet June in Saskatchewan delays Saskatoon be",
-      "[New Atlas] Decoding the verbal language of birds earns scie",
-      "[The Northern Miner] Mine operators face worsening wildfire\u00a0",
-      "[Al Jazeera English] Cuba loses power across nation for thir",
-      "[WIRED] What if the Universe Isn\u2019t as Uniform as Scientists "
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption"
-    ],
-    "date": "2026-07-07"
-  },
   "2026-07-08": {
     "timestamp": 1783507098.665308,
     "topics": [
@@ -671,5 +653,25 @@
     "date": "2026-08-11",
     "focus": "tourism-outdoor-economy",
     "focus_name": "Tourism & the Outdoor Economy"
+  },
+  "2026-08-12": {
+    "timestamp": 1786527563.724829,
+    "topics": [
+      "[TechCrunch] Kyoto Fusioneering starts work on key fusion po",
+      "[Hackaday] Splitting a Ball Bearing to Cut Out Backlash",
+      "[WIRED] A Zoom Screen-Sharing Bug Let Anyone Take Over Other",
+      "[Williams Lake Tribune] UPDATE: Today\u2019s Northwest B.C. Inter",
+      "Arson spikes possible due to prediction markets\u2019 rise, US se",
+      "[KFF Health News] Patients Wary of Governments, Companies Pu",
+      "[TechRadar] Boeing and US Air Force sign deal to build guide",
+      "[Al Jazeera English] On the ground in Cali, Colombia\u2019s worst"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption"
+    ],
+    "date": "2026-08-12",
+    "focus": "vehicles-field-gear",
+    "focus_name": "Vehicles & Field Gear"
   }
 }

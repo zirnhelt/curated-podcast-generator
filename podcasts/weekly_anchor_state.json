@@ -1,0 +1,23 @@
+{
+  "assigned": {
+    "2026-W33": {
+      "id": "owe-those-after",
+      "question": "What do we owe the people who come after us?",
+      "dimension": "legacy-time",
+      "premise": "Almost every decision in a resource region is really a decision about time \u2014 a cutblock, a tailings pond, a municipal debt, an archive nobody funds, a language with four fluent speakers left. Some traditions formalise the obligation across generations; most institutions discount it to nearly zero. The question is what a duty to people who cannot yet object actually requires, and who is willing to pay for it now.",
+      "reading": null,
+      "framings": {},
+      "assigned_at": "2026-08-12",
+      "origin": "seeded"
+    }
+  },
+  "used": [
+    {
+      "id": "owe-those-after",
+      "dimension": "legacy-time",
+      "question": "What do we owe the people who come after us?",
+      "week": "2026-W33"
+    }
+  ],
+  "generated": []
+}

@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "How Indigenous technologists are building data sovereignty i",
-      "[ScienceDaily] AI reveals explosive bursts in bird evolution",
       "[Outside Online] The Feds Just Opened Public Lands to AI Dat",
       "[Tom's Hardware] Firm that uses AI to locate ancient lost sh",
       "[ScienceDaily] AI can tell if your brain is aging faster tha",
@@ -10,7 +8,9 @@
       "[The Northern Miner] AI\u00a0boom lifts mining while competing fo",
       "[WIRED] Is This Poker Player Bluffing? The AI Thinks So",
       "[TechRadar] New malware disguised as popular Roblox cheat to",
-      "AI"
+      "AI",
+      "[TechCrunch] Kyoto Fusioneering starts work on key fusion po",
+      "[TechRadar] Boeing and US Air Force sign deal to build guide"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -90,19 +90,14 @@
         "occurrences": 1
       },
       {
-        "date": "2026-08-04",
-        "clue": "pilot-skepticism:+ \u2014 Emphasized durability question for bilateral treaty once political incentive fades",
-        "occurrences": 1
+        "date": "2026-08-12",
+        "clue": "pilot-skepticism:+ \u2014 AI tools oversold as workforce substitute, explicitly.",
+        "occurrences": 2
       },
       {
         "date": "2026-08-05",
         "clue": "evidence-bar:~ \u2014 acknowledged Apple's volume problem as real complexity",
         "occurrences": 1
-      },
-      {
-        "date": "2026-08-11",
-        "clue": "structural-lens:+ \u2014 emphasized legal teeth over labeling repeatedly",
-        "occurrences": 2
       },
       {
         "date": "2026-08-06",
@@ -384,9 +379,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-08-01",
-        "clue": "structural-lens:~ \u2014 Shifted from accountability-via-voting to accountability-via-standing-mechanisms",
-        "occurrences": 1
+        "date": "2026-08-12",
+        "clue": "structural-lens:~ \u2014 Moved from repair-knowledge succession problem to permanent contractual obsolescence\u2014deepened diagnosis.",
+        "occurrences": 2
       },
       {
         "date": "2026-08-09",
@@ -401,6 +396,11 @@
       {
         "date": "2026-08-11",
         "clue": "pilot-skepticism:x \u2014 conceded monitoring *could* change outcomes, demanded accountability proof",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-08-12",
+        "clue": "evidence-bar:+ \u2014 Shifted from anecdote to demanding institutional visibility on locked equipment.",
         "occurrences": 1
       }
     ],
