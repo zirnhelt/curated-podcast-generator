@@ -1,0 +1,74 @@
+{
+  "_comment": "Weekly anchor questions — one open question per ISO week that all seven deep dives circle from their own theme's angle. A third rotation layer above the daily theme and the super-cycle focus. Unlike the focus, the anchor IS named on air. Selection is pinned per ISO week in podcasts/weekly_anchor_state.json, so re-runs mid-week keep Monday's question. The no-repetition guard keys on `dimension`, not wording, so a paraphrase cannot slip back in. `pin_week` (ISO %G-W%V) forces an anchor onto a specific week; entries without it flow in pool order. When fewer than MIN_POOL_REMAINING entries are unused, weekly_anchor.top_up_pool() generates more.",
+
+  "pool": [
+    {
+      "id": "tech-sadness",
+      "question": "Why is everyone in tech so sad?",
+      "dimension": "labour-meaning",
+      "pin_week": "2026-W34",
+      "premise": "An emotional recession has settled over knowledge work — layoffs, AI anxiety, and the collapse of the mission-driven self-image that carried the industry for two decades. The people who were supposed to be building the future increasingly describe their own work as pointless. The open question is what happens to a society when an entire class of workers loses faith in its careers, and whether the trades, the land, and the small-town economies that were told to envy that class have something to say back.",
+      "reading": "https://www.noemamag.com/why-is-everyone-in-tech-so-sad/"
+    },
+    {
+      "id": "owe-those-after",
+      "question": "What do we owe the people who come after us?",
+      "dimension": "legacy-time",
+      "premise": "Almost every decision in a resource region is really a decision about time — a cutblock, a tailings pond, a municipal debt, an archive nobody funds, a language with four fluent speakers left. Some traditions formalise the obligation across generations; most institutions discount it to nearly zero. The question is what a duty to people who cannot yet object actually requires, and who is willing to pay for it now."
+    },
+    {
+      "id": "allowed-to-fix",
+      "question": "Who is allowed to fix things?",
+      "dimension": "expertise-authority",
+      "premise": "Fixing something requires permission as often as it requires skill — a warranty, a licence, a certification, a proprietary diagnostic tool, a professional body, a funding body that recognises only certain credentials. Rural places have always repaired what cities replace, and are now told they may not. The question is where the line between gatekeeping and genuine competence actually falls, and who gets to draw it."
+    },
+    {
+      "id": "self-sufficient-or-connected",
+      "question": "Is it better to be self-sufficient or well-connected?",
+      "dimension": "autonomy-interdependence",
+      "premise": "Rural identity leans hard on independence — your own water, your own power, your own woodpile, your own read on the weather. But almost every rural success story turns out to run on a network: a co-op, a mutual aid list, a shared mill, a partnership agreement, a satellite dish. The question is whether self-sufficiency is a genuine strategy or a story people tell about infrastructure they've stopped noticing."
+    },
+    {
+      "id": "lost-when-easier",
+      "question": "What gets lost when something gets easier?",
+      "dimension": "skill-convenience",
+      "premise": "Every tool that removes friction also removes the practice that friction produced — reading a map, reading a river, reading a room, knowing a stand of timber by walking it. Sometimes what's lost was drudgery worth losing. Sometimes it was the only way the knowledge was ever transmitted. The question is how to tell the two apart before the last person who had the skill retires."
+    },
+    {
+      "id": "worth-saving",
+      "question": "Who decides what's worth saving?",
+      "dimension": "value-triage",
+      "premise": "Not everything survives, and the choosing is rarely explicit. A species gets recovery funding or doesn't; a building gets heritage status or a demolition permit; a mill town gets a transition plan or a highway sign; a dialect gets documented or doesn't. The question is who is actually in the room when those calls get made, and what happens to the things nobody nominated."
+    },
+    {
+      "id": "place-unrecorded",
+      "question": "Does a place still exist if nobody records it?",
+      "dimension": "memory-record",
+      "premise": "The Cariboo is thinly documented and getting thinner — a shrinking local press, council meetings nobody minutes, oral history held by people in their eighties, ecosystems monitored by satellite but not by anyone who lives there. Meanwhile the same landscape is captured in enormous detail by systems that answer to nobody local. The question is what the difference is between being recorded and being known."
+    },
+    {
+      "id": "small-better-or-excuse",
+      "question": "When is small genuinely better, and when is it just an excuse?",
+      "dimension": "scale",
+      "premise": "Small is the region's default virtue — small mills, small farms, small classrooms, small government. Sometimes small really does mean responsive, repairable, and accountable. Sometimes it means underfunded, unaccountable, and one retirement away from collapse, defended with the language of virtue. The question is which one you're looking at, and how you'd know."
+    },
+    {
+      "id": "actually-measuring",
+      "question": "What are we actually measuring?",
+      "dimension": "measurement",
+      "premise": "Timber volume is not forest health. Test scores are not learning. Attendance is not participation. Engagement is not attention. Every institution runs on a number that stands in for something it cannot count directly, and over time the proxy quietly becomes the goal. The question is what each of our numbers was originally supposed to be about, and how far it has drifted."
+    },
+    {
+      "id": "leave-or-stay",
+      "question": "Who gets to leave, and who has to stay?",
+      "dimension": "mobility-belonging",
+      "premise": "Movement is unevenly distributed. Some people leave for school and choose whether to return; some commute two weeks in, two weeks out; some are evacuated and come back to nothing; some cannot leave because of family, a mortgage, a herd, or a territory that is the whole point. The question is how a place should think about the people who go, the people who arrive, and the people for whom leaving was never really an option."
+    },
+    {
+      "id": "trust-built-or-inherited",
+      "question": "Is trust something you build, or something you inherit?",
+      "dimension": "trust",
+      "premise": "Institutions arrive in a small community carrying a history they did not personally create — a ministry, a company, a school district, a newspaper, an AI system. Some of them work hard and are still not believed; some coast on credit earned decades ago. The question is whether trust can actually be rebuilt by conduct, or whether it is mostly inherited and merely spent."
+    }
+  ]
+}
