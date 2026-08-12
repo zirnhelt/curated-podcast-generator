@@ -70,3 +70,21 @@ def _isolate_psa_state(tmp_path, monkeypatch):
     if psa_selector.PSA_STATE_FILE.exists():
         shutil.copy(psa_selector.PSA_STATE_FILE, tmp_state)
     monkeypatch.setattr(psa_selector, "PSA_STATE_FILE", tmp_state)
+
+
+@pytest.fixture(autouse=True)
+def _isolate_anchor_state(tmp_path, monkeypatch):
+    """Redirect weekly anchor state to a tmp copy for every test.
+
+    select_anchor() pins the week's question and appends to the no-repeat ledger
+    on the first call of a week, so any test that reaches it would otherwise
+    rewrite podcasts/weekly_anchor_state.json — live state CI commits daily.
+    Same hazard, same fix as _isolate_psa_state above.
+    """
+    import weekly_anchor
+
+    tmp_state = tmp_path / "weekly_anchor_state.json"
+    if weekly_anchor.ANCHOR_STATE_FILE.exists():
+        shutil.copy(weekly_anchor.ANCHOR_STATE_FILE, tmp_state)
+    monkeypatch.setattr(weekly_anchor, "PODCASTS_DIR", tmp_path)
+    monkeypatch.setattr(weekly_anchor, "ANCHOR_STATE_FILE", tmp_state)

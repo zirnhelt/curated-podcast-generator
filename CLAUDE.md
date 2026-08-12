@@ -107,13 +107,16 @@ render once OOM-killed the VM); publishing fails on credentials, network and dis
 to force a full 40-minute re-render to retry. The daily workflow commits between each, so a
 failure costs only its own stage.
 
-Because stages are separate processes, two values cannot ride in locals and are carried in
+Because stages are separate processes, some values cannot ride in locals and are carried in
 the script file's `#` header instead, read back by `read_script_metadata`:
 - **`# Theme:`** — the feed can override the weekday theme, which changes the filename slug,
   so the audio stages must never recompute it. Audio paths are derived from the script's own
   filename (`_episode_paths`).
 - **`# Brave:`** — gates one sentence in the spoken credits. Scripts predating this header
   degrade to `no`.
+- **`# Anchor:`** — the week's anchor question, which is named on air and appears in the
+  episode description. Whitespace-collapsed to one line, since the header parser reads one
+  key per line. Scripts predating this header degrade to `None`.
 
 #### Segments (`segment()`)
 
@@ -197,6 +200,7 @@ history, and a truncated `podcast-feed.xml` breaks every podcast client at once.
 - `debate_memory.json` — 90-day window to avoid repeating debate angles; must-differ filter keys on (theme, focus)
 - `psa_rotation_state.json` — Round-robin PSA org rotation state
 - `article_holding.json` — Super-cycle holding pen + aired-early callback ledger
+- `weekly_anchor_state.json` — This week's pinned anchor question + the no-repeat ledger (ids forever, dimensions for 26 weeks)
 
 ### Configuration System (`config_loader.py`)
 
@@ -208,6 +212,7 @@ All content is externalized to `config/` JSON files; loaders are LRU-cached (sin
 | `hosts.json` | Riley & Casey — bios, voices, personalities, debate stances |
 | `themes.json` | 7 rotating daily themes (Mon–Sun), keywords, editorial lenses |
 | `super_cycles.json` | Multi-week focus rotations within each daily theme (slug, keywords, lens per focus) |
+| `weekly_anchors.json` | Seeded pool of weekly anchor questions (question, dimension, premise, optional `pin_week`) |
 | `prompts.json` | All Claude prompt templates (~100 KB, cached in one call) |
 | `interests.txt` | Article relevance scoring rubric (primary/secondary/avoid) |
 | `blocklist.json` | Excluded domains and keywords |
@@ -233,6 +238,47 @@ Each daily theme (except Saturday, deliberately uncycled) rotates through a mult
 - **Subtlety:** the focus is deliberately unannounced on air — it shapes selection and emphasis only. Hosts name and acknowledge the weekday theme, never a rotating sub-theme; every focus-derived prompt block carries a do-not-announce instruction.
 - **Article holding (`route_articles_for_focus`):** off-theme, non-urgent articles matching an upcoming focus within 14 days are held in `podcasts/article_holding.json` and released (flagged `_held_from`, framed as "earlier this week") on their focus day. Urgent ones (`_boosted_score ≥ 85`) air same-day in the bonus bucket (never deep-dive) and are remembered in the aired-early ledger for an on-air callback when their focus day arrives. Holding never shrinks the pool below the roundup + deep-dive budget.
 - **Repeat-topic guard (`format_prior_coverage_for_prompt`):** local word-overlap check of deep-dive titles against recent episode topics and debate questions; on a match, hosts are instructed to acknowledge the earlier discussion and center what's new. Evolving-story context carries the same instruction.
+
+### Weekly Anchor Questions (`weekly_anchor.py`, `config/weekly_anchors.json`)
+
+The third rotation layer, above the daily theme and the super-cycle focus. One open question
+per ISO week — "Why is everyone in tech so sad?" — that all seven deep dives circle from their
+own theme's angle. Selected by `select_anchor()` in the non-critical `script/anchor` segment,
+rendered into the script prompt's `{anchor_block}` by `format_anchor_for_prompt()`.
+
+Unlike the focus, the anchor **is named on air**: the focus is a curation device, the anchor is
+an editorial idea and the reason to listen more than one day a week.
+
+- **Idempotency is bought with state, not the calendar.** `get_focus_for_day` is stateless
+  because the rotation is a pure function of the date; an anchor cannot be, because the pool is
+  eventually LLM-generated. Instead the week's choice is **pinned** in
+  `podcasts/weekly_anchor_state.json` on the first run of the ISO week, and every later run that
+  week — including a re-render days later — reads that record back unchanged. A second question
+  appearing mid-week is the failure this prevents.
+- **No repetition works on `dimension`, not wording.** Each question is tagged with the
+  dimension of experience it opens (`labour-meaning`, `scale`, `trust`, …). An `id` is spent
+  forever; a `dimension` has a 26-week cooldown. Keying the guard on the dimension is what stops
+  a generated question returning as a paraphrase. Both checks are local — no API call.
+- **Pool with LLM top-up.** `config/weekly_anchors.json` ships 11 seeded questions in order.
+  `top_up_pool()` fires when eligible entries drop below `MIN_POOL_REMAINING` — before the pool
+  empties, so a failed top-up costs a warning rather than the week's anchor — conditioned on
+  every question and dimension already used. Roughly one call every 11 weeks.
+- **`pin_week`** forces a question onto a specific ISO week. A **future** pin is never taken
+  early; an **overdue** pin still runs, so shipping late does not bury a question that was
+  scheduled deliberately.
+- **Framing, never selection.** Article selection is untouched — the anchor is a lens for
+  reading whatever the theme and focus already chose. One Claude call per week generates the
+  seven per-weekday angles; a failure degrades to an anchor with `framings: {}`, which still
+  works.
+- **The escape hatch is load-bearing.** The prompt block ends with an instruction to drop the
+  anchor entirely when the day's material does not genuinely reach it. Seven days orbiting one
+  question is a standing invitation to manufacture connections — the same failure the roundup's
+  `_NEVER_ANNOUNCE` block headers exist to prevent, with a much stronger pull. There is a test
+  asserting that instruction is present.
+- `weekly_anchor` cannot import `degrade()` without a circular import, so it records
+  degradations and `run_script_stage` drains them via `_report_anchor_degradations()`. **A new
+  fallback here must append to `_degradations`** or it will not reach the run report.
+- Preview the schedule without spending or writing state: `python weekly_anchor.py --preview 12`.
 
 ### TTS Providers
 

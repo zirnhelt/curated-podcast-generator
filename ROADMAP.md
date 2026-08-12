@@ -12,6 +12,8 @@
 - Music interludes integrated via pydub
 - Script polishing pass reduces repetition between segments
 - Configuration externalized to config/ directory (hosts, themes, credits, interests)
+- Three rotation layers: daily theme, super-cycle focus, and a weekly anchor question all seven
+  deep dives circle (`weekly_anchor.py`; preview with `python weekly_anchor.py --preview 12`)
 - Deduplication against last 7 days of episodes
 - Episode memory for continuity (21-day window)
 - Citations system tracks sources per episode
@@ -42,6 +44,14 @@
 - [ ] Theme-based filtering on website index page
 
 ## Medium-term
+- [ ] **Review the first LLM-generated anchor batch.** The seeded pool covers 11 weeks
+      (through 2026-W44); `top_up_pool()` writes the first generated questions to
+      `podcasts/weekly_anchor_state.json` after that. Read them before they air — the
+      no-repeat guard enforces a fresh `dimension` but nothing yet checks that a generated
+      question is actually answerable through all seven themes.
+- [ ] Consider whether the anchor should feed `format_debate_memory_for_prompt`. The id is
+      already recorded on each debate memory entry; nothing reads it yet, and the must-differ
+      bucket keys on (theme, focus) only.
 - [ ] **Two-phase render: split synthesis from assembly.** Today synthesis is interleaved
       with pydub assembly, which is *why* the provider fallback has to be mid-episode and
       can leave the show in two voices. Render every section to WAV in one pass, then

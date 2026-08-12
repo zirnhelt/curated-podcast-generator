@@ -2733,6 +2733,7 @@ class TestScriptMetadataHeader:
         assert read_script_metadata(path) == {
             "theme": "Working Lands & Industry",
             "brave_used": True,
+            "anchor": None,
         }
 
     def test_round_trips_brave_unused(self, tmp_path, monkeypatch):
@@ -2765,12 +2766,14 @@ class TestScriptMetadataHeader:
         assert read_script_metadata(legacy) == {
             "theme": "Legacy Theme",
             "brave_used": False,
+            "anchor": None,
         }
 
     def test_missing_file_degrades_without_raising(self, tmp_path):
         assert read_script_metadata(tmp_path / "nope.txt") == {
             "theme": None,
             "brave_used": False,
+            "anchor": None,
         }
 
     def test_stops_parsing_at_first_non_comment_line(self, tmp_path):

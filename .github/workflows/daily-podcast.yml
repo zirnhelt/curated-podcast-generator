@@ -236,6 +236,9 @@ jobs:
           # article_holding.json is the super-cycle holding pen — written by
           # route_articles_for_focus and previously never committed, so held
           # articles were silently lost between runs.
+          # weekly_anchor_state.json pins the week's anchor question and holds
+          # the no-repeat ledger. Unstaged, Monday's pin would not survive to
+          # Tuesday, which would then pick a second question for the same week.
           paths: |
             podcasts/podcast_script_*.txt
             podcasts/citations_*.json
@@ -244,6 +247,7 @@ jobs:
             podcasts/debate_memory.json
             podcasts/psa_rotation_state.json
             podcasts/article_holding.json
+            podcasts/weekly_anchor_state.json
             podcasts/twit_inspiration.json
             podcasts/content_seeds.json
             podcasts/email_queue.json

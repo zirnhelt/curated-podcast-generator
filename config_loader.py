@@ -141,6 +141,15 @@ def load_super_cycles_config():
         return json.load(f)
 
 @lru_cache(maxsize=1)
+def load_weekly_anchors_config():
+    """Load the weekly anchor-question pool (cached). Returns {} if file absent."""
+    path = CONFIG_DIR / "weekly_anchors.json"
+    if not path.exists():
+        return {}
+    with open(path, 'r') as f:
+        return json.load(f)
+
+@lru_cache(maxsize=1)
 def load_notable_dates():
     """Load notable dates calendar for theme-aligned secondary mentions (cached)."""
     path = CONFIG_DIR / "notable_dates.json"
@@ -249,7 +258,8 @@ def get_all_config():
         'psa_organizations': load_psa_organizations(),
         'psa_events': load_psa_events(),
         'blocklist': load_blocklist(),
-        'super_cycles': load_super_cycles_config()
+        'super_cycles': load_super_cycles_config(),
+        'weekly_anchors': load_weekly_anchors_config()
     }
 
 if __name__ == "__main__":

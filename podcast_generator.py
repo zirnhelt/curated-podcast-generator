@@ -75,6 +75,13 @@ import cohere_enrichment
 # Import PSA selector
 from psa_selector import select_psa
 
+# Import weekly anchor question selector
+from weekly_anchor import (
+    drain_degradations as anchor_drain_degradations,
+    format_anchor_for_prompt,
+    select_anchor,
+)
+
 # Import weather and ambient audio modules
 from weather import fetch_weather, format_weather_for_prompt, weather_slide_data
 from ambient import get_ambient_transition
@@ -655,6 +662,17 @@ def _report_gemini_degradations(name: str) -> None:
     the fallback is usually right, the silence never is.
     """
     for detail in gemini_drain_degradations():
+        degrade(name, detail)
+
+
+def _report_anchor_degradations(name: str) -> None:
+    """Surface anchor-selection fallbacks as rows in the run report.
+
+    Same circular-import constraint as gemini_tts: weekly_anchor collects, the
+    script path drains. An episode that ran without its week's question, or with
+    the question but no per-day framing, is a materially different episode.
+    """
+    for detail in anchor_drain_degradations():
         degrade(name, detail)
 
 
@@ -3079,14 +3097,22 @@ def get_debate_memory():
 
     return cleaned
 
-def update_debate_memory(date_key, theme, debate_summary, focus=None):
-    """Update debate memory with summary of today's deep dive debate."""
+def update_debate_memory(date_key, theme, debate_summary, focus=None, anchor=None):
+    """Update debate memory with summary of today's deep dive debate.
+
+    The anchor id is recorded but not yet filtered on: the must-differ bucket
+    keys on (theme, focus), and the seven days sharing one week's question never
+    collide inside that bucket. It is here so a future anchor repeat is
+    detectable at all — without it the ledger cannot tell "same question, new
+    week" from coincidence.
+    """
     memory = get_debate_memory()
     memory[date_key] = {
         "timestamp": get_pacific_now().timestamp(),
         "date": date_key,
         "theme": theme,
         "focus": focus.get("slug") if focus else None,
+        "anchor": anchor.get("id") if anchor else None,
         **debate_summary
     }
     save_memory(DEBATE_MEMORY_FILE, memory)
@@ -4768,7 +4794,7 @@ def get_current_date_info():
     
     return weekday, date_str
 
-def generate_episode_description(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, brave_used=False, weather_used=False, cohere_used=False):
+def generate_episode_description(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, brave_used=False, weather_used=False, cohere_used=False, anchor=None):
     """Generate episode description with sources and credits.
 
     When *script* is provided, citations are aligned with what was actually
@@ -4816,9 +4842,19 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
     else:
         deep_dive_desc = f"Deep dive into {theme_name.lower()}, discussing how rural and remote communities can thoughtfully adopt and adapt emerging technologies."
 
+    # The week's anchor question is named on air, so it belongs in the show
+    # notes too — it is what ties this episode to the other six.
+    anchor_line = ""
+    if anchor and anchor.get("question"):
+        anchor_line = (
+            f"<p><b>THIS WEEK WE'RE ASKING:</b> "
+            f"{saxutils.escape(anchor['question'])}</p>"
+        )
+
     description = (
         f"<p>Riley and Casey explore technology and society in rural communities. "
         f"Today's focus: {theme_name}.</p>"
+        f"{anchor_line}"
         f"<p><b>NEWS ROUNDUP:</b> We break down {stories_preview}, and explore what "
         f"these developments mean for communities like ours.</p>"
         f"<p><b>RURAL CONNECTIONS:</b> {deep_dive_desc}</p>"
@@ -5058,7 +5094,7 @@ def score_script(script_text):
     }
 
 
-def generate_citations_file(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, quality=None, brave_used=False, weather_used=False, cohere_used=False, weather_data=None):
+def generate_citations_file(news_articles, deep_dive_articles, theme_name, script=None, debate_summary=None, psa_info=None, quality=None, brave_used=False, weather_used=False, cohere_used=False, weather_data=None, anchor=None):
     """Generate citations file for the episode.
 
     When *script* is provided (the finalized, polished script), each citation
@@ -5078,7 +5114,7 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
     episode_description = generate_episode_description(
         news_articles, deep_dive_articles, theme_name, script=script,
         debate_summary=debate_summary, psa_info=psa_info, brave_used=brave_used,
-        weather_used=weather_used, cohere_used=cohere_used
+        weather_used=weather_used, cohere_used=cohere_used, anchor=anchor
     )
 
     # Match articles against script, then reorder the roundup to follow the
@@ -5110,6 +5146,10 @@ def generate_citations_file(news_articles, deep_dive_articles, theme_name, scrip
                 "summary": SUMMARY_MODEL,
             },
             **({"quality": quality} if quality else {}),
+            # Recorded structurally as well as in the prose description, so the
+            # week's episodes can be grouped without parsing HTML.
+            **({"anchor": {"id": anchor.get("id"), "question": anchor.get("question")}}
+               if anchor else {}),
         },
         "segments": {
             "news_roundup": {
@@ -5366,7 +5406,7 @@ def us_policy_framing_tag(article) -> str:
     return f' [US POLICY — {framing}]'
 
 
-def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None, feed_meta=None, bonus_articles=None, debate_memory=None, cta_memory=None, thought_seeds=None, weather_data=None, brave_context="", feedback_emails=None, twit_items=None, corrections=None, focus=None):
+def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None, feed_meta=None, bonus_articles=None, debate_memory=None, cta_memory=None, thought_seeds=None, weather_data=None, brave_context="", feedback_emails=None, twit_items=None, corrections=None, focus=None, anchor=None):
     """Generate conversational podcast script using Claude."""
     print("🎙️ Generating podcast script with Claude...")
 
@@ -5655,6 +5695,12 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
     system_prompt = build_cached_system_prompt()
     prompts = CONFIG['prompts']
 
+    # This week's anchor question, framed for today's theme. Empty string when
+    # there is no anchor, which leaves both templates reading as they did before.
+    # It belongs in the *dynamic* prompt, not the cached system prompt — it
+    # changes weekly, and caching it would defeat the cache every Monday.
+    anchor_block = format_anchor_for_prompt(anchor, get_pacific_now().weekday(), theme_name)
+
     if system_prompt and 'script_generation_user' in prompts:
         # New path: static system prompt (cached) + dynamic user prompt
         user_prompt = prompts['script_generation_user']['template'].format(
@@ -5667,6 +5713,7 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             other_host_name=other_host_name,
             theme_name=theme_name,
             theme_lens=_build_theme_lens(theme_name, focus=focus),
+            anchor_block=anchor_block,
             news_text=news_text,
             deep_dive_text=deep_dive_text,
             news_titles_brief=news_titles_brief,
@@ -5696,6 +5743,7 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             other_host_upper=other_host_name.upper(),
             other_host_name=other_host_name,
             theme_name=theme_name,
+            anchor_block=anchor_block,
             news_text=news_text,
             deep_dive_text=deep_dive_text,
             news_titles_brief=news_titles_brief,
@@ -7934,13 +7982,16 @@ def generate_tts_test_feed():
     print(f"✅ Generated TTS test feed with {len(episodes)} Azure episodes → tts-test-feed.xml")
 
 
-def save_script_to_file(script: str, theme_name: str, brave_used: bool = False) -> str | None:
+def save_script_to_file(script: str, theme_name: str, brave_used: bool = False,
+                        anchor_question: str | None = None) -> str | None:
     """Save the generated script to a file.
 
     The header carries the metadata the audio stage needs, since it runs as a
     separate process and cannot inherit locals: the theme (which the feed can
-    override, so it is not always what get_theme_for_day() returns) and whether
-    Brave research was used (which gates a line in the spoken credits).
+    override, so it is not always what get_theme_for_day() returns), whether
+    Brave research was used (which gates a line in the spoken credits), and this
+    week's anchor question (which is named on air, so the publish stage puts it
+    in the episode description).
     """
     if not script:
         return None
@@ -7957,6 +8008,9 @@ def save_script_to_file(script: str, theme_name: str, brave_used: bool = False) 
             f"# {CONFIG['podcast']['title']} Podcast Script - {date_str}\n",
             f"# Theme: {theme_name}\n",
             f"# Brave: {'yes' if brave_used else 'no'}\n",
+            # Whitespace-collapsed: the header parser reads one line per key, so
+            # a question carrying a newline would silently truncate the header.
+            (f"# Anchor: {' '.join(anchor_question.split())}\n" if anchor_question else ""),
             f"# Generated: {pacific_now.strftime('%Y-%m-%d %H:%M:%S %Z')}\n\n",
             script,
         ]))
@@ -7972,12 +8026,13 @@ def save_script_to_file(script: str, theme_name: str, brave_used: bool = False) 
 def read_script_metadata(script_path) -> dict:
     """Parse the `# Key: value` header written by save_script_to_file().
 
-    Returns {"theme": str | None, "brave_used": bool}. Scripts written before
-    the header carried `# Brave:` degrade to brave_used=False, and any script
-    without a `# Theme:` line degrades to theme=None — both are what the
-    downstream callers already tolerate.
+    Returns {"theme": str | None, "brave_used": bool, "anchor": str | None}.
+    Scripts written before the header carried `# Brave:` degrade to
+    brave_used=False, scripts predating `# Anchor:` degrade to anchor=None, and
+    any script without a `# Theme:` line degrades to theme=None — all three are
+    what the downstream callers already tolerate.
     """
-    metadata: dict = {"theme": None, "brave_used": False}
+    metadata: dict = {"theme": None, "brave_used": False, "anchor": None}
     try:
         with open(script_path, "r", encoding="utf-8") as fh:
             for line in fh:
@@ -7990,6 +8045,8 @@ def read_script_metadata(script_path) -> dict:
                     metadata["theme"] = value
                 elif key == "brave":
                     metadata["brave_used"] = value.lower() in ("yes", "true", "1")
+                elif key == "anchor" and value:
+                    metadata["anchor"] = value
     except OSError as exc:
         print(f"⚠️  Could not read script metadata from {script_path}: {exc}")
     return metadata
@@ -8200,6 +8257,11 @@ def run_script_stage() -> tuple[str, str] | None:
     if not script_exists:
         print("🆕 Generating new script...")
 
+        # This week's anchor question — the third rotation layer, above the theme
+        # and the focus. Nothing on the reuse path above needs it, and every
+        # consumer below lives in this branch.
+        today_anchor = None
+
         with segment("script/budget-preflight"):
             # Everything below this line costs money — seed rating, the feed's
             # Brave enrichment, article body fetches — and all of it is wasted if
@@ -8210,6 +8272,27 @@ def run_script_stage() -> tuple[str, str] | None:
             # Seeds are only eligible on the day whose theme best matches their content.
             if pending_seeds:
                 rate_pending_seeds(pending_seeds)
+
+        # Deliberately after the budget preflight: on the week's first run this
+        # makes a Claude call for the seven per-weekday framings, and no call
+        # belongs above the check that the account can still pay for one. Every
+        # later run that week reads the pinned record back and spends nothing.
+        # Non-critical: an episode without an anchor is the show as it ran before
+        # this existed.
+        with segment("script/anchor", critical=False):
+            today_anchor = select_anchor(
+                pacific_now.date(), client=get_anthropic_client(), log_usage=_log_api_call
+            )
+            if today_anchor:
+                print(f"❓ This week's question: {today_anchor['question']}")
+                _framing = (today_anchor.get('framings') or {}).get(str(today_weekday))
+                if _framing:
+                    print(f"   Today's angle: {_framing}")
+            else:
+                print("❓ No anchor question this week")
+        # Drained outside the block: a segment that raised still recorded
+        # whatever it degraded on the way down, and those rows are the useful ones.
+        _report_anchor_degradations("script/anchor")
 
         # Fetch curated podcast feed for today's day of week (pre-scored, theme-sorted)
         with segment("script/feed", exit_code=EXIT_NO_ARTICLES):
@@ -8506,7 +8589,8 @@ def run_script_stage() -> tuple[str, str] | None:
                 cta_memory=cta_memory, thought_seeds=active_thought_seeds,
                 weather_data=weather_data, brave_context=brave_context,
                 feedback_emails=email_feedback, twit_items=twit_items,
-                corrections=email_corrections, focus=today_focus
+                corrections=email_corrections, focus=today_focus,
+                anchor=today_anchor
             )
 
             if not script:
@@ -8646,6 +8730,7 @@ def run_script_stage() -> tuple[str, str] | None:
                 weather_used=bool(weather_data),
                 cohere_used=cohere_enrichment.COHERE_ENABLED,
                 weather_data=weather_data,
+                anchor=today_anchor,
             )
 
         with segment("script/day-specific-inserts", critical=False):
@@ -8673,9 +8758,13 @@ def run_script_stage() -> tuple[str, str] | None:
         # input. If this cannot be written there is nothing to commit and
         # nothing to render, so it is the one persistence step that aborts.
         with segment("script/save"):
-            # brave_used rides in the header so the audio stage can keep the
-            # spoken Brave credit accurate across the process boundary.
-            script_filename = save_script_to_file(script, today_theme, brave_used=brave_used)
+            # brave_used and the anchor question ride in the header so the audio
+            # and publish stages keep the spoken Brave credit and the episode
+            # description accurate across the process boundary.
+            script_filename = save_script_to_file(
+                script, today_theme, brave_used=brave_used,
+                anchor_question=today_anchor.get("question") if today_anchor else None,
+            )
 
         # Each state file gets its own segment. These were one unbroken run of
         # writes: a failure partway through marked seeds and email consumed
@@ -8714,7 +8803,8 @@ def run_script_stage() -> tuple[str, str] | None:
             update_host_memory(host_insights, clues=personality_clues)
 
         with segment("script/persist-debate-memory", critical=False):
-            update_debate_memory(date_key, today_theme, debate_summary, focus=today_focus)
+            update_debate_memory(date_key, today_theme, debate_summary,
+                                 focus=today_focus, anchor=today_anchor)
 
         with segment("script/persist-cta-memory", critical=False):
             # Update one-year CTA cache
