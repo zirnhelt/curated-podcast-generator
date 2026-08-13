@@ -340,11 +340,46 @@ def _rung_label(rung: _Rung) -> str:
 
 
 def _budget_allows(started: float, budget: float, backoff_s: int) -> bool:
-    """True when another attempt, its backoff included, still fits the budget."""
+    """True when another attempt — its backoff *and* its own cost — still fits.
+
+    Reserving the attempt's read timeout as well as its backoff is what makes
+    the ladder's reach honest. Counting the backoff alone let an attempt start
+    at 255 s into a 420 s budget and then run to the ceiling, so the "out of
+    budget" message named three attempts when the third never had room to
+    finish.
+    """
     now = time.monotonic()
-    if _render_deadline is not None and now + backoff_s >= _render_deadline:
+    cost = backoff_s + REQUEST_READ_TIMEOUT
+    if _render_deadline is not None and now + cost >= _render_deadline:
         return False
-    return (now - started) + backoff_s < budget
+    return (now - started) + cost <= budget
+
+
+def _is_transport_failure(error: Exception) -> bool:
+    """True when the request never got an answer, so its shape is not the fault.
+
+    A read timeout or a dropped connection says nothing about *what* was asked —
+    unlike `finishReason: OTHER`, which comes back tokenized and is a rejection
+    of the content. Shedding context, style and cues cannot fix a request the
+    model never answered, and on the observed failures it is not free: two dead
+    prompt-shedding rungs cost 120 s each and pushed the model rungs out of the
+    section budget entirely.
+    """
+    return isinstance(error, (requests.Timeout, requests.ConnectionError))
+
+
+def _next_model_rung(after: int, failed_model: str) -> int | None:
+    """Index of the next rung that would call a different model, or None.
+
+    None means every remaining rung would re-ask the model that just went
+    unanswered — either because the ladder has no model change left, or because
+    the canary pinned one model for the episode. Both are reasons to hand the
+    section back now rather than spend the rest of the budget confirming it.
+    """
+    for i in range(after + 1, len(RETRY_LADDER)):
+        if _model_for(RETRY_LADDER[i]) != failed_model:
+            return i
+    return None
 
 
 def _attempt(
@@ -441,11 +476,13 @@ def _synthesize_chunk(
     started = time.monotonic()
     last_error: Exception | None = None
 
-    for attempt, rung in enumerate(RETRY_LADDER):
+    attempt = 0
+    while attempt < len(RETRY_LADDER):
+        rung = RETRY_LADDER[attempt]
         if attempt:
             if not _budget_allows(started, budget, rung.backoff_s):
                 print(
-                    f"  ⚠️  Gemini TTS out of time budget after {attempt} attempt(s) "
+                    f"  ⚠️  Gemini TTS out of time budget "
                     f"— giving the section back to the caller"
                 )
                 break
@@ -467,6 +504,26 @@ def _synthesize_chunk(
             )
         except (requests.RequestException, RuntimeError) as e:
             last_error = e
+            if _is_transport_failure(e):
+                # Unanswered, not rejected: climb straight to a rung that
+                # changes the model, skipping the ones that only reword the
+                # request. Without this the two prompt-shedding rungs spent
+                # 120 s each on a model already known to be silent, and the
+                # section budget ran out before any model rung was reached —
+                # every Cariboo Signals episode of August 2026 fell back to
+                # OpenAI this way.
+                failed_model = _model_for(rung)
+                nxt = _next_model_rung(attempt, failed_model)
+                if nxt is None:
+                    print(
+                        f"  ⚠️  Gemini TTS unanswered on {failed_model} and no other "
+                        f"model left to try — giving the section back to the caller"
+                    )
+                    break
+                print(f"  ⚠️  Gemini TTS unanswered on {failed_model} — skipping to a model change")
+                attempt = nxt
+            else:
+                attempt += 1
             continue
 
         if attempt:
