@@ -230,6 +230,49 @@ Seven rotating daily themes indexed by weekday (0=Mon):
 - 5 Sat: Cariboo Local Affairs (longer episode, 15 articles)
 - 6 Sun: Science, Wonder & the Natural World
 
+### News Roundup Curation (`_annotate_roundup_blocks`, `_curate_roundup_pool`)
+
+The roundup's story count is derived from **airtime, not appetite**. The segment gets
+~1,100–1,300 words of a 3,400-word script, and every story owes the listener what happened,
+why it matters and the rural angle — `ROUNDUP_MIN_STORY_WORDS` (70) is the floor that takes.
+`NEWS_ROUNDUP_COUNT` (15) is that budget divided by that floor. **A story that cannot be given
+its floor is cut, never compressed**, and the prompt states the segment's word target so a
+shorter list produces deeper stories rather than a shorter segment.
+
+`NEWS_ROUNDUP_COUNT` bounds the **whole segment, bonus picks included**. It used to bound the
+theme pool alone: `_curate_roundup_pool` returned `protected + kept_fill + bonus` and
+`generate_podcast_script` then concatenated the full pre-curation bonus list back in. On
+2026-08-13 that put 52 stories in a 1,237-word roundup — 24 words each, a headline crawl
+("Archaeologists in Sweden uncovered a 9,000-year-old burial. A pistachio butter was recalled.
+Ransomware operators are targeting managers."). Every coherence mechanism — blocks, cluster
+adjacency, the no-forced-segue rules — ran on the 15 and was bypassed by the 37.
+
+**`all_articles` is the curated pool and is authoritative.** The `bonus_articles` parameter to
+`generate_podcast_script` is the *pre-curation* list; concatenating it back in re-admits
+everything the cap just dropped.
+
+Blocks, in airing order — curation metadata the hosts never name on air:
+
+| Block | Contents |
+|-------|----------|
+| `local` | Cariboo/BC place name or regional outlet. Opens the show. Bonus picks are eligible — geography is orthogonal to the feed's theme judgment |
+| `theme` / `theme_adjacent` | Net-positive theme relevance; `_adjacent` matches in the body only. Never bonus picks — the feed already made that call |
+| discipline groups | Off-theme stories with ≥2 same-field siblings, kept adjacent so the back half plays as mini-arcs |
+| `standalone` | Connects to nothing; the weakest material in the segment |
+| `kicker` | One standalone, aired last, told properly — the roundup's deliberate closer |
+
+The **kicker** is why cutting the tail is an edit rather than a shortfall. Standalones used to
+be read out at a sentence apiece; one of them given real airtime is worth more than ten
+mentioned. It reserves its slot before the tail spends the budget, and yields it when the
+protected arc alone fills the segment.
+
+Two prompt rules carry the rest: **NO HEADLINE CRAWL** (never stack unrelated stories into one
+host turn as one-sentence mentions) and **DO NOT MANUFACTURE CONNECTIONS** — an abstract bridge
+that could join *any* two stories ("from one contested piece of land to another", "whoever
+controls the categories controls what counts") sounds like insight and carries none. The escape
+hatch matters more than the prohibition: if the shared thing can't be named in plain words,
+there is no thread, and the hosts just move on.
+
 ### Super Cycles (`config/super_cycles.json`)
 
 Each daily theme (except Saturday, deliberately uncycled) rotates through a multi-week **focus** — e.g. Tuesday cycles agriculture → forestry → mining → tourism, one focus per week. Friday runs a 3-week cycle, all other cycled days 4-week. The cycle position is calendar-derived (`(date.toordinal() // 7) % cycle_length` per weekday via `get_focus_for_day`) — stateless, idempotent on re-runs, predictable ahead of time.

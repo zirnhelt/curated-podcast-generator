@@ -22,6 +22,7 @@ import re
 import tempfile
 import zlib
 import httpx
+from collections import Counter
 from itertools import groupby
 from urllib.parse import urlparse
 
@@ -481,10 +482,30 @@ def _register_prompt_slice(name: str, enabled: bool):
 def _is_prompt_slice_enabled(name: str) -> bool:
     return _PROMPT_SLICES.get(name, False)
 
-# News roundup pool size. Raised 12 → 15 on 2026-07-08: a 406-word roundup
-# shipped a 14-minute episode — the roundup carries the runtime alongside the
-# Deep Dive, so it needs more stories to draw from.
+# News roundup pool size — the budget for the WHOLE segment, bonus picks
+# included. Raised 12 → 15 on 2026-07-08: a 406-word roundup shipped a 14-minute
+# episode — the roundup carries the runtime alongside the Deep Dive, so it needs
+# more stories to draw from.
+#
+# The number is derived from airtime, not appetite. The roundup gets ~1,100-1,300
+# words of a 3,400-word script, and the segment rules require every story to carry
+# what happened, why it matters and the rural angle — ROUNDUP_MIN_STORY_WORDS is
+# the floor that takes. 1,200 / 70 ≈ 15 stories, and a story that cannot be given
+# its floor should be cut, never compressed.
+#
+# Enforcing this on the theme pool alone is what produced the 2026-08-13 episode:
+# the cap held at 15 while 37 uncapped bonus picks rode in behind it, and the
+# resulting 52-story roundup averaged 24 words per story — a headline crawl
+# ("Archaeologists in Sweden uncovered a 9,000-year-old burial. A pistachio
+# butter was recalled. Ransomware operators are targeting managers."). Every
+# coherence mechanism below — blocks, cluster adjacency, the no-forced-segue
+# rules — ran on the 15 and was bypassed by the 37.
 NEWS_ROUNDUP_COUNT = 15
+
+# Minimum airtime a story must be able to command to be worth airing at all.
+# Below this it cannot carry what happened / why it matters / the rural angle,
+# and it becomes a headline read out for no one's benefit.
+ROUNDUP_MIN_STORY_WORDS = 70
 
 # Saturday (Cariboo Local Affairs) runs a deeper, longer episode.
 SATURDAY_DEEP_DIVE_COUNT = 5   # vs. standard 3
@@ -3276,9 +3297,9 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
         if boosted >= URGENT_SCORE_THRESHOLD:
             # Timely coverage now (bonus bucket, never deep-dive), callback later.
             # `_is_bonus` makes this the same bucket the feed's own bonus picks
-            # land in — uncapped by the pool curator, blocked as 'bonus', and
-            # exempt from the roundup order check, which the URL-only split at
-            # render time claimed but the curation path did not honour.
+            # land in: kept out of the theme blocks, but curated and capped with
+            # everything else. It is not a free pass into the roundup — an urgent
+            # off-theme story still has to earn its slot in the tail.
             a['_no_deep_dive'] = True
             a['_is_bonus'] = True
             bonus_articles.append(a)
@@ -4113,6 +4134,9 @@ ROUNDUP_ARC_BLOCKS = ('local', 'theme', 'theme_adjacent')
 ROUNDUP_BLOCK_RANK = {'local': 0, 'theme': 1, 'theme_adjacent': 1}
 ROUNDUP_TAIL_RANK = 2
 
+# The kicker closes the roundup, so it ranks after the tail.
+ROUNDUP_KICKER_RANK = 3
+
 # Theme slots the pool cap reserves when the local block alone would fill the
 # segment. Local leads the show, but a themed episode with no theme stories in
 # its roundup is a worse outcome than a shorter local block.
@@ -4121,6 +4145,8 @@ ROUNDUP_THEME_FLOOR = 3
 
 def _roundup_block_rank(block: str) -> int:
     """Airing rank for a `_roundup_block` value; unknown blocks are the tail."""
+    if block == 'kicker':
+        return ROUNDUP_KICKER_RANK
     return ROUNDUP_BLOCK_RANK.get(block, ROUNDUP_TAIL_RANK)
 
 
@@ -4147,10 +4173,17 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
       sharing a discipline group with at least one sibling, kept adjacent so
       the roundup's back half plays as clusters instead of one-offs
     - 'standalone': everything else, best feed score first
-    - 'bonus': off-theme feed picks and aired-early super-cycle articles, last
+    - 'kicker': one standalone, aired last, as the roundup's deliberate closer
+
+    Bonus picks (off-theme feed extras and aired-early super-cycle articles) are
+    annotated alongside everything else rather than being swept into a block of
+    their own. They used to bypass this function entirely and air as a trailing
+    list of one-sentence mentions; now an off-theme story earns its slot the same
+    way any other tail story does — by joining a discipline cluster, or by being
+    the single best thing left over.
 
     The blocks are curation metadata — `_roundup_block_header` renders them into
-    three prompt sections, none of which the hosts ever name on air.
+    prompt sections, none of which the hosts ever name on air.
     """
     # Strict keyword set: theme-name words + explicit config keywords only.
     # _build_theme_keywords also folds in theme-description words, which are
@@ -4193,11 +4226,6 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
         return (place_hits(a) > 0
                 or any(s in _article_source_name(a).lower() for s in local_sources))
 
-    pool = [a for a in articles if not a.get('_is_bonus')]
-    bonus = [a for a in articles if a.get('_is_bonus')]
-    for a in bonus:
-        a['_roundup_block'] = 'bonus'
-
     def body_theme_hits(a):
         """Net theme-keyword hits in the article body, which relevance() ignores."""
         body = (a.get('_body') or '').lower()
@@ -4207,14 +4235,22 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
                 - _keyword_hit_count(body, anti_keywords or []))
 
     theme_block, adjacent_block, local_block, rest = [], [], [], []
-    for a in pool:
+    for a in articles:
         # Local wins over theme: a story that is both is the strongest opener.
         # relevance ≥ 2 means at least one net keyword hit survives the
         # anti-keyword penalty — score alone (boosted/100 + source boost)
         # cannot reach 2 without a keyword hit.
+        #
+        # Bonus picks are eligible for 'local' but nothing else: the feed's
+        # `_is_bonus` is a judgment about the day's THEME, and geography is
+        # orthogonal to it. A Williams Lake Tribune story that arrived in the
+        # bonus bucket is still the show's front door; re-litigating its theme
+        # relevance here would only overturn a call the feed already made.
         if is_local(a):
             a['_roundup_block'] = 'local'
             local_block.append(a)
+        elif a.get('_is_bonus'):
+            rest.append(a)
         elif a.get('_keyword_matches', 0) > 0 or relevance(a) >= 2:
             a['_roundup_block'] = 'theme'
             theme_block.append(a)
@@ -4242,6 +4278,18 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
         members.sort(key=boosted, reverse=True)
     for a in standalone:
         a['_roundup_block'] = 'standalone'
+    standalone.sort(key=boosted, reverse=True)
+
+    # The kicker: one off-theme story, aired last and told properly, as the
+    # roundup's closer. Standalones are the segment's weakest material — they
+    # connect to nothing by construction — so the tail used to end by reading
+    # them out at a sentence apiece. One of them given real airtime is worth
+    # more than ten of them mentioned, and a deliberate closer is what turns
+    # cutting the other nine into an edit rather than a shortfall.
+    kicker = []
+    if standalone:
+        kicker = [standalone.pop(0)]
+        kicker[0]['_roundup_block'] = 'kicker'
 
     # Place-name hits lead outlet-only matches, and among those an on-theme
     # local story opens the episode — the local block is the show's front door.
@@ -4249,13 +4297,13 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
                      reverse=True)
     theme_block.sort(key=relevance, reverse=True)
     adjacent_block.sort(key=body_theme_hits, reverse=True)
-    standalone.sort(key=boosted, reverse=True)
     # Bigger clusters first — the most connective material leads the back half
     ordered_clusters = sorted(
         clusters.values(), key=lambda ms: (len(ms), boosted(ms[0])), reverse=True
     )
     clustered = [a for members in ordered_clusters for a in members]
-    return local_block + theme_block + adjacent_block + clustered + standalone + bonus
+    return (local_block + theme_block + adjacent_block
+            + clustered + standalone + kicker)
 
 
 def _curate_roundup_pool(articles: list, theme_name: str, pool_size: int) -> tuple:
@@ -4264,20 +4312,27 @@ def _curate_roundup_pool(articles: list, theme_name: str, pool_size: int) -> tup
     Keeps every opening-arc article — local/regional, on-theme and
     theme-adjacent — even past the cap, then fills remaining slots with
     off-theme discipline clusters (never stranding a lone cluster member) and
-    finally the best standalones. An arc wider than the cap trims the local
-    block first, down to a `ROUNDUP_THEME_FLOOR` reservation for theme stories.
-    Bonus articles pass through uncapped. Returns (kept, dropped); dropped
-    articles never reach citations, so dedup lets them resurface on a
-    better-matched theme day.
+    finally the kicker. An arc wider than the cap trims the local block first,
+    down to a `ROUNDUP_THEME_FLOOR` reservation for theme stories.
+
+    `pool_size` bounds the ENTIRE segment, bonus picks included. It used to bound
+    the theme pool alone while bonus articles passed through uncapped, which is
+    how the 2026-08-13 episode aired 52 stories against a cap of 15 — see
+    NEWS_ROUNDUP_COUNT. Every story that survives here must be able to command
+    ROUNDUP_MIN_STORY_WORDS on air; that is the whole point of dropping the rest
+    rather than compressing them into mentions.
+
+    Returns (kept, dropped); dropped articles never reach citations, so dedup
+    lets them resurface on a better-matched theme day.
     """
-    ordered = _annotate_roundup_blocks(articles, theme_name)
-    bonus = [a for a in ordered if a.get('_is_bonus')]
-    pool = [a for a in ordered if not a.get('_is_bonus')]
+    pool = _annotate_roundup_blocks(articles, theme_name)
     if len(pool) <= pool_size:
-        return pool + bonus, []
+        return pool, []
 
     protected = [a for a in pool if a['_roundup_block'] in ROUNDUP_ARC_BLOCKS]
-    fillers = [a for a in pool if a['_roundup_block'] not in ROUNDUP_ARC_BLOCKS]
+    kicker = [a for a in pool if a['_roundup_block'] == 'kicker']
+    fillers = [a for a in pool if a['_roundup_block'] not in ROUNDUP_ARC_BLOCKS
+               and a['_roundup_block'] != 'kicker']
 
     kept_fill, dropped = [], []
     # A wide arc still can't blow past the segment budget. Trimming the arc tail
@@ -4295,16 +4350,27 @@ def _curate_roundup_pool(articles: list, theme_name: str, pool_size: int) -> tup
         dropped.extend(theme_arc[theme_room:])
         protected = local_arc + theme_arc[:theme_room]
 
+    # Reserve the closer's slot before the tail spends the budget. A roundup that
+    # runs out of room mid-cluster and ends on the fourth security advisory of
+    # the day has no ending at all — the kicker is cheap (one slot) and it is the
+    # only story in the tail chosen to be the last thing the listener hears.
+    kicker_room = 1 if kicker and len(protected) < pool_size else 0
+    fill_budget = pool_size - kicker_room
+
     for block, members_iter in groupby(fillers, key=lambda a: a['_roundup_block']):
         members = list(members_iter)
-        room = pool_size - len(protected) - len(kept_fill)
+        room = fill_budget - len(protected) - len(kept_fill)
         # Don't strand a single cluster member with nothing to bridge to
         if room <= 0 or (block != 'standalone' and room < 2):
             dropped.extend(members)
             continue
         kept_fill.extend(members[:room])
         dropped.extend(members[room:])
-    return protected + kept_fill + bonus, dropped
+
+    if not kicker_room:
+        dropped.extend(kicker)
+        kicker = []
+    return protected + kept_fill + kicker, dropped
 
 
 # A section header occupies its whole line ("**NEWS ROUNDUP**"); a speaker turn
@@ -4371,8 +4437,11 @@ def check_roundup_order(script: str, ordered_articles: list) -> list:
 
     placed = []
     for a in ordered_articles:
-        if a.get('_is_bonus'):
-            continue  # bonus picks are meant to sit at the end
+        # Every story is order-checked, bonus picks included: they now carry a
+        # real block (a tail cluster, the kicker, or 'local' when the story is
+        # regional), and the rank comparison below already expects the tail and
+        # the kicker to air late. Skipping them used to hide a bonus story that
+        # opened the show ahead of the local block.
         pos = _article_first_mention(a, turns)
         if pos is not None:
             placed.append((pos, a))
@@ -4424,6 +4493,7 @@ def repair_roundup_order(script: str, ordered_articles: list) -> str:
         'local': '  ← close to home',
         'theme': "  ← today's theme",
         'theme_adjacent': "  ← today's theme",
+        'kicker': '  ← the last word',
     }
 
     def _required_line(i, a):
@@ -4431,10 +4501,11 @@ def repair_roundup_order(script: str, ordered_articles: list) -> str:
         marker = _BLOCK_MARKERS.get(a.get('_roundup_block'), '')
         return f"{i}. [{_article_source_name(a)}] {title}{marker}"
 
+    # Every curated story, bonus picks included — the reorder prompt forbids
+    # dropping stories, so a required order that omitted some of the ones on air
+    # asked the model to reconcile two contradictory instructions.
     required = "\n".join(
-        _required_line(i, a)
-        for i, a in enumerate(
-            [a for a in ordered_articles if not a.get('_is_bonus')], start=1)
+        _required_line(i, a) for i, a in enumerate(ordered_articles, start=1)
     )
     prompt = _safe_template_substitute(
         template, required_order=required, roundup=body,
@@ -5425,23 +5496,18 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
     other_host = 'casey' if welcome_host == 'riley' else 'riley'
     other_host_name = CONFIG['hosts'][other_host]['name']
 
-    # Separate on-theme news from bonus articles for formatting
-    if bonus_articles:
-        bonus_urls = {a.get('url', '') for a in bonus_articles}
-        on_theme_news = [a for a in all_articles if a.get('url', '') not in bonus_urls]
-    else:
-        on_theme_news = all_articles
-        bonus_articles = []
-
     # Order the roundup into coherence blocks (close to home, today's theme,
-    # then same-field clusters and standalones) so the prompt carries explicit
+    # then same-field clusters and the kicker) so the prompt carries explicit
     # grouping structure instead of a flat theme-sorted list. Main already
     # curates/caps the pool via _curate_roundup_pool; annotation here is
     # deterministic, so re-running it reproduces the same block order.
-    on_theme_news = _annotate_roundup_blocks(on_theme_news, theme_name)
-    for _a in bonus_articles:
-        _a['_roundup_block'] = 'bonus'
-    roundup_articles = on_theme_news + bonus_articles
+    #
+    # `all_articles` is the curated pool and is authoritative: bonus picks that
+    # survived curation are already in it, annotated alongside everything else.
+    # The `bonus_articles` parameter is the pre-curation list and must never be
+    # concatenated back in — doing so re-admitted every article the cap had just
+    # dropped, which is what put 52 stories in the 2026-08-13 roundup.
+    roundup_articles = _annotate_roundup_blocks(all_articles, theme_name)
 
     def _format_news_article(a):
         """Format a news article for the script-generation prompt."""
@@ -5452,7 +5518,10 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         # fall back to ai_score so legacy articles still show a value.
         score = a.get('_boosted_score', a.get('ai_score', 0))
         theme_tag = ' [✓THEME]' if a.get('_keyword_matches', 0) > 0 else ''
-        bonus_tag = ' [BONUS]' if a.get('_roundup_block') == 'bonus' else ''
+        # No [BONUS] tag: it marked a story as filler, and the prompt's matching
+        # rule ("one sentence each") turned the tail into a headline crawl. A
+        # story that survives curation is a story the show is covering, and where
+        # it came from is no longer the writer's business.
         cluster_tag = f' [SAME STORY: {a["_topic_cluster"]}]' if a.get('_topic_cluster') else ''
         # Held-and-released article: aired today because it matches this week's
         # rotation focus — hosts must not frame it as breaking, nor explain the timing.
@@ -5463,7 +5532,7 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         body = a.get('_body', '')
         body_line = f"\n  Content: {body[:500]}" if body else ""
         pub_tag = _format_pub_date_tag(a)
-        return f"- [{source}] {title}{theme_tag}{bonus_tag}{cluster_tag}{held_tag}{jurisdiction_tag}{pub_tag}\n  {summary}... (Relevance: {score}){body_line}"
+        return f"- [{source}] {title}{theme_tag}{cluster_tag}{held_tag}{jurisdiction_tag}{pub_tag}\n  {summary}... (Relevance: {score}){body_line}"
 
     # These headers are curation metadata. They tell the model what order to air
     # stories in — never what to say about them. Naming a block on air, or
@@ -5482,11 +5551,17 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             return (f"◆ TODAY'S THEME ({count}) — second, strongest tie first, "
                     f"consecutively. Enter on a half-sentence pivot carried by "
                     f"the subject matter itself. {_NEVER_ANNOUNCE}")
-        return (f"◆ ALSO WORTH NOTING ({count}) — the tail, last, lighter touch "
-                f"(2-3 sentences each). Same-field stories are already adjacent "
-                f"— bridge those on what they share and use clean, direct pivots "
-                f"elsewhere; no forced segues. [BONUS] items are off-theme "
-                f"extras: one sentence each, at the very end. {_NEVER_ANNOUNCE}")
+        if block == 'kicker':
+            return (f"◆ THE LAST WORD (1) — the final story of the roundup and "
+                    f"the note the segment goes out on. Give it a proper telling, "
+                    f"not a mention: what happened, why it lands, and a reason "
+                    f"it's the one worth ending on. Reach it on an ordinary "
+                    f"pivot — never announce it as a closer, a lighter note, or "
+                    f"an aside. {_NEVER_ANNOUNCE}")
+        return (f"◆ ALSO WORTH NOTING ({count}) — the tail, after the theme "
+                f"block. Same-field stories are already adjacent — bridge those "
+                f"on what they share and use clean, direct pivots elsewhere; no "
+                f"forced segues. {_NEVER_ANNOUNCE}")
 
     # Format news articles under their block headers. Three sections: the two
     # arc blocks lead, everything else — clusters, standalones and bonus picks —
@@ -5500,6 +5575,8 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             return 'close_to_home'
         if block in ('theme', 'theme_adjacent'):
             return 'todays_theme'
+        if block == 'kicker':
+            return 'kicker'
         return 'also_worth_noting'
 
     for _block, _members in groupby(roundup_articles, key=_prompt_block):
@@ -8449,7 +8526,9 @@ def run_script_stage() -> tuple[str, str] | None:
                     if a.get("_seed_id"):
                         consumed_seed_ids.append(a["_seed_id"])
 
-                # Append bonus articles to news, flagged for separate intro
+                # Bonus picks join the roundup candidates here and are curated
+                # and capped with everything else below — they are candidates,
+                # not additions to the segment.
                 news_articles = news_articles + bonus_articles
 
         print(f"📊 Ready to generate podcast:")
@@ -8483,17 +8562,21 @@ def run_script_stage() -> tuple[str, str] | None:
                 source_boost=source_boost_for_substitution,
             )
 
-            # Curate the roundup pool: cap to the segment budget, keep every
-            # on-theme and BC-regional story, and prefer off-theme stories that
-            # arrive with same-field siblings so the roundup's back half plays as
-            # connected mini-arcs instead of disconnected one-offs. Dropped
-            # articles never reach citations, so dedup lets them resurface on a
-            # better-matched theme day.
+            # Curate the roundup pool: cap the whole segment — bonus picks
+            # included — to the airtime budget, keep every on-theme and
+            # BC-regional story, and prefer off-theme stories that arrive with
+            # same-field siblings so the roundup's back half plays as connected
+            # mini-arcs instead of disconnected one-offs. Dropped articles never
+            # reach citations, so dedup lets them resurface on a better-matched
+            # theme day.
             _pool_size = SATURDAY_NEWS_ROUNDUP_COUNT if today_weekday == 5 else NEWS_ROUNDUP_COUNT
             news_articles, _roundup_dropped = _curate_roundup_pool(news_articles, today_theme, _pool_size)
+            _blocks = Counter(a.get('_roundup_block') for a in news_articles)
+            print(f"🧵 Roundup pool: {len(news_articles)} stories "
+                  f"(~{len(news_articles) * ROUNDUP_MIN_STORY_WORDS} words minimum) — "
+                  + ", ".join(f"{b}:{n}" for b, n in _blocks.most_common()))
             if _roundup_dropped:
-                print(f"🧵 Roundup pool: kept {len(news_articles)} articles, "
-                      f"dropped {len(_roundup_dropped)} unconnected off-theme:")
+                print(f"   dropped {len(_roundup_dropped)} over budget/unconnected:")
                 for a in _roundup_dropped:
                     print(f"   ✂️  {a.get('title', '')[:70]}")
 
