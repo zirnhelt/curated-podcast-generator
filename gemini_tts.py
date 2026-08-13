@@ -476,21 +476,28 @@ def _synthesize_chunk(
     started = time.monotonic()
     last_error: Exception | None = None
 
+    # `attempt` paces the ladder — backoff, seed and the cap on total calls.
+    # `rung_index` chooses the request's shape, and only tracks `attempt` while
+    # the failures are rejections; a transport failure moves it independently
+    # (or not at all), because rewording an unanswered request is not a retry
+    # strategy.
     attempt = 0
+    rung_index = 0
     while attempt < len(RETRY_LADDER):
-        rung = RETRY_LADDER[attempt]
+        rung = RETRY_LADDER[rung_index]
         if attempt:
-            if not _budget_allows(started, budget, rung.backoff_s):
+            pacing = RETRY_LADDER[attempt].backoff_s
+            if not _budget_allows(started, budget, pacing):
                 print(
                     f"  ⚠️  Gemini TTS out of time budget "
                     f"— giving the section back to the caller"
                 )
                 break
             print(
-                f"  ⚠️  Gemini TTS retrying in {rung.backoff_s}s "
+                f"  ⚠️  Gemini TTS retrying in {pacing}s "
                 f"(attempt {attempt + 1}/{len(RETRY_LADDER)}, {_rung_label(rung)}): {last_error}"
             )
-            time.sleep(rung.backoff_s)
+            time.sleep(pacing)
 
         try:
             # The pinned seed makes generation deterministic, so re-asking with
@@ -505,25 +512,28 @@ def _synthesize_chunk(
         except (requests.RequestException, RuntimeError) as e:
             last_error = e
             if _is_transport_failure(e):
-                # Unanswered, not rejected: climb straight to a rung that
-                # changes the model, skipping the ones that only reword the
-                # request. Without this the two prompt-shedding rungs spent
-                # 120 s each on a model already known to be silent, and the
-                # section budget ran out before any model rung was reached —
-                # every Cariboo Signals episode of August 2026 fell back to
-                # OpenAI this way.
+                # Unanswered, not rejected: go straight to a rung that changes
+                # the model, and when there is none, simply ask the same thing
+                # again. What must not happen is shedding context and style —
+                # that spent 120 s a rung on a shape that was never the problem
+                # and left the budget empty before any model rung was reached
+                # (every Cariboo Signals episode of August 2026).
+                #
+                # Re-asking is worth the attempt: the 2026-08-13 probe measured
+                # ~53% success per call across all five rungs, so a timeout is a
+                # flaky endpoint rather than a dead one, and a second identical
+                # ask is close to a coin flip. The budget, not the ladder, is
+                # what bounds this.
                 failed_model = _model_for(rung)
-                nxt = _next_model_rung(attempt, failed_model)
+                nxt = _next_model_rung(rung_index, failed_model)
                 if nxt is None:
-                    print(
-                        f"  ⚠️  Gemini TTS unanswered on {failed_model} and no other "
-                        f"model left to try — giving the section back to the caller"
-                    )
-                    break
-                print(f"  ⚠️  Gemini TTS unanswered on {failed_model} — skipping to a model change")
-                attempt = nxt
+                    print(f"  ⚠️  Gemini TTS unanswered on {failed_model} — asking again unchanged")
+                else:
+                    print(f"  ⚠️  Gemini TTS unanswered on {failed_model} — changing model")
+                    rung_index = nxt
             else:
-                attempt += 1
+                rung_index = min(rung_index + 1, len(RETRY_LADDER) - 1)
+            attempt += 1
             continue
 
         if attempt:

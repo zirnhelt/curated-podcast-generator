@@ -482,40 +482,57 @@ class TestTransportFailureRouting:
     Signals episode of August 2026 fell back to OpenAI through this path.
     """
 
-    def _timeouts(self, monkeypatch):
-        models = []
+    def _timeouts(self, monkeypatch, error=None):
+        """Record (model, prompt) per call; every call goes unanswered."""
+        calls = []
         monkeypatch.setenv("GEMINI_API_KEY", "test-key")
         monkeypatch.setattr(gemini_tts.time, "sleep", lambda s: None)
 
         def fake_post(url, **kwargs):
-            models.append(url.split("/models/")[1].split(":")[0])
-            raise gemini_tts.requests.ReadTimeout("read timed out")
+            calls.append((
+                url.split("/models/")[1].split(":")[0],
+                kwargs["json"]["contents"][0]["parts"][0]["text"],
+            ))
+            raise error or gemini_tts.requests.ReadTimeout("read timed out")
 
         monkeypatch.setattr(gemini_tts.requests, "post", fake_post)
-        return models
+        return calls
 
-    def test_timeout_skips_the_prompt_shedding_rungs(self, monkeypatch):
-        """The fix: reach the model change instead of dying before it."""
-        models = self._timeouts(monkeypatch)
+    def test_timeout_reaches_the_model_change_immediately(self, monkeypatch):
+        """The fix: the model change is attempt 2, not the rung the budget
+        never affords."""
+        calls = self._timeouts(monkeypatch)
         with pytest.raises(Exception):
             _synthesize_chunk(SEGS)
-        assert models == [
-            gemini_tts.GEMINI_TTS_MODEL,
-            gemini_tts.GEMINI_TTS_FALLBACK_MODEL,
-        ]
+        models = [m for m, _ in calls]
+        assert models[0] == gemini_tts.GEMINI_TTS_MODEL
+        assert models[1] == gemini_tts.GEMINI_TTS_FALLBACK_MODEL
 
-    def test_timeout_stops_when_the_canary_pinned_one_model(self, monkeypatch):
-        """A pinned model makes every remaining rung the same request.
+    def test_timeout_never_sheds_the_prompt(self, monkeypatch):
+        """An unanswered request carries no verdict on its own wording."""
+        calls = self._timeouts(monkeypatch)
+        with pytest.raises(Exception):
+            _synthesize_chunk(SEGS, context_tail="earlier in the show")
+        # Every call keeps the full-quality shape: the context tail, the style
+        # prompt and the cues all survive.
+        assert all("earlier in the show" in prompt for _, prompt in calls)
+        style = gemini_tts._style_prompt()
+        assert style and all(style in prompt for _, prompt in calls)
 
-        The canary pins the fallback only when the primary is already known to
-        be down, so there is no second model left — spending the rest of the
-        budget re-asking the pinned one just delays the OpenAI failover.
+    def test_pinned_model_is_asked_again_rather_than_abandoned(self, monkeypatch):
+        """With one model left, re-ask it — do not hand the section over early.
+
+        The 2026-08-13 probe measured ~53% success per call on both models, so
+        a timeout means flaky, not dead, and a second identical ask is close to
+        a coin flip. Only the budget should end this.
         """
-        models = self._timeouts(monkeypatch)
+        calls = self._timeouts(monkeypatch)
         gemini_tts.set_model_override(gemini_tts.GEMINI_TTS_FALLBACK_MODEL)
         with pytest.raises(Exception):
             _synthesize_chunk(SEGS)
-        assert models == [gemini_tts.GEMINI_TTS_FALLBACK_MODEL]
+        assert [m for m, _ in calls] == (
+            [gemini_tts.GEMINI_TTS_FALLBACK_MODEL] * len(gemini_tts.RETRY_LADDER)
+        )
 
     def test_rejection_still_walks_the_prompt_rungs(self, monkeypatch):
         """finishReason OTHER *is* a verdict on the prompt — keep shedding."""
@@ -538,21 +555,14 @@ class TestTransportFailureRouting:
 
     def test_connection_error_routed_like_a_timeout(self, monkeypatch):
         """A dropped connection is just as silent as a timeout."""
-        models = []
-        monkeypatch.setenv("GEMINI_API_KEY", "test-key")
-        monkeypatch.setattr(gemini_tts.time, "sleep", lambda s: None)
-
-        def fake_post(url, **kwargs):
-            models.append(url.split("/models/")[1].split(":")[0])
-            raise gemini_tts.requests.ConnectionError("reset by peer")
-
-        monkeypatch.setattr(gemini_tts.requests, "post", fake_post)
+        calls = self._timeouts(
+            monkeypatch, error=gemini_tts.requests.ConnectionError("reset by peer")
+        )
         with pytest.raises(Exception):
             _synthesize_chunk(SEGS)
-        assert models == [
-            gemini_tts.GEMINI_TTS_MODEL,
-            gemini_tts.GEMINI_TTS_FALLBACK_MODEL,
-        ]
+        models = [m for m, _ in calls]
+        assert models[0] == gemini_tts.GEMINI_TTS_MODEL
+        assert models[1] == gemini_tts.GEMINI_TTS_FALLBACK_MODEL
 
     def test_timeout_then_a_working_model_still_yields_audio(self, monkeypatch):
         """Skipping rungs must not skip the recovery itself."""
