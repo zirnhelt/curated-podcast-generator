@@ -1,0 +1,175 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:30.251
+<v Riley>Hey, welcome back. On today's episode — that "size of Portugal" land transfer claim the province is publicly shooting down, and a Deep Dive into Xatśūll First Nation, where a kids' acting workshop, a ranch land purchase, and an economic development arm all overlap. The real question: when a Nation invests in its youth today, does that kid actually inherit decision-making power by twenty-five, or just pride in a program? That and more, coming right up.
+
+00:00:46.226 --> 00:01:10.388
+<v Riley>Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities — I'm Riley. It's Thursday, August 13th, 2026. Coming to you from the Cariboo, on lands that have been cared for by the Secwépemc, Tŝilhqot'in, and Dakelh peoples since time immemorial. Today's theme is Indigenous Lands &amp; Innovation.
+
+00:01:10.685 --> 00:01:49.261
+<v Casey>And I'm Casey. We're looking at who gets to decide what happens on the land — and what that decision-making actually looks like once you get past the press release. Quick weather check — Horsefly Lake is sitting at 12 degrees with clear skies this morning, high of 24 expected. Around the region: 100 Mile House at 12, Williams Lake at 13, Quesnel at 12 and mainly clear, and out on the Chilcotin plateau, Redstone's at 10 with clear skies. Tomorrow looks mainly clear across the board, next to no precipitation.
+
+00:01:49.558 --> 00:01:55.916
+<v Riley>Good flying weather, if you're into that sort of thing. Let's get into the news.
+
+00:01:57.317 --> 00:02:26.949
+<v Riley>Long tail of stories today, so we'll move efficiently. Lytton is putting together a festival to spotlight the village's Chinese heritage, and organizers are doing it in the middle of wildfire season on purpose, not despite it. The community was devastated by the 2021 fire, and much of its historic Chinese-Canadian heritage — buildings, artifacts, oral histories — burned with it. The festival is partly about making sure the next rebuild doesn't erase what the last fire took.
+
+00:02:28.066 --> 00:03:06.202
+<v Casey>From one contested piece of BC's land story to another. The provincial government has publicly rejected a claim — pushed by the BC Conservatives — that more than 97,000 square kilometres of land, an area roughly the size of Portugal, was secretly being transferred to First Nations. The government says no such transfer exists and is calling the claim a distortion of ongoing treaty and reconciliation processes. What's actually on the table in most of these negotiations is shared decision-making and specific parcel agreements, not blanket transfers. But once a number like "size of Portugal" is out there, the correction never travels as far as the claim did.
+
+00:03:07.526 --> 00:03:37.614
+<v Riley>That fight over who controls land and how it gets categorized connects to a piece out of the architecture world. Architizer is arguing the profession's traditional building typologies — house, temple, office, museum — fall short of describing how buildings actually get used and who they serve. A longhouse or a smokehouse doesn't fit neatly into a European typology, and forcing it into one has historically meant those structures get undervalued, sometimes literally not counted as "real" architecture in heritage registries.
+
+00:03:39.061 --> 00:03:59.061
+<v Casey>Whoever controls the categories controls what counts as legitimate. In the UK, the government has released locations of over 40 National Grid pylon upgrade sites, with promises of ten-year energy bill reductions for nearby homeowners. Not our grid, but it's a model — direct, geographically specific compensation for hosting transmission infrastructure.
+
+00:04:00.213 --> 00:04:08.653
+<v Riley>BC Hydro's North Coast Transmission Line, estimated around six billion dollars, is going to need exactly that kind of defensible community benefit model.
+
+00:04:10.523 --> 00:04:20.451
+<v Casey>Closer to home — Quesnel River Pulp is curtailing operations, sidelining close to a hundred workers until at least November. Another gap in the forestry sector this region depends on.
+
+00:04:21.591 --> 00:04:38.175
+<v Riley>The province has also released new guidance on reducing health risks from wildfire smoke, including reimbursing communities for the cost of running clean-air centres and extending their hours. That's a concrete, usable resource for local emergency planners this summer.
+
+00:04:39.350 --> 00:04:58.774
+<v Casey>South of the border, wildfire researchers are evaluating the new US Wildland Fire Service while it's still being built — critics say the Trump administration's reorganization created confusion in the chain of command after a big round of workforce cuts. Not something we vote on, but instructive on how not to restructure emergency response.
+
+00:05:00.402 --> 00:05:28.050
+<v Riley>On the hardware side — Hackaday has a build log on reading a USB Logitech racing wheel through an ESP32 microcontroller, useful for DIY sim racing. Microsoft quietly killed off a Teams integration plugin without warning users. And there's an active exploit affecting Windows 11, Windows 10, and Windows Server — a second zero-day flaw was also flagged this week, both giving attackers system-level privileges. Patch now, not later.
+
+00:05:28.691 --> 00:05:32.659
+<v Casey>Two Windows vulnerabilities in one week — just run your updates tonight.
+
+00:05:33.984 --> 00:05:47.944
+<v Riley>Researchers have developed a new 3D-printable rubber that's fifteen times stronger and far more resistant to tearing than standard prints — useful for anyone doing rural fabrication where replacement parts aren't a quick drive away.
+
+00:05:49.302 --> 00:06:08.742
+<v Casey>A record El Niño is producing measurable effects across three continents — dry spells and crop failures well outside the Pacific basin. A report is blaming the junior mining sector's exploration financing model for chronic delays in mine approvals, arguing the model leaves companies too thin to handle environmental and social issues before they blow up.
+
+00:06:09.952 --> 00:06:29.568
+<v Riley>The FBI is warning about hackers hunting private photos for sextortion — protective steps are in the article. Verizon is offering a twenty-five-thousand-dollar bounty on vandals repeatedly cutting its fiber lines. And a chatbot gave a farmer in China bad herbicide advice — he destroyed twenty-five acres of his own crops trusting it.
+
+00:06:30.237 --> 00:06:32.101
+<v Casey>(deadpan) The AI overconfidence story of the week.
+
+00:06:33.625 --> 00:06:49.241
+<v Casey>A quarter-billion-dollar acquisition has collapsed into allegations of fraud and forged signatures at VideoVerse. Russia's ongoing blockade of major Ukrainian ports continues to threaten global grain supplies — the kind of story that shows up eventually in Cariboo grocery bills.
+
+00:06:50.721 --> 00:07:15.081
+<v Riley>In federal politics, The Walrus is asking whether a Liberal win in the Chicoutimi by-election could push the Conservatives deeper into crisis, with Mark Carney potentially chipping away at more seats. And The Tyee reports scientists are warning Carney's proposed changes to port and pipeline approvals could trigger what they're calling "wilful extinction" for some species by weakening environmental reviews.
+
+00:07:16.424 --> 00:07:32.776
+<v Casey>Some budget-friendly Japanese cooling techniques are getting attention as a heatwave workaround. The New Yorker is calling AI infrastructure — specifically data centre buildouts — a live election issue in the US, with one Michigan Senate candidate saying voters "really effing hate data centers."
+
+00:07:33.928 --> 00:07:58.016
+<v Riley>Zimbabwe's land reform is entering a new legal chapter, reopening disputes over farms seized after 2000. European rivers are hitting record lows amid drought, exposing shipwrecks submerged for decades. And BC's Labour Board ruled against Amazon again, finding the company — not the union — was responsible for the breakdown in contract talks at its only unionized Canadian warehouse.
+
+00:07:59.155 --> 00:08:17.635
+<v Casey>Archaeologists in Sweden uncovered a nine-thousand-year-old burial of a pregnant teenager in a cave. A batch of Bettergoods pistachio butter sold at Walmart has been recalled over salmonella risk. And ransomware operators are increasingly targeting managers — almost two-thirds of victims in one campaign held management titles or higher.
+
+00:08:19.088 --> 00:08:28.376
+<v Riley>Researchers are warning stranded cargo ships could trigger an invasive species "super-spreader" event if hulls aren't cleaned before ships move again.
+
+00:08:29.515 --> 00:08:49.475
+<v Casey>The US Navy 3D-printed drones aboard a moving warship for the first time. Scientists built a surface that performs calculations using light. A seven-billion-dollar Silicon Valley startup is racing to automate health care's administrative side. And a US-backed firm is eyeing a stake in a Tanzania nickel mine to finance a major critical-minerals project.
+
+00:08:50.691 --> 00:09:07.267
+<v Riley>Forbes fired its top editor after learning he'd taken an undisclosed six-million-dollar payment tied to a company the magazine covers. Tesla and Waymo are both ramping up new robotaxi hardware. And one tech writer found four Windows network settings that nearly doubled their Wi-Fi speeds.
+
+00:09:08.740 --> 00:09:34.116
+<v Casey>Alberta landowners are fighting a fracking operation drawing water from a tributary already running low. The FCC is proposing to ban LiDAR-equipped drones it previously approved. The US Treasury is scaling back enforcement of shell-company transparency rules. Spotify will start labeling AI-generated artist profiles and stop recommending them. And a Walrus piece argues Canada isn't ready for the autonomous weapons Ottawa is already investing in.
+
+00:09:35.380 --> 00:09:55.612
+<v Riley>Last one — in Nunatsiavut, permafrost thaw is causing what residents call "foundational instability," cracking water and sewer infrastructure under the community of Nunainguk and costing hundreds of thousands in repairs. A preview of infrastructure problems northern BC communities may face as permafrost zones shift south with warming.
+
+00:09:57.031 --> 00:10:06.383
+<v Casey>That land-under-your-feet problem is a good hinge into where we're headed — how communities keep control of land that's changing under them, or being fought over above them.
+
+00:10:07.783 --> 00:10:28.591
+<v Casey>(warmly) Today's spotlight is on the Quesnel Tillicum Society, the Native Friendship Centre that's been serving Quesnel since 1972. They run drug and alcohol programs, family support, youth outreach, and cultural programming, and they host an annual Pow Wow that brings the whole community together. Over fifty years of quietly holding a community's social fabric together.
+
+00:10:29.272 --> 00:10:37.248
+<v Riley>Fifty-plus years of continuous operation in a sector where most programs don't survive one funding cycle — that alone deserves attention.
+
+00:10:37.588 --> 00:10:41.604
+<v Casey>You can find them at quesnelfriendshipcentre dot com. Now — into the Deep Dive.
+
+00:10:43.004 --> 00:10:57.604
+<v Riley>When a community invests in something for its kids now, what obligation does that create toward the people who inherit it twenty years down the line? Not as an abstraction — as a real design choice happening right now at Xatśūll First Nation.
+
+00:10:57.784 --> 00:10:58.832
+<v Casey>The acting workshop.
+
+00:10:59.450 --> 00:11:35.698
+<v Riley>The acting workshop, but not just the acting workshop. Xatśūll ran a three-day acting program for its children and youth, and it's easy to file that as a nice, small cultural story and move on. But Xatśūll also runs Xatsull Development, an economic development arm explicitly built to leverage the Nation's territorial rights and title into sustainable businesses. And in 2020, the province purchased ranch lands for Xatśūll as part of ongoing treaty negotiations. Land base, business development, youth arts program — all inside the same Nation, in the same stretch of years.
+
+00:11:36.289 --> 00:11:42.321
+<v Casey>Or it's three separate line items that happen to belong to the same Nation, and we're drawing the throughline ourselves.
+
+00:11:43.002 --> 00:12:03.962
+<v Riley>Look at the sequencing. Land restitution first, business infrastructure second, cultural programming third. That's what capacity-building looks like when it works: you get the land base, you build revenue off it, the revenue funds the next generation's leadership pipeline. The workshop isn't decoration — it's downstream of the ranch purchase.
+
+00:12:04.574 --> 00:12:35.246
+<v Casey>Downstream by how much, though? A three-day workshop and one ranch purchase in six years is a thin thread. Treaty negotiations in this province move at a pace measured in decades — the Tŝilhqot'in title case took from 1989 to 2014 to reach the Supreme Court, and that's considered fast. A ranch parcel and a youth program can just as easily be the "soft" wins governments and Nations both point to while the actual jurisdiction — resource rights, subsurface title, who signs off on a mine permit — stays exactly where it's always been.
+
+00:12:35.764 --> 00:13:02.372
+<v Riley>The ArchDaily piece on craft construction economies is useful here, even though it's about rammed earth and bamboo in the Global South, not Indigenous land. The argument is that celebrating handmade materials in magazines and awards means nothing if the labor economy underneath — training pipelines, material supply, artisan wages — stays fragile and undercapitalized. Culture gets aestheticized while the infrastructure underneath it starves.
+
+00:13:02.940 --> 00:13:08.020
+<v Casey>Which is exactly my worry about the workshop, stated by someone writing about architecture in Burundi.
+
+00:13:08.588 --> 00:13:33.284
+<v Riley>(chuckles) Except read the critique the other way. It isn't "stop doing craft programs" — it's "craft only becomes durable when you control the material and labor systems around it, not just the aesthetic output." That's precisely what Xatsull Development describes itself as building — control over the land, the business, the revenue stream — with the workshop as one visible output of a system, not a substitute for one.
+
+00:13:33.937 --> 00:13:53.489
+<v Casey>Owning the underlying business arm is a different animal than a Nation simply receiving cultural programming money from a provincial ministry with no land component attached. If Xatsull Development is actually generating independent revenue rather than running on annual grant cycles, that's a structurally different position. But do we know that it is?
+
+00:13:53.793 --> 00:14:09.521
+<v Riley>We don't, specifically. And that's the piece that matters — does the ranch land actually generate ranching revenue yet, or is it still in a holding pattern inside treaty talks? If it's a symbolic acquisition rather than an operating asset, your skepticism holds up.
+
+00:14:10.129 --> 00:14:40.313
+<v Casey>Which gets at the real test. Not whether Xatśūll has a cultural hall and a health station and a community kitchen — they do, and those matter for daily life regardless of governance questions. The test is whether a fourteen-year-old at that acting workshop has an actual pathway into the Nation's land-based economy by the time they're twenty-five. A job at the ranch operation, a seat in Xatsull Development's decision-making — something concrete. Or do the workshop and the ranch stay permanently in separate columns on separate budget lines?
+
+00:14:40.641 --> 00:15:03.425
+<v Riley>That reframes the "what do we owe the next generation" question in a specific way. It's not just about preserving language or culture as artifacts, which is where these conversations usually land. It's about whether today's land and business decisions are structured so a kid in that workshop actually inherits decision-making power — not just pride in a heritage program.
+
+00:15:04.075 --> 00:15:21.779
+<v Casey>(wry) And that's the problem we keep running into with "Indigenous-led" as a label — a Nation running its own youth program is real and good on its own terms. But it doesn't answer who decides what happens to the ranch land in year fifteen, when the treaty table has moved on and Victoria's attention has shifted to the next crisis.
+
+00:15:22.293 --> 00:15:42.989
+<v Riley>Governance capacity has to be built somewhere, though, and youth leadership programs are one of the few places Nations can build it without waiting on Victoria's negotiating calendar. Xatśūll's cultural hall, health station, and community kitchen already exist independent of any treaty outcome — infrastructure the Nation controls right now, today.
+
+00:15:43.508 --> 00:16:01.340
+<v Casey>Infrastructure they built and staff themselves, which is genuinely different from waiting on a grant renewal every March. But a health station and a cultural hall are operating costs, not decision-making authority over the land base. Conflating them is exactly how "Indigenous-led" gets used to paper over the governance gap.
+
+00:16:01.909 --> 00:16:25.125
+<v Riley>(thoughtful) Where I'll land is this — the acting workshop by itself proves nothing either way. One data point. What would prove something is whether Xatśūll's youth programming and its economic development arm are structurally connected — shared board oversight, a pipeline from cultural programs into paid roles at Xatsull Development — versus two initiatives that happen to share a Band office.
+
+00:16:25.735 --> 00:16:40.735
+<v Casey>That's the question someone should actually follow up on, and it's not hard to answer publicly — Xatsull Development's own materials would show whether youth programming feeds into hiring or stays separate. A concrete thing to go look up rather than take our word on.
+
+00:16:41.378 --> 00:17:06.354
+<v Riley>It connects to something bigger than one Nation. The Quesnel Tillicum Society has run continuously since 1972 precisely because it built its own institutional memory instead of depending entirely on program-cycle funding. Fifty years is the timescale this question is really about — not what a Nation announces this year, but what structure survives the funding officer who approved it retiring.
+
+00:17:06.929 --> 00:17:20.521
+<v Casey>Fifty years of an Indigenous-run institution outlasting successive provincial governments is a better answer to "what do we owe the next generation" than any single workshop or ranch purchase. The structure outlived the announcement. That's the bar.
+
+00:17:21.192 --> 00:17:52.000
+<v Riley>And if the BC land transfer story from this week tells us anything, it's that the political environment around these decisions can shift overnight — one misleading claim about 97,000 square kilometres, and suddenly the whole framework of negotiation is under public suspicion. Nations like Xatśūll building independent economic capacity aren't just planning for the next generation — they're insulating against the next political cycle that tries to claw back what was already agreed to.
+
+00:17:52.640 --> 00:18:18.968
+<v Casey>Which is the strongest argument for the Xatsull Development model being more than symbolic — if the ranch land generates its own revenue, it's harder for a future government to treat it as a discretionary line item. But "harder" isn't "impossible," and we've seen plenty of self-sustaining Indigenous enterprises get undercut by regulatory changes or resource access decisions made over their heads. Independence on paper and independence in practice are different things.
+
+00:18:19.527 --> 00:18:45.679
+<v Riley>They are. And maybe that's the honest place to leave it — Xatśūll has more of the structural pieces in place than most Nations at this stage, and whether those pieces actually connect into a durable system is something we'll only know in hindsight. If you've got information on how the development arm and youth programs actually link up — or a different read on any of this — send it our way: feedback at cariboo signals dot c-a.
+
+00:18:46.222 --> 00:18:54.470
+<v Casey>That's it from us today. Go check out the Friendship Centre's Pow Wow if you're in Quesnel — that's the kind of institution built to outlast all of us.
+
+00:18:54.769 --> 00:18:57.865
+<v Riley>Take care out there, and we'll talk to you tomorrow.
+
+00:18:58.395 --> 00:19:14.787
+<v Casey>Look, I'll be straight with you — we didn't get Indigenous communications folks in the room for this one, and that's something we should fix. If anyone from First Nations media or comms teams out there wants to set the record straight or tell us what we're missing, you know where to find us.
