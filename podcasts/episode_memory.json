@@ -1,22 +1,4 @@
 {
-  "2026-07-08": {
-    "timestamp": 1783507098.665308,
-    "topics": [
-      "[WIRED] British Space Startup Launches Longevity Lab Into Or",
-      "[Toms Guide] 15 best ice cream and frozen drink makers to ke",
-      "[Quesnel Cariboo Observer] B.C. shipyard ready to deliver on",
-      "[TechCrunch] Station F ramps up as a launchpad for Europe\u2019s ",
-      "[Boing Boing] In 1964, a Dutch librarian drilled a hole in h",
-      "[Boing Boing] Want to cut back on screen time? Start with th",
-      "[Outside Online] Three Lightweight Day-Hiking Packs That Dou",
-      "[TechRadar] Web hosting giant claims you can now sell online"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption"
-    ],
-    "date": "2026-07-08"
-  },
   "2026-07-09": {
     "timestamp": 1783597359.020607,
     "topics": [
@@ -673,5 +655,27 @@
     "date": "2026-08-12",
     "focus": "vehicles-field-gear",
     "focus_name": "Vehicles & Field Gear"
+  },
+  "2026-08-13": {
+    "timestamp": 1786613227.671768,
+    "topics": [
+      "[Williams Lake Tribune] Lytton festival to spotlight village",
+      "[Vancouver Sun] B.C. government rejects claim of massive, se",
+      "[Architizer] The Trouble With Typology: How Architecture\u2019s T",
+      "[Homebuilding & Renovating] Government confirms locations of",
+      "[CFJC Today Kamloops] Quesnel River Pulp curtailment sidelin",
+      "[ArchDaily] Beyond the Handmade Aesthetic: Why Craft Needs N",
+      "[Williams Lake Tribune] 3-day acting workshop inspires Xat\u015b\u016b",
+      "[The Guardian Global Development] \u2018The payment is small and "
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-08-13",
+    "focus": "guardians-stewardship",
+    "focus_name": "Guardians & Land Stewardship"
   }
 }
