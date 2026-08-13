@@ -871,6 +871,83 @@ class TestGenerateScriptCorrectionsGroundTruth:
         assert "LISTENER CORRECTIONS SUPPLIED FOR THIS EPISODE: 1" in sent
 
 
+class TestGenerateScriptRoundupPool:
+    """The prompt must carry the curated pool and nothing more.
+
+    2026-08-13: `_curate_roundup_pool` capped the segment, then
+    generate_podcast_script concatenated the full pre-curation `bonus_articles`
+    list straight back in, re-admitting every article the cap had just dropped.
+    """
+
+    def _sent_prompt(self, monkeypatch, tmp_path, articles, bonus):
+        import podcast_generator as pg
+        monkeypatch.setenv("ANTHROPIC_API_KEY", "test-key")
+        monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
+        full_script = "**RILEY:** word\n**CASEY:** word\n" + ("word " * 3500)
+        client = _stream_client([_response("end_turn", [_text_block(full_script)])])
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        pg.generate_podcast_script(
+            articles, [], "Working Lands & Industry", {}, {}, bonus_articles=bonus,
+        )
+        return client.messages.stream.call_args.kwargs["messages"][0]["content"]
+
+    def test_dropped_bonus_articles_never_reach_the_prompt(self, monkeypatch, tmp_path):
+        kept_bonus = {"title": "Kept bonus story", "url": "https://b0.com",
+                      "_is_bonus": True, "_boosted_score": 50}
+        dropped_bonus = [
+            {"title": f"Dropped bonus story {i}", "url": f"https://d{i}.com",
+             "_is_bonus": True, "_boosted_score": 10}
+            for i in range(20)
+        ]
+        # The curated pool holds one bonus pick; the caller's list holds 21.
+        sent = self._sent_prompt(
+            monkeypatch, tmp_path,
+            articles=[kept_bonus],
+            bonus=[kept_bonus] + dropped_bonus,
+        )
+
+        assert "Kept bonus story" in sent
+        for a in dropped_bonus:
+            assert a["title"] not in sent
+
+    def test_bonus_articles_are_not_tagged_as_filler(self, monkeypatch, tmp_path):
+        """The [BONUS] tag paired with a 'one sentence each' rule in the prompt."""
+        sent = self._sent_prompt(
+            monkeypatch, tmp_path,
+            articles=[{"title": "An off-theme story", "url": "https://b0.com",
+                       "_is_bonus": True, "_boosted_score": 50}],
+            bonus=[{"title": "An off-theme story", "url": "https://b0.com",
+                    "_is_bonus": True, "_boosted_score": 50}],
+        )
+
+        assert "[BONUS]" not in sent
+
+
+class TestRoundupPromptRules:
+    def test_no_headline_crawl_rule_replaces_the_one_sentence_bonus_rule(self):
+        template = load_prompts_config()["script_generation"]["template"]
+        assert "NO HEADLINE CRAWL" in template
+        assert "one sentence each" not in template
+        assert "[BONUS]" not in template
+
+    def test_segment_length_is_stated_so_fewer_stories_run_deeper(self):
+        """Cutting the story count must not cut the segment's runtime.
+
+        The roundup carries the episode length alongside the Deep Dive, and
+        scripts under TARGET_SCRIPT_WORDS cost an expand retry.
+        """
+        template = load_prompts_config()["script_generation"]["template"]
+        assert "SEGMENT LENGTH" in template
+        assert "A short list is not a short segment" in template
+
+    def test_manufactured_connection_rule_is_present(self):
+        template = load_prompts_config()["script_generation"]["template"]
+        assert "DO NOT MANUFACTURE CONNECTIONS" in template
+        # The escape hatch matters more than the prohibition: without it the
+        # model bridges anyway, just more ornately.
+        assert "there is no thread" in template
+
+
 class TestBatchPolishTruncationGuard:
     """run_post_processing_batch must discard a polish result that was
     truncated at max_tokens so main() falls back to the agentic polish."""
@@ -2053,15 +2130,45 @@ def _roundup_fixture_articles():
 
 
 class TestAnnotateRoundupBlocks:
-    def test_block_order_local_theme_cluster_standalone_bonus(self):
+    def test_block_order_local_theme_cluster_standalone_kicker(self):
         ordered = _annotate_roundup_blocks(_roundup_fixture_articles(), _FAKE_THEME)
         blocks = [a.get("_roundup_block") for a in ordered]
         assert blocks[0] == "local"
         assert blocks[1:3] == ["theme", "theme"]
         assert blocks[3] == blocks[4] == "physical_sciences"
         assert blocks[5] == "standalone"
-        assert ordered[-1]["title"] == "Bonus pick"
-        assert ordered[-1]["_roundup_block"] == "bonus"
+        # The strongest standalone is promoted to the kicker and airs last
+        assert blocks[6] == "kicker"
+        assert ordered[-1]["title"] == "Celebrity fashion week highlights"
+
+    def test_bonus_pick_is_annotated_like_any_other_tail_story(self):
+        """It used to short-circuit to a 'bonus' block and skip curation."""
+        ordered = _annotate_roundup_blocks(_roundup_fixture_articles(), _FAKE_THEME)
+        bonus = next(a for a in ordered if a["title"] == "Bonus pick")
+        assert bonus["_roundup_block"] == "standalone"
+
+    def test_bonus_pick_is_still_eligible_to_lead_when_it_is_local(self):
+        """Geography is orthogonal to the feed's theme judgment."""
+        articles = [
+            {"title": "Zebra gardening breakthrough", "url": "https://t1.com",
+             "_boosted_score": 90},
+            {"title": "Quesnel council funds a new well", "url": "https://b1.com",
+             "_is_bonus": True, "_boosted_score": 10},
+        ]
+        ordered = _annotate_roundup_blocks(articles, _FAKE_THEME)
+        assert ordered[0]["title"] == "Quesnel council funds a new well"
+        assert ordered[0]["_roundup_block"] == "local"
+
+    def test_bonus_pick_never_reaches_the_theme_blocks(self):
+        articles = [
+            {"title": "Zebra gardening breakthrough", "url": "https://b1.com",
+             "_is_bonus": True, "_keyword_matches": 3, "_boosted_score": 90},
+            {"title": "Zebra gardening trial expands", "url": "https://t1.com",
+             "_boosted_score": 10},
+        ]
+        ordered = _annotate_roundup_blocks(articles, _FAKE_THEME)
+        bonus = next(a for a in ordered if a.get("_is_bonus"))
+        assert bonus["_roundup_block"] not in ("theme", "theme_adjacent")
 
     def test_keyword_hit_beats_feed_flag_in_theme_ordering(self):
         ordered = _annotate_roundup_blocks(_roundup_fixture_articles(), _FAKE_THEME)
@@ -2102,7 +2209,8 @@ class TestAnnotateRoundupBlocks:
         ]
         ordered = _annotate_roundup_blocks(articles, _FAKE_THEME)
         assert ordered[0]["_roundup_block"] == "local"
-        assert ordered[1]["_roundup_block"] == "standalone"
+        # The lone off-theme story is the tail, and so becomes the closer
+        assert ordered[1]["_roundup_block"] == "kicker"
 
     def test_place_name_hits_lead_outlet_only_matches(self):
         articles = [
@@ -2120,11 +2228,17 @@ class TestAnnotateRoundupBlocks:
              "_boosted_score": 60},
             {"title": "Celebrity fashion week highlights", "url": "https://s1.com",
              "_boosted_score": 80},
+            {"title": "Bakery reopens after a long renovation", "url": "https://s2.com",
+             "_boosted_score": 70},
         ]
         ordered = _annotate_roundup_blocks(articles, _FAKE_THEME)
-        assert all(a["_roundup_block"] == "standalone" for a in ordered)
-        # Standalones sort by boosted score
-        assert ordered[0]["title"] == "Celebrity fashion week highlights"
+        assert not any(a["_roundup_block"] == "physical_sciences" for a in ordered)
+        # Standalones sort by boosted score, with the strongest lifted to kicker
+        assert [a["_roundup_block"] for a in ordered] == [
+            "standalone", "standalone", "kicker",
+        ]
+        assert ordered[0]["title"] == "Bakery reopens after a long renovation"
+        assert ordered[-1]["title"] == "Celebrity fashion week highlights"
 
 
 class TestCurateRoundupPool:
@@ -2135,9 +2249,10 @@ class TestCurateRoundupPool:
 
     def test_theme_and_local_never_dropped(self):
         kept, dropped = _curate_roundup_pool(_roundup_fixture_articles(), _FAKE_THEME, 3)
-        kept_blocks = [a.get("_roundup_block") for a in kept if not a.get("_is_bonus")]
+        kept_blocks = [a.get("_roundup_block") for a in kept]
         assert kept_blocks == ["local", "theme", "theme"]
-        assert len(dropped) == 3  # cluster pair + standalone
+        # cluster pair + bonus standalone + kicker
+        assert len(dropped) == 4
 
     def test_cluster_not_stranded_when_one_slot_left(self):
         # pool_size 4 leaves one filler slot after the 3 protected articles:
@@ -2148,10 +2263,57 @@ class TestCurateRoundupPool:
         assert "Solar storm hits the magnetosphere" not in kept_titles
         assert "Astronomers watch supernova explode in distant galaxy" not in kept_titles
 
-    def test_bonus_passes_through_uncapped(self):
-        kept, dropped = _curate_roundup_pool(_roundup_fixture_articles(), _FAKE_THEME, 3)
-        assert kept[-1]["title"] == "Bonus pick"
-        assert all(not a.get("_is_bonus") for a in dropped)
+    def test_bonus_counts_against_the_cap(self):
+        """2026-08-13: 15 curated stories aired alongside 37 uncapped bonus picks.
+
+        The cap held on the theme pool while `_curate_roundup_pool` returned
+        `... + bonus` unconditionally, so the segment ran 52 stories in 1,237
+        words — 24 words each, a headline crawl. The budget covers everything.
+        """
+        articles = [
+            {"title": f"Zebra gardening story {i}", "url": f"https://t{i}.com",
+             "_boosted_score": 90 - i}
+            for i in range(3)
+        ] + [
+            {"title": f"Unrelated wire story {i}", "url": f"https://b{i}.com",
+             "_is_bonus": True, "_boosted_score": 50 - i}
+            for i in range(30)
+        ]
+        kept, dropped = _curate_roundup_pool(articles, _FAKE_THEME, 5)
+        assert len(kept) == 5
+        assert len(dropped) == 28
+        assert sum(1 for a in kept if a.get("_is_bonus")) == 2
+
+    def test_segment_stays_within_its_airtime_budget(self):
+        """The cap is a word budget in disguise — see ROUNDUP_MIN_STORY_WORDS."""
+        import podcast_generator as pg
+        articles = [
+            {"title": f"Unrelated wire story {i}", "url": f"https://b{i}.com",
+             "_is_bonus": True, "_boosted_score": 50 - i}
+            for i in range(60)
+        ]
+        kept, _ = _curate_roundup_pool(articles, _FAKE_THEME, pg.NEWS_ROUNDUP_COUNT)
+        # 15 stories * 70 words fits the ~1,200-word roundup; 60 never could
+        assert len(kept) * pg.ROUNDUP_MIN_STORY_WORDS <= 1300
+
+    def test_kicker_airs_last_and_is_never_more_than_one(self):
+        kept, _ = _curate_roundup_pool(_roundup_fixture_articles(), _FAKE_THEME, 10)
+        kickers = [a for a in kept if a["_roundup_block"] == "kicker"]
+        assert len(kickers) == 1
+        assert kept[-1] is kickers[0]
+
+    def test_kicker_yields_its_slot_to_the_protected_arc(self):
+        articles = [
+            {"title": f"Zebra gardening story {i}", "url": f"https://t{i}.com",
+             "_boosted_score": 90 - i}
+            for i in range(4)
+        ] + [
+            {"title": "Celebrity fashion week highlights", "url": "https://s1.com",
+             "_boosted_score": 99},
+        ]
+        kept, dropped = _curate_roundup_pool(articles, _FAKE_THEME, 4)
+        assert [a["_roundup_block"] for a in kept] == ["theme"] * 4
+        assert dropped[0]["_roundup_block"] == "kicker"
 
     def test_wide_arc_still_capped(self):
         # Every article on-theme: the arc is protected but not unbounded
@@ -2246,8 +2408,12 @@ class TestThemeAdjacentBlock:
             {"title": "Celebrity fashion week highlights", "url": "https://s1.com",
              "_boosted_score": 80,
              "_body": "Runway coverage from Milan, with nothing else to it."},
+            {"title": "Bakery reopens after a long renovation", "url": "https://s2.com",
+             "_boosted_score": 70, "_body": "A renovation two years in the making."},
         ]
         ordered = _annotate_roundup_blocks(articles, _FAKE_THEME)
+        assert all(a["_roundup_block"] not in ("theme", "theme_adjacent")
+                   for a in ordered)
         assert ordered[0]["_roundup_block"] == "standalone"
 
     def test_theme_adjacent_is_protected_from_the_cap(self):
@@ -2272,8 +2438,11 @@ class TestRoundupBlockRank:
                 < _roundup_block_rank("standalone"))
 
     def test_unknown_blocks_are_tail(self):
-        assert _roundup_block_rank("physical_sciences") == _roundup_block_rank("bonus")
+        assert _roundup_block_rank("physical_sciences") == _roundup_block_rank("life_sciences")
         assert _roundup_block_rank(None) == _roundup_block_rank("standalone")
+
+    def test_kicker_ranks_after_the_tail(self):
+        assert _roundup_block_rank("kicker") > _roundup_block_rank("standalone")
 
 
 _ROUNDUP_SCRIPT = """# Header line
@@ -2343,16 +2512,42 @@ class TestCheckRoundupOrder:
         )
         assert check_roundup_order(script, _order_articles()) == []
 
-    def test_bonus_articles_are_allowed_at_the_end(self):
+    def test_a_bonus_pick_in_the_tail_is_allowed_at_the_end(self):
         articles = _order_articles()
-        articles[1]["_is_bonus"] = True
-        articles[1]["_roundup_block"] = "bonus"
+        articles[2]["_is_bonus"] = True  # the WIRED standalone
+        script = _ROUNDUP_SCRIPT.format(
+            first="Williams Lake Tribune says 500 firefighters are at Pear Lake.",
+            second="The Northern Miner reports the AI boom lifts mining.",
+            third="WIRED reports ICE collected DNA from nearly a million people.",
+        )
+        assert check_roundup_order(script, articles) == []
+
+    def test_a_local_bonus_pick_buried_at_the_end_is_still_flagged(self):
+        """Bonus picks used to be skipped outright by the order check.
+
+        They now carry a real block, so a regional story that arrived in the
+        bonus bucket and got buried behind the tail is caught like any other.
+        """
+        articles = _order_articles()
+        articles[1]["_is_bonus"] = True  # the Williams Lake local story
         script = _ROUNDUP_SCRIPT.format(
             first="The Northern Miner reports the AI boom lifts mining.",
             second="WIRED reports ICE collected DNA from nearly a million people.",
             third="Williams Lake Tribune says 500 firefighters are at Pear Lake.",
         )
-        assert check_roundup_order(script, articles) == []
+        violations = check_roundup_order(script, articles)
+        assert [v["block"] for v in violations] == ["local"]
+
+    def test_kicker_aired_first_is_flagged(self):
+        articles = _order_articles()
+        articles[2]["_roundup_block"] = "kicker"
+        script = _ROUNDUP_SCRIPT.format(
+            first="WIRED reports ICE collected DNA from nearly a million people.",
+            second="Williams Lake Tribune says 500 firefighters are at Pear Lake.",
+            third="The Northern Miner reports the AI boom lifts mining.",
+        )
+        violations = check_roundup_order(script, articles)
+        assert {v["block"] for v in violations} == {"local", "theme"}
 
     def test_missing_roundup_section_is_a_no_op(self):
         assert check_roundup_order("**WELCOME**\n\n**CASEY:** Hi.", _order_articles()) == []
