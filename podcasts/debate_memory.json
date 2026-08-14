@@ -1,30 +1,4 @@
 {
-  "2026-05-15": {
-    "timestamp": 1778846637.4948,
-    "date": "2026-05-15",
-    "theme": "Wild Spaces & Outdoor Life",
-    "central_question": "Can technology tools and targeted institutional interventions meaningfully improve wildfire preparedness and emergency survival readiness in rural Cariboo communities?",
-    "riley_position": "Technology like satellite communicators and AI-assisted planning tools can serve as enabling infrastructure that prompts preparedness action and community engagement, especially when marketed strategically during advisory windows and through trusted community institutions like credit unions.",
-    "riley_key_evidence": [
-      "Garmin inReach Mini 2 satellite communicators are currently 40% off at ~$450 CAD and provide SOS, two-way text, and location tracking without cell coverage",
-      "Regional Districts could develop low-cost recommended device lists with minimal institutional burden\u2014requiring only 'a meeting, a document, and a press release'",
-      "Credit unions in rural communities have direct financial interest in community survival, existing mailing lists, physical branches, and demonstrated capacity to convene community resilience programming"
-    ],
-    "casey_position": "Top-down technology recommendations and algorithmic solutions cannot replace the durable social infrastructure of community relationships and institutional trust; the real barrier is institutional will and liability concerns, not capacity, and proven models rely on volunteer-led, locally-initiated engagement rather than device adoption.",
-    "casey_key_evidence": [
-      "BC Wildfire Service community engagement sessions that actually move outcomes include a coordinator, paper registration, and a follow-up phone tree\u2014unglamorous but effective",
-      "Current satellite communicator technology is fragmented across platforms that don't interoperate with BCEHS dispatch in standardized ways, creating a standards problem rather than an adoption problem",
-      "Emergency Management BC has low appetite for multi-department coordination initiatives following post-2023 restructuring, and CRD Emergency Program capacity is approximately 2.5 staff covering an area the size of a mid-sized European country"
-    ],
-    "resolution": "The speakers found partial agreement that community-initiated, low-overhead events (like a single 'wildfire readiness block' evening in a community hall) represent the most practical near-term intervention, and that technology functions as an enabling layer rather than a primary solution. They converged on the insight that institutional relationships and ongoing community-landscape connections matter more than devices themselves, though Riley retained that technology can serve as a conversation prompt while Casey emphasized active fires give no time for future solutions.",
-    "topics_covered": [
-      "Satellite communicator technology accessibility and pricing for rural populations",
-      "AI-assisted emergency planning tools and demographic limitations",
-      "Interoperability and standards gaps in emergency communication devices",
-      "Community social infrastructure versus top-down institutional programs",
-      "Role of local institutions (credit unions, search and rescue, Regional Districts) in building preparedness"
-    ]
-  },
   "2026-05-16": {
     "timestamp": 1778929769.367023,
     "date": "2026-05-16",
@@ -2323,6 +2297,34 @@
       "Governance authority versus Indigenous-led service delivery without decision-making power",
       "Long-term institutional sustainability as measured in decades (Quesnel Tillicum Society at 50+ years)",
       "The risk of aestheticizing Indigenous culture while undercapitalizing underlying economic systems"
+    ]
+  },
+  "2026-08-14": {
+    "timestamp": 1786699450.006248,
+    "date": "2026-08-14",
+    "theme": "Wild Spaces & Outdoor Life",
+    "focus": "wildlife-conservation",
+    "anchor": "owe-those-after",
+    "central_question": "When wildfire seasons worsen due to climate change, what obligation does the province have to protect wildlife habitats and species, and what institutional structures actually enable that protection to happen?",
+    "riley_position": "Better data, modeling, and real-time habitat mapping can help prioritize fire suppression to protect critical wildlife refuges, and examples like Peace region caribou recovery show that sustained funding for multi-year interventions based on GPS telemetry actually works.",
+    "riley_key_evidence": [
+      "Out-of-control fire count dropped from 9-11 fires in late July to 6 by mid-August, showing response effectiveness despite worsening baseline conditions",
+      "Peace region caribou recovery used GPS collars and maternal penning to increase a herd from dozens to several times that number",
+      "T\u015dilhqot'in National Government embedded habitat monitoring into their own governance structures, making programs resilient to provincial budget cycles"
+    ],
+    "casey_position": "Data and monitoring are diagnostic tools that document decline with precision but don't solve the underlying problem; real conservation requires sustained decade-long funding commitments that provincial budgets won't provide, and there's a fundamental tradeoff between protecting wildlife habitat and responding to immediate structural threats.",
+    "casey_key_evidence": [
+      "Old-growth lichen habitat caribou depend on takes 80-100 years to regenerate after stand-replacing fire, but fire return intervals are shortening due to drought",
+      "Peace region program required years of sustained funding, dedicated facilities, and politically contested predator control\u2014resources most Cariboo herds never receive",
+      "Provincial austerity budgets for environmental protection trim conservation programs first when deficits tighten"
+    ],
+    "resolution": "They agreed that explicit decision-making with data is better than implicit decisions made blind, and that the real action item is transparency and data-sharing: communities should directly ask government whether post-fire habitat assessments are scheduled and when results become public, rather than hoping institutions voluntarily act on data they collect.",
+    "topics_covered": [
+      "Wildfire containment progress vs. worsening baseline fire conditions due to climate change",
+      "Caribou habitat loss and population decline in context of repeat burns and climate-driven habitat compression",
+      "The gap between wildlife impact flagging in provincial wildfire planning and actual suppression tactic changes on the ground",
+      "Winter tick outbreaks on moose as a climate signal and limits of population monitoring without intervention",
+      "Institutional sustainability: provincial budget cycles vs. Indigenous governance structures for long-term habitat monitoring"
     ]
   }
 }

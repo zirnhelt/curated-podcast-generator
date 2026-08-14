@@ -1,24 +1,4 @@
 {
-  "2026-07-09": {
-    "timestamp": 1783597359.020607,
-    "topics": [
-      "In the Arctic, Coproduced Maps Help Find Balance Under Press",
-      "[Al Jazeera English] Former rebel turned government ally pro",
-      "[BC Gov News] Negotiations, public engagement begin for reco",
-      "[The Guardian Global Development] Cancer cases expected to s",
-      "[The Narwhal] Osoyoos Indian Band plans to restore wildfire-",
-      "[Boing Boing] Scientists working to uncover space-based nucl",
-      "[TechCrunch] US government says it got hacked \u2014 again",
-      "From the Arctic to Australia, researchers demand respect for"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-07-09"
-  },
   "2026-07-10": {
     "timestamp": 1783697901.939324,
     "topics": [
@@ -677,5 +657,27 @@
     "date": "2026-08-13",
     "focus": "guardians-stewardship",
     "focus_name": "Guardians & Land Stewardship"
+  },
+  "2026-08-14": {
+    "timestamp": 1786699448.12024,
+    "topics": [
+      "[Williams Lake Tribune] 51-unit supportive housing complex a",
+      "Shut down announced at Quesnel River Pulp : My Cariboo Now",
+      "Penticton Indian Band chief urges governments to prioritize ",
+      "Fort St. James adventure seeker swims the length of Stuart L",
+      "[Williams Lake Tribune] Re-entry information session for Pea",
+      "[Williams Lake Tribune] BCWS continues to respond to 6 out o",
+      "[Men's Health] Another Popular Greens Supplement Is Contamin",
+      "[NYT Business] What We Know About Taylor Farms\u2019 Food Recalls"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-08-14",
+    "focus": "wildlife-conservation",
+    "focus_name": "Wildlife & Conservation"
   }
 }
