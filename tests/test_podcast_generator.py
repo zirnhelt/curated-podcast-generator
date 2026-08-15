@@ -947,6 +947,25 @@ class TestRoundupPromptRules:
         # model bridges anyway, just more ornately.
         assert "there is no thread" in template
 
+    def test_episode_cohesion_check_is_present_in_both_polish_prompts(self):
+        """The polish pass is the only whole-script call in the pipeline —
+        without this, nothing ever reads the episode as one continuous
+        listen. Both the agentic and batch polish prompts must carry it, or
+        whichever path a given run takes silently loses the check."""
+        prompts = load_prompts_config()
+        agentic = prompts["agentic_polish_and_factcheck"]["system_template"]
+        batch = prompts["polish_and_factcheck"]["template"]
+        for template in (agentic, batch):
+            assert "EPISODE COHESION CHECK" in template
+            assert "do not move any story between sections" in template
+            assert "ANCHOR THREAD" in template
+            assert "KICKER HANDOFF" in template
+
+    def test_anchor_block_placeholder_present_in_both_polish_prompts(self):
+        prompts = load_prompts_config()
+        assert "{anchor_block}" in prompts["agentic_polish_and_factcheck"]["user_template"]
+        assert "{anchor_block}" in prompts["polish_and_factcheck"]["template"]
+
 
 class TestBatchPolishTruncationGuard:
     """run_post_processing_batch must discard a polish result that was
@@ -1021,6 +1040,64 @@ class TestSubmitPostProcessingBatchCorrectionsGroundTruth:
         content = self._submit(monkeypatch, [{"id": "x", "subject": "Correction"}])
 
         assert "LISTENER CORRECTIONS SUPPLIED FOR THIS EPISODE: 1" in content
+
+
+class TestPolishAnchorThreading:
+    """The polish pass had zero visibility into the week's anchor question —
+    format_anchor_for_prompt() was only ever called at generation time. The
+    cohesion check can't verify the anchor's thread without it, so both the
+    batch and agentic polish call sites must forward it into the prompt."""
+
+    def test_batch_path_forwards_anchor_block_into_the_prompt(self, monkeypatch):
+        import podcast_generator as pg
+        client = MagicMock()
+        client.messages.batches.create.return_value = MagicMock(id="batch_1")
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        script = "**RILEY:** hello\n**CASEY:** hi\n" * 50
+        pg.submit_post_processing_batch(
+            script, "Working Lands & Industry", [], [],
+            additional_research="", research_insights="",
+            anchor_block="THIS WEEK'S QUESTION: Why is everyone in tech so sad?",
+        )
+        requests = {r["custom_id"]: r for r in client.messages.batches.create.call_args.kwargs["requests"]}
+        content = requests["polish-and-factcheck"]["params"]["messages"][0]["content"]
+
+        assert "Why is everyone in tech so sad?" in content
+
+    def test_batch_path_defaults_to_none_when_no_anchor(self, monkeypatch):
+        import podcast_generator as pg
+        client = MagicMock()
+        client.messages.batches.create.return_value = MagicMock(id="batch_1")
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        script = "**RILEY:** hello\n**CASEY:** hi\n" * 50
+        pg.submit_post_processing_batch(
+            script, "Working Lands & Industry", [], [],
+            additional_research="", research_insights="",
+        )
+        requests = {r["custom_id"]: r for r in client.messages.batches.create.call_args.kwargs["requests"]}
+        content = requests["polish-and-factcheck"]["params"]["messages"][0]["content"]
+
+        assert "{anchor_block}" not in content
+        assert "## THIS WEEK'S ANCHOR" in content
+
+    def test_agentic_path_forwards_anchor_block_into_the_prompt(self, monkeypatch):
+        import podcast_generator as pg
+        client = MagicMock()
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: client)
+        captured = {}
+
+        def fake_loop(client_arg, model, system_prompt, user_content, **kwargs):
+            captured["user_content"] = user_content
+            return "**RILEY:** hello friend\n**CASEY:** hi there\n" * 600
+
+        monkeypatch.setattr(pg, "_run_agentic_loop", fake_loop)
+        script = "**RILEY:** hello\n**CASEY:** hi\n" * 600
+        pg.polish_and_factcheck_with_agent(
+            script, "Working Lands & Industry", [], [],
+            anchor_block="THIS WEEK'S QUESTION: Why is everyone in tech so sad?",
+        )
+
+        assert "Why is everyone in tech so sad?" in captured["user_content"]
 
 
 class TestApplyBadNewsFilter:
