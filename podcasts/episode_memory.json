@@ -1,24 +1,4 @@
 {
-  "2026-07-10": {
-    "timestamp": 1783697901.939324,
-    "topics": [
-      "[BC Gov News] Protecting new wetland habitat in Omineca regi",
-      "[The Verge] America\u2019s greatest idea is still under threat",
-      "[Williams Lake Tribune] Local orchardists propose drilling i",
-      "[Williams Lake Tribune] 3 sent to hospital after tornado tou",
-      "[Outside Online] In Defense of a Little Loneliness: A Lesson",
-      "[Outside Online] Steve Pearce Just Took Over the BLM. We Ask",
-      "[Outside Online] The Life-Saving Summer Hiking Trick Every D",
-      "[The Northern Miner] Deep-sea mining threatens 60% of vent s"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-07-10"
-  },
   "2026-07-11": {
     "timestamp": 1783763762.072587,
     "topics": [
@@ -679,5 +659,25 @@
     "date": "2026-08-14",
     "focus": "wildlife-conservation",
     "focus_name": "Wildlife & Conservation"
+  },
+  "2026-08-15": {
+    "timestamp": 1786783753.252489,
+    "topics": [
+      "[Quesnel Cariboo Observer] Wildfire-damaged power restoratio",
+      "[IndigiNews] Decade after fuel spill, H\u00ed\u026bzaqv are again defe",
+      "[Williams Lake Tribune] Many Clinton and area residents give",
+      "[Williams Lake Tribune] As fires rage, B.C.\u2019s ranchers band ",
+      "[Regional News Archives",
+      "[Williams Lake Tribune] PHOTOS: Bear family cools off west o",
+      "Lhoosk\u2019uz Dene Elder receives Medal of Good Citizenship from",
+      "[BC Gov News] Inviting residents of Cariboo region to commen"
+    ],
+    "themes": [
+      "rural development",
+      "Indigenous tech"
+    ],
+    "date": "2026-08-15",
+    "focus": null,
+    "focus_name": null
   }
 }
