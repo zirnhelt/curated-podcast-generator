@@ -1,12 +1,25 @@
 #!/usr/bin/env python3
 """Validate podcast RSS feed against Apple Podcasts requirements."""
 
+import json
 import sys
 import os
 import xml.etree.ElementTree as ET
 
 ITUNES_NS = "http://www.itunes.com/dtds/podcast-1.0.dtd"
+PODCAST_NS = "https://podcastindex.org/namespace/1.0"
 FEED_PATH = "podcast-feed.xml"
+PODCAST_CONFIG_PATH = "config/podcast.json"
+TRANSCRIPT_TYPES = {"text/vtt", "text/html", "text/srt", "application/srt", "application/json"}
+
+
+def _audio_base_url():
+    try:
+        with open(PODCAST_CONFIG_PATH) as f:
+            config = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return None
+    return config.get("audio_base_url") or config.get("url")
 
 
 def validate_feed(feed_path=FEED_PATH):
@@ -113,6 +126,8 @@ def validate_feed(feed_path=FEED_PATH):
     else:
         print(f"  Episodes: {len(items)}")
 
+    audio_base = _audio_base_url()
+
     for i, item in enumerate(items):
         title = item.findtext("title") or f"Episode {i+1}"
         enclosure = item.find("enclosure")
@@ -132,6 +147,35 @@ def validate_feed(feed_path=FEED_PATH):
             warnings.append(f'Episode "{title}": missing <guid> — may cause dedup issues')
         if not item.findtext(f"{{{ITUNES_NS}}}duration"):
             warnings.append(f'Episode "{title}": missing <itunes:duration>')
+
+        transcripts = item.findall(f"{{{PODCAST_NS}}}transcript")
+        if not transcripts:
+            warnings.append(
+                f'Episode "{title}": missing <podcast:transcript> — Apple falls '
+                f"back to auto-generated transcripts"
+            )
+        for t in transcripts:
+            t_url = t.get("url", "")
+            if not t_url:
+                errors.append(f'Episode "{title}": <podcast:transcript> has empty url')
+                continue
+            t_type = t.get("type", "")
+            if t_type not in TRANSCRIPT_TYPES:
+                warnings.append(
+                    f'Episode "{title}": <podcast:transcript> type "{t_type}" not '
+                    f"in {sorted(TRANSCRIPT_TYPES)}"
+                )
+            if not t.get("language"):
+                warnings.append(
+                    f'Episode "{title}": <podcast:transcript> missing language attribute'
+                )
+            if audio_base and t_url.startswith(audio_base):
+                local_path = t_url[len(audio_base):]
+                if not os.path.exists(local_path):
+                    errors.append(
+                        f'Episode "{title}": <podcast:transcript> references '
+                        f'"{local_path}" but the file does not exist locally'
+                    )
 
     passed = len(errors) == 0
     return passed, warnings, errors

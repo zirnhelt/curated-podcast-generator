@@ -2643,7 +2643,8 @@ def _corrections_ground_truth(corrections: list | None) -> str:
 
 
 def polish_and_factcheck_with_agent(script, theme_name, news_articles, deep_dive_articles,
-                                     research_insights=None, model=None, corrections=None):
+                                     research_insights=None, model=None, corrections=None,
+                                     anchor_block=None):
     """Agentic polish + fact-check pass — real-time fallback for post-processing.
 
     Gives Claude the script, verified sources, and research insights directly
@@ -2678,6 +2679,7 @@ def polish_and_factcheck_with_agent(script, theme_name, news_articles, deep_dive
         script=script,
         verified_sources=verified_sources,
         research_insights=research_insights or "(none)",
+        anchor_block=anchor_block or "(none)",
         air_date=f"{weekday}, {date_str}",
     ) + _stage_direction_addendum() + _corrections_ground_truth(corrections)
 
@@ -2705,7 +2707,7 @@ def polish_and_factcheck_with_agent(script, theme_name, news_articles, deep_dive
 
 def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_articles,
                                    additional_research=None, research_insights=None,
-                                   corrections=None):
+                                   corrections=None, anchor_block=None):
     """Submit polish+factcheck and debate summary as a Message Batch.
 
     Returns the batch object (with batch.id for polling) or None on error.
@@ -2742,6 +2744,7 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
         verified_sources=verified_sources,
         additional_research=additional_research or "(none)",
         research_insights=research_insights or "(none)",
+        anchor_block=anchor_block or "(none)",
         air_date=f"{weekday}, {date_str}",
     ) + _stage_direction_addendum() + _corrections_ground_truth(corrections)
 
@@ -2885,7 +2888,7 @@ def collect_batch_results(batch_id):
 
 def run_post_processing_batch(script, theme_name, news_articles, deep_dive_articles,
                                additional_research=None, research_insights=None,
-                               corrections=None):
+                               corrections=None, anchor_block=None):
     """Submit, poll, and collect post-processing batch results.
 
     Returns (polished_script, debate_summary) or falls back to real-time
@@ -2894,7 +2897,8 @@ def run_post_processing_batch(script, theme_name, news_articles, deep_dive_artic
     batch = submit_post_processing_batch(script, theme_name, news_articles, deep_dive_articles,
                                           additional_research=additional_research,
                                           research_insights=research_insights,
-                                          corrections=corrections)
+                                          corrections=corrections,
+                                          anchor_block=anchor_block)
     if not batch:
         return None, None
 
@@ -4196,6 +4200,15 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
         theme_keywords.extend(k.lower() for k in theme_info.get('keywords', []))
     anti_keywords = _build_theme_anti_keywords(theme_name)
     source_boost = _build_theme_source_boost(theme_name)
+    # Deliberately hyperlocal outlets only — broad-coverage BC/national outlets
+    # (The Narwhal, The Tyee, IndigiNews, CBC British Columbia) were removed on
+    # 2026-08-15 after an IndigiNews story about the Híɫzaqv Nation's Central
+    # Coast green-crab defense (zero Cariboo place-name hits) got an automatic
+    # 'local' pass on byline alone and landed mid-block between two unrelated
+    # Cariboo wildfire stories with no transition. Those outlets still land in
+    # 'local' when a story actually names a Cariboo/BC place (place_hits below);
+    # otherwise they're judged on real content relevance like anything else.
+    # Do not re-add outlets here unless their coverage is reliably local.
     local_sources = [s.lower() for s in CONFIG['podcast'].get('local_sources', [])]
     local_places = [p.lower() for p in CONFIG['podcast'].get('local_places', [])]
     disciplines_config = CONFIG.get('disciplines', {})
@@ -8690,6 +8703,11 @@ def run_script_stage() -> tuple[str, str] | None:
         # script generated above still ships. Aborting here would discard the
         # single most expensive call in the pipeline over a rewrite.
         debate_summary = None
+        # Same block generation used (podcast_generator.py:5788) — the polish
+        # pass verifies the anchor's thread, it never writes fresh framing.
+        anchor_block_for_polish = format_anchor_for_prompt(
+            today_anchor, today_weekday, today_theme
+        )
         with segment("script/polish", critical=False):
             # Post-processing: polish + fact-check + debate summary.
             # One chain, not three independent ifs: the fast-path branch below
@@ -8717,6 +8735,7 @@ def run_script_stage() -> tuple[str, str] | None:
                     additional_research=additional_research,
                     research_insights=brave_context,
                     corrections=email_corrections,
+                    anchor_block=anchor_block_for_polish,
                 )
                 if batch_script:
                     script = batch_script
@@ -8727,6 +8746,7 @@ def run_script_stage() -> tuple[str, str] | None:
                         script, today_theme, news_articles, deep_dive_articles,
                         research_insights=brave_context,
                         corrections=email_corrections,
+                        anchor_block=anchor_block_for_polish,
                     )
 
                 if batch_debate:
@@ -8738,6 +8758,7 @@ def run_script_stage() -> tuple[str, str] | None:
                     script, today_theme, news_articles, deep_dive_articles,
                     research_insights=brave_context,
                     corrections=email_corrections,
+                    anchor_block=anchor_block_for_polish,
                 )
 
         if not script:
