@@ -4196,6 +4196,15 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
         theme_keywords.extend(k.lower() for k in theme_info.get('keywords', []))
     anti_keywords = _build_theme_anti_keywords(theme_name)
     source_boost = _build_theme_source_boost(theme_name)
+    # Deliberately hyperlocal outlets only — broad-coverage BC/national outlets
+    # (The Narwhal, The Tyee, IndigiNews, CBC British Columbia) were removed on
+    # 2026-08-15 after an IndigiNews story about the Híɫzaqv Nation's Central
+    # Coast green-crab defense (zero Cariboo place-name hits) got an automatic
+    # 'local' pass on byline alone and landed mid-block between two unrelated
+    # Cariboo wildfire stories with no transition. Those outlets still land in
+    # 'local' when a story actually names a Cariboo/BC place (place_hits below);
+    # otherwise they're judged on real content relevance like anything else.
+    # Do not re-add outlets here unless their coverage is reliably local.
     local_sources = [s.lower() for s in CONFIG['podcast'].get('local_sources', [])]
     local_places = [p.lower() for p in CONFIG['podcast'].get('local_places', [])]
     disciplines_config = CONFIG.get('disciplines', {})
