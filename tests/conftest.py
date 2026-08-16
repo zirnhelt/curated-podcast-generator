@@ -74,17 +74,26 @@ def _isolate_psa_state(tmp_path, monkeypatch):
 
 @pytest.fixture(autouse=True)
 def _isolate_anchor_state(tmp_path, monkeypatch):
-    """Redirect weekly anchor state to a tmp copy for every test.
+    """Redirect weekly anchor state to an *empty* tmp file for every test.
 
     select_anchor() pins the week's question and appends to the no-repeat ledger
     on the first call of a week, so any test that reaches it would otherwise
     rewrite podcasts/weekly_anchor_state.json — live state CI commits daily.
-    Same hazard, same fix as _isolate_psa_state above.
+    Same hazard as _isolate_psa_state above; deliberately not the same fix.
+
+    PSA state is copied because round-robin only means anything against real
+    rotation history. Anchor state is the opposite: every entry in it *removes*
+    a question from the pool forever, so copying it makes the tests weaker every
+    week the show airs, and a test that walks the seeded pool end to end fails
+    the moment production has spent one. It failed exactly that way on
+    2026-08-12. Starting empty is what makes these assertions about the config.
+
+    Draining degradations keeps weekly_anchor's module-level ledger — the
+    workaround for its circular-import problem — from leaking between tests.
     """
     import weekly_anchor
 
-    tmp_state = tmp_path / "weekly_anchor_state.json"
-    if weekly_anchor.ANCHOR_STATE_FILE.exists():
-        shutil.copy(weekly_anchor.ANCHOR_STATE_FILE, tmp_state)
     monkeypatch.setattr(weekly_anchor, "PODCASTS_DIR", tmp_path)
-    monkeypatch.setattr(weekly_anchor, "ANCHOR_STATE_FILE", tmp_state)
+    monkeypatch.setattr(weekly_anchor, "ANCHOR_STATE_FILE",
+                        tmp_path / "weekly_anchor_state.json")
+    weekly_anchor.drain_degradations()
