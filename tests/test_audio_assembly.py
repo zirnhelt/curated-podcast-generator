@@ -75,6 +75,10 @@ def test_overlap_constants_match():
 class RichFakeSegment(FakeSegment):
     """FakeSegment extended with the methods generate_audio_from_script uses."""
 
+    # Peak level of a normal take; the silent-take guard reads this off every
+    # whole-section render, so the default has to be audible.
+    max_dBFS = -3.0
+
     def __getitem__(self, key):
         if isinstance(key, slice):
             start, stop, _ = key.indices(self.length)
@@ -253,6 +257,171 @@ class TestGeminiFailoverKeepsMusicAndCredits:
         assert pg.generate_audio_from_script("script", out, theme_name="Test Theme") == out
         assert gemini_calls, "sections should render on Gemini when the canary passes"
         assert pg.get_active_tts_provider() == "gemini"
+
+    def test_silent_gemini_section_falls_back_to_openai(self, monkeypatch, tmp_path, capsys):
+        """A whole-section render that succeeds and contains no speech is the
+        same failure as a silent per-turn take, minutes wide. It must route to
+        the OpenAI re-render rather than appending dead air."""
+        pg = podcast_generator
+        openai_calls, tts_only_calls = self._setup(monkeypatch, tmp_path)
+
+        class SilentSegment(RichFakeSegment):
+            max_dBFS = -90.0
+
+        def _silent_gemini(seg_list, output_file, context_tail=""):
+            with open(output_file, "wb") as f:
+                f.write(b"\x00")
+            return "tail"
+
+        monkeypatch.setattr(pg, "generate_gemini_tts_for_section", _silent_gemini)
+        monkeypatch.setattr(RichFakeSegment, "from_file",
+                            staticmethod(lambda *a, **k: SilentSegment(5000)))
+        out = str(tmp_path / "episode.mp3")
+
+        assert pg.generate_audio_from_script("script", out, theme_name="Test Theme") == out
+        assert openai_calls, "the silent section must be re-rendered on OpenAI"
+        assert pg._tts_provider_used == "openai"
+        assert tts_only_calls == [], "music and credits must survive the fallback"
+        assert "degrading to OpenAI" in capsys.readouterr().out
+
+
+def _openai_only_setup(monkeypatch, tmp_path, silent_texts=()):
+    """Patch generate_audio_from_script down to the OpenAI per-turn path.
+
+    Returns the list of texts that actually reached TTS — including the spoken
+    credits, which render through the same call.
+    """
+    pg = podcast_generator
+    monkeypatch.setattr(pg, "AudioSegment", RichFakeSegment)
+    monkeypatch.setattr(pg, "USE_GEMINI_TTS", False)
+    monkeypatch.setattr(pg, "USE_AZURE_TTS", False)
+    monkeypatch.setattr(pg, "USE_AZURE_PARALLEL", False)
+    monkeypatch.setattr(pg, "_tts_provider_used", None)
+    monkeypatch.setattr(pg, "get_openai_client", lambda: object())
+    monkeypatch.setattr(pg, "normalize_segment", lambda seg, *a, **k: seg)
+    monkeypatch.setattr(pg, "trim_tts_silence", lambda seg, *a, **k: seg)
+    monkeypatch.setattr(pg, "heuristic_gap_ms", lambda *a, **k: 300)
+    monkeypatch.setattr(pg, "get_ambient_transition", lambda *a, **k: RichFakeSegment(1000))
+    monkeypatch.setattr(pg, "_log_api_call", lambda *a, **k: None)
+    monkeypatch.setattr(pg, "_split_at_sentences", lambda text, **k: [text])
+    for attr in ("INTRO_MUSIC", "INTERVAL_MUSIC", "OUTRO_MUSIC"):
+        monkeypatch.setattr(pg, attr, _FakeMusicPath(attr.lower()))
+    monkeypatch.setattr(pg, "derive_episode_sidecar_path",
+                        lambda audio, prefix: str(tmp_path / f"{prefix}.json"))
+    monkeypatch.setattr(pg, "parse_script_into_segments", lambda script: {
+        "preamble": [],
+        "welcome": _turns("Welcome to the show everyone."),
+        "news": _turns("First headline of the day."),
+        "meta_moment": [],
+        "community_spotlight": [],
+        "deep_dive": _turns("Opening the debate here.", "The dead turn.", "Closing it out."),
+    })
+
+    rendered = []
+
+    def _fake_openai_segment(text, speaker, output_file):
+        if text in silent_texts:
+            raise pg.SilentTakeError(f"two consecutive silent takes for {speaker}")
+        rendered.append(text)
+        with open(output_file, "wb") as f:
+            f.write(b"\x00")
+
+    monkeypatch.setattr(pg, "generate_tts_for_segment", _fake_openai_segment)
+    return rendered
+
+
+class TestSpokenCreditsNameTheirSources:
+    """The spoken credits name only what the episode actually used. Brave and
+    the weather sweep are both optional and both skipped on failure, so each is
+    gated rather than always read."""
+
+    def _credits(self, monkeypatch, tmp_path, **kwargs):
+        rendered = _openai_only_setup(monkeypatch, tmp_path)
+        podcast_generator.generate_audio_from_script(
+            "script", str(tmp_path / "episode.mp3"), theme_name="Test Theme", **kwargs
+        )
+        return next(t for t in rendered if "is produced by" in t)
+
+    def test_weather_source_is_named_when_the_sweep_ran(self, monkeypatch, tmp_path):
+        text = self._credits(monkeypatch, tmp_path, weather_used=True)
+        assert "Open-Meteo" in text
+
+    def test_weather_source_is_omitted_when_the_sweep_did_not_run(self, monkeypatch, tmp_path):
+        text = self._credits(monkeypatch, tmp_path, weather_used=False)
+        assert "Open-Meteo" not in text
+        assert "Regional weather" not in text
+
+    def test_weather_and_brave_credits_are_independent(self, monkeypatch, tmp_path):
+        text = self._credits(monkeypatch, tmp_path, weather_used=True, brave_used=False)
+        assert "Open-Meteo" in text
+        assert "Brave Search" not in text
+
+    def test_weather_source_comes_from_config(self, monkeypatch, tmp_path):
+        monkeypatch.setitem(podcast_generator.CONFIG['credits']['structured'],
+                            'weather_data', 'Some Other Service')
+        text = self._credits(monkeypatch, tmp_path, weather_used=True)
+        assert "Some Other Service" in text
+
+
+class TestSilentTakeIsDroppedNotShipped:
+    """Regression for 2026-08-16: OpenAI returned a full-length, all-zero take
+    for one deep-dive turn. trim_tts_silence passes an entirely silent clip
+    through at full length by design and the duration check saw a correct
+    length, so 27s of dead air went out mid-debate. A turn that cannot be
+    rendered is cut — keeping it ships silence of exactly the same length."""
+
+    def _setup(self, monkeypatch, tmp_path, silent_texts):
+        return _openai_only_setup(monkeypatch, tmp_path, silent_texts)
+
+    def _timeline(self, tmp_path):
+        return json.loads((tmp_path / "video_timeline.json").read_text())["turns"]
+
+    def test_silent_turn_is_cut_and_the_rest_of_the_episode_survives(
+        self, monkeypatch, tmp_path, capsys
+    ):
+        pg = podcast_generator
+        rendered = self._setup(monkeypatch, tmp_path, {"The dead turn."})
+        out = str(tmp_path / "episode.mp3")
+
+        assert pg.generate_audio_from_script("script", out, theme_name="Test Theme") == out
+
+        assert "The dead turn." not in rendered
+        assert "Opening the debate here." in rendered
+        assert "Closing it out." in rendered
+        deep = [t for t in self._timeline(tmp_path) if t["section"] == "deep"]
+        assert len(deep) == 2, "the silent turn must not occupy a slot in the timeline"
+        assert "Dropping silent chunk" in capsys.readouterr().out
+
+    def test_dropped_turn_is_recorded_as_a_degradation(self, monkeypatch, tmp_path):
+        pg = podcast_generator
+        monkeypatch.setattr(pg, "_RUN_SEGMENTS", [])
+        self._setup(monkeypatch, tmp_path, {"The dead turn."})
+
+        pg.generate_audio_from_script("script", str(tmp_path / "episode.mp3"),
+                                      theme_name="Test Theme")
+
+        rows = [r for r in pg._RUN_SEGMENTS if r["name"] == "render/silent-take"]
+        assert len(rows) == 1, "a silent take must reach the run report, and only once"
+        assert rows[0]["status"] == "degraded"
+
+    def test_silent_opening_turn_hands_the_music_overlap_to_the_next_one(
+        self, monkeypatch, tmp_path
+    ):
+        # Dropping the turn that would have started the section must not leave
+        # the intro music fading out into a gap.
+        pg = podcast_generator
+        self._setup(monkeypatch, tmp_path, {"Opening the debate here."})
+        out = str(tmp_path / "episode.mp3")
+
+        assert pg.generate_audio_from_script("script", out, theme_name="Test Theme") == out
+
+        deep = [t for t in self._timeline(tmp_path) if t["section"] == "deep"]
+        assert len(deep) == 2
+        chapters = json.loads((tmp_path / "podcast_chapters.json").read_text())["chapters"]
+        deep_start_ms = next(c for c in chapters if c["title"] == "Deep Dive")["startTime"] * 1000
+        # The surviving first turn starts at the chapter mark (inside the music
+        # fade), not a full heuristic gap after the music ended.
+        assert deep[0]["start_ms"] == pytest.approx(deep_start_ms, abs=100)
 
 
 class TestTtsOnlyEmitsSidecars:

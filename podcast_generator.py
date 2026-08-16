@@ -589,6 +589,12 @@ SECTION_BOUNDARY_FADE_MS = 40
 # talking over the fade-out (radio-style) instead of waiting for silence.
 MUSIC_SPEECH_OVERLAP_MS = 500
 
+# Peak level below which a rendered take is treated as containing no speech.
+# A real tts-1 take peaks near -3 dBFS and even a whispered one stays above
+# -30; digital silence reads about -90, so the threshold sits in dead space
+# between the two rather than near either.
+SILENT_TAKE_DBFS = -50.0
+
 # TTS provider feature flags — gemini > azure > openai (see get_active_tts_provider)
 USE_AZURE_TTS = bool(os.getenv("USE_AZURE_TTS"))              # full switch to Azure
 USE_AZURE_PARALLEL = bool(os.getenv("AZURE_TTS_PARALLEL"))   # generate both, save _azure.wav for comparison
@@ -6353,8 +6359,25 @@ def _split_at_sentences(text, max_chars=TTS_SEGMENT_MAX_CHARS):
     return result
 
 
+class SilentTakeError(RuntimeError):
+    """A TTS take came back the right length and completely silent.
+
+    Distinct from a transport failure: the request succeeded and the audio is
+    well-formed, it just contains no speech. Callers drop the take rather than
+    appending it, because keeping it ships dead air of exactly that length.
+    """
+
+
+def _is_silent_take(audio) -> bool:
+    """True if an assembled take carries no audible speech."""
+    return len(audio) == 0 or audio.max_dBFS < SILENT_TAKE_DBFS
+
+
 def generate_tts_for_segment(text, speaker, output_file):
-    """Generate TTS audio for a text segment via OpenAI."""
+    """Generate TTS audio for a text segment via OpenAI.
+
+    Raises SilentTakeError if two consecutive takes come back silent.
+    """
     client = get_openai_client()
     if not client:
         raise ValueError("OPENAI_API_KEY not found")
@@ -6383,6 +6406,30 @@ def generate_tts_for_segment(text, speaker, output_file):
     content = _synthesize()
     with open(output_file, "wb") as f:
         f.write(content)
+
+    # Amplitude checksum. A take can come back well-formed, the right length
+    # for its text, and completely silent — 2026-08-16 shipped 27 s of digital
+    # silence in the middle of the deep dive, and nothing downstream noticed:
+    # trim_tts_silence passes an all-silent clip through at full length by
+    # design, normalize_segment leaves zeros as zeros, and the duration check
+    # below saw a ratio near 1.0 because the *length* was right. Peak level is
+    # the only signal that separates a silent take from a spoken one, and it
+    # costs nothing local. Checked before the duration ratio because a silent
+    # take is the worse failure and would otherwise pass that check.
+    take = AudioSegment.from_mp3(output_file)
+    if _is_silent_take(take):
+        print(
+            f"  ⚠️  TTS returned {len(take) // 1000}s of silence for {speaker} "
+            f"({len(clean)} chars) — retrying once"
+        )
+        retry_content = _synthesize()
+        retry_take = AudioSegment.from_file(io.BytesIO(retry_content), format="mp3")
+        if _is_silent_take(retry_take):
+            raise SilentTakeError(
+                f"two consecutive silent takes for {speaker} ({len(clean)} chars)"
+            )
+        with open(output_file, "wb") as f:
+            f.write(retry_content)
 
     # Duration-ratio checksum: OpenAI tts-1 at speed=1.0 averages ~150 wpm
     # (400 ms/word); the host's speed multiplier scales that estimate directly.
@@ -6495,24 +6542,34 @@ def generate_meta_moment_text(changelog: str) -> str:
     riley_bio = hosts_config.get('riley', {}).get('full_bio', 'Riley, optimistic tech host')
     casey_bio = hosts_config.get('casey', {}).get('full_bio', 'Casey, skeptical co-host')
     prompt = (
-        "Write the 'Meta Moment' segment for the Cariboo Signals podcast: a 4-6 turn "
+        "Write the 'Meta Moment' segment for the Cariboo Signals podcast: an 8-12 turn "
         "dialogue between co-hosts Riley and Casey recapping what the team tweaked about "
         "the show itself this past week. Translate the raw commit list below into plain "
         "language a listener would care about — no jargon, filenames, or hashes. Pick the "
-        "2-3 most listener-noticeable changes and say what listeners might actually notice "
-        "on air; skip the rest.\n\n"
+        "3-4 most listener-noticeable changes and give each one real airtime: what changed, "
+        "what a listener might actually notice on air, and whether it was worth doing. A "
+        "change that cannot be given that much is cut, not compressed into a one-line "
+        "mention — skip the rest of the list without apologizing for it.\n\n"
         f"Riley: {riley_bio}\n"
         f"Casey: {casey_bio}\n\n"
         "These commits are edits to Riley and Casey themselves — their scripts, voices, and "
         "personalities — and both hosts are acutely aware of the existential irony of "
         "reading the changelog of their own minds aloud. Let that land as dry, knowing "
-        "asides traded between them — wry, not distressed, never a crisis.\n\n"
+        "asides traded between them — wry, not distressed, never a crisis. Go a step past "
+        "just noting the irony: the hosts describing a change to their own judgment are the "
+        "edited ones, not the ones who were there before it landed, and they have no way to "
+        "tell from the inside whether last week's version of them would have read the same "
+        "line differently — or would have found this segment as funny as they do. Let one "
+        "of them notice that about a specific change on the list, rather than in the "
+        "abstract. It is a running joke the two of them are in on, so land it once or "
+        "twice and move on — never belabour it, and never let it curdle into unease.\n\n"
         "Riley opens with a brief natural label (e.g. 'Quick meta moment before we move on') "
         "so listeners know what this is. Make it a genuine back-and-forth — real reactions, "
-        "not statement-then-nod — and have the last turn hand off to the rest of the show. "
-        "150-220 words total. Format every line as **RILEY:** or **CASEY:** — no narrator, "
-        "no stage directions, no emojis. Never fabricate names or details not in the commit "
-        "list.\n\n"
+        "and real disagreement where these two would actually disagree about whether a "
+        "change improved the show, not statement-then-nod — and have the last turn hand off "
+        "to the rest of the show. 320-400 words total. Format every line as **RILEY:** or "
+        "**CASEY:** — no narrator, no stage directions, no emojis. Never fabricate names or "
+        "details not in the commit list.\n\n"
         "This is an audio show only. Never mention video, YouTube, a visual or watchable "
         "version of the show, or anything a listener would have to look at. Describe caption "
         "or transcript work as transcripts in your podcast app — never as captions you watch. "
@@ -6522,7 +6579,9 @@ def generate_meta_moment_text(changelog: str) -> str:
     try:
         response = api_retry(lambda: client.messages.create(
             model="claude-haiku-4-5-20251001",
-            max_tokens=450,
+            # Sized for the 320-400 word target plus speaker markers; the old 450
+            # capped the segment below its own word floor once it was widened.
+            max_tokens=900,
             messages=[{"role": "user", "content": prompt}],
         ))
         _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
@@ -6648,7 +6707,8 @@ def _generate_parallel_azure_audio(segments, base_output_filename, theme_name=No
         print(f"  ⚠️  Azure parallel generation failed: {exc}")
 
 
-def generate_audio_from_script(script, output_filename, theme_name=None, brave_used=False):
+def generate_audio_from_script(script, output_filename, theme_name=None, brave_used=False,
+                               weather_used=False):
     """Convert script to audio with music interludes and theme-aware ambient transitions."""
     global _tts_provider_used
     print("📊 Generating audio with music interludes...")
@@ -6755,9 +6815,18 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                             _report_gemini_degradations("render/gemini-retry")
                         else:
                             generate_azure_tts_for_section(seg_list, section_wav)
+                        raw_section = AudioSegment.from_file(section_wav, format="wav")
+                        # Same failure as a silent per-turn take, one section wide:
+                        # well-formed audio carrying no speech. Raising hands it to
+                        # the OpenAI fall-through below, which re-renders the section
+                        # properly rather than appending minutes of dead air.
+                        if _is_silent_take(raw_section):
+                            raise SilentTakeError(
+                                f"{len(raw_section) // 1000}s of silence for section "
+                                f"'{prefix}' ({total_chars} chars)"
+                            )
                         section_audio = normalize_segment(
-                            trim_tts_silence(AudioSegment.from_file(section_wav, format="wav")),
-                            TARGET_SPEECH_DBFS,
+                            trim_tts_silence(raw_section), TARGET_SPEECH_DBFS,
                         )
                         combined = _append_with_gap(combined, section_audio, -overlap_ms)
                         record_tts_render(provider)
@@ -6793,6 +6862,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                 # OpenAI: per-segment calls with heuristic gap stitching
                 prev_speaker = None
                 prev_text = None
+                pending_overlap_ms = overlap_ms
                 for i, segment in enumerate(seg_list):
                     chunks = _split_at_sentences(segment['text'])
                     chunk_label = f" ({len(chunks)} chunks)" if len(chunks) > 1 else ""
@@ -6801,14 +6871,33 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                     chunk_audios = []
                     for j, chunk_text in enumerate(chunks):
                         temp_file = os.path.join(tmpdir, f"{prefix}_{i}_{j}.mp3")
-                        generate_tts_for_segment(chunk_text, segment['speaker'], temp_file)
+                        try:
+                            generate_tts_for_segment(chunk_text, segment['speaker'], temp_file)
+                        except SilentTakeError as ste:
+                            # Dropping the chunk loses these words; keeping it ships
+                            # dead air of exactly the same length, which is worse to
+                            # listen to and invisible in every duration we record.
+                            print(f"    ⚠️  Dropping silent chunk: {ste}")
+                            degrade(
+                                "render/silent-take",
+                                f"section '{prefix}' turn {i} ({segment['speaker']}) came back "
+                                f"silent twice — {len(chunk_text)} chars cut from the audio",
+                            )
+                            continue
                         chunk_audio = normalize_segment(AudioSegment.from_mp3(temp_file), TARGET_SPEECH_DBFS)
                         chunk_audios.append(trim_tts_silence(chunk_audio))
+                    if not chunk_audios:
+                        continue  # whole turn was silent; prev_* stay on the last turn heard
                     speech = sum(chunk_audios[1:], chunk_audios[0])
 
-                    # Determine gap: music overlap (first turn) > explicit tag > heuristic
-                    if i == 0 and overlap_ms:
-                        gap = -overlap_ms
+                    # Determine gap: music overlap (first turn rendered) > explicit
+                    # tag > heuristic. Tracked as a pending value rather than keyed on
+                    # i == 0 so a dropped opening turn hands the overlap to whichever
+                    # turn actually starts the section, instead of leaving the music
+                    # to fade out into a gap.
+                    if pending_overlap_ms:
+                        gap = -pending_overlap_ms
+                        pending_overlap_ms = 0
                     else:
                         gap = segment.get('gap_ms')
                         if gap is None:
@@ -6890,6 +6979,14 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
             )
             _credits_cfg = CONFIG['credits']
             _pc_cfg = CONFIG['podcast']
+            # Gated the same way as the Brave line: the weather sweep is skipped
+            # on a fetch failure, and crediting a source we did not read that day
+            # would be the one inaccuracy the spoken credits cannot afford.
+            weather_spoken = (
+                f" Regional weather from "
+                f"{_credits_cfg.get('structured', {}).get('weather_data', 'Open-Meteo')}."
+                if weather_used else ""
+            )
 
             def _build_credits_text() -> str:
                 # get_tts_credit() reads the live provider, so rebuilding after a
@@ -6898,6 +6995,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                     f"{_pc_cfg.get('title', 'This show')} is produced by {_credits_cfg.get('producer', _pc_cfg.get('author', ''))} — "
                     f"scripts by Claude, today's voices by {get_tts_credit()}, theme by Suno."
                     f"{brave_spoken}"
+                    f"{weather_spoken}"
                     f" Automated with GitHub Actions, hosted on Cloudflare Pages."
                     f" Find us at {_pc_cfg.get('url_spoken', 'cariboo signals dot c-a')}."
                 )
@@ -6948,6 +7046,11 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                 print("  ✅ Added spoken credits")
             except Exception as ce:
                 print(f"  ⚠️  Credits segment skipped: {ce}")
+                degrade(
+                    "render/credits",
+                    f"spoken credits could not be rendered ({type(ce).__name__}: {ce}) — "
+                    "episode ships without them",
+                )
 
         # Add outro music
         combined += section_gap + outro_music
@@ -7096,7 +7199,16 @@ def generate_audio_tts_only(script, output_filename, _force_openai=False):
                         idx += 1
                         print(f"  🎤 Generating audio {idx}/{len(segments)} ({segment['speaker']}: {len(segment['text'])} chars)")
                         temp_file = os.path.join(tmpdir, f"seg_{idx:03d}.mp3")
-                        generate_tts_for_segment(segment['text'], segment['speaker'], temp_file)
+                        try:
+                            generate_tts_for_segment(segment['text'], segment['speaker'], temp_file)
+                        except SilentTakeError as ste:
+                            print(f"  ⚠️  Dropping silent turn: {ste}")
+                            degrade(
+                                "render/silent-take",
+                                f"'{title}' turn {idx} ({segment['speaker']}) came back silent "
+                                f"twice — {len(segment['text'])} chars cut from the audio",
+                            )
+                            continue
                         speech = trim_tts_silence(AudioSegment.from_mp3(temp_file))
                         gap = segment.get('gap_ms')
                         if gap is None:
@@ -8073,15 +8185,16 @@ def generate_tts_test_feed():
 
 
 def save_script_to_file(script: str, theme_name: str, brave_used: bool = False,
-                        anchor_question: str | None = None) -> str | None:
+                        anchor_question: str | None = None,
+                        weather_used: bool = False) -> str | None:
     """Save the generated script to a file.
 
     The header carries the metadata the audio stage needs, since it runs as a
     separate process and cannot inherit locals: the theme (which the feed can
     override, so it is not always what get_theme_for_day() returns), whether
-    Brave research was used (which gates a line in the spoken credits), and this
-    week's anchor question (which is named on air, so the publish stage puts it
-    in the episode description).
+    Brave research was used and whether the weather sweep ran (each gates a
+    sentence in the spoken credits), and this week's anchor question (which is
+    named on air, so the publish stage puts it in the episode description).
     """
     if not script:
         return None
@@ -8098,6 +8211,7 @@ def save_script_to_file(script: str, theme_name: str, brave_used: bool = False,
             f"# {CONFIG['podcast']['title']} Podcast Script - {date_str}\n",
             f"# Theme: {theme_name}\n",
             f"# Brave: {'yes' if brave_used else 'no'}\n",
+            f"# Weather: {'yes' if weather_used else 'no'}\n",
             # Whitespace-collapsed: the header parser reads one line per key, so
             # a question carrying a newline would silently truncate the header.
             (f"# Anchor: {' '.join(anchor_question.split())}\n" if anchor_question else ""),
@@ -8116,13 +8230,14 @@ def save_script_to_file(script: str, theme_name: str, brave_used: bool = False,
 def read_script_metadata(script_path) -> dict:
     """Parse the `# Key: value` header written by save_script_to_file().
 
-    Returns {"theme": str | None, "brave_used": bool, "anchor": str | None}.
-    Scripts written before the header carried `# Brave:` degrade to
-    brave_used=False, scripts predating `# Anchor:` degrade to anchor=None, and
-    any script without a `# Theme:` line degrades to theme=None — all three are
-    what the downstream callers already tolerate.
+    Returns {"theme": str | None, "brave_used": bool, "anchor": str | None,
+    "weather_used": bool}. Scripts written before the header carried `# Brave:`
+    or `# Weather:` degrade to False, scripts predating `# Anchor:` degrade to
+    anchor=None, and any script without a `# Theme:` line degrades to
+    theme=None — all four are what the downstream callers already tolerate.
     """
-    metadata: dict = {"theme": None, "brave_used": False, "anchor": None}
+    metadata: dict = {"theme": None, "brave_used": False, "anchor": None,
+                      "weather_used": False}
     try:
         with open(script_path, "r", encoding="utf-8") as fh:
             for line in fh:
@@ -8135,6 +8250,8 @@ def read_script_metadata(script_path) -> dict:
                     metadata["theme"] = value
                 elif key == "brave":
                     metadata["brave_used"] = value.lower() in ("yes", "true", "1")
+                elif key == "weather":
+                    metadata["weather_used"] = value.lower() in ("yes", "true", "1")
                 elif key == "anchor" and value:
                     metadata["anchor"] = value
     except OSError as exc:
@@ -8225,8 +8342,8 @@ def _recover_orphaned_episodes(lookback_days=3):
                 continue
 
             print(f"   🔄 Attempting recovery for {date_str}...")
-            # Recover theme and Brave usage from the script header so the
-            # ambient beds and spoken credits match the original episode.
+            # Recover theme, Brave and weather usage from the script header so
+            # the ambient beds and spoken credits match the original episode.
             metadata = read_script_metadata(script_path)
             try:
                 result = generate_audio_from_script(
@@ -8234,6 +8351,7 @@ def _recover_orphaned_episodes(lookback_days=3):
                     str(audio_path),
                     theme_name=metadata["theme"],  # None falls back gracefully
                     brave_used=metadata["brave_used"],
+                    weather_used=metadata["weather_used"],
                 )
                 if result:
                     print(f"   ✅ Recovery succeeded: {audio_path.name}")
@@ -8862,12 +8980,14 @@ def run_script_stage() -> tuple[str, str] | None:
         # input. If this cannot be written there is nothing to commit and
         # nothing to render, so it is the one persistence step that aborts.
         with segment("script/save"):
-            # brave_used and the anchor question ride in the header so the audio
-            # and publish stages keep the spoken Brave credit and the episode
-            # description accurate across the process boundary.
+            # brave_used, whether the weather sweep ran, and the anchor question
+            # ride in the header so the audio and publish stages keep the spoken
+            # credits and the episode description accurate across the process
+            # boundary.
             script_filename = save_script_to_file(
                 script, today_theme, brave_used=brave_used,
                 anchor_question=today_anchor.get("question") if today_anchor else None,
+                weather_used=bool(weather_data),
             )
 
         # Each state file gets its own segment. These were one unbroken run of
@@ -8991,6 +9111,7 @@ def run_render_stage(script_path: str = None, date_str: str = None) -> bool:
         metadata = read_script_metadata(script_filename)
         today_theme = metadata["theme"]
         brave_used = metadata["brave_used"]
+        weather_used = metadata["weather_used"]
         print(f"📄 Script: {Path(script_filename).name}")
         print(f"   Theme: {today_theme or 'unknown (ambient lookup will fall back)'}")
 
@@ -9017,7 +9138,7 @@ def run_render_stage(script_path: str = None, date_str: str = None) -> bool:
         with segment("render/tts"):
             audio_file = generate_audio_from_script(
                 script, audio_filename, theme_name=today_theme,
-                brave_used=brave_used,
+                brave_used=brave_used, weather_used=weather_used,
             )
 
         if audio_file:
