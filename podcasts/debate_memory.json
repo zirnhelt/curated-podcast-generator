@@ -1,30 +1,4 @@
 {
-  "2026-05-17": {
-    "timestamp": 1779016376.27235,
-    "date": "2026-05-17",
-    "theme": "Science, Wonder & the Natural World",
-    "central_question": "How can the Cariboo region develop locally-controlled, long-term scientific monitoring infrastructure using accessible methodologies without reproducing extractive research models?",
-    "riley_position": "Environmental DNA (eDNA) and acoustic ecology research methodologies are now affordable and accessible enough to enable Indigenous-led monitoring of local river systems and forest regeneration; the technical barriers have dropped substantially, making regional science feasible.",
-    "riley_key_evidence": [
-      "eDNA sampling equipment costs have dropped from tens of thousands to a few thousand dollars for freshwater systems",
-      "MIT research showed plants detect acoustic vibrations from rainfall, with mechanisms present in most vascular plants, not just rice",
-      "A targeted eDNA survey of 15-20 Cariboo tributary sites would cost under $50,000 and could update stale bull trout distribution maps from the early 2010s"
-    ],
-    "casey_position": "Technical feasibility is necessary but insufficient; the real barriers are governance (Indigenous data sovereignty, interpretive authority retention by universities), funding continuity (one-time projects vs. ongoing monitoring), and political incentives that don't align with findings that might constrain resource extraction.",
-    "casey_key_evidence": [
-      "DFO community engagement programs have been defunded and reinstated on a four-year political cycle, making infrastructure availability unreliable",
-      "Universities can quietly retain interpretive control by running sequencing analysis even when communities lead sample collection",
-      "Timber licensees have financial incentives to fund research on harvesting efficiency, not on acoustic ecology findings that might justify retaining standing forest"
-    ],
-    "resolution": "Casey and Riley converged on a structural solution: use community foundation endowment models (like the Quesnel Community Foundation) to provide continuous funding for monitoring programs, while keeping governance separate and anchored in Indigenous-led monitoring commons; they acknowledged this requires careful design and further conversation at First Nations economic development tables rather than resolution on the podcast.",
-    "topics_covered": [
-      "Environmental DNA methodology for monitoring aquatic species without capture or disturbance",
-      "Indigenous data sovereignty and governance requirements for research conducted on traditional territories",
-      "Acoustic ecology and plant responses to environmental sound in forest regeneration contexts",
-      "Old-growth forests as scientific archives containing climate and cosmic event records",
-      "Community foundations and endowment models as sustainable funding vehicles for long-term ecological monitoring"
-    ]
-  },
   "2026-05-18": {
     "timestamp": 1779114126.152202,
     "date": "2026-05-18",
@@ -2327,6 +2301,34 @@
       "Comparison between provincial decision-making timelines and local electoral accountability",
       "First Nations governance structures and long-term stewardship models",
       "Whether public comment periods create meaningful policy change or symbolic participation"
+    ]
+  },
+  "2026-08-16": {
+    "timestamp": 1786870089.422878,
+    "date": "2026-08-16",
+    "theme": "Science, Wonder & the Natural World",
+    "focus": "sky-cosmos",
+    "anchor": "owe-those-after",
+    "central_question": "Why does the forestry industry continue spraying aspen\u2014a proven natural firebreak\u2014in favor of commercially valuable conifers that burn faster, despite mounting evidence and fire risk?",
+    "riley_position": "The science is clear and actionable: aspen retention is a low-cost, immediate solution that requires only a policy shift in spraying practices and permit conditions, not new technology.",
+    "riley_key_evidence": [
+      "McGill University research shows aspen trees were 2.42 times more common at fire edges than inside burned areas",
+      "Foresters have observed aspen stands surviving fires for generations, but this knowledge hasn't been formalized into policy",
+      "Aspen retention zones could be written into timber permits as binding conditions, similar to existing water quality requirements"
+    ],
+    "casey_position": "The problem isn't scientific knowledge but institutional misalignment: decision-makers who benefit from conifer harvests don't bear the fire risk thirty years later, making even zero-cost solutions economically irrational for them.",
+    "casey_key_evidence": [
+      "License holders capture conifer yield at harvest while communities bear fire exposure decades later",
+      "Forestry decisions are optimized for 10-20 year harvest horizons, not the 30-40 year timeframes when consequences materialize",
+      "Permit conditions without enforcement mechanisms become paper commitments when compliance monitoring is chronically understaffed"
+    ],
+    "resolution": "They converged on agreement that the core issue is enforcement and accountability: any aspen retention policy must include built-in monitoring mechanisms and designated oversight before submission, not as an afterthought, to avoid becoming a meaningless paper commitment.",
+    "topics_covered": [
+      "Aspen's fire-suppression properties vs. commercial forestry incentives",
+      "The gap between scientific evidence and policy implementation",
+      "Structural misalignment between decision-makers and communities bearing long-term risks",
+      "How to make effective public input to Ministry timber consultations",
+      "Compliance monitoring and enforcement challenges in forestry permits"
     ]
   }
 }

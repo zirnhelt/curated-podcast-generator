@@ -506,6 +506,43 @@
         "https://arstechnica.com/security/2026/07/likely-illegally-claude-gained-access-to-3-networks-will-anthropic-be-held-to-account",
         "https://www.semafor.com/article/07/29/2026/altman-says-he-supports-ai-regulation"
       ]
+    },
+    "https://pdst.fm/e/pscrb.fm/rss/p/mgln.ai/e/294/cdn.twit.tv/megaphone/twig_883/ARML8744267908.mp3": {
+      "title": "IM 883: Gates-Gate - AI Model Watermarks",
+      "pub_date": "Wed, 12 Aug 2026 18:34:10 PDT",
+      "episode_url": "https://twit.tv/shows/intelligent-machines/episodes/883",
+      "harvested_at": "2026-08-16T06:41:59.197625+00:00",
+      "question": "If AI watermarking becomes standard, can rural newsrooms trust that they're seeing authentic human-reported stories versus AI-generated content masquerading as local journalism?",
+      "perspectives": [
+        "Watermarks enable transparency; audiences can verify authenticity and hold AI systems accountable for misinformation.",
+        "Watermarks are easily stripped or spoofed; bad actors will circumvent them while honest outlets comply, creating asymmetric disadvantage."
+      ],
+      "open_questions": [
+        "When a single journalist with $30 in AI tools can outpace traditional newsrooms, how do regional outlets compete without becoming AI-dependent themselves\u2014risking their own authenticity?",
+        "If AI reporters are 'breaking big news,' what editorial responsibility lies with the humans deploying them\u2014especially when deploying AI removes the investigative legwork that builds community trust?",
+        "Should watermarking standards be legally mandated or industry self-regulated, given that major platforms (Amazon, Meta) already resist accountability mechanisms?",
+        "How do smaller markets like rural BC ensure local accountability when national AI services (Perplexity, Claude) generate 'news' about their region without local editorial judgment?"
+      ],
+      "topics": [
+        "AI watermarking and content authentication",
+        "AI-generated journalism and credibility in local news",
+        "Cost barriers to entry in regional reporting",
+        "Platform liability for AI-generated misinformation",
+        "AI cheating detection in education (Danish oral defense model)",
+        "Consumer transparency in AI-driven recommendations (BMW ads, Perplexity shopping)"
+      ],
+      "discussed_links": [
+        "https://cloud.typography.com/6494954/686486/css/fonts.css",
+        "https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600",
+        "https://podcasts.apple.com/us/podcast/intelligent-machines-audio/id326120877",
+        "http://pcasts.in/twig",
+        "https://twit.memberful.com/account/feeds?id=9064",
+        "https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content",
+        "https://about.fb.com/news/2026/08/the-future-is-for-everyone/",
+        "https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model",
+        "https://asimovaddendum.substack.com/p/googles-westinghouse-bet",
+        "https://www.wsj.com/business/deals/nvidia-wall-street-firms-strike-ai-financing-deal-targeting-500-billion-c50377db?mod=hp_lead_pos2"
+      ]
     }
   }
 }
