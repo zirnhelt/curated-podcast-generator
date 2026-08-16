@@ -2101,12 +2101,44 @@ class TestGenerateMetaMomentText:
         generate_meta_moment_text("- Tighten news roundup transitions")
 
         prompt = client.messages.create.call_args.kwargs["messages"][0]["content"]
-        assert "4-6 turn" in prompt
-        assert "150-220 words" in prompt
+        assert "8-12 turn" in prompt
+        assert "320-400 words" in prompt
         assert "edits to Riley and Casey themselves" in prompt
         assert "existential irony" in prompt
         assert "wry, not distressed" in prompt
         assert "- Tighten news roundup transitions" in prompt
+
+    def test_prompt_asks_for_depth_over_a_longer_list(self, monkeypatch):
+        # More airtime has to buy fuller treatment of a few changes, not a
+        # longer roll-call — the same floor rule the news roundup runs on.
+        client = self._client_returning(self._DIALOGUE)
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
+        generate_meta_moment_text("- Some change")
+
+        prompt = client.messages.create.call_args.kwargs["messages"][0]["content"]
+        assert "3-4 most listener-noticeable changes" in prompt
+        assert "cut, not compressed" in prompt
+
+    def test_prompt_keeps_the_self_awareness_bounded(self, monkeypatch):
+        # The irony is a running joke the hosts are in on. Unbounded, a prompt
+        # this self-referential drifts into distress on a show that has to hand
+        # off to a community spotlight thirty seconds later.
+        client = self._client_returning(self._DIALOGUE)
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
+        generate_meta_moment_text("- Some change")
+
+        prompt = client.messages.create.call_args.kwargs["messages"][0]["content"]
+        assert "no way to tell from the inside" in prompt
+        assert "never belabour it" in prompt
+        assert "never let it curdle into unease" in prompt
+
+    def test_max_tokens_covers_the_word_target(self, monkeypatch):
+        # 450 tokens capped the segment below its own 320-400 word floor.
+        client = self._client_returning(self._DIALOGUE)
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
+        generate_meta_moment_text("- Some change")
+
+        assert client.messages.create.call_args.kwargs["max_tokens"] >= 800
 
 
 class TestStaleFramingAlerts:
@@ -2994,23 +3026,34 @@ class TestScriptMetadataHeader:
     locals — it reads them back out of the file save_script_to_file wrote.
     """
 
-    def _save(self, tmp_path, monkeypatch, theme, brave_used):
+    def _save(self, tmp_path, monkeypatch, theme, brave_used, weather_used=False):
         import podcast_generator as pg
 
         monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
-        return save_script_to_file("**RILEY:** Hello.\n", theme, brave_used=brave_used)
+        return save_script_to_file("**RILEY:** Hello.\n", theme, brave_used=brave_used,
+                                   weather_used=weather_used)
 
     def test_round_trips_theme_and_brave_used(self, tmp_path, monkeypatch):
-        path = self._save(tmp_path, monkeypatch, "Working Lands & Industry", True)
+        path = self._save(tmp_path, monkeypatch, "Working Lands & Industry", True,
+                          weather_used=True)
         assert read_script_metadata(path) == {
             "theme": "Working Lands & Industry",
             "brave_used": True,
             "anchor": None,
+            "weather_used": True,
         }
 
     def test_round_trips_brave_unused(self, tmp_path, monkeypatch):
         path = self._save(tmp_path, monkeypatch, "Wild Spaces & Outdoor Life", False)
         assert read_script_metadata(path)["brave_used"] is False
+
+    def test_round_trips_weather_unused(self, tmp_path, monkeypatch):
+        # The weather sweep is non-critical and skipped on a fetch failure, so
+        # the header has to be able to say "no" — crediting Open-Meteo on a day
+        # we never reached it is the inaccuracy this gate exists to prevent.
+        path = self._save(tmp_path, monkeypatch, "Wild Spaces & Outdoor Life", True,
+                          weather_used=False)
+        assert read_script_metadata(path)["weather_used"] is False
 
     def test_feed_overridden_theme_survives_slug_mismatch(self, tmp_path, monkeypatch):
         # The feed can hand back a theme unrelated to the weekday rotation. The
@@ -3039,6 +3082,7 @@ class TestScriptMetadataHeader:
             "theme": "Legacy Theme",
             "brave_used": False,
             "anchor": None,
+            "weather_used": False,
         }
 
     def test_missing_file_degrades_without_raising(self, tmp_path):
@@ -3046,6 +3090,7 @@ class TestScriptMetadataHeader:
             "theme": None,
             "brave_used": False,
             "anchor": None,
+            "weather_used": False,
         }
 
     def test_stops_parsing_at_first_non_comment_line(self, tmp_path):
@@ -3178,7 +3223,7 @@ class TestStageDispatch:
 class TestAudioStageCrossBoundary:
     """The audio stage must reconstruct what the single-process run had in locals."""
 
-    def _prepare(self, tmp_path, monkeypatch, brave_used):
+    def _prepare(self, tmp_path, monkeypatch, brave_used, weather_used=False):
         import podcast_generator as pg
 
         monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
@@ -3191,14 +3236,17 @@ class TestAudioStageCrossBoundary:
         monkeypatch.setattr(pg, "refresh_citations_tts_credit", lambda *a, **k: None)
 
         script = save_script_to_file(
-            "**RILEY:** Hello.\n", "Working Lands & Industry", brave_used=brave_used
+            "**RILEY:** Hello.\n", "Working Lands & Industry", brave_used=brave_used,
+            weather_used=weather_used,
         )
 
         captured = {}
 
-        def fake_audio(script_text, output_filename, theme_name=None, brave_used=False):
+        def fake_audio(script_text, output_filename, theme_name=None, brave_used=False,
+                       weather_used=False):
             captured["theme_name"] = theme_name
             captured["brave_used"] = brave_used
+            captured["weather_used"] = weather_used
             captured["output_filename"] = output_filename
             open(output_filename, "wb").write(b"\x00")
             return output_filename
@@ -3217,6 +3265,20 @@ class TestAudioStageCrossBoundary:
         pg, script, captured = self._prepare(tmp_path, monkeypatch, brave_used=False)
         pg.run_audio_stage(script_path=script)
         assert captured["brave_used"] is False
+
+    def test_weather_used_survives_the_stage_boundary(self, tmp_path, monkeypatch):
+        # Same boundary as brave_used: the render process cannot see whether the
+        # weather sweep ran, so the spoken Open-Meteo credit rides in the header.
+        pg, script, captured = self._prepare(tmp_path, monkeypatch, brave_used=False,
+                                             weather_used=True)
+        assert pg.run_audio_stage(script_path=script) is True
+        assert captured["weather_used"] is True
+
+    def test_weather_unused_stays_false(self, tmp_path, monkeypatch):
+        pg, script, captured = self._prepare(tmp_path, monkeypatch, brave_used=False,
+                                             weather_used=False)
+        pg.run_audio_stage(script_path=script)
+        assert captured["weather_used"] is False
 
     def test_theme_recovered_from_header(self, tmp_path, monkeypatch):
         pg, script, captured = self._prepare(tmp_path, monkeypatch, brave_used=False)

@@ -1,11 +1,15 @@
-"""Tests for the OpenAI TTS duration-ratio retry in generate_tts_for_segment.
+"""Tests for the two per-take checksums in generate_tts_for_segment.
 
-A truncated take (OpenAI silently dropping words) used to only print a
-warning — the published transcript is built from the segment's *real*
-measured duration, so a caption window still gets sized to whatever audio
-actually rendered, but the text shown is the full (untruncated) script line.
-The listener hears a shorter clip than the caption implies actually got
-spoken. One retry usually recovers the full-length take.
+Duration: a truncated take (OpenAI silently dropping words) used to only
+print a warning — the published transcript is built from the segment's
+*real* measured duration, so a caption window still gets sized to whatever
+audio actually rendered, but the text shown is the full (untruncated)
+script line. The listener hears a shorter clip than the caption implies
+actually got spoken. One retry usually recovers the full-length take.
+
+Amplitude: a take can also come back the right length and completely
+silent, which the duration check by construction cannot see. 2026-08-16
+shipped 27s of digital silence in the middle of the deep dive that way.
 """
 
 import io
@@ -14,32 +18,45 @@ import pytest
 
 import podcast_generator as pg
 
+AUDIBLE_DBFS = -3.0   # what a real tts-1 take peaks at
+SILENT_DBFS = -90.0   # what digital silence reads as
+
 
 class FakeAudio:
-    """Length-only stand-in for an mp3 AudioSegment, keyed off the content bytes."""
+    """Length+peak stand-in for an mp3 AudioSegment, keyed off the content bytes."""
 
-    def __init__(self, duration_ms):
+    def __init__(self, duration_ms, max_dBFS=AUDIBLE_DBFS):
         self.duration_ms = duration_ms
+        self.max_dBFS = max_dBFS
 
     def __len__(self):
         return self.duration_ms
 
 
-def _content(duration_ms: int) -> bytes:
-    return str(duration_ms).encode()
+def _content(duration_ms: int, peak_dbfs: float = AUDIBLE_DBFS) -> bytes:
+    return f"{duration_ms}|{peak_dbfs}".encode()
+
+
+def _decode(raw: bytes) -> FakeAudio:
+    duration, _, peak = raw.decode().partition("|")
+    return FakeAudio(int(duration), float(peak))
+
+
+def _duration_of(path) -> int:
+    return _decode(path.read_bytes()).duration_ms
 
 
 class FakeAudioSegmentCls:
-    """Decodes duration from the fake TTS response bytes written to disk / passed in."""
+    """Decodes duration+peak from the fake TTS response bytes on disk / passed in."""
 
     @staticmethod
     def from_mp3(path):
         with open(path, "rb") as f:
-            return FakeAudio(int(f.read()))
+            return _decode(f.read())
 
     @staticmethod
     def from_file(fileobj, format=None):
-        return FakeAudio(int(fileobj.read()))
+        return _decode(fileobj.read())
 
 
 class FakeResponse:
@@ -48,24 +65,25 @@ class FakeResponse:
 
 
 class FakeSpeech:
-    def __init__(self, durations_ms):
-        self._durations = list(durations_ms)
+    def __init__(self, takes):
+        # Each take is either a duration, or a (duration, peak_dbfs) pair.
+        self._takes = [t if isinstance(t, tuple) else (t, AUDIBLE_DBFS) for t in takes]
         self.calls = 0
 
     def create(self, **kwargs):
         self.calls += 1
-        duration_ms = self._durations[min(self.calls, len(self._durations)) - 1]
-        return FakeResponse(_content(duration_ms))
+        duration_ms, peak = self._takes[min(self.calls, len(self._takes)) - 1]
+        return FakeResponse(_content(duration_ms, peak))
 
 
 class FakeAudioNamespace:
-    def __init__(self, durations_ms):
-        self.speech = FakeSpeech(durations_ms)
+    def __init__(self, takes):
+        self.speech = FakeSpeech(takes)
 
 
 class FakeClient:
-    def __init__(self, durations_ms):
-        self.audio = FakeAudioNamespace(durations_ms)
+    def __init__(self, takes):
+        self.audio = FakeAudioNamespace(takes)
 
 
 TEXT = " ".join(["word"] * 20)  # 20 words, well above the 10-word floor
@@ -88,7 +106,7 @@ class TestTTSDurationRetry:
         pg.generate_tts_for_segment(TEXT, "riley", str(out))
 
         assert client.audio.speech.calls == 1
-        assert int(out.read_bytes()) == 8000
+        assert _duration_of(out) == 8000
 
     def test_short_take_retries_and_keeps_longer_result(self, monkeypatch, tmp_path, capsys):
         # First take is 50% of expected (well under the 0.80 threshold);
@@ -100,7 +118,7 @@ class TestTTSDurationRetry:
         pg.generate_tts_for_segment(TEXT, "riley", str(out))
 
         assert client.audio.speech.calls == 2
-        assert int(out.read_bytes()) == 8000
+        assert _duration_of(out) == 8000
         err = capsys.readouterr().out
         assert "possible word omission, retrying once" in err
         assert "Retry didn't recover" not in err
@@ -115,7 +133,7 @@ class TestTTSDurationRetry:
         pg.generate_tts_for_segment(TEXT, "riley", str(out))
 
         assert client.audio.speech.calls == 2
-        assert int(out.read_bytes()) == 4500
+        assert _duration_of(out) == 4500
         out_text = capsys.readouterr().out
         assert "Retry didn't recover the missing words either" in out_text
 
@@ -129,7 +147,7 @@ class TestTTSDurationRetry:
         pg.generate_tts_for_segment(TEXT, "riley", str(out))
 
         assert client.audio.speech.calls == 2
-        assert int(out.read_bytes()) == 4000
+        assert _duration_of(out) == 4000
 
     def test_speed_multiplier_scales_expected_duration(self, monkeypatch, tmp_path):
         # speed=1.1 means ~10% shorter audio is expected and should not
@@ -142,3 +160,61 @@ class TestTTSDurationRetry:
         pg.generate_tts_for_segment(TEXT, "casey", str(out))
 
         assert client.audio.speech.calls == 1
+
+
+class TestTTSSilentTake:
+    def test_audible_take_does_not_retry(self, monkeypatch, tmp_path):
+        client = FakeClient([(8000, AUDIBLE_DBFS)])
+        monkeypatch.setattr(pg, "get_openai_client", lambda: client)
+
+        out = tmp_path / "seg.mp3"
+        pg.generate_tts_for_segment(TEXT, "riley", str(out))
+
+        assert client.audio.speech.calls == 1
+
+    def test_silent_take_retries_and_keeps_audible_result(self, monkeypatch, tmp_path, capsys):
+        # The silent take is the *right length* for its text, so the duration
+        # ratio is 1.0 — only the peak level can catch it.
+        client = FakeClient([(8000, SILENT_DBFS), (8000, AUDIBLE_DBFS)])
+        monkeypatch.setattr(pg, "get_openai_client", lambda: client)
+
+        out = tmp_path / "seg.mp3"
+        pg.generate_tts_for_segment(TEXT, "riley", str(out))
+
+        assert client.audio.speech.calls == 2
+        assert FakeAudioSegmentCls.from_mp3(str(out)).max_dBFS == AUDIBLE_DBFS
+        assert "of silence for riley" in capsys.readouterr().out
+
+    def test_two_silent_takes_raise(self, monkeypatch, tmp_path):
+        client = FakeClient([(8000, SILENT_DBFS), (8000, SILENT_DBFS)])
+        monkeypatch.setattr(pg, "get_openai_client", lambda: client)
+
+        out = tmp_path / "seg.mp3"
+        with pytest.raises(pg.SilentTakeError):
+            pg.generate_tts_for_segment(TEXT, "riley", str(out))
+
+        assert client.audio.speech.calls == 2
+
+    def test_silence_is_caught_even_when_duration_check_would_pass(self, monkeypatch, tmp_path):
+        # Regression for 2026-08-16: a full-length silent take sailed through
+        # the duration ratio (~1.0) and shipped 27s of dead air on air.
+        client = FakeClient([(8000, SILENT_DBFS), (8000, SILENT_DBFS)])
+        monkeypatch.setattr(pg, "get_openai_client", lambda: client)
+
+        with pytest.raises(pg.SilentTakeError):
+            pg.generate_tts_for_segment(TEXT, "riley", str(tmp_path / "seg.mp3"))
+
+    def test_quiet_but_audible_take_is_not_treated_as_silent(self, monkeypatch, tmp_path):
+        # A genuinely soft delivery must not be thrown away — the threshold
+        # sits in dead space well below any real speech.
+        client = FakeClient([(8000, -35.0)])
+        monkeypatch.setattr(pg, "get_openai_client", lambda: client)
+
+        pg.generate_tts_for_segment(TEXT, "riley", str(tmp_path / "seg.mp3"))
+
+        assert client.audio.speech.calls == 1
+
+    def test_empty_take_counts_as_silent(self, monkeypatch, tmp_path):
+        # A zero-length clip has no peak to measure; _is_silent_take must not
+        # depend on max_dBFS being meaningful for it.
+        assert pg._is_silent_take(FakeAudio(0, AUDIBLE_DBFS))

@@ -114,6 +114,9 @@ the script file's `#` header instead, read back by `read_script_metadata`:
   filename (`_episode_paths`).
 - **`# Brave:`** — gates one sentence in the spoken credits. Scripts predating this header
   degrade to `no`.
+- **`# Weather:`** — gates the spoken Open-Meteo credit the same way. The weather sweep is a
+  non-critical segment, so a fetch failure means the episode has no weather in it and must
+  not credit a source it never read. Scripts predating this header degrade to `no`.
 - **`# Anchor:`** — the week's anchor question, which is named on air and appears in the
   episode description. Whitespace-collapsed to one line, since the header parser reads one
   key per line. Scripts predating this header degrade to `None`.
@@ -326,6 +329,31 @@ an editorial idea and the reason to listen more than one day a week.
 ### TTS Providers
 
 **OpenAI (default):** `nova` (Riley) + `echo` (Casey), per-segment synthesis, parallel rendering.
+
+#### Per-take checksums
+
+Every take is checked twice before it joins the mix, because a bad take is not
+distinguishable from a good one by the fact that the API returned 200.
+
+- **Duration** (`generate_tts_for_segment`): a ratio under 0.80 against the ~150 wpm estimate
+  means words were dropped. Retry once, keep the longer take.
+- **Amplitude** (`_is_silent_take`): a take can come back well-formed, the right length for
+  its text, and **completely silent** — 2026-08-16 shipped 27 s of digital silence in the
+  middle of the deep dive. Nothing downstream caught it: `trim_tts_silence` returns an
+  entirely silent clip untouched at full length *by design*, `normalize_segment` leaves zeros
+  as zeros, and the duration ratio was ~1.0 because the length was right. Peak level is the
+  only signal that separates the two. Retry once; two silent takes raise `SilentTakeError`.
+
+**A turn that will not render is cut, never shipped as silence** — keeping it produces dead
+air of exactly the same length, which is worse to listen to and invisible in every duration
+the pipeline records. The caller drops the chunk and calls `degrade("render/silent-take")`,
+so the words are missing from the audio but the run report names them. The music overlap is
+tracked as a `pending_overlap_ms` rather than keyed on `i == 0`, so dropping the turn that
+would have opened a section hands the overlap to whichever turn actually starts it instead
+of leaving the music to fade out into a gap.
+
+The same check runs on whole-section (Gemini/Azure) renders, where it raises into the
+existing per-section OpenAI fallback — a silent section is this failure minutes wide.
 
 **Azure Neural TTS (optional, `USE_AZURE_TTS=1`):** Multi-Talker model for coherent prosody across speaker transitions. SSML with `<phoneme>` IPA tags for Cariboo place names. 8,000-char conservative SSML chunk limit. Set `AZURE_TTS_PARALLEL=1` to generate both providers for comparison.
 
