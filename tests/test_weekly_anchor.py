@@ -187,9 +187,15 @@ class TestNoRepetition:
         assert "id-1" in [c["id"] for c in eligible]
 
     def test_consecutive_weeks_never_repeat_a_question_or_dimension(self):
-        """Walk the real seeded pool for its full length."""
+        """Walk the real seeded pool for its full length.
+
+        Length comes from the config, not a literal: a seed added to top the
+        pool up must be walked too, or it is shipped untested.
+        """
+        from config_loader import load_weekly_anchors_config
+
         seen_q, seen_dim = set(), set()
-        for i in range(11):
+        for i in range(len(load_weekly_anchors_config()["pool"])):
             monday = date(2026, 8, 17) + timedelta(weeks=i)
             anchor = wa.select_anchor(monday, client=None)
             assert anchor is not None, f"pool ran dry at week {i}"
