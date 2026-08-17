@@ -2988,25 +2988,37 @@ class TestUSPolicyFramingTag:
 
 
 class TestScriptMetadataHeader:
-    """The script header is how theme + brave_used cross the stage boundary.
+    """The script header is how theme + provider flags cross the stage boundary.
 
     The audio stage runs as a separate process, so it cannot inherit these as
     locals — it reads them back out of the file save_script_to_file wrote.
     """
 
-    def _save(self, tmp_path, monkeypatch, theme, brave_used):
+    def _save(self, tmp_path, monkeypatch, theme, brave_used, weather_used=False):
         import podcast_generator as pg
 
         monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
-        return save_script_to_file("**RILEY:** Hello.\n", theme, brave_used=brave_used)
+        return save_script_to_file("**RILEY:** Hello.\n", theme,
+                                   brave_used=brave_used, weather_used=weather_used)
 
     def test_round_trips_theme_and_brave_used(self, tmp_path, monkeypatch):
         path = self._save(tmp_path, monkeypatch, "Working Lands & Industry", True)
         assert read_script_metadata(path) == {
             "theme": "Working Lands & Industry",
             "brave_used": True,
+            "weather_used": False,
             "anchor": None,
         }
+
+    def test_round_trips_weather_used(self, tmp_path, monkeypatch):
+        # The weather provider is credited on air, and the render stage can only
+        # know the segment aired by reading it back out of the header.
+        path = self._save(tmp_path, monkeypatch, "Theme", False, weather_used=True)
+        assert read_script_metadata(path)["weather_used"] is True
+
+    def test_weather_unused_stays_false(self, tmp_path, monkeypatch):
+        path = self._save(tmp_path, monkeypatch, "Theme", False, weather_used=False)
+        assert read_script_metadata(path)["weather_used"] is False
 
     def test_round_trips_brave_unused(self, tmp_path, monkeypatch):
         path = self._save(tmp_path, monkeypatch, "Wild Spaces & Outdoor Life", False)
@@ -3038,6 +3050,7 @@ class TestScriptMetadataHeader:
         assert read_script_metadata(legacy) == {
             "theme": "Legacy Theme",
             "brave_used": False,
+            "weather_used": False,
             "anchor": None,
         }
 
@@ -3045,6 +3058,7 @@ class TestScriptMetadataHeader:
         assert read_script_metadata(tmp_path / "nope.txt") == {
             "theme": None,
             "brave_used": False,
+            "weather_used": False,
             "anchor": None,
         }
 
@@ -3178,7 +3192,7 @@ class TestStageDispatch:
 class TestAudioStageCrossBoundary:
     """The audio stage must reconstruct what the single-process run had in locals."""
 
-    def _prepare(self, tmp_path, monkeypatch, brave_used):
+    def _prepare(self, tmp_path, monkeypatch, brave_used, weather_used=False):
         import podcast_generator as pg
 
         monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
@@ -3191,14 +3205,17 @@ class TestAudioStageCrossBoundary:
         monkeypatch.setattr(pg, "refresh_citations_tts_credit", lambda *a, **k: None)
 
         script = save_script_to_file(
-            "**RILEY:** Hello.\n", "Working Lands & Industry", brave_used=brave_used
+            "**RILEY:** Hello.\n", "Working Lands & Industry",
+            brave_used=brave_used, weather_used=weather_used,
         )
 
         captured = {}
 
-        def fake_audio(script_text, output_filename, theme_name=None, brave_used=False):
+        def fake_audio(script_text, output_filename, theme_name=None, brave_used=False,
+                       weather_used=False):
             captured["theme_name"] = theme_name
             captured["brave_used"] = brave_used
+            captured["weather_used"] = weather_used
             captured["output_filename"] = output_filename
             open(output_filename, "wb").write(b"\x00")
             return output_filename
@@ -3230,6 +3247,15 @@ class TestAudioStageCrossBoundary:
             ".txt", ".mp3"
         )
         assert captured["output_filename"] == expected
+
+    def test_weather_used_survives_the_stage_boundary(self, tmp_path, monkeypatch):
+        # Regression (2026-08-17): the weather provider was credited in the
+        # episode description but never in the spoken credits, and the render
+        # stage had no way to learn the segment had aired.
+        pg, script, captured = self._prepare(
+            tmp_path, monkeypatch, brave_used=False, weather_used=True)
+        assert pg.run_audio_stage(script_path=script) is True
+        assert captured["weather_used"] is True
 
     def test_missing_script_returns_false_without_rendering(self, tmp_path, monkeypatch):
         pg, _script, captured = self._prepare(tmp_path, monkeypatch, brave_used=False)

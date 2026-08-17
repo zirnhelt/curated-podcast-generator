@@ -48,7 +48,7 @@ from config_loader import (
     get_speed_for_host,
     get_theme_for_day,
     get_focus_for_day,
-    get_upcoming_focus_slots,
+    get_upcoming_day_slots,
     message_text,
     strip_stage_directions,
     render_credits_text,
@@ -3223,16 +3223,32 @@ def _load_article_holding(today_date: date) -> dict:
     return pruned
 
 
+def _theme_slug(theme_name: str) -> str:
+    """Filesystem/ledger-safe slug for a theme name (same shape as script paths)."""
+    return theme_name.replace(" ", "_").replace("&", "and").lower()
+
+
 def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_theme, focus):
     """Super-cycle content routing: release matured holds and hold off-theme articles.
 
-    Off-theme, non-urgent articles that strongly match a rotation focus
-    occurring within HOLD_MAX_DAYS are removed from today's pool and persisted
-    until that day. Urgent ones (boosted score >= URGENT_SCORE_THRESHOLD) stay
-    for timely coverage but move to the bonus bucket (never deep-dive) and are
-    remembered in the aired-early ledger for a callback on their focus day.
-    Previously held articles whose focus day is today are injected back into
-    the pool flagged _held_from.
+    Off-theme, non-urgent articles that strongly match an upcoming day's theme or
+    rotation focus, within HOLD_MAX_DAYS, are removed from today's pool and
+    persisted until that day. Urgent ones (boosted score >=
+    URGENT_SCORE_THRESHOLD) stay for timely coverage but move to the bonus bucket
+    (never deep-dive) and are remembered in the aired-early ledger for a callback
+    on their day. Previously held articles whose day is today are injected back
+    into the pool flagged _held_from.
+
+    **Both buckets are routed.** The loop used to run over `theme_articles`
+    alone, which is the one bucket that by definition holds nothing off-theme —
+    off-theme material arrives in `bonus_articles`, 72 of it against 8 theme
+    articles on 2026-08-17. Nothing was ever eligible to be held, so Monday's
+    roundup aired a lumber-tariffs opinion piece (Tuesday's Working Lands theme)
+    and a PLA-brittleness piece that scored two hits on Wednesday's Maker &
+    Repair focus keywords — it would have been held on the old focus-only
+    matcher had the loop ever looked at it.
+
+    Local stories are never held — see _is_local_article.
 
     Returns (theme_articles, bonus_articles).
     """
@@ -3257,36 +3273,54 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
         print(f"  📤 Released from holding (held {article['_held_from']}): {article.get('title', '')[:70]}")
     theme_articles = released + theme_articles
 
-    # --- Hold / divert off-theme articles matching an upcoming focus -------
+    # --- Hold / divert off-theme articles matching an upcoming day ---------
     # Slots looked up over a full 4-week cycle: holds are limited to
     # HOLD_MAX_DAYS (freshness), but the aired-early ledger may target any
     # slot in the cycle since a callback references past coverage.
-    slot_keywords = [
-        (slot_date, f, _build_focus_keywords(f))
-        for slot_date, _wd, f in get_upcoming_focus_slots(today_date, horizon_days=28)
-    ]
+    #
+    # A slot matches on its theme keywords OR its focus keywords. Focus alone
+    # missed whole categories: forestry is a Tuesday theme keyword every week,
+    # but only reaches a Tuesday slot on the weeks the rotation happens to be
+    # on Forestry, so the 2026-08-17 lumber-tariffs piece had no home to go to.
+    slot_keywords = []
+    for slot_date, _wd, slot_theme, slot_focus in get_upcoming_day_slots(
+            today_date, horizon_days=28):
+        keywords = _build_theme_keywords(slot_theme) + _build_focus_keywords(slot_focus)
+        # The target's on-air identity, for the hold log and the callback line:
+        # the focus when the rotation supplied one, else the plain daily theme.
+        target = slot_focus or {'slug': _theme_slug(slot_theme), 'name': slot_theme}
+        slot_keywords.append((slot_date, target, keywords))
+
     today_theme_keywords = _build_theme_keywords(today_theme)
     today_focus_keywords = _build_focus_keywords(focus)
     # Never shrink the pool below what the roundup + deep dive need
     max_holds = max(0, len(theme_articles) + len(bonus_articles) - (NEWS_ROUNDUP_COUNT + 3))
 
-    kept_theme = []
-    bonus_articles = list(bonus_articles)
+    kept_theme: list = []
+    kept_bonus: list = []
     held_count = 0
-    for a in theme_articles:
+    # Both buckets. `was_bonus` decides which bucket an article that stays goes
+    # back into — an off-theme story that airs today must not be promoted into
+    # the theme blocks just because the router looked at it.
+    for was_bonus, a in ([(False, a) for a in theme_articles]
+                         + [(True, a) for a in bonus_articles]):
+        kept_bucket = kept_bonus if was_bonus else kept_theme
         url = a.get('url', '')
         title = re.sub(r'^\W*\[[^\]]*\]\s*', '', a.get('title', ''))
         text = f"{title} {a.get('summary', '')}".lower()
         weak_today = (a.get('_keyword_matches', 0) == 0
                       and _keyword_hit_count(text, today_theme_keywords) <= 1)
         on_todays_focus = bool(today_focus_keywords) and _keyword_hit_count(text, today_focus_keywords) > 0
-        if not url or not weak_today or on_todays_focus or a.get('_held_from') or a.get('_seed_id'):
-            kept_theme.append(a)
+        # Local news is time-sensitive and geography is orthogonal to the
+        # rotation, so it airs today whatever an upcoming day's keywords say.
+        if (not url or not weak_today or on_todays_focus or _is_local_article(a)
+                or a.get('_held_from') or a.get('_seed_id')):
+            kept_bucket.append(a)
             continue
-        matches = [(sd, f) for sd, f, fkw in slot_keywords
-                   if _keyword_hit_count(text, fkw) >= HOLD_MIN_FOCUS_HITS]
+        matches = [(sd, t) for sd, t, kws in slot_keywords
+                   if _keyword_hit_count(text, kws) >= HOLD_MIN_FOCUS_HITS]
         if not matches:
-            kept_theme.append(a)
+            kept_bucket.append(a)
             continue
         target_date, target_focus = matches[0]
         boosted = a.get('_boosted_score', a.get('ai_score', 0))
@@ -3306,7 +3340,7 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
             # off-theme story still has to earn its slot in the tail.
             a['_no_deep_dive'] = True
             a['_is_bonus'] = True
-            bonus_articles.append(a)
+            kept_bonus.append(a)
             holding[url] = {**entry, 'status': 'aired_early'}
             print(f"  📌 Urgent off-theme, airing in bonus + callback on "
                   f"{target_date.isoformat()} ({target_focus['name']}): {a.get('title', '')[:60]}")
@@ -3316,29 +3350,39 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
             print(f"  📥 Held for {target_date.isoformat()} ({target_focus['name']}): "
                   f"{a.get('title', '')[:60]}")
         else:
-            # Next matching focus day too far out (or pool too thin) — air today
-            kept_theme.append(a)
+            # Next matching day too far out (or pool too thin) — air today
+            kept_bucket.append(a)
 
     save_memory(HOLDING_FILE, holding)
     if released or held_count:
         print(f"🔀 Focus routing: released {len(released)}, held {held_count} article(s)")
-    return kept_theme, bonus_articles
+    return kept_theme, kept_bonus
 
 
-def format_focus_callbacks_for_prompt(focus):
-    """Prompt block for aired-early stories whose proper focus day is today.
+def format_focus_callbacks_for_prompt(focus, theme_name=None):
+    """Prompt block for aired-early stories whose proper day is today.
+
+    Matches either today's rotation focus or today's plain theme, since the
+    router targets a theme slot on days the rotation supplies no focus (and on
+    every day for a story that matched the theme's keywords rather than the
+    week's focus).
 
     Returns (context, urls) — urls are consumed via consume_focus_callbacks()
     after the script is safely written.
     """
-    if not focus:
+    targets = set()
+    if focus and focus.get('slug'):
+        targets.add(focus['slug'])
+    if theme_name:
+        targets.add(_theme_slug(theme_name))
+    if not targets:
         return "", []
     holding = load_memory(HOLDING_FILE)
     lines, urls = [], []
     for url, entry in holding.items():
         if not isinstance(entry, dict) or entry.get('status') != 'aired_early':
             continue
-        if entry.get('target_focus_slug') != focus.get('slug'):
+        if entry.get('target_focus_slug') not in targets:
             continue
         title = entry.get('article', {}).get('title', '')
         lines.append(f"- \"{title}\" (covered briefly on {entry.get('held_date', '?')})")
@@ -4128,6 +4172,36 @@ def _article_source_name(article: dict) -> str:
     return (authors[0].get('name') or article.get('source') or '').strip()
 
 
+def _local_place_hits(article: dict) -> int:
+    """Cariboo/BC place-name hits in an article's title+summary.
+
+    Outlet name alone is a weak proxy for geography — on 2026-08-11 a Williams
+    Lake Tribune story about Spallumcheen and a My Cariboo Now story about
+    Summerland both read as local while a wire story naming Williams Lake would
+    not have — so place names are counted separately from the byline.
+    """
+    local_places = [p.lower() for p in CONFIG['podcast'].get('local_places', [])]
+    if not local_places:
+        return 0
+    title = re.sub(r'^\W*\[[^\]]*\]\s*', '', article.get('title', ''))
+    return _keyword_hit_count(f"{title} {article.get('summary', '')}".lower(), local_places)
+
+
+def _is_local_article(article: dict) -> bool:
+    """True when a story names a Cariboo/BC place or comes from a local outlet.
+
+    Shared by the roundup's 'local' block and the super-cycle holding router.
+    Geography is orthogonal to the day's theme — a local story is the show's
+    front door whatever the rotation says — and local news is the most
+    time-sensitive material in the pool, so it is never held for a later day.
+    """
+    if _local_place_hits(article) > 0:
+        return True
+    local_sources = [s.lower() for s in CONFIG['podcast'].get('local_sources', [])]
+    source = _article_source_name(article).lower()
+    return any(s in source for s in local_sources)
+
+
 # The blocks that open the roundup, in the order they air: close to home, then
 # today's theme. Kept distinct for ordering, pool protection and the order check.
 ROUNDUP_ARC_BLOCKS = ('local', 'theme', 'theme_adjacent')
@@ -4200,17 +4274,16 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
         theme_keywords.extend(k.lower() for k in theme_info.get('keywords', []))
     anti_keywords = _build_theme_anti_keywords(theme_name)
     source_boost = _build_theme_source_boost(theme_name)
-    # Deliberately hyperlocal outlets only — broad-coverage BC/national outlets
-    # (The Narwhal, The Tyee, IndigiNews, CBC British Columbia) were removed on
-    # 2026-08-15 after an IndigiNews story about the Híɫzaqv Nation's Central
-    # Coast green-crab defense (zero Cariboo place-name hits) got an automatic
-    # 'local' pass on byline alone and landed mid-block between two unrelated
-    # Cariboo wildfire stories with no transition. Those outlets still land in
-    # 'local' when a story actually names a Cariboo/BC place (place_hits below);
-    # otherwise they're judged on real content relevance like anything else.
-    # Do not re-add outlets here unless their coverage is reliably local.
-    local_sources = [s.lower() for s in CONFIG['podcast'].get('local_sources', [])]
-    local_places = [p.lower() for p in CONFIG['podcast'].get('local_places', [])]
+    # Membership of the 'local' block is _is_local_article(). Its `local_sources`
+    # list is deliberately hyperlocal outlets only — broad-coverage BC/national
+    # outlets (The Narwhal, The Tyee, IndigiNews, CBC British Columbia) were
+    # removed on 2026-08-15 after an IndigiNews story about the Híɫzaqv Nation's
+    # Central Coast green-crab defense (zero Cariboo place-name hits) got an
+    # automatic 'local' pass on byline alone and landed mid-block between two
+    # unrelated Cariboo wildfire stories with no transition. Those outlets still
+    # land in 'local' when a story actually names a Cariboo/BC place; otherwise
+    # they're judged on real content relevance like anything else. Do not re-add
+    # outlets to that config list unless their coverage is reliably local.
     disciplines_config = CONFIG.get('disciplines', {})
 
     def relevance(a):
@@ -4220,24 +4293,6 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
 
     def boosted(a):
         return a.get('_boosted_score', a.get('ai_score', 0))
-
-    def place_hits(a):
-        """Cariboo/BC place-name hits in title+summary.
-
-        Outlet name alone is a weak proxy for geography — on 2026-08-11 a
-        Williams Lake Tribune story about Spallumcheen and a My Cariboo Now
-        story about Summerland both read as local while a wire story naming
-        Williams Lake would not have.
-        """
-        if not local_places:
-            return 0
-        title = re.sub(r'^\W*\[[^\]]*\]\s*', '', a.get('title', ''))
-        return _keyword_hit_count(
-            f"{title} {a.get('summary', '')}".lower(), local_places)
-
-    def is_local(a):
-        return (place_hits(a) > 0
-                or any(s in _article_source_name(a).lower() for s in local_sources))
 
     def body_theme_hits(a):
         """Net theme-keyword hits in the article body, which relevance() ignores."""
@@ -4259,7 +4314,7 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
         # orthogonal to it. A Williams Lake Tribune story that arrived in the
         # bonus bucket is still the show's front door; re-litigating its theme
         # relevance here would only overturn a call the feed already made.
-        if is_local(a):
+        if _is_local_article(a):
             a['_roundup_block'] = 'local'
             local_block.append(a)
         elif a.get('_is_bonus'):
@@ -4306,7 +4361,7 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
 
     # Place-name hits lead outlet-only matches, and among those an on-theme
     # local story opens the episode — the local block is the show's front door.
-    local_block.sort(key=lambda a: (place_hits(a), relevance(a), boosted(a)),
+    local_block.sort(key=lambda a: (_local_place_hits(a), relevance(a), boosted(a)),
                      reverse=True)
     theme_block.sort(key=relevance, reverse=True)
     adjacent_block.sort(key=body_theme_hits, reverse=True)
@@ -6648,7 +6703,8 @@ def _generate_parallel_azure_audio(segments, base_output_filename, theme_name=No
         print(f"  ⚠️  Azure parallel generation failed: {exc}")
 
 
-def generate_audio_from_script(script, output_filename, theme_name=None, brave_used=False):
+def generate_audio_from_script(script, output_filename, theme_name=None, brave_used=False,
+                               weather_used=False):
     """Convert script to audio with music interludes and theme-aware ambient transitions."""
     global _tts_provider_used
     print("📊 Generating audio with music interludes...")
@@ -6721,10 +6777,12 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
 
         with tempfile.TemporaryDirectory() as tmpdir:
             combined = AudioSegment.empty()
-            # Trailing transcript text from the last Gemini section render, carried
-            # into the next section's call as already-spoken context so delivery
-            # continues instead of resampling cold at each section boundary.
-            gemini_context_tail = ""
+            # True once a Gemini section has rendered, so later sections open
+            # mid-flow instead of resampling delivery cold at each boundary.
+            # A flag, not the previous section's text — see CONTINUATION_NOTE in
+            # gemini_tts: verbatim context is what made 2026-08-17's welcome
+            # section read the whole cold open aloud before its own first line.
+            gemini_continuing = False
 
             def _render_section(seg_list, label, prefix, overlap_ms=0):
                 """Render a list of parsed segments into combined audio.
@@ -6732,7 +6790,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                 overlap_ms > 0 starts the section's speech that far before the
                 current tail of *combined* ends (talking over the music fade).
                 """
-                nonlocal combined, gemini_context_tail
+                nonlocal combined, gemini_continuing
                 print(f"  {label}")
 
                 global _tts_provider_used
@@ -6749,8 +6807,8 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                     try:
                         if provider == "gemini":
                             _log_api_call("gemini-tts", "chars", total_chars)
-                            gemini_context_tail = generate_gemini_tts_for_section(
-                                seg_list, section_wav, gemini_context_tail
+                            gemini_continuing = generate_gemini_tts_for_section(
+                                seg_list, section_wav, gemini_continuing
                             )
                             _report_gemini_degradations("render/gemini-retry")
                         else:
@@ -6890,6 +6948,16 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
             )
             _credits_cfg = CONFIG['credits']
             _pc_cfg = CONFIG['podcast']
+            # The weather check is read on air in the welcome, so the provider is
+            # owed a spoken credit — the episode description has credited it since
+            # the segment existed, and the spoken credits never did (2026-08-17).
+            # Gated on the header flag, not on config: on a day the fetch failed
+            # there is no weather segment and nothing to credit.
+            _weather_provider = _credits_cfg['structured'].get('weather_data', '')
+            weather_spoken = (
+                f" Weather data from {_weather_provider}."
+                if weather_used and _weather_provider else ""
+            )
 
             def _build_credits_text() -> str:
                 # get_tts_credit() reads the live provider, so rebuilding after a
@@ -6897,6 +6965,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                 return (
                     f"{_pc_cfg.get('title', 'This show')} is produced by {_credits_cfg.get('producer', _pc_cfg.get('author', ''))} — "
                     f"scripts by Claude, today's voices by {get_tts_credit()}, theme by Suno."
+                    f"{weather_spoken}"
                     f"{brave_spoken}"
                     f" Automated with GitHub Actions, hosted on Cloudflare Pages."
                     f" Find us at {_pc_cfg.get('url_spoken', 'cariboo signals dot c-a')}."
@@ -6916,7 +6985,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                         credits_wav = os.path.join(tmpdir, "credits.wav")
                         credits_segments = [{"speaker": "riley", "text": _build_credits_text(), "gap_ms": None}]
                         if _credits_provider == "gemini":
-                            generate_gemini_tts_for_section(credits_segments, credits_wav, gemini_context_tail)
+                            generate_gemini_tts_for_section(credits_segments, credits_wav, gemini_continuing)
                             _report_gemini_degradations("render/gemini-retry")
                         else:
                             generate_azure_tts_for_section(credits_segments, credits_wav)
@@ -8073,15 +8142,16 @@ def generate_tts_test_feed():
 
 
 def save_script_to_file(script: str, theme_name: str, brave_used: bool = False,
-                        anchor_question: str | None = None) -> str | None:
+                        anchor_question: str | None = None,
+                        weather_used: bool = False) -> str | None:
     """Save the generated script to a file.
 
     The header carries the metadata the audio stage needs, since it runs as a
     separate process and cannot inherit locals: the theme (which the feed can
     override, so it is not always what get_theme_for_day() returns), whether
-    Brave research was used (which gates a line in the spoken credits), and this
-    week's anchor question (which is named on air, so the publish stage puts it
-    in the episode description).
+    Brave research was used and whether the weather check aired (each gates a
+    provider in the spoken credits), and this week's anchor question (which is
+    named on air, so the publish stage puts it in the episode description).
     """
     if not script:
         return None
@@ -8098,6 +8168,7 @@ def save_script_to_file(script: str, theme_name: str, brave_used: bool = False,
             f"# {CONFIG['podcast']['title']} Podcast Script - {date_str}\n",
             f"# Theme: {theme_name}\n",
             f"# Brave: {'yes' if brave_used else 'no'}\n",
+            f"# Weather: {'yes' if weather_used else 'no'}\n",
             # Whitespace-collapsed: the header parser reads one line per key, so
             # a question carrying a newline would silently truncate the header.
             (f"# Anchor: {' '.join(anchor_question.split())}\n" if anchor_question else ""),
@@ -8116,13 +8187,15 @@ def save_script_to_file(script: str, theme_name: str, brave_used: bool = False,
 def read_script_metadata(script_path) -> dict:
     """Parse the `# Key: value` header written by save_script_to_file().
 
-    Returns {"theme": str | None, "brave_used": bool, "anchor": str | None}.
-    Scripts written before the header carried `# Brave:` degrade to
-    brave_used=False, scripts predating `# Anchor:` degrade to anchor=None, and
-    any script without a `# Theme:` line degrades to theme=None — all three are
-    what the downstream callers already tolerate.
+    Returns {"theme": str | None, "brave_used": bool, "weather_used": bool,
+    "anchor": str | None}. Scripts written before the header carried `# Brave:`
+    or `# Weather:` degrade to False, scripts predating `# Anchor:` degrade to
+    anchor=None, and any script without a `# Theme:` line degrades to
+    theme=None — all of which the downstream callers already tolerate.
     """
-    metadata: dict = {"theme": None, "brave_used": False, "anchor": None}
+    metadata: dict = {
+        "theme": None, "brave_used": False, "weather_used": False, "anchor": None,
+    }
     try:
         with open(script_path, "r", encoding="utf-8") as fh:
             for line in fh:
@@ -8135,6 +8208,8 @@ def read_script_metadata(script_path) -> dict:
                     metadata["theme"] = value
                 elif key == "brave":
                     metadata["brave_used"] = value.lower() in ("yes", "true", "1")
+                elif key == "weather":
+                    metadata["weather_used"] = value.lower() in ("yes", "true", "1")
                 elif key == "anchor" and value:
                     metadata["anchor"] = value
     except OSError as exc:
@@ -8225,8 +8300,8 @@ def _recover_orphaned_episodes(lookback_days=3):
                 continue
 
             print(f"   🔄 Attempting recovery for {date_str}...")
-            # Recover theme and Brave usage from the script header so the
-            # ambient beds and spoken credits match the original episode.
+            # Recover theme, Brave and weather usage from the script header so
+            # the ambient beds and spoken credits match the original episode.
             metadata = read_script_metadata(script_path)
             try:
                 result = generate_audio_from_script(
@@ -8234,6 +8309,7 @@ def _recover_orphaned_episodes(lookback_days=3):
                     str(audio_path),
                     theme_name=metadata["theme"],  # None falls back gracefully
                     brave_used=metadata["brave_used"],
+                    weather_used=metadata["weather_used"],
                 )
                 if result:
                     print(f"   ✅ Recovery succeeded: {audio_path.name}")
@@ -8631,7 +8707,8 @@ def run_script_stage() -> tuple[str, str] | None:
 
             # Focus-day callbacks: stories that aired early in a bonus slot and
             # whose rotation focus day is today
-            callback_context, callback_urls = format_focus_callbacks_for_prompt(today_focus)
+            callback_context, callback_urls = format_focus_callbacks_for_prompt(
+                today_focus, today_theme)
             if callback_context:
                 print(f"📞 Focus callbacks: {len(callback_urls)} aired-early stor(ies) to reference")
                 evolving_context += "\n" + callback_context
@@ -8868,6 +8945,7 @@ def run_script_stage() -> tuple[str, str] | None:
             script_filename = save_script_to_file(
                 script, today_theme, brave_used=brave_used,
                 anchor_question=today_anchor.get("question") if today_anchor else None,
+                weather_used=bool(weather_data),
             )
 
         # Each state file gets its own segment. These were one unbroken run of
@@ -8991,6 +9069,7 @@ def run_render_stage(script_path: str = None, date_str: str = None) -> bool:
         metadata = read_script_metadata(script_filename)
         today_theme = metadata["theme"]
         brave_used = metadata["brave_used"]
+        weather_used = metadata["weather_used"]
         print(f"📄 Script: {Path(script_filename).name}")
         print(f"   Theme: {today_theme or 'unknown (ambient lookup will fall back)'}")
 
@@ -9017,7 +9096,7 @@ def run_render_stage(script_path: str = None, date_str: str = None) -> bool:
         with segment("render/tts"):
             audio_file = generate_audio_from_script(
                 script, audio_filename, theme_name=today_theme,
-                brave_used=brave_used,
+                brave_used=brave_used, weather_used=weather_used,
             )
 
         if audio_file:

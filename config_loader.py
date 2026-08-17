@@ -223,18 +223,28 @@ def get_focus_for_day(weekday: int, d: date):
     focus["cycle_length"] = len(cycle)
     return focus
 
-def get_upcoming_focus_slots(d: date, horizon_days: int = 14) -> list:
-    """Enumerate (date, weekday, focus) for each day after *d* within the horizon.
+def get_upcoming_day_slots(d: date, horizon_days: int = 14) -> list:
+    """Enumerate (date, weekday, theme_name, focus|None) for each day after *d*.
 
-    Used by the article-holding router to find the soonest day whose rotation
-    focus matches an off-theme article. Excludes *d* itself.
+    Used by the article-holding router to find the soonest day an off-theme
+    article belongs to. Excludes *d* itself.
+
+    Every day in the horizon gets a slot, including days with no super-cycle
+    (Saturday). This used to emit focus-bearing days only, and match on focus
+    keywords alone: a forestry story on a Monday found no home because Tuesday's
+    focus was Agriculture & Ranching that week, even though forestry is a
+    Tuesday *theme* keyword outright. The theme is the day's standing identity
+    and the focus only narrows it, so the router needs both.
     """
     slots = []
     for offset in range(1, horizon_days + 1):
         day = d + timedelta(days=offset)
-        focus = get_focus_for_day(day.weekday(), day)
-        if focus:
-            slots.append((day, day.weekday(), focus))
+        slots.append((
+            day,
+            day.weekday(),
+            get_theme_for_day(day.weekday()),
+            get_focus_for_day(day.weekday(), day),
+        ))
     return slots
 
 def message_text(response) -> str:
