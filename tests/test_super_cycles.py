@@ -8,7 +8,7 @@ import podcast_generator as pg
 from config_loader import (
     load_super_cycles_config,
     get_focus_for_day,
-    get_upcoming_focus_slots,
+    get_upcoming_day_slots,
 )
 
 
@@ -46,13 +46,17 @@ class TestFocusForDay:
         focus = get_focus_for_day(1, date(2026, 7, 21))
         assert focus["slug"] and focus["name"] and focus["keywords"] and focus["lens"]
 
-    def test_upcoming_slots_exclude_today_and_saturday(self):
+    def test_upcoming_slots_exclude_today_and_cover_every_day(self):
         d = date(2026, 7, 18)  # Saturday
-        slots = get_upcoming_focus_slots(d, horizon_days=14)
-        assert all(slot_date > d for slot_date, _, _ in slots)
-        assert all(wd != 5 for _, wd, _ in slots)
-        # 14 days minus the two uncycled Saturdays
-        assert len(slots) == 12
+        slots = get_upcoming_day_slots(d, horizon_days=14)
+        assert all(slot_date > d for slot_date, _, _, _ in slots)
+        # Every day in the horizon gets a slot, uncycled Saturdays included:
+        # the daily theme is a holding target even when the rotation has no
+        # focus for that weekday.
+        assert len(slots) == 14
+        assert all(theme for _, _, theme, _ in slots)
+        saturdays = [f for _, wd, _, f in slots if wd == 5]
+        assert saturdays and all(f is None for f in saturdays)
 
 
 # ---------------------------------------------------------------------------
@@ -138,8 +142,8 @@ def _find_saturday_before_focus(slug, max_weeks=6):
     """First Saturday whose 14-day lookahead contains the given focus slug."""
     d = date(2026, 7, 18)  # a Saturday
     for _ in range(max_weeks):
-        for slot_date, _wd, focus in get_upcoming_focus_slots(d, horizon_days=14):
-            if focus["slug"] == slug:
+        for slot_date, _wd, _theme, focus in get_upcoming_day_slots(d, horizon_days=14):
+            if focus and focus["slug"] == slug:
                 return d, slot_date
         d += timedelta(days=7)
     raise AssertionError(f"no Saturday found ahead of focus {slug}")
@@ -261,6 +265,78 @@ class TestArticleHolding:
         )
         copies = [a for a in theme if a.get("url") == "mining-url"]
         assert len(copies) == 1 and "_held_from" not in copies[0]
+
+    # --- Both buckets are routed (2026-08-17 regression) -------------------
+    #
+    # The hold loop used to iterate theme_articles only — the one bucket that by
+    # definition contains nothing off-theme. Monday 2026-08-17 carried 8 theme
+    # articles and 72 bonus ones, so nothing was ever eligible and the roundup
+    # aired a lumber-tariffs piece (Tuesday's theme) and two 3D-printing pieces
+    # (Wednesday's focus) on an Arts & Culture day.
+
+    def test_bonus_bucket_article_is_held_for_its_focus_day(self, holding_env):
+        saturday, mining_day = _find_saturday_before_focus("mining-energy")
+        mining = _article(
+            "Copper mine expansion clears exploration drilling permit",
+            "mining-url", kw=0, boosted=50,
+        )
+        theme, bonus = pg.route_articles_for_focus(
+            _filler_pool(), [mining], saturday, "Cariboo Local Affairs", None
+        )
+        assert all(a["url"] != "mining-url" for a in theme + bonus)
+        entry = pg.load_memory(pg.HOLDING_FILE)["mining-url"]
+        assert entry["status"] == "held"
+        assert entry["target_date"] == mining_day.isoformat()
+
+    def test_kept_bonus_article_stays_in_the_bonus_bucket(self, holding_env):
+        """Routing must not promote an off-theme story into the theme blocks."""
+        saturday = date(2026, 7, 18)
+        misc = _article("A wholly unrelated story about nothing", "misc-url", kw=0)
+        theme, bonus = pg.route_articles_for_focus(
+            _filler_pool(), [misc], saturday, "Cariboo Local Affairs", None
+        )
+        assert any(a["url"] == "misc-url" for a in bonus)
+        assert all(a["url"] != "misc-url" for a in theme)
+
+    def test_held_for_an_upcoming_theme_when_no_focus_matches(self, holding_env):
+        """Forestry is a Tuesday theme keyword every week, but only reaches a
+        Tuesday slot on the weeks the rotation happens to sit on Forestry."""
+        # A week whose Tuesday focus is *not* forestry, so only the theme can match.
+        d = date(2026, 7, 18)
+        for _ in range(6):
+            tuesday = d + timedelta(days=(1 - d.weekday()) % 7 or 7)
+            focus = get_focus_for_day(1, tuesday)
+            if "forestry" not in pg._build_focus_keywords(focus):
+                break
+            d += timedelta(days=7)
+        else:
+            pytest.skip("every upcoming Tuesday sits on the forestry focus")
+
+        lumber = _article(
+            "New lumber tariffs restrict timber imports for sawmill operators",
+            "lumber-url", kw=0, boosted=50,
+        )
+        theme, bonus = pg.route_articles_for_focus(
+            _filler_pool(), [lumber], d, "Arts, Culture & Digital Storytelling", None
+        )
+        assert all(a["url"] != "lumber-url" for a in theme + bonus)
+        entry = pg.load_memory(pg.HOLDING_FILE)["lumber-url"]
+        assert entry["status"] == "held"
+        assert date.fromisoformat(entry["target_date"]).weekday() == 1
+
+    def test_local_story_is_never_held(self, holding_env):
+        """Local news is time-sensitive and geography is orthogonal to the
+        rotation — a Cariboo story opens the show whatever day it matches."""
+        saturday, _ = _find_saturday_before_focus("mining-energy")
+        local_mining = _article(
+            "Williams Lake copper mine expansion clears drilling permit",
+            "local-mining-url", kw=0, boosted=50,
+        )
+        theme, bonus = pg.route_articles_for_focus(
+            _filler_pool(), [local_mining], saturday, "Cariboo Local Affairs", None
+        )
+        assert any(a["url"] == "local-mining-url" for a in theme + bonus)
+        assert "local-mining-url" not in pg.load_memory(pg.HOLDING_FILE)
 
     def test_prune_drops_expired_holds(self, holding_env):
         today = date(2026, 7, 18)

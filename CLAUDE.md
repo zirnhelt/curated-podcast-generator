@@ -114,6 +114,11 @@ the script file's `#` header instead, read back by `read_script_metadata`:
   filename (`_episode_paths`).
 - **`# Brave:`** — gates one sentence in the spoken credits. Scripts predating this header
   degrade to `no`.
+- **`# Weather:`** — gates the spoken weather-provider credit. The weather check is read on
+  air in the welcome, and the episode description had credited Open-Meteo since the segment
+  existed while the spoken credits never did (2026-08-17). Gated on the flag rather than on
+  config, because on a day the fetch fails there is no weather segment to credit. Scripts
+  predating this header degrade to `no`.
 - **`# Anchor:`** — the week's anchor question, which is named on air and appears in the
   episode description. Whitespace-collapsed to one line, since the header parser reads one
   key per line. Scripts predating this header degrade to `None`.
@@ -279,7 +284,9 @@ Each daily theme (except Saturday, deliberately uncycled) rotates through a mult
 
 - **Selection:** the deep dive prefers focus-matching articles; a thin focus week (<3 matches) degrades to plain theme selection (logged `focus_fallback`). The focus lens is appended to the theme lens in the script prompt.
 - **Subtlety:** the focus is deliberately unannounced on air — it shapes selection and emphasis only. Hosts name and acknowledge the weekday theme, never a rotating sub-theme; every focus-derived prompt block carries a do-not-announce instruction.
-- **Article holding (`route_articles_for_focus`):** off-theme, non-urgent articles matching an upcoming focus within 14 days are held in `podcasts/article_holding.json` and released (flagged `_held_from`, framed as "earlier this week") on their focus day. Urgent ones (`_boosted_score ≥ 85`) air same-day in the bonus bucket (never deep-dive) and are remembered in the aired-early ledger for an on-air callback when their focus day arrives. Holding never shrinks the pool below the roundup + deep-dive budget.
+- **Article holding (`route_articles_for_focus`):** off-theme, non-urgent articles matching an upcoming day within 14 days are held in `podcasts/article_holding.json` and released (flagged `_held_from`, framed as "earlier this week") on that day. Urgent ones (`_boosted_score ≥ 85`) air same-day in the bonus bucket (never deep-dive) and are remembered in the aired-early ledger for an on-air callback when their day arrives. Holding never shrinks the pool below the roundup + deep-dive budget, and **never holds a local story** — local news is the most time-sensitive material in the pool and geography is orthogonal to the rotation (`_is_local_article`, shared with the roundup's `local` block).
+  - **Both buckets are routed.** The hold loop used to iterate `theme_articles` alone — the one bucket that by definition holds nothing off-theme. Off-theme material arrives in `bonus_articles`: 72 of it against 8 theme articles on 2026-08-17, so nothing was ever eligible and Monday's roundup aired a PLA-brittleness piece that scored two hits on Wednesday's Maker & Repair focus keywords — enough for the old focus-only matcher, which never saw it.
+  - **A slot matches on its theme keywords OR its focus keywords**, and `get_upcoming_day_slots` emits a slot for every upcoming day, uncycled Saturdays included. Focus-only matching missed whole categories: forestry is a Tuesday theme keyword every week but only reaches a Tuesday slot on the weeks the rotation sits on Forestry, so the 2026-08-17 lumber-tariffs opinion piece scored 0 focus hits on all 14 upcoming days (3 against Tuesday's theme) and had nowhere to go. The theme is the day's standing identity; the focus only narrows it.
 - **Repeat-topic guard (`format_prior_coverage_for_prompt`):** local word-overlap check of deep-dive titles against recent episode topics and debate questions; on a match, hosts are instructed to acknowledge the earlier discussion and center what's new. Evolving-story context carries the same instruction.
 
 ### Weekly Anchor Questions (`weekly_anchor.py`, `config/weekly_anchors.json`)
@@ -343,6 +350,12 @@ An episode is 6–9 independent Gemini calls, so per-call reliability compounds 
 - **Budgets.** `SECTION_BUDGET_S` bounds one chunk's ladder; `set_render_deadline()` (called with `GEMINI_RENDER_DEADLINE_S`) bounds all Gemini work in a render, so a provider that dies *after* the canary passed cannot eat the 40-minute render step one section at a time. `_budget_allows` reserves the attempt's own read timeout as well as its backoff, so a retry that cannot finish inside the budget is never started.
 
 **Ordering rule:** degrade delivery nuance before voice identity. Anything that changes *who the hosts sound like* is the last resort, which is why the whole-episode OpenAI decision is made up front rather than drifted into mid-show.
+
+#### Nothing speakable in the prompt that isn't meant to be spoken
+
+Sections used to be primed with the previous section's *verbatim* transcript tail (400 chars) under a `CONTEXT — already spoken immediately before this, do not repeat` header, so delivery continued instead of resampling cold. On 2026-08-17 the welcome section read the entire cold open aloud before its own first line and the episode opened with the teaser twice: 92.8 s of audio for a 969-char transcript, against 65–76 s on the six prior Gemini episodes, an excess matching the 25.5 s cold open.
+
+The prompt shape was the same on all seven days and so was the model, so there is no wording that makes it safe — asking a text-to-speech model not to say words you have handed it is a request it honours most of the time. It is now `continuing: bool` and a fixed `CONTINUATION_NOTE` directive (`gemini_tts`), which carries the same "open mid-flow" intent with nothing quotable in it. **Never reintroduce prior dialogue into a TTS prompt.**
 
 `gemini_tts` cannot import `degrade()` without a circular import, so it records degradations and the render path drains them via `_report_gemini_degradations()`. **A new fallback in `gemini_tts` must append to `_degradations`** or it will not reach the run report.
 
