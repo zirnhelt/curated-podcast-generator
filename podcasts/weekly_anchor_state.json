@@ -9,6 +9,16 @@
       "framings": {},
       "assigned_at": "2026-08-12",
       "origin": "seeded"
+    },
+    "2026-W34": {
+      "id": "tech-sadness",
+      "question": "Why is everyone in tech so sad?",
+      "dimension": "labour-meaning",
+      "premise": "An emotional recession has settled over knowledge work \u2014 layoffs, AI anxiety, and the collapse of the mission-driven self-image that carried the industry for two decades. The people who were supposed to be building the future increasingly describe their own work as pointless. The open question is what happens to a society when an entire class of workers loses faith in its careers, and whether the trades, the land, and the small-town economies that were told to envy that class have something to say back.",
+      "reading": "https://www.noemamag.com/why-is-everyone-in-tech-so-sad/",
+      "framings": {},
+      "assigned_at": "2026-08-17",
+      "origin": "seeded"
     }
   },
   "used": [
@@ -17,6 +27,12 @@
       "dimension": "legacy-time",
       "question": "What do we owe the people who come after us?",
       "week": "2026-W33"
+    },
+    {
+      "id": "tech-sadness",
+      "dimension": "labour-meaning",
+      "question": "Why is everyone in tech so sad?",
+      "week": "2026-W34"
     }
   ],
   "generated": []

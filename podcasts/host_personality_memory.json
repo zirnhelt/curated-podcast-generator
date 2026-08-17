@@ -75,11 +75,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-07-07",
-        "clue": "funding-risk:x \u2014 Conceded government grant cycles unreliable, endorsed member-capitalized path instead",
-        "occurrences": 2
-      },
-      {
         "date": "2026-07-19",
         "clue": "pilot-skepticism:~ \u2014 Conceded that Arizona precedent requires actual local testing",
         "occurrences": 2
@@ -135,9 +130,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-08-11",
-        "clue": "tech-optimism:~ \u2014 monitoring tools matter 'at margins' despite enforcement gaps",
-        "occurrences": 1
+        "date": "2026-08-17",
+        "clue": "tech-optimism:~ \u2014 Conceded that mission-driven narrative collapsed under financial reality",
+        "occurrences": 2
       },
       {
         "date": "2026-08-14",
@@ -329,9 +324,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-06-22",
-        "clue": "community-trust:+ \u2014 Emphasized local decision-making over external funding solutions",
-        "occurrences": 1
+        "date": "2026-08-17",
+        "clue": "community-trust:+ \u2014 Shifted from AI-access debate to local institutional continuity",
+        "occurrences": 2
       },
       {
         "date": "2026-06-24",
@@ -411,6 +406,11 @@
       {
         "date": "2026-08-16",
         "clue": "pilot-skepticism:+ \u2014 Reinforced distrust of paper commitments without enforcement teeth",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-08-17",
+        "clue": "structural-lens:+ \u2014 Deepened from tools-criticism to ownership/archive as real stake",
         "occurrences": 1
       }
     ],
