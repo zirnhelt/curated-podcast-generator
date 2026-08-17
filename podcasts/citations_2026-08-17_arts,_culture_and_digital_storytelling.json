@@ -1,0 +1,347 @@
+{
+  "episode": {
+    "date": "2026-08-17",
+    "formatted_date": "Monday, August 17, 2026",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "title": "Cariboo Signals - Arts, Culture & Digital Storytelling",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Arts, Culture & Digital Storytelling.</p><p><b>THIS WEEK WE'RE ASKING:</b> Why is everyone in tech so sad?</p><p><b>NEWS ROUNDUP:</b> We break down [CFJC Today Kamloops] Williams Lake praises work of new Rapid Response Crew and [Williams Lake Tribune] Multiple planned ignitions scheduled for Pear Lake fire near Clinton, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> If AI-powered creative tools relied on unsustainable corporate subsidies are destined to become unaffordable, should rural creators and arts organizations depend on them or invest in durable, community-owned infrastructure instead? Topics include: Sustainability and profitability of AI companies and whether their business models can support long-term tool availability, The difference between disposable digital infrastructure and durable community-based skill transmission, Digital ownership and archival: the importance of local organizations controlling their own creative output rather than relying on free platforms, Worker meaning-making in tech versus tangible satisfaction in trades and hands-on crafts, Rural creative communities' relationship to venture-capital-backed tools versus community-funded workshops.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://caribooliteracy.com\">Cariboo Chilcotin Partners for Literacy</a></p><p><b>Sources discussed:</b></p><ul><li>CFJC Today Kamloops: <a href=\"https://cfjctoday.com/2026/08/16/williams-lake-praises-work-of-new-rapid-response-crew/\">[CFJC Today Kamloops] Williams Lake praises work of new Rapi...</a></li><li>Barbara Roden (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/08/16/multiple-planned-ignitions-scheduled-for-pear-lake-fire-near-clinton/\">[Williams Lake Tribune] Multiple planned ignitions scheduled...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/315472/news/health-care/bc-spca-urge-pets-owners-to-take-precaution-during-air-quality-advisories/\">BC SPCA urge pets owners to take precaution during air quali...</a></li><li>Barbara Roden (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/08/16/ainslie-creek-wildfire-burns-to-alexandra-tunnel-in-fraser-canyon/\">[Williams Lake Tribune] Ainslie Creek wildfire burns to Alex...</a></li><li>https://www.tomsguide.com/author/mike-prospero (Toms Guide): <a href=\"https://www.tomsguide.com/computing/online-security/did-you-buy-a-cheap-gps-tracker-for-your-kid-heres-why-you-should-throw-it-out-immediately\">[Toms Guide] DId you buy a cheap GPS tracker for your kid? H...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/3d-printer-pla-filament-shatter/\">[XDA Developers] Your 3D printer's easiest filament is also ...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/08/05/books/review/cambridge-jason-arday-resignation-investigation.html\">[NYT Top Stories] Star Scholar Jason Arday Resigns From Camb...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/08/17/BC-Quietly-Planning-Split-Forest-Lands/\">[The Tyee] BC Is Quietly Planning to Split Forest Lands into...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/315606/news/politics/eby-makes-mini-cabinet-shuffle-as-minister-undergoes-cancer-treatment/\">Eby makes mini cabinet shuffle as minister undergoes cancer ...</a></li><li>Popular Woodworking: <a href=\"https://www.popularwoodworking.com/editors-blog/how-i-got-started-restoring-hand-tools/\">[Popular Woodworking] How I Got Started Restoring Hand Tools</a></li><li>ZDNet: <a href=\"https://www.zdnet.com/article/sparky-linux-32-bit-support/\">[ZDNet] Sparky Linux just restored 32-bit support - why that...</a></li><li>Vancouver Sun: <a href=\"https://vancouversun.com/opinion/op-ed/opinion-when-protectionism-starts-looking-like-supply-management\">[Vancouver Sun] Opinion: When protectionism starts looking l...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/08/16/laser-layers-for-almost-isotropicly-strong-prints/\">[Hackaday] Laser Layers for (Almost) Isotropicly Strong Prin...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/08/16/another-radio-on-a-chip-design/\">[Hackaday] Another Radio on a Chip Design</a></li><li>https://newatlas.com/author/simon-heptinstall/ (New Atlas): <a href=\"https://newatlas.com/automotive/bmw-clemson-deep-orange-17-solar-car/\">[New Atlas] BMW's weird Minecraft-like car harvests more ene...</a></li><li>Fast Company: <a href=\"https://www.fastcompany.com/91589261/holiday-hoarding-is-a-workplace-crisis\">[Fast Company] ‘Holiday hoarding’ is a workplace crisis</a></li><li>Boing Boing: <a href=\"https://boingboing.net/2026/08/12/zitron-ai-revenue-two-companies.html\">[Boing Boing] Microsoft, Google and Amazon now depend on two...</a></li><li>Popular Woodworking: <a href=\"https://www.popularwoodworking.com/tricks/sanding-guard-for-inside-corners-2/\">[Popular Woodworking] Sanding Guard  for Inside Corners</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5<br>Today's Voices: Gemini TTS and OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-08-17T02:03:18.011289-07:00",
+    "models": {
+      "script": "claude-sonnet-5",
+      "review": "claude-sonnet-5",
+      "summary": "claude-haiku-4-5-20251001"
+    },
+    "quality": {
+      "word_count": 3394,
+      "voice_ratio_casey_riley": 0.94,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 0,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 2,
+        "roundup_seam": 0,
+        "thats_closer": 0
+      },
+      "total_hits": 0,
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    },
+    "anchor": {
+      "id": "tech-sadness",
+      "question": "Why is everyone in tech so sad?"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[CFJC Today Kamloops] Williams Lake praises work of new Rapid Response Crew",
+          "url": "https://cfjctoday.com/2026/08/16/williams-lake-praises-work-of-new-rapid-response-crew/",
+          "source": "CFJC Today Kamloops",
+          "author": "",
+          "ai_score": 82,
+          "date_published": "2026-08-16T20:37:12+00:00",
+          "summary": "(Image Credit: City of Williams Lake) By Elora McCormack Williams Lake Rapid Response Williams Lake praises work of new Rapid Response Crew Aug 16, 2026 | 1:37 PM Share on Facebook Share on Bluesky Sh...",
+          "discussed": true,
+          "mention_offset_frac": 0.0219
+        },
+        {
+          "title": "[Williams Lake Tribune] Multiple planned ignitions scheduled for Pear Lake fire near Clinton",
+          "url": "https://wltribune.com/2026/08/16/multiple-planned-ignitions-scheduled-for-pear-lake-fire-near-clinton/",
+          "source": "Williams Lake Tribune",
+          "author": "Barbara Roden",
+          "ai_score": 88,
+          "date_published": "2026-08-17T04:52:37.093387+00:00",
+          "summary": "## Multiple planned ignitions scheduled for Pear Lake fire near Clinton Published 10:31 am Sunday, August 16, 2026 **By Barbara Roden** Members of a unit crew from Blackwater extinguishing hotspots in...",
+          "discussed": true,
+          "mention_offset_frac": 0.1638
+        },
+        {
+          "title": "BC SPCA urge pets owners to take precaution during air quality advisories : My Cariboo Now",
+          "url": "https://www.mycariboonow.com/315472/news/health-care/bc-spca-urge-pets-owners-to-take-precaution-during-air-quality-advisories/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 77,
+          "date_published": "2026-08-17T04:51:07.216424+00:00",
+          "summary": "The BC SPCA is urging pet owners to take precautions during air quality advisories to keep animals comfortable during wildfire season.",
+          "discussed": true,
+          "mention_offset_frac": 0.2427
+        },
+        {
+          "title": "[Williams Lake Tribune] Ainslie Creek wildfire burns to Alexandra Tunnel in Fraser Canyon",
+          "url": "https://wltribune.com/2026/08/16/ainslie-creek-wildfire-burns-to-alexandra-tunnel-in-fraser-canyon/",
+          "source": "Williams Lake Tribune",
+          "author": "Barbara Roden",
+          "ai_score": 92,
+          "date_published": "2026-08-17T04:52:37.093238+00:00",
+          "summary": "## Ainslie Creek wildfire burns to Alexandra Tunnel in Fraser Canyon Published 11:05 am Sunday, August 16, 2026 **By Barbara Roden** The Ainslie Creek wildfire continues to burn Out of Control between...",
+          "discussed": true,
+          "mention_offset_frac": 0.2725
+        },
+        {
+          "title": "[Toms Guide] DId you buy a cheap GPS tracker for your kid? Here’s why you should throw it out immediately.",
+          "url": "https://www.tomsguide.com/computing/online-security/did-you-buy-a-cheap-gps-tracker-for-your-kid-heres-why-you-should-throw-it-out-immediately",
+          "source": "Toms Guide",
+          "author": "https://www.tomsguide.com/author/mike-prospero",
+          "ai_score": 55,
+          "date_published": "2026-08-09T08:45:00+00:00",
+          "summary": "Cheap GPS watches for kids and no-name security camera and video doorbell brands may seem like a bargain, but are a real threat to your privacy.",
+          "discussed": true,
+          "mention_offset_frac": 0.5391
+        },
+        {
+          "title": "[XDA Developers] Your 3D printer's easiest filament is also the one most likely to shatter",
+          "url": "https://www.xda-developers.com/3d-printer-pla-filament-shatter/",
+          "source": "XDA Developers",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-16T19:30:10+00:00",
+          "summary": "PLA is easy to print, but its brittleness makes it a poor choice for many functional parts",
+          "discussed": true,
+          "mention_offset_frac": 0.6212
+        },
+        {
+          "title": "[NYT Top Stories] Star Scholar Jason Arday Resigns From Cambridge",
+          "url": "https://www.nytimes.com/2026/08/05/books/review/cambridge-jason-arday-resignation-investigation.html",
+          "source": "NYT Top Stories",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-08-06T00:08:45+00:00",
+          "summary": "Jason Arday was hired by the University of Cambridge in 2023 as the youngest Black professor in its history. Doubt has since been cast on his academic qualifications and claims about his life.",
+          "discussed": true,
+          "mention_offset_frac": 0.7024
+        },
+        {
+          "title": "[The Tyee] BC Is Quietly Planning to Split Forest Lands into Three Use Zones",
+          "url": "https://thetyee.ca/News/2026/08/17/BC-Quietly-Planning-Split-Forest-Lands/",
+          "source": "The Tyee",
+          "author": "",
+          "ai_score": 79,
+          "date_published": "2026-08-17T07:40:00+00:00",
+          "summary": "The policy shift, revealed in a government email obtained by The Tyee, takes First Nations by surprise.",
+          "discussed": true,
+          "mention_offset_frac": 0.8564
+        },
+        {
+          "title": "Eby makes mini cabinet shuffle as minister undergoes cancer treatment : My Cariboo Now",
+          "url": "https://www.mycariboonow.com/315606/news/politics/eby-makes-mini-cabinet-shuffle-as-minister-undergoes-cancer-treatment/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 86,
+          "date_published": "2026-08-17T04:51:07.215875+00:00",
+          "summary": "Premier David Eby shuffled key cabinet positions Friday after Finance Minister Brenda Bailey announced she had been diagnosed with cancer.",
+          "discussed": false
+        },
+        {
+          "title": "[Popular Woodworking] How I Got Started Restoring Hand Tools",
+          "url": "https://www.popularwoodworking.com/editors-blog/how-i-got-started-restoring-hand-tools/",
+          "source": "Popular Woodworking",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-08-12T15:24:19+00:00",
+          "summary": "Bringing old tools back to life is easier than you think — and incredibly satisfying. There’s something satisfying about picking up an old hand plane, chisel, or moulding plane and... Source",
+          "discussed": false
+        },
+        {
+          "title": "[ZDNet] Sparky Linux just restored 32-bit support - why that still matters",
+          "url": "https://www.zdnet.com/article/sparky-linux-32-bit-support/",
+          "source": "ZDNet",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-08-12T17:33:54+00:00",
+          "summary": "Got an old 32-bit computer lying around? Don't throw it away - Sparky Linux has decided not to give up on the aging architecture.",
+          "discussed": false
+        },
+        {
+          "title": "[Vancouver Sun] Opinion: When protectionism starts looking like supply management",
+          "url": "https://vancouversun.com/opinion/op-ed/opinion-when-protectionism-starts-looking-like-supply-management",
+          "source": "Vancouver Sun",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-08-11T23:00:47+00:00",
+          "summary": "Brian Menzies: Through duties, tariffs and border enforcement, U.S. Lumber Coalition wants foreign supply curtailed so American producers can capture more of the market at favourable prices",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Laser Layers for (Almost) Isotropicly Strong Prints",
+          "url": "https://hackaday.com/2026/08/16/laser-layers-for-almost-isotropicly-strong-prints/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 65,
+          "date_published": "2026-08-16T17:00:06+00:00",
+          "summary": "If there’s one defining factor about 3D printing you have to account for when you’re making a design, it’s probably layer adhesion. Sure, there are a lot of factors to …read more",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] Another Radio on a Chip Design",
+          "url": "https://hackaday.com/2026/08/16/another-radio-on-a-chip-design/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-08-16T20:00:38+00:00",
+          "summary": "It used to be a rite of passage to build some sort of AM radio receiver. Many people started with a crystal radio, of course, but you’d graduate to maybe …read more",
+          "discussed": false
+        },
+        {
+          "title": "[New Atlas] BMW's weird Minecraft-like car harvests more energy than it uses",
+          "url": "https://newatlas.com/automotive/bmw-clemson-deep-orange-17-solar-car/",
+          "source": "New Atlas",
+          "author": "https://newatlas.com/author/simon-heptinstall/",
+          "ai_score": 60,
+          "date_published": "2026-08-16T11:03:00+00:00",
+          "summary": "Even the most forgiving automotive designers might struggle to find a flattering angle on the Deep Orange 17. Continue Reading Category: Automotive , Transport Tags: BMW , Clemson University , Prototy...",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Arts, Culture & Digital Storytelling",
+      "articles": [
+        {
+          "title": "[Fast Company] ‘Holiday hoarding’ is a workplace crisis",
+          "url": "https://www.fastcompany.com/91589261/holiday-hoarding-is-a-workplace-crisis",
+          "source": "Fast Company",
+          "author": "",
+          "ai_score": 59,
+          "date_published": "2026-08-16T05:00:00+00:00",
+          "summary": "There is a certain irony in writing this piece during the summer. This is usually when offices begin to thin out , when conversations drift toward flight deals and city-break plans, and when out-of-of...",
+          "discussed": false
+        },
+        {
+          "title": "[Boing Boing] Microsoft, Google and Amazon now depend on two money-losing AI firms",
+          "url": "https://boingboing.net/2026/08/12/zitron-ai-revenue-two-companies.html",
+          "source": "Boing Boing",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-08-12T12:30:00+00:00",
+          "summary": "Microsoft, Google, and Amazon's growth depends on two companies that lose tens of billions of dollars a year. In a newsletter post , \"Where's Your Ed At\" reported on analyst estimates from Wells Fargo...",
+          "discussed": false
+        },
+        {
+          "title": "[Popular Woodworking] Sanding Guard  for Inside Corners",
+          "url": "https://www.popularwoodworking.com/tricks/sanding-guard-for-inside-corners-2/",
+          "source": "Popular Woodworking",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-08-12T11:54:54+00:00",
+          "summary": "Sanding inside corners used to leave nasty buzz marks from my sander banging into the adjacent face. I still haven’t tamed my sander, but now I get buzz-free results by... Source",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "If AI-powered creative tools relied on unsustainable corporate subsidies are destined to become unaffordable, should rural creators and arts organizations depend on them or invest in durable, community-owned infrastructure instead?",
+        "riley_position": "Both AI tools and traditional community-based skill-building can coexist as valuable but distinct categories of investment; cheap AI infrastructure is currently useful for solo creators even if it's ultimately disposable, while durable workshop-based work was never meant to run on subscriptions anyway.",
+        "riley_key_evidence": [
+          "Cloud infrastructure, open-weight models, and consumer apps have runway even if OpenAI/Anthropic never turn a profit like normal companies",
+          "Historical precedent shows communities adapted when software became unaffordable by adopting open-source alternatives or finding cheaper substitutes",
+          "The current subsidy from trillion-dollar companies is better for rural creators right now than the alternative of these tools never existing at all"
+        ],
+        "casey_position": "Rural communities should prioritize building owned, physical archives and community-based skill transmission rather than depending on subsidized AI tools, because the tools represent disposable infrastructure that will inevitably disappear when corporate funding ends, leaving creators worse off than before.",
+        "casey_key_evidence": [
+          "Wells Fargo, Barclays, UBS, and Deutsche Bank independently estimate major tech companies are losing tens of billions annually on AI ventures",
+          "Tech workers are hoarding vacation time and refusing to disconnect, signaling industry anxiety about layoffs and corrections rather than confidence",
+          "Open-source alternatives to hundred-billion-dollar training runs don't exist in usable form yet, making AI dependency categorically different from swapping photo editors"
+        ],
+        "resolution": "Casey and Riley agreed on a structural split: AI tools are useful but disposable infrastructure, while community workshops and locally-owned archives represent the durable assets that actually survive economic corrections. They united around the concrete recommendation that Cariboo arts organizations should begin archiving their own work on owned hardware immediately, independent of how the AI economics question resolves.",
+        "topics_covered": [
+          "Sustainability and profitability of AI companies and whether their business models can support long-term tool availability",
+          "The difference between disposable digital infrastructure and durable community-based skill transmission",
+          "Digital ownership and archival: the importance of local organizations controlling their own creative output rather than relying on free platforms",
+          "Worker meaning-making in tech versus tangible satisfaction in trades and hands-on crafts",
+          "Rural creative communities' relationship to venture-capital-backed tools versus community-funded workshops"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 14,
+          "conditions": "overcast",
+          "high": 25,
+          "low": 12
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 15,
+          "conditions": "partly cloudy",
+          "high": 25,
+          "low": 13
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 15,
+          "conditions": "overcast",
+          "high": 28,
+          "low": 13
+        },
+        {
+          "name": "Quesnel",
+          "temp": 14,
+          "conditions": "overcast",
+          "high": 25,
+          "low": 12
+        },
+        {
+          "name": "Alexis Creek",
+          "temp": 13,
+          "conditions": "partly cloudy",
+          "high": 26,
+          "low": 10
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Cariboo Chilcotin Partners for Literacy",
+      "description": "Free adult literacy, ESL, and digital literacy programs across the Cariboo Chilcotin",
+      "website": "caribooliteracy.com",
+      "psa_angle": "Back to school season is a great reminder that Partners for Literacy offers free adult education and digital skills programs. It's never too late to learn something new.",
+      "event_name": "Back to school — literacy programs"
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_azure": "Azure Neural TTS",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "Gemini TTS and OpenAI TTS"
+  }
+}

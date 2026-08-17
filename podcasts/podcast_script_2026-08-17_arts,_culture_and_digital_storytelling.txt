@@ -1,0 +1,138 @@
+# Cariboo Signals Podcast Script - 2026-08-17
+# Theme: Arts, Culture & Digital Storytelling
+# Brave: yes
+# Anchor: Why is everyone in tech so sad?
+# Generated: 2026-08-17 02:03:20 PDT
+
+**COLD OPEN**
+**RILEY:** Hey, welcome back — today we're digging into whether the AI creative-tools boom is quietly propped up by Microsoft, Google, and Amazon eating tens of billions in losses, and what that means for rural filmmakers leaning on cheap AI editing. Plus, why tech workers are hoarding vacation days like something's coming. That and more, coming right up.
+
+**WELCOME**
+
+**RILEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities — I'm Riley. It's Monday, August 17th, 2026. Coming to you from the Cariboo, on lands that have been cared for by the Secwépemc, Tŝilhqot'in, and Dakelh peoples since time immemorial. Today's theme is Arts, Culture & Digital Storytelling.
+
+**CASEY:** And I'm Casey. Today we're looking at who gets to make things — festivals, film, craft, code — and what happens to that work when the tools underneath it start to wobble.
+
+**RILEY:** Quick weather check before we get into it. Out at Horsefly Lake it's 14 degrees with overcast skies this morning, high of 25 expected, low of 12 tonight, and tomorrow's looking overcast again.
+
+**CASEY:** Around the rest of the region — 100 Mile House at 15 and partly cloudy, Williams Lake at 15 and overcast, Quesnel at 14 and overcast, and out on the Chilcotin plateau, Alexis Creek sitting at 13 with some cloud breaks. Let's get into today's stories.
+
+**NEWS ROUNDUP**
+
+**RILEY:** It's a full board this morning — five stories close to home before we even get to the arts and culture angle, so let's move efficiently. Williams Lake is praising the work of its new Rapid Response Crew after several weeks of active deployment around the city — a joint city initiative aimed at knocking down brush and hotspots close to residential areas before a wildfire front ever gets there, essentially a local buffer team rather than waiting on provincial resources to arrive.
+
+**CASEY:** City officials say the crew has already been credited with slowing the spread of at least one small ignition near a residential boundary this month. It's a modest program in terms of headcount, but it's exactly the kind of local capacity that matters when BC Wildfire Service crews are stretched across a province with dozens of active fires burning simultaneously.
+
+**CASEY:** Meanwhile in Victoria, Premier David Eby has reshuffled several cabinet positions after Finance Minister Brenda Bailey announced she's been diagnosed with cancer and will be stepping back from some duties during treatment.
+
+**RILEY:** The shuffle redistributes existing responsibilities among sitting ministers rather than bringing new faces into cabinet. We don't have full details on which portfolios shift where yet — we'll link that once it's confirmed in the episode notes.
+
+**RILEY:** Crews have scheduled multiple planned ignitions on the Pear Lake fire near Clinton over the coming days — a controlled-burn strategy, removing fuel ahead of the main fire front on purpose so there's less for it to consume when it eventually arrives at that line. A unit crew out of Blackwater has already been working hotspots in the surrounding area.
+
+**CASEY:** It sounds counterintuitive — lighting more fire to fight fire — but it's a well-established tactic, and it's meant to consolidate containment rather than let the fire pick its own path forward.
+
+**CASEY:** With that much smoke expected in the air over the next few days, the BC SPCA is reminding pet owners across the region to take precautions during air quality advisories — keep animals indoors with a HEPA air purifier running if you have one, keep windows and doors closed, and make sure pets always have fresh water.
+
+**RILEY:** The most serious fire news this morning: the Ainslie Creek wildfire, burning out of control in the Fraser Canyon, has now reached the Alexandra Tunnel — one of seven highway tunnels bored through that stretch of canyon, and a critical link on Highway 1 between the Interior and the Lower Mainland. The fire itself is estimated at over 65,000 hectares.
+
+**CASEY:** That's not a minor detour risk. A fire actively at that location means real disruption for anyone planning to travel that corridor this week — check DriveBC before you go, this one could change hour to hour.
+
+**CASEY:** Switching over — there's a piece in Popular Woodworking this week from someone who got into restoring old hand tools, picking up a rusted plane or a moulding tool at a flea market or an estate sale and bringing it back to working order with nothing more than patience and some elbow grease.
+
+**RILEY:** It's a small niche, but not a purely nostalgic one — a lot of that restoration knowledge now moves entirely through video. No school, no certificate, just somebody with decades of muscle memory and a phone camera, teaching a stranger how to true a chisel edge.
+
+**RILEY:** On the software side, ZDNet is reporting that Sparky Linux has restored support for 32-bit processors — meaning genuinely old computer hardware, the kind gathering dust in a garage or a school storage closet, can run a modern, actively maintained operating system again.
+
+**CASEY:** That matters more here than in a city. Not everyone in the Cariboo replaces a laptop every three years, and a lot of community radio stations and small nonprofits are still running hardware that's a decade old or older.
+
+**CASEY:** There's also an opinion piece in the Vancouver Sun flagging something worth a look — Brian Menzies argues that new American lumber tariffs are starting to function like U.S.-style supply management, restricting foreign timber imports so domestic producers can capture higher prices without the competition.
+
+**RILEY:** Given how much of the Cariboo's economy still runs through forestry — Quesnel, Williams Lake, dozens of smaller mill towns — that's not an abstract trade policy argument. That's a direct line to local mill jobs and shift schedules.
+
+**RILEY:** Tom's Guide has a consumer safety warning this week for any parent listening — cheap GPS trackers marketed for kids, along with no-name security cameras and video doorbells, are shipping with serious privacy holes. Unencrypted data transmission, weak or absent authentication, and in documented cases, footage or location data accessible to anyone who knows where to look online.
+
+**CASEY:** The advice from the article is blunt — if you bought one of these off a marketplace listing for twenty or thirty dollars, throw it out. The convenience isn't worth what it's quietly leaking about your kid's location.
+
+**RILEY:** And over at XDA Developers, there's a piece on 3D printing for anyone dabbling in the hobby — PLA, the easiest and most popular filament to print with, is also the most likely to shatter under mechanical stress, because the properties that make it easy to print with come at the direct cost of brittleness in load-bearing parts.
+
+**CASEY:** Cheap and easy, brittle and short-lived — there's a pattern forming across a few of today's stories.
+
+**CASEY:** Hackaday actually picks up that exact thread with a piece on laser-layering 3D prints for near-isotropic strength — using a laser to fuse each printed layer more evenly across its bond line, so the finished piece doesn't fail predictably along its weakest seam the way a standard PLA print does.
+
+**RILEY:** In academia — outside our usual beat, but a significant international story — Cambridge scholar Jason Arday has resigned after questions were raised publicly about his academic credentials and some personal background claims tied to his hiring. The university had opened its own investigation before he stepped down. No further findings have been reported beyond the resignation.
+
+**RILEY:** Hackaday also has a piece this week on a new radio-on-a-chip design — the kind of project that used to be a genuine rite of passage for electronics hobbyists building crystal radios from scratch, now compressed onto a single small board with modern components.
+
+**CASEY:** New Atlas is covering something genuinely strange out of Clemson University — a prototype vehicle called the Deep Orange 17, developed with input tied to BMW, covered in photovoltaic cells woven directly into its exterior body panels, harvesting more solar energy than the vehicle actually consumes while parked or in motion.
+
+**CASEY:** It looks a bit like a rolling Minecraft block by their own admission — but the energy math is the genuinely interesting part, not the aesthetics. A vehicle that's a net energy generator rather than just a consumer is a real engineering milestone, even if the styling needs work.
+
+**RILEY:** Last story today, and it's a significant one. The Tyee is reporting that the provincial government is quietly planning to split British Columbia's forest lands into three distinct use zones — a policy shift revealed through an internal government email the outlet obtained, and First Nations leadership says they were caught off guard by it, with no advance consultation before the plan started circulating.
+
+**CASEY:** The specific concern raised in the reporting centers on ecological restoration areas — land that's already been logged and replanted under provincial programs — sitting inside a use category that would still permit future timber harvest down the road. One person quoted in the piece asks directly whether land restored today could simply be clearcut again in ten or twenty years, with no lasting legal protection attached to the restoration work already invested in it.
+
+**RILEY:** Given how much of this region's land-use conversation already runs through exactly that tension — whether restoration commitments actually hold, or whether they're just a pause button before the next harvest cycle — this is one we'll be tracking closely.
+
+**CASEY:** That's the roundup for today. Up next, a local organization doing some of that community-building work directly, on the ground, right now.
+
+**COMMUNITY SPOTLIGHT**
+
+**CASEY:** Back-to-school season always gets people thinking about kids heading into classrooms, but it's worth remembering there's a free option for adults too. Cariboo Chilcotin Partners for Literacy runs free adult literacy, ESL, and digital skills programs across the region — no cost, no judgment, whether you're brushing up on reading, learning English as an additional language, or figuring out how to use a computer or a smartphone for the very first time. Find them at caribooliteracy dot com.
+
+**RILEY:** Digital literacy specifically is the piece that matters there — a lot of the tools we talk about on this show every day assume a baseline comfort with a keyboard or a touchscreen that not everyone in this region has had the chance to build, and programs like this are exactly how that gap actually closes, one person and one session at a time.
+
+**CASEY:** Which is a decent bridge into what we're getting into next.
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Arts, Culture & Digital Storytelling**
+
+**CASEY:** Microsoft, Google, and Amazon's growth story right now rests almost entirely on two companies that are losing tens of billions of dollars a year. That's Wells Fargo, Barclays, UBS, and Deutsche Bank, all independently estimating it in analyst notes reported this month. If the entire creative-tools boom rural storytellers have been leaning into is propped up by a bubble that hasn't found a profitable floor yet, is some of the gloom coming out of the tech industry just people quietly doing that math themselves?
+
+**RILEY:** The unprofitability of the frontier labs doesn't mean the tools evaporate tomorrow — cloud infrastructure, open-weight models, and consumer apps built on top of them have a lot of runway even if OpenAI or Anthropic never turn a profit the way a normal company would.
+
+**CASEY:** Runway isn't infinite. If the money dries up, subscription prices go up, free tiers disappear, and the rural filmmaker who's been editing on a laptop with a cheap AI upscaler or auto-captioning tool suddenly can't afford the tool that made the project financially possible in the first place.
+
+**RILEY:** That's happened before with other software categories, and communities adapted — moved to open-source alternatives, forked what they needed, found a cheaper substitute.
+
+**CASEY:** Open-source alternatives to a hundred-billion-dollar training run don't really exist in any usable form yet. Swapping one photo editor for a free one is a different category of dependency than replacing the compute behind a large language model.
+
+**RILEY:** (wry) Different scale, sure. But look at what's actually being described here — it's not that the tools stop working tomorrow, it's that three trillion-dollar companies are currently absorbing the loss so the rest of us get access to the tool cheap or free. Arguably that's better for a rural creator right now than the alternative, which is nobody subsidizing it at all and the tool simply never existing.
+
+**CASEY:** Until the subsidy ends, and it always ends eventually. And that's where a piece on what's being called "holiday hoarding" gets genuinely interesting — people inside these companies aren't taking their vacation time this summer, they're stockpiling it, refusing to disconnect, because nobody feels secure enough in their role to actually step away for two weeks. That's not the behavior of a thriving, confident industry. That's an industry bracing for something it can already feel coming.
+
+**RILEY:** It is bracing behavior, and I won't argue that away — burnout culture and layoff anxiety inside tech companies right now are documented, not speculative. There have been enough rounds of cuts at enough major firms this year that nobody feels safe assuming their role is permanent. But bracing for a correction and building something genuinely worthless aren't the same claim. A lot of useful, durable tooling has come out of periods exactly like this historically — overbuilt infrastructure, underpriced access while investors are still funding the burn, real creative use downstream that outlasts the financial excess once it corrects.
+
+**CASEY:** Meanwhile the people building that overbuilt infrastructure describe their own jobs as pointless while they're doing it — that's showing up across surveys and firsthand accounts out of the sector this year. The question worth sitting with isn't whether the tools survive a correction, it's why the workers making them can't locate any purpose in the work itself anymore.
+
+**RILEY:** (thoughtful) That's not really about the tools at all. It's about the story the tech industry told itself for two decades — that you were building the future, that the mission mattered more than the paycheck. Now the future increasingly looks like a chatbot subscription service losing money at scale, propped up by three companies with balance sheets big enough to eat the loss, and that mission-driven self-image doesn't survive contact with that kind of ledger.
+
+**CASEY:** Which is exactly why the woodworking piece in this morning's roundup landed differently for me than it might have a year ago. Someone restoring a hand plane, filming the process, teaching a total stranger how to true a chisel edge — there's no venture round behind that, no burn rate, no quarterly earnings call waiting to judge whether the work justified its cost. It's just a person who's good at something, showing their work honestly.
+
+**RILEY:** It's satisfying precisely because the feedback loop is short and unforgiving in a good way. The tool either holds an edge or it doesn't. The joint either fits flush or it doesn't. Compare that to writing code for a product whose entire business model depends on a hundred-billion-dollar bet paying off in a market that hasn't actually proven it exists yet at the scale investors are pricing in.
+
+**CASEY:** That's the trades-and-land answer to why everyone in tech seems so sad — not that rural life is somehow immune to economic anxiety, we've covered plenty of mill closures and market swings to know better than that, but that the work itself has a floor. A restored hand plane is worth something concrete the day you finish restoring it. It doesn't need a hyperscaler's balance sheet to hold its value six months from now.
+
+**RILEY:** Rural economies have their own volatility, so "floor" is doing some heavy lifting there — it's not risk-free work by any measure. But there's something real in the idea that the measure of success in a trade is physical and immediate, rather than abstract and deferred to some future earnings report that may never arrive.
+
+**CASEY:** And that's where the film and screen side of today's theme connects. Cheap motion-capture tools and streaming platforms get pitched as democratizing rural filmmaking, but what's actually happening on the ground here is a handful of people making short, honest, low-budget work about real places, and distributing it directly to whoever wants to watch.
+
+**RILEY:** (chuckles) The kind of acting workshop happening at a First Nation-led cultural centre in the region is a good concrete example of that pattern — it's not chasing an algorithm's approval, it's building an actual skill in a room with other people present, which translates directly into who's equipped to act in and eventually make films about this specific region, on the community's own terms rather than a platform's.
+
+**CASEY:** That's the piece that doesn't depend on whether Microsoft's AI bet ever pays off. It depends on whether the workshop happens again next year, whether it gets funded again, and whether the people trained in it this time actually stick around long enough to teach the next group coming up behind them.
+
+**RILEY:** This is a place we can genuinely disagree, because I'd argue both things can be true at once. The AI-tooling layer is legitimately useful for a solo creator doing quick edits, auto-captioning, or rough translation work on a shoestring budget with no crew. Meanwhile the durable, culture-carrying work — a workshop like that one, a Secwépemc-led documentary project, anything rooted in place and in ongoing relationship — was never realistically going to run on a monthly subscription in the first place, bubble or no bubble.
+
+**CASEY:** I'll take that split, with one addition. The tooling layer is disposable infrastructure — useful while it's cheap, replaceable the moment it isn't. The workshop model is the actual asset that survives regardless. The mistake would be funding both out of the same envelope, because one of them can vanish overnight and the other one compounds.
+
+**RILEY:** Maybe that's the honest answer for why so much of tech feels this sad right now — an entire industry built its identity around being the disposable-infrastructure layer for everyone else's real work, and it turns out disposable infrastructure was never going to carry anyone's actual sense of meaning, no matter how impressive the tools themselves became.
+
+**CASEY:** And rural communities that were told for the better part of two decades to envy that industry's identity might be sitting on the thing that was actually stable the whole time — a room full of people learning a craft together, whether that's acting, hand-tool restoration, or running a community radio station because someone local still knows how to physically fix the transmitter when it fails.
+
+**RILEY:** A Cariboo arts organization doesn't need to wait for the AI-economics question to resolve itself before acting on that. Documenting a workshop on video — archived locally, on hardware the organization actually owns, rather than dumped straight into whatever platform happens to be free this particular year — is a project that survives the correction either way it goes.
+
+**CASEY:** (deadpan) And it's not really whether the AI tools stay free or get expensive that decides anything. It's whether the region owns a single frame of the footage it's already making, on its own terms. If we don't hold the archive ourselves, it genuinely doesn't matter how the bubble in Silicon Valley shakes out — the work still isn't ours. That part I don't think gets resolved by any of the optimism about cheap tools.
+
+**RILEY:** Which is a fair note to land on, honestly — the tools might stay generous for a while yet, but the archive question doesn't wait for that answer. If you've got a story about a local project doing exactly that — building an archive, running a hands-on workshop, teaching a digital skill with a person in the room rather than a chatbot — send it our way, feedback at cariboo signals dot c-a, and tell us where you land on the hand-tools-versus-AI-bubble argument while you're at it.
+
+**CASEY:** Disagreement makes for better radio than agreement ever does. Have a good one out there.
+
+**RILEY:** (warmly) And I'll take the optimist's closing line — the tools might be shakier than they look, but the workshops aren't going anywhere. Talk soon.

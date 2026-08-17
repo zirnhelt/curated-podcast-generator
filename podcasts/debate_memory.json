@@ -1,35 +1,4 @@
 {
-  "2026-05-18": {
-    "timestamp": 1779114126.152202,
-    "date": "2026-05-18",
-    "theme": "Arts, Culture & Digital Storytelling",
-    "central_question": "When, if ever, is AI-generated cultural content justified, and what governance structures and guardrails should protect communities from extraction while enabling legitimate cultural participation?",
-    "riley_position": "AI-generated content can fill real gaps in underserved communities, but only if it's transparently labeled, doesn't displace existing human creators, serves the community rather than extracting from it, and maintains accountability mechanisms. The real threat is venture-capital-driven extraction models that optimize for scale.",
-    "riley_key_evidence": [
-      "NPR study showing arts engagement slows biological aging at cellular level, but the benefit was measured in human-made cultural participation built in communities",
-      "Wirestock funding round represents $23 million flowing to AI training pipelines with human creative content\u2014more capital than many provincial Indigenous arts funding streams combined",
-      "Mukurtu archival preservation model exists and has held as a community-controlled framework, but no equivalent governance architecture exists for AI-assisted cultural production"
-    ],
-    "casey_position": "The distinction between justified and exploitative AI-generated content hinges on structural control: who owns the output, who benefits from the audience relationship, who owns the archive, and whether the community has final editorial authority. Without durable resourcing and political will, even well-designed governance frameworks fail once project funding ends.",
-    "casey_key_evidence": [
-      "Nobel Prize Committee rejected Tolkien's Lord of the Rings in 1961 as not measuring up to 'storytelling of highest quality' despite 150+ million copies sold, showing institutional taste-making is unreliable",
-      "French satirists generated new AI content under a dead author's name\u2014a category error about authorship that illustrates how the technology makes unavoidable questions about consent and cultural ownership",
-      "Haida totem pole carved by \u1e34uuya Micheal Moody carries relational weight and specific obligations that an AI-generated identical image cannot capture, showing labels alone don't convey what's lost in substitution"
-    ],
-    "resolution": "Casey and Riley converged on specific, achievable design guidelines (clear labeling, no human authorship claims, no displacement of existing creators, no AI-generated content attributing views to living people without consent, built-in accountability) while agreeing the real problem is political, not technical: venture-capital-driven extraction models are winning against community-serving alternatives because of massive resource asymmetries, not superiority.",
-    "topics_covered": [
-      "NPR study on arts engagement and biological aging at cellular level",
-      "AI content flooding discoverability landscapes and what it displaces versus what it doesn't",
-      "Indigenous sovereignty and community control over cultural production tools and governance",
-      "Project-based funding gaps and the failure of pilots to become sustainable infrastructure",
-      "Extraction models in tech (Wirestock, IP-as-infrastructure) versus community-serving design"
-    ],
-    "calls_to_action": [
-      "The Cariboo Chilcotin Arts Council could serve as a convening point for a conversation between a cultural technology organization and Cariboo Nations to design what community-controlled AI governance frameworks actually look like in practice, with the Arts Council holding the room but not owning the project.",
-      "Send feedback and thoughts to feedback@cariboosignals.ca\u2014the show explicitly operates with a feedback mechanism that changes content when communities push back, unlike most AI content operations.",
-      "Communities interested in AI-assisted cultural production should demand durable resourcing commitments, not just project-based grants, and insist on direct control over parameters, access permissions, and editorial authority rather than partnerships routing capacity through tech providers or settler institutions."
-    ]
-  },
   "2026-05-19": {
     "timestamp": 1779196559.139988,
     "date": "2026-05-19",
@@ -2329,6 +2298,34 @@
       "Structural misalignment between decision-makers and communities bearing long-term risks",
       "How to make effective public input to Ministry timber consultations",
       "Compliance monitoring and enforcement challenges in forestry permits"
+    ]
+  },
+  "2026-08-17": {
+    "timestamp": 1786957402.599688,
+    "date": "2026-08-17",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "focus": "film-screen",
+    "anchor": "tech-sadness",
+    "central_question": "If AI-powered creative tools relied on unsustainable corporate subsidies are destined to become unaffordable, should rural creators and arts organizations depend on them or invest in durable, community-owned infrastructure instead?",
+    "riley_position": "Both AI tools and traditional community-based skill-building can coexist as valuable but distinct categories of investment; cheap AI infrastructure is currently useful for solo creators even if it's ultimately disposable, while durable workshop-based work was never meant to run on subscriptions anyway.",
+    "riley_key_evidence": [
+      "Cloud infrastructure, open-weight models, and consumer apps have runway even if OpenAI/Anthropic never turn a profit like normal companies",
+      "Historical precedent shows communities adapted when software became unaffordable by adopting open-source alternatives or finding cheaper substitutes",
+      "The current subsidy from trillion-dollar companies is better for rural creators right now than the alternative of these tools never existing at all"
+    ],
+    "casey_position": "Rural communities should prioritize building owned, physical archives and community-based skill transmission rather than depending on subsidized AI tools, because the tools represent disposable infrastructure that will inevitably disappear when corporate funding ends, leaving creators worse off than before.",
+    "casey_key_evidence": [
+      "Wells Fargo, Barclays, UBS, and Deutsche Bank independently estimate major tech companies are losing tens of billions annually on AI ventures",
+      "Tech workers are hoarding vacation time and refusing to disconnect, signaling industry anxiety about layoffs and corrections rather than confidence",
+      "Open-source alternatives to hundred-billion-dollar training runs don't exist in usable form yet, making AI dependency categorically different from swapping photo editors"
+    ],
+    "resolution": "Casey and Riley agreed on a structural split: AI tools are useful but disposable infrastructure, while community workshops and locally-owned archives represent the durable assets that actually survive economic corrections. They united around the concrete recommendation that Cariboo arts organizations should begin archiving their own work on owned hardware immediately, independent of how the AI economics question resolves.",
+    "topics_covered": [
+      "Sustainability and profitability of AI companies and whether their business models can support long-term tool availability",
+      "The difference between disposable digital infrastructure and durable community-based skill transmission",
+      "Digital ownership and archival: the importance of local organizations controlling their own creative output rather than relying on free platforms",
+      "Worker meaning-making in tech versus tangible satisfaction in trades and hands-on crafts",
+      "Rural creative communities' relationship to venture-capital-backed tools versus community-funded workshops"
     ]
   }
 }

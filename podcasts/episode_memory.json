@@ -1,23 +1,4 @@
 {
-  "2026-07-12": {
-    "timestamp": 1783851111.773014,
-    "topics": [
-      "[WIRED] El Ni\u00f1o Is Already Wreaking Havoc on Pacific Fisheri",
-      "[ScienceDaily] Scientists warn invasive Asian mantises are t",
-      "[ScienceDaily] Heavy marijuana smoking may increase cancer r",
-      "[The Verge] Oregon\u2019s Attorney General withdraws effort to de",
-      "[CNET] Artemis II Shows How Off-the-Shelf Cameras Are Becomi",
-      "[New Atlas] Intermittent fasting trial settles the 'optimal ",
-      "[ScienceAlert] There Are 2 Biologicially Distinct Forms of M",
-      "[The Verge] White House taps the guy who keeps crying \u2018alien"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech"
-    ],
-    "date": "2026-07-12"
-  },
   "2026-07-13": {
     "timestamp": 1783942517.775327,
     "topics": [
@@ -680,5 +661,25 @@
     "date": "2026-08-16",
     "focus": "sky-cosmos",
     "focus_name": "Sky & Cosmos"
+  },
+  "2026-08-17": {
+    "timestamp": 1786957400.649078,
+    "topics": [
+      "[CFJC Today Kamloops] Williams Lake praises work of new Rapi",
+      "Eby makes mini cabinet shuffle as minister undergoes cancer ",
+      "[Williams Lake Tribune] Multiple planned ignitions scheduled",
+      "BC SPCA urge pets owners to take precaution during air quali",
+      "[Williams Lake Tribune] Ainslie Creek wildfire burns to Alex",
+      "[Fast Company] \u2018Holiday hoarding\u2019 is a workplace crisis",
+      "[Boing Boing] Microsoft, Google and Amazon now depend on two",
+      "[Popular Woodworking] Sanding Guard  for Inside Corners"
+    ],
+    "themes": [
+      "rural development",
+      "Indigenous tech"
+    ],
+    "date": "2026-08-17",
+    "focus": "film-screen",
+    "focus_name": "Film & Screen"
   }
 }
