@@ -1,22 +1,4 @@
 {
-  "2026-07-13": {
-    "timestamp": 1783942517.775327,
-    "topics": [
-      "[Gizmodo] Timoth\u00e9e Chalamet Teases the Biggest Creative Libe",
-      "[Hackaday] CGI Motion Capture with only a Camera",
-      "[Boing Boing] Passenger nearly pulled out a Ryanair window i",
-      "[Open Culture] A 3,000-Year-Old Painter\u2019s Palette from Ancie",
-      "[CFJC Today Kamloops] Sand sculptures damaged by vandals at ",
-      "[Williams Lake Tribune] Winners unveiled at B.C.\u2019s internati",
-      "[Williams Lake Tribune] Garden and Art Tour adds colourful f",
-      "AI"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption"
-    ],
-    "date": "2026-07-13"
-  },
   "2026-07-14": {
     "timestamp": 1784024439.288088,
     "topics": [
@@ -681,5 +663,25 @@
     "date": "2026-08-17",
     "focus": "film-screen",
     "focus_name": "Film & Screen"
+  },
+  "2026-08-18": {
+    "timestamp": 1787043437.228284,
+    "topics": [
+      "Air siren being reactivated at 108 Mile Fire Hall : My Carib",
+      "[Williams Lake Tribune] Nuxalk Nation strongly opposes offic",
+      "Former Quesnel City Councillor announces intentions to run i",
+      "Hornets nest may be cause of structure fire in Quesnel area ",
+      "[Quesnel Cariboo Observer] Quesnel Fire Department extinguis",
+      "[Fast Company] Watch Duty is expanding beyond wildfires as d",
+      "[Fast Company] This stunning NASA map tracks our summer of w",
+      "[Williams Lake Tribune] Rare white magpies spotted west of W"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption"
+    ],
+    "date": "2026-08-18",
+    "focus": "agriculture-ranching",
+    "focus_name": "Agriculture & Ranching"
   }
 }
