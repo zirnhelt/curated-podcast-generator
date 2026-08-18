@@ -239,6 +239,10 @@ jobs:
           # weekly_anchor_state.json pins the week's anchor question and holds
           # the no-repeat ledger. Unstaged, Monday's pin would not survive to
           # Tuesday, which would then pick a second question for the same week.
+          # phrase_ledger.json is the rolling phrase-frequency window. Unstaged
+          # it would sit permanently dirty and break the rebase on every run —
+          # the index.html failure mode — and the burned list would reset daily,
+          # which is the one thing that makes it work at all.
           paths: |
             podcasts/podcast_script_*.txt
             podcasts/citations_*.json
@@ -248,6 +252,7 @@ jobs:
             podcasts/psa_rotation_state.json
             podcasts/article_holding.json
             podcasts/weekly_anchor_state.json
+            podcasts/phrase_ledger.json
             podcasts/twit_inspiration.json
             podcasts/content_seeds.json
             podcasts/email_queue.json
@@ -378,6 +383,7 @@ jobs:
             podcasts/host_personality_memory.json
             podcasts/debate_memory.json
             podcasts/psa_rotation_state.json
+            podcasts/phrase_ledger.json
             podcasts/twit_inspiration.json
             podcasts/content_seeds.json
             podcasts/email_queue.json

@@ -39,6 +39,7 @@ from config_loader import (
     load_bespoke_hosts,
     load_bespoke_config,
     load_credits_config,
+    format_static_tell_block,
     message_text,
 )
 
@@ -461,13 +462,16 @@ def _build_system_prompt() -> str:
         "   - At least 5 substantive point/counterpoint exchanges where each host challenges the other with specifics\n"
         "   - Each exchange should build on the previous one — complexity increases as the episode progresses\n"
         "   - Every specific claim must come directly from the source articles OR be explicitly hedged\n"
-        "   - At least 3 moments where a host genuinely shifts, concedes, or refines their position based on what the other said\n"
+        "   - At least 3 moments where a host shifts, concedes, or refines their position based on what the other said\n"
         "   - Intellectual humor is welcome when it's earned; avoid forced banter\n\n"
         "3. RESOLUTION (200-300 words): Earned endpoint — not forced agreement. May be: shifted perspective, better-defined disagreement, "
-        "mixed conclusion, or actionable framing. Close with 2-3 concrete, specific calls to action that both hosts genuinely endorse.\n\n"
+        "mixed conclusion, or actionable framing. Close with 2-3 concrete, specific calls to action that both hosts endorse.\n\n"
         "EVIDENCE RULES:\n"
         f"{_HALLUCINATION_GUARDRAIL}\n"
-        "- No weather check, no PSA segments"
+        "- No weather check, no PSA segments\n\n"
+        # This path built its own prompt and never read config/prompts.json, so it
+        # inherited none of the daily show's AI-tell material.
+        f"{format_static_tell_block()}"
     )
 
 
@@ -514,7 +518,7 @@ def generate_bespoke_script(tag, all_articles, past_debates, client, tag_descrip
         f"Generate a complete long-form debate podcast episode on this topic. "
         f"{host_names} should engage seriously with the source material, citing specific "
         "information from the articles above. The episode should feel like the best long-form "
-        "journalism you've ever heard — rigorous, illuminating, and genuinely interesting. "
+        "journalism you've ever heard — rigorous, illuminating, and worth the listener's time. "
         "Do not pad or repeat. Every exchange should move the conversation forward."
     )
 

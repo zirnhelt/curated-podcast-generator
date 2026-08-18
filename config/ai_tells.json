@@ -1,0 +1,395 @@
+{
+  "_description": "AI speech-tell corpus. `patterns`/`soft_patterns` drive score_script's regex scan; `hard_banned` drives the post-cold-open scrub gate; `ledger` tunes the self-discovering phrase-frequency ledger; `rhythm` is the measurable half of the voice spec. See CLAUDE.md > Voice and AI Tells. `soft_patterns` are reported but excluded from total_hits, which gates Opus escalation — a new family goes here unless the extra escalation is intended and costed.",
+  "hard_banned": [
+    "genuinely",
+    "carrying a lot of weight",
+    "carrying real weight",
+    "doing a lot of work there",
+    "doing a lot of heavy lifting",
+    "not nothing",
+    "isn't nothing",
+    "that's not nothing"
+  ],
+  "patterns": {
+    "i_want_to_announcements": [
+      "\\bI want to (?:push|flag|note|be clear|be honest|add|come back|pull|put|engage|make sure|explore|dig|look)\\b"
+    ],
+    "heres_opener": [
+      "\\bHere's (?:where|what|the|who|how|why|one |an |a )\\b"
+    ],
+    "pre_validation": [
+      "\\bFair (?:point|challenge|enough)[,\\.]",
+      "\\bThat's (?:a fair|fair)[,\\. ]",
+      "\\bThat's (?:a meaningful|an important|a good) (?:distinction|point|frame)\\b",
+      "\\bI'll take that as\\b"
+    ],
+    "contrastive_negation": [
+      "\\bisn't just (?:about|a |an |the )",
+      "\\bnot just (?:about|a |an |the |purely |simply )",
+      "\\bnot speculative technically\\b",
+      "The \\w+ is for [^,]{3,30}, not for\\b"
+    ],
+    "debate_club_vocab": [
+      "\\bsteelman\\b",
+      "\\bcircling back to where we started\\b",
+      "\\bI'm less confident (?:in )?that\\b"
+    ],
+    "structural_announcements": [
+      "\\bLet me (?:flag|push|note|be clear|be honest|try|engage|pull|put)\\b"
+    ],
+    "sourcing_meta_commentary": [
+      "\\bwe (?:only|just) have the headline\\b",
+      "\\bif the details bear out\\b",
+      "\\bthe picture is still coming together\\b",
+      "\\baccording to reporting\\b",
+      "\\bthe headline (?:alone|only)\\b",
+      "\\bthe full body text wasn't in (?:today's|the) feed\\b",
+      "\\bbeing honest about what we don't know\\b",
+      "\\bwe'll be honest about what we (?:don't|do not) know\\b"
+    ],
+    "ai_vocabulary_tics": [
+      "\\b(?:delve[sd]?|delving|utiliz(?:e|es|ing|ed)|leverag(?:e|es|ing|ed)|robust|streamlin(?:e|es|ing)|harness(?:es|ing)?|tapestry|paradigm|synerg(?:y|ies)|ecosystem)\\b"
+    ],
+    "serves_as_dodge": [
+      "\\bserves as\\b",
+      "\\bstands as\\b",
+      "\\b(?:marks|represents) (?:a|an|the)\\b"
+    ],
+    "pedagogical_voice": [
+      "\\bLet's (?:break this down|unpack|explore|dive in)\\b"
+    ],
+    "filler_transitions": [
+      "\\bIt'?s worth noting\\b",
+      "\\bit bears mentioning\\b",
+      "\\bImportantly,",
+      "\\bInterestingly,",
+      "\\bNotably,"
+    ],
+    "signposted_conclusion": [
+      "\\bIn conclusion\\b",
+      "\\bTo sum up\\b",
+      "\\bIn summary\\b"
+    ],
+    "cliched_idioms": [
+      "\\bsmoking gun\\b",
+      "\\bperfect storm\\b",
+      "\\bmove the needle\\b",
+      "\\bgame changer\\b",
+      "\\btip of the iceberg\\b"
+    ],
+    "dismissive_concession": [
+      "\\bDespite (?:its|these|those) challenges,"
+    ],
+    "false_exclusivity": [
+      "\\bwhat most people miss\\b",
+      "\\bnobody'?s talking about\\b",
+      "\\bthe secret is\\b"
+    ],
+    "patronizing_analogy": [
+      "\\bThink of (?:it|this|that) as\\b"
+    ],
+    "futuristic_invitation": [
+      "\\bImagine a world where\\b"
+    ],
+    "vague_attribution": [
+      "\\bexperts (?:say|believe|argue)\\b",
+      "\\bobservers (?:say|note)\\b",
+      "\\bindustry reports (?:show|suggest)\\b"
+    ],
+    "dramatic_countdown": [
+      "\\bNot [^.!?]{2,40}\\.\\s+Not [^.!?]{2,40}\\.\\s+Just\\b"
+    ]
+  },
+  "soft_patterns": {
+    "worth_gerund": {
+      "patterns": [
+        "\\bworth \\w+ing\\b"
+      ],
+      "allowance": 1
+    },
+    "roundup_seam": {
+      "patterns": [
+        "\\bfrom the (?:news )?roundup\\b",
+        "\\bfrom today's feed\\b",
+        "\\bfrom earlier in the (?:show|episode)\\b"
+      ],
+      "allowance": 0
+    },
+    "thats_closer": {
+      "patterns": [
+        "\\bThat's [^.!?\\n]{2,60}[.!?][\"']?\\s*$"
+      ],
+      "allowance": 2,
+      "multiline": true
+    },
+    "false_ranges": {
+      "patterns": [
+        "\\beverything from \\w+[^.!?]{0,40} to \\b",
+        "\\banything from \\w+[^.!?]{0,40} to \\b"
+      ],
+      "allowance": 0
+    },
+    "meta_linguistic": {
+      "patterns": [
+        "\\b(?:is|are) (?:carrying|doing) a lot of (?:weight|work)\\b",
+        "\\bcarrying (?:a lot of |real |serious )?weight (?:in|there)\\b"
+      ],
+      "allowance": 0
+    }
+  },
+  "ledger": {
+    "window_episodes": 21,
+    "top_n_reported": 12,
+    "min_rate_per_1k": 0.3,
+    "min_episodes_present": 6,
+    "retire_after_clean_episodes": 3,
+    "ngram_sizes": [
+      1
+    ],
+    "min_unigram_length": 6,
+    "stopwords": [
+      "a",
+      "about",
+      "actually",
+      "after",
+      "again",
+      "against",
+      "all",
+      "already",
+      "also",
+      "always",
+      "am",
+      "an",
+      "and",
+      "another",
+      "any",
+      "anything",
+      "are",
+      "around",
+      "as",
+      "at",
+      "away",
+      "back",
+      "be",
+      "because",
+      "been",
+      "before",
+      "being",
+      "between",
+      "both",
+      "but",
+      "by",
+      "can",
+      "come",
+      "could",
+      "day",
+      "did",
+      "do",
+      "does",
+      "doing",
+      "done",
+      "down",
+      "each",
+      "even",
+      "ever",
+      "every",
+      "few",
+      "first",
+      "for",
+      "from",
+      "get",
+      "gets",
+      "getting",
+      "give",
+      "go",
+      "going",
+      "good",
+      "got",
+      "had",
+      "has",
+      "have",
+      "having",
+      "he",
+      "her",
+      "here",
+      "hers",
+      "him",
+      "his",
+      "how",
+      "i",
+      "if",
+      "in",
+      "into",
+      "is",
+      "it",
+      "its",
+      "just",
+      "keep",
+      "kind",
+      "know",
+      "last",
+      "less",
+      "let",
+      "like",
+      "little",
+      "long",
+      "look",
+      "lot",
+      "made",
+      "make",
+      "makes",
+      "making",
+      "many",
+      "may",
+      "maybe",
+      "me",
+      "might",
+      "more",
+      "most",
+      "much",
+      "my",
+      "need",
+      "never",
+      "new",
+      "next",
+      "no",
+      "not",
+      "now",
+      "of",
+      "off",
+      "on",
+      "once",
+      "one",
+      "only",
+      "or",
+      "other",
+      "our",
+      "out",
+      "over",
+      "own",
+      "part",
+      "people",
+      "put",
+      "same",
+      "say",
+      "says",
+      "see",
+      "she",
+      "should",
+      "since",
+      "so",
+      "some",
+      "something",
+      "still",
+      "such",
+      "take",
+      "than",
+      "that",
+      "the",
+      "their",
+      "them",
+      "then",
+      "there",
+      "these",
+      "they",
+      "thing",
+      "things",
+      "think",
+      "this",
+      "those",
+      "though",
+      "three",
+      "through",
+      "time",
+      "to",
+      "today",
+      "too",
+      "two",
+      "under",
+      "until",
+      "up",
+      "us",
+      "use",
+      "used",
+      "very",
+      "want",
+      "was",
+      "way",
+      "we",
+      "well",
+      "went",
+      "were",
+      "what",
+      "when",
+      "where",
+      "which",
+      "while",
+      "who",
+      "why",
+      "will",
+      "with",
+      "without",
+      "work",
+      "would",
+      "year",
+      "years",
+      "yet",
+      "you",
+      "your"
+    ],
+    "allow": [
+      "cariboo signals",
+      "williams lake",
+      "100 mile house",
+      "mile house",
+      "cariboo regional district",
+      "regional district",
+      "welcome back",
+      "welcome to cariboo signals",
+      "coming right up",
+      "that and more",
+      "quick weather check",
+      "time immemorial",
+      "since time immemorial",
+      "have a great",
+      "thanks for listening",
+      "news roundup",
+      "deep dive",
+      "degrees with",
+      "high of",
+      "low of"
+    ],
+    "min_repetition_ratio": 2.0,
+    "unigram_mode": "adverbs",
+    "unigram_denylist": [
+      "supply",
+      "early",
+      "family",
+      "assembly",
+      "monopoly",
+      "july",
+      "weekly",
+      "daily",
+      "only",
+      "apply",
+      "reply",
+      "ally",
+      "anomaly",
+      "multiply",
+      "wildly",
+      "holy",
+      "italy",
+      "panoply"
+    ],
+    "_note": "ngram_sizes is [1] deliberately. Backfilled over 30 real episodes, every multi-word phrase that cleared the thresholds was either basic English (\"it's a\", \"rather than\") or subject matter (\"fire season\", \"the region\") — banning those in the prompt would damage the script, and not one real tic surfaced. The adverb class surfaced four (exactly, genuinely, directly, quietly). Division of labour: the ledger machine-detects the adverb register; multi-word tics are what a human notices, and hard_banned is the channel for naming them."
+  },
+  "rhythm": {
+    "max_em_dashes_per_1k_words": 8,
+    "min_short_turns": 8,
+    "short_turn_max_words": 15,
+    "max_antithesis_per_script": 2,
+    "antithesis_patterns": [
+      "\\b(?:isn't|is not|aren't|wasn't|weren't) [^.,;—\\n]{2,40}, (?:it's|that's|they're|it is|that is) "
+    ]
+  }
+}

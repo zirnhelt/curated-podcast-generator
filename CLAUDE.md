@@ -206,6 +206,7 @@ history, and a truncated `podcast-feed.xml` breaks every podcast client at once.
 - `psa_rotation_state.json` — Round-robin PSA org rotation state
 - `article_holding.json` — Super-cycle holding pen + aired-early callback ledger
 - `weekly_anchor_state.json` — This week's pinned anchor question + the no-repeat ledger (ids forever, dimensions for 26 weeks)
+- `phrase_ledger.json` — 21-episode rolling phrase-frequency window + the burned list
 
 ### Configuration System (`config_loader.py`)
 
@@ -218,6 +219,7 @@ All content is externalized to `config/` JSON files; loaders are LRU-cached (sin
 | `themes.json` | 7 rotating daily themes (Mon–Sun), keywords, editorial lenses |
 | `super_cycles.json` | Multi-week focus rotations within each daily theme (slug, keywords, lens per focus) |
 | `weekly_anchors.json` | Seeded pool of weekly anchor questions (question, dimension, premise, optional `pin_week`) |
+| `ai_tells.json` | Hard-banned phrases, `score_script`'s regex families, phrase-ledger tuning, rhythm budget |
 | `prompts.json` | All Claude prompt templates (~100 KB, cached in one call) |
 | `interests.txt` | Article relevance scoring rubric (primary/secondary/avoid) |
 | `blocklist.json` | Excluded domains and keywords |
@@ -329,6 +331,85 @@ an editorial idea and the reason to listen more than one day a week.
   degradations and `run_script_stage` drains them via `_report_anchor_degradations()`. **A new
   fallback here must append to `_degradations`** or it will not reach the run report.
 - Preview the schedule without spending or writing state: `python weekly_anchor.py --preview 12`.
+
+### Voice and AI Tells (`config/ai_tells.json`, `podcasts/phrase_ledger.json`)
+
+Two mechanisms, because the obvious one had already failed. `script_generation_system`
+banned `"[X] is carrying a lot of weight in that sentence"` verbatim for a long time and the
+phrase still shipped; `genuinely` reached 146 uses across 30 episodes (~5/episode) without any
+single script looking unusual. A longer prose ban list is not the fix, and `score_script`
+counting hits into a JSON nobody reads is not enforcement.
+
+**The corpus is one file.** `config/ai_tells.json` holds `hard_banned`, the regex `patterns`
+and `soft_patterns` that `score_script` scans, the `ledger` tuning and the `rhythm` budget.
+`score_script` falls back to `_FALLBACK_TELL_PATTERNS` when the file is missing — a style file
+must never be able to fail a run. **A new pattern family goes in `soft_patterns` unless the
+extra Opus escalation is intended and costed:** `soft_patterns` are reported but excluded from
+`total_hits`, which gates `OPUS_QUALITY_HIT_THRESHOLD`. Adding two families to `patterns` took
+Opus escalation from 2/30 episodes to 5/30 before they were moved.
+
+#### The prompt was teaching the tic
+
+`genuinely` appeared **44 times in `prompts.json` prose** and 146 times in the scripts;
+`directly` 31 and 94; `actually` 26 and 405. The model copies its instructions' register, so
+the ban and the example sat in the same file. All 44 are gone (deleting the adverb never
+changed an instruction's meaning) and `tests/test_ai_tells.py` fails if a hard-banned phrase
+reappears in prompt prose outside a quoted ban example. **Check the burned list before writing
+prompt copy** — the fastest way to install a new tic is to use it in the instructions.
+
+#### The ledger — the back catalogue as the ban list
+
+`update_phrase_ledger` folds each finished script into a 21-episode window and promotes
+anything spiking. Nobody predicted `genuinely`, and nobody should have to predict its
+successor: `quietly` (31x/16 episodes) surfaced on its own.
+
+Three filters decide what may be burned, and each exists because the unfiltered version
+produced garbage on a backfill of the real 30-episode catalogue:
+
+- **Adverbs only** (`unigram_mode`). Content words are subject matter — a news show says
+  "story", "region" and "question" constantly and must keep doing so. Raw frequency burned all
+  three. The generated register lives in stance adverbs.
+- **Proper nouns never counted.** An n-gram containing a capitalized non-sentence-initial token
+  is skipped, so "Williams Lake" and "Cariboo Regional District" can never be burned.
+- **`min_repetition_ratio`** (count/episodes ≥ 2). Boilerplate is said once per episode, every
+  episode; a tic recurs inside one. This is what keeps the show's own welcome copy
+  ("impact our rural communities", 21x/21 episodes) off the list without parsing sections.
+
+**`ngram_sizes` is `[1]` deliberately.** On the backfill, every multi-word phrase clearing the
+thresholds was either basic English ("it's a", "rather than") or subject matter ("fire season"),
+and banning those in the prompt would damage the script. Division of labour: the ledger
+machine-detects the adverb register; multi-word tics are what a human notices, and
+`hard_banned` is the channel for naming them.
+
+Promotion requires `phrase in counts` — the window aggregate still holds a phrase for weeks
+after the show stops saying it, so promoting off the aggregate alone re-fired daily, reset
+`clean_streak`, and nothing could ever retire. A phrase retires after
+`retire_after_clean_episodes` clean episodes, which frees the slot for whatever replaced it.
+Idempotent on date, so a re-render never double-counts its own episode.
+
+#### Enforcement
+
+`format_burned_phrases_for_prompt()` renders the block into the **dynamic** user prompt
+(never the cached system prompt — it changes daily and would defeat the cache), the expand
+retry, the cold open and both polish paths. `config_loader.format_static_tell_block()` carries
+the config-only half so `generate_bespoke.py` can use it without importing the pipeline — the
+same reason `atomic_write_text` lives there. Bespoke built its own prompt and inherited none of
+this until then.
+
+`script/tell-scrub` runs **after** `script/cold-open`, deliberately: `generate_cold_open` runs
+after every polish pass, so the teaser is the one part of the episode nothing else cleans, and
+it is the first thing a listener hears. It sends only the offending sentences to `SCRUB_MODEL`
+(Haiku) — a few hundred tokens, against 3,400 words for a re-polish. A rewrite is spliced only
+if it is clean and the original still matches verbatim; anything else keeps the original and
+`degrade()`s, so a bad rewrite can never be worse than the tic.
+
+#### The rhythm budget
+
+The vocabulary is half of it. 47 words per turn, 53 em-dashes an episode and every turn a
+finished paragraph is a fingerprint on its own. The system prompt's `**RHYTHM**` section asks
+for what the show should sound like — short turns, one flat unhedged statement, a disagreement
+allowed to not resolve — and `score_rhythm` measures exactly those, reporting `over_budget`
+into `episode.quality`. It is advisory: nothing blocks on it.
 
 ### TTS Providers
 
