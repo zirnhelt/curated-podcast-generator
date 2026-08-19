@@ -150,6 +150,55 @@ def load_weekly_anchors_config():
         return json.load(f)
 
 @lru_cache(maxsize=1)
+def load_ai_tells_config():
+    """Load the AI speech-tell corpus (cached). Returns {} if file absent.
+
+    Optional by design: score_script falls back to its built-in pattern dict and
+    the ledger no-ops, so a missing or malformed file costs style enforcement,
+    never a run.
+    """
+    path = CONFIG_DIR / "ai_tells.json"
+    if not path.exists():
+        return {}
+    with open(path, 'r') as f:
+        return json.load(f)
+
+def format_static_tell_block():
+    """The config-only half of the burned-phrase block: hard bans plus the rhythm
+    budget. Lives here so generate_bespoke.py can use it without importing the
+    whole pipeline — same reason atomic_write_text does.
+
+    podcast_generator composes this with the dynamic ledger half; bespoke uses it
+    alone, since the ledger's rates are derived from daily scripts.
+    """
+    tells = load_ai_tells_config()
+    hard = [p for p in tells.get('hard_banned', []) if p.strip()]
+    rhythm = tells.get('rhythm', {})
+    if not hard and not rhythm:
+        return ""
+
+    lines = []
+    if hard:
+        lines.append("BURNED PHRASES — do not use any of these, in any form:")
+        lines.append("  " + ", ".join(f'"{p}"' for p in hard))
+        lines.append(
+            "  Do not substitute a synonym either — swapping one intensifier for "
+            "another is the same tic wearing a hat. Delete it, or replace it with "
+            "the specific detail that made you want to emphasise."
+        )
+    if rhythm:
+        lines.append(
+            f"RHYTHM BUDGET: at least {rhythm.get('min_short_turns', 8)} turns under "
+            f"{rhythm.get('short_turn_max_words', 15)} words; fewer than "
+            f"{rhythm.get('max_em_dashes_per_1k_words', 8)} em dashes per thousand words; "
+            f"the \"not X, it's Y\" flip at most "
+            f"{rhythm.get('max_antithesis_per_script', 2)} times. Uniform turn length and "
+            "a dash before every elaboration is what machine prose sounds like."
+        )
+    return "\n".join(lines)
+
+
+@lru_cache(maxsize=1)
 def load_notable_dates():
     """Load notable dates calendar for theme-aligned secondary mentions (cached)."""
     path = CONFIG_DIR / "notable_dates.json"
@@ -269,7 +318,8 @@ def get_all_config():
         'psa_events': load_psa_events(),
         'blocklist': load_blocklist(),
         'super_cycles': load_super_cycles_config(),
-        'weekly_anchors': load_weekly_anchors_config()
+        'weekly_anchors': load_weekly_anchors_config(),
+        'ai_tells': load_ai_tells_config()
     }
 
 if __name__ == "__main__":

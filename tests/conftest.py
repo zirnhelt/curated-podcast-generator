@@ -97,3 +97,20 @@ def _isolate_anchor_state(tmp_path, monkeypatch):
     monkeypatch.setattr(weekly_anchor, "ANCHOR_STATE_FILE",
                         tmp_path / "weekly_anchor_state.json")
     weekly_anchor.drain_degradations()
+
+
+@pytest.fixture(autouse=True)
+def _isolate_phrase_ledger(tmp_path, monkeypatch):
+    """Redirect the phrase ledger to an *empty* tmp file for every test.
+
+    update_phrase_ledger() writes on every call, and podcasts/phrase_ledger.json
+    is live state CI commits daily — same hazard as _isolate_psa_state.
+
+    Empty rather than copied, for the anchor's reason: the burned list is derived
+    from whatever episodes are in the window, so a copied ledger would make every
+    assertion about production's last three weeks instead of about the fixture.
+    """
+    import podcast_generator
+
+    monkeypatch.setattr(podcast_generator, "PHRASE_LEDGER_FILE",
+                        tmp_path / "phrase_ledger.json")

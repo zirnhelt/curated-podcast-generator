@@ -43,6 +43,8 @@ from config_loader import (
     load_disciplines_config,
     load_bespoke_hosts,
     load_super_cycles_config,
+    load_ai_tells_config,
+    format_static_tell_block,
     get_voice_for_host,
     get_voice_instructions_for_host,
     get_speed_for_host,
@@ -439,6 +441,9 @@ SCRIPT_MODEL = os.getenv("CLAUDE_SCRIPT_MODEL", "claude-sonnet-5")
 POLISH_MODEL = os.getenv("CLAUDE_POLISH_MODEL", "claude-sonnet-5")
 OPUS_REVIEW_MODEL = os.getenv("CLAUDE_OPUS_REVIEW_MODEL", "claude-opus-4-6")
 SUMMARY_MODEL = os.getenv("CLAUDE_SUMMARY_MODEL", "claude-haiku-4-5-20251001")
+# Rewrites only the handful of sentences that kept a hard-banned phrase, never
+# the script — cheapest model is the right one for a few hundred tokens.
+SCRUB_MODEL = os.getenv("CLAUDE_SCRUB_MODEL", "claude-haiku-4-5-20251001")
 COLD_OPEN_MODEL = os.getenv("CLAUDE_COLD_OPEN_MODEL", "claude-sonnet-5")
 
 # Threshold: escalate polish+factcheck to Opus when the deep dive had fewer
@@ -747,6 +752,10 @@ EMAIL_QUEUE_FILE = PODCASTS_DIR / "email_queue.json"
 # upcoming rotation day they actually belong to (e.g. a mining story fetched on
 # Saturday waits for the next mining-focus Tuesday).
 HOLDING_FILE = PODCASTS_DIR / "article_holding.json"
+# Rolling phrase-frequency ledger: the show's own back catalogue is the ban list.
+# A phrase nobody predicted (see "genuinely", 146 hits over 30 episodes) is caught
+# by its rate, not by a human noticing it first.
+PHRASE_LEDGER_FILE = PODCASTS_DIR / "phrase_ledger.json"
 HOLD_MAX_DAYS = 14              # max days an article may wait for its focus day
 AIRED_EARLY_RETENTION_DAYS = 30 # how long the aired-early callback ledger keeps entries
 HOLD_MIN_FOCUS_HITS = 2         # focus-keyword hits required before holding
@@ -787,6 +796,7 @@ CONFIG = {
     'prompts': load_prompts_config(),
     'disciplines': load_disciplines_config(),
     'super_cycles': load_super_cycles_config(),
+    'ai_tells': load_ai_tells_config(),
 }
 
 # Batch API configuration
@@ -2681,6 +2691,7 @@ def polish_and_factcheck_with_agent(script, theme_name, news_articles, deep_dive
         research_insights=research_insights or "(none)",
         anchor_block=anchor_block or "(none)",
         air_date=f"{weekday}, {date_str}",
+        burned_phrases=format_burned_phrases_for_prompt(),
     ) + _stage_direction_addendum() + _corrections_ground_truth(corrections)
 
     review_model = model or select_review_model(deep_dive_articles)
@@ -2746,6 +2757,7 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
         research_insights=research_insights or "(none)",
         anchor_block=anchor_block or "(none)",
         air_date=f"{weekday}, {date_str}",
+        burned_phrases=format_burned_phrases_for_prompt(),
     ) + _stage_direction_addendum() + _corrections_ground_truth(corrections)
 
     # Build debate summary prompt — only send the deep-dive section (30% of script)
@@ -3463,6 +3475,7 @@ def generate_cold_open(script, theme_name):
         theme_name=theme_name,
         welcome_host_upper=welcome_host,
         finalized_script=script,
+        burned_phrases=format_burned_phrases_for_prompt(),
     )
 
     try:
@@ -5080,6 +5093,485 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
 
     return description
 
+# ---------------------------------------------------------------------------
+# Phrase ledger — the show's own back catalogue as the ban list
+#
+# The prompt has banned ~40 AI-tell categories in prose for a long time and
+# "genuinely" still landed 146 times across 30 episodes. Five a script reads
+# fine; five a day for a month is a fingerprint, and no per-episode prompt or
+# polish pass can see that. So instead of a longer hand-written list, count what
+# the show actually says, feed the spikes back into tomorrow's prompt, and let a
+# phrase retire once it goes quiet. Nobody has to notice the next "genuinely".
+#
+# All of it is local: no API call anywhere in this section.
+# ---------------------------------------------------------------------------
+
+_LEDGER_DEFAULTS = {
+    "window_episodes": 21,
+    "top_n_reported": 12,
+    "min_rate_per_1k": 0.35,
+    "min_episodes_present": 3,
+    "retire_after_clean_episodes": 3,
+    "ngram_sizes": [1, 2, 3, 4],
+    "min_unigram_length": 6,
+    "min_repetition_ratio": 2.0,
+    "unigram_mode": "adverbs",
+    "unigram_denylist": [],
+    "stopwords": [],
+    "allow": [],
+}
+
+
+def _ledger_settings():
+    """Ledger tuning from config/ai_tells.json, with defaults for a missing file."""
+    cfg = dict(_LEDGER_DEFAULTS)
+    cfg.update(CONFIG.get('ai_tells', {}).get('ledger', {}))
+    return cfg
+
+
+def _hard_banned_phrases():
+    """Phrases that may never ship, regardless of how rarely they appear."""
+    return [p for p in CONFIG.get('ai_tells', {}).get('hard_banned', []) if p.strip()]
+
+
+def _script_body_sentences(script_text):
+    """Spoken sentences only — headers, section markers, speaker tags and pacing
+    tags removed. Those are fixtures; counting them would burn "welcome back"."""
+    import re as _re
+
+    lines = [ln for ln in script_text.split('\n') if not ln.startswith('#')]
+    text = '\n'.join(lines)
+    text = _re.sub(r'\*\*(?:RILEY|CASEY):\*\*', ' \n', text)      # speaker tags end a sentence
+    text = _re.sub(r'\*\*[^*\n]{0,80}\*\*', ' \n', text)          # **COLD OPEN**, **DEEP DIVE: ...**
+    text = _re.sub(r'\[(?:pause|overlap):[^\]]+\]', ' ', text)    # pacing tags
+    text = _re.sub(r'\([^)\n]{0,40}\)', ' ', text)                # (cue) stage directions
+    return [s for s in _re.split(r'[.!?\n]+', text) if s.strip()]
+
+
+def extract_phrase_counts(script_text):
+    """Count content unigrams and 2-4-grams in a script's spoken text.
+
+    Proper nouns are excluded outright: an n-gram containing a capitalized token
+    that is not sentence-initial never enters the ledger, so "Williams Lake" and
+    "Cariboo Regional District" can never be burned for being said often. They
+    are the subject matter, not a tic.
+    """
+    import re as _re
+
+    cfg = _ledger_settings()
+    stop = set(w.lower() for w in cfg['stopwords'])
+    allow = set(a.lower() for a in cfg['allow'])
+    sizes = [n for n in cfg['ngram_sizes'] if n >= 1]
+    min_uni = cfg['min_unigram_length']
+    adverbs_only = cfg.get('unigram_mode') == 'adverbs'
+    denylist = set(w.lower() for w in cfg.get('unigram_denylist', []))
+
+    counts = Counter()
+    for sentence in _script_body_sentences(script_text):
+        raw = _re.findall(r"[A-Za-z][A-Za-z'’\-]*", sentence)
+        if not raw:
+            continue
+        # Sentence-initial capitals are grammar; later ones are names.
+        proper = [i > 0 and tok[0].isupper() for i, tok in enumerate(raw)]
+        toks = [t.lower().replace('’', "'") for t in raw]
+
+        for n in sizes:
+            for i in range(len(toks) - n + 1):
+                if any(proper[i:i + n]):
+                    continue
+                gram = ' '.join(toks[i:i + n])
+                if gram in allow:
+                    continue
+                if n == 1:
+                    if toks[i] in stop or len(toks[i]) < min_uni:
+                        continue
+                    # Content words are the subject matter: a news show says
+                    # "story", "region" and "question" constantly and must keep
+                    # doing so. The generated register lives in stance adverbs —
+                    # "genuinely", "exactly", "quietly" — so that is the only
+                    # unigram class the ledger is allowed to burn.
+                    if adverbs_only and (not toks[i].endswith('ly') or toks[i] in denylist):
+                        continue
+                else:
+                    # An n-gram made entirely of stopwords is grammar, not a tic.
+                    if all(t in stop for t in toks[i:i + n]):
+                        continue
+                counts[gram] += 1
+    return dict(counts)
+
+
+def load_phrase_ledger():
+    """Load the ledger, pruned to the configured episode window."""
+    ledger = load_memory(PHRASE_LEDGER_FILE)
+    window = _ledger_settings()['window_episodes']
+    episodes = ledger.get('episodes', [])
+    if len(episodes) > window:
+        ledger['episodes'] = episodes[-window:]
+    ledger.setdefault('episodes', [])
+    ledger.setdefault('burned', {})
+    return ledger
+
+
+def _aggregate_ledger(episodes):
+    """(total_words, {phrase: (total_count, episodes_present)}) over the window."""
+    totals = Counter()
+    presence = Counter()
+    words = 0
+    for ep in episodes:
+        words += ep.get('words', 0)
+        for phrase, n in ep.get('counts', {}).items():
+            totals[phrase] += n
+            presence[phrase] += 1
+    return words, {p: (totals[p], presence[p]) for p in totals}
+
+
+def update_phrase_ledger(script_text, date_str, save=True):
+    """Fold today's script into the ledger and recompute the burned list.
+
+    Idempotent on re-runs: an existing entry for *date_str* is replaced, so a
+    re-render never double-counts its own episode into the rates.
+    """
+    cfg = _ledger_settings()
+    ledger = load_phrase_ledger()
+
+    counts = extract_phrase_counts(script_text)
+    ledger['episodes'] = [e for e in ledger['episodes'] if e.get('date') != date_str]
+    ledger['episodes'].append({
+        'date': date_str,
+        'words': len(script_text.split()),
+        # Singletons are noise and would bloat the file; a tic repeats.
+        'counts': {p: n for p, n in counts.items() if n > 1},
+    })
+    ledger['episodes'] = ledger['episodes'][-cfg['window_episodes']:]
+
+    total_words, agg = _aggregate_ledger(ledger['episodes'])
+    burned = ledger.get('burned', {})
+
+    if total_words:
+        for phrase, (count, present) in agg.items():
+            rate = count * 1000.0 / total_words
+            # Boilerplate is said once per episode, every episode; a tic recurs
+            # inside one. "impact our rural communities" scores 1.0 here and the
+            # show's own welcome copy never reaches the burned list.
+            repetition = count / present if present else 0
+            # `phrase in counts` is load-bearing: the window aggregate still
+            # contains a phrase for weeks after the show stops saying it, so
+            # promoting off the aggregate alone re-fired every day and reset
+            # clean_streak to 0 — nothing could ever retire.
+            if (phrase in counts
+                    and rate >= cfg['min_rate_per_1k']
+                    and present >= cfg['min_episodes_present']
+                    and repetition >= cfg.get('min_repetition_ratio', 0)):
+                entry = burned.setdefault(phrase, {'first_flagged': date_str})
+                entry['clean_streak'] = 0
+                entry['rate_per_1k'] = round(rate, 2)
+                entry['count'] = count
+
+    # Retire what has gone quiet, freeing the slot for whatever replaced it.
+    for phrase in list(burned):
+        if phrase in counts:
+            continue
+        entry = burned[phrase]
+        entry['clean_streak'] = entry.get('clean_streak', 0) + 1
+        if entry['clean_streak'] >= cfg['retire_after_clean_episodes']:
+            del burned[phrase]
+
+    ledger['burned'] = burned
+    ledger['updated'] = date_str
+    if save:
+        save_memory(PHRASE_LEDGER_FILE, ledger)
+    return ledger
+
+
+def format_burned_phrases_for_prompt(ledger=None):
+    """Render the burned-phrase block for the dynamic prompt.
+
+    Counts, not prose. The existing 43 KB of prose bans is precisely what these
+    phrases survived; a short list with numbers attached is a different kind of
+    instruction. Returns "" when there is nothing to say.
+    """
+    hard = _hard_banned_phrases()
+    if ledger is None:
+        try:
+            ledger = load_phrase_ledger()
+        except Exception:
+            ledger = {'burned': {}}
+
+    cfg = _ledger_settings()
+    burned = ledger.get('burned', {})
+    ranked = sorted(
+        ((p, d) for p, d in burned.items() if p not in hard),
+        key=lambda kv: kv[1].get('rate_per_1k', 0),
+        reverse=True,
+    )[:cfg['top_n_reported']]
+
+    # Static half (hard bans + rhythm budget) is shared with generate_bespoke.py
+    # via config_loader; only the measured half is computed here.
+    static = format_static_tell_block()
+    if not static and not ranked:
+        return ""
+
+    lines = [static] if static else []
+    if ranked:
+        lines.append(
+            f"MEASURED OVERUSE — your own habits across the last "
+            f"{len(ledger.get('episodes', []))} episodes, counted. Do not use these today: "
+            + ", ".join(f'"{p}" ({d.get("count", 0)}x)' for p, d in ranked)
+        )
+    return "\n".join(lines)
+
+
+def find_hard_banned(script_text):
+    """[(phrase, sentence)] for every hard-banned phrase that survived to air."""
+    import re as _re
+
+    hits = []
+    # Drop the speaker tag and any leading pacing tag before splitting: the scrub
+    # replaces by exact substring, and handing it "**CASEY:** [pause:1200] ..."
+    # would put the tags at risk in the rewrite for no reason.
+    prefix = _re.compile(r'^\*\*(?:RILEY|CASEY):\*\*\s*(?:\[(?:pause|overlap):[^\]]+\]\s*)?')
+    for phrase in _hard_banned_phrases():
+        pat = _re.compile(r'\b' + _re.escape(phrase) + r'\b', _re.IGNORECASE)
+        for line in script_text.split('\n'):
+            if not pat.search(line):
+                continue
+            for sentence in _re.findall(r'[^.!?]*[.!?]|[^.!?]+$', prefix.sub('', line)):
+                if sentence.strip() and pat.search(sentence):
+                    hits.append((phrase, sentence.strip()))
+    return hits
+
+
+def scrub_hard_banned(script_text, hits):
+    """Rewrite only the sentences carrying a hard-banned phrase.
+
+    The whole point of sending sentences rather than the script: a re-polish of
+    3,400 words to remove one adverb is the expensive way to buy a small fix.
+    Payload here is a few hundred tokens on the cheapest model.
+
+    A sentence is replaced only if the replacement is clean and the original
+    still matches verbatim; anything else keeps the original and degrades, so a
+    bad rewrite can never make the episode worse than the tic it was fixing.
+    """
+    import re as _re
+
+    client = get_anthropic_client()
+    if not client or not hits:
+        if hits:
+            degrade("script/tell-scrub",
+                    f"{len(hits)} hard-banned phrase(s) shipped unfixed — no Anthropic client")
+        return script_text
+
+    # One sentence may carry two banned phrases; rewrite it once.
+    sentences = list(dict.fromkeys(s for _, s in hits))
+    phrases = sorted({p for p, _ in hits})
+
+    numbered = "\n".join(f"{i + 1}. {s}" for i, s in enumerate(sentences))
+    prompt = (
+        "These sentences are from a two-host radio script. Each contains a banned "
+        "phrase. Rewrite each one so the banned phrase is gone.\n\n"
+        f"Banned phrases: {', '.join(phrases)}\n\n"
+        "Rules:\n"
+        "- Keep every fact, name, number and the speaker's meaning identical.\n"
+        "- Do not substitute a synonym for the banned word (\"truly\", \"really\", "
+        "\"genuinely\" are the same tic). Delete the intensifier, or rebuild the "
+        "sentence around the concrete claim.\n"
+        "- Keep it speakable and roughly the same length.\n"
+        "- Preserve any [pause:N] or [overlap:N] tags exactly where they are.\n\n"
+        f"Sentences:\n{numbered}\n\n"
+        "Return ONLY a JSON array of the rewritten sentences, in order, same length."
+    )
+
+    try:
+        response = api_retry(lambda: client.messages.create(
+            model=SCRUB_MODEL,
+            max_tokens=1500,
+            messages=[{"role": "user", "content": prompt}]
+        ))
+        _log_api_call("claude", "input_tokens",
+                      getattr(getattr(response, "usage", None), "input_tokens", 0))
+        _log_api_call("claude", "output_tokens",
+                      getattr(getattr(response, "usage", None), "output_tokens", 0))
+        text = message_text(response).strip()
+        if text.startswith("```"):
+            text = text.split("\n", 1)[1] if "\n" in text else text[3:]
+            if text.endswith("```"):
+                text = text[:-3]
+            text = text.strip()
+        rewrites = json.loads(text)
+        if not isinstance(rewrites, list) or len(rewrites) != len(sentences):
+            raise ValueError(f"expected {len(sentences)} rewrites, got {len(rewrites)}")
+    except Exception as e:
+        degrade("script/tell-scrub",
+                f"{len(sentences)} sentence(s) with banned phrases shipped unfixed: {e}")
+        return script_text
+
+    banned_re = _re.compile(
+        '|'.join(r'\b' + _re.escape(p) + r'\b' for p in _hard_banned_phrases()),
+        _re.IGNORECASE,
+    )
+    fixed, skipped = 0, []
+    for original, replacement in zip(sentences, rewrites):
+        replacement = str(replacement).strip()
+        if not replacement or banned_re.search(replacement):
+            skipped.append(original)
+            continue
+        if original not in script_text:
+            skipped.append(original)
+            continue
+        script_text = script_text.replace(original, replacement, 1)
+        fixed += 1
+
+    print(f"   🧽 Tell scrub: {fixed}/{len(sentences)} sentence(s) rewritten")
+    if skipped:
+        degrade("script/tell-scrub",
+                f"{len(skipped)} sentence(s) kept a banned phrase (rewrite rejected)")
+    return script_text
+
+
+# Fallback tell corpus, used only when config/ai_tells.json is absent or
+# unreadable. config is authoritative; keep this in sync only when the
+# shipped default itself changes.
+_FALLBACK_TELL_PATTERNS = {
+    "i_want_to_announcements": [
+        r'\bI want to (?:push|flag|note|be clear|be honest|add|come back|pull|put|engage|make sure|explore|dig|look)\b',
+    ],
+    "heres_opener": [
+        r"\bHere's (?:where|what|the|who|how|why|one |an |a )\b",
+    ],
+    "pre_validation": [
+        r"\bFair (?:point|challenge|enough)[,\.]",
+        r"\bThat's (?:a fair|fair)[,\. ]",
+        r"\bThat's (?:a meaningful|an important|a good) (?:distinction|point|frame)\b",
+        r"\bI'll take that as\b",
+    ],
+    "contrastive_negation": [
+        r"\bisn't just (?:about|a |an |the )",
+        r"\bnot just (?:about|a |an |the |purely |simply )",
+        r"\bnot speculative technically\b",
+        r"The \w+ is for [^,]{3,30}, not for\b",
+    ],
+    "debate_club_vocab": [
+        r"\bsteelman\b",
+        r"\bcircling back to where we started\b",
+        r"\bI'm less confident (?:in )?that\b",
+    ],
+    "structural_announcements": [
+        r'\bLet me (?:flag|push|note|be clear|be honest|try|engage|pull|put)\b',
+    ],
+    "sourcing_meta_commentary": [
+        r"\bwe (?:only|just) have the headline\b",
+        r"\bif the details bear out\b",
+        r"\bthe picture is still coming together\b",
+        r"\baccording to reporting\b",
+        r"\bthe headline (?:alone|only)\b",
+        r"\bthe full body text wasn't in (?:today's|the) feed\b",
+        r"\bbeing honest about what we don't know\b",
+        r"\bwe'll be honest about what we (?:don't|do not) know\b",
+    ],
+    "ai_vocabulary_tics": [
+        r"\b(?:delve[sd]?|delving|utiliz(?:e|es|ing|ed)|leverag(?:e|es|ing|ed)|robust|streamlin(?:e|es|ing)|harness(?:es|ing)?|tapestry|paradigm|synerg(?:y|ies)|ecosystem)\b",
+    ],
+    "serves_as_dodge": [
+        r"\bserves as\b", r"\bstands as\b", r"\b(?:marks|represents) (?:a|an|the)\b",
+    ],
+    "pedagogical_voice": [
+        r"\bLet's (?:break this down|unpack|explore|dive in)\b",
+    ],
+    "filler_transitions": [
+        r"\bIt'?s worth noting\b", r"\bit bears mentioning\b",
+        r"\bImportantly,", r"\bInterestingly,", r"\bNotably,",
+    ],
+    "signposted_conclusion": [
+        r"\bIn conclusion\b", r"\bTo sum up\b", r"\bIn summary\b",
+    ],
+    "cliched_idioms": [
+        r"\bsmoking gun\b", r"\bperfect storm\b", r"\bmove the needle\b",
+        r"\bgame changer\b", r"\btip of the iceberg\b",
+    ],
+    "dismissive_concession": [
+        r"\bDespite (?:its|these|those) challenges,",
+    ],
+    "false_exclusivity": [
+        r"\bwhat most people miss\b", r"\bnobody'?s talking about\b", r"\bthe secret is\b",
+    ],
+    "patronizing_analogy": [
+        r"\bThink of (?:it|this|that) as\b",
+    ],
+    "futuristic_invitation": [
+        r"\bImagine a world where\b",
+    ],
+    "vague_attribution": [
+        r"\bexperts (?:say|believe|argue)\b", r"\bobservers (?:say|note)\b",
+        r"\bindustry reports (?:show|suggest)\b",
+    ],
+    "dramatic_countdown": [
+        r"\bNot [^.!?]{2,40}\.\s+Not [^.!?]{2,40}\.\s+Just\b",
+    ],
+}
+
+
+_FALLBACK_SOFT_PATTERNS = {
+    "worth_gerund": {"patterns": [r"\bworth \w+ing\b"], "allowance": 1},
+    "roundup_seam": {
+        "patterns": [
+            r"\bfrom the (?:news )?roundup\b",
+            r"\bfrom today's feed\b",
+            r"\bfrom earlier in the (?:show|episode)\b",
+        ],
+        "allowance": 0,
+    },
+    "thats_closer": {
+        "patterns": [r"\bThat's [^.!?\n]{2,60}[.!?][\"']?\s*$"],
+        "allowance": 2,
+        "multiline": True,
+    },
+}
+
+
+def score_rhythm(script_text):
+    """Measure the texture that makes a script read as generated.
+
+    The vocabulary is only half of it. 47 words per turn on average, 53 em-dashes
+    an episode and every turn a well-formed paragraph is a fingerprint on its
+    own, so the things the prompt now asks for are the things measured here.
+    """
+    import re as _re
+
+    rcfg = dict(CONFIG.get('ai_tells', {}).get('rhythm', {}))
+    words = max(1, len(script_text.split()))
+
+    turns = []
+    for chunk in _re.split(r'\*\*(?:RILEY|CASEY):\*\*', script_text)[1:]:
+        clean = _re.sub(r'\[(?:pause|overlap):[^\]]+\]', '', chunk)
+        clean = _re.sub(r'\*\*[^*\n]{0,80}\*\*', '', clean).strip()
+        if clean:
+            turns.append(len(clean.split()))
+
+    short_max = rcfg.get('short_turn_max_words', 15)
+    short_turns = sum(1 for t in turns if t <= short_max)
+    antithesis = sum(
+        len(_re.findall(p, script_text, _re.IGNORECASE))
+        for p in rcfg.get('antithesis_patterns', [])
+    )
+    em_rate = round(script_text.count('—') * 1000.0 / words, 1)
+
+    out = {
+        "em_dashes_per_1k": em_rate,
+        "short_turns": short_turns,
+        "turns": len(turns),
+        "avg_turn_words": round(sum(turns) / len(turns), 1) if turns else None,
+        "antithesis_hits": antithesis,
+    }
+    out["over_budget"] = [
+        k for k, over in (
+            ("em_dashes", em_rate > rcfg.get('max_em_dashes_per_1k_words', 6)),
+            ("short_turns", short_turns < rcfg.get('min_short_turns', 8)),
+            ("antithesis", antithesis > rcfg.get('max_antithesis_per_script', 2)),
+        ) if over
+    ]
+    return out
+
+
 def score_script(script_text):
     """Score a finalized script against known AI speech pattern anti-patterns.
 
@@ -5089,83 +5581,11 @@ def score_script(script_text):
     """
     import re as _re
 
-    patterns = {
-        "i_want_to_announcements": [
-            r'\bI want to (?:push|flag|note|be clear|be honest|add|come back|pull|put|engage|make sure|explore|dig|look)\b',
-        ],
-        "heres_opener": [
-            r"\bHere's (?:where|what|the|who|how|why|one |an |a )\b",
-        ],
-        "pre_validation": [
-            r"\bFair (?:point|challenge|enough)[,\.]",
-            r"\bThat's (?:a fair|fair)[,\. ]",
-            r"\bThat's (?:a meaningful|an important|a good) (?:distinction|point|frame)\b",
-            r"\bI'll take that as\b",
-        ],
-        "contrastive_negation": [
-            r"\bisn't just (?:about|a |an |the )",
-            r"\bnot just (?:about|a |an |the |purely |simply )",
-            r"\bnot speculative technically\b",
-            r"The \w+ is for [^,]{3,30}, not for\b",
-        ],
-        "debate_club_vocab": [
-            r"\bsteelman\b",
-            r"\bcircling back to where we started\b",
-            r"\bI'm less confident (?:in )?that\b",
-        ],
-        "structural_announcements": [
-            r'\bLet me (?:flag|push|note|be clear|be honest|try|engage|pull|put)\b',
-        ],
-        "sourcing_meta_commentary": [
-            r"\bwe (?:only|just) have the headline\b",
-            r"\bif the details bear out\b",
-            r"\bthe picture is still coming together\b",
-            r"\baccording to reporting\b",
-            r"\bthe headline (?:alone|only)\b",
-            r"\bthe full body text wasn't in (?:today's|the) feed\b",
-            r"\bbeing honest about what we don't know\b",
-            r"\bwe'll be honest about what we (?:don't|do not) know\b",
-        ],
-        "ai_vocabulary_tics": [
-            r"\b(?:delve[sd]?|delving|utiliz(?:e|es|ing|ed)|leverag(?:e|es|ing|ed)|robust|streamlin(?:e|es|ing)|harness(?:es|ing)?|tapestry|paradigm|synerg(?:y|ies)|ecosystem)\b",
-        ],
-        "serves_as_dodge": [
-            r"\bserves as\b", r"\bstands as\b", r"\b(?:marks|represents) (?:a|an|the)\b",
-        ],
-        "pedagogical_voice": [
-            r"\bLet's (?:break this down|unpack|explore|dive in)\b",
-        ],
-        "filler_transitions": [
-            r"\bIt'?s worth noting\b", r"\bit bears mentioning\b",
-            r"\bImportantly,", r"\bInterestingly,", r"\bNotably,",
-        ],
-        "signposted_conclusion": [
-            r"\bIn conclusion\b", r"\bTo sum up\b", r"\bIn summary\b",
-        ],
-        "cliched_idioms": [
-            r"\bsmoking gun\b", r"\bperfect storm\b", r"\bmove the needle\b",
-            r"\bgame changer\b", r"\btip of the iceberg\b",
-        ],
-        "dismissive_concession": [
-            r"\bDespite (?:its|these|those) challenges,",
-        ],
-        "false_exclusivity": [
-            r"\bwhat most people miss\b", r"\bnobody'?s talking about\b", r"\bthe secret is\b",
-        ],
-        "patronizing_analogy": [
-            r"\bThink of (?:it|this|that) as\b",
-        ],
-        "futuristic_invitation": [
-            r"\bImagine a world where\b",
-        ],
-        "vague_attribution": [
-            r"\bexperts (?:say|believe|argue)\b", r"\bobservers (?:say|note)\b",
-            r"\bindustry reports (?:show|suggest)\b",
-        ],
-        "dramatic_countdown": [
-            r"\bNot [^.!?]{2,40}\.\s+Not [^.!?]{2,40}\.\s+Just\b",
-        ],
-    }
+    # Patterns live in config/ai_tells.json so the prompt bans, the scrub gate and
+    # this scan read one corpus. The literal below is the fallback for a missing
+    # or malformed config — a style file must never be able to fail a run.
+    _tells = CONFIG.get('ai_tells', {})
+    patterns = _tells.get('patterns') or _FALLBACK_TELL_PATTERNS
 
     hits = {}
     total = 0
@@ -5187,21 +5607,18 @@ def score_script(script_text):
 
     # Soft style tics — reported in pattern_hits for the weekly review loop but
     # excluded from total_hits so they can't push runs over OPUS_QUALITY_HIT_THRESHOLD.
-    hits["worth_gerund"] = max(
-        0, len(_re.findall(r"\bworth \w+ing\b", script_text, _re.IGNORECASE)) - 1
-    )
-    hits["roundup_seam"] = sum(
-        len(_re.findall(p, script_text, _re.IGNORECASE))
-        for p in (
-            r"\bfrom the (?:news )?roundup\b",
-            r"\bfrom today's feed\b",
-            r"\bfrom earlier in the (?:show|episode)\b",
+    # `allowance` is how many uses are fine before it counts as a tic.
+    for category, spec in (_tells.get('soft_patterns') or _FALLBACK_SOFT_PATTERNS).items():
+        flags = _re.IGNORECASE | (_re.MULTILINE if spec.get('multiline') else 0)
+        found = sum(
+            len(_re.findall(pat, script_text, flags)) for pat in spec.get('patterns', [])
         )
-    )
-    hits["thats_closer"] = max(
-        0,
-        len(_re.findall(r"\bThat's [^.!?\n]{2,60}[.!?][\"']?\s*$", script_text, _re.MULTILINE)) - 2,
-    )
+        hits[category] = max(0, found - spec.get('allowance', 0))
+
+    # Hard-banned phrases are counted but stay out of total_hits: the scrub gate
+    # removes them after this scan, so scoring them would double-charge a run
+    # that is about to be fixed.
+    hits["hard_banned"] = len(find_hard_banned(script_text))
 
     # Voice length ratio (Casey avg / Riley avg) in Deep Dive only
     voice_ratio = None
@@ -5230,6 +5647,7 @@ def score_script(script_text):
         "voice_ratio_casey_riley": voice_ratio,
         "pattern_hits": hits,
         "total_hits": total,
+        "rhythm": score_rhythm(script_text),
     }
 
 
@@ -5846,6 +6264,10 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
     # changes weekly, and caching it would defeat the cache every Monday.
     anchor_block = format_anchor_for_prompt(anchor, get_pacific_now().weekday(), theme_name)
 
+    # The show's own measured overuse. Dynamic prompt only — it changes daily and
+    # caching it would defeat the cache every morning.
+    burned_phrases = format_burned_phrases_for_prompt()
+
     if system_prompt and 'script_generation_user' in prompts:
         # New path: static system prompt (cached) + dynamic user prompt
         user_prompt = prompts['script_generation_user']['template'].format(
@@ -5859,6 +6281,7 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             theme_name=theme_name,
             theme_lens=_build_theme_lens(theme_name, focus=focus),
             anchor_block=anchor_block,
+            burned_phrases=burned_phrases,
             news_text=news_text,
             deep_dive_text=deep_dive_text,
             news_titles_brief=news_titles_brief,
@@ -5889,6 +6312,7 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             other_host_name=other_host_name,
             theme_name=theme_name,
             anchor_block=anchor_block,
+            burned_phrases=burned_phrases,
             news_text=news_text,
             deep_dive_text=deep_dive_text,
             news_titles_brief=news_titles_brief,
@@ -5946,7 +6370,8 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             # length feedback — the system prompt prefix stays cached, so the
             # retry is mostly cache reads.
             print(f"⚠️ Script complete but short ({word_count} words < {TARGET_SCRIPT_WORDS} target) — retrying with length feedback...")
-            expand_prompt = prompts['script_expand_retry']['template'].format(word_count=word_count)
+            expand_prompt = prompts['script_expand_retry']['template'].format(
+                word_count=word_count, burned_phrases=burned_phrases)
             retry_request = {
                 **request,
                 "max_tokens": 32000,
@@ -8880,6 +9305,16 @@ def run_script_stage() -> tuple[str, str] | None:
             print("🎬 Generating cold open teaser...")
             script = generate_cold_open(script, today_theme)
 
+        with segment("script/tell-scrub", critical=False):
+            # Last stop before the script is final. Placed after the cold open on
+            # purpose: generate_cold_open runs after every polish pass, so its
+            # teaser is the one part of the episode no cleaning stage has ever
+            # touched — and it is the first thing a listener hears.
+            _tell_hits = find_hard_banned(script)
+            if _tell_hits:
+                print(f"🧽 {len(_tell_hits)} hard-banned phrase(s) survived polish — scrubbing...")
+                script = scrub_hard_banned(script, _tell_hits)
+
         with segment("script/debate-summary", critical=False):
             # Extract debate summary if not already obtained from batch
             if not debate_summary:
@@ -8994,6 +9429,13 @@ def run_script_stage() -> tuple[str, str] | None:
             if ctas:
                 update_cta_memory(date_key, today_theme, ctas)
                 print(f"💡 Saved {len(ctas)} calls to action to CTA cache")
+
+        with segment("script/persist-phrase-ledger", critical=False):
+            # Runs on the final, scrubbed script so the ledger records what aired.
+            # Idempotent on date, so a re-render never double-counts its own episode.
+            _ledger = update_phrase_ledger(script, date_key)
+            _burned = len(_ledger.get('burned', {}))
+            print(f"📓 Phrase ledger updated — {_burned} phrase(s) currently burned")
     else:
         print(f"🔄 Script already exists, reusing: {script_filename}")
 

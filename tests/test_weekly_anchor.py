@@ -356,7 +356,7 @@ class TestPromptSurface:
     def test_block_carries_the_drop_it_escape_hatch(self):
         """The single guard against seven days of manufactured connections."""
         block = wa.format_anchor_for_prompt(self.ANCHOR, 1, "Working Lands & Industry")
-        assert "DOES NOT GENUINELY REACH THE QUESTION, DROP IT COMPLETELY" in block
+        assert "DOES NOT REACH THE QUESTION, DROP IT COMPLETELY" in block
 
     def test_block_is_padded_so_the_template_reads_the_same_either_way(self):
         block = wa.format_anchor_for_prompt(self.ANCHOR, 1, "Working Lands & Industry")

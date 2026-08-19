@@ -80,7 +80,10 @@ class TestConfigLoader:
     def test_load_prompts_config(self):
         prompts = load_prompts_config()
         assert "script_generation" in prompts
-        assert "script_polish" in prompts
+        # script_polish was an orphaned 4th copy of the voice-audit list with no
+        # reader in the repo; it had already drifted out of sync with the live three.
+        assert "script_polish" not in prompts
+        assert "agentic_polish_and_factcheck" in prompts
         assert "template" in prompts["script_generation"]
 
     def test_get_voice_for_host(self):
@@ -110,7 +113,7 @@ class TestConfigLoader:
 
     def test_get_all_config(self):
         config = get_all_config()
-        assert set(config.keys()) == {"podcast", "hosts", "themes", "credits", "interests", "prompts", "psa_organizations", "psa_events", "blocklist", "super_cycles", "weekly_anchors"}
+        assert set(config.keys()) == {"podcast", "hosts", "themes", "credits", "interests", "prompts", "psa_organizations", "psa_events", "blocklist", "super_cycles", "weekly_anchors", "ai_tells"}
 
     def test_configs_are_cached(self):
         """Verify lru_cache returns the same object on repeated calls."""
