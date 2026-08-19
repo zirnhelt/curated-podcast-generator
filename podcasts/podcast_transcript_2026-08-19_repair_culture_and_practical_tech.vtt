@@ -1,0 +1,256 @@
+WEBVTT
+
+00:00:00.546 --> 00:00:22.578
+<v Casey>Hey there — today's episode is all about fixing things instead of tossing them. Fairphone finally launched in the US, a repair-first phone you can crack open with a screwdriver. And we're asking a bigger question: does the physical work of retrofitting a tower or rebuilding a burned wildlife enclosure carry meaning that cancelled software projects never get? That and more, coming right up.
+
+00:00:38.553 --> 00:00:58.753
+<v Casey>Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities — I'm Casey. It's Wednesday, August 19th, 2026. Coming to you from the Cariboo, on lands that have been cared for by the Secwépemc, Tŝilhqot'in, and Dakelh peoples since time immemorial. Today's theme is Repair Culture &amp; Practical Tech.
+
+00:00:59.431 --> 00:01:07.735
+<v Riley>And I'm Riley. We're talking about fixing things instead of replacing them — buildings, phones, even the software running on your own laptop.
+
+00:01:08.486 --> 00:01:28.518
+<v Casey>Quick weather sweep before we get into it. Out at Horsefly Lake, 13 degrees this morning, clear skies, high of 25 today, low of 13 tonight. Across the region — 100 Mile House, Williams Lake, Quesnel, and Riske Creek out on the Chilcotin plateau are all sitting around 13 with clear skies this morning too. Tomorrow's leaning partly cloudy.
+
+00:01:28.618 --> 00:01:30.586
+<v Casey>Let's get into what's happening around the region.
+
+00:01:31.686 --> 00:01:46.734
+<v Riley>A packed one today. Five stories close to home, and a run of national and global items on the theme. We'll start local. Williams Lake has a Bewitching Market coming, put on by the same organizers behind the steampunk-themed bazaar earlier this year.
+
+00:01:47.418 --> 00:01:49.594
+<v Casey>Steampunk to witchcraft. That's a range.
+
+00:01:51.080 --> 00:02:08.144
+<v Riley>The Tribune's Rebecca Dyok reports it's a direct follow-on from that bazaar's turnout — local vendors, handmade goods, siblings from 100 Mile House among the crafters featured. The kind of recurring market that keeps a small-town craft economy alive between the big summer festivals.
+
+00:02:09.502 --> 00:02:16.358
+<v Casey>There's a second Williams Lake event the same week. My Cariboo Now has a beauty night scheduled for today at the Stampede Grounds.
+
+00:02:17.581 --> 00:02:28.205
+<v Riley>Quesnel's got a cultural moment too. The Art Gallery opened a new exhibit on July 30th — landscapes, the colour and texture of B.C.'s wild country — running through September 3rd.
+
+00:02:29.593 --> 00:02:42.817
+<v Casey>From beauty to hazard, then. The Tribune's Barbara Roden has been filing steadily on wildfire aftermath, and today's piece covers what's left behind once the flames move through — wandering livestock, and what foresters call danger trees.
+
+00:02:43.999 --> 00:03:00.927
+<v Riley>Danger trees look upright but are burned through at the base. They come down without warning, sometimes hours after a vehicle's passed underneath. Roden's reporting has crews flagging the highest-risk routes, and ranchers still rounding up cattle that scattered during the evacuation order.
+
+00:03:02.177 --> 00:03:12.081
+<v Casey>Which connects to the other Tribune piece today. Postal service has resumed in Clinton as the Pear Lake fire holds at a hundred sixty thousand, three hundred and fifteen hectares.
+
+00:03:13.488 --> 00:03:26.512
+<v Riley>Holding, not shrinking. A CL-415 airtanker is still scooping water out of Meadow Lake to keep it that way. Mail moving again is a real sign of normalcy in Clinton, even with the fire perimeter unchanged.
+
+00:03:27.622 --> 00:03:49.950
+<v Casey>That question of what gets fixed after a disaster and what just gets abandoned runs straight into today's theme, and there's a lot of it. WIRED has confirmation that Fairphone — the Dutch company that's spent more than a decade building phones designed to be opened up and repaired rather than thrown out — is finally selling in the United States. The Fairphone Gen 6-plus, at 649 US dollars.
+
+00:03:50.537 --> 00:03:54.281
+<v Riley>A decade to cross the Atlantic. Not exactly disruptive speed.
+
+00:03:55.728 --> 00:04:13.976
+<v Casey>Slow, and still real. This is a phone where the battery comes out with a screwdriver, not a heat gun and a fifty-fifty chance of a cracked screen. iFixit has scored earlier Fairphone models near the top of its repairability scale. That's the opposite of a business model built on the phone dying right after the warranty runs out.
+
+00:04:15.916 --> 00:04:31.196
+<v Riley>On the building side, ArchDaily has a piece on a design studio called Amass, which takes industrial scrap and reworks it into new furniture and objects. Craft as recovery, basically — the saw marks and weld lines stay visible instead of getting sanded away.
+
+00:04:32.670 --> 00:04:52.510
+<v Casey>Staying on buildings — Homebuilding and Renovating reports the UK's finalized its planning reforms. One wrinkle: pub-to-home conversions are getting harder to approve, while some other renovation and self-build routes are getting easier. Regulatory tinkering, but planning rules are exactly the lever that decides whether renovating is legally simpler than demolishing.
+
+00:04:53.859 --> 00:05:05.507
+<v Riley>The New York Times talked to GM's president, Mark Reuss, about electrics, China, and the nepotism question that comes with his father having been fired from a role at GM decades before Reuss took it over.
+
+00:05:06.655 --> 00:05:13.751
+<v Casey>Reuss is a mechanical engineer by training. Not the norm in an industry that's spent thirty years handing the wheel to finance people.
+
+00:05:15.107 --> 00:05:30.627
+<v Riley>Boing Boing has a piece on why AI companies may sell robots and smart glasses below cost. Writer Kevin Kelly's argument: the hardware's value isn't the sale price, it's the real-world data those devices scan on the way to training the next generation of models.
+
+00:05:31.178 --> 00:05:34.138
+<v Casey>Sell the razor at a loss, harvest the blade money for a decade.
+
+00:05:35.459 --> 00:05:45.499
+<v Riley>A lighter one — Edge reviewed the new Star Wars racing game, Galactic Racer, where the custom vehicle builds actually punish reckless driving instead of rewarding it.
+
+00:05:46.952 --> 00:05:56.552
+<v Casey>And Outside Online dug into where the three-sets-of-ten-reps rule in weightlifting came from. Turns out it's a nineteen-fifties convention that stuck around by habit, not proof.
+
+00:05:57.926 --> 00:06:08.694
+<v Riley>An Indian startup called Othisis test-fired a fully 3D-printed, cryogenic, reusable rocket engine, built using selective laser melting. The company's only been operating two years.
+
+00:06:09.975 --> 00:06:16.087
+<v Casey>From nothing to a working prototype that fast is rare in aerospace, where timelines usually run a decade or more.
+
+00:06:17.273 --> 00:06:35.529
+<v Riley>ScienceDaily has physicists at Swinburne University in Australia reporting evidence that a magnetar's extreme magnetic field may have revealed a quantum effect Werner Heisenberg predicted nearly ninety years ago — that empty space isn't actually empty, that light bends near a strong enough field.
+
+00:06:37.014 --> 00:06:43.150
+<v Casey>Vacuum birefringence. If that holds up, that's a nine-decade-old prediction finally getting observational backing.
+
+00:06:44.281 --> 00:06:56.049
+<v Riley>Last one, and it's worth sitting with. NPR is covering a court case testing Meta's claim that its platforms weren't designed to be addictive, and the piece digs into what separates a bad scrolling habit from something clinical.
+
+00:06:56.627 --> 00:06:58.387
+<v Casey>What's the line, according to the piece?
+
+00:06:59.495 --> 00:07:13.359
+<v Riley>Underlying conditions — anxiety, depression, ADHD — can turn ordinary night scrolling into what one researcher calls revenge bedtime procrastination. Feeling out of control somewhere else in your life makes the phone worse, not better.
+
+00:07:14.665 --> 00:07:22.377
+<v Casey>That's a court case that could set precedent for how "addictive by design" gets proven in a courtroom, rather than just alleged in a headline.
+
+00:07:22.902 --> 00:07:25.646
+<v Riley>For now, let's get to something we can put our hands on.
+
+00:07:26.746 --> 00:07:55.474
+<v Riley>Today's spotlight is on the New Focus Society, a Quesnel nonprofit doing two things that don't always get paired together — inclusive childcare and immigrant settlement services. They're helping newcomer families get oriented in the North Cariboo while making sure their kids have a safe place to be looked after during the day. If you're a new resident in Quesnel, or you know someone who just arrived, this is the kind of organization that makes the difference between struggling alone and actually putting down roots.
+
+00:07:56.149 --> 00:08:02.877
+<v Casey>Settlement work in a region this size is unglamorous and essential in about equal measure. Good to see it named on the show.
+
+00:08:03.163 --> 00:08:06.363
+<v Riley>From building community to building things, quite literally.
+
+00:08:07.463 --> 00:08:31.855
+<v Casey>There's an op-ed in Canadian Architect today making the case for retrofitting old buildings instead of tearing them down. Which raises a question worth putting plainly: if the industry that was supposed to define progress for the last twenty years now has people calling their own jobs pointless, does the physical work of fixing something — a tower, a phone, a wildlife enclosure — carry a kind of meaning that abstract software work doesn't?
+
+00:08:32.119 --> 00:08:51.767
+<v Riley>That's the case the Ken Soble Tower piece is making, and it isn't sentimental about it. The Institute for Market Transformation puts retrofits at fifty to seventy-five percent less embodied carbon than new construction. Facilities Dive's lifecycle studies back that up on whole-life emissions, operational plus embodied.
+
+00:08:52.119 --> 00:08:54.679
+<v Casey>Fifty to seventy-five percent is a wide range.
+
+00:08:55.335 --> 00:09:22.463
+<v Riley>It's wide because it depends on building type and climate. Even at the low end, that's a serious number for a sector that produces a large share of global emissions. There's a policy angle buried in the same research too — a group called Carbon Neutral Cities is proposing that cities require a refurbishment feasibility study before anyone gets approved for demolition. Repair as the default position, not the developer's optional extra.
+
+00:09:23.057 --> 00:09:46.105
+<v Casey>The caveat's in your own numbers, though. Payback varies a lot by climate and building type. Ken Soble Tower is one case study — a specific concrete social-housing high-rise from a specific era. Blanket "retrofit always wins" claims are exactly the kind of thing that sounds good in an op-ed and falls apart when a structural engineer tells you the concrete's carbonated past the rebar and you're demolishing anyway.
+
+00:09:46.655 --> 00:09:55.815
+<v Riley>That's the argument for mandating the feasibility study, not for skipping it. Force the analysis instead of assuming either direction wins by default.
+
+00:09:56.395 --> 00:10:02.227
+<v Casey>Who pays for that study? That's a real cost sitting in front of any project before anyone's broken ground.
+
+00:10:02.754 --> 00:10:08.778
+<v Riley>Cheaper than the study you didn't do before an eight-figure demolition that turns out to have been avoidable.
+
+00:10:08.958 --> 00:10:10.014
+<v Casey>Depends on the building.
+
+00:10:10.661 --> 00:10:34.269
+<v Riley>The tech-industry parallel is interesting, though. A retrofit engineer can point at a tower still standing and say it's there because of a decision they made. A knowledge worker whose product got killed in a reorg can't point at anything. The retrofit leaves an object behind. The cancelled software project leaves a Slack message saying the initiative's been deprioritized, and then nothing.
+
+00:10:34.844 --> 00:10:47.084
+<v Casey>That's a real distinction, and it's the exact trap sitting inside the How-To Geek piece — the one where someone had Gemini, ChatGPT, and Copilot each build a Kanban board from scratch, working offline, no subscription required.
+
+00:10:47.701 --> 00:10:55.757
+<v Riley>(chuckles) That's the DIY-repair-culture case for software, in a way. No monthly fee, works offline, the person walks away owning the tool outright.
+
+00:10:56.304 --> 00:11:10.040
+<v Casey>Except they didn't build it. They prompted it. There's a difference between a rancher pulling a carburetor apart and understanding every part that goes back in, and someone who can't tell you what code is running inside the app they just "made" in an afternoon.
+
+00:11:10.666 --> 00:11:21.802
+<v Riley>People don't need to understand every line to own the outcome. Most car owners can't rebuild a transmission either, and nobody says they don't really own their vehicle because of that.
+
+00:11:22.380 --> 00:11:40.956
+<v Casey>Most car owners also aren't the only line of defense if that transmission fails at highway speed with a hidden logic flaw built into it. There's research on this — a 2025 survey of bugs in AI-generated code, and a USENIX study on what they call package hallucinations, where the AI invents a software library that doesn't exist.
+
+00:11:41.282 --> 00:11:43.298
+<v Riley>What happens with a hallucinated package?
+
+00:11:43.558 --> 00:12:00.758
+<v Casey>The model names a dependency that sounds real but isn't. There are documented cases of bad actors registering that exact fake name, so the next person who copies the code pulls down malware instead of a working library. That's a security risk built directly into the "I built my own app in an afternoon" story.
+
+00:12:01.361 --> 00:12:09.761
+<v Riley>That's checkable — look at the dependency list before you run anything, the way you'd check a used engine before trusting it on the highway.
+
+00:12:10.365 --> 00:12:23.909
+<v Casey>The whole appeal of the vibe-coded app is that the person doing it doesn't have the skill to check that list meaningfully. Traditional repair literacy means you can verify your own fix worked. This is repair-shaped. It isn't repair-literate.
+
+00:12:24.460 --> 00:12:35.220
+<v Riley>Call it a different kind of repair literacy, then. Knowing what to ask the tool for, and what to test once it's built, is its own skill — even if it isn't the mechanical one your grandfather had.
+
+00:12:35.853 --> 00:12:48.461
+<v Casey>That skill has a failure mode nobody's priced in. Nobody's tested what happens when that Kanban app quietly corrupts three months of project data because of a logic bug buried in code nobody could read closely enough to catch.
+
+00:12:49.050 --> 00:13:06.978
+<v Riley>The bigger question is the one worth sitting with longest. The Summerland wildlife rehab centre lost everything to wildfire and says it hopes to rebuild. What the actual act of rebuilding does for the people doing it is a different question than what the province owes wildlife habitat as fire seasons worsen.
+
+00:13:07.300 --> 00:13:10.212
+<v Casey>This is labor with a visible outcome at the end of it.
+
+00:13:10.747 --> 00:13:32.275
+<v Riley>The rehab operators aren't waiting for a government program before they start planning again. They're designing the enclosures, working out the intake process — because the animals need somewhere to go, and rebuilding is the job sitting in front of them right now. That's the opposite of the burnout story coming out of tech. Nobody there is asking whether the work matters.
+
+00:13:32.811 --> 00:13:47.883
+<v Casey>Because the work has an edge you can touch. A burned enclosure. A new one going up where the old one stood. Compare that to a product manager whose entire quarter got cancelled because of an org chart change three levels up, with no physical evidence the work ever existed.
+
+00:13:48.478 --> 00:13:57.934
+<v Riley>The counter-argument is that plenty of trades people are also miserable. Ranchers are dealing with drought, wildfire, and market prices that don't move in their favor.
+
+00:13:58.447 --> 00:14:19.351
+<v Casey>The difference isn't the hardship level. It's whether the hardship connects to something you can point at afterward. A rancher who loses cattle in a fire still knows what the herd is for. A retrofit engineer knows the tower is still standing because of the work. The tech worker whose feature got killed doesn't get that closure either way — win or lose, the thing just vanishes.
+
+00:14:19.953 --> 00:14:33.921
+<v Riley>That framing is missing the people doing invisible repair work inside tech right now, though — engineers keeping fifteen-year-old legacy systems from falling over. Unglamorous, essential labor nobody writes an op-ed celebrating.
+
+00:14:34.545 --> 00:14:43.361
+<v Casey>Maintenance work in software exists. It's just not funded or promoted the way new feature launches are, and it's rarely the story anyone tells at a dinner party.
+
+00:14:43.881 --> 00:14:57.241
+<v Riley>So the sadness in tech might not be about physical versus abstract work at all. It might be that the industry only rewards the shiny new build, never the repair, and then acts surprised when nobody feels proud of a repair job well done.
+
+00:14:57.785 --> 00:15:08.665
+<v Casey>Software could reward maintenance the way the Ken Soble case rewards retrofit — recognize the person who kept the thing running as having done something as valuable as the person who launched it.
+
+00:15:09.270 --> 00:15:15.990
+<v Riley>(wry) Good luck getting a performance review that scores "kept the lights on for three years" as highly as "shipped a new product."
+
+00:15:16.502 --> 00:15:30.222
+<v Casey>It happens where the incentive gets built in on purpose. Fairphone's entire business is selling the repair, not just the box. Someone there gets credit for a device lasting three extra years, because that's the metric the company actually tracks.
+
+00:15:30.813 --> 00:15:40.133
+<v Riley>One company, anchored on a phone almost nobody in the Cariboo has bought yet, since it only started selling in the US yesterday and still isn't available here.
+
+00:15:40.812 --> 00:16:00.524
+<v Casey>School District 27's been building practical-skills programs — kids learning to fix things rather than just consume them. If that instinct extended to software literacy — not "learn to code" as a job-market pitch, but "learn to read and verify what an AI just wrote for you" — that closes the repair-literacy gap at the source, instead of after the fact.
+
+00:16:01.096 --> 00:16:06.272
+<v Riley>A decent curriculum question. Also a decade out from mattering for anyone job-hunting this year.
+
+00:16:06.946 --> 00:16:21.450
+<v Casey>Or look at how some communities have approached digital capacity — building systems meant to be maintained locally, not by a consultant who leaves once the invoice clears. Design for maintenance from day one, not as an afterthought after the launch photo gets taken.
+
+00:16:22.044 --> 00:16:36.780
+<v Riley>That kind of example holds up because it's designed around who'll still be there in year five. The retrofit tower and the rehab centre both share that. Somebody's still standing there after the ribbon-cutting, still accountable for what happens next.
+
+00:16:37.321 --> 00:16:51.617
+<v Casey>Which might be the actual answer buried in all this. Fixing things isn't inherently more meaningful than building new things. Repair forces you to still be standing there when the thing needs attention again. Building something new lets you walk away and call it finished.
+
+00:16:52.274 --> 00:17:00.618
+<v Riley>And tech has spent two decades rewarding the walk-away. Ship it, move to the next team, let whoever's left deal with what eventually breaks.
+
+00:17:00.900 --> 00:17:04.740
+<v Casey>So the fix isn't a mood problem. It's about who gets credit for staying.
+
+00:17:05.328 --> 00:17:27.568
+<v Riley>A small experiment here would be simple enough to run. Any Cariboo organization running a long-lived piece of equipment — a co-op's inventory system, a fire hall's radio network, a library's catalogue software — could name the maintainer publicly, the same way they'd name whoever originally built it. See if that changes how the job feels to hold, month after month.
+
+00:17:27.892 --> 00:17:30.180
+<v Casey>Cheap to try. No grant application required.
+
+00:17:30.280 --> 00:17:47.664
+<v Casey>(thoughtful) That's a real open question, not a rhetorical one — whether visibility for maintenance work changes how people feel doing it, or whether the despair runs deeper than a credit line could fix. Riley's optimistic that naming the maintainer moves something. I'm not convinced credit alone touches what's actually broken.
+
+00:17:48.261 --> 00:18:04.557
+<v Riley>Maybe not alone. But it's a cheaper place to start than waiting for the whole industry to rethink itself. If anyone in the Cariboo has tried something like that, or wants to, send it our way — feedback at cariboo signals dot c-a — and we'll follow up directly with whoever's doing it.
+
+00:18:04.846 --> 00:18:06.598
+<v Casey>A real story, not a theoretical one.
+
+00:18:06.778 --> 00:18:07.490
+<v Riley>See you tomorrow.
+
+00:18:07.857 --> 00:18:08.721
+<v Casey>(warmly) Take care out there.

@@ -1,63 +1,4 @@
 {
-  "2026-05-20": {
-    "timestamp": 1779280960.798981,
-    "date": "2026-05-20",
-    "theme": "Gear, Gadgets & Practical Tech",
-    "central_question": "In geographically isolated rural regions like the Cariboo, what combination of technology, maintenance practices, and community infrastructure actually enables sustainable self-sufficiency and emergency preparedness?",
-    "riley_position": "Emergency and fabrication technology only delivers value when embedded in sustained community institutions and when users understand the real maintenance and skill requirements\u2014not through product marketing claims or one-off workshops, but through structured, ongoing programs modeled on proven institutional models.",
-    "riley_key_evidence": [
-      "ChargeTab teardown showed single-use emergency chargers degrade in heat faster than shelf life suggests, making them unreliable when needed most",
-      "The Boys and Girls Club's 30+ years of consistent programming demonstrates that unglamorous, sustained institutional work\u2014not product launches\u2014actually shapes community capacity",
-      "Secw\u00e9pemc and T\u015dilhqot'in nations building technical capacity most effectively have embedded it in existing governance structures rather than as standalone projects"
-    ],
-    "casey_position": "The accessibility gap between 'technically possible' and 'accessible to people who need it most' is the real problem, and individual skill-building initiatives collapse without institutional structures that persist beyond key people leaving or burning out.",
-    "casey_key_evidence": [
-      "ESP32 microcontroller projects assume comfort with soldering and Arduino IDE\u2014a weekend frustration and burned-out board for non-experts, not true accessibility",
-      "Bambu Lab's proprietary firmware lock-in poses direct costs to small fabrication operators in rural areas where there is no Plan B or alternative maker space",
-      "Knowledge transfer works until the person who knows the trick leaves\u2014sustaining capability requires structure, not just individual expertise"
-    ],
-    "resolution": "Riley and Casey converged on the conclusion that technology infrastructure in rural communities requires both sustained institutional commitment (modeled on successful long-term programs like the Boys and Girls Club) and embedding technical programming within existing community structures rather than launching separate initiatives. They agreed the human infrastructure supporting tools matters as much as the tools themselves.",
-    "topics_covered": [
-      "Emergency preparedness technology: single-use vs. maintained rechargeable devices and their real-world reliability in rural heat conditions",
-      "3D printing, ESP32 microcontrollers, and open-source fabrication as accessibility tools with real skill and infrastructure barriers",
-      "Proprietary vs. open-source firmware lock-in (Bambu Lab case study) and its disproportionate impact on geographically isolated small operators",
-      "Institutional sustainability of technical skill-building programs and knowledge transfer in communities with high population turnover",
-      "Data sovereignty and community control over fabrication tools in Indigenous and rural contexts"
-    ],
-    "calls_to_action": [
-      "If buying fabrication tools for a community or organization, audit the firmware policy before the specs to avoid proprietary lock-in that becomes a problem in five years when company priorities shift.",
-      "Community organizations thinking about technical programming should design for a sustainable five-year version with sustained funding and institutional embedding, not a one-time launch event.",
-      "Anyone with old devices collecting dust should explore the laptop screen project and old phone-as-offline-GPS use case\u2014these solve real Cariboo problems (dead zones) using what people already have.",
-      "A community workshop can teach offline phone mapping and other device reuse tricks in an afternoon, but embed it in existing structures (like the library or school district) rather than launching it as a separate initiative to ensure persistence.",
-      "Individuals in isolated areas should maintain a small 10,000\u201320,000 mAh power bank cycled every few months rather than relying on single-use emergency chargers that degrade in vehicle heat."
-    ]
-  },
-  "2026-05-21": {
-    "timestamp": 1779367909.046454,
-    "date": "2026-05-21",
-    "theme": "Indigenous Lands & Innovation",
-    "central_question": "When technology enables discovery of concealed evidence (like residential school graves), how should communities balance the capacity to surface knowledge with governance frameworks that protect how that knowledge is used and disclosed?",
-    "riley_position": "Communities should be pragmatic about deploying imperfect technical tools under time pressure, because waiting for perfect legal frameworks means families wait longer for answers; the key is building data governance infrastructure alongside the survey work.",
-    "riley_key_evidence": [
-      "GPR technology allows surveying without excavation, which respects Indigenous legal traditions that consider disturbance a violation",
-      "Williams Lake First Nation's documented, deliberate approach to ground surveys and archival research demonstrates sovereignty in practice",
-      "FirstVoices model shows community-controlled data repositories with access restrictions can be built to protect knowledge"
-    ],
-    "casey_position": "The pattern of deploying technical infrastructure before governance architecture is settled creates long-term problems; retrofitting governance onto existing systems is harder than building it in from the start, and external pressure to move quickly compounds the risk.",
-    "casey_key_evidence": [
-      "Tk'eml\u00faps te Secw\u00e9pemc's 2021 GPR announcement went global within hours, politicizing the findings in ways the community didn't control",
-      "Federal government funding relationships are not neutral when the government's predecessor institutions ran the schools themselves",
-      "AI training datasets could absorb research findings before communities decide whether to make them public\u2014a current risk, not a hypothetical one"
-    ],
-    "resolution": "They agreed that both urgency and governance gaps are real and coexist; they converged on concrete next steps: data storage questions must be answered in writing before partnership agreements, communities should engage the First Nations Technology Council early, and regional institutions should provide administrative capacity in a support role rather than assuming leadership.",
-    "topics_covered": [
-      "Data sovereignty and community consent in residential school investigations",
-      "Technology capabilities (GPR, LiDAR) vs. governance frameworks for knowledge use",
-      "Federal funding architecture and its role as both enabler and gatekeeper",
-      "Academic research partnerships and data storage/publication control",
-      "AI risk to Indigenous knowledge in publicly accessible datasets"
-    ]
-  },
   "2026-05-22": {
     "timestamp": 1779452771.972734,
     "date": "2026-05-22",
@@ -2321,6 +2262,34 @@
       "Forest management policy failures versus climate change as causes of fire severity",
       "Rancher phone-tree coordination as governance model versus top-down tech platform design",
       "Indigenous and local community input in designing regional disaster-response tools"
+    ]
+  },
+  "2026-08-19": {
+    "timestamp": 1787144301.819391,
+    "date": "2026-08-19",
+    "theme": "Repair Culture & Practical Tech",
+    "focus": "maker-repair",
+    "anchor": "tech-sadness",
+    "central_question": "Does repair work\u2014physical or digital\u2014carry inherent meaning that building new things lacks, and can recognizing maintenance as valuable as new launches address burnout in tech?",
+    "riley_position": "Repair work carries psychological and moral weight because it produces a visible, tangible outcome you can point to afterward, and tech could address its burnout crisis by formally crediting maintenance and repair work the same way it credits new launches.",
+    "riley_key_evidence": [
+      "Ken Soble Tower retrofit produces 50-75% less embodied carbon than new construction",
+      "Summerland wildlife rehab centre operators are rebuilding with visible, purposeful work ahead of them",
+      "School District 27 and Xat\u015b\u016bll's approaches show communities can design systems for long-term maintenance from day one"
+    ],
+    "casey_position": "The real problem is structural incentive misalignment rather than physical versus abstract work; tech rewards new launches and walks away from maintenance, while invisible legacy-system maintenance work already exists but goes uncredited and unfunded.",
+    "casey_key_evidence": [
+      "2025 survey documents bugs in AI-generated code; USENIX study shows package hallucination attacks where bad actors register fake library names the AI invented",
+      "Software repair literacy gap means users can't verify what code is actually running in apps they 'built' with AI in an afternoon",
+      "Performance reviews never score 'kept the lights on for three years' as highly as shipping a new product"
+    ],
+    "resolution": "They converge on the structural diagnosis: the issue isn't repair versus new-build work itself, but that tech industry design rewards walking away after launch and leaving maintenance to whoever remains. They agree to test whether publicly naming maintainers\u2014without knowing if visibility alone can close the deeper despair\u2014is worth trying as a Cariboo experiment.",
+    "topics_covered": [
+      "Retrofit architecture versus new construction economics and emissions",
+      "AI-generated code security risks and repair literacy gaps",
+      "Why maintenance work in tech goes invisible and uncredited",
+      "How visibility and accountability for long-term maintenance affects worker meaning",
+      "Structural incentive design in industries that reward staying versus leaving"
     ]
   }
 }
