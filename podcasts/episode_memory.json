@@ -1,24 +1,4 @@
 {
-  "2026-07-14": {
-    "timestamp": 1784024439.288088,
-    "topics": [
-      "What If This Year's Crop Is Just Average?",
-      "[The Northern Miner] Sponsored: Q&A with SRK \u2013 Todd Wisdom o",
-      "[Engadget] A ransomware negotiator who colluded with attacke",
-      "[New Atlas] Stolen gene lets deep-sea creature go without fo",
-      "[New Atlas] Earliest animal known to have a head was also ri",
-      "[The Northern Miner] Regis ends Vault chase, clearing way fo",
-      "[Global News] Ottawa provides $71 million for youth mental h",
-      "[New Atlas] 1 in 3 have a brain parasite transmitted through"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-07-14"
-  },
   "2026-07-16": {
     "timestamp": 1784198331.213522,
     "topics": [
@@ -683,5 +663,24 @@
     "date": "2026-08-18",
     "focus": "agriculture-ranching",
     "focus_name": "Agriculture & Ranching"
+  },
+  "2026-08-19": {
+    "timestamp": 1787144300.037435,
+    "topics": [
+      "[Williams Lake Tribune] Bewitching Market coming up in Willi",
+      "A beauty night in store August 19th at the Williams Lake Sta",
+      "[Quesnel Cariboo Observer] Beauty, colour of Mother Nature h",
+      "[Williams Lake Tribune] Wandering livestock and danger trees",
+      "[Williams Lake Tribune] Postal service resumes in Clinton as",
+      "[Canadian Architect] Op-Ed: Building a Case for Retrofitting",
+      "[How-To Geek] I asked Gemini, ChatGPT, and Copilot to build ",
+      "Summerland wildlife rehab centre vows to rebuild after losin"
+    ],
+    "themes": [
+      "rural development"
+    ],
+    "date": "2026-08-19",
+    "focus": "maker-repair",
+    "focus_name": "Maker & Repair"
   }
 }
