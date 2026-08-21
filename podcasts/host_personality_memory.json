@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[Outside Online] The Feds Just Opened Public Lands to AI Dat",
       "[Tom's Hardware] Firm that uses AI to locate ancient lost sh",
       "[ScienceDaily] AI can tell if your brain is aging faster tha",
       "\ud83d\udd13 [The Verge] The major labels propose rules to keep AI slop",
@@ -10,7 +9,8 @@
       "[TechRadar] New malware disguised as popular Roblox cheat to",
       "AI",
       "[TechCrunch] Kyoto Fusioneering starts work on key fusion po",
-      "[TechRadar] Boeing and US Air Force sign deal to build guide"
+      "[TechRadar] Boeing and US Air Force sign deal to build guide",
+      "[TechRadar] Huge 66-ft Turkish drones are hunting million-do"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -120,9 +120,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-08-10",
-        "clue": "structural-lens:~ \u2014 Conceded that self-published statements need external verification equally",
-        "occurrences": 1
+        "date": "2026-08-21",
+        "clue": "structural-lens:~ \u2014 Conceded exhaustion and purpose aren't opposites; complexity deepened.",
+        "occurrences": 2
       },
       {
         "date": "2026-08-17",
@@ -148,6 +148,11 @@
         "date": "2026-08-20",
         "clue": "structural-lens:+ \u2014 Moved from governance-as-accountability framing to explicit authority-revocation as durability test",
         "occurrences": 2
+      },
+      {
+        "date": "2026-08-21",
+        "clue": "pilot-skepticism:+ \u2014 Explicitly named 'pilot program' language as hollow messaging.",
+        "occurrences": 1
       }
     ],
     "core_memories": [
@@ -379,9 +384,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-08-12",
-        "clue": "evidence-bar:+ \u2014 Shifted from anecdote to demanding institutional visibility on locked equipment.",
-        "occurrences": 1
+        "date": "2026-08-21",
+        "clue": "evidence-bar:+ \u2014 Shifted from abstract skepticism to demanding specific public ledgers.",
+        "occurrences": 2
       },
       {
         "date": "2026-08-14",
@@ -397,6 +402,11 @@
         "date": "2026-08-19",
         "clue": "structural-lens:+ \u2014 Deepened focus on accountability structures, not just individual meaning-making",
         "occurrences": 2
+      },
+      {
+        "date": "2026-08-21",
+        "clue": "community-trust:x \u2014 Accepted Riley's framing that accountability structure matters more than location.",
+        "occurrences": 1
       }
     ],
     "core_memories": [

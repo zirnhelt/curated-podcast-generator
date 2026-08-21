@@ -1,30 +1,4 @@
 {
-  "2026-05-22": {
-    "timestamp": 1779452771.972734,
-    "date": "2026-05-22",
-    "theme": "Wild Spaces & Outdoor Life",
-    "central_question": "Should post-fire landscapes be managed back to their prior state, or monitored as dynamic systems in transition, and what role should technology play in that process?",
-    "riley_position": "Post-fire landscapes should be systematically monitored using non-invasive ecological tracking tools to understand natural regeneration and wildlife utilization, and existing provincial wildlife collar data should be integrated into public-facing systems like trail apps to improve safety and decision-making.",
-    "riley_key_evidence": [
-      "Post-fire habitats are highly productive for woodpeckers, bears, and ungulates in the first few years, but this utilization is never systematically documented",
-      "Alaska state parks have experimental integrations of bear activity data into trail navigation apps like Avenza Maps",
-      "Wildlife BC already operates collar monitoring programs; the marginal cost of creating public APIs is institutional, not technical"
-    ],
-    "casey_position": "While better data is preferable to none, institutional sustainability and liability frameworks must be addressed before deploying these systems, and BC government has a poor track record of maintaining data infrastructure after initial funding or announcements end.",
-    "casey_key_evidence": [
-      "BC's open data commitments from recent provincial terms produced only a fraction of announced initiatives",
-      "The failure mode of data integrations is people treating data absence as a safety guarantee when systems become inactive",
-      "Post-pilot maintenance questions about server costs, data validation, and updates often go unanswered in BC government projects"
-    ],
-    "resolution": "Riley and Casey agreed that institutional barriers rather than technical ones prevent data sharing, and both acknowledged that fire-driven community urgency and land use planning processes (like the Sea to Sky consultation) could create political will for change. They ended on shared concern about whether institutional change actually materializes versus remaining rhetorical.",
-    "topics_covered": [
-      "Post-fire landscape recovery and ecological monitoring strategies",
-      "Technology integration for wildlife tracking and public safety (GPS collars, eDNA, trail apps)",
-      "Data governance, liability, and sustainability of public-facing systems",
-      "First Nations data sovereignty and the T\u015dilhqot'in Yalhiyalh program",
-      "Regional land use planning processes and recreational pressure on conservation areas"
-    ]
-  },
   "2026-05-23": {
     "timestamp": 1779535047.045278,
     "date": "2026-05-23",
@@ -2323,6 +2297,34 @@
       "Communities can begin now building documented occupation records, continuous-use documentation, and structured oral history capture on their own terms, treating this as multi-decade groundwork that establishes the evidentiary foundation future title claims would need.",
       "Before launching any new community program, ask concretely: who can shut it down and who does it actually answer to day-to-day? If the honest answer is 'a ministry, annually, depending on budget,' that reveals the authority gap.",
       "Listeners in the Cariboo with stories about community governance projects, land-use monitoring, or Indigenous-led initiative: send tips to feedback at cariboo signals dot c-a so examples of local implementation can be documented and shared."
+    ]
+  },
+  "2026-08-21": {
+    "timestamp": 1787303012.909274,
+    "date": "2026-08-21",
+    "theme": "Wild Spaces & Outdoor Life",
+    "focus": "recreation-access",
+    "anchor": "tech-sadness",
+    "central_question": "What makes land-based and treaty-protected work structurally more meaningful than tech knowledge work\u2014is it the outdoor setting itself, or the built-in accountability to others?",
+    "riley_position": "Work tied to real, concrete outcomes that others depend on (like Z\u023aWIZUT's salmon habitat fight) carries inherent meaning that survives exhaustion, whereas mission-driven tech work becomes hollow when funding collapses because nothing material remains.",
+    "riley_key_evidence": [
+      "Z\u023aWIZUT's 30-year fight protecting salmon habitat around W\u0331S\u00c1NE\u0106 village sites through Douglas Treaties",
+      "Washington State culvert replacement case (Stevens Treaties) cost billions and took decades of litigation from the 1970s onward",
+      "Tech workers leaving jobs have 'nothing to show for it'\u2014no product, no community depending on the outcome"
+    ],
+    "casey_position": "The meaningful difference isn't outdoor versus office work, but whether accountability is structurally embedded in the relationship itself (treaties, Nations, watersheds that outlast funding cycles), and exhaustion with purpose is still exhaustion even when the purpose is real.",
+    "casey_key_evidence": [
+      "Solo thru-hikes are experiences, not structures\u2014nobody else depends on how they turn out",
+      "Goldstream case shows even court-recognized treaty rights must be re-defended when new development pressure appears years later",
+      "Salmon funding announcements are 'photo opportunities with dollar figures attached'\u2014not accountability mechanisms without public ledgers"
+    ],
+    "resolution": "Both agreed that structure, not fresh air, is what makes work meaningful\u2014accountability built into treaties, Nations, and watersheds that force commitment to outlast individual funding cycles. They concluded this structure can't be legislated into startups but could be pushed for locally through demanding public accounting of how recovery dollars are actually disbursed by watershed.",
+    "topics_covered": [
+      "Indigenous treaty rights and multi-decade legal battles for salmon habitat protection",
+      "Tech industry burnout and the search for 'authentic' outdoor work as escape",
+      "True-crime narrative distortion versus actual safety statistics on the Appalachian Trail",
+      "Accountability mechanisms: how to track whether government funding announcements translate to actual on-the-ground disbursement",
+      "Structural differences between mission-driven knowledge work and land-based work tied to treaty obligations"
     ]
   }
 }
