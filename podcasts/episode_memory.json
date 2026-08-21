@@ -1,24 +1,4 @@
 {
-  "2026-07-16": {
-    "timestamp": 1784198331.213522,
-    "topics": [
-      "Three Articles Connected to Indigenous Data Sovereignty",
-      "[ScienceDaily] NASA captured the Black Sea turning brilliant",
-      "[CFJC Today Kamloops] Kamloops\u2019 joins national Tim Hortons\u2019 ",
-      "[Boing Boing] Elon Musk's legal problems have gone internati",
-      "[CNET] 3D-Printed, Customized Contact Lenses Are Possible, a",
-      "Three Articles Connected to Indigenous Data Sovereignty",
-      "[Boing Boing] Swiss Yodelers retreat to fountains to beat br",
-      "[The Guardian Global Development] Blockades, marches and hum"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-07-16"
-  },
   "2026-07-17": {
     "timestamp": 1784283949.301908,
     "topics": [
@@ -703,5 +683,25 @@
     "date": "2026-08-20",
     "focus": "governance-title",
     "focus_name": "Governance, Title & Treaty"
+  },
+  "2026-08-21": {
+    "timestamp": 1787303010.938193,
+    "topics": [
+      "[100 Mile Free Press] HANSEN: Lac La Hache returns to normal",
+      "Updated: Emergency services continue to respond to plane cra",
+      "Paving work resuming August 20 & 21 on Pigeon Avenue in Will",
+      "[Williams Lake Tribune] 1 dead after aircraft collides with ",
+      "B.C. Conservatives name new party president, vice-president ",
+      "[TechRadar] Huge 66-ft Turkish drones are hunting million-do",
+      "[IndigiNews] Inside an Elder\u2019s fight to save salmon habitat ",
+      "[Outside Online] A Journalist Revisits a Tragic AT Hike in a"
+    ],
+    "themes": [
+      "rural development",
+      "environmental impact"
+    ],
+    "date": "2026-08-21",
+    "focus": "recreation-access",
+    "focus_name": "Recreation & Backcountry Access"
   }
 }
