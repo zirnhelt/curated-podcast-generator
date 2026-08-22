@@ -1,30 +1,4 @@
 {
-  "2026-05-23": {
-    "timestamp": 1779535047.045278,
-    "date": "2026-05-23",
-    "theme": "Cariboo Local Affairs",
-    "central_question": "When Cariboo residents use political tools like petitions, conventions, and community organizing, do these efforts actually produce outcomes or merely create the appearance of participation?",
-    "riley_position": "The tools for civic participation exist and can be effective, but success depends on specificity, persistence over time, and institutional support. Communities with sustained, organized pressure have better track records of extracting commitments.",
-    "riley_key_evidence": [
-      "The Cariboo Regional District's multi-year push on broadband funding resulted in earlier access to federal and provincial connectivity programs compared to comparable rural regions",
-      "Local governments speaking collectively at NCLGA carries more weight than resident petitions alone",
-      "Digital infrastructure and documentation of accountability cycles are necessary to make civic pressure legible and sustainable"
-    ],
-    "casey_position": "Rural communities face genuine structural friction between local organizing efforts and provincial/federal decision-making capacity, and the gap between acknowledgment and accountability remains the central problem.",
-    "casey_key_evidence": [
-      "The 100 Mile House ER petition faces structural challenges: physician recruitment to a town of 5,000 is genuinely difficult, and no petition changes that underlying math",
-      "The Lebourdais Park movie night cancellation illustrates how small volunteer initiatives die quietly without institutional support or clear permitting pathways",
-      "The Cariboo has a pattern of being heard at provincial conventions but deprioritized when budgets open, with Lower Mainland priorities taking precedence"
-    ],
-    "resolution": "Casey and Riley converged on agreement: real organizing capacity exists in the Cariboo, but success requires concrete action plans with specific asks and targets, institutional infrastructure to reduce friction for volunteers, and transparent documentation of what decision-makers hear versus what they do.",
-    "topics_covered": [
-      "The 100 Mile House ER petition and rural healthcare staffing challenges",
-      "NCLGA conventions as a rural advocacy mechanism versus individual petitions",
-      "Barriers to small volunteer community initiatives (Lebourdais Park movie night example)",
-      "Political endorsements and leadership accountability to rural communities (Doerkson-Milobar endorsement)",
-      "Digital connectivity as infrastructure for civic self-governance rather than just economic development"
-    ]
-  },
   "2026-05-24": {
     "timestamp": 1779621853.997231,
     "date": "2026-05-24",
@@ -2325,6 +2299,34 @@
       "True-crime narrative distortion versus actual safety statistics on the Appalachian Trail",
       "Accountability mechanisms: how to track whether government funding announcements translate to actual on-the-ground disbursement",
       "Structural differences between mission-driven knowledge work and land-based work tied to treaty obligations"
+    ]
+  },
+  "2026-08-22": {
+    "timestamp": 1787388813.158463,
+    "date": "2026-08-22",
+    "theme": "Cariboo Local Affairs",
+    "focus": null,
+    "anchor": "tech-sadness",
+    "central_question": "Does the Cariboo region have meaningful formal input into economic decisions made at federal and provincial levels, or does it only absorb outcomes determined elsewhere?",
+    "riley_position": "Local governments have untested but real tools available to build leverage within their existing authority\u2014particularly procurement policies and formal questioning of provincial processes\u2014rather than passively accepting external decisions.",
+    "riley_key_evidence": [
+      "Softwood lumber duty rate dropped from 36% to 25%, with antidumping component falling from 20.6% to 10.7%",
+      "Stewardship awards paired with scarcity can create pricing leverage for well-managed herds with buyers willing to pay premiums",
+      "Regional districts and provinces can implement local wood procurement rules for public construction without new funding"
+    ],
+    "casey_position": "These local leverage tools are marginal compared to the structural forces (federal trade policy, continental drought, packer consolidation) that actually determine regional economic outcomes, and their effectiveness depends on whether anyone has the capacity to actually use them.",
+    "casey_key_evidence": [
+      "Drax closed its pellet plant, 100 Mile House lost its mill, Quesnel River Pulp curtailed production while waiting two years for promised trade deals",
+      "U.S. cattle herd at lowest point in 75 years, Tyson closing three plants, Canadian cattle numbers at record lows",
+      "No documented local wood procurement rules currently on the books in any Cariboo council"
+    ],
+    "resolution": "They agreed to disagree on impact but converged on a specific action: the region should formally ask the province whether range tenure renewal has structured local input, with the answer itself becoming the real story regardless of outcome. They also agreed that capacity gaps\u2014whether anyone actually shows up to meetings to ask these questions\u2014may be the more honest limiting factor than policy unavailability.",
+    "topics_covered": [
+      "Softwood lumber tariffs and federal trade policy leverage",
+      "Value-added wood product processing as local economic strategy",
+      "Range tenure renewal and provincial decision-making processes",
+      "Market consolidation in cattle and forest products industries",
+      "Local procurement policy as untested governance tool"
     ]
   }
 }

@@ -1,24 +1,4 @@
 {
-  "2026-07-17": {
-    "timestamp": 1784283949.301908,
-    "topics": [
-      "[Toms Guide] If I only had $100 to refresh my patio and gard",
-      "David Bruce \u2013 Editor \u2013 Page 2 \u2013 Wildfire Today",
-      "[The Narwhal] \u2018Industrial sacrifice zone\u2019: the plan to bring",
-      "[Business Insider] Canadian wildfires are shrouding US citie",
-      "[The Maple] Mark Carney Boosts Alberta Pipeline While Ontari",
-      "[Outside Online] Should We Keep the Most Affordable Mountain",
-      "[Kagi Small Web] Record wildfires in Europe",
-      "[Outside Online] Inside the New Mexico Desert Compound Helpi"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-07-17"
-  },
   "2026-07-18": {
     "timestamp": 1784368810.850686,
     "topics": [
@@ -703,5 +683,27 @@
     "date": "2026-08-21",
     "focus": "recreation-access",
     "focus_name": "Recreation & Backcountry Access"
+  },
+  "2026-08-22": {
+    "timestamp": 1787388811.305923,
+    "topics": [
+      "Stolen pumps hamper crews as Summerland-area wildfire grows ",
+      "[Williams Lake Tribune] Weekend weather could bring \u2018dramati",
+      "The Atlas Obscura Guide to Seeing the Northern Lights",
+      "[STAT News] Opinion: Capricor\u2019s Duchenne muscular dystrophy ",
+      "[Business Insider] The states where public school students g",
+      "Riders gearing up with escorted training ride for Tour de No",
+      "B.C. lumber industry hoping for trade relief in new Canada-U",
+      "[Williams Lake Tribune] Ranching families west of Williams L"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-08-22",
+    "focus": null,
+    "focus_name": null
   }
 }
