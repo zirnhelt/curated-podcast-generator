@@ -192,6 +192,9 @@ _degradations: list[str] = []
 # request that has not answered in 30 s is not going to answer.
 CANARY_READ_TIMEOUT = 30
 CANARY_RETRY_DELAY_S = 10
+# Attempts per candidate model, but only against a request that went
+# unanswered — see _canary_probe.
+CANARY_ATTEMPTS = 2
 CANARY_SEGMENTS = [{"speaker": "riley", "text": "Level check, one two.", "gap_ms": None}]
 
 
@@ -559,6 +562,35 @@ def _synthesize_chunk(
     raise last_error or RuntimeError("Gemini TTS exhausted its retry ladder")
 
 
+def _canary_probe(model: str) -> bool:
+    """Whether *model* answers one tiny synthesis, re-asking an unanswered one.
+
+    The ladder's own rule (see _is_transport_failure) applied to the probe: a
+    rejection is a verdict on the request and re-asking it is waste, but a read
+    timeout is a verdict on nothing. Every canary failure of the week of
+    2026-08-17 was a read timeout, and the 2026-08-13 probe measured 8 of 15
+    identical calls answering — so the old single attempt was a coin flip whose
+    losing side moved a whole episode onto OpenAI's voices. Two flips cost at
+    most one extra tiny synthesis and CANARY_RETRY_DELAY_S against a 1500 s
+    render budget.
+    """
+    for attempt in range(CANARY_ATTEMPTS):
+        if attempt:
+            time.sleep(CANARY_RETRY_DELAY_S)
+        try:
+            _attempt(
+                CANARY_SEGMENTS, "", RETRY_LADDER[0],
+                seed=GEMINI_TTS_SEED,
+                read_timeout=CANARY_READ_TIMEOUT,
+            )
+            return True
+        except Exception as e:
+            print(f"  ⚠️  Gemini TTS canary failed on {model}: {e}")
+            if not _is_transport_failure(e):
+                return False
+    return False
+
+
 def canary() -> str | None:
     """Model that answers a tiny synthesis right now, or None if Gemini is unusable.
 
@@ -586,14 +618,7 @@ def canary() -> str | None:
         # Pin the candidate for the probe itself, so _attempt calls the model
         # being tested rather than the ladder's default.
         set_model_override(model)
-        try:
-            _attempt(
-                CANARY_SEGMENTS, "", RETRY_LADDER[0],
-                seed=GEMINI_TTS_SEED,
-                read_timeout=CANARY_READ_TIMEOUT,
-            )
-        except Exception as e:
-            print(f"  ⚠️  Gemini TTS canary failed on {model}: {e}")
+        if not _canary_probe(model):
             continue
 
         # Passing on the primary leaves the override clear, so a section that

@@ -11,6 +11,7 @@ import os
 import sys
 import json
 import glob
+import math
 import random
 import time
 import xml.sax.saxutils as saxutils
@@ -23,6 +24,7 @@ import tempfile
 import zlib
 import httpx
 from collections import Counter
+from functools import lru_cache
 from itertools import groupby
 from urllib.parse import urlparse
 
@@ -2110,38 +2112,81 @@ def enrich_deep_dive_with_brave(deep_dive_articles, theme_name, client):
     )
 
 
+# Brave has flipped this schema under us twice. Omitting "model" 400d every
+# call on 2026-07-29, so it was added; every call has 400d again since at least
+# 2026-08-19, and Brave's own published example (brave/brave-search-skills)
+# sends no model at all. Rather than guess which is current, ask in the shape
+# that worked last, and on a rejection try the other one and keep whichever
+# answers for the rest of the run. Two shapes, one extra call per run at worst.
+_BRAVE_ANSWER_SHAPES = [
+    {"stream": False},                   # Brave's documented payload
+    {"model": "brave", "stream": False},  # what the 2026-07-29 fix added
+]
+_BRAVE_ANSWERS_STATE = {"shape": 0, "disabled": False}
+
+
 def _brave_summarize(query, api_key):
     """Fetch an AI-synthesized answer for a factual query via Brave's Answers API.
 
     Single POST to /res/v1/chat/completions with the query as a user message.
-    Returns a prose answer string, or empty string on failure.
+    Returns a prose answer string, or empty string on failure — callers then
+    fall back to raw /web/search snippets, which is a materially thinner answer
+    for a factual gap, so the fallback is reported rather than silent.
+
+    A rejection disables the endpoint for the rest of the run once both request
+    shapes have failed: three queries a night spending two dead calls each is
+    the whole cost of an API that has been down for days.
     """
-    try:
-        resp = requests.post(
-            "https://api.search.brave.com/res/v1/chat/completions",
-            headers={
-                "Accept": "application/json",
-                "Accept-Encoding": "gzip",
-                "Content-Type": "application/json",
-                "x-subscription-token": api_key,
-            },
-            # "model" is required by Brave's OpenAI-compatible chat/completions
-            # schema — omitting it 400s every call (2026-07-29).
-            json={"model": "brave", "stream": False, "messages": [{"role": "user", "content": query}]},
-            timeout=15,
-        )
-        resp.raise_for_status()
-        choices = resp.json().get("choices", [])
-        if choices:
-            return choices[0].get("message", {}).get("content", "").strip()
+    if _BRAVE_ANSWERS_STATE["disabled"]:
         return ""
-    except Exception as e:
-        print(f"  Brave Answers API failed for '{query[:50]}': {e}")
-        # Callers fall back to raw /web/search snippets, which is a materially
-        # thinner answer for a factual gap. Every call has 400d since at least
-        # 2026-08-19 and the only trace was this line of stdout.
-        degrade("script/brave-answers", f"Answers API unavailable ({e}) — using web snippets")
-        return ""
+
+    order = [_BRAVE_ANSWERS_STATE["shape"], 1 - _BRAVE_ANSWERS_STATE["shape"]]
+    last_error = ""
+    for shape_index in order:
+        payload = dict(_BRAVE_ANSWER_SHAPES[shape_index],
+                       messages=[{"role": "user", "content": query}])
+        try:
+            resp = requests.post(
+                "https://api.search.brave.com/res/v1/chat/completions",
+                headers={
+                    "Accept": "application/json",
+                    "Accept-Encoding": "gzip",
+                    "Content-Type": "application/json",
+                    "x-subscription-token": api_key,
+                },
+                json=payload,
+                timeout=15,
+            )
+            if resp.status_code >= 400:
+                # The status alone is what left the last four days undiagnosable
+                # from here; Brave says which field it dislikes in the body.
+                raise RuntimeError(f"{resp.status_code} {resp.text[:200]}")
+            choices = resp.json().get("choices", [])
+            _BRAVE_ANSWERS_STATE["shape"] = shape_index
+            if choices:
+                return choices[0].get("message", {}).get("content", "").strip()
+            return ""
+        except Exception as e:
+            last_error = str(e)
+            keys = ",".join(k for k in payload if k != "messages") or "messages-only"
+            print(f"  Brave Answers API failed for '{query[:50]}' [{keys}]: {e}")
+            if isinstance(e, requests.RequestException):
+                # Never answered: no verdict on the payload, and no reason to
+                # stop asking for the rest of the run either.
+                _report_brave_answers_degradation(last_error)
+                return ""
+
+    # Both shapes rejected: the endpoint is not going to start liking either of
+    # them three queries later, and each query costs two dead calls.
+    _BRAVE_ANSWERS_STATE["disabled"] = True
+    _report_brave_answers_degradation(last_error, for_the_run=True)
+    return ""
+
+
+def _report_brave_answers_degradation(error, for_the_run=False):
+    tail = " for the rest of the run" if for_the_run else ""
+    degrade("script/brave-answers",
+            f"Answers API unavailable ({error[:120]}) — using web snippets{tail}")
 
 
 # ---------------------------------------------------------------------------
@@ -4842,6 +4887,77 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=3, focus=None):
         print(f"  - [kw={kw}, focus={fm}, local={local_score:.1f}] {a.get('title', '')[:70]}...")
     return deep_dive, news_articles
 
+# Content-word matching for "was this article actually discussed?". The
+# verbatim-then-sub-phrase pass below only fires when the hosts read a headline
+# nearly word for word, which the prompts tell them not to do: across the 21
+# episodes of August 2026 it found 33% of roundup articles and 30% of deep-dive
+# ones, and every miss dropped that story from the episode description and cost
+# it its video slide. Requiring half a headline's content words inside a single
+# host turn — one of them rare enough in the script to belong to the story
+# rather than to the show — takes those to 51% and 55%, with no false positive
+# in 20 hand-checked samples. The turn is the unit because a 600-character
+# window spans three roundup stories, and matching "helping", "people" and
+# "loss" across three of them landed a vision-loss story on a wildfire.
+_MATCH_TOKEN_RATIO = 0.5
+_MATCH_MIN_TOKENS = 2
+_MATCH_RARE_MAX = 3
+
+# Function words plus the show's own furniture. Anything the hosts say every
+# night is not evidence that they said *this* story.
+_MATCH_STOPWORDS = frozenset("""
+a an the and or but of for to in on at by with from as is are was were be been being
+it its this that these those has have had will would can could should may might must
+do does did not no than then there their they them his her he she you your our we us
+what when where why how after before over under into out up down off about again more
+most some such only own same so too very new news say says said one two three first
+second best top big small make makes made get gets got
+""".split())
+
+
+@lru_cache(maxsize=4)
+def _script_turns(script_lower):
+    """[(offset, text)] for each host turn, so a match can be scoped to one.
+
+    Falls back to blank-line paragraphs for text with no host tags (a section
+    excerpt, a hand-edited script), which keeps the scope roughly one story
+    either way.
+    """
+    marks = [m.end() for m in re.finditer(r"\*\*(?:riley|casey):\*\*", script_lower)]
+    if not marks:
+        marks, pos = [], 0
+        for para in script_lower.split("\n\n"):
+            marks.append(pos)
+            pos += len(para) + 2
+    bounds = marks + [len(script_lower)]
+    return tuple((start, script_lower[start:bounds[i + 1]])
+                 for i, start in enumerate(marks))
+
+
+def _content_tokens(text):
+    """Distinct lowercase content words, in order of first appearance."""
+    return tuple(dict.fromkeys(
+        t for t in re.findall(r"[a-z0-9]+", text.lower())
+        if len(t) > 2 and t not in _MATCH_STOPWORDS))
+
+
+def _token_match_position(cleaned_title, script_lower):
+    """Offset of the host turn that covers *cleaned_title*'s story, or None."""
+    tokens = _content_tokens(cleaned_title)
+    if len(tokens) < _MATCH_MIN_TOKENS:
+        return None
+    needed = max(_MATCH_MIN_TOKENS, math.ceil(_MATCH_TOKEN_RATIO * len(tokens)))
+    counts = {t: len(re.findall(r"\b" + re.escape(t), script_lower)) for t in tokens}
+    for offset, turn in _script_turns(script_lower):
+        found = {}
+        for token in tokens:
+            m = re.search(r"\b" + re.escape(token), turn)
+            if m:
+                found[token] = m.start()
+        if len(found) >= needed and any(counts[t] <= _MATCH_RARE_MAX for t in found):
+            return offset + min(found.values())
+    return None
+
+
 def _script_match_position(article, script_lower):
     """First character offset where *article*'s title is mentioned in the
     lowercased script, or None if it isn't discussed.
@@ -4875,7 +4991,11 @@ def _script_match_position(article, script_lower):
             pos = script_lower.find(phrase)
             if pos != -1:
                 best = pos if best is None else min(best, pos)
-    return best
+    if best is not None:
+        return best
+
+    # Nothing quoted closely enough — fall back to content-word overlap.
+    return _token_match_position(cleaned, script_lower)
 
 
 def match_articles_to_script(articles, script):
@@ -6868,17 +6988,15 @@ def generate_tts_for_segment(text, speaker, output_file):
     with open(output_file, "wb") as f:
         f.write(content)
 
-    # Duration-ratio checksum: OpenAI tts-1 at speed=1.0 averages ~150 wpm
-    # (400 ms/word); the host's speed multiplier scales that estimate directly.
-    # A ratio below 0.80 suggests a sentence or more was dropped — this used to
-    # only log a warning, leaving the published transcript (built from the
-    # segment's real measured duration) captioning words that were never
-    # actually spoken. A truncated take is a generation fluke, not a systemic
-    # one, so one retry usually recovers the full line; either way we keep
-    # whichever take is longer.
+    # Duration-ratio checksum. A ratio below 0.80 suggests a sentence or more
+    # was dropped — this used to only log a warning, leaving the published
+    # transcript (built from the segment's real measured duration) captioning
+    # words that were never actually spoken. A truncated take is a generation
+    # fluke, not a systemic one, so one retry usually recovers the full line;
+    # either way we keep whichever take is longer.
     expected_words = len(re.findall(r"\b\w+\b", clean))
     if expected_words >= 10:
-        expected_ms = expected_words * 400 / speed
+        expected_ms = _expected_speech_ms(expected_words, speed)
         actual_ms = len(AudioSegment.from_mp3(output_file))
         ratio = actual_ms / expected_ms
         if ratio < 0.80:
@@ -6899,6 +7017,23 @@ def generate_tts_for_segment(text, speaker, output_file):
                     f"  ⚠️  Retry didn't recover the missing words either "
                     f"({new_ratio:.0%}) — keeping the longer take"
                 )
+
+def _expected_speech_ms(words: int, speed: float) -> float:
+    """How long *words* should take this host to say, in milliseconds.
+
+    Measured, not assumed: the 688 host segments of the ten episodes rendered
+    2026-08-13..22 (each transcript sidecar carries its segment's real measured
+    duration) fit `369 ms/word - 642 ms`, speed-normalised. The flat 400 ms/word
+    this replaces described no segment the show has ever produced — short lines
+    run nearer 280 ms/word because they carry no sentence-final pauses — so the
+    0.80 checksum below fired on 20% of every episode's segments, ~14 a night,
+    and re-synthesized each one. The retry came back within 2% of the first take
+    every time, which is what a complete read looks like twice. On the fitted
+    estimate the same 0.80 floor flags 2.2%, and still catches 93% of a 30% word
+    loss and every 50% one.
+    """
+    return (words * 369 - 642) / speed
+
 
 def _generate_host_line(context: str, host: str) -> str:
     """Ask Claude to write a short spoken line for the named host.
