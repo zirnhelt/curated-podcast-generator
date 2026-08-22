@@ -2137,6 +2137,10 @@ def _brave_summarize(query, api_key):
         return ""
     except Exception as e:
         print(f"  Brave Answers API failed for '{query[:50]}': {e}")
+        # Callers fall back to raw /web/search snippets, which is a materially
+        # thinner answer for a factual gap. Every call has 400d since at least
+        # 2026-08-19 and the only trace was this line of stdout.
+        degrade("script/brave-answers", f"Answers API unavailable ({e}) — using web snippets")
         return ""
 
 

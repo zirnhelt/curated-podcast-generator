@@ -282,6 +282,73 @@ def scan_log(text: str) -> dict[str, Any]:
 
 
 # ---------------------------------------------------------------------------
+# Facts → labelled facts
+# ---------------------------------------------------------------------------
+
+# The extractors keep their groups positional. The numbers table can read that
+# — it owns the format strings — and the model cannot: it sees a key and a bare
+# list, and guesses. `citation_alignment: [5, 15, 1, 3]` was published as "four
+# citation checks returned scores of 5, 15, 1 and 3 out of an apparent ceiling
+# of 10 or 100" (2026-08-21); `video: [55.4, 19.5]` (MB, minutes) became a
+# 55-minute video against a 19.5-minute audio mix, reported in the review's own
+# voice as a discrepancy worth investigating (2026-08-20). Every group gets a
+# name and the name carries the unit.
+_FIELDS: dict[str, list[str]] = {
+    "focus": ["cycle_week", "cycle_length", "focus_name"],
+    "focus_routing": ["articles_released", "articles_held"],
+    "roundup_pool": ["stories_kept", "composition"],
+    "short_script": ["first_draft_words", "target_words"],
+    "quality": ["ai_tell_pattern_hits", "voice_ratio_casey_over_riley", "script_words"],
+    "citation_alignment": ["roundup_citations_matched", "roundup_citations_total",
+                           "deep_dive_citations_matched", "deep_dive_citations_total"],
+    "spend": ["anthropic_input_tokens", "api_calls_by_service"],
+    "video": ["video_size_mb", "video_minutes"],
+    "clusters": ["cluster_key", "canonical_title", "duplicates_suppressed"],
+    "held": ["release_date", "target_focus", "article_title"],
+    "released": ["held_since", "article_title"],
+    "degradations": ["segment", "reason"],
+    "canary_failures": ["model", "error"],
+    "brave_failures": ["query", "error"],
+}
+
+# What a count means when the number alone does not say it. The review invented
+# the consequence three days running — eight retries that stayed short were
+# published as "eight TTS segments failed retry and were skipped … these
+# segments do not appear in the final audio", which is the opposite of what the
+# code does. The behaviour ships with the count.
+_MEANS: dict[str, str] = {
+    "tts_short_segments": ("TTS takes that came back shorter than their word count predicts. "
+                           "Each is retried once."),
+    "tts_retry_failed": ("of those retries, the ones still short. The longer of the two takes is "
+                         "kept, so nothing is dropped from the episode."),
+    "brave_enriched": ("articles whose body was too thin to script from, topped up from Brave "
+                       "search results."),
+    "short_script": ("the first draft came in under target and was sent back for one expand pass. "
+                     "quality.script_words is what shipped."),
+}
+
+
+def label_facts(facts: dict[str, Any]) -> dict[str, Any]:
+    """Name every positional group, and say what a bare count means.
+
+    Only for the prompt — `render_numbers_table` reads the positional form and
+    is the authority on the numbers either way.
+    """
+    labelled: dict[str, Any] = {}
+    for key, value in facts.items():
+        names = _FIELDS.get(key)
+        if names and isinstance(value, list) and value:
+            if isinstance(value[0], list):
+                value = [dict(zip(names, item)) for item in value]
+            elif len(value) == len(names):
+                value = dict(zip(names, value))
+        if key in _MEANS:
+            value = {"value": value, "means": _MEANS[key]}
+        labelled[key] = value
+    return labelled
+
+
+# ---------------------------------------------------------------------------
 # Narrative
 # ---------------------------------------------------------------------------
 
@@ -296,7 +363,7 @@ def generate_narrative(facts: dict[str, Any]) -> str:
         return ""
 
     prompt = template.format(
-        facts_json=json.dumps(facts, indent=2, ensure_ascii=False),
+        facts_json=json.dumps(label_facts(facts), indent=2, ensure_ascii=False),
         tell_block=format_static_tell_block(),
     )
     client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
