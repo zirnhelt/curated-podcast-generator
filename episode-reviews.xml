@@ -5,7 +5,64 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Fri, 21 Aug 2026 10:36:56 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 22 Aug 2026 10:30:45 +0000</lastBuildDate>
+    <item>
+      <title>Episode Review — Cariboo Signals, August 22, 2026</title>
+      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-08-22.html</link>
+      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-08-22.html</guid>
+      <pubDate>Sat, 22 Aug 2026 10:30:45 +0000</pubDate>
+      <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/32562874398"&gt;32562874398&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3&gt;Gemini's voice failed mid-pipeline, so the whole episode ran on OpenAI instead&lt;/h3&gt;
+
+&lt;p&gt;The Gemini text-to-speech service timed out during pre-flight checks. Rather than risk a voice switch mid-episode, the pipeline fell back to OpenAI for the complete render. This is the correct failure mode—18.4 minutes of continuous audio demands a single voice—but it means the episode cost more than planned. The spend data shows Claude at 8 units; the full OpenAI render added to that total.&lt;/p&gt;
+
+&lt;p&gt;The timeout itself is tracked: Gemini's generativelanguage.googleapis.com endpoint returned read timeouts on multiple canary checks. This is infrastructure fragility, not a code problem. The system detected it before publishing and chose safety over economy.&lt;/p&gt;
+
+&lt;h3&gt;Brave Search broke on three separate queries&lt;/h3&gt;
+
+&lt;p&gt;The Brave API returned 400 errors on three research queries, all malformed requests according to the logs. Two involved the Bald Range wildfire story; one targeted Aurora Borealis content from Atlas Obscura. The pipeline did not retry these or mark them as fallback triggers. They simply failed and the episode moved forward without them.&lt;/p&gt;
+
+&lt;h3&gt;Short-segment TTS had a 78% failure rate&lt;/h3&gt;
+
+&lt;p&gt;Nine short audio segments were queued for text-to-speech synthesis. Seven failed and could not be recovered. The pipeline retried but did not escalate; these segments likely dropped from the final mix. This is a secondary degradation—the main episode rendered successfully—but it represents missing content downstream of the primary voice work.&lt;/p&gt;
+
+&lt;h3&gt;38 roundup items were culled; 5 deep dives made it through&lt;/h3&gt;
+
+&lt;p&gt;The pipeline dropped 38 candidate stories from the daily roundup. Five deep-dive pieces survived the curation gate: a cycling training ride in the Cariboo, B.C. lumber trade relief, ranching families west of Williams Lake (two Tribune stories), and Tyson Foods beef plant closures tied to drought. Citation alignment data shows 8 sources in the first tier, 15 in the second, none in the third, and 5 scattered elsewhere—an uneven distribution that suggests some sources clustered heavily while others appeared once.&lt;/p&gt;
+
+&lt;h3&gt;The episode landed on the central question about regional economic power&lt;/h3&gt;
+
+&lt;p&gt;Today's debate framing: "Does the Cariboo region have meaningful formal input into economic decisions made at federal and provincial levels, or does it only absorb outcomes determined elsewhere?" The deep dives anchor this—trade deals, closures, drought impacts, and local initiatives all touch the question of who decides and who adapts.&lt;/p&gt;
+
+&lt;h3&gt;The run timeline: three attempts, all late&lt;/h3&gt;
+
+&lt;p&gt;Primary run triggered at 1:05 AM Pacific, arrived at 1:39 AM (34 minutes late). Fallback 1 at 2:05 AM, arrived at 2:25 AM (20 minutes late). Fallback 2 at 3:05 AM began at 3:30 AM (25 minutes late) and was still in progress at report time. The primary and first fallback both completed successfully. Script generation took 11.5 minutes of the primary run's total 27.6 minutes; rendering and deployment consumed the rest.&lt;/p&gt;
+
+&lt;h3&gt;The day's triggers&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Primary (1:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-08-22T08:39:54Z&lt;/td&gt;&lt;td&gt;+34 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 1 (2:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-08-22T09:25:55Z&lt;/td&gt;&lt;td&gt;+20 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-08-22T10:30:13Z&lt;/td&gt;&lt;td&gt;+25 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3&gt;What shipped&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Measure&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Deep dive&lt;/td&gt;&lt;td&gt;5 articles&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Script&lt;/td&gt;&lt;td&gt;7 pattern hit(s), voice ratio 0.93, 2946 words&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio&lt;/td&gt;&lt;td&gt;18.4 min&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio size&lt;/td&gt;&lt;td&gt;16.8 MB&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;8/15 roundup, 0/5 deep dive&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;207 episodes&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Anthropic spend&lt;/td&gt;&lt;td&gt;85,701 input tokens, calls {'claude': 8}&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
     <item>
       <title>Episode Review — Cariboo Signals, August 21, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-08-21.html</link>
