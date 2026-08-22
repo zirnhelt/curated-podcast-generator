@@ -518,6 +518,19 @@ ROUNDUP_MIN_STORY_WORDS = 70
 SATURDAY_DEEP_DIVE_COUNT = 5   # vs. standard 3
 SATURDAY_NEWS_ROUNDUP_COUNT = 15
 
+# A deep dive may run short rather than be topped up with material the router
+# deferred to another day — but not to nothing. Below this many eligible
+# articles the deferred ones come back, because a debate with no sources is a
+# worse failure than a debate one day early.
+DEEP_DIVE_ELIGIBLE_FLOOR = 2
+
+# No single off-theme discipline cluster may take more than this many roundup
+# slots. The tail is supposed to play as mini-arcs; on 2026-08-22 a seven-story
+# US pharma and health-policy run took nearly half a Cariboo Local Affairs
+# roundup, against two local stories, because nothing bounded one field's share
+# of the segment.
+ROUNDUP_CLUSTER_MAX = 3
+
 # Tracks which review model was actually used this run; read by citation/description generators.
 _api_call_counts = {}
 _api_input_token_totals = {}
@@ -2487,7 +2500,10 @@ def _ensure_deep_dive_substance(deep_dive_articles, news_articles, theme_keyword
     Replacement candidates are restricted to articles with at least one theme
     keyword hit or a source on the theme's gadget/maker allowlist — otherwise a
     swap can silently drag in an off-theme article and the quality metrics would
-    misreport the deep dive as "rich" despite being thematically empty.
+    misreport the deep dive as "rich" despite being thematically empty. Articles
+    the router flagged `_no_deep_dive` are excluded too: the flag was set and
+    then read by nothing, so a substance swap was free to promote back into the
+    deep dive exactly what the router kept out of it.
     """
     thin = [a for a in deep_dive_articles if len(a.get('_body', '') or '') < NEWS_BODY_MIN_CHARS]
     if not thin:
@@ -2517,6 +2533,7 @@ def _ensure_deep_dive_substance(deep_dive_articles, news_articles, theme_keyword
         candidates = [
             a for a in news_articles
             if len(a.get('_body', '') or '') >= NEWS_BODY_MIN_CHARS and _is_on_theme(a)
+            and not a.get('_no_deep_dive')
         ]
         if not candidates:
             print(f"     ⚠️ Deep dive thematically thin — no on-theme article with "
@@ -3309,7 +3326,16 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
     Repair focus keywords — it would have been held on the old focus-only
     matcher had the loop ever looked at it.
 
-    Local stories are never held — see _is_local_article.
+    Local stories are never held — see _is_local_article — but a local story
+    with no connection to today's subject that answers an upcoming day's theme
+    airs today and gives up its deep-dive claim (`_no_deep_dive`), with a
+    callback ledger entry for the day it belongs to. On 2026-08-22 the Cariboo
+    Local Affairs deep dive ran on softwood duties, a ranching award and a Tyson
+    beef-plant closure — Tuesday's episode, aired on Saturday and spent for the
+    week, because every one of them is local and locality was the whole score.
+
+    A geographic day is never a hold target at all: it has no import channel to
+    fill, and its keyword list matched anything that said "local".
 
     Returns (theme_articles, bonus_articles).
     """
@@ -3346,13 +3372,28 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
     slot_keywords = []
     for slot_date, _wd, slot_theme, slot_focus in get_upcoming_day_slots(
             today_date, horizon_days=28):
-        keywords = _build_theme_keywords(slot_theme) + _build_focus_keywords(slot_focus)
+        # A geographic day is never a routing target. Its identity is WHERE a
+        # story is, and geography is decided by _is_local_article — which also
+        # exempts local stories from holding, so the day has no import channel
+        # to fill and every match it wins is a false one. Saturday's keyword
+        # list took the word 'local' literally and had five articles waiting for
+        # 2026-08-22: New York's housing shortage, a Brooklyn ADU that "follows
+        # local and zoning laws", two US drug-pricing pieces, and "8 local AI
+        # models that run great on 8GB of VRAM".
+        if _is_geographic_theme(slot_theme):
+            continue
+        keywords = (_build_strict_theme_keywords(slot_theme)
+                    + _build_focus_keywords(slot_focus))
         # The target's on-air identity, for the hold log and the callback line:
         # the focus when the rotation supplied one, else the plain daily theme.
         target = slot_focus or {'slug': _theme_slug(slot_theme), 'name': slot_theme}
         slot_keywords.append((slot_date, target, keywords))
 
-    today_theme_keywords = _build_theme_keywords(today_theme)
+    # Strict keywords, not `_build_theme_keywords`: the description prose put
+    # 'that', 'shape', 'everyday' and 'life' in Saturday's list, so almost
+    # nothing could read as weak on today's theme.
+    today_theme_keywords = _build_strict_theme_keywords(today_theme)
+    today_subject_keywords = _build_theme_subject_keywords(today_theme)
     today_focus_keywords = _build_focus_keywords(focus)
     # Never shrink the pool below what the roundup + deep dive need
     max_holds = max(0, len(theme_articles) + len(bonus_articles) - (NEWS_ROUNDUP_COUNT + 3))
@@ -3360,6 +3401,7 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
     kept_theme: list = []
     kept_bonus: list = []
     held_count = 0
+    deferred_count = 0
     # Both buckets. `was_bonus` decides which bucket an article that stays goes
     # back into — an off-theme story that airs today must not be promoted into
     # the theme blocks just because the router looked at it.
@@ -3369,13 +3411,27 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
         url = a.get('url', '')
         title = re.sub(r'^\W*\[[^\]]*\]\s*', '', a.get('title', ''))
         text = f"{title} {a.get('summary', '')}".lower()
-        weak_today = (a.get('_keyword_matches', 0) == 0
-                      and _keyword_hit_count(text, today_theme_keywords) <= 1)
         on_todays_focus = bool(today_focus_keywords) and _keyword_hit_count(text, today_focus_keywords) > 0
-        # Local news is time-sensitive and geography is orthogonal to the
-        # rotation, so it airs today whatever an upcoming day's keywords say.
-        if (not url or not weak_today or on_todays_focus or _is_local_article(a)
-                or a.get('_held_from') or a.get('_seed_id')):
+        is_local = _is_local_article(a)
+        # Subject matter, not geography. A local story always carries today's
+        # theme when today is the geographic day — its place names ARE the
+        # keywords, and the feed's `_keyword_matches` says the same thing — so
+        # `weak_today` can never fire for it. What the subject keywords answer
+        # is the question the 2026-08-22 episode got wrong: a Cariboo story with
+        # no civic content that reads as forestry or ranching is Tuesday's
+        # material arriving three days early. And on that day the feed's own
+        # count cannot vouch for a story that is neither here nor about
+        # municipal life either, since most of what it counted was place names
+        # and the word 'local'.
+        off_subject = _keyword_hit_count(text, today_subject_keywords) <= 1
+        if is_local or _is_geographic_theme(today_theme):
+            weak_today = off_subject
+        else:
+            weak_today = (a.get('_keyword_matches', 0) == 0
+                          and _keyword_hit_count(text, today_theme_keywords) <= 1)
+        belongs_to_today = not weak_today
+        if (not url or a.get('_held_from') or a.get('_seed_id')
+                or on_todays_focus or belongs_to_today):
             kept_bucket.append(a)
             continue
         matches = [(sd, t) for sd, t, kws in slot_keywords
@@ -3393,7 +3449,23 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
             'target_focus_slug': target_focus['slug'],
             'target_focus_name': target_focus['name'],
         }
-        if boosted >= URGENT_SCORE_THRESHOLD:
+        if is_local:
+            # Never held — local news is the most time-sensitive material in the
+            # pool — but it does not get to anchor a debate that belongs to
+            # another day. It stays in its own bucket (the roundup's front door
+            # is unchanged), gives up its deep-dive claim, and the ledger hands
+            # the story to the day whose theme it actually answers. On
+            # 2026-08-22 the Cariboo Local Affairs deep dive ran on softwood
+            # duties, a ranching award and a Tyson beef-plant closure, and the
+            # debate that came out of it was a Working Lands debate.
+            a['_no_deep_dive'] = True
+            kept_bucket.append(a)
+            holding[url] = {**entry, 'status': 'aired_early'}
+            deferred_count += 1
+            print(f"  📍 Local, airing today but off today's subject — deep dive "
+                  f"deferred to {target_date.isoformat()} ({target_focus['name']}): "
+                  f"{a.get('title', '')[:60]}")
+        elif boosted >= URGENT_SCORE_THRESHOLD:
             # Timely coverage now (bonus bucket, never deep-dive), callback later.
             # `_is_bonus` makes this the same bucket the feed's own bonus picks
             # land in: kept out of the theme blocks, but curated and capped with
@@ -3415,8 +3487,9 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
             kept_bucket.append(a)
 
     save_memory(HOLDING_FILE, holding)
-    if released or held_count:
-        print(f"🔀 Focus routing: released {len(released)}, held {held_count} article(s)")
+    if released or held_count or deferred_count:
+        print(f"🔀 Focus routing: released {len(released)}, held {held_count}, "
+              f"deep dive deferred for {deferred_count} local article(s)")
     return kept_theme, kept_bonus
 
 
@@ -4328,12 +4401,13 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
     # Strict keyword set: theme-name words + explicit config keywords only.
     # _build_theme_keywords also folds in theme-description words, which are
     # too generic ('tech', 'land', 'language') to gate block membership.
-    theme_info = next(
-        (i for i in CONFIG['themes'].values() if i['name'] == theme_name), None
-    )
-    theme_keywords = [w.lower() for w in theme_name.split() if len(w) > 3]
-    if theme_info:
-        theme_keywords.extend(k.lower() for k in theme_info.get('keywords', []))
+    # On the geographic theme this is narrower still — the civic keywords only,
+    # with the place names left out. Locality is already decided by
+    # _is_local_article one branch up, so a story reaching the 'theme' block on
+    # Cariboo Local Affairs day has to be about municipal life, not merely say
+    # the word "local": that is how "Scientists Saw Strange Spots on Local Fish"
+    # became the single theme story of the 2026-08-22 roundup.
+    theme_keywords = _build_theme_subject_keywords(theme_name)
     anti_keywords = _build_theme_anti_keywords(theme_name)
     source_boost = _build_theme_source_boost(theme_name)
     # Membership of the 'local' block is _is_local_article(). Its `local_sources`
@@ -4456,15 +4530,36 @@ def _curate_roundup_pool(articles: list, theme_name: str, pool_size: int) -> tup
     lets them resurface on a better-matched theme day.
     """
     pool = _annotate_roundup_blocks(articles, theme_name)
+    # One field does not get half the segment, and this holds whether or not the
+    # pool is over the cap — on 2026-08-22 the roundup was exactly at its cap of
+    # 15 and still ran seven US pharma and health-policy stories against two
+    # local ones. A discipline cluster is kept adjacent so the back half plays
+    # as a mini-arc; past ROUNDUP_CLUSTER_MAX it stops being an arc and becomes
+    # the thing the episode is about.
+    over_cluster = []
+    capped = []
+    for block, members_iter in groupby(pool, key=lambda a: a['_roundup_block']):
+        members = list(members_iter)
+        if (block in ROUNDUP_ARC_BLOCKS or block in ('standalone', 'kicker')
+                or len(members) <= ROUNDUP_CLUSTER_MAX):
+            capped.extend(members)
+            continue
+        capped.extend(members[:ROUNDUP_CLUSTER_MAX])
+        over_cluster.extend(members[ROUNDUP_CLUSTER_MAX:])
+    pool = capped
+    if over_cluster:
+        print(f"   ✂️  {len(over_cluster)} story(ies) over the "
+              f"{ROUNDUP_CLUSTER_MAX}-story cap on a single discipline cluster")
+
     if len(pool) <= pool_size:
-        return pool, []
+        return pool, over_cluster
 
     protected = [a for a in pool if a['_roundup_block'] in ROUNDUP_ARC_BLOCKS]
     kicker = [a for a in pool if a['_roundup_block'] == 'kicker']
     fillers = [a for a in pool if a['_roundup_block'] not in ROUNDUP_ARC_BLOCKS
                and a['_roundup_block'] != 'kicker']
 
-    kept_fill, dropped = [], []
+    kept_fill, dropped = [], list(over_cluster)
     # A wide arc still can't blow past the segment budget. Trimming the arc tail
     # alone would let a heavy local day (a fire week, a flood week) push the
     # theme off a themed episode entirely, so reserve a floor of theme slots and
@@ -4736,6 +4831,68 @@ def _build_theme_keywords(theme_name):
     return unique
 
 
+def _theme_info(theme_name):
+    """The themes.json entry whose `name` matches, or None."""
+    for info in CONFIG['themes'].values():
+        if info['name'] == theme_name:
+            return info
+    return None
+
+
+def _build_strict_theme_keywords(theme_name):
+    """Theme keywords WITHOUT the description prose — name words + config keywords.
+
+    `_build_theme_keywords` also folds in every word of the theme description,
+    which is fine for ranking (a fuzzy extra hit only moves an article up a
+    list) and wrong for anything that gates a decision. Saturday's description
+    contributed 'that', 'shape', 'everyday' and 'life' as routing keywords, so
+    on 2026-08-22 practically nothing in the pool could read as "weak on today's
+    theme" and the Cariboo Local Affairs slot matched anything mentioning a
+    community. `_annotate_roundup_blocks` already built this stricter set inline
+    for exactly that reason; the holding router needs the same one.
+    """
+    keywords = [w.lower() for w in theme_name.split() if len(w) > 3]
+    info = _theme_info(theme_name)
+    if info:
+        keywords.extend(k.lower() for k in info.get('keywords', []))
+    seen = set()
+    return [k for k in keywords if not (k in seen or seen.add(k))]
+
+
+def _is_geographic_theme(theme_name) -> bool:
+    """True for a theme defined by WHERE a story is, not what it is about.
+
+    Only Cariboo Local Affairs (themes.json `geographic: true`). Every other
+    theme is topical, which is why place names can carry theme relevance there
+    and cannot here — see `_build_theme_subject_keywords`.
+    """
+    info = _theme_info(theme_name)
+    return bool(info and info.get('geographic'))
+
+
+def _build_theme_subject_keywords(theme_name):
+    """Strict theme keywords minus place names — what the day is ABOUT.
+
+    Identical to `_build_strict_theme_keywords` for the six topical themes.
+    On the geographic day it is the difference between a civic story and any
+    story that happens to be here: every candidate in Saturday's pool is local
+    by construction, so place-name hits are a constant rather than a
+    discriminator. Ranking the deep dive on them picked whichever local story
+    named the most towns — on 2026-08-22 a softwood-duty story, a ranching award
+    and a Tyson beef-plant closure, i.e. Tuesday's Working Lands episode — while
+    'council', 'bylaw' and 'zoning' counted for no more than the byline did.
+    """
+    if not _is_geographic_theme(theme_name):
+        return _build_strict_theme_keywords(theme_name)
+    info = _theme_info(theme_name) or {}
+    # The theme NAME is dropped whole here: "Cariboo Local Affairs" contributes
+    # a place and the bare word 'local', which matched "local AI models" and
+    # "Scientists Saw Strange Spots on Local Fish" — the one story that reached
+    # the roundup's theme block on 2026-08-22.
+    places = {k.lower() for k in info.get('place_keywords', [])}
+    return [k.lower() for k in info.get('keywords', []) if k.lower() not in places]
+
+
 def _build_theme_source_boost(theme_name):
     """Return the lowercased source-name allowlist that gets a relevance boost
     for this theme (e.g. gadget outlets like Hackaday/Engadget for theme 2)."""
@@ -4810,31 +4967,84 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=3, focus=None):
 
     When the feed provides no keyword matches, falls back to local keyword
     scoring against the theme name and config keywords.
+
+    On the geographic theme (Cariboo Local Affairs) the ranking is the civic
+    subject keywords instead: locality is what every candidate has in common
+    there, so it cannot also be the thing that sorts them.
+
+    Articles flagged `_no_deep_dive` by the router air today but do not anchor
+    the debate, unless fewer than DEEP_DIVE_ELIGIBLE_FLOOR articles are left
+    without the flag.
     """
+    # `_no_deep_dive` articles air today but do not anchor the debate: an urgent
+    # off-theme story, or a local one whose subject belongs to another day. They
+    # are held back rather than excluded — a day thin enough to fall below
+    # DEEP_DIVE_ELIGIBLE_FLOOR gets them back rather than running on nothing.
+    eligible = [a for a in theme_articles if not a.get('_no_deep_dive')]
+    deferred = [a for a in theme_articles if a.get('_no_deep_dive')]
+    if len(eligible) < DEEP_DIVE_ELIGIBLE_FLOOR and deferred:
+        print(f"  ↩️  Only {len(eligible)} article(s) eligible to anchor the deep dive — "
+              f"restoring {len(deferred)} deferred one(s)")
+        eligible, deferred = theme_articles, []
+    elif deferred:
+        print(f"  ⏭️  {len(deferred)} article(s) air today but are deferred out of the "
+              f"deep dive (off today's subject)")
+    candidates = eligible
+
     # Articles are mostly sorted by boosted score from the feed, but seeded/
     # newsletter articles are prepended ahead of the feed and shouldn't win a
     # deep-dive slot purely by virtue of being first. Re-sort strong matches by
     # (keyword matches, boosted score) so genuinely on-theme feed articles can
     # outrank a weakly-matching newsletter or seed.
     strong_match = sorted(
-        (a for a in theme_articles if a.get('_keyword_matches', 0) > 0),
+        (a for a in candidates if a.get('_keyword_matches', 0) > 0),
         key=lambda a: (a.get('_keyword_matches', 0), a.get('_boosted_score', a.get('ai_score', 0))),
         reverse=True,
     )
-    weak_match = [a for a in theme_articles if a.get('_keyword_matches', 0) == 0]
+    weak_match = [a for a in candidates if a.get('_keyword_matches', 0) == 0]
 
     theme_keywords = _build_theme_keywords(theme_name)
     theme_anti_keywords = _build_theme_anti_keywords(theme_name)
     used_local_scoring = False
 
+    # On the geographic theme, rank on what the story is ABOUT. Every candidate
+    # here is local, so place names are a constant and ranking on them is
+    # ranking on nothing — see _build_theme_subject_keywords.
+    subject_deep_dive = None
+    if _is_geographic_theme(theme_name):
+        subject_keywords = _build_theme_subject_keywords(theme_name)
+        for a in candidates:
+            a['_subject_matches'] = _focus_hit_count(
+                a, subject_keywords)  # same title+summary scan, source tag stripped
+        subject_strong = sorted(
+            (a for a in candidates if a.get('_subject_matches', 0) > 0),
+            key=lambda a: (a.get('_subject_matches', 0),
+                           a.get('_boosted_score', a.get('ai_score', 0))),
+            reverse=True,
+        )
+        if subject_strong:
+            # Civic stories lead; the remaining slots go to the strongest local
+            # material left, which is the only thing a thin civic week has.
+            rest = sorted(
+                (a for a in candidates if a.get('_subject_matches', 0) == 0),
+                key=lambda a: a.get('_boosted_score', a.get('ai_score', 0)),
+                reverse=True,
+            )
+            subject_deep_dive = (subject_strong + rest)[:count]
+            print(f"  🏛️  {len(subject_strong)} article(s) carry civic subject matter — "
+                  f"deep dive centered on them")
+        else:
+            print("  🏛️  subject_fallback: no article carried civic subject matter — "
+                  "ranking the local pool on score alone")
+
     # Super-cycle focus: prefer articles matching this week's rotation slice.
     focus_keywords = _build_focus_keywords(focus)
     deep_dive = None
     if focus_keywords:
-        for a in theme_articles:
+        for a in candidates:
             a['_focus_matches'] = _focus_hit_count(a, focus_keywords)
         focus_strong = sorted(
-            (a for a in theme_articles if a.get('_focus_matches', 0) > 0),
+            (a for a in candidates if a.get('_focus_matches', 0) > 0),
             key=lambda a: (a.get('_focus_matches', 0), a.get('_keyword_matches', 0),
                            a.get('_boosted_score', a.get('ai_score', 0))),
             reverse=True,
@@ -4846,7 +5056,9 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=3, focus=None):
             print(f"  🎯 focus_fallback: only {len(focus_strong)} article(s) matched focus "
                   f"'{focus['name']}' (<{count}) — using base theme selection")
 
-    if deep_dive is not None:
+    if subject_deep_dive is not None:
+        deep_dive = subject_deep_dive
+    elif deep_dive is not None:
         pass
     elif strong_match:
         # Feed provided keyword matches — use them
@@ -4860,7 +5072,7 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=3, focus=None):
         print(f"  📎 Local keywords: {theme_keywords[:10]}{'...' if len(theme_keywords) > 10 else ''}")
 
         scored = sorted(
-            theme_articles,
+            candidates,
             key=lambda a: _local_theme_relevance(a, theme_keywords, anti_keywords=theme_anti_keywords),
             reverse=True,
         )
@@ -9207,7 +9419,10 @@ def run_script_stage() -> tuple[str, str] | None:
             # locks in: swap any thin deep-dive article for a substantive alternative
             # from the broader news pool so Claude is never put in a position where
             # it has to hedge about sourcing on air.
-            theme_keywords_for_substitution = _build_theme_keywords(today_theme)
+            # Strict, because `_is_on_theme` is a gate: `_build_theme_keywords`
+            # folds in the description, and Saturday's contributed the word
+            # 'that', which is a substring of most articles ever written.
+            theme_keywords_for_substitution = _build_strict_theme_keywords(today_theme)
             source_boost_for_substitution = _build_theme_source_boost(today_theme)
             deep_dive_articles, news_articles = _ensure_deep_dive_substance(
                 deep_dive_articles, news_articles,
