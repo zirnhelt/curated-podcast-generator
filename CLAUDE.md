@@ -234,8 +234,19 @@ Seven rotating daily themes indexed by weekday (0=Mon):
 - 2 Wed: Gear, Gadgets & Practical Tech
 - 3 Thu: Indigenous Lands & Innovation
 - 4 Fri: Wild Spaces & Outdoor Life
-- 5 Sat: Cariboo Local Affairs (longer episode, 15 articles)
+- 5 Sat: Cariboo Local Affairs (longer episode, 15 articles) — the one **geographic** theme (`geographic: true`), defined by where a story is rather than what it is about
 - 6 Sun: Science, Wonder & the Natural World
+
+**The geographic theme.** Saturday is the only theme defined by *where* a story is rather than
+what it is about, flagged `geographic: true` with its place names listed in `place_keywords`.
+Every other theme can let place names carry theme relevance; this one cannot, because every
+candidate in its pool is local by construction — a place-name hit is a constant, not a
+discriminator. `_build_theme_subject_keywords` strips the places (and the theme name, which
+contributes a place and the bare word `local`) and leaves the civic vocabulary — `council`,
+`bylaw`, `zoning`, `budget`, `referendum` — which is what ranks the deep dive and what gates the
+roundup's `theme` block. Ranking on locality picked whichever local story named the most towns:
+on 2026-08-22 that was a softwood-duty story, a ranching award and a Tyson beef-plant closure,
+and the debate that came out of them was a Working Lands debate on a civic-affairs day.
 
 ### News Roundup Curation (`_annotate_roundup_blocks`, `_curate_roundup_pool`)
 
@@ -273,6 +284,16 @@ be read out at a sentence apiece; one of them given real airtime is worth more t
 mentioned. It reserves its slot before the tail spends the budget, and yields it when the
 protected arc alone fills the segment.
 
+**No single discipline cluster may take more than `ROUNDUP_CLUSTER_MAX` (3) slots**, and that
+holds whether or not the pool is over the cap. On 2026-08-22 the Cariboo Local Affairs roundup
+sat exactly at its cap of 15 and still ran a seven-story US pharma and health-policy cluster
+against two local stories and one theme story — which had qualified on the word "local"
+("Scientists Saw Strange Spots on Local Fish"). Nothing bounded one field's share of a segment,
+so the cap alone let the day's identity be decided by whatever the feed happened to be heavy in.
+A cluster is kept adjacent so the back half plays as a mini-arc; past three it stops being an arc
+and becomes what the episode is about. The overflow is dropped, never compressed — dropped
+articles never reach citations, so dedup lets them resurface on a better-matched day.
+
 Two prompt rules carry the rest: **NO HEADLINE CRAWL** (never stack unrelated stories into one
 host turn as one-sentence mentions) and **DO NOT MANUFACTURE CONNECTIONS** — an abstract bridge
 that could join *any* two stories ("from one contested piece of land to another", "whoever
@@ -288,7 +309,12 @@ Each daily theme (except Saturday, deliberately uncycled) rotates through a mult
 - **Subtlety:** the focus is deliberately unannounced on air — it shapes selection and emphasis only. Hosts name and acknowledge the weekday theme, never a rotating sub-theme; every focus-derived prompt block carries a do-not-announce instruction.
 - **Article holding (`route_articles_for_focus`):** off-theme, non-urgent articles matching an upcoming day within 14 days are held in `podcasts/article_holding.json` and released (flagged `_held_from`, framed as "earlier this week") on that day. Urgent ones (`_boosted_score ≥ 85`) air same-day in the bonus bucket (never deep-dive) and are remembered in the aired-early ledger for an on-air callback when their day arrives. Holding never shrinks the pool below the roundup + deep-dive budget, and **never holds a local story** — local news is the most time-sensitive material in the pool and geography is orthogonal to the rotation (`_is_local_article`, shared with the roundup's `local` block).
   - **Both buckets are routed.** The hold loop used to iterate `theme_articles` alone — the one bucket that by definition holds nothing off-theme. Off-theme material arrives in `bonus_articles`: 72 of it against 8 theme articles on 2026-08-17, so nothing was ever eligible and Monday's roundup aired a PLA-brittleness piece that scored two hits on Wednesday's Maker & Repair focus keywords — enough for the old focus-only matcher, which never saw it.
-  - **A slot matches on its theme keywords OR its focus keywords**, and `get_upcoming_day_slots` emits a slot for every upcoming day, uncycled Saturdays included. Focus-only matching missed whole categories: forestry is a Tuesday theme keyword every week but only reaches a Tuesday slot on the weeks the rotation sits on Forestry, so the 2026-08-17 lumber-tariffs opinion piece scored 0 focus hits on all 14 upcoming days (3 against Tuesday's theme) and had nowhere to go. The theme is the day's standing identity; the focus only narrows it.
+  - **A slot matches on its theme keywords OR its focus keywords**, and `get_upcoming_day_slots` emits a slot for every upcoming day. Focus-only matching missed whole categories: forestry is a Tuesday theme keyword every week but only reaches a Tuesday slot on the weeks the rotation sits on Forestry, so the 2026-08-17 lumber-tariffs opinion piece scored 0 focus hits on all 14 upcoming days (3 against Tuesday's theme) and had nowhere to go. The theme is the day's standing identity; the focus only narrows it.
+  - **Keyword sets that gate a decision are strict** (`_build_strict_theme_keywords`): theme-name words plus the explicit config keywords, never the description prose. `_build_theme_keywords` folds every word of the description in, which is fine for *ranking* — an extra fuzzy hit only moves an article up a list — and wrong for a gate. Saturday's description contributed `that`, `shape`, `everyday` and `life`, so nothing in the pool could read as weak on today's theme and the router had 42 keywords to match a slot on.
+  - **A geographic day is never a routing target** (`_is_geographic_theme`, themes.json `geographic: true`). Cariboo Local Affairs is defined by *where* a story is; every other theme is defined by what it is about. Geography is decided by `_is_local_article`, which also exempts local stories from holding, so the day has no import channel to fill and every match it wins is a false one. Its keyword list took the bare word `local` literally: five articles were waiting for 2026-08-22 — New York's housing shortage, a Brooklyn ADU that "follows local and zoning laws", two US drug-pricing pieces, and "8 local AI models that run great on 8GB of VRAM". Two of them aired.
+  - **A local story that belongs to another day airs today and defers its deep dive.** It is never held — local news stays the most time-sensitive material in the pool — but when it carries none of today's *subject* keywords and answers an upcoming day's theme, it gets `_no_deep_dive` and an aired-early ledger entry so the callback lands on the day whose question it actually answers. On 2026-08-22 the Cariboo Local Affairs deep dive ran on softwood duties, a ranching award and a Tyson beef-plant closure — Tuesday's episode, aired on Saturday and spent for the week by dedup, because every one of them is local and locality was the whole score.
+  - **`_no_deep_dive` is now read.** It was written by the router and read by nothing: `_ensure_deep_dive_substance` was free to swap back into the deep dive exactly what the router kept out of it. `select_deep_dive_from_feed` holds flagged articles back, and restores them only below `DEEP_DIVE_ELIGIBLE_FLOOR` (2) — a debate with no sources is a worse failure than a debate one day early.
+
 - **Repeat-topic guard (`format_prior_coverage_for_prompt`):** local word-overlap check of deep-dive titles against recent episode topics and debate questions; on a match, hosts are instructed to acknowledge the earlier discussion and center what's new. Evolving-story context carries the same instruction.
 
 ### Weekly Anchor Questions (`weekly_anchor.py`, `config/weekly_anchors.json`)

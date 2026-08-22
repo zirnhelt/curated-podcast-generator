@@ -2555,6 +2555,45 @@ class TestThemeAdjacentBlock:
         assert [a["title"] for a in dropped] == ["Celebrity fashion week highlights"]
 
 
+    def test_one_discipline_cannot_take_half_the_segment(self):
+        import podcast_generator as pg
+
+        """2026-08-22: seven US pharma and health-policy stories against two
+        local ones on a Cariboo Local Affairs roundup. The cluster is supposed
+        to be a mini-arc; past ROUNDUP_CLUSTER_MAX it is what the episode is
+        about."""
+        pharma = [
+            {"title": f"New drug trial results published, study {i}",
+             "url": f"https://p{i}.com", "_boosted_score": 70 - i}
+            for i in range(7)
+        ]
+        kept, dropped = _curate_roundup_pool(pharma, _FAKE_THEME, 15)
+        clustered = [a for a in kept if a["_roundup_block"] not in
+                     ("standalone", "kicker")]
+        assert len(clustered) <= pg.ROUNDUP_CLUSTER_MAX
+        assert dropped, "the overflow is cut, not compressed into mentions"
+        # The cut is by feed score — the weakest of the run goes first
+        assert dropped[-1]["title"].endswith("study 6")
+
+    def test_capped_cluster_leaves_room_for_other_blocks(self):
+        from collections import Counter
+        import podcast_generator as pg
+
+        articles = (
+            [{"title": f"New drug trial results published, study {i}",
+              "url": f"https://p{i}.com", "_boosted_score": 90 - i}
+             for i in range(6)]
+            + [{"title": "Solar storm hits the magnetosphere",
+                "url": "https://c1.com", "_boosted_score": 60},
+               {"title": "Astronomers watch a supernova explode",
+                "url": "https://c2.com", "_boosted_score": 55}]
+        )
+        kept, _ = _curate_roundup_pool(articles, _FAKE_THEME, 8)
+        blocks = Counter(a["_roundup_block"] for a in kept)
+        assert blocks["life_sciences"] <= pg.ROUNDUP_CLUSTER_MAX
+        assert blocks["physical_sciences"] == 2
+
+
 class TestRoundupBlockRank:
     def test_local_outranks_theme_which_outranks_the_tail(self):
         assert (_roundup_block_rank("local")
