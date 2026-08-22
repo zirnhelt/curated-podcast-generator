@@ -149,6 +149,51 @@ class TestIndex:
         assert [e["date"] for e in index] == ["2026-08-05", "2026-08-04", "2026-08-03"]
 
 
+class TestLabelFacts:
+    """The model only ever sees these labels — a bare positional list is a
+    guessing game it lost three days running (5/15 news, 1/3 deep-dive
+    published as four scores out of ten or a hundred)."""
+
+    def test_positional_groups_are_named(self, facts):
+        labelled = episode_review.label_facts(facts)
+        assert labelled["citation_alignment"] == {
+            "roundup_citations_matched": facts["citation_alignment"][0],
+            "roundup_citations_total": facts["citation_alignment"][1],
+            "deep_dive_citations_matched": facts["citation_alignment"][2],
+            "deep_dive_citations_total": facts["citation_alignment"][3],
+        }
+
+    def test_repeating_facts_are_named_per_item(self):
+        labelled = episode_review.label_facts(
+            {"brave_failures": [["meshtastic 2.8", "400 Client Error"]]})
+        assert labelled["brave_failures"] == [
+            {"query": "meshtastic 2.8", "error": "400 Client Error"}]
+
+    def test_counts_carry_what_they_mean(self):
+        labelled = episode_review.label_facts({"tts_retry_failed": 8})
+        assert labelled["tts_retry_failed"]["value"] == 8
+        # The count says nothing was dropped; the review said the opposite.
+        assert "nothing is dropped" in labelled["tts_retry_failed"]["means"]
+
+    def test_single_group_and_unknown_facts_pass_through(self):
+        facts = {"audio_minutes": 20.2, "other_warnings": ["⚠️ something new"]}
+        assert episode_review.label_facts(facts) == facts
+
+    def test_every_multi_group_extraction_has_names(self):
+        """A new capture group without a name is a new guess for the model."""
+        import re
+
+        patterns = {k: v[0] for k, v in episode_review._SINGLE.items()}
+        patterns.update(episode_review._MULTI)
+        for key, pattern in patterns.items():
+            groups = re.compile(pattern).groups
+            names = episode_review._FIELDS.get(key)
+            if groups > 1:
+                assert names and len(names) == groups, f"{key} has {groups} unnamed groups"
+            else:
+                assert names is None, f"{key} takes one group but names {names}"
+
+
 class TestNarrativeScrub:
     """The narrative is injected as raw HTML into a published page."""
 

@@ -643,30 +643,79 @@ class TestRunAgenticLoop:
 
 
 class TestBraveSummarize:
-    """Brave's chat/completions endpoint 400s without a "model" field (2026-07-29)."""
+    """Brave has flipped this payload schema twice — the caller carries both."""
 
-    def test_sends_required_model_field(self, monkeypatch):
+    @pytest.fixture(autouse=True)
+    def _fresh_state(self, monkeypatch):
         import podcast_generator as pg
+        monkeypatch.setattr(pg, "_BRAVE_ANSWERS_STATE", {"shape": 0, "disabled": False})
 
-        captured = {}
-
+    @staticmethod
+    def _resp(status, payload=None):
         class _Resp:
-            def raise_for_status(self):
-                pass
+            status_code = status
+            text = "" if status < 400 else '{"error": "invalid model"}'
 
             def json(self):
-                return {"choices": [{"message": {"content": "42 km"}}]}
+                return payload or {}
+        return _Resp()
+
+    def test_asks_in_braves_documented_shape_first(self, monkeypatch):
+        import podcast_generator as pg
+        sent = []
 
         def fake_post(url, headers=None, json=None, timeout=None):
-            captured["json"] = json
-            return _Resp()
+            sent.append(json)
+            return self._resp(200, {"choices": [{"message": {"content": "42 km"}}]})
 
         monkeypatch.setattr(pg.requests, "post", fake_post)
+        assert _brave_summarize("distance to Horsefly Lake", "k") == "42 km"
+        assert "model" not in sent[0]
 
-        result = _brave_summarize("distance to Horsefly Lake", "fake-key")
+    def test_a_rejection_retries_in_the_other_shape_and_pins_it(self, monkeypatch):
+        import podcast_generator as pg
+        sent = []
 
-        assert result == "42 km"
-        assert captured["json"]["model"] == "brave"
+        def fake_post(url, headers=None, json=None, timeout=None):
+            sent.append(json)
+            if "model" not in json:
+                return self._resp(400)
+            return self._resp(200, {"choices": [{"message": {"content": "42 km"}}]})
+
+        monkeypatch.setattr(pg.requests, "post", fake_post)
+        assert _brave_summarize("first", "k") == "42 km"
+        assert _brave_summarize("second", "k") == "42 km"
+        # Three calls, not four: the working shape is remembered for the run.
+        assert [("model" in j) for j in sent] == [False, True, True]
+
+    def test_both_shapes_failing_disables_the_endpoint_for_the_run(self, monkeypatch):
+        import podcast_generator as pg
+        calls = []
+
+        def fake_post(url, headers=None, json=None, timeout=None):
+            calls.append(json)
+            return self._resp(400)
+
+        monkeypatch.setattr(pg.requests, "post", fake_post)
+        assert _brave_summarize("one", "k") == ""
+        assert _brave_summarize("two", "k") == ""
+        assert len(calls) == 2  # the second query never reaches the network
+        assert pg._BRAVE_ANSWERS_STATE["disabled"] is True
+
+    def test_a_timeout_does_not_retry_the_other_shape(self, monkeypatch):
+        """A request that was never answered says nothing about its payload."""
+        import podcast_generator as pg
+        calls = []
+
+        def fake_post(*args, **kwargs):
+            calls.append(1)
+            raise pg.requests.Timeout("read timed out")
+
+        monkeypatch.setattr(pg.requests, "post", fake_post)
+        assert _brave_summarize("some query", "k") == ""
+        assert len(calls) == 1
+        # ...and an unanswered request is no reason to stop asking all night.
+        assert pg._BRAVE_ANSWERS_STATE["disabled"] is False
 
     def test_returns_empty_string_on_error(self, monkeypatch):
         import podcast_generator as pg
@@ -675,7 +724,6 @@ class TestBraveSummarize:
             raise pg.requests.exceptions.HTTPError("400 Client Error: Bad Request")
 
         monkeypatch.setattr(pg.requests, "post", fake_post)
-
         assert _brave_summarize("some query", "fake-key") == ""
 
 
@@ -2949,6 +2997,74 @@ class TestScriptMatchPosition:
     def test_absent_returns_none(self):
         art = {"title": "[Src] Completely unrelated subject matter"}
         assert _script_match_position(art, "nothing relevant is said here") is None
+
+    def test_paraphrased_headline_matches_on_content_words(self):
+        """What the hosts are told to do to a headline. The phrase pass found
+        33% of August's roundup articles; everything it missed lost its line in
+        the episode description and its slide in the video."""
+        script = (
+            "**riley:** unrelated opener about the highway.\n\n"
+            "**casey:** osisko gold group has made a discovery at its proserpine "
+            "target near the cariboo gold project.\n"
+        ).lower()
+        art = {"title": "[Src] Osisko Gold makes discovery at Cariboo regional target"}
+        assert _script_match_position(art, script) == script.find("osisko")
+
+    def test_generic_words_the_show_says_all_night_do_not_match(self):
+        """A vision-loss headline landed on a wildfire item by matching
+        "helping", "people" and "loss". A word the episode says over and over
+        is the show's vocabulary, not evidence of this story."""
+        script = (
+            "**riley:** people are helping where they can.\n\n"
+            "**casey:** people keep helping, and the loss is real.\n\n"
+            "**riley:** more people, more helping, another loss.\n\n"
+            "**casey:** people helping people — a loss for the whole area.\n\n"
+            "**riley:** a hundred and fifty structures is a real loss, and people "
+            "are helping.\n"
+        ).lower()
+        art = {"title": "[Src] Helping people with vision loss build careers"}
+        assert _script_match_position(art, script) is None
+
+    def test_content_words_must_land_in_one_turn(self):
+        """Half a headline in one story and half in the next is two stories,
+        not a mention — the 600-character window that spans three roundup
+        items is what made those look alike."""
+        script = (
+            "**riley:** the alien signals paper is worth a look.\n\n"
+            "**casey:** separately, groundwater levels are rarely something anyone "
+            "gets to listen in on at the regional district.\n"
+        ).lower()
+        art = {"title": "[Src] Alien signals may be hiding where we rarely listen"}
+        assert _script_match_position(art, script) is None
+
+
+class TestExpectedSpeechMs:
+    """The duration checksum is only as good as its estimate of a full take.
+
+    The flat 400 ms/word it replaces described no segment the show has ever
+    produced: 20% of every episode's segments came in under 0.80 of it and were
+    re-synthesized, and the retry landed within 2% of the first take every time.
+    """
+
+    # (words, ms/word) from the measured spread — short lines run fastest
+    # because they carry no sentence-final pauses.
+    REAL_RATES = [(10, 280), (20, 300), (40, 350), (120, 360)]
+
+    @pytest.mark.parametrize("words,ms_per_word", REAL_RATES)
+    def test_a_complete_take_clears_the_checksum(self, words, ms_per_word):
+        import podcast_generator as pg
+        assert words * ms_per_word / pg._expected_speech_ms(words, 1.0) >= 0.80
+
+    @pytest.mark.parametrize("words,ms_per_word", REAL_RATES)
+    def test_a_take_missing_a_third_of_its_words_still_trips_it(self, words, ms_per_word):
+        import podcast_generator as pg
+        short = 0.65 * words * ms_per_word
+        assert short / pg._expected_speech_ms(words, 1.0) < 0.80
+
+    def test_the_host_speed_multiplier_scales_the_estimate(self):
+        import podcast_generator as pg
+        assert pg._expected_speech_ms(50, 1.1) == pytest.approx(
+            pg._expected_speech_ms(50, 1.0) / 1.1)
 
 
 class TestUSPolicyFramingTag:

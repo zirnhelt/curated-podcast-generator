@@ -704,7 +704,9 @@ class TestCanary:
         self._patch(monkeypatch, responder)
         assert gemini_tts.canary() == gemini_tts.GEMINI_TTS_FALLBACK_MODEL
         assert gemini_tts._model_override == gemini_tts.GEMINI_TTS_FALLBACK_MODEL
-        assert len(seen) == 2
+        # The primary is re-asked once — a dropped connection is a verdict on
+        # nothing — and the fallback answers first time.
+        assert len(seen) == gemini_tts.CANARY_ATTEMPTS + 1
 
     def test_returns_none_when_no_model_answers(self, monkeypatch):
         def responder(*args, **kwargs):
@@ -718,7 +720,7 @@ class TestCanary:
         monkeypatch.delenv("GEMINI_API_KEY", raising=False)
         assert gemini_tts.canary() is None
 
-    def test_canary_is_one_call_per_model_not_a_full_ladder(self, monkeypatch):
+    def test_canary_is_a_probe_per_model_not_a_full_ladder(self, monkeypatch):
         """The probe answers 'is Gemini up', so it must stay cheap — climbing the
         whole ladder twice would cost minutes before a single word is rendered."""
         calls = []
@@ -729,7 +731,37 @@ class TestCanary:
 
         self._patch(monkeypatch, responder)
         gemini_tts.canary()
-        assert len(calls) == 2  # primary once, fallback once
+        assert len(calls) == 2 * gemini_tts.CANARY_ATTEMPTS
+        assert gemini_tts.CANARY_ATTEMPTS <= 2  # still a probe, not a ladder
+
+    def test_a_rejected_request_is_not_re_asked(self, monkeypatch):
+        """Re-asking is for a request that went unanswered. A model that
+        answered with a rejection will reject the identical probe again, and
+        every attempt spent here delays the render."""
+        calls = []
+
+        def responder(*args, **kwargs):
+            calls.append(1)
+            return TestSynthesizeRetries._FakeResp({"candidates": [{"finishReason": "OTHER"}]})
+
+        self._patch(monkeypatch, responder)
+        assert gemini_tts.canary() is None
+        assert len(calls) == 2  # each model asked once, then given up on
+
+    def test_a_read_timeout_is_re_asked_before_the_episode_leaves_gemini(self, monkeypatch):
+        """Every canary failure of the week of 2026-08-17 was a read timeout,
+        and the 2026-08-13 probe measured 8 of 15 identical calls answering."""
+        calls = []
+
+        def responder(*args, **kwargs):
+            calls.append(1)
+            if len(calls) == 1:
+                raise gemini_tts.requests.Timeout("read timed out")
+            return TestSynthesizeRetries._FakeResp(TestSynthesizeRetries.AUDIO_RESPONSE)
+
+        self._patch(monkeypatch, responder)
+        assert gemini_tts.canary() == gemini_tts.GEMINI_TTS_MODEL
+        assert len(calls) == 2
 
     def test_canary_uses_a_short_read_timeout(self, monkeypatch):
         seen = []
