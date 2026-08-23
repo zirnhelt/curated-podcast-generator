@@ -81,7 +81,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-08-23"
   },
   "https://www.sciencealert.com/a-new-underwater-glue-bonds-in-10-seconds-and-holds-for-years": {
     "article": {
@@ -198,7 +199,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-08-23"
   },
   "https://nautil.us/how-our-attraction-to-natural-fixes-can-stymie-climate-progress-1283671/": {
     "article": {
@@ -400,7 +402,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-08-23"
   },
   "https://www.theatlantic.com/technology/2026/08/secondhand-tech-boom/688309/?utm_source=feed": {
     "article": {
@@ -574,7 +577,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-08-23"
   },
   "https://thetyee.ca/Culture/2026/08/19/Wildfires-Young-Immigrant-Chef/": {
     "article": {
@@ -656,7 +660,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-08-23"
   },
   "https://www.northernminer.com/news/lundin-mining-cuts-copper-outlook-as-chile-storms-strike-again/1003894110/": {
     "article": {
@@ -779,52 +784,6 @@
     "target_focus_name": "Homestead & Off-Grid Tech",
     "status": "held"
   },
-  "https://www.nytimes.com/2026/08/19/nyregion/nyc-housing-shortage.html": {
-    "article": {
-      "id": "https://www.nytimes.com/2026/08/19/nyregion/nyc-housing-shortage.html",
-      "url": "https://www.nytimes.com/2026/08/19/nyregion/nyc-housing-shortage.html",
-      "title": "[NYT Top Stories] What Will It Take to Fix New York\u2019s Housing Shortage?",
-      "content_html": "<img src=\"https://static01.nyt.com/images/2026/08/19/multimedia/19met-housing-shortage-hjkq/19met-housing-shortage-hjkq-mediumSquareAt3X.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.nytimes.com%2F2026%2F08%2F19%2Fnyregion%2Fnyc-housing-shortage.html\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nA draft report from the city estimates that 700,000 new units would need to be built over the next decade to accommodate the need for homes.",
-      "summary": "A draft report from the city estimates that 700,000 new units would need to be built over the next decade to accommodate the need for homes.",
-      "_excerpt": "A draft report from the city estimates that 700,000 new units would need to be built over the next decade to accommodate the need for homes.",
-      "date_published": "2026-08-19T22:31:42+00:00",
-      "authors": [
-        {
-          "name": "NYT Top Stories",
-          "url": "https://nytimes.com"
-        }
-      ],
-      "ai_score": 70,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 93,
-      "_composite_podcast": 67,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://static01.nyt.com/images/2026/08/19/multimedia/19met-housing-shortage-hjkq/19met-housing-shortage-hjkq-mediumSquareAt3X.jpg",
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "New York Times",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-20T02:54:02.717534+00:00"
-      },
-      "_boosted_score": 70
-    },
-    "held_date": "2026-08-20",
-    "target_date": "2026-08-22",
-    "target_weekday": 5,
-    "target_focus_slug": "cariboo_local_affairs",
-    "target_focus_name": "Cariboo Local Affairs",
-    "status": "released",
-    "release_date": "2026-08-22"
-  },
   "https://www.scientificamerican.com/article/how-solar-became-the-cheapest-form-of-energy-in-the-world/": {
     "article": {
       "id": "https://www.scientificamerican.com/article/how-solar-became-the-cheapest-form-of-energy-in-the-world/",
@@ -867,99 +826,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
-  },
-  "https://www.dwell.com/article/how-they-pulled-it-off-marin-county-adu-6f188203": {
-    "article": {
-      "id": "https://www.dwell.com/article/how-they-pulled-it-off-marin-county-adu-6f188203",
-      "url": "https://www.dwell.com/article/how-they-pulled-it-off-marin-county-adu-6f188203",
-      "title": "How They Pulled It Off: An ADU That Adds Space for a Family\u2014and Follows Local and State Rules - Dwell",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.dwell.com%2Farticle%2Fhow-they-pulled-it-off-marin-county-adu-6f188203\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nTo build a 400-square-foot structure behind his parents&#x27; Marin County home, designer Toby Watters had to navigate strict environmental protections and sewage problems\u2014and win the neighbors&#x27; approval.",
-      "summary": "To build a 400-square-foot structure behind his parents' Marin County home, designer Toby Watters had to navigate strict environmental protections and sewage problems\u2014and win the neighbors' approval.",
-      "_excerpt": "To build a 400-square-foot structure behind his parents' Marin County home, designer Toby Watters had to navigate strict environmental protections and sewage problems\u2014and win the neighbors' approval.",
-      "date_published": "2026-08-20T02:44:12.777370+00:00",
-      "authors": [
-        {
-          "name": "Dwell",
-          "url": "https://www.dwell.com"
-        }
-      ],
-      "ai_score": 63,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 85,
-      "_composite_podcast": 60,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News+",
-      "_cross_theme": {
-        "day": "tuesday",
-        "label": "Working Lands & Industry",
-        "shown_at": "2026-08-20T04:52:04.055238+00:00"
-      },
-      "_boosted_score": 63
-    },
-    "held_date": "2026-08-20",
-    "target_date": "2026-08-22",
-    "target_weekday": 5,
-    "target_focus_slug": "cariboo_local_affairs",
-    "target_focus_name": "Cariboo Local Affairs",
     "status": "released",
-    "release_date": "2026-08-22"
-  },
-  "https://www.statnews.com/2026/08/18/white-house-claims-drug-price-drop-examined-ed-silverman-pharmalot/?utm_campaign=rss": {
-    "article": {
-      "id": "https://www.statnews.com/2026/08/18/white-house-claims-drug-price-drop-examined-ed-silverman-pharmalot/?utm_campaign=rss",
-      "url": "https://www.statnews.com/2026/08/18/white-house-claims-drug-price-drop-examined-ed-silverman-pharmalot/?utm_campaign=rss",
-      "title": "[STAT News] STAT+: The White House declares \u2018promises made, promises kept\u2019 on lowering drug prices. Nice try",
-      "content_html": "<img src=\"https://www.statnews.com/wp-content/uploads/2026/08/GettyImages-2276977577-645x645.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.statnews.com%2F2026%2F08%2F18%2Fwhite-house-claims-drug-price-drop-examined-ed-silverman-pharmalot%2F%3Futm_campaign%3Drss\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nIn its effort to lower drug prices, the White House has declared \"promises made, promises kept.\" That's a narrative that doesn't reflect the full story.",
-      "summary": "In its effort to lower drug prices, the White House has declared \"promises made, promises kept.\" That's a narrative that doesn't reflect the full story.",
-      "_excerpt": "In its effort to lower drug prices, the White House has declared \"promises made, promises kept.\" That's a narrative that doesn't reflect the full story.",
-      "date_published": "2026-08-18T18:42:00+00:00",
-      "authors": [
-        {
-          "name": "STAT News",
-          "url": "https://www.statnews.com"
-        }
-      ],
-      "ai_score": 64,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 81,
-      "_composite_podcast": 59,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://www.statnews.com/wp-content/uploads/2026/08/GettyImages-2276977577-645x645.jpg",
-      "_us_policy": true,
-      "_us_policy_scope": "out-of-jurisdiction",
-      "tags": [
-        "us-policy"
-      ],
-      "_cross_theme": {
-        "day": "tuesday",
-        "label": "Working Lands & Industry",
-        "shown_at": "2026-08-20T02:54:02.717534+00:00"
-      },
-      "_boosted_score": 64
-    },
-    "held_date": "2026-08-20",
-    "target_date": "2026-08-22",
-    "target_weekday": 5,
-    "target_focus_slug": "cariboo_local_affairs",
-    "target_focus_name": "Cariboo Local Affairs",
-    "status": "released",
-    "release_date": "2026-08-22"
+    "release_date": "2026-08-23"
   },
   "https://newatlas.com/diabetes/living-glp-revolutionize-diabetes-treatment/": {
     "article": {
@@ -998,49 +866,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
-  },
-  "https://www.makeuseof.com/8-local-ai-models-that-run-great-on-8gb-of-vram-or-less/": {
-    "article": {
-      "id": "https://www.makeuseof.com/8-local-ai-models-that-run-great-on-8gb-of-vram-or-less/",
-      "url": "https://www.makeuseof.com/8-local-ai-models-that-run-great-on-8gb-of-vram-or-less/",
-      "title": "[MakeUseOf] 8 local AI models that run great on 8GB of VRAM or less",
-      "content_html": "<img src=\"https://static0.makeuseofimages.com/wordpress/wp-content/uploads/wm/2026/06/local-ai.jpeg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.makeuseof.com%2F8-local-ai-models-that-run-great-on-8gb-of-vram-or-less%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n8GB is still enough for certain use cases.",
-      "summary": "8GB is still enough for certain use cases.",
-      "_excerpt": "8GB is still enough for certain use cases.",
-      "date_published": "2026-08-10T19:00:13+00:00",
-      "authors": [
-        {
-          "name": "MakeUseOf",
-          "url": "https://www.makeuseof.com"
-        }
-      ],
-      "ai_score": 50,
-      "_quality": 72,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 72,
-      "_composite_podcast": 51,
-      "_keyword_matches": 0,
-      "_category": "ai-tech",
-      "_source_category": "ai-tech",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://static0.makeuseofimages.com/wordpress/wp-content/uploads/wm/2026/06/local-ai.jpeg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-20T04:52:04.055238+00:00"
-      },
-      "_boosted_score": 50
-    },
-    "held_date": "2026-08-20",
-    "target_date": "2026-08-22",
-    "target_weekday": 5,
-    "target_focus_slug": "cariboo_local_affairs",
-    "target_focus_name": "Cariboo Local Affairs",
     "status": "released",
-    "release_date": "2026-08-22"
+    "release_date": "2026-08-23"
   },
   "https://www.statnews.com/2026/08/11/cms-rapid-breakthrough-device-coverage-health-tech/?utm_campaign=rss": {
     "article": {
@@ -1198,7 +1025,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-08-23"
   },
   "https://www.nytimes.com/2026/08/20/business/bond-yields-tech-ai-debt.html": {
     "article": {
@@ -1245,48 +1073,6 @@
     "target_focus_name": "Homestead & Off-Grid Tech",
     "status": "held"
   },
-  "https://www.statnews.com/2026/08/20/capricor-deramiocel-duchenne-muscular-dystrophy-rare-disease-studies-decisions/?utm_campaign=rss": {
-    "article": {
-      "id": "https://www.statnews.com/2026/08/20/capricor-deramiocel-duchenne-muscular-dystrophy-rare-disease-studies-decisions/?utm_campaign=rss",
-      "url": "https://www.statnews.com/2026/08/20/capricor-deramiocel-duchenne-muscular-dystrophy-rare-disease-studies-decisions/?utm_campaign=rss",
-      "title": "[STAT News] Opinion: Capricor\u2019s Duchenne muscular dystrophy drug and the countless tiny decisions that can make or break a study",
-      "content_html": "<img src=\"https://www.statnews.com/wp-content/uploads/2026/08/AdobeStock_2103075570-645x645.jpeg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.statnews.com%2F2026%2F08%2F20%2Fcapricor-deramiocel-duchenne-muscular-dystrophy-rare-disease-studies-decisions%2F%3Futm_campaign%3Drss\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n\u201cRegulatory flexibility can be exercised in rare disease without sacrificing rigor,\u201d writes Mindy Leffler, whose son has Duchenne muscular dystrophy.",
-      "summary": "\u201cRegulatory flexibility can be exercised in rare disease without sacrificing rigor,\u201d writes Mindy Leffler, whose son has Duchenne muscular dystrophy.",
-      "_excerpt": "\u201cRegulatory flexibility can be exercised in rare disease without sacrificing rigor,\u201d writes Mindy Leffler, whose son has Duchenne muscular dystrophy.",
-      "date_published": "2026-08-20T08:30:00+00:00",
-      "authors": [
-        {
-          "name": "STAT News",
-          "url": "https://www.statnews.com"
-        }
-      ],
-      "ai_score": 65,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 87,
-      "_composite_podcast": 58,
-      "_keyword_matches": 0,
-      "_category": "wellness",
-      "_source_category": "wellness",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://www.statnews.com/wp-content/uploads/2026/08/AdobeStock_2103075570-645x645.jpeg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-21T04:56:14.647179+00:00"
-      },
-      "_boosted_score": 65
-    },
-    "held_date": "2026-08-21",
-    "target_date": "2026-08-22",
-    "target_weekday": 5,
-    "target_focus_slug": "cariboo_local_affairs",
-    "target_focus_name": "Cariboo Local Affairs",
-    "status": "released",
-    "release_date": "2026-08-22"
-  },
   "https://www.nytimes.com/2026/08/20/technology/two-binance-employees-detained-uae.html": {
     "article": {
       "id": "https://www.nytimes.com/2026/08/20/technology/two-binance-employees-detained-uae.html",
@@ -1325,7 +1111,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-08-23"
   },
   "https://www.northernminer.com/aboriginal/brazils-top-court-breaks-indigenous-mining-deadlock/1003894192/": {
     "article": {
@@ -1568,7 +1355,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-08-23"
   },
   "https://www.wired.com/story/new-york-city-lawmakers-push-to-ban-the-scan-at-msg/": {
     "article": {
@@ -1825,7 +1613,8 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-08-23"
   },
   "https://www.motherjones.com/media/2026/08/cant-pay-preschool-teachers-more-try-giving-them-a-free-place-to-live/": {
     "article": {
@@ -1868,6 +1657,379 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
+    "status": "released",
+    "release_date": "2026-08-23"
+  },
+  "https://www.dezeen.com/2026/08/20/studio-barnes-ch-studio-convert-kkk-building-arts-centre-fort-worth/": {
+    "article": {
+      "id": "https://www.dezeen.com/2026/08/20/studio-barnes-ch-studio-convert-kkk-building-arts-centre-fort-worth/",
+      "url": "https://www.dezeen.com/2026/08/20/studio-barnes-ch-studio-convert-kkk-building-arts-centre-fort-worth/",
+      "title": "[Dezeen] Studio Barnes and Ch_studio to convert former KKK building in Texas into arts centre",
+      "content_html": "<img src=\"http://static.dezeen.com/uploads/2026/08/center-for-arts-and-community-healing-fort-worth-texas-studio-barnes-ch-studio_dezeen_2364_sq-2-411x411.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.dezeen.com%2F2026%2F08%2F20%2Fstudio-barnes-ch-studio-convert-kkk-building-arts-centre-fort-worth%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>A team including Studio Barnes and Ch_studio has revealed designs for the 1920s building once used by the white supremacist group the Ku Klux Klan in Fort Worth, Texas, into a \"catalyst for community and restoration\". The 35,000-square-foot (3,251 square metre) building is located between Fort Worth's Historic Northside and downtown area, and its planned</p>\n<p>The post <a href=\"https://www.dezeen.com/2026/08/20/studio-barnes-ch-studio-convert-kkk-building-arts-centre-fort-worth/\">Studio Barnes and Ch_studio to convert former KKK building in Texas into arts centre</a> appeared first on <a href=\"https://www.dezeen.com\">Dezeen</a>.</p>",
+      "summary": "A team including Studio Barnes and Ch_studio has revealed designs for the 1920s building once used by the white supremacist group the Ku Klux Klan in Fort Worth, Texas, into a \"catalyst for community and restoration\". The 35,000-square-foot (3,251 square metre) building is located between Fort",
+      "_excerpt": "A team including Studio Barnes and Ch_studio has revealed designs for the 1920s building once used by the white supremacist group the Ku Klux Klan in Fort Worth, Texas, into a \"catalyst for community and restoration\". The 35,000-square-foot (3,251 square metre) building is located between Fort Worth's Historic Northside and downtown area, and its planned The post Studio Barnes and Ch_studio to convert former KKK building in Texas into arts centre appeared first on Dezeen .",
+      "date_published": "2026-08-20T18:19:06+00:00",
+      "authors": [
+        {
+          "name": "Dezeen",
+          "url": "https://www.dezeen.com"
+        }
+      ],
+      "ai_score": 62,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 89,
+      "_composite_podcast": 78,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "image": "http://static.dezeen.com/uploads/2026/08/center-for-arts-and-community-healing-fort-worth-texas-studio-barnes-ch-studio_dezeen_2364_sq-2-411x411.jpg",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-08-23T04:48:12.806771+00:00"
+      },
+      "_boosted_score": 62
+    },
+    "held_date": "2026-08-23",
+    "target_date": "2026-08-31",
+    "target_weekday": 0,
+    "target_focus_slug": "visual-arts-heritage",
+    "target_focus_name": "Visual Arts & Heritage",
+    "status": "held"
+  },
+  "https://hackaday.com/2026/08/15/scanning-for-lifesigns-with-esp32-and-raspberry-pi-now-open-source/": {
+    "article": {
+      "id": "https://hackaday.com/2026/08/15/scanning-for-lifesigns-with-esp32-and-raspberry-pi-now-open-source/",
+      "url": "https://hackaday.com/2026/08/15/scanning-for-lifesigns-with-esp32-and-raspberry-pi-now-open-source/",
+      "title": "[Hackaday] Scanning for Lifesigns with ESP32 and Raspberry Pi",
+      "content_html": "<img src=\"https://hackaday.com/wp-content/uploads/2026/08/WifiSense-Pi-dashboard-feat.webp\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fhackaday.com%2F2026%2F08%2F15%2Fscanning-for-lifesigns-with-esp32-and-raspberry-pi-now-open-source%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<div><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"362\" src=\"https://hackaday.com/wp-content/uploads/2026/08/WifiSense-Pi-dashboard-feat.webp?w=644\" style=\"margin: 0 auto; margin-bottom: 15px;\" width=\"644\" /></div>It&#8217;s a sci-fi trope that you can &#8216;scan for life signs&#8217; and detect if there are humans &#8212; or suspiciously human-shaped aliens &#8212; present, but in real life it&#8217;s harder <a class=\"read-more\" href=\"https://hackaday.com/2026/08/15/scanning-for-lifesigns-with-esp32-and-raspberry-pi-now-open-source/\">&#8230;read more</a>",
+      "summary": "It\u2019s a sci-fi trope that you can \u2018scan for life signs\u2019 and detect if there are humans \u2014 or suspiciously human-shaped aliens \u2014 present, but in real life it\u2019s harder \u2026read more",
+      "_excerpt": "It\u2019s a sci-fi trope that you can \u2018scan for life signs\u2019 and detect if there are humans \u2014 or suspiciously human-shaped aliens \u2014 present, but in real life it\u2019s harder \u2026read more",
+      "date_published": "2026-08-15T20:00:02+00:00",
+      "authors": [
+        {
+          "name": "Hackaday",
+          "url": "https://hackaday.com"
+        }
+      ],
+      "ai_score": 52,
+      "_quality": 73,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 87,
+      "_composite_podcast": 72,
+      "_keyword_matches": 0,
+      "_category": "homelab",
+      "_source_category": "homelab",
+      "_is_bonus": true,
+      "image": "https://hackaday.com/wp-content/uploads/2026/08/WifiSense-Pi-dashboard-feat.webp",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-08-23T04:48:12.806771+00:00"
+      },
+      "_boosted_score": 52
+    },
+    "held_date": "2026-08-23",
+    "target_date": "2026-08-26",
+    "target_weekday": 2,
+    "target_focus_slug": "homestead-offgrid",
+    "target_focus_name": "Homestead & Off-Grid Tech",
+    "status": "held"
+  },
+  "https://100milefreepress.net/2026/08/15/poor-air-quality-lingers-over-southern-interior-as-wildfires-burn-across-b-c/": {
+    "article": {
+      "id": "https://100milefreepress.net/2026/08/15/poor-air-quality-lingers-over-southern-interior-as-wildfires-burn-across-b-c/",
+      "url": "https://100milefreepress.net/2026/08/15/poor-air-quality-lingers-over-southern-interior-as-wildfires-burn-across-b-c/",
+      "title": "[100 Mile Free Press] Poor air quality lingers over Southern Interior as wildfires burn across B.C.",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2F100milefreepress.net%2F2026%2F08%2F15%2Fpoor-air-quality-lingers-over-southern-interior-as-wildfires-burn-across-b-c%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe warnings are expected to last for the next 24 to 48 hours",
+      "summary": "The warnings are expected to last for the next 24 to 48 hours",
+      "_excerpt": "The warnings are expected to last for the next 24 to 48 hours",
+      "date_published": "2026-08-15T22:31:31+00:00",
+      "authors": [
+        {
+          "name": "100 Mile Free Press",
+          "url": "https://www.100milefreepress.net"
+        }
+      ],
+      "ai_score": 53,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 100,
+      "_composite_podcast": 67,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-08-23T04:48:12.806771+00:00"
+      },
+      "_boosted_score": 53,
+      "_topic_cluster": "B.C. wildfire impacts",
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-08-23",
+    "target_date": "2026-08-28",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "aired_early"
+  },
+  "https://www.theverge.com/gadgets/980275/elektron-model-cycles-model-samples-groovebox-electronic-music-instruments-review": {
+    "article": {
+      "id": "https://www.theverge.com/gadgets/980275/elektron-model-cycles-model-samples-groovebox-electronic-music-instruments-review",
+      "url": "https://www.theverge.com/gadgets/980275/elektron-model-cycles-model-samples-groovebox-electronic-music-instruments-review",
+      "title": "[The Verge] Don&#8217;t overlook Elektron&#8217;s budget electronic music instruments",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.theverge.com%2Fgadgets%2F980275%2Felektron-model-cycles-model-samples-groovebox-electronic-music-instruments-review\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nWhen I'm asked what to buy if you want to get into making electronic music, I often recommend Elektron's budget-minded Model:Samples and Model:Cycles grooveboxes. They don't grab headlines the way Teenage Engineering's gear or the Telepathic Instruments Orchid do, and even compared to the company's higher-end and more niche musical offerings like the Digitakt, Octatrack, [&#8230;]",
+      "summary": "When I'm asked what to buy if you want to get into making electronic music, I often recommend Elektron's budget-minded Model:Samples and Model:Cycles grooveboxes. They don't grab headlines the way Teenage Engineering's gear or the Telepathic Instruments Orchid do, and even compared to the company's",
+      "_excerpt": "When I'm asked what to buy if you want to get into making electronic music, I often recommend Elektron's budget-minded Model:Samples and Model:Cycles grooveboxes. They don't grab headlines the way Teenage Engineering's gear or the Telepathic Instruments Orchid do, and even compared to the company's higher-end and more niche musical offerings like the Digitakt, Octatrack, [\u2026]",
+      "date_published": "2026-08-15T17:00:00+00:00",
+      "authors": [
+        {
+          "name": "The Verge",
+          "url": "https://www.theverge.com"
+        }
+      ],
+      "ai_score": 53,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 76,
+      "_composite_podcast": 66,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Apple News",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-08-23T04:48:12.806771+00:00"
+      },
+      "_boosted_score": 53
+    },
+    "held_date": "2026-08-23",
+    "target_date": "2026-08-24",
+    "target_weekday": 0,
+    "target_focus_slug": "music-performance",
+    "target_focus_name": "Music & Live Performance",
+    "status": "held"
+  },
+  "https://www.techradar.com/pro/security/this-new-malware-can-use-google-passkeys-even-after-a-victim-resets-their-password": {
+    "article": {
+      "id": "https://www.techradar.com/pro/security/this-new-malware-can-use-google-passkeys-even-after-a-victim-resets-their-password",
+      "url": "https://www.techradar.com/pro/security/this-new-malware-can-use-google-passkeys-even-after-a-victim-resets-their-password",
+      "title": "[TechRadar] This new malware can use Google passkeys even after a victim resets their password",
+      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/QGZS7tno9wMKaY7FVBDSNE-1280-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.techradar.com%2Fpro%2Fsecurity%2Fthis-new-malware-can-use-google-passkeys-even-after-a-victim-resets-their-password\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nA newly discovered toolkit can deeply compromise Gmail, Microsoft, Apple, and LinkedIn accounts",
+      "summary": "A newly discovered toolkit can deeply compromise Gmail, Microsoft, Apple, and LinkedIn accounts",
+      "_excerpt": "A newly discovered toolkit can deeply compromise Gmail, Microsoft, Apple, and LinkedIn accounts",
+      "date_published": "2026-08-21T15:05:00+00:00",
+      "authors": [
+        {
+          "name": "TechRadar",
+          "url": "https://www.techradar.com"
+        }
+      ],
+      "ai_score": 61,
+      "_quality": 81,
+      "_relevance": 74,
+      "_local": 0,
+      "_theme_score": 94,
+      "_composite_podcast": 63,
+      "_keyword_matches": 0,
+      "_category": "ai-tech",
+      "_source_category": "ai-tech",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://cdn.mos.cms.futurecdn.net/QGZS7tno9wMKaY7FVBDSNE-1280-80.jpg",
+      "_cross_theme": {
+        "day": "tuesday",
+        "label": "Working Lands & Industry",
+        "shown_at": "2026-08-23T04:48:12.806771+00:00"
+      },
+      "_boosted_score": 18,
+      "_topic_cluster": "Malware targeting accounts",
+      "_cluster_suppressed": true
+    },
+    "held_date": "2026-08-23",
+    "target_date": "2026-09-02",
+    "target_weekday": 2,
+    "target_focus_slug": "digital-life-security",
+    "target_focus_name": "Digital Life & Security",
+    "status": "held"
+  },
+  "https://www.zdnet.com/article/ai-deepfakes-passwords-defense/": {
+    "article": {
+      "id": "https://www.zdnet.com/article/ai-deepfakes-passwords-defense/",
+      "url": "https://www.zdnet.com/article/ai-deepfakes-passwords-defense/",
+      "title": "[ZDNet] A low-tech solution from the past may be your best defense against AI deepfakes",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.zdnet.com%2Farticle%2Fai-deepfakes-passwords-defense%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nAI-enabled identity theft is getting too sophisticated to have predictable tells anymore, so experts recommend answering with a seemingly old-fashioned approach.",
+      "summary": "AI-enabled identity theft is getting too sophisticated to have predictable tells anymore, so experts recommend answering with a seemingly old-fashioned approach.",
+      "_excerpt": "AI-enabled identity theft is getting too sophisticated to have predictable tells anymore, so experts recommend answering with a seemingly old-fashioned approach.",
+      "date_published": "2026-08-21T11:36:51+00:00",
+      "authors": [
+        {
+          "name": "ZDNet",
+          "url": "https://www.zdnet.com"
+        }
+      ],
+      "ai_score": 62,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 81,
+      "_composite_podcast": 58,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-08-23T04:48:12.806771+00:00"
+      },
+      "_boosted_score": 62
+    },
+    "held_date": "2026-08-23",
+    "target_date": "2026-08-26",
+    "target_weekday": 2,
+    "target_focus_slug": "homestead-offgrid",
+    "target_focus_name": "Homestead & Off-Grid Tech",
+    "status": "held"
+  },
+  "https://incognitocat.me/beyond-year-one-our-home-assistant-journey/": {
+    "article": {
+      "id": "https://incognitocat.me/beyond-year-one-our-home-assistant-journey/",
+      "url": "https://incognitocat.me/beyond-year-one-our-home-assistant-journey/",
+      "title": "[Kagi Small Web] Beyond Year One: Our Home Assistant Journey",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fincognitocat.me%2Fbeyond-year-one-our-home-assistant-journey%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nDiscover how moving beyond commercial smart speakers to Home Assistant enables local control, privacy, and endless DIY home automation possibilities.",
+      "summary": "Discover how moving beyond commercial smart speakers to Home Assistant enables local control, privacy, and endless DIY home automation possibilities.",
+      "_excerpt": "Discover how moving beyond commercial smart speakers to Home Assistant enables local control, privacy, and endless DIY home automation possibilities.",
+      "date_published": "2026-08-21T14:52:00+00:00",
+      "authors": [
+        {
+          "name": "Kagi Small Web",
+          "url": "https://kagi.com/smallweb"
+        }
+      ],
+      "ai_score": 61,
+      "_quality": 72,
+      "_relevance": 78,
+      "_local": 0,
+      "_theme_score": 82,
+      "_composite_podcast": 54,
+      "_keyword_matches": 0,
+      "_category": "homelab",
+      "_source_category": "homelab",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "_cross_theme": {
+        "day": "wednesday",
+        "label": "Repair Culture & Practical Tech",
+        "shown_at": "2026-08-23T04:48:12.806771+00:00"
+      },
+      "_boosted_score": 61
+    },
+    "held_date": "2026-08-23",
+    "target_date": "2026-09-02",
+    "target_weekday": 2,
+    "target_focus_slug": "digital-life-security",
+    "target_focus_name": "Digital Life & Security",
+    "status": "held"
+  },
+  "https://www.xda-developers.com/i-added-multigig-for-one-unnecessary-upgrade-and-it-exposed-every-bottleneck-in-my-home-lab/": {
+    "article": {
+      "id": "https://www.xda-developers.com/i-added-multigig-for-one-unnecessary-upgrade-and-it-exposed-every-bottleneck-in-my-home-lab/",
+      "url": "https://www.xda-developers.com/i-added-multigig-for-one-unnecessary-upgrade-and-it-exposed-every-bottleneck-in-my-home-lab/",
+      "title": "[XDA Developers] I thought my NAS drives were the bottleneck, but 2.5GbE networking proved me wrong",
+      "content_html": "<img src=\"https://static0.xdaimages.com/wordpress/wp-content/uploads/wm/2026/08/img_6023.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.xda-developers.com%2Fi-added-multigig-for-one-unnecessary-upgrade-and-it-exposed-every-bottleneck-in-my-home-lab%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nMulti-gig Ethernet showed me that the bottleneck in my home network doesn't lie within my home lab",
+      "summary": "Multi-gig Ethernet showed me that the bottleneck in my home network doesn't lie within my home lab",
+      "_excerpt": "Multi-gig Ethernet showed me that the bottleneck in my home network doesn't lie within my home lab",
+      "date_published": "2026-08-21T14:00:15+00:00",
+      "authors": [
+        {
+          "name": "XDA Developers",
+          "url": "https://www.xda-developers.com"
+        }
+      ],
+      "ai_score": 61,
+      "_quality": 65,
+      "_relevance": 82,
+      "_local": 0,
+      "_theme_score": 80,
+      "_composite_podcast": 54,
+      "_keyword_matches": 0,
+      "_category": "homelab",
+      "_source_category": "homelab",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://static0.xdaimages.com/wordpress/wp-content/uploads/wm/2026/08/img_6023.jpg",
+      "_cross_theme": {
+        "day": "tuesday",
+        "label": "Working Lands & Industry",
+        "shown_at": "2026-08-23T04:48:12.806771+00:00"
+      },
+      "_boosted_score": 61
+    },
+    "held_date": "2026-08-23",
+    "target_date": "2026-08-26",
+    "target_weekday": 2,
+    "target_focus_slug": "homestead-offgrid",
+    "target_focus_name": "Homestead & Off-Grid Tech",
+    "status": "held"
+  },
+  "https://thewalrus.ca/alberta-separatists-culture/": {
+    "article": {
+      "id": "https://thewalrus.ca/alberta-separatists-culture/",
+      "url": "https://thewalrus.ca/alberta-separatists-culture/",
+      "title": "Alberta Separatists Forgot to Build a Culture | The Walrus",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fthewalrus.ca%2Falberta-separatists-culture%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nEven for a symbolic identity, which necessarily omits a lot\u2014look up the North American range of sugar maples some time\u2014this is exceptionally delusional. For a start, it omits Indigenous peoples entirely (which is, at least, mostly consistent with both the Canadian and separatist mindset, I suppose).",
+      "summary": "Even for a symbolic identity, which necessarily omits a lot\u2014look up the North American range of sugar maples some time\u2014this is exceptionally delusional. For a start, it omits Indigenous peoples entirely (which is, at least, mostly consistent with both the Canadian and separatist mindset, I suppose).",
+      "_excerpt": "Even for a symbolic identity, which necessarily omits a lot\u2014look up the North American range of sugar maples some time\u2014this is exceptionally delusional. For a start, it omits Indigenous peoples entirely (which is, at least, mostly consistent with both the Canadian and separatist mindset, I suppose).",
+      "date_published": "2026-08-16T04:42:24.132717+00:00",
+      "authors": [
+        {
+          "name": "The Walrus",
+          "url": "https://thewalrus.ca"
+        }
+      ],
+      "ai_score": 57,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 47,
+      "_composite_podcast": 49,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Apple News+",
+      "_cross_theme": {
+        "day": "thursday",
+        "label": "Indigenous Lands & Innovation",
+        "shown_at": "2026-08-23T04:48:12.806771+00:00"
+      },
+      "_boosted_score": 57
+    },
+    "held_date": "2026-08-23",
+    "target_date": "2026-08-27",
+    "target_weekday": 3,
+    "target_focus_slug": "language-culture",
+    "target_focus_name": "Language & Culture",
     "status": "held"
   }
 }
