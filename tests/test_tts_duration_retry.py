@@ -270,3 +270,27 @@ class TestOpenAITTSModelSelection:
         pg.generate_tts_for_segment(TEXT, "casey", str(tmp_path / "seg.mp3"))
 
         assert client.audio.speech.calls == 2
+
+
+class TestSpeechRateFit:
+    """The 369ms/word fit is tts-1's. Borrowing it is allowed, silently isn't."""
+
+    def test_fitted_model_uses_its_own_row_and_stays_quiet(self, monkeypatch):
+        recorded = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: recorded.append(name))
+        monkeypatch.setattr(pg, "OPENAI_TTS_MODEL", "tts-1")
+        monkeypatch.setattr(pg, "_borrowed_fit_reported", False)
+
+        assert pg._speech_rate_fit() == (369, 642)
+        assert recorded == []
+
+    def test_unfitted_model_borrows_and_says_so_once(self, monkeypatch):
+        recorded = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: recorded.append(name))
+        monkeypatch.setattr(pg, "OPENAI_TTS_MODEL", "gpt-4o-mini-tts")
+        monkeypatch.setattr(pg, "_borrowed_fit_reported", False)
+
+        assert pg._speech_rate_fit() == (369, 642)
+        assert pg._speech_rate_fit() == (369, 642)
+        # Once, not once per segment — degrade() concatenates repeat details.
+        assert recorded == ["render/borrowed-speech-rate"]

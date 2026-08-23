@@ -441,17 +441,25 @@ into `episode.quality`. It is advisory: nothing blocks on it.
 
 **OpenAI (default):** `nova` (Riley) + `echo` (Casey), per-segment synthesis, parallel rendering. Each segment is checked against `_expected_speech_ms` (`369 ms/word − 642 ms`, speed-normalised — fitted to the 688 segments of the ten episodes rendered 2026-08-13..22, whose transcript sidecars carry each segment's real duration) and re-synthesized once below 0.80 of it. **Refit those constants against the sidecars rather than assuming a rate:** the flat 400 ms/word they replace described nothing the show has produced and re-rendered ~14 complete segments a night, each retry landing within 2% of the take it was doubting.
 
-`OPENAI_TTS_MODEL` selects the model, defaulting to `tts-1`. The legacy pair
-(`tts-1`, `tts-1-hd`) honours the per-host `speed` multiplier from `hosts.json`;
-the steerable models (`gpt-4o-mini-tts`) instead take an `instructions` string,
-which is what `hosts.json`'s long-dormant `voice_instructions` was written for —
-it was authored, wired through `get_voice_instructions_for_host`, imported, and
-never called, because `tts-1` has no parameter to send it to. **On a steerable
-model `speed` is not sent** (it is accepted and reported ignored), so pace rides
-in the instructions text and `_expected_speech_ms` estimates at 1.0 — sending a
-multiplier the audio never had would silently move the 0.80 floor on every
-segment. **The fitted constants are tts-1's**: switching models means refitting
-against that model's own sidecars before the duration checksum means anything.
+`OPENAI_TTS_MODEL` selects the model, defaulting to **`gpt-4o-mini-tts`**; roll
+back with `OPENAI_TTS_MODEL=tts-1`. The legacy pair (`tts-1`, `tts-1-hd`) honours
+the per-host `speed` multiplier from `hosts.json`; the steerable models take an
+`instructions` string instead, which is what `hosts.json`'s long-dormant
+`voice_instructions` was written for — it was authored, wired through
+`get_voice_instructions_for_host`, imported, and never called, because `tts-1`
+has no parameter to send it to. **On a steerable model `speed` is not sent** (it
+is accepted and reported ignored), so pace rides in the instructions text and
+`_expected_speech_ms` estimates at 1.0 — sending a multiplier the audio never
+had would silently move the 0.80 floor on every segment.
+
+**The fitted constants are tts-1's.** `_SPEECH_RATE_FITS` is keyed by model and
+only `tts-1` has a measured row; anything else borrows it and `_speech_rate_fit`
+raises `render/borrowed-speech-rate` once per run, so the report says the
+word-omission check is uncalibrated rather than implying it passed. Add the row
+once a model has its own sidecars — pair `podcasts/video_timeline_*.json` turn
+durations against the script's turns in order and refit `ms/word` and intercept.
+Until then expect the retry rate to be wrong in one direction or the other; a
+mis-sized floor costs a re-render, which is why borrowing beats skipping.
 
 #### Per-take checksums
 

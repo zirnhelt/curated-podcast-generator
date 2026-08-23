@@ -512,14 +512,41 @@ COLD_OPEN_MODEL = os.getenv("CLAUDE_COLD_OPEN_MODEL", "claude-sonnet-5")
 # natural-language direction over tone, accent and pace, which is the delivery
 # lever the OpenAI path has never had (config/hosts.json has carried
 # voice_instructions for both hosts all along, with nothing to send it to).
-#
-# Default stays tts-1 deliberately: _expected_speech_ms's constants were fitted
-# to 688 tts-1 segments, and a different model is a different speech rate. Set
-# OPENAI_TTS_MODEL=gpt-4o-mini-tts, render, then refit against the new sidecars
-# before making it the default.
-OPENAI_TTS_MODEL = os.getenv("OPENAI_TTS_MODEL", "tts-1")
+# Roll back with OPENAI_TTS_MODEL=tts-1; the whole request shape switches with it.
+OPENAI_TTS_MODEL = os.getenv("OPENAI_TTS_MODEL", "gpt-4o-mini-tts")
 # The legacy pair, identified by what they lack: no `instructions`, working `speed`.
 _LEGACY_OPENAI_TTS = {"tts-1", "tts-1-hd"}
+
+# Fitted speech-rate constants per TTS model: (ms per word, intercept ms).
+# Only tts-1's row is measured — 688 segments across the ten episodes of
+# 2026-08-13..22. A model with no row of its own borrows that fit and says so
+# once in the run report, because a speech rate is a property of the model and
+# nobody has measured this one yet. Borrowed is the right default rather than
+# no check at all: a mis-sized floor costs a re-render, a missing floor ships
+# a half-spoken line. Add a row here once real sidecars exist for the model.
+_SPEECH_RATE_FITS = {
+    "tts-1": (369, 642),
+    "tts-1-hd": (369, 642),
+}
+_BORROWED_SPEECH_RATE_FIT = _SPEECH_RATE_FITS["tts-1"]
+_borrowed_fit_reported = False
+
+
+def _speech_rate_fit() -> tuple[int, int]:
+    """(ms/word, intercept) for the active model, degrading once if borrowed."""
+    global _borrowed_fit_reported
+    fit = _SPEECH_RATE_FITS.get(OPENAI_TTS_MODEL)
+    if fit:
+        return fit
+    if not _borrowed_fit_reported:
+        _borrowed_fit_reported = True
+        degrade(
+            "render/borrowed-speech-rate",
+            f"duration checksum running on tts-1's fit for {OPENAI_TTS_MODEL} — "
+            "word-omission retries are uncalibrated until this model is fitted",
+        )
+    return _BORROWED_SPEECH_RATE_FIT
+
 
 # Threshold: escalate polish+factcheck to Opus when the deep dive had fewer
 # than this many source articles.  Thin sourcing means the generator had more
@@ -7342,10 +7369,9 @@ def _expected_speech_ms(words: int, speed: float) -> float:
 
     Measured, not assumed: the 688 host segments of the ten episodes rendered
     2026-08-13..22 (each transcript sidecar carries its segment's real measured
-    duration) fit `369 ms/word - 642 ms`, speed-normalised. Those segments were
-    all rendered on tts-1 — a different OPENAI_TTS_MODEL is a different speech
-    rate, so refit against that model's own sidecars before trusting the 0.80
-    floor on it. The flat 400 ms/word this replaces described no segment the
+    duration) fit `369 ms/word - 642 ms`, speed-normalised. That fit is tts-1's;
+    _speech_rate_fit picks the active model's row and reports when it had to
+    borrow one. The flat 400 ms/word this replaces described no segment the
     show has ever produced — short lines run nearer 280 ms/word because they
     carry no sentence-final pauses — so the 0.80 checksum below fired on 20% of
     every episode's segments, ~14 a night, and re-synthesized each one. The
@@ -7353,7 +7379,8 @@ def _expected_speech_ms(words: int, speed: float) -> float:
     complete read looks like twice. On the fitted estimate the same 0.80 floor
     flags 2.2%, and still catches 93% of a 30% word loss and every 50% one.
     """
-    return (words * 369 - 642) / speed
+    ms_per_word, intercept = _speech_rate_fit()
+    return (words * ms_per_word - intercept) / speed
 
 
 def _generate_host_line(context: str, host: str) -> str:

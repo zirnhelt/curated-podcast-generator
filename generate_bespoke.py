@@ -772,7 +772,7 @@ def generate_tts_segment(text, speaker, output_file, hosts):
         clean = clean.replace(word, alias)
     # Same knob as the daily pipeline (podcast_generator.OPENAI_TTS_MODEL); the
     # steerable models take delivery direction instead of a speed multiplier.
-    model = os.getenv("OPENAI_TTS_MODEL", "tts-1")
+    model = os.getenv("OPENAI_TTS_MODEL", "gpt-4o-mini-tts")
     request = {"model": model, "voice": voice}
     if model in ("tts-1", "tts-1-hd"):
         request["speed"] = 1.0
