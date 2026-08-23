@@ -1,5 +1,12 @@
 [
   {
+    "date": "2026-08-23",
+    "title": "Episode Review — Cariboo Signals, August 23, 2026",
+    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-08-23.html",
+    "content_html": "<p><em>What the pipeline did, what broke, and what it chose when something broke.</em></p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Primary (1:05 AM Pacific)</td><td>2026-08-23T08:40:07Z</td><td>+35 min</td><td>failure</td></tr>\n<tr><td>Fallback 1 (2:05 AM Pacific)</td><td>2026-08-23T09:27:23Z</td><td>+22 min</td><td>failure</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific)</td><td>2026-08-23T10:30:12Z</td><td>+25 min</td><td>in_progress</td></tr>\n</tbody>\n</table>",
+    "published": "2026-08-23T10:33:30+00:00"
+  },
+  {
     "date": "2026-08-22",
     "title": "Episode Review — Cariboo Signals, August 22, 2026",
     "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-08-22.html",

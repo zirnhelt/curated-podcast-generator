@@ -5,7 +5,24 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Sat, 22 Aug 2026 10:30:45 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 23 Aug 2026 10:33:30 +0000</lastBuildDate>
+    <item>
+      <title>Episode Review — Cariboo Signals, August 23, 2026</title>
+      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-08-23.html</link>
+      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-08-23.html</guid>
+      <pubDate>Sun, 23 Aug 2026 10:33:30 +0000</pubDate>
+      <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3&gt;The day's triggers&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Primary (1:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-08-23T08:40:07Z&lt;/td&gt;&lt;td&gt;+35 min&lt;/td&gt;&lt;td&gt;failure&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 1 (2:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-08-23T09:27:23Z&lt;/td&gt;&lt;td&gt;+22 min&lt;/td&gt;&lt;td&gt;failure&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-08-23T10:30:12Z&lt;/td&gt;&lt;td&gt;+25 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
     <item>
       <title>Episode Review — Cariboo Signals, August 22, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-08-22.html</link>
