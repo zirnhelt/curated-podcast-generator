@@ -2149,12 +2149,44 @@ class TestGenerateMetaMomentText:
         generate_meta_moment_text("- Tighten news roundup transitions")
 
         prompt = client.messages.create.call_args.kwargs["messages"][0]["content"]
-        assert "4-6 turn" in prompt
-        assert "150-220 words" in prompt
+        assert "8-12 turn" in prompt
+        assert "320-400 words" in prompt
         assert "edits to Riley and Casey themselves" in prompt
         assert "existential irony" in prompt
         assert "wry, not distressed" in prompt
         assert "- Tighten news roundup transitions" in prompt
+
+    def test_prompt_asks_for_depth_over_a_longer_list(self, monkeypatch):
+        # More airtime has to buy fuller treatment of a few changes, not a
+        # longer roll-call — the same floor rule the news roundup runs on.
+        client = self._client_returning(self._DIALOGUE)
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
+        generate_meta_moment_text("- Some change")
+
+        prompt = client.messages.create.call_args.kwargs["messages"][0]["content"]
+        assert "3-4 most listener-noticeable changes" in prompt
+        assert "cut, not compressed" in prompt
+
+    def test_prompt_keeps_the_self_awareness_bounded(self, monkeypatch):
+        # The irony is a running joke the hosts are in on. Unbounded, a prompt
+        # this self-referential drifts into distress on a show that has to hand
+        # off to a community spotlight thirty seconds later.
+        client = self._client_returning(self._DIALOGUE)
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
+        generate_meta_moment_text("- Some change")
+
+        prompt = client.messages.create.call_args.kwargs["messages"][0]["content"]
+        assert "no way to tell from the inside" in prompt
+        assert "never belabour it" in prompt
+        assert "never let it curdle into unease" in prompt
+
+    def test_max_tokens_covers_the_word_target(self, monkeypatch):
+        # 450 tokens capped the segment below its own 320-400 word floor.
+        client = self._client_returning(self._DIALOGUE)
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
+        generate_meta_moment_text("- Some change")
+
+        assert client.messages.create.call_args.kwargs["max_tokens"] >= 800
 
 
 class TestStaleFramingAlerts:
@@ -3389,6 +3421,12 @@ class TestAudioStageCrossBoundary:
         pg, script, captured = self._prepare(tmp_path, monkeypatch, brave_used=False)
         pg.run_audio_stage(script_path=script)
         assert captured["brave_used"] is False
+
+    def test_weather_unused_stays_false(self, tmp_path, monkeypatch):
+        pg, script, captured = self._prepare(tmp_path, monkeypatch, brave_used=False,
+                                             weather_used=False)
+        pg.run_audio_stage(script_path=script)
+        assert captured["weather_used"] is False
 
     def test_theme_recovered_from_header(self, tmp_path, monkeypatch):
         pg, script, captured = self._prepare(tmp_path, monkeypatch, brave_used=False)

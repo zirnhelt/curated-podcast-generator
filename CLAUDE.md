@@ -441,6 +441,31 @@ into `episode.quality`. It is advisory: nothing blocks on it.
 
 **OpenAI (default):** `nova` (Riley) + `echo` (Casey), per-segment synthesis, parallel rendering. Each segment is checked against `_expected_speech_ms` (`369 ms/word − 642 ms`, speed-normalised — fitted to the 688 segments of the ten episodes rendered 2026-08-13..22, whose transcript sidecars carry each segment's real duration) and re-synthesized once below 0.80 of it. **Refit those constants against the sidecars rather than assuming a rate:** the flat 400 ms/word they replace described nothing the show has produced and re-rendered ~14 complete segments a night, each retry landing within 2% of the take it was doubting.
 
+#### Per-take checksums
+
+Every take is checked twice before it joins the mix, because a bad take is not
+distinguishable from a good one by the fact that the API returned 200.
+
+- **Duration** (`generate_tts_for_segment`): a ratio under 0.80 against `_expected_speech_ms`
+  means words were dropped. Retry once, keep the longer take.
+- **Amplitude** (`_is_silent_take`): a take can come back well-formed, the right length for
+  its text, and **completely silent** — 2026-08-16 shipped 27 s of digital silence in the
+  middle of the deep dive. Nothing downstream caught it: `trim_tts_silence` returns an
+  entirely silent clip untouched at full length *by design*, `normalize_segment` leaves zeros
+  as zeros, and the duration ratio was ~1.0 because the length was right. Peak level is the
+  only signal that separates the two. Retry once; two silent takes raise `SilentTakeError`.
+
+**A turn that will not render is cut, never shipped as silence** — keeping it produces dead
+air of exactly the same length, which is worse to listen to and invisible in every duration
+the pipeline records. The caller drops the chunk and calls `degrade("render/silent-take")`,
+so the words are missing from the audio but the run report names them. The music overlap is
+tracked as a `pending_overlap_ms` rather than keyed on `i == 0`, so dropping the turn that
+would have opened a section hands the overlap to whichever turn actually starts it instead
+of leaving the music to fade out into a gap.
+
+The same check runs on whole-section (Gemini/Azure) renders, where it raises into the
+existing per-section OpenAI fallback — a silent section is this failure minutes wide.
+
 **Azure Neural TTS (optional, `USE_AZURE_TTS=1`):** Multi-Talker model for coherent prosody across speaker transitions. SSML with `<phoneme>` IPA tags for Cariboo place names. 8,000-char conservative SSML chunk limit. Set `AZURE_TTS_PARALLEL=1` to generate both providers for comparison.
 
 **Gemini multi-speaker TTS (optional, `USE_GEMINI_TTS=1`, wins over Azure):** `gemini_tts.py` renders each section's whole two-host conversation in one `generateContent` call (NotebookLM-style prosody) via REST — needs `GEMINI_API_KEY`; `GEMINI_TTS_MODEL` overrides the default flash model. A style prompt plus whitelisted `(cue)` stage directions live in `config/prompts.json` under `gemini_tts`; the polish pass only adds cues when Gemini is active, and the OpenAI/Azure paths strip them. Credits on every surface resolve through `get_active_tts_provider()` — the provider that actually rendered the audio wins (an OpenAI fallback is credited as OpenAI). Compare providers with `python evaluate_tts.py`.
