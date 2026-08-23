@@ -1,44 +1,4 @@
 {
-  "2026-07-18": {
-    "timestamp": 1784368810.850686,
-    "topics": [
-      "[The Verge] Florida man arrested for allegedly stealing over",
-      "[Williams Lake Tribune] UPDATE: Fiftynine Creek wildfire gro",
-      "[CFJC Today Kamloops] \u2018We\u2019re not going to forget our veteran",
-      "[ScienceDaily] Sun-like star caught after eating one of its ",
-      "[ScienceAlert] International Group of Researchers Says We're",
-      "[Quesnel Cariboo Observer] Severe thunderstorm warning in ef",
-      "[Williams Lake Tribune] 2-phase art installation coming to C",
-      "[Williams Lake Tribune] 2 wildfires north of Anahim Lake cur"
-    ],
-    "themes": [
-      "rural development",
-      "environmental impact"
-    ],
-    "date": "2026-07-18"
-  },
-  "2026-07-19": {
-    "timestamp": 1784456141.092273,
-    "topics": [
-      "[ScienceDaily] Your fingers may hold a secret of human brain",
-      "[New Atlas] Once-daily LDL cholesterol-smashing pill gets FD",
-      "[ScienceAlert] Bad News: All This Summer Sun Likely Won't Fi",
-      "[Boing Boing] New monkey: so rare only 8 of 52 nearby villag",
-      "[WIRED] Pete Hegseth\u2019s Plan for \u2018High T\u2019 Troops Is a Junk-Sc",
-      "[New Atlas] Why nature has never evolved a perfect weapon fo",
-      "[ScienceDaily] Koalas nearly went extinct before humans arri",
-      "[New Atlas] Hidden chemistry of nuclear fallout glimpsed in "
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "connectivity"
-    ],
-    "date": "2026-07-19",
-    "focus": "sky-cosmos",
-    "focus_name": "Sky & Cosmos"
-  },
   "2026-07-20": {
     "timestamp": 1784546486.613319,
     "topics": [
@@ -705,5 +665,26 @@
     "date": "2026-08-22",
     "focus": null,
     "focus_name": null
+  },
+  "2026-08-23": {
+    "timestamp": 1787496728.160515,
+    "topics": [
+      "A couple of fences took brunt of single vehicle crash in 100",
+      "[Williams Lake Tribune] Divisions within B.C. Conservative c",
+      "[Williams Lake Tribune] Okanagan protesters spread awareness",
+      "[100 Mile Free Press] Poor air quality lingers over Southern",
+      "[Tom's Hardware] Peer-reviewed study of 443,000 Backblaze ha",
+      "[Engadget] What the world's oldest telecommunications compan",
+      "[ScienceAlert] Large Hadron Collider Reveals an Atomic Nucle",
+      "[Nautilus] You\u2019re Not a Universal Mosquito Magnet"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "connectivity"
+    ],
+    "date": "2026-08-23",
+    "focus": "living-world",
+    "focus_name": "The Living World"
   }
 }

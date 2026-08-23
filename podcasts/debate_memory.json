@@ -1,30 +1,4 @@
 {
-  "2026-05-24": {
-    "timestamp": 1779621853.997231,
-    "date": "2026-05-24",
-    "theme": "Science, Wonder & the Natural World",
-    "central_question": "How can biodiversity monitoring infrastructure be built in the Cariboo to detect ecological changes while protecting Indigenous data sovereignty and ensuring findings actually influence resource decisions?",
-    "riley_position": "Citizen science platforms like iNaturalist can efficiently capture biodiversity data from people already working the land, and practical solutions exist (dissolved oxygen sensors, multi-stakeholder tables) if communities decide to deploy them.",
-    "riley_key_evidence": [
-      "Ptilotus senarius rediscovered in Australia through iNaturalist after 60 years of presumed extinction",
-      "Dissolved oxygen sensors are affordable (few thousand dollars) and solvable instrumentation problems",
-      "Community Futures Cariboo-Chilcotin has precedent for convening neutral multi-stakeholder tables on resource questions"
-    ],
-    "casey_position": "Data collection without clear governance architecture and control by affected communities risks serving external institutions rather than protecting territories, and attention to ecological wonder must be paired with structural justice to justify monitoring.",
-    "casey_key_evidence": [
-      "Parakneria thysi waterfall-climbing behavior was unknown to science but existed in local community knowledge, which was systematically excluded from institutional resource decisions",
-      "DFO stock assessments privilege certain data types and exclude T\u015dilhqot'in oral traditions despite Supreme Court title recognition",
-      "Horsefly River sockeye crashes are unexplained partly because continuous oxygen data doesn't exist, yet sensor deployment requires prior governance agreement"
-    ],
-    "resolution": "They converged on agreement that both wonder (what motivates looking) and governance structure (what makes looking matter) must develop simultaneously, and that the practical starting point is a single multi-stakeholder conversation between ranchers, Indigenous nations, and DFO to identify what each party knows about watershed conditions before any new infrastructure.",
-    "topics_covered": [
-      "Data sovereignty and Indigenous knowledge governance in monitoring systems",
-      "iNaturalist and citizen science as infrastructure for biodiversity observation",
-      "River dissolved oxygen decline and salmon habitat degradation in the Cariboo",
-      "Epistemic authority: what counts as evidence in resource management decisions",
-      "Multi-stakeholder convening as a pathway to integrated monitoring and decision-making"
-    ]
-  },
   "2026-05-25": {
     "timestamp": 1779726892.163881,
     "date": "2026-05-25",
@@ -2327,6 +2301,34 @@
       "Range tenure renewal and provincial decision-making processes",
       "Market consolidation in cattle and forest products industries",
       "Local procurement policy as untested governance tool"
+    ]
+  },
+  "2026-08-23": {
+    "timestamp": 1787496730.14909,
+    "date": "2026-08-23",
+    "theme": "Science, Wonder & the Natural World",
+    "focus": "living-world",
+    "anchor": "tech-sadness",
+    "central_question": "Does patient, long-term scientific work offer a fundamentally different and more sustainable relationship to purpose than venture-driven tech work?",
+    "riley_position": "Patient science has built-in survivability through institutional design and produces durable objects (findings, data) that persist independent of funding cycles, unlike tech work whose output often disappears when companies pivot or shut down.",
+    "riley_key_evidence": [
+      "CERN's multi-billion-dollar collider program builds durability through decade-long research timelines, not quarterly earnings pressure",
+      "Rockefeller University's mosquito research and UC Riverside's independent replication represent stable institutional backing without product-launch timelines",
+      "Scout Island's volunteer-run programs have maintained continuity for years without depending on single grant cycles or champion staff members"
+    ],
+    "casey_position": "Scientific institutions face the same fragility as tech companies when funding gets contested, and the real distinction isn't institutional stability but rather the durability of the objects produced and whether findings survive independent of their funding sources.",
+    "casey_key_evidence": [
+      "NIH funding gets contested every political cycle and observatories lose mid-decade funding when budget committees decide science isn't glamorous enough",
+      "Tech workers' code only exists inside company platforms and gets deprecated/deleted when products sunset, whereas a nucleus shape remains true regardless of board decisions",
+      "The gap between 'we understand the mechanism' and 'here's a product that works' is where public disappointment with science tends to live"
+    ],
+    "resolution": "They converged on a partial agreement: the real distinction is the durability of the object produced rather than funding stability alone, and Scout Island exemplifies a sustainable model by being small enough that burnout doesn't collapse the entire program and honest about its actual scope rather than overselling mission-driven narratives.",
+    "topics_covered": [
+      "The communications work versus scientific work distinction in physics headlines (bowling pin metaphor)",
+      "Replication and validation across independent research labs (mosquito attraction studies)",
+      "The gap between theoretical understanding and practical application in science",
+      "Structural differences between venture-backed tech timelines and long-baseline scientific research programs",
+      "Community-scale science infrastructure and volunteer continuity as an alternative sustainability model"
     ]
   }
 }
