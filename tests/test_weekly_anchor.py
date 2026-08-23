@@ -187,9 +187,15 @@ class TestNoRepetition:
         assert "id-1" in [c["id"] for c in eligible]
 
     def test_consecutive_weeks_never_repeat_a_question_or_dimension(self):
-        """Walk the real seeded pool for its full length."""
+        """Walk the real seeded pool for its full length.
+
+        Length comes from the config, not a literal: a seed added to top the
+        pool up must be walked too, or it is shipped untested.
+        """
+        from config_loader import load_weekly_anchors_config
+
         seen_q, seen_dim = set(), set()
-        for i in range(11):
+        for i in range(len(load_weekly_anchors_config()["pool"])):
             monday = date(2026, 8, 17) + timedelta(weeks=i)
             anchor = wa.select_anchor(monday, client=None)
             assert anchor is not None, f"pool ran dry at week {i}"
@@ -350,7 +356,7 @@ class TestPromptSurface:
     def test_block_carries_the_drop_it_escape_hatch(self):
         """The single guard against seven days of manufactured connections."""
         block = wa.format_anchor_for_prompt(self.ANCHOR, 1, "Working Lands & Industry")
-        assert "DOES NOT GENUINELY REACH THE QUESTION, DROP IT COMPLETELY" in block
+        assert "DOES NOT REACH THE QUESTION, DROP IT COMPLETELY" in block
 
     def test_block_is_padded_so_the_template_reads_the_same_either_way(self):
         block = wa.format_anchor_for_prompt(self.ANCHOR, 1, "Working Lands & Industry")

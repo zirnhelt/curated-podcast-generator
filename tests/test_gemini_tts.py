@@ -110,10 +110,27 @@ class TestBuildPayload:
         prompt = _build_payload(SEGS)["contents"][0]["parts"][0]["text"]
         assert "CONTEXT" not in prompt
 
-    def test_context_tail_prepended_before_transcript(self):
-        prompt = _build_payload(SEGS, context_tail="Casey: ...earlier line.")["contents"][0]["parts"][0]["text"]
-        assert "already spoken" in prompt
-        assert prompt.index("earlier line") < prompt.index("Riley: ")
+    def test_continuation_note_prepended_before_transcript(self):
+        prompt = _build_payload(SEGS, continuing=True)["contents"][0]["parts"][0]["text"]
+        assert gemini_tts.CONTINUATION_NOTE in prompt
+        assert prompt.index(gemini_tts.CONTINUATION_NOTE) < prompt.index("Riley: ")
+
+    def test_continuation_note_carries_no_quotable_dialogue(self):
+        """Regression (2026-08-17): the cold open aired twice.
+
+        This block used to be the previous section's verbatim transcript,
+        labelled 'do not repeat'. Gemini read it aloud, so the welcome section
+        opened by re-speaking the whole cold open. Anything speakable here is a
+        candidate for synthesis, so the note must be a directive only — nothing
+        a listener could recognise as a line from the show.
+        """
+        prompt = _build_payload(SEGS, continuing=True)["contents"][0]["parts"][0]["text"]
+        # The only speaker-tagged lines in the prompt are this call's own turns.
+        assert prompt.count("Riley: ") == 1
+        assert prompt.count("Casey: ") == 1
+        # `continuing` is a flag, so there is no channel for prior text at all.
+        with pytest.raises(TypeError):
+            _build_payload(SEGS, context_tail="Casey: ...earlier line.")
 
 
 class TestRetryLadderShape:
@@ -122,9 +139,9 @@ class TestRetryLadderShape:
     question cannot fix it (2026-08-05: two reseeded attempts, identical 272
     tokens)."""
 
-    def _prompt(self, rung, context_tail="Casey: ...earlier line."):
+    def _prompt(self, rung, continuing=True):
         segs = [{"speaker": "casey", "text": "(wry) Sure it will.", "gap_ms": None}]
-        return _build_payload(segs, context_tail=context_tail, rung=rung)["contents"][0]["parts"][0]["text"]
+        return _build_payload(segs, continuing=continuing, rung=rung)["contents"][0]["parts"][0]["text"]
 
     def test_first_rung_is_the_full_quality_request(self):
         rung = gemini_tts.RETRY_LADDER[0]
@@ -512,10 +529,10 @@ class TestTransportFailureRouting:
         """An unanswered request carries no verdict on its own wording."""
         calls = self._timeouts(monkeypatch)
         with pytest.raises(Exception):
-            _synthesize_chunk(SEGS, context_tail="earlier in the show")
-        # Every call keeps the full-quality shape: the context tail, the style
-        # prompt and the cues all survive.
-        assert all("earlier in the show" in prompt for _, prompt in calls)
+            _synthesize_chunk(SEGS, continuing=True)
+        # Every call keeps the full-quality shape: the continuation note, the
+        # style prompt and the cues all survive.
+        assert all(gemini_tts.CONTINUATION_NOTE in prompt for _, prompt in calls)
         style = gemini_tts._style_prompt()
         assert style and all(style in prompt for _, prompt in calls)
 
@@ -548,10 +565,10 @@ class TestTransportFailureRouting:
 
         monkeypatch.setattr(gemini_tts.requests, "post", fake_post)
         with pytest.raises(RuntimeError, match="no audio"):
-            _synthesize_chunk(SEGS, context_tail="earlier in the show")
+            _synthesize_chunk(SEGS, continuing=True)
         assert len(seen) == len(gemini_tts.RETRY_LADDER)
-        assert "earlier in the show" in seen[0]
-        assert "earlier in the show" not in seen[1]  # rung 1 sheds the context
+        assert gemini_tts.CONTINUATION_NOTE in seen[0]
+        assert gemini_tts.CONTINUATION_NOTE not in seen[1]  # rung 1 sheds the context
 
     def test_connection_error_routed_like_a_timeout(self, monkeypatch):
         """A dropped connection is just as silent as a timeout."""
@@ -687,7 +704,9 @@ class TestCanary:
         self._patch(monkeypatch, responder)
         assert gemini_tts.canary() == gemini_tts.GEMINI_TTS_FALLBACK_MODEL
         assert gemini_tts._model_override == gemini_tts.GEMINI_TTS_FALLBACK_MODEL
-        assert len(seen) == 2
+        # The primary is re-asked once — a dropped connection is a verdict on
+        # nothing — and the fallback answers first time.
+        assert len(seen) == gemini_tts.CANARY_ATTEMPTS + 1
 
     def test_returns_none_when_no_model_answers(self, monkeypatch):
         def responder(*args, **kwargs):
@@ -701,7 +720,7 @@ class TestCanary:
         monkeypatch.delenv("GEMINI_API_KEY", raising=False)
         assert gemini_tts.canary() is None
 
-    def test_canary_is_one_call_per_model_not_a_full_ladder(self, monkeypatch):
+    def test_canary_is_a_probe_per_model_not_a_full_ladder(self, monkeypatch):
         """The probe answers 'is Gemini up', so it must stay cheap — climbing the
         whole ladder twice would cost minutes before a single word is rendered."""
         calls = []
@@ -712,7 +731,37 @@ class TestCanary:
 
         self._patch(monkeypatch, responder)
         gemini_tts.canary()
-        assert len(calls) == 2  # primary once, fallback once
+        assert len(calls) == 2 * gemini_tts.CANARY_ATTEMPTS
+        assert gemini_tts.CANARY_ATTEMPTS <= 2  # still a probe, not a ladder
+
+    def test_a_rejected_request_is_not_re_asked(self, monkeypatch):
+        """Re-asking is for a request that went unanswered. A model that
+        answered with a rejection will reject the identical probe again, and
+        every attempt spent here delays the render."""
+        calls = []
+
+        def responder(*args, **kwargs):
+            calls.append(1)
+            return TestSynthesizeRetries._FakeResp({"candidates": [{"finishReason": "OTHER"}]})
+
+        self._patch(monkeypatch, responder)
+        assert gemini_tts.canary() is None
+        assert len(calls) == 2  # each model asked once, then given up on
+
+    def test_a_read_timeout_is_re_asked_before_the_episode_leaves_gemini(self, monkeypatch):
+        """Every canary failure of the week of 2026-08-17 was a read timeout,
+        and the 2026-08-13 probe measured 8 of 15 identical calls answering."""
+        calls = []
+
+        def responder(*args, **kwargs):
+            calls.append(1)
+            if len(calls) == 1:
+                raise gemini_tts.requests.Timeout("read timed out")
+            return TestSynthesizeRetries._FakeResp(TestSynthesizeRetries.AUDIO_RESPONSE)
+
+        self._patch(monkeypatch, responder)
+        assert gemini_tts.canary() == gemini_tts.GEMINI_TTS_MODEL
+        assert len(calls) == 2
 
     def test_canary_uses_a_short_read_timeout(self, monkeypatch):
         seen = []
@@ -739,7 +788,7 @@ class TestSectionGeneration:
     def test_writes_wav_and_chunks_long_sections(self, monkeypatch, tmp_path):
         calls = []
 
-        def fake_synthesize(chunk, context_tail=""):
+        def fake_synthesize(chunk, continuing=False):
             calls.append(chunk)
             return b"\x00\x00" * 2400, 24_000  # 100 ms of silence
 
@@ -763,14 +812,13 @@ class TestSectionGeneration:
             assert wav.getframerate() == 24_000
             assert wav.getnframes() > 0
 
-    def test_context_tail_threads_across_chunks_and_sections(self, monkeypatch, tmp_path):
-        """Each chunk after the first gets the previous chunk's transcript tail,
-        the first chunk gets the caller-supplied context_tail, and the section's
-        own trailing transcript is returned for the next section to use."""
-        received_tails = []
+    def test_continuation_flag_threads_across_chunks_and_sections(self, monkeypatch, tmp_path):
+        """The first chunk of the episode's first section starts cold; every
+        chunk after it, and every later section, opens mid-flow."""
+        received = []
 
-        def fake_synthesize(chunk, context_tail=""):
-            received_tails.append(context_tail)
+        def fake_synthesize(chunk, continuing=False):
+            received.append(continuing)
             return b"\x00\x00" * 2400, 24_000
 
         monkeypatch.setattr(gemini_tts, "_synthesize_chunk", fake_synthesize)
@@ -782,13 +830,25 @@ class TestSectionGeneration:
         ]
 
         out = tmp_path / "section.wav"
-        returned_tail = generate_gemini_tts_for_section(segments, out, context_tail="prior section context")
+        returned = generate_gemini_tts_for_section(segments, out)
 
-        assert len(received_tails) > 1
-        assert received_tails[0] == "prior section context"
-        # Every later chunk is primed with non-empty context from the one before it
-        assert all(t for t in received_tails[1:])
-        assert returned_tail and len(returned_tail) <= gemini_tts.CONTEXT_TAIL_CHARS
+        assert len(received) > 1
+        assert received[0] is False          # episode's first audio, nothing before it
+        assert all(received[1:])             # later chunks continue
+        # The caller feeds this straight into the next section's call.
+        assert returned is True
+
+    def test_first_section_flag_is_honoured(self, monkeypatch, tmp_path):
+        received = []
+
+        def fake_synthesize(chunk, continuing=False):
+            received.append(continuing)
+            return b"\x00\x00" * 2400, 24_000
+
+        monkeypatch.setattr(gemini_tts, "_synthesize_chunk", fake_synthesize)
+        segments = [{"speaker": "riley", "text": "Short.", "gap_ms": None}]
+        generate_gemini_tts_for_section(segments, tmp_path / "s.wav", continuing=True)
+        assert received == [True]
 
 
 class TestEvaluateScriptLoader:

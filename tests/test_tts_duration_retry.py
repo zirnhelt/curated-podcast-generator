@@ -98,7 +98,7 @@ def _patch_tts_deps(monkeypatch):
 
 class TestTTSDurationRetry:
     def test_full_length_take_does_not_retry(self, monkeypatch, tmp_path):
-        # 20 words * 400ms/word = 8000ms expected; deliver exactly that.
+        # Comfortably above _expected_speech_ms for 20 words; no retry.
         client = FakeClient([8000])
         monkeypatch.setattr(pg, "get_openai_client", lambda: client)
 

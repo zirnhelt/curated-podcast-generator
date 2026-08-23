@@ -69,10 +69,24 @@ GEMINI_TTS_TEMPERATURE = float(os.getenv("GEMINI_TTS_TEMPERATURE", "0.35"))
 # sections are split at speaker-turn boundaries.
 TRANSCRIPT_CHAR_LIMIT = 8_500
 
-# Chars of the previous chunk/section's transcript carried forward as
-# already-spoken context so the next call continues in the same voice
-# instead of resampling delivery from a cold start.
-CONTEXT_TAIL_CHARS = 400
+# Continuity note for a chunk/section that is not the episode's first, so the
+# next call opens mid-flow instead of resampling delivery from a cold start.
+#
+# This used to be the previous section's *verbatim* transcript tail (400 chars),
+# labelled "CONTEXT — already spoken immediately before this, do not repeat".
+# Handing a TTS model a block of real dialogue and asking it not to say the
+# words is a request it honours only most of the time: on 2026-08-17 the welcome
+# section read the whole cold open aloud before its own first line, so the
+# episode opened with the teaser twice — 92.8 s of audio for a 969-char
+# transcript that six prior Gemini episodes had rendered in 65–76 s, an excess
+# matching the 25.5 s cold open. Same prompt shape, same pro model, and six of
+# seven days were clean, so there is no wording that makes this safe: the fix is
+# to stop putting speakable text in the prompt that is not meant to be spoken.
+# Never reintroduce verbatim prior dialogue here.
+CONTINUATION_NOTE = (
+    "This continues a conversation already in progress. Open mid-flow at the "
+    "same energy as an episode already underway, with no fresh introduction."
+)
 
 # Fail-fast ceiling — no single section should ever approach this; hitting it
 # means a parsing bug upstream, not a long section. Raise instead of spending.
@@ -178,6 +192,9 @@ _degradations: list[str] = []
 # request that has not answered in 30 s is not going to answer.
 CANARY_READ_TIMEOUT = 30
 CANARY_RETRY_DELAY_S = 10
+# Attempts per candidate model, but only against a request that went
+# unanswered — see _canary_probe.
+CANARY_ATTEMPTS = 2
 CANARY_SEGMENTS = [{"speaker": "riley", "text": "Level check, one two.", "gap_ms": None}]
 
 
@@ -218,7 +235,7 @@ def build_transcript(segments: list[dict], keep_cues: bool = True) -> str:
 
 def _build_payload(
     segments: list[dict],
-    context_tail: str = "",
+    continuing: bool = False,
     rung: _Rung = RETRY_LADDER[0],
     seed: int | None = None,
 ) -> dict:
@@ -234,10 +251,9 @@ def _build_payload(
     transcript = build_transcript(segments, keep_cues=rung.keep_cues)
     style = _style_prompt() if rung.keep_style else ""
     names = " and ".join(_display_name(s) for s in speakers)
+    # A directive, never quotable dialogue — see CONTINUATION_NOTE.
     context = (
-        f"CONTEXT — already spoken immediately before this, do not repeat, "
-        f"continue in the exact same voice and energy:\n{context_tail}\n\n"
-        if context_tail and rung.keep_context else ""
+        f"{CONTINUATION_NOTE}\n\n" if continuing and rung.keep_context else ""
     )
     # A one-turn section (the cold open is usually a single host) is not a
     # conversation, and asking for one between a single named person is a
@@ -384,7 +400,7 @@ def _next_model_rung(after: int, failed_model: str) -> int | None:
 
 def _attempt(
     segments: list[dict],
-    context_tail: str,
+    continuing: bool,
     rung: _Rung,
     seed: int,
     read_timeout: int,
@@ -395,7 +411,7 @@ def _attempt(
         raise ValueError("GEMINI_API_KEY not set")
 
     model = _model_for(rung)
-    payload = _build_payload(segments, context_tail, rung=rung, seed=seed)
+    payload = _build_payload(segments, continuing, rung=rung, seed=seed)
     prompt_chars = len(payload["contents"][0]["parts"][0]["text"])
     _log_speech_config(payload["generationConfig"]["speechConfig"])
 
@@ -450,7 +466,7 @@ def _attempt(
 
 def _synthesize_chunk(
     segments: list[dict],
-    context_tail: str = "",
+    continuing: bool = False,
     budget_s: float | None = None,
 ) -> tuple[bytes, int]:
     """Climb RETRY_LADDER until a rung yields audio. Returns (pcm, sample_rate).
@@ -465,7 +481,7 @@ def _synthesize_chunk(
     # an oversized request means a parsing bug upstream, not a transient fault,
     # so it must fail fast rather than be retried through minutes of backoff.
     prompt_chars = len(
-        _build_payload(segments, context_tail)["contents"][0]["parts"][0]["text"]
+        _build_payload(segments, continuing)["contents"][0]["parts"][0]["text"]
     )
     if prompt_chars > MAX_REQUEST_CHARS:
         raise RuntimeError(
@@ -505,7 +521,7 @@ def _synthesize_chunk(
             # 3/3 identical responses). Attempt 0 keeps the configured seed for
             # normal-case voice consistency; only retries perturb it.
             pcm, sample_rate = _attempt(
-                segments, context_tail, rung,
+                segments, continuing, rung,
                 seed=GEMINI_TTS_SEED + attempt,
                 read_timeout=REQUEST_READ_TIMEOUT,
             )
@@ -546,6 +562,35 @@ def _synthesize_chunk(
     raise last_error or RuntimeError("Gemini TTS exhausted its retry ladder")
 
 
+def _canary_probe(model: str) -> bool:
+    """Whether *model* answers one tiny synthesis, re-asking an unanswered one.
+
+    The ladder's own rule (see _is_transport_failure) applied to the probe: a
+    rejection is a verdict on the request and re-asking it is waste, but a read
+    timeout is a verdict on nothing. Every canary failure of the week of
+    2026-08-17 was a read timeout, and the 2026-08-13 probe measured 8 of 15
+    identical calls answering — so the old single attempt was a coin flip whose
+    losing side moved a whole episode onto OpenAI's voices. Two flips cost at
+    most one extra tiny synthesis and CANARY_RETRY_DELAY_S against a 1500 s
+    render budget.
+    """
+    for attempt in range(CANARY_ATTEMPTS):
+        if attempt:
+            time.sleep(CANARY_RETRY_DELAY_S)
+        try:
+            _attempt(
+                CANARY_SEGMENTS, "", RETRY_LADDER[0],
+                seed=GEMINI_TTS_SEED,
+                read_timeout=CANARY_READ_TIMEOUT,
+            )
+            return True
+        except Exception as e:
+            print(f"  ⚠️  Gemini TTS canary failed on {model}: {e}")
+            if not _is_transport_failure(e):
+                return False
+    return False
+
+
 def canary() -> str | None:
     """Model that answers a tiny synthesis right now, or None if Gemini is unusable.
 
@@ -573,14 +618,7 @@ def canary() -> str | None:
         # Pin the candidate for the probe itself, so _attempt calls the model
         # being tested rather than the ladder's default.
         set_model_override(model)
-        try:
-            _attempt(
-                CANARY_SEGMENTS, "", RETRY_LADDER[0],
-                seed=GEMINI_TTS_SEED,
-                read_timeout=CANARY_READ_TIMEOUT,
-            )
-        except Exception as e:
-            print(f"  ⚠️  Gemini TTS canary failed on {model}: {e}")
+        if not _canary_probe(model):
             continue
 
         # Passing on the primary leaves the override clear, so a section that
@@ -623,27 +661,29 @@ def _duration_check(pcm: bytes, sample_rate: int, segments: list[dict]) -> None:
 
 
 def generate_gemini_tts_for_section(
-    segments: list[dict], output_file: str | Path, context_tail: str = ""
-) -> str:
+    segments: list[dict], output_file: str | Path, continuing: bool = False
+) -> bool:
     """High-level entry: transcript build → synthesize → write WAV to output_file.
 
     Handles transcript character-limit chunking automatically; chunks are
-    concatenated with a short silence between them. `context_tail` carries
-    already-spoken text from the previous section into the first chunk here,
-    so delivery continues rather than resampling cold; each subsequent chunk
-    gets the previous chunk's tail the same way. Returns this section's own
-    trailing transcript text for the caller to pass into the *next* section.
+    concatenated with a short silence between them. `continuing` tells this call
+    that speech has already aired, so delivery opens mid-flow rather than
+    resampling cold; every chunk after the first is a continuation by
+    definition. Returns True for the caller to pass into the *next* section.
+
+    It is deliberately a flag and not the previous section's text: carrying the
+    text is what made the 2026-08-17 welcome read the cold open aloud (see
+    CONTINUATION_NOTE).
     """
     chunks = _split_segments_by_char_limit(segments, limit=TRANSCRIPT_CHAR_LIMIT)
 
     pcm_parts: list[bytes] = []
     sample_rate = DEFAULT_SAMPLE_RATE
-    tail = context_tail
     for chunk in chunks:
-        pcm, sample_rate = _synthesize_chunk(chunk, tail)
+        pcm, sample_rate = _synthesize_chunk(chunk, continuing)
         _duration_check(pcm, sample_rate, chunk)
         pcm_parts.append(pcm)
-        tail = build_transcript(chunk)[-CONTEXT_TAIL_CHARS:]
+        continuing = True
 
     gap = b"\x00" * int(sample_rate * SAMPLE_WIDTH_BYTES * INTER_CHUNK_GAP_MS / 1000)
     audio = gap.join(pcm_parts)
@@ -654,4 +694,4 @@ def generate_gemini_tts_for_section(
         wav.setframerate(sample_rate)
         wav.writeframes(audio)
 
-    return tail
+    return True

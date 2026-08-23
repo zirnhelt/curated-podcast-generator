@@ -114,9 +114,11 @@ the script file's `#` header instead, read back by `read_script_metadata`:
   filename (`_episode_paths`).
 - **`# Brave:`** — gates one sentence in the spoken credits. Scripts predating this header
   degrade to `no`.
-- **`# Weather:`** — gates the spoken Open-Meteo credit the same way. The weather sweep is a
-  non-critical segment, so a fetch failure means the episode has no weather in it and must
-  not credit a source it never read. Scripts predating this header degrade to `no`.
+- **`# Weather:`** — gates the spoken weather-provider credit. The weather check is read on
+  air in the welcome, and the episode description had credited Open-Meteo since the segment
+  existed while the spoken credits never did (2026-08-17). Gated on the flag rather than on
+  config, because on a day the fetch fails there is no weather segment to credit. Scripts
+  predating this header degrade to `no`.
 - **`# Anchor:`** — the week's anchor question, which is named on air and appears in the
   episode description. Whitespace-collapsed to one line, since the header parser reads one
   key per line. Scripts predating this header degrade to `None`.
@@ -204,6 +206,7 @@ history, and a truncated `podcast-feed.xml` breaks every podcast client at once.
 - `psa_rotation_state.json` — Round-robin PSA org rotation state
 - `article_holding.json` — Super-cycle holding pen + aired-early callback ledger
 - `weekly_anchor_state.json` — This week's pinned anchor question + the no-repeat ledger (ids forever, dimensions for 26 weeks)
+- `phrase_ledger.json` — 21-episode rolling phrase-frequency window + the burned list
 
 ### Configuration System (`config_loader.py`)
 
@@ -216,6 +219,7 @@ All content is externalized to `config/` JSON files; loaders are LRU-cached (sin
 | `themes.json` | 7 rotating daily themes (Mon–Sun), keywords, editorial lenses |
 | `super_cycles.json` | Multi-week focus rotations within each daily theme (slug, keywords, lens per focus) |
 | `weekly_anchors.json` | Seeded pool of weekly anchor questions (question, dimension, premise, optional `pin_week`) |
+| `ai_tells.json` | Hard-banned phrases, `score_script`'s regex families, phrase-ledger tuning, rhythm budget |
 | `prompts.json` | All Claude prompt templates (~100 KB, cached in one call) |
 | `interests.txt` | Article relevance scoring rubric (primary/secondary/avoid) |
 | `blocklist.json` | Excluded domains and keywords |
@@ -230,8 +234,19 @@ Seven rotating daily themes indexed by weekday (0=Mon):
 - 2 Wed: Gear, Gadgets & Practical Tech
 - 3 Thu: Indigenous Lands & Innovation
 - 4 Fri: Wild Spaces & Outdoor Life
-- 5 Sat: Cariboo Local Affairs (longer episode, 15 articles)
+- 5 Sat: Cariboo Local Affairs (longer episode, 15 articles) — the one **geographic** theme (`geographic: true`), defined by where a story is rather than what it is about
 - 6 Sun: Science, Wonder & the Natural World
+
+**The geographic theme.** Saturday is the only theme defined by *where* a story is rather than
+what it is about, flagged `geographic: true` with its place names listed in `place_keywords`.
+Every other theme can let place names carry theme relevance; this one cannot, because every
+candidate in its pool is local by construction — a place-name hit is a constant, not a
+discriminator. `_build_theme_subject_keywords` strips the places (and the theme name, which
+contributes a place and the bare word `local`) and leaves the civic vocabulary — `council`,
+`bylaw`, `zoning`, `budget`, `referendum` — which is what ranks the deep dive and what gates the
+roundup's `theme` block. Ranking on locality picked whichever local story named the most towns:
+on 2026-08-22 that was a softwood-duty story, a ranching award and a Tyson beef-plant closure,
+and the debate that came out of them was a Working Lands debate on a civic-affairs day.
 
 ### News Roundup Curation (`_annotate_roundup_blocks`, `_curate_roundup_pool`)
 
@@ -269,6 +284,16 @@ be read out at a sentence apiece; one of them given real airtime is worth more t
 mentioned. It reserves its slot before the tail spends the budget, and yields it when the
 protected arc alone fills the segment.
 
+**No single discipline cluster may take more than `ROUNDUP_CLUSTER_MAX` (3) slots**, and that
+holds whether or not the pool is over the cap. On 2026-08-22 the Cariboo Local Affairs roundup
+sat exactly at its cap of 15 and still ran a seven-story US pharma and health-policy cluster
+against two local stories and one theme story — which had qualified on the word "local"
+("Scientists Saw Strange Spots on Local Fish"). Nothing bounded one field's share of a segment,
+so the cap alone let the day's identity be decided by whatever the feed happened to be heavy in.
+A cluster is kept adjacent so the back half plays as a mini-arc; past three it stops being an arc
+and becomes what the episode is about. The overflow is dropped, never compressed — dropped
+articles never reach citations, so dedup lets them resurface on a better-matched day.
+
 Two prompt rules carry the rest: **NO HEADLINE CRAWL** (never stack unrelated stories into one
 host turn as one-sentence mentions) and **DO NOT MANUFACTURE CONNECTIONS** — an abstract bridge
 that could join *any* two stories ("from one contested piece of land to another", "whoever
@@ -282,7 +307,14 @@ Each daily theme (except Saturday, deliberately uncycled) rotates through a mult
 
 - **Selection:** the deep dive prefers focus-matching articles; a thin focus week (<3 matches) degrades to plain theme selection (logged `focus_fallback`). The focus lens is appended to the theme lens in the script prompt.
 - **Subtlety:** the focus is deliberately unannounced on air — it shapes selection and emphasis only. Hosts name and acknowledge the weekday theme, never a rotating sub-theme; every focus-derived prompt block carries a do-not-announce instruction.
-- **Article holding (`route_articles_for_focus`):** off-theme, non-urgent articles matching an upcoming focus within 14 days are held in `podcasts/article_holding.json` and released (flagged `_held_from`, framed as "earlier this week") on their focus day. Urgent ones (`_boosted_score ≥ 85`) air same-day in the bonus bucket (never deep-dive) and are remembered in the aired-early ledger for an on-air callback when their focus day arrives. Holding never shrinks the pool below the roundup + deep-dive budget.
+- **Article holding (`route_articles_for_focus`):** off-theme, non-urgent articles matching an upcoming day within 14 days are held in `podcasts/article_holding.json` and released (flagged `_held_from`, framed as "earlier this week") on that day. Urgent ones (`_boosted_score ≥ 85`) air same-day in the bonus bucket (never deep-dive) and are remembered in the aired-early ledger for an on-air callback when their day arrives. Holding never shrinks the pool below the roundup + deep-dive budget, and **never holds a local story** — local news is the most time-sensitive material in the pool and geography is orthogonal to the rotation (`_is_local_article`, shared with the roundup's `local` block).
+  - **Both buckets are routed.** The hold loop used to iterate `theme_articles` alone — the one bucket that by definition holds nothing off-theme. Off-theme material arrives in `bonus_articles`: 72 of it against 8 theme articles on 2026-08-17, so nothing was ever eligible and Monday's roundup aired a PLA-brittleness piece that scored two hits on Wednesday's Maker & Repair focus keywords — enough for the old focus-only matcher, which never saw it.
+  - **A slot matches on its theme keywords OR its focus keywords**, and `get_upcoming_day_slots` emits a slot for every upcoming day. Focus-only matching missed whole categories: forestry is a Tuesday theme keyword every week but only reaches a Tuesday slot on the weeks the rotation sits on Forestry, so the 2026-08-17 lumber-tariffs opinion piece scored 0 focus hits on all 14 upcoming days (3 against Tuesday's theme) and had nowhere to go. The theme is the day's standing identity; the focus only narrows it.
+  - **Keyword sets that gate a decision are strict** (`_build_strict_theme_keywords`): theme-name words plus the explicit config keywords, never the description prose. `_build_theme_keywords` folds every word of the description in, which is fine for *ranking* — an extra fuzzy hit only moves an article up a list — and wrong for a gate. Saturday's description contributed `that`, `shape`, `everyday` and `life`, so nothing in the pool could read as weak on today's theme and the router had 42 keywords to match a slot on.
+  - **A geographic day is never a routing target** (`_is_geographic_theme`, themes.json `geographic: true`). Cariboo Local Affairs is defined by *where* a story is; every other theme is defined by what it is about. Geography is decided by `_is_local_article`, which also exempts local stories from holding, so the day has no import channel to fill and every match it wins is a false one. Its keyword list took the bare word `local` literally: five articles were waiting for 2026-08-22 — New York's housing shortage, a Brooklyn ADU that "follows local and zoning laws", two US drug-pricing pieces, and "8 local AI models that run great on 8GB of VRAM". Two of them aired.
+  - **A local story that belongs to another day airs today and defers its deep dive.** It is never held — local news stays the most time-sensitive material in the pool — but when it carries none of today's *subject* keywords and answers an upcoming day's theme, it gets `_no_deep_dive` and an aired-early ledger entry so the callback lands on the day whose question it actually answers. On 2026-08-22 the Cariboo Local Affairs deep dive ran on softwood duties, a ranching award and a Tyson beef-plant closure — Tuesday's episode, aired on Saturday and spent for the week by dedup, because every one of them is local and locality was the whole score.
+  - **`_no_deep_dive` is now read.** It was written by the router and read by nothing: `_ensure_deep_dive_substance` was free to swap back into the deep dive exactly what the router kept out of it. `select_deep_dive_from_feed` holds flagged articles back, and restores them only below `DEEP_DIVE_ELIGIBLE_FLOOR` (2) — a debate with no sources is a worse failure than a debate one day early.
+
 - **Repeat-topic guard (`format_prior_coverage_for_prompt`):** local word-overlap check of deep-dive titles against recent episode topics and debate questions; on a match, hosts are instructed to acknowledge the earlier discussion and center what's new. Evolving-story context carries the same instruction.
 
 ### Weekly Anchor Questions (`weekly_anchor.py`, `config/weekly_anchors.json`)
@@ -326,16 +358,95 @@ an editorial idea and the reason to listen more than one day a week.
   fallback here must append to `_degradations`** or it will not reach the run report.
 - Preview the schedule without spending or writing state: `python weekly_anchor.py --preview 12`.
 
+### Voice and AI Tells (`config/ai_tells.json`, `podcasts/phrase_ledger.json`)
+
+Two mechanisms, because the obvious one had already failed. `script_generation_system`
+banned `"[X] is carrying a lot of weight in that sentence"` verbatim for a long time and the
+phrase still shipped; `genuinely` reached 146 uses across 30 episodes (~5/episode) without any
+single script looking unusual. A longer prose ban list is not the fix, and `score_script`
+counting hits into a JSON nobody reads is not enforcement.
+
+**The corpus is one file.** `config/ai_tells.json` holds `hard_banned`, the regex `patterns`
+and `soft_patterns` that `score_script` scans, the `ledger` tuning and the `rhythm` budget.
+`score_script` falls back to `_FALLBACK_TELL_PATTERNS` when the file is missing — a style file
+must never be able to fail a run. **A new pattern family goes in `soft_patterns` unless the
+extra Opus escalation is intended and costed:** `soft_patterns` are reported but excluded from
+`total_hits`, which gates `OPUS_QUALITY_HIT_THRESHOLD`. Adding two families to `patterns` took
+Opus escalation from 2/30 episodes to 5/30 before they were moved.
+
+#### The prompt was teaching the tic
+
+`genuinely` appeared **44 times in `prompts.json` prose** and 146 times in the scripts;
+`directly` 31 and 94; `actually` 26 and 405. The model copies its instructions' register, so
+the ban and the example sat in the same file. All 44 are gone (deleting the adverb never
+changed an instruction's meaning) and `tests/test_ai_tells.py` fails if a hard-banned phrase
+reappears in prompt prose outside a quoted ban example. **Check the burned list before writing
+prompt copy** — the fastest way to install a new tic is to use it in the instructions.
+
+#### The ledger — the back catalogue as the ban list
+
+`update_phrase_ledger` folds each finished script into a 21-episode window and promotes
+anything spiking. Nobody predicted `genuinely`, and nobody should have to predict its
+successor: `quietly` (31x/16 episodes) surfaced on its own.
+
+Three filters decide what may be burned, and each exists because the unfiltered version
+produced garbage on a backfill of the real 30-episode catalogue:
+
+- **Adverbs only** (`unigram_mode`). Content words are subject matter — a news show says
+  "story", "region" and "question" constantly and must keep doing so. Raw frequency burned all
+  three. The generated register lives in stance adverbs.
+- **Proper nouns never counted.** An n-gram containing a capitalized non-sentence-initial token
+  is skipped, so "Williams Lake" and "Cariboo Regional District" can never be burned.
+- **`min_repetition_ratio`** (count/episodes ≥ 2). Boilerplate is said once per episode, every
+  episode; a tic recurs inside one. This is what keeps the show's own welcome copy
+  ("impact our rural communities", 21x/21 episodes) off the list without parsing sections.
+
+**`ngram_sizes` is `[1]` deliberately.** On the backfill, every multi-word phrase clearing the
+thresholds was either basic English ("it's a", "rather than") or subject matter ("fire season"),
+and banning those in the prompt would damage the script. Division of labour: the ledger
+machine-detects the adverb register; multi-word tics are what a human notices, and
+`hard_banned` is the channel for naming them.
+
+Promotion requires `phrase in counts` — the window aggregate still holds a phrase for weeks
+after the show stops saying it, so promoting off the aggregate alone re-fired daily, reset
+`clean_streak`, and nothing could ever retire. A phrase retires after
+`retire_after_clean_episodes` clean episodes, which frees the slot for whatever replaced it.
+Idempotent on date, so a re-render never double-counts its own episode.
+
+#### Enforcement
+
+`format_burned_phrases_for_prompt()` renders the block into the **dynamic** user prompt
+(never the cached system prompt — it changes daily and would defeat the cache), the expand
+retry, the cold open and both polish paths. `config_loader.format_static_tell_block()` carries
+the config-only half so `generate_bespoke.py` can use it without importing the pipeline — the
+same reason `atomic_write_text` lives there. Bespoke built its own prompt and inherited none of
+this until then.
+
+`script/tell-scrub` runs **after** `script/cold-open`, deliberately: `generate_cold_open` runs
+after every polish pass, so the teaser is the one part of the episode nothing else cleans, and
+it is the first thing a listener hears. It sends only the offending sentences to `SCRUB_MODEL`
+(Haiku) — a few hundred tokens, against 3,400 words for a re-polish. A rewrite is spliced only
+if it is clean and the original still matches verbatim; anything else keeps the original and
+`degrade()`s, so a bad rewrite can never be worse than the tic.
+
+#### The rhythm budget
+
+The vocabulary is half of it. 47 words per turn, 53 em-dashes an episode and every turn a
+finished paragraph is a fingerprint on its own. The system prompt's `**RHYTHM**` section asks
+for what the show should sound like — short turns, one flat unhedged statement, a disagreement
+allowed to not resolve — and `score_rhythm` measures exactly those, reporting `over_budget`
+into `episode.quality`. It is advisory: nothing blocks on it.
+
 ### TTS Providers
 
-**OpenAI (default):** `nova` (Riley) + `echo` (Casey), per-segment synthesis, parallel rendering.
+**OpenAI (default):** `nova` (Riley) + `echo` (Casey), per-segment synthesis, parallel rendering. Each segment is checked against `_expected_speech_ms` (`369 ms/word − 642 ms`, speed-normalised — fitted to the 688 segments of the ten episodes rendered 2026-08-13..22, whose transcript sidecars carry each segment's real duration) and re-synthesized once below 0.80 of it. **Refit those constants against the sidecars rather than assuming a rate:** the flat 400 ms/word they replace described nothing the show has produced and re-rendered ~14 complete segments a night, each retry landing within 2% of the take it was doubting.
 
 #### Per-take checksums
 
 Every take is checked twice before it joins the mix, because a bad take is not
 distinguishable from a good one by the fact that the API returned 200.
 
-- **Duration** (`generate_tts_for_segment`): a ratio under 0.80 against the ~150 wpm estimate
+- **Duration** (`generate_tts_for_segment`): a ratio under 0.80 against `_expected_speech_ms`
   means words were dropped. Retry once, keep the longer take.
 - **Amplitude** (`_is_silent_take`): a take can come back well-formed, the right length for
   its text, and **completely silent** — 2026-08-16 shipped 27 s of digital silence in the
@@ -363,7 +474,7 @@ existing per-section OpenAI fallback — a silent section is this failure minute
 
 An episode is 6–9 independent Gemini calls, so per-call reliability compounds — in the week of 2026-08-01, seven of seven episodes fell back to OpenAI at or before the welcome section, and three shipped a Gemini cold open with an OpenAI show. Four mechanisms exist to stop that, in the order they fire:
 
-- **Canary (`gemini_tts.canary()`).** One tiny throwaway synthesis before any audio exists, run from `generate_audio_from_script`. It decides the provider for the whole episode: a failed canary pins OpenAI up front, which is what makes a mixed-voice episode *unrepresentable* rather than merely unlikely. It probes the fallback model too, and pins it only if the primary is the one that's down.
+- **Canary (`gemini_tts.canary()`).** One tiny throwaway synthesis before any audio exists, run from `generate_audio_from_script`. It decides the provider for the whole episode: a failed canary pins OpenAI up front, which is what makes a mixed-voice episode *unrepresentable* rather than merely unlikely. It probes the fallback model too, and pins it only if the primary is the one that's down. Each candidate gets `CANARY_ATTEMPTS` probes, but only against a request that went *unanswered* — the same rule `_is_transport_failure` applies to the ladder. Every canary failure of the week of 2026-08-17 was a read timeout against an endpoint the 2026-08-13 probe had measured at 8/15 calls answering, so a single attempt was a coin flip that moved whole episodes onto OpenAI's voices; a rejection is still taken at its word and never re-asked.
 - **Retry ladder (`RETRY_LADDER`).** Each rung changes the *shape* of the request, not just the seed — `finishReason: OTHER` returns `promptTokenCount == totalTokenCount`, i.e. a rejection of what was asked, which reseeding cannot fix. Rungs shed the context tail, then the style prompt, then the cues. Backoff (0/15/45/90/90 s) is sized to outlast the minutes-long capacity windows the old 5 s/10 s ladder always died inside.
 - **Model ladder.** `GEMINI_TTS_FALLBACK_MODEL` (default pro TTS) is tried at rung 3, *before* the primary model with a bare transcript: voices are pinned by `speechConfig` on every rung, so a model change keeps the hosts sounding like themselves while a stripped prompt loses the direction. Pro costs more than flash, which is why it sits behind three primary failures.
 - **Failure-shape routing (`_is_transport_failure`).** The rung order above assumes a *rejection*. A read timeout or dropped connection carries no verdict on the prompt, so on one the ladder goes straight to a rung that changes the model, and when there is none left (`_model_override` pinned one) it re-asks the same full-quality request rather than shedding anything. Prompt-shedding is not a retry strategy for an unanswered request: the two shedding rungs cost 120 s each and pushed the model rungs out of `SECTION_BUDGET_S` entirely — three timeouts spend 120+15+120+45+120 = 420 s, the budget exactly, which is why every August 2026 episode fell back to OpenAI mid-show and no model rung ever ran. The budget still allows three attempts; the change is *what* they ask, not how many there are.
@@ -371,6 +482,12 @@ An episode is 6–9 independent Gemini calls, so per-call reliability compounds 
 - **Budgets.** `SECTION_BUDGET_S` bounds one chunk's ladder; `set_render_deadline()` (called with `GEMINI_RENDER_DEADLINE_S`) bounds all Gemini work in a render, so a provider that dies *after* the canary passed cannot eat the 40-minute render step one section at a time. `_budget_allows` reserves the attempt's own read timeout as well as its backoff, so a retry that cannot finish inside the budget is never started.
 
 **Ordering rule:** degrade delivery nuance before voice identity. Anything that changes *who the hosts sound like* is the last resort, which is why the whole-episode OpenAI decision is made up front rather than drifted into mid-show.
+
+#### Nothing speakable in the prompt that isn't meant to be spoken
+
+Sections used to be primed with the previous section's *verbatim* transcript tail (400 chars) under a `CONTEXT — already spoken immediately before this, do not repeat` header, so delivery continued instead of resampling cold. On 2026-08-17 the welcome section read the entire cold open aloud before its own first line and the episode opened with the teaser twice: 92.8 s of audio for a 969-char transcript, against 65–76 s on the six prior Gemini episodes, an excess matching the 25.5 s cold open.
+
+The prompt shape was the same on all seven days and so was the model, so there is no wording that makes it safe — asking a text-to-speech model not to say words you have handed it is a request it honours most of the time. It is now `continuing: bool` and a fixed `CONTINUATION_NOTE` directive (`gemini_tts`), which carries the same "open mid-flow" intent with nothing quotable in it. **Never reintroduce prior dialogue into a TTS prompt.**
 
 `gemini_tts` cannot import `degrade()` without a circular import, so it records degradations and the render path drains them via `_report_gemini_degradations()`. **A new fallback in `gemini_tts` must append to `_degradations`** or it will not reach the run report.
 

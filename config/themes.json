@@ -32,8 +32,10 @@
   },
   "5": {
     "name": "Cariboo Local Affairs",
+    "geographic": true,
+    "place_keywords": ["Williams Lake", "Quesnel", "100 Mile", "Bella Coola", "Cariboo", "Chilcotin", "Prince George"],
     "description": "Williams Lake council, CRD, SD27, Quesnel, 100 Mile House, Bella Coola — civic decisions, community voices, and local development that shape everyday life in the Cariboo",
-    "keywords": ["Williams Lake", "Quesnel", "100 Mile", "Bella Coola", "Cariboo", "local", "community", "council", "municipal", "CRD", "SD27", "bylaw", "budget", "zoning", "infrastructure", "rural", "small town", "Chilcotin", "Prince George", "development", "housing", "transit", "water", "fire hall", "mayor", "councillor", "public meeting", "referendum"],
+    "keywords": ["Williams Lake", "Quesnel", "100 Mile", "Bella Coola", "Cariboo", "community", "council", "municipal", "CRD", "SD27", "bylaw", "budget", "zoning", "infrastructure", "rural", "small town", "Chilcotin", "Prince George", "development", "housing", "transit", "water", "fire hall", "mayor", "councillor", "public meeting", "referendum"],
     "lens": "Center the Deep Dive on civic decision-making and community voice in specific Cariboo towns — councils, budgets, local development. Keep the lens on local governance and institutions rather than drifting into general technology commentary."
   },
   "6": {

@@ -8,7 +8,7 @@ import podcast_generator as pg
 from config_loader import (
     load_super_cycles_config,
     get_focus_for_day,
-    get_upcoming_focus_slots,
+    get_upcoming_day_slots,
 )
 
 
@@ -46,13 +46,17 @@ class TestFocusForDay:
         focus = get_focus_for_day(1, date(2026, 7, 21))
         assert focus["slug"] and focus["name"] and focus["keywords"] and focus["lens"]
 
-    def test_upcoming_slots_exclude_today_and_saturday(self):
+    def test_upcoming_slots_exclude_today_and_cover_every_day(self):
         d = date(2026, 7, 18)  # Saturday
-        slots = get_upcoming_focus_slots(d, horizon_days=14)
-        assert all(slot_date > d for slot_date, _, _ in slots)
-        assert all(wd != 5 for _, wd, _ in slots)
-        # 14 days minus the two uncycled Saturdays
-        assert len(slots) == 12
+        slots = get_upcoming_day_slots(d, horizon_days=14)
+        assert all(slot_date > d for slot_date, _, _, _ in slots)
+        # Every day in the horizon gets a slot, uncycled Saturdays included:
+        # the daily theme is a holding target even when the rotation has no
+        # focus for that weekday.
+        assert len(slots) == 14
+        assert all(theme for _, _, theme, _ in slots)
+        saturdays = [f for _, wd, _, f in slots if wd == 5]
+        assert saturdays and all(f is None for f in saturdays)
 
 
 # ---------------------------------------------------------------------------
@@ -138,8 +142,8 @@ def _find_saturday_before_focus(slug, max_weeks=6):
     """First Saturday whose 14-day lookahead contains the given focus slug."""
     d = date(2026, 7, 18)  # a Saturday
     for _ in range(max_weeks):
-        for slot_date, _wd, focus in get_upcoming_focus_slots(d, horizon_days=14):
-            if focus["slug"] == slug:
+        for slot_date, _wd, _theme, focus in get_upcoming_day_slots(d, horizon_days=14):
+            if focus and focus["slug"] == slug:
                 return d, slot_date
         d += timedelta(days=7)
     raise AssertionError(f"no Saturday found ahead of focus {slug}")
@@ -261,6 +265,246 @@ class TestArticleHolding:
         )
         copies = [a for a in theme if a.get("url") == "mining-url"]
         assert len(copies) == 1 and "_held_from" not in copies[0]
+
+    # --- Both buckets are routed (2026-08-17 regression) -------------------
+    #
+    # The hold loop used to iterate theme_articles only — the one bucket that by
+    # definition contains nothing off-theme. Monday 2026-08-17 carried 8 theme
+    # articles and 72 bonus ones, so nothing was ever eligible and the roundup
+    # aired a lumber-tariffs piece (Tuesday's theme) and two 3D-printing pieces
+    # (Wednesday's focus) on an Arts & Culture day.
+
+    def test_bonus_bucket_article_is_held_for_its_focus_day(self, holding_env):
+        saturday, mining_day = _find_saturday_before_focus("mining-energy")
+        mining = _article(
+            "Copper mine expansion clears exploration drilling permit",
+            "mining-url", kw=0, boosted=50,
+        )
+        theme, bonus = pg.route_articles_for_focus(
+            _filler_pool(), [mining], saturday, "Cariboo Local Affairs", None
+        )
+        assert all(a["url"] != "mining-url" for a in theme + bonus)
+        entry = pg.load_memory(pg.HOLDING_FILE)["mining-url"]
+        assert entry["status"] == "held"
+        assert entry["target_date"] == mining_day.isoformat()
+
+    def test_kept_bonus_article_stays_in_the_bonus_bucket(self, holding_env):
+        """Routing must not promote an off-theme story into the theme blocks."""
+        saturday = date(2026, 7, 18)
+        misc = _article("A wholly unrelated story about nothing", "misc-url", kw=0)
+        theme, bonus = pg.route_articles_for_focus(
+            _filler_pool(), [misc], saturday, "Cariboo Local Affairs", None
+        )
+        assert any(a["url"] == "misc-url" for a in bonus)
+        assert all(a["url"] != "misc-url" for a in theme)
+
+    def test_held_for_an_upcoming_theme_when_no_focus_matches(self, holding_env):
+        """Forestry is a Tuesday theme keyword every week, but only reaches a
+        Tuesday slot on the weeks the rotation happens to sit on Forestry."""
+        # A week whose Tuesday focus is *not* forestry, so only the theme can match.
+        d = date(2026, 7, 18)
+        for _ in range(6):
+            tuesday = d + timedelta(days=(1 - d.weekday()) % 7 or 7)
+            focus = get_focus_for_day(1, tuesday)
+            if "forestry" not in pg._build_focus_keywords(focus):
+                break
+            d += timedelta(days=7)
+        else:
+            pytest.skip("every upcoming Tuesday sits on the forestry focus")
+
+        lumber = _article(
+            "New lumber tariffs restrict timber imports for sawmill operators",
+            "lumber-url", kw=0, boosted=50,
+        )
+        theme, bonus = pg.route_articles_for_focus(
+            _filler_pool(), [lumber], d, "Arts, Culture & Digital Storytelling", None
+        )
+        assert all(a["url"] != "lumber-url" for a in theme + bonus)
+        entry = pg.load_memory(pg.HOLDING_FILE)["lumber-url"]
+        assert entry["status"] == "held"
+        assert date.fromisoformat(entry["target_date"]).weekday() == 1
+
+    def test_local_story_is_never_held(self, holding_env):
+        """Local news is time-sensitive and geography is orthogonal to the
+        rotation — a Cariboo story opens the show whatever day it matches.
+
+        It does give up its deep-dive claim when it carries none of today's
+        subject matter, but it airs today either way: the ledger entry is a
+        callback, never a hold.
+        """
+        saturday, _ = _find_saturday_before_focus("mining-energy")
+        local_mining = _article(
+            "Williams Lake copper mine expansion clears drilling permit",
+            "local-mining-url", kw=0, boosted=50,
+        )
+        theme, bonus = pg.route_articles_for_focus(
+            _filler_pool(), [local_mining], saturday, "Cariboo Local Affairs", None
+        )
+        assert any(a["url"] == "local-mining-url" for a in theme + bonus)
+        entry = pg.load_memory(pg.HOLDING_FILE).get("local-mining-url")
+        assert entry is None or entry["status"] != "held"
+
+
+# ---------------------------------------------------------------------------
+# The geographic day (2026-08-22)
+#
+# Cariboo Local Affairs is defined by WHERE a story is; every other theme is
+# defined by what it is about. Scoring the two the same way made the word
+# 'local' a theme keyword, so the day imported "8 local AI models that run
+# great on 8GB of VRAM" and a Brooklyn ADU that "follows local and zoning
+# laws", and it made place names the deep dive's ranking signal, so the debate
+# ran on softwood duties and a beef-plant closure — Tuesday's episode.
+# ---------------------------------------------------------------------------
+
+class TestGeographicDay:
+    def test_theme_is_flagged_geographic(self):
+        assert pg._is_geographic_theme("Cariboo Local Affairs")
+        assert not pg._is_geographic_theme("Working Lands & Industry")
+
+    def test_strict_keywords_drop_the_description_prose(self):
+        strict = pg._build_strict_theme_keywords("Cariboo Local Affairs")
+        loose = pg._build_theme_keywords("Cariboo Local Affairs")
+        for junk in ("that", "shape", "everyday", "life"):
+            assert junk in loose, "description folding still expected in the loose set"
+            assert junk not in strict
+
+    def test_subject_keywords_are_civic_not_geographic(self):
+        subject = pg._build_theme_subject_keywords("Cariboo Local Affairs")
+        assert "council" in subject and "bylaw" in subject and "zoning" in subject
+        for place in ("cariboo", "williams lake", "quesnel", "chilcotin"):
+            assert place not in subject
+        # 'local' matched "local AI models" and "Strange Spots on Local Fish"
+        assert "local" not in subject
+
+    def test_topical_theme_subject_keywords_are_unchanged(self):
+        assert (pg._build_theme_subject_keywords("Working Lands & Industry")
+                == pg._build_strict_theme_keywords("Working Lands & Industry"))
+
+    def test_nothing_is_held_for_the_geographic_day(self, holding_env):
+        """Five articles were waiting for 2026-08-22 on the word 'local'."""
+        monday = date(2026, 8, 17)
+        imports = [
+            _article("8 local AI models that run great on 8GB of VRAM or less",
+                     "vram-url", kw=0, boosted=50),
+            _article("What Will It Take to Fix New York's Housing Shortage?",
+                     "nyc-url", kw=0, boosted=70,
+                     summary="A development and zoning fight over housing supply."),
+        ]
+        pg.route_articles_for_focus(_filler_pool(), imports, monday,
+                                    "Arts, Culture & Digital Storytelling", None)
+        holding = pg.load_memory(pg.HOLDING_FILE)
+        saturday_slug = pg._theme_slug("Cariboo Local Affairs")
+        assert all(e.get("target_focus_slug") != saturday_slug
+                   for e in holding.values())
+
+    def test_local_story_off_todays_subject_defers_its_deep_dive(self, holding_env):
+        """The 2026-08-22 deep dive, in one article."""
+        saturday = date(2026, 8, 22)
+        lumber = _article(
+            "B.C. lumber industry hoping for trade relief in new Canada-US deal",
+            "lumber-url", kw=2, boosted=87,
+            summary="Softwood lumber is subject to separate duties; sawmill "
+                    "operators and the forestry sector await the outcome.",
+        )
+        lumber["authors"] = [{"name": "My Cariboo Now"}]
+        theme, bonus = pg.route_articles_for_focus(
+            _filler_pool(), [lumber], saturday, "Cariboo Local Affairs", None
+        )
+        aired = [a for a in theme + bonus if a["url"] == "lumber-url"]
+        assert aired, "a local story always airs the day it arrives"
+        assert aired[0]["_no_deep_dive"] is True
+        entry = pg.load_memory(pg.HOLDING_FILE)["lumber-url"]
+        assert entry["status"] == "aired_early"
+        assert date.fromisoformat(entry["target_date"]).weekday() == 1
+
+        # ...and the callback lands on Working Lands day
+        target = date.fromisoformat(entry["target_date"])
+        context, urls = pg.format_focus_callbacks_for_prompt(
+            get_focus_for_day(1, target), theme_name="Working Lands & Industry"
+        )
+        assert "lumber-url" in urls and "lumber industry" in context
+
+    def test_local_civic_story_keeps_its_deep_dive_claim(self, holding_env):
+        saturday = date(2026, 8, 22)
+        civic = _article(
+            "Williams Lake council approves the mine reclamation zoning bylaw",
+            "civic-url", kw=2, boosted=60,
+        )
+        theme, bonus = pg.route_articles_for_focus(
+            _filler_pool(), [civic], saturday, "Cariboo Local Affairs", None
+        )
+        kept = [a for a in theme + bonus if a["url"] == "civic-url"]
+        assert kept and not kept[0].get("_no_deep_dive")
+
+
+class TestDeferredArticlesStayOutOfTheDeepDive:
+    """`_no_deep_dive` was written by the router and read by nothing."""
+
+    def test_substance_swap_will_not_promote_a_deferred_article(self):
+        body = "word " * 200
+        thin = _article("Quesnel council votes on the transit budget", "civic-url",
+                        kw=2, boosted=60)
+        thin["_body"] = "too short"
+        deferred = _article("Softwood duties land on Cariboo timber", "lumber-url",
+                            kw=3, boosted=90)
+        deferred.update({"_body": body, "_no_deep_dive": True})
+        spare = _article("Williams Lake council debates the zoning bylaw",
+                         "zoning-url", kw=2, boosted=40)
+        spare["_body"] = body
+
+        deep_dive, news = pg._ensure_deep_dive_substance(
+            [thin], [deferred, spare],
+            theme_keywords=pg._build_theme_keywords("Cariboo Local Affairs"),
+        )
+        assert [a["url"] for a in deep_dive] == ["zoning-url"]
+        assert "lumber-url" in {a["url"] for a in news}
+
+
+class TestGeographicDeepDiveSelection:
+    def _pool(self):
+        return [
+            _article("B.C. lumber industry hoping for trade relief in new deal",
+                     "lumber-url", kw=3, boosted=87,
+                     summary="Softwood duties on Cariboo timber."),
+            _article("Ranching families west of Williams Lake recognized",
+                     "ranch-url", kw=3, boosted=83,
+                     summary="Cariboo Chilcotin cattle stewardship award."),
+            _article("Quesnel council votes on the transit budget",
+                     "civic-url", kw=1, boosted=55),
+            _article("100 Mile House riders gear up for a training ride",
+                     "ride-url", kw=2, boosted=67),
+        ]
+
+    def test_civic_subject_outranks_place_names(self):
+        """The lumber story leads on every other signal — 3 feed keyword
+        matches, a boosted score of 87, and two Cariboo place names against
+        the council story's one."""
+        deep_dive, _ = pg.select_deep_dive_from_feed(
+            self._pool(), "Cariboo Local Affairs", count=2
+        )
+        assert deep_dive[0]["url"] == "civic-url"
+
+    def test_deferred_articles_do_not_anchor_the_debate(self):
+        pool = self._pool()
+        for a in pool:
+            if a["url"] in ("lumber-url", "ranch-url"):
+                a["_no_deep_dive"] = True
+        deep_dive, news = pg.select_deep_dive_from_feed(
+            pool, "Cariboo Local Affairs", count=3
+        )
+        assert {a["url"] for a in deep_dive} == {"civic-url", "ride-url"}
+        # Nothing is dropped — they still air in the roundup
+        assert {a["url"] for a in news} == {"lumber-url", "ranch-url"}
+
+    def test_deferred_articles_return_when_the_day_is_too_thin(self):
+        pool = self._pool()
+        for a in pool:
+            if a["url"] != "civic-url":
+                a["_no_deep_dive"] = True
+        deep_dive, _ = pg.select_deep_dive_from_feed(
+            pool, "Cariboo Local Affairs", count=3
+        )
+        assert len(deep_dive) == 3, "a debate with no sources is the worse failure"
 
     def test_prune_drops_expired_holds(self, holding_env):
         today = date(2026, 7, 18)

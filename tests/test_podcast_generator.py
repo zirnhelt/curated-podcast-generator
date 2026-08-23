@@ -643,30 +643,79 @@ class TestRunAgenticLoop:
 
 
 class TestBraveSummarize:
-    """Brave's chat/completions endpoint 400s without a "model" field (2026-07-29)."""
+    """Brave has flipped this payload schema twice — the caller carries both."""
 
-    def test_sends_required_model_field(self, monkeypatch):
+    @pytest.fixture(autouse=True)
+    def _fresh_state(self, monkeypatch):
         import podcast_generator as pg
+        monkeypatch.setattr(pg, "_BRAVE_ANSWERS_STATE", {"shape": 0, "disabled": False})
 
-        captured = {}
-
+    @staticmethod
+    def _resp(status, payload=None):
         class _Resp:
-            def raise_for_status(self):
-                pass
+            status_code = status
+            text = "" if status < 400 else '{"error": "invalid model"}'
 
             def json(self):
-                return {"choices": [{"message": {"content": "42 km"}}]}
+                return payload or {}
+        return _Resp()
+
+    def test_asks_in_braves_documented_shape_first(self, monkeypatch):
+        import podcast_generator as pg
+        sent = []
 
         def fake_post(url, headers=None, json=None, timeout=None):
-            captured["json"] = json
-            return _Resp()
+            sent.append(json)
+            return self._resp(200, {"choices": [{"message": {"content": "42 km"}}]})
 
         monkeypatch.setattr(pg.requests, "post", fake_post)
+        assert _brave_summarize("distance to Horsefly Lake", "k") == "42 km"
+        assert "model" not in sent[0]
 
-        result = _brave_summarize("distance to Horsefly Lake", "fake-key")
+    def test_a_rejection_retries_in_the_other_shape_and_pins_it(self, monkeypatch):
+        import podcast_generator as pg
+        sent = []
 
-        assert result == "42 km"
-        assert captured["json"]["model"] == "brave"
+        def fake_post(url, headers=None, json=None, timeout=None):
+            sent.append(json)
+            if "model" not in json:
+                return self._resp(400)
+            return self._resp(200, {"choices": [{"message": {"content": "42 km"}}]})
+
+        monkeypatch.setattr(pg.requests, "post", fake_post)
+        assert _brave_summarize("first", "k") == "42 km"
+        assert _brave_summarize("second", "k") == "42 km"
+        # Three calls, not four: the working shape is remembered for the run.
+        assert [("model" in j) for j in sent] == [False, True, True]
+
+    def test_both_shapes_failing_disables_the_endpoint_for_the_run(self, monkeypatch):
+        import podcast_generator as pg
+        calls = []
+
+        def fake_post(url, headers=None, json=None, timeout=None):
+            calls.append(json)
+            return self._resp(400)
+
+        monkeypatch.setattr(pg.requests, "post", fake_post)
+        assert _brave_summarize("one", "k") == ""
+        assert _brave_summarize("two", "k") == ""
+        assert len(calls) == 2  # the second query never reaches the network
+        assert pg._BRAVE_ANSWERS_STATE["disabled"] is True
+
+    def test_a_timeout_does_not_retry_the_other_shape(self, monkeypatch):
+        """A request that was never answered says nothing about its payload."""
+        import podcast_generator as pg
+        calls = []
+
+        def fake_post(*args, **kwargs):
+            calls.append(1)
+            raise pg.requests.Timeout("read timed out")
+
+        monkeypatch.setattr(pg.requests, "post", fake_post)
+        assert _brave_summarize("some query", "k") == ""
+        assert len(calls) == 1
+        # ...and an unanswered request is no reason to stop asking all night.
+        assert pg._BRAVE_ANSWERS_STATE["disabled"] is False
 
     def test_returns_empty_string_on_error(self, monkeypatch):
         import podcast_generator as pg
@@ -675,7 +724,6 @@ class TestBraveSummarize:
             raise pg.requests.exceptions.HTTPError("400 Client Error: Bad Request")
 
         monkeypatch.setattr(pg.requests, "post", fake_post)
-
         assert _brave_summarize("some query", "fake-key") == ""
 
 
@@ -2539,6 +2587,45 @@ class TestThemeAdjacentBlock:
         assert [a["title"] for a in dropped] == ["Celebrity fashion week highlights"]
 
 
+    def test_one_discipline_cannot_take_half_the_segment(self):
+        import podcast_generator as pg
+
+        """2026-08-22: seven US pharma and health-policy stories against two
+        local ones on a Cariboo Local Affairs roundup. The cluster is supposed
+        to be a mini-arc; past ROUNDUP_CLUSTER_MAX it is what the episode is
+        about."""
+        pharma = [
+            {"title": f"New drug trial results published, study {i}",
+             "url": f"https://p{i}.com", "_boosted_score": 70 - i}
+            for i in range(7)
+        ]
+        kept, dropped = _curate_roundup_pool(pharma, _FAKE_THEME, 15)
+        clustered = [a for a in kept if a["_roundup_block"] not in
+                     ("standalone", "kicker")]
+        assert len(clustered) <= pg.ROUNDUP_CLUSTER_MAX
+        assert dropped, "the overflow is cut, not compressed into mentions"
+        # The cut is by feed score — the weakest of the run goes first
+        assert dropped[-1]["title"].endswith("study 6")
+
+    def test_capped_cluster_leaves_room_for_other_blocks(self):
+        from collections import Counter
+        import podcast_generator as pg
+
+        articles = (
+            [{"title": f"New drug trial results published, study {i}",
+              "url": f"https://p{i}.com", "_boosted_score": 90 - i}
+             for i in range(6)]
+            + [{"title": "Solar storm hits the magnetosphere",
+                "url": "https://c1.com", "_boosted_score": 60},
+               {"title": "Astronomers watch a supernova explode",
+                "url": "https://c2.com", "_boosted_score": 55}]
+        )
+        kept, _ = _curate_roundup_pool(articles, _FAKE_THEME, 8)
+        blocks = Counter(a["_roundup_block"] for a in kept)
+        assert blocks["life_sciences"] <= pg.ROUNDUP_CLUSTER_MAX
+        assert blocks["physical_sciences"] == 2
+
+
 class TestRoundupBlockRank:
     def test_local_outranks_theme_which_outranks_the_tail(self):
         assert (_roundup_block_rank("local")
@@ -2982,6 +3069,74 @@ class TestScriptMatchPosition:
         art = {"title": "[Src] Completely unrelated subject matter"}
         assert _script_match_position(art, "nothing relevant is said here") is None
 
+    def test_paraphrased_headline_matches_on_content_words(self):
+        """What the hosts are told to do to a headline. The phrase pass found
+        33% of August's roundup articles; everything it missed lost its line in
+        the episode description and its slide in the video."""
+        script = (
+            "**riley:** unrelated opener about the highway.\n\n"
+            "**casey:** osisko gold group has made a discovery at its proserpine "
+            "target near the cariboo gold project.\n"
+        ).lower()
+        art = {"title": "[Src] Osisko Gold makes discovery at Cariboo regional target"}
+        assert _script_match_position(art, script) == script.find("osisko")
+
+    def test_generic_words_the_show_says_all_night_do_not_match(self):
+        """A vision-loss headline landed on a wildfire item by matching
+        "helping", "people" and "loss". A word the episode says over and over
+        is the show's vocabulary, not evidence of this story."""
+        script = (
+            "**riley:** people are helping where they can.\n\n"
+            "**casey:** people keep helping, and the loss is real.\n\n"
+            "**riley:** more people, more helping, another loss.\n\n"
+            "**casey:** people helping people — a loss for the whole area.\n\n"
+            "**riley:** a hundred and fifty structures is a real loss, and people "
+            "are helping.\n"
+        ).lower()
+        art = {"title": "[Src] Helping people with vision loss build careers"}
+        assert _script_match_position(art, script) is None
+
+    def test_content_words_must_land_in_one_turn(self):
+        """Half a headline in one story and half in the next is two stories,
+        not a mention — the 600-character window that spans three roundup
+        items is what made those look alike."""
+        script = (
+            "**riley:** the alien signals paper is worth a look.\n\n"
+            "**casey:** separately, groundwater levels are rarely something anyone "
+            "gets to listen in on at the regional district.\n"
+        ).lower()
+        art = {"title": "[Src] Alien signals may be hiding where we rarely listen"}
+        assert _script_match_position(art, script) is None
+
+
+class TestExpectedSpeechMs:
+    """The duration checksum is only as good as its estimate of a full take.
+
+    The flat 400 ms/word it replaces described no segment the show has ever
+    produced: 20% of every episode's segments came in under 0.80 of it and were
+    re-synthesized, and the retry landed within 2% of the first take every time.
+    """
+
+    # (words, ms/word) from the measured spread — short lines run fastest
+    # because they carry no sentence-final pauses.
+    REAL_RATES = [(10, 280), (20, 300), (40, 350), (120, 360)]
+
+    @pytest.mark.parametrize("words,ms_per_word", REAL_RATES)
+    def test_a_complete_take_clears_the_checksum(self, words, ms_per_word):
+        import podcast_generator as pg
+        assert words * ms_per_word / pg._expected_speech_ms(words, 1.0) >= 0.80
+
+    @pytest.mark.parametrize("words,ms_per_word", REAL_RATES)
+    def test_a_take_missing_a_third_of_its_words_still_trips_it(self, words, ms_per_word):
+        import podcast_generator as pg
+        short = 0.65 * words * ms_per_word
+        assert short / pg._expected_speech_ms(words, 1.0) < 0.80
+
+    def test_the_host_speed_multiplier_scales_the_estimate(self):
+        import podcast_generator as pg
+        assert pg._expected_speech_ms(50, 1.1) == pytest.approx(
+            pg._expected_speech_ms(50, 1.0) / 1.1)
+
 
 class TestUSPolicyFramingTag:
     def test_cross_border_impact_leads_with_local_hook(self):
@@ -3020,7 +3175,7 @@ class TestUSPolicyFramingTag:
 
 
 class TestScriptMetadataHeader:
-    """The script header is how theme + brave_used cross the stage boundary.
+    """The script header is how theme + provider flags cross the stage boundary.
 
     The audio stage runs as a separate process, so it cannot inherit these as
     locals — it reads them back out of the file save_script_to_file wrote.
@@ -3030,30 +3185,31 @@ class TestScriptMetadataHeader:
         import podcast_generator as pg
 
         monkeypatch.setattr(pg, "PODCASTS_DIR", tmp_path)
-        return save_script_to_file("**RILEY:** Hello.\n", theme, brave_used=brave_used,
-                                   weather_used=weather_used)
+        return save_script_to_file("**RILEY:** Hello.\n", theme,
+                                   brave_used=brave_used, weather_used=weather_used)
 
     def test_round_trips_theme_and_brave_used(self, tmp_path, monkeypatch):
-        path = self._save(tmp_path, monkeypatch, "Working Lands & Industry", True,
-                          weather_used=True)
+        path = self._save(tmp_path, monkeypatch, "Working Lands & Industry", True)
         assert read_script_metadata(path) == {
             "theme": "Working Lands & Industry",
             "brave_used": True,
+            "weather_used": False,
             "anchor": None,
-            "weather_used": True,
         }
+
+    def test_round_trips_weather_used(self, tmp_path, monkeypatch):
+        # The weather provider is credited on air, and the render stage can only
+        # know the segment aired by reading it back out of the header.
+        path = self._save(tmp_path, monkeypatch, "Theme", False, weather_used=True)
+        assert read_script_metadata(path)["weather_used"] is True
+
+    def test_weather_unused_stays_false(self, tmp_path, monkeypatch):
+        path = self._save(tmp_path, monkeypatch, "Theme", False, weather_used=False)
+        assert read_script_metadata(path)["weather_used"] is False
 
     def test_round_trips_brave_unused(self, tmp_path, monkeypatch):
         path = self._save(tmp_path, monkeypatch, "Wild Spaces & Outdoor Life", False)
         assert read_script_metadata(path)["brave_used"] is False
-
-    def test_round_trips_weather_unused(self, tmp_path, monkeypatch):
-        # The weather sweep is non-critical and skipped on a fetch failure, so
-        # the header has to be able to say "no" — crediting Open-Meteo on a day
-        # we never reached it is the inaccuracy this gate exists to prevent.
-        path = self._save(tmp_path, monkeypatch, "Wild Spaces & Outdoor Life", True,
-                          weather_used=False)
-        assert read_script_metadata(path)["weather_used"] is False
 
     def test_feed_overridden_theme_survives_slug_mismatch(self, tmp_path, monkeypatch):
         # The feed can hand back a theme unrelated to the weekday rotation. The
@@ -3081,16 +3237,16 @@ class TestScriptMetadataHeader:
         assert read_script_metadata(legacy) == {
             "theme": "Legacy Theme",
             "brave_used": False,
-            "anchor": None,
             "weather_used": False,
+            "anchor": None,
         }
 
     def test_missing_file_degrades_without_raising(self, tmp_path):
         assert read_script_metadata(tmp_path / "nope.txt") == {
             "theme": None,
             "brave_used": False,
-            "anchor": None,
             "weather_used": False,
+            "anchor": None,
         }
 
     def test_stops_parsing_at_first_non_comment_line(self, tmp_path):
@@ -3236,8 +3392,8 @@ class TestAudioStageCrossBoundary:
         monkeypatch.setattr(pg, "refresh_citations_tts_credit", lambda *a, **k: None)
 
         script = save_script_to_file(
-            "**RILEY:** Hello.\n", "Working Lands & Industry", brave_used=brave_used,
-            weather_used=weather_used,
+            "**RILEY:** Hello.\n", "Working Lands & Industry",
+            brave_used=brave_used, weather_used=weather_used,
         )
 
         captured = {}
@@ -3266,14 +3422,6 @@ class TestAudioStageCrossBoundary:
         pg.run_audio_stage(script_path=script)
         assert captured["brave_used"] is False
 
-    def test_weather_used_survives_the_stage_boundary(self, tmp_path, monkeypatch):
-        # Same boundary as brave_used: the render process cannot see whether the
-        # weather sweep ran, so the spoken Open-Meteo credit rides in the header.
-        pg, script, captured = self._prepare(tmp_path, monkeypatch, brave_used=False,
-                                             weather_used=True)
-        assert pg.run_audio_stage(script_path=script) is True
-        assert captured["weather_used"] is True
-
     def test_weather_unused_stays_false(self, tmp_path, monkeypatch):
         pg, script, captured = self._prepare(tmp_path, monkeypatch, brave_used=False,
                                              weather_used=False)
@@ -3292,6 +3440,15 @@ class TestAudioStageCrossBoundary:
             ".txt", ".mp3"
         )
         assert captured["output_filename"] == expected
+
+    def test_weather_used_survives_the_stage_boundary(self, tmp_path, monkeypatch):
+        # Regression (2026-08-17): the weather provider was credited in the
+        # episode description but never in the spoken credits, and the render
+        # stage had no way to learn the segment had aired.
+        pg, script, captured = self._prepare(
+            tmp_path, monkeypatch, brave_used=False, weather_used=True)
+        assert pg.run_audio_stage(script_path=script) is True
+        assert captured["weather_used"] is True
 
     def test_missing_script_returns_false_without_rendering(self, tmp_path, monkeypatch):
         pg, _script, captured = self._prepare(tmp_path, monkeypatch, brave_used=False)

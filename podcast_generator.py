@@ -11,6 +11,7 @@ import os
 import sys
 import json
 import glob
+import math
 import random
 import time
 import xml.sax.saxutils as saxutils
@@ -23,6 +24,7 @@ import tempfile
 import zlib
 import httpx
 from collections import Counter
+from functools import lru_cache
 from itertools import groupby
 from urllib.parse import urlparse
 
@@ -43,12 +45,14 @@ from config_loader import (
     load_disciplines_config,
     load_bespoke_hosts,
     load_super_cycles_config,
+    load_ai_tells_config,
+    format_static_tell_block,
     get_voice_for_host,
     get_voice_instructions_for_host,
     get_speed_for_host,
     get_theme_for_day,
     get_focus_for_day,
-    get_upcoming_focus_slots,
+    get_upcoming_day_slots,
     message_text,
     strip_stage_directions,
     render_credits_text,
@@ -439,6 +443,9 @@ SCRIPT_MODEL = os.getenv("CLAUDE_SCRIPT_MODEL", "claude-sonnet-5")
 POLISH_MODEL = os.getenv("CLAUDE_POLISH_MODEL", "claude-sonnet-5")
 OPUS_REVIEW_MODEL = os.getenv("CLAUDE_OPUS_REVIEW_MODEL", "claude-opus-4-6")
 SUMMARY_MODEL = os.getenv("CLAUDE_SUMMARY_MODEL", "claude-haiku-4-5-20251001")
+# Rewrites only the handful of sentences that kept a hard-banned phrase, never
+# the script — cheapest model is the right one for a few hundred tokens.
+SCRUB_MODEL = os.getenv("CLAUDE_SCRUB_MODEL", "claude-haiku-4-5-20251001")
 COLD_OPEN_MODEL = os.getenv("CLAUDE_COLD_OPEN_MODEL", "claude-sonnet-5")
 
 # Threshold: escalate polish+factcheck to Opus when the deep dive had fewer
@@ -510,6 +517,19 @@ ROUNDUP_MIN_STORY_WORDS = 70
 # Saturday (Cariboo Local Affairs) runs a deeper, longer episode.
 SATURDAY_DEEP_DIVE_COUNT = 5   # vs. standard 3
 SATURDAY_NEWS_ROUNDUP_COUNT = 15
+
+# A deep dive may run short rather than be topped up with material the router
+# deferred to another day — but not to nothing. Below this many eligible
+# articles the deferred ones come back, because a debate with no sources is a
+# worse failure than a debate one day early.
+DEEP_DIVE_ELIGIBLE_FLOOR = 2
+
+# No single off-theme discipline cluster may take more than this many roundup
+# slots. The tail is supposed to play as mini-arcs; on 2026-08-22 a seven-story
+# US pharma and health-policy run took nearly half a Cariboo Local Affairs
+# roundup, against two local stories, because nothing bounded one field's share
+# of the segment.
+ROUNDUP_CLUSTER_MAX = 3
 
 # Tracks which review model was actually used this run; read by citation/description generators.
 _api_call_counts = {}
@@ -753,6 +773,10 @@ EMAIL_QUEUE_FILE = PODCASTS_DIR / "email_queue.json"
 # upcoming rotation day they actually belong to (e.g. a mining story fetched on
 # Saturday waits for the next mining-focus Tuesday).
 HOLDING_FILE = PODCASTS_DIR / "article_holding.json"
+# Rolling phrase-frequency ledger: the show's own back catalogue is the ban list.
+# A phrase nobody predicted (see "genuinely", 146 hits over 30 episodes) is caught
+# by its rate, not by a human noticing it first.
+PHRASE_LEDGER_FILE = PODCASTS_DIR / "phrase_ledger.json"
 HOLD_MAX_DAYS = 14              # max days an article may wait for its focus day
 AIRED_EARLY_RETENTION_DAYS = 30 # how long the aired-early callback ledger keeps entries
 HOLD_MIN_FOCUS_HITS = 2         # focus-keyword hits required before holding
@@ -793,6 +817,7 @@ CONFIG = {
     'prompts': load_prompts_config(),
     'disciplines': load_disciplines_config(),
     'super_cycles': load_super_cycles_config(),
+    'ai_tells': load_ai_tells_config(),
 }
 
 # Batch API configuration
@@ -2106,34 +2131,81 @@ def enrich_deep_dive_with_brave(deep_dive_articles, theme_name, client):
     )
 
 
+# Brave has flipped this schema under us twice. Omitting "model" 400d every
+# call on 2026-07-29, so it was added; every call has 400d again since at least
+# 2026-08-19, and Brave's own published example (brave/brave-search-skills)
+# sends no model at all. Rather than guess which is current, ask in the shape
+# that worked last, and on a rejection try the other one and keep whichever
+# answers for the rest of the run. Two shapes, one extra call per run at worst.
+_BRAVE_ANSWER_SHAPES = [
+    {"stream": False},                   # Brave's documented payload
+    {"model": "brave", "stream": False},  # what the 2026-07-29 fix added
+]
+_BRAVE_ANSWERS_STATE = {"shape": 0, "disabled": False}
+
+
 def _brave_summarize(query, api_key):
     """Fetch an AI-synthesized answer for a factual query via Brave's Answers API.
 
     Single POST to /res/v1/chat/completions with the query as a user message.
-    Returns a prose answer string, or empty string on failure.
+    Returns a prose answer string, or empty string on failure — callers then
+    fall back to raw /web/search snippets, which is a materially thinner answer
+    for a factual gap, so the fallback is reported rather than silent.
+
+    A rejection disables the endpoint for the rest of the run once both request
+    shapes have failed: three queries a night spending two dead calls each is
+    the whole cost of an API that has been down for days.
     """
-    try:
-        resp = requests.post(
-            "https://api.search.brave.com/res/v1/chat/completions",
-            headers={
-                "Accept": "application/json",
-                "Accept-Encoding": "gzip",
-                "Content-Type": "application/json",
-                "x-subscription-token": api_key,
-            },
-            # "model" is required by Brave's OpenAI-compatible chat/completions
-            # schema — omitting it 400s every call (2026-07-29).
-            json={"model": "brave", "stream": False, "messages": [{"role": "user", "content": query}]},
-            timeout=15,
-        )
-        resp.raise_for_status()
-        choices = resp.json().get("choices", [])
-        if choices:
-            return choices[0].get("message", {}).get("content", "").strip()
+    if _BRAVE_ANSWERS_STATE["disabled"]:
         return ""
-    except Exception as e:
-        print(f"  Brave Answers API failed for '{query[:50]}': {e}")
-        return ""
+
+    order = [_BRAVE_ANSWERS_STATE["shape"], 1 - _BRAVE_ANSWERS_STATE["shape"]]
+    last_error = ""
+    for shape_index in order:
+        payload = dict(_BRAVE_ANSWER_SHAPES[shape_index],
+                       messages=[{"role": "user", "content": query}])
+        try:
+            resp = requests.post(
+                "https://api.search.brave.com/res/v1/chat/completions",
+                headers={
+                    "Accept": "application/json",
+                    "Accept-Encoding": "gzip",
+                    "Content-Type": "application/json",
+                    "x-subscription-token": api_key,
+                },
+                json=payload,
+                timeout=15,
+            )
+            if resp.status_code >= 400:
+                # The status alone is what left the last four days undiagnosable
+                # from here; Brave says which field it dislikes in the body.
+                raise RuntimeError(f"{resp.status_code} {resp.text[:200]}")
+            choices = resp.json().get("choices", [])
+            _BRAVE_ANSWERS_STATE["shape"] = shape_index
+            if choices:
+                return choices[0].get("message", {}).get("content", "").strip()
+            return ""
+        except Exception as e:
+            last_error = str(e)
+            keys = ",".join(k for k in payload if k != "messages") or "messages-only"
+            print(f"  Brave Answers API failed for '{query[:50]}' [{keys}]: {e}")
+            if isinstance(e, requests.RequestException):
+                # Never answered: no verdict on the payload, and no reason to
+                # stop asking for the rest of the run either.
+                _report_brave_answers_degradation(last_error)
+                return ""
+
+    # Both shapes rejected: the endpoint is not going to start liking either of
+    # them three queries later, and each query costs two dead calls.
+    _BRAVE_ANSWERS_STATE["disabled"] = True
+    _report_brave_answers_degradation(last_error, for_the_run=True)
+    return ""
+
+
+def _report_brave_answers_degradation(error, for_the_run=False):
+    tail = " for the rest of the run" if for_the_run else ""
+    degrade("script/brave-answers",
+            f"Answers API unavailable ({error[:120]}) — using web snippets{tail}")
 
 
 # ---------------------------------------------------------------------------
@@ -2434,7 +2506,10 @@ def _ensure_deep_dive_substance(deep_dive_articles, news_articles, theme_keyword
     Replacement candidates are restricted to articles with at least one theme
     keyword hit or a source on the theme's gadget/maker allowlist — otherwise a
     swap can silently drag in an off-theme article and the quality metrics would
-    misreport the deep dive as "rich" despite being thematically empty.
+    misreport the deep dive as "rich" despite being thematically empty. Articles
+    the router flagged `_no_deep_dive` are excluded too: the flag was set and
+    then read by nothing, so a substance swap was free to promote back into the
+    deep dive exactly what the router kept out of it.
     """
     thin = [a for a in deep_dive_articles if len(a.get('_body', '') or '') < NEWS_BODY_MIN_CHARS]
     if not thin:
@@ -2464,6 +2539,7 @@ def _ensure_deep_dive_substance(deep_dive_articles, news_articles, theme_keyword
         candidates = [
             a for a in news_articles
             if len(a.get('_body', '') or '') >= NEWS_BODY_MIN_CHARS and _is_on_theme(a)
+            and not a.get('_no_deep_dive')
         ]
         if not candidates:
             print(f"     ⚠️ Deep dive thematically thin — no on-theme article with "
@@ -2687,6 +2763,7 @@ def polish_and_factcheck_with_agent(script, theme_name, news_articles, deep_dive
         research_insights=research_insights or "(none)",
         anchor_block=anchor_block or "(none)",
         air_date=f"{weekday}, {date_str}",
+        burned_phrases=format_burned_phrases_for_prompt(),
     ) + _stage_direction_addendum() + _corrections_ground_truth(corrections)
 
     review_model = model or select_review_model(deep_dive_articles)
@@ -2752,6 +2829,7 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
         research_insights=research_insights or "(none)",
         anchor_block=anchor_block or "(none)",
         air_date=f"{weekday}, {date_str}",
+        burned_phrases=format_burned_phrases_for_prompt(),
     ) + _stage_direction_addendum() + _corrections_ground_truth(corrections)
 
     # Build debate summary prompt — only send the deep-dive section (30% of script)
@@ -3229,16 +3307,41 @@ def _load_article_holding(today_date: date) -> dict:
     return pruned
 
 
+def _theme_slug(theme_name: str) -> str:
+    """Filesystem/ledger-safe slug for a theme name (same shape as script paths)."""
+    return theme_name.replace(" ", "_").replace("&", "and").lower()
+
+
 def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_theme, focus):
     """Super-cycle content routing: release matured holds and hold off-theme articles.
 
-    Off-theme, non-urgent articles that strongly match a rotation focus
-    occurring within HOLD_MAX_DAYS are removed from today's pool and persisted
-    until that day. Urgent ones (boosted score >= URGENT_SCORE_THRESHOLD) stay
-    for timely coverage but move to the bonus bucket (never deep-dive) and are
-    remembered in the aired-early ledger for a callback on their focus day.
-    Previously held articles whose focus day is today are injected back into
-    the pool flagged _held_from.
+    Off-theme, non-urgent articles that strongly match an upcoming day's theme or
+    rotation focus, within HOLD_MAX_DAYS, are removed from today's pool and
+    persisted until that day. Urgent ones (boosted score >=
+    URGENT_SCORE_THRESHOLD) stay for timely coverage but move to the bonus bucket
+    (never deep-dive) and are remembered in the aired-early ledger for a callback
+    on their day. Previously held articles whose day is today are injected back
+    into the pool flagged _held_from.
+
+    **Both buckets are routed.** The loop used to run over `theme_articles`
+    alone, which is the one bucket that by definition holds nothing off-theme —
+    off-theme material arrives in `bonus_articles`, 72 of it against 8 theme
+    articles on 2026-08-17. Nothing was ever eligible to be held, so Monday's
+    roundup aired a lumber-tariffs opinion piece (Tuesday's Working Lands theme)
+    and a PLA-brittleness piece that scored two hits on Wednesday's Maker &
+    Repair focus keywords — it would have been held on the old focus-only
+    matcher had the loop ever looked at it.
+
+    Local stories are never held — see _is_local_article — but a local story
+    with no connection to today's subject that answers an upcoming day's theme
+    airs today and gives up its deep-dive claim (`_no_deep_dive`), with a
+    callback ledger entry for the day it belongs to. On 2026-08-22 the Cariboo
+    Local Affairs deep dive ran on softwood duties, a ranching award and a Tyson
+    beef-plant closure — Tuesday's episode, aired on Saturday and spent for the
+    week, because every one of them is local and locality was the whole score.
+
+    A geographic day is never a hold target at all: it has no import channel to
+    fill, and its keyword list matched anything that said "local".
 
     Returns (theme_articles, bonus_articles).
     """
@@ -3263,36 +3366,84 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
         print(f"  📤 Released from holding (held {article['_held_from']}): {article.get('title', '')[:70]}")
     theme_articles = released + theme_articles
 
-    # --- Hold / divert off-theme articles matching an upcoming focus -------
+    # --- Hold / divert off-theme articles matching an upcoming day ---------
     # Slots looked up over a full 4-week cycle: holds are limited to
     # HOLD_MAX_DAYS (freshness), but the aired-early ledger may target any
     # slot in the cycle since a callback references past coverage.
-    slot_keywords = [
-        (slot_date, f, _build_focus_keywords(f))
-        for slot_date, _wd, f in get_upcoming_focus_slots(today_date, horizon_days=28)
-    ]
-    today_theme_keywords = _build_theme_keywords(today_theme)
+    #
+    # A slot matches on its theme keywords OR its focus keywords. Focus alone
+    # missed whole categories: forestry is a Tuesday theme keyword every week,
+    # but only reaches a Tuesday slot on the weeks the rotation happens to be
+    # on Forestry, so the 2026-08-17 lumber-tariffs piece had no home to go to.
+    slot_keywords = []
+    for slot_date, _wd, slot_theme, slot_focus in get_upcoming_day_slots(
+            today_date, horizon_days=28):
+        # A geographic day is never a routing target. Its identity is WHERE a
+        # story is, and geography is decided by _is_local_article — which also
+        # exempts local stories from holding, so the day has no import channel
+        # to fill and every match it wins is a false one. Saturday's keyword
+        # list took the word 'local' literally and had five articles waiting for
+        # 2026-08-22: New York's housing shortage, a Brooklyn ADU that "follows
+        # local and zoning laws", two US drug-pricing pieces, and "8 local AI
+        # models that run great on 8GB of VRAM".
+        if _is_geographic_theme(slot_theme):
+            continue
+        keywords = (_build_strict_theme_keywords(slot_theme)
+                    + _build_focus_keywords(slot_focus))
+        # The target's on-air identity, for the hold log and the callback line:
+        # the focus when the rotation supplied one, else the plain daily theme.
+        target = slot_focus or {'slug': _theme_slug(slot_theme), 'name': slot_theme}
+        slot_keywords.append((slot_date, target, keywords))
+
+    # Strict keywords, not `_build_theme_keywords`: the description prose put
+    # 'that', 'shape', 'everyday' and 'life' in Saturday's list, so almost
+    # nothing could read as weak on today's theme.
+    today_theme_keywords = _build_strict_theme_keywords(today_theme)
+    today_subject_keywords = _build_theme_subject_keywords(today_theme)
     today_focus_keywords = _build_focus_keywords(focus)
     # Never shrink the pool below what the roundup + deep dive need
     max_holds = max(0, len(theme_articles) + len(bonus_articles) - (NEWS_ROUNDUP_COUNT + 3))
 
-    kept_theme = []
-    bonus_articles = list(bonus_articles)
+    kept_theme: list = []
+    kept_bonus: list = []
     held_count = 0
-    for a in theme_articles:
+    deferred_count = 0
+    # Both buckets. `was_bonus` decides which bucket an article that stays goes
+    # back into — an off-theme story that airs today must not be promoted into
+    # the theme blocks just because the router looked at it.
+    for was_bonus, a in ([(False, a) for a in theme_articles]
+                         + [(True, a) for a in bonus_articles]):
+        kept_bucket = kept_bonus if was_bonus else kept_theme
         url = a.get('url', '')
         title = re.sub(r'^\W*\[[^\]]*\]\s*', '', a.get('title', ''))
         text = f"{title} {a.get('summary', '')}".lower()
-        weak_today = (a.get('_keyword_matches', 0) == 0
-                      and _keyword_hit_count(text, today_theme_keywords) <= 1)
         on_todays_focus = bool(today_focus_keywords) and _keyword_hit_count(text, today_focus_keywords) > 0
-        if not url or not weak_today or on_todays_focus or a.get('_held_from') or a.get('_seed_id'):
-            kept_theme.append(a)
+        is_local = _is_local_article(a)
+        # Subject matter, not geography. A local story always carries today's
+        # theme when today is the geographic day — its place names ARE the
+        # keywords, and the feed's `_keyword_matches` says the same thing — so
+        # `weak_today` can never fire for it. What the subject keywords answer
+        # is the question the 2026-08-22 episode got wrong: a Cariboo story with
+        # no civic content that reads as forestry or ranching is Tuesday's
+        # material arriving three days early. And on that day the feed's own
+        # count cannot vouch for a story that is neither here nor about
+        # municipal life either, since most of what it counted was place names
+        # and the word 'local'.
+        off_subject = _keyword_hit_count(text, today_subject_keywords) <= 1
+        if is_local or _is_geographic_theme(today_theme):
+            weak_today = off_subject
+        else:
+            weak_today = (a.get('_keyword_matches', 0) == 0
+                          and _keyword_hit_count(text, today_theme_keywords) <= 1)
+        belongs_to_today = not weak_today
+        if (not url or a.get('_held_from') or a.get('_seed_id')
+                or on_todays_focus or belongs_to_today):
+            kept_bucket.append(a)
             continue
-        matches = [(sd, f) for sd, f, fkw in slot_keywords
-                   if _keyword_hit_count(text, fkw) >= HOLD_MIN_FOCUS_HITS]
+        matches = [(sd, t) for sd, t, kws in slot_keywords
+                   if _keyword_hit_count(text, kws) >= HOLD_MIN_FOCUS_HITS]
         if not matches:
-            kept_theme.append(a)
+            kept_bucket.append(a)
             continue
         target_date, target_focus = matches[0]
         boosted = a.get('_boosted_score', a.get('ai_score', 0))
@@ -3304,7 +3455,23 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
             'target_focus_slug': target_focus['slug'],
             'target_focus_name': target_focus['name'],
         }
-        if boosted >= URGENT_SCORE_THRESHOLD:
+        if is_local:
+            # Never held — local news is the most time-sensitive material in the
+            # pool — but it does not get to anchor a debate that belongs to
+            # another day. It stays in its own bucket (the roundup's front door
+            # is unchanged), gives up its deep-dive claim, and the ledger hands
+            # the story to the day whose theme it actually answers. On
+            # 2026-08-22 the Cariboo Local Affairs deep dive ran on softwood
+            # duties, a ranching award and a Tyson beef-plant closure, and the
+            # debate that came out of it was a Working Lands debate.
+            a['_no_deep_dive'] = True
+            kept_bucket.append(a)
+            holding[url] = {**entry, 'status': 'aired_early'}
+            deferred_count += 1
+            print(f"  📍 Local, airing today but off today's subject — deep dive "
+                  f"deferred to {target_date.isoformat()} ({target_focus['name']}): "
+                  f"{a.get('title', '')[:60]}")
+        elif boosted >= URGENT_SCORE_THRESHOLD:
             # Timely coverage now (bonus bucket, never deep-dive), callback later.
             # `_is_bonus` makes this the same bucket the feed's own bonus picks
             # land in: kept out of the theme blocks, but curated and capped with
@@ -3312,7 +3479,7 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
             # off-theme story still has to earn its slot in the tail.
             a['_no_deep_dive'] = True
             a['_is_bonus'] = True
-            bonus_articles.append(a)
+            kept_bonus.append(a)
             holding[url] = {**entry, 'status': 'aired_early'}
             print(f"  📌 Urgent off-theme, airing in bonus + callback on "
                   f"{target_date.isoformat()} ({target_focus['name']}): {a.get('title', '')[:60]}")
@@ -3322,29 +3489,40 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
             print(f"  📥 Held for {target_date.isoformat()} ({target_focus['name']}): "
                   f"{a.get('title', '')[:60]}")
         else:
-            # Next matching focus day too far out (or pool too thin) — air today
-            kept_theme.append(a)
+            # Next matching day too far out (or pool too thin) — air today
+            kept_bucket.append(a)
 
     save_memory(HOLDING_FILE, holding)
-    if released or held_count:
-        print(f"🔀 Focus routing: released {len(released)}, held {held_count} article(s)")
-    return kept_theme, bonus_articles
+    if released or held_count or deferred_count:
+        print(f"🔀 Focus routing: released {len(released)}, held {held_count}, "
+              f"deep dive deferred for {deferred_count} local article(s)")
+    return kept_theme, kept_bonus
 
 
-def format_focus_callbacks_for_prompt(focus):
-    """Prompt block for aired-early stories whose proper focus day is today.
+def format_focus_callbacks_for_prompt(focus, theme_name=None):
+    """Prompt block for aired-early stories whose proper day is today.
+
+    Matches either today's rotation focus or today's plain theme, since the
+    router targets a theme slot on days the rotation supplies no focus (and on
+    every day for a story that matched the theme's keywords rather than the
+    week's focus).
 
     Returns (context, urls) — urls are consumed via consume_focus_callbacks()
     after the script is safely written.
     """
-    if not focus:
+    targets = set()
+    if focus and focus.get('slug'):
+        targets.add(focus['slug'])
+    if theme_name:
+        targets.add(_theme_slug(theme_name))
+    if not targets:
         return "", []
     holding = load_memory(HOLDING_FILE)
     lines, urls = [], []
     for url, entry in holding.items():
         if not isinstance(entry, dict) or entry.get('status') != 'aired_early':
             continue
-        if entry.get('target_focus_slug') != focus.get('slug'):
+        if entry.get('target_focus_slug') not in targets:
             continue
         title = entry.get('article', {}).get('title', '')
         lines.append(f"- \"{title}\" (covered briefly on {entry.get('held_date', '?')})")
@@ -3425,6 +3603,7 @@ def generate_cold_open(script, theme_name):
         theme_name=theme_name,
         welcome_host_upper=welcome_host,
         finalized_script=script,
+        burned_phrases=format_burned_phrases_for_prompt(),
     )
 
     try:
@@ -4134,6 +4313,36 @@ def _article_source_name(article: dict) -> str:
     return (authors[0].get('name') or article.get('source') or '').strip()
 
 
+def _local_place_hits(article: dict) -> int:
+    """Cariboo/BC place-name hits in an article's title+summary.
+
+    Outlet name alone is a weak proxy for geography — on 2026-08-11 a Williams
+    Lake Tribune story about Spallumcheen and a My Cariboo Now story about
+    Summerland both read as local while a wire story naming Williams Lake would
+    not have — so place names are counted separately from the byline.
+    """
+    local_places = [p.lower() for p in CONFIG['podcast'].get('local_places', [])]
+    if not local_places:
+        return 0
+    title = re.sub(r'^\W*\[[^\]]*\]\s*', '', article.get('title', ''))
+    return _keyword_hit_count(f"{title} {article.get('summary', '')}".lower(), local_places)
+
+
+def _is_local_article(article: dict) -> bool:
+    """True when a story names a Cariboo/BC place or comes from a local outlet.
+
+    Shared by the roundup's 'local' block and the super-cycle holding router.
+    Geography is orthogonal to the day's theme — a local story is the show's
+    front door whatever the rotation says — and local news is the most
+    time-sensitive material in the pool, so it is never held for a later day.
+    """
+    if _local_place_hits(article) > 0:
+        return True
+    local_sources = [s.lower() for s in CONFIG['podcast'].get('local_sources', [])]
+    source = _article_source_name(article).lower()
+    return any(s in source for s in local_sources)
+
+
 # The blocks that open the roundup, in the order they air: close to home, then
 # today's theme. Kept distinct for ordering, pool protection and the order check.
 ROUNDUP_ARC_BLOCKS = ('local', 'theme', 'theme_adjacent')
@@ -4198,25 +4407,25 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
     # Strict keyword set: theme-name words + explicit config keywords only.
     # _build_theme_keywords also folds in theme-description words, which are
     # too generic ('tech', 'land', 'language') to gate block membership.
-    theme_info = next(
-        (i for i in CONFIG['themes'].values() if i['name'] == theme_name), None
-    )
-    theme_keywords = [w.lower() for w in theme_name.split() if len(w) > 3]
-    if theme_info:
-        theme_keywords.extend(k.lower() for k in theme_info.get('keywords', []))
+    # On the geographic theme this is narrower still — the civic keywords only,
+    # with the place names left out. Locality is already decided by
+    # _is_local_article one branch up, so a story reaching the 'theme' block on
+    # Cariboo Local Affairs day has to be about municipal life, not merely say
+    # the word "local": that is how "Scientists Saw Strange Spots on Local Fish"
+    # became the single theme story of the 2026-08-22 roundup.
+    theme_keywords = _build_theme_subject_keywords(theme_name)
     anti_keywords = _build_theme_anti_keywords(theme_name)
     source_boost = _build_theme_source_boost(theme_name)
-    # Deliberately hyperlocal outlets only — broad-coverage BC/national outlets
-    # (The Narwhal, The Tyee, IndigiNews, CBC British Columbia) were removed on
-    # 2026-08-15 after an IndigiNews story about the Híɫzaqv Nation's Central
-    # Coast green-crab defense (zero Cariboo place-name hits) got an automatic
-    # 'local' pass on byline alone and landed mid-block between two unrelated
-    # Cariboo wildfire stories with no transition. Those outlets still land in
-    # 'local' when a story actually names a Cariboo/BC place (place_hits below);
-    # otherwise they're judged on real content relevance like anything else.
-    # Do not re-add outlets here unless their coverage is reliably local.
-    local_sources = [s.lower() for s in CONFIG['podcast'].get('local_sources', [])]
-    local_places = [p.lower() for p in CONFIG['podcast'].get('local_places', [])]
+    # Membership of the 'local' block is _is_local_article(). Its `local_sources`
+    # list is deliberately hyperlocal outlets only — broad-coverage BC/national
+    # outlets (The Narwhal, The Tyee, IndigiNews, CBC British Columbia) were
+    # removed on 2026-08-15 after an IndigiNews story about the Híɫzaqv Nation's
+    # Central Coast green-crab defense (zero Cariboo place-name hits) got an
+    # automatic 'local' pass on byline alone and landed mid-block between two
+    # unrelated Cariboo wildfire stories with no transition. Those outlets still
+    # land in 'local' when a story actually names a Cariboo/BC place; otherwise
+    # they're judged on real content relevance like anything else. Do not re-add
+    # outlets to that config list unless their coverage is reliably local.
     disciplines_config = CONFIG.get('disciplines', {})
 
     def relevance(a):
@@ -4226,24 +4435,6 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
 
     def boosted(a):
         return a.get('_boosted_score', a.get('ai_score', 0))
-
-    def place_hits(a):
-        """Cariboo/BC place-name hits in title+summary.
-
-        Outlet name alone is a weak proxy for geography — on 2026-08-11 a
-        Williams Lake Tribune story about Spallumcheen and a My Cariboo Now
-        story about Summerland both read as local while a wire story naming
-        Williams Lake would not have.
-        """
-        if not local_places:
-            return 0
-        title = re.sub(r'^\W*\[[^\]]*\]\s*', '', a.get('title', ''))
-        return _keyword_hit_count(
-            f"{title} {a.get('summary', '')}".lower(), local_places)
-
-    def is_local(a):
-        return (place_hits(a) > 0
-                or any(s in _article_source_name(a).lower() for s in local_sources))
 
     def body_theme_hits(a):
         """Net theme-keyword hits in the article body, which relevance() ignores."""
@@ -4265,7 +4456,7 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
         # orthogonal to it. A Williams Lake Tribune story that arrived in the
         # bonus bucket is still the show's front door; re-litigating its theme
         # relevance here would only overturn a call the feed already made.
-        if is_local(a):
+        if _is_local_article(a):
             a['_roundup_block'] = 'local'
             local_block.append(a)
         elif a.get('_is_bonus'):
@@ -4312,7 +4503,7 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
 
     # Place-name hits lead outlet-only matches, and among those an on-theme
     # local story opens the episode — the local block is the show's front door.
-    local_block.sort(key=lambda a: (place_hits(a), relevance(a), boosted(a)),
+    local_block.sort(key=lambda a: (_local_place_hits(a), relevance(a), boosted(a)),
                      reverse=True)
     theme_block.sort(key=relevance, reverse=True)
     adjacent_block.sort(key=body_theme_hits, reverse=True)
@@ -4345,15 +4536,36 @@ def _curate_roundup_pool(articles: list, theme_name: str, pool_size: int) -> tup
     lets them resurface on a better-matched theme day.
     """
     pool = _annotate_roundup_blocks(articles, theme_name)
+    # One field does not get half the segment, and this holds whether or not the
+    # pool is over the cap — on 2026-08-22 the roundup was exactly at its cap of
+    # 15 and still ran seven US pharma and health-policy stories against two
+    # local ones. A discipline cluster is kept adjacent so the back half plays
+    # as a mini-arc; past ROUNDUP_CLUSTER_MAX it stops being an arc and becomes
+    # the thing the episode is about.
+    over_cluster = []
+    capped = []
+    for block, members_iter in groupby(pool, key=lambda a: a['_roundup_block']):
+        members = list(members_iter)
+        if (block in ROUNDUP_ARC_BLOCKS or block in ('standalone', 'kicker')
+                or len(members) <= ROUNDUP_CLUSTER_MAX):
+            capped.extend(members)
+            continue
+        capped.extend(members[:ROUNDUP_CLUSTER_MAX])
+        over_cluster.extend(members[ROUNDUP_CLUSTER_MAX:])
+    pool = capped
+    if over_cluster:
+        print(f"   ✂️  {len(over_cluster)} story(ies) over the "
+              f"{ROUNDUP_CLUSTER_MAX}-story cap on a single discipline cluster")
+
     if len(pool) <= pool_size:
-        return pool, []
+        return pool, over_cluster
 
     protected = [a for a in pool if a['_roundup_block'] in ROUNDUP_ARC_BLOCKS]
     kicker = [a for a in pool if a['_roundup_block'] == 'kicker']
     fillers = [a for a in pool if a['_roundup_block'] not in ROUNDUP_ARC_BLOCKS
                and a['_roundup_block'] != 'kicker']
 
-    kept_fill, dropped = [], []
+    kept_fill, dropped = [], list(over_cluster)
     # A wide arc still can't blow past the segment budget. Trimming the arc tail
     # alone would let a heavy local day (a fire week, a flood week) push the
     # theme off a themed episode entirely, so reserve a floor of theme slots and
@@ -4625,6 +4837,68 @@ def _build_theme_keywords(theme_name):
     return unique
 
 
+def _theme_info(theme_name):
+    """The themes.json entry whose `name` matches, or None."""
+    for info in CONFIG['themes'].values():
+        if info['name'] == theme_name:
+            return info
+    return None
+
+
+def _build_strict_theme_keywords(theme_name):
+    """Theme keywords WITHOUT the description prose — name words + config keywords.
+
+    `_build_theme_keywords` also folds in every word of the theme description,
+    which is fine for ranking (a fuzzy extra hit only moves an article up a
+    list) and wrong for anything that gates a decision. Saturday's description
+    contributed 'that', 'shape', 'everyday' and 'life' as routing keywords, so
+    on 2026-08-22 practically nothing in the pool could read as "weak on today's
+    theme" and the Cariboo Local Affairs slot matched anything mentioning a
+    community. `_annotate_roundup_blocks` already built this stricter set inline
+    for exactly that reason; the holding router needs the same one.
+    """
+    keywords = [w.lower() for w in theme_name.split() if len(w) > 3]
+    info = _theme_info(theme_name)
+    if info:
+        keywords.extend(k.lower() for k in info.get('keywords', []))
+    seen = set()
+    return [k for k in keywords if not (k in seen or seen.add(k))]
+
+
+def _is_geographic_theme(theme_name) -> bool:
+    """True for a theme defined by WHERE a story is, not what it is about.
+
+    Only Cariboo Local Affairs (themes.json `geographic: true`). Every other
+    theme is topical, which is why place names can carry theme relevance there
+    and cannot here — see `_build_theme_subject_keywords`.
+    """
+    info = _theme_info(theme_name)
+    return bool(info and info.get('geographic'))
+
+
+def _build_theme_subject_keywords(theme_name):
+    """Strict theme keywords minus place names — what the day is ABOUT.
+
+    Identical to `_build_strict_theme_keywords` for the six topical themes.
+    On the geographic day it is the difference between a civic story and any
+    story that happens to be here: every candidate in Saturday's pool is local
+    by construction, so place-name hits are a constant rather than a
+    discriminator. Ranking the deep dive on them picked whichever local story
+    named the most towns — on 2026-08-22 a softwood-duty story, a ranching award
+    and a Tyson beef-plant closure, i.e. Tuesday's Working Lands episode — while
+    'council', 'bylaw' and 'zoning' counted for no more than the byline did.
+    """
+    if not _is_geographic_theme(theme_name):
+        return _build_strict_theme_keywords(theme_name)
+    info = _theme_info(theme_name) or {}
+    # The theme NAME is dropped whole here: "Cariboo Local Affairs" contributes
+    # a place and the bare word 'local', which matched "local AI models" and
+    # "Scientists Saw Strange Spots on Local Fish" — the one story that reached
+    # the roundup's theme block on 2026-08-22.
+    places = {k.lower() for k in info.get('place_keywords', [])}
+    return [k.lower() for k in info.get('keywords', []) if k.lower() not in places]
+
+
 def _build_theme_source_boost(theme_name):
     """Return the lowercased source-name allowlist that gets a relevance boost
     for this theme (e.g. gadget outlets like Hackaday/Engadget for theme 2)."""
@@ -4699,31 +4973,84 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=3, focus=None):
 
     When the feed provides no keyword matches, falls back to local keyword
     scoring against the theme name and config keywords.
+
+    On the geographic theme (Cariboo Local Affairs) the ranking is the civic
+    subject keywords instead: locality is what every candidate has in common
+    there, so it cannot also be the thing that sorts them.
+
+    Articles flagged `_no_deep_dive` by the router air today but do not anchor
+    the debate, unless fewer than DEEP_DIVE_ELIGIBLE_FLOOR articles are left
+    without the flag.
     """
+    # `_no_deep_dive` articles air today but do not anchor the debate: an urgent
+    # off-theme story, or a local one whose subject belongs to another day. They
+    # are held back rather than excluded — a day thin enough to fall below
+    # DEEP_DIVE_ELIGIBLE_FLOOR gets them back rather than running on nothing.
+    eligible = [a for a in theme_articles if not a.get('_no_deep_dive')]
+    deferred = [a for a in theme_articles if a.get('_no_deep_dive')]
+    if len(eligible) < DEEP_DIVE_ELIGIBLE_FLOOR and deferred:
+        print(f"  ↩️  Only {len(eligible)} article(s) eligible to anchor the deep dive — "
+              f"restoring {len(deferred)} deferred one(s)")
+        eligible, deferred = theme_articles, []
+    elif deferred:
+        print(f"  ⏭️  {len(deferred)} article(s) air today but are deferred out of the "
+              f"deep dive (off today's subject)")
+    candidates = eligible
+
     # Articles are mostly sorted by boosted score from the feed, but seeded/
     # newsletter articles are prepended ahead of the feed and shouldn't win a
     # deep-dive slot purely by virtue of being first. Re-sort strong matches by
     # (keyword matches, boosted score) so genuinely on-theme feed articles can
     # outrank a weakly-matching newsletter or seed.
     strong_match = sorted(
-        (a for a in theme_articles if a.get('_keyword_matches', 0) > 0),
+        (a for a in candidates if a.get('_keyword_matches', 0) > 0),
         key=lambda a: (a.get('_keyword_matches', 0), a.get('_boosted_score', a.get('ai_score', 0))),
         reverse=True,
     )
-    weak_match = [a for a in theme_articles if a.get('_keyword_matches', 0) == 0]
+    weak_match = [a for a in candidates if a.get('_keyword_matches', 0) == 0]
 
     theme_keywords = _build_theme_keywords(theme_name)
     theme_anti_keywords = _build_theme_anti_keywords(theme_name)
     used_local_scoring = False
 
+    # On the geographic theme, rank on what the story is ABOUT. Every candidate
+    # here is local, so place names are a constant and ranking on them is
+    # ranking on nothing — see _build_theme_subject_keywords.
+    subject_deep_dive = None
+    if _is_geographic_theme(theme_name):
+        subject_keywords = _build_theme_subject_keywords(theme_name)
+        for a in candidates:
+            a['_subject_matches'] = _focus_hit_count(
+                a, subject_keywords)  # same title+summary scan, source tag stripped
+        subject_strong = sorted(
+            (a for a in candidates if a.get('_subject_matches', 0) > 0),
+            key=lambda a: (a.get('_subject_matches', 0),
+                           a.get('_boosted_score', a.get('ai_score', 0))),
+            reverse=True,
+        )
+        if subject_strong:
+            # Civic stories lead; the remaining slots go to the strongest local
+            # material left, which is the only thing a thin civic week has.
+            rest = sorted(
+                (a for a in candidates if a.get('_subject_matches', 0) == 0),
+                key=lambda a: a.get('_boosted_score', a.get('ai_score', 0)),
+                reverse=True,
+            )
+            subject_deep_dive = (subject_strong + rest)[:count]
+            print(f"  🏛️  {len(subject_strong)} article(s) carry civic subject matter — "
+                  f"deep dive centered on them")
+        else:
+            print("  🏛️  subject_fallback: no article carried civic subject matter — "
+                  "ranking the local pool on score alone")
+
     # Super-cycle focus: prefer articles matching this week's rotation slice.
     focus_keywords = _build_focus_keywords(focus)
     deep_dive = None
     if focus_keywords:
-        for a in theme_articles:
+        for a in candidates:
             a['_focus_matches'] = _focus_hit_count(a, focus_keywords)
         focus_strong = sorted(
-            (a for a in theme_articles if a.get('_focus_matches', 0) > 0),
+            (a for a in candidates if a.get('_focus_matches', 0) > 0),
             key=lambda a: (a.get('_focus_matches', 0), a.get('_keyword_matches', 0),
                            a.get('_boosted_score', a.get('ai_score', 0))),
             reverse=True,
@@ -4735,7 +5062,9 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=3, focus=None):
             print(f"  🎯 focus_fallback: only {len(focus_strong)} article(s) matched focus "
                   f"'{focus['name']}' (<{count}) — using base theme selection")
 
-    if deep_dive is not None:
+    if subject_deep_dive is not None:
+        deep_dive = subject_deep_dive
+    elif deep_dive is not None:
         pass
     elif strong_match:
         # Feed provided keyword matches — use them
@@ -4749,7 +5078,7 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=3, focus=None):
         print(f"  📎 Local keywords: {theme_keywords[:10]}{'...' if len(theme_keywords) > 10 else ''}")
 
         scored = sorted(
-            theme_articles,
+            candidates,
             key=lambda a: _local_theme_relevance(a, theme_keywords, anti_keywords=theme_anti_keywords),
             reverse=True,
         )
@@ -4775,6 +5104,77 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=3, focus=None):
         local_score = _local_theme_relevance(a, theme_keywords)
         print(f"  - [kw={kw}, focus={fm}, local={local_score:.1f}] {a.get('title', '')[:70]}...")
     return deep_dive, news_articles
+
+# Content-word matching for "was this article actually discussed?". The
+# verbatim-then-sub-phrase pass below only fires when the hosts read a headline
+# nearly word for word, which the prompts tell them not to do: across the 21
+# episodes of August 2026 it found 33% of roundup articles and 30% of deep-dive
+# ones, and every miss dropped that story from the episode description and cost
+# it its video slide. Requiring half a headline's content words inside a single
+# host turn — one of them rare enough in the script to belong to the story
+# rather than to the show — takes those to 51% and 55%, with no false positive
+# in 20 hand-checked samples. The turn is the unit because a 600-character
+# window spans three roundup stories, and matching "helping", "people" and
+# "loss" across three of them landed a vision-loss story on a wildfire.
+_MATCH_TOKEN_RATIO = 0.5
+_MATCH_MIN_TOKENS = 2
+_MATCH_RARE_MAX = 3
+
+# Function words plus the show's own furniture. Anything the hosts say every
+# night is not evidence that they said *this* story.
+_MATCH_STOPWORDS = frozenset("""
+a an the and or but of for to in on at by with from as is are was were be been being
+it its this that these those has have had will would can could should may might must
+do does did not no than then there their they them his her he she you your our we us
+what when where why how after before over under into out up down off about again more
+most some such only own same so too very new news say says said one two three first
+second best top big small make makes made get gets got
+""".split())
+
+
+@lru_cache(maxsize=4)
+def _script_turns(script_lower):
+    """[(offset, text)] for each host turn, so a match can be scoped to one.
+
+    Falls back to blank-line paragraphs for text with no host tags (a section
+    excerpt, a hand-edited script), which keeps the scope roughly one story
+    either way.
+    """
+    marks = [m.end() for m in re.finditer(r"\*\*(?:riley|casey):\*\*", script_lower)]
+    if not marks:
+        marks, pos = [], 0
+        for para in script_lower.split("\n\n"):
+            marks.append(pos)
+            pos += len(para) + 2
+    bounds = marks + [len(script_lower)]
+    return tuple((start, script_lower[start:bounds[i + 1]])
+                 for i, start in enumerate(marks))
+
+
+def _content_tokens(text):
+    """Distinct lowercase content words, in order of first appearance."""
+    return tuple(dict.fromkeys(
+        t for t in re.findall(r"[a-z0-9]+", text.lower())
+        if len(t) > 2 and t not in _MATCH_STOPWORDS))
+
+
+def _token_match_position(cleaned_title, script_lower):
+    """Offset of the host turn that covers *cleaned_title*'s story, or None."""
+    tokens = _content_tokens(cleaned_title)
+    if len(tokens) < _MATCH_MIN_TOKENS:
+        return None
+    needed = max(_MATCH_MIN_TOKENS, math.ceil(_MATCH_TOKEN_RATIO * len(tokens)))
+    counts = {t: len(re.findall(r"\b" + re.escape(t), script_lower)) for t in tokens}
+    for offset, turn in _script_turns(script_lower):
+        found = {}
+        for token in tokens:
+            m = re.search(r"\b" + re.escape(token), turn)
+            if m:
+                found[token] = m.start()
+        if len(found) >= needed and any(counts[t] <= _MATCH_RARE_MAX for t in found):
+            return offset + min(found.values())
+    return None
+
 
 def _script_match_position(article, script_lower):
     """First character offset where *article*'s title is mentioned in the
@@ -4809,7 +5209,11 @@ def _script_match_position(article, script_lower):
             pos = script_lower.find(phrase)
             if pos != -1:
                 best = pos if best is None else min(best, pos)
-    return best
+    if best is not None:
+        return best
+
+    # Nothing quoted closely enough — fall back to content-word overlap.
+    return _token_match_position(cleaned, script_lower)
 
 
 def match_articles_to_script(articles, script):
@@ -5031,6 +5435,485 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
 
     return description
 
+# ---------------------------------------------------------------------------
+# Phrase ledger — the show's own back catalogue as the ban list
+#
+# The prompt has banned ~40 AI-tell categories in prose for a long time and
+# "genuinely" still landed 146 times across 30 episodes. Five a script reads
+# fine; five a day for a month is a fingerprint, and no per-episode prompt or
+# polish pass can see that. So instead of a longer hand-written list, count what
+# the show actually says, feed the spikes back into tomorrow's prompt, and let a
+# phrase retire once it goes quiet. Nobody has to notice the next "genuinely".
+#
+# All of it is local: no API call anywhere in this section.
+# ---------------------------------------------------------------------------
+
+_LEDGER_DEFAULTS = {
+    "window_episodes": 21,
+    "top_n_reported": 12,
+    "min_rate_per_1k": 0.35,
+    "min_episodes_present": 3,
+    "retire_after_clean_episodes": 3,
+    "ngram_sizes": [1, 2, 3, 4],
+    "min_unigram_length": 6,
+    "min_repetition_ratio": 2.0,
+    "unigram_mode": "adverbs",
+    "unigram_denylist": [],
+    "stopwords": [],
+    "allow": [],
+}
+
+
+def _ledger_settings():
+    """Ledger tuning from config/ai_tells.json, with defaults for a missing file."""
+    cfg = dict(_LEDGER_DEFAULTS)
+    cfg.update(CONFIG.get('ai_tells', {}).get('ledger', {}))
+    return cfg
+
+
+def _hard_banned_phrases():
+    """Phrases that may never ship, regardless of how rarely they appear."""
+    return [p for p in CONFIG.get('ai_tells', {}).get('hard_banned', []) if p.strip()]
+
+
+def _script_body_sentences(script_text):
+    """Spoken sentences only — headers, section markers, speaker tags and pacing
+    tags removed. Those are fixtures; counting them would burn "welcome back"."""
+    import re as _re
+
+    lines = [ln for ln in script_text.split('\n') if not ln.startswith('#')]
+    text = '\n'.join(lines)
+    text = _re.sub(r'\*\*(?:RILEY|CASEY):\*\*', ' \n', text)      # speaker tags end a sentence
+    text = _re.sub(r'\*\*[^*\n]{0,80}\*\*', ' \n', text)          # **COLD OPEN**, **DEEP DIVE: ...**
+    text = _re.sub(r'\[(?:pause|overlap):[^\]]+\]', ' ', text)    # pacing tags
+    text = _re.sub(r'\([^)\n]{0,40}\)', ' ', text)                # (cue) stage directions
+    return [s for s in _re.split(r'[.!?\n]+', text) if s.strip()]
+
+
+def extract_phrase_counts(script_text):
+    """Count content unigrams and 2-4-grams in a script's spoken text.
+
+    Proper nouns are excluded outright: an n-gram containing a capitalized token
+    that is not sentence-initial never enters the ledger, so "Williams Lake" and
+    "Cariboo Regional District" can never be burned for being said often. They
+    are the subject matter, not a tic.
+    """
+    import re as _re
+
+    cfg = _ledger_settings()
+    stop = set(w.lower() for w in cfg['stopwords'])
+    allow = set(a.lower() for a in cfg['allow'])
+    sizes = [n for n in cfg['ngram_sizes'] if n >= 1]
+    min_uni = cfg['min_unigram_length']
+    adverbs_only = cfg.get('unigram_mode') == 'adverbs'
+    denylist = set(w.lower() for w in cfg.get('unigram_denylist', []))
+
+    counts = Counter()
+    for sentence in _script_body_sentences(script_text):
+        raw = _re.findall(r"[A-Za-z][A-Za-z'’\-]*", sentence)
+        if not raw:
+            continue
+        # Sentence-initial capitals are grammar; later ones are names.
+        proper = [i > 0 and tok[0].isupper() for i, tok in enumerate(raw)]
+        toks = [t.lower().replace('’', "'") for t in raw]
+
+        for n in sizes:
+            for i in range(len(toks) - n + 1):
+                if any(proper[i:i + n]):
+                    continue
+                gram = ' '.join(toks[i:i + n])
+                if gram in allow:
+                    continue
+                if n == 1:
+                    if toks[i] in stop or len(toks[i]) < min_uni:
+                        continue
+                    # Content words are the subject matter: a news show says
+                    # "story", "region" and "question" constantly and must keep
+                    # doing so. The generated register lives in stance adverbs —
+                    # "genuinely", "exactly", "quietly" — so that is the only
+                    # unigram class the ledger is allowed to burn.
+                    if adverbs_only and (not toks[i].endswith('ly') or toks[i] in denylist):
+                        continue
+                else:
+                    # An n-gram made entirely of stopwords is grammar, not a tic.
+                    if all(t in stop for t in toks[i:i + n]):
+                        continue
+                counts[gram] += 1
+    return dict(counts)
+
+
+def load_phrase_ledger():
+    """Load the ledger, pruned to the configured episode window."""
+    ledger = load_memory(PHRASE_LEDGER_FILE)
+    window = _ledger_settings()['window_episodes']
+    episodes = ledger.get('episodes', [])
+    if len(episodes) > window:
+        ledger['episodes'] = episodes[-window:]
+    ledger.setdefault('episodes', [])
+    ledger.setdefault('burned', {})
+    return ledger
+
+
+def _aggregate_ledger(episodes):
+    """(total_words, {phrase: (total_count, episodes_present)}) over the window."""
+    totals = Counter()
+    presence = Counter()
+    words = 0
+    for ep in episodes:
+        words += ep.get('words', 0)
+        for phrase, n in ep.get('counts', {}).items():
+            totals[phrase] += n
+            presence[phrase] += 1
+    return words, {p: (totals[p], presence[p]) for p in totals}
+
+
+def update_phrase_ledger(script_text, date_str, save=True):
+    """Fold today's script into the ledger and recompute the burned list.
+
+    Idempotent on re-runs: an existing entry for *date_str* is replaced, so a
+    re-render never double-counts its own episode into the rates.
+    """
+    cfg = _ledger_settings()
+    ledger = load_phrase_ledger()
+
+    counts = extract_phrase_counts(script_text)
+    ledger['episodes'] = [e for e in ledger['episodes'] if e.get('date') != date_str]
+    ledger['episodes'].append({
+        'date': date_str,
+        'words': len(script_text.split()),
+        # Singletons are noise and would bloat the file; a tic repeats.
+        'counts': {p: n for p, n in counts.items() if n > 1},
+    })
+    ledger['episodes'] = ledger['episodes'][-cfg['window_episodes']:]
+
+    total_words, agg = _aggregate_ledger(ledger['episodes'])
+    burned = ledger.get('burned', {})
+
+    if total_words:
+        for phrase, (count, present) in agg.items():
+            rate = count * 1000.0 / total_words
+            # Boilerplate is said once per episode, every episode; a tic recurs
+            # inside one. "impact our rural communities" scores 1.0 here and the
+            # show's own welcome copy never reaches the burned list.
+            repetition = count / present if present else 0
+            # `phrase in counts` is load-bearing: the window aggregate still
+            # contains a phrase for weeks after the show stops saying it, so
+            # promoting off the aggregate alone re-fired every day and reset
+            # clean_streak to 0 — nothing could ever retire.
+            if (phrase in counts
+                    and rate >= cfg['min_rate_per_1k']
+                    and present >= cfg['min_episodes_present']
+                    and repetition >= cfg.get('min_repetition_ratio', 0)):
+                entry = burned.setdefault(phrase, {'first_flagged': date_str})
+                entry['clean_streak'] = 0
+                entry['rate_per_1k'] = round(rate, 2)
+                entry['count'] = count
+
+    # Retire what has gone quiet, freeing the slot for whatever replaced it.
+    for phrase in list(burned):
+        if phrase in counts:
+            continue
+        entry = burned[phrase]
+        entry['clean_streak'] = entry.get('clean_streak', 0) + 1
+        if entry['clean_streak'] >= cfg['retire_after_clean_episodes']:
+            del burned[phrase]
+
+    ledger['burned'] = burned
+    ledger['updated'] = date_str
+    if save:
+        save_memory(PHRASE_LEDGER_FILE, ledger)
+    return ledger
+
+
+def format_burned_phrases_for_prompt(ledger=None):
+    """Render the burned-phrase block for the dynamic prompt.
+
+    Counts, not prose. The existing 43 KB of prose bans is precisely what these
+    phrases survived; a short list with numbers attached is a different kind of
+    instruction. Returns "" when there is nothing to say.
+    """
+    hard = _hard_banned_phrases()
+    if ledger is None:
+        try:
+            ledger = load_phrase_ledger()
+        except Exception:
+            ledger = {'burned': {}}
+
+    cfg = _ledger_settings()
+    burned = ledger.get('burned', {})
+    ranked = sorted(
+        ((p, d) for p, d in burned.items() if p not in hard),
+        key=lambda kv: kv[1].get('rate_per_1k', 0),
+        reverse=True,
+    )[:cfg['top_n_reported']]
+
+    # Static half (hard bans + rhythm budget) is shared with generate_bespoke.py
+    # via config_loader; only the measured half is computed here.
+    static = format_static_tell_block()
+    if not static and not ranked:
+        return ""
+
+    lines = [static] if static else []
+    if ranked:
+        lines.append(
+            f"MEASURED OVERUSE — your own habits across the last "
+            f"{len(ledger.get('episodes', []))} episodes, counted. Do not use these today: "
+            + ", ".join(f'"{p}" ({d.get("count", 0)}x)' for p, d in ranked)
+        )
+    return "\n".join(lines)
+
+
+def find_hard_banned(script_text):
+    """[(phrase, sentence)] for every hard-banned phrase that survived to air."""
+    import re as _re
+
+    hits = []
+    # Drop the speaker tag and any leading pacing tag before splitting: the scrub
+    # replaces by exact substring, and handing it "**CASEY:** [pause:1200] ..."
+    # would put the tags at risk in the rewrite for no reason.
+    prefix = _re.compile(r'^\*\*(?:RILEY|CASEY):\*\*\s*(?:\[(?:pause|overlap):[^\]]+\]\s*)?')
+    for phrase in _hard_banned_phrases():
+        pat = _re.compile(r'\b' + _re.escape(phrase) + r'\b', _re.IGNORECASE)
+        for line in script_text.split('\n'):
+            if not pat.search(line):
+                continue
+            for sentence in _re.findall(r'[^.!?]*[.!?]|[^.!?]+$', prefix.sub('', line)):
+                if sentence.strip() and pat.search(sentence):
+                    hits.append((phrase, sentence.strip()))
+    return hits
+
+
+def scrub_hard_banned(script_text, hits):
+    """Rewrite only the sentences carrying a hard-banned phrase.
+
+    The whole point of sending sentences rather than the script: a re-polish of
+    3,400 words to remove one adverb is the expensive way to buy a small fix.
+    Payload here is a few hundred tokens on the cheapest model.
+
+    A sentence is replaced only if the replacement is clean and the original
+    still matches verbatim; anything else keeps the original and degrades, so a
+    bad rewrite can never make the episode worse than the tic it was fixing.
+    """
+    import re as _re
+
+    client = get_anthropic_client()
+    if not client or not hits:
+        if hits:
+            degrade("script/tell-scrub",
+                    f"{len(hits)} hard-banned phrase(s) shipped unfixed — no Anthropic client")
+        return script_text
+
+    # One sentence may carry two banned phrases; rewrite it once.
+    sentences = list(dict.fromkeys(s for _, s in hits))
+    phrases = sorted({p for p, _ in hits})
+
+    numbered = "\n".join(f"{i + 1}. {s}" for i, s in enumerate(sentences))
+    prompt = (
+        "These sentences are from a two-host radio script. Each contains a banned "
+        "phrase. Rewrite each one so the banned phrase is gone.\n\n"
+        f"Banned phrases: {', '.join(phrases)}\n\n"
+        "Rules:\n"
+        "- Keep every fact, name, number and the speaker's meaning identical.\n"
+        "- Do not substitute a synonym for the banned word (\"truly\", \"really\", "
+        "\"genuinely\" are the same tic). Delete the intensifier, or rebuild the "
+        "sentence around the concrete claim.\n"
+        "- Keep it speakable and roughly the same length.\n"
+        "- Preserve any [pause:N] or [overlap:N] tags exactly where they are.\n\n"
+        f"Sentences:\n{numbered}\n\n"
+        "Return ONLY a JSON array of the rewritten sentences, in order, same length."
+    )
+
+    try:
+        response = api_retry(lambda: client.messages.create(
+            model=SCRUB_MODEL,
+            max_tokens=1500,
+            messages=[{"role": "user", "content": prompt}]
+        ))
+        _log_api_call("claude", "input_tokens",
+                      getattr(getattr(response, "usage", None), "input_tokens", 0))
+        _log_api_call("claude", "output_tokens",
+                      getattr(getattr(response, "usage", None), "output_tokens", 0))
+        text = message_text(response).strip()
+        if text.startswith("```"):
+            text = text.split("\n", 1)[1] if "\n" in text else text[3:]
+            if text.endswith("```"):
+                text = text[:-3]
+            text = text.strip()
+        rewrites = json.loads(text)
+        if not isinstance(rewrites, list) or len(rewrites) != len(sentences):
+            raise ValueError(f"expected {len(sentences)} rewrites, got {len(rewrites)}")
+    except Exception as e:
+        degrade("script/tell-scrub",
+                f"{len(sentences)} sentence(s) with banned phrases shipped unfixed: {e}")
+        return script_text
+
+    banned_re = _re.compile(
+        '|'.join(r'\b' + _re.escape(p) + r'\b' for p in _hard_banned_phrases()),
+        _re.IGNORECASE,
+    )
+    fixed, skipped = 0, []
+    for original, replacement in zip(sentences, rewrites):
+        replacement = str(replacement).strip()
+        if not replacement or banned_re.search(replacement):
+            skipped.append(original)
+            continue
+        if original not in script_text:
+            skipped.append(original)
+            continue
+        script_text = script_text.replace(original, replacement, 1)
+        fixed += 1
+
+    print(f"   🧽 Tell scrub: {fixed}/{len(sentences)} sentence(s) rewritten")
+    if skipped:
+        degrade("script/tell-scrub",
+                f"{len(skipped)} sentence(s) kept a banned phrase (rewrite rejected)")
+    return script_text
+
+
+# Fallback tell corpus, used only when config/ai_tells.json is absent or
+# unreadable. config is authoritative; keep this in sync only when the
+# shipped default itself changes.
+_FALLBACK_TELL_PATTERNS = {
+    "i_want_to_announcements": [
+        r'\bI want to (?:push|flag|note|be clear|be honest|add|come back|pull|put|engage|make sure|explore|dig|look)\b',
+    ],
+    "heres_opener": [
+        r"\bHere's (?:where|what|the|who|how|why|one |an |a )\b",
+    ],
+    "pre_validation": [
+        r"\bFair (?:point|challenge|enough)[,\.]",
+        r"\bThat's (?:a fair|fair)[,\. ]",
+        r"\bThat's (?:a meaningful|an important|a good) (?:distinction|point|frame)\b",
+        r"\bI'll take that as\b",
+    ],
+    "contrastive_negation": [
+        r"\bisn't just (?:about|a |an |the )",
+        r"\bnot just (?:about|a |an |the |purely |simply )",
+        r"\bnot speculative technically\b",
+        r"The \w+ is for [^,]{3,30}, not for\b",
+    ],
+    "debate_club_vocab": [
+        r"\bsteelman\b",
+        r"\bcircling back to where we started\b",
+        r"\bI'm less confident (?:in )?that\b",
+    ],
+    "structural_announcements": [
+        r'\bLet me (?:flag|push|note|be clear|be honest|try|engage|pull|put)\b',
+    ],
+    "sourcing_meta_commentary": [
+        r"\bwe (?:only|just) have the headline\b",
+        r"\bif the details bear out\b",
+        r"\bthe picture is still coming together\b",
+        r"\baccording to reporting\b",
+        r"\bthe headline (?:alone|only)\b",
+        r"\bthe full body text wasn't in (?:today's|the) feed\b",
+        r"\bbeing honest about what we don't know\b",
+        r"\bwe'll be honest about what we (?:don't|do not) know\b",
+    ],
+    "ai_vocabulary_tics": [
+        r"\b(?:delve[sd]?|delving|utiliz(?:e|es|ing|ed)|leverag(?:e|es|ing|ed)|robust|streamlin(?:e|es|ing)|harness(?:es|ing)?|tapestry|paradigm|synerg(?:y|ies)|ecosystem)\b",
+    ],
+    "serves_as_dodge": [
+        r"\bserves as\b", r"\bstands as\b", r"\b(?:marks|represents) (?:a|an|the)\b",
+    ],
+    "pedagogical_voice": [
+        r"\bLet's (?:break this down|unpack|explore|dive in)\b",
+    ],
+    "filler_transitions": [
+        r"\bIt'?s worth noting\b", r"\bit bears mentioning\b",
+        r"\bImportantly,", r"\bInterestingly,", r"\bNotably,",
+    ],
+    "signposted_conclusion": [
+        r"\bIn conclusion\b", r"\bTo sum up\b", r"\bIn summary\b",
+    ],
+    "cliched_idioms": [
+        r"\bsmoking gun\b", r"\bperfect storm\b", r"\bmove the needle\b",
+        r"\bgame changer\b", r"\btip of the iceberg\b",
+    ],
+    "dismissive_concession": [
+        r"\bDespite (?:its|these|those) challenges,",
+    ],
+    "false_exclusivity": [
+        r"\bwhat most people miss\b", r"\bnobody'?s talking about\b", r"\bthe secret is\b",
+    ],
+    "patronizing_analogy": [
+        r"\bThink of (?:it|this|that) as\b",
+    ],
+    "futuristic_invitation": [
+        r"\bImagine a world where\b",
+    ],
+    "vague_attribution": [
+        r"\bexperts (?:say|believe|argue)\b", r"\bobservers (?:say|note)\b",
+        r"\bindustry reports (?:show|suggest)\b",
+    ],
+    "dramatic_countdown": [
+        r"\bNot [^.!?]{2,40}\.\s+Not [^.!?]{2,40}\.\s+Just\b",
+    ],
+}
+
+
+_FALLBACK_SOFT_PATTERNS = {
+    "worth_gerund": {"patterns": [r"\bworth \w+ing\b"], "allowance": 1},
+    "roundup_seam": {
+        "patterns": [
+            r"\bfrom the (?:news )?roundup\b",
+            r"\bfrom today's feed\b",
+            r"\bfrom earlier in the (?:show|episode)\b",
+        ],
+        "allowance": 0,
+    },
+    "thats_closer": {
+        "patterns": [r"\bThat's [^.!?\n]{2,60}[.!?][\"']?\s*$"],
+        "allowance": 2,
+        "multiline": True,
+    },
+}
+
+
+def score_rhythm(script_text):
+    """Measure the texture that makes a script read as generated.
+
+    The vocabulary is only half of it. 47 words per turn on average, 53 em-dashes
+    an episode and every turn a well-formed paragraph is a fingerprint on its
+    own, so the things the prompt now asks for are the things measured here.
+    """
+    import re as _re
+
+    rcfg = dict(CONFIG.get('ai_tells', {}).get('rhythm', {}))
+    words = max(1, len(script_text.split()))
+
+    turns = []
+    for chunk in _re.split(r'\*\*(?:RILEY|CASEY):\*\*', script_text)[1:]:
+        clean = _re.sub(r'\[(?:pause|overlap):[^\]]+\]', '', chunk)
+        clean = _re.sub(r'\*\*[^*\n]{0,80}\*\*', '', clean).strip()
+        if clean:
+            turns.append(len(clean.split()))
+
+    short_max = rcfg.get('short_turn_max_words', 15)
+    short_turns = sum(1 for t in turns if t <= short_max)
+    antithesis = sum(
+        len(_re.findall(p, script_text, _re.IGNORECASE))
+        for p in rcfg.get('antithesis_patterns', [])
+    )
+    em_rate = round(script_text.count('—') * 1000.0 / words, 1)
+
+    out = {
+        "em_dashes_per_1k": em_rate,
+        "short_turns": short_turns,
+        "turns": len(turns),
+        "avg_turn_words": round(sum(turns) / len(turns), 1) if turns else None,
+        "antithesis_hits": antithesis,
+    }
+    out["over_budget"] = [
+        k for k, over in (
+            ("em_dashes", em_rate > rcfg.get('max_em_dashes_per_1k_words', 6)),
+            ("short_turns", short_turns < rcfg.get('min_short_turns', 8)),
+            ("antithesis", antithesis > rcfg.get('max_antithesis_per_script', 2)),
+        ) if over
+    ]
+    return out
+
+
 def score_script(script_text):
     """Score a finalized script against known AI speech pattern anti-patterns.
 
@@ -5040,83 +5923,11 @@ def score_script(script_text):
     """
     import re as _re
 
-    patterns = {
-        "i_want_to_announcements": [
-            r'\bI want to (?:push|flag|note|be clear|be honest|add|come back|pull|put|engage|make sure|explore|dig|look)\b',
-        ],
-        "heres_opener": [
-            r"\bHere's (?:where|what|the|who|how|why|one |an |a )\b",
-        ],
-        "pre_validation": [
-            r"\bFair (?:point|challenge|enough)[,\.]",
-            r"\bThat's (?:a fair|fair)[,\. ]",
-            r"\bThat's (?:a meaningful|an important|a good) (?:distinction|point|frame)\b",
-            r"\bI'll take that as\b",
-        ],
-        "contrastive_negation": [
-            r"\bisn't just (?:about|a |an |the )",
-            r"\bnot just (?:about|a |an |the |purely |simply )",
-            r"\bnot speculative technically\b",
-            r"The \w+ is for [^,]{3,30}, not for\b",
-        ],
-        "debate_club_vocab": [
-            r"\bsteelman\b",
-            r"\bcircling back to where we started\b",
-            r"\bI'm less confident (?:in )?that\b",
-        ],
-        "structural_announcements": [
-            r'\bLet me (?:flag|push|note|be clear|be honest|try|engage|pull|put)\b',
-        ],
-        "sourcing_meta_commentary": [
-            r"\bwe (?:only|just) have the headline\b",
-            r"\bif the details bear out\b",
-            r"\bthe picture is still coming together\b",
-            r"\baccording to reporting\b",
-            r"\bthe headline (?:alone|only)\b",
-            r"\bthe full body text wasn't in (?:today's|the) feed\b",
-            r"\bbeing honest about what we don't know\b",
-            r"\bwe'll be honest about what we (?:don't|do not) know\b",
-        ],
-        "ai_vocabulary_tics": [
-            r"\b(?:delve[sd]?|delving|utiliz(?:e|es|ing|ed)|leverag(?:e|es|ing|ed)|robust|streamlin(?:e|es|ing)|harness(?:es|ing)?|tapestry|paradigm|synerg(?:y|ies)|ecosystem)\b",
-        ],
-        "serves_as_dodge": [
-            r"\bserves as\b", r"\bstands as\b", r"\b(?:marks|represents) (?:a|an|the)\b",
-        ],
-        "pedagogical_voice": [
-            r"\bLet's (?:break this down|unpack|explore|dive in)\b",
-        ],
-        "filler_transitions": [
-            r"\bIt'?s worth noting\b", r"\bit bears mentioning\b",
-            r"\bImportantly,", r"\bInterestingly,", r"\bNotably,",
-        ],
-        "signposted_conclusion": [
-            r"\bIn conclusion\b", r"\bTo sum up\b", r"\bIn summary\b",
-        ],
-        "cliched_idioms": [
-            r"\bsmoking gun\b", r"\bperfect storm\b", r"\bmove the needle\b",
-            r"\bgame changer\b", r"\btip of the iceberg\b",
-        ],
-        "dismissive_concession": [
-            r"\bDespite (?:its|these|those) challenges,",
-        ],
-        "false_exclusivity": [
-            r"\bwhat most people miss\b", r"\bnobody'?s talking about\b", r"\bthe secret is\b",
-        ],
-        "patronizing_analogy": [
-            r"\bThink of (?:it|this|that) as\b",
-        ],
-        "futuristic_invitation": [
-            r"\bImagine a world where\b",
-        ],
-        "vague_attribution": [
-            r"\bexperts (?:say|believe|argue)\b", r"\bobservers (?:say|note)\b",
-            r"\bindustry reports (?:show|suggest)\b",
-        ],
-        "dramatic_countdown": [
-            r"\bNot [^.!?]{2,40}\.\s+Not [^.!?]{2,40}\.\s+Just\b",
-        ],
-    }
+    # Patterns live in config/ai_tells.json so the prompt bans, the scrub gate and
+    # this scan read one corpus. The literal below is the fallback for a missing
+    # or malformed config — a style file must never be able to fail a run.
+    _tells = CONFIG.get('ai_tells', {})
+    patterns = _tells.get('patterns') or _FALLBACK_TELL_PATTERNS
 
     hits = {}
     total = 0
@@ -5138,21 +5949,18 @@ def score_script(script_text):
 
     # Soft style tics — reported in pattern_hits for the weekly review loop but
     # excluded from total_hits so they can't push runs over OPUS_QUALITY_HIT_THRESHOLD.
-    hits["worth_gerund"] = max(
-        0, len(_re.findall(r"\bworth \w+ing\b", script_text, _re.IGNORECASE)) - 1
-    )
-    hits["roundup_seam"] = sum(
-        len(_re.findall(p, script_text, _re.IGNORECASE))
-        for p in (
-            r"\bfrom the (?:news )?roundup\b",
-            r"\bfrom today's feed\b",
-            r"\bfrom earlier in the (?:show|episode)\b",
+    # `allowance` is how many uses are fine before it counts as a tic.
+    for category, spec in (_tells.get('soft_patterns') or _FALLBACK_SOFT_PATTERNS).items():
+        flags = _re.IGNORECASE | (_re.MULTILINE if spec.get('multiline') else 0)
+        found = sum(
+            len(_re.findall(pat, script_text, flags)) for pat in spec.get('patterns', [])
         )
-    )
-    hits["thats_closer"] = max(
-        0,
-        len(_re.findall(r"\bThat's [^.!?\n]{2,60}[.!?][\"']?\s*$", script_text, _re.MULTILINE)) - 2,
-    )
+        hits[category] = max(0, found - spec.get('allowance', 0))
+
+    # Hard-banned phrases are counted but stay out of total_hits: the scrub gate
+    # removes them after this scan, so scoring them would double-charge a run
+    # that is about to be fixed.
+    hits["hard_banned"] = len(find_hard_banned(script_text))
 
     # Voice length ratio (Casey avg / Riley avg) in Deep Dive only
     voice_ratio = None
@@ -5181,6 +5989,7 @@ def score_script(script_text):
         "voice_ratio_casey_riley": voice_ratio,
         "pattern_hits": hits,
         "total_hits": total,
+        "rhythm": score_rhythm(script_text),
     }
 
 
@@ -5797,6 +6606,10 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
     # changes weekly, and caching it would defeat the cache every Monday.
     anchor_block = format_anchor_for_prompt(anchor, get_pacific_now().weekday(), theme_name)
 
+    # The show's own measured overuse. Dynamic prompt only — it changes daily and
+    # caching it would defeat the cache every morning.
+    burned_phrases = format_burned_phrases_for_prompt()
+
     if system_prompt and 'script_generation_user' in prompts:
         # New path: static system prompt (cached) + dynamic user prompt
         user_prompt = prompts['script_generation_user']['template'].format(
@@ -5810,6 +6623,7 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             theme_name=theme_name,
             theme_lens=_build_theme_lens(theme_name, focus=focus),
             anchor_block=anchor_block,
+            burned_phrases=burned_phrases,
             news_text=news_text,
             deep_dive_text=deep_dive_text,
             news_titles_brief=news_titles_brief,
@@ -5840,6 +6654,7 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             other_host_name=other_host_name,
             theme_name=theme_name,
             anchor_block=anchor_block,
+            burned_phrases=burned_phrases,
             news_text=news_text,
             deep_dive_text=deep_dive_text,
             news_titles_brief=news_titles_brief,
@@ -5897,7 +6712,8 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             # length feedback — the system prompt prefix stays cached, so the
             # retry is mostly cache reads.
             print(f"⚠️ Script complete but short ({word_count} words < {TARGET_SCRIPT_WORDS} target) — retrying with length feedback...")
-            expand_prompt = prompts['script_expand_retry']['template'].format(word_count=word_count)
+            expand_prompt = prompts['script_expand_retry']['template'].format(
+                word_count=word_count, burned_phrases=burned_phrases)
             retry_request = {
                 **request,
                 "max_tokens": 32000,
@@ -6431,17 +7247,15 @@ def generate_tts_for_segment(text, speaker, output_file):
         with open(output_file, "wb") as f:
             f.write(retry_content)
 
-    # Duration-ratio checksum: OpenAI tts-1 at speed=1.0 averages ~150 wpm
-    # (400 ms/word); the host's speed multiplier scales that estimate directly.
-    # A ratio below 0.80 suggests a sentence or more was dropped — this used to
-    # only log a warning, leaving the published transcript (built from the
-    # segment's real measured duration) captioning words that were never
-    # actually spoken. A truncated take is a generation fluke, not a systemic
-    # one, so one retry usually recovers the full line; either way we keep
-    # whichever take is longer.
+    # Duration-ratio checksum. A ratio below 0.80 suggests a sentence or more
+    # was dropped — this used to only log a warning, leaving the published
+    # transcript (built from the segment's real measured duration) captioning
+    # words that were never actually spoken. A truncated take is a generation
+    # fluke, not a systemic one, so one retry usually recovers the full line;
+    # either way we keep whichever take is longer.
     expected_words = len(re.findall(r"\b\w+\b", clean))
     if expected_words >= 10:
-        expected_ms = expected_words * 400 / speed
+        expected_ms = _expected_speech_ms(expected_words, speed)
         actual_ms = len(AudioSegment.from_mp3(output_file))
         ratio = actual_ms / expected_ms
         if ratio < 0.80:
@@ -6462,6 +7276,23 @@ def generate_tts_for_segment(text, speaker, output_file):
                     f"  ⚠️  Retry didn't recover the missing words either "
                     f"({new_ratio:.0%}) — keeping the longer take"
                 )
+
+def _expected_speech_ms(words: int, speed: float) -> float:
+    """How long *words* should take this host to say, in milliseconds.
+
+    Measured, not assumed: the 688 host segments of the ten episodes rendered
+    2026-08-13..22 (each transcript sidecar carries its segment's real measured
+    duration) fit `369 ms/word - 642 ms`, speed-normalised. The flat 400 ms/word
+    this replaces described no segment the show has ever produced — short lines
+    run nearer 280 ms/word because they carry no sentence-final pauses — so the
+    0.80 checksum below fired on 20% of every episode's segments, ~14 a night,
+    and re-synthesized each one. The retry came back within 2% of the first take
+    every time, which is what a complete read looks like twice. On the fitted
+    estimate the same 0.80 floor flags 2.2%, and still catches 93% of a 30% word
+    loss and every 50% one.
+    """
+    return (words * 369 - 642) / speed
+
 
 def _generate_host_line(context: str, host: str) -> str:
     """Ask Claude to write a short spoken line for the named host.
@@ -6781,10 +7612,12 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
 
         with tempfile.TemporaryDirectory() as tmpdir:
             combined = AudioSegment.empty()
-            # Trailing transcript text from the last Gemini section render, carried
-            # into the next section's call as already-spoken context so delivery
-            # continues instead of resampling cold at each section boundary.
-            gemini_context_tail = ""
+            # True once a Gemini section has rendered, so later sections open
+            # mid-flow instead of resampling delivery cold at each boundary.
+            # A flag, not the previous section's text — see CONTINUATION_NOTE in
+            # gemini_tts: verbatim context is what made 2026-08-17's welcome
+            # section read the whole cold open aloud before its own first line.
+            gemini_continuing = False
 
             def _render_section(seg_list, label, prefix, overlap_ms=0):
                 """Render a list of parsed segments into combined audio.
@@ -6792,7 +7625,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                 overlap_ms > 0 starts the section's speech that far before the
                 current tail of *combined* ends (talking over the music fade).
                 """
-                nonlocal combined, gemini_context_tail
+                nonlocal combined, gemini_continuing
                 print(f"  {label}")
 
                 global _tts_provider_used
@@ -6809,8 +7642,8 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                     try:
                         if provider == "gemini":
                             _log_api_call("gemini-tts", "chars", total_chars)
-                            gemini_context_tail = generate_gemini_tts_for_section(
-                                seg_list, section_wav, gemini_context_tail
+                            gemini_continuing = generate_gemini_tts_for_section(
+                                seg_list, section_wav, gemini_continuing
                             )
                             _report_gemini_degradations("render/gemini-retry")
                         else:
@@ -6979,13 +7812,15 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
             )
             _credits_cfg = CONFIG['credits']
             _pc_cfg = CONFIG['podcast']
-            # Gated the same way as the Brave line: the weather sweep is skipped
-            # on a fetch failure, and crediting a source we did not read that day
-            # would be the one inaccuracy the spoken credits cannot afford.
+            # The weather check is read on air in the welcome, so the provider is
+            # owed a spoken credit — the episode description has credited it since
+            # the segment existed, and the spoken credits never did (2026-08-17).
+            # Gated on the header flag, not on config: on a day the fetch failed
+            # there is no weather segment and nothing to credit.
+            _weather_provider = _credits_cfg['structured'].get('weather_data', '')
             weather_spoken = (
-                f" Regional weather from "
-                f"{_credits_cfg.get('structured', {}).get('weather_data', 'Open-Meteo')}."
-                if weather_used else ""
+                f" Weather data from {_weather_provider}."
+                if weather_used and _weather_provider else ""
             )
 
             def _build_credits_text() -> str:
@@ -6994,8 +7829,8 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                 return (
                     f"{_pc_cfg.get('title', 'This show')} is produced by {_credits_cfg.get('producer', _pc_cfg.get('author', ''))} — "
                     f"scripts by Claude, today's voices by {get_tts_credit()}, theme by Suno."
-                    f"{brave_spoken}"
                     f"{weather_spoken}"
+                    f"{brave_spoken}"
                     f" Automated with GitHub Actions, hosted on Cloudflare Pages."
                     f" Find us at {_pc_cfg.get('url_spoken', 'cariboo signals dot c-a')}."
                 )
@@ -7014,7 +7849,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                         credits_wav = os.path.join(tmpdir, "credits.wav")
                         credits_segments = [{"speaker": "riley", "text": _build_credits_text(), "gap_ms": None}]
                         if _credits_provider == "gemini":
-                            generate_gemini_tts_for_section(credits_segments, credits_wav, gemini_context_tail)
+                            generate_gemini_tts_for_section(credits_segments, credits_wav, gemini_continuing)
                             _report_gemini_degradations("render/gemini-retry")
                         else:
                             generate_azure_tts_for_section(credits_segments, credits_wav)
@@ -8192,8 +9027,8 @@ def save_script_to_file(script: str, theme_name: str, brave_used: bool = False,
     The header carries the metadata the audio stage needs, since it runs as a
     separate process and cannot inherit locals: the theme (which the feed can
     override, so it is not always what get_theme_for_day() returns), whether
-    Brave research was used and whether the weather sweep ran (each gates a
-    sentence in the spoken credits), and this week's anchor question (which is
+    Brave research was used and whether the weather check aired (each gates a
+    provider in the spoken credits), and this week's anchor question (which is
     named on air, so the publish stage puts it in the episode description).
     """
     if not script:
@@ -8230,14 +9065,15 @@ def save_script_to_file(script: str, theme_name: str, brave_used: bool = False,
 def read_script_metadata(script_path) -> dict:
     """Parse the `# Key: value` header written by save_script_to_file().
 
-    Returns {"theme": str | None, "brave_used": bool, "anchor": str | None,
-    "weather_used": bool}. Scripts written before the header carried `# Brave:`
+    Returns {"theme": str | None, "brave_used": bool, "weather_used": bool,
+    "anchor": str | None}. Scripts written before the header carried `# Brave:`
     or `# Weather:` degrade to False, scripts predating `# Anchor:` degrade to
     anchor=None, and any script without a `# Theme:` line degrades to
-    theme=None — all four are what the downstream callers already tolerate.
+    theme=None — all of which the downstream callers already tolerate.
     """
-    metadata: dict = {"theme": None, "brave_used": False, "anchor": None,
-                      "weather_used": False}
+    metadata: dict = {
+        "theme": None, "brave_used": False, "weather_used": False, "anchor": None,
+    }
     try:
         with open(script_path, "r", encoding="utf-8") as fh:
             for line in fh:
@@ -8685,7 +9521,10 @@ def run_script_stage() -> tuple[str, str] | None:
             # locks in: swap any thin deep-dive article for a substantive alternative
             # from the broader news pool so Claude is never put in a position where
             # it has to hedge about sourcing on air.
-            theme_keywords_for_substitution = _build_theme_keywords(today_theme)
+            # Strict, because `_is_on_theme` is a gate: `_build_theme_keywords`
+            # folds in the description, and Saturday's contributed the word
+            # 'that', which is a substring of most articles ever written.
+            theme_keywords_for_substitution = _build_strict_theme_keywords(today_theme)
             source_boost_for_substitution = _build_theme_source_boost(today_theme)
             deep_dive_articles, news_articles = _ensure_deep_dive_substance(
                 deep_dive_articles, news_articles,
@@ -8749,7 +9588,8 @@ def run_script_stage() -> tuple[str, str] | None:
 
             # Focus-day callbacks: stories that aired early in a bonus slot and
             # whose rotation focus day is today
-            callback_context, callback_urls = format_focus_callbacks_for_prompt(today_focus)
+            callback_context, callback_urls = format_focus_callbacks_for_prompt(
+                today_focus, today_theme)
             if callback_context:
                 print(f"📞 Focus callbacks: {len(callback_urls)} aired-early stor(ies) to reference")
                 evolving_context += "\n" + callback_context
@@ -8921,6 +9761,16 @@ def run_script_stage() -> tuple[str, str] | None:
             print("🎬 Generating cold open teaser...")
             script = generate_cold_open(script, today_theme)
 
+        with segment("script/tell-scrub", critical=False):
+            # Last stop before the script is final. Placed after the cold open on
+            # purpose: generate_cold_open runs after every polish pass, so its
+            # teaser is the one part of the episode no cleaning stage has ever
+            # touched — and it is the first thing a listener hears.
+            _tell_hits = find_hard_banned(script)
+            if _tell_hits:
+                print(f"🧽 {len(_tell_hits)} hard-banned phrase(s) survived polish — scrubbing...")
+                script = scrub_hard_banned(script, _tell_hits)
+
         with segment("script/debate-summary", critical=False):
             # Extract debate summary if not already obtained from batch
             if not debate_summary:
@@ -9036,6 +9886,13 @@ def run_script_stage() -> tuple[str, str] | None:
             if ctas:
                 update_cta_memory(date_key, today_theme, ctas)
                 print(f"💡 Saved {len(ctas)} calls to action to CTA cache")
+
+        with segment("script/persist-phrase-ledger", critical=False):
+            # Runs on the final, scrubbed script so the ledger records what aired.
+            # Idempotent on date, so a re-render never double-counts its own episode.
+            _ledger = update_phrase_ledger(script, date_key)
+            _burned = len(_ledger.get('burned', {}))
+            print(f"📓 Phrase ledger updated — {_burned} phrase(s) currently burned")
     else:
         print(f"🔄 Script already exists, reusing: {script_filename}")
 

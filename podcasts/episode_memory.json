@@ -1,101 +1,4 @@
 {
-  "2026-07-12": {
-    "timestamp": 1783851111.773014,
-    "topics": [
-      "[WIRED] El Ni\u00f1o Is Already Wreaking Havoc on Pacific Fisheri",
-      "[ScienceDaily] Scientists warn invasive Asian mantises are t",
-      "[ScienceDaily] Heavy marijuana smoking may increase cancer r",
-      "[The Verge] Oregon\u2019s Attorney General withdraws effort to de",
-      "[CNET] Artemis II Shows How Off-the-Shelf Cameras Are Becomi",
-      "[New Atlas] Intermittent fasting trial settles the 'optimal ",
-      "[ScienceAlert] There Are 2 Biologicially Distinct Forms of M",
-      "[The Verge] White House taps the guy who keeps crying \u2018alien"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech"
-    ],
-    "date": "2026-07-12"
-  },
-  "2026-07-13": {
-    "timestamp": 1783942517.775327,
-    "topics": [
-      "[Gizmodo] Timoth\u00e9e Chalamet Teases the Biggest Creative Libe",
-      "[Hackaday] CGI Motion Capture with only a Camera",
-      "[Boing Boing] Passenger nearly pulled out a Ryanair window i",
-      "[Open Culture] A 3,000-Year-Old Painter\u2019s Palette from Ancie",
-      "[CFJC Today Kamloops] Sand sculptures damaged by vandals at ",
-      "[Williams Lake Tribune] Winners unveiled at B.C.\u2019s internati",
-      "[Williams Lake Tribune] Garden and Art Tour adds colourful f",
-      "AI"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption"
-    ],
-    "date": "2026-07-13"
-  },
-  "2026-07-14": {
-    "timestamp": 1784024439.288088,
-    "topics": [
-      "What If This Year's Crop Is Just Average?",
-      "[The Northern Miner] Sponsored: Q&A with SRK \u2013 Todd Wisdom o",
-      "[Engadget] A ransomware negotiator who colluded with attacke",
-      "[New Atlas] Stolen gene lets deep-sea creature go without fo",
-      "[New Atlas] Earliest animal known to have a head was also ri",
-      "[The Northern Miner] Regis ends Vault chase, clearing way fo",
-      "[Global News] Ottawa provides $71 million for youth mental h",
-      "[New Atlas] 1 in 3 have a brain parasite transmitted through"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-07-14"
-  },
-  "2026-07-16": {
-    "timestamp": 1784198331.213522,
-    "topics": [
-      "Three Articles Connected to Indigenous Data Sovereignty",
-      "[ScienceDaily] NASA captured the Black Sea turning brilliant",
-      "[CFJC Today Kamloops] Kamloops\u2019 joins national Tim Hortons\u2019 ",
-      "[Boing Boing] Elon Musk's legal problems have gone internati",
-      "[CNET] 3D-Printed, Customized Contact Lenses Are Possible, a",
-      "Three Articles Connected to Indigenous Data Sovereignty",
-      "[Boing Boing] Swiss Yodelers retreat to fountains to beat br",
-      "[The Guardian Global Development] Blockades, marches and hum"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-07-16"
-  },
-  "2026-07-17": {
-    "timestamp": 1784283949.301908,
-    "topics": [
-      "[Toms Guide] If I only had $100 to refresh my patio and gard",
-      "David Bruce \u2013 Editor \u2013 Page 2 \u2013 Wildfire Today",
-      "[The Narwhal] \u2018Industrial sacrifice zone\u2019: the plan to bring",
-      "[Business Insider] Canadian wildfires are shrouding US citie",
-      "[The Maple] Mark Carney Boosts Alberta Pipeline While Ontari",
-      "[Outside Online] Should We Keep the Most Affordable Mountain",
-      "[Kagi Small Web] Record wildfires in Europe",
-      "[Outside Online] Inside the New Mexico Desert Compound Helpi"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-07-17"
-  },
   "2026-07-18": {
     "timestamp": 1784368810.850686,
     "topics": [
@@ -680,5 +583,127 @@
     "date": "2026-08-16",
     "focus": "sky-cosmos",
     "focus_name": "Sky & Cosmos"
+  },
+  "2026-08-17": {
+    "timestamp": 1786957400.649078,
+    "topics": [
+      "[CFJC Today Kamloops] Williams Lake praises work of new Rapi",
+      "Eby makes mini cabinet shuffle as minister undergoes cancer ",
+      "[Williams Lake Tribune] Multiple planned ignitions scheduled",
+      "BC SPCA urge pets owners to take precaution during air quali",
+      "[Williams Lake Tribune] Ainslie Creek wildfire burns to Alex",
+      "[Fast Company] \u2018Holiday hoarding\u2019 is a workplace crisis",
+      "[Boing Boing] Microsoft, Google and Amazon now depend on two",
+      "[Popular Woodworking] Sanding Guard  for Inside Corners"
+    ],
+    "themes": [
+      "rural development",
+      "Indigenous tech"
+    ],
+    "date": "2026-08-17",
+    "focus": "film-screen",
+    "focus_name": "Film & Screen"
+  },
+  "2026-08-18": {
+    "timestamp": 1787043437.228284,
+    "topics": [
+      "Air siren being reactivated at 108 Mile Fire Hall : My Carib",
+      "[Williams Lake Tribune] Nuxalk Nation strongly opposes offic",
+      "Former Quesnel City Councillor announces intentions to run i",
+      "Hornets nest may be cause of structure fire in Quesnel area ",
+      "[Quesnel Cariboo Observer] Quesnel Fire Department extinguis",
+      "[Fast Company] Watch Duty is expanding beyond wildfires as d",
+      "[Fast Company] This stunning NASA map tracks our summer of w",
+      "[Williams Lake Tribune] Rare white magpies spotted west of W"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption"
+    ],
+    "date": "2026-08-18",
+    "focus": "agriculture-ranching",
+    "focus_name": "Agriculture & Ranching"
+  },
+  "2026-08-19": {
+    "timestamp": 1787144300.037435,
+    "topics": [
+      "[Williams Lake Tribune] Bewitching Market coming up in Willi",
+      "A beauty night in store August 19th at the Williams Lake Sta",
+      "[Quesnel Cariboo Observer] Beauty, colour of Mother Nature h",
+      "[Williams Lake Tribune] Wandering livestock and danger trees",
+      "[Williams Lake Tribune] Postal service resumes in Clinton as",
+      "[Canadian Architect] Op-Ed: Building a Case for Retrofitting",
+      "[How-To Geek] I asked Gemini, ChatGPT, and Copilot to build ",
+      "Summerland wildlife rehab centre vows to rebuild after losin"
+    ],
+    "themes": [
+      "rural development"
+    ],
+    "date": "2026-08-19",
+    "focus": "maker-repair",
+    "focus_name": "Maker & Repair"
+  },
+  "2026-08-20": {
+    "timestamp": 1787217062.340933,
+    "topics": [
+      "[Williams Lake Tribune] Williams Lake recreation complex ann",
+      "[Williams Lake Tribune] B.C. Needs to be Better Equipped to ",
+      "Vehicle goes up in flames in Quesnel : My Cariboo Now",
+      "[100 Mile Free Press] BUXTON: Wildfires and their impact on ",
+      "[Williams Lake Tribune] Tariff deal on the horizon, but outl",
+      "[Fast Company] America\u2019s housing market is splitting in two,",
+      "[Vox] Cuba has plenty of doctors. So why is its healthcare s",
+      "[ArchDaily] NCARB 2026 Report Shows a More Diverse Candidate"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech"
+    ],
+    "date": "2026-08-20",
+    "focus": "governance-title",
+    "focus_name": "Governance, Title & Treaty"
+  },
+  "2026-08-21": {
+    "timestamp": 1787303010.938193,
+    "topics": [
+      "[100 Mile Free Press] HANSEN: Lac La Hache returns to normal",
+      "Updated: Emergency services continue to respond to plane cra",
+      "Paving work resuming August 20 & 21 on Pigeon Avenue in Will",
+      "[Williams Lake Tribune] 1 dead after aircraft collides with ",
+      "B.C. Conservatives name new party president, vice-president ",
+      "[TechRadar] Huge 66-ft Turkish drones are hunting million-do",
+      "[IndigiNews] Inside an Elder\u2019s fight to save salmon habitat ",
+      "[Outside Online] A Journalist Revisits a Tragic AT Hike in a"
+    ],
+    "themes": [
+      "rural development",
+      "environmental impact"
+    ],
+    "date": "2026-08-21",
+    "focus": "recreation-access",
+    "focus_name": "Recreation & Backcountry Access"
+  },
+  "2026-08-22": {
+    "timestamp": 1787388811.305923,
+    "topics": [
+      "Stolen pumps hamper crews as Summerland-area wildfire grows ",
+      "[Williams Lake Tribune] Weekend weather could bring \u2018dramati",
+      "The Atlas Obscura Guide to Seeing the Northern Lights",
+      "[STAT News] Opinion: Capricor\u2019s Duchenne muscular dystrophy ",
+      "[Business Insider] The states where public school students g",
+      "Riders gearing up with escorted training ride for Tour de No",
+      "B.C. lumber industry hoping for trade relief in new Canada-U",
+      "[Williams Lake Tribune] Ranching families west of Williams L"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-08-22",
+    "focus": null,
+    "focus_name": null
   }
 }

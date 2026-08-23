@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[Outside Online] The Feds Just Opened Public Lands to AI Dat",
       "[Tom's Hardware] Firm that uses AI to locate ancient lost sh",
       "[ScienceDaily] AI can tell if your brain is aging faster tha",
       "\ud83d\udd13 [The Verge] The major labels propose rules to keep AI slop",
@@ -10,7 +9,8 @@
       "[TechRadar] New malware disguised as popular Roblox cheat to",
       "AI",
       "[TechCrunch] Kyoto Fusioneering starts work on key fusion po",
-      "[TechRadar] Boeing and US Air Force sign deal to build guide"
+      "[TechRadar] Boeing and US Air Force sign deal to build guide",
+      "[TechRadar] Huge 66-ft Turkish drones are hunting million-do"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -75,11 +75,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-07-07",
-        "clue": "funding-risk:x \u2014 Conceded government grant cycles unreliable, endorsed member-capitalized path instead",
-        "occurrences": 2
-      },
-      {
         "date": "2026-07-19",
         "clue": "pilot-skepticism:~ \u2014 Conceded that Arizona precedent requires actual local testing",
         "occurrences": 2
@@ -90,19 +85,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-08-12",
-        "clue": "pilot-skepticism:+ \u2014 AI tools oversold as workforce substitute, explicitly.",
+        "date": "2026-08-20",
+        "clue": "pilot-skepticism:x \u2014 Conceded multi-decade title timeline risk; reframed as groundwork rather than solution",
         "occurrences": 2
-      },
-      {
-        "date": "2026-08-13",
-        "clue": "evidence-bar:~ \u2014 acknowledged concrete verification needed, not rhetorical argument",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-08-06",
-        "clue": "pilot-skepticism:x \u2014 Conceded Casey's point on deferrals as stalling; emphasized time-buying instead",
-        "occurrences": 1
       },
       {
         "date": "2026-08-10",
@@ -110,9 +95,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-08-07",
-        "clue": "tech-optimism:x \u2014 Concedes real-time alerts won't fix behavioral complacency alone",
-        "occurrences": 1
+        "date": "2026-08-19",
+        "clue": "tech-optimism:x \u2014 Conceded that naming maintainers alone won't fix deeper despair",
+        "occurrences": 2
       },
       {
         "date": "2026-08-08",
@@ -130,14 +115,14 @@
         "occurrences": 1
       },
       {
-        "date": "2026-08-10",
-        "clue": "structural-lens:~ \u2014 Conceded that self-published statements need external verification equally",
-        "occurrences": 1
+        "date": "2026-08-21",
+        "clue": "structural-lens:~ \u2014 Conceded exhaustion and purpose aren't opposites; complexity deepened.",
+        "occurrences": 2
       },
       {
-        "date": "2026-08-11",
-        "clue": "tech-optimism:~ \u2014 monitoring tools matter 'at margins' despite enforcement gaps",
-        "occurrences": 1
+        "date": "2026-08-17",
+        "clue": "tech-optimism:~ \u2014 Conceded that mission-driven narrative collapsed under financial reality",
+        "occurrences": 2
       },
       {
         "date": "2026-08-14",
@@ -147,6 +132,16 @@
       {
         "date": "2026-08-16",
         "clue": "community-trust:~ \u2014 Added genuine complexity about monitoring decay post-policy",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-08-18",
+        "clue": "tech-optimism:- \u2014 Conceded forest management fixes app cannot solve.",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-08-21",
+        "clue": "pilot-skepticism:+ \u2014 Explicitly named 'pilot program' language as hollow messaging.",
         "occurrences": 1
       }
     ],
@@ -324,14 +319,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-06-17",
-        "clue": "Indigenous-tech:+ \u2014 Named First Nations data sovereignty as hard constraint, not abstract concern",
+        "date": "2026-08-17",
+        "clue": "community-trust:+ \u2014 Shifted from AI-access debate to local institutional continuity",
         "occurrences": 2
-      },
-      {
-        "date": "2026-06-22",
-        "clue": "community-trust:+ \u2014 Emphasized local decision-making over external funding solutions",
-        "occurrences": 1
       },
       {
         "date": "2026-06-24",
@@ -364,23 +354,8 @@
         "occurrences": 2
       },
       {
-        "date": "2026-07-29",
-        "clue": "rural-context:+ \u2014 pressed inverter code-compliance over informal salvage logic",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-08-06",
-        "clue": "evidence-bar:~ \u2014 Explicitly named own reporting limits; invited correction and direct community voices",
-        "occurrences": 2
-      },
-      {
         "date": "2026-08-02",
         "clue": "evidence-bar:x \u2014 Conceded ALMA null result 'still matters on its own terms'",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-08-12",
-        "clue": "structural-lens:~ \u2014 Moved from repair-knowledge succession problem to permanent contractual obsolescence\u2014deepened diagnosis.",
         "occurrences": 2
       },
       {
@@ -394,14 +369,14 @@
         "occurrences": 1
       },
       {
-        "date": "2026-08-11",
-        "clue": "pilot-skepticism:x \u2014 conceded monitoring *could* change outcomes, demanded accountability proof",
-        "occurrences": 1
+        "date": "2026-08-22",
+        "clue": "pilot-skepticism:x \u2014 Conceded procurement 'lever is real' after initial skepticism on leverage",
+        "occurrences": 2
       },
       {
-        "date": "2026-08-12",
-        "clue": "evidence-bar:+ \u2014 Shifted from anecdote to demanding institutional visibility on locked equipment.",
-        "occurrences": 1
+        "date": "2026-08-21",
+        "clue": "evidence-bar:+ \u2014 Shifted from abstract skepticism to demanding specific public ledgers.",
+        "occurrences": 2
       },
       {
         "date": "2026-08-14",
@@ -409,8 +384,13 @@
         "occurrences": 1
       },
       {
-        "date": "2026-08-16",
-        "clue": "pilot-skepticism:+ \u2014 Reinforced distrust of paper commitments without enforcement teeth",
+        "date": "2026-08-18",
+        "clue": "pilot-skepticism:+ \u2014 Explicitly warned against volunteer labor absorbing public mandates.",
+        "occurrences": 2
+      },
+      {
+        "date": "2026-08-21",
+        "clue": "community-trust:x \u2014 Accepted Riley's framing that accountability structure matters more than location.",
         "occurrences": 1
       }
     ],

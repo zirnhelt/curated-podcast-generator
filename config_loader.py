@@ -150,6 +150,55 @@ def load_weekly_anchors_config():
         return json.load(f)
 
 @lru_cache(maxsize=1)
+def load_ai_tells_config():
+    """Load the AI speech-tell corpus (cached). Returns {} if file absent.
+
+    Optional by design: score_script falls back to its built-in pattern dict and
+    the ledger no-ops, so a missing or malformed file costs style enforcement,
+    never a run.
+    """
+    path = CONFIG_DIR / "ai_tells.json"
+    if not path.exists():
+        return {}
+    with open(path, 'r') as f:
+        return json.load(f)
+
+def format_static_tell_block():
+    """The config-only half of the burned-phrase block: hard bans plus the rhythm
+    budget. Lives here so generate_bespoke.py can use it without importing the
+    whole pipeline — same reason atomic_write_text does.
+
+    podcast_generator composes this with the dynamic ledger half; bespoke uses it
+    alone, since the ledger's rates are derived from daily scripts.
+    """
+    tells = load_ai_tells_config()
+    hard = [p for p in tells.get('hard_banned', []) if p.strip()]
+    rhythm = tells.get('rhythm', {})
+    if not hard and not rhythm:
+        return ""
+
+    lines = []
+    if hard:
+        lines.append("BURNED PHRASES — do not use any of these, in any form:")
+        lines.append("  " + ", ".join(f'"{p}"' for p in hard))
+        lines.append(
+            "  Do not substitute a synonym either — swapping one intensifier for "
+            "another is the same tic wearing a hat. Delete it, or replace it with "
+            "the specific detail that made you want to emphasise."
+        )
+    if rhythm:
+        lines.append(
+            f"RHYTHM BUDGET: at least {rhythm.get('min_short_turns', 8)} turns under "
+            f"{rhythm.get('short_turn_max_words', 15)} words; fewer than "
+            f"{rhythm.get('max_em_dashes_per_1k_words', 8)} em dashes per thousand words; "
+            f"the \"not X, it's Y\" flip at most "
+            f"{rhythm.get('max_antithesis_per_script', 2)} times. Uniform turn length and "
+            "a dash before every elaboration is what machine prose sounds like."
+        )
+    return "\n".join(lines)
+
+
+@lru_cache(maxsize=1)
 def load_notable_dates():
     """Load notable dates calendar for theme-aligned secondary mentions (cached)."""
     path = CONFIG_DIR / "notable_dates.json"
@@ -223,18 +272,28 @@ def get_focus_for_day(weekday: int, d: date):
     focus["cycle_length"] = len(cycle)
     return focus
 
-def get_upcoming_focus_slots(d: date, horizon_days: int = 14) -> list:
-    """Enumerate (date, weekday, focus) for each day after *d* within the horizon.
+def get_upcoming_day_slots(d: date, horizon_days: int = 14) -> list:
+    """Enumerate (date, weekday, theme_name, focus|None) for each day after *d*.
 
-    Used by the article-holding router to find the soonest day whose rotation
-    focus matches an off-theme article. Excludes *d* itself.
+    Used by the article-holding router to find the soonest day an off-theme
+    article belongs to. Excludes *d* itself.
+
+    Every day in the horizon gets a slot, including days with no super-cycle
+    (Saturday). This used to emit focus-bearing days only, and match on focus
+    keywords alone: a forestry story on a Monday found no home because Tuesday's
+    focus was Agriculture & Ranching that week, even though forestry is a
+    Tuesday *theme* keyword outright. The theme is the day's standing identity
+    and the focus only narrows it, so the router needs both.
     """
     slots = []
     for offset in range(1, horizon_days + 1):
         day = d + timedelta(days=offset)
-        focus = get_focus_for_day(day.weekday(), day)
-        if focus:
-            slots.append((day, day.weekday(), focus))
+        slots.append((
+            day,
+            day.weekday(),
+            get_theme_for_day(day.weekday()),
+            get_focus_for_day(day.weekday(), day),
+        ))
     return slots
 
 def message_text(response) -> str:
@@ -259,7 +318,8 @@ def get_all_config():
         'psa_events': load_psa_events(),
         'blocklist': load_blocklist(),
         'super_cycles': load_super_cycles_config(),
-        'weekly_anchors': load_weekly_anchors_config()
+        'weekly_anchors': load_weekly_anchors_config(),
+        'ai_tells': load_ai_tells_config()
     }
 
 if __name__ == "__main__":
