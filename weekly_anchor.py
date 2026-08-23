@@ -25,12 +25,12 @@ wording is what stops a generated question coming back as a paraphrase.
 
 import json
 import os
-import re
 from datetime import date, timedelta
 from pathlib import Path
 
 from config_loader import (
     atomic_write_json,
+    json_output_config,
     load_prompts_config,
     load_themes_config,
     load_weekly_anchors_config,
@@ -169,14 +169,11 @@ def _pick(candidates: list, used: list, week: str):
     return available[0] if available else None
 
 
-def _parse_json_response(text: str):
-    """Parse a JSON object/array out of a model response, tolerating a fence."""
-    text = re.sub(r"^\s*```(?:json)?\s*|\s*```\s*$", "", text.strip())
-    return json.loads(text)
-
-
-def _call_claude(client, prompt: str, max_tokens: int, log_usage=None):
+def _call_claude(client, prompt: str, max_tokens: int, schema: dict, log_usage=None):
     """One Anthropic call, returning parsed JSON, or None on any failure.
+
+    `schema` constrains the reply server-side, which is what replaced the
+    tolerate-a-``` -fence regex this used to parse through.
 
     log_usage is the caller's token logger (podcast_generator._log_api_call),
     injected rather than imported to keep this module free of a circular import.
@@ -188,12 +185,13 @@ def _call_claude(client, prompt: str, max_tokens: int, log_usage=None):
             model=ANCHOR_MODEL,
             max_tokens=max_tokens,
             messages=[{"role": "user", "content": prompt}],
+            output_config=json_output_config(schema),
         )
         if log_usage:
             usage = getattr(response, "usage", None)
             log_usage("claude", "input_tokens", getattr(usage, "input_tokens", 0))
             log_usage("claude", "output_tokens", getattr(usage, "output_tokens", 0))
-        return _parse_json_response(message_text(response))
+        return json.loads(message_text(response))
     except Exception as exc:
         print(f"⚠️  Weekly anchor: Claude call failed ({exc})")
         return None
@@ -228,6 +226,12 @@ def generate_framings(anchor: dict, client, log_usage=None) -> dict:
             themes_block=_themes_block(),
         ),
         max_tokens=1500,
+        schema={
+            "type": "object",
+            "properties": {str(wd): {"type": "string"} for wd in range(7)},
+            "required": [str(wd) for wd in range(7)],
+            "additionalProperties": False,
+        },
         log_usage=log_usage,
     )
     if not isinstance(parsed, dict):
@@ -259,14 +263,36 @@ def top_up_pool(client, used: list, count: int = TOP_UP_COUNT, log_usage=None) -
         client,
         template.format(used_block=used_block, count=count),
         max_tokens=2500,
+        schema={
+            "type": "object",
+            "properties": {
+                "anchors": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {"type": "string"},
+                            "question": {"type": "string"},
+                            "dimension": {"type": "string"},
+                            "premise": {"type": "string"},
+                        },
+                        "required": ["id", "question", "dimension", "premise"],
+                        "additionalProperties": False,
+                    },
+                },
+            },
+            "required": ["anchors"],
+            "additionalProperties": False,
+        },
         log_usage=log_usage,
     )
-    if not isinstance(parsed, list):
+    entries = parsed.get("anchors") if isinstance(parsed, dict) else None
+    if not isinstance(entries, list):
         _degradations.append("anchor pool top-up produced nothing — pool not refilled")
         return []
 
     fresh = []
-    for entry in parsed:
+    for entry in entries:
         if not isinstance(entry, dict):
             continue
         if entry.get("id") and entry.get("question") and entry.get("dimension"):

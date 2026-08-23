@@ -537,7 +537,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install requests anthropic
+        run: pip install -r requirements-lock.txt
 
       - name: Write the episode review
         env:

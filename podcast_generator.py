@@ -56,6 +56,7 @@ from config_loader import (
     message_text,
     strip_stage_directions,
     render_credits_text,
+    json_output_config as _json_output,
     atomic_write_text as _atomic_write_text,
     atomic_write_json as _atomic_write_json,
 )
@@ -380,6 +381,61 @@ def create_message(client, stream=False, **kwargs):
             return s.get_final_message()
     return client.messages.create(**kwargs)
 
+def _debate_summary_schema(with_calls_to_action: bool) -> dict:
+    """JSON schema for the deep-dive debate summary.
+
+    The field descriptions used to live in a hand-written JSON template inside
+    the prompt; they belong here, where they also constrain the reply. The
+    batch path asks for the same summary without calls_to_action.
+    """
+    props = {
+        "central_question": {
+            "type": "string",
+            "description": "The main question or thesis debated (one sentence)",
+        },
+        "riley_position": {
+            "type": "string",
+            "description": "Riley's core argument in 1-2 sentences",
+        },
+        "riley_key_evidence": {
+            "type": "array", "items": {"type": "string"},
+            "description": "2-3 specific facts/data/examples Riley cited",
+        },
+        "casey_position": {
+            "type": "string",
+            "description": "Casey's core argument in 1-2 sentences",
+        },
+        "casey_key_evidence": {
+            "type": "array", "items": {"type": "string"},
+            "description": "2-3 specific facts/data/examples Casey cited",
+        },
+        "resolution": {
+            "type": "string",
+            "description": ("How the debate ended: who conceded what, or where they "
+                            "agreed to disagree (1-2 sentences)"),
+        },
+        "topics_covered": {
+            "type": "array", "items": {"type": "string"},
+            "description": "3-5 specific subtopics explored during the debate",
+        },
+    }
+    if with_calls_to_action:
+        props["calls_to_action"] = {
+            "type": "array", "items": {"type": "string"},
+            "description": ("Every concrete suggestion, project idea, or community action "
+                            "proposed during this segment — verbatim or very close "
+                            "paraphrase, 1-2 sentences each. Include all 'what if', "
+                            "'imagine', 'here's who to call', or 'a community could try' "
+                            "style suggestions."),
+        }
+    return {
+        "type": "object",
+        "properties": props,
+        "required": list(props),
+        "additionalProperties": False,
+    }
+
+
 def _truncated(response) -> bool:
     """True when the response was cut off by the max_tokens budget.
 
@@ -437,16 +493,33 @@ def get_podcast_feed_url(weekday):
     return f"{SUPER_RSS_BASE_URL}/feed-podcast-{day_name}.json"
 
 # Claude model selection (override via environment variables)
-# Cost hierarchy (cheapest to most expensive): Haiku → Sonnet → Opus
-# Opus is ~5x the cost of Sonnet — only use it if quality clearly demands it.
+# Cost hierarchy (cheapest to most expensive): Haiku → Sonnet → Opus.
+# Opus 5 is $5/$25 per MTok against Sonnet 5's $3/$15 — under 2x, not the ~5x
+# the tier gap used to cost, but still a real premium: keep the escalation
+# gated on select_review_model rather than making it the default.
+# Model IDs carry no date suffix; the bare ID is the complete identifier.
 SCRIPT_MODEL = os.getenv("CLAUDE_SCRIPT_MODEL", "claude-sonnet-5")
 POLISH_MODEL = os.getenv("CLAUDE_POLISH_MODEL", "claude-sonnet-5")
-OPUS_REVIEW_MODEL = os.getenv("CLAUDE_OPUS_REVIEW_MODEL", "claude-opus-4-6")
-SUMMARY_MODEL = os.getenv("CLAUDE_SUMMARY_MODEL", "claude-haiku-4-5-20251001")
+OPUS_REVIEW_MODEL = os.getenv("CLAUDE_OPUS_REVIEW_MODEL", "claude-opus-5")
+SUMMARY_MODEL = os.getenv("CLAUDE_SUMMARY_MODEL", "claude-haiku-4-5")
 # Rewrites only the handful of sentences that kept a hard-banned phrase, never
 # the script — cheapest model is the right one for a few hundred tokens.
-SCRUB_MODEL = os.getenv("CLAUDE_SCRUB_MODEL", "claude-haiku-4-5-20251001")
+SCRUB_MODEL = os.getenv("CLAUDE_SCRUB_MODEL", "claude-haiku-4-5")
 COLD_OPEN_MODEL = os.getenv("CLAUDE_COLD_OPEN_MODEL", "claude-sonnet-5")
+
+# OpenAI TTS model. tts-1/tts-1-hd are the legacy pair and the only ones that
+# honour `speed`; gpt-4o-mini-tts takes an `instructions` parameter instead —
+# natural-language direction over tone, accent and pace, which is the delivery
+# lever the OpenAI path has never had (config/hosts.json has carried
+# voice_instructions for both hosts all along, with nothing to send it to).
+#
+# Default stays tts-1 deliberately: _expected_speech_ms's constants were fitted
+# to 688 tts-1 segments, and a different model is a different speech rate. Set
+# OPENAI_TTS_MODEL=gpt-4o-mini-tts, render, then refit against the new sidecars
+# before making it the default.
+OPENAI_TTS_MODEL = os.getenv("OPENAI_TTS_MODEL", "tts-1")
+# The legacy pair, identified by what they lack: no `instructions`, working `speed`.
+_LEGACY_OPENAI_TTS = {"tts-1", "tts-1-hd"}
 
 # Threshold: escalate polish+factcheck to Opus when the deep dive had fewer
 # than this many source articles.  Thin sourcing means the generator had more
@@ -2056,23 +2129,27 @@ def _assess_deep_dive_for_enrichment(deep_dive_articles, theme_name, client):
         "If enrichment IS warranted, provide 2-3 targeted search queries focused on "
         "fact-checking specific claims, finding recent developments, or surfacing "
         "counterpoints not covered in the articles above.\n\n"
-        "Respond ONLY with valid JSON (no markdown fences):\n"
-        '{"should_enrich": true, "reason": "one sentence", "queries": ["query1", "query2"]}\n'
-        "If enrichment is NOT warranted:\n"
-        '{"should_enrich": false, "reason": "one sentence", "queries": []}'
+        "Give one sentence of reasoning either way; leave the queries empty when "
+        "enrichment is not warranted."
     )
     try:
         response = api_retry(lambda: client.messages.create(
             model=SUMMARY_MODEL,
             max_tokens=300,
-            messages=[{"role": "user", "content": prompt}]
+            messages=[{"role": "user", "content": prompt}],
+            output_config=_json_output({
+                "type": "object",
+                "properties": {
+                    "should_enrich": {"type": "boolean"},
+                    "reason": {"type": "string"},
+                    "queries": {"type": "array", "items": {"type": "string"}},
+                },
+                "required": ["should_enrich", "reason", "queries"],
+                "additionalProperties": False,
+            }),
         ))
         _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
-        raw = message_text(response).strip()
-        # Strip markdown code fences if the model adds them anyway
-        if raw.startswith("```"):
-            raw = re.sub(r"^```[a-z]*\n?", "", raw).rstrip("`").strip()
-        data = json.loads(raw)
+        data = json.loads(message_text(response))
         return bool(data.get("should_enrich", False)), data.get("reason", ""), data.get("queries", [])[:3]
     except Exception as e:
         print(f"  ⚠️  Brave enrichment assessment failed: {e}")
@@ -2632,25 +2709,27 @@ def _resolve_script_questions_with_brave(script, brave_key, client):
         "asked by one host but NOT answered within the dialogue — e.g. 'How much does it weigh?', "
         "'What does that cost?', 'How far is that?'. Ignore rhetorical questions and questions "
         "that are clearly answered later in the same exchange.\n\n"
-        "Return ONLY a JSON array of concise, web-searchable search queries that would find each "
-        "answer (e.g. [\"Tesla Semi second battery weight kg\"]). "
-        "Return [] if there are no unanswered factual questions.\n\n"
+        "Give concise, web-searchable search queries that would find each answer "
+        "(e.g. \"Tesla Semi second battery weight kg\"). Return an empty list if there "
+        "are no unanswered factual questions.\n\n"
         f"SCRIPT (first 5000 chars):\n{script[:5000]}"
     )
 
     try:
         resp = api_retry(lambda: client.messages.create(
-            model="claude-haiku-4-5-20251001",
+            model="claude-haiku-4-5",
             max_tokens=300,
-            messages=[{"role": "user", "content": detect_prompt}]
+            messages=[{"role": "user", "content": detect_prompt}],
+            output_config=_json_output({
+                "type": "object",
+                "properties": {"queries": {"type": "array", "items": {"type": "string"}}},
+                "required": ["queries"],
+                "additionalProperties": False,
+            }),
         ))
         _log_api_call("claude", "input_tokens", getattr(getattr(resp, "usage", None), "input_tokens", 0))
-        raw = message_text(resp).strip()
-        m = re.search(r'\[.*?\]', raw, re.DOTALL)
-        if not m:
-            return ""
         import json as _json
-        queries = _json.loads(m.group())
+        queries = _json.loads(message_text(resp)).get("queries", [])
         if not queries or not isinstance(queries, list):
             return ""
     except Exception as e:
@@ -2837,18 +2916,7 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
     debate_prompt = (
         "Analyze this DEEP DIVE podcast segment and extract a structured summary.\n\n"
         f"Theme: {theme_name}\n\n"
-        "Segment:\n" + deep_dive_section + "\n\n"
-        "Return a JSON object with exactly these fields:\n"
-        "{\n"
-        '  "central_question": "The main question or thesis debated (one sentence)",\n'
-        '  "riley_position": "Riley\'s core argument in 1-2 sentences",\n'
-        '  "riley_key_evidence": ["List of 2-3 specific facts/data/examples Riley cited"],\n'
-        '  "casey_position": "Casey\'s core argument in 1-2 sentences",\n'
-        '  "casey_key_evidence": ["List of 2-3 specific facts/data/examples Casey cited"],\n'
-        '  "resolution": "How the debate ended: who conceded what, or where they agreed to disagree (1-2 sentences)",\n'
-        '  "topics_covered": ["3-5 specific subtopics explored during the debate"]\n'
-        "}\n\n"
-        "Return ONLY the JSON object, no other text."
+        "Segment:\n" + deep_dive_section
     )
 
     review_model = select_review_model(deep_dive_articles)
@@ -2879,7 +2947,8 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
                     "params": {
                         "model": SUMMARY_MODEL,
                         "max_tokens": 1000,
-                        "messages": [{"role": "user", "content": debate_prompt}]
+                        "messages": [{"role": "user", "content": debate_prompt}],
+                        "output_config": _json_output(_debate_summary_schema(False)),
                     }
                 },
             ]
@@ -3013,13 +3082,7 @@ def run_post_processing_batch(script, theme_name, news_articles, deep_dive_artic
     debate_text = (results.get("debate-summary") or {}).get("text")
     if debate_text:
         try:
-            text = debate_text.strip()
-            if text.startswith("```"):
-                text = text.split("\n", 1)[1] if "\n" in text else text[3:]
-                if text.endswith("```"):
-                    text = text[:-3]
-                text = text.strip()
-            debate_summary = json.loads(text)
+            debate_summary = json.loads(debate_text)
             print("✅ Batch: debate summary extracted successfully!")
         except Exception as e:
             print(f"   ⚠️ Batch debate summary parse failed: {e}")
@@ -3648,36 +3711,18 @@ def extract_debate_summary(script, theme_name):
     prompt = (
         "Analyze this DEEP DIVE podcast segment and extract a structured summary.\n\n"
         f"Theme: {theme_name}\n\n"
-        "Segment:\n" + deep_dive_section + "\n\n"
-        "Return a JSON object with exactly these fields:\n"
-        "{\n"
-        '  "central_question": "The main question or thesis debated (one sentence)",\n'
-        '  "riley_position": "Riley\'s core argument in 1-2 sentences",\n'
-        '  "riley_key_evidence": ["List of 2-3 specific facts/data/examples Riley cited"],\n'
-        '  "casey_position": "Casey\'s core argument in 1-2 sentences",\n'
-        '  "casey_key_evidence": ["List of 2-3 specific facts/data/examples Casey cited"],\n'
-        '  "resolution": "How the debate ended: who conceded what, or where they agreed to disagree (1-2 sentences)",\n'
-        '  "topics_covered": ["3-5 specific subtopics explored during the debate"],\n'
-        '  "calls_to_action": ["Every concrete suggestion, project idea, or community action proposed during this segment — verbatim or very close paraphrase, 1-2 sentences each. Include all \'what if\', \'imagine\', \'here\'s who to call\', or \'a community could try\' style suggestions."]\n'
-        "}\n\n"
-        "Return ONLY the JSON object, no other text."
+        "Segment:\n" + deep_dive_section
     )
 
     try:
         response = api_retry(lambda: client.messages.create(
             model=SUMMARY_MODEL,
             max_tokens=1000,
-            messages=[{"role": "user", "content": prompt}]
+            messages=[{"role": "user", "content": prompt}],
+            output_config=_json_output(_debate_summary_schema(True)),
         ))
         _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
-        text = message_text(response).strip()
-        # Strip markdown code fences if present
-        if text.startswith("```"):
-            text = text.split("\n", 1)[1] if "\n" in text else text[3:]
-            if text.endswith("```"):
-                text = text[:-3]
-            text = text.strip()
-        return json.loads(text)
+        return json.loads(message_text(response))
     except Exception as e:
         print(f"  ⚠️  Claude debate extraction failed, using fallback: {e}")
         return _extract_debate_summary_fallback(script, theme_name)
@@ -3749,8 +3794,6 @@ def extract_personality_clues(script):
         "x (conceded point to other host), ~ (added genuine complexity)\n\n"
         "Only include a clue when something genuinely shifted or stood out. "
         "Skip if the host just played their usual role with no new development.\n\n"
-        "Return a JSON object only — no other text:\n"
-        '{"riley": ["clue1"], "casey": ["clue1", "clue2"]}\n'
         "Use empty arrays if no notable signals emerged."
     )
 
@@ -3758,16 +3801,19 @@ def extract_personality_clues(script):
         response = api_retry(lambda: client.messages.create(
             model=SUMMARY_MODEL,
             max_tokens=200,
-            messages=[{"role": "user", "content": prompt}]
+            messages=[{"role": "user", "content": prompt}],
+            output_config=_json_output({
+                "type": "object",
+                "properties": {
+                    "riley": {"type": "array", "items": {"type": "string"}},
+                    "casey": {"type": "array", "items": {"type": "string"}},
+                },
+                "required": ["riley", "casey"],
+                "additionalProperties": False,
+            }),
         ))
         _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
-        text = message_text(response).strip()
-        if text.startswith("```"):
-            text = text.split("\n", 1)[1] if "\n" in text else text[3:]
-            if text.endswith("```"):
-                text = text[:-3]
-            text = text.strip()
-        result = json.loads(text)
+        result = json.loads(message_text(response))
         return {k: v for k, v in result.items() if isinstance(v, list)}
     except Exception as e:
         print(f"  ⚠️  Personality clue extraction skipped: {e}")
@@ -5720,26 +5766,31 @@ def scrub_hard_banned(script_text, hits):
         "- Keep it speakable and roughly the same length.\n"
         "- Preserve any [pause:N] or [overlap:N] tags exactly where they are.\n\n"
         f"Sentences:\n{numbered}\n\n"
-        "Return ONLY a JSON array of the rewritten sentences, in order, same length."
+        "Give the rewritten sentences in order — one per input sentence, same count."
     )
 
     try:
         response = api_retry(lambda: client.messages.create(
             model=SCRUB_MODEL,
             max_tokens=1500,
-            messages=[{"role": "user", "content": prompt}]
+            messages=[{"role": "user", "content": prompt}],
+            # An object wrapping the array, not a bare array: the count check
+            # below is the whole safety of this splice, and a named field is
+            # what the schema can require.
+            output_config=_json_output({
+                "type": "object",
+                "properties": {
+                    "rewrites": {"type": "array", "items": {"type": "string"}},
+                },
+                "required": ["rewrites"],
+                "additionalProperties": False,
+            }),
         ))
         _log_api_call("claude", "input_tokens",
                       getattr(getattr(response, "usage", None), "input_tokens", 0))
         _log_api_call("claude", "output_tokens",
                       getattr(getattr(response, "usage", None), "output_tokens", 0))
-        text = message_text(response).strip()
-        if text.startswith("```"):
-            text = text.split("\n", 1)[1] if "\n" in text else text[3:]
-            if text.endswith("```"):
-                text = text[:-3]
-            text = text.strip()
-        rewrites = json.loads(text)
+        rewrites = json.loads(message_text(response)).get("rewrites", [])
         if not isinstance(rewrites, list) or len(rewrites) != len(sentences):
             raise ValueError(f"expected {len(sentences)} rewrites, got {len(rewrites)}")
     except Exception as e:
@@ -7200,8 +7251,20 @@ def generate_tts_for_segment(text, speaker, output_file):
 
     voice = get_voice_for_host(speaker)
     speed = get_speed_for_host(speaker)
+    request = {"model": OPENAI_TTS_MODEL, "voice": voice}
 
-    # Drop Gemini-only delivery cues (tts-1 would read them aloud), then apply
+    if OPENAI_TTS_MODEL in _LEGACY_OPENAI_TTS:
+        request["speed"] = speed
+    else:
+        # `speed` is accepted by the steerable models and widely reported to be
+        # ignored, which would leave _expected_speech_ms below normalising by a
+        # multiplier the audio never had. Send the pace as direction instead —
+        # hosts.json already words it that way ("brisk, efficient pace") — and
+        # hold the duration estimate at 1.0, the rate actually rendered.
+        request["instructions"] = get_voice_instructions_for_host(speaker)
+        speed = 1.0
+
+    # Drop Gemini-only delivery cues (OpenAI would read them aloud), then apply
     # shared pronunciation substitutions
     clean = strip_stage_directions(text)
     for word, alias in AZURE_PRONUNCIATION_DICT.items():
@@ -7211,10 +7274,7 @@ def generate_tts_for_segment(text, speaker, output_file):
     # base delay is enough; the pre-split in _render_section keeps each call small.
     def _synthesize() -> bytes:
         response = api_retry(lambda: client.audio.speech.create(
-            model="tts-1",
-            voice=voice,
-            input=clean,
-            speed=speed
+            input=clean, **request
         ), max_retries=2, base_delay=1)
         _log_api_call("openai-tts", "chars", len(clean))
         return response.content
@@ -7282,14 +7342,16 @@ def _expected_speech_ms(words: int, speed: float) -> float:
 
     Measured, not assumed: the 688 host segments of the ten episodes rendered
     2026-08-13..22 (each transcript sidecar carries its segment's real measured
-    duration) fit `369 ms/word - 642 ms`, speed-normalised. The flat 400 ms/word
-    this replaces described no segment the show has ever produced — short lines
-    run nearer 280 ms/word because they carry no sentence-final pauses — so the
-    0.80 checksum below fired on 20% of every episode's segments, ~14 a night,
-    and re-synthesized each one. The retry came back within 2% of the first take
-    every time, which is what a complete read looks like twice. On the fitted
-    estimate the same 0.80 floor flags 2.2%, and still catches 93% of a 30% word
-    loss and every 50% one.
+    duration) fit `369 ms/word - 642 ms`, speed-normalised. Those segments were
+    all rendered on tts-1 — a different OPENAI_TTS_MODEL is a different speech
+    rate, so refit against that model's own sidecars before trusting the 0.80
+    floor on it. The flat 400 ms/word this replaces described no segment the
+    show has ever produced — short lines run nearer 280 ms/word because they
+    carry no sentence-final pauses — so the 0.80 checksum below fired on 20% of
+    every episode's segments, ~14 a night, and re-synthesized each one. The
+    retry came back within 2% of the first take every time, which is what a
+    complete read looks like twice. On the fitted estimate the same 0.80 floor
+    flags 2.2%, and still catches 93% of a 30% word loss and every 50% one.
     """
     return (words * 369 - 642) / speed
 
@@ -7323,7 +7385,7 @@ def _generate_host_line(context: str, host: str) -> str:
     )
     try:
         response = api_retry(lambda: client.messages.create(
-            model="claude-haiku-4-5-20251001",
+            model="claude-haiku-4-5",
             max_tokens=200,
             messages=[{"role": "user", "content": prompt}],
         ))
@@ -7409,7 +7471,7 @@ def generate_meta_moment_text(changelog: str) -> str:
     )
     try:
         response = api_retry(lambda: client.messages.create(
-            model="claude-haiku-4-5-20251001",
+            model="claude-haiku-4-5",
             # Sized for the 320-400 word target plus speaker markers; the old 450
             # capped the segment below its own word floor once it was widened.
             max_tokens=900,

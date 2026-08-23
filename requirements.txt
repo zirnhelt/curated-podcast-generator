@@ -1,13 +1,19 @@
-anthropic>=0.40.0
-cohere>=5.0.0
-azure-cognitiveservices-speech>=1.37.0
-openai>=1.0.0
-requests>=2.25.0
+# Upper bounds are load-bearing, not caution. CI installs requirements-lock.txt;
+# this file is what CLAUDE.md tells a developer to install locally, and an
+# unbounded pin silently hands them a different major version than production
+# runs. anthropic 1.x moves to httpx2 and drops deprecated parameters; openai
+# 3.x and cohere 7.x are likewise untested here. Raise a cap deliberately,
+# together with the lock.
+anthropic>=0.40.0,<1.0.0
+cohere>=5.0.0,<8.0.0
+azure-cognitiveservices-speech>=1.37.0,<2.0.0
+openai>=1.0.0,<3.0.0
+requests>=2.25.0,<3.0.0
 python-dotenv>=0.19.0
 pydub>=0.25.0
-boto3>=1.28.0
-google-auth>=2.0.0
-google-auth-oauthlib>=1.0.0
-google-api-python-client>=2.0.0
+boto3>=1.28.0,<2.0.0
+google-auth>=2.0.0,<3.0.0
+google-auth-oauthlib>=1.0.0,<2.0.0
+google-api-python-client>=2.0.0,<3.0.0
 Pillow>=10.0.0
-Jinja2>=3.0.0
+Jinja2>=3.0.0,<4.0.0
