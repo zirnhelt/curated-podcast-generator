@@ -15,6 +15,26 @@ from pathlib import Path
 CONFIG_DIR = Path(__file__).parent / "config"
 
 
+# Lives here for the same reason atomic_write_text does: generate_bespoke and
+# weekly_anchor both parse JSON out of Claude and neither may import the
+# pipeline.
+def json_output_config(schema: dict) -> dict:
+    """An `output_config` that constrains the reply to `schema`.
+
+    Replaces the strip-the-fences-and-hope pattern these calls used to carry:
+    each one asked in prose for "ONLY JSON", then hand-peeled ``` fences before
+    json.loads and kept a fallback for the days the model added a preamble
+    anyway. Constraining the format server-side removes that failure mode. The
+    fallbacks stay — a constrained response is still a response that can fail
+    to arrive.
+
+    Deliberately carries no `effort` key. Most callers are Haiku calls made
+    through client.messages.create rather than create_message, and Haiku 4.5
+    rejects effort; a caller that wants both passes one merged dict.
+    """
+    return {"format": {"type": "json_schema", "schema": schema}}
+
+
 # Lives here rather than in podcast_generator so psa_selector can use it too
 # without a circular import — this is the module every other one already loads.
 def atomic_write_text(path, text: str, encoding: str = "utf-8") -> None:

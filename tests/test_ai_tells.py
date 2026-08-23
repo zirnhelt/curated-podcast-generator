@@ -237,7 +237,7 @@ class TestHardBannedGate:
         monkeypatch.setattr(pg, "_log_api_call", lambda *a, **k: None)
         monkeypatch.setattr(
             pg, "message_text",
-            lambda r: json.dumps(["That is a genuinely surprising figure."]),
+            lambda r: json.dumps({"rewrites": ["That is a genuinely surprising figure."]}),
         )
         script = _script(("RILEY", "That is a genuinely surprising number."))
         assert pg.scrub_hard_banned(script, pg.find_hard_banned(script)) == script
@@ -248,7 +248,8 @@ class TestHardBannedGate:
         monkeypatch.setattr(pg, "api_retry", lambda fn, **kw: None)
         monkeypatch.setattr(pg, "_log_api_call", lambda *a, **k: None)
         monkeypatch.setattr(
-            pg, "message_text", lambda r: json.dumps(["That is a surprising number."])
+            pg, "message_text",
+            lambda r: json.dumps({"rewrites": ["That is a surprising number."]}),
         )
         script = _script(("RILEY", "That is a genuinely surprising number."))
         out = pg.scrub_hard_banned(script, pg.find_hard_banned(script))

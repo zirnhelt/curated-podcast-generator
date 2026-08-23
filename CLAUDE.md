@@ -441,6 +441,26 @@ into `episode.quality`. It is advisory: nothing blocks on it.
 
 **OpenAI (default):** `nova` (Riley) + `echo` (Casey), per-segment synthesis, parallel rendering. Each segment is checked against `_expected_speech_ms` (`369 ms/word − 642 ms`, speed-normalised — fitted to the 688 segments of the ten episodes rendered 2026-08-13..22, whose transcript sidecars carry each segment's real duration) and re-synthesized once below 0.80 of it. **Refit those constants against the sidecars rather than assuming a rate:** the flat 400 ms/word they replace described nothing the show has produced and re-rendered ~14 complete segments a night, each retry landing within 2% of the take it was doubting.
 
+`OPENAI_TTS_MODEL` selects the model, defaulting to **`gpt-4o-mini-tts`**; roll
+back with `OPENAI_TTS_MODEL=tts-1`. The legacy pair (`tts-1`, `tts-1-hd`) honours
+the per-host `speed` multiplier from `hosts.json`; the steerable models take an
+`instructions` string instead, which is what `hosts.json`'s long-dormant
+`voice_instructions` was written for — it was authored, wired through
+`get_voice_instructions_for_host`, imported, and never called, because `tts-1`
+has no parameter to send it to. **On a steerable model `speed` is not sent** (it
+is accepted and reported ignored), so pace rides in the instructions text and
+`_expected_speech_ms` estimates at 1.0 — sending a multiplier the audio never
+had would silently move the 0.80 floor on every segment.
+
+**The fitted constants are tts-1's.** `_SPEECH_RATE_FITS` is keyed by model and
+only `tts-1` has a measured row; anything else borrows it and `_speech_rate_fit`
+raises `render/borrowed-speech-rate` once per run, so the report says the
+word-omission check is uncalibrated rather than implying it passed. Add the row
+once a model has its own sidecars — pair `podcasts/video_timeline_*.json` turn
+durations against the script's turns in order and refit `ms/word` and intercept.
+Until then expect the retry rate to be wrong in one direction or the other; a
+mis-sized floor costs a re-render, which is why borrowing beats skipping.
+
 #### Per-take checksums
 
 Every take is checked twice before it joins the mix, because a bad take is not
@@ -469,6 +489,17 @@ existing per-section OpenAI fallback — a silent section is this failure minute
 **Azure Neural TTS (optional, `USE_AZURE_TTS=1`):** Multi-Talker model for coherent prosody across speaker transitions. SSML with `<phoneme>` IPA tags for Cariboo place names. 8,000-char conservative SSML chunk limit. Set `AZURE_TTS_PARALLEL=1` to generate both providers for comparison.
 
 **Gemini multi-speaker TTS (optional, `USE_GEMINI_TTS=1`, wins over Azure):** `gemini_tts.py` renders each section's whole two-host conversation in one `generateContent` call (NotebookLM-style prosody) via REST — needs `GEMINI_API_KEY`; `GEMINI_TTS_MODEL` overrides the default flash model. A style prompt plus whitelisted `(cue)` stage directions live in `config/prompts.json` under `gemini_tts`; the polish pass only adds cues when Gemini is active, and the OpenAI/Azure paths strip them. Credits on every surface resolve through `get_active_tts_provider()` — the provider that actually rendered the audio wins (an OpenAI fallback is credited as OpenAI). Compare providers with `python evaluate_tts.py`.
+
+**Newer model, untried here:** `gemini-3.1-flash-tts-preview` exists, and Google's
+Interactions API is now GA with `generateContent` marked legacy for speech. Most of
+the reliability apparatus below was built against the 2.5 preview endpoint answering
+8 of 15 calls (2026-08-13 probe), so a newer model may make much of it unnecessary.
+Trying it costs no code: `GEMINI_TTS_MODEL` is already plumbed through
+`gemini_tts.py` and both workflows, so point the repo variable at it and run
+`python evaluate_tts.py --probe-gemini` against that 8/15 baseline first. Check the
+pinned `speechConfig` voices (`Kore`/`Iapetus` in `hosts.json`) carry over before
+adopting — voice identity is the last thing to degrade. Port to the Interactions
+API only if the probe shows `generateContent` is what is holding the model back.
 
 #### Getting Gemini through a whole episode
 
@@ -518,7 +549,7 @@ Event-driven: 7-day lookahead for awareness dates. Round-robin fallback cycling 
 
 Treat API budget as a first-class constraint on every change.
 
-- **Default to the cheapest model.** Escalate (Haiku → Sonnet → Opus) only when demonstrably required — justify explicitly. Opus is only used for review escalation when deep-dive sourcing is thin (<3 articles).
+- **Default to the cheapest model.** Escalate (Haiku → Sonnet → Opus) only when demonstrably required — justify explicitly. Opus is only used for review escalation when deep-dive sourcing is thin (<3 articles). Opus 5 costs under 2x Sonnet 5 ($5/$25 vs $3/$15 per MTok), not the ~5x the tier gap once did — the gate stays anyway, since the escalation buys nothing on a well-sourced day.
 - **Prompt compression is mandatory.** Strip filler and redundant context before sending.
 - **Cache aggressively.** Use Anthropic `cache_control` headers for large static context (system prompts, article bodies, tags) reused across calls.
 - **Batch where possible.** Combine small tasks into one API call instead of N round-trips.

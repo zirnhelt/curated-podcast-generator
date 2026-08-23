@@ -40,10 +40,12 @@ class FakeClient:
     def __init__(self, *bodies):
         self._bodies = list(bodies)
         self.calls = 0
+        self.last_kwargs = {}
         self.messages = self
 
     def create(self, **kwargs):
         self.calls += 1
+        self.last_kwargs = kwargs
         if not self._bodies:
             raise RuntimeError("no canned response left")
         body = self._bodies.pop(0)
@@ -224,7 +226,8 @@ class TestTopUp:
             for i in range(wa.MIN_POOL_REMAINING - 1)
         ]
         monkeypatch.setattr(wa, "load_weekly_anchors_config", lambda: {"pool": thin})
-        generated = '[{"id":"gen","question":"Qg?","dimension":"dg","premise":"p"}]'
+        generated = ('{"anchors":[{"id":"gen","question":"Qg?","dimension":"dg",'
+                     '"premise":"p"}]}')
         client = FakeClient(generated, FRAMINGS_JSON)
         anchor = wa.select_anchor(date(2026, 8, 17), client=client)
         # Still serves from the seeded pool this week — the refill is for later.
@@ -238,8 +241,8 @@ class TestTopUp:
 
     def test_exhausted_pool_triggers_generation(self, monkeypatch):
         monkeypatch.setattr(wa, "load_weekly_anchors_config", lambda: {"pool": []})
-        generated = ('[{"id":"gen-1","question":"Q gen?","dimension":"dim-z",'
-                     '"premise":"pz"}]')
+        generated = ('{"anchors":[{"id":"gen-1","question":"Q gen?",'
+                     '"dimension":"dim-z","premise":"pz"}]}')
         client = FakeClient(generated, FRAMINGS_JSON)
         anchor = wa.select_anchor(date(2026, 8, 17), client=client)
         assert anchor is not None
@@ -248,8 +251,9 @@ class TestTopUp:
 
     def test_generated_entries_persist_for_later_weeks(self, monkeypatch):
         monkeypatch.setattr(wa, "load_weekly_anchors_config", lambda: {"pool": []})
-        generated = ('[{"id":"gen-1","question":"Q1?","dimension":"dim-y","premise":"p"},'
-                     '{"id":"gen-2","question":"Q2?","dimension":"dim-z","premise":"p"}]')
+        generated = ('{"anchors":[{"id":"gen-1","question":"Q1?","dimension":"dim-y",'
+                     '"premise":"p"},{"id":"gen-2","question":"Q2?","dimension":"dim-z",'
+                     '"premise":"p"}]}')
         wa.select_anchor(date(2026, 8, 17), client=FakeClient(generated, FRAMINGS_JSON))
         state = wa.load_anchor_state()
         assert {e["id"] for e in state["generated"]} == {"gen-1", "gen-2"}
@@ -263,16 +267,18 @@ class TestTopUp:
 
     def test_malformed_generated_entries_are_dropped(self, monkeypatch):
         monkeypatch.setattr(wa, "load_weekly_anchors_config", lambda: {"pool": []})
-        body = '[{"question":"no id"},{"id":"ok","question":"Q?","dimension":"d"}]'
+        body = ('{"anchors":[{"question":"no id"},'
+                '{"id":"ok","question":"Q?","dimension":"d"}]}')
         fresh = wa.top_up_pool(FakeClient(body), used=[])
         assert [e["id"] for e in fresh] == ["ok"]
 
     def test_top_up_prompt_carries_every_used_question_and_dimension(self, monkeypatch):
         captured = {}
 
-        def _fake_call(client, prompt, max_tokens, log_usage=None):
+        def _fake_call(client, prompt, max_tokens, schema, log_usage=None):
             captured["prompt"] = prompt
-            return []
+            captured["schema"] = schema
+            return {"anchors": []}
 
         monkeypatch.setattr(wa, "_call_claude", _fake_call)
         wa.top_up_pool(object(), used=[
@@ -309,10 +315,13 @@ class TestFramings:
         anchor = wa.select_anchor(date(2026, 8, 17), client=client)
         assert set(anchor["framings"]) == {"0"}
 
-    def test_fenced_json_is_tolerated(self, pool):
-        client = FakeClient("```json\n" + FRAMINGS_JSON + "\n```")
-        anchor = wa.select_anchor(date(2026, 8, 17), client=client)
-        assert len(anchor["framings"]) == 7
+    def test_framings_call_constrains_the_reply_to_a_schema(self, pool):
+        """No fence-stripping any more — the seven weekday keys are required."""
+        client = FakeClient(FRAMINGS_JSON)
+        wa.select_anchor(date(2026, 8, 17), client=client)
+        schema = client.last_kwargs["output_config"]["format"]["schema"]
+        assert schema["required"] == [str(wd) for wd in range(7)]
+        assert schema["additionalProperties"] is False
 
     def test_framing_prompt_lists_all_seven_themes(self):
         block = wa._themes_block()

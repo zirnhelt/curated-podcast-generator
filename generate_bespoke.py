@@ -40,6 +40,7 @@ from config_loader import (
     load_bespoke_config,
     load_credits_config,
     format_static_tell_block,
+    json_output_config,
     message_text,
 )
 
@@ -606,23 +607,36 @@ def fact_check_bespoke_script(script, all_articles, client):
 def extract_debate_summary(script, tag, client):
     prompt = (
         f"Extract a structured summary from this podcast debate about '{tag}'.\n\n"
-        "Return a JSON object with:\n"
-        "- central_question: the main question debated (string)\n"
-        "- riley_position: Riley's core argument (string)\n"
-        "- casey_position: Casey's core argument (string)\n"
-        "- resolution: how the debate resolved or what was left open (string)\n"
-        "- topics_covered: 4-6 key topics discussed (array of strings)\n"
-        "- calls_to_action: every concrete action, resource, or next step that both hosts "
-        "agreed on or explicitly endorsed at the end of the episode (array of strings, "
-        "empty array if none)\n\n"
-        f"SCRIPT:\n{script[-3000:]}\n\n"
-        "Return only valid JSON, no other text."
+        f"SCRIPT:\n{script[-3000:]}"
     )
+    schema = {
+        "type": "object",
+        "properties": {
+            "central_question": {"type": "string",
+                                 "description": "the main question debated"},
+            "riley_position": {"type": "string", "description": "Riley's core argument"},
+            "casey_position": {"type": "string", "description": "Casey's core argument"},
+            "resolution": {"type": "string",
+                           "description": "how the debate resolved or what was left open"},
+            "topics_covered": {"type": "array", "items": {"type": "string"},
+                               "description": "4-6 key topics discussed"},
+            "calls_to_action": {
+                "type": "array", "items": {"type": "string"},
+                "description": ("every concrete action, resource, or next step that both "
+                                "hosts agreed on or explicitly endorsed at the end of the "
+                                "episode; empty if none"),
+            },
+        },
+        "required": ["central_question", "riley_position", "casey_position",
+                     "resolution", "topics_covered", "calls_to_action"],
+        "additionalProperties": False,
+    }
     try:
         response = api_retry(lambda: client.messages.create(
             model=SCRIPT_MODEL,
             max_tokens=800,
-            messages=[{"role": "user", "content": prompt}]
+            messages=[{"role": "user", "content": prompt}],
+            output_config=json_output_config(schema),
         ))
         _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
         return json.loads(message_text(response))
@@ -756,12 +770,15 @@ def generate_tts_segment(text, speaker, output_file, hosts):
     clean = text
     for word, alias in _PRON.items():
         clean = clean.replace(word, alias)
-    response = api_retry(lambda: client.audio.speech.create(
-        model="tts-1",
-        voice=voice,
-        input=clean,
-        speed=1.0,
-    ))
+    # Same knob as the daily pipeline (podcast_generator.OPENAI_TTS_MODEL); the
+    # steerable models take delivery direction instead of a speed multiplier.
+    model = os.getenv("OPENAI_TTS_MODEL", "gpt-4o-mini-tts")
+    request = {"model": model, "voice": voice}
+    if model in ("tts-1", "tts-1-hd"):
+        request["speed"] = 1.0
+    elif hosts[speaker].get("voice_instructions"):
+        request["instructions"] = hosts[speaker]["voice_instructions"]
+    response = api_retry(lambda: client.audio.speech.create(input=clean, **request))
     _log_api_call("openai-tts", "chars", len(clean))
     with open(output_file, "wb") as f:
         f.write(response.content)

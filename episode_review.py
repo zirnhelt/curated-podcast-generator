@@ -55,7 +55,7 @@ INDEX_FILE = REVIEWS_DIR / "index.json"
 FEED_FILE = Path("episode-reviews.xml")
 FEED_LIMIT = 30
 
-REVIEW_MODEL = os.getenv("CLAUDE_REVIEW_MODEL", "claude-haiku-4-5-20251001")
+REVIEW_MODEL = os.getenv("CLAUDE_REVIEW_MODEL", "claude-haiku-4-5")
 REVIEW_MAX_TOKENS = 2200
 
 # The three crons, by the hour they are scheduled for. GitHub fires them late —

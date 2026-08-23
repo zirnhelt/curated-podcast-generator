@@ -69,9 +69,11 @@ class FakeSpeech:
         # Each take is either a duration, or a (duration, peak_dbfs) pair.
         self._takes = [t if isinstance(t, tuple) else (t, AUDIBLE_DBFS) for t in takes]
         self.calls = 0
+        self.last_kwargs = {}
 
     def create(self, **kwargs):
         self.calls += 1
+        self.last_kwargs = kwargs
         duration_ms, peak = self._takes[min(self.calls, len(self._takes)) - 1]
         return FakeResponse(_content(duration_ms, peak))
 
@@ -218,3 +220,77 @@ class TestTTSSilentTake:
         # A zero-length clip has no peak to measure; _is_silent_take must not
         # depend on max_dBFS being meaningful for it.
         assert pg._is_silent_take(FakeAudio(0, AUDIBLE_DBFS))
+
+
+class TestOpenAITTSModelSelection:
+    """tts-1 takes a speed multiplier; the steerable models take direction.
+
+    Sending `speed` to a model that ignores it would leave _expected_speech_ms
+    dividing by a multiplier the audio never had, quietly moving the 0.80 floor
+    on every segment.
+    """
+
+    def test_legacy_model_sends_speed_and_no_instructions(self, monkeypatch, tmp_path):
+        monkeypatch.setattr(pg, "OPENAI_TTS_MODEL", "tts-1")
+        monkeypatch.setattr(pg, "get_speed_for_host", lambda host: 1.1)
+        client = FakeClient([8000])
+        monkeypatch.setattr(pg, "get_openai_client", lambda: client)
+
+        pg.generate_tts_for_segment(TEXT, "casey", str(tmp_path / "seg.mp3"))
+
+        sent = client.audio.speech.last_kwargs
+        assert sent["model"] == "tts-1"
+        assert sent["speed"] == 1.1
+        assert "instructions" not in sent
+
+    def test_steerable_model_sends_instructions_and_no_speed(self, monkeypatch, tmp_path):
+        monkeypatch.setattr(pg, "OPENAI_TTS_MODEL", "gpt-4o-mini-tts")
+        monkeypatch.setattr(pg, "get_speed_for_host", lambda host: 1.1)
+        monkeypatch.setattr(pg, "get_voice_instructions_for_host", lambda host: "Voice: dry.")
+        client = FakeClient([8000])
+        monkeypatch.setattr(pg, "get_openai_client", lambda: client)
+
+        pg.generate_tts_for_segment(TEXT, "casey", str(tmp_path / "seg.mp3"))
+
+        sent = client.audio.speech.last_kwargs
+        assert sent["model"] == "gpt-4o-mini-tts"
+        assert sent["instructions"] == "Voice: dry."
+        assert "speed" not in sent
+
+    def test_steerable_model_estimates_duration_at_unit_speed(self, monkeypatch, tmp_path):
+        """The host's 1.1 multiplier is direction now, so it must not divide."""
+        monkeypatch.setattr(pg, "OPENAI_TTS_MODEL", "gpt-4o-mini-tts")
+        monkeypatch.setattr(pg, "get_speed_for_host", lambda host: 2.0)
+        monkeypatch.setattr(pg, "get_voice_instructions_for_host", lambda host: "Voice: dry.")
+        # 20 words at unit speed expects ~6738ms; 0.80 of that is ~5390ms.
+        # A 5000ms take is short against 1.0 and would look fine against 2.0.
+        client = FakeClient([5000, 8000])
+        monkeypatch.setattr(pg, "get_openai_client", lambda: client)
+
+        pg.generate_tts_for_segment(TEXT, "casey", str(tmp_path / "seg.mp3"))
+
+        assert client.audio.speech.calls == 2
+
+
+class TestSpeechRateFit:
+    """The 369ms/word fit is tts-1's. Borrowing it is allowed, silently isn't."""
+
+    def test_fitted_model_uses_its_own_row_and_stays_quiet(self, monkeypatch):
+        recorded = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: recorded.append(name))
+        monkeypatch.setattr(pg, "OPENAI_TTS_MODEL", "tts-1")
+        monkeypatch.setattr(pg, "_borrowed_fit_reported", False)
+
+        assert pg._speech_rate_fit() == (369, 642)
+        assert recorded == []
+
+    def test_unfitted_model_borrows_and_says_so_once(self, monkeypatch):
+        recorded = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: recorded.append(name))
+        monkeypatch.setattr(pg, "OPENAI_TTS_MODEL", "gpt-4o-mini-tts")
+        monkeypatch.setattr(pg, "_borrowed_fit_reported", False)
+
+        assert pg._speech_rate_fit() == (369, 642)
+        assert pg._speech_rate_fit() == (369, 642)
+        # Once, not once per segment — degrade() concatenates repeat details.
+        assert recorded == ["render/borrowed-speech-rate"]

@@ -31,7 +31,7 @@ from config_loader import message_text
 PODCASTS_DIR = Path("podcasts")
 CACHE_FILE = PODCASTS_DIR / "twit_inspiration.json"
 CONFIG_FILE = Path("config/twit_sources.json")
-HAIKU_MODEL = "claude-haiku-4-5-20251001"
+HAIKU_MODEL = "claude-haiku-4-5"
 MAX_BODY_CHARS = 4000
 CACHE_VERSION = 1
 

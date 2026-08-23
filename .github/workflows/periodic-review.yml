@@ -33,7 +33,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install anthropic
+        run: pip install -r requirements-lock.txt
 
       - name: Determine days to review
         id: params

@@ -41,7 +41,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install anthropic
+        run: pip install -r requirements-lock.txt
 
       - name: Resolve episode date
         id: params

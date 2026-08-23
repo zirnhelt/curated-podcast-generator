@@ -41,7 +41,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install requests anthropic
+        run: pip install -r requirements-lock.txt
 
       - name: Download existing inspiration cache from GitHub Pages
         run: |
