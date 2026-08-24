@@ -19,6 +19,60 @@
 - Citations system tracks sources per episode
 - Indigenous territory acknowledgment in descriptions
 - RSS feed with proper XML escaping
+- Daily editorial review of the run itself (`episode_review.py`), published to the site and
+  carried on `episode-reviews.xml` — the section below is distilled from it
+
+## From the daily reviews
+
+`episode_review.py` narrates each night's run — what it did, what broke, and what it chose
+when something broke. Four reviews in (2026-08-20..23) the recurring items are below; each
+names the evidence so it can be closed on a fact rather than a feeling. Findings the reviews
+surfaced and that are already fixed (citation matching, the TTS duration checksum's fitted
+constants, the canary's second ask, Brave's two payload shapes, labelling the facts handed to
+the narrative) are not repeated here — see 0a4c019 and 1ed384e.
+
+- [ ] **A credit-balance 400 is not the usage-limit wall, and every run pays for that.**
+      2026-08-23: all three crons died with `Your credit balance is too low to access the
+      Anthropic API` and exited 1, so the day went red and the episode only shipped from a
+      manual dispatch at 14:42 UTC, six hours late. `_usage_limit_reset` keys on the string
+      `usage limit`, which this message does not contain, so `check_api_budget()` printed
+      "preflight inconclusive — continuing" and the run went on to spend 40 article body
+      fetches, ~37 Brave enrichment calls and an agentic research call before failing at the
+      script call — three times over, which is the exact waste the preflight was written to
+      prevent (see its docstring on 2026-07-25). Match the credit-balance refusal too and
+      exit `EXIT_BUDGET_EXHAUSTED`; the workflow already turns 75 into a skipped day with a
+      warning instead of a failure.
+- [ ] **The review goes quiet on exactly the days worth reviewing.** `main()` only fetches a
+      job log from a run whose conclusion is `success`. On 2026-08-23 there was no such run,
+      so the review published a bare trigger table and no narrative — three failures and not
+      a word about why. Fall back to the newest failed run's log (the facts are all there: the
+      400 above is in it), and keep the successful-run preference for ordinary days.
+- [ ] **The review cannot see the run that made the episode when a cron did not.** It is gated
+      on the third cron, so 2026-08-23's manual dispatch four hours later is absent from the
+      write-up and from the archive. Either widen `fetch_runs` past `event: schedule` for the
+      day, or make the review re-runnable for a date and re-publish over the same file
+      (`--date` already exists; the index and feed update in place).
+- [ ] **The review reports itself as an unfinished run.** The `review` job runs inside the
+      3:05 AM cron's own workflow run, so every review to date ends with "Fallback 2 …
+      in_progress" and the narrative reads it as a pending unknown ("a third in progress at
+      review time", 2026-08-20). `summarize_runs` knows `GITHUB_RUN_ID`; label that row as the
+      reviewing run so the model stops treating it as a cliffhanger.
+- [ ] **Decide what to do about scheduler drift.** Every trigger in the sample started late:
+      +44/+29/+32 (08-20), +46/+31/+31 (08-21), +34/+20/+25 (08-22), +35/+22/+25 (08-23). This
+      is GitHub's scheduled-run queue, not the pipeline, and the reviews report it as a fault
+      every single day. Either move the crons earlier and accept the drift as the schedule, or
+      keep the number and stop framing it as one — a fact reported daily as a problem and never
+      acted on trains the reader to skip the paragraph.
+- [ ] **Watch the four 2026-08-22 fixes on air.** None has been observed in a shipped episode:
+      the runs the day after all died at the credit wall. The first green day's review is the
+      check — citation alignment should land near 51%/55% rather than 5-8/15 and 0-1/deep dive,
+      `tts_short_segments` should be ~2% of segments rather than 13 of 16, and the canary should
+      only pin OpenAI after two timeouts per model.
+- [ ] **Gemini has not rendered an episode in the review window.** 08-20, 08-21 and 08-22 all
+      pinned OpenAI on canary read timeouts against `generativelanguage.googleapis.com`; 08-23
+      never got that far. The probe item under Short-term is the diagnostic — the reviews now
+      give it a daily before/after record, so run it and read the next week's reviews rather
+      than re-reasoning about the ladder.
 
 ## Short-term
 - [ ] **Run the Gemini prompt-shape probe** — `TTS Eval` workflow with `probe_gemini: true`
@@ -83,3 +137,10 @@
       WAV persistence first.
 - [ ] Consider Gemini for holistic podcast generation - may be possible on free tier
 - [ ] Consider pydub for music integration and reducing API calls to Claude
+- [ ] Do something with the cull. The feed hands the pipeline roughly five times what a
+      22-minute show can carry — 77 candidates against a 15-story roundup on 2026-08-23, 62
+      dropped over budget and 9 more to the 3-story cluster cap — and every review narrates
+      that as loss. The cut itself is right (airtime, not appetite) and dropped stories never
+      reach citations, so they can resurface on a better-matched day. The open question is
+      whether the day's cull is worth its own surface on the site, not whether the show
+      should be longer.
