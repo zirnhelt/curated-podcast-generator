@@ -1,0 +1,366 @@
+{
+  "episode": {
+    "date": "2026-08-24",
+    "formatted_date": "Monday, August 24, 2026",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "title": "Cariboo Signals - Arts, Culture & Digital Storytelling",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Arts, Culture & Digital Storytelling.</p><p><b>THIS WEEK WE'RE ASKING:</b> Who is allowed to fix things?</p><p><b>NEWS ROUNDUP:</b> We break down [Williams Lake Tribune] Love speaks loudly outweighing online hate at Williams Lake Pride Parade and South Cariboo residents won’t have access to their local emergency department overnight : My Cariboo Now, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Who should be allowed to verify, audit, and fix the systems embedded in cultural spaces—from facial recognition at venues to AI watermarks on recordings to aging audio equipment in local halls? Topics include: Facial recognition surveillance at entertainment venues and corporate accountability, AI-generated content watermarking and digital provenance verification, Repairability and local ownership of aging versus proprietary audio equipment, Arts funding disclosure standards for AI-assisted work, The gap between technical solutions and practical compliance in small communities.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://caribooliteracy.com\">Cariboo Chilcotin Partners for Literacy</a></p><p><b>Sources discussed:</b></p><ul><li>Rebecca Dyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/08/23/love-speaks-loudly-outweighing-online-hate-at-williams-lake-pride-parade/\">[Williams Lake Tribune] Love speaks loudly outweighing onlin...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/315786/news/health-care/south-cariboo-residents-wont-have-access-to-their-local-emergency-department-overnight/\">South Cariboo residents won’t have access to their local eme...</a></li><li>Barbara Roden (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/08/23/highway-1-from-yale-to-boston-bar-still-closed-due-to-ainslie-creek-fire/\">[Williams Lake Tribune] Highway 1 from Yale to Boston Bar st...</a></li><li>Brendan Shykora (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/08/15/city-of-revelstoke-issues-evacuation-order-for-fish-river-road-area-due-to-wildfire/\">[Williams Lake Tribune] City of Revelstoke issues wildfire e...</a></li><li>Lucy Mazzucco (Canadian Architect): <a href=\"https://www.canadianarchitect.com/southern-alberta-art-gallery-enhancement-breaks-ground/\">[Canadian Architect] Southern Alberta Art Gallery enhancemen...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/instagram-crackdown-meta-ai-glasses-pickup-rizz-videos-moderation-challenges-2026-8\">[Business Insider] Instagram promised to remove harassing Me...</a></li><li>Western Producer: <a href=\"https://www.producer.com/news/u-s-edible-bean-sector-recovers-from-setback/\">[Western Producer] U.S. edible bean sector seen to be recove...</a></li><li>Jennifer Castenson (Forbes Innovation): <a href=\"https://www.forbes.com/sites/jennifercastenson/2026/08/16/growing-appeal-of-mass-timber-attacts-big-tech-developer-investment/\">[Forbes Innovation] Growing Appeal Of Mass Timber Attacts Bi...</a></li><li>My East Kootenay Now: <a href=\"https://www.myeastkootenaynow.com/57491/news/politics/b-c-finance-minister-says-she-has-been-diagnosed-with-treatable-cancer/\">B.C. finance minister says she has been diagnosed with \"trea...</a></li><li>Our World in Data: <a href=\"https://ourworldindata.org/which-countries-have-already-passed-peak-population-and-when-will-the-rest-do-so\">[Our World in Data] Which countries have already passed peak...</a></li><li>https://www.techradar.com/author/david-nield (TechRadar): <a href=\"https://www.techradar.com/tech/london-underground-is-trialing-live-face-scanning-from-today-as-privacy-groups-say-it-treats-the-public-like-suspects-heres-how-to-avoid-it\">[TechRadar] London Underground is trialing live face scannin...</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/08/260815064805.htm\">[ScienceDaily] Physicists discover a hidden gluon structure ...</a></li><li>Terrence O&#x27;Brien (The Verge): <a href=\"https://www.theverge.com/tech/980752/amazon-class-action-arbitration-terms-and-conditions\">[The Verge] Amazon is trying to crush class-action suits bef...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/08/17/After-Fire-Comes-Rotting-Meat/\">[The Tyee] After the Fire Comes the Rotting Meat. The Provin...</a></li><li>Calvin Wankhede (Engadget): <a href=\"https://www.engadget.com/2240233/study-finds-15-percent-increase-traffic-deaths-after-music-streaming-releases/\">[Engadget] Study finds a 15 percent increase in traffic deat...</a></li><li>Kate Taylor (WIRED): <a href=\"https://www.wired.com/story/new-york-city-lawmakers-push-to-ban-the-scan-at-msg/\">[WIRED] New York City Lawmakers Push to ‘Ban the Scan’ at MS...</a></li><li>https://www.techradar.com/author/david-nield (TechRadar): <a href=\"https://www.techradar.com/ai-platforms-assistants/gemini/gemini-now-lets-you-turn-off-the-visible-watermark-on-your-ai-creations-heres-how-to-do-it-and-how-your-content-is-still-flagged-as-ai\">[TechRadar] Gemini now lets you turn off the visible waterma...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Jorge Garay (WIRED): <a href=\"https://www.wired.com/story/its-never-too-early-to-start-planning-for-the-next-two-solar-eclipses/\">[WIRED] It’s Never Too Early to Start Planning for the Next ...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5<br>Today's Voices: Gemini TTS and OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-08-24T02:07:45.664460-07:00",
+    "models": {
+      "script": "claude-sonnet-5",
+      "review": "claude-sonnet-5",
+      "summary": "claude-haiku-4-5"
+    },
+    "quality": {
+      "word_count": 3790,
+      "voice_ratio_casey_riley": 1.13,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 1,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 1,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 1,
+        "roundup_seam": 0,
+        "thats_closer": 0,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 2,
+      "rhythm": {
+        "em_dashes_per_1k": 9.0,
+        "short_turns": 9,
+        "turns": 88,
+        "avg_turn_words": 41.6,
+        "antithesis_hits": 0,
+        "over_budget": [
+          "em_dashes"
+        ]
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    },
+    "anchor": {
+      "id": "allowed-to-fix",
+      "question": "Who is allowed to fix things?"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[TechRadar] London Underground is trialing live face scanning from today as privacy groups say it 'treats the public like suspects' — here's how to avoid it",
+          "url": "https://www.techradar.com/tech/london-underground-is-trialing-live-face-scanning-from-today-as-privacy-groups-say-it-treats-the-public-like-suspects-heres-how-to-avoid-it",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/david-nield",
+          "ai_score": 44,
+          "date_published": "2026-08-11T12:58:10+00:00",
+          "summary": "The British Transport Police are putting facial recognition cameras in Tube stations, but face a backlash against the tech.",
+          "discussed": true,
+          "mention_offset_frac": 0.0038
+        },
+        {
+          "title": "[Forbes Innovation] Growing Appeal Of Mass Timber Attacts Big Tech, Developer Investment",
+          "url": "https://www.forbes.com/sites/jennifercastenson/2026/08/16/growing-appeal-of-mass-timber-attacts-big-tech-developer-investment/",
+          "source": "Forbes Innovation",
+          "author": "Jennifer Castenson",
+          "ai_score": 55,
+          "date_published": "2026-08-16T16:09:07+00:00",
+          "summary": "Real Estate # Growing Appeal Of Mass Timber Attacts Big Tech, Developer Investment ByJennifer Castenson, Contributor. Forbes contributors publish independent expert analyses and insights. Covers the f...",
+          "discussed": true,
+          "mention_offset_frac": 0.0091
+        },
+        {
+          "title": "[WIRED] It’s Never Too Early to Start Planning for the Next Two Solar Eclipses",
+          "url": "https://www.wired.com/story/its-never-too-early-to-start-planning-for-the-next-two-solar-eclipses/",
+          "source": "WIRED",
+          "author": "Jorge Garay",
+          "ai_score": 53,
+          "date_published": "2026-08-16T10:30:00+00:00",
+          "summary": "In 2027 and 2028, there will be two spectacular, long-duration solar eclipses. Here’s what you need to know about them.",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Love speaks loudly outweighing online hate at Williams Lake Pride Parade",
+          "url": "https://wltribune.com/2026/08/23/love-speaks-loudly-outweighing-online-hate-at-williams-lake-pride-parade/",
+          "source": "Williams Lake Tribune",
+          "author": "Rebecca Dyok",
+          "ai_score": 89,
+          "date_published": "2026-08-24T04:54:10.679166+00:00",
+          "summary": "## Love speaks loudly outweighing online hate at Williams Lake Pride Parade Published 1:21 pm Sunday, August 23, 2026 **By Rebecca Dyok** 1/9 (Rebecca Dyok/Williams Lake Tribune) | **Getting your Trin...",
+          "discussed": true,
+          "mention_offset_frac": 0.0242
+        },
+        {
+          "title": "South Cariboo residents won’t have access to their local emergency department overnight : My Cariboo Now",
+          "url": "https://www.mycariboonow.com/315786/news/health-care/south-cariboo-residents-wont-have-access-to-their-local-emergency-department-overnight/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 90,
+          "date_published": "2026-08-24T04:52:32.864911+00:00",
+          "summary": "A temporary service interruption has been announced for 100 Mile District General Hospital.",
+          "discussed": true,
+          "mention_offset_frac": 0.1544
+        },
+        {
+          "title": "[Williams Lake Tribune] Highway 1 from Yale to Boston Bar still closed due to Ainslie Creek fire",
+          "url": "https://wltribune.com/2026/08/23/highway-1-from-yale-to-boston-bar-still-closed-due-to-ainslie-creek-fire/",
+          "source": "Williams Lake Tribune",
+          "author": "Barbara Roden",
+          "ai_score": 87,
+          "date_published": "2026-08-24T04:54:10.679052+00:00",
+          "summary": "1 MIN READ",
+          "discussed": true,
+          "mention_offset_frac": 0.231
+        },
+        {
+          "title": "[Williams Lake Tribune] City of Revelstoke issues wildfire evacuation order for 5 rural properties near Beaton",
+          "url": "https://wltribune.com/2026/08/15/city-of-revelstoke-issues-evacuation-order-for-fish-river-road-area-due-to-wildfire/",
+          "source": "Williams Lake Tribune",
+          "author": "Brendan Shykora",
+          "ai_score": 55,
+          "date_published": "2026-08-16T06:00:37+00:00",
+          "summary": "## City of Revelstoke issues wildfire evacuation order for 5 rural properties near Beaton Published 11:00 pm Saturday, August 15, 2026 **By Brendan Shykora** 1/4 The Johnson Creek wildfire burns near ...",
+          "discussed": true,
+          "mention_offset_frac": 0.2761
+        },
+        {
+          "title": "[The Tyee] After the Fire Comes the Rotting Meat. The Province No Longer Helps",
+          "url": "https://thetyee.ca/News/2026/08/17/After-Fire-Comes-Rotting-Meat/",
+          "source": "The Tyee",
+          "author": "",
+          "ai_score": 80,
+          "date_published": "2026-08-17T07:30:00+00:00",
+          "summary": "BC stopped paying to dispose of freezers after long-term evacuations. That brings health concerns.",
+          "discussed": true,
+          "mention_offset_frac": 0.3033
+        },
+        {
+          "title": "[Canadian Architect] Southern Alberta Art Gallery enhancement breaks ground",
+          "url": "https://www.canadianarchitect.com/southern-alberta-art-gallery-enhancement-breaks-ground/",
+          "source": "Canadian Architect",
+          "author": "Lucy Mazzucco",
+          "ai_score": 48,
+          "date_published": "2026-08-17T04:51:38.813162+00:00",
+          "summary": "The revitalization, led by DIALOG, will transform existing interior spaces and add new indoor and outdoor amenities.",
+          "discussed": true,
+          "mention_offset_frac": 0.3333
+        },
+        {
+          "title": "[Business Insider] Instagram promised to remove harassing Meta glasses videos. I keep finding them.",
+          "url": "https://www.businessinsider.com/instagram-crackdown-meta-ai-glasses-pickup-rizz-videos-moderation-challenges-2026-8",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 56,
+          "date_published": "2026-08-16T09:30:01+00:00",
+          "summary": "Instagram said it would remove harassing videos filmed with Meta AI glasses. Weeks later, dozens remain.",
+          "discussed": true,
+          "mention_offset_frac": 0.4169
+        },
+        {
+          "title": "[Western Producer] U.S. edible bean sector seen to be recovering from major setbacks",
+          "url": "https://www.producer.com/news/u-s-edible-bean-sector-recovers-from-setback/",
+          "source": "Western Producer",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-08-17T04:51:25.433451+00:00",
+          "summary": "Those two factors combined caused bean prices to plummet, resulting in farmers cutting back on seeded acres. The U.S. Department of Agriculture estimates that bean farmers slashed plantings by 15.6 pe...",
+          "discussed": true,
+          "mention_offset_frac": 0.4762
+        },
+        {
+          "title": "[ScienceDaily] Physicists discover a hidden gluon structure inside protons that could rewrite textbooks",
+          "url": "https://www.sciencedaily.com/releases/2026/08/260815064805.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-08-16T09:55:45+00:00",
+          "summary": "Physicists may have uncovered a hidden feature inside protons that helps preserve one of matter’s most fundamental properties. RHIC collision data suggest baryon number is carried not simply by three ...",
+          "discussed": true,
+          "mention_offset_frac": 0.6132
+        },
+        {
+          "title": "[The Verge] Amazon is trying to crush class-action suits before they get started",
+          "url": "https://www.theverge.com/tech/980752/amazon-class-action-arbitration-terms-and-conditions",
+          "source": "The Verge",
+          "author": "Terrence O&#x27;Brien",
+          "ai_score": 52,
+          "date_published": "2026-08-16T17:35:02+00:00",
+          "summary": "On Friday, Amazon customers received an email alerting them to an update to the site's terms and conditions. Most notably, it stated that disputes would now be resolved through arbitration and said us...",
+          "discussed": true,
+          "mention_offset_frac": 0.7108
+        },
+        {
+          "title": "B.C. finance minister says she has been diagnosed with \"treatable\" cancer : My East Kootenay Now",
+          "url": "https://www.myeastkootenaynow.com/57491/news/politics/b-c-finance-minister-says-she-has-been-diagnosed-with-treatable-cancer/",
+          "source": "My East Kootenay Now",
+          "author": "",
+          "ai_score": 50,
+          "date_published": "2026-08-17T04:51:09.089602+00:00",
+          "summary": "Stay up-to-date with the latest news, events, and local happenings in the East Kootenay region. MyEastKootenayNow brings you community updates, weather forecasts, and more to keep you informed and con...",
+          "discussed": true,
+          "mention_offset_frac": 0.727
+        },
+        {
+          "title": "[Our World in Data] Which countries have already passed peak population, and when will the rest do so?",
+          "url": "https://ourworldindata.org/which-countries-have-already-passed-peak-population-and-when-will-the-rest-do-so",
+          "source": "Our World in Data",
+          "author": "",
+          "ai_score": 47,
+          "date_published": "2026-08-17T00:00:00+00:00",
+          "summary": "Falling fertility rates have created a unique scenario in human history: many countries are experiencing structural population decline.",
+          "discussed": true,
+          "mention_offset_frac": 0.7608
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Arts, Culture & Digital Storytelling",
+      "articles": [
+        {
+          "title": "[Engadget] Study finds a 15 percent increase in traffic deaths after major music streaming releases",
+          "url": "https://www.engadget.com/2240233/study-finds-15-percent-increase-traffic-deaths-after-music-streaming-releases/",
+          "source": "Engadget",
+          "author": "Calvin Wankhede",
+          "ai_score": 63,
+          "date_published": "2026-08-19T18:21:35+00:00",
+          "summary": "Drivers may be more distracted on days when a big new album drops.",
+          "discussed": true
+        },
+        {
+          "title": "[WIRED] New York City Lawmakers Push to ‘Ban the Scan’ at MSG",
+          "url": "https://www.wired.com/story/new-york-city-lawmakers-push-to-ban-the-scan-at-msg/",
+          "source": "WIRED",
+          "author": "Kate Taylor",
+          "ai_score": 52,
+          "date_published": "2026-08-14T21:43:17+00:00",
+          "summary": "At a press conference outside Madison Square Garden, politicians, musicians, and privacy advocates argued for tighter restrictions on how public venues deploy biometric surveillance.",
+          "discussed": true
+        },
+        {
+          "title": "[TechRadar] Gemini now lets you turn off the visible watermark on your AI creations — here's how to do it, and how your content is still flagged as AI",
+          "url": "https://www.techradar.com/ai-platforms-assistants/gemini/gemini-now-lets-you-turn-off-the-visible-watermark-on-your-ai-creations-heres-how-to-do-it-and-how-your-content-is-still-flagged-as-ai",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/david-nield",
+          "ai_score": 39,
+          "date_published": "2026-08-16T12:30:00+00:00",
+          "summary": "Now you can choose whether or not images, video, and music created through the Gemini app will have watermarks.",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Who should be allowed to verify, audit, and fix the systems embedded in cultural spaces—from facial recognition at venues to AI watermarks on recordings to aging audio equipment in local halls?",
+        "riley_position": "Communities should focus on local problems they can actually solve without external permission, particularly maintaining ownership and repairability of their own equipment and establishing simple disclosure standards for AI-assisted work.",
+        "riley_key_evidence": [
+          "Analog mixing boards in Williams Lake venues remain repairable by local technicians while digital boards require manufacturer support from provinces away",
+          "Rural arts councils lack resources to become AI-provenance auditors, making technical solutions impractical for small venues",
+          "A one-line self-reported disclosure on funding applications costs little and puts the question on record without requiring independent verification"
+        ],
+        "casey_position": "The underlying trust problem is identical across all scales—from MSG's facial recognition to Google's SynthID watermarks to venue equipment—but the stakes and solutions differ, and small communities shouldn't pretend they can solve surveillance capitalism problems meant for legislators.",
+        "casey_key_evidence": [
+          "Google's invisible SynthID watermark technically functions but requires active user effort to verify, making accountability theoretical rather than practical",
+          "MSG's facial recognition covers three major venues and affects thousands of people daily with no public oversight or consent mechanism",
+          "Album release dates cause a 15% jump in traffic deaths, showing systems are built by people disconnected from downstream consequences"
+        ],
+        "resolution": "Riley and Casey agreed that communities should implement a concrete, doable step—posting plain disclosure lines about AI-generated content in local recordings—while acknowledging this doesn't address larger surveillance governance issues that require legislative action beyond their scope.",
+        "topics_covered": [
+          "Facial recognition surveillance at entertainment venues and corporate accountability",
+          "AI-generated content watermarking and digital provenance verification",
+          "Repairability and local ownership of aging versus proprietary audio equipment",
+          "Arts funding disclosure standards for AI-assisted work",
+          "The gap between technical solutions and practical compliance in small communities"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 12,
+          "conditions": "overcast",
+          "high": 24,
+          "low": 12
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 10,
+          "conditions": "mainly clear",
+          "high": 23,
+          "low": 10
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 13,
+          "conditions": "overcast",
+          "high": 26,
+          "low": 12
+        },
+        {
+          "name": "Quesnel",
+          "temp": 13,
+          "conditions": "clear skies",
+          "high": 25,
+          "low": 12
+        },
+        {
+          "name": "Tatla Lake",
+          "temp": 11,
+          "conditions": "clear skies",
+          "high": 25,
+          "low": 10
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Cariboo Chilcotin Partners for Literacy",
+      "description": "Free adult literacy, ESL, and digital literacy programs across the Cariboo Chilcotin",
+      "website": "caribooliteracy.com",
+      "psa_angle": "Back to school season is a great reminder that Partners for Literacy offers free adult education and digital skills programs. It's never too late to learn something new.",
+      "event_name": "Back to school — literacy programs"
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_azure": "Azure Neural TTS",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "Gemini TTS and OpenAI TTS"
+  }
+}
