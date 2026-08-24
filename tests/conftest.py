@@ -114,3 +114,21 @@ def _isolate_phrase_ledger(tmp_path, monkeypatch):
 
     monkeypatch.setattr(podcast_generator, "PHRASE_LEDGER_FILE",
                         tmp_path / "phrase_ledger.json")
+
+
+@pytest.fixture(autouse=True)
+def _isolate_roadmap(tmp_path, monkeypatch):
+    """Redirect the roadmap ledger *and* ROADMAP.md to tmp for every test.
+
+    distill_roadmap() rewrites both — podcasts/roadmap_ledger.json is live state
+    CI commits daily, and ROADMAP.md is the repo's own roadmap. Same hazard as
+    _isolate_psa_state, with one file more embarrassing to clobber.
+
+    Empty rather than copied, for the anchor's reason: seeding, promotion and
+    retirement are all defined against what is already in the ledger, so a copy
+    would make every assertion about production's current backlog.
+    """
+    import episode_review
+
+    monkeypatch.setattr(episode_review, "LEDGER_FILE", tmp_path / "roadmap_ledger.json")
+    monkeypatch.setattr(episode_review, "ROADMAP_FILE", tmp_path / "ROADMAP.md")

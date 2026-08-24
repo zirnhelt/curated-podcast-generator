@@ -545,6 +545,10 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python episode_review.py
 
+      # ROADMAP.md and the ledger ride along: the review distils itself into
+      # the roadmap's managed block, and a stage that writes a tracked file
+      # some step must stage — an unstaged regeneration sits permanently dirty
+      # and breaks the next rebase.
       - name: Commit review
         uses: ./.github/actions/commit-push
         with:
@@ -552,6 +556,8 @@ jobs:
           paths: |
             podcasts/reviews/
             episode-reviews.xml
+            ROADMAP.md
+            podcasts/roadmap_ledger.json
           branch: main
 
       - name: Stage review for Pages

@@ -207,6 +207,8 @@ history, and a truncated `podcast-feed.xml` breaks every podcast client at once.
 - `article_holding.json` — Super-cycle holding pen + aired-early callback ledger
 - `weekly_anchor_state.json` — This week's pinned anchor question + the no-repeat ledger (ids forever, dimensions for 26 weeks)
 - `phrase_ledger.json` — 21-episode rolling phrase-frequency window + the burned list
+- `roadmap_ledger.json` — findings distilled from the daily reviews, with their recurrence
+  counts and closed/retired records; renders the managed block of `ROADMAP.md`
 
 ### Configuration System (`config_loader.py`)
 
@@ -540,6 +542,55 @@ Long-form debate episodes triggered manually or when 3+ content seeds share the 
 ### PSA Selection (`psa_selector.py`)
 
 Event-driven: 7-day lookahead for awareness dates. Round-robin fallback cycling through `psa_organizations.json` with 28-day minimum between repeats per org. State persisted to `psa_rotation_state.json`.
+
+### Daily Review → Roadmap (`episode_review.py`, `podcasts/roadmap_ledger.json`)
+
+The review narrates each night's run; the distillation turns it into work. That distillation
+was being done by hand (7d3fd10, four reviews in), which is the part that stops happening.
+
+**Recurrence is the signal, and it is counted locally.** What made the hand-written section
+worth reading was not any one night's narrative — it was that the same items came back. So
+the Claude call is narrow: one day's labelled facts in, candidate findings out. The dedup,
+the counting and the rendering are Python, because they are arithmetic and a model that can
+restate a number can also restate it wrong (the same reason `render_numbers_table` is
+templated). One Haiku call a night, ~3.5k input tokens, schema-constrained via
+`json_output_config`.
+
+**An item reaches ROADMAP.md on its `ROADMAP_MIN_OCCURRENCES`'th sighting, not its first.**
+One bad night is an incident. This is also what makes "return an empty list" a safe answer
+for the model, and the prompt says so twice — a distiller that must find something finds
+something, and a roadmap that grows every night is one nobody reads.
+
+**The file is read before it is written.** `episode_review.py` owns only what lies between
+`<!-- reviews:begin -->` and `<!-- reviews:end -->`; everything else in ROADMAP.md is
+untouched, and a file missing the markers is left alone entirely. A human answers by checking
+a box: `harvest_checked` closes that item and resets its counter, so tomorrow's review
+mentioning it again cannot reopen it — but a problem that is genuinely still happening earns
+its way back after `ROADMAP_MIN_OCCURRENCES` more sightings. Never blocklisted, never
+resurrected on one mention.
+
+- **Seeding, not competing.** `parse_section` is the inverse of `render_section`, so the
+  hand-written items became the ledger's first entries on first run rather than being
+  duplicated by a second list underneath them. It also means no id is ever written into the
+  markdown — an item is matched back by its title.
+- **Ids drift, titles do not.** The model coins the id, and the same finding came back as
+  `credit-balance-preflight` and `credit-balance-not-usage-limit` in testing. `_match` tries
+  the id, then a `difflib` ratio ≥ 0.72 on the title.
+- **The first sighting's wording is kept for the life of the item.** A detail rewritten
+  nightly is a daily diff on a file nobody asked to change. For the same reason the block is
+  in ledger order rather than sorted by recurrence, and its header dates the *reviews that
+  produced the items shown* rather than the run — dating it by the run put a one-line diff on
+  ROADMAP.md every night, which is how a generated file teaches its reader to skip it.
+- **Retirement is only for items the tool wrote** (`source: "review"`), after
+  `ROADMAP_RETIRE_DAYS` (14) of silence — a quiet week is not a fix. Seeded and hand-written
+  items are exempt: a human wrote them, only a human closes them. Retired items stay in the
+  ledger and a recurrence puts them back.
+- **It runs after the review is on disk**, inside a `try`, and `main()` swallows what escapes.
+  A day without a distillation costs the roadmap a day; a distillation that raises would cost
+  the review. Skip it with `--no-roadmap`; `--no-llm` and `--dry-run` already imply it.
+
+The `review` job stages `ROADMAP.md` and the ledger alongside the review — a stage that writes
+a tracked file that no step stages sits permanently dirty and breaks the next rebase.
 
 ### Sibling Repository
 
