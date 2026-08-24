@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[Tom's Hardware] Firm that uses AI to locate ancient lost sh",
       "[ScienceDaily] AI can tell if your brain is aging faster tha",
       "\ud83d\udd13 [The Verge] The major labels propose rules to keep AI slop",
       "[The Northern Miner] AI\u00a0boom lifts mining while competing fo",
@@ -10,7 +9,8 @@
       "AI",
       "[TechCrunch] Kyoto Fusioneering starts work on key fusion po",
       "[TechRadar] Boeing and US Air Force sign deal to build guide",
-      "[TechRadar] Huge 66-ft Turkish drones are hunting million-do"
+      "[TechRadar] Huge 66-ft Turkish drones are hunting million-do",
+      "[TechRadar] Gemini now lets you turn off the visible waterma"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -100,9 +100,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-08-08",
-        "clue": "community-trust:+ \u2014 Warmed to mutual aid effectiveness mid-pushback.",
-        "occurrences": 1
+        "date": "2026-08-24",
+        "clue": "community-trust:+ \u2014 Reinforced local agency over external permission-seeking",
+        "occurrences": 2
       },
       {
         "date": "2026-08-09",
@@ -113,11 +113,6 @@
         "date": "2026-08-09",
         "clue": "evidence-bar:[~] Added genuine complexity: acknowledged null results matter equally to positive findings, shifts from solution-focused framing",
         "occurrences": 1
-      },
-      {
-        "date": "2026-08-21",
-        "clue": "structural-lens:~ \u2014 Conceded exhaustion and purpose aren't opposites; complexity deepened.",
-        "occurrences": 2
       },
       {
         "date": "2026-08-17",
@@ -359,11 +354,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-08-02",
-        "clue": "evidence-bar:x \u2014 Conceded ALMA null result 'still matters on its own terms'",
-        "occurrences": 2
-      },
-      {
         "date": "2026-08-09",
         "clue": "structural-lens:[+] Reinforced institutional skepticism \u2014 pushed for explicit accountability checkpoints rather than trusting informal translation happens",
         "occurrences": 1
@@ -401,6 +391,11 @@
       {
         "date": "2026-08-23",
         "clue": "evidence-bar:+[signal] \u2014 Pressed harder on gap between finding and product",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-08-24",
+        "clue": "structural-lens:+ \u2014 Reinforced systems-thinking across MSG/watermark/gear parallels",
         "occurrences": 1
       }
     ],

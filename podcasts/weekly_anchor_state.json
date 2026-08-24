@@ -19,6 +19,16 @@
       "framings": {},
       "assigned_at": "2026-08-17",
       "origin": "seeded"
+    },
+    "2026-W35": {
+      "id": "allowed-to-fix",
+      "question": "Who is allowed to fix things?",
+      "dimension": "expertise-authority",
+      "premise": "Fixing something requires permission as often as it requires skill \u2014 a warranty, a licence, a certification, a proprietary diagnostic tool, a professional body, a funding body that recognises only certain credentials. Rural places have always repaired what cities replace, and are now told they may not. The question is where the line between gatekeeping and genuine competence actually falls, and who gets to draw it.",
+      "reading": null,
+      "framings": {},
+      "assigned_at": "2026-08-24",
+      "origin": "seeded"
     }
   },
   "used": [
@@ -33,6 +43,12 @@
       "dimension": "labour-meaning",
       "question": "Why is everyone in tech so sad?",
       "week": "2026-W34"
+    },
+    {
+      "id": "allowed-to-fix",
+      "dimension": "expertise-authority",
+      "question": "Who is allowed to fix things?",
+      "week": "2026-W35"
     }
   ],
   "generated": []
