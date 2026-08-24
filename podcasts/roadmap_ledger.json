@@ -1,0 +1,82 @@
+{
+  "items": [
+    {
+      "id": "a-credit-balance-400-is-not-the-usage-limit-wall-and-every-r",
+      "title": "A credit-balance 400 is not the usage-limit wall, and every run pays for that.",
+      "detail": "2026-08-23: all three crons died with `Your credit balance is too low to access the Anthropic API` and exited 1, so the day went red and the episode only shipped from a manual dispatch at 14:42 UTC, six hours late. `_usage_limit_reset` keys on the string `usage limit`, which this message does not contain, so `check_api_budget()` printed \"preflight inconclusive — continuing\" and the run went on to spend 40 article body fetches, ~37 Brave enrichment calls and an agentic research call before failing at the script call — three times over, which is the exact waste the preflight was written to prevent (see its docstring on 2026-07-25). Match the credit-balance refusal too and exit `EXIT_BUDGET_EXHAUSTED`; the workflow already turns 75 into a skipped day with a warning instead of a failure.",
+      "source": "manual",
+      "status": "open",
+      "occurrences": 2,
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-23",
+      "seen": []
+    },
+    {
+      "id": "the-review-goes-quiet-on-exactly-the-days-worth-reviewing",
+      "title": "The review goes quiet on exactly the days worth reviewing.",
+      "detail": "`main()` only fetches a job log from a run whose conclusion is `success`. On 2026-08-23 there was no such run, so the review published a bare trigger table and no narrative — three failures and not a word about why. Fall back to the newest failed run's log (the facts are all there: the 400 above is in it), and keep the successful-run preference for ordinary days.",
+      "source": "manual",
+      "status": "open",
+      "occurrences": 2,
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-23",
+      "seen": []
+    },
+    {
+      "id": "the-review-cannot-see-the-run-that-made-the-episode-when-a-c",
+      "title": "The review cannot see the run that made the episode when a cron did not.",
+      "detail": "It is gated on the third cron, so 2026-08-23's manual dispatch four hours later is absent from the write-up and from the archive. Either widen `fetch_runs` past `event: schedule` for the day, or make the review re-runnable for a date and re-publish over the same file (`--date` already exists; the index and feed update in place).",
+      "source": "manual",
+      "status": "open",
+      "occurrences": 2,
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-23",
+      "seen": []
+    },
+    {
+      "id": "the-review-reports-itself-as-an-unfinished-run",
+      "title": "The review reports itself as an unfinished run.",
+      "detail": "The `review` job runs inside the 3:05 AM cron's own workflow run, so every review to date ends with \"Fallback 2 … in_progress\" and the narrative reads it as a pending unknown (\"a third in progress at review time\", 2026-08-20). `summarize_runs` knows `GITHUB_RUN_ID`; label that row as the reviewing run so the model stops treating it as a cliffhanger.",
+      "source": "manual",
+      "status": "open",
+      "occurrences": 2,
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-23",
+      "seen": []
+    },
+    {
+      "id": "decide-what-to-do-about-scheduler-drift",
+      "title": "Decide what to do about scheduler drift.",
+      "detail": "Every trigger in the sample started late: +44/+29/+32 (08-20), +46/+31/+31 (08-21), +34/+20/+25 (08-22), +35/+22/+25 (08-23). This is GitHub's scheduled-run queue, not the pipeline, and the reviews report it as a fault every single day. Either move the crons earlier and accept the drift as the schedule, or keep the number and stop framing it as one — a fact reported daily as a problem and never acted on trains the reader to skip the paragraph.",
+      "source": "manual",
+      "status": "open",
+      "occurrences": 2,
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-23",
+      "seen": []
+    },
+    {
+      "id": "watch-the-four-2026-08-22-fixes-on-air",
+      "title": "Watch the four 2026-08-22 fixes on air.",
+      "detail": "None has been observed in a shipped episode: the runs the day after all died at the credit wall. The first green day's review is the check — citation alignment should land near 51%/55% rather than 5-8/15 and 0-1/deep dive, `tts_short_segments` should be ~2% of segments rather than 13 of 16, and the canary should only pin OpenAI after two timeouts per model.",
+      "source": "manual",
+      "status": "open",
+      "occurrences": 2,
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-23",
+      "seen": []
+    },
+    {
+      "id": "gemini-has-not-rendered-an-episode-in-the-review-window",
+      "title": "Gemini has not rendered an episode in the review window.",
+      "detail": "08-20, 08-21 and 08-22 all pinned OpenAI on canary read timeouts against `generativelanguage.googleapis.com`; 08-23 never got that far. The probe item under Short-term is the diagnostic — the reviews now give it a daily before/after record, so run it and read the next week's reviews rather than re-reasoning about the ladder.",
+      "source": "manual",
+      "status": "open",
+      "occurrences": 2,
+      "first_seen": "2026-08-23",
+      "last_seen": "2026-08-23",
+      "seen": []
+    }
+  ],
+  "updated": "2026-08-23"
+}

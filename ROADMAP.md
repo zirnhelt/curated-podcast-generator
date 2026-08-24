@@ -25,11 +25,22 @@
 ## From the daily reviews
 
 `episode_review.py` narrates each night's run — what it did, what broke, and what it chose
-when something broke. Four reviews in (2026-08-20..23) the recurring items are below; each
-names the evidence so it can be closed on a fact rather than a feeling. Findings the reviews
-surfaced and that are already fixed (citation matching, the TTS duration checksum's fitted
-constants, the canary's second ask, Brave's two payload shapes, labelling the facts handed to
-the narrative) are not repeated here — see 0a4c019 and 1ed384e.
+when something broke, and then distils that night into the items below. Each names the
+evidence so it can be closed on a fact rather than a feeling. Findings the reviews surfaced
+and that are already fixed (citation matching, the TTS duration checksum's fitted constants,
+the canary's second ask, Brave's two payload shapes, labelling the facts handed to the
+narrative) are not repeated here — see 0a4c019 and 1ed384e.
+
+**This block is maintained by `episode_review.py`.** It rewrites everything between the two
+markers after each night's review, so edits to an item's text are overwritten. What a human
+says here is said by checking a box: a checked item is closed, and the ledger
+(`podcasts/roadmap_ledger.json`) remembers that, so a review mentioning it again tomorrow
+cannot reopen it. Anything written outside the markers is never touched.
+
+<!-- reviews:begin -->
+
+_Distilled from the daily reviews by `episode_review.py` — 7 open. Check a box to close one; it
+comes back only if the reviews raise it 2 more times._
 
 - [ ] **A credit-balance 400 is not the usage-limit wall, and every run pays for that.**
       2026-08-23: all three crons died with `Your credit balance is too low to access the
@@ -39,24 +50,24 @@ the narrative) are not repeated here — see 0a4c019 and 1ed384e.
       "preflight inconclusive — continuing" and the run went on to spend 40 article body
       fetches, ~37 Brave enrichment calls and an agentic research call before failing at the
       script call — three times over, which is the exact waste the preflight was written to
-      prevent (see its docstring on 2026-07-25). Match the credit-balance refusal too and
-      exit `EXIT_BUDGET_EXHAUSTED`; the workflow already turns 75 into a skipped day with a
-      warning instead of a failure.
-- [ ] **The review goes quiet on exactly the days worth reviewing.** `main()` only fetches a
-      job log from a run whose conclusion is `success`. On 2026-08-23 there was no such run,
-      so the review published a bare trigger table and no narrative — three failures and not
-      a word about why. Fall back to the newest failed run's log (the facts are all there: the
-      400 above is in it), and keep the successful-run preference for ordinary days.
+      prevent (see its docstring on 2026-07-25). Match the credit-balance refusal too and exit
+      `EXIT_BUDGET_EXHAUSTED`; the workflow already turns 75 into a skipped day with a warning
+      instead of a failure.
+- [ ] **The review goes quiet on exactly the days worth reviewing.** `main()` only fetches a job
+      log from a run whose conclusion is `success`. On 2026-08-23 there was no such run, so the
+      review published a bare trigger table and no narrative — three failures and not a word
+      about why. Fall back to the newest failed run's log (the facts are all there: the 400
+      above is in it), and keep the successful-run preference for ordinary days.
 - [ ] **The review cannot see the run that made the episode when a cron did not.** It is gated
       on the third cron, so 2026-08-23's manual dispatch four hours later is absent from the
       write-up and from the archive. Either widen `fetch_runs` past `event: schedule` for the
-      day, or make the review re-runnable for a date and re-publish over the same file
-      (`--date` already exists; the index and feed update in place).
-- [ ] **The review reports itself as an unfinished run.** The `review` job runs inside the
-      3:05 AM cron's own workflow run, so every review to date ends with "Fallback 2 …
-      in_progress" and the narrative reads it as a pending unknown ("a third in progress at
-      review time", 2026-08-20). `summarize_runs` knows `GITHUB_RUN_ID`; label that row as the
-      reviewing run so the model stops treating it as a cliffhanger.
+      day, or make the review re-runnable for a date and re-publish over the same file (`--date`
+      already exists; the index and feed update in place).
+- [ ] **The review reports itself as an unfinished run.** The `review` job runs inside the 3:05
+      AM cron's own workflow run, so every review to date ends with "Fallback 2 … in_progress"
+      and the narrative reads it as a pending unknown ("a third in progress at review time",
+      2026-08-20). `summarize_runs` knows `GITHUB_RUN_ID`; label that row as the reviewing run
+      so the model stops treating it as a cliffhanger.
 - [ ] **Decide what to do about scheduler drift.** Every trigger in the sample started late:
       +44/+29/+32 (08-20), +46/+31/+31 (08-21), +34/+20/+25 (08-22), +35/+22/+25 (08-23). This
       is GitHub's scheduled-run queue, not the pipeline, and the reviews report it as a fault
@@ -73,6 +84,8 @@ the narrative) are not repeated here — see 0a4c019 and 1ed384e.
       never got that far. The probe item under Short-term is the diagnostic — the reviews now
       give it a daily before/after record, so run it and read the next week's reviews rather
       than re-reasoning about the ladder.
+
+<!-- reviews:end -->
 
 ## Short-term
 - [ ] **Run the Gemini prompt-shape probe** — `TTS Eval` workflow with `probe_gemini: true`

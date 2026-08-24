@@ -13,13 +13,17 @@ runs, and the generating run's job log for what happened *inside* one. Claude
 turns the merged facts into prose; the numbers table is templated here, because
 a model that can restate a number can also restate it wrong.
 
+Then the day's findings are folded into ROADMAP.md, because a review nobody
+distils is a review nobody acts on — see the roadmap section below.
+
     python episode_review.py                          # today, Pacific
     python episode_review.py --date 2026-08-19
     python episode_review.py --log run.log --no-llm   # parse a saved log, no spend
+    python episode_review.py --no-roadmap             # publish only, leave the roadmap
 
-Writes podcasts/reviews/episode-review-YYYY-MM-DD.html and regenerates
-episode-reviews.xml, which the site deploys and super-rss-feed subscribes to
-like any other source.
+Writes podcasts/reviews/episode-review-YYYY-MM-DD.html, regenerates
+episode-reviews.xml — which the site deploys and super-rss-feed subscribes to
+like any other source — and updates ROADMAP.md plus podcasts/roadmap_ledger.json.
 """
 
 from __future__ import annotations
@@ -29,6 +33,7 @@ import json
 import os
 import re
 import sys
+import textwrap
 from datetime import datetime, timedelta, timezone
 from email.utils import format_datetime
 from pathlib import Path
@@ -41,7 +46,9 @@ from config_loader import (
     atomic_write_json,
     atomic_write_text,
     format_static_tell_block,
+    json_output_config,
     load_prompts_config,
+    message_text,
 )
 
 API_ROOT = "https://api.github.com"
@@ -555,6 +562,404 @@ def build_feed(index: list[dict]) -> str:
 
 
 # ---------------------------------------------------------------------------
+# Roadmap distillation
+# ---------------------------------------------------------------------------
+#
+# The reviews were being distilled into ROADMAP.md by hand (7d3fd10, four
+# reviews in), which is the part that stops happening. What made that
+# distillation worth reading was not any one night's narrative — it was that
+# the same items came back. So the model's job here is narrow: read one day's
+# facts and name what would need changing. The recurrence, the dedup and the
+# rendering are local, because they are arithmetic and a model that can restate
+# a number can also restate it wrong.
+#
+# An item reaches ROADMAP.md on its ROADMAP_MIN_OCCURRENCES'th sighting, not
+# its first: one bad night is an incident, the same bad night twice is a
+# roadmap item. Checking a box in the file closes it, and the ledger remembers
+# that so tomorrow's review cannot re-open it by mentioning it again.
+
+ROADMAP_FILE = Path("ROADMAP.md")
+LEDGER_FILE = Path("podcasts/roadmap_ledger.json")
+
+SECTION_BEGIN = "<!-- reviews:begin -->"
+SECTION_END = "<!-- reviews:end -->"
+
+ROADMAP_MODEL = os.getenv("CLAUDE_ROADMAP_MODEL", REVIEW_MODEL)
+ROADMAP_MAX_TOKENS = 1600
+# Sightings before an item is written down, and days of silence before one the
+# reviews stopped raising is retired. Seeded and hand-written items never
+# retire — a human wrote them, only a human closes them.
+ROADMAP_MIN_OCCURRENCES = int(os.getenv("ROADMAP_MIN_OCCURRENCES", "2"))
+ROADMAP_RETIRE_DAYS = int(os.getenv("ROADMAP_RETIRE_DAYS", "14"))
+ROADMAP_MAX_FINDINGS = 4
+ROADMAP_WRAP = 96
+_SEEN_KEPT = 10
+
+_FINDING_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "findings": {
+            "type": "array",
+            "description": ("Findings from this run that imply a change to the code, config "
+                            "or workflow. Empty on a run with nothing to act on."),
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {"type": "string",
+                           "description": ("Lowercase hyphenated slug naming the underlying "
+                                           "problem, not the day. Reuse an existing id exactly "
+                                           "when this is the same finding.")},
+                    "title": {"type": "string",
+                              "description": ("One sentence stating the problem flatly, ending "
+                                              "in a period. No date, no hedging.")},
+                    "detail": {"type": "string",
+                               "description": ("2-5 sentences: the evidence with its date and "
+                                               "numbers, the mechanism, and what would close it. "
+                                               "Plain prose, no markdown headings or bullets.")},
+                },
+                "required": ["id", "title", "detail"],
+            },
+        }
+    },
+    "required": ["findings"],
+}
+
+
+def _slug(text: str) -> str:
+    return re.sub(r"-+", "-", re.sub(r"[^a-z0-9]+", "-", text.lower())).strip("-")[:60]
+
+
+def load_ledger() -> dict:
+    """The roadmap ledger, or an empty one. A corrupt ledger is not fatal.
+
+    Losing the ledger costs recurrence history — items start counting again and
+    take an extra day to reach the file. Refusing to publish a review over it
+    would cost the day's review, which is worth more.
+    """
+    if not LEDGER_FILE.exists():
+        return {"items": []}
+    try:
+        data = json.loads(LEDGER_FILE.read_text("utf-8"))
+    except (json.JSONDecodeError, OSError) as exc:
+        print(f"  ⚠️  Roadmap ledger unreadable ({exc}) — starting a fresh one")
+        return {"items": []}
+    return data if isinstance(data, dict) and isinstance(data.get("items"), list) else {"items": []}
+
+
+# ---------------------------------------------------------------------------
+# The managed section: parse and render
+# ---------------------------------------------------------------------------
+
+_ITEM_START = re.compile(r"^- \[( |x|X)\] \*\*(.+?)\*\*[ ]?(.*)$")
+
+
+def parse_section(text: str) -> list[dict]:
+    """Read the managed section back into items.
+
+    Inverse of `render_section`, and the reason no id ever has to be written
+    into the markdown: an item is matched back by its title. It runs on the
+    hand-written section too, which is how the existing roadmap items seed the
+    ledger instead of being competed with by a second list.
+    """
+    body = _section_body(text)
+    if body is None:
+        return []
+    items: list[dict] = []
+    for line in body.splitlines():
+        match = _ITEM_START.match(line)
+        if match:
+            checked, title, rest = match.groups()
+            items.append({"title": title.strip(),
+                          "detail_lines": [rest.strip()] if rest.strip() else [],
+                          "done": checked.lower() == "x"})
+        elif items and line.startswith("  ") and line.strip():
+            items[-1]["detail_lines"].append(line.strip())
+    for item in items:
+        item["detail"] = " ".join(item.pop("detail_lines")).strip()
+    return items
+
+
+def _section_body(text: str) -> str | None:
+    """The text between the markers, or None when the section is absent."""
+    start = text.find(SECTION_BEGIN)
+    end = text.find(SECTION_END)
+    if start == -1 or end == -1 or end < start:
+        return None
+    return text[start + len(SECTION_BEGIN):end]
+
+
+def _render_item(item: dict) -> str:
+    seen = item.get("seen", [])
+    provenance = (f"(seen in {item['occurrences']} reviews, latest {item['last_seen']})"
+                  if item.get("source") == "review" and seen else "")
+    box = "[x]" if item.get("status") == "done" else "[ ]"
+    line = " ".join(filter(None, [f"- {box} **{item['title']}**",
+                                  item.get("detail", "").strip(), provenance]))
+    # One flowed paragraph, as the hand-written items were: the detail carries
+    # on from the title line when it fits. Long words are never split, so an
+    # inline `path/to/thing` or a URL survives the wrap intact.
+    return "\n".join(textwrap.wrap(line, width=ROADMAP_WRAP, subsequent_indent="      ",
+                                   break_long_words=False, break_on_hyphens=False))
+
+
+def render_section(items: list[dict]) -> str:
+    """The managed block, markers included.
+
+    Ledger order, which is discovery order — seeded items in the order a human
+    wrote them, then each new item after the last. Deliberately not sorted by
+    recurrence: those counts move every night, and re-sorting on them would
+    rewrite the whole block daily for no reader.
+
+    Nothing here reads the run's date, for the same reason. The window is the
+    span of reviews that produced the items on show, so it moves when one of
+    them does and not otherwise — dating the block by the run instead put a
+    one-line diff on ROADMAP.md every single night, which is how a generated
+    file teaches its reader to stop looking at it.
+    """
+    shown = [i for i in items if i.get("status") == "open"]
+    dates = sorted({d for i in shown for d in i.get("seen", [])})
+    window = ""
+    if dates:
+        window = f" ({dates[0]}..{dates[-1]})" if dates[0] != dates[-1] else f" ({dates[-1]})"
+    stat = "\n".join(textwrap.wrap(
+        f"_Distilled from the daily reviews by `episode_review.py`{window} — "
+        f"{len(shown)} open. Check a box to close one; it comes back only if the reviews "
+        f"raise it {ROADMAP_MIN_OCCURRENCES} more times._", width=ROADMAP_WRAP))
+    body = "\n".join(_render_item(i) for i in shown) or "_Nothing recurring in the window._"
+    return f"{SECTION_BEGIN}\n\n{stat}\n\n{body}\n\n{SECTION_END}"
+
+
+def apply_section(text: str, section: str) -> str:
+    """Swap the managed block into ROADMAP.md, leaving everything else alone."""
+    start = text.find(SECTION_BEGIN)
+    end = text.find(SECTION_END)
+    if start == -1 or end == -1 or end < start:
+        return text
+    return text[:start] + section + text[end + len(SECTION_END):]
+
+
+# ---------------------------------------------------------------------------
+# Ledger merge
+# ---------------------------------------------------------------------------
+
+def seed_ledger(ledger: dict, text: str, date: str) -> dict:
+    """Adopt whatever is already in the section as ledger items, once.
+
+    The section was written by hand before this existed. Reproducing those
+    items rather than starting empty is what makes the first automated run an
+    edit instead of a replacement. They are marked `source: "manual"`, which
+    exempts them from retirement.
+    """
+    known = {i["title"] for i in ledger["items"]}
+    for parsed in parse_section(text):
+        if parsed["title"] in known:
+            continue
+        ledger["items"].append({
+            "id": _slug(parsed["title"]),
+            "title": parsed["title"],
+            "detail": parsed["detail"],
+            "source": "manual",
+            "status": "done" if parsed["done"] else "open",
+            "occurrences": ROADMAP_MIN_OCCURRENCES,
+            "first_seen": date,
+            "last_seen": date,
+            "seen": [],
+        })
+    return ledger
+
+
+def harvest_checked(ledger: dict, text: str) -> list[str]:
+    """Close every item whose box is checked in the file.
+
+    The file is where a human answers, so it is read before it is written.
+    Closing resets the counter rather than blocklisting the id: a finding that
+    is genuinely still happening earns its way back after
+    ROADMAP_MIN_OCCURRENCES more sightings, and one that was actually fixed
+    never does.
+    """
+    checked = {i["title"] for i in parse_section(text) if i["done"]}
+    closed = []
+    for item in ledger["items"]:
+        if item["title"] in checked and item.get("status") != "done":
+            item["status"] = "done"
+            item["occurrences"] = 0
+            closed.append(item["title"])
+    return closed
+
+
+def _match(ledger: dict, finding: dict) -> dict | None:
+    """Find the ledger item a finding is about — by id, then by title.
+
+    The id is the model's, so it drifts: the same problem came back as
+    `credit-balance-preflight` and `credit-balance-not-usage-limit` in testing.
+    A close title is the same finding whatever it called itself.
+    """
+    from difflib import SequenceMatcher
+
+    wanted = _slug(finding["id"])
+    for item in ledger["items"]:
+        if item["id"] == wanted:
+            return item
+    best, score = None, 0.0
+    for item in ledger["items"]:
+        ratio = SequenceMatcher(None, item["title"].lower(), finding["title"].lower()).ratio()
+        if ratio > score:
+            best, score = item, ratio
+    return best if score >= 0.72 else None
+
+
+def merge_findings(ledger: dict, findings: list[dict], date: str) -> dict:
+    """Fold one day's findings in. Recurrence is counted here, not asked for."""
+    for finding in findings[:ROADMAP_MAX_FINDINGS]:
+        item = _match(ledger, finding)
+        if item is None:
+            item = {
+                "id": _slug(finding["id"]) or _slug(finding["title"]),
+                "title": finding["title"].strip(),
+                # First sighting's wording wins for the life of the item. A
+                # detail rewritten nightly is a daily diff on a file nobody
+                # asked to change, and the reader gains nothing.
+                "detail": finding["detail"].strip(),
+                "source": "review",
+                "status": "pending",
+                "occurrences": 0,
+                "first_seen": date,
+                "seen": [],
+            }
+            ledger["items"].append(item)
+        if date in item.get("seen", []):
+            continue  # idempotent: a re-run of the same date is not a recurrence
+        item["occurrences"] = item.get("occurrences", 0) + 1
+        item["seen"] = (item.get("seen", []) + [date])[-_SEEN_KEPT:]
+        item["last_seen"] = date
+        if item.get("status") in ("pending", "done") and item["occurrences"] >= ROADMAP_MIN_OCCURRENCES:
+            item["status"] = "open"
+            print(f"  📌 Roadmap item promoted: {item['title']}")
+    return ledger
+
+
+def retire_stale(ledger: dict, date: str) -> list[str]:
+    """Drop tool-written items the reviews have stopped raising.
+
+    Only `source: "review"` items, and only after ROADMAP_RETIRE_DAYS of
+    silence — a quiet week is not a fix. The record stays in the ledger, and a
+    recurrence puts it back.
+    """
+    today = datetime.strptime(date, "%Y-%m-%d")
+    retired = []
+    for item in ledger["items"]:
+        if item.get("status") != "open" or item.get("source") != "review":
+            continue
+        last = item.get("last_seen")
+        if last and (today - datetime.strptime(last, "%Y-%m-%d")).days > ROADMAP_RETIRE_DAYS:
+            item["status"] = "retired"
+            retired.append(item["title"])
+    return retired
+
+
+# ---------------------------------------------------------------------------
+# The call, and the orchestrator
+# ---------------------------------------------------------------------------
+
+def propose_findings(facts: dict[str, Any], narrative: str, ledger: dict,
+                     roadmap: str) -> list[dict]:
+    """One Claude call: today's run in, candidate roadmap items out.
+
+    The open ledger and the rest of ROADMAP.md both go in so the model reuses
+    an id instead of coining a synonym, and does not propose work that is
+    already written down. Returns [] on any failure — a day without a
+    distillation is a day the roadmap does not move, which is the correct cost.
+    """
+    import anthropic
+
+    template = load_prompts_config().get("roadmap_distill", {}).get("template", "")
+    if not template:
+        print("  ⚠️  No roadmap_distill prompt configured — skipping distillation")
+        return []
+
+    open_items = "\n".join(
+        f"- {i['id']}: {i['title']}" for i in ledger["items"]
+        if i.get("status") in ("open", "pending")) or "(none)"
+    closed = "\n".join(
+        f"- {i['id']}: {i['title']}" for i in ledger["items"]
+        if i.get("status") in ("done", "retired")) or "(none)"
+    planned = "\n".join(
+        line.strip()[6:].strip() for line in roadmap.splitlines()
+        if line.strip().startswith("- [ ] "))[:4000]
+
+    prompt = template.format(
+        facts_json=json.dumps(label_facts(facts), indent=2, ensure_ascii=False),
+        narrative=re.sub(r"<[^>]+>", " ", narrative)[:4000],
+        open_items=open_items,
+        closed_items=closed,
+        planned_items=planned,
+        max_findings=ROADMAP_MAX_FINDINGS,
+        min_occurrences=ROADMAP_MIN_OCCURRENCES,
+        tell_block=format_static_tell_block(),
+    )
+    try:
+        client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+        resp = client.messages.create(
+            model=ROADMAP_MODEL,
+            max_tokens=ROADMAP_MAX_TOKENS,
+            messages=[{"role": "user", "content": prompt}],
+            output_config=json_output_config(_FINDING_SCHEMA),
+        )
+    except Exception as exc:
+        print(f"  ⚠️  Roadmap distillation failed ({exc}) — the roadmap is unchanged")
+        return []
+
+    usage = getattr(resp, "usage", None)
+    if usage:
+        print(f"  [api] service=claude model={ROADMAP_MODEL} "
+              f"input_tokens={usage.input_tokens} output_tokens={usage.output_tokens}")
+    try:
+        findings = json.loads(message_text(resp)).get("findings", [])
+    except (json.JSONDecodeError, AttributeError) as exc:
+        print(f"  ⚠️  Roadmap reply unparseable ({exc}) — the roadmap is unchanged")
+        return []
+    return [f for f in findings
+            if isinstance(f, dict) and f.get("id") and f.get("title") and f.get("detail")]
+
+
+def distill_roadmap(date: str, facts: dict[str, Any], narrative: str) -> bool:
+    """Fold today's review into ROADMAP.md. True when the file changed.
+
+    Never raises: this is a surface on top of the review, and a review that
+    published is worth more than a roadmap that updated.
+    """
+    if not ROADMAP_FILE.exists():
+        print(f"  ⚠️  {ROADMAP_FILE} not found — skipping distillation")
+        return False
+    text = ROADMAP_FILE.read_text("utf-8")
+    if _section_body(text) is None:
+        print(f"  ⚠️  No {SECTION_BEGIN} … {SECTION_END} block in {ROADMAP_FILE} — "
+              "add one where the distilled items should go")
+        return False
+
+    ledger = seed_ledger(load_ledger(), text, date)
+    for title in harvest_checked(ledger, text):
+        print(f"  ☑️  Closed by hand: {title}")
+
+    findings = propose_findings(facts, narrative, ledger, text)
+    print(f"  🧭 {len(findings)} finding(s) from the {date} review")
+    merge_findings(ledger, findings, date)
+    for title in retire_stale(ledger, date):
+        print(f"  🗑️  Retired after {ROADMAP_RETIRE_DAYS} quiet days: {title}")
+
+    ledger["updated"] = date
+    atomic_write_json(LEDGER_FILE, ledger, ensure_ascii=False)
+
+    updated = apply_section(text, render_section(ledger["items"]))
+    if updated == text:
+        print(f"  ↔️  {ROADMAP_FILE} unchanged")
+        return False
+    atomic_write_text(ROADMAP_FILE, updated)
+    print(f"✅ {ROADMAP_FILE}")
+    return True
+
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 
@@ -563,6 +968,8 @@ def main() -> int:
     parser.add_argument("--date", help="Episode date (YYYY-MM-DD). Defaults to today, Pacific.")
     parser.add_argument("--log", help="Read the job log from a file instead of the API.")
     parser.add_argument("--no-llm", action="store_true", help="Skip the narrative call.")
+    parser.add_argument("--no-roadmap", action="store_true",
+                        help="Publish the review without distilling it into ROADMAP.md.")
     parser.add_argument("--dry-run", action="store_true", help="Print the facts, write nothing.")
     args = parser.parse_args()
 
@@ -616,6 +1023,14 @@ def main() -> int:
 
     print(f"✅ {page_path}")
     print(f"✅ {FEED_FILE} ({len(index)} review(s))")
+
+    # After the review is on disk, never before: the distillation is a surface
+    # on top of it and must not be able to cost the day's review.
+    if not (args.no_roadmap or args.no_llm):
+        try:
+            distill_roadmap(date, facts, narrative)
+        except Exception as exc:
+            print(f"  ⚠️  Roadmap distillation failed ({exc}) — the review still published")
     return 0
 
 
