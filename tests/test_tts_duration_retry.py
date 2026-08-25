@@ -284,10 +284,21 @@ class TestSpeechRateFit:
         assert pg._speech_rate_fit() == (369, 642)
         assert recorded == []
 
-    def test_unfitted_model_borrows_and_says_so_once(self, monkeypatch):
+    def test_steerable_model_uses_its_own_measured_row(self, monkeypatch):
+        """Measured off 2026-08-23..25's sidecars, so it must not borrow."""
         recorded = []
         monkeypatch.setattr(pg, "degrade", lambda name, detail: recorded.append(name))
         monkeypatch.setattr(pg, "OPENAI_TTS_MODEL", "gpt-4o-mini-tts")
+        monkeypatch.setattr(pg, "_borrowed_fit_reported", False)
+
+        assert pg._speech_rate_fit() == (372, 660)
+        assert recorded == []
+
+    def test_unfitted_model_borrows_and_says_so_once(self, monkeypatch):
+        recorded = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: recorded.append(name))
+        # A model with no row of its own — gpt-4o-mini-tts has one now.
+        monkeypatch.setattr(pg, "OPENAI_TTS_MODEL", "gpt-4o-mini-tts-preview")
         monkeypatch.setattr(pg, "_borrowed_fit_reported", False)
 
         assert pg._speech_rate_fit() == (369, 642)

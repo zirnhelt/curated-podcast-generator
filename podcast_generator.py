@@ -509,24 +509,46 @@ COLD_OPEN_MODEL = os.getenv("CLAUDE_COLD_OPEN_MODEL", "claude-sonnet-5")
 
 # OpenAI TTS model. tts-1/tts-1-hd are the legacy pair and the only ones that
 # honour `speed`; gpt-4o-mini-tts takes an `instructions` parameter instead —
-# natural-language direction over tone, accent and pace, which is the delivery
-# lever the OpenAI path has never had (config/hosts.json has carried
-# voice_instructions for both hosts all along, with nothing to send it to).
-# Roll back with OPENAI_TTS_MODEL=tts-1; the whole request shape switches with it.
-OPENAI_TTS_MODEL = os.getenv("OPENAI_TTS_MODEL", "gpt-4o-mini-tts")
+# natural-language direction over tone, accent and pace (config/hosts.json has
+# carried voice_instructions for both hosts all along, with nothing to send it
+# to until then).
+#
+# The default is tts-1 again after three episodes on the steerable model
+# (2026-08-23..25), because the trade is worse than it looks. Two measured
+# regressions, both structural rather than fixable by better wording:
+#
+# 1. `speed` is not supported there, so Casey lost his 1.1x. Paired against the
+#    script's turns, the sidecars put him at 369 ms/word against 320 on tts-1 —
+#    15% slower than the show has been since launch, and for the first time
+#    slower than Riley, inverting the pace contrast the deadpan read needs.
+# 2. The steerable models pick an acoustic scene per request — mic distance,
+#    room tone, register. TTS_SEGMENT_MAX_CHARS is 500, so a 30-second turn is
+#    2-4 independent calls and the scene can change inside one turn. That is
+#    the "distant, disjointed" complaint, and no instructions text makes a
+#    per-call sample deterministic.
+#
+# Try again with OPENAI_TTS_MODEL=gpt-4o-mini-tts; the whole request shape
+# switches with it and the fitted speech rate below is already measured. What
+# would have to change first: an acoustic scene that holds across calls, or a
+# turn that fits in one call. Pace would need ffmpeg `atempo` post-synthesis,
+# since there is no parameter to send it to.
+OPENAI_TTS_MODEL = os.getenv("OPENAI_TTS_MODEL", "tts-1")
 # The legacy pair, identified by what they lack: no `instructions`, working `speed`.
 _LEGACY_OPENAI_TTS = {"tts-1", "tts-1-hd"}
 
 # Fitted speech-rate constants per TTS model: (ms per word, intercept ms).
-# Only tts-1's row is measured — 688 segments across the ten episodes of
-# 2026-08-13..22. A model with no row of its own borrows that fit and says so
-# once in the run report, because a speech rate is a property of the model and
-# nobody has measured this one yet. Borrowed is the right default rather than
-# no check at all: a mis-sized floor costs a re-render, a missing floor ships
-# a half-spoken line. Add a row here once real sidecars exist for the model.
+# tts-1's row is the solid one — 688 segments across the ten episodes of
+# 2026-08-13..22. gpt-4o-mini-tts's is measured the same way but off three
+# episodes (2026-08-23..25, 73 usable segments), kept so a second attempt at
+# the steerable model does not start blind; treat it as provisional and refit
+# once it has a real catalogue. A model with no row of its own borrows tts-1's
+# and says so once in the run report, because a speech rate is a property of
+# the model. Borrowed is the right default rather than no check at all: a
+# mis-sized floor costs a re-render, a missing floor ships a half-spoken line.
 _SPEECH_RATE_FITS = {
     "tts-1": (369, 642),
     "tts-1-hd": (369, 642),
+    "gpt-4o-mini-tts": (372, 660),
 }
 _BORROWED_SPEECH_RATE_FIT = _SPEECH_RATE_FITS["tts-1"]
 _borrowed_fit_reported = False
@@ -7267,6 +7289,29 @@ def _is_silent_take(audio) -> bool:
     return len(audio) == 0 or audio.max_dBFS < SILENT_TAKE_DBFS
 
 
+def _openai_speech_request(speaker: str) -> tuple[dict, float]:
+    """Request kwargs (minus `input`) and the speed the audio will really carry.
+
+    The request shape differs by model, and both callers need the same one:
+    the render path here and evaluate_tts.py, which exists to audition a model
+    swap before it reaches a nightly run and could not do that while it built
+    its own tts-1 request by hand.
+
+    On the legacy pair `speed` works and is sent. On the steerable models it is
+    accepted and ignored, so sending it would leave _expected_speech_ms
+    normalising by a multiplier the audio never had; the pace rides in the
+    instructions text instead (hosts.json already words it that way — "brisk,
+    efficient pace") and the returned speed is 1.0, the rate actually rendered.
+    """
+    request = {"model": OPENAI_TTS_MODEL, "voice": get_voice_for_host(speaker)}
+    if OPENAI_TTS_MODEL in _LEGACY_OPENAI_TTS:
+        speed = get_speed_for_host(speaker)
+        request["speed"] = speed
+        return request, speed
+    request["instructions"] = get_voice_instructions_for_host(speaker)
+    return request, 1.0
+
+
 def generate_tts_for_segment(text, speaker, output_file):
     """Generate TTS audio for a text segment via OpenAI.
 
@@ -7276,20 +7321,7 @@ def generate_tts_for_segment(text, speaker, output_file):
     if not client:
         raise ValueError("OPENAI_API_KEY not found")
 
-    voice = get_voice_for_host(speaker)
-    speed = get_speed_for_host(speaker)
-    request = {"model": OPENAI_TTS_MODEL, "voice": voice}
-
-    if OPENAI_TTS_MODEL in _LEGACY_OPENAI_TTS:
-        request["speed"] = speed
-    else:
-        # `speed` is accepted by the steerable models and widely reported to be
-        # ignored, which would leave _expected_speech_ms below normalising by a
-        # multiplier the audio never had. Send the pace as direction instead —
-        # hosts.json already words it that way ("brisk, efficient pace") — and
-        # hold the duration estimate at 1.0, the rate actually rendered.
-        request["instructions"] = get_voice_instructions_for_host(speaker)
-        speed = 1.0
+    request, speed = _openai_speech_request(speaker)
 
     # Drop Gemini-only delivery cues (OpenAI would read them aloud), then apply
     # shared pronunciation substitutions

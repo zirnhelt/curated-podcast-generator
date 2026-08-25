@@ -443,25 +443,47 @@ into `episode.quality`. It is advisory: nothing blocks on it.
 
 **OpenAI (default):** `nova` (Riley) + `echo` (Casey), per-segment synthesis, parallel rendering. Each segment is checked against `_expected_speech_ms` (`369 ms/word − 642 ms`, speed-normalised — fitted to the 688 segments of the ten episodes rendered 2026-08-13..22, whose transcript sidecars carry each segment's real duration) and re-synthesized once below 0.80 of it. **Refit those constants against the sidecars rather than assuming a rate:** the flat 400 ms/word they replace described nothing the show has produced and re-rendered ~14 complete segments a night, each retry landing within 2% of the take it was doubting.
 
-`OPENAI_TTS_MODEL` selects the model, defaulting to **`gpt-4o-mini-tts`**; roll
-back with `OPENAI_TTS_MODEL=tts-1`. The legacy pair (`tts-1`, `tts-1-hd`) honours
-the per-host `speed` multiplier from `hosts.json`; the steerable models take an
-`instructions` string instead, which is what `hosts.json`'s long-dormant
-`voice_instructions` was written for — it was authored, wired through
-`get_voice_instructions_for_host`, imported, and never called, because `tts-1`
-has no parameter to send it to. **On a steerable model `speed` is not sent** (it
-is accepted and reported ignored), so pace rides in the instructions text and
-`_expected_speech_ms` estimates at 1.0 — sending a multiplier the audio never
-had would silently move the 0.80 floor on every segment.
+`OPENAI_TTS_MODEL` selects the model, defaulting to **`tts-1`**. The legacy pair
+(`tts-1`, `tts-1-hd`) honours the per-host `speed` multiplier from `hosts.json`;
+the steerable models (`gpt-4o-mini-tts`) take an `instructions` string instead,
+which is what `hosts.json`'s long-dormant `voice_instructions` was written for —
+authored, wired through `get_voice_instructions_for_host`, imported, and never
+called, because `tts-1` has no parameter to send it to. `_openai_speech_request`
+owns that split so the render path and `evaluate_tts.py` build the same request.
 
-**The fitted constants are tts-1's.** `_SPEECH_RATE_FITS` is keyed by model and
-only `tts-1` has a measured row; anything else borrows it and `_speech_rate_fit`
-raises `render/borrowed-speech-rate` once per run, so the report says the
-word-omission check is uncalibrated rather than implying it passed. Add the row
-once a model has its own sidecars — pair `podcasts/video_timeline_*.json` turn
-durations against the script's turns in order and refit `ms/word` and intercept.
-Until then expect the retry rate to be wrong in one direction or the other; a
-mis-sized floor costs a re-render, which is why borrowing beats skipping.
+#### Why the default came back to tts-1
+
+The steerable model was the default for three episodes (2026-08-23..25) and was
+reverted. The direction it buys is real; what it costs is not recoverable by
+better wording.
+
+- **`speed` is not supported there** (accepted, ignored), so Casey lost his 1.1x.
+  Paired against the script's turns, the sidecars put him at **369 ms/word
+  against 320 on tts-1** — 15% slower than the show has been since launch, and
+  for the first time slower than Riley, inverting the pace contrast the deadpan
+  read depends on. Restoring it would need ffmpeg `atempo` after synthesis.
+- **The acoustic scene is sampled per request** — mic distance, room tone,
+  register. `TTS_SEGMENT_MAX_CHARS` is 500, so a 30-second turn is 2–4
+  independent calls and the scene can change *inside one turn*: the "distant,
+  disjointed" complaint that ended the trial. A per-call sample is not made
+  deterministic by instructions text, which is why this is a revert and not a
+  prompt fix.
+
+**Before trying a steerable model again**, one of those has to be untrue: an
+acoustic scene that holds across calls, or a turn that fits in one call. Audition
+it with `python evaluate_tts.py --section deep_dive --skip-azure --skip-gemini`,
+which renders the pipeline's real request — never a nightly run.
+
+**`_SPEECH_RATE_FITS` is keyed by model**, because a speech rate is a property of
+the model. `tts-1`'s row is the solid one (688 segments, ten episodes);
+`gpt-4o-mini-tts` carries a provisional row measured off the three episodes of
+the trial. A model with no row borrows tts-1's and `_speech_rate_fit` raises
+`render/borrowed-speech-rate` once per run, so the report says the word-omission
+check is uncalibrated rather than implying it passed. Fit a new row the same way
+— pair `podcasts/video_timeline_*.json` turn durations against the script's turns
+in order and refit `ms/word` and intercept. Until then expect the retry rate to be
+wrong in one direction or the other; a mis-sized floor costs a re-render, which is
+why borrowing beats skipping.
 
 #### Per-take checksums
 
