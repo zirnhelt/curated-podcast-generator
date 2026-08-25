@@ -2333,6 +2333,20 @@
       "theme_day": 0,
       "status": "used",
       "used_at": "2026-07-27"
+    },
+    {
+      "id": "974deea1",
+      "type": "feedback",
+      "message_id": "<01a0363c-aa65-737a-86d5-8badbaa18472@novamediapodcasts.com>",
+      "from_address": "t***@novamediapodcasts.com",
+      "subject": "Re: We build top ten podcasts - interested in yours.",
+      "received_at": "2026-08-25T00:05:40+00:00",
+      "body_text": "A quick example: Resonate, the podcast for Rancho La Puerta (voted the world's #1 destination spa), came to us at almost exactly the stage Cariboo Signals is at. Six months later, 500% ROI. The difference wasn't production quality or posting frequency. It was getting clear on what the show was actually trying to do outside of downloads. Your goal might be reach, community, or something else entirely. The process is the same. Worth a quick chat? Tiffany Mercer Podcast Growth Specialist @ NOVA (If",
+      "extracted_urls": [],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ],
   "seen_gmail_ids": [
@@ -2396,6 +2410,7 @@
     "1a01b6f79e4fb8c5",
     "1a025b44c874541f",
     "1a029cacfcac1478",
-    "1a02f25627b789c8"
+    "1a02f25627b789c8",
+    "1a0363cba5de2b0d"
   ]
 }
