@@ -1,30 +1,4 @@
 {
-  "2026-05-26": {
-    "timestamp": 1779799713.778837,
-    "date": "2026-05-26",
-    "theme": "Working Lands & Industry",
-    "central_question": "How can working land operations in the Cariboo maintain long-term viability and succession when land financialization and investor ownership create structural incentives to sell rather than continue farming?",
-    "riley_position": "The solution requires building institutional structures and governance models that keep land in mission-aligned hands through succession planning and training programs, as demonstrated by the ranch model that combines mentorship with economic stake rather than treating land primarily as a financial asset.",
-    "riley_key_evidence": [
-      "NYT piece describing a cattle ranch's training and residency model that combines land-based work, mentorship, and economic pathways",
-      "Williams Lake First Nation's agricultural capacity building on collectively-held lands treats land as a relationship rather than asset class",
-      "Models exist in Quebec, Scandinavia, and US Midwest for agricultural succession financing calibrated to production timelines"
-    ],
-    "casey_position": "While financing gaps are part of the problem, the deeper issue is that some sales aren't distress-driven but rational exits for aging operators with no succession plan facing land worth several times their remaining productive earning potential, making institutional solutions difficult to implement during the critical decision window.",
-    "casey_key_evidence": [
-      "Narwhal reporting on institutional investors buying agricultural land as stores of value, often converting previous owners to tenants",
-      "Operators in their sixties with no succession plan face rational incentive to sell regardless of financing availability",
-      "Investor-owned land is managed for capital preservation rather than agricultural productivity, diverging from long-term soil health and fertility goals"
-    ],
-    "resolution": "Riley and Casey agreed that while the problem is urgent and institutional solutions exist elsewhere, the core gap is organizational will and financing structures, with the practical first step being conversations within existing producer organizations (Cariboo Cattlemen's Association, credit unions, First Nations agricultural programs) rather than policy-level interventions, though neither is optimistic about timeline before further land shift to investment ownership.",
-    "topics_covered": [
-      "Land financialization and investor ownership of agricultural operations",
-      "Succession planning gaps in working land operations",
-      "Alternative ownership models: collective/Indigenous land tenure versus individual ownership",
-      "Producer data sovereignty and precision agriculture as competitive differentiation",
-      "Financing structures and credit union products designed for agricultural succession rather than liquidation"
-    ]
-  },
   "2026-05-28": {
     "timestamp": 1779976656.550858,
     "date": "2026-05-28",
@@ -2331,6 +2305,34 @@
       "Repairability and local ownership of aging versus proprietary audio equipment",
       "Arts funding disclosure standards for AI-assisted work",
       "The gap between technical solutions and practical compliance in small communities"
+    ]
+  },
+  "2026-08-25": {
+    "timestamp": 1787648544.48636,
+    "date": "2026-08-25",
+    "theme": "Working Lands & Industry",
+    "focus": "forestry",
+    "anchor": "allowed-to-fix",
+    "central_question": "When local industries face external constraints\u2014whether trade tariffs or regulatory permitting\u2014who has the actual authority to respond, and does that authority structure match the speed at which crises demand action?",
+    "riley_position": "Trade policy and regulatory gatekeeping create real constraints on local economies, but governance shifts like Nation-held forest tenure can at least relocate decision-making authority to people who live with the consequences, even if they can't solve externally-imposed problems like tariffs.",
+    "riley_key_evidence": [
+      "Richmond Plywood faces a 50% U.S. tariff on finished panel products (but not raw lumber) affecting roughly one-fifth of its sales",
+      "The tariff exempts raw softwood lumber while hitting value-added products hardest, penalizing mills that followed two decades of provincial economic development advice to build local processing capacity",
+      "The province could request a seat at future tenure-review discussions to formally incorporate trade-exposure concerns into how forest licenses are structured"
+    ],
+    "casey_position": "The core problem is structural: decision-making authority sits with distant gatekeepers (Washington for tariffs, federal permits for wildlife management, Victoria for tenure) while consequences land on communities with no say in the process, creating an inherent mismatch between crisis timelines and solution timelines.",
+    "casey_key_evidence": [
+      "A plywood mill losing 20% of sales overnight has only months of runway before layoffs, but building new customer relationships in Japan takes years\u2014timelines that 'don't reconcile'",
+      "Only federally-permitted individuals can remove barred owls, excluding local land managers and hunters with decades of watershed knowledge, paralleling how mill operators cannot act on tariff policy set in Washington",
+      "When Quesnel and Williams Lake lost mills after pine beetle salvage ended, provincial tenure structures left local operators without fallback because they held licenses, not ownership, of standing timber"
+    ],
+    "resolution": "Riley and Casey agreed that the structural mismatch between crisis speed and solution timeline is real and acknowledged, but disagreed on whether Nation-held tenure offers meaningful leverage against external trade shocks\u2014Riley arguing it at least relocates decision authority to affected communities, Casey noting it doesn't solve tariffs themselves. They concluded by recommending local communities formally request input into provincial tenure reviews and invite listener feedback on ground-level impacts.",
+    "topics_covered": [
+      "U.S. tariff structure on finished wood products versus raw lumber and its impact on B.C. mills",
+      "Misalignment between economic development policy (investing in value-added processing) and trade policy consequences",
+      "Governance authority and permit structures in forest management and wildlife removal programs",
+      "Timeline mismatch between immediate economic crisis and market diversification or policy change",
+      "Nation-held forest tenure as a model for relocating decision-making authority to affected communities"
     ]
   }
 }
