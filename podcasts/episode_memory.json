@@ -1,24 +1,4 @@
 {
-  "2026-07-20": {
-    "timestamp": 1784546486.613319,
-    "topics": [
-      "[TechCrunch] Nonprofit Current AI is racing to build the Wor",
-      "[Engadget] X and music publishers quietly settle opposing la",
-      "[Tom's Hardware] Coil whine can be musical, demonstrates eng",
-      "[Hackaday] Chromatography as Art",
-      "[Kagi Small Web] Crucial Track for July 19, 2026",
-      "[Boing Boing] Watch every Road Runner cartoon with pop cultu",
-      "[Williams Lake Tribune] QUIZ: A salute to Canadian music",
-      "[WIRED] This Luddite Puppet Hopes You\u2019re Not Reading This on"
-    ],
-    "themes": [
-      "rural development",
-      "Indigenous tech"
-    ],
-    "date": "2026-07-20",
-    "focus": "film-screen",
-    "focus_name": "Film & Screen"
-  },
   "2026-07-21": {
     "timestamp": 1784630657.925773,
     "topics": [
@@ -707,5 +687,26 @@
     "date": "2026-08-24",
     "focus": "music-performance",
     "focus_name": "Music & Live Performance"
+  },
+  "2026-08-25": {
+    "timestamp": 1787648541.018546,
+    "topics": [
+      "Emergency Services unavailable until 8 tonight (August 24) i",
+      "[100 Mile Free Press] Lac La Hache family extinguishes light",
+      "[Williams Lake Tribune] Fire activity could increase at 164,",
+      "[Williams Lake Tribune] Evacuation orders, alerts downgraded",
+      "[Western Producer] Farm worker numbers take significant nose",
+      "[Williams Lake Tribune] FVRD rescinds 1 evacuation alert aft",
+      "[Global News] B.C. plywood manufacturer says it cannot absor",
+      "[Mother Jones] Should We Kill One Kind of Owl To Save Anothe"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech"
+    ],
+    "date": "2026-08-25",
+    "focus": "forestry",
+    "focus_name": "Forestry & Timber"
   }
 }
