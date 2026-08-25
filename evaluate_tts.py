@@ -71,12 +71,14 @@ def _generate_openai_section(
         trim_tts_silence,
         heuristic_gap_ms,
         _append_with_gap,
+        _openai_speech_request,
+        OPENAI_TTS_MODEL,
         TARGET_SPEECH_DBFS,
     )
-    from config_loader import get_voice_for_host
     from azure_tts import PRONUNCIATION_DICT
 
     client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
+    print(f"    OpenAI model: {OPENAI_TTS_MODEL}")
     t0 = time.time()
     combined = AudioSegment.empty()
     prev_speaker = None
@@ -89,10 +91,12 @@ def _generate_openai_section(
             for word, alias in PRONUNCIATION_DICT.items():
                 clean = clean.replace(word, alias)
 
-            voice = get_voice_for_host(seg["speaker"])
-            resp = client.audio.speech.create(
-                model="tts-1", voice=voice, input=clean, speed=1.0
-            )
+            # Same request the render path builds — model, voice, and either
+            # `speed` or `instructions`. Hand-rolling a tts-1 request here meant
+            # the one tool for auditioning a model swap rendered neither the
+            # model under test nor the hosts' configured pace.
+            request, _ = _openai_speech_request(seg["speaker"])
+            resp = client.audio.speech.create(input=clean, **request)
             tmp_mp3 = Path(tmpdir) / f"seg_{i:03d}.mp3"
             tmp_mp3.write_bytes(resp.content)
             speech = normalize_segment(
