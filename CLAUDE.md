@@ -168,10 +168,41 @@ in `main()`, so a crashed run still reports which segment died.
 
 | Code | Meaning |
 |------|---------|
-| 75 | `EXIT_BUDGET_EXHAUSTED` — Anthropic spend cap; the workflow skips the day as a warning |
+| 75 | `EXIT_BUDGET_EXHAUSTED` — Anthropic usage limit; the workflow skips the day as a warning |
 | 76 | `EXIT_NO_ARTICLES` — upstream feed gave us nothing usable; the workflow skips the day as a warning |
 | 77 | `EXIT_RENDER_FAILED` — no audio produced; the run goes red |
 | 78 | `EXIT_PUBLISH_DEGRADED` — audio is safe, one or more publish surfaces failed |
+| 79 | `EXIT_CREDITS_EXHAUSTED` — a provider is out of credits; the run goes **red** |
+
+**75 and 79 are the same outage to the listener and a different one to the operator**, which
+is the whole reason they are separate codes. A usage limit lifts itself on a stated date, so
+skipping the day quietly is right. An empty credit balance lifts only when a human tops it up
+— and a `::warning::` on a green run reaches nobody. On 2026-08-26 three crons skipped exactly
+that way with both TTS providers dry, and the outage was found by hand hours later. 79 goes
+red so GitHub's own failed-run notification does the alerting: the alert is an exit code, not
+a service to build and keep alive.
+
+#### Preflighting the money (`check_api_budget`, `_check_tts_budget`)
+
+`_billing_wall()` recognizes both walls across all three providers, because each words it
+differently and none of them says "usage limit" — `_usage_limit_reset` alone matched only
+Anthropic's, so the 2026-08-23 credit-balance 400 read as "preflight inconclusive" and each of
+the three crons spent 40 article fetches, ~37 Brave lookups and a research call before dying at
+the script call. **Match on the credit wording, never the status code**: Gemini answers an
+ordinary per-minute rate limit with the same 429 `RESOURCE_EXHAUSTED`, and reading that as a
+wall would skip a day a retry would have shipped.
+
+**TTS is preflighted in the script stage, not at the render**, because the script stage is
+where both the money and the day's state go: its commit rotates the PSA, consumes seeds and the
+email queue, pins the week's anchor, and marks every chosen article as cited, which is what
+stops dedup offering them again. On 2026-08-26 all of that was spent for an episode that could
+never air.
+
+OpenAI is the universal fallback, so its health alone answers "can this day ship?" — the common
+path is one ~1-character synthesis, well under a hundredth of a cent. **The configured primary
+is probed only once OpenAI is already walled**, and Azure is never aborted on (a subscription
+has no equivalent cheap probe). Skipping a day that Gemini would have rendered is worse than
+the wasted run this exists to prevent, so the abort fires only when nothing left can render.
 
 #### Committing between stages
 

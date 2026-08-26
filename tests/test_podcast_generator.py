@@ -24,7 +24,10 @@ from podcast_generator import (
     _run_agentic_loop,
     _brave_summarize,
     _usage_limit_reset,
-    _abort_if_usage_limit,
+    _billing_wall,
+    _credit_wall,
+    _abort_if_billing_wall,
+    _check_tts_budget,
     check_api_budget,
     api_retry,
     EXIT_BUDGET_EXHAUSTED,
@@ -69,6 +72,7 @@ from podcast_generator import (
     EXIT_NO_ARTICLES,
     EXIT_RENDER_FAILED,
     EXIT_PUBLISH_DEGRADED,
+    EXIT_CREDITS_EXHAUSTED,
     main,
 )
 from config_loader import load_prompts_config
@@ -3506,11 +3510,11 @@ class TestUsageLimitDetection:
 
     def test_abort_exits_with_budget_code(self):
         with pytest.raises(SystemExit) as exc:
-            _abort_if_usage_limit(Exception(USAGE_LIMIT_ERROR))
+            _abort_if_billing_wall(Exception(USAGE_LIMIT_ERROR))
         assert exc.value.code == EXIT_BUDGET_EXHAUSTED
 
     def test_abort_is_a_noop_for_other_errors(self):
-        assert _abort_if_usage_limit(Exception("some other 500")) is None
+        assert _abort_if_billing_wall(Exception("some other 500")) is None
 
     def test_api_retry_does_not_back_off_on_usage_limit(self):
         """A spend cap is not transient — retrying only delays the inevitable."""
@@ -3523,6 +3527,134 @@ class TestUsageLimitDetection:
         with pytest.raises(Exception):
             api_retry(blocked)
         assert len(calls) == 1
+
+
+# The real bodies the three providers returned when the money ran out. Anthropic's
+# is the 2026-08-23 400; the other two are from the 2026-08-26 render, where both
+# TTS providers were dry and nothing noticed until the render stage.
+CREDIT_BALANCE_ERROR = (
+    "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', "
+    "'message': 'Your credit balance is too low to access the Anthropic API. Please go "
+    "to Plans & Billing to upgrade or purchase credits.'}}"
+)
+OPENAI_CREDIT_ERROR = (
+    "Error code: 429 - {'error': {'message': 'You have no credits remaining. Add credits "
+    "to continue using the API at https://platform.openai.com/settings/organization/"
+    "billing/.', 'type': 'insufficient_quota', 'param': None, 'code': "
+    "'credit_balance_exhausted'}}"
+)
+GEMINI_CREDIT_ERROR = (
+    'Gemini TTS HTTP 429: {"error": {"code": 429, "message": "Your prepayment credits '
+    'are depleted. Please go to AI Studio to manage your project and billing.", '
+    '"status": "RESOURCE_EXHAUSTED"}}'
+)
+
+
+class TestCreditWallDetection:
+    """2026-08-23: the credit-balance 400 says nothing about a 'usage limit'."""
+
+    def test_matches_every_provider(self):
+        for err in (CREDIT_BALANCE_ERROR, OPENAI_CREDIT_ERROR, GEMINI_CREDIT_ERROR):
+            assert _credit_wall(Exception(err)), err[:60]
+            assert _billing_wall(Exception(err))
+
+    def test_a_gemini_rate_limit_is_not_a_wall(self):
+        """The same 429 RESOURCE_EXHAUSTED carries the per-minute rate limit.
+
+        Treating that as a money wall would skip a day a retry would have shipped.
+        """
+        err = Exception(
+            'Gemini TTS HTTP 429: {"error": {"code": 429, "message": "Quota exceeded '
+            'for quota metric requests per minute.", "status": "RESOURCE_EXHAUSTED"}}'
+        )
+        assert _credit_wall(err) is False
+        assert _billing_wall(err) is None
+
+    def test_unrelated_errors_are_not_walls(self):
+        assert _billing_wall(Exception("Connection reset by peer")) is None
+        assert _billing_wall(Exception("Error code: 503 - overloaded")) is None
+
+    def test_credit_wall_exits_79_not_75(self):
+        """Who clears it decides the code: a date clears 75, a human clears 79."""
+        with pytest.raises(SystemExit) as exc:
+            _abort_if_billing_wall(Exception(CREDIT_BALANCE_ERROR))
+        assert exc.value.code == EXIT_CREDITS_EXHAUSTED
+
+    def test_usage_limit_still_exits_75(self):
+        with pytest.raises(SystemExit) as exc:
+            _abort_if_billing_wall(Exception(USAGE_LIMIT_ERROR))
+        assert exc.value.code == EXIT_BUDGET_EXHAUSTED
+
+    def test_api_retry_does_not_back_off_on_a_credit_wall(self):
+        calls = []
+
+        def blocked():
+            calls.append(1)
+            raise Exception(OPENAI_CREDIT_ERROR)
+
+        with pytest.raises(Exception):
+            api_retry(blocked)
+        assert len(calls) == 1
+
+
+class TestTtsBudgetPreflight:
+    """2026-08-26: the script stage spent the day before the render found no credits."""
+
+    def _openai(self, monkeypatch, side_effect=None):
+        client = MagicMock()
+        if side_effect:
+            client.audio.speech.create.side_effect = side_effect
+        monkeypatch.setattr("podcast_generator.get_openai_client", lambda: client)
+        return client
+
+    def test_healthy_openai_costs_one_tiny_call_and_continues(self, monkeypatch):
+        client = self._openai(monkeypatch)
+        monkeypatch.setattr("podcast_generator.get_active_tts_provider", lambda: "gemini")
+        _check_tts_budget()
+        assert client.audio.speech.create.call_count == 1
+        # A wasted preflight must not cost real money.
+        assert len(client.audio.speech.create.call_args.kwargs["input"]) <= 2
+
+    def test_no_key_is_a_noop(self, monkeypatch):
+        monkeypatch.setattr("podcast_generator.get_openai_client", lambda: None)
+        assert _check_tts_budget() is None
+
+    def test_both_providers_dry_aborts_before_the_script_spend(self, monkeypatch):
+        """The exact 2026-08-26 shape: OpenAI walled, Gemini canary dead."""
+        self._openai(monkeypatch, Exception(OPENAI_CREDIT_ERROR))
+        monkeypatch.setattr("podcast_generator.get_active_tts_provider", lambda: "gemini")
+        import gemini_tts
+        monkeypatch.setattr(gemini_tts, "canary", lambda: None)
+        with pytest.raises(SystemExit) as exc:
+            _check_tts_budget()
+        assert exc.value.code == EXIT_CREDITS_EXHAUSTED
+
+    def test_a_live_gemini_still_ships_the_day(self, monkeypatch):
+        """Aborting a day Gemini would have rendered is worse than the wasted run."""
+        self._openai(monkeypatch, Exception(OPENAI_CREDIT_ERROR))
+        monkeypatch.setattr("podcast_generator.get_active_tts_provider", lambda: "gemini")
+        import gemini_tts
+        monkeypatch.setattr(gemini_tts, "canary", lambda: "gemini-2.5-flash-preview-tts")
+        assert _check_tts_budget() is None
+
+    def test_openai_only_setup_aborts_when_walled(self, monkeypatch):
+        self._openai(monkeypatch, Exception(OPENAI_CREDIT_ERROR))
+        monkeypatch.setattr("podcast_generator.get_active_tts_provider", lambda: "openai")
+        with pytest.raises(SystemExit) as exc:
+            _check_tts_budget()
+        assert exc.value.code == EXIT_CREDITS_EXHAUSTED
+
+    def test_azure_primary_is_never_aborted_on(self, monkeypatch):
+        """No cheap Azure probe exists, so there is no confident abort."""
+        self._openai(monkeypatch, Exception(OPENAI_CREDIT_ERROR))
+        monkeypatch.setattr("podcast_generator.get_active_tts_provider", lambda: "azure")
+        assert _check_tts_budget() is None
+
+    def test_a_non_billing_failure_does_not_skip_the_day(self, monkeypatch):
+        """A timeout is the render's problem, not a reason to cancel the episode."""
+        self._openai(monkeypatch, Exception("Connection reset by peer"))
+        monkeypatch.setattr("podcast_generator.get_active_tts_provider", lambda: "gemini")
+        assert _check_tts_budget() is None
 
 
 class TestCheckApiBudget:

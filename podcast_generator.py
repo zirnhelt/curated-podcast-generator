@@ -148,6 +148,13 @@ EXIT_RENDER_FAILED = 77
 # The episode rendered but one or more publish steps (transcript, RSS, index, R2)
 # degraded. The audio is safe; the site is stale.
 EXIT_PUBLISH_DEGRADED = 78
+# A provider is out of money. Distinct from 75 because of who clears it: a usage
+# limit lifts itself on a stated date, so skipping the day quietly is right. An
+# empty credit balance lifts only when a human tops it up, and staying quiet is
+# what let 2026-08-26 pass unnoticed until someone went looking — three crons,
+# both TTS providers dry, every run green with a ::warning:: nobody reads. The
+# run goes red so GitHub's own failed-run notification does the alerting.
+EXIT_CREDITS_EXHAUSTED = 79
 
 
 # ---------------------------------------------------------------------------
@@ -288,24 +295,131 @@ def _usage_limit_reset(exc: Exception) -> str | None:
     return m.group(1).strip() if m else "an unspecified date"
 
 
-def _abort_if_usage_limit(exc: Exception) -> None:
-    """Exit the run cleanly when exc is the account usage-limit wall."""
+# Every provider words "you are out of money" differently, and none of them says
+# "usage limit". Matched on the credit wording rather than the status code on
+# purpose: Gemini answers an ordinary per-minute rate limit with the same 429
+# RESOURCE_EXHAUSTED, and treating that as a wall would skip a day that a retry
+# would have shipped.
+_CREDIT_WALL_MARKERS = (
+    'credit balance is too low',    # Anthropic  (400)
+    'credit_balance_exhausted',     # OpenAI     (429)
+    'insufficient_quota',           # OpenAI     (429)
+    'credits are depleted',         # Gemini     (429 RESOURCE_EXHAUSTED)
+    'no credits remaining',         # OpenAI, prose form
+)
+
+
+def _credit_wall(exc: Exception) -> bool:
+    """True when exc is a provider refusing to serve until someone adds money."""
+    text = str(exc).lower()
+    return any(marker in text for marker in _CREDIT_WALL_MARKERS)
+
+
+def _billing_wall(exc: Exception) -> str | None:
+    """Human-readable reason when exc is any hard money wall, else None.
+
+    Covers both shapes because both waste the same run: the usage limit that
+    lifts on a stated date, and the empty credit balance that lifts only when
+    someone tops it up. `_usage_limit_reset` keyed on the string "usage limit",
+    which the credit-balance 400 does not contain — so on 2026-08-23 the
+    preflight called it "inconclusive" and each of the three crons went on to
+    spend 40 article fetches, ~37 Brave lookups and a research call before dying
+    at the script call. That is the exact waste the preflight exists to prevent.
+    """
     reset = _usage_limit_reset(exc)
-    if not reset:
+    if reset:
+        return f"usage limit reached — access returns {reset}"
+    if _credit_wall(exc):
+        return "credit balance exhausted — someone has to add credits"
+    return None
+
+
+def _abort_if_billing_wall(exc: Exception, provider: str = "Anthropic") -> None:
+    """Exit the run cleanly when exc is a money wall at *provider*.
+
+    Exits 75 for the self-clearing usage limit and 79 for an empty balance —
+    see the exit-code comments for why the two are not the same event.
+    """
+    reason = _billing_wall(exc)
+    if not reason:
         return
-    print(f"🛑 Anthropic usage limit reached — access returns {reset}.")
+    print(f"🛑 {provider}: {reason}.")
     print("   Skipping today's episode: no script, no Brave enrichment, no TTS spend.")
-    sys.exit(EXIT_BUDGET_EXHAUSTED)
+    sys.exit(EXIT_CREDITS_EXHAUSTED if _credit_wall(exc) else EXIT_BUDGET_EXHAUSTED)
+
+
+def _check_tts_budget() -> None:
+    """Preflight the TTS providers, aborting only if none of them can render.
+
+    The script stage is where the money and the state go: it spends the Claude
+    calls, and its commit rotates the PSA, consumes seeds and the email queue,
+    pins the week's anchor and marks every chosen article as cited, which is
+    what stops dedup offering them again. On 2026-08-26 all of that was spent
+    three times over for an episode that could never air — OpenAI and Gemini
+    were both out of credits, and nothing discovered that until the render
+    stage, one stage too late.
+
+    OpenAI is the universal fallback (every other provider degrades to it), so
+    its being healthy is enough to know the day can ship — that is the common
+    case and it costs one ~1-character synthesis, well under a hundredth of a
+    cent. The configured primary is only probed when OpenAI is already walled,
+    because aborting a day that Gemini would have rendered is worse than the
+    wasted run this exists to prevent.
+    """
+    client = get_openai_client()
+    if not client:
+        return
+    request, _ = _openai_speech_request("riley")
+    # `except ... as e` unbinds e at the end of the block, and the verdict is
+    # needed well past it, so carry it out rather than the exception.
+    wall_exc = None
+    try:
+        client.audio.speech.create(input=".", **request)
+    except Exception as e:
+        if _billing_wall(e):
+            wall_exc = e
+        else:
+            # Anything else — a timeout, a bad voice, a 500 — is not a money
+            # wall, and the render is where it should surface.
+            print(f"⚠️  TTS preflight inconclusive ({e}) — continuing.")
+    if wall_exc is None:
+        return
+    walled = _billing_wall(wall_exc)
+
+    primary = get_active_tts_provider()
+    if primary == "openai":
+        _abort_if_billing_wall(wall_exc, provider="OpenAI TTS")
+
+    if primary == "gemini":
+        import gemini_tts
+        if gemini_tts.canary():
+            print(f"⚠️  OpenAI TTS is walled ({walled}); Gemini answered — "
+                  "rendering with no fallback provider.")
+            degrade("script/budget-preflight",
+                    f"OpenAI TTS unavailable ({walled}); Gemini is the only "
+                    "provider left and a mid-render failure has nowhere to go")
+            return
+        print("🛑 Gemini TTS did not answer the pre-flight check either.")
+        _abort_if_billing_wall(wall_exc, provider="OpenAI TTS")
+
+    # Azure bills on a subscription rather than a topped-up balance, so there is
+    # no equivalent cheap probe and no confident abort. Say so and continue.
+    print(f"⚠️  OpenAI TTS is walled ({walled}); {primary} is unprobed — continuing.")
+    degrade("script/budget-preflight",
+            f"OpenAI TTS unavailable ({walled}); falling through to unprobed {primary}")
 
 
 def check_api_budget() -> None:
-    """Preflight the Anthropic account before any paid work begins.
+    """Preflight every paid provider the run needs before any of it is spent.
 
     The 2026-07-25 run spent 32 Brave lookups, 45 article fetches and two
     research calls assembling a prompt for an account that was already locked
     out for the week. One minimum-size Haiku call up front turns that into a
-    two-second skip. Anything other than the usage-limit wall is left alone —
-    the real error should surface where it actually happens.
+    two-second skip. Anything other than a money wall is left alone — the real
+    error should surface where it actually happens.
+
+    TTS is checked here too rather than at the render, because by the render the
+    script stage has already spent both the money and the day's state.
     """
     client = get_anthropic_client()
     if not client:
@@ -316,8 +430,10 @@ def check_api_budget() -> None:
             messages=[{"role": "user", "content": "ok"}],
         )
     except Exception as e:
-        _abort_if_usage_limit(e)
+        _abort_if_billing_wall(e)
         print(f"⚠️  API preflight inconclusive ({e}) — continuing.")
+
+    _check_tts_budget()
 
 
 def api_retry(func, max_retries=3, base_delay=2):
@@ -328,7 +444,9 @@ def api_retry(func, max_retries=3, base_delay=2):
             return func()
         except Exception as e:
             err_str = str(e)
-            is_quota = 'insufficient_quota' in err_str or _usage_limit_reset(e) is not None
+            # A money wall answers 429 like a rate limit does and no amount of
+            # backoff clears it, so it must never be retried as transient.
+            is_quota = _billing_wall(e) is not None
             is_transient = not is_quota and any(s in err_str for s in ['429', '503', '502', 'timeout', 'Connection'])
             if attempt < max_retries and is_transient:
                 delay = base_delay * (2 ** attempt)
@@ -6842,7 +6960,7 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         return script
 
     except Exception as e:
-        _abort_if_usage_limit(e)
+        _abort_if_billing_wall(e)
         print(f"❌ Error generating script: {e}")
         return None
 
@@ -10218,7 +10336,7 @@ def run_audio_stage(script_path: str = None, date_str: str = None) -> bool:
         print()
         print("❌ OpenAI billing quota exceeded — audio was not generated.")
         print("   Add credits or raise the spending limit at platform.openai.com to restore service.")
-        sys.exit(1)
+        sys.exit(EXIT_CREDITS_EXHAUSTED)
 
     return rendered
 
@@ -10262,6 +10380,16 @@ def main(argv: list[str] = None) -> None:
             + "/".join(episode_stages)
         )
 
+    def _no_audio_exit() -> None:
+        """Exit a render that produced nothing, naming *why* it produced nothing.
+
+        A render dies red either way, but 77 and 79 want different responses:
+        77 is a bug to diagnose, 79 is a credit card. Reporting an empty balance
+        as a render fault sent 2026-08-26 looking for a code defect.
+        """
+        print("❌ Render produced no audio.")
+        sys.exit(EXIT_CREDITS_EXHAUSTED if _openai_quota_exceeded else EXIT_RENDER_FAILED)
+
     try:
         if args.stage == "recover":
             run_recover_stage()
@@ -10269,8 +10397,7 @@ def main(argv: list[str] = None) -> None:
 
         if args.stage == "render":
             if not run_render_stage(script_path=args.script, date_str=args.date):
-                print("❌ Render produced no audio.")
-                sys.exit(EXIT_RENDER_FAILED)
+                _no_audio_exit()
             return
 
         if args.stage == "publish":
@@ -10284,8 +10411,7 @@ def main(argv: list[str] = None) -> None:
         # the exact green-on-a-broken-episode that EXIT_RENDER_FAILED exists for.
         if args.stage == "audio":
             if not run_audio_stage(script_path=args.script, date_str=args.date):
-                print("❌ Render produced no audio.")
-                sys.exit(EXIT_RENDER_FAILED)
+                _no_audio_exit()
             return
 
         result = run_script_stage()
@@ -10295,8 +10421,7 @@ def main(argv: list[str] = None) -> None:
 
         if args.stage == "all":
             if not run_audio_stage(script_path=result[0]):
-                print("❌ Render produced no audio.")
-                sys.exit(EXIT_RENDER_FAILED)
+                _no_audio_exit()
     finally:
         # Runs on the abort paths too — a crashed run still reports which
         # segment died and how far it got.
