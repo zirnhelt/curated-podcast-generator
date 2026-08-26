@@ -2334,5 +2334,33 @@
       "Timeline mismatch between immediate economic crisis and market diversification or policy change",
       "Nation-held forest tenure as a model for relocating decision-making authority to affected communities"
     ]
+  },
+  "2026-08-26": {
+    "timestamp": 1787735043.530515,
+    "date": "2026-08-26",
+    "theme": "Repair Culture & Practical Tech",
+    "focus": "homestead-offgrid",
+    "anchor": "allowed-to-fix",
+    "central_question": "When property is remote and manufacturers control diagnostic access, who should be legally and practically allowed to repair systems you own?",
+    "riley_position": "Repair culture thinking means fixing what you can control at the layer you have access to; manufacturers shouldn't use safety arguments to lock behind proprietary software and warranties what competent owners can safely diagnose themselves, particularly for low-voltage DC systems and firmware.",
+    "riley_key_evidence": [
+      "Hackaday story of hobbyist reverse-engineering smart grill firmware so users can flash their own code without manufacturer permission",
+      "Info-Tech security recommendation of password-protected code words to defend against AI deepfake calls, requiring no vendor, licence, or technician",
+      "Fairphone launching in US market proves repairable smartphones are viable as consumer category despite planned obsolescence industry norm"
+    ],
+    "casey_position": "The permission structures exist for real reasons\u2014high-voltage wiring and battery systems carry genuine physical risk\u2014but the actual gap is manufacturers hiding behind safety claims to restrict diagnostics and firmware access they legitimately control, while rural communities without backup services genuinely need systems they can diagnose themselves.",
+    "casey_key_evidence": [
+      "PIRG tracking right-to-repair legislation showing 2025 as most productive year with patchwork coverage (Oregon, Nevada, Texas, Connecticut) but no national standard and nothing in Canada",
+      "South Cariboo emergency dispatch service lost access earlier in week, proving rural communities need self-reliant systems because professional backup cannot be guaranteed",
+      "Data centre infrastructure built on debt assumptions will likely leave only abandoned warehouses and stranded gas contracts behind, unlike telecom fibre that rural areas repurposed"
+    ],
+    "resolution": "Not fully resolved but narrowed: both agreed life-safety wiring should remain gated by licensing, but diagnostic layers and firmware access shouldn't be restricted under false safety claims; they identified the real lever as making system knowledge and diagnostics accessible rather than locked inside manufacturer apps, particularly for regions without reliable external support.",
+    "topics_covered": [
+      "Right-to-repair legislation patchwork across US states and Canada's lack thereof",
+      "Manufacturer gatekeeping through proprietary diagnostics, firmware locks, and warranty voidance policies",
+      "Rural infrastructure resilience and self-reliance when professional services are unavailable",
+      "AI debt-financed infrastructure boom compared to telecom overbuild precedent",
+      "Permission structures balancing genuine safety risks against manufacturer control overreach"
+    ]
   }
 }

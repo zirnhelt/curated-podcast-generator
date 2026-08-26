@@ -1,0 +1,169 @@
+# Cariboo Signals Podcast Script - 2026-08-26
+# Theme: Repair Culture & Practical Tech
+# Brave: yes
+# Weather: yes
+# Anchor: Who is allowed to fix things?
+# Generated: 2026-08-26 02:04:00 PDT
+
+**COLD OPEN**
+**RILEY:** Hey, welcome back. Today we've got a hobbyist who cracked open a smart grill's firmware just to free it from the manufacturer's app, Fairphone finally launching its repairable phone in the US, and the big one: who actually gets to open the box on your own off-grid battery system before someone calls it illegal. That and more, coming right up.
+
+**WELCOME**
+
+**RILEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities. I'm Riley. It's Wednesday, August 26th, 2026. Coming to you from the Cariboo, on lands that have been cared for by the Secwépemc, Tŝilhqot'in, and Dakelh peoples since time immemorial. Today's theme is Repair Culture & Practical Tech.
+
+**CASEY:** And I'm Casey. Today's about the stuff you keep running instead of replacing, and who decides you're allowed to.
+
+**RILEY:** Quick weather check before we get into it. Out at Horsefly Lake it's fourteen degrees with overcast skies this morning, heading to a high of twenty-nine. Low tonight around thirteen. Tomorrow's calling for thunderstorms, so if you've got hay down, keep an eye on that.
+
+**CASEY:** Across the rest of the region, 100 Mile House is sitting at fourteen with overcast, Williams Lake is at fifteen and partly cloudy, Quesnel's at sixteen and partly cloudy. Out on the Chilcotin plateau, Hanceville is at fifteen with overcast. It's a hot stretch across the whole region. Stay hydrated, and keep the BC Wildfire Dashboard bookmarked.
+
+**RILEY:** Straight into the news.
+
+**NEWS ROUNDUP**
+
+**CASEY:** First up, Prince George-Valemount MLA Rosalyn Bird has quit the B.C. Conservative caucus. She's the third to go in two weeks under new leader Kerry-Lynne Findlay, and she's told reporters she plans to sit as an Independent rather than cross to another party.
+
+**RILEY:** Three departures in fourteen days isn't a rough patch inside a party. That's a structural fracture, and it happened fast enough that the leadership hasn't had time to spin a narrative around it.
+
+**RILEY:** There's better news out of the north today. Federal Fisheries Minister Joanne Thompson announced funding for three new salmon hatcheries across north and central B.C. — in Prince George along the Nechako River, on the Kitwanga River in the north, and near Hanceville in the central Interior. The announcement happened in Prince George, flanked by Lheidli T'enneh Chief Dolleen Logan and Gitanyow Hereditary Chief Harry Daniels.
+
+**CASEY:** Chief Daniels put it plainly at the podium. Fisheries have been depleting for twenty, thirty years, and this is meant to be the start of something better for the next generation.
+
+**RILEY:** The Fraser system's salmon runs have been sliding for decades. Three hatcheries won't reverse thirty years overnight, but it's the first funding commitment aimed at production rather than just harvest limits in a while.
+
+**CASEY:** And some rare good fire news. Weekend rain helped slow the growth of the Pear Lake fire in the South Cariboo. BC Wildfire Service crews spent Tuesday working containment lines south of Clinton, while crews at the northern edge near 70 Mile House and Green Lake continue mopping up hot spots.
+
+**RILEY:** After a week of evacuation alerts going up and down across the region, rain in the forecast counts as the headline, not a footnote.
+
+**CASEY:** It won't last. Tomorrow's calling for thunderstorms here at Horsefly, and dry lightning is how half these fires start in the first place. Which is a decent bridge into the story with the biggest number attached to it today — The Tyee has a piece on the backlash building against AI data centres across North America. Opposition is growing in multiple provinces and states over water use and power draw, but Alberta is going the other direction. Premier Danielle Smith's government wants up to forty of these projects built in the province.
+
+**RILEY:** Forty is an extraordinary bet to place on one industry holding its valuation.
+
+**CASEY:** The Tyee's language on it is pointed. They describe Smith's messaging as trying to sell these as "digital refineries," turning gas from clapped-out, uneconomic wells into big money, when the actual draw is enormous amounts of electricity and water for cooling.
+
+**RILEY:** On a lighter note, Scientific American has a piece today on why parabolas are crucial to cryptography. Cryptographers use points along elliptic curves to build codes that stay effectively impossible to crack through brute force, even with enormous computing power thrown at them. It's the math behind every padlock icon on your banking app, traceable back to nineteenth-century geometry, not some black box only engineers in California understand.
+
+**CASEY:** Staying with things built to last, TechCrunch reports Fairphone is launching its latest repairable phone, the Fairphone 6 Plus, in the US market for the first time. Up until now it's mostly been a European product. It's midrange, but the pitch is you can swap the battery and screen yourself, with years of software support beyond what most manufacturers offer.
+
+**RILEY:** A US launch doesn't close the price gap, but market presence is what eventually drives price down. Nobody sold a repairable laptop at scale ten years ago either, and now Framework's a real category.
+
+**CASEY:** Boing Boing ran an essay today from Kevin Kelly, the Wired co-founder, arguing AI works like a microscope pointed at our own minds, showing us cognitive processes currently invisible to us. Kelly calls himself an "incurable optimist," worth reading that essay with that context attached.
+
+**RILEY:** He's been making versions of that argument for thirty years. Sometimes he's been right early, sometimes just early.
+
+**CASEY:** Meanwhile in Shanghai, Chinese robotics maker Unitree soared five hundred percent on its trading debut this week, the second major Chinese AI-linked company to spike like that on an IPO in the past month. That's not a company being valued by fundamentals — that's a market having a feeling and acting on it.
+
+**RILEY:** Closer to the workbench, Hackaday has a story about a hobbyist who reverse-engineered the firmware on a Bluetooth-connected smart grill controller, and released open firmware so anyone with that hardware can flash their own code instead of being stuck inside the manufacturer's app.
+
+**CASEY:** That's the whole repair argument in miniature. Somebody with a soldering iron did what the manufacturer wouldn't, and never asked permission.
+
+**RILEY:** And New Atlas has an odd one to close out this stretch. Scientists think they've finally worked out how narwhal tusks grow perfectly straight — apparently the only naturally occurring straight structure of its kind in the animal kingdom.
+
+**CASEY:** Nature's engineering department, no permit required.
+
+**RILEY:** A couple of quick ones to round things out. ScienceDaily reports a low-carb diet may spike LDL cholesterol far more sharply in people genetically predisposed to high cholesterol, especially alongside a lot of saturated fat.
+
+**CASEY:** ScienceAlert is reporting a first-time link between sugar-sweetened beverages and stomach cancer risk. New finding, not a confirmed causal mechanism yet.
+
+**RILEY:** And down in New Jersey, Ocean City has apparently solved its seagull problem by hiring falconers. Trained birds of prey now patrol the boardwalk to keep gulls off people's food.
+
+**CASEY:** Somewhere in the Cariboo there's a rancher who's been running hawks off the barn roof for forty years without calling it a pilot program.
+
+**RILEY:** Last story today, and it earns the full telling. The Tyee sent a reporter up in a helicopter with the crews fighting the Ainslie Creek megafire. Fire behavior is getting intense enough, driven by drought and daytime scale, that agencies in both B.C. and Alberta are now flying suppression missions after dark using night-vision equipment, just to hold ground overnight that would otherwise be lost by morning.
+
+**CASEY:** Night-vision helicopters over an active wildfire front. That's not a headline anyone was writing ten years ago.
+
+**RILEY:** It's the clearest picture I've seen of what adapting to a longer fire season actually looks like on the ground. A crew flying blind terrain in the dark because the fire doesn't stop when the sun goes down anymore.
+
+**CASEY:** Good place to leave the roundup. Let's get to today's spotlight.
+
+**COMMUNITY SPOTLIGHT**
+
+**RILEY:** Today we're highlighting the Williams Lake Women's Centre. They provide crisis support, advocacy, and community programming for women and families across the Williams Lake area — everything from someone to call when things get hard, to longer-term programs that help people rebuild after a crisis passes. It's the kind of organization that doesn't make headlines most weeks and is exactly why the community holds together when something does go wrong. You can find them at wlwomenscentre.org.
+
+**CASEY:** That kind of steady, unglamorous work is what keeps a place functioning between the emergencies everyone actually hears about.
+
+**RILEY:** Which is a decent hinge into today's Deep Dive. Steady, unglamorous work is most of what repair culture actually is.
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Repair Culture & Practical Tech**
+
+**RILEY:** When your property is an hour from the nearest electrician and the manual for your inverter is a PDF from a company that might not exist in five years — who decides you're competent enough to open that box yourself?
+
+**CASEY:** Nobody, usually. And that's the problem, not a side detail.
+
+**RILEY:** That's the question worth sitting in today. Not whether off-grid systems work — we've established that. Whether the permission structure around fixing them makes sense for people living where the grid runs thin.
+
+**CASEY:** A few weeks back we argued about whether repair culture is a real rural strategy or a lifestyle for people with disposable income. Today's narrower: who's allowed to touch the thing once you already own it and it's already broken.
+
+**RILEY:** There's fresh evidence for that. ZDNet ran a story this week on defending against AI voice and video deepfakes, and the recommendation from security firms — Adaptive Security and Info-Tech Research Group among them — is a code word. A safe phrase families agree on ahead of time, so if someone calls sounding like your kid or your parent asking for money, you ask for the word first.
+
+**CASEY:** (deadpan) A password for reality.
+
+**RILEY:** Close to it. Info-Tech is now telling corporate finance teams to use the same trick against deepfake CEO-fraud calls, where someone clones an executive's voice to authorize a wire transfer. Detection software can't keep pace with the fakes anymore, so the fix moved down to the human layer. Anyone can set it up tonight. No subscription, no vendor, no licence.
+
+**CASEY:** That's a patch, not a fix. It works until deepfake conversations get real-time enough that someone socially engineers the phrase out of you mid-call. And notice who carries the cost of that defense — not the company that built the voice-cloning model. The tired parent picking up the phone at nine at night.
+
+**RILEY:** True of a deadbolt too. It doesn't stop a determined burglar, it just raises the cost of trying. This defense needs no technician, no gatekeeper, no waiting on a vendor patch. It's spreading from households into enterprise security practice. That's repair culture thinking in a nutshell — fix what you can control, at the layer you actually have access to.
+
+**CASEY:** Enterprise security teams have compliance budgets and legal departments. A ranch family outside Horsefly has none of that. Telling both groups to adopt the same low-tech habit isn't the same ask, even if the habit is identical.
+
+**RILEY:** On scale, yes. It doesn't change that the fix costs nothing and needs no permission from anyone.
+
+**CASEY:** It's rare precisely because most of what we're talking about today isn't free. Take the XDA story this week — a hobbyist upgrades his home network to two-and-a-half gigabit Ethernet, assuming that'll clear his bottleneck, and finds the bottleneck just moved elsewhere in the chain. Router, switch, drives, every device has to match or the upgrade buys him nothing.
+
+**RILEY:** Which is the argument for owning the whole stack instead of trusting one company's ecosystem to update everything on its own schedule. He diagnosed the problem himself, with off-the-shelf parts from three different manufacturers. Nobody needed to certify him to plug in a network switch.
+
+**CASEY:** Nobody needs to certify him because a home network failing doesn't burn a house down. A battery bank wired wrong can. That's where "who's allowed to fix it" gets real teeth. Building code, insurance, licensed-electrician rules exist because some repairs carry genuine physical risk, not just inconvenience.
+
+**RILEY:** Nobody's arguing for deregulating high-voltage wiring. The actual friction in the Cariboo is narrower — inverters, battery management systems, low-voltage DC work a competent person can learn to diagnose, but manufacturers lock it behind proprietary diagnostic software or void-the-warranty clauses the second you crack the case open.
+
+**CASEY:** PIRG's been tracking that fight state by state south of the border. They call 2025 the most productive year yet for US right-to-repair laws. Oregon and Nevada passed wheelchair-specific repair bills. Texas and Connecticut passed consumer electronics measures. But it's a patchwork — wheelchairs covered in one state, phones in another, nothing at all in most of the country.
+
+**RILEY:** Canada doesn't even have that patchwork yet in most categories.
+
+**CASEY:** So whether you're allowed to fix your own gear here comes down to your postal code, your willingness to void a warranty, and whether the manufacturer's support line answers the phone. That's not a right. That's a gamble made with your own money.
+
+**RILEY:** Which loops back to the grill controller story. Someone reverse-engineered the firmware because the manufacturer wouldn't open it, and now anyone with that hardware can flash their own code. No law required.
+
+**CASEY:** And no legal protection if the manufacturer decides to come after them for it. The person doing the competent work is operating in a grey zone the legislation hasn't caught up to.
+
+**RILEY:** There's a bigger version of this same argument in the NYT piece on the AI borrowing binge. Big tech is taking on enormous debt to finance data centre construction. Mellon Investments has flagged something close to a trillion and a half dollars in AI-related bonds straining credit markets right now, with people drawing the comparison to the dot-com crash and the telecom overbuild of the early 2000s.
+
+**CASEY:** And Alberta's forty proposed data centres fit directly into that — financed on the assumption that AI-linked valuations keep climbing indefinitely. That's the opposite of repair culture. Build fast, leverage hard, refinance later, and hope the thing never needs fixing because you'll have sold it long before it does.
+
+**RILEY:** The historical parallel cuts both ways, though. The telecom overbuild in the late nineties left behind fiber that rural communities are still using today, dark cable lit years after the companies that laid it went bankrupt. Debt-financed infrastructure booms have a track record of leaving something reusable behind, even after the financing model collapses.
+
+**CASEY:** A data centre isn't dark fiber sitting in a conduit waiting to be lit. It's specialized hardware on a three-to-five-year depreciation curve, cooling systems built for one purpose, power contracts tied to a single gas plant. When the bond market corrects, what's left for a place like Quesnel or Prince George to repurpose? An empty warehouse and a stranded gas contract, probably.
+
+**RILEY:** I don't have the numbers to settle that. Whether this generation of infrastructure decays into anything a community can actually reuse, the way fiber did, is unclear right now.
+
+**CASEY:** Same uncertainty running under Fairphone's US launch. Real win for repairability as a category, but it's one company, at a premium price, competing against a market built on planned obsolescence and subscription lock-in. That system doesn't disappear because one phone maker found a profitable niche inside it.
+
+**RILEY:** It's still evidence the market can support the model. Ten years ago "repairable smartphone" wasn't a US retail category. Now it is, even small.
+
+**CASEY:** Small and mostly ordered online. Ask a Williams Lake shopper how many Fairphones they've actually seen on a shelf.
+
+**RILEY:** (chuckles) None, probably. Same as most specialty parts anyone here already relies on for off-grid systems — everything comes by mail order regardless.
+
+**CASEY:** Which is the actual argument for people needing systems they can run and repair themselves. Out here, backup isn't a truck two blocks away. It's whether you personally understand how your radio, your generator, and your water pump work when nobody's coming.
+
+**RILEY:** Some First Nations communities have built digital infrastructure specifically designed so local people can run and troubleshoot it themselves, rather than needing a consultant flown back in every time something fails. That lesson transfers to a battery bank about as cleanly as it transfers to a server rack.
+
+**CASEY:** It transfers, but it needs its own version out here. A homesteader near Horsefly with a solar array and a Victron inverter isn't going to build institutional capacity from scratch. They need one specific thing — documentation, and a diagnostic tool that isn't locked behind a login only the manufacturer controls.
+
+**RILEY:** Which becomes a Cariboo Regional District question as much as a manufacturer one. If the CRD's permitting rules for off-grid solar and battery installs assume a licensed electrician has to sign off on everything, that's reasonable for wiring that can burn a house down. It shouldn't extend to whether you're allowed to read the error codes on your own battery management system.
+
+**CASEY:** A concrete distinction someone could put directly to the regional district. Keep the gatekeeping on life-safety wiring. Leave diagnostics and firmware open.
+
+**RILEY:** So where does that leave the actual question — who's allowed to fix things? Not resolved, but narrower than when we started. Life-safety wiring, keep the gatekeeping. The diagnostic and firmware layer underneath it, that's where manufacturers hide behind a safety argument that doesn't apply to what they're restricting.
+
+**CASEY:** I'd hold onto the debt question alongside that. If the industry financing all this AI infrastructure corrects the way the telecom bubble did, rural communities need to ask now what physical assets survive that crash, not scramble to figure it out after.
+
+**RILEY:** Agreed, and that's not something we settle today — it's worth someone actually tracking as this plays out over the next year or two. If you've got a repair fight of your own, a manufacturer that locked you out, a regulator that drew the line somewhere strange, send it to feedback at cariboo signals dot c-a.
+
+**CASEY:** We'd want to hear it. That's the show for a Wednesday.
+
+**RILEY:** Have a great rest of your day.
+
+**CASEY:** (wry) Go read your error codes while you still can.

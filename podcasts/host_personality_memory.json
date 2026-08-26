@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[ScienceDaily] AI can tell if your brain is aging faster tha",
-      "\ud83d\udd13 [The Verge] The major labels propose rules to keep AI slop",
       "[The Northern Miner] AI\u00a0boom lifts mining while competing fo",
       "[WIRED] Is This Poker Player Bluffing? The AI Thinks So",
       "[TechRadar] New malware disguised as popular Roblox cheat to",
@@ -10,7 +8,9 @@
       "[TechCrunch] Kyoto Fusioneering starts work on key fusion po",
       "[TechRadar] Boeing and US Air Force sign deal to build guide",
       "[TechRadar] Huge 66-ft Turkish drones are hunting million-do",
-      "[TechRadar] Gemini now lets you turn off the visible waterma"
+      "[TechRadar] Gemini now lets you turn off the visible waterma",
+      "[The Tyee] As AI Data Centre Backlash Builds, What Will Smit",
+      "[NYT Business] How Big Tech\u2019s A.I. Borrowing Binge Is Drivin"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -95,11 +95,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-08-19",
-        "clue": "tech-optimism:x \u2014 Conceded that naming maintainers alone won't fix deeper despair",
-        "occurrences": 2
-      },
-      {
         "date": "2026-08-09",
         "clue": "tech-optimism:[x] Conceded Casey's point on EV advice oversimplifying household math \u2014 now leads with problems instead of solutions",
         "occurrences": 1
@@ -140,9 +135,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-08-25",
-        "clue": "structural-lens:~ \u2014 acknowledged tenure doesn't solve tariff exposure alone",
-        "occurrences": 1
+        "date": "2026-08-26",
+        "clue": "structural-lens:~ \u2014 Telecom overbuild parallel reveals infrastructure uncertainty",
+        "occurrences": 2
       }
     ],
     "core_memories": [
@@ -349,11 +344,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-07-17",
-        "clue": "funding-risk:+ \u2014 Repeatedly centered capacity/throughput gap over good intentions",
-        "occurrences": 2
-      },
-      {
         "date": "2026-08-09",
         "clue": "structural-lens:[+] Reinforced institutional skepticism \u2014 pushed for explicit accountability checkpoints rather than trusting informal translation happens",
         "occurrences": 1
@@ -401,6 +391,11 @@
       {
         "date": "2026-08-25",
         "clue": "evidence-bar:x \u2014 conceded federal permit logic for owl identification valid",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-08-26",
+        "clue": "rural-context:+ \u2014 Clarified diagnostic vs wiring gatekeeping distinction sharply",
         "occurrences": 1
       }
     ],

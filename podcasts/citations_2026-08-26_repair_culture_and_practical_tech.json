@@ -1,0 +1,361 @@
+{
+  "episode": {
+    "date": "2026-08-26",
+    "formatted_date": "Wednesday, August 26, 2026",
+    "theme": "Repair Culture & Practical Tech",
+    "title": "Cariboo Signals - Repair Culture & Practical Tech",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Repair Culture & Practical Tech.</p><p><b>THIS WEEK WE'RE ASKING:</b> Who is allowed to fix things?</p><p><b>NEWS ROUNDUP:</b> We break down [Williams Lake Tribune] Prince George-Valemount MLA quits B.C. Conservatives, third to go in two weeks and Funding announced for salmon hatcheries across north and central B.C. : My Cariboo Now, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> When property is remote and manufacturers control diagnostic access, who should be legally and practically allowed to repair systems you own? Topics include: Right-to-repair legislation patchwork across US states and Canada's lack thereof, Manufacturer gatekeeping through proprietary diagnostics, firmware locks, and warranty voidance policies, Rural infrastructure resilience and self-reliance when professional services are unavailable, AI debt-financed infrastructure boom compared to telecom overbuild precedent, Permission structures balancing genuine safety risks against manufacturer control overreach.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://wlwomenscentre.org\">Williams Lake Women's Centre</a></p><p><b>Sources discussed:</b></p><ul><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/08/25/prince-george-valemount-mla-quits-b-c-conservatives-third-to-go-in-two-weeks/\">[Williams Lake Tribune] Prince George-Valemount MLA quits B....</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/315833/news/environment/fish-wildlife/funding-announced-for-salmon-hatcheries-across-north-and-central-b-c/\">Funding announced for salmon hatcheries across north and cen...</a></li><li>Patrick Davies (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/08/25/weekend-rain-helping-slow-growth-of-south-cariboos-pear-lake-fire/\">[Williams Lake Tribune] Weekend rain helping slow growth of ...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/Opinion/2026/08/26/AI-Data-Centre-Backlash/\">[The Tyee] As AI Data Centre Backlash Builds, What Will Smit...</a></li><li>Manon Bischoff (Scientific American): <a href=\"https://www.scientificamerican.com/article/why-parabolas-are-crucial-to-cryptography/\">[Scientific American] Why parabolas are crucial to cryptogra...</a></li><li>Ivan Mehta (TechCrunch): <a href=\"https://techcrunch.com/2026/08/18/fairphone-is-launching-its-latest-repairable-phone-in-the-us-too/\">[TechCrunch] Fairphone is launching its latest repairable ph...</a></li><li>Boing Boing: <a href=\"https://boingboing.net/2026/08/18/fountain-pen-kk-theory-of-intelligence.html\">[Boing Boing] Kevin Kelly: AI will be a microscope we point ...</a></li><li>NYT Business: <a href=\"https://www.nytimes.com/2026/08/18/business/unitree-ipo-trading.html\">[NYT Business] Chinese Robot Maker Unitree Soars 500 Percent...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/08/18/reverse-engineered-grill-controller-gets-open-firmware/\">[Hackaday] Reverse Engineered Grill Controller Gets Open Fir...</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/08/260823015009.htm\">[ScienceDaily] Your genes may decide whether a low-carb diet...</a></li><li>Peter Dockrill (ScienceAlert): <a href=\"https://www.sciencealert.com/sugar-sweetened-beverages-linked-to-stomach-cancer-for-the-first-time\">[ScienceAlert] Sugar-Sweetened Beverages Linked to Stomach C...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/08/26/Pilots-Fighting-BC-Megafire/\">[The Tyee] In the Sky with the Pilots Fighting a BC Megafire</a></li><li>NYT Business: <a href=\"https://www.nytimes.com/2026/08/20/business/bond-yields-tech-ai-debt.html\">[NYT Business] How Big Tech’s A.I. Borrowing Binge Is Drivin...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>https://newatlas.com/author/bronwyn-thompson/ (New Atlas): <a href=\"https://newatlas.com/biology/secret-narwhals-nature-defying-tusk/\">[New Atlas] The extraordinary engineering that builds nature...</a></li><li>Andrew Zaleski (Outside Online): <a href=\"https://www.outsideonline.com/outdoor-adventure/environment/jersey-shore-beach-falcons/\">[Outside Online] Seagulls Were Terrorizing Ocean City’s Beac...</a></li><li>Isaac Chotiner (The New Yorker): <a href=\"https://www.newyorker.com/news/q-and-a/why-israeli-authorities-are-encouraging-settler-violence-against-palestinians\">[The New Yorker] Why Israeli Authorities Are Encouraging Set...</a></li><li>ZDNet: <a href=\"https://www.zdnet.com/article/ai-deepfakes-passwords-defense/\">[ZDNet] A low-tech solution from the past may be your best d...</a></li><li>XDA Developers: <a href=\"https://www.xda-developers.com/i-added-multigig-for-one-unnecessary-upgrade-and-it-exposed-every-bottleneck-in-my-home-lab/\">[XDA Developers] I thought my NAS drives were the bottleneck...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5<br>Today's Voices: Gemini TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-08-26T02:03:57.102448-07:00",
+    "models": {
+      "script": "claude-sonnet-5",
+      "review": "claude-sonnet-5",
+      "summary": "claude-haiku-4-5"
+    },
+    "quality": {
+      "word_count": 3081,
+      "voice_ratio_casey_riley": 0.89,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 2,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 1,
+        "roundup_seam": 0,
+        "thats_closer": 3,
+        "false_ranges": 1,
+        "meta_linguistic": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 2,
+      "rhythm": {
+        "em_dashes_per_1k": 6.2,
+        "short_turns": 10,
+        "turns": 77,
+        "avg_turn_words": 38.8,
+        "antithesis_hits": 0,
+        "over_budget": []
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    },
+    "anchor": {
+      "id": "allowed-to-fix",
+      "question": "Who is allowed to fix things?"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Prince George-Valemount MLA quits B.C. Conservatives, third to go in two weeks",
+          "url": "https://wltribune.com/2026/08/25/prince-george-valemount-mla-quits-b-c-conservatives-third-to-go-in-two-weeks/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 68,
+          "date_published": "2026-08-25T20:14:34+00:00",
+          "summary": "Bird joins the exodus from Kerry-Lynne Findlay-led Conservatives",
+          "discussed": true,
+          "mention_offset_frac": 0.0015
+        },
+        {
+          "title": "Funding announced for salmon hatcheries across north and central B.C. : My Cariboo Now",
+          "url": "https://www.mycariboonow.com/315833/news/environment/fish-wildlife/funding-announced-for-salmon-hatcheries-across-north-and-central-b-c/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 83,
+          "date_published": "2026-08-26T04:47:05.671365+00:00",
+          "summary": "“The things that have been happening in our fisheries have been depleting for the past 20, 30 years, and I see that the future is coming to a brighter future for each and every one of us,” said Gitany...",
+          "discussed": true,
+          "mention_offset_frac": 0.088
+        },
+        {
+          "title": "[Hackaday] Reverse Engineered Grill Controller Gets Open Firmware",
+          "url": "https://hackaday.com/2026/08/18/reverse-engineered-grill-controller-gets-open-firmware/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 52,
+          "date_published": "2026-08-18T20:00:50+00:00",
+          "summary": "If you are a regular reader, then the odds are you have taken apart an electronic gadget, either for a fix, or simply because your curiosity got the better of …read more",
+          "discussed": true,
+          "mention_offset_frac": 0.1761
+        },
+        {
+          "title": "[Williams Lake Tribune] Weekend rain helping slow growth of South Cariboo’s Pear Lake fire",
+          "url": "https://wltribune.com/2026/08/25/weekend-rain-helping-slow-growth-of-south-cariboos-pear-lake-fire/",
+          "source": "Williams Lake Tribune",
+          "author": "Patrick Davies",
+          "ai_score": 79,
+          "date_published": "2026-08-26T04:49:16.332325+00:00",
+          "summary": "## Weekend rain helping slow growth of South Cariboo’s Pear Lake fire Published 3:41 pm Tuesday, August 25, 2026 **By Patrick Davies** A BC Wildfire Service crew member works on a containment line on ...",
+          "discussed": true,
+          "mention_offset_frac": 0.2078
+        },
+        {
+          "title": "[Outside Online] Seagulls Were Terrorizing Ocean City’s Beaches. The Town Fought Back With Birds of Prey.",
+          "url": "https://www.outsideonline.com/outdoor-adventure/environment/jersey-shore-beach-falcons/",
+          "source": "Outside Online",
+          "author": "Andrew Zaleski",
+          "ai_score": 57,
+          "date_published": "2026-08-17T09:49:36+00:00",
+          "summary": "Until recently, you couldn't eat a slice of pizza along the Jersey Shore without fighting off a cloud of aggressive seagulls. Enter a collection of trained predatory birds that scares off—and yeah, so...",
+          "discussed": false
+        },
+        {
+          "title": "[The Tyee] As AI Data Centre Backlash Builds, What Will Smith Do?",
+          "url": "https://thetyee.ca/Opinion/2026/08/26/AI-Data-Centre-Backlash/",
+          "source": "The Tyee",
+          "author": "",
+          "ai_score": 69,
+          "date_published": "2026-08-26T07:20:00+00:00",
+          "summary": "Across North America, opposition is growing. But Alberta wants up to 40 projects.",
+          "discussed": true,
+          "mention_offset_frac": 0.3045
+        },
+        {
+          "title": "[New Atlas] The extraordinary engineering that builds nature's only straight tusk",
+          "url": "https://newatlas.com/biology/secret-narwhals-nature-defying-tusk/",
+          "source": "New Atlas",
+          "author": "https://newatlas.com/author/bronwyn-thompson/",
+          "ai_score": 42,
+          "date_published": "2026-08-18T15:01:00+00:00",
+          "summary": "The narwhal's defining feature – its continuously growing tusk – is the only straight structure of its kind seen in nature. Now, scientists have cracked the code on how these elusive Arctic whales gro...",
+          "discussed": false
+        },
+        {
+          "title": "[Scientific American] Why parabolas are crucial to cryptography",
+          "url": "https://www.scientificamerican.com/article/why-parabolas-are-crucial-to-cryptography/",
+          "source": "Scientific American",
+          "author": "Manon Bischoff",
+          "ai_score": 57,
+          "date_published": "2026-08-18T18:00:00+00:00",
+          "summary": "Cryptographers use points along a curve to build tough codes",
+          "discussed": true,
+          "mention_offset_frac": 0.4058
+        },
+        {
+          "title": "[TechCrunch] Fairphone is launching its latest repairable phone in the US too",
+          "url": "https://techcrunch.com/2026/08/18/fairphone-is-launching-its-latest-repairable-phone-in-the-us-too/",
+          "source": "TechCrunch",
+          "author": "Ivan Mehta",
+          "ai_score": 55,
+          "date_published": "2026-08-18T11:00:00+00:00",
+          "summary": "The Fairphone 6+ is a midrange Android offering, but given the increasing prices of consumer gadgets amid the ongoing component shortages, a repairable device that can be made to last for years may pr...",
+          "discussed": true,
+          "mention_offset_frac": 0.4737
+        },
+        {
+          "title": "[Boing Boing] Kevin Kelly: AI will be a microscope we point at our own minds",
+          "url": "https://boingboing.net/2026/08/18/fountain-pen-kk-theory-of-intelligence.html",
+          "source": "Boing Boing",
+          "author": "",
+          "ai_score": 41,
+          "date_published": "2026-08-18T12:00:00+00:00",
+          "summary": "My incurable optimist friend, Kevin Kelly , co-founder of Wired and my partner at Cool Tools and the Recomendo newsletter, has been posting essays on Substack mainly about the future, artificial intel...",
+          "discussed": true,
+          "mention_offset_frac": 0.569
+        },
+        {
+          "title": "[NYT Business] Chinese Robot Maker Unitree Soars 500 Percent in Trading Debut",
+          "url": "https://www.nytimes.com/2026/08/18/business/unitree-ipo-trading.html",
+          "source": "NYT Business",
+          "author": "",
+          "ai_score": 38,
+          "date_published": "2026-08-19T02:47:23+00:00",
+          "summary": "Unitree is the second major Chinese technology company linked to the country’s artificial intelligence boom to surge following its initial public offering in the past month.",
+          "discussed": true,
+          "mention_offset_frac": 0.617
+        },
+        {
+          "title": "[ScienceDaily] Your genes may decide whether a low-carb diet sends cholesterol soaring",
+          "url": "https://www.sciencedaily.com/releases/2026/08/260823015009.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 76,
+          "date_published": "2026-08-26T01:31:50+00:00",
+          "summary": "A low-carb diet may raise LDL cholesterol much more sharply in people who are genetically predisposed to high cholesterol, particularly when they consume lots of saturated fat. The findings could help...",
+          "discussed": true,
+          "mention_offset_frac": 0.7807
+        },
+        {
+          "title": "[The Tyee] In the Sky with the Pilots Fighting a BC Megafire",
+          "url": "https://thetyee.ca/News/2026/08/26/Pilots-Fighting-BC-Megafire/",
+          "source": "The Tyee",
+          "author": "",
+          "ai_score": 88,
+          "date_published": "2026-08-26T07:40:00+00:00",
+          "summary": "The Tyee joins a helicopter crew on a critical day in the battle to stop the Ainslie Creek wildfire.",
+          "discussed": true,
+          "mention_offset_frac": 0.8938
+        },
+        {
+          "title": "[ScienceAlert] Sugar-Sweetened Beverages Linked to Stomach Cancer For The First Time",
+          "url": "https://www.sciencealert.com/sugar-sweetened-beverages-linked-to-stomach-cancer-for-the-first-time",
+          "source": "ScienceAlert",
+          "author": "Peter Dockrill",
+          "ai_score": 58,
+          "date_published": "2026-08-19T02:14:06+00:00",
+          "summary": "Here’s what you need to know. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+          "discussed": true
+        },
+        {
+          "title": "[The New Yorker] Why Israeli Authorities Are Encouraging Settler Violence Against Palestinians",
+          "url": "https://www.newyorker.com/news/q-and-a/why-israeli-authorities-are-encouraging-settler-violence-against-palestinians",
+          "source": "The New Yorker",
+          "author": "Isaac Chotiner",
+          "ai_score": 73,
+          "date_published": "2026-08-24T22:30:10+00:00",
+          "summary": "Retired I.D.F. colonel Doron Meiner, who was arrested while trying to protect a Palestinian community from settlers in the West Bank, discusses Israel’s strategy in the run up to October’s election.",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Repair Culture & Practical Tech",
+      "articles": [
+        {
+          "title": "[NYT Business] How Big Tech’s A.I. Borrowing Binge Is Driving Up Bond Yields",
+          "url": "https://www.nytimes.com/2026/08/20/business/bond-yields-tech-ai-debt.html",
+          "source": "NYT Business",
+          "author": "",
+          "ai_score": 67,
+          "date_published": "2026-08-20T20:50:00+00:00",
+          "summary": "Analysts said the recent rise in Treasury yields partly reflected investor expectations that A.I.-driven growth could keep interest rates elevated.",
+          "discussed": true
+        },
+        {
+          "title": "[ZDNet] A low-tech solution from the past may be your best defense against AI deepfakes",
+          "url": "https://www.zdnet.com/article/ai-deepfakes-passwords-defense/",
+          "source": "ZDNet",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-21T11:36:51+00:00",
+          "summary": "AI-enabled identity theft is getting too sophisticated to have predictable tells anymore, so experts recommend answering with a seemingly old-fashioned approach.",
+          "discussed": false
+        },
+        {
+          "title": "[XDA Developers] I thought my NAS drives were the bottleneck, but 2.5GbE networking proved me wrong",
+          "url": "https://www.xda-developers.com/i-added-multigig-for-one-unnecessary-upgrade-and-it-exposed-every-bottleneck-in-my-home-lab/",
+          "source": "XDA Developers",
+          "author": "",
+          "ai_score": 61,
+          "date_published": "2026-08-21T14:00:15+00:00",
+          "summary": "Multi-gig Ethernet showed me that the bottleneck in my home network doesn't lie within my home lab",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "When property is remote and manufacturers control diagnostic access, who should be legally and practically allowed to repair systems you own?",
+        "riley_position": "Repair culture thinking means fixing what you can control at the layer you have access to; manufacturers shouldn't use safety arguments to lock behind proprietary software and warranties what competent owners can safely diagnose themselves, particularly for low-voltage DC systems and firmware.",
+        "riley_key_evidence": [
+          "Hackaday story of hobbyist reverse-engineering smart grill firmware so users can flash their own code without manufacturer permission",
+          "Info-Tech security recommendation of password-protected code words to defend against AI deepfake calls, requiring no vendor, licence, or technician",
+          "Fairphone launching in US market proves repairable smartphones are viable as consumer category despite planned obsolescence industry norm"
+        ],
+        "casey_position": "The permission structures exist for real reasons—high-voltage wiring and battery systems carry genuine physical risk—but the actual gap is manufacturers hiding behind safety claims to restrict diagnostics and firmware access they legitimately control, while rural communities without backup services genuinely need systems they can diagnose themselves.",
+        "casey_key_evidence": [
+          "PIRG tracking right-to-repair legislation showing 2025 as most productive year with patchwork coverage (Oregon, Nevada, Texas, Connecticut) but no national standard and nothing in Canada",
+          "South Cariboo emergency dispatch service lost access earlier in week, proving rural communities need self-reliant systems because professional backup cannot be guaranteed",
+          "Data centre infrastructure built on debt assumptions will likely leave only abandoned warehouses and stranded gas contracts behind, unlike telecom fibre that rural areas repurposed"
+        ],
+        "resolution": "Not fully resolved but narrowed: both agreed life-safety wiring should remain gated by licensing, but diagnostic layers and firmware access shouldn't be restricted under false safety claims; they identified the real lever as making system knowledge and diagnostics accessible rather than locked inside manufacturer apps, particularly for regions without reliable external support.",
+        "topics_covered": [
+          "Right-to-repair legislation patchwork across US states and Canada's lack thereof",
+          "Manufacturer gatekeeping through proprietary diagnostics, firmware locks, and warranty voidance policies",
+          "Rural infrastructure resilience and self-reliance when professional services are unavailable",
+          "AI debt-financed infrastructure boom compared to telecom overbuild precedent",
+          "Permission structures balancing genuine safety risks against manufacturer control overreach"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 14,
+          "conditions": "overcast",
+          "high": 29,
+          "low": 13
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 14,
+          "conditions": "overcast",
+          "high": 27,
+          "low": 14
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 15,
+          "conditions": "partly cloudy",
+          "high": 31,
+          "low": 12
+        },
+        {
+          "name": "Quesnel",
+          "temp": 16,
+          "conditions": "partly cloudy",
+          "high": 29,
+          "low": 14
+        },
+        {
+          "name": "Hanceville",
+          "temp": 15,
+          "conditions": "overcast",
+          "high": 30,
+          "low": 13
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Williams Lake Women's Centre",
+      "description": "Provides crisis support, advocacy, and community programming for women and families in the Williams Lake area",
+      "website": "wlwomenscentre.org",
+      "psa_angle": "",
+      "event_name": ""
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_azure": "Azure Neural TTS",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "Gemini TTS"
+  }
+}
