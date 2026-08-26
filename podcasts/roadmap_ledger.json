@@ -76,7 +76,20 @@
       "first_seen": "2026-08-23",
       "last_seen": "2026-08-23",
       "seen": []
+    },
+    {
+      "id": "all-three-triggers-failed-or-stalled-on-august-26",
+      "title": "All three scheduled triggers failed or did not complete on August 26th.",
+      "detail": "The primary run (08:54 UTC) and Fallback 1 (09:40 UTC) both concluded in failure. Fallback 2 (10:40 UTC) was still in progress at the last update (10:44 UTC), meaning no episode was produced for the day. Three consecutive attempts to execute the pipeline all either failed or remained unfinished, which suggests a systematic problem rather than transient flakiness. Check the run logs at https://github.com/zirnhelt/curated-podcast-generator/actions/runs/32950154292 and https://github.com/zirnhelt/curated-podcast-generator/actions/runs/32954282339 to identify the failure mode that struck both the primary and first fallback identically.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-08-26",
+      "seen": [
+        "2026-08-26"
+      ],
+      "last_seen": "2026-08-26"
     }
   ],
-  "updated": "2026-08-24"
+  "updated": "2026-08-26"
 }
