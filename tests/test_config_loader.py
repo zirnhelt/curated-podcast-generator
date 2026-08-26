@@ -17,6 +17,7 @@ from config_loader import (
     get_theme_for_day,
     get_all_config,
     message_text,
+    json_output_config,
 )
 from types import SimpleNamespace
 
@@ -151,3 +152,39 @@ class TestConfigLoader:
         a = load_notable_dates()
         b = load_notable_dates()
         assert a is b
+
+
+class TestJsonOutputConfig:
+    """The API rejects an object schema that does not explicitly close itself,
+    and the rejection only shows up as a 400 at the call site — which is how
+    the roadmap distiller ran for two nights returning zero findings while its
+    run stayed green. Stamping happens at this choke point so no schema in the
+    repo can ship one level short again."""
+
+    def test_every_object_node_is_closed(self):
+        schema = json_output_config({
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {"type": "object", "properties": {"a": {"type": "string"}}},
+                },
+            },
+        })["format"]["schema"]
+        assert schema["additionalProperties"] is False
+        assert schema["properties"]["items"]["items"]["additionalProperties"] is False
+
+    def test_the_callers_schema_is_not_mutated(self):
+        original = {"type": "object", "properties": {}}
+        json_output_config(original)
+        assert "additionalProperties" not in original
+
+    def test_a_schema_that_already_says_so_is_unchanged(self):
+        original = {"type": "object", "properties": {}, "additionalProperties": False}
+        assert json_output_config(original)["format"]["schema"] == original
+
+    def test_non_object_nodes_are_left_alone(self):
+        schema = json_output_config(
+            {"type": "object", "properties": {"n": {"type": "integer"}}}
+        )["format"]["schema"]
+        assert "additionalProperties" not in schema["properties"]["n"]

@@ -474,6 +474,17 @@ class TestFindingSchema:
         assert set(item["required"]) == {"id", "title", "detail"}
         assert all(p.get("description") for p in item["properties"].values())
 
+    def test_both_object_levels_close_themselves(self):
+        """The API refuses an object schema that does not, and the refusal is a
+        400 at the call site that `distill_roadmap` swallows as a warning: this
+        schema shipped without the inner one on 2026-08-24 and every night's
+        distillation returned zero findings while the run stayed green."""
+        from config_loader import json_output_config
+
+        schema = json_output_config(episode_review._FINDING_SCHEMA)["format"]["schema"]
+        assert schema["additionalProperties"] is False
+        assert schema["properties"]["findings"]["items"]["additionalProperties"] is False
+
     def test_the_prompt_asks_for_zero_findings_as_the_normal_answer(self):
         """Without this the model invents work every night, which is the whole
         failure mode a distillation has."""
