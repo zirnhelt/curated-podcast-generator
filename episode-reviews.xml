@@ -5,7 +5,46 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Mon, 24 Aug 2026 10:43:24 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 26 Aug 2026 10:45:12 +0000</lastBuildDate>
+    <item>
+      <title>Episode Review — Cariboo Signals, August 26, 2026</title>
+      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-08-26.html</link>
+      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-08-26.html</guid>
+      <pubDate>Wed, 26 Aug 2026 10:45:12 +0000</pubDate>
+      <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3&gt;Three runs, two failures, one still running&lt;/h3&gt;
+
+&lt;p&gt;The primary run at 1:05 AM Pacific failed 49 minutes behind schedule. The first fallback at 2:05 AM also failed, 35 minutes late. A second fallback began at 3:05 AM and remains in progress as of the report time, also 35 minutes behind.&lt;/p&gt;
+
+&lt;p&gt;No episode was produced on August 26th.&lt;/p&gt;
+
+&lt;h3&gt;What the primary run hit&lt;/h3&gt;
+
+&lt;p&gt;Run 32950154292 completed but concluded in failure. It started at 08:54:11 UTC and finished at 09:04:45 UTC—a 10-minute window with no output.&lt;/p&gt;
+
+&lt;h3&gt;Fallback 1 failed identically&lt;/h3&gt;
+
+&lt;p&gt;Run 32954282339 began at 09:40:49 UTC and exited at 09:43:07 UTC. The failure mode is unknown. The same failure struck twice in a row suggests a dependency issue or a configuration that both triggers inherited.&lt;/p&gt;
+
+&lt;h3&gt;Fallback 2 is still executing&lt;/h3&gt;
+
+&lt;p&gt;Run 32959460095 started at 10:40:43 UTC. As of the last update at 10:44:48 UTC, it was still in progress. Whether it succeeds or fails will determine if an episode reaches listeners on August 26th or if the day goes without production.&lt;/p&gt;
+
+&lt;h3&gt;Lateness across all three&lt;/h3&gt;
+
+&lt;p&gt;The primary trigger was scheduled for 1:05 AM Pacific. It ran 49 minutes late. Both fallbacks were scheduled for 2:05 AM and 3:05 AM respectively and each ran 35 minutes late. The cascade did not recover any of the scheduled offset.&lt;/p&gt;
+
+&lt;h3&gt;The day's triggers&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Primary (1:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-08-26T08:54:11Z&lt;/td&gt;&lt;td&gt;+49 min&lt;/td&gt;&lt;td&gt;failure&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 1 (2:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-08-26T09:40:49Z&lt;/td&gt;&lt;td&gt;+35 min&lt;/td&gt;&lt;td&gt;failure&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-08-26T10:40:43Z&lt;/td&gt;&lt;td&gt;+35 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
     <item>
       <title>Episode Review — Cariboo Signals, August 24, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-08-24.html</link>

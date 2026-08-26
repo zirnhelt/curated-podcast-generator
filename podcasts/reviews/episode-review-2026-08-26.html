@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, August 26, 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.1rem; color: #444; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }
+    th { background: #f5f5f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    a { color: #0066cc; }
+    code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, August 26, 2026</h1>
+  <p class="meta">Published August 26, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke.</em></p>
+
+<h3>Three runs, two failures, one still running</h3>
+
+<p>The primary run at 1:05 AM Pacific failed 49 minutes behind schedule. The first fallback at 2:05 AM also failed, 35 minutes late. A second fallback began at 3:05 AM and remains in progress as of the report time, also 35 minutes behind.</p>
+
+<p>No episode was produced on August 26th.</p>
+
+<h3>What the primary run hit</h3>
+
+<p>Run 32950154292 completed but concluded in failure. It started at 08:54:11 UTC and finished at 09:04:45 UTC—a 10-minute window with no output.</p>
+
+<h3>Fallback 1 failed identically</h3>
+
+<p>Run 32954282339 began at 09:40:49 UTC and exited at 09:43:07 UTC. The failure mode is unknown. The same failure struck twice in a row suggests a dependency issue or a configuration that both triggers inherited.</p>
+
+<h3>Fallback 2 is still executing</h3>
+
+<p>Run 32959460095 started at 10:40:43 UTC. As of the last update at 10:44:48 UTC, it was still in progress. Whether it succeeds or fails will determine if an episode reaches listeners on August 26th or if the day goes without production.</p>
+
+<h3>Lateness across all three</h3>
+
+<p>The primary trigger was scheduled for 1:05 AM Pacific. It ran 49 minutes late. Both fallbacks were scheduled for 2:05 AM and 3:05 AM respectively and each ran 35 minutes late. The cascade did not recover any of the scheduled offset.</p>
+
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Primary (1:05 AM Pacific)</td><td>2026-08-26T08:54:11Z</td><td>+49 min</td><td>failure</td></tr>
+<tr><td>Fallback 1 (2:05 AM Pacific)</td><td>2026-08-26T09:40:49Z</td><td>+35 min</td><td>failure</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific)</td><td>2026-08-26T10:40:43Z</td><td>+35 min</td><td>in_progress</td></tr>
+</tbody>
+</table>
+</body>
+</html>
