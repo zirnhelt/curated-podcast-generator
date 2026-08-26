@@ -11,6 +11,7 @@ import tempfile
 from datetime import date, timedelta
 from functools import lru_cache
 from pathlib import Path
+from typing import Any
 
 CONFIG_DIR = Path(__file__).parent / "config"
 
@@ -31,8 +32,28 @@ def json_output_config(schema: dict) -> dict:
     Deliberately carries no `effort` key. Most callers are Haiku calls made
     through client.messages.create rather than create_message, and Haiku 4.5
     rejects effort; a caller that wants both passes one merged dict.
+
+    Every object node is stamped `additionalProperties: false` on the way
+    through, because the API rejects the schema outright without it and the
+    rejection is invisible until it fires in production: `_FINDING_SCHEMA`
+    shipped one level short on 2026-08-24 and the roadmap distiller 400'd
+    every night from then, returning zero findings while the run stayed green.
+    The nine schemas that already say so are unchanged by this — it is a floor,
+    not an override — and this is the one choke point every caller passes.
     """
-    return {"format": {"type": "json_schema", "schema": schema}}
+    return {"format": {"type": "json_schema", "schema": _closed(schema)}}
+
+
+def _closed(node: Any) -> Any:
+    """Copy `node`, setting `additionalProperties: false` on every object."""
+    if isinstance(node, list):
+        return [_closed(v) for v in node]
+    if not isinstance(node, dict):
+        return node
+    out = {k: _closed(v) for k, v in node.items()}
+    if out.get("type") == "object":
+        out["additionalProperties"] = False
+    return out
 
 
 # Lives here rather than in podcast_generator so psa_selector can use it too

@@ -618,10 +618,12 @@ _FINDING_SCHEMA = {
                                                "Plain prose, no markdown headings or bullets.")},
                 },
                 "required": ["id", "title", "detail"],
+                "additionalProperties": False,
             },
         }
     },
     "required": ["findings"],
+    "additionalProperties": False,
 }
 
 
