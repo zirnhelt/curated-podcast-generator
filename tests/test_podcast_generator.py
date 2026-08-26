@@ -2745,6 +2745,22 @@ class TestCheckRoundupOrder:
         violations = check_roundup_order(script, articles)
         assert {v["block"] for v in violations} == {"local", "theme"}
 
+    def test_two_stories_in_one_turn_do_not_raise(self):
+        """2026-08-26: `sorted(placed)` fell through to comparing article dicts.
+
+        One turn covering two stories gives them the same position, and the
+        TypeError took out the entire order check for the episode.
+        """
+        articles = _order_articles()
+        script = _ROUNDUP_SCRIPT.format(
+            first="The Northern Miner reports the AI boom lifts mining, and "
+                  "WIRED reports ICE collected DNA from nearly a million people.",
+            second="Nothing else to report.",
+            third="Williams Lake Tribune says 500 firefighters are at Pear Lake.",
+        )
+        violations = check_roundup_order(script, articles)
+        assert [v["block"] for v in violations] == ["local"]
+
     def test_missing_roundup_section_is_a_no_op(self):
         assert check_roundup_order("**WELCOME**\n\n**CASEY:** Hi.", _order_articles()) == []
 

@@ -4780,7 +4780,13 @@ def check_roundup_order(script: str, ordered_articles: list) -> list:
         earliest[rank] = min(earliest.get(rank, pos), pos)
 
     violations = []
-    for pos, a in sorted(placed):
+    # Sort on the position alone. Two stories share a position whenever one turn
+    # covers both — a paired mention, or two headlines with two content words in
+    # common — and the tuple sort then fell through to comparing the article
+    # dicts, which raises. On 2026-08-26 that took the whole order check out:
+    # `TypeError: '<' not supported between instances of 'dict' and 'dict'`,
+    # swallowed by the non-critical segment, so nothing was checked or repaired.
+    for pos, a in sorted(placed, key=lambda pair: pair[0]):
         rank = _roundup_block_rank(a.get('_roundup_block'))
         blockers = [(p, r) for r, p in earliest.items() if r > rank and p < pos]
         if not blockers:
