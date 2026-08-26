@@ -207,6 +207,19 @@ jobs:
             exit 0
           fi
 
+          # Exit 79 = a provider is out of credits. Same "no episode today" as
+          # 75, but it goes RED on purpose. A usage limit lifts itself on a
+          # stated date; an empty balance lifts only when a human tops it up,
+          # and a warning on a green run reaches nobody — on 2026-08-26 three
+          # crons skipped that way and the outage was found by hand hours later.
+          # Red is what triggers GitHub's failed-run notification, so the
+          # alerting is the exit code, not a service to build.
+          if [ "$rc" -eq 79 ]; then
+            echo "::error::A provider is out of credits — no episode generated today. Top up Anthropic, OpenAI or Gemini to restore service."
+            echo "generated=false" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+
           # Exit 76 = the upstream super-rss-feed gave us nothing usable. The
           # code raises it distinctly so CI can tell it from a crash, but nothing
           # here consumed it, so an empty feed went red exactly like a bug.
@@ -301,6 +314,9 @@ jobs:
           echo "Starting daily podcast audio render..."
           # Exit 77 = no audio produced. Deliberately not continue-on-error:
           # this previously exited 0 and the run went green on a broken episode.
+          # Exit 79 = no audio because a provider is out of credits; both are
+          # red here, and the code is the difference between a bug to diagnose
+          # and a card to top up.
           python podcast_generator.py --stage render
 
           echo "Audio render complete!"
