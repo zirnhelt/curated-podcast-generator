@@ -5,7 +5,66 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Wed, 26 Aug 2026 10:45:12 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 27 Aug 2026 20:16:10 +0000</lastBuildDate>
+    <item>
+      <title>Episode Review — Cariboo Signals, August 27, 2026</title>
+      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-08-27.html</link>
+      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-08-27.html</guid>
+      <pubDate>Thu, 27 Aug 2026 20:16:10 +0000</pubDate>
+      <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/33098313747"&gt;33098313747&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3&gt;Five runs, four that shipped: Gemini TTS failed the canary twice, forcing a full OpenAI render&lt;/h3&gt;
+
+&lt;p&gt;The pipeline launched five times on August 27th. The first manual run failed outright. Two manual reruns and two scheduled fallback runs succeeded, pushing episode 212 to RSS. A fifth run is still in progress.&lt;/p&gt;
+
+&lt;p&gt;Gemini's text-to-speech service returned HTTP 429 errors on two separate canary checks. The pipeline's pre-flight validation caught both failures before audio rendering began. Rather than risk a voice switch mid-episode, the system fell back to OpenAI for the entire render — a full episode of audio from a single provider instead of the planned split.&lt;/p&gt;
+
+&lt;h3&gt;Brave Answers API hit its usage limit; web snippets took over&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code&gt;script/brave-answers&lt;/code&gt; segment failed with a 402 error partway through the run. The Brave Search API had exhausted its quota. The pipeline switched to web snippets for all remaining answers in the episode.&lt;/p&gt;
+
+&lt;h3&gt;Script expanded as designed, but roundup ordering still drifted&lt;/h3&gt;
+
+&lt;p&gt;The first draft arrived at 2,276 words against a 3,400-word target. It was sent back for expansion and landed at 3,109 words in the final script — within acceptable range.&lt;/p&gt;
+
+&lt;p&gt;The roundup order degradation persisted even after one repair pass: 3 stories still aired later than their assigned blocks. Of 15 roundup citations total, 13 aligned with their sources. The deep dive citations fared worse — 0 of 3 matched. Separately, 17 roundup items were dropped before they reached the script.&lt;/p&gt;
+
+&lt;h3&gt;One TTS segment came back shorter than its word count predicted&lt;/h3&gt;
+
+&lt;p&gt;A single text-to-speech take produced audio shorter than the word count would suggest. It was retried once per the standard protocol.&lt;/p&gt;
+
+&lt;h3&gt;The debate question, and what shipped&lt;/h3&gt;
+
+&lt;p&gt;The episode framed Indigenous language revitalization around a specific tension: should fluent community speakers or credentialed linguists lead teaching efforts?&lt;/p&gt;
+
+&lt;p&gt;Three deep dives aired: Alberta separatism and culture, brain reasoning without language, and Russia testing AI for spiritual purposes. The final audio ran 19.4 minutes at 17.8 MB. Video was 20.1 minutes at 57.4 MB. Casey's voice ratio to Riley's was 0.85. The AI detection system flagged 3 tell-pattern hits. Claude processed 130,309 input tokens across 15 API calls.&lt;/p&gt;
+
+&lt;h3&gt;The day's triggers&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-08-27T12:46:41Z&lt;/td&gt;&lt;td&gt;+161 min&lt;/td&gt;&lt;td&gt;failure&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-08-27T17:25:21Z&lt;/td&gt;&lt;td&gt;+440 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-08-27T19:01:41Z&lt;/td&gt;&lt;td&gt;+536 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-08-27T19:27:02Z&lt;/td&gt;&lt;td&gt;+562 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-08-27T20:15:32Z&lt;/td&gt;&lt;td&gt;+610 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3&gt;What shipped&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Measure&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Deep dive&lt;/td&gt;&lt;td&gt;3 articles&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Script&lt;/td&gt;&lt;td&gt;3 pattern hit(s), voice ratio 0.85, 3109 words&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio&lt;/td&gt;&lt;td&gt;19.4 min&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio size&lt;/td&gt;&lt;td&gt;17.8 MB&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;13/15 roundup, 0/3 deep dive&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;212 episodes&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Anthropic spend&lt;/td&gt;&lt;td&gt;130,309 input tokens, calls {'claude': 15}&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
     <item>
       <title>Episode Review — Cariboo Signals, August 26, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-08-26.html</link>
