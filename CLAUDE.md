@@ -543,25 +543,56 @@ existing per-section OpenAI fallback — a silent section is this failure minute
 
 **Azure Neural TTS (optional, `USE_AZURE_TTS=1`):** Multi-Talker model for coherent prosody across speaker transitions. SSML with `<phoneme>` IPA tags for Cariboo place names. 8,000-char conservative SSML chunk limit. Set `AZURE_TTS_PARALLEL=1` to generate both providers for comparison.
 
-**Gemini multi-speaker TTS (optional, `USE_GEMINI_TTS=1`, wins over Azure):** `gemini_tts.py` renders each section's whole two-host conversation in one `generateContent` call (NotebookLM-style prosody) via REST — needs `GEMINI_API_KEY`; `GEMINI_TTS_MODEL` overrides the default flash model. A style prompt plus whitelisted `(cue)` stage directions live in `config/prompts.json` under `gemini_tts`; the polish pass only adds cues when Gemini is active, and the OpenAI/Azure paths strip them. Credits on every surface resolve through `get_active_tts_provider()` — the provider that actually rendered the audio wins (an OpenAI fallback is credited as OpenAI). Compare providers with `python evaluate_tts.py`.
+**Gemini multi-speaker TTS (optional, `USE_GEMINI_TTS=1`, wins over Azure):** `gemini_tts.py` renders each section's whole two-host conversation in one `generateContent` call (NotebookLM-style prosody) via REST — needs `GEMINI_API_KEY`; `GEMINI_TTS_MODEL` overrides the default (`gemini-3.1-flash-tts-preview`). A style prompt plus whitelisted `[tag]` stage directions live in `config/prompts.json` under `gemini_tts`; the polish pass only adds tags when Gemini is active, and the OpenAI/Azure paths (and both published transcripts) strip them. Credits on every surface resolve through `get_active_tts_provider()` — the provider that actually rendered the audio wins (an OpenAI fallback is credited as OpenAI). Compare providers with `python evaluate_tts.py`.
 
-**Newer model, untried here:** `gemini-3.1-flash-tts-preview` exists, and Google's
-Interactions API is now GA with `generateContent` marked legacy for speech. Most of
-the reliability apparatus below was built against the 2.5 preview endpoint answering
-8 of 15 calls (2026-08-13 probe), so a newer model may make much of it unnecessary.
-Trying it costs no code: `GEMINI_TTS_MODEL` is already plumbed through
-`gemini_tts.py` and both workflows, so point the repo variable at it and run
-`python evaluate_tts.py --probe-gemini` against that 8/15 baseline first. Check the
-pinned `speechConfig` voices (`Kore`/`Iapetus` in `hosts.json`) carry over before
-adopting — voice identity is the last thing to degrade. Port to the Interactions
-API only if the probe shows `generateContent` is what is holding the model back.
+#### The prompt says where the speech starts
+
+The request is scaffolded rather than prose-led — `### AUDIO PROFILE` (one line per
+speaker, from `hosts.json`'s `gemini_audio_profile`), `### PERFORMANCE NOTES` (the
+config's `style_prompt` plus the speaker and tag rules this call generates), then
+`#### TRANSCRIPT` and nothing but speech below it. Every failure this endpoint has cost
+the show is a boundary failure: the cold open read aloud twice (see `CONTINUATION_NOTE`),
+a stage direction spoken as dialogue. The marker is the boundary, so the model never has
+to infer one from a colon at the end of a sentence.
+
+That does put `Riley: <description>` lines above the marker, which is the transcript's own
+shape. It is the format Google documents and the marker is what separates them — but if an
+episode ever reads a profile line aloud, that collision is the first thing to change.
+
+Cues are inline `[thoughtfully]` tags now, from the documented vocabulary
+(`whitelist`), not invented ones — custom tags read flatter. Hype tags
+(`cheerfully`, `enthusiasm`, `gasp`) are deliberately not in it: the show has no
+morning-DJ register to reach for. `legacy_whitelist` is strip-only, so the
+`(wry)`-style parentheticals in every script already on disk still get cleaned on a
+re-render. **The never-speak-a-tag rule is not in `style_prompt`** — it rides with the
+tags (`tag_instruction`), so the rung that sheds the style cannot ship tags with nothing
+saying they are direction.
+
+**The default model is now `gemini-3.1-flash-tts-preview`, unproven here.** Every
+reliability mechanism below was built against the 2.5 flash preview endpoint answering
+8 of 15 calls (2026-08-13 probe); a newer model may make much of it unnecessary, and
+none of it has been re-measured against this one. **Run
+`python evaluate_tts.py --probe-gemini` against that 8/15 baseline before trusting a
+nightly run to it**, and check the pinned `speechConfig` voices (`Kore`/`Iapetus` in
+`hosts.json`) carry over — voice identity is the last thing to degrade.
+
+`GEMINI_TTS_FALLBACK_MODEL` therefore defaults to `gemini-2.5-flash-preview-tts`, the
+model the show actually shipped on: the fallback's job here is to be the known-good one,
+so a withdrawn preview, a wrong model name or a 3.1 outage costs the episode a model
+rather than its voices — the canary probes the primary, fails, probes this, and pins it
+for the show. Pro TTS used to hold that slot; it costs more than flash and was never
+reached on a night flash could serve, so it is an env var away rather than the default
+second spend.
+
+Google's Interactions API is now GA with `generateContent` marked legacy for speech.
+Port to it only if a probe shows `generateContent` is what is holding the model back.
 
 #### Getting Gemini through a whole episode
 
 An episode is 6–9 independent Gemini calls, so per-call reliability compounds — in the week of 2026-08-01, seven of seven episodes fell back to OpenAI at or before the welcome section, and three shipped a Gemini cold open with an OpenAI show. Four mechanisms exist to stop that, in the order they fire:
 
 - **Canary (`gemini_tts.canary()`).** One tiny throwaway synthesis before any audio exists, run from `generate_audio_from_script`. It decides the provider for the whole episode: a failed canary pins OpenAI up front, which is what makes a mixed-voice episode *unrepresentable* rather than merely unlikely. It probes the fallback model too, and pins it only if the primary is the one that's down. Each candidate gets `CANARY_ATTEMPTS` probes, but only against a request that went *unanswered* — the same rule `_is_transport_failure` applies to the ladder. Every canary failure of the week of 2026-08-17 was a read timeout against an endpoint the 2026-08-13 probe had measured at 8/15 calls answering, so a single attempt was a coin flip that moved whole episodes onto OpenAI's voices; a rejection is still taken at its word and never re-asked.
-- **Retry ladder (`RETRY_LADDER`).** Each rung changes the *shape* of the request, not just the seed — `finishReason: OTHER` returns `promptTokenCount == totalTokenCount`, i.e. a rejection of what was asked, which reseeding cannot fix. Rungs shed the context tail, then the style prompt, then the cues. Backoff (0/15/45/90/90 s) is sized to outlast the minutes-long capacity windows the old 5 s/10 s ladder always died inside.
+- **Retry ladder (`RETRY_LADDER`).** Each rung changes the *shape* of the request, not just the seed — `finishReason: OTHER` returns `promptTokenCount == totalTokenCount`, i.e. a rejection of what was asked, which reseeding cannot fix. Rungs shed the continuation note, then the audio profile and style block, then the tags. Backoff (0/15/45/90/90 s) is sized to outlast the minutes-long capacity windows the old 5 s/10 s ladder always died inside.
 - **Model ladder.** `GEMINI_TTS_FALLBACK_MODEL` (default pro TTS) is tried at rung 3, *before* the primary model with a bare transcript: voices are pinned by `speechConfig` on every rung, so a model change keeps the hosts sounding like themselves while a stripped prompt loses the direction. Pro costs more than flash, which is why it sits behind three primary failures.
 - **Failure-shape routing (`_is_transport_failure`).** The rung order above assumes a *rejection*. A read timeout or dropped connection carries no verdict on the prompt, so on one the ladder goes straight to a rung that changes the model, and when there is none left (`_model_override` pinned one) it re-asks the same full-quality request rather than shedding anything. Prompt-shedding is not a retry strategy for an unanswered request: the two shedding rungs cost 120 s each and pushed the model rungs out of `SECTION_BUDGET_S` entirely — three timeouts spend 120+15+120+45+120 = 420 s, the budget exactly, which is why every August 2026 episode fell back to OpenAI mid-show and no model rung ever ran. The budget still allows three attempts; the change is *what* they ask, not how many there are.
   The 2026-08-13 probe (`--probe-gemini`, welcome section, 3 calls/rung) measured 8/15 calls succeeding, spread evenly across all five rungs — flaky endpoint, not a rejected prompt, and not a dead primary model. That is why a timeout is worth re-asking unchanged, and why the canary's verdict on the primary should be read as "slow right now", not "down".

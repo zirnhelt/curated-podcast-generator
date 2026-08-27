@@ -260,6 +260,14 @@ def get_gemini_voice_for_host(host_key):
     """Get Gemini TTS prebuilt voice name for a host."""
     return load_hosts_config()[host_key]["gemini_voice"]
 
+def get_gemini_audio_profile_for_host(host_key):
+    """One-line vocal profile for the Gemini prompt's AUDIO PROFILE section.
+
+    Short by design: it names who the voice is, not how the show sounds. The
+    show-level direction is prompts.json's gemini_tts.style_prompt.
+    """
+    return load_hosts_config()[host_key].get("gemini_audio_profile", "")
+
 def get_voice_instructions_for_host(host_key):
     """Get OpenAI TTS delivery/emotion instructions for a host."""
     return load_hosts_config()[host_key]["voice_instructions"]
@@ -270,16 +278,26 @@ def get_speed_for_host(host_key):
 
 @lru_cache(maxsize=1)
 def _stage_direction_pattern():
-    """Compiled pattern matching whitelisted (cue) stage directions, or None."""
-    cues = (load_prompts_config().get("gemini_tts", {})
-            .get("stage_directions", {}).get("whitelist", []))
+    """Compiled pattern matching whitelisted [tag] / (cue) directions, or None.
+
+    Both delimiters, and both whitelists. Cues are written `[thoughtfully]` now
+    that the Gemini prompt is scaffolded the way the model documents, but every
+    script already on disk carries the older `(wry)` parentheticals and a
+    re-render of one still has to strip them for the OpenAI and Azure paths.
+    """
+    directions = (load_prompts_config().get("gemini_tts", {})
+                  .get("stage_directions", {}))
+    cues = list(directions.get("whitelist", [])) + list(directions.get("legacy_whitelist", []))
     if not cues:
         return None
-    alternatives = "|".join(re.escape(c) for c in cues)
-    return re.compile(r"\s*\((?:" + alternatives + r")\)", re.IGNORECASE)
+    alternatives = "|".join(re.escape(c) for c in dict.fromkeys(cues))
+    return re.compile(
+        r"\s*(?:\((?:" + alternatives + r")\)|\[(?:" + alternatives + r")\])",
+        re.IGNORECASE,
+    )
 
 def strip_stage_directions(text):
-    """Remove whitelisted (cue) delivery hints from *text*.
+    """Remove whitelisted delivery cues from *text*.
 
     Gemini TTS performs these cues; every other provider would read them
     aloud, so their synthesis paths strip them first. Whitelist-driven so
