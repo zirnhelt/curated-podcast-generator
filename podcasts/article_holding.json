@@ -198,7 +198,8 @@
     "target_weekday": 3,
     "target_focus_slug": "language-culture",
     "target_focus_name": "Language & Culture",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-08-27"
   },
   "https://vancouversun.com/news/local-news/fast-moving-wildfires-reshaping-bc-forests-study": {
     "article": {
@@ -241,52 +242,6 @@
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
     "status": "held"
-  },
-  "https://www.theatlantic.com/technology/2026/08/secondhand-tech-boom/688309/?utm_source=feed": {
-    "article": {
-      "id": "https://www.theatlantic.com/technology/2026/08/secondhand-tech-boom/688309/?utm_source=feed",
-      "url": "https://www.theatlantic.com/technology/2026/08/secondhand-tech-boom/688309/?utm_source=feed",
-      "title": "[The Atlantic] There\u2019s No Reason to Buy a New Phone Anymore",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.theatlantic.com%2Ftechnology%2F2026%2F08%2Fsecondhand-tech-boom%2F688309%2F%3Futm_source%3Dfeed\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nConsumers are ditching the hype cycle and buying used devices in unprecedented numbers.",
-      "summary": "Consumers are ditching the hype cycle and buying used devices in unprecedented numbers.",
-      "_excerpt": "Consumers are ditching the hype cycle and buying used devices in unprecedented numbers.",
-      "date_published": "2026-08-18T16:08:11+00:00",
-      "authors": [
-        {
-          "name": "The Atlantic",
-          "url": "https://www.theatlantic.com"
-        }
-      ],
-      "ai_score": 63,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 97,
-      "_composite_podcast": 68,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News+",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-19T04:51:08.180247+00:00"
-      },
-      "_boosted_score": 63,
-      "_topic_cluster": "Repairable/Sustainable Phones"
-    },
-    "held_date": "2026-08-19",
-    "target_date": "2026-08-26",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-08-26"
   },
   "https://www.techradar.com/pro/security/millions-of-stolen-records-allegedly-dumped-online-by-mystery-hatman-hacker-mcdonalds-vodafone-and-more-see-microsoft-azure-records-stolen": {
     "article": {
@@ -455,90 +410,6 @@
     "target_focus_name": "Mining & Energy",
     "status": "held"
   },
-  "https://www.techradar.com/computing/comcast-is-adding-motion-detection-to-millions-of-routers-and-im-worried-its-a-privacy-nightmare": {
-    "article": {
-      "id": "https://www.techradar.com/computing/comcast-is-adding-motion-detection-to-millions-of-routers-and-im-worried-its-a-privacy-nightmare",
-      "url": "https://www.techradar.com/computing/comcast-is-adding-motion-detection-to-millions-of-routers-and-im-worried-its-a-privacy-nightmare",
-      "title": "[TechRadar] Comcast is adding motion detection to millions of routers, and I\u2019m worried it\u2019s a privacy nightmare",
-      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/DwoVjUeDrwQfw32dsruQ6E-1280-80.jpeg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.techradar.com%2Fcomputing%2Fcomcast-is-adding-motion-detection-to-millions-of-routers-and-im-worried-its-a-privacy-nightmare\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nComcast\u2019s Xfinity routers can sense people\u2019s presence in your home, but many users are worried.",
-      "summary": "Comcast\u2019s Xfinity routers can sense people\u2019s presence in your home, but many users are worried.",
-      "_excerpt": "Comcast\u2019s Xfinity routers can sense people\u2019s presence in your home, but many users are worried.",
-      "date_published": "2026-08-19T20:00:00+00:00",
-      "authors": [
-        {
-          "name": "TechRadar",
-          "url": "https://www.techradar.com"
-        }
-      ],
-      "ai_score": 63,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 98,
-      "_composite_podcast": 68,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://cdn.mos.cms.futurecdn.net/DwoVjUeDrwQfw32dsruQ6E-1280-80.jpeg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-20T04:52:04.055238+00:00"
-      },
-      "_boosted_score": 63
-    },
-    "held_date": "2026-08-20",
-    "target_date": "2026-08-26",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-08-26"
-  },
-  "https://www.statnews.com/2026/08/11/cms-rapid-breakthrough-device-coverage-health-tech/?utm_campaign=rss": {
-    "article": {
-      "id": "https://www.statnews.com/2026/08/11/cms-rapid-breakthrough-device-coverage-health-tech/?utm_campaign=rss",
-      "url": "https://www.statnews.com/2026/08/11/cms-rapid-breakthrough-device-coverage-health-tech/?utm_campaign=rss",
-      "title": "[STAT News] STAT+: A RAPID proposal for breakthrough coverage, and nurses push back on AI",
-      "content_html": "<img src=\"https://www.statnews.com/wp-content/uploads/2023/06/AdobeStock_533699194_Editorial_Use_Only-645x645.jpeg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.statnews.com%2F2026%2F08%2F11%2Fcms-rapid-breakthrough-device-coverage-health-tech%2F%3Futm_campaign%3Drss\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nIn this edition of STAT Health Tech: Details from CMS and FDA on the RAPID pathway for breakthrough devices, and nurses push back on AI.",
-      "summary": "In this edition of STAT Health Tech: Details from CMS and FDA on the RAPID pathway for breakthrough devices, and nurses push back on AI.",
-      "_excerpt": "In this edition of STAT Health Tech: Details from CMS and FDA on the RAPID pathway for breakthrough devices, and nurses push back on AI.",
-      "date_published": "2026-08-11T13:15:49+00:00",
-      "authors": [
-        {
-          "name": "STAT News",
-          "url": "https://www.statnews.com"
-        }
-      ],
-      "ai_score": 42,
-      "_quality": 55,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 72,
-      "_composite_podcast": 51,
-      "_keyword_matches": 0,
-      "_category": "ai-tech",
-      "_source_category": "ai-tech",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://www.statnews.com/wp-content/uploads/2023/06/AdobeStock_533699194_Editorial_Use_Only-645x645.jpeg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-20T04:52:04.055238+00:00"
-      },
-      "_boosted_score": 42
-    },
-    "held_date": "2026-08-20",
-    "target_date": "2026-08-26",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-08-26"
-  },
   "https://www.northernminer.com/news/antofagastas-posts-2b-profit-cuts-copper-outlook/1003893958/": {
     "article": {
       "id": "https://www.northernminer.com/news/antofagastas-posts-2b-profit-cuts-copper-outlook/1003893958/",
@@ -577,92 +448,6 @@
     "target_focus_slug": "mining-energy",
     "target_focus_name": "Mining & Energy",
     "status": "held"
-  },
-  "https://newatlas.com/consumer-tech/insta360-x6-8k-360-degree-actioncam/": {
-    "article": {
-      "id": "https://newatlas.com/consumer-tech/insta360-x6-8k-360-degree-actioncam/",
-      "url": "https://newatlas.com/consumer-tech/insta360-x6-8k-360-degree-actioncam/",
-      "title": "[New Atlas] Insta360 pushes the limits of immersive video with X6 8K actioncam",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fnewatlas.com%2Fconsumer-tech%2Finsta360-x6-8k-360-degree-actioncam%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"The Insta360 X6 pairs dual custom 1/1.1-inch sensors with a 2.32-inch OLED touch display in a familiar pocketable body\" src=\"https://assets.newatlas.com/dims4/default/a79512e/2147483647/strip/true/crop/1964x1279+0+0/resize/1440x938!/format/webp/quality/90/?url=https%3A%2F%2Fnewatlas-brightspot.s3.ap-southeast-2.amazonaws.com%2F8b%2Fb5%2Fe4d3d96049ce96c7d189b8fb089e%2Finsta360x6-heroimg.jpg\" /><p>Insta360 is calling the X6 the biggest leap in its X-series yet. And on paper, there\u2019s plenty to back this up; there\u2019s a lot more going on than just a bump in resolution.</p><p><a href=\"https://newatlas.com/consumer-tech/insta360-x6-8k-360-degree-actioncam/\">Continue Reading</a></p><p><b>Category:</b> <a href=\"https://newatlas.com/consumer-tech/\">Consumer Tech</a>, <a href=\"https://newatlas.com/technology/\">Technology</a></p><p><b>Tags:</b> <a href=\"https://newatlas.com/tag/insta360/\" rel=\"tag\">Insta360</a>, <a href=\"https://newatlas.com/tag/actioncam/\" rel=\"tag\">Actioncam</a>, <a href=\"https://newatlas.com/tag/360-degree/\" rel=\"tag\">360-degree</a>, <a href=\"https://newatlas.com/tag/immersion/\" rel=\"tag\">Immersion</a>, <a href=\"https://newatlas.com/tag/artificial-intelligence/\" rel=\"tag\">Artificial Intelligence</a>, <a href=\"https://newatlas.com/tag/8k/\" rel=\"tag\">8K</a></p>",
-      "summary": "Insta360 is calling the X6 the biggest leap in its X-series yet. And on paper, there\u2019s plenty to back this up; there\u2019s a lot more going on than just a bump in resolution. Continue Reading Category: Consumer Tech , Technology Tags: Insta360 , Actioncam , 360-degree , Immersion , Artificial",
-      "_excerpt": "Insta360 is calling the X6 the biggest leap in its X-series yet. And on paper, there\u2019s plenty to back this up; there\u2019s a lot more going on than just a bump in resolution. Continue Reading Category: Consumer Tech , Technology Tags: Insta360 , Actioncam , 360-degree , Immersion , Artificial Intelligence , 8K",
-      "date_published": "2026-08-13T10:57:00+00:00",
-      "authors": [
-        {
-          "name": "New Atlas",
-          "url": "https://newatlas.com"
-        }
-      ],
-      "ai_score": 38,
-      "_quality": 52,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 84,
-      "_composite_podcast": 75,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-21T04:56:14.647179+00:00"
-      },
-      "_boosted_score": 38
-    },
-    "held_date": "2026-08-21",
-    "target_date": "2026-08-26",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-08-26"
-  },
-  "https://www.nytimes.com/2026/08/20/business/bond-yields-tech-ai-debt.html": {
-    "article": {
-      "id": "https://www.nytimes.com/2026/08/20/business/bond-yields-tech-ai-debt.html",
-      "url": "https://www.nytimes.com/2026/08/20/business/bond-yields-tech-ai-debt.html",
-      "title": "[NYT Business] How Big Tech\u2019s A.I. Borrowing Binge Is Driving Up Bond Yields",
-      "content_html": "<img src=\"https://static01.nyt.com/images/2026/08/20/multimedia/20biz-ai-debt-zhpg/20biz-ai-debt-zhpg-mediumSquareAt3X.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.nytimes.com%2F2026%2F08%2F20%2Fbusiness%2Fbond-yields-tech-ai-debt.html\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nAnalysts said the recent rise in Treasury yields partly reflected investor expectations that A.I.-driven growth could keep interest rates elevated.",
-      "summary": "Analysts said the recent rise in Treasury yields partly reflected investor expectations that A.I.-driven growth could keep interest rates elevated.",
-      "_excerpt": "Analysts said the recent rise in Treasury yields partly reflected investor expectations that A.I.-driven growth could keep interest rates elevated.",
-      "date_published": "2026-08-20T20:50:00+00:00",
-      "authors": [
-        {
-          "name": "NYT Business",
-          "url": "https://www.nytimes.com/section/business"
-        }
-      ],
-      "ai_score": 67,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 92,
-      "_composite_podcast": 65,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://static01.nyt.com/images/2026/08/20/multimedia/20biz-ai-debt-zhpg/20biz-ai-debt-zhpg-mediumSquareAt3X.jpg",
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "New York Times",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-21T04:56:14.647179+00:00"
-      },
-      "_boosted_score": 67
-    },
-    "held_date": "2026-08-21",
-    "target_date": "2026-08-26",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-08-26"
   },
   "https://www.northernminer.com/aboriginal/brazils-top-court-breaks-indigenous-mining-deadlock/1003894192/": {
     "article": {
@@ -740,7 +525,8 @@
     "target_weekday": 3,
     "target_focus_slug": "language-culture",
     "target_focus_name": "Language & Culture",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-08-27"
   },
   "https://www.northernminer.com/regulatory-issues/government-cash-reshaping-mining-finance-report/1003894187/": {
     "article": {
@@ -901,7 +687,8 @@
     "target_weekday": 3,
     "target_focus_slug": "language-culture",
     "target_focus_name": "Language & Culture",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-08-27"
   },
   "https://www.forbes.com/sites/indrabatilahiri/2026/08/14/the-communities-choosing-managed-retreat-as-climate-adaptation/": {
     "article": {
@@ -948,94 +735,6 @@
     "target_focus_name": "Wildfire & Climate Resilience",
     "status": "held"
   },
-  "https://www.forbes.com/councils/forbestechcouncil/2026/08/14/what-leaders-need-to-know-about-3d-printing-in-production/": {
-    "article": {
-      "id": "https://www.forbes.com/councils/forbestechcouncil/2026/08/14/what-leaders-need-to-know-about-3d-printing-in-production/",
-      "url": "https://www.forbes.com/councils/forbestechcouncil/2026/08/14/what-leaders-need-to-know-about-3d-printing-in-production/",
-      "title": "[Forbes Innovation] What Leaders Need To Know About 3D Printing In Production",
-      "content_html": "<img src=\"https://imageio.forbes.com/specials-images/imageserve/6a7e3017beafa45c74394385/0x0.jpg?width=960\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfd4\ufe0f <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.forbes.com%2Fcouncils%2Fforbestechcouncil%2F2026%2F08%2F14%2Fwhat-leaders-need-to-know-about-3d-printing-in-production%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nApplying additive manufacturing at scale requires rethinking design, quality, operations and the economics of making physical products.",
-      "summary": "Applying additive manufacturing at scale requires rethinking design, quality, operations and the economics of making physical products.",
-      "_excerpt": "Applying additive manufacturing at scale requires rethinking design, quality, operations and the economics of making physical products.",
-      "date_published": "2026-08-14T17:15:00+00:00",
-      "authors": [
-        {
-          "name": "Forbes Innovation",
-          "url": "https://www.forbes.com/innovation"
-        }
-      ],
-      "ai_score": 56,
-      "_quality": 67,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 83,
-      "_composite_podcast": 59,
-      "_keyword_matches": 0,
-      "_category": "homelab",
-      "_source_category": "homelab",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://imageio.forbes.com/specials-images/imageserve/6a7e3017beafa45c74394385/0x0.jpg?width=960",
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News+",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-22T04:50:05.414271+00:00"
-      },
-      "_boosted_score": 56
-    },
-    "held_date": "2026-08-22",
-    "target_date": "2026-08-26",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-08-26"
-  },
-  "https://www.xda-developers.com/my-esp32-boards-fill-the-same-niche-as-a-raspberry-pi/": {
-    "article": {
-      "id": "https://www.xda-developers.com/my-esp32-boards-fill-the-same-niche-as-a-raspberry-pi/",
-      "url": "https://www.xda-developers.com/my-esp32-boards-fill-the-same-niche-as-a-raspberry-pi/",
-      "title": "[XDA Developers] My ESP32 fills the same niche as a Raspberry Pi SBC, and it does so at a fraction of the cost",
-      "content_html": "<img src=\"https://static0.xdaimages.com/wordpress/wp-content/uploads/wm/2026/08/esp32-raspberry-pi-4.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfd4\ufe0f <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.xda-developers.com%2Fmy-esp32-boards-fill-the-same-niche-as-a-raspberry-pi%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThere's no point in buying a Raspberry Pi when an ESP32 board can do half the things for just $9",
-      "summary": "There's no point in buying a Raspberry Pi when an ESP32 board can do half the things for just $9",
-      "_excerpt": "There's no point in buying a Raspberry Pi when an ESP32 board can do half the things for just $9",
-      "date_published": "2026-08-14T19:30:10+00:00",
-      "authors": [
-        {
-          "name": "XDA Developers",
-          "url": "https://www.xda-developers.com"
-        }
-      ],
-      "ai_score": 52,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 79,
-      "_composite_podcast": 57,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://static0.xdaimages.com/wordpress/wp-content/uploads/wm/2026/08/esp32-raspberry-pi-4.jpg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-22T04:50:05.414271+00:00"
-      },
-      "_boosted_score": 52
-    },
-    "held_date": "2026-08-22",
-    "target_date": "2026-08-26",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-08-26"
-  },
   "https://www.dezeen.com/2026/08/20/studio-barnes-ch-studio-convert-kkk-building-arts-centre-fort-worth/": {
     "article": {
       "id": "https://www.dezeen.com/2026/08/20/studio-barnes-ch-studio-convert-kkk-building-arts-centre-fort-worth/",
@@ -1075,47 +774,6 @@
     "target_focus_slug": "visual-arts-heritage",
     "target_focus_name": "Visual Arts & Heritage",
     "status": "held"
-  },
-  "https://hackaday.com/2026/08/15/scanning-for-lifesigns-with-esp32-and-raspberry-pi-now-open-source/": {
-    "article": {
-      "id": "https://hackaday.com/2026/08/15/scanning-for-lifesigns-with-esp32-and-raspberry-pi-now-open-source/",
-      "url": "https://hackaday.com/2026/08/15/scanning-for-lifesigns-with-esp32-and-raspberry-pi-now-open-source/",
-      "title": "[Hackaday] Scanning for Lifesigns with ESP32 and Raspberry Pi",
-      "content_html": "<img src=\"https://hackaday.com/wp-content/uploads/2026/08/WifiSense-Pi-dashboard-feat.webp\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fhackaday.com%2F2026%2F08%2F15%2Fscanning-for-lifesigns-with-esp32-and-raspberry-pi-now-open-source%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<div><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"362\" src=\"https://hackaday.com/wp-content/uploads/2026/08/WifiSense-Pi-dashboard-feat.webp?w=644\" style=\"margin: 0 auto; margin-bottom: 15px;\" width=\"644\" /></div>It&#8217;s a sci-fi trope that you can &#8216;scan for life signs&#8217; and detect if there are humans &#8212; or suspiciously human-shaped aliens &#8212; present, but in real life it&#8217;s harder <a class=\"read-more\" href=\"https://hackaday.com/2026/08/15/scanning-for-lifesigns-with-esp32-and-raspberry-pi-now-open-source/\">&#8230;read more</a>",
-      "summary": "It\u2019s a sci-fi trope that you can \u2018scan for life signs\u2019 and detect if there are humans \u2014 or suspiciously human-shaped aliens \u2014 present, but in real life it\u2019s harder \u2026read more",
-      "_excerpt": "It\u2019s a sci-fi trope that you can \u2018scan for life signs\u2019 and detect if there are humans \u2014 or suspiciously human-shaped aliens \u2014 present, but in real life it\u2019s harder \u2026read more",
-      "date_published": "2026-08-15T20:00:02+00:00",
-      "authors": [
-        {
-          "name": "Hackaday",
-          "url": "https://hackaday.com"
-        }
-      ],
-      "ai_score": 52,
-      "_quality": 73,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 87,
-      "_composite_podcast": 72,
-      "_keyword_matches": 0,
-      "_category": "homelab",
-      "_source_category": "homelab",
-      "_is_bonus": true,
-      "image": "https://hackaday.com/wp-content/uploads/2026/08/WifiSense-Pi-dashboard-feat.webp",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-23T04:48:12.806771+00:00"
-      },
-      "_boosted_score": 52
-    },
-    "held_date": "2026-08-23",
-    "target_date": "2026-08-26",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-08-26"
   },
   "https://100milefreepress.net/2026/08/15/poor-air-quality-lingers-over-southern-interior-as-wildfires-burn-across-b-c/": {
     "article": {
@@ -1202,47 +860,6 @@
     "target_focus_name": "Digital Life & Security",
     "status": "held"
   },
-  "https://www.zdnet.com/article/ai-deepfakes-passwords-defense/": {
-    "article": {
-      "id": "https://www.zdnet.com/article/ai-deepfakes-passwords-defense/",
-      "url": "https://www.zdnet.com/article/ai-deepfakes-passwords-defense/",
-      "title": "[ZDNet] A low-tech solution from the past may be your best defense against AI deepfakes",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.zdnet.com%2Farticle%2Fai-deepfakes-passwords-defense%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nAI-enabled identity theft is getting too sophisticated to have predictable tells anymore, so experts recommend answering with a seemingly old-fashioned approach.",
-      "summary": "AI-enabled identity theft is getting too sophisticated to have predictable tells anymore, so experts recommend answering with a seemingly old-fashioned approach.",
-      "_excerpt": "AI-enabled identity theft is getting too sophisticated to have predictable tells anymore, so experts recommend answering with a seemingly old-fashioned approach.",
-      "date_published": "2026-08-21T11:36:51+00:00",
-      "authors": [
-        {
-          "name": "ZDNet",
-          "url": "https://www.zdnet.com"
-        }
-      ],
-      "ai_score": 62,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 81,
-      "_composite_podcast": 58,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-23T04:48:12.806771+00:00"
-      },
-      "_boosted_score": 62
-    },
-    "held_date": "2026-08-23",
-    "target_date": "2026-08-26",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-08-26"
-  },
   "https://incognitocat.me/beyond-year-one-our-home-assistant-journey/": {
     "article": {
       "id": "https://incognitocat.me/beyond-year-one-our-home-assistant-journey/",
@@ -1282,48 +899,6 @@
     "target_focus_slug": "digital-life-security",
     "target_focus_name": "Digital Life & Security",
     "status": "held"
-  },
-  "https://www.xda-developers.com/i-added-multigig-for-one-unnecessary-upgrade-and-it-exposed-every-bottleneck-in-my-home-lab/": {
-    "article": {
-      "id": "https://www.xda-developers.com/i-added-multigig-for-one-unnecessary-upgrade-and-it-exposed-every-bottleneck-in-my-home-lab/",
-      "url": "https://www.xda-developers.com/i-added-multigig-for-one-unnecessary-upgrade-and-it-exposed-every-bottleneck-in-my-home-lab/",
-      "title": "[XDA Developers] I thought my NAS drives were the bottleneck, but 2.5GbE networking proved me wrong",
-      "content_html": "<img src=\"https://static0.xdaimages.com/wordpress/wp-content/uploads/wm/2026/08/img_6023.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.xda-developers.com%2Fi-added-multigig-for-one-unnecessary-upgrade-and-it-exposed-every-bottleneck-in-my-home-lab%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nMulti-gig Ethernet showed me that the bottleneck in my home network doesn't lie within my home lab",
-      "summary": "Multi-gig Ethernet showed me that the bottleneck in my home network doesn't lie within my home lab",
-      "_excerpt": "Multi-gig Ethernet showed me that the bottleneck in my home network doesn't lie within my home lab",
-      "date_published": "2026-08-21T14:00:15+00:00",
-      "authors": [
-        {
-          "name": "XDA Developers",
-          "url": "https://www.xda-developers.com"
-        }
-      ],
-      "ai_score": 61,
-      "_quality": 65,
-      "_relevance": 82,
-      "_local": 0,
-      "_theme_score": 80,
-      "_composite_podcast": 54,
-      "_keyword_matches": 0,
-      "_category": "homelab",
-      "_source_category": "homelab",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://static0.xdaimages.com/wordpress/wp-content/uploads/wm/2026/08/img_6023.jpg",
-      "_cross_theme": {
-        "day": "tuesday",
-        "label": "Working Lands & Industry",
-        "shown_at": "2026-08-23T04:48:12.806771+00:00"
-      },
-      "_boosted_score": 61
-    },
-    "held_date": "2026-08-23",
-    "target_date": "2026-08-26",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-08-26"
   },
   "https://thewalrus.ca/alberta-separatists-culture/": {
     "article": {
@@ -1366,7 +941,8 @@
     "target_weekday": 3,
     "target_focus_slug": "language-culture",
     "target_focus_name": "Language & Culture",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-08-27"
   },
   "https://wltribune.com/2026/08/15/city-of-revelstoke-issues-evacuation-order-for-fish-river-road-area-due-to-wildfire/": {
     "article": {
@@ -1873,126 +1449,6 @@
     "target_focus_name": "Discovery, Health & How Science Works",
     "status": "held"
   },
-  "https://www.androidpolice.com/twenty-five-years-of-reviewing-gadgets-my-favorite-leaves-me-alone/": {
-    "article": {
-      "id": "https://www.androidpolice.com/twenty-five-years-of-reviewing-gadgets-my-favorite-leaves-me-alone/",
-      "url": "https://www.androidpolice.com/twenty-five-years-of-reviewing-gadgets-my-favorite-leaves-me-alone/",
-      "title": "[Android Police] After 25 years of reviewing gadgets, my favorite is the one that leaves me alone",
-      "content_html": "<img src=\"https://static0.anpoimages.com/wordpress/wp-content/uploads/wm/2026/08/my-precious-oura-ring-4-1.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.androidpolice.com%2Ftwenty-five-years-of-reviewing-gadgets-my-favorite-leaves-me-alone%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nMy fridge and my ring share one rule every gadget racing for my eyes keeps breaking: do the job, then shut up",
-      "summary": "My fridge and my ring share one rule every gadget racing for my eyes keeps breaking: do the job, then shut up",
-      "_excerpt": "My fridge and my ring share one rule every gadget racing for my eyes keeps breaking: do the job, then shut up",
-      "date_published": "2026-08-17T16:15:16+00:00",
-      "authors": [
-        {
-          "name": "Android Police",
-          "url": "https://www.androidpolice.com"
-        }
-      ],
-      "ai_score": 58,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 90,
-      "_composite_podcast": 63,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://static0.anpoimages.com/wordpress/wp-content/uploads/wm/2026/08/my-precious-oura-ring-4-1.jpg",
-      "_boosted_score": 58
-    },
-    "held_date": "2026-08-25",
-    "target_date": "2026-08-26",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-08-26"
-  },
-  "https://www.zdnet.com/article/turn-old-android-into-raspberry-pi-alternative/": {
-    "article": {
-      "id": "https://www.zdnet.com/article/turn-old-android-into-raspberry-pi-alternative/",
-      "url": "https://www.zdnet.com/article/turn-old-android-into-raspberry-pi-alternative/",
-      "title": "[ZDNet] You can turn an old Android into a Raspberry Pi alternative - but know this first",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.zdnet.com%2Farticle%2Fturn-old-android-into-raspberry-pi-alternative%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nWith AI-driven RAM shortages pushing Raspberry Pi prices sky high, here's how to repurpose your old handset into a portable powerhouse for your projects.",
-      "summary": "With AI-driven RAM shortages pushing Raspberry Pi prices sky high, here's how to repurpose your old handset into a portable powerhouse for your projects.",
-      "_excerpt": "With AI-driven RAM shortages pushing Raspberry Pi prices sky high, here's how to repurpose your old handset into a portable powerhouse for your projects.",
-      "date_published": "2026-08-17T17:11:41+00:00",
-      "authors": [
-        {
-          "name": "ZDNet",
-          "url": "https://www.zdnet.com"
-        }
-      ],
-      "ai_score": 52,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 85,
-      "_composite_podcast": 58,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-25T04:54:33.110073+00:00"
-      },
-      "_boosted_score": 52
-    },
-    "held_date": "2026-08-25",
-    "target_date": "2026-08-26",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-08-26"
-  },
-  "https://www.businessinsider.com/visa-holders-immigrants-big-tech-layoffs-job-security-work-careers-2026-8": {
-    "article": {
-      "id": "https://www.businessinsider.com/visa-holders-immigrants-big-tech-layoffs-job-security-work-careers-2026-8",
-      "url": "https://www.businessinsider.com/visa-holders-immigrants-big-tech-layoffs-job-security-work-careers-2026-8",
-      "title": "[Business Insider] Layoff fears are pushing some visa holders out of Big Tech",
-      "content_html": "<img src=\"https://i.insider.com/6a7b6b25e3df4d0cbe684bde?format=jpeg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.businessinsider.com%2Fvisa-holders-immigrants-big-tech-layoffs-job-security-work-careers-2026-8\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nSome visa holders are weighing Big Tech's pay and prestige against layoff risks that could threaten their ability to remain in the US.",
-      "summary": "Some visa holders are weighing Big Tech's pay and prestige against layoff risks that could threaten their ability to remain in the US.",
-      "_excerpt": "Some visa holders are weighing Big Tech's pay and prestige against layoff risks that could threaten their ability to remain in the US.",
-      "date_published": "2026-08-17T12:54:22+00:00",
-      "authors": [
-        {
-          "name": "Business Insider",
-          "url": "https://www.businessinsider.com"
-        }
-      ],
-      "ai_score": 54,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 81,
-      "_composite_podcast": 56,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://i.insider.com/6a7b6b25e3df4d0cbe684bde?format=jpeg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-25T04:54:33.110073+00:00"
-      },
-      "_boosted_score": 54
-    },
-    "held_date": "2026-08-25",
-    "target_date": "2026-08-26",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-08-26"
-  },
   "https://www.tomshardware.com/tech-industry/cyber-security/geekom-admits-to-shipping-malware-laced-network-drivers-for-amd-mini-pcs-company-responds-with-guidance-removes-malicious-package": {
     "article": {
       "id": "https://www.tomshardware.com/tech-industry/cyber-security/geekom-admits-to-shipping-malware-laced-network-drivers-for-amd-mini-pcs-company-responds-with-guidance-removes-malicious-package",
@@ -2115,48 +1571,6 @@
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
     "status": "held"
-  },
-  "https://www.xda-developers.com/raspberry-pi-replaced-subscriptions-saved-hundreds/": {
-    "article": {
-      "id": "https://www.xda-developers.com/raspberry-pi-replaced-subscriptions-saved-hundreds/",
-      "url": "https://www.xda-developers.com/raspberry-pi-replaced-subscriptions-saved-hundreds/",
-      "title": "[XDA Developers] My Raspberry Pi quietly replaced a year of subscriptions I spent hundreds of dollars on",
-      "content_html": "<img src=\"https://static0.xdaimages.com/wordpress/wp-content/uploads/wm/2026/06/pi-raspberry-pi-24.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.xda-developers.com%2Fraspberry-pi-replaced-subscriptions-saved-hundreds%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThis tiny SBC can run quite a few self-hosted services",
-      "summary": "This tiny SBC can run quite a few self-hosted services",
-      "_excerpt": "This tiny SBC can run quite a few self-hosted services",
-      "date_published": "2026-08-17T19:30:10+00:00",
-      "authors": [
-        {
-          "name": "XDA Developers",
-          "url": "https://www.xda-developers.com"
-        }
-      ],
-      "ai_score": 55,
-      "_quality": 52,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 59,
-      "_composite_podcast": 40,
-      "_keyword_matches": 0,
-      "_category": "homelab",
-      "_source_category": "homelab",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://static0.xdaimages.com/wordpress/wp-content/uploads/wm/2026/06/pi-raspberry-pi-24.jpg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-25T04:54:33.110073+00:00"
-      },
-      "_boosted_score": 55
-    },
-    "held_date": "2026-08-25",
-    "target_date": "2026-08-26",
-    "target_weekday": 2,
-    "target_focus_slug": "homestead-offgrid",
-    "target_focus_name": "Homestead & Off-Grid Tech",
-    "status": "released",
-    "release_date": "2026-08-26"
   },
   "https://www.canadianarchitect.com/university-of-guelphs-honey-bee-research-centre-opens/": {
     "article": {
@@ -2320,7 +1734,8 @@
     "target_weekday": 3,
     "target_focus_slug": "language-culture",
     "target_focus_name": "Language & Culture",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-08-27"
   },
   "https://www.engadget.com/2239421/study-finds-x-algorithm-prioritizes-ragebait-that-disproportionately-impacts-democrats/": {
     "article": {
@@ -2524,7 +1939,8 @@
     "target_weekday": 3,
     "target_focus_slug": "language-culture",
     "target_focus_name": "Language & Culture",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-08-27"
   },
   "https://www.techradar.com/pro/security/geekom-reveals-multiple-mini-pcs-may-be-infected-with-malware-hidden-in-a-network-driver-but-its-now-down-to-you-to-fix-your-pc": {
     "article": {
@@ -2673,6 +2089,387 @@
     "target_weekday": 0,
     "target_focus_slug": "words-journalism",
     "target_focus_name": "Writing, Journalism & Podcasting",
+    "status": "held"
+  },
+  "https://wltribune.com/2026/08/26/fvrd-cancels-evacuation-alert-for-areas-including-boston-bar/": {
+    "article": {
+      "id": "https://wltribune.com/2026/08/26/fvrd-cancels-evacuation-alert-for-areas-including-boston-bar/",
+      "url": "https://wltribune.com/2026/08/26/fvrd-cancels-evacuation-alert-for-areas-including-boston-bar/",
+      "title": "[Williams Lake Tribune] FVRD cancels evacuation alert for areas including Boston Bar",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F08%2F26%2Ffvrd-cancels-evacuation-alert-for-areas-including-boston-bar%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n## FVRD cancels evacuation alert for areas including Boston Bar Published 7:57 am Wednesday, August 26, 2026 **By Dillon White/Mission City Record** The Brunswick Creek wildfire on July 5, when the FVRD issued its first evacuation order related to the fires. Several evacuation orders and alerts have been downgraded this week. (BC Wildfire Service Photo) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | An evacuation alert has been cancelled by the Fraser Valley Regional District (FVRD) for North Bend, Fishblue",
+      "summary": "## FVRD cancels evacuation alert for areas including Boston Bar Published 7:57 am Wednesday, August 26, 2026 **By Dillon White/Mission City Record** The Brunswick Creek wildfire on July 5, when the FVRD issued its first evacuation order related to the fires. Several evacuation orders and alerts",
+      "_excerpt": "## FVRD cancels evacuation alert for areas including Boston Bar Published 7:57 am Wednesday, August 26, 2026 **By Dillon White/Mission City Record** The Brunswick Creek wildfire on July 5, when the FVRD issued its first evacuation order related to the fires. Several evacuation orders and alerts have been downgraded this week. (BC Wildfire Service Photo) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | An evacuation alert has been cancelled by the Fraser Valley Regional District (FVRD) for North Bend, Fishblue",
+      "date_published": "2026-08-27T14:00:27.963848+00:00",
+      "authors": [
+        {
+          "name": "Williams Lake Tribune",
+          "url": "https://wltribune.com"
+        }
+      ],
+      "ai_score": 84,
+      "_quality": 78,
+      "_relevance": 82,
+      "_local": 95,
+      "_theme_score": 98,
+      "_composite_podcast": 98,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Williams Lake Tribune",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-08-27T14:09:44.939330+00:00"
+      },
+      "_boosted_score": 84,
+      "_topic_cluster": "Wildfire smoke air quality",
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-08-27",
+    "target_date": "2026-08-28",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "aired_early"
+  },
+  "https://100milefreepress.net/2026/08/27/wildfire-smoke-continues-to-cover-parts-of-cariboo-thompson-okanagan/": {
+    "article": {
+      "id": "https://100milefreepress.net/2026/08/27/wildfire-smoke-continues-to-cover-parts-of-cariboo-thompson-okanagan/",
+      "url": "https://100milefreepress.net/2026/08/27/wildfire-smoke-continues-to-cover-parts-of-cariboo-thompson-okanagan/",
+      "title": "[100 Mile Free Press] Wildfire smoke continues to cover parts of Cariboo, Thompson, Okanagan",
+      "content_html": "<img src=\"https://100milefreepress.net/wp-content/uploads/sites/15/2026/08/Screenshot202026-08-2720at206.29.05E280AFAM.jpg?w=1024\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2F100milefreepress.net%2F2026%2F08%2F27%2Fwildfire-smoke-continues-to-cover-parts-of-cariboo-thompson-okanagan%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nEnvironment Canada re-issued an air quality warning on Thursday",
+      "summary": "Environment Canada re-issued an air quality warning on Thursday",
+      "_excerpt": "Environment Canada re-issued an air quality warning on Thursday",
+      "date_published": "2026-08-27T13:31:06+00:00",
+      "authors": [
+        {
+          "name": "100 Mile Free Press",
+          "url": "https://www.100milefreepress.net"
+        }
+      ],
+      "ai_score": 76,
+      "_quality": 57,
+      "_relevance": 75,
+      "_local": 100,
+      "_theme_score": 100,
+      "_composite_podcast": 79,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://100milefreepress.net/wp-content/uploads/sites/15/2026/08/Screenshot202026-08-2720at206.29.05E280AFAM.jpg?w=1024",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-08-27T14:09:44.939330+00:00"
+      },
+      "_boosted_score": 22,
+      "_topic_cluster": "Wildfire smoke air quality",
+      "_cluster_suppressed": true,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-08-27",
+    "target_date": "2026-08-28",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "aired_early"
+  },
+  "https://thenarwhal.ca/bradley-creek-wildfire-syilx-youth-horses-bc/?utm_source=rss": {
+    "article": {
+      "id": "https://thenarwhal.ca/bradley-creek-wildfire-syilx-youth-horses-bc/?utm_source=rss",
+      "url": "https://thenarwhal.ca/bradley-creek-wildfire-syilx-youth-horses-bc/?utm_source=rss",
+      "title": "[The Narwhal] One woman\u2019s race to save her horses from a B.C. wildfire",
+      "content_html": "<img src=\"https://thenarwhal.ca/wp-content/uploads/2026/08/Sienna-Belanger-1-1400x1050.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fthenarwhal.ca%2Fbradley-creek-wildfire-syilx-youth-horses-bc%2F%3Futm_source%3Drss\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nSienna Belanger recounts rescuing her family\u2019s animals as the Bradley Creek wildfire approached, and drawing strength from syilx teachings in the aftermath of the evacuation",
+      "summary": "Sienna Belanger recounts rescuing her family\u2019s animals as the Bradley Creek wildfire approached, and drawing strength from syilx teachings in the aftermath of the evacuation",
+      "_excerpt": "Sienna Belanger recounts rescuing her family\u2019s animals as the Bradley Creek wildfire approached, and drawing strength from syilx teachings in the aftermath of the evacuation",
+      "date_published": "2026-08-26T16:00:00+00:00",
+      "authors": [
+        {
+          "name": "The Narwhal",
+          "url": "https://thenarwhal.ca"
+        }
+      ],
+      "ai_score": 77,
+      "_quality": 80,
+      "_relevance": 78,
+      "_local": 72,
+      "_theme_score": 91,
+      "_composite_podcast": 73,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://thenarwhal.ca/wp-content/uploads/2026/08/Sienna-Belanger-1-1400x1050.jpg",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-08-27T14:09:44.939330+00:00"
+      },
+      "_boosted_score": 77
+    },
+    "held_date": "2026-08-27",
+    "target_date": "2026-08-28",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "held"
+  },
+  "https://www.northernminer.com/news/gen-z-warms-to-mining-as-labour-crunch-looms/1003894241/": {
+    "article": {
+      "id": "https://www.northernminer.com/news/gen-z-warms-to-mining-as-labour-crunch-looms/1003894241/",
+      "url": "https://www.northernminer.com/news/gen-z-warms-to-mining-as-labour-crunch-looms/1003894241/",
+      "title": "[The Northern Miner] Gen Z warms to mining as labour crunch looms",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.northernminer.com%2Fnews%2Fgen-z-warms-to-mining-as-labour-crunch-looms%2F1003894241%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>Canada\u2019s mining industry is attracting more young people just as it faces a much bigger problem: finding enough workers to staff a new generation of mines. A new Mining Industry...</p>\n<p>The post <a href=\"https://www.northernminer.com/news/gen-z-warms-to-mining-as-labour-crunch-looms/1003894241/\">Gen Z warms to mining as labour crunch looms</a> appeared first on <a href=\"https://www.northernminer.com\">The Northern Miner</a>.</p>",
+      "summary": "Canada\u2019s mining industry is attracting more young people just as it faces a much bigger problem: finding enough workers to staff a new generation of mines. A new Mining Industry... The post Gen Z warms to mining as labour crunch looms appeared first on The Northern Miner .",
+      "_excerpt": "Canada\u2019s mining industry is attracting more young people just as it faces a much bigger problem: finding enough workers to staff a new generation of mines. A new Mining Industry... The post Gen Z warms to mining as labour crunch looms appeared first on The Northern Miner .",
+      "date_published": "2026-08-24T15:37:36+00:00",
+      "authors": [
+        {
+          "name": "The Northern Miner",
+          "url": "https://www.northernminer.com"
+        }
+      ],
+      "ai_score": 66,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 79,
+      "_composite_podcast": 72,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-08-27T14:09:44.939330+00:00"
+      },
+      "_boosted_score": 66
+    },
+    "held_date": "2026-08-27",
+    "target_date": "2026-09-01",
+    "target_weekday": 1,
+    "target_focus_slug": "mining-energy",
+    "target_focus_name": "Mining & Energy",
+    "status": "held"
+  },
+  "https://www.scientificamerican.com/article/wall-of-floodwater-sweeps-away-villages-in-nepal-hundreds-missing/": {
+    "article": {
+      "id": "https://www.scientificamerican.com/article/wall-of-floodwater-sweeps-away-villages-in-nepal-hundreds-missing/",
+      "url": "https://www.scientificamerican.com/article/wall-of-floodwater-sweeps-away-villages-in-nepal-hundreds-missing/",
+      "title": "[Scientific American] Wall of floodwater sweeps away villages in Nepal, with hundreds missing",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.scientificamerican.com%2Farticle%2Fwall-of-floodwater-sweeps-away-villages-in-nepal-hundreds-missing%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>A massive flood potentially caused by a chunk of ice breaking off from a glacier has swept away bridges, schools, and other buildings and killed at least 160 people</p>",
+      "summary": "A massive flood potentially caused by a chunk of ice breaking off from a glacier has swept away bridges, schools, and other buildings and killed at least 160 people",
+      "_excerpt": "A massive flood potentially caused by a chunk of ice breaking off from a glacier has swept away bridges, schools, and other buildings and killed at least 160 people",
+      "date_published": "2026-08-26T18:56:00+00:00",
+      "authors": [
+        {
+          "name": "Scientific American",
+          "url": "https://www.scientificamerican.com"
+        }
+      ],
+      "ai_score": 63,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 97,
+      "_composite_podcast": 68,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Apple News+",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-08-27T14:09:44.939330+00:00"
+      },
+      "_boosted_score": 63
+    },
+    "held_date": "2026-08-27",
+    "target_date": "2026-08-30",
+    "target_weekday": 6,
+    "target_focus_slug": "earth-systems",
+    "target_focus_name": "Earth Systems & Climate Science",
+    "status": "held"
+  },
+  "https://www.statnews.com/2026/08/25/russell-vought-omb-funding-comments-daughter-benefited-nih-research/?utm_campaign=rss": {
+    "article": {
+      "id": "https://www.statnews.com/2026/08/25/russell-vought-omb-funding-comments-daughter-benefited-nih-research/?utm_campaign=rss",
+      "url": "https://www.statnews.com/2026/08/25/russell-vought-omb-funding-comments-daughter-benefited-nih-research/?utm_campaign=rss",
+      "title": "[STAT News] STAT+: Comments on OMB research rule mysteriously removed from federal website",
+      "content_html": "<img src=\"https://www.statnews.com/wp-content/uploads/2026/08/GettyImages-2270934863-645x645.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.statnews.com%2F2026%2F08%2F25%2Frussell-vought-omb-funding-comments-daughter-benefited-nih-research%2F%3Futm_campaign%3Drss\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nSome comments on a proposed OMB research rule have been mysteriously removed from a public-facing government webpage.",
+      "summary": "Some comments on a proposed OMB research rule have been mysteriously removed from a public-facing government webpage.",
+      "_excerpt": "Some comments on a proposed OMB research rule have been mysteriously removed from a public-facing government webpage.",
+      "date_published": "2026-08-25T08:30:00+00:00",
+      "authors": [
+        {
+          "name": "STAT News",
+          "url": "https://www.statnews.com"
+        }
+      ],
+      "ai_score": 65,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 91,
+      "_composite_podcast": 65,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://www.statnews.com/wp-content/uploads/2026/08/GettyImages-2270934863-645x645.jpg",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-08-27T14:09:44.939330+00:00"
+      },
+      "_boosted_score": 65
+    },
+    "held_date": "2026-08-27",
+    "target_date": "2026-09-06",
+    "target_weekday": 6,
+    "target_focus_slug": "discovery-health",
+    "target_focus_name": "Discovery, Health & How Science Works",
+    "status": "held"
+  },
+  "https://www.techradar.com/home/energy-saving/plug-in-batteries-seem-like-a-great-fit-for-your-new-plug-in-solar-panels-but-dont-rush-to-buy-one-just-yet-the-rules-are-more-complicated-than-youd-think": {
+    "article": {
+      "id": "https://www.techradar.com/home/energy-saving/plug-in-batteries-seem-like-a-great-fit-for-your-new-plug-in-solar-panels-but-dont-rush-to-buy-one-just-yet-the-rules-are-more-complicated-than-youd-think",
+      "url": "https://www.techradar.com/home/energy-saving/plug-in-batteries-seem-like-a-great-fit-for-your-new-plug-in-solar-panels-but-dont-rush-to-buy-one-just-yet-the-rules-are-more-complicated-than-youd-think",
+      "title": "[TechRadar] Plug-in batteries seem like a great fit for your new plug-in solar panels, but don't rush to buy one just yet \u2014 the rules are more complicated than you'd think",
+      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/gkmdRXeMm3J7VF9tLBwxJg-1280-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.techradar.com%2Fhome%2Fenergy-saving%2Fplug-in-batteries-seem-like-a-great-fit-for-your-new-plug-in-solar-panels-but-dont-rush-to-buy-one-just-yet-the-rules-are-more-complicated-than-youd-think\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nPlug-in solar panels are now legal, but plug-in batteries have yet to receive the green light.",
+      "summary": "Plug-in solar panels are now legal, but plug-in batteries have yet to receive the green light.",
+      "_excerpt": "Plug-in solar panels are now legal, but plug-in batteries have yet to receive the green light.",
+      "date_published": "2026-08-27T08:00:00+00:00",
+      "authors": [
+        {
+          "name": "TechRadar",
+          "url": "https://www.techradar.com"
+        }
+      ],
+      "ai_score": 67,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 90,
+      "_composite_podcast": 64,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://cdn.mos.cms.futurecdn.net/gkmdRXeMm3J7VF9tLBwxJg-1280-80.jpg",
+      "_cross_theme": {
+        "day": "tuesday",
+        "label": "Working Lands & Industry",
+        "shown_at": "2026-08-27T14:09:44.939330+00:00"
+      },
+      "_boosted_score": 67
+    },
+    "held_date": "2026-08-27",
+    "target_date": "2026-09-02",
+    "target_weekday": 2,
+    "target_focus_slug": "digital-life-security",
+    "target_focus_name": "Digital Life & Security",
+    "status": "held"
+  },
+  "https://www.wired.com/story/ai-slop-is-ruining-the-internets-cute-animal-economy/": {
+    "article": {
+      "id": "https://www.wired.com/story/ai-slop-is-ruining-the-internets-cute-animal-economy/",
+      "url": "https://www.wired.com/story/ai-slop-is-ruining-the-internets-cute-animal-economy/",
+      "title": "[WIRED] AI Slop Is Ruining Cute Animals on the Internet",
+      "content_html": "<img src=\"https://media.wired.com/photos/6a863dcae60bdcf9fa334f31/master/pass/AI-Slop-Is-Ruining-Internets-Cute-Animal-Economy-Business.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.wired.com%2Fstory%2Fai-slop-is-ruining-the-internets-cute-animal-economy%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nPet owners, rescue agencies, and wildlife groups are calling for new safeguards as AI makes it harder to tell whether animals, from polar bears to house cats, are real or fake.",
+      "summary": "Pet owners, rescue agencies, and wildlife groups are calling for new safeguards as AI makes it harder to tell whether animals, from polar bears to house cats, are real or fake.",
+      "_excerpt": "Pet owners, rescue agencies, and wildlife groups are calling for new safeguards as AI makes it harder to tell whether animals, from polar bears to house cats, are real or fake.",
+      "date_published": "2026-08-26T11:00:00+00:00",
+      "authors": [
+        {
+          "name": "WIRED",
+          "url": "https://www.wired.com"
+        }
+      ],
+      "ai_score": 69,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 88,
+      "_composite_podcast": 63,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://media.wired.com/photos/6a863dcae60bdcf9fa334f31/master/pass/AI-Slop-Is-Ruining-Internets-Cute-Animal-Economy-Business.jpg",
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Apple News+",
+      "_cross_theme": {
+        "day": "wednesday",
+        "label": "Repair Culture & Practical Tech",
+        "shown_at": "2026-08-27T15:14:26.114518+00:00"
+      },
+      "_boosted_score": 69
+    },
+    "held_date": "2026-08-27",
+    "target_date": "2026-09-04",
+    "target_weekday": 4,
+    "target_focus_slug": "wildlife-conservation",
+    "target_focus_name": "Wildlife & Conservation",
+    "status": "held"
+  },
+  "https://thetyee.ca/News/2026/08/26/Rebuilding-Business-After-Fire/": {
+    "article": {
+      "id": "https://thetyee.ca/News/2026/08/26/Rebuilding-Business-After-Fire/",
+      "url": "https://thetyee.ca/News/2026/08/26/Rebuilding-Business-After-Fire/",
+      "title": "[The Tyee] The Tough Road to Rebuilding a Business After a Fire",
+      "content_html": "<img src=\"https://thetyee.ca/News/2026/08/25/MeltedChairs.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fthetyee.ca%2FNews%2F2026%2F08%2F26%2FRebuilding-Business-After-Fire%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nExpect snags getting funding and years-long delays, say business owners affected by previous wildfires.",
+      "summary": "Expect snags getting funding and years-long delays, say business owners affected by previous wildfires.",
+      "_excerpt": "Expect snags getting funding and years-long delays, say business owners affected by previous wildfires.",
+      "date_published": "2026-08-26T07:30:00+00:00",
+      "authors": [
+        {
+          "name": "The Tyee",
+          "url": "https://thetyee.ca"
+        }
+      ],
+      "ai_score": 67,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 82,
+      "_composite_podcast": 59,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://thetyee.ca/News/2026/08/25/MeltedChairs.jpg",
+      "_cross_theme": {
+        "day": "wednesday",
+        "label": "Repair Culture & Practical Tech",
+        "shown_at": "2026-08-27T14:09:44.939330+00:00"
+      },
+      "_boosted_score": 67
+    },
+    "held_date": "2026-08-27",
+    "target_date": "2026-08-28",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
     "status": "held"
   }
 }
