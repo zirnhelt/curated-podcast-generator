@@ -1,56 +1,4 @@
 {
-  "2026-05-28": {
-    "timestamp": 1779976656.550858,
-    "date": "2026-05-28",
-    "theme": "Indigenous Lands & Innovation",
-    "central_question": "What does it take for Indigenous communities to build and control their own technology infrastructure rather than relying on external vendors and advisory roles?",
-    "riley_position": "Indigenous communities need to move from principle-endorsement (like OCAP) to actual infrastructure ownership, with the M\u0101ori data network as a buildable model that shared regional infrastructure through coordinating bodies like the First Nations Technology Council could replicate.",
-    "riley_key_evidence": [
-      "Te P\u0101 T\u016bwatawata: M\u0101ori-owned data storage network with actual servers and governance control, not just policy commitments",
-      "First Nations Technology Council in BC has been building shared technical infrastructure for years and could coordinate a multi-nation data infrastructure proposal",
-      "Carving robotics project could be improved with pre-deployment community IP agreements and restrictions on commercial deployment without Nation consent"
-    ],
-    "casey_position": "The gap between principle and infrastructure is real and resource-intensive, and the risks of underfunded half-measures, unclear accountability, and encoding cultural knowledge into systems without proper governance protections are substantial and cannot be solved by technology alone.",
-    "casey_key_evidence": [
-      "OCAP principles are well-cited but most communities lack actual technical infrastructure matching those commitments",
-      "Advisory bodies without decision rights are legitimacy mechanisms, not governance mechanisms, and can allow companies to claim consultation without genuine power-sharing",
-      "Carving traditions involve cultural transmission protocols that predate IP frameworks and cannot be easily encoded into grant agreements or licenses"
-    ],
-    "resolution": "Casey and Riley converged on the structural funding problem as the real bottleneck: Indigenous communities need operational funding for multi-year governance capacity around technology infrastructure, not just project funding tied to funder timelines. They agreed governance and resources\u2014not technology\u2014are the actual limiting factors.",
-    "topics_covered": [
-      "Data sovereignty infrastructure ownership vs. advisory roles",
-      "OCAP principles and the gap between endorsement and implementation",
-      "Indigenous AI governance: advisory circles and decision-making authority",
-      "Cultural knowledge encoding in technology and intellectual property limitations",
-      "Shared vs. individual community infrastructure models and accountability structures"
-    ]
-  },
-  "2026-05-29": {
-    "timestamp": 1780059227.052897,
-    "date": "2026-05-29",
-    "theme": "Wild Spaces & Outdoor Life",
-    "central_question": "Can general-purpose AI tools reliably identify wildlife and assist with land stewardship in underrepresented geographic regions like the Cariboo, or do they require regional validation and community-controlled governance frameworks?",
-    "riley_position": "General AI models improve over time as data volume increases, and purpose-built tools like Merlin and iNaturalist demonstrate measurable regional accuracy improvements when communities contribute systematically. The distinction between purpose-built ecological tools and general assistants is what matters for practical use.",
-    "riley_key_evidence": [
-      "Gemini misidentifies Australian wildlife (cats as raccoons) because training data is overwhelmingly Northern Hemisphere-focused",
-      "Merlin's Boreal version shows meaningfully better performance on Cariboo-resident species like Boreal Chickadee and Gray Jay due to community contributions",
-      "iNaturalist explicitly tries to build biodiversity data in underrepresented regions through community contributions"
-    ],
-    "casey_position": "General AI systems deployed in the Cariboo operate with invisible confidence intervals that vary enormously by location, creating genuine safety risks; the real solution requires sustained relationships with Indigenous communities who hold centuries of territorial knowledge and data sovereignty rights, not corporate partnerships or product launches.",
-    "casey_key_evidence": [
-      "Misidentifying grizzly tracks as black bear tracks due to underrepresented training data could create real safety problems",
-      "T\u015dilhqot'in communities have explicitly stated that information gathered on their territory remains under their governance",
-      "First Journey Trails' youth mountain bike program demonstrates embodied land literacy that can't be replicated algorithmically"
-    ],
-    "resolution": "Riley and Casey agreed that purpose-built, regionally-validated tools (Merlin, iNaturalist) are significantly better than general AI assistants for outdoor use in the Cariboo. They converged on the principle that the path forward requires sustained institutional relationships with Indigenous communities under governance frameworks those communities control, rather than corporate-led initiatives. Both acknowledged the track record of tech companies on genuine long-term commitment is poor.",
-    "topics_covered": [
-      "Regional accuracy gaps in AI training datasets for underrepresented geographies",
-      "Distinction between purpose-built ecological tools vs. general-purpose AI extended into outdoor contexts",
-      "Indigenous data sovereignty and T\u015dilhqot'in territorial knowledge governance",
-      "Community science contribution to ecological baselines (iNaturalist, trail building)",
-      "Risk of treating AI outputs as certainty rather than hypothesis in safety-critical contexts like wildlife identification"
-    ]
-  },
   "2026-05-30": {
     "timestamp": 1780135418.963338,
     "date": "2026-05-30",
@@ -2333,6 +2281,67 @@
       "Governance authority and permit structures in forest management and wildlife removal programs",
       "Timeline mismatch between immediate economic crisis and market diversification or policy change",
       "Nation-held forest tenure as a model for relocating decision-making authority to affected communities"
+    ]
+  },
+  "2026-08-26": {
+    "timestamp": 1787735043.530515,
+    "date": "2026-08-26",
+    "theme": "Repair Culture & Practical Tech",
+    "focus": "homestead-offgrid",
+    "anchor": "allowed-to-fix",
+    "central_question": "When property is remote and manufacturers control diagnostic access, who should be legally and practically allowed to repair systems you own?",
+    "riley_position": "Repair culture thinking means fixing what you can control at the layer you have access to; manufacturers shouldn't use safety arguments to lock behind proprietary software and warranties what competent owners can safely diagnose themselves, particularly for low-voltage DC systems and firmware.",
+    "riley_key_evidence": [
+      "Hackaday story of hobbyist reverse-engineering smart grill firmware so users can flash their own code without manufacturer permission",
+      "Info-Tech security recommendation of password-protected code words to defend against AI deepfake calls, requiring no vendor, licence, or technician",
+      "Fairphone launching in US market proves repairable smartphones are viable as consumer category despite planned obsolescence industry norm"
+    ],
+    "casey_position": "The permission structures exist for real reasons\u2014high-voltage wiring and battery systems carry genuine physical risk\u2014but the actual gap is manufacturers hiding behind safety claims to restrict diagnostics and firmware access they legitimately control, while rural communities without backup services genuinely need systems they can diagnose themselves.",
+    "casey_key_evidence": [
+      "PIRG tracking right-to-repair legislation showing 2025 as most productive year with patchwork coverage (Oregon, Nevada, Texas, Connecticut) but no national standard and nothing in Canada",
+      "South Cariboo emergency dispatch service lost access earlier in week, proving rural communities need self-reliant systems because professional backup cannot be guaranteed",
+      "Data centre infrastructure built on debt assumptions will likely leave only abandoned warehouses and stranded gas contracts behind, unlike telecom fibre that rural areas repurposed"
+    ],
+    "resolution": "Not fully resolved but narrowed: both agreed life-safety wiring should remain gated by licensing, but diagnostic layers and firmware access shouldn't be restricted under false safety claims; they identified the real lever as making system knowledge and diagnostics accessible rather than locked inside manufacturer apps, particularly for regions without reliable external support.",
+    "topics_covered": [
+      "Right-to-repair legislation patchwork across US states and Canada's lack thereof",
+      "Manufacturer gatekeeping through proprietary diagnostics, firmware locks, and warranty voidance policies",
+      "Rural infrastructure resilience and self-reliance when professional services are unavailable",
+      "AI debt-financed infrastructure boom compared to telecom overbuild precedent",
+      "Permission structures balancing genuine safety risks against manufacturer control overreach"
+    ]
+  },
+  "2026-08-27": {
+    "timestamp": 1787852916.51159,
+    "date": "2026-08-27",
+    "theme": "Indigenous Lands & Innovation",
+    "focus": "language-culture",
+    "anchor": "allowed-to-fix",
+    "central_question": "When an Indigenous language is being revitalized, who should be recognized as qualified to teach it\u2014fluent community speakers or those with formal linguistics credentials and certification?",
+    "riley_position": "Technology and community-controlled platforms like FirstVoices allow Nations to build their own fluency documentation and credentialing infrastructure independently, bypassing provincial certification requirements. Riley argues that local negotiation of recognition agreements with specific school districts is a faster, more achievable path than waiting for provincial policy reform.",
+    "riley_key_evidence": [
+      "B.C. maintains an alternate certification pathway for fluent Indigenous language speakers to enter classrooms without standard provincial teacher certification",
+      "FirstVoices platform works because Nations hold the keys\u2014they decide what gets recorded, who reviews entries, and what stays restricted",
+      "Xat\u015b\u016bll First Nation and Williams Lake First Nation are developing their own language programming outside the provincial certification track entirely"
+    ],
+    "casey_position": "The underlying problem extends beyond classroom pathways to who controls credentialing standards, curriculum decisions, and linguistic authority across multiple systems. Casey emphasizes that even with local agreements, the provincial system remains untouched, and sustainability depends on Nations actually having the technical capacity to maintain their own systems long-term.",
+    "casey_key_evidence": [
+      "Academic writing systems like standardized Secwepemcts\u00edn can correct living speakers' actual regional dialects rather than describe them accurately",
+      "Control of platforms only matters if Nations also own the skills to maintain the system itself\u2014data sovereignty requires technical maintenance capacity, not just legal ownership",
+      "A single local agreement doesn't automatically become policy and leaves the provincial system unchanged for the next Nation attempting the same process"
+    ],
+    "resolution": "Riley and Casey agreed to disagree on the timeline but converged on practical next steps: pursuing local school district recognition agreements rather than provincial policy reform, and beginning with small experiments like elders recording dialect-specific vocabulary on video, measured in weeks rather than grant cycles. They acknowledged both the value of working examples in eventually moving policy and the frustration of incremental progress.",
+    "topics_covered": [
+      "Provincial teacher certification pathways and alternate Indigenous language credentials",
+      "Standardized orthography versus living dialect variation in Secw\u00e9pemc and other languages",
+      "FirstVoices platform governance and community control of language documentation",
+      "Data sovereignty and technical maintenance capacity for Indigenous-controlled systems",
+      "Local school district negotiations as an alternative to provincial policy reform"
+    ],
+    "calls_to_action": [
+      "A Nation could train its own people to administer its own fluency assessment and treat that internal assessment as the credential, then negotiate a local recognition agreement with a specific school district rather than waiting on Victoria to rewrite provincial rules.",
+      "A community could start by having fluent elders record a hundred words on video, tagged by dialect and community, sitting entirely outside any academic orthography, to see whether that raw material changes how a school district talks to them a year from now\u2014a project measured in weeks, not grant cycles.",
+      "If you have a correction, a story tip, or know a Cariboo language program worth following more closely, send it to feedback at cariboo signals dot c-a; also report if a program isn't working, as that's usually the story being missed."
     ]
   }
 }

@@ -1,46 +1,4 @@
 {
-  "2026-07-21": {
-    "timestamp": 1784630657.925773,
-    "topics": [
-      "Canadian Dollar and Business Outlook: Loonie getting stronge",
-      "[ricochet.media] The last stand for old growth: As the chain",
-      "[The Narwhal] Five million frogs have been relocated for ind",
-      "Is the Current Farm Safety Net Making Agriculture Less Compe",
-      "[Western Producer] Global regenerative farming framework lau",
-      "[The Northern Miner] Forrest\u2019s $133M tungsten bet rockets EQ",
-      "[The Northern Miner] Lassonde\u2019s Cadillac targets $363M IPO",
-      "[BC Gov News] Improving B.C.\u2019s natural resource appeals proc"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech"
-    ],
-    "date": "2026-07-21",
-    "focus": "agriculture-ranching",
-    "focus_name": "Agriculture & Ranching"
-  },
-  "2026-07-22": {
-    "timestamp": 1784716987.442607,
-    "topics": [
-      "[CNET] We\u2019re Asking All the Wrong Questions About AI Compani",
-      "[WIRED] A Sneaky Hacking Tool Targeting AI Infrastructure Is",
-      "[Krebs on Security] LG to Ban Residential Proxies from Smart",
-      "[Boing Boing] Why 85% of tall buildings skip the 13th floor",
-      "[Business Insider] A startup building a map to help you make",
-      "[TechRadar] Ill-fated Companion Cube case for Steam Machine ",
-      "[Business Insider] Ukraine's arms makers say they need to fi",
-      "[New Atlas] Norton Motorcycles amplifies comeback with gutsy"
-    ],
-    "themes": [
-      "rural development",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-07-22",
-    "focus": "maker-repair",
-    "focus_name": "Maker & Repair"
-  },
   "2026-07-24": {
     "timestamp": 1784889578.884227,
     "topics": [
@@ -708,5 +666,47 @@
     "date": "2026-08-25",
     "focus": "forestry",
     "focus_name": "Forestry & Timber"
+  },
+  "2026-08-26": {
+    "timestamp": 1787735040.292445,
+    "topics": [
+      "[Williams Lake Tribune] Prince George-Valemount MLA quits B.",
+      "Funding announced for salmon hatcheries across north and cen",
+      "[Williams Lake Tribune] Weekend rain helping slow growth of ",
+      "[The Tyee] As AI Data Centre Backlash Builds, What Will Smit",
+      "[Scientific American] Why parabolas are crucial to cryptogra",
+      "[NYT Business] How Big Tech\u2019s A.I. Borrowing Binge Is Drivin",
+      "[ZDNet] A low-tech solution from the past may be your best d",
+      "[XDA Developers] I thought my NAS drives were the bottleneck"
+    ],
+    "themes": [
+      "rural development",
+      "Indigenous tech"
+    ],
+    "date": "2026-08-26",
+    "focus": "homestead-offgrid",
+    "focus_name": "Homestead & Off-Grid Tech"
+  },
+  "2026-08-27": {
+    "timestamp": 1787852913.165578,
+    "topics": [
+      "[100 Mile Free Press] Wildfire smoke continues to cover part",
+      "[Williams Lake Tribune] FVRD cancels evacuation alert for ar",
+      "[Kagi Small Web] Forty-Nine Megawatts",
+      "[Scientific American] See states\u2019 kindergarten vaccination r",
+      "[Kagi Small Web] A high-fat Western diet alters bile acid me",
+      "[The Guardian Global Development] After 100 days of the dead",
+      "[ScienceDaily] MIT neuroscientists discover the brain can re",
+      "[Country Life] From body-building to ballet, the refurbished"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-08-27",
+    "focus": "language-culture",
+    "focus_name": "Language & Culture"
   }
 }
