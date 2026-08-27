@@ -89,7 +89,59 @@
         "2026-08-26"
       ],
       "last_seen": "2026-08-26"
+    },
+    {
+      "id": "gemini-tts-rate-limit-breaks-canary",
+      "title": "Gemini TTS rate limit (HTTP 429) triggered twice on canary checks, forcing full OpenAI render.",
+      "detail": "On 2026-08-27, the Gemini TTS pre-flight check failed with HTTP 429 errors on two separate canary attempts. The pipeline's fallback logic caught both failures before audio synthesis began and switched the entire episode to OpenAI rather than risk a mid-episode voice change. The mechanism is clear: Gemini's quota was exhausted before the render stage. To close this, either increase the Gemini quota tier for the API key, implement request queuing to respect rate limits, or add a secondary Gemini endpoint (via Vertex AI) as a separate capacity pool.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-08-27",
+      "seen": [
+        "2026-08-27"
+      ],
+      "last_seen": "2026-08-27"
+    },
+    {
+      "id": "roundup-citation-alignment-drift-persists",
+      "title": "Roundup story order drifted again despite a repair pass, with 3 of 15 stories airing out of sequence.",
+      "detail": "On 2026-08-27, the script/roundup-order segment failed once, was repaired, and still shipped with 3 stories in the wrong position relative to their assigned blocks. Of 15 roundup citations total, 13 matched their sources, but the 3 misaligned stories suggest the repair pass did not fully resolve the ordering logic. The deep dive citations fared worse: 0 of 3 matched. The root cause is in the roundup ordering algorithm—either it does not persist constraints across repair cycles, or the repair itself reintroduces drift. Trace the sort order during and after the repair pass to identify whether the issue is in the initial sort, the repair logic, or both.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-08-27",
+      "seen": [
+        "2026-08-27"
+      ],
+      "last_seen": "2026-08-27"
+    },
+    {
+      "id": "brave-answers-quota-exhausted-mid-run",
+      "title": "Brave Answers API hit its usage limit partway through the run, forcing a fallback to web snippets.",
+      "detail": "On 2026-08-27, the script/brave-answers segment failed with HTTP 402 (usage limit exceeded) after the quota was exhausted. The pipeline switched to web snippets for all remaining answers in that episode. The 402 error itself indicates the account hit its hard limit, not a transient failure. Confirm the quota tier on the Brave account, assess whether the episode's answer count is typical, and decide whether to increase the quota, implement batching, or rely on web snippets as the primary source when the API is unavailable.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-08-27",
+      "seen": [
+        "2026-08-27"
+      ],
+      "last_seen": "2026-08-27"
+    },
+    {
+      "id": "tts-duration-underrun-one-segment",
+      "title": "One TTS segment returned audio shorter than its word count predicts, requiring a retry.",
+      "detail": "On 2026-08-27, one text-to-speech take produced audio duration shorter than the word count would estimate. The pipeline retried once per protocol and the issue resolved. This is a single occurrence and may be transient voice synthesis variance. If this recurs across multiple segments or runs, it signals either a systematic issue in duration estimation, a problem with a particular voice model, or the TTS API's handling of edge-case text. Monitor for recurrence; if it persists, audit the duration formula against actual TTS output and consider adding a tolerance band before flagging a retry.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-08-27",
+      "seen": [
+        "2026-08-27"
+      ],
+      "last_seen": "2026-08-27"
     }
   ],
-  "updated": "2026-08-26"
+  "updated": "2026-08-27"
 }
