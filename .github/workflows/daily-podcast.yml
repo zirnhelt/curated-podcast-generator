@@ -12,9 +12,9 @@ on:
   workflow_dispatch:
     inputs:
       tts_provider:
-        description: 'TTS provider — gemini (default) uses Gemini multi-speaker with OpenAI fallback; openai uses OpenAI primary + Azure parallel; azure uses Azure only (no parallel)'
+        description: 'TTS provider — openai (default) renders per-segment on OpenAI; gemini uses Gemini multi-speaker with OpenAI fallback; azure uses Azure only (no parallel)'
         required: false
-        default: gemini
+        default: openai
         type: choice
         options:
           - openai
@@ -156,11 +156,15 @@ jobs:
           BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
           COHERE_API_KEY: ${{ secrets.COHERE_API_KEY }}
           # The TTS provider flags (not the keys) must be set on this stage too:
-          # the polish prompt is provider-gated — only Gemini performs `(cue)`
+          # the polish prompt is provider-gated — only Gemini performs `[tag]`
           # stage directions, so _stage_direction_addendum() would omit them and
           # the credit written into citations would name the wrong provider.
           USE_AZURE_TTS: ${{ inputs.tts_provider == 'azure' && 'true' || '' }}
-          USE_GEMINI_TTS: ${{ (inputs.tts_provider == 'gemini' || inputs.tts_provider == '') && 'true' || '' }}
+          # Scheduled runs (empty input) render on OpenAI. Gemini is opt-in per
+          # dispatch: the multi-speaker path is worth having and is not worth an
+          # unattended 1 AM episode, which is exactly how the mixed-voice shows of
+          # August 2026 aired. Set tts_provider=gemini to run a show on it.
+          USE_GEMINI_TTS: ${{ inputs.tts_provider == 'gemini' && 'true' || '' }}
         run: |
           case "${{ github.event.schedule }}" in
             '5 8 * * *') label="Primary (1:05 AM Pacific)" ;;
@@ -289,7 +293,11 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_MODEL || secrets.GEMINI_TTS_MODEL }}
           GEMINI_TTS_FALLBACK_MODEL: ${{ vars.GEMINI_TTS_FALLBACK_MODEL }}
-          USE_GEMINI_TTS: ${{ (inputs.tts_provider == 'gemini' || inputs.tts_provider == '') && 'true' || '' }}
+          # Scheduled runs (empty input) render on OpenAI. Gemini is opt-in per
+          # dispatch: the multi-speaker path is worth having and is not worth an
+          # unattended 1 AM episode, which is exactly how the mixed-voice shows of
+          # August 2026 aired. Set tts_provider=gemini to run a show on it.
+          USE_GEMINI_TTS: ${{ inputs.tts_provider == 'gemini' && 'true' || '' }}
         run: |
           echo "Re-rendering any past episodes whose audio never landed..."
           python podcast_generator.py --stage recover
@@ -309,7 +317,11 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_MODEL || secrets.GEMINI_TTS_MODEL }}
           GEMINI_TTS_FALLBACK_MODEL: ${{ vars.GEMINI_TTS_FALLBACK_MODEL }}
-          USE_GEMINI_TTS: ${{ (inputs.tts_provider == 'gemini' || inputs.tts_provider == '') && 'true' || '' }}
+          # Scheduled runs (empty input) render on OpenAI. Gemini is opt-in per
+          # dispatch: the multi-speaker path is worth having and is not worth an
+          # unattended 1 AM episode, which is exactly how the mixed-voice shows of
+          # August 2026 aired. Set tts_provider=gemini to run a show on it.
+          USE_GEMINI_TTS: ${{ inputs.tts_provider == 'gemini' && 'true' || '' }}
         run: |
           echo "Starting daily podcast audio render..."
           # Exit 77 = no audio produced. Deliberately not continue-on-error:
