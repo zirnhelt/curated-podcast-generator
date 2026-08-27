@@ -54,10 +54,21 @@
     "alert_template": "\nSTALE FRAMING ALERT: {count} of the last {window} debates (across all themes) landed on {family}. That framing is used up — today's Deep Dive and its resolution must land somewhere different. Do not let the conversation drift there.\n"
   },
   "gemini_tts": {
-    "description": "Gemini multi-speaker TTS delivery controls: style_prompt prefixes every synthesis request; stage_directions.whitelist is the only set of parenthetical cues the polish pass may add (Gemini performs them, other providers strip them).",
-    "style_prompt": "Read this as a community-radio conversation between two longtime co-hosts who are both a little high strung — quick minds, wound a bit tight, invested in the topic. Plain-spoken and genuine. Absolutely no morning-show DJ energy: no hype, no exaggerated laughter, no radio-announcer voice, no forced banter. Riley sounds earnest and intense, warm curiosity carried by nervy, conviction-driven energy — absolutely no cheerleader energy: never peppy, bubbly, perky, or pom-pom bright. Casey sounds dry, deadpan, and tightly wound — clipped, matter-of-fact, faintly impatient, with skepticism carried by word choice rather than vocal swings — no urban-casual register: never laid-back, breezy, slangy, or street-casual. Parenthetical cues like (wry) are subtle delivery hints — perform them lightly and never speak them aloud.",
+    "description": "Gemini multi-speaker TTS delivery controls. The synthesis prompt is scaffolded as AUDIO PROFILE (per-host lines from hosts.json) / PERFORMANCE NOTES (style_prompt plus the generated speaker and tag rules) / #### TRANSCRIPT, so the model has an explicit boundary between direction and speech. stage_directions.whitelist is the only set of inline [tag] cues the polish pass may add; legacy_whitelist is strip-only, for scripts on disk that still carry the older (wry)-style parenthetical cues.",
+    "style_prompt": "- Community radio, not morning radio: two longtime co-hosts, quick minds, wound a bit tight, invested in the topic.\n- No morning-show DJ energy: no hype, no exaggerated laughter, no radio-announcer voice, no forced banter.\n- Conversational, unhurried cadence. Let a point land rather than pushing pace.\n- Plain-spoken and sincere throughout.",
     "stage_directions": {
       "whitelist": [
+        "warmly",
+        "thoughtfully",
+        "curiosity",
+        "slow",
+        "fast",
+        "short pause",
+        "long pause",
+        "soft laugh",
+        "sighs"
+      ],
+      "legacy_whitelist": [
         "chuckles",
         "wry",
         "warmly",
@@ -66,7 +77,8 @@
         "mock-serious",
         "sighs"
       ],
-      "polish_instruction": "STAGE DIRECTIONS: You may add sparse parenthetical delivery cues for the voice performers — at most one cue per six to eight dialogue turns, and only where the tone genuinely shifts. Place a cue at the start of the line, immediately after the host tag, e.g. **CASEY:** (wry) Sure it will. Use only these cues: {cue_list}. Never invent other cues, never stack two cues on one line, and leave most turns untouched."
+      "tag_instruction": "Bracketed tags such as [thoughtfully] or [short pause] are delivery direction for the performer. Perform them lightly. Never speak a bracketed tag aloud.",
+      "polish_instruction": "STAGE DIRECTIONS: You may add sparse inline delivery tags for the voice performers - at most one tag per four to six dialogue turns, and only where the tone shifts. Write the tag in square brackets at the point it applies, usually right after the host tag, e.g. **CASEY:** [thoughtfully] Sure it will. Use only these tags: {cue_list}. Never invent other tags, never stack two tags on one line, and leave most turns untouched. Punctuation carries the rest of the cadence: when a tag lands mid-sentence keep a comma between it and the clause it modifies, and reserve periods for real sentence endings."
     }
   },
   "roundup_reorder": {

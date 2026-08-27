@@ -920,7 +920,7 @@ def get_tts_credit() -> str:
 def _stage_direction_addendum() -> str:
     """Polish-prompt addendum allowing sparse TTS delivery cues.
 
-    Only Gemini performs (rather than reads) parenthetical cues, so the
+    Only Gemini performs (rather than reads) inline [tag] cues, so the
     instruction is prompt-gated on the provider — no tokens spent polishing
     cues another provider's path would just strip.
     """
@@ -931,7 +931,10 @@ def _stage_direction_addendum() -> str:
     cues = cfg.get('whitelist')
     if not instruction or not cues:
         return ""
-    return "\n\n" + instruction.replace("{cue_list}", ", ".join(f"({c})" for c in cues))
+    # Brackets, matching the tag syntax the transcript uses. legacy_whitelist is
+    # deliberately not offered: it is there so an old script still strips, not
+    # so a new one can be written in the old syntax.
+    return "\n\n" + instruction.replace("{cue_list}", ", ".join(f"[{c}]" for c in cues))
 
 # Wall-clock ceiling for all Gemini synthesis in one render, well inside the
 # workflow's 40-minute render step. Past it, gemini_tts refuses to start another
@@ -8704,6 +8707,10 @@ def script_to_vtt_transcript(script_content, intro_offset_ms=25000,
     to auto-generation. Apple Podcasts requires text/vtt to display a provided
     transcript instead of generating one.
     """
+    # Delivery cues are direction for the voice model, not something a reader
+    # should see — the same reason the pacing tags below are stripped.
+    script_content = strip_stage_directions(script_content)
+
     if timeline:
         try:
             cues = _vtt_cues_from_timeline(script_content, timeline)
@@ -8772,10 +8779,10 @@ def script_to_vtt_transcript(script_content, intro_offset_ms=25000,
 def script_to_friendly_transcript(script_content):
     """Convert a raw podcast script to a clean HTML transcript for Apple Podcasts.
 
-    Strips markdown speaker tags and pacing annotations, turning the internal
-    **RILEY:** / **CASEY:** format into readable HTML paragraphs.
+    Strips markdown speaker tags, delivery cues and pacing annotations, turning
+    the internal **RILEY:** / **CASEY:** format into readable HTML paragraphs.
     """
-    lines = script_content.splitlines()
+    lines = strip_stage_directions(script_content).splitlines()
     html_parts = [
         "<!DOCTYPE html>",
         '<html lang="en">',

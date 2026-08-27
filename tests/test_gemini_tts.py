@@ -52,8 +52,8 @@ class TestBuildTranscript:
         assert "Quesnel" not in transcript
 
     def test_stage_directions_pass_through(self):
-        segs = [{"speaker": "casey", "text": "(wry) Sure it will.", "gap_ms": None}]
-        assert "(wry)" in build_transcript(segs)
+        segs = [{"speaker": "casey", "text": "[thoughtfully] Sure it will.", "gap_ms": None}]
+        assert "[thoughtfully]" in build_transcript(segs)
 
 
 class TestBuildPayload:
@@ -96,10 +96,39 @@ class TestBuildPayload:
         with pytest.raises(ValueError):
             _build_payload(segs)
 
-    def test_style_prompt_prefixed(self):
+    def test_prompt_is_scaffolded_direction_then_transcript(self):
+        """Direction above a hard delimiter, speech below it — the whole point
+        of the scaffolding is that the model never has to infer the boundary."""
         prompt = _build_payload(SEGS)["contents"][0]["parts"][0]["text"]
-        # Style prompt from config/prompts.json leads, transcript follows
-        assert prompt.index("community-radio") < prompt.index("Riley: ")
+        assert prompt.startswith(gemini_tts.AUDIO_PROFILE_HEADER)
+        assert (
+            prompt.index(gemini_tts.AUDIO_PROFILE_HEADER)
+            < prompt.index(gemini_tts.PERFORMANCE_NOTES_HEADER)
+            < prompt.index(gemini_tts.TRANSCRIPT_MARKER)
+        )
+        # The style prompt from config/prompts.json is in the notes, not the speech.
+        style_line = gemini_tts._style_prompt().split("\n")[0]
+        assert prompt.index(style_line) < prompt.index(gemini_tts.TRANSCRIPT_MARKER)
+
+    def test_audio_profile_names_both_voices(self):
+        prompt = _build_payload(SEGS)["contents"][0]["parts"][0]["text"]
+        profile = prompt.split(gemini_tts.PERFORMANCE_NOTES_HEADER)[0]
+        from config_loader import get_gemini_audio_profile_for_host
+
+        for host in ("riley", "casey"):
+            assert get_gemini_audio_profile_for_host(host) in profile
+
+    def test_tag_rule_travels_with_the_tags(self):
+        """The never-speak-a-tag rule used to live in the style prompt, so the
+        rung that dropped the style still sent tags with nothing saying they
+        were direction. It is now emitted whenever cues are kept."""
+        keeps_cues_no_style = gemini_tts._Rung(0, True, False, True, False)
+        prompt = _build_payload(SEGS, rung=keeps_cues_no_style)["contents"][0]["parts"][0]["text"]
+        assert gemini_tts._tag_instruction() in prompt
+
+        strips_cues = gemini_tts._Rung(0, True, True, False, False)
+        prompt = _build_payload(SEGS, rung=strips_cues)["contents"][0]["parts"][0]["text"]
+        assert gemini_tts._tag_instruction() not in prompt
 
     def test_seed_and_temperature_pinned_for_voice_consistency(self):
         cfg = _build_payload(SEGS)["generationConfig"]
@@ -113,7 +142,9 @@ class TestBuildPayload:
     def test_continuation_note_prepended_before_transcript(self):
         prompt = _build_payload(SEGS, continuing=True)["contents"][0]["parts"][0]["text"]
         assert gemini_tts.CONTINUATION_NOTE in prompt
-        assert prompt.index(gemini_tts.CONTINUATION_NOTE) < prompt.index("Riley: ")
+        assert prompt.index(gemini_tts.CONTINUATION_NOTE) < prompt.index(
+            gemini_tts.TRANSCRIPT_MARKER
+        )
 
     def test_continuation_note_carries_no_quotable_dialogue(self):
         """Regression (2026-08-17): the cold open aired twice.
@@ -125,9 +156,18 @@ class TestBuildPayload:
         a listener could recognise as a line from the show.
         """
         prompt = _build_payload(SEGS, continuing=True)["contents"][0]["parts"][0]["text"]
-        # The only speaker-tagged lines in the prompt are this call's own turns.
-        assert prompt.count("Riley: ") == 1
-        assert prompt.count("Casey: ") == 1
+        # Below the marker: this call's own turns and nothing else. Above it:
+        # direction only — the audio profile is `Riley: <description>` shaped,
+        # which is why the marker exists at all, but none of it is a line from
+        # the show.
+        transcript = prompt.split(gemini_tts.TRANSCRIPT_MARKER)[1]
+        assert transcript.count("Riley: ") == 1
+        assert transcript.count("Casey: ") == 1
+        for seg in SEGS:
+            assert prompt.count(seg["text"].split()[0]) >= 1
+        assert "Welcome back to the show." not in prompt.split(
+            gemini_tts.TRANSCRIPT_MARKER
+        )[0]
         # `continuing` is a flag, so there is no channel for prior text at all.
         with pytest.raises(TypeError):
             _build_payload(SEGS, context_tail="Casey: ...earlier line.")
@@ -140,7 +180,7 @@ class TestRetryLadderShape:
     tokens)."""
 
     def _prompt(self, rung, continuing=True):
-        segs = [{"speaker": "casey", "text": "(wry) Sure it will.", "gap_ms": None}]
+        segs = [{"speaker": "casey", "text": "[thoughtfully] Sure it will.", "gap_ms": None}]
         return _build_payload(segs, continuing=continuing, rung=rung)["contents"][0]["parts"][0]["text"]
 
     def test_first_rung_is_the_full_quality_request(self):
@@ -166,21 +206,26 @@ class TestRetryLadderShape:
         rung = gemini_tts._Rung(0, False, True, True, False)
         assert "already spoken" not in self._prompt(rung)
 
-    def test_dropping_style_removes_the_style_prompt(self):
+    def test_dropping_style_removes_the_style_prompt_and_the_profile(self):
         rung = gemini_tts._Rung(0, True, False, True, False)
-        assert "community-radio" not in self._prompt(rung)
+        prompt = self._prompt(rung)
+        assert gemini_tts._style_prompt().split("\n")[0] not in prompt
+        assert gemini_tts.AUDIO_PROFILE_HEADER not in prompt
+        # The transcript marker is scaffolding, never direction — it survives
+        # every rung, because the boundary is what the shedding is protecting.
+        assert gemini_tts.TRANSCRIPT_MARKER in prompt
 
     def test_dropping_cues_strips_stage_directions(self):
-        # Style dropped too, so the only possible source of "(wry)" is the
-        # transcript — the style prompt names the cue when explaining it.
+        # Style dropped too, so the only possible source of the tag is the
+        # transcript — the tag instruction names one when explaining them.
         rung = gemini_tts._Rung(0, True, False, False, False)
         prompt = self._prompt(rung)
-        assert "(wry)" not in prompt
+        assert "[thoughtfully]" not in prompt
         assert "Sure it will." in prompt
 
     def test_cues_survive_when_the_rung_keeps_them(self):
         rung = gemini_tts._Rung(0, True, False, True, False)
-        assert "(wry)" in self._prompt(rung)
+        assert "[thoughtfully]" in self._prompt(rung)
 
     def test_fallback_model_tried_before_a_bare_transcript(self):
         """Voices are pinned by speechConfig on every rung, so a model change
@@ -221,11 +266,19 @@ class TestModelEnvResolution:
 
     def test_empty_falls_back_to_default(self, monkeypatch):
         self._reload_with(monkeypatch, "   ")
-        assert gemini_tts.GEMINI_TTS_MODEL == "gemini-2.5-flash-preview-tts"
+        assert gemini_tts.GEMINI_TTS_MODEL == "gemini-3.1-flash-tts-preview"
 
     def test_unset_falls_back_to_default(self, monkeypatch):
         self._reload_with(monkeypatch, None)
-        assert gemini_tts.GEMINI_TTS_MODEL == "gemini-2.5-flash-preview-tts"
+        assert gemini_tts.GEMINI_TTS_MODEL == "gemini-3.1-flash-tts-preview"
+
+    def test_fallback_default_is_a_model_the_show_has_shipped_on(self, monkeypatch):
+        """The primary is a preview this repo has never run a night on, so the
+        fallback's job is to be the known-good one: a wrong model name or a 3.1
+        outage then costs the episode a model, not its voices."""
+        self._reload_with(monkeypatch, None)
+        assert gemini_tts.GEMINI_TTS_FALLBACK_MODEL == "gemini-2.5-flash-preview-tts"
+        assert gemini_tts.GEMINI_TTS_FALLBACK_MODEL != gemini_tts.GEMINI_TTS_MODEL
 
 
 class TestSynthesizeGuards:
@@ -870,21 +923,38 @@ class TestEvaluateScriptLoader:
 
 
 class TestStripStageDirections:
-    def test_whitelisted_cue_removed(self):
+    def test_whitelisted_tag_removed(self):
+        result = strip_stage_directions("[thoughtfully] Sure it will.")
+        assert "[thoughtfully]" not in result
+        assert "Sure it will." in result
+
+    def test_multi_word_tag_removed(self):
+        result = strip_stage_directions("Fine. [short pause] Let's hear it.")
+        assert "[short pause]" not in result
+        assert "Fine." in result and "Let's hear it." in result
+
+    def test_cue_mid_sentence_removed(self):
+        result = strip_stage_directions("Fine. [sighs] Let's hear it.")
+        assert "[sighs]" not in result
+        assert "Fine." in result and "Let's hear it." in result
+
+    def test_legacy_parenthetical_cue_still_stripped(self):
+        """Every script already on disk carries `(wry)`-style cues, and a
+        re-render of one still has to clean them for OpenAI and Azure."""
         result = strip_stage_directions("(wry) Sure it will.")
         assert "(wry)" not in result
         assert "Sure it will." in result
 
-    def test_cue_mid_sentence_removed(self):
-        result = strip_stage_directions("Fine. (sighs) Let's hear it.")
-        assert "(sighs)" not in result
-        assert "Fine." in result and "Let's hear it." in result
-
     def test_case_insensitive(self):
         assert "(Chuckles)" not in strip_stage_directions("(Chuckles) Right.")
+        assert "[Thoughtfully]" not in strip_stage_directions("[Thoughtfully] Right.")
 
     def test_real_parenthetical_dialog_untouched(self):
         text = "The grant (about forty thousand dollars) closed last week."
+        assert strip_stage_directions(text) == text
+
+    def test_real_bracketed_text_untouched(self):
+        text = "The report [sic] named the wrong district."
         assert strip_stage_directions(text) == text
 
 
@@ -1027,5 +1097,13 @@ class TestStageDirectionAddendum:
         monkeypatch.setattr(pg, "USE_GEMINI_TTS", True)
         addendum = pg._stage_direction_addendum()
         assert "STAGE DIRECTIONS" in addendum
-        assert "(wry)" in addendum
+        assert "[thoughtfully]" in addendum
         assert "{cue_list}" not in addendum
+
+    def test_legacy_cues_are_not_offered_to_the_polish_pass(self, monkeypatch):
+        """legacy_whitelist exists so an old script still strips, not so a new
+        one can be written in the old syntax."""
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "USE_GEMINI_TTS", True)
+        addendum = pg._stage_direction_addendum()
+        assert "[wry]" not in addendum and "(wry)" not in addendum

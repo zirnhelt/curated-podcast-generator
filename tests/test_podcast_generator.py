@@ -1691,6 +1691,21 @@ class TestScriptToVttTranscript:
         assert "<v Casey>Great to be here today." in vtt
         assert "-->" in vtt
 
+    def test_delivery_tags_never_reach_the_listener(self):
+        """`[thoughtfully]` is direction for the voice model. A reader seeing it
+        in the published transcript is the same leak as the model saying it."""
+        vtt = script_to_vtt_transcript(
+            "**RILEY:** [warmly] Welcome to the show.\n**CASEY:** [sighs] Great to be here today."
+        )
+        assert "[warmly]" not in vtt and "[sighs]" not in vtt
+        assert "<v Riley>Welcome to the show." in vtt
+
+        from podcast_generator import script_to_friendly_transcript
+
+        html = script_to_friendly_transcript("**CASEY:** [thoughtfully] Sure it will.")
+        assert "[thoughtfully]" not in html
+        assert "Sure it will." in html
+
     def test_legacy_first_cue_pinned_without_timeline(self):
         vtt = script_to_vtt_transcript("**RILEY:** Hello out there in radio land.")
         assert "00:00:25.000 -->" in vtt

@@ -5,7 +5,7 @@ Gemini multi-speaker TTS integration (NotebookLM-style dialog rendering).
 One generateContent call per script section renders the whole two-host
 conversation with coherent cross-speaker prosody, replacing per-segment
 synthesis + manual gap stitching. A style prompt from config/prompts.json
-controls delivery, and whitelisted parenthetical stage directions in the
+controls delivery, and whitelisted inline [tag] stage directions in the
 script text are performed rather than read aloud.
 
 Plain REST via requests — no SDK dependency.
@@ -13,7 +13,7 @@ Plain REST via requests — no SDK dependency.
 Requires:
   GEMINI_API_KEY   — Google AI Studio key
 Optional:
-  GEMINI_TTS_MODEL — default gemini-2.5-flash-preview-tts
+  GEMINI_TTS_MODEL — default gemini-3.1-flash-tts-preview
 """
 
 import base64
@@ -30,6 +30,7 @@ import requests
 # ponytail: reuse azure_tts's segment splitter instead of writing a second one
 from azure_tts import PRONUNCIATION_DICT, _split_segments_by_char_limit
 from config_loader import (
+    get_gemini_audio_profile_for_host,
     get_gemini_voice_for_host,
     load_hosts_config,
     load_prompts_config,
@@ -40,16 +41,24 @@ from config_loader import (
 # workflow secret expanding to "" — still falls back to the default model.
 # .strip() guards against a trailing-whitespace secret/variable value, which
 # otherwise lands in the URL as a literal "%20" and Gemini 400s on it.
-GEMINI_TTS_MODEL = (os.getenv("GEMINI_TTS_MODEL") or "").strip() or "gemini-2.5-flash-preview-tts"
+GEMINI_TTS_MODEL = (os.getenv("GEMINI_TTS_MODEL") or "").strip() or "gemini-3.1-flash-tts-preview"
 
 # Second Gemini TTS model, tried after the primary has failed several times.
 # Same prebuilt voice names and the same multi-speaker API, so falling here
 # keeps Riley and Casey sounding like themselves — the episode loses a model,
-# not its voice. Pro TTS costs more than flash, which is why it sits behind
-# three primary-model failures rather than being tried early (see RETRY_LADDER).
+# not its voice.
+#
+# It is the 2.5 flash model the show rendered on for months, deliberately: the
+# primary is now a preview model this repo has never run a night on, so the
+# fallback's job is to be the known-good one. A wrong model name, a preview
+# withdrawn, or a 3.1 outage then costs the episode nothing at all — the canary
+# probes the primary, fails, probes this, and pins it for the show. Pro TTS used
+# to sit here; it costs more than flash and was never reached on a night flash
+# could serve, so it is now an env-var away (GEMINI_TTS_FALLBACK_MODEL) rather
+# than the default second spend.
 GEMINI_TTS_FALLBACK_MODEL = (
     os.getenv("GEMINI_TTS_FALLBACK_MODEL") or ""
-).strip() or "gemini-2.5-pro-preview-tts"
+).strip() or "gemini-2.5-flash-preview-tts"
 
 GEMINI_TTS_URL = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 
@@ -87,6 +96,17 @@ CONTINUATION_NOTE = (
     "This continues a conversation already in progress. Open mid-flow at the "
     "same energy as an episode already underway, with no fresh introduction."
 )
+
+# Prompt scaffolding. Gemini's own guidance for multi-speaker synthesis is to
+# fence the spoken text off from everything around it: the direction goes above
+# a hard delimiter and only what follows it is speech. Everything this pipeline
+# has been bitten by on this endpoint is a boundary failure — the cold open read
+# aloud twice (see CONTINUATION_NOTE), a stage direction spoken as dialogue — so
+# the request now says where the transcript starts rather than leaving the model
+# to infer it from a colon at the end of a sentence.
+AUDIO_PROFILE_HEADER = "### AUDIO PROFILE"
+PERFORMANCE_NOTES_HEADER = "### PERFORMANCE NOTES"
+TRANSCRIPT_MARKER = "#### TRANSCRIPT"
 
 # Fail-fast ceiling — no single section should ever approach this; hitting it
 # means a parsing bug upstream, not a long section. Raise instead of spending.
@@ -212,6 +232,61 @@ def _style_prompt() -> str:
     return load_prompts_config().get("gemini_tts", {}).get("style_prompt", "")
 
 
+def _tag_instruction() -> str:
+    """The never-speak-a-tag rule, kept out of the sheddable style prompt.
+
+    It used to be the last sentence of style_prompt, which meant the rung that
+    dropped the style also dropped the only thing telling the model that
+    `[thoughtfully]` is direction rather than dialogue — while still sending the
+    tags. The rule now travels with the tags: emitted whenever the rung keeps
+    cues, absent when it strips them.
+    """
+    return (load_prompts_config().get("gemini_tts", {})
+            .get("stage_directions", {}).get("tag_instruction", ""))
+
+
+def _audio_profile_block(speakers: list[str]) -> str:
+    """`### AUDIO PROFILE` — one line per speaker, naming who the voice is.
+
+    Voices are pinned by speechConfig, so this is not what selects them; it is
+    what tells the model how the pinned voice is meant to carry a line.
+    """
+    lines = [
+        f"{_display_name(s)}: {get_gemini_audio_profile_for_host(s)}".rstrip(": ")
+        for s in speakers
+    ]
+    return AUDIO_PROFILE_HEADER + "\n" + "\n".join(lines)
+
+
+def _performance_notes_block(
+    speakers: list[str], continuing: bool, rung: _Rung
+) -> str:
+    """`### PERFORMANCE NOTES` — the show's direction plus this call's rules."""
+    names = " and ".join(_display_name(s) for s in speakers)
+    # A one-turn section (the cold open is usually a single host) is not a
+    # conversation, and asking for one between a single named person is a
+    # malformed request the model has to interpret. This is also the call that
+    # failed most often in the week of 2026-08-01.
+    if len(speakers) == 1:
+        notes = [f"One voice throughout, read aloud by {names}."]
+    else:
+        notes = [
+            f"A conversation between {names}, alternating exactly as the "
+            "speaker labels below set it out."
+        ]
+    if rung.keep_style and (style := _style_prompt()):
+        # The style prompt carries its own leading dashes, so it lands as
+        # sibling bullets rather than one wrapped paragraph.
+        notes.extend(style.split("\n"))
+    if rung.keep_cues and (tags := _tag_instruction()):
+        notes.append(tags)
+    # A directive, never quotable dialogue — see CONTINUATION_NOTE.
+    if continuing and rung.keep_context:
+        notes.append(CONTINUATION_NOTE)
+    bullets = [n if n.startswith("- ") else f"- {n}" for n in notes]
+    return PERFORMANCE_NOTES_HEADER + "\n" + "\n".join(bullets)
+
+
 def apply_pronunciation(text: str) -> str:
     """Substitute Cariboo place-name phonetic aliases (plain text, no SSML)."""
     for word, alias in PRONUNCIATION_DICT.items():
@@ -222,9 +297,9 @@ def apply_pronunciation(text: str) -> str:
 def build_transcript(segments: list[dict], keep_cues: bool = True) -> str:
     """Build the speaker-labeled transcript for one request.
 
-    keep_cues=False strips the whitelisted `(wry)`-style stage directions, the
-    way the OpenAI and Azure paths always do — a retry rung for when Gemini
-    appears to be rejecting the request rather than failing to serve it.
+    keep_cues=False strips the whitelisted `[thoughtfully]`-style tags, the way
+    the OpenAI and Azure paths always do — a retry rung for when Gemini appears
+    to be rejecting the request rather than failing to serve it.
     """
     lines = []
     for seg in segments:
@@ -249,25 +324,12 @@ def _build_payload(
         raise ValueError(f"Gemini multi-speaker TTS supports 2 speakers, got {speakers}")
 
     transcript = build_transcript(segments, keep_cues=rung.keep_cues)
-    style = _style_prompt() if rung.keep_style else ""
-    names = " and ".join(_display_name(s) for s in speakers)
-    # A directive, never quotable dialogue — see CONTINUATION_NOTE.
-    context = (
-        f"{CONTINUATION_NOTE}\n\n" if continuing and rung.keep_context else ""
-    )
-    # A one-turn section (the cold open is usually a single host) is not a
-    # conversation, and asking for one between a single named person is a
-    # malformed request the model has to interpret. This is also the call that
-    # failed most often in the week of 2026-08-01.
-    if len(speakers) == 1:
-        instruction = f"TTS the following, read aloud by {names}:"
-    else:
-        instruction = f"TTS the following conversation between {names}:"
-    prompt = (
-        (style + "\n\n" if style else "")
-        + context
-        + f"{instruction}\n{transcript}"
-    )
+    blocks = []
+    if rung.keep_style:
+        blocks.append(_audio_profile_block(speakers))
+    blocks.append(_performance_notes_block(speakers, continuing, rung))
+    blocks.append(f"{TRANSCRIPT_MARKER}\n\n{transcript}")
+    prompt = "\n\n".join(blocks)
 
     if len(speakers) == 1:
         speech_config = {
