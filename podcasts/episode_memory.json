@@ -1,25 +1,4 @@
 {
-  "2026-07-24": {
-    "timestamp": 1784889578.884227,
-    "topics": [
-      "[New Atlas] Mini packs all the essentials into a towable tin",
-      "[The Narwhal] As Canadian politicians promise a carbon emiss",
-      "[Williams Lake Tribune] Clinton business steps up to feed fi",
-      "B.C. officials brace for worsening drought conditions and mo",
-      "[Global News] Wildfire smoke blankets Kelowna, prompting hea",
-      "Evacuations in Spain as wildfire triggers regional emergency",
-      "[Kottke.org] New orca behavior unlocked. They\u2019ve been known ",
-      "[Williams Lake Tribune] Hwy. 1 through Fraser Canyon, Hwy. 3"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech"
-    ],
-    "date": "2026-07-24",
-    "focus": "wildlife-conservation",
-    "focus_name": "Wildlife & Conservation"
-  },
   "2026-07-26": {
     "timestamp": 1785061647.488209,
     "topics": [
@@ -708,5 +687,25 @@
     "date": "2026-08-27",
     "focus": "language-culture",
     "focus_name": "Language & Culture"
+  },
+  "2026-08-28": {
+    "timestamp": 1787923744.962338,
+    "topics": [
+      "[Williams Lake Tribune] Former chief sentenced to 4 years fo",
+      "[WIRED] AI Slop Is Ruining Cute Animals on the Internet",
+      "[ScienceAlert] Deep Sea Scientists Hunting a Shipwreck Accid",
+      "[Scientific American] Wall of floodwater sweeps away village",
+      "[Business Insider] US Air Force special operations forces ar",
+      "[The Narwhal] One woman\u2019s race to save her horses from a B.C",
+      "[Forbes Innovation] The Communities Choosing Managed Retreat",
+      "[Vancouver Sun] Fast-moving wildfires reshaping B.C.\u2019s fores"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption"
+    ],
+    "date": "2026-08-28",
+    "focus": "wildfire-resilience",
+    "focus_name": "Wildfire & Climate Resilience"
   }
 }

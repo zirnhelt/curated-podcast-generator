@@ -1,0 +1,365 @@
+{
+  "episode": {
+    "date": "2026-08-28",
+    "formatted_date": "Friday, August 28, 2026",
+    "theme": "Wild Spaces & Outdoor Life",
+    "title": "Cariboo Signals - Wild Spaces & Outdoor Life",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Wild Spaces & Outdoor Life.</p><p><b>THIS WEEK WE'RE ASKING:</b> Who is allowed to fix things?</p><p><b>NEWS ROUNDUP:</b> We break down [Williams Lake Tribune] Former chief sentenced to 4 years for historic sex crimes in Williams Lake court and [WIRED] AI Slop Is Ruining Cute Animals on the Internet, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Who should have the authority to act on their land during wildfires—individual property owners making real-time decisions, or government agencies issuing formal evacuation orders? Topics include: Individual authority versus institutional control during wildfire evacuation decisions, Comparison between formal structure protection programs in the U.S./Australia and informal B.C. practices, Managed retreat and climate migration at slow timescales versus emergency response at fast timescales, Indigenous fire management authority and the Tŝilhqot'in National Government's independent emergency protocols, Policy gaps in B.C. wildfire response requiring legal rather than technological solutions.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://scoutisland.ca\">Scout Island Nature Centre</a></p><p><b>Sources discussed:</b></p><ul><li>Rebecca Dyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/08/26/former-chief-sentenced-to-4-years-for-historic-sex-crimes-in-williams-lake-court/\">[Williams Lake Tribune] Former chief sentenced to 4 years fo...</a></li><li>Paresh Dave (WIRED): <a href=\"https://www.wired.com/story/ai-slop-is-ruining-the-internets-cute-animal-economy/\">[WIRED] AI Slop Is Ruining Cute Animals on the Internet</a></li><li>Jess Cockerill (ScienceAlert): <a href=\"https://www.sciencealert.com/deep-sea-scientists-hunting-a-shipwreck-accidentally-stumbled-across-the-oceans-own-backrooms\">[ScienceAlert] Deep Sea Scientists Hunting a Shipwreck Accid...</a></li><li>Andrea Thompson (Scientific American): <a href=\"https://www.scientificamerican.com/article/wall-of-floodwater-sweeps-away-villages-in-nepal-hundreds-missing/\">[Scientific American] Wall of floodwater sweeps away village...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/special-operations-gliders-to-resupply-troops-far-from-friendly-lines-2026-8\">[Business Insider] US Air Force special operations forces ar...</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/08/260816044839.htm\">[ScienceDaily] Scientists discover a natural Arctic cloud fa...</a></li><li>Eric Klinenberg (The New Yorker): <a href=\"https://www.newyorker.com/magazine/2026/08/24/the-end-of-the-european-summer\">[The New Yorker] The End of the European Summer</a></li><li>Nautilus: <a href=\"https://nautil.us/how-our-attraction-to-natural-fixes-can-stymie-climate-progress-1283671/\">[Nautilus] How Our Attraction to Natural Fixes Can Stymie Cl...</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/08/260823094148.htm\">[ScienceDaily] Your brain may not actually “make” decisions</a></li><li>Richard Luscombe (Mother Jones): <a href=\"https://www.motherjones.com/environment/2026/08/florida-coastal-corridor-project-marine-reef-coral-fishing-protection-economy/\">[Mother Jones] Florida’s Ambitious “Coastal Corridor” projec...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/visually-impaired-warehouse-workers-meta-glasses-drones-inventory-management-2026-8\">[Business Insider] Amid warehouse staffing shortages, AI-pow...</a></li><li>https://www.techradar.com/author/rahim-amir (TechRadar): <a href=\"https://www.techradar.com/pro/security/security-expert-hijacks-apples-find-my-network-to-share-data-with-a-linux-device\">[TechRadar] Security expert hijacks Apple's Find My network ...</a></li><li>Krebs on Security: <a href=\"https://krebsonsecurity.com/2026/08/two-alleged-teampcp-hackers-arrested-in-australia/\">[Krebs on Security] Two Alleged ‘TeamPCP’ Hackers Arrested i...</a></li><li>The Narwhal: <a href=\"https://thenarwhal.ca/bradley-creek-wildfire-syilx-youth-horses-bc/?utm_source=rss\">[The Narwhal] One woman’s race to save her horses from a B.C...</a></li><li>Indrabati Lahiri (Forbes Innovation): <a href=\"https://www.forbes.com/sites/indrabatilahiri/2026/08/14/the-communities-choosing-managed-retreat-as-climate-adaptation/\">[Forbes Innovation] The Communities Choosing Managed Retreat...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Kelly Kizer Whitt (EarthSky): <a href=\"https://earthsky.org/earth/nepal-flash-flood-glacier-collapse-landslide-aug-26-2026/\">[EarthSky] Nepal flash flood nightmare: What caused it?</a></li><li>Vancouver Sun: <a href=\"https://vancouversun.com/opinion/op-ed/opinion-bc-wildfires-and-fossil-fuels-we-need-to-connect-the-dots\">[Vancouver Sun] Opinion: B.C.&#039;s wildfires and fossil fu...</a></li><li>Vancouver Sun: <a href=\"https://vancouversun.com/news/local-news/fast-moving-wildfires-reshaping-bc-forests-study\">[Vancouver Sun] Fast-moving wildfires reshaping B.C.’s fores...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5<br>Today's Voices: Gemini TTS and OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-08-28T06:28:58.265948-07:00",
+    "models": {
+      "script": "claude-sonnet-5",
+      "review": "claude-sonnet-5",
+      "summary": "claude-haiku-4-5"
+    },
+    "quality": {
+      "word_count": 2904,
+      "voice_ratio_casey_riley": 0.88,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 0,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 3,
+        "roundup_seam": 0,
+        "thats_closer": 0,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 0,
+      "rhythm": {
+        "em_dashes_per_1k": 13.1,
+        "short_turns": 8,
+        "turns": 71,
+        "avg_turn_words": 39.4,
+        "antithesis_hits": 0,
+        "over_budget": [
+          "em_dashes"
+        ]
+      },
+      "deep_dive_article_quality": "moderate",
+      "deep_dive_articles_with_body": 2
+    },
+    "anchor": {
+      "id": "allowed-to-fix",
+      "question": "Who is allowed to fix things?"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Former chief sentenced to 4 years for historic sex crimes in Williams Lake court",
+          "url": "https://wltribune.com/2026/08/26/former-chief-sentenced-to-4-years-for-historic-sex-crimes-in-williams-lake-court/",
+          "source": "Williams Lake Tribune",
+          "author": "Rebecca Dyok",
+          "ai_score": 83,
+          "date_published": "2026-08-27T14:00:27.963753+00:00",
+          "summary": "## Former chief sentenced to 4 years for historic sex crimes in Williams Lake court Published 9:21 am Wednesday, August 26, 2026 **By Rebecca Dyok** Ervin Charleyboy was sentenced in Williams Lake Sup...",
+          "discussed": true,
+          "mention_offset_frac": 0.0295
+        },
+        {
+          "title": "[WIRED] AI Slop Is Ruining Cute Animals on the Internet",
+          "url": "https://www.wired.com/story/ai-slop-is-ruining-the-internets-cute-animal-economy/",
+          "source": "WIRED",
+          "author": "Paresh Dave",
+          "ai_score": 69,
+          "date_published": "2026-08-26T11:00:00+00:00",
+          "summary": "Pet owners, rescue agencies, and wildlife groups are calling for new safeguards as AI makes it harder to tell whether animals, from polar bears to house cats, are real or fake.",
+          "discussed": true,
+          "mention_offset_frac": 0.0677
+        },
+        {
+          "title": "[ScienceAlert] Deep Sea Scientists Hunting a Shipwreck Accidentally Stumbled Across The Ocean's Own Backrooms",
+          "url": "https://www.sciencealert.com/deep-sea-scientists-hunting-a-shipwreck-accidentally-stumbled-across-the-oceans-own-backrooms",
+          "source": "ScienceAlert",
+          "author": "Jess Cockerill",
+          "ai_score": 65,
+          "date_published": "2026-08-25T19:00:00+00:00",
+          "summary": "Is there no corner of this Earth our junk does not reach? ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+          "discussed": true,
+          "mention_offset_frac": 0.1653
+        },
+        {
+          "title": "[ScienceDaily] Scientists discover a natural Arctic cloud factory missing from climate models",
+          "url": "https://www.sciencedaily.com/releases/2026/08/260816044839.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-08-18T17:34:33+00:00",
+          "summary": "A newly discovered Arctic process can dramatically boost the number of particles that help form clouds. Near melting sea ice, sunlight reacts with chemicals released by the ocean, algae, and ice, caus...",
+          "discussed": true,
+          "mention_offset_frac": 0.1665
+        },
+        {
+          "title": "[ScienceDaily] Your brain may not actually “make” decisions",
+          "url": "https://www.sciencedaily.com/releases/2026/08/260823094148.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 68,
+          "date_published": "2026-08-25T17:53:28+00:00",
+          "summary": "A neuroscientist is challenging the idea that the brain contains a central system that actually “makes” our decisions. What we experience as choosing may instead emerge from the continuous interaction...",
+          "discussed": true,
+          "mention_offset_frac": 0.2147
+        },
+        {
+          "title": "[Scientific American] Wall of floodwater sweeps away villages in Nepal, with hundreds missing",
+          "url": "https://www.scientificamerican.com/article/wall-of-floodwater-sweeps-away-villages-in-nepal-hundreds-missing/",
+          "source": "Scientific American",
+          "author": "Andrea Thompson",
+          "ai_score": 63,
+          "date_published": "2026-08-26T18:56:00+00:00",
+          "summary": "A massive flood potentially caused by a chunk of ice breaking off from a glacier has swept away bridges, schools, and other buildings and killed at least 160 people",
+          "discussed": true,
+          "mention_offset_frac": 0.2329
+        },
+        {
+          "title": "[Business Insider] US Air Force special operations forces are eyeing powered gliders to resupply troops far from friendly supply lines",
+          "url": "https://www.businessinsider.com/special-operations-gliders-to-resupply-troops-far-from-friendly-lines-2026-8",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-27T12:24:01+00:00",
+          "summary": "Powered gliders could give US special operators a low-signature way to get food, medical gear, and other supplies to isolated teams.",
+          "discussed": true,
+          "mention_offset_frac": 0.3497
+        },
+        {
+          "title": "[The New Yorker] The End of the European Summer",
+          "url": "https://www.newyorker.com/magazine/2026/08/24/the-end-of-the-european-summer",
+          "source": "The New Yorker",
+          "author": "Eric Klinenberg",
+          "ai_score": 56,
+          "date_published": "2026-08-17T10:00:00+00:00",
+          "summary": "As extreme heat overwhelms the Continent’s great cities, they are racing to transform themselves for a climate that they were never built to withstand.",
+          "discussed": true,
+          "mention_offset_frac": 0.5028
+        },
+        {
+          "title": "[Vancouver Sun] Opinion: B.C.&#039;s wildfires and fossil fuels: We need to connect the dots",
+          "url": "https://vancouversun.com/opinion/op-ed/opinion-bc-wildfires-and-fossil-fuels-we-need-to-connect-the-dots",
+          "source": "Vancouver Sun",
+          "author": "",
+          "ai_score": 59,
+          "date_published": "2026-08-18T13:00:05+00:00",
+          "summary": "Tracey Saxby: Wildfire impacts are one example of the public costs of climate change, yet there is no provincial acknowledgment that these costs are exacerbated by domestic fossil fuel production — or...",
+          "discussed": false
+        },
+        {
+          "title": "[Nautilus] How Our Attraction to Natural Fixes Can Stymie Climate Progress",
+          "url": "https://nautil.us/how-our-attraction-to-natural-fixes-can-stymie-climate-progress-1283671/",
+          "source": "Nautilus",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-08-11T22:00:00+00:00",
+          "summary": "Does a human-made problem need a natural solution? The post How Our Attraction to Natural Fixes Can Stymie Climate Progress appeared first on Nautilus .",
+          "discussed": true,
+          "mention_offset_frac": 0.572
+        },
+        {
+          "title": "[Mother Jones] Florida’s Ambitious “Coastal Corridor” project Is Giving Marine Scientists Hope",
+          "url": "https://www.motherjones.com/environment/2026/08/florida-coastal-corridor-project-marine-reef-coral-fishing-protection-economy/",
+          "source": "Mother Jones",
+          "author": "Richard Luscombe",
+          "ai_score": 52,
+          "date_published": "2026-08-16T12:00:00+00:00",
+          "summary": "This story was originally published by the Guardian and is reproduced here as part of the Climate Desk collaboration. From disappearing manatees to bleached coral reefs, gender-changing turtles and oy...",
+          "discussed": true,
+          "mention_offset_frac": 0.7252
+        },
+        {
+          "title": "[Krebs on Security] Two Alleged ‘TeamPCP’ Hackers Arrested in Australia",
+          "url": "https://krebsonsecurity.com/2026/08/two-alleged-teampcp-hackers-arrested-in-australia/",
+          "source": "Krebs on Security",
+          "author": "",
+          "ai_score": 68,
+          "date_published": "2026-08-27T11:04:15+00:00",
+          "summary": "Authorities in Australia have arrested two men believed to be members of TeamPCP, a prolific cybercrime and data extortion group blamed for perpetrating the longest running spree of software supply ch...",
+          "discussed": true,
+          "mention_offset_frac": 0.8208
+        },
+        {
+          "title": "[TechRadar] Security expert hijacks Apple's Find My network to share data with a Linux device",
+          "url": "https://www.techradar.com/pro/security/security-expert-hijacks-apples-find-my-network-to-share-data-with-a-linux-device",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/rahim-amir",
+          "ai_score": 67,
+          "date_published": "2026-08-26T18:20:00+00:00",
+          "summary": "Researcher tricks Apple's Find My into feeding live location data to a Linux box, with no Mac or iPhone required.",
+          "discussed": true,
+          "mention_offset_frac": 0.8513
+        },
+        {
+          "title": "[Business Insider] Amid warehouse staffing shortages, AI-powered drones and Meta glasses help visually impaired workers get the job done",
+          "url": "https://www.businessinsider.com/visually-impaired-warehouse-workers-meta-glasses-drones-inventory-management-2026-8",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 68,
+          "date_published": "2026-08-26T19:38:11+00:00",
+          "summary": "Amid e-commerce growth, Bosma hires visually impaired workers for warehouses, using AI tools like drones and Meta glasses to overcome staffing issues.",
+          "discussed": true,
+          "mention_offset_frac": 0.8996
+        },
+        {
+          "title": "[EarthSky] Nepal flash flood nightmare: What caused it?",
+          "url": "https://earthsky.org/earth/nepal-flash-flood-glacier-collapse-landslide-aug-26-2026/",
+          "source": "EarthSky",
+          "author": "Kelly Kizer Whitt",
+          "ai_score": 62,
+          "date_published": "2026-08-27T09:17:03+00:00",
+          "summary": "On August 26, 2026, a glacier collapse and landslide triggered a huge release of water. The Nepal flash flood wiped out villages and took untold lives. The post Nepal flash flood nightmare: What cause...",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Wild Spaces & Outdoor Life",
+      "articles": [
+        {
+          "title": "[The Narwhal] One woman’s race to save her horses from a B.C. wildfire",
+          "url": "https://thenarwhal.ca/bradley-creek-wildfire-syilx-youth-horses-bc/?utm_source=rss",
+          "source": "The Narwhal",
+          "author": "",
+          "ai_score": 77,
+          "date_published": "2026-08-26T16:00:00+00:00",
+          "summary": "Sienna Belanger recounts rescuing her family’s animals as the Bradley Creek wildfire approached, and drawing strength from syilx teachings in the aftermath of the evacuation",
+          "discussed": true
+        },
+        {
+          "title": "[Forbes Innovation] The Communities Choosing Managed Retreat As Climate Adaptation",
+          "url": "https://www.forbes.com/sites/indrabatilahiri/2026/08/14/the-communities-choosing-managed-retreat-as-climate-adaptation/",
+          "source": "Forbes Innovation",
+          "author": "Indrabati Lahiri",
+          "ai_score": 52,
+          "date_published": "2026-08-14T22:29:25+00:00",
+          "summary": "As climate change becomes more severe, communities in regions like Isle de Jean Charles and Newtok are forced to adopt managed retreat in order to adapt.",
+          "discussed": true
+        },
+        {
+          "title": "[Vancouver Sun] Fast-moving wildfires reshaping B.C.’s forests, new study finds",
+          "url": "https://vancouversun.com/news/local-news/fast-moving-wildfires-reshaping-bc-forests-study",
+          "source": "Vancouver Sun",
+          "author": "",
+          "ai_score": 74,
+          "date_published": "2026-08-18T13:00:53+00:00",
+          "summary": "Seven of the 10 fastest-growing fires were in Canada in 2023, the year of the country’s worst fire season",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Who should have the authority to act on their land during wildfires—individual property owners making real-time decisions, or government agencies issuing formal evacuation orders?",
+        "riley_position": "Current informal individual action during emergencies is necessary but dangerous; formalizing property-defense authority through legal frameworks similar to those in the U.S. and Australia would provide structure, training standards, and legal clarity instead of requiring people to improvise in violation of orders.",
+        "riley_key_evidence": [
+          "Sienna Belanger made critical decisions about her horses and barn in real time while evacuation order systems lagged behind actual fire behavior",
+          "The Pear Lake fire changed alert status twice in one week, demonstrating how orders cannot keep pace with fire dynamics",
+          "Structure protection programs in the U.S. and Australia deputize trained property owners with equipment and defined scope, providing a legal alternative to improvisation"
+        ],
+        "casey_position": "Evacuation orders exist because uncoordinated individual action endangers civilians and fire crews, but institutions are slow to grant authority they'd become accountable for; the real policy gap is the absence of a legal middle ground between full evacuation and nothing.",
+        "casey_key_evidence": [
+          "Uncoordinated individual action gets people and fire crews killed, making evacuation orders necessary for safety",
+          "Managed retreat examples like Newtok and Isle de Jean Charles show agencies only ratify decisions residents made years earlier, after communities have already managed decline with no resources or authority",
+          "No formal training standards, liability frameworks, or funding mechanisms currently exist in B.C. to support deputized property owners"
+        ],
+        "resolution": "Riley and Casey converge on the solution: a new legal category—registered property-defense status that property owners could apply for before fire season, with defined scope and training requirements, requiring only regulatory drafting by the province rather than funding, and potentially raisable by the Cariboo Regional District without waiting for grant cycles.",
+        "topics_covered": [
+          "Individual authority versus institutional control during wildfire evacuation decisions",
+          "Comparison between formal structure protection programs in the U.S./Australia and informal B.C. practices",
+          "Managed retreat and climate migration at slow timescales versus emergency response at fast timescales",
+          "Indigenous fire management authority and the Tŝilhqot'in National Government's independent emergency protocols",
+          "Policy gaps in B.C. wildfire response requiring legal rather than technological solutions"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 10,
+          "conditions": "overcast",
+          "high": 17,
+          "low": 10
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 8,
+          "conditions": "clear skies",
+          "high": 17,
+          "low": 8
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 10,
+          "conditions": "partly cloudy",
+          "high": 21,
+          "low": 10
+        },
+        {
+          "name": "Quesnel",
+          "temp": 11,
+          "conditions": "overcast",
+          "high": 18,
+          "low": 11
+        },
+        {
+          "name": "Riske Creek",
+          "temp": 9,
+          "conditions": "partly cloudy",
+          "high": 19,
+          "low": 9
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Scout Island Nature Centre",
+      "description": "Volunteer-run nature education centre operated by the Williams Lake Field Naturalists — birding, kids programs, Salmon in the Classroom",
+      "website": "scoutisland.ca",
+      "psa_angle": "Scout Island Nature Centre is running kids' summer programs all season — each week has a different theme like Water, Bugs, or Birds. Sign up at scoutisland.ca.",
+      "event_name": "Scout Island summer programs"
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_azure": "Azure Neural TTS",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "Gemini TTS and OpenAI TTS"
+  }
+}
