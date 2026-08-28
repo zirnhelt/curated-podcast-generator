@@ -1,30 +1,4 @@
 {
-  "2026-05-30": {
-    "timestamp": 1780135418.963338,
-    "date": "2026-05-30",
-    "theme": "Cariboo Local Affairs",
-    "central_question": "Can municipal enforcement tools ('drastic measures') effectively address prolific offending in small cities, or do solutions require provincial-level intervention?",
-    "riley_position": "Municipal enforcement alone won't resolve the underlying problem; cities need provincial support for integrated response models and adult mental health services, but municipalities can play a crucial role as translators of specific, documented needs to senior government.",
-    "riley_key_evidence": [
-      "Medicine Hat's integrated Housing First program with social worker/police co-response teams showed positive outcomes data both human and cost-per-call",
-      "Foundry Cariboo Chilcotin already operates an integrated youth services model that could serve as infrastructure for adult responses",
-      "The province has invested in youth mental health infrastructure but not adult mental health and addiction recovery infrastructure"
-    ],
-    "casey_position": "Enforcement-based 'drastic measures' at the municipal level only move people around without resolving the situation, and Williams Lake lacks the political resources and provincial buy-in that made Medicine Hat's model work.",
-    "casey_key_evidence": [
-      "Medicine Hat required a decade-long political commitment and provincial buy-in that Williams Lake's different political and fiscal reality cannot replicate",
-      "The RCMP detachment model and stretched social service ecosystem in Williams Lake are fundamentally different from mid-sized Alberta municipal forces",
-      "Small rural communities have the least structural power to demand provincial responses despite being closest to the problem"
-    ],
-    "resolution": "Riley and Casey agreed that specificity and accountability matter more than the framing of 'drastic measures'\u2014that city councillors should document concrete data, make explicit provincial asks with timelines, and use electoral accountability if the province fails to respond, rather than issuing vague enforcement calls.",
-    "topics_covered": [
-      "Municipal jurisdiction limitations versus provincial control of criminal justice and service provision",
-      "Integrated response teams and evidence-based models (Medicine Hat, Foundry Cariboo Chilcotin, ACT teams)",
-      "The accountability gap between what decision-makers hear and what they document/act on",
-      "Cumulative service contraction in small cities (airline loss, healthcare pressures, concurrent service gaps)",
-      "The role of municipal politicians as translators of specific needs to senior government"
-    ]
-  },
   "2026-05-31": {
     "timestamp": 1780222799.429784,
     "date": "2026-05-31",
@@ -2342,6 +2316,34 @@
       "A Nation could train its own people to administer its own fluency assessment and treat that internal assessment as the credential, then negotiate a local recognition agreement with a specific school district rather than waiting on Victoria to rewrite provincial rules.",
       "A community could start by having fluent elders record a hundred words on video, tagged by dialect and community, sitting entirely outside any academic orthography, to see whether that raw material changes how a school district talks to them a year from now\u2014a project measured in weeks, not grant cycles.",
       "If you have a correction, a story tip, or know a Cariboo language program worth following more closely, send it to feedback at cariboo signals dot c-a; also report if a program isn't working, as that's usually the story being missed."
+    ]
+  },
+  "2026-08-28": {
+    "timestamp": 1787923748.20073,
+    "date": "2026-08-28",
+    "theme": "Wild Spaces & Outdoor Life",
+    "focus": "wildfire-resilience",
+    "anchor": "allowed-to-fix",
+    "central_question": "Who should have the authority to act on their land during wildfires\u2014individual property owners making real-time decisions, or government agencies issuing formal evacuation orders?",
+    "riley_position": "Current informal individual action during emergencies is necessary but dangerous; formalizing property-defense authority through legal frameworks similar to those in the U.S. and Australia would provide structure, training standards, and legal clarity instead of requiring people to improvise in violation of orders.",
+    "riley_key_evidence": [
+      "Sienna Belanger made critical decisions about her horses and barn in real time while evacuation order systems lagged behind actual fire behavior",
+      "The Pear Lake fire changed alert status twice in one week, demonstrating how orders cannot keep pace with fire dynamics",
+      "Structure protection programs in the U.S. and Australia deputize trained property owners with equipment and defined scope, providing a legal alternative to improvisation"
+    ],
+    "casey_position": "Evacuation orders exist because uncoordinated individual action endangers civilians and fire crews, but institutions are slow to grant authority they'd become accountable for; the real policy gap is the absence of a legal middle ground between full evacuation and nothing.",
+    "casey_key_evidence": [
+      "Uncoordinated individual action gets people and fire crews killed, making evacuation orders necessary for safety",
+      "Managed retreat examples like Newtok and Isle de Jean Charles show agencies only ratify decisions residents made years earlier, after communities have already managed decline with no resources or authority",
+      "No formal training standards, liability frameworks, or funding mechanisms currently exist in B.C. to support deputized property owners"
+    ],
+    "resolution": "Riley and Casey converge on the solution: a new legal category\u2014registered property-defense status that property owners could apply for before fire season, with defined scope and training requirements, requiring only regulatory drafting by the province rather than funding, and potentially raisable by the Cariboo Regional District without waiting for grant cycles.",
+    "topics_covered": [
+      "Individual authority versus institutional control during wildfire evacuation decisions",
+      "Comparison between formal structure protection programs in the U.S./Australia and informal B.C. practices",
+      "Managed retreat and climate migration at slow timescales versus emergency response at fast timescales",
+      "Indigenous fire management authority and the T\u015dilhqot'in National Government's independent emergency protocols",
+      "Policy gaps in B.C. wildfire response requiring legal rather than technological solutions"
     ]
   }
 }

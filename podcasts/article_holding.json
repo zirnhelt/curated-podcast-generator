@@ -38,7 +38,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-08-28"
   },
   "https://www.sciencealert.com/a-new-underwater-glue-bonds-in-10-seconds-and-holds-for-years": {
     "article": {
@@ -119,7 +120,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-08-28"
   },
   "https://nautil.us/how-our-attraction-to-natural-fixes-can-stymie-climate-progress-1283671/": {
     "article": {
@@ -159,47 +161,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
-  },
-  "https://www.sciencedaily.com/releases/2026/08/260811011140.htm": {
-    "article": {
-      "id": "https://www.sciencedaily.com/releases/2026/08/260811011140.htm",
-      "url": "https://www.sciencedaily.com/releases/2026/08/260811011140.htm",
-      "title": "[ScienceDaily] MIT neuroscientists discover the brain can reason without words",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencedaily.com%2Freleases%2F2026%2F08%2F260811011140.htm\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nMIT neuroscientists have found striking evidence that language and logical reasoning are powered by separate systems in the brain. Even people with severe language impairments caused by stroke were able to solve challenging logic puzzles as well as people without those impairments, while brain scans showed that language-processing regions stayed largely quiet during reasoning tasks.",
-      "summary": "MIT neuroscientists have found striking evidence that language and logical reasoning are powered by separate systems in the brain. Even people with severe language impairments caused by stroke were able to solve challenging logic puzzles as well as people without those impairments, while brain",
-      "_excerpt": "MIT neuroscientists have found striking evidence that language and logical reasoning are powered by separate systems in the brain. Even people with severe language impairments caused by stroke were able to solve challenging logic puzzles as well as people without those impairments, while brain scans showed that language-processing regions stayed largely quiet during reasoning tasks.",
-      "date_published": "2026-08-11T13:12:27+00:00",
-      "authors": [
-        {
-          "name": "ScienceDaily",
-          "url": "https://www.sciencedaily.com"
-        }
-      ],
-      "ai_score": 52,
-      "_quality": 75,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 77,
-      "_composite_podcast": 73,
-      "_keyword_matches": 0,
-      "_category": "science",
-      "_source_category": "science",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-19T04:51:08.180247+00:00"
-      },
-      "_boosted_score": 52
-    },
-    "held_date": "2026-08-19",
-    "target_date": "2026-08-27",
-    "target_weekday": 3,
-    "target_focus_slug": "language-culture",
-    "target_focus_name": "Language & Culture",
     "status": "released",
-    "release_date": "2026-08-27"
+    "release_date": "2026-08-28"
   },
   "https://vancouversun.com/news/local-news/fast-moving-wildfires-reshaping-bc-forests-study": {
     "article": {
@@ -241,7 +204,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-08-28"
   },
   "https://www.techradar.com/pro/security/millions-of-stolen-records-allegedly-dumped-online-by-mystery-hatman-hacker-mcdonalds-vodafone-and-more-see-microsoft-azure-records-stolen": {
     "article": {
@@ -369,7 +333,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-08-28"
   },
   "https://www.northernminer.com/news/lundin-mining-cuts-copper-outlook-as-chile-storms-strike-again/1003894110/": {
     "article": {
@@ -488,46 +453,6 @@
     "target_focus_name": "Mining & Energy",
     "status": "held"
   },
-  "https://www.northernminer.com/news/first-nations-group-pulls-support-for-seabridges-ksm/1003894189/": {
-    "article": {
-      "id": "https://www.northernminer.com/news/first-nations-group-pulls-support-for-seabridges-ksm/1003894189/",
-      "url": "https://www.northernminer.com/news/first-nations-group-pulls-support-for-seabridges-ksm/1003894189/",
-      "title": "[The Northern Miner] First Nations group pulls support for Seabridge\u2019s KSM",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfd4\ufe0f <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.northernminer.com%2Fnews%2Ffirst-nations-group-pulls-support-for-seabridges-ksm%2F1003894189%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>Citing the need for improved consultation, a First Nations group has pulled its support for Seabridge Gold&#8216;s (TSX: SEA, NYSE: SA) KSM mine in northwestern British Columbia. The Hereditary Chiefs...</p>\n<p>The post <a href=\"https://www.northernminer.com/news/first-nations-group-pulls-support-for-seabridges-ksm/1003894189/\">First Nations group pulls support for Seabridge&#8217;s KSM</a> appeared first on <a href=\"https://www.northernminer.com\">The Northern Miner</a>.</p>",
-      "summary": "Citing the need for improved consultation, a First Nations group has pulled its support for Seabridge Gold\u2018s (TSX: SEA, NYSE: SA) KSM mine in northwestern British Columbia. The Hereditary Chiefs... The post First Nations group pulls support for Seabridge\u2019s KSM appeared first on The Northern Miner .",
-      "_excerpt": "Citing the need for improved consultation, a First Nations group has pulled its support for Seabridge Gold\u2018s (TSX: SEA, NYSE: SA) KSM mine in northwestern British Columbia. The Hereditary Chiefs... The post First Nations group pulls support for Seabridge\u2019s KSM appeared first on The Northern Miner .",
-      "date_published": "2026-08-21T13:35:10+00:00",
-      "authors": [
-        {
-          "name": "The Northern Miner",
-          "url": "https://www.northernminer.com"
-        }
-      ],
-      "ai_score": 71,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 88,
-      "_composite_podcast": 79,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-22T04:50:05.414271+00:00"
-      },
-      "_boosted_score": 71
-    },
-    "held_date": "2026-08-22",
-    "target_date": "2026-08-27",
-    "target_weekday": 3,
-    "target_focus_slug": "language-culture",
-    "target_focus_name": "Language & Culture",
-    "status": "released",
-    "release_date": "2026-08-27"
-  },
   "https://www.northernminer.com/regulatory-issues/government-cash-reshaping-mining-finance-report/1003894187/": {
     "article": {
       "id": "https://www.northernminer.com/regulatory-issues/government-cash-reshaping-mining-finance-report/1003894187/",
@@ -604,7 +529,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-08-28"
   },
   "https://www.outsideonline.com/adventure-travel/destinations/africa/electric-safaris-africa/": {
     "article": {
@@ -649,47 +575,6 @@
     "target_focus_name": "Wildlife & Conservation",
     "status": "held"
   },
-  "https://boingboing.net/2026/08/14/russia-to-test-ai-models-for-traditional-spiritual-and-moral-values.html": {
-    "article": {
-      "id": "https://boingboing.net/2026/08/14/russia-to-test-ai-models-for-traditional-spiritual-and-moral-values.html",
-      "url": "https://boingboing.net/2026/08/14/russia-to-test-ai-models-for-traditional-spiritual-and-moral-values.html",
-      "title": "[Boing Boing] Russia to test AI models for traditional spiritual and moral values",
-      "content_html": "<img src=\"https://i0.wp.com/boingboing.net/wp-content/uploads/2025/10/shutterstock_109024046-e1759854251489.jpg?fit=768%2C512&amp;quality=60&amp;ssl=1\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfd4\ufe0f <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fboingboing.net%2F2026%2F08%2F14%2Frussia-to-test-ai-models-for-traditional-spiritual-and-moral-values.html\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<a href=\"https://boingboing.net/2026/08/14/russia-to-test-ai-models-for-traditional-spiritual-and-moral-values.html\" rel=\"nofollow\" title=\"Russia to test AI models for traditional spiritual and moral values\"><img alt=\"\" class=\"webfeedsFeaturedVisual wp-post-image\" height=\"512\" src=\"https://i0.wp.com/boingboing.net/wp-content/uploads/2025/10/shutterstock_109024046-e1759854251489.jpg?fit=768%2C512&amp;quality=60&amp;ssl=1\" style=\"display: block; margin: auto; margin-bottom: 5px;\" width=\"768\" /></a><p class=\"wp-block-paragraph\">If you want to sell AI to the Russian state, you're going to have <a href=\"https://moscowmonitor.com/292/russia-to-test-ai-models-against-traditional-values-for-national-status/\">to tune it to the nation's \"traditional spiritual and moral values\" before you have a shot</a>, reports <em>Vedomosti</em>, a Russian-language business daily out of Moscow. &#8212; <a class=\"read-more\" href=\"https://boingboing.net/2026/08/14/russia-to-test-ai-models-for-traditional-spiritual-and-moral-values.html\">Read the rest </a></p>\n<p>The post <a href=\"https://boingboing.net/2026/08/14/russia-to-test-ai-models-for-traditional-spiritual-and-moral-values.html\">Russia to test AI models for traditional spiritual and moral values</a> appeared first on <a href=\"https://boingboing.net\">Boing Boing</a>.</p>",
-      "summary": "If you want to sell AI to the Russian state, you're going to have to tune it to the nation's \"traditional spiritual and moral values\" before you have a shot , reports Vedomosti , a Russian-language business daily out of Moscow. \u2014 Read the rest The post Russia to test AI models for traditional",
-      "_excerpt": "If you want to sell AI to the Russian state, you're going to have to tune it to the nation's \"traditional spiritual and moral values\" before you have a shot , reports Vedomosti , a Russian-language business daily out of Moscow. \u2014 Read the rest The post Russia to test AI models for traditional spiritual and moral values appeared first on Boing Boing .",
-      "date_published": "2026-08-14T18:52:43+00:00",
-      "authors": [
-        {
-          "name": "Boing Boing",
-          "url": "https://boingboing.net/"
-        }
-      ],
-      "ai_score": 31,
-      "_quality": 48,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 73,
-      "_composite_podcast": 65,
-      "_keyword_matches": 0,
-      "_category": "ai-tech",
-      "_source_category": "ai-tech",
-      "_is_bonus": true,
-      "image": "https://i0.wp.com/boingboing.net/wp-content/uploads/2025/10/shutterstock_109024046-e1759854251489.jpg?fit=768%2C512&quality=60&ssl=1",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-22T04:50:05.414271+00:00"
-      },
-      "_boosted_score": 31
-    },
-    "held_date": "2026-08-22",
-    "target_date": "2026-08-27",
-    "target_weekday": 3,
-    "target_focus_slug": "language-culture",
-    "target_focus_name": "Language & Culture",
-    "status": "released",
-    "release_date": "2026-08-27"
-  },
   "https://www.forbes.com/sites/indrabatilahiri/2026/08/14/the-communities-choosing-managed-retreat-as-climate-adaptation/": {
     "article": {
       "id": "https://www.forbes.com/sites/indrabatilahiri/2026/08/14/the-communities-choosing-managed-retreat-as-climate-adaptation/",
@@ -733,7 +618,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-08-28"
   },
   "https://www.dezeen.com/2026/08/20/studio-barnes-ch-studio-convert-kkk-building-arts-centre-fort-worth/": {
     "article": {
@@ -774,48 +660,6 @@
     "target_focus_slug": "visual-arts-heritage",
     "target_focus_name": "Visual Arts & Heritage",
     "status": "held"
-  },
-  "https://100milefreepress.net/2026/08/15/poor-air-quality-lingers-over-southern-interior-as-wildfires-burn-across-b-c/": {
-    "article": {
-      "id": "https://100milefreepress.net/2026/08/15/poor-air-quality-lingers-over-southern-interior-as-wildfires-burn-across-b-c/",
-      "url": "https://100milefreepress.net/2026/08/15/poor-air-quality-lingers-over-southern-interior-as-wildfires-burn-across-b-c/",
-      "title": "[100 Mile Free Press] Poor air quality lingers over Southern Interior as wildfires burn across B.C.",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2F100milefreepress.net%2F2026%2F08%2F15%2Fpoor-air-quality-lingers-over-southern-interior-as-wildfires-burn-across-b-c%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe warnings are expected to last for the next 24 to 48 hours",
-      "summary": "The warnings are expected to last for the next 24 to 48 hours",
-      "_excerpt": "The warnings are expected to last for the next 24 to 48 hours",
-      "date_published": "2026-08-15T22:31:31+00:00",
-      "authors": [
-        {
-          "name": "100 Mile Free Press",
-          "url": "https://www.100milefreepress.net"
-        }
-      ],
-      "ai_score": 53,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 100,
-      "_composite_podcast": 67,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-23T04:48:12.806771+00:00"
-      },
-      "_boosted_score": 53,
-      "_topic_cluster": "B.C. wildfire impacts",
-      "_no_deep_dive": true
-    },
-    "held_date": "2026-08-23",
-    "target_date": "2026-08-28",
-    "target_weekday": 4,
-    "target_focus_slug": "wildfire-resilience",
-    "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "aired_early"
   },
   "https://www.techradar.com/pro/security/this-new-malware-can-use-google-passkeys-even-after-a-victim-resets-their-password": {
     "article": {
@@ -900,91 +744,6 @@
     "target_focus_name": "Digital Life & Security",
     "status": "held"
   },
-  "https://thewalrus.ca/alberta-separatists-culture/": {
-    "article": {
-      "id": "https://thewalrus.ca/alberta-separatists-culture/",
-      "url": "https://thewalrus.ca/alberta-separatists-culture/",
-      "title": "Alberta Separatists Forgot to Build a Culture | The Walrus",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fthewalrus.ca%2Falberta-separatists-culture%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nEven for a symbolic identity, which necessarily omits a lot\u2014look up the North American range of sugar maples some time\u2014this is exceptionally delusional. For a start, it omits Indigenous peoples entirely (which is, at least, mostly consistent with both the Canadian and separatist mindset, I suppose).",
-      "summary": "Even for a symbolic identity, which necessarily omits a lot\u2014look up the North American range of sugar maples some time\u2014this is exceptionally delusional. For a start, it omits Indigenous peoples entirely (which is, at least, mostly consistent with both the Canadian and separatist mindset, I suppose).",
-      "_excerpt": "Even for a symbolic identity, which necessarily omits a lot\u2014look up the North American range of sugar maples some time\u2014this is exceptionally delusional. For a start, it omits Indigenous peoples entirely (which is, at least, mostly consistent with both the Canadian and separatist mindset, I suppose).",
-      "date_published": "2026-08-16T04:42:24.132717+00:00",
-      "authors": [
-        {
-          "name": "The Walrus",
-          "url": "https://thewalrus.ca"
-        }
-      ],
-      "ai_score": 57,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 47,
-      "_composite_podcast": 49,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News+",
-      "_cross_theme": {
-        "day": "thursday",
-        "label": "Indigenous Lands & Innovation",
-        "shown_at": "2026-08-23T04:48:12.806771+00:00"
-      },
-      "_boosted_score": 57
-    },
-    "held_date": "2026-08-23",
-    "target_date": "2026-08-27",
-    "target_weekday": 3,
-    "target_focus_slug": "language-culture",
-    "target_focus_name": "Language & Culture",
-    "status": "released",
-    "release_date": "2026-08-27"
-  },
-  "https://wltribune.com/2026/08/15/city-of-revelstoke-issues-evacuation-order-for-fish-river-road-area-due-to-wildfire/": {
-    "article": {
-      "id": "https://wltribune.com/2026/08/15/city-of-revelstoke-issues-evacuation-order-for-fish-river-road-area-due-to-wildfire/",
-      "url": "https://wltribune.com/2026/08/15/city-of-revelstoke-issues-evacuation-order-for-fish-river-road-area-due-to-wildfire/",
-      "title": "[Williams Lake Tribune] City of Revelstoke issues wildfire evacuation order for 5 rural properties near Beaton",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F08%2F15%2Fcity-of-revelstoke-issues-evacuation-order-for-fish-river-road-area-due-to-wildfire%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n## City of Revelstoke issues wildfire evacuation order for 5 rural properties near Beaton Published 11:00 pm Saturday, August 15, 2026 **By Brendan Shykora** 1/4 The Johnson Creek wildfire burns near the Incomappleux River on Friday night, Aug. 14\\. (Photo courtesy Trout Lake Recreational Club/Facebook) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | An evacuation order has been issued by the City of Revelstoke for five properties near the rural community of Beaton, along the Incomappleux Forest Service Road",
-      "summary": "## City of Revelstoke issues wildfire evacuation order for 5 rural properties near Beaton Published 11:00 pm Saturday, August 15, 2026 **By Brendan Shykora** 1/4 The Johnson Creek wildfire burns near the Incomappleux River on Friday night, Aug. 14\\. (Photo courtesy Trout Lake Recreational",
-      "_excerpt": "## City of Revelstoke issues wildfire evacuation order for 5 rural properties near Beaton Published 11:00 pm Saturday, August 15, 2026 **By Brendan Shykora** 1/4 The Johnson Creek wildfire burns near the Incomappleux River on Friday night, Aug. 14\\. (Photo courtesy Trout Lake Recreational Club/Facebook) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | An evacuation order has been issued by the City of Revelstoke for five properties near the rural community of Beaton, along the Incomappleux Forest Service Road",
-      "date_published": "2026-08-16T06:00:37+00:00",
-      "authors": [
-        {
-          "name": "Williams Lake Tribune",
-          "url": "https://wltribune.com"
-        }
-      ],
-      "ai_score": 55,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 98,
-      "_composite_podcast": 80,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Williams Lake Tribune",
-      "_boosted_score": 16,
-      "_topic_cluster": "Canadian wildfires British Columbia",
-      "_cluster_suppressed": true,
-      "_no_deep_dive": true
-    },
-    "held_date": "2026-08-24",
-    "target_date": "2026-08-28",
-    "target_weekday": 4,
-    "target_focus_slug": "wildfire-resilience",
-    "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "aired_early"
-  },
   "https://www.motherjones.com/environment/2026/08/florida-coastal-corridor-project-marine-reef-coral-fishing-protection-economy/": {
     "article": {
       "id": "https://www.motherjones.com/environment/2026/08/florida-coastal-corridor-project-marine-reef-coral-fishing-protection-economy/",
@@ -1021,7 +780,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-08-28"
   },
   "https://hackaday.com/2026/08/16/r-selecting-tiny-probes-to-shotgun-into-saturns-rings/": {
     "article": {
@@ -1204,88 +964,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
-  },
-  "https://wltribune.com/2026/08/24/fire-activity-could-increase-at-164745-hectare-pear-lake-blaze-in-the-cariboo/": {
-    "article": {
-      "id": "https://wltribune.com/2026/08/24/fire-activity-could-increase-at-164745-hectare-pear-lake-blaze-in-the-cariboo/",
-      "url": "https://wltribune.com/2026/08/24/fire-activity-could-increase-at-164745-hectare-pear-lake-blaze-in-the-cariboo/",
-      "title": "[Williams Lake Tribune] Fire activity could increase at 164,745 hectare Pear Lake blaze in the Cariboo",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F08%2F24%2Ffire-activity-could-increase-at-164745-hectare-pear-lake-blaze-in-the-cariboo%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n## Fire activity could increase at 164,745 hectare Pear Lake blaze in the Cariboo Published 5:55 am Monday, August 24, 2026 **By Jordy Cunningham** A BC Wildfire Service crew member works on a containment line on the south flank of the Pear Lake wildfire off Highway 97\\. (BC Wildfire Service) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | Fire activity could increase at the 164,745-hectare Pear Lake blaze in the Cariboo. As BC Wildfire Service (BCWS) continues to battle the blaze, it said in its Sunday night",
-      "summary": "## Fire activity could increase at 164,745 hectare Pear Lake blaze in the Cariboo Published 5:55 am Monday, August 24, 2026 **By Jordy Cunningham** A BC Wildfire Service crew member works on a containment line on the south flank of the Pear Lake wildfire off Highway 97\\. (BC Wildfire Service) |",
-      "_excerpt": "## Fire activity could increase at 164,745 hectare Pear Lake blaze in the Cariboo Published 5:55 am Monday, August 24, 2026 **By Jordy Cunningham** A BC Wildfire Service crew member works on a containment line on the south flank of the Pear Lake wildfire off Highway 97\\. (BC Wildfire Service) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | Fire activity could increase at the 164,745-hectare Pear Lake blaze in the Cariboo. As BC Wildfire Service (BCWS) continues to battle the blaze, it said in its Sunday night",
-      "date_published": "2026-08-25T04:46:45.577481+00:00",
-      "authors": [
-        {
-          "name": "Williams Lake Tribune",
-          "url": "https://wltribune.com"
-        }
-      ],
-      "ai_score": 84,
-      "_quality": 62,
-      "_relevance": 88,
-      "_local": 100,
-      "_theme_score": 100,
-      "_composite_podcast": 95,
-      "_keyword_matches": 0,
-      "_category": "local",
-      "_source_category": "local",
-      "_is_bonus": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Williams Lake Tribune",
-      "_boosted_score": 84,
-      "_topic_cluster": "B.C. Wildfires Evacuation Updates",
-      "_no_deep_dive": true
-    },
-    "held_date": "2026-08-25",
-    "target_date": "2026-08-28",
-    "target_weekday": 4,
-    "target_focus_slug": "wildfire-resilience",
-    "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "aired_early"
-  },
-  "https://wltribune.com/2026/08/24/evacuation-orders-alerts-downgraded-for-ainslie-creek-wildfire-west-of-coquihalla/": {
-    "article": {
-      "id": "https://wltribune.com/2026/08/24/evacuation-orders-alerts-downgraded-for-ainslie-creek-wildfire-west-of-coquihalla/",
-      "url": "https://wltribune.com/2026/08/24/evacuation-orders-alerts-downgraded-for-ainslie-creek-wildfire-west-of-coquihalla/",
-      "title": "[Williams Lake Tribune] Evacuation orders, alerts downgraded for Ainslie Creek wildfire west of Coquihalla",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F08%2F24%2Fevacuation-orders-alerts-downgraded-for-ainslie-creek-wildfire-west-of-coquihalla%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n## Evacuation orders, alerts downgraded for Ainslie Creek wildfire west of Coquihalla Published 2:13 pm Monday, August 24, 2026 **By Barbara Roden** Some evacuation orders and alerts issued by the Thompson-Nicola Regional District in response to the Ainslie Creek wildfire have been downgraded as of Monday, Aug. 24\\. (Thompson-Nicola Regional District) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | The Thompson-Nicola Regional District (TNRD) has downgraded some properties on evacuation order to alert, and some",
-      "summary": "## Evacuation orders, alerts downgraded for Ainslie Creek wildfire west of Coquihalla Published 2:13 pm Monday, August 24, 2026 **By Barbara Roden** Some evacuation orders and alerts issued by the Thompson-Nicola Regional District in response to the Ainslie Creek wildfire have been downgraded as of",
-      "_excerpt": "## Evacuation orders, alerts downgraded for Ainslie Creek wildfire west of Coquihalla Published 2:13 pm Monday, August 24, 2026 **By Barbara Roden** Some evacuation orders and alerts issued by the Thompson-Nicola Regional District in response to the Ainslie Creek wildfire have been downgraded as of Monday, Aug. 24\\. (Thompson-Nicola Regional District) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | The Thompson-Nicola Regional District (TNRD) has downgraded some properties on evacuation order to alert, and some",
-      "date_published": "2026-08-25T04:46:45.577166+00:00",
-      "authors": [
-        {
-          "name": "Williams Lake Tribune",
-          "url": "https://wltribune.com"
-        }
-      ],
-      "ai_score": 75,
-      "_quality": 64,
-      "_relevance": 76,
-      "_local": 88,
-      "_theme_score": 91,
-      "_composite_podcast": 89,
-      "_keyword_matches": 0,
-      "_category": "local",
-      "_source_category": "local",
-      "_is_bonus": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Williams Lake Tribune",
-      "_boosted_score": 22,
-      "_topic_cluster": "B.C. Wildfires Evacuation Updates",
-      "_cluster_suppressed": true,
-      "_no_deep_dive": true
-    },
-    "held_date": "2026-08-25",
-    "target_date": "2026-08-28",
-    "target_weekday": 4,
-    "target_focus_slug": "wildfire-resilience",
-    "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "aired_early"
+    "status": "released",
+    "release_date": "2026-08-28"
   },
   "https://www.sciencedaily.com/releases/2026/08/260815064811.htm": {
     "article": {
@@ -1369,7 +1049,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-08-28"
   },
   "https://www.sciencedaily.com/releases/2026/08/260815064803.htm": {
     "article": {
@@ -1570,7 +1251,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-08-28"
   },
   "https://www.canadianarchitect.com/university-of-guelphs-honey-bee-research-centre-opens/": {
     "article": {
@@ -1614,50 +1296,6 @@
     "target_focus_name": "Earth Systems & Climate Science",
     "status": "held"
   },
-  "https://wltribune.com/2026/08/25/weekend-rain-helping-slow-growth-of-south-cariboos-pear-lake-fire/": {
-    "article": {
-      "id": "https://wltribune.com/2026/08/25/weekend-rain-helping-slow-growth-of-south-cariboos-pear-lake-fire/",
-      "url": "https://wltribune.com/2026/08/25/weekend-rain-helping-slow-growth-of-south-cariboos-pear-lake-fire/",
-      "title": "[Williams Lake Tribune] Weekend rain helping slow growth of South Cariboo\u2019s Pear Lake fire",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F08%2F25%2Fweekend-rain-helping-slow-growth-of-south-cariboos-pear-lake-fire%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n## Weekend rain helping slow growth of South Cariboo\u2019s Pear Lake fire Published 3:41 pm Tuesday, August 25, 2026 **By Patrick Davies** A BC Wildfire Service crew member works on a containment line on the south flank of the Pear Lake wildfire off Highway 97\\. (BC Wildfire Service) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | Weekend rain and humidity have helped slow the growth of the Pear Lake fire burning in the South Cariboo. In an Aug. 25 update, the BC Wildfire Service stated that thunderstorms brought",
-      "summary": "## Weekend rain helping slow growth of South Cariboo\u2019s Pear Lake fire Published 3:41 pm Tuesday, August 25, 2026 **By Patrick Davies** A BC Wildfire Service crew member works on a containment line on the south flank of the Pear Lake wildfire off Highway 97\\. (BC Wildfire Service) | **Getting your",
-      "_excerpt": "## Weekend rain helping slow growth of South Cariboo\u2019s Pear Lake fire Published 3:41 pm Tuesday, August 25, 2026 **By Patrick Davies** A BC Wildfire Service crew member works on a containment line on the south flank of the Pear Lake wildfire off Highway 97\\. (BC Wildfire Service) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | Weekend rain and humidity have helped slow the growth of the Pear Lake fire burning in the South Cariboo. In an Aug. 25 update, the BC Wildfire Service stated that thunderstorms brought",
-      "date_published": "2026-08-26T04:49:16.332325+00:00",
-      "authors": [
-        {
-          "name": "Williams Lake Tribune",
-          "url": "https://wltribune.com"
-        }
-      ],
-      "ai_score": 79,
-      "_quality": 65,
-      "_relevance": 78,
-      "_local": 100,
-      "_theme_score": 94,
-      "_composite_podcast": 87,
-      "_keyword_matches": 0,
-      "_category": "local",
-      "_source_category": "local",
-      "_is_bonus": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Williams Lake Tribune",
-      "_cross_theme": {
-        "day": "tuesday",
-        "label": "Working Lands & Industry",
-        "shown_at": "2026-08-26T04:57:43.195190+00:00"
-      },
-      "_boosted_score": 79,
-      "_no_deep_dive": true
-    },
-    "held_date": "2026-08-26",
-    "target_date": "2026-08-28",
-    "target_weekday": 4,
-    "target_focus_slug": "wildfire-resilience",
-    "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "aired_early"
-  },
   "https://www.sciencedaily.com/releases/2026/08/260816044839.htm": {
     "article": {
       "id": "https://www.sciencedaily.com/releases/2026/08/260816044839.htm",
@@ -1695,47 +1333,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
-  },
-  "https://www.aptnnews.ca/national-news/tribunal-rejects-federal-governments-request-to-add-panelists-to-first-nations-child-welfare-case/": {
-    "article": {
-      "id": "https://www.aptnnews.ca/national-news/tribunal-rejects-federal-governments-request-to-add-panelists-to-first-nations-child-welfare-case/",
-      "url": "https://www.aptnnews.ca/national-news/tribunal-rejects-federal-governments-request-to-add-panelists-to-first-nations-child-welfare-case/",
-      "title": "[APTN News] Tribunal rejects federal government\u2019s request to add panelists to First Nations child welfare case",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.aptnnews.ca%2Fnational-news%2Ftribunal-rejects-federal-governments-request-to-add-panelists-to-first-nations-child-welfare-case%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>The chair of the Canadian Human Rights Tribunal (Tribunal) has turned down a request from...</p>\n<p>The post <a href=\"https://www.aptnnews.ca/national-news/tribunal-rejects-federal-governments-request-to-add-panelists-to-first-nations-child-welfare-case/\">Tribunal rejects federal government\u2019s request to add panelists to First Nations child welfare case</a> appeared first on <a href=\"https://www.aptnnews.ca\">APTN News</a>.</p>",
-      "summary": "The chair of the Canadian Human Rights Tribunal (Tribunal) has turned down a request from... The post Tribunal rejects federal government\u2019s request to add panelists to First Nations child welfare case appeared first on APTN News .",
-      "_excerpt": "The chair of the Canadian Human Rights Tribunal (Tribunal) has turned down a request from... The post Tribunal rejects federal government\u2019s request to add panelists to First Nations child welfare case appeared first on APTN News .",
-      "date_published": "2026-08-18T22:36:22+00:00",
-      "authors": [
-        {
-          "name": "APTN News",
-          "url": "https://www.aptnnews.ca"
-        }
-      ],
-      "ai_score": 53,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 84,
-      "_composite_podcast": 74,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-26T04:57:43.195190+00:00"
-      },
-      "_boosted_score": 53
-    },
-    "held_date": "2026-08-26",
-    "target_date": "2026-08-27",
-    "target_weekday": 3,
-    "target_focus_slug": "language-culture",
-    "target_focus_name": "Language & Culture",
     "status": "released",
-    "release_date": "2026-08-27"
+    "release_date": "2026-08-28"
   },
   "https://www.engadget.com/2239421/study-finds-x-algorithm-prioritizes-ragebait-that-disproportionately-impacts-democrats/": {
     "article": {
@@ -1819,48 +1418,6 @@
     "target_focus_name": "Wildlife & Conservation",
     "status": "aired_early"
   },
-  "https://thetyee.ca/News/2026/08/26/Pilots-Fighting-BC-Megafire/": {
-    "article": {
-      "id": "https://thetyee.ca/News/2026/08/26/Pilots-Fighting-BC-Megafire/",
-      "url": "https://thetyee.ca/News/2026/08/26/Pilots-Fighting-BC-Megafire/",
-      "title": "[The Tyee] In the Sky with the Pilots Fighting a BC Megafire",
-      "content_html": "<img src=\"https://thetyee.ca/News/2026/08/25/RussRobertsonHelicopter.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fthetyee.ca%2FNews%2F2026%2F08%2F26%2FPilots-Fighting-BC-Megafire%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe Tyee joins a helicopter crew on a critical day in the battle to stop the Ainslie Creek wildfire.",
-      "summary": "The Tyee joins a helicopter crew on a critical day in the battle to stop the Ainslie Creek wildfire.",
-      "_excerpt": "The Tyee joins a helicopter crew on a critical day in the battle to stop the Ainslie Creek wildfire.",
-      "date_published": "2026-08-26T07:40:00+00:00",
-      "authors": [
-        {
-          "name": "The Tyee",
-          "url": "https://thetyee.ca"
-        }
-      ],
-      "ai_score": 88,
-      "_quality": 83,
-      "_relevance": 88,
-      "_local": 92,
-      "_theme_score": 84,
-      "_composite_podcast": 66,
-      "_keyword_matches": 0,
-      "_category": "local",
-      "_source_category": "local",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://thetyee.ca/News/2026/08/25/RussRobertsonHelicopter.jpg",
-      "_cross_theme": {
-        "day": "tuesday",
-        "label": "Working Lands & Industry",
-        "shown_at": "2026-08-26T04:57:43.195190+00:00"
-      },
-      "_boosted_score": 88,
-      "_no_deep_dive": true
-    },
-    "held_date": "2026-08-26",
-    "target_date": "2026-08-28",
-    "target_weekday": 4,
-    "target_focus_slug": "wildfire-resilience",
-    "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "aired_early"
-  },
   "https://vancouversun.com/opinion/op-ed/opinion-bc-wildfires-and-fossil-fuels-we-need-to-connect-the-dots": {
     "article": {
       "id": "https://vancouversun.com/opinion/op-ed/opinion-bc-wildfires-and-fossil-fuels-we-need-to-connect-the-dots",
@@ -1899,48 +1456,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
-  },
-  "https://vancouversun.com/news/what-could-modern-treaty-five-vancouver-island-first-nations-mean-royal-roads-victoria": {
-    "article": {
-      "id": "https://vancouversun.com/news/what-could-modern-treaty-five-vancouver-island-first-nations-mean-royal-roads-victoria",
-      "url": "https://vancouversun.com/news/what-could-modern-treaty-five-vancouver-island-first-nations-mean-royal-roads-victoria",
-      "title": "[Vancouver Sun] What could a modern treaty for five Vancouver Island First Nations mean for Royal Roads and Victoria?",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fvancouversun.com%2Fnews%2Fwhat-could-modern-treaty-five-vancouver-island-first-nations-mean-royal-roads-victoria\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe province is in the final stages of negotiating a modern treaty with five First Nations that will see the transfer of Hatley Park and other government land",
-      "summary": "The province is in the final stages of negotiating a modern treaty with five First Nations that will see the transfer of Hatley Park and other government land",
-      "_excerpt": "The province is in the final stages of negotiating a modern treaty with five First Nations that will see the transfer of Hatley Park and other government land",
-      "date_published": "2026-08-18T13:00:02+00:00",
-      "authors": [
-        {
-          "name": "Vancouver Sun",
-          "url": "https://vancouversun.com/news/bc-wildfires-new-evacuation-orders-issued-south-chilcotin"
-        }
-      ],
-      "ai_score": 58,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 77,
-      "_composite_podcast": 55,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-26T04:57:43.195190+00:00"
-      },
-      "_boosted_score": 58
-    },
-    "held_date": "2026-08-26",
-    "target_date": "2026-08-27",
-    "target_weekday": 3,
-    "target_focus_slug": "language-culture",
-    "target_focus_name": "Language & Culture",
     "status": "released",
-    "release_date": "2026-08-27"
+    "release_date": "2026-08-28"
   },
   "https://www.techradar.com/pro/security/geekom-reveals-multiple-mini-pcs-may-be-infected-with-malware-hidden-in-a-network-driver-but-its-now-down-to-you-to-fix-your-pc": {
     "article": {
@@ -2054,7 +1571,8 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-08-28"
   },
   "https://www.cjr.org/first_person/the-69-year-old-rookie-grueskin-salt-lake-tribune-junior-editor-utah-local-newsroom-lessons.php": {
     "article": {
@@ -2090,95 +1608,6 @@
     "target_focus_slug": "words-journalism",
     "target_focus_name": "Writing, Journalism & Podcasting",
     "status": "held"
-  },
-  "https://wltribune.com/2026/08/26/fvrd-cancels-evacuation-alert-for-areas-including-boston-bar/": {
-    "article": {
-      "id": "https://wltribune.com/2026/08/26/fvrd-cancels-evacuation-alert-for-areas-including-boston-bar/",
-      "url": "https://wltribune.com/2026/08/26/fvrd-cancels-evacuation-alert-for-areas-including-boston-bar/",
-      "title": "[Williams Lake Tribune] FVRD cancels evacuation alert for areas including Boston Bar",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F08%2F26%2Ffvrd-cancels-evacuation-alert-for-areas-including-boston-bar%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n## FVRD cancels evacuation alert for areas including Boston Bar Published 7:57 am Wednesday, August 26, 2026 **By Dillon White/Mission City Record** The Brunswick Creek wildfire on July 5, when the FVRD issued its first evacuation order related to the fires. Several evacuation orders and alerts have been downgraded this week. (BC Wildfire Service Photo) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | An evacuation alert has been cancelled by the Fraser Valley Regional District (FVRD) for North Bend, Fishblue",
-      "summary": "## FVRD cancels evacuation alert for areas including Boston Bar Published 7:57 am Wednesday, August 26, 2026 **By Dillon White/Mission City Record** The Brunswick Creek wildfire on July 5, when the FVRD issued its first evacuation order related to the fires. Several evacuation orders and alerts",
-      "_excerpt": "## FVRD cancels evacuation alert for areas including Boston Bar Published 7:57 am Wednesday, August 26, 2026 **By Dillon White/Mission City Record** The Brunswick Creek wildfire on July 5, when the FVRD issued its first evacuation order related to the fires. Several evacuation orders and alerts have been downgraded this week. (BC Wildfire Service Photo) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | An evacuation alert has been cancelled by the Fraser Valley Regional District (FVRD) for North Bend, Fishblue",
-      "date_published": "2026-08-27T14:00:27.963848+00:00",
-      "authors": [
-        {
-          "name": "Williams Lake Tribune",
-          "url": "https://wltribune.com"
-        }
-      ],
-      "ai_score": 84,
-      "_quality": 78,
-      "_relevance": 82,
-      "_local": 95,
-      "_theme_score": 98,
-      "_composite_podcast": 98,
-      "_keyword_matches": 0,
-      "_category": "local",
-      "_source_category": "local",
-      "_is_bonus": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Williams Lake Tribune",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-27T14:09:44.939330+00:00"
-      },
-      "_boosted_score": 84,
-      "_topic_cluster": "Wildfire smoke air quality",
-      "_no_deep_dive": true
-    },
-    "held_date": "2026-08-27",
-    "target_date": "2026-08-28",
-    "target_weekday": 4,
-    "target_focus_slug": "wildfire-resilience",
-    "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "aired_early"
-  },
-  "https://100milefreepress.net/2026/08/27/wildfire-smoke-continues-to-cover-parts-of-cariboo-thompson-okanagan/": {
-    "article": {
-      "id": "https://100milefreepress.net/2026/08/27/wildfire-smoke-continues-to-cover-parts-of-cariboo-thompson-okanagan/",
-      "url": "https://100milefreepress.net/2026/08/27/wildfire-smoke-continues-to-cover-parts-of-cariboo-thompson-okanagan/",
-      "title": "[100 Mile Free Press] Wildfire smoke continues to cover parts of Cariboo, Thompson, Okanagan",
-      "content_html": "<img src=\"https://100milefreepress.net/wp-content/uploads/sites/15/2026/08/Screenshot202026-08-2720at206.29.05E280AFAM.jpg?w=1024\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2F100milefreepress.net%2F2026%2F08%2F27%2Fwildfire-smoke-continues-to-cover-parts-of-cariboo-thompson-okanagan%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nEnvironment Canada re-issued an air quality warning on Thursday",
-      "summary": "Environment Canada re-issued an air quality warning on Thursday",
-      "_excerpt": "Environment Canada re-issued an air quality warning on Thursday",
-      "date_published": "2026-08-27T13:31:06+00:00",
-      "authors": [
-        {
-          "name": "100 Mile Free Press",
-          "url": "https://www.100milefreepress.net"
-        }
-      ],
-      "ai_score": 76,
-      "_quality": 57,
-      "_relevance": 75,
-      "_local": 100,
-      "_theme_score": 100,
-      "_composite_podcast": 79,
-      "_keyword_matches": 0,
-      "_category": "local",
-      "_source_category": "local",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://100milefreepress.net/wp-content/uploads/sites/15/2026/08/Screenshot202026-08-2720at206.29.05E280AFAM.jpg?w=1024",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-27T14:09:44.939330+00:00"
-      },
-      "_boosted_score": 22,
-      "_topic_cluster": "Wildfire smoke air quality",
-      "_cluster_suppressed": true,
-      "_no_deep_dive": true
-    },
-    "held_date": "2026-08-27",
-    "target_date": "2026-08-28",
-    "target_weekday": 4,
-    "target_focus_slug": "wildfire-resilience",
-    "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "aired_early"
   },
   "https://thenarwhal.ca/bradley-creek-wildfire-syilx-youth-horses-bc/?utm_source=rss": {
     "article": {
@@ -2219,14 +1648,15 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-08-28"
   },
   "https://www.northernminer.com/news/gen-z-warms-to-mining-as-labour-crunch-looms/1003894241/": {
     "article": {
       "id": "https://www.northernminer.com/news/gen-z-warms-to-mining-as-labour-crunch-looms/1003894241/",
       "url": "https://www.northernminer.com/news/gen-z-warms-to-mining-as-labour-crunch-looms/1003894241/",
       "title": "[The Northern Miner] Gen Z warms to mining as labour crunch looms",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.northernminer.com%2Fnews%2Fgen-z-warms-to-mining-as-labour-crunch-looms%2F1003894241%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>Canada\u2019s mining industry is attracting more young people just as it faces a much bigger problem: finding enough workers to staff a new generation of mines. A new Mining Industry...</p>\n<p>The post <a href=\"https://www.northernminer.com/news/gen-z-warms-to-mining-as-labour-crunch-looms/1003894241/\">Gen Z warms to mining as labour crunch looms</a> appeared first on <a href=\"https://www.northernminer.com\">The Northern Miner</a>.</p>",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.northernminer.com%2Fnews%2Fgen-z-warms-to-mining-as-labour-crunch-looms%2F1003894241%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>Canada\u2019s mining industry is attracting more young people just as it faces a much bigger problem: finding enough workers to staff a new generation of mines. A new Mining Industry...</p>\n<p>The post <a href=\"https://www.northernminer.com/news/gen-z-warms-to-mining-as-labour-crunch-looms/1003894241/\">Gen Z warms to mining as labour crunch looms</a> appeared first on <a href=\"https://www.northernminer.com\">The Northern Miner</a>.</p>",
       "summary": "Canada\u2019s mining industry is attracting more young people just as it faces a much bigger problem: finding enough workers to staff a new generation of mines. A new Mining Industry... The post Gen Z warms to mining as labour crunch looms appeared first on The Northern Miner .",
       "_excerpt": "Canada\u2019s mining industry is attracting more young people just as it faces a much bigger problem: finding enough workers to staff a new generation of mines. A new Mining Industry... The post Gen Z warms to mining as labour crunch looms appeared first on The Northern Miner .",
       "date_published": "2026-08-24T15:37:36+00:00",
@@ -2240,8 +1670,8 @@
       "_quality": 0,
       "_relevance": 0,
       "_local": 0,
-      "_theme_score": 79,
-      "_composite_podcast": 72,
+      "_theme_score": 83,
+      "_composite_podcast": 74,
       "_keyword_matches": 0,
       "_category": "news",
       "_source_category": "news",
@@ -2253,7 +1683,7 @@
       },
       "_boosted_score": 66
     },
-    "held_date": "2026-08-27",
+    "held_date": "2026-08-28",
     "target_date": "2026-09-01",
     "target_weekday": 1,
     "target_focus_slug": "mining-energy",
@@ -2309,7 +1739,7 @@
       "id": "https://www.statnews.com/2026/08/25/russell-vought-omb-funding-comments-daughter-benefited-nih-research/?utm_campaign=rss",
       "url": "https://www.statnews.com/2026/08/25/russell-vought-omb-funding-comments-daughter-benefited-nih-research/?utm_campaign=rss",
       "title": "[STAT News] STAT+: Comments on OMB research rule mysteriously removed from federal website",
-      "content_html": "<img src=\"https://www.statnews.com/wp-content/uploads/2026/08/GettyImages-2270934863-645x645.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.statnews.com%2F2026%2F08%2F25%2Frussell-vought-omb-funding-comments-daughter-benefited-nih-research%2F%3Futm_campaign%3Drss\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nSome comments on a proposed OMB research rule have been mysteriously removed from a public-facing government webpage.",
+      "content_html": "<img src=\"https://www.statnews.com/wp-content/uploads/2026/08/GettyImages-2270934863-645x645.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.statnews.com%2F2026%2F08%2F25%2Frussell-vought-omb-funding-comments-daughter-benefited-nih-research%2F%3Futm_campaign%3Drss\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nSome comments on a proposed OMB research rule have been mysteriously removed from a public-facing government webpage.",
       "summary": "Some comments on a proposed OMB research rule have been mysteriously removed from a public-facing government webpage.",
       "_excerpt": "Some comments on a proposed OMB research rule have been mysteriously removed from a public-facing government webpage.",
       "date_published": "2026-08-25T08:30:00+00:00",
@@ -2323,8 +1753,8 @@
       "_quality": 0,
       "_relevance": 0,
       "_local": 0,
-      "_theme_score": 91,
-      "_composite_podcast": 65,
+      "_theme_score": 92,
+      "_composite_podcast": 66,
       "_keyword_matches": 0,
       "_category": "news",
       "_source_category": "news",
@@ -2338,7 +1768,7 @@
       },
       "_boosted_score": 65
     },
-    "held_date": "2026-08-27",
+    "held_date": "2026-08-28",
     "target_date": "2026-09-06",
     "target_weekday": 6,
     "target_focus_slug": "discovery-health",
@@ -2470,6 +1900,43 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "released",
+    "release_date": "2026-08-28"
+  },
+  "https://www.engadget.com/2240783/australia-passes-law-to-charge-tech-companies-levies-unless-they-reach-deals-with-news-publishers/": {
+    "article": {
+      "id": "https://www.engadget.com/2240783/australia-passes-law-to-charge-tech-companies-levies-unless-they-reach-deals-with-news-publishers/",
+      "url": "https://www.engadget.com/2240783/australia-passes-law-to-charge-tech-companies-levies-unless-they-reach-deals-with-news-publishers/",
+      "title": "[Engadget] Australia passes law to charge tech companies levies unless they reach deals with news publishers",
+      "content_html": "<img src=\"https://www.engadget.com/img/gallery/australia-passes-law-to-charge-tech-companies-levies-unless-the-reach-deals-with-news-publishers/l-intro-1787237258.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.engadget.com%2F2240783%2Faustralia-passes-law-to-charge-tech-companies-levies-unless-they-reach-deals-with-news-publishers%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nMeta, Google, TikTok and LinkedIn will have to pay millions to support local news outlets under Australia's new rules.",
+      "summary": "Meta, Google, TikTok and LinkedIn will have to pay millions to support local news outlets under Australia's new rules.",
+      "_excerpt": "Meta, Google, TikTok and LinkedIn will have to pay millions to support local news outlets under Australia's new rules.",
+      "date_published": "2026-08-20T14:49:42+00:00",
+      "authors": [
+        {
+          "name": "Engadget",
+          "url": "http://www.engadget.com"
+        }
+      ],
+      "ai_score": 48,
+      "_quality": 63,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 85,
+      "_composite_podcast": 62,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://www.engadget.com/img/gallery/australia-passes-law-to-charge-tech-companies-levies-unless-the-reach-deals-with-news-publishers/l-intro-1787237258.jpg",
+      "_boosted_score": 48
+    },
+    "held_date": "2026-08-28",
+    "target_date": "2026-09-07",
+    "target_weekday": 0,
+    "target_focus_slug": "words-journalism",
+    "target_focus_name": "Writing, Journalism & Podcasting",
     "status": "held"
   }
 }
