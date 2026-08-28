@@ -135,7 +135,42 @@ SEVERE_TRUNCATION_RATIO = 0.5
 # old 600 s read timeout (2026-07-27 run: three ~5-min stalls before
 # RemoteDisconnected). The overall ladder is bounded by SECTION_BUDGET_S below.
 REQUEST_CONNECT_TIMEOUT = 15
-REQUEST_READ_TIMEOUT = 120
+# A read timeout is only honest if it is scaled to the size of the request.
+# A flat 120 s was the same leash for a 350-char cold open and an 8 500-char
+# deep-dive chunk, and on 2026-08-28 that is what cost the episode: three
+# unanswered requests of 354, 975 and 975 chars each burned the full 120 s and
+# returned nothing, which spent the 420 s section budget in two attempts. The
+# successful take that night answered a 1 173-char request in ~16 s, and the
+# canary in well under 30 — a call that has not answered in several times its
+# own expected time is not going to.
+#
+# Generation time tracks the length of the audio produced, so the transcript's
+# character count is the scale. Constants are PROVISIONAL — fitted to one
+# measured take plus the 8 500-char chunk ceiling — and deliberately generous
+# (~3x observed). Refit them from the `latency=` field now logged on every call:
+# pair it against `chars=` across a few episodes, the same way _SPEECH_RATE_FITS
+# was fitted from the transcript sidecars. Until then expect the floor to be
+# loose rather than tight, which costs a wasted wait rather than a lost take.
+READ_TIMEOUT_MIN_S = int(os.getenv("GEMINI_TTS_READ_TIMEOUT_MIN_S", "45"))
+READ_TIMEOUT_MAX_S = int(os.getenv("GEMINI_TTS_READ_TIMEOUT_MAX_S", "120"))
+READ_TIMEOUT_MS_PER_CHAR = float(os.getenv("GEMINI_TTS_READ_TIMEOUT_MS_PER_CHAR", "40"))
+
+
+def _transcript_chars(segments: list[dict]) -> int:
+    """Spoken characters in *segments* — the scale generation time tracks."""
+    return sum(len(seg["text"]) for seg in segments)
+
+
+def _read_timeout_for(segments: list[dict]) -> int:
+    """Read timeout for a request carrying *segments*, clamped to [MIN, MAX].
+
+    The clamp is what makes this safe to shorten: the ceiling is the old flat
+    value, so the largest chunks wait exactly as long as they always have, and
+    only the small requests — where the ladder was wasting whole minutes on
+    silence — get a shorter leash.
+    """
+    scaled = _transcript_chars(segments) * READ_TIMEOUT_MS_PER_CHAR / 1000
+    return int(min(READ_TIMEOUT_MAX_S, max(READ_TIMEOUT_MIN_S, scaled)))
 
 # Chars of an HTTP error body to surface. Gemini's structured error.details
 # (e.g. the QuotaFailure block naming the exceeded quota) sits past the 300-char
@@ -208,14 +243,29 @@ _model_override: str | None = None
 _degradations: list[str] = []
 
 # Canary: one tiny synthesis that decides, before any audio exists, whether this
-# episode is a Gemini episode at all. Its own short read timeout — a 20-word
-# request that has not answered in 30 s is not going to answer.
-CANARY_READ_TIMEOUT = 30
+# episode is a Gemini episode at all.
+#
+# Its leash is the render's own floor, not a shorter one: the canary must never
+# be stricter than the render it vouches for. At 30 s it could fail a
+# slow-but-alive endpoint that the render would have waited out at 45, and the
+# cost of that false negative is the whole episode's voices.
+CANARY_READ_TIMEOUT = READ_TIMEOUT_MIN_S
 CANARY_RETRY_DELAY_S = 10
 # Attempts per candidate model, but only against a request that went
 # unanswered — see _canary_probe.
 CANARY_ATTEMPTS = 2
-CANARY_SEGMENTS = [{"speaker": "riley", "text": "Level check, one two.", "gap_ms": None}]
+# Two speakers, because the probe has to ask the question the render asks. A
+# single-speaker probe exercises singleSpeakerVoiceConfig and a multi-speaker
+# section exercises multiSpeakerVoiceConfig — different request shapes against
+# an endpoint whose failures are shape-sensitive. On 2026-08-28 the one-turn
+# canary passed and the same model then failed three multi-speaker sections in
+# a row, so the episode was pinned to a provider that could not render it.
+# Still under the 10 words _duration_ratio needs before it will judge a clip,
+# so the truncation guard cannot report a healthy provider as dead.
+CANARY_SEGMENTS = [
+    {"speaker": "riley", "text": "Level check, one two.", "gap_ms": None},
+    {"speaker": "casey", "text": "Two one, check.", "gap_ms": None},
+]
 
 
 def get_gemini_api_key() -> str | None:
@@ -417,7 +467,9 @@ def _rung_label(rung: _Rung) -> str:
     return f"model={_model_for(rung)}, dropped={'+'.join(dropped) or 'nothing'}"
 
 
-def _budget_allows(started: float, budget: float, backoff_s: int) -> bool:
+def _budget_allows(
+    started: float, budget: float, backoff_s: int, read_timeout: int
+) -> bool:
     """True when another attempt — its backoff *and* its own cost — still fits.
 
     Reserving the attempt's read timeout as well as its backoff is what makes
@@ -425,25 +477,47 @@ def _budget_allows(started: float, budget: float, backoff_s: int) -> bool:
     at 255 s into a 420 s budget and then run to the ceiling, so the "out of
     budget" message named three attempts when the third never had room to
     finish.
+
+    *read_timeout* is this request's own scaled timeout rather than the ceiling:
+    reserving 120 s for a request that will be abandoned after 45 under-counts
+    what the budget can still afford, which is how a section that had room for
+    two more tries was handed back after two.
     """
     now = time.monotonic()
-    cost = backoff_s + REQUEST_READ_TIMEOUT
+    cost = backoff_s + read_timeout
     if _render_deadline is not None and now + cost >= _render_deadline:
         return False
     return (now - started) + cost <= budget
 
 
-def _is_transport_failure(error: Exception) -> bool:
-    """True when the request never got an answer, so its shape is not the fault.
+def _carries_no_shape_verdict(error: Exception) -> bool:
+    """True when the failure says nothing about *what* was asked.
 
-    A read timeout or a dropped connection says nothing about *what* was asked —
-    unlike `finishReason: OTHER`, which comes back tokenized and is a rejection
-    of the content. Shedding context, style and cues cannot fix a request the
-    model never answered, and on the observed failures it is not free: two dead
-    prompt-shedding rungs cost 120 s each and pushed the model rungs out of the
-    section budget entirely.
+    Only one failure on this endpoint is a verdict on the request's shape:
+    `finishReason: OTHER`, which comes back tokenized (promptTokenCount ==
+    totalTokenCount) having produced no audio — the request was accepted, read,
+    and refused. Everything else is the transport or the service:
+
+    - a read timeout or dropped connection never got an answer at all;
+    - a 429 or 5xx is the service declining to serve *right now*. Gemini answers
+      an ordinary per-minute rate limit with the same 429 RESOURCE_EXHAUSTED it
+      uses for a spent quota, and on 2026-08-26 two of three crons had both
+      canary candidates rejected outright on a 429 that a wait would very
+      likely have cleared.
+
+    Shedding context, style and cues cannot fix any of those, and shedding is
+    not free: two dead prompt-shedding rungs cost a full read timeout each and
+    pushed the model rungs out of the section budget entirely. So they route to
+    a model change (or a plain re-ask), and only a real shape verdict walks the
+    prompt-shedding rungs.
+
+    A genuinely spent quota costs one extra probe here before it is believed.
+    That is the right side to err on: refusing to re-ask a rate limit spends a
+    whole episode's voices to save one tiny call.
     """
-    return isinstance(error, (requests.Timeout, requests.ConnectionError))
+    if isinstance(error, (requests.Timeout, requests.ConnectionError)):
+        return True
+    return bool(re.search(r"Gemini TTS HTTP (429|5\d\d)", str(error)))
 
 
 def _next_model_rung(after: int, failed_model: str) -> int | None:
@@ -481,13 +555,31 @@ def _attempt(
     # means the model is hanging server-side (observed: ~5 min stalls ended by
     # Google closing the connection), so fail fast and let the ladder retry
     # instead of holding the runner.
-    resp = requests.post(
-        GEMINI_TTS_URL.format(model=model),
-        headers={"x-goog-api-key": api_key, "Content-Type": "application/json"},
-        json=payload,
-        timeout=(REQUEST_CONNECT_TIMEOUT, read_timeout),
-    )
+    call_started = time.monotonic()
+    try:
+        resp = requests.post(
+            GEMINI_TTS_URL.format(model=model),
+            headers={"x-goog-api-key": api_key, "Content-Type": "application/json"},
+            json=payload,
+            timeout=(REQUEST_CONNECT_TIMEOUT, read_timeout),
+        )
+    except Exception:
+        # The one number that says whether a timeout was a hung server or a
+        # leash set too short. Without it the read timeout can only ever be
+        # guessed at, which is how a flat 120 s survived unexamined.
+        print(
+            f"  [api] service=gemini-tts model={model} chars={prompt_chars} "
+            f"latency={time.monotonic() - call_started:.1f}s "
+            f"limit={read_timeout}s outcome=unanswered"
+        )
+        raise
+    elapsed = time.monotonic() - call_started
     if resp.status_code in (429, 500, 502, 503, 504):
+        print(
+            f"  [api] service=gemini-tts model={model} chars={prompt_chars} "
+            f"latency={elapsed:.1f}s limit={read_timeout}s "
+            f"outcome=http-{resp.status_code}"
+        )
         # Keep enough of the body to include error.details — a 429's
         # QuotaFailure names the exceeded quota and its limit, which is the
         # whole diagnosis; 300 chars cut it off exactly there.
@@ -499,7 +591,8 @@ def _attempt(
     ts = datetime.now(timezone.utc).isoformat(timespec="seconds")
     print(
         f"  [api] {ts} service=gemini-tts model={model} chars={prompt_chars} "
-        f"total_tokens={usage.get('totalTokenCount', 0)}"
+        f"total_tokens={usage.get('totalTokenCount', 0)} "
+        f"latency={elapsed:.1f}s limit={read_timeout}s"
     )
 
     # A 200 with no inlineData (finishReason OTHER) is a known defect of the
@@ -551,6 +644,7 @@ def _synthesize_chunk(
         )
 
     budget = SECTION_BUDGET_S if budget_s is None else budget_s
+    read_timeout = _read_timeout_for(segments)
     started = time.monotonic()
     last_error: Exception | None = None
 
@@ -565,7 +659,7 @@ def _synthesize_chunk(
         rung = RETRY_LADDER[rung_index]
         if attempt:
             pacing = RETRY_LADDER[attempt].backoff_s
-            if not _budget_allows(started, budget, pacing):
+            if not _budget_allows(started, budget, pacing, read_timeout):
                 print(
                     f"  ⚠️  Gemini TTS out of time budget "
                     f"— giving the section back to the caller"
@@ -585,15 +679,16 @@ def _synthesize_chunk(
             pcm, sample_rate = _attempt(
                 segments, continuing, rung,
                 seed=GEMINI_TTS_SEED + attempt,
-                read_timeout=REQUEST_READ_TIMEOUT,
+                read_timeout=read_timeout,
             )
         except (requests.RequestException, RuntimeError) as e:
             last_error = e
-            if _is_transport_failure(e):
-                # Unanswered, not rejected: go straight to a rung that changes
+            if _carries_no_shape_verdict(e):
+                # No verdict on the request: go straight to a rung that changes
                 # the model, and when there is none, simply ask the same thing
                 # again. What must not happen is shedding context and style —
-                # that spent 120 s a rung on a shape that was never the problem
+                # that spent a full read timeout a rung on a shape that was
+                # never the problem
                 # and left the budget empty before any model rung was reached
                 # (every Cariboo Signals episode of August 2026).
                 #
@@ -605,9 +700,9 @@ def _synthesize_chunk(
                 failed_model = _model_for(rung)
                 nxt = _next_model_rung(rung_index, failed_model)
                 if nxt is None:
-                    print(f"  ⚠️  Gemini TTS unanswered on {failed_model} — asking again unchanged")
+                    print(f"  ⚠️  Gemini TTS did not serve {failed_model} — asking again unchanged")
                 else:
-                    print(f"  ⚠️  Gemini TTS unanswered on {failed_model} — changing model")
+                    print(f"  ⚠️  Gemini TTS did not serve {failed_model} — changing model")
                     rung_index = nxt
             else:
                 rung_index = min(rung_index + 1, len(RETRY_LADDER) - 1)
@@ -627,7 +722,7 @@ def _synthesize_chunk(
 def _canary_probe(model: str) -> bool:
     """Whether *model* answers one tiny synthesis, re-asking an unanswered one.
 
-    The ladder's own rule (see _is_transport_failure) applied to the probe: a
+    The ladder's own rule (see _carries_no_shape_verdict) applied to the probe: a
     rejection is a verdict on the request and re-asking it is waste, but a read
     timeout is a verdict on nothing. Every canary failure of the week of
     2026-08-17 was a read timeout, and the 2026-08-13 probe measured 8 of 15
@@ -648,7 +743,7 @@ def _canary_probe(model: str) -> bool:
             return True
         except Exception as e:
             print(f"  ⚠️  Gemini TTS canary failed on {model}: {e}")
-            if not _is_transport_failure(e):
+            if not _carries_no_shape_verdict(e):
                 return False
     return False
 
@@ -673,6 +768,10 @@ def canary() -> str | None:
     # dict.fromkeys dedupes while keeping order, for when both env vars name the
     # same model and there is no second thing to try.
     candidates = list(dict.fromkeys((GEMINI_TTS_MODEL, GEMINI_TTS_FALLBACK_MODEL)))
+    # Say which models this run will try, before trying them. The failure
+    # messages name a model each, but nothing said what the run was configured
+    # with, so a wrong or withdrawn model name looked exactly like an outage.
+    print(f"  Gemini TTS candidates: {' then '.join(candidates)}")
 
     for i, model in enumerate(candidates):
         if i:

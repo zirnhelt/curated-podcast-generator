@@ -31,6 +31,11 @@ on:
         required: false
         default: false
         type: boolean
+      probe_models:
+        description: 'Diagnose instead of render: measure how often each candidate model answers a real section request, and how long it takes. Run this before trusting a nightly to a new model. Produces no audio.'
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -63,7 +68,9 @@ jobs:
       - name: Render sections
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_MODEL || secrets.GEMINI_TTS_MODEL }}
+          # Variable, never a secret — a masked model name is unreadable in the
+          # very table this workflow exists to produce. See daily-podcast.yml.
+          GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_MODEL }}
           GEMINI_TTS_FALLBACK_MODEL: ${{ vars.GEMINI_TTS_FALLBACK_MODEL }}
           OPENAI_API_KEY: ${{ inputs.providers == 'all' && secrets.OPENAI_API_KEY || '' }}
           AZURE_SPEECH_KEY: ${{ inputs.providers == 'all' && secrets.AZURE_SPEECH_KEY || '' }}
@@ -71,14 +78,18 @@ jobs:
           TTS_PROVIDERS: ${{ inputs.providers }}
           TTS_SECTION: ${{ inputs.section }}
           TTS_PROBE: ${{ inputs.probe_gemini }}
+          TTS_PROBE_MODELS: ${{ inputs.probe_models }}
         run: |
-          if [ "$TTS_PROBE" = "true" ]; then
+          PROBE_FLAGS=""
+          [ "$TTS_PROBE" = "true" ] && PROBE_FLAGS="$PROBE_FLAGS --probe-gemini"
+          [ "$TTS_PROBE_MODELS" = "true" ] && PROBE_FLAGS="$PROBE_FLAGS --probe-models"
+          if [ -n "$PROBE_FLAGS" ]; then
             # Diagnostic run: no audio, so the result is the table itself —
             # put it in the job summary rather than only in the log.
             {
-              echo '## Gemini prompt-shape probe'
+              echo '## Gemini probe'
               echo '```'
-              python evaluate_tts.py --section "$TTS_SECTION" --probe-gemini 2>&1 || true
+              python evaluate_tts.py --section "$TTS_SECTION" $PROBE_FLAGS 2>&1 || true
               echo '```'
             } | tee -a "$GITHUB_STEP_SUMMARY"
             exit 0
@@ -90,7 +101,7 @@ jobs:
           python evaluate_tts.py --section "$TTS_SECTION" $SKIP_FLAGS --output-dir tts-eval
 
       - name: Upload audio artifact
-        if: ${{ !inputs.probe_gemini }}
+        if: ${{ !inputs.probe_gemini && !inputs.probe_models }}
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
           name: tts-eval-${{ inputs.section }}-${{ inputs.providers }}

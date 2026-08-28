@@ -237,7 +237,7 @@ def _probe_gemini_rungs(seg_list: list[dict], repeats: int) -> None:
                 gemini_tts._attempt(
                     seg_list, "", rung,
                     seed=gemini_tts.GEMINI_TTS_SEED + attempt,
-                    read_timeout=gemini_tts.REQUEST_READ_TIMEOUT,
+                    read_timeout=gemini_tts._read_timeout_for(seg_list),
                 )
                 ok += 1
             except Exception as e:
@@ -248,6 +248,63 @@ def _probe_gemini_rungs(seg_list: list[dict], repeats: int) -> None:
     print("\n  Read it like this: rung 0 failing while a later rung passes names the")
     print("  prompt element Gemini is rejecting. Every rung failing equally is an")
     print("  outage or a quota wall, not a prompt problem — check the error text.")
+
+
+def _probe_gemini_models(seg_list: list[dict], models: list[str], repeats: int) -> None:
+    """Answer rate and latency per candidate model, on the real section request.
+
+    The rung probe asks *what shape* Gemini will accept. This asks the two
+    questions that actually decide whether an episode can ride on Gemini:
+    which model answers, and how long an answer takes when it comes.
+
+    Both were unanswerable from the nightly logs on 2026-08-28. The model was
+    masked (sourced from a secret), and nothing recorded latency, so a flat
+    120 s read timeout survived unexamined while three unanswered small
+    requests spent a section budget between them. Run this before trusting a
+    nightly run to a new model, and use the p95 to refit
+    READ_TIMEOUT_MS_PER_CHAR.
+
+    Each row is `repeats` live syntheses — this spends real API budget.
+    """
+    import gemini_tts
+
+    chars = _char_count(seg_list)
+    print(f"\n▶ Gemini model probe: {len(seg_list)} turns, {chars} chars, "
+          f"{repeats}x per model")
+    print(f"  read timeout in effect: {gemini_tts._read_timeout_for(seg_list)}s")
+    print(f"\n  {'model':<34} {'ok':>6}  {'median':>8} {'slowest':>8}  detail")
+
+    for model in models:
+        latencies: list[float] = []
+        errors: list[str] = []
+        gemini_tts.set_model_override(model)
+        for attempt in range(repeats):
+            started = time.monotonic()
+            try:
+                gemini_tts._attempt(
+                    seg_list, "", gemini_tts.RETRY_LADDER[0],
+                    seed=gemini_tts.GEMINI_TTS_SEED + attempt,
+                    read_timeout=gemini_tts._read_timeout_for(seg_list),
+                )
+                latencies.append(time.monotonic() - started)
+            except Exception as e:
+                errors.append(type(e).__name__ + ": " + str(e)[:70])
+        gemini_tts.set_model_override(None)
+
+        ok = f"{len(latencies)}/{repeats}"
+        if latencies:
+            ordered = sorted(latencies)
+            median = f"{ordered[len(ordered) // 2]:.1f}s"
+            slowest = f"{ordered[-1]:.1f}s"
+        else:
+            median = slowest = "—"
+        print(f"  {model:<34} {ok:>6}  {median:>8} {slowest:>8}  "
+              f"{errors[0] if errors else ''}")
+
+    print("\n  Pin GEMINI_TTS_MODEL to whichever model answers most often — a model")
+    print("  that cannot answer a real section is not made usable by the ladder.")
+    print(f"  For the timeout: ms/char = slowest / {chars} chars * 1000, times a")
+    print("  safety factor. A slowest well under the leash means the leash is loose.")
 
 
 def main():
@@ -268,8 +325,13 @@ def main():
              "progressively less prompt around it, to find which element it rejects",
     )
     parser.add_argument(
+        "--probe-models", action="store_true",
+        help="Instead of comparing providers, measure answer rate and latency "
+             "for each candidate Gemini model on a real section request",
+    )
+    parser.add_argument(
         "--probe-repeats", type=int, default=3,
-        help="Calls per rung in --probe-gemini mode (each one spends budget)",
+        help="Calls per rung/model in probe modes (each one spends budget)",
     )
     args = parser.parse_args()
 
@@ -297,16 +359,25 @@ def main():
         else [args.section]
     )
 
-    if args.probe_gemini:
+    if args.probe_gemini or args.probe_models:
         if not os.getenv("GEMINI_API_KEY"):
-            print("❌ --probe-gemini needs GEMINI_API_KEY")
+            print("❌ Gemini probes need GEMINI_API_KEY")
             sys.exit(1)
+        import gemini_tts
+        # dict.fromkeys dedupes while keeping order, for when both env vars name
+        # the same model and there is no second thing to try.
+        models = list(dict.fromkeys(
+            (gemini_tts.GEMINI_TTS_MODEL, gemini_tts.GEMINI_TTS_FALLBACK_MODEL)
+        ))
         for section in sections_to_eval:
             seg_list = all_segments.get(section, [])
             if not seg_list:
                 print(f"  Skipping {section}: no segments found")
                 continue
-            _probe_gemini_rungs(seg_list, args.probe_repeats)
+            if args.probe_models:
+                _probe_gemini_models(seg_list, models, args.probe_repeats)
+            if args.probe_gemini:
+                _probe_gemini_rungs(seg_list, args.probe_repeats)
         return
 
     for section in sections_to_eval:
