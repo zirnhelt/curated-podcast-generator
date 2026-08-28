@@ -156,10 +156,14 @@ jobs:
           BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
           COHERE_API_KEY: ${{ secrets.COHERE_API_KEY }}
           # The TTS provider flags (not the keys) must be set on this stage too:
-          # the polish prompt is provider-gated — only Gemini performs `(cue)`
+          # the polish prompt is provider-gated — only Gemini performs `[tag]`
           # stage directions, so _stage_direction_addendum() would omit them and
           # the credit written into citations would name the wrong provider.
           USE_AZURE_TTS: ${{ inputs.tts_provider == 'azure' && 'true' || '' }}
+          # Scheduled runs pass no input, so the nightly show renders on Gemini.
+          # OpenAI is the fallback rather than the default: the canary decides the
+          # provider before any audio exists, and a section that fails mid-episode
+          # falls to OpenAI on its own. Set tts_provider=openai to skip Gemini.
           USE_GEMINI_TTS: ${{ (inputs.tts_provider == 'gemini' || inputs.tts_provider == '') && 'true' || '' }}
         run: |
           case "${{ github.event.schedule }}" in
@@ -289,6 +293,10 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_MODEL || secrets.GEMINI_TTS_MODEL }}
           GEMINI_TTS_FALLBACK_MODEL: ${{ vars.GEMINI_TTS_FALLBACK_MODEL }}
+          # Scheduled runs pass no input, so the nightly show renders on Gemini.
+          # OpenAI is the fallback rather than the default: the canary decides the
+          # provider before any audio exists, and a section that fails mid-episode
+          # falls to OpenAI on its own. Set tts_provider=openai to skip Gemini.
           USE_GEMINI_TTS: ${{ (inputs.tts_provider == 'gemini' || inputs.tts_provider == '') && 'true' || '' }}
         run: |
           echo "Re-rendering any past episodes whose audio never landed..."
@@ -309,6 +317,10 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_MODEL || secrets.GEMINI_TTS_MODEL }}
           GEMINI_TTS_FALLBACK_MODEL: ${{ vars.GEMINI_TTS_FALLBACK_MODEL }}
+          # Scheduled runs pass no input, so the nightly show renders on Gemini.
+          # OpenAI is the fallback rather than the default: the canary decides the
+          # provider before any audio exists, and a section that fails mid-episode
+          # falls to OpenAI on its own. Set tts_provider=openai to skip Gemini.
           USE_GEMINI_TTS: ${{ (inputs.tts_provider == 'gemini' || inputs.tts_provider == '') && 'true' || '' }}
         run: |
           echo "Starting daily podcast audio render..."

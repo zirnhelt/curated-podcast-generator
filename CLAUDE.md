@@ -568,7 +568,14 @@ re-render. **The never-speak-a-tag rule is not in `style_prompt`** — it rides 
 tags (`tag_instruction`), so the rung that sheds the style cannot ship tags with nothing
 saying they are direction.
 
-**The default model is now `gemini-3.1-flash-tts-preview`, unproven here.** Every
+**Gemini is the nightly default; OpenAI is its fallback.** The daily workflow's
+`tts_provider` input defaults to `gemini` and a scheduled run passes no input, so the show
+renders multi-speaker. OpenAI catches it in two places, both automatic: the canary pins
+OpenAI for the whole episode before any audio exists when Gemini will not answer, and a
+section that fails mid-render falls back per section. Dispatch with `tts_provider=openai`
+to skip Gemini for a run.
+
+**The Gemini default model is now `gemini-3.1-flash-tts-preview`, unproven here.** Every
 reliability mechanism below was built against the 2.5 flash preview endpoint answering
 8 of 15 calls (2026-08-13 probe); a newer model may make much of it unnecessary, and
 none of it has been re-measured against this one. **Run
