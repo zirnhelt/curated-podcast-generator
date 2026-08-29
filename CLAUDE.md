@@ -627,41 +627,81 @@ Two probes, asking different questions — both are `TTS Eval` workflow inputs t
 
 **`GEMINI_TTS_MODEL` is a repository *variable*, never a secret.** A model name is not a credential, and sourcing it from `secrets` made GitHub mask it everywhere — on 2026-08-28 the log could only say a request went unanswered on `***`, so the run report could not name the model that failed. `canary()` also prints the candidate list before probing it, so a withdrawn or misspelled model name reads as itself rather than as an outage.
 
-### Brave Search spend (`_brave_search`, `_BRAVE_WALL`, the two call budgets)
+### Brave spend (`_brave_search`, `_BRAVE_WALLS`, the three call budgets)
 
-The plan is metered **monthly** ($15 on the Search tier), so the pipeline's job is to spend
-the month's calls on work that reaches the listener, and to stop instantly once there is
-nothing left to spend.
+**Two plans, two meters** (since 2026-08-29). Search is $5/1000 requests against a
+self-imposed **$10 monthly** spend limit — 2,000 requests — and Answers is $4/1000 queries plus
+$5/MTok each way, held to its **monthly free credit** with no paid overage. Both refuse past
+their limit rather than billing on, so a 402 can arrive on any day of the month. The pipeline's
+job is to spend each month's calls on work that reaches the listener, and to stop instantly
+once one of them has nothing left.
 
-**A 402 is a wall and closes Brave for the run** (`_is_brave_billing_wall`, `_trip_brave_wall`).
-Unlike a 429 a 402 has no throttle reading — Brave words it plainly, `current_spend` past
-`usage_limit`. The Answers endpoint had disabled itself on a rejection since it was written;
-Search had no equivalent, so on 2026-08-29 the plan hit its cap on the **first call of the
-run** and the pipeline made 17 more, every one refused. The wall is checked inside
-`_brave_search` rather than in the rate-limit wrappers, so the paths that call straight
-through (`_resolve_script_questions_with_brave`) get it too, and Search and Answers share one
-flag because they share one meter.
+**The fallback crons are the multiplier that spends a month.** The workflow fires at 1:05, 2:05
+and 3:05 Pacific; the later two exit on the idempotency check and cost nothing — unless the
+first run failed *after* spending, when the day costs three full sets of calls (2026-08-23). A
+normal day is ~16 Search requests (~480/month, ~$2.40 of the $10); triple-cron days are the
+pathology the per-run ceilings exist to bound, not the ordinary one.
+
+**A 402 is a wall and closes that meter for the run** (`_is_brave_billing_wall`,
+`_trip_brave_wall(error, meter)`, `_brave_walled(meter)`). Unlike a 429 a 402 has no throttle
+reading — Brave words it plainly, `current_spend` past `usage_limit`. The Answers endpoint had
+disabled itself on a rejection since it was written; Search had no equivalent, so on 2026-08-29
+the Search plan hit its cap (then $15) on the **first call of the run** and the pipeline made 17
+more, every one refused. The wall is checked inside `_brave_search` rather than in the rate-limit
+wrappers, so the paths that call straight through (`_resolve_script_questions_with_brave`) get
+it too.
+
+**Two plans means two keys.** A Brave subscription token is scoped to one plan — subscribing to
+a second requires generating a key under it — so the Search token does not authenticate against
+Answers. `_brave_answers_key()` reads `BRAVE_ANSWERS_API_KEY` and falls back to
+`BRAVE_SEARCH_API_KEY`, which is what every deployment had set and what is right while one plan
+serves both endpoints. **`_brave_summarize` resolves its own key rather than taking the
+caller's**: every caller in the pipeline holds the Search token, so passing it through was how a
+wrong-subscription request would have looked deliberate. A 401/403 is a verdict on the key
+(`_is_brave_auth_failure`), not on the payload — it disables the endpoint without spending the
+second request shape, and the degradation names the env var to set rather than reporting an
+outage.
+
+**The two walls are separate because the two plans are.** They shared one flag while they
+shared one meter, and keeping that after the split would cost an episode its research twice
+over — the 2026-08-29 Search cap would have closed an Answers plan that had just been paid for.
+**A spent meter is now a reason to ask the other one, not to give up:** once the Search plan
+is out — walled, or over its deep-dive budget (`_brave_deep_dive_open`) —
+`_web_search_tool_executor` routes every query to Answers regardless of the `mode` the model
+asked for, and snippets remain the documented fallback when Answers is the one that is out.
 
 **A dead search endpoint must not be reported as an editorial finding.** The agentic research
-pass's only tool is web search, so with the wall up it is skipped rather than run to a `NONE`
-it was always going to reach — on 2026-08-29 it made four refused searches and printed
-`No research warranted for this deep dive`, which reads as a judgment about the material.
-Both the skip and a mid-pass wall now `degrade("script/research")`.
+pass's only tool is web search, so with *both* meters closed it is skipped rather than run to a
+`NONE` it was always going to reach — on 2026-08-29 it made four refused searches and printed
+`No research warranted for this deep dive`, which reads as a judgment about the material. One
+meter going out is not that, since the executor asks the other, so both the pre-gate and the
+mid-pass `NONE` attribution read `_brave_research_available()` rather than a single flag.
 
-**Two budgets, because the two kinds of call are not worth the same.**
+**Three budgets, because the three kinds of call are not worth the same.**
 
 | Budget | Path | Nature |
 |--------|------|--------|
 | `BRAVE_SEARCH_CALL_LIMIT` | `_fetch_article_body` thin-body backfill | **Speculative** — runs over up to 40 *pre-curation* candidates, of which ~15 air |
 | `BRAVE_DEEP_DIVE_CALL_LIMIT` | research, deep-dive enrichment, script-question resolution | **Demand-driven** — runs on material already selected |
+| `BRAVE_ANSWERS_CALL_LIMIT` | `_brave_summarize` — the same demand-driven paths, on the other plan | **Credit-bound** — one small monthly credit to spread over ~30 days of runs |
 
-They were one counter until 2026-08-29 (`_brave_deep_dive_rate_limit` was written for this
-and never called), and **the speculative path runs first** — so any single limit would have
+The first two were one counter until 2026-08-29 (`_brave_deep_dive_rate_limit` was written for
+this and never called), and **the speculative path runs first** — so any single limit would have
 been spent entirely on backfill for stories the roundup then dropped, before the deep dive
 asked for anything. Splitting them is what makes a limit safe to set at all; both defaulted
 to `0` (disabled) and bounded nothing. The defaults (12/10) bound a runaway day rather than a
 normal one — 2026-08-29 used 10 and ~6 — so a budget that bites is a signal the pool was
 unusually thin, and it says so in the run report.
+
+**Answers is never reached from the speculative path.** A synthesized prose answer is the wrong
+instrument for thin-body backfill and the expensive one to run over 40 pre-curation candidates,
+so only the demand-driven callers ask it. Its budget counts **every request sent**, not each
+query answered — a shape probe is metered like an answer — and the default of 8 comes to ~250
+queries and ~$0.99 in query fees on a normal month, ~750 and ~$2.98 on a month full of
+triple-cron days. **The token half of that price is unmeasured, and it is the whole headroom
+left in the credit**, so every call logs the `usage` block Brave returns
+(`_log_api_call("brave-answers", …)`); refit the limit off a measured month the way
+`_SPEECH_RATE_FITS` was refitted from the sidecars, not off appetite.
 
 **The remaining lever is structural, not a limit:** the backfill spends up to two queries per
 article (title, then URL) across 40 candidates before curation cuts to 15. Moving it after

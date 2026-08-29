@@ -9,13 +9,18 @@ Actions (.github/workflows/test-agentic-loop.yml) to sanity-check the
 agentic tool-use loop end-to-end without running the full daily pipeline.
 
 Usage:
-    ANTHROPIC_API_KEY=... [BRAVE_SEARCH_API_KEY=...] python test_agentic_pipeline.py
+    ANTHROPIC_API_KEY=... [BRAVE_SEARCH_API_KEY=...] [BRAVE_ANSWERS_API_KEY=...] \
+        python agentic_pipeline_check.py
 """
 
 import os
 import sys
 
 from podcast_generator import (
+    _brave_answers_key,
+    _brave_summarize,
+    _BRAVE_ANSWERS_STATE,
+    _brave_walled,
     get_anthropic_client,
     research_deep_dive_with_agent,
     polish_and_factcheck_with_agent,
@@ -82,6 +87,37 @@ SAMPLE_SCRIPT = """**RILEY:** Welcome to Cariboo Signals, an AI-generated review
 """
 
 
+def check_brave_answers() -> str:
+    """Probe the Answers subscription with one real query. Returns a failure, or "".
+
+    The loops below only reach Answers if the model happens to ask for
+    `mode="answer"`, so they cannot tell a working subscription from a token
+    scoped to the wrong plan — which is the failure worth catching here, since a
+    Brave key authenticates one subscription and Answers became its own plan on
+    2026-08-29. One query is ~$0.004 plus tokens.
+    """
+    if not _brave_answers_key():
+        print("ℹ️  No Brave key set — skipping the Answers subscription probe.\n")
+        return ""
+
+    which = "BRAVE_ANSWERS_API_KEY" if os.getenv("BRAVE_ANSWERS_API_KEY") \
+        else "BRAVE_SEARCH_API_KEY (fallback)"
+    print(f"Probing the Answers subscription with {which}...")
+    answer = _brave_summarize("How long is the Fraser River in kilometres?")
+    if answer:
+        print(f"✅ Answers authenticated and replied: {answer[:160]}\n")
+        return ""
+
+    # _brave_summarize reports the reason through degrade(); say which one it
+    # was here too, because this script's whole job is to be read by a human.
+    if _BRAVE_ANSWERS_STATE["disabled"]:
+        return (f"Answers rejected {which} or its payload — see the message above; "
+                "a 401/403 means the token is scoped to a different subscription")
+    if _brave_walled("answers"):
+        return "Answers is out of credit for the month (402) — the key itself is fine"
+    return "Answers returned no answer (endpoint unreachable or empty response)"
+
+
 def main():
     if not get_anthropic_client():
         print("❌ ANTHROPIC_API_KEY not set — cannot run agentic loop tests")
@@ -96,6 +132,15 @@ def main():
 
     client = get_anthropic_client()
     failures = []
+
+    print("=" * 60)
+    print("0. Brave Answers subscription")
+    print("=" * 60)
+    answers_failure = check_brave_answers()
+    if answers_failure:
+        # Not fatal to the loops below — Answers is a fallback and they are the
+        # thing under test — but reported, so a bad key cannot pass as green.
+        failures.append(answers_failure)
 
     print("=" * 60)
     print("1. research_deep_dive_with_agent")

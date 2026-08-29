@@ -647,22 +647,28 @@ class TestRunAgenticLoop:
 
 
 class TestBraveBillingWall:
-    """One spent plan, one wall, checked before every Brave call.
+    """One spent plan, one wall, checked before every call on *that* meter.
 
     On 2026-08-29 the Search plan hit its $15 monthly limit on the *first* call
     of the run ($15.01 against $15.00) and the pipeline made 17 more, every one
     of them refused: 10 thin-body backfills, 4 deep-dive research searches, 2
-    Answers calls and 2 fact-resolution searches.
+    Answers calls and 2 fact-resolution searches. Answers moved onto its own
+    postpaid plan the same day, so the two meters no longer answer for each
+    other.
     """
 
     @pytest.fixture(autouse=True)
     def _fresh_state(self, monkeypatch):
         import podcast_generator as pg
-        monkeypatch.setattr(pg, "_BRAVE_WALL", {"hit": False, "detail": ""})
+        monkeypatch.setattr(pg, "_BRAVE_WALLS", {
+            "search": {"hit": False, "detail": ""},
+            "answers": {"hit": False, "detail": ""},
+        })
         monkeypatch.setattr(pg, "_BRAVE_ANSWERS_STATE", {"shape": 0, "disabled": False})
         monkeypatch.setattr(
             pg, "_BRAVE_SEARCH_STATE",
-            {"search_calls": 0, "search_ts": 0.0, "deep_calls": 0, "deep_ts": 0.0},
+            {"search_calls": 0, "search_ts": 0.0, "deep_calls": 0, "deep_ts": 0.0,
+             "answer_calls": 0},
         )
 
     @staticmethod
@@ -711,7 +717,7 @@ class TestBraveBillingWall:
         assert pg._brave_search("second", "k") == []
         assert pg._brave_search("third", "k") == []
         assert calls == ["first"], f"spent {len(calls)} calls on a spent plan"
-        assert pg._BRAVE_WALL["hit"] is True
+        assert pg._brave_walled("search") is True
 
     def test_an_ordinary_failure_does_not_trip_the_wall(self, monkeypatch):
         """A single timeout must not cost the run every remaining Brave call."""
@@ -726,12 +732,12 @@ class TestBraveBillingWall:
         pg._brave_search("first", "k")
         pg._brave_search("second", "k")
         assert len(calls) == 2
-        assert pg._BRAVE_WALL["hit"] is False
+        assert pg._brave_walled("search") is False
 
-    def test_the_answers_endpoint_shares_the_wall(self, monkeypatch):
-        """Search and Answers meter against one plan, so a 402 on either is the
-        same wall — and the second request shape must not spend a call proving
-        it (the generic both-shapes path would have)."""
+    def test_a_spent_answers_plan_leaves_search_open(self, monkeypatch):
+        """Answers is postpaid on its own meter since 2026-08-29, so its 402 is a
+        verdict on that plan alone — and the second request shape must not spend
+        a call proving it (the generic both-shapes path would have)."""
         import podcast_generator as pg
         posts = []
 
@@ -749,13 +755,53 @@ class TestBraveBillingWall:
         monkeypatch.setattr(pg.requests, "post", fake_post)
         assert pg._brave_summarize("q", "k") == ""
         assert len(posts) == 1, "the second shape asked a plan already known spent"
-        assert pg._BRAVE_WALL["hit"] is True
+        assert pg._brave_walled("answers") is True
 
-        # ...and Search is now closed too, without a request of its own.
+        # ...and Search is untouched: a different plan, a different meter.
+        assert pg._brave_walled("search") is False
         gets = []
-        monkeypatch.setattr(pg.requests, "get", lambda *a, **k: gets.append(1))
-        assert pg._brave_search("anything", "k") == []
-        assert gets == []
+
+        def fake_get(url, headers=None, params=None, timeout=None):
+            gets.append(params["q"])
+
+            class _Ok:
+                status_code = 200
+
+                def raise_for_status(self):
+                    pass
+
+                def json(self):
+                    return {"web": {"results": [{"title": "t", "url": "u",
+                                                 "description": "d"}]}}
+            return _Ok()
+
+        monkeypatch.setattr(pg.requests, "get", fake_get)
+        assert pg._brave_search("anything", "k") != []
+        assert gets == ["anything"]
+
+    def test_a_spent_search_plan_routes_research_to_answers(self, monkeypatch):
+        """The 2026-08-29 cap left the research pass with no tool at all on a
+        night the Answers plan was live and unused."""
+        import podcast_generator as pg
+        monkeypatch.setenv("BRAVE_SEARCH_API_KEY", "k")
+        pg._BRAVE_WALLS["search"]["hit"] = True
+        asked = []
+        monkeypatch.setattr(pg, "_brave_summarize",
+                            lambda q, k=None: asked.append(q) or "the synthesized answer")
+
+        # Even in the tool's default "results" mode.
+        assert pg._web_search_tool_executor({"query": "how deep is Horsefly Lake"}) == \
+            "the synthesized answer"
+        assert asked == ["how deep is Horsefly Lake"]
+        # ...and the research pass still runs, because a tool remains.
+        assert pg._brave_research_available() is True
+
+        # A spent Search *budget* routes the same way a wall does.
+        pg._BRAVE_WALLS["search"]["hit"] = False
+        monkeypatch.setattr(pg, "BRAVE_DEEP_DIVE_CALL_LIMIT", 1)
+        pg._BRAVE_SEARCH_STATE["deep_calls"] = 1
+        assert pg._web_search_tool_executor({"query": "second"}) == "the synthesized answer"
+        assert asked == ["how deep is Horsefly Lake", "second"]
 
     def test_the_wall_reaches_the_run_report(self, monkeypatch):
         """A silent fallback is the failure this exists to prevent."""
@@ -780,10 +826,15 @@ class TestBraveBudgets:
     @pytest.fixture(autouse=True)
     def _fresh_state(self, monkeypatch):
         import podcast_generator as pg
-        monkeypatch.setattr(pg, "_BRAVE_WALL", {"hit": False, "detail": ""})
+        monkeypatch.setattr(pg, "_BRAVE_WALLS", {
+            "search": {"hit": False, "detail": ""},
+            "answers": {"hit": False, "detail": ""},
+        })
+        monkeypatch.setattr(pg, "_BRAVE_ANSWERS_STATE", {"shape": 0, "disabled": False})
         monkeypatch.setattr(
             pg, "_BRAVE_SEARCH_STATE",
-            {"search_calls": 0, "search_ts": 0.0, "deep_calls": 0, "deep_ts": 0.0},
+            {"search_calls": 0, "search_ts": 0.0, "deep_calls": 0, "deep_ts": 0.0,
+             "answer_calls": 0},
         )
         monkeypatch.setattr(pg, "degrade", lambda name, detail: None)
 
@@ -792,6 +843,38 @@ class TestBraveBudgets:
         import podcast_generator as pg
         assert pg.BRAVE_SEARCH_CALL_LIMIT > 0
         assert pg.BRAVE_DEEP_DIVE_CALL_LIMIT > 0
+        # Answers is postpaid: an overspend here is billed, not refused.
+        assert pg.BRAVE_ANSWERS_CALL_LIMIT > 0
+
+    def test_the_answers_budget_counts_every_request_sent(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "BRAVE_ANSWERS_CALL_LIMIT", 2)
+        posts = []
+
+        class _Ok:
+            status_code = 200
+
+            def json(self):
+                return {"choices": [{"message": {"content": "42 km"}}],
+                        "usage": {"total_tokens": 900}}
+
+        def fake_post(url, headers=None, json=None, timeout=None):
+            posts.append(json)
+            return _Ok()
+
+        monkeypatch.setattr(pg.requests, "post", fake_post)
+        assert pg._brave_summarize("one", "k") == "42 km"
+        assert pg._brave_summarize("two", "k") == "42 km"
+        assert pg._brave_summarize("three", "k") == ""
+        assert len(posts) == 2, "spent past the postpaid budget"
+
+    def test_a_spent_answers_budget_still_leaves_search(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "BRAVE_ANSWERS_CALL_LIMIT", 1)
+        pg._BRAVE_SEARCH_STATE["answer_calls"] = 1
+        assert pg._brave_research_available() is True
+        pg._BRAVE_WALLS["search"]["hit"] = True
+        assert pg._brave_research_available() is False
 
     def test_a_spent_backfill_budget_leaves_the_deep_dive_funded(self, monkeypatch):
         import podcast_generator as pg
@@ -807,6 +890,86 @@ class TestBraveBudgets:
         assert pg._brave_deep_dive_rate_limit("research", "k") != []
 
 
+class TestBraveAnswersKey:
+    """A Brave key is scoped to one subscription, so Answers needs its own."""
+
+    @pytest.fixture(autouse=True)
+    def _fresh_state(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_BRAVE_ANSWERS_STATE", {"shape": 0, "disabled": False})
+        monkeypatch.setattr(pg, "_BRAVE_WALLS", {
+            "search": {"hit": False, "detail": ""},
+            "answers": {"hit": False, "detail": ""},
+        })
+        monkeypatch.setattr(
+            pg, "_BRAVE_SEARCH_STATE",
+            {"search_calls": 0, "search_ts": 0.0, "deep_calls": 0, "deep_ts": 0.0,
+             "answer_calls": 0},
+        )
+        monkeypatch.delenv("BRAVE_ANSWERS_API_KEY", raising=False)
+        monkeypatch.setenv("BRAVE_SEARCH_API_KEY", "search-token")
+
+    def test_prefers_the_answers_token_and_falls_back_to_search(self, monkeypatch):
+        import podcast_generator as pg
+        assert pg._brave_answers_key() == "search-token"
+        monkeypatch.setenv("BRAVE_ANSWERS_API_KEY", "answers-token")
+        assert pg._brave_answers_key() == "answers-token"
+
+    def test_the_answers_call_sends_the_answers_token(self, monkeypatch):
+        """The callers all hold the Search token; the endpoint must not get it
+        just because it was the one in scope."""
+        import podcast_generator as pg
+        monkeypatch.setenv("BRAVE_ANSWERS_API_KEY", "answers-token")
+        seen = []
+
+        class _Ok:
+            status_code = 200
+
+            def json(self):
+                return {"choices": [{"message": {"content": "42 km"}}]}
+
+        def fake_post(url, headers=None, json=None, timeout=None):
+            seen.append(headers["x-subscription-token"])
+            return _Ok()
+
+        monkeypatch.setattr(pg.requests, "post", fake_post)
+        assert pg._brave_summarize("how far") == "42 km"
+        assert seen == ["answers-token"]
+
+    def test_a_rejected_key_is_a_verdict_and_names_the_fix(self, monkeypatch):
+        """401/403 is the key, not the payload — a second request shape would
+        spend another call proving the same token is still scoped to Search."""
+        import podcast_generator as pg
+        posts, recorded = [], []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: recorded.append(detail))
+
+        class _Denied:
+            status_code = 403
+            text = '{"error":"Subscription token is not valid for this endpoint"}'
+
+            def json(self):
+                return {}
+
+        def fake_post(url, headers=None, json=None, timeout=None):
+            posts.append(json)
+            return _Denied()
+
+        monkeypatch.setattr(pg.requests, "post", fake_post)
+        assert pg._brave_summarize("anything") == ""
+        assert len(posts) == 1, "spent a second shape on a rejected key"
+        assert pg._BRAVE_ANSWERS_STATE["disabled"] is True
+        assert any("BRAVE_ANSWERS_API_KEY" in d for d in recorded)
+        # ...and an auth failure is not a billing wall.
+        assert pg._brave_walled("answers") is False
+
+    def test_no_key_at_all_never_reaches_the_network(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.delenv("BRAVE_SEARCH_API_KEY", raising=False)
+        monkeypatch.setattr(pg.requests, "post",
+                            lambda *a, **k: pytest.fail("asked Brave with no key"))
+        assert pg._brave_summarize("anything") == ""
+
+
 class TestBraveSummarize:
     """Brave has flipped this payload schema twice — the caller carries both."""
 
@@ -814,6 +977,15 @@ class TestBraveSummarize:
     def _fresh_state(self, monkeypatch):
         import podcast_generator as pg
         monkeypatch.setattr(pg, "_BRAVE_ANSWERS_STATE", {"shape": 0, "disabled": False})
+        monkeypatch.setattr(pg, "_BRAVE_WALLS", {
+            "search": {"hit": False, "detail": ""},
+            "answers": {"hit": False, "detail": ""},
+        })
+        monkeypatch.setattr(
+            pg, "_BRAVE_SEARCH_STATE",
+            {"search_calls": 0, "search_ts": 0.0, "deep_calls": 0, "deep_ts": 0.0,
+             "answer_calls": 0},
+        )
 
     @staticmethod
     def _resp(status, payload=None):

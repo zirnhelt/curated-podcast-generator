@@ -134,6 +134,7 @@ Optional (for weekend shows and bespoke):
 | Secret | Value |
 |---|---|
 | `BRAVE_SEARCH_API_KEY` | Brave Search API key — for bespoke source expansion and the agentic deep-dive research/fact-check loop |
+| `BRAVE_ANSWERS_API_KEY` | Brave **Answers** subscription token — a Brave key is scoped to one plan, so Answers needs its own. Falls back to `BRAVE_SEARCH_API_KEY`; a 401/403 from Answers means this is unset or scoped to Search |
 | `PODCAST_DEBUG_AGENT` | Set to `1` to log each tool call/result made by the agentic research and polish/fact-check loops |
 | `COHERE_API_KEY` | Cohere API key — enables semantic dedup and deep-dive reranking (set `USE_COHERE=1`) |
 
