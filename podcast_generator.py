@@ -849,6 +849,12 @@ SECTION_BOUNDARY_FADE_MS = 40
 # talking over the fade-out (radio-style) instead of waiting for silence.
 MUSIC_SPEECH_OVERLAP_MS = 500
 
+# The other direction: music coming up *under* the tail of a speech segment —
+# the theme under the last of the cold open, the outro under the last of the
+# credits. Longer than MUSIC_SPEECH_OVERLAP_MS because a bed swelling in needs
+# more room than a voice cutting through a fade already on its way down.
+MUSIC_BED_OVERLAP_MS = 2000
+
 # Peak level below which a rendered take is treated as containing no speech.
 # A real tts-1 take peaks near -3 dBFS and even a whispered one stays above
 # -30; digital silence reads about -90, so the threshold sits in dead space
@@ -7135,6 +7141,28 @@ def _append_with_gap(combined, speech, gap_ms):
     return combined
 
 
+def _bring_music_up_under(combined, music, overlap_ms=None):
+    """Start *music* under the tail of *combined*, fading it in across the overlap.
+
+    Deliberately not pydub's `append(crossfade=)`: a crossfade also fades the
+    speech tail to silence, which would eat the last words of the cold open and
+    the show's own URL at the end of the credits. Here only the music moves —
+    the speech plays out intact while the bed swells beneath it.
+
+    The overlap is clamped to both pieces, so a missing cold open (empty
+    *combined*) degrades to a plain append rather than a music bed fading up
+    from nothing.
+    """
+    overlap = min(
+        MUSIC_BED_OVERLAP_MS if overlap_ms is None else overlap_ms,
+        len(combined),
+        len(music),
+    )
+    if overlap <= 0:
+        return combined + music
+    return _append_with_gap(combined, music.fade_in(overlap), -overlap)
+
+
 def parse_script_into_segments(script):
     """Parse script into preamble (cold open), welcome, news, and deep dive segments."""
     segments = {
@@ -7731,8 +7759,7 @@ def _generate_parallel_azure_audio(segments, base_output_filename, theme_name=No
             # Cold open teaser before the theme music (optional)
             if segments.get("preamble"):
                 _render("preamble")
-                combined += AudioSegment.silent(duration=500)
-            combined += intro_music
+            combined = _bring_music_up_under(combined, intro_music)
 
             _render("welcome", overlap_ms=MUSIC_SPEECH_OVERLAP_MS)
             combined += section_gap + ambient_transition
@@ -7763,7 +7790,7 @@ def _generate_parallel_azure_audio(segments, base_output_filename, theme_name=No
             except Exception as ce:
                 print(f"  ⚠️  Azure parallel credits skipped: {ce}")
 
-        combined += section_gap + outro_music
+        combined = _bring_music_up_under(combined, outro_music)
         combined.export(azure_path, format="mp3")
         elapsed = time.time() - t0
         duration_min = len(combined) / 1000 / 60
@@ -8002,12 +8029,13 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
             if segments['preamble']:
                 chapters.append({"startTime": 0, "title": "Cold Open"})
                 _render_section(segments['preamble'], "🎬 Generating cold open teaser...", "preamble")
-                # Beat between the tease and the theme music hit
-                combined += AudioSegment.silent(duration=500)
 
-            # Intro music, then the welcome section (speech enters over the music fade)
+            # Intro music, then the welcome section (speech enters over the music fade).
+            # The theme comes up under the last words of the tease rather than after a
+            # beat of silence; the chapter mark stays on the end of the cold open, so
+            # jumping to "Introduction" lands on the theme rather than mid-teaser.
             chapters.append({"startTime": round(len(combined) / 1000, 1), "title": "Introduction"})
-            combined += intro_music
+            combined = _bring_music_up_under(combined, intro_music)
 
             _render_section(segments['welcome'], "🎤 Generating welcome section...", "welcome",
                             overlap_ms=MUSIC_SPEECH_OVERLAP_MS)
@@ -8135,8 +8163,9 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                     "episode ships without them",
                 )
 
-        # Add outro music
-        combined += section_gap + outro_music
+        # Outro music comes up under the tail of the credits (or of the last
+        # spoken turn, on a day the credits could not be rendered).
+        combined = _bring_music_up_under(combined, outro_music)
 
         # Export
         combined.export(output_filename, format="mp3")
@@ -8310,7 +8339,7 @@ def generate_audio_tts_only(script, output_filename, _force_openai=False):
                 outro = normalize_segment(
                     AudioSegment.from_mp3(str(OUTRO_MUSIC)), TARGET_MUSIC_DBFS
                 )
-                combined = combined + AudioSegment.silent(duration=400) + outro
+                combined = _bring_music_up_under(combined, outro)
                 print("  ✅ Added outro music (TTS-only mode)")
             except Exception as outro_err:
                 print(f"  ⚠️  Outro skipped in TTS-only mode: {outro_err}")
