@@ -811,6 +811,35 @@ class TestCanary:
         assert gemini_tts.canary() == gemini_tts.GEMINI_TTS_MODEL
         assert len(calls) == 2
 
+    def test_a_spend_cap_costs_one_probe_not_four(self, monkeypatch):
+        """The cap belongs to the project, so every model and every retry is
+        behind the same wall. On 2026-08-29 this cost four probes across two
+        models — and would have cost four a night until the month rolled over."""
+        calls = []
+
+        def responder(url, **kwargs):
+            calls.append(url)
+            return TestSynthesizeRetries._FakeResp(
+                TestFailureClassification.SPEND_CAP_BODY, status=429
+            )
+
+        self._patch(monkeypatch, responder)
+        assert gemini_tts.canary() is None
+        assert len(calls) == 1, f"spend cap re-probed {len(calls)} times"
+
+    def test_a_spend_cap_says_so_in_the_run_report(self, monkeypatch):
+        """A whole episode moving to OpenAI's voices must name its cause: a cap
+        a human has to raise reads nothing like a flaky endpoint."""
+        def responder(url, **kwargs):
+            return TestSynthesizeRetries._FakeResp(
+                TestFailureClassification.SPEND_CAP_BODY, status=429
+            )
+
+        self._patch(monkeypatch, responder)
+        gemini_tts.drain_degradations()
+        assert gemini_tts.canary() is None
+        assert any("spend cap" in d for d in gemini_tts.drain_degradations())
+
     def test_no_api_key_is_a_failed_canary_not_an_exception(self, monkeypatch):
         monkeypatch.delenv("GEMINI_API_KEY", raising=False)
         assert gemini_tts.canary() is None
@@ -1190,6 +1219,34 @@ class TestFailureClassification:
         for status in (429, 500, 502, 503, 504):
             err = RuntimeError(f"Gemini TTS HTTP {status}: RESOURCE_EXHAUSTED")
             assert gemini_tts._carries_no_shape_verdict(err), status
+
+    SPEND_CAP_BODY = {
+        "error": {
+            "code": 429,
+            "message": (
+                "Your project has exceeded its monthly spending cap. Please go to "
+                "AI Studio at https://ai.studio/spend to manage your project spend cap."
+            ),
+            "status": "RESOURCE_EXHAUSTED",
+        }
+    }
+
+    def test_a_spend_cap_is_a_verdict_despite_being_a_429(self):
+        """The one 429 that must not be re-asked. Gemini words a spent spend cap
+        and a per-minute throttle with the same status and the same
+        RESOURCE_EXHAUSTED, so only the wording separates them (2026-08-29)."""
+        err = gemini_tts.SpendCapError(
+            "Gemini TTS HTTP 429: Your project has exceeded its monthly spending cap."
+        )
+        assert not gemini_tts._carries_no_shape_verdict(err)
+
+    def test_spend_cap_wording_is_recognized(self):
+        assert gemini_tts._is_spend_cap(
+            RuntimeError("Your project has exceeded its monthly spending cap.")
+        )
+        assert not gemini_tts._is_spend_cap(
+            RuntimeError("Gemini TTS HTTP 429: RESOURCE_EXHAUSTED")
+        )
 
     def test_a_tokenized_rejection_is_a_verdict(self):
         """finishReason OTHER comes back with promptTokenCount ==
