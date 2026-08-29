@@ -629,18 +629,25 @@ Two probes, asking different questions — both are `TTS Eval` workflow inputs t
 
 ### Brave spend (`_brave_search`, `_BRAVE_WALLS`, the three call budgets)
 
-**Two plans, two meters** (since 2026-08-29): Search is metered **monthly** ($15 on the Search
-tier and refused past it), Answers is **postpaid** ($4/1000 queries plus $5/MTok each way, with
-$5 of included credit a month, so an overspend there is *billed* rather than refused). The
-pipeline's job is to spend each month's calls on work that reaches the listener, and to stop
-instantly once one of them has nothing left.
+**Two plans, two meters** (since 2026-08-29). Search is $5/1000 requests against a
+self-imposed **$10 monthly** spend limit — 2,000 requests — and Answers is $4/1000 queries plus
+$5/MTok each way, held to its **monthly free credit** with no paid overage. Both refuse past
+their limit rather than billing on, so a 402 can arrive on any day of the month. The pipeline's
+job is to spend each month's calls on work that reaches the listener, and to stop instantly
+once one of them has nothing left.
+
+**The fallback crons are the multiplier that spends a month.** The workflow fires at 1:05, 2:05
+and 3:05 Pacific; the later two exit on the idempotency check and cost nothing — unless the
+first run failed *after* spending, when the day costs three full sets of calls (2026-08-23). A
+normal day is ~16 Search requests (~480/month, ~$2.40 of the $10); triple-cron days are the
+pathology the per-run ceilings exist to bound, not the ordinary one.
 
 **A 402 is a wall and closes that meter for the run** (`_is_brave_billing_wall`,
 `_trip_brave_wall(error, meter)`, `_brave_walled(meter)`). Unlike a 429 a 402 has no throttle
 reading — Brave words it plainly, `current_spend` past `usage_limit`. The Answers endpoint had
 disabled itself on a rejection since it was written; Search had no equivalent, so on 2026-08-29
-the Search plan hit its cap on the **first call of the run** and the pipeline made 17 more,
-every one refused. The wall is checked inside `_brave_search` rather than in the rate-limit
+the Search plan hit its cap (then $15) on the **first call of the run** and the pipeline made 17
+more, every one refused. The wall is checked inside `_brave_search` rather than in the rate-limit
 wrappers, so the paths that call straight through (`_resolve_script_questions_with_brave`) get
 it too.
 
@@ -665,7 +672,7 @@ mid-pass `NONE` attribution read `_brave_research_available()` rather than a sin
 |--------|------|--------|
 | `BRAVE_SEARCH_CALL_LIMIT` | `_fetch_article_body` thin-body backfill | **Speculative** — runs over up to 40 *pre-curation* candidates, of which ~15 air |
 | `BRAVE_DEEP_DIVE_CALL_LIMIT` | research, deep-dive enrichment, script-question resolution | **Demand-driven** — runs on material already selected |
-| `BRAVE_ANSWERS_CALL_LIMIT` | `_brave_summarize` — the same demand-driven paths, on the other plan | **Postpaid** — the only budget whose overrun costs money instead of returning `[]` |
+| `BRAVE_ANSWERS_CALL_LIMIT` | `_brave_summarize` — the same demand-driven paths, on the other plan | **Credit-bound** — one small monthly credit to spread over ~30 days of runs |
 
 The first two were one counter until 2026-08-29 (`_brave_deep_dive_rate_limit` was written for
 this and never called), and **the speculative path runs first** — so any single limit would have
@@ -677,12 +684,13 @@ unusually thin, and it says so in the run report.
 
 **Answers is never reached from the speculative path.** A synthesized prose answer is the wrong
 instrument for thin-body backfill and the expensive one to run over 40 pre-curation candidates,
-so only the demand-driven callers ask it. Its budget counts **every request sent**, not each query
-answered — a shape probe is billed like an answer — and the default of 8 bounds the query fee
-to roughly $1.00 of the $5 included credit. **The token half of that price is unmeasured**, so
-every call logs the `usage` block Brave returns (`_log_api_call("brave-answers", …)`); raise the
-limit off a measured month the way `_SPEECH_RATE_FITS` was refitted from the sidecars, not off
-appetite.
+so only the demand-driven callers ask it. Its budget counts **every request sent**, not each
+query answered — a shape probe is metered like an answer — and the default of 8 comes to ~250
+queries and ~$0.99 in query fees on a normal month, ~750 and ~$2.98 on a month full of
+triple-cron days. **The token half of that price is unmeasured, and it is the whole headroom
+left in the credit**, so every call logs the `usage` block Brave returns
+(`_log_api_call("brave-answers", …)`); refit the limit off a measured month the way
+`_SPEECH_RATE_FITS` was refitted from the sidecars, not off appetite.
 
 **The remaining lever is structural, not a limit:** the backfill spends up to two queries per
 article (title, then URL) across 40 candidates before curation cuts to 15. Moving it after

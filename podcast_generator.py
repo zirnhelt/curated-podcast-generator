@@ -701,9 +701,17 @@ OPUS_QUALITY_HIT_THRESHOLD = int(os.getenv("OPUS_QUALITY_HIT_THRESHOLD", "3"))
 # skip the full polish+factcheck rewrite and keep the raw script.
 PODCAST_SKIP_CLEAN_POLISH = os.getenv("PODCAST_SKIP_CLEAN_POLISH", "0") == "1"
 CLEAN_POLISH_MAX_HITS = int(os.getenv("CLEAN_POLISH_MAX_HITS", "2"))
-# Cap per-run Brave fan-out. The plan is metered monthly ($15 on the Search
-# plan), so the per-run ceiling is what keeps a heavy day from spending a later
-# one's calls — on 2026-08-29 the cap was reached on the 29th of the month.
+# Cap per-run Brave fan-out. Search is metered monthly at $5/1000 requests
+# against a self-imposed $10 spend limit — 2,000 requests a month — so the
+# per-run ceiling is what keeps a heavy day from spending a later one's calls.
+# On 2026-08-29 the limit (then $15) was reached on the 29th of the month.
+#
+# The multiplier that actually spends a month is the *fallback crons*: the
+# workflow fires at 1:05, 2:05 and 3:05 Pacific and the later two exit on the
+# idempotency check, costing nothing — unless the first run failed after
+# spending, in which case the day costs three full sets of calls (2026-08-23).
+# A normal day is ~16 requests (~480/month, ~$2.40); three-cron days are what
+# take a month to its limit, which is the pathology these ceilings bound.
 #
 # Two budgets, because the two kinds of call are not worth the same:
 #
@@ -726,15 +734,20 @@ BRAVE_SEARCH_COOLDOWN_SECS = float(os.getenv("PODCAST_BRAVE_SEARCH_COOLDOWN_SECS
 BRAVE_DEEP_DIVE_CALL_LIMIT = int(os.getenv("PODCAST_BRAVE_DEEP_DIVE_CALL_LIMIT", "10"))
 BRAVE_DEEP_DIVE_COOLDOWN_SECS = float(os.getenv("PODCAST_BRAVE_DEEP_DIVE_COOLDOWN_SECS", "0"))
 #
-# ANSWERS is metered separately from both of them, on its own postpaid plan
-# activated 2026-08-29 ($4/1000 queries plus $5/MTok each way, with $5 of
-# included credit a month). Only the demand-driven paths reach it — a
-# synthesized prose answer is the wrong instrument for thin-body backfill and
-# the expensive one to run over 40 pre-curation candidates. The token half of
-# the price is unmeasured here, so the default bounds the query fee well inside
-# the included credit (8 a night is ~250 calls and ~$1.00 of it) and every call
-# logs the usage block Brave returns. Raise it on measured spend, the way
-# _SPEECH_RATE_FITS was refitted from the sidecars, not on appetite.
+# ANSWERS is metered separately from both of them, on its own plan activated
+# 2026-08-29 ($4/1000 queries plus $5/MTok each way) and held to its monthly
+# free credit — no paid overage, so an overrun 402s exactly as Search does.
+# The budget therefore is not there to prevent a bill; it is there to spread a
+# very small credit across a month, including the three-cron days.
+#
+# Only the demand-driven paths reach it — a synthesized prose answer is the
+# wrong instrument for thin-body backfill and the expensive one to run over 40
+# pre-curation candidates. At 8 a run: ~250 queries and ~$0.99 in query fees on
+# a normal month, ~750 and ~$2.98 on a month full of triple-cron days. The token
+# half of the price is unmeasured, which is the whole headroom left in the
+# credit — every call logs the usage block Brave returns, so refit this off a
+# measured month the way _SPEECH_RATE_FITS was refitted from the sidecars,
+# rather than off appetite.
 BRAVE_ANSWERS_CALL_LIMIT = int(os.getenv("PODCAST_BRAVE_ANSWERS_CALL_LIMIT", "8"))  # 0=disabled
 DEEP_DIVE_INJECT_DISCIPLINE_TAGS = os.getenv("PODCAST_DEEP_DIVE_INJECT_DISCIPLINE_TAGS", "0") == "1"
 
@@ -2255,12 +2268,13 @@ _BRAVE_SEARCH_STATE = {"search_calls": 0, "search_ts": 0.0, "deep_calls": 0, "de
                        "answer_calls": 0}
 
 # One wall per meter. Search and Answers billed against a single monthly usage
-# limit until 2026-08-29, when Answers moved onto its own postpaid plan with its
-# own included credit — so a 402 is now a verdict on one endpoint and says
-# nothing about the other. Coupling them is what makes a spent plan cost the
-# episode twice: the Search plan hit its $15 cap on the *first* call of the
-# 2026-08-29 run, and a shared wall would have closed an Answers plan that had
-# just been paid for, taking the deep-dive research with it.
+# limit until 2026-08-29, when Answers moved onto its own plan with its own
+# credit — so a 402 is now a verdict on one endpoint and says nothing about the
+# other. Coupling them is what makes a spent plan cost the episode twice: the
+# Search plan hit its cap on the *first* call of the 2026-08-29 run, and a
+# shared wall would have closed an Answers plan that had just been activated,
+# taking the deep-dive research with it. Both plans refuse past their limit
+# rather than billing on, so either wall can go up on any day of the month.
 _BRAVE_WALLS = {
     "search": {"hit": False, "detail": ""},
     "answers": {"hit": False, "detail": ""},
@@ -2296,7 +2310,7 @@ def _trip_brave_wall(error, meter: str = "search") -> None:
 
     The Answers endpoint has disabled itself on a rejection since it was
     written; Search had no equivalent. On 2026-08-29 the Search plan hit its cap
-    ($15.01 against a $15.00 limit) on the *first* call of the run and the
+    ($15.01 against the $15.00 limit then set) on the *first* call of the run and the
     pipeline made 17 more — thin-body backfill, deep-dive research, fact
     resolution — every one of them refused before it was sent anywhere useful,
     and the deep-dive research pass then reported "no research warranted" as
@@ -2523,10 +2537,10 @@ def _brave_summarize(query, api_key):
     shapes have failed: three queries a night spending two dead calls each is
     the whole cost of an API that has been down for days.
 
-    Answers is postpaid, so unlike the Search plan an overspend here is billed
-    rather than refused — BRAVE_ANSWERS_CALL_LIMIT is the ceiling that keeps a
-    heavy night inside the included monthly credit, and each request sent counts
-    against it (a shape probe is billed the same as an answer).
+    Answers runs on its own plan, held to its monthly free credit, so
+    BRAVE_ANSWERS_CALL_LIMIT is what spreads that credit across a month rather
+    than letting a run of bad nights spend it in the first week. Each request
+    sent counts against the budget — a shape probe is metered like an answer.
     """
     if _BRAVE_ANSWERS_STATE["disabled"] or _brave_walled("answers"):
         return ""
