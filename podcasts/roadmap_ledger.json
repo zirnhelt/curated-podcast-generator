@@ -121,13 +121,14 @@
       "title": "Brave Answers API hit its usage limit partway through the run, forcing a fallback to web snippets.",
       "detail": "On 2026-08-27, the script/brave-answers segment failed with HTTP 402 (usage limit exceeded) after the quota was exhausted. The pipeline switched to web snippets for all remaining answers in that episode. The 402 error itself indicates the account hit its hard limit, not a transient failure. Confirm the quota tier on the Brave account, assess whether the episode's answer count is typical, and decide whether to increase the quota, implement batching, or rely on web snippets as the primary source when the API is unavailable.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-08-27",
       "seen": [
-        "2026-08-27"
+        "2026-08-27",
+        "2026-08-29"
       ],
-      "last_seen": "2026-08-27"
+      "last_seen": "2026-08-29"
     },
     {
       "id": "tts-duration-underrun-one-segment",
@@ -167,7 +168,20 @@
         "2026-08-28"
       ],
       "last_seen": "2026-08-28"
+    },
+    {
+      "id": "roundup-story-order-drift-persists-after-repair",
+      "title": "Ten roundup stories remained out of sequence after one correction pass.",
+      "detail": "On 2026-08-29, the script/roundup-order segment failed to sort correctly on the first attempt. After one repair pass, 10 stories still aired after a later block. The pipeline did not retry. This follows the pattern noted in the already-tracked item roundup-citation-alignment-drift-persists, where 3 of 15 stories drifted out of order on a prior run. The repair logic is insufficient; either increase retry attempts on sort failures or add a validation gate that blocks publish if any story lands in the wrong temporal position.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-08-29",
+      "seen": [
+        "2026-08-29"
+      ],
+      "last_seen": "2026-08-29"
     }
   ],
-  "updated": "2026-08-28"
+  "updated": "2026-08-29"
 }

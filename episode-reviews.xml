@@ -5,7 +5,62 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Fri, 28 Aug 2026 21:09:54 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 29 Aug 2026 14:59:36 +0000</lastBuildDate>
+    <item>
+      <title>Episode Review — Cariboo Signals, August 29, 2026</title>
+      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-08-29.html</link>
+      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-08-29.html</guid>
+      <pubDate>Sat, 29 Aug 2026 14:59:36 +0000</pubDate>
+      <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/33255914006"&gt;33255914006&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3&gt;Gemini TTS failed pre-flight; OpenAI rendered the whole episode&lt;/h3&gt;
+
+&lt;p&gt;Four rate-limit errors from Gemini's text-to-speech models triggered the canary check to fail. The pipeline did not attempt a mid-episode voice switch. Instead, it fell back to OpenAI and rendered all 18.6 minutes of audio on a single vendor. The listener heard no interruption. The cost was vendor concentration for one day.&lt;/p&gt;
+
+&lt;h3&gt;Brave Answers API hit its usage limit mid-run&lt;/h3&gt;
+
+&lt;p&gt;The Answers API returned a 402 error. The pipeline switched to web snippets for the remainder of script generation. This affected the &lt;code&gt;script/brave-answers&lt;/code&gt; segment. The first draft still arrived at 2,252 words, below the 3,400-word target, and was sent for an expand pass. The final script shipped at 2,955 words.&lt;/p&gt;
+
+&lt;h3&gt;Ten roundup stories stayed out of order after one repair&lt;/h3&gt;
+
+&lt;p&gt;A sorting failure in &lt;code&gt;script/roundup-order&lt;/code&gt; left 10 stories aired after a later block, even after one correction attempt. The pipeline did not retry. Fifteen roundup stories were dropped from the episode entirely. Five deep dives ran instead.&lt;/p&gt;
+
+&lt;h3&gt;Citation matching fell unevenly across segments&lt;/h3&gt;
+
+&lt;p&gt;Roundup citations aligned at 13 of 15 matched. Deep dive citations aligned at 2 of 5 matched. The disparity tracks with the segment's relative complexity—the roundup used shorter, more predictable source text. The deep dives included pieces titled "B.C.'s Sikh community on edge after Edmonton attack" and "Artists Commit to the Bit at This Year's Vulva Gala," which required more precise extraction logic.&lt;/p&gt;
+
+&lt;h3&gt;Three runs, each later than the last&lt;/h3&gt;
+
+&lt;p&gt;The first completed run arrived 222 minutes late. The second completed 246 minutes late. A third began 293 minutes late and was still in progress at report time. All three triggered on Fallback 2, the 3:05 AM Pacific schedule. The repeating trigger and escalating latency suggest the primary schedule did not complete.&lt;/p&gt;
+
+&lt;h3&gt;Script generation took 450 seconds; audio took 334&lt;/h3&gt;
+
+&lt;p&gt;Generation was the slowest step in the pipeline by a margin of 116 seconds over audio rendering. The script required one expand pass after arriving under target. Nine Claude API calls consumed 87,646 input tokens. The expanded final script was 2,955 words. The episode published to RSS as entry 214.&lt;/p&gt;
+
+&lt;h3&gt;The day's triggers&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-08-29T13:47:28Z&lt;/td&gt;&lt;td&gt;+222 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-08-29T14:11:03Z&lt;/td&gt;&lt;td&gt;+246 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-08-29T14:58:59Z&lt;/td&gt;&lt;td&gt;+293 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3&gt;What shipped&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Measure&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Deep dive&lt;/td&gt;&lt;td&gt;5 articles&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Script&lt;/td&gt;&lt;td&gt;0 pattern hit(s), voice ratio 0.83, 2955 words&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio&lt;/td&gt;&lt;td&gt;18.6 min&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio size&lt;/td&gt;&lt;td&gt;17.1 MB&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;13/15 roundup, 2/5 deep dive&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;214 episodes&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Anthropic spend&lt;/td&gt;&lt;td&gt;87,646 input tokens, calls {'claude': 9}&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
     <item>
       <title>Episode Review — Cariboo Signals, August 28, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-08-28.html</link>

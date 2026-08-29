@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, August 29, 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.1rem; color: #444; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }
+    th { background: #f5f5f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    a { color: #0066cc; }
+    code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, August 29, 2026</h1>
+  <p class="meta">Published August 29, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/33255914006">33255914006</a>.</em></p>
+
+<h3>Gemini TTS failed pre-flight; OpenAI rendered the whole episode</h3>
+
+<p>Four rate-limit errors from Gemini's text-to-speech models triggered the canary check to fail. The pipeline did not attempt a mid-episode voice switch. Instead, it fell back to OpenAI and rendered all 18.6 minutes of audio on a single vendor. The listener heard no interruption. The cost was vendor concentration for one day.</p>
+
+<h3>Brave Answers API hit its usage limit mid-run</h3>
+
+<p>The Answers API returned a 402 error. The pipeline switched to web snippets for the remainder of script generation. This affected the <code>script/brave-answers</code> segment. The first draft still arrived at 2,252 words, below the 3,400-word target, and was sent for an expand pass. The final script shipped at 2,955 words.</p>
+
+<h3>Ten roundup stories stayed out of order after one repair</h3>
+
+<p>A sorting failure in <code>script/roundup-order</code> left 10 stories aired after a later block, even after one correction attempt. The pipeline did not retry. Fifteen roundup stories were dropped from the episode entirely. Five deep dives ran instead.</p>
+
+<h3>Citation matching fell unevenly across segments</h3>
+
+<p>Roundup citations aligned at 13 of 15 matched. Deep dive citations aligned at 2 of 5 matched. The disparity tracks with the segment's relative complexity—the roundup used shorter, more predictable source text. The deep dives included pieces titled "B.C.'s Sikh community on edge after Edmonton attack" and "Artists Commit to the Bit at This Year's Vulva Gala," which required more precise extraction logic.</p>
+
+<h3>Three runs, each later than the last</h3>
+
+<p>The first completed run arrived 222 minutes late. The second completed 246 minutes late. A third began 293 minutes late and was still in progress at report time. All three triggered on Fallback 2, the 3:05 AM Pacific schedule. The repeating trigger and escalating latency suggest the primary schedule did not complete.</p>
+
+<h3>Script generation took 450 seconds; audio took 334</h3>
+
+<p>Generation was the slowest step in the pipeline by a margin of 116 seconds over audio rendering. The script required one expand pass after arriving under target. Nine Claude API calls consumed 87,646 input tokens. The expanded final script was 2,955 words. The episode published to RSS as entry 214.</p>
+
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Fallback 2 (3:05 AM Pacific)</td><td>2026-08-29T13:47:28Z</td><td>+222 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific)</td><td>2026-08-29T14:11:03Z</td><td>+246 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific)</td><td>2026-08-29T14:58:59Z</td><td>+293 min</td><td>in_progress</td></tr>
+</tbody>
+</table>
+
+<h3>What shipped</h3>
+<table>
+<thead><tr><th>Measure</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Deep dive</td><td>5 articles</td></tr>
+<tr><td>Script</td><td>0 pattern hit(s), voice ratio 0.83, 2955 words</td></tr>
+<tr><td>Audio</td><td>18.6 min</td></tr>
+<tr><td>Audio size</td><td>17.1 MB</td></tr>
+<tr><td>Citations matched</td><td>13/15 roundup, 2/5 deep dive</td></tr>
+<tr><td>Feed</td><td>214 episodes</td></tr>
+<tr><td>Anthropic spend</td><td>87,646 input tokens, calls {'claude': 9}</td></tr>
+</tbody>
+</table>
+</body>
+</html>

@@ -39,8 +39,8 @@ cannot reopen it. Anything written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` — 7 open. Check a box to close one; it
-comes back only if the reviews raise it 2 more times._
+_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-08-29) — 8 open.
+Check a box to close one; it comes back only if the reviews raise it 2 more times._
 
 - [ ] **A credit-balance 400 is not the usage-limit wall, and every run pays for that.**
       2026-08-23: all three crons died with `Your credit balance is too low to access the
@@ -84,6 +84,14 @@ comes back only if the reviews raise it 2 more times._
       never got that far. The probe item under Short-term is the diagnostic — the reviews now
       give it a daily before/after record, so run it and read the next week's reviews rather
       than re-reasoning about the ladder.
+- [ ] **Brave Answers API hit its usage limit partway through the run, forcing a fallback to web
+      snippets.** On 2026-08-27, the script/brave-answers segment failed with HTTP 402 (usage
+      limit exceeded) after the quota was exhausted. The pipeline switched to web snippets for
+      all remaining answers in that episode. The 402 error itself indicates the account hit its
+      hard limit, not a transient failure. Confirm the quota tier on the Brave account, assess
+      whether the episode's answer count is typical, and decide whether to increase the quota,
+      implement batching, or rely on web snippets as the primary source when the API is
+      unavailable. (seen in 2 reviews, latest 2026-08-29)
 
 <!-- reviews:end -->
 
