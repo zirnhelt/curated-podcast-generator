@@ -603,7 +603,8 @@ An episode is 6–9 independent Gemini calls, so per-call reliability compounds 
 - **Retry ladder (`RETRY_LADDER`).** Each rung changes the *shape* of the request, not just the seed — `finishReason: OTHER` returns `promptTokenCount == totalTokenCount`, i.e. a rejection of what was asked, which reseeding cannot fix. Rungs shed the continuation note, then the audio profile and style block, then the tags. Backoff (0/15/45/90/90 s) is sized to outlast the minutes-long capacity windows the old 5 s/10 s ladder always died inside.
 - **Model ladder.** `GEMINI_TTS_FALLBACK_MODEL` (default pro TTS) is tried at rung 3, *before* the primary model with a bare transcript: voices are pinned by `speechConfig` on every rung, so a model change keeps the hosts sounding like themselves while a stripped prompt loses the direction. Pro costs more than flash, which is why it sits behind three primary failures.
 - **Failure-shape routing (`_carries_no_shape_verdict`).** The rung order above assumes a *rejection*. Exactly one failure here is one: `finishReason: OTHER`, which returns `promptTokenCount == totalTokenCount` — accepted, tokenized, refused. A read timeout, a dropped connection, a 429 and a 5xx all carry no verdict on the prompt, so on one the ladder goes straight to a rung that changes the model, and when there is none left (`_model_override` pinned one) it re-asks the same full-quality request rather than shedding anything. Prompt-shedding is not a retry strategy for a request that was never read: the two shedding rungs cost a full read timeout each and pushed the model rungs out of `SECTION_BUDGET_S` entirely — three timeouts spend 120+15+120+45+120 = 420 s, the budget exactly, which is why every August 2026 episode fell back to OpenAI mid-show and no model rung ever ran. The budget still allows three attempts; the change is *what* they ask, not how many there are.
-  **A 429 is a rate limit until proven otherwise.** Gemini answers an ordinary per-minute throttle with the same 429 `RESOURCE_EXHAUSTED` it uses for a spent quota, and taking it as a verdict gave both canary candidates away on one throttled call each on 2026-08-26 (two of three crons). A genuinely spent quota now costs one extra tiny probe before it is believed; refusing to re-ask a rate limit costs an episode its voices. Note the asymmetry with `_billing_wall()` on the *script* side, which must match on credit wording and never on the status code — there the cost of reading a throttle as a wall is a skipped day.
+  **A 429 is a rate limit until proven otherwise — unless it names a spend cap.** Gemini answers an ordinary per-minute throttle with the same 429 `RESOURCE_EXHAUSTED` it uses for a spent quota, and taking it as a verdict gave both canary candidates away on one throttled call each on 2026-08-26 (two of three crons). A genuinely spent quota costs one extra tiny probe before it is believed; refusing to re-ask a rate limit costs an episode its voices. Note the asymmetry with `_billing_wall()` on the *script* side, which must match on credit wording and never on the status code — there the cost of reading a throttle as a wall is a skipped day.
+  **The one 429 that is a verdict is a spend cap** (`_is_spend_cap`, `SpendCapError`), and like `_billing_wall()` it is matched on the *wording* — `"Your project has exceeded its monthly spending cap"` — never the status. A capped project refuses every model on it until a human raises the cap or the month rolls over, so no rung, no backoff and no model rung reaches past it: `_carries_no_shape_verdict` returns False for it, the ladder hands the section back immediately, and `canary()` skips the remaining candidates instead of asking the same wall twice per model. On 2026-08-29 that wall cost four probes across two models, and would have cost four a night until Sept 1. The degradation names the cap, because "did not answer the pre-flight check" reads like a flaky endpoint and this one needs a person.
   The 2026-08-13 probe (`--probe-gemini`, welcome section, 3 calls/rung) measured 8/15 calls succeeding, spread evenly across all five rungs — flaky endpoint, not a rejected prompt, and not a dead primary model. That is why a timeout is worth re-asking unchanged, and why the canary's verdict on the primary should be read as "slow right now", not "down".
 - **Budgets, and the leash that spends them.** `SECTION_BUDGET_S` bounds one chunk's ladder; `set_render_deadline()` (called with `GEMINI_RENDER_DEADLINE_S`) bounds all Gemini work in a render, so a provider that dies *after* the canary passed cannot eat the 40-minute render step one section at a time. `_budget_allows` reserves the attempt's own read timeout as well as its backoff, so a retry that cannot finish inside the budget is never started.
   **`REQUEST_READ_TIMEOUT` was flat and that is what bounded the ladder's reach.** One 120 s leash covered a 354-char cold open and an 8 500-char chunk alike, so at 420 s a section afforded **two attempts** — and against the measured ~53%-per-call endpoint, two attempts is ~78% per section and **~17% across a seven-section episode**. That arithmetic, not any one outage, is why a whole Gemini episode kept not happening. `_read_timeout_for(segments)` now scales the leash by transcript chars, clamped to `[READ_TIMEOUT_MIN_S, READ_TIMEOUT_MAX_S]` = `[45, 120]`: the ceiling is the old flat value, so **the largest chunks wait exactly as long as they always have and the change is only ever a cut for the small ones**, which is where the budget was being burned on silence. Five attempts per section takes the episode to ~85%.
@@ -625,6 +626,47 @@ Two probes, asking different questions — both are `TTS Eval` workflow inputs t
 - `--probe-models` (`probe_models`) asks **which model answers, and how fast**: N real section requests per candidate, reporting answer rate and median/slowest latency. This is the one to run before trusting a nightly to a new model, and its slowest column is what `READ_TIMEOUT_MS_PER_CHAR` should be refitted against.
 
 **`GEMINI_TTS_MODEL` is a repository *variable*, never a secret.** A model name is not a credential, and sourcing it from `secrets` made GitHub mask it everywhere — on 2026-08-28 the log could only say a request went unanswered on `***`, so the run report could not name the model that failed. `canary()` also prints the candidate list before probing it, so a withdrawn or misspelled model name reads as itself rather than as an outage.
+
+### Brave Search spend (`_brave_search`, `_BRAVE_WALL`, the two call budgets)
+
+The plan is metered **monthly** ($15 on the Search tier), so the pipeline's job is to spend
+the month's calls on work that reaches the listener, and to stop instantly once there is
+nothing left to spend.
+
+**A 402 is a wall and closes Brave for the run** (`_is_brave_billing_wall`, `_trip_brave_wall`).
+Unlike a 429 a 402 has no throttle reading — Brave words it plainly, `current_spend` past
+`usage_limit`. The Answers endpoint had disabled itself on a rejection since it was written;
+Search had no equivalent, so on 2026-08-29 the plan hit its cap on the **first call of the
+run** and the pipeline made 17 more, every one refused. The wall is checked inside
+`_brave_search` rather than in the rate-limit wrappers, so the paths that call straight
+through (`_resolve_script_questions_with_brave`) get it too, and Search and Answers share one
+flag because they share one meter.
+
+**A dead search endpoint must not be reported as an editorial finding.** The agentic research
+pass's only tool is web search, so with the wall up it is skipped rather than run to a `NONE`
+it was always going to reach — on 2026-08-29 it made four refused searches and printed
+`No research warranted for this deep dive`, which reads as a judgment about the material.
+Both the skip and a mid-pass wall now `degrade("script/research")`.
+
+**Two budgets, because the two kinds of call are not worth the same.**
+
+| Budget | Path | Nature |
+|--------|------|--------|
+| `BRAVE_SEARCH_CALL_LIMIT` | `_fetch_article_body` thin-body backfill | **Speculative** — runs over up to 40 *pre-curation* candidates, of which ~15 air |
+| `BRAVE_DEEP_DIVE_CALL_LIMIT` | research, deep-dive enrichment, script-question resolution | **Demand-driven** — runs on material already selected |
+
+They were one counter until 2026-08-29 (`_brave_deep_dive_rate_limit` was written for this
+and never called), and **the speculative path runs first** — so any single limit would have
+been spent entirely on backfill for stories the roundup then dropped, before the deep dive
+asked for anything. Splitting them is what makes a limit safe to set at all; both defaulted
+to `0` (disabled) and bounded nothing. The defaults (12/10) bound a runaway day rather than a
+normal one — 2026-08-29 used 10 and ~6 — so a budget that bites is a signal the pool was
+unusually thin, and it says so in the run report.
+
+**The remaining lever is structural, not a limit:** the backfill spends up to two queries per
+article (title, then URL) across 40 candidates before curation cuts to 15. Moving it after
+curation is not free — `theme_adjacent` classification reads the body — so it is a real
+change, not a config tweak.
 
 ### Cohere Enrichment (`cohere_enrichment.py`)
 

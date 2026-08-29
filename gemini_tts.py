@@ -178,6 +178,35 @@ def _read_timeout_for(segments: list[dict]) -> int:
 ERROR_BODY_CHARS = 2_000
 
 
+class SpendCapError(RuntimeError):
+    """Gemini refused because the project is out of money for the month.
+
+    A subclass of RuntimeError so every existing handler still catches it; the
+    type is what lets the ladder and the canary tell a wall from a throttle.
+    """
+
+
+# Gemini answers a spent spend-cap and an ordinary per-minute throttle with the
+# same 429 RESOURCE_EXHAUSTED, so the status code cannot separate them and the
+# wording has to. Note the asymmetry with _carries_no_shape_verdict's treatment
+# of a bare 429: there, refusing to re-ask a throttle costs an episode its
+# voices, so a 429 is re-asked. Here the project is out of money until the month
+# rolls over or a human raises the cap, and every later probe gets the same
+# answer — on 2026-08-29 that was four canary probes across two models, each
+# refused in 0.2s, and it would have been four more every night to Sept 1.
+_SPEND_CAP_RE = re.compile(
+    r"spend(?:ing)? cap"
+    r"|billing account .{0,40}(?:disabled|closed|not active)"
+    r"|exceeded your current quota.{0,80}billing",
+    re.IGNORECASE,
+)
+
+
+def _is_spend_cap(error: Exception) -> bool:
+    """True when Gemini refused for want of money rather than want of capacity."""
+    return bool(_SPEND_CAP_RE.search(str(error)))
+
+
 class _Rung(NamedTuple):
     """One attempt in the retry ladder: how long to wait, and what to ask for."""
 
@@ -514,7 +543,13 @@ def _carries_no_shape_verdict(error: Exception) -> bool:
     A genuinely spent quota costs one extra probe here before it is believed.
     That is the right side to err on: refusing to re-ask a rate limit spends a
     whole episode's voices to save one tiny call.
+
+    A spend cap is the exception to the 429 rule and is checked first: it is a
+    verdict, just not one about the prompt's shape. No rung, no backoff and no
+    model on the same project reaches past it.
     """
+    if isinstance(error, SpendCapError):
+        return False
     if isinstance(error, (requests.Timeout, requests.ConnectionError)):
         return True
     return bool(re.search(r"Gemini TTS HTTP (429|5\d\d)", str(error)))
@@ -583,7 +618,12 @@ def _attempt(
         # Keep enough of the body to include error.details — a 429's
         # QuotaFailure names the exceeded quota and its limit, which is the
         # whole diagnosis; 300 chars cut it off exactly there.
-        raise RuntimeError(f"Gemini TTS HTTP {resp.status_code}: {resp.text[:ERROR_BODY_CHARS]}")
+        message = f"Gemini TTS HTTP {resp.status_code}: {resp.text[:ERROR_BODY_CHARS]}"
+        # Recognized once, here, where the body is still in hand — so every
+        # caller can tell a wall from a throttle by catching a type.
+        if _is_spend_cap(message):
+            raise SpendCapError(message)
+        raise RuntimeError(message)
     resp.raise_for_status()
 
     data = resp.json()
@@ -683,6 +723,12 @@ def _synthesize_chunk(
             )
         except (requests.RequestException, RuntimeError) as e:
             last_error = e
+            if isinstance(e, SpendCapError):
+                # Every rung and every model rides the same project. Hand the
+                # section back now and let the per-section OpenAI fallback take
+                # it, rather than spending the budget confirming the cap.
+                print("  ⚠️  Gemini TTS project spend cap reached — no rung reaches past it")
+                break
             if _carries_no_shape_verdict(e):
                 # No verdict on the request: go straight to a rung that changes
                 # the model, and when there is none, simply ask the same thing
@@ -741,6 +787,11 @@ def _canary_probe(model: str) -> bool:
                 read_timeout=CANARY_READ_TIMEOUT,
             )
             return True
+        except SpendCapError:
+            # Propagates past the remaining candidates: the cap is a property of
+            # the project, not of the model, so probing the fallback asks the
+            # same question of the same wall.
+            raise
         except Exception as e:
             print(f"  ⚠️  Gemini TTS canary failed on {model}: {e}")
             if not _carries_no_shape_verdict(e):
@@ -779,7 +830,21 @@ def canary() -> str | None:
         # Pin the candidate for the probe itself, so _attempt calls the model
         # being tested rather than the ladder's default.
         set_model_override(model)
-        if not _canary_probe(model):
+        try:
+            passed = _canary_probe(model)
+        except SpendCapError as e:
+            # The cap belongs to the project, so the remaining candidates are
+            # behind the same wall and CANARY_ATTEMPTS buys nothing. One probe
+            # answers for the whole run instead of four (2026-08-29).
+            print(f"  ⚠️  Gemini TTS spend cap reached on {model}: {e}")
+            print("  ⏭️  Skipping remaining Gemini candidates — the cap is project-wide")
+            _degradations.append(
+                "Gemini project spend cap reached — no model on this project can "
+                "render until the cap is raised or the month rolls over"
+            )
+            set_model_override(None)
+            return None
+        if not passed:
             continue
 
         # Passing on the primary leaves the override clear, so a section that

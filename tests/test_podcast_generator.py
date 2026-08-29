@@ -646,6 +646,167 @@ class TestRunAgenticLoop:
         assert client.messages.stream.call_count == 2
 
 
+class TestBraveBillingWall:
+    """One spent plan, one wall, checked before every Brave call.
+
+    On 2026-08-29 the Search plan hit its $15 monthly limit on the *first* call
+    of the run ($15.01 against $15.00) and the pipeline made 17 more, every one
+    of them refused: 10 thin-body backfills, 4 deep-dive research searches, 2
+    Answers calls and 2 fact-resolution searches.
+    """
+
+    @pytest.fixture(autouse=True)
+    def _fresh_state(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_BRAVE_WALL", {"hit": False, "detail": ""})
+        monkeypatch.setattr(pg, "_BRAVE_ANSWERS_STATE", {"shape": 0, "disabled": False})
+        monkeypatch.setattr(
+            pg, "_BRAVE_SEARCH_STATE",
+            {"search_calls": 0, "search_ts": 0.0, "deep_calls": 0, "deep_ts": 0.0},
+        )
+
+    @staticmethod
+    def _402():
+        """requests' own HTTPError for Brave's 402, response attached."""
+        import requests as rq
+
+        class _Resp:
+            status_code = 402
+            text = '{"error":{"status":402,"detail":"Usage limit exceeded."}}'
+
+            def raise_for_status(self):
+                raise rq.HTTPError(
+                    "402 Client Error: Payment Required for url: https://api.search.brave.com",
+                    response=self,
+                )
+        return _Resp()
+
+    def test_402_recognized_from_either_wording(self):
+        import podcast_generator as pg
+        import requests as rq
+        assert pg._is_brave_billing_wall(
+            rq.HTTPError("402 Client Error: Payment Required for url: x")
+        )
+        assert pg._is_brave_billing_wall(
+            RuntimeError('402 {"detail":"Usage limit exceeded."}')
+        )
+        # _brave_summarize raises "<status> <body[:200]>", and a body cut before
+        # the "Usage limit" wording must still read as the wall it is.
+        assert pg._is_brave_billing_wall(RuntimeError('402 {"type":"ErrorResponse"'))
+        # A throttle or an outage is not a wall — the next query may well land.
+        assert not pg._is_brave_billing_wall(RuntimeError("429 Too Many Requests"))
+        assert not pg._is_brave_billing_wall(rq.Timeout("read timed out"))
+        assert not pg._is_brave_billing_wall(RuntimeError("500 Internal Server Error"))
+
+    def test_first_402_stops_every_later_search(self, monkeypatch):
+        import podcast_generator as pg
+        calls = []
+
+        def fake_get(url, headers=None, params=None, timeout=None):
+            calls.append(params["q"])
+            return self._402()
+
+        monkeypatch.setattr(pg.requests, "get", fake_get)
+        assert pg._brave_search("first", "k") == []
+        assert pg._brave_search("second", "k") == []
+        assert pg._brave_search("third", "k") == []
+        assert calls == ["first"], f"spent {len(calls)} calls on a spent plan"
+        assert pg._BRAVE_WALL["hit"] is True
+
+    def test_an_ordinary_failure_does_not_trip_the_wall(self, monkeypatch):
+        """A single timeout must not cost the run every remaining Brave call."""
+        import podcast_generator as pg
+        calls = []
+
+        def fake_get(url, headers=None, params=None, timeout=None):
+            calls.append(params["q"])
+            raise pg.requests.Timeout("read timed out")
+
+        monkeypatch.setattr(pg.requests, "get", fake_get)
+        pg._brave_search("first", "k")
+        pg._brave_search("second", "k")
+        assert len(calls) == 2
+        assert pg._BRAVE_WALL["hit"] is False
+
+    def test_the_answers_endpoint_shares_the_wall(self, monkeypatch):
+        """Search and Answers meter against one plan, so a 402 on either is the
+        same wall — and the second request shape must not spend a call proving
+        it (the generic both-shapes path would have)."""
+        import podcast_generator as pg
+        posts = []
+
+        class _Resp:
+            status_code = 402
+            text = '{"error":{"status":402,"detail":"Usage limit exceeded."}}'
+
+            def json(self):
+                return {}
+
+        def fake_post(url, headers=None, json=None, timeout=None):
+            posts.append(json)
+            return _Resp()
+
+        monkeypatch.setattr(pg.requests, "post", fake_post)
+        assert pg._brave_summarize("q", "k") == ""
+        assert len(posts) == 1, "the second shape asked a plan already known spent"
+        assert pg._BRAVE_WALL["hit"] is True
+
+        # ...and Search is now closed too, without a request of its own.
+        gets = []
+        monkeypatch.setattr(pg.requests, "get", lambda *a, **k: gets.append(1))
+        assert pg._brave_search("anything", "k") == []
+        assert gets == []
+
+    def test_the_wall_reaches_the_run_report(self, monkeypatch):
+        """A silent fallback is the failure this exists to prevent."""
+        import podcast_generator as pg
+        recorded = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: recorded.append((name, detail)))
+        monkeypatch.setattr(pg.requests, "get",
+                            lambda *a, **k: (_ for _ in ()).throw(
+                                pg.requests.HTTPError("402 Client Error: Payment Required")))
+        pg._brave_search("q", "k")
+        assert any("usage limit" in d.lower() for _, d in recorded)
+
+
+class TestBraveBudgets:
+    """Speculative backfill must not spend the research budget.
+
+    The two paths shared one counter until 2026-08-29, and the speculative one
+    runs first: any single limit would have been spent on pre-curation body
+    backfill before the deep dive asked for anything.
+    """
+
+    @pytest.fixture(autouse=True)
+    def _fresh_state(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_BRAVE_WALL", {"hit": False, "detail": ""})
+        monkeypatch.setattr(
+            pg, "_BRAVE_SEARCH_STATE",
+            {"search_calls": 0, "search_ts": 0.0, "deep_calls": 0, "deep_ts": 0.0},
+        )
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: None)
+
+    def test_budgets_are_enabled_by_default(self):
+        """Both defaulted to 0 (disabled) and so bounded nothing."""
+        import podcast_generator as pg
+        assert pg.BRAVE_SEARCH_CALL_LIMIT > 0
+        assert pg.BRAVE_DEEP_DIVE_CALL_LIMIT > 0
+
+    def test_a_spent_backfill_budget_leaves_the_deep_dive_funded(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "BRAVE_SEARCH_CALL_LIMIT", 2)
+        monkeypatch.setattr(pg, "BRAVE_DEEP_DIVE_CALL_LIMIT", 2)
+        monkeypatch.setattr(pg, "_brave_search", lambda q, k, count=5: [{"url": q}])
+
+        assert pg._brave_search_rate_limit("a", "k") != []
+        assert pg._brave_search_rate_limit("b", "k") != []
+        assert pg._brave_search_rate_limit("c", "k") == []   # backfill spent
+
+        # The deep dive still has its own budget.
+        assert pg._brave_deep_dive_rate_limit("research", "k") != []
+
+
 class TestBraveSummarize:
     """Brave has flipped this payload schema twice — the caller carries both."""
 
