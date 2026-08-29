@@ -725,6 +725,17 @@ BRAVE_SEARCH_CALL_LIMIT = int(os.getenv("PODCAST_BRAVE_SEARCH_CALL_LIMIT", "12")
 BRAVE_SEARCH_COOLDOWN_SECS = float(os.getenv("PODCAST_BRAVE_SEARCH_COOLDOWN_SECS", "0"))
 BRAVE_DEEP_DIVE_CALL_LIMIT = int(os.getenv("PODCAST_BRAVE_DEEP_DIVE_CALL_LIMIT", "10"))
 BRAVE_DEEP_DIVE_COOLDOWN_SECS = float(os.getenv("PODCAST_BRAVE_DEEP_DIVE_COOLDOWN_SECS", "0"))
+#
+# ANSWERS is metered separately from both of them, on its own postpaid plan
+# activated 2026-08-29 ($4/1000 queries plus $5/MTok each way, with $5 of
+# included credit a month). Only the demand-driven paths reach it — a
+# synthesized prose answer is the wrong instrument for thin-body backfill and
+# the expensive one to run over 40 pre-curation candidates. The token half of
+# the price is unmeasured here, so the default bounds the query fee well inside
+# the included credit (8 a night is ~250 calls and ~$1.00 of it) and every call
+# logs the usage block Brave returns. Raise it on measured spend, the way
+# _SPEECH_RATE_FITS was refitted from the sidecars, not on appetite.
+BRAVE_ANSWERS_CALL_LIMIT = int(os.getenv("PODCAST_BRAVE_ANSWERS_CALL_LIMIT", "8"))  # 0=disabled
 DEEP_DIVE_INJECT_DISCIPLINE_TAGS = os.getenv("PODCAST_DEEP_DIVE_INJECT_DISCIPLINE_TAGS", "0") == "1"
 
 # prompt slice registry — only append injected context when caller opts in
@@ -2240,12 +2251,25 @@ def fact_check_deep_dive(script, news_articles, deep_dive_articles):
 # Brave Search enrichment for daily deep dives
 # ---------------------------------------------------------------------------
 
-_BRAVE_SEARCH_STATE = {"search_calls": 0, "search_ts": 0.0, "deep_calls": 0, "deep_ts": 0.0}
+_BRAVE_SEARCH_STATE = {"search_calls": 0, "search_ts": 0.0, "deep_calls": 0, "deep_ts": 0.0,
+                       "answer_calls": 0}
 
-# One wall for the whole plan. Brave meters Search and Answers against a single
-# monthly usage limit, so a 402 on either endpoint is the same wall and both
-# consult this before spending a call.
-_BRAVE_WALL = {"hit": False, "detail": ""}
+# One wall per meter. Search and Answers billed against a single monthly usage
+# limit until 2026-08-29, when Answers moved onto its own postpaid plan with its
+# own included credit — so a 402 is now a verdict on one endpoint and says
+# nothing about the other. Coupling them is what makes a spent plan cost the
+# episode twice: the Search plan hit its $15 cap on the *first* call of the
+# 2026-08-29 run, and a shared wall would have closed an Answers plan that had
+# just been paid for, taking the deep-dive research with it.
+_BRAVE_WALLS = {
+    "search": {"hit": False, "detail": ""},
+    "answers": {"hit": False, "detail": ""},
+}
+
+
+def _brave_walled(meter: str) -> bool:
+    """True when this meter's plan is spent for the rest of the run."""
+    return _BRAVE_WALLS[meter]["hit"]
 
 
 def _is_brave_billing_wall(error) -> bool:
@@ -2267,29 +2291,36 @@ def _is_brave_billing_wall(error) -> bool:
     return "402" in text and "usage limit" in text   # Brave's JSON error body
 
 
-def _trip_brave_wall(error) -> None:
-    """Record the plan as spent and say so once, in the run report.
+def _trip_brave_wall(error, meter: str = "search") -> None:
+    """Record one Brave meter as spent and say so once, in the run report.
 
     The Answers endpoint has disabled itself on a rejection since it was
-    written; Search had no equivalent. On 2026-08-29 the plan hit its cap
+    written; Search had no equivalent. On 2026-08-29 the Search plan hit its cap
     ($15.01 against a $15.00 limit) on the *first* call of the run and the
     pipeline made 17 more — thin-body backfill, deep-dive research, fact
     resolution — every one of them refused before it was sent anywhere useful,
     and the deep-dive research pass then reported "no research warranted" as
     though it were an editorial finding rather than four dead calls.
+
+    The wall is per meter, so the other endpoint stays open on its own plan and
+    the callers that can ask it instead do.
     """
-    if _BRAVE_WALL["hit"]:
+    wall = _BRAVE_WALLS[meter]
+    if wall["hit"]:
         return
-    _BRAVE_WALL["hit"] = True
-    _BRAVE_WALL["detail"] = str(error)[:160]
-    print("  🧱 Brave usage limit reached — skipping all further Brave calls this run")
-    degrade("script/brave-search",
-            f"plan usage limit reached ({_BRAVE_WALL['detail']}) — every remaining "
-            "Brave call skipped for the rest of the run")
+    wall["hit"] = True
+    wall["detail"] = str(error)[:160]
+    other = "answers" if meter == "search" else "search"
+    tail = "" if _BRAVE_WALLS[other]["hit"] else f"; {other} is on its own plan and stays open"
+    print(f"  🧱 Brave {meter} usage limit reached — skipping further {meter} "
+          f"calls this run{tail}")
+    degrade(f"script/brave-{meter}",
+            f"{meter} plan usage limit reached ({wall['detail']}) — every remaining "
+            f"Brave {meter} call skipped for the rest of the run")
 
 
 def _brave_search_rate_limit(query, api_key, count=5):
-    if _BRAVE_WALL["hit"]:
+    if _brave_walled("search"):
         return []
     now = time.time()
     state = _BRAVE_SEARCH_STATE
@@ -2313,7 +2344,7 @@ def _brave_search_rate_limit(query, api_key, count=5):
 
 
 def _brave_deep_dive_rate_limit(query, api_key, count=5):
-    if _BRAVE_WALL["hit"]:
+    if _brave_walled("search"):
         return []
     now = time.time()
     state = _BRAVE_SEARCH_STATE
@@ -2321,8 +2352,8 @@ def _brave_deep_dive_rate_limit(query, api_key, count=5):
     if limit > 0 and state["deep_calls"] >= limit:
         print("  Brave deep-dive call limit reached; stopping additional searches")
         degrade("script/research",
-                f"Brave deep-dive budget spent ({limit} calls) — later research and "
-                "fact-resolution queries went unanswered")
+                f"Brave Search deep-dive budget spent ({limit} calls) — later research "
+                "and fact-resolution queries fell back to Answers or went unanswered")
         return []
     if BRAVE_DEEP_DIVE_COOLDOWN_SECS > 0 and (now - state["deep_ts"]) < BRAVE_DEEP_DIVE_COOLDOWN_SECS:
         wait = BRAVE_DEEP_DIVE_COOLDOWN_SECS - (now - state["deep_ts"])
@@ -2340,7 +2371,7 @@ def _brave_search(query, api_key, count=5):
     every path gets it — including _resolve_script_questions_with_brave, which
     calls straight through.
     """
-    if _BRAVE_WALL["hit"]:
+    if _brave_walled("search"):
         return []
     try:
         resp = requests.get(
@@ -2491,8 +2522,20 @@ def _brave_summarize(query, api_key):
     A rejection disables the endpoint for the rest of the run once both request
     shapes have failed: three queries a night spending two dead calls each is
     the whole cost of an API that has been down for days.
+
+    Answers is postpaid, so unlike the Search plan an overspend here is billed
+    rather than refused — BRAVE_ANSWERS_CALL_LIMIT is the ceiling that keeps a
+    heavy night inside the included monthly credit, and each request sent counts
+    against it (a shape probe is billed the same as an answer).
     """
-    if _BRAVE_ANSWERS_STATE["disabled"] or _BRAVE_WALL["hit"]:
+    if _BRAVE_ANSWERS_STATE["disabled"] or _brave_walled("answers"):
+        return ""
+
+    if BRAVE_ANSWERS_CALL_LIMIT > 0 and _BRAVE_SEARCH_STATE["answer_calls"] >= BRAVE_ANSWERS_CALL_LIMIT:
+        print("  Brave Answers call limit reached; falling back to web snippets")
+        degrade("script/brave-answers",
+                f"Answers budget spent ({BRAVE_ANSWERS_CALL_LIMIT} calls) — later "
+                "factual gaps answered from web snippets instead")
         return ""
 
     order = [_BRAVE_ANSWERS_STATE["shape"], 1 - _BRAVE_ANSWERS_STATE["shape"]]
@@ -2500,6 +2543,7 @@ def _brave_summarize(query, api_key):
     for shape_index in order:
         payload = dict(_BRAVE_ANSWER_SHAPES[shape_index],
                        messages=[{"role": "user", "content": query}])
+        _BRAVE_SEARCH_STATE["answer_calls"] += 1
         try:
             resp = requests.post(
                 "https://api.search.brave.com/res/v1/chat/completions",
@@ -2516,7 +2560,15 @@ def _brave_summarize(query, api_key):
                 # The status alone is what left the last four days undiagnosable
                 # from here; Brave says which field it dislikes in the body.
                 raise RuntimeError(f"{resp.status_code} {resp.text[:200]}")
-            choices = resp.json().get("choices", [])
+            data = resp.json()
+            # Postpaid and priced on tokens as well as queries, so the usage
+            # block is the only measurement of what a night actually costs.
+            usage = data.get("usage") or {}
+            _log_api_call("brave-answers", "tokens",
+                          int(usage.get("total_tokens")
+                              or (usage.get("prompt_tokens", 0) or 0)
+                              + (usage.get("completion_tokens", 0) or 0)))
+            choices = data.get("choices", [])
             _BRAVE_ANSWERS_STATE["shape"] = shape_index
             if choices:
                 return choices[0].get("message", {}).get("content", "").strip()
@@ -2526,11 +2578,11 @@ def _brave_summarize(query, api_key):
             keys = ",".join(k for k in payload if k != "messages") or "messages-only"
             print(f"  Brave Answers API failed for '{query[:50]}' [{keys}]: {e}")
             if _is_brave_billing_wall(e):
-                # Same plan, same meter: a spent limit here means Search is
-                # spent too, so trip the shared wall instead of only disabling
-                # Answers and letting the second request shape spend a call
+                # Its own plan, its own meter (2026-08-29): this says nothing
+                # about Search, which the callers fall back to. Trip the Answers
+                # wall rather than letting the second request shape spend a call
                 # proving the same thing.
-                _trip_brave_wall(e)
+                _trip_brave_wall(e, "answers")
                 return ""
             if isinstance(e, requests.RequestException):
                 # Never answered: no verdict on the payload, and no reason to
@@ -2549,6 +2601,32 @@ def _report_brave_answers_degradation(error, for_the_run=False):
     tail = " for the rest of the run" if for_the_run else ""
     degrade("script/brave-answers",
             f"Answers API unavailable ({error[:120]}) — using web snippets{tail}")
+
+
+def _brave_deep_dive_open() -> bool:
+    """True while the Search plan can still answer a demand-driven query."""
+    return not _brave_walled("search") and (
+        BRAVE_DEEP_DIVE_CALL_LIMIT <= 0
+        or _BRAVE_SEARCH_STATE["deep_calls"] < BRAVE_DEEP_DIVE_CALL_LIMIT)
+
+
+def _brave_answers_open() -> bool:
+    """True while the Answers plan can still answer a query."""
+    return (
+        not _brave_walled("answers")
+        and not _BRAVE_ANSWERS_STATE["disabled"]
+        and (BRAVE_ANSWERS_CALL_LIMIT <= 0
+             or _BRAVE_SEARCH_STATE["answer_calls"] < BRAVE_ANSWERS_CALL_LIMIT))
+
+
+def _brave_research_available() -> bool:
+    """True while some Brave endpoint can still answer a research query.
+
+    Search and Answers are separate plans on separate meters, and the research
+    paths can ask either — so a pass only stops, and only reports itself
+    stopped, when neither will answer.
+    """
+    return _brave_deep_dive_open() or _brave_answers_open()
 
 
 # ---------------------------------------------------------------------------
@@ -2667,13 +2745,20 @@ WEB_SEARCH_TOOL = {
 
 
 def _web_search_tool_executor(tool_input):
-    """Execute a web_search tool call via Brave Search. Never returns empty."""
+    """Execute a web_search tool call via Brave. Never returns empty.
+
+    Search and Answers are separate plans, so one being spent is a reason to ask
+    the other rather than to give up: a synthesized answer stands in for
+    snippets, and snippets are already the documented fallback for an answer.
+    Without this, the 2026-08-29 Search cap left the research pass with no tool
+    at all on a night the Answers plan was live and unused.
+    """
     brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
     query = tool_input.get("query", "")
     if not query or not brave_key:
         return "Web search is not available."
 
-    if tool_input.get("mode") == "answer":
+    if tool_input.get("mode") == "answer" or not _brave_deep_dive_open():
         answer = _brave_summarize(query, brave_key)
         if answer:
             return answer
@@ -2704,14 +2789,16 @@ def research_deep_dive_with_agent(deep_dive_articles, theme_name, client):
     brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
     if not brave_key or not client:
         return ""
-    if _BRAVE_WALL["hit"]:
+    if not _brave_research_available():
         # The loop's only tool is web search. Running it anyway spends Claude
         # calls to reach a walled endpoint and then reports "NONE", which reads
-        # as an editorial judgement (2026-08-29).
-        print("  ⏭️  Skipping deep-dive research — Brave usage limit already reached")
+        # as an editorial judgement (2026-08-29). One spent meter is not that:
+        # the executor asks the other plan, so the pass only stops when both are
+        # closed.
+        print("  ⏭️  Skipping deep-dive research — both Brave endpoints unavailable")
         degrade("script/research",
-                "Brave usage limit reached before the deep dive was researched — "
-                "debate generated without live research")
+                "Brave Search and Answers both unavailable before the deep dive was "
+                "researched — debate generated without live research")
         return ""
 
     print("🔬 Researching deep dive angles (agentic)...")
@@ -2769,13 +2856,14 @@ def research_deep_dive_with_agent(deep_dive_articles, theme_name, client):
 
     result = result.strip()
     if result == "NONE" or not result:
-        if _BRAVE_WALL["hit"]:
+        if not _brave_research_available():
             # "NONE" also means "every search I ran was refused". Reporting that
             # as an editorial finding is how 2026-08-29's dead research pass
-            # looked like a decision.
-            print("  ⚠️  No research gathered — Brave hit its usage limit mid-pass")
+            # looked like a decision. One meter going out mid-pass is not that —
+            # the other one carried the searches — so this reads both.
+            print("  ⚠️  No research gathered — Brave ran out of endpoints mid-pass")
             degrade("script/research",
-                    "Brave usage limit reached during the research pass — "
+                    "Brave Search and Answers both ran out during the research pass — "
                     "debate generated without live research")
         else:
             print("  ℹ️  No research warranted for this deep dive")
