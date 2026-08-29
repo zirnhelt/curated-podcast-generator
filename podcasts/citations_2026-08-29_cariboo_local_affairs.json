@@ -1,0 +1,386 @@
+{
+  "episode": {
+    "date": "2026-08-29",
+    "formatted_date": "Saturday, August 29, 2026",
+    "theme": "Cariboo Local Affairs",
+    "title": "Cariboo Signals - Cariboo Local Affairs",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Cariboo Local Affairs.</p><p><b>THIS WEEK WE'RE ASKING:</b> Who is allowed to fix things?</p><p><b>NEWS ROUNDUP:</b> We break down [Quesnel Cariboo Observer] Recreational sockeye opening on Fraser River not happening ‘at this time’: DFO and [Regional News Archives, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Should local government create formal channels to escalate safety complaints about commercial buildings to provincial regulators, or does existing provincial enforcement already adequately protect residents? Topics include: Provincial versus local regulatory authority over workplace hazards, Reactive enforcement versus preventative inspection models in Canadian safety regulation, The gap between technical capacity requirements and practical accountability in small-town governance, How public participation mechanisms differ between zoning regulation and safety enforcement, Concrete policy alternatives for connecting residents to existing provincial authority without duplicating expertise locally.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://qwrc.ca\">Quesnel Women's Resource Centre</a></p><p><b>Sources discussed:</b></p><ul><li>none (Quesnel Cariboo Observer): <a href=\"https://quesnelobserver.com/2026/08/28/recreational-sockeye-opening-on-fraser-river-not-happening-at-this-time-dfo/\">[Quesnel Cariboo Observer] Recreational sockeye opening on F...</a></li><li>none (Regional News Archives - Williams Lake Tribune): <a href=\"https://wltribune.com/2026/08/21/bc-hydro-spending-90-million-to-upgrade-vancouver-substation/\">[Regional News Archives - Williams Lake Tribune] BC Hydro sp...</a></li><li>Hyperallergic: <a href=\"https://hyperallergic.com/how-aids-activists-turned-graphic-design-into-a-weapon/\">[Hyperallergic] How AIDS Activists Turned Graphic Design Int...</a></li><li>Dominic-Madori Davis (TechCrunch): <a href=\"https://techcrunch.com/2026/08/21/how-ai-accounting-startup-rillet-raised-100m-and-became-a-unicorn-in-48-hours/\">[TechCrunch] How AI accounting startup Rillet raised $100M a...</a></li><li>Emma Roth (The Verge): <a href=\"https://www.theverge.com/tech/985329/instagram-facebook-meta-settlement-changes\">[The Verge] All the ways Instagram and Facebook are changing...</a></li><li>Michelle Starr (ScienceAlert): <a href=\"https://www.sciencealert.com/scientists-discover-a-bizarre-new-way-life-can-make-dna-without-dna\">[ScienceAlert] Scientists Discover a Bizarre New Way Life Ca...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/08/28/reviving-an-sd-card-with-shorted-capacitors/\">[Hackaday] Reviving an SD Card With Shorted Capacitors</a></li><li>Rob Beschizza (Boing Boing): <a href=\"https://boingboing.net/2026/08/28/social-media-ban-blocked-by-frances-highest-court.html\">[Boing Boing] Social media ban blocked by France's highest c...</a></li><li>Vancouver Sun: <a href=\"https://vancouversun.com/news/local-news/new-prince-rupert-port-facility-adds-export-capacity-as-trade-war-heats-up\">[Vancouver Sun] &#039;Timing is fortuitous&#039;: New Prince...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/08/21/building-a-hammond-organ-to-understand-how-they-work/\">[Hackaday] Building a Hammond Organ to Understand How They W...</a></li><li>Eagle Feather News: <a href=\"https://eaglefeathernews.com/2026/08/21/450000-investment-launches-cowessess-plan-to-turn-waste-into-gardens-jobs-and-sustainability/\">[Eagle Feather News] $450,000 investment launches Cowessess ...</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/video/newsfeed/2026/8/22/peru-rescues-people-trapped-by-landslides-on-highway-for-nearly-a-week?traffic_source=rss\">[Al Jazeera English] Peru rescues people trapped by landslid...</a></li><li>Gabriela Vătu (Engadget): <a href=\"https://www.engadget.com/2246379/how-to-use-old-android-phone-wifi-extender/\">[Engadget] How to use your old Android phone as a Wi-Fi exte...</a></li><li>Rebecca Dyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/08/28/williams-lake-cannabis-store-seeks-to-relocate-to-former-warehouse-one-space/\">[Williams Lake Tribune] Williams Lake cannabis store seeks t...</a></li><li>Khushi Arora (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/08/28/worksafebc-report-details-asbestos-risks-at-williams-lake-sandman-hotel/\">[Williams Lake Tribune] WorkSafeBC report details asbestos r...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>https://www.tomsguide.com/author/jennifer-rizzuto (Toms Guide): <a href=\"https://www.tomsguide.com/wellness/workouts/over-60-start-doing-these-3-seated-exercises-to-protect-your-hips-and-spine\">[Toms Guide] Over 60? Start doing these 3 seated exercises t...</a></li><li>Al Jazeera English: <a href=\"https://www.aljazeera.com/news/2026/8/29/us-revises-statements-suggesting-chinese-hackers-attacked-agencies?traffic_source=rss\">[Al Jazeera English] US revises statements suggesting Chines...</a></li><li>Global News: <a href=\"https://globalnews.ca/news/12031001/bc-sikh-community-edge-edmonton-attack-urge-people-not-to-panic/\">[Global News] B.C.’s Sikh community on edge after Edmonton a...</a></li><li>Hyperallergic: <a href=\"https://hyperallergic.com/artists-commit-to-the-bit-at-this-years-vulva-gala/\">[Hyperallergic] Artists Commit to the Bit at This Year’s Vul...</a></li><li>Laisa Conde (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/08/21/iio-investigating-williams-lake-incident-that-left-woman-seriously-injured/\">[Williams Lake Tribune] IIO investigating Williams Lake inci...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-08-29T06:58:31.148702-07:00",
+    "models": {
+      "script": "claude-sonnet-5",
+      "review": "claude-sonnet-5",
+      "summary": "claude-haiku-4-5"
+    },
+    "quality": {
+      "word_count": 2955,
+      "voice_ratio_casey_riley": 0.83,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 0,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 4,
+        "roundup_seam": 0,
+        "thats_closer": 1,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 0,
+      "rhythm": {
+        "em_dashes_per_1k": 11.5,
+        "short_turns": 7,
+        "turns": 73,
+        "avg_turn_words": 39.3,
+        "antithesis_hits": 0,
+        "over_budget": [
+          "em_dashes",
+          "short_turns"
+        ]
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 5
+    },
+    "anchor": {
+      "id": "allowed-to-fix",
+      "question": "Who is allowed to fix things?"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Quesnel Cariboo Observer] Recreational sockeye opening on Fraser River not happening ‘at this time’: DFO",
+          "url": "https://quesnelobserver.com/2026/08/28/recreational-sockeye-opening-on-fraser-river-not-happening-at-this-time-dfo/",
+          "source": "Quesnel Cariboo Observer",
+          "author": "none",
+          "ai_score": 63,
+          "date_published": "2026-08-28T21:09:00+00:00",
+          "summary": "Predicted numbers dropped from 7.7 million to less than 2.8 million due to wildfires, drought",
+          "discussed": true,
+          "mention_offset_frac": 0.0268
+        },
+        {
+          "title": "[Regional News Archives - Williams Lake Tribune] BC Hydro spending $90 million to upgrade Vancouver substation",
+          "url": "https://wltribune.com/2026/08/21/bc-hydro-spending-90-million-to-upgrade-vancouver-substation/",
+          "source": "Regional News Archives - Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 52,
+          "date_published": "2026-08-21T20:26:31+00:00",
+          "summary": "New transformer at Mount Pleasant substation will power 50,000 additional homes",
+          "discussed": true,
+          "mention_offset_frac": 0.0637
+        },
+        {
+          "title": "[Boing Boing] Social media ban blocked by France's highest court",
+          "url": "https://boingboing.net/2026/08/28/social-media-ban-blocked-by-frances-highest-court.html",
+          "source": "Boing Boing",
+          "author": "Rob Beschizza",
+          "ai_score": 62,
+          "date_published": "2026-08-28T12:13:55+00:00",
+          "summary": "The highest court in France struck down a national ban on children under 15 using social media , ruling that it disproportionately limits free speech and fails to address privacy protections. The Elec...",
+          "discussed": true,
+          "mention_offset_frac": 0.112
+        },
+        {
+          "title": "[Eagle Feather News] $450,000 investment launches Cowessess plan to turn waste into gardens, jobs and sustainability",
+          "url": "https://eaglefeathernews.com/2026/08/21/450000-investment-launches-cowessess-plan-to-turn-waste-into-gardens-jobs-and-sustainability/",
+          "source": "Eagle Feather News",
+          "author": "",
+          "ai_score": 59,
+          "date_published": "2026-08-21T22:03:01+00:00",
+          "summary": "Site plan rendering for the Cowessess Circular Food Sovereignty Project (image submitted by Cowessess/Lerat)",
+          "discussed": true,
+          "mention_offset_frac": 0.1953
+        },
+        {
+          "title": "[TechCrunch] How AI accounting startup Rillet raised $100M and became a unicorn in 48 hours",
+          "url": "https://techcrunch.com/2026/08/21/how-ai-accounting-startup-rillet-raised-100m-and-became-a-unicorn-in-48-hours/",
+          "source": "TechCrunch",
+          "author": "Dominic-Madori Davis",
+          "ai_score": 45,
+          "date_published": "2026-08-21T22:10:01+00:00",
+          "summary": "Rillet CEO Nicolas Kopp shared growth numbers at a board meeting and set off a fundraising frenzy from Iconiq, Sequoia and others. Without even trying.",
+          "discussed": true,
+          "mention_offset_frac": 0.2936
+        },
+        {
+          "title": "[The Verge] All the ways Instagram and Facebook are changing for teens",
+          "url": "https://www.theverge.com/tech/985329/instagram-facebook-meta-settlement-changes",
+          "source": "The Verge",
+          "author": "Emma Roth",
+          "ai_score": 67,
+          "date_published": "2026-08-26T20:00:00+00:00",
+          "summary": "Meta just agreed to make sweeping changes for teens as part of a child safety settlement reached with attorneys general across the US. Under the agreement, Meta must apply new safeguards across Instag...",
+          "discussed": true,
+          "mention_offset_frac": 0.3763
+        },
+        {
+          "title": "[Vancouver Sun] &#039;Timing is fortuitous&#039;: New Prince Rupert port facility adds Canadian export capacity just as trade war heats up",
+          "url": "https://vancouversun.com/news/local-news/new-prince-rupert-port-facility-adds-export-capacity-as-trade-war-heats-up",
+          "source": "Vancouver Sun",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-29T00:00:07+00:00",
+          "summary": "Opening of the Ray-Mont Logistics facility is happening just as trade tensions with the U.S. are escalating and Canada is pushing to diversify exports.",
+          "discussed": true,
+          "mention_offset_frac": 0.5855
+        },
+        {
+          "title": "[Al Jazeera English] Peru rescues people trapped by landslides on highway for nearly a week",
+          "url": "https://www.aljazeera.com/video/newsfeed/2026/8/22/peru-rescues-people-trapped-by-landslides-on-highway-for-nearly-a-week?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-08-22T02:09:58+00:00",
+          "summary": "Peru rescues people trapped by landslides on highway for nearly a week.",
+          "discussed": true,
+          "mention_offset_frac": 0.7517
+        },
+        {
+          "title": "[Hackaday] Reviving an SD Card With Shorted Capacitors",
+          "url": "https://hackaday.com/2026/08/28/reviving-an-sd-card-with-shorted-capacitors/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 63,
+          "date_published": "2026-08-28T23:00:13+00:00",
+          "summary": "A nice thing about SD cards is that even in their non-micro format they are conveniently small. This is however a bit of a problem when an SD card stops …read more",
+          "discussed": true,
+          "mention_offset_frac": 0.7827
+        },
+        {
+          "title": "[Hackaday] Building a Hammond Organ to Understand How They Work",
+          "url": "https://hackaday.com/2026/08/21/building-a-hammond-organ-to-understand-how-they-work/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 61,
+          "date_published": "2026-08-21T23:00:50+00:00",
+          "summary": "The Hammond organ is an early form of electronic– or perhaps electromechanical– musical instrument. It solved the very real problem of organs normally being the sort of thing you built …read more",
+          "discussed": true,
+          "mention_offset_frac": 0.7992
+        },
+        {
+          "title": "[Engadget] How to use your old Android phone as a Wi-Fi extender",
+          "url": "https://www.engadget.com/2246379/how-to-use-old-android-phone-wifi-extender/",
+          "source": "Engadget",
+          "author": "Gabriela Vătu",
+          "ai_score": 67,
+          "date_published": "2026-08-28T23:00:00+00:00",
+          "summary": "If your Wi-Fi signal is patchy at the far reaches of your house, this simple solution might be worth a try. Even better? It's completely free.",
+          "discussed": true,
+          "mention_offset_frac": 0.8369
+        },
+        {
+          "title": "[ScienceAlert] Scientists Discover a Bizarre New Way Life Can Make DNA… Without DNA",
+          "url": "https://www.sciencealert.com/scientists-discover-a-bizarre-new-way-life-can-make-dna-without-dna",
+          "source": "ScienceAlert",
+          "author": "Michelle Starr",
+          "ai_score": 64,
+          "date_published": "2026-08-23T02:00:00+00:00",
+          "summary": "This is mindblowingly weird. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+          "discussed": true,
+          "mention_offset_frac": 0.8849
+        },
+        {
+          "title": "[Hyperallergic] How AIDS Activists Turned Graphic Design Into a Weapon",
+          "url": "https://hyperallergic.com/how-aids-activists-turned-graphic-design-into-a-weapon/",
+          "source": "Hyperallergic",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-24T19:32:17+00:00",
+          "summary": "In the 1980s, a band of fed-up young men wheat-pasted New York with graphically stark flyers, posters, and stickers, demanding action.",
+          "discussed": true,
+          "mention_offset_frac": 0.9316
+        },
+        {
+          "title": "[Toms Guide] Over 60? Start doing these 3 seated exercises to protect your hips and spine",
+          "url": "https://www.tomsguide.com/wellness/workouts/over-60-start-doing-these-3-seated-exercises-to-protect-your-hips-and-spine",
+          "source": "Toms Guide",
+          "author": "https://www.tomsguide.com/author/jennifer-rizzuto",
+          "ai_score": 30,
+          "date_published": "2026-08-22T05:00:00+00:00",
+          "summary": "Our resident personal trainer recommends these three exercises",
+          "discussed": false
+        },
+        {
+          "title": "[Al Jazeera English] US revises statements suggesting Chinese hackers attacked agencies",
+          "url": "https://www.aljazeera.com/news/2026/8/29/us-revises-statements-suggesting-chinese-hackers-attacked-agencies?traffic_source=rss",
+          "source": "Al Jazeera English",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-29T00:46:20+00:00",
+          "summary": "US Justice Department clarifies that the US Senate and Federal Reserve were targets but were not successfully hacked.",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Cariboo Local Affairs",
+      "articles": [
+        {
+          "title": "[Global News] B.C.’s Sikh community on edge after Edmonton attack, but urge people not to panic",
+          "url": "https://globalnews.ca/news/12031001/bc-sikh-community-edge-edmonton-attack-urge-people-not-to-panic/",
+          "source": "Global News",
+          "author": "",
+          "ai_score": 40,
+          "date_published": "2026-08-22T02:10:22+00:00",
+          "summary": "Two patrons intervened and were stabbed during the confrontation; luckily, the victims suffered only non-life-threatening injuries.",
+          "discussed": false
+        },
+        {
+          "title": "[Hyperallergic] Artists Commit to the Bit at This Year’s Vulva Gala",
+          "url": "https://hyperallergic.com/artists-commit-to-the-bit-at-this-years-vulva-gala/",
+          "source": "Hyperallergic",
+          "author": "",
+          "ai_score": 38,
+          "date_published": "2026-08-21T16:42:45+00:00",
+          "summary": "Over two dozen artists from the LA area were given homemade costumes to decorate as they pleased as part of the School of Sexuality Project’s community-centered celebration.",
+          "discussed": false
+        },
+        {
+          "title": "[Williams Lake Tribune] Williams Lake cannabis store seeks to relocate to former Warehouse One space",
+          "url": "https://wltribune.com/2026/08/28/williams-lake-cannabis-store-seeks-to-relocate-to-former-warehouse-one-space/",
+          "source": "Williams Lake Tribune",
+          "author": "Rebecca Dyok",
+          "ai_score": 88,
+          "date_published": "2026-08-29T10:59:38.553284+00:00",
+          "summary": "## Williams Lake cannabis store seeks to relocate to former Warehouse One space Published 2:37 pm Friday, August 28, 2026 **By Rebecca Dyok** Retail cannabis store Marlee's Den is seeking to relocate ...",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] WorkSafeBC report details asbestos risks at Williams Lake Sandman Hotel",
+          "url": "https://wltribune.com/2026/08/28/worksafebc-report-details-asbestos-risks-at-williams-lake-sandman-hotel/",
+          "source": "Williams Lake Tribune",
+          "author": "Khushi Arora",
+          "ai_score": 87,
+          "date_published": "2026-08-29T10:59:38.553504+00:00",
+          "summary": "## WorkSafeBC report details asbestos risks at Williams Lake Sandman Hotel Published 10:45 am Friday, August 28, 2026 **By Khushi Arora** The Sandman Hotel and Suite at Williams Lake, operated by Nort...",
+          "discussed": true
+        },
+        {
+          "title": "[Williams Lake Tribune] IIO investigating Williams Lake incident that left woman seriously injured",
+          "url": "https://wltribune.com/2026/08/21/iio-investigating-williams-lake-incident-that-left-woman-seriously-injured/",
+          "source": "Williams Lake Tribune",
+          "author": "Laisa Conde",
+          "ai_score": 54,
+          "date_published": "2026-08-22T04:41:29.975563+00:00",
+          "summary": "## IIO investigating Williams Lake incident that left woman seriously injured Published 2:56 pm Friday, August 21, 2026 **By Laisa Conde** (Independent Investigations Office of BC) | **Getting your Tr...",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Should local government create formal channels to escalate safety complaints about commercial buildings to provincial regulators, or does existing provincial enforcement already adequately protect residents?",
+        "riley_position": "Provincial agencies like WorkSafeBC have the technical expertise and authority to regulate hazards like asbestos, but local government should create a formal referral bridge so complaints reach provincial inspectors faster and with documented accountability, rather than relying on workers to contact the province directly.",
+        "riley_key_evidence": [
+          "WorkSafeBC's $624,000 fine against Sandman Hotel was imposed after an inspection discovered asbestos, demonstrating reactive rather than preventative enforcement",
+          "Asbestos abatement requires certified contractors and that certification regime functions properly to prevent untrained removal",
+          "Williams Lake currently has no formal local channel to escalate safety complaints to WorkSafeBC, leaving the timing of provincial inspections to chance"
+        ],
+        "casey_position": "The current system has only one enforcement lever—punishment after discovery—and creates an accountability gap where hazards can persist for years while residents have no accessible local pathway to report concerns and ensure they reach provincial authorities.",
+        "casey_key_evidence": [
+          "The fine arrived after WorkSafeBC found the violation during an inspection, not before exposure occurred, showing the certification regime didn't prevent the hazard",
+          "A $624,000 fine is a rounding error for Northland Properties' multi-province portfolio, making it insufficient to deter behavior across their national operations",
+          "Most provincial safety regimes in Canada work reactively rather than preventatively because continuous inspection funding has never been prioritized"
+        ],
+        "resolution": "Riley and Casey reached consensus that the solution is a concrete governance fix: Williams Lake council should pass a bylaw requiring staff to formally log safety complaints about commercial buildings and forward them to WorkSafeBC within a set timeframe, with the referral documented in public records—creating accountability without requiring new certifications or inspectors.",
+        "topics_covered": [
+          "Provincial versus local regulatory authority over workplace hazards",
+          "Reactive enforcement versus preventative inspection models in Canadian safety regulation",
+          "The gap between technical capacity requirements and practical accountability in small-town governance",
+          "How public participation mechanisms differ between zoning regulation and safety enforcement",
+          "Concrete policy alternatives for connecting residents to existing provincial authority without duplicating expertise locally"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 8,
+          "conditions": "overcast",
+          "high": 18,
+          "low": 8
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 6,
+          "conditions": "overcast",
+          "high": 17,
+          "low": 6
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 8,
+          "conditions": "overcast",
+          "high": 20,
+          "low": 8
+        },
+        {
+          "name": "Quesnel",
+          "temp": 9,
+          "conditions": "overcast",
+          "high": 20,
+          "low": 9
+        },
+        {
+          "name": "Redstone",
+          "temp": 7,
+          "conditions": "mainly clear",
+          "high": 18,
+          "low": 6
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Quesnel Women's Resource Centre",
+      "description": "Feminist collective in Quesnel providing stopping-the-violence counselling, a free Thursday wellness clinic, drop-in services, and advocacy for women and families",
+      "website": "qwrc.ca",
+      "psa_angle": "",
+      "event_name": ""
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_azure": "Azure Neural TTS",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  }
+}

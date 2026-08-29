@@ -1,30 +1,4 @@
 {
-  "2026-05-31": {
-    "timestamp": 1780222799.429784,
-    "date": "2026-05-31",
-    "theme": "Science, Wonder & the Natural World",
-    "central_question": "What does it mean for ecological management and knowledge systems when living organisms demonstrate capabilities and strategies more sophisticated than our scientific models predict, and who benefits from the discovery?",
-    "riley_position": "Scientific discovery of natural system sophistication (like the cobra lily's pest management strategy) is valuable and applicable to human problems; the solution is better science communication and research incentive structures, not gatekeeping knowledge.",
-    "riley_key_evidence": [
-      "Darlingtonia californica uses catch-and-release strategy with wasps, maintaining repeat visits rather than killing prey",
-      "Cobra lily research has direct applications to integrated pest management in agriculture",
-      "Longitudinal ecological datasets can be made citable publications to incentivize long-term research"
-    ],
-    "casey_position": "Scientific discovery of natural system sophistication must be understood as distinct from Indigenous knowledge that preceded it; the gap between research findings and local application remains unfilled, and the benefit flows away from communities whose territories contain these systems.",
-    "casey_key_evidence": [
-      "Psilocybin compounds found in Cariboo forests have been part of local ecological and cultural relationships for generations before Western clinical trials",
-      "Most ecological research in the Cariboo operates on 3-5 year funding cycles, too short to observe patterns that manifest over decades",
-      "Science communication infrastructure in the Cariboo is thin, creating a gap between research findings and rancher application"
-    ],
-    "resolution": "The speakers achieved partial agreement: Riley conceded the data sovereignty and knowledge distinction arguments structurally; Casey acknowledged the cobra lily research has genuine agricultural applications. They agreed the core need is longer observation windows and governance structures supporting 30-year commitments, but neither fully resolved the tension between institutional incentives and regional accountability.",
-    "topics_covered": [
-      "Carnivorous plant catch-and-release strategy and evolutionary optimization",
-      "Sea cucumber cellular autonomy and tissue regeneration without central nervous system",
-      "Indigenous knowledge systems vs. Western scientific discovery frameworks",
-      "Research funding models and institutional incentives for long-term regional presence",
-      "Science communication infrastructure gaps in rural Cariboo region"
-    ]
-  },
   "2026-06-02": {
     "timestamp": 1780396005.33335,
     "date": "2026-06-02",
@@ -2344,6 +2318,34 @@
       "Managed retreat and climate migration at slow timescales versus emergency response at fast timescales",
       "Indigenous fire management authority and the T\u015dilhqot'in National Government's independent emergency protocols",
       "Policy gaps in B.C. wildfire response requiring legal rather than technological solutions"
+    ]
+  },
+  "2026-08-29": {
+    "timestamp": 1788011917.961836,
+    "date": "2026-08-29",
+    "theme": "Cariboo Local Affairs",
+    "focus": null,
+    "anchor": "allowed-to-fix",
+    "central_question": "Should local government create formal channels to escalate safety complaints about commercial buildings to provincial regulators, or does existing provincial enforcement already adequately protect residents?",
+    "riley_position": "Provincial agencies like WorkSafeBC have the technical expertise and authority to regulate hazards like asbestos, but local government should create a formal referral bridge so complaints reach provincial inspectors faster and with documented accountability, rather than relying on workers to contact the province directly.",
+    "riley_key_evidence": [
+      "WorkSafeBC's $624,000 fine against Sandman Hotel was imposed after an inspection discovered asbestos, demonstrating reactive rather than preventative enforcement",
+      "Asbestos abatement requires certified contractors and that certification regime functions properly to prevent untrained removal",
+      "Williams Lake currently has no formal local channel to escalate safety complaints to WorkSafeBC, leaving the timing of provincial inspections to chance"
+    ],
+    "casey_position": "The current system has only one enforcement lever\u2014punishment after discovery\u2014and creates an accountability gap where hazards can persist for years while residents have no accessible local pathway to report concerns and ensure they reach provincial authorities.",
+    "casey_key_evidence": [
+      "The fine arrived after WorkSafeBC found the violation during an inspection, not before exposure occurred, showing the certification regime didn't prevent the hazard",
+      "A $624,000 fine is a rounding error for Northland Properties' multi-province portfolio, making it insufficient to deter behavior across their national operations",
+      "Most provincial safety regimes in Canada work reactively rather than preventatively because continuous inspection funding has never been prioritized"
+    ],
+    "resolution": "Riley and Casey reached consensus that the solution is a concrete governance fix: Williams Lake council should pass a bylaw requiring staff to formally log safety complaints about commercial buildings and forward them to WorkSafeBC within a set timeframe, with the referral documented in public records\u2014creating accountability without requiring new certifications or inspectors.",
+    "topics_covered": [
+      "Provincial versus local regulatory authority over workplace hazards",
+      "Reactive enforcement versus preventative inspection models in Canadian safety regulation",
+      "The gap between technical capacity requirements and practical accountability in small-town governance",
+      "How public participation mechanisms differ between zoning regulation and safety enforcement",
+      "Concrete policy alternatives for connecting residents to existing provincial authority without duplicating expertise locally"
     ]
   }
 }
