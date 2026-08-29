@@ -651,6 +651,17 @@ more, every one refused. The wall is checked inside `_brave_search` rather than 
 wrappers, so the paths that call straight through (`_resolve_script_questions_with_brave`) get
 it too.
 
+**Two plans means two keys.** A Brave subscription token is scoped to one plan — subscribing to
+a second requires generating a key under it — so the Search token does not authenticate against
+Answers. `_brave_answers_key()` reads `BRAVE_ANSWERS_API_KEY` and falls back to
+`BRAVE_SEARCH_API_KEY`, which is what every deployment had set and what is right while one plan
+serves both endpoints. **`_brave_summarize` resolves its own key rather than taking the
+caller's**: every caller in the pipeline holds the Search token, so passing it through was how a
+wrong-subscription request would have looked deliberate. A 401/403 is a verdict on the key
+(`_is_brave_auth_failure`), not on the payload — it disables the endpoint without spending the
+second request shape, and the degradation names the env var to set rather than reporting an
+outage.
+
 **The two walls are separate because the two plans are.** They shared one flag while they
 shared one meter, and keeping that after the split would cost an episode its research twice
 over — the 2026-08-29 Search cap would have closed an Answers plan that had just been paid for.

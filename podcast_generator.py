@@ -2525,7 +2525,35 @@ _BRAVE_ANSWER_SHAPES = [
 _BRAVE_ANSWERS_STATE = {"shape": 0, "disabled": False}
 
 
-def _brave_summarize(query, api_key):
+def _brave_answers_key():
+    """The subscription token for the Answers plan.
+
+    Brave scopes a key to one subscription — "after you've subscribed to a plan,
+    you will need to generate a new key" — so the Search key does not
+    authenticate against Answers once the two are separate plans (2026-08-29).
+    Falls back to BRAVE_SEARCH_API_KEY, which is both what every deployment has
+    set today and what is correct while one plan still serves both endpoints; a
+    key that turns out to be scoped to the wrong subscription is caught by
+    _is_brave_auth_failure below rather than read as an outage.
+    """
+    return os.getenv("BRAVE_ANSWERS_API_KEY") or os.getenv("BRAVE_SEARCH_API_KEY")
+
+
+def _is_brave_auth_failure(error) -> bool:
+    """True when Brave rejected the *key* rather than the query or the payload.
+
+    401/403 is what a Search-scoped token gets from the Answers endpoint. It is
+    not worth a second request shape (the payload was never the problem) and not
+    worth the rest of the run's queries either.
+    """
+    resp = getattr(error, "response", None)
+    if resp is not None and getattr(resp, "status_code", None) in (401, 403):
+        return True
+    text = str(error).lower()
+    return text.startswith("401 ") or text.startswith("403 ")
+
+
+def _brave_summarize(query, api_key=None):
     """Fetch an AI-synthesized answer for a factual query via Brave's Answers API.
 
     Single POST to /res/v1/chat/completions with the query as a user message.
@@ -2541,7 +2569,14 @@ def _brave_summarize(query, api_key):
     BRAVE_ANSWERS_CALL_LIMIT is what spreads that credit across a month rather
     than letting a run of bad nights spend it in the first week. Each request
     sent counts against the budget — a shape probe is metered like an answer.
+
+    It also runs on its own *key*: api_key defaults to _brave_answers_key()
+    rather than to whatever the caller happens to hold, because every caller
+    here holds the Search token and a Brave key is scoped to one subscription.
     """
+    api_key = api_key or _brave_answers_key()
+    if not api_key:
+        return ""
     if _BRAVE_ANSWERS_STATE["disabled"] or _brave_walled("answers"):
         return ""
 
@@ -2597,6 +2632,15 @@ def _brave_summarize(query, api_key):
                 # wall rather than letting the second request shape spend a call
                 # proving the same thing.
                 _trip_brave_wall(e, "answers")
+                return ""
+            if _is_brave_auth_failure(e):
+                # The key, not the query. A second shape would spend another
+                # call proving the same token is still scoped to Search.
+                _BRAVE_ANSWERS_STATE["disabled"] = True
+                degrade("script/brave-answers",
+                        f"Answers rejected the API key ({last_error[:80]}) — set "
+                        "BRAVE_ANSWERS_API_KEY to a token generated under the "
+                        "Answers subscription; using web snippets for the run")
                 return ""
             if isinstance(e, requests.RequestException):
                 # Never answered: no verdict on the payload, and no reason to
@@ -2773,7 +2817,7 @@ def _web_search_tool_executor(tool_input):
         return "Web search is not available."
 
     if tool_input.get("mode") == "answer" or not _brave_deep_dive_open():
-        answer = _brave_summarize(query, brave_key)
+        answer = _brave_summarize(query)   # its own subscription, its own key
         if answer:
             return answer
 
@@ -3126,7 +3170,7 @@ def _resolve_script_questions_with_brave(script, brave_key, client):
     for query in queries[:3]:  # Cap at 3 Brave calls
         # Try the Summarizer first — it returns a synthesized prose answer which is
         # more directly useful for factual gap-fill than raw snippet concatenation.
-        answer = _brave_summarize(query, brave_key)
+        answer = _brave_summarize(query)   # its own subscription, its own key
         if answer:
             results.append(f"Q: {query}\nAnswer: {answer[:500]}")
             continue

@@ -154,6 +154,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
+          BRAVE_ANSWERS_API_KEY: ${{ secrets.BRAVE_ANSWERS_API_KEY }}
           COHERE_API_KEY: ${{ secrets.COHERE_API_KEY }}
           # The TTS provider flags (not the keys) must be set on this stage too:
           # the polish prompt is provider-gated — only Gemini performs `[tag]`

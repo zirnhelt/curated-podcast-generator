@@ -29,6 +29,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
+          BRAVE_ANSWERS_API_KEY: ${{ secrets.BRAVE_ANSWERS_API_KEY }}
           PODCAST_DEBUG_AGENT: '1'
         run: |
           python agentic_pipeline_check.py

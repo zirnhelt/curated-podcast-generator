@@ -787,7 +787,7 @@ class TestBraveBillingWall:
         pg._BRAVE_WALLS["search"]["hit"] = True
         asked = []
         monkeypatch.setattr(pg, "_brave_summarize",
-                            lambda q, k: asked.append(q) or "the synthesized answer")
+                            lambda q, k=None: asked.append(q) or "the synthesized answer")
 
         # Even in the tool's default "results" mode.
         assert pg._web_search_tool_executor({"query": "how deep is Horsefly Lake"}) == \
@@ -888,6 +888,86 @@ class TestBraveBudgets:
 
         # The deep dive still has its own budget.
         assert pg._brave_deep_dive_rate_limit("research", "k") != []
+
+
+class TestBraveAnswersKey:
+    """A Brave key is scoped to one subscription, so Answers needs its own."""
+
+    @pytest.fixture(autouse=True)
+    def _fresh_state(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_BRAVE_ANSWERS_STATE", {"shape": 0, "disabled": False})
+        monkeypatch.setattr(pg, "_BRAVE_WALLS", {
+            "search": {"hit": False, "detail": ""},
+            "answers": {"hit": False, "detail": ""},
+        })
+        monkeypatch.setattr(
+            pg, "_BRAVE_SEARCH_STATE",
+            {"search_calls": 0, "search_ts": 0.0, "deep_calls": 0, "deep_ts": 0.0,
+             "answer_calls": 0},
+        )
+        monkeypatch.delenv("BRAVE_ANSWERS_API_KEY", raising=False)
+        monkeypatch.setenv("BRAVE_SEARCH_API_KEY", "search-token")
+
+    def test_prefers_the_answers_token_and_falls_back_to_search(self, monkeypatch):
+        import podcast_generator as pg
+        assert pg._brave_answers_key() == "search-token"
+        monkeypatch.setenv("BRAVE_ANSWERS_API_KEY", "answers-token")
+        assert pg._brave_answers_key() == "answers-token"
+
+    def test_the_answers_call_sends_the_answers_token(self, monkeypatch):
+        """The callers all hold the Search token; the endpoint must not get it
+        just because it was the one in scope."""
+        import podcast_generator as pg
+        monkeypatch.setenv("BRAVE_ANSWERS_API_KEY", "answers-token")
+        seen = []
+
+        class _Ok:
+            status_code = 200
+
+            def json(self):
+                return {"choices": [{"message": {"content": "42 km"}}]}
+
+        def fake_post(url, headers=None, json=None, timeout=None):
+            seen.append(headers["x-subscription-token"])
+            return _Ok()
+
+        monkeypatch.setattr(pg.requests, "post", fake_post)
+        assert pg._brave_summarize("how far") == "42 km"
+        assert seen == ["answers-token"]
+
+    def test_a_rejected_key_is_a_verdict_and_names_the_fix(self, monkeypatch):
+        """401/403 is the key, not the payload — a second request shape would
+        spend another call proving the same token is still scoped to Search."""
+        import podcast_generator as pg
+        posts, recorded = [], []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: recorded.append(detail))
+
+        class _Denied:
+            status_code = 403
+            text = '{"error":"Subscription token is not valid for this endpoint"}'
+
+            def json(self):
+                return {}
+
+        def fake_post(url, headers=None, json=None, timeout=None):
+            posts.append(json)
+            return _Denied()
+
+        monkeypatch.setattr(pg.requests, "post", fake_post)
+        assert pg._brave_summarize("anything") == ""
+        assert len(posts) == 1, "spent a second shape on a rejected key"
+        assert pg._BRAVE_ANSWERS_STATE["disabled"] is True
+        assert any("BRAVE_ANSWERS_API_KEY" in d for d in recorded)
+        # ...and an auth failure is not a billing wall.
+        assert pg._brave_walled("answers") is False
+
+    def test_no_key_at_all_never_reaches_the_network(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.delenv("BRAVE_SEARCH_API_KEY", raising=False)
+        monkeypatch.setattr(pg.requests, "post",
+                            lambda *a, **k: pytest.fail("asked Brave with no key"))
+        assert pg._brave_summarize("anything") == ""
 
 
 class TestBraveSummarize:
