@@ -72,6 +72,65 @@ def test_overlap_constants_match():
     assert podcast_generator.INTERVAL_FADE_OUT_MS >= podcast_generator.MUSIC_SPEECH_OVERLAP_MS
 
 
+class FadeTrackingSegment(FakeSegment):
+    """FakeSegment that records the fade_in windows asked of it."""
+
+    def __init__(self, length=0, fades=None):
+        super().__init__(length)
+        self.fades = fades if fades is not None else []
+
+    def fade_in(self, ms):
+        self.fades.append(ms)
+        return self
+
+    def __add__(self, other):
+        return FadeTrackingSegment(self.length + len(other), self.fades)
+
+    def overlay(self, other, position=0):
+        return FadeTrackingSegment(self.length, self.fades)
+
+
+class TestBringMusicUpUnder:
+    """The theme under the tail of the cold open, the outro under the tail of
+    the credits: the music starts early and fades up, the speech is untouched."""
+
+    def test_music_starts_before_the_speech_ends(self, monkeypatch):
+        monkeypatch.setattr(podcast_generator, "AudioSegment", FakeSegment)
+        overlap = podcast_generator.MUSIC_BED_OVERLAP_MS
+        combined = podcast_generator._bring_music_up_under(
+            FakeSegment(10_000), FadeTrackingSegment(5_000)
+        )
+        assert len(combined) == 10_000 - overlap + 5_000
+
+    def test_music_fades_in_across_the_overlap(self, monkeypatch):
+        monkeypatch.setattr(podcast_generator, "AudioSegment", FakeSegment)
+        music = FadeTrackingSegment(5_000)
+        podcast_generator._bring_music_up_under(FakeSegment(10_000), music)
+        assert music.fades == [podcast_generator.MUSIC_BED_OVERLAP_MS]
+
+    def test_no_cold_open_degrades_to_a_plain_append(self, monkeypatch):
+        # Nothing to come up under — the theme must open the episode at full
+        # level, not fade up out of silence.
+        monkeypatch.setattr(podcast_generator, "AudioSegment", FakeSegment)
+        music = FadeTrackingSegment(5_000)
+        combined = podcast_generator._bring_music_up_under(FakeSegment(0), music)
+        assert len(combined) == 5_000
+        assert music.fades == []
+
+    def test_overlap_clamps_to_a_short_music_bed(self, monkeypatch):
+        monkeypatch.setattr(podcast_generator, "AudioSegment", FakeSegment)
+        music = FadeTrackingSegment(800)
+        combined = podcast_generator._bring_music_up_under(FakeSegment(10_000), music)
+        assert music.fades == [800]
+        assert len(combined) == 10_000
+
+    def test_bed_overlap_outlasts_the_speech_overlap(self):
+        # A bed swelling in needs more room than a voice cutting through a
+        # fade-out that is already on its way down.
+        assert (podcast_generator.MUSIC_BED_OVERLAP_MS
+                > podcast_generator.MUSIC_SPEECH_OVERLAP_MS)
+
+
 class RichFakeSegment(FakeSegment):
     """FakeSegment extended with the methods generate_audio_from_script uses."""
 
