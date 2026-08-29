@@ -291,7 +291,12 @@ jobs:
           AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
           USE_AZURE_TTS: ${{ inputs.tts_provider == 'azure' && 'true' || '' }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_MODEL || secrets.GEMINI_TTS_MODEL }}
+          # A model name is not a credential, and sourcing it from a secret made
+          # GitHub mask it everywhere it appeared — so on 2026-08-28 the log said
+          # a request went unanswered on `***` and the run report could not name
+          # which model had failed. Repository *variable* only; unset falls through
+          # to the default in gemini_tts.py, which the log then prints in full.
+          GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_MODEL }}
           GEMINI_TTS_FALLBACK_MODEL: ${{ vars.GEMINI_TTS_FALLBACK_MODEL }}
           # Scheduled runs pass no input, so the nightly show renders on Gemini.
           # OpenAI is the fallback rather than the default: the canary decides the
@@ -315,7 +320,12 @@ jobs:
           AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
           USE_AZURE_TTS: ${{ inputs.tts_provider == 'azure' && 'true' || '' }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_MODEL || secrets.GEMINI_TTS_MODEL }}
+          # A model name is not a credential, and sourcing it from a secret made
+          # GitHub mask it everywhere it appeared — so on 2026-08-28 the log said
+          # a request went unanswered on `***` and the run report could not name
+          # which model had failed. Repository *variable* only; unset falls through
+          # to the default in gemini_tts.py, which the log then prints in full.
+          GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_MODEL }}
           GEMINI_TTS_FALLBACK_MODEL: ${{ vars.GEMINI_TTS_FALLBACK_MODEL }}
           # Scheduled runs pass no input, so the nightly show renders on Gemini.
           # OpenAI is the fallback rather than the default: the canary decides the

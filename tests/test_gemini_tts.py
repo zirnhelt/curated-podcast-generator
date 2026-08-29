@@ -404,9 +404,31 @@ class TestSynthesizeRetries:
         monkeypatch.setattr(gemini_tts.requests, "post", fake_post)
         _synthesize_chunk(SEGS)
         assert seen == [
-            (gemini_tts.REQUEST_CONNECT_TIMEOUT, gemini_tts.REQUEST_READ_TIMEOUT)
+            (gemini_tts.REQUEST_CONNECT_TIMEOUT, gemini_tts._read_timeout_for(SEGS))
         ]
-        assert gemini_tts.REQUEST_READ_TIMEOUT <= 120
+        assert gemini_tts.READ_TIMEOUT_MAX_S <= 120
+
+    def test_read_timeout_scales_with_the_size_of_the_request(self):
+        """A 350-char cold open must not get the same leash as an 8.5k chunk.
+
+        The flat 120 s it replaces is what let three unanswered small requests
+        spend a 420 s section budget in two attempts on 2026-08-28.
+        """
+        tiny = [{"speaker": "riley", "text": "x" * 100, "gap_ms": None}]
+        huge = [{"speaker": "riley", "text": "x" * 8500, "gap_ms": None}]
+        assert gemini_tts._read_timeout_for(tiny) == gemini_tts.READ_TIMEOUT_MIN_S
+        assert gemini_tts._read_timeout_for(huge) == gemini_tts.READ_TIMEOUT_MAX_S
+        # Monotonic in between, so the scale is doing real work rather than
+        # just picking one of the two ends.
+        middling = [{"speaker": "riley", "text": "x" * 2000, "gap_ms": None}]
+        assert (gemini_tts.READ_TIMEOUT_MIN_S
+                <= gemini_tts._read_timeout_for(middling)
+                <= gemini_tts.READ_TIMEOUT_MAX_S)
+
+    def test_the_ceiling_never_exceeds_what_large_chunks_used_to_get(self):
+        """Shortening the leash must not shorten it for the requests that were
+        working — the change is only ever a cut for the small ones."""
+        assert gemini_tts.READ_TIMEOUT_MAX_S == 120
 
     def test_429_error_body_not_truncated_before_quota_details(self, monkeypatch):
         """The quota name in error.details sits past 300 chars — keep it."""
@@ -523,7 +545,7 @@ class TestTimeBudget:
         calls = self._always_rejects(monkeypatch)
         # Room for the backoff (15 s) but not for the attempt behind it.
         with pytest.raises(Exception):
-            _synthesize_chunk(SEGS, budget_s=gemini_tts.REQUEST_READ_TIMEOUT)
+            _synthesize_chunk(SEGS, budget_s=gemini_tts._read_timeout_for(SEGS))
         assert len(calls) == 1
 
     def test_render_deadline_blocks_further_attempts(self, monkeypatch):
@@ -769,6 +791,26 @@ class TestCanary:
         assert gemini_tts.canary() is None
         assert gemini_tts._model_override is None
 
+    def test_a_rate_limited_canary_is_re_asked(self, monkeypatch):
+        """Gemini answers an ordinary per-minute rate limit with the same 429 it
+        uses for a spent quota, and a 429 was being taken as a verdict — so on
+        2026-08-26 two of three crons gave both candidates away on one throttled
+        call each. A wait is what clears a rate limit."""
+        calls = []
+
+        def responder(url, **kwargs):
+            calls.append(url)
+            if len(calls) == 1:
+                return TestSynthesizeRetries._FakeResp(
+                    {"error": {"code": 429, "message": "RESOURCE_EXHAUSTED"}},
+                    status=429,
+                )
+            return TestSynthesizeRetries._FakeResp(TestSynthesizeRetries.AUDIO_RESPONSE)
+
+        self._patch(monkeypatch, responder)
+        assert gemini_tts.canary() == gemini_tts.GEMINI_TTS_MODEL
+        assert len(calls) == 2
+
     def test_no_api_key_is_a_failed_canary_not_an_exception(self, monkeypatch):
         monkeypatch.delenv("GEMINI_API_KEY", raising=False)
         assert gemini_tts.canary() is None
@@ -826,7 +868,25 @@ class TestCanary:
         self._patch(monkeypatch, responder)
         gemini_tts.canary()
         assert seen[0] == (gemini_tts.REQUEST_CONNECT_TIMEOUT, gemini_tts.CANARY_READ_TIMEOUT)
-        assert gemini_tts.CANARY_READ_TIMEOUT < gemini_tts.REQUEST_READ_TIMEOUT
+        # Short, but never stricter than what the render would give a request
+        # this size: a canary that gives up sooner than the render can fail an
+        # endpoint the render would have waited out, and that costs the whole
+        # episode its voices.
+        assert gemini_tts.CANARY_READ_TIMEOUT <= gemini_tts.READ_TIMEOUT_MAX_S
+        assert gemini_tts.CANARY_READ_TIMEOUT >= gemini_tts._read_timeout_for(
+            gemini_tts.CANARY_SEGMENTS
+        )
+
+    def test_canary_asks_a_multi_speaker_request_like_a_real_section(self):
+        """A single-speaker probe exercises a different request shape than the
+        multi-speaker sections it vouches for.
+
+        On 2026-08-28 the one-turn canary passed and the same model then failed
+        three multi-speaker sections in a row, pinning the episode to a provider
+        that could not render it.
+        """
+        speakers = {s["speaker"] for s in gemini_tts.CANARY_SEGMENTS}
+        assert len(speakers) == 2
 
     def test_canary_text_is_short_enough_to_skip_the_duration_check(self):
         """A tiny probe clip must not be failed by the truncation guard, which
@@ -1107,3 +1167,54 @@ class TestStageDirectionAddendum:
         monkeypatch.setattr(pg, "USE_GEMINI_TTS", True)
         addendum = pg._stage_direction_addendum()
         assert "[wry]" not in addendum and "(wry)" not in addendum
+
+
+class TestFailureClassification:
+    """Only one failure on this endpoint is a verdict on what was asked.
+
+    Everything else is the transport or the service declining to serve right
+    now, and shedding context, style and cues cannot fix any of it — it just
+    spends a read timeout a rung proving that.
+    """
+
+    def test_timeout_and_dropped_connection_carry_no_verdict(self):
+        assert gemini_tts._carries_no_shape_verdict(
+            gemini_tts.requests.Timeout("read timed out")
+        )
+        assert gemini_tts._carries_no_shape_verdict(
+            gemini_tts.requests.ConnectionError("reset by peer")
+        )
+
+    def test_429_and_5xx_carry_no_verdict(self):
+        """A rate limit and a bad gateway say nothing about the prompt."""
+        for status in (429, 500, 502, 503, 504):
+            err = RuntimeError(f"Gemini TTS HTTP {status}: RESOURCE_EXHAUSTED")
+            assert gemini_tts._carries_no_shape_verdict(err), status
+
+    def test_a_tokenized_rejection_is_a_verdict(self):
+        """finishReason OTHER comes back with promptTokenCount ==
+        totalTokenCount: accepted, read, and refused. That one is worth
+        rewording for."""
+        err = RuntimeError("Gemini TTS response had no audio: {'candidates': []}")
+        assert not gemini_tts._carries_no_shape_verdict(err)
+
+    def test_a_429_changes_model_rather_than_shedding_the_prompt(self, monkeypatch):
+        """The rung after a no-verdict failure must change the model. Walking the
+        prompt-shedding rungs on a throttled endpoint spends the section budget
+        on a shape that was never the problem."""
+        seen = []
+        monkeypatch.setenv("GEMINI_API_KEY", "test-key")
+        monkeypatch.setattr(gemini_tts.time, "sleep", lambda s: None)
+
+        def responder(url, **kwargs):
+            seen.append(url)
+            if gemini_tts.GEMINI_TTS_MODEL in url:
+                return TestSynthesizeRetries._FakeResp(
+                    {"error": {"code": 429}}, status=429
+                )
+            return TestSynthesizeRetries._FakeResp(TestSynthesizeRetries.AUDIO_RESPONSE)
+
+        monkeypatch.setattr(gemini_tts.requests, "post", responder)
+        pcm, _ = _synthesize_chunk(SEGS)
+        assert pcm == TestSynthesizeRetries.AUDIO_PCM
+        assert gemini_tts.GEMINI_TTS_FALLBACK_MODEL in seen[-1]
