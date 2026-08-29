@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[WIRED] Is This Poker Player Bluffing? The AI Thinks So",
-      "[TechRadar] New malware disguised as popular Roblox cheat to",
       "AI",
       "[TechCrunch] Kyoto Fusioneering starts work on key fusion po",
       "[TechRadar] Boeing and US Air Force sign deal to build guide",
@@ -10,7 +8,9 @@
       "[TechRadar] Gemini now lets you turn off the visible waterma",
       "[The Tyee] As AI Data Centre Backlash Builds, What Will Smit",
       "[NYT Business] How Big Tech\u2019s A.I. Borrowing Binge Is Drivin",
-      "[WIRED] AI Slop Is Ruining Cute Animals on the Internet"
+      "[WIRED] AI Slop Is Ruining Cute Animals on the Internet",
+      "[Hyperallergic] How AIDS Activists Turned Graphic Design Int",
+      "[TechCrunch] How AI accounting startup Rillet raised $100M a"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -140,14 +140,14 @@
         "occurrences": 1
       },
       {
-        "date": "2026-08-28",
-        "clue": "structural-lens:+ \u2014 repeatedly frames authority gaps as systemic, not technical",
-        "occurrences": 1
+        "date": "2026-08-29",
+        "clue": "structural-lens:+ \u2014 Shifted from system critique to concrete policy design",
+        "occurrences": 2
       },
       {
-        "date": "2026-08-28",
-        "clue": "rural-context:~ \u2014 concedes individual landowner action is currently necessary but risky",
-        "occurrences": 1
+        "date": "2026-08-29",
+        "clue": "rural-context:~ \u2014 Acknowledged genuine scale limits for municipal capacity",
+        "occurrences": 2
       }
     ],
     "core_memories": [
@@ -255,7 +255,6 @@
   },
   "casey": {
     "consistent_interests": [
-      "[The Globe and Mail] Tumbler Ridge shooting highlights rural",
       "[The Tyee] Half of BC\u2019s Community Paramedic Positions Are Un",
       "[The Tyee] Tumbler Ridge Shows We Can\u2019t Take Rural Medicine ",
       "[Williams Lake Tribune] Williams Lake community shows its he",
@@ -264,7 +263,8 @@
       "[100 Mile Free Press] HANSEN: Lac La Hache Community Club pr",
       "[Williams Lake Tribune] End of B.C. rural healthcare bonus c",
       "[Resilience.org] Social capital and community resilience: A ",
-      "[globalnews.ca] Chief says community was left \u2018a war zone\u2019 a"
+      "[globalnews.ca] Chief says community was left \u2018a war zone\u2019 a",
+      "[Global News] B.C.\u2019s Sikh community on edge after Edmonton a"
     ],
     "recurring_questions": [
       "Who benefits from this?",
@@ -322,11 +322,6 @@
         "date": "2026-06-12",
         "clue": "pilot-skepticism: + \u2014 elevated concern about grant-dependent monitoring infrastructure failure patterns",
         "occurrences": 1
-      },
-      {
-        "date": "2026-08-17",
-        "clue": "community-trust:+ \u2014 Shifted from AI-access debate to local institutional continuity",
-        "occurrences": 2
       },
       {
         "date": "2026-06-24",
@@ -387,11 +382,6 @@
         "date": "2026-08-23",
         "clue": "evidence-bar:+[signal] \u2014 Pressed harder on gap between finding and product",
         "occurrences": 1
-      },
-      {
-        "date": "2026-08-28",
-        "clue": "evidence-bar:x \u2014 acknowledges Nation governance model demonstrates formal authority works",
-        "occurrences": 2
       },
       {
         "date": "2026-08-26",
