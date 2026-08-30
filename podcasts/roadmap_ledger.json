@@ -161,13 +161,14 @@
       "title": "Deep dive sections achieved 67% citation matching versus 87% for roundup sections.",
       "detail": "On 2026-08-28, the roundup matched 13 of 15 citations (87%), but the deep dive section matched only 2 of 3 (67%). Both figures are from the same run and the same citation alignment logic. The data does not name which deep dive source failed to align. The gap suggests the matching logic may not scale from brief news stories to longer-form analysis, or that deep dive sources need different handling. Inspect the citation-matching function for whether it uses story depth or source type to vary its strategy, and run a test batch of deep dives against the current matching logic to confirm whether this is systematic or noise.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-08-28",
       "seen": [
-        "2026-08-28"
+        "2026-08-28",
+        "2026-08-30"
       ],
-      "last_seen": "2026-08-28"
+      "last_seen": "2026-08-30"
     },
     {
       "id": "roundup-story-order-drift-persists-after-repair",
@@ -181,7 +182,20 @@
         "2026-08-29"
       ],
       "last_seen": "2026-08-29"
+    },
+    {
+      "id": "gemini-project-spend-cap-blocks-rendering",
+      "title": "Gemini project spend cap was reached mid-run, forcing a fallback to OpenAI for the entire episode's text-to-speech.",
+      "detail": "On 2026-08-30, the render/gemini-canary segment degraded because the Gemini project spend cap had been reached. The pipeline fell back to OpenAI rather than risk a mid-episode voice change, rendering all 22.6 minutes on a different provider. The Gemini pre-flight check also failed to answer, removing any option to recover partway through. Raising the spend cap or implementing a per-segment budget ceiling that triggers earlier would prevent this fallback and keep rendering consistent.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-08-30",
+      "seen": [
+        "2026-08-30"
+      ],
+      "last_seen": "2026-08-30"
     }
   ],
-  "updated": "2026-08-29"
+  "updated": "2026-08-30"
 }

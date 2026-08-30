@@ -39,7 +39,7 @@ cannot reopen it. Anything written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-08-29) — 8 open.
+_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-08-30) — 9 open.
 Check a box to close one; it comes back only if the reviews raise it 2 more times._
 
 - [ ] **A credit-balance 400 is not the usage-limit wall, and every run pays for that.**
@@ -92,6 +92,15 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       whether the episode's answer count is typical, and decide whether to increase the quota,
       implement batching, or rely on web snippets as the primary source when the API is
       unavailable. (seen in 2 reviews, latest 2026-08-29)
+- [ ] **Deep dive sections achieved 67% citation matching versus 87% for roundup sections.** On
+      2026-08-28, the roundup matched 13 of 15 citations (87%), but the deep dive section
+      matched only 2 of 3 (67%). Both figures are from the same run and the same citation
+      alignment logic. The data does not name which deep dive source failed to align. The gap
+      suggests the matching logic may not scale from brief news stories to longer-form analysis,
+      or that deep dive sources need different handling. Inspect the citation-matching function
+      for whether it uses story depth or source type to vary its strategy, and run a test batch
+      of deep dives against the current matching logic to confirm whether this is systematic or
+      noise. (seen in 2 reviews, latest 2026-08-30)
 
 <!-- reviews:end -->
 
