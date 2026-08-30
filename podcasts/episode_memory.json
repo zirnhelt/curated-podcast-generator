@@ -1,24 +1,4 @@
 {
-  "2026-07-26": {
-    "timestamp": 1785061647.488209,
-    "topics": [
-      "[ScienceAlert] This Week in Science: A Grim Measles Mileston",
-      "[Kagi Small Web] Even more science fiction and fantasy novel",
-      "[Engadget] Amazon accused of poaching HBO employees in Warne",
-      "[Neowin] How and why do we even exist? Science may finally h",
-      "[MacRumors] Top Stories: 'Apple Upgrade' Program, Apple Musi",
-      "[MacRumors] Lawsuit Filed After Apple's A12 and A13 Chips Hi",
-      "[ScienceAlert] Medications Already in Pharmacies May Slow Ag",
-      "[InsideEVs] EV Drivers Are Happier With Their Cars Than Gas "
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption"
-    ],
-    "date": "2026-07-26",
-    "focus": "living-world",
-    "focus_name": "The Living World"
-  },
   "2026-07-27": {
     "timestamp": 1785152783.985306,
     "topics": [
@@ -728,5 +708,26 @@
     "date": "2026-08-29",
     "focus": null,
     "focus_name": null
+  },
+  "2026-08-30": {
+    "timestamp": 1788098866.686001,
+    "topics": [
+      "[100 Mile Free Press] Future of 100 Mile House railway still",
+      "[Williams Lake Tribune] Williams Lake strongman picks up a w",
+      "[CFJC Today Kamloops] CSRD board approves raises to Director",
+      "[CFJC Today Kamloops] \u2018We just never had any rain,\u2019 lack of ",
+      "[Regional News Archives",
+      "[ScienceDaily] Tiny 1.7-billion-year-old fossils could revea",
+      "[ScienceDaily] Depression may shut down the brain\u2019s ability ",
+      "[Scientific American] How changes to Endangered Species Act "
+    ],
+    "themes": [
+      "rural development",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-08-30",
+    "focus": "earth-systems",
+    "focus_name": "Earth Systems & Climate Science"
   }
 }
