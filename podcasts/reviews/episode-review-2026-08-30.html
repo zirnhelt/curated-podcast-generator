@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, August 30, 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.1rem; color: #444; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }
+    th { background: #f5f5f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    a { color: #0066cc; }
+    code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, August 30, 2026</h1>
+  <p class="meta">Published August 30, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/33315039427">33315039427</a>.</em></p>
+
+<h3>Three runs, two spend limits, one episode shipped</h3>
+
+<p>The pipeline executed three times on 2026-08-30, all triggered by Fallback 2 at 3:05 AM Pacific. The first two concluded successfully; the third was still in progress at report time. All three ran late: 220, 252, and 280 minutes respectively. The delay pattern suggests the primary schedule failed and the fallback itself degraded through the day.</p>
+
+<p>Two hard stops hit the run. Brave search exhausted its usage quota mid-episode, forcing every remaining Brave call to skip. Gemini hit its project spend cap, blocking all rendering on that service. Rather than wait for recovery, the pipeline fell back to OpenAI for text-to-speech across the entire episode. The Gemini pre-flight check also failed, removing any possibility of a partial recovery.</p>
+
+<h3>Script landed short, then expanded</h3>
+
+<p>The first draft came in at 2,770 words against a 3,400-word target. The pipeline sent it back for expansion. The shipped script contained 3,327 words, falling 73 words below target but within acceptable bounds.</p>
+
+<h3>Citation matching broke on deep dives</h3>
+
+<p>Roundup citations matched 12 of 15 sources. Deep dive citations matched only 1 of 3. The three deep dive stories were <em>[ScienceDaily] Tiny 1.7-billion-year-old fossils could reveal how comp…</em>, <em>[Forbes Innovation] The Climate Threat To Pregnancy Is Here — Health S…</em>, and <em>[NYT Business] As Deadly Flash Flooding Batters Nepal, Some Fear "the …"</em> Two of them failed to align with citations in the script, a sharp drop from the roundup's 80% success rate.</p>
+
+<h3>Roundup curation pulled hard</h3>
+
+<p>The pipeline dropped 20 roundup items before scripting. Three deep dives shipped. The debate question posed was: <em>How do changes in legal definitions of environmental harm affect the ability to protect endangered species and habitats when institutions lose the authority to act on scientifically documented damage?</em></p>
+
+<h3>Audio and video rendered in sync</h3>
+
+<p>Episode runtime was 22.6 minutes across both audio and video. Audio file size was 20.7 MB; video was 65.9 MB. The pipeline published 215 episodes to RSS.</p>
+
+<h3>Compute load and voice balance</h3>
+
+<p>Script generation consumed 11 Claude API calls and 2 Brave search calls, totaling 93,580 input tokens. One AI tell pattern hit in quality review. Casey's voice ratio over Riley was 1.05. One TTS segment came back shorter than its word count predicted and was retried once.</p>
+
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Fallback 2 (3:05 AM Pacific)</td><td>2026-08-30T13:45:40Z</td><td>+220 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific)</td><td>2026-08-30T14:17:43Z</td><td>+252 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific)</td><td>2026-08-30T14:45:46Z</td><td>+280 min</td><td>in_progress</td></tr>
+</tbody>
+</table>
+
+<h3>What shipped</h3>
+<table>
+<thead><tr><th>Measure</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Deep dive</td><td>3 articles</td></tr>
+<tr><td>Script</td><td>1 pattern hit(s), voice ratio 1.05, 3327 words</td></tr>
+<tr><td>Audio</td><td>22.6 min</td></tr>
+<tr><td>Audio size</td><td>20.7 MB</td></tr>
+<tr><td>Citations matched</td><td>12/15 roundup, 1/3 deep dive</td></tr>
+<tr><td>Feed</td><td>215 episodes</td></tr>
+<tr><td>Anthropic spend</td><td>93,580 input tokens, calls {'claude': 11, 'brave-answers': 2}</td></tr>
+</tbody>
+</table>
+</body>
+</html>
