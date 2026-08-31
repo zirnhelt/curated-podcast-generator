@@ -103,36 +103,115 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-        run: npx wrangler deploy
+        run: |
+          # pipefail, because the default shell is `bash -e` and a tee would
+          # otherwise mask a failed deploy behind tee's own exit status.
+          set -o pipefail
+          npx wrangler deploy 2>&1 | tee /tmp/wrangler-deploy.log
 
-      - name: Summary
+      # This step used to print a hardcoded table of the five crons, which said
+      # exactly the same thing whether or not any of them registered — a
+      # statement of intent wearing the costume of a readback. It now reports
+      # what wrangler says it deployed, and checks that against what the Worker
+      # can actually route.
+      #
+      # The check that matters is registered crons vs the SCHEDULE keys in
+      # src/index.ts, which is the drift the README warns about and the one
+      # that fails silently: a cron with no entry wakes the Worker and
+      # dispatches nothing, and an entry with no cron is a ladder rung that
+      # never fires. wrangler.jsonc is not re-parsed here — wrangler replaces
+      # the deployed crons with that array wholesale, so the log *is* the
+      # readback of it.
+      - name: Report and verify the deployed triggers
+        if: ${{ !inputs.dry_run }}
         env:
           PUSH_SECRET: ${{ inputs.push_secret }}
-          DRY_RUN: ${{ inputs.dry_run }}
         run: |
-          if [ "$DRY_RUN" = "true" ]; then
-            {
-              echo "### Verify only — nothing was deployed"
-              echo
-              echo "The bundle builds, the config parses, and the PAT reaches both"
-              echo "repositories. Re-run with \`dry_run: false\` to deploy."
-            } >> "$GITHUB_STEP_SUMMARY"
-            exit 0
-          fi
+          python3 - <<'PYEOF'
+          import os
+          import pathlib
+          import re
+          import sys
+
+          log = pathlib.Path("/tmp/wrangler-deploy.log").read_text()
+          registered = re.findall(r"^\s*schedule:\s*(\S.*?)\s*$", log, re.M)
+
+          src = pathlib.Path("src/index.ts").read_text()
+          routed = dict(
+              re.findall(r"^\s*'([^']+)':\s*\{.*?^\s*label:\s*'([^']*)'", src, re.M | re.S)
+          )
+
+          body = []
+          failed = False
+
+          if not registered:
+              failed = True
+              body += [
+                  "**No cron triggers were registered.** wrangler printed no",
+                  "`schedule:` lines, so either `triggers.crons` is empty in",
+                  "wrangler.jsonc or its output format changed and this check needs",
+                  "updating. Nothing is starting the nightly runs except the GitHub",
+                  "backstop crons.",
+                  "",
+              ]
+          else:
+              body += [
+                  "Read back from wrangler's own output, cross-checked against the",
+                  "`SCHEDULE` table in `src/index.ts`:",
+                  "",
+                  "| Cron (UTC) | Routes to | |",
+                  "|---|---|---|",
+              ]
+              for cron in registered:
+                  if cron in routed:
+                      body.append(f"| `{cron}` | {routed[cron]} | ok |")
+                  else:
+                      failed = True
+                      body.append(
+                          f"| `{cron}` | **no SCHEDULE entry** | fires into a "
+                          "logged config error and dispatches nothing |"
+                      )
+
+              for cron in routed:
+                  if cron not in registered:
+                      failed = True
+                      body.append(
+                          f"| `{cron}` | {routed[cron]} | **not registered** — this "
+                          "rung will never fire |"
+                      )
+              body.append("")
+
+          # The heading is decided after the checks, not before them — the whole
+          # point of this step is that it must not announce a good outcome it
+          # has not established.
+          heading = (
+              "### Scheduler deployed — TRIGGER CHECK FAILED"
+              if failed
+              else "### Scheduler deployed"
+          )
+          body.append(f"Secret pushed this run: `{os.environ.get('PUSH_SECRET', '')}`")
+          if not failed:
+              body += ["", "Watch the Worker's Cron Events table for the next few nights."]
+
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as fh:
+              fh.write("\n".join([heading, ""] + body) + "\n")
+
+          if failed:
+              print(
+                  "::error::Deployed cron triggers do not match the SCHEDULE table "
+                  "in src/index.ts — see the job summary."
+              )
+              sys.exit(1)
+
+          print(f"Verified {len(registered)} cron trigger(s) against SCHEDULE.")
+          PYEOF
+
+      - name: Summary (verify only)
+        if: ${{ inputs.dry_run }}
+        run: |
           {
-            echo "### Scheduler deployed"
+            echo "### Verify only — nothing was deployed"
             echo
-            echo "Cron triggers now live (UTC):"
-            echo
-            echo '| Cron | Repo | Workflow | Slot |'
-            echo '|---|---|---|---|'
-            echo '| `0 4 * * *` | super-rss-feed | generate-feed.yml | 1 |'
-            echo '| `0 7 * * *` | super-rss-feed | generate-feed.yml | 2 |'
-            echo '| `5 8 * * *` | curated-podcast-generator | daily-podcast.yml | 1 |'
-            echo '| `5 9 * * *` | curated-podcast-generator | daily-podcast.yml | 2 |'
-            echo '| `5 10 * * *` | curated-podcast-generator | daily-podcast.yml | 3 |'
-            echo
-            echo "Secret pushed this run: \`$PUSH_SECRET\`"
-            echo
-            echo "Watch the Worker's Cron Events table for the next few nights."
+            echo "The bundle builds, the config parses, and the PAT reaches both"
+            echo "repositories. Re-run with \`dry_run: false\` to deploy."
           } >> "$GITHUB_STEP_SUMMARY"
