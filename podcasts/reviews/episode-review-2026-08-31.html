@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, August 31, 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.1rem; color: #444; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }
+    th { background: #f5f5f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    a { color: #0066cc; }
+    code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, August 31, 2026</h1>
+  <p class="meta">Published August 31, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/33393581627">33393581627</a>.</em></p>
+
+<h3>Gemini's spend cap forced a TTS fallback mid-pipeline</h3>
+
+<p>The Gemini project on this pipeline hit its monthly spend cap before rendering began. The system had a fallback ready: use OpenAI instead. But there was a second problem. Gemini's text-to-speech service failed its pre-flight check, so the pipeline could not risk switching voices mid-episode. The entire 18.7-minute episode rendered on OpenAI TTS to keep the voice consistent.</p>
+
+<p>This is the constraint that matters: not money, but the technical requirement that a voice cannot change between segments. Gemini's failure made the fallback mandatory, not optional.</p>
+
+<h3>Script came short, expanded, then shipped under target anyway</h3>
+
+<p>The first draft hit 2,733 words against a 3,400-word target. The pipeline sent it back for an expand pass. The result was 3,059 words. That is 341 words short of the target, but it shipped. No second expand was attempted.</p>
+
+<p>The shipped script also drew one hit on the AI tell pattern detector. The voice ratio between Casey and Riley was 0.89, meaning Casey carried slightly more of the episode.</p>
+
+<h3>Citation alignment broke on the deep dives</h3>
+
+<p>The roundup matched 12 of 15 citations. The deep dives matched zero of three. The pipeline pulled three stories: Australia's ban on fully AI-made songs in charts, press freedom in rebel-controlled eastern DRC, and a brutalist LA office conversion. None of their citations were verifiable against the script.</p>
+
+<p>This is also where a Brave search limit became visible. The pipeline had a usage cap of 402 requests. It hit that limit mid-run. Every remaining Brave search was skipped. The anchor script had no per-weekday framings for the debate question either—each day frames it without preparation.</p>
+
+<h3>Three production runs, all late, one still running</h3>
+
+<p>The first run was manual and 163 minutes late. Three fallback runs followed, each triggered at 3:05 AM Pacific, each arriving 361 to 445 minutes late. The fourth is still in progress. All three completed runs reported success.</p>
+
+<h3>Audio and video specs</h3>
+
+<p>The episode is 18.7 minutes in both audio and video. Audio file is 17.1 MB. Video file is 53.7 MB. This brings the RSS feed to 216 episodes total.</p>
+
+<p>One TTS segment came back shorter than its word count predicted. It was retried once. The retry was also short. The longer of the two takes was kept, so nothing was dropped from the episode.</p>
+
+<h3>Token spend and service calls</h3>
+
+<p>The pipeline made 11 calls to Claude and 2 calls to Brave Answers. Total input tokens to Claude: 88,811.</p>
+
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-08-31T12:48:11Z</td><td>+163 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific)</td><td>2026-08-31T16:06:11Z</td><td>+361 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific)</td><td>2026-08-31T16:45:06Z</td><td>+400 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific)</td><td>2026-08-31T17:30:00Z</td><td>+445 min</td><td>in_progress</td></tr>
+</tbody>
+</table>
+
+<h3>What shipped</h3>
+<table>
+<thead><tr><th>Measure</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Deep dive</td><td>3 articles</td></tr>
+<tr><td>Script</td><td>1 pattern hit(s), voice ratio 0.89, 3059 words</td></tr>
+<tr><td>Audio</td><td>18.7 min</td></tr>
+<tr><td>Audio size</td><td>17.1 MB</td></tr>
+<tr><td>Citations matched</td><td>12/15 roundup, 0/3 deep dive</td></tr>
+<tr><td>Feed</td><td>216 episodes</td></tr>
+<tr><td>Anthropic spend</td><td>88,811 input tokens, calls {'claude': 11, 'brave-answers': 2}</td></tr>
+</tbody>
+</table>
+</body>
+</html>
