@@ -80,10 +80,26 @@ the issue, since both use the same token. Nothing inside the Worker can report
 that. The GitHub backstop cron is what ships the day if it happens.
 
 An expired PAT presents exactly like the outage this Worker prevents — nothing
-starts, and nothing says why. So record the expiry here when the token is
+starts, and nothing says why. So record its lifetime here whenever the token is
 issued or rotated:
 
-> **`GITHUB_TOKEN` expires:** _(not yet issued — fill this in)_
+> **`GITHUB_TOKEN`** — issued 2026-08-31, **no expiration**.
+
+No expiration removes the scheduled failure but not the credential. Nothing will
+now age this token out on a date you can plan around, so the ways it still dies
+are the unscheduled ones: revoked, regenerated, or its repository access edited
+to drop one of the two repos. Each looks identical from here — dispatches start
+returning 404 or 403, the Worker breaks its retry ladder immediately (a 4xx is a
+verdict, not a transient), and the last rung tries to raise an issue with the
+same dead token.
+
+Two consequences worth holding onto:
+
+- **Rotate it deliberately.** A token with no expiry is rotated when someone
+  decides to, or never. The issue date above is there to make "never" visible.
+- **Re-run the deploy's `dry_run: true` after any change to the token or its
+  repository access.** That probe is the only thing that reads this credential
+  outside of a 1 AM cron, and it fails loudly.
 
 ## Deploying
 
