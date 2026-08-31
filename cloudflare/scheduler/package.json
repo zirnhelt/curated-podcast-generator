@@ -1,0 +1,15 @@
+{
+  "name": "cariboo-signals-scheduler",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cloudflare Cron Triggers that start the daily podcast and RSS feed workflows",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260831.1",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.127.1"
+  }
+}

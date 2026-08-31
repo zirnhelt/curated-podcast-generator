@@ -25,6 +25,11 @@ on:
         required: false
         default: false
         type: boolean
+      run_slot:
+        description: 'Ladder rung the trigger came from (set by the Cloudflare scheduler; leave blank when running by hand)'
+        required: false
+        default: ''
+        type: string
 
 concurrency:
   group: daily-podcast
@@ -43,14 +48,33 @@ jobs:
     outputs:
       episode_exists: ${{ steps.check.outputs.episode_exists }}
     steps:
+      # Inputs travel via env:, never inlined into the run block —
+      # security-audit.yml fails the build on ${{ inputs.* }} inside a run:.
+      #
+      # `run_slot` is how the Cloudflare scheduler names the rung it is on, in
+      # place of the github.event.schedule string. It reads as empty until the
+      # follow-up commit hands the ladder over, so every branch below is still
+      # reachable from the crons above.
       - name: Identify trigger
+        env:
+          EVENT_SCHEDULE: ${{ github.event.schedule }}
+          RUN_SLOT: ${{ inputs.run_slot }}
         run: |
-          case "${{ github.event.schedule }}" in
-            '5 8 * * *') label="Primary (1:05 AM Pacific)" ;;
-            '5 9 * * *') label="Fallback 1 (2:05 AM Pacific)" ;;
-            '5 10 * * *') label="Fallback 2 (3:05 AM Pacific)" ;;
-            '')           label="Manual (workflow_dispatch)" ;;
-            *)            label="Unknown: ${{ github.event.schedule }}" ;;
+          case "${RUN_SLOT:-}" in
+            '1') label="Primary (1:05 AM Pacific) — Cloudflare scheduler" ;;
+            '2') label="Fallback 1 (2:05 AM Pacific) — Cloudflare scheduler" ;;
+            '3') label="Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler" ;;
+            '')
+              case "${EVENT_SCHEDULE:-}" in
+                '5 8 * * *')  label="Primary (1:05 AM Pacific) — GitHub cron" ;;
+                '5 9 * * *')  label="Fallback 1 (2:05 AM Pacific) — GitHub cron" ;;
+                '5 10 * * *') label="Fallback 2 (3:05 AM Pacific) — GitHub cron" ;;
+                '5 11 * * *') label="Backstop (4:05 AM Pacific) — GitHub cron" ;;
+                '')           label="Manual (workflow_dispatch)" ;;
+                *)            label="Unknown GitHub schedule: ${EVENT_SCHEDULE}" ;;
+              esac
+              ;;
+            *) label="Unknown run_slot: ${RUN_SLOT}" ;;
           esac
           echo "Trigger: $label"
 
@@ -72,6 +96,12 @@ jobs:
   generate-podcast:
     runs-on: ubuntu-latest
     needs: check-episode
+    # `inputs.force == true` is a BOOLEAN comparison and must stay one. GitHub
+    # casts mismatched operand types to numbers, so against the boolean input
+    # the string 'true' becomes NaN and equals nothing — "fixing" this to
+    # == 'true' silently breaks the force button in the Actions UI. The
+    # Cloudflare scheduler sends only run_slot, so force takes its declared
+    # default and lands on false either way.
     if: |
       needs.check-episode.outputs.episode_exists != 'true' ||
       inputs.force == true ||

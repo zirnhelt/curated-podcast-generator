@@ -1,0 +1,138 @@
+name: Deploy Cloudflare Scheduler
+
+# Manual only. The Worker's schedule changes rarely, and a deploy that fires on
+# every push to main would be able to remove the crons that start the show.
+on:
+  workflow_dispatch:
+    inputs:
+      push_secret:
+        description: 'Also push GITHUB_TOKEN to the Worker (first deploy, or PAT rotation)'
+        required: false
+        default: false
+        type: boolean
+      dry_run:
+        description: 'Verify only — typecheck, build and probe the PAT, but change nothing on Cloudflare'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: cloudflare/scheduler
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+
+      - name: Set up Node
+        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: cloudflare/scheduler/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      # Parses wrangler.jsonc and builds the bundle without touching Cloudflare,
+      # so a broken config fails here rather than half-way through a deploy.
+      - name: Build (no upload)
+        run: npx wrangler deploy --dry-run --outdir /tmp/scheduler-build
+
+      # An expired or under-scoped PAT presents exactly like the outage this
+      # Worker exists to prevent: nothing starts at 1 AM and nothing says why.
+      # Verify it here, where a failure is a red workflow someone is watching,
+      # rather than discovering it from a missing episode. Read-only — it lists
+      # each workflow, it does not dispatch anything.
+      - name: Verify the scheduler PAT reaches both repos
+        env:
+          SCHEDULER_GITHUB_TOKEN: ${{ secrets.SCHEDULER_GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${SCHEDULER_GITHUB_TOKEN:-}" ]; then
+            echo "::error::SCHEDULER_GITHUB_TOKEN is not set. See cloudflare/scheduler/README.md."
+            exit 1
+          fi
+
+          fail=0
+          check() {
+            repo="$1"; workflow="$2"
+            code=$(curl -sS -o /tmp/probe.json -w '%{http_code}' \
+              -H "Authorization: Bearer $SCHEDULER_GITHUB_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              "https://api.github.com/repos/$repo/actions/workflows/$workflow")
+            if [ "$code" = "200" ]; then
+              echo "  OK    $repo/$workflow"
+            else
+              echo "::error::PAT cannot read $repo/$workflow (HTTP $code). Needs 'Actions: Read and write' on this repo."
+              fail=1
+            fi
+          }
+
+          echo "Probing the workflows the Worker dispatches:"
+          check "zirnhelt/curated-podcast-generator" "daily-podcast.yml"
+          check "zirnhelt/super-rss-feed"            "generate-feed.yml"
+          exit "$fail"
+
+      # Gated so an ordinary redeploy does not rewrite a working credential.
+      - name: Push GITHUB_TOKEN to the Worker
+        if: inputs.push_secret && !inputs.dry_run
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          SCHEDULER_GITHUB_TOKEN: ${{ secrets.SCHEDULER_GITHUB_TOKEN }}
+        run: printf '%s' "$SCHEDULER_GITHUB_TOKEN" | npx wrangler secret put GITHUB_TOKEN
+
+      - name: Deploy
+        if: ${{ !inputs.dry_run }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+        run: npx wrangler deploy
+
+      - name: Summary
+        env:
+          PUSH_SECRET: ${{ inputs.push_secret }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          if [ "$DRY_RUN" = "true" ]; then
+            {
+              echo "### Verify only — nothing was deployed"
+              echo
+              echo "The bundle builds, the config parses, and the PAT reaches both"
+              echo "repositories. Re-run with \`dry_run: false\` to deploy."
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          {
+            echo "### Scheduler deployed"
+            echo
+            echo "Cron triggers now live (UTC):"
+            echo
+            echo '| Cron | Repo | Workflow | Slot |'
+            echo '|---|---|---|---|'
+            echo '| `0 4 * * *` | super-rss-feed | generate-feed.yml | 1 |'
+            echo '| `0 7 * * *` | super-rss-feed | generate-feed.yml | 2 |'
+            echo '| `5 8 * * *` | curated-podcast-generator | daily-podcast.yml | 1 |'
+            echo '| `5 9 * * *` | curated-podcast-generator | daily-podcast.yml | 2 |'
+            echo '| `5 10 * * *` | curated-podcast-generator | daily-podcast.yml | 3 |'
+            echo
+            echo "Secret pushed this run: \`$PUSH_SECRET\`"
+            echo
+            echo "Watch the Worker's Cron Events table for the next few nights."
+          } >> "$GITHUB_STEP_SUMMARY"
