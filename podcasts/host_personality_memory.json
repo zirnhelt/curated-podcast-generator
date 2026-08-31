@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "AI",
       "[TechCrunch] Kyoto Fusioneering starts work on key fusion po",
       "[TechRadar] Boeing and US Air Force sign deal to build guide",
       "[TechRadar] Huge 66-ft Turkish drones are hunting million-do",
@@ -10,7 +9,8 @@
       "[NYT Business] How Big Tech\u2019s A.I. Borrowing Binge Is Drivin",
       "[WIRED] AI Slop Is Ruining Cute Animals on the Internet",
       "[Hyperallergic] How AIDS Activists Turned Graphic Design Int",
-      "[TechCrunch] How AI accounting startup Rillet raised $100M a"
+      "[TechCrunch] How AI accounting startup Rillet raised $100M a",
+      "[CBC Arts] Australia bans fully AI-made songs from charts af"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -128,11 +128,6 @@
         "date": "2026-08-23",
         "clue": "structural-lens:~[signal] \u2014 Acknowledged volunteer continuity as durability answer",
         "occurrences": 1
-      },
-      {
-        "date": "2026-08-26",
-        "clue": "structural-lens:~ \u2014 Telecom overbuild parallel reveals infrastructure uncertainty",
-        "occurrences": 2
       },
       {
         "date": "2026-08-27",
@@ -367,11 +362,6 @@
         "date": "2026-08-14",
         "clue": "funding-risk: ~ \u2014 Conceded that T\u015dilhqot'in governance model genuinely reduces cycle vulnerability.",
         "occurrences": 1
-      },
-      {
-        "date": "2026-08-18",
-        "clue": "pilot-skepticism:+ \u2014 Explicitly warned against volunteer labor absorbing public mandates.",
-        "occurrences": 2
       },
       {
         "date": "2026-08-30",

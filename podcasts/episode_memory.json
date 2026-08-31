@@ -1,24 +1,4 @@
 {
-  "2026-07-27": {
-    "timestamp": 1785152783.985306,
-    "topics": [
-      "The Hair Dryer Question",
-      "[The Marginalian] How to Live a Miraculous Life",
-      "[TechRadar] Experts warn 2.2 million cars could be at risk o",
-      "[Business Insider] Priced out of Hawaii, this couple bought ",
-      "[The Verge] The vertical video takeover is here",
-      "[XDA Developers] You, too, can make this amazing Raspberry P",
-      "Tod Maffin \ud83c\udde8\ud83c\udde6 (@todmaffin.com)",
-      "AI"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption"
-    ],
-    "date": "2026-07-27",
-    "focus": "music-performance",
-    "focus_name": "Music & Live Performance"
-  },
   "2026-07-28": {
     "timestamp": 1785236176.382176,
     "topics": [
@@ -729,5 +709,25 @@
     "date": "2026-08-30",
     "focus": "earth-systems",
     "focus_name": "Earth Systems & Climate Science"
+  },
+  "2026-08-31": {
+    "timestamp": 1788181072.952274,
+    "topics": [
+      "[Williams Lake Tribune] 8 weeks of live music: Williams Lake",
+      "[Williams Lake Tribune] More properties downgraded to all cl",
+      "[Williams Lake Tribune] Wildfire fighting crews continue to ",
+      "[ScienceAlert] Scientists Filmed an Alien-Looking Fish Moonw",
+      "[Dezeen] KFA set to transform 1970s brutalist LA office into",
+      "[CBC Arts] Australia bans fully AI-made songs from charts af",
+      "[Committee to Protect Journalists] In rebel-controlled easte",
+      "[The New Yorker] Smokejumpers Leap Out of Planes to Fight Wi"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption"
+    ],
+    "date": "2026-08-31",
+    "focus": "visual-arts-heritage",
+    "focus_name": "Visual Arts & Heritage"
   }
 }
