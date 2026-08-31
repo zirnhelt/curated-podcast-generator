@@ -39,7 +39,7 @@ cannot reopen it. Anything written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-08-30) — 9 open.
+_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-08-31) — 10 open.
 Check a box to close one; it comes back only if the reviews raise it 2 more times._
 
 - [ ] **A credit-balance 400 is not the usage-limit wall, and every run pays for that.**
@@ -91,7 +91,7 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       hard limit, not a transient failure. Confirm the quota tier on the Brave account, assess
       whether the episode's answer count is typical, and decide whether to increase the quota,
       implement batching, or rely on web snippets as the primary source when the API is
-      unavailable. (seen in 2 reviews, latest 2026-08-29)
+      unavailable. (seen in 3 reviews, latest 2026-08-31)
 - [ ] **Deep dive sections achieved 67% citation matching versus 87% for roundup sections.** On
       2026-08-28, the roundup matched 13 of 15 citations (87%), but the deep dive section
       matched only 2 of 3 (67%). Both figures are from the same run and the same citation
@@ -100,7 +100,15 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       or that deep dive sources need different handling. Inspect the citation-matching function
       for whether it uses story depth or source type to vary its strategy, and run a test batch
       of deep dives against the current matching logic to confirm whether this is systematic or
-      noise. (seen in 2 reviews, latest 2026-08-30)
+      noise. (seen in 3 reviews, latest 2026-08-31)
+- [ ] **Gemini project spend cap was reached mid-run, forcing a fallback to OpenAI for the
+      entire episode's text-to-speech.** On 2026-08-30, the render/gemini-canary segment
+      degraded because the Gemini project spend cap had been reached. The pipeline fell back to
+      OpenAI rather than risk a mid-episode voice change, rendering all 22.6 minutes on a
+      different provider. The Gemini pre-flight check also failed to answer, removing any option
+      to recover partway through. Raising the spend cap or implementing a per-segment budget
+      ceiling that triggers earlier would prevent this fallback and keep rendering consistent.
+      (seen in 2 reviews, latest 2026-08-31)
 
 <!-- reviews:end -->
 
