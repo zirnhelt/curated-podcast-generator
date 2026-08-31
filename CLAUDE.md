@@ -85,6 +85,45 @@ This is a daily AI podcast generator for **Cariboo Signals**, a two-host show (R
 8. pydub assembles: cold open teaser (10–20 s, before the music) → intro → welcome → interval → news roundup → interval → deep dive debate → outro
 9. Writes transcript + RSS entry, pushes commit, deploys to `gh-pages`
 
+### Who starts the run
+
+The pipeline runs on GitHub Actions; the *trigger* is moving to Cloudflare.
+GitHub's cron is best-effort — it delays scheduled workflows under load and drops
+the tick outright once the delay passes the next window — and a trigger arriving
+after the 6:30 AM Pacific listener wakeup has missed the day. So the 1:05 / 2:05 /
+3:05 AM Pacific ladder becomes Cron Triggers on a Worker (`cloudflare/scheduler/`,
+shared with `super-rss-feed`) that `workflow_dispatch` this workflow with a
+`run_slot` input.
+
+**Rollout: this commit changes no schedule.** GitHub's three crons still run the
+show and the Worker is not firing yet; `run_slot` is accepted and reads as empty.
+What landing this first buys is the deploy path — `deploy-scheduler.yml` has to be
+on `main` before the Actions tab will offer it — and a `dry_run: true` run of it
+proves the bundle builds and the PAT reaches both repos before anything depends on
+either. The follow-up commit hands the ladder over and demotes GitHub to a single
+backstop cron at `5 11 * * *`, and the deploy is run for real at that point.
+
+**The two schedulers are deliberately not run in parallel.** `check-episode` reads
+only the *published* Pages feed, which lags the run that wrote it by minutes,
+while the `daily-podcast` concurrency group starts a queued run the moment the
+previous one ends. Two triggers in the same minute would therefore land the second
+inside that propagation window and re-render the episode — a duplicate
+40-minute render and a duplicate day of API spend. The backstop cron is what
+covers the handover instead: it still ships the day, 4:05 AM Pacific, well before
+the wakeup.
+
+Only the trigger moves. Workers cannot host the pipeline — 128 MB, no
+subprocesses, no ffmpeg, and audio assembly alone peaks at 300–600 MB.
+
+**The Worker starts runs; it does not decide whether one is needed.**
+`check-episode` still owns that, and must stay the only implementation of it: a
+second copy in the Worker is a second source of truth for "did today ship?",
+whose failure mode when the two drift is a silently skipped day.
+
+Deploy with **Actions → Deploy Cloudflare Scheduler**; there is no local wrangler
+path. See `cloudflare/scheduler/README.md` for the token scopes, the recorded PAT
+expiry, and the rollback.
+
 ### Stages and Segments
 
 The pipeline is split at two levels: **stages** are separate processes with a git commit

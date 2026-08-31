@@ -1,0 +1,26 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "cariboo-signals-scheduler",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-31",
+
+  // Cron-only: this Worker has no fetch handler and needs no public route.
+  // The PAT it holds is verified at deploy time by deploy-scheduler.yml
+  // instead, which is authenticated already and adds no public surface.
+  "workers_dev": false,
+
+  "observability": { "enabled": true },
+
+  // Workers Free allows 5 Cron Triggers per ACCOUNT. All 5 are spent here.
+  // Every entry must have a matching key in SCHEDULE in src/index.ts —
+  // wrangler replaces the deployed crons wholesale with this array.
+  "triggers": {
+    "crons": [
+      "0 4 * * *",
+      "0 7 * * *",
+      "5 8 * * *",
+      "5 9 * * *",
+      "5 10 * * *"
+    ]
+  }
+}
