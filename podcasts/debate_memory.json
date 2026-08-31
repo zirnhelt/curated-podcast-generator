@@ -1,37 +1,4 @@
 {
-  "2026-06-02": {
-    "timestamp": 1780396005.33335,
-    "date": "2026-06-02",
-    "theme": "Working Lands & Industry",
-    "central_question": "What are the fundamental operational and structural gaps preventing Cariboo agricultural producers from accessing modern tools, markets, and infrastructure\u2014and which gaps are actually solvable?",
-    "riley_position": "The operational gaps (weather data, processing, traceability, market access) are solvable through cooperative infrastructure models and existing technologies; the pieces and coordination mechanisms already exist, requiring mainly a decision to fund the translation work and proposal-writing.",
-    "riley_key_evidence": [
-      "North Dakota's mesonet in the early 2000s demonstrated meaningful returns from reduced crop loss and improved input timing, with station costs now dropped to a fraction of that era's prices",
-      "Low-cost sensor arrays running on solar with satellite transmission are now available and affordable for a cooperative of 30 ranches to share across shared range territory",
-      "Saskatchewan agricultural co-operatives have hired their own agronomists through levy structures on commodity sales, a model the Cariboo beef sector has sufficient volume to explore"
-    ],
-    "casey_position": "While operational tools exist, the Cariboo's economic scale and structural constraints (thin margins, climate variability, extension capacity cuts, crown lease dependency) make implementation unlikely without major institutional commitment; First Nations partnerships offer structural advantages but risk being described primarily in terms of what they offer non-Indigenous partners.",
-    "casey_key_evidence": [
-      "Extension services in BC have been cut so far back that the agricultural advisory function barely exists at the provincial level, eliminating the capacity to translate research into operational recommendations",
-      "A rancher producing grass-fed beef in the Chilcotin has no regional processing capacity or cold-chain infrastructure, meaning margins get eaten by transport costs despite perfect product quality and traceability",
-      "Crown lease dependency is a structural vulnerability for Cariboo ranchers\u2014operations live or die on lease renewal decisions made in Victoria, whereas First Nations have fundamentally different land security"
-    ],
-    "resolution": "No full resolution; they agreed that operational gaps are technically solvable but acknowledged that piece-proximity isn't enough\u2014someone must decide to close the gap through institutional and political commitment. They also agreed that First Nations partnerships deserve to be framed from Nations' own governance priorities rather than as complementary gaps filling non-Indigenous operators' needs, and that the conversation requires First Nations voices, not just external analysis.",
-    "topics_covered": [
-      "Agricultural-grade weather data infrastructure and mesonet models",
-      "Processing capacity and cold-chain infrastructure constraints for direct-to-consumer/regional beef markets",
-      "Blockchain-based traceability systems and provenance verification for regional producers",
-      "First Nations agricultural enterprises as alternative capital and land-tenure models",
-      "Extension service capacity and co-operative proposal-development as institutional gaps"
-    ],
-    "calls_to_action": [
-      "The Cariboo Agricultural Research Alliance should consider whether expanding into co-operative proposal-writing (for shared infrastructure like weather networks) is within their mandate or capacity\u2014and this should be raised directly and loudly given how thin extension capacity is.",
-      "The Cariboo Cattlemen's Association and a regional credit union could get serious about a shared services model to fund an agronomist position without waiting for provincial programs, using levy structures similar to Saskatchewan commodity sectors.",
-      "Producers, ranchers, or agricultural development workers in the Cariboo with knowledge of existing partnership proposals, feasibility concerns, or on-the-ground realities should reach out to the podcast (feedback at cariboo signals dot c-a) to correct analysis or report on progress.",
-      "First Nations agricultural enterprises and private ranchers should explore partnership models designed from First Nations' own governance and land stewardship priorities, rather than framing the relationship primarily in terms of gap-filling for non-Indigenous operators.",
-      "Regional stakeholders should examine whether a Williams Lake-area mobile or permanent processing facility could be capitalized through a Nation-level agricultural enterprise partnership, which could change the risk profile for individual operators."
-    ]
-  },
   "2026-06-03": {
     "timestamp": 1780484117.971992,
     "date": "2026-06-03",
@@ -2380,6 +2347,34 @@
       "Provincial law could define habitat harm more broadly than the federal rollback\u2014this is a live question for legislators in Victoria to answer rather than something nonprofits can solve with grant applications.",
       "Identify which existing local authorities in the Cariboo\u2014Guardian programs, regional district bylaws, grazing lease conditions\u2014can still act on habitat harm independent of federal definitions and work with them as conservation levers.",
       "If you know of a Cariboo organization already working on habitat protection despite the ESA changes, or if we've gotten any facts wrong, write in to feedback at cariboosignals dot ca."
+    ]
+  },
+  "2026-08-31": {
+    "timestamp": 1788181074.86715,
+    "date": "2026-08-31",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "focus": "visual-arts-heritage",
+    "anchor": "self-sufficient-or-connected",
+    "central_question": "Should arts and cultural institutions prioritize self-sufficient, local-first infrastructure or embrace network-connected platforms to maximize reach and sustainability?",
+    "riley_position": "Both approaches have merit depending on ambition and scope; the real solution is building smaller, local-first infrastructure pieces that can plug into larger networks on your own terms, maintaining ownership and control while accessing distribution.",
+    "riley_key_evidence": [
+      "ARIA's updated Charts Code requires substantially human-made music with human performers/songwriting, allowing AI only in supporting production roles",
+      "Bandcamp allows artists to keep ownership of master recordings and set their own prices while remaining connected to a platform",
+      "Williams Lake's Performances in the Park operated entirely self-sufficiently all summer with local live musicians and didn't require network infrastructure to succeed locally"
+    ],
+    "casey_position": "The fork between self-sufficiency and connectivity is real and unresolvable; staying fully self-sufficient means durability but zero reach beyond the immediate community, while connecting to networks exposes work to platform dependencies, algorithm changes, and the inability to prevent fakes from spreading first.",
+    "casey_key_evidence": [
+      "Josh Fawaz's fully AI-generated Madonna cover reached 48 million Spotify streams before any ban existed, showing the chart policy arrived too late",
+      "Vocal cloning is nearly undetectable with current tools, making 'substantially human-made' an honor system that can't stop fakes from reaching audiences first",
+      "A Williams Lake Performances concert only reaches as far as the park fence unless recorded and uploaded, requiring the very platform infrastructure that creates the fake-music problem"
+    ],
+    "resolution": "Riley and Casey agreed that the honest answer depends on a community's actual ambitions: local work needs only local infrastructure and can remain self-sufficient, but any work seeking wider reach or archival longevity must accept network dependency. They concluded that communities should decide deliberately upfront whether to archive and distribute performances, rather than discovering this by accident after opportunities are lost.",
+    "topics_covered": [
+      "AI-generated music bans and chart eligibility policies across Australia, Grammy Awards, and proposed US standards",
+      "Platform dependency and ownership of master files versus hosting infrastructure vulnerability",
+      "Local cultural preservation through digitization and archival challenges for under-resourced institutions",
+      "Community partnership models and governance failures in maintaining relationships beyond initial grant cycles",
+      "The trade-off between self-sufficient local culture and network-dependent reach for artistic work"
     ]
   }
 }

@@ -29,6 +29,16 @@
       "framings": {},
       "assigned_at": "2026-08-24",
       "origin": "seeded"
+    },
+    "2026-W36": {
+      "id": "self-sufficient-or-connected",
+      "question": "Is it better to be self-sufficient or well-connected?",
+      "dimension": "autonomy-interdependence",
+      "premise": "Rural identity leans hard on independence \u2014 your own water, your own power, your own woodpile, your own read on the weather. But almost every rural success story turns out to run on a network: a co-op, a mutual aid list, a shared mill, a partnership agreement, a satellite dish. The question is whether self-sufficiency is a genuine strategy or a story people tell about infrastructure they've stopped noticing.",
+      "reading": null,
+      "framings": {},
+      "assigned_at": "2026-08-31",
+      "origin": "seeded"
     }
   },
   "used": [
@@ -49,6 +59,12 @@
       "dimension": "expertise-authority",
       "question": "Who is allowed to fix things?",
       "week": "2026-W35"
+    },
+    {
+      "id": "self-sufficient-or-connected",
+      "dimension": "autonomy-interdependence",
+      "question": "Is it better to be self-sufficient or well-connected?",
+      "week": "2026-W36"
     }
   ],
   "generated": []

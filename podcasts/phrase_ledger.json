@@ -1,27 +1,6 @@
 {
   "episodes": [
     {
-      "date": "2026-08-10",
-      "words": 3137,
-      "counts": {
-        "mostly": 3,
-        "genuinely": 8,
-        "quietly": 3,
-        "exactly": 6,
-        "specifically": 2,
-        "directly": 4,
-        "entirely": 4,
-        "separately": 2,
-        "historically": 2,
-        "automatically": 2,
-        "currently": 2,
-        "really": 2,
-        "functionally": 2,
-        "basically": 2,
-        "honestly": 2
-      }
-    },
-    {
       "date": "2026-08-11",
       "words": 3068,
       "counts": {
@@ -261,39 +240,40 @@
         "exactly": 2,
         "entirely": 3
       }
+    },
+    {
+      "date": "2026-08-31",
+      "words": 3059,
+      "counts": {
+        "recently": 3,
+        "exactly": 3,
+        "substantially": 3,
+        "nearly": 2,
+        "entirely": 5,
+        "precisely": 3,
+        "usually": 2
+      }
     }
   ],
   "burned": {
     "exactly": {
       "first_flagged": "2026-08-03",
       "clean_streak": 0,
-      "rate_per_1k": 0.87,
-      "count": 59
+      "rate_per_1k": 0.83,
+      "count": 56
     },
     "directly": {
       "first_flagged": "2026-08-24",
-      "clean_streak": 0,
+      "clean_streak": 1,
       "rate_per_1k": 0.55,
       "count": 37
-    },
-    "specifically": {
-      "first_flagged": "2026-08-27",
-      "clean_streak": 2,
-      "rate_per_1k": 0.33,
-      "count": 22
     },
     "entirely": {
       "first_flagged": "2026-08-27",
       "clean_streak": 0,
-      "rate_per_1k": 0.44,
-      "count": 30
-    },
-    "quietly": {
-      "first_flagged": "2026-08-28",
-      "clean_streak": 2,
-      "rate_per_1k": 0.37,
-      "count": 25
+      "rate_per_1k": 0.46,
+      "count": 31
     }
   },
-  "updated": "2026-08-30"
+  "updated": "2026-08-31"
 }
