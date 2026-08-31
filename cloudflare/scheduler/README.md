@@ -15,30 +15,6 @@ ffmpeg, a 40-minute render, the commit-between-stages state model and ~20 repo
 secrets. Workers cannot host it (128 MB, no subprocesses, no ffmpeg; audio
 assembly alone peaks at 300–600 MB). **Only the trigger moved.**
 
-## Rollout status: not yet firing
-
-**This commit changes no schedule.** The Worker's code and its deploy workflow are
-on `main`, GitHub's crons still run both shows, and the `run_slot` inputs the
-Worker sends are accepted and unused. Land it, then run **Deploy Cloudflare
-Scheduler** with `dry_run: true`: it typechecks, builds the bundle against the
-real `wrangler.jsonc`, and probes the PAT against both repositories — without
-touching Cloudflare. That is the safe order, since `deploy-scheduler.yml` has to
-be on `main` before the Actions tab will offer it at all.
-
-The follow-up commit on this branch hands the ladders over: it demotes each
-workflow to the single backstop cron described below and moves the podcast's
-`review` gate from `github.event.schedule` onto `run_slot`. Deploy for real at
-that point — `push_secret: true`, `dry_run: false` — and delete this section.
-
-**The two schedulers are deliberately never run in parallel.** It is tempting, and
-for the podcast it is a duplicate-render trap: `check-episode` reads only the
-*published* Pages feed, which lags the run that wrote it by minutes, while the
-`daily-podcast` concurrency group starts a queued run the moment the previous one
-ends. Two triggers in the same minute put the second squarely inside that window,
-and it re-renders the episode — 40 minutes and a full day of API spend. The
-backstop crons cover the handover instead, and they still ship the day before the
-6:30 AM wakeup.
-
 ## What it does not do
 
 It starts runs. It does not decide whether a run is needed.

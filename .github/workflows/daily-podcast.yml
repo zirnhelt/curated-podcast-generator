@@ -2,13 +2,20 @@ name: Daily Podcast Generation
 
 on:
   schedule:
-    # Primary: 1:05 AM Pacific (UTC-7, permanent — BC no longer observes DST)
-    # check-episode gates idempotency so duplicate triggers are safe.
-    - cron: '5 8 * * *'
-    # Fallback 1: 2:05 AM Pacific
-    - cron: '5 9 * * *'
-    # Fallback 2: 3:05 AM Pacific — still 3+ hrs before 6:30 AM wakeup
-    - cron: '5 10 * * *'
+    # The 1:05 / 2:05 / 3:05 AM Pacific ladder now arrives as workflow_dispatch
+    # from the Cloudflare Worker in cloudflare/scheduler — GitHub's cron delays
+    # scheduled runs under load and drops the tick outright once the delay
+    # passes the next window, and a trigger landing after the 6:30 AM Pacific
+    # wakeup has missed the day.
+    #
+    # This one stays as the backstop for the *Worker* being down: a Cloudflare
+    # outage, a lapsed PAT, a deploy that dropped the crons. On a normal night
+    # it costs ~20 s — it starts, check-episode sees today is covered, it
+    # exits. Keeping it is what stops the schedule depending on one vendor.
+    # Do not remove it, and do not add slots back here.
+    #
+    # Backstop: 4:05 AM Pacific — still 2+ hrs before the 6:30 AM wakeup.
+    - cron: '5 11 * * *'
   workflow_dispatch:
     inputs:
       tts_provider:
@@ -50,11 +57,6 @@ jobs:
     steps:
       # Inputs travel via env:, never inlined into the run block —
       # security-audit.yml fails the build on ${{ inputs.* }} inside a run:.
-      #
-      # `run_slot` is how the Cloudflare scheduler names the rung it is on, in
-      # place of the github.event.schedule string. It reads as empty until the
-      # follow-up commit hands the ladder over, so every branch below is still
-      # reachable from the crons above.
       - name: Identify trigger
         env:
           EVENT_SCHEDULE: ${{ github.event.schedule }}
@@ -66,9 +68,6 @@ jobs:
             '3') label="Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler" ;;
             '')
               case "${EVENT_SCHEDULE:-}" in
-                '5 8 * * *')  label="Primary (1:05 AM Pacific) — GitHub cron" ;;
-                '5 9 * * *')  label="Fallback 1 (2:05 AM Pacific) — GitHub cron" ;;
-                '5 10 * * *') label="Fallback 2 (3:05 AM Pacific) — GitHub cron" ;;
                 '5 11 * * *') label="Backstop (4:05 AM Pacific) — GitHub cron" ;;
                 '')           label="Manual (workflow_dispatch)" ;;
                 *)            label="Unknown GitHub schedule: ${EVENT_SCHEDULE}" ;;
@@ -595,7 +594,12 @@ jobs:
   review:
     runs-on: ubuntu-latest
     needs: [check-episode, generate-podcast]
-    if: always() && github.event.schedule == '5 10 * * *'
+    # The review used to ride the last cron of the ladder. That rung is now a
+    # Worker dispatch carrying run_slot=3, and the GitHub backstop is the only
+    # schedule left — so gate on either. Getting this wrong is the quiet
+    # failure in this change: the episode still ships without the review, and
+    # the only symptom is a roadmap that stopped updating.
+    if: always() && (inputs.run_slot == '3' || github.event.schedule == '5 11 * * *')
     steps:
       - name: Checkout repository
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
