@@ -806,6 +806,45 @@ resurrected on one mention.
 The `review` job stages `ROADMAP.md` and the ledger alongside the review — a stage that writes
 a tracked file that no step stages sits permanently dirty and breaks the next rebase.
 
+### The Sunday Meta Moment (`get_weekly_changelog`, `generate_meta_moment_text`)
+
+One Haiku call turns the week's commit subjects into a short Riley/Casey segment about
+changes to the show itself. The input is `git log --since=7d` over `GENERATION_PATHS`
+(`review_scripts.py`) — subject lines only, minus merge commits and minus the embargoed
+delivery surfaces in `podcast.json`.
+
+**The failure mode is invention, and the old prompt demanded it.** A week's commits are
+usually plumbing — "Split the Brave meters: Answers is its own plan now" has no
+listener-facing form at all — while the prompt asked for the 3-4 most listener-noticeable
+changes and 320-400 words regardless. A model asked for four good answers where none exist
+supplies four: three of the four Sundays to 2026-08-30 aired a "weekly inspiration harvest"
+that was never committed, and 08-30 backed it with a Ktunaxa Nation story that did not
+exist. The instruction against it ("never fabricate names or details not in the commit
+list") had been in the prompt the whole time.
+
+- **NONE is a first-class answer**, stated twice, with the segment lengths tiered by how
+  many entries genuinely reach a listener. Same shape as the roadmap distiller's empty
+  list, and as the weekly anchor's escape hatch: a segment that must find something finds
+  something.
+- **The reply cites before it speaks.** `COVERED: <commit line>` above the dialogue,
+  matched back against the real subjects at `difflib` ratio ≥ 0.9 (`_meta_moment_covered`).
+  A change the model made up has no line to copy.
+- **Names are checked, not requested** (`_meta_moment_unknown_names`). Any capitalized word
+  the dialogue can't source from the commit list, the host roster, the show title or the
+  territory acknowledgment drops the segment. Sentence-initial words, possessives and
+  quoted asides are excluded — verified against the four aired segments, which flag only
+  the fabrications. This is the phrase-ledger trade: measure the output instead of
+  lengthening the ban.
+- **A dropped segment `degrade()`s under `script/meta-moment`.** Silently vanishing weekly
+  is the failure this guard would otherwise introduce.
+- **Nothing listener-facing goes in the prompt unconditionally.** The sentence telling the
+  hosts to say "transcripts in your podcast app" handed them a topic, and they used it in a
+  week with no transcript commit; it now appears only when a commit earns it. The prompt
+  teaching the tic is the same failure `genuinely` documented above.
+- The last turn hands off **in general terms** — the Meta Moment is spliced ahead of the
+  community spotlight and has not been told what follows it. On 2026-08-30 it previewed a
+  deep-dive story two segments away, and invented that too.
+
 ### Sibling Repository
 
 `super-rss-feed` scores and categorizes articles, publishing `feed-podcast-{dayname}.json` to its GitHub Pages URL. The podcast generator fetches this at runtime. Deploy order matters: super-rss-feed must deploy before the podcast generator runs. See `SIBLING_REPOS.md` for integration details.

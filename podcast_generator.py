@@ -6,6 +6,7 @@ All text content loaded from config/ directory for easy updates.
 """
 
 import argparse
+import difflib
 import io
 import os
 import sys
@@ -7876,41 +7877,169 @@ def _is_embargoed_subject(subject: str) -> bool:
     return any(term in lowered for term in terms)
 
 
+# A merge subject names a branch, not a change, and the model is asked to find
+# listener-noticeable work in this list — "Merge pull request #402 from
+# zirnhelt/claude/episode-generation-debug-zq6nua" is one more thing it has to
+# reject before it can answer.
+_MERGE_SUBJECT_RE = re.compile(r"Merge (pull request|branch|remote-tracking|commit)\b", re.I)
+
+
 def get_weekly_changelog(days: int = 7) -> str:
     """Commit subjects touching generator-shaping files in the last N days, for the Sunday Meta Moment."""
     since = (datetime.now() - timedelta(days=days)).strftime("%Y-%m-%d")
     log = _git("log", "--reverse", f"--since={since}", "--pretty=format:%s", "--", *GENERATION_PATHS)
     if not log:
         return ""
-    subjects = [line.strip() for line in log.splitlines() if line.strip()]
+    subjects = [
+        line.strip() for line in log.splitlines()
+        if line.strip() and not _MERGE_SUBJECT_RE.match(line.strip())
+    ]
     kept = [s for s in subjects if not _is_embargoed_subject(s)]
     if len(kept) < len(subjects):
         print(f"   🔇 Meta Moment: withheld {len(subjects) - len(kept)} unreleased-surface commit(s)")
     return "\n".join(f"- {s}" for s in kept)
 
 
+# Words the Meta Moment is allowed to capitalize. The segment describes the
+# show's own machinery, so the only names that belong in it are the show's own,
+# whatever the week's commits happened to name, and the handful of ordinary
+# words English capitalizes mid-sentence. Anything else is invention: on
+# 2026-08-30 the hosts credited a "weekly inspiration harvest" with airing a
+# Ktunaxa Nation story, and neither the harvest nor the story appeared anywhere
+# in that week's eleven commit subjects.
+_META_MOMENT_KNOWN_WORDS = frozenset({
+    "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday",
+    "january", "february", "march", "april", "may", "june", "july", "august",
+    "september", "october", "november", "december",
+    "i'm", "i've", "i'll", "i'd", "ok", "okay", "ai", "bc", "canada",
+})
+
+_META_MOMENT_WORD_RE = re.compile(r"[^\W\d_]+(?:'[^\W\d_]+)*")
+
+
+def _meta_moment_allowed_words(changelog: str) -> set:
+    """Lowercased vocabulary the dialogue may capitalize without inventing anything."""
+    hosts = CONFIG.get('hosts', {})
+    podcast = CONFIG.get('podcast', {})
+    sources = " ".join([
+        changelog,
+        podcast.get('title', ''),
+        podcast.get('territory_acknowledgment', ''),
+        " ".join(hosts),
+        " ".join(h.get('name', '') for h in hosts.values() if isinstance(h, dict)),
+    ]).replace("\u2019", "'").lower()
+    return set(_META_MOMENT_WORD_RE.findall(sources)) | _META_MOMENT_KNOWN_WORDS
+
+
+def _meta_moment_unknown_names(dialogue: str, changelog: str) -> list:
+    """Names the dialogue asserts that nothing in the prompt authorized.
+
+    The prompt has said "never fabricate names or details not in the commit
+    list" since the segment was written, and the segment fabricated them
+    anyway. This is the same trade the phrase ledger makes against AI tells:
+    measure the output instead of lengthening the instruction.
+    """
+    allowed = _meta_moment_allowed_words(changelog)
+    body = re.sub(r"\*\*[A-Za-z]+:\*\*", "", dialogue).replace("\u2019", "'")
+
+    def unnamed(token: str) -> bool:
+        # "Casey's" is Casey; "I", and any other lone letter, is not a name.
+        stem = re.sub(r"'s?$", "", token)
+        return len(stem) > 1 and stem[:1].isupper() and stem.lower() not in allowed
+
+    unknown = set()
+    # A sentence opens after a full stop, a line break, an opening quote, or an
+    # em dash — which ends a clause the way a period does in this show's
+    # register. Its first word is capitalized by grammar and proves nothing,
+    # which is what kept "So Casey, we actually changed..." out of the results.
+    for sentence in re.split(r"(?<=[.!?])\s+|\n+|\u2014|--|[\"\u201c\u2018]", body):
+        tokens = _META_MOMENT_WORD_RE.findall(sentence)
+        unknown.update(t for t in tokens[1:] if unnamed(t))
+        # Two unplaceable capitals running together are a name wherever they
+        # sit, opening word included: "Ktunaxa Nation piece".
+        if len(tokens) > 1 and unnamed(tokens[0]) and unnamed(tokens[1]):
+            unknown.add(tokens[0])
+    return sorted(unknown)
+
+
+def _meta_moment_covered(raw: str, subjects: list) -> list:
+    """The commit subjects the reply claims to have aired, kept only if they exist.
+
+    Asking for the citation is what makes invention cost something: a change
+    the model made up has no line to copy. Matched loosely because the model
+    retypes the subject rather than quoting it, and strictly enough that no
+    real subject in a week's list is 0.9 similar to a fabricated one.
+    """
+    kept = []
+    for line in raw.splitlines():
+        if not line.strip().upper().startswith("COVERED:"):
+            continue
+        claim = line.split(":", 1)[1].strip().strip("-\u2022 ").lower()
+        if claim and any(
+            difflib.SequenceMatcher(None, claim, s.lower()).ratio() >= 0.9 for s in subjects
+        ):
+            kept.append(claim)
+    return kept
+
+
 def generate_meta_moment_text(changelog: str) -> str:
     """Sunday-only 'Meta Moment' block: a short **RILEY:**/**CASEY:** dialogue
     recapping the week's tweaks to the show itself. Returns '' when there's
     nothing to report or generation fails — caller skips the segment entirely.
+
+    Most weeks the commit list is plumbing — "Split the Brave meters: Answers is
+    its own plan now" has no listener-facing form at all — and the old prompt
+    demanded 3-4 listener-noticeable changes and 320-400 words from it anyway.
+    A model asked for four good answers where none exist supplies four; three of
+    the four Sundays to 2026-08-30 aired a "weekly inspiration harvest" that had
+    never been committed, and 08-30 gave it a fabricated Ktunaxa Nation story as
+    evidence. So the reply may now be NONE, must cite the commit line behind
+    every change it airs, and is checked against that list before it is spliced.
     """
     if not changelog:
         return ""
     client = get_anthropic_client()
     if not client:
         return ""
+    subjects = [line.strip().lstrip("-").strip() for line in changelog.splitlines() if line.strip()]
     hosts_config = CONFIG.get('hosts', {})
     riley_bio = hosts_config.get('riley', {}).get('full_bio', 'Riley, optimistic tech host')
     casey_bio = hosts_config.get('casey', {}).get('full_bio', 'Casey, skeptical co-host')
+    # The one sentence naming a listener-facing surface. It used to be
+    # unconditional, and on 2026-08-30 the hosts reported transcript work in a
+    # week with no transcript commit — the instruction handed them the topic.
+    # Same failure as an AI tell taught by the prompt that bans it.
+    transcript_note = (
+        "Describe caption or transcript work as transcripts in your podcast app — never "
+        "as captions you watch. "
+        if re.search(r"transcript|caption|subtitle|vtt", changelog, re.I) else ""
+    )
     prompt = (
-        "Write the 'Meta Moment' segment for the Cariboo Signals podcast: an 8-12 turn "
-        "dialogue between co-hosts Riley and Casey recapping what the team tweaked about "
-        "the show itself this past week. Translate the raw commit list below into plain "
-        "language a listener would care about — no jargon, filenames, or hashes. Pick the "
-        "3-4 most listener-noticeable changes and give each one real airtime: what changed, "
-        "what a listener might actually notice on air, and whether it was worth doing. A "
-        "change that cannot be given that much is cut, not compressed into a one-line "
-        "mention — skip the rest of the list without apologizing for it.\n\n"
+        "Write the 'Meta Moment' segment for the Cariboo Signals podcast: a dialogue "
+        "between co-hosts Riley and Casey recapping what the team tweaked about the show "
+        "itself this past week. Translate the raw commit list below into plain language a "
+        "listener would care about — no jargon, filenames, or hashes.\n\n"
+        "FIRST, decide whether there is a segment here at all. Read the list and count the "
+        "entries with a consequence a listener could notice while listening. Most weeks "
+        "this list is plumbing and the honest count is zero.\n"
+        "- Zero: reply with the single word NONE and nothing else. A skipped Meta Moment "
+        "is the right outcome for a quiet week, and NONE is always a safe answer.\n"
+        "- One or two: write a short 4-6 turn segment about those alone.\n"
+        "- Three or four: write the full 8-12 turn segment.\n"
+        "Never pad the count to reach a longer segment. A week of internal plumbing is a "
+        "NONE, not a challenge.\n\n"
+        "Give each change you do air real airtime: what changed, what a listener might "
+        "actually notice on air, and whether it was worth doing. A change that cannot be "
+        "given that much is cut, not compressed into a one-line mention — skip the rest of "
+        "the list without apologizing for it.\n\n"
+        "Open your reply with the changes you are airing, one per line, before any "
+        "dialogue:\n"
+        "COVERED: <the line from the list, copied exactly>\n"
+        "Copy each line verbatim — do not reword, shorten, or combine them. Then a blank "
+        "line, then the dialogue. Every change the hosts describe must be one of the lines "
+        "you copied. If something is not in the list below, it did not happen this week: "
+        "not the feature, not the reason for it, and not the example that proves it "
+        "worked.\n\n"
         f"Riley: {riley_bio}\n"
         f"Casey: {casey_bio}\n\n"
         "These commits are edits to Riley and Casey themselves — their scripts, voices, and "
@@ -7928,32 +8057,51 @@ def generate_meta_moment_text(changelog: str) -> str:
         "so listeners know what this is. Make it a genuine back-and-forth — real reactions, "
         "and real disagreement where these two would actually disagree about whether a "
         "change improved the show, not statement-then-nod — and have the last turn hand off "
-        "to the rest of the show. 320-400 words total. Format every line as **RILEY:** or "
-        "**CASEY:** — no narrator, no stage directions, no emojis. Never fabricate names or "
-        "details not in the commit list.\n\n"
+        "to the rest of the show in general terms. Never name or preview what comes next: "
+        "another segment follows this one and you have not been told what is in it. "
+        "320-400 words for the full version, proportionally shorter when fewer changes "
+        "qualify. Format every line as **RILEY:** or **CASEY:** — no narrator, no stage "
+        "directions, no emojis. Name no person, place, organization, or Nation that does "
+        "not appear in the commit list — no invented examples of a change working.\n\n"
         "This is an audio show only. Never mention video, YouTube, a visual or watchable "
-        "version of the show, or anything a listener would have to look at. Describe caption "
-        "or transcript work as transcripts in your podcast app — never as captions you watch. "
+        f"version of the show, or anything a listener would have to look at. {transcript_note}"
         "If a change only makes sense visually, skip it and pick another.\n\n"
         f"This week's changes:\n{changelog}"
     )
     try:
         response = api_retry(lambda: client.messages.create(
             model="claude-haiku-4-5",
-            # Sized for the 320-400 word target plus speaker markers; the old 450
-            # capped the segment below its own word floor once it was widened.
-            max_tokens=900,
+            # Sized for the 320-400 word target plus speaker markers and the
+            # COVERED lines above them; the old 450 capped the segment below its
+            # own word floor once it was widened.
+            max_tokens=1000,
             messages=[{"role": "user", "content": prompt}],
         ))
         _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
-        dialogue = message_text(response).strip()
+        raw = message_text(response).strip()
     except Exception as exc:
         print(f"  ⚠️  Meta Moment generation failed: {exc}")
         return ""
-    start = dialogue.find("**RILEY:**")
+
+    start = raw.find("**RILEY:**")
     if start == -1:
+        # NONE, or a reply with no dialogue in it — both mean no segment, and
+        # neither is a degradation: a week of plumbing has nothing to report.
+        print("   🔇 Meta Moment: no listener-noticeable change this week — segment skipped")
         return ""
-    return f"**META MOMENT**\n{dialogue[start:]}"
+
+    dialogue = raw[start:]
+    if not _meta_moment_covered(raw[:start], subjects):
+        degrade("script/meta-moment",
+                "dialogue cited no commit from the week's list — segment dropped")
+        return ""
+    unknown = _meta_moment_unknown_names(dialogue, changelog)
+    if unknown:
+        degrade("script/meta-moment",
+                f"dialogue named {', '.join(unknown[:5])}, absent from the week's "
+                "commits — segment dropped")
+        return ""
+    return f"**META MOMENT**\n{dialogue}"
 
 
 def _append_comparison_log(entry):
