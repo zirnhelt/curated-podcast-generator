@@ -39,7 +39,7 @@ cannot reopen it. Anything written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-08-31) — 10 open.
+_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-01) — 11 open.
 Check a box to close one; it comes back only if the reviews raise it 2 more times._
 
 - [ ] **A credit-balance 400 is not the usage-limit wall, and every run pays for that.**
@@ -91,7 +91,17 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       hard limit, not a transient failure. Confirm the quota tier on the Brave account, assess
       whether the episode's answer count is typical, and decide whether to increase the quota,
       implement batching, or rely on web snippets as the primary source when the API is
-      unavailable. (seen in 3 reviews, latest 2026-08-31)
+      unavailable. (seen in 4 reviews, latest 2026-09-01)
+- [ ] **Gemini multi-speaker TTS timed out on the welcome section, forcing a mid-episode
+      fallback to OpenAI.** During audio render on 2026-08-28, the welcome section synthesis via
+      Gemini multi-speaker hit a ReadTimeout after 120 seconds on
+      generativelanguage.googleapis.com. The pipeline fell back to OpenAI for that section and
+      all remaining sections and credits. The episode now spans two TTS providers—Gemini for
+      welcome, OpenAI for body and outro—introducing a voice discontinuity in the shipped
+      17.7-minute episode. Investigate whether Gemini's multi-speaker quota or concurrency
+      limits are being hit, and consider either increasing timeouts, implementing section-level
+      retry logic before switching providers, or pre-allocating Gemini synthesis for critical
+      segments at off-peak times. (seen in 2 reviews, latest 2026-09-01)
 - [ ] **Deep dive sections achieved 67% citation matching versus 87% for roundup sections.** On
       2026-08-28, the roundup matched 13 of 15 citations (87%), but the deep dive section
       matched only 2 of 3 (67%). Both figures are from the same run and the same citation
