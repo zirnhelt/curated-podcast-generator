@@ -1,0 +1,372 @@
+{
+  "episode": {
+    "date": "2026-09-01",
+    "formatted_date": "Tuesday, September 01, 2026",
+    "theme": "Working Lands & Industry",
+    "title": "Cariboo Signals - Working Lands & Industry",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Working Lands & Industry.</p><p><b>THIS WEEK WE'RE ASKING:</b> Is it better to be self-sufficient or well-connected?</p><p><b>NEWS ROUNDUP:</b> We break down [My Cariboo Now] International Overdose Awareness Day recognized in Williams Lake & Quesnel and [Williams Lake Tribune] RONA campaign helps fund Big Brothers Big Sisters in Williams Lake, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Who actually gets to own the data and monitoring infrastructure that proves a mine is safe, and does legal standing to say no to development translate into independent technical capacity to verify environmental claims? Topics include: Washington's seabed mining leases near the Mariana Islands and who bears ecological risk versus economic benefit, Brazil's Supreme Court ruling allowing Cinta Larga communities to pursue mineral exploration with undefined \"major approval\" standards, Yukon's Coffee gold project road permit and the distinction between partnership and subcontracting arrangements with First Nations, The difference between legal veto power (Tŝilhqot'in title case) and independent technical capacity to verify environmental claims, Data ownership and monitoring infrastructure as the structural question underlying Indigenous consent in resource extraction.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://habitatcariboo.org\">Habitat for Humanity Cariboo</a></p><p><b>Sources discussed:</b></p><ul><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/315969/news/health-care/international-overdose-awareness-day-recognized-in-williams-lake-quesnel/\">[My Cariboo Now] International Overdose Awareness Day recogn...</a></li><li>Khushi Arora (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/08/31/rona-campaign-helps-fund-big-brothers-big-sisters-in-williams-lake/\">[Williams Lake Tribune] RONA campaign helps fund Big Brother...</a></li><li>Laisa Conde (Quesnel Cariboo Observer): <a href=\"https://quesnelobserver.com/2026/08/31/quesnel-community-clean-up-crew-receives-one-more-year-of-funding/\">[Quesnel Cariboo Observer] Quesnel Community Clean Up Crew r...</a></li><li>Brendan Shykora (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/08/31/okanagan-forest-task-force-asking-province-for-help-keeping-backcountry-safe/\">[Williams Lake Tribune] Okanagan Forest Task Force asking pr...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/315962/news/politics/a%ca%bca%ea%9e%89liya-warbus-is-7th-mla-is-leave-the-b-c-conservatives-over-discontent-with-leader/\">[My Cariboo Now] Áʼa꞉líya Warbus is 7th MLA is leave the B.C...</a></li><li>John Arendt (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/08/31/wildfire-that-forced-summerland-to-evacuate-now-under-control-25-days-later/\">[Williams Lake Tribune] Wildfire that forced Summerland to e...</a></li><li>BC Gov News: <a href=\"https://news.gov.bc.ca/releases/2026ECC0023-001005\">[BC Gov News] Opening more child care spaces in schools</a></li><li>CFJC Today Kamloops: <a href=\"https://cfjctoday.com/2026/08/31/tnrd-lifts-evacuation-alert-for-more-than-200-properties-near-clinton-area-wildfire/\">[CFJC Today Kamloops] TNRD lifts evacuation alert for more t...</a></li><li>Western Producer: <a href=\"https://www.producer.com/opinion/canola-production-stands-alone-when-it-comes-to-profitability/\">[Western Producer] Canola most profitable crop this year</a></li><li>Colin McClelland (The Northern Miner): <a href=\"https://www.northernminer.com/news/court-ruling-backs-perpetuas-1-3b-stibnite-build/1003894465/\">[The Northern Miner] Court ruling backs Perpetua’s $1.3B Sti...</a></li><li>https://www.smallfarmcanada.ca/topics/ray-douglas/ (Small Farm Canada): <a href=\"https://www.smallfarmcanada.ca/news/do-you-need-to-register-the-pigs-on-your-small-farm-a-provin/\">[Small Farm Canada] Do You Need to Register The Pigs on your...</a></li><li>https://newatlas.com/author/mike-mcrae/ (New Atlas): <a href=\"https://newatlas.com/brain/alzheimers-dementia/particles-joint-replacement-enter-brain/\">[New Atlas] Particles from a joint replacement can enter you...</a></li><li>Zack Whittaker (TechCrunch): <a href=\"https://techcrunch.com/2026/08/31/hackers-claim-millions-of-patient-records-stolen-during-data-breach-at-healthcare-giant-mckesson/\">[TechCrunch] Hackers claim millions of patient records stole...</a></li><li>Parents: <a href=\"https://www.parents.com/how-to-host-a-sleep-under-party-12057370\">[Parents] Is Your Child Not Quite Ready for a Sleepover? Try...</a></li><li>The Northern Miner: <a href=\"https://www.northernminer.com/aboriginal/brazils-top-court-breaks-indigenous-mining-deadlock/1003894192/\">[The Northern Miner] Brazil’s top court breaks Indigenous mi...</a></li><li>Colin McClelland (The Northern Miner): <a href=\"https://www.northernminer.com/news/talamore-gets-key-road-permit-for-coffee-gold-project/1003894444/\">[The Northern Miner] Talamore gets key road permit for Coffe...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Western Producer: <a href=\"https://www.producer.com/markets/diesel-prices-to-remain-elevated-says-analyst/\">[Western Producer] Diesel fuel prices expected to continue i...</a></li><li>The Northern Miner: <a href=\"https://www.northernminer.com/news/us-opens-vast-pacific-seabed-to-mining/1003894054/\">[The Northern Miner] US opens vast Pacific seabed to mining</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5<br>Today's Voices: Gemini TTS and OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-09-01T01:26:42.129800-07:00",
+    "models": {
+      "script": "claude-sonnet-5",
+      "review": "claude-sonnet-5",
+      "summary": "claude-haiku-4-5"
+    },
+    "quality": {
+      "word_count": 3291,
+      "voice_ratio_casey_riley": 0.68,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 1,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 6,
+        "roundup_seam": 0,
+        "thats_closer": 5,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 1,
+      "rhythm": {
+        "em_dashes_per_1k": 15.8,
+        "short_turns": 6,
+        "turns": 77,
+        "avg_turn_words": 41.2,
+        "antithesis_hits": 0,
+        "over_budget": [
+          "em_dashes",
+          "short_turns"
+        ]
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    },
+    "anchor": {
+      "id": "self-sufficient-or-connected",
+      "question": "Is it better to be self-sufficient or well-connected?"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[My Cariboo Now] International Overdose Awareness Day recognized in Williams Lake & Quesnel",
+          "url": "https://www.mycariboonow.com/315969/news/health-care/international-overdose-awareness-day-recognized-in-williams-lake-quesnel/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 86,
+          "date_published": "2026-08-31T21:12:11+00:00",
+          "summary": "It's National Drug Overdose Aware Day (August 31). The post International Overdose Awareness Day recognized in Williams Lake & Quesnel appeared first on My Cariboo Now .",
+          "discussed": true,
+          "mention_offset_frac": 0.0141
+        },
+        {
+          "title": "[Williams Lake Tribune] RONA campaign helps fund Big Brothers Big Sisters in Williams Lake",
+          "url": "https://wltribune.com/2026/08/31/rona-campaign-helps-fund-big-brothers-big-sisters-in-williams-lake/",
+          "source": "Williams Lake Tribune",
+          "author": "Khushi Arora",
+          "ai_score": 88,
+          "date_published": "2026-09-01T04:03:49.414974+00:00",
+          "summary": "## RONA campaign helps fund Big Brothers Big Sisters in Williams Lake Published 2:56 pm Monday, August 31, 2026 **By Khushi Arora** The RONA foundation launches \"Home Sweet Home\" campaign from Aug. 31...",
+          "discussed": true,
+          "mention_offset_frac": 0.1572
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Quesnel Community Clean Up Crew receives one more year of funding",
+          "url": "https://quesnelobserver.com/2026/08/31/quesnel-community-clean-up-crew-receives-one-more-year-of-funding/",
+          "source": "Quesnel Cariboo Observer",
+          "author": "Laisa Conde",
+          "ai_score": 77,
+          "date_published": "2026-08-31T21:23:27+00:00",
+          "summary": "Since August 2025, the Clean Team has safely removed 730 needles off the streets amongst other things.",
+          "discussed": true,
+          "mention_offset_frac": 0.2306
+        },
+        {
+          "title": "[Williams Lake Tribune] Okanagan Forest Task Force asking province for help keeping backcountry safe",
+          "url": "https://wltribune.com/2026/08/31/okanagan-forest-task-force-asking-province-for-help-keeping-backcountry-safe/",
+          "source": "Williams Lake Tribune",
+          "author": "Brendan Shykora",
+          "ai_score": 86,
+          "date_published": "2026-08-31T18:20:12+00:00",
+          "summary": "## Okanagan Forest Task Force asking province for help keeping backcountry safe Published 11:20 am Monday, August 31, 2026 **By Brendan Shykora** An abandoned motor home and encampment in the Lumby ar...",
+          "discussed": true,
+          "mention_offset_frac": 0.3146
+        },
+        {
+          "title": "[My Cariboo Now] Áʼa꞉líya Warbus is 7th MLA is leave the B.C. Conservatives over discontent with leader",
+          "url": "https://www.mycariboonow.com/315962/news/politics/a%ca%bca%ea%9e%89liya-warbus-is-7th-mla-is-leave-the-b-c-conservatives-over-discontent-with-leader/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 67,
+          "date_published": "2026-08-31T17:36:18+00:00",
+          "summary": "Chilliwack-Cultus Lake MLA Áʼa꞉líya Warbus is the latest to leave the B.C. Conservatives as the rift over Kerry-Lynne Findlay’s leadership widens. Warbus said in a statement Monday morning she was “di...",
+          "discussed": true,
+          "mention_offset_frac": 0.3875
+        },
+        {
+          "title": "[Williams Lake Tribune] Wildfire that forced Summerland to evacuate now under control, 25 days later",
+          "url": "https://wltribune.com/2026/08/31/wildfire-that-forced-summerland-to-evacuate-now-under-control-25-days-later/",
+          "source": "Williams Lake Tribune",
+          "author": "John Arendt",
+          "ai_score": 62,
+          "date_published": "2026-09-01T02:02:00+00:00",
+          "summary": "## Wildfire that forced Summerland to evacuate now under control, 25 days later Published 7:02 pm Monday, August 31, 2026 **By John Arendt** The Bald Range wildfire west of Summerland is continuing to...",
+          "discussed": true,
+          "mention_offset_frac": 0.4619
+        },
+        {
+          "title": "[CFJC Today Kamloops] TNRD lifts evacuation alert for more than 200 properties near Clinton-area wildfire",
+          "url": "https://cfjctoday.com/2026/08/31/tnrd-lifts-evacuation-alert-for-more-than-200-properties-near-clinton-area-wildfire/",
+          "source": "CFJC Today Kamloops",
+          "author": "",
+          "ai_score": 37,
+          "date_published": "2026-09-01T00:19:11+00:00",
+          "summary": "(Image Credit: BC Wildfire Service) By Elora McCormack Pear Lake wildfire TNRD lifts evacuation alert for more than 200 properties near Clinton-area wildfire Aug 31, 2026 | 5:19 PM Share on Facebook S...",
+          "discussed": true,
+          "mention_offset_frac": 0.502
+        },
+        {
+          "title": "[BC Gov News] Opening more child care spaces in schools",
+          "url": "https://news.gov.bc.ca/releases/2026ECC0023-001005",
+          "source": "BC Gov News",
+          "author": "",
+          "ai_score": 50,
+          "date_published": "2026-08-31T20:15:00+00:00",
+          "summary": "Funding helps districts create, expand child care programs",
+          "discussed": true,
+          "mention_offset_frac": 0.5387
+        },
+        {
+          "title": "[Western Producer] Canola most profitable crop this year",
+          "url": "https://www.producer.com/opinion/canola-production-stands-alone-when-it-comes-to-profitability/",
+          "source": "Western Producer",
+          "author": "",
+          "ai_score": 56,
+          "date_published": "2026-08-25T04:45:28.204276+00:00",
+          "summary": "However, many analysts say producers should also calculate their cost per bushel because it can be important information for marketing decisions. ... That’s certainly the case with canola. David Sulli...",
+          "discussed": true,
+          "mention_offset_frac": 0.6057
+        },
+        {
+          "title": "[The Northern Miner] Court ruling backs Perpetua’s $1.3B Stibnite build",
+          "url": "https://www.northernminer.com/news/court-ruling-backs-perpetuas-1-3b-stibnite-build/1003894465/",
+          "source": "The Northern Miner",
+          "author": "Colin McClelland",
+          "ai_score": 53,
+          "date_published": "2026-08-31T17:21:09+00:00",
+          "summary": "Perpetua Resources (TSX, Nasdaq: PPTA) is pressing ahead with early construction at its Stibnite gold-antimony project in Idaho after a U.S. federal court upheld key approvals against an environmental...",
+          "discussed": true,
+          "mention_offset_frac": 0.7554
+        },
+        {
+          "title": "[Small Farm Canada] Do You Need to Register The Pigs on your Small Farm? A Province-by-Province Guide for Small Canadian Pig Owners",
+          "url": "https://www.smallfarmcanada.ca/news/do-you-need-to-register-the-pigs-on-your-small-farm-a-provin/",
+          "source": "Small Farm Canada",
+          "author": "https://www.smallfarmcanada.ca/topics/ray-douglas/",
+          "ai_score": 68,
+          "date_published": "2026-08-31T04:00:00+00:00",
+          "summary": "Small-scale pig ownership is growing across Canada, but many new producers do not realize that federal traceability rules and provincial premises identification requirements can apply even to backyard...",
+          "discussed": true,
+          "mention_offset_frac": 0.8283
+        },
+        {
+          "title": "[New Atlas] Particles from a joint replacement can enter your brain, study finds",
+          "url": "https://newatlas.com/brain/alzheimers-dementia/particles-joint-replacement-enter-brain/",
+          "source": "New Atlas",
+          "author": "https://newatlas.com/author/mike-mcrae/",
+          "ai_score": 55,
+          "date_published": "2026-09-01T03:32:00+00:00",
+          "summary": "New findings by a team of researchers from the US and Australia have complicated an ongoing debate over whether a total joint arthroplasty may increase the risk of Alzheimer’s disease. Continue Readin...",
+          "discussed": true,
+          "mention_offset_frac": 0.8788
+        },
+        {
+          "title": "[TechCrunch] Hackers claim millions of patient records stolen during data breach at healthcare giant McKesson",
+          "url": "https://techcrunch.com/2026/08/31/hackers-claim-millions-of-patient-records-stolen-during-data-breach-at-healthcare-giant-mckesson/",
+          "source": "TechCrunch",
+          "author": "Zack Whittaker",
+          "ai_score": 44,
+          "date_published": "2026-08-31T18:10:09+00:00",
+          "summary": "The company, which distributes medicines and medical devices to hospitals and healthcare practices across the U.S., said it was hacked and expects intermittent service degradation.",
+          "discussed": true,
+          "mention_offset_frac": 0.9192
+        },
+        {
+          "title": "[Parents] Is Your Child Not Quite Ready for a Sleepover? Try This Instead",
+          "url": "https://www.parents.com/how-to-host-a-sleep-under-party-12057370",
+          "source": "Parents",
+          "author": "",
+          "ai_score": 20,
+          "date_published": "2026-08-31T14:00:00+00:00",
+          "summary": "When your child longs for an overnight experience but isn’t quite ready for it, host a faux slumber party instead.",
+          "discussed": true,
+          "mention_offset_frac": 0.9737
+        },
+        {
+          "title": "[Western Producer] Diesel fuel prices expected to continue increasing: analyst",
+          "url": "https://www.producer.com/markets/diesel-prices-to-remain-elevated-says-analyst/",
+          "source": "Western Producer",
+          "author": "",
+          "ai_score": 54,
+          "date_published": "2026-08-25T04:45:28.204382+00:00",
+          "summary": "However, he is going to need more supplies come harvest and that is a daunting prospect with bulk diesel selling for $1.65 per litre delivered to the farm as of Aug. 20. “We’re kind of constantly watc...",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Working Lands & Industry",
+      "articles": [
+        {
+          "title": "[The Northern Miner] US opens vast Pacific seabed to mining",
+          "url": "https://www.northernminer.com/news/us-opens-vast-pacific-seabed-to-mining/1003894054/",
+          "source": "The Northern Miner",
+          "author": "",
+          "ai_score": 67,
+          "date_published": "2026-08-18T21:05:12+00:00",
+          "summary": "Washington is planning to auction off deep-sea mining leases near the Northern Mariana Islands later this year, advancing the Trump administration’s push to develop domestic sources of critical minera...",
+          "discussed": false
+        },
+        {
+          "title": "[The Northern Miner] Brazil’s top court breaks Indigenous mining deadlock",
+          "url": "https://www.northernminer.com/aboriginal/brazils-top-court-breaks-indigenous-mining-deadlock/1003894192/",
+          "source": "The Northern Miner",
+          "author": "",
+          "ai_score": 72,
+          "date_published": "2026-08-21T10:07:45+00:00",
+          "summary": "Brazil’s Supreme Court has upheld a ruling allowing Cinta Larga Indigenous communities to legally conduct mineral exploration in four territories under temporary safeguards while lawmakers develop lon...",
+          "discussed": true
+        },
+        {
+          "title": "[The Northern Miner] Talamore gets key road permit for Coffee gold project",
+          "url": "https://www.northernminer.com/news/talamore-gets-key-road-permit-for-coffee-gold-project/1003894444/",
+          "source": "The Northern Miner",
+          "author": "Colin McClelland",
+          "ai_score": 65,
+          "date_published": "2026-08-31T15:34:09+00:00",
+          "summary": "Talamore Mining (TSX: TALA; US-OTC: TALMF) has secured the remaining major permit needed to complete the 214-km all-season road to its Coffee gold project in Yukon, removing a key infrastructure... Th...",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Who actually gets to own the data and monitoring infrastructure that proves a mine is safe, and does legal standing to say no to development translate into independent technical capacity to verify environmental claims?",
+        "riley_position": "Indigenous Nations need more than legal veto power—they need to own the physical monitoring instruments, raw data, and publication rights directly rather than depending on company-generated reports, and this structural choice can be negotiated into permits right now without waiting for new legislation.",
+        "riley_key_evidence": [
+          "Gibraltar Mine already runs its own air quality monitoring as a permanent line item, showing the model exists for water and tailings monitoring too",
+          "Tŝilhqot'in title case gave a Nation actual veto power upheld by Supreme Court, creating durable legal protection unlike Brazil's vague \"major approval\" standard",
+          "The question isn't whether Nations have legal standing but whether that capacity survives ownership changes the way constitutional title rights do"
+        ],
+        "casey_position": "Legal self-sufficiency and technical self-sufficiency are different things—a Nation can win title rights but still reads data the mining company generates, and independent monitoring built today may not survive corporate ownership changes or personnel transitions five years later.",
+        "casey_key_evidence": [
+          "Xatśūll First Nation, a decade after Mount Polley tailings failure, still largely reads data generated and reported back by the mining company itself",
+          "All three examples (U.S. seabed leases, Brazil's Cinta Larga ruling, Yukon road permit) use \"self-sufficiency\" language while keeping actual decision-making power with whoever sits furthest from the ground being dug up",
+          "If a consultant the company writes the cheque for runs monitoring, incentive structures haven't moved—it's process layering, not independence"
+        ],
+        "resolution": "Riley and Casey agreed they lack a tested case study proving either approach works long-term, and agreed the honest answer is no one has yet tested whether independent monitoring capacity built today survives a mine's ownership change—making it worth tracking whether any Cariboo Nation currently negotiating a permit insists on owning monitoring infrastructure outright.",
+        "topics_covered": [
+          "Washington's seabed mining leases near the Mariana Islands and who bears ecological risk versus economic benefit",
+          "Brazil's Supreme Court ruling allowing Cinta Larga communities to pursue mineral exploration with undefined \"major approval\" standards",
+          "Yukon's Coffee gold project road permit and the distinction between partnership and subcontracting arrangements with First Nations",
+          "The difference between legal veto power (Tŝilhqot'in title case) and independent technical capacity to verify environmental claims",
+          "Data ownership and monitoring infrastructure as the structural question underlying Indigenous consent in resource extraction"
+        ],
+        "calls_to_action": [
+          "If you're following a specific Cariboo permitting process where the question of who owns monitoring infrastructure is actually on the table right now, send that tip to feedback at cariboo signals dot c-a—the hosts read every submission that comes in.",
+          "Watch over the next year whether any Nation negotiating a new permit in this region insists on owning the monitoring infrastructure outright (the sensors, the data, the publication rights) rather than accepting consultation as the whole deal—track who owns the sensor, not just who signed the agreement photo-op.",
+          "Build permanently-funded independent monitoring into operating agreements, modeled on Gibraltar Mine's air quality budget, with structural ownership and publication authority held by a party the Nation actually trusts rather than the company."
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 14,
+          "conditions": "partly cloudy",
+          "high": 25,
+          "low": 12
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 15,
+          "conditions": "partly cloudy",
+          "high": 23,
+          "low": 12
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 13,
+          "conditions": "partly cloudy",
+          "high": 26,
+          "low": 10
+        },
+        {
+          "name": "Quesnel",
+          "temp": 13,
+          "conditions": "overcast",
+          "high": 24,
+          "low": 12
+        },
+        {
+          "name": "Tatla Lake",
+          "temp": 11,
+          "conditions": "mainly clear",
+          "high": 20,
+          "low": 8
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Habitat for Humanity Cariboo",
+      "description": "Builds affordable homes for Cariboo families in need; ReStore diverts building materials from landfill while funding housing projects",
+      "website": "habitatcariboo.org",
+      "psa_angle": "",
+      "event_name": ""
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_azure": "Azure Neural TTS",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "Gemini TTS and OpenAI TTS"
+  }
+}
