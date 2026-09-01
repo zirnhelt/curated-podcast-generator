@@ -2347,6 +2347,20 @@
       "theme_day": 0,
       "status": "used",
       "used_at": "2026-08-31"
+    },
+    {
+      "id": "7e070ab0",
+      "type": "correction",
+      "message_id": "<9716E322-4D02-4C08-B793-52DC64E9F626@gmail.com>",
+      "from_address": "z***@gmail.com",
+      "subject": "Corrections for Monday",
+      "received_at": "2026-09-01T06:17:00-07:00",
+      "body_text": "1. Performances in the Park have pay and stipends for the artists and sound techs, and the organizers are in paid roles 2. The Okanagan is South and east of the Cariboo. Thanks, Erich",
+      "extracted_urls": [],
+      "theme_tag": "Wild Spaces & Outdoor Life",
+      "theme_day": 4,
+      "status": "pending",
+      "used_at": null
     }
   ],
   "seen_gmail_ids": [
@@ -2414,6 +2428,7 @@
     "1a0363cba5de2b0d",
     "1a0449a691ce6bff",
     "1a04944cc4acf76f",
-    "1a04dd65dc2e73c2"
+    "1a04dd65dc2e73c2",
+    "1a05d1dd5ebd7f5a"
   ]
 }
