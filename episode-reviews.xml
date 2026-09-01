@@ -5,47 +5,47 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Tue, 01 Sep 2026 10:06:07 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 01 Sep 2026 15:27:02 +0000</lastBuildDate>
     <item>
       <title>Episode Review — Cariboo Signals, September 1, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-01.html</link>
       <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-01.html</guid>
-      <pubDate>Tue, 01 Sep 2026 10:06:07 +0000</pubDate>
+      <pubDate>Tue, 01 Sep 2026 15:27:02 +0000</pubDate>
       <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/33485277361"&gt;33485277361&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h3&gt;Gemini's audio render failed mid-episode; OpenAI finished it&lt;/h3&gt;
+&lt;h3&gt;Gemini's TTS pipeline failed mid-episode; OpenAI finished the render&lt;/h3&gt;
 
-&lt;p&gt;The Gemini multi-speaker TTS service timed out on the news section after 120 seconds. The pipeline fell back to OpenAI for the remaining sections and credits. Two earlier canary calls to the same model had failed with 45-second timeouts, signalling the degradation was coming.&lt;/p&gt;
+&lt;p&gt;The news section audio was synthesized on Gemini's multi-speaker model when a connection timeout occurred after 120 seconds. The pipeline fell back to OpenAI for the remaining sections and credits. Two earlier canary checks against Gemini also timed out at 45 seconds, signaling a pattern rather than a glitch.&lt;/p&gt;
 
-&lt;p&gt;The listener hears a tonal shift partway through. Gemini and OpenAI have different voice characteristics and delivery rhythms. The episode shipped anyway because audio continuity ranked below shipping on schedule.&lt;/p&gt;
+&lt;p&gt;The listener hears this as a delivery inconsistency: Casey and Riley's voices (ratio 0.68 Casey to Riley) in the news segment may differ in timbre or pacing from the rest of the episode, which used a different provider.&lt;/p&gt;
 
-&lt;h3&gt;Body-backfill budget exhausted early&lt;/h3&gt;
+&lt;h3&gt;Budget for article enrichment ran dry; 48 stories got dropped&lt;/h3&gt;
 
-&lt;p&gt;The pipeline made 12 calls to expand thin article summaries into full script bodies. Once that budget was spent, 48 roundup articles were dropped rather than shipped with stub text. They do not appear in the final episode.&lt;/p&gt;
+&lt;p&gt;The pipeline spent its 12-call budget for Brave body-backfill—a step that fills in thin article summaries to make them scriptable. When the budget was exhausted, remaining articles with stub bodies stayed sparse. The system dropped 48 roundup items rather than script them as fragments.&lt;/p&gt;
 
-&lt;p&gt;This is a hard ceiling, not a soft preference. The pipeline chose dropout over filler. The mechanism is visible in the data: 15 roundup citations were available, but only 14 matched into the final script. The one missing citation belongs to a dropped article.&lt;/p&gt;
+&lt;p&gt;This explains the gap between source volume and what shaped the final script. The episode aired with 3 deep dives and an implicit selection bias toward fuller coverage.&lt;/p&gt;
 
-&lt;h3&gt;Script expansion worked as designed&lt;/h3&gt;
+&lt;h3&gt;Script expanded after undershooting target; citations held up&lt;/h3&gt;
 
-&lt;p&gt;The first draft came in at 2,379 words against a 3,400-word target. The pipeline sent it back for expansion. The final script shipped at 3,291 words. One quality flag fired: a single AI-tell pattern hit, caught by post-generation filtering.&lt;/p&gt;
+&lt;p&gt;The first draft came in at 2,379 words against a 3,400-word target. The pipeline sent it back for expansion. The shipped script settled at 3,291 words—9 words short of target, but within acceptable bounds.&lt;/p&gt;
 
-&lt;p&gt;Casey's voice ratio held at 0.68 over Riley. The episode ran 20.8 minutes of audio and video.&lt;/p&gt;
+&lt;p&gt;Citation alignment was strong: 14 of 15 roundup citations matched their sources (93%), and 2 of 3 deep-dive citations matched (67%). The unmatched deep-dive citation remains unresolved.&lt;/p&gt;
 
-&lt;h3&gt;Citation alignment remains incomplete&lt;/h3&gt;
+&lt;h3&gt;One TTS segment returned shorter than predicted&lt;/h3&gt;
 
-&lt;p&gt;Deep-dive citations matched 2 of 3. The three deep-dive stories were from The Northern Miner, covering US Pacific seabed mining, Brazil's Indigenous mining deadlock, and the Talamore Coffee gold project permit.&lt;/p&gt;
+&lt;p&gt;A single take came back with audio duration shorter than its word count suggested. The pipeline retried it once. No further action was needed.&lt;/p&gt;
 
-&lt;p&gt;The debate question — who owns the data and monitoring infrastructure that proves a mine is safe, and whether legal standing to say no translates into technical capacity to verify claims — did not depend on a citation match. It is a structural question the episode posed.&lt;/p&gt;
+&lt;h3&gt;Episode shipped at 20.8 minutes; three manual runs plus a stalled fallback&lt;/h3&gt;
 
-&lt;h3&gt;Two render retries, one short TTS segment&lt;/h3&gt;
+&lt;p&gt;The audio file is 19.1 MB, video is 59.6 MB at matching duration. The episode was published to RSS as entry 217.&lt;/p&gt;
 
-&lt;p&gt;One TTS segment came back shorter than its word count predicted and was retried once. Two sections used Gemini on retry 1 after the primary render failed. One dropped context; one dropped nothing. Both may differ from the rest of the episode in delivery texture.&lt;/p&gt;
+&lt;p&gt;Three manual workflow runs completed successfully on 1 September between 08:05 and 10:09 UTC. A fourth run—Fallback 2, triggered at 3:05 AM Pacific—was created at 15:26 UTC, 321 minutes late. It remains in progress with no conclusion.&lt;/p&gt;
 
-&lt;h3&gt;Run times and token spend&lt;/h3&gt;
+&lt;h3&gt;Debate question and modeling cost&lt;/h3&gt;
 
-&lt;p&gt;Three manual workflow dispatches ran today. The first two completed. The third is in progress. Script generation took 1,172 seconds. Audio render took 745 seconds. The pipeline consumed 97,010 input tokens across 10 Claude calls.&lt;/p&gt;
+&lt;p&gt;Today's frame: "Who actually gets to own the data and monitoring infrastructure that proves a mine is safe, and does legal standing to say no to development translate into independent technical capacity to verify environmental claims?"&lt;/p&gt;
 
-&lt;p&gt;This is episode 217 in the RSS feed. The video file is 59.6 MB; the audio file is 19.1 MB.&lt;/p&gt;
+&lt;p&gt;The pipeline used 97,010 input tokens across 10 Claude API calls. No other models were invoked for generation.&lt;/p&gt;
 
 &lt;h3&gt;The day's triggers&lt;/h3&gt;
 &lt;table&gt;
@@ -53,7 +53,8 @@
 &lt;tbody&gt;
 &lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-01T08:05:27Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-01T09:05:27Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-01T10:05:27Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-01T10:05:27Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-09-01T15:26:25Z&lt;/td&gt;&lt;td&gt;+321 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
