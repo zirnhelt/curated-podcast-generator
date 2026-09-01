@@ -47,6 +47,7 @@ from podcast_generator import (
     sync_site_to_r2,
     get_weekly_changelog,
     generate_meta_moment_text,
+    _meta_moment_unknown_names,
     _annotate_roundup_blocks,
     _curate_roundup_pool,
     _roundup_block_rank,
@@ -2446,13 +2447,36 @@ class TestGetWeeklyChangelog:
         assert get_weekly_changelog() == "- Render video slides"
 
 
+class TestMetaMomentUnknownNames:
+    _CHANGELOG = "- Revert the OpenAI TTS default to tts-1\n- Overlap the outro music"
+
+    def test_flags_a_name_the_week_never_committed(self):
+        assert _meta_moment_unknown_names(
+            "**RILEY:** We would have skipped the whole Ktunaxa Nation piece.",
+            self._CHANGELOG,
+        ) == ["Ktunaxa", "Nation"]
+
+    def test_allows_the_shows_own_names_and_the_commits_own(self):
+        # Riley and Casey are the hosts, OpenAI is on the list, and a lone "I",
+        # a possessive and a quoted question all capitalize by grammar alone.
+        assert _meta_moment_unknown_names(
+            "**RILEY:** So Casey, I think Casey's right about the OpenAI voice.\n"
+            "**CASEY:** And nobody has to think \"Wait, why does this matter?\" anymore.\n"
+            "**RILEY:** Sunday recap over — back to the show.",
+            self._CHANGELOG,
+        ) == []
+
+
 class TestGenerateMetaMomentText:
+    _CHANGELOG = "- Rework welcome intro order\n- Beef up meta moment"
     _DIALOGUE = (
         "**RILEY:** Quick meta moment before we move on — the team rewired how we open the show.\n"
         "**CASEY:** So the awkward introductions were a bug. Good to know.\n"
         "**RILEY:** And the Sunday recap you're hearing right now got a little longer.\n"
         "**CASEY:** Longer readings from the changelog of my own mind. Wonderful. Back to the show."
     )
+    _COVERED = "COVERED: Rework welcome intro order\nCOVERED: Beef up meta moment\n\n"
+    _REPLY = _COVERED + _DIALOGUE
 
     @staticmethod
     def _client_returning(text):
@@ -2472,19 +2496,22 @@ class TestGenerateMetaMomentText:
     def test_builds_multi_turn_dialogue_block(self, monkeypatch):
         monkeypatch.setattr(
             "podcast_generator.get_anthropic_client",
-            lambda: self._client_returning(self._DIALOGUE),
+            lambda: self._client_returning(self._REPLY),
         )
-        block = generate_meta_moment_text("- Rework welcome intro order\n- Beef up meta moment")
+        block = generate_meta_moment_text(self._CHANGELOG)
+        # The COVERED header is bookkeeping for the grounding check, never spoken.
         assert block == f"**META MOMENT**\n{self._DIALOGUE}"
+        assert "COVERED" not in block
         assert block.count("**RILEY:**") == 2
         assert block.count("**CASEY:**") == 2
 
     def test_strips_preamble_before_first_riley_line(self, monkeypatch):
         monkeypatch.setattr(
             "podcast_generator.get_anthropic_client",
-            lambda: self._client_returning(f"Here is the segment:\n{self._DIALOGUE}"),
+            lambda: self._client_returning(
+                f"Here is the segment:\n{self._COVERED}{self._DIALOGUE}"),
         )
-        block = generate_meta_moment_text("- Some change")
+        block = generate_meta_moment_text(self._CHANGELOG)
         assert block.startswith("**META MOMENT**\n**RILEY:**")
         assert "Here is the segment" not in block
 
@@ -2516,7 +2543,7 @@ class TestGenerateMetaMomentText:
         generate_meta_moment_text("- Some change")
 
         prompt = client.messages.create.call_args.kwargs["messages"][0]["content"]
-        assert "3-4 most listener-noticeable changes" in prompt
+        assert "Three or four: write the full 8-12 turn segment" in prompt
         assert "cut, not compressed" in prompt
 
     def test_prompt_keeps_the_self_awareness_bounded(self, monkeypatch):
@@ -2539,6 +2566,119 @@ class TestGenerateMetaMomentText:
         generate_meta_moment_text("- Some change")
 
         assert client.messages.create.call_args.kwargs["max_tokens"] >= 800
+
+    def test_prompt_offers_none_as_a_safe_answer(self, monkeypatch):
+        # Without an escape hatch the model must find 3-4 listener-noticeable
+        # changes in a week of plumbing, and it invents them when there are none.
+        client = self._client_returning(self._REPLY)
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
+        generate_meta_moment_text(self._CHANGELOG)
+
+        prompt = client.messages.create.call_args.kwargs["messages"][0]["content"]
+        assert "reply with the single word NONE" in prompt
+        assert "NONE is always a safe answer" in prompt
+        assert "COVERED: <the line from the list, copied exactly>" in prompt
+
+    def test_prompt_forbids_previewing_the_next_segment(self, monkeypatch):
+        # 2026-08-30 handed off to "a report from the Shuswap on small-scale
+        # irrigation pilots" — a deep-dive story, two segments away, invented.
+        client = self._client_returning(self._REPLY)
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
+        generate_meta_moment_text(self._CHANGELOG)
+
+        prompt = client.messages.create.call_args.kwargs["messages"][0]["content"]
+        assert "Never name or preview what comes next" in prompt
+
+    def test_transcript_phrasing_only_offered_when_a_commit_earns_it(self, monkeypatch):
+        # The instruction handed the model a listener-facing topic, and on
+        # 2026-08-30 the hosts reported transcript work in a week that had none.
+        client = self._client_returning(self._REPLY)
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
+
+        generate_meta_moment_text(self._CHANGELOG)
+        assert "transcripts in your podcast app" not in (
+            client.messages.create.call_args.kwargs["messages"][0]["content"])
+
+        generate_meta_moment_text("- Fix the VTT transcript timings")
+        assert "transcripts in your podcast app" in (
+            client.messages.create.call_args.kwargs["messages"][0]["content"])
+
+    def test_none_reply_skips_the_segment(self, monkeypatch):
+        monkeypatch.setattr("podcast_generator.get_anthropic_client",
+                            lambda: self._client_returning("NONE"))
+        assert generate_meta_moment_text(self._CHANGELOG) == ""
+
+    def test_uncited_dialogue_is_dropped(self, monkeypatch):
+        # A dialogue that names no commit it came from is not checkable, and
+        # every fabricated Meta Moment to date would have cited nothing.
+        monkeypatch.setattr("podcast_generator.get_anthropic_client",
+                            lambda: self._client_returning(self._DIALOGUE))
+        assert generate_meta_moment_text(self._CHANGELOG) == ""
+
+    def test_invented_citation_is_dropped(self, monkeypatch):
+        monkeypatch.setattr(
+            "podcast_generator.get_anthropic_client",
+            lambda: self._client_returning(
+                "COVERED: Start a weekly inspiration harvest\n\n" + self._DIALOGUE),
+        )
+        assert generate_meta_moment_text(self._CHANGELOG) == ""
+
+    def test_real_fabricated_episode_is_rejected(self, monkeypatch):
+        # Verbatim from podcasts/podcast_script_2026-08-30, against that week's
+        # real commit list. No harvest was committed, no transcript work landed,
+        # and the Ktunaxa Nation story offered as proof did not exist.
+        changelog = "\n".join("- " + s for s in [
+            "Distil each night's review into ROADMAP.md automatically",
+            "Revert the OpenAI TTS default to tts-1",
+            "Sort roundup placements by position, not by article",
+            "Preflight every provider's balance, and make an empty one loud",
+            "Scaffold the Gemini TTS prompt and move cues to inline tags",
+            "Overlap the theme and outro music under the speech they follow",
+            "Recognize a spend cap as a wall, on both Gemini and Brave",
+            "Split the Brave meters: Answers is its own plan now",
+            "Correct the Brave plan facts: $10 Search cap, credit-bound Answers",
+            "Give Brave Answers its own subscription token",
+        ])
+        aired = (
+            "**RILEY:** So we started pulling a weekly inspiration harvest from our notes.\n"
+            "**CASEY:** The question is whether that changes what we talk about.\n"
+            "**RILEY:** Last week we would have skipped the whole Ktunaxa Nation piece "
+            "because it didn't come to us pre-packaged.\n"
+            "**CASEY:** Okay, that's real."
+        )
+        monkeypatch.setattr(
+            "podcast_generator.get_anthropic_client",
+            lambda: self._client_returning(
+                "COVERED: Distil each night's review into ROADMAP.md automatically\n\n" + aired),
+        )
+        assert generate_meta_moment_text(changelog) == ""
+
+    def test_names_the_week_actually_committed_are_allowed(self, monkeypatch):
+        # The guard reads the commit list, so a provider the week really named
+        # can be discussed by name without tripping it.
+        changelog = "- Revert the OpenAI TTS default to tts-1"
+        dialogue = (
+            "**RILEY:** Quick meta moment. We moved back to the OpenAI voice we started on.\n"
+            "**CASEY:** So the experiment lost. Fine by me — I sounded slower.\n"
+            "**RILEY:** You did. Anyway, back to the show."
+        )
+        monkeypatch.setattr(
+            "podcast_generator.get_anthropic_client",
+            lambda: self._client_returning(
+                "COVERED: Revert the OpenAI TTS default to tts-1\n\n" + dialogue),
+        )
+        assert generate_meta_moment_text(changelog) == f"**META MOMENT**\n{dialogue}"
+
+    def test_dropped_segment_reaches_the_run_report(self, monkeypatch):
+        # A Meta Moment that silently vanishes is the failure mode this guard
+        # would otherwise introduce.
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_RUN_SEGMENTS", [])
+        monkeypatch.setattr("podcast_generator.get_anthropic_client",
+                            lambda: self._client_returning(self._DIALOGUE))
+        generate_meta_moment_text(self._CHANGELOG)
+        assert [r["name"] for r in pg._RUN_SEGMENTS] == ["script/meta-moment"]
+        assert pg._RUN_SEGMENTS[0]["status"] == "degraded"
 
 
 class TestStaleFramingAlerts:
