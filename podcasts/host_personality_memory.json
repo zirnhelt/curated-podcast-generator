@@ -143,6 +143,11 @@
         "date": "2026-08-30",
         "clue": "evidence-bar:~ \u2014 acknowledged both complexity and improbability readings possible",
         "occurrences": 1
+      },
+      {
+        "date": "2026-09-01",
+        "clue": "structural-lens:+ \u2014 Who owns monitoring data, not just agreements",
+        "occurrences": 1
       }
     ],
     "core_memories": [
@@ -250,7 +255,6 @@
   },
   "casey": {
     "consistent_interests": [
-      "[The Tyee] Half of BC\u2019s Community Paramedic Positions Are Un",
       "[The Tyee] Tumbler Ridge Shows We Can\u2019t Take Rural Medicine ",
       "[Williams Lake Tribune] Williams Lake community shows its he",
       "Immersed in Community (and Archives!)",
@@ -259,7 +263,8 @@
       "[Williams Lake Tribune] End of B.C. rural healthcare bonus c",
       "[Resilience.org] Social capital and community resilience: A ",
       "[globalnews.ca] Chief says community was left \u2018a war zone\u2019 a",
-      "[Global News] B.C.\u2019s Sikh community on edge after Edmonton a"
+      "[Global News] B.C.\u2019s Sikh community on edge after Edmonton a",
+      "[Quesnel Cariboo Observer] Quesnel Community Clean Up Crew r"
     ],
     "recurring_questions": [
       "Who benefits from this?",
@@ -347,11 +352,6 @@
         "date": "2026-08-09",
         "clue": "evidence-bar:[+] Deepened confidence in population-literacy approach, but remained unconvinced it scales faster than formal intervention",
         "occurrences": 1
-      },
-      {
-        "date": "2026-08-22",
-        "clue": "pilot-skepticism:x \u2014 Conceded procurement 'lever is real' after initial skepticism on leverage",
-        "occurrences": 2
       },
       {
         "date": "2026-08-21",
