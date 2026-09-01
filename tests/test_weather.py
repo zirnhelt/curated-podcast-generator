@@ -262,6 +262,16 @@ class TestFormatWeatherForPrompt:
         assert "WEATHER CHECK" in result
         assert "Horsefly Lake" in result
 
+    def test_prompt_does_not_label_the_rotating_town(self):
+        """The fifth town is named by the summary, never framed by its region."""
+        result = format_weather_for_prompt({
+            "summary": "Across the Cariboo — Tatla Lake around 4 with overcast.",
+            "chilcotin_town_name": "Tatla Lake",
+        })
+        assert "Today's Chilcotin plateau spot" not in result
+        assert "Chilcotin plateau community" not in result
+        assert "no regional labels" in result
+
     def test_prompt_forbids_current_conditions_framing(self):
         result = format_weather_for_prompt({"summary": "Out at Horsefly Lake this morning."})
         assert "TODAY'S FORECAST, NOT CURRENT CONDITIONS" in result

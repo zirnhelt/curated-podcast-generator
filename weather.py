@@ -348,19 +348,19 @@ def format_weather_for_prompt(weather_data):
     if not weather_data:
         return ""
 
-    chilcotin_name = weather_data.get("chilcotin_town_name", "")
-    chilcotin_note = (
-        f" Today's Chilcotin plateau spot: {chilcotin_name}." if chilcotin_name else ""
-    )
+    # The rotating fifth town is named and nothing more. Calling it "today's
+    # Chilcotin plateau community" in the prompt is how that label reached the
+    # air; the listener wants the forecast for the town, not its geography.
     return (
         "WEATHER CHECK (Cariboo-wide — for the hosts to deliver naturally in the welcome "
         "section. Cover the regional highlights: home base at Horsefly Lake, then a brief "
-        f"sweep across 100 Mile House, Williams Lake, Quesnel, and today's Chilcotin plateau "
-        f"community ({chilcotin_name}). Keep it to 2-3 sentences, conversational, not a formal "
+        "sweep across each of the other communities named below. Name each town plainly — "
+        "no regional labels (\"on the Chilcotin plateau\", \"in the south Cariboo\") and no "
+        "explaining where it is. Keep it to 2-3 sentences, conversational, not a formal "
         "forecast. Flag any driving alerts if noted below.\n"
         "THIS IS TODAY'S FORECAST, NOT CURRENT CONDITIONS. The episode is written overnight "
         "and heard at breakfast, so never say \"right now\" or \"at the moment\", and never "
         "state a clock time or the hour the forecast is for. Say \"this morning\" and "
         "\"today\". Do not mention tomorrow or any other day):\n"
-        f"{weather_data['summary']}{chilcotin_note}\n\n"
+        f"{weather_data['summary']}\n\n"
     )
