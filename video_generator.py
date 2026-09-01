@@ -309,7 +309,10 @@ def render_slides(chapters: list, citations: dict, audio_dur_s: float,
             if section == "Introduction" and weather.get("locations") and budget >= 2:
                 wimg, wdraw, wx = _new_slide(cover, weather.get("title", "Weather Check"), accent)
                 wy = 200
-                wdraw.text((wx, wy), "Cariboo Weather", font=font_h2, fill=FG_COLOR)
+                # The temperature is the morning forecast, not a reading taken
+                # at render time — the heading says so.
+                wdraw.text((wx, wy), "Cariboo Weather — This Morning",
+                           font=font_h2, fill=FG_COLOR)
                 wy += 58
                 for loc in weather["locations"][:6]:
                     line = f"{loc['name']} — {loc['temp']}°, {loc['conditions']}"

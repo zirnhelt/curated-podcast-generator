@@ -3251,9 +3251,9 @@ class TestGenerateCitationsFileSlideSegments:
     @staticmethod
     def _weather_data():
         loc = {
-            "current_temp": 15, "current_code": 2, "current_wind": 5,
-            "high": 20, "low": 7, "precip": 0,
-            "daily_code": 1, "tomorrow_code": 1, "max_wind": 10,
+            "morning_temp": 15, "morning_code": 2, "morning_wind": 5,
+            "high": 20, "low": 7, "precip": 0, "precip_chance": 0,
+            "daily_code": 1, "max_wind": 10,
         }
         return {
             "horsefly": loc, "hundred_mile": loc, "williams_lake": None,

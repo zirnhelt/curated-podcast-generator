@@ -1,4 +1,11 @@
-"""Fetch current weather for the Cariboo region.
+"""Fetch today's weather forecast for the Cariboo region.
+
+The show is written between 1 and 3 AM Pacific and heard from 6:30 AM, so
+"current conditions" describes the middle of the night nobody was awake for and
+"tomorrow" is the day the listener is already living in. Everything here is
+today's forecast: the MORNING_HOUR outlook in place of current conditions, plus
+today's high, low and precipitation odds. The forecast hour is never stated on
+air — the listener hears the morning they are getting up into.
 
 Covers four communities spread across the Cariboo for a regional picture:
   - Horsefly Lake  (home base)
@@ -43,6 +50,10 @@ CHILCOTIN_TOWNS = [
 ]
 
 TIMEZONE = "America/Vancouver"
+
+# Local hour the forecast is read for — the listener's morning, not the 1 AM
+# render time. Never spoken on air.
+MORNING_HOUR = 8
 
 # WMO weather interpretation codes -> human-readable descriptions
 # https://open-meteo.com/en/docs
@@ -90,19 +101,24 @@ DRIVING_IMPACT_CODES = {
 }
 
 
+def _morning_index(hourly: dict, day: str) -> int:
+    """Index of MORNING_HOUR on `day` in Open-Meteo's local-time hourly array."""
+    return hourly["time"].index(f"{day}T{MORNING_HOUR:02d}:00")
+
+
 def _fetch_location(lat, lon):
-    """Fetch current conditions and daily forecast for a single location.
+    """Fetch today's morning outlook and daily forecast for a single location.
 
     Returns parsed dict or None on failure.
     """
     params = {
         "latitude": lat,
         "longitude": lon,
-        "current": "temperature_2m,weather_code,wind_speed_10m",
-        "daily": ("temperature_2m_max,temperature_2m_min,"
-                  "precipitation_sum,weather_code,wind_speed_10m_max"),
+        "hourly": "temperature_2m,weather_code,wind_speed_10m",
+        "daily": ("temperature_2m_max,temperature_2m_min,precipitation_sum,"
+                  "precipitation_probability_max,weather_code,wind_speed_10m_max"),
         "timezone": TIMEZONE,
-        "forecast_days": 2,
+        "forecast_days": 1,
         "temperature_unit": "celsius",
         "wind_speed_unit": "kmh",
     }
@@ -120,22 +136,24 @@ def _fetch_location(lat, lon):
         return None
 
     try:
-        current = data["current"]
         daily = data["daily"]
+        hourly = data["hourly"]
+        # The morning row is located by today's own date, so a run that starts
+        # before midnight and finishes after it cannot read yesterday's 8 AM.
+        m = _morning_index(hourly, daily["time"][0])
 
-        tomorrow_codes = daily.get("weather_code", [])
         return {
-            "current_temp": round(current["temperature_2m"]),
-            "current_code": current.get("weather_code", 0),
-            "current_wind": round(current.get("wind_speed_10m", 0)),
+            "morning_temp": round(hourly["temperature_2m"][m]),
+            "morning_code": hourly["weather_code"][m],
+            "morning_wind": round(hourly["wind_speed_10m"][m]),
             "high": round(daily["temperature_2m_max"][0]),
             "low": round(daily["temperature_2m_min"][0]),
             "precip": daily["precipitation_sum"][0],
-            "daily_code": tomorrow_codes[0] if tomorrow_codes else 0,
-            "tomorrow_code": tomorrow_codes[1] if len(tomorrow_codes) > 1 else None,
+            "precip_chance": daily.get("precipitation_probability_max", [None])[0],
+            "daily_code": daily.get("weather_code", [0])[0],
             "max_wind": round(daily.get("wind_speed_10m_max", [0])[0]),
         }
-    except (KeyError, IndexError, TypeError) as e:
+    except (KeyError, IndexError, TypeError, ValueError) as e:
         print(f"  Weather parsing failed ({lat}, {lon}): {e}")
         return None
 
@@ -145,7 +163,7 @@ def _has_driving_impact(loc):
     if loc is None:
         return False
     return (
-        loc["current_code"] in DRIVING_IMPACT_CODES
+        loc["morning_code"] in DRIVING_IMPACT_CODES
         or loc["daily_code"] in DRIVING_IMPACT_CODES
         or loc["max_wind"] > 50
     )
@@ -154,6 +172,25 @@ def _has_driving_impact(loc):
 def _describe(code):
     """WMO code to human string."""
     return WMO_CODES.get(code, "mixed conditions")
+
+
+def _precip_phrase(loc: dict) -> str:
+    """Today's precipitation odds and amount, as a spoken clause (may be empty).
+
+    The odds are the point of it — an amount alone reads as a certainty, and a
+    dry-but-possible day says nothing at all without them.
+    """
+    chance = loc.get("precip_chance")
+    amount = loc.get("precip") or 0
+
+    if chance:
+        phrase = f" {chance} percent chance of precipitation"
+        return phrase + (f", about {amount:.0f} millimetres." if amount > 0 else ".")
+    if amount > 0:
+        return f" About {amount:.0f} millimetres of precipitation."
+    if chance == 0:
+        return " No precipitation expected."
+    return ""
 
 
 def fetch_weather():
@@ -181,23 +218,22 @@ def fetch_weather():
 
     hf = horsefly
 
-    # Home-base lead: Horsefly Lake current conditions + today's forecast
+    # Home-base lead: Horsefly Lake's morning outlook, then today's numbers.
     summary = (
-        f"Out at Horsefly Lake it's {hf['current_temp']} degrees "
-        f"with {_describe(hf['current_code'])}."
+        f"Out at Horsefly Lake this morning, {_describe(hf['morning_code'])} "
+        f"and around {hf['morning_temp']} degrees."
     )
 
-    if hf["current_wind"] > 20:
-        summary += f" Winds at {hf['current_wind']} k-p-h."
+    if hf["morning_wind"] > 20:
+        summary += f" Morning winds around {hf['morning_wind']} k-p-h."
 
-    summary += f" High of {hf['high']}, low of {hf['low']}."
+    summary += f" Today's high {hf['high']}, low {hf['low']}."
 
-    # Use tomorrow's forecast to avoid repeating today's current condition twice.
-    if hf.get("tomorrow_code") is not None:
-        summary += f" Tomorrow looking {_describe(hf['tomorrow_code'])}."
+    # The day's own code, only when it says something the morning line did not.
+    if hf["daily_code"] != hf["morning_code"]:
+        summary += f" Through the day, {_describe(hf['daily_code'])}."
 
-    if hf["precip"] > 0:
-        summary += f" About {hf['precip']:.0f} millimetres of precipitation."
+    summary += _precip_phrase(hf)
 
     # Regional snapshot: brief conditions for each Cariboo community,
     # including the random Chilcotin plateau pick
@@ -210,7 +246,7 @@ def fetch_weather():
     ]:
         if loc:
             regional_parts.append(
-                f"{loc_name} sitting at {loc['current_temp']} with {_describe(loc['current_code'])}"
+                f"{loc_name} around {loc['morning_temp']} with {_describe(loc['morning_code'])}"
             )
 
     if regional_parts:
@@ -231,13 +267,13 @@ def fetch_weather():
     # Driving alert: Williams Lake route conditions
     if williams and _has_driving_impact(williams):
         wl = williams
-        wl_conditions = _describe(wl["current_code"])
+        wl_conditions = _describe(wl["morning_code"])
         wl_forecast = _describe(wl["daily_code"])
 
-        if wl["current_code"] in DRIVING_IMPACT_CODES:
+        if wl["morning_code"] in DRIVING_IMPACT_CODES:
             summary += (
-                f" Heads up if you're heading into Williams Lake — "
-                f"{wl_conditions} at {wl['current_temp']} degrees."
+                f" Heads up if you're heading into Williams Lake this morning — "
+                f"{wl_conditions} at {wl['morning_temp']} degrees."
             )
         elif wl["daily_code"] in DRIVING_IMPACT_CODES:
             summary += (
@@ -248,7 +284,7 @@ def fetch_weather():
         if wl["max_wind"] > 50:
             summary += f" Strong wind gusts up to {wl['max_wind']} k-p-h on the road."
 
-        if wl["current_code"] in {56, 57, 66, 67} or wl["daily_code"] in {56, 57, 66, 67}:
+        if wl["morning_code"] in {56, 57, 66, 67} or wl["daily_code"] in {56, 57, 66, 67}:
             summary += " Take it slow on the Horsefly Road."
 
     return {
@@ -289,8 +325,8 @@ def weather_slide_data(weather_data: dict | None) -> dict | None:
             continue
         locations.append({
             "name": name,
-            "temp": loc["current_temp"],
-            "conditions": _describe(loc["current_code"]),
+            "temp": loc["morning_temp"],
+            "conditions": _describe(loc["morning_code"]),
             "high": loc["high"],
             "low": loc["low"],
         })
@@ -312,15 +348,19 @@ def format_weather_for_prompt(weather_data):
     if not weather_data:
         return ""
 
-    chilcotin_name = weather_data.get("chilcotin_town_name", "")
-    chilcotin_note = (
-        f" Today's Chilcotin plateau spot: {chilcotin_name}." if chilcotin_name else ""
-    )
+    # The rotating fifth town is named and nothing more. Calling it "today's
+    # Chilcotin plateau community" in the prompt is how that label reached the
+    # air; the listener wants the forecast for the town, not its geography.
     return (
         "WEATHER CHECK (Cariboo-wide — for the hosts to deliver naturally in the welcome "
         "section. Cover the regional highlights: home base at Horsefly Lake, then a brief "
-        f"sweep across 100 Mile House, Williams Lake, Quesnel, and today's Chilcotin plateau "
-        f"community ({chilcotin_name}). Keep it to 2-3 sentences, conversational, not a formal "
-        "forecast. Flag any driving alerts if noted below):\n"
-        f"{weather_data['summary']}{chilcotin_note}\n\n"
+        "sweep across each of the other communities named below. Name each town plainly — "
+        "no regional labels (\"on the Chilcotin plateau\", \"in the south Cariboo\") and no "
+        "explaining where it is. Keep it to 2-3 sentences, conversational, not a formal "
+        "forecast. Flag any driving alerts if noted below.\n"
+        "THIS IS TODAY'S FORECAST, NOT CURRENT CONDITIONS. The episode is written overnight "
+        "and heard at breakfast, so never say \"right now\" or \"at the moment\", and never "
+        "state a clock time or the hour the forecast is for. Say \"this morning\" and "
+        "\"today\". Do not mention tomorrow or any other day):\n"
+        f"{weather_data['summary']}\n\n"
     )
