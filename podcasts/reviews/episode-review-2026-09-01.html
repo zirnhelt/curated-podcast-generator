@@ -21,39 +21,39 @@
   <p class="meta">Published September 1, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
   <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/33485277361">33485277361</a>.</em></p>
 
-<h3>Gemini's audio render failed mid-episode; OpenAI finished it</h3>
+<h3>Gemini's TTS pipeline failed mid-episode; OpenAI finished the render</h3>
 
-<p>The Gemini multi-speaker TTS service timed out on the news section after 120 seconds. The pipeline fell back to OpenAI for the remaining sections and credits. Two earlier canary calls to the same model had failed with 45-second timeouts, signalling the degradation was coming.</p>
+<p>The news section audio was synthesized on Gemini's multi-speaker model when a connection timeout occurred after 120 seconds. The pipeline fell back to OpenAI for the remaining sections and credits. Two earlier canary checks against Gemini also timed out at 45 seconds, signaling a pattern rather than a glitch.</p>
 
-<p>The listener hears a tonal shift partway through. Gemini and OpenAI have different voice characteristics and delivery rhythms. The episode shipped anyway because audio continuity ranked below shipping on schedule.</p>
+<p>The listener hears this as a delivery inconsistency: Casey and Riley's voices (ratio 0.68 Casey to Riley) in the news segment may differ in timbre or pacing from the rest of the episode, which used a different provider.</p>
 
-<h3>Body-backfill budget exhausted early</h3>
+<h3>Budget for article enrichment ran dry; 48 stories got dropped</h3>
 
-<p>The pipeline made 12 calls to expand thin article summaries into full script bodies. Once that budget was spent, 48 roundup articles were dropped rather than shipped with stub text. They do not appear in the final episode.</p>
+<p>The pipeline spent its 12-call budget for Brave body-backfill—a step that fills in thin article summaries to make them scriptable. When the budget was exhausted, remaining articles with stub bodies stayed sparse. The system dropped 48 roundup items rather than script them as fragments.</p>
 
-<p>This is a hard ceiling, not a soft preference. The pipeline chose dropout over filler. The mechanism is visible in the data: 15 roundup citations were available, but only 14 matched into the final script. The one missing citation belongs to a dropped article.</p>
+<p>This explains the gap between source volume and what shaped the final script. The episode aired with 3 deep dives and an implicit selection bias toward fuller coverage.</p>
 
-<h3>Script expansion worked as designed</h3>
+<h3>Script expanded after undershooting target; citations held up</h3>
 
-<p>The first draft came in at 2,379 words against a 3,400-word target. The pipeline sent it back for expansion. The final script shipped at 3,291 words. One quality flag fired: a single AI-tell pattern hit, caught by post-generation filtering.</p>
+<p>The first draft came in at 2,379 words against a 3,400-word target. The pipeline sent it back for expansion. The shipped script settled at 3,291 words—9 words short of target, but within acceptable bounds.</p>
 
-<p>Casey's voice ratio held at 0.68 over Riley. The episode ran 20.8 minutes of audio and video.</p>
+<p>Citation alignment was strong: 14 of 15 roundup citations matched their sources (93%), and 2 of 3 deep-dive citations matched (67%). The unmatched deep-dive citation remains unresolved.</p>
 
-<h3>Citation alignment remains incomplete</h3>
+<h3>One TTS segment returned shorter than predicted</h3>
 
-<p>Deep-dive citations matched 2 of 3. The three deep-dive stories were from The Northern Miner, covering US Pacific seabed mining, Brazil's Indigenous mining deadlock, and the Talamore Coffee gold project permit.</p>
+<p>A single take came back with audio duration shorter than its word count suggested. The pipeline retried it once. No further action was needed.</p>
 
-<p>The debate question — who owns the data and monitoring infrastructure that proves a mine is safe, and whether legal standing to say no translates into technical capacity to verify claims — did not depend on a citation match. It is a structural question the episode posed.</p>
+<h3>Episode shipped at 20.8 minutes; three manual runs plus a stalled fallback</h3>
 
-<h3>Two render retries, one short TTS segment</h3>
+<p>The audio file is 19.1 MB, video is 59.6 MB at matching duration. The episode was published to RSS as entry 217.</p>
 
-<p>One TTS segment came back shorter than its word count predicted and was retried once. Two sections used Gemini on retry 1 after the primary render failed. One dropped context; one dropped nothing. Both may differ from the rest of the episode in delivery texture.</p>
+<p>Three manual workflow runs completed successfully on 1 September between 08:05 and 10:09 UTC. A fourth run—Fallback 2, triggered at 3:05 AM Pacific—was created at 15:26 UTC, 321 minutes late. It remains in progress with no conclusion.</p>
 
-<h3>Run times and token spend</h3>
+<h3>Debate question and modeling cost</h3>
 
-<p>Three manual workflow dispatches ran today. The first two completed. The third is in progress. Script generation took 1,172 seconds. Audio render took 745 seconds. The pipeline consumed 97,010 input tokens across 10 Claude calls.</p>
+<p>Today's frame: "Who actually gets to own the data and monitoring infrastructure that proves a mine is safe, and does legal standing to say no to development translate into independent technical capacity to verify environmental claims?"</p>
 
-<p>This is episode 217 in the RSS feed. The video file is 59.6 MB; the audio file is 19.1 MB.</p>
+<p>The pipeline used 97,010 input tokens across 10 Claude API calls. No other models were invoked for generation.</p>
 
 <h3>The day's triggers</h3>
 <table>
@@ -61,7 +61,8 @@
 <tbody>
 <tr><td>Manual (workflow_dispatch)</td><td>2026-09-01T08:05:27Z</td><td>+0 min</td><td>success</td></tr>
 <tr><td>Manual (workflow_dispatch)</td><td>2026-09-01T09:05:27Z</td><td>+0 min</td><td>success</td></tr>
-<tr><td>Manual (workflow_dispatch)</td><td>2026-09-01T10:05:27Z</td><td>+0 min</td><td>in_progress</td></tr>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-01T10:05:27Z</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific)</td><td>2026-09-01T15:26:25Z</td><td>+321 min</td><td>in_progress</td></tr>
 </tbody>
 </table>
 

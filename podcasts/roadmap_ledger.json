@@ -200,6 +200,32 @@
         "2026-08-31"
       ],
       "last_seen": "2026-08-31"
+    },
+    {
+      "id": "gemini-tts-timeout-pattern-blocks-multi-speaker-render",
+      "title": "Gemini multi-speaker TTS has timed out three times in two days, forcing provider fallback mid-episode.",
+      "detail": "On 2026-09-01, the news section hit a 120-second read timeout on Gemini's generativelanguage.googleapis.com endpoint during multi-speaker synthesis. Two canary checks against the same model failed at 45 seconds earlier that morning. The pipeline fell back to OpenAI for the remaining sections and credits, creating an audible voice delivery inconsistency (Casey-to-Riley ratio 0.68 across the whole episode but synthesized on different providers for different segments). Check whether Gemini's multi-speaker quota or rate limit is exhausted, confirm the project's tier and spend cap status via the Gemini console, and either increase the timeout threshold with exponential backoff for retries, or switch multi-speaker sections to OpenAI by default if Gemini's quota is not recoverable.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-01",
+      "seen": [
+        "2026-09-01"
+      ],
+      "last_seen": "2026-09-01"
+    },
+    {
+      "id": "brave-body-backfill-budget-exhaustion-culls-articles",
+      "title": "Brave Answers body-backfill budget of 12 calls was exhausted, causing 48 roundup articles to be dropped instead of scripted.",
+      "detail": "The pipeline allocates 12 API calls to enrich thin article summaries via Brave's web search, making them narrative-ready for the script. Once the budget ran dry during this run on 2026-09-01, the remaining articles with stub bodies were culled rather than included as sparse entries. This created a 48-story gap between source volume and what shaped the final episode, introducing selection bias toward the deepest-coverage pieces. Raise the backfill budget, meter it per-article-length to preserve more thin stories, or implement a second-pass fallback that scripts stub bodies without enrichment rather than dropping them.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-01",
+      "seen": [
+        "2026-09-01"
+      ],
+      "last_seen": "2026-09-01"
     }
   ],
   "updated": "2026-09-01"
