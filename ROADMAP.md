@@ -39,7 +39,7 @@ cannot reopen it. Anything written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-01) — 11 open.
+_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-02) — 11 open.
 Check a box to close one; it comes back only if the reviews raise it 2 more times._
 
 - [ ] **A credit-balance 400 is not the usage-limit wall, and every run pays for that.**
@@ -110,7 +110,7 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       or that deep dive sources need different handling. Inspect the citation-matching function
       for whether it uses story depth or source type to vary its strategy, and run a test batch
       of deep dives against the current matching logic to confirm whether this is systematic or
-      noise. (seen in 3 reviews, latest 2026-08-31)
+      noise. (seen in 4 reviews, latest 2026-09-02)
 - [ ] **Gemini project spend cap was reached mid-run, forcing a fallback to OpenAI for the
       entire episode's text-to-speech.** On 2026-08-30, the render/gemini-canary segment
       degraded because the Gemini project spend cap had been reached. The pipeline fell back to

@@ -165,14 +165,15 @@
       "detail": "On 2026-08-28, the roundup matched 13 of 15 citations (87%), but the deep dive section matched only 2 of 3 (67%). Both figures are from the same run and the same citation alignment logic. The data does not name which deep dive source failed to align. The gap suggests the matching logic may not scale from brief news stories to longer-form analysis, or that deep dive sources need different handling. Inspect the citation-matching function for whether it uses story depth or source type to vary its strategy, and run a test batch of deep dives against the current matching logic to confirm whether this is systematic or noise.",
       "source": "review",
       "status": "open",
-      "occurrences": 3,
+      "occurrences": 4,
       "first_seen": "2026-08-28",
       "seen": [
         "2026-08-28",
         "2026-08-30",
-        "2026-08-31"
+        "2026-08-31",
+        "2026-09-02"
       ],
-      "last_seen": "2026-08-31"
+      "last_seen": "2026-09-02"
     },
     {
       "id": "roundup-story-order-drift-persists-after-repair",
@@ -226,7 +227,33 @@
         "2026-09-01"
       ],
       "last_seen": "2026-09-01"
+    },
+    {
+      "id": "script-expansion-request-produced-net-word-loss",
+      "title": "Script expansion request produced net word loss instead of growth.",
+      "detail": "On 2026-09-02, the first draft arrived at 2,986 words against a 3,400-word target. The pipeline issued an expand pass, expecting the script to grow toward target. The shipped script measured 2,871 words—114 words shorter than the first draft. Either the expand prompt failed to add content, or trimming removed more than expansion added. Audit the expand pass logic in the script generation phase and verify the prompt is requesting additive changes without downstream cuts.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-02",
+      "seen": [
+        "2026-09-02"
+      ],
+      "last_seen": "2026-09-02"
+    },
+    {
+      "id": "brave-body-budget-hit-55-article-drop",
+      "title": "Brave body-backfill exhaustion dropped 55 roundup articles from the episode.",
+      "detail": "The pipeline spent its 12 Brave Search calls on body backfill and exhausted the budget mid-run on 2026-09-02. Fifty-five articles were dropped instead of scripted; the deep dives survived at 3 pieces. The remaining thin articles kept stub bodies, creating sparse segments. This is the same budget-exhaustion pattern as 2026-08-30. Increase the Brave call budget, prioritize articles by quality score before backfill, or implement a staged fallback that scripts stubs at reduced length rather than dropping articles entirely.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-02",
+      "seen": [
+        "2026-09-02"
+      ],
+      "last_seen": "2026-09-02"
     }
   ],
-  "updated": "2026-09-01"
+  "updated": "2026-09-02"
 }
