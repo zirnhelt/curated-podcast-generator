@@ -5,37 +5,43 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Wed, 02 Sep 2026 10:06:05 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 02 Sep 2026 15:02:57 +0000</lastBuildDate>
     <item>
       <title>Episode Review — Cariboo Signals, September 2, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-02.html</link>
       <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-02.html</guid>
-      <pubDate>Wed, 02 Sep 2026 10:06:05 +0000</pubDate>
+      <pubDate>Wed, 02 Sep 2026 15:02:57 +0000</pubDate>
       <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/33606878277"&gt;33606878277&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h3&gt;Gemini TTS failed; OpenAI finished the episode&lt;/h3&gt;
+&lt;h3&gt;Gemini TTS failed twice; the pipeline fell back to OpenAI for most of the episode&lt;/h3&gt;
 
-&lt;p&gt;The Gemini 3.1 Flash text-to-speech preview canary failed twice with read timeouts (45s) on the same host. The pipeline fell back to OpenAI for all remaining sections and credits after the preamble failed to render. The episode shipped on time with no audio dropped—the fallback held.&lt;/p&gt;
+&lt;p&gt;The Gemini 3.1 Flash text-to-speech preview model timed out on the preamble section during canary testing. Both attempts hit a 45-second read timeout at generativelanguage.googleapis.com. The pipeline caught the failure and re-rendered the preamble plus all remaining sections and credits on OpenAI instead.&lt;/p&gt;
 
-&lt;h3&gt;Brave's article-body budget exhausted early&lt;/h3&gt;
+&lt;p&gt;This is a clean fallback. The listener hears a complete episode with no gaps. What changed: Casey's voice carries 0.89 of Riley's screen time instead of a split designed around Gemini's multi-speaker capability. The episode shipped as planned, but not as architected.&lt;/p&gt;
 
-&lt;p&gt;The pipeline spent its 12 Brave Search calls backfilling article bodies and ran dry. The remaining thin articles kept stub bodies instead of full text, creating sparse segments that may be cut entirely. This affected script content without a fallback tier. Fifty-five articles dropped from the roundup; the deep dives survived at 3 pieces.&lt;/p&gt;
+&lt;h3&gt;Brave ran out of budget mid-roundup; thin articles lost their bodies&lt;/h3&gt;
 
-&lt;h3&gt;Citation alignment split between formats&lt;/h3&gt;
+&lt;p&gt;The pipeline made 12 Brave API calls to backfill article summaries before exhausting its allocation. Twenty-two articles that remained in the roundup kept only stub bodies. The system logged this once but repeated the note 22 times in the degradation list—one budget event with a cascading effect, not 22 separate failures.&lt;/p&gt;
 
-&lt;p&gt;The roundup matched 14 of 15 citations. The deep dives matched 0 of 3. The pipeline pulls deep dives from TechRadar headlines without backfill bodies—no secondary text to align against. The roundup's higher match rate reflects the availability of fuller source material after body retrieval, but the deep dive format leaves citations unverified.&lt;/p&gt;
+&lt;p&gt;The roundup still shipped 55 articles dropped and three deep dives included. Citation alignment tells part of the story: 14 of 15 roundup citations matched their sources, but zero of three deep-dive citations did. The deep dives came from TechRadar but carried no body text to verify against.&lt;/p&gt;
 
-&lt;h3&gt;Script expanded and shipped under target&lt;/h3&gt;
+&lt;h3&gt;Script came in short, expanded once, and landed 115 words under target&lt;/h3&gt;
 
-&lt;p&gt;The first draft arrived at 2,986 words against a 3,400-word target. The pipeline sent it back for an expand pass. The final shipped script landed at 2,871 words—114 words below the first draft. The expansion request did not add net length. The script ran 17.8 minutes of audio.&lt;/p&gt;
+&lt;p&gt;The first draft reached 2,986 words against a 3,400-word target. The expand pass ran. The shipped script is 2,871 words—29 words shorter than the first draft and 529 words short of target. The label states that quality.script_words is what ran through audio synthesis, so this is the episode that aired.&lt;/p&gt;
 
-&lt;h3&gt;AI pattern detection and voice balance&lt;/h3&gt;
+&lt;p&gt;The AI tell-pattern filter flagged 2 instances in the final script. The audio runs 17.8 minutes and the video 17.8 minutes, matching exactly.&lt;/p&gt;
 
-&lt;p&gt;Quality checks found 2 hits on the "tell, don't show" pattern in the script. Casey spoke 11% more than Riley (0.89 ratio). Both metrics fell within acceptable range. Neither triggered rewrites.&lt;/p&gt;
+&lt;h3&gt;Manual triggers ran fast; a fallback job five hours late sat pending&lt;/h3&gt;
 
-&lt;h3&gt;Production spend and artifact sizes&lt;/h3&gt;
+&lt;p&gt;Three manual workflow dispatches completed cleanly between 08:05 and 10:09 UTC on September 2nd. The fourth run, a fallback trigger labeled "Fallback 2 (3:05 AM Pacific)," launched at 15:02 UTC—297 minutes behind schedule—and remained in-progress at the time this review was written.&lt;/p&gt;
 
-&lt;p&gt;The run burned 93,492 Anthropic input tokens across 8 Claude calls and 2 Brave Search calls. Audio rendered to 16.3 MB over 17.8 minutes. Video rendered to 50.4 MB over the same duration. Episode 218 shipped to RSS.&lt;/p&gt;
+&lt;h3&gt;Debate prompt centered on self-sufficiency versus institutional channels for security&lt;/h3&gt;
+
+&lt;p&gt;The episode framed the question: should households and small businesses build their own technical defenses or rely on networks and formal channels? The debate anchored three deep dives on Geekom mini-PC malware, dead-site exploitation, and Google passkey theft.&lt;/p&gt;
+
+&lt;h3&gt;Compute and media summary&lt;/h3&gt;
+
+&lt;p&gt;93,492 Claude input tokens across 8 API calls plus 2 Brave-Answers calls. Episode 218 in the RSS feed. Final audio is 16.3 MB, video is 50.4 MB. Total wall time for script generation and audio rendering: 818 seconds and 632 seconds respectively.&lt;/p&gt;
 
 &lt;h3&gt;The day's triggers&lt;/h3&gt;
 &lt;table&gt;
@@ -43,7 +49,8 @@
 &lt;tbody&gt;
 &lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-02T08:05:27Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-02T09:05:27Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-02T10:05:27Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-02T10:05:27Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-09-02T15:02:16Z&lt;/td&gt;&lt;td&gt;+297 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 

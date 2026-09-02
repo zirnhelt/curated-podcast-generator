@@ -207,13 +207,14 @@
       "title": "Gemini multi-speaker TTS has timed out three times in two days, forcing provider fallback mid-episode.",
       "detail": "On 2026-09-01, the news section hit a 120-second read timeout on Gemini's generativelanguage.googleapis.com endpoint during multi-speaker synthesis. Two canary checks against the same model failed at 45 seconds earlier that morning. The pipeline fell back to OpenAI for the remaining sections and credits, creating an audible voice delivery inconsistency (Casey-to-Riley ratio 0.68 across the whole episode but synthesized on different providers for different segments). Check whether Gemini's multi-speaker quota or rate limit is exhausted, confirm the project's tier and spend cap status via the Gemini console, and either increase the timeout threshold with exponential backoff for retries, or switch multi-speaker sections to OpenAI by default if Gemini's quota is not recoverable.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-09-01",
       "seen": [
-        "2026-09-01"
+        "2026-09-01",
+        "2026-09-02"
       ],
-      "last_seen": "2026-09-01"
+      "last_seen": "2026-09-02"
     },
     {
       "id": "brave-body-backfill-budget-exhaustion-culls-articles",
