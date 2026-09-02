@@ -1,24 +1,4 @@
 {
-  "2026-07-28": {
-    "timestamp": 1785236176.382176,
-    "topics": [
-      "[The Northern Miner] U.S. defence push hits China minerals s",
-      "[Noahpinion] Roundup #85: Most policy is also industrial pol",
-      "[Tom's Hardware] 'It sounds like someone set up a vacuum, li",
-      "[TechCrunch] Thea Energy lands $20M federal grant to build i",
-      "[The Northern Miner] Quebec puts Troilus on permit fast trac",
-      "[Williams Lake Tribune] B.C. begins 6-week engagement on ALR",
-      "[New Atlas] 1.7 million planned satellites to have \u2018devastat",
-      "Canfax cattle market report"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption"
-    ],
-    "date": "2026-07-28",
-    "focus": "forestry",
-    "focus_name": "Forestry & Timber"
-  },
   "2026-07-29": {
     "timestamp": 1785322773.765506,
     "topics": [
@@ -750,5 +730,25 @@
     "date": "2026-09-01",
     "focus": "mining-energy",
     "focus_name": "Mining & Energy"
+  },
+  "2026-09-02": {
+    "timestamp": 1788337250.050419,
+    "topics": [
+      "[My Cariboo Now] Municipal elections nominations now open ac",
+      "[My Cariboo Now] Errors in B.C. budget leave $1.5B hole in B",
+      "[Quesnel Cariboo Observer] Truck rollover closes Highway 97 ",
+      "[Williams Lake Tribune] B.C. MLA says RCMP to interview him ",
+      "[Kagi Small Web] SwarmWorld: Stigmergic technological evolut",
+      "[TechRadar] Geekom reveals multiple mini-PCs may be infected",
+      "[TechRadar] Even dead websites aren't safe \u2014 experts warn ha",
+      "[TechRadar] This new malware can use Google passkeys even af"
+    ],
+    "themes": [
+      "rural development",
+      "Indigenous tech"
+    ],
+    "date": "2026-09-02",
+    "focus": "digital-life-security",
+    "focus_name": "Digital Life & Security"
   }
 }

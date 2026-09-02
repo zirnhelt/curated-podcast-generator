@@ -1,0 +1,365 @@
+{
+  "episode": {
+    "date": "2026-09-02",
+    "formatted_date": "Wednesday, September 02, 2026",
+    "theme": "Repair Culture & Practical Tech",
+    "title": "Cariboo Signals - Repair Culture & Practical Tech",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Repair Culture & Practical Tech.</p><p><b>THIS WEEK WE'RE ASKING:</b> Is it better to be self-sufficient or well-connected?</p><p><b>NEWS ROUNDUP:</b> We break down [My Cariboo Now] Municipal elections nominations now open across the Cariboo and [My Cariboo Now] Errors in B.C. budget leave $1.5B hole in B.C.’s natural gas revenue forecast, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Should households and small businesses prioritize self-sufficient technical skills or rely on well-connected networks and institutional channels to stay secure against malware and security threats? Topics include: Geekom malware incident and repair culture response, Expired domain exploitation by threat actors and trust signals, Passkey security vulnerabilities and credential system limitations, Infrastructure gaps between urban and rural security information access, Local computer repair shops as informal security intelligence nodes, Educational programs like SD27 trades training as long-term capacity building.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://sd27.bc.ca\">School District 27 (Cariboo-Chilcotin)</a></p><p><b>Sources discussed:</b></p><ul><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/315985/news/elections/municipal-elections-nominations-now-open-across-the-cariboo/\">[My Cariboo Now] Municipal elections nominations now open ac...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/315993/news/energy-utilities/errors-in-b-c-budget-leave-1-5b-hole-in-b-c-s-natural-gas-revenue-forecast/\">[My Cariboo Now] Errors in B.C. budget leave $1.5B hole in B...</a></li><li>Laisa Conde (Quesnel Cariboo Observer): <a href=\"https://quesnelobserver.com/2026/09/01/truck-rollover-closes-highway-97-between-quesnel-and-hixon/\">[Quesnel Cariboo Observer] Truck rollover closes Highway 97 ...</a></li><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/09/01/b-c-mla-says-rcmp-to-interview-him-over-conservative-leader-allegations/\">[Williams Lake Tribune] B.C. MLA says RCMP to interview him ...</a></li><li>Kagi Small Web: <a href=\"http://www.downes.ca/post/79717/rd\">[Kagi Small Web] SwarmWorld: Stigmergic technological evolut...</a></li><li>Josef Průša (Prusa Blog): <a href=\"https://blog.prusa3d.com/prusaslicer-3-0-preview-built-for-the-future-of-3d-printing_137672/\">[Prusa Blog] PrusaSlicer 3.0 Preview – Built for the Future ...</a></li><li>Adafruit Blog: <a href=\"https://blog.adafruit.com/2026/09/01/hacking-ikea-furniture/\">[Adafruit Blog] Hacking IKEA furniture</a></li><li>Adafruit Blog: <a href=\"https://blog.adafruit.com/2026/09/01/adventures-in-microcontroller-circuit-debugging/\">[Adafruit Blog] Adventures in microcontroller circuit debugg...</a></li><li>Business Insider: <a href=\"https://www.businessinsider.com/mortgage-rates-housing-market-real-estate-home-prices-economy-2026-9\">[Business Insider] Mortgage rates are rising, and nobody is ...</a></li><li>Hackster News: <a href=\"https://www.hackster.io/news/a-film-free-instant-camera-powered-by-e-ink-cartridges-cf27a34499c4\">[Hackster News] A Film-Free Instant Camera Powered by E Ink ...</a></li><li>Adafruit Blog: <a href=\"https://blog.adafruit.com/2026/09/01/building-a-solar-powered-e-reader/\">[Adafruit Blog] Building a Solar Powered E-Reader</a></li><li>Fast Company: <a href=\"https://www.fastcompany.com/91598011/governors-who-courted-ai-data-centers-are-now-trying-to-rein-them-in\">[Fast Company] Governors who courted AI data centers are now...</a></li><li>Caitlin Dewey (Vox): <a href=\"https://www.vox.com/today-explained-newsletter/501557/mail-in-voting\">[Vox] The plot to disrupt mail-in voting</a></li><li>Hackster News: <a href=\"https://www.hackster.io/news/this-beautiful-6502-toggle-computer-was-built-with-a-makera-z1-41273c5dca22\">[Hackster News] This Beautiful 6502 Toggle Computer Was Buil...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Samantha Michaels (Mother Jones): <a href=\"https://www.motherjones.com/politics/2026/09/brennan-center-report-federal-judges-terrified-harassment-threats-violence-donald-trump-hateful-rhetoric/\">[Mother Jones] Politicians’ Reckless Rhetoric Is Putting Fed...</a></li><li>https://www.techradar.com/author/benedict-collins (TechRadar): <a href=\"https://www.techradar.com/pro/security/geekom-reveals-multiple-mini-pcs-may-be-infected-with-malware-hidden-in-a-network-driver-but-its-now-down-to-you-to-fix-your-pc\">[TechRadar] Geekom reveals multiple mini-PCs may be infected...</a></li><li>https://www.techradar.com/author/rahim-amir (TechRadar): <a href=\"https://www.techradar.com/pro/security/even-dead-websites-arent-safe-experts-warn-hackers-are-spending-millions-on-expired-domains-to-enable-malware-scams\">[TechRadar] Even dead websites aren't safe — experts warn ha...</a></li><li>https://www.techradar.com/author/sead-fadilpai (TechRadar): <a href=\"https://www.techradar.com/pro/security/this-new-malware-can-use-google-passkeys-even-after-a-victim-resets-their-password\">[TechRadar] This new malware can use Google passkeys even af...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-opus-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-09-02T01:20:47.336805-07:00",
+    "models": {
+      "script": "claude-sonnet-5",
+      "review": "claude-opus-5",
+      "summary": "claude-haiku-4-5"
+    },
+    "quality": {
+      "word_count": 2871,
+      "voice_ratio_casey_riley": 0.89,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 2,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 3,
+        "roundup_seam": 0,
+        "thats_closer": 0,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 2,
+      "rhythm": {
+        "em_dashes_per_1k": 8.0,
+        "short_turns": 17,
+        "turns": 81,
+        "avg_turn_words": 33.9,
+        "antithesis_hits": 0,
+        "over_budget": []
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    },
+    "anchor": {
+      "id": "self-sufficient-or-connected",
+      "question": "Is it better to be self-sufficient or well-connected?"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[My Cariboo Now] Municipal elections nominations now open across the Cariboo",
+          "url": "https://www.mycariboonow.com/315985/news/elections/municipal-elections-nominations-now-open-across-the-cariboo/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 78,
+          "date_published": "2026-09-01T23:14:33+00:00",
+          "summary": "Nomination Packages are now available for those who are wishing to run for local office. The packages are available at the Quesnel, Williams Lake, and District of 100 Mile House respective city halls....",
+          "discussed": true,
+          "mention_offset_frac": 0.0224
+        },
+        {
+          "title": "[My Cariboo Now] Errors in B.C. budget leave $1.5B hole in B.C.’s natural gas revenue forecast",
+          "url": "https://www.mycariboonow.com/315993/news/energy-utilities/errors-in-b-c-budget-leave-1-5b-hole-in-b-c-s-natural-gas-revenue-forecast/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 74,
+          "date_published": "2026-09-02T00:03:07+00:00",
+          "summary": "British Columbia overstated its projected natural gas royalty revenues by about $1.5 billion over five years because of calculation errors. The post Errors in B.C. budget leave $1.5B hole in B.C.’s na...",
+          "discussed": true,
+          "mention_offset_frac": 0.0912
+        },
+        {
+          "title": "[Quesnel Cariboo Observer] Truck rollover closes Highway 97 between Quesnel and Hixon",
+          "url": "https://quesnelobserver.com/2026/09/01/truck-rollover-closes-highway-97-between-quesnel-and-hixon/",
+          "source": "Quesnel Cariboo Observer",
+          "author": "Laisa Conde",
+          "ai_score": 70,
+          "date_published": "2026-09-01T22:12:51+00:00",
+          "summary": "The rollover occurred Tuesday, Sept. 1, afternoon",
+          "discussed": true,
+          "mention_offset_frac": 0.152
+        },
+        {
+          "title": "[Williams Lake Tribune] B.C. MLA says RCMP to interview him over Conservative leader allegations",
+          "url": "https://wltribune.com/2026/09/01/b-c-mla-says-rcmp-to-interview-him-over-conservative-leader-allegations/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 62,
+          "date_published": "2026-09-02T03:12:45+00:00",
+          "summary": "## B.C. MLA says RCMP to interview him over Conservative leader allegations Published 8:12 pm Tuesday, September 1, 2026 **By Mark Page/Black Press** B.C. Conservative Leader Kerry-Lynne Findlay in th...",
+          "discussed": true,
+          "mention_offset_frac": 0.1992
+        },
+        {
+          "title": "[Kagi Small Web] SwarmWorld: Stigmergic technological evolution in societies of language-model agents",
+          "url": "http://www.downes.ca/post/79717/rd",
+          "source": "Kagi Small Web",
+          "author": "",
+          "ai_score": 47,
+          "date_published": "2026-08-31T11:37:00+00:00",
+          "summary": "Subhadeep Pal , Fiona Y. Wang , Markus J. Buehler , arXiv , Aug 31, 2026 Really interesting paper ( 57 page PDF ) that compares how well differently organized agents work together in a shared communic...",
+          "discussed": true,
+          "mention_offset_frac": 0.2679
+        },
+        {
+          "title": "[Business Insider] Mortgage rates are rising, and nobody is moving: 10 stats illustrate the state of the US housing market",
+          "url": "https://www.businessinsider.com/mortgage-rates-housing-market-real-estate-home-prices-economy-2026-9",
+          "source": "Business Insider",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-09-01T19:27:54+00:00",
+          "summary": "The housing market has been stuck in low gear since the buying spree of the pandemic. Apollo's top economist shows why that's not likely to change soon.",
+          "discussed": true,
+          "mention_offset_frac": 0.3518
+        },
+        {
+          "title": "[Adafruit Blog] Building a Solar Powered E-Reader",
+          "url": "https://blog.adafruit.com/2026/09/01/building-a-solar-powered-e-reader/",
+          "source": "Adafruit Blog",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-09-01T14:16:44+00:00",
+          "summary": "Pink Propeller made a pocket sized solar powered ESP32-C3 e-reader. Check out the build video on YouTube and the project on GitHub. Check out the Adafruit Learning System to learn how to run CircuitPy...",
+          "discussed": true,
+          "mention_offset_frac": 0.3594
+        },
+        {
+          "title": "[Prusa Blog] PrusaSlicer 3.0 Preview – Built for the Future of 3D Printing",
+          "url": "https://blog.prusa3d.com/prusaslicer-3-0-preview-built-for-the-future-of-3d-printing_137672/",
+          "source": "Prusa Blog",
+          "author": "Josef Průša",
+          "ai_score": 63,
+          "date_published": "2026-09-01T08:00:21+00:00",
+          "summary": "We’ve been putting a lot of work into making our printers easier to use and output the most accurate prints with just a click of a button. Better hardware, better firmware, less setup and less babysit...",
+          "discussed": true,
+          "mention_offset_frac": 0.3992
+        },
+        {
+          "title": "[Adafruit Blog] Hacking IKEA furniture",
+          "url": "https://blog.adafruit.com/2026/09/01/hacking-ikea-furniture/",
+          "source": "Adafruit Blog",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-09-01T14:03:38+00:00",
+          "summary": "Wanting a workbench that had the practicality of a shop surface but the look of living room furniture, a maker documented turning IKEA Kallax shelving units into a pair of sturdy office workbenches. C...",
+          "discussed": true,
+          "mention_offset_frac": 0.471
+        },
+        {
+          "title": "[Adafruit Blog] Adventures in microcontroller circuit debugging",
+          "url": "https://blog.adafruit.com/2026/09/01/adventures-in-microcontroller-circuit-debugging/",
+          "source": "Adafruit Blog",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-09-01T14:36:45+00:00",
+          "summary": "Debugging a microcontroller board that refuses to run can be a long road, and Steve at Big Mess o’ Wires recently documented one such journey with a batch of Floppy Emu disk emulators that failed QA a...",
+          "discussed": true,
+          "mention_offset_frac": 0.5212
+        },
+        {
+          "title": "[Hackster News] A Film-Free Instant Camera Powered by E Ink Cartridges",
+          "url": "https://www.hackster.io/news/a-film-free-instant-camera-powered-by-e-ink-cartridges-cf27a34499c4",
+          "source": "Hackster News",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-08-31T11:57:05+00:00",
+          "summary": "Maker Strange Inventions built a DIY instant camera using reusable, 3D-printed E Ink cartridges instead of expensive disposable film.",
+          "discussed": true,
+          "mention_offset_frac": 0.6643
+        },
+        {
+          "title": "[Hackster News] This Beautiful 6502 Toggle Computer Was Built with a Makera Z1",
+          "url": "https://www.hackster.io/news/this-beautiful-6502-toggle-computer-was-built-with-a-makera-z1-41273c5dca22",
+          "source": "Hackster News",
+          "author": "",
+          "ai_score": 52,
+          "date_published": "2026-09-01T20:15:12+00:00",
+          "summary": "Anders Nielsen wanted to experience toggle switch history, so he built his own beautiful 6502-based handheld computer using a Makera Z1.",
+          "discussed": true,
+          "mention_offset_frac": 0.6774
+        },
+        {
+          "title": "[Fast Company] Governors who courted AI data centers are now trying to rein them in",
+          "url": "https://www.fastcompany.com/91598011/governors-who-courted-ai-data-centers-are-now-trying-to-rein-them-in",
+          "source": "Fast Company",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-08-31T10:00:00+00:00",
+          "summary": "AI may be booming, but the infrastructure powering it has become a political liability . For years, governors competed to lure data centers with tax breaks, expedited permitting, and promises of jobs ...",
+          "discussed": true,
+          "mention_offset_frac": 0.7537
+        },
+        {
+          "title": "[Vox] The plot to disrupt mail-in voting",
+          "url": "https://www.vox.com/today-explained-newsletter/501557/mail-in-voting",
+          "source": "Vox",
+          "author": "Caitlin Dewey",
+          "ai_score": 52,
+          "date_published": "2026-09-01T21:10:00+00:00",
+          "summary": "This story appeared in Today, Explained, a daily newsletter that helps you understand the most compelling news and stories of the day. Subscribe here. It took the US government two years to roll out H...",
+          "discussed": true,
+          "mention_offset_frac": 0.8003
+        },
+        {
+          "title": "[Mother Jones] Politicians’ Reckless Rhetoric Is Putting Federal Judges in Danger",
+          "url": "https://www.motherjones.com/politics/2026/09/brennan-center-report-federal-judges-terrified-harassment-threats-violence-donald-trump-hateful-rhetoric/",
+          "source": "Mother Jones",
+          "author": "Samantha Michaels",
+          "ai_score": 69,
+          "date_published": "2026-09-01T11:30:00+00:00",
+          "summary": "One judge had to build a safe room at home. Others were so scared they wouldn’t let their children play outside; another stopped grocery shopping and couldn’t attend his grandchild’s recital because o...",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Repair Culture & Practical Tech",
+      "articles": [
+        {
+          "title": "[TechRadar] Geekom reveals multiple mini-PCs may be infected with malware hidden in a network driver — but it's now down to you to fix your PC",
+          "url": "https://www.techradar.com/pro/security/geekom-reveals-multiple-mini-pcs-may-be-infected-with-malware-hidden-in-a-network-driver-but-its-now-down-to-you-to-fix-your-pc",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/benedict-collins",
+          "ai_score": 60,
+          "date_published": "2026-08-18T15:05:00+00:00",
+          "summary": "A malicious executable hidden within a LAN driver can track keystrokes, intercept data, and swipe passwords from Geekom mini-PCs.",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] Even dead websites aren't safe — experts warn hackers are spending millions on expired domains to enable malware scams",
+          "url": "https://www.techradar.com/pro/security/even-dead-websites-arent-safe-experts-warn-hackers-are-spending-millions-on-expired-domains-to-enable-malware-scams",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/rahim-amir",
+          "ai_score": 53,
+          "date_published": "2026-08-21T18:20:00+00:00",
+          "summary": "Roughly 65,000 expired domains change hands every day, and researchers have found one crime group spending an estimated $7 million on them to inherit the trust that comes attached to them.",
+          "discussed": false
+        },
+        {
+          "title": "[TechRadar] This new malware can use Google passkeys even after a victim resets their password",
+          "url": "https://www.techradar.com/pro/security/this-new-malware-can-use-google-passkeys-even-after-a-victim-resets-their-password",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/sead-fadilpai",
+          "ai_score": 61,
+          "date_published": "2026-08-21T15:05:00+00:00",
+          "summary": "A newly discovered toolkit can deeply compromise Gmail, Microsoft, Apple, and LinkedIn accounts",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Should households and small businesses prioritize self-sufficient technical skills or rely on well-connected networks and institutional channels to stay secure against malware and security threats?",
+        "riley_position": "Neither self-sufficiency nor institutional trust works alone; security requires both individual competence and community-level intelligence networks feeding information back and forth across multiple nodes.",
+        "riley_key_evidence": [
+          "Geekom's malware fix was caught quickly because engaged users in the company's support ecosystem flagged the compromised driver file before it spread",
+          "Threat actor schemes like Sable Squirrel buying 10,000 expired domains (costing $7M) are only discovered through researchers pooling intelligence across thousands of sightings at once",
+          "Passkey vulnerabilities still require clean devices first—the maintenance burden never disappears, it just gets reframed"
+        ],
+        "casey_position": "Rural communities lack access to network-level threat intelligence that urban areas receive through institutional channels; the actual gap is not funding but a structural wiring problem of who serves as the local information node.",
+        "casey_key_evidence": [
+          "A small business in Wells running budget hardware doesn't have in-house IT to check signatures daily, making them dependent on whoever runs the local repair shop",
+          "Geekom's official support page was itself the compromised source—the trusted channel became the vector",
+          "Passkeys were marketed as a fix-it-once solution that removes user vigilance, but no credential system actually achieves that"
+        ],
+        "resolution": "Riley and Casey agreed that individual skills and network-level intelligence are complementary layers rather than competing options, and identified a concrete local solution: a regional one-page monthly bulletin distributed through existing business associations to surface current threats and fixes without formal funding.",
+        "topics_covered": [
+          "Geekom malware incident and repair culture response",
+          "Expired domain exploitation by threat actors and trust signals",
+          "Passkey security vulnerabilities and credential system limitations",
+          "Infrastructure gaps between urban and rural security information access",
+          "Local computer repair shops as informal security intelligence nodes",
+          "Educational programs like SD27 trades training as long-term capacity building"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 14,
+          "conditions": "partly cloudy",
+          "high": 20,
+          "low": 11
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 12,
+          "conditions": "mainly clear",
+          "high": 20,
+          "low": 10
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 13,
+          "conditions": "partly cloudy",
+          "high": 23,
+          "low": 10
+        },
+        {
+          "name": "Quesnel",
+          "temp": 14,
+          "conditions": "partly cloudy",
+          "high": 22,
+          "low": 11
+        },
+        {
+          "name": "Tatla Lake",
+          "temp": 10,
+          "conditions": "overcast",
+          "high": 20,
+          "low": 8
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "School District 27 (Cariboo-Chilcotin)",
+      "description": "Public school district serving Williams Lake, 100 Mile House, and surrounding Cariboo communities with innovative rural education programs",
+      "website": "sd27.bc.ca",
+      "psa_angle": "It's back to school across SD27. School District 27 serves students from Williams Lake to Anahim Lake — with innovative programs in trades, outdoor education, and Indigenous language instruction.",
+      "event_name": "Back to school season"
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_azure": "Azure Neural TTS",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  }
+}
