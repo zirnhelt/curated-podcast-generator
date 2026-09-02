@@ -1,0 +1,177 @@
+# Cariboo Signals Podcast Script - 2026-09-02
+# Theme: Repair Culture & Practical Tech
+# Brave: yes
+# Weather: yes
+# Anchor: Is it better to be self-sufficient or well-connected?
+# Generated: 2026-09-02 01:20:50 PDT
+
+**COLD OPEN**
+**RILEY:** Hey, welcome back. On today's episode — Geekom finds malware hiding in its own support page, a threat group called Sable Squirrel spends seven million dollars buying up expired domains, and passkeys turn out to have a crack in them after all. Plus the Deep Dive question: should your household be self-sufficient, or just well-connected? That and more, coming right up.
+
+**WELCOME**
+
+**RILEY:** Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities — I'm Riley. It's Wednesday, September 2nd, 2026. Broadcasting from the unceded lands of the Secwépemc, Tŝilhqot'in, and Dakelh peoples in the Cariboo. Today's theme is Repair Culture & Practical Tech.
+
+**CASEY:** [pause:1000] And I'm Casey. Today's about the stuff you keep running instead of replacing, and it turns out that idea gets complicated fast once computers are involved.
+
+**RILEY:** Quick weather sweep before we get into it. Out at Horsefly Lake this morning, partly cloudy, around 14 degrees, with a high of 20 and a low of 11. Light drizzle expected through the day, maybe a third chance of it amounting to much.
+
+**CASEY:** Around the region — 100 Mile House sitting near 12 and mainly clear, Williams Lake around 13 with cloud, Quesnel about 14, also cloudy, and Tatla Lake cooler at 10 with overcast skies. Nothing that should keep anyone off the road today.
+
+**RILEY:** Let's get into what's happening.
+
+**NEWS ROUNDUP**
+
+**RILEY:** Four stories close to home this morning, then a long run of maker and repair news. Nomination packages for municipal elections opened yesterday across the Cariboo. Quesnel, Williams Lake, and the District of 100 Mile House all have packages available at their respective city halls, and the process started Tuesday, September 1st. Council seats, mayor's chairs, school board trustees — the whole slate.
+
+**CASEY:** Ten days sounds generous until you're the one lining up the signatures a nomination requires.
+
+**CASEY:** [pause:1200] Up at the provincial level, the B.C. government is explaining a billion-and-a-half-dollar hole in its natural gas royalty forecast. The province overstated projected revenues by that amount over five years, and the explanation on offer is a calculation error. A billion and a half dollars, filed under arithmetic.
+
+**RILEY:** Rural regions tend to feel provincial budget corrections a year or two later, once allocations trickle down.
+
+**RILEY:** [pause:1200] Closer to the ground, literally — a truck rollover closed Highway 97 between Quesnel and Hixon Tuesday afternoon. There's no word yet on injuries, and no confirmed reopening time as of this morning. That stretch carries a lot of commercial traffic.
+
+**CASEY:** If you're driving it today, check DriveBC before you leave rather than finding out at the barricade.
+
+**CASEY:** [pause:1200] Delta South MLA Ian Paton confirmed to Black Press Media that the RCMP has scheduled an interview with him, over allegations involving B.C. Conservative Leader Kerry-Lynne Findlay. That's the extent of what's confirmed. No charges, no findings, and we'll wait for more before saying anything past that.
+
+**RILEY:** [pause:1200] From there we move into a stretch that lines up with today's theme without us having to stretch for it. A research paper making the rounds this week — SwarmWorld, from a team at MIT that includes Markus Buehler — looks at how groups of AI language-model agents build shared knowledge the way ants build a trail, leaving markers behind for each other instead of talking directly. Fifty-some pages, and the finding is that decentralized, marker-based coordination beat centralized command structures across their simulations.
+
+**CASEY:** [soft laugh] Ants figured that out a while before the AI labs did.
+
+**CASEY:** [pause:1200] Different register: Mother Jones is reporting that political rhetoric aimed at judges in the United States has escalated to the point where some are building safe rooms in their own homes. Some won't let their kids play outside. One judge described skipping a grandchild's recital out of fear of who might be watching. No single incident driving it, just an accumulated climate of threat.
+
+**RILEY:** [pause:1200] Prusa put out a preview of PrusaSlicer 3.0 yesterday. That's the software turning a 3D model into instructions a printer follows layer by layer. The pitch this time is fewer manual settings, better defaults out of the box, and less babysitting a print halfway through a run.
+
+**CASEY:** First generation makes something possible for people willing to fight with it. Second generation just prints the part.
+
+**CASEY:** [pause:1200] Sticking with people building things by hand — Adafruit featured a maker who turned IKEA Kallax shelving into a pair of workbenches. He wanted shop-surface durability with living-room looks, and documented the whole conversion. Custom furniture would have run around a thousand euros a unit.
+
+**RILEY:** Kallax has quietly become a universal chassis. Cat furniture, record storage, now workbenches.
+
+**RILEY:** [pause:1200] Adafruit also ran a debugging story worth sitting with. A hobbyist going by Steve, at a site called Big Mess o' Wires, spent what sounds like days chasing dead microcontroller boards — a batch of disk emulators that failed quality checks. Power supply voltages checked out fine. Reflowing the solder joints changed nothing. A known-good chip from the parts bin didn't help either.
+
+**CASEY:** So what was it?
+
+**RILEY:** A fuse setting on the chip pointing it at the wrong oscillator. Reconfigured to the internal 8 megahertz clock, the boards booted right up.
+
+**CASEY:** Repair work in one sentence. Rarely the dramatic failure. Usually a configuration bit nobody thought to check.
+
+**CASEY:** [pause:1200] Business Insider ran ten stats on the U.S. housing market — mortgage rates climbing, existing homeowners locked into old low rates and refusing to sell, inventory stuck. Apollo's chief economist argues that dynamic isn't shifting soon.
+
+**RILEY:** [pause:1200] Two builds worth putting side by side. Hackster featured a film-free instant camera. Instead of buying disposable film cartridges, the maker built reusable ones using small e-ink displays. Take the photo, it renders on the little cartridge screen, and when you're done, erase it and use it again. In the same spirit, Adafruit posted a pocket-sized solar-powered e-reader running on an ESP32 chip, with the whole design published for anyone to copy.
+
+**CASEY:** No battery replacement cycle dictated by a manufacturer that dropped support five years ago.
+
+**CASEY:** [pause:1200] Out of the U.S., Fast Company reports that governors who spent years competing to attract AI data centers are now trying to rein them in — electricity prices, water use, and permitting all turning into political liabilities.
+
+**RILEY:** A useful precedent to have on hand the next time a similar pitch shows up at a council meeting.
+
+**RILEY:** [pause:1200] Also out of Washington, Vox is reporting on concerns that changes to mail-in ballot processing could disrupt the coming U.S. midterms. Not our election system, but a reminder that a postal sorting facility is where a lot of election integrity quietly lives or dies.
+
+**CASEY:** [pause:1200] Closing out the maker stretch, Hackster featured a handheld computer built around a 6502 processor, the chip family behind a lot of early home computers, machined on a benchtop CNC called the Makera Z1. Toggle switches and all, built purely because the maker wanted to feel what that era was like to operate.
+
+**RILEY:** Forty-year-old architecture kept alive one hand-built unit at a time.
+
+**CASEY:** [pause:900] One more thing before we move on. In a recent episode, we described the Okanagan as "north of us — well, west" while talking about the Forest Task Force story out of Lumby. A listener named Erich wrote in to point out that's backwards. The Okanagan sits south and east of the Cariboo.
+
+**RILEY:** He also flagged something else from that segment. We should have been clearer that Performances in the Park pays its artists and sound technicians, and the organizers are in paid roles, not volunteer positions.
+
+**CASEY:** Geography and who's getting paid for what work are exactly the details worth getting right. Thanks, Erich.
+
+**RILEY:** [pause:500] And on the subject of people learning how things actually work — let's get into something a little warmer.
+
+**COMMUNITY SPOTLIGHT**
+
+**CASEY:** [warmly] It's back to school across School District 27 this week, with students returning from Williams Lake all the way out to Anahim Lake. SD27 runs some distinct programs for a district this size — trades pathways, outdoor education, and Indigenous language instruction woven into the regular school day rather than bolted on as an afterthought. If you've got a kid heading back to class, or you're curious what a rural district can build with limited resources and real ambition behind it, sd27.bc.ca has the details.
+
+**RILEY:** That trades and outdoor-ed pairing is the kind of practical skill-building this region could use more of.
+
+**CASEY:** [pause:500] Which, as it turns out, sets up today's Deep Dive pretty well.
+
+**DEEP DIVE: CARIBOO CONNECTIONS - Repair Culture & Practical Tech**
+
+**RILEY:** Start with the Geekom mess. A budget mini-PC maker discovered malware sitting in a legacy driver download on its own support page — a backdoor called Asruex, hidden inside a LAN network driver installer, capable of logging keystrokes and lifting passwords. And the framing in the coverage was basically: it's on you now to fix your own computer.
+
+**CASEY:** Which sounds like a company walking away from a mess it made.
+
+**RILEY:** The follow-up reporting says otherwise. Geekom pulled the bad file, confirmed the malware was never shipped preinstalled on units — it only lived in that one legacy download — apologized, and published a plain remediation guide. Run a full Windows Security scan, delete the tainted installer, reinstall the driver from Windows Update or Realtek's own page. No recall, no shipping hardware back, no six-week wait for a replacement.
+
+**CASEY:** The fix still assumes the owner knows a support page exists for a mini-PC they bought once and never thought about again. Guidance isn't a fix. It's a quiet transfer of liability from the manufacturer to whoever's least equipped to handle it.
+
+**RILEY:** [pause:400] Weigh it against the alternative, though. A formal recall takes months and costs enough that plenty of companies would rather patch silently and hope nobody notices. This was fast, and it got faster because someone in the user community found the file and flagged it.
+
+**CASEY:** [pause:500] The harder version of that problem is the expired-domain story. Roughly sixty-five thousand domains lapse every single day. One threat group, tracked by researchers as Sable Squirrel, has reportedly spent close to seven million dollars buying more than ten thousand of them.
+
+**RILEY:** To inherit the trust already built in. Backlinks, search ranking, a browser that doesn't flag the site because it's got years of clean history.
+
+**CASEY:** Right. Nobody's attacking the user. They're buying the signal the user was trained to trust. That's a different category than "learn to reinstall a driver." The whole method you use to judge whether something is safe is available for purchase.
+
+**RILEY:** [soft laugh] Seven million dollars and the name Sable Squirrel. Somebody in threat research is having a good time.
+
+**CASEY:** They earn it. The naming convention is the only fun part of that job.
+
+**RILEY:** But the response on the ground doesn't change much. Community detection caught the Geekom file inside the company's own support ecosystem, and the domain problem gets chipped away the same way — checksums, driver-signing verification, forums flagging a bad package before it spreads.
+
+**CASEY:** Which requires the person downloading a driver update to already be someone who checks checksums. That's not the woman running a two-computer bookkeeping office out of Wells.
+
+**RILEY:** [pause:500] Granted.
+
+**CASEY:** [overlap:-100] That was fast.
+
+**RILEY:** Because it's true. Those two problems sit at completely different skill levels. One's a driver reinstall you can walk through in ten minutes. The other requires knowing that a URL having history doesn't mean it's clean today, and nobody picks that up from a thirty-second read.
+
+**CASEY:** And then there's the passkey story, which was supposed to make most of this moot.
+
+**RILEY:** Passkeys were pitched as the end of the password-reset arms race. No password to phish means no password to steal.
+
+**CASEY:** Then researchers documented what's being called the Golden Pass-ta-key attack. Malware pulls Google's thirty-two-byte security domain master key off a compromised device. That key decrypts every synced passkey a person has — Gmail, Microsoft, Apple, LinkedIn, all of it. Researchers identified three separate techniques for doing it. And it survives a password reset, because there was never a password in the loop to reset.
+
+**RILEY:** [pause:400] Notice the precondition, though. The device has to be compromised first. The passkey protocol didn't break. This is malware already living on an infected machine reaching into the key store afterward. The practical lesson is endpoint hygiene, not abandoning passkeys.
+
+**CASEY:** That's the marketing failure in one line. Passkeys were sold as fix-it-once — a technical answer that removes the need for ongoing vigilance. No credential system does that. You still need clean endpoints, current software, careful downloads. The maintenance never goes away. It just gets a shinier name.
+
+**RILEY:** [pause:900] Which puts a question underneath all three stories. Is a household or a small business here better off being self-sufficient, or being well-connected?
+
+**CASEY:** Go on.
+
+**RILEY:** The self-sufficient answer says learn to check a driver signature, run your own scans, don't trust a URL because it's old. Real skills. But nobody catches a ten-thousand-domain operation by being individually careful. That surfaces because research teams pool sightings across thousands of cases at once. That's the connected half doing work no individual can do.
+
+**CASEY:** And the connected half has its own failure mode baked in. Geekom's official support page was the compromised source. The trusted channel was the vector. Being plugged into official channels protects nobody if the channel gets poisoned first.
+
+**RILEY:** Which is why the overlap beats either layer alone. What caught that file quickly was engaged users inside a company's own ecosystem feeding back to the company, then out through tech press within days. Neither node does anything by itself.
+
+**CASEY:** [pause:500] Put that in Cariboo terms, though. None of the three companies in these stories have a support line that's ever heard of Quesnel.
+
+**RILEY:** True. A small operation here running a mini-PC bought off a marketplace listing has no in-house IT checking driver signatures every morning. What it might have is a local computer repair shop. Williams Lake and Quesnel both have a couple, and those shops hear about this stuff through trade channels well before an average owner would.
+
+**CASEY:** So the local infrastructure isn't a subscription or a piece of software. It's whether a business owner has a name and a phone number for someone who reads security advisories for a living.
+
+**RILEY:** That's the connective tissue nobody puts in a press release. One person in Quesnel who fixes computers and happens to read the security press over lunch.
+
+**CASEY:** Which loops back to SD27, oddly enough. If trades and practical tech are already inside the school day there, that's the capacity that eventually becomes "the person who reads the advisories." Community-level digital literacy doesn't come from a vendor's support page. It comes from someone local taught how a machine works underneath, instead of just how to click through its menus.
+
+**RILEY:** [pause:400] That's a longer timeline than anyone wants when the malware's already sitting on the mini-PC in front of them.
+
+**CASEY:** Doesn't make it less true. Short term it's the boring stuff — run the updates, run the scans, know who to call. Long term it's building people who don't have to call anyone.
+
+**RILEY:** [pause:900] So where does that land? Self-sufficient, or connected?
+
+**CASEY:** Depends what you're being self-sufficient about. Run the scan yourself, absolutely. But nobody independently discovers a seven-million-dollar domain-buying operation. That fact only exists because researchers compared notes across companies and countries.
+
+**RILEY:** The individual skill and the network intelligence aren't competing options. They're two layers of one system, and most rural households have real access to only the first.
+
+**CASEY:** Which is the gap worth naming. Not funding. Wiring. Who in a town like Quesnel pulls network-level threat intelligence down into individual-level advice? Right now it's whoever runs the local repair shop, informally, for free, because they like their customers.
+
+**RILEY:** [pause:500] Then the concrete ask is small. A regional business association or Chamber could publish a monthly one-pager: the scam or malware pattern making the rounds, and the single thing to check this month. Whoever's already reading advisories locally could write it in twenty minutes. No grant, no program, no platform.
+
+**CASEY:** A structural fix that costs nothing but somebody's attention. Whether anyone starts it is a separate question, and my honest guess is it lasts three issues unless one stubborn person owns it.
+
+**RILEY:** [warmly] Three issues would still be three more than anyone has now. And if someone in the Cariboo is already running something like it — a shop, a bulletin, a habit that's kept your business clean — tell us how it's holding up. Feedback at cariboo signals dot c-a.
+
+**CASEY:** Or write in to tell us we got the Okanagan backwards again. Same address.
+
+**RILEY:** [soft laugh] We're overdue for a break from geography corrections. Enjoy the middle of your week, Cariboo.
+
+**CASEY:** And check DriveBC before Highway 97.

@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechCrunch] Kyoto Fusioneering starts work on key fusion po",
-      "[TechRadar] Boeing and US Air Force sign deal to build guide",
       "[TechRadar] Huge 66-ft Turkish drones are hunting million-do",
       "[TechRadar] Gemini now lets you turn off the visible waterma",
       "[The Tyee] As AI Data Centre Backlash Builds, What Will Smit",
@@ -10,7 +8,9 @@
       "[WIRED] AI Slop Is Ruining Cute Animals on the Internet",
       "[Hyperallergic] How AIDS Activists Turned Graphic Design Int",
       "[TechCrunch] How AI accounting startup Rillet raised $100M a",
-      "[CBC Arts] Australia bans fully AI-made songs from charts af"
+      "[CBC Arts] Australia bans fully AI-made songs from charts af",
+      "[Kagi Small Web] SwarmWorld: Stigmergic technological evolut",
+      "[TechRadar] Geekom reveals multiple mini-PCs may be infected"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -110,9 +110,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-08-16",
-        "clue": "community-trust:~ \u2014 Added genuine complexity about monitoring decay post-policy",
-        "occurrences": 1
+        "date": "2026-09-02",
+        "clue": "community-trust:~ \u2014 Acknowledges local repair shops as informal infrastructure without funding",
+        "occurrences": 2
       },
       {
         "date": "2026-08-18",
@@ -145,9 +145,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-09-01",
-        "clue": "structural-lens:+ \u2014 Who owns monitoring data, not just agreements",
-        "occurrences": 1
+        "date": "2026-09-02",
+        "clue": "structural-lens:+ \u2014 Moves from individual fixes to systemic gap analysis",
+        "occurrences": 2
       }
     ],
     "core_memories": [
@@ -382,6 +382,16 @@
         "date": "2026-08-30",
         "clue": "structural-lens:+ \u2014 repeatedly distinguished human choice from geology",
         "occurrences": 2
+      },
+      {
+        "date": "2026-09-02",
+        "clue": "pilot-skepticism:+ \u2014 Three-issue lifespan prediction shows learned caution",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-09-02",
+        "clue": "evidence-bar:x \u2014 Concedes passkey endpoint hygiene still requires user vigilance",
+        "occurrences": 1
       }
     ],
     "core_memories": [

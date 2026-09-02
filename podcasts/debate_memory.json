@@ -1,30 +1,4 @@
 {
-  "2026-06-03": {
-    "timestamp": 1780484117.971992,
-    "date": "2026-06-03",
-    "theme": "Gear, Gadgets & Practical Tech",
-    "central_question": "How can communities regain control over technology systems designed to be opaque and dependent, and what role should individual versus collective ownership play in that reclamation?",
-    "riley_position": "Technology ownership and control can be reclaimed through distributed communities building transparent systems (cyberdecks), improved documentation infrastructure, and institutional procurement policies that prioritize local understanding and sovereignty. Infrastructure can be collectively owned while maintaining individual device autonomy.",
-    "riley_key_evidence": [
-      "Cyberdeck communities producing detailed build logs, video walkthroughs, and active Discord servers for troubleshooting, creating resilient distributed knowledge",
-      "3D-printed apartment building in France: twelve social housing units completed in thirty-four days on-site, demonstrating compressed structural fabrication timelines",
-      "Cariboo Regional District successfully coordinated emergency housing response after 2017 and 2021 wildfires, proving institutional capacity for intermunicipal cooperation exists"
-    ],
-    "casey_position": "While the cyberdeck movement and technological solutions are conceptually compelling, significant practical barriers\u2014skill requirements, internet access limitations, equipment costs, and the difficulty of sustaining community infrastructure\u2014make widespread adoption unlikely without addressing underlying coordination and institutional challenges.",
-    "casey_key_evidence": [
-      "Cyberdeck building requires sourcing components, soldering, firmware writing, and simultaneous hardware/software debugging\u2014skill floor is substantial, not achievable in a weekend",
-      "Maker spaces and fab labs typically run successfully for 2-3 years then collapse when the key operator leaves",
-      "Large-format construction printers require specialized operator training and only achieve economic viability with significant printing volume; one building doesn't justify equipment cost"
-    ],
-    "resolution": "Riley and Casey converged on a concrete outcome: a three-question procurement checklist (Can we understand what it collects? Can we repair/replace it if vendor disappears? Does value flow to us or through us?) that institutions could implement immediately, moving from theoretical ownership discussions to actionable policy that neither fully endorses nor rejects the other's position.",
-    "topics_covered": [
-      "Cyberdeck DIY movement as response to surveillance-by-design in consumer devices",
-      "Right-to-repair versus device sovereignty as different upstream/downstream problems",
-      "3D-printed construction as labor-cost solution for rural housing crises",
-      "Digital sovereignty for First Nations and Indigenous data management",
-      "Institutional procurement policies and technology governance frameworks"
-    ]
-  },
   "2026-06-04": {
     "timestamp": 1780566851.174278,
     "date": "2026-06-04",
@@ -2408,6 +2382,35 @@
       "If you're following a specific Cariboo permitting process where the question of who owns monitoring infrastructure is actually on the table right now, send that tip to feedback at cariboo signals dot c-a\u2014the hosts read every submission that comes in.",
       "Watch over the next year whether any Nation negotiating a new permit in this region insists on owning the monitoring infrastructure outright (the sensors, the data, the publication rights) rather than accepting consultation as the whole deal\u2014track who owns the sensor, not just who signed the agreement photo-op.",
       "Build permanently-funded independent monitoring into operating agreements, modeled on Gibraltar Mine's air quality budget, with structural ownership and publication authority held by a party the Nation actually trusts rather than the company."
+    ]
+  },
+  "2026-09-02": {
+    "timestamp": 1788337253.375195,
+    "date": "2026-09-02",
+    "theme": "Repair Culture & Practical Tech",
+    "focus": "digital-life-security",
+    "anchor": "self-sufficient-or-connected",
+    "central_question": "Should households and small businesses prioritize self-sufficient technical skills or rely on well-connected networks and institutional channels to stay secure against malware and security threats?",
+    "riley_position": "Neither self-sufficiency nor institutional trust works alone; security requires both individual competence and community-level intelligence networks feeding information back and forth across multiple nodes.",
+    "riley_key_evidence": [
+      "Geekom's malware fix was caught quickly because engaged users in the company's support ecosystem flagged the compromised driver file before it spread",
+      "Threat actor schemes like Sable Squirrel buying 10,000 expired domains (costing $7M) are only discovered through researchers pooling intelligence across thousands of sightings at once",
+      "Passkey vulnerabilities still require clean devices first\u2014the maintenance burden never disappears, it just gets reframed"
+    ],
+    "casey_position": "Rural communities lack access to network-level threat intelligence that urban areas receive through institutional channels; the actual gap is not funding but a structural wiring problem of who serves as the local information node.",
+    "casey_key_evidence": [
+      "A small business in Wells running budget hardware doesn't have in-house IT to check signatures daily, making them dependent on whoever runs the local repair shop",
+      "Geekom's official support page was itself the compromised source\u2014the trusted channel became the vector",
+      "Passkeys were marketed as a fix-it-once solution that removes user vigilance, but no credential system actually achieves that"
+    ],
+    "resolution": "Riley and Casey agreed that individual skills and network-level intelligence are complementary layers rather than competing options, and identified a concrete local solution: a regional one-page monthly bulletin distributed through existing business associations to surface current threats and fixes without formal funding.",
+    "topics_covered": [
+      "Geekom malware incident and repair culture response",
+      "Expired domain exploitation by threat actors and trust signals",
+      "Passkey security vulnerabilities and credential system limitations",
+      "Infrastructure gaps between urban and rural security information access",
+      "Local computer repair shops as informal security intelligence nodes",
+      "Educational programs like SD27 trades training as long-term capacity building"
     ]
   }
 }
