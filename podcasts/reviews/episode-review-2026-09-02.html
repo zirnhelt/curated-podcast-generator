@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, September 2, 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.1rem; color: #444; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }
+    th { background: #f5f5f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    a { color: #0066cc; }
+    code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, September 2, 2026</h1>
+  <p class="meta">Published September 2, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/33606878277">33606878277</a>.</em></p>
+
+<h3>Gemini TTS failed; OpenAI finished the episode</h3>
+
+<p>The Gemini 3.1 Flash text-to-speech preview canary failed twice with read timeouts (45s) on the same host. The pipeline fell back to OpenAI for all remaining sections and credits after the preamble failed to render. The episode shipped on time with no audio dropped—the fallback held.</p>
+
+<h3>Brave's article-body budget exhausted early</h3>
+
+<p>The pipeline spent its 12 Brave Search calls backfilling article bodies and ran dry. The remaining thin articles kept stub bodies instead of full text, creating sparse segments that may be cut entirely. This affected script content without a fallback tier. Fifty-five articles dropped from the roundup; the deep dives survived at 3 pieces.</p>
+
+<h3>Citation alignment split between formats</h3>
+
+<p>The roundup matched 14 of 15 citations. The deep dives matched 0 of 3. The pipeline pulls deep dives from TechRadar headlines without backfill bodies—no secondary text to align against. The roundup's higher match rate reflects the availability of fuller source material after body retrieval, but the deep dive format leaves citations unverified.</p>
+
+<h3>Script expanded and shipped under target</h3>
+
+<p>The first draft arrived at 2,986 words against a 3,400-word target. The pipeline sent it back for an expand pass. The final shipped script landed at 2,871 words—114 words below the first draft. The expansion request did not add net length. The script ran 17.8 minutes of audio.</p>
+
+<h3>AI pattern detection and voice balance</h3>
+
+<p>Quality checks found 2 hits on the "tell, don't show" pattern in the script. Casey spoke 11% more than Riley (0.89 ratio). Both metrics fell within acceptable range. Neither triggered rewrites.</p>
+
+<h3>Production spend and artifact sizes</h3>
+
+<p>The run burned 93,492 Anthropic input tokens across 8 Claude calls and 2 Brave Search calls. Audio rendered to 16.3 MB over 17.8 minutes. Video rendered to 50.4 MB over the same duration. Episode 218 shipped to RSS.</p>
+
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-02T08:05:27Z</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-02T09:05:27Z</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-02T10:05:27Z</td><td>+0 min</td><td>in_progress</td></tr>
+</tbody>
+</table>
+
+<h3>What shipped</h3>
+<table>
+<thead><tr><th>Measure</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Deep dive</td><td>3 articles</td></tr>
+<tr><td>Script</td><td>2 pattern hit(s), voice ratio 0.89, 2871 words</td></tr>
+<tr><td>Audio</td><td>17.8 min</td></tr>
+<tr><td>Audio size</td><td>16.3 MB</td></tr>
+<tr><td>Citations matched</td><td>14/15 roundup, 0/3 deep dive</td></tr>
+<tr><td>Feed</td><td>218 episodes</td></tr>
+<tr><td>Anthropic spend</td><td>93,492 input tokens, calls {'claude': 8, 'brave-answers': 2}</td></tr>
+</tbody>
+</table>
+</body>
+</html>
