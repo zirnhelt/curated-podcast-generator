@@ -1,25 +1,4 @@
 {
-  "2026-07-29": {
-    "timestamp": 1785322773.765506,
-    "topics": [
-      "[Business Insider] Europe's biggest tech giant slides 5% on ",
-      "[Kottke.org] How the Words We Teach English Language Learner",
-      "[Daniele Messi. \u2014 Writing] Build a Secure Proxmox VPN Server",
-      "[TechRadar] \u2018What we're really fighting is people scripting ",
-      "[Hackaday] Improving the Microcontroller Gaming Performance ",
-      "[LoRaMeshDevices] DIY Waterproof Meshtastic Node for Paddle ",
-      "[TechRadar] Today I learned the CIA hid a home movie camera ",
-      "[NYT Business] To Recruit Teachers, School Districts Are Bui"
-    ],
-    "themes": [
-      "rural development",
-      "Indigenous tech",
-      "connectivity"
-    ],
-    "date": "2026-07-29",
-    "focus": "homestead-offgrid",
-    "focus_name": "Homestead & Off-Grid Tech"
-  },
   "2026-07-30": {
     "timestamp": 1785418340.837637,
     "topics": [
@@ -750,5 +729,27 @@
     "date": "2026-09-02",
     "focus": "digital-life-security",
     "focus_name": "Digital Life & Security"
+  },
+  "2026-09-03": {
+    "timestamp": 1788426919.801493,
+    "topics": [
+      "[Williams Lake Tribune] Permanent conservation hatchery west",
+      "[My Cariboo Now] Quesnel Fire Department responds to wildlan",
+      "[My Cariboo Now] Former Quesnel City Councillor and MLA has ",
+      "[Williams Lake Tribune] Campfire ban in Williams Lake city l",
+      "[Quesnel Cariboo Observer] Statistics Canada health survey c",
+      "[Fast Company] Google is helping bring cutting-edge battery ",
+      "[The Guardian Global Development] Barclays faces complaint o",
+      "[Fast Company] Workers who feel ostracized at work are less "
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-09-03",
+    "focus": "economic-development",
+    "focus_name": "Economic Development"
   }
 }

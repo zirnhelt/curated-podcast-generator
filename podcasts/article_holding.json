@@ -42,91 +42,6 @@
     "target_focus_name": "Wildlife & Conservation",
     "status": "held"
   },
-  "https://www.techradar.com/pro/security/this-new-malware-can-use-google-passkeys-even-after-a-victim-resets-their-password": {
-    "article": {
-      "id": "https://www.techradar.com/pro/security/this-new-malware-can-use-google-passkeys-even-after-a-victim-resets-their-password",
-      "url": "https://www.techradar.com/pro/security/this-new-malware-can-use-google-passkeys-even-after-a-victim-resets-their-password",
-      "title": "[TechRadar] This new malware can use Google passkeys even after a victim resets their password",
-      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/QGZS7tno9wMKaY7FVBDSNE-1280-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.techradar.com%2Fpro%2Fsecurity%2Fthis-new-malware-can-use-google-passkeys-even-after-a-victim-resets-their-password\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nA newly discovered toolkit can deeply compromise Gmail, Microsoft, Apple, and LinkedIn accounts",
-      "summary": "A newly discovered toolkit can deeply compromise Gmail, Microsoft, Apple, and LinkedIn accounts",
-      "_excerpt": "A newly discovered toolkit can deeply compromise Gmail, Microsoft, Apple, and LinkedIn accounts",
-      "date_published": "2026-08-21T15:05:00+00:00",
-      "authors": [
-        {
-          "name": "TechRadar",
-          "url": "https://www.techradar.com"
-        }
-      ],
-      "ai_score": 61,
-      "_quality": 81,
-      "_relevance": 74,
-      "_local": 0,
-      "_theme_score": 94,
-      "_composite_podcast": 63,
-      "_keyword_matches": 0,
-      "_category": "ai-tech",
-      "_source_category": "ai-tech",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://cdn.mos.cms.futurecdn.net/QGZS7tno9wMKaY7FVBDSNE-1280-80.jpg",
-      "_cross_theme": {
-        "day": "tuesday",
-        "label": "Working Lands & Industry",
-        "shown_at": "2026-08-23T04:48:12.806771+00:00"
-      },
-      "_boosted_score": 18,
-      "_topic_cluster": "Malware targeting accounts",
-      "_cluster_suppressed": true
-    },
-    "held_date": "2026-08-23",
-    "target_date": "2026-09-02",
-    "target_weekday": 2,
-    "target_focus_slug": "digital-life-security",
-    "target_focus_name": "Digital Life & Security",
-    "status": "released",
-    "release_date": "2026-09-02"
-  },
-  "https://incognitocat.me/beyond-year-one-our-home-assistant-journey/": {
-    "article": {
-      "id": "https://incognitocat.me/beyond-year-one-our-home-assistant-journey/",
-      "url": "https://incognitocat.me/beyond-year-one-our-home-assistant-journey/",
-      "title": "[Kagi Small Web] Beyond Year One: Our Home Assistant Journey",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fincognitocat.me%2Fbeyond-year-one-our-home-assistant-journey%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nDiscover how moving beyond commercial smart speakers to Home Assistant enables local control, privacy, and endless DIY home automation possibilities.",
-      "summary": "Discover how moving beyond commercial smart speakers to Home Assistant enables local control, privacy, and endless DIY home automation possibilities.",
-      "_excerpt": "Discover how moving beyond commercial smart speakers to Home Assistant enables local control, privacy, and endless DIY home automation possibilities.",
-      "date_published": "2026-08-21T14:52:00+00:00",
-      "authors": [
-        {
-          "name": "Kagi Small Web",
-          "url": "https://kagi.com/smallweb"
-        }
-      ],
-      "ai_score": 61,
-      "_quality": 72,
-      "_relevance": 78,
-      "_local": 0,
-      "_theme_score": 82,
-      "_composite_podcast": 54,
-      "_keyword_matches": 0,
-      "_category": "homelab",
-      "_source_category": "homelab",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "_cross_theme": {
-        "day": "wednesday",
-        "label": "Repair Culture & Practical Tech",
-        "shown_at": "2026-08-23T04:48:12.806771+00:00"
-      },
-      "_boosted_score": 61
-    },
-    "held_date": "2026-08-23",
-    "target_date": "2026-09-02",
-    "target_weekday": 2,
-    "target_focus_slug": "digital-life-security",
-    "target_focus_name": "Digital Life & Security",
-    "status": "released",
-    "release_date": "2026-09-02"
-  },
   "https://www.popularmechanics.com/science/a73445575/particle-decay-physics-mysterious/": {
     "article": {
       "id": "https://www.popularmechanics.com/science/a73445575/particle-decay-physics-mysterious/",
@@ -279,48 +194,6 @@
     "target_focus_name": "Discovery, Health & How Science Works",
     "status": "held"
   },
-  "https://www.tomshardware.com/tech-industry/cyber-security/geekom-admits-to-shipping-malware-laced-network-drivers-for-amd-mini-pcs-company-responds-with-guidance-removes-malicious-package": {
-    "article": {
-      "id": "https://www.tomshardware.com/tech-industry/cyber-security/geekom-admits-to-shipping-malware-laced-network-drivers-for-amd-mini-pcs-company-responds-with-guidance-removes-malicious-package",
-      "url": "https://www.tomshardware.com/tech-industry/cyber-security/geekom-admits-to-shipping-malware-laced-network-drivers-for-amd-mini-pcs-company-responds-with-guidance-removes-malicious-package",
-      "title": "[Tom's Hardware] Geekom admits to shipping malware-laced network drivers for AMD mini PCs \u2014 company responds with guidance, removes malicious package",
-      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/Npc9AfTCz2D7EcdRkwQojG-1280-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.tomshardware.com%2Ftech-industry%2Fcyber-security%2Fgeekom-admits-to-shipping-malware-laced-network-drivers-for-amd-mini-pcs-company-responds-with-guidance-removes-malicious-package\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nGeekom admits to shipping malware-laced network drivers for AMD mini-PCs \u2014 maker requests takedown of report on the situation",
-      "summary": "Geekom admits to shipping malware-laced network drivers for AMD mini-PCs \u2014 maker requests takedown of report on the situation",
-      "_excerpt": "Geekom admits to shipping malware-laced network drivers for AMD mini-PCs \u2014 maker requests takedown of report on the situation",
-      "date_published": "2026-08-17T17:18:04+00:00",
-      "authors": [
-        {
-          "name": "Tom's Hardware",
-          "url": "https://www.tomshardware.com"
-        }
-      ],
-      "ai_score": 58,
-      "_quality": 75,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 81,
-      "_composite_podcast": 55,
-      "_keyword_matches": 0,
-      "_category": "ai-tech",
-      "_source_category": "ai-tech",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://cdn.mos.cms.futurecdn.net/Npc9AfTCz2D7EcdRkwQojG-1280-80.jpg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-25T04:54:33.110073+00:00"
-      },
-      "_boosted_score": 58
-    },
-    "held_date": "2026-08-25",
-    "target_date": "2026-09-02",
-    "target_weekday": 2,
-    "target_focus_slug": "digital-life-security",
-    "target_focus_name": "Digital Life & Security",
-    "status": "released",
-    "release_date": "2026-09-02"
-  },
   "https://www.engadget.com/2239421/study-finds-x-algorithm-prioritizes-ragebait-that-disproportionately-impacts-democrats/": {
     "article": {
       "id": "https://www.engadget.com/2239421/study-finds-x-algorithm-prioritizes-ragebait-that-disproportionately-impacts-democrats/",
@@ -403,48 +276,6 @@
     "target_focus_name": "Wildlife & Conservation",
     "status": "aired_early"
   },
-  "https://www.techradar.com/pro/security/geekom-reveals-multiple-mini-pcs-may-be-infected-with-malware-hidden-in-a-network-driver-but-its-now-down-to-you-to-fix-your-pc": {
-    "article": {
-      "id": "https://www.techradar.com/pro/security/geekom-reveals-multiple-mini-pcs-may-be-infected-with-malware-hidden-in-a-network-driver-but-its-now-down-to-you-to-fix-your-pc",
-      "url": "https://www.techradar.com/pro/security/geekom-reveals-multiple-mini-pcs-may-be-infected-with-malware-hidden-in-a-network-driver-but-its-now-down-to-you-to-fix-your-pc",
-      "title": "[TechRadar] Geekom reveals multiple mini-PCs may be infected with malware hidden in a network driver \u2014 but it's now down to you to fix your PC",
-      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/WJok7QZ99U3Sz57DMBX87f-1280-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.techradar.com%2Fpro%2Fsecurity%2Fgeekom-reveals-multiple-mini-pcs-may-be-infected-with-malware-hidden-in-a-network-driver-but-its-now-down-to-you-to-fix-your-pc\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nA malicious executable hidden within a LAN driver can track keystrokes, intercept data, and swipe passwords from Geekom mini-PCs.",
-      "summary": "A malicious executable hidden within a LAN driver can track keystrokes, intercept data, and swipe passwords from Geekom mini-PCs.",
-      "_excerpt": "A malicious executable hidden within a LAN driver can track keystrokes, intercept data, and swipe passwords from Geekom mini-PCs.",
-      "date_published": "2026-08-18T15:05:00+00:00",
-      "authors": [
-        {
-          "name": "TechRadar",
-          "url": "https://www.techradar.com"
-        }
-      ],
-      "ai_score": 60,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 77,
-      "_composite_podcast": 54,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://cdn.mos.cms.futurecdn.net/WJok7QZ99U3Sz57DMBX87f-1280-80.jpg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-26T04:57:43.195190+00:00"
-      },
-      "_boosted_score": 60
-    },
-    "held_date": "2026-08-26",
-    "target_date": "2026-09-02",
-    "target_weekday": 2,
-    "target_focus_slug": "digital-life-security",
-    "target_focus_name": "Digital Life & Security",
-    "status": "released",
-    "release_date": "2026-09-02"
-  },
   "https://www.cjr.org/first_person/the-69-year-old-rookie-grueskin-salt-lake-tribune-junior-editor-utah-local-newsroom-lessons.php": {
     "article": {
       "id": "https://www.cjr.org/first_person/the-69-year-old-rookie-grueskin-salt-lake-tribune-junior-editor-utah-local-newsroom-lessons.php",
@@ -520,48 +351,6 @@
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
     "status": "held"
-  },
-  "https://www.techradar.com/home/energy-saving/plug-in-batteries-seem-like-a-great-fit-for-your-new-plug-in-solar-panels-but-dont-rush-to-buy-one-just-yet-the-rules-are-more-complicated-than-youd-think": {
-    "article": {
-      "id": "https://www.techradar.com/home/energy-saving/plug-in-batteries-seem-like-a-great-fit-for-your-new-plug-in-solar-panels-but-dont-rush-to-buy-one-just-yet-the-rules-are-more-complicated-than-youd-think",
-      "url": "https://www.techradar.com/home/energy-saving/plug-in-batteries-seem-like-a-great-fit-for-your-new-plug-in-solar-panels-but-dont-rush-to-buy-one-just-yet-the-rules-are-more-complicated-than-youd-think",
-      "title": "[TechRadar] Plug-in batteries seem like a great fit for your new plug-in solar panels, but don't rush to buy one just yet \u2014 the rules are more complicated than you'd think",
-      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/gkmdRXeMm3J7VF9tLBwxJg-1280-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.techradar.com%2Fhome%2Fenergy-saving%2Fplug-in-batteries-seem-like-a-great-fit-for-your-new-plug-in-solar-panels-but-dont-rush-to-buy-one-just-yet-the-rules-are-more-complicated-than-youd-think\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nPlug-in solar panels are now legal, but plug-in batteries have yet to receive the green light.",
-      "summary": "Plug-in solar panels are now legal, but plug-in batteries have yet to receive the green light.",
-      "_excerpt": "Plug-in solar panels are now legal, but plug-in batteries have yet to receive the green light.",
-      "date_published": "2026-08-27T08:00:00+00:00",
-      "authors": [
-        {
-          "name": "TechRadar",
-          "url": "https://www.techradar.com"
-        }
-      ],
-      "ai_score": 67,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 90,
-      "_composite_podcast": 64,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://cdn.mos.cms.futurecdn.net/gkmdRXeMm3J7VF9tLBwxJg-1280-80.jpg",
-      "_cross_theme": {
-        "day": "tuesday",
-        "label": "Working Lands & Industry",
-        "shown_at": "2026-08-27T14:09:44.939330+00:00"
-      },
-      "_boosted_score": 67
-    },
-    "held_date": "2026-08-27",
-    "target_date": "2026-09-02",
-    "target_weekday": 2,
-    "target_focus_slug": "digital-life-security",
-    "target_focus_name": "Digital Life & Security",
-    "status": "released",
-    "release_date": "2026-09-02"
   },
   "https://www.engadget.com/2240783/australia-passes-law-to-charge-tech-companies-levies-unless-they-reach-deals-with-news-publishers/": {
     "article": {
@@ -681,94 +470,6 @@
     "target_focus_name": "Discovery, Health & How Science Works",
     "status": "held"
   },
-  "https://www.wired.com/story/set-up-a-separate-work-profile-on-your-android-phone/": {
-    "article": {
-      "id": "https://www.wired.com/story/set-up-a-separate-work-profile-on-your-android-phone/",
-      "url": "https://www.wired.com/story/set-up-a-separate-work-profile-on-your-android-phone/",
-      "title": "[WIRED] Set Up a Separate Work Profile on Your Android Phone",
-      "content_html": "<img src=\"https://media.wired.com/photos/6a878f4d964ec62bf0f4ca72/master/pass/Setting-Up-Work-Profile-Android-Phone-Gear.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfd4\ufe0f <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.wired.com%2Fstory%2Fset-up-a-separate-work-profile-on-your-android-phone%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nIt is possible to achieve your desired work-life balance on your smartphone. Just set up separate accounts using this built-in Android feature.",
-      "summary": "It is possible to achieve your desired work-life balance on your smartphone. Just set up separate accounts using this built-in Android feature.",
-      "_excerpt": "It is possible to achieve your desired work-life balance on your smartphone. Just set up separate accounts using this built-in Android feature.",
-      "date_published": "2026-08-22T11:00:00+00:00",
-      "authors": [
-        {
-          "name": "WIRED",
-          "url": "https://www.wired.com"
-        }
-      ],
-      "ai_score": 38,
-      "_quality": 50,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 93,
-      "_composite_podcast": 66,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://media.wired.com/photos/6a878f4d964ec62bf0f4ca72/master/pass/Setting-Up-Work-Profile-Android-Phone-Gear.jpg",
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News+",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-29T11:06:27.266302+00:00"
-      },
-      "_boosted_score": 38
-    },
-    "held_date": "2026-08-29",
-    "target_date": "2026-09-02",
-    "target_weekday": 2,
-    "target_focus_slug": "digital-life-security",
-    "target_focus_name": "Digital Life & Security",
-    "status": "released",
-    "release_date": "2026-09-02"
-  },
-  "https://www.techradar.com/pro/security/even-dead-websites-arent-safe-experts-warn-hackers-are-spending-millions-on-expired-domains-to-enable-malware-scams": {
-    "article": {
-      "id": "https://www.techradar.com/pro/security/even-dead-websites-arent-safe-experts-warn-hackers-are-spending-millions-on-expired-domains-to-enable-malware-scams",
-      "url": "https://www.techradar.com/pro/security/even-dead-websites-arent-safe-experts-warn-hackers-are-spending-millions-on-expired-domains-to-enable-malware-scams",
-      "title": "[TechRadar] Even dead websites aren't safe \u2014 experts warn hackers are spending millions on expired domains to enable malware scams",
-      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/8CfKaJtTivypreUesyghSh-1280-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfd4\ufe0f <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.techradar.com%2Fpro%2Fsecurity%2Feven-dead-websites-arent-safe-experts-warn-hackers-are-spending-millions-on-expired-domains-to-enable-malware-scams\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nRoughly 65,000 expired domains change hands every day, and researchers have found one crime group spending an estimated $7 million on them to inherit the trust that comes attached to them.",
-      "summary": "Roughly 65,000 expired domains change hands every day, and researchers have found one crime group spending an estimated $7 million on them to inherit the trust that comes attached to them.",
-      "_excerpt": "Roughly 65,000 expired domains change hands every day, and researchers have found one crime group spending an estimated $7 million on them to inherit the trust that comes attached to them.",
-      "date_published": "2026-08-21T18:20:00+00:00",
-      "authors": [
-        {
-          "name": "TechRadar",
-          "url": "https://www.techradar.com"
-        }
-      ],
-      "ai_score": 53,
-      "_quality": 71,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 90,
-      "_composite_podcast": 65,
-      "_keyword_matches": 0,
-      "_category": "ai-tech",
-      "_source_category": "ai-tech",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://cdn.mos.cms.futurecdn.net/8CfKaJtTivypreUesyghSh-1280-80.jpg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-29T11:06:27.266302+00:00"
-      },
-      "_boosted_score": 53
-    },
-    "held_date": "2026-08-29",
-    "target_date": "2026-09-02",
-    "target_weekday": 2,
-    "target_focus_slug": "digital-life-security",
-    "target_focus_name": "Digital Life & Security",
-    "status": "released",
-    "release_date": "2026-09-02"
-  },
   "https://www.cnet.com/tech/services-and-software/dead-internet-theory-pew-research/": {
     "article": {
       "id": "https://www.cnet.com/tech/services-and-software/dead-internet-theory-pew-research/",
@@ -804,48 +505,6 @@
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
     "status": "held"
-  },
-  "https://www.cnet.com/tech/services-and-software/tech-companies-call-for-improved-cyber-defenses-after-ai-enabled-attacks/": {
-    "article": {
-      "id": "https://www.cnet.com/tech/services-and-software/tech-companies-call-for-improved-cyber-defenses-after-ai-enabled-attacks/",
-      "url": "https://www.cnet.com/tech/services-and-software/tech-companies-call-for-improved-cyber-defenses-after-ai-enabled-attacks/",
-      "title": "[CNET] Tech Companies Call for Improved Cyber Defenses After AI-Enabled Attacks",
-      "content_html": "<img src=\"https://www.cnet.com/wp-content/uploads/sites/2/681275a2-0e99-48a5-888f-6141ce14cfa4.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfd4\ufe0f <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.cnet.com%2Ftech%2Fservices-and-software%2Ftech-companies-call-for-improved-cyber-defenses-after-ai-enabled-attacks%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nMore than 100 companies signed onto an open letter calling for more urgency in fixing bugs and shoring up cybersecurity.",
-      "summary": "More than 100 companies signed onto an open letter calling for more urgency in fixing bugs and shoring up cybersecurity.",
-      "_excerpt": "More than 100 companies signed onto an open letter calling for more urgency in fixing bugs and shoring up cybersecurity.",
-      "date_published": "2026-08-28T19:06:32+00:00",
-      "authors": [
-        {
-          "name": "CNET",
-          "url": "https://www.cnet.com"
-        }
-      ],
-      "ai_score": 62,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 86,
-      "_composite_podcast": 61,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://www.cnet.com/wp-content/uploads/sites/2/681275a2-0e99-48a5-888f-6141ce14cfa4.jpg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-08-29T11:06:27.266302+00:00"
-      },
-      "_boosted_score": 62
-    },
-    "held_date": "2026-08-29",
-    "target_date": "2026-09-02",
-    "target_weekday": 2,
-    "target_focus_slug": "digital-life-security",
-    "target_focus_name": "Digital Life & Security",
-    "status": "released",
-    "release_date": "2026-09-02"
   },
   "https://www.npr.org/2026/08/25/nx-s1-5936617/camp-cranium-tbi-act-brain-injury-concussion-trauma-cdc": {
     "article": {
@@ -886,48 +545,6 @@
     "target_focus_slug": "discovery-health",
     "target_focus_name": "Discovery, Health & How Science Works",
     "status": "held"
-  },
-  "https://www.howtogeek.com/these-raspberry-pi-pico-builds-solve-surprisingly-relatable-problems-august-28-30/": {
-    "article": {
-      "id": "https://www.howtogeek.com/these-raspberry-pi-pico-builds-solve-surprisingly-relatable-problems-august-28-30/",
-      "url": "https://www.howtogeek.com/these-raspberry-pi-pico-builds-solve-surprisingly-relatable-problems-august-28-30/",
-      "title": "[How-To Geek] These Raspberry Pi Pico builds solve surprisingly relatable problems (August 28 - 30)",
-      "content_html": "<img src=\"https://static0.howtogeekimages.com/wordpress/wp-content/uploads/wm/2026/04/pile-of-pi-pico-rp2040.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfd4\ufe0f <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.howtogeek.com%2Fthese-raspberry-pi-pico-builds-solve-surprisingly-relatable-problems-august-28-30%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nNo full-sized Pi or Linux installation required.",
-      "summary": "No full-sized Pi or Linux installation required.",
-      "_excerpt": "No full-sized Pi or Linux installation required.",
-      "date_published": "2026-08-27T13:00:13+00:00",
-      "authors": [
-        {
-          "name": "How-To Geek",
-          "url": "https://www.howtogeek.com"
-        }
-      ],
-      "ai_score": 62,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 71,
-      "_composite_podcast": 52,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://static0.howtogeekimages.com/wordpress/wp-content/uploads/wm/2026/04/pile-of-pi-pico-rp2040.jpg",
-      "_cross_theme": {
-        "day": "friday",
-        "label": "Wild Spaces & Outdoor Life",
-        "shown_at": "2026-08-28T13:24:20.012631+00:00"
-      },
-      "_boosted_score": 62
-    },
-    "held_date": "2026-08-29",
-    "target_date": "2026-09-02",
-    "target_weekday": 2,
-    "target_focus_slug": "digital-life-security",
-    "target_focus_name": "Digital Life & Security",
-    "status": "released",
-    "release_date": "2026-09-02"
   },
   "https://cfjctoday.com/2026/08/23/csrd-board-approves-raises-to-directors-ahead-of-local-elections/": {
     "article": {
@@ -1297,88 +914,8 @@
     "target_weekday": 3,
     "target_focus_slug": "economic-development",
     "target_focus_name": "Economic Development",
-    "status": "held"
-  },
-  "https://www.androidauthority.com/best-smartphone-battery-life-3562028/": {
-    "article": {
-      "id": "https://www.androidauthority.com/best-smartphone-battery-life-3562028/",
-      "url": "https://www.androidauthority.com/best-smartphone-battery-life-3562028/",
-      "title": "[Android Authority] Which smartphone has the best battery life? I tested dozens to find the winner",
-      "content_html": "<img src=\"https://www.androidauthority.com/wp-content/uploads/2025/06/Android-phones-battery-life-compared.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.androidauthority.com%2Fbest-smartphone-battery-life-3562028%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nAlways wanted multi-day battery life? These are the phones you should buy.",
-      "summary": "Always wanted multi-day battery life? These are the phones you should buy.",
-      "_excerpt": "Always wanted multi-day battery life? These are the phones you should buy.",
-      "date_published": "2026-08-27T11:00:00+00:00",
-      "authors": [
-        {
-          "name": "Android Authority",
-          "url": "https://www.androidauthority.com"
-        }
-      ],
-      "ai_score": 55,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 85,
-      "_theme_score_raw": 28,
-      "_composite_podcast": 59,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://www.androidauthority.com/wp-content/uploads/2025/06/Android-phones-battery-life-compared.jpg",
-      "_cross_theme": {
-        "day": "wednesday",
-        "label": "Repair Culture & Practical Tech",
-        "shown_at": "2026-08-30T11:23:30.016928+00:00"
-      },
-      "_boosted_score": 55
-    },
-    "held_date": "2026-08-31",
-    "target_date": "2026-09-02",
-    "target_weekday": 2,
-    "target_focus_slug": "digital-life-security",
-    "target_focus_name": "Digital Life & Security",
     "status": "released",
-    "release_date": "2026-09-02"
-  },
-  "https://www.xda-developers.com/diy-3d-printed-leverless-fightstick/": {
-    "article": {
-      "id": "https://www.xda-developers.com/diy-3d-printed-leverless-fightstick/",
-      "url": "https://www.xda-developers.com/diy-3d-printed-leverless-fightstick/",
-      "title": "[XDA Developers] I turned my Raspberry Pi Pico into a leverless fightstick, and it was surprisingly easy",
-      "content_html": "<img src=\"https://static0.xdaimages.com/wordpress/wp-content/uploads/wm/2026/08/3d-printed-leverless-fighstick-and-tekken-6-on-a-phone.JPG\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.xda-developers.com%2Fdiy-3d-printed-leverless-fightstick%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nFor around $20 and basic soldering skills, you can make a leverless fightstick for fighting games and platformers.",
-      "summary": "For around $20 and basic soldering skills, you can make a leverless fightstick for fighting games and platformers.",
-      "_excerpt": "For around $20 and basic soldering skills, you can make a leverless fightstick for fighting games and platformers.",
-      "date_published": "2026-08-24T19:30:16+00:00",
-      "authors": [
-        {
-          "name": "XDA Developers",
-          "url": "https://www.xda-developers.com"
-        }
-      ],
-      "ai_score": 55,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 77,
-      "_theme_score_raw": 27,
-      "_composite_podcast": 56,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://static0.xdaimages.com/wordpress/wp-content/uploads/wm/2026/08/3d-printed-leverless-fighstick-and-tekken-6-on-a-phone.JPG",
-      "_boosted_score": 55
-    },
-    "held_date": "2026-08-31",
-    "target_date": "2026-09-02",
-    "target_weekday": 2,
-    "target_focus_slug": "digital-life-security",
-    "target_focus_name": "Digital Life & Security",
-    "status": "released",
-    "release_date": "2026-09-02"
+    "release_date": "2026-09-03"
   },
   "https://globalnews.ca/news/12038193/immigrant-groups-say-racism-rising-alberta-referendum/": {
     "article": {
@@ -1680,49 +1217,6 @@
     "target_focus_name": "Recreation & Backcountry Access",
     "status": "held"
   },
-  "https://www.howtogeek.com/fried-two-solar-portable-power-stations-dont-make-the-same-mistake/": {
-    "article": {
-      "id": "https://www.howtogeek.com/fried-two-solar-portable-power-stations-dont-make-the-same-mistake/",
-      "url": "https://www.howtogeek.com/fried-two-solar-portable-power-stations-dont-make-the-same-mistake/",
-      "title": "[How-To Geek] I fried two solar portable power stations, don't make the same mistake",
-      "content_html": "<img src=\"https://static0.howtogeekimages.com/wordpress/wp-content/uploads/wm/2025/02/1000060471.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.howtogeek.com%2Ffried-two-solar-portable-power-stations-dont-make-the-same-mistake%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nSecond time's the charm.",
-      "summary": "Second time's the charm.",
-      "_excerpt": "Second time's the charm.",
-      "date_published": "2026-08-31T22:47:12+00:00",
-      "authors": [
-        {
-          "name": "How-To Geek",
-          "url": "https://www.howtogeek.com"
-        }
-      ],
-      "ai_score": 54,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 83,
-      "_theme_score_raw": 9,
-      "_composite_podcast": 57,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://static0.howtogeekimages.com/wordpress/wp-content/uploads/wm/2025/02/1000060471.jpg",
-      "_cross_theme": {
-        "day": "wednesday",
-        "label": "Repair Culture & Practical Tech",
-        "shown_at": "2026-09-01T04:09:19.935216+00:00"
-      },
-      "_boosted_score": 54
-    },
-    "held_date": "2026-09-01",
-    "target_date": "2026-09-02",
-    "target_weekday": 2,
-    "target_focus_slug": "digital-life-security",
-    "target_focus_name": "Digital Life & Security",
-    "status": "released",
-    "release_date": "2026-09-02"
-  },
   "https://www.engadget.com/2243701/how-to-disable-digital-wallet-lose-phone/": {
     "article": {
       "id": "https://www.engadget.com/2243701/how-to-disable-digital-wallet-lose-phone/",
@@ -1803,7 +1297,8 @@
     "target_weekday": 3,
     "target_focus_slug": "economic-development",
     "target_focus_name": "Economic Development",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-03"
   },
   "https://www.sciencealert.com/scientists-put-sensors-on-narwhals-they-revealed-something-troubling-beneath-greenlands-glaciers": {
     "article": {
@@ -1880,7 +1375,8 @@
     "target_weekday": 3,
     "target_focus_slug": "economic-development",
     "target_focus_name": "Economic Development",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-03"
   },
   "https://www.mycariboonow.com/315993/news/energy-utilities/errors-in-b-c-budget-leave-1-5b-hole-in-b-c-s-natural-gas-revenue-forecast/": {
     "article": {
@@ -1997,6 +1493,553 @@
     "target_weekday": 2,
     "target_focus_slug": "vehicles-field-gear",
     "target_focus_name": "Vehicles & Field Gear",
+    "status": "held"
+  },
+  "https://wltribune.com/2026/09/02/permanent-conservation-hatchery-west-of-williams-lake-to-rebuild-salmon-populations/": {
+    "article": {
+      "id": "https://wltribune.com/2026/09/02/permanent-conservation-hatchery-west-of-williams-lake-to-rebuild-salmon-populations/",
+      "url": "https://wltribune.com/2026/09/02/permanent-conservation-hatchery-west-of-williams-lake-to-rebuild-salmon-populations/",
+      "title": "[Williams Lake Tribune] Permanent conservation hatchery west of Williams Lake to rebuild salmon populations",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F09%2F02%2Fpermanent-conservation-hatchery-west-of-williams-lake-to-rebuild-salmon-populations%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n## Permanent conservation hatchery west of Williams Lake to rebuild salmon populations Published 8:42 am Wednesday, September 2, 2026 **By Rebecca Dyok** 1/2 At the hatchery site near Hanceville, west of Williams Lake, is federal Minister of Fisheries Joanne Thompson and Yune\u015dit\u2019in Nits\u2019il\u0294in (Chief) Lennon Solomon. They are joined with Councillor Jessica Setah, Tsilhqot\u2019in National Government (TNG) Fisheries staff and Paul Grinder with the TNG Ranger Program as well as Youth Ambassadors Chantu William and Dakota Diablo. (Tsilhqot'in National Government/Facebook) | **Getting your Trinity",
+      "summary": "## Permanent conservation hatchery west of Williams Lake to rebuild salmon populations Published 8:42 am Wednesday, September 2, 2026 **By Rebecca Dyok** 1/2 At the hatchery site near Hanceville, west of Williams Lake, is federal Minister of Fisheries Joanne Thompson and Yune\u015dit\u2019in Nits\u2019il\u0294in",
+      "_excerpt": "## Permanent conservation hatchery west of Williams Lake to rebuild salmon populations Published 8:42 am Wednesday, September 2, 2026 **By Rebecca Dyok** 1/2 At the hatchery site near Hanceville, west of Williams Lake, is federal Minister of Fisheries Joanne Thompson and Yune\u015dit\u2019in Nits\u2019il\u0294in (Chief) Lennon Solomon. They are joined with Councillor Jessica Setah, Tsilhqot\u2019in National Government (TNG) Fisheries staff and Paul Grinder with the TNG Ranger Program as well as Youth Ambassadors Chantu William and Dakota Diablo. (Tsilhqot'in National Government/Facebook) | **Getting your Trinity",
+      "date_published": "2026-09-03T04:03:22.833331+00:00",
+      "authors": [
+        {
+          "name": "Williams Lake Tribune",
+          "url": "https://wltribune.com"
+        }
+      ],
+      "ai_score": 90,
+      "_quality": 88,
+      "_relevance": 88,
+      "_local": 100,
+      "_theme_score": 90,
+      "_theme_score_raw": 13,
+      "_composite_podcast": 97,
+      "_keyword_matches": 1,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": false,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Williams Lake Tribune",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-03T04:13:26.297442+00:00"
+      },
+      "_boosted_score": 90,
+      "_topic_cluster": "Williams Lake local news updates",
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-09-03",
+    "target_date": "2026-09-04",
+    "target_weekday": 4,
+    "target_focus_slug": "wildlife-conservation",
+    "target_focus_name": "Wildlife & Conservation",
+    "status": "aired_early"
+  },
+  "https://www.sciencealert.com/scientists-discover-two-superconducting-states-hiding-as-one": {
+    "article": {
+      "id": "https://www.sciencealert.com/scientists-discover-two-superconducting-states-hiding-as-one",
+      "url": "https://www.sciencealert.com/scientists-discover-two-superconducting-states-hiding-as-one",
+      "title": "[ScienceAlert] Scientists Solve a Superconductor Mystery Hiding in Plain Sight",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencealert.com%2Fscientists-discover-two-superconducting-states-hiding-as-one\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"Superconducting material diagram\" class=\"attachment-large size-large wp-post-image\" height=\"675\" src=\"https://www.sciencealert.com/images/2026/09/SuperconductorDiagram.jpg\" style=\"float: left; margin: 0 15px 15px 0;\" width=\"1200\" />A puzzling physics mystery solved.</p><p><a href=\"https://www.sciencealert.com/newsletter?utm_source=rss_feed&#038;utm_medium=feed&#038;utm_campaign=rss_feed_promo\" rel=\"noopener\" target=\"_blank\">ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don&#039;t miss a story, subscribe here.</a></p>",
+      "summary": "A puzzling physics mystery solved. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+      "_excerpt": "A puzzling physics mystery solved. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+      "date_published": "2026-09-02T11:00:00+00:00",
+      "authors": [
+        {
+          "name": "ScienceAlert",
+          "url": "https://www.sciencealert.com"
+        }
+      ],
+      "ai_score": 35,
+      "_quality": 62,
+      "_relevance": 35,
+      "_local": 0,
+      "_theme_score": 92,
+      "_theme_score_raw": 14,
+      "_composite_podcast": 82,
+      "_keyword_matches": 0,
+      "_category": "science",
+      "_source_category": "science",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "tuesday",
+        "label": "Working Lands & Industry",
+        "shown_at": "2026-09-03T04:13:26.297442+00:00"
+      },
+      "_boosted_score": 35
+    },
+    "held_date": "2026-09-03",
+    "target_date": "2026-09-06",
+    "target_weekday": 6,
+    "target_focus_slug": "discovery-health",
+    "target_focus_name": "Discovery, Health & How Science Works",
+    "status": "held"
+  },
+  "https://hackaday.com/2026/09/02/__trashed-8/": {
+    "article": {
+      "id": "https://hackaday.com/2026/09/02/__trashed-8/",
+      "url": "https://hackaday.com/2026/09/02/__trashed-8/",
+      "title": "[Hackaday] Has FDM 3D Printing Hit Its Peak?",
+      "content_html": "<img src=\"https://hackaday.com/wp-content/uploads/2020/02/3D-Printering-Header-New.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fhackaday.com%2F2026%2F09%2F02%2F__trashed-8%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<div><img alt=\"Art of 3D printer in the middle of printing a Hackaday Jolly Wrencher logo\" class=\"attachment-large size-large wp-post-image\" height=\"450\" src=\"https://hackaday.com/wp-content/uploads/2020/02/3D-Printering-Header-New.jpg?w=800\" style=\"margin: 0 auto; margin-bottom: 15px;\" width=\"800\" /></div>Over the time Hackaday has been in existence, the art of 3D printing has evolved from a relatively crude hit-and-miss affair to something approaching what we all imagined back then. <a class=\"read-more\" href=\"https://hackaday.com/2026/09/02/__trashed-8/\">&#8230;read more</a>",
+      "summary": "Over the time Hackaday has been in existence, the art of 3D printing has evolved from a relatively crude hit-and-miss affair to something approaching what we all imagined back then. \u2026read more",
+      "_excerpt": "Over the time Hackaday has been in existence, the art of 3D printing has evolved from a relatively crude hit-and-miss affair to something approaching what we all imagined back then. \u2026read more",
+      "date_published": "2026-09-03T02:00:16+00:00",
+      "authors": [
+        {
+          "name": "Hackaday",
+          "url": "https://hackaday.com"
+        }
+      ],
+      "ai_score": 63,
+      "_quality": 73,
+      "_relevance": 82,
+      "_local": 0,
+      "_theme_score": 95,
+      "_theme_score_raw": 16,
+      "_composite_podcast": 76,
+      "_keyword_matches": 0,
+      "_category": "homelab",
+      "_source_category": "homelab",
+      "_is_bonus": true,
+      "image": "https://hackaday.com/wp-content/uploads/2020/02/3D-Printering-Header-New.jpg",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-03T04:13:26.297442+00:00"
+      },
+      "_boosted_score": 63
+    },
+    "held_date": "2026-09-03",
+    "target_date": "2026-09-09",
+    "target_weekday": 2,
+    "target_focus_slug": "vehicles-field-gear",
+    "target_focus_name": "Vehicles & Field Gear",
+    "status": "held"
+  },
+  "https://wltribune.com/2026/09/02/nelsons-wildsafebc-coordinator-steps-down-after-grizzly-bear-deaths/": {
+    "article": {
+      "id": "https://wltribune.com/2026/09/02/nelsons-wildsafebc-coordinator-steps-down-after-grizzly-bear-deaths/",
+      "url": "https://wltribune.com/2026/09/02/nelsons-wildsafebc-coordinator-steps-down-after-grizzly-bear-deaths/",
+      "title": "[Williams Lake Tribune] Nelson\u2019s WildSafeBC coordinator steps down after grizzly bear deaths",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F09%2F02%2Fnelsons-wildsafebc-coordinator-steps-down-after-grizzly-bear-deaths%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n## Nelson\u2019s WildSafeBC coordinator steps down after grizzly bear deaths Published 8:37 pm Wednesday, September 2, 2026 **By Emma Bolzner** 1/2 Lisa Thomson has stepped down from her position as WildSafeBC Community Coordinator in Nelson after the recent grizzly bear family deaths. (Contributed) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | Nelson\u2019s WildSafeBC Community Coordinator, Lisa Thomson, has officially stepped down from her position after a month of emotional stress and online attacks. After a grizzly",
+      "summary": "## Nelson\u2019s WildSafeBC coordinator steps down after grizzly bear deaths Published 8:37 pm Wednesday, September 2, 2026 **By Emma Bolzner** 1/2 Lisa Thomson has stepped down from her position as WildSafeBC Community Coordinator in Nelson after the recent grizzly bear family deaths. (Contributed) |",
+      "_excerpt": "## Nelson\u2019s WildSafeBC coordinator steps down after grizzly bear deaths Published 8:37 pm Wednesday, September 2, 2026 **By Emma Bolzner** 1/2 Lisa Thomson has stepped down from her position as WildSafeBC Community Coordinator in Nelson after the recent grizzly bear family deaths. (Contributed) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | Nelson\u2019s WildSafeBC Community Coordinator, Lisa Thomson, has officially stepped down from her position after a month of emotional stress and online attacks. After a grizzly",
+      "date_published": "2026-09-03T03:37:41+00:00",
+      "authors": [
+        {
+          "name": "Williams Lake Tribune",
+          "url": "https://wltribune.com"
+        }
+      ],
+      "ai_score": 74,
+      "_quality": 72,
+      "_relevance": 75,
+      "_local": 75,
+      "_theme_score": 70,
+      "_theme_score_raw": 9,
+      "_composite_podcast": 73,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Williams Lake Tribune",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-03T04:13:26.297442+00:00"
+      },
+      "_boosted_score": 22,
+      "_topic_cluster": "Williams Lake local news updates",
+      "_cluster_suppressed": true,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-09-03",
+    "target_date": "2026-09-04",
+    "target_weekday": 4,
+    "target_focus_slug": "wildlife-conservation",
+    "target_focus_name": "Wildlife & Conservation",
+    "status": "aired_early"
+  },
+  "https://www.livefortheoutdoors.com/hiking/rucksacks/best-waterproof-backpacks/": {
+    "article": {
+      "id": "https://www.livefortheoutdoors.com/hiking/rucksacks/best-waterproof-backpacks/",
+      "url": "https://www.livefortheoutdoors.com/hiking/rucksacks/best-waterproof-backpacks/",
+      "title": "[Live for the Outdoors (Country Walking)] We put 10 waterproof backpacks to the test \u2013 find out our favourite",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.livefortheoutdoors.com%2Fhiking%2Frucksacks%2Fbest-waterproof-backpacks%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nWhat Montane have created here is a hiking daypack that ticks a huge number boxes for lightweight devotees. The side-clipping roll-top closure is clever, the waterproofing seems good, the comfort is impressive, and the capacity of this 28-litre version is plenty big enough for long days on the trail.",
+      "summary": "What Montane have created here is a hiking daypack that ticks a huge number boxes for lightweight devotees. The side-clipping roll-top closure is clever, the waterproofing seems good, the comfort is impressive, and the capacity of this 28-litre version is plenty big enough for long days on the",
+      "_excerpt": "What Montane have created here is a hiking daypack that ticks a huge number boxes for lightweight devotees. The side-clipping roll-top closure is clever, the waterproofing seems good, the comfort is impressive, and the capacity of this 28-litre version is plenty big enough for long days on the trail.",
+      "date_published": "2026-08-26T04:48:18.098428+00:00",
+      "authors": [
+        {
+          "name": "Live for the Outdoors (Country Walking)",
+          "url": "https://www.livefortheoutdoors.com"
+        }
+      ],
+      "ai_score": 42,
+      "_quality": 53,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 78,
+      "_theme_score_raw": 10,
+      "_composite_podcast": 67,
+      "_keyword_matches": 0,
+      "_category": "outdoors",
+      "_source_category": "outdoors",
+      "_is_bonus": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Apple News+",
+      "_cross_theme": {
+        "day": "tuesday",
+        "label": "Working Lands & Industry",
+        "shown_at": "2026-09-03T04:13:26.297442+00:00"
+      },
+      "_boosted_score": 42
+    },
+    "held_date": "2026-09-03",
+    "target_date": "2026-09-11",
+    "target_weekday": 4,
+    "target_focus_slug": "recreation-access",
+    "target_focus_name": "Recreation & Backcountry Access",
+    "status": "held"
+  },
+  "https://www.mining.com/us-forest-service-signs-off-on-south32-hermosas-mine-plan-in-arizona/": {
+    "article": {
+      "id": "https://www.mining.com/us-forest-service-signs-off-on-south32-hermosas-mine-plan-in-arizona/",
+      "url": "https://www.mining.com/us-forest-service-signs-off-on-south32-hermosas-mine-plan-in-arizona/",
+      "title": "[Mining.com] US Forest Service\u00a0signs off on\u00a0South32 Hermosa\u2019s mine plan in Arizona",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.mining.com%2Fus-forest-service-signs-off-on-south32-hermosas-mine-plan-in-arizona%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nHermosa hosts one of the world\u2019s largest undeveloped zinc deposits, a battery-grade manganese\u00a0deposit\u00a0and the emerging Peak copper discovery.",
+      "summary": "Hermosa hosts one of the world\u2019s largest undeveloped zinc deposits, a battery-grade manganese deposit and the emerging Peak copper discovery.",
+      "_excerpt": "Hermosa hosts one of the world\u2019s largest undeveloped zinc deposits, a battery-grade manganese deposit and the emerging Peak copper discovery.",
+      "date_published": "2026-09-02T20:02:58+00:00",
+      "authors": [
+        {
+          "name": "Mining.com",
+          "url": "https://www.mining.com"
+        }
+      ],
+      "ai_score": 58,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 95,
+      "_theme_score_raw": 16,
+      "_composite_podcast": 66,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "_cross_theme": {
+        "day": "tuesday",
+        "label": "Working Lands & Industry",
+        "shown_at": "2026-09-03T04:13:26.297442+00:00"
+      },
+      "_boosted_score": 58
+    },
+    "held_date": "2026-09-03",
+    "target_date": "2026-09-06",
+    "target_weekday": 6,
+    "target_focus_slug": "discovery-health",
+    "target_focus_name": "Discovery, Health & How Science Works",
+    "status": "held"
+  },
+  "https://blog.adafruit.com/2026/09/02/how-to-change-raspberry-pi-wifi-details-from-the-sd-card/": {
+    "article": {
+      "id": "https://blog.adafruit.com/2026/09/02/how-to-change-raspberry-pi-wifi-details-from-the-sd-card/",
+      "url": "https://blog.adafruit.com/2026/09/02/how-to-change-raspberry-pi-wifi-details-from-the-sd-card/",
+      "title": "[Adafruit Blog] How to change Raspberry Pi WiFi details from the SD card",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fblog.adafruit.com%2F2026%2F09%2F02%2Fhow-to-change-raspberry-pi-wifi-details-from-the-sd-card%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nAbhishek Prakash at It&#8217;s FOSS wrote up a way to fix a Raspberry Pi that can no longer reach your network: edit the WiFi settings straight from the microSD card. This is handy when the router changed, the SSID and password are new, and hooking the Pi up to a monitor and keyboard is more [&#8230;]",
+      "summary": "Abhishek Prakash at It\u2019s FOSS wrote up a way to fix a Raspberry Pi that can no longer reach your network: edit the WiFi settings straight from the microSD card. This is handy when the router changed, the SSID and password are new, and hooking the Pi up to a monitor and keyboard is more [\u2026]",
+      "_excerpt": "Abhishek Prakash at It\u2019s FOSS wrote up a way to fix a Raspberry Pi that can no longer reach your network: edit the WiFi settings straight from the microSD card. This is handy when the router changed, the SSID and password are new, and hooking the Pi up to a monitor and keyboard is more [\u2026]",
+      "date_published": "2026-09-02T16:23:02+00:00",
+      "authors": [
+        {
+          "name": "Adafruit Blog",
+          "url": "https://blog.adafruit.com"
+        }
+      ],
+      "ai_score": 62,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 70,
+      "_theme_score_raw": 9,
+      "_composite_podcast": 66,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-03T04:13:26.297442+00:00"
+      },
+      "_boosted_score": 62
+    },
+    "held_date": "2026-09-03",
+    "target_date": "2026-09-09",
+    "target_weekday": 2,
+    "target_focus_slug": "vehicles-field-gear",
+    "target_focus_name": "Vehicles & Field Gear",
+    "status": "held"
+  },
+  "https://newatlas.com/brain/alzheimers-dementia/dementia-children-already-have-treatment/": {
+    "article": {
+      "id": "https://newatlas.com/brain/alzheimers-dementia/dementia-children-already-have-treatment/",
+      "url": "https://newatlas.com/brain/alzheimers-dementia/dementia-children-already-have-treatment/",
+      "title": "[New Atlas] Dementia strikes children, too \u2013 but we've found a way to effectively treat it",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fnewatlas.com%2Fbrain%2Falzheimers-dementia%2Fdementia-children-already-have-treatment%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"Young child smiling\" src=\"https://assets.newatlas.com/dims4/default/cd153a8/2147483647/strip/true/crop/2000x1500+0+0/resize/1280x960!/format/webp/quality/90/?url=https%3A%2F%2Fnewatlas-brightspot.s3.ap-southeast-2.amazonaws.com%2Fec%2Fa9%2F0051787242708946a3d7fd7af2db%2Fchildhood-dementia-treatments.jpg\" /><p>Dementia is typically considered a disease of the elderly. Older brains are more likely to fail under protein buildup or reduced blood flow.</p><p><a href=\"https://newatlas.com/brain/alzheimers-dementia/dementia-children-already-have-treatment/\">Continue Reading</a></p><p><b>Category:</b> <a href=\"https://refractor.io/brain/alzheimers-dementia/\">Alzheimer&apos;s &amp; Dementia</a>, <a href=\"https://refractor.io/brain/\">Brain Health</a>, <a href=\"https://refractor.io/medical/\">Body and Mind</a>, <a href=\"https://newatlas.com/rf/\">Refractor: Science &amp; Health</a></p><p><b>Tags:</b> <a href=\"https://newatlas.com/tag/dementia/\" rel=\"tag\">Dementia</a>, <a href=\"https://newatlas.com/tag/children/\" rel=\"tag\">Children</a>, <a href=\"https://newatlas.com/tag/treatment/\" rel=\"tag\">Treatment</a>, <a href=\"https://newatlas.com/tag/brain/\" rel=\"tag\">Brain</a>, <a href=\"https://newatlas.com/tag/stem+cells/\" rel=\"tag\">Stem Cells</a></p>",
+      "summary": "Dementia is typically considered a disease of the elderly. Older brains are more likely to fail under protein buildup or reduced blood flow. Continue Reading Category: Alzheimer's & Dementia , Brain Health , Body and Mind , Refractor: Science & Health Tags: Dementia , Children , Treatment , Brain ,",
+      "_excerpt": "Dementia is typically considered a disease of the elderly. Older brains are more likely to fail under protein buildup or reduced blood flow. Continue Reading Category: Alzheimer's & Dementia , Brain Health , Body and Mind , Refractor: Science & Health Tags: Dementia , Children , Treatment , Brain , Stem Cells",
+      "date_published": "2026-08-26T23:08:00+00:00",
+      "authors": [
+        {
+          "name": "New Atlas",
+          "url": "https://newatlas.com"
+        }
+      ],
+      "ai_score": 58,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 78,
+      "_theme_score_raw": 10,
+      "_composite_podcast": 65,
+      "_keyword_matches": 0,
+      "_category": "wellness",
+      "_source_category": "wellness",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "tuesday",
+        "label": "Working Lands & Industry",
+        "shown_at": "2026-09-03T04:13:26.297442+00:00"
+      },
+      "_boosted_score": 58
+    },
+    "held_date": "2026-09-03",
+    "target_date": "2026-09-06",
+    "target_weekday": 6,
+    "target_focus_slug": "discovery-health",
+    "target_focus_name": "Discovery, Health & How Science Works",
+    "status": "held"
+  },
+  "https://www.sciencealert.com/radical-overhaul-to-milk-production-would-use-up-to-96-less-land-than-cows-study-suggests": {
+    "article": {
+      "id": "https://www.sciencealert.com/radical-overhaul-to-milk-production-would-use-up-to-96-less-land-than-cows-study-suggests",
+      "url": "https://www.sciencealert.com/radical-overhaul-to-milk-production-would-use-up-to-96-less-land-than-cows-study-suggests",
+      "title": "[ScienceAlert] Radical Overhaul to Milk Production Would Use Up to 96% Less Land Than Cows, Study Suggests",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencealert.com%2Fradical-overhaul-to-milk-production-would-use-up-to-96-less-land-than-cows-study-suggests\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"Radical Overhaul to Milk Production Would Use Up to 96% Less Land Than Cows, Study Suggests\" class=\"attachment-large size-large wp-post-image\" height=\"675\" src=\"https://www.sciencealert.com/images/2026/08/cows-in-field.jpg\" style=\"float: left; margin: 0 15px 15px 0;\" width=\"1200\" />This is huge.</p><p><a href=\"https://www.sciencealert.com/newsletter?utm_source=rss_feed&#038;utm_medium=feed&#038;utm_campaign=rss_feed_promo\" rel=\"noopener\" target=\"_blank\">ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don&#039;t miss a story, subscribe here.</a></p>",
+      "summary": "This is huge. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+      "_excerpt": "This is huge. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+      "date_published": "2026-08-26T22:00:00+00:00",
+      "authors": [
+        {
+          "name": "ScienceAlert",
+          "url": "https://www.sciencealert.com"
+        }
+      ],
+      "ai_score": 60,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 70,
+      "_theme_score_raw": 9,
+      "_composite_podcast": 65,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-03T04:13:26.297442+00:00"
+      },
+      "_boosted_score": 60
+    },
+    "held_date": "2026-09-03",
+    "target_date": "2026-09-06",
+    "target_weekday": 6,
+    "target_focus_slug": "discovery-health",
+    "target_focus_name": "Discovery, Health & How Science Works",
+    "status": "held"
+  },
+  "https://thetyee.ca/Analysis/2026/09/02/BC-Has-Extinction-Problem/": {
+    "article": {
+      "id": "https://thetyee.ca/Analysis/2026/09/02/BC-Has-Extinction-Problem/",
+      "url": "https://thetyee.ca/Analysis/2026/09/02/BC-Has-Extinction-Problem/",
+      "title": "[The Tyee] BC Has an Extinction Problem. Scientists Say There\u2019s a Fix",
+      "content_html": "<img src=\"https://thetyee.ca/Analysis/2026/09/01/NorthernSpottedOwls.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fthetyee.ca%2FAnalysis%2F2026%2F09%2F02%2FBC-Has-Extinction-Problem%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nEnacting an endangered species law is key, wildlife advocates say.",
+      "summary": "Enacting an endangered species law is key, wildlife advocates say.",
+      "_excerpt": "Enacting an endangered species law is key, wildlife advocates say.",
+      "date_published": "2026-09-02T07:10:00+00:00",
+      "authors": [
+        {
+          "name": "The Tyee",
+          "url": "https://thetyee.ca"
+        }
+      ],
+      "ai_score": 63,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 87,
+      "_theme_score_raw": 12,
+      "_composite_podcast": 61,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://thetyee.ca/Analysis/2026/09/01/NorthernSpottedOwls.jpg",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-03T04:13:26.297442+00:00"
+      },
+      "_boosted_score": 63
+    },
+    "held_date": "2026-09-03",
+    "target_date": "2026-09-04",
+    "target_weekday": 4,
+    "target_focus_slug": "wildlife-conservation",
+    "target_focus_name": "Wildlife & Conservation",
+    "status": "held"
+  },
+  "https://www.statnews.com/2026/08/26/shingles-vaccine-shingrix-reduces-heart-disease-dementia-risk-oxford-study/?utm_campaign=rss": {
+    "article": {
+      "id": "https://www.statnews.com/2026/08/26/shingles-vaccine-shingrix-reduces-heart-disease-dementia-risk-oxford-study/?utm_campaign=rss",
+      "url": "https://www.statnews.com/2026/08/26/shingles-vaccine-shingrix-reduces-heart-disease-dementia-risk-oxford-study/?utm_campaign=rss",
+      "title": "[STAT News] Newer shingles vaccine linked to lower heart disease risk, \u2018natural experiment\u2019 shows",
+      "content_html": "<img src=\"https://www.statnews.com/wp-content/uploads/2026/08/https___arcmigration-prdweb.bostonglobe.com_r_Boston_2011-2020_2018_11_30_BostonGlobe.com_Metro_Images_c8ef4a764fc24e57a3889703200b19fb-41ee6d1ba8a94163ad13b410dcade85d-0-645x645.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.statnews.com%2F2026%2F08%2F26%2Fshingles-vaccine-shingrix-reduces-heart-disease-dementia-risk-oxford-study%2F%3Futm_campaign%3Drss\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nOxford researchers call shingles shot first vaccine protecting both heart and brain. Lower heart disease risk follows study showing reduced dementia risk.",
+      "summary": "Oxford researchers call shingles shot first vaccine protecting both heart and brain. Lower heart disease risk follows study showing reduced dementia risk.",
+      "_excerpt": "Oxford researchers call shingles shot first vaccine protecting both heart and brain. Lower heart disease risk follows study showing reduced dementia risk.",
+      "date_published": "2026-08-26T09:00:00+00:00",
+      "authors": [
+        {
+          "name": "STAT News",
+          "url": "https://www.statnews.com"
+        }
+      ],
+      "ai_score": 55,
+      "_quality": 72,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 90,
+      "_theme_score_raw": 13,
+      "_composite_podcast": 59,
+      "_keyword_matches": 0,
+      "_category": "wellness",
+      "_source_category": "wellness",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://www.statnews.com/wp-content/uploads/2026/08/https___arcmigration-prdweb.bostonglobe.com_r_Boston_2011-2020_2018_11_30_BostonGlobe.com_Metro_Images_c8ef4a764fc24e57a3889703200b19fb-41ee6d1ba8a94163ad13b410dcade85d-0-645x645.jpg",
+      "_cross_theme": {
+        "day": "tuesday",
+        "label": "Working Lands & Industry",
+        "shown_at": "2026-09-03T04:13:26.297442+00:00"
+      },
+      "_boosted_score": 55
+    },
+    "held_date": "2026-09-03",
+    "target_date": "2026-09-06",
+    "target_weekday": 6,
+    "target_focus_slug": "discovery-health",
+    "target_focus_name": "Discovery, Health & How Science Works",
+    "status": "held"
+  },
+  "https://100milefreepress.net/2026/09/02/cariboo-outdoors-just-like-that-it-was-over/": {
+    "article": {
+      "id": "https://100milefreepress.net/2026/09/02/cariboo-outdoors-just-like-that-it-was-over/",
+      "url": "https://100milefreepress.net/2026/09/02/cariboo-outdoors-just-like-that-it-was-over/",
+      "title": "[100 Mile Free Press] CARIBOO OUTDOORS: Just like that, it was over",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2F100milefreepress.net%2F2026%2F09%2F02%2Fcariboo-outdoors-just-like-that-it-was-over%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nAs I write this, it appears the last of the hot days of summer are gone now, taking with them the threat of a major forest fire and smoky conditions. [&#8230;]",
+      "summary": "As I write this, it appears the last of the hot days of summer are gone now, taking with them the threat of a major forest fire and smoky conditions. [\u2026]",
+      "_excerpt": "As I write this, it appears the last of the hot days of summer are gone now, taking with them the threat of a major forest fire and smoky conditions. [\u2026]",
+      "date_published": "2026-09-03T00:00:00+00:00",
+      "authors": [
+        {
+          "name": "100 Mile Free Press",
+          "url": "https://www.100milefreepress.net"
+        }
+      ],
+      "ai_score": 78,
+      "_quality": 60,
+      "_relevance": 78,
+      "_local": 100,
+      "_theme_score": 65,
+      "_theme_score_raw": 8,
+      "_composite_podcast": 57,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-03T04:13:26.297442+00:00"
+      },
+      "_boosted_score": 78,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-09-03",
+    "target_date": "2026-09-04",
+    "target_weekday": 4,
+    "target_focus_slug": "wildlife-conservation",
+    "target_focus_name": "Wildlife & Conservation",
+    "status": "aired_early"
+  },
+  "https://www.livefortheoutdoors.com/trail-running/news/mens-winner-utmb/": {
+    "article": {
+      "id": "https://www.livefortheoutdoors.com/trail-running/news/mens-winner-utmb/",
+      "url": "https://www.livefortheoutdoors.com/trail-running/news/mens-winner-utmb/",
+      "title": "[Live for the Outdoors (Country Walking)] \u201cUnbelievable\u201d: American ultrarunner Ben Dhiman wins the UTMB in the fastest time ever",
+      "content_html": "<img src=\"https://images.bauerhosting.com/affiliates/sites/2/2026/08/utmb-ben-dhiman.jpg?q=80\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.livefortheoutdoors.com%2Ftrail-running%2Fnews%2Fmens-winner-utmb%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nBen Dhiman has claimed his first UTMB title, completing the world's most renowned ultra trail in the fastest time in the race's history",
+      "summary": "Ben Dhiman has claimed his first UTMB title, completing the world's most renowned ultra trail in the fastest time in the race's history",
+      "_excerpt": "Ben Dhiman has claimed his first UTMB title, completing the world's most renowned ultra trail in the fastest time in the race's history",
+      "date_published": "2026-09-02T08:23:09+00:00",
+      "authors": [
+        {
+          "name": "Live for the Outdoors (Country Walking)",
+          "url": "https://www.livefortheoutdoors.com"
+        }
+      ],
+      "ai_score": 67,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 78,
+      "_theme_score_raw": 10,
+      "_composite_podcast": 56,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://images.bauerhosting.com/affiliates/sites/2/2026/08/utmb-ben-dhiman.jpg?q=80",
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Apple News+",
+      "_boosted_score": 67,
+      "_topic_cluster": "UTMB ultramarathon race results"
+    },
+    "held_date": "2026-09-03",
+    "target_date": "2026-09-11",
+    "target_weekday": 4,
+    "target_focus_slug": "recreation-access",
+    "target_focus_name": "Recreation & Backcountry Access",
     "status": "held"
   }
 }

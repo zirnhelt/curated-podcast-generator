@@ -1,30 +1,4 @@
 {
-  "2026-06-04": {
-    "timestamp": 1780566851.174278,
-    "date": "2026-06-04",
-    "theme": "Indigenous Lands & Innovation",
-    "central_question": "How can Indigenous communities build genuine leadership and governance authority over technology systems rather than merely participating in systems designed by others?",
-    "riley_position": "Indigenous tech capacity must be built through models that keep institutional knowledge and decision-making authority within communities, and procurement/governance policies should structurally advantage Indigenous-led tech providers rather than waiting for external funding.",
-    "riley_key_evidence": [
-      "Indigenous-led research projects produce institutional capacity that stays with communities, unlike individual scholarships that often lead to brain drain",
-      "The 2014 T\u015dilhqot'in Supreme Court decision established Aboriginal title conferring decision-making authority over land use, including data and AI systems trained on territorial data",
-      "EU uses procurement policy and regulatory preference to make digital infrastructure self-sustaining rather than relying on market forces"
-    ],
-    "casey_position": "While the legal and policy frameworks exist to enable Indigenous tech governance, the persistent gap between what's theoretically possible and what's operationalized reflects underfunded capacity for negotiation, auditing, and enforcement\u2014and governance authority is the key retention mechanism that makes communities compelling places to return to after training.",
-    "casey_key_evidence": [
-      "Communities need budget, technical staff, and legal expertise to enforce data-sharing agreements\u2014all resource problems, not technology problems",
-      "Indigenous health programs with return-to-community obligations and genuine decision-making authority show significantly higher retention rates",
-      "BC Indigenous procurement policies exist but have weak implementation and low thresholds that allow circumvention"
-    ],
-    "resolution": "They identified a shared design problem rather than resolving debate: whether programs like the Montr\u00e9al AI accelerator will produce people with sufficient governance authority to make staying in their communities structurally compelling, or whether the path of least resistance continues to be urban relocation. They agreed the question is worth naming explicitly at Nation and board tables.",
-    "topics_covered": [
-      "Leadership vs. participation in Indigenous tech governance",
-      "Brain drain and retention mechanisms in capacity-building programs",
-      "Governance authority as prerequisite for sustainable Indigenous tech development",
-      "Data sovereignty and benefit-sharing frameworks for territorial knowledge",
-      "Procurement policy as tool for structural advantage and self-sustainability"
-    ]
-  },
   "2026-06-05": {
     "timestamp": 1780652489.841138,
     "date": "2026-06-05",
@@ -2411,6 +2385,34 @@
       "Infrastructure gaps between urban and rural security information access",
       "Local computer repair shops as informal security intelligence nodes",
       "Educational programs like SD27 trades training as long-term capacity building"
+    ]
+  },
+  "2026-09-03": {
+    "timestamp": 1788426923.119889,
+    "date": "2026-09-03",
+    "theme": "Indigenous Lands & Innovation",
+    "focus": "economic-development",
+    "anchor": "self-sufficient-or-connected",
+    "central_question": "Who controls decision-making and ownership of infrastructure projects on Indigenous lands\u2014is it sufficient for land-connected communities to have self-sufficiency, or does the quality of their connections and contractual terms matter more?",
+    "riley_position": "The key distinction isn't independence versus dependence, but rather which network a project connects to and whether the community can actually renegotiate or walk away from the terms\u2014tribally-owned projects with decision-making authority represent genuine sovereignty compared to externally-controlled projects regardless of location.",
+    "riley_key_evidence": [
+      "Native Renewables' off-grid solar installations on Navajo and Hopi land where the Nation owns the panels and controls power decisions, versus Google-backed solar retrofit on former West Virginia coal land",
+      "T\u015dilhqot'in salmon hatchery project where governance structure determines if the Nation holds authority over brood stock and data rather than receiving provincial summaries months later",
+      "Proposed community-scale solar-plus-storage pilot on band-owned BC land as a test case to verify whether interconnection agreements allow Nations to walk away from utility contracts"
+    ],
+    "casey_position": "Both self-sufficiency and external connections exist simultaneously and require examination of contractual power dynamics; Indigenous-owned projects aren't automatically safe without scrutiny, and even tribally-owned infrastructure can lock communities into unfavorable long-term deals written by outside lawyers if not carefully negotiated first.",
+    "casey_key_evidence": [
+      "Barclays financing the Rampal coal plant in Bangladesh next to the Sundarbans mangrove forest, where capital and decision-making from London banks eliminate local participation in projects affecting their livelihoods",
+      "Native Renewables' dependence on grant cycles and philanthropic funding, creating vulnerability if that funding tightens despite community ownership of physical assets",
+      "BC Hydro's interconnection agreements potentially locking Nations into twenty-year contracts entirely written by utility lawyers, turning project announcements into locked commitments rather than negotiable partnerships"
+    ],
+    "resolution": "Riley and Casey agreed that the operative question is not independence versus dependence but rather contractual control and the right to refuse or renegotiate terms; they jointly identified the salmon hatchery's governance structure as a real-world test case worth investigating and invited listeners to provide actual interconnection and governance details to examine this distinction empirically.",
+    "topics_covered": [
+      "Distinction between land reclamation retrofits versus Indigenous-led projects with decision-making authority",
+      "Financing structures and funding vulnerability in tribally-owned renewable energy infrastructure",
+      "Contractual power asymmetries in infrastructure development on Indigenous territory",
+      "Data sovereignty and governance in long-term infrastructure partnerships",
+      "Community-scale energy pilots as accessible tests for Indigenous decision-making authority"
     ]
   }
 }
