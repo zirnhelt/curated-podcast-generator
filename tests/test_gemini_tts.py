@@ -280,6 +280,26 @@ class TestModelEnvResolution:
         assert gemini_tts.GEMINI_TTS_FALLBACK_MODEL == "gemini-2.5-flash-preview-tts"
         assert gemini_tts.GEMINI_TTS_FALLBACK_MODEL != gemini_tts.GEMINI_TTS_MODEL
 
+    def test_fallback_never_collapses_onto_the_configured_primary(self, monkeypatch):
+        """The pair must stay two models whatever GEMINI_TTS_MODEL names.
+
+        The assertion above held on the default primary and said nothing about
+        the one production actually ran: on 2026-09-03 the repository variable
+        named gemini-2.5-flash-preview-tts, which was also the hard-coded
+        fallback, so the canary listed one candidate, _next_model_rung()
+        returned None on every rung, and the cold open re-asked the same model
+        four times before the episode went to OpenAI.
+        """
+        for primary in (
+            "gemini-2.5-flash-preview-tts",   # the 2026-09-03 repository variable
+            "gemini-3.1-flash-tts-preview",
+            "gemini-2.5-pro-preview-tts",
+        ):
+            self._reload_with(monkeypatch, primary)
+            assert gemini_tts.GEMINI_TTS_MODEL == primary
+            assert gemini_tts.GEMINI_TTS_FALLBACK_MODEL
+            assert gemini_tts.GEMINI_TTS_FALLBACK_MODEL != gemini_tts.GEMINI_TTS_MODEL
+
 
 class TestSynthesizeGuards:
     def test_missing_api_key_raises(self, monkeypatch):
@@ -829,6 +849,34 @@ class TestCanary:
         # The primary is re-asked once — a dropped connection is a verdict on
         # nothing — and the fallback answers first time.
         assert len(seen) == gemini_tts.CANARY_ATTEMPTS + 1
+
+    def test_one_candidate_is_reported_rather_than_silent(self, monkeypatch):
+        """Both names resolving to one model reads as a healthy config in the log.
+
+        It is not: with one candidate _next_model_rung() returns None on every
+        rung, so a section that stalls can only re-ask or shed prompt text —
+        the same weakened ladder the fallback pin below already degrades for.
+        On 2026-09-03 the repository variable named the model that was also the
+        hard-coded fallback, and nothing anywhere said so.
+        """
+        monkeypatch.setattr(
+            gemini_tts, "GEMINI_TTS_FALLBACK_MODEL", gemini_tts.GEMINI_TTS_MODEL
+        )
+        self._patch(monkeypatch, lambda *a, **k: TestSynthesizeRetries._FakeResp(
+            TestSynthesizeRetries.AUDIO_RESPONSE))
+        gemini_tts.drain_degradations()
+        gemini_tts.canary()
+        assert any(
+            "one candidate model" in d for d in gemini_tts.drain_degradations()
+        )
+
+    def test_two_candidates_report_nothing(self, monkeypatch):
+        """The default pair is two models, and that is not worth a warning."""
+        self._patch(monkeypatch, lambda *a, **k: TestSynthesizeRetries._FakeResp(
+            TestSynthesizeRetries.AUDIO_RESPONSE))
+        gemini_tts.drain_degradations()
+        gemini_tts.canary()
+        assert gemini_tts.drain_degradations() == []
 
     def test_returns_none_when_no_model_answers(self, monkeypatch):
         def responder(*args, **kwargs):
