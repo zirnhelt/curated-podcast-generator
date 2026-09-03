@@ -607,32 +607,52 @@ OpenAI for the whole episode before any audio exists when Gemini will not answer
 section that fails mid-render falls back per section. Dispatch with `tts_provider=openai`
 to skip Gemini for a run.
 
-**The Gemini default model is `gemini-3.1-flash-tts-preview`, and as of 2026-09-02 it has
-never answered.** It was made the default without the probe this paragraph asks for, and
-every run since has spent two 45 s canary read timeouts on it — verified identical on
-2026-09-01 and 2026-09-02 (1082 chars, 45.1 s, unanswered, twice each night). So every
-episode is pinned to `GEMINI_TTS_FALLBACK_MODEL`, which costs ~100 s of each render and,
-worse, spends the ladder's model rung before the first section: with `_model_override` set,
-`_next_model_rung()` returns `None` for every rung, so a section that stalls can only
-re-ask or shed prompt text. That is the standing cause of the nightly OpenAI fallbacks.
+**The code default is `gemini-3.1-flash-tts-preview`, and it has never answered here.**
+It was made the default without the probe this section asks for, and every run from
+2026-09-01 spent two 45 s canary read timeouts on it (1082 chars, 45.1 s, unanswered,
+twice each night, identical on both dates) before pinning
+`GEMINI_TTS_FALLBACK_MODEL` for the show. **Production overrides it via the
+`GEMINI_TTS_MODEL` repository variable, set to `gemini-2.5-flash-preview-tts`, and that
+works**: on 2026-09-03 the canary passed on the first candidate in 3.4 s.
 
-**The fix is a repository variable, not a code change:** set
-`GEMINI_TTS_MODEL=gemini-2.5-flash-preview-tts` so the primary is the model that answers
-and the ladder gets its model rung back. Before flipping it back to a new preview, **run
-`python evaluate_tts.py --probe-models` (TTS Eval workflow, `probe_models` input) against
-the 8/15 baseline** and record the numbers here — the reason 3.1 ran unexamined for weeks
-is that nobody had a measurement to argue with. Check the pinned `speechConfig` voices
-(`Kore`/`Iapetus` in `hosts.json`) carry over — voice identity is the last thing to
-degrade — and refit `READ_TIMEOUT_MS_PER_CHAR` off the probe's slowest column while the
-data is in hand.
+**Setting that variable then collapsed the model ladder, which is the trap to know
+about.** `gemini-2.5-flash-preview-tts` was also the hard-coded default of
+`GEMINI_TTS_FALLBACK_MODEL`, so primary and fallback named one model, the canary printed
+one candidate, and `_next_model_rung()` returned `None` on every rung — the same hole the
+`_model_override` pin opens, reached from the configuration side and just as silent. All
+four attempts on that day's cold open re-asked the same model unchanged and the episode
+went to OpenAI. `GEMINI_TTS_FALLBACK_MODEL` is therefore resolved against the primary
+(`_default_fallback_model`, preference order `2.5-flash` then `2.5-pro`) rather than
+hard-coded, and a candidate list of one now `degrade()`s from `canary()` whether or not
+the render goes on to succeed.
 
-`GEMINI_TTS_FALLBACK_MODEL` therefore defaults to `gemini-2.5-flash-preview-tts`, the
-model the show actually shipped on: the fallback's job here is to be the known-good one,
-so a withdrawn preview, a wrong model name or a 3.1 outage costs the episode a model
-rather than its voices — the canary probes the primary, fails, probes this, and pins it
-for the show. Pro TTS used to hold that slot; it costs more than flash and was never
-reached on a night flash could serve, so it is an env var away rather than the default
-second spend.
+**Price is not a reason to keep the ladder one model short.** Pro TTS was demoted out of
+the fallback slot for costing more than flash; measured 2026-09-03 that holds only for
+*input* tokens ($1.25 vs $0.50 per MTok) while **audio output is $10 per MTok on both** —
+and audio output is essentially the whole bill. An episode sends ~2.5k input tokens, so
+choosing pro over flash as the second model costs a fraction of a cent. `3.1` is the one
+that is genuinely more expensive ($1.00 in / **$20** out) and it is also the one that has
+never answered, which is why it is not in the preference order.
+
+Before making any new preview the primary, **run `python evaluate_tts.py --probe-models`
+(TTS Eval workflow, `probe_models` input) against the 8/15 baseline** and record the
+numbers here — the reason 3.1 ran unexamined for weeks is that nobody had a measurement
+to argue with. Note the probe only ever measures the two configured models: it cannot
+discover a better one, so widening the field is a decision made here, not by the tool.
+Check the pinned `speechConfig` voices (`Kore`/`Iapetus` in `hosts.json`) carry over —
+voice identity is the last thing to degrade — and refit `READ_TIMEOUT_MS_PER_CHAR` off
+the probe's slowest column while the data is in hand.
+
+**The wider model question is still open, and it is about the endpoint, not the model.**
+All three Gemini API TTS models (`2.5-flash-preview-tts`, `2.5-pro-preview-tts`,
+`3.1-flash-tts-preview`) are *preview*: no SLA, tighter rate limits, two weeks' notice
+before withdrawal. Cloud Text-to-Speech carries what appear to be GA-labelled equivalents
+(`gemini-2.5-flash-tts`, `gemini-2.5-pro-tts`) on `texttospeech.googleapis.com` — a
+different product surface, different auth (service account, not an API key), different
+request shape, and a different quota pool from the one throwing our 500s and read
+timeouts. That is the only change on the table that would alter the *reliability* rather
+than re-rolling the same dice, and it has not been verified against the docs — do that
+before costing it.
 
 Google's Interactions API is now GA with `generateContent` marked legacy for speech.
 Port to it only if a probe shows `generateContent` is what is holding the model back.
@@ -643,17 +663,19 @@ An episode is 6–9 independent Gemini calls, so per-call reliability compounds 
 
 - **Canary (`gemini_tts.canary()`).** One tiny throwaway synthesis before any audio exists, run from `generate_audio_from_script`. A failed canary pins OpenAI up front, so a provider that is down costs one tiny call rather than a section's whole retry ladder — on 2026-09-02 that ladder spent 290 s of the render learning what a 3 s probe would have said. It probes the fallback model too, and pins it only if the primary is the one that's down.
   **It does not make a mixed-voice episode unrepresentable, and it never did.** It front-runs only the *pre-render* case; the per-section fallback still leaves already-rendered sections in the earlier provider's voice, which is what 2026-09-01 shipped (Gemini cold open and welcome, OpenAI from the news on). **A mixed episode is an accepted outcome** — re-rendering good audio to force one voice spends the render clock and the OpenAI budget on nothing a listener asked for. What is *not* acceptable is a mixed episode that does not say so: `record_tts_render()` tracks every provider that spoke and `_compose_tts_credit()` names all of them, on the spoken credits, the citations sidecar and the episode description alike. Each candidate gets `CANARY_ATTEMPTS` probes, but only against a failure carrying no verdict — the same rule `_carries_no_shape_verdict` applies to the ladder. Every canary failure of the week of 2026-08-17 was a read timeout against an endpoint the 2026-08-13 probe had measured at 8/15 calls answering, so a single attempt was a coin flip that moved whole episodes onto OpenAI's voices; a tokenized rejection is still taken at its word and never re-asked.
-  **The probe has to ask the question the render asks.** It was one single-speaker turn at a 30 s leash, vouching for multi-speaker sections that get 45–120 s: on 2026-08-28 it passed and the same model then failed three multi-speaker sections in a row, so the episode was pinned to a provider that could not render it. `CANARY_SEGMENTS` is now two turns, one per speaker (still under the 10 words `_duration_ratio` needs before it will judge a clip), and `CANARY_READ_TIMEOUT` is `READ_TIMEOUT_MIN_S` — **a canary must never be stricter than the render**, or it fails endpoints the render would have waited out.
+  **The probe has to ask the question the render asks.** It was one single-speaker turn at a 30 s leash, vouching for multi-speaker sections that get 75–120 s: on 2026-08-28 it passed and the same model then failed three multi-speaker sections in a row, so the episode was pinned to a provider that could not render it. `CANARY_SEGMENTS` is now two turns, one per speaker (still under the 10 words `_duration_ratio` needs before it will judge a clip), and `CANARY_READ_TIMEOUT` is `READ_TIMEOUT_MIN_S` — **a canary must never be stricter than the render**, or it fails endpoints the render would have waited out. That coupling means raising the floor raises what a *dead* night costs before the render starts: at 75 s, two candidates × `CANARY_ATTEMPTS` is ~310 s against ~190 s at 45. It stays coupled anyway — a probe that gives up sooner than the render is the more expensive mistake, because it spends the whole episode's voices rather than five minutes.
   **It still only vouches for the multi-speaker shape**, and the cold open is usually one turn, which takes the `singleSpeakerVoiceConfig` branch: on 2026-09-02 the probe passed in 3.3 s and the single-speaker cold open that followed was rejected twice. Probing both shapes was considered and left out — a rung-0 rejection is not a dead provider (the same section succeeded one rung later on 2026-09-01), so vetoing Gemini on one would cost more Gemini days than it saves. `_ladder_summary()` names the shape in the degradation instead: the same information, on the day it matters, for no extra call.
 - **Retry ladder (`RETRY_LADDER`).** Each rung changes the *shape* of the request, not just the seed — `finishReason: OTHER` returns `promptTokenCount == totalTokenCount`, i.e. a rejection of what was asked, which reseeding cannot fix. Rungs shed the continuation note, then the audio profile and style block, then the tags. Backoff (0/15/45/90/90 s) is sized to outlast the minutes-long capacity windows the old 5 s/10 s ladder always died inside.
-- **Model ladder.** `GEMINI_TTS_FALLBACK_MODEL` (default pro TTS) is tried at rung 3, *before* the primary model with a bare transcript: voices are pinned by `speechConfig` on every rung, so a model change keeps the hosts sounding like themselves while a stripped prompt loses the direction. Pro costs more than flash, which is why it sits behind three primary failures.
+- **Model ladder.** `GEMINI_TTS_FALLBACK_MODEL` is tried at rung 3, *before* the primary model with a bare transcript: voices are pinned by `speechConfig` on every rung, so a model change keeps the hosts sounding like themselves while a stripped prompt loses the direction. It resolves to whichever of `2.5-flash` / `2.5-pro` the primary is not, so this rung exists no matter what `GEMINI_TTS_MODEL` names — the 2026-09-03 collapse is the failure that rule exists to prevent, and it cost a whole episode's voices while every log line looked healthy.
 - **Failure-shape routing (`_carries_no_shape_verdict`).** The rung order above assumes a *rejection*. Exactly one failure here is one: `finishReason: OTHER`, which returns `promptTokenCount == totalTokenCount` — accepted, tokenized, refused. A read timeout, a dropped connection, a 429 and a 5xx all carry no verdict on the prompt, so on one the ladder goes straight to a rung that changes the model, and when there is none left (`_model_override` pinned one) it re-asks the same full-quality request rather than shedding anything. Prompt-shedding is not a retry strategy for a request that was never read: the two shedding rungs cost a full read timeout each and pushed the model rungs out of `SECTION_BUDGET_S` entirely — three timeouts spend 120+15+120+45+120 = 420 s, the budget exactly, which is why every August 2026 episode fell back to OpenAI mid-show and no model rung ever ran. The budget still allows three attempts; the change is *what* they ask, not how many there are.
   **A 429 is a rate limit until proven otherwise — unless it names a spend cap.** Gemini answers an ordinary per-minute throttle with the same 429 `RESOURCE_EXHAUSTED` it uses for a spent quota, and taking it as a verdict gave both canary candidates away on one throttled call each on 2026-08-26 (two of three crons). A genuinely spent quota costs one extra tiny probe before it is believed; refusing to re-ask a rate limit costs an episode its voices. Note the asymmetry with `_billing_wall()` on the *script* side, which must match on credit wording and never on the status code — there the cost of reading a throttle as a wall is a skipped day.
   **The one 429 that is a verdict is a spend cap** (`_is_spend_cap`, `SpendCapError`), and like `_billing_wall()` it is matched on the *wording* — `"Your project has exceeded its monthly spending cap"` — never the status. A capped project refuses every model on it until a human raises the cap or the month rolls over, so no rung, no backoff and no model rung reaches past it: `_carries_no_shape_verdict` returns False for it, the ladder hands the section back immediately, and `canary()` skips the remaining candidates instead of asking the same wall twice per model. On 2026-08-29 that wall cost four probes across two models, and would have cost four a night until Sept 1. The degradation names the cap, because "did not answer the pre-flight check" reads like a flaky endpoint and this one needs a person.
   The 2026-08-13 probe (`--probe-gemini`, welcome section, 3 calls/rung) measured 8/15 calls succeeding, spread evenly across all five rungs — flaky endpoint, not a rejected prompt, and not a dead primary model. That is why a timeout is worth re-asking unchanged, and why the canary's verdict on the primary should be read as "slow right now", not "down".
 - **Budgets, and the leash that spends them.** `SECTION_BUDGET_S` bounds one chunk's ladder; `set_render_deadline()` (called with `GEMINI_RENDER_DEADLINE_S`) bounds all Gemini work in a render, so a provider that dies *after* the canary passed cannot eat the 40-minute render step one section at a time. `_budget_allows` reserves the attempt's own read timeout as well as its backoff, so a retry that cannot finish inside the budget is never started.
-  **`REQUEST_READ_TIMEOUT` was flat and that is what bounded the ladder's reach.** One 120 s leash covered a 354-char cold open and an 8 500-char chunk alike, so at 420 s a section afforded **two attempts** — and against the measured ~53%-per-call endpoint, two attempts is ~78% per section and **~17% across a seven-section episode**. That arithmetic, not any one outage, is why a whole Gemini episode kept not happening. `_read_timeout_for(segments)` now scales the leash by transcript chars, clamped to `[READ_TIMEOUT_MIN_S, READ_TIMEOUT_MAX_S]` = `[45, 120]`: the ceiling is the old flat value, so **the largest chunks wait exactly as long as they always have and the change is only ever a cut for the small ones**, which is where the budget was being burned on silence. Five attempts per section takes the episode to ~85%.
+  **`REQUEST_READ_TIMEOUT` was flat and that is what bounded the ladder's reach.** One 120 s leash covered a 354-char cold open and an 8 500-char chunk alike, so at 420 s a section afforded **two attempts** — and against the measured ~53%-per-call endpoint, two attempts is ~78% per section and **~17% across a seven-section episode**. That arithmetic, not any one outage, is why a whole Gemini episode kept not happening. `_read_timeout_for(segments)` now scales the leash by transcript chars, clamped to `[READ_TIMEOUT_MIN_S, READ_TIMEOUT_MAX_S]` = `[75, 120]`: the ceiling is the old flat value, so **the largest chunks wait exactly as long as they always have and the change is only ever a cut for the small ones**, which is where the budget was being burned on silence. Five attempts per section takes the episode to ~85%.
   **The constants are provisional and instrumented for refit.** They are fitted to one measured take (a 1 173-char request answered in ~16 s on 2026-08-28) plus the chunk ceiling, at roughly 3x observed. Every call now logs `latency=` and `limit=` alongside `chars=`, success and failure alike — pair those across a few episodes and refit `READ_TIMEOUT_MS_PER_CHAR`, the same way `_SPEECH_RATE_FITS` was fitted from the transcript sidecars. Nothing recorded latency before, which is how a flat 120 s survived unexamined for the life of the integration.
+  **The floor was the stale half of that fit, and it is what a small section actually gets.** The formula wants 15.9 s for a 398-char cold open and the clamp lifts it, so the floor was never "3x observed" — it was 3x the single take the constants were fitted to. The same request measured **27.9 s** on 2026-09-03 and two of that section's four attempts died at exactly 45.0 s and 45.1 s, so the floor is now **75 s**. This is a hypothesis, and the counter-evidence is in the 2026-08-13 probe: 7 of 15 calls failed against a flat 120 s leash, so a longer wait does not convert every timeout into a take. What it buys is that a slow-but-alive call stops being indistinguishable from a dead one at exactly the leash.
+  **`SECTION_BUDGET_S` moved with it (420 → 540), because the budget and the leash trade against each other.** At 420 s a 45 s-leash section afforded four attempts (0+45, 15+45, 45+45, 90+45 = 330 s); at 75 s the same budget affords three, so raising the timeout alone would have bought longer waits by silently spending an attempt. 540 s keeps four (450 s) and still sits well inside `GEMINI_RENDER_DEADLINE_S` (1500 s), which is the ceiling that actually protects the render step. **Move these two together or not at all.**
 
 **Ordering rule:** degrade delivery nuance before voice identity. Anything that changes *who the hosts sound like* is the last resort — a model change (which keeps the pinned `speechConfig` voices) always comes before dropping the show onto OpenAI's. That ordering is why the whole-episode decision is made up front where it can be; it is not a promise that every episode is single-provider, which the per-section fallback has never been able to keep. When the episode does end up mixed, the credit says so.
 

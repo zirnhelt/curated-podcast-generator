@@ -48,17 +48,36 @@ GEMINI_TTS_MODEL = (os.getenv("GEMINI_TTS_MODEL") or "").strip() or "gemini-3.1-
 # keeps Riley and Casey sounding like themselves — the episode loses a model,
 # not its voice.
 #
-# It is the 2.5 flash model the show rendered on for months, deliberately: the
-# primary is now a preview model this repo has never run a night on, so the
-# fallback's job is to be the known-good one. A wrong model name, a preview
-# withdrawn, or a 3.1 outage then costs the episode nothing at all — the canary
-# probes the primary, fails, probes this, and pins it for the show. Pro TTS used
-# to sit here; it costs more than flash and was never reached on a night flash
-# could serve, so it is now an env-var away (GEMINI_TTS_FALLBACK_MODEL) rather
-# than the default second spend.
+# Resolved *against the primary* rather than hard-coded, because the two
+# collapsing into one model is silent and costs the ladder its model rung
+# entirely. On 2026-09-03 GEMINI_TTS_MODEL was set to
+# gemini-2.5-flash-preview-tts — the fix for 3.1 never answering — which was
+# also this default, so the canary listed one candidate and _next_model_rung()
+# returned None on every rung. All four attempts on the cold open re-asked the
+# same model unchanged and the episode went to OpenAI: the same hole the
+# canary's _model_override pin opened on 2026-09-02, reached from the
+# configuration side instead.
+#
+# Order is by what the show has shipped on, not by price. Pro TTS used to be
+# demoted from this slot for costing more than flash; measured 2026-09-03 that
+# is only true of *input* tokens ($1.25 vs $0.50 per MTok) while audio output —
+# which is essentially all of an episode's TTS bill — is $10 per MTok on both.
+# An episode sends ~2.5k input tokens, so the difference is a fraction of a
+# cent and price is not a reason to keep the ladder one model short.
+_FALLBACK_PREFERENCE = (
+    "gemini-2.5-flash-preview-tts",
+    "gemini-2.5-pro-preview-tts",
+)
+
+
+def _default_fallback_model(primary: str) -> str:
+    """First preference that is not *primary*, so the ladder always has two."""
+    return next((m for m in _FALLBACK_PREFERENCE if m != primary), "")
+
+
 GEMINI_TTS_FALLBACK_MODEL = (
     os.getenv("GEMINI_TTS_FALLBACK_MODEL") or ""
-).strip() or "gemini-2.5-flash-preview-tts"
+).strip() or _default_fallback_model(GEMINI_TTS_MODEL)
 
 GEMINI_TTS_URL = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 
@@ -151,7 +170,20 @@ REQUEST_CONNECT_TIMEOUT = 15
 # pair it against `chars=` across a few episodes, the same way _SPEECH_RATE_FITS
 # was fitted from the transcript sidecars. Until then expect the floor to be
 # loose rather than tight, which costs a wasted wait rather than a lost take.
-READ_TIMEOUT_MIN_S = int(os.getenv("GEMINI_TTS_READ_TIMEOUT_MIN_S", "45"))
+#
+# The floor was 45 s and that was the stale half of the fit. It is what a small
+# request actually gets — the formula wants 15.9 s for a 398-char cold open and
+# the clamp lifts it — so it was never "3x observed", it was 3x the *one* take
+# the constants were fitted to (1 173 chars in ~16 s, 2026-08-28). The same
+# request measured 27.9 s on 2026-09-03, and two of that section's four
+# attempts died at exactly 45.0 s and 45.1 s. 75 s restores the stated 3x
+# against the slowest answer this endpoint has actually given.
+#
+# It is a hypothesis, and the honest counter-evidence is in the 2026-08-13
+# probe: 7 of 15 calls failed against a flat 120 s leash, so a longer wait does
+# not convert every timeout into a take. What it does buy is that a slow-alive
+# call is no longer indistinguishable from a dead one at the leash exactly.
+READ_TIMEOUT_MIN_S = int(os.getenv("GEMINI_TTS_READ_TIMEOUT_MIN_S", "75"))
 READ_TIMEOUT_MAX_S = int(os.getenv("GEMINI_TTS_READ_TIMEOUT_MAX_S", "120"))
 READ_TIMEOUT_MS_PER_CHAR = float(os.getenv("GEMINI_TTS_READ_TIMEOUT_MS_PER_CHAR", "40"))
 
@@ -253,7 +285,16 @@ RETRY_LADDER: tuple[_Rung, ...] = (
 # a six-section episode would blow the 40-minute render step — the class of
 # failure this repo has been bitten by before. A new attempt is only started if
 # it fits.
-SECTION_BUDGET_S = float(os.getenv("GEMINI_TTS_SECTION_BUDGET_S", "420"))
+#
+# Raised with READ_TIMEOUT_MIN_S, because the budget and the leash trade against
+# each other and moving one alone is a silent cut to the other. At 420 s a
+# 45 s-leash section afforded four attempts (0+45, 15+45, 45+45, 90+45 = 330 s);
+# at a 75 s leash the same budget affords three, so the timeout raise would have
+# bought longer waits by spending an attempt. 540 s keeps four
+# (0+75, 15+75, 45+75, 90+75 = 450 s) and still sits well inside
+# GEMINI_RENDER_DEADLINE_S (1500 s), which is the ceiling that actually protects
+# the render step from a provider dying section by section.
+SECTION_BUDGET_S = float(os.getenv("GEMINI_TTS_SECTION_BUDGET_S", "540"))
 
 # Optional absolute deadline for all Gemini work in a run, set by the caller via
 # set_render_deadline(). SECTION_BUDGET_S bounds one chunk; this bounds the sum,
@@ -871,6 +912,19 @@ def canary() -> str | None:
     # messages name a model each, but nothing said what the run was configured
     # with, so a wrong or withdrawn model name looked exactly like an outage.
     print(f"  Gemini TTS candidates: {' then '.join(candidates)}")
+    if len(candidates) < 2:
+        # A configuration fact, not an outcome, so it is reported before any
+        # probe runs and whether or not the render goes on to succeed: with one
+        # candidate _next_model_rung() returns None on every rung, so a section
+        # that stalls can only re-ask or shed prompt text. Same weakened ladder
+        # the pin below degrades for, and until 2026-09-03 it reached the run
+        # report through nothing at all — both env vars naming one model looks
+        # exactly like a healthy configuration in the log.
+        _degradations.append(
+            f"Gemini TTS has one candidate model ({candidates[0]}) — "
+            "GEMINI_TTS_MODEL and GEMINI_TTS_FALLBACK_MODEL name the same "
+            "model, so no model rung is left for a section that stalls"
+        )
 
     for i, model in enumerate(candidates):
         if i:
