@@ -60,11 +60,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-07-02",
-        "clue": "Indigenous-tech:x \u2014 Conceded that provenance tools don't solve legal standing, adopted Casey's skepticism",
-        "occurrences": 2
-      },
-      {
         "date": "2026-08-23",
         "clue": "tech-optimism:-[signal] \u2014 Conceded venture-driven collapse undermined mission narrative",
         "occurrences": 2
@@ -143,11 +138,6 @@
         "date": "2026-08-30",
         "clue": "evidence-bar:~ \u2014 acknowledged both complexity and improbability readings possible",
         "occurrences": 1
-      },
-      {
-        "date": "2026-09-02",
-        "clue": "structural-lens:+ \u2014 Moves from individual fixes to systemic gap analysis",
-        "occurrences": 2
       }
     ],
     "core_memories": [
@@ -384,13 +374,18 @@
         "occurrences": 2
       },
       {
-        "date": "2026-09-02",
-        "clue": "pilot-skepticism:+ \u2014 Three-issue lifespan prediction shows learned caution",
-        "occurrences": 1
+        "date": "2026-09-03",
+        "clue": "pilot-skepticism:+ \u2014 emphasized contract-reading and negotiation leverage as real test",
+        "occurrences": 2
       },
       {
         "date": "2026-09-02",
         "clue": "evidence-bar:x \u2014 Concedes passkey endpoint hygiene still requires user vigilance",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-09-03",
+        "clue": "evidence-bar:~ \u2014 added nuance on Indigenous-owned projects carrying their own risks",
         "occurrences": 1
       }
     ],
