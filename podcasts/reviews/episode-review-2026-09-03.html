@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, September 3, 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.1rem; color: #444; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }
+    th { background: #f5f5f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    a { color: #0066cc; }
+    code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, September 3, 2026</h1>
+  <p class="meta">Published September 3, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/33736913709">33736913709</a>.</em></p>
+
+<h3>Two runs, one success: Gemini multi-speaker failed on the preamble</h3>
+
+<p>The 09:05 run completed successfully after the 08:05 run failed. At 09:30, episode 219 shipped to RSS. A third run began at 10:05 and is still in progress.</p>
+
+<p>During audio render, Gemini's multi-speaker model rejected the preamble section with a finish reason of <code>OTHER</code> and returned no audio despite accepting the prompt. The pipeline fell back to single-speaker Gemini for four attempts. All four either rejected or returned silence. The remaining sections and credits rendered with OpenAI instead. Nothing was dropped from the episode—the voice split changed mid-episode, not mid-sentence.</p>
+
+<h3>Article body enrichment hit its budget</h3>
+
+<p>The Brave body-backfill service made 12 calls and exhausted its budget. Fifty-six roundup articles were dropped from the script. The remaining thin articles kept their stub bodies and stayed in the episode; they may be cut later if they remain sparse enough.</p>
+
+<p>This is a cascade choice, not a failure. The pipeline prioritized depth over breadth. What shipped was shorter source text, not missing sources.</p>
+
+<h3>Script undershot, then corrected</h3>
+
+<p>The first draft arrived at 2,617 words against a 3,400-word target. The script was sent back for an expand pass. The final shipped version landed at 3,038 words—still 362 words short of target, but acceptable enough to publish.</p>
+
+<h3>Citation alignment tilted toward the roundup</h3>
+
+<p>Fourteen of fifteen roundup citations matched their sources. Two of three deep-dive citations matched. The three deep dives were:</p>
+
+<ul>
+<li>Google battery technology deployment</li>
+<li>Barclays infrastructure financing complaint</li>
+<li>Workplace ostracism and productivity</li>
+</ul>
+
+<p>One deep-dive source failed to match. The roundup held stronger.</p>
+
+<h3>Audio render took longest; TTS had one segment retry</h3>
+
+<p>Render episode audio consumed 529 seconds. Generate episode script took 481 seconds. One TTS segment came back shorter than word count predicted and was retried. The retry was also short. The longer of the two takes was kept, adding no gaps to the episode.</p>
+
+<p>Final audio: 19.2 minutes, 17.6 MB. Video: 19.2 minutes, 55.4 MB.</p>
+
+<h3>Debate question and quality metrics</h3>
+
+<p>The episode centered on who controls infrastructure decision-making on Indigenous lands: whether self-sufficiency alone is sufficient, or whether contractual terms and connection quality matter more.</p>
+
+<p>Quality checks found one AI-tell pattern hit. Voice ratio favored Casey at 1.06 to Riley. Three deep dives aired. Claude made 8 API calls consuming 88,500 input tokens.</p>
+
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-03T08:05:28Z</td><td>+0 min</td><td>failure</td></tr>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-03T09:05:27Z</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-03T10:05:27Z</td><td>+0 min</td><td>in_progress</td></tr>
+</tbody>
+</table>
+
+<h3>What shipped</h3>
+<table>
+<thead><tr><th>Measure</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Deep dive</td><td>3 articles</td></tr>
+<tr><td>Script</td><td>1 pattern hit(s), voice ratio 1.06, 3038 words</td></tr>
+<tr><td>Audio</td><td>19.2 min</td></tr>
+<tr><td>Audio size</td><td>17.6 MB</td></tr>
+<tr><td>Citations matched</td><td>14/15 roundup, 2/3 deep dive</td></tr>
+<tr><td>Feed</td><td>219 episodes</td></tr>
+<tr><td>Anthropic spend</td><td>88,500 input tokens, calls {'claude': 8}</td></tr>
+</tbody>
+</table>
+</body>
+</html>
