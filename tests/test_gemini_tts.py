@@ -356,6 +356,53 @@ class TestSynthesizeRetries:
             _synthesize_chunk(SEGS)
         assert not responses  # every rung consumed
 
+    def test_exhausted_ladder_carries_a_tally_of_what_it_met(self, monkeypatch):
+        """The caller's degradation must name the decisive failure, not the last.
+
+        On 2026-09-02 the cold open was rejected twice (finishReason: OTHER) and
+        then timed out, and the run report named only the ReadTimeout — so the
+        episode review read a refused request shape as a flaky endpoint.
+        """
+        rungs = len(gemini_tts.RETRY_LADDER)
+        responses = [self._FakeResp(self.NO_AUDIO_RESPONSE) for _ in range(rungs)]
+        self._patch(monkeypatch, responses)
+        with pytest.raises(RuntimeError) as excinfo:
+            _synthesize_chunk(SEGS)
+        summary = getattr(excinfo.value, "ladder_summary", "")
+        assert "rejected" in summary, summary
+        assert "multi-speaker" in summary, summary
+
+    def test_the_tally_names_the_single_speaker_shape(self, monkeypatch):
+        """The canary only ever probes multi-speaker, so a one-turn section is
+        the shape nothing vouched for — and on 2026-09-02 it was the one being
+        refused. The degradation is where that becomes visible."""
+        rungs = len(gemini_tts.RETRY_LADDER)
+        responses = [self._FakeResp(self.NO_AUDIO_RESPONSE) for _ in range(rungs)]
+        self._patch(monkeypatch, responses)
+        with pytest.raises(RuntimeError) as excinfo:
+            _synthesize_chunk([SEGS[0]])
+        assert "single-speaker" in getattr(excinfo.value, "ladder_summary", "")
+
+    def test_the_tally_separates_unanswered_from_rejected(self, monkeypatch):
+        """A timeout carries no verdict on the prompt and a rejection does, so
+        counting them together would hide which one spent the budget."""
+        monkeypatch.setenv("GEMINI_API_KEY", "test-key")
+        monkeypatch.setattr(gemini_tts.time, "sleep", lambda s: None)
+        calls = []
+
+        def fake_post(*args, **kwargs):
+            calls.append(1)
+            if len(calls) == 1:
+                return self._FakeResp(self.NO_AUDIO_RESPONSE)
+            raise gemini_tts.requests.Timeout("read timed out")
+
+        monkeypatch.setattr(gemini_tts.requests, "post", fake_post)
+        with pytest.raises(gemini_tts.requests.Timeout) as excinfo:
+            _synthesize_chunk(SEGS)
+        summary = getattr(excinfo.value, "ladder_summary", "")
+        assert "1 rejected" in summary, summary
+        assert "unanswered" in summary, summary
+
     def test_no_audio_retry_perturbs_seed(self, monkeypatch):
         """A pinned seed makes generation deterministic — retrying with the
         exact same seed would just reproduce the same no-audio dud (observed
@@ -924,6 +971,34 @@ class TestCanary:
             len(s["text"].split()) for s in gemini_tts.CANARY_SEGMENTS
         )
         assert words < 10
+
+    def test_pinning_the_fallback_model_says_so_in_the_run_report(self, monkeypatch):
+        """The pin costs the ladder its model rung, so a section that stalls can
+        only re-ask or shed prompt text.
+
+        On 2026-09-02 that reached the run report through nothing but stdout, and
+        the episode review reported the fallback model's rejection as the primary
+        model timing out.
+        """
+        def responder(url, **kwargs):
+            if gemini_tts.GEMINI_TTS_MODEL in url:
+                raise gemini_tts.requests.Timeout("primary is slow")
+            return TestSynthesizeRetries._FakeResp(TestSynthesizeRetries.AUDIO_RESPONSE)
+
+        self._patch(monkeypatch, responder)
+        gemini_tts.drain_degradations()
+        assert gemini_tts.canary() == gemini_tts.GEMINI_TTS_FALLBACK_MODEL
+        reported = gemini_tts.drain_degradations()
+        assert any(gemini_tts.GEMINI_TTS_MODEL in d for d in reported), reported
+        assert any("model rung" in d for d in reported), reported
+
+    def test_a_healthy_primary_reports_nothing(self, monkeypatch):
+        """The report earns its readers by staying quiet on a normal night."""
+        self._patch(monkeypatch, lambda *a, **k: TestSynthesizeRetries._FakeResp(
+            TestSynthesizeRetries.AUDIO_RESPONSE))
+        gemini_tts.drain_degradations()
+        gemini_tts.canary()
+        assert gemini_tts.drain_degradations() == []
 
 
 class TestSectionGeneration:

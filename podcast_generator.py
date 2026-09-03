@@ -1016,9 +1016,17 @@ def _run_gemini_canary() -> None:
     """Decide this episode's provider once, from one tiny throwaway synthesis.
 
     A failed canary pins the whole render to OpenAI before a single section is
-    written, which is what makes the mixed-voice episode impossible rather than
-    merely unlikely. Never raises: a canary that cannot run is a reason to fall
-    back, not a reason to lose the episode.
+    written, so a provider that is down costs one tiny call rather than a
+    section's whole retry ladder — on 2026-09-02 that ladder spent 290 s of the
+    render on a cold open that OpenAI then produced in three seconds.
+
+    It is no longer claimed to make a mixed-voice episode impossible, because it
+    never did: it only front-runs the *per-section* fallback, which still leaves
+    earlier sections in the earlier provider's voice. A mixed episode is an
+    accepted outcome and the credits name every provider that spoke.
+
+    Never raises: a canary that cannot run is a reason to fall back, not a
+    reason to lose the episode.
     """
     global _tts_provider_used
     print("  🐤 Gemini TTS pre-flight check...")
@@ -1034,7 +1042,7 @@ def _run_gemini_canary() -> None:
     degrade(
         "render/gemini-canary",
         "Gemini TTS did not answer the pre-flight check — whole episode rendered "
-        "on OpenAI rather than risking a mid-episode voice change",
+        "on OpenAI rather than spending a section's retry ladder to learn the same thing",
     )
 
 
@@ -8355,16 +8363,34 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                         # failure (only mutated after a successful synth above), so the
                         # OpenAI fall-through re-renders this section cleanly. Pinning
                         # _tts_provider_used routes remaining sections + credits (spoken
-                        # and written) to OpenAI so the episode stays voice-consistent.
+                        # and written) to OpenAI, so the rest of the episode is
+                        # consistent with itself.
+                        #
+                        # Sections already rendered keep the earlier provider's voices,
+                        # so the episode is genuinely mixed from here — an accepted
+                        # outcome, not a bug (2026-09-01 shipped exactly that). What is
+                        # not acceptable is a mixed episode that does not say so, which
+                        # is why record_tts_render() tracks every provider that spoke
+                        # and _compose_tts_credit() names all of them. Re-rendering the
+                        # earlier sections on OpenAI to force one voice was considered
+                        # and rejected: it spends the render clock and the OpenAI budget
+                        # on audio that is already good.
                         if not get_openai_client():
                             raise
                         print(f"    ⚠️  {provider_label} failed ({se}) — degrading to "
                               f"OpenAI TTS for the rest of the episode (keeping music/credits)")
+                        # The ladder's own tally, not just the exception that
+                        # happened to come last: on 2026-09-02 that was a read
+                        # timeout, while the two finishReason: OTHER rejections
+                        # before it were what actually spent the budget.
+                        ladder = getattr(se, "ladder_summary", "")
                         degrade(
                             "render/tts-provider-fallback",
                             f"{provider_label} failed on section '{prefix}' "
-                            f"({type(se).__name__}: {se}) — remaining sections and "
-                            "credits rendered on OpenAI",
+                            f"({type(se).__name__}: {se})"
+                            + (f" [{ladder}]" if ladder else "")
+                            + " — sections already rendered keep their voices; "
+                            "the rest of the episode and the credits are OpenAI",
                         )
                         _tts_provider_used = "openai"
                         # fall through to the OpenAI per-segment path below
