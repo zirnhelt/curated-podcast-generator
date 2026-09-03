@@ -39,7 +39,7 @@ cannot reopen it. Anything written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-02) — 12 open.
+_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-03) — 13 open.
 Check a box to close one; it comes back only if the reviews raise it 2 more times._
 
 - [ ] **A credit-balance 400 is not the usage-limit wall, and every run pays for that.**
@@ -130,6 +130,14 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       status via the Gemini console, and either increase the timeout threshold with exponential
       backoff for retries, or switch multi-speaker sections to OpenAI by default if Gemini's
       quota is not recoverable. (seen in 2 reviews, latest 2026-09-02)
+- [ ] **Brave body-backfill exhaustion dropped 55 roundup articles from the episode.** The
+      pipeline spent its 12 Brave Search calls on body backfill and exhausted the budget mid-run
+      on 2026-09-02. Fifty-five articles were dropped instead of scripted; the deep dives
+      survived at 3 pieces. The remaining thin articles kept stub bodies, creating sparse
+      segments. This is the same budget-exhaustion pattern as 2026-08-30. Increase the Brave
+      call budget, prioritize articles by quality score before backfill, or implement a staged
+      fallback that scripts stubs at reduced length rather than dropping articles entirely.
+      (seen in 2 reviews, latest 2026-09-03)
 
 <!-- reviews:end -->
 

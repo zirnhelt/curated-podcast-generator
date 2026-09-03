@@ -247,14 +247,28 @@
       "title": "Brave body-backfill exhaustion dropped 55 roundup articles from the episode.",
       "detail": "The pipeline spent its 12 Brave Search calls on body backfill and exhausted the budget mid-run on 2026-09-02. Fifty-five articles were dropped instead of scripted; the deep dives survived at 3 pieces. The remaining thin articles kept stub bodies, creating sparse segments. This is the same budget-exhaustion pattern as 2026-08-30. Increase the Brave call budget, prioritize articles by quality score before backfill, or implement a staged fallback that scripts stubs at reduced length rather than dropping articles entirely.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-09-02",
       "seen": [
-        "2026-09-02"
+        "2026-09-02",
+        "2026-09-03"
       ],
-      "last_seen": "2026-09-02"
+      "last_seen": "2026-09-03"
+    },
+    {
+      "id": "gemini-tts-multi-speaker-preamble-reject",
+      "title": "Gemini multi-speaker TTS rejected the preamble section with no audio output.",
+      "detail": "On 2026-09-03 at 09:05, Gemini's multi-speaker model returned a finish reason of OTHER for the preamble with zero audio despite accepting the prompt. Four single-speaker attempts followed, all rejecting or returning silence. The pipeline fell back to OpenAI for remaining sections and credits, splitting the episode's voice mid-section rather than dropping content. Determine whether the preamble text shape triggers a known Gemini limitation, whether the quota tier has multi-speaker restrictions, or whether this is transient flakiness requiring only a retry budget increase.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-03",
+      "seen": [
+        "2026-09-03"
+      ],
+      "last_seen": "2026-09-03"
     }
   ],
-  "updated": "2026-09-02"
+  "updated": "2026-09-03"
 }
