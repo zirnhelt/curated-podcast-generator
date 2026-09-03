@@ -283,7 +283,7 @@ CANARY_RETRY_DELAY_S = 10
 # Attempts per candidate model, but only against a request that went
 # unanswered — see _canary_probe.
 CANARY_ATTEMPTS = 2
-# Two speakers, because the probe has to ask the question the render asks. A
+# Two speakers, because the probe has to ask the question most sections ask. A
 # single-speaker probe exercises singleSpeakerVoiceConfig and a multi-speaker
 # section exercises multiSpeakerVoiceConfig — different request shapes against
 # an endpoint whose failures are shape-sensitive. On 2026-08-28 the one-turn
@@ -291,6 +291,14 @@ CANARY_ATTEMPTS = 2
 # a row, so the episode was pinned to a provider that could not render it.
 # Still under the 10 words _duration_ratio needs before it will judge a clip,
 # so the truncation guard cannot report a healthy provider as dead.
+#
+# It does NOT vouch for the single-speaker shape, and the cold open is usually
+# one turn: on 2026-09-02 this probe passed in 3.3 s and the single-speaker cold
+# open that followed was rejected twice. Probing both shapes was considered and
+# left out — a rung-0 rejection is not a dead provider (on 2026-09-01 the same
+# section succeeded one rung later), so vetoing Gemini on it would cost more
+# Gemini days than it saves. _ladder_summary names the shape in the degradation
+# instead, which is the same information on the day it actually matters.
 CANARY_SEGMENTS = [
     {"speaker": "riley", "text": "Level check, one two.", "gap_ms": None},
     {"speaker": "casey", "text": "Two one, check.", "gap_ms": None},
@@ -688,6 +696,15 @@ def _synthesize_chunk(
     started = time.monotonic()
     last_error: Exception | None = None
 
+    # Counted per kind, because the *last* failure is rarely the decisive one.
+    # On 2026-09-02 the cold open was rejected twice (finishReason: OTHER, the
+    # verdict that walked the ladder down to a stripped prompt) and the run
+    # report named the read timeout that happened to come last — so the episode
+    # review reported a flaky endpoint where the real answer was a refused
+    # request shape.
+    rejections = 0
+    timeouts = 0
+
     # `attempt` paces the ladder — backoff, seed and the cap on total calls.
     # `rung_index` chooses the request's shape, and only tracks `attempt` while
     # the failures are rejections; a transport failure moves it independently
@@ -743,6 +760,7 @@ def _synthesize_chunk(
                 # flaky endpoint rather than a dead one, and a second identical
                 # ask is close to a coin flip. The budget, not the ladder, is
                 # what bounds this.
+                timeouts += 1
                 failed_model = _model_for(rung)
                 nxt = _next_model_rung(rung_index, failed_model)
                 if nxt is None:
@@ -751,6 +769,7 @@ def _synthesize_chunk(
                     print(f"  ⚠️  Gemini TTS did not serve {failed_model} — changing model")
                     rung_index = nxt
             else:
+                rejections += 1
                 rung_index = min(rung_index + 1, len(RETRY_LADDER) - 1)
             attempt += 1
             continue
@@ -762,7 +781,36 @@ def _synthesize_chunk(
             )
         return pcm, sample_rate
 
-    raise last_error or RuntimeError("Gemini TTS exhausted its retry ladder")
+    error = last_error or RuntimeError("Gemini TTS exhausted its retry ladder")
+    # Rides on the exception rather than in module state so it cannot be read
+    # against the wrong section: the caller formats it into the degradation that
+    # explains why this section left Gemini.
+    error.ladder_summary = _ladder_summary(segments, attempt, rejections, timeouts)
+    raise error
+
+
+def _ladder_summary(
+    segments: list[dict], attempts: int, rejections: int, timeouts: int
+) -> str:
+    """One clause naming what the ladder actually met, for the caller's degradation.
+
+    The request *shape* is in it because the canary only ever probes the
+    multi-speaker one: a one-turn section takes the `singleSpeakerVoiceConfig`
+    branch, which is a different request against an endpoint whose failures are
+    shape-sensitive, and on 2026-09-02 that was the one being refused.
+    """
+    speakers = dict.fromkeys(seg["speaker"] for seg in segments)
+    shape = "single-speaker" if len(speakers) == 1 else "multi-speaker"
+    kinds = []
+    if rejections:
+        kinds.append(f"{rejections} rejected (finishReason OTHER)")
+    if timeouts:
+        kinds.append(f"{timeouts} unanswered")
+    model = _model_override or GEMINI_TTS_MODEL
+    return (
+        f"{shape} on {model}, {attempts} attempt(s)"
+        + (f": {', '.join(kinds)}" if kinds else "")
+    )
 
 
 def _canary_probe(model: str) -> bool:
@@ -855,6 +903,19 @@ def canary() -> str | None:
         # and stop spending attempts on a model already known to be failing.
         set_model_override(None if i == 0 else model)
         print(f"  ✅ Gemini TTS canary passed on {model}")
+        if i:
+            # The pin costs the ladder its model rung: _next_model_rung() now
+            # returns None for every rung, so a section that stalls can only
+            # re-ask or shed prompt text. That is a materially weaker render
+            # than a run where the primary answered, and until 2026-09-02 it
+            # reached the run report through nothing but stdout — which is why
+            # that day's review reported the fallback model's rejection as the
+            # primary model timing out.
+            _degradations.append(
+                f"Gemini TTS primary model {GEMINI_TTS_MODEL} did not answer the "
+                f"pre-flight check — the episode is pinned to {model}, and no "
+                "model rung is left for a section that stalls"
+            )
         return model
 
     set_model_override(None)
