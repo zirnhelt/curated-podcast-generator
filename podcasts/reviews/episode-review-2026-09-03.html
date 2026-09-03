@@ -21,45 +21,33 @@
   <p class="meta">Published September 3, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
   <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/33736913709">33736913709</a>.</em></p>
 
-<h3>Two runs, one success: Gemini multi-speaker failed on the preamble</h3>
+<h3>Three manual runs, then the fallback misfired</h3>
 
-<p>The 09:05 run completed successfully after the 08:05 run failed. At 09:30, episode 219 shipped to RSS. A third run began at 10:05 and is still in progress.</p>
+<p>The pipeline ran three times by hand on 2026-09-03 before the scheduled fallback trigger at 3:05 AM Pacific. The first manual run failed; the second and third succeeded. At 14:56 UTC, the fallback ran 291 minutes late and remains in progress.</p>
 
-<p>During audio render, Gemini's multi-speaker model rejected the preamble section with a finish reason of <code>OTHER</code> and returned no audio despite accepting the prompt. The pipeline fell back to single-speaker Gemini for four attempts. All four either rejected or returned silence. The remaining sections and credits rendered with OpenAI instead. Nothing was dropped from the episode—the voice split changed mid-episode, not mid-sentence.</p>
+<p>This timing pattern suggests the scheduled trigger may have been skipped or delayed. The in-progress state at fallback 2 is the immediate concern for maintenance.</p>
 
-<h3>Article body enrichment hit its budget</h3>
+<h3>Body backfill exhausted; thin articles became stubs</h3>
 
-<p>The Brave body-backfill service made 12 calls and exhausted its budget. Fifty-six roundup articles were dropped from the script. The remaining thin articles kept their stub bodies and stayed in the episode; they may be cut later if they remain sparse enough.</p>
+<p>The Brave API budget for article body expansion spent its 12 calls. All 56 dropped roundups and remaining thin articles kept their stub bodies instead of being expanded. The pipeline chose to preserve what was available rather than halt.</p>
 
-<p>This is a cascade choice, not a failure. The pipeline prioritized depth over breadth. What shipped was shorter source text, not missing sources.</p>
+<p>This is a content quality degradation, not a count loss. The script shipped at 3,038 words after one expand pass, but those words came from fewer sources elaborated at depth rather than more sources elaborated to full body.</p>
 
-<h3>Script undershot, then corrected</h3>
+<h3>Gemini multi-speaker failed on preamble; OpenAI finished the episode</h3>
 
-<p>The first draft arrived at 2,617 words against a 3,400-word target. The script was sent back for an expand pass. The final shipped version landed at 3,038 words—still 362 words short of target, but acceptable enough to publish.</p>
+<p>The Gemini TTS endpoint rejected the preamble section with finish reason OTHER. It failed on all four retry attempts: one explicit rejection and three unanswered calls. The pipeline fell back to OpenAI for that section and all subsequent sections, including credits.</p>
 
-<h3>Citation alignment tilted toward the roundup</h3>
+<p>The episode is discontinuous in voice. The early sections kept whatever voices Gemini had rendered before the preamble failed. The rest of the 19.2-minute episode is OpenAI single-speaker. Nothing was dropped.</p>
 
-<p>Fourteen of fifteen roundup citations matched their sources. Two of three deep-dive citations matched. The three deep dives were:</p>
+<h3>Citation alignment: roundup 93%, deep dive 67%</h3>
 
-<ul>
-<li>Google battery technology deployment</li>
-<li>Barclays infrastructure financing complaint</li>
-<li>Workplace ostracism and productivity</li>
-</ul>
+<p>14 of 15 roundup citations matched their sources. 2 of 3 deep dive citations matched. The debate question—on Indigenous land infrastructure ownership—appears in the published episode without a source flag in the facts.</p>
 
-<p>One deep-dive source failed to match. The roundup held stronger.</p>
+<h3>Rendering pipeline stayed steady despite failures</h3>
 
-<h3>Audio render took longest; TTS had one segment retry</h3>
+<p>Audio render took 529 seconds. One TTS segment came back shorter than word count predicted, and its retry also fell short. The longer take was kept, so nothing was trimmed from the episode. Voice ratio between Casey and Riley came to 1.06; one AI-tell pattern was caught and shipped as-is.</p>
 
-<p>Render episode audio consumed 529 seconds. Generate episode script took 481 seconds. One TTS segment came back shorter than word count predicted and was retried. The retry was also short. The longer of the two takes was kept, adding no gaps to the episode.</p>
-
-<p>Final audio: 19.2 minutes, 17.6 MB. Video: 19.2 minutes, 55.4 MB.</p>
-
-<h3>Debate question and quality metrics</h3>
-
-<p>The episode centered on who controls infrastructure decision-making on Indigenous lands: whether self-sufficiency alone is sufficient, or whether contractual terms and connection quality matter more.</p>
-
-<p>Quality checks found one AI-tell pattern hit. Voice ratio favored Casey at 1.06 to Riley. Three deep dives aired. Claude made 8 API calls consuming 88,500 input tokens.</p>
+<p>One quality flag detected and one minor TTS artifact retained. The published episode is 19.2 minutes audio, 17.6 MB, paired with 55.4 MB video. RSS published as episode 219.</p>
 
 <h3>The day's triggers</h3>
 <table>
@@ -67,7 +55,8 @@
 <tbody>
 <tr><td>Manual (workflow_dispatch)</td><td>2026-09-03T08:05:28Z</td><td>+0 min</td><td>failure</td></tr>
 <tr><td>Manual (workflow_dispatch)</td><td>2026-09-03T09:05:27Z</td><td>+0 min</td><td>success</td></tr>
-<tr><td>Manual (workflow_dispatch)</td><td>2026-09-03T10:05:27Z</td><td>+0 min</td><td>in_progress</td></tr>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-03T10:05:27Z</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific)</td><td>2026-09-03T14:56:26Z</td><td>+291 min</td><td>in_progress</td></tr>
 </tbody>
 </table>
 

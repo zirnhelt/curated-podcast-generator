@@ -268,6 +268,19 @@
         "2026-09-03"
       ],
       "last_seen": "2026-09-03"
+    },
+    {
+      "id": "fallback-2-trigger-stuck-in-progress",
+      "title": "Fallback 2 scheduled trigger started 291 minutes late and remains in-progress.",
+      "detail": "On 2026-09-03 at 14:56 UTC, the 3:05 AM Pacific fallback trigger (scheduled for ~11:05 UTC) started 291 minutes late and was still in-progress when the review ran. Three manual runs occurred before the scheduled time, and the facts do not explain why the fallback ran so late or why it stalled. Check the GitHub Actions scheduler logs and the in-progress run URL https://github.com/zirnhelt/curated-podcast-generator/actions/runs/33769783188 to determine whether the runner is hung, whether there is a capacity bottleneck, or whether the cron expression is misconfigured.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-03",
+      "seen": [
+        "2026-09-03"
+      ],
+      "last_seen": "2026-09-03"
     }
   ],
   "updated": "2026-09-03"
