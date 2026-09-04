@@ -1,25 +1,4 @@
 {
-  "2026-07-30": {
-    "timestamp": 1785418340.837637,
-    "topics": [
-      "[Business Insider] 'The Great Inversion': Why one innovation",
-      "[The Guardian Global Development] A rain festival with no ra",
-      "\ud83d\udd13 [Williams Lake Tribune] 100 Mile Pride Society signage van",
-      "\ud83d\udd13 [Williams Lake Tribune] Angelo Isidorou out as executive d",
-      "\ud83d\udd13 [Williams Lake Tribune] 68th annual Williams Lake and Dist",
-      "Data centers are booming. Indigenous leaders want help prote",
-      "Respecting First Nations knowledge on Wikimedia platforms",
-      "How Indigenous technologists are building data sovereignty i"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech"
-    ],
-    "date": "2026-07-30",
-    "focus": "language-culture",
-    "focus_name": "Language & Culture"
-  },
   "2026-07-31": {
     "timestamp": 1785495422.580898,
     "topics": [
@@ -751,5 +730,26 @@
     "date": "2026-09-03",
     "focus": "economic-development",
     "focus_name": "Economic Development"
+  },
+  "2026-09-04": {
+    "timestamp": 1788510396.944115,
+    "topics": [
+      "[My Cariboo Now] Quesnel man sentenced for assault with a we",
+      "[My Cariboo Now] Prince George-North Cariboo Conservative ML",
+      "[Williams Lake Tribune] Cariboo Chilcotin Orienteering Club ",
+      "[My Cariboo Now] Quesnel non-profit part of Rona\u2019s nationwid",
+      "[Williams Lake Tribune] Family shocked as B.C. teen\u2019s killer",
+      "[Williams Lake Tribune] Man survives grizzly bear attack whi",
+      "[The Tyee] BC Has an Extinction Problem. Scientists Say Ther",
+      "[Business Insider] How illegal wildlife poaching actually wo"
+    ],
+    "themes": [
+      "rural development",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-09-04",
+    "focus": "wildlife-conservation",
+    "focus_name": "Wildlife & Conservation"
   }
 }

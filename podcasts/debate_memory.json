@@ -1,30 +1,4 @@
 {
-  "2026-06-05": {
-    "timestamp": 1780652489.841138,
-    "date": "2026-06-05",
-    "theme": "Wild Spaces & Outdoor Life",
-    "central_question": "How should communities balance AI data center development promises against environmental and landscape protection, and who should have decision-making authority?",
-    "riley_position": "Data centers are inevitable and will be sited somewhere; the strategic approach is to negotiate better conditions and leverage Indigenous title as a more durable protection mechanism than municipal bans, rather than refuse engagement entirely.",
-    "riley_key_evidence": [
-      "International Energy Agency revised forecasts showing data centers will account for meaningful share of global electricity demand through end of decade",
-      "Rural data center builds in Washington/Oregon generated 30-50 permanent positions for tens of megawatts",
-      "T\u015dilhqot'in Aboriginal title decision (2014) established legal jurisdiction requiring consent, not just consultation"
-    ],
-    "casey_position": "Tech industry systematically overstates job creation and environmental benefits while avoiding costs; regulatory capacity in BC is insufficient to extract meaningful concessions, and landscape value rarely has formal standing in approvals processes.",
-    "casey_key_evidence": [
-      "Satya Nadella's 'lower environmental impact' claims lack transparent baseline comparisons",
-      "Permanent job numbers are poor relative to capital investment compared to what gets sold in pitch decks",
-      "BC environmental assessment process has had mixed record on extracting meaningful concessions"
-    ],
-    "resolution": "They converged on the necessity of Indigenous governance frameworks as the structural lever, acknowledged a capacity gap requiring further direct engagement with T\u015dilhqot'in Government, and agreed the actionable approach is tracking First Nation positions and demanding specific accountability in public comment processes.",
-    "topics_covered": [
-      "Grid capacity and water demand impacts of data center expansion",
-      "Overstated permanent employment claims in tech industry siting proposals",
-      "T\u015dilhqot'in Aboriginal title as legal protection mechanism",
-      "Regulatory capacity gaps in BC industrial approvals",
-      "Landscape and cultural value as unformalized stakes in approvals processes"
-    ]
-  },
   "2026-06-06": {
     "timestamp": 1780734699.772894,
     "date": "2026-06-06",
@@ -2413,6 +2387,42 @@
       "Contractual power asymmetries in infrastructure development on Indigenous territory",
       "Data sovereignty and governance in long-term infrastructure partnerships",
       "Community-scale energy pilots as accessible tests for Indigenous decision-making authority"
+    ]
+  },
+  "2026-09-04": {
+    "timestamp": 1788510399.120525,
+    "date": "2026-09-04",
+    "theme": "Wild Spaces & Outdoor Life",
+    "focus": "wildlife-conservation",
+    "anchor": "self-sufficient-or-connected",
+    "central_question": "Should wildlife safety in backcountry areas rely primarily on individual preparedness and gear, or on enforced systemic rules and dedicated coordination roles?",
+    "riley_position": "Both individual preparedness (gear, knowledge) and systemic protections matter at different scales; individual gear doesn't solve population-level problems, but it does matter enormously in the moment of crisis on the ground.",
+    "riley_key_evidence": [
+      "A hiker with a leashed dog and bear spray is safer than one doing either alone",
+      "The conservation hatchery west of Williams Lake demonstrates patchwork governance working effectively through provincial staff, First Nations, and community stewardship without waiting on unified legislation",
+      "WildSafeBC coordinators paired with volunteer networks show the infrastructure already exists\u2014it's often a vacancy problem rather than a funding problem"
+    ],
+    "casey_position": "Systemic failures\u2014unenforced rules, vacant coordinator positions, lack of defined legal ownership\u2014are the real leverage points; individual gear is a reassuring story that masks the actual structural gaps where protection happens.",
+    "casey_key_evidence": [
+      "A 2026 study found injury rates for hikers with off-leash dogs in bear encounters at 70%, far higher than hikers without dogs, and Parks Canada's internal document identifies dogs as 'a well recognized important risk factor'",
+      "The northern spotted owl has held threatened status for 36 years under a patchwork regulatory approach and continues declining, while defined-owner systems like the provincial hatchery show active progress",
+      "Poaching is organized crime requiring cross-agency intelligence networks, not individual ranger capability"
+    ],
+    "resolution": "Riley concedes that poaching requires systemic solutions and that individual preparedness cannot scale to population-level protection; both agree the real distinction is whether a species or location has a defined owner and enforced mandate versus diffused responsibility.",
+    "topics_covered": [
+      "Off-leash dog encounters with bears and injury risk data",
+      "Bear conflict prevention: gear versus enforced rules and coordinator roles",
+      "WildSafeBC vacancy problems and regional coordinator gaps",
+      "B.C.'s stalled Species at Risk Act versus patchwork governance approaches",
+      "Wildlife trafficking as organized crime requiring intelligence networks",
+      "Defined ownership as the key structural element in protection systems"
+    ],
+    "calls_to_action": [
+      "Scout Island Nature Centre applications are open now at scoutisland dot ca for the Salmon Trip program offering three days of hands-on field science at Gavin Lake.",
+      "The Cariboo Regional District could establish a leash requirement on high-traffic forest service roads during confirmed grizzly activity, posted physically at trailheads and tied to a current sightings log.",
+      "Scout Island's volunteer field naturalist model could be expanded to maintain a live bear-activity map that people check before heading out, using the same volunteer infrastructure already in place.",
+      "If you know how Queest Mountain road is currently signed or whether a leash bylaw for forest service roads has been proposed in the region, send information to feedback at cariboo signals dot c-a.",
+      "When heading to the backcountry, leash your dog and check the trailhead sign before heading out, not just on the way back."
     ]
   }
 }
