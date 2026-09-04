@@ -281,7 +281,33 @@
         "2026-09-03"
       ],
       "last_seen": "2026-09-03"
+    },
+    {
+      "id": "ai-tell-pattern-in-shipped-episode",
+      "title": "One AI-tell pattern phrase shipped in the final episode without removal.",
+      "detail": "The quality review on 2026-09-04 flagged 1 instance of tell-pattern language (phrasing characteristic of Claude output) in the script. The system did not remove it before shipping. The pattern was detected but the removal step either failed silently or was not enforced. Add a hard gate that blocks episode publication if any flagged patterns remain after review, or escalate unresolved flags to manual approval before render begins.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-04",
+      "seen": [
+        "2026-09-04"
+      ],
+      "last_seen": "2026-09-04"
+    },
+    {
+      "id": "voice-ratio-drift-toward-casey",
+      "title": "Casey's speaking time exceeds Riley's by 13 percent.",
+      "detail": "The voice_ratio_casey_over_riley measured 1.13 on 2026-09-04. No target range is defined in the config, so it is unclear whether this represents acceptable variance or systematic drift. Establish a target voice ratio (e.g., 1.0 or 1.05) in the episode config and add a quality check that flags ratios outside a defined band. If this ratio persists across future runs, adjust the host distribution weights in the synthesis prompt.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-04",
+      "seen": [
+        "2026-09-04"
+      ],
+      "last_seen": "2026-09-04"
     }
   ],
-  "updated": "2026-09-03"
+  "updated": "2026-09-04"
 }
