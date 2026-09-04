@@ -39,7 +39,7 @@ cannot reopen it. Anything written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-03) — 13 open.
+_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-04) — 14 open.
 Check a box to close one; it comes back only if the reviews raise it 2 more times._
 
 - [ ] **A credit-balance 400 is not the usage-limit wall, and every run pays for that.**
@@ -101,7 +101,7 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       17.7-minute episode. Investigate whether Gemini's multi-speaker quota or concurrency
       limits are being hit, and consider either increasing timeouts, implementing section-level
       retry logic before switching providers, or pre-allocating Gemini synthesis for critical
-      segments at off-peak times. (seen in 2 reviews, latest 2026-09-01)
+      segments at off-peak times. (seen in 3 reviews, latest 2026-09-04)
 - [ ] **Deep dive sections achieved 67% citation matching versus 87% for roundup sections.** On
       2026-08-28, the roundup matched 13 of 15 citations (87%), but the deep dive section
       matched only 2 of 3 (67%). Both figures are from the same run and the same citation
@@ -137,7 +137,15 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       segments. This is the same budget-exhaustion pattern as 2026-08-30. Increase the Brave
       call budget, prioritize articles by quality score before backfill, or implement a staged
       fallback that scripts stubs at reduced length rather than dropping articles entirely.
-      (seen in 2 reviews, latest 2026-09-03)
+      (seen in 3 reviews, latest 2026-09-04)
+- [ ] **Fallback 2 scheduled trigger started 291 minutes late and remains in-progress.** On
+      2026-09-03 at 14:56 UTC, the 3:05 AM Pacific fallback trigger (scheduled for ~11:05 UTC)
+      started 291 minutes late and was still in-progress when the review ran. Three manual runs
+      occurred before the scheduled time, and the facts do not explain why the fallback ran so
+      late or why it stalled. Check the GitHub Actions scheduler logs and the in-progress run
+      URL https://github.com/zirnhelt/curated-podcast-generator/actions/runs/33769783188 to
+      determine whether the runner is hung, whether there is a capacity bottleneck, or whether
+      the cron expression is misconfigured. (seen in 2 reviews, latest 2026-09-04)
 
 <!-- reviews:end -->
 

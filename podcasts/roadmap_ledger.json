@@ -151,13 +151,14 @@
       "detail": "During audio render on 2026-08-28, the welcome section synthesis via Gemini multi-speaker hit a ReadTimeout after 120 seconds on generativelanguage.googleapis.com. The pipeline fell back to OpenAI for that section and all remaining sections and credits. The episode now spans two TTS providers—Gemini for welcome, OpenAI for body and outro—introducing a voice discontinuity in the shipped 17.7-minute episode. Investigate whether Gemini's multi-speaker quota or concurrency limits are being hit, and consider either increasing timeouts, implementing section-level retry logic before switching providers, or pre-allocating Gemini synthesis for critical segments at off-peak times.",
       "source": "review",
       "status": "open",
-      "occurrences": 2,
+      "occurrences": 3,
       "first_seen": "2026-08-28",
       "seen": [
         "2026-08-28",
-        "2026-09-01"
+        "2026-09-01",
+        "2026-09-04"
       ],
-      "last_seen": "2026-09-01"
+      "last_seen": "2026-09-04"
     },
     {
       "id": "deep-dive-citation-matching-below-roundup-parity",
@@ -248,13 +249,14 @@
       "detail": "The pipeline spent its 12 Brave Search calls on body backfill and exhausted the budget mid-run on 2026-09-02. Fifty-five articles were dropped instead of scripted; the deep dives survived at 3 pieces. The remaining thin articles kept stub bodies, creating sparse segments. This is the same budget-exhaustion pattern as 2026-08-30. Increase the Brave call budget, prioritize articles by quality score before backfill, or implement a staged fallback that scripts stubs at reduced length rather than dropping articles entirely.",
       "source": "review",
       "status": "open",
-      "occurrences": 2,
+      "occurrences": 3,
       "first_seen": "2026-09-02",
       "seen": [
         "2026-09-02",
-        "2026-09-03"
+        "2026-09-03",
+        "2026-09-04"
       ],
-      "last_seen": "2026-09-03"
+      "last_seen": "2026-09-04"
     },
     {
       "id": "gemini-tts-multi-speaker-preamble-reject",
@@ -274,13 +276,14 @@
       "title": "Fallback 2 scheduled trigger started 291 minutes late and remains in-progress.",
       "detail": "On 2026-09-03 at 14:56 UTC, the 3:05 AM Pacific fallback trigger (scheduled for ~11:05 UTC) started 291 minutes late and was still in-progress when the review ran. Three manual runs occurred before the scheduled time, and the facts do not explain why the fallback ran so late or why it stalled. Check the GitHub Actions scheduler logs and the in-progress run URL https://github.com/zirnhelt/curated-podcast-generator/actions/runs/33769783188 to determine whether the runner is hung, whether there is a capacity bottleneck, or whether the cron expression is misconfigured.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-09-03",
       "seen": [
-        "2026-09-03"
+        "2026-09-03",
+        "2026-09-04"
       ],
-      "last_seen": "2026-09-03"
+      "last_seen": "2026-09-04"
     },
     {
       "id": "ai-tell-pattern-in-shipped-episode",

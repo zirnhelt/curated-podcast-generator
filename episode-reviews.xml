@@ -5,47 +5,39 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Fri, 04 Sep 2026 10:06:15 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 04 Sep 2026 14:53:52 +0000</lastBuildDate>
     <item>
       <title>Episode Review — Cariboo Signals, September 4, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-04.html</link>
       <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-04.html</guid>
-      <pubDate>Fri, 04 Sep 2026 10:06:15 +0000</pubDate>
+      <pubDate>Fri, 04 Sep 2026 14:53:52 +0000</pubDate>
       <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/33851745395"&gt;33851745395&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h3&gt;Brave's content-backfill budget exhausted mid-run&lt;/h3&gt;
+&lt;h3&gt;Brave API exhausted mid-roundup; 43 articles dropped&lt;/h3&gt;
 
-&lt;p&gt;The pipeline burned through its Brave API allocation during article body enrichment. Twelve calls to backfill thin article summaries left the remaining articles with stub bodies only. The system then marked them as candidates for cutting from the script rather than shipping incomplete content.&lt;/p&gt;
+&lt;p&gt;The pipeline spent its Brave search budget filling article bodies during script generation. Twelve calls consumed the allowance. Remaining thin articles kept stub bodies only, and the curation logic cut them as sparse. Result: 43 roundup articles never reached the final script.&lt;/p&gt;
 
-&lt;p&gt;This is the first time this constraint has visibly shaped the output. The roundup still delivered 43 dropped articles—a normal culling rate—but the reason shifted from editorial thinness to budget depletion. Monitor whether this pattern repeats or whether today's run simply hit an unusual volume of articles requiring body text.&lt;/p&gt;
+&lt;p&gt;Citation alignment absorbed this loss. Matched citations fell to 13 of 15 in the roundup segment—86%. The deep dives held perfect alignment at 3 of 3.&lt;/p&gt;
 
-&lt;h3&gt;Multi-speaker audio failed; OpenAI rendered the welcome section and credits instead&lt;/h3&gt;
+&lt;h3&gt;Script expanded on first pass; delivered at 3016 words&lt;/h3&gt;
 
-&lt;p&gt;Gemini's multi-speaker endpoint timed out on the welcome segment after four attempts. One response was rejected outright; three received no answer. The pipeline fell back to OpenAI for that section and the credits, while keeping the already-rendered sections in their original Gemini voices.&lt;/p&gt;
+&lt;p&gt;The initial draft arrived at 2019 words against a 3400-word target. The pipeline sent it back for expansion. The shipped script settled at 3016 words, leaving a 384-word gap from target. Quality checks flagged one AI tell pattern and found the voice ratio at 1.13 in favor of Casey over Riley.&lt;/p&gt;
 
-&lt;p&gt;This creates a vocal seam in the finished episode. The welcome will sound different from the body material. The listener will not be warned. Check whether this fallback choice matches your preferred hierarchy when TTS providers disagree.&lt;/p&gt;
+&lt;h3&gt;Gemini multi-speaker failed; TTS fell back to OpenAI&lt;/h3&gt;
 
-&lt;h3&gt;Script expanded on the first pass; final word count settled at 3,016&lt;/h3&gt;
+&lt;p&gt;The welcome section triggered a read timeout on Gemini's multi-speaker endpoint after four attempts. One attempt was rejected outright; three received no response within the timeout window. The pipeline reverted: sections already rendered kept their assigned voices, but the rest of the episode and all credits switched to OpenAI single-speaker.&lt;/p&gt;
 
-&lt;p&gt;The initial draft came in at 2,019 words against a 3,400-word target. The expansion pass brought it to 3,016 words—still 384 short of target, but above the shipping threshold. The system did not request a second pass.&lt;/p&gt;
+&lt;p&gt;A separate Gemini retry later in the run—on retry 1 with the gemini-2.5-pro-preview-tts model—succeeded and synthesized one section. Delivery may differ from the OpenAI-rendered portions.&lt;/p&gt;
 
-&lt;p&gt;Citation coverage held steady: 13 of 15 roundup citations matched, and all 3 deep-dive citations matched. No alignment gaps emerged during expansion.&lt;/p&gt;
+&lt;h3&gt;Three deep dives curated; one manual run attempted mid-morning&lt;/h3&gt;
 
-&lt;h3&gt;Three deep dives; one AI-tell pattern flagged&lt;/h3&gt;
+&lt;p&gt;The episode drew three deep-dive sources: a Williams Lake Tribune grizzly attack survival account, a Tyee extinction fix story, and a Business Insider investigation into illegal wildlife poaching. The debate question: individual preparedness versus enforced rules in backcountry safety.&lt;/p&gt;
 
-&lt;p&gt;The episode included three deep-dive articles: a grizzly bear attack survival story from the Williams Lake Tribune, BC's extinction problem and proposed fixes from The Tyee, and illegal wildlife poaching mechanics from Business Insider. One instance of tell-pattern language was caught in quality review—likely a phrasing common to Claude's output—and was not removed before shipping.&lt;/p&gt;
+&lt;p&gt;Three manual runs fired between 8:05 AM and 10:08 AM Pacific on September 4. A fourth fallback run, triggered by the 3:05 AM scheduled slot, began at 2:53 PM—288 minutes late—and was marked in-progress at close of review.&lt;/p&gt;
 
-&lt;h3&gt;Voice balance skewed toward Casey&lt;/h3&gt;
+&lt;h3&gt;Audio and video rendered at matched length&lt;/h3&gt;
 
-&lt;p&gt;Casey spoke 1.13 times as much as Riley. No target range was specified in the facts, so the meaning of this ratio is unclear—whether it represents intended variety, acceptable variance, or drift worth correcting in future runs.&lt;/p&gt;
-
-&lt;h3&gt;Debate and runtime&lt;/h3&gt;
-
-&lt;p&gt;The episode centered the question: Should wildlife safety in backcountry areas rely primarily on individual preparedness and gear, or on enforced systemic rules and dedicated coordination roles? Audio ran 19.0 minutes; video also 19.0 minutes at 54.1 MB. Episode 220 is now in the RSS feed.&lt;/p&gt;
-
-&lt;h3&gt;Three manual runs completed; one in progress&lt;/h3&gt;
-
-&lt;p&gt;The first two workflows finished at 08:44 and 09:05 UTC. The third started at 10:05 and was still running when the review was generated. Total script generation took 1,155 seconds; audio render took 734 seconds. No step failed.&lt;/p&gt;
+&lt;p&gt;Audio output: 19.0 minutes, 17.4 MB. Video output: 19.0 minutes, 54.1 MB. The RSS feed holds 220 episodes. Anthropic consumed 89,057 input tokens across 10 Claude API calls. Brave contributed 3 calls before exhaustion.&lt;/p&gt;
 
 &lt;h3&gt;The day's triggers&lt;/h3&gt;
 &lt;table&gt;
@@ -53,7 +45,8 @@
 &lt;tbody&gt;
 &lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-04T08:05:27Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-04T09:05:19Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-04T10:05:32Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-04T10:05:32Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-09-04T14:53:14Z&lt;/td&gt;&lt;td&gt;+288 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
