@@ -344,6 +344,31 @@ no cleanup commit when it closes. Currently the Williams Lake 2026 general local
   Cariboo civic day exactly the way the bare word 'local' admitted "8 local AI models that run
   great on 8GB of VRAM" on 2026-08-22. Inside the geographic deep dive every candidate is
   already local by construction, which is what makes those words safe there and only there.
+- **An election story airs twice, and the second airing says so.** Local news is never
+  held — it is the most time-sensitive material in the pool — so a nomination story breaking
+  on a Tuesday runs on Tuesday. It is *also* booked back for the next civic episode
+  (`status: 'recall'` in `article_holding.json`, released by `route_articles_for_focus` with
+  `_recalled_from`). Both dates are the point: it is news on the day it breaks and context on
+  the day the show covers the race, so nothing is withheld from today to pay for Saturday.
+  - **The recall is exempt from the citation prune, alone among the statuses.** Every other
+    entry is dropped once its URL appears in recent citations; a recall exists *because* the
+    story already aired, so that rule would delete the entry on the next run. Re-injection
+    happens after `deduplicate_articles`, which is what lets a spent story return at all.
+  - **`_recalled_from` is the inverse of `_held_from`.** A held story is one the listener has
+    not heard, so explaining its timing would only expose the machinery; a recalled one they
+    *have* heard, so pretending otherwise is the failure. The tag tells the hosts to say they
+    covered it and lead with what has changed — a new name in the race, a deadline passed.
+  - **It is booked before the on-theme early-exit**, which the router returns through for
+    anything matching today's theme. An election story is usually on-theme wherever it lands
+    (a mill-town candidate on Working Lands day), so a recall gated behind "off today's
+    theme" would almost never fire.
+  - **Two event lookups, two questions.** `get_event_focus_for_day` asks "is TODAY'S theme
+    running an event" and steers the lens and the deep-dive ranking. `get_active_event_focus`
+    asks "is one running at all" — the election is configured on the civic theme, so a
+    Tuesday lookup by weekday returns None and nothing would ever be booked back.
+  - Both `_is_local_article` and an event-keyword hit are required, so US midterm coverage
+    (same vocabulary, not local) is never recalled.
+
 - **The downstream ranking cannot select what the feed never sent.** On 2026-09-05 the pool held
   "Three Williams Lake city councillors not seeking re-election this fall" (Williams Lake
   Tribune) and "Municipal elections nominations now open across the Cariboo" (My Cariboo Now)
@@ -715,7 +740,35 @@ An episode is 6–9 independent Gemini calls, so per-call reliability compounds 
   **`REQUEST_READ_TIMEOUT` was flat and that is what bounded the ladder's reach.** One 120 s leash covered a 354-char cold open and an 8 500-char chunk alike, so at 420 s a section afforded **two attempts** — and against the measured ~53%-per-call endpoint, two attempts is ~78% per section and **~17% across a seven-section episode**. That arithmetic, not any one outage, is why a whole Gemini episode kept not happening. `_read_timeout_for(segments)` now scales the leash by transcript chars, clamped to `[READ_TIMEOUT_MIN_S, READ_TIMEOUT_MAX_S]` = `[75, 120]`: the ceiling is the old flat value, so **the largest chunks wait exactly as long as they always have and the change is only ever a cut for the small ones**, which is where the budget was being burned on silence. Five attempts per section takes the episode to ~85%.
   **The constants are provisional and instrumented for refit.** They are fitted to one measured take (a 1 173-char request answered in ~16 s on 2026-08-28) plus the chunk ceiling, at roughly 3x observed. Every call now logs `latency=` and `limit=` alongside `chars=`, success and failure alike — pair those across a few episodes and refit `READ_TIMEOUT_MS_PER_CHAR`, the same way `_SPEECH_RATE_FITS` was fitted from the transcript sidecars. Nothing recorded latency before, which is how a flat 120 s survived unexamined for the life of the integration.
   **The floor was the stale half of that fit, and it is what a small section actually gets.** The formula wants 15.9 s for a 398-char cold open and the clamp lifts it, so the floor was never "3x observed" — it was 3x the single take the constants were fitted to. The same request measured **27.9 s** on 2026-09-03 and two of that section's four attempts died at exactly 45.0 s and 45.1 s, so the floor is now **75 s**. This is a hypothesis, and the counter-evidence is in the 2026-08-13 probe: 7 of 15 calls failed against a flat 120 s leash, so a longer wait does not convert every timeout into a take. What it buys is that a slow-but-alive call stops being indistinguishable from a dead one at exactly the leash.
-  **`SECTION_BUDGET_S` moved with it (420 → 540), because the budget and the leash trade against each other.** At 420 s a 45 s-leash section afforded four attempts (0+45, 15+45, 45+45, 90+45 = 330 s); at 75 s the same budget affords three, so raising the timeout alone would have bought longer waits by silently spending an attempt. 540 s keeps four (450 s) and still sits well inside `GEMINI_RENDER_DEADLINE_S` (1500 s), which is the ceiling that actually protects the render step. **Move these two together or not at all.**
+  **The chunk was the other half, and it is the half that was actually failing.** At
+  `TRANSCRIPT_CHAR_LIMIT` 8 500 the news roundup was one request every night — 6 382, 6 686,
+  7 410, 7 453 and 8 521 chars over the five episodes to 2026-09-05 — and it is the section
+  Gemini kept dying in. On 2026-09-05 it went out three times at 6 894 chars and came back
+  unanswered at **120.2 s, 120.1 s, 120.2 s**: stopped by the clock every time, never by a
+  verdict. The formula wanted 276 s for that request and the clamp handed it 120, so on the
+  largest chunk of every episode the fit was not loose, it was **inverted** — and the comment
+  claiming the clamp "only ever cuts the small ones" was true of the 8 500-char chunk in
+  exactly the wrong direction.
+  **Both constants moved together.** `TRANSCRIPT_CHAR_LIMIT` is 3 000, sized to what the
+  endpoint has been measured to *answer* rather than what the model will accept: the same
+  night's successful calls ran 46–62 chars/s (2 226 chars in 48.0 s and 48.2 s), so a
+  ~2 400-char chunk is a ~50 s call with 2x headroom, and the roundup becomes three of them.
+  `READ_TIMEOUT_MAX_S` is 150, which makes the ceiling **non-binding by construction** — the
+  largest request the render can make prices at 120 s. There is a test asserting that
+  invariant, because raising the chunk limit without raising the ceiling restores the clamp
+  silently, which is the failure that cost a month of episodes their voices.
+  The price is extra independent sampling draws — the reason 6 000 was raised to 8 500 in the
+  first place — which the pinned seed, low temperature and `speechConfig` voices mitigate. A
+  chunk that never returns costs the whole episode its voices, which is the larger price.
+  **`_balanced_chunks` chooses the chunk COUNT first, then splits evenly.** Greedy packing
+  fills to the limit and leaves the remainder in a runt: 6 382 chars packs to 3 000/3 000/382,
+  and that tail is a whole extra request plus an extra sampling draw dropping three seconds of
+  differently-sampled audio at the end of the segment. It also does **not** borrow
+  `_split_segments_by_char_limit`'s +120-chars-per-segment SSML estimate — that is an Azure
+  concern, and counting it charged a 27-turn roundup 3 240 phantom chars and bought two
+  requests nobody needed. Gemini is sent plain speech with one fixed prompt block per request.
+
+  **`SECTION_BUDGET_S` moved with it (420 → 540 → 660), because the budget and the leash trade against each other.** At 420 s a 45 s-leash section afforded four attempts (0+45, 15+45, 45+45, 90+45 = 330 s); at 75 s the same budget affords three, so raising the timeout alone would have bought longer waits by silently spending an attempt. 540 s kept four at a 75 s floor; a full 3 000-char chunk now gets a 120 s leash, which 540 affords only three (the fourth needs 90+120), so 660 keeps four. `GEMINI_RENDER_DEADLINE_S` deliberately does **not** move — a good night now costs ~600 s of Gemini across the whole episode, so 1 500 binds only on a night that is going to OpenAI anyway, and that is when spending less is right. **Move the leash, the chunk limit and the budget together or not at all.**
 
 **Ordering rule:** degrade delivery nuance before voice identity. Anything that changes *who the hosts sound like* is the last resort — a model change (which keeps the pinned `speechConfig` voices) always comes before dropping the show onto OpenAI's. That ordering is why the whole-episode decision is made up front where it can be; it is not a promise that every episode is single-provider, which the per-section fallback has never been able to keep. When the episode does end up mixed, the credit says so.
 

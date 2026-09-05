@@ -354,6 +354,31 @@ def get_event_focus_for_day(weekday: int, d: date) -> dict | None:
         return None
     return dict(event) if start <= d <= end else None
 
+def get_active_event_focus(d: date) -> dict | None:
+    """The in-window `event_focus` of ANY theme on date *d*, or None.
+
+    `get_event_focus_for_day` answers "is TODAY'S theme running an event", which
+    is the question the deep-dive lens asks. This answers "is an event running
+    at all", which is the question every other day of the week has to ask: the
+    Williams Lake election is configured on the civic theme, so a Tuesday
+    lookup by weekday returns None and a nomination story breaking on Tuesday
+    would never be booked back for it.
+
+    Carries `weekday` so the caller knows which day the event belongs to.
+    """
+    for weekday, info in load_themes_config().items():
+        event = info.get("event_focus")
+        if not event:
+            continue
+        try:
+            start = date.fromisoformat(event["start"])
+            end = date.fromisoformat(event["end"])
+        except (KeyError, ValueError):
+            continue
+        if start <= d <= end:
+            return {**event, "weekday": int(weekday)}
+    return None
+
 def get_upcoming_day_slots(d: date, horizon_days: int = 14) -> list:
     """Enumerate (date, weekday, theme_name, focus|None) for each day after *d*.
 

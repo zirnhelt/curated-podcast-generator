@@ -54,6 +54,7 @@ from config_loader import (
     get_theme_for_day,
     get_focus_for_day,
     get_event_focus_for_day,
+    get_active_event_focus,
     get_upcoming_day_slots,
     message_text,
     strip_stage_directions,
@@ -3801,6 +3802,15 @@ def _load_article_holding(today_date: date) -> dict:
         elif status == 'aired_early':
             if held_age > AIRED_EARLY_RETENTION_DAYS or (target_date and target_date < today_iso):
                 continue
+        elif status == 'recall':
+            # Deliberately NOT dropped on `url in covered`, which is the rule
+            # every other status lives by. A recall exists *because* the story
+            # already aired: it was local and time-sensitive, so it ran on the
+            # day it broke, and the civic day is where the running story gets
+            # its proper treatment. Dropping it for having been cited would
+            # delete the entry on the very next run.
+            if target_date and target_date < today_iso:
+                continue
         else:
             continue
         pruned[url] = entry
@@ -3810,12 +3820,41 @@ def _load_article_holding(today_date: date) -> dict:
     return pruned
 
 
+def _recall_target_date(today_date: date, event) -> date | None:
+    """Next airing of *event*'s own theme after *today_date*, inside its window.
+
+    The election recall's target is the geographic day, which the ordinary
+    holding router refuses to route to for good reason — its keyword list took
+    the bare word 'local' literally and had five off-topic articles waiting for
+    2026-08-22. This is a different question: not "does this story match
+    Saturday's keywords" (it matches the *event*, which is checked by the
+    caller) but "when is the next civic episode". A calendar lookup cannot
+    admit a Brooklyn ADU story the way a keyword match did.
+
+    Returns None outside the event window, so the lane closes itself on the
+    date the election does.
+    """
+    if not event:
+        return None
+    weekday = event.get('weekday')
+    if weekday is None:
+        return None
+    try:
+        end = date.fromisoformat(event['end'])
+    except (KeyError, ValueError):
+        return None
+    ahead = (weekday - today_date.weekday()) % 7 or 7  # strictly after today
+    target = today_date + timedelta(days=ahead)
+    return target if target <= end else None
+
+
 def _theme_slug(theme_name: str) -> str:
     """Filesystem/ledger-safe slug for a theme name (same shape as script paths)."""
     return theme_name.replace(" ", "_").replace("&", "and").lower()
 
 
-def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_theme, focus):
+def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_theme,
+                             focus, event_focus=None):
     """Super-cycle content routing: release matured holds and hold off-theme articles.
 
     Off-theme, non-urgent articles that strongly match an upcoming day's theme or
@@ -3856,14 +3895,29 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
     existing_urls = {a.get('url', '') for a in theme_articles + bonus_articles}
     for url, entry in holding.items():
         matured = entry.get('status') == 'held' and entry.get('target_date') == today_iso
+        recalled = entry.get('status') == 'recall' and entry.get('target_date') == today_iso
         rerun = entry.get('status') == 'released' and entry.get('release_date') == today_iso
-        if not (matured or rerun):
+        if not (matured or recalled or rerun):
             continue
+        was_recall = recalled or entry.get('recall')
         entry['status'] = 'released'
         entry['release_date'] = today_iso
         if url in existing_urls:
             continue  # article reappeared in today's feed — prefer the fresh copy
         article = dict(entry.get('article', {}))
+        if was_recall:
+            # Re-entering the pool AFTER dedup has run (routing follows
+            # deduplicate_articles), which is what lets a story the citations
+            # already spent come back. That exemption is the point: this one
+            # aired on the day it broke and returns on the day the show can
+            # actually sit with it. The tag is the opposite of `_held_from` —
+            # the hosts say plainly that they covered it, and what has moved.
+            article['_recalled_from'] = entry.get('held_date', '')
+            article['_recall_event'] = entry.get('event_name', '')
+            released.append(article)
+            print(f"  🗳️  Recalled for the civic day (first aired "
+                  f"{article['_recalled_from']}): {article.get('title', '')[:60]}")
+            continue
         article['_held_from'] = entry.get('held_date', '')
         released.append(article)
         print(f"  📤 Released from holding (held {article['_held_from']}): {article.get('title', '')[:70]}")
@@ -3904,6 +3958,15 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
     today_theme_keywords = _build_strict_theme_keywords(today_theme)
     today_subject_keywords = _build_theme_subject_keywords(today_theme)
     today_focus_keywords = _build_focus_keywords(focus)
+    # Election lane: a story about the named civic event airs today like any
+    # other local story, and is ALSO booked back for the next civic episode.
+    # Both dates are the point — an election story is news on the day it breaks
+    # and context on the day the show covers the race — so this is a recall,
+    # not a hold, and nothing is withheld from today to pay for it.
+    event_keywords = _build_event_focus_keywords(event_focus)
+    recall_date = (None if _is_geographic_theme(today_theme)
+                   else _recall_target_date(today_date, event_focus))
+    recall_count = 0
     # Never shrink the pool below what the roundup + deep dive need
     max_holds = max(0, len(theme_articles) + len(bonus_articles) - (NEWS_ROUNDUP_COUNT + 3))
 
@@ -3939,8 +4002,28 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
             weak_today = (a.get('_keyword_matches', 0) == 0
                           and _keyword_hit_count(text, today_theme_keywords) <= 1)
         belongs_to_today = not weak_today
-        if (not url or a.get('_held_from') or a.get('_seed_id')
-                or on_todays_focus or belongs_to_today):
+        # Booked BEFORE the early-exit below, which is what the ordinary router
+        # returns through for anything on today's theme. An election story is
+        # usually on-theme wherever it lands — a mill-town candidate on Working
+        # Lands day, an SD27 trustee race on the arts day — so a recall gated
+        # behind "off today's theme" would almost never fire.
+        if (recall_date and url and not a.get('_recalled_from')
+                and _keyword_hit_count(text, event_keywords) > 0
+                and _is_local_article(a)):
+            holding[url] = {
+                'article': a,
+                'held_date': today_iso,
+                'target_date': recall_date.isoformat(),
+                'target_weekday': recall_date.weekday(),
+                'event_name': event_focus.get('name', ''),
+                'recall': True,
+                'status': 'recall',
+            }
+            recall_count += 1
+            print(f"  🗳️  Airing today, booked back for {recall_date.isoformat()} "
+                  f"({event_focus.get('name', '')}): {a.get('title', '')[:60]}")
+        if (not url or a.get('_held_from') or a.get('_recalled_from')
+                or a.get('_seed_id') or on_todays_focus or belongs_to_today):
             kept_bucket.append(a)
             continue
         matches = [(sd, t) for sd, t, kws in slot_keywords
@@ -3996,9 +4079,10 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
             kept_bucket.append(a)
 
     save_memory(HOLDING_FILE, holding)
-    if released or held_count or deferred_count:
+    if released or held_count or deferred_count or recall_count:
         print(f"🔀 Focus routing: released {len(released)}, held {held_count}, "
-              f"deep dive deferred for {deferred_count} local article(s)")
+              f"deep dive deferred for {deferred_count} local article(s), "
+              f"{recall_count} booked back for the civic day")
     return kept_theme, kept_bonus
 
 
@@ -6945,11 +7029,22 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         held_tag = (f' [FROM {a["_held_from"]}: frame as "earlier this week", not '
                     f'breaking — do not explain why it airs today]'
                     if a.get('_held_from') else '')
+        # The inverse instruction to held_tag, and deliberately so. A held story
+        # is one the listener has not heard, aired on a better-matched day, so
+        # explaining the timing would only expose the machinery. A recalled one
+        # they HAVE heard — it ran on the day it broke — so pretending otherwise
+        # is the failure. Say we covered it and say what has moved since.
+        recall_tag = (f' [ALREADY COVERED {a["_recalled_from"]} — say so plainly '
+                      f'("we mentioned this on Tuesday") and lead with what has '
+                      f'CHANGED since: a new name in the race, a deadline passed, '
+                      f'a position stated. Never re-read the original story as '
+                      f'though it were new]'
+                      if a.get('_recalled_from') else '')
         jurisdiction_tag = us_policy_framing_tag(a)
         body = a.get('_body', '')
         body_line = f"\n  Content: {body[:500]}" if body else ""
         pub_tag = _format_pub_date_tag(a)
-        return f"- [{source}] {title}{theme_tag}{cluster_tag}{held_tag}{jurisdiction_tag}{pub_tag}\n  {summary}... (Relevance: {score}){body_line}"
+        return f"- [{source}] {title}{theme_tag}{cluster_tag}{held_tag}{recall_tag}{jurisdiction_tag}{pub_tag}\n  {summary}... (Relevance: {score}){body_line}"
 
     # These headers are curation metadata. They tell the model what order to air
     # stories in — never what to say about them. Naming a block on air, or
@@ -10035,7 +10130,12 @@ def run_script_stage() -> tuple[str, str] | None:
         today_focus = get_focus_for_day(today_weekday, pacific_now.date())
         # A named civic event the day's theme should center while it is live —
         # calendar-bounded, so it needs no cleanup commit when it ends.
+        # Two lookups, two questions: `today_event` is "is TODAY'S theme running
+        # one" and steers the lens and the deep-dive ranking; `active_event` is
+        # "is one running at all" and is what lets a nomination story breaking on
+        # a Tuesday get booked back for the civic day it belongs to.
         today_event = get_event_focus_for_day(today_weekday, pacific_now.date())
+        active_event = get_active_event_focus(pacific_now.date())
         weekday, date_str = get_current_date_info()
 
         print(f"📅 {weekday}, {date_str} - Theme: {today_theme}")
@@ -10260,7 +10360,8 @@ def run_script_stage() -> tuple[str, str] | None:
                 # pool; hold off-theme, non-urgent articles for their focus day;
                 # divert urgent off-theme stories to the bonus bucket + callback ledger.
                 theme_articles, bonus_articles = route_articles_for_focus(
-                    theme_articles, bonus_articles, pacific_now.date(), today_theme, today_focus
+                    theme_articles, bonus_articles, pacific_now.date(), today_theme,
+                    today_focus, event_focus=active_event
                 )
 
                 # Inject user-seeded URLs into the article pool.

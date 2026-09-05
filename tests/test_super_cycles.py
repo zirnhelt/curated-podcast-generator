@@ -648,6 +648,141 @@ class TestElectionEventFocus:
                 == pg._build_theme_lens(self.THEME, event_focus=None))
 
 
+class TestElectionRecall:
+    """An election story airs the day it breaks AND returns on the civic day.
+
+    Both dates matter: it is news on the day it breaks and context on the day
+    the show covers the race. So this is a recall, not a hold — nothing is
+    withheld from today to pay for Saturday.
+    """
+
+    EVENT = {
+        "name": "Williams Lake 2026 general local election",
+        "start": "2026-09-01",
+        "end": "2026-10-24",
+        "weekday": 5,
+        "keywords": ["nomination", "candidate", "seeking re-election", "councillor"],
+        "lens": "Name the election on air.",
+    }
+    TUESDAY = date(2026, 9, 8)
+    SATURDAY = date(2026, 9, 12)
+
+    def _story(self):
+        return _article(
+            "Three Williams Lake city councillors not seeking re-election",
+            "wl-election-url", kw=2, boosted=79,
+            summary="Nomination papers are due Friday in Williams Lake.")
+
+    def test_recall_targets_the_next_civic_day(self):
+        assert pg._recall_target_date(self.TUESDAY, self.EVENT) == self.SATURDAY
+
+    def test_the_window_closes_the_lane(self):
+        assert pg._recall_target_date(date(2026, 10, 20), self.EVENT) == date(2026, 10, 24)
+        assert pg._recall_target_date(date(2026, 10, 27), self.EVENT) is None
+        assert pg._recall_target_date(self.TUESDAY, None) is None
+
+    def test_the_story_still_airs_on_the_day_it_breaks(self, holding_env):
+        """Local news is the most time-sensitive material in the pool. A recall
+        must never become a hold."""
+        theme, bonus = pg.route_articles_for_focus(
+            [self._story()], [], self.TUESDAY, "Working Lands & Industry",
+            None, event_focus=self.EVENT)
+        assert [a["url"] for a in theme] == ["wl-election-url"]
+        assert bonus == []
+
+    def test_it_comes_back_on_the_civic_day(self, holding_env):
+        pg.route_articles_for_focus([self._story()], [], self.TUESDAY,
+                                    "Working Lands & Industry", None,
+                                    event_focus=self.EVENT)
+        theme, _ = pg.route_articles_for_focus(
+            [], [], self.SATURDAY, "Cariboo Local Affairs", None,
+            event_focus=self.EVENT)
+        assert [a["url"] for a in theme] == ["wl-election-url"]
+        assert theme[0]["_recalled_from"] == self.TUESDAY.isoformat()
+
+    def test_a_recall_survives_having_been_cited(self, holding_env, monkeypatch):
+        """Every other holding status is pruned once the URL appears in recent
+        citations. A recall exists *because* the story already aired."""
+        monkeypatch.setattr(pg, "load_recent_citations",
+                            lambda days=7: [{"url": "wl-election-url"}])
+        pg.route_articles_for_focus([self._story()], [], self.TUESDAY,
+                                    "Working Lands & Industry", None,
+                                    event_focus=self.EVENT)
+        theme, _ = pg.route_articles_for_focus(
+            [], [], self.SATURDAY, "Cariboo Local Affairs", None,
+            event_focus=self.EVENT)
+        assert [a["url"] for a in theme] == ["wl-election-url"]
+
+    def test_a_fresh_copy_in_the_feed_wins_over_the_recall(self, holding_env):
+        """No double-listing when the outlet re-runs the story."""
+        pg.route_articles_for_focus([self._story()], [], self.TUESDAY,
+                                    "Working Lands & Industry", None,
+                                    event_focus=self.EVENT)
+        theme, _ = pg.route_articles_for_focus(
+            [self._story()], [], self.SATURDAY, "Cariboo Local Affairs", None,
+            event_focus=self.EVENT)
+        assert [a["url"] for a in theme] == ["wl-election-url"]
+
+    def test_it_does_not_fire_twice(self, holding_env):
+        """Released is released — the story must not return every Saturday."""
+        pg.route_articles_for_focus([self._story()], [], self.TUESDAY,
+                                    "Working Lands & Industry", None,
+                                    event_focus=self.EVENT)
+        pg.route_articles_for_focus([], [], self.SATURDAY, "Cariboo Local Affairs",
+                                    None, event_focus=self.EVENT)
+        theme, _ = pg.route_articles_for_focus(
+            [], [], date(2026, 9, 19), "Cariboo Local Affairs", None,
+            event_focus=self.EVENT)
+        assert theme == []
+
+    def test_a_non_election_local_story_is_not_recalled(self, holding_env):
+        pool = [_article("Cariboo cattle prices hold steady into the fall",
+                         "cattle-url", kw=2, boosted=80,
+                         summary="Williams Lake ranchers report a steady season.")]
+        pg.route_articles_for_focus(pool, [], self.TUESDAY,
+                                    "Working Lands & Industry", None,
+                                    event_focus=self.EVENT)
+        theme, _ = pg.route_articles_for_focus(
+            [], [], self.SATURDAY, "Cariboo Local Affairs", None,
+            event_focus=self.EVENT)
+        assert theme == []
+
+    def test_a_non_local_election_story_is_not_recalled(self, holding_env):
+        """US midterm coverage carries the same vocabulary."""
+        pool = [_article("What to watch in the Massachusetts primary election",
+                         "us-url", kw=0, boosted=70,
+                         summary="A crowded field of candidates in Boston.")]
+        pg.route_articles_for_focus(pool, [], self.TUESDAY,
+                                    "Working Lands & Industry", None,
+                                    event_focus=self.EVENT)
+        theme, _ = pg.route_articles_for_focus(
+            [], [], self.SATURDAY, "Cariboo Local Affairs", None,
+            event_focus=self.EVENT)
+        assert theme == []
+
+    def test_the_civic_day_does_not_book_stories_back_to_itself(self, holding_env):
+        pg.route_articles_for_focus([self._story()], [], self.SATURDAY,
+                                    "Cariboo Local Affairs", None,
+                                    event_focus=self.EVENT)
+        theme, _ = pg.route_articles_for_focus(
+            [], [], date(2026, 9, 19), "Cariboo Local Affairs", None,
+            event_focus=self.EVENT)
+        assert theme == []
+
+    def test_a_recalled_story_can_anchor_the_deep_dive(self, holding_env):
+        pg.route_articles_for_focus([self._story()], [], self.TUESDAY,
+                                    "Working Lands & Industry", None,
+                                    event_focus=self.EVENT)
+        theme, _ = pg.route_articles_for_focus(
+            [], [], self.SATURDAY, "Cariboo Local Affairs", None,
+            event_focus=self.EVENT)
+        theme.append(_article("Quesnel council votes on the transit budget",
+                              "quesnel-url", kw=1, boosted=95))
+        deep_dive, _ = pg.select_deep_dive_from_feed(
+            theme, "Cariboo Local Affairs", count=2, event_focus=self.EVENT)
+        assert deep_dive[0]["url"] == "wl-election-url"
+
+
 class TestFocusCallbacks:
     def test_callback_block_and_consumption(self, holding_env):
         pg.save_memory(pg.HOLDING_FILE, {

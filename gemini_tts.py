@@ -90,12 +90,27 @@ GEMINI_TTS_URL = "https://generativelanguage.googleapis.com/v1beta/models/{model
 GEMINI_TTS_SEED = int(os.getenv("GEMINI_TTS_SEED", "42"))
 GEMINI_TTS_TEMPERATURE = float(os.getenv("GEMINI_TTS_TEMPERATURE", "0.35"))
 
-# Per-request transcript budget (chars). TTS models have a small context and a
-# capped audio output length; ~8 500 chars ≈ 8–9 min of speech stays safely
-# under both, while cutting the needless extra chunk (and extra independent
-# sampling draw) that 6 000 caused for sections just over that mark. Longer
-# sections are split at speaker-turn boundaries.
-TRANSCRIPT_CHAR_LIMIT = 8_500
+# Per-request transcript budget (chars). Sized to what this endpoint has been
+# measured to ANSWER, not to what the model will accept: context and audio
+# length were never the binding constraint, latency was.
+#
+# At 8 500 the news roundup was one request every night — 6 382, 6 686, 7 410,
+# 7 453 and 8 521 chars over the five episodes to 2026-09-05 — and it is the
+# section Gemini kept dying in. On 2026-09-05 that request went out three times
+# at 6 894 chars and came back unanswered at 120.2 s, 120.1 s and 120.2 s: three
+# attempts, none of which returned a verdict, all of them stopped by the clock.
+# The same night's answered calls ran 46–62 chars/s (1 090 in 17.6 s, 2 080 in
+# 38.7 s, 2 226 in 48.0 s and 48.2 s), which puts 6 894 chars at 110–150 s —
+# at or past the leash on every draw.
+#
+# 3 000 keeps every request inside the size band the endpoint has actually
+# answered: the news roundup becomes three ~2 400-char calls at ~50 s each
+# rather than one that cannot finish. It costs extra independent sampling draws
+# (the reason 6 000 was raised to 8 500 in the first place), which the pinned
+# seed, low temperature and `speechConfig` voices are what mitigate — and a
+# chunk that never returns costs the whole episode its voices, which is the
+# larger of the two prices. Sections are split at speaker-turn boundaries.
+TRANSCRIPT_CHAR_LIMIT = 3_000
 
 # Continuity note for a chunk/section that is not the episode's first, so the
 # next call opens mid-flow instead of resampling delivery from a cold start.
@@ -183,14 +198,84 @@ REQUEST_CONNECT_TIMEOUT = 15
 # probe: 7 of 15 calls failed against a flat 120 s leash, so a longer wait does
 # not convert every timeout into a take. What it does buy is that a slow-alive
 # call is no longer indistinguishable from a dead one at the leash exactly.
+# The ceiling was the other half of the 2026-09-05 failure, and it was inherited
+# rather than fitted: 120 s is the flat leash this formula replaced. For a
+# 6 894-char request the formula wants 276 s and the clamp handed it 120 — so on
+# the largest chunk of every episode the fit was not merely loose, it was
+# inverted, and the comment claiming the clamp "only ever cuts the small ones"
+# was true of the old 8 500-char chunk in exactly the wrong direction.
+#
+# It is now non-binding BY CONSTRUCTION: the largest request the render can make
+# is TRANSCRIPT_CHAR_LIMIT chars, which the formula prices at 120 s, and the
+# ceiling sits above that. That invariant is asserted in tests — raising the
+# chunk limit without raising this restores the clamp silently, which is the
+# failure mode that cost a month of episodes their voices.
 READ_TIMEOUT_MIN_S = int(os.getenv("GEMINI_TTS_READ_TIMEOUT_MIN_S", "75"))
-READ_TIMEOUT_MAX_S = int(os.getenv("GEMINI_TTS_READ_TIMEOUT_MAX_S", "120"))
+READ_TIMEOUT_MAX_S = int(os.getenv("GEMINI_TTS_READ_TIMEOUT_MAX_S", "150"))
 READ_TIMEOUT_MS_PER_CHAR = float(os.getenv("GEMINI_TTS_READ_TIMEOUT_MS_PER_CHAR", "40"))
 
 
 def _transcript_chars(segments: list[dict]) -> int:
     """Spoken characters in *segments* — the scale generation time tracks."""
     return sum(len(seg["text"]) for seg in segments)
+
+
+def _pack_segments(segments: list[dict], target: int) -> list[list[dict]]:
+    """Greedily pack whole speaker turns into chunks of at most *target* chars.
+
+    Measured on the transcript alone. `_split_segments_by_char_limit` budgets an
+    extra 120 chars per segment for SSML tags, which is right for Azure and
+    wrong here — Gemini is sent plain speech, and the prompt scaffolding around
+    it is one fixed block per request, not per turn. Borrowing that estimate
+    counted 3 240 phantom chars against a 27-turn news roundup and bought two
+    requests nobody needed.
+
+    A single turn longer than *target* still gets its own chunk rather than
+    being cut mid-sentence; at ~300 chars a turn that does not happen here.
+    """
+    chunks: list[list[dict]] = []
+    current: list[dict] = []
+    size = 0
+    for seg in segments:
+        n = len(seg["text"])
+        if current and size + n > target:
+            chunks.append(current)
+            current, size = [], 0
+        current.append(seg)
+        size += n
+    if current:
+        chunks.append(current)
+    return chunks
+
+
+def _balanced_chunks(segments: list[dict]) -> list[list[dict]]:
+    """Split *segments* into near-equal chunks, none over TRANSCRIPT_CHAR_LIMIT.
+
+    Packing greedily against the limit fills each chunk to the brim and leaves
+    the remainder in a runt: a 6 382-char news roundup at a 3 000 limit packs to
+    3 000/3 000/382, and that 382-char tail is a whole extra request and — worse
+    — an extra independent sampling draw, dropping three seconds of
+    differently-sampled audio at the end of the segment. Choosing the chunk
+    COUNT first and splitting evenly gives ~2 128 three times instead: the same
+    three requests, each one smaller, and no runt.
+
+    The target is then relaxed until the pack actually fits in that many chunks.
+    Turns are indivisible, so the exact average usually overshoots by one turn
+    and produces `count + 1` chunks — which is the runt again, arrived at from
+    the other side.
+
+    This mattered little at 8 500, where a runt was rare. At 3 000 nearly every
+    section produces one.
+    """
+    total = _transcript_chars(segments)
+    if total <= TRANSCRIPT_CHAR_LIMIT:
+        return [segments]
+    count = -(-total // TRANSCRIPT_CHAR_LIMIT)  # ceil: fewest chunks under the limit
+    for target in range(-(-total // count), TRANSCRIPT_CHAR_LIMIT + 1):
+        chunks = _pack_segments(segments, target)
+        if len(chunks) <= count:
+            return chunks
+    return _pack_segments(segments, TRANSCRIPT_CHAR_LIMIT)
 
 
 def _read_timeout_for(segments: list[dict]) -> int:
@@ -294,7 +379,14 @@ RETRY_LADDER: tuple[_Rung, ...] = (
 # (0+75, 15+75, 45+75, 90+75 = 450 s) and still sits well inside
 # GEMINI_RENDER_DEADLINE_S (1500 s), which is the ceiling that actually protects
 # the render step from a provider dying section by section.
-SECTION_BUDGET_S = float(os.getenv("GEMINI_TTS_SECTION_BUDGET_S", "540"))
+#
+# Raised again with the chunk limit, for the same reason: a full 3 000-char
+# chunk now gets a 120 s leash, and 540 s affords it only three attempts
+# (0+120, 15+120, 45+120 = 420; the fourth needs 90+120 = 630). 660 keeps four.
+# GEMINI_RENDER_DEADLINE_S deliberately does NOT move with it — a good night
+# now costs ~600 s of Gemini across the whole episode, so 1 500 binds only on a
+# night that is going to OpenAI anyway, and that is when spending less is right.
+SECTION_BUDGET_S = float(os.getenv("GEMINI_TTS_SECTION_BUDGET_S", "660"))
 
 # Optional absolute deadline for all Gemini work in a run, set by the caller via
 # set_render_deadline(). SECTION_BUDGET_S bounds one chunk; this bounds the sum,
@@ -1016,7 +1108,7 @@ def generate_gemini_tts_for_section(
     text is what made the 2026-08-17 welcome read the cold open aloud (see
     CONTINUATION_NOTE).
     """
-    chunks = _split_segments_by_char_limit(segments, limit=TRANSCRIPT_CHAR_LIMIT)
+    chunks = _balanced_chunks(segments)
 
     pcm_parts: list[bytes] = []
     sample_rate = DEFAULT_SAMPLE_RATE
