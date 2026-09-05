@@ -331,6 +331,54 @@ def get_focus_for_day(weekday: int, d: date):
     focus["cycle_length"] = len(cycle)
     return focus
 
+def get_event_focus_for_day(weekday: int, d: date) -> dict | None:
+    """Return the theme's `event_focus` dict if *d* falls inside its window.
+
+    The fourth selection layer — theme, then super-cycle focus, then weekly
+    anchor, then this — and the only temporary one: a named civic event the show
+    should center for as long as it is live, then stop. Like `get_focus_for_day` it is calendar-derived rather than stateful,
+    so a re-render weeks later reproduces the same answer — but unlike the
+    focus it is bounded by explicit `start`/`end` dates rather than a rotation,
+    because an election has a date and a rotation does not.
+
+    Unlike the super-cycle focus, an event focus IS named on air: the focus is a
+    curation device, an election is an editorial fact listeners need.
+    """
+    event = load_themes_config().get(str(weekday), {}).get("event_focus")
+    if not event:
+        return None
+    try:
+        start = date.fromisoformat(event["start"])
+        end = date.fromisoformat(event["end"])
+    except (KeyError, ValueError):
+        return None
+    return dict(event) if start <= d <= end else None
+
+def get_active_event_focus(d: date) -> dict | None:
+    """The in-window `event_focus` of ANY theme on date *d*, or None.
+
+    `get_event_focus_for_day` answers "is TODAY'S theme running an event", which
+    is the question the deep-dive lens asks. This answers "is an event running
+    at all", which is the question every other day of the week has to ask: the
+    Williams Lake election is configured on the civic theme, so a Tuesday
+    lookup by weekday returns None and a nomination story breaking on Tuesday
+    would never be booked back for it.
+
+    Carries `weekday` so the caller knows which day the event belongs to.
+    """
+    for weekday, info in load_themes_config().items():
+        event = info.get("event_focus")
+        if not event:
+            continue
+        try:
+            start = date.fromisoformat(event["start"])
+            end = date.fromisoformat(event["end"])
+        except (KeyError, ValueError):
+            continue
+        if start <= d <= end:
+            return {**event, "weekday": int(weekday)}
+    return None
+
 def get_upcoming_day_slots(d: date, horizon_days: int = 14) -> list:
     """Enumerate (date, weekday, theme_name, focus|None) for each day after *d*.
 

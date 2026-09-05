@@ -473,7 +473,10 @@ class TestSynthesizeRetries:
         assert seen == [
             (gemini_tts.REQUEST_CONNECT_TIMEOUT, gemini_tts._read_timeout_for(SEGS))
         ]
-        assert gemini_tts.READ_TIMEOUT_MAX_S <= 120
+        # Still fails fast: the longest any single attempt can wait is a small
+        # fraction of the section budget, so a dead endpoint cannot hold a
+        # chunk for the ~15 min five rungs of a 600 s leash would allow.
+        assert gemini_tts.READ_TIMEOUT_MAX_S <= gemini_tts.SECTION_BUDGET_S / 4
 
     def test_read_timeout_scales_with_the_size_of_the_request(self):
         """A 350-char cold open must not get the same leash as an 8.5k chunk.
@@ -492,10 +495,25 @@ class TestSynthesizeRetries:
                 <= gemini_tts._read_timeout_for(middling)
                 <= gemini_tts.READ_TIMEOUT_MAX_S)
 
-    def test_the_ceiling_never_exceeds_what_large_chunks_used_to_get(self):
-        """Shortening the leash must not shorten it for the requests that were
-        working — the change is only ever a cut for the small ones."""
-        assert gemini_tts.READ_TIMEOUT_MAX_S == 120
+    def test_the_ceiling_does_not_clamp_a_full_chunk(self):
+        """Corrects the rule this test used to assert.
+
+        It pinned the ceiling at 120 s on the reasoning that shortening the
+        leash "is only ever a cut for the small ones". That held for small
+        requests and was exactly backwards for the largest: at an 8 500-char
+        chunk limit the formula wanted 276 s for the 2026-09-05 news roundup and
+        the clamp handed it 120, so the one request that most needed the fitted
+        leash was the one request that never got it. Three attempts, three
+        unanswered calls at 120.2/120.1/120.2 s, and the episode's voices.
+
+        The rule is now that a full chunk prices below the ceiling, so the fit
+        governs and the clamp is a safety rail. A single speaker turn longer
+        than the whole chunk limit would still be clamped — at ~300 chars a turn
+        that does not happen here."""
+        full_chunk = [{"speaker": "riley",
+                       "text": "x" * gemini_tts.TRANSCRIPT_CHAR_LIMIT, "gap_ms": None}]
+        assert (gemini_tts._read_timeout_for(full_chunk)
+                < gemini_tts.READ_TIMEOUT_MAX_S)
 
     def test_429_error_body_not_truncated_before_quota_details(self, monkeypatch):
         """The quota name in error.details sits past 300 chars — keep it."""
@@ -555,6 +573,72 @@ class TestSynthesizeRetries:
         pcm, rate = _synthesize_chunk(SEGS)
         assert len(pcm) == 150_000
         assert not responses  # only one attempt made
+
+
+class TestChunkSizing:
+    """The 2026-09-05 news roundup went out at 6 894 chars three times and came
+    back unanswered at 120.2/120.1/120.2 s — stopped by the clock, never by a
+    verdict. Both halves of that are constants, and they have to move together.
+    """
+
+    @staticmethod
+    def _turns(total_chars, per_turn=270):
+        n = total_chars // per_turn
+        return [{"speaker": "riley" if i % 2 else "casey",
+                 "text": "x" * per_turn, "gap_ms": None} for i in range(n)]
+
+    def test_the_read_timeout_ceiling_is_non_binding_by_construction(self):
+        """The invariant this whole retune rests on: the largest request the
+        render can make must price BELOW the ceiling, or the clamp is back and
+        the fitted formula stops governing the chunk that matters most."""
+        largest = gemini_tts.TRANSCRIPT_CHAR_LIMIT * gemini_tts.READ_TIMEOUT_MS_PER_CHAR / 1000
+        assert largest <= gemini_tts.READ_TIMEOUT_MAX_S, (
+            "TRANSCRIPT_CHAR_LIMIT was raised without READ_TIMEOUT_MAX_S — the "
+            "read timeout is clamped again and the largest chunk is under-leashed"
+        )
+
+    def test_the_section_budget_still_affords_four_attempts(self):
+        """Budget and leash trade against each other; moving one alone is a
+        silent cut to the other."""
+        leash = gemini_tts.READ_TIMEOUT_MAX_S
+        backoffs = [r.backoff_s for r in gemini_tts.RETRY_LADDER[:4]]
+        assert sum(backoffs) + 4 * leash > gemini_tts.SECTION_BUDGET_S >= \
+            sum(backoffs[:4]) + 4 * (gemini_tts.TRANSCRIPT_CHAR_LIMIT
+                                     * gemini_tts.READ_TIMEOUT_MS_PER_CHAR / 1000)
+
+    def test_a_news_roundup_splits_into_answerable_chunks(self):
+        """6 400-8 500 chars is what the roundup has measured every night."""
+        for total in (6382, 7332, 8521):
+            chunks = gemini_tts._balanced_chunks(self._turns(total))
+            sizes = [gemini_tts._transcript_chars(c) for c in chunks]
+            assert max(sizes) <= gemini_tts.TRANSCRIPT_CHAR_LIMIT
+            # 2 226 chars answered in 48 s twice on 2026-09-05; 6 894 never did.
+            assert max(sizes) <= 3000, f"{total} -> {sizes}"
+
+    def test_no_runt_chunk(self):
+        """Greedy packing leaves the remainder in a tail chunk — an extra call
+        and, worse, an extra independent sampling draw at the end of a section."""
+        for total in (6382, 7332, 8521, 10278):
+            chunks = gemini_tts._balanced_chunks(self._turns(total))
+            sizes = [gemini_tts._transcript_chars(c) for c in chunks]
+            assert min(sizes) > max(sizes) * 0.6, f"runt in {sizes}"
+
+    def test_a_short_section_is_still_one_request(self):
+        for total in (319, 1025, 2900):
+            chunks = gemini_tts._balanced_chunks(self._turns(total, per_turn=100))
+            assert len(chunks) == 1
+
+    def test_chunking_never_drops_or_reorders_a_turn(self):
+        turns = self._turns(7332)
+        flat = [t for c in gemini_tts._balanced_chunks(turns) for t in c]
+        assert flat == turns
+
+    def test_the_ssml_tag_estimate_is_not_borrowed(self):
+        """`_split_segments_by_char_limit` budgets +120/segment for SSML tags,
+        which is an Azure concern. Counting it here charged a 27-turn roundup
+        3 240 phantom chars and bought two requests nobody needed."""
+        turns = self._turns(7332, per_turn=270)
+        assert len(gemini_tts._balanced_chunks(turns)) == 3
 
 
 class TestTimeBudget:

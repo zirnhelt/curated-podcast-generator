@@ -53,6 +53,8 @@ from config_loader import (
     get_speed_for_host,
     get_theme_for_day,
     get_focus_for_day,
+    get_event_focus_for_day,
+    get_active_event_focus,
     get_upcoming_day_slots,
     message_text,
     strip_stage_directions,
@@ -3800,6 +3802,15 @@ def _load_article_holding(today_date: date) -> dict:
         elif status == 'aired_early':
             if held_age > AIRED_EARLY_RETENTION_DAYS or (target_date and target_date < today_iso):
                 continue
+        elif status == 'recall':
+            # Deliberately NOT dropped on `url in covered`, which is the rule
+            # every other status lives by. A recall exists *because* the story
+            # already aired: it was local and time-sensitive, so it ran on the
+            # day it broke, and the civic day is where the running story gets
+            # its proper treatment. Dropping it for having been cited would
+            # delete the entry on the very next run.
+            if target_date and target_date < today_iso:
+                continue
         else:
             continue
         pruned[url] = entry
@@ -3809,12 +3820,41 @@ def _load_article_holding(today_date: date) -> dict:
     return pruned
 
 
+def _recall_target_date(today_date: date, event) -> date | None:
+    """Next airing of *event*'s own theme after *today_date*, inside its window.
+
+    The election recall's target is the geographic day, which the ordinary
+    holding router refuses to route to for good reason — its keyword list took
+    the bare word 'local' literally and had five off-topic articles waiting for
+    2026-08-22. This is a different question: not "does this story match
+    Saturday's keywords" (it matches the *event*, which is checked by the
+    caller) but "when is the next civic episode". A calendar lookup cannot
+    admit a Brooklyn ADU story the way a keyword match did.
+
+    Returns None outside the event window, so the lane closes itself on the
+    date the election does.
+    """
+    if not event:
+        return None
+    weekday = event.get('weekday')
+    if weekday is None:
+        return None
+    try:
+        end = date.fromisoformat(event['end'])
+    except (KeyError, ValueError):
+        return None
+    ahead = (weekday - today_date.weekday()) % 7 or 7  # strictly after today
+    target = today_date + timedelta(days=ahead)
+    return target if target <= end else None
+
+
 def _theme_slug(theme_name: str) -> str:
     """Filesystem/ledger-safe slug for a theme name (same shape as script paths)."""
     return theme_name.replace(" ", "_").replace("&", "and").lower()
 
 
-def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_theme, focus):
+def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_theme,
+                             focus, event_focus=None):
     """Super-cycle content routing: release matured holds and hold off-theme articles.
 
     Off-theme, non-urgent articles that strongly match an upcoming day's theme or
@@ -3855,14 +3895,29 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
     existing_urls = {a.get('url', '') for a in theme_articles + bonus_articles}
     for url, entry in holding.items():
         matured = entry.get('status') == 'held' and entry.get('target_date') == today_iso
+        recalled = entry.get('status') == 'recall' and entry.get('target_date') == today_iso
         rerun = entry.get('status') == 'released' and entry.get('release_date') == today_iso
-        if not (matured or rerun):
+        if not (matured or recalled or rerun):
             continue
+        was_recall = recalled or entry.get('recall')
         entry['status'] = 'released'
         entry['release_date'] = today_iso
         if url in existing_urls:
             continue  # article reappeared in today's feed — prefer the fresh copy
         article = dict(entry.get('article', {}))
+        if was_recall:
+            # Re-entering the pool AFTER dedup has run (routing follows
+            # deduplicate_articles), which is what lets a story the citations
+            # already spent come back. That exemption is the point: this one
+            # aired on the day it broke and returns on the day the show can
+            # actually sit with it. The tag is the opposite of `_held_from` —
+            # the hosts say plainly that they covered it, and what has moved.
+            article['_recalled_from'] = entry.get('held_date', '')
+            article['_recall_event'] = entry.get('event_name', '')
+            released.append(article)
+            print(f"  🗳️  Recalled for the civic day (first aired "
+                  f"{article['_recalled_from']}): {article.get('title', '')[:60]}")
+            continue
         article['_held_from'] = entry.get('held_date', '')
         released.append(article)
         print(f"  📤 Released from holding (held {article['_held_from']}): {article.get('title', '')[:70]}")
@@ -3903,6 +3958,15 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
     today_theme_keywords = _build_strict_theme_keywords(today_theme)
     today_subject_keywords = _build_theme_subject_keywords(today_theme)
     today_focus_keywords = _build_focus_keywords(focus)
+    # Election lane: a story about the named civic event airs today like any
+    # other local story, and is ALSO booked back for the next civic episode.
+    # Both dates are the point — an election story is news on the day it breaks
+    # and context on the day the show covers the race — so this is a recall,
+    # not a hold, and nothing is withheld from today to pay for it.
+    event_keywords = _build_event_focus_keywords(event_focus)
+    recall_date = (None if _is_geographic_theme(today_theme)
+                   else _recall_target_date(today_date, event_focus))
+    recall_count = 0
     # Never shrink the pool below what the roundup + deep dive need
     max_holds = max(0, len(theme_articles) + len(bonus_articles) - (NEWS_ROUNDUP_COUNT + 3))
 
@@ -3938,8 +4002,28 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
             weak_today = (a.get('_keyword_matches', 0) == 0
                           and _keyword_hit_count(text, today_theme_keywords) <= 1)
         belongs_to_today = not weak_today
-        if (not url or a.get('_held_from') or a.get('_seed_id')
-                or on_todays_focus or belongs_to_today):
+        # Booked BEFORE the early-exit below, which is what the ordinary router
+        # returns through for anything on today's theme. An election story is
+        # usually on-theme wherever it lands — a mill-town candidate on Working
+        # Lands day, an SD27 trustee race on the arts day — so a recall gated
+        # behind "off today's theme" would almost never fire.
+        if (recall_date and url and not a.get('_recalled_from')
+                and _keyword_hit_count(text, event_keywords) > 0
+                and _is_local_article(a)):
+            holding[url] = {
+                'article': a,
+                'held_date': today_iso,
+                'target_date': recall_date.isoformat(),
+                'target_weekday': recall_date.weekday(),
+                'event_name': event_focus.get('name', ''),
+                'recall': True,
+                'status': 'recall',
+            }
+            recall_count += 1
+            print(f"  🗳️  Airing today, booked back for {recall_date.isoformat()} "
+                  f"({event_focus.get('name', '')}): {a.get('title', '')[:60]}")
+        if (not url or a.get('_held_from') or a.get('_recalled_from')
+                or a.get('_seed_id') or on_todays_focus or belongs_to_today):
             kept_bucket.append(a)
             continue
         matches = [(sd, t) for sd, t, kws in slot_keywords
@@ -3995,9 +4079,10 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
             kept_bucket.append(a)
 
     save_memory(HOLDING_FILE, holding)
-    if released or held_count or deferred_count:
+    if released or held_count or deferred_count or recall_count:
         print(f"🔀 Focus routing: released {len(released)}, held {held_count}, "
-              f"deep dive deferred for {deferred_count} local article(s)")
+              f"deep dive deferred for {deferred_count} local article(s), "
+              f"{recall_count} booked back for the civic day")
     return kept_theme, kept_bonus
 
 
@@ -4813,6 +4898,28 @@ def _local_place_hits(article: dict) -> int:
     return _keyword_hit_count(f"{title} {article.get('summary', '')}".lower(), local_places)
 
 
+def _home_place_hits(article: dict, theme_name) -> int:
+    """Hits on the theme's `home_places` — the jurisdictions the show is OF.
+
+    `local_places` answers "is this story here?"; this answers "is this story
+    ours?". The two are not the same question, and flattening them is what put
+    the 2026-09-05 Cariboo Local Affairs deep dive on Quesnel's winter-shelter
+    siting and a Quesnel council candidate: both are local, neither is Williams
+    Lake, and nothing in the ranking could tell the difference. Quesnel,
+    100 Mile House, Bella Coola and Prince George are neighbours the show
+    covers; Williams Lake, the CRD and SD27 are the jurisdictions it is from.
+
+    Returns 0 for a theme with no `home_places`, which is every topical theme —
+    the distinction only means something on the geographic day.
+    """
+    info = _theme_info(theme_name) or {}
+    home = [p.lower() for p in info.get('home_places', [])]
+    if not home:
+        return 0
+    title = re.sub(r'^\W*\[[^\]]*\]\s*', '', article.get('title', ''))
+    return _keyword_hit_count(f"{title} {article.get('summary', '')}".lower(), home)
+
+
 def _is_local_article(article: dict) -> bool:
     """True when a story names a Cariboo/BC place or comes from a local outlet.
 
@@ -4988,8 +5095,15 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
 
     # Place-name hits lead outlet-only matches, and among those an on-theme
     # local story opens the episode — the local block is the show's front door.
-    local_block.sort(key=lambda a: (_local_place_hits(a), relevance(a), boosted(a)),
-                     reverse=True)
+    # Home jurisdiction leads all of it: every story here is local, so counting
+    # place names alone sorted on which town got named most often and a Quesnel
+    # story could open a Williams Lake show. `home_places` is empty on the six
+    # topical themes, where this term is a constant and changes no order.
+    local_block.sort(
+        key=lambda a: (_home_place_hits(a, theme_name), _local_place_hits(a),
+                       relevance(a), boosted(a)),
+        reverse=True,
+    )
     theme_block.sort(key=relevance, reverse=True)
     adjacent_block.sort(key=body_theme_hits, reverse=True)
     # Bigger clusters first — the most connective material leads the back half
@@ -5409,7 +5523,7 @@ def _build_theme_anti_keywords(theme_name):
     return []
 
 
-def _build_theme_lens(theme_name, focus=None):
+def _build_theme_lens(theme_name, focus=None, event_focus=None):
     """Return the theme's "lens" guidance string (empty if not configured).
 
     The lens is a short instruction distinguishing this theme from its most
@@ -5431,6 +5545,12 @@ def _build_theme_lens(theme_name, focus=None):
             "on air or present today as a special themed week or sub-theme; the "
             f"only theme the hosts name is \"{theme_name}\".)"
         )
+    if event_focus and event_focus.get('lens'):
+        # The opposite of the focus rule above, and deliberately so: a super-cycle
+        # focus is a curation device listeners have no reason to hear about, while
+        # an election is the civic fact the coverage exists to serve. Its own lens
+        # copy carries the say-it-on-air instruction and the no-endorsement rule.
+        lens = (lens + ' ' if lens else '') + event_focus['lens']
     return lens
 
 
@@ -5444,6 +5564,42 @@ def _build_focus_keywords(focus) -> list:
     return [k for k in keywords if not (k in seen or seen.add(k))]
 
 
+def _build_event_focus_keywords(event) -> list:
+    """Lowercased keyword list for an active `event_focus`, or [] when none."""
+    if not event:
+        return []
+    seen = set()
+    return [k for k in (kw.lower() for kw in event.get('keywords', []))
+            if not (k in seen or seen.add(k))]
+
+
+def _geographic_rank(article: dict) -> tuple:
+    """Sort key for the geographic day's civic pool, strongest first.
+
+    Three questions in order of what makes a story the show's:
+
+    1. `_event_matches` — is this the named civic event? During the Williams
+       Lake election window that is the race itself, which outranks routine
+       civic business for as long as the window is open and stops mattering the
+       day it closes.
+    2. `_home_matches` — is this OUR council? Deliberately ranked above the
+       civic-keyword *count*, not merged into it: a Quesnel story dense in
+       civic vocabulary otherwise beats a thinner Williams Lake one, which is
+       how the 2026-09-05 deep dive came to run on Quesnel's shelter siting and
+       a Quesnel council candidate. Subject matter still gates entry — the
+       caller only sorts articles that already carry civic keywords — so this
+       promotes a home civic story, never a home speedway story.
+    3. `_subject_matches`, then feed score — the original ordering, now the
+       tiebreak inside each jurisdiction tier.
+    """
+    return (
+        article.get('_event_matches', 0),
+        article.get('_home_matches', 0),
+        article.get('_subject_matches', 0),
+        article.get('_boosted_score', article.get('ai_score', 0)),
+    )
+
+
 def _focus_hit_count(article, focus_keywords) -> int:
     """Focus-keyword hits in an article's title+summary (source tag stripped)."""
     title = re.sub(r'^\W*\[[^\]]*\]\s*', '', article.get('title', ''))
@@ -5451,7 +5607,8 @@ def _focus_hit_count(article, focus_keywords) -> int:
     return _keyword_hit_count(text, focus_keywords)
 
 
-def select_deep_dive_from_feed(theme_articles, theme_name, count=3, focus=None):
+def select_deep_dive_from_feed(theme_articles, theme_name, count=3, focus=None,
+                               event_focus=None):
     """Select deep dive articles from pre-curated podcast feed theme articles.
 
     The feed already sorts articles by boosted score (theme relevance).
@@ -5467,7 +5624,9 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=3, focus=None):
 
     On the geographic theme (Cariboo Local Affairs) the ranking is the civic
     subject keywords instead: locality is what every candidate has in common
-    there, so it cannot also be the thing that sorts them.
+    there, so it cannot also be the thing that sorts them. Among those, the
+    home jurisdiction leads and an active `event_focus` leads that — see
+    `_geographic_rank`.
 
     Articles flagged `_no_deep_dive` by the router air today but do not anchor
     the debate, unless fewer than DEEP_DIVE_ELIGIBLE_FLOOR articles are left
@@ -5510,26 +5669,44 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=3, focus=None):
     subject_deep_dive = None
     if _is_geographic_theme(theme_name):
         subject_keywords = _build_theme_subject_keywords(theme_name)
+        event_keywords = _build_event_focus_keywords(event_focus)
         for a in candidates:
             a['_subject_matches'] = _focus_hit_count(
                 a, subject_keywords)  # same title+summary scan, source tag stripped
+            a['_home_matches'] = _home_place_hits(a, theme_name)
+            a['_event_matches'] = _focus_hit_count(a, event_keywords)
+        # An event match counts as civic subject matter in its own right. The
+        # event vocabulary is deliberately NOT folded into
+        # `_build_theme_subject_keywords`, which also gates the roundup's theme
+        # block against the whole non-local pool: 'campaign', 'ballot' and
+        # 'candidate' would admit US politics to a Cariboo civic day the same way
+        # the bare word 'local' admitted "8 local AI models" on 2026-08-22. Here
+        # every candidate is already local by construction, so the words are safe.
+        def _is_civic(a):
+            return a.get('_subject_matches', 0) > 0 or a.get('_event_matches', 0) > 0
+
         subject_strong = sorted(
-            (a for a in candidates if a.get('_subject_matches', 0) > 0),
-            key=lambda a: (a.get('_subject_matches', 0),
-                           a.get('_boosted_score', a.get('ai_score', 0))),
-            reverse=True,
+            (a for a in candidates if _is_civic(a)), key=_geographic_rank, reverse=True,
         )
         if subject_strong:
             # Civic stories lead; the remaining slots go to the strongest local
             # material left, which is the only thing a thin civic week has.
             rest = sorted(
-                (a for a in candidates if a.get('_subject_matches', 0) == 0),
-                key=lambda a: a.get('_boosted_score', a.get('ai_score', 0)),
+                (a for a in candidates if not _is_civic(a)),
+                key=lambda a: (a.get('_home_matches', 0),
+                               a.get('_boosted_score', a.get('ai_score', 0))),
                 reverse=True,
             )
             subject_deep_dive = (subject_strong + rest)[:count]
+            home_lead = sum(1 for a in subject_deep_dive if a.get('_home_matches', 0))
             print(f"  🏛️  {len(subject_strong)} article(s) carry civic subject matter — "
-                  f"deep dive centered on them")
+                  f"deep dive centered on them ({home_lead}/{len(subject_deep_dive)} "
+                  f"in the home jurisdiction)")
+            if event_keywords:
+                on_event = sum(1 for a in subject_deep_dive if a.get('_event_matches', 0))
+                print(f"  🗳️  Event focus '{event_focus['name']}': "
+                      f"{on_event} of {len(subject_deep_dive)} deep-dive article(s) "
+                      f"carry election material")
         else:
             print("  🏛️  subject_fallback: no article carried civic subject matter — "
                   "ranking the local pool on score alone")
@@ -6801,7 +6978,7 @@ def us_policy_framing_tag(article) -> str:
     return f' [US POLICY — {framing}]'
 
 
-def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None, feed_meta=None, bonus_articles=None, debate_memory=None, cta_memory=None, thought_seeds=None, weather_data=None, brave_context="", feedback_emails=None, twit_items=None, corrections=None, focus=None, anchor=None):
+def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None, feed_meta=None, bonus_articles=None, debate_memory=None, cta_memory=None, thought_seeds=None, weather_data=None, brave_context="", feedback_emails=None, twit_items=None, corrections=None, focus=None, anchor=None, event_focus=None):
     """Generate conversational podcast script using Claude."""
     print("🎙️ Generating podcast script with Claude...")
 
@@ -6852,11 +7029,22 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
         held_tag = (f' [FROM {a["_held_from"]}: frame as "earlier this week", not '
                     f'breaking — do not explain why it airs today]'
                     if a.get('_held_from') else '')
+        # The inverse instruction to held_tag, and deliberately so. A held story
+        # is one the listener has not heard, aired on a better-matched day, so
+        # explaining the timing would only expose the machinery. A recalled one
+        # they HAVE heard — it ran on the day it broke — so pretending otherwise
+        # is the failure. Say we covered it and say what has moved since.
+        recall_tag = (f' [ALREADY COVERED {a["_recalled_from"]} — say so plainly '
+                      f'("we mentioned this on Tuesday") and lead with what has '
+                      f'CHANGED since: a new name in the race, a deadline passed, '
+                      f'a position stated. Never re-read the original story as '
+                      f'though it were new]'
+                      if a.get('_recalled_from') else '')
         jurisdiction_tag = us_policy_framing_tag(a)
         body = a.get('_body', '')
         body_line = f"\n  Content: {body[:500]}" if body else ""
         pub_tag = _format_pub_date_tag(a)
-        return f"- [{source}] {title}{theme_tag}{cluster_tag}{held_tag}{jurisdiction_tag}{pub_tag}\n  {summary}... (Relevance: {score}){body_line}"
+        return f"- [{source}] {title}{theme_tag}{cluster_tag}{held_tag}{recall_tag}{jurisdiction_tag}{pub_tag}\n  {summary}... (Relevance: {score}){body_line}"
 
     # These headers are curation metadata. They tell the model what order to air
     # stories in — never what to say about them. Naming a block on air, or
@@ -7117,7 +7305,8 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             other_host_upper=other_host_name.upper(),
             other_host_name=other_host_name,
             theme_name=theme_name,
-            theme_lens=_build_theme_lens(theme_name, focus=focus),
+            theme_lens=_build_theme_lens(theme_name, focus=focus,
+                                         event_focus=event_focus),
             anchor_block=anchor_block,
             burned_phrases=burned_phrases,
             news_text=news_text,
@@ -9939,6 +10128,14 @@ def run_script_stage() -> tuple[str, str] | None:
         today_theme = get_theme_for_day(today_weekday)
         # Super-cycle rotation focus for today (None on uncycled days, e.g. Saturday)
         today_focus = get_focus_for_day(today_weekday, pacific_now.date())
+        # A named civic event the day's theme should center while it is live —
+        # calendar-bounded, so it needs no cleanup commit when it ends.
+        # Two lookups, two questions: `today_event` is "is TODAY'S theme running
+        # one" and steers the lens and the deep-dive ranking; `active_event` is
+        # "is one running at all" and is what lets a nomination story breaking on
+        # a Tuesday get booked back for the civic day it belongs to.
+        today_event = get_event_focus_for_day(today_weekday, pacific_now.date())
+        active_event = get_active_event_focus(pacific_now.date())
         weekday, date_str = get_current_date_info()
 
         print(f"📅 {weekday}, {date_str} - Theme: {today_theme}")
@@ -10163,7 +10360,8 @@ def run_script_stage() -> tuple[str, str] | None:
                 # pool; hold off-theme, non-urgent articles for their focus day;
                 # divert urgent off-theme stories to the bonus bucket + callback ledger.
                 theme_articles, bonus_articles = route_articles_for_focus(
-                    theme_articles, bonus_articles, pacific_now.date(), today_theme, today_focus
+                    theme_articles, bonus_articles, pacific_now.date(), today_theme,
+                    today_focus, event_focus=active_event
                 )
 
                 # Inject user-seeded URLs into the article pool.
@@ -10195,7 +10393,8 @@ def run_script_stage() -> tuple[str, str] | None:
                 # Select deep dive from theme articles; rest go to news
                 deep_dive_count = SATURDAY_DEEP_DIVE_COUNT if today_weekday == 5 else 3
                 deep_dive_articles, news_articles = select_deep_dive_from_feed(
-                    theme_articles, today_theme, count=deep_dive_count, focus=today_focus)
+                    theme_articles, today_theme, count=deep_dive_count,
+                    focus=today_focus, event_focus=today_event)
 
                 # Track which seeded articles landed in the deep dive
                 for a in deep_dive_articles:
@@ -10353,7 +10552,7 @@ def run_script_stage() -> tuple[str, str] | None:
                 weather_data=weather_data, brave_context=brave_context,
                 feedback_emails=email_feedback, twit_items=twit_items,
                 corrections=email_corrections, focus=today_focus,
-                anchor=today_anchor
+                anchor=today_anchor, event_focus=today_event
             )
 
             if not script:
