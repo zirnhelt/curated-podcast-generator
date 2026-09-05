@@ -151,14 +151,15 @@
       "detail": "During audio render on 2026-08-28, the welcome section synthesis via Gemini multi-speaker hit a ReadTimeout after 120 seconds on generativelanguage.googleapis.com. The pipeline fell back to OpenAI for that section and all remaining sections and credits. The episode now spans two TTS providers—Gemini for welcome, OpenAI for body and outro—introducing a voice discontinuity in the shipped 17.7-minute episode. Investigate whether Gemini's multi-speaker quota or concurrency limits are being hit, and consider either increasing timeouts, implementing section-level retry logic before switching providers, or pre-allocating Gemini synthesis for critical segments at off-peak times.",
       "source": "review",
       "status": "open",
-      "occurrences": 3,
+      "occurrences": 4,
       "first_seen": "2026-08-28",
       "seen": [
         "2026-08-28",
         "2026-09-01",
-        "2026-09-04"
+        "2026-09-04",
+        "2026-09-05"
       ],
-      "last_seen": "2026-09-04"
+      "last_seen": "2026-09-05"
     },
     {
       "id": "deep-dive-citation-matching-below-roundup-parity",
@@ -166,15 +167,16 @@
       "detail": "On 2026-08-28, the roundup matched 13 of 15 citations (87%), but the deep dive section matched only 2 of 3 (67%). Both figures are from the same run and the same citation alignment logic. The data does not name which deep dive source failed to align. The gap suggests the matching logic may not scale from brief news stories to longer-form analysis, or that deep dive sources need different handling. Inspect the citation-matching function for whether it uses story depth or source type to vary its strategy, and run a test batch of deep dives against the current matching logic to confirm whether this is systematic or noise.",
       "source": "review",
       "status": "open",
-      "occurrences": 4,
+      "occurrences": 5,
       "first_seen": "2026-08-28",
       "seen": [
         "2026-08-28",
         "2026-08-30",
         "2026-08-31",
-        "2026-09-02"
+        "2026-09-02",
+        "2026-09-05"
       ],
-      "last_seen": "2026-09-02"
+      "last_seen": "2026-09-05"
     },
     {
       "id": "roundup-story-order-drift-persists-after-repair",
@@ -222,13 +224,14 @@
       "title": "Brave Answers body-backfill budget of 12 calls was exhausted, causing 48 roundup articles to be dropped instead of scripted.",
       "detail": "The pipeline allocates 12 API calls to enrich thin article summaries via Brave's web search, making them narrative-ready for the script. Once the budget ran dry during this run on 2026-09-01, the remaining articles with stub bodies were culled rather than included as sparse entries. This created a 48-story gap between source volume and what shaped the final episode, introducing selection bias toward the deepest-coverage pieces. Raise the backfill budget, meter it per-article-length to preserve more thin stories, or implement a second-pass fallback that scripts stub bodies without enrichment rather than dropping them.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-09-01",
       "seen": [
-        "2026-09-01"
+        "2026-09-01",
+        "2026-09-05"
       ],
-      "last_seen": "2026-09-01"
+      "last_seen": "2026-09-05"
     },
     {
       "id": "script-expansion-request-produced-net-word-loss",
@@ -312,5 +315,5 @@
       "last_seen": "2026-09-04"
     }
   ],
-  "updated": "2026-09-04"
+  "updated": "2026-09-05"
 }

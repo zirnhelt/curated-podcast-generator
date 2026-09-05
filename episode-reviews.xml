@@ -5,7 +5,68 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Fri, 04 Sep 2026 14:53:52 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 05 Sep 2026 13:49:34 +0000</lastBuildDate>
+    <item>
+      <title>Episode Review — Cariboo Signals, September 5, 2026</title>
+      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-05.html</link>
+      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-05.html</guid>
+      <pubDate>Sat, 05 Sep 2026 13:49:34 +0000</pubDate>
+      <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/33954335668"&gt;33954335668&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3&gt;Gemini multi-speaker failed; the episode shipped in two voices&lt;/h3&gt;
+
+&lt;p&gt;The Gemini text-to-speech service timed out on the news section after 3 attempts. The pipeline fell back to OpenAI for that section and all credits. The result: the news segment carries Gemini's voice (a two-speaker mix), while the rest of the episode is OpenAI's single voice. The listener will hear a shift.&lt;/p&gt;
+
+&lt;p&gt;Two earlier sections also needed Gemini retries—one on attempt 1, one on attempt 4. Both succeeded, but their delivery may differ slightly from sections that rendered on the first try.&lt;/p&gt;
+
+&lt;h3&gt;Body-text budget exhausted; 9 thin articles kept their stubs&lt;/h3&gt;
+
+&lt;p&gt;The Brave API calls for fetching full article text hit their limit after 12 requests. Nine roundup articles that remained had no bodies filled in, so they stayed as stub text. Some of these sparse entries may be cut from future episodes.&lt;/p&gt;
+
+&lt;h3&gt;Citation match rate split between segments&lt;/h3&gt;
+
+&lt;p&gt;The roundup matched 12 of 15 citations (80%). The deep dive matched 2 of 5 (40%). The disparity suggests the roundup pulled from sources the pipeline knew well; the deep dive pulled from sources it had to reconstruct.&lt;/p&gt;
+
+&lt;h3&gt;Script expanded from draft to ship&lt;/h3&gt;
+
+&lt;p&gt;The short script's first draft arrived at 2,309 words against a 3,400-word target. It was sent back for expansion. The final shipped script ran 2,943 words—still short of target, but 634 words longer than the draft.&lt;/p&gt;
+
+&lt;h3&gt;Five deep dives, thirty roundup items dropped&lt;/h3&gt;
+
+&lt;p&gt;The episode selected 5 deep-dive stories from the Cariboo region and dropped 30 roundup items. The debate question centered facility siting in Quesnel: whether the city should formalize its approval process or keep handling each case as politics allowed.&lt;/p&gt;
+
+&lt;p&gt;Audio shipped at 18.1 minutes in 16.5 MB. Video was 18.1 minutes in 53.4 MB. Episode 221 is now in the RSS feed.&lt;/p&gt;
+
+&lt;h3&gt;Run history and timing&lt;/h3&gt;
+
+&lt;p&gt;Two manual runs succeeded early in the day. A fallback run at 3:05 AM Pacific fired 223 minutes late and is still in progress. The main production run (the second manual trigger) completed in 40 minutes. Script generation took 696 seconds; audio rendering took 1,246 seconds.&lt;/p&gt;
+
+&lt;p&gt;The pipeline spent 85,120 Anthropic input tokens across 9 Claude calls and 3 Brave-Answers calls.&lt;/p&gt;
+
+&lt;h3&gt;The day's triggers&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-05T08:05:55Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-05T09:05:56Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-09-05T13:48:53Z&lt;/td&gt;&lt;td&gt;+223 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3&gt;What shipped&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Measure&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Deep dive&lt;/td&gt;&lt;td&gt;5 articles&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Script&lt;/td&gt;&lt;td&gt;1 pattern hit(s), voice ratio 0.72, 2943 words&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio&lt;/td&gt;&lt;td&gt;18.1 min&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio size&lt;/td&gt;&lt;td&gt;16.5 MB&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;12/15 roundup, 2/5 deep dive&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;221 episodes&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Anthropic spend&lt;/td&gt;&lt;td&gt;85,120 input tokens, calls {'claude': 9, 'brave-answers': 3}&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
     <item>
       <title>Episode Review — Cariboo Signals, September 4, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-04.html</link>

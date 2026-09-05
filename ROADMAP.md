@@ -39,7 +39,7 @@ cannot reopen it. Anything written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-04) — 14 open.
+_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-05) — 15 open.
 Check a box to close one; it comes back only if the reviews raise it 2 more times._
 
 - [ ] **A credit-balance 400 is not the usage-limit wall, and every run pays for that.**
@@ -101,7 +101,7 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       17.7-minute episode. Investigate whether Gemini's multi-speaker quota or concurrency
       limits are being hit, and consider either increasing timeouts, implementing section-level
       retry logic before switching providers, or pre-allocating Gemini synthesis for critical
-      segments at off-peak times. (seen in 3 reviews, latest 2026-09-04)
+      segments at off-peak times. (seen in 4 reviews, latest 2026-09-05)
 - [ ] **Deep dive sections achieved 67% citation matching versus 87% for roundup sections.** On
       2026-08-28, the roundup matched 13 of 15 citations (87%), but the deep dive section
       matched only 2 of 3 (67%). Both figures are from the same run and the same citation
@@ -110,7 +110,7 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       or that deep dive sources need different handling. Inspect the citation-matching function
       for whether it uses story depth or source type to vary its strategy, and run a test batch
       of deep dives against the current matching logic to confirm whether this is systematic or
-      noise. (seen in 4 reviews, latest 2026-09-02)
+      noise. (seen in 5 reviews, latest 2026-09-05)
 - [ ] **Gemini project spend cap was reached mid-run, forcing a fallback to OpenAI for the
       entire episode's text-to-speech.** On 2026-08-30, the render/gemini-canary segment
       degraded because the Gemini project spend cap had been reached. The pipeline fell back to
@@ -130,6 +130,16 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       status via the Gemini console, and either increase the timeout threshold with exponential
       backoff for retries, or switch multi-speaker sections to OpenAI by default if Gemini's
       quota is not recoverable. (seen in 2 reviews, latest 2026-09-02)
+- [ ] **Brave Answers body-backfill budget of 12 calls was exhausted, causing 48 roundup
+      articles to be dropped instead of scripted.** The pipeline allocates 12 API calls to
+      enrich thin article summaries via Brave's web search, making them narrative-ready for the
+      script. Once the budget ran dry during this run on 2026-09-01, the remaining articles with
+      stub bodies were culled rather than included as sparse entries. This created a 48-story
+      gap between source volume and what shaped the final episode, introducing selection bias
+      toward the deepest-coverage pieces. Raise the backfill budget, meter it per-article-length
+      to preserve more thin stories, or implement a second-pass fallback that scripts stub
+      bodies without enrichment rather than dropping them. (seen in 2 reviews, latest
+      2026-09-05)
 - [ ] **Brave body-backfill exhaustion dropped 55 roundup articles from the episode.** The
       pipeline spent its 12 Brave Search calls on body backfill and exhausted the budget mid-run
       on 2026-09-02. Fifty-five articles were dropped instead of scripted; the deep dives
