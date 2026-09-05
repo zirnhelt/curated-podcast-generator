@@ -1,26 +1,4 @@
 {
-  "2026-07-31": {
-    "timestamp": 1785495422.580898,
-    "topics": [
-      "[ScienceDaily] AI reveals explosive bursts in bird evolution",
-      "[Williams Lake Tribune] BC Hydro begins restoration work rel",
-      "[The Guardian Global Development] \u2018The number of remains is ",
-      "Fourth wildland firefighter dies from Knowles Fire entrapmen",
-      "[ricochet.media] Running the blockade: evacuation orders cha",
-      "[Williams Lake Tribune] BC Highway Patrol requests motorists",
-      "[Outside Online] The Feds Just Opened Public Lands to AI Dat",
-      "[CFJC Today Kamloops] Danger from month-old Lillooet-area wi"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-07-31",
-    "focus": "recreation-access",
-    "focus_name": "Recreation & Backcountry Access"
-  },
   "2026-08-01": {
     "timestamp": 1785579602.689622,
     "topics": [
@@ -751,5 +729,24 @@
     "date": "2026-09-04",
     "focus": "wildlife-conservation",
     "focus_name": "Wildlife & Conservation"
+  },
+  "2026-09-05": {
+    "timestamp": 1788596361.074854,
+    "topics": [
+      "[My Cariboo Now] Millar Western to curtail operations at Que",
+      "[Williams Lake Tribune] B.C. sheds 5,500 jobs in August amid",
+      "[Business Insider] Famed economist Mohamed El-Erian lays out",
+      "[NYT Top Stories] In Complex Cases Like Lindsay Clancy\u2019s, a ",
+      "[Popular Mechanics] Scientists Removed Crucial Structures fr",
+      "[Quesnel Cariboo Observer] City of Quesnel makes final push ",
+      "[My Cariboo Now] Longtime city employee is running for Quesn",
+      "[Williams Lake Tribune] Racers took their final laps at Thun"
+    ],
+    "themes": [
+      "rural development"
+    ],
+    "date": "2026-09-05",
+    "focus": null,
+    "focus_name": null
   }
 }
