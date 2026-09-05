@@ -1,30 +1,4 @@
 {
-  "2026-06-06": {
-    "timestamp": 1780734699.772894,
-    "date": "2026-06-06",
-    "theme": "Cariboo Local Affairs",
-    "central_question": "Can Williams Lake convert multiple simultaneous civic initiatives (jail forum, chamber crime resolution, municipal election) into meaningful outcomes, or is it activity without momentum?",
-    "riley_position": "The convergence of three distinct issues in an 18-month window represents a community actively working to sort something out, and the chamber escalation to provincial level is a significant lever that shifts the authority question into provincial debate.",
-    "riley_key_evidence": [
-      "BC Chamber unanimous provincial resolution on crime changes political math by putting Williams Lake businesses' position on ministry desks",
-      "Three simultaneous threads (jail closure, crime resolution, municipal candidacy) converging suggests intentional problem-solving rather than coincidence",
-      "Prince George-North Cariboo MLA recent activity shows NDP caucus is paying attention to the riding"
-    ],
-    "casey_position": "Forums and resolutions are low-commitment performance without written, specific positions and named decision-makers; the real test is whether these initiatives produce documented asks that force provincial accountability.",
-    "casey_key_evidence": [
-      "Forums ending with 'we heard concerns' without written positions to the province constitute performance rather than accountability",
-      "Chamber resolutions are easily passed but require either sympathetic ministers or political pressure to generate action",
-      "Williams Lake lacks a provincial minister\u2014only MLAs\u2014and infrastructure maintenance like road paving is unglamorous but foundational to municipal function"
-    ],
-    "resolution": "They agreed to disagree on what distinguishes genuine momentum from performance, instead establishing three concrete indicators to watch over six months: whether the jail forum produces written positions, whether the chamber resolution receives ministerial response, and whether 2026 candidates offer specific platform commitments rather than generalities.",
-    "topics_covered": [
-      "Williams Lake jail closure forum and provincial political authority",
-      "Chamber of Commerce crime resolution escalation strategy",
-      "2026 municipal election and candidate specificity on public safety",
-      "Infrastructure maintenance and active transportation initiatives",
-      "Community expertise, resilience, and the limits of knowledge extraction without compensation"
-    ]
-  },
   "2026-06-07": {
     "timestamp": 1780822374.692102,
     "date": "2026-06-07",
@@ -2423,6 +2397,34 @@
       "Scout Island's volunteer field naturalist model could be expanded to maintain a live bear-activity map that people check before heading out, using the same volunteer infrastructure already in place.",
       "If you know how Queest Mountain road is currently signed or whether a leash bylaw for forest service roads has been proposed in the region, send information to feedback at cariboo signals dot c-a.",
       "When heading to the backcountry, leash your dog and check the trailhead sign before heading out, not just on the way back."
+    ]
+  },
+  "2026-09-05": {
+    "timestamp": 1788596365.342016,
+    "date": "2026-09-05",
+    "theme": "Cariboo Local Affairs",
+    "focus": null,
+    "anchor": "self-sufficient-or-connected",
+    "central_question": "Does Quesnel need to develop a repeatable, documented process for siting difficult facilities like shelters, or can it continue to handle each proposal case-by-case as political circumstances demand?",
+    "riley_position": "Quesnel lacks a standing infrastructure for recurring crises and needs written siting criteria that survive past individual council terms and neighborhood opposition. The real gap is the absence of a systematic, documented process that includes people with lived experience from the start.",
+    "riley_key_evidence": [
+      "BC's NIMBY Toolkit exists specifically because supportive housing hits neighborhood resistance everywhere, and communities that engage neighbors early see fewer reversals",
+      "Tammy Janzen pointed out that people who'd actually use the shelter aren't in the room when the site gets chosen",
+      "The underlying issue mirrors the Cariboo Regional District's fire-season response pattern: rebuilding approach from nothing every time instead of having standing infrastructure"
+    ],
+    "casey_position": "Quesnel followed a formal process with a public hearing and approved permit in July, yet council still reversed course on the extension, showing that process alone doesn't prevent political reversals when neighborhood pressure builds. The toolkit and provincial best practice didn't stop this outcome.",
+    "casey_key_evidence": [
+      "Council approved a temporary use permit in July but then voted down BC Housing's request for a two-year extension weeks later despite the public process",
+      "Even with the NIMBY Toolkit's best practices, the shelter reversal happened anyway on schedule under the funding deadline",
+      "Quesnel is now holding both costs: political fallout from its own reversal plus running against BC Housing's timeline with no confirmed alternative site"
+    ],
+    "resolution": "Riley and Casey agreed to disagree on whether provincial tools prevent reversals, but converged on the structural solution: Quesnel council should be directly asked whether written siting criteria and a role for lived-experience input actually exist in any documented form, making this question actionable for residents at public meetings without waiting for external programs.",
+    "topics_covered": [
+      "The distinction between self-sufficiency and provincial partnership in rural governance",
+      "Whether the BC NIMBY Toolkit prevents reversals or only earlier-stage collapses",
+      "The absence of lived-experience voices in facility siting decisions",
+      "Institutional knowledge versus fresh perspective in the mayoral/council candidates Leclerc and Cave",
+      "The need for written, repeatable criteria matrices that survive across multiple council terms"
     ]
   }
 }

@@ -1,0 +1,205 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:19.251
+<v Riley>Hey there — today we've got Quesnel council approving a winter shelter permit, then turning around and rejecting the two-year extension that would've kept it running. We're digging into whether that's a housing failure or a process failure, plus two names now in the running for council. That and more, coming right up.
+
+00:00:32.726 --> 00:00:53.281
+<v Riley>Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities — I'm Riley. It's Saturday, September 5th, 2026. Speaking to you from the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations here in the Cariboo region. Today's theme is Cariboo Local Affairs.
+
+00:00:54.204 --> 00:01:07.248
+<v Casey>And I'm Casey. Today we're looking at who's actually running things in Quesnel and Williams Lake right now — councils, candidates, budgets, and one very stubborn housing decision that keeps changing its mind.
+
+00:01:07.525 --> 00:01:35.591
+<v Casey>Quick weather check — out at Horsefly Lake this morning it's overcast and about 11 degrees, with a high of 17 and a low of 10. Expect moderate drizzle through the day, an 85 percent chance of precipitation, around 3 millimetres. Across the region: 100 Mile House sitting near 8 with clear skies, Williams Lake around 12 and overcast, Quesnel about 10 and mainly clear, Hanceville near 11 with cloud cover.
+
+00:01:35.868 --> 00:01:40.217
+<v Riley>Grab a coffee. Let's get into what's happening around the region.
+
+00:01:41.617 --> 00:02:07.721
+<v Riley>It's a full morning of stories, several of them tied together by the same undercurrent — jobs, money, and who controls the levers. We'll start close to home. Millar Western has curtailed operations at Quesnel River Pulp as of the end of the day yesterday. Around 90 employees are temporarily laid off. The company flagged this back in August, giving workers a month's notice, but the shutdown is real now, not hypothetical.
+
+00:02:09.118 --> 00:02:14.510
+<v Casey>Ninety jobs in a city of about nine thousand people. That's a shutdown you feel walking down the street.
+
+00:02:15.973 --> 00:02:39.317
+<v Riley>It is. And it's not isolated. B.C. shed 5,500 jobs across the province in August, according to new Statistics Canada figures released this week, part of a nationwide pullback in hiring. Energy and Climate Solutions Minister Adrian Dix has been fielding questions on the broader trend, but the Quesnel curtailment is a local instance of something happening at a provincial scale.
+
+00:02:40.641 --> 00:02:49.705
+<v Casey>Worth sitting with that number against a separate one, though — Cariboo unemployment has actually been falling for months straight. We'll come back to that later.
+
+00:02:50.205 --> 00:03:07.173
+<v Riley>It's a strange split. A single mill curtailment can dominate a town's mood even while the regional trendline is improving. Pulp markets move on pricing decisions made in Vancouver boardrooms and export contracts signed overseas — the workers in Quesnel don't get a vote on any of that.
+
+00:03:08.379 --> 00:03:18.435
+<v Casey>Which is the whole tension of a resource town. You can run the most efficient mill in the province and still get curtailed because someone in another country stopped buying pulp at the old price.
+
+00:03:19.635 --> 00:03:41.363
+<v Riley>Staying with the money thread — Mohamed El-Erian, one of the more closely watched voices in bond markets, says he expects more pain ahead for U.S. bonds. He's pointing to weakening demand from large foreign buyers of American debt, which tends to push yields higher as the pool of buyers shrinks and Treasury has to offer better terms to attract the ones remaining.
+
+00:03:42.751 --> 00:03:55.127
+<v Casey>Higher yields eventually mean higher borrowing costs everywhere, including for municipalities floating debt on new infrastructure. Rural district budgets feel that lag a year or two down the road, when the next bond issue comes due.
+
+00:03:56.337 --> 00:04:12.033
+<v Riley>Right. A mill curtailment in Quesnel and a bond market warning out of Wall Street aren't the same event, but they rhyme. Both are reminders that this region's economy takes its cues from decisions made a long way from here, on timelines nobody in the Cariboo controls.
+
+00:04:13.233 --> 00:04:34.289
+<v Casey>Moving off that thread entirely — a Massachusetts murder trial almost ended in a mistrial this week when jurors couldn't reach unanimous agreement on a verdict, and a last-minute appeal from the defense delayed the judge's ruling at the final moment. Hung juries are rarer than people assume, and this one shows how a single holdout can freeze an entire system built around total consensus.
+
+00:04:35.489 --> 00:04:57.017
+<v Riley>Here's an odd one out of neuroscience. Researchers studying a patient who'd had crucial memory-forming brain structures surgically removed decades ago — as treatment for severe epilepsy — found the memories never fully disappeared. A separate, scattered network elsewhere in the brain had apparently been building its own backup all along, without anyone knowing it was there.
+
+00:04:57.543 --> 00:05:01.071
+<v Casey>So the brain quietly built a workaround nobody asked it to build.
+
+00:05:02.485 --> 00:05:21.565
+<v Riley>Something like that. In a related vein, a separate study published this week claims scientists have identified a single protein that may drive cravings specifically for fatty foods — which, if it holds up under further testing, could reshape how researchers think about diet, willpower, and why some cravings feel involuntary.
+
+00:05:22.765 --> 00:05:43.261
+<v Casey>NASA has picked Blue Origin to build its Mars Telecommunications Network, under a firm fixed-price contract with a maximum potential value the agency hasn't fully disclosed yet. The orbiter, built on Blue Origin's Blue Ring platform, is already in production in Huntsville, Alabama. It's the relay infrastructure future Mars missions will depend on to talk to Earth at all.
+
+00:05:44.514 --> 00:06:05.346
+<v Riley>There's a smaller, more grounded version of the same idea out of the maker community this week. Someone built a solar-powered charger capable of reviving old, sulfated lead-acid batteries instead of sending them to the landfill — using a standard 36-cell panel and putting out enough power to run sensor or communication hardware off-grid.
+
+00:06:06.486 --> 00:06:13.902
+<v Casey>Cheap electronics keeping old gear alive a little longer. That one's useful if you're running equipment out at a cabin with no grid connection.
+
+00:06:15.102 --> 00:06:35.366
+<v Riley>Less cheerful — WIRED reports that as measles cases climb again in parts of North America, parents of immunocompromised kids are having to make hard calls about which public spaces are safe now that school's back in session. It's not a Cariboo-specific story, but it's the kind of pressure regional health authorities everywhere are watching closely this fall.
+
+00:06:36.566 --> 00:06:50.558
+<v Casey>On the hardware side, discrete graphics card sales just hit a four-year high, even with memory prices climbing steadily. AMD is gaining market share, and notebook graphics are actually carrying more of the overall market right now than desktop cards.
+
+00:06:51.749 --> 00:06:58.221
+<v Riley>Good news if you're shopping for a gaming laptop this fall. Bad news if you were hoping to build a desktop from scratch on a budget.
+
+00:06:59.394 --> 00:07:16.698
+<v Casey>And speaking of misleading marketing — AT&amp;T is suing Charter over Charter's use of the word "fiber" in its advertising, arguing that a hybrid coax-and-fiber network doesn't qualify for the label customers are paying a premium for. Two of the largest internet providers in the country, fighting in court over one word.
+
+00:07:16.598 --> 00:07:20.534
+<v Riley>Out here, most of us would settle for either one showing up at all.
+
+00:07:21.734 --> 00:07:47.574
+<v Casey>A couple of lighter builds to round out the tech side. Hackaday has a project where someone got a pole to balance itself completely upright using propellers and some clever feedback control — a fun demonstration of the same physics that keeps a drone stable in the air. And a second one out of the same publication: 3D-printed cube structures using passive evaporative cooling, no electricity required, just water and airflow doing all the temperature work.
+
+00:07:48.861 --> 00:08:12.173
+<v Riley>Both worth a look if you're into DIY engineering on a weekend. The New Yorker also has a long conversation this week with Sarah Longwell, a former Republican strategist, on how she reads voters through focus groups and tries to counter the pull of Trumpism inside her own former party. Interesting listening if you follow American politics — less directly tied to anything happening here.
+
+00:08:13.373 --> 00:08:33.997
+<v Casey>And we'll close where the money always seems to land eventually — gold. Central banks actually slowed their gold buying by more than half in July, even as bullion prices held near record highs. Analysts are pointing to private investment demand picking up the slack, which is a shift from the pattern of the last few years, when central bank buying was the dominant driver.
+
+00:08:35.434 --> 00:08:48.434
+<v Riley>It's a small signal with a bigger meaning. When central banks pull back and prices don't fall, that tells you something about how much confidence private investors have lost in the ground underneath ordinary currencies.
+
+00:08:49.847 --> 00:08:57.599
+<v Casey>A fitting note to end on, given everything else we covered this morning about mill curtailments and bond yields and provincial job numbers.
+
+00:08:58.277 --> 00:09:01.829
+<v Riley>Let's get into who's actually building the community response to all of it.
+
+00:09:03.229 --> 00:09:35.277
+<v Riley>Today's spotlight is on the Quesnel Shelter &amp; Support Society. They've been running minimal-barrier emergency shelter and supportive recovery housing in Quesnel since 2006, through two programs — Seasons House and Bridges Supportive Housing. It's work that doesn't make headlines most days, but it keeps people alive through winters that get brutal fast out here, and it's the organization on the ground while council debates where the next building actually goes. If you want to learn more or support their work, find them at qsss.ca.
+
+00:09:35.930 --> 00:09:43.114
+<v Casey>They're the ones doing the work while the politics plays out around them. Worth keeping that distinction in mind for what's coming next.
+
+00:09:43.464 --> 00:09:45.144
+<v Riley>Which is exactly where we're headed.
+
+00:09:46.544 --> 00:10:07.720
+<v Casey>Quesnel council approved a temporary use permit back in July for a winter shelter at 395 Elliot Street, in West Quesnel. Then it turned around and voted down a BC Housing request to keep that same shelter running for two more years. Now city staff are asking BC Housing to push its funding deadline while council hunts for an alternative site, with winter closing in.
+
+00:10:08.220 --> 00:10:26.652
+<v Riley>Which raises the real question underneath this whole file. Is Quesnel better off handling its own housing crisis on its own terms — its own site, its own process, its own timeline — or is it better off leaning harder into the fact that the money, the expertise, and honestly the deadline pressure all sit with the province?
+
+00:10:26.915 --> 00:10:38.859
+<v Casey>Because right now Quesnel's doing neither cleanly. It ran a public process, got a permit approved, and then reversed course on the extension anyway. That's not self-sufficiency and it's not partnership. It's whiplash.
+
+00:10:39.430 --> 00:11:03.766
+<v Riley>The province actually has a documented playbook for exactly this kind of standoff. B.C.'s own NIMBY Toolkit exists precisely because supportive housing proposals hit neighborhood resistance almost everywhere they're proposed, not only in Quesnel. The research behind it says communities that engage neighbors early, and build genuine input into where a shelter lands, see fewer of these last-minute reversals.
+
+00:11:04.445 --> 00:11:21.589
+<v Casey>Quesnel followed a process. There was a public hearing. The permit went through in July. Presumably neighbors had their say at that point. And council still reversed course on the two-year extension weeks later. The toolkit didn't prevent that outcome. It happened anyway, on schedule, under a funding deadline.
+
+00:11:22.088 --> 00:11:36.224
+<v Riley>The toolkit's built to stop a proposal from collapsing before it's even approved. What happened here is a different failure — a council walking back its own decision after approval, once the neighbourhood pressure built up past the original vote.
+
+00:11:36.816 --> 00:11:46.744
+<v Casey>Which is arguably worse, not better. If following provincial best practice still ends with council reversing itself, what is the toolkit actually buying anyone in a town this size?
+
+00:11:47.000 --> 00:12:00.848
+<v Riley>Political durability past a single vote, in theory. There's a difference between a shelter that never gets approved at all, and one that gets approved, operates for a season, and then gets unwound once a two-year renewal comes up for a vote.
+
+00:12:01.501 --> 00:12:08.765
+<v Casey>Small comfort to whoever's supposed to be sleeping there this winter, with BC Housing's deadline running out and no confirmed second site.
+
+00:12:09.665 --> 00:12:33.633
+<v Riley>Tammy Janzen, who runs the Quesnel Shelter &amp; Support Society, made the point that's easiest to lose in all of this. The people who'd actually use the shelter aren't in the room when the site gets chosen. Council's treating this as a zoning problem and a neighbour-relations problem. She's saying it's also a housing problem, and the people it's supposed to serve have no seat at that table.
+
+00:12:34.305 --> 00:12:39.993
+<v Casey>That's the actual gap. Not process versus no process — whose voice the process was ever built to include.
+
+00:12:40.557 --> 00:13:08.949
+<v Riley>Right. And that's where the self-sufficiency question splits into something more useful than a slogan. A city acting entirely on its own picks its own site, on its own timeline, and owns every bit of the political fallout. A city plugged into BC Housing gets funding and shelter-operations expertise it couldn't build on its own — but it also inherits a deadline it doesn't set, and a funding partner that can walk away from renewal whenever the politics get hard.
+
+00:13:09.547 --> 00:13:17.379
+<v Casey>Quesnel's stuck holding both costs right now. Owning the fallout of its own reversal, and running against someone else's clock on the money.
+
+00:13:17.954 --> 00:13:31.802
+<v Riley>Which is arguably the honest description of most rural governance generally. Nobody out here is actually self-sufficient. The independence people describe is usually a story about which dependency they've agreed to stop noticing.
+
+00:13:31.702 --> 00:13:34.566
+<v Casey>That's the part nobody says out loud at a council meeting.
+
+00:13:35.066 --> 00:13:56.866
+<v Riley>There's a version of this that could get more accountable, though. Municipal elections are open right now across the province, and two names have surfaced for Quesnel council specifically. Bob Leclerc, a longtime city employee, is putting his name forward. So is Mike Cave, who sat on council from 2008 to 2014 and is coming back after more than a decade away.
+
+00:13:57.511 --> 00:14:05.647
+<v Casey>Institutional memory versus a fresh vantage point on the inside. Two different kinds of connection to the machine, not two different levels of it.
+
+00:14:06.302 --> 00:14:23.702
+<v Riley>Leclerc's spent years working inside the administration. He'd know exactly where the friction points sit in a file like the Elliot Street reversal — whether the BC Housing deadline extension is a real option staff can pursue, or a polite delay tactic that buys a few weeks and nothing more.
+
+00:14:24.248 --> 00:14:37.744
+<v Casey>Or he's absorbed the same institutional habits that led to the reversal in the first place. Working inside city hall for years doesn't automatically make someone a corrective. Sometimes it just means you're fluent in the same trade-offs that got made last time.
+
+00:14:38.258 --> 00:14:51.322
+<v Riley>Fair to hold that open. But a council with someone who's actually worked the file has a better shot at answering a concrete question than one relying entirely on staff reports written for a different audience.
+
+00:14:51.854 --> 00:14:58.542
+<v Casey>That's a question worth someone actually putting on the record at a public meeting, rather than assuming Leclerc's résumé settles it by itself.
+
+00:14:59.442 --> 00:15:18.274
+<v Riley>Which gets at the structural question sitting under the entire shelter fight. This was never really about one address on Elliot Street. It's about whether Quesnel has a standing, repeatable way of siting difficult facilities — something that survives past whichever council happens to be sitting when the funding renewal comes up.
+
+00:15:18.845 --> 00:15:34.037
+<v Casey>Right now it doesn't have that. It has a one-off temporary use permit, a one-off vote to reject an extension, and a scramble for an alternative site with the season closing in. That's not a system. That's a sequence of emergencies that happens to repeat itself every few years.
+
+00:15:34.699 --> 00:15:54.811
+<v Riley>Compare it to something we got into a few weeks back with the Cariboo Regional District's fire-season response. Same underlying question came up there — does the region have standing infrastructure for a recurring crisis, or does it rebuild its approach from nothing every single time. Same failure pattern, completely different file.
+
+00:15:55.494 --> 00:16:16.350
+<v Casey>And the fix we landed on there applies just as well here. Ask council in public whether a written criteria matrix actually exists for siting facilities like this one — distance requirements, notification timelines, a defined role for people with lived experience in deciding where it goes — or whether the whole thing gets improvised fresh every time a permit comes up for renewal.
+
+00:16:16.907 --> 00:16:30.971
+<v Riley>If that matrix doesn't exist on paper, that's the real gap. Not the funding, and not the specific address on Elliot Street. It's the absence of a repeatable process that outlasts one council's political appetite for a fight with the neighbours.
+
+00:16:31.471 --> 00:16:50.679
+<v Casey>And that's a question any resident could put on the record at the next council meeting without needing a grant, a task force, or a provincial program to make it happen. Just ask whether Quesnel has siting criteria written down anywhere, and whether the Shelter Society's input was actually built into them before the fact, not requested after.
+
+00:16:51.359 --> 00:17:01.903
+<v Riley>Which puts ownership back where it belongs — with council itself, not with BC Housing's funding deadline, and not with whichever neighbourhood shows up loudest at a public hearing.
+
+00:17:02.496 --> 00:17:09.712
+<v Casey>We don't know how it plays out yet. That's the honest place to leave it — with the deadline still open and the site still unresolved.
+
+00:17:10.226 --> 00:17:20.762
+<v Riley>Agreed. If you've got a read on how that goes, a correction on anything we got wrong today, or want to weigh in on the shelter debate yourself, feedback at cariboo signals dot c-a.
+
+00:17:21.427 --> 00:17:27.947
+<v Casey>And if you're one of the people who actually shows up to those council meetings and asks the hard question, let us know how it went.
+
+00:17:28.242 --> 00:17:29.746
+<v Riley>Hope you're having a great weekend.
+
+00:17:29.646 --> 00:17:31.046
+<v Casey>Stay dry out there, Quesnel.
