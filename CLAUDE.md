@@ -313,6 +313,46 @@ roundup's `theme` block. Ranking on locality picked whichever local story named 
 on 2026-08-22 that was a softwood-duty story, a ranching award and a Tyson beef-plant closure,
 and the debate that came out of them was a Working Lands debate on a civic-affairs day.
 
+**Locality is not centrality, and the flat place list could not tell them apart.**
+`local_places` answers "is this story here?"; `home_places` (themes.json, geographic day only)
+answers "is this story *ours*?". Williams Lake, the CRD and SD27 are the jurisdictions the show
+is from; Quesnel, 100 Mile House, Bella Coola and Prince George are neighbours it covers. With
+one flat list both questions had one answer, so the 2026-09-05 deep dive ran on Quesnel's
+winter-shelter siting and a Quesnel council candidate — both civic, both local, and neither
+Williams Lake. `_home_place_hits` ranks above the civic-keyword *count* in `_geographic_rank`
+and leads the roundup's `local` block sort, so a denser Quesnel story no longer outranks a
+thinner Williams Lake one. **It is an ordering rule, not an exclusion** — the neighbour story
+still airs, and subject matter still gates entry, so this promotes a home *civic* story and
+never a home speedway story. `home_places` is absent from the six topical themes, where the
+term is a constant and changes no order.
+
+**`event_focus` — a named civic event, bounded by dates rather than a rotation.** The fourth
+selection layer (theme → super-cycle focus → weekly anchor → event), resolved by
+`get_event_focus_for_day` from the theme's own `start`/`end`. Calendar-derived like
+`get_focus_for_day`, so a re-render weeks later reproduces the same answer and the window needs
+no cleanup commit when it closes. Currently the Williams Lake 2026 general local election
+(nominations closed Sept 11, voting day Oct 17, window to Oct 24).
+
+- **It is named on air, and that is the opposite of the focus rule.** A super-cycle focus is a
+  curation device listeners have no reason to hear about; an election is the civic fact the
+  coverage exists to serve. Its `lens` copy carries both the say-it-on-air instruction and the
+  no-endorsement rule — report the race and the candidates' stated positions, never rank them.
+- **An event match counts as civic subject matter on its own**, so a nomination story with no
+  theme keyword still anchors the debate. The event vocabulary is deliberately **not** folded
+  into `_build_theme_subject_keywords`, which also gates the roundup's `theme` block against the
+  whole non-local pool: 'campaign', 'ballot' and 'candidate' would admit US politics to a
+  Cariboo civic day exactly the way the bare word 'local' admitted "8 local AI models that run
+  great on 8GB of VRAM" on 2026-08-22. Inside the geographic deep dive every candidate is
+  already local by construction, which is what makes those words safe there and only there.
+- **The downstream ranking cannot select what the feed never sent.** On 2026-09-05 the pool held
+  "Three Williams Lake city councillors not seeking re-election this fall" (Williams Lake
+  Tribune) and "Municipal elections nominations now open across the Cariboo" (My Cariboo Now)
+  — and the first scored **11** on the Saturday theme charter against Saturday's `min_score` of
+  18, so it never reached the feed at all. That is `super-rss-feed`'s gotcha 14 (joint-scoring
+  collapse) landing on the day it matters most; the upstream half of this change adds Saturday
+  to `targeted_rescore` with the Cariboo outlets as its `rescore_sources`. **When a Saturday
+  deep dive looks wrong, check the upstream theme score before touching the ranking.**
+
 ### News Roundup Curation (`_annotate_roundup_blocks`, `_curate_roundup_pool`)
 
 The roundup's story count is derived from **airtime, not appetite**. The segment gets

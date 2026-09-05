@@ -34,6 +34,14 @@
     "name": "Cariboo Local Affairs",
     "geographic": true,
     "place_keywords": ["Williams Lake", "Quesnel", "100 Mile", "Bella Coola", "Cariboo", "Chilcotin", "Prince George"],
+    "home_places": ["Williams Lake", "City of Williams Lake", "Cariboo Regional District", "CRD", "SD27", "School District 27", "Williams Lake First Nation", "T'exelc", "Esk'etemc", "Xats\u016b\u0142l", "Horsefly", "Likely", "150 Mile House", "McLeese Lake", "Big Lake", "Miocene"],
+    "event_focus": {
+      "name": "Williams Lake 2026 general local election",
+      "start": "2026-09-01",
+      "end": "2026-10-24",
+      "keywords": ["nomination", "nomination papers", "nominations", "nominee", "candidate", "candidates", "all-candidates", "acclamation", "acclaimed", "mayor", "mayoral", "councillor", "council seat", "incumbent", "school trustee", "trustee", "board of education", "electoral area director", "regional district director", "general local election", "municipal election", "local election", "chief election officer", "elections bc", "voters list", "advance voting", "general voting day", "ballot", "campaign", "running for", "seeking re-election", "not seeking re-election"],
+      "lens": "Williams Lake goes to the polls on October 17, 2026, and nominations closed at 4pm on September 11. Who is running for mayor, council, CRD director and SD27 trustee \u2014 and what they say they will do \u2014 is the civic story of this stretch, so give election material the deep dive whenever the day's pool carries any. Unlike the super-cycle focus this one IS named on air: say plainly that the election is coming and who has put their name forward. Cover the race as reporting, not endorsement \u2014 name candidates and their stated positions, never tell listeners how to vote and never rank the candidates."
+    },
     "description": "Williams Lake council, CRD, SD27, Quesnel, 100 Mile House, Bella Coola — civic decisions, community voices, and local development that shape everyday life in the Cariboo",
     "keywords": ["Williams Lake", "Quesnel", "100 Mile", "Bella Coola", "Cariboo", "community", "council", "municipal", "CRD", "SD27", "bylaw", "budget", "zoning", "infrastructure", "rural", "small town", "Chilcotin", "Prince George", "development", "housing", "transit", "water", "fire hall", "mayor", "councillor", "public meeting", "referendum"],
     "lens": "Center the Deep Dive on civic decision-making and community voice in specific Cariboo towns — councils, budgets, local development. Keep the lens on local governance and institutions rather than drifting into general technology commentary."

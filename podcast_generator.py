@@ -53,6 +53,7 @@ from config_loader import (
     get_speed_for_host,
     get_theme_for_day,
     get_focus_for_day,
+    get_event_focus_for_day,
     get_upcoming_day_slots,
     message_text,
     strip_stage_directions,
@@ -4813,6 +4814,28 @@ def _local_place_hits(article: dict) -> int:
     return _keyword_hit_count(f"{title} {article.get('summary', '')}".lower(), local_places)
 
 
+def _home_place_hits(article: dict, theme_name) -> int:
+    """Hits on the theme's `home_places` — the jurisdictions the show is OF.
+
+    `local_places` answers "is this story here?"; this answers "is this story
+    ours?". The two are not the same question, and flattening them is what put
+    the 2026-09-05 Cariboo Local Affairs deep dive on Quesnel's winter-shelter
+    siting and a Quesnel council candidate: both are local, neither is Williams
+    Lake, and nothing in the ranking could tell the difference. Quesnel,
+    100 Mile House, Bella Coola and Prince George are neighbours the show
+    covers; Williams Lake, the CRD and SD27 are the jurisdictions it is from.
+
+    Returns 0 for a theme with no `home_places`, which is every topical theme —
+    the distinction only means something on the geographic day.
+    """
+    info = _theme_info(theme_name) or {}
+    home = [p.lower() for p in info.get('home_places', [])]
+    if not home:
+        return 0
+    title = re.sub(r'^\W*\[[^\]]*\]\s*', '', article.get('title', ''))
+    return _keyword_hit_count(f"{title} {article.get('summary', '')}".lower(), home)
+
+
 def _is_local_article(article: dict) -> bool:
     """True when a story names a Cariboo/BC place or comes from a local outlet.
 
@@ -4988,8 +5011,15 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
 
     # Place-name hits lead outlet-only matches, and among those an on-theme
     # local story opens the episode — the local block is the show's front door.
-    local_block.sort(key=lambda a: (_local_place_hits(a), relevance(a), boosted(a)),
-                     reverse=True)
+    # Home jurisdiction leads all of it: every story here is local, so counting
+    # place names alone sorted on which town got named most often and a Quesnel
+    # story could open a Williams Lake show. `home_places` is empty on the six
+    # topical themes, where this term is a constant and changes no order.
+    local_block.sort(
+        key=lambda a: (_home_place_hits(a, theme_name), _local_place_hits(a),
+                       relevance(a), boosted(a)),
+        reverse=True,
+    )
     theme_block.sort(key=relevance, reverse=True)
     adjacent_block.sort(key=body_theme_hits, reverse=True)
     # Bigger clusters first — the most connective material leads the back half
@@ -5409,7 +5439,7 @@ def _build_theme_anti_keywords(theme_name):
     return []
 
 
-def _build_theme_lens(theme_name, focus=None):
+def _build_theme_lens(theme_name, focus=None, event_focus=None):
     """Return the theme's "lens" guidance string (empty if not configured).
 
     The lens is a short instruction distinguishing this theme from its most
@@ -5431,6 +5461,12 @@ def _build_theme_lens(theme_name, focus=None):
             "on air or present today as a special themed week or sub-theme; the "
             f"only theme the hosts name is \"{theme_name}\".)"
         )
+    if event_focus and event_focus.get('lens'):
+        # The opposite of the focus rule above, and deliberately so: a super-cycle
+        # focus is a curation device listeners have no reason to hear about, while
+        # an election is the civic fact the coverage exists to serve. Its own lens
+        # copy carries the say-it-on-air instruction and the no-endorsement rule.
+        lens = (lens + ' ' if lens else '') + event_focus['lens']
     return lens
 
 
@@ -5444,6 +5480,42 @@ def _build_focus_keywords(focus) -> list:
     return [k for k in keywords if not (k in seen or seen.add(k))]
 
 
+def _build_event_focus_keywords(event) -> list:
+    """Lowercased keyword list for an active `event_focus`, or [] when none."""
+    if not event:
+        return []
+    seen = set()
+    return [k for k in (kw.lower() for kw in event.get('keywords', []))
+            if not (k in seen or seen.add(k))]
+
+
+def _geographic_rank(article: dict) -> tuple:
+    """Sort key for the geographic day's civic pool, strongest first.
+
+    Three questions in order of what makes a story the show's:
+
+    1. `_event_matches` — is this the named civic event? During the Williams
+       Lake election window that is the race itself, which outranks routine
+       civic business for as long as the window is open and stops mattering the
+       day it closes.
+    2. `_home_matches` — is this OUR council? Deliberately ranked above the
+       civic-keyword *count*, not merged into it: a Quesnel story dense in
+       civic vocabulary otherwise beats a thinner Williams Lake one, which is
+       how the 2026-09-05 deep dive came to run on Quesnel's shelter siting and
+       a Quesnel council candidate. Subject matter still gates entry — the
+       caller only sorts articles that already carry civic keywords — so this
+       promotes a home civic story, never a home speedway story.
+    3. `_subject_matches`, then feed score — the original ordering, now the
+       tiebreak inside each jurisdiction tier.
+    """
+    return (
+        article.get('_event_matches', 0),
+        article.get('_home_matches', 0),
+        article.get('_subject_matches', 0),
+        article.get('_boosted_score', article.get('ai_score', 0)),
+    )
+
+
 def _focus_hit_count(article, focus_keywords) -> int:
     """Focus-keyword hits in an article's title+summary (source tag stripped)."""
     title = re.sub(r'^\W*\[[^\]]*\]\s*', '', article.get('title', ''))
@@ -5451,7 +5523,8 @@ def _focus_hit_count(article, focus_keywords) -> int:
     return _keyword_hit_count(text, focus_keywords)
 
 
-def select_deep_dive_from_feed(theme_articles, theme_name, count=3, focus=None):
+def select_deep_dive_from_feed(theme_articles, theme_name, count=3, focus=None,
+                               event_focus=None):
     """Select deep dive articles from pre-curated podcast feed theme articles.
 
     The feed already sorts articles by boosted score (theme relevance).
@@ -5467,7 +5540,9 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=3, focus=None):
 
     On the geographic theme (Cariboo Local Affairs) the ranking is the civic
     subject keywords instead: locality is what every candidate has in common
-    there, so it cannot also be the thing that sorts them.
+    there, so it cannot also be the thing that sorts them. Among those, the
+    home jurisdiction leads and an active `event_focus` leads that — see
+    `_geographic_rank`.
 
     Articles flagged `_no_deep_dive` by the router air today but do not anchor
     the debate, unless fewer than DEEP_DIVE_ELIGIBLE_FLOOR articles are left
@@ -5510,26 +5585,44 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=3, focus=None):
     subject_deep_dive = None
     if _is_geographic_theme(theme_name):
         subject_keywords = _build_theme_subject_keywords(theme_name)
+        event_keywords = _build_event_focus_keywords(event_focus)
         for a in candidates:
             a['_subject_matches'] = _focus_hit_count(
                 a, subject_keywords)  # same title+summary scan, source tag stripped
+            a['_home_matches'] = _home_place_hits(a, theme_name)
+            a['_event_matches'] = _focus_hit_count(a, event_keywords)
+        # An event match counts as civic subject matter in its own right. The
+        # event vocabulary is deliberately NOT folded into
+        # `_build_theme_subject_keywords`, which also gates the roundup's theme
+        # block against the whole non-local pool: 'campaign', 'ballot' and
+        # 'candidate' would admit US politics to a Cariboo civic day the same way
+        # the bare word 'local' admitted "8 local AI models" on 2026-08-22. Here
+        # every candidate is already local by construction, so the words are safe.
+        def _is_civic(a):
+            return a.get('_subject_matches', 0) > 0 or a.get('_event_matches', 0) > 0
+
         subject_strong = sorted(
-            (a for a in candidates if a.get('_subject_matches', 0) > 0),
-            key=lambda a: (a.get('_subject_matches', 0),
-                           a.get('_boosted_score', a.get('ai_score', 0))),
-            reverse=True,
+            (a for a in candidates if _is_civic(a)), key=_geographic_rank, reverse=True,
         )
         if subject_strong:
             # Civic stories lead; the remaining slots go to the strongest local
             # material left, which is the only thing a thin civic week has.
             rest = sorted(
-                (a for a in candidates if a.get('_subject_matches', 0) == 0),
-                key=lambda a: a.get('_boosted_score', a.get('ai_score', 0)),
+                (a for a in candidates if not _is_civic(a)),
+                key=lambda a: (a.get('_home_matches', 0),
+                               a.get('_boosted_score', a.get('ai_score', 0))),
                 reverse=True,
             )
             subject_deep_dive = (subject_strong + rest)[:count]
+            home_lead = sum(1 for a in subject_deep_dive if a.get('_home_matches', 0))
             print(f"  🏛️  {len(subject_strong)} article(s) carry civic subject matter — "
-                  f"deep dive centered on them")
+                  f"deep dive centered on them ({home_lead}/{len(subject_deep_dive)} "
+                  f"in the home jurisdiction)")
+            if event_keywords:
+                on_event = sum(1 for a in subject_deep_dive if a.get('_event_matches', 0))
+                print(f"  🗳️  Event focus '{event_focus['name']}': "
+                      f"{on_event} of {len(subject_deep_dive)} deep-dive article(s) "
+                      f"carry election material")
         else:
             print("  🏛️  subject_fallback: no article carried civic subject matter — "
                   "ranking the local pool on score alone")
@@ -6801,7 +6894,7 @@ def us_policy_framing_tag(article) -> str:
     return f' [US POLICY — {framing}]'
 
 
-def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None, feed_meta=None, bonus_articles=None, debate_memory=None, cta_memory=None, thought_seeds=None, weather_data=None, brave_context="", feedback_emails=None, twit_items=None, corrections=None, focus=None, anchor=None):
+def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episode_memory, host_memory, evolving_context="", psa_info=None, feed_meta=None, bonus_articles=None, debate_memory=None, cta_memory=None, thought_seeds=None, weather_data=None, brave_context="", feedback_emails=None, twit_items=None, corrections=None, focus=None, anchor=None, event_focus=None):
     """Generate conversational podcast script using Claude."""
     print("🎙️ Generating podcast script with Claude...")
 
@@ -7117,7 +7210,8 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
             other_host_upper=other_host_name.upper(),
             other_host_name=other_host_name,
             theme_name=theme_name,
-            theme_lens=_build_theme_lens(theme_name, focus=focus),
+            theme_lens=_build_theme_lens(theme_name, focus=focus,
+                                         event_focus=event_focus),
             anchor_block=anchor_block,
             burned_phrases=burned_phrases,
             news_text=news_text,
@@ -9939,6 +10033,9 @@ def run_script_stage() -> tuple[str, str] | None:
         today_theme = get_theme_for_day(today_weekday)
         # Super-cycle rotation focus for today (None on uncycled days, e.g. Saturday)
         today_focus = get_focus_for_day(today_weekday, pacific_now.date())
+        # A named civic event the day's theme should center while it is live —
+        # calendar-bounded, so it needs no cleanup commit when it ends.
+        today_event = get_event_focus_for_day(today_weekday, pacific_now.date())
         weekday, date_str = get_current_date_info()
 
         print(f"📅 {weekday}, {date_str} - Theme: {today_theme}")
@@ -10195,7 +10292,8 @@ def run_script_stage() -> tuple[str, str] | None:
                 # Select deep dive from theme articles; rest go to news
                 deep_dive_count = SATURDAY_DEEP_DIVE_COUNT if today_weekday == 5 else 3
                 deep_dive_articles, news_articles = select_deep_dive_from_feed(
-                    theme_articles, today_theme, count=deep_dive_count, focus=today_focus)
+                    theme_articles, today_theme, count=deep_dive_count,
+                    focus=today_focus, event_focus=today_event)
 
                 # Track which seeded articles landed in the deep dive
                 for a in deep_dive_articles:
@@ -10353,7 +10451,7 @@ def run_script_stage() -> tuple[str, str] | None:
                 weather_data=weather_data, brave_context=brave_context,
                 feedback_emails=email_feedback, twit_items=twit_items,
                 corrections=email_corrections, focus=today_focus,
-                anchor=today_anchor
+                anchor=today_anchor, event_focus=today_event
             )
 
             if not script:
