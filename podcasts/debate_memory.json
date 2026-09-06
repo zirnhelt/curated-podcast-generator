@@ -1,30 +1,4 @@
 {
-  "2026-06-07": {
-    "timestamp": 1780822374.692102,
-    "date": "2026-06-07",
-    "theme": "Science, Wonder & the Natural World",
-    "central_question": "Can AI tools reshape ecological science in the Cariboo in ways that serve community interests, or do they primarily amplify existing extractive research structures?",
-    "riley_position": "Constrained AI models designed for specific monitoring tasks (acoustic sensors, camera traps, eDNA analysis) could reduce labour costs and enable locally-governed ecological monitoring without requiring massive data centre infrastructure, particularly if training data is controlled by Indigenous nations.",
-    "riley_key_evidence": [
-      "Consensus AI tool that answers only from peer-reviewed research, demonstrating that constrained models have lower infrastructure requirements than foundation models",
-      "New Brunswick Lorneville data centre would destroy wetlands and old-growth forest while running ecological models, illustrating the contradiction between AI compute footprint and ecological study",
-      "Acoustic monitoring with edge-deployed local models could run without cloud infrastructure or data leaving territory"
-    ],
-    "casey_position": "Community-controlled AI knowledge systems face fundamental governance and sustainability challenges; amplifying peer-reviewed research excludes Indigenous knowledge systematically, and the ongoing labour costs of maintaining such systems fall on already over-resourced communities without genuine co-investment.",
-    "casey_key_evidence": [
-      "Training data for AI models comes from research institutions with their own taxonomic frameworks and access conditions, encoding particular epistemologies that may exclude Indigenous knowledge",
-      "Peer-reviewed-only research tools structurally exclude community-governed data that doesn't get published in indexed journals, replicating existing extraction patterns",
-      "Communities are already resource-constrained; adding 'maintain a community AI system' without sustained funding is an unfunded mandate with a tech veneer"
-    ],
-    "resolution": "Riley and Casey shifted from debating whether AI helps to identifying the actual structural question: can a community-owned, fee-for-access ecological knowledge system become financially self-sustaining without compromising governance? They agreed the conversation requires bringing economic development organizations, Indigenous nations, and provincial policy-makers together, and acknowledged they hadn't directly consulted affected communities.",
-    "topics_covered": [
-      "Infrastructure costs of AI and ecological impact of data centres",
-      "Indigenous data sovereignty and structural exclusion from peer-reviewed research systems",
-      "Edge-deployed vs. cloud-based AI models for environmental monitoring",
-      "Community-owned data licensing and fee-for-access ecological knowledge systems",
-      "Funding and sustainability models for long-term community AI governance infrastructure"
-    ]
-  },
   "2026-06-08": {
     "timestamp": 1780928368.7136,
     "date": "2026-06-08",
@@ -2425,6 +2399,34 @@
       "The absence of lived-experience voices in facility siting decisions",
       "Institutional knowledge versus fresh perspective in the mayoral/council candidates Leclerc and Cave",
       "The need for written, repeatable criteria matrices that survive across multiple council terms"
+    ]
+  },
+  "2026-09-06": {
+    "timestamp": 1788682514.802055,
+    "date": "2026-09-06",
+    "theme": "Science, Wonder & the Natural World",
+    "focus": "discovery-health",
+    "anchor": "self-sufficient-or-connected",
+    "central_question": "Do communities survive through local self-sufficiency or through reliance on invisible regional and provincial infrastructure networks?",
+    "riley_position": "Communities depend fundamentally on shared infrastructure systems\u2014fire dispatch networks, drug approval libraries, air quality monitoring\u2014that they often fail to recognize or acknowledge, making genuine self-sufficiency largely illusory.",
+    "riley_key_evidence": [
+      "EPA and peer-reviewed meta-analyses confirm smoke exposure raises all-cause mortality and respiratory hospitalizations well beyond immediate fire radius",
+      "Being held classification on Bonanza Creek means crews and equipment remain assigned through provincial resource allocation, not local action",
+      "The drug lead for childhood dementia exists only because of a shared, catalogued library of approved drugs built by other institutions for different diseases"
+    ],
+    "casey_position": "While shared networks matter significantly, the narrative obscures differential impacts\u2014urban populations experience network benefits differently than frontline communities, and local knowledge and volunteer crews provide genuine value that infrastructure alone cannot capture.",
+    "casey_key_evidence": [
+      "North Thompson crews deploying between Barriere, Clearwater, and other B.C. communities demonstrates working mutual aid, but reflects undersized individual departments requiring coordination",
+      "Childhood dementia stem cell drug screen is still lab-dish results years away from approved therapy, despite headlines claiming effective treatment",
+      "MD Anderson found 52.9% of American adults don't know alcohol affects cancer risk, indicating the message network has stalled between research and public awareness"
+    ],
+    "resolution": "They converge on the concrete question: local communities should investigate which regional networks they rely on invisibly, audit their transparency, and ask Interior Health specifically how monitoring stations and data collection function\u2014moving from assuming infrastructure exists to actually understanding it.",
+    "topics_covered": [
+      "Wildfire smoke dispersal patterns and health effects versus differential community impacts",
+      "Childhood dementia gene therapy and drug screening timelines versus headline compression",
+      "Alcohol-attributable cancer mortality trends and public health communication failure",
+      "Infrastructure visibility: monitoring stations, fire dispatch coordination, and drug approval processes",
+      "Local versus regional decision-making: campfire bans, evacuation networks, and provincial resource allocation"
     ]
   }
 }
