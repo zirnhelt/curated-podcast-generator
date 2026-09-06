@@ -26,6 +26,18 @@ SEGS = [
 ]
 
 
+def _speech_pcm(n_bytes: int) -> bytes:
+    """`n_bytes` of s16le audio that is audibly above the silence floor.
+
+    The fixtures used to be b"\x00" * N — digital silence standing in for
+    "audio". That is the one thing a TTS response must never be, and it is what
+    the duration and silence guards measure, so a silent fixture cannot exercise
+    them and quietly asserts the opposite of what the tests mean.
+    """
+    frame = (8000).to_bytes(2, "little", signed=True)
+    return (frame * ((n_bytes // 2) + 1))[:n_bytes]
+
+
 @pytest.fixture(autouse=True)
 def _reset_gemini_module_state():
     """gemini_tts keeps the render deadline, model pin and pending degradations
@@ -325,7 +337,7 @@ class TestSynthesizeRetries:
     # SEGS is 11 words → expects ~4.4s (400 ms/word). 200_000 bytes of s16le @
     # 24kHz is ~4.17s (ratio ~0.95) — comfortably plausible, so these fixtures
     # don't themselves trip the duration-severity check added below.
-    AUDIO_PCM = b"\x00" * 200_000
+    AUDIO_PCM = _speech_pcm(200_000)
     AUDIO_RESPONSE = {
         "candidates": [{"content": {"parts": [{"inlineData": {
             "mimeType": "audio/L16;rate=24000",
@@ -546,7 +558,7 @@ class TestSynthesizeRetries:
         of the expected length — a technically-successful response missing
         most of its content. That must retry, not ship as-is."""
         # SEGS expects ~4.4s; 10_000 bytes @ 24kHz/s16le is ~0.2s (ratio ~0.05).
-        truncated = self._FakeResp(self._audio_response(b"\x00" * 10_000))
+        truncated = self._FakeResp(self._audio_response(_speech_pcm(10_000)))
         responses = [truncated, self._FakeResp(self.AUDIO_RESPONSE)]
         self._patch(monkeypatch, responses)
         pcm, rate = _synthesize_chunk(SEGS)
@@ -555,7 +567,7 @@ class TestSynthesizeRetries:
 
     def test_severely_truncated_audio_exhausts_retries_and_raises(self, monkeypatch):
         responses = [
-            self._FakeResp(self._audio_response(b"\x00" * 10_000))
+            self._FakeResp(self._audio_response(_speech_pcm(10_000)))
             for _ in range(len(gemini_tts.RETRY_LADDER))
         ]
         self._patch(monkeypatch, responses)
@@ -568,7 +580,7 @@ class TestSynthesizeRetries:
         plausible pacing variance (quick banter), not a dropped-content defect
         — must not burn a retry."""
         # ~3.1s of ~4.4s expected = ratio ~0.71
-        responses = [self._FakeResp(self._audio_response(b"\x00" * 150_000))]
+        responses = [self._FakeResp(self._audio_response(_speech_pcm(150_000)))]
         self._patch(monkeypatch, responses)
         pcm, rate = _synthesize_chunk(SEGS)
         assert len(pcm) == 150_000
@@ -1482,3 +1494,90 @@ class TestFailureClassification:
         pcm, _ = _synthesize_chunk(SEGS)
         assert pcm == TestSynthesizeRetries.AUDIO_PCM
         assert gemini_tts.GEMINI_TTS_FALLBACK_MODEL in seen[-1]
+
+
+def _silence_pcm(n_bytes: int) -> bytes:
+    return b"\x00" * n_bytes
+
+
+class TestSpeechDurationGuards:
+    """2026-09-06 shipped both halves of this defect in one episode: a welcome
+    section that rendered 8 s of speech for 113 words, and a news-roundup chunk
+    that came back at 67% of its expected length. Neither guard stopped either —
+    the ratio measured wall length (dead air counted as content) and the softer
+    check only printed."""
+
+    RATE = 24_000
+
+    def test_trim_drops_leading_and_trailing_silence(self):
+        pcm = _silence_pcm(96_000) + _speech_pcm(48_000) + _silence_pcm(96_000)
+        trimmed = gemini_tts._trim_pcm_silence(pcm, self.RATE)
+        assert 47_000 <= len(trimmed) <= 49_000
+
+    def test_a_wholly_silent_take_trims_to_nothing(self):
+        """One dead chunk of three used to reach the mix intact: the assembler's
+        silence check only ever sees the assembled section."""
+        assert gemini_tts._trim_pcm_silence(_silence_pcm(240_000), self.RATE) == b""
+
+    def test_ratio_measures_speech_not_wall_length(self):
+        """The welcome came back long enough to clear both thresholds and
+        carried 8 s of speech in it."""
+        segments = [{"speaker": "riley", "text": " ".join(["word"] * 113)}]
+        # 45.2 s expected; 8 s of speech buried in 28 s of dead air.
+        pcm = _silence_pcm(672_000) + _speech_pcm(384_000)
+        ratio, words = gemini_tts._duration_ratio(pcm, self.RATE, segments)
+        assert words == 113
+        assert ratio < gemini_tts.SEVERE_TRUNCATION_RATIO
+
+    def test_natural_pauses_do_not_read_as_dead_air(self):
+        pcm = b"".join(_speech_pcm(288_000) + _silence_pcm(28_800) for _ in range(6))
+        gap = gemini_tts._longest_internal_silence_ms(pcm, self.RATE)
+        assert gap <= gemini_tts.MAX_INTERNAL_SILENCE_MS
+
+    def test_internal_silence_is_measured_between_speech_only(self):
+        """Leading silence is trimmed, not counted — it is the hole in the
+        middle that no downstream trim can reach."""
+        pcm = _silence_pcm(480_000) + _speech_pcm(48_000)
+        assert gemini_tts._longest_internal_silence_ms(pcm, self.RATE) == 0
+
+    def test_a_chunk_with_dead_air_in_the_middle_is_retried(self, monkeypatch):
+        # 15 words: the AUDIO_RESPONSE fixture that follows clears the ratio.
+        segments = [{"speaker": "riley", "text": " ".join(["word"] * 15)}]
+        # 10 s of speech either side of a 20 s hole — long enough that the ratio
+        # alone reads healthy, which is exactly why it needs its own check.
+        holed = _speech_pcm(240_000) + _silence_pcm(960_000) + _speech_pcm(240_000)
+        responses = [
+            TestSynthesizeRetries._FakeResp(
+                TestSynthesizeRetries._audio_response(holed)),
+            TestSynthesizeRetries._FakeResp(TestSynthesizeRetries.AUDIO_RESPONSE),
+        ]
+        TestSynthesizeRetries()._patch(monkeypatch, responses)
+        pcm, _ = _synthesize_chunk(segments)
+        assert pcm == TestSynthesizeRetries.AUDIO_PCM
+        assert not responses  # the holed take was rejected, not shipped
+
+    def test_soft_shortfall_reaches_the_run_report(self):
+        """A print reaches neither the run report nor the roadmap ledger, which
+        is why the only record of the 2026-09-06 omission was the audio."""
+        segments = [{"speaker": "riley", "text": " ".join(["word"] * 100)}]
+        # 40 s expected, 28 s delivered — inside the soft band, no retry.
+        gemini_tts.drain_degradations()
+        gemini_tts._duration_check(_speech_pcm(1_344_000), self.RATE, segments)
+        assert any("words" in d and "missing" in d
+                   for d in gemini_tts.drain_degradations())
+
+    def test_trailing_silence_is_not_dead_air(self):
+        """Gemini leaves some tail on most takes; the trim owns that, and
+        counting it as an internal hole would reject healthy chunks."""
+        pcm = _speech_pcm(48_000) + _silence_pcm(480_000)
+        assert gemini_tts._longest_internal_silence_ms(pcm, self.RATE) == 0
+
+    def test_a_take_with_a_long_tail_is_not_retried(self, monkeypatch):
+        segments = [{"speaker": "riley", "text": " ".join(["word"] * 15)}]
+        tailed = _speech_pcm(288_000) + _silence_pcm(960_000)
+        responses = [TestSynthesizeRetries._FakeResp(
+            TestSynthesizeRetries._audio_response(tailed))]
+        TestSynthesizeRetries()._patch(monkeypatch, responses)
+        pcm, _ = _synthesize_chunk(segments)
+        assert not responses          # one attempt only
+        assert 287_000 <= len(pcm) <= 289_000   # returned trimmed, not rejected

@@ -16,9 +16,11 @@ Optional:
   GEMINI_TTS_MODEL — default gemini-3.1-flash-tts-preview
 """
 
+import array
 import base64
 import os
 import re
+import sys
 import time
 import wave
 from datetime import datetime, timezone
@@ -164,6 +166,22 @@ EXPECTED_MS_PER_WORD = 400
 # quick back-and-forth banter genuinely renders faster than the flat 400 ms/word estimate,
 # so it's expected to trip sometimes and isn't worth burning a retry over.
 SEVERE_TRUNCATION_RATIO = 0.5
+
+# Amplitude below which a 20 ms frame counts as silence, matching the -45 dBFS
+# threshold podcast_generator.trim_tts_silence already uses on the assembled
+# section (32768 * 10 ** (-45 / 20)).
+SILENCE_PEAK = 184
+SILENCE_FRAME_MS = 20
+
+# A gap this long inside one chunk is not a pause. Gemini's own turn breaks run
+# well under a second and the script's [pause:] tags never reach it — they are
+# parsed into inter-turn gaps before the transcript is built. On 2026-09-06 the
+# middle chunk of the news roundup came back at 67% of its expected length and
+# shipped, because the duration check only printed: dead air lands in the middle
+# of a section where trim_tts_silence, which only touches the head and tail, can
+# never reach it. Retryable like a truncation — the same words are missing
+# either way, and a fresh sampling draw is the fix for both.
+MAX_INTERNAL_SILENCE_MS = 4_000
 
 # (connect, read) timeouts in seconds, vs the 15 min a hung server cost with the
 # old 600 s read timeout (2026-07-27 run: three ~5-min stalls before
@@ -789,15 +807,37 @@ def _attempt(
     sample_rate = int(rate_match.group(1)) if rate_match else DEFAULT_SAMPLE_RATE
     pcm = base64.b64decode(part["data"])
 
-    duration = _duration_ratio(pcm, sample_rate, segments)
+    # Trimmed once, here: it is what the chunk contributes to the section (a
+    # boundary stays a boundary instead of becoming a hole), and it is what both
+    # checks below have to measure. Wall length is not the quantity — the
+    # 2026-09-06 welcome was long enough to clear every threshold and carried
+    # 8 s of speech for 113 words.
+    speech = _trim_pcm_silence(pcm, sample_rate)
+
+    duration = _duration_ratio(speech, sample_rate, segments)
     if duration is not None and duration[0] < SEVERE_TRUNCATION_RATIO:
         ratio, words = duration
         raise RuntimeError(
             f"Gemini TTS severely truncated audio: {words} words expected "
-            f"~{words * EXPECTED_MS_PER_WORD // 1000}s, got "
-            f"{len(pcm) / SAMPLE_WIDTH_BYTES / sample_rate:.0f}s ({ratio:.0%})"
+            f"~{words * EXPECTED_MS_PER_WORD // 1000}s of speech, got "
+            f"{len(speech) / SAMPLE_WIDTH_BYTES / sample_rate:.0f}s ({ratio:.0%}) "
+            f"out of {len(pcm) / SAMPLE_WIDTH_BYTES / sample_rate:.0f}s of audio"
         )
-    return pcm, sample_rate
+
+    # Dead air inside a chunk is the same defect as a short one — words that were
+    # asked for and not spoken — and it is the one the assembler cannot repair,
+    # because the chunk sits mid-section by the time it sees it. Measured after
+    # the trim, so only genuinely internal silence counts. Raised, not spliced
+    # out: a hole this long means the words are gone too, and a fresh sampling
+    # draw is a better answer than a hard cut.
+    gap_ms = _longest_internal_silence_ms(speech, sample_rate)
+    if gap_ms > MAX_INTERNAL_SILENCE_MS:
+        raise RuntimeError(
+            f"Gemini TTS returned {gap_ms / 1000:.0f}s of silence inside the chunk "
+            f"({len(segments)} turns) — dead air the section trim cannot reach"
+        )
+
+    return speech, sample_rate
 
 
 def _synthesize_chunk(
@@ -1068,18 +1108,85 @@ def canary() -> str | None:
     return None
 
 
+def _frame_peaks(pcm: bytes, sample_rate: int) -> tuple[list[int], int]:
+    """Per-frame peak amplitudes of s16le *pcm*, plus the frame length in ms."""
+    samples = array.array("h")
+    samples.frombytes(pcm[: len(pcm) - len(pcm) % SAMPLE_WIDTH_BYTES])
+    if sys.byteorder == "big":
+        samples.byteswap()
+    step = max(1, int(sample_rate * SILENCE_FRAME_MS / 1000))
+    peaks = [
+        max(map(abs, samples[i:i + step]), default=0)
+        for i in range(0, len(samples), step)
+    ]
+    return peaks, SILENCE_FRAME_MS
+
+
+def _trim_pcm_silence(pcm: bytes, sample_rate: int) -> bytes:
+    """Drop leading and trailing silence from *pcm*.
+
+    Chunks are concatenated into one section, so a chunk's own trailing dead air
+    lands mid-section — past the reach of trim_tts_silence, which the assembler
+    applies to the section's head and tail only. Trimming each chunk here is what
+    keeps a boundary a boundary instead of a hole in the roundup.
+    """
+    peaks, frame_ms = _frame_peaks(pcm, sample_rate)
+    loud = [i for i, p in enumerate(peaks) if p >= SILENCE_PEAK]
+    if not loud:
+        # No speech at all. Returning it empty rather than passing the silence
+        # through is what makes a wholly silent chunk visible: the duration ratio
+        # then reads 0 and the ladder retries it. podcast_generator's
+        # _is_silent_take only ever sees the assembled section, so one dead chunk
+        # of three has always been able to slip past it as dead air mid-roundup.
+        return b""
+    bytes_per_frame = int(sample_rate * frame_ms / 1000) * SAMPLE_WIDTH_BYTES
+    return pcm[loud[0] * bytes_per_frame:(loud[-1] + 1) * bytes_per_frame]
+
+
+def _longest_internal_silence_ms(pcm: bytes, sample_rate: int) -> int:
+    """Longest silent run strictly between the first and last speech in *pcm*."""
+    peaks, frame_ms = _frame_peaks(pcm, sample_rate)
+    longest = run = 0
+    started = False
+    for peak in peaks:
+        if peak >= SILENCE_PEAK:
+            # A run only counts once speech resumes after it. Trailing silence is
+            # the head/tail case the trim owns, and Gemini leaves some on most
+            # takes — counting it here would reject healthy chunks.
+            if started:
+                longest = max(longest, run)
+            started, run = True, 0
+        elif started:
+            run += 1
+    return longest * frame_ms
+
+
 def _duration_ratio(pcm: bytes, sample_rate: int, segments: list[dict]) -> tuple[float, int] | None:
     """(actual/expected duration ratio, word count), or None when too few words to judge."""
     words = sum(len(re.findall(r"\b\w+\b", seg["text"])) for seg in segments)
     if words < 10:
         return None
-    actual_ms = len(pcm) / SAMPLE_WIDTH_BYTES / sample_rate * 1000
+    # Speech, not wall length. A response can carry the right number of seconds
+    # and almost none of the words: the 2026-09-06 welcome came back long enough
+    # to clear both thresholds and rendered 8 s of speech for 113 words, the rest
+    # dead air that the assembler then trimmed away. Measuring the trimmed span
+    # is what makes the ratio describe what a listener actually hears.
+    speech = _trim_pcm_silence(pcm, sample_rate)
+    actual_ms = len(speech) / SAMPLE_WIDTH_BYTES / sample_rate * 1000
     expected_ms = words * EXPECTED_MS_PER_WORD
     return actual_ms / expected_ms, words
 
 
 def _duration_check(pcm: bytes, sample_rate: int, segments: list[dict]) -> None:
-    """Warn when audio is far shorter than the word count predicts (dropped text)."""
+    """Report audio shorter than the word count predicts (dropped text).
+
+    The soft threshold stays soft — brisk back-and-forth genuinely renders faster
+    than the flat 400 ms/word estimate, so this is expected to trip sometimes and
+    is not worth burning a retry over. It is no longer expected to trip *quietly*:
+    on 2026-09-06 the middle chunk of the news roundup printed 67% here and
+    shipped, and because a print reaches neither the run report nor the roadmap
+    ledger, the only place that omission was ever recorded was the audio itself.
+    """
     duration = _duration_ratio(pcm, sample_rate, segments)
     if duration is None:
         return
@@ -1090,6 +1197,11 @@ def _duration_check(pcm: bytes, sample_rate: int, segments: list[dict]) -> None:
         print(
             f"  ⚠️  Gemini TTS duration check: expected ~{expected_ms // 1000:.0f}s "
             f"for {words} words, got {actual_ms // 1000:.0f}s ({ratio:.0%}) — possible omission"
+        )
+        _degradations.append(
+            f"chunk of {words} words rendered {actual_ms // 1000:.0f}s of speech "
+            f"against ~{expected_ms // 1000:.0f}s expected ({ratio:.0%}) — words "
+            "are likely missing from the audio"
         )
 
 

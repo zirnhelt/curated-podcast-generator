@@ -992,12 +992,15 @@ GEMINI_RENDER_DEADLINE_S = float(os.getenv("GEMINI_RENDER_DEADLINE_S", "1500"))
 
 
 def _report_gemini_degradations(name: str) -> None:
-    """Surface any retry rungs gemini_tts took, as rows in the run report.
+    """Surface what gemini_tts settled for, as rows in the run report.
 
     gemini_tts cannot call degrade() itself without a circular import, so it
     collects its degradations and the render path drains them here. A retry that
     had to shed the style prompt or change model still produced the episode —
-    the fallback is usually right, the silence never is.
+    the fallback is usually right, the silence never is. So does a take that came
+    back short of the words it was given, which is why the render rows are named
+    for the take rather than for the retry: on 2026-09-06 the only record that
+    the news roundup had lost a third of a chunk was a print in the job log.
     """
     for detail in gemini_drain_degradations():
         degrade(name, detail)
@@ -4862,6 +4865,13 @@ def _infer_discipline(article, disciplines_config):
 
     Returns (group_key, discipline_key) or (None, None) if no match.
     Keyword matching is case-insensitive; the discipline with the most hits wins.
+
+    Hits are counted on word boundaries, via the same `_keyword_hit_count` the
+    theme scorers use. Plain substring matching tagged "Traffic-pattern changes
+    coming for Highway 1 at Mount Lehman" as astrophysics on 2026-09-06, because
+    'star' is inside "starting" — harmless while this only sorted the off-theme
+    tail, and not harmless now that it decides which stories air next to each
+    other in the local and theme blocks.
     """
     if not disciplines_config:
         return (None, None)
@@ -4869,7 +4879,7 @@ def _infer_discipline(article, disciplines_config):
     best_group, best_discipline, best_count = None, None, 0
     for group_key, group in disciplines_config.get('groups', {}).items():
         for disc_key, disc in group.get('disciplines', {}).items():
-            count = sum(1 for kw in disc.get('keywords', []) if kw.lower() in text)
+            count = _keyword_hit_count(text, disc.get('keywords', []))
             if count > best_count:
                 best_count = count
                 best_group = group_key
@@ -5115,6 +5125,63 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
             + clustered + standalone + kicker)
 
 
+def _cluster_adjacent(members: list, disciplines_config: dict) -> list:
+    """Reorder one block so same-field stories air together, strongest first.
+
+    The block arrives sorted by its own strength key and that key stays the
+    skeleton: each story in turn pulls its same-discipline siblings up behind it,
+    and nothing is promoted ahead of a story it did not already sit behind. So
+    the lead never moves — which matters, because the first article of the
+    'local' block is the show's front door and the first of 'theme' is the day's
+    strongest on-theme story. Grouping the block wholesale by discipline, the way
+    the off-theme tail is grouped, would let a two-story cluster take that slot.
+    """
+    # Inferred once per article rather than once per comparison: this runs on
+    # every block of every episode and _infer_discipline is a regex sweep over
+    # the whole taxonomy.
+    remaining = [(a, _infer_discipline(a, disciplines_config)[0]) for a in members]
+    ordered = []
+    while remaining:
+        lead, group = remaining.pop(0)
+        ordered.append(lead)
+        if not group:
+            continue
+        ordered.extend(a for a, g in remaining if g == group)
+        remaining = [pair for pair in remaining if pair[1] != group]
+    return ordered
+
+
+def _sequence_roundup(pool: list) -> list:
+    """Air the roundup's blocks as mini-arcs instead of two ranked lists.
+
+    Discipline clustering used to run on `rest` alone — the off-theme leftovers —
+    so it never touched the two blocks that are most of the segment. On
+    2026-09-06 the pool was 8 local + 7 theme and `rest` was empty, so no
+    coherence mechanism ran at all: the roundup aired a power outage, a charity
+    ride, a library opening, a cancer ride and a wildfire crew story in that
+    order, because the local block is sorted on place-name density and place-name
+    density says nothing about what a story is about. The order check passed —
+    it compares blocks, and there were only two.
+
+    Only the order inside a block changes. Block membership, the arc/tail ranks
+    and every selection decision are untouched, so `check_roundup_order` and the
+    pool cap see exactly what they saw before. ROUNDUP_CLUSTER_MAX deliberately
+    does not apply here either: it exists to stop off-theme filler deciding what
+    the episode is about, and a fire week's local block is the episode.
+    """
+    disciplines_config = CONFIG.get('disciplines', {})
+    if not disciplines_config:
+        return pool
+    ordered = []
+    for block, members_iter in groupby(pool, key=lambda a: a['_roundup_block']):
+        members = list(members_iter)
+        # Tail blocks are one discipline each by construction, and 'standalone'
+        # connects to nothing by definition — there is nothing to cluster.
+        ordered.extend(_cluster_adjacent(members, disciplines_config)
+                       if block in ROUNDUP_ARC_BLOCKS else members)
+    return ordered
+
+
 def _curate_roundup_pool(articles: list, theme_name: str, pool_size: int) -> tuple:
     """Cap the News Roundup pool at `pool_size` while maximizing coherence.
 
@@ -5157,7 +5224,7 @@ def _curate_roundup_pool(articles: list, theme_name: str, pool_size: int) -> tup
               f"{ROUNDUP_CLUSTER_MAX}-story cap on a single discipline cluster")
 
     if len(pool) <= pool_size:
-        return pool, over_cluster
+        return _sequence_roundup(pool), over_cluster
 
     protected = [a for a in pool if a['_roundup_block'] in ROUNDUP_ARC_BLOCKS]
     kicker = [a for a in pool if a['_roundup_block'] == 'kicker']
@@ -5200,7 +5267,7 @@ def _curate_roundup_pool(articles: list, theme_name: str, pool_size: int) -> tup
     if not kicker_room:
         dropped.extend(kicker)
         kicker = []
-    return protected + kept_fill + kicker, dropped
+    return _sequence_roundup(protected + kept_fill + kicker), dropped
 
 
 # A section header occupies its whole line ("**NEWS ROUNDUP**"); a speaker turn
@@ -7000,15 +7067,21 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
     # Order the roundup into coherence blocks (close to home, today's theme,
     # then same-field clusters and the kicker) so the prompt carries explicit
     # grouping structure instead of a flat theme-sorted list. Main already
-    # curates/caps the pool via _curate_roundup_pool; annotation here is
-    # deterministic, so re-running it reproduces the same block order.
+    # curates/caps the pool via _curate_roundup_pool; annotation and sequencing
+    # here are deterministic, so re-running them reproduces the order the curated
+    # pool already carries — the same order the citations record and the order
+    # check measures the aired script against. Both steps have to run here: the
+    # sequencing is what puts same-field stories next to each other inside the
+    # local and theme blocks, and this list is the prompt's only view of it.
     #
     # `all_articles` is the curated pool and is authoritative: bonus picks that
     # survived curation are already in it, annotated alongside everything else.
     # The `bonus_articles` parameter is the pre-curation list and must never be
     # concatenated back in — doing so re-admitted every article the cap had just
     # dropped, which is what put 52 stories in the 2026-08-13 roundup.
-    roundup_articles = _annotate_roundup_blocks(all_articles, theme_name)
+    roundup_articles = _sequence_roundup(
+        _annotate_roundup_blocks(all_articles, theme_name)
+    )
 
     def _format_news_article(a):
         """Format a news article for the script-generation prompt."""
@@ -8115,13 +8188,23 @@ _META_MOMENT_WORD_RE = re.compile(r"[^\W\d_]+(?:'[^\W\d_]+)*")
 
 
 def _meta_moment_allowed_words(changelog: str) -> set:
-    """Lowercased vocabulary the dialogue may capitalize without inventing anything."""
+    """Lowercased vocabulary the dialogue may capitalize without inventing anything.
+
+    The show's own place names are in it. A commit subject writes "the WL
+    election"; a host reading it aloud says "the Williams Lake election", and
+    with only the commit list, the title and the territory line to draw on, the
+    guard called Williams Lake an invention and dropped the whole segment. These
+    are the places the show is about — naming one is never the fabrication this
+    is looking for, and `local_places` is already the list of them.
+    """
     hosts = CONFIG.get('hosts', {})
     podcast = CONFIG.get('podcast', {})
     sources = " ".join([
         changelog,
         podcast.get('title', ''),
         podcast.get('territory_acknowledgment', ''),
+        " ".join(podcast.get('local_places') or []),
+        " ".join(podcast.get('home_places') or []),
         " ".join(hosts),
         " ".join(h.get('name', '') for h in hosts.values() if isinstance(h, dict)),
     ]).replace("\u2019", "'").lower()
@@ -8216,15 +8299,19 @@ def generate_meta_moment_text(changelog: str) -> str:
         "between co-hosts Riley and Casey recapping what the team tweaked about the show "
         "itself this past week. Translate the raw commit list below into plain language a "
         "listener would care about — no jargon, filenames, or hashes.\n\n"
-        "FIRST, decide whether there is a segment here at all. Read the list and count the "
-        "entries with a consequence a listener could notice while listening. Most weeks "
-        "this list is plumbing and the honest count is zero.\n"
-        "- Zero: reply with the single word NONE and nothing else. A skipped Meta Moment "
-        "is the right outcome for a quiet week, and NONE is always a safe answer.\n"
+        "FIRST, decide whether there is a segment here at all. Go through the list and "
+        "count the entries with a consequence a listener could notice while listening. A "
+        "change counts when it alters what the show picks, what order it airs things in, "
+        "what the hosts say, or how the show sounds. It does not count when it only "
+        "changes logging, retries, budgets, credentials or file layout — nothing a "
+        "listener could hear a difference from.\n"
+        "- Zero: reply with the single word NONE and nothing else. A quiet week has "
+        "nothing to report and NONE is the honest answer for it.\n"
         "- One or two: write a short 4-6 turn segment about those alone.\n"
         "- Three or four: write the full 8-12 turn segment.\n"
-        "Never pad the count to reach a longer segment. A week of internal plumbing is a "
-        "NONE, not a challenge.\n\n"
+        "Count honestly in both directions. Never pad the list to reach a longer segment "
+        "— and never drop a change that passes the test above because the segment would "
+        "be short. One qualifying change is a real Meta Moment.\n\n"
         "Give each change you do air real airtime: what changed, what a listener might "
         "actually notice on air, and whether it was worth doing. A change that cannot be "
         "given that much is cut, not compressed into a one-line mention — skip the rest of "
@@ -8282,9 +8369,15 @@ def generate_meta_moment_text(changelog: str) -> str:
 
     start = raw.find("**RILEY:**")
     if start == -1:
-        # NONE, or a reply with no dialogue in it — both mean no segment, and
-        # neither is a degradation: a week of plumbing has nothing to report.
+        # NONE, or a reply with no dialogue in it — both mean no segment. A quiet
+        # week is a legitimate answer and this is not an error, but it is still a
+        # Sunday that aired without its Sunday segment, and until 2026-09-06 the
+        # only trace of that decision was one line in the job log. "Was that by
+        # design?" is a question the run report should have already answered.
         print("   🔇 Meta Moment: no listener-noticeable change this week — segment skipped")
+        degrade("script/meta-moment",
+                f"model judged none of the week's {len(subjects)} commit(s) "
+                "listener-noticeable — the episode airs without the segment")
         return ""
 
     dialogue = raw[start:]
@@ -8519,7 +8612,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                             gemini_continuing = generate_gemini_tts_for_section(
                                 seg_list, section_wav, gemini_continuing
                             )
-                            _report_gemini_degradations("render/gemini-retry")
+                            _report_gemini_degradations("render/gemini-take")
                         else:
                             generate_azure_tts_for_section(seg_list, section_wav)
                         raw_section = AudioSegment.from_file(section_wav, format="wav")
@@ -8743,7 +8836,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                         credits_segments = [{"speaker": "riley", "text": _build_credits_text(), "gap_ms": None}]
                         if _credits_provider == "gemini":
                             generate_gemini_tts_for_section(credits_segments, credits_wav, gemini_continuing)
-                            _report_gemini_degradations("render/gemini-retry")
+                            _report_gemini_degradations("render/gemini-take")
                         else:
                             generate_azure_tts_for_section(credits_segments, credits_wav)
                         credits_audio = normalize_segment(
@@ -8899,7 +8992,7 @@ def generate_audio_tts_only(script, output_filename, _force_openai=False):
                 section_wav = os.path.join(tmpdir, f"all_{provider}.wav")
                 section_fn(segments, section_wav)
                 if provider == "gemini":
-                    _report_gemini_degradations("render/gemini-retry")
+                    _report_gemini_degradations("render/gemini-take")
                 combined = normalize_segment(
                     trim_tts_silence(AudioSegment.from_file(section_wav, format="wav")),
                     TARGET_SPEECH_DBFS,
@@ -10477,7 +10570,15 @@ def run_script_stage() -> tuple[str, str] | None:
             if weather_data:
                 print(f"   {weather_data['summary']}")
             else:
+                # fetch_weather() handles its own failure, so the segment sees a
+                # clean run and the report used to say the weather phase was fine
+                # on a day the episode had no weather check in it. On 2026-09-06
+                # all five Open-Meteo calls timed out and nothing anywhere said so
+                # — the listener noticed before the operator did.
                 print("   Weather unavailable — skipping weather check")
+                degrade("script/weather",
+                        "Open-Meteo did not answer — the episode airs with no "
+                        "weather check and no weather credit")
 
         evolving_context = ""
         callback_urls = []
