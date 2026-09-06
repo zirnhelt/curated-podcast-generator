@@ -1,25 +1,4 @@
 {
-  "2026-08-01": {
-    "timestamp": 1785579602.689622,
-    "topics": [
-      "[Williams Lake Tribune] Diesel spill appears contained in re",
-      "[Williams Lake Tribune] Changing weather conditions could me",
-      "[Nautilus] A \u201cHellish Cloud\u201d Descended on Los Angeles in 194",
-      "[Hackaday] NES Advantage Stick Gets Bluetooth Upgrade",
-      "[The Northern Miner] Gangs hijack Ecuador\u2019s gold mining supp",
-      "More nays than ya\u2019s counted in the Forest Grove Fire Hall re",
-      "[Williams Lake Tribune] UPDATE: Environment Canada issues an",
-      "ICBC gives tips for northern drivers ahead of long weekend :"
-    ],
-    "themes": [
-      "rural development",
-      "environmental impact",
-      "connectivity"
-    ],
-    "date": "2026-08-01",
-    "focus": null,
-    "focus_name": null
-  },
   "2026-08-02": {
     "timestamp": 1785665939.459347,
     "topics": [
@@ -748,5 +727,24 @@
     "date": "2026-09-05",
     "focus": null,
     "focus_name": null
+  },
+  "2026-09-06": {
+    "timestamp": 1788682510.309657,
+    "topics": [
+      "[My Cariboo Now] Thousands were left without power in Willia",
+      "[Williams Lake Tribune] Hooligans support Williams Lake Boys",
+      "[CFJC Today Kamloops] Pop-up library services to open outsid",
+      "[My Cariboo Now] Cops for Cancer riders to make community st",
+      "[CFJC Today Kamloops] Massive wildfires near Clinton, South ",
+      "[Forbes Innovation] Wildfires Have Left The Forest And Moved",
+      "[New Atlas] Dementia strikes children, too \u2013 but we've found",
+      "[Boing Boing] Study finds alcohol-linked cancer deaths have "
+    ],
+    "themes": [
+      "rural development"
+    ],
+    "date": "2026-09-06",
+    "focus": "discovery-health",
+    "focus_name": "Discovery, Health & How Science Works"
   }
 }
