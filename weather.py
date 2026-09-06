@@ -21,6 +21,8 @@ Returns a plain-English summary suitable for injection into the podcast script p
 """
 
 import random
+import time
+
 import requests
 
 # Horsefly Lake, BC (home base)
@@ -50,6 +52,16 @@ CHILCOTIN_TOWNS = [
 ]
 
 TIMEZONE = "America/Vancouver"
+
+# Open-Meteo is free, keyless and normally answers in well under a second, so a
+# read timeout is a blip rather than a verdict — and there was no retry at all
+# until 2026-09-06, when all five locations timed out inside the same 10 s
+# window and the episode aired with no weather check at all. One retry costs
+# nothing on a healthy night and is the difference between a blip and a
+# missing segment; a genuine outage still gives up, and the caller reports it.
+REQUEST_TIMEOUT_S = 10
+FETCH_ATTEMPTS = 2
+RETRY_BACKOFF_S = 2
 
 # Local hour the forecast is read for — the listener's morning, not the 1 AM
 # render time. Never spoken on air.
@@ -123,17 +135,29 @@ def _fetch_location(lat, lon):
         "wind_speed_unit": "kmh",
     }
 
-    try:
-        resp = requests.get(
-            "https://api.open-meteo.com/v1/forecast",
-            params=params,
-            timeout=10,
-        )
-        resp.raise_for_status()
-        data = resp.json()
-    except Exception as e:
-        print(f"  Weather fetch failed ({lat}, {lon}): {e}")
-        return None
+    data = None
+    for attempt in range(1, FETCH_ATTEMPTS + 1):
+        try:
+            resp = requests.get(
+                "https://api.open-meteo.com/v1/forecast",
+                params=params,
+                timeout=REQUEST_TIMEOUT_S,
+            )
+            resp.raise_for_status()
+            data = resp.json()
+            break
+        except Exception as e:
+            # Only a transport-level failure is worth re-asking: a timeout, a
+            # dropped connection or a 5xx. A malformed response would come back
+            # malformed a second time, and paying the backoff for it delays the
+            # remaining four locations for nothing.
+            retryable = isinstance(e, requests.exceptions.RequestException)
+            if retryable and attempt < FETCH_ATTEMPTS:
+                print(f"  Weather fetch failed ({lat}, {lon}), retrying: {e}")
+                time.sleep(RETRY_BACKOFF_S)
+                continue
+            print(f"  Weather fetch failed ({lat}, {lon}): {e}")
+            return None
 
     try:
         daily = data["daily"]

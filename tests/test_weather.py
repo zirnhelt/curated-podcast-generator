@@ -337,3 +337,47 @@ class TestWeatherSlideData:
             "quesnel": None, "chilcotin_town": None, "chilcotin_town_name": "",
             "summary": "",
         }) is None
+
+
+class TestTransientFailureRetry:
+    """2026-09-06: all five Open-Meteo calls hit their 10 s read timeout inside
+    the same window, `fetch_weather` returned None, and the episode aired with no
+    weather check. There was no retry at all, and the caller reported nothing —
+    the listener noticed the missing segment before the operator did."""
+
+    @patch("weather.time.sleep")
+    @patch("weather.requests.get")
+    def test_a_timeout_is_re_asked_before_giving_up(self, mock_get, _sleep):
+        import requests as _requests
+        ok = MagicMock()
+        ok.json.return_value = _mock_api_response()
+        ok.raise_for_status = MagicMock()
+        # Every location times out once, then answers.
+        mock_get.side_effect = [
+            _requests.exceptions.ReadTimeout("read timeout=10"), ok,
+        ] * 5
+
+        result = fetch_weather()
+        assert result is not None
+        assert mock_get.call_count == 10
+
+    @patch("weather.time.sleep")
+    @patch("weather.requests.get")
+    def test_a_persistent_outage_still_gives_up(self, mock_get, _sleep):
+        import requests as _requests
+        mock_get.side_effect = _requests.exceptions.ReadTimeout("read timeout=10")
+        assert fetch_weather() is None
+
+    @patch("weather.time.sleep")
+    @patch("weather.requests.get")
+    def test_a_malformed_response_is_not_re_asked(self, mock_get, sleep):
+        """It would come back malformed a second time, and the backoff delays
+        the four remaining locations for nothing."""
+        bad = MagicMock()
+        bad.json.return_value = {"unexpected": True}
+        bad.raise_for_status = MagicMock()
+        mock_get.return_value = bad
+
+        assert fetch_weather() is None
+        assert mock_get.call_count == 5   # one call per location, no retries
+        sleep.assert_not_called()

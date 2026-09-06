@@ -49,7 +49,10 @@ from podcast_generator import (
     generate_meta_moment_text,
     _meta_moment_unknown_names,
     _annotate_roundup_blocks,
+    _cluster_adjacent,
     _curate_roundup_pool,
+    _infer_discipline,
+    _sequence_roundup,
     _roundup_block_rank,
     strip_unsourced_correction,
     check_roundup_order,
@@ -2576,8 +2579,54 @@ class TestGenerateMetaMomentText:
 
         prompt = client.messages.create.call_args.kwargs["messages"][0]["content"]
         assert "reply with the single word NONE" in prompt
-        assert "NONE is always a safe answer" in prompt
         assert "COVERED: <the line from the list, copied exactly>" in prompt
+
+    def test_a_skipped_segment_reaches_the_run_report(self, monkeypatch):
+        """A quiet week is a legitimate NONE and not an error — but it is still a
+        Sunday that aired without its Sunday segment, and the only trace of that
+        decision was one line in the job log. "Was that by design?" is a question
+        the run report should answer without anyone reading the log."""
+        import podcast_generator as pg
+        client = self._client_returning("NONE")
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
+        pg._RUN_SEGMENTS.clear()
+        try:
+            assert generate_meta_moment_text(self._CHANGELOG) == ""
+            rows = [r for r in pg._RUN_SEGMENTS if r["name"] == "script/meta-moment"]
+            assert rows and "listener-noticeable" in rows[0]["error"]
+        finally:
+            pg._RUN_SEGMENTS.clear()
+
+    def test_the_shows_own_place_names_are_not_inventions(self, monkeypatch):
+        """A commit writes "the WL election"; a host says "the Williams Lake
+        election". With only the commit list, the title and the territory line to
+        draw on, the name guard called Williams Lake an invention and dropped the
+        whole segment."""
+        dialogue = (
+            "**RILEY:** Quick meta moment — we changed how the Williams Lake "
+            "election stories get picked.\n"
+            "**CASEY:** Which version of me agreed to that. Back to the show."
+        )
+        reply = "COVERED: Rework welcome intro order\n\n" + dialogue
+        client = self._client_returning(reply)
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
+
+        assert "**META MOMENT**" in generate_meta_moment_text(self._CHANGELOG)
+
+    def test_prompt_weighs_the_count_in_both_directions(self, monkeypatch):
+        # The escape hatch was pushed three separate times ("most weeks the
+        # honest count is zero", "NONE is always a safe answer", "a week of
+        # internal plumbing is a NONE, not a challenge") against no statement of
+        # what qualifies at all. On 2026-09-06 a week carrying two changes to
+        # what the roundup picks and orders came back NONE.
+        client = self._client_returning(self._REPLY)
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
+        generate_meta_moment_text(self._CHANGELOG)
+
+        prompt = client.messages.create.call_args.kwargs["messages"][0]["content"]
+        # A test for what counts, not just a warning against padding.
+        assert "what the show picks" in prompt
+        assert "never drop a change that passes the test above" in prompt
 
     def test_prompt_forbids_previewing_the_next_segment(self, monkeypatch):
         # 2026-08-30 handed off to "a report from the Shuswap on small-scale
@@ -4543,3 +4592,134 @@ class TestRenderStageIsolation:
         assert run_render_stage(script_path=script) is True
         by_name = {r["name"]: r["status"] for r in clean_segments}
         assert by_name["render/citations-credit"] == "degraded"
+
+
+# ---------------------------------------------------------------------------
+# Roundup sequencing — same-field stories air together inside a block
+# ---------------------------------------------------------------------------
+
+_SEQ_DISCIPLINES = {
+    "groups": {
+        "public_safety": {
+            "label": "Public Safety",
+            "disciplines": {
+                "wildfire_emergency": {"label": "Wildfire",
+                                       "keywords": ["wildfire", "evacuation order"]},
+                "utilities_outage": {"label": "Outages",
+                                     "keywords": ["power outage", "bc hydro"]},
+            },
+        },
+        "community_life": {
+            "label": "Community Life",
+            "disciplines": {
+                "fundraisers_events": {"label": "Fundraisers",
+                                       "keywords": ["charity", "fundraiser"]},
+            },
+        },
+    }
+}
+
+
+def _seq_article(title, block, summary=""):
+    return {"title": title, "summary": summary, "url": f"https://x/{title}",
+            "_roundup_block": block}
+
+
+class TestSequenceRoundup:
+    """2026-09-06: the pool was 8 local + 7 theme and the tail was empty, so the
+    discipline clustering — which only ever ran on the tail — touched nothing.
+    The roundup aired a power outage, a charity ride, a library opening, a cancer
+    ride and a wildfire crew story in that order, and the order check passed,
+    because it compares blocks and there were only two."""
+
+    @staticmethod
+    def _sequence(articles, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setitem(pg.CONFIG, "disciplines", _SEQ_DISCIPLINES)
+        return [a["title"] for a in _sequence_roundup(articles)]
+
+    def test_same_field_stories_are_pulled_together(self, monkeypatch):
+        articles = [
+            _seq_article("Thousands lost power", "local", "a bc hydro power outage"),
+            _seq_article("Wildfire near Clinton", "local", "wildfire crews"),
+            _seq_article("Charity ride raises funds", "local", "charity"),
+            _seq_article("Crews answer the call", "local", "wildfire response"),
+        ]
+        assert self._sequence(articles, monkeypatch) == [
+            "Thousands lost power",
+            "Wildfire near Clinton",
+            "Crews answer the call",   # pulled up beside its sibling
+            "Charity ride raises funds",
+        ]
+
+    def test_the_lead_never_moves(self, monkeypatch):
+        """The first local story is the show's front door; a two-story cluster
+        further down must not displace it."""
+        articles = [
+            _seq_article("Thousands lost power", "local", "a bc hydro power outage"),
+            _seq_article("Wildfire near Clinton", "local", "wildfire"),
+            _seq_article("Crews answer the call", "local", "wildfire"),
+        ]
+        assert self._sequence(articles, monkeypatch)[0] == "Thousands lost power"
+
+    def test_tail_blocks_are_left_alone(self, monkeypatch):
+        """Tail blocks are one discipline each already, and 'standalone'
+        connects to nothing by definition."""
+        articles = [
+            _seq_article("Standalone A", "standalone", "wildfire"),
+            _seq_article("Standalone B", "standalone", "charity"),
+            _seq_article("Standalone C", "standalone", "wildfire"),
+        ]
+        assert self._sequence(articles, monkeypatch) == [
+            "Standalone A", "Standalone B", "Standalone C",
+        ]
+
+    def test_block_membership_and_order_are_untouched(self, monkeypatch):
+        """Only the order inside a block changes — the order check and the pool
+        cap must see exactly what they saw before."""
+        articles = [
+            _seq_article("Local one", "local", "wildfire"),
+            _seq_article("Local two", "local", "charity"),
+            _seq_article("Theme one", "theme", "charity"),
+            _seq_article("Theme two", "theme", "wildfire"),
+        ]
+        import podcast_generator as pg
+        monkeypatch.setitem(pg.CONFIG, "disciplines", _SEQ_DISCIPLINES)
+        blocks = [a["_roundup_block"] for a in _sequence_roundup(articles)]
+        assert blocks == ["local", "local", "theme", "theme"]
+
+    def test_no_disciplines_config_is_a_no_op(self, monkeypatch):
+        articles = [
+            _seq_article("A", "local", "wildfire"),
+            _seq_article("B", "local", "charity"),
+            _seq_article("C", "local", "wildfire"),
+        ]
+        import podcast_generator as pg
+        monkeypatch.setitem(pg.CONFIG, "disciplines", {})
+        assert [a["title"] for a in _sequence_roundup(articles)] == ["A", "B", "C"]
+
+    def test_cluster_adjacent_preserves_every_member(self):
+        members = [_seq_article(f"S{i}", "local", "wildfire" if i % 2 else "charity")
+                   for i in range(6)]
+        out = _cluster_adjacent(members, _SEQ_DISCIPLINES)
+        assert sorted(a["title"] for a in out) == sorted(a["title"] for a in members)
+
+
+class TestInferDisciplineWordBoundaries:
+    def test_substring_hits_do_not_count(self):
+        """'star' inside "starting" tagged a Highway 1 lane-closure notice as
+        astrophysics on 2026-09-06 — harmless while this only sorted the
+        off-theme tail, and not harmless now that it decides adjacency."""
+        article = {
+            "title": "Traffic-pattern changes coming for Highway 1",
+            "summary": "Overnight changes starting as early as Monday.",
+        }
+        config = {"groups": {"physical_sciences": {"disciplines": {
+            "astrophysics": {"keywords": ["star", "galaxy"]}}}}}
+        assert _infer_discipline(article, config) == (None, None)
+
+    def test_whole_word_hits_still_count(self):
+        article = {"title": "A star is born", "summary": ""}
+        config = {"groups": {"physical_sciences": {"disciplines": {
+            "astrophysics": {"keywords": ["star", "galaxy"]}}}}}
+        assert _infer_discipline(article, config) == ("physical_sciences", "astrophysics")

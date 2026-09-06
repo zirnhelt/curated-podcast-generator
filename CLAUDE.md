@@ -151,6 +151,13 @@ the script file's `#` header instead, read back by `read_script_metadata`:
   existed while the spoken credits never did (2026-08-17). Gated on the flag rather than on
   config, because on a day the fetch fails there is no weather segment to credit. Scripts
   predating this header degrade to `no`.
+  **A day the fetch fails now says so.** `fetch_weather()` handles its own failure and returns
+  `None`, so `script/weather` finished clean and the run report called the phase fine on an
+  episode with no weather check in it — the exact silent fallback `degrade()` exists to catch.
+  Open-Meteo is free, keyless and normally answers in well under a second, and had no retry at
+  all until all five locations hit their 10 s read timeout inside one window on 2026-09-06; it
+  now re-asks once on a transport failure (never on a malformed body, which would come back
+  malformed) and `degrade()`s when the sweep comes back empty.
 - **`# Anchor:`** — the week's anchor question, which is named on air and appears in the
   episode description. Whitespace-collapsed to one line, since the header parser reads one
   key per line. Scripts predating this header degrade to `None`.
@@ -378,7 +385,7 @@ no cleanup commit when it closes. Currently the Williams Lake 2026 general local
   to `targeted_rescore` with the Cariboo outlets as its `rescore_sources`. **When a Saturday
   deep dive looks wrong, check the upstream theme score before touching the ranking.**
 
-### News Roundup Curation (`_annotate_roundup_blocks`, `_curate_roundup_pool`)
+### News Roundup Curation (`_annotate_roundup_blocks`, `_curate_roundup_pool`, `_sequence_roundup`)
 
 The roundup's story count is derived from **airtime, not appetite**. The segment gets
 ~1,100–1,300 words of a 3,400-word script, and every story owes the listener what happened,
@@ -423,6 +430,34 @@ so the cap alone let the day's identity be decided by whatever the feed happened
 A cluster is kept adjacent so the back half plays as a mini-arc; past three it stops being an arc
 and becomes what the episode is about. The overflow is dropped, never compressed — dropped
 articles never reach citations, so dedup lets them resurface on a better-matched day.
+
+**Blocks decide what airs together; `_sequence_roundup` decides the order inside one.** The
+discipline clustering above ran on the tail alone — `local` and `theme` were sorted by
+place-name density and keyword density respectively, neither of which says anything about what
+a story is *about*. On 2026-09-06 the pool was 8 local + 7 theme, the tail was empty, and so no
+coherence mechanism ran at all: the roundup aired a power outage, a charity ride, a library
+opening, a cancer ride and a wildfire crew story in that order. `check_roundup_order` passed —
+it compares block ranks, and there were two.
+
+- **The pass is a chain, not a regroup.** Each story pulls its same-discipline siblings up
+  behind it; nothing is promoted ahead of a story it did not already sit behind. So the lead
+  never moves, which is the point: the first article of `local` is the show's front door and
+  the first of `theme` is the day's strongest on-theme story, and a wholesale regroup would let
+  a two-story cluster take either slot.
+- **`ROUNDUP_CLUSTER_MAX` deliberately does not apply inside an arc block.** The cap exists to
+  stop off-theme filler deciding what the episode is about; a fire week's local block *is* the
+  episode.
+- **It runs at both consumers** — `_curate_roundup_pool`'s return and the re-annotation in
+  `generate_podcast_script`. The second is the prompt's only view of the order, so sequencing
+  only the first would change the citations and leave the air order untouched.
+- **`disciplines.json` had no civic vocabulary and needed one.** The taxonomy was written for
+  the off-theme tail, which is science and tech feed material; the local block is outages,
+  wildfire, council, fundraisers, schools, health and highways, and none of it could group.
+  `public_safety`, `civic_affairs` and `community_life` are that vocabulary.
+- **`_infer_discipline` counts word-boundary hits** (`_keyword_hit_count`), not substrings.
+  Plain `in` matching filed "Traffic-pattern changes coming for Highway 1 at Mount Lehman"
+  under astrophysics, because 'star' is inside "starting" — harmless while this only sorted the
+  tail, and not harmless once it decides which stories air next to each other.
 
 Two prompt rules carry the rest: **NO HEADLINE CRAWL** (never stack unrelated stories into one
 host turn as one-sentence mentions) and **DO NOT MANUFACTURE CONNECTIONS** — an abstract bridge
@@ -637,6 +672,36 @@ of leaving the music to fade out into a gap.
 
 The same check runs on whole-section (Gemini/Azure) renders, where it raises into the
 existing per-section OpenAI fallback — a silent section is this failure minutes wide.
+
+#### Per-chunk checksums (Gemini)
+
+A Gemini section is 1–3 independent chunks joined into one clip, and every guard around it
+used to run on the wrong quantity or in the wrong place. On 2026-09-06 that shipped both
+halves of the same defect in one episode: a welcome section that rendered **8 s of speech for
+113 words** and a news-roundup chunk that came back at **67% of its expected length**. Both
+passed everything.
+
+- **The ratio measures speech, not wall length** (`_duration_ratio` → `_trim_pcm_silence`).
+  The welcome's response was long enough to clear both thresholds and was mostly dead air,
+  which the assembler then trimmed off — so the check saw a healthy clip and the listener got
+  eight seconds. Measured on the trimmed span it reads 0.18 and `SEVERE_TRUNCATION_RATIO`
+  retries it.
+- **Dead air inside a chunk is its own defect** (`MAX_INTERNAL_SILENCE_MS`, 4 s). It is the
+  one the assembler cannot repair: `trim_tts_silence` touches a section's head and tail, and a
+  chunk's own trailing silence lands in the middle of the section. Raised rather than spliced
+  out — a hole that long means the words are gone too, and a fresh sampling draw beats a hard
+  cut. The script's `[pause:N]` tags never reach Gemini (`_extract_pacing_tag` parses them into
+  inter-turn gaps first), so nothing legitimate approaches the threshold.
+- **Each chunk is trimmed before it joins its neighbours**, which is what keeps a chunk
+  boundary a boundary instead of a hole.
+- **A wholly silent chunk trims to `b""`** and therefore reads as a 0 ratio. `_is_silent_take`
+  only ever sees the assembled section, so one dead chunk of three could always pass it.
+- **The soft 0.80 check still does not retry, and no longer only prints.** Brisk banter
+  genuinely renders faster than the flat 400 ms/word estimate, so it is expected to trip
+  sometimes — but a `print` reaches neither the run report nor the roadmap ledger, and the
+  only record of the 2026-09-06 omission was the audio itself. It appends to `_degradations`,
+  drained as `render/gemini-take` (renamed from `render/gemini-retry`: the rows are about what
+  the take was, not only about how many rungs it took).
 
 **Azure Neural TTS (optional, `USE_AZURE_TTS=1`):** Multi-Talker model for coherent prosody across speaker transitions. SSML with `<phoneme>` IPA tags for Cariboo place names. 8,000-char conservative SSML chunk limit. Set `AZURE_TTS_PARALLEL=1` to generate both providers for comparison.
 
@@ -950,21 +1015,37 @@ that was never committed, and 08-30 backed it with a Ktunaxa Nation story that d
 exist. The instruction against it ("never fabricate names or details not in the commit
 list") had been in the prompt the whole time.
 
-- **NONE is a first-class answer**, stated twice, with the segment lengths tiered by how
-  many entries genuinely reach a listener. Same shape as the roadmap distiller's empty
-  list, and as the weekly anchor's escape hatch: a segment that must find something finds
-  something.
+- **NONE is a first-class answer**, with the segment lengths tiered by how many entries
+  genuinely reach a listener. Same shape as the roadmap distiller's empty list, and as the
+  weekly anchor's escape hatch: a segment that must find something finds something.
+- **The escape hatch had three thumbs on it and no definition of what qualifies** — "most
+  weeks the honest count is zero", "NONE is always a safe answer", "a week of internal
+  plumbing is a NONE, not a challenge" — against one unglossed phrase, "a consequence a
+  listener could notice". On 2026-09-06 a week carrying *Rank the Cariboo civic day on home
+  jurisdiction, and center the WL election* and *Recall election stories for the civic day*
+  came back NONE. The over-correction from the fabrication problem is its own failure: the
+  prompt now says what counts (what the show picks, what order it airs things in, what the
+  hosts say, how it sounds) and what does not (logging, retries, budgets, file layout), and
+  asks for an honest count **in both directions** — never pad the list, and never drop a
+  qualifying change because the segment would be short.
 - **The reply cites before it speaks.** `COVERED: <commit line>` above the dialogue,
   matched back against the real subjects at `difflib` ratio ≥ 0.9 (`_meta_moment_covered`).
   A change the model made up has no line to copy.
 - **Names are checked, not requested** (`_meta_moment_unknown_names`). Any capitalized word
-  the dialogue can't source from the commit list, the host roster, the show title or the
-  territory acknowledgment drops the segment. Sentence-initial words, possessives and
+  the dialogue can't source from the commit list, the host roster, the show title, the
+  territory acknowledgment or the show's own place names (`local_places` / `home_places`)
+  drops the segment. The place list is load-bearing and was missing: a commit writes "the WL
+  election", a host reading it aloud says "the Williams Lake election", and the guard called
+  Williams Lake an invention. Naming a place the show is *about* is never the fabrication
+  this is looking for. Sentence-initial words, possessives and
   quoted asides are excluded — verified against the four aired segments, which flag only
   the fabrications. This is the phrase-ledger trade: measure the output instead of
   lengthening the ban.
-- **A dropped segment `degrade()`s under `script/meta-moment`.** Silently vanishing weekly
-  is the failure this guard would otherwise introduce.
+- **Every Sunday without the segment `degrade()`s under `script/meta-moment`** — a guard
+  drop *and* a NONE. A quiet week is a legitimate answer and not an error, but it is still a
+  Sunday that aired without its Sunday segment, and until 2026-09-06 the only trace of that
+  decision was one line in the job log. "Was that by design?" is a question the run report
+  should answer without anyone reading the log.
 - **Nothing listener-facing goes in the prompt unconditionally.** The sentence telling the
   hosts to say "transcripts in your podcast app" handed them a topic, and they used it in a
   week with no transcript commit; it now appears only when a commit earns it. The prompt
