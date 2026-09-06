@@ -151,15 +151,16 @@
       "detail": "During audio render on 2026-08-28, the welcome section synthesis via Gemini multi-speaker hit a ReadTimeout after 120 seconds on generativelanguage.googleapis.com. The pipeline fell back to OpenAI for that section and all remaining sections and credits. The episode now spans two TTS providers—Gemini for welcome, OpenAI for body and outro—introducing a voice discontinuity in the shipped 17.7-minute episode. Investigate whether Gemini's multi-speaker quota or concurrency limits are being hit, and consider either increasing timeouts, implementing section-level retry logic before switching providers, or pre-allocating Gemini synthesis for critical segments at off-peak times.",
       "source": "review",
       "status": "open",
-      "occurrences": 4,
+      "occurrences": 5,
       "first_seen": "2026-08-28",
       "seen": [
         "2026-08-28",
         "2026-09-01",
         "2026-09-04",
-        "2026-09-05"
+        "2026-09-05",
+        "2026-09-06"
       ],
-      "last_seen": "2026-09-05"
+      "last_seen": "2026-09-06"
     },
     {
       "id": "deep-dive-citation-matching-below-roundup-parity",
@@ -225,26 +226,28 @@
       "detail": "The pipeline allocates 12 API calls to enrich thin article summaries via Brave's web search, making them narrative-ready for the script. Once the budget ran dry during this run on 2026-09-01, the remaining articles with stub bodies were culled rather than included as sparse entries. This created a 48-story gap between source volume and what shaped the final episode, introducing selection bias toward the deepest-coverage pieces. Raise the backfill budget, meter it per-article-length to preserve more thin stories, or implement a second-pass fallback that scripts stub bodies without enrichment rather than dropping them.",
       "source": "review",
       "status": "open",
-      "occurrences": 2,
+      "occurrences": 3,
       "first_seen": "2026-09-01",
       "seen": [
         "2026-09-01",
-        "2026-09-05"
+        "2026-09-05",
+        "2026-09-06"
       ],
-      "last_seen": "2026-09-05"
+      "last_seen": "2026-09-06"
     },
     {
       "id": "script-expansion-request-produced-net-word-loss",
       "title": "Script expansion request produced net word loss instead of growth.",
       "detail": "On 2026-09-02, the first draft arrived at 2,986 words against a 3,400-word target. The pipeline issued an expand pass, expecting the script to grow toward target. The shipped script measured 2,871 words—114 words shorter than the first draft. Either the expand prompt failed to add content, or trimming removed more than expansion added. Audit the expand pass logic in the script generation phase and verify the prompt is requesting additive changes without downstream cuts.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-09-02",
       "seen": [
-        "2026-09-02"
+        "2026-09-02",
+        "2026-09-06"
       ],
-      "last_seen": "2026-09-02"
+      "last_seen": "2026-09-06"
     },
     {
       "id": "brave-body-budget-hit-55-article-drop",
@@ -293,13 +296,14 @@
       "title": "One AI-tell pattern phrase shipped in the final episode without removal.",
       "detail": "The quality review on 2026-09-04 flagged 1 instance of tell-pattern language (phrasing characteristic of Claude output) in the script. The system did not remove it before shipping. The pattern was detected but the removal step either failed silently or was not enforced. Add a hard gate that blocks episode publication if any flagged patterns remain after review, or escalate unresolved flags to manual approval before render begins.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-09-04",
       "seen": [
-        "2026-09-04"
+        "2026-09-04",
+        "2026-09-06"
       ],
-      "last_seen": "2026-09-04"
+      "last_seen": "2026-09-06"
     },
     {
       "id": "voice-ratio-drift-toward-casey",
@@ -315,5 +319,5 @@
       "last_seen": "2026-09-04"
     }
   ],
-  "updated": "2026-09-05"
+  "updated": "2026-09-06"
 }
