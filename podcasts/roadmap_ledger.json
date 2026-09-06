@@ -317,6 +317,32 @@
         "2026-09-04"
       ],
       "last_seen": "2026-09-04"
+    },
+    {
+      "id": "script-expansion-ceiling-not-enforced",
+      "title": "Script expansion stopped one pass early despite remaining below target.",
+      "detail": "The first draft shipped at 2,512 words against a 3,400-word target, triggering one expand pass. The result was 2,994 words—406 words short—and the pipeline accepted this without retry. The mechanism appears to be a single-pass expansion request rather than an iterative loop that continues until target is met or a hard limit is hit. Enforce expansion cycles until the script either reaches the target word count or exhausts a maximum retry count, then log and report which condition stopped it.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-06",
+      "seen": [
+        "2026-09-06"
+      ],
+      "last_seen": "2026-09-06"
+    },
+    {
+      "id": "gemini-multi-speaker-section-timeout-pattern",
+      "title": "Gemini multi-speaker TTS timed out on the deep-dive section after five attempts.",
+      "detail": "On 2026-09-06, the deep-dive section timed out on `gemini-2.5-flash-preview-tts` multi-speaker mode after 5 unanswered attempts (ReadTimeout: HTTPSConnectionPool, read timeout=88). The pipeline fell back to OpenAI for that section and all credits, creating a mid-episode voice discontinuity. Listeners heard Gemini's voice on the roundup, OpenAI on deep dives and credits. This is the third Gemini multi-speaker timeout in the tracked issues. Implement exponential backoff with a per-section timeout ceiling, or switch multi-speaker sections to single-speaker Gemini rendering when multi-speaker fails, to avoid provider fragmentation mid-episode.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-06",
+      "seen": [
+        "2026-09-06"
+      ],
+      "last_seen": "2026-09-06"
     }
   ],
   "updated": "2026-09-06"
