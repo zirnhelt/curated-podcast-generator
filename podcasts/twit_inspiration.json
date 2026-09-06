@@ -612,6 +612,43 @@
         "https://www.wsj.com/tech/inside-big-techs-frantic-race-to-quell-the-growing-backlash-to-ai-2a717339?mod=rss_Technology",
         "https://www.businessinsider.com/anthropic-ai-agents-risk-report-safety-mythos-claude-2026"
       ]
+    },
+    "https://pdst.fm/e/pscrb.fm/rss/p/mgln.ai/e/294/cdn.twit.tv/megaphone/twig_886/ARML3228373168.mp3": {
+      "title": "IM 886: Infinite Slop - The End of Apps? Meet the Agentic OS Built for Your Phone",
+      "pub_date": "Wed, 02 Sep 2026 19:55:11 PDT",
+      "episode_url": "https://twit.tv/shows/intelligent-machines/episodes/886",
+      "harvested_at": "2026-09-06T10:30:51.897583+00:00",
+      "question": "Should AI agents run locally on phones rather than depend on massive cloud-based models?",
+      "perspectives": [
+        "Specialized on-device agents offer privacy, speed, and user control over centralized services",
+        "Large cloud models provide superior reasoning, real-time updates, and economies of scale despite privacy tradeoffs"
+      ],
+      "open_questions": [
+        "At what capability threshold do on-device agents become insufficient for complex multi-step tasks?",
+        "How do local agents handle security vulnerabilities (e.g., Astra's 'critical' rating) without centralized patching infrastructure?",
+        "Will fragmenting AI across millions of specialized local models create interoperability and data-sync problems?",
+        "Can a 27-year-old startup's on-device approach compete economically as cloud vendors (Nvidia's $12.9B Hugging Face acquisition) consolidate AI infrastructure?"
+      ],
+      "topics": [
+        "On-device vs. cloud AI agent architecture",
+        "AI model security vulnerabilities and patch management",
+        "Privacy implications of personal intelligence systems (Google Personal Intelligence)",
+        "AI platform consolidation (Nvidia acquisition of Hugging Face)",
+        "Generated content quality and 'infinite slop' problem",
+        "Monetization of free-tier AI products (OpenAI ads in India)"
+      ],
+      "discussed_links": [
+        "https://cloud.typography.com/6494954/686486/css/fonts.css",
+        "https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600",
+        "https://podcasts.apple.com/us/podcast/intelligent-machines-audio/id326120877",
+        "http://pcasts.in/twig",
+        "https://twit.memberful.com/account/feeds?id=9064",
+        "https://theagi.company/",
+        "https://www.bloomberg.com/news/articles/2026-09-02/google-avoids-ad-exchange-sale-as-judge-orders-tech-integration",
+        "https://techcrunch.com/2026/08/27/openai-to-start-showing-ads-on-chatgpts-free-and-go-tiers-in-india",
+        "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
+        "https://www.wsj.com/tech/ai/openai-to-restrict-astra-model-after-rating-it-critical-cyber-risk-499b5a46?mod=rss_Technology"
+      ]
     }
   }
 }
