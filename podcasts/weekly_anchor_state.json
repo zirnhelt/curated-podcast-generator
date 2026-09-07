@@ -39,6 +39,16 @@
       "framings": {},
       "assigned_at": "2026-08-31",
       "origin": "seeded"
+    },
+    "2026-W37": {
+      "id": "lost-when-easier",
+      "question": "What gets lost when something gets easier?",
+      "dimension": "skill-convenience",
+      "premise": "Every tool that removes friction also removes the practice that friction produced \u2014 reading a map, reading a river, reading a room, knowing a stand of timber by walking it. Sometimes what's lost was drudgery worth losing. Sometimes it was the only way the knowledge was ever transmitted. The question is how to tell the two apart before the last person who had the skill retires.",
+      "reading": null,
+      "framings": {},
+      "assigned_at": "2026-09-07",
+      "origin": "seeded"
     }
   },
   "used": [
@@ -65,6 +75,12 @@
       "dimension": "autonomy-interdependence",
       "question": "Is it better to be self-sufficient or well-connected?",
       "week": "2026-W36"
+    },
+    {
+      "id": "lost-when-easier",
+      "dimension": "skill-convenience",
+      "question": "What gets lost when something gets easier?",
+      "week": "2026-W37"
     }
   ],
   "generated": []

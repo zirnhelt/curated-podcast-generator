@@ -1,30 +1,4 @@
 {
-  "2026-06-08": {
-    "timestamp": 1780928368.7136,
-    "date": "2026-06-08",
-    "theme": "Arts, Culture & Digital Storytelling",
-    "central_question": "When platforms choose not to filter or label AI-generated content despite having the technical capability, who bears the cost and how can authentic regional cultural production survive?",
-    "riley_position": "Platform filters are a design choice, not a technical limitation; the real lever for change is user-controlled filtering and platform accountability, but the more promising path is building platform-independent cultural infrastructure through shared digital coordination at regional scale.",
-    "riley_key_evidence": [
-      "Suno raised $400 million while copyright cases remain unresolved, and the platform decision not to filter AI content is a product choice, not technical limitation",
-      "The reggae band case from May shows that direct channels and live events create audience relationships that survive AI-diluted streaming better than algorithmic discovery",
-      "A shared Cariboo arts database and cooperative funding model for a regional digital coordinator could make cultural programming discoverable without relying on platform recommendation surfaces"
-    ],
-    "casey_position": "The structural problem is that rural communities lack the capacity and audience to differentiate authentically in a synthetic-content-flooded environment; even legal frameworks that penalize AI companies won't reduce volume or improve discoverability for local artists.",
-    "casey_key_evidence": [
-      "Rural organizations like Station House Gallery depend entirely on uncontrolled discoverability ecosystems and lack PR and distribution capacity that major institutions have",
-      "The cold-start problem means new Indigenous filmmakers starting from zero face a measurably more hostile content environment than three years ago",
-      "Suno's $5.4 billion valuation exceeds the entire BC Arts Council's historical funding, creating structural asymmetry in resources shaping the content environment"
-    ],
-    "resolution": "Riley and Casey converged on the cooperative funding model as a concrete structural intervention worth investigating, agreeing the real question is whether regional cultural organizations can pool resources for shared digital infrastructure the way rural broadband co-ops do, rather than waiting for platforms to change. They acknowledged resource and governance gaps remain but committed to gathering examples of where this has been attempted.",
-    "topics_covered": [
-      "Platform design choices around AI content filtering and their impact on authentic regional cultural visibility",
-      "Capital asymmetry between AI companies and regional arts organizations",
-      "Discovery algorithms as a mechanism that makes synthetic content more visible than authentic local storytelling",
-      "Cooperative digital infrastructure models as alternative to platform-dependent distribution",
-      "Indigenous cultural production and platform-independent knowledge systems as structural resistance to AI generation"
-    ]
-  },
   "2026-06-09": {
     "timestamp": 1781001588.463285,
     "date": "2026-06-09",
@@ -2427,6 +2401,41 @@
       "Alcohol-attributable cancer mortality trends and public health communication failure",
       "Infrastructure visibility: monitoring stations, fire dispatch coordination, and drug approval processes",
       "Local versus regional decision-making: campfire bans, evacuation networks, and provincial resource allocation"
+    ]
+  },
+  "2026-09-07": {
+    "timestamp": 1788769640.191459,
+    "date": "2026-09-07",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "focus": "words-journalism",
+    "anchor": "lost-when-easier",
+    "central_question": "When storytelling tools become easier to use, what institutional knowledge and editorial judgment disappears along with the difficulty, and how do newsrooms maintain that skill?",
+    "riley_position": "AI tools are expanding faster than newsrooms can safely adopt them, but the real crisis isn't whether the tools work today\u2014it's whether the judgment and pattern recognition that experienced editors develop over decades gets deliberately taught to the next generation, or allowed to die with institutional memory.",
+    "riley_key_evidence": [
+      "A sixty-nine-year-old copy editor with fifty years of experience caught a subtle judgment error that no tool would have caught, demonstrating that pattern recognition and contextual judgment develop over time and can't be automated",
+      "The Cowichan Aboriginal title decision coverage showed how faster, cheaper storytelling (without the friction of actual explanation) spreads wrong versions faster than corrections\u2014compression and speed beat nuance",
+      "Microsoft's Copilot logs showed the leading commercial AI tool barely reproduces full sentences from Times journalism, suggesting the underlying skill of original reporting isn't disappearing as fast as feared"
+    ],
+    "casey_position": "Standing outside AI adoption hasn't protected anyone from the legal and financial fights already underway, but running toward it without safeguards has produced substantial errors; the real unresolved problem is how to train the next generation of editors when entry-level tasks that used to teach judgment get handed to machines instead of junior hires.",
+    "casey_key_evidence": [
+      "The BBC tested its own AI tools and found a 'confused cocktail of errors'\u2014wrong facts stitched into plausible copy, misrepresented sourcing, and invented details that sound real",
+      "A fall study found AI assistants misrepresenting news content in a substantial share of test cases, with wrong sourcing, invented details, and stale information presented as current",
+      "Regional papers like the Tribune have thin staffing with no bench of juniors coming up behind experienced editors learning the trade by doing the boring parts of it"
+    ],
+    "resolution": "Riley and Casey identified two separate gaps rather than resolving them: one about whether AI is replacing reporting skill (less dire than feared), and one about institutional knowledge loss when nobody documents or trains the judgment that lives in one person's head and their contact list. They ended by asking listeners directly whether any Cariboo outlet is asking these questions or just adopting cheaper tools and hoping the problem solves itself.",
+    "topics_covered": [
+      "Whether AI tools should replace editorial review processes or be adopted with human filters built in from the start",
+      "How experienced editors catch subtle errors and judgment calls that tools cannot, and whether this skill can be transmitted to the next generation",
+      "The gap between what complex stories actually say (Cowichan title decision) versus how they get simplified and spread faster in compressed form",
+      "The role of institutional knowledge, local context, and community understanding (pow wow protocol) that doesn't exist in AI training data",
+      "The economic pressure on regional newsrooms to cut entry-level positions rather than invest in deliberate apprenticeship training"
+    ],
+    "calls_to_action": [
+      "If you work at a paper, station, or any outlet where words get reviewed before publication, email feedback at cariboo signals dot c-a and tell us how you're training the next person to catch what you catch\u2014this is a direct question to listeners about current practices.",
+      "Go read something with an editor behind it\u2014Casey's closing suggestion to seek out work that has undergone human editorial review.",
+      "Newsrooms should consider building an actual junior position doing editorial tasks a machine could handle, kept on purpose so judgment gets built in a human being over years, rather than just adopting cheaper AI subscriptions.",
+      "Cariboo Chilcotin Partners for Literacy's model of person-to-person teaching should be applied to newsroom judgment training: deliberate apprenticeship built on purpose instead of hoped for by accident.",
+      "Document institutional knowledge\u2014when reporters like the pow wow specialist move on, their understanding of protocol, tone, community context, and contact lists should be recorded formally rather than disappearing with them."
     ]
   }
 }

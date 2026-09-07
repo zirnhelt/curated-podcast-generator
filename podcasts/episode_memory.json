@@ -1,26 +1,4 @@
 {
-  "2026-08-02": {
-    "timestamp": 1785665939.459347,
-    "topics": [
-      "[ScienceAlert] Hell-World Venus May Have Once Had Oceans Acr",
-      "[Tom's Hardware] Firm that uses AI to locate ancient lost sh",
-      "[ScienceDaily] AI can tell if your brain is aging faster tha",
-      "[Kagi Small Web] Second Place in Tech Is Usually the More Pr",
-      "[Vancouver Sun] B.C. wildfires: Cooler weather forecast but ",
-      "[ScienceDaily] Alien signals may be hiding where we rarely l",
-      "[ScienceDaily] Scientists left water inside a battery and ne",
-      "[Engadget] What is a silicon carbon battery and is it the an"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-08-02",
-    "focus": "earth-systems",
-    "focus_name": "Earth Systems & Climate Science"
-  },
   "2026-08-03": {
     "timestamp": 1785757932.839195,
     "topics": [
@@ -746,5 +724,25 @@
     "date": "2026-09-06",
     "focus": "discovery-health",
     "focus_name": "Discovery, Health & How Science Works"
+  },
+  "2026-09-07": {
+    "timestamp": 1788769636.187226,
+    "topics": [
+      "[Williams Lake Tribune] Williams Lake First Nation Competiti",
+      "[Williams Lake Tribune] Budget 2027: Williams Lake City Coun",
+      "[My Cariboo Now] Many B.C. drivers unaware amber lights trig",
+      "[Quesnel Cariboo Observer] Disturbing \u2018Cat in the Hat\u2019 trend",
+      "[ArchDaily] Public Library in Choszcz\u00f3wka / Ambient",
+      "The Tyee Podcast: Why We All Win with the Cowichan Decision",
+      "[Columbia Journalism Review] Should the Press \u2018Run Toward\u2019 A",
+      "[Columbia Journalism Review] The 69-Year-Old Rookie"
+    ],
+    "themes": [
+      "rural development",
+      "environmental impact"
+    ],
+    "date": "2026-09-07",
+    "focus": "words-journalism",
+    "focus_name": "Writing, Journalism & Podcasting"
   }
 }
