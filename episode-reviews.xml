@@ -5,43 +5,43 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Mon, 07 Sep 2026 10:06:05 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 07 Sep 2026 16:23:08 +0000</lastBuildDate>
     <item>
       <title>Episode Review — Cariboo Signals, September 7, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-07.html</link>
       <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-07.html</guid>
-      <pubDate>Mon, 07 Sep 2026 10:06:05 +0000</pubDate>
+      <pubDate>Mon, 07 Sep 2026 16:23:08 +0000</pubDate>
       <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/34098738164"&gt;34098738164&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h3&gt;Gemini multi-speaker timed out; the episode split voices&lt;/h3&gt;
+&lt;h3&gt;Gemini's multi-speaker mode failed mid-episode; OpenAI finished it&lt;/h3&gt;
 
-&lt;p&gt;The text-to-speech render for the "news" section failed on Gemini's multi-speaker model after 4 attempts. The error was a read timeout from Google's API. The pipeline fell back to single-speaker OpenAI for the remaining sections and credits, leaving the already-rendered portions in their original voices.&lt;/p&gt;
+&lt;p&gt;The news section broke during rendering. Gemini's multi-speaker model timed out after 4 attempts — one rejected outright, three unanswered — while trying to synthesize the anchor and guest voices together. The pipeline fell back to OpenAI for all remaining segments and the credits.&lt;/p&gt;
 
-&lt;p&gt;This creates an audible seam. Casey and Riley's voice ratio across the episode is 0.98, but that balance holds only for the sections that made it through Gemini. The news segment and everything after it will sound different to the listener.&lt;/p&gt;
+&lt;p&gt;This split the episode's voice delivery. Listeners will hear Gemini's character work in the already-rendered sections, then OpenAI's in the latter half. The anchor's voice ratio held steady at 0.98 (Casey to Riley), but the tonal seam will be audible.&lt;/p&gt;
 
-&lt;h3&gt;Script hit target after an expand pass&lt;/h3&gt;
+&lt;h3&gt;Body text budget exhausted; thin articles may get cut&lt;/h3&gt;
 
-&lt;p&gt;The first draft came in at 2,341 words against a target of 3,400. The script was sent back for expansion and shipped at 3,403 words. The final episode ran 20.4 minutes of audio.&lt;/p&gt;
+&lt;p&gt;Brave Search consumed its full call budget filling in article summaries. Of 15 roundup citations, 12 matched to full text; 3 remain as stubs. The deep dive fared better: 2 of 3 citations matched.&lt;/p&gt;
 
-&lt;h3&gt;Citation matching fell short on deep dives&lt;/h3&gt;
+&lt;p&gt;Remaining articles with thin bodies may be dropped from the final edit. This is a choice the pipeline will make downstream, not a loss that already happened, but the constraint is now active.&lt;/p&gt;
 
-&lt;p&gt;Of 15 roundup citations, 12 matched their sources. Of 3 deep-dive citations, 2 matched. The unmatched citations remain in the episode without verification.&lt;/p&gt;
+&lt;h3&gt;Script hit target after one expand pass&lt;/h3&gt;
 
-&lt;h3&gt;Brave API budget exhausted mid-run&lt;/h3&gt;
+&lt;p&gt;The first draft came in at 2,341 words against a 3,400-word target. It was sent back for expansion and shipped at 3,403 words — 3 words over. The pipeline treated this as within tolerance.&lt;/p&gt;
 
-&lt;p&gt;The pipeline allocated 3 calls to Brave for body-backfill—summaries of thin articles. All 3 calls were spent. Remaining articles below word count kept their stub bodies and risk being cut from the script as sparse.&lt;/p&gt;
+&lt;h3&gt;Citation tracking split between roundup and deep dive&lt;/h3&gt;
 
-&lt;p&gt;The daily anchor framing—"What gets lost when something gets easier?"—had no per-weekday variations in the prompt. Each day frames the question unaided, with no structural diversity across the week.&lt;/p&gt;
+&lt;p&gt;52 stories were dropped before script generation. The 3 deep dives that made it had the tightest citation alignment: 2 of 3 sources confirmed. Roundup pieces sourced from fewer anchors — 12 of 15 citations matched — suggesting either broader topic coverage or thinner per-story sourcing.&lt;/p&gt;
 
-&lt;h3&gt;Gemini render retries added variance&lt;/h3&gt;
+&lt;h3&gt;Anchor framing repeated without variation&lt;/h3&gt;
 
-&lt;p&gt;Two sections required retry attempts on Gemini's TTS model. One was retried once, another three times. Both completed successfully, but delivery from those takes may differ from the rest of the episode's voice.&lt;/p&gt;
+&lt;p&gt;The pipeline's debate question — "When storytelling tools become easier to use, what institutional knowledge and editorial judgment disappears along with the difficulty, and how do newsrooms maintain that skill?" — appears in the script each day unaided by per-weekday reframing. This is a documented degradation, not a failure. The anchor will speak the same preamble five times this week.&lt;/p&gt;
 
-&lt;p&gt;One TTS segment came back shorter than its word count predicted. A retry was generated. The longer of the two takes was kept, so nothing dropped from the episode.&lt;/p&gt;
+&lt;h3&gt;Multiple manual runs before the scheduled slot&lt;/h3&gt;
 
-&lt;h3&gt;Episode shipped and published&lt;/h3&gt;
+&lt;p&gt;Three test runs completed between 08:05 and 10:09 UTC. The scheduled Fallback 2 trigger (3:05 AM Pacific) fired 377 minutes late and was still in progress at the time of this report. No conclusion yet.&lt;/p&gt;
 
-&lt;p&gt;52 roundup articles were dropped. 3 deep dives shipped. The pipeline produced 223 RSS episodes total. Audio output was 18.7 MB; video output was 58.3 MB for the same 20.4-minute runtime. All stages completed on time across three manual runs between 08:05 and 10:05 UTC.&lt;/p&gt;
+&lt;p&gt;Episode 223 is queued to RSS. Audio is 20.4 minutes at 18.7 MB; video matches the runtime at 20.4 minutes and 58.3 MB. The pipeline used 87,843 Claude input tokens and 12 API calls to Claude plus 3 to Brave Answers.&lt;/p&gt;
 
 &lt;h3&gt;The day's triggers&lt;/h3&gt;
 &lt;table&gt;
@@ -49,7 +49,8 @@
 &lt;tbody&gt;
 &lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-07T08:05:28Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-07T09:05:30Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-07T10:05:27Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-07T10:05:27Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-09-07T16:22:23Z&lt;/td&gt;&lt;td&gt;+377 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
