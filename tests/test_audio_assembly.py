@@ -150,6 +150,9 @@ class RichFakeSegment(FakeSegment):
     def fade_in(self, ms=0):
         return self
 
+    def pan(self, amount=0.0):
+        return self
+
     def overlay(self, other, position=0):
         return RichFakeSegment(self.length)
 
@@ -481,6 +484,50 @@ class TestSilentTakeIsDroppedNotShipped:
         # The surviving first turn starts at the chapter mark (inside the music
         # fade), not a full heuristic gap after the music ended.
         assert deep[0]["start_ms"] == pytest.approx(deep_start_ms, abs=100)
+
+
+class TestHostPanningDuringRoundupAndDeepDive:
+    """Riley/Casey get a subtle stereo separation in the news roundup and deep
+    dive only — never the welcome, cold open, spoken credits, or community
+    spotlight (PSA). OpenAI per-segment path only: Gemini/Azure synthesize a
+    whole section (both hosts) as one clip, so there's no per-speaker channel
+    to pan there."""
+
+    def test_pan_applied_only_to_roundup_and_deep_dive_turns(self, monkeypatch, tmp_path):
+        pg = podcast_generator
+        _openai_only_setup(monkeypatch, tmp_path)
+
+        pans = []
+
+        class PanRecordingSegment(RichFakeSegment):
+            def pan(self, amount=0.0):
+                pans.append(amount)
+                return self
+
+            @staticmethod
+            def from_mp3(*a, **k):
+                return PanRecordingSegment(5000)
+
+        monkeypatch.setattr(pg, "AudioSegment", PanRecordingSegment)
+        out = str(tmp_path / "episode.mp3")
+
+        assert pg.generate_audio_from_script("script", out, theme_name="Test Theme") == out
+
+        # welcome (riley) → no pan; news (riley) → -0.15; deep dive
+        # (riley, casey, riley) → -0.15, +0.15, -0.15; credits → no pan.
+        assert pans == [
+            pg.HOST_PAN["riley"],
+            pg.HOST_PAN["riley"],
+            pg.HOST_PAN["casey"],
+            pg.HOST_PAN["riley"],
+        ]
+
+    def test_riley_panned_left_casey_panned_right(self):
+        assert podcast_generator.HOST_PAN["riley"] < 0
+        assert podcast_generator.HOST_PAN["casey"] > 0
+        # Subtle, not hard-panned.
+        assert abs(podcast_generator.HOST_PAN["riley"]) <= 0.3
+        assert abs(podcast_generator.HOST_PAN["casey"]) <= 0.3
 
 
 class TestTtsOnlyEmitsSidecars:

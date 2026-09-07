@@ -883,6 +883,13 @@ TARGET_MUSIC_DBFS = -28.0   # Music ducked beneath speech
 # Intro theme runs ~10% louder (+1.5 dB) than other music to sit closer to voice level
 TARGET_INTRO_MUSIC_DBFS = -26.5
 
+# Subtle per-host stereo separation during the news roundup and deep dive —
+# a light widening cue for headphone listeners, not a hard-panned effect.
+# OpenAI TTS only: Gemini/Azure synthesize a whole section (both hosts) as one
+# clip for cross-speaker prosody, so there's no per-speaker channel to pan there.
+HOST_PAN = {"riley": -0.15, "casey": 0.15}
+PANNED_SECTIONS = {"news", "deep"}
+
 # Short fade applied to the end of each speech section before the ambient transition gap.
 # Prevents a click/pop caused by TTS voices ending on a non-zero sample when silence follows.
 SECTION_BOUNDARY_FADE_MS = 40
@@ -8757,6 +8764,10 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
                     if not chunk_audios:
                         continue  # whole turn was silent; prev_* stay on the last turn heard
                     speech = sum(chunk_audios[1:], chunk_audios[0])
+                    if prefix in PANNED_SECTIONS:
+                        pan_amount = HOST_PAN.get(segment['speaker'])
+                        if pan_amount is not None:
+                            speech = speech.pan(pan_amount)
 
                     # Determine gap: music overlap (first turn rendered) > explicit
                     # tag > heuristic. Tracked as a pending value rather than keyed on
