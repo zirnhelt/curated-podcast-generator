@@ -490,6 +490,44 @@ class TestSynthesizeRetries:
         # chunk for the ~15 min five rungs of a 600 s leash would allow.
         assert gemini_tts.READ_TIMEOUT_MAX_S <= gemini_tts.SECTION_BUDGET_S / 4
 
+    def test_the_leash_budgets_the_prompt_scaffolding_not_just_the_speech(self):
+        """The 2026-09-05..07 defect: the leash was scaled on `_transcript_chars`
+        while the endpoint spends its time on the whole request.
+
+        A multi-speaker chunk carries 1 060-1 260 chars of audio profile,
+        performance notes, transcript marker and per-turn speaker labels — 32-36%
+        of a news or deep dive request, about 50 s of leash that was never
+        budgeted. The chunks that failed were leashed *below* the slowest
+        successful call at their own size (3 446 ch -> 88 s, while a 3 538-ch
+        request answered at 89.8 s the same night).
+        """
+        segs = [{"speaker": "riley" if i % 2 else "casey",
+                 "text": "x" * 270, "gap_ms": None} for i in range(10)]
+        transcript = gemini_tts._transcript_chars(segs)
+        request = len(
+            gemini_tts._build_payload(segs)["contents"][0]["parts"][0]["text"]
+        )
+        assert request > transcript + 500, "scaffolding is the thing being tested"
+        # Priced on the request, so the scaffolding is inside the leash.
+        assert gemini_tts._read_timeout_for(segs) == int(
+            min(gemini_tts.READ_TIMEOUT_MAX_S,
+                max(gemini_tts.READ_TIMEOUT_MIN_S,
+                    request * gemini_tts.READ_TIMEOUT_MS_PER_CHAR / 1000))
+        )
+        # And strictly more than the old transcript-only fit would have given.
+        assert gemini_tts._read_timeout_for(segs) > (
+            transcript * gemini_tts.READ_TIMEOUT_MS_PER_CHAR / 1000
+        )
+
+    def test_more_turns_at_the_same_transcript_length_earn_a_longer_leash(self):
+        """Turn count is real request weight: each turn adds a speaker label."""
+        few = [{"speaker": "riley", "text": "x" * 2400, "gap_ms": None}]
+        many = [{"speaker": "riley" if i % 2 else "casey",
+                 "text": "x" * 80, "gap_ms": None} for i in range(30)]
+        assert (gemini_tts._transcript_chars(few)
+                == gemini_tts._transcript_chars(many))
+        assert gemini_tts._read_timeout_for(many) > gemini_tts._read_timeout_for(few)
+
     def test_read_timeout_scales_with_the_size_of_the_request(self):
         """A 350-char cold open must not get the same leash as an 8.5k chunk.
 
@@ -521,11 +559,18 @@ class TestSynthesizeRetries:
         The rule is now that a full chunk prices below the ceiling, so the fit
         governs and the clamp is a safety rail. A single speaker turn longer
         than the whole chunk limit would still be clamped — at ~300 chars a turn
-        that does not happen here."""
-        full_chunk = [{"speaker": "riley",
-                       "text": "x" * gemini_tts.TRANSCRIPT_CHAR_LIMIT, "gap_ms": None}]
-        assert (gemini_tts._read_timeout_for(full_chunk)
-                < gemini_tts.READ_TIMEOUT_MAX_S)
+        that does not happen here.
+
+        Swept over turn shapes as well as size: the leash scales on the request,
+        so turn count moves it independently of transcript length."""
+        for per_turn in (100, 270, gemini_tts.TRANSCRIPT_CHAR_LIMIT):
+            full_chunk = [
+                {"speaker": "riley" if i % 2 else "casey",
+                 "text": "x" * per_turn, "gap_ms": None}
+                for i in range(max(1, gemini_tts.TRANSCRIPT_CHAR_LIMIT // per_turn))
+            ]
+            assert (gemini_tts._read_timeout_for(full_chunk, continuing=True)
+                    < gemini_tts.READ_TIMEOUT_MAX_S), per_turn
 
     def test_429_error_body_not_truncated_before_quota_details(self, monkeypatch):
         """The quota name in error.details sits past 300 chars — keep it."""
@@ -599,24 +644,63 @@ class TestChunkSizing:
         return [{"speaker": "riley" if i % 2 else "casey",
                  "text": "x" * per_turn, "gap_ms": None} for i in range(n)]
 
-    def test_the_read_timeout_ceiling_is_non_binding_by_construction(self):
+    @staticmethod
+    def _worst_chunk_leash():
+        """Leash the largest chunk the render can make actually wants.
+
+        Measured through `_read_timeout_for` on real chunk shapes rather than
+        from `TRANSCRIPT_CHAR_LIMIT` arithmetic, because the leash now scales on
+        the *request* and the prompt scaffolding grows with turn count: the same
+        3 000 transcript chars price differently as 11 long turns or 100 short
+        ones. Both are swept.
+        """
+        return max(
+            gemini_tts._read_timeout_for(chunk, continuing)
+            for per_turn in (30, 60, 100, 150, 200, 270, 400)
+            for total in (6382, 7332, 7802, 8521, 10278)
+            for chunk in gemini_tts._balanced_chunks(
+                [{"speaker": "riley" if i % 2 else "casey",
+                  "text": "x" * per_turn, "gap_ms": None}
+                 for i in range(total // per_turn)]
+            )
+            for continuing in (True, False)
+        )
+
+    def test_the_read_timeout_ceiling_is_non_binding(self):
         """The invariant this whole retune rests on: the largest request the
         render can make must price BELOW the ceiling, or the clamp is back and
-        the fitted formula stops governing the chunk that matters most."""
-        largest = gemini_tts.TRANSCRIPT_CHAR_LIMIT * gemini_tts.READ_TIMEOUT_MS_PER_CHAR / 1000
-        assert largest <= gemini_tts.READ_TIMEOUT_MAX_S, (
-            "TRANSCRIPT_CHAR_LIMIT was raised without READ_TIMEOUT_MAX_S — the "
-            "read timeout is clamped again and the largest chunk is under-leashed"
+        the fitted formula stops governing the chunk that matters most.
+
+        This used to be computed as TRANSCRIPT_CHAR_LIMIT * MS_PER_CHAR, which
+        guarded the wrong quantity — the leash is spent on the request, and the
+        prompt scaffolding it left out is 771 chars for a single-speaker turn
+        and 1 060-1 260 for a multi-speaker chunk. The test passed at a 150 s
+        ceiling on 2026-09-05..07 while every news and deep dive chunk was
+        under-leashed by ~50 s, which is the whole reason those sections failed.
+
+        So it is measured through `_read_timeout_for` on real chunk shapes now.
+        The bound is empirical, not construction: an arbitrarily short-turned
+        chunk carries arbitrarily much label text. 30-char turns is well past
+        anything the show has written (the worst real script wants 172 s).
+        """
+        worst = self._worst_chunk_leash()
+        assert worst < gemini_tts.READ_TIMEOUT_MAX_S, (
+            f"the largest chunk wants {worst}s against a "
+            f"{gemini_tts.READ_TIMEOUT_MAX_S}s ceiling — the read timeout is "
+            "clamped again and the chunk that matters most is under-leashed"
         )
 
     def test_the_section_budget_still_affords_four_attempts(self):
         """Budget and leash trade against each other; moving one alone is a
-        silent cut to the other."""
-        leash = gemini_tts.READ_TIMEOUT_MAX_S
+        silent cut to the other.
+
+        Four attempts must fit at the worst chunk's real leash, and must NOT fit
+        at the ceiling — so a request clamped there still fails fast.
+        """
         backoffs = [r.backoff_s for r in gemini_tts.RETRY_LADDER[:4]]
-        assert sum(backoffs) + 4 * leash > gemini_tts.SECTION_BUDGET_S >= \
-            sum(backoffs[:4]) + 4 * (gemini_tts.TRANSCRIPT_CHAR_LIMIT
-                                     * gemini_tts.READ_TIMEOUT_MS_PER_CHAR / 1000)
+        assert sum(backoffs) + 4 * gemini_tts.READ_TIMEOUT_MAX_S \
+            > gemini_tts.SECTION_BUDGET_S \
+            >= sum(backoffs) + 4 * self._worst_chunk_leash()
 
     def test_a_news_roundup_splits_into_answerable_chunks(self):
         """6 400-8 500 chars is what the roundup has measured every night."""
@@ -788,6 +872,55 @@ class TestTransportFailureRouting:
         assert [m for m, _ in calls] == (
             [gemini_tts.GEMINI_TTS_FALLBACK_MODEL] * len(gemini_tts.RETRY_LADDER)
         )
+
+    def test_transport_failures_alternate_models_rather_than_pinning_one(
+        self, monkeypatch
+    ):
+        """The 2026-09-06 defect: one failure pinned the chunk to one model.
+
+        `_next_model_rung` searched the ladder forward only. A transport failure
+        at rung 0 jumped to the first fallback-model rung; a transport failure
+        *there* found no later rung naming a different model, returned None, and
+        the chunk re-asked the fallback for the rest of its budget. The deep dive
+        met one HTTP 500 on the primary and then spent four attempts and 352 s on
+        the fallback — on a night the primary had answered four other chunks.
+        """
+        calls = self._timeouts(monkeypatch)
+        with pytest.raises(Exception):
+            _synthesize_chunk(SEGS)
+        models = [m for m, _ in calls]
+        assert len(models) >= 4, models
+        # Alternating, so neither model gets the whole budget to itself.
+        assert models[0] == gemini_tts.GEMINI_TTS_MODEL
+        assert models[1] == gemini_tts.GEMINI_TTS_FALLBACK_MODEL
+        assert models[2] == gemini_tts.GEMINI_TTS_MODEL
+        assert models[3] == gemini_tts.GEMINI_TTS_FALLBACK_MODEL
+        # No attempt repeats the model that just failed while another is free.
+        assert all(a != b for a, b in zip(models, models[1:])), models
+
+    def test_alternating_the_model_never_sheds_the_prompt(self, monkeypatch):
+        """Swapping models is orthogonal to the shape ladder: an unanswered
+        request still carries no verdict on its own wording, so every attempt
+        keeps the full-quality shape however many times the model changes."""
+        calls = self._timeouts(monkeypatch)
+        with pytest.raises(Exception):
+            _synthesize_chunk(SEGS, continuing=True)
+        style = gemini_tts._style_prompt()
+        assert all(gemini_tts.CONTINUATION_NOTE in p for _, p in calls)
+        assert style and all(style in p for _, p in calls)
+
+    def test_the_degradation_names_the_models_that_actually_failed(
+        self, monkeypatch
+    ):
+        """`_ladder_summary` named GEMINI_TTS_MODEL unconditionally, so a chunk
+        that failed mostly on the fallback was reported — in the run report and
+        the roadmap ledger it feeds — as having failed on the primary."""
+        self._timeouts(monkeypatch)
+        with pytest.raises(Exception) as excinfo:
+            _synthesize_chunk(SEGS)
+        summary = getattr(excinfo.value, "ladder_summary", "")
+        assert gemini_tts.GEMINI_TTS_MODEL in summary
+        assert gemini_tts.GEMINI_TTS_FALLBACK_MODEL in summary, summary
 
     def test_rejection_still_walks_the_prompt_rungs(self, monkeypatch):
         """finishReason OTHER *is* a verdict on the prompt — keep shedding."""

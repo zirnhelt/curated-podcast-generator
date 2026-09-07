@@ -228,8 +228,34 @@ REQUEST_CONNECT_TIMEOUT = 15
 # ceiling sits above that. That invariant is asserted in tests — raising the
 # chunk limit without raising this restores the clamp silently, which is the
 # failure mode that cost a month of episodes their voices.
+#
+# Raised 150 -> 210 when the fit moved from transcript chars to request chars.
+# The invariant is unchanged — the largest chunk the render can make must price
+# below the ceiling — but the quantity it is measured on grew by the prompt
+# scaffolding, so the number had to grow with it.
+#
+# The bound is empirical, and worth stating plainly because "by construction"
+# overstates it: scaffolding grows with *turn count*, so a 3 000-char chunk of
+# very short turns carries more label text than one of long turns and prices
+# higher. Over the whole back catalogue (223 scripts) the worst chunk wants
+# 172 s; the test sweeps synthetic shapes down to 30-char turns, whose worst
+# wants 191 s. 210 clears both with room, which matters because this number and
+# SECTION_BUDGET_S bracket each other from opposite sides — a ceiling fitted
+# tightly to today's worst shape leaves no slack for tomorrow's.
+# What is NOT bounded is a chunk of arbitrarily many one-word turns, which no
+# script has produced — if the ceiling ever starts clamping, that is the thing
+# to measure before raising it again.
 READ_TIMEOUT_MIN_S = int(os.getenv("GEMINI_TTS_READ_TIMEOUT_MIN_S", "75"))
-READ_TIMEOUT_MAX_S = int(os.getenv("GEMINI_TTS_READ_TIMEOUT_MAX_S", "150"))
+READ_TIMEOUT_MAX_S = int(os.getenv("GEMINI_TTS_READ_TIMEOUT_MAX_S", "210"))
+# 40 ms per REQUEST char — ~1.55x the slowest answered call measured across
+# 2026-09-05..07 (25.7 ms/char, 55.1 s for 2 144 chars), which is the tail
+# margin this is for. Note the fit is weak by construction: across those three
+# nights request size explained only 14% of the variance in latency among
+# answered calls (r² = 0.14), and two calls within 5% of each other in size came
+# back 5.4x apart (16.7 s vs 89.8 s). Latency here is dominated by server-side
+# queueing, not payload size. If a refit is ever done, fit the *tail* rather
+# than the mean — or drop the scaling for a flat leash, which is what r² = 0.14
+# actually argues for.
 READ_TIMEOUT_MS_PER_CHAR = float(os.getenv("GEMINI_TTS_READ_TIMEOUT_MS_PER_CHAR", "40"))
 
 
@@ -296,15 +322,37 @@ def _balanced_chunks(segments: list[dict]) -> list[list[dict]]:
     return _pack_segments(segments, TRANSCRIPT_CHAR_LIMIT)
 
 
-def _read_timeout_for(segments: list[dict]) -> int:
+def _read_timeout_for(segments: list[dict], continuing: bool = False) -> int:
     """Read timeout for a request carrying *segments*, clamped to [MIN, MAX].
 
-    The clamp is what makes this safe to shorten: the ceiling is the old flat
-    value, so the largest chunks wait exactly as long as they always have, and
-    only the small requests — where the ladder was wasting whole minutes on
-    silence — get a shorter leash.
+    Measured on the **request**, not the transcript. The endpoint spends its
+    time on everything it is sent, and the prompt scaffolding is not small: 771
+    chars for a single-speaker turn and 1 060–1 260 for a multi-speaker chunk
+    (audio profile, performance notes, the transcript marker, a `Riley: ` label
+    per turn). Scaling on `_transcript_chars` left 32–36% of every news and deep
+    dive request unbudgeted — about 50 s of missing leash.
+
+    That mis-measurement is the whole shape of the failures logged 2026-09-05..07,
+    because the floor hides it and the scale only bites past ~1 875 transcript
+    chars:
+
+    - cold open (333–373 chars) and welcome (669–1 012) price under the floor,
+      get READ_TIMEOUT_MIN_S, and succeed;
+    - news and deep dive chunks (2 200–2 775) get the scaled value, and fail.
+
+    Two chunks on 2026-09-06 settle it. A 3 538-char request was leashed at 90 s
+    and **answered at 89.8 s**; a 3 446-char request on the same night was
+    leashed at 88 s and cut off at 88.1 s, four times. The leash was set below
+    the slowest *successful* call at that size.
+
+    The full-quality rung is what is measured, because it is the largest request
+    the ladder can send and the leash is fixed for the chunk. A rung that sheds
+    context or style makes a smaller request and simply finishes with more room.
     """
-    scaled = _transcript_chars(segments) * READ_TIMEOUT_MS_PER_CHAR / 1000
+    request_chars = len(
+        _build_payload(segments, continuing)["contents"][0]["parts"][0]["text"]
+    )
+    scaled = request_chars * READ_TIMEOUT_MS_PER_CHAR / 1000
     return int(min(READ_TIMEOUT_MAX_S, max(READ_TIMEOUT_MIN_S, scaled)))
 
 # Chars of an HTTP error body to surface. Gemini's structured error.details
@@ -404,7 +452,24 @@ RETRY_LADDER: tuple[_Rung, ...] = (
 # GEMINI_RENDER_DEADLINE_S deliberately does NOT move with it — a good night
 # now costs ~600 s of Gemini across the whole episode, so 1 500 binds only on a
 # night that is going to OpenAI anyway, and that is when spending less is right.
-SECTION_BUDGET_S = float(os.getenv("GEMINI_TTS_SECTION_BUDGET_S", "660"))
+#
+# 660 -> 950 with the move to request-char budgeting, which is the third time
+# this pair has had to move together and the reason the rule is stated here at
+# all. The worst chunk's leash went 120 -> 191 s, and 660 affords four attempts
+# only up to 127 s (150 + 4L <= 660). 950 keeps four (150 + 4*191 = 914) while
+# staying under four attempts at the ceiling (150 + 4*210 = 990), so a request
+# clamped at the ceiling still fails fast. Both bounds are asserted in tests,
+# and they bracket this number from opposite sides: the budget must exceed four
+# real attempts and fall short of four clamped ones, so moving either constant
+# alone breaks one end or the other.
+#
+# GEMINI_RENDER_DEADLINE_S still does not move, and the trade is now tighter:
+# 1 500 s affords roughly 1.7 exhausted sections rather than 2.3. That is the
+# right side to be on — a night where two full ladders have already failed is a
+# night that belongs to OpenAI, and the deadline saying so sooner is the
+# behaviour it exists for. Watch it if `render/gemini-*` degradations start
+# naming the deadline rather than the ladder.
+SECTION_BUDGET_S = float(os.getenv("GEMINI_TTS_SECTION_BUDGET_S", "950"))
 
 # Optional absolute deadline for all Gemini work in a run, set by the caller via
 # set_render_deadline(). SECTION_BUDGET_S bounds one chunk; this bounds the sum,
@@ -634,14 +699,24 @@ def drain_degradations() -> list[str]:
     return drained
 
 
-def _model_for(rung: _Rung) -> str:
-    """Model this rung should call, honouring an override the canary established."""
+def _model_for(rung: _Rung, pin: str | None = None) -> str:
+    """Model to call, honouring the canary's episode pin then the chunk's own.
+
+    Three sources, most authoritative first. `_model_override` is the canary's
+    verdict for the whole episode and is absolute. *pin* is one chunk's own
+    alternation (see `_synthesize_chunk`): once a transport failure has moved
+    the chunk onto the other model, that choice outranks the rung's flag, since
+    the rungs only encode a *shape* ladder and the alternation is already
+    covering both models. With neither, the rung decides.
+    """
     if _model_override:
         return _model_override
+    if pin:
+        return pin
     return GEMINI_TTS_FALLBACK_MODEL if rung.fallback_model else GEMINI_TTS_MODEL
 
 
-def _rung_label(rung: _Rung) -> str:
+def _rung_label(rung: _Rung, pin: str | None = None) -> str:
     """Human-readable description of what a rung sheds, for logs and the report."""
     dropped = [
         name
@@ -652,7 +727,7 @@ def _rung_label(rung: _Rung) -> str:
         )
         if not kept
     ]
-    return f"model={_model_for(rung)}, dropped={'+'.join(dropped) or 'nothing'}"
+    return f"model={_model_for(rung, pin)}, dropped={'+'.join(dropped) or 'nothing'}"
 
 
 def _budget_allows(
@@ -714,17 +789,37 @@ def _carries_no_shape_verdict(error: Exception) -> bool:
     return bool(re.search(r"Gemini TTS HTTP (429|5\d\d)", str(error)))
 
 
-def _next_model_rung(after: int, failed_model: str) -> int | None:
-    """Index of the next rung that would call a different model, or None.
+def _model_candidates() -> list[str]:
+    """Models this run may ask, in preference order.
 
-    None means every remaining rung would re-ask the model that just went
-    unanswered — either because the ladder has no model change left, or because
-    the canary pinned one model for the episode. Both are reasons to hand the
-    section back now rather than spend the rest of the budget confirming it.
+    Deduped, for when both env vars name the same model and there is no second
+    thing to try — the 2026-09-03 collapse, where the repository variable
+    happened to name the hard-coded fallback.
     """
-    for i in range(after + 1, len(RETRY_LADDER)):
-        if _model_for(RETRY_LADDER[i]) != failed_model:
-            return i
+    return list(dict.fromkeys((GEMINI_TTS_MODEL, GEMINI_TTS_FALLBACK_MODEL)))
+
+
+def _other_model(current: str) -> str | None:
+    """The candidate that is not *current*, or None when there is no other.
+
+    This replaces a forward-only search of the rung ladder, which could only
+    ever change model once. A transport failure at rung 0 jumped to the first
+    fallback-model rung; a transport failure *there* found no later rung naming
+    a different model and returned None, so the chunk re-asked the fallback for
+    the whole rest of its budget with no way back. On 2026-09-06 the deep dive
+    met one HTTP 500 on the primary at rung 0 and then spent four attempts and
+    352 s on the fallback, each one dying at the full read timeout — on a night
+    the primary had already answered four other chunks. Alternating costs
+    nothing: the same budget, spent asking both models instead of confirming one.
+
+    None still means "re-ask, there is nothing else": either the canary pinned a
+    model for the episode, or the configuration names only one.
+    """
+    if _model_override:
+        return None
+    for model in _model_candidates():
+        if model != current:
+            return model
     return None
 
 
@@ -734,13 +829,14 @@ def _attempt(
     rung: _Rung,
     seed: int,
     read_timeout: int,
+    pin: str | None = None,
 ) -> tuple[bytes, int]:
     """One generateContent call for *rung*. Returns (pcm_bytes, sample_rate)."""
     api_key = get_gemini_api_key()
     if not api_key:
         raise ValueError("GEMINI_API_KEY not set")
 
-    model = _model_for(rung)
+    model = _model_for(rung, pin)
     payload = _build_payload(segments, continuing, rung=rung, seed=seed)
     prompt_chars = len(payload["contents"][0]["parts"][0]["text"])
     _log_speech_config(payload["generationConfig"]["speechConfig"])
@@ -865,7 +961,7 @@ def _synthesize_chunk(
         )
 
     budget = SECTION_BUDGET_S if budget_s is None else budget_s
-    read_timeout = _read_timeout_for(segments)
+    read_timeout = _read_timeout_for(segments, continuing)
     started = time.monotonic()
     last_error: Exception | None = None
 
@@ -883,8 +979,15 @@ def _synthesize_chunk(
     # the failures are rejections; a transport failure moves it independently
     # (or not at all), because rewording an unanswered request is not a retry
     # strategy.
+    #
+    # `model_pin` is the third axis, and the one the rungs could not express: a
+    # transport failure keeps the shape and swaps the model, alternating for as
+    # long as the budget lasts. Recorded per attempt so the degradation can name
+    # the models that actually failed rather than the one that was configured.
     attempt = 0
     rung_index = 0
+    model_pin: str | None = None
+    models_tried: list[str] = []
     while attempt < len(RETRY_LADDER):
         rung = RETRY_LADDER[rung_index]
         if attempt:
@@ -897,10 +1000,12 @@ def _synthesize_chunk(
                 break
             print(
                 f"  ⚠️  Gemini TTS retrying in {pacing}s "
-                f"(attempt {attempt + 1}/{len(RETRY_LADDER)}, {_rung_label(rung)}): {last_error}"
+                f"(attempt {attempt + 1}/{len(RETRY_LADDER)}, "
+                f"{_rung_label(rung, model_pin)}): {last_error}"
             )
             time.sleep(pacing)
 
+        models_tried.append(_model_for(rung, model_pin))
         try:
             # The pinned seed makes generation deterministic, so re-asking with
             # the same seed reproduces a no-audio dud byte-for-byte (2026-07-28:
@@ -910,6 +1015,7 @@ def _synthesize_chunk(
                 segments, continuing, rung,
                 seed=GEMINI_TTS_SEED + attempt,
                 read_timeout=read_timeout,
+                pin=model_pin,
             )
         except (requests.RequestException, RuntimeError) as e:
             last_error = e
@@ -920,8 +1026,8 @@ def _synthesize_chunk(
                 print("  ⚠️  Gemini TTS project spend cap reached — no rung reaches past it")
                 break
             if _carries_no_shape_verdict(e):
-                # No verdict on the request: go straight to a rung that changes
-                # the model, and when there is none, simply ask the same thing
+                # No verdict on the request: keep the shape and swap the model,
+                # and when there is no other model, simply ask the same thing
                 # again. What must not happen is shedding context and style —
                 # that spent a full read timeout a rung on a shape that was
                 # never the problem
@@ -934,13 +1040,16 @@ def _synthesize_chunk(
                 # ask is close to a coin flip. The budget, not the ladder, is
                 # what bounds this.
                 timeouts += 1
-                failed_model = _model_for(rung)
-                nxt = _next_model_rung(rung_index, failed_model)
-                if nxt is None:
+                failed_model = _model_for(rung, model_pin)
+                alternate = _other_model(failed_model)
+                if alternate is None:
                     print(f"  ⚠️  Gemini TTS did not serve {failed_model} — asking again unchanged")
                 else:
-                    print(f"  ⚠️  Gemini TTS did not serve {failed_model} — changing model")
-                    rung_index = nxt
+                    print(
+                        f"  ⚠️  Gemini TTS did not serve {failed_model} "
+                        f"— changing model to {alternate}"
+                    )
+                    model_pin = alternate
             else:
                 rejections += 1
                 rung_index = min(rung_index + 1, len(RETRY_LADDER) - 1)
@@ -949,7 +1058,7 @@ def _synthesize_chunk(
 
         if attempt:
             _degradations.append(
-                f"section synthesized on retry {attempt} ({_rung_label(rung)}) "
+                f"section synthesized on retry {attempt} ({_rung_label(rung, model_pin)}) "
                 "— delivery may differ from the rest of the episode"
             )
         return pcm, sample_rate
@@ -958,12 +1067,18 @@ def _synthesize_chunk(
     # Rides on the exception rather than in module state so it cannot be read
     # against the wrong section: the caller formats it into the degradation that
     # explains why this section left Gemini.
-    error.ladder_summary = _ladder_summary(segments, attempt, rejections, timeouts)
+    error.ladder_summary = _ladder_summary(
+        segments, attempt, rejections, timeouts, models_tried
+    )
     raise error
 
 
 def _ladder_summary(
-    segments: list[dict], attempts: int, rejections: int, timeouts: int
+    segments: list[dict],
+    attempts: int,
+    rejections: int,
+    timeouts: int,
+    models_tried: list[str] | None = None,
 ) -> str:
     """One clause naming what the ladder actually met, for the caller's degradation.
 
@@ -971,6 +1086,14 @@ def _ladder_summary(
     multi-speaker one: a one-turn section takes the `singleSpeakerVoiceConfig`
     branch, which is a different request against an endpoint whose failures are
     shape-sensitive, and on 2026-09-02 that was the one being refused.
+
+    The models are the ones actually asked, not the one configured. This named
+    `GEMINI_TTS_MODEL` unconditionally, so a section that met one failure on the
+    primary and then spent its whole budget on the fallback was reported — in
+    the run report and in the roadmap ledger it feeds — as having failed on the
+    primary. The 2026-09-06 deep dive is the entry to check: "timed out on
+    gemini-2.5-flash-preview-tts after 5 unanswered attempts", when four of the
+    five were the pro model and the flash failure was a 500.
     """
     speakers = dict.fromkeys(seg["speaker"] for seg in segments)
     shape = "single-speaker" if len(speakers) == 1 else "multi-speaker"
@@ -979,9 +1102,11 @@ def _ladder_summary(
         kinds.append(f"{rejections} rejected (finishReason OTHER)")
     if timeouts:
         kinds.append(f"{timeouts} unanswered")
-    model = _model_override or GEMINI_TTS_MODEL
+    asked = list(dict.fromkeys(models_tried or ())) or [
+        _model_override or GEMINI_TTS_MODEL
+    ]
     return (
-        f"{shape} on {model}, {attempts} attempt(s)"
+        f"{shape} on {' then '.join(asked)}, {attempts} attempt(s)"
         + (f": {', '.join(kinds)}" if kinds else "")
     )
 
@@ -1037,9 +1162,9 @@ def canary() -> str | None:
     if not get_gemini_api_key():
         return None
 
-    # dict.fromkeys dedupes while keeping order, for when both env vars name the
-    # same model and there is no second thing to try.
-    candidates = list(dict.fromkeys((GEMINI_TTS_MODEL, GEMINI_TTS_FALLBACK_MODEL)))
+    # Computed before the loop below sets an override, so this is the run's
+    # configured pair rather than whatever candidate is being probed.
+    candidates = _model_candidates()
     # Say which models this run will try, before trying them. The failure
     # messages name a model each, but nothing said what the run was configured
     # with, so a wrong or withdrawn model name looked exactly like an outage.
@@ -1047,7 +1172,7 @@ def canary() -> str | None:
     if len(candidates) < 2:
         # A configuration fact, not an outcome, so it is reported before any
         # probe runs and whether or not the render goes on to succeed: with one
-        # candidate _next_model_rung() returns None on every rung, so a section
+        # candidate _other_model() returns None on every attempt, so a section
         # that stalls can only re-ask or shed prompt text. Same weakened ladder
         # the pin below degrades for, and until 2026-09-03 it reached the run
         # report through nothing at all — both env vars naming one model looks
