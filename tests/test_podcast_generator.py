@@ -1251,13 +1251,13 @@ class TestGenerateScriptCorrectionsGroundTruth:
     def test_states_none_supplied_when_no_corrections_queued(self, monkeypatch, tmp_path):
         sent = self._run(monkeypatch, tmp_path)
 
-        assert "LISTENER CORRECTIONS SUPPLIED FOR THIS EPISODE: none" in sent
+        assert "CORRECTIONS SUPPLIED FOR THIS EPISODE: none" in sent
 
     def test_states_count_when_corrections_queued(self, monkeypatch, tmp_path):
         sent = self._run(monkeypatch, tmp_path,
                           corrections=[{"subject": "Correction", "body_text": "You got it wrong."}])
 
-        assert "LISTENER CORRECTIONS SUPPLIED FOR THIS EPISODE: 1" in sent
+        assert "CORRECTIONS SUPPLIED FOR THIS EPISODE: 1" in sent
 
 
 class TestGenerateScriptRoundupPool:
@@ -1423,12 +1423,12 @@ class TestSubmitPostProcessingBatchCorrectionsGroundTruth:
     def test_states_none_supplied_when_queue_empty(self, monkeypatch):
         content = self._submit(monkeypatch, [])
 
-        assert "LISTENER CORRECTIONS SUPPLIED FOR THIS EPISODE: none" in content
+        assert "CORRECTIONS SUPPLIED FOR THIS EPISODE: none" in content
 
     def test_states_count_when_corrections_queued(self, monkeypatch):
         content = self._submit(monkeypatch, [{"id": "x", "subject": "Correction"}])
 
-        assert "LISTENER CORRECTIONS SUPPLIED FOR THIS EPISODE: 1" in content
+        assert "CORRECTIONS SUPPLIED FOR THIS EPISODE: 1" in content
 
 
 class TestPolishAnchorThreading:
@@ -1798,6 +1798,84 @@ class TestFormatFeedbackEmailsForPrompt:
         prompt = format_feedback_emails_for_prompt([{"body_text": "great show"}])
 
         assert '[Listener wrote]: "great show"' in prompt
+
+
+class TestProducerAttribution:
+    """The producer is not a listener. On 2026-09-02 a correction he sent
+    himself aired as "A listener named Erich wrote in ... Thanks, Erich."
+    Everything he sends is queued and aired normally; only the attribution
+    changes, and it is stated in the prompt rather than left to a signature."""
+
+    PRODUCER = {"body_text": "The Okanagan is south and east of us.",
+                "subject": "Corrections for Monday", "from_producer": True}
+    LISTENER = {"body_text": "You said 1,200 residents; it's 900.",
+                "subject": "Correction", "from_producer": False}
+
+    def test_correction_from_producer_is_labelled_production(self, tmp_path, monkeypatch):
+        monkeypatch.setattr("podcast_generator.PODCASTS_DIR", tmp_path)
+
+        prompt = format_corrections_for_prompt([self.PRODUCER])
+
+        assert "[Production correction" in prompt
+        assert "[Listener correction" not in prompt
+        assert "never thank a listener for them" in prompt or "never as listener mail" in prompt
+
+    def test_correction_from_listener_keeps_listener_label(self, tmp_path, monkeypatch):
+        monkeypatch.setattr("podcast_generator.PODCASTS_DIR", tmp_path)
+
+        prompt = format_corrections_for_prompt([self.LISTENER])
+
+        assert "[Listener correction" in prompt
+        assert "[Production correction" not in prompt
+        # No production items, so the attribution rule is not spent on tokens.
+        assert "production team" not in prompt
+
+    def test_mixed_queue_labels_each_item_by_origin(self, tmp_path, monkeypatch):
+        monkeypatch.setattr("podcast_generator.PODCASTS_DIR", tmp_path)
+
+        prompt = format_corrections_for_prompt([self.LISTENER, self.PRODUCER])
+
+        assert "[Listener correction" in prompt and "[Production correction" in prompt
+
+    def test_feedback_from_producer_is_labelled_production(self):
+        from podcast_generator import format_feedback_emails_for_prompt
+
+        prompt = format_feedback_emails_for_prompt([self.PRODUCER])
+
+        assert "[Production note" in prompt
+        assert "[Listener wrote" not in prompt
+        assert "never name the producer on air" in prompt
+
+    def test_ground_truth_names_the_in_house_catch(self):
+        from podcast_generator import _corrections_ground_truth
+
+        assert "All of them came from the show's own production side" in \
+            _corrections_ground_truth([self.PRODUCER])
+        assert "production side" not in _corrections_ground_truth([self.LISTENER])
+
+    def test_ground_truth_absence_covers_a_fabricated_in_house_catch(self):
+        from podcast_generator import _corrections_ground_truth
+
+        assert "crediting the production team" in _corrections_ground_truth([])
+
+    def test_unsourced_in_house_correction_beat_is_stripped(self):
+        from podcast_generator import strip_unsourced_correction
+
+        script = ("**RILEY:** Our production team caught an error in Monday's episode.\n"
+                  "**CASEY:** On to the spotlight.\n")
+        cleaned, removed = strip_unsourced_correction(script, [])
+
+        assert removed == 1
+        assert "production team caught" not in cleaned
+
+    def test_a_real_correction_survives_the_strip(self):
+        from podcast_generator import strip_unsourced_correction
+
+        script = "**RILEY:** Our production team caught an error in Monday's episode.\n"
+        cleaned, removed = strip_unsourced_correction(script, [self.PRODUCER])
+
+        assert removed == 0
+        assert cleaned == script
 
 
 class TestResolveReferencedEpisodeDate:

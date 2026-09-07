@@ -234,7 +234,7 @@ Both are AI hosts. The script explicitly avoids personal/family references and k
 | `cohere_enrichment.py` | Optional Cohere AI enrichment — semantic dedup, article clustering, deep-dive reranking (enabled via `USE_COHERE=1`) |
 | `generate_bespoke.py` | Bespoke long-form debate generator — tag-driven, Brave Search expansion |
 | `azure_tts.py` | Azure Neural TTS integration (MultiTalker model) — optional alternative to OpenAI TTS |
-| `email_ingest.py` | Gmail ingest — classifies listener feedback and newsletters into the email queue |
+| `email_ingest.py` | Gmail ingest — classifies feedback, corrections and newsletters into the email queue, flagging mail from the production side |
 | `harvest_episode.py` | Extracts deep dive debate from an episode into a structured Markdown briefing |
 | `review_scripts.py` | Reviews generated scripts for quality and consistency |
 | `evaluate_tts.py` | Evaluates TTS output quality |

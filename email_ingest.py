@@ -3,9 +3,10 @@
 Email ingest for the Cariboo Signals podcast generator — Gmail API edition.
 
 Connects to Gmail via OAuth2, fetches unread messages from a configured label,
-classifies them as newsletter or listener feedback, sanitizes body text against
-prompt injection, auto-assigns a podcast theme via keyword scoring, and appends
-items to podcasts/email_queue.json for pickup by the daily generation run.
+classifies them as newsletter, listener feedback or correction, flags mail from
+the show's own production side, sanitizes body text against prompt injection,
+auto-assigns a podcast theme via keyword scoring, and appends items to
+podcasts/email_queue.json for pickup by the daily generation run.
 
 Usage:
   python email_ingest.py [--dry-run]
@@ -50,7 +51,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlparse
 
-from config_loader import atomic_write_json
+from config_loader import atomic_write_json, is_producer_sender
 
 
 SCRIPT_DIR = Path(__file__).parent
@@ -690,6 +691,11 @@ def ingest(dry_run: bool = False) -> int:
             "type": item_type,
             "message_id": message_id_header,
             "from_address": _mask_email(from_address),  # masked — never store full address
+            # Decided here because this is the last point the raw address exists:
+            # the stored form is masked, and a masked address cannot identify
+            # anyone. The pipeline reads the flag back to attribute the item on
+            # air as an in-house catch rather than as listener mail.
+            "from_producer": is_producer_sender(from_address),
             "subject": subject[:200],
             "received_at": received_at,
             "body_text": body_text,
@@ -706,7 +712,8 @@ def ingest(dry_run: bool = False) -> int:
         added += 1
 
         theme_label = theme_tag or "no strong theme match (will not be used)"
-        print(f"  ✅ [{item_type}] \"{subject[:60]}\" → {theme_label} ({len(extracted_urls)} URL(s))")
+        origin = " (production)" if item["from_producer"] else ""
+        print(f"  ✅ [{item_type}{origin}] \"{subject[:60]}\" → {theme_label} ({len(extracted_urls)} URL(s))")
 
         if not dry_run:
             _mark_read(service, msg_id)

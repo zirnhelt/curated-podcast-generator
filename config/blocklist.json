@@ -124,5 +124,12 @@
     "domains": [
       "cariboosignals.ca"
     ]
+  },
+  "email_producer_senders": {
+    "description": "Addresses belonging to the show's own production side. Mail from these is queued exactly like any other item, but is attributed on air as an in-house catch ('our production team') rather than as listener mail — the producer is not a listener, and thanking him as one on air is a factual error about who makes the show.",
+    "addresses": [
+      "zirnhelt@gmail.com"
+    ],
+    "patterns": []
   }
 }

@@ -1054,6 +1054,33 @@ list") had been in the prompt the whole time.
   community spotlight and has not been told what follows it. On 2026-08-30 it previewed a
   deep-dive story two segments away, and invented that too.
 
+### Inbound mail, and who caught it (`email_ingest.py`, `config/blocklist.json`)
+
+Gmail items land in `podcasts/email_queue.json` as `newsletter`, `feedback` or `correction`.
+Feedback and newsletters wait for their theme day; a correction is never theme-gated and airs
+as the final beat of the next roundup (`docs/corrections-policy.md`).
+
+**The producer is not a listener.** On 2026-09-02 a correction Erich sent himself aired as
+"A listener named Erich wrote in… Thanks, Erich" — the writer had only the body's signature to
+go on, and a signature is not provenance. `config_loader.is_producer_sender()` answers it from
+`config/blocklist.json` → `email_producer_senders`, and `email_ingest` stamps `from_producer`
+onto the queued item.
+
+- **It is decided at ingest because that is the last point identity exists.** The stored
+  address is masked (`z***@gmail.com`) so the queue can be committed; a masked address matches
+  every gmail sender whose name starts with the same letter, so the pipeline reads the flag and
+  never re-derives it.
+- **Only the attribution changes.** Production mail is queued, theme-gated and aired exactly
+  like listener mail; the prompt block labels each item `[Listener correction]` or
+  `[Production correction]` and says the show owns the in-house ones ("we caught this on our
+  end"), never names the producer on air, and thanks a listener only for a listener's catch.
+- **The block header stays `LISTENER CORRECTIONS`** even when every item is in-house — the
+  placement and fabrication rules in `prompts.json` key on that exact name. Who caught it is
+  per item, because that is what varies.
+- **The fabrication guard covers both shapes.** `_corrections_ground_truth` and
+  `strip_unsourced_correction` now treat an uncited "our production team caught…" the way they
+  always treated an uncited "a listener flagged…" — the new wording is as inventable as the old.
+
 ### Sibling Repository
 
 `super-rss-feed` scores and categorizes articles, publishing `feed-podcast-{dayname}.json` to its GitHub Pages URL. The podcast generator fetches this at runtime. Deploy order matters: super-rss-feed must deploy before the podcast generator runs. See `SIBLING_REPOS.md` for integration details.
