@@ -39,7 +39,7 @@ cannot reopen it. Anything written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-06) — 17 open.
+_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-07) — 17 open.
 Check a box to close one; it comes back only if the reviews raise it 2 more times._
 
 - [ ] **A credit-balance 400 is not the usage-limit wall, and every run pays for that.**
@@ -101,7 +101,7 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       17.7-minute episode. Investigate whether Gemini's multi-speaker quota or concurrency
       limits are being hit, and consider either increasing timeouts, implementing section-level
       retry logic before switching providers, or pre-allocating Gemini synthesis for critical
-      segments at off-peak times. (seen in 5 reviews, latest 2026-09-06)
+      segments at off-peak times. (seen in 6 reviews, latest 2026-09-07)
 - [ ] **Deep dive sections achieved 67% citation matching versus 87% for roundup sections.** On
       2026-08-28, the roundup matched 13 of 15 citations (87%), but the deep dive section
       matched only 2 of 3 (67%). Both figures are from the same run and the same citation
@@ -110,7 +110,7 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       or that deep dive sources need different handling. Inspect the citation-matching function
       for whether it uses story depth or source type to vary its strategy, and run a test batch
       of deep dives against the current matching logic to confirm whether this is systematic or
-      noise. (seen in 5 reviews, latest 2026-09-05)
+      noise. (seen in 6 reviews, latest 2026-09-07)
 - [ ] **Gemini project spend cap was reached mid-run, forcing a fallback to OpenAI for the
       entire episode's text-to-speech.** On 2026-08-30, the render/gemini-canary segment
       degraded because the Gemini project spend cap had been reached. The pipeline fell back to
@@ -138,8 +138,8 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       gap between source volume and what shaped the final episode, introducing selection bias
       toward the deepest-coverage pieces. Raise the backfill budget, meter it per-article-length
       to preserve more thin stories, or implement a second-pass fallback that scripts stub
-      bodies without enrichment rather than dropping them. (seen in 3 reviews, latest
-      2026-09-06)
+      bodies without enrichment rather than dropping them. (seen in 4 reviews, latest
+      2026-09-07)
 - [ ] **Script expansion request produced net word loss instead of growth.** On 2026-09-02, the
       first draft arrived at 2,986 words against a 3,400-word target. The pipeline issued an
       expand pass, expecting the script to grow toward target. The shipped script measured 2,871
