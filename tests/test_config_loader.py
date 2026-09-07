@@ -188,3 +188,21 @@ class TestJsonOutputConfig:
             {"type": "object", "properties": {"n": {"type": "integer"}}}
         )["format"]["schema"]
         assert "additionalProperties" not in schema["properties"]["n"]
+
+
+class TestIsProducerSender:
+    """Attribution of inbound mail is decided from the raw From header at
+    ingest, because the stored address is masked. Configured in
+    config/blocklist.json alongside the other email routing rules."""
+
+    def test_matches_the_configured_producer_address(self):
+        from config_loader import is_producer_sender
+
+        assert is_producer_sender("Erich Zirnhelt <zirnhelt@gmail.com>")
+        assert is_producer_sender("ZIRNHELT@GMAIL.COM")
+
+    def test_listener_address_is_not_the_producer(self):
+        from config_loader import is_producer_sender
+
+        assert not is_producer_sender("someone@example.com")
+        assert not is_producer_sender("")

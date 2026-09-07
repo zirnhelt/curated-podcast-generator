@@ -386,6 +386,44 @@ class TestIngest:
         assert item["status"] == "pending"
         assert item["subject"] == "Love the show"
 
+    def test_producer_email_is_flagged_as_production(self, tmp_path, monkeypatch):
+        """Mail from the producer is queued like any other item but stamped
+        from_producer, so the script prompt can attribute it to the show rather
+        than thanking him on air as a listener (2026-09-02)."""
+        raw = _make_raw_email(
+            subject="Correction: Monday",
+            from_addr="Erich Zirnhelt <zirnhelt@gmail.com>",
+            body="Williams Lake and Cariboo community stories — the Okanagan is south and east of us.",
+        )
+        svc = _mock_gmail_service([raw])
+
+        queue_file = tmp_path / "email_queue.json"
+        monkeypatch.setenv("GMAIL_LABEL", "podcast")
+        monkeypatch.setattr("email_ingest._build_gmail_service", lambda: svc)
+        monkeypatch.setattr("email_ingest.QUEUE_FILE", queue_file)
+
+        assert ingest(dry_run=False) == 1
+        item = json.loads(queue_file.read_text())["items"][0]
+        assert item["from_producer"] is True
+        # The stored address is still masked — the flag is what survives.
+        assert item["from_address"] == "z***@gmail.com"
+
+    def test_listener_email_is_not_flagged_as_production(self, tmp_path, monkeypatch):
+        raw = _make_raw_email(
+            subject="Love the show",
+            from_addr="listener@example.com",
+            body="Great coverage of Williams Lake and Cariboo rural communities.",
+        )
+        svc = _mock_gmail_service([raw])
+
+        queue_file = tmp_path / "email_queue.json"
+        monkeypatch.setenv("GMAIL_LABEL", "podcast")
+        monkeypatch.setattr("email_ingest._build_gmail_service", lambda: svc)
+        monkeypatch.setattr("email_ingest.QUEUE_FILE", queue_file)
+
+        assert ingest(dry_run=False) == 1
+        assert json.loads(queue_file.read_text())["items"][0]["from_producer"] is False
+
     def test_unthemed_email_is_skipped(self, tmp_path, monkeypatch):
         """An email with no theme keyword match is not added to the queue."""
         raw = _make_raw_email(

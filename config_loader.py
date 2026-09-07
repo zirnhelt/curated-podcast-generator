@@ -148,6 +148,24 @@ def load_blocklist():
             return json.load(f)
     return {"title_keywords": []}
 
+def is_producer_sender(from_address: str) -> bool:
+    """True if an email came from the show's own production side, not a listener.
+
+    Lives here rather than in email_ingest for the same reason atomic_write_text
+    does: the ingest script stamps the flag onto the queued item and the pipeline
+    reads it back, and neither may import the other. Matched on the raw From
+    header before it is masked for storage — a masked address ("z***@gmail.com")
+    is not identity, it matches every gmail sender whose name starts with z.
+    """
+    if not from_address:
+        return False
+    addr = from_address.lower()
+    cfg = load_blocklist().get("email_producer_senders", {})
+    if any(a.lower() in addr for a in cfg.get("addresses", []) if a):
+        return True
+    return any(p.lower() in addr for p in cfg.get("patterns", []) if p)
+
+
 @lru_cache(maxsize=1)
 def load_disciplines_config():
     """Load science/topic discipline hierarchy for news roundup grouping (cached)."""
