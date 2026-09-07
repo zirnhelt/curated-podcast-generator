@@ -2361,6 +2361,21 @@
       "theme_day": 4,
       "status": "used",
       "used_at": "2026-09-02"
+    },
+    {
+      "id": "c7feef44",
+      "type": "correction",
+      "message_id": "<C6E901C5-4580-4C72-99FE-ED89866FF1A2@gmail.com>",
+      "from_address": "z***@gmail.com",
+      "from_producer": true,
+      "subject": "Correction: scripts are entirely ai generated",
+      "received_at": "2026-09-07T08:26:26-07:00",
+      "body_text": "In today\u2019s episode a side comment was made about the irony of the story when the podcast script was \u201cpartly ai generated\u201d. This is fundamentally untrue - the script is by design 100% ai generated. Thanks, Erich",
+      "extracted_urls": [],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ],
   "seen_gmail_ids": [
@@ -2434,6 +2449,7 @@
     "1a06d1dc09e8c38f",
     "1a07209920b6c336",
     "1a071e4c28866f0d",
-    "1a07328c25a35d75"
+    "1a07328c25a35d75",
+    "1a07c7a7f31e8ac9"
   ]
 }
