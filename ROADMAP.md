@@ -39,7 +39,7 @@ cannot reopen it. Anything written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-07) — 17 open.
+_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-07) — 18 open.
 Check a box to close one; it comes back only if the reviews raise it 2 more times._
 
 - [ ] **A credit-balance 400 is not the usage-limit wall, and every run pays for that.**
@@ -92,6 +92,15 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       whether the episode's answer count is typical, and decide whether to increase the quota,
       implement batching, or rely on web snippets as the primary source when the API is
       unavailable. (seen in 4 reviews, latest 2026-09-01)
+- [ ] **One TTS segment returned audio shorter than its word count predicts, requiring a
+      retry.** On 2026-08-27, one text-to-speech take produced audio duration shorter than the
+      word count would estimate. The pipeline retried once per protocol and the issue resolved.
+      This is a single occurrence and may be transient voice synthesis variance. If this recurs
+      across multiple segments or runs, it signals either a systematic issue in duration
+      estimation, a problem with a particular voice model, or the TTS API's handling of
+      edge-case text. Monitor for recurrence; if it persists, audit the duration formula against
+      actual TTS output and consider adding a tolerance band before flagging a retry. (seen in 2
+      reviews, latest 2026-09-07)
 - [ ] **Gemini multi-speaker TTS timed out on the welcome section, forcing a mid-episode
       fallback to OpenAI.** During audio render on 2026-08-28, the welcome section synthesis via
       Gemini multi-speaker hit a ReadTimeout after 120 seconds on

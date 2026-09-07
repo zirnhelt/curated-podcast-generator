@@ -137,13 +137,14 @@
       "title": "One TTS segment returned audio shorter than its word count predicts, requiring a retry.",
       "detail": "On 2026-08-27, one text-to-speech take produced audio duration shorter than the word count would estimate. The pipeline retried once per protocol and the issue resolved. This is a single occurrence and may be transient voice synthesis variance. If this recurs across multiple segments or runs, it signals either a systematic issue in duration estimation, a problem with a particular voice model, or the TTS API's handling of edge-case text. Monitor for recurrence; if it persists, audit the duration formula against actual TTS output and consider adding a tolerance band before flagging a retry.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-08-27",
       "seen": [
-        "2026-08-27"
+        "2026-08-27",
+        "2026-09-07"
       ],
-      "last_seen": "2026-08-27"
+      "last_seen": "2026-09-07"
     },
     {
       "id": "gemini-tts-multi-speaker-timeout-forces-provider-switch",
