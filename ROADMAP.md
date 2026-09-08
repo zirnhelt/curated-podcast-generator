@@ -39,7 +39,7 @@ cannot reopen it. Anything written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-07) — 18 open.
+_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-08) — 18 open.
 Check a box to close one; it comes back only if the reviews raise it 2 more times._
 
 - [ ] **A credit-balance 400 is not the usage-limit wall, and every run pays for that.**
@@ -171,7 +171,7 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       late or why it stalled. Check the GitHub Actions scheduler logs and the in-progress run
       URL https://github.com/zirnhelt/curated-podcast-generator/actions/runs/33769783188 to
       determine whether the runner is hung, whether there is a capacity bottleneck, or whether
-      the cron expression is misconfigured. (seen in 2 reviews, latest 2026-09-04)
+      the cron expression is misconfigured. (seen in 3 reviews, latest 2026-09-08)
 - [ ] **One AI-tell pattern phrase shipped in the final episode without removal.** The quality
       review on 2026-09-04 flagged 1 instance of tell-pattern language (phrasing characteristic
       of Claude output) in the script. The system did not remove it before shipping. The pattern
