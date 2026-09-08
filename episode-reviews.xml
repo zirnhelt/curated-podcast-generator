@@ -5,7 +5,66 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Mon, 07 Sep 2026 16:23:08 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 08 Sep 2026 10:06:03 +0000</lastBuildDate>
+    <item>
+      <title>Episode Review — Cariboo Signals, September 8, 2026</title>
+      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-08.html</link>
+      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-08.html</guid>
+      <pubDate>Tue, 08 Sep 2026 10:06:03 +0000</pubDate>
+      <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/34202628838"&gt;34202628838&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3&gt;Brave API budget exhausted mid-run; thin articles kept as stubs&lt;/h3&gt;
+
+&lt;p&gt;The pipeline spent its Brave body-backfill budget across 12 calls during script generation. Nine remaining articles that lacked full text kept their stub bodies instead of being enriched. The system chose to air them anyway rather than drop them, trading content depth for episode length.&lt;/p&gt;
+
+&lt;p&gt;This is a constraint the maintainer should monitor. As Brave calls accumulate across future runs, the decision to include sparse articles will compound unless the budget resets or expands.&lt;/p&gt;
+
+&lt;h3&gt;Script expanded successfully; quality checks passed&lt;/h3&gt;
+
+&lt;p&gt;The short script arrived at 2,872 words against a 3,400-word target. It was sent back for expansion and shipped at 3,284 words. No AI-tell patterns were detected. Voice ratio between Casey and Riley was 1.04, well within acceptable balance.&lt;/p&gt;
+
+&lt;p&gt;Citation alignment showed one mismatch: 14 of 15 roundup citations verified, but only 2 of 3 deep-dive citations matched their sources. The deep-dive gap warrants review before the next run.&lt;/p&gt;
+
+&lt;h3&gt;Audio rendering required Gemini fallback for the news section&lt;/h3&gt;
+
+&lt;p&gt;The primary TTS provider (Gemini multi-speaker) failed on the news section with an HTTP 500 error. The pipeline retried and succeeded using Gemini's single-speaker model on retry 1. Two other sections later synthesized on the same retry, meaning their delivery may differ from the rest of the episode.&lt;/p&gt;
+
+&lt;p&gt;The episode still shipped: 20.3 minutes of audio, 18.6 MB file size. One story aired out of intended order after a repair pass, a minor sequencing artifact.&lt;/p&gt;
+
+&lt;h3&gt;Roundup heavily filtered; three deep dives selected&lt;/h3&gt;
+
+&lt;p&gt;53 roundup stories were dropped before scripting. Three deep dives made it through: cover crops (Small Farm Canada), software engineering productivity (Adafruit Blog), and a stealth-mode startup exit (TechCrunch). The debate question centered AI copilots and construction labor: whether they solve the shortage or mask uneven local outcomes.&lt;/p&gt;
+
+&lt;h3&gt;Pipeline runtime and resource use&lt;/h3&gt;
+
+&lt;p&gt;Three manual runs executed on 2026-09-08. The successful production run completed in 48 minutes across six steps. Script generation consumed 21 minutes (1,282 seconds). Audio rendering took 19 minutes (1,143 seconds). Total API spend: 102,098 Claude input tokens across 13 Claude calls and 3 Brave searches.&lt;/p&gt;
+
+&lt;p&gt;Episode 224 was published to RSS. Video file: 70.6 MB, matching the 20.3-minute runtime.&lt;/p&gt;
+
+&lt;h3&gt;The day's triggers&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-08T08:05:25Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-08T09:05:27Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-08T10:05:26Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3&gt;What shipped&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Measure&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Deep dive&lt;/td&gt;&lt;td&gt;3 articles&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Script&lt;/td&gt;&lt;td&gt;0 pattern hit(s), voice ratio 1.04, 3284 words&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio&lt;/td&gt;&lt;td&gt;20.3 min&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio size&lt;/td&gt;&lt;td&gt;18.6 MB&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;14/15 roundup, 2/3 deep dive&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;224 episodes&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Anthropic spend&lt;/td&gt;&lt;td&gt;102,098 input tokens, calls {'claude': 13, 'brave-answers': 3}&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
     <item>
       <title>Episode Review — Cariboo Signals, September 7, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-07.html</link>

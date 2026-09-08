@@ -360,7 +360,46 @@
         "2026-09-07"
       ],
       "last_seen": "2026-09-07"
+    },
+    {
+      "id": "brave-body-backfill-budget-exhaustion-pattern",
+      "title": "Brave body-backfill budget exhaustion is recurring and requires intervention.",
+      "detail": "On 2026-09-08, the pipeline spent its full 12-call Brave budget during script generation, forcing nine articles to ship with stub bodies instead of full text. The degradations log lists this same reason 12 times. This pattern matches the 2026-09-02 incident (tracked as brave-body-budget-hit-55-article-drop) where 55 articles were dropped. The mechanism is a fixed call budget that does not reset between runs or scale with article volume. To close this: either expand the Brave quota in config, implement per-article fallback logic that drops sparse articles before scripting rather than airing them, or track Brave spend across runs and alert when 80% of the budget is consumed.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-08",
+      "seen": [
+        "2026-09-08"
+      ],
+      "last_seen": "2026-09-08"
+    },
+    {
+      "id": "deep-dive-citation-alignment-below-target",
+      "title": "Deep-dive citations matched at 67 percent while roundup citations matched at 93 percent.",
+      "detail": "On 2026-09-08, roundup sections achieved 14 of 15 citations verified (93%), but deep-dive sections achieved only 2 of 3 (67%). This gap is flagged in the published review and was also logged as a tracked item (deep-dive-citation-matching-below-roundup-parity). The mechanism is not stated in the facts, but the disparity suggests deep-dive sources may require different citation handling than roundup wire-service articles. To close this: audit the three deep-dive articles from this run to identify why citation verification failed, then adjust the citation-matching logic for long-form sources or add a manual review step before deep-dive scripting.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-08",
+      "seen": [
+        "2026-09-08"
+      ],
+      "last_seen": "2026-09-08"
+    },
+    {
+      "id": "gemini-tts-multi-speaker-news-section-http-500",
+      "title": "Gemini multi-speaker TTS failed on the news section with HTTP 500, requiring fallback to single-speaker.",
+      "detail": "On 2026-09-08, the Gemini multi-speaker model failed on the news section with an HTTP 500 error. The pipeline retried and succeeded using Gemini single-speaker on retry 1. Two other sections later synthesized on the same retry, so their delivery may differ from the rest of the episode. The error message is truncated (RuntimeError: Gemini TTS HTTP 500: {) and the root cause is not available. To close this: log the full Gemini response body on 5xx errors, check whether the news section's character count or speaker boundary exceeds Gemini multi-speaker's limits, and consider raising the retry budget for TTS or splitting large sections at speaker boundaries before sending to Gemini.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-08",
+      "seen": [
+        "2026-09-08"
+      ],
+      "last_seen": "2026-09-08"
     }
   ],
-  "updated": "2026-09-07"
+  "updated": "2026-09-08"
 }
