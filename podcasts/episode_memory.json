@@ -1,24 +1,4 @@
 {
-  "2026-08-03": {
-    "timestamp": 1785757932.839195,
-    "topics": [
-      "\ud83d\udd13 [Williams Lake Tribune] Repatriated Tsilhqot\u2019in baskets ar",
-      "\ud83d\udd13 [Williams Lake Tribune] Pear Lake wildfire near Clinton gr",
-      "\ud83d\udd13 [Williams Lake Tribune] 22 lightning-caused fires started ",
-      "\ud83d\udd13 [Williams Lake Tribune] Gibraltar Mine supports Scout Isla",
-      "\ud83d\udd13 [Williams Lake Tribune] Seven out-of-control fires burn in",
-      "\ud83d\udd13 [The Verge] The major labels propose rules to keep AI slop",
-      "\ud83d\udd13 [Outside Online] The Northern Lights Could Be Visible Acro",
-      "[Open Culture] How a 13th-Century Monk Created a Prayer Manu"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption"
-    ],
-    "date": "2026-08-03",
-    "focus": "visual-arts-heritage",
-    "focus_name": "Visual Arts & Heritage"
-  },
   "2026-08-04": {
     "timestamp": 1785840954.702651,
     "topics": [
@@ -744,5 +724,27 @@
     "date": "2026-09-07",
     "focus": "words-journalism",
     "focus_name": "Writing, Journalism & Podcasting"
+  },
+  "2026-09-08": {
+    "timestamp": 1788856108.139084,
+    "topics": [
+      "[Williams Lake Tribune] Grand Forks muralist nears 150 mural",
+      "[Williams Lake Tribune] OPINION: Celebrating B.C.\u2019s workers ",
+      "[Williams Lake Tribune] B.C. couple take care of business, r",
+      "[CFJC Today Kamloops] 25 years of overdose prevention: ASK W",
+      "[Hackster News] Astrall Dynamics' Hypertron-T01 Is Hot Stuff",
+      "[Small Farm Canada] Getting Started with Cover Crops for a H",
+      "[Adafruit Blog] What it took to triple software engineering ",
+      "[TechCrunch] Eric Wu\u2019s newest company, out of stealth since "
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-09-08",
+    "focus": "tourism-outdoor-economy",
+    "focus_name": "Tourism & the Outdoor Economy"
   }
 }
