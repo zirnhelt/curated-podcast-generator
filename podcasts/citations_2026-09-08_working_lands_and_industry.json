@@ -1,0 +1,371 @@
+{
+  "episode": {
+    "date": "2026-09-08",
+    "formatted_date": "Tuesday, September 08, 2026",
+    "theme": "Working Lands & Industry",
+    "title": "Cariboo Signals - Working Lands & Industry",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Working Lands & Industry.</p><p><b>THIS WEEK WE'RE ASKING:</b> What gets lost when something gets easier?</p><p><b>NEWS ROUNDUP:</b> We break down [Williams Lake Tribune] Grand Forks muralist nears 150 murals painted after Dolly Parton tribute and [Williams Lake Tribune] OPINION: Celebrating B.C.’s workers on Labour Day, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Can AI copilots genuinely solve construction's labor shortage, or do they just make fewer workers more productive while obscuring whether local applications actually work? Topics include: Productivity claims versus reality: comparing vendor case studies to independent research on developer gains, Root causes of construction labor shortage: immigration policy and voluntary departures versus skills gaps, The role of friction in apprenticeship and tacit knowledge transfer in the trades, Rural digital infrastructure gaps and why connectivity-dependent tools structurally exclude parts of the Cariboo, The difference between testing tools at scale in San Francisco versus piloting them locally before broader adoption, Data ownership and institutional learning: who owns results if a contractor pilots NavigateAI and has to pay for access to their own performance data next season.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://cariboo-agricultural-research.ca\">Cariboo Agricultural Research Alliance</a></p><p><b>Sources discussed:</b></p><ul><li>Yashvika Grover (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/09/07/grand-forks-muralist-nears-150-murals-painted-after-dolly-parton-tribute/\">[Williams Lake Tribune] Grand Forks muralist nears 150 mural...</a></li><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/09/07/opinion-celebrating-b-c-s-workers-on-labour-day/\">[Williams Lake Tribune] OPINION: Celebrating B.C.’s workers ...</a></li><li>CFJC Today Kamloops: <a href=\"https://cfjctoday.com/2026/08/31/25-years-of-overdose-prevention-ask-wellness-reflects-on-kamloops-ongoing-toxic-drug-crisis/\">[CFJC Today Kamloops] 25 years of overdose prevention: ASK W...</a></li><li>Hackster News: <a href=\"https://www.hackster.io/news/astrall-dynamics-hypertron-t01-is-hot-stuff-as-it-puts-out-fires-with-its-powerful-water-cannon-51bfb51ba75f\">[Hackster News] Astrall Dynamics' Hypertron-T01 Is Hot Stuff...</a></li><li>Hackster News: <a href=\"https://www.hackster.io/news/gritplex-puts-fully-enclosed-dust-free-sandblasting-right-on-your-desk-b658b9217ace\">[Hackster News] GritPlex Puts Fully-Enclosed, Dust-Free Sand...</a></li><li>Mining.com: <a href=\"https://www.mining.com/brazil-targets-bigger-role-in-critical-minerals-rush/\">[Mining.com] Brazil targets bigger role in critical minerals...</a></li><li>Pippa Neill (Mother Jones): <a href=\"https://www.motherjones.com/politics/2026/09/study-pesticides-pesticide-action-network-poisoning-farmers-india-africa-deaths/\">[Mother Jones] Study: Almost Half the World’s Farmers Are Po...</a></li><li>https://www.techradar.com/author/sead-fadilpai (TechRadar): <a href=\"https://www.techradar.com/pro/security/two-major-security-flaws-are-affecting-more-than-six-million-wordpress-websites\">[TechRadar] Two major security flaws are affecting more than...</a></li><li>Popular Mechanics: <a href=\"https://www.popularmechanics.com/science/archaeology/a73545884/brain-rot/\">[Popular Mechanics] Thousands of Ancient Human Brains Refuse...</a></li><li>Daniel Immerwahr (The New Yorker): <a href=\"https://www.newyorker.com/magazine/2026/09/07/supremacy-nikolas-bowie-daphna-renan-book-review\">[The New Yorker] Has the Supreme Court Sandbagged Democracy?</a></li><li>Fast Company: <a href=\"https://www.fastcompany.com/91577979/melissa-chiu-new-guggenheim-museum-director-art-culture\">[Fast Company] Melissa Chiu, new director of the Guggenheim ...</a></li><li>https://newatlas.com/author/maryna-holovnova/ (New Atlas): <a href=\"https://newatlas.com/good-thinking/raman-spectroscopy-fake-alcohol/\">[New Atlas] Laser tech detects fake alcohol bottles non-inva...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/News/2026/09/07/Why-Do-Workers-Keep-Dying-Job/\">[The Tyee] Why Do Workers Keep Dying on the Job?</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/09/07/esp32-p4-powers-video-alarm-clock/\">[Hackaday] ESP32-P4 Powers Video Alarm Clock</a></li><li>Adafruit Blog: <a href=\"https://blog.adafruit.com/2026/09/07/what-it-took-to-triple-software-engineering-output-in-18-months/\">[Adafruit Blog] What it took to triple software engineering ...</a></li><li>Connie Loizos (TechCrunch): <a href=\"https://techcrunch.com/2026/09/07/eric-wus-newest-company-out-of-stealth-since-may-is-going-after-constructions-labor-crunch/\">[TechCrunch] Eric Wu’s newest company, out of stealth since ...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/08/31/b-c-couple-take-care-of-business-reunite-rock-icon-bachman-with-guitar/\">[Williams Lake Tribune] B.C. couple take care of business, r...</a></li><li>https://www.smallfarmcanada.ca/topics/ray-douglas/ (Small Farm Canada): <a href=\"https://www.smallfarmcanada.ca/gardens-crops/getting-started-with-cover-crops-for-a-healthier-garden/\">[Small Farm Canada] Getting Started with Cover Crops for a H...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5<br>Today's Voices: Gemini TTS and OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-09-08T01:28:25.916733-07:00",
+    "models": {
+      "script": "claude-sonnet-5",
+      "review": "claude-sonnet-5",
+      "summary": "claude-haiku-4-5"
+    },
+    "quality": {
+      "word_count": 3284,
+      "voice_ratio_casey_riley": 1.04,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 0,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 4,
+        "roundup_seam": 0,
+        "thats_closer": 4,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 0,
+      "rhythm": {
+        "em_dashes_per_1k": 12.2,
+        "short_turns": 12,
+        "turns": 74,
+        "avg_turn_words": 43.0,
+        "antithesis_hits": 0,
+        "over_budget": [
+          "em_dashes"
+        ]
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    },
+    "anchor": {
+      "id": "lost-when-easier",
+      "question": "What gets lost when something gets easier?"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] Grand Forks muralist nears 150 murals painted after Dolly Parton tribute",
+          "url": "https://wltribune.com/2026/09/07/grand-forks-muralist-nears-150-murals-painted-after-dolly-parton-tribute/",
+          "source": "Williams Lake Tribune",
+          "author": "Yashvika Grover",
+          "ai_score": 83,
+          "date_published": "2026-09-07T21:09:34+00:00",
+          "summary": "## Grand Forks muralist nears 150 murals painted after Dolly Parton tribute Published 2:09 pm Monday, September 7, 2026 **By Yashvika Grover** 1/6 Paul Archer and his dog, Lannah at his Dolly Parton M...",
+          "discussed": true,
+          "mention_offset_frac": 0.023
+        },
+        {
+          "title": "[Williams Lake Tribune] OPINION: Celebrating B.C.’s workers on Labour Day",
+          "url": "https://wltribune.com/2026/09/07/opinion-celebrating-b-c-s-workers-on-labour-day/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 62,
+          "date_published": "2026-09-07T15:00:00+00:00",
+          "summary": "## OPINION: Celebrating B.C.’s workers on Labour Day Published 8:00 am Monday, September 7, 2026 **By Jennifer Whiteside** 1/2 Jennifer Whiteside, B.C.'s Minister of Labour, at the B.C. Legislature in...",
+          "discussed": true,
+          "mention_offset_frac": 0.0961
+        },
+        {
+          "title": "[CFJC Today Kamloops] 25 years of overdose prevention: ASK Wellness reflects on Kamloops’ ongoing toxic drug crisis",
+          "url": "https://cfjctoday.com/2026/08/31/25-years-of-overdose-prevention-ask-wellness-reflects-on-kamloops-ongoing-toxic-drug-crisis/",
+          "source": "CFJC Today Kamloops",
+          "author": "",
+          "ai_score": 33,
+          "date_published": "2026-09-01T00:14:42+00:00",
+          "summary": "(Image Credit: CFJC Today / File Photo) By Jeremy Russo Overdose Awareness Day 25 years of overdose prevention: ASK Wellness reflects on Kamloops’ ongoing toxic drug crisis Aug 31, 2026 | 5:14 PM Shar...",
+          "discussed": true,
+          "mention_offset_frac": 0.1903
+        },
+        {
+          "title": "[Hackster News] Astrall Dynamics' Hypertron-T01 Is Hot Stuff — As It Puts Out Fires with Its Powerful Water Cannon",
+          "url": "https://www.hackster.io/news/astrall-dynamics-hypertron-t01-is-hot-stuff-as-it-puts-out-fires-with-its-powerful-water-cannon-51bfb51ba75f",
+          "source": "Hackster News",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-09-07T13:12:08+00:00",
+          "summary": "Walking away with an award at the IFA show, the Hypertron-T01 is a heavy-duty industrial quadruped that marches straight into danger.",
+          "discussed": true,
+          "mention_offset_frac": 0.2345
+        },
+        {
+          "title": "[Hackster News] GritPlex Puts Fully-Enclosed, Dust-Free Sandblasting Right on Your Desk",
+          "url": "https://www.hackster.io/news/gritplex-puts-fully-enclosed-dust-free-sandblasting-right-on-your-desk-b658b9217ace",
+          "source": "Hackster News",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-09-07T14:16:44+00:00",
+          "summary": "Looking to refinish metal, or get rid of layer lines from your 3D prints? GritPlex wants to put industrial-grade sandblasting on any desk.",
+          "discussed": true,
+          "mention_offset_frac": 0.3575
+        },
+        {
+          "title": "[Mining.com] Brazil targets bigger role in critical minerals rush",
+          "url": "https://www.mining.com/brazil-targets-bigger-role-in-critical-minerals-rush/",
+          "source": "Mining.com",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-09-07T11:00:00+00:00",
+          "summary": "Brazil is courting global mining capital while seeking greater control over strategic assets and more processing at home.",
+          "discussed": true,
+          "mention_offset_frac": 0.4037
+        },
+        {
+          "title": "[The New Yorker] Has the Supreme Court Sandbagged Democracy?",
+          "url": "https://www.newyorker.com/magazine/2026/09/07/supremacy-nikolas-bowie-daphna-renan-book-review",
+          "source": "The New Yorker",
+          "author": "Daniel Immerwahr",
+          "ai_score": 49,
+          "date_published": "2026-08-31T10:00:00+00:00",
+          "summary": "A new legal history argues that the Justices should be stripped of their power to overrule coequal branches of government. It arrives at an awkward moment.",
+          "discussed": true,
+          "mention_offset_frac": 0.4163
+        },
+        {
+          "title": "[Mother Jones] Study: Almost Half the World’s Farmers Are Poisoned by Pesticides Each Year",
+          "url": "https://www.motherjones.com/politics/2026/09/study-pesticides-pesticide-action-network-poisoning-farmers-india-africa-deaths/",
+          "source": "Mother Jones",
+          "author": "Pippa Neill",
+          "ai_score": 60,
+          "date_published": "2026-09-07T11:30:00+00:00",
+          "summary": "This story was originally published by The Guardian and is reproduced here as part of the Climate Desk collaboration. Almost half of the world’s farmers are poisoned by pesticides every single year, a...",
+          "discussed": true,
+          "mention_offset_frac": 0.5084
+        },
+        {
+          "title": "[New Atlas] Laser tech detects fake alcohol bottles non-invasively",
+          "url": "https://newatlas.com/good-thinking/raman-spectroscopy-fake-alcohol/",
+          "source": "New Atlas",
+          "author": "https://newatlas.com/author/maryna-holovnova/",
+          "ai_score": 58,
+          "date_published": "2026-08-31T18:03:00+00:00",
+          "summary": "Methanol poisoning from contaminated alcohol is relatively rare in countries with strict alcohol regulation, but it remains a serious problem in regions where counterfeit alcohol is common. Outbreaks ...",
+          "discussed": true,
+          "mention_offset_frac": 0.5468
+        },
+        {
+          "title": "[TechRadar] Two major security flaws are affecting more than six million WordPress websites",
+          "url": "https://www.techradar.com/pro/security/two-major-security-flaws-are-affecting-more-than-six-million-wordpress-websites",
+          "source": "TechRadar",
+          "author": "https://www.techradar.com/author/sead-fadilpai",
+          "ai_score": 60,
+          "date_published": "2026-09-07T17:45:00+00:00",
+          "summary": "Patches are available, so WordPress users should hurry up and apply them.",
+          "discussed": true,
+          "mention_offset_frac": 0.5499
+        },
+        {
+          "title": "[Popular Mechanics] Thousands of Ancient Human Brains Refuse to Rot—and Scientists Finally Know Their Strange Secret",
+          "url": "https://www.popularmechanics.com/science/archaeology/a73545884/brain-rot/",
+          "source": "Popular Mechanics",
+          "author": "",
+          "ai_score": 49,
+          "date_published": "2026-08-31T12:00:00+00:00",
+          "summary": "The human brain sometimes avoids decay for millennia while the rest of the body turns to bones.",
+          "discussed": true,
+          "mention_offset_frac": 0.5876
+        },
+        {
+          "title": "[Fast Company] Melissa Chiu, new director of the Guggenheim Museum, talks about the role of culture in a time of turmoil",
+          "url": "https://www.fastcompany.com/91577979/melissa-chiu-new-guggenheim-museum-director-art-culture",
+          "source": "Fast Company",
+          "author": "",
+          "ai_score": 32,
+          "date_published": "2026-08-31T13:01:00+00:00",
+          "summary": "Melissa Chiu, longtime director of the Smithsonian’s Hirshhorn Museum and Sculpture Garden, announced in April that she would be leaving for a new role as director of New York’s Solomon R. Guggenheim ...",
+          "discussed": true,
+          "mention_offset_frac": 0.6725
+        },
+        {
+          "title": "[The Tyee] Why Do Workers Keep Dying on the Job?",
+          "url": "https://thetyee.ca/News/2026/09/07/Why-Do-Workers-Keep-Dying-Job/",
+          "source": "The Tyee",
+          "author": "",
+          "ai_score": 70,
+          "date_published": "2026-09-07T07:20:00+00:00",
+          "summary": "On a day celebrating workers’ achievements, researcher Sean Tucker explains how we can prevent workplace fatalities.",
+          "discussed": true,
+          "mention_offset_frac": 0.8132
+        },
+        {
+          "title": "[Williams Lake Tribune] B.C. couple take care of business, reunite rock icon Bachman with guitar",
+          "url": "https://wltribune.com/2026/08/31/b-c-couple-take-care-of-business-reunite-rock-icon-bachman-with-guitar/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 55,
+          "date_published": "2026-08-31T18:30:00+00:00",
+          "summary": "## B.C. couple take care of business, reunite rock icon Bachman with guitar Published 11:30 am Monday, August 31, 2026 **By Ben Fenlon/Goldstream Gazette** 1/4 Alloy Music's Geoff Round reunites Randy...",
+          "discussed": false
+        },
+        {
+          "title": "[Hackaday] ESP32-P4 Powers Video Alarm Clock",
+          "url": "https://hackaday.com/2026/09/07/esp32-p4-powers-video-alarm-clock/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 70,
+          "date_published": "2026-09-07T23:00:40+00:00",
+          "summary": "Once upon a time, you had the option of waking up to a bell, a harsh buzzer, or whatever happened to be on the radio that morning. Now that it’s …read more",
+          "discussed": true
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Working Lands & Industry",
+      "articles": [
+        {
+          "title": "[Small Farm Canada] Getting Started with Cover Crops for a Healthier Garden",
+          "url": "https://www.smallfarmcanada.ca/gardens-crops/getting-started-with-cover-crops-for-a-healthier-garden/",
+          "source": "Small Farm Canada",
+          "author": "https://www.smallfarmcanada.ca/topics/ray-douglas/",
+          "ai_score": 56,
+          "date_published": "2026-09-07T14:14:54+00:00",
+          "summary": "Cover crops help improve soil health, reduce weeds, prevent erosion, and boost fertility. Learn how grasses, legumes, and brassicas can create stronger, more productive garden beds naturally.",
+          "discussed": false
+        },
+        {
+          "title": "[Adafruit Blog] What it took to triple software engineering output in 18 months",
+          "url": "https://blog.adafruit.com/2026/09/07/what-it-took-to-triple-software-engineering-output-in-18-months/",
+          "source": "Adafruit Blog",
+          "author": "",
+          "ai_score": 65,
+          "date_published": "2026-09-07T21:14:50+00:00",
+          "summary": "A technology leader writing in InfoWorld describes what changed at a legal software company after it rebuilt its product development life cycle around AI over 18 months. Output per engineer roughly tr...",
+          "discussed": true
+        },
+        {
+          "title": "[TechCrunch] Eric Wu’s newest company, out of stealth since May, is going after construction’s labor crunch",
+          "url": "https://techcrunch.com/2026/09/07/eric-wus-newest-company-out-of-stealth-since-may-is-going-after-constructions-labor-crunch/",
+          "source": "TechCrunch",
+          "author": "Connie Loizos",
+          "ai_score": 62,
+          "date_published": "2026-09-08T02:16:39+00:00",
+          "summary": "Eric Wu, who built and ran Opendoor before stepping away in 2022, has had his new company, NavigateAI, out of stealth since May — building AI copilots that give construction workers real-time, hands-f...",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Can AI copilots genuinely solve construction's labor shortage, or do they just make fewer workers more productive while obscuring whether local applications actually work?",
+        "riley_position": "AI copilots could provide real value by automating dangerous friction and guiding less experienced workers through tasks, but the actual productivity gains are modest (20-30% industry-wide, not the tripled-output claims in marketing), and nobody has tested whether these tools work on a Cariboo job site before recommending them locally.",
+        "riley_key_evidence": [
+          "Faros AI found real-world improvement around 20-30 percent, nowhere close to tripling despite vendor marketing",
+          "Associated General Contractors' 2024 analysis: 54 percent of contractors report project delays caused by worker shortages, with 1.5-million-home shortfall tied to skilled labor gaps",
+          "Cover crops remain a durable agricultural fix precisely because they don't require connectivity, subscriptions, or platforms—proof that industry solutions don't always need technology"
+        ],
+        "casey_position": "The labor shortage is real, but likely driven by immigration policy and voluntary departures from the trades, not knowledge gaps, so an AI copilot only makes existing workers faster rather than solving the actual crisis; moreover, the apprenticeship model depends on productive friction and judgment that automation skips over, risking the loss of tacit knowledge foremen hold.",
+        "casey_key_evidence": [
+          "Developer favorability toward AI tools dropped from 70% to 60% year over year despite increased use, and engineers are getting fired for not adopting tools fast enough—suggesting productivity numbers reflect coercion, not genuine tool effectiveness",
+          "2025 analysis shows shortage driven by sharp declines in undocumented worker inflows and accelerated voluntary departures, not a skills-transfer problem",
+          "Rural areas lack cellular coverage for precision-ag tools (20-30% without reliable connectivity), and rural residents are twice as likely to lack computers—meaning connectivity-dependent solutions structurally exclude parts of the Cariboo"
+        ],
+        "resolution": "Riley and Casey agreed to disagree on whether friction in apprenticeship is a teaching method or manageable risk, but unified around the central point: neither vendor metrics nor venture-backed promises tell us whether these tools work on actual Cariboo sites, and the only legitimate experiment would be a small-scale local pilot run by a regional trades program or community college, keeping a journeyperson mentor in the room alongside the AI tool to capture what it misses.",
+        "topics_covered": [
+          "Productivity claims versus reality: comparing vendor case studies to independent research on developer gains",
+          "Root causes of construction labor shortage: immigration policy and voluntary departures versus skills gaps",
+          "The role of friction in apprenticeship and tacit knowledge transfer in the trades",
+          "Rural digital infrastructure gaps and why connectivity-dependent tools structurally exclude parts of the Cariboo",
+          "The difference between testing tools at scale in San Francisco versus piloting them locally before broader adoption",
+          "Data ownership and institutional learning: who owns results if a contractor pilots NavigateAI and has to pay for access to their own performance data next season"
+        ],
+        "calls_to_action": [
+          "Run a term-long pilot at a local trades program or community college extension where a handful of apprentices use an AI guidance tool alongside a journeyperson mentor—cheaper than a twenty-five-million-dollar venture bet and keeps experienced judgment in the room while there's still time to learn from it.",
+          "Anyone with experience trying a construction AI tool on a Cariboo job site, thoughts on cover crops versus precision agriculture, or knowledge of a foreman who reads timber stands by walking them should send that information to feedback@cariboosignals.ca so tacit knowledge is captured before it exists only in one person's head.",
+          "A Quesnel contractor or Williams Lake ranch operation could pilot an AI system on a single job at small scale and compare results against how the crew performed without it, generating local numbers instead of relying on vendor metrics."
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 11,
+          "conditions": "mainly clear",
+          "high": 22,
+          "low": 10
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 12,
+          "conditions": "clear skies",
+          "high": 21,
+          "low": 9
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 11,
+          "conditions": "clear skies",
+          "high": 24,
+          "low": 8
+        },
+        {
+          "name": "Quesnel",
+          "temp": 11,
+          "conditions": "mainly clear",
+          "high": 23,
+          "low": 10
+        },
+        {
+          "name": "Tatla Lake",
+          "temp": 9,
+          "conditions": "clear skies",
+          "high": 23,
+          "low": 7
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Cariboo Agricultural Research Alliance",
+      "description": "Applied agricultural research for Cariboo farmers and ranchers",
+      "website": "cariboo-agricultural-research.ca",
+      "psa_angle": "",
+      "event_name": ""
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_azure": "Azure Neural TTS",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "Gemini TTS and OpenAI TTS"
+  }
+}

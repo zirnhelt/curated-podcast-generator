@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] Huge 66-ft Turkish drones are hunting million-do",
       "[TechRadar] Gemini now lets you turn off the visible waterma",
       "[The Tyee] As AI Data Centre Backlash Builds, What Will Smit",
       "[NYT Business] How Big Tech\u2019s A.I. Borrowing Binge Is Drivin",
@@ -10,7 +9,8 @@
       "[TechCrunch] How AI accounting startup Rillet raised $100M a",
       "[CBC Arts] Australia bans fully AI-made songs from charts af",
       "[Kagi Small Web] SwarmWorld: Stigmergic technological evolut",
-      "[TechRadar] Geekom reveals multiple mini-PCs may be infected"
+      "[TechRadar] Geekom reveals multiple mini-PCs may be infected",
+      "[TechCrunch] Eric Wu\u2019s newest company, out of stealth since "
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -72,11 +72,6 @@
       {
         "date": "2026-08-20",
         "clue": "pilot-skepticism:x \u2014 Conceded multi-decade title timeline risk; reframed as groundwork rather than solution",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-08-10",
-        "clue": "evidence-bar:+ \u2014 Reinforced importance of primary documents, direct publication over paraphrasing",
         "occurrences": 2
       },
       {
@@ -386,6 +381,16 @@
       {
         "date": "2026-09-04",
         "clue": "pilot-skepticism:~ \u2014 Acknowledged Scout Island volunteer model could scale, added maintenance doubt",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-09-08",
+        "clue": "structural-lens:+ \u2014 Deepened focus on coercion vs. organic adoption",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-09-08",
+        "clue": "pilot-skepticism:+ \u2014 Moved beyond tool-merit to data ownership and knowledge capture",
         "occurrences": 1
       }
     ],
