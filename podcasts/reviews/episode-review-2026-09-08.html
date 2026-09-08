@@ -21,33 +21,37 @@
   <p class="meta">Published September 8, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
   <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/34202628838">34202628838</a>.</em></p>
 
-<h3>Brave API budget exhausted mid-run; thin articles kept as stubs</h3>
+<h3>Brave's content-retrieval budget exhausted mid-run</h3>
 
-<p>The pipeline spent its Brave body-backfill budget across 12 calls during script generation. Nine remaining articles that lacked full text kept their stub bodies instead of being enriched. The system chose to air them anyway rather than drop them, trading content depth for episode length.</p>
+<p>The pipeline spent its allocation of 12 Brave API calls backfilling article bodies and hit the limit before processing finished. Fifty-three stories in the roundup were dropped rather than shipped with stub text. The system's choice: thin articles stay thin, and sparse entries get cut entirely.</p>
 
-<p>This is a constraint the maintainer should monitor. As Brave calls accumulate across future runs, the decision to include sparse articles will compound unless the budget resets or expands.</p>
+<p>This is a capacity constraint, not a quality filter. The roundup citations still aligned at 14 of 15 matched (93%), but the body text that would have explained those citations never arrived. Listeners heard fewer stories as a result.</p>
 
-<h3>Script expanded successfully; quality checks passed</h3>
+<h3>Script expanded to meet length target</h3>
 
-<p>The short script arrived at 2,872 words against a 3,400-word target. It was sent back for expansion and shipped at 3,284 words. No AI-tell patterns were detected. Voice ratio between Casey and Riley was 1.04, well within acceptable balance.</p>
+<p>The first draft arrived at 2,872 words against a 3,400-word target. The pipeline sent it back for expansion and shipped 3,284 words, falling 116 words short of target but within acceptable range. No stories were dropped to pad the count.</p>
 
-<p>Citation alignment showed one mismatch: 14 of 15 roundup citations verified, but only 2 of 3 deep-dive citations matched their sources. The deep-dive gap warrants review before the next run.</p>
+<p>Voice ratio held at 1.04 (Casey over Riley), and the AI-detection system flagged zero tell-pattern hits. Quality markers stayed clean.</p>
 
-<h3>Audio rendering required Gemini fallback for the news section</h3>
+<h3>Three deep dives; two citations sourced</h3>
 
-<p>The primary TTS provider (Gemini multi-speaker) failed on the news section with an HTTP 500 error. The pipeline retried and succeeded using Gemini's single-speaker model on retry 1. Two other sections later synthesized on the same retry, meaning their delivery may differ from the rest of the episode.</p>
+<p>The episode included deep dives on cover crop farming, software engineering productivity, and a stealth company out of Eric Wu's shop. Citation alignment for deep dives was 2 of 3 matched. Unlike the roundup, no stories were cut here.</p>
 
-<p>The episode still shipped: 20.3 minutes of audio, 18.6 MB file size. One story aired out of intended order after a repair pass, a minor sequencing artifact.</p>
+<h3>Gemini multi-speaker TTS failed on the news section</h3>
 
-<h3>Roundup heavily filtered; three deep dives selected</h3>
+<p>The primary text-to-speech renderer returned an HTTP 500 error during the news segment. The pipeline retried with Gemini's fallback model (<code>gemini-2.5-pro-preview-tts</code>) and succeeded. The section synthesized on retry 1, but it came from a different model than the rest of the episode, so vocal delivery may diverge in that block.</p>
 
-<p>53 roundup stories were dropped before scripting. Three deep dives made it through: cover crops (Small Farm Canada), software engineering productivity (Adafruit Blog), and a stealth-mode startup exit (TechCrunch). The debate question centered AI copilots and construction labor: whether they solve the shortage or mask uneven local outcomes.</p>
+<p>A second fallback retry also occurred on the closing section (the "take") using the same backup model. Nothing was dropped; the episode shipped complete.</p>
 
-<h3>Pipeline runtime and resource use</h3>
+<h3>One story aired out of intended sequence</h3>
 
-<p>Three manual runs executed on 2026-09-08. The successful production run completed in 48 minutes across six steps. Script generation consumed 21 minutes (1,282 seconds). Audio rendering took 19 minutes (1,143 seconds). Total API spend: 102,098 Claude input tokens across 13 Claude calls and 3 Brave searches.</p>
+<p>The roundup order degradation flagged one story that remained in the wrong position after a repair pass. The episode aired with that story still later than planned.</p>
 
-<p>Episode 224 was published to RSS. Video file: 70.6 MB, matching the 20.3-minute runtime.</p>
+<h3>Timing and resource use</h3>
+
+<p>Three manual runs preceded a fallback trigger at 3:05 AM Pacific, which arrived 296 minutes late. The primary execution (run 34202628838) completed in 48 minutes. Script generation took 1,282 seconds; audio rendering took 1,143 seconds. Final audio shipped at 20.3 minutes (18.6 MB); video at 20.3 minutes (70.6 MB). Episode 224 is now in the RSS feed.</p>
+
+<p>Claude received 102,098 input tokens across 13 calls. Brave handled 3 calls total (all spent on body backfill).</p>
 
 <h3>The day's triggers</h3>
 <table>
@@ -55,7 +59,8 @@
 <tbody>
 <tr><td>Manual (workflow_dispatch)</td><td>2026-09-08T08:05:25Z</td><td>+0 min</td><td>success</td></tr>
 <tr><td>Manual (workflow_dispatch)</td><td>2026-09-08T09:05:27Z</td><td>+0 min</td><td>success</td></tr>
-<tr><td>Manual (workflow_dispatch)</td><td>2026-09-08T10:05:26Z</td><td>+0 min</td><td>in_progress</td></tr>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-08T10:05:26Z</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific)</td><td>2026-09-08T15:01:25Z</td><td>+296 min</td><td>in_progress</td></tr>
 </tbody>
 </table>
 
