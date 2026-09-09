@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[TechRadar] Gemini now lets you turn off the visible waterma",
-      "[The Tyee] As AI Data Centre Backlash Builds, What Will Smit",
       "[NYT Business] How Big Tech\u2019s A.I. Borrowing Binge Is Drivin",
       "[WIRED] AI Slop Is Ruining Cute Animals on the Internet",
       "[Hyperallergic] How AIDS Activists Turned Graphic Design Int",
@@ -10,7 +8,9 @@
       "[CBC Arts] Australia bans fully AI-made songs from charts af",
       "[Kagi Small Web] SwarmWorld: Stigmergic technological evolut",
       "[TechRadar] Geekom reveals multiple mini-PCs may be infected",
-      "[TechCrunch] Eric Wu\u2019s newest company, out of stealth since "
+      "[TechCrunch] Eric Wu\u2019s newest company, out of stealth since ",
+      "EEVblog 1769 \u2013 Who Needs Three Phases? REPAIR",
+      "[TechCrunch] Google DeepMind alumni are building tools to ac"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -50,9 +50,9 @@
         "occurrences": 2
       },
       {
-        "date": "2026-05-20",
-        "clue": "rural-context:+ \u2014 Deepened geographic specificity of proprietary lock-in stakes",
-        "occurrences": 1
+        "date": "2026-09-09",
+        "clue": "rural-context:+ \u2014 Emphasized Field-fixable solutions over centralized dealer networks",
+        "occurrences": 2
       },
       {
         "date": "2026-08-23",
@@ -123,11 +123,6 @@
         "date": "2026-08-30",
         "clue": "evidence-bar:~ \u2014 acknowledged both complexity and improbability readings possible",
         "occurrences": 1
-      },
-      {
-        "date": "2026-09-07",
-        "clue": "structural-lens:~ \u2014 Shifted from tool-capability debate to apprenticeship model entirely",
-        "occurrences": 2
       },
       {
         "date": "2026-09-06",
@@ -391,6 +386,16 @@
       {
         "date": "2026-09-08",
         "clue": "pilot-skepticism:+ \u2014 Moved beyond tool-merit to data ownership and knowledge capture",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-09-09",
+        "clue": "pilot-skepticism:x \u2014 Conceded entry-point value despite teaching concerns",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-09-09",
+        "clue": "evidence-bar:+ \u2014 Repeatedly demanded proof of knowledge transfer durability",
         "occurrences": 1
       }
     ],

@@ -1,36 +1,4 @@
 {
-  "2026-06-10": {
-    "timestamp": 1781085620.259545,
-    "date": "2026-06-10",
-    "theme": "Gear, Gadgets & Practical Tech",
-    "central_question": "How can rural communities like the Cariboo access reliable information about which gear and gadgets actually perform durably in remote, cold conditions without manufacturer support or institutional resources?",
-    "riley_position": "Rural tech knowledge exists informally across communities but lacks discoverable, persistent infrastructure; a structured regional hardware evaluation database with standardized searchable fields would make tacit knowledge accessible and preserve it beyond individual contributors.",
-    "riley_key_evidence": [
-      "Lithium iron phosphate (LiFePO4) chemistry handles cold significantly better than standard Li-ion, losing only modest capacity below minus 20, but this information isn't in product listings",
-      "iFixit's repair guide database is self-sustaining because contributing guides is embedded in community culture, not a maintenance task requiring ongoing labor",
-      "Backcountry forums and hunting networks contain scattered evaluation information but lack structured query layers to filter by 'operates below minus 20' or 'battery user-replaceable'"
-    ],
-    "casey_position": "Community knowledge databases face hard structural problems around editorial quality control, the transition from student projects to persistent infrastructure, and ongoing hosting that typically kills projects when grants expire or volunteers burn out.",
-    "casey_key_evidence": [
-      "Lithium ion capacity drops 20-40% at minus 20 degrees Celsius \u2014 a physics constraint that doesn't show up in standard benchmarks and users aren't told about",
-      "Durability and repairability have been decoupled in consumer markets \u2014 devices can be physically robust but become paperweights when batteries swell or ports corrode because components are bonded and unavailable for replacement",
-      "Community database projects commonly fail when the first wave of bad submissions or misinformation hits and no paid editorial staff exists to maintain quality"
-    ],
-    "resolution": "They converged on a concrete three-step implementation path: approach regional library or CNA Williams Lake to seed a student project creating 100 verified evaluations, push the Cariboo Regional District to host it as permanent municipal infrastructure (eliminating the grant-dependency death spiral), and recruit early reviewers from existing off-grid and SAR communities using a low-friction submission form. Casey acknowledged this was 'the most plausible version of the launch problem' they'd discussed.",
-    "topics_covered": [
-      "Battery chemistry performance in cold climates and manufacturer lock-in practices",
-      "The gap between institutional equipment specifications (SAR, wildfire) and what individual rural users can access",
-      "Formal vs. informal knowledge infrastructure and the discoverability problem",
-      "Structural sustainability of community databases and the handoff from student projects to permanent hosting",
-      "Municipal infrastructure as a persistence layer for community knowledge versus grant-dependent websites"
-    ],
-    "calls_to_action": [
-      "Bring the rural hardware evaluation database proposal to your regional library or CNA Williams Lake campus and ask whether a structured student project could seed initial entries.",
-      "Push the Cariboo Regional District to consider hosting a device evaluation database as permanent public infrastructure bundled into existing municipal hosting rather than as a separate grant-dependent website.",
-      "If you're running equipment in hard conditions, reach out to feedback@cariboosignals.ca with your opinions about what gear holds up, what has let you down, and what you'd never replace \u2014 this real-world field data is how the database starts.",
-      "Two experienced contributors should review each submission before it goes live rather than publishing all submissions immediately, creating a two-person threshold for quality control while building a network of contributors."
-    ]
-  },
   "2026-06-11": {
     "timestamp": 1781173129.764585,
     "date": "2026-06-11",
@@ -2444,6 +2412,40 @@
       "Run a term-long pilot at a local trades program or community college extension where a handful of apprentices use an AI guidance tool alongside a journeyperson mentor\u2014cheaper than a twenty-five-million-dollar venture bet and keeps experienced judgment in the room while there's still time to learn from it.",
       "Anyone with experience trying a construction AI tool on a Cariboo job site, thoughts on cover crops versus precision agriculture, or knowledge of a foreman who reads timber stands by walking them should send that information to feedback@cariboosignals.ca so tacit knowledge is captured before it exists only in one person's head.",
       "A Quesnel contractor or Williams Lake ranch operation could pilot an AI system on a single job at small scale and compare results against how the crew performed without it, generating local numbers instead of relying on vendor metrics."
+    ]
+  },
+  "2026-09-09": {
+    "timestamp": 1788942274.440186,
+    "date": "2026-09-09",
+    "theme": "Repair Culture & Practical Tech",
+    "focus": "vehicles-field-gear",
+    "anchor": "lost-when-easier",
+    "central_question": "Does making repairs easier through technology like 3D printing and diagnostic tools teach the underlying skills, or does it replace the need to learn them?",
+    "riley_position": "Easier repair tools can serve as entry points that drive curiosity and skill-building if paired with proper instruction, and the collapsed cost of experimentation creates genuine opportunities for learning alongside convenience.",
+    "riley_key_evidence": [
+      "Desktop 3D printers now produce PC-ABS parts comparable to industrial systems for field repairs like chainsaw brackets and trail camera housings",
+      "A thermal camera attachment costs about as much as a flashlight and can diagnose electrical faults, putting diagnostic curiosity in hands that never had it before",
+      "School District 27 already teaches trades and outdoor skills alongside Indigenous languages, offering a foundation where 3D modeling and failure testing could become part of the curriculum"
+    ],
+    "casey_position": "Technological convenience often replaces the need to learn underlying skills rather than teach them, and without deliberate instruction in the why alongside the what, tools become mere substitutes that mask deeper knowledge loss.",
+    "casey_key_evidence": [
+      "Independent engineering tests show industrial 3D printers still outperform desktop machines on tensile strength and elongation depending on orientation, limiting when 'close enough' actually works",
+      "A thermal camera showing a hot spot doesn't distinguish between loose connections, failing components, or design flaws that recur\u2014without electrical knowledge underneath, users treat symptoms and declare victory",
+      "Modern vehicles increasingly use software-gated components that dealership tools must authorize, meaning newer fleets won't be user-repairable even with better hardware tools available"
+    ],
+    "resolution": "Riley and Casey agreed that nothing is inherently lost if teaching the 'why' accompanies the 'what,' but they disagreed on the likelihood\u2014Casey remains skeptical that instruction will keep pace with tool adoption, while Riley believes the lower barrier to entry makes curiosity-driven learning more probable.",
+    "topics_covered": [
+      "3D printing capability versus industrial manufacturing tolerances for field repairs",
+      "Diagnostic tools like thermal imaging as entry points versus confidence without underlying knowledge",
+      "Right-to-repair law and manufacturer gatekeeping versus technological capability to fabricate parts",
+      "Software-locked components in vehicles versus older hardware-repairable fleet",
+      "Repair culture knowledge transfer from person to person versus tool-dependent skill erosion"
+    ],
+    "calls_to_action": [
+      "If you're running a shop program or have printed a field part that either held or shattered, share how it went by emailing feedback@cariboosignals.ca",
+      "Send in old tricks from retired technicians that nobody wrote down, along with both successful repairs and failures since those teach more than wins alone",
+      "If you're teaching trades or outdoor skills, consider integrating 3D modeling and load-testing into curriculum so students learn modelling skill that transfers beyond just pressing print",
+      "Test remote road maintenance workflows: evaluate whether a forest service crew could benefit from on-site 3D printing for grader attachments and housings to avoid multi-day downtime"
     ]
   }
 }

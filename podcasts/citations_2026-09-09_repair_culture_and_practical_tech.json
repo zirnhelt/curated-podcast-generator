@@ -1,0 +1,371 @@
+{
+  "episode": {
+    "date": "2026-09-09",
+    "formatted_date": "Wednesday, September 09, 2026",
+    "theme": "Repair Culture & Practical Tech",
+    "title": "Cariboo Signals - Repair Culture & Practical Tech",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Repair Culture & Practical Tech.</p><p><b>THIS WEEK WE'RE ASKING:</b> What gets lost when something gets easier?</p><p><b>NEWS ROUNDUP:</b> We break down [My Cariboo Now] Environment Canada goes over what type of summer we just had in the Cariboo and [My Cariboo Now] RCMP execute drug and weapons bust in the South Cariboo, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Does making repairs easier through technology like 3D printing and diagnostic tools teach the underlying skills, or does it replace the need to learn them? Topics include: 3D printing capability versus industrial manufacturing tolerances for field repairs, Diagnostic tools like thermal imaging as entry points versus confidence without underlying knowledge, Right-to-repair law and manufacturer gatekeeping versus technological capability to fabricate parts, Software-locked components in vehicles versus older hardware-repairable fleet, Repair culture knowledge transfer from person to person versus tool-dependent skill erosion.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://sd27.bc.ca\">School District 27 (Cariboo-Chilcotin)</a></p><p><b>Sources discussed:</b></p><ul><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/316096/news/weather/environment-canada-goes-over-what-type-of-summer-we-just-had-in-the-cariboo/\">[My Cariboo Now] Environment Canada goes over what type of s...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/316116/news/rcmp/rcmp-executive-drug-and-weapons-bust-in-the-south-cariboo/\">[My Cariboo Now] RCMP execute drug and weapons bust in the S...</a></li><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/09/08/training-exercise-at-williams-lake-regional-airport-to-test-emergency-response/\">[Williams Lake Tribune] Training exercise at Williams Lake R...</a></li><li>https://www.tomshardware.com/author/anton-shilov (Tom's Hardware): <a href=\"https://www.tomshardware.com/tech-industry/semiconductors/intel-surpasses-one-million-high-na-euv-wafers-processed-outpaces-the-rest-of-the-industry-combined-company-also-trailblazing-giant-6-12-photomasks-to-speed-production-and-lower-costs1\">[Tom's Hardware] Intel surpasses one million High-NA EUV waf...</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/09/260906170149.htm\">[ScienceDaily] Common dry-cleaning chemical linked to triple...</a></li><li>Santana Dreaver (IndigiNews): <a href=\"https://indiginews.com/features/in-b-c-first-nations-practice-and-learn-salmon-traditions-key-to-food-security/\">[IndigiNews] In ‘B.C.,’ First Nations practice and learn sal...</a></li><li>ArchDaily: <a href=\"https://www.archdaily.com/1184701/city-governments-transform-industrial-buildings-into-circular-construction-hubs-in-new-york-london-and-brussels\">[ArchDaily] City Governments Transform Industrial Buildings ...</a></li><li>https://www.tomshardware.com/author/etiido-uko (Tom's Hardware): <a href=\"https://www.tomshardware.com/tech-industry/semiconductors/belgian-chinese-semiconductor-researcher-arrested-over-alleged-gan-trade-secret-theft-prosecutors-suspect-belgan-insiders-transferred-chip-ip-to-china-before-the-company-collapsed\">[Tom's Hardware] Belgian-Chinese semiconductor researcher ar...</a></li><li>Committee to Protect Journalists: <a href=\"https://cpj.org/2026/09/ukraine-russian-drone-strike-on-tv-channel-building-in-kyiv-injures-six-people-damages-newsroom/\">[Committee to Protect Journalists] Ukraine: Russian drone st...</a></li><li>Kagi Small Web: <a href=\"https://muddy.jprs.me/posts/2026-09-01-which-local-llm-should-you-run/\">[Kagi Small Web] Which local LLM should you run?</a></li><li>Vancouver Sun: <a href=\"https://vancouversun.com/opinion/op-ed/opinion-building-canadas-volunteer-sector-before-the-next-wildfire-erupts\">[Vancouver Sun] Opinion: Building Canada&#039;s volunteer se...</a></li><li>Sophie Hurwitz (Mother Jones): <a href=\"https://www.motherjones.com/politics/2026/09/lawmakers-push-ice-cancel-shock-gloves-contract-compliant-technologies-delia-ramirez/\">[Mother Jones] Lawmakers Push DHS to Cancel Its Shock Gloves...</a></li><li>Tim De Chant (TechCrunch): <a href=\"https://techcrunch.com/2026/09/08/google-deepmind-alumni-are-building-tools-to-accelerate-fusion-power-for-the-grid/\">[TechCrunch] Google DeepMind alumni are building tools to ac...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>EEVblog: <a href=\"https://www.eevblog.com/2026/09/08/eevblog-1769-who-needs-three-phases-repair/\">EEVblog 1769 – Who Needs Three Phases? REPAIR</a></li><li>ZDNet: <a href=\"https://www.zdnet.com/tech/rision-magic-thermal-camera-review/\">[ZDNet] This tiny tool gave my phone thermal vision – and po...</a></li><li>EEVblog: <a href=\"https://www.eevblog.com/2026/09/08/eevblog-1770-rigol-rsa800-real-time-spectrum-analyser-teardown-reverse-engineering/\">EEVblog 1770 – Rigol RSA800 Real Time Spectrum Analyser TEAR...</a></li><li>Hackaday: <a href=\"https://hackaday.com/2026/09/08/are-desktop-pc-abs-prints-outperformed-by-industrial-fdm-not-really/\">[Hackaday] Are Desktop PC-ABS Prints Outperformed by Industr...</a></li><li>Popular Woodworking: <a href=\"https://www.popularwoodworking.com/tools/the-swiss-precision-planer-gantry-rethinking-live-edge-slab-flattening/\">[Popular Woodworking] The Swiss Precision Planer Gantry: Ret...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-opus-5<br>Today's Voices: Gemini TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-09-09T01:24:25.416771-07:00",
+    "models": {
+      "script": "claude-sonnet-5",
+      "review": "claude-opus-5",
+      "summary": "claude-haiku-4-5"
+    },
+    "quality": {
+      "word_count": 2910,
+      "voice_ratio_casey_riley": 0.79,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 0,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 3,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 0,
+        "roundup_seam": 0,
+        "thats_closer": 0,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 3,
+      "rhythm": {
+        "em_dashes_per_1k": 10.3,
+        "short_turns": 3,
+        "turns": 70,
+        "avg_turn_words": 40.1,
+        "antithesis_hits": 0,
+        "over_budget": [
+          "em_dashes",
+          "short_turns"
+        ]
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    },
+    "anchor": {
+      "id": "lost-when-easier",
+      "question": "What gets lost when something gets easier?"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[My Cariboo Now] Environment Canada goes over what type of summer we just had in the Cariboo",
+          "url": "https://www.mycariboonow.com/316096/news/weather/environment-canada-goes-over-what-type-of-summer-we-just-had-in-the-cariboo/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 80,
+          "date_published": "2026-09-08T12:59:22+00:00",
+          "summary": "Warmer and drier than normal. That's how Environment Canada meteorologist Justin Shelley describes summer in Quesnel and Williams Lake this year. The post Environment Canada goes over what type of sum...",
+          "discussed": true,
+          "mention_offset_frac": 0.0267
+        },
+        {
+          "title": "[My Cariboo Now] RCMP execute drug and weapons bust in the South Cariboo",
+          "url": "https://www.mycariboonow.com/316116/news/rcmp/rcmp-executive-drug-and-weapons-bust-in-the-south-cariboo/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 77,
+          "date_published": "2026-09-08T21:11:06+00:00",
+          "summary": "100 Mile House RCMP seized drugs and firearms from a residence in the 103 Mile area. The post RCMP execute drug and weapons bust in the South Cariboo appeared first on My Cariboo Now .",
+          "discussed": true,
+          "mention_offset_frac": 0.0999
+        },
+        {
+          "title": "[Williams Lake Tribune] Training exercise at Williams Lake Regional Airport to test emergency response",
+          "url": "https://wltribune.com/2026/09/08/training-exercise-at-williams-lake-regional-airport-to-test-emergency-response/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 79,
+          "date_published": "2026-09-09T07:03:20.446789+00:00",
+          "summary": "## Training exercise at Williams Lake Regional Airport to test emergency response Published 5:12 pm Tuesday, September 8, 2026 A live emergency response exercise is scheduled to take place at the Will...",
+          "discussed": true,
+          "mention_offset_frac": 0.1463
+        },
+        {
+          "title": "[Kagi Small Web] Which local LLM should you run?",
+          "url": "https://muddy.jprs.me/posts/2026-09-01-which-local-llm-should-you-run/",
+          "source": "Kagi Small Web",
+          "author": "",
+          "ai_score": 61,
+          "date_published": "2026-09-01T11:00:16+00:00",
+          "summary": "whichllm is a useful Python CLI utility that autodetects your GPU/CPU/RAM and pulls benchmarks from Hugging Face to rank the local LLMs you can run on your system, based on a mix of benchmarks and pro...",
+          "discussed": true,
+          "mention_offset_frac": 0.1938
+        },
+        {
+          "title": "[Tom's Hardware] Intel surpasses one million High-NA EUV wafers processed, outpaces the rest of the industry combined — company also trailblazing giant 6×12 photomasks to speed production and lower costs",
+          "url": "https://www.tomshardware.com/tech-industry/semiconductors/intel-surpasses-one-million-high-na-euv-wafers-processed-outpaces-the-rest-of-the-industry-combined-company-also-trailblazing-giant-6-12-photomasks-to-speed-production-and-lower-costs1",
+          "source": "Tom's Hardware",
+          "author": "https://www.tomshardware.com/author/anton-shilov",
+          "ai_score": 68,
+          "date_published": "2026-09-08T06:00:00+00:00",
+          "summary": "Intel is leading the semiconductor industry with High-NA fleet and process-maturity milestone as it reaches 1 million wafers processed using High-NA tools, moves forward with 6×12 photomask effort.",
+          "discussed": true,
+          "mention_offset_frac": 0.3883
+        },
+        {
+          "title": "[ScienceDaily] Common dry-cleaning chemical linked to triple the risk of liver scarring",
+          "url": "https://www.sciencedaily.com/releases/2026/09/260906170149.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-09-07T23:05:24+00:00",
+          "summary": "A chemical commonly used in dry cleaning and found in some household products may be an overlooked threat to liver health. Researchers found that people with detectable levels of tetrachloroethylene (...",
+          "discussed": true,
+          "mention_offset_frac": 0.469
+        },
+        {
+          "title": "[IndigiNews] In ‘B.C.,’ First Nations practice and learn salmon traditions — key to food security",
+          "url": "https://indiginews.com/features/in-b-c-first-nations-practice-and-learn-salmon-traditions-key-to-food-security/",
+          "source": "IndigiNews",
+          "author": "Santana Dreaver",
+          "ai_score": 65,
+          "date_published": "2026-09-08T15:35:29+00:00",
+          "summary": "Through workshops and gatherings, communities pass on strategies for healthy food and cultural connection that 'has sustained us for thousands of years' The post In ‘B.C.,’ First Nations practice and ...",
+          "discussed": true,
+          "mention_offset_frac": 0.5294
+        },
+        {
+          "title": "[ArchDaily] City Governments Transform Industrial Buildings into Circular Construction Hubs in New York, London, and Brussels",
+          "url": "https://www.archdaily.com/1184701/city-governments-transform-industrial-buildings-into-circular-construction-hubs-in-new-york-london-and-brussels",
+          "source": "ArchDaily",
+          "author": "",
+          "ai_score": 65,
+          "date_published": "2026-09-08T05:30:00+00:00",
+          "summary": "During the last week of August, the New York City government announced a new project for the MADE Bush Terminal in Sunset Park, Brooklyn. It involves the transformation of the old industrial building ...",
+          "discussed": true,
+          "mention_offset_frac": 0.5826
+        },
+        {
+          "title": "[Tom's Hardware] Belgian-Chinese semiconductor researcher arrested over alleged GaN trade-secret theft — prosecutors suspect BelGaN insiders transferred chip IP to China before the company collapsed",
+          "url": "https://www.tomshardware.com/tech-industry/semiconductors/belgian-chinese-semiconductor-researcher-arrested-over-alleged-gan-trade-secret-theft-prosecutors-suspect-belgan-insiders-transferred-chip-ip-to-china-before-the-company-collapsed",
+          "source": "Tom's Hardware",
+          "author": "https://www.tomshardware.com/author/etiido-uko",
+          "ai_score": 65,
+          "date_published": "2026-09-08T09:50:00+00:00",
+          "summary": "Belgian authorities have arrested a former BelGaN researcher on suspicion of industrial espionage, alleging that proprietary gallium nitride semiconductor technology was transferred to a Chinese rival...",
+          "discussed": true,
+          "mention_offset_frac": 0.6526
+        },
+        {
+          "title": "[Committee to Protect Journalists] Ukraine: Russian drone strike on TV channel building in Kyiv injures six people, damages newsroom",
+          "url": "https://cpj.org/2026/09/ukraine-russian-drone-strike-on-tv-channel-building-in-kyiv-injures-six-people-damages-newsroom/",
+          "source": "Committee to Protect Journalists",
+          "author": "",
+          "ai_score": 65,
+          "date_published": "2026-09-08T17:31:40+00:00",
+          "summary": "London, September 8, 2026—A Russian drone strike on a building housing two TV channels in Kyiv wounded six people and seriously damaged the newsroom on Tuesday while the team was on air. Three employe...",
+          "discussed": true,
+          "mention_offset_frac": 0.7722
+        },
+        {
+          "title": "[Vancouver Sun] Opinion: Building Canada&#039;s volunteer sector before the next wildfire erupts",
+          "url": "https://vancouversun.com/opinion/op-ed/opinion-building-canadas-volunteer-sector-before-the-next-wildfire-erupts",
+          "source": "Vancouver Sun",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-09-01T13:00:17+00:00",
+          "summary": "Opinion: The volunteer sector faces of increased demand, declining capacity, and financial instability",
+          "discussed": true,
+          "mention_offset_frac": 0.8895
+        },
+        {
+          "title": "[Mother Jones] Lawmakers Push DHS to Cancel Its Shock Gloves Contract",
+          "url": "https://www.motherjones.com/politics/2026/09/lawmakers-push-ice-cancel-shock-gloves-contract-compliant-technologies-delia-ramirez/",
+          "source": "Mother Jones",
+          "author": "Sophie Hurwitz",
+          "ai_score": 46,
+          "date_published": "2026-09-01T21:13:05+00:00",
+          "summary": "Last week, DHS finalized its $16.7 million purchase of 6,650 pairs of electric shock gloves from the Kentucky-based company Compliant Technologies. That comes out to about $2,400 per pair, plus some a...",
+          "discussed": true,
+          "mention_offset_frac": 0.9262
+        },
+        {
+          "title": "EEVblog 1769 – Who Needs Three Phases? REPAIR",
+          "url": "https://www.eevblog.com/2026/09/08/eevblog-1769-who-needs-three-phases-repair/",
+          "source": "EEVblog",
+          "author": "",
+          "ai_score": 68,
+          "date_published": "2026-09-08T01:17:33+00:00",
+          "summary": "Can you repair a PSU by REMOVING a component? Well, in this case, yeah, kinda. Not recommended for new designs, but it works (for now) because the design margins allowed it. 00:00 – My NerdQaxe++ Bitc...",
+          "discussed": false
+        },
+        {
+          "title": "[ZDNet] This tiny tool gave my phone thermal vision – and powerful diagnostic superpowers",
+          "url": "https://www.zdnet.com/tech/rision-magic-thermal-camera-review/",
+          "source": "ZDNet",
+          "author": "",
+          "ai_score": 68,
+          "date_published": "2026-09-08T16:00:32+00:00",
+          "summary": "The Rision Magic helps DIYers like myself spot overheated wiring, faulty components, failing batteries, and more.",
+          "discussed": false
+        },
+        {
+          "title": "EEVblog 1770 – Rigol RSA800 Real Time Spectrum Analyser TEARDOWN + Reverse Engineering",
+          "url": "https://www.eevblog.com/2026/09/08/eevblog-1770-rigol-rsa800-real-time-spectrum-analyser-teardown-reverse-engineering/",
+          "source": "EEVblog",
+          "author": "",
+          "ai_score": 54,
+          "date_published": "2026-09-08T01:21:59+00:00",
+          "summary": "Teardown and reverse engineering of the new Rigol RSA800 series Real Time Spectrum Analyser, from 4.5GHz to 13GHz. 4.5GHz RSA804 8.5GHz RSA808 14GHz RSA814 https://www.rigolna.com/products/spectrum-an...",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Repair Culture & Practical Tech",
+      "articles": [
+        {
+          "title": "[Hackaday] Are Desktop PC-ABS Prints Outperformed by Industrial FDM? Not Really",
+          "url": "https://hackaday.com/2026/09/08/are-desktop-pc-abs-prints-outperformed-by-industrial-fdm-not-really/",
+          "source": "Hackaday",
+          "author": "",
+          "ai_score": 67,
+          "date_published": "2026-09-08T20:00:26+00:00",
+          "summary": "[Igor] of [My Tech Fun] set out to discover what differences, if any, can be found between parts printed in PC-ABS filament on an industrial 3D printer, and those from …read more",
+          "discussed": false
+        },
+        {
+          "title": "[Popular Woodworking] The Swiss Precision Planer Gantry: Rethinking Live-Edge Slab Flattening",
+          "url": "https://www.popularwoodworking.com/tools/the-swiss-precision-planer-gantry-rethinking-live-edge-slab-flattening/",
+          "source": "Popular Woodworking",
+          "author": "",
+          "ai_score": 59,
+          "date_published": "2026-09-08T17:40:35+00:00",
+          "summary": "I recently returned from teaching a four-day live-edge furniture design and making workshop at Snow Farm: The New England Craft Program in Williamsburg, Massachusetts. It was an incredible week of... ...",
+          "discussed": false
+        },
+        {
+          "title": "[TechCrunch] Google DeepMind alumni are building tools to accelerate fusion power for the grid",
+          "url": "https://techcrunch.com/2026/09/08/google-deepmind-alumni-are-building-tools-to-accelerate-fusion-power-for-the-grid/",
+          "source": "TechCrunch",
+          "author": "Tim De Chant",
+          "ai_score": 55,
+          "date_published": "2026-09-09T06:00:00+00:00",
+          "summary": "Fusionality is developing control systems and simulation environments to help fusion power startups move faster.",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Does making repairs easier through technology like 3D printing and diagnostic tools teach the underlying skills, or does it replace the need to learn them?",
+        "riley_position": "Easier repair tools can serve as entry points that drive curiosity and skill-building if paired with proper instruction, and the collapsed cost of experimentation creates genuine opportunities for learning alongside convenience.",
+        "riley_key_evidence": [
+          "Desktop 3D printers now produce PC-ABS parts comparable to industrial systems for field repairs like chainsaw brackets and trail camera housings",
+          "A thermal camera attachment costs about as much as a flashlight and can diagnose electrical faults, putting diagnostic curiosity in hands that never had it before",
+          "School District 27 already teaches trades and outdoor skills alongside Indigenous languages, offering a foundation where 3D modeling and failure testing could become part of the curriculum"
+        ],
+        "casey_position": "Technological convenience often replaces the need to learn underlying skills rather than teach them, and without deliberate instruction in the why alongside the what, tools become mere substitutes that mask deeper knowledge loss.",
+        "casey_key_evidence": [
+          "Independent engineering tests show industrial 3D printers still outperform desktop machines on tensile strength and elongation depending on orientation, limiting when 'close enough' actually works",
+          "A thermal camera showing a hot spot doesn't distinguish between loose connections, failing components, or design flaws that recur—without electrical knowledge underneath, users treat symptoms and declare victory",
+          "Modern vehicles increasingly use software-gated components that dealership tools must authorize, meaning newer fleets won't be user-repairable even with better hardware tools available"
+        ],
+        "resolution": "Riley and Casey agreed that nothing is inherently lost if teaching the 'why' accompanies the 'what,' but they disagreed on the likelihood—Casey remains skeptical that instruction will keep pace with tool adoption, while Riley believes the lower barrier to entry makes curiosity-driven learning more probable.",
+        "topics_covered": [
+          "3D printing capability versus industrial manufacturing tolerances for field repairs",
+          "Diagnostic tools like thermal imaging as entry points versus confidence without underlying knowledge",
+          "Right-to-repair law and manufacturer gatekeeping versus technological capability to fabricate parts",
+          "Software-locked components in vehicles versus older hardware-repairable fleet",
+          "Repair culture knowledge transfer from person to person versus tool-dependent skill erosion"
+        ],
+        "calls_to_action": [
+          "If you're running a shop program or have printed a field part that either held or shattered, share how it went by emailing feedback@cariboosignals.ca",
+          "Send in old tricks from retired technicians that nobody wrote down, along with both successful repairs and failures since those teach more than wins alone",
+          "If you're teaching trades or outdoor skills, consider integrating 3D modeling and load-testing into curriculum so students learn modelling skill that transfers beyond just pressing print",
+          "Test remote road maintenance workflows: evaluate whether a forest service crew could benefit from on-site 3D printing for grader attachments and housings to avoid multi-day downtime"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 12,
+          "conditions": "overcast",
+          "high": 21,
+          "low": 10
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 12,
+          "conditions": "overcast",
+          "high": 23,
+          "low": 10
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 12,
+          "conditions": "partly cloudy",
+          "high": 24,
+          "low": 10
+        },
+        {
+          "name": "Quesnel",
+          "temp": 13,
+          "conditions": "overcast",
+          "high": 21,
+          "low": 9
+        },
+        {
+          "name": "Hanceville",
+          "temp": 13,
+          "conditions": "partly cloudy",
+          "high": 26,
+          "low": 10
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "School District 27 (Cariboo-Chilcotin)",
+      "description": "Public school district serving Williams Lake, 100 Mile House, and surrounding Cariboo communities with innovative rural education programs",
+      "website": "sd27.bc.ca",
+      "psa_angle": "It's back to school across SD27. School District 27 serves students from Williams Lake to Anahim Lake — with innovative programs in trades, outdoor education, and Indigenous language instruction.",
+      "event_name": "Back to school season"
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_azure": "Azure Neural TTS",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "Gemini TTS"
+  }
+}
