@@ -173,7 +173,7 @@ class TestProviderFallbackIsReported:
 
         monkeypatch.setattr(pg, "get_openai_client", fake_openai_client)
         monkeypatch.setattr(pg, "get_active_tts_provider", lambda: "gemini")
-        monkeypatch.setattr(pg, "get_gemini_api_key", lambda: "test-key")
+        monkeypatch.setattr(pg, "gemini_available", lambda: True)
         monkeypatch.setattr(pg, "parse_script_into_segments",
                             lambda s: (_ for _ in ()).throw(RuntimeError("gemini 500")))
         monkeypatch.setattr(pg, "generate_audio_tts_only", tts_only)

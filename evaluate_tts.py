@@ -14,6 +14,13 @@ Requirements:
     AZURE_SPEECH_KEY + AZURE_SPEECH_REGION  — for Azure path
     OPENAI_API_KEY                           — for OpenAI path
     GEMINI_API_KEY                           — for Gemini path (GEMINI_TTS_MODEL to override model)
+
+Gemini backend (all Gemini paths, probes included) follows GEMINI_TTS_BACKEND:
+    studio (default) — GEMINI_API_KEY, the generativelanguage preview surface
+    cloud            — GOOGLE_APPLICATION_CREDENTIALS, the GA Cloud TTS surface.
+                       Probe it before any nightly cutover, e.g.
+                       GEMINI_TTS_BACKEND=cloud python evaluate_tts.py \
+                           --probe-models --section deep_dive
 """
 
 import argparse
@@ -225,8 +232,8 @@ def _probe_gemini_rungs(seg_list: list[dict], repeats: int) -> None:
     """
     import gemini_tts
 
-    print(f"\n▶ Gemini prompt-shape probe: {len(seg_list)} turns, "
-          f"{_char_count(seg_list)} chars, {repeats}x per rung")
+    print(f"\n▶ Gemini prompt-shape probe [{gemini_tts.GEMINI_TTS_BACKEND} backend]: "
+          f"{len(seg_list)} turns, {_char_count(seg_list)} chars, {repeats}x per rung")
     print(f"  {'rung':<34} {'ok':>5}  detail")
 
     for i, rung in enumerate(gemini_tts.RETRY_LADDER):
@@ -269,8 +276,8 @@ def _probe_gemini_models(seg_list: list[dict], models: list[str], repeats: int) 
     import gemini_tts
 
     chars = _char_count(seg_list)
-    print(f"\n▶ Gemini model probe: {len(seg_list)} turns, {chars} chars, "
-          f"{repeats}x per model")
+    print(f"\n▶ Gemini model probe [{gemini_tts.GEMINI_TTS_BACKEND} backend]: "
+          f"{len(seg_list)} turns, {chars} chars, {repeats}x per model")
     print(f"  read timeout in effect: {gemini_tts._read_timeout_for(seg_list)}s")
     print(f"\n  {'model':<34} {'ok':>6}  {'median':>8} {'slowest':>8}  detail")
 
@@ -360,10 +367,19 @@ def main():
     )
 
     if args.probe_gemini or args.probe_models:
-        if not os.getenv("GEMINI_API_KEY"):
-            print("❌ Gemini probes need GEMINI_API_KEY")
-            sys.exit(1)
         import gemini_tts
+        # Backend-aware: the cloud backend authenticates with a service account,
+        # not GEMINI_API_KEY, and the probe routes through the same backend the
+        # nightly would. Set GEMINI_TTS_BACKEND=cloud to measure the Cloud TTS
+        # surface before trusting a nightly to it.
+        if not gemini_tts.gemini_available():
+            need = (
+                "GOOGLE_APPLICATION_CREDENTIALS"
+                if gemini_tts.GEMINI_TTS_BACKEND == "cloud"
+                else "GEMINI_API_KEY"
+            )
+            print(f"❌ Gemini probes need {need} ({gemini_tts.GEMINI_TTS_BACKEND} backend)")
+            sys.exit(1)
         # dict.fromkeys dedupes while keeping order, for when both env vars name
         # the same model and there is no second thing to try.
         models = list(dict.fromkeys(
@@ -414,14 +430,18 @@ def main():
         elif not args.skip_azure:
             print("  Skipping Azure: AZURE_SPEECH_KEY not set")
 
-        if not args.skip_gemini and os.getenv("GEMINI_API_KEY"):
-            print(f"  Generating Gemini multi-speaker TTS for {section}...")
-            try:
-                gemini_result = _generate_gemini_section(seg_list, section, output_dir)
-            except Exception as e:
-                print(f"  ⚠️  Gemini failed: {e}")
-        elif not args.skip_gemini:
-            print("  Skipping Gemini: GEMINI_API_KEY not set")
+        if not args.skip_gemini:
+            import gemini_tts
+            if gemini_tts.gemini_available():
+                print(f"  Generating Gemini multi-speaker TTS for {section} "
+                      f"[{gemini_tts.GEMINI_TTS_BACKEND} backend]...")
+                try:
+                    gemini_result = _generate_gemini_section(seg_list, section, output_dir)
+                except Exception as e:
+                    print(f"  ⚠️  Gemini failed: {e}")
+            else:
+                print(f"  Skipping Gemini: not configured for the "
+                      f"{gemini_tts.GEMINI_TTS_BACKEND} backend")
 
         _print_report(section, openai_result, azure_result, gemini_result)
 

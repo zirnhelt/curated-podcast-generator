@@ -10,14 +10,29 @@ script text are performed rather than read aloud.
 
 Plain REST via requests — no SDK dependency.
 
-Requires:
+Two backends, selected by GEMINI_TTS_BACKEND (default "studio"):
+  studio — generativelanguage.googleapis.com :generateContent, GEMINI_API_KEY.
+           The preview surface this integration has always used; no SLA, and the
+           read timeouts / 500s CLAUDE.md documents at length.
+  cloud  — texttospeech.googleapis.com/v1beta1 text:synthesize, a service
+           account via GOOGLE_APPLICATION_CREDENTIALS. Gemini-TTS is GA here, on
+           a separate quota pool with requestable limits. Same prebuilt voices
+           (Kore/Iapetus), so the hosts sound identical — only the transport and
+           the reliability profile change. Multi-speaker on Cloud TTS is served
+           only by this Google-Cloud backend; the API-key path does not offer it.
+
+Requires (studio):
   GEMINI_API_KEY   — Google AI Studio key
+Requires (cloud):
+  GOOGLE_APPLICATION_CREDENTIALS — service-account key with the Text-to-Speech
+                                   API enabled (google-auth is already a dep)
 Optional:
-  GEMINI_TTS_MODEL — default gemini-3.1-flash-tts-preview
+  GEMINI_TTS_MODEL — overrides the per-backend default primary model
 """
 
 import array
 import base64
+import io
 import os
 import re
 import sys
@@ -39,41 +54,59 @@ from config_loader import (
     strip_stage_directions,
 )
 
+# Which Google surface renders the audio. See the module docstring. Default
+# stays "studio" until a probe (evaluate_tts.py --probe-models on the cloud
+# backend) has cleared the 8/15 baseline, per CLAUDE.md's cutover rule — GA does
+# not become "measured here" until it is measured here.
+GEMINI_TTS_BACKEND = (os.getenv("GEMINI_TTS_BACKEND") or "studio").strip().lower()
+
+# Per-backend model names. The Cloud surface drops the `-preview` suffix and
+# leads with pro (Option B): pro is the best dialog handling and, measured
+# 2026-09-03, costs more than flash only on *input* tokens ($1.25 vs $0.50 per
+# MTok) — audio output, which is essentially all of an episode's TTS bill, is
+# $10 per MTok on both, so an episode's pro premium is a fraction of a cent.
+# flash is the second rung because it answers faster: a pro timeout then still
+# lands the section on a Gemini voice rather than OpenAI's. If the probe shows
+# pro timing out too often on Cloud, flip GEMINI_TTS_MODEL to flash — the ladder
+# already treats the slower model as the thing to fall past.
+_DEFAULT_PRIMARY = {
+    "studio": "gemini-3.1-flash-tts-preview",
+    "cloud": "gemini-2.5-pro-tts",
+}
+# Second Gemini TTS model, tried after the primary has failed several times.
+# Same prebuilt voice names and the same multi-speaker API, so falling here
+# keeps Riley and Casey sounding like themselves — the episode loses a model,
+# not its voice. Order is by what the show has shipped on, not by price (see
+# above); the 3.1 preview is deliberately absent from the studio pair because it
+# has never answered here.
+_FALLBACK_PREFERENCE_BY_BACKEND = {
+    "studio": ("gemini-2.5-flash-preview-tts", "gemini-2.5-pro-preview-tts"),
+    "cloud": ("gemini-2.5-flash-tts", "gemini-2.5-pro-tts"),
+}
+_FALLBACK_PREFERENCE = _FALLBACK_PREFERENCE_BY_BACKEND.get(
+    GEMINI_TTS_BACKEND, _FALLBACK_PREFERENCE_BY_BACKEND["studio"]
+)
+
 # `or` (not a getenv default) so a present-but-empty env var — e.g. an unset
 # workflow secret expanding to "" — still falls back to the default model.
 # .strip() guards against a trailing-whitespace secret/variable value, which
 # otherwise lands in the URL as a literal "%20" and Gemini 400s on it.
-GEMINI_TTS_MODEL = (os.getenv("GEMINI_TTS_MODEL") or "").strip() or "gemini-3.1-flash-tts-preview"
-
-# Second Gemini TTS model, tried after the primary has failed several times.
-# Same prebuilt voice names and the same multi-speaker API, so falling here
-# keeps Riley and Casey sounding like themselves — the episode loses a model,
-# not its voice.
-#
-# Resolved *against the primary* rather than hard-coded, because the two
-# collapsing into one model is silent and costs the ladder its model rung
-# entirely. On 2026-09-03 GEMINI_TTS_MODEL was set to
-# gemini-2.5-flash-preview-tts — the fix for 3.1 never answering — which was
-# also this default, so the canary listed one candidate and _next_model_rung()
-# returned None on every rung. All four attempts on the cold open re-asked the
-# same model unchanged and the episode went to OpenAI: the same hole the
-# canary's _model_override pin opened on 2026-09-02, reached from the
-# configuration side instead.
-#
-# Order is by what the show has shipped on, not by price. Pro TTS used to be
-# demoted from this slot for costing more than flash; measured 2026-09-03 that
-# is only true of *input* tokens ($1.25 vs $0.50 per MTok) while audio output —
-# which is essentially all of an episode's TTS bill — is $10 per MTok on both.
-# An episode sends ~2.5k input tokens, so the difference is a fraction of a
-# cent and price is not a reason to keep the ladder one model short.
-_FALLBACK_PREFERENCE = (
-    "gemini-2.5-flash-preview-tts",
-    "gemini-2.5-pro-preview-tts",
+GEMINI_TTS_MODEL = (os.getenv("GEMINI_TTS_MODEL") or "").strip() or _DEFAULT_PRIMARY.get(
+    GEMINI_TTS_BACKEND, _DEFAULT_PRIMARY["studio"]
 )
 
 
 def _default_fallback_model(primary: str) -> str:
-    """First preference that is not *primary*, so the ladder always has two."""
+    """First preference that is not *primary*, so the ladder always has two.
+
+    Resolved *against the primary* rather than hard-coded, because the two
+    collapsing into one model is silent and costs the ladder its model rung
+    entirely. On 2026-09-03 GEMINI_TTS_MODEL was set to
+    gemini-2.5-flash-preview-tts — the fix for 3.1 never answering — which was
+    also this default, so the canary listed one candidate and the model rung
+    returned None on every rung. All four attempts on the cold open re-asked the
+    same model unchanged and the episode went to OpenAI.
+    """
     return next((m for m in _FALLBACK_PREFERENCE if m != primary), "")
 
 
@@ -82,6 +115,15 @@ GEMINI_TTS_FALLBACK_MODEL = (
 ).strip() or _default_fallback_model(GEMINI_TTS_MODEL)
 
 GEMINI_TTS_URL = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+
+# Cloud TTS backend: one fixed endpoint (the model rides in the request body,
+# not the URL), a service-account bearer token, and the language code the
+# prebuilt Gemini voices are published under. Its audio comes back as 24 kHz
+# s16le, headerless under the PCM encoding.
+GEMINI_CLOUD_TTS_URL = "https://texttospeech.googleapis.com/v1beta1/text:synthesize"
+_CLOUD_SCOPE = "https://www.googleapis.com/auth/cloud-platform"
+GEMINI_TTS_LANGUAGE_CODE = (os.getenv("GEMINI_TTS_LANGUAGE_CODE") or "en-US").strip()
+GEMINI_CLOUD_SAMPLE_RATE = 24_000
 
 # Each script section (and any char-limit chunk within it) is its own
 # generateContent call. Without a pinned seed/temperature, every call samples
@@ -348,12 +390,25 @@ def _read_timeout_for(segments: list[dict], continuing: bool = False) -> int:
     The full-quality rung is what is measured, because it is the largest request
     the ladder can send and the leash is fixed for the chunk. A rung that sheds
     context or style makes a smaller request and simply finishes with more room.
+
+    The fit (READ_TIMEOUT_MS_PER_CHAR) was measured on the studio endpoint and
+    is inherited by the cloud backend until its own probe refits it — expect the
+    leash to be loose there rather than tight, which costs a wasted wait, not a
+    lost take.
     """
-    request_chars = len(
-        _build_payload(segments, continuing)["contents"][0]["parts"][0]["text"]
-    )
+    request_chars = _request_chars(segments, continuing)
     scaled = request_chars * READ_TIMEOUT_MS_PER_CHAR / 1000
     return int(min(READ_TIMEOUT_MAX_S, max(READ_TIMEOUT_MIN_S, scaled)))
+
+
+def _request_chars(segments: list[dict], continuing: bool = False) -> int:
+    """Chars the active backend's endpoint spends time on, for the read-timeout
+    scale and the runaway-request guard. Studio counts the whole generateContent
+    prompt; cloud counts the spoken turns plus the style prompt (the transcript
+    rides structured, not in the prompt)."""
+    if GEMINI_TTS_BACKEND == "cloud":
+        return _cloud_request_chars(segments, continuing)
+    return len(_build_payload(segments, continuing)["contents"][0]["parts"][0]["text"])
 
 # Chars of an HTTP error body to surface. Gemini's structured error.details
 # (e.g. the QuotaFailure block naming the exceeded quota) sits past the 300-char
@@ -524,6 +579,22 @@ CANARY_SEGMENTS = [
 def get_gemini_api_key() -> str | None:
     """Return the Gemini API key, or None if not configured."""
     return os.environ.get("GEMINI_API_KEY") or None
+
+
+def gemini_available() -> bool:
+    """Whether Gemini can be reached on the active backend — the availability
+    gate the pipeline checks before reaching for Gemini at all.
+
+    Backend-aware: studio needs GEMINI_API_KEY, cloud needs a service-account
+    credential (GOOGLE_APPLICATION_CREDENTIALS). Neither loads anything here —
+    the real credential check happens at the first call, where a bad one falls
+    the run to OpenAI through the canary. The cloud gate is deliberately the env
+    var rather than a live google.auth probe: the gate must stay cheap and never
+    do I/O, and on GitHub Actions the auth step is what sets it.
+    """
+    if GEMINI_TTS_BACKEND == "cloud":
+        return bool(os.environ.get("GOOGLE_APPLICATION_CREDENTIALS"))
+    return bool(get_gemini_api_key())
 
 
 def _display_name(host_key: str) -> str:
@@ -831,12 +902,72 @@ def _attempt(
     read_timeout: int,
     pin: str | None = None,
 ) -> tuple[bytes, int]:
-    """One generateContent call for *rung*. Returns (pcm_bytes, sample_rate)."""
+    """One synthesis call for *rung* on the active backend. Returns (pcm, rate).
+
+    The transport — which Google surface, which auth, which request/response
+    shape — is backend-specific and returns raw audio. Everything after it, the
+    trim and the two content checksums, is shared: a truncated or silent take is
+    the same defect whichever endpoint produced it.
+    """
+    model = _model_for(rung, pin)
+    if GEMINI_TTS_BACKEND == "cloud":
+        pcm, sample_rate = _cloud_synthesize(segments, continuing, rung, model, read_timeout)
+    else:
+        pcm, sample_rate = _studio_synthesize(
+            segments, continuing, rung, model, seed, read_timeout
+        )
+
+    # Trimmed once, here: it is what the chunk contributes to the section (a
+    # boundary stays a boundary instead of becoming a hole), and it is what both
+    # checks below have to measure. Wall length is not the quantity — the
+    # 2026-09-06 welcome was long enough to clear every threshold and carried
+    # 8 s of speech for 113 words.
+    speech = _trim_pcm_silence(pcm, sample_rate)
+
+    duration = _duration_ratio(speech, sample_rate, segments)
+    if duration is not None and duration[0] < SEVERE_TRUNCATION_RATIO:
+        ratio, words = duration
+        raise RuntimeError(
+            f"Gemini TTS severely truncated audio: {words} words expected "
+            f"~{words * EXPECTED_MS_PER_WORD // 1000}s of speech, got "
+            f"{len(speech) / SAMPLE_WIDTH_BYTES / sample_rate:.0f}s ({ratio:.0%}) "
+            f"out of {len(pcm) / SAMPLE_WIDTH_BYTES / sample_rate:.0f}s of audio"
+        )
+
+    # Dead air inside a chunk is the same defect as a short one — words that were
+    # asked for and not spoken — and it is the one the assembler cannot repair,
+    # because the chunk sits mid-section by the time it sees it. Measured after
+    # the trim, so only genuinely internal silence counts. Raised, not spliced
+    # out: a hole this long means the words are gone too, and a fresh sampling
+    # draw is a better answer than a hard cut.
+    gap_ms = _longest_internal_silence_ms(speech, sample_rate)
+    if gap_ms > MAX_INTERNAL_SILENCE_MS:
+        raise RuntimeError(
+            f"Gemini TTS returned {gap_ms / 1000:.0f}s of silence inside the chunk "
+            f"({len(segments)} turns) — dead air the section trim cannot reach"
+        )
+
+    return speech, sample_rate
+
+
+def _studio_synthesize(
+    segments: list[dict],
+    continuing: bool,
+    rung: _Rung,
+    model: str,
+    seed: int,
+    read_timeout: int,
+) -> tuple[bytes, int]:
+    """generateContent transport (AI Studio, API key). Returns raw (pcm, rate).
+
+    The full-quality request is the largest the ladder sends; a rung that sheds
+    context or style makes a smaller one. `finishReason: OTHER` — the tokenized,
+    audio-less rejection the ladder is built around — lives on this surface only.
+    """
     api_key = get_gemini_api_key()
     if not api_key:
         raise ValueError("GEMINI_API_KEY not set")
 
-    model = _model_for(rung, pin)
     payload = _build_payload(segments, continuing, rung=rung, seed=seed)
     prompt_chars = len(payload["contents"][0]["parts"][0]["text"])
     _log_speech_config(payload["generationConfig"]["speechConfig"])
@@ -901,39 +1032,228 @@ def _attempt(
     mime = part.get("mimeType", "")
     rate_match = re.search(r"rate=(\d+)", mime)
     sample_rate = int(rate_match.group(1)) if rate_match else DEFAULT_SAMPLE_RATE
-    pcm = base64.b64decode(part["data"])
+    return base64.b64decode(part["data"]), sample_rate
 
-    # Trimmed once, here: it is what the chunk contributes to the section (a
-    # boundary stays a boundary instead of becoming a hole), and it is what both
-    # checks below have to measure. Wall length is not the quantity — the
-    # 2026-09-06 welcome was long enough to clear every threshold and carried
-    # 8 s of speech for 113 words.
-    speech = _trim_pcm_silence(pcm, sample_rate)
 
-    duration = _duration_ratio(speech, sample_rate, segments)
-    if duration is not None and duration[0] < SEVERE_TRUNCATION_RATIO:
-        ratio, words = duration
+# --- Cloud TTS backend (texttospeech.googleapis.com) -----------------------
+#
+# The same prebuilt voices and the same rung-shedding as the studio path, on the
+# GA Cloud surface. Two shape differences, both settled from the v1beta1 proto
+# and Google's own multi-speaker sample:
+#   - the transcript is structured (input.multiSpeakerMarkup.turns), so the
+#     direction goes in input.prompt with nothing spoken in it — the boundary the
+#     studio path has to draw with a TRANSCRIPT_MARKER is drawn by the schema;
+#   - there is no seed/temperature and no `finishReason: OTHER`. text:synthesize
+#     either returns audioContent or an HTTP error, so the audio-less rejection
+#     does not occur; a rejection-shaped ladder still runs, but only the HTTP and
+#     transport rungs can fire.
+
+_cloud_credentials = None
+
+
+def _cloud_access_token() -> str:
+    """Bearer token from application-default credentials, cached and refreshed.
+
+    google.auth is imported lazily so the studio path — and the test suite, which
+    stubs neither — never load it. A missing or unreadable credential raises a
+    RuntimeError naming the fix rather than a bare library error; the canary then
+    reads it as "Gemini unusable this run" and pins OpenAI.
+    """
+    global _cloud_credentials
+    try:
+        import google.auth
+        import google.auth.transport.requests
+    except ImportError as e:  # pragma: no cover - google-auth is in requirements
         raise RuntimeError(
-            f"Gemini TTS severely truncated audio: {words} words expected "
-            f"~{words * EXPECTED_MS_PER_WORD // 1000}s of speech, got "
-            f"{len(speech) / SAMPLE_WIDTH_BYTES / sample_rate:.0f}s ({ratio:.0%}) "
-            f"out of {len(pcm) / SAMPLE_WIDTH_BYTES / sample_rate:.0f}s of audio"
-        )
+            "Cloud TTS backend needs google-auth (already in requirements.txt)"
+        ) from e
+    if _cloud_credentials is None:
+        try:
+            _cloud_credentials, _ = google.auth.default(scopes=[_CLOUD_SCOPE])
+        except Exception as e:
+            raise RuntimeError(
+                "Cloud TTS backend could not load service-account credentials — set "
+                "GOOGLE_APPLICATION_CREDENTIALS to a key with the Text-to-Speech API"
+            ) from e
+    if not _cloud_credentials.valid:
+        _cloud_credentials.refresh(google.auth.transport.requests.Request())
+    return _cloud_credentials.token
 
-    # Dead air inside a chunk is the same defect as a short one — words that were
-    # asked for and not spoken — and it is the one the assembler cannot repair,
-    # because the chunk sits mid-section by the time it sees it. Measured after
-    # the trim, so only genuinely internal silence counts. Raised, not spliced
-    # out: a hole this long means the words are gone too, and a fresh sampling
-    # draw is a better answer than a hard cut.
-    gap_ms = _longest_internal_silence_ms(speech, sample_rate)
-    if gap_ms > MAX_INTERNAL_SILENCE_MS:
-        raise RuntimeError(
-            f"Gemini TTS returned {gap_ms / 1000:.0f}s of silence inside the chunk "
-            f"({len(segments)} turns) — dead air the section trim cannot reach"
-        )
 
-    return speech, sample_rate
+def _cloud_turn_text(text: str, rung: _Rung) -> str:
+    """One turn's spoken text — pronunciation applied, cues stripped per rung."""
+    cleaned = text if rung.keep_cues else strip_stage_directions(text)
+    return apply_pronunciation(cleaned)
+
+
+def _cloud_prompt(speakers: list[str], continuing: bool, rung: _Rung) -> str:
+    """input.prompt — direction only. Same blocks as the studio prompt minus the
+    transcript, because nothing in the prompt is spoken on this backend."""
+    blocks = []
+    if rung.keep_style:
+        blocks.append(_audio_profile_block(speakers))
+    blocks.append(_performance_notes_block(speakers, continuing, rung))
+    return "\n\n".join(blocks)
+
+
+def _build_cloud_payload(
+    segments: list[dict],
+    continuing: bool = False,
+    rung: _Rung = RETRY_LADDER[0],
+    model: str | None = None,
+) -> dict:
+    """The text:synthesize request body for a section's segments.
+
+    Single speaker (the cold open is usually one turn) takes input.text +
+    voice.name; two speakers take multiSpeakerMarkup + multiSpeakerVoiceConfig,
+    exactly mirroring the studio path's single/multi branch so the same sections
+    stay the same shape across backends.
+    """
+    speakers = list(dict.fromkeys(seg["speaker"] for seg in segments))
+    if len(speakers) > 2:
+        raise ValueError(f"Gemini multi-speaker TTS supports 2 speakers, got {speakers}")
+
+    model = model or GEMINI_TTS_MODEL
+    prompt = _cloud_prompt(speakers, continuing, rung)
+    audio_config = {"audioEncoding": "PCM", "sampleRateHertz": GEMINI_CLOUD_SAMPLE_RATE}
+
+    if len(speakers) == 1:
+        text = "\n".join(_cloud_turn_text(seg["text"], rung) for seg in segments)
+        return {
+            "input": {"text": text, "prompt": prompt},
+            "voice": {
+                "languageCode": GEMINI_TTS_LANGUAGE_CODE,
+                "name": get_gemini_voice_for_host(speakers[0]),
+                "modelName": model,
+            },
+            "audioConfig": audio_config,
+        }
+
+    turns = [
+        {"speaker": _display_name(seg["speaker"]), "text": _cloud_turn_text(seg["text"], rung)}
+        for seg in segments
+    ]
+    return {
+        "input": {"multiSpeakerMarkup": {"turns": turns}, "prompt": prompt},
+        "voice": {
+            "languageCode": GEMINI_TTS_LANGUAGE_CODE,
+            "modelName": model,
+            "multiSpeakerVoiceConfig": {
+                "speakerVoiceConfigs": [
+                    {"speakerAlias": _display_name(s), "speakerId": get_gemini_voice_for_host(s)}
+                    for s in speakers
+                ]
+            },
+        },
+        "audioConfig": audio_config,
+    }
+
+
+def _cloud_request_chars(
+    segments: list[dict], continuing: bool = False, rung: _Rung = RETRY_LADDER[0]
+) -> int:
+    """Chars the Cloud endpoint spends time on: the spoken turns plus the style
+    prompt. The scale for _read_timeout_for, mirroring the studio request-char
+    fit — the transcript is not the whole request here either."""
+    inp = _build_cloud_payload(segments, continuing, rung)["input"]
+    prompt = inp.get("prompt", "")
+    if "multiSpeakerMarkup" in inp:
+        spoken = sum(
+            len(t["speaker"]) + len(t["text"]) for t in inp["multiSpeakerMarkup"]["turns"]
+        )
+    else:
+        spoken = len(inp.get("text", ""))
+    return len(prompt) + spoken
+
+
+def _decode_cloud_audio(audio_b64: str) -> tuple[bytes, int]:
+    """Base64 → (s16le PCM, sample_rate).
+
+    PCM encoding returns headerless audio at the requested rate; a RIFF/WAVE
+    container is unwrapped defensively, so the parse survives a backend that
+    hands back LINEAR16 (a WAV) instead of raw PCM.
+    """
+    raw = base64.b64decode(audio_b64)
+    if raw[:4] == b"RIFF" and raw[8:12] == b"WAVE":
+        with wave.open(io.BytesIO(raw), "rb") as w:
+            return w.readframes(w.getnframes()), w.getframerate()
+    return raw, GEMINI_CLOUD_SAMPLE_RATE
+
+
+def _log_cloud_voice(payload: dict, model: str) -> None:
+    """Print which voices are being sent, as proof of multi-speaker usage."""
+    voice = payload["voice"]
+    multi = voice.get("multiSpeakerVoiceConfig")
+    if multi:
+        voices = ", ".join(
+            f"{c['speakerAlias']}={c['speakerId']}" for c in multi["speakerVoiceConfigs"]
+        )
+        print(f"  [gemini-cloud-tts] {model} multi-speaker: {voices}")
+    else:
+        print(f"  [gemini-cloud-tts] {model} single-speaker: {voice.get('name')}")
+
+
+def _cloud_synthesize(
+    segments: list[dict],
+    continuing: bool,
+    rung: _Rung,
+    model: str,
+    read_timeout: int,
+) -> tuple[bytes, int]:
+    """text:synthesize transport (Cloud TTS, service account). Raw (pcm, rate).
+
+    The HTTP error message keeps the studio path's `Gemini TTS HTTP {code}`
+    prefix so _carries_no_shape_verdict routes 429/5xx the same way here, and the
+    spend-cap wording match still fires — those are properties of the account,
+    not the surface.
+    """
+    token = _cloud_access_token()
+    payload = _build_cloud_payload(segments, continuing, rung, model)
+    request_chars = _cloud_request_chars(segments, continuing, rung)
+    _log_cloud_voice(payload, model)
+
+    call_started = time.monotonic()
+    try:
+        resp = requests.post(
+            GEMINI_CLOUD_TTS_URL,
+            headers={
+                "Authorization": f"Bearer {token}",
+                "Content-Type": "application/json",
+            },
+            json=payload,
+            timeout=(REQUEST_CONNECT_TIMEOUT, read_timeout),
+        )
+    except Exception:
+        print(
+            f"  [api] service=gemini-cloud-tts model={model} chars={request_chars} "
+            f"latency={time.monotonic() - call_started:.1f}s "
+            f"limit={read_timeout}s outcome=unanswered"
+        )
+        raise
+    elapsed = time.monotonic() - call_started
+    if resp.status_code in (429, 500, 502, 503, 504):
+        print(
+            f"  [api] service=gemini-cloud-tts model={model} chars={request_chars} "
+            f"latency={elapsed:.1f}s limit={read_timeout}s "
+            f"outcome=http-{resp.status_code}"
+        )
+        message = f"Gemini TTS HTTP {resp.status_code}: {resp.text[:ERROR_BODY_CHARS]}"
+        if _is_spend_cap(message):
+            raise SpendCapError(message)
+        raise RuntimeError(message)
+    resp.raise_for_status()
+
+    data = resp.json()
+    ts = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    print(
+        f"  [api] {ts} service=gemini-cloud-tts model={model} chars={request_chars} "
+        f"latency={elapsed:.1f}s limit={read_timeout}s"
+    )
+
+    audio_b64 = data.get("audioContent")
+    if not audio_b64:
+        raise RuntimeError(f"Gemini TTS (cloud) response had no audio: {str(data)[:300]}")
+    return _decode_cloud_audio(audio_b64)
 
 
 def _synthesize_chunk(
@@ -946,15 +1266,17 @@ def _synthesize_chunk(
     Raises the last error once the ladder or the time budget is exhausted; the
     caller then falls the section back to another provider.
     """
-    if not get_gemini_api_key():
-        raise ValueError("GEMINI_API_KEY not set")
+    if not gemini_available():
+        missing = (
+            "GOOGLE_APPLICATION_CREDENTIALS" if GEMINI_TTS_BACKEND == "cloud"
+            else "GEMINI_API_KEY"
+        )
+        raise ValueError(f"{missing} not set")
 
     # Checked once, before the ladder, against the largest (full-quality) rung:
     # an oversized request means a parsing bug upstream, not a transient fault,
     # so it must fail fast rather than be retried through minutes of backoff.
-    prompt_chars = len(
-        _build_payload(segments, continuing)["contents"][0]["parts"][0]["text"]
-    )
+    prompt_chars = _request_chars(segments, continuing)
     if prompt_chars > MAX_REQUEST_CHARS:
         raise RuntimeError(
             f"Gemini TTS request unexpectedly large ({prompt_chars} chars) — refusing to spend"
@@ -1159,7 +1481,7 @@ def canary() -> str | None:
     than the Gemini sound, and the model that answers is pinned for the whole
     episode so the voice cannot change mid-show.
     """
-    if not get_gemini_api_key():
+    if not gemini_available():
         return None
 
     # Computed before the loop below sets an override, so this is the run's
@@ -1168,6 +1490,7 @@ def canary() -> str | None:
     # Say which models this run will try, before trying them. The failure
     # messages name a model each, but nothing said what the run was configured
     # with, so a wrong or withdrawn model name looked exactly like an outage.
+    print(f"  Gemini TTS backend: {GEMINI_TTS_BACKEND}")
     print(f"  Gemini TTS candidates: {' then '.join(candidates)}")
     if len(candidates) < 2:
         # A configuration fact, not an outcome, so it is reported before any
