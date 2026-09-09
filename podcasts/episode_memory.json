@@ -1,25 +1,4 @@
 {
-  "2026-08-04": {
-    "timestamp": 1785840954.702651,
-    "topics": [
-      "[The Northern Miner] AI\u00a0boom lifts mining while competing fo",
-      "[WIRED] ICE Collected Nearly 1 Million People\u2019s DNA Last Yea",
-      "[ScienceDaily] Scientists went looking for giant trees in Ta",
-      "[Toms Guide] I drove the Subaru Forester and Mazda CX-5 for ",
-      "[Williams Lake Tribune] 500 wildland, structural firefighter",
-      "[The Northern Miner] Editorial: Industrial power returns",
-      "[Williams Lake Tribune] More than 100 Mexican wildfire perso",
-      "[The Guardian Global Development] \u2018Danger no longer only com"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact"
-    ],
-    "date": "2026-08-04",
-    "focus": "mining-energy",
-    "focus_name": "Mining & Energy"
-  },
   "2026-08-05": {
     "timestamp": 1785927504.526602,
     "topics": [
@@ -746,5 +725,27 @@
     "date": "2026-09-08",
     "focus": "tourism-outdoor-economy",
     "focus_name": "Tourism & the Outdoor Economy"
+  },
+  "2026-09-09": {
+    "timestamp": 1788942269.810102,
+    "topics": [
+      "[My Cariboo Now] Environment Canada goes over what type of s",
+      "[My Cariboo Now] RCMP execute drug and weapons bust in the S",
+      "[Williams Lake Tribune] Training exercise at Williams Lake R",
+      "EEVblog 1769 \u2013 Who Needs Three Phases? REPAIR",
+      "[ZDNet] This tiny tool gave my phone thermal vision \u2013 and po",
+      "[Hackaday] Are Desktop PC-ABS Prints Outperformed by Industr",
+      "[Popular Woodworking] The Swiss Precision Planer Gantry: Ret",
+      "[TechCrunch] Google DeepMind alumni are building tools to ac"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-09-09",
+    "focus": "vehicles-field-gear",
+    "focus_name": "Vehicles & Field Gear"
   }
 }
