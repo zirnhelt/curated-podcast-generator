@@ -152,7 +152,7 @@
       "detail": "During audio render on 2026-08-28, the welcome section synthesis via Gemini multi-speaker hit a ReadTimeout after 120 seconds on generativelanguage.googleapis.com. The pipeline fell back to OpenAI for that section and all remaining sections and credits. The episode now spans two TTS providers—Gemini for welcome, OpenAI for body and outro—introducing a voice discontinuity in the shipped 17.7-minute episode. Investigate whether Gemini's multi-speaker quota or concurrency limits are being hit, and consider either increasing timeouts, implementing section-level retry logic before switching providers, or pre-allocating Gemini synthesis for critical segments at off-peak times.",
       "source": "review",
       "status": "open",
-      "occurrences": 6,
+      "occurrences": 7,
       "first_seen": "2026-08-28",
       "seen": [
         "2026-08-28",
@@ -160,9 +160,10 @@
         "2026-09-04",
         "2026-09-05",
         "2026-09-06",
-        "2026-09-07"
+        "2026-09-07",
+        "2026-09-09"
       ],
-      "last_seen": "2026-09-07"
+      "last_seen": "2026-09-09"
     },
     {
       "id": "deep-dive-citation-matching-below-roundup-parity",
@@ -302,13 +303,14 @@
       "detail": "The quality review on 2026-09-04 flagged 1 instance of tell-pattern language (phrasing characteristic of Claude output) in the script. The system did not remove it before shipping. The pattern was detected but the removal step either failed silently or was not enforced. Add a hard gate that blocks episode publication if any flagged patterns remain after review, or escalate unresolved flags to manual approval before render begins.",
       "source": "review",
       "status": "open",
-      "occurrences": 2,
+      "occurrences": 3,
       "first_seen": "2026-09-04",
       "seen": [
         "2026-09-04",
-        "2026-09-06"
+        "2026-09-06",
+        "2026-09-09"
       ],
-      "last_seen": "2026-09-06"
+      "last_seen": "2026-09-09"
     },
     {
       "id": "voice-ratio-drift-toward-casey",
@@ -328,13 +330,14 @@
       "title": "Script expansion stopped one pass early despite remaining below target.",
       "detail": "The first draft shipped at 2,512 words against a 3,400-word target, triggering one expand pass. The result was 2,994 words—406 words short—and the pipeline accepted this without retry. The mechanism appears to be a single-pass expansion request rather than an iterative loop that continues until target is met or a hard limit is hit. Enforce expansion cycles until the script either reaches the target word count or exhausts a maximum retry count, then log and report which condition stopped it.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-09-06",
       "seen": [
-        "2026-09-06"
+        "2026-09-06",
+        "2026-09-09"
       ],
-      "last_seen": "2026-09-06"
+      "last_seen": "2026-09-09"
     },
     {
       "id": "gemini-multi-speaker-section-timeout-pattern",
@@ -380,13 +383,14 @@
       "title": "Deep-dive citations matched at 67 percent while roundup citations matched at 93 percent.",
       "detail": "On 2026-09-08, roundup sections achieved 14 of 15 citations verified (93%), but deep-dive sections achieved only 2 of 3 (67%). This gap is flagged in the published review and was also logged as a tracked item (deep-dive-citation-matching-below-roundup-parity). The mechanism is not stated in the facts, but the disparity suggests deep-dive sources may require different citation handling than roundup wire-service articles. To close this: audit the three deep-dive articles from this run to identify why citation verification failed, then adjust the citation-matching logic for long-form sources or add a manual review step before deep-dive scripting.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-09-08",
       "seen": [
-        "2026-09-08"
+        "2026-09-08",
+        "2026-09-09"
       ],
-      "last_seen": "2026-09-08"
+      "last_seen": "2026-09-09"
     },
     {
       "id": "gemini-tts-multi-speaker-news-section-http-500",
@@ -402,5 +406,5 @@
       "last_seen": "2026-09-08"
     }
   ],
-  "updated": "2026-09-08"
+  "updated": "2026-09-09"
 }

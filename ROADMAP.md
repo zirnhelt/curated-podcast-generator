@@ -39,7 +39,7 @@ cannot reopen it. Anything written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-08) — 18 open.
+_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-09) — 20 open.
 Check a box to close one; it comes back only if the reviews raise it 2 more times._
 
 - [ ] **A credit-balance 400 is not the usage-limit wall, and every run pays for that.**
@@ -110,7 +110,7 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       17.7-minute episode. Investigate whether Gemini's multi-speaker quota or concurrency
       limits are being hit, and consider either increasing timeouts, implementing section-level
       retry logic before switching providers, or pre-allocating Gemini synthesis for critical
-      segments at off-peak times. (seen in 6 reviews, latest 2026-09-07)
+      segments at off-peak times. (seen in 7 reviews, latest 2026-09-09)
 - [ ] **Deep dive sections achieved 67% citation matching versus 87% for roundup sections.** On
       2026-08-28, the roundup matched 13 of 15 citations (87%), but the deep dive section
       matched only 2 of 3 (67%). Both figures are from the same run and the same citation
@@ -177,8 +177,24 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       of Claude output) in the script. The system did not remove it before shipping. The pattern
       was detected but the removal step either failed silently or was not enforced. Add a hard
       gate that blocks episode publication if any flagged patterns remain after review, or
-      escalate unresolved flags to manual approval before render begins. (seen in 2 reviews,
-      latest 2026-09-06)
+      escalate unresolved flags to manual approval before render begins. (seen in 3 reviews,
+      latest 2026-09-09)
+- [ ] **Script expansion stopped one pass early despite remaining below target.** The first
+      draft shipped at 2,512 words against a 3,400-word target, triggering one expand pass. The
+      result was 2,994 words—406 words short—and the pipeline accepted this without retry. The
+      mechanism appears to be a single-pass expansion request rather than an iterative loop that
+      continues until target is met or a hard limit is hit. Enforce expansion cycles until the
+      script either reaches the target word count or exhausts a maximum retry count, then log
+      and report which condition stopped it. (seen in 2 reviews, latest 2026-09-09)
+- [ ] **Deep-dive citations matched at 67 percent while roundup citations matched at 93
+      percent.** On 2026-09-08, roundup sections achieved 14 of 15 citations verified (93%), but
+      deep-dive sections achieved only 2 of 3 (67%). This gap is flagged in the published review
+      and was also logged as a tracked item (deep-dive-citation-matching-below-roundup-parity).
+      The mechanism is not stated in the facts, but the disparity suggests deep-dive sources may
+      require different citation handling than roundup wire-service articles. To close this:
+      audit the three deep-dive articles from this run to identify why citation verification
+      failed, then adjust the citation-matching logic for long-form sources or add a manual
+      review step before deep-dive scripting. (seen in 2 reviews, latest 2026-09-09)
 
 <!-- reviews:end -->
 
