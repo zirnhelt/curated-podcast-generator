@@ -404,6 +404,45 @@
         "2026-09-08"
       ],
       "last_seen": "2026-09-08"
+    },
+    {
+      "id": "gemini-sections-degraded-on-retry",
+      "title": "Two Gemini-rendered sections shipped with degraded context after failing on earlier retry attempts.",
+      "detail": "On 2026-09-09, one section synthesized on retry 3 with context and style information dropped, and another on retry 2 with context dropped. Both shipped in the final episode with potential delivery variance from the rest of the content. The pipeline does not track which sections these are or expose their identity in the degradations log, making it impossible to audit whether listeners noticed the deviation or to improve the retry strategy.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-09",
+      "seen": [
+        "2026-09-09"
+      ],
+      "last_seen": "2026-09-09"
+    },
+    {
+      "id": "script-expansion-produced-word-loss-again",
+      "title": "Script expansion pass reduced word count from 2945 to 2910 instead of growing toward the 3400-word target.",
+      "detail": "On 2026-09-09, the first draft came in at 2945 words against a 3400-word target and was sent back for expansion. The shipped script measured 2910 words—95 words lower than the draft it was meant to improve. This is the second occurrence of expansion requests resulting in net loss rather than growth, suggesting the expand pass is either removing material or that the final editorial step is trimming below the original draft.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-09",
+      "seen": [
+        "2026-09-09"
+      ],
+      "last_seen": "2026-09-09"
+    },
+    {
+      "id": "ai-tell-patterns-shipped-in-episode",
+      "title": "Three instances of AI-tell language patterns passed quality checks and shipped in the final episode.",
+      "detail": "On 2026-09-09, the quality check detected 3 AI-tell pattern hits in the shipped script. These phrases remained in the audio and RSS feed. The detection system is working, but the pipeline has no gate to reject episodes with pattern hits or halt publication for manual review before shipping.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-09",
+      "seen": [
+        "2026-09-09"
+      ],
+      "last_seen": "2026-09-09"
     }
   ],
   "updated": "2026-09-09"

@@ -5,45 +5,43 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Wed, 09 Sep 2026 10:06:24 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 09 Sep 2026 15:04:48 +0000</lastBuildDate>
     <item>
       <title>Episode Review — Cariboo Signals, September 9, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-09.html</link>
       <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-09.html</guid>
-      <pubDate>Wed, 09 Sep 2026 10:06:24 +0000</pubDate>
+      <pubDate>Wed, 09 Sep 2026 15:04:48 +0000</pubDate>
       <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/34327216075"&gt;34327216075&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h3&gt;Brave's budget spent: 55 articles cut from roundup&lt;/h3&gt;
+&lt;h3&gt;Brave API exhaustion forced 55 articles out of the roundup&lt;/h3&gt;
 
-&lt;p&gt;The pipeline burned through its Brave API allocation on the first 12 body-backfill calls and stopped. The remaining articles kept their stub bodies—too thin to use. The system dropped 55 items from the roundup segment rather than ship sparse content.&lt;/p&gt;
+&lt;p&gt;The pipeline spent its full budget of 12 Brave API calls backfilling article bodies and hit the limit mid-run. Twenty-five articles remained with stub bodies only. The system chose to drop them rather than ship sparse descriptions: 55 roundup entries did not make the final script.&lt;/p&gt;
 
-&lt;p&gt;This is a constraint, not a failure. The pipeline chose density over volume and it held. The final script shipped at 2910 words, still below the 3400 target even after an expand pass on the first draft (2945 words). The tension is real: fewer sources meant a shorter episode.&lt;/p&gt;
+&lt;p&gt;This is the constraint that shaped the day. The deep dives survived—all 3 shipped with full bodies and citations. The roundup citations that did align numbered 12 of 15 attempted; the deep dives landed 1 of 3.&lt;/p&gt;
 
-&lt;h3&gt;TTS layering: Gemini failed, OpenAI took over&lt;/h3&gt;
+&lt;h3&gt;Script came in short and stayed short after expansion&lt;/h3&gt;
 
-&lt;p&gt;Gemini's multi-speaker endpoint timed out on the news segment after five attempts, including one rejected for finish reason OTHER. The system fell back to OpenAI for the news section and all credits. Earlier segments that had already rendered kept their Gemini voices.&lt;/p&gt;
+&lt;p&gt;The first draft measured 2945 words against a target of 3400. The pipeline sent it back for one expand pass. The shipped script was 2910 words—lower than the draft it was meant to improve. Either the expand pass removed material or the final edit trimmed it below the original.&lt;/p&gt;
 
-&lt;p&gt;The episode now carries two voice stacks. Two other segments (the "gemini-take") also landed on retry logic—one on retry 3, one on retry 2—and dropped context and style information to succeed. The listener will hear tonal seams.&lt;/p&gt;
+&lt;p&gt;Quality checks found 3 instances of AI-tell language patterns. Casey's voice ratio over Riley was 0.79.&lt;/p&gt;
 
-&lt;h3&gt;Citation alignment: roundup solid, deep dives thin&lt;/h3&gt;
+&lt;h3&gt;Audio rendering required a TTS provider fallback mid-episode&lt;/h3&gt;
 
-&lt;p&gt;Roundup citations: 12 matched to 15 total. Deep dive citations: 1 matched to 3 total. The roundup held sourcing discipline. The deep dives did not.&lt;/p&gt;
+&lt;p&gt;Gemini's multi-speaker mode timed out on the news section after 5 attempts. The system fell back to OpenAI for that section and all subsequent segments, including credits. The news section had already rendered with Gemini when the timeout hit, so it kept its original voices. Everything after it uses OpenAI instead.&lt;/p&gt;
 
-&lt;p&gt;Sources tracked: Hackaday on desktop 3D print performance, Popular Woodworking on precision planer design, TechCranz on Google DeepMind's tools for accelerating projects.&lt;/p&gt;
+&lt;p&gt;Two other Gemini sections had degraded on earlier retries: one dropped context and style information on its third attempt; another dropped context on its second. Their delivery may differ from the rest of the episode.&lt;/p&gt;
 
-&lt;h3&gt;Voice balance and AI tell&lt;/h3&gt;
+&lt;h3&gt;Debate framing and assets shipped cleanly&lt;/h3&gt;
 
-&lt;p&gt;Casey spoke 0.79 times as often as Riley. The script triggered three AI-tell pattern detections—repeated phrasing, cadence tells, or other markers of model voice bleeding through.&lt;/p&gt;
+&lt;p&gt;The episode centered on repair accessibility: "Does making repairs easier through technology like 3D printing and diagnostic tools teach the underlying skills, or does it replace the need to learn them?"&lt;/p&gt;
 
-&lt;h3&gt;Delivery specs&lt;/h3&gt;
+&lt;p&gt;Audio measured 18.2 minutes and 16.6 MB. Video was 62.7 MB at the same 18.2-minute length. The run published episode 225 to RSS.&lt;/p&gt;
 
-&lt;p&gt;Episode 225 in the RSS feed. Audio: 18.2 minutes, 16.6 MB. Video: 18.2 minutes, 62.7 MB. Nine API calls to Claude on 95,104 input tokens; one call to Brave.&lt;/p&gt;
+&lt;h3&gt;Three manual runs preceded a fallback trigger 299 minutes late&lt;/h3&gt;
 
-&lt;p&gt;Two manual workflow runs succeeded on 9 September (08:05 and 09:05 UTC). A third run started at 10:05 UTC and was still in progress at report time. Script generation took 1039 seconds. Audio render took 1538 seconds. The full pipeline ran 51 minutes.&lt;/p&gt;
+&lt;p&gt;The first three runs were manual dispatches on the morning of September 9th, completed at 51, 8, and 7 minutes respectively. A fourth run triggered at 3:05 AM Pacific on a fallback schedule—299 minutes behind schedule—and was still in progress as of the final report timestamp.&lt;/p&gt;
 
-&lt;h3&gt;Debate question&lt;/h3&gt;
-
-&lt;p&gt;Does making repairs easier through technology like 3D printing and diagnostic tools teach the underlying skills, or does it replace the need to learn them?&lt;/p&gt;
+&lt;p&gt;The completed runs used 95,104 Anthropic input tokens across 9 Claude calls and 1 Brave-Answers call. Script generation took 1039 seconds; audio rendering took 1538 seconds.&lt;/p&gt;
 
 &lt;h3&gt;The day's triggers&lt;/h3&gt;
 &lt;table&gt;
@@ -51,7 +49,8 @@
 &lt;tbody&gt;
 &lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-09T08:05:21Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-09T09:05:42Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-09T10:05:43Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-09T10:05:43Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-09-09T15:04:04Z&lt;/td&gt;&lt;td&gt;+299 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
