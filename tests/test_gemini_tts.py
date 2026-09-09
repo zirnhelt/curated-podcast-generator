@@ -1,6 +1,7 @@
 """Unit tests for gemini_tts.py and TTS provider/credits resolution — no API keys."""
 
 import base64
+import io
 import wave
 
 import pytest
@@ -1714,3 +1715,312 @@ class TestSpeechDurationGuards:
         pcm, _ = _synthesize_chunk(segments)
         assert not responses          # one attempt only
         assert 287_000 <= len(pcm) <= 289_000   # returned trimmed, not rejected
+
+
+class TestCloudBackendDefaults:
+    """Import-time model resolution on the cloud backend (Option B: pro leads).
+
+    Resolved at import like GEMINI_TTS_MODEL, so reload the module under the env
+    and reload again afterward to restore the real (studio) state — the same
+    pattern TestModelEnvResolution uses.
+    """
+
+    @pytest.fixture(autouse=True)
+    def _reload_module_after(self):
+        import importlib
+
+        yield
+        importlib.reload(gemini_tts)
+
+    def _reload_cloud(self, monkeypatch):
+        import importlib
+
+        monkeypatch.setenv("GEMINI_TTS_BACKEND", "cloud")
+        monkeypatch.delenv("GEMINI_TTS_MODEL", raising=False)
+        monkeypatch.delenv("GEMINI_TTS_FALLBACK_MODEL", raising=False)
+        importlib.reload(gemini_tts)
+
+    def test_cloud_leads_with_pro_and_falls_to_flash(self, monkeypatch):
+        self._reload_cloud(monkeypatch)
+        assert gemini_tts.GEMINI_TTS_MODEL == "gemini-2.5-pro-tts"
+        assert gemini_tts.GEMINI_TTS_FALLBACK_MODEL == "gemini-2.5-flash-tts"
+
+    def test_cloud_models_carry_no_preview_suffix(self, monkeypatch):
+        """The GA Cloud surface drops the -preview names the studio pair carries."""
+        self._reload_cloud(monkeypatch)
+        assert "preview" not in gemini_tts.GEMINI_TTS_MODEL
+        assert "preview" not in gemini_tts.GEMINI_TTS_FALLBACK_MODEL
+
+    def test_env_override_still_wins_and_keeps_two_models(self, monkeypatch):
+        import importlib
+
+        monkeypatch.setenv("GEMINI_TTS_BACKEND", "cloud")
+        monkeypatch.setenv("GEMINI_TTS_MODEL", "gemini-2.5-flash-tts")
+        monkeypatch.delenv("GEMINI_TTS_FALLBACK_MODEL", raising=False)
+        importlib.reload(gemini_tts)
+        assert gemini_tts.GEMINI_TTS_MODEL == "gemini-2.5-flash-tts"
+        # The pair must never collapse — the fallback picks the other preference.
+        assert gemini_tts.GEMINI_TTS_FALLBACK_MODEL == "gemini-2.5-pro-tts"
+        assert gemini_tts.GEMINI_TTS_FALLBACK_MODEL != gemini_tts.GEMINI_TTS_MODEL
+
+    def test_studio_default_is_unchanged_by_the_new_backend(self, monkeypatch):
+        """The whole design rests on studio being byte-for-byte what it was."""
+        import importlib
+
+        monkeypatch.delenv("GEMINI_TTS_BACKEND", raising=False)
+        monkeypatch.delenv("GEMINI_TTS_MODEL", raising=False)
+        importlib.reload(gemini_tts)
+        assert gemini_tts.GEMINI_TTS_BACKEND == "studio"
+        assert gemini_tts.GEMINI_TTS_MODEL == "gemini-3.1-flash-tts-preview"
+        assert gemini_tts.GEMINI_TTS_FALLBACK_MODEL == "gemini-2.5-flash-preview-tts"
+
+
+class TestCloudBackend:
+    """The Cloud TTS transport (texttospeech.googleapis.com): same prebuilt
+    voices and the same ladder/canary/checksums as studio, on the GA surface.
+
+    Selected by GEMINI_TTS_BACKEND=cloud. These monkeypatch the backend and the
+    model pair directly (no reload) and stub the bearer token, so google.auth is
+    never imported and no network is touched.
+    """
+
+    @pytest.fixture(autouse=True)
+    def _cloud(self, monkeypatch):
+        monkeypatch.setattr(gemini_tts, "GEMINI_TTS_BACKEND", "cloud")
+        monkeypatch.setattr(gemini_tts, "GEMINI_TTS_MODEL", "gemini-2.5-pro-tts")
+        monkeypatch.setattr(gemini_tts, "GEMINI_TTS_FALLBACK_MODEL", "gemini-2.5-flash-tts")
+        monkeypatch.setenv("GOOGLE_APPLICATION_CREDENTIALS", "/tmp/fake-sa.json")
+        monkeypatch.setattr(gemini_tts, "_cloud_access_token", lambda: "FAKE_TOKEN")
+
+    class _Resp:
+        def __init__(self, payload, status=200, text="ok"):
+            self.status_code = status
+            self._payload = payload
+            self.text = text
+
+        def raise_for_status(self):
+            pass
+
+        def json(self):
+            return self._payload
+
+    @staticmethod
+    def _audio(pcm: bytes) -> dict:
+        return {"audioContent": base64.b64encode(pcm).decode()}
+
+    # --- request shape -----------------------------------------------------
+
+    def test_multi_speaker_links_turns_to_voices_by_alias(self):
+        p = gemini_tts._build_cloud_payload(SEGS)
+        turns = p["input"]["multiSpeakerMarkup"]["turns"]
+        assert [t["speaker"] for t in turns] == ["Riley", "Casey"]
+        voices = {
+            c["speakerAlias"]: c["speakerId"]
+            for c in p["voice"]["multiSpeakerVoiceConfig"]["speakerVoiceConfigs"]
+        }
+        # The alias in each turn is the key that binds it to a voice — get this
+        # wrong and Riley speaks in Casey's voice.
+        assert voices == {
+            "Riley": get_gemini_voice_for_host("riley"),
+            "Casey": get_gemini_voice_for_host("casey"),
+        }
+        assert set(t["speaker"] for t in turns) <= set(voices)
+        assert p["voice"]["modelName"] == "gemini-2.5-pro-tts"
+        assert p["audioConfig"]["audioEncoding"] == "PCM"
+        assert p["audioConfig"]["sampleRateHertz"] == gemini_tts.GEMINI_CLOUD_SAMPLE_RATE
+
+    def test_prompt_is_direction_only_never_the_transcript(self):
+        """The transcript rides structured in multiSpeakerMarkup, so nothing in
+        input.prompt is spoken — the boundary the studio path draws with a marker
+        is drawn by the schema here."""
+        p = gemini_tts._build_cloud_payload(SEGS)
+        prompt = p["input"]["prompt"]
+        assert gemini_tts.AUDIO_PROFILE_HEADER in prompt
+        assert gemini_tts.PERFORMANCE_NOTES_HEADER in prompt
+        assert gemini_tts.TRANSCRIPT_MARKER not in prompt
+        # A spoken line must never appear in the prompt (the 2026-08-17 failure).
+        assert "Welcome back to the show." not in prompt
+
+    def test_pronunciation_reaches_the_spoken_turns(self):
+        p = gemini_tts._build_cloud_payload(SEGS)
+        spoken = " ".join(t["text"] for t in p["input"]["multiSpeakerMarkup"]["turns"])
+        assert "Kwenell" in spoken and "Quesnel" not in spoken
+
+    def test_single_speaker_uses_text_and_a_named_voice(self):
+        p = gemini_tts._build_cloud_payload([SEGS[0]])
+        assert "multiSpeakerMarkup" not in p["input"]
+        assert p["input"]["text"]
+        assert p["voice"]["name"] == get_gemini_voice_for_host("riley")
+        assert "multiSpeakerVoiceConfig" not in p["voice"]
+        assert p["voice"]["modelName"] == "gemini-2.5-pro-tts"
+
+    def test_three_speakers_raises(self):
+        segs = SEGS + [{"speaker": "guest", "text": "Hi.", "gap_ms": None}]
+        with pytest.raises(ValueError):
+            gemini_tts._build_cloud_payload(segs)
+
+    def test_dropping_style_removes_the_audio_profile(self):
+        rung = gemini_tts._Rung(0, True, False, True, False)
+        prompt = gemini_tts._build_cloud_payload(SEGS, rung=rung)["input"]["prompt"]
+        assert gemini_tts.AUDIO_PROFILE_HEADER not in prompt
+        assert gemini_tts._style_prompt().split("\n")[0] not in prompt
+
+    def test_cues_kept_then_stripped_per_rung(self):
+        segs = [{"speaker": "casey", "text": "[thoughtfully] Sure it will.", "gap_ms": None}]
+        keep = gemini_tts._build_cloud_payload(segs, rung=gemini_tts.RETRY_LADDER[0])
+        assert "[thoughtfully]" in keep["input"]["text"]
+        strip_rung = gemini_tts._Rung(0, True, True, False, False)
+        strip = gemini_tts._build_cloud_payload(segs, rung=strip_rung)
+        assert "[thoughtfully]" not in strip["input"]["text"]
+        assert "Sure it will." in strip["input"]["text"]
+
+    def test_continuation_note_rides_in_the_prompt_not_the_turns(self):
+        p = gemini_tts._build_cloud_payload(SEGS, continuing=True)
+        assert gemini_tts.CONTINUATION_NOTE in p["input"]["prompt"]
+        spoken = " ".join(t["text"] for t in p["input"]["multiSpeakerMarkup"]["turns"])
+        assert gemini_tts.CONTINUATION_NOTE not in spoken
+
+    # --- audio decode ------------------------------------------------------
+
+    def test_decode_raw_pcm(self):
+        raw = _speech_pcm(400)
+        pcm, rate = gemini_tts._decode_cloud_audio(base64.b64encode(raw).decode())
+        assert pcm == raw
+        assert rate == gemini_tts.GEMINI_CLOUD_SAMPLE_RATE
+
+    def test_decode_unwraps_a_wav_container(self):
+        """PCM encoding is headerless, but a backend that answers LINEAR16 hands
+        back a WAV; the parse must survive either."""
+        raw = _speech_pcm(400)
+        buf = io.BytesIO()
+        with wave.open(buf, "wb") as w:
+            w.setnchannels(1)
+            w.setsampwidth(2)
+            w.setframerate(24_000)
+            w.writeframes(raw)
+        pcm, rate = gemini_tts._decode_cloud_audio(base64.b64encode(buf.getvalue()).decode())
+        assert pcm == raw
+        assert rate == 24_000
+
+    # --- transport ---------------------------------------------------------
+
+    def test_synthesize_posts_a_bearer_token_to_the_cloud_endpoint(self, monkeypatch):
+        pcm = _speech_pcm(200_000)
+        seen = {}
+
+        def fake_post(url, **kwargs):
+            seen["url"] = url
+            seen["auth"] = kwargs["headers"]["Authorization"]
+            seen["body"] = kwargs["json"]
+            return self._Resp(self._audio(pcm))
+
+        monkeypatch.setattr(gemini_tts.requests, "post", fake_post)
+        monkeypatch.setattr(gemini_tts.time, "sleep", lambda s: None)
+        out, rate = _synthesize_chunk(SEGS)
+        assert out == pcm
+        assert rate == gemini_tts.GEMINI_CLOUD_SAMPLE_RATE
+        assert seen["url"] == gemini_tts.GEMINI_CLOUD_TTS_URL
+        assert seen["auth"] == "Bearer FAKE_TOKEN"
+        assert "multiSpeakerMarkup" in seen["body"]["input"]
+
+    def test_missing_audio_content_is_retried(self, monkeypatch):
+        responses = [self._Resp({}), self._Resp(self._audio(_speech_pcm(200_000)))]
+        monkeypatch.setattr(gemini_tts.requests, "post", lambda *a, **k: responses.pop(0))
+        monkeypatch.setattr(gemini_tts.time, "sleep", lambda s: None)
+        out, _ = _synthesize_chunk(SEGS)
+        assert out == _speech_pcm(200_000)
+        assert not responses
+
+    def test_429_alternates_models_without_shedding_the_prompt(self, monkeypatch):
+        """A 429 carries no verdict on the request, so the cloud path routes it
+        exactly as studio does: swap the model, keep the shape."""
+        models, prompts = [], []
+
+        def fake_post(url, **kwargs):
+            body = kwargs["json"]
+            models.append(body["voice"]["modelName"])
+            prompts.append(body["input"]["prompt"])
+            return self._Resp({}, status=429, text='{"error":{"status":"RESOURCE_EXHAUSTED"}}')
+
+        monkeypatch.setattr(gemini_tts.requests, "post", fake_post)
+        monkeypatch.setattr(gemini_tts.time, "sleep", lambda s: None)
+        with pytest.raises(RuntimeError):
+            _synthesize_chunk(SEGS, continuing=True)
+        assert models[0] == "gemini-2.5-pro-tts"
+        assert models[1] == "gemini-2.5-flash-tts"
+        assert all(a != b for a, b in zip(models, models[1:])), models
+        # Never sheds: an unanswered/declined request carries no verdict on wording.
+        assert all(gemini_tts.CONTINUATION_NOTE in p for p in prompts)
+
+    def test_spend_cap_hands_the_section_back_immediately(self, monkeypatch):
+        body = '{"error":{"message":"Your project has exceeded its monthly spending cap"}}'
+        calls = []
+
+        def fake_post(url, **kwargs):
+            calls.append(1)
+            return self._Resp({}, status=429, text=body)
+
+        monkeypatch.setattr(gemini_tts.requests, "post", fake_post)
+        monkeypatch.setattr(gemini_tts.time, "sleep", lambda s: None)
+        with pytest.raises(gemini_tts.SpendCapError):
+            _synthesize_chunk(SEGS)
+        assert len(calls) == 1  # no rung, no model reaches past a project-wide cap
+
+    def test_a_timeout_still_fails_fast_on_the_scaled_leash(self, monkeypatch):
+        seen = []
+
+        def fake_post(url, **kwargs):
+            seen.append(kwargs.get("timeout"))
+            return self._Resp(self._audio(_speech_pcm(200_000)))
+
+        monkeypatch.setattr(gemini_tts.requests, "post", fake_post)
+        monkeypatch.setattr(gemini_tts.time, "sleep", lambda s: None)
+        _synthesize_chunk(SEGS)
+        assert seen == [
+            (gemini_tts.REQUEST_CONNECT_TIMEOUT, gemini_tts._read_timeout_for(SEGS))
+        ]
+
+    # --- scaling & availability -------------------------------------------
+
+    def test_read_timeout_scales_on_the_cloud_request(self):
+        segs = [
+            {"speaker": "riley" if i % 2 else "casey", "text": "x" * 270, "gap_ms": None}
+            for i in range(10)
+        ]
+        expected = int(
+            min(
+                gemini_tts.READ_TIMEOUT_MAX_S,
+                max(
+                    gemini_tts.READ_TIMEOUT_MIN_S,
+                    gemini_tts._cloud_request_chars(segs)
+                    * gemini_tts.READ_TIMEOUT_MS_PER_CHAR
+                    / 1000,
+                ),
+            )
+        )
+        assert gemini_tts._read_timeout_for(segs) == expected
+
+    def test_turn_count_adds_request_weight_here_too(self):
+        """Each turn adds a speaker label, so more turns at the same transcript
+        length is a larger request — the scale _read_timeout_for rides on."""
+        few = [
+            {"speaker": "riley" if i % 2 else "casey", "text": "x" * 750, "gap_ms": None}
+            for i in range(2)
+        ]
+        many = [
+            {"speaker": "riley" if i % 2 else "casey", "text": "x" * 100, "gap_ms": None}
+            for i in range(15)
+        ]
+        assert gemini_tts._transcript_chars(few) == gemini_tts._transcript_chars(many)
+        assert gemini_tts._cloud_request_chars(many) > gemini_tts._cloud_request_chars(few)
+
+    def test_availability_needs_the_cloud_credential(self, monkeypatch):
+        monkeypatch.delenv("GOOGLE_APPLICATION_CREDENTIALS", raising=False)
+        assert gemini_tts.gemini_available() is False
+        monkeypatch.setenv("GOOGLE_APPLICATION_CREDENTIALS", "/tmp/x.json")
+        assert gemini_tts.gemini_available() is True
+
+    def test_synthesize_without_the_credential_names_the_cloud_var(self, monkeypatch):
+        monkeypatch.delenv("GOOGLE_APPLICATION_CREDENTIALS", raising=False)
+        with pytest.raises(ValueError, match="GOOGLE_APPLICATION_CREDENTIALS"):
+            _synthesize_chunk(SEGS)

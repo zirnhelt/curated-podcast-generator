@@ -36,6 +36,14 @@ on:
         required: false
         default: false
         type: boolean
+      backend:
+        description: 'Gemini surface. studio = generativelanguage preview (GEMINI_API_KEY). cloud = GA Cloud TTS (service account via the GEMINI_TTS_CLOUD_SA_KEY secret). Probe cloud here before any nightly cutover.'
+        required: false
+        default: studio
+        type: choice
+        options:
+          - studio
+          - cloud
 
 permissions:
   contents: read
@@ -65,13 +73,35 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements-lock.txt
 
+      - name: Authenticate to Google Cloud (cloud backend)
+        if: ${{ inputs.backend == 'cloud' }}
+        env:
+          GEMINI_TTS_CLOUD_SA_KEY: ${{ secrets.GEMINI_TTS_CLOUD_SA_KEY }}
+        run: |
+          # The cloud backend authenticates with a service account, not an API
+          # key. Write the key to a file and point GOOGLE_APPLICATION_CREDENTIALS
+          # at it (the same variable google.auth reads). Never echoed.
+          if [ -z "$GEMINI_TTS_CLOUD_SA_KEY" ]; then
+            echo "::error::backend=cloud needs the GEMINI_TTS_CLOUD_SA_KEY secret — a service-account key with the Text-to-Speech API enabled"
+            exit 1
+          fi
+          printf '%s' "$GEMINI_TTS_CLOUD_SA_KEY" > "${RUNNER_TEMP}/gcp-tts-sa.json"
+          echo "GOOGLE_APPLICATION_CREDENTIALS=${RUNNER_TEMP}/gcp-tts-sa.json" >> "$GITHUB_ENV"
+
       - name: Render sections
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          # studio (preview) vs cloud (GA Cloud TTS). GOOGLE_APPLICATION_CREDENTIALS
+          # is exported by the auth step above when this is 'cloud'.
+          GEMINI_TTS_BACKEND: ${{ inputs.backend }}
           # Variable, never a secret — a masked model name is unreadable in the
           # very table this workflow exists to produce. See daily-podcast.yml.
-          GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_MODEL }}
-          GEMINI_TTS_FALLBACK_MODEL: ${{ vars.GEMINI_TTS_FALLBACK_MODEL }}
+          # Applied only on studio: vars.GEMINI_TTS_MODEL holds a studio model
+          # name (…-preview-tts), which does not exist on the Cloud surface, so
+          # the cloud probe must fall through to the code's cloud defaults
+          # (pro primary, flash fallback) — which is exactly the pair to measure.
+          GEMINI_TTS_MODEL: ${{ inputs.backend == 'studio' && vars.GEMINI_TTS_MODEL || '' }}
+          GEMINI_TTS_FALLBACK_MODEL: ${{ inputs.backend == 'studio' && vars.GEMINI_TTS_FALLBACK_MODEL || '' }}
           OPENAI_API_KEY: ${{ inputs.providers == 'all' && secrets.OPENAI_API_KEY || '' }}
           AZURE_SPEECH_KEY: ${{ inputs.providers == 'all' && secrets.AZURE_SPEECH_KEY || '' }}
           AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}

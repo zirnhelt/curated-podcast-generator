@@ -773,19 +773,63 @@ Check the pinned `speechConfig` voices (`Kore`/`Iapetus` in `hosts.json`) carry 
 voice identity is the last thing to degrade — and refit `READ_TIMEOUT_MS_PER_CHAR` off
 the probe's slowest column while the data is in hand.
 
-**The wider model question is still open, and it is about the endpoint, not the model.**
-All three Gemini API TTS models (`2.5-flash-preview-tts`, `2.5-pro-preview-tts`,
-`3.1-flash-tts-preview`) are *preview*: no SLA, tighter rate limits, two weeks' notice
-before withdrawal. Cloud Text-to-Speech carries what appear to be GA-labelled equivalents
-(`gemini-2.5-flash-tts`, `gemini-2.5-pro-tts`) on `texttospeech.googleapis.com` — a
-different product surface, different auth (service account, not an API key), different
-request shape, and a different quota pool from the one throwing our 500s and read
-timeouts. That is the only change on the table that would alter the *reliability* rather
-than re-rolling the same dice, and it has not been verified against the docs — do that
-before costing it.
+#### The reliability lever is the endpoint — the `GEMINI_TTS_BACKEND` switch
 
-Google's Interactions API is now GA with `generateContent` marked legacy for speech.
-Port to it only if a probe shows `generateContent` is what is holding the model back.
+The persistent-failure story above is a property of the *surface*, not the prompt: all
+three Gemini **API** TTS models (`2.5-flash-preview-tts`, `2.5-pro-preview-tts`,
+`3.1-flash-tts-preview`) are preview on `generativelanguage.googleapis.com` — no SLA,
+tighter rate limits, two weeks' notice before withdrawal, and the 500s and read timeouts
+this whole section is about. Cloud Text-to-Speech serves Gemini-TTS as **GA** on
+`texttospeech.googleapis.com`: the same prebuilt voices (`Kore`/`Iapetus`), a separate
+quota pool with requestable limits, a real SLA. That is the only change that alters the
+*reliability* rather than re-rolling the same dice, so it is wired as a backend switch, not
+another model.
+
+- **`studio`** (default) — `…:generateContent`, API-key auth (`GEMINI_API_KEY`). Unchanged;
+  every failure mechanism above lives here.
+- **`cloud`** — `v1beta1 text:synthesize`, **service-account** auth
+  (`GOOGLE_APPLICATION_CREDENTIALS`). Multi-speaker on Cloud TTS is served *only* by this
+  Google-Cloud backend — the API-key path does not offer it. The transcript rides structured
+  (`input.multiSpeakerMarkup.turns`) with the direction in `input.prompt`, so nothing in the
+  prompt is speakable: the boundary the studio path has to draw with a `TRANSCRIPT_MARKER` is
+  drawn by the schema. Shape verified against the v1beta1 proto and Google's multi-speaker
+  sample; not run here (no service-account key in the sandbox).
+
+**Only the transport changes.** The canary, retry ladder, model alternation, per-chunk
+checksums and degradation plumbing are shared — `_attempt` dispatches to `_studio_synthesize`
+/ `_cloud_synthesize` and runs the trim + truncation + silence checks on either — so the
+cloud backend inherits the entire safety net. Two differences to know: there is **no
+`seed`/`temperature`** (chunk-to-chunk prosody is not pinned the way studio pins it — the
+voices still are, by `speechConfig`), and **no `finishReason: OTHER`** (text:synthesize
+returns audio or an HTTP error), so only the HTTP/transport rungs of the ladder can fire —
+the prompt-shedding rungs are dead weight there, harmlessly.
+
+**Cloud leads with pro (Option B), flash second.** Audio output is $10/MTok on both; pro
+costs more only on input tokens (a fraction of a cent an episode), so pro buys the better
+dialog for ~free, and flash — which answers faster — is the rung a pro timeout falls to. If
+the probe shows pro timing out too often, set `GEMINI_TTS_MODEL` to flash; the ladder
+already treats the slower model as the thing to fall past.
+
+**Default stays `studio` until the probe clears the 8/15 baseline — GA is not "measured
+here" until it is measured here.** Probe the cloud surface exactly like a new model, with a
+real key: `GEMINI_TTS_BACKEND=cloud python evaluate_tts.py --probe-models --section
+deep_dive` (TTS Eval workflow, `backend: cloud`). `READ_TIMEOUT_MS_PER_CHAR` is inherited
+from the studio fit and will be loose on cloud — refit it off the probe's slowest column
+while the data is in hand.
+
+**Nightly cutover is a variable flip, not a code change** — the plumbing is default-off. Set
+repository variable `GEMINI_TTS_BACKEND=cloud`, add secret `GEMINI_TTS_CLOUD_SA_KEY` (a
+service-account key with the Text-to-Speech API enabled), and — because cloud model names
+have no `-preview` suffix — optionally pin `GEMINI_TTS_CLOUD_MODEL` /
+`GEMINI_TTS_CLOUD_FALLBACK_MODEL` (unset uses pro/flash). `daily-podcast.yml` writes the key
+to `GOOGLE_APPLICATION_CREDENTIALS` only when the backend variable is `cloud`; a missing
+secret warns and falls to OpenAI rather than costing the episode.
+
+Google's Interactions API is now GA with `generateContent` marked legacy for speech, but it
+is still on `generativelanguage.googleapis.com` — the same quota pool as `studio`, so it is a
+request-shape change, not a reliability one. Port to it only if a probe shows the
+`generateContent` shape (not the surface) is holding the model back; the cloud backend is the
+surface change.
 
 #### Getting Gemini through a whole episode
 

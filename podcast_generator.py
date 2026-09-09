@@ -72,8 +72,8 @@ from azure_tts import (
 from gemini_tts import (
     canary as gemini_canary,
     drain_degradations as gemini_drain_degradations,
+    gemini_available,
     generate_gemini_tts_for_section,
-    get_gemini_api_key,
     set_render_deadline as gemini_set_render_deadline,
 )
 
@@ -8574,8 +8574,9 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
     _tts_providers_rendered.clear()
 
     if USE_GEMINI_TTS:
-        if not get_gemini_api_key():
-            print("❌ Gemini TTS enabled but GEMINI_API_KEY not set")
+        if not gemini_available():
+            print("❌ Gemini TTS enabled but not configured (studio needs "
+                  "GEMINI_API_KEY; cloud needs GOOGLE_APPLICATION_CREDENTIALS)")
             return None
         # Bound every Gemini call in this render, then decide once — before any
         # audio exists — whether this is a Gemini episode at all. Both guards
@@ -9000,8 +9001,9 @@ def generate_audio_tts_only(script, output_filename, _force_openai=False):
 
     provider = "openai" if _force_openai else get_active_tts_provider()
     if provider == "gemini":
-        if not get_gemini_api_key():
-            print("❌ Gemini TTS enabled but GEMINI_API_KEY not set")
+        if not gemini_available():
+            print("❌ Gemini TTS enabled but not configured (studio needs "
+                  "GEMINI_API_KEY; cloud needs GOOGLE_APPLICATION_CREDENTIALS)")
             return None
     elif provider == "azure":
         if not get_azure_speech_config():

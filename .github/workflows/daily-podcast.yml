@@ -310,6 +310,24 @@ jobs:
       # credentials, disk, network) — and used to share a single failure
       # boundary, so a broken R2 sync cost a full 40-minute re-render to retry.
       # Each stage writes its per-segment table to the job summary.
+      # Cloud TTS backend only: write the service-account key to a file and point
+      # GOOGLE_APPLICATION_CREDENTIALS at it (the variable google.auth reads) for
+      # the render steps below. Gated on the backend variable, so the nightly is
+      # untouched until it is set to 'cloud'. A missing secret warns and lets the
+      # render fall to OpenAI rather than costing the day's episode; the key is
+      # never echoed. Enablement checklist: CLAUDE.md → TTS Providers → Cloud TTS.
+      - name: Authenticate to Google Cloud (cloud TTS backend)
+        if: steps.generate.outputs.generated == 'true' && vars.GEMINI_TTS_BACKEND == 'cloud'
+        env:
+          GEMINI_TTS_CLOUD_SA_KEY: ${{ secrets.GEMINI_TTS_CLOUD_SA_KEY }}
+        run: |
+          if [ -z "$GEMINI_TTS_CLOUD_SA_KEY" ]; then
+            echo "::warning::GEMINI_TTS_BACKEND=cloud but GEMINI_TTS_CLOUD_SA_KEY is empty — Gemini is unavailable and the episode renders on OpenAI"
+            exit 0
+          fi
+          printf '%s' "$GEMINI_TTS_CLOUD_SA_KEY" > "${RUNNER_TEMP}/gcp-tts-sa.json"
+          echo "GOOGLE_APPLICATION_CREDENTIALS=${RUNNER_TEMP}/gcp-tts-sa.json" >> "$GITHUB_ENV"
+
       - name: Recover orphaned episodes
         if: steps.generate.outputs.generated == 'true'
         timeout-minutes: 15
@@ -326,8 +344,17 @@ jobs:
           # a request went unanswered on `***` and the run report could not name
           # which model had failed. Repository *variable* only; unset falls through
           # to the default in gemini_tts.py, which the log then prints in full.
-          GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_MODEL }}
-          GEMINI_TTS_FALLBACK_MODEL: ${{ vars.GEMINI_TTS_FALLBACK_MODEL }}
+          # studio (preview, GEMINI_API_KEY) vs cloud (GA Cloud TTS, service
+          # account). Unset falls through to studio in gemini_tts.py, so the
+          # nightly is unchanged until this is set to 'cloud' AND a
+          # GEMINI_TTS_CLOUD_SA_KEY secret exists (see the auth step above).
+          GEMINI_TTS_BACKEND: ${{ vars.GEMINI_TTS_BACKEND }}
+          # Cloud model names differ (no -preview suffix), so cloud reads its own
+          # variables — a studio name pinned here would name a model the Cloud
+          # surface does not have. Either cloud var unset falls to the code's
+          # cloud default (pro primary, flash fallback).
+          GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_BACKEND == 'cloud' && vars.GEMINI_TTS_CLOUD_MODEL || vars.GEMINI_TTS_MODEL }}
+          GEMINI_TTS_FALLBACK_MODEL: ${{ vars.GEMINI_TTS_BACKEND == 'cloud' && vars.GEMINI_TTS_CLOUD_FALLBACK_MODEL || vars.GEMINI_TTS_FALLBACK_MODEL }}
           # Scheduled runs pass no input, so the nightly show renders on Gemini.
           # OpenAI is the fallback rather than the default: the canary decides the
           # provider before any audio exists, and a section that fails mid-episode
@@ -355,8 +382,17 @@ jobs:
           # a request went unanswered on `***` and the run report could not name
           # which model had failed. Repository *variable* only; unset falls through
           # to the default in gemini_tts.py, which the log then prints in full.
-          GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_MODEL }}
-          GEMINI_TTS_FALLBACK_MODEL: ${{ vars.GEMINI_TTS_FALLBACK_MODEL }}
+          # studio (preview, GEMINI_API_KEY) vs cloud (GA Cloud TTS, service
+          # account). Unset falls through to studio in gemini_tts.py, so the
+          # nightly is unchanged until this is set to 'cloud' AND a
+          # GEMINI_TTS_CLOUD_SA_KEY secret exists (see the auth step above).
+          GEMINI_TTS_BACKEND: ${{ vars.GEMINI_TTS_BACKEND }}
+          # Cloud model names differ (no -preview suffix), so cloud reads its own
+          # variables — a studio name pinned here would name a model the Cloud
+          # surface does not have. Either cloud var unset falls to the code's
+          # cloud default (pro primary, flash fallback).
+          GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_BACKEND == 'cloud' && vars.GEMINI_TTS_CLOUD_MODEL || vars.GEMINI_TTS_MODEL }}
+          GEMINI_TTS_FALLBACK_MODEL: ${{ vars.GEMINI_TTS_BACKEND == 'cloud' && vars.GEMINI_TTS_CLOUD_FALLBACK_MODEL || vars.GEMINI_TTS_FALLBACK_MODEL }}
           # Scheduled runs pass no input, so the nightly show renders on Gemini.
           # OpenAI is the fallback rather than the default: the canary decides the
           # provider before any audio exists, and a section that fails mid-episode

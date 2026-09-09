@@ -221,7 +221,7 @@ class TestGeminiFailoverKeepsMusicAndCredits:
         monkeypatch.setattr(pg, "gemini_set_render_deadline", lambda s: None)
         monkeypatch.setattr(pg, "USE_AZURE_PARALLEL", False)
         monkeypatch.setattr(pg, "_tts_provider_used", None)
-        monkeypatch.setattr(pg, "get_gemini_api_key", lambda: "key")
+        monkeypatch.setattr(pg, "gemini_available", lambda: True)
         monkeypatch.setattr(pg, "get_openai_client", lambda: object())
         monkeypatch.setattr(pg, "normalize_segment", lambda seg, *a, **k: seg)
         monkeypatch.setattr(pg, "trim_tts_silence", lambda seg, *a, **k: seg)
