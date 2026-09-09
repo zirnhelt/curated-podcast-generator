@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, September 9, 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.1rem; color: #444; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }
+    th { background: #f5f5f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    a { color: #0066cc; }
+    code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, September 9, 2026</h1>
+  <p class="meta">Published September 9, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/34327216075">34327216075</a>.</em></p>
+
+<h3>Brave's budget spent: 55 articles cut from roundup</h3>
+
+<p>The pipeline burned through its Brave API allocation on the first 12 body-backfill calls and stopped. The remaining articles kept their stub bodies—too thin to use. The system dropped 55 items from the roundup segment rather than ship sparse content.</p>
+
+<p>This is a constraint, not a failure. The pipeline chose density over volume and it held. The final script shipped at 2910 words, still below the 3400 target even after an expand pass on the first draft (2945 words). The tension is real: fewer sources meant a shorter episode.</p>
+
+<h3>TTS layering: Gemini failed, OpenAI took over</h3>
+
+<p>Gemini's multi-speaker endpoint timed out on the news segment after five attempts, including one rejected for finish reason OTHER. The system fell back to OpenAI for the news section and all credits. Earlier segments that had already rendered kept their Gemini voices.</p>
+
+<p>The episode now carries two voice stacks. Two other segments (the "gemini-take") also landed on retry logic—one on retry 3, one on retry 2—and dropped context and style information to succeed. The listener will hear tonal seams.</p>
+
+<h3>Citation alignment: roundup solid, deep dives thin</h3>
+
+<p>Roundup citations: 12 matched to 15 total. Deep dive citations: 1 matched to 3 total. The roundup held sourcing discipline. The deep dives did not.</p>
+
+<p>Sources tracked: Hackaday on desktop 3D print performance, Popular Woodworking on precision planer design, TechCranz on Google DeepMind's tools for accelerating projects.</p>
+
+<h3>Voice balance and AI tell</h3>
+
+<p>Casey spoke 0.79 times as often as Riley. The script triggered three AI-tell pattern detections—repeated phrasing, cadence tells, or other markers of model voice bleeding through.</p>
+
+<h3>Delivery specs</h3>
+
+<p>Episode 225 in the RSS feed. Audio: 18.2 minutes, 16.6 MB. Video: 18.2 minutes, 62.7 MB. Nine API calls to Claude on 95,104 input tokens; one call to Brave.</p>
+
+<p>Two manual workflow runs succeeded on 9 September (08:05 and 09:05 UTC). A third run started at 10:05 UTC and was still in progress at report time. Script generation took 1039 seconds. Audio render took 1538 seconds. The full pipeline ran 51 minutes.</p>
+
+<h3>Debate question</h3>
+
+<p>Does making repairs easier through technology like 3D printing and diagnostic tools teach the underlying skills, or does it replace the need to learn them?</p>
+
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-09T08:05:21Z</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-09T09:05:42Z</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-09T10:05:43Z</td><td>+0 min</td><td>in_progress</td></tr>
+</tbody>
+</table>
+
+<h3>What shipped</h3>
+<table>
+<thead><tr><th>Measure</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Deep dive</td><td>3 articles</td></tr>
+<tr><td>Script</td><td>3 pattern hit(s), voice ratio 0.79, 2910 words</td></tr>
+<tr><td>Audio</td><td>18.2 min</td></tr>
+<tr><td>Audio size</td><td>16.6 MB</td></tr>
+<tr><td>Citations matched</td><td>12/15 roundup, 1/3 deep dive</td></tr>
+<tr><td>Feed</td><td>225 episodes</td></tr>
+<tr><td>Anthropic spend</td><td>95,104 input tokens, calls {'claude': 9, 'brave-answers': 1}</td></tr>
+</tbody>
+</table>
+</body>
+</html>
