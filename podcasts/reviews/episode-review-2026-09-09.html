@@ -21,37 +21,35 @@
   <p class="meta">Published September 9, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
   <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/34327216075">34327216075</a>.</em></p>
 
-<h3>Brave's budget spent: 55 articles cut from roundup</h3>
+<h3>Brave API exhaustion forced 55 articles out of the roundup</h3>
 
-<p>The pipeline burned through its Brave API allocation on the first 12 body-backfill calls and stopped. The remaining articles kept their stub bodies—too thin to use. The system dropped 55 items from the roundup segment rather than ship sparse content.</p>
+<p>The pipeline spent its full budget of 12 Brave API calls backfilling article bodies and hit the limit mid-run. Twenty-five articles remained with stub bodies only. The system chose to drop them rather than ship sparse descriptions: 55 roundup entries did not make the final script.</p>
 
-<p>This is a constraint, not a failure. The pipeline chose density over volume and it held. The final script shipped at 2910 words, still below the 3400 target even after an expand pass on the first draft (2945 words). The tension is real: fewer sources meant a shorter episode.</p>
+<p>This is the constraint that shaped the day. The deep dives survived—all 3 shipped with full bodies and citations. The roundup citations that did align numbered 12 of 15 attempted; the deep dives landed 1 of 3.</p>
 
-<h3>TTS layering: Gemini failed, OpenAI took over</h3>
+<h3>Script came in short and stayed short after expansion</h3>
 
-<p>Gemini's multi-speaker endpoint timed out on the news segment after five attempts, including one rejected for finish reason OTHER. The system fell back to OpenAI for the news section and all credits. Earlier segments that had already rendered kept their Gemini voices.</p>
+<p>The first draft measured 2945 words against a target of 3400. The pipeline sent it back for one expand pass. The shipped script was 2910 words—lower than the draft it was meant to improve. Either the expand pass removed material or the final edit trimmed it below the original.</p>
 
-<p>The episode now carries two voice stacks. Two other segments (the "gemini-take") also landed on retry logic—one on retry 3, one on retry 2—and dropped context and style information to succeed. The listener will hear tonal seams.</p>
+<p>Quality checks found 3 instances of AI-tell language patterns. Casey's voice ratio over Riley was 0.79.</p>
 
-<h3>Citation alignment: roundup solid, deep dives thin</h3>
+<h3>Audio rendering required a TTS provider fallback mid-episode</h3>
 
-<p>Roundup citations: 12 matched to 15 total. Deep dive citations: 1 matched to 3 total. The roundup held sourcing discipline. The deep dives did not.</p>
+<p>Gemini's multi-speaker mode timed out on the news section after 5 attempts. The system fell back to OpenAI for that section and all subsequent segments, including credits. The news section had already rendered with Gemini when the timeout hit, so it kept its original voices. Everything after it uses OpenAI instead.</p>
 
-<p>Sources tracked: Hackaday on desktop 3D print performance, Popular Woodworking on precision planer design, TechCranz on Google DeepMind's tools for accelerating projects.</p>
+<p>Two other Gemini sections had degraded on earlier retries: one dropped context and style information on its third attempt; another dropped context on its second. Their delivery may differ from the rest of the episode.</p>
 
-<h3>Voice balance and AI tell</h3>
+<h3>Debate framing and assets shipped cleanly</h3>
 
-<p>Casey spoke 0.79 times as often as Riley. The script triggered three AI-tell pattern detections—repeated phrasing, cadence tells, or other markers of model voice bleeding through.</p>
+<p>The episode centered on repair accessibility: "Does making repairs easier through technology like 3D printing and diagnostic tools teach the underlying skills, or does it replace the need to learn them?"</p>
 
-<h3>Delivery specs</h3>
+<p>Audio measured 18.2 minutes and 16.6 MB. Video was 62.7 MB at the same 18.2-minute length. The run published episode 225 to RSS.</p>
 
-<p>Episode 225 in the RSS feed. Audio: 18.2 minutes, 16.6 MB. Video: 18.2 minutes, 62.7 MB. Nine API calls to Claude on 95,104 input tokens; one call to Brave.</p>
+<h3>Three manual runs preceded a fallback trigger 299 minutes late</h3>
 
-<p>Two manual workflow runs succeeded on 9 September (08:05 and 09:05 UTC). A third run started at 10:05 UTC and was still in progress at report time. Script generation took 1039 seconds. Audio render took 1538 seconds. The full pipeline ran 51 minutes.</p>
+<p>The first three runs were manual dispatches on the morning of September 9th, completed at 51, 8, and 7 minutes respectively. A fourth run triggered at 3:05 AM Pacific on a fallback schedule—299 minutes behind schedule—and was still in progress as of the final report timestamp.</p>
 
-<h3>Debate question</h3>
-
-<p>Does making repairs easier through technology like 3D printing and diagnostic tools teach the underlying skills, or does it replace the need to learn them?</p>
+<p>The completed runs used 95,104 Anthropic input tokens across 9 Claude calls and 1 Brave-Answers call. Script generation took 1039 seconds; audio rendering took 1538 seconds.</p>
 
 <h3>The day's triggers</h3>
 <table>
@@ -59,7 +57,8 @@
 <tbody>
 <tr><td>Manual (workflow_dispatch)</td><td>2026-09-09T08:05:21Z</td><td>+0 min</td><td>success</td></tr>
 <tr><td>Manual (workflow_dispatch)</td><td>2026-09-09T09:05:42Z</td><td>+0 min</td><td>success</td></tr>
-<tr><td>Manual (workflow_dispatch)</td><td>2026-09-09T10:05:43Z</td><td>+0 min</td><td>in_progress</td></tr>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-09T10:05:43Z</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific)</td><td>2026-09-09T15:04:04Z</td><td>+299 min</td><td>in_progress</td></tr>
 </tbody>
 </table>
 
