@@ -5,7 +5,39 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Wed, 09 Sep 2026 15:04:48 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 10 Sep 2026 14:59:57 +0000</lastBuildDate>
+    <item>
+      <title>Episode Review — Cariboo Signals, September 10, 2026</title>
+      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-10.html</link>
+      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-10.html</guid>
+      <pubDate>Thu, 10 Sep 2026 14:59:57 +0000</pubDate>
+      <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3&gt;Two runs queued, neither finished&lt;/h3&gt;
+
+&lt;p&gt;The pipeline launched twice on 2026-09-10 and completed neither. Run 34488334052 began at 14:19:51Z via manual dispatch and remained in_progress through the review window. Run 34492356898 started at 14:56:26Z under Fallback 2 (the 3:05 AM Pacific trigger) and stayed pending.&lt;/p&gt;
+
+&lt;p&gt;Both runs fell behind schedule. The manual run was 254 minutes late. The fallback run was 291 minutes late — a longer delay despite starting 37 minutes after the first.&lt;/p&gt;
+
+&lt;h3&gt;Why the fallback fired&lt;/h3&gt;
+
+&lt;p&gt;Fallback 2 triggers at 3:05 AM Pacific when no successful run has completed since the previous day. Its activation suggests the scheduled primary run failed or did not execute. The manual dispatch at 14:19:51Z appears to be a rescue attempt: someone saw the absence and started the job by hand.&lt;/p&gt;
+
+&lt;h3&gt;Pending state vs. in-progress&lt;/h3&gt;
+
+&lt;p&gt;The manual run transitioned to in_progress. The fallback run remained pending — it has not yet claimed resources or begun work. This may reflect GitHub Actions queue depth or a blocking dependency on the first run's outcome.&lt;/p&gt;
+
+&lt;p&gt;If the fallback waits for the manual run to finish, listener impact depends on whether run 34488334052 eventually produces an episode. If both runs complete successfully, the pipeline will have published twice in one calendar day. If both fail, the podcast skips the day.&lt;/p&gt;
+
+&lt;h3&gt;The day's triggers&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-10T14:19:51Z&lt;/td&gt;&lt;td&gt;+254 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-09-10T14:56:26Z&lt;/td&gt;&lt;td&gt;+291 min&lt;/td&gt;&lt;td&gt;pending&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
     <item>
       <title>Episode Review — Cariboo Signals, September 9, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-09.html</link>
