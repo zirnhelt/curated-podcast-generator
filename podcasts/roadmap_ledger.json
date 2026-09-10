@@ -443,7 +443,20 @@
         "2026-09-09"
       ],
       "last_seen": "2026-09-09"
+    },
+    {
+      "id": "manual-dispatch-and-fallback-both-incomplete",
+      "title": "Manual dispatch and fallback trigger both launched but neither finished by review time.",
+      "detail": "On 2026-09-10, run 34488334052 started at 14:19:51Z via manual dispatch and remained in_progress. Run 34492356898 started at 14:56:26Z under Fallback 2 (3:05 AM Pacific trigger) and remained pending. Both runs fell significantly behind schedule: the manual run was 254 minutes late, and the fallback run was 291 minutes late despite starting 37 minutes after the first. The pending state of the second run suggests it may be blocked waiting for the first to complete. Determine whether Fallback 2 should wait for manual runs or execute independently, and add monitoring to alert when either run stalls beyond a threshold (for example, in_progress for more than 2 hours).",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-10",
+      "seen": [
+        "2026-09-10"
+      ],
+      "last_seen": "2026-09-10"
     }
   ],
-  "updated": "2026-09-09"
+  "updated": "2026-09-10"
 }

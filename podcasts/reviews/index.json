@@ -1,5 +1,12 @@
 [
   {
+    "date": "2026-09-10",
+    "title": "Episode Review — Cariboo Signals, September 10, 2026",
+    "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-10.html",
+    "content_html": "<p><em>What the pipeline did, what broke, and what it chose when something broke.</em></p>\n\n<h3>Two runs queued, neither finished</h3>\n\n<p>The pipeline launched twice on 2026-09-10 and completed neither. Run 34488334052 began at 14:19:51Z via manual dispatch and remained in_progress through the review window. Run 34492356898 started at 14:56:26Z under Fallback 2 (the 3:05 AM Pacific trigger) and stayed pending.</p>\n\n<p>Both runs fell behind schedule. The manual run was 254 minutes late. The fallback run was 291 minutes late — a longer delay despite starting 37 minutes after the first.</p>\n\n<h3>Why the fallback fired</h3>\n\n<p>Fallback 2 triggers at 3:05 AM Pacific when no successful run has completed since the previous day. Its activation suggests the scheduled primary run failed or did not execute. The manual dispatch at 14:19:51Z appears to be a rescue attempt: someone saw the absence and started the job by hand.</p>\n\n<h3>Pending state vs. in-progress</h3>\n\n<p>The manual run transitioned to in_progress. The fallback run remained pending — it has not yet claimed resources or begun work. This may reflect GitHub Actions queue depth or a blocking dependency on the first run's outcome.</p>\n\n<p>If the fallback waits for the manual run to finish, listener impact depends on whether run 34488334052 eventually produces an episode. If both runs complete successfully, the pipeline will have published twice in one calendar day. If both fail, the podcast skips the day.</p>\n\n<h3>The day's triggers</h3>\n<table>\n<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>\n<tbody>\n<tr><td>Manual (workflow_dispatch)</td><td>2026-09-10T14:19:51Z</td><td>+254 min</td><td>in_progress</td></tr>\n<tr><td>Fallback 2 (3:05 AM Pacific)</td><td>2026-09-10T14:56:26Z</td><td>+291 min</td><td>pending</td></tr>\n</tbody>\n</table>",
+    "published": "2026-09-10T14:59:57+00:00"
+  },
+  {
     "date": "2026-09-09",
     "title": "Episode Review — Cariboo Signals, September 9, 2026",
     "url": "https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-09.html",
