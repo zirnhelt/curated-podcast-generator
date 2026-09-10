@@ -2391,6 +2391,21 @@
       "theme_day": 5,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "66c1a000",
+      "type": "feedback",
+      "message_id": "<01a08bb3-f7d8-795e-bc90-1870f53adc09@novamediapodcasts.com>",
+      "from_address": "t***@novamediapodcasts.com",
+      "from_producer": false,
+      "subject": "Re: We build top ten podcasts - interested in yours.",
+      "received_at": "2026-09-10T14:23:42+00:00",
+      "body_text": "Ramit Sethi came to us with three goals: become an authority in his space, land a Netflix show, and have a book essentially write itself from the podcast content. So we built the show around that. Instead of positioning Ramit as the interviewer and making guests the authority, we flipped it. He was always the expert in the room. We also knew the show needed emotional staying power. People laugh, people cry. It's raw. That wasn't accidental, it was the strategy. Your goals will look nothing like ",
+      "extracted_urls": [],
+      "theme_tag": "Arts, Culture & Digital Storytelling",
+      "theme_day": 0,
+      "status": "pending",
+      "used_at": null
     }
   ],
   "seen_gmail_ids": [
@@ -2467,6 +2482,8 @@
     "1a07328c25a35d75",
     "1a07c7a7f31e8ac9",
     "1a0813759723a0f4",
-    "1a082664ba86707c"
+    "1a082664ba86707c",
+    "1a08bb40488b7bca",
+    "1a08af2ff93a96d9"
   ]
 }
