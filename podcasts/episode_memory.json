@@ -1,47 +1,4 @@
 {
-  "2026-08-05": {
-    "timestamp": 1785927504.526602,
-    "topics": [
-      "[MakeUseOf] I turned every old speaker in my house into one ",
-      "[Tom's Hardware] Three major PC makers now using Chinese mem",
-      "[WIRED] Is This Poker Player Bluffing? The AI Thinks So",
-      "[Williams Lake Tribune] Extent of loss due to Big Bar fires ",
-      "[CFJC Today Kamloops] \u2018I\u2019m describing it as a nightmare\u2019: Pe",
-      "[NYT Top Stories] After Midtown Building Buckles, Violations",
-      "[TechRadar] New malware disguised as popular Roblox cheat to",
-      "[New Atlas] Magnetoelectric underwater skin senses damage, r"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech"
-    ],
-    "date": "2026-08-05",
-    "focus": "digital-life-security",
-    "focus_name": "Digital Life & Security"
-  },
-  "2026-08-06": {
-    "timestamp": 1786016086.357281,
-    "topics": [
-      "[MacRumors] Apple's iCloud Private Relay is Leaking Users' R",
-      "[The Guardian Global Development] Peruvian cardinal hails $1",
-      "[Outside Online] What\u2019s at Stake as Fires Threaten Mount Hoo",
-      "[WIRED] The National Design Studio Became a DOGE Landing Pad",
-      "[ScienceDaily] Europe\u2019s wildfires became so intense they cre",
-      "[APTN News] British Columbia is logging its last old growth ",
-      "[Williams Lake Tribune] Donations sought for South Cariboo f",
-      "[Williams Lake Tribune] Celebrate National Pickleball Day wi"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-08-06",
-    "focus": "economic-development",
-    "focus_name": "Economic Development"
-  },
   "2026-08-07": {
     "timestamp": 1786094495.088483,
     "topics": [
@@ -747,5 +704,26 @@
     "date": "2026-09-09",
     "focus": "vehicles-field-gear",
     "focus_name": "Vehicles & Field Gear"
+  },
+  "2026-09-10": {
+    "timestamp": 1789050876.524507,
+    "topics": [
+      "[Williams Lake Tribune] Residential development at Williams ",
+      "[My Cariboo Now] City of Quesnel no longer picking up stray ",
+      "[T\u015dilhqot\u2019in National Government] Hunters Asked Not to Shoot",
+      "[My Cariboo Now] Cariboo fire departments respond to structu",
+      "[Regional News Archives",
+      "[FlowingData] UN votes to support map projection that accura",
+      "[Tom's Hardware] Man uses robot vacuum to covertly record hi",
+      "[The Guardian Global Development] \u2018This is what I have to do"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech"
+    ],
+    "date": "2026-09-10",
+    "focus": "guardians-stewardship",
+    "focus_name": "Guardians & Land Stewardship"
   }
 }

@@ -1,17 +1,6 @@
 {
   "episodes": [
     {
-      "date": "2026-08-20",
-      "words": 3150,
-      "counts": {
-        "exactly": 2,
-        "differently": 2,
-        "partly": 2,
-        "quietly": 2,
-        "eventually": 3
-      }
-    },
-    {
       "date": "2026-08-21",
       "words": 3311,
       "counts": {
@@ -230,6 +219,17 @@
       "counts": {
         "roughly": 2
       }
+    },
+    {
+      "date": "2026-09-10",
+      "words": 3173,
+      "counts": {
+        "specifically": 5,
+        "increasingly": 2,
+        "exactly": 2,
+        "physically": 2,
+        "quietly": 2
+      }
     }
   ],
   "burned": {
@@ -247,10 +247,16 @@
     },
     "entirely": {
       "first_flagged": "2026-08-27",
-      "clean_streak": 0,
+      "clean_streak": 1,
       "rate_per_1k": 0.45,
       "count": 30
+    },
+    "specifically": {
+      "first_flagged": "2026-09-10",
+      "clean_streak": 0,
+      "rate_per_1k": 0.32,
+      "count": 21
     }
   },
-  "updated": "2026-09-09"
+  "updated": "2026-09-10"
 }

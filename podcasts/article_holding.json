@@ -509,86 +509,6 @@
     "target_focus_name": "Mining & Energy",
     "status": "aired_early"
   },
-  "https://www.techradar.com/computing/keyboards/mechlands-vibe99-review": {
-    "article": {
-      "id": "https://www.techradar.com/computing/keyboards/mechlands-vibe99-review",
-      "url": "https://www.techradar.com/computing/keyboards/mechlands-vibe99-review",
-      "title": "[TechRadar] 'If you\u2019re looking for a cheap mechanical keyboard, you can\u2019t do much better': I tested a budget clacker that's impressive for gaming or home working \u2014 but its cutbacks are evident",
-      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/HEK9rs9fXcdWpfeMHcznTf-1280-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.techradar.com%2Fcomputing%2Fkeyboards%2Fmechlands-vibe99-review\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nHow well does this retro-looking mechanical keyboard perform by modern standards?",
-      "summary": "How well does this retro-looking mechanical keyboard perform by modern standards?",
-      "_excerpt": "How well does this retro-looking mechanical keyboard perform by modern standards?",
-      "date_published": "2026-08-31T00:00:00+00:00",
-      "authors": [
-        {
-          "name": "TechRadar",
-          "url": "https://www.techradar.com"
-        }
-      ],
-      "ai_score": 53,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 73,
-      "_theme_score_raw": 5,
-      "_composite_podcast": 49,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://cdn.mos.cms.futurecdn.net/HEK9rs9fXcdWpfeMHcznTf-1280-80.jpg",
-      "_boosted_score": 53
-    },
-    "held_date": "2026-09-02",
-    "target_date": "2026-09-09",
-    "target_weekday": 2,
-    "target_focus_slug": "vehicles-field-gear",
-    "target_focus_name": "Vehicles & Field Gear",
-    "status": "released",
-    "release_date": "2026-09-09"
-  },
-  "https://hackaday.com/2026/09/02/__trashed-8/": {
-    "article": {
-      "id": "https://hackaday.com/2026/09/02/__trashed-8/",
-      "url": "https://hackaday.com/2026/09/02/__trashed-8/",
-      "title": "[Hackaday] Has FDM 3D Printing Hit Its Peak?",
-      "content_html": "<img src=\"https://hackaday.com/wp-content/uploads/2020/02/3D-Printering-Header-New.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fhackaday.com%2F2026%2F09%2F02%2F__trashed-8%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<div><img alt=\"Art of 3D printer in the middle of printing a Hackaday Jolly Wrencher logo\" class=\"attachment-large size-large wp-post-image\" height=\"450\" src=\"https://hackaday.com/wp-content/uploads/2020/02/3D-Printering-Header-New.jpg?w=800\" style=\"margin: 0 auto; margin-bottom: 15px;\" width=\"800\" /></div>Over the time Hackaday has been in existence, the art of 3D printing has evolved from a relatively crude hit-and-miss affair to something approaching what we all imagined back then. <a class=\"read-more\" href=\"https://hackaday.com/2026/09/02/__trashed-8/\">&#8230;read more</a>",
-      "summary": "Over the time Hackaday has been in existence, the art of 3D printing has evolved from a relatively crude hit-and-miss affair to something approaching what we all imagined back then. \u2026read more",
-      "_excerpt": "Over the time Hackaday has been in existence, the art of 3D printing has evolved from a relatively crude hit-and-miss affair to something approaching what we all imagined back then. \u2026read more",
-      "date_published": "2026-09-03T02:00:16+00:00",
-      "authors": [
-        {
-          "name": "Hackaday",
-          "url": "https://hackaday.com"
-        }
-      ],
-      "ai_score": 63,
-      "_quality": 73,
-      "_relevance": 82,
-      "_local": 0,
-      "_theme_score": 95,
-      "_theme_score_raw": 16,
-      "_composite_podcast": 76,
-      "_keyword_matches": 0,
-      "_category": "homelab",
-      "_source_category": "homelab",
-      "_is_bonus": true,
-      "image": "https://hackaday.com/wp-content/uploads/2020/02/3D-Printering-Header-New.jpg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-03T04:13:26.297442+00:00"
-      },
-      "_boosted_score": 63
-    },
-    "held_date": "2026-09-03",
-    "target_date": "2026-09-09",
-    "target_weekday": 2,
-    "target_focus_slug": "vehicles-field-gear",
-    "target_focus_name": "Vehicles & Field Gear",
-    "status": "released",
-    "release_date": "2026-09-09"
-  },
   "https://www.livefortheoutdoors.com/hiking/rucksacks/best-waterproof-backpacks/": {
     "article": {
       "id": "https://www.livefortheoutdoors.com/hiking/rucksacks/best-waterproof-backpacks/",
@@ -632,47 +552,6 @@
     "target_focus_slug": "recreation-access",
     "target_focus_name": "Recreation & Backcountry Access",
     "status": "held"
-  },
-  "https://blog.adafruit.com/2026/09/02/how-to-change-raspberry-pi-wifi-details-from-the-sd-card/": {
-    "article": {
-      "id": "https://blog.adafruit.com/2026/09/02/how-to-change-raspberry-pi-wifi-details-from-the-sd-card/",
-      "url": "https://blog.adafruit.com/2026/09/02/how-to-change-raspberry-pi-wifi-details-from-the-sd-card/",
-      "title": "[Adafruit Blog] How to change Raspberry Pi WiFi details from the SD card",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fblog.adafruit.com%2F2026%2F09%2F02%2Fhow-to-change-raspberry-pi-wifi-details-from-the-sd-card%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nAbhishek Prakash at It&#8217;s FOSS wrote up a way to fix a Raspberry Pi that can no longer reach your network: edit the WiFi settings straight from the microSD card. This is handy when the router changed, the SSID and password are new, and hooking the Pi up to a monitor and keyboard is more [&#8230;]",
-      "summary": "Abhishek Prakash at It\u2019s FOSS wrote up a way to fix a Raspberry Pi that can no longer reach your network: edit the WiFi settings straight from the microSD card. This is handy when the router changed, the SSID and password are new, and hooking the Pi up to a monitor and keyboard is more [\u2026]",
-      "_excerpt": "Abhishek Prakash at It\u2019s FOSS wrote up a way to fix a Raspberry Pi that can no longer reach your network: edit the WiFi settings straight from the microSD card. This is handy when the router changed, the SSID and password are new, and hooking the Pi up to a monitor and keyboard is more [\u2026]",
-      "date_published": "2026-09-02T16:23:02+00:00",
-      "authors": [
-        {
-          "name": "Adafruit Blog",
-          "url": "https://blog.adafruit.com"
-        }
-      ],
-      "ai_score": 62,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 70,
-      "_theme_score_raw": 9,
-      "_composite_podcast": 66,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-03T04:13:26.297442+00:00"
-      },
-      "_boosted_score": 62
-    },
-    "held_date": "2026-09-03",
-    "target_date": "2026-09-09",
-    "target_weekday": 2,
-    "target_focus_slug": "vehicles-field-gear",
-    "target_focus_name": "Vehicles & Field Gear",
-    "status": "released",
-    "release_date": "2026-09-09"
   },
   "https://www.livefortheoutdoors.com/trail-running/news/mens-winner-utmb/": {
     "article": {
@@ -755,44 +634,6 @@
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
     "status": "held"
-  },
-  "https://insideevs.com/news/807007/new-jersey-plug-in-balcony-solar-law/": {
-    "article": {
-      "id": "https://insideevs.com/news/807007/new-jersey-plug-in-balcony-solar-law/",
-      "url": "https://insideevs.com/news/807007/new-jersey-plug-in-balcony-solar-law/",
-      "title": "[InsideEVs] New Jersey Just Legalized Cheap Plug-In Balcony Solar Panels",
-      "content_html": "<img src=\"https://cdn.motor1.com/images/mgl/pb8x91/s3/solar-panels-installed-on-a-balcony.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Finsideevs.com%2Fnews%2F807007%2Fnew-jersey-plug-in-balcony-solar-law%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nUnder the new law, landlords and local governments can no longer block residents and tenants from installing plug-in solar panels.",
-      "summary": "Under the new law, landlords and local governments can no longer block residents and tenants from installing plug-in solar panels.",
-      "_excerpt": "Under the new law, landlords and local governments can no longer block residents and tenants from installing plug-in solar panels.",
-      "date_published": "2026-09-03T09:26:37+00:00",
-      "authors": [
-        {
-          "name": "InsideEVs",
-          "url": "https://www.insideevs.com"
-        }
-      ],
-      "ai_score": 62,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 96,
-      "_theme_score_raw": 55,
-      "_composite_podcast": 68,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://cdn.motor1.com/images/mgl/pb8x91/s3/solar-panels-installed-on-a-balcony.jpg",
-      "_boosted_score": 62
-    },
-    "held_date": "2026-09-04",
-    "target_date": "2026-09-09",
-    "target_weekday": 2,
-    "target_focus_slug": "vehicles-field-gear",
-    "target_focus_name": "Vehicles & Field Gear",
-    "status": "released",
-    "release_date": "2026-09-09"
   },
   "https://www.wired.com/story/why-the-hottest-new-wearables-want-to-be-ignored/": {
     "article": {
@@ -881,47 +722,6 @@
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
     "status": "held"
-  },
-  "https://blog.adafruit.com/2026/09/01/a-genai-image-generation-model-on-a-raspberry-pi-pico-2-rp2350/": {
-    "article": {
-      "id": "https://blog.adafruit.com/2026/09/01/a-genai-image-generation-model-on-a-raspberry-pi-pico-2-rp2350/",
-      "url": "https://blog.adafruit.com/2026/09/01/a-genai-image-generation-model-on-a-raspberry-pi-pico-2-rp2350/",
-      "title": "[Adafruit Blog] A GenAI image generation model on a Raspberry Pi Pico 2 (RP2350)",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fblog.adafruit.com%2F2026%2F09%2F01%2Fa-genai-image-generation-model-on-a-raspberry-pi-pico-2-rp2350%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nGenerative AI usually conjures images of data centers full of GPUs, but developer\u00a0cpldcpu\u00a0has squeezed an image generation model onto a $1 microcontroller. The pico-faces project runs on the RP2350 found in the Raspberry Pi Pico 2, generating 128\u00d7128 RGB images of human faces in 5 to 20 seconds each, then displaying them on a VGA [&#8230;]",
-      "summary": "Generative AI usually conjures images of data centers full of GPUs, but developer cpldcpu has squeezed an image generation model onto a $1 microcontroller. The pico-faces project runs on the RP2350 found in the Raspberry Pi Pico 2, generating 128\u00d7128 RGB images of human faces in 5 to 20 seconds",
-      "_excerpt": "Generative AI usually conjures images of data centers full of GPUs, but developer cpldcpu has squeezed an image generation model onto a $1 microcontroller. The pico-faces project runs on the RP2350 found in the Raspberry Pi Pico 2, generating 128\u00d7128 RGB images of human faces in 5 to 20 seconds each, then displaying them on a VGA [\u2026]",
-      "date_published": "2026-09-01T14:44:43+00:00",
-      "authors": [
-        {
-          "name": "Adafruit Blog",
-          "url": "https://blog.adafruit.com"
-        }
-      ],
-      "ai_score": 65,
-      "_quality": 78,
-      "_relevance": 82,
-      "_local": 0,
-      "_theme_score": 13,
-      "_theme_score_raw": 19,
-      "_composite_podcast": 22,
-      "_keyword_matches": 0,
-      "_category": "homelab",
-      "_source_category": "homelab",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-03T04:13:26.297442+00:00"
-      },
-      "_boosted_score": 65
-    },
-    "held_date": "2026-09-04",
-    "target_date": "2026-09-09",
-    "target_weekday": 2,
-    "target_focus_slug": "vehicles-field-gear",
-    "target_focus_name": "Vehicles & Field Gear",
-    "status": "released",
-    "release_date": "2026-09-09"
   },
   "https://www.mycariboonow.com/316061/news/business/millar-western-to-curtail-operations-at-quesnel-river-pulp-at-end-of-day/": {
     "article": {
@@ -1055,49 +855,6 @@
     "target_focus_name": "Wildfire & Climate Resilience",
     "status": "held"
   },
-  "https://www.howtogeek.com/this-decade-old-laptop-next-to-my-router-is-the-most-useful-device-on-my-network/": {
-    "article": {
-      "id": "https://www.howtogeek.com/this-decade-old-laptop-next-to-my-router-is-the-most-useful-device-on-my-network/",
-      "url": "https://www.howtogeek.com/this-decade-old-laptop-next-to-my-router-is-the-most-useful-device-on-my-network/",
-      "title": "[How-To Geek] This decade-old laptop next to my router is the most useful device on my network",
-      "content_html": "<img src=\"https://static0.howtogeekimages.com/wordpress/wp-content/uploads/wm/2026/09/img20260220170843.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfd4\ufe0f <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.howtogeek.com%2Fthis-decade-old-laptop-next-to-my-router-is-the-most-useful-device-on-my-network%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nFrom ewaste to critical network infrastructure.",
-      "summary": "From ewaste to critical network infrastructure.",
-      "_excerpt": "From ewaste to critical network infrastructure.",
-      "date_published": "2026-09-04T22:00:13+00:00",
-      "authors": [
-        {
-          "name": "How-To Geek",
-          "url": "https://www.howtogeek.com"
-        }
-      ],
-      "ai_score": 59,
-      "_quality": 71,
-      "_relevance": 75,
-      "_local": 0,
-      "_theme_score": 97,
-      "_theme_score_raw": 58,
-      "_composite_podcast": 70,
-      "_keyword_matches": 0,
-      "_category": "homelab",
-      "_source_category": "homelab",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://static0.howtogeekimages.com/wordpress/wp-content/uploads/wm/2026/09/img20260220170843.jpg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-05T04:13:08.540768+00:00"
-      },
-      "_boosted_score": 59
-    },
-    "held_date": "2026-09-05",
-    "target_date": "2026-09-09",
-    "target_weekday": 2,
-    "target_focus_slug": "vehicles-field-gear",
-    "target_focus_name": "Vehicles & Field Gear",
-    "status": "released",
-    "release_date": "2026-09-09"
-  },
   "https://www.aptnnews.ca/national-news/changes-to-canadas-climate-now-irreversible-federal-report-says/": {
     "article": {
       "id": "https://www.aptnnews.ca/national-news/changes-to-canadas-climate-now-irreversible-federal-report-says/",
@@ -1177,48 +934,6 @@
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
     "status": "held"
-  },
-  "https://hackaday.com/2026/09/04/parchment-paper-paired-with-3d-printed-grid-gives-a-nice-glow/": {
-    "article": {
-      "id": "https://hackaday.com/2026/09/04/parchment-paper-paired-with-3d-printed-grid-gives-a-nice-glow/",
-      "url": "https://hackaday.com/2026/09/04/parchment-paper-paired-with-3d-printed-grid-gives-a-nice-glow/",
-      "title": "[Hackaday] Parchment Paper Paired With 3D-Printed Grid Gives a Nice Glow",
-      "content_html": "<img src=\"https://hackaday.com/wp-content/uploads/2026/09/64x64-matrix-front-banner.png\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfd4\ufe0f <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fhackaday.com%2F2026%2F09%2F04%2Fparchment-paper-paired-with-3d-printed-grid-gives-a-nice-glow%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<div><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"432\" src=\"https://hackaday.com/wp-content/uploads/2026/09/64x64-matrix-front-banner.png?w=768\" style=\"margin: 0 auto; margin-bottom: 15px;\" width=\"768\" /></div>This custom enclosure for a 64&#215;64 RGB LED matrix by [Davisan1001] not only provides a mount point for a Raspberry Pi, but presents a clean and smooth face with square <a class=\"read-more\" href=\"https://hackaday.com/2026/09/04/parchment-paper-paired-with-3d-printed-grid-gives-a-nice-glow/\">&#8230;read more</a>",
-      "summary": "This custom enclosure for a 64\u00d764 RGB LED matrix by [Davisan1001] not only provides a mount point for a Raspberry Pi, but presents a clean and smooth face with square \u2026read more",
-      "_excerpt": "This custom enclosure for a 64\u00d764 RGB LED matrix by [Davisan1001] not only provides a mount point for a Raspberry Pi, but presents a clean and smooth face with square \u2026read more",
-      "date_published": "2026-09-05T02:00:04+00:00",
-      "authors": [
-        {
-          "name": "Hackaday",
-          "url": "https://hackaday.com"
-        }
-      ],
-      "ai_score": 63,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 75,
-      "_theme_score_raw": 48,
-      "_composite_podcast": 68,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "image": "https://hackaday.com/wp-content/uploads/2026/09/64x64-matrix-front-banner.png",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-05T04:13:08.540768+00:00"
-      },
-      "_boosted_score": 63
-    },
-    "held_date": "2026-09-05",
-    "target_date": "2026-09-09",
-    "target_weekday": 2,
-    "target_focus_slug": "vehicles-field-gear",
-    "target_focus_name": "Vehicles & Field Gear",
-    "status": "released",
-    "release_date": "2026-09-09"
   },
   "https://www.hackster.io/news/can-an-open-source-ai-model-help-a-diy-robot-pick-up-your-laundry-bd8578273e69": {
     "article": {
@@ -1343,49 +1058,6 @@
     "target_focus_name": "Wildfire & Climate Resilience",
     "status": "held"
   },
-  "https://www.howtogeek.com/stop-using-amazon-and-google-to-run-your-smart-home/": {
-    "article": {
-      "id": "https://www.howtogeek.com/stop-using-amazon-and-google-to-run-your-smart-home/",
-      "url": "https://www.howtogeek.com/stop-using-amazon-and-google-to-run-your-smart-home/",
-      "title": "[How-To Geek] Please stop using Amazon and Google to run your smart home",
-      "content_html": "<img src=\"https://static0.howtogeekimages.com/wordpress/wp-content/uploads/wm/2026/08/54823192064_500c572338_o.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfd4\ufe0f <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.howtogeek.com%2Fstop-using-amazon-and-google-to-run-your-smart-home%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nBuild a more resilient and open smart home.",
-      "summary": "Build a more resilient and open smart home.",
-      "_excerpt": "Build a more resilient and open smart home.",
-      "date_published": "2026-08-28T13:30:13+00:00",
-      "authors": [
-        {
-          "name": "How-To Geek",
-          "url": "https://www.howtogeek.com"
-        }
-      ],
-      "ai_score": 58,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 83,
-      "_theme_score_raw": 50,
-      "_composite_podcast": 58,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://static0.howtogeekimages.com/wordpress/wp-content/uploads/wm/2026/08/54823192064_500c572338_o.jpg",
-      "_cross_theme": {
-        "day": "tuesday",
-        "label": "Working Lands & Industry",
-        "shown_at": "2026-09-05T04:13:08.540768+00:00"
-      },
-      "_boosted_score": 58
-    },
-    "held_date": "2026-09-05",
-    "target_date": "2026-09-09",
-    "target_weekday": 2,
-    "target_focus_slug": "vehicles-field-gear",
-    "target_focus_name": "Vehicles & Field Gear",
-    "status": "released",
-    "release_date": "2026-09-09"
-  },
   "https://cfjctoday.com/2026/09/05/massive-wildfires-near-clinton-south-cariboo-classified-as-being-held/": {
     "article": {
       "id": "https://cfjctoday.com/2026/09/05/massive-wildfires-near-clinton-south-cariboo-classified-as-being-held/",
@@ -1428,49 +1100,6 @@
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
     "status": "aired_early"
-  },
-  "https://www.xda-developers.com/reduce-3d-printer-purge-tower-filament-waste/": {
-    "article": {
-      "id": "https://www.xda-developers.com/reduce-3d-printer-purge-tower-filament-waste/",
-      "url": "https://www.xda-developers.com/reduce-3d-printer-purge-tower-filament-waste/",
-      "title": "[XDA Developers] My 3D printer was burning filament on oversized purge towers, and one slicer change saved me hundreds a year",
-      "content_html": "<img src=\"https://static0.xdaimages.com/wordpress/wp-content/uploads/wm/2026/09/my-3d-printer-was-burning-filament-on-oversized-purge-towers-and-one-slicer-change-saved-me-hundreds-a-year-featured.jpeg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.xda-developers.com%2Freduce-3d-printer-purge-tower-filament-waste%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nOversized purge towers were quietly wasting filament on my multicolor prints. Reducing purge volumes cut waste and could save me hundreds each year.",
-      "summary": "Oversized purge towers were quietly wasting filament on my multicolor prints. Reducing purge volumes cut waste and could save me hundreds each year.",
-      "_excerpt": "Oversized purge towers were quietly wasting filament on my multicolor prints. Reducing purge volumes cut waste and could save me hundreds each year.",
-      "date_published": "2026-09-05T19:30:15+00:00",
-      "authors": [
-        {
-          "name": "XDA Developers",
-          "url": "https://www.xda-developers.com"
-        }
-      ],
-      "ai_score": 56,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 96,
-      "_theme_score_raw": 72,
-      "_composite_podcast": 69,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://static0.xdaimages.com/wordpress/wp-content/uploads/wm/2026/09/my-3d-printer-was-burning-filament-on-oversized-purge-towers-and-one-slicer-change-saved-me-hundreds-a-year-featured.jpeg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-06T04:09:49.208927+00:00"
-      },
-      "_boosted_score": 56
-    },
-    "held_date": "2026-09-06",
-    "target_date": "2026-09-09",
-    "target_weekday": 2,
-    "target_focus_slug": "vehicles-field-gear",
-    "target_focus_name": "Vehicles & Field Gear",
-    "status": "released",
-    "release_date": "2026-09-09"
   },
   "https://boingboing.net/2026/08/31/sean-duffy-truckers-english-task-force.html": {
     "article": {
@@ -1555,49 +1184,6 @@
     "target_focus_name": "Wildfire & Climate Resilience",
     "status": "aired_early"
   },
-  "https://www.howtogeek.com/heres-why-nas-owners-and-homelabbers-keep-buying-this-ikea-table/": {
-    "article": {
-      "id": "https://www.howtogeek.com/heres-why-nas-owners-and-homelabbers-keep-buying-this-ikea-table/",
-      "url": "https://www.howtogeek.com/heres-why-nas-owners-and-homelabbers-keep-buying-this-ikea-table/",
-      "title": "[How-To Geek] Here's why NAS owners and homelabbers keep buying this $17 IKEA table",
-      "content_html": "<img src=\"https://static0.howtogeekimages.com/wordpress/wp-content/uploads/2026/08/a-nas-and-networking-gear-on-an-ikea-lack-table-setup.png\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.howtogeek.com%2Fheres-why-nas-owners-and-homelabbers-keep-buying-this-ikea-table%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nA $17 IKEA table became an accidental 8U rack for homelabs.",
-      "summary": "A $17 IKEA table became an accidental 8U rack for homelabs.",
-      "_excerpt": "A $17 IKEA table became an accidental 8U rack for homelabs.",
-      "date_published": "2026-08-30T22:30:13+00:00",
-      "authors": [
-        {
-          "name": "How-To Geek",
-          "url": "https://www.howtogeek.com"
-        }
-      ],
-      "ai_score": 55,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 78,
-      "_theme_score_raw": 63,
-      "_composite_podcast": 54,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://static0.howtogeekimages.com/wordpress/wp-content/uploads/2026/08/a-nas-and-networking-gear-on-an-ikea-lack-table-setup.png",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-01T04:09:19.935216+00:00"
-      },
-      "_boosted_score": 55
-    },
-    "held_date": "2026-09-06",
-    "target_date": "2026-09-09",
-    "target_weekday": 2,
-    "target_focus_slug": "vehicles-field-gear",
-    "target_focus_name": "Vehicles & Field Gear",
-    "status": "released",
-    "release_date": "2026-09-09"
-  },
   "https://www.tomshardware.com/tech-industry/man-uses-robot-vacuum-to-covertly-record-his-wifes-affair-wins-divorce-settlement-but-gets-sentenced-to-prison-for-making-an-illegal-recording-husband-lands-behind-bars-after-counter-suit-over-privacy-rights": {
     "article": {
       "id": "https://www.tomshardware.com/tech-industry/man-uses-robot-vacuum-to-covertly-record-his-wifes-affair-wins-divorce-settlement-but-gets-sentenced-to-prison-for-making-an-illegal-recording-husband-lands-behind-bars-after-counter-suit-over-privacy-rights",
@@ -1638,7 +1224,8 @@
     "target_weekday": 3,
     "target_focus_slug": "guardians-stewardship",
     "target_focus_name": "Guardians & Land Stewardship",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-10"
   },
   "https://www.theverge.com/entertainment/985866/h4rris-nihil-young-edm-suno-ai": {
     "article": {
@@ -1832,82 +1419,6 @@
     "target_focus_name": "Wildfire & Climate Resilience",
     "status": "held"
   },
-  "https://www.makeuseof.com/ryobi-dewalt-milwaukee-batteries-useful-in-blackout/": {
-    "article": {
-      "id": "https://www.makeuseof.com/ryobi-dewalt-milwaukee-batteries-useful-in-blackout/",
-      "url": "https://www.makeuseof.com/ryobi-dewalt-milwaukee-batteries-useful-in-blackout/",
-      "title": "[MakeUseOf] Your Ryobi, DeWalt, or Milwaukee batteries are more useful in a blackout than you think",
-      "content_html": "<img src=\"https://static0.makeuseofimages.com/wordpress/wp-content/uploads/wm/2026/05/ryobi-power-inverter-and-flashlight-on-desk-lights-on.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.makeuseof.com%2Fryobi-dewalt-milwaukee-batteries-useful-in-blackout%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nHere's how your power tool batteries can help you during a power outage.",
-      "summary": "Here's how your power tool batteries can help you during a power outage.",
-      "_excerpt": "Here's how your power tool batteries can help you during a power outage.",
-      "date_published": "2026-09-06T21:00:13+00:00",
-      "authors": [
-        {
-          "name": "MakeUseOf",
-          "url": "https://www.makeuseof.com"
-        }
-      ],
-      "ai_score": 45,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 87,
-      "_theme_score_raw": 23,
-      "_composite_podcast": 58,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://static0.makeuseofimages.com/wordpress/wp-content/uploads/wm/2026/05/ryobi-power-inverter-and-flashlight-on-desk-lights-on.jpg",
-      "_boosted_score": 45
-    },
-    "held_date": "2026-09-07",
-    "target_date": "2026-09-09",
-    "target_weekday": 2,
-    "target_focus_slug": "vehicles-field-gear",
-    "target_focus_name": "Vehicles & Field Gear",
-    "status": "released",
-    "release_date": "2026-09-09"
-  },
-  "https://www.hackster.io/news/running-generative-ai-on-a-1-raspberry-pi-chip-969ffc1cf958": {
-    "article": {
-      "id": "https://www.hackster.io/news/running-generative-ai-on-a-1-raspberry-pi-chip-969ffc1cf958",
-      "url": "https://www.hackster.io/news/running-generative-ai-on-a-1-raspberry-pi-chip-969ffc1cf958",
-      "title": "[Hackster News] Running Generative AI on a $1 Raspberry Pi Chip",
-      "content_html": "<img src=\"https://hackster.imgix.net/uploads/attachments/1995138/_WYQdJ0nTIE.blob?auto=compress%2Cformat&amp;w=400&amp;h=300&amp;fit=min\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.hackster.io%2Fnews%2Frunning-generative-ai-on-a-1-raspberry-pi-chip-969ffc1cf958\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nA developer squeezed a generative AI image model onto a $1 RP2350 microcontroller, generating 128x128 images in as little as 5 seconds.",
-      "summary": "A developer squeezed a generative AI image model onto a $1 RP2350 microcontroller, generating 128x128 images in as little as 5 seconds.",
-      "_excerpt": "A developer squeezed a generative AI image model onto a $1 RP2350 microcontroller, generating 128x128 images in as little as 5 seconds.",
-      "date_published": "2026-09-05T15:21:08+00:00",
-      "authors": [
-        {
-          "name": "Hackster News",
-          "url": "https://www.hackster.io"
-        }
-      ],
-      "ai_score": 58,
-      "_quality": 75,
-      "_relevance": 72,
-      "_local": 0,
-      "_theme_score": 87,
-      "_theme_score_raw": 23,
-      "_composite_podcast": 56,
-      "_keyword_matches": 0,
-      "_category": "homelab",
-      "_source_category": "homelab",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://hackster.imgix.net/uploads/attachments/1995138/_WYQdJ0nTIE.blob?auto=compress%2Cformat&w=400&h=300&fit=min",
-      "_boosted_score": 58
-    },
-    "held_date": "2026-09-07",
-    "target_date": "2026-09-09",
-    "target_weekday": 2,
-    "target_focus_slug": "vehicles-field-gear",
-    "target_focus_name": "Vehicles & Field Gear",
-    "status": "released",
-    "release_date": "2026-09-09"
-  },
   "https://hackaday.com/2026/08/30/woodstove-assistant-keeps-the-heat-on-safely/": {
     "article": {
       "id": "https://hackaday.com/2026/08/30/woodstove-assistant-keeps-the-heat-on-safely/",
@@ -1991,51 +1502,6 @@
     "target_focus_name": "Maker & Repair",
     "status": "held"
   },
-  "https://wltribune.com/2026/09/01/williams-lake-first-nation-competition-pow-wow-brings-healing-love-and-laughter/": {
-    "article": {
-      "id": "https://wltribune.com/2026/09/01/williams-lake-first-nation-competition-pow-wow-brings-healing-love-and-laughter/",
-      "url": "https://wltribune.com/2026/09/01/williams-lake-first-nation-competition-pow-wow-brings-healing-love-and-laughter/",
-      "title": "[Williams Lake Tribune] Williams Lake First Nation Competition Pow Wow brings healing love and laughter",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F09%2F01%2Fwilliams-lake-first-nation-competition-pow-wow-brings-healing-love-and-laughter%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n## Williams Lake First Nation Competition Pow Wow brings healing love and laughter Published 6:35 am Tuesday, September 1, 2026 **By Rebecca Dyok** 1/22 The Williams Lake First Nation held its Competition Pow Wow at the Chief William Pow Wow Arbor on Friday, Aug. 29 to Sunday, Aug. 30\\. (Rebecca Dyok/Williams Lake Tribune) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | \u201cThe turnout has been super,\u201d Williams Lake First Nation Kukpi7 (Chief) Willie Sellars exclaimed Saturday, Aug. 29 after dozens of dancers",
-      "summary": "## Williams Lake First Nation Competition Pow Wow brings healing love and laughter Published 6:35 am Tuesday, September 1, 2026 **By Rebecca Dyok** 1/22 The Williams Lake First Nation held its Competition Pow Wow at the Chief William Pow Wow Arbor on Friday, Aug. 29 to Sunday, Aug. 30\\. (Rebecca",
-      "_excerpt": "## Williams Lake First Nation Competition Pow Wow brings healing love and laughter Published 6:35 am Tuesday, September 1, 2026 **By Rebecca Dyok** 1/22 The Williams Lake First Nation held its Competition Pow Wow at the Chief William Pow Wow Arbor on Friday, Aug. 29 to Sunday, Aug. 30\\. (Rebecca Dyok/Williams Lake Tribune) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | \u201cThe turnout has been super,\u201d Williams Lake First Nation Kukpi7 (Chief) Willie Sellars exclaimed Saturday, Aug. 29 after dozens of dancers",
-      "date_published": "2026-09-01T14:31:15.046041+00:00",
-      "authors": [
-        {
-          "name": "Williams Lake Tribune",
-          "url": "https://wltribune.com"
-        }
-      ],
-      "ai_score": 91,
-      "_quality": 85,
-      "_relevance": 90,
-      "_local": 100,
-      "_theme_score": 18,
-      "_theme_score_raw": 6,
-      "_composite_podcast": 48,
-      "_keyword_matches": 0,
-      "_category": "local",
-      "_source_category": "local",
-      "_is_bonus": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Williams Lake Tribune",
-      "_cross_theme": {
-        "day": "thursday",
-        "label": "Indigenous Lands & Innovation",
-        "shown_at": "2026-09-01T14:37:12.462698+00:00"
-      },
-      "_boosted_score": 91,
-      "_no_deep_dive": true
-    },
-    "held_date": "2026-09-07",
-    "target_date": "2026-09-10",
-    "target_weekday": 3,
-    "target_focus_slug": "guardians-stewardship",
-    "target_focus_name": "Guardians & Land Stewardship",
-    "status": "aired_early"
-  },
   "https://www.sciencealert.com/over-40-of-earth-could-become-drylands-by-2100-scientists-warn": {
     "article": {
       "id": "https://www.sciencealert.com/over-40-of-earth-could-become-drylands-by-2100-scientists-warn",
@@ -2076,47 +1542,6 @@
     "target_focus_name": "The Living World",
     "status": "held"
   },
-  "https://blog.adafruit.com/2026/09/07/transmit-unsigned-8-bit-audio-samples-as-analog-fm-using-a-cc1101-module/": {
-    "article": {
-      "id": "https://blog.adafruit.com/2026/09/07/transmit-unsigned-8-bit-audio-samples-as-analog-fm-using-a-cc1101-module/",
-      "url": "https://blog.adafruit.com/2026/09/07/transmit-unsigned-8-bit-audio-samples-as-analog-fm-using-a-cc1101-module/",
-      "title": "[Adafruit Blog] Transmit unsigned 8-bit audio samples as analog FM using a CC1101 module",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fblog.adafruit.com%2F2026%2F09%2F07%2Ftransmit-unsigned-8-bit-audio-samples-as-analog-fm-using-a-cc1101-module%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nktauchathuranga has published a library on GitHub called cc1101-analogfm that transmits unsigned 8-bit audio samples as analog FM using a CC1101 radio module. The stream() function takes bytes from any Arduino Stream and treats each one as an audio sample: 0 is the negative peak, 128 is the carrier center, and 255 is the positive [&#8230;]",
-      "summary": "ktauchathuranga has published a library on GitHub called cc1101-analogfm that transmits unsigned 8-bit audio samples as analog FM using a CC1101 radio module. The stream() function takes bytes from any Arduino Stream and treats each one as an audio sample: 0 is the negative peak, 128 is the carrier",
-      "_excerpt": "ktauchathuranga has published a library on GitHub called cc1101-analogfm that transmits unsigned 8-bit audio samples as analog FM using a CC1101 radio module. The stream() function takes bytes from any Arduino Stream and treats each one as an audio sample: 0 is the negative peak, 128 is the carrier center, and 255 is the positive [\u2026]",
-      "date_published": "2026-09-07T20:00:23+00:00",
-      "authors": [
-        {
-          "name": "Adafruit Blog",
-          "url": "https://blog.adafruit.com"
-        }
-      ],
-      "ai_score": 65,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 93,
-      "_theme_score_raw": 11,
-      "_composite_podcast": 82,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-08T04:09:26.124551+00:00"
-      },
-      "_boosted_score": 65
-    },
-    "held_date": "2026-09-08",
-    "target_date": "2026-09-09",
-    "target_weekday": 2,
-    "target_focus_slug": "vehicles-field-gear",
-    "target_focus_name": "Vehicles & Field Gear",
-    "status": "released",
-    "release_date": "2026-09-09"
-  },
   "https://www.theguardian.com/global-development/2026/sep/07/sudan-women-war-refugees-egypt-sex-work-exploitation": {
     "article": {
       "id": "https://www.theguardian.com/global-development/2026/sep/07/sudan-women-war-refugees-egypt-sex-work-exploitation",
@@ -2150,7 +1575,8 @@
     "target_weekday": 3,
     "target_focus_slug": "guardians-stewardship",
     "target_focus_name": "Guardians & Land Stewardship",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-10"
   },
   "https://www.vox.com/climate/501884/chemicals-produce-food-cancer-risk-reproductive-harm": {
     "article": {
@@ -2190,48 +1616,6 @@
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
     "status": "held"
-  },
-  "https://hackaday.com/2026/09/07/comparing-petg-and-pctg-filaments/": {
-    "article": {
-      "id": "https://hackaday.com/2026/09/07/comparing-petg-and-pctg-filaments/",
-      "url": "https://hackaday.com/2026/09/07/comparing-petg-and-pctg-filaments/",
-      "title": "[Hackaday] Comparing PETG and PCTG Filaments",
-      "content_html": "<img src=\"https://hackaday.com/wp-content/uploads/2026/09/petg_vs_pctg_my_tech_fun_youtube.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fhackaday.com%2F2026%2F09%2F07%2Fcomparing-petg-and-pctg-filaments%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<div><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"460\" src=\"https://hackaday.com/wp-content/uploads/2026/09/petg_vs_pctg_my_tech_fun_youtube.jpg?w=800\" style=\"margin: 0 auto; margin-bottom: 15px;\" width=\"800\" /></div>The average 3D printer owner knows a few types of filaments &#8211; PLA, ABS, somewhere in the middle, PETG.\u00a0 PCTG is another option that can be confusingly similar to PETG. <a class=\"read-more\" href=\"https://hackaday.com/2026/09/07/comparing-petg-and-pctg-filaments/\">&#8230;read more</a>",
-      "summary": "The average 3D printer owner knows a few types of filaments \u2013 PLA, ABS, somewhere in the middle, PETG. PCTG is another option that can be confusingly similar to PETG. \u2026read more",
-      "_excerpt": "The average 3D printer owner knows a few types of filaments \u2013 PLA, ABS, somewhere in the middle, PETG. PCTG is another option that can be confusingly similar to PETG. \u2026read more",
-      "date_published": "2026-09-07T08:00:56+00:00",
-      "authors": [
-        {
-          "name": "Hackaday",
-          "url": "https://hackaday.com"
-        }
-      ],
-      "ai_score": 60,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 89,
-      "_theme_score_raw": 9,
-      "_composite_podcast": 77,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "image": "https://hackaday.com/wp-content/uploads/2026/09/petg_vs_pctg_my_tech_fun_youtube.jpg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-08T04:09:26.124551+00:00"
-      },
-      "_boosted_score": 60
-    },
-    "held_date": "2026-09-08",
-    "target_date": "2026-09-09",
-    "target_weekday": 2,
-    "target_focus_slug": "vehicles-field-gear",
-    "target_focus_name": "Vehicles & Field Gear",
-    "status": "released",
-    "release_date": "2026-09-09"
   },
   "https://wltribune.com/2026/08/31/b-c-couple-take-care-of-business-reunite-rock-icon-bachman-with-guitar/": {
     "article": {
@@ -2442,44 +1826,6 @@
     "target_focus_name": "The Living World",
     "status": "held"
   },
-  "https://www.xda-developers.com/cheap-mini-pcs-death-knell-for-raspberry-pis/": {
-    "article": {
-      "id": "https://www.xda-developers.com/cheap-mini-pcs-death-knell-for-raspberry-pis/",
-      "url": "https://www.xda-developers.com/cheap-mini-pcs-death-knell-for-raspberry-pis/",
-      "title": "[XDA Developers] Cheap mini PCs are the death knell for Raspberry Pis",
-      "content_html": "<img src=\"https://static0.xdaimages.com/wordpress/wp-content/uploads/wm/2026/04/raspberry-pi-5.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.xda-developers.com%2Fcheap-mini-pcs-death-knell-for-raspberry-pis%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nWith x86 mini PCs becoming more budget-friendly, I find it hard to recommend Raspberry Pi SBCs",
-      "summary": "With x86 mini PCs becoming more budget-friendly, I find it hard to recommend Raspberry Pi SBCs",
-      "_excerpt": "With x86 mini PCs becoming more budget-friendly, I find it hard to recommend Raspberry Pi SBCs",
-      "date_published": "2026-08-31T13:30:15+00:00",
-      "authors": [
-        {
-          "name": "XDA Developers",
-          "url": "https://www.xda-developers.com"
-        }
-      ],
-      "ai_score": 35,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 76,
-      "_theme_score_raw": 6,
-      "_composite_podcast": 51,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://static0.xdaimages.com/wordpress/wp-content/uploads/wm/2026/04/raspberry-pi-5.jpg",
-      "_boosted_score": 35
-    },
-    "held_date": "2026-09-08",
-    "target_date": "2026-09-09",
-    "target_weekday": 2,
-    "target_focus_slug": "vehicles-field-gear",
-    "target_focus_name": "Vehicles & Field Gear",
-    "status": "released",
-    "release_date": "2026-09-09"
-  },
   "https://www.sciencedaily.com/releases/2026/09/260907201605.htm": {
     "article": {
       "id": "https://www.sciencedaily.com/releases/2026/09/260907201605.htm",
@@ -2553,7 +1899,8 @@
     "target_weekday": 3,
     "target_focus_slug": "guardians-stewardship",
     "target_focus_name": "Guardians & Land Stewardship",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-10"
   },
   "https://earthsky.org/earth/lights-out-for-birds-spring-and-fall-migration/": {
     "article": {
@@ -2843,7 +2190,7 @@
       "id": "https://www.tomshardware.com/tech-industry/manufacturing/motorless-solid-state-cooler-uses-heat-to-cool-itself-could-recycle-processor-heat-into-cooling-shape-memory-alloy-films-could-turn-data-center-exhaust-into-refrigeration",
       "url": "https://www.tomshardware.com/tech-industry/manufacturing/motorless-solid-state-cooler-uses-heat-to-cool-itself-could-recycle-processor-heat-into-cooling-shape-memory-alloy-films-could-turn-data-center-exhaust-into-refrigeration",
       "title": "[Tom's Hardware] Motorless solid-state cooler uses heat to cool itself; could recycle processor heat into cooling \u2014 shape-memory alloy films could turn data center exhaust into refrigeration",
-      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/KqBokvkVTxM9Mkyjj2L4t-1280-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.tomshardware.com%2Ftech-industry%2Fmanufacturing%2Fmotorless-solid-state-cooler-uses-heat-to-cool-itself-could-recycle-processor-heat-into-cooling-shape-memory-alloy-films-could-turn-data-center-exhaust-into-refrigeration\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nGerman and Japanese researchers demonstrate a heat-driven elastocaloric cooler that uses shape-memory alloys to turn waste heat into cooling.",
+      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/KqBokvkVTxM9Mkyjj2L4t-1280-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.tomshardware.com%2Ftech-industry%2Fmanufacturing%2Fmotorless-solid-state-cooler-uses-heat-to-cool-itself-could-recycle-processor-heat-into-cooling-shape-memory-alloy-films-could-turn-data-center-exhaust-into-refrigeration\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nGerman and Japanese researchers demonstrate a heat-driven elastocaloric cooler that uses shape-memory alloys to turn waste heat into cooling.",
       "summary": "German and Japanese researchers demonstrate a heat-driven elastocaloric cooler that uses shape-memory alloys to turn waste heat into cooling.",
       "_excerpt": "German and Japanese researchers demonstrate a heat-driven elastocaloric cooler that uses shape-memory alloys to turn waste heat into cooling.",
       "date_published": "2026-08-31T15:40:00+00:00",
@@ -2857,9 +2204,9 @@
       "_quality": 73,
       "_relevance": 0,
       "_local": 0,
-      "_theme_score": 39,
-      "_theme_score_raw": 3,
-      "_composite_podcast": 27,
+      "_theme_score": 68,
+      "_theme_score_raw": 9,
+      "_composite_podcast": 51,
       "_keyword_matches": 0,
       "_category": "climate",
       "_source_category": "climate",
@@ -2867,17 +2214,395 @@
       "_thin_body": true,
       "image": "https://cdn.mos.cms.futurecdn.net/KqBokvkVTxM9Mkyjj2L4t-1280-80.jpg",
       "_cross_theme": {
-        "day": "friday",
-        "label": "Wild Spaces & Outdoor Life",
-        "shown_at": "2026-09-08T04:09:26.124551+00:00"
+        "day": "wednesday",
+        "label": "Repair Culture & Practical Tech",
+        "shown_at": "2026-09-09T07:11:51.474148+00:00"
       },
       "_boosted_score": 50
     },
-    "held_date": "2026-09-09",
+    "held_date": "2026-09-10",
     "target_date": "2026-09-14",
     "target_weekday": 0,
     "target_focus_slug": "film-screen",
     "target_focus_name": "Film & Screen",
+    "status": "held"
+  },
+  "https://tsilhqotin.ca/hunters-asked-not-to-shoot-gpscollared-moose-in-tsilhqotin-territory/": {
+    "article": {
+      "id": "https://tsilhqotin.ca/hunters-asked-not-to-shoot-gpscollared-moose-in-tsilhqotin-territory/",
+      "url": "https://tsilhqotin.ca/hunters-asked-not-to-shoot-gpscollared-moose-in-tsilhqotin-territory/",
+      "title": "[T\u015dilhqot\u2019in National Government] Hunters Asked Not to Shoot GPS-Collared Moose in T\u015dilhqot\u2019in Territory",
+      "content_html": "<img src=\"https://tsilhqotin.ca/wp-content/uploads/2026/08/tachelached-brittany-triangle.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Ftsilhqotin.ca%2Fhunters-asked-not-to-shoot-gpscollared-moose-in-tsilhqotin-territory%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>September 9, 2026 \u2014 Williams Lake, BC The\u00a0T\u015dilhqot\u2019in\u00a0National Government (TNG) is reminding hunters heading into the field this season not to harvest moose wearing GPS collars. The collars are part [&#8230;]</p>\n<p>The post <a href=\"https://tsilhqotin.ca/hunters-asked-not-to-shoot-gpscollared-moose-in-tsilhqotin-territory/\">Hunters Asked Not to Shoot GPS-Collared Moose in T\u015dilhqot\u2019in Territory</a> appeared first on <a href=\"https://tsilhqotin.ca\">T\u015dilhqot\u2019in National Government</a>.</p>",
+      "summary": "September 9, 2026 \u2014 Williams Lake, BC The T\u015dilhqot\u2019in National Government (TNG) is reminding hunters heading into the field this season not to harvest moose wearing GPS collars. The collars are part [\u2026] The post Hunters Asked Not to Shoot GPS-Collared Moose in T\u015dilhqot\u2019in Territory appeared first",
+      "_excerpt": "September 9, 2026 \u2014 Williams Lake, BC The T\u015dilhqot\u2019in National Government (TNG) is reminding hunters heading into the field this season not to harvest moose wearing GPS collars. The collars are part [\u2026] The post Hunters Asked Not to Shoot GPS-Collared Moose in T\u015dilhqot\u2019in Territory appeared first on T\u015dilhqot\u2019in National Government .",
+      "date_published": "2026-09-09T18:00:00+00:00",
+      "authors": [
+        {
+          "name": "T\u015dilhqot\u2019in National Government",
+          "url": "https://tsilhqotin.ca/publications/"
+        }
+      ],
+      "ai_score": 82,
+      "_quality": 72,
+      "_relevance": 82,
+      "_local": 92,
+      "_theme_score": 100,
+      "_theme_score_raw": 28,
+      "_composite_podcast": 86,
+      "_keyword_matches": 2,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": false,
+      "image": "https://tsilhqotin.ca/wp-content/uploads/2026/08/tachelached-brittany-triangle.jpg",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-10T14:06:38.005392+00:00"
+      },
+      "_boosted_score": 82,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-09-10",
+    "target_date": "2026-09-15",
+    "target_weekday": 1,
+    "target_focus_slug": "agriculture-ranching",
+    "target_focus_name": "Agriculture & Ranching",
+    "status": "aired_early"
+  },
+  "https://www.mycariboonow.com/316136/news/elections/south-cariboo-realtor-running-for-mayor/": {
+    "article": {
+      "id": "https://www.mycariboonow.com/316136/news/elections/south-cariboo-realtor-running-for-mayor/",
+      "url": "https://www.mycariboonow.com/316136/news/elections/south-cariboo-realtor-running-for-mayor/",
+      "title": "[My Cariboo Now] South Cariboo realtor running for Mayor",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.mycariboonow.com%2F316136%2Fnews%2Felections%2Fsouth-cariboo-realtor-running-for-mayor%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"464\" src=\"https://www.mycariboonow.com/wp-content/uploads/2026/09/DAVID-JUREK-1024x683.jpg\" width=\"696\" />David Jurek's name will be on the ballot in October joining incumbent Maureen Pinkney for the District's top job.</p>\n<p>The post <a href=\"https://www.mycariboonow.com/316136/news/elections/south-cariboo-realtor-running-for-mayor/\">South Cariboo realtor running for Mayor</a> appeared first on <a href=\"https://www.mycariboonow.com\">My Cariboo Now</a>.</p>",
+      "summary": "David Jurek's name will be on the ballot in October joining incumbent Maureen Pinkney for the District's top job. The post South Cariboo realtor running for Mayor appeared first on My Cariboo Now .",
+      "_excerpt": "David Jurek's name will be on the ballot in October joining incumbent Maureen Pinkney for the District's top job. The post South Cariboo realtor running for Mayor appeared first on My Cariboo Now .",
+      "date_published": "2026-09-09T17:33:43+00:00",
+      "authors": [
+        {
+          "name": "My Cariboo Now",
+          "url": "https://www.mycariboonow.com"
+        }
+      ],
+      "ai_score": 83,
+      "_quality": 67,
+      "_relevance": 82,
+      "_local": 100,
+      "_theme_score": 90,
+      "_theme_score_raw": 15,
+      "_composite_podcast": 90,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-10T14:06:38.005392+00:00"
+      },
+      "_boosted_score": 83
+    },
+    "held_date": "2026-09-10",
+    "target_date": "2026-09-12",
+    "target_weekday": 5,
+    "event_name": "Williams Lake 2026 general local election",
+    "recall": true,
+    "status": "recall"
+  },
+  "https://news.gov.bc.ca/releases/2026EMCR0040-001035": {
+    "article": {
+      "id": "https://news.gov.bc.ca/releases/2026EMCR0040-001035",
+      "url": "https://news.gov.bc.ca/releases/2026EMCR0040-001035",
+      "title": "[BC Gov News] Strengthening public notifications, evacuation-route plans",
+      "content_html": "<img src=\"https://news.gov.bc.ca/Content/Images/Gov/default-og-image-new.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fnews.gov.bc.ca%2Freleases%2F2026EMCR0040-001035\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nFunding helps communities improve emergency preparedness",
+      "summary": "Funding helps communities improve emergency preparedness",
+      "_excerpt": "Funding helps communities improve emergency preparedness",
+      "date_published": "2026-09-09T15:30:00+00:00",
+      "authors": [
+        {
+          "name": "BC Gov News",
+          "url": "https://news.gov.bc.ca"
+        }
+      ],
+      "ai_score": 65,
+      "_quality": 43,
+      "_relevance": 72,
+      "_local": 68,
+      "_theme_score": 98,
+      "_theme_score_raw": 27,
+      "_composite_podcast": 72,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://news.gov.bc.ca/Content/Images/Gov/default-og-image-new.jpg",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-10T14:06:38.005392+00:00"
+      },
+      "_boosted_score": 65,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-09-10",
+    "target_date": "2026-09-18",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "aired_early"
+  },
+  "https://www.popularmechanics.com/science/health/a73643891/wildfire-smoke/": {
+    "article": {
+      "id": "https://www.popularmechanics.com/science/health/a73643891/wildfire-smoke/",
+      "url": "https://www.popularmechanics.com/science/health/a73643891/wildfire-smoke/",
+      "title": "[Popular Mechanics] North America\u2019s Wildfire Smoke Is Becoming Deadly. It\u2019s Only Going to Get Worse.",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.popularmechanics.com%2Fscience%2Fhealth%2Fa73643891%2Fwildfire-smoke%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p class=\"rte-simple-html-paragraph\">The summer of 2026 showed how warming temperatures and wildfires are a growing threat to humanity\u2019s health and safety.\u00a0</p>",
+      "summary": "The summer of 2026 showed how warming temperatures and wildfires are a growing threat to humanity\u2019s health and safety.",
+      "_excerpt": "The summer of 2026 showed how warming temperatures and wildfires are a growing threat to humanity\u2019s health and safety.",
+      "date_published": "2026-09-10T12:30:00+00:00",
+      "authors": [
+        {
+          "name": "Popular Mechanics",
+          "url": "https://www.popularmechanics.com"
+        }
+      ],
+      "ai_score": 61,
+      "_quality": 65,
+      "_relevance": 72,
+      "_local": 25,
+      "_theme_score": 95,
+      "_theme_score_raw": 20,
+      "_composite_podcast": 69,
+      "_keyword_matches": 0,
+      "_category": "climate",
+      "_source_category": "climate",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Apple News+",
+      "_boosted_score": 61
+    },
+    "held_date": "2026-09-10",
+    "target_date": "2026-09-18",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "held"
+  },
+  "https://wltribune.com/2026/09/09/b-c-forestry-groups-say-industry-at-breaking-point/": {
+    "article": {
+      "id": "https://wltribune.com/2026/09/09/b-c-forestry-groups-say-industry-at-breaking-point/",
+      "url": "https://wltribune.com/2026/09/09/b-c-forestry-groups-say-industry-at-breaking-point/",
+      "title": "[Williams Lake Tribune] B.C. forestry groups say industry at \u2018breaking point\u2019",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F09%2F09%2Fb-c-forestry-groups-say-industry-at-breaking-point%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nForest minister blames tariffs, but industry says issues are \"homegrown'",
+      "summary": "Forest minister blames tariffs, but industry says issues are \"homegrown'",
+      "_excerpt": "Forest minister blames tariffs, but industry says issues are \"homegrown'",
+      "date_published": "2026-09-09T21:48:06+00:00",
+      "authors": [
+        {
+          "name": "Williams Lake Tribune",
+          "url": "https://wltribune.com"
+        }
+      ],
+      "ai_score": 75,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 96,
+      "_theme_score_raw": 21,
+      "_composite_podcast": 69,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Williams Lake Tribune",
+      "_cross_theme": {
+        "day": "tuesday",
+        "label": "Working Lands & Industry",
+        "shown_at": "2026-09-10T14:06:38.005392+00:00"
+      },
+      "_boosted_score": 75,
+      "_topic_cluster": "B.C. forestry industry crisis",
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-09-10",
+    "target_date": "2026-09-15",
+    "target_weekday": 1,
+    "target_focus_slug": "agriculture-ranching",
+    "target_focus_name": "Agriculture & Ranching",
+    "status": "aired_early"
+  },
+  "https://www.nytimes.com/2026/09/02/world/americas/screwworm-facility-mexico.html": {
+    "article": {
+      "id": "https://www.nytimes.com/2026/09/02/world/americas/screwworm-facility-mexico.html",
+      "url": "https://www.nytimes.com/2026/09/02/world/americas/screwworm-facility-mexico.html",
+      "title": "[NYT Business] Inside the Fight Against a Flesh-Eating Fly in Mexico",
+      "content_html": "<img src=\"https://static01.nyt.com/images/2026/08/27/multimedia/XXint-mexico-screwworm-promo/XXint-mexico-screwworm-jwtq-mediumSquareAt3X.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.nytimes.com%2F2026%2F09%2F02%2Fworld%2Famericas%2Fscrewworm-facility-mexico.html\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nFor the first time in a year, the U.S.-Mexico border partly reopened to cattle imports following a screwworm infestation across the region. The battle against the flesh-eating fly has only just begun deep in Mexico.",
+      "summary": "For the first time in a year, the U.S.-Mexico border partly reopened to cattle imports following a screwworm infestation across the region. The battle against the flesh-eating fly has only just begun deep in Mexico.",
+      "_excerpt": "For the first time in a year, the U.S.-Mexico border partly reopened to cattle imports following a screwworm infestation across the region. The battle against the flesh-eating fly has only just begun deep in Mexico.",
+      "date_published": "2026-09-03T01:14:05+00:00",
+      "authors": [
+        {
+          "name": "NYT Business",
+          "url": "https://www.nytimes.com/section/business"
+        }
+      ],
+      "ai_score": 51,
+      "_quality": 67,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 84,
+      "_theme_score_raw": 11,
+      "_composite_podcast": 63,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://static01.nyt.com/images/2026/08/27/multimedia/XXint-mexico-screwworm-promo/XXint-mexico-screwworm-jwtq-mediumSquareAt3X.jpg",
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "New York Times",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-10T14:06:38.005392+00:00"
+      },
+      "_boosted_score": 51
+    },
+    "held_date": "2026-09-10",
+    "target_date": "2026-09-15",
+    "target_weekday": 1,
+    "target_focus_slug": "agriculture-ranching",
+    "target_focus_name": "Agriculture & Ranching",
+    "status": "held"
+  },
+  "https://www.techradar.com/pro/research-finds-ai-agents-havent-quite-mastered-real-world-browsing-tasks-despite-claiming-they-can": {
+    "article": {
+      "id": "https://www.techradar.com/pro/research-finds-ai-agents-havent-quite-mastered-real-world-browsing-tasks-despite-claiming-they-can",
+      "url": "https://www.techradar.com/pro/research-finds-ai-agents-havent-quite-mastered-real-world-browsing-tasks-despite-claiming-they-can",
+      "title": "[TechRadar] Research finds AI agents haven't quite mastered real-world browsing tasks despite claiming they can",
+      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/jwrMJ6cMNHe3jurU5dv9S7-1280-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.techradar.com%2Fpro%2Fresearch-finds-ai-agents-havent-quite-mastered-real-world-browsing-tasks-despite-claiming-they-can\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nMany AI agents lack sufficient safeguards and can't handle multiple tabs very well despite promises.",
+      "summary": "Many AI agents lack sufficient safeguards and can't handle multiple tabs very well despite promises.",
+      "_excerpt": "Many AI agents lack sufficient safeguards and can't handle multiple tabs very well despite promises.",
+      "date_published": "2026-09-03T13:35:00+00:00",
+      "authors": [
+        {
+          "name": "TechRadar",
+          "url": "https://www.techradar.com"
+        }
+      ],
+      "ai_score": 41,
+      "_quality": 57,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 84,
+      "_theme_score_raw": 11,
+      "_composite_podcast": 60,
+      "_keyword_matches": 0,
+      "_category": "ai-tech",
+      "_source_category": "ai-tech",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://cdn.mos.cms.futurecdn.net/jwrMJ6cMNHe3jurU5dv9S7-1280-80.jpg",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-10T14:06:38.005392+00:00"
+      },
+      "_boosted_score": 41
+    },
+    "held_date": "2026-09-10",
+    "target_date": "2026-09-13",
+    "target_weekday": 6,
+    "target_focus_slug": "sky-cosmos",
+    "target_focus_name": "Sky & Cosmos",
+    "status": "held"
+  },
+  "https://techcrunch.com/2026/08/31/lachy-groom-backs-indian-startup-aiming-to-keep-aircraft-aloft-for-a-year/": {
+    "article": {
+      "id": "https://techcrunch.com/2026/08/31/lachy-groom-backs-indian-startup-aiming-to-keep-aircraft-aloft-for-a-year/",
+      "url": "https://techcrunch.com/2026/08/31/lachy-groom-backs-indian-startup-aiming-to-keep-aircraft-aloft-for-a-year/",
+      "title": "[TechCrunch] Lachy Groom backs Indian startup aiming to keep aircraft aloft for a year",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Ftechcrunch.com%2F2026%2F08%2F31%2Flachy-groom-backs-indian-startup-aiming-to-keep-aircraft-aloft-for-a-year%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nFounded by a 20-year-old, Alteon is developing autonomous aircraft that hopes to harvest wind energy to stay aloft for several months.",
+      "summary": "Founded by a 20-year-old, Alteon is developing autonomous aircraft that hopes to harvest wind energy to stay aloft for several months.",
+      "_excerpt": "Founded by a 20-year-old, Alteon is developing autonomous aircraft that hopes to harvest wind energy to stay aloft for several months.",
+      "date_published": "2026-09-01T00:30:00+00:00",
+      "authors": [
+        {
+          "name": "TechCrunch",
+          "url": "https://techcrunch.com"
+        }
+      ],
+      "ai_score": 33,
+      "_quality": 48,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 68,
+      "_theme_score_raw": 9,
+      "_composite_podcast": 50,
+      "_keyword_matches": 0,
+      "_category": "climate",
+      "_source_category": "climate",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "_boosted_score": 33
+    },
+    "held_date": "2026-09-10",
+    "target_date": "2026-09-15",
+    "target_weekday": 1,
+    "target_focus_slug": "agriculture-ranching",
+    "target_focus_name": "Agriculture & Ranching",
+    "status": "held"
+  },
+  "https://www.cnet.com/tech/mobile/apple-new-ceo-john-ternus-first-day/": {
+    "article": {
+      "id": "https://www.cnet.com/tech/mobile/apple-new-ceo-john-ternus-first-day/",
+      "url": "https://www.cnet.com/tech/mobile/apple-new-ceo-john-ternus-first-day/",
+      "title": "[CNET] Yearn for the Tern: Apple Has a New Daddy",
+      "content_html": "<img src=\"https://www.cnet.com/wp-content/uploads/sites/2/image-9-1.png\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.cnet.com%2Ftech%2Fmobile%2Fapple-new-ceo-john-ternus-first-day%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nJohn Ternus takes the helm of a $4 trillion tech giant, but it comes with challenges as Apple faces down the RAM shortage, AI launch delays and the foldable phone market.",
+      "summary": "John Ternus takes the helm of a $4 trillion tech giant, but it comes with challenges as Apple faces down the RAM shortage, AI launch delays and the foldable phone market.",
+      "_excerpt": "John Ternus takes the helm of a $4 trillion tech giant, but it comes with challenges as Apple faces down the RAM shortage, AI launch delays and the foldable phone market.",
+      "date_published": "2026-09-01T12:05:18+00:00",
+      "authors": [
+        {
+          "name": "CNET",
+          "url": "https://www.cnet.com"
+        }
+      ],
+      "ai_score": 52,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 68,
+      "_theme_score_raw": 9,
+      "_composite_podcast": 47,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://www.cnet.com/wp-content/uploads/sites/2/image-9-1.png",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-10T14:06:38.005392+00:00"
+      },
+      "_boosted_score": 52
+    },
+    "held_date": "2026-09-10",
+    "target_date": "2026-09-23",
+    "target_weekday": 2,
+    "target_focus_slug": "homestead-offgrid",
+    "target_focus_name": "Homestead & Off-Grid Tech",
     "status": "held"
   }
 }
