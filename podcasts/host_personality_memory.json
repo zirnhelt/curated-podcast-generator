@@ -133,6 +133,16 @@
         "date": "2026-09-06",
         "clue": "community-trust:x \u2014 conceded that blind trust in systems needs auditing",
         "occurrences": 1
+      },
+      {
+        "date": "2026-09-10",
+        "clue": "Indigenous-tech:~ \u2014 collars extend guardian capacity, don't replace embodied knowledge",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-09-10",
+        "clue": "structural-lens:x \u2014 conceded TNG contract terms remain genuinely unknown gap",
+        "occurrences": 1
       }
     ],
     "core_memories": [
@@ -369,11 +379,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-09-06",
-        "clue": "evidence-bar:~ \u2014 acknowledged tension between message urgency and fatigue risk",
-        "occurrences": 2
-      },
-      {
         "date": "2026-09-04",
         "clue": "pilot-skepticism:~ \u2014 Acknowledged Scout Island volunteer model could scale, added maintenance doubt",
         "occurrences": 1
@@ -384,9 +389,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-09-08",
-        "clue": "pilot-skepticism:+ \u2014 Moved beyond tool-merit to data ownership and knowledge capture",
-        "occurrences": 1
+        "date": "2026-09-10",
+        "clue": "pilot-skepticism:+ \u2014 apprenticeship funding volatility poses bigger risk than tech",
+        "occurrences": 2
       },
       {
         "date": "2026-09-09",
