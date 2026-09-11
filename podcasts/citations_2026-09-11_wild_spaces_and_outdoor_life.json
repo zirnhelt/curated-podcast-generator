@@ -1,0 +1,348 @@
+{
+  "episode": {
+    "date": "2026-09-11",
+    "formatted_date": "Friday, September 11, 2026",
+    "theme": "Wild Spaces & Outdoor Life",
+    "title": "Cariboo Signals - Wild Spaces & Outdoor Life",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Wild Spaces & Outdoor Life.</p><p><b>THIS WEEK WE'RE ASKING:</b> What gets lost when something gets easier?</p><p><b>NEWS ROUNDUP:</b> We break down [Williams Lake Tribune] Black bear euthanized in 100 Mile House after becoming comfortable with humans and [My Cariboo Now] RCMP arrest four in Quesnel after stolen vehicle rams police cruisers, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Deep dive on Wild Spaces & Outdoor Life Topics include: fiber, satellite, AI, funding.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://scoutisland.ca\">Scout Island Nature Centre</a></p><p><b>Sources discussed:</b></p><ul><li>Patrick Davies (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/09/10/black-bear-euthanized-in-100-mile-house-after-becoming-comfortable-with-humans/\">[Williams Lake Tribune] Black bear euthanized in 100 Mile Ho...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/316162/news/rcmp/rcmp-arrest-four-in-quesnel-after-stolen-vehicle-rams-police-cruisers/\">[My Cariboo Now] RCMP arrest four in Quesnel after stolen ve...</a></li><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/09/10/ubcm-to-take-province-to-task-for-secrecy-funding-cuts-at-annual-conference/\">[Williams Lake Tribune] UBCM to take province to task for se...</a></li><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/09/10/icbc-to-replace-all-140-intersection-cameras-with-updated-technology/\">[Williams Lake Tribune] ICBC to replace all 140 intersection...</a></li><li>Adam Kovac (Scientific American): <a href=\"https://www.scientificamerican.com/article/el-nino-fuels-wildfires-in-indonesia-sickening-some-100-000-people/\">[Scientific American] El Niño fuels wildfires in Indonesia, ...</a></li><li>Wildfire Today: <a href=\"https://wildfiretoday.com/europes-fire-summer-still-a-concern/\">[Wildfire Today] Europe’s fire summer still a concern</a></li><li>Committee to Protect Journalists: <a href=\"https://cpj.org/2026/09/cpj-partners-call-pakistans-prime-minister-to-address-alarming-deterioration-in-press-freedom/\">[Committee to Protect Journalists] CPJ, partners call Pakist...</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/08/260827010517.htm\">[ScienceDaily] Scientists tracked 4,500 animals and found a ...</a></li><li>David Nield (ScienceAlert): <a href=\"https://www.sciencealert.com/experimental-one-dose-treatment-cuts-bad-cholesterol-by-52-in-first-human-trial\">[ScienceAlert] Experimental One-Dose Treatment Cuts 'Bad' Ch...</a></li><li>Android Police: <a href=\"https://www.androidpolice.com/lenovos-rollable-laptop-and-colorful-ideapads-signal-a-shift-beyond-the-office/\">[Android Police] Lenovo's rollable laptop and colorful IdeaP...</a></li><li>Global News: <a href=\"https://globalnews.ca/news/12042544/lethbridge-mall-airsoft-pistol/\">[Global News] 4 teens charged in airsoft pistol confrontatio...</a></li><li>Andrew J. Hawkins (The Verge): <a href=\"https://www.theverge.com/transportation/993341/evtol-air-taxi-aviation-eipp-texas\">[The Verge] Electric air taxis get the green light for test ...</a></li><li>Live for the Outdoors (Country Walking): <a href=\"https://www.livefortheoutdoors.com/trail-running/news/mens-winner-utmb/\">[Live for the Outdoors (Country Walking)] “Unbelievable”: Am...</a></li><li>My East Kootenay Now: <a href=\"https://www.myeastkootenaynow.com/57069/news/emergency/fire/wildfires/tactical-evacuation-underway-as-wildfire-burns-near-ta-ta-creek/\">[My East Kootenay Now] Updated: Evacuation order issued for ...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Peter Dockrill (ScienceAlert): <a href=\"https://www.sciencealert.com/alzheimers-disease-threat-actually-emerges-from-beyond-the-brain-study-finds\">[ScienceAlert] Alzheimer's Disease Threat Actually Emerges F...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/09/05/us/red-states-republicans-flock-cameras.html\">[NYT Top Stories] In Red States, Law-and-Order Republicans T...</a></li><li>https://www.facebook.com/https://www.facebook.com/david-a-graham-318249352182 (The Atlantic): <a href=\"https://www.theatlantic.com/ideas/2026/09/9-11-lessons-bush-trump/688572/?utm_source=feed\">[The Atlantic] What the Failure to Convict the Alleged 9/11 ...</a></li><li>Charles Pulliam-Moore (The Verge): <a href=\"https://www.theverge.com/entertainment/985866/h4rris-nihil-young-edm-suno-ai\">[The Verge] Musicians-turned-detectives are hunting for AI g...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-09-11T01:27:38.329651-07:00",
+    "models": {
+      "script": "claude-sonnet-5",
+      "review": "claude-sonnet-5",
+      "summary": "claude-haiku-4-5"
+    },
+    "quality": {
+      "word_count": 3448,
+      "voice_ratio_casey_riley": 0.79,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 1,
+        "pre_validation": 0,
+        "contrastive_negation": 1,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 0,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 5,
+        "roundup_seam": 0,
+        "thats_closer": 0,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 2,
+      "rhythm": {
+        "em_dashes_per_1k": 7.8,
+        "short_turns": 10,
+        "turns": 71,
+        "avg_turn_words": 47.0,
+        "antithesis_hits": 0,
+        "over_budget": []
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    },
+    "anchor": {
+      "id": "lost-when-easier",
+      "question": "What gets lost when something gets easier?"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[My Cariboo Now] RCMP arrest four in Quesnel after stolen vehicle rams police cruisers",
+          "url": "https://www.mycariboonow.com/316162/news/rcmp/rcmp-arrest-four-in-quesnel-after-stolen-vehicle-rams-police-cruisers/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 85,
+          "date_published": "2026-09-10T16:36:31+00:00",
+          "summary": "Quesnel RCMP arrested four individuals in a stolen white Ford F350 in Quesnel early Thursday morning. The post RCMP arrest four in Quesnel after stolen vehicle rams police cruisers appeared first on M...",
+          "discussed": true,
+          "mention_offset_frac": 0.0
+        },
+        {
+          "title": "[Williams Lake Tribune] Black bear euthanized in 100 Mile House after becoming comfortable with humans",
+          "url": "https://wltribune.com/2026/09/10/black-bear-euthanized-in-100-mile-house-after-becoming-comfortable-with-humans/",
+          "source": "Williams Lake Tribune",
+          "author": "Patrick Davies",
+          "ai_score": 90,
+          "date_published": "2026-09-11T04:03:34.713042+00:00",
+          "summary": "## Black bear euthanized in 100 Mile House after becoming comfortable with humans Published 2:30 pm Thursday, September 10, 2026 **By Patrick Davies** A black bear has been roaming around 100 Mile Hou...",
+          "discussed": true,
+          "mention_offset_frac": 0.0111
+        },
+        {
+          "title": "[Scientific American] El Niño fuels wildfires in Indonesia, sickening some 100,000 people",
+          "url": "https://www.scientificamerican.com/article/el-nino-fuels-wildfires-in-indonesia-sickening-some-100-000-people/",
+          "source": "Scientific American",
+          "author": "Adam Kovac",
+          "ai_score": 67,
+          "date_published": "2026-09-10T16:15:00+00:00",
+          "summary": "The fires are burning peatlands, which can release more particulate matter into the air than other wildfires",
+          "discussed": true,
+          "mention_offset_frac": 0.0114
+        },
+        {
+          "title": "[Android Police] Lenovo's rollable laptop and colorful IdeaPads signal a shift beyond the office",
+          "url": "https://www.androidpolice.com/lenovos-rollable-laptop-and-colorful-ideapads-signal-a-shift-beyond-the-office/",
+          "source": "Android Police",
+          "author": "",
+          "ai_score": 56,
+          "date_published": "2026-09-03T16:09:43+00:00",
+          "summary": "A new era for laptops",
+          "discussed": true,
+          "mention_offset_frac": 0.0288
+        },
+        {
+          "title": "[ScienceAlert] Alzheimer's Disease Threat Actually Emerges From Beyond The Brain, Study Finds",
+          "url": "https://www.sciencealert.com/alzheimers-disease-threat-actually-emerges-from-beyond-the-brain-study-finds",
+          "source": "ScienceAlert",
+          "author": "Peter Dockrill",
+          "ai_score": 58,
+          "date_published": "2026-09-10T02:30:00+00:00",
+          "summary": "We need to take a wider view. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+          "discussed": false
+        },
+        {
+          "title": "[Wildfire Today] Europe’s fire summer still a concern",
+          "url": "https://wildfiretoday.com/europes-fire-summer-still-a-concern/",
+          "source": "Wildfire Today",
+          "author": "",
+          "ai_score": 41,
+          "date_published": "2026-09-04T01:10:49+00:00",
+          "summary": "After a brief respite for parts of Europe, extreme and very extreme wildfire conditions are forecast across most of southern, central and eastern Europe. The main areas of wildfire risk are in Spanish...",
+          "discussed": true,
+          "mention_offset_frac": 0.1742
+        },
+        {
+          "title": "[Williams Lake Tribune] UBCM to take province to task for secrecy, funding cuts at annual conference",
+          "url": "https://wltribune.com/2026/09/10/ubcm-to-take-province-to-task-for-secrecy-funding-cuts-at-annual-conference/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 84,
+          "date_published": "2026-09-10T21:25:22+00:00",
+          "summary": "## UBCM to take province to task for secrecy, funding cuts at annual conference Published 2:25 pm Thursday, September 10, 2026 **By Mark Page/Black Press** The 2025 Union of B.C. Municipalities conven...",
+          "discussed": true,
+          "mention_offset_frac": 0.2133
+        },
+        {
+          "title": "[Williams Lake Tribune] ICBC to replace all 140 intersection cameras with updated technology",
+          "url": "https://wltribune.com/2026/09/10/icbc-to-replace-all-140-intersection-cameras-with-updated-technology/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 69,
+          "date_published": "2026-09-10T23:53:42+00:00",
+          "summary": "## ICBC to replace all 140 intersection cameras with updated technology Published 4:53 pm Thursday, September 10, 2026 **By Lauren Collins/Black Press** \"Speed & red light camera\" signs at the interse...",
+          "discussed": true,
+          "mention_offset_frac": 0.3378
+        },
+        {
+          "title": "[Committee to Protect Journalists] CPJ, partners call Pakistan’s prime minister to address alarming deterioration in press freedom",
+          "url": "https://cpj.org/2026/09/cpj-partners-call-pakistans-prime-minister-to-address-alarming-deterioration-in-press-freedom/",
+          "source": "Committee to Protect Journalists",
+          "author": "",
+          "ai_score": 65,
+          "date_published": "2026-09-11T03:45:10+00:00",
+          "summary": "The Committee to Protect Journalists, together with eight other press freedom and human rights organizations, on Friday urged Pakistan’s Prime Minister Shehbaz Sharif to take immediate action to addre...",
+          "discussed": true,
+          "mention_offset_frac": 0.5743
+        },
+        {
+          "title": "[ScienceDaily] Scientists tracked 4,500 animals and found a surprising human effect",
+          "url": "https://www.sciencedaily.com/releases/2026/08/260827010517.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-08-28T05:22:04+00:00",
+          "summary": "Scientists tracking thousands of animals found that our physical presence can reshape where wildlife moves and lives, sometimes as strongly as roads, cities, and other human development. Because diffe...",
+          "discussed": true,
+          "mention_offset_frac": 0.6381
+        },
+        {
+          "title": "[ScienceAlert] Experimental One-Dose Treatment Cuts 'Bad' Cholesterol by 52% in First Human Trial",
+          "url": "https://www.sciencealert.com/experimental-one-dose-treatment-cuts-bad-cholesterol-by-52-in-first-human-trial",
+          "source": "ScienceAlert",
+          "author": "David Nield",
+          "ai_score": 58,
+          "date_published": "2026-09-04T01:03:06+00:00",
+          "summary": "This could be a breakthrough. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+          "discussed": true,
+          "mention_offset_frac": 0.7653
+        },
+        {
+          "title": "[Global News] 4 teens charged in airsoft pistol confrontation at Lethbridge mall",
+          "url": "https://globalnews.ca/news/12042544/lethbridge-mall-airsoft-pistol/",
+          "source": "Global News",
+          "author": "",
+          "ai_score": 37,
+          "date_published": "2026-09-01T00:35:55+00:00",
+          "summary": "Police in Lethbridge have charged four boys between the ages of 13 to 15 after one of them allegedly brandished an airsoft gun at Park Place Mall on Friday evening.",
+          "discussed": true,
+          "mention_offset_frac": 0.86
+        },
+        {
+          "title": "[The Atlantic] What the Failure to Convict the Alleged 9/11 Mastermind Reveals",
+          "url": "https://www.theatlantic.com/ideas/2026/09/9-11-lessons-bush-trump/688572/?utm_source=feed",
+          "source": "The Atlantic",
+          "author": "https://www.facebook.com/https://www.facebook.com/david-a-graham-318249352182",
+          "ai_score": 70,
+          "date_published": "2026-09-10T17:56:00+00:00",
+          "summary": "The George W. Bush administration circumvented the law to persecute alleged September 11 perpetrators. It backfired.",
+          "discussed": false
+        },
+        {
+          "title": "[The Verge] Electric air taxis get the green light for test flights in Texas",
+          "url": "https://www.theverge.com/transportation/993341/evtol-air-taxi-aviation-eipp-texas",
+          "source": "The Verge",
+          "author": "Andrew J. Hawkins",
+          "ai_score": 67,
+          "date_published": "2026-09-10T16:00:00+00:00",
+          "summary": "A new federal program to test the feasibility of electric, hybrid-electric, and autonomous aircraft kicks off today in Texas - before the rules governing this new technology have even been finalized. ...",
+          "discussed": true,
+          "mention_offset_frac": 0.8811
+        },
+        {
+          "title": "[NYT Top Stories] In Red States, Law-and-Order Republicans Turn Against Flock Cameras",
+          "url": "https://www.nytimes.com/2026/09/05/us/red-states-republicans-flock-cameras.html",
+          "source": "NYT Top Stories",
+          "author": "",
+          "ai_score": 39,
+          "date_published": "2026-09-05T09:02:36+00:00",
+          "summary": "The governors of Texas and Florida have taken steps to curtail the use of license-plate readers, even as the police say they help with solving crime.",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Wild Spaces & Outdoor Life",
+      "articles": [
+        {
+          "title": "[Live for the Outdoors (Country Walking)] “Unbelievable”: American ultrarunner Ben Dhiman wins the UTMB in the fastest time ever",
+          "url": "https://www.livefortheoutdoors.com/trail-running/news/mens-winner-utmb/",
+          "source": "Live for the Outdoors (Country Walking)",
+          "author": "",
+          "ai_score": 67,
+          "date_published": "2026-09-02T08:23:09+00:00",
+          "summary": "Ben Dhiman has claimed his first UTMB title, completing the world's most renowned ultra trail in the fastest time in the race's history",
+          "discussed": true
+        },
+        {
+          "title": "[My East Kootenay Now] Updated: Evacuation order issued for nearly 1,000 properties as Wait ...",
+          "url": "https://www.myeastkootenaynow.com/57069/news/emergency/fire/wildfires/tactical-evacuation-underway-as-wildfire-burns-near-ta-ta-creek/",
+          "source": "My East Kootenay Now",
+          "author": "",
+          "ai_score": 60,
+          "date_published": "2026-08-30T09:52:46.682959+00:00",
+          "summary": "An evacuation order remains in effect for the Ta Ta Creek, Wasa Lake and Lazy Lake areas as the Wait Creek wildfire continues to grow in the East Kootenay. The Regional District of East Kootenay said ...",
+          "discussed": true
+        },
+        {
+          "title": "[The Verge] Musicians-turned-detectives are hunting for AI grifters",
+          "url": "https://www.theverge.com/entertainment/985866/h4rris-nihil-young-edm-suno-ai",
+          "source": "The Verge",
+          "author": "Charles Pulliam-Moore",
+          "ai_score": 53,
+          "date_published": "2026-08-29T12:00:00+00:00",
+          "summary": "As audio-focused generative tools and platforms have gotten more sophisticated, the internet has become increasingly filled with AI-generated music whose melodies and vocals are algorithmically derive...",
+          "discussed": false
+        }
+      ],
+      "discussion": {
+        "central_question": "Deep dive on Wild Spaces & Outdoor Life",
+        "topics_covered": [
+          "fiber",
+          "satellite",
+          "AI",
+          "funding"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 7,
+          "conditions": "mainly clear",
+          "high": 18,
+          "low": 5
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 6,
+          "conditions": "clear skies",
+          "high": 15,
+          "low": 4
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 8,
+          "conditions": "clear skies",
+          "high": 18,
+          "low": 6
+        },
+        {
+          "name": "Quesnel",
+          "temp": 7,
+          "conditions": "partly cloudy",
+          "high": 18,
+          "low": 5
+        },
+        {
+          "name": "Redstone",
+          "temp": 6,
+          "conditions": "partly cloudy",
+          "high": 14,
+          "low": 4
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Scout Island Nature Centre",
+      "description": "Volunteer-run nature education centre operated by the Williams Lake Field Naturalists — birding, kids programs, Salmon in the Classroom",
+      "website": "scoutisland.ca",
+      "psa_angle": "Scout Island's Salmon Trip takes students on a three-day adventure at Gavin Lake — brood stock collection, stream surveys, and hands-on salmon habitat research. Apply at scoutisland.ca.",
+      "event_name": "Scout Island Salmon Trip"
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_azure": "Azure Neural TTS",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  }
+}

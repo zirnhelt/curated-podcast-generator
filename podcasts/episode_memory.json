@@ -725,5 +725,25 @@
     "date": "2026-09-10",
     "focus": "guardians-stewardship",
     "focus_name": "Guardians & Land Stewardship"
+  },
+  "2026-09-11": {
+    "timestamp": 1789115262.029102,
+    "topics": [
+      "[Williams Lake Tribune] Black bear euthanized in 100 Mile Ho",
+      "[My Cariboo Now] RCMP arrest four in Quesnel after stolen ve",
+      "[Williams Lake Tribune] UBCM to take province to task for se",
+      "[Williams Lake Tribune] ICBC to replace all 140 intersection",
+      "[Scientific American] El Ni\u00f1o fuels wildfires in Indonesia, ",
+      "[Live for the Outdoors (Country Walking)] \u201cUnbelievable\u201d: Am",
+      "[My East Kootenay Now] Updated: Evacuation order issued for ",
+      "[The Verge] Musicians-turned-detectives are hunting for AI g"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption"
+    ],
+    "date": "2026-09-11",
+    "focus": "recreation-access",
+    "focus_name": "Recreation & Backcountry Access"
   }
 }
