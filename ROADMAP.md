@@ -39,7 +39,7 @@ cannot reopen it. Anything written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-09) — 20 open.
+_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-11) — 22 open.
 Check a box to close one; it comes back only if the reviews raise it 2 more times._
 
 - [ ] **A credit-balance 400 is not the usage-limit wall, and every run pays for that.**
@@ -110,7 +110,7 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       17.7-minute episode. Investigate whether Gemini's multi-speaker quota or concurrency
       limits are being hit, and consider either increasing timeouts, implementing section-level
       retry logic before switching providers, or pre-allocating Gemini synthesis for critical
-      segments at off-peak times. (seen in 7 reviews, latest 2026-09-09)
+      segments at off-peak times. (seen in 8 reviews, latest 2026-09-11)
 - [ ] **Deep dive sections achieved 67% citation matching versus 87% for roundup sections.** On
       2026-08-28, the roundup matched 13 of 15 citations (87%), but the deep dive section
       matched only 2 of 3 (67%). Both figures are from the same run and the same citation
@@ -179,6 +179,12 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       gate that blocks episode publication if any flagged patterns remain after review, or
       escalate unresolved flags to manual approval before render begins. (seen in 3 reviews,
       latest 2026-09-09)
+- [ ] **Casey's speaking time exceeds Riley's by 13 percent.** The voice_ratio_casey_over_riley
+      measured 1.13 on 2026-09-04. No target range is defined in the config, so it is unclear
+      whether this represents acceptable variance or systematic drift. Establish a target voice
+      ratio (e.g., 1.0 or 1.05) in the episode config and add a quality check that flags ratios
+      outside a defined band. If this ratio persists across future runs, adjust the host
+      distribution weights in the synthesis prompt. (seen in 2 reviews, latest 2026-09-11)
 - [ ] **Script expansion stopped one pass early despite remaining below target.** The first
       draft shipped at 2,512 words against a 3,400-word target, triggering one expand pass. The
       result was 2,994 words—406 words short—and the pipeline accepted this without retry. The
@@ -186,6 +192,16 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       continues until target is met or a hard limit is hit. Enforce expansion cycles until the
       script either reaches the target word count or exhausts a maximum retry count, then log
       and report which condition stopped it. (seen in 2 reviews, latest 2026-09-09)
+- [ ] **Brave body-backfill budget exhaustion is recurring and requires intervention.** On
+      2026-09-08, the pipeline spent its full 12-call Brave budget during script generation,
+      forcing nine articles to ship with stub bodies instead of full text. The degradations log
+      lists this same reason 12 times. This pattern matches the 2026-09-02 incident (tracked as
+      brave-body-budget-hit-55-article-drop) where 55 articles were dropped. The mechanism is a
+      fixed call budget that does not reset between runs or scale with article volume. To close
+      this: either expand the Brave quota in config, implement per-article fallback logic that
+      drops sparse articles before scripting rather than airing them, or track Brave spend
+      across runs and alert when 80% of the budget is consumed. (seen in 2 reviews, latest
+      2026-09-11)
 - [ ] **Deep-dive citations matched at 67 percent while roundup citations matched at 93
       percent.** On 2026-09-08, roundup sections achieved 14 of 15 citations verified (93%), but
       deep-dive sections achieved only 2 of 3 (67%). This gap is flagged in the published review
@@ -194,7 +210,7 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       require different citation handling than roundup wire-service articles. To close this:
       audit the three deep-dive articles from this run to identify why citation verification
       failed, then adjust the citation-matching logic for long-form sources or add a manual
-      review step before deep-dive scripting. (seen in 2 reviews, latest 2026-09-09)
+      review step before deep-dive scripting. (seen in 3 reviews, latest 2026-09-11)
 
 <!-- reviews:end -->
 
