@@ -573,6 +573,55 @@ class TestSynthesizeRetries:
             assert (gemini_tts._read_timeout_for(full_chunk, continuing=True)
                     < gemini_tts.READ_TIMEOUT_MAX_S), per_turn
 
+    def test_a_client_error_keeps_the_body_that_says_why(self):
+        """A 4xx lost its body to `resp.raise_for_status()`, which renders only
+        `403 Client Error: Forbidden for url: …`.
+
+        On this endpoint the body *is* the diagnosis. The 2026-09-11 Cloud TTS
+        cutover attempt got 403s whose body would have said which of three
+        unrelated things was wrong — API not enabled on the project, billing
+        off, or the caller lacking permission — and the probe could only report
+        the status line, so all three were guessed at by hand across two probe
+        cycles. The 429/5xx branch had kept its body since the quota-details
+        fix; every other non-2xx did not.
+        """
+        body = (
+            '{"error": {"code": 403, "message": "Cloud Text-to-Speech API has '
+            'not been used in project 12345 before or it is disabled.", '
+            '"status": "PERMISSION_DENIED"}}'
+        )
+
+        class _Resp:
+            status_code = 403
+            text = body
+
+        with pytest.raises(RuntimeError) as excinfo:
+            gemini_tts._raise_with_body(_Resp())
+        assert "PERMISSION_DENIED" in str(excinfo.value)
+        assert "has not been used in project" in str(excinfo.value)
+
+    def test_a_client_error_still_routes_as_a_shape_verdict(self):
+        """Keeping the body must not re-route the ladder.
+
+        `_carries_no_shape_verdict` matches `Gemini TTS HTTP (429|5xx)`, so a
+        400/403 reads as a verdict on the request and walks the prompt-shedding
+        rungs — which is exactly what the `requests.HTTPError` it replaces did.
+        """
+        class _Resp:
+            status_code = 400
+            text = '{"error": {"code": 400, "message": "Request payload too large"}}'
+
+        with pytest.raises(RuntimeError) as excinfo:
+            gemini_tts._raise_with_body(_Resp())
+        assert not gemini_tts._carries_no_shape_verdict(excinfo.value)
+
+    def test_a_success_passes_through_untouched(self):
+        class _Resp:
+            status_code = 200
+            text = "{}"
+
+        assert gemini_tts._raise_with_body(_Resp()) is None
+
     def test_429_error_body_not_truncated_before_quota_details(self, monkeypatch):
         """The quota name in error.details sits past 300 chars — keep it."""
         body = (
