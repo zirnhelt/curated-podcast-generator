@@ -295,7 +295,15 @@ def _probe_gemini_models(seg_list: list[dict], models: list[str], repeats: int) 
                 )
                 latencies.append(time.monotonic() - started)
             except Exception as e:
-                errors.append(type(e).__name__ + ": " + str(e)[:70])
+                # Collapsed to one line and kept long enough to carry a
+                # provider error *message*, not just its status. A 4xx body is
+                # pretty-printed JSON, so at 70 chars the whole budget went on
+                # "***\n  "error": ***\n    "code": 403,\n    "message": "A" —
+                # the diagnosis truncated one character in. The table column is
+                # wide and this is the last field on the row, so it wraps
+                # harmlessly.
+                detail = " ".join(str(e).split())
+                errors.append(f"{type(e).__name__}: {detail[:400]}")
         gemini_tts.set_model_override(None)
 
         ok = f"{len(latencies)}/{repeats}"

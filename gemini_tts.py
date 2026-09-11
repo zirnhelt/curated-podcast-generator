@@ -894,6 +894,35 @@ def _other_model(current: str) -> str | None:
     return None
 
 
+def _raise_with_body(resp: requests.Response) -> None:
+    """Raise a non-2xx response with the provider's own explanation attached.
+
+    `resp.raise_for_status()` renders `403 Client Error: Forbidden for url: …`
+    and throws the body away — and on this endpoint the body *is* the
+    diagnosis. A Cloud TTS 403 names which of three unrelated things is wrong
+    (the API is not enabled on the project, billing is off, or the caller
+    lacks permission), each with a different fix and usually a console link to
+    it. On 2026-09-11 the cutover probe could only report the status line, so
+    all three had to be guessed at by hand across two probe cycles.
+
+    Same lesson as ERROR_BODY_CHARS on the 429/5xx branch, which this is the
+    gap beside: that branch keeps the body, and every *other* non-2xx lost it.
+
+    Routing is deliberately unchanged. `_carries_no_shape_verdict` matches
+    `Gemini TTS HTTP (429|5\\d\\d)`, so a 400/403 still reads as a verdict on
+    the request and still walks the prompt-shedding rungs — which is what an
+    HTTPError did here before. This only makes the message say why.
+    """
+    # status_code, not requests' `.ok` convenience: it is the attribute every
+    # response stands up, real or stubbed, and the two mean the same thing.
+    if resp.status_code < 400:
+        return
+    message = f"Gemini TTS HTTP {resp.status_code}: {resp.text[:ERROR_BODY_CHARS]}"
+    if _is_spend_cap(message):
+        raise SpendCapError(message)
+    raise RuntimeError(message)
+
+
 def _attempt(
     segments: list[dict],
     continuing: bool,
@@ -1010,7 +1039,7 @@ def _studio_synthesize(
         if _is_spend_cap(message):
             raise SpendCapError(message)
         raise RuntimeError(message)
-    resp.raise_for_status()
+    _raise_with_body(resp)
 
     data = resp.json()
     usage = data.get("usageMetadata", {})
@@ -1241,7 +1270,7 @@ def _cloud_synthesize(
         if _is_spend_cap(message):
             raise SpendCapError(message)
         raise RuntimeError(message)
-    resp.raise_for_status()
+    _raise_with_body(resp)
 
     data = resp.json()
     ts = datetime.now(timezone.utc).isoformat(timespec="seconds")
