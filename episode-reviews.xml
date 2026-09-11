@@ -5,48 +5,49 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Thu, 10 Sep 2026 15:04:04 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 11 Sep 2026 14:57:13 +0000</lastBuildDate>
     <item>
-      <title>Episode Review — Cariboo Signals, September 10, 2026</title>
-      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-10.html</link>
-      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-10.html</guid>
-      <pubDate>Thu, 10 Sep 2026 15:04:04 +0000</pubDate>
-      <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/34488334052"&gt;34488334052&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+      <title>Episode Review — Cariboo Signals, September 11, 2026</title>
+      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-11.html</link>
+      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-11.html</guid>
+      <pubDate>Fri, 11 Sep 2026 14:57:13 +0000</pubDate>
+      <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/34577468676"&gt;34577468676&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h3&gt;TTS failure forced a voice split mid-episode&lt;/h3&gt;
+&lt;h3&gt;Gemini's welcome segment timed out; the rest of the episode fell back to OpenAI&lt;/h3&gt;
 
-&lt;p&gt;Gemini's multi-speaker endpoint timed out on the welcome section after 5 attempts—1 rejected outright, 4 unanswered. The pipeline fell back to OpenAI for that segment and all remaining audio. The welcome section now carries Gemini's voice while the rest of the episode uses OpenAI's, a discontinuity baked into the shipped file.&lt;/p&gt;
+&lt;p&gt;The pipeline attempted to render the welcome section with Gemini's multi-speaker TTS. The service returned a read timeout after 5 attempts—1 rejected outright, 4 unanswered. Sections already rendered kept their Gemini voices. The remainder of the episode and all credits switched to OpenAI mid-production.&lt;/p&gt;
 
-&lt;p&gt;The timeout hit &lt;code&gt;generativelanguage.googleapis.com&lt;/code&gt; at the 85-second mark. Earlier segments that had already rendered kept their voices; later segments could not.&lt;/p&gt;
+&lt;p&gt;This is a cross-provider fallback, not a retry within one. The episode shipped with two different TTS engines. Audio came out to 21.3 minutes (19.5 MB).&lt;/p&gt;
 
-&lt;h3&gt;Article bodies stayed thin; nine segments marked sparse&lt;/h3&gt;
+&lt;h3&gt;Article body text degraded as Brave search exhausted its budget&lt;/h3&gt;
 
-&lt;p&gt;The Brave API budget for body backfill exhausted after 12 calls. Fifty-three roundup articles were dropped entirely. The remaining articles in the script kept stub bodies—short text that may trigger downstream cuts if the render logic decides they lack enough substance to include.&lt;/p&gt;
+&lt;p&gt;The pipeline makes 3 Brave API calls per episode to backfill article bodies—text needed to write substantive script passages. It used all 3 calls today. Nine items in the roundup hit the budget ceiling and kept their stub bodies. The system does not cut sparse articles automatically; they stay in the script at reduced depth. Sparse content may be removed in downstream editorial passes, but that choice belongs to a human reviewer, not the pipeline.&lt;/p&gt;
 
-&lt;p&gt;This is a cascade, not a surprise. The pipeline was forced to choose between fuller articles and fewer articles. It chose fewer.&lt;/p&gt;
+&lt;h3&gt;Script came in short, went back for expansion&lt;/h3&gt;
 
-&lt;h3&gt;Citation coverage diverged between formats&lt;/h3&gt;
+&lt;p&gt;The first draft arrived at 2,710 words against a target of 3,400. It was sent back for one expansion pass. The final script shipped at 3,448 words—48 words over target. Claude made 6 API calls total (78,750 input tokens) across the full run.&lt;/p&gt;
 
-&lt;p&gt;Roundup citations matched 11 of 15 sources (73%). Deep dive citations matched 0 of 3. The three deep dive pieces—on map projections, robot vacuums, and survival economics—arrived without traceable source alignment, though they were rendered into audio.&lt;/p&gt;
+&lt;h3&gt;Citation alignment: roundup stronger than deep dive&lt;/h3&gt;
 
-&lt;h3&gt;Script expanded to target after first draft fell short&lt;/h3&gt;
+&lt;p&gt;The roundup matched 12 of 15 source citations (80%). The deep dive—three pieces on Wild Spaces &amp;amp; Outdoor Life—matched 2 of 3 (67%). Both ratios indicate sources were found and used. Neither indicates they were used correctly or completely; matching means the citation system located them, not that the script drew from them accurately.&lt;/p&gt;
 
-&lt;p&gt;The initial draft came in at 2,554 words against a 3,400-word target. The script was sent back for expansion and shipped at 3,123 words. One AI tell pattern surfaced in quality checks.&lt;/p&gt;
+&lt;h3&gt;Voice split favored Casey&lt;/h3&gt;
 
-&lt;h3&gt;Audio and video rendered at matching length&lt;/h3&gt;
+&lt;p&gt;Casey's airtime outweighed Riley's at a ratio of 0.79 to 1 (Casey spoke 44% of the total, Riley 56%). The script passed 2 checks for AI-tell patterns—phrases that sound synthetic. Both speakers cleared audio quality gates.&lt;/p&gt;
 
-&lt;p&gt;Both audio and video measured 19.7 minutes. The audio file is 18.0 MB; the video is 69.3 MB. The episode reached RSS as entry 226.&lt;/p&gt;
+&lt;h3&gt;Two manual runs, then a fallback five hours late&lt;/h3&gt;
 
-&lt;h3&gt;Two runs, both completed despite delays&lt;/h3&gt;
+&lt;p&gt;The first manual run started at 08:05 UTC and completed at 08:50. The second started at 09:05 and finished in 8 seconds (likely a dry-run or cache hit). A third run triggered automatically at 14:56 UTC as Fallback 2, 291 minutes behind its scheduled 03:05 Pacific slot. It was still in progress when the review was generated.&lt;/p&gt;
 
-&lt;p&gt;The manual run (triggered at 14:19 UTC) completed 44 minutes late. A fallback run started at 14:56 UTC while the first was still finishing, running 49 minutes late itself. Both reached success and completion. The faster step was repository checkout at 152 seconds; the slowest was audio rendering at 1,131 seconds.&lt;/p&gt;
+&lt;p&gt;The pipeline reached 227 episodes in the RSS feed. Script generation took 1,114 seconds; audio rendering took 979 seconds.&lt;/p&gt;
 
 &lt;h3&gt;The day's triggers&lt;/h3&gt;
 &lt;table&gt;
 &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
 &lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-10T14:19:51Z&lt;/td&gt;&lt;td&gt;+254 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-09-10T14:56:26Z&lt;/td&gt;&lt;td&gt;+291 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-11T08:05:30Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-11T09:05:32Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-09-11T14:56:33Z&lt;/td&gt;&lt;td&gt;+291 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
@@ -55,12 +56,44 @@
 &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Measure&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;&lt;td&gt;Deep dive&lt;/td&gt;&lt;td&gt;3 articles&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Script&lt;/td&gt;&lt;td&gt;1 pattern hit(s), voice ratio 0.79, 3123 words&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Audio&lt;/td&gt;&lt;td&gt;19.7 min&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Audio size&lt;/td&gt;&lt;td&gt;18.0 MB&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;11/15 roundup, 0/3 deep dive&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;226 episodes&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Anthropic spend&lt;/td&gt;&lt;td&gt;83,523 input tokens, calls {'claude': 7}&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Script&lt;/td&gt;&lt;td&gt;2 pattern hit(s), voice ratio 0.79, 3448 words&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio&lt;/td&gt;&lt;td&gt;21.3 min&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio size&lt;/td&gt;&lt;td&gt;19.5 MB&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;12/15 roundup, 2/3 deep dive&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;227 episodes&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Anthropic spend&lt;/td&gt;&lt;td&gt;78,750 input tokens, calls {'claude': 6, 'brave-answers': 3}&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
+    <item>
+      <title>Episode Review — Cariboo Signals, September 10, 2026</title>
+      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-10.html</link>
+      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-10.html</guid>
+      <pubDate>Thu, 10 Sep 2026 14:59:57 +0000</pubDate>
+      <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3&gt;Two runs queued, neither finished&lt;/h3&gt;
+
+&lt;p&gt;The pipeline launched twice on 2026-09-10 and completed neither. Run 34488334052 began at 14:19:51Z via manual dispatch and remained in_progress through the review window. Run 34492356898 started at 14:56:26Z under Fallback 2 (the 3:05 AM Pacific trigger) and stayed pending.&lt;/p&gt;
+
+&lt;p&gt;Both runs fell behind schedule. The manual run was 254 minutes late. The fallback run was 291 minutes late — a longer delay despite starting 37 minutes after the first.&lt;/p&gt;
+
+&lt;h3&gt;Why the fallback fired&lt;/h3&gt;
+
+&lt;p&gt;Fallback 2 triggers at 3:05 AM Pacific when no successful run has completed since the previous day. Its activation suggests the scheduled primary run failed or did not execute. The manual dispatch at 14:19:51Z appears to be a rescue attempt: someone saw the absence and started the job by hand.&lt;/p&gt;
+
+&lt;h3&gt;Pending state vs. in-progress&lt;/h3&gt;
+
+&lt;p&gt;The manual run transitioned to in_progress. The fallback run remained pending — it has not yet claimed resources or begun work. This may reflect GitHub Actions queue depth or a blocking dependency on the first run's outcome.&lt;/p&gt;
+
+&lt;p&gt;If the fallback waits for the manual run to finish, listener impact depends on whether run 34488334052 eventually produces an episode. If both runs complete successfully, the pipeline will have published twice in one calendar day. If both fail, the podcast skips the day.&lt;/p&gt;
+
+&lt;h3&gt;The day's triggers&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-10T14:19:51Z&lt;/td&gt;&lt;td&gt;+254 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-09-10T14:56:26Z&lt;/td&gt;&lt;td&gt;+291 min&lt;/td&gt;&lt;td&gt;pending&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;</description>
     </item>

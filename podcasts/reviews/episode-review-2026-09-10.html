@@ -19,56 +19,30 @@
 <body>
   <h1>Episode Review — Cariboo Signals, September 10, 2026</h1>
   <p class="meta">Published September 10, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
-  <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/34488334052">34488334052</a>.</em></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke.</em></p>
 
-<h3>TTS failure forced a voice split mid-episode</h3>
+<h3>Two runs queued, neither finished</h3>
 
-<p>Gemini's multi-speaker endpoint timed out on the welcome section after 5 attempts—1 rejected outright, 4 unanswered. The pipeline fell back to OpenAI for that segment and all remaining audio. The welcome section now carries Gemini's voice while the rest of the episode uses OpenAI's, a discontinuity baked into the shipped file.</p>
+<p>The pipeline launched twice on 2026-09-10 and completed neither. Run 34488334052 began at 14:19:51Z via manual dispatch and remained in_progress through the review window. Run 34492356898 started at 14:56:26Z under Fallback 2 (the 3:05 AM Pacific trigger) and stayed pending.</p>
 
-<p>The timeout hit <code>generativelanguage.googleapis.com</code> at the 85-second mark. Earlier segments that had already rendered kept their voices; later segments could not.</p>
+<p>Both runs fell behind schedule. The manual run was 254 minutes late. The fallback run was 291 minutes late — a longer delay despite starting 37 minutes after the first.</p>
 
-<h3>Article bodies stayed thin; nine segments marked sparse</h3>
+<h3>Why the fallback fired</h3>
 
-<p>The Brave API budget for body backfill exhausted after 12 calls. Fifty-three roundup articles were dropped entirely. The remaining articles in the script kept stub bodies—short text that may trigger downstream cuts if the render logic decides they lack enough substance to include.</p>
+<p>Fallback 2 triggers at 3:05 AM Pacific when no successful run has completed since the previous day. Its activation suggests the scheduled primary run failed or did not execute. The manual dispatch at 14:19:51Z appears to be a rescue attempt: someone saw the absence and started the job by hand.</p>
 
-<p>This is a cascade, not a surprise. The pipeline was forced to choose between fuller articles and fewer articles. It chose fewer.</p>
+<h3>Pending state vs. in-progress</h3>
 
-<h3>Citation coverage diverged between formats</h3>
+<p>The manual run transitioned to in_progress. The fallback run remained pending — it has not yet claimed resources or begun work. This may reflect GitHub Actions queue depth or a blocking dependency on the first run's outcome.</p>
 
-<p>Roundup citations matched 11 of 15 sources (73%). Deep dive citations matched 0 of 3. The three deep dive pieces—on map projections, robot vacuums, and survival economics—arrived without traceable source alignment, though they were rendered into audio.</p>
-
-<h3>Script expanded to target after first draft fell short</h3>
-
-<p>The initial draft came in at 2,554 words against a 3,400-word target. The script was sent back for expansion and shipped at 3,123 words. One AI tell pattern surfaced in quality checks.</p>
-
-<h3>Audio and video rendered at matching length</h3>
-
-<p>Both audio and video measured 19.7 minutes. The audio file is 18.0 MB; the video is 69.3 MB. The episode reached RSS as entry 226.</p>
-
-<h3>Two runs, both completed despite delays</h3>
-
-<p>The manual run (triggered at 14:19 UTC) completed 44 minutes late. A fallback run started at 14:56 UTC while the first was still finishing, running 49 minutes late itself. Both reached success and completion. The faster step was repository checkout at 152 seconds; the slowest was audio rendering at 1,131 seconds.</p>
+<p>If the fallback waits for the manual run to finish, listener impact depends on whether run 34488334052 eventually produces an episode. If both runs complete successfully, the pipeline will have published twice in one calendar day. If both fail, the podcast skips the day.</p>
 
 <h3>The day's triggers</h3>
 <table>
 <thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
 <tbody>
-<tr><td>Manual (workflow_dispatch)</td><td>2026-09-10T14:19:51Z</td><td>+254 min</td><td>success</td></tr>
-<tr><td>Fallback 2 (3:05 AM Pacific)</td><td>2026-09-10T14:56:26Z</td><td>+291 min</td><td>in_progress</td></tr>
-</tbody>
-</table>
-
-<h3>What shipped</h3>
-<table>
-<thead><tr><th>Measure</th><th>Value</th></tr></thead>
-<tbody>
-<tr><td>Deep dive</td><td>3 articles</td></tr>
-<tr><td>Script</td><td>1 pattern hit(s), voice ratio 0.79, 3123 words</td></tr>
-<tr><td>Audio</td><td>19.7 min</td></tr>
-<tr><td>Audio size</td><td>18.0 MB</td></tr>
-<tr><td>Citations matched</td><td>11/15 roundup, 0/3 deep dive</td></tr>
-<tr><td>Feed</td><td>226 episodes</td></tr>
-<tr><td>Anthropic spend</td><td>83,523 input tokens, calls {'claude': 7}</td></tr>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-10T14:19:51Z</td><td>+254 min</td><td>in_progress</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific)</td><td>2026-09-10T14:56:26Z</td><td>+291 min</td><td>pending</td></tr>
 </tbody>
 </table>
 </body>
