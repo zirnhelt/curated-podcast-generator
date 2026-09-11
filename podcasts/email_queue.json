@@ -2406,6 +2406,21 @@
       "theme_day": 0,
       "status": "pending",
       "used_at": null
+    },
+    {
+      "id": "5daa2b7e",
+      "type": "feedback",
+      "message_id": "<DB3ABC7B-C612-4C32-B2EF-1B9D0751F46B@gmail.com>",
+      "from_address": "z***@gmail.com",
+      "from_producer": true,
+      "subject": "Today\u2019s issues",
+      "received_at": "2026-09-11T11:10:57-07:00",
+      "body_text": "1. We must refer to the Williams lake first nation as just that, never WLIB 2. Let\u2019s be more precise when referring to past articles. Today we referred to an article from yesterday (tsilcotin rangers) but said it\u2019s was from the last few weeks. True but not accurate. Thanks, Erich",
+      "extracted_urls": [],
+      "theme_tag": "Indigenous Lands & Innovation",
+      "theme_day": 3,
+      "status": "pending",
+      "used_at": null
     }
   ],
   "seen_gmail_ids": [
@@ -2486,6 +2501,7 @@
     "1a08bb40488b7bca",
     "1a08af2ff93a96d9",
     "1a08d4b98eed0fd1",
-    "1a09178e93e8ad77"
+    "1a09178e93e8ad77",
+    "1a091aa9017a0bcd"
   ]
 }
