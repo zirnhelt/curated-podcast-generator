@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, September 12, 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.1rem; color: #444; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }
+    th { background: #f5f5f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    a { color: #0066cc; }
+    code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, September 12, 2026</h1>
+  <p class="meta">Published September 12, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/34682370225">34682370225</a>.</em></p>
+
+<h3>Brave's article-body budget exhausted mid-run</h3>
+
+<p>The pipeline completed episode 228 with 39 roundup stories dropped from the script. A single reason: Brave Search consumed its 12-call budget for article-body backfill, leaving thin articles without expanded text. The system kept these sparse stories out rather than script them as stubs.</p>
+
+<p>This is a constraint, not a failure. The roundup citations still aligned at 13 of 15 (87%). But listeners heard a shorter story pool than the curation phase selected.</p>
+
+<h3>Gemini TTS failed pre-flight; OpenAI rendered the full episode</h3>
+
+<p>Both Gemini TTS models returned HTTP 403 on the canary check. Rather than retry, the pipeline bypassed Gemini and rendered all 19 minutes of audio on OpenAI. The episode shipped on time with no audio segments missing.</p>
+
+<p>This was a clean fallback: one service unavailable, another available, switch made and logged. The cost was opaque—no token count separated by renderer—but the episode audio reached 17.4 MB at 19.0 minutes.</p>
+
+<h3>Script required one expansion cycle</h3>
+
+<p>The first draft arrived at 2,192 words against a 3,400-word target. The pipeline flagged the shortfall and sent the script back for expansion. The shipped version measured 3,087 words: 313 words short of target, but within the range the system accepted after one pass.</p>
+
+<p>One AI tell pattern surfaced in quality review. The voice ratio (Casey to Riley at 1.18) fell inside acceptable bounds.</p>
+
+<h3>Deep-dive citations: perfect alignment, limited pool</h3>
+
+<p>All 5 deep-dive citations matched their sources (5 of 5). The roundup achieved 13 of 15. Citation hygiene was strict. The deep-dive segment drew from five local news outlets covering Williams Lake and South Cariboo: mayoral candidates, golf course changes, bulk water infrastructure, and traffic safety.</p>
+
+<h3>Three manual runs in sequence</h3>
+
+<p>Two runs completed successfully at 08:05 UTC and 09:05 UTC. A third began at 10:05 UTC and was still in progress at report time. All triggered manually. Script generation consumed 780 seconds; audio rendering took 232 seconds; video and publish steps ran in sequence without delay.</p>
+
+<h3>Debate question posed</h3>
+
+<p>Today's closing question: <em>In local elections where institutional knowledge and name recognition dominate the field, does ease of voter decision-making come at the cost of democratic scrutiny and accountability?</em></p>
+
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-12T08:05:13Z</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-12T09:05:14Z</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-12T10:05:17Z</td><td>+0 min</td><td>in_progress</td></tr>
+</tbody>
+</table>
+
+<h3>What shipped</h3>
+<table>
+<thead><tr><th>Measure</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Deep dive</td><td>5 articles</td></tr>
+<tr><td>Script</td><td>1 pattern hit(s), voice ratio 1.18, 3087 words</td></tr>
+<tr><td>Audio</td><td>19.0 min</td></tr>
+<tr><td>Audio size</td><td>17.4 MB</td></tr>
+<tr><td>Citations matched</td><td>13/15 roundup, 5/5 deep dive</td></tr>
+<tr><td>Feed</td><td>228 episodes</td></tr>
+<tr><td>Anthropic spend</td><td>85,050 input tokens, calls ***'claude': 11, 'brave-answers': 3***</td></tr>
+</tbody>
+</table>
+</body>
+</html>
