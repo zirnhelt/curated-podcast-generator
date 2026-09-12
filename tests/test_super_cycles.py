@@ -894,3 +894,130 @@ class TestFocusMemory:
         pg.update_debate_memory("2026-07-21", "Working Lands & Industry",
                                 {"central_question": "q"}, focus=MINING_FOCUS)
         assert pg.load_memory(pg.DEBATE_MEMORY_FILE)["2026-07-21"]["focus"] == "mining-energy"
+
+
+class TestCandidateRecordRules:
+    """The election lens must ask for the whole record, not the flattering slice.
+
+    On 2026-09-12 the deep dive reported a mayoral candidate's 2014 win ("that's
+    a mandate") as his current standing, never mentioned the 2022 loss that
+    followed it, and called the incumbent "the sitting incumbent" for the entire
+    segment while its own source carried the name. Every assertion here names a
+    sentence of that failure.
+    """
+
+    THEME = "Cariboo Local Affairs"
+
+    @pytest.fixture
+    def lens(self):
+        event = get_event_focus_for_day(5, date(2026, 9, 19))
+        assert event is not None
+        return pg._build_theme_lens(self.THEME, event_focus=event).lower()
+
+    def test_every_race_on_the_ballot_is_named(self, lens):
+        """A race the episode never names is a race it did not cover — and the
+        CRD electoral area directors are on the same ballot as the city races."""
+        for race in ("mayor", "council", "electoral area director",
+                     "school district 27 trustee"):
+            assert race in lens, race
+
+    def test_candidates_are_named_not_described_by_role(self, lens):
+        assert "the sitting incumbent" in lens  # quoted as the thing not to say
+        assert "placeholders, not reporting" in lens
+
+    def test_a_previous_loss_is_reported_as_plainly_as_a_win(self, lens):
+        assert "the losses exactly as plainly as the wins" in lens
+        assert "most recent" in lens
+
+    def test_an_older_win_is_never_current_standing(self, lens):
+        assert "never called a mandate, a landslide or name recognition" in lens
+
+    def test_documented_controversy_is_part_of_the_record(self, lens):
+        for term in ("conflict-of-interest", "censure", "resignation"):
+            assert term in lens, term
+        assert "thumb on the scale" in lens
+
+    def test_the_record_is_sourced_or_unsaid(self, lens):
+        """The counterweight to the rules above: naming a loss or a controversy
+        is reporting only when a source establishes it."""
+        assert "never infer a record" in lens
+        assert "allegation" in lens
+
+    def test_no_endorsement_survives_the_rewrite(self, lens):
+        assert "never tell listeners how to vote" in lens
+        assert "never rank them" in lens
+
+    def test_the_anchor_yields_to_the_race(self, lens):
+        """Half the 2026-09-12 deep dive was the week's anchor question about
+        friction rather than the race in front of it."""
+        assert "drop the anchor for the day" in lens
+
+    def test_crd_areas_rank_as_home_jurisdiction(self):
+        """`home_places` answers 'is this story ours?'. An area-director story
+        is a race the listener votes in, so it cannot rank as a neighbour."""
+        article = _article("Electoral Area F director acclaimed for a third term",
+                           "area-f-url", kw=0, boosted=40,
+                           summary="Horsefly and Likely voters get no ballot.")
+        assert pg._home_place_hits(article, self.THEME) > 0
+
+
+class TestEventResearchSweep:
+    """The lens can only demand facts the research pass went and got.
+
+    A nomination-day story carries none of a candidate's record, so without the
+    sweep every rule in TestCandidateRecordRules degrades to "the show has not
+    established that".
+    """
+
+    ARTICLES = [{"title": "Nominations close for Williams Lake council",
+                 "summary": "s", "_body": "b"}]
+
+    @pytest.fixture
+    def capture(self, monkeypatch):
+        seen = {}
+
+        def fake_loop(client, model, system_prompt, user_content, tools,
+                      tool_executors, max_iterations, max_tokens):
+            seen["system"] = system_prompt
+            seen["iterations"] = max_iterations
+            return "NONE"
+
+        monkeypatch.setenv("BRAVE_SEARCH_API_KEY", "test-key")
+        monkeypatch.setattr(pg, "_run_agentic_loop", fake_loop)
+        monkeypatch.setattr(pg, "_brave_research_available", lambda: True)
+        return seen
+
+    def _run(self, event):
+        return pg.research_deep_dive_with_agent(
+            self.ARTICLES, "Cariboo Local Affairs", object(), event_focus=event)
+
+    def test_the_shipped_event_carries_a_research_brief(self):
+        event = get_event_focus_for_day(5, date(2026, 9, 19))
+        brief = event.get("research", "").lower()
+        assert "won or lost" in brief
+        assert "incumbent" in brief
+        assert "could not find a record for" in brief
+
+    def test_an_active_event_makes_research_a_standing_assignment(self, capture):
+        self._run(get_event_focus_for_day(5, date(2026, 9, 19)))
+        assert "STANDING ASSIGNMENT" in capture["system"]
+        assert "Research IS warranted today" in capture["system"]
+
+    def test_an_active_event_widens_the_search_allowance(self, capture):
+        self._run(get_event_focus_for_day(5, date(2026, 9, 19)))
+        assert f"up to {pg.EVENT_RESEARCH_SEARCH_LIMIT} targeted" in capture["system"]
+        assert capture["iterations"] == pg.EVENT_RESEARCH_SEARCH_LIMIT + 1
+
+    def test_an_ordinary_day_is_unchanged(self, capture):
+        """Six days in seven still decide for themselves whether to research,
+        at the original four-search budget."""
+        self._run(None)
+        assert "STANDING ASSIGNMENT" not in capture["system"]
+        assert "up to 4 targeted" in capture["system"]
+        assert capture["iterations"] == 5
+
+    def test_the_sweep_fits_under_the_deep_dive_meter(self):
+        """`_resolve_script_questions_with_brave` runs after the research pass on
+        the same meter — the widened sweep must not spend the whole budget."""
+        assert pg.EVENT_RESEARCH_SEARCH_LIMIT < pg.BRAVE_DEEP_DIVE_CALL_LIMIT
+        assert pg.BRAVE_DEEP_DIVE_CALL_LIMIT - pg.EVENT_RESEARCH_SEARCH_LIMIT >= 4

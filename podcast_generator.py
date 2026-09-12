@@ -734,8 +734,18 @@ CLEAN_POLISH_MAX_HITS = int(os.getenv("CLEAN_POLISH_MAX_HITS", "2"))
 # pool was unusually thin, not routine.
 BRAVE_SEARCH_CALL_LIMIT = int(os.getenv("PODCAST_BRAVE_SEARCH_CALL_LIMIT", "12"))  # 0=disabled
 BRAVE_SEARCH_COOLDOWN_SECS = float(os.getenv("PODCAST_BRAVE_SEARCH_COOLDOWN_SECS", "0"))
-BRAVE_DEEP_DIVE_CALL_LIMIT = int(os.getenv("PODCAST_BRAVE_DEEP_DIVE_CALL_LIMIT", "10"))
+BRAVE_DEEP_DIVE_CALL_LIMIT = int(os.getenv("PODCAST_BRAVE_DEEP_DIVE_CALL_LIMIT", "16"))
 BRAVE_DEEP_DIVE_COOLDOWN_SECS = float(os.getenv("PODCAST_BRAVE_DEEP_DIVE_COOLDOWN_SECS", "0"))
+#
+# A themes.json `event_focus` carrying a `research` brief turns the research pass
+# from a judgement call into a roster sweep — one search per candidate per
+# question, where an ordinary day asks 4 in total. The ceiling above moved 10→16
+# to fit it without starving _resolve_script_questions_with_brave, which runs
+# after it on the same meter. It is a ceiling, not a floor: nothing spends up to
+# it unless it asks, so the other six days are unchanged. The election window is
+# ~6 Saturdays and Search is $5/1000, so the whole widening costs well under a
+# dime against the $10 monthly limit.
+EVENT_RESEARCH_SEARCH_LIMIT = int(os.getenv("PODCAST_EVENT_RESEARCH_SEARCH_LIMIT", "8"))
 #
 # ANSWERS is metered separately from both of them, on its own plan activated
 # 2026-08-29 ($4/1000 queries plus $5/MTok each way) and held to its monthly
@@ -2894,7 +2904,7 @@ def _web_search_tool_executor(tool_input):
     )
 
 
-def research_deep_dive_with_agent(deep_dive_articles, theme_name, client):
+def research_deep_dive_with_agent(deep_dive_articles, theme_name, client, event_focus=None):
     """Agentic pre-generation research pass for the deep dive.
 
     Gives Claude the deep dive articles plus a web_search tool and lets it
@@ -2906,6 +2916,17 @@ def research_deep_dive_with_agent(deep_dive_articles, theme_name, client):
     Falls back to research_deep_dive_angles() (the previous hand-orchestrated
     implementation) if the agentic loop errors out. Returns "" if
     BRAVE_SEARCH_API_KEY is unset or client is unavailable, same as before.
+
+    An *event_focus* carrying a `research` brief (themes.json) replaces the
+    "decide whether research is warranted" opening with a standing assignment
+    and widens the search allowance. The election lens asks the hosts for each
+    candidate's full record — prior terms, prior results won and lost, any
+    documented controversy — and none of that is in a nomination-day story, so
+    without the sweep every record rule in the lens degrades to "the show has
+    not established that". On 2026-09-12 the deep dive reported a mayoral
+    candidate's 2014 win as his current standing, never mentioned the 2022 loss
+    that followed it, and called the incumbent "the sitting incumbent" for the
+    whole segment.
     """
     brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
     if not brave_key or not client:
@@ -2931,10 +2952,20 @@ def research_deep_dive_with_agent(deep_dive_articles, theme_name, client):
         for a in deep_dive_articles
     )
 
+    # A named civic event is a standing assignment, not a judgement call: the
+    # record it asks for is never in the day's articles, so "is research
+    # warranted?" is already answered and the budget is the only open question.
+    event_brief = (event_focus or {}).get('research', '')
+    searches = EVENT_RESEARCH_SEARCH_LIMIT if event_brief else 4
+
     system_prompt = (
         f"You are preparing research for a podcast deep dive on the theme \"{theme_name}\".\n\n"
         "Never fabricate organization names, person names, or event details — "
         "only reference entities found in the source articles or verified by your web searches.\n\n"
+        + (f"STANDING ASSIGNMENT — {event_focus.get('name', 'active event')}:\n"
+           f"{event_brief}\n\n"
+           "Research IS warranted today; go straight to the searches below.\n\n"
+           if event_brief else "") +
         "First, decide whether live web research would meaningfully enrich this deep dive. "
         "Research is warranted when:\n"
         "1. There are likely recent developments, breaking news, or rapidly evolving facts\n"
@@ -2944,8 +2975,8 @@ def research_deep_dive_with_agent(deep_dive_articles, theme_name, client):
         "4. There's a strong counter-perspective or critical argument not represented in "
         "the articles, or a comparable rural/small-community case that tests whether this "
         "applies locally\n\n"
-        "If research IS warranted, use the web_search tool for up to 4 targeted searches — "
-        "fact-checking specific claims, finding recent developments, or surfacing "
+        f"If research IS warranted, use the web_search tool for up to {searches} targeted "
+        "searches — fact-checking specific claims, finding recent developments, or surfacing "
         "counterpoints/comparable cases. Then respond with insights formatted as:\n\n"
         "PRE-RESEARCHED INSIGHTS FOR THE DEEP DIVE\n"
         "These analytical threads were identified before generation. Use the findings to "
@@ -2968,7 +2999,7 @@ def research_deep_dive_with_agent(deep_dive_articles, theme_name, client):
         system_prompt=system_prompt,
         user_content=user_content,
         tools=tools, tool_executors=tool_executors,
-        max_iterations=5, max_tokens=6000,
+        max_iterations=searches + 1, max_tokens=6000,
     )
 
     if result is None:
@@ -10622,7 +10653,9 @@ def run_script_stage() -> tuple[str, str] | None:
             # Proactive research pass: identify analytical angles and run Brave for each.
             # Falls back to standard enrichment when no analytical questions are surfaced.
             brave_client = get_anthropic_client()
-            brave_context = research_deep_dive_with_agent(deep_dive_articles, today_theme, brave_client) if brave_client else ""
+            brave_context = research_deep_dive_with_agent(
+                deep_dive_articles, today_theme, brave_client,
+                event_focus=today_event) if brave_client else ""
         brave_used = _sparse_brave_used or bool(brave_context)
 
         weather_data = None
