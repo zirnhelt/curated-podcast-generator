@@ -1,30 +1,4 @@
 {
-  "2026-06-13": {
-    "timestamp": 1781340932.280091,
-    "date": "2026-06-13",
-    "theme": "Cariboo Local Affairs",
-    "central_question": "Can a provincial Seniors Advocate's visit to rural Cariboo communities meaningfully improve policy outcomes, or will it remain performative without sustained follow-up and community preparation?",
-    "riley_position": "Partial corrections to structural problems can accumulate into real change over time, and the Advocate's visit creates a moment where documented asks can reach provincial decision-makers with actual authority.",
-    "riley_key_evidence": [
-      "Levitt's office triggered a measurable revision to the home support funding formula after documenting rural delivery cost gaps",
-      "The office's previous rural tour influenced policy conversation around long-term care bed ratios in smaller communities",
-      "Communities that show up prepared with specific, named gaps land differently than general statements about feeling forgotten"
-    ],
-    "casey_position": "Rural communities are perpetually expected to do extra work to access baseline services, and without sustained accountability reporting and follow-up infrastructure, the visit will generate anecdotes rather than systemic change.",
-    "casey_key_evidence": [
-      "Local media capacity is stretched too thin\u2014the Tribune has one reporter for 10,000 people and cannot do six-month accountability follow-ups",
-      "Without follow-up coverage, there is no public pressure and no political consequence for ignoring what was heard",
-      "Rural communities already have thin organizational capacity\u2014stretching it further for documentation and follow-up is a non-trivial ask"
-    ],
-    "resolution": "They agreed that the visit itself is valuable but is only a starting point; the real outcome depends on whether community organizations, local media, and government coordinate to document what is heard and pursue six-month follow-up. Neither conceded their position but recognized the gap lies in preparation and post-visit accountability infrastructure.",
-    "topics_covered": [
-      "Role of the BC Seniors Advocate and measurable past policy outcomes",
-      "Capacity gaps in local media and their impact on accountability reporting",
-      "Organizational preparation required for rural communities to effectively engage with provincial officials",
-      "The broader civic infrastructure of rural communities (agricultural shows, cultural events, volunteer capacity)",
-      "Structural design failures in how provincial government reaches rural populations"
-    ]
-  },
   "2026-06-14": {
     "timestamp": 1781429276.577687,
     "date": "2026-06-14",
@@ -2436,6 +2410,34 @@
       "satellite",
       "AI",
       "funding"
+    ]
+  },
+  "2026-09-12": {
+    "timestamp": 1789201200.62681,
+    "date": "2026-09-12",
+    "theme": "Cariboo Local Affairs",
+    "focus": null,
+    "anchor": "lost-when-easier",
+    "central_question": "In local elections where institutional knowledge and name recognition dominate the field, does ease of voter decision-making come at the cost of democratic scrutiny and accountability?",
+    "riley_position": "Experience and institutional memory matter significantly when cities face complex recovery and development challenges; Cobb's previous success and knowledge of budget infrastructure justify his return, though he should still defend his positions publicly.",
+    "riley_key_evidence": [
+      "Cobb won his previous term with 60.4 percent of the vote (1843 to 1177), demonstrating a clear mandate",
+      "Williams Lake is managing simultaneous wildfire recovery and downtown redevelopment, requiring deep knowledge of infrastructure debts",
+      "CRD proactively disclosed the Canim Lake water station delay in its own press release rather than hiding it"
+    ],
+    "casey_position": "Unopposed incumbents and returning candidates with strong name recognition reduce the democratic friction necessary for genuine scrutiny; voters need actual competitive races to force candidates to defend their positions in detail.",
+    "casey_key_evidence": [
+      "A two-person race where one candidate has a landslide advantage removes the pressure that forces candidates to explain themselves from scratch",
+      "David Jurek's challenge in the South Cariboo creates the kind of generational contrast and genuine debate that Williams Lake's rematch lacks",
+      "Council activity on easy files like traffic safety right before elections suggests strategic timing rather than virtue"
+    ],
+    "resolution": "The debaters agreed they cannot settle the tradeoff cleanly and that the actual outcome depends on whether Williams Lake residents show up to demand specifics from Cobb rather than simply re-electing the familiar name; they converged on the concrete suggestion that recording all-candidates forums and posting them publicly could increase democratic participation before the October 17th election.",
+    "topics_covered": [
+      "Williams Lake mayoral race dynamics: Cobb's return as a known quantity versus the need for competitive scrutiny",
+      "South Cariboo contrast: David Jurek's challenger campaign against incumbent Maureen Pinkney creating genuine debate",
+      "Canim Lake Bulk Water Station delay and CRD transparency versus rural infrastructure project slippage patterns",
+      "100 Mile House traffic safety as an example of councils clearing easy items before elections",
+      "The role of voter turnout and all-candidates forums as the actual lever for democratic accountability in small communities"
     ]
   }
 }
