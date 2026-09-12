@@ -373,13 +373,14 @@
       "detail": "On 2026-09-08, the pipeline spent its full 12-call Brave budget during script generation, forcing nine articles to ship with stub bodies instead of full text. The degradations log lists this same reason 12 times. This pattern matches the 2026-09-02 incident (tracked as brave-body-budget-hit-55-article-drop) where 55 articles were dropped. The mechanism is a fixed call budget that does not reset between runs or scale with article volume. To close this: either expand the Brave quota in config, implement per-article fallback logic that drops sparse articles before scripting rather than airing them, or track Brave spend across runs and alert when 80% of the budget is consumed.",
       "source": "review",
       "status": "open",
-      "occurrences": 2,
+      "occurrences": 3,
       "first_seen": "2026-09-08",
       "seen": [
         "2026-09-08",
-        "2026-09-11"
+        "2026-09-11",
+        "2026-09-12"
       ],
-      "last_seen": "2026-09-11"
+      "last_seen": "2026-09-12"
     },
     {
       "id": "deep-dive-citation-alignment-below-target",
@@ -460,7 +461,33 @@
         "2026-09-10"
       ],
       "last_seen": "2026-09-10"
+    },
+    {
+      "id": "gemini-tts-http-403-forces-full-openai-render",
+      "title": "Gemini TTS HTTP 403 on canary forces full episode render on OpenAI.",
+      "detail": "Both gemini-2.5-flash-preview-tts and gemini-2.5-flash-tts returned HTTP 403 on the pre-flight check on 2026-09-12. The pipeline bypassed Gemini entirely and rendered all 19 minutes of audio on OpenAI instead of attempting retry or section-level fallback. The episode shipped on time with no audio missing. Determine whether the 403 is a quota issue, a permissions issue, or a service degradation. If it recurs, the canary should log the error detail before fallback so the next incident response is faster.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-12",
+      "seen": [
+        "2026-09-12"
+      ],
+      "last_seen": "2026-09-12"
+    },
+    {
+      "id": "script-first-draft-undershoots-target-by-55-percent",
+      "title": "Script first draft arrived at 2,192 words against 3,400-word target.",
+      "detail": "On 2026-09-12, the first draft measured 2,192 words against the 3,400-word target—a 55 percent shortfall. The pipeline triggered one expansion pass, which produced 3,087 words. This remains 313 words (9 percent) short of target but within the acceptance threshold after a single pass. Confirm whether the prompt anchor or the context window is limiting initial draft length, then either raise the per-section budget or add a second expansion cycle when the first pass lands below 90 percent of target.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-12",
+      "seen": [
+        "2026-09-12"
+      ],
+      "last_seen": "2026-09-12"
     }
   ],
-  "updated": "2026-09-11"
+  "updated": "2026-09-12"
 }
