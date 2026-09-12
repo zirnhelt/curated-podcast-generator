@@ -889,16 +889,37 @@ here" until it is measured here.** Probe the cloud surface exactly like a new mo
 real key: `GEMINI_TTS_BACKEND=cloud python evaluate_tts.py --probe-models --section
 deep_dive` (TTS Eval workflow, `backend: cloud`).
 
-**`READ_TIMEOUT_MS_PER_CHAR` was refitted against cloud on 2026-09-12 and did not move,
-which is the useful result.** The first probe of the GA surface (welcome, 1 903 request
-chars, 3 calls per model) answered **6/6**: pro 39.2 s median / 50.7 s slowest, flash
-24.9 s / 33.3 s. The slowest is 26.6 ms/char against studio's slowest answered call at
-25.7, so 40 carries the same ~1.5x tail margin on both surfaces. Six calls on one section
-shape is a bracket, not a fit — but the reason `3.1` ran unexamined for weeks is that
-nobody had a measurement to argue with, so record the numbers either way. The leash's
-*scale* does differ: cloud's request is the spoken turns plus a direction-only prompt, so
-its largest chunk prices ~156 s against studio's 191 s, and `READ_TIMEOUT_MAX_S` /
-`SECTION_BUDGET_S` stay non-binding on both — both asserted in tests, per backend.
+**`READ_TIMEOUT_MS_PER_CHAR` was refitted against cloud on 2026-09-12 and did not move —
+but not for the reason the first cloud probe suggested.** Two probes, 3 calls per model
+each, both **6/6**:
+
+| section | request chars | pro median / slowest | flash median / slowest |
+|---|---|---|---|
+| `welcome` | 1 903 | 39.2 / 50.7 s | 24.9 / 33.3 s |
+| `news` (largest chunk) | 3 560 | 103.7 / 110.4 s | 64.1 / 64.4 s |
+
+**ms/char is not flat in request size on pro** — 26.6 at the small request, 31.0 at the
+large one — so fitting off the welcome number alone would have claimed a 1.5x tail margin
+that is really **1.29x** at the size that matters. Same over-confidence, from the same
+source, as the studio fit measured on one take. flash is nearly flat (17.5 → 18.1) at 2.2x.
+
+40 stays anyway, and this is the first evidence for it that is not inherited: **cloud's
+latency is predictable where studio's was not.** The three pro calls spread 9.6%
+(100.3 / 103.2 / 109.9 s) and the three flash calls 5.4%, against studio's r² = 0.14 and two
+similarly-sized calls 5.4x apart. A 1.29x margin on a tight distribution is worth more than
+1.55x on a long tail — the case for the GA surface, restated as a number.
+
+**What to watch is the render deadline, not the leash.** Pro at 29.1 ms/char median puts a
+full episode (~28 400 request chars) at **~830 s of the 1 500 s `GEMINI_RENDER_DEADLINE_S`**,
+against ~510 s on flash. Pro is not timing out — it is spending over half the render's Gemini
+budget on a clean night, so one exhausted ladder can push the episode past the deadline. The
+lever then is the `GEMINI_TTS_CLOUD_MODEL` repository variable (set it to
+`gemini-2.5-flash-tts`), not the leash constant.
+
+The leash's *scale* also differs by backend: cloud's request is the spoken turns plus a
+direction-only prompt, so its largest chunk prices ~156 s against studio's 191 s, and
+`READ_TIMEOUT_MAX_S` / `SECTION_BUDGET_S` stay non-binding on both — asserted in tests, per
+backend.
 
 **Nightly cutover is a variable flip, not a code change** — the plumbing is default-off. Set
 repository variable `GEMINI_TTS_BACKEND=cloud`, add secret `GEMINI_TTS_CLOUD_SA_KEY` (a
