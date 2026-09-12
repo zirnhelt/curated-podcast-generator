@@ -849,6 +849,35 @@ voices still are, by `speechConfig`), and **no `finishReason: OTHER`** (text:syn
 returns audio or an HTTP error), so only the HTTP/transport rungs of the ladder can fire —
 the prompt-shedding rungs are dead weight there, harmlessly.
 
+**Cloud enforces a hard 4 000-**byte** limit on the synthesis input, and that is the one
+thing about it that is not a fit.** `400 INVALID_ARGUMENT "Either `input.text` or
+`input.prompt` is longer than the limit of 4000 bytes."` Studio has no equivalent, so
+`TRANSCRIPT_CHAR_LIMIT` (3 000) is a *latency* number free to move when the endpoint is
+remeasured, while `CLOUD_INPUT_BYTE_LIMIT` is a wall no rung, retry or model change gets
+past. They are two constants for that reason — a future studio refit must not be able to
+reach across and break cloud's ceiling — and `_segment_cost` / `_chunk_limit` pick the
+active backend's.
+
+- **Bytes, not chars.** Secwépemc, Tŝilhqot'in, em dashes and curly quotes are 2–3 bytes
+  each, so a char budget over-states what fits by up to 7% on a short turn. The chunker
+  measures the encoded turns off the real payload rather than applying a fudge factor.
+- **The prompt is reserved, which assumes the stricter of two readings.** The message names
+  `input.text` and `input.prompt`, and the payload that met it had no `input.text` at all
+  while its `input.prompt` was 1 014 bytes — so the validator measures something it does not
+  name (most likely the markup flattened to text) and one 400 cannot say whether the 4 000
+  is per field or over the input as a whole. `CLOUD_PROMPT_BYTE_RESERVE` (1 200, covering the
+  worst prompt the ladder sends at 1 160) assumes the sum. Measured over ten episodes that
+  costs 10.1 requests an episode against 8.1 — two extra sampling draws, 0.4 more than studio
+  already makes. The other way round, every chunk 400s and the episode goes to OpenAI whole.
+- **The probe was asking a question production never asks.** `_probe_gemini_models` and
+  `_probe_gemini_rungs` sent the whole *unchunked* section, which on cloud is past the wall
+  before the model is ever reached: on 2026-09-12 `news` read **0/6 on both models** and
+  looked exactly like a dead endpoint. Both probes now send the largest chunk
+  `_balanced_chunks` would make, and print which it is.
+- There is a test sweeping every rung, both `continuing` values, turn lengths down to 30
+  chars and the real news/deep-dive size range against the wall — the invariant that would
+  have caught this before a probe did.
+
 **Cloud leads with pro (Option B), flash second.** Audio output is $10/MTok on both; pro
 costs more only on input tokens (a fraction of a cent an episode), so pro buys the better
 dialog for ~free, and flash — which answers faster — is the rung a pro timeout falls to. If
@@ -858,9 +887,18 @@ already treats the slower model as the thing to fall past.
 **Default stays `studio` until the probe clears the 8/15 baseline — GA is not "measured
 here" until it is measured here.** Probe the cloud surface exactly like a new model, with a
 real key: `GEMINI_TTS_BACKEND=cloud python evaluate_tts.py --probe-models --section
-deep_dive` (TTS Eval workflow, `backend: cloud`). `READ_TIMEOUT_MS_PER_CHAR` is inherited
-from the studio fit and will be loose on cloud — refit it off the probe's slowest column
-while the data is in hand.
+deep_dive` (TTS Eval workflow, `backend: cloud`).
+
+**`READ_TIMEOUT_MS_PER_CHAR` was refitted against cloud on 2026-09-12 and did not move,
+which is the useful result.** The first probe of the GA surface (welcome, 1 903 request
+chars, 3 calls per model) answered **6/6**: pro 39.2 s median / 50.7 s slowest, flash
+24.9 s / 33.3 s. The slowest is 26.6 ms/char against studio's slowest answered call at
+25.7, so 40 carries the same ~1.5x tail margin on both surfaces. Six calls on one section
+shape is a bracket, not a fit — but the reason `3.1` ran unexamined for weeks is that
+nobody had a measurement to argue with, so record the numbers either way. The leash's
+*scale* does differ: cloud's request is the spoken turns plus a direction-only prompt, so
+its largest chunk prices ~156 s against studio's 191 s, and `READ_TIMEOUT_MAX_S` /
+`SECTION_BUDGET_S` stay non-binding on both — both asserted in tests, per backend.
 
 **Nightly cutover is a variable flip, not a code change** — the plumbing is default-off. Set
 repository variable `GEMINI_TTS_BACKEND=cloud`, add secret `GEMINI_TTS_CLOUD_SA_KEY` (a

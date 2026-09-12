@@ -787,6 +787,146 @@ class TestChunkSizing:
         assert len(gemini_tts._balanced_chunks(turns)) == 3
 
 
+class TestCloudChunkSizing:
+    """Cloud TTS refuses an over-long input outright — 400 INVALID_ARGUMENT,
+    "Either `input.text` or `input.prompt` is longer than the limit of 4000
+    bytes" — which is a wall, not a latency fit, and no rung or retry gets past
+    it. The 2026-09-12 probe read 0/6 on `news` for both models against 6/6 on
+    `welcome`, which looks exactly like a dead endpoint and is not one.
+    """
+
+    @pytest.fixture(autouse=True)
+    def _cloud(self, monkeypatch):
+        monkeypatch.setattr(gemini_tts, "GEMINI_TTS_BACKEND", "cloud")
+
+    @staticmethod
+    def _turns(total_chars, per_turn=270, text="x"):
+        n = max(1, total_chars // per_turn)
+        return [{"speaker": "riley" if i % 2 else "casey",
+                 "text": text * per_turn, "gap_ms": None} for i in range(n)]
+
+    @staticmethod
+    def _input_bytes(chunk, continuing, rung):
+        """Bytes of the two things the 400 could plausibly be measuring: the
+        prompt on its own, and the flattened spoken turns. Returned separately
+        so a test can assert the per-field reading AND their sum."""
+        inp = gemini_tts._build_cloud_payload(chunk, continuing, rung)["input"]
+        prompt = len(inp.get("prompt", "").encode())
+        if "multiSpeakerMarkup" in inp:
+            spoken = sum(
+                len(t["speaker"].encode()) + len(t["text"].encode()) + 2
+                for t in inp["multiSpeakerMarkup"]["turns"]
+            )
+        else:
+            spoken = len(inp.get("text", "").encode())
+        return prompt, spoken
+
+    def test_no_chunk_the_render_can_make_exceeds_the_input_limit(self):
+        """The invariant the probe found the hard way.
+
+        Swept over every rung and both `continuing` values, because the prompt
+        is largest at rung 0 continuing (1 160 B) and the reserve has to cover
+        that one. Sizes are the real news/deep-dive range measured across the
+        back catalogue; turn lengths go down to 30 chars, well past anything the
+        show has written, because the speaker label is charged per turn and a
+        short-turn chunk therefore carries more of it.
+
+        Asserted on the SUM — the stricter of the two readings of a message that
+        names two fields the failing payload did not have. If the real rule
+        turns out to be per-field, this test is merely conservative; if it is
+        the sum and we had assumed otherwise, every chunk 400s.
+        """
+        limit = gemini_tts.CLOUD_INPUT_BYTE_LIMIT
+        for per_turn in (30, 60, 100, 150, 200, 270, 400):
+            for total in (6382, 7332, 7802, 8521, 10278):
+                for chunk in gemini_tts._balanced_chunks(self._turns(total, per_turn)):
+                    for continuing in (True, False):
+                        for rung in gemini_tts.RETRY_LADDER:
+                            prompt, spoken = self._input_bytes(chunk, continuing, rung)
+                            assert prompt <= limit
+                            assert prompt + spoken <= limit, (
+                                f"{per_turn}-char turns, {total} total: "
+                                f"{prompt} B prompt + {spoken} B spoken > {limit}"
+                            )
+
+    def test_multibyte_text_is_charged_by_the_byte(self):
+        """Secwépemc, Tŝilhqot'in, em dashes and curly quotes are 2-3 bytes
+        each, so a char budget over-states what fits by up to 7%. A chunk of
+        pure multi-byte text must still come in under the wall."""
+        turns = self._turns(7332, per_turn=270, text="é")
+        for chunk in gemini_tts._balanced_chunks(turns):
+            prompt, spoken = self._input_bytes(chunk, True, gemini_tts.RETRY_LADDER[0])
+            assert prompt + spoken <= gemini_tts.CLOUD_INPUT_BYTE_LIMIT
+
+    def test_the_prompt_reserve_covers_the_largest_prompt(self):
+        """Holding back too little is the same 400; holding back too much is
+        only an extra chunk. The worst is two speakers, continuing, rung 0."""
+        worst = max(
+            len(gemini_tts._cloud_prompt(sp, continuing, rung).encode())
+            for sp in (["riley", "casey"], ["riley"])
+            for continuing in (True, False)
+            for rung in gemini_tts.RETRY_LADDER
+        )
+        assert worst <= gemini_tts.CLOUD_PROMPT_BYTE_RESERVE
+
+    def test_the_leash_ceiling_is_non_binding_on_cloud_too(self):
+        """Same invariant as the studio sweep, on cloud's own request scale:
+        the largest chunk must price below the ceiling, or the clamp is back."""
+        worst = max(
+            gemini_tts._read_timeout_for(chunk, continuing)
+            for per_turn in (30, 100, 270, 400)
+            for total in (6382, 8521, 10278)
+            for chunk in gemini_tts._balanced_chunks(self._turns(total, per_turn))
+            for continuing in (True, False)
+        )
+        assert worst < gemini_tts.READ_TIMEOUT_MAX_S
+        backoffs = [r.backoff_s for r in gemini_tts.RETRY_LADDER[:4]]
+        assert gemini_tts.SECTION_BUDGET_S >= sum(backoffs) + 4 * worst
+
+    def test_a_short_section_is_still_one_request(self):
+        """The cold open and welcome fit whole — they are what went 6/6."""
+        for total in (319, 889, 1025):
+            assert len(gemini_tts._balanced_chunks(self._turns(total, 100))) == 1
+
+    def test_chunking_never_drops_or_reorders_a_turn(self):
+        turns = self._turns(7332)
+        flat = [t for c in gemini_tts._balanced_chunks(turns) for t in c]
+        assert flat == turns
+
+    def test_the_studio_limit_does_not_govern_cloud(self):
+        """Two constants, because they are two kinds of thing: studio's is a
+        latency fit free to move when the endpoint is remeasured, cloud's is an
+        API wall. A section sized between them must split on cloud."""
+        assert gemini_tts.TRANSCRIPT_CHAR_LIMIT > (
+            gemini_tts.CLOUD_INPUT_BYTE_LIMIT - gemini_tts.CLOUD_PROMPT_BYTE_RESERVE
+        )
+        turns = self._turns(2950, per_turn=100)
+        assert len(gemini_tts._balanced_chunks(turns)) > 1
+
+
+class TestStudioChunkingUnchanged:
+    """The cloud limit must not reach across and resize studio's chunks: the
+    studio backend has no input-byte wall, and its 3 000 was fitted to latency.
+    """
+
+    def test_studio_still_packs_to_its_own_char_limit(self):
+        turns = [{"speaker": "riley" if i % 2 else "casey",
+                  "text": "x" * 270, "gap_ms": None} for i in range(7332 // 270)]
+        # Default backend is studio; no monkeypatching, deliberately.
+        assert gemini_tts.GEMINI_TTS_BACKEND == "studio"
+        sizes = [gemini_tts._transcript_chars(c)
+                 for c in gemini_tts._balanced_chunks(turns)]
+        assert max(sizes) <= gemini_tts.TRANSCRIPT_CHAR_LIMIT
+        assert len(sizes) == 3
+
+    def test_studio_charges_nothing_per_turn(self):
+        """Cloud charges a speaker label per turn; studio's one prompt block is
+        per request, which is why the SSML per-segment estimate stays unborrowed
+        there."""
+        seg = {"speaker": "riley", "text": "x" * 100, "gap_ms": None}
+        assert gemini_tts._segment_cost(seg) == 100
+
+
 class TestTimeBudget:
     """Five rungs of read timeouts plus backoff could otherwise hold one section
     for ~15 min, and a six-section episode would blow the 40-minute render step."""

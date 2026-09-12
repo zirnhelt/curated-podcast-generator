@@ -154,7 +154,57 @@ GEMINI_TTS_TEMPERATURE = float(os.getenv("GEMINI_TTS_TEMPERATURE", "0.35"))
 # seed, low temperature and `speechConfig` voices are what mitigate — and a
 # chunk that never returns costs the whole episode its voices, which is the
 # larger of the two prices. Sections are split at speaker-turn boundaries.
+#
+# This is the STUDIO limit, and it is a latency fit — a number chosen from what
+# that endpoint answers, free to move when the endpoint is remeasured. The cloud
+# backend's limit below is a different kind of thing entirely (a hard API wall),
+# which is why they are two constants and not one: a future studio refit must
+# not be able to reach across and break cloud's ceiling.
 TRANSCRIPT_CHAR_LIMIT = 3_000
+
+# Cloud TTS refuses an over-long synthesis input outright:
+#
+#   400 INVALID_ARGUMENT "Either `input.text` or `input.prompt` is longer than
+#   the limit of 4000 bytes."
+#
+# Found on 2026-09-12 by probing the `news` section on the cloud backend: 0/6
+# across both models at 7 220 spoken chars, against 6/6 for `welcome` at 889.
+# Nothing in the studio path has an equivalent — this is a wall, not a fit, so
+# no measurement relaxes it and no retry rung gets past it.
+#
+# BYTES, not chars. The show's own vocabulary is not ASCII — Secwépemc,
+# Tŝilhqot'in, em dashes and curly quotes are 2-3 bytes each — so a char budget
+# is an over-estimate of what fits, by up to 7% on a short turn. The chunker
+# measures the encoded turns rather than applying a fudge factor to a char
+# count.
+CLOUD_INPUT_BYTE_LIMIT = int(os.getenv("GEMINI_TTS_CLOUD_INPUT_BYTE_LIMIT", "4000"))
+
+# What the chunker holds back from CLOUD_INPUT_BYTE_LIMIT for input.prompt.
+#
+# The error message names two singular fields — `input.text` and `input.prompt`
+# — and the multi-speaker payload that met it has no `input.text` at all while
+# its `input.prompt` was 1 014 bytes, comfortably inside the limit. So the
+# validator is measuring something the message does not name (most likely the
+# markup flattened to text) and there is no way to tell from one 400 whether the
+# 4 000 is per field or over the input as a whole.
+#
+# Reserving the prompt assumes the stricter reading, and the asymmetry is what
+# decides it. Measured over the last ten episodes, the conservative reading
+# costs 10.1 requests an episode against 8.1 for the per-field reading — two
+# extra sampling draws, and only 0.4 more than studio already makes at its own
+# limit. The other way round, if the rule is the sum and we had assumed
+# otherwise, every chunk 400s and the episode goes to OpenAI whole: the outcome
+# this whole backend exists to stop. Two draws is the cheaper mistake.
+#
+# 1 200 covers the worst prompt the ladder can send: 1 160 bytes (two speakers,
+# continuing, rung 0 — style block plus the continuation note). Rungs that shed
+# style send 279 or 123 and simply finish with more room.
+CLOUD_PROMPT_BYTE_RESERVE = 1_200
+
+# Separator allowance per turn, for whatever the flattening puts between a
+# speaker label and its text (": ", a newline). Small, unmeasurable from here,
+# and cheap to be wrong about in this direction.
+CLOUD_TURN_OVERHEAD_BYTES = 4
 
 # Continuity note for a chunk/section that is not the episode's first, so the
 # next call opens mid-flow instead of resampling delivery from a cold start.
@@ -298,6 +348,15 @@ READ_TIMEOUT_MAX_S = int(os.getenv("GEMINI_TTS_READ_TIMEOUT_MAX_S", "210"))
 # queueing, not payload size. If a refit is ever done, fit the *tail* rather
 # than the mean — or drop the scaling for a flat leash, which is what r² = 0.14
 # actually argues for.
+#
+# REFITTED AGAINST CLOUD 2026-09-12 AND UNCHANGED, which is the useful result.
+# The first probe of the GA surface (welcome section, 1 903 request chars, 3
+# calls per model) answered 6/6: pro at 39.2 s median / 50.7 s slowest, flash at
+# 24.9 s / 33.3 s. The slowest is 26.6 ms/char, against studio's slowest
+# answered call at 25.7 — so 40 carries the same ~1.5x tail margin on both
+# surfaces and moving it would be churn. Recorded here because the reason 3.1
+# ran unexamined for weeks is that nobody had a measurement to argue with; the
+# sample is six calls on one section shape, so treat it as a bracket, not a fit.
 READ_TIMEOUT_MS_PER_CHAR = float(os.getenv("GEMINI_TTS_READ_TIMEOUT_MS_PER_CHAR", "40"))
 
 
@@ -306,24 +365,61 @@ def _transcript_chars(segments: list[dict]) -> int:
     return sum(len(seg["text"]) for seg in segments)
 
 
+def _cloud_turn_bytes(seg: dict) -> int:
+    """Bytes one turn spends against CLOUD_INPUT_BYTE_LIMIT.
+
+    Measured on the text the payload actually carries — pronunciation applied,
+    cues kept — at rung 0, which is the largest request the ladder can send. A
+    rung that strips cues sends less and simply finishes with more room, the
+    same reasoning `_read_timeout_for` uses for the leash.
+    """
+    text = _cloud_turn_text(seg["text"], RETRY_LADDER[0])
+    label = _display_name(seg["speaker"])
+    return len(text.encode()) + len(label.encode()) + CLOUD_TURN_OVERHEAD_BYTES
+
+
+def _segment_cost(seg: dict) -> int:
+    """What one turn spends against the chunk limit, in the active backend's own
+    units: studio counts transcript chars (a latency proxy), cloud counts input
+    bytes (a hard API ceiling)."""
+    if GEMINI_TTS_BACKEND == "cloud":
+        return _cloud_turn_bytes(seg)
+    return len(seg["text"])
+
+
+def _chunk_cost(segments: list[dict]) -> int:
+    """What a whole chunk spends against the limit, in the same units."""
+    return sum(_segment_cost(seg) for seg in segments)
+
+
+def _chunk_limit() -> int:
+    """Per-chunk ceiling for the active backend, in `_segment_cost` units."""
+    if GEMINI_TTS_BACKEND == "cloud":
+        return CLOUD_INPUT_BYTE_LIMIT - CLOUD_PROMPT_BYTE_RESERVE
+    return TRANSCRIPT_CHAR_LIMIT
+
+
 def _pack_segments(segments: list[dict], target: int) -> list[list[dict]]:
-    """Greedily pack whole speaker turns into chunks of at most *target* chars.
+    """Greedily pack whole speaker turns into chunks of at most *target* units.
 
     Measured on the transcript alone. `_split_segments_by_char_limit` budgets an
     extra 120 chars per segment for SSML tags, which is right for Azure and
     wrong here — Gemini is sent plain speech, and the prompt scaffolding around
     it is one fixed block per request, not per turn. Borrowing that estimate
     counted 3 240 phantom chars against a 27-turn news roundup and bought two
-    requests nobody needed.
+    requests nobody needed. (The cloud backend does charge per turn, for the
+    speaker label the markup carries, and `_segment_cost` counts that — it is
+    measured off the payload rather than estimated.)
 
     A single turn longer than *target* still gets its own chunk rather than
-    being cut mid-sentence; at ~300 chars a turn that does not happen here.
+    being cut mid-sentence; the longest turn in the 228-script back catalogue is
+    1 022 cloud bytes against a 2 800-byte budget, so that does not happen here.
     """
     chunks: list[list[dict]] = []
     current: list[dict] = []
     size = 0
     for seg in segments:
-        n = len(seg["text"])
+        n = _segment_cost(seg)
         if current and size + n > target:
             chunks.append(current)
             current, size = [], 0
@@ -335,7 +431,7 @@ def _pack_segments(segments: list[dict], target: int) -> list[list[dict]]:
 
 
 def _balanced_chunks(segments: list[dict]) -> list[list[dict]]:
-    """Split *segments* into near-equal chunks, none over TRANSCRIPT_CHAR_LIMIT.
+    """Split *segments* into near-equal chunks, none over `_chunk_limit()`.
 
     Packing greedily against the limit fills each chunk to the brim and leaves
     the remainder in a runt: a 6 382-char news roundup at a 3 000 limit packs to
@@ -352,16 +448,22 @@ def _balanced_chunks(segments: list[dict]) -> list[list[dict]]:
 
     This mattered little at 8 500, where a runt was rare. At 3 000 nearly every
     section produces one.
+
+    The limit is the active backend's — studio's latency fit in transcript
+    chars, cloud's hard 4 000-byte input wall less the prompt reserve — and the
+    packing arithmetic is the same either way, because both are "how much of
+    this quantity fits in one request".
     """
-    total = _transcript_chars(segments)
-    if total <= TRANSCRIPT_CHAR_LIMIT:
+    limit = _chunk_limit()
+    total = _chunk_cost(segments)
+    if total <= limit:
         return [segments]
-    count = -(-total // TRANSCRIPT_CHAR_LIMIT)  # ceil: fewest chunks under the limit
-    for target in range(-(-total // count), TRANSCRIPT_CHAR_LIMIT + 1):
+    count = -(-total // limit)  # ceil: fewest chunks under the limit
+    for target in range(-(-total // count), limit + 1):
         chunks = _pack_segments(segments, target)
         if len(chunks) <= count:
             return chunks
-    return _pack_segments(segments, TRANSCRIPT_CHAR_LIMIT)
+    return _pack_segments(segments, limit)
 
 
 def _read_timeout_for(segments: list[dict], continuing: bool = False) -> int:
@@ -392,9 +494,11 @@ def _read_timeout_for(segments: list[dict], continuing: bool = False) -> int:
     context or style makes a smaller request and simply finishes with more room.
 
     The fit (READ_TIMEOUT_MS_PER_CHAR) was measured on the studio endpoint and
-    is inherited by the cloud backend until its own probe refits it — expect the
-    leash to be loose there rather than tight, which costs a wasted wait, not a
-    lost take.
+    re-measured on cloud on 2026-09-12, which landed on the same number — see
+    the constant. What differs between the backends is the *scale*: cloud's
+    request is the spoken turns plus a direction-only prompt, so its largest
+    chunk prices around 160 s against studio's 191 s, and the ceiling stays
+    non-binding on both.
     """
     request_chars = _request_chars(segments, continuing)
     scaled = request_chars * READ_TIMEOUT_MS_PER_CHAR / 1000
