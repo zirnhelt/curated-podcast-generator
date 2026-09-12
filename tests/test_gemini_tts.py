@@ -1875,7 +1875,10 @@ class TestCloudBackend:
         }
         assert set(t["speaker"] for t in turns) <= set(voices)
         assert p["voice"]["modelName"] == "gemini-2.5-pro-tts"
-        assert p["audioConfig"]["audioEncoding"] == "PCM"
+        # LINEAR16, not PCM: Gemini-TTS models on Cloud TTS answer `PCM` with
+        # 400 INVALID_ARGUMENT "Unsupported audio encoding" (2026-09-12 probe,
+        # 0/6 calls). `_decode_cloud_audio` unwraps the WAV this returns.
+        assert p["audioConfig"]["audioEncoding"] == "LINEAR16"
         assert p["audioConfig"]["sampleRateHertz"] == gemini_tts.GEMINI_CLOUD_SAMPLE_RATE
 
     def test_prompt_is_direction_only_never_the_transcript(self):

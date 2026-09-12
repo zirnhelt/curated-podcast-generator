@@ -1144,7 +1144,21 @@ def _build_cloud_payload(
 
     model = model or GEMINI_TTS_MODEL
     prompt = _cloud_prompt(speakers, continuing, rung)
-    audio_config = {"audioEncoding": "PCM", "sampleRateHertz": GEMINI_CLOUD_SAMPLE_RATE}
+    # LINEAR16, not PCM. Both name 16-bit little-endian samples and `PCM` is a
+    # real member of the v1beta1 AudioEncoding enum, but Gemini-TTS models on
+    # this surface refuse it: every call of the 2026-09-12 probe came back
+    # `400 INVALID_ARGUMENT "Unsupported audio encoding."` — the first thing the
+    # cloud backend met once its 403s were cleared, and the kind of defect that
+    # only shows up when the request is actually sent (CLAUDE.md: the shape was
+    # "verified against the v1beta1 proto … not run here").
+    #
+    # LINEAR16 returns a RIFF/WAVE container rather than headerless samples,
+    # which `_decode_cloud_audio` already unwraps — it was written to survive
+    # exactly this, so nothing downstream changes.
+    audio_config = {
+        "audioEncoding": "LINEAR16",
+        "sampleRateHertz": GEMINI_CLOUD_SAMPLE_RATE,
+    }
 
     if len(speakers) == 1:
         text = "\n".join(_cloud_turn_text(seg["text"], rung) for seg in segments)
