@@ -353,8 +353,21 @@ jobs:
           # variables — a studio name pinned here would name a model the Cloud
           # surface does not have. Either cloud var unset falls to the code's
           # cloud default (pro primary, flash fallback).
-          GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_BACKEND == 'cloud' && vars.GEMINI_TTS_CLOUD_MODEL || vars.GEMINI_TTS_MODEL }}
-          GEMINI_TTS_FALLBACK_MODEL: ${{ vars.GEMINI_TTS_BACKEND == 'cloud' && vars.GEMINI_TTS_CLOUD_FALLBACK_MODEL || vars.GEMINI_TTS_FALLBACK_MODEL }}
+          #
+          # The trailing `|| ''` is what makes that last sentence true, and its
+          # absence is what the 2026-09-12 nightly died on. `A && B || C` is the
+          # Actions ternary idiom, and an UNSET B is falsy — so with
+          # GEMINI_TTS_CLOUD_MODEL unset the whole expression fell through to C,
+          # handing Vertex the *studio* name `gemini-2.5-flash-preview-tts`:
+          # `403 … denied on … models/gemini-2.5-flash-preview-tts (or it may not
+          # exist)`. Same family as the `inputs.force == true` cast trap above.
+          #
+          # Each branch is now guarded by its own backend test, and the chain ends
+          # in '' so that "neither matched" reads as empty rather than as the
+          # string `false` — which is what a bare `A && B || C` renders when both
+          # sides are falsy, and would name a model no surface has.
+          GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_BACKEND == 'cloud' && vars.GEMINI_TTS_CLOUD_MODEL || vars.GEMINI_TTS_BACKEND != 'cloud' && vars.GEMINI_TTS_MODEL || '' }}
+          GEMINI_TTS_FALLBACK_MODEL: ${{ vars.GEMINI_TTS_BACKEND == 'cloud' && vars.GEMINI_TTS_CLOUD_FALLBACK_MODEL || vars.GEMINI_TTS_BACKEND != 'cloud' && vars.GEMINI_TTS_FALLBACK_MODEL || '' }}
           # Scheduled runs pass no input, so the nightly show renders on Gemini.
           # OpenAI is the fallback rather than the default: the canary decides the
           # provider before any audio exists, and a section that fails mid-episode
@@ -391,8 +404,21 @@ jobs:
           # variables — a studio name pinned here would name a model the Cloud
           # surface does not have. Either cloud var unset falls to the code's
           # cloud default (pro primary, flash fallback).
-          GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_BACKEND == 'cloud' && vars.GEMINI_TTS_CLOUD_MODEL || vars.GEMINI_TTS_MODEL }}
-          GEMINI_TTS_FALLBACK_MODEL: ${{ vars.GEMINI_TTS_BACKEND == 'cloud' && vars.GEMINI_TTS_CLOUD_FALLBACK_MODEL || vars.GEMINI_TTS_FALLBACK_MODEL }}
+          #
+          # The trailing `|| ''` is what makes that last sentence true, and its
+          # absence is what the 2026-09-12 nightly died on. `A && B || C` is the
+          # Actions ternary idiom, and an UNSET B is falsy — so with
+          # GEMINI_TTS_CLOUD_MODEL unset the whole expression fell through to C,
+          # handing Vertex the *studio* name `gemini-2.5-flash-preview-tts`:
+          # `403 … denied on … models/gemini-2.5-flash-preview-tts (or it may not
+          # exist)`. Same family as the `inputs.force == true` cast trap above.
+          #
+          # Each branch is now guarded by its own backend test, and the chain ends
+          # in '' so that "neither matched" reads as empty rather than as the
+          # string `false` — which is what a bare `A && B || C` renders when both
+          # sides are falsy, and would name a model no surface has.
+          GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_BACKEND == 'cloud' && vars.GEMINI_TTS_CLOUD_MODEL || vars.GEMINI_TTS_BACKEND != 'cloud' && vars.GEMINI_TTS_MODEL || '' }}
+          GEMINI_TTS_FALLBACK_MODEL: ${{ vars.GEMINI_TTS_BACKEND == 'cloud' && vars.GEMINI_TTS_CLOUD_FALLBACK_MODEL || vars.GEMINI_TTS_BACKEND != 'cloud' && vars.GEMINI_TTS_FALLBACK_MODEL || '' }}
           # Scheduled runs pass no input, so the nightly show renders on Gemini.
           # OpenAI is the fallback rather than the default: the canary decides the
           # provider before any audio exists, and a section that fails mid-episode
