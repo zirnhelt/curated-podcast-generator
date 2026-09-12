@@ -21,35 +21,31 @@
   <p class="meta">Published September 12, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
   <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/34682370225">34682370225</a>.</em></p>
 
-<h3>Brave's article-body budget exhausted mid-run</h3>
+<h3>Gemini TTS failed at preflight; the whole episode rendered on OpenAI</h3>
 
-<p>The pipeline completed episode 228 with 39 roundup stories dropped from the script. A single reason: Brave Search consumed its 12-call budget for article-body backfill, leaving thin articles without expanded text. The system kept these sparse stories out rather than script them as stubs.</p>
+<p>Both Gemini TTS models returned HTTP 403 errors during the canary check. Rather than retry through the fallback ladder, the pipeline skipped the diagnostic phase and rendered the full episode on OpenAI. This was a choice: spend API calls learning whether Gemini would recover, or spend them rendering audio once.</p>
 
-<p>This is a constraint, not a failure. The roundup citations still aligned at 13 of 15 (87%). But listeners heard a shorter story pool than the curation phase selected.</p>
+<p>The cost was known. The benefit was speed. The tradeoff landed on speed.</p>
 
-<h3>Gemini TTS failed pre-flight; OpenAI rendered the full episode</h3>
+<h3>Brave's body-backfill budget exhausted after 12 calls</h3>
 
-<p>Both Gemini TTS models returned HTTP 403 on the canary check. Rather than retry, the pipeline bypassed Gemini and rendered all 19 minutes of audio on OpenAI. The episode shipped on time with no audio segments missing.</p>
+<p>The pipeline tried to enrich thin article summaries by fetching their full text. It burned through its Brave quota completely. Twelve articles lost their bodies and kept their stubs. The editorial script still shipped at 3087 words, meeting the expanded target of 3400 after Claude's first draft arrived at 2192 and was sent back for one growth pass.</p>
 
-<p>This was a clean fallback: one service unavailable, another available, switch made and logged. The cost was opaque—no token count separated by renderer—but the episode audio reached 17.4 MB at 19.0 minutes.</p>
+<p>The listener hears a 19-minute episode. Those 12 thin articles either made it as summaries or were cut. The facts do not say which.</p>
 
-<h3>Script required one expansion cycle</h3>
+<h3>Citation matching stayed tight</h3>
 
-<p>The first draft arrived at 2,192 words against a 3,400-word target. The pipeline flagged the shortfall and sent the script back for expansion. The shipped version measured 3,087 words: 313 words short of target, but within the range the system accepted after one pass.</p>
+<p>The roundup section matched 13 of 15 citations. The deep dive section matched all 5. The debate question asked whether institutional dominance in local elections trades voter convenience for accountability—asked in a week when the pipeline was working from 5 deep-dive stories about local candidacies and governance in the Cariboo region.</p>
 
-<p>One AI tell pattern surfaced in quality review. The voice ratio (Casey to Riley at 1.18) fell inside acceptable bounds.</p>
+<h3>Voice balance shifted toward Casey</h3>
 
-<h3>Deep-dive citations: perfect alignment, limited pool</h3>
+<p>Casey's speaking time exceeded Riley's by a ratio of 1.18 to 1. The quality check flagged 1 hit for AI-tell patterns in the final script. The episode ran 19 minutes of audio at 17.4 MB, with a parallel video file at 67.3 MB.</p>
 
-<p>All 5 deep-dive citations matched their sources (5 of 5). The roundup achieved 13 of 15. Citation hygiene was strict. The deep-dive segment drew from five local news outlets covering Williams Lake and South Cariboo: mayoral candidates, golf course changes, bulk water infrastructure, and traffic safety.</p>
+<h3>Three manual runs in the morning, then a fallback 233 minutes late</h3>
 
-<h3>Three manual runs in sequence</h3>
+<p>The pipeline executed three successful manual triggers between 08:05 and 10:09 UTC. It then fell silent. At 13:58 UTC—233 minutes later—Fallback 2 (the 3:05 AM Pacific recovery trigger) fired and is still in progress. The log does not explain why the daytime schedule failed or what the fallback is currently doing.</p>
 
-<p>Two runs completed successfully at 08:05 UTC and 09:05 UTC. A third began at 10:05 UTC and was still in progress at report time. All triggered manually. Script generation consumed 780 seconds; audio rendering took 232 seconds; video and publish steps ran in sequence without delay.</p>
-
-<h3>Debate question posed</h3>
-
-<p>Today's closing question: <em>In local elections where institutional knowledge and name recognition dominate the field, does ease of voter decision-making come at the cost of democratic scrutiny and accountability?</em></p>
+<p>This is the 228th episode in the RSS feed. The next update will show whether it shipped or whether the fallback is still working through degradations.</p>
 
 <h3>The day's triggers</h3>
 <table>
@@ -57,7 +53,8 @@
 <tbody>
 <tr><td>Manual (workflow_dispatch)</td><td>2026-09-12T08:05:13Z</td><td>+0 min</td><td>success</td></tr>
 <tr><td>Manual (workflow_dispatch)</td><td>2026-09-12T09:05:14Z</td><td>+0 min</td><td>success</td></tr>
-<tr><td>Manual (workflow_dispatch)</td><td>2026-09-12T10:05:17Z</td><td>+0 min</td><td>in_progress</td></tr>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-12T10:05:17Z</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific)</td><td>2026-09-12T13:58:26Z</td><td>+233 min</td><td>in_progress</td></tr>
 </tbody>
 </table>
 
