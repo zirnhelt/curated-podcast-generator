@@ -1,25 +1,4 @@
 {
-  "2026-08-07": {
-    "timestamp": 1786094495.088483,
-    "topics": [
-      "[globalnews.ca] Chief says community was left \u2018a war zone\u2019 a",
-      "[Williams Lake Tribune] Wildfire smoke to impact aviation op",
-      "[T\u015dilhqot\u2019in National Government] T\u015dilhqot\u2019in Respond to Rem",
-      "B.C. wildfires force thousands from their homes : My Cariboo",
-      "Pilot injured after helicopter crash into lake while battlin",
-      "[The Narwhal] Interior Salish culture camps create \u2018a safe h",
-      "[The Narwhal] Falling trees and helicopter crashes: Alberta ",
-      "[Williams Lake Tribune] West Kelowna campers \u2018blissfully una"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech"
-    ],
-    "date": "2026-08-07",
-    "focus": "wildfire-resilience",
-    "focus_name": "Wildfire & Climate Resilience"
-  },
   "2026-08-08": {
     "timestamp": 1786179675.143246,
     "topics": [
@@ -745,5 +724,25 @@
     "date": "2026-09-11",
     "focus": "recreation-access",
     "focus_name": "Recreation & Backcountry Access"
+  },
+  "2026-09-12": {
+    "timestamp": 1789201196.961844,
+    "topics": [
+      "[Williams Lake Tribune] One airlifted to hospital following ",
+      "[My Cariboo Now] One person in critical condition following ",
+      "[Quesnel Cariboo Observer] Man faces multiple charges after ",
+      "[Quesnel Cariboo Observer] Ottawa to match money raised by R",
+      "[My Cariboo Now] Teresa Wat joins new B.C. political party, ",
+      "[Williams Lake Tribune] Former Williams Lake mayor Walt Cobb",
+      "[My Cariboo Now] South Cariboo realtor running for Mayor",
+      "[100 Mile Free Press] Canim Lake Bulk Water Station opening "
+    ],
+    "themes": [
+      "rural development",
+      "Indigenous tech"
+    ],
+    "date": "2026-09-12",
+    "focus": null,
+    "focus_name": null
   }
 }
