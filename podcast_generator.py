@@ -4304,7 +4304,9 @@ def generate_cold_open(script, theme_name):
         print(f"  🎙️  Generated cold open ({word_count} words)")
         return f"**COLD OPEN**\n**{host}:** {text}\n\n{script}"
     except Exception as e:
+        _abort_if_billing_wall(e)
         print(f"  ⚠️  Cold open generation failed, skipping: {e}")
+        degrade("script/cold-open", f"cold open generation failed, episode ships with none: {e}")
         return script
 
 
@@ -4339,7 +4341,9 @@ def extract_debate_summary(script, theme_name):
         _log_api_call("claude", "input_tokens", getattr(getattr(response, "usage", None), "input_tokens", 0))
         return json.loads(message_text(response))
     except Exception as e:
+        _abort_if_billing_wall(e)
         print(f"  ⚠️  Claude debate extraction failed, using fallback: {e}")
+        degrade("script/debate-summary", f"Claude debate extraction failed, used keyword fallback: {e}")
         return _extract_debate_summary_fallback(script, theme_name)
 
 def _extract_debate_summary_fallback(script, theme_name):
@@ -4431,7 +4435,9 @@ def extract_personality_clues(script):
         result = json.loads(message_text(response))
         return {k: v for k, v in result.items() if isinstance(v, list)}
     except Exception as e:
+        _abort_if_billing_wall(e)
         print(f"  ⚠️  Personality clue extraction skipped: {e}")
+        degrade("script/persist-host-memory", f"personality clue extraction skipped: {e}")
         return {}
 
 
