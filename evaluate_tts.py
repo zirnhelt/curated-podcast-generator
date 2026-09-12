@@ -189,6 +189,36 @@ def _char_count(seg_list: list[dict]) -> int:
     return sum(len(s["text"]) for s in seg_list)
 
 
+def _probe_request(seg_list: list[dict]) -> list[dict]:
+    """The largest chunk the render would actually send for this section.
+
+    Both probes used to hand `_attempt` the whole unchunked section, which is a
+    request production never makes — every section goes through
+    `_balanced_chunks` first. On the studio backend that only over-stated the
+    size; on cloud it asks a question with a different answer, because a
+    full-length section is past the 4 000-byte input limit and 400s before the
+    model is ever reached. The 2026-09-12 `news` probe read 0/6 for both models
+    on exactly that, which looks like a dead endpoint and is not one.
+
+    The largest chunk is the one that decides whether a section can ride on this
+    model, so that is what gets probed.
+    """
+    import gemini_tts
+    chunks = gemini_tts._balanced_chunks(seg_list)
+    return max(chunks, key=gemini_tts._chunk_cost)
+
+
+def _probe_scope(seg_list: list[dict], chunk: list[dict]) -> str:
+    """One line saying whether the probe is asking about a chunk or the whole
+    section, so a 6/6 is never read as vouching for more than it covers."""
+    import gemini_tts
+    n = len(gemini_tts._balanced_chunks(seg_list))
+    if n == 1:
+        return f"{len(chunk)} turns, {_char_count(chunk)} chars (whole section)"
+    return (f"{len(chunk)} turns, {_char_count(chunk)} chars "
+            f"(largest of {n} chunks; the section is {_char_count(seg_list)})")
+
+
 def _print_report(section: str, openai_result, azure_result, gemini_result=None) -> None:
     header = f"=== TTS Evaluation: {section} ==="
     print("\n" + header)
@@ -232,8 +262,9 @@ def _probe_gemini_rungs(seg_list: list[dict], repeats: int) -> None:
     """
     import gemini_tts
 
+    chunk = _probe_request(seg_list)
     print(f"\n▶ Gemini prompt-shape probe [{gemini_tts.GEMINI_TTS_BACKEND} backend]: "
-          f"{len(seg_list)} turns, {_char_count(seg_list)} chars, {repeats}x per rung")
+          f"{_probe_scope(seg_list, chunk)}, {repeats}x per rung")
     print(f"  {'rung':<34} {'ok':>5}  detail")
 
     for i, rung in enumerate(gemini_tts.RETRY_LADDER):
@@ -242,9 +273,9 @@ def _probe_gemini_rungs(seg_list: list[dict], repeats: int) -> None:
         for attempt in range(repeats):
             try:
                 gemini_tts._attempt(
-                    seg_list, "", rung,
+                    chunk, "", rung,
                     seed=gemini_tts.GEMINI_TTS_SEED + attempt,
-                    read_timeout=gemini_tts._read_timeout_for(seg_list),
+                    read_timeout=gemini_tts._read_timeout_for(chunk),
                 )
                 ok += 1
             except Exception as e:
@@ -258,11 +289,14 @@ def _probe_gemini_rungs(seg_list: list[dict], repeats: int) -> None:
 
 
 def _probe_gemini_models(seg_list: list[dict], models: list[str], repeats: int) -> None:
-    """Answer rate and latency per candidate model, on the real section request.
+    """Answer rate and latency per candidate model, on the real render request.
 
     The rung probe asks *what shape* Gemini will accept. This asks the two
     questions that actually decide whether an episode can ride on Gemini:
     which model answers, and how long an answer takes when it comes.
+
+    "Real" means the largest chunk of the section, not the section — see
+    `_probe_request`. A section is never sent whole.
 
     Both were unanswerable from the nightly logs on 2026-08-28. The model was
     masked (sourced from a secret), and nothing recorded latency, so a flat
@@ -275,10 +309,11 @@ def _probe_gemini_models(seg_list: list[dict], models: list[str], repeats: int) 
     """
     import gemini_tts
 
-    chars = _char_count(seg_list)
+    chunk = _probe_request(seg_list)
+    chars = _char_count(chunk)
     print(f"\n▶ Gemini model probe [{gemini_tts.GEMINI_TTS_BACKEND} backend]: "
-          f"{len(seg_list)} turns, {chars} chars, {repeats}x per model")
-    print(f"  read timeout in effect: {gemini_tts._read_timeout_for(seg_list)}s")
+          f"{_probe_scope(seg_list, chunk)}, {repeats}x per model")
+    print(f"  read timeout in effect: {gemini_tts._read_timeout_for(chunk)}s")
     print(f"\n  {'model':<34} {'ok':>6}  {'median':>8} {'slowest':>8}  detail")
 
     for model in models:
@@ -289,9 +324,9 @@ def _probe_gemini_models(seg_list: list[dict], models: list[str], repeats: int) 
             started = time.monotonic()
             try:
                 gemini_tts._attempt(
-                    seg_list, "", gemini_tts.RETRY_LADDER[0],
+                    chunk, "", gemini_tts.RETRY_LADDER[0],
                     seed=gemini_tts.GEMINI_TTS_SEED + attempt,
-                    read_timeout=gemini_tts._read_timeout_for(seg_list),
+                    read_timeout=gemini_tts._read_timeout_for(chunk),
                 )
                 latencies.append(time.monotonic() - started)
             except Exception as e:
