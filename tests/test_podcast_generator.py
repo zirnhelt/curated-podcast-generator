@@ -77,6 +77,9 @@ from podcast_generator import (
     EXIT_RENDER_FAILED,
     EXIT_PUBLISH_DEGRADED,
     EXIT_CREDITS_EXHAUSTED,
+    generate_cold_open,
+    extract_debate_summary,
+    extract_personality_clues,
     main,
 )
 from config_loader import load_prompts_config
@@ -4315,6 +4318,71 @@ def clean_segments():
     pg._RUN_SEGMENTS.clear()
     yield pg._RUN_SEGMENTS
     pg._RUN_SEGMENTS.clear()
+
+
+# 2026-09-12: four Anthropic calls hit CREDIT_BALANCE_ERROR mid-script-stage and
+# the episode still shipped — with no cold open — on a run that reported green.
+# generate_cold_open / extract_debate_summary / extract_personality_clues each
+# catch Exception broadly and return their own fallback, so the exception never
+# escapes the enclosing segment() block and _abort_if_billing_wall() was never
+# consulted: exit 79 was unreachable from all three paths.
+_WELCOME_SCRIPT = "**WELCOME**\n**RILEY:** Morning, Casey.\n**CASEY:** Morning.\n"
+
+
+class TestScriptStageAnthropicFallbacksHonourBillingWall:
+    def test_cold_open_aborts_on_credit_wall(self, monkeypatch):
+        client = MagicMock()
+        client.messages.create.side_effect = Exception(CREDIT_BALANCE_ERROR)
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
+        with pytest.raises(SystemExit) as exc:
+            generate_cold_open(_WELCOME_SCRIPT, "Gear, Gadgets & Practical Tech")
+        assert exc.value.code == EXIT_CREDITS_EXHAUSTED
+
+    def test_cold_open_degrades_and_falls_back_on_other_failures(self, monkeypatch, clean_segments):
+        client = MagicMock()
+        client.messages.create.side_effect = Exception("Error code: 503")
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
+        with segment("script/cold-open", critical=False):
+            result = generate_cold_open(_WELCOME_SCRIPT, "Gear, Gadgets & Practical Tech")
+        assert result == _WELCOME_SCRIPT
+        assert clean_segments[-1]["name"] == "script/cold-open"
+        assert clean_segments[-1]["status"] == "degraded"
+
+    def test_debate_summary_aborts_on_credit_wall(self, monkeypatch):
+        client = MagicMock()
+        client.messages.create.side_effect = Exception(CREDIT_BALANCE_ERROR)
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
+        with pytest.raises(SystemExit) as exc:
+            extract_debate_summary("**DEEP DIVE**\nSome debate text.", "Working Lands & Industry")
+        assert exc.value.code == EXIT_CREDITS_EXHAUSTED
+
+    def test_debate_summary_degrades_and_falls_back_on_other_failures(self, monkeypatch, clean_segments):
+        client = MagicMock()
+        client.messages.create.side_effect = Exception("Error code: 503")
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
+        with segment("script/debate-summary", critical=False):
+            result = extract_debate_summary("**DEEP DIVE**\nSome debate text.", "Working Lands & Industry")
+        assert result["central_question"] == "Deep dive on Working Lands & Industry"
+        assert clean_segments[-1]["name"] == "script/debate-summary"
+        assert clean_segments[-1]["status"] == "degraded"
+
+    def test_personality_clues_aborts_on_credit_wall(self, monkeypatch):
+        client = MagicMock()
+        client.messages.create.side_effect = Exception(CREDIT_BALANCE_ERROR)
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
+        with pytest.raises(SystemExit) as exc:
+            extract_personality_clues("**DEEP DIVE**\nSome debate text.")
+        assert exc.value.code == EXIT_CREDITS_EXHAUSTED
+
+    def test_personality_clues_degrades_and_falls_back_on_other_failures(self, monkeypatch, clean_segments):
+        client = MagicMock()
+        client.messages.create.side_effect = Exception("Error code: 503")
+        monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: client)
+        with segment("script/persist-host-memory", critical=False):
+            result = extract_personality_clues("**DEEP DIVE**\nSome debate text.")
+        assert result == {}
+        assert clean_segments[-1]["name"] == "script/persist-host-memory"
+        assert clean_segments[-1]["status"] == "degraded"
 
 
 class TestSegment:
