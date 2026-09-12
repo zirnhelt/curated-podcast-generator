@@ -376,6 +376,51 @@ no cleanup commit when it closes. Currently the Williams Lake 2026 general local
   - Both `_is_local_article` and an event-keyword hit are required, so US midterm coverage
     (same vocabulary, not local) is never recalled.
 
+- **Selecting the story was never the hard part — reporting it was.** The selection layers
+  above put the right articles in the deep dive on 2026-09-12 and the segment still failed the
+  listener: it reported a mayoral candidate's **2014** win (60.4%) as his standing today
+  ("that's a mandate", "carrying a landslide from his previous term"), never mentioned that his
+  actual last run ended in a third-place loss, and called the sitting mayor "the sitting
+  incumbent" for the whole segment while its own source carried the name. Nothing was
+  fabricated and nothing was selected wrong. The record simply was not asked for, and half the
+  debate went to the week's anchor question instead of the race.
+  - **The lens carries the reporting rules, not just the no-endorsement rule.** Name every race
+    on the ballot (city mayor, council, the CRD electoral area director, the SD27 trustee — a
+    race the episode never names is a race it did not cover); name people rather than roles;
+    report a previous run's outcome, *loss included*, with the most recent result treated as
+    the load-bearing one; treat a documented controversy, ethics finding, censure or
+    resignation as part of the record rather than as an attack. **Omission is not neutrality**
+    — reporting only the win is a thumb on the scale in the incumbent-challenger direction.
+  - **Every one of those rules is bounded by SOURCED OR UNSAID**, which is what keeps them from
+    becoming an invitation to characterize a real person. A claim comes from the day's articles
+    or the research block and says where it was reported; an allegation is never rounded up
+    into a finding; an unestablished record is said out loud to be unestablished. The failure
+    mode of the old lens was omission; the failure mode of a record rule with no sourcing
+    clause would be invention, which is worse.
+  - **The anchor yields.** A named civic event is what the coverage exists to serve, so when
+    the week's anchor question does not genuinely fit the race the lens tells the segment to
+    drop it rather than bend around it — the same escape hatch `weekly_anchor` already carries,
+    spent here deliberately.
+  - **`event_focus.research` is the half that makes the rest reachable.** None of a candidate's
+    record is in a nomination-day story, so a lens demanding it would otherwise produce nothing
+    but "the show has not established that". The brief turns `research_deep_dive_with_agent`
+    from a judgement call ("is research warranted?") into a standing roster sweep — prior
+    offices, every previous result won *and* lost, the record in office, any documented
+    controversy, and the incumbent looked up **by name in every race**, including the CRD
+    directors and SD27 trustees the articles may only mention in passing. It ends by listing
+    the candidates it could *not* source, which is what lets the hosts say so on air.
+  - **The sweep costs one widened budget.** `EVENT_RESEARCH_SEARCH_LIMIT` (8) replaces the
+    ordinary day's 4 only when a `research` brief is present, and
+    `BRAVE_DEEP_DIVE_CALL_LIMIT` moved 10→16 so it does not starve
+    `_resolve_script_questions_with_brave`, which runs after it on the same meter. It is a
+    ceiling, not a floor — the other six days ask exactly what they asked before. At $5/1000
+    Search requests over ~6 election Saturdays the whole widening is under a dime against the
+    $10 monthly limit. There is a test asserting the headroom, because raising the sweep
+    without raising the meter would silently spend the script-question pass instead.
+  - **`home_places` carries the CRD electoral areas** (D, E, F and their communities) for the
+    same reason it carries Williams Lake: those directors are on the listener's own ballot, so
+    an area-director story must rank as *ours* rather than as neighbour coverage.
+
 - **The downstream ranking cannot select what the feed never sent.** On 2026-09-05 the pool held
   "Three Williams Lake city councillors not seeking re-election this fall" (Williams Lake
   Tribune) and "Municipal elections nominations now open across the Cariboo" (My Cariboo Now)
@@ -971,9 +1016,12 @@ The first two were one counter until 2026-08-29 (`_brave_deep_dive_rate_limit` w
 this and never called), and **the speculative path runs first** — so any single limit would have
 been spent entirely on backfill for stories the roundup then dropped, before the deep dive
 asked for anything. Splitting them is what makes a limit safe to set at all; both defaulted
-to `0` (disabled) and bounded nothing. The defaults (12/10) bound a runaway day rather than a
+to `0` (disabled) and bounded nothing. The defaults (12/16) bound a runaway day rather than a
 normal one — 2026-08-29 used 10 and ~6 — so a budget that bites is a signal the pool was
-unusually thin, and it says so in the run report.
+unusually thin, and it says so in the run report. The demand-driven ceiling went 10→16 for the
+election roster sweep (`EVENT_RESEARCH_SEARCH_LIMIT`, see the `event_focus` section), which
+fires only on a day whose `event_focus` carries a `research` brief; on every other day nothing
+asks for the headroom.
 
 **Answers is never reached from the speculative path.** A synthesized prose answer is the wrong
 instrument for thin-body backfill and the expensive one to run over 40 pre-curation candidates,
