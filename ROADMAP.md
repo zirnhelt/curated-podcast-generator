@@ -171,7 +171,7 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       late or why it stalled. Check the GitHub Actions scheduler logs and the in-progress run
       URL https://github.com/zirnhelt/curated-podcast-generator/actions/runs/33769783188 to
       determine whether the runner is hung, whether there is a capacity bottleneck, or whether
-      the cron expression is misconfigured. (seen in 4 reviews, latest 2026-09-12)
+      the cron expression is misconfigured. (seen in 5 reviews, latest 2026-09-13)
 - [ ] **One AI-tell pattern phrase shipped in the final episode without removal.** The quality
       review on 2026-09-04 flagged 1 instance of tell-pattern language (phrasing characteristic
       of Claude output) in the script. The system did not remove it before shipping. The pattern
@@ -191,7 +191,7 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       mechanism appears to be a single-pass expansion request rather than an iterative loop that
       continues until target is met or a hard limit is hit. Enforce expansion cycles until the
       script either reaches the target word count or exhausts a maximum retry count, then log
-      and report which condition stopped it. (seen in 2 reviews, latest 2026-09-09)
+      and report which condition stopped it. (seen in 3 reviews, latest 2026-09-13)
 - [ ] **Brave body-backfill budget exhaustion is recurring and requires intervention.** On
       2026-09-08, the pipeline spent its full 12-call Brave budget during script generation,
       forcing nine articles to ship with stub bodies instead of full text. The degradations log
