@@ -1,0 +1,364 @@
+{
+  "episode": {
+    "date": "2026-09-13",
+    "formatted_date": "Sunday, September 13, 2026",
+    "theme": "Science, Wonder & the Natural World",
+    "title": "Cariboo Signals - Science, Wonder & the Natural World",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Science, Wonder & the Natural World.</p><p><b>THIS WEEK WE'RE ASKING:</b> What gets lost when something gets easier?</p><p><b>NEWS ROUNDUP:</b> We break down [Williams Lake Tribune] 2 mayor, 15 councillor candidates declared in Williams Lake municipal election and [Regional News Archives, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Should major infrastructure projects like the Roberts Bank Terminal 2 expansion be exempt from Species at Risk Act review when designated as projects of national interest, given that federal assessments have already documented harm to endangered salmon and Southern Resident killer whales? Topics include: Roberts Bank Terminal 2 expansion and pipeline corridor impacts, Chinook salmon migration interference and killer whale food sources, Legal accountability and enforcement gaps in exemptions, Watershed interconnections between coastal projects and upstream Indigenous territories, Mitigation technology versus incentive structures in environmental policy.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://conservationsociety.ca\">Cariboo Chilcotin Conservation Society</a></p><p><b>Sources discussed:</b></p><ul><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/09/12/2-mayor-15-councillor-candidates-declared-in-williams-lake-municipal-election/\">[Williams Lake Tribune] 2 mayor, 15 councillor candidates de...</a></li><li>none (Regional News Archives - Williams Lake Tribune): <a href=\"https://wltribune.com/2026/09/11/former-b-c-conservative-teresa-wat-joining-peter-milobars-new-party/\">[Regional News Archives - Williams Lake Tribune] Former B.C....</a></li><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/09/12/remembering-9-11-canadians-americans-gather-at-b-c-border/\">[Williams Lake Tribune] Remembering 9/11: Canadians, America...</a></li><li>ScienceDaily: <a href=\"https://www.sciencedaily.com/releases/2026/09/260911214254.htm\">[ScienceDaily] Who really needs a heart calcium scan?</a></li><li>https://www.countrylife.co.uk/author/charles-quest-ritson (Country Life): <a href=\"https://www.countrylife.co.uk/gardens-interiors/finest-to-visit/the-american-prairie-planted-in-the-heart-of-sussex\">[Country Life] How Kew planted an American prairie in the he...</a></li><li>Vancouver Sun: <a href=\"https://vancouversun.com/news/local-news/more-bc-parents-opting-independent-schools-report\">[Vancouver Sun] More B.C. parents opting for private schools...</a></li><li>NYT Well: <a href=\"https://www.nytimes.com/2026/09/10/health/salmonella-broccoli-sprouts-recall.html\">[NYT Well] Broccoli Sprouts Are Recalled Over Link to Salmon...</a></li><li>Peter Dockrill (ScienceAlert): <a href=\"https://www.sciencealert.com/scientists-gave-cash-to-low-income-moms-and-it-altered-their-babies-aging\">[ScienceAlert] Scientists Gave Cash to Low-Income Moms, And ...</a></li><li>Sophie Hurwitz (Mother Jones): <a href=\"https://www.motherjones.com/politics/2026/09/drinking-water-mississippi-lawsuit/\">[Mother Jones] You Don’t Have a Right to Safe Drinking Water...</a></li><li>The Tyee: <a href=\"https://thetyee.ca/WhatWorks/2026/09/07/Alaska-Sitkana-Tidal-Energy/\">[The Tyee] In Alaska, Sitkana Brings Tidal Energy to the Peo...</a></li><li>Canadian Forest Industries: <a href=\"https://www.woodbusiness.ca/bc-forest-safety-councils-resource-road-driver-training-program-hits-major-milestone/\">[Canadian Forest Industries] BC Forest Safety Council’s Reso...</a></li><li>NYT Business: <a href=\"https://www.nytimes.com/2026/09/03/business/media/fox-news-maria-bartiromo.html\">[NYT Business] Maria Bartiromo Is Out at Fox News</a></li><li>David Nield (ScienceAlert): <a href=\"https://www.sciencealert.com/type-1-diabetes-may-actually-be-two-different-diseases-massive-international-study-finds\">[ScienceAlert] Type 1 Diabetes May Actually Be Two Different...</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Novak Božović (Engadget): <a href=\"https://www.engadget.com/2252773/how-to-know-time-replace-ev-battery/\">[Engadget] How to know it's time to replace your EV battery</a></li><li>Forbes Innovation: <a href=\"https://www.forbes.com/sites/joshpearce/2026/09/05/solar-boost-for-haggis-neeps-and-tatties-with-agrivoltaic-turnips/\">[Forbes Innovation] Solar Boost For Haggis, Neeps And Tattie...</a></li><li>Hyperallergic: <a href=\"https://hyperallergic.com/ice-seizes-22-000-antiquities-in-florida/\">[Hyperallergic] ICE Seizes 22,000 Antiquities in Florida</a></li><li>Vancouver Sun: <a href=\"https://vancouversun.com/opinion/op-ed/opinion-why-canadas-new-pipeline-proposal-threatens-the-salish-sea\">[Vancouver Sun] Opinion: Why Canada&#039;s new pipeline prop...</a></li><li>Peter Dockrill (ScienceAlert): <a href=\"https://www.sciencealert.com/if-your-parents-live-to-100-does-that-mean-you-will-too-the-most-comprehensive-study-yet-has-an-answer\">[ScienceAlert] If Your Parents Live to 100, Does That Mean Y...</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5<br>Today's Voices: Gemini TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-09-13T01:16:51.806240-07:00",
+    "models": {
+      "script": "claude-sonnet-5",
+      "review": "claude-sonnet-5",
+      "summary": "claude-haiku-4-5"
+    },
+    "quality": {
+      "word_count": 3065,
+      "voice_ratio_casey_riley": 0.97,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 0,
+        "pre_validation": 1,
+        "contrastive_negation": 0,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 0,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 4,
+        "roundup_seam": 0,
+        "thats_closer": 1,
+        "false_ranges": 0,
+        "meta_linguistic": 0,
+        "hard_banned": 0
+      },
+      "total_hits": 1,
+      "rhythm": {
+        "em_dashes_per_1k": 12.4,
+        "short_turns": 11,
+        "turns": 83,
+        "avg_turn_words": 35.5,
+        "antithesis_hits": 0,
+        "over_budget": [
+          "em_dashes"
+        ]
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    },
+    "anchor": {
+      "id": "lost-when-easier",
+      "question": "What gets lost when something gets easier?"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[Williams Lake Tribune] 2 mayor, 15 councillor candidates declared in Williams Lake municipal election",
+          "url": "https://wltribune.com/2026/09/12/2-mayor-15-councillor-candidates-declared-in-williams-lake-municipal-election/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 89,
+          "date_published": "2026-09-13T04:03:05.717378+00:00",
+          "summary": "## 2 mayor, 15 councillor candidates declared in Williams Lake municipal election Published 7:41 am Saturday, September 12, 2026 **By Williams Lake Tribune Staff** The nomination period has closed for...",
+          "discussed": true,
+          "mention_offset_frac": 0.0181
+        },
+        {
+          "title": "[Regional News Archives - Williams Lake Tribune] Former B.C. Conservative Teresa Wat joining Peter Milobar’s new party",
+          "url": "https://wltribune.com/2026/09/11/former-b-c-conservative-teresa-wat-joining-peter-milobars-new-party/",
+          "source": "Regional News Archives - Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 52,
+          "date_published": "2026-09-11T18:20:56+00:00",
+          "summary": "Wat becomes the sixth MLA to join the new effort",
+          "discussed": true,
+          "mention_offset_frac": 0.0682
+        },
+        {
+          "title": "[Williams Lake Tribune] Remembering 9/11: Canadians, Americans gather at B.C. border",
+          "url": "https://wltribune.com/2026/09/12/remembering-9-11-canadians-americans-gather-at-b-c-border/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 58,
+          "date_published": "2026-09-12T15:07:00+00:00",
+          "summary": "## Remembering 9/11: Canadians, Americans gather at B.C. border Published 8:07 am Saturday, September 12, 2026 **By Tricia Leslie and Alex Browne** 1/9 A bugler plays Last Post at a 25th anniversary 9...",
+          "discussed": true,
+          "mention_offset_frac": 0.143
+        },
+        {
+          "title": "[Country Life] How Kew planted an American prairie in the heart of Sussex",
+          "url": "https://www.countrylife.co.uk/gardens-interiors/finest-to-visit/the-american-prairie-planted-in-the-heart-of-sussex",
+          "source": "Country Life",
+          "author": "https://www.countrylife.co.uk/author/charles-quest-ritson",
+          "ai_score": 34,
+          "date_published": "2026-09-12T06:00:00+00:00",
+          "summary": "Swathes of American prairie plants are being trialled at Kew Wakehurst in an effort to search for drought-tolerant species for our gardens. Charles Quest-Ritson reports. Photographs by Mimi Connolly.",
+          "discussed": true,
+          "mention_offset_frac": 0.1798
+        },
+        {
+          "title": "[ScienceDaily] Who really needs a heart calcium scan?",
+          "url": "https://www.sciencedaily.com/releases/2026/09/260911214254.htm",
+          "source": "ScienceDaily",
+          "author": "",
+          "ai_score": 72,
+          "date_published": "2026-09-12T14:33:54+00:00",
+          "summary": "A 10-year study of more than 6,000 adults found that popular coronary calcium scans may add little to standard heart disease risk estimates for many people. But for patients with borderline or interme...",
+          "discussed": true,
+          "mention_offset_frac": 0.2206
+        },
+        {
+          "title": "[The Tyee] In Alaska, Sitkana Brings Tidal Energy to the People",
+          "url": "https://thetyee.ca/WhatWorks/2026/09/07/Alaska-Sitkana-Tidal-Energy/",
+          "source": "The Tyee",
+          "author": "",
+          "ai_score": 67,
+          "date_published": "2026-09-07T07:30:00+00:00",
+          "summary": "The startup’s underwater turbines are designed to power isolated communities along the coast.",
+          "discussed": true,
+          "mention_offset_frac": 0.2367
+        },
+        {
+          "title": "[ScienceAlert] Scientists Gave Cash to Low-Income Moms, And It Altered Their Babies' Aging",
+          "url": "https://www.sciencealert.com/scientists-gave-cash-to-low-income-moms-and-it-altered-their-babies-aging",
+          "source": "ScienceAlert",
+          "author": "Peter Dockrill",
+          "ai_score": 50,
+          "date_published": "2026-09-12T19:00:00+00:00",
+          "summary": "Life-changing. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+          "discussed": true,
+          "mention_offset_frac": 0.2397
+        },
+        {
+          "title": "[Engadget] How to know it's time to replace your EV battery",
+          "url": "https://www.engadget.com/2252773/how-to-know-time-replace-ev-battery/",
+          "source": "Engadget",
+          "author": "Novak Božović",
+          "ai_score": 44,
+          "date_published": "2026-09-12T15:30:00+00:00",
+          "summary": "EV batteries usually fade gradually, so the real warning signs are often changes in behavior rather than age alone.",
+          "discussed": false
+        },
+        {
+          "title": "[Vancouver Sun] More B.C. parents opting for private schools: Report",
+          "url": "https://vancouversun.com/news/local-news/more-bc-parents-opting-independent-schools-report",
+          "source": "Vancouver Sun",
+          "author": "",
+          "ai_score": 52,
+          "date_published": "2026-09-12T15:00:27+00:00",
+          "summary": "B.C. has the highest share of students enrolled in independent schools in Canada, says a Fraser Institute study.",
+          "discussed": true,
+          "mention_offset_frac": 0.4613
+        },
+        {
+          "title": "[Forbes Innovation] Solar Boost For Haggis, Neeps And Tatties With Agrivoltaic Turnips",
+          "url": "https://www.forbes.com/sites/joshpearce/2026/09/05/solar-boost-for-haggis-neeps-and-tatties-with-agrivoltaic-turnips/",
+          "source": "Forbes Innovation",
+          "author": "",
+          "ai_score": 49,
+          "date_published": "2026-09-05T15:30:17+00:00",
+          "summary": "A new study reveals agrivoltaics, combining food and solar energy production, significantly boosts turnip yields.",
+          "discussed": false
+        },
+        {
+          "title": "[NYT Well] Broccoli Sprouts Are Recalled Over Link to Salmonella Outbreak",
+          "url": "https://www.nytimes.com/2026/09/10/health/salmonella-broccoli-sprouts-recall.html",
+          "source": "NYT Well",
+          "author": "",
+          "ai_score": 55,
+          "date_published": "2026-09-11T14:46:39+00:00",
+          "summary": "The cases were reported in four states, and led to two hospitalizations. No deaths have been reported.",
+          "discussed": true,
+          "mention_offset_frac": 0.646
+        },
+        {
+          "title": "[Mother Jones] You Don’t Have a Right to Safe Drinking Water, US Court Rules",
+          "url": "https://www.motherjones.com/politics/2026/09/drinking-water-mississippi-lawsuit/",
+          "source": "Mother Jones",
+          "author": "Sophie Hurwitz",
+          "ai_score": 44,
+          "date_published": "2026-09-05T18:29:29+00:00",
+          "summary": "On Friday, the Fifth Circuit Court of Appeals affirmed the dismissal of a lawsuit against the city of Jackson, Mississippi, which alleged the city knowingly let residents drink lead-contaminated water...",
+          "discussed": true,
+          "mention_offset_frac": 0.8182
+        },
+        {
+          "title": "[Canadian Forest Industries] BC Forest Safety Council’s Resource Road Driver Training program hits major milestone",
+          "url": "https://www.woodbusiness.ca/bc-forest-safety-councils-resource-road-driver-training-program-hits-major-milestone/",
+          "source": "Canadian Forest Industries",
+          "author": "",
+          "ai_score": 65,
+          "date_published": "2026-09-11T18:48:35+00:00",
+          "summary": "BC Forest Safety Council (BCFSC) is celebrating a major …",
+          "discussed": true,
+          "mention_offset_frac": 0.8973
+        },
+        {
+          "title": "[NYT Business] Maria Bartiromo Is Out at Fox News",
+          "url": "https://www.nytimes.com/2026/09/03/business/media/fox-news-maria-bartiromo.html",
+          "source": "NYT Business",
+          "author": "",
+          "ai_score": 70,
+          "date_published": "2026-09-04T03:55:05+00:00",
+          "summary": "The dismissal came after Ms. Bartiromo shared internal Fox Business communications with the White House, a person familiar with the details confirmed.",
+          "discussed": true,
+          "mention_offset_frac": 0.9578
+        },
+        {
+          "title": "[Hyperallergic] ICE Seizes 22,000 Antiquities in Florida",
+          "url": "https://hyperallergic.com/ice-seizes-22-000-antiquities-in-florida/",
+          "source": "Hyperallergic",
+          "author": "",
+          "ai_score": 58,
+          "date_published": "2026-09-03T19:14:26+00:00",
+          "summary": "The seizure of the allegedly smuggled artifacts comes amid the agency’s escalating violence and the Department of Homeland Security’s waiver of cultural preservation safeguards.",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Science, Wonder & the Natural World",
+      "articles": [
+        {
+          "title": "[Vancouver Sun] Opinion: Why Canada&#039;s new pipeline proposal threatens the Salish Sea",
+          "url": "https://vancouversun.com/opinion/op-ed/opinion-why-canadas-new-pipeline-proposal-threatens-the-salish-sea",
+          "source": "Vancouver Sun",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-09-12T23:00:32+00:00",
+          "summary": "Margot Venton: A proposed Alberta oil pipeline, Roberts Bank marine terminal expansion and Ottawa's proposal to side step safeguards of the Species at Risk Act could reshape the future of B.C.'s coast...",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] If Your Parents Live to 100, Does That Mean You Will Too? The Most Comprehensive Study Yet Has an Answer.",
+          "url": "https://www.sciencealert.com/if-your-parents-live-to-100-does-that-mean-you-will-too-the-most-comprehensive-study-yet-has-an-answer",
+          "source": "ScienceAlert",
+          "author": "Peter Dockrill",
+          "ai_score": 59,
+          "date_published": "2026-09-05T10:00:00+00:00",
+          "summary": "The largest study yet on the children of centenarians. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+          "discussed": false
+        },
+        {
+          "title": "[ScienceAlert] Type 1 Diabetes May Actually Be Two Different Diseases, Massive International Study Finds",
+          "url": "https://www.sciencealert.com/type-1-diabetes-may-actually-be-two-different-diseases-massive-international-study-finds",
+          "source": "ScienceAlert",
+          "author": "David Nield",
+          "ai_score": 50,
+          "date_published": "2026-09-06T02:00:00+00:00",
+          "summary": "A new disease route is discovered. ScienceAlert stories are written, fact-checked, and edited by humans, never generated by AI. Don't miss a story, subscribe here.",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Should major infrastructure projects like the Roberts Bank Terminal 2 expansion be exempt from Species at Risk Act review when designated as projects of national interest, given that federal assessments have already documented harm to endangered salmon and Southern Resident killer whales?",
+        "riley_position": "While exemptions aren't inherently wrong, removing the review requirement also removes the incentive to engineer mitigation solutions, and with critically endangered killer whale populations numbering only a few dozen, there's no margin for error on undocumented risks.",
+        "riley_key_evidence": [
+          "U.S. Marine Mammal Commission formally raised concerns about the project",
+          "Federal environmental assessments already found the terminal infrastructure interferes with Chinook salmon migration",
+          "Southern Resident killer whale population down to a few dozen individuals total"
+        ],
+        "casey_position": "The exemption mechanism essentially allows the government to bypass a documented finding rather than honestly weigh tradeoffs, and applying it where a species-at-risk finding is concrete and close to a critically endangered population represents a dangerous test case.",
+        "casey_key_evidence": [
+          "The exemption is specifically constructed so the federal finding doesn't have to be answered",
+          "Once the exemption applies, legal accountability for checking compliance is removed entirely",
+          "This watershed touches Cariboo Nations upstream who have monitored and depended on these fish for generations"
+        ],
+        "resolution": "They agreed the exemption shouldn't apply where federal assessments already produced specific findings of harm, and suggested monitoring requirements survive the exemption with quarterly public reporting, though Riley acknowledged lacking a clean answer on enforcement mechanisms once the Species at Risk Act's legal teeth are removed.",
+        "topics_covered": [
+          "Roberts Bank Terminal 2 expansion and pipeline corridor impacts",
+          "Chinook salmon migration interference and killer whale food sources",
+          "Legal accountability and enforcement gaps in exemptions",
+          "Watershed interconnections between coastal projects and upstream Indigenous territories",
+          "Mitigation technology versus incentive structures in environmental policy"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 6,
+          "conditions": "mainly clear",
+          "high": 19,
+          "low": 5
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 7,
+          "conditions": "clear skies",
+          "high": 17,
+          "low": 6
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 7,
+          "conditions": "clear skies",
+          "high": 21,
+          "low": 5
+        },
+        {
+          "name": "Quesnel",
+          "temp": 6,
+          "conditions": "overcast",
+          "high": 20,
+          "low": 4
+        },
+        {
+          "name": "Tatla Lake",
+          "temp": 7,
+          "conditions": "overcast",
+          "high": 22,
+          "low": 5
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Cariboo Chilcotin Conservation Society",
+      "description": "Environmental education nonprofit — Water Wise, Waste Wise, Skates for All, and school field programs since 1996",
+      "website": "conservationsociety.ca",
+      "psa_angle": "It's National Hunting Day. Ethical hunting is part of the Cariboo's heritage and conservation story. The Conservation Society's programs help connect communities with responsible land use.",
+      "event_name": "National Day of the Hunter"
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_azure": "Azure Neural TTS",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "Gemini TTS"
+  }
+}
