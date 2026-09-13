@@ -54,7 +54,7 @@
     "alert_template": "\nSTALE FRAMING ALERT: {count} of the last {window} debates (across all themes) landed on {family}. That framing is used up — today's Deep Dive and its resolution must land somewhere different. Do not let the conversation drift there.\n"
   },
   "gemini_tts": {
-    "description": "Gemini multi-speaker TTS delivery controls. The synthesis prompt is scaffolded as AUDIO PROFILE (per-host lines from hosts.json) / PERFORMANCE NOTES (style_prompt plus the generated speaker and tag rules) / #### TRANSCRIPT, so the model has an explicit boundary between direction and speech. stage_directions.whitelist is the only set of inline [tag] cues the polish pass may add; legacy_whitelist is strip-only, for scripts on disk that still carry the older (wry)-style parenthetical cues.",
+    "description": "Gemini multi-speaker TTS delivery controls. The synthesis prompt is scaffolded as AUDIO PROFILE (per-host lines from hosts.json) / PERFORMANCE NOTES (style_prompt plus the generated speaker and tag rules) / #### TRANSCRIPT, so the model has an explicit boundary between direction and speech. stage_directions.whitelist is the only set of inline [tag] cues the polish pass may add; legacy_whitelist is strip-only, for cues no longer offered - the older (wry)-style parentheticals, and the [short pause] / [long pause] duration cues that Gemini read aloud on 2026-09-13 (pacing is the assembler's job, via the script's own [pause:N] tags).",
     "style_prompt": "- Community radio, not morning radio: two longtime co-hosts, quick minds, wound a bit tight, invested in the topic.\n- No morning-show DJ energy: no hype, no exaggerated laughter, no radio-announcer voice, no forced banter.\n- Conversational, unhurried cadence. Let a point land rather than pushing pace.\n- Plain-spoken and sincere throughout.",
     "stage_directions": {
       "whitelist": [
@@ -63,8 +63,6 @@
         "curiosity",
         "slow",
         "fast",
-        "short pause",
-        "long pause",
         "soft laugh",
         "sighs"
       ],
@@ -75,9 +73,11 @@
         "thoughtful",
         "deadpan",
         "mock-serious",
-        "sighs"
+        "sighs",
+        "short pause",
+        "long pause"
       ],
-      "tag_instruction": "Bracketed tags such as [thoughtfully] or [short pause] are delivery direction for the performer. Perform them lightly. Never speak a bracketed tag aloud.",
+      "tag_instruction": "Bracketed tags such as [thoughtfully] or [warmly] are delivery direction for the performer. Perform them lightly. Never speak a bracketed tag aloud.",
       "polish_instruction": "STAGE DIRECTIONS: You may add sparse inline delivery tags for the voice performers - at most one tag per four to six dialogue turns, and only where the tone shifts. Write the tag in square brackets at the point it applies, usually right after the host tag, e.g. **CASEY:** [thoughtfully] Sure it will. Use only these tags: {cue_list}. Never invent other tags, never stack two tags on one line, and leave most turns untouched. Punctuation carries the rest of the cadence: when a tag lands mid-sentence keep a comma between it and the clause it modifies, and reserve periods for real sentence endings."
     }
   },

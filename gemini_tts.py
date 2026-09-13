@@ -51,6 +51,7 @@ from config_loader import (
     get_gemini_voice_for_host,
     load_hosts_config,
     load_prompts_config,
+    strip_retired_stage_directions,
     strip_stage_directions,
 )
 
@@ -799,11 +800,14 @@ def build_transcript(segments: list[dict], keep_cues: bool = True) -> str:
 
     keep_cues=False strips the whitelisted `[thoughtfully]`-style tags, the way
     the OpenAI and Azure paths always do — a retry rung for when Gemini appears
-    to be rejecting the request rather than failing to serve it.
+    to be rejecting the request rather than failing to serve it. keep_cues=True
+    still drops the *retired* cues: a script on disk may carry one the current
+    prompt no longer explains, and an unexplained cue gets read aloud.
     """
     lines = []
     for seg in segments:
-        text = seg["text"] if keep_cues else strip_stage_directions(seg["text"])
+        text = (strip_retired_stage_directions(seg["text"]) if keep_cues
+                else strip_stage_directions(seg["text"]))
         lines.append(f"{_display_name(seg['speaker'])}: {apply_pronunciation(text)}")
     return "\n".join(lines)
 
@@ -1236,8 +1240,12 @@ def _cloud_access_token() -> str:
 
 
 def _cloud_turn_text(text: str, rung: _Rung) -> str:
-    """One turn's spoken text — pronunciation applied, cues stripped per rung."""
-    cleaned = text if rung.keep_cues else strip_stage_directions(text)
+    """One turn's spoken text — pronunciation applied, cues stripped per rung.
+
+    Retired cues go even on a cue-keeping rung; see build_transcript.
+    """
+    cleaned = (strip_retired_stage_directions(text) if rung.keep_cues
+               else strip_stage_directions(text))
     return apply_pronunciation(cleaned)
 
 
