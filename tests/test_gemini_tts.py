@@ -1560,8 +1560,8 @@ class TestStripStageDirections:
         assert "Sure it will." in result
 
     def test_multi_word_tag_removed(self):
-        result = strip_stage_directions("Fine. [short pause] Let's hear it.")
-        assert "[short pause]" not in result
+        result = strip_stage_directions("Fine. [soft laugh] Let's hear it.")
+        assert "[soft laugh]" not in result
         assert "Fine." in result and "Let's hear it." in result
 
     def test_cue_mid_sentence_removed(self):
@@ -1587,6 +1587,47 @@ class TestStripStageDirections:
     def test_real_bracketed_text_untouched(self):
         text = "The report [sic] named the wrong district."
         assert strip_stage_directions(text) == text
+
+
+class TestRetiredStageDirections:
+    """A duration cue is an instruction with no performance attached, so the
+    model reads it out: 2026-09-13 aired several spoken "short pause"es. Pacing
+    is the assembler's job — the script's own `[pause:N]` tags never reach the
+    model — so the cue is retired, and the Gemini path has to drop it even on
+    the rungs that keep cues, since nothing in the prompt explains a cue the
+    whitelist no longer offers.
+    """
+
+    def test_pause_cues_are_not_offered_to_the_polish_pass(self):
+        from config_loader import load_prompts_config
+        directions = load_prompts_config()["gemini_tts"]["stage_directions"]
+        assert not [c for c in directions["whitelist"] if "pause" in c.lower()]
+        for cue in ("short pause", "long pause"):
+            assert cue in directions["legacy_whitelist"]
+
+    def test_tag_instruction_does_not_name_a_retired_cue(self):
+        """The prompt teaching the tic is the failure `genuinely` documented."""
+        from config_loader import load_prompts_config
+        directions = load_prompts_config()["gemini_tts"]["stage_directions"]
+        assert "pause" not in directions["tag_instruction"].lower()
+
+    def test_retired_cue_stripped_but_live_cue_kept(self):
+        from config_loader import strip_retired_stage_directions
+        result = strip_retired_stage_directions(
+            "[short pause] What stands out (wry) is [thoughtfully] this.")
+        assert "[short pause]" not in result and "(wry)" not in result
+        assert "[thoughtfully]" in result
+
+    def test_cue_keeping_transcript_drops_the_retired_cue(self):
+        segments = [{"speaker": "casey", "text": "[short pause] [thoughtfully] Sure."}]
+        transcript = gemini_tts.build_transcript(segments, keep_cues=True)
+        assert "[short pause]" not in transcript
+        assert "[thoughtfully]" in transcript
+
+    def test_cloud_turn_text_drops_the_retired_cue(self):
+        rung = next(r for r in gemini_tts.RETRY_LADDER if r.keep_cues)
+        assert "[short pause]" not in gemini_tts._cloud_turn_text(
+            "[short pause] Sure.", rung)
 
 
 class TestProviderResolution:

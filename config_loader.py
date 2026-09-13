@@ -294,18 +294,31 @@ def get_speed_for_host(host_key):
     """Get OpenAI TTS speed multiplier for a host (defaults to 1.0)."""
     return load_hosts_config()[host_key].get("speed", 1.0)
 
-@lru_cache(maxsize=1)
-def _stage_direction_pattern():
+def _stage_direction_cues():
+    directions = (load_prompts_config().get("gemini_tts", {})
+                  .get("stage_directions", {}))
+    return (list(directions.get("whitelist", [])),
+            list(directions.get("legacy_whitelist", [])))
+
+
+@lru_cache(maxsize=2)
+def _stage_direction_pattern(retired_only=False):
     """Compiled pattern matching whitelisted [tag] / (cue) directions, or None.
 
     Both delimiters, and both whitelists. Cues are written `[thoughtfully]` now
     that the Gemini prompt is scaffolded the way the model documents, but every
     script already on disk carries the older `(wry)` parentheticals and a
     re-render of one still has to strip them for the OpenAI and Azure paths.
+
+    retired_only=True narrows it to the cues the whitelist no longer offers —
+    what a *Gemini* re-render of an old script has to drop even on the rung that
+    keeps cues, since nothing in the prompt tells the model what a retired cue
+    means. That is how `[short pause]` reached air on 2026-09-13: a duration
+    cue is an instruction with no performance attached, so the model read it.
     """
-    directions = (load_prompts_config().get("gemini_tts", {})
-                  .get("stage_directions", {}))
-    cues = list(directions.get("whitelist", [])) + list(directions.get("legacy_whitelist", []))
+    whitelist, legacy = _stage_direction_cues()
+    cues = [c for c in legacy if c.lower() not in {w.lower() for w in whitelist}] \
+        if retired_only else whitelist + legacy
     if not cues:
         return None
     alternatives = "|".join(re.escape(c) for c in dict.fromkeys(cues))
@@ -322,6 +335,17 @@ def strip_stage_directions(text):
     genuine parenthetical dialog is never touched.
     """
     pattern = _stage_direction_pattern()
+    return pattern.sub("", text) if pattern else text
+
+
+def strip_retired_stage_directions(text):
+    """Remove only the cues the whitelist has retired, keeping the live ones.
+
+    The Gemini path hands cues through verbatim on the rungs that keep them, so
+    a script written under an older whitelist would still ship a cue the prompt
+    no longer explains. This is the one filter that runs on that path.
+    """
+    pattern = _stage_direction_pattern(retired_only=True)
     return pattern.sub("", text) if pattern else text
 
 def render_credits_text(tts_credit):

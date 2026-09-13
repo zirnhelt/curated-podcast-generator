@@ -771,7 +771,19 @@ Cues are inline `[thoughtfully]` tags now, from the documented vocabulary
 (`cheerfully`, `enthusiasm`, `gasp`) are deliberately not in it: the show has no
 morning-DJ register to reach for. `legacy_whitelist` is strip-only, so the
 `(wry)`-style parentheticals in every script already on disk still get cleaned on a
-re-render. **The never-speak-a-tag rule is not in `style_prompt`** — it rides with the
+re-render.
+
+**A duration cue is not a manner cue, and the model reads it out.** `short pause` and
+`long pause` were in the whitelist, the `tag_instruction` used `[short pause]` as its
+worked example, and on 2026-09-13 the episode aired several spoken "short pause"es. Every
+other cue names *how* to say the next words; these two name an absence, so there is nothing
+to perform and the text is all that is left. They are retired to `legacy_whitelist` rather
+than reworded, because **pacing is already the assembler's job**: `_extract_pacing_tag`
+parses the script's own `[pause:N]` tags into real inter-turn gaps before TTS sees them, so
+the word forms were a second channel for something the pipeline already did exactly.
+`strip_retired_stage_directions` drops them on the cue-*keeping* rungs too — the whitelist
+is what the prompt explains, so any cue outside it is unexplained text no matter which rung
+is running, and 200+ scripts on disk carry them. **The never-speak-a-tag rule is not in `style_prompt`** — it rides with the
 tags (`tag_instruction`), so the rung that sheds the style cannot ship tags with nothing
 saying they are direction.
 
@@ -878,11 +890,30 @@ active backend's.
   chars and the real news/deep-dive size range against the wall — the invariant that would
   have caught this before a probe did.
 
-**Cloud leads with pro (Option B), flash second.** Audio output is $10/MTok on both; pro
-costs more only on input tokens (a fraction of a cent an episode), so pro buys the better
-dialog for ~free, and flash — which answers faster — is the rung a pro timeout falls to. If
-the probe shows pro timing out too often, set `GEMINI_TTS_MODEL` to flash; the ladder
-already treats the slower model as the thing to fall past.
+**Cloud leads with pro (Option B), flash second** — and the reason given for it was wrong.
+"Audio output is $10/MTok on both, so pro buys the better dialog for ~free" is the studio
+price list; the [Cloud TTS page](https://cloud.google.com/text-to-speech/pricing) charges
+**Gemini 2.5 Pro TTS $1.00 in / $20.00 out per MTok against flash's $0.50 / $10.00**, and
+audio output is essentially the whole bill. On this surface pro is a **2x** decision, not a
+free one.
+
+**Measured on the first all-Gemini episode (2026-09-13, run 34746805021).** Audio tokens
+bill at 25/second, so a 20-minute episode is ~30k output tokens including the canary and the
+one pro chunk that timed out after being synthesized:
+
+| | pro | flash | OpenAI `tts-1` |
+|---|---|---|---|
+| audio out | ~30.6k tok @ $20/MTok = **$0.61** | @ $10/MTok = **$0.31** | 18.2k chars @ $15/1M = **$0.27** |
+| text in | ~9k tok @ $1/MTok = $0.01 | @ $0.50 = $0.005 | — |
+| ~30 days | **~$18.60** | **~$9.20** | ~$8.20 |
+
+**The render clock is the sharper cost.** That episode spent **832 s of the 1 500 s
+`GEMINI_RENDER_DEADLINE_S`** on pro — 55%, matching the ~830 s this section predicted — and
+one deep-dive chunk burned its full 142 s leash on pro before flash served the same request
+in 48.9 s. So pro costs 2x the money *and* half the headroom that keeps a bad night on
+Gemini's voices at all. Set the `GEMINI_TTS_CLOUD_MODEL` repository variable to
+`gemini-2.5-flash-tts` unless the dialog difference is audible enough to be worth both; the
+ladder already treats the slower model as the thing to fall past.
 
 **Default stays `studio` until the probe clears the 8/15 baseline — GA is not "measured
 here" until it is measured here.** Probe the cloud surface exactly like a new model, with a
@@ -1210,6 +1241,18 @@ list") had been in the prompt the whole time.
   Sunday that aired without its Sunday segment, and until 2026-09-06 the only trace of that
   decision was one line in the job log. "Was that by design?" is a question the run report
   should answer without anyone reading the log.
+  - **That promise had three holes and 2026-09-13 fell through one.** The segment vanished
+    with no API call, no print and no row: `script/day-specific-inserts` opened and closed
+    empty. The paths that skip *before* the model — an empty changelog, a missing client —
+    and the caller's drop when the script carries no `**COMMUNITY SPOTLIGHT**` to splice
+    ahead of all returned `""` in silence, so only the model's own NONE was ever reported.
+    All three degrade now.
+  - **An empty changelog is not evidence of a quiet week.** `_git` returned `""` for a
+    *failed* command as readily as for no commits, which made the two indistinguishable —
+    the same silence, from the same helper, that left every `reviews/review_*.md` a bare
+    header since launch (`periodic-review.yml` checked out at depth 1, so `git log --since`
+    had no week to read; it now checks out `fetch-depth: 0`). `_git` prints the exit code
+    and stderr now, and the degradation says the row cannot tell which of the two it was.
 - **Nothing listener-facing goes in the prompt unconditionally.** The sentence telling the
   hosts to say "transcripts in your podcast app" handed them a topic, and they used it in a
   week with no transcript commit; it now appears only when a commit earns it. The prompt

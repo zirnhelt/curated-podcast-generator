@@ -26,6 +26,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          # review_scripts.py reads the week from `git log --since`. The default
+          # depth-1 checkout has no week to read, so every review since launch
+          # shipped as a header and nothing else — silently, because an empty
+          # log and a quiet week are the same answer.
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0

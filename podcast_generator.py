@@ -8370,10 +8370,22 @@ def generate_meta_moment_text(changelog: str) -> str:
     evidence. So the reply may now be NONE, must cite the commit line behind
     every change it airs, and is checked against that list before it is spliced.
     """
+    # Both of these returned "" in silence until 2026-09-13, when the Sunday
+    # segment disappeared leaving no API call, no log line and no row in the run
+    # report — the one outcome every other drop path here is written to prevent.
+    # An empty changelog is not self-evidently a quiet week: `_git` returns ""
+    # for a failed command too, so the row has to say which question went
+    # unanswered rather than implying the model was asked and declined.
     if not changelog:
+        degrade("script/meta-moment",
+                "no generator-shaping commits found for the week — either a genuinely "
+                "quiet week or a failed `git log` (its own warning says which); the "
+                "segment was never generated")
         return ""
     client = get_anthropic_client()
     if not client:
+        degrade("script/meta-moment",
+                "no Anthropic client — the episode airs without the segment")
         return ""
     subjects = [line.strip().lstrip("-").strip() for line in changelog.splitlines() if line.strip()]
     hosts_config = CONFIG.get('hosts', {})
@@ -10948,6 +10960,13 @@ def run_script_stage() -> tuple[str, str] | None:
                 meta_text = generate_meta_moment_text(get_weekly_changelog())
                 if meta_text and "**COMMUNITY SPOTLIGHT**" in script:
                     script = script.replace("**COMMUNITY SPOTLIGHT**", meta_text + "\n\n**COMMUNITY SPOTLIGHT**", 1)
+                elif meta_text:
+                    # The segment was written and paid for, and then had nowhere
+                    # to go. Silently dropping a generated segment is the same
+                    # failure as silently skipping one.
+                    degrade("script/meta-moment",
+                            "segment generated but the script carries no COMMUNITY SPOTLIGHT "
+                            "header to splice it ahead of — dropped")
 
         # The script file is the stage's product and the audio stage's only
         # input. If this cannot be written there is nothing to commit and

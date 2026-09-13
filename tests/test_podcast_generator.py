@@ -2577,6 +2577,25 @@ class TestGenerateMetaMomentText:
         monkeypatch.setattr("podcast_generator.get_anthropic_client", lambda: None)
         assert generate_meta_moment_text("- Some change") == ""
 
+    def test_empty_changelog_degrades(self, monkeypatch):
+        """2026-09-13: the Sunday segment vanished with no API call, no log line
+        and no row in the run report. Every other drop path here degrades; these
+        two returned in silence, so the report could not say the segment was
+        never even asked for."""
+        import podcast_generator as pg
+        recorded = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: recorded.append((name, detail)))
+        assert generate_meta_moment_text("") == ""
+        assert [name for name, _ in recorded] == ["script/meta-moment"]
+
+    def test_missing_client_degrades(self, monkeypatch):
+        import podcast_generator as pg
+        recorded = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: recorded.append((name, detail)))
+        monkeypatch.setattr(pg, "get_anthropic_client", lambda: None)
+        assert generate_meta_moment_text("- Some change") == ""
+        assert [name for name, _ in recorded] == ["script/meta-moment"]
+
     def test_builds_multi_turn_dialogue_block(self, monkeypatch):
         monkeypatch.setattr(
             "podcast_generator.get_anthropic_client",

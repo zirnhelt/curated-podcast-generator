@@ -223,8 +223,21 @@ def excerpt_script(content: str, max_chars: int = 8000) -> str:
 
 
 def _git(*args: str) -> str:
+    """Run git, returning stdout — or "" when the command fails.
+
+    The failure is printed rather than swallowed. An empty result reads as "no
+    commits this week" to every caller, so a broken git (a shallow clone, a
+    missing pathspec, dubious ownership) looks exactly like a quiet week: the
+    Sunday Meta Moment vanished on 2026-09-13 with nothing in the log naming
+    which of the two it was.
+    """
     result = subprocess.run(["git", *args], capture_output=True, text=True)
-    return result.stdout.strip() if result.returncode == 0 else ""
+    if result.returncode != 0:
+        detail = (result.stderr or "").strip().splitlines()
+        print(f"   ⚠️  git {' '.join(args[:2])} failed (exit {result.returncode}): "
+              f"{detail[0] if detail else 'no stderr'}")
+        return ""
+    return result.stdout.strip()
 
 
 def _prompt_template_diff(commit_hash: str) -> str:
