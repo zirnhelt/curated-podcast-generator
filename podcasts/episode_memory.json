@@ -1,26 +1,4 @@
 {
-  "2026-08-08": {
-    "timestamp": 1786179675.143246,
-    "topics": [
-      "[Williams Lake Tribune] \u2018I\u2019ve lost about 8 people to suicide",
-      "[ScienceDaily] Wearable ultrasound patch boosts REM sleep wi",
-      "[ScienceDaily] Scientists find unexpected life on \u00d6tzi the I",
-      "[Toms Guide] Update your Mac right now to block this major s",
-      "[The Northern Miner] US unveils $2B of financing commitments",
-      "[Williams Lake Tribune] Orange, yellow air quality warnings ",
-      "[Williams Lake Tribune] BC Wildfire Service prepared for bus",
-      "[New Atlas] Hands-on with Zeiss's new aircraft holographic t"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "connectivity"
-    ],
-    "date": "2026-08-08",
-    "focus": null,
-    "focus_name": null
-  },
   "2026-08-09": {
     "timestamp": 1786266194.565032,
     "topics": [
@@ -744,5 +722,26 @@
     "date": "2026-09-12",
     "focus": null,
     "focus_name": null
+  },
+  "2026-09-13": {
+    "timestamp": 1789287421.620687,
+    "topics": [
+      "[Williams Lake Tribune] 2 mayor, 15 councillor candidates de",
+      "[Regional News Archives",
+      "[Williams Lake Tribune] Remembering 9/11: Canadians, America",
+      "[ScienceDaily] Who really needs a heart calcium scan?",
+      "[Country Life] How Kew planted an American prairie in the he",
+      "[Vancouver Sun] Opinion: Why Canada&#039;s new pipeline prop",
+      "[ScienceAlert] If Your Parents Live to 100, Does That Mean Y",
+      "[ScienceAlert] Type 1 Diabetes May Actually Be Two Different"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact"
+    ],
+    "date": "2026-09-13",
+    "focus": "sky-cosmos",
+    "focus_name": "Sky & Cosmos"
   }
 }
