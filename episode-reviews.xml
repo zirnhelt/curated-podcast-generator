@@ -5,37 +5,39 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Sun, 13 Sep 2026 10:05:51 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 13 Sep 2026 14:53:50 +0000</lastBuildDate>
     <item>
       <title>Episode Review — Cariboo Signals, September 13, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-13.html</link>
       <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-13.html</guid>
-      <pubDate>Sun, 13 Sep 2026 10:05:51 +0000</pubDate>
+      <pubDate>Sun, 13 Sep 2026 14:53:50 +0000</pubDate>
       <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/34746805021"&gt;34746805021&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h3&gt;Body text budget exhausted mid-run&lt;/h3&gt;
+&lt;h3&gt;Three manual runs, then the fallback kicked in at 288 minutes late&lt;/h3&gt;
 
-&lt;p&gt;The pipeline burned through its Brave API body-backfill budget (12 calls) before reaching the end of the roundup. Thin articles kept their stub bodies and faced potential cuts as sparse. This is a known throttle, not a failure—the system chose to preserve script integrity over complete article flesh-out. What shipped was 3,065 words after one expand pass, bringing a 2,869-word first draft up to usable length.&lt;/p&gt;
+&lt;p&gt;The pipeline executed three successful manual triggers between 08:05 and 10:09 UTC on September 13, each completing in under 33 minutes. A fourth run, tagged as "Fallback 2 (3:05 AM Pacific)," started at 14:53 UTC—nearly five hours after the scheduled window—and remains in progress. The trigger suggests an automated retry fired after earlier attempts failed to publish on schedule.&lt;/p&gt;
 
-&lt;h3&gt;Citation alignment gaps widening&lt;/h3&gt;
+&lt;h3&gt;Script came short, expanded, and shipped 3,065 words&lt;/h3&gt;
 
-&lt;p&gt;Roundup citations matched 12 of 15 sourced articles. Deep dive citations matched 1 of 3. The mismatch between sourced material and what made it into narration suggests either source selection outpaced script integration, or the expand pass prioritized word count over citation density. This is the trade-off when targeting a specific word range under API constraints.&lt;/p&gt;
+&lt;p&gt;The first draft reached 2,869 words against a 3,400-word target. The pipeline sent it back for one expansion pass rather than shipping under. The expanded script that reached listeners was 3,065 words—still 335 words below target, but closer enough that the system accepted it.&lt;/p&gt;
 
-&lt;h3&gt;One segment switched TTS models mid-render&lt;/h3&gt;
+&lt;h3&gt;Citation matching fractured between roundup and deep dive&lt;/h3&gt;
 
-&lt;p&gt;The Gemini Take section synthesized on retry 1 using Gemini 2.5 Flash TTS after the primary path failed. Nothing was dropped—the section completed—but audio delivery may differ from the rest of the episode. The pipeline kept the segment live rather than truncate.&lt;/p&gt;
+&lt;p&gt;The roundup section matched 12 of 15 citations (80% alignment). The deep dive matched only 1 of 3 (33% alignment). The debate question on the Roberts Bank Terminal 2 expansion proceeded despite this disparity in source verification.&lt;/p&gt;
 
-&lt;h3&gt;Dropped roundup items at 42&lt;/h3&gt;
+&lt;h3&gt;Brave API budget exhausted; thin articles kept their stubs&lt;/h3&gt;
 
-&lt;p&gt;42 roundup articles did not make the script. This is the pruning floor: items cut for thinness, citation gaps, or budget exhaustion. Against 229 total RSS episodes in the feed and 3 deep dives that shipped, the roundup represents the highest-volume content churn.&lt;/p&gt;
+&lt;p&gt;Five identical degradation warnings flagged that the Brave body-backfill budget spent after 12 calls. Remaining articles with sparse content kept their stub bodies instead of receiving expanded text. These thin segments remain in the script and risk being cut downstream.&lt;/p&gt;
 
-&lt;h3&gt;Voice balance and debate framing&lt;/h3&gt;
+&lt;p&gt;The system made 3 calls to Brave-Answers out of 7 total API calls (the remainder to Claude). Those 3 calls did not refill the 12-call Brave budget—the budget was already consumed by prior segment work, leaving no capacity for article enrichment on this run.&lt;/p&gt;
 
-&lt;p&gt;Casey-to-Riley voice ratio settled at 0.97, nearly balanced. One AI tell pattern was detected in the script. The debate question—whether infrastructure projects of national interest should bypass Species at Risk Act review—carried documented harm to endangered salmon and Southern Resident killer whales through the framing. Audio ran 20 minutes. Video file was 64.2 MB.&lt;/p&gt;
+&lt;h3&gt;Gemini rendered one section on retry; tonal consistency uncertain&lt;/h3&gt;
 
-&lt;h3&gt;Run timing and compute cost&lt;/h3&gt;
+&lt;p&gt;The "gemini-take" segment required a retry using Gemini 2.5 Flash TTS. The system noted that delivery may differ from the rest of the episode. No content was dropped during this retry—only the voice model changed mid-episode.&lt;/p&gt;
 
-&lt;p&gt;Two completed runs executed on manual dispatch at 08:05 and 09:05 UTC. A third began at 10:05 and remained in progress at review time. Render audio took 857 seconds; script generation took 607 seconds. The pipeline consumed 88,161 Anthropic input tokens across 7 Claude calls and 3 Brave answer calls.&lt;/p&gt;
+&lt;h3&gt;Episode published at 20 minutes and 18.3 MB audio&lt;/h3&gt;
+
+&lt;p&gt;The final audio shipped at 20.0 minutes, 18.3 MB. Video rendered to 20.0 minutes, 64.2 MB. RSS shows 229 episodes in the feed. One AI tell-pattern hit flagged in quality review. Voice ratio of Casey over Riley measured 0.97.&lt;/p&gt;
 
 &lt;h3&gt;The day's triggers&lt;/h3&gt;
 &lt;table&gt;
@@ -43,7 +45,8 @@
 &lt;tbody&gt;
 &lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-13T08:05:10Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-13T09:05:09Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-13T10:05:13Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-13T10:05:13Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-09-13T14:53:16Z&lt;/td&gt;&lt;td&gt;+288 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
