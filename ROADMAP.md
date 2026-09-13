@@ -39,7 +39,7 @@ cannot reopen it. Anything written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-12) — 22 open.
+_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-13) — 22 open.
 Check a box to close one; it comes back only if the reviews raise it 2 more times._
 
 - [ ] **A credit-balance 400 is not the usage-limit wall, and every run pays for that.**
@@ -177,14 +177,14 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       of Claude output) in the script. The system did not remove it before shipping. The pattern
       was detected but the removal step either failed silently or was not enforced. Add a hard
       gate that blocks episode publication if any flagged patterns remain after review, or
-      escalate unresolved flags to manual approval before render begins. (seen in 3 reviews,
-      latest 2026-09-09)
+      escalate unresolved flags to manual approval before render begins. (seen in 4 reviews,
+      latest 2026-09-13)
 - [ ] **Casey's speaking time exceeds Riley's by 13 percent.** The voice_ratio_casey_over_riley
       measured 1.13 on 2026-09-04. No target range is defined in the config, so it is unclear
       whether this represents acceptable variance or systematic drift. Establish a target voice
       ratio (e.g., 1.0 or 1.05) in the episode config and add a quality check that flags ratios
       outside a defined band. If this ratio persists across future runs, adjust the host
-      distribution weights in the synthesis prompt. (seen in 2 reviews, latest 2026-09-11)
+      distribution weights in the synthesis prompt. (seen in 3 reviews, latest 2026-09-13)
 - [ ] **Script expansion stopped one pass early despite remaining below target.** The first
       draft shipped at 2,512 words against a 3,400-word target, triggering one expand pass. The
       result was 2,994 words—406 words short—and the pipeline accepted this without retry. The
@@ -200,8 +200,8 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       fixed call budget that does not reset between runs or scale with article volume. To close
       this: either expand the Brave quota in config, implement per-article fallback logic that
       drops sparse articles before scripting rather than airing them, or track Brave spend
-      across runs and alert when 80% of the budget is consumed. (seen in 3 reviews, latest
-      2026-09-12)
+      across runs and alert when 80% of the budget is consumed. (seen in 4 reviews, latest
+      2026-09-13)
 - [ ] **Deep-dive citations matched at 67 percent while roundup citations matched at 93
       percent.** On 2026-09-08, roundup sections achieved 14 of 15 citations verified (93%), but
       deep-dive sections achieved only 2 of 3 (67%). This gap is flagged in the published review
@@ -210,7 +210,7 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       require different citation handling than roundup wire-service articles. To close this:
       audit the three deep-dive articles from this run to identify why citation verification
       failed, then adjust the citation-matching logic for long-form sources or add a manual
-      review step before deep-dive scripting. (seen in 3 reviews, latest 2026-09-11)
+      review step before deep-dive scripting. (seen in 4 reviews, latest 2026-09-13)
 
 <!-- reviews:end -->
 
