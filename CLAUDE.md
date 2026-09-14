@@ -762,9 +762,51 @@ the show is a boundary failure: the cold open read aloud twice (see `CONTINUATIO
 a stage direction spoken as dialogue. The marker is the boundary, so the model never has
 to infer one from a colon at the end of a sentence.
 
-That does put `Riley: <description>` lines above the marker, which is the transcript's own
-shape. It is the format Google documents and the marker is what separates them — but if an
-episode ever reads a profile line aloud, that collision is the first thing to change.
+**That collision happened on 2026-09-14 and the profile lines are gone.** The episode read
+the hosts' own personality descriptions out on air more than once, and the render log rules
+out every other explanation: twelve cloud calls on `gemini-2.5-flash-tts`, all answered on
+the first attempt, no rung climbed, no model swapped, no degradation recorded. Nothing
+failed — the request asked for it. `Riley: Host. Earnest and intense…` is a transcript turn
+on studio and a flattened `multiSpeakerMarkup` turn on cloud, and the cloud backend is the
+worse place for it: there is no transcript in the prompt at all, so the profile lines were
+the only thing in the request shaped like speech.
+
+**A second pointer aimed the model straight at them.** The speaker sentence read "alternating
+exactly as the speaker labels *below* set it out" — written for studio, where labels do sit
+below. On cloud the turns ride structured in `multiSpeakerMarkup`, so there was nothing
+below, and the only labels anywhere in the request were the profile lines above. Direction
+copy that describes the studio layout is a live hazard on the other backend; keep it
+backend-neutral.
+
+Direction lines are now `- Delivery for Riley — …`, which keeps the binding to the pinned
+voice and cannot parse as a turn, and the header says so (`### AUDIO PROFILE — direction,
+never spoken`). **No line in either backend's direction may begin with a speaker name** —
+there is a test sweeping both.
+
+**Describe the register, never the register to avoid.** The same episode was sing-song
+against a script that is anything but. The direction spent eight negations on it — "Never
+peppy, bubbly, perky or bright", "Never laid-back, breezy or slangy", "No morning-show DJ
+energy: no hype, no exaggerated laughter, no radio-announcer voice" — and the words a TTS
+model actually receives are *peppy, bubbly, perky, bright, breezy, hype, laughter,
+announcer*, which is a fair description of what shipped. This is the prompt-teaching-the-tic
+failure from the AI-tells section, on the audio side: a ban list written in the register it
+bans. `style_prompt` and both `gemini_audio_profile`s now say what the delivery *is*, and
+name the intonation positively ("pitch falls at the end of a statement and stays in a narrow
+range"). A test asserts the burned adjectives stay out of the request.
+
+**Speaker order is canonical, not first-to-speak** (`_ordered_speakers`). It was
+`dict.fromkeys(seg["speaker"] …)`, so the chunk's opener led — and 2026-09-14 alternated
+`Riley=Kore, Casey=Iapetus` with `Casey=Iapetus, Riley=Kore` across its twelve calls,
+reordering the profile lines, the voice-config array and the "between X and Y" sentence with
+it. The voices were never wrong (they bind by name) and the personalities still drifted
+segment to segment, which is the complaint it answers. Cloud pins no `seed` and no
+`temperature`, so **byte-identical direction on every chunk is the only consistency lever
+the backend leaves** — anything that varies the prompt per chunk is varying the performance.
+
+The direction block is 1 179 of the 1 200 bytes `CLOUD_PROMPT_BYTE_RESERVE` holds back, so
+there is ~20 bytes of room. Growing it is not free in the obvious direction either: raising
+the reserve shrinks every chunk, which buys *more* independent sampling draws, which is the
+drift above. Trim before you raise.
 
 Cues are inline `[thoughtfully]` tags now, from the documented vocabulary
 (`whitelist`), not invented ones — custom tags read flatter. Hype tags
@@ -919,6 +961,16 @@ ladder already treats the slower model as the thing to fall past.
 here" until it is measured here.** Probe the cloud surface exactly like a new model, with a
 real key: `GEMINI_TTS_BACKEND=cloud python evaluate_tts.py --probe-models --section
 deep_dive` (TTS Eval workflow, `backend: cloud`).
+
+**The code default is still `studio`; production is not.** The repository variables now read
+`GEMINI_TTS_BACKEND=cloud`, `GEMINI_TTS_MODEL=gemini-2.5-flash-tts`,
+`GEMINI_TTS_FALLBACK_MODEL=gemini-2.5-pro-tts` — flash-first, as the cost table above argues
+for — and the nightly has been rendering whole episodes there since 2026-09-13. **Read the
+render log before reasoning about an episode's audio**, because the `studio` default in this
+file is not what shipped: the `[api] … service=gemini-cloud-tts model=… latency=` lines name
+the backend, the model and every chunk. On 2026-09-14 that is what separated "the endpoint
+is flaky" from "the request asked for it" — twelve calls, twelve first-attempt answers, and
+the defect was entirely in the prompt.
 
 **`READ_TIMEOUT_MS_PER_CHAR` was refitted against cloud on 2026-09-12 and did not move —
 but not for the reason the first cloud probe suggested.** Two probes, 3 calls per model

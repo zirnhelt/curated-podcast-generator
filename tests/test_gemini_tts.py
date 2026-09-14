@@ -131,6 +131,69 @@ class TestBuildPayload:
         for host in ("riley", "casey"):
             assert get_gemini_audio_profile_for_host(host) in profile
 
+    def test_no_direction_line_is_shaped_like_a_transcript_turn(self):
+        """The 2026-09-14 failure: the hosts read their own personality
+        descriptions on air. The profile lines were `Riley: Host. Earnest...`,
+        which is exactly a transcript turn on studio and a flattened
+        multiSpeakerMarkup turn on cloud. Nothing above the marker — and
+        nothing in cloud's direction-only prompt — may start `Name:` or
+        otherwise open with a bare speaker name.
+        """
+        names = [gemini_tts._display_name(h) for h in ("riley", "casey")]
+        studio = _build_payload(SEGS)["contents"][0]["parts"][0]["text"]
+        directions = [
+            studio.split(gemini_tts.TRANSCRIPT_MARKER)[0],
+            gemini_tts._cloud_prompt(["riley", "casey"], True, gemini_tts.RETRY_LADDER[0]),
+        ]
+        for block in directions:
+            for line in block.splitlines():
+                for name in names:
+                    assert not line.lstrip("- ").startswith(f"{name}:"), line
+                    assert not line.startswith(f"{name} "), line
+
+    def test_direction_never_names_a_label_that_is_not_there(self):
+        """"the speaker labels below" pointed the model at the only labels in
+        the request — the profile lines — and on cloud there is nothing below
+        the prompt at all, because the turns ride structured."""
+        for block in (
+            _build_payload(SEGS)["contents"][0]["parts"][0]["text"].split(
+                gemini_tts.TRANSCRIPT_MARKER)[0],
+            gemini_tts._cloud_prompt(["riley", "casey"], True, gemini_tts.RETRY_LADDER[0]),
+        ):
+            assert "below" not in block.lower()
+
+    def test_speaker_order_is_stable_across_chunks(self):
+        """Ordering by whoever opens the chunk flipped the profile lines, the
+        voice-config array and the `between X and Y` sentence several times
+        inside one episode, so each section asked for the register in a
+        different order. Cloud pins no seed, so identical direction is the only
+        consistency lever left."""
+        casey_first = [
+            {"speaker": "casey", "text": "One.", "gap_ms": None},
+            {"speaker": "riley", "text": "Two.", "gap_ms": None},
+        ]
+        riley_first = list(reversed(casey_first))
+        assert (gemini_tts._ordered_speakers(casey_first)
+                == gemini_tts._ordered_speakers(riley_first)
+                == ["riley", "casey"])
+        for build, dig in (
+            (_build_payload, lambda p: p["contents"][0]["parts"][0]["text"]
+             .split(gemini_tts.TRANSCRIPT_MARKER)[0]),
+            (gemini_tts._build_cloud_payload, lambda p: p["input"]["prompt"]),
+        ):
+            assert dig(build(casey_first)) == dig(build(riley_first))
+
+    def test_direction_does_not_name_the_register_it_forbids(self):
+        """A negation hands a TTS model the vocabulary it names. The old
+        direction spent eight of them on `peppy, bubbly, perky, bright,
+        breezy, hype, exaggerated laughter, radio-announcer` — a fair
+        description of the sing-song delivery that shipped on 2026-09-14."""
+        block = gemini_tts._cloud_prompt(
+            ["riley", "casey"], True, gemini_tts.RETRY_LADDER[0]).lower()
+        for word in ("peppy", "bubbly", "perky", "bright", "breezy", "hype",
+                     "laughter", "announcer", "dj energy", "slangy"):
+            assert word not in block, word
+
     def test_tag_rule_travels_with_the_tags(self):
         """The never-speak-a-tag rule used to live in the style prompt, so the
         rung that dropped the style still sent tags with nothing saying they

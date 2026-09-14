@@ -233,7 +233,7 @@ CONTINUATION_NOTE = (
 # aloud twice (see CONTINUATION_NOTE), a stage direction spoken as dialogue — so
 # the request now says where the transcript starts rather than leaving the model
 # to infer it from a colon at the end of a sentence.
-AUDIO_PROFILE_HEADER = "### AUDIO PROFILE"
+AUDIO_PROFILE_HEADER = "### AUDIO PROFILE — direction, never spoken"
 PERFORMANCE_NOTES_HEADER = "### PERFORMANCE NOTES"
 TRANSCRIPT_MARKER = "#### TRANSCRIPT"
 
@@ -751,9 +751,21 @@ def _audio_profile_block(speakers: list[str]) -> str:
 
     Voices are pinned by speechConfig, so this is not what selects them; it is
     what tells the model how the pinned voice is meant to carry a line.
+
+    **No line here may begin `Name:`,** which is the shape of a transcript turn
+    on the studio path and of a flattened `multiSpeakerMarkup` turn on cloud.
+    CLAUDE.md named this collision when the scaffolding was written — "if an
+    episode ever reads a profile line aloud, that collision is the first thing
+    to change" — and 2026-09-14 is that episode: the hosts read their own
+    personality descriptions out on air, more than once, on a night whose
+    render log shows twelve clean first-attempt cloud calls and not one retry.
+    So it is not a flaky endpoint and not a rung problem; the request asked for
+    it. `Delivery for Riley — …` keeps the binding between the direction and
+    the pinned voice while being unparseable as speech.
     """
     lines = [
-        f"{_display_name(s)}: {get_gemini_audio_profile_for_host(s)}".rstrip(": ")
+        f"- Delivery for {_display_name(s)} — {get_gemini_audio_profile_for_host(s)}"
+        .rstrip(" —")
         for s in speakers
     ]
     return AUDIO_PROFILE_HEADER + "\n" + "\n".join(lines)
@@ -771,10 +783,13 @@ def _performance_notes_block(
     if len(speakers) == 1:
         notes = [f"One voice throughout, read aloud by {names}."]
     else:
-        notes = [
-            f"A conversation between {names}, alternating exactly as the "
-            "speaker labels below set it out."
-        ]
+        # Never "the speaker labels below": on cloud there is nothing below —
+        # the turns ride structured in multiSpeakerMarkup — so the sentence sent
+        # the model hunting for labels, and the only ones in the request were the
+        # `Riley:`-shaped profile lines above. Two independent pointers at the
+        # same text, which is how it ended up spoken. Backend-neutral wording
+        # keeps the studio path honest too.
+        notes = [f"A conversation between {names}, alternating turn by turn."]
     if rung.keep_style and (style := _style_prompt()):
         # The style prompt carries its own leading dashes, so it lands as
         # sibling bullets rather than one wrapped paragraph.
@@ -812,6 +827,31 @@ def build_transcript(segments: list[dict], keep_cues: bool = True) -> str:
     return "\n".join(lines)
 
 
+def _ordered_speakers(segments: list[dict]) -> list[str]:
+    """The chunk's speakers in hosts.json order, not first-to-speak order.
+
+    Every chunk of an episode is an independent sampling draw, and on the cloud
+    backend there is no seed or temperature to pin prosody across them — so the
+    only consistency lever left is sending byte-identical direction every time.
+    `dict.fromkeys(seg["speaker"] …)` did the opposite: it ordered the speakers
+    by whoever opened the chunk, which flipped several times inside one episode
+    (2026-09-14 alternated `Riley=Kore, Casey=Iapetus` and `Casey=Iapetus,
+    Riley=Kore` across its twelve calls). That reordered the audio-profile
+    lines, the voice-config array and the `between X and Y` sentence, so each
+    section asked for the register in a different order and the model led with
+    whichever host it read first. The voices were always right — they are bound
+    by name — and the personalities still drifted segment to segment, which is
+    the complaint this answers.
+
+    Speakers not in hosts.json keep their first-appearance order, after the
+    known hosts, so an unexpected key degrades rather than disappearing.
+    """
+    seen = list(dict.fromkeys(seg["speaker"] for seg in segments))
+    order = list(load_hosts_config())
+    return sorted(seen, key=lambda s: (order.index(s) if s in order
+                                       else len(order) + seen.index(s)))
+
+
 def _build_payload(
     segments: list[dict],
     continuing: bool = False,
@@ -823,7 +863,7 @@ def _build_payload(
     *rung* selects how much of the prompt to include; the first rung is the
     full-quality request and is what every successful render uses.
     """
-    speakers = list(dict.fromkeys(seg["speaker"] for seg in segments))
+    speakers = _ordered_speakers(segments)
     if len(speakers) > 2:
         raise ValueError(f"Gemini multi-speaker TTS supports 2 speakers, got {speakers}")
 
@@ -1272,7 +1312,7 @@ def _build_cloud_payload(
     exactly mirroring the studio path's single/multi branch so the same sections
     stay the same shape across backends.
     """
-    speakers = list(dict.fromkeys(seg["speaker"] for seg in segments))
+    speakers = _ordered_speakers(segments)
     if len(speakers) > 2:
         raise ValueError(f"Gemini multi-speaker TTS supports 2 speakers, got {speakers}")
 
