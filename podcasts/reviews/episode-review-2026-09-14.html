@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, September 14, 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.1rem; color: #444; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }
+    th { background: #f5f5f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    a { color: #0066cc; }
+    code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, September 14, 2026</h1>
+  <p class="meta">Published September 14, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/34820905946">34820905946</a>.</em></p>
+
+<h3>Script came in short, expanded on second pass</h3>
+
+<p>The initial draft hit 2565 words against a 3400-word target. The pipeline sent it back for expansion rather than shipping under. The final script shipped at 2995 words—still 405 words shy of target, but the expansion pass closed the gap by 430 words. This is the script that made it to audio and RSS.</p>
+
+<h3>Citation alignment split between segments</h3>
+
+<p>Roundup citations matched 12 of 15 sources. Deep dive citations matched 2 of 3. The pipeline had three deep-dive pieces pulled: Fast Company on Star Trek, and two Hackaday stories on mirror clocks and 35mm film. The roundup dropped 43 stories entirely, suggesting heavy filtering upstream of the citation check.</p>
+
+<h3>Body text budget exhausted early</h3>
+
+<p>The pipeline spent its full backfill budget—12 Claude calls—expanding thin article bodies. This is a hard constraint. Remaining sparse articles kept stub bodies and flagged for potential cuts. The same constraint triggered across five logged degradations, all the same: body-backfill budget spent, thin articles now thin in the script.</p>
+
+<p>This created downstream tension. The script shipped at 2995 words but started at a target of 3400. Expanding bodies should have narrowed that gap further, but the budget ran dry before the pipeline could backfill everything it wanted to.</p>
+
+<h3>Anchor framing applied uniformly across days</h3>
+
+<p>The debate question—"Who decides what stories get told and preserved in local communities, and how can digital tools democratize both the creation and archiving of cultural memory?"—had no per-weekday variations. Each day frames the question unaided, without day-specific context. The pipeline had no branching logic for this segment.</p>
+
+<h3>Voice ratio favored Casey</h3>
+
+<p>Casey spoke 0.91 times as much as Riley. The quality check flagged 2 instances of AI tell patterns in the script. Audio ran 20.0 minutes. Video file was 63.4 MB. RSS feed now holds 230 episodes total.</p>
+
+<h3>Three manual runs, two completed</h3>
+
+<p>Run 34820905946 started at 08:05 UTC, completed at 08:39 (34 minutes). Run 34826025852 started at 09:05 UTC, completed at 09:05 (11 seconds—likely a no-op or cache hit). Run 34831339974 started at 10:05 UTC and remained in progress. Script generation was the slowest step at 1159 seconds, followed by audio render at 456 seconds.</p>
+
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-14T08:05:09Z</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-14T09:05:09Z</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-14T10:05:08Z</td><td>+0 min</td><td>in_progress</td></tr>
+</tbody>
+</table>
+
+<h3>What shipped</h3>
+<table>
+<thead><tr><th>Measure</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Deep dive</td><td>3 articles</td></tr>
+<tr><td>Script</td><td>2 pattern hit(s), voice ratio 0.91, 2995 words</td></tr>
+<tr><td>Audio</td><td>20.0 min</td></tr>
+<tr><td>Audio size</td><td>18.3 MB</td></tr>
+<tr><td>Citations matched</td><td>12/15 roundup, 2/3 deep dive</td></tr>
+<tr><td>Feed</td><td>230 episodes</td></tr>
+<tr><td>Anthropic spend</td><td>92,018 input tokens, calls ***'claude': 12***</td></tr>
+</tbody>
+</table>
+</body>
+</html>
