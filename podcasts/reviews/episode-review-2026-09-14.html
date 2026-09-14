@@ -21,31 +21,27 @@
   <p class="meta">Published September 14, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
   <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/34820905946">34820905946</a>.</em></p>
 
-<h3>Script came in short, expanded on second pass</h3>
+<h3>The body-backfill budget ran dry</h3>
 
-<p>The initial draft hit 2565 words against a 3400-word target. The pipeline sent it back for expansion rather than shipping under. The final script shipped at 2995 words—still 405 words shy of target, but the expansion pass closed the gap by 430 words. This is the script that made it to audio and RSS.</p>
+<p>The pipeline spent all 12 Claude calls available for expanding thin article summaries. Forty-three roundup stories were dropped from the queue rather than shipped with stub bodies. The decision was mechanical: when the backfill budget depleted, remaining articles below a density threshold stayed sparse and got cut.</p>
 
-<h3>Citation alignment split between segments</h3>
+<p>This is the constraint made visible. The script reached 2,995 words—495 short of the 3,400 target—because there were fewer bodies to write from. The first draft came in at 2,565 words and was sent back for an expand pass, but the expand pass had fewer materials to work with than it needed.</p>
 
-<p>Roundup citations matched 12 of 15 sources. Deep dive citations matched 2 of 3. The pipeline had three deep-dive pieces pulled: Fast Company on Star Trek, and two Hackaday stories on mirror clocks and 35mm film. The roundup dropped 43 stories entirely, suggesting heavy filtering upstream of the citation check.</p>
+<h3>Citation alignment held unevenly</h3>
 
-<h3>Body text budget exhausted early</h3>
+<p>Roundup citations matched 12 of 15 sources. Deep dives matched 2 of 3. The three deep-dive stories were vetted—Star Trek and technology, two Hackaday pieces on infinity mirrors and 35mm film—but one citation fell away in the rendering.</p>
 
-<p>The pipeline spent its full backfill budget—12 Claude calls—expanding thin article bodies. This is a hard constraint. Remaining sparse articles kept stub bodies and flagged for potential cuts. The same constraint triggered across five logged degradations, all the same: body-backfill budget spent, thin articles now thin in the script.</p>
+<h3>The anchor framing went unvariable</h3>
 
-<p>This created downstream tension. The script shipped at 2995 words but started at a target of 3400. Expanding bodies should have narrowed that gap further, but the budget ran dry before the pipeline could backfill everything it wanted to.</p>
+<p>The debate question, "Who decides what stories get told and preserved in local communities, and how can digital tools democratize both the creation and archiving of cultural memory?", had no per-weekday framings. Each anchor segment frames the question unaided. This is noted as a degradation but not a failure—the question runs the same every day the episode airs.</p>
 
-<h3>Anchor framing applied uniformly across days</h3>
+<h3>Voice and pacing met spec</h3>
 
-<p>The debate question—"Who decides what stories get told and preserved in local communities, and how can digital tools democratize both the creation and archiving of cultural memory?"—had no per-weekday variations. Each day frames the question unaided, without day-specific context. The pipeline had no branching logic for this segment.</p>
+<p>Casey spoke 91% as much as Riley. Two AI tell-pattern hits flagged in quality review. The 20-minute episode encoded to 18.3 MB audio and 63.4 MB video. Episode 230 shipped to RSS.</p>
 
-<h3>Voice ratio favored Casey</h3>
+<h3>Three manual runs, one fallback 409 minutes late</h3>
 
-<p>Casey spoke 0.91 times as much as Riley. The quality check flagged 2 instances of AI tell patterns in the script. Audio ran 20.0 minutes. Video file was 63.4 MB. RSS feed now holds 230 episodes total.</p>
-
-<h3>Three manual runs, two completed</h3>
-
-<p>Run 34820905946 started at 08:05 UTC, completed at 08:39 (34 minutes). Run 34826025852 started at 09:05 UTC, completed at 09:05 (11 seconds—likely a no-op or cache hit). Run 34831339974 started at 10:05 UTC and remained in progress. Script generation was the slowest step at 1159 seconds, followed by audio render at 456 seconds.</p>
+<p>The pipeline ran three times by hand between 8:05 AM and 10:05 AM Pacific. Script generation took 1,159 seconds; audio render took 456 seconds; the full run from checkout to YouTube upload completed in under 35 minutes each time. A fourth run, fallback trigger 2 at 3:05 AM, started at 4:54 PM—409 minutes behind schedule—and remained in progress at review time.</p>
 
 <h3>The day's triggers</h3>
 <table>
@@ -53,7 +49,8 @@
 <tbody>
 <tr><td>Manual (workflow_dispatch)</td><td>2026-09-14T08:05:09Z</td><td>+0 min</td><td>success</td></tr>
 <tr><td>Manual (workflow_dispatch)</td><td>2026-09-14T09:05:09Z</td><td>+0 min</td><td>success</td></tr>
-<tr><td>Manual (workflow_dispatch)</td><td>2026-09-14T10:05:08Z</td><td>+0 min</td><td>in_progress</td></tr>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-14T10:05:08Z</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific)</td><td>2026-09-14T16:54:52Z</td><td>+409 min</td><td>in_progress</td></tr>
 </tbody>
 </table>
 
