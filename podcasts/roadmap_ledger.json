@@ -449,13 +449,14 @@
       "title": "Three instances of AI-tell language patterns passed quality checks and shipped in the final episode.",
       "detail": "On 2026-09-09, the quality check detected 3 AI-tell pattern hits in the shipped script. These phrases remained in the audio and RSS feed. The detection system is working, but the pipeline has no gate to reject episodes with pattern hits or halt publication for manual review before shipping.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-09-09",
       "seen": [
-        "2026-09-09"
+        "2026-09-09",
+        "2026-09-14"
       ],
-      "last_seen": "2026-09-09"
+      "last_seen": "2026-09-14"
     },
     {
       "id": "manual-dispatch-and-fallback-both-incomplete",
