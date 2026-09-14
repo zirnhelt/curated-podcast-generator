@@ -1,25 +1,4 @@
 {
-  "2026-08-09": {
-    "timestamp": 1786266194.565032,
-    "topics": [
-      "[Scientific American] Monkeys keep pets and maintain friends",
-      "[WIRED] The Sharpest Image Ever Taken of the Sun Reveals a H",
-      "[ScienceAlert] Super Rare Humpback Whale Birth Filmed by Dro",
-      "[ScienceAlert] Scientists Watched Carbon Dioxide Being Pulle",
-      "[ScienceAlert] Avocados Switch Sex on a Daily Basis, And Res",
-      "[Fast Company] Scrapping your gas-powered car right now woul",
-      "[ScienceDaily] Cutting sweet foods doesn\u2019t curb cravings or ",
-      "[ScienceDaily] Scientists reveal how much exercise you reall"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "connectivity"
-    ],
-    "date": "2026-08-09",
-    "focus": "discovery-health",
-    "focus_name": "Discovery, Health & How Science Works"
-  },
   "2026-08-10": {
     "timestamp": 1786355647.623354,
     "topics": [
@@ -743,5 +722,27 @@
     "date": "2026-09-13",
     "focus": "sky-cosmos",
     "focus_name": "Sky & Cosmos"
+  },
+  "2026-09-14": {
+    "timestamp": 1789374371.824372,
+    "topics": [
+      "[BC Gov News] Building wildfire resilience throughout B.C.",
+      "[Williams Lake Tribune] Alberta First Nation moving ahead wi",
+      "[Android Police] What to do when your Samsung Gallery stops ",
+      "[Engadget] If your laptop trackpad is popping out, stop usin",
+      "[Nieman Storyboard] Personal stories of 9/11, 25 years later",
+      "[Fast Company] How \u2018Star Trek\u2019 helped invent the future",
+      "[Hackaday] Big Infinity Mirror Clock Invites You To Gaze Dee",
+      "[Hackaday] This Machine Makes 35mm (Almost) Film"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech",
+      "connectivity"
+    ],
+    "date": "2026-09-14",
+    "focus": "film-screen",
+    "focus_name": "Film & Screen"
   }
 }

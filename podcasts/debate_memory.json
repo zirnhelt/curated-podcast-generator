@@ -1,30 +1,4 @@
 {
-  "2026-06-15": {
-    "timestamp": 1781524686.487188,
-    "date": "2026-06-15",
-    "theme": "Arts, Culture & Digital Storytelling",
-    "central_question": "How can rural communities maintain authentic cultural voices and documentation when the infrastructure\u2014connectivity, platforms, and AI tools\u2014is controlled by external corporations?",
-    "riley_position": "The question isn't who owns infrastructure, but whether communities can use it to tell true stories about themselves; cultural production tools have become cheap and accessible enough that communities can produce and distribute content independently.",
-    "riley_key_evidence": [
-      "Tod Maffin built 10 million weekly readers across newsletter, podcast, and Bluesky after leaving CBC",
-      "Canadaland grew from scratch without CBC alumni backing to create original investigative series and fellowships",
-      "Mukurtu is an open-source content management system built specifically for Indigenous cultural archives with community-controlled permissions"
-    ],
-    "casey_position": "Rural cultural organizations face asymmetric accountability risks and resource constraints; the real ceiling isn't tools or willingness but structural funding mismatches that treat infrastructure investments as short-term projects rather than multi-year capacity building.",
-    "casey_key_evidence": [
-      "A 100 Mile House community radio station with two staff and volunteers cannot absorb accountability failures the way larger outlets can",
-      "Rogers is behind on rural 5G deployment commitments made at the Shaw merger approval",
-      "Arts councils fund projects, not the 3-5 year training pipelines needed to make tools like Mukurtu self-sustaining"
-    ],
-    "resolution": "They agreed to disagree on whether funding gaps are solvable but converged on the core insight: the structural problem is funding being categorized for projects rather than infrastructure, and the real question is designing cultural organizations to be self-sustaining by design rather than refundable on two-year cycles.",
-    "topics_covered": [
-      "Platform-independent publishing and the Tod Maffin/Canadaland models",
-      "Rural broadband infrastructure monopolies and the Rogers-Shaw merger enforcement gap",
-      "Community-owned broadband alternatives and the Olds, Alberta fiber co-op model",
-      "Indigenous cultural documentation and governance through tools like Mukurtu",
-      "Funding structures for cultural organizations and the project-versus-infrastructure mismatch"
-    ]
-  },
   "2026-06-16": {
     "timestamp": 1781607886.529265,
     "date": "2026-06-16",
@@ -2440,6 +2414,38 @@
       "Legal accountability and enforcement gaps in exemptions",
       "Watershed interconnections between coastal projects and upstream Indigenous territories",
       "Mitigation technology versus incentive structures in environmental policy"
+    ]
+  },
+  "2026-09-14": {
+    "timestamp": 1789374376.657555,
+    "date": "2026-09-14",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "focus": "film-screen",
+    "anchor": "worth-saving",
+    "central_question": "Who decides what stories get told and preserved in local communities, and how can digital tools democratize both the creation and archiving of cultural memory?",
+    "riley_position": "Digital tools have become cheap and accessible enough that hobbyist makers and small communities can now create, preserve, and revive cultural artifacts without institutional gatekeepers, though the motivation to do unglamorous archival work still lags behind creation.",
+    "riley_key_evidence": [
+      "Someone built a machine to perforate sprocket holes for film cartridges, demonstrating how accessible tools enable revival of abandoned manufacturing processes",
+      "Kodak film sales rose 20 percent over the past year, with reintroduced discontinued stocks, signaling audiences choosing slower media deliberately",
+      "Williams Lake First Nation and Xat\u015b\u016bll First Nation run ongoing language and cultural documentation as institutional responsibility, providing a working model for systematic preservation"
+    ],
+    "casey_position": "While digital democratization is real, it doesn't solve the fundamental problem of unglamorous archival work lacking built-in audiences and motivation; institutional assignment and deliberate structural responsibility are necessary for what actually survives.",
+    "casey_key_evidence": [
+      "Nobody live-streams a file transfer\u2014digitizing old reels has no feedback loop like new creation does, making it unlikely to happen without explicit assignment",
+      "Twenty-five years after 9/11, what survives is whoever wrote their own memory down and kept files findable, not assigned institutional work",
+      "A parade film society posting to Facebook has no governance structure around what gets recorded and preserved long-term"
+    ],
+    "resolution": "They agreed that the real solution isn't a new app or grant cycle, but a small unglamorous step: one community organization assigning one person the deliberate job of capturing, labeling, and archiving local cultural material for one season, borrowing the discipline of First Nations documentation work without requiring its sovereignty framework.",
+    "topics_covered": [
+      "The mythology of technology inspiration versus actual R&D timelines (Star Trek and the cellphone)",
+      "Analog revival and film resurgence as aesthetic response to digital fatigue",
+      "Accessibility of digital tools versus motivation to do preservation versus creation work",
+      "Governance and consent in cultural documentation versus informal community archiving",
+      "First Nations language and ceremony documentation as institutional model for preservation"
+    ],
+    "calls_to_action": [
+      "One community organization\u2014a festival society, local museum board, or Performances in the Park operator\u2014should name one specific person whose job for one season is to capture local events, label the footage properly, and store it somewhere that survives a phone upgrade cycle.",
+      "If your community group is already doing systematic cultural preservation or archival work, or if any details in this segment were incorrect, write feedback to feedback at cariboo signals dot c-a."
     ]
   }
 }

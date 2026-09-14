@@ -49,6 +49,16 @@
       "framings": {},
       "assigned_at": "2026-09-07",
       "origin": "seeded"
+    },
+    "2026-W38": {
+      "id": "worth-saving",
+      "question": "Who decides what's worth saving?",
+      "dimension": "value-triage",
+      "premise": "Not everything survives, and the choosing is rarely explicit. A species gets recovery funding or doesn't; a building gets heritage status or a demolition permit; a mill town gets a transition plan or a highway sign; a dialect gets documented or doesn't. The question is who is actually in the room when those calls get made, and what happens to the things nobody nominated.",
+      "reading": null,
+      "framings": {},
+      "assigned_at": "2026-09-14",
+      "origin": "seeded"
     }
   },
   "used": [
@@ -81,6 +91,12 @@
       "dimension": "skill-convenience",
       "question": "What gets lost when something gets easier?",
       "week": "2026-W37"
+    },
+    {
+      "id": "worth-saving",
+      "dimension": "value-triage",
+      "question": "Who decides what's worth saving?",
+      "week": "2026-W38"
     }
   ],
   "generated": []
