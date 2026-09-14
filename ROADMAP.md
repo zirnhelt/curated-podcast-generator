@@ -39,7 +39,7 @@ cannot reopen it. Anything written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-13) — 22 open.
+_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-14) — 23 open.
 Check a box to close one; it comes back only if the reviews raise it 2 more times._
 
 - [ ] **A credit-balance 400 is not the usage-limit wall, and every run pays for that.**
@@ -191,7 +191,7 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       mechanism appears to be a single-pass expansion request rather than an iterative loop that
       continues until target is met or a hard limit is hit. Enforce expansion cycles until the
       script either reaches the target word count or exhausts a maximum retry count, then log
-      and report which condition stopped it. (seen in 3 reviews, latest 2026-09-13)
+      and report which condition stopped it. (seen in 4 reviews, latest 2026-09-14)
 - [ ] **Brave body-backfill budget exhaustion is recurring and requires intervention.** On
       2026-09-08, the pipeline spent its full 12-call Brave budget during script generation,
       forcing nine articles to ship with stub bodies instead of full text. The degradations log
@@ -211,6 +211,13 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       audit the three deep-dive articles from this run to identify why citation verification
       failed, then adjust the citation-matching logic for long-form sources or add a manual
       review step before deep-dive scripting. (seen in 4 reviews, latest 2026-09-13)
+- [ ] **Deep dive citations matched at 33% versus roundup at 80%.** On September 13, the roundup
+      section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3
+      (33%). The gap suggests a different verification pathway or a shortfall in source
+      retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2
+      proceeded despite this disparity. Audit the deep dive citation matching logic and the
+      Brave API call sequence to confirm whether thin article bodies or budget exhaustion
+      degraded the deep dive's source alignment. (seen in 2 reviews, latest 2026-09-14)
 
 <!-- reviews:end -->
 
