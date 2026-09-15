@@ -5,37 +5,41 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Tue, 15 Sep 2026 10:05:56 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 15 Sep 2026 15:31:25 +0000</lastBuildDate>
     <item>
       <title>Episode Review — Cariboo Signals, September 15, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-15.html</link>
       <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-15.html</guid>
-      <pubDate>Tue, 15 Sep 2026 10:05:56 +0000</pubDate>
+      <pubDate>Tue, 15 Sep 2026 15:31:25 +0000</pubDate>
       <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/34945043833"&gt;34945043833&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 
 &lt;h3&gt;Brave search budget exhausted mid-run&lt;/h3&gt;
 
-&lt;p&gt;The pipeline burned through its Brave API allocation on article body-backfill and hit the limit before processing the full roundup. Fourteen of fifteen roundup citations got their full article bodies; one did not. The three deep-dive pieces all matched their sources cleanly, but the thin articles that follow lack enriched context. The pipeline kept them in the script anyway at stub length rather than cut them, degrading readability but preserving structure.&lt;/p&gt;
+&lt;p&gt;The pipeline burned through its Brave API allocation during article body backfill and stopped fetching at 12 calls. Fourteen articles in the roundup and three in the deep dive kept only stub bodies. The matching system still aligned 14 of 15 roundup citations and all 3 deep dive citations to their sources, but sparse article text may trigger culling downstream.&lt;/p&gt;
 
-&lt;p&gt;This is the repeating failure mode: 38 roundup items were dropped before script generation, leaving 14 usable citations. The Brave budget consumed itself filling those 14 bodies. Remaining articles stay skeletal and may be culled in downstream editorial review.&lt;/p&gt;
+&lt;p&gt;This is the constraint made visible. The script shipped at 2,921 words after one expand pass—the first draft landed at 2,451, below the 3,400 target—but thinned roundup content may shorten the final episode further if the trimming logic activates.&lt;/p&gt;
 
-&lt;h3&gt;Script required expansion after first draft&lt;/h3&gt;
+&lt;h3&gt;Script expansion worked as designed&lt;/h3&gt;
 
-&lt;p&gt;The initial script came in at 2,451 words against a 3,400-word target. The pipeline sent it back for an expand pass. The shipped version landed at 2,921 words—still 479 words short of target, but 470 words longer than the first attempt. The expansion closed most of the gap without hitting the ceiling.&lt;/p&gt;
+&lt;p&gt;The first draft came in under target and was sent back for one expand pass. Quality.script_words is what shipped: 2,921 words. The expand succeeded enough to keep the episode on air.&lt;/p&gt;
 
-&lt;h3&gt;Voice balance held steady&lt;/h3&gt;
+&lt;h3&gt;Voice split favored Casey slightly&lt;/h3&gt;
 
-&lt;p&gt;Casey-to-Riley ratio came in at 0.92, favoring Riley by a small margin. The script flagged two AI-tell pattern hits during quality review—phrases that read as machine-generated—but neither triggered a rewrite pass.&lt;/p&gt;
+&lt;p&gt;Casey's airtime exceeded Riley's by a ratio of 0.92 to 1—Casey spoke more. The quality check flagged 2 hits on AI tell patterns in the final script.&lt;/p&gt;
 
-&lt;h3&gt;Citation fidelity diverged by segment&lt;/h3&gt;
+&lt;h3&gt;Three deep dives, thirty-eight roundup stories dropped&lt;/h3&gt;
 
-&lt;p&gt;The roundup achieved 14 of 15 citation matches. The deep dives went 3 for 3. The asymmetry reflects the budget constraint: deep dives were prioritized for full sourcing, while roundup articles accepted whatever context could be retrieved before the Brave allowance ran out.&lt;/p&gt;
+&lt;p&gt;The episode drew three deep dives: the Ranchers First Initiative, carbon markets and Indigenous land, and solar adoption in the Columbia Basin. The pipeline dropped 38 roundup items, likely because sparse article bodies fell below the minimum threshold for scripting.&lt;/p&gt;
 
-&lt;h3&gt;Processing time and output&lt;/h3&gt;
+&lt;p&gt;The debate question this run addressed who holds decision-making power when government or market programs support ranching, forestry, or Indigenous operations—and who merely implements rules written elsewhere.&lt;/p&gt;
 
-&lt;p&gt;Script generation took 1,206 seconds—the longest phase by far. Audio rendering followed at 441 seconds. The episode shipped at 18.9 minutes of audio (17.3 MB) and matching video (59.9 MB). This marks episode 231 in the RSS feed.&lt;/p&gt;
+&lt;h3&gt;Render pipeline ran hot&lt;/h3&gt;
 
-&lt;p&gt;The debate question centered on decision-making authority in government and market programs supporting land operations: who sets criteria, who implements them, and whether those roles separate.&lt;/p&gt;
+&lt;p&gt;Generate episode script took 1,206 seconds—the dominant step. Render episode audio consumed 441 seconds. These two steps account for the 37-minute total runtime. The episode shipped at 18.9 minutes audio and video, 17.3 MB audio file, 59.9 MB video file. Episode 231 reached the feed.&lt;/p&gt;
+
+&lt;h3&gt;Three manual triggers, one fallback 5 hours late&lt;/h3&gt;
+
+&lt;p&gt;Three manual runs completed between 8:05 and 10:05 AM. A fallback trigger at 3:05 AM Pacific fired 325 minutes late and was still in progress at report time. All four runs used Claude (13 API calls) and Brave answers (3 calls). Input token spend reached 98,105 across the day.&lt;/p&gt;
 
 &lt;h3&gt;The day's triggers&lt;/h3&gt;
 &lt;table&gt;
@@ -43,7 +47,8 @@
 &lt;tbody&gt;
 &lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-15T08:05:13Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-15T09:05:10Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-15T10:05:17Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-15T10:05:17Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-09-15T15:30:50Z&lt;/td&gt;&lt;td&gt;+325 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
