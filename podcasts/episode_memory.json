@@ -1,25 +1,4 @@
 {
-  "2026-08-10": {
-    "timestamp": 1786355647.623354,
-    "topics": [
-      "[Hackaday] Continously Extruding 3D Printed Tubes with Compr",
-      "Evacuation area shrinks as crews gain ground on Wait Creek f",
-      "[NPR Health News] It's been a record summer for foodborne il",
-      "Penticton on edge as Bald Range evacuation alerts reach city",
-      "[The Tyee] For Canada\u2019s \u2018Major Projects,\u2019 Consultation Is Th",
-      "[The Atlantic Culture] The Mysterious Art of Conducting",
-      "[MakeUseOf] Your headphones support better audio, but your p",
-      "AI"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "Indigenous tech"
-    ],
-    "date": "2026-08-10",
-    "focus": "words-journalism",
-    "focus_name": "Writing, Journalism & Podcasting"
-  },
   "2026-08-11": {
     "timestamp": 1786439807.360089,
     "topics": [
@@ -744,5 +723,25 @@
     "date": "2026-09-14",
     "focus": "film-screen",
     "focus_name": "Film & Screen"
+  },
+  "2026-09-15": {
+    "timestamp": 1789460831.596351,
+    "topics": [
+      "[Williams Lake Tribune] 14 candidates filed for School Distr",
+      "[100 Mile Free Press] 10 candidates for councillor, 2 for ma",
+      "[My Cariboo Now] Former Williams Lake Mayor wants his old jo",
+      "[Quesnel Cariboo Observer] 3 mayor, 18 council candidates in",
+      "[My Cariboo Now] Donegal Wilson is the 7th MLA to join new B",
+      "[RealAgriculture] Will the Ranchers First Initiative actuall",
+      "[The Guardian Global Development] \u2018Carbon fever\u2019 threatens h",
+      "[My East Kootenay Now] Columbia Basin farms turn to solar po"
+    ],
+    "themes": [
+      "rural development",
+      "Indigenous tech"
+    ],
+    "date": "2026-09-15",
+    "focus": "agriculture-ranching",
+    "focus_name": "Agriculture & Ranching"
   }
 }

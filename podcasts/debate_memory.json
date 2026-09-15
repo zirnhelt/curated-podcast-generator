@@ -1,30 +1,4 @@
 {
-  "2026-06-16": {
-    "timestamp": 1781607886.529265,
-    "date": "2026-06-16",
-    "theme": "Working Lands & Industry",
-    "central_question": "What structural changes are needed to allow Cariboo working-lands producers to escape commodity pricing and capture more value from their products?",
-    "riley_position": "The key constraint is vertical integration and processing infrastructure; regional cooperative processing facilities (including mobile units) anchored by First Nations institutional demand could be implemented within three years without requiring permanent grant dependency.",
-    "riley_key_evidence": [
-      "Quebec agricultural cooperatives and Atlantic Canada have functioning models of cooperatively-owned regional abattoirs",
-      "Small-scale USDA-inspected mobile slaughter units have decreased in price significantly and have BC regulatory equivalents",
-      "Williams Lake First Nation agricultural programs and BC First Nations Health Authority food procurement could serve as demand anchors"
-    ],
-    "casey_position": "Ownership and processing infrastructure are necessary but insufficient; the real barrier is that decades of attempts at cooperative processing solutions have failed in practice due to coordination problems and the geographic reality of sparse producer density across the Cariboo.",
-    "casey_key_evidence": [
-      "Mobile processing models have been tried in BC with mixed results\u2014scheduling conflicts, underutilization, and maintenance cost disputes",
-      "The geography that makes Cariboo land productive (vast range territory, low input costs) also means producers are spread across enormous areas with thin throughput",
-      "These governance problems have gone unsolved for approximately four decades despite repeated discussion"
-    ],
-    "resolution": "They converged on the need for demand anchors to make processing solutions viable, but disagreed on urgency and feasibility. Casey emphasized the gap between policy direction and actual procurement contracts, while Riley proposed a specific three-year action plan requiring direct conversation with the Cariboo Cattlemen's Association to identify concrete barriers rather than generic coordination challenges.",
-    "topics_covered": [
-      "Commodity pricing dependency versus price differentiation in ranching and forestry",
-      "Processing infrastructure gaps and the role of regional abattoirs versus mobile units",
-      "Vertical integration and the capture of value margins by external processors",
-      "Producer coordination and institutional governance barriers in the Cariboo",
-      "Cybersecurity risks for digitizing agricultural operations in rural areas"
-    ]
-  },
   "2026-06-17": {
     "timestamp": 1781693366.595084,
     "date": "2026-06-17",
@@ -2446,6 +2420,39 @@
     "calls_to_action": [
       "One community organization\u2014a festival society, local museum board, or Performances in the Park operator\u2014should name one specific person whose job for one season is to capture local events, label the footage properly, and store it somewhere that survives a phone upgrade cycle.",
       "If your community group is already doing systematic cultural preservation or archival work, or if any details in this segment were incorrect, write feedback to feedback at cariboo signals dot c-a."
+    ]
+  },
+  "2026-09-15": {
+    "timestamp": 1789460835.36962,
+    "date": "2026-09-15",
+    "theme": "Working Lands & Industry",
+    "focus": "agriculture-ranching",
+    "anchor": "worth-saving",
+    "central_question": "When government or market programs are written to support ranching, forestry, or Indigenous land operations, who actually holds decision-making power in setting the criteria, and who is left implementing rules written elsewhere?",
+    "riley_position": "Riley argues that the core issue is governance structure\u2014whether the pen writing eligibility rules sits with local stakeholders or distant federal agencies\u2014and that regional trusts and Nation-owned ventures demonstrate that local ownership of program design produces better operational fit than top-down federal approaches.",
+    "riley_key_evidence": [
+      "Columbia Basin Trust running solar and crop-diversification programs with local producers represented on the board, producing support that fits actual operations",
+      "Central Chilcotin Rehabilitation operating as a Nation-owned joint venture across T\u015dideldel, Tl'etinqox, and Yunesit'in territories for multiple fire seasons, proving the model holds under real operating pressure",
+      "USDA Ranchers First Initiative receiving cautious R-CALF endorsement as 'important steps' rather than a full fix, showing the diagnosis is correct but implementation remains flawed"
+    ],
+    "casey_position": "Casey contends that programs written by distant agencies inevitably fail because the paperwork reflects the bureaucracy's audit requirements, not ground-level operational realities, and that even when Indigenous communities have legal standing to object, they lack leverage to negotiate terms before contracts are already signed.",
+    "casey_key_evidence": [
+      "FSA loan requirements ask for cash-flow proformas that don't match how cattle operations' income actually arrives through a calendar year, making the forms incompatible with ranching economics",
+      "Biota carbon contracts in Pando, Bolivia signed rapidly with local communities before those communities understood what they were valuing or what rights they were signing away, and objections after signing cannot unwind already-inked terms",
+      "Rancher quoted in RealAgriculture called the Ranchers First Initiative 'a nice fluff piece' despite R-CALF's cautious support, showing the underlying diagnosis is correct but the treatment remains useless on actual balance sheets"
+    ],
+    "resolution": "Riley and Casey agreed that the structural difference that matters is ownership sitting inside the community doing the labor versus distant entities writing terms, and they left open the question of whether local governance models scale to national-level problems like rebuilding the U.S. cattle herd. They agreed that regional scale may be both the strength and the limit of community-controlled program design.",
+    "topics_covered": [
+      "Who writes eligibility criteria for agricultural support programs and how that shapes which producers can access them",
+      "Comparison of federal top-down programs versus regional trust-based governance structures in agriculture",
+      "Carbon credit deals in Indigenous territories and the difference between legal standing to object versus leverage to negotiate before signing",
+      "Central Chilcotin Rehabilitation as a working model of Nation-owned resource management and business operation",
+      "The paperwork design gap between federal loan requirements and actual ranching cash-flow calendars"
+    ],
+    "calls_to_action": [
+      "A Cariboo producer association could push to review loan criteria or cost-share terms before they are finalized, not after they have been printed, using Columbia Basin Trust's structure as a template for what that review could look like locally.",
+      "Whoever drafts carbon offset language for Cariboo forest tenures should ask upfront who in the room actually understands the contract and who just showed up needing the cheque that week, following the lesson from Pando, Bolivia.",
+      "Send stories to cariboo signals dot c-a about who is actually writing the rules for working lands programs locally\u2014a producer association, a Nation-led venture, anyone with a seat at the table when terms get set."
     ]
   }
 }
