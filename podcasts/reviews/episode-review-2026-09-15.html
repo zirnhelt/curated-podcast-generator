@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, September 15, 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.1rem; color: #444; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }
+    th { background: #f5f5f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    a { color: #0066cc; }
+    code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, September 15, 2026</h1>
+  <p class="meta">Published September 15, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/34945043833">34945043833</a>.</em></p>
+
+<h3>Brave search budget exhausted mid-run</h3>
+
+<p>The pipeline burned through its Brave API allocation on article body-backfill and hit the limit before processing the full roundup. Fourteen of fifteen roundup citations got their full article bodies; one did not. The three deep-dive pieces all matched their sources cleanly, but the thin articles that follow lack enriched context. The pipeline kept them in the script anyway at stub length rather than cut them, degrading readability but preserving structure.</p>
+
+<p>This is the repeating failure mode: 38 roundup items were dropped before script generation, leaving 14 usable citations. The Brave budget consumed itself filling those 14 bodies. Remaining articles stay skeletal and may be culled in downstream editorial review.</p>
+
+<h3>Script required expansion after first draft</h3>
+
+<p>The initial script came in at 2,451 words against a 3,400-word target. The pipeline sent it back for an expand pass. The shipped version landed at 2,921 words—still 479 words short of target, but 470 words longer than the first attempt. The expansion closed most of the gap without hitting the ceiling.</p>
+
+<h3>Voice balance held steady</h3>
+
+<p>Casey-to-Riley ratio came in at 0.92, favoring Riley by a small margin. The script flagged two AI-tell pattern hits during quality review—phrases that read as machine-generated—but neither triggered a rewrite pass.</p>
+
+<h3>Citation fidelity diverged by segment</h3>
+
+<p>The roundup achieved 14 of 15 citation matches. The deep dives went 3 for 3. The asymmetry reflects the budget constraint: deep dives were prioritized for full sourcing, while roundup articles accepted whatever context could be retrieved before the Brave allowance ran out.</p>
+
+<h3>Processing time and output</h3>
+
+<p>Script generation took 1,206 seconds—the longest phase by far. Audio rendering followed at 441 seconds. The episode shipped at 18.9 minutes of audio (17.3 MB) and matching video (59.9 MB). This marks episode 231 in the RSS feed.</p>
+
+<p>The debate question centered on decision-making authority in government and market programs supporting land operations: who sets criteria, who implements them, and whether those roles separate.</p>
+
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-15T08:05:13Z</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-15T09:05:10Z</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-15T10:05:17Z</td><td>+0 min</td><td>in_progress</td></tr>
+</tbody>
+</table>
+
+<h3>What shipped</h3>
+<table>
+<thead><tr><th>Measure</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Deep dive</td><td>3 articles</td></tr>
+<tr><td>Script</td><td>2 pattern hit(s), voice ratio 0.92, 2921 words</td></tr>
+<tr><td>Audio</td><td>18.9 min</td></tr>
+<tr><td>Audio size</td><td>17.3 MB</td></tr>
+<tr><td>Citations matched</td><td>14/15 roundup, 3/3 deep dive</td></tr>
+<tr><td>Feed</td><td>231 episodes</td></tr>
+<tr><td>Anthropic spend</td><td>98,105 input tokens, calls ***'claude': 13, 'brave-answers': 3***</td></tr>
+</tbody>
+</table>
+</body>
+</html>
