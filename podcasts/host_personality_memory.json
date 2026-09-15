@@ -126,11 +126,6 @@
       },
       {
         "date": "2026-09-06",
-        "clue": "structural-lens:+ \u2014 visibility into networks matters more than infrastructure itself",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-09-06",
         "clue": "community-trust:x \u2014 conceded that blind trust in systems needs auditing",
         "occurrences": 1
       },
@@ -416,6 +411,11 @@
       {
         "date": "2026-09-12",
         "clue": "community-trust:x \u2014 Conceded that timing/electoral behavior explains council priorities",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-09-15",
+        "clue": "evidence-bar:~ \u2014 Concedes carbon markets not inherently rigged, governance capacity the issue",
         "occurrences": 1
       }
     ],
