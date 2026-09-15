@@ -39,7 +39,7 @@ cannot reopen it. Anything written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-14) — 24 open.
+_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-15) — 23 open.
 Check a box to close one; it comes back only if the reviews raise it 2 more times._
 
 - [ ] **A credit-balance 400 is not the usage-limit wall, and every run pays for that.**
@@ -120,14 +120,6 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       for whether it uses story depth or source type to vary its strategy, and run a test batch
       of deep dives against the current matching logic to confirm whether this is systematic or
       noise. (seen in 6 reviews, latest 2026-09-07)
-- [ ] **Gemini project spend cap was reached mid-run, forcing a fallback to OpenAI for the
-      entire episode's text-to-speech.** On 2026-08-30, the render/gemini-canary segment
-      degraded because the Gemini project spend cap had been reached. The pipeline fell back to
-      OpenAI rather than risk a mid-episode voice change, rendering all 22.6 minutes on a
-      different provider. The Gemini pre-flight check also failed to answer, removing any option
-      to recover partway through. Raising the spend cap or implementing a per-segment budget
-      ceiling that triggers earlier would prevent this fallback and keep rendering consistent.
-      (seen in 2 reviews, latest 2026-08-31)
 - [ ] **Gemini multi-speaker TTS has timed out three times in two days, forcing provider
       fallback mid-episode.** On 2026-09-01, the news section hit a 120-second read timeout on
       Gemini's generativelanguage.googleapis.com endpoint during multi-speaker synthesis. Two
@@ -200,8 +192,8 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       fixed call budget that does not reset between runs or scale with article volume. To close
       this: either expand the Brave quota in config, implement per-article fallback logic that
       drops sparse articles before scripting rather than airing them, or track Brave spend
-      across runs and alert when 80% of the budget is consumed. (seen in 4 reviews, latest
-      2026-09-13)
+      across runs and alert when 80% of the budget is consumed. (seen in 5 reviews, latest
+      2026-09-15)
 - [ ] **Deep-dive citations matched at 67 percent while roundup citations matched at 93
       percent.** On 2026-09-08, roundup sections achieved 14 of 15 citations verified (93%), but
       deep-dive sections achieved only 2 of 3 (67%). This gap is flagged in the published review
@@ -215,7 +207,7 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       final episode.** On 2026-09-09, the quality check detected 3 AI-tell pattern hits in the
       shipped script. These phrases remained in the audio and RSS feed. The detection system is
       working, but the pipeline has no gate to reject episodes with pattern hits or halt
-      publication for manual review before shipping. (seen in 2 reviews, latest 2026-09-14)
+      publication for manual review before shipping. (seen in 3 reviews, latest 2026-09-15)
 - [ ] **Deep dive citations matched at 33% versus roundup at 80%.** On September 13, the roundup
       section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3
       (33%). The gap suggests a different verification pathway or a shortfall in source

@@ -202,7 +202,7 @@
       "title": "Gemini project spend cap was reached mid-run, forcing a fallback to OpenAI for the entire episode's text-to-speech.",
       "detail": "On 2026-08-30, the render/gemini-canary segment degraded because the Gemini project spend cap had been reached. The pipeline fell back to OpenAI rather than risk a mid-episode voice change, rendering all 22.6 minutes on a different provider. The Gemini pre-flight check also failed to answer, removing any option to recover partway through. Raising the spend cap or implementing a per-segment budget ceiling that triggers earlier would prevent this fallback and keep rendering consistent.",
       "source": "review",
-      "status": "open",
+      "status": "retired",
       "occurrences": 2,
       "first_seen": "2026-08-30",
       "seen": [
@@ -379,15 +379,16 @@
       "detail": "On 2026-09-08, the pipeline spent its full 12-call Brave budget during script generation, forcing nine articles to ship with stub bodies instead of full text. The degradations log lists this same reason 12 times. This pattern matches the 2026-09-02 incident (tracked as brave-body-budget-hit-55-article-drop) where 55 articles were dropped. The mechanism is a fixed call budget that does not reset between runs or scale with article volume. To close this: either expand the Brave quota in config, implement per-article fallback logic that drops sparse articles before scripting rather than airing them, or track Brave spend across runs and alert when 80% of the budget is consumed.",
       "source": "review",
       "status": "open",
-      "occurrences": 4,
+      "occurrences": 5,
       "first_seen": "2026-09-08",
       "seen": [
         "2026-09-08",
         "2026-09-11",
         "2026-09-12",
-        "2026-09-13"
+        "2026-09-13",
+        "2026-09-15"
       ],
-      "last_seen": "2026-09-13"
+      "last_seen": "2026-09-15"
     },
     {
       "id": "deep-dive-citation-alignment-below-target",
@@ -450,13 +451,14 @@
       "detail": "On 2026-09-09, the quality check detected 3 AI-tell pattern hits in the shipped script. These phrases remained in the audio and RSS feed. The detection system is working, but the pipeline has no gate to reject episodes with pattern hits or halt publication for manual review before shipping.",
       "source": "review",
       "status": "open",
-      "occurrences": 2,
+      "occurrences": 3,
       "first_seen": "2026-09-09",
       "seen": [
         "2026-09-09",
-        "2026-09-14"
+        "2026-09-14",
+        "2026-09-15"
       ],
-      "last_seen": "2026-09-14"
+      "last_seen": "2026-09-15"
     },
     {
       "id": "manual-dispatch-and-fallback-both-incomplete",
@@ -536,7 +538,20 @@
         "2026-09-14"
       ],
       "last_seen": "2026-09-14"
+    },
+    {
+      "id": "script-expansion-below-target-by-16-percent",
+      "title": "Script expansion pass closed less than half the gap to the word-count target.",
+      "detail": "The first draft delivered 2,451 words against a 3,400-word target, a 32% shortfall. The expansion pass grew the script to 2,921 words, adding 470 words but leaving a 479-word gap—14% below target. The facts do not state whether expansion was capped, whether the source articles ran thin, or whether the expander hit an internal limit. Confirming the expansion logic and whether it should continue iterating until target or maximum attempt thresholds would clarify whether this is a tuning issue or a signal that insufficient article bodies are available to expand from.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-15",
+      "seen": [
+        "2026-09-15"
+      ],
+      "last_seen": "2026-09-15"
     }
   ],
-  "updated": "2026-09-14"
+  "updated": "2026-09-15"
 }
