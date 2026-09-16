@@ -1,0 +1,208 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:26.291
+<v Riley>Hey there — today we're digging into repair culture. A hobbyist 3D-printed a GPU fan duct that outperformed the factory cooler, Google's rolling out Gemini to diagnose your Pixel's problems for you, and Valve's opening up the Steam Frame headset to modders with actual CAD files. The real question: when something breaks, who gets to decide if it's worth fixing? Coming right up.
+
+00:00:39.766 --> 00:01:00.499
+<v Riley>Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities — I'm Riley. It's Wednesday, September sixteenth, twenty twenty-six. Here in the Cariboo, on the traditional and unceded territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations. Today's theme is Repair Culture &amp; Practical Tech.
+
+00:01:01.412 --> 00:01:30.752
+<v Casey>And I'm Casey. Today's about the stuff you keep running instead of replacing — the screwdriver drawer, not the upgrade cycle. Quick weather check: overcast and around 8 degrees out at Horsefly Lake this morning, high of 21, low of 7, no rain expected. Across the region, 100 Mile House sits around 9 with clear skies, Williams Lake around 8 and mainly clear, Quesnel around 8 and clear, Tatla Lake around 8 and clear too.
+
+00:01:31.026 --> 00:01:37.286
+<v Riley>Good day to be outside instead of staring at a settings menu. Let's get into it.
+
+00:01:38.386 --> 00:01:56.782
+<v Riley>Fifteen stories on the list today, and the local ones alone could carry the whole episode. Barkerville just wrapped its season. Attendance was down slightly year over year, but site manager Ed Cawood is calling it a good season anyway — steady traffic all summer, not a single dead week.
+
+00:01:57.039 --> 00:02:03.294
+<v Casey>Steady beats a spike for a place that runs on the same visitors coming back every July.
+
+00:02:04.324 --> 00:02:22.352
+<v Riley>They had a sellout day when close to a hundred seniors got bused up from a care facility for the afternoon. That's the kind of booking that keeps a historic site's books balanced — not the tourist who wanders in off the highway, the group that plans months ahead.
+
+00:02:23.382 --> 00:02:40.675
+<v Casey>Williams Lake had its own kind of full house this week. Kids raced homemade zucchini cars at the Harvest Fair — vegetables with wheels bolted on, running down a straight track in front of a crowd. Reporter Khushi Arora counted colourful entries lined up for the heats.
+
+00:02:40.932 --> 00:02:44.979
+<v Riley>Who's engineering these things? Zucchini's not exactly a rigid chassis material.
+
+00:02:45.237 --> 00:02:52.595
+<v Casey>That's half the fun. A soft vegetable and an axle is basically a physics lesson disguised as a fair event.
+
+00:02:53.626 --> 00:03:12.390
+<v Riley>Two wildlife enforcement stories landed this week. Near Quesnel, two men — Kristen Johnny, thirty-three, and Colin Williams, thirty-four — were sentenced after pleading guilty to hunting without consideration for the safety of others, plus additional charges tied to unlawful possession of wildlife and discharging a firearm in a no-shooting zone.
+
+00:03:12.647 --> 00:03:26.260
+<v Casey>And separately, a man in northern B.C. was fined five thousand dollars after pleading guilty to killing a caribou outside the open hunting season. Conservation officers caught him during a routine ATV patrol along Jade Boulder Road.
+
+00:03:26.518 --> 00:03:32.037
+<v Riley>Five thousand dollars for one animal changes the math on whether it's worth the risk.
+
+00:03:33.067 --> 00:03:49.991
+<v Casey>In Prince George, RCMP are investigating an axe assault that left a security guard injured in the 1100 block of 3rd Avenue. Limited details released so far, and we'll leave it there — that's an active investigation, not a story with much more to add today.
+
+00:03:51.021 --> 00:04:06.474
+<v Riley>Eleven former British Columbia attorneys general have come out publicly in support of modern treaty negotiations, pushing back against concerns that Indigenous title claims threaten private property rights. Their statement frames it directly: this isn't a choice between reconciliation and economic opportunity.
+
+00:04:06.732 --> 00:04:19.241
+<v Casey>Eleven former AGs isn't a fringe opinion — that's institutional weight behind that position, though it'll be tested once specific treaty terms get negotiated line by line rather than endorsed as a general principle.
+
+00:04:20.271 --> 00:04:34.252
+<v Riley>The Canada Border Services Agency says it has removed 111 individuals with links to extortion from the country since August of last year, out of 188 total removal orders issued on various inadmissibility grounds as of early September.
+
+00:04:35.282 --> 00:04:58.829
+<v Casey>Sticking with enforcement, but shifting to a very different kind of surveillance tool — a bipartisan group in Congress wants states to regulate automated license plate readers, the Flock cameras that have been quietly multiplying on highways and intersections across North America. The mechanism they're proposing borrows straight from the national drinking age playbook: comply with privacy rules, or risk losing federal highway funding.
+
+00:04:59.087 --> 00:05:18.587
+<v Riley>That's a blunt lever, but it worked for the drinking age — states fell in line within a couple of years once the highway money was on the table. And it lands on a question we keep bumping into today: who watches the cameras that are watching us, and who answers for it.
+
+00:05:19.617 --> 00:05:35.806
+<v Casey>The Kennedy Center in Washington closed its doors this week, despite a judge's order that it stay open. The closure followed President Trump saying he'd cancel a two hundred and fifty-seven million dollar renovation of the building if his name isn't restored to it.
+
+00:05:36.063 --> 00:05:41.582
+<v Riley>A quarter-billion-dollar renovation held hostage over a naming dispute. That's an expensive argument to have.
+
+00:05:42.612 --> 00:05:58.801
+<v Casey>Australia's moving toward giving social media users age sixteen and up the option to switch off algorithm-driven feeds entirely. It's part of a broader "My Feed, My Way" proposal that would also impose a digital duty of care on platforms operating in the country.
+
+00:05:59.831 --> 00:06:18.963
+<v Riley>Valve has opened sign-ups for the Steam Frame, its new VR headset, and the company is telegraphing that it wants a full ecosystem of first-party and amateur accessories built around it. Inside-out tracking, an optional third-party colour pass-through camera, and the promise of CAD files so people can design their own add-ons.
+
+00:06:19.220 --> 00:06:21.796
+<v Casey>We'll come back to that one shortly.
+
+00:06:22.826 --> 00:06:41.590
+<v Riley>Away from the Cariboo entirely, a piece out of Resilience dot org looks at the American movement to remove thousands of aging dams and let rivers run free again — restoring fish habitat, improving public safety, and in some cases saving the cost of maintaining infrastructure nobody wants to keep patching.
+
+00:06:41.848 --> 00:06:50.678
+<v Casey>The mirror image of everything else we're covering today. Sometimes the responsible move isn't fixing the structure — it's admitting it shouldn't exist anymore.
+
+00:06:51.708 --> 00:07:12.312
+<v Riley>Tom's Guide has a piece on AI tools being misused to turn ordinary photos of children into sexual abuse imagery, along with practical steps parents can take to reduce the risk and what to do if it happens to their family. Ugly subject, but the guidance in that one is specific enough to actually act on.
+
+00:07:13.342 --> 00:07:29.898
+<v Casey>The Pentagon's own inspector general says Iranian strikes damaged or destroyed hundreds of buildings across American bases in eight countries — Kuwait, Bahrain, Qatar, the United Arab Emirates, Saudi Arabia, Iraq, Oman, and Jordan. The tally comes from a watchdog report, not a battlefield claim.
+
+00:07:30.928 --> 00:07:43.806
+<v Riley>And to close out on something lighter — How-To Geek has a piece on upgrading Excel PivotTables with slicers, timelines, and PivotCharts. If your spreadsheet life has gone stale, that one's a genuine quality-of-life upgrade.
+
+00:07:44.063 --> 00:07:45.535
+<v Casey>Be still my heart.
+
+00:07:45.792 --> 00:07:50.208
+<v Riley>Let's move to something with a little more community warmth in it.
+
+00:07:51.308 --> 00:08:22.091
+<v Casey>Today's spotlight is on Community Futures Cariboo Chilcotin. They're a nonprofit with a volunteer board that backs rural entrepreneurs across the region — small business loans, mentorship, and the kind of unglamorous groundwork that keeps a Main Street storefront open instead of dark. If you've got a business idea and no idea where to start, or an existing shop that needs a bridge loan to get through a slow season, they're the people who've done this before with your neighbours.
+
+00:08:22.360 --> 00:08:33.134
+<v Riley>A volunteer board making real lending decisions for local business is exactly the kind of homegrown capacity this show keeps coming back to. You'll find them at cfdccariboo.com.
+
+00:08:33.942 --> 00:08:42.408
+<v Casey>And that question — who gets to decide what a community keeps running — is a decent hinge into today's Deep Dive.
+
+00:08:43.508 --> 00:09:06.021
+<v Riley>Somebody on XDA Developers 3D-printed a custom fan duct for their PC case — measured the open space above the graphics card, modelled it like a car's airbox, and printed a U-shaped shroud that wraps around the fans with no mounting hardware at all. Just a few hours of print time, and it knocked several degrees off the GPU's running temperature.
+
+00:09:06.451 --> 00:09:23.798
+<v Casey>It's a fun tweak. It's not a repair, and that distinction matters. The actual problem is that the manufacturer shipped a stock cooler with that much thermal headroom sitting on the table. Why is a hobbyist with calipers solving what should've been solved on the factory floor?
+
+00:09:24.056 --> 00:09:45.462
+<v Riley>Because some manufacturers are already doing the opposite. Philips has publicly launched an initiative offering open-source, 3D-printable replacement parts for some of their consumer products, specifically so people don't throw the whole unit out over one broken clip or duct. That's a company deciding a part is worth keeping alive and handing you the file to do it.
+
+00:09:45.721 --> 00:09:52.364
+<v Casey>One company, one product line. That's not a movement, that's a press release with decent optics behind it.
+
+00:09:52.795 --> 00:10:07.926
+<v Riley>Which gets at the real question underneath both of these stories. When something breaks, who decides whether it's worth fixing — the company that built it, or the person with the printer and the roll of filament sitting in a drawer?
+
+00:10:08.185 --> 00:10:23.317
+<v Casey>Right now it's mostly the company. They decide by what they document, what connector they lock behind a proprietary chip, what they quietly stop calling supported. The hobbyist only gets a vote if the company happened to leave the door unlocked.
+
+00:10:24.092 --> 00:10:44.022
+<v Riley>That's the same shape as the FireWire HAT story. Someone built a Raspberry Pi add-on that pulls digital video straight off decades-old FireWire cameras — the DV tape format most manufacturers walked away from years ago. We've touched on the meaning side of that before — whether repair work carries something building new doesn't.
+
+00:10:44.280 --> 00:11:00.150
+<v Casey>Today's a different angle on the same object. It's not whether that work has meaning. It's whether anyone with actual authority ever certified that format worth preserving, or whether it only survives because a handful of stubborn people refused to let it die.
+
+00:11:00.408 --> 00:11:13.695
+<v Riley>Nobody nominated FireWire for preservation. No standards body flagged the DV tape format as worth keeping alive. It survives purely because a small community kept building adapters for it, one Raspberry Pi HAT at a time.
+
+00:11:13.953 --> 00:11:28.347
+<v Casey>Which means the things that get saved aren't necessarily the things that matter most. They're the things that had one obsessive person willing to do the unpaid, unglamorous work of keeping them running. Nobody's accountable for that selection process.
+
+00:11:28.605 --> 00:11:38.201
+<v Riley>Except it's democratic in a way institutional preservation never is. No committee gets to gatekeep who's allowed to build a HAT for an old camera format.
+
+00:11:38.460 --> 00:11:55.068
+<v Casey>Flip that around, though. It means whether any given piece of tech survives depends entirely on whether the right obsessive happened to care enough to spend a weekend on it. That's not a system for deciding what's worth saving. That's luck with a soldering iron.
+
+00:11:55.843 --> 00:12:21.678
+<v Riley>Compare that to what Google's rolling out with Gemini Device Help on Pixel phones running Android seventeen and newer. You describe a problem in plain language — battery draining fast, a gesture that stopped working, the camera acting weird — and it scans your settings and usage, diagnoses the issue, and applies a fix. No digging through menus, no forum thread from three years ago that half-applies to your model.
+
+00:12:21.936 --> 00:12:37.437
+<v Casey>And Google explicitly walled it off from anything destructive. No factory resets, no password changes, no permission management, no location changes. Someone at Google sat down and decided in advance exactly how far the AI is allowed to reach into your phone.
+
+00:12:37.696 --> 00:12:54.673
+<v Riley>That's an institutional judgment, made at scale, about what's safe to hand off and what's too risky. It's the opposite of the hobbyist model — instead of one person deciding for themselves what's worth fixing, a company is pre-deciding it for millions of users at once.
+
+00:12:54.931 --> 00:13:17.076
+<v Casey>And it's repair mediated entirely by a corporation. You're not learning your phone. You're learning to describe symptoms to a chatbot that quietly flips settings you'll never see. When Gemini's diagnosis is wrong, or when Google deprecates the feature in a few years because the next model needs a different data pipeline, what does the user actually walk away knowing?
+
+00:13:17.334 --> 00:13:33.204
+<v Riley>Probably nothing about the internals. But be honest about the alternative — most people were never going to dig through a settings menu on their own. The real choice isn't Gemini versus a self-taught repair technician. It's Gemini versus buying a new phone.
+
+00:13:33.462 --> 00:13:53.392
+<v Casey>That's the trade being made without anyone actually voting on it. Convenience today, dependency later. It's the same shape as John Deere locking diagnostic software behind a dealer-only connector — a company decides what's touchable and what isn't. The only difference is Google's version comes dressed up as help instead of as a lockout.
+
+00:13:53.823 --> 00:14:14.122
+<v Riley>There's a real difference in motive, though. Deere locks you out to protect a dealer network's service revenue. Google's limiting Gemini to keep an AI from making a destructive mistake on someone's device. Different reasons, even if the visible effect — you don't get under the hood yourself — looks the same from the outside.
+
+00:14:14.380 --> 00:14:30.250
+<v Casey>Motive matters if you're deciding how much to trust the company long term. It doesn't change the outcome for the person in Horsefly who still can't fix their own phone without Google's model deciding on their behalf that it's safe to let them.
+
+00:14:31.025 --> 00:14:52.800
+<v Riley>Valve's doing something closer to the FireWire model with the Steam Frame. They've opened sign-ups for the headset and they're promising CAD files, specifically so people can mod it, expand it, build accessories Valve itself never designed. That's a company voluntarily handing the "worth saving, worth extending" decision back to its users instead of keeping it locked in Bellevue.
+
+00:14:53.059 --> 00:15:10.405
+<v Casey>Valve can afford to be generous because modding grows their platform without costing them a cent of engineering time. It's a strategic choice dressed as generosity, and it only works because Valve has the scale to absorb the mess that comes with third-party hardware flooding a marketplace.
+
+00:15:10.664 --> 00:15:27.272
+<v Riley>Sure, but the mechanism itself is rare enough to be worth naming. Most manufacturers keep repair manuals proprietary specifically so the "is this worth fixing" decision never leaves the building. Valve is one of the very few letting that decision leave the building on purpose.
+
+00:15:27.702 --> 00:15:40.989
+<v Casey>One headset, on a sign-up list. We don't know yet whether that openness survives contact with warranty disputes and liability claims once actual third-party hardware starts breaking in people's living rooms. Ask again in two years.
+
+00:15:41.247 --> 00:15:51.950
+<v Riley>It's still a real data point against the idea that locking down repair is some technical inevitability rather than a business decision a company can choose to make differently.
+
+00:15:52.725 --> 00:16:21.882
+<v Casey>What actually threads through the duct, the HAT, and Gemini's guardrails is this: nobody with any formal standing ever sat down and decided which old formats, which components, which devices deserve to keep running past their support window. Companies decide it by default, mostly by what they quietly stop supporting. Hobbyists decide it by sheer refusal, one obscure device at a time. There's no room anywhere in that process where a place like the Cariboo gets an actual vote.
+
+00:16:22.140 --> 00:16:42.070
+<v Riley>Which is exactly where a region like this has leverage it isn't using. A regional district or a producer association could file a formal exemption request with the Copyright Board — documenting real harm from a specific locked piece of equipment to force legal clarity on the right to repair. Nobody's done that yet.
+
+00:16:42.329 --> 00:16:44.912
+<v Casey>Still an open door nobody's walked through.
+
+00:16:45.343 --> 00:17:15.237
+<v Riley>You don't need to wait on a copyright filing to start building an answer, though. A community group could build its own inventory of what's actually worth keeping running locally — ranch equipment, forestry gear, anything past its manufacturer's support window — independent of whatever Google or Deere or Valve decide by default. Not a repair café. A repair inventory. What's still functional, what's being locked out of function by software rather than hardware, and where those two categories actually diverge.
+
+00:17:15.496 --> 00:17:29.890
+<v Casey>That's a smaller, more concrete ask than a legal filing, thankfully. It's also something a school shop class, or a small business backed by Community Futures, could start on a spreadsheet next month without waiting on anyone's grant cycle.
+
+00:17:30.148 --> 00:17:37.529
+<v Riley>No funding application required. Just someone willing to open the case and write down what they actually find inside it.
+
+00:17:38.304 --> 00:17:54.544
+<v Casey>Which is the honest answer to who decides what's worth saving out here. Right now it's whoever bothers to write it down first — not a company, not a regulator, not a committee anywhere. Nobody's been formally handed that job. It's sitting open, unclaimed.
+
+00:17:54.802 --> 00:18:22.113
+<v Riley>Which is either the most democratic version of repair culture you could design, or the least reliable one — worth building on either way, and worth writing in about. If you've got a piece of gear that's outlived its manufacturer's support window and kept running anyway, or if you think we missed something today, send it to feedback at cariboo signals dot c-a — we'd like to see that list if anyone starts one.
+
+00:18:22.372 --> 00:18:27.908
+<v Casey>Depends on who actually shows up with the screwdriver. Have a good one out there.
+
+00:18:28.166 --> 00:18:30.749
+<v Riley>Have a great rest of your day.
