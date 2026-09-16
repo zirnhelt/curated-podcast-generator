@@ -39,7 +39,7 @@ cannot reopen it. Anything written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-15) — 23 open.
+_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-16) — 22 open.
 Check a box to close one; it comes back only if the reviews raise it 2 more times._
 
 - [ ] **A credit-balance 400 is not the usage-limit wall, and every run pays for that.**
@@ -84,14 +84,6 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       never got that far. The probe item under Short-term is the diagnostic — the reviews now
       give it a daily before/after record, so run it and read the next week's reviews rather
       than re-reasoning about the ladder.
-- [ ] **Brave Answers API hit its usage limit partway through the run, forcing a fallback to web
-      snippets.** On 2026-08-27, the script/brave-answers segment failed with HTTP 402 (usage
-      limit exceeded) after the quota was exhausted. The pipeline switched to web snippets for
-      all remaining answers in that episode. The 402 error itself indicates the account hit its
-      hard limit, not a transient failure. Confirm the quota tier on the Brave account, assess
-      whether the episode's answer count is typical, and decide whether to increase the quota,
-      implement batching, or rely on web snippets as the primary source when the API is
-      unavailable. (seen in 4 reviews, latest 2026-09-01)
 - [ ] **One TTS segment returned audio shorter than its word count predicts, requiring a
       retry.** On 2026-08-27, one text-to-speech take produced audio duration shorter than the
       word count would estimate. The pipeline retried once per protocol and the issue resolved.
@@ -192,8 +184,8 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       fixed call budget that does not reset between runs or scale with article volume. To close
       this: either expand the Brave quota in config, implement per-article fallback logic that
       drops sparse articles before scripting rather than airing them, or track Brave spend
-      across runs and alert when 80% of the budget is consumed. (seen in 5 reviews, latest
-      2026-09-15)
+      across runs and alert when 80% of the budget is consumed. (seen in 6 reviews, latest
+      2026-09-16)
 - [ ] **Deep-dive citations matched at 67 percent while roundup citations matched at 93
       percent.** On 2026-09-08, roundup sections achieved 14 of 15 citations verified (93%), but
       deep-dive sections achieved only 2 of 3 (67%). This gap is flagged in the published review
@@ -214,7 +206,7 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2
       proceeded despite this disparity. Audit the deep dive citation matching logic and the
       Brave API call sequence to confirm whether thin article bodies or budget exhaustion
-      degraded the deep dive's source alignment. (seen in 2 reviews, latest 2026-09-14)
+      degraded the deep dive's source alignment. (seen in 3 reviews, latest 2026-09-16)
 
 <!-- reviews:end -->
 

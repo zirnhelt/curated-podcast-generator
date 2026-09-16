@@ -121,7 +121,7 @@
       "title": "Brave Answers API hit its usage limit partway through the run, forcing a fallback to web snippets.",
       "detail": "On 2026-08-27, the script/brave-answers segment failed with HTTP 402 (usage limit exceeded) after the quota was exhausted. The pipeline switched to web snippets for all remaining answers in that episode. The 402 error itself indicates the account hit its hard limit, not a transient failure. Confirm the quota tier on the Brave account, assess whether the episode's answer count is typical, and decide whether to increase the quota, implement batching, or rely on web snippets as the primary source when the API is unavailable.",
       "source": "review",
-      "status": "open",
+      "status": "retired",
       "occurrences": 4,
       "first_seen": "2026-08-27",
       "seen": [
@@ -380,16 +380,17 @@
       "detail": "On 2026-09-08, the pipeline spent its full 12-call Brave budget during script generation, forcing nine articles to ship with stub bodies instead of full text. The degradations log lists this same reason 12 times. This pattern matches the 2026-09-02 incident (tracked as brave-body-budget-hit-55-article-drop) where 55 articles were dropped. The mechanism is a fixed call budget that does not reset between runs or scale with article volume. To close this: either expand the Brave quota in config, implement per-article fallback logic that drops sparse articles before scripting rather than airing them, or track Brave spend across runs and alert when 80% of the budget is consumed.",
       "source": "review",
       "status": "open",
-      "occurrences": 5,
+      "occurrences": 6,
       "first_seen": "2026-09-08",
       "seen": [
         "2026-09-08",
         "2026-09-11",
         "2026-09-12",
         "2026-09-13",
-        "2026-09-15"
+        "2026-09-15",
+        "2026-09-16"
       ],
-      "last_seen": "2026-09-15"
+      "last_seen": "2026-09-16"
     },
     {
       "id": "deep-dive-citation-alignment-below-target",
@@ -506,13 +507,14 @@
       "detail": "On September 13, the roundup section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3 (33%). The gap suggests a different verification pathway or a shortfall in source retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2 proceeded despite this disparity. Audit the deep dive citation matching logic and the Brave API call sequence to confirm whether thin article bodies or budget exhaustion degraded the deep dive's source alignment.",
       "source": "review",
       "status": "open",
-      "occurrences": 2,
+      "occurrences": 3,
       "first_seen": "2026-09-13",
       "seen": [
         "2026-09-13",
-        "2026-09-14"
+        "2026-09-14",
+        "2026-09-16"
       ],
-      "last_seen": "2026-09-14"
+      "last_seen": "2026-09-16"
     },
     {
       "id": "roundup-dropped-43-stories",
@@ -552,7 +554,20 @@
         "2026-09-15"
       ],
       "last_seen": "2026-09-15"
+    },
+    {
+      "id": "script-expansion-undershooting-target-again",
+      "title": "Script expansion produced a final count 426 words below target.",
+      "detail": "The first draft arrived at 2,353 words against a 3,400-word target (69 percent). The pipeline sent it back for one expand pass. The final shipped version was 2,974 words, still 426 words short of target (87 percent of goal). This pattern recurred after the 2026-09-02 expansion that produced net word loss and the 2026-09-06 expansion that closed less than half the gap. The mechanism appears to be a prompt or stopping condition that does not drive expansion hard enough to reach the ceiling. Audit the expansion prompt, raise the target in the request, or implement multi-pass expansion with a gate that rejects expansions falling below a per-pass word increment.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-16",
+      "seen": [
+        "2026-09-16"
+      ],
+      "last_seen": "2026-09-16"
     }
   ],
-  "updated": "2026-09-15"
+  "updated": "2026-09-16"
 }
