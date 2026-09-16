@@ -794,6 +794,49 @@ bans. `style_prompt` and both `gemini_audio_profile`s now say what the delivery 
 name the intonation positively ("pitch falls at the end of a statement and stays in a narrow
 range"). A test asserts the burned adjectives stay out of the request.
 
+**That rewrite did not work, and what it rules out is worth more than what it fixed.**
+2026-09-15 and 2026-09-16 — the first two episodes rendered after it merged — both came back
+sing-song, bubbly and uptalked. The render logs say the direction was never the variable:
+twelve `gemini-2.5-flash-tts` cloud calls an episode plus the canary, every chunk at **rung
+0** with the style block and audio profile intact and byte-identical, **zero retries on
+09-15** and one context-dropping retry on 09-16, no model swap, no degradation touching the
+prompt. The script is not asking for it either — across the sixteen scripts of September
+2026, **1 122 of 1 168 host turns end in a period** and 36 in a question mark, and not one
+turn in the month carries an exclamation mark. So: flat copy, correct terminal punctuation,
+a direction that asks in plain words for a falling terminal and a narrow range, delivered
+unshed on every single request — and the model sings anyway. **On this surface the style
+prompt is a nudge, not a lever**, and a third rewrite of the adjectives is the move that has
+now failed twice. The lever left is the prebuilt voice, then the provider.
+
+- **The cue whitelist was the half of the direction that *was* asking for it.** `warmly`,
+  `curiosity` and `soft laugh` are performed per turn, inside the speech stream, which makes
+  them the closest and most obeyed direction in the whole request — and every one of them
+  asks for lift the style prompt above then has to argue against. `[warmly]` was also the
+  `tag_instruction`'s worked example, so it rode in the prompt of *every* request whether or
+  not a script used it, the same way `[short pause]` taught itself on 2026-09-13. All three
+  are retired to `legacy_whitelist` (strip-only — 200+ scripts on disk carry them, and an
+  unexplained cue gets read aloud), and the live list keeps only cues that do not brighten:
+  `thoughtfully`, `slow`, `fast`, `sighs`.
+- **The broadcast frame is a burned word too.** `style_prompt` opened "Two longtime co-hosts
+  on **community radio**" — the announcer prior the eight retired adjectives only *described*.
+  It is "two people talking to each other … at the volume of a kitchen table" now, with the
+  intonation rule promoted to the first bullet, and `radio` / `co-host` added to the test's
+  burned list along with the retired cues. The sweep also runs on the **studio** prompt and
+  on the live whitelist now; it covered the cloud prompt alone, which is why `[warmly]` sat
+  in every request of both post-fix episodes with a test watching.
+- **Pick the next voice by ear, not by adjective** — `evaluate_tts.py --probe-voices`
+  (TTS Eval workflow, `probe_voices`, with an optional `voice_pairs` override) renders the
+  section's first chunk through each candidate pair and uploads the WAVs. `set_voice_override`
+  exists for it and nothing else. Google's one-word voice labels (Kore *Firm*, Iapetus
+  *Clear*, Schedar *Even*, Charon *Informative*, Gacrux *Mature*) are why a pair is on the
+  candidate list and are not evidence about it — the same rule as a model preview: it is not
+  measured here until it is measured here. Listen for the terminal of a declarative: it
+  should fall and stay fallen. The winner is pinned in `hosts.json` `gemini_voice`.
+- **Changing the voice changes who the hosts sound like**, which the ordering rule elsewhere
+  in this section calls the last thing to degrade. That ordering was written for *automatic*
+  fallbacks inside a render. It does not bind a deliberate, auditioned recast — and after two
+  prompt rewrites it is the cheapest remaining option that does not mean leaving Gemini.
+
 **Speaker order is canonical, not first-to-speak** (`_ordered_speakers`). It was
 `dict.fromkeys(seg["speaker"] …)`, so the chunk's opener led — and 2026-09-14 alternated
 `Riley=Kore, Casey=Iapetus` with `Casey=Iapetus, Riley=Kore` across its twelve calls,

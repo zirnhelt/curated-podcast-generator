@@ -662,6 +662,7 @@ _render_deadline: float | None = None
 # Model every request uses, once the canary has established which one answers.
 # None means "follow the ladder's own primary/fallback choice".
 _model_override: str | None = None
+_voice_override: dict[str, str] | None = None
 
 # Retry rungs that actually produced this run's audio, for the caller to report.
 # gemini_tts cannot import podcast_generator.degrade() without a circular
@@ -878,7 +879,7 @@ def _build_payload(
     if len(speakers) == 1:
         speech_config = {
             "voiceConfig": {
-                "prebuiltVoiceConfig": {"voiceName": get_gemini_voice_for_host(speakers[0])}
+                "prebuiltVoiceConfig": {"voiceName": _voice_for(speakers[0])}
             }
         }
     else:
@@ -888,7 +889,7 @@ def _build_payload(
                     {
                         "speaker": _display_name(s),
                         "voiceConfig": {
-                            "prebuiltVoiceConfig": {"voiceName": get_gemini_voice_for_host(s)}
+                            "prebuiltVoiceConfig": {"voiceName": _voice_for(s)}
                         },
                     }
                     for s in speakers
@@ -931,6 +932,28 @@ def set_model_override(model: str | None) -> None:
     """Pin every request to *model*, or None to follow the ladder's own choice."""
     global _model_override
     _model_override = model
+
+
+def set_voice_override(voices: dict[str, str] | None) -> None:
+    """Pin the prebuilt voice per host key, or None to follow hosts.json.
+
+    Only `evaluate_tts.py --probe-voices` sets this. The voice is the one hard
+    lever this backend leaves on delivery: the style prompt shipped on
+    2026-09-14 asked for level, falling-pitch intonation, went out at rung 0 on
+    every chunk of 2026-09-15 and 2026-09-16, and both episodes still sang. A
+    prebuilt voice cannot be argued out of its register, so the next change here
+    is chosen by ear on a real section rather than by rewording the direction a
+    third time.
+    """
+    global _voice_override
+    _voice_override = voices
+
+
+def _voice_for(host_key: str) -> str:
+    """The prebuilt voice for *host_key*, honouring the probe's override."""
+    if _voice_override and host_key in _voice_override:
+        return _voice_override[host_key]
+    return get_gemini_voice_for_host(host_key)
 
 
 def drain_degradations() -> list[str]:
@@ -1340,7 +1363,7 @@ def _build_cloud_payload(
             "input": {"text": text, "prompt": prompt},
             "voice": {
                 "languageCode": GEMINI_TTS_LANGUAGE_CODE,
-                "name": get_gemini_voice_for_host(speakers[0]),
+                "name": _voice_for(speakers[0]),
                 "modelName": model,
             },
             "audioConfig": audio_config,
@@ -1357,7 +1380,7 @@ def _build_cloud_payload(
             "modelName": model,
             "multiSpeakerVoiceConfig": {
                 "speakerVoiceConfigs": [
-                    {"speakerAlias": _display_name(s), "speakerId": get_gemini_voice_for_host(s)}
+                    {"speakerAlias": _display_name(s), "speakerId": _voice_for(s)}
                     for s in speakers
                 ]
             },
