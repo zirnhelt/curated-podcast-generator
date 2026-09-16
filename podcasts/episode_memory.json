@@ -1,25 +1,4 @@
 {
-  "2026-08-11": {
-    "timestamp": 1786439807.360089,
-    "topics": [
-      "[ScienceDaily] For 15,000 years, humans and dogs have been c",
-      "[100 Mile Free Press] Evacuation order for Gang Ranch area l",
-      "[Williams Lake Tribune] Perseid meteor shower set to light u",
-      "[Williams Lake Tribune] Evacuations lifted in Spallumcheen a",
-      "[Williams Lake Tribune] New partnership to strengthen health",
-      "[Fast Company] Sustainability\u2019s skeptics keep declaring vict",
-      "[Scientific American] How the \u2018happy ending problem\u2019 launche",
-      "[NYT Well] Workers Complain of Mold and Bugs at Airline Cate"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact"
-    ],
-    "date": "2026-08-11",
-    "focus": "tourism-outdoor-economy",
-    "focus_name": "Tourism & the Outdoor Economy"
-  },
   "2026-08-12": {
     "timestamp": 1786527563.724829,
     "topics": [
@@ -743,5 +722,25 @@
     "date": "2026-09-15",
     "focus": "agriculture-ranching",
     "focus_name": "Agriculture & Ranching"
+  },
+  "2026-09-16": {
+    "timestamp": 1789550857.70355,
+    "topics": [
+      "[My Cariboo Now] Barkerville enjoys \u201cgood season\u201d despite sl",
+      "[Williams Lake Tribune] Children and youth race zucchinis ca",
+      "[My Cariboo Now] Two hunters sentenced for Wildlife Act viol",
+      "[Quesnel Cariboo Observer] Prince George RCMP investigating ",
+      "[My Cariboo Now] Former attorneys general voice support for ",
+      "[XDA Developers] I printed custom fan ducts for my PC case a",
+      "[Hackster News] Firehat Brings Back IEEE 1394 FireWire for D",
+      "[MakeUseOf] Finally, someone to ask why your Pixel is acting"
+    ],
+    "themes": [
+      "rural development",
+      "Indigenous tech"
+    ],
+    "date": "2026-09-16",
+    "focus": "maker-repair",
+    "focus_name": "Maker & Repair"
   }
 }

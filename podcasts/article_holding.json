@@ -294,53 +294,6 @@
     "target_focus_name": "Wildfire & Climate Resilience",
     "status": "held"
   },
-  "https://www.wired.com/story/why-the-hottest-new-wearables-want-to-be-ignored/": {
-    "article": {
-      "id": "https://www.wired.com/story/why-the-hottest-new-wearables-want-to-be-ignored/",
-      "url": "https://www.wired.com/story/why-the-hottest-new-wearables-want-to-be-ignored/",
-      "title": "[WIRED] Why the Hottest New Wearables Want to Be Ignored",
-      "content_html": "<img src=\"https://media.wired.com/photos/6a8f1c5ba84e455f12fd962b/master/pass/NoScreenWearable.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.wired.com%2Fstory%2Fwhy-the-hottest-new-wearables-want-to-be-ignored%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nBurnt out on wrist buzzes and notification overload? A new crop of minimalist wearables promises to collect your health data without demanding your attention.",
-      "summary": "Burnt out on wrist buzzes and notification overload? A new crop of minimalist wearables promises to collect your health data without demanding your attention.",
-      "_excerpt": "Burnt out on wrist buzzes and notification overload? A new crop of minimalist wearables promises to collect your health data without demanding your attention.",
-      "date_published": "2026-08-30T10:30:00+00:00",
-      "authors": [
-        {
-          "name": "WIRED",
-          "url": "https://www.wired.com"
-        }
-      ],
-      "ai_score": 35,
-      "_quality": 57,
-      "_relevance": 38,
-      "_local": 0,
-      "_theme_score": 90,
-      "_theme_score_raw": 49,
-      "_composite_podcast": 58,
-      "_keyword_matches": 0,
-      "_category": "ai-tech",
-      "_source_category": "ai-tech",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://media.wired.com/photos/6a8f1c5ba84e455f12fd962b/master/pass/NoScreenWearable.jpg",
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News+",
-      "_cross_theme": {
-        "day": "thursday",
-        "label": "Indigenous Lands & Innovation",
-        "shown_at": "2026-08-31T14:39:04.649495+00:00"
-      },
-      "_boosted_score": 35
-    },
-    "held_date": "2026-09-04",
-    "target_date": "2026-09-15",
-    "target_weekday": 1,
-    "target_focus_slug": "agriculture-ranching",
-    "target_focus_name": "Agriculture & Ranching",
-    "status": "released",
-    "release_date": "2026-09-15"
-  },
   "https://www.makeuseof.com/google-gemini-device-help-pixel/": {
     "article": {
       "id": "https://www.makeuseof.com/google-gemini-device-help-pixel/",
@@ -381,7 +334,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-16"
   },
   "https://www.mycariboonow.com/316061/news/business/millar-western-to-curtail-operations-at-quesnel-river-pulp-at-end-of-day/": {
     "article": {
@@ -635,7 +589,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-16"
   },
   "https://indiginews.com/news/wildfires-prayer-gatherings-across-the-okanagan/": {
     "article": {
@@ -874,7 +829,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-16"
   },
   "https://www.theatlantic.com/science/2026/08/el-nino-effects/688429/?utm_source=feed": {
     "article": {
@@ -997,7 +953,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-16"
   },
   "https://www.sciencealert.com/over-40-of-earth-could-become-drylands-by-2100-scientists-warn": {
     "article": {
@@ -1367,7 +1324,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-16"
   },
   "https://www.hackster.io/news/firehat-brings-back-ieee-1394-firewire-for-digital-video-work-as-a-raspberry-pi-5-compatible-hat-87045a3f3572": {
     "article": {
@@ -1404,7 +1362,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-16"
   },
   "https://www.techradar.com/pro/security/microsoft-365-users-hit-by-two-major-threat-campaigns-fake-it-calls-and-phishing-emails-target-users-across-the-world": {
     "article": {
@@ -1618,90 +1577,6 @@
     "target_focus_name": "Wildfire & Climate Resilience",
     "status": "held"
   },
-  "https://www.nytimes.com/2026/09/02/world/americas/screwworm-facility-mexico.html": {
-    "article": {
-      "id": "https://www.nytimes.com/2026/09/02/world/americas/screwworm-facility-mexico.html",
-      "url": "https://www.nytimes.com/2026/09/02/world/americas/screwworm-facility-mexico.html",
-      "title": "[NYT Business] Inside the Fight Against a Flesh-Eating Fly in Mexico",
-      "content_html": "<img src=\"https://static01.nyt.com/images/2026/08/27/multimedia/XXint-mexico-screwworm-promo/XXint-mexico-screwworm-jwtq-mediumSquareAt3X.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.nytimes.com%2F2026%2F09%2F02%2Fworld%2Famericas%2Fscrewworm-facility-mexico.html\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nFor the first time in a year, the U.S.-Mexico border partly reopened to cattle imports following a screwworm infestation across the region. The battle against the flesh-eating fly has only just begun deep in Mexico.",
-      "summary": "For the first time in a year, the U.S.-Mexico border partly reopened to cattle imports following a screwworm infestation across the region. The battle against the flesh-eating fly has only just begun deep in Mexico.",
-      "_excerpt": "For the first time in a year, the U.S.-Mexico border partly reopened to cattle imports following a screwworm infestation across the region. The battle against the flesh-eating fly has only just begun deep in Mexico.",
-      "date_published": "2026-09-03T01:14:05+00:00",
-      "authors": [
-        {
-          "name": "NYT Business",
-          "url": "https://www.nytimes.com/section/business"
-        }
-      ],
-      "ai_score": 51,
-      "_quality": 67,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 84,
-      "_theme_score_raw": 11,
-      "_composite_podcast": 63,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://static01.nyt.com/images/2026/08/27/multimedia/XXint-mexico-screwworm-promo/XXint-mexico-screwworm-jwtq-mediumSquareAt3X.jpg",
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "New York Times",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-10T14:06:38.005392+00:00"
-      },
-      "_boosted_score": 51
-    },
-    "held_date": "2026-09-10",
-    "target_date": "2026-09-15",
-    "target_weekday": 1,
-    "target_focus_slug": "agriculture-ranching",
-    "target_focus_name": "Agriculture & Ranching",
-    "status": "released",
-    "release_date": "2026-09-15"
-  },
-  "https://techcrunch.com/2026/08/31/lachy-groom-backs-indian-startup-aiming-to-keep-aircraft-aloft-for-a-year/": {
-    "article": {
-      "id": "https://techcrunch.com/2026/08/31/lachy-groom-backs-indian-startup-aiming-to-keep-aircraft-aloft-for-a-year/",
-      "url": "https://techcrunch.com/2026/08/31/lachy-groom-backs-indian-startup-aiming-to-keep-aircraft-aloft-for-a-year/",
-      "title": "[TechCrunch] Lachy Groom backs Indian startup aiming to keep aircraft aloft for a year",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Ftechcrunch.com%2F2026%2F08%2F31%2Flachy-groom-backs-indian-startup-aiming-to-keep-aircraft-aloft-for-a-year%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nFounded by a 20-year-old, Alteon is developing autonomous aircraft that hopes to harvest wind energy to stay aloft for several months.",
-      "summary": "Founded by a 20-year-old, Alteon is developing autonomous aircraft that hopes to harvest wind energy to stay aloft for several months.",
-      "_excerpt": "Founded by a 20-year-old, Alteon is developing autonomous aircraft that hopes to harvest wind energy to stay aloft for several months.",
-      "date_published": "2026-09-01T00:30:00+00:00",
-      "authors": [
-        {
-          "name": "TechCrunch",
-          "url": "https://techcrunch.com"
-        }
-      ],
-      "ai_score": 33,
-      "_quality": 48,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 68,
-      "_theme_score_raw": 9,
-      "_composite_podcast": 50,
-      "_keyword_matches": 0,
-      "_category": "climate",
-      "_source_category": "climate",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "_boosted_score": 33
-    },
-    "held_date": "2026-09-10",
-    "target_date": "2026-09-15",
-    "target_weekday": 1,
-    "target_focus_slug": "agriculture-ranching",
-    "target_focus_name": "Agriculture & Ranching",
-    "status": "released",
-    "release_date": "2026-09-15"
-  },
   "https://www.cnet.com/tech/mobile/apple-new-ceo-john-ternus-first-day/": {
     "article": {
       "id": "https://www.cnet.com/tech/mobile/apple-new-ceo-john-ternus-first-day/",
@@ -1788,47 +1663,6 @@
     "target_focus_slug": "wildlife-conservation",
     "target_focus_name": "Wildlife & Conservation",
     "status": "aired_early"
-  },
-  "https://www.northernminer.com/news/colombia-scraps-10-mining-rules-to-attact-investors/1003894598/": {
-    "article": {
-      "id": "https://www.northernminer.com/news/colombia-scraps-10-mining-rules-to-attact-investors/1003894598/",
-      "url": "https://www.northernminer.com/news/colombia-scraps-10-mining-rules-to-attact-investors/1003894598/",
-      "title": "[The Northern Miner] Colombia scraps 10 mining rules to attact investors",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.northernminer.com%2Fnews%2Fcolombia-scraps-10-mining-rules-to-attact-investors%2F1003894598%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>Colombia\u2019s new government has repealed 10 resolutions restricting natural resource exploration and extraction, accelerating President Abelardo De La Espriella\u2019s push to revive mining investment and unlock the country\u2019s largely untapped...</p>\n<p>The post <a href=\"https://www.northernminer.com/news/colombia-scraps-10-mining-rules-to-attact-investors/1003894598/\">Colombia scraps 10 mining rules to attact investors</a> appeared first on <a href=\"https://www.northernminer.com\">The Northern Miner</a>.</p>",
-      "summary": "Colombia\u2019s new government has repealed 10 resolutions restricting natural resource exploration and extraction, accelerating President Abelardo De La Espriella\u2019s push to revive mining investment and unlock the country\u2019s largely untapped... The post Colombia scraps 10 mining rules to attact investors",
-      "_excerpt": "Colombia\u2019s new government has repealed 10 resolutions restricting natural resource exploration and extraction, accelerating President Abelardo De La Espriella\u2019s push to revive mining investment and unlock the country\u2019s largely untapped... The post Colombia scraps 10 mining rules to attact investors appeared first on The Northern Miner .",
-      "date_published": "2026-09-03T16:37:00+00:00",
-      "authors": [
-        {
-          "name": "The Northern Miner",
-          "url": "https://www.northernminer.com"
-        }
-      ],
-      "ai_score": 60,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 81,
-      "_theme_score_raw": 46,
-      "_composite_podcast": 71,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-11T04:10:27.924839+00:00"
-      },
-      "_boosted_score": 60
-    },
-    "held_date": "2026-09-11",
-    "target_date": "2026-09-15",
-    "target_weekday": 1,
-    "target_focus_slug": "agriculture-ranching",
-    "target_focus_name": "Agriculture & Ranching",
-    "status": "released",
-    "release_date": "2026-09-15"
   },
   "https://www.sciencedaily.com/releases/2026/09/260901010719.htm": {
     "article": {
@@ -1953,48 +1787,6 @@
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
     "status": "aired_early"
-  },
-  "https://www.myeastkootenaynow.com/58084/news/community/columbia-basin-farms-turn-to-solar-power-and-new-crop-trials/": {
-    "article": {
-      "id": "https://www.myeastkootenaynow.com/58084/news/community/columbia-basin-farms-turn-to-solar-power-and-new-crop-trials/",
-      "url": "https://www.myeastkootenaynow.com/58084/news/community/columbia-basin-farms-turn-to-solar-power-and-new-crop-trials/",
-      "title": "[My East Kootenay Now] Columbia Basin farms turn to solar power and new crop trials",
-      "content_html": "<img src=\"https://www.myeastkootenaynow.com/wp-content/uploads/2026/09/2026-09_FarmSolar_ResilientFoodCrops_PHOTO2_EdibleAcresFarm_credit_OliverEgan-e1788988822784.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfd4\ufe0f <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.myeastkootenaynow.com%2F58084%2Fnews%2Fcommunity%2Fcolumbia-basin-farms-turn-to-solar-power-and-new-crop-trials%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"271\" src=\"https://www.myeastkootenaynow.com/wp-content/uploads/2026/09/2026-09_FarmSolar_ResilientFoodCrops_PHOTO2_EdibleAcresFarm_credit_OliverEgan-e1788988822784.jpg\" width=\"480\" />Columbia Basin food producers are turning to solar energy and experimenting with new crops through two Columbia Basin Trust programs aimed at reducing costs and strengthening regional food production.</p>\n<p>The post <a href=\"https://www.myeastkootenaynow.com/58084/news/community/columbia-basin-farms-turn-to-solar-power-and-new-crop-trials/\">Columbia Basin farms turn to solar power and new crop trials</a> appeared first on <a href=\"https://www.myeastkootenaynow.com\">My East Kootenay Now</a>.</p>",
-      "summary": "Columbia Basin food producers are turning to solar energy and experimenting with new crops through two Columbia Basin Trust programs aimed at reducing costs and strengthening regional food production. The post Columbia Basin farms turn to solar power and new crop trials appeared first on My East",
-      "_excerpt": "Columbia Basin food producers are turning to solar energy and experimenting with new crops through two Columbia Basin Trust programs aimed at reducing costs and strengthening regional food production. The post Columbia Basin farms turn to solar power and new crop trials appeared first on My East Kootenay Now .",
-      "date_published": "2026-09-11T06:18:38+00:00",
-      "authors": [
-        {
-          "name": "My East Kootenay Now",
-          "url": "https://www.myeastkootenaynow.com"
-        }
-      ],
-      "ai_score": 65,
-      "_quality": 67,
-      "_relevance": 71,
-      "_local": 45,
-      "_theme_score": 28,
-      "_theme_score_raw": 34,
-      "_composite_podcast": 42,
-      "_keyword_matches": 1,
-      "_category": "climate",
-      "_source_category": "climate",
-      "_is_bonus": false,
-      "image": "https://www.myeastkootenaynow.com/wp-content/uploads/2026/09/2026-09_FarmSolar_ResilientFoodCrops_PHOTO2_EdibleAcresFarm_credit_OliverEgan-e1788988822784.jpg",
-      "_cross_theme": {
-        "day": "tuesday",
-        "label": "Working Lands & Industry",
-        "shown_at": "2026-09-12T04:12:00.575154+00:00"
-      },
-      "_boosted_score": 65
-    },
-    "held_date": "2026-09-12",
-    "target_date": "2026-09-15",
-    "target_weekday": 1,
-    "target_focus_slug": "agriculture-ranching",
-    "target_focus_name": "Agriculture & Ranching",
-    "status": "released",
-    "release_date": "2026-09-15"
   },
   "https://flowingdata.com/2026/09/04/estimating-a-much-stronger-than-usual-el-nino/": {
     "article": {
@@ -2125,7 +1917,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-16"
   },
   "https://www.nytimes.com/2026/09/11/business/north-sea-drilling-uk-burnham.html": {
     "article": {
@@ -2209,47 +2002,6 @@
     "target_focus_slug": "homestead-offgrid",
     "target_focus_name": "Homestead & Off-Grid Tech",
     "status": "held"
-  },
-  "https://www.realagriculture.com/2026/09/will-the-ranchers-first-initiative-actually-help-rebuild-the-u-s-cow-herd/": {
-    "article": {
-      "id": "https://www.realagriculture.com/2026/09/will-the-ranchers-first-initiative-actually-help-rebuild-the-u-s-cow-herd/",
-      "url": "https://www.realagriculture.com/2026/09/will-the-ranchers-first-initiative-actually-help-rebuild-the-u-s-cow-herd/",
-      "title": "[RealAgriculture] Will the Ranchers First Initiative actually help rebuild the U.S. cow herd?",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfd4\ufe0f <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.realagriculture.com%2F2026%2F09%2Fwill-the-ranchers-first-initiative-actually-help-rebuild-the-u-s-cow-herd%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nLast week, U.S. Secretary of Agriculture Brooke Rollins announced the Ranchers First Initiative, a list of five actions designed to help beef producers rebuild the domestic cow herd. Some programs are focused on supporting ranchers in retaining heifers through the new Beef Retention and National Development (BRAND) endorsement, while others are focused on risk management... Read More",
-      "summary": "Last week, U.S. Secretary of Agriculture Brooke Rollins announced the Ranchers First Initiative, a list of five actions designed to help beef producers rebuild the domestic cow herd. Some programs are focused on supporting ranchers in retaining heifers through the new Beef Retention and National",
-      "_excerpt": "Last week, U.S. Secretary of Agriculture Brooke Rollins announced the Ranchers First Initiative, a list of five actions designed to help beef producers rebuild the domestic cow herd. Some programs are focused on supporting ranchers in retaining heifers through the new Beef Retention and National Development (BRAND) endorsement, while others are focused on risk management... Read More",
-      "date_published": "2026-09-04T20:28:01+00:00",
-      "authors": [
-        {
-          "name": "RealAgriculture",
-          "url": "https://www.realagriculture.com"
-        }
-      ],
-      "ai_score": 58,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 61,
-      "_theme_score_raw": 44,
-      "_composite_podcast": 59,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-12T04:12:00.575154+00:00"
-      },
-      "_boosted_score": 58
-    },
-    "held_date": "2026-09-12",
-    "target_date": "2026-09-15",
-    "target_weekday": 1,
-    "target_focus_slug": "agriculture-ranching",
-    "target_focus_name": "Agriculture & Ranching",
-    "status": "released",
-    "release_date": "2026-09-15"
   },
   "https://blog.gov.bc.ca/bcwildfire/prescribed-burn-planned-for-deer-park-mountain-area/": {
     "article": {
@@ -2379,48 +2131,6 @@
     "recall": true,
     "status": "recall"
   },
-  "https://vancouversun.com/news/local-news/clock-ticking-on-effort-to-head-off-howe-sound-mill-closure": {
-    "article": {
-      "id": "https://vancouversun.com/news/local-news/clock-ticking-on-effort-to-head-off-howe-sound-mill-closure",
-      "url": "https://vancouversun.com/news/local-news/clock-ticking-on-effort-to-head-off-howe-sound-mill-closure",
-      "title": "[Vancouver Sun] Clock ticking on effort to head off Howe Sound mill closure",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fvancouversun.com%2Fnews%2Flocal-news%2Fclock-ticking-on-effort-to-head-off-howe-sound-mill-closure\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nAn extended closure of the Howe Sound mill could lead to a cascade of shutdowns by sawmills dependent on the pulp facility to take their wood waste in a highly integrated industry.",
-      "summary": "An extended closure of the Howe Sound mill could lead to a cascade of shutdowns by sawmills dependent on the pulp facility to take their wood waste in a highly integrated industry.",
-      "_excerpt": "An extended closure of the Howe Sound mill could lead to a cascade of shutdowns by sawmills dependent on the pulp facility to take their wood waste in a highly integrated industry.",
-      "date_published": "2026-09-12T15:00:21+00:00",
-      "authors": [
-        {
-          "name": "Vancouver Sun",
-          "url": "https://vancouversun.com/news/bc-wildfires-new-evacuation-orders-issued-south-chilcotin"
-        }
-      ],
-      "ai_score": 54,
-      "_quality": 72,
-      "_relevance": 62,
-      "_local": 15,
-      "_theme_score": 91,
-      "_theme_score_raw": 65,
-      "_composite_podcast": 68,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-13T04:08:41.572460+00:00"
-      },
-      "_boosted_score": 54
-    },
-    "held_date": "2026-09-13",
-    "target_date": "2026-09-15",
-    "target_weekday": 1,
-    "target_focus_slug": "agriculture-ranching",
-    "target_focus_name": "Agriculture & Ranching",
-    "status": "released",
-    "release_date": "2026-09-15"
-  },
   "https://www.howtogeek.com/isp-router-breaking-your-smart-home-in-ways-may-not-even-notice/": {
     "article": {
       "id": "https://www.howtogeek.com/isp-router-breaking-your-smart-home-in-ways-may-not-even-notice/",
@@ -2461,7 +2171,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-16"
   },
   "https://www.hackster.io/news/turn-your-nes-into-a-live-flight-tracker-4a571c7cc42f": {
     "article": {
@@ -2503,7 +2214,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-16"
   },
   "https://www.hackster.io/news/running-generative-ai-on-a-1-raspberry-pi-chip-969ffc1cf958": {
     "article": {
@@ -2545,7 +2257,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-16"
   },
   "https://www.newyorker.com/culture/the-weekend-essay/the-bayeux-tapestrys-long-journey-home": {
     "article": {
@@ -2721,7 +2434,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-16"
   },
   "https://www.theverge.com/column/994172/your-car-is-selling-your-data": {
     "article": {
@@ -2804,45 +2518,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
-  },
-  "https://www.tomshardware.com/tech-industry/cryptomining/mexican-cartel-crypto-farm-seized-in-mountain-raid-300-gpus-satellite-links-and-industrial-transformers-tapped-hydroelectric-power": {
-    "article": {
-      "id": "https://www.tomshardware.com/tech-industry/cryptomining/mexican-cartel-crypto-farm-seized-in-mountain-raid-300-gpus-satellite-links-and-industrial-transformers-tapped-hydroelectric-power",
-      "url": "https://www.tomshardware.com/tech-industry/cryptomining/mexican-cartel-crypto-farm-seized-in-mountain-raid-300-gpus-satellite-links-and-industrial-transformers-tapped-hydroelectric-power",
-      "title": "[Tom's Hardware] Mexican cartel's crypto farm seized in mountain raid \u2014 300 GPUs, satellite links, and industrial transformers tapped hydroelectric power",
-      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/vZTixu9pzvdLkseqLS3M4b-1280-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.tomshardware.com%2Ftech-industry%2Fcryptomining%2Fmexican-cartel-crypto-farm-seized-in-mountain-raid-300-gpus-satellite-links-and-industrial-transformers-tapped-hydroelectric-power\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThere is increasing evidence that Mexican drug cartels are diversifying into cryptocurrency mining and are using crypto platforms to launder their ill-gotten gains.",
-      "summary": "There is increasing evidence that Mexican drug cartels are diversifying into cryptocurrency mining and are using crypto platforms to launder their ill-gotten gains.",
-      "_excerpt": "There is increasing evidence that Mexican drug cartels are diversifying into cryptocurrency mining and are using crypto platforms to launder their ill-gotten gains.",
-      "date_published": "2026-09-13T11:30:00+00:00",
-      "authors": [
-        {
-          "name": "Tom's Hardware",
-          "url": "https://www.tomshardware.com"
-        }
-      ],
-      "ai_score": 58,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 94,
-      "_theme_score_raw": 28,
-      "_composite_podcast": 66,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://cdn.mos.cms.futurecdn.net/vZTixu9pzvdLkseqLS3M4b-1280-80.jpg",
-      "_boosted_score": 58
-    },
-    "held_date": "2026-09-14",
-    "target_date": "2026-09-15",
-    "target_weekday": 1,
-    "target_focus_slug": "agriculture-ranching",
-    "target_focus_name": "Agriculture & Ranching",
     "status": "released",
-    "release_date": "2026-09-15"
+    "release_date": "2026-09-16"
   },
   "https://news.gov.bc.ca/releases/2026FOR0046-001061": {
     "article": {
@@ -3044,7 +2721,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-16"
   },
   "https://www.countrylife.co.uk/culture/art-exhibitions/dovecotes-deer-vineyards-and-lots-of-castles-apart-from-that-what-did-the-normans-ever-do-for-us": {
     "article": {
@@ -3217,7 +2895,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-16"
   },
   "https://www.northernminer.com/news/roosens-osisko-greenlights-cariboo-gold-project-in-bc/1003894808/": {
     "article": {
@@ -3750,7 +3429,7 @@
       "id": "https://hyperallergic.com/activists-protest-bayeux-tapestry-sponsors-ties-to-israeli-settlements/",
       "url": "https://hyperallergic.com/activists-protest-bayeux-tapestry-sponsors-ties-to-israeli-settlements/",
       "title": "[Hyperallergic] Activists Protest Bayeux Tapestry Sponsor\u2019s Ties to Israeli Settlements",
-      "content_html": "<img src=\"https://storage.ghost.io/c/51/f8/51f871d8-b6be-4a73-b958-0ca4fff0110a/content/images/2026/09/GettyImages-2294528533.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fhyperallergic.com%2Factivists-protest-bayeux-tapestry-sponsors-ties-to-israeli-settlements%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nDemonstrators at the British Museum decried billionaire Igor Tulchinsky\u2019s financing of a community center in an illegal Israeli settlement in the Occupied West Bank.",
+      "content_html": "<img src=\"https://storage.ghost.io/c/51/f8/51f871d8-b6be-4a73-b958-0ca4fff0110a/content/images/2026/09/GettyImages-2294528533.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fhyperallergic.com%2Factivists-protest-bayeux-tapestry-sponsors-ties-to-israeli-settlements%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nDemonstrators at the British Museum decried billionaire Igor Tulchinsky\u2019s financing of a community center in an illegal Israeli settlement in the Occupied West Bank.",
       "summary": "Demonstrators at the British Museum decried billionaire Igor Tulchinsky\u2019s financing of a community center in an illegal Israeli settlement in the Occupied West Bank.",
       "_excerpt": "Demonstrators at the British Museum decried billionaire Igor Tulchinsky\u2019s financing of a community center in an illegal Israeli settlement in the Occupied West Bank.",
       "date_published": "2026-09-14T17:39:28+00:00",
@@ -3764,9 +3443,9 @@
       "_quality": 0,
       "_relevance": 0,
       "_local": 0,
-      "_theme_score": 90,
-      "_theme_score_raw": 11,
-      "_composite_podcast": 62,
+      "_theme_score": 74,
+      "_theme_score_raw": 6,
+      "_composite_podcast": 52,
       "_keyword_matches": 0,
       "_category": "news",
       "_source_category": "news",
@@ -3780,7 +3459,7 @@
       },
       "_boosted_score": 55
     },
-    "held_date": "2026-09-15",
+    "held_date": "2026-09-16",
     "target_date": "2026-09-28",
     "target_weekday": 0,
     "target_focus_slug": "visual-arts-heritage",
@@ -3827,7 +3506,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-16"
   },
   "https://www.howtogeek.com/this-rarely-mentioned-ethernet-setting-can-make-a-fast-pc-feel-painfully-slow/": {
     "article": {
@@ -3864,7 +3544,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-16"
   },
   "https://hyperallergic.com/europes-art-theft-problem-is-much-bigger-than-the-louvre/": {
     "article": {
@@ -3948,7 +3629,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-16"
   },
   "https://www.countrylife.co.uk/architecture/the-rise-and-ruin-of-an-elizabethan-hall-that-tried-in-vain-to-prepare-a-war-poet-for-the-trenches": {
     "article": {
@@ -4074,7 +3756,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-16"
   },
   "https://blog.adafruit.com/2026/09/07/rebuilding-a-1995-gps-time-server-with-raspberry-pi-and-python/": {
     "article": {
@@ -4114,7 +3797,8 @@
     "target_weekday": 2,
     "target_focus_slug": "maker-repair",
     "target_focus_name": "Maker & Repair",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-16"
   },
   "https://www.tomshardware.com/pc-components/gpus/enthusiast-says-dlss-5-pushed-rtx-5090-past-600w-and-melted-the-16-pin-connector-nvidias-neural-rendering-tech-adds-up-to-50-percent-more-power-draw-in-testing": {
     "article": {
@@ -4151,6 +3835,1075 @@
     "target_weekday": 2,
     "target_focus_slug": "homestead-offgrid",
     "target_focus_name": "Homestead & Off-Grid Tech",
+    "status": "held"
+  },
+  "https://www.mycariboonow.com/316240/news/court/two-hunters-sentenced-for-wildlife-act-violations-near-quesnel/": {
+    "article": {
+      "id": "https://www.mycariboonow.com/316240/news/court/two-hunters-sentenced-for-wildlife-act-violations-near-quesnel/",
+      "url": "https://www.mycariboonow.com/316240/news/court/two-hunters-sentenced-for-wildlife-act-violations-near-quesnel/",
+      "title": "[My Cariboo Now] Two hunters sentenced for Wildlife Act violations near Quesnel",
+      "content_html": "<img src=\"https://www.mycariboonow.com/wp-content/uploads/2019/06/quesnel-courtroom-2.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.mycariboonow.com%2F316240%2Fnews%2Fcourt%2Ftwo-hunters-sentenced-for-wildlife-act-violations-near-quesnel%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"522\" src=\"https://www.mycariboonow.com/wp-content/uploads/2019/06/quesnel-courtroom-2-1024x768.jpg\" width=\"696\" />Two men have been sentenced for unlawful possession of live wildfire and discharging a firearm in a no-shooting area near Quesnel.</p>\n<p>The post <a href=\"https://www.mycariboonow.com/316240/news/court/two-hunters-sentenced-for-wildlife-act-violations-near-quesnel/\">Two hunters sentenced for Wildlife Act violations near Quesnel</a> appeared first on <a href=\"https://www.mycariboonow.com\">My Cariboo Now</a>.</p>",
+      "summary": "Two men have been sentenced for unlawful possession of live wildfire and discharging a firearm in a no-shooting area near Quesnel. The post Two hunters sentenced for Wildlife Act violations near Quesnel appeared first on My Cariboo Now .",
+      "_excerpt": "Two men have been sentenced for unlawful possession of live wildfire and discharging a firearm in a no-shooting area near Quesnel. The post Two hunters sentenced for Wildlife Act violations near Quesnel appeared first on My Cariboo Now .",
+      "date_published": "2026-09-15T18:51:43+00:00",
+      "authors": [
+        {
+          "name": "My Cariboo Now",
+          "url": "https://www.mycariboonow.com"
+        }
+      ],
+      "ai_score": 74,
+      "_quality": 53,
+      "_relevance": 72,
+      "_local": 100,
+      "_theme_score": 92,
+      "_theme_score_raw": 16,
+      "_composite_podcast": 83,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "image": "https://www.mycariboonow.com/wp-content/uploads/2019/06/quesnel-courtroom-2.jpg",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-16T04:09:55.776079+00:00"
+      },
+      "_boosted_score": 74,
+      "_topic_cluster": "B.C. wildlife violations sentenced",
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-09-16",
+    "target_date": "2026-09-18",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "aired_early"
+  },
+  "https://www.mycariboonow.com/316242/news/indigenous/former-attorneys-general-voice-support-for-modern-treaties-amid-indigenous-title-concerns/": {
+    "article": {
+      "id": "https://www.mycariboonow.com/316242/news/indigenous/former-attorneys-general-voice-support-for-modern-treaties-amid-indigenous-title-concerns/",
+      "url": "https://www.mycariboonow.com/316242/news/indigenous/former-attorneys-general-voice-support-for-modern-treaties-amid-indigenous-title-concerns/",
+      "title": "[My Cariboo Now] Former attorneys general voice support for modern treaties amid Indigenous title concerns",
+      "content_html": "<img src=\"https://www.mycariboonow.com/wp-content/uploads/2026/04/IMG_1145-scaled-1.jpeg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.mycariboonow.com%2F316242%2Fnews%2Findigenous%2Fformer-attorneys-general-voice-support-for-modern-treaties-amid-indigenous-title-concerns%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"392\" src=\"https://www.mycariboonow.com/wp-content/uploads/2026/04/IMG_1145-scaled-1-1024x576.jpeg\" width=\"696\" />Eleven former B.C. attorneys general are backing modern treaties, saying they support reconciliation while protecting private property rights.</p>\n<p>The post <a href=\"https://www.mycariboonow.com/316242/news/indigenous/former-attorneys-general-voice-support-for-modern-treaties-amid-indigenous-title-concerns/\">Former attorneys general voice support for modern treaties amid Indigenous title concerns</a> appeared first on <a href=\"https://www.mycariboonow.com\">My Cariboo Now</a>.</p>",
+      "summary": "Eleven former B.C. attorneys general are backing modern treaties, saying they support reconciliation while protecting private property rights. The post Former attorneys general voice support for modern treaties amid Indigenous title concerns appeared first on My Cariboo Now .",
+      "_excerpt": "Eleven former B.C. attorneys general are backing modern treaties, saying they support reconciliation while protecting private property rights. The post Former attorneys general voice support for modern treaties amid Indigenous title concerns appeared first on My Cariboo Now .",
+      "date_published": "2026-09-15T19:36:56+00:00",
+      "authors": [
+        {
+          "name": "My Cariboo Now",
+          "url": "https://www.mycariboonow.com"
+        }
+      ],
+      "ai_score": 74,
+      "_quality": 69,
+      "_relevance": 76,
+      "_local": 75,
+      "_theme_score": 93,
+      "_theme_score_raw": 17,
+      "_composite_podcast": 81,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "image": "https://www.mycariboonow.com/wp-content/uploads/2026/04/IMG_1145-scaled-1.jpeg",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-16T04:09:55.776079+00:00"
+      },
+      "_boosted_score": 74,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-09-16",
+    "target_date": "2026-09-17",
+    "target_weekday": 3,
+    "target_focus_slug": "governance-title",
+    "target_focus_name": "Governance, Title & Treaty",
+    "status": "aired_early"
+  },
+  "https://flowingdata.com/2026/09/15/hotter-days-and-more-of-them/": {
+    "article": {
+      "id": "https://flowingdata.com/2026/09/15/hotter-days-and-more-of-them/",
+      "url": "https://flowingdata.com/2026/09/15/hotter-days-and-more-of-them/",
+      "title": "[FlowingData] Hotter days and more of them",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fflowingdata.com%2F2026%2F09%2F15%2Fhotter-days-and-more-of-them%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><a href=\"https://flowingdata.com/2026/09/15/hotter-days-and-more-of-them/\"><img src=\"https://flowingdata.com/wp-content/uploads/2026/09/hotter-days-nyt-750x529.png\" style=\"height: auto;\" /></a></p>Summer 2026 is likely the hottest summer on record since 1895. The NYT&#8230;<p><strong>Tags:</strong> <a href=\"https://flowingdata.com/tag/climate-change/\" rel=\"tag\">climate change</a>, <a href=\"https://flowingdata.com/tag/heat/\" rel=\"tag\">heat</a>, <a href=\"https://flowingdata.com/tag/new-york-times/\" rel=\"tag\">New York Times</a></p>",
+      "summary": "Summer 2026 is likely the hottest summer on record since 1895. The NYT\u2026 Tags: climate change , heat , New York Times",
+      "_excerpt": "Summer 2026 is likely the hottest summer on record since 1895. The NYT\u2026 Tags: climate change , heat , New York Times",
+      "date_published": "2026-09-15T09:47:04+00:00",
+      "authors": [
+        {
+          "name": "FlowingData",
+          "url": "https://flowingdata.com"
+        }
+      ],
+      "ai_score": 57,
+      "_quality": 68,
+      "_relevance": 72,
+      "_local": 0,
+      "_theme_score": 88,
+      "_theme_score_raw": 9,
+      "_composite_podcast": 73,
+      "_keyword_matches": 0,
+      "_category": "climate",
+      "_source_category": "climate",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-16T04:09:55.776079+00:00"
+      },
+      "_boosted_score": 57
+    },
+    "held_date": "2026-09-16",
+    "target_date": "2026-09-18",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "held"
+  },
+  "https://www.aptnnews.ca/national-news/b-c-wildfires-hit-first-nations-reserves-harder-human-rights-report-says/": {
+    "article": {
+      "id": "https://www.aptnnews.ca/national-news/b-c-wildfires-hit-first-nations-reserves-harder-human-rights-report-says/",
+      "url": "https://www.aptnnews.ca/national-news/b-c-wildfires-hit-first-nations-reserves-harder-human-rights-report-says/",
+      "title": "[APTN News] B.C. wildfires hit First Nations reserves harder, human rights report says",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.aptnnews.ca%2Fnational-news%2Fb-c-wildfires-hit-first-nations-reserves-harder-human-rights-report-says%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>A new report from British Columbia&#8217;s Human Rights Commissioner says First Nations reserves are four...</p>\n<p>The post <a href=\"https://www.aptnnews.ca/national-news/b-c-wildfires-hit-first-nations-reserves-harder-human-rights-report-says/\">B.C. wildfires hit First Nations reserves harder, human rights report says</a> appeared first on <a href=\"https://www.aptnnews.ca\">APTN News</a>.</p>",
+      "summary": "A new report from British Columbia\u2019s Human Rights Commissioner says First Nations reserves are four... The post B.C. wildfires hit First Nations reserves harder, human rights report says appeared first on APTN News .",
+      "_excerpt": "A new report from British Columbia\u2019s Human Rights Commissioner says First Nations reserves are four... The post B.C. wildfires hit First Nations reserves harder, human rights report says appeared first on APTN News .",
+      "date_published": "2026-09-15T16:47:10+00:00",
+      "authors": [
+        {
+          "name": "APTN News",
+          "url": "https://www.aptnnews.ca"
+        }
+      ],
+      "ai_score": 57,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 74,
+      "_theme_score_raw": 6,
+      "_composite_podcast": 69,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "tuesday",
+        "label": "Working Lands & Industry",
+        "shown_at": "2026-09-16T04:09:55.776079+00:00"
+      },
+      "_boosted_score": 57,
+      "_topic_cluster": "B.C. wildfires impact Indigenous"
+    },
+    "held_date": "2026-09-16",
+    "target_date": "2026-09-17",
+    "target_weekday": 3,
+    "target_focus_slug": "governance-title",
+    "target_focus_name": "Governance, Title & Treaty",
+    "status": "held"
+  },
+  "https://www.aptnnews.ca/infocus/fighting-fires-with-good-fire-how-indigenous-land-guardians-are-protecting-the-boreal-forest/": {
+    "article": {
+      "id": "https://www.aptnnews.ca/infocus/fighting-fires-with-good-fire-how-indigenous-land-guardians-are-protecting-the-boreal-forest/",
+      "url": "https://www.aptnnews.ca/infocus/fighting-fires-with-good-fire-how-indigenous-land-guardians-are-protecting-the-boreal-forest/",
+      "title": "[APTN News] Fighting fires with good fire: How Indigenous land guardians are protecting the boreal forest",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.aptnnews.ca%2Finfocus%2Ffighting-fires-with-good-fire-how-indigenous-land-guardians-are-protecting-the-boreal-forest%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>Spanning 270 million hectares in Canada, the boreal forest is home to billions of trees,...</p>\n<p>The post <a href=\"https://www.aptnnews.ca/infocus/fighting-fires-with-good-fire-how-indigenous-land-guardians-are-protecting-the-boreal-forest/\">Fighting fires with good fire: How Indigenous land guardians are protecting the boreal forest</a> appeared first on <a href=\"https://www.aptnnews.ca\">APTN News</a>.</p>",
+      "summary": "Spanning 270 million hectares in Canada, the boreal forest is home to billions of trees,... The post Fighting fires with good fire: How Indigenous land guardians are protecting the boreal forest appeared first on APTN News .",
+      "_excerpt": "Spanning 270 million hectares in Canada, the boreal forest is home to billions of trees,... The post Fighting fires with good fire: How Indigenous land guardians are protecting the boreal forest appeared first on APTN News .",
+      "date_published": "2026-09-12T14:32:11+00:00",
+      "authors": [
+        {
+          "name": "APTN News",
+          "url": "https://www.aptnnews.ca"
+        }
+      ],
+      "ai_score": 57,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 74,
+      "_theme_score_raw": 6,
+      "_composite_podcast": 69,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "tuesday",
+        "label": "Working Lands & Industry",
+        "shown_at": "2026-09-13T04:08:41.572460+00:00"
+      },
+      "_boosted_score": 17,
+      "_topic_cluster": "B.C. wildfires impact Indigenous",
+      "_cluster_suppressed": true
+    },
+    "held_date": "2026-09-16",
+    "target_date": "2026-09-17",
+    "target_weekday": 3,
+    "target_focus_slug": "governance-title",
+    "target_focus_name": "Governance, Title & Treaty",
+    "status": "held"
+  },
+  "https://www.canadianminingjournal.com/news/new-cat-d11-xe-electric-drive-dozer-pushes-productivity-higher/": {
+    "article": {
+      "id": "https://www.canadianminingjournal.com/news/new-cat-d11-xe-electric-drive-dozer-pushes-productivity-higher/",
+      "url": "https://www.canadianminingjournal.com/news/new-cat-d11-xe-electric-drive-dozer-pushes-productivity-higher/",
+      "title": "[Canadian Mining Journal] New Cat D11 XE electric-drive dozer pushes productivity higher",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.canadianminingjournal.com%2Fnews%2Fnew-cat-d11-xe-electric-drive-dozer-pushes-productivity-higher%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>Caterpillar has launched the Cat D11 XE, its first electric-drive large dozer, promising mining operations higher productivity, lower fuel consumption and reduced [&#8230;]</p>\n<p>The post <a href=\"https://www.canadianminingjournal.com/news/new-cat-d11-xe-electric-drive-dozer-pushes-productivity-higher/\">New Cat D11 XE electric-drive dozer pushes productivity higher</a> appeared first on <a href=\"https://www.canadianminingjournal.com\">Canadian Mining Journal</a>.</p>",
+      "summary": "Caterpillar has launched the Cat D11 XE, its first electric-drive large dozer, promising mining operations higher productivity, lower fuel consumption and reduced [\u2026] The post New Cat D11 XE electric-drive dozer pushes productivity higher appeared first on Canadian Mining Journal .",
+      "_excerpt": "Caterpillar has launched the Cat D11 XE, its first electric-drive large dozer, promising mining operations higher productivity, lower fuel consumption and reduced [\u2026] The post New Cat D11 XE electric-drive dozer pushes productivity higher appeared first on Canadian Mining Journal .",
+      "date_published": "2026-09-09T17:22:19+00:00",
+      "authors": [
+        {
+          "name": "Canadian Mining Journal",
+          "url": "https://www.canadianminingjournal.com"
+        }
+      ],
+      "ai_score": 58,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 74,
+      "_theme_score_raw": 6,
+      "_composite_podcast": 68,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-11T04:10:27.924839+00:00"
+      },
+      "_boosted_score": 58
+    },
+    "held_date": "2026-09-16",
+    "target_date": "2026-09-29",
+    "target_weekday": 1,
+    "target_focus_slug": "mining-energy",
+    "target_focus_name": "Mining & Energy",
+    "status": "held"
+  },
+  "https://www.xda-developers.com/added-ssd-caching-to-nas-learned-why-not-the-performance-fix-claims/": {
+    "article": {
+      "id": "https://www.xda-developers.com/added-ssd-caching-to-nas-learned-why-not-the-performance-fix-claims/",
+      "url": "https://www.xda-developers.com/added-ssd-caching-to-nas-learned-why-not-the-performance-fix-claims/",
+      "title": "[XDA Developers] I added SSD caching to my NAS and learned why it's not the performance fix everyone claims",
+      "content_html": "<img src=\"https://static0.xdaimages.com/wordpress/wp-content/uploads/wm/2026/08/optane-ssd-stick-3.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.xda-developers.com%2Fadded-ssd-caching-to-nas-learned-why-not-the-performance-fix-claims%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nSSD caching on a NAS sounds great until you realize what you actually use it for.",
+      "summary": "SSD caching on a NAS sounds great until you realize what you actually use it for.",
+      "_excerpt": "SSD caching on a NAS sounds great until you realize what you actually use it for.",
+      "date_published": "2026-09-15T21:00:16+00:00",
+      "authors": [
+        {
+          "name": "XDA Developers",
+          "url": "https://www.xda-developers.com"
+        }
+      ],
+      "ai_score": 58,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 93,
+      "_theme_score_raw": 17,
+      "_composite_podcast": 67,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://static0.xdaimages.com/wordpress/wp-content/uploads/wm/2026/08/optane-ssd-stick-3.jpg",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-16T04:09:55.776079+00:00"
+      },
+      "_boosted_score": 58
+    },
+    "held_date": "2026-09-16",
+    "target_date": "2026-09-23",
+    "target_weekday": 2,
+    "target_focus_slug": "homestead-offgrid",
+    "target_focus_name": "Homestead & Off-Grid Tech",
+    "status": "held"
+  },
+  "https://www.motherjones.com/politics/2026/09/soaring-insurance-prices-racism-redlining-black-hispanic-homeowners-communities-pay-hight-premiums/": {
+    "article": {
+      "id": "https://www.motherjones.com/politics/2026/09/soaring-insurance-prices-racism-redlining-black-hispanic-homeowners-communities-pay-hight-premiums/",
+      "url": "https://www.motherjones.com/politics/2026/09/soaring-insurance-prices-racism-redlining-black-hispanic-homeowners-communities-pay-hight-premiums/",
+      "title": "[Mother Jones] Soaring Insurance Prices Are Hitting Black and Hispanic Homeowners Hardest",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.motherjones.com%2Fpolitics%2F2026%2F09%2Fsoaring-insurance-prices-racism-redlining-black-hispanic-homeowners-communities-pay-hight-premiums%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThis story was originally published by Inside Climate News&#160;and&#160;is reproduced here as part of the&#160;Climate Desk&#160;collaboration. Homeowners in Hispanic and Black communities nationwide are paying a disproportionate share of skyrocketing home insurance costs, according to a recent report. The disparities leave communities of color at greater risk as climate change increases the frequency of billion-dollar [&#8230;]",
+      "summary": "This story was originally published by Inside Climate News and is reproduced here as part of the Climate Desk collaboration. Homeowners in Hispanic and Black communities nationwide are paying a disproportionate share of skyrocketing home insurance costs, according to a recent report. The",
+      "_excerpt": "This story was originally published by Inside Climate News and is reproduced here as part of the Climate Desk collaboration. Homeowners in Hispanic and Black communities nationwide are paying a disproportionate share of skyrocketing home insurance costs, according to a recent report. The disparities leave communities of color at greater risk as climate change increases the frequency of billion-dollar [\u2026]",
+      "date_published": "2026-09-10T11:30:00+00:00",
+      "authors": [
+        {
+          "name": "Mother Jones",
+          "url": "https://www.motherjones.com"
+        }
+      ],
+      "ai_score": 51,
+      "_quality": 79,
+      "_relevance": 58,
+      "_local": 0,
+      "_theme_score": 74,
+      "_theme_score_raw": 6,
+      "_composite_podcast": 66,
+      "_keyword_matches": 0,
+      "_category": "climate",
+      "_source_category": "climate",
+      "_is_bonus": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Apple News+",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-10T14:06:38.005392+00:00"
+      },
+      "_boosted_score": 51
+    },
+    "held_date": "2026-09-16",
+    "target_date": "2026-09-18",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "held"
+  },
+  "https://newatlas.com/medical/friday-13th-unlucky/": {
+    "article": {
+      "id": "https://newatlas.com/medical/friday-13th-unlucky/",
+      "url": "https://newatlas.com/medical/friday-13th-unlucky/",
+      "title": "[New Atlas] We've uncovered the deadliest days \u2013 and they don't fall on Friday the 13th",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fnewatlas.com%2Fmedical%2Ffriday-13th-unlucky%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"Frida the 13th on a calendar\" src=\"https://assets.newatlas.com/dims4/default/3441ae9/2147483647/strip/true/crop/2000x1250+0+0/resize/1440x900!/format/webp/quality/90/?url=https%3A%2F%2Fnewatlas-brightspot.s3.ap-southeast-2.amazonaws.com%2F7a%2F3b%2F42d051fe470b90fd6a23b81769bb%2Ffriday-13-red-background.jpg\" /><p>Long before I wrote about science, I was a vampire. I worked at night, sucking blood in a hospital.</p><p><a href=\"https://newatlas.com/medical/friday-13th-unlucky/\">Continue Reading</a></p><p><b>Category:</b> <a href=\"https://refractor.io/medical/\">Body and Mind</a></p><p><b>Tags:</b> <a href=\"https://newatlas.com/tag/psychology/\" rel=\"tag\">Psychology</a>, <a href=\"https://newatlas.com/tag/moon/\" rel=\"tag\">Moon</a>, <a href=\"https://newatlas.com/tag/superstition/\" rel=\"tag\">superstition</a>, <a href=\"https://newatlas.com/tag/mortality/\" rel=\"tag\">Mortality</a>, <a href=\"https://newatlas.com/tag/emergency/\" rel=\"tag\">Emergency</a>, <a href=\"https://newatlas.com/tag/heart-attack/\" rel=\"tag\">Heart attack</a></p>",
+      "summary": "Long before I wrote about science, I was a vampire. I worked at night, sucking blood in a hospital. Continue Reading Category: Body and Mind Tags: Psychology , Moon , superstition , Mortality , Emergency , Heart attack",
+      "_excerpt": "Long before I wrote about science, I was a vampire. I worked at night, sucking blood in a hospital. Continue Reading Category: Body and Mind Tags: Psychology , Moon , superstition , Mortality , Emergency , Heart attack",
+      "date_published": "2026-09-08T19:49:10+00:00",
+      "authors": [
+        {
+          "name": "New Atlas",
+          "url": "https://newatlas.com"
+        }
+      ],
+      "ai_score": 62,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 68,
+      "_theme_score_raw": 4,
+      "_composite_podcast": 65,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "tuesday",
+        "label": "Working Lands & Industry",
+        "shown_at": "2026-09-16T04:09:55.776079+00:00"
+      },
+      "_boosted_score": 62
+    },
+    "held_date": "2026-09-16",
+    "target_date": "2026-09-27",
+    "target_weekday": 6,
+    "target_focus_slug": "earth-systems",
+    "target_focus_name": "Earth Systems & Climate Science",
+    "status": "held"
+  },
+  "https://newatlas.com/motorcycles/axor-mx-carbon-helmet/": {
+    "article": {
+      "id": "https://newatlas.com/motorcycles/axor-mx-carbon-helmet/",
+      "url": "https://newatlas.com/motorcycles/axor-mx-carbon-helmet/",
+      "title": "[New Atlas] Has an Indian disruptor just built the world\u2019s lightest off-road helmet?",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fnewatlas.com%2Fmotorcycles%2Faxor-mx-carbon-helmet%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"The MX Carbon helmet is priced at \u20b920,060 (around US$212)\" src=\"https://assets.newatlas.com/dims4/default/b56a9b4/2147483647/strip/true/crop/3000x2553+0+0/resize/1128x960!/format/webp/quality/90/?url=https%3A%2F%2Fnewatlas-brightspot.s3.ap-southeast-2.amazonaws.com%2F37%2F58%2Fe8bebee8406195f0969da93cef81%2F781137176-18418611700156992-1423370955115173991-n.jpg\" /><p>There are a few things in motorcycling that make me immediately suspicious. A 200-hp Chinese V4? Sounds about right. A Honda Dax dressed as a hot rod chopper? I'll raise an eyebrow. But a rather unheard-of helmet manufacturer suddenly announcing that it has built the world's lightest off-road helmet? Now you've got my attention.</p><p><a href=\"https://newatlas.com/motorcycles/axor-mx-carbon-helmet/\">Continue Reading</a></p><p><b>Category:</b> <a href=\"https://newatlas.com/motorcycles/\">Motorcycles</a>, <a href=\"https://newatlas.com/transport/\">Transport</a></p><p><b>Tags:</b> <a href=\"https://newatlas.com/tag/helmet/\" rel=\"tag\">Helmet</a>, <a href=\"https://newatlas.com/tag/road-safety/\" rel=\"tag\">Road Safety</a>, <a href=\"https://newatlas.com/tag/helmets/\" rel=\"tag\">Helmets</a>, <a href=\"https://newatlas.com/tag/india/\" rel=\"tag\">India</a>, <a href=\"https://newatlas.com/tag/affordable/\" rel=\"tag\">Affordable</a>, <a href=\"https://newatlas.com/tag/carbon-fibre/\" rel=\"tag\">Carbon+Fibre</a>, <a href=\"https://newatlas.com/tag/off-road/\" rel=\"tag\">Off-road</a></p>",
+      "summary": "There are a few things in motorcycling that make me immediately suspicious. A 200-hp Chinese V4? Sounds about right. A Honda Dax dressed as a hot rod chopper? I'll raise an eyebrow. But a rather unheard-of helmet manufacturer suddenly announcing that it has built the world's lightest off-road",
+      "_excerpt": "There are a few things in motorcycling that make me immediately suspicious. A 200-hp Chinese V4? Sounds about right. A Honda Dax dressed as a hot rod chopper? I'll raise an eyebrow. But a rather unheard-of helmet manufacturer suddenly announcing that it has built the world's lightest off-road helmet? Now you've got my attention. Continue Reading Category: Motorcycles , Transport Tags: Helmet , Road Safety , Helmets , India , Affordable , Carbon+Fibre , Off-road",
+      "date_published": "2026-09-13T06:03:00+00:00",
+      "authors": [
+        {
+          "name": "New Atlas",
+          "url": "https://newatlas.com"
+        }
+      ],
+      "ai_score": 48,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 74,
+      "_theme_score_raw": 6,
+      "_composite_podcast": 65,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "thursday",
+        "label": "Indigenous Lands & Innovation",
+        "shown_at": "2026-09-14T04:07:17.943134+00:00"
+      },
+      "_boosted_score": 48
+    },
+    "held_date": "2026-09-16",
+    "target_date": "2026-09-20",
+    "target_weekday": 6,
+    "target_focus_slug": "living-world",
+    "target_focus_name": "The Living World",
+    "status": "held"
+  },
+  "https://wltribune.com/2026/09/15/children-and-youth-race-zucchinis-cars-at-williams-lake-harvest-fair/": {
+    "article": {
+      "id": "https://wltribune.com/2026/09/15/children-and-youth-race-zucchinis-cars-at-williams-lake-harvest-fair/",
+      "url": "https://wltribune.com/2026/09/15/children-and-youth-race-zucchinis-cars-at-williams-lake-harvest-fair/",
+      "title": "[Williams Lake Tribune] Children and youth race zucchinis cars at Williams Lake Harvest Fair",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F09%2F15%2Fchildren-and-youth-race-zucchinis-cars-at-williams-lake-harvest-fair%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n## Children and youth race zucchinis cars at Williams Lake Harvest Fair Published 4:00 pm Tuesday, September 15, 2026 **By Khushi Arora** 1/13 Colourful zucchini cars line up ready to race during the Williams Lake Harvest Fair on Sept. 13\\. (Khushi Arora/Williams Lake Tribune) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | On one side, children were busy turning zucchinis into race-ready creations, while on the other, tracks were being set up for the competition to begin at the Williams Lake Harvest Fair. The",
+      "summary": "## Children and youth race zucchinis cars at Williams Lake Harvest Fair Published 4:00 pm Tuesday, September 15, 2026 **By Khushi Arora** 1/13 Colourful zucchini cars line up ready to race during the Williams Lake Harvest Fair on Sept. 13\\. (Khushi Arora/Williams Lake Tribune) | **Getting your",
+      "_excerpt": "## Children and youth race zucchinis cars at Williams Lake Harvest Fair Published 4:00 pm Tuesday, September 15, 2026 **By Khushi Arora** 1/13 Colourful zucchini cars line up ready to race during the Williams Lake Harvest Fair on Sept. 13\\. (Khushi Arora/Williams Lake Tribune) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | On one side, children were busy turning zucchinis into race-ready creations, while on the other, tracks were being set up for the competition to begin at the Williams Lake Harvest Fair. The",
+      "date_published": "2026-09-16T04:03:01.720012+00:00",
+      "authors": [
+        {
+          "name": "Williams Lake Tribune",
+          "url": "https://wltribune.com"
+        }
+      ],
+      "ai_score": 80,
+      "_quality": 68,
+      "_relevance": 78,
+      "_local": 100,
+      "_theme_score": 59,
+      "_theme_score_raw": 3,
+      "_composite_podcast": 65,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Williams Lake Tribune",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-16T04:09:55.776079+00:00"
+      },
+      "_boosted_score": 80,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-09-16",
+    "target_date": "2026-10-13",
+    "target_weekday": 1,
+    "target_focus_slug": "agriculture-ranching",
+    "target_focus_name": "Agriculture & Ranching",
+    "status": "aired_early"
+  },
+  "https://www.niemanlab.org/2026/09/is-science-journalism-dying-comparing-a-science-crash-40-years-ago-to-today/": {
+    "article": {
+      "id": "https://www.niemanlab.org/2026/09/is-science-journalism-dying-comparing-a-science-crash-40-years-ago-to-today/",
+      "url": "https://www.niemanlab.org/2026/09/is-science-journalism-dying-comparing-a-science-crash-40-years-ago-to-today/",
+      "title": "[Nieman Lab] Is science journalism dying? Comparing a \u201cscience crash\u201d 40 years ago to today",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.niemanlab.org%2F2026%2F09%2Fis-science-journalism-dying-comparing-a-science-crash-40-years-ago-to-today%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nWhen two popular science magazines \u2014 out of about 17 in circulation \u2014 ceased publication in the same year, one commentator said, &#8220;The science magazines didn&#8217;t shake out. They fell apart.&#8221; The general manager of one of the failed magazines said, &#8220;There was a perception that they were irrelevant.&#8221; One of the publishers remembered being...",
+      "summary": "When two popular science magazines \u2014 out of about 17 in circulation \u2014 ceased publication in the same year, one commentator said, \u201cThe science magazines didn\u2019t shake out. They fell apart.\u201d The general manager of one of the failed magazines said, \u201cThere was a perception that they were irrelevant.\u201d",
+      "_excerpt": "When two popular science magazines \u2014 out of about 17 in circulation \u2014 ceased publication in the same year, one commentator said, \u201cThe science magazines didn\u2019t shake out. They fell apart.\u201d The general manager of one of the failed magazines said, \u201cThere was a perception that they were irrelevant.\u201d One of the publishers remembered being...",
+      "date_published": "2026-09-15T16:14:44+00:00",
+      "authors": [
+        {
+          "name": "Nieman Lab",
+          "url": "https://www.niemanlab.org"
+        }
+      ],
+      "ai_score": 65,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 68,
+      "_theme_score_raw": 4,
+      "_composite_podcast": 65,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-16T04:09:55.776079+00:00"
+      },
+      "_boosted_score": 65
+    },
+    "held_date": "2026-09-16",
+    "target_date": "2026-09-27",
+    "target_weekday": 6,
+    "target_focus_slug": "earth-systems",
+    "target_focus_name": "Earth Systems & Climate Science",
+    "status": "held"
+  },
+  "https://www.scientificamerican.com/article/why-we-love-unexplainable-mysteries/": {
+    "article": {
+      "id": "https://www.scientificamerican.com/article/why-we-love-unexplainable-mysteries/",
+      "url": "https://www.scientificamerican.com/article/why-we-love-unexplainable-mysteries/",
+      "title": "[Scientific American] Why we love unexplainable mysteries",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.scientificamerican.com%2Farticle%2Fwhy-we-love-unexplainable-mysteries%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>The biggest questions in science inspire us even when we lack answers</p>",
+      "summary": "The biggest questions in science inspire us even when we lack answers",
+      "_excerpt": "The biggest questions in science inspire us even when we lack answers",
+      "date_published": "2026-09-15T10:00:00+00:00",
+      "authors": [
+        {
+          "name": "Scientific American",
+          "url": "https://www.scientificamerican.com"
+        }
+      ],
+      "ai_score": 50,
+      "_quality": 77,
+      "_relevance": 58,
+      "_local": 0,
+      "_theme_score": 93,
+      "_theme_score_raw": 18,
+      "_composite_podcast": 64,
+      "_keyword_matches": 0,
+      "_category": "science",
+      "_source_category": "science",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Apple News+",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-16T04:09:55.776079+00:00"
+      },
+      "_boosted_score": 50
+    },
+    "held_date": "2026-09-16",
+    "target_date": "2026-09-27",
+    "target_weekday": 6,
+    "target_focus_slug": "earth-systems",
+    "target_focus_name": "Earth Systems & Climate Science",
+    "status": "held"
+  },
+  "https://www.nytimes.com/2026/09/15/world/asia/syria-fuel-price-protests-world.html": {
+    "article": {
+      "id": "https://www.nytimes.com/2026/09/15/world/asia/syria-fuel-price-protests-world.html",
+      "url": "https://www.nytimes.com/2026/09/15/world/asia/syria-fuel-price-protests-world.html",
+      "title": "[NYT Top Stories] Rising Fuel Prices Set Off Anger and Protests Around the World",
+      "content_html": "<img src=\"https://static01.nyt.com/images/2026/09/15/world/15int-world-fuel-protests-agon/15int-world-fuel-protests-agon-mediumSquareAt3X.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.nytimes.com%2F2026%2F09%2F15%2Fworld%2Fasia%2Fsyria-fuel-price-protests-world.html\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nFrom Indonesia to Guatemala to Syria, shortages and price increases are leading to protests and blackouts.",
+      "summary": "From Indonesia to Guatemala to Syria, shortages and price increases are leading to protests and blackouts.",
+      "_excerpt": "From Indonesia to Guatemala to Syria, shortages and price increases are leading to protests and blackouts.",
+      "date_published": "2026-09-16T03:05:49+00:00",
+      "authors": [
+        {
+          "name": "NYT Top Stories",
+          "url": "https://nytimes.com"
+        }
+      ],
+      "ai_score": 70,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 88,
+      "_theme_score_raw": 9,
+      "_composite_podcast": 63,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://static01.nyt.com/images/2026/09/15/world/15int-world-fuel-protests-agon/15int-world-fuel-protests-agon-mediumSquareAt3X.jpg",
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "New York Times",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-16T04:09:55.776079+00:00"
+      },
+      "_boosted_score": 70
+    },
+    "held_date": "2026-09-16",
+    "target_date": "2026-09-20",
+    "target_weekday": 6,
+    "target_focus_slug": "living-world",
+    "target_focus_name": "The Living World",
+    "status": "held"
+  },
+  "https://wltribune.com/2026/09/15/northern-b-c-man-fined-5k-for-illegal-caribou-kill/": {
+    "article": {
+      "id": "https://wltribune.com/2026/09/15/northern-b-c-man-fined-5k-for-illegal-caribou-kill/",
+      "url": "https://wltribune.com/2026/09/15/northern-b-c-man-fined-5k-for-illegal-caribou-kill/",
+      "title": "[Williams Lake Tribune] Northern B.C. man fined $5K for illegal caribou kill",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F09%2F15%2Fnorthern-b-c-man-fined-5k-for-illegal-caribou-kill%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n## Northern B.C. man fined $5K for illegal caribou kill Published 10:59 am Tuesday, September 15, 2026 **By Laisa Conde** Male caribou in Alaska. (Dean Biggins (U.S. Fish and Wildlife Service)/Wikimedia Commons) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | A northern B.C. man has been fined $5,000 after pleading guilty to killing a caribou outside an open hunting season. According to a social media post by BC Conservation Officer Service (BCCOS), during a remove ATV patrol along Jade Boulder Road in the Dease",
+      "summary": "## Northern B.C. man fined $5K for illegal caribou kill Published 10:59 am Tuesday, September 15, 2026 **By Laisa Conde** Male caribou in Alaska. (Dean Biggins (U.S. Fish and Wildlife Service)/Wikimedia Commons) | **Getting your Trinity Audio player ready...** | |",
+      "_excerpt": "## Northern B.C. man fined $5K for illegal caribou kill Published 10:59 am Tuesday, September 15, 2026 **By Laisa Conde** Male caribou in Alaska. (Dean Biggins (U.S. Fish and Wildlife Service)/Wikimedia Commons) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | A northern B.C. man has been fined $5,000 after pleading guilty to killing a caribou outside an open hunting season. According to a social media post by BC Conservation Officer Service (BCCOS), during a remove ATV patrol along Jade Boulder Road in the Dease",
+      "date_published": "2026-09-16T04:03:01.720211+00:00",
+      "authors": [
+        {
+          "name": "Williams Lake Tribune",
+          "url": "https://wltribune.com"
+        }
+      ],
+      "ai_score": 71,
+      "_quality": 65,
+      "_relevance": 68,
+      "_local": 88,
+      "_theme_score": 59,
+      "_theme_score_raw": 3,
+      "_composite_podcast": 63,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Williams Lake Tribune",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-16T04:09:55.776079+00:00"
+      },
+      "_boosted_score": 21,
+      "_topic_cluster": "B.C. wildlife violations sentenced",
+      "_cluster_suppressed": true,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-09-16",
+    "target_date": "2026-09-18",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "aired_early"
+  },
+  "https://www.scientificamerican.com/article/the-hole-in-the-ozone-layer-is-healing-but-extreme-weather-may-be-slowing-progress-down/": {
+    "article": {
+      "id": "https://www.scientificamerican.com/article/the-hole-in-the-ozone-layer-is-healing-but-extreme-weather-may-be-slowing-progress-down/",
+      "url": "https://www.scientificamerican.com/article/the-hole-in-the-ozone-layer-is-healing-but-extreme-weather-may-be-slowing-progress-down/",
+      "title": "[Scientific American] The hole in the ozone layer is healing, but extreme weather may be slowing progress down",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.scientificamerican.com%2Farticle%2Fthe-hole-in-the-ozone-layer-is-healing-but-extreme-weather-may-be-slowing-progress-down%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>Climate change, driven by humans, is making extreme weather more commonplace</p>",
+      "summary": "Climate change, driven by humans, is making extreme weather more commonplace",
+      "_excerpt": "Climate change, driven by humans, is making extreme weather more commonplace",
+      "date_published": "2026-09-16T02:00:00+00:00",
+      "authors": [
+        {
+          "name": "Scientific American",
+          "url": "https://www.scientificamerican.com"
+        }
+      ],
+      "ai_score": 59,
+      "_quality": 73,
+      "_relevance": 74,
+      "_local": 0,
+      "_theme_score": 91,
+      "_theme_score_raw": 11,
+      "_composite_podcast": 61,
+      "_keyword_matches": 0,
+      "_category": "climate",
+      "_source_category": "climate",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Apple News+",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-16T04:09:55.776079+00:00"
+      },
+      "_boosted_score": 59
+    },
+    "held_date": "2026-09-16",
+    "target_date": "2026-09-18",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "held"
+  },
+  "https://www.nytimes.com/2026/09/15/us/steve-bannon-bernie-sanders-ai.html": {
+    "article": {
+      "id": "https://www.nytimes.com/2026/09/15/us/steve-bannon-bernie-sanders-ai.html",
+      "url": "https://www.nytimes.com/2026/09/15/us/steve-bannon-bernie-sanders-ai.html",
+      "title": "[NYT Business] Steve Bannon and Bernie Sanders Condemn Tech \u2018Oligarchs\u2019 and Demand A.I. Reforms",
+      "content_html": "<img src=\"https://static01.nyt.com/images/2026/09/15/multimedia/15biz-ai-bernie-bannon-plmw/15biz-ai-bernie-bannon-plmw-mediumSquareAt3X.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.nytimes.com%2F2026%2F09%2F15%2Fus%2Fsteve-bannon-bernie-sanders-ai.html\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nAt an event in Washington, partisanship took a back seat as elected officials, religious leaders, parents and artists called for reining in artificial intelligence.",
+      "summary": "At an event in Washington, partisanship took a back seat as elected officials, religious leaders, parents and artists called for reining in artificial intelligence.",
+      "_excerpt": "At an event in Washington, partisanship took a back seat as elected officials, religious leaders, parents and artists called for reining in artificial intelligence.",
+      "date_published": "2026-09-15T22:17:56+00:00",
+      "authors": [
+        {
+          "name": "NYT Business",
+          "url": "https://www.nytimes.com/section/business"
+        }
+      ],
+      "ai_score": 42,
+      "_quality": 67,
+      "_relevance": 48,
+      "_local": 0,
+      "_theme_score": 86,
+      "_theme_score_raw": 7,
+      "_composite_podcast": 61,
+      "_keyword_matches": 0,
+      "_category": "ai-tech",
+      "_source_category": "ai-tech",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://static01.nyt.com/images/2026/09/15/multimedia/15biz-ai-bernie-bannon-plmw/15biz-ai-bernie-bannon-plmw-mediumSquareAt3X.jpg",
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "New York Times",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-16T04:09:55.776079+00:00"
+      },
+      "_boosted_score": 42
+    },
+    "held_date": "2026-09-16",
+    "target_date": "2026-09-23",
+    "target_weekday": 2,
+    "target_focus_slug": "homestead-offgrid",
+    "target_focus_name": "Homestead & Off-Grid Tech",
+    "status": "held"
+  },
+  "https://www.zdnet.com/tech/partner-has-nothing-to-hide-theyre-more-likely-to-spy-on-you/": {
+    "article": {
+      "id": "https://www.zdnet.com/tech/partner-has-nothing-to-hide-theyre-more-likely-to-spy-on-you/",
+      "url": "https://www.zdnet.com/tech/partner-has-nothing-to-hide-theyre-more-likely-to-spy-on-you/",
+      "title": "[ZDNet] Your friend with \u2018nothing to hide\u2019 is more likely to spy on you, study shows",
+      "content_html": "<img src=\"https://www.zdnet.com/wp-content/uploads/sites/3/jealousphone-GettyImages-2259698776.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.zdnet.com%2Ftech%2Fpartner-has-nothing-to-hide-theyre-more-likely-to-spy-on-you%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nNew research explores behavioral trends behind that \u2018nothing to hide\u2019 phrase. Plus: 6 ways to improve your phone privacy.",
+      "summary": "New research explores behavioral trends behind that \u2018nothing to hide\u2019 phrase. Plus: 6 ways to improve your phone privacy.",
+      "_excerpt": "New research explores behavioral trends behind that \u2018nothing to hide\u2019 phrase. Plus: 6 ways to improve your phone privacy.",
+      "date_published": "2026-09-10T14:31:03+00:00",
+      "authors": [
+        {
+          "name": "ZDNet",
+          "url": "https://www.zdnet.com"
+        }
+      ],
+      "ai_score": 49,
+      "_quality": 58,
+      "_relevance": 62,
+      "_local": 0,
+      "_theme_score": 74,
+      "_theme_score_raw": 6,
+      "_composite_podcast": 55,
+      "_keyword_matches": 0,
+      "_category": "ai-tech",
+      "_source_category": "ai-tech",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://www.zdnet.com/wp-content/uploads/sites/3/jealousphone-GettyImages-2259698776.jpg",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-11T04:10:27.924839+00:00"
+      },
+      "_boosted_score": 49
+    },
+    "held_date": "2026-09-16",
+    "target_date": "2026-09-20",
+    "target_weekday": 6,
+    "target_focus_slug": "living-world",
+    "target_focus_name": "The Living World",
+    "status": "held"
+  },
+  "https://www.nytimes.com/2026/09/15/technology/binance-iran-china.html": {
+    "article": {
+      "id": "https://www.nytimes.com/2026/09/15/technology/binance-iran-china.html",
+      "url": "https://www.nytimes.com/2026/09/15/technology/binance-iran-china.html",
+      "title": "[NYT Business] Two Chinese Firms Used Binance to Launder Iranian Oil Money, US Says",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.nytimes.com%2F2026%2F09%2F15%2Ftechnology%2Fbinance-iran-china.html\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nFederal prosecutors said proceeds from the sale of Iranian oil flowed through Binance, the world\u2019s largest crypto exchange, to finance terrorism.",
+      "summary": "Federal prosecutors said proceeds from the sale of Iranian oil flowed through Binance, the world\u2019s largest crypto exchange, to finance terrorism.",
+      "_excerpt": "Federal prosecutors said proceeds from the sale of Iranian oil flowed through Binance, the world\u2019s largest crypto exchange, to finance terrorism.",
+      "date_published": "2026-09-15T17:29:37+00:00",
+      "authors": [
+        {
+          "name": "NYT Business",
+          "url": "https://www.nytimes.com/section/business"
+        }
+      ],
+      "ai_score": 13,
+      "_quality": 45,
+      "_relevance": 10,
+      "_local": 0,
+      "_theme_score": 74,
+      "_theme_score_raw": 6,
+      "_composite_podcast": 55,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "New York Times",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-16T04:09:55.776079+00:00"
+      },
+      "_boosted_score": 13
+    },
+    "held_date": "2026-09-16",
+    "target_date": "2026-09-20",
+    "target_weekday": 6,
+    "target_focus_slug": "living-world",
+    "target_focus_name": "The Living World",
+    "status": "held"
+  },
+  "https://www.sciencedaily.com/releases/2026/09/260915095750.htm": {
+    "article": {
+      "id": "https://www.sciencedaily.com/releases/2026/09/260915095750.htm",
+      "url": "https://www.sciencedaily.com/releases/2026/09/260915095750.htm",
+      "title": "[ScienceDaily] Scientists stunned as volcano cloud starts destroying methane",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencedaily.com%2Freleases%2F2026%2F09%2F260915095750.htm\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe Hunga Tonga eruption may have triggered a surprising chemical reaction that destroyed some of the methane released into the atmosphere. Scientists say the discovery could reshape estimates of methane pollution and inspire new methods for slowing near-term global warming.",
+      "summary": "The Hunga Tonga eruption may have triggered a surprising chemical reaction that destroyed some of the methane released into the atmosphere. Scientists say the discovery could reshape estimates of methane pollution and inspire new methods for slowing near-term global warming.",
+      "_excerpt": "The Hunga Tonga eruption may have triggered a surprising chemical reaction that destroyed some of the methane released into the atmosphere. Scientists say the discovery could reshape estimates of methane pollution and inspire new methods for slowing near-term global warming.",
+      "date_published": "2026-09-15T15:15:31+00:00",
+      "authors": [
+        {
+          "name": "ScienceDaily",
+          "url": "https://www.sciencedaily.com"
+        }
+      ],
+      "ai_score": 68,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 72,
+      "_theme_score_raw": 5,
+      "_composite_podcast": 54,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-16T04:09:55.776079+00:00"
+      },
+      "_boosted_score": 68
+    },
+    "held_date": "2026-09-16",
+    "target_date": "2026-09-27",
+    "target_weekday": 6,
+    "target_focus_slug": "earth-systems",
+    "target_focus_name": "Earth Systems & Climate Science",
+    "status": "held"
+  },
+  "https://www.techradar.com/phones/the-new-digital-id-apps-for-age-verification-in-pubs-have-a-major-flaw-im-worried-about-and-might-make-queueing-even-worse": {
+    "article": {
+      "id": "https://www.techradar.com/phones/the-new-digital-id-apps-for-age-verification-in-pubs-have-a-major-flaw-im-worried-about-and-might-make-queueing-even-worse",
+      "url": "https://www.techradar.com/phones/the-new-digital-id-apps-for-age-verification-in-pubs-have-a-major-flaw-im-worried-about-and-might-make-queueing-even-worse",
+      "title": "[TechRadar] The new digital ID apps for age verification in pubs have a major flaw I'm worried about \u2014 and might make queueing even worse",
+      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/Pa7BSKdLUbdasiZ2QbnpB3-1280-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.techradar.com%2Fphones%2Fthe-new-digital-id-apps-for-age-verification-in-pubs-have-a-major-flaw-im-worried-about-and-might-make-queueing-even-worse\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nPubs, restaurants, and other venues are now able to accept digital ID apps as proof of age for younger customers.",
+      "summary": "Pubs, restaurants, and other venues are now able to accept digital ID apps as proof of age for younger customers.",
+      "_excerpt": "Pubs, restaurants, and other venues are now able to accept digital ID apps as proof of age for younger customers.",
+      "date_published": "2026-09-15T16:41:05+00:00",
+      "authors": [
+        {
+          "name": "TechRadar",
+          "url": "https://www.techradar.com"
+        }
+      ],
+      "ai_score": 63,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 74,
+      "_theme_score_raw": 6,
+      "_composite_podcast": 53,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://cdn.mos.cms.futurecdn.net/Pa7BSKdLUbdasiZ2QbnpB3-1280-80.jpg",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-16T04:09:55.776079+00:00"
+      },
+      "_boosted_score": 63
+    },
+    "held_date": "2026-09-16",
+    "target_date": "2026-09-21",
+    "target_weekday": 0,
+    "target_focus_slug": "music-performance",
+    "target_focus_name": "Music & Live Performance",
+    "status": "held"
+  },
+  "https://www.businessinsider.com/security-officers-tech-firms-anthropic-openai-plan-to-strike-2026-9": {
+    "article": {
+      "id": "https://www.businessinsider.com/security-officers-tech-firms-anthropic-openai-plan-to-strike-2026-9",
+      "url": "https://www.businessinsider.com/security-officers-tech-firms-anthropic-openai-plan-to-strike-2026-9",
+      "title": "[Business Insider] Tech giants have a new headache: a looming strike by their security guards",
+      "content_html": "<img src=\"https://i.insider.com/6aa97a9f9b8974787b1cc59e?format=jpeg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.businessinsider.com%2Fsecurity-officers-tech-firms-anthropic-openai-plan-to-strike-2026-9\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nCalifornia security workers at tech giants like Anthropic, Meta and OpenAI plan to strike. This comes at a tense moment for the AI industry.",
+      "summary": "California security workers at tech giants like Anthropic, Meta and OpenAI plan to strike. This comes at a tense moment for the AI industry.",
+      "_excerpt": "California security workers at tech giants like Anthropic, Meta and OpenAI plan to strike. This comes at a tense moment for the AI industry.",
+      "date_published": "2026-09-15T17:42:13+00:00",
+      "authors": [
+        {
+          "name": "Business Insider",
+          "url": "https://www.businessinsider.com"
+        }
+      ],
+      "ai_score": 49,
+      "_quality": 58,
+      "_relevance": 62,
+      "_local": 0,
+      "_theme_score": 74,
+      "_theme_score_raw": 6,
+      "_composite_podcast": 53,
+      "_keyword_matches": 0,
+      "_category": "ai-tech",
+      "_source_category": "ai-tech",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://i.insider.com/6aa97a9f9b8974787b1cc59e?format=jpeg",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-16T04:09:55.776079+00:00"
+      },
+      "_boosted_score": 49
+    },
+    "held_date": "2026-09-16",
+    "target_date": "2026-09-23",
+    "target_weekday": 2,
+    "target_focus_slug": "homestead-offgrid",
+    "target_focus_name": "Homestead & Off-Grid Tech",
+    "status": "held"
+  },
+  "https://www.gamesradar.com/games/the-elder-scrolls/elder-scrolls-lore-master-and-20-year-bethesda-veteran-kurt-kuhlmann-cant-find-a-job-after-being-laid-off-months-ago-and-doesnt-that-sum-up-todays-industry/": {
+    "article": {
+      "id": "https://www.gamesradar.com/games/the-elder-scrolls/elder-scrolls-lore-master-and-20-year-bethesda-veteran-kurt-kuhlmann-cant-find-a-job-after-being-laid-off-months-ago-and-doesnt-that-sum-up-todays-industry/",
+      "url": "https://www.gamesradar.com/games/the-elder-scrolls/elder-scrolls-lore-master-and-20-year-bethesda-veteran-kurt-kuhlmann-cant-find-a-job-after-being-laid-off-months-ago-and-doesnt-that-sum-up-todays-industry/",
+      "title": "[Edge (GamesRadar)] Elder Scrolls lore master and 20-year Bethesda veteran Kurt Kuhlmann can't find a job after being laid off months ago, and doesn't that sum up today's industry",
+      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/tR3Q2r5LZ4BJqKDjmykA6H-1280-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.gamesradar.com%2Fgames%2Fthe-elder-scrolls%2Felder-scrolls-lore-master-and-20-year-bethesda-veteran-kurt-kuhlmann-cant-find-a-job-after-being-laid-off-months-ago-and-doesnt-that-sum-up-todays-industry%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n\"I'm open to any opportunities that are a good match for my skills\"",
+      "summary": "\"I'm open to any opportunities that are a good match for my skills\"",
+      "_excerpt": "\"I'm open to any opportunities that are a good match for my skills\"",
+      "date_published": "2026-09-15T14:16:46+00:00",
+      "authors": [
+        {
+          "name": "Edge (GamesRadar)",
+          "url": "https://www.gamesradar.com"
+        }
+      ],
+      "ai_score": 70,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 72,
+      "_theme_score_raw": 5,
+      "_composite_podcast": 53,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://cdn.mos.cms.futurecdn.net/tR3Q2r5LZ4BJqKDjmykA6H-1280-80.jpg",
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Apple News+",
+      "_cross_theme": {
+        "day": "tuesday",
+        "label": "Working Lands & Industry",
+        "shown_at": "2026-09-16T04:09:55.776079+00:00"
+      },
+      "_boosted_score": 70
+    },
+    "held_date": "2026-09-16",
+    "target_date": "2026-09-24",
+    "target_weekday": 3,
+    "target_focus_slug": "language-culture",
+    "target_focus_name": "Language & Culture",
+    "status": "held"
+  },
+  "https://www.techradar.com/pro/security/massive-data-breach-sees-220-million-traveler-records-exposed-nine-years-of-airline-info-leaked-including-passenger-and-passport-details": {
+    "article": {
+      "id": "https://www.techradar.com/pro/security/massive-data-breach-sees-220-million-traveler-records-exposed-nine-years-of-airline-info-leaked-including-passenger-and-passport-details",
+      "url": "https://www.techradar.com/pro/security/massive-data-breach-sees-220-million-traveler-records-exposed-nine-years-of-airline-info-leaked-including-passenger-and-passport-details",
+      "title": "[TechRadar] Massive data breach sees 220 million traveler records exposed \u2014 nine years of airline info leaked including passenger and passport details",
+      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/BUi4eir3JnCCT2MRGt3weS-1280-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.techradar.com%2Fpro%2Fsecurity%2Fmassive-data-breach-sees-220-million-traveler-records-exposed-nine-years-of-airline-info-leaked-including-passenger-and-passport-details\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nA series of misconfigurations allowed researchers to access a treasure trove of sensitive data - the archive has since been locked down.",
+      "summary": "A series of misconfigurations allowed researchers to access a treasure trove of sensitive data - the archive has since been locked down.",
+      "_excerpt": "A series of misconfigurations allowed researchers to access a treasure trove of sensitive data - the archive has since been locked down.",
+      "date_published": "2026-09-08T20:40:00+00:00",
+      "authors": [
+        {
+          "name": "TechRadar",
+          "url": "https://www.techradar.com"
+        }
+      ],
+      "ai_score": 43,
+      "_quality": 70,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 68,
+      "_theme_score_raw": 4,
+      "_composite_podcast": 52,
+      "_keyword_matches": 0,
+      "_category": "ai-tech",
+      "_source_category": "ai-tech",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://cdn.mos.cms.futurecdn.net/BUi4eir3JnCCT2MRGt3weS-1280-80.jpg",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-09T07:11:51.474148+00:00"
+      },
+      "_boosted_score": 43
+    },
+    "held_date": "2026-09-16",
+    "target_date": "2026-09-30",
+    "target_weekday": 2,
+    "target_focus_slug": "digital-life-security",
+    "target_focus_name": "Digital Life & Security",
+    "status": "held"
+  },
+  "https://www.themarginalian.org/2026/09/13/the-extended-mind/": {
+    "article": {
+      "id": "https://www.themarginalian.org/2026/09/13/the-extended-mind/",
+      "url": "https://www.themarginalian.org/2026/09/13/the-extended-mind/",
+      "title": "[The Marginalian] The Fascinating Science of How We Think Not with the Brain But with the World",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.themarginalian.org%2F2026%2F09%2F13%2Fthe-extended-mind%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n\"By reaching beyond the brain... we are able to focus more intently, comprehend more deeply, and create more imaginatively \u2014 to entertain ideas that would be literally unthinkable by the brain alone.\"",
+      "summary": "\"By reaching beyond the brain... we are able to focus more intently, comprehend more deeply, and create more imaginatively \u2014 to entertain ideas that would be literally unthinkable by the brain alone.\"",
+      "_excerpt": "\"By reaching beyond the brain... we are able to focus more intently, comprehend more deeply, and create more imaginatively \u2014 to entertain ideas that would be literally unthinkable by the brain alone.\"",
+      "date_published": "2026-09-13T14:11:15+00:00",
+      "authors": [
+        {
+          "name": "The Marginalian",
+          "url": "https://www.themarginalian.org"
+        }
+      ],
+      "ai_score": 55,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 74,
+      "_theme_score_raw": 6,
+      "_composite_podcast": 52,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "_cross_theme": {
+        "day": "friday",
+        "label": "Wild Spaces & Outdoor Life",
+        "shown_at": "2026-09-14T04:07:17.943134+00:00"
+      },
+      "_boosted_score": 55
+    },
+    "held_date": "2026-09-16",
+    "target_date": "2026-09-20",
+    "target_weekday": 6,
+    "target_focus_slug": "living-world",
+    "target_focus_name": "The Living World",
     "status": "held"
   }
 }

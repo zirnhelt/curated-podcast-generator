@@ -135,9 +135,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-09-10",
-        "clue": "structural-lens:x \u2014 conceded TNG contract terms remain genuinely unknown gap",
-        "occurrences": 1
+        "date": "2026-09-16",
+        "clue": "structural-lens:x \u2014 conceded Google's motive differs from Deere's",
+        "occurrences": 2
       },
       {
         "date": "2026-09-12",
@@ -150,9 +150,9 @@
         "occurrences": 1
       },
       {
-        "date": "2026-09-14",
-        "clue": "community-trust:+ \u2014 Emphasized Indigenous governance as actual working model",
-        "occurrences": 1
+        "date": "2026-09-16",
+        "clue": "community-trust:+ \u2014 shifted toward local inventory over legal filing",
+        "occurrences": 2
       }
     ],
     "core_memories": [
@@ -389,11 +389,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-09-14",
-        "clue": "pilot-skepticism:~ \u2014 Moved from skeptical to 'small, unglamorous, doable'",
-        "occurrences": 2
-      },
-      {
         "date": "2026-09-10",
         "clue": "pilot-skepticism:+ \u2014 apprenticeship funding volatility poses bigger risk than tech",
         "occurrences": 2
@@ -416,6 +411,11 @@
       {
         "date": "2026-09-15",
         "clue": "evidence-bar:~ \u2014 Concedes carbon markets not inherently rigged, governance capacity the issue",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-09-16",
+        "clue": "structural-lens:+ \u2014 deepened framing of informal preservation as democratic or unreliable",
         "occurrences": 1
       }
     ],
