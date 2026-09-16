@@ -2929,7 +2929,7 @@ def _roundup_fixture_articles():
 
 class TestAnnotateRoundupBlocks:
     def test_block_order_local_theme_cluster_standalone_kicker(self):
-        ordered = _annotate_roundup_blocks(_roundup_fixture_articles(), _FAKE_THEME)
+        ordered, _ = _annotate_roundup_blocks(_roundup_fixture_articles(), _FAKE_THEME)
         blocks = [a.get("_roundup_block") for a in ordered]
         assert blocks[0] == "local"
         assert blocks[1:3] == ["theme", "theme"]
@@ -2941,7 +2941,7 @@ class TestAnnotateRoundupBlocks:
 
     def test_bonus_pick_is_annotated_like_any_other_tail_story(self):
         """It used to short-circuit to a 'bonus' block and skip curation."""
-        ordered = _annotate_roundup_blocks(_roundup_fixture_articles(), _FAKE_THEME)
+        ordered, _ = _annotate_roundup_blocks(_roundup_fixture_articles(), _FAKE_THEME)
         bonus = next(a for a in ordered if a["title"] == "Bonus pick")
         assert bonus["_roundup_block"] == "standalone"
 
@@ -2953,7 +2953,7 @@ class TestAnnotateRoundupBlocks:
             {"title": "Quesnel council funds a new well", "url": "https://b1.com",
              "_is_bonus": True, "_boosted_score": 10},
         ]
-        ordered = _annotate_roundup_blocks(articles, _FAKE_THEME)
+        ordered, _ = _annotate_roundup_blocks(articles, _FAKE_THEME)
         assert ordered[0]["title"] == "Quesnel council funds a new well"
         assert ordered[0]["_roundup_block"] == "local"
 
@@ -2964,19 +2964,19 @@ class TestAnnotateRoundupBlocks:
             {"title": "Zebra gardening trial expands", "url": "https://t1.com",
              "_boosted_score": 10},
         ]
-        ordered = _annotate_roundup_blocks(articles, _FAKE_THEME)
+        ordered, _ = _annotate_roundup_blocks(articles, _FAKE_THEME)
         bonus = next(a for a in ordered if a.get("_is_bonus"))
         assert bonus["_roundup_block"] not in ("theme", "theme_adjacent")
 
     def test_keyword_hit_beats_feed_flag_in_theme_ordering(self):
-        ordered = _annotate_roundup_blocks(_roundup_fixture_articles(), _FAKE_THEME)
+        ordered, _ = _annotate_roundup_blocks(_roundup_fixture_articles(), _FAKE_THEME)
         # Two local keyword hits (relevance ~4) outrank the feed-flagged
         # article whose local relevance is only its boosted score
         assert ordered[1]["title"] == "Zebra gardening breakthrough"
         assert ordered[2]["title"] == "Feed says on-theme"
 
     def test_local_outlet_leads_even_when_off_theme(self):
-        ordered = _annotate_roundup_blocks(_roundup_fixture_articles(), _FAKE_THEME)
+        ordered, _ = _annotate_roundup_blocks(_roundup_fixture_articles(), _FAKE_THEME)
         assert ordered[0]["title"] == "Arena roof approved"
 
     def test_local_and_on_theme_opens_the_roundup(self):
@@ -2991,7 +2991,7 @@ class TestAnnotateRoundupBlocks:
             {"title": "Zebra gardening trial starts in Williams Lake",
              "url": "https://l1.com", "_boosted_score": 20},
         ]
-        ordered = _annotate_roundup_blocks(articles, _FAKE_THEME)
+        ordered, _ = _annotate_roundup_blocks(articles, _FAKE_THEME)
         assert ordered[0]["title"] == "Zebra gardening trial starts in Williams Lake"
         assert ordered[0]["_roundup_block"] == "local"
         assert ordered[1]["_roundup_block"] == "theme"
@@ -3005,7 +3005,7 @@ class TestAnnotateRoundupBlocks:
             {"title": "Celebrity fashion week highlights", "url": "https://s1.com",
              "_boosted_score": 80},
         ]
-        ordered = _annotate_roundup_blocks(articles, _FAKE_THEME)
+        ordered, _ = _annotate_roundup_blocks(articles, _FAKE_THEME)
         assert ordered[0]["_roundup_block"] == "local"
         # The lone off-theme story is the tail, and so becomes the closer
         assert ordered[1]["_roundup_block"] == "kicker"
@@ -3017,7 +3017,7 @@ class TestAnnotateRoundupBlocks:
             {"title": "Quesnel council funds a new well", "url": "https://l2.com",
              "authors": [{"name": "Williams Lake Tribune"}], "_boosted_score": 10},
         ]
-        ordered = _annotate_roundup_blocks(articles, _FAKE_THEME)
+        ordered, _ = _annotate_roundup_blocks(articles, _FAKE_THEME)
         assert ordered[0]["title"] == "Quesnel council funds a new well"
 
     def test_lone_cluster_member_demoted_to_standalone(self):
@@ -3029,7 +3029,7 @@ class TestAnnotateRoundupBlocks:
             {"title": "Bakery reopens after a long renovation", "url": "https://s2.com",
              "_boosted_score": 70},
         ]
-        ordered = _annotate_roundup_blocks(articles, _FAKE_THEME)
+        ordered, _ = _annotate_roundup_blocks(articles, _FAKE_THEME)
         assert not any(a["_roundup_block"] == "physical_sciences" for a in ordered)
         # Standalones sort by boosted score, with the strongest lifted to kicker
         assert [a["_roundup_block"] for a in ordered] == [
@@ -3037,6 +3037,49 @@ class TestAnnotateRoundupBlocks:
         ]
         assert ordered[0]["title"] == "Bakery reopens after a long renovation"
         assert ordered[-1]["title"] == "Celebrity fashion week highlights"
+
+    def test_out_of_jurisdiction_us_politics_with_no_tie_is_dropped(self):
+        """2026-09-16: a Kennedy Center naming dispute, a Pentagon report on
+        Iranian strikes, and a Congressional license-plate-reader bill all
+        aired on a Repair Culture & Practical Tech Wednesday with no rural,
+        BC, or theme tie — inside-Washington drama, not news for this show.
+        """
+        articles = [
+            {"title": "Kennedy Center closes its doors despite a judge's order",
+             "url": "https://n1.com", "_boosted_score": 90,
+             "_us_policy_scope": "out-of-jurisdiction"},
+            {"title": "Zebra gardening breakthrough", "url": "https://t1.com",
+             "_boosted_score": 10},
+        ]
+        ordered, dropped = _annotate_roundup_blocks(articles, _FAKE_THEME)
+        assert [a["title"] for a in ordered] == ["Zebra gardening breakthrough"]
+        assert [a["title"] for a in dropped] == [
+            "Kennedy Center closes its doors despite a judge's order"
+        ]
+
+    def test_cross_border_impact_us_politics_is_kept(self):
+        """A US-policy story that actually reaches BC/Canada is real news for
+        this show — only the pure inside-Washington kind gets cut."""
+        articles = [
+            {"title": "US tariff hits BC softwood lumber exports",
+             "url": "https://n1.com", "_boosted_score": 90,
+             "_us_policy_scope": "cross-border-impact"},
+        ]
+        ordered, dropped = _annotate_roundup_blocks(articles, _FAKE_THEME)
+        assert dropped == []
+        assert ordered[0]["_roundup_block"] in ("standalone", "kicker")
+
+    def test_out_of_jurisdiction_us_politics_on_theme_is_kept(self):
+        """A theme-relevant match still wins — the cut only ever catches a
+        story with no other reason to be in the roundup."""
+        articles = [
+            {"title": "Zebra gardening policy fight breaks out in Washington",
+             "url": "https://n1.com", "_boosted_score": 90,
+             "_keyword_matches": 1, "_us_policy_scope": "out-of-jurisdiction"},
+        ]
+        ordered, dropped = _annotate_roundup_blocks(articles, _FAKE_THEME)
+        assert dropped == []
+        assert ordered[0]["_roundup_block"] == "theme"
 
 
 class TestCurateRoundupPool:
@@ -3177,7 +3220,7 @@ class TestThemeAdjacentBlock:
             {"title": "Arena roof approved", "url": "https://l1.com",
              "authors": [{"name": "Williams Lake Tribune"}], "_boosted_score": 40},
         ]
-        ordered = _annotate_roundup_blocks(articles, _FAKE_THEME)
+        ordered, _ = _annotate_roundup_blocks(articles, _FAKE_THEME)
         assert [a["_roundup_block"] for a in ordered] == [
             "local", "theme", "theme_adjacent",
         ]
@@ -3196,7 +3239,7 @@ class TestThemeAdjacentBlock:
             {"title": "Evacuation order lifted for the Gang Ranch area",
              "url": "https://l1.com", "_boosted_score": 79},
         ]
-        ordered = _annotate_roundup_blocks(articles, _FAKE_THEME)
+        ordered, _ = _annotate_roundup_blocks(articles, _FAKE_THEME)
         assert ordered[0]["_roundup_block"] == "local"
         assert ordered[1]["_roundup_block"] == "theme_adjacent"
 
@@ -3209,7 +3252,7 @@ class TestThemeAdjacentBlock:
             {"title": "Bakery reopens after a long renovation", "url": "https://s2.com",
              "_boosted_score": 70, "_body": "A renovation two years in the making."},
         ]
-        ordered = _annotate_roundup_blocks(articles, _FAKE_THEME)
+        ordered, _ = _annotate_roundup_blocks(articles, _FAKE_THEME)
         assert all(a["_roundup_block"] not in ("theme", "theme_adjacent")
                    for a in ordered)
         assert ordered[0]["_roundup_block"] == "standalone"
@@ -3265,6 +3308,22 @@ class TestThemeAdjacentBlock:
         blocks = Counter(a["_roundup_block"] for a in kept)
         assert blocks["life_sciences"] <= pg.ROUNDUP_CLUSTER_MAX
         assert blocks["physical_sciences"] == 2
+
+    def test_out_of_jurisdiction_us_politics_dropped_reaches_the_caller(self):
+        """The cut has to surface in `dropped`, not just vanish — dropped
+        articles never reach citations, so dedup can offer them again."""
+        articles = _roundup_fixture_articles() + [
+            {"title": "Kennedy Center closes its doors despite a judge's order",
+             "url": "https://n1.com", "_boosted_score": 95,
+             "_us_policy_scope": "out-of-jurisdiction"},
+        ]
+        kept, dropped = _curate_roundup_pool(articles, _FAKE_THEME, 15)
+        assert "Kennedy Center closes its doors despite a judge's order" in [
+            a["title"] for a in dropped
+        ]
+        assert "Kennedy Center closes its doors despite a judge's order" not in [
+            a["title"] for a in kept
+        ]
 
 
 class TestRoundupBlockRank:
