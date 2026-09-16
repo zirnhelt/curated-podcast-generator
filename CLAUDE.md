@@ -504,6 +504,29 @@ it compares block ranks, and there were two.
   under astrophysics, because 'star' is inside "starting" — harmless while this only sorted the
   tail, and not harmless once it decides which stories air next to each other.
 
+**A local election story can break on any day, and until 2026-09-15 it carried none of the
+election-accuracy rules.** `event_focus`'s "NAME PEOPLE, NOT ROLES" and record-sourcing
+instructions (see the `event_focus` section below) are built into `_build_theme_lens` and
+injected only into the Deep Dive prompt, only on the weekday the event is configured for —
+Saturday. A nomination story is local news and is never held (see Article holding above), so it
+airs in the roundup the day it breaks, which for a multi-town nomination sweep is whatever
+weekday the wire ran it — with zero of those rules in scope. On 2026-09-15 (a Tuesday) the
+roundup covered both the Williams Lake and South Cariboo mayoral nominations back to back and
+merged them: it reported Walt Cobb's Williams Lake opponent as "a South Cariboo realtor" — that
+candidate (David Jurek) runs in the separate 100 Mile House race — and never named Surinderpal
+Rathor, the actual Williams Lake incumbent the source article named. The fact-check pass could
+not have caught it either: `TASK 2` in `polish_and_factcheck` explicitly scopes itself to the
+Deep Dive and carves the News Roundup out of scope but for two named exceptions (bill substance,
+leadership-race winners) — candidate-to-race attribution wasn't one of them.
+**LOCAL ELECTION RACES** is now a standing roundup rule in `script_generation_system`
+(unconditional, not gated behind `event_focus`'s weekday): keep each town's race distinct, name
+a sourced incumbent or opponent instead of leaving them as "the sitting incumbent," and never
+borrow a name from a different town's race. A third fact-check exception,
+**LOCAL ELECTION CANDIDATE ATTRIBUTION**, backs it up in both `polish_and_factcheck` and
+`agentic_polish_and_factcheck` — the roundup is otherwise off-limits to the fact-check pass, but
+a candidate pairing gets checked against the verified sources like a bill's substance or a
+leadership race's winner do.
+
 Two prompt rules carry the rest: **NO HEADLINE CRAWL** (never stack unrelated stories into one
 host turn as one-sentence mentions) and **DO NOT MANUFACTURE CONNECTIONS** — an abstract bridge
 that could join *any* two stories ("from one contested piece of land to another", "whoever
