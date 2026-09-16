@@ -1,0 +1,40 @@
+{
+  "turns": [
+    {
+      "speaker": null,
+      "section": "preamble",
+      "start_ms": 0,
+      "dur_ms": 26291
+    },
+    {
+      "speaker": null,
+      "section": "welcome",
+      "start_ms": 39766,
+      "dur_ms": 57520
+    },
+    {
+      "speaker": null,
+      "section": "news",
+      "start_ms": 98386,
+      "dur_ms": 371822
+    },
+    {
+      "speaker": null,
+      "section": "spotlight",
+      "start_ms": 471308,
+      "dur_ms": 51100
+    },
+    {
+      "speaker": null,
+      "section": "deep",
+      "start_ms": 523508,
+      "dur_ms": 587242
+    },
+    {
+      "speaker": null,
+      "section": "credits",
+      "start_ms": 1111350,
+      "dur_ms": 23500
+    }
+  ]
+}
