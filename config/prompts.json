@@ -54,16 +54,13 @@
     "alert_template": "\nSTALE FRAMING ALERT: {count} of the last {window} debates (across all themes) landed on {family}. That framing is used up — today's Deep Dive and its resolution must land somewhere different. Do not let the conversation drift there.\n"
   },
   "gemini_tts": {
-    "description": "Gemini multi-speaker TTS delivery controls. The synthesis prompt is scaffolded as AUDIO PROFILE (per-host delivery lines from hosts.json) / PERFORMANCE NOTES (style_prompt plus the generated speaker and tag rules) / #### TRANSCRIPT, so the model has an explicit boundary between direction and speech. No direction line is shaped like a transcript turn, and the register is described by what it is rather than by what to avoid - a negation hands the model the very vocabulary it names. stage_directions.whitelist is the only set of inline [tag] cues the polish pass may add; legacy_whitelist is strip-only, for cues no longer offered - the older (wry)-style parentheticals, and the [short pause] / [long pause] duration cues that Gemini read aloud on 2026-09-13 (pacing is the assembler's job, via the script's own [pause:N] tags).",
-    "style_prompt": "- Two longtime co-hosts on community radio, mid-conversation with each other, not performing to a microphone.\n- Level, declarative intonation: pitch falls at the end of a statement and stays in a narrow range. Emphasis comes from word choice and timing, not from melody.\n- Unhurried cadence. Let a point land rather than pushing the pace.\n- Plain-spoken and sincere, at the energy of ordinary conversation.",
+    "description": "Gemini multi-speaker TTS delivery controls. The synthesis prompt is scaffolded as AUDIO PROFILE (per-host delivery lines from hosts.json) / PERFORMANCE NOTES (style_prompt plus the generated speaker and tag rules) / #### TRANSCRIPT, so the model has an explicit boundary between direction and speech. No direction line is shaped like a transcript turn, and no line names a register in order to forbid it - a negation, and a worked example alike, hand the model the vocabulary they carry. The intonation rule leads, because the failure this direction exists to prevent is sing-song. Nothing here describes the show as radio or the hosts as hosts: the broadcast frame is the prior that produces announcer brightness. stage_directions.whitelist is the only set of inline [tag] cues the polish pass may add, and it carries no cue that asks for lift; legacy_whitelist is strip-only, for cues no longer offered - the older (wry)-style parentheticals, the [short pause] / [long pause] duration cues that Gemini read aloud on 2026-09-13 (pacing is the assembler's job, via the script's own [pause:N] tags), and the [warmly] / [curiosity] / [soft laugh] brightness cues retired on 2026-09-16.",
+    "style_prompt": "- Every statement ends on a falling pitch. Narrow pitch range, even volume; emphasis comes from word choice and timing, never from melody.\n- Only a question rises. A sentence that ends in a dash, a list or a clause still ends as a statement.\n- Unhurried. Let a point land rather than pushing the pace.\n- Two people talking to each other about something they both know well, at the volume of a kitchen table.",
     "stage_directions": {
       "whitelist": [
-        "warmly",
         "thoughtfully",
-        "curiosity",
         "slow",
         "fast",
-        "soft laugh",
         "sighs"
       ],
       "legacy_whitelist": [
@@ -75,9 +72,11 @@
         "mock-serious",
         "sighs",
         "short pause",
-        "long pause"
+        "long pause",
+        "curiosity",
+        "soft laugh"
       ],
-      "tag_instruction": "Bracketed tags such as [thoughtfully] or [warmly] are delivery direction for the performer. Perform them lightly. Never speak a bracketed tag aloud.",
+      "tag_instruction": "Bracketed tags such as [thoughtfully] or [slow] are delivery direction for the performer. Perform them lightly. Never speak a bracketed tag aloud.",
       "polish_instruction": "STAGE DIRECTIONS: You may add sparse inline delivery tags for the voice performers - at most one tag per four to six dialogue turns, and only where the tone shifts. Write the tag in square brackets at the point it applies, usually right after the host tag, e.g. **CASEY:** [thoughtfully] Sure it will. Use only these tags: {cue_list}. Never invent other tags, never stack two tags on one line, and leave most turns untouched. Punctuation carries the rest of the cadence: when a tag lands mid-sentence keep a comma between it and the clause it modifies, and reserve periods for real sentence endings."
     }
   },

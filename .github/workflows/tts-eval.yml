@@ -36,6 +36,16 @@ on:
         required: false
         default: false
         type: boolean
+      probe_voices:
+        description: 'Render one real chunk with each candidate Gemini voice pair instead of comparing providers, so the register can be picked by ear. Produces audio — download the artifact and listen.'
+        required: false
+        default: false
+        type: boolean
+      voice_pairs:
+        description: 'Voice pairs for probe_voices, as Riley/Casey comma-separated (e.g. Kore/Iapetus,Schedar/Charon). Blank uses the candidate list in evaluate_tts.py.'
+        required: false
+        default: ''
+        type: string
       backend:
         description: 'Gemini surface. studio = generativelanguage preview (GEMINI_API_KEY). cloud = GA Cloud TTS (service account via the GEMINI_TTS_CLOUD_SA_KEY secret). Probe cloud here before any nightly cutover.'
         required: false
@@ -109,7 +119,23 @@ jobs:
           TTS_SECTION: ${{ inputs.section }}
           TTS_PROBE: ${{ inputs.probe_gemini }}
           TTS_PROBE_MODELS: ${{ inputs.probe_models }}
+          TTS_PROBE_VOICES: ${{ inputs.probe_voices }}
+          TTS_VOICE_PAIRS: ${{ inputs.voice_pairs }}
         run: |
+          # The voice probe is the one probe whose result is audio, not a table,
+          # so it runs on the render path and its output is the artifact.
+          if [ "$TTS_PROBE_VOICES" = "true" ]; then
+            PAIR_FLAG=""
+            [ -n "$TTS_VOICE_PAIRS" ] && PAIR_FLAG="--voice-pairs $TTS_VOICE_PAIRS"
+            {
+              echo '## Gemini voice probe'
+              echo '```'
+              python evaluate_tts.py --section "$TTS_SECTION" --probe-voices \
+                $PAIR_FLAG --output-dir tts-eval 2>&1 || true
+              echo '```'
+            } | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
           PROBE_FLAGS=""
           [ "$TTS_PROBE" = "true" ] && PROBE_FLAGS="$PROBE_FLAGS --probe-gemini"
           [ "$TTS_PROBE_MODELS" = "true" ] && PROBE_FLAGS="$PROBE_FLAGS --probe-models"
@@ -134,7 +160,7 @@ jobs:
         if: ${{ !inputs.probe_gemini && !inputs.probe_models }}
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
-          name: tts-eval-${{ inputs.section }}-${{ inputs.providers }}
+          name: tts-eval-${{ inputs.section }}-${{ inputs.probe_voices && 'voices' || inputs.providers }}
           path: tts-eval/
           retention-days: 14
           if-no-files-found: error

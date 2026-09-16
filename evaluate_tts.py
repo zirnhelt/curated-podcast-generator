@@ -357,6 +357,93 @@ def _probe_gemini_models(seg_list: list[dict], models: list[str], repeats: int) 
     print("  safety factor. A slowest well under the leash means the leash is loose.")
 
 
+# Candidate voice pairs for --probe-voices, in hosts.json order (Riley, Casey).
+# The parenthesised words are Google's own one-word labels for each prebuilt
+# voice; they are the reason a pair is on this list and not evidence about it.
+# Naming a voice "Even" does not make it even against a sing-song prior, which
+# is exactly what the probe is for.
+VOICE_PAIR_CANDIDATES: tuple[tuple[str, str], ...] = (
+    ("Kore", "Iapetus"),        # Firm / Clear — what the show ships today
+    ("Schedar", "Charon"),      # Even / Informative
+    ("Alnilam", "Gacrux"),      # Firm / Mature
+    ("Rasalgethi", "Algenib"),  # Informative / Gravelly
+)
+
+
+def _probe_gemini_voices(
+    seg_list: list[dict], pairs: list[tuple[str, str]], output_dir: Path
+) -> None:
+    """Render one real chunk per candidate voice pair, for listening.
+
+    The other two probes ask whether Gemini will *answer*. This one asks what it
+    sounds like when it does, because that is the question the prompt could not
+    settle. The direction rewritten on 2026-09-14 — level intonation, falling
+    terminals, nothing naming a bright register — went out at rung 0, unshed and
+    byte-identical, on every chunk of the two episodes after it, and both still
+    came back sing-song and uptalked against a script whose turns end in a period
+    96% of the time. A style prompt is a nudge on this surface; the prebuilt
+    voice is the lever.
+
+    One chunk, not the section: the first one, because a section's opening is
+    what a register is judged on, and one chunk is one request per pair.
+
+    Each pair is a live synthesis — this spends real API budget.
+    """
+    import gemini_tts
+
+    chunk = gemini_tts._balanced_chunks(seg_list)[0]
+    print(f"\n▶ Gemini voice probe [{gemini_tts.GEMINI_TTS_BACKEND} backend]: "
+          f"{len(chunk)} turns, {_char_count(chunk)} chars, "
+          f"{len(pairs)} pair(s) on {gemini_tts._model_for(gemini_tts.RETRY_LADDER[0])}")
+
+    hosts = list(_host_keys())
+    written: list[tuple[str, Path]] = []
+    for pair in pairs:
+        label = "-".join(pair)
+        out_wav = output_dir / f"voices_{label}.wav"
+        gemini_tts.set_voice_override(dict(zip(hosts, pair)))
+        try:
+            t0 = time.time()
+            gemini_tts.generate_gemini_tts_for_section(chunk, out_wav)
+            stats = _audio_stats(out_wav)
+            print(f"  ✅ {label:<24} {stats['duration_s']:>6}s  "
+                  f"{time.time() - t0:>5.1f}s to render  {out_wav}")
+            written.append((label, out_wav))
+        except Exception as e:
+            print(f"  ⚠️  {label:<24} {type(e).__name__}: {' '.join(str(e).split())[:200]}")
+        finally:
+            gemini_tts.set_voice_override(None)
+
+    for note in gemini_tts.drain_degradations():
+        print(f"  ::warning:: {note}")
+
+    if written:
+        print("\n  Listen to them back to back on the same passage. What to listen"
+              "\n  for is the terminal of a declarative sentence: it should fall and"
+              "\n  stay fallen. Pin the winner in hosts.json `gemini_voice` — that is"
+              "\n  the one change to this that does not depend on the model reading"
+              "\n  the direction.")
+
+
+def _host_keys() -> list[str]:
+    """Host keys in hosts.json order — the order VOICE_PAIR_CANDIDATES uses."""
+    from config_loader import load_hosts_config
+    return list(load_hosts_config())
+
+
+def _parse_voice_pairs(raw: str | None) -> list[tuple[str, str]]:
+    """`--voice-pairs "Kore/Iapetus,Schedar/Charon"` → [(Kore, Iapetus), ...]."""
+    if not raw:
+        return list(VOICE_PAIR_CANDIDATES)
+    pairs = []
+    for item in raw.split(","):
+        names = [n.strip() for n in item.split("/") if n.strip()]
+        if len(names) != 2:
+            raise SystemExit(f"--voice-pairs wants Riley/Casey per entry, got {item!r}")
+        pairs.append((names[0], names[1]))
+    return pairs
+
+
 def main():
     parser = argparse.ArgumentParser(description="Compare OpenAI vs Azure TTS for Cariboo Signals")
     parser.add_argument(
@@ -378,6 +465,16 @@ def main():
         "--probe-models", action="store_true",
         help="Instead of comparing providers, measure answer rate and latency "
              "for each candidate Gemini model on a real section request",
+    )
+    parser.add_argument(
+        "--probe-voices", action="store_true",
+        help="Instead of comparing providers, render one real chunk with each "
+             "candidate Gemini voice pair, so the register can be picked by ear",
+    )
+    parser.add_argument(
+        "--voice-pairs",
+        help="Voice pairs for --probe-voices as Riley/Casey, comma-separated "
+             "(default: the candidates in VOICE_PAIR_CANDIDATES)",
     )
     parser.add_argument(
         "--probe-repeats", type=int, default=3,
@@ -409,7 +506,7 @@ def main():
         else [args.section]
     )
 
-    if args.probe_gemini or args.probe_models:
+    if args.probe_gemini or args.probe_models or args.probe_voices:
         import gemini_tts
         # Backend-aware: the cloud backend authenticates with a service account,
         # not GEMINI_API_KEY, and the probe routes through the same backend the
@@ -437,6 +534,10 @@ def main():
                 _probe_gemini_models(seg_list, models, args.probe_repeats)
             if args.probe_gemini:
                 _probe_gemini_rungs(seg_list, args.probe_repeats)
+            if args.probe_voices:
+                _probe_gemini_voices(
+                    seg_list, _parse_voice_pairs(args.voice_pairs), output_dir
+                )
         return
 
     for section in sections_to_eval:

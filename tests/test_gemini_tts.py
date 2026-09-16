@@ -183,16 +183,61 @@ class TestBuildPayload:
         ):
             assert dig(build(casey_first)) == dig(build(riley_first))
 
+    # Words that describe the register the show is trying not to have. A
+    # negation names them; so does a worked example ("tags such as [warmly]")
+    # and so does a cue the polish pass may insert into the speech stream. All
+    # three put the word in the request, which is the only thing the model sees.
+    BURNED_REGISTER = (
+        "peppy", "bubbly", "perky", "bright", "breezy", "hype", "laughter",
+        "announcer", "dj energy", "slangy", "warmly", "curiosity", "soft laugh",
+        "cheerful", "upbeat", "lively", "chuckle", "smile",
+        # The broadcast frame itself: "community radio", "co-hosts", "host" as a
+        # role noun. Describing the show as radio invokes the announcer prior
+        # the adjectives above only describe.
+        "radio", "co-host",
+    )
+
     def test_direction_does_not_name_the_register_it_forbids(self):
         """A negation hands a TTS model the vocabulary it names. The old
         direction spent eight of them on `peppy, bubbly, perky, bright,
         breezy, hype, exaggerated laughter, radio-announcer` — a fair
         description of the sing-song delivery that shipped on 2026-09-14."""
-        block = gemini_tts._cloud_prompt(
-            ["riley", "casey"], True, gemini_tts.RETRY_LADDER[0]).lower()
-        for word in ("peppy", "bubbly", "perky", "bright", "breezy", "hype",
-                     "laughter", "announcer", "dj energy", "slangy"):
-            assert word not in block, word
+        for rung in gemini_tts.RETRY_LADDER:
+            for continuing in (False, True):
+                for speakers in (["riley"], ["riley", "casey"]):
+                    block = gemini_tts._cloud_prompt(
+                        speakers, continuing, rung).lower()
+                    for word in self.BURNED_REGISTER:
+                        assert word not in block, f"{word} @ rung {rung.index}"
+
+    def test_studio_direction_carries_the_same_burned_words(self):
+        """The sweep used to run on the cloud prompt alone, so a burned word
+        reaching the request only through the studio scaffolding — or through
+        the transcript's own cues — was invisible to it. `[warmly]` was both:
+        the tag rule's worked example and a live whitelist cue, in every
+        request of every episode that has been called sing-song."""
+        prompt = _build_payload(SEGS)["contents"][0]["parts"][0]["text"]
+        direction = prompt.split(gemini_tts.TRANSCRIPT_MARKER)[0].lower()
+        for word in self.BURNED_REGISTER:
+            assert word not in direction, word
+
+    def test_no_live_cue_asks_for_lift(self):
+        """The whitelist is direction *inside the speech stream* — the closest
+        thing to the words and the only per-turn lever in the request. Every
+        cue on it is performed, so a bright one is a brightness instruction the
+        style prompt then has to argue with. `warmly`, `curiosity` and
+        `soft laugh` were retired on 2026-09-16 for that; retired, not deleted,
+        because 200+ scripts on disk still carry them and an unexplained cue
+        gets read aloud (the [short pause] failure of 2026-09-13)."""
+        from config_loader import _stage_direction_cues, strip_retired_stage_directions
+        whitelist, legacy = _stage_direction_cues()
+        for cue in whitelist:
+            assert cue.lower() not in self.BURNED_REGISTER, cue
+        for retired in ("warmly", "curiosity", "soft laugh"):
+            assert retired in legacy, retired
+            assert retired not in strip_retired_stage_directions(
+                f"Fair enough. [{retired}] Not the point though."
+            )
 
     def test_tag_rule_travels_with_the_tags(self):
         """The never-speak-a-tag rule used to live in the style prompt, so the
