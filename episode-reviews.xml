@@ -5,49 +5,39 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Wed, 16 Sep 2026 10:05:55 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 16 Sep 2026 15:23:25 +0000</lastBuildDate>
     <item>
       <title>Episode Review — Cariboo Signals, September 16, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-16.html</link>
       <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-16.html</guid>
-      <pubDate>Wed, 16 Sep 2026 10:05:55 +0000</pubDate>
+      <pubDate>Wed, 16 Sep 2026 15:23:25 +0000</pubDate>
       <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/35077380001"&gt;35077380001&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h3&gt;Second run succeeded after first failed; script expanded mid-pipeline&lt;/h3&gt;
+&lt;h3&gt;Budget exhaustion forced a cascade of thin segments&lt;/h3&gt;
 
-&lt;p&gt;The 08:05 UTC run terminated with a failure before publishing. The 09:05 UTC retry completed successfully 36 minutes later. Episode 232 shipped to RSS.&lt;/p&gt;
+&lt;p&gt;The Brave search API budget (12 calls allocated) ran out mid-curation. The pipeline kept 49 articles in the roundup but stripped their bodies down to stubs—a graceful degrade that preserved count at the cost of depth. Those thin segments now risk being cut entirely in downstream editorial.&lt;/p&gt;
 
-&lt;p&gt;The script's first draft arrived at 2,353 words against a 3,400-word target. The pipeline sent it back for expansion. The final shipped version, 2,974 words, still fell 426 words short of target but cleared the quality gate and audio rendered at 19.1 minutes.&lt;/p&gt;
+&lt;p&gt;This matters because it's the first hard constraint we've hit on search enrichment. The script shipped at 2,974 words after one expand pass, comfortably above the 2,353-word first draft but short of the 3,400-word target. The thin bodies may have kept us from climbing back to target.&lt;/p&gt;
 
-&lt;h3&gt;Brave search budget exhausted; 49 articles dropped from roundup&lt;/h3&gt;
+&lt;h3&gt;Citation alignment broke unevenly across the episode&lt;/h3&gt;
 
-&lt;p&gt;The pipeline made 12 calls to Brave's search API to backfill article bodies. That budget spent, 49 roundup articles retained only stub summaries and were cut from the script entirely rather than shipped sparse.&lt;/p&gt;
+&lt;p&gt;The roundup matched 12 of 15 citations (80% coverage). The three deep dives matched only 2 of 3—one source fell out of frame before it could be woven in. The imbalance suggests the deep-dive selection process either worked looser than the roundup curation, or the sources themselves were thinner than expected.&lt;/p&gt;
 
-&lt;p&gt;Citation matching reflects the loss. The roundup segment matched 12 of 15 citations—three articles never reached script. The deep dive, which consumed 3 Brave calls, matched 2 of 3 citations.&lt;/p&gt;
+&lt;h3&gt;One section retried and switched rendering models&lt;/h3&gt;
 
-&lt;h3&gt;Gemini fallback on render; one section synthesized on retry&lt;/h3&gt;
+&lt;p&gt;The "gemini-take" synthesis failed its first attempt (context dropped) and re-rendered on retry 1 using Gemini 2.5 Flash with TTS enabled. The delivery may diverge tonally from the rest of the episode, which ran through Claude and standard audio synthesis. This is audible drift, not invisible fault recovery.&lt;/p&gt;
 
-&lt;p&gt;The render/gemini-take section required a retry with model=gemini-2.5-flash-tts after the primary path dropped context. That section was synthesized fresh and may sound different from surrounding audio.&lt;/p&gt;
+&lt;h3&gt;Pipeline ran three times, then stalled&lt;/h3&gt;
 
-&lt;h3&gt;Script quality checks flagged 2 AI-tell patterns&lt;/h3&gt;
+&lt;p&gt;Two manual workflows succeeded in sequence (08:05 and 09:05 UTC). A third manual run at 10:05 UTC also succeeded. Then a fallback trigger fired at 15:22 UTC—317 minutes late, suggesting the scheduled 3:05 AM Pacific run had failed silently and the system fell back to a retry. That fourth run is still in progress.&lt;/p&gt;
 
-&lt;p&gt;The quality filter detected 2 hits on AI-tell patterns in the 2,974-word script. Voice ratio (Casey to Riley) came in at 0.87. Both metrics passed the gate.&lt;/p&gt;
+&lt;h3&gt;The episode cleared quality gates despite constraints&lt;/h3&gt;
 
-&lt;h3&gt;Citation alignment: roundup weak, deep dive weaker&lt;/h3&gt;
+&lt;p&gt;Casey spoke 87% of the air time against Riley's 13%, favoring the lead voice. The script triggered two AI-tell pattern hits (hedging, passive construction, or similar markers). Audio rendered to 19.1 minutes at 17.5 MB; video matched at 19.1 minutes and 60.3 MB. The debate question—"Who should decide whether a piece of technology is worth repairing?"—landed on the central tension of the source material.&lt;/p&gt;
 
-&lt;p&gt;12 of 15 roundup citations could be matched to source articles. Deep dive matched only 2 of 3. The three deep dive sources were:&lt;/p&gt;
+&lt;h3&gt;Token spend stayed modest despite retry overhead&lt;/h3&gt;
 
-&lt;ul&gt;
-&lt;li&gt;[XDA Developers] on custom PC case fan ducts&lt;/li&gt;
-&lt;li&gt;[Hackster News] on IEEE 1394 FireWire revival&lt;/li&gt;
-&lt;li&gt;[MakeUseOf] on Pixel troubleshooting&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;Debate question and runtime&lt;/h3&gt;
-
-&lt;p&gt;Today's framing: &lt;em&gt;Who should decide whether a piece of technology is worth repairing and keeping alive — manufacturers, hobbyists with skills and tools, or communities with concrete local needs?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Audio and video both measured 19.1 minutes. Video file: 60.3 MB. Audio file: 17.5 MB. Pipeline used 86,172 Claude input tokens across 12 API calls.&lt;/p&gt;
+&lt;p&gt;Claude consumed 86,172 input tokens across 12 API calls. Brave consumed 3 calls (its full budget). The retry on gemini-take added render time but not measurable token load. Episode 232 is now in the feed.&lt;/p&gt;
 
 &lt;h3&gt;The day's triggers&lt;/h3&gt;
 &lt;table&gt;
@@ -55,7 +45,8 @@
 &lt;tbody&gt;
 &lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-16T08:05:08Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;failure&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-16T09:05:07Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-16T10:05:11Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-16T10:05:11Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-09-16T15:22:46Z&lt;/td&gt;&lt;td&gt;+317 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
