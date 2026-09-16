@@ -1,30 +1,4 @@
 {
-  "2026-06-17": {
-    "timestamp": 1781693366.595084,
-    "date": "2026-06-17",
-    "theme": "Gear, Gadgets & Practical Tech",
-    "central_question": "When wearable technology transitions from passive capture tools to autonomous decision-making agents, does it become more useful or does it represent a fundamental loss of user control\u2014particularly for people in under-resourced or data-sensitive contexts?",
-    "riley_position": "Agentic wearables like the Plaud device may have legitimate value for specific users, but the design prioritizes cloud dependency and service models over local ownership, repairability, and the ability to function in offline contexts. The solution is designing devices that prioritize local processing and transparent technical documentation.",
-    "riley_key_evidence": [
-      "Eight to twelve hour battery life requires daily charging, making it a dependency rather than grab-when-needed tool",
-      "Google's release of technical documentation for Pixel phones enabled repurposing for distributed computing\u2014a design choice Plaud hasn't made",
-      "Hardware evaluation communities like iFixit require institutional persistence to compound knowledge over time"
-    ],
-    "casey_position": "Cloud-dependent agentic wearables are fundamentally service subscriptions, not tools, and their failure modes include behavioral drift and data extraction that manufacturers aren't transparent about. For communities with data sovereignty concerns or intermittent connectivity, this technology isn't neutral.",
-    "casey_key_evidence": [
-      "Cellular connectivity gaps in rural British Columbia (past Likely, west of Alexis Creek) render autonomous agent functionality useless",
-      "First Nations health clinics represent contexts where data extraction has a history of misuse, making cloud-dependent devices politically problematic",
-      "No regulatory framework requires disclosure when underlying AI models change device behavior after purchase"
-    ],
-    "resolution": "They converged on a practical framework: rather than resolving the debate abstractly, they recommended that community members document real-world performance longitudinally in persistent formats, with institutional hosting through regional structures. Both agreed the question isn't whether to regulate, but what infrastructure communities need to detect failure modes manufacturers won't disclose.",
-    "topics_covered": [
-      "Battery life and offline functionality constraints for wearable AI devices",
-      "Data sovereignty and privacy concerns in health and indigenous community contexts",
-      "Repairability and device longevity versus service-dependent architecture",
-      "Role of manufacturer transparency and technical documentation in enabling repair communities",
-      "Longitudinal hardware evaluation as alternative to launch-day review culture"
-    ]
-  },
   "2026-06-18": {
     "timestamp": 1781777852.479529,
     "date": "2026-06-18",
@@ -2453,6 +2427,39 @@
       "A Cariboo producer association could push to review loan criteria or cost-share terms before they are finalized, not after they have been printed, using Columbia Basin Trust's structure as a template for what that review could look like locally.",
       "Whoever drafts carbon offset language for Cariboo forest tenures should ask upfront who in the room actually understands the contract and who just showed up needing the cheque that week, following the lesson from Pando, Bolivia.",
       "Send stories to cariboo signals dot c-a about who is actually writing the rules for working lands programs locally\u2014a producer association, a Nation-led venture, anyone with a seat at the table when terms get set."
+    ]
+  },
+  "2026-09-16": {
+    "timestamp": 1789550860.842415,
+    "date": "2026-09-16",
+    "theme": "Repair Culture & Practical Tech",
+    "focus": "maker-repair",
+    "anchor": "worth-saving",
+    "central_question": "Who should decide whether a piece of technology is worth repairing and keeping alive \u2014 manufacturers, hobbyists with skills and tools, or communities with concrete local needs?",
+    "riley_position": "Both hobbyist repair efforts and manufacturer-supported initiatives like Philips' open-source parts, along with platforms like Valve's Steam Frame CAD files, demonstrate that companies can voluntarily hand repair and modification decisions back to users, and communities have untapped leverage to document and preserve locally important equipment.",
+    "riley_key_evidence": [
+      "XDA Developers member 3D-printed a custom fan duct that reduced GPU temperatures by several degrees with no manufacturer involvement",
+      "Philips launched an initiative offering open-source, 3D-printable replacement parts for consumer products to prevent entire units from being discarded",
+      "Valve's Steam Frame headset includes published CAD files specifically to enable user modding and accessory design"
+    ],
+    "casey_position": "The current system leaves preservation decisions entirely to either corporate gatekeeping (what companies quietly stop supporting) or random luck based on whether one obsessive person happens to care enough to fix something, with no formal institutional process ensuring the things that actually matter most are the ones being saved.",
+    "casey_key_evidence": [
+      "FireWire DV tape format only survives because a small community of hobbyists refused to let it die, not because any standards body certified it worth preserving",
+      "Google's Gemini Device Help and John Deere's dealer-only diagnostics both represent corporate control over repair decisions, with users learning dependency rather than self-sufficiency",
+      "Most manufacturers keep repair manuals proprietary specifically to ensure the 'is this worth fixing' decision never leaves the building"
+    ],
+    "resolution": "Riley and Casey agreed that no formal institutional process currently exists to decide which technologies deserve preservation, and that the Cariboo region specifically has untapped leverage to build a community inventory of what's actually worth keeping running locally \u2014 a concrete project a school shop class or Community Futures-backed business could start on a spreadsheet without waiting for grants or legal filings.",
+    "topics_covered": [
+      "Hobbyist versus manufacturer-led repair and modification",
+      "The role of luck and individual obsession in tech preservation versus systematic institutional decision-making",
+      "Corporate gatekeeping through proprietary connectors, software locks, and dealer-only access versus open-source hardware initiatives",
+      "AI-mediated repair as corporate convenience creating long-term user dependency",
+      "Regional and community leverage points for formal documentation of what technologies matter locally"
+    ],
+    "calls_to_action": [
+      "A community group or school shop class could build a repair inventory documenting what equipment is actually still functional in the region, what's being locked by software rather than hardware failure, and where those categories diverge \u2014 starting on a spreadsheet next month without funding applications.",
+      "A regional district or producer association could file a formal exemption request with the Copyright Board documenting real harm from locked equipment to force legal clarity on the right to repair.",
+      "If anyone has a piece of gear that outlived its manufacturer's support window and kept running anyway, or observes gaps in local repair capacity, send documentation to feedback at cariboosignals dot ca to build the community record."
     ]
   }
 }
