@@ -5065,7 +5065,7 @@ def _roundup_block_rank(block: str) -> int:
     return ROUNDUP_BLOCK_RANK.get(block, ROUNDUP_TAIL_RANK)
 
 
-def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
+def _annotate_roundup_blocks(articles: list, theme_name: str) -> tuple:
     """Order News Roundup articles into labeled coherence blocks.
 
     Sets `_roundup_block` on every article and returns a new list ordered block
@@ -5096,6 +5096,20 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
     list of one-sentence mentions; now an off-theme story earns its slot the same
     way any other tail story does — by joining a discipline cluster, or by being
     the single best thing left over.
+
+    An article the feed flags `_us_policy_scope == 'out-of-jurisdiction'` — pure
+    US federal politics with no Canadian/BC angle — is dropped rather than
+    joining 'rest' unless it lands 'local', 'theme', or 'theme_adjacent' first.
+    On 2026-09-16 a Kennedy Center naming-dispute story, a Pentagon report on
+    Iranian strikes, and a Congressional license-plate-reader bill all aired on
+    a Repair Culture & Practical Tech Wednesday with no rural, BC, or theme tie
+    — inside-Washington drama filling airtime a rural BC audience didn't ask
+    for. `cross-border-impact` stories (tariffs, trade, precedent that actually
+    reaches BC/Canada) are untouched: `us_policy_framing_tag` already frames
+    those on air, and the jurisdiction split exists precisely to tell the two
+    apart. This is a curation cut, not a quality judgment — dropped articles
+    never reach citations, so dedup lets them resurface if a later day's theme
+    genuinely calls for them.
 
     The blocks are curation metadata — `_roundup_block_header` renders them into
     prompt sections, none of which the hosts ever name on air.
@@ -5141,6 +5155,7 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
                 - _keyword_hit_count(body, anti_keywords or []))
 
     theme_block, adjacent_block, local_block, rest = [], [], [], []
+    dropped_us_politics = []
     for a in articles:
         # Local wins over theme: a story that is both is the strongest opener.
         # relevance ≥ 2 means at least one net keyword hit survives the
@@ -5163,6 +5178,10 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
         elif body_theme_hits(a) > 0:
             a['_roundup_block'] = 'theme_adjacent'
             adjacent_block.append(a)
+        elif a.get('_us_policy_scope') == 'out-of-jurisdiction':
+            # Off-theme, off-local, and pure US-federal jurisdiction — nothing
+            # ties it to today's show. See the docstring note above.
+            dropped_us_politics.append(a)
         else:
             rest.append(a)
 
@@ -5216,7 +5235,7 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> list:
     )
     clustered = [a for members in ordered_clusters for a in members]
     return (local_block + theme_block + adjacent_block
-            + clustered + standalone + kicker)
+            + clustered + standalone + kicker), dropped_us_politics
 
 
 def _cluster_adjacent(members: list, disciplines_config: dict) -> list:
@@ -5293,9 +5312,15 @@ def _curate_roundup_pool(articles: list, theme_name: str, pool_size: int) -> tup
     rather than compressing them into mentions.
 
     Returns (kept, dropped); dropped articles never reach citations, so dedup
-    lets them resurface on a better-matched theme day.
+    lets them resurface on a better-matched theme day. `dropped` also carries
+    off-theme, off-local `out-of-jurisdiction` US-policy stories that
+    `_annotate_roundup_blocks` cut before this ever sees them — see its
+    docstring.
     """
-    pool = _annotate_roundup_blocks(articles, theme_name)
+    pool, dropped_us_politics = _annotate_roundup_blocks(articles, theme_name)
+    if dropped_us_politics:
+        print(f"   🇺🇸 {len(dropped_us_politics)} story(ies) dropped — pure US "
+              f"federal politics with no local/theme tie")
     # One field does not get half the segment, and this holds whether or not the
     # pool is over the cap — on 2026-08-22 the roundup was exactly at its cap of
     # 15 and still ran seven US pharma and health-policy stories against two
@@ -5318,14 +5343,14 @@ def _curate_roundup_pool(articles: list, theme_name: str, pool_size: int) -> tup
               f"{ROUNDUP_CLUSTER_MAX}-story cap on a single discipline cluster")
 
     if len(pool) <= pool_size:
-        return _sequence_roundup(pool), over_cluster
+        return _sequence_roundup(pool), over_cluster + dropped_us_politics
 
     protected = [a for a in pool if a['_roundup_block'] in ROUNDUP_ARC_BLOCKS]
     kicker = [a for a in pool if a['_roundup_block'] == 'kicker']
     fillers = [a for a in pool if a['_roundup_block'] not in ROUNDUP_ARC_BLOCKS
                and a['_roundup_block'] != 'kicker']
 
-    kept_fill, dropped = [], list(over_cluster)
+    kept_fill, dropped = [], list(over_cluster) + dropped_us_politics
     # A wide arc still can't blow past the segment budget. Trimming the arc tail
     # alone would let a heavy local day (a fire week, a flood week) push the
     # theme off a themed episode entirely, so reserve a floor of theme slots and
@@ -7173,9 +7198,12 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
     # The `bonus_articles` parameter is the pre-curation list and must never be
     # concatenated back in — doing so re-admitted every article the cap had just
     # dropped, which is what put 52 stories in the 2026-08-13 roundup.
-    roundup_articles = _sequence_roundup(
-        _annotate_roundup_blocks(all_articles, theme_name)
-    )
+    # `all_articles` already passed through `_curate_roundup_pool`, so the
+    # second element (US-policy drops) is expected to be empty here — this
+    # call re-annotates the already-curated pool for block order, not to
+    # re-curate it.
+    _reannotated, _ = _annotate_roundup_blocks(all_articles, theme_name)
+    roundup_articles = _sequence_roundup(_reannotated)
 
     def _format_news_article(a):
         """Format a news article for the script-generation prompt."""
