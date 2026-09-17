@@ -294,49 +294,6 @@
     "target_focus_name": "Wildfire & Climate Resilience",
     "status": "held"
   },
-  "https://www.makeuseof.com/google-gemini-device-help-pixel/": {
-    "article": {
-      "id": "https://www.makeuseof.com/google-gemini-device-help-pixel/",
-      "url": "https://www.makeuseof.com/google-gemini-device-help-pixel/",
-      "title": "[MakeUseOf] Finally, someone to ask why your Pixel is acting weird \u2014 and actually fix it",
-      "content_html": "<img src=\"https://static0.makeuseofimages.com/wordpress/wp-content/uploads/wm/2026/08/google-pixel-11-pro-fold-14.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf32 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.makeuseof.com%2Fgoogle-gemini-device-help-pixel%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThis AI-powered troubleshooter scans your phone configuration and recent usage to identify odd behaviors and adjust settings safely.",
-      "summary": "This AI-powered troubleshooter scans your phone configuration and recent usage to identify odd behaviors and adjust settings safely.",
-      "_excerpt": "This AI-powered troubleshooter scans your phone configuration and recent usage to identify odd behaviors and adjust settings safely.",
-      "date_published": "2026-08-24T18:55:26+00:00",
-      "authors": [
-        {
-          "name": "MakeUseOf",
-          "url": "https://www.makeuseof.com"
-        }
-      ],
-      "ai_score": 59,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 77,
-      "_theme_score_raw": 46,
-      "_composite_podcast": 55,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://static0.makeuseofimages.com/wordpress/wp-content/uploads/wm/2026/08/google-pixel-11-pro-fold-14.jpg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-02T04:11:47.135939+00:00"
-      },
-      "_boosted_score": 59
-    },
-    "held_date": "2026-09-04",
-    "target_date": "2026-09-16",
-    "target_weekday": 2,
-    "target_focus_slug": "maker-repair",
-    "target_focus_name": "Maker & Repair",
-    "status": "released",
-    "release_date": "2026-09-16"
-  },
   "https://www.mycariboonow.com/316061/news/business/millar-western-to-curtail-operations-at-quesnel-river-pulp-at-end-of-day/": {
     "article": {
       "id": "https://www.mycariboonow.com/316061/news/business/millar-western-to-curtail-operations-at-quesnel-river-pulp-at-end-of-day/",
@@ -549,49 +506,6 @@
     "target_focus_name": "Wildfire & Climate Resilience",
     "status": "held"
   },
-  "https://www.hackster.io/news/can-an-open-source-ai-model-help-a-diy-robot-pick-up-your-laundry-bd8578273e69": {
-    "article": {
-      "id": "https://www.hackster.io/news/can-an-open-source-ai-model-help-a-diy-robot-pick-up-your-laundry-bd8578273e69",
-      "url": "https://www.hackster.io/news/can-an-open-source-ai-model-help-a-diy-robot-pick-up-your-laundry-bd8578273e69",
-      "title": "[Hackster News] Can an Open Source AI Model Help a DIY Robot Pick Up Your Laundry?",
-      "content_html": "<img src=\"https://hackster.imgix.net/uploads/attachments/1994741/_bE0jzkxFea.blob?auto=compress%2Cformat&amp;w=400&amp;h=300&amp;fit=min\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfd4\ufe0f <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.hackster.io%2Fnews%2Fcan-an-open-source-ai-model-help-a-diy-robot-pick-up-your-laundry-bd8578273e69\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nBy replacing his sock-picking robot's controller with an open source VLA model, Walnut Sensei reached a 96% success rate.",
-      "summary": "By replacing his sock-picking robot's controller with an open source VLA model, Walnut Sensei reached a 96% success rate.",
-      "_excerpt": "By replacing his sock-picking robot's controller with an open source VLA model, Walnut Sensei reached a 96% success rate.",
-      "date_published": "2026-09-04T17:11:06+00:00",
-      "authors": [
-        {
-          "name": "Hackster News",
-          "url": "https://www.hackster.io"
-        }
-      ],
-      "ai_score": 61,
-      "_quality": 72,
-      "_relevance": 78,
-      "_local": 0,
-      "_theme_score": 87,
-      "_theme_score_raw": 51,
-      "_composite_podcast": 62,
-      "_keyword_matches": 0,
-      "_category": "homelab",
-      "_source_category": "homelab",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://hackster.imgix.net/uploads/attachments/1994741/_bE0jzkxFea.blob?auto=compress%2Cformat&w=400&h=300&fit=min",
-      "_cross_theme": {
-        "day": "wednesday",
-        "label": "Repair Culture & Practical Tech",
-        "shown_at": "2026-09-05T04:13:08.540768+00:00"
-      },
-      "_boosted_score": 61
-    },
-    "held_date": "2026-09-05",
-    "target_date": "2026-09-16",
-    "target_weekday": 2,
-    "target_focus_slug": "maker-repair",
-    "target_focus_name": "Maker & Repair",
-    "status": "released",
-    "release_date": "2026-09-16"
-  },
   "https://indiginews.com/news/wildfires-prayer-gatherings-across-the-okanagan/": {
     "article": {
       "id": "https://indiginews.com/news/wildfires-prayer-gatherings-across-the-okanagan/",
@@ -794,44 +708,6 @@
     "target_focus_name": "The Living World",
     "status": "held"
   },
-  "https://www.businessinsider.com/tariff-refunds-nintendo-sony-playstation-microsoft-xbox-video-games-2026-9": {
-    "article": {
-      "id": "https://www.businessinsider.com/tariff-refunds-nintendo-sony-playstation-microsoft-xbox-video-games-2026-9",
-      "url": "https://www.businessinsider.com/tariff-refunds-nintendo-sony-playstation-microsoft-xbox-video-games-2026-9",
-      "title": "[Business Insider] Video game makers really don't want to give their customers tariff refunds",
-      "content_html": "<img src=\"https://i.insider.com/6a9c3dc4f320febc610d4d8b?format=jpeg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.businessinsider.com%2Ftariff-refunds-nintendo-sony-playstation-microsoft-xbox-video-games-2026-9\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nSony, Microsoft and Nintendo are all arguing in court that they don't have to the pass tariff refunds they've received to their customers.",
-      "summary": "Sony, Microsoft and Nintendo are all arguing in court that they don't have to the pass tariff refunds they've received to their customers.",
-      "_excerpt": "Sony, Microsoft and Nintendo are all arguing in court that they don't have to the pass tariff refunds they've received to their customers.",
-      "date_published": "2026-09-06T09:29:01+00:00",
-      "authors": [
-        {
-          "name": "Business Insider",
-          "url": "https://www.businessinsider.com"
-        }
-      ],
-      "ai_score": 43,
-      "_quality": 58,
-      "_relevance": 35,
-      "_local": 0,
-      "_theme_score": 90,
-      "_theme_score_raw": 24,
-      "_composite_podcast": 66,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://i.insider.com/6a9c3dc4f320febc610d4d8b?format=jpeg",
-      "_boosted_score": 43
-    },
-    "held_date": "2026-09-07",
-    "target_date": "2026-09-16",
-    "target_weekday": 2,
-    "target_focus_slug": "maker-repair",
-    "target_focus_name": "Maker & Repair",
-    "status": "released",
-    "release_date": "2026-09-16"
-  },
   "https://www.theatlantic.com/science/2026/08/el-nino-effects/688429/?utm_source=feed": {
     "article": {
       "id": "https://www.theatlantic.com/science/2026/08/el-nino-effects/688429/?utm_source=feed",
@@ -912,49 +788,6 @@
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
     "status": "held"
-  },
-  "https://www.androidauthority.com/xiaomi-smartphones-price-hike-3701917/": {
-    "article": {
-      "id": "https://www.androidauthority.com/xiaomi-smartphones-price-hike-3701917/",
-      "url": "https://www.androidauthority.com/xiaomi-smartphones-price-hike-3701917/",
-      "title": "[Android Authority] Another major Android phone maker caves to soaring RAM costs with price hikes",
-      "content_html": "<img src=\"https://www.androidauthority.com/wp-content/uploads/2026/06/Xiaomi-17-Ultra-with-camera-kit-case_3.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.androidauthority.com%2Fxiaomi-smartphones-price-hike-3701917%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nXiaomi says it can no longer manintain competitive prices for some of its models thanks to the memory crunch.",
-      "summary": "Xiaomi says it can no longer manintain competitive prices for some of its models thanks to the memory crunch.",
-      "_excerpt": "Xiaomi says it can no longer manintain competitive prices for some of its models thanks to the memory crunch.",
-      "date_published": "2026-08-24T03:24:53+00:00",
-      "authors": [
-        {
-          "name": "Android Authority",
-          "url": "https://www.androidauthority.com"
-        }
-      ],
-      "ai_score": 58,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 73,
-      "_theme_score_raw": 18,
-      "_composite_podcast": 52,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://www.androidauthority.com/wp-content/uploads/2026/06/Xiaomi-17-Ultra-with-camera-kit-case_3.jpg",
-      "_cross_theme": {
-        "day": "tuesday",
-        "label": "Working Lands & Industry",
-        "shown_at": "2026-09-04T04:13:29.680538+00:00"
-      },
-      "_boosted_score": 58
-    },
-    "held_date": "2026-09-07",
-    "target_date": "2026-09-16",
-    "target_weekday": 2,
-    "target_focus_slug": "maker-repair",
-    "target_focus_name": "Maker & Repair",
-    "status": "released",
-    "release_date": "2026-09-16"
   },
   "https://www.sciencealert.com/over-40-of-earth-could-become-drylands-by-2100-scientists-warn": {
     "article": {
@@ -1283,87 +1116,6 @@
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
     "status": "held"
-  },
-  "https://www.hackster.io/news/obsolete-hp-microserver-revived-with-raspberry-pi-cm5-f3a296fe43a3": {
-    "article": {
-      "id": "https://www.hackster.io/news/obsolete-hp-microserver-revived-with-raspberry-pi-cm5-f3a296fe43a3",
-      "url": "https://www.hackster.io/news/obsolete-hp-microserver-revived-with-raspberry-pi-cm5-f3a296fe43a3",
-      "title": "[Hackster News] Obsolete HP MicroServer Revived with Raspberry Pi CM5",
-      "content_html": "<img src=\"https://hackster.imgix.net/uploads/attachments/1996203/_hwWbf4VMjH.blob?auto=compress%2Cformat&amp;w=400&amp;h=300&amp;fit=min\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.hackster.io%2Fnews%2Fobsolete-hp-microserver-revived-with-raspberry-pi-cm5-f3a296fe43a3\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nYouTuber EastMakes revived an aging HP MicroServer with a custom Compute Module 5 motherboard built for its original chassis.",
-      "summary": "YouTuber EastMakes revived an aging HP MicroServer with a custom Compute Module 5 motherboard built for its original chassis.",
-      "_excerpt": "YouTuber EastMakes revived an aging HP MicroServer with a custom Compute Module 5 motherboard built for its original chassis.",
-      "date_published": "2026-09-08T16:32:50+00:00",
-      "authors": [
-        {
-          "name": "Hackster News",
-          "url": "https://www.hackster.io"
-        }
-      ],
-      "ai_score": 57,
-      "_quality": 68,
-      "_relevance": 72,
-      "_local": 0,
-      "_theme_score": 99,
-      "_theme_score_raw": 82,
-      "_composite_podcast": 70,
-      "_keyword_matches": 0,
-      "_category": "homelab",
-      "_source_category": "homelab",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://hackster.imgix.net/uploads/attachments/1996203/_hwWbf4VMjH.blob?auto=compress%2Cformat&w=400&h=300&fit=min",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-09T07:11:51.474148+00:00"
-      },
-      "_boosted_score": 57
-    },
-    "held_date": "2026-09-09",
-    "target_date": "2026-09-16",
-    "target_weekday": 2,
-    "target_focus_slug": "maker-repair",
-    "target_focus_name": "Maker & Repair",
-    "status": "released",
-    "release_date": "2026-09-16"
-  },
-  "https://www.hackster.io/news/firehat-brings-back-ieee-1394-firewire-for-digital-video-work-as-a-raspberry-pi-5-compatible-hat-87045a3f3572": {
-    "article": {
-      "id": "https://www.hackster.io/news/firehat-brings-back-ieee-1394-firewire-for-digital-video-work-as-a-raspberry-pi-5-compatible-hat-87045a3f3572",
-      "url": "https://www.hackster.io/news/firehat-brings-back-ieee-1394-firewire-for-digital-video-work-as-a-raspberry-pi-5-compatible-hat-87045a3f3572",
-      "title": "[Hackster News] Firehat Brings Back IEEE 1394 FireWire for Digital Video Work \u2014 As a Raspberry Pi 5-Compatible HAT",
-      "content_html": "<img src=\"https://hackster.imgix.net/uploads/attachments/1996146/_SQmyMUuR8L.blob?auto=compress%2Cformat&amp;w=400&amp;h=300&amp;fit=min\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.hackster.io%2Fnews%2Ffirehat-brings-back-ieee-1394-firewire-for-digital-video-work-as-a-raspberry-pi-5-compatible-hat-87045a3f3572\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nAdd-on for single-board computers with PCIe allows you to pull digital video off your FireWire/I.LINK cameras.",
-      "summary": "Add-on for single-board computers with PCIe allows you to pull digital video off your FireWire/I.LINK cameras.",
-      "_excerpt": "Add-on for single-board computers with PCIe allows you to pull digital video off your FireWire/I.LINK cameras.",
-      "date_published": "2026-09-08T11:23:42+00:00",
-      "authors": [
-        {
-          "name": "Hackster News",
-          "url": "https://www.hackster.io"
-        }
-      ],
-      "ai_score": 64,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 99,
-      "_theme_score_raw": 81,
-      "_composite_podcast": 70,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://hackster.imgix.net/uploads/attachments/1996146/_SQmyMUuR8L.blob?auto=compress%2Cformat&w=400&h=300&fit=min",
-      "_boosted_score": 64
-    },
-    "held_date": "2026-09-09",
-    "target_date": "2026-09-16",
-    "target_weekday": 2,
-    "target_focus_slug": "maker-repair",
-    "target_focus_name": "Maker & Repair",
-    "status": "released",
-    "release_date": "2026-09-16"
   },
   "https://www.techradar.com/pro/security/microsoft-365-users-hit-by-two-major-threat-campaigns-fake-it-calls-and-phishing-emails-target-users-across-the-world": {
     "article": {
@@ -1878,48 +1630,6 @@
     "target_focus_name": "The Living World",
     "status": "held"
   },
-  "https://techcrunch.com/2026/09/11/scammers-target-hundreds-of-thousands-of-crypto-owners-after-trezor-confirms-data-breach-of-email-provider/": {
-    "article": {
-      "id": "https://techcrunch.com/2026/09/11/scammers-target-hundreds-of-thousands-of-crypto-owners-after-trezor-confirms-data-breach-of-email-provider/",
-      "url": "https://techcrunch.com/2026/09/11/scammers-target-hundreds-of-thousands-of-crypto-owners-after-trezor-confirms-data-breach-of-email-provider/",
-      "title": "[TechCrunch] Scammers target hundreds of thousands of crypto owners after Trezor confirms data breach of email provider",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfd4\ufe0f <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Ftechcrunch.com%2F2026%2F09%2F11%2Fscammers-target-hundreds-of-thousands-of-crypto-owners-after-trezor-confirms-data-breach-of-email-provider%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThis is the second data breach affecting a company that hardware crypto wallet maker Trezor relies on.",
-      "summary": "This is the second data breach affecting a company that hardware crypto wallet maker Trezor relies on.",
-      "_excerpt": "This is the second data breach affecting a company that hardware crypto wallet maker Trezor relies on.",
-      "date_published": "2026-09-11T13:32:54+00:00",
-      "authors": [
-        {
-          "name": "TechCrunch",
-          "url": "https://techcrunch.com"
-        }
-      ],
-      "ai_score": 62,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 89,
-      "_theme_score_raw": 52,
-      "_composite_podcast": 63,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-12T04:12:00.575154+00:00"
-      },
-      "_boosted_score": 62
-    },
-    "held_date": "2026-09-12",
-    "target_date": "2026-09-16",
-    "target_weekday": 2,
-    "target_focus_slug": "maker-repair",
-    "target_focus_name": "Maker & Repair",
-    "status": "released",
-    "release_date": "2026-09-16"
-  },
   "https://www.nytimes.com/2026/09/11/business/north-sea-drilling-uk-burnham.html": {
     "article": {
       "id": "https://www.nytimes.com/2026/09/11/business/north-sea-drilling-uk-burnham.html",
@@ -2131,135 +1841,6 @@
     "recall": true,
     "status": "recall"
   },
-  "https://www.howtogeek.com/isp-router-breaking-your-smart-home-in-ways-may-not-even-notice/": {
-    "article": {
-      "id": "https://www.howtogeek.com/isp-router-breaking-your-smart-home-in-ways-may-not-even-notice/",
-      "url": "https://www.howtogeek.com/isp-router-breaking-your-smart-home-in-ways-may-not-even-notice/",
-      "title": "[How-To Geek] Your new ISP router is breaking your smart home in ways you may not even notice",
-      "content_html": "<img src=\"https://static0.howtogeekimages.com/wordpress/wp-content/uploads/wm/2026/09/181600.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.howtogeek.com%2Fisp-router-breaking-your-smart-home-in-ways-may-not-even-notice%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nISP routers weren't designed for smart homes, and it shows.",
-      "summary": "ISP routers weren't designed for smart homes, and it shows.",
-      "_excerpt": "ISP routers weren't designed for smart homes, and it shows.",
-      "date_published": "2026-09-12T20:00:13+00:00",
-      "authors": [
-        {
-          "name": "How-To Geek",
-          "url": "https://www.howtogeek.com"
-        }
-      ],
-      "ai_score": 56,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 94,
-      "_theme_score_raw": 70,
-      "_composite_podcast": 65,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://static0.howtogeekimages.com/wordpress/wp-content/uploads/wm/2026/09/181600.jpg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-13T04:08:41.572460+00:00"
-      },
-      "_boosted_score": 56
-    },
-    "held_date": "2026-09-13",
-    "target_date": "2026-09-16",
-    "target_weekday": 2,
-    "target_focus_slug": "maker-repair",
-    "target_focus_name": "Maker & Repair",
-    "status": "released",
-    "release_date": "2026-09-16"
-  },
-  "https://www.hackster.io/news/turn-your-nes-into-a-live-flight-tracker-4a571c7cc42f": {
-    "article": {
-      "id": "https://www.hackster.io/news/turn-your-nes-into-a-live-flight-tracker-4a571c7cc42f",
-      "url": "https://www.hackster.io/news/turn-your-nes-into-a-live-flight-tracker-4a571c7cc42f",
-      "title": "[Hackster News] Turn Your NES Into a Live Flight Tracker",
-      "content_html": "<img src=\"https://hackster.imgix.net/uploads/attachments/1995106/_kwM7ITKTRj.blob?auto=compress%2Cformat&amp;w=400&amp;h=300&amp;fit=min\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.hackster.io%2Fnews%2Fturn-your-nes-into-a-live-flight-tracker-4a571c7cc42f\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nTrack live flight data in glorious 8-bit style with NES Radar \u2014 a DIY cartridge that turns a 1985 console into an airplane tracker.",
-      "summary": "Track live flight data in glorious 8-bit style with NES Radar \u2014 a DIY cartridge that turns a 1985 console into an airplane tracker.",
-      "_excerpt": "Track live flight data in glorious 8-bit style with NES Radar \u2014 a DIY cartridge that turns a 1985 console into an airplane tracker.",
-      "date_published": "2026-09-05T13:07:10+00:00",
-      "authors": [
-        {
-          "name": "Hackster News",
-          "url": "https://www.hackster.io"
-        }
-      ],
-      "ai_score": 58,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 83,
-      "_theme_score_raw": 57,
-      "_composite_podcast": 58,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://hackster.imgix.net/uploads/attachments/1995106/_kwM7ITKTRj.blob?auto=compress%2Cformat&w=400&h=300&fit=min",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-13T04:08:41.572460+00:00"
-      },
-      "_boosted_score": 58
-    },
-    "held_date": "2026-09-13",
-    "target_date": "2026-09-16",
-    "target_weekday": 2,
-    "target_focus_slug": "maker-repair",
-    "target_focus_name": "Maker & Repair",
-    "status": "released",
-    "release_date": "2026-09-16"
-  },
-  "https://www.hackster.io/news/running-generative-ai-on-a-1-raspberry-pi-chip-969ffc1cf958": {
-    "article": {
-      "id": "https://www.hackster.io/news/running-generative-ai-on-a-1-raspberry-pi-chip-969ffc1cf958",
-      "url": "https://www.hackster.io/news/running-generative-ai-on-a-1-raspberry-pi-chip-969ffc1cf958",
-      "title": "[Hackster News] Running Generative AI on a $1 Raspberry Pi Chip",
-      "content_html": "<img src=\"https://hackster.imgix.net/uploads/attachments/1995138/_WYQdJ0nTIE.blob?auto=compress%2Cformat&amp;w=400&amp;h=300&amp;fit=min\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.hackster.io%2Fnews%2Frunning-generative-ai-on-a-1-raspberry-pi-chip-969ffc1cf958\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nA developer squeezed a generative AI image model onto a $1 RP2350 microcontroller, generating 128x128 images in as little as 5 seconds.",
-      "summary": "A developer squeezed a generative AI image model onto a $1 RP2350 microcontroller, generating 128x128 images in as little as 5 seconds.",
-      "_excerpt": "A developer squeezed a generative AI image model onto a $1 RP2350 microcontroller, generating 128x128 images in as little as 5 seconds.",
-      "date_published": "2026-09-05T15:21:08+00:00",
-      "authors": [
-        {
-          "name": "Hackster News",
-          "url": "https://www.hackster.io"
-        }
-      ],
-      "ai_score": 58,
-      "_quality": 75,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 85,
-      "_theme_score_raw": 59,
-      "_composite_podcast": 55,
-      "_keyword_matches": 0,
-      "_category": "homelab",
-      "_source_category": "homelab",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://hackster.imgix.net/uploads/attachments/1995138/_WYQdJ0nTIE.blob?auto=compress%2Cformat&w=400&h=300&fit=min",
-      "_cross_theme": {
-        "day": "thursday",
-        "label": "Indigenous Lands & Innovation",
-        "shown_at": "2026-09-13T04:08:41.572460+00:00"
-      },
-      "_boosted_score": 58
-    },
-    "held_date": "2026-09-13",
-    "target_date": "2026-09-16",
-    "target_weekday": 2,
-    "target_focus_slug": "maker-repair",
-    "target_focus_name": "Maker & Repair",
-    "status": "released",
-    "release_date": "2026-09-16"
-  },
   "https://www.newyorker.com/culture/the-weekend-essay/the-bayeux-tapestrys-long-journey-home": {
     "article": {
       "id": "https://www.newyorker.com/culture/the-weekend-essay/the-bayeux-tapestrys-long-journey-home",
@@ -2392,51 +1973,6 @@
     "target_focus_name": "Music & Live Performance",
     "status": "held"
   },
-  "https://www.outsideonline.com/health/training-performance/dark-skin-tone-wearable-accuracy-bias/": {
-    "article": {
-      "id": "https://www.outsideonline.com/health/training-performance/dark-skin-tone-wearable-accuracy-bias/",
-      "url": "https://www.outsideonline.com/health/training-performance/dark-skin-tone-wearable-accuracy-bias/",
-      "title": "[Outside Online] How Skin Tone Affects Wearable Accuracy\u2014and How Tech Giants Are Responding",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd2d <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.outsideonline.com%2Fhealth%2Ftraining-performance%2Fdark-skin-tone-wearable-accuracy-bias%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<figure><img alt=\"How Skin Tone Affects Wearable Accuracy\u2014and How Tech Giants Are Responding\" src=\"https://cdn.outsideonline.com/wp-content/uploads/2026/09/wearable-tech-skin-tone.jpg?width=1200\" /></figure>\n<p>Learn how skin tone affects wearable sensor accuracy and how major wearable tech companies have addressed the skin-tone problem.</p>\n<p>The post <a href=\"https://www.outsideonline.com/health/training-performance/dark-skin-tone-wearable-accuracy-bias/\">How Skin Tone Affects Wearable Accuracy\u2014and How Tech Giants Are Responding</a> appeared first on <a href=\"https://www.outsideonline.com\">Outside Online</a>.</p>",
-      "summary": "Learn how skin tone affects wearable sensor accuracy and how major wearable tech companies have addressed the skin-tone problem. The post How Skin Tone Affects Wearable Accuracy\u2014and How Tech Giants Are Responding appeared first on Outside Online .",
-      "_excerpt": "Learn how skin tone affects wearable sensor accuracy and how major wearable tech companies have addressed the skin-tone problem. The post How Skin Tone Affects Wearable Accuracy\u2014and How Tech Giants Are Responding appeared first on Outside Online .",
-      "date_published": "2026-09-10T16:23:16+00:00",
-      "authors": [
-        {
-          "name": "Outside Online",
-          "url": "https://www.outsideonline.com"
-        }
-      ],
-      "ai_score": 67,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 27,
-      "_theme_score_raw": 40,
-      "_composite_podcast": 38,
-      "_keyword_matches": 0,
-      "_category": "wellness",
-      "_source_category": "wellness",
-      "_is_bonus": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News+",
-      "_cross_theme": {
-        "day": "saturday",
-        "label": "Cariboo Local Affairs",
-        "shown_at": "2026-09-13T04:08:41.572460+00:00"
-      },
-      "_boosted_score": 67
-    },
-    "held_date": "2026-09-13",
-    "target_date": "2026-09-16",
-    "target_weekday": 2,
-    "target_focus_slug": "maker-repair",
-    "target_focus_name": "Maker & Repair",
-    "status": "released",
-    "release_date": "2026-09-16"
-  },
   "https://www.theverge.com/column/994172/your-car-is-selling-your-data": {
     "article": {
       "id": "https://www.theverge.com/column/994172/your-car-is-selling-your-data",
@@ -2475,51 +2011,6 @@
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
     "status": "held"
-  },
-  "https://www.theverge.com/column/990183/diy-plug-in-solar-us": {
-    "article": {
-      "id": "https://www.theverge.com/column/990183/diy-plug-in-solar-us",
-      "url": "https://www.theverge.com/column/990183/diy-plug-in-solar-us",
-      "title": "[The Verge] DIY plug-in solar gains momentum in the US",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.theverge.com%2Fcolumn%2F990183%2Fdiy-plug-in-solar-us\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThis is The Stepback, a weekly newsletter breaking down one essential story from the tech world. For more on e-bikes, power stations, and how to work anywhere, follow Thomas Ricker. The Stepback arrives in our subscribers' inboxes at 8AM ET. Opt in for The Stepback here. How it started With a deep breath, I took [&#8230;]",
-      "summary": "This is The Stepback, a weekly newsletter breaking down one essential story from the tech world. For more on e-bikes, power stations, and how to work anywhere, follow Thomas Ricker. The Stepback arrives in our subscribers' inboxes at 8AM ET. Opt in for The Stepback here. How it started With a deep",
-      "_excerpt": "This is The Stepback, a weekly newsletter breaking down one essential story from the tech world. For more on e-bikes, power stations, and how to work anywhere, follow Thomas Ricker. The Stepback arrives in our subscribers' inboxes at 8AM ET. Opt in for The Stepback here. How it started With a deep breath, I took [\u2026]",
-      "date_published": "2026-09-06T12:00:00+00:00",
-      "authors": [
-        {
-          "name": "The Verge",
-          "url": "https://www.theverge.com"
-        }
-      ],
-      "ai_score": 57,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 80,
-      "_theme_score_raw": 18,
-      "_composite_podcast": 70,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Apple News",
-      "_cross_theme": {
-        "day": "tuesday",
-        "label": "Working Lands & Industry",
-        "shown_at": "2026-09-07T04:07:49.462288+00:00"
-      },
-      "_boosted_score": 57
-    },
-    "held_date": "2026-09-14",
-    "target_date": "2026-09-16",
-    "target_weekday": 2,
-    "target_focus_slug": "maker-repair",
-    "target_focus_name": "Maker & Repair",
-    "status": "released",
-    "release_date": "2026-09-16"
   },
   "https://news.gov.bc.ca/releases/2026FOR0046-001061": {
     "article": {
@@ -2681,49 +2172,6 @@
     "target_focus_name": "Homestead & Off-Grid Tech",
     "status": "held"
   },
-  "https://www.howtogeek.com/pla-creep-what-every-3d-printer-owner-needs-to-know/": {
-    "article": {
-      "id": "https://www.howtogeek.com/pla-creep-what-every-3d-printer-owner-needs-to-know/",
-      "url": "https://www.howtogeek.com/pla-creep-what-every-3d-printer-owner-needs-to-know/",
-      "title": "[How-To Geek] PLA creep is real\u2014what every 3D printer owner needs to know",
-      "content_html": "<img src=\"https://static0.howtogeekimages.com/wordpress/wp-content/uploads/wm/2026/04/a-roll-of-black-pla-matte-and-basic-pla-orange-3d-printer-filament.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.howtogeek.com%2Fpla-creep-what-every-3d-printer-owner-needs-to-know%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nDon't make this mistake.",
-      "summary": "Don't make this mistake.",
-      "_excerpt": "Don't make this mistake.",
-      "date_published": "2026-09-06T16:30:13+00:00",
-      "authors": [
-        {
-          "name": "How-To Geek",
-          "url": "https://www.howtogeek.com"
-        }
-      ],
-      "ai_score": 55,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 82,
-      "_theme_score_raw": 19,
-      "_composite_podcast": 57,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://static0.howtogeekimages.com/wordpress/wp-content/uploads/wm/2026/04/a-roll-of-black-pla-matte-and-basic-pla-orange-3d-printer-filament.jpg",
-      "_cross_theme": {
-        "day": "saturday",
-        "label": "Cariboo Local Affairs",
-        "shown_at": "2026-09-07T04:07:49.462288+00:00"
-      },
-      "_boosted_score": 55
-    },
-    "held_date": "2026-09-14",
-    "target_date": "2026-09-16",
-    "target_weekday": 2,
-    "target_focus_slug": "maker-repair",
-    "target_focus_name": "Maker & Repair",
-    "status": "released",
-    "release_date": "2026-09-16"
-  },
   "https://www.countrylife.co.uk/culture/art-exhibitions/dovecotes-deer-vineyards-and-lots-of-castles-apart-from-that-what-did-the-normans-ever-do-for-us": {
     "article": {
       "id": "https://www.countrylife.co.uk/culture/art-exhibitions/dovecotes-deer-vineyards-and-lots-of-castles-apart-from-that-what-did-the-normans-ever-do-for-us",
@@ -2809,94 +2257,6 @@
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
     "status": "held"
-  },
-  "https://wltribune.com/2026/09/11/alberta-first-nation-moving-ahead-with-plans-to-protect-gender-affirming-care/": {
-    "article": {
-      "id": "https://wltribune.com/2026/09/11/alberta-first-nation-moving-ahead-with-plans-to-protect-gender-affirming-care/",
-      "url": "https://wltribune.com/2026/09/11/alberta-first-nation-moving-ahead-with-plans-to-protect-gender-affirming-care/",
-      "title": "[Williams Lake Tribune] Alberta First Nation moving ahead with plans to protect gender-affirming care",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F09%2F11%2Falberta-first-nation-moving-ahead-with-plans-to-protect-gender-affirming-care%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n## Alberta First Nation moving ahead with plans to protect gender-affirming care Published 3:03 pm Friday, September 11, 2026 **By Lauren Collins/Black Press** Dr. James Makokis, a Nehiyo two-spirit family physician from the Saddle Lake Cree Nation in Alberta, speaks during the the announcement Sept. 9, 2026 that the Nation would be making its reserve lands a safe haven for gender-affirming care for both Indigenous and non-Indigenous people. (YouTube/screenshot) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | A",
-      "summary": "## Alberta First Nation moving ahead with plans to protect gender-affirming care Published 3:03 pm Friday, September 11, 2026 **By Lauren Collins/Black Press** Dr. James Makokis, a Nehiyo two-spirit family physician from the Saddle Lake Cree Nation in Alberta, speaks during the the announcement",
-      "_excerpt": "## Alberta First Nation moving ahead with plans to protect gender-affirming care Published 3:03 pm Friday, September 11, 2026 **By Lauren Collins/Black Press** Dr. James Makokis, a Nehiyo two-spirit family physician from the Saddle Lake Cree Nation in Alberta, speaks during the the announcement Sept. 9, 2026 that the Nation would be making its reserve lands a safe haven for gender-affirming care for both Indigenous and non-Indigenous people. (YouTube/screenshot) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | A",
-      "date_published": "2026-09-11T22:03:48+00:00",
-      "authors": [
-        {
-          "name": "Williams Lake Tribune",
-          "url": "https://wltribune.com"
-        }
-      ],
-      "ai_score": 70,
-      "_quality": 0,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 42,
-      "_theme_score_raw": 12,
-      "_composite_podcast": 47,
-      "_keyword_matches": 0,
-      "_category": "news",
-      "_source_category": "news",
-      "_is_bonus": true,
-      "tags": [
-        "subscriber-access"
-      ],
-      "_subscriber_access": "Williams Lake Tribune",
-      "_cross_theme": {
-        "day": "thursday",
-        "label": "Indigenous Lands & Innovation",
-        "shown_at": "2026-09-12T04:12:00.575154+00:00"
-      },
-      "_boosted_score": 70,
-      "_no_deep_dive": true
-    },
-    "held_date": "2026-09-14",
-    "target_date": "2026-09-17",
-    "target_weekday": 3,
-    "target_focus_slug": "governance-title",
-    "target_focus_name": "Governance, Title & Treaty",
-    "status": "aired_early"
-  },
-  "https://www.tomshardware.com/tech-industry/big-tech/key-nvidia-and-intel-supplier-raided-over-alleged-china-origin-fraud-unimicron-faces-probe-over-pcb-origin-washing-risk-of-40-percent-u-s-tariff-penalty": {
-    "article": {
-      "id": "https://www.tomshardware.com/tech-industry/big-tech/key-nvidia-and-intel-supplier-raided-over-alleged-china-origin-fraud-unimicron-faces-probe-over-pcb-origin-washing-risk-of-40-percent-u-s-tariff-penalty",
-      "url": "https://www.tomshardware.com/tech-industry/big-tech/key-nvidia-and-intel-supplier-raided-over-alleged-china-origin-fraud-unimicron-faces-probe-over-pcb-origin-washing-risk-of-40-percent-u-s-tariff-penalty",
-      "title": "[Tom's Hardware] Key Nvidia and Intel supplier raided over alleged China origin fraud \u2014 Unimicron faces probe over PCB origin washing, risk of 40% U.S. tariff penalty",
-      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/Uw8GSJb5Eg3NjgZZ3HEjd7-1280-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udfa8 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.tomshardware.com%2Ftech-industry%2Fbig-tech%2Fkey-nvidia-and-intel-supplier-raided-over-alleged-china-origin-fraud-unimicron-faces-probe-over-pcb-origin-washing-risk-of-40-percent-u-s-tariff-penalty\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nTaiwanese prosecutors are investigating Unimicron, one of the world\u2019s largest PCB and chip substrate makers and a key supplier to Nvidia, Intel, Google, and Amazon, over allegations that it shipped China-made PCBs back to Taiwan and relabeled them as Taiwanese products.",
-      "summary": "Taiwanese prosecutors are investigating Unimicron, one of the world\u2019s largest PCB and chip substrate makers and a key supplier to Nvidia, Intel, Google, and Amazon, over allegations that it shipped China-made PCBs back to Taiwan and relabeled them as Taiwanese products.",
-      "_excerpt": "Taiwanese prosecutors are investigating Unimicron, one of the world\u2019s largest PCB and chip substrate makers and a key supplier to Nvidia, Intel, Google, and Amazon, over allegations that it shipped China-made PCBs back to Taiwan and relabeled them as Taiwanese products.",
-      "date_published": "2026-08-31T11:55:33+00:00",
-      "authors": [
-        {
-          "name": "Tom's Hardware",
-          "url": "https://www.tomshardware.com"
-        }
-      ],
-      "ai_score": 44,
-      "_quality": 65,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 61,
-      "_theme_score_raw": 16,
-      "_composite_podcast": 46,
-      "_keyword_matches": 0,
-      "_category": "ai-tech",
-      "_source_category": "ai-tech",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://cdn.mos.cms.futurecdn.net/Uw8GSJb5Eg3NjgZZ3HEjd7-1280-80.jpg",
-      "_us_policy": true,
-      "_us_policy_scope": "out-of-jurisdiction",
-      "tags": [
-        "us-policy"
-      ],
-      "_boosted_score": 44
-    },
-    "held_date": "2026-09-14",
-    "target_date": "2026-09-16",
-    "target_weekday": 2,
-    "target_focus_slug": "maker-repair",
-    "target_focus_name": "Maker & Repair",
-    "status": "released",
-    "release_date": "2026-09-16"
   },
   "https://www.northernminer.com/news/roosens-osisko-greenlights-cariboo-gold-project-in-bc/1003894808/": {
     "article": {
@@ -3269,7 +2629,8 @@
     "target_weekday": 3,
     "target_focus_slug": "governance-title",
     "target_focus_name": "Governance, Title & Treaty",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-17"
   },
   "https://www.neowin.net/news/switzerland-wants-to-ditch-microsoft-365-kicks-off-migration-pilot/?utm_source=rss": {
     "article": {
@@ -3466,87 +2827,6 @@
     "target_focus_name": "Visual Arts & Heritage",
     "status": "held"
   },
-  "https://www.techradar.com/pro/a-chinese-state-owned-firm-was-found-shipping-46-tons-of-drone-making-material-to-russia": {
-    "article": {
-      "id": "https://www.techradar.com/pro/a-chinese-state-owned-firm-was-found-shipping-46-tons-of-drone-making-material-to-russia",
-      "url": "https://www.techradar.com/pro/a-chinese-state-owned-firm-was-found-shipping-46-tons-of-drone-making-material-to-russia",
-      "title": "[TechRadar] A Chinese state-owned firm was found shipping 46 tons of drone-making material to Russia",
-      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/jToMQkVtCT4v6DQDUDWWxC-1280-80.png\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.techradar.com%2Fpro%2Fa-chinese-state-owned-firm-was-found-shipping-46-tons-of-drone-making-material-to-russia\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nA Chinese state firm allegedly shipped 46 tons of carbon-fiber material to a sanctioned Russian drone maker, disguised as civilian cargo.",
-      "summary": "A Chinese state firm allegedly shipped 46 tons of carbon-fiber material to a sanctioned Russian drone maker, disguised as civilian cargo.",
-      "_excerpt": "A Chinese state firm allegedly shipped 46 tons of carbon-fiber material to a sanctioned Russian drone maker, disguised as civilian cargo.",
-      "date_published": "2026-09-15T00:20:00+00:00",
-      "authors": [
-        {
-          "name": "TechRadar",
-          "url": "https://www.techradar.com"
-        }
-      ],
-      "ai_score": 45,
-      "_quality": 67,
-      "_relevance": 52,
-      "_local": 0,
-      "_theme_score": 90,
-      "_theme_score_raw": 11,
-      "_composite_podcast": 61,
-      "_keyword_matches": 0,
-      "_category": "ai-tech",
-      "_source_category": "ai-tech",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://cdn.mos.cms.futurecdn.net/jToMQkVtCT4v6DQDUDWWxC-1280-80.png",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-15T04:09:48.485935+00:00"
-      },
-      "_boosted_score": 45
-    },
-    "held_date": "2026-09-15",
-    "target_date": "2026-09-16",
-    "target_weekday": 2,
-    "target_focus_slug": "maker-repair",
-    "target_focus_name": "Maker & Repair",
-    "status": "released",
-    "release_date": "2026-09-16"
-  },
-  "https://www.howtogeek.com/this-rarely-mentioned-ethernet-setting-can-make-a-fast-pc-feel-painfully-slow/": {
-    "article": {
-      "id": "https://www.howtogeek.com/this-rarely-mentioned-ethernet-setting-can-make-a-fast-pc-feel-painfully-slow/",
-      "url": "https://www.howtogeek.com/this-rarely-mentioned-ethernet-setting-can-make-a-fast-pc-feel-painfully-slow/",
-      "title": "[How-To Geek] Your Ethernet adapter is negotiating itself down to 2003 speeds\u2014here's how to fix it",
-      "content_html": "<img src=\"https://static0.howtogeekimages.com/wordpress/wp-content/uploads/wm/2026/08/rear-view-of-amazon-eero-router-with-usb-c-and-ethernet-plugged-in.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.howtogeek.com%2Fthis-rarely-mentioned-ethernet-setting-can-make-a-fast-pc-feel-painfully-slow%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nCheck this hidden Ethernet setting before blaming your router",
-      "summary": "Check this hidden Ethernet setting before blaming your router",
-      "_excerpt": "Check this hidden Ethernet setting before blaming your router",
-      "date_published": "2026-09-14T22:00:13+00:00",
-      "authors": [
-        {
-          "name": "How-To Geek",
-          "url": "https://www.howtogeek.com"
-        }
-      ],
-      "ai_score": 33,
-      "_quality": 52,
-      "_relevance": 38,
-      "_local": 0,
-      "_theme_score": 86,
-      "_theme_score_raw": 8,
-      "_composite_podcast": 58,
-      "_keyword_matches": 0,
-      "_category": "homelab",
-      "_source_category": "homelab",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://static0.howtogeekimages.com/wordpress/wp-content/uploads/wm/2026/08/rear-view-of-amazon-eero-router-with-usb-c-and-ethernet-plugged-in.jpg",
-      "_boosted_score": 33
-    },
-    "held_date": "2026-09-15",
-    "target_date": "2026-09-16",
-    "target_weekday": 2,
-    "target_focus_slug": "maker-repair",
-    "target_focus_name": "Maker & Repair",
-    "status": "released",
-    "release_date": "2026-09-16"
-  },
   "https://hyperallergic.com/europes-art-theft-problem-is-much-bigger-than-the-louvre/": {
     "article": {
       "id": "https://hyperallergic.com/europes-art-theft-problem-is-much-bigger-than-the-louvre/",
@@ -3588,49 +2868,6 @@
     "target_focus_slug": "visual-arts-heritage",
     "target_focus_name": "Visual Arts & Heritage",
     "status": "held"
-  },
-  "https://www.tomshardware.com/desktops/pc-building/dumpster-diver-builds-home-lab-proxmox-server-from-weekly-landfill-runs-for-ssds-hdds-gpus-and-even-ram-weekly-e-waste-raids-net-multi-drive-proxmox-server-and-asus-rog-laptop": {
-    "article": {
-      "id": "https://www.tomshardware.com/desktops/pc-building/dumpster-diver-builds-home-lab-proxmox-server-from-weekly-landfill-runs-for-ssds-hdds-gpus-and-even-ram-weekly-e-waste-raids-net-multi-drive-proxmox-server-and-asus-rog-laptop",
-      "url": "https://www.tomshardware.com/desktops/pc-building/dumpster-diver-builds-home-lab-proxmox-server-from-weekly-landfill-runs-for-ssds-hdds-gpus-and-even-ram-weekly-e-waste-raids-net-multi-drive-proxmox-server-and-asus-rog-laptop",
-      "title": "[Tom's Hardware] Dumpster diver builds home lab Proxmox server from weekly landfill runs for SSDs, HDDs, GPUs, and even RAM \u2014 weekly e-waste raids net multi-drive Proxmox server and Asus ROG laptop",
-      "content_html": "<img src=\"https://cdn.mos.cms.futurecdn.net/ihsSqsHBGmoax6s82AtRz5-1280-80.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.tomshardware.com%2Fdesktops%2Fpc-building%2Fdumpster-diver-builds-home-lab-proxmox-server-from-weekly-landfill-runs-for-ssds-hdds-gpus-and-even-ram-weekly-e-waste-raids-net-multi-drive-proxmox-server-and-asus-rog-laptop\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nA tech enthusiast says that they managed to put together a home lab-worthy Proxmox server using PC parts scavenged from the nearby county landfill.",
-      "summary": "A tech enthusiast says that they managed to put together a home lab-worthy Proxmox server using PC parts scavenged from the nearby county landfill.",
-      "_excerpt": "A tech enthusiast says that they managed to put together a home lab-worthy Proxmox server using PC parts scavenged from the nearby county landfill.",
-      "date_published": "2026-09-14T10:00:00+00:00",
-      "authors": [
-        {
-          "name": "Tom's Hardware",
-          "url": "https://www.tomshardware.com"
-        }
-      ],
-      "ai_score": 57,
-      "_quality": 68,
-      "_relevance": 72,
-      "_local": 0,
-      "_theme_score": 86,
-      "_theme_score_raw": 8,
-      "_composite_podcast": 56,
-      "_keyword_matches": 0,
-      "_category": "homelab",
-      "_source_category": "homelab",
-      "_is_bonus": true,
-      "_thin_body": true,
-      "image": "https://cdn.mos.cms.futurecdn.net/ihsSqsHBGmoax6s82AtRz5-1280-80.jpg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-15T04:09:48.485935+00:00"
-      },
-      "_boosted_score": 57
-    },
-    "held_date": "2026-09-15",
-    "target_date": "2026-09-16",
-    "target_weekday": 2,
-    "target_focus_slug": "maker-repair",
-    "target_focus_name": "Maker & Repair",
-    "status": "released",
-    "release_date": "2026-09-16"
   },
   "https://www.countrylife.co.uk/architecture/the-rise-and-ruin-of-an-elizabethan-hall-that-tried-in-vain-to-prepare-a-war-poet-for-the-trenches": {
     "article": {
@@ -3718,88 +2955,6 @@
     "target_focus_name": "Music & Live Performance",
     "status": "held"
   },
-  "https://blog.adafruit.com/2026/09/07/raspberry-pi-cm4-bindings-for-jdi-lt070me05000-1200x1920-ips-display/": {
-    "article": {
-      "id": "https://blog.adafruit.com/2026/09/07/raspberry-pi-cm4-bindings-for-jdi-lt070me05000-1200x1920-ips-display/",
-      "url": "https://blog.adafruit.com/2026/09/07/raspberry-pi-cm4-bindings-for-jdi-lt070me05000-1200x1920-ips-display/",
-      "title": "[Adafruit Blog] Raspberry Pi CM4 bindings for JDI LT070ME05000 1200\u00d71920 IPS display",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fblog.adafruit.com%2F2026%2F09%2F07%2Fraspberry-pi-cm4-bindings-for-jdi-lt070me05000-1200x1920-ips-display%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nharlab has published a project that connects the JDI LT070ME05000 display to the Raspberry Pi Compute Module. The panel is the 7 inch 1200&#215;1920 IPS screen from the 2013 Asus/Google Nexus 7 tablet. Some suppliers still have them for around $20 shipped. The display uses a 4-lane DSI interface, so it needs a Compute Module [&#8230;]",
-      "summary": "harlab has published a project that connects the JDI LT070ME05000 display to the Raspberry Pi Compute Module. The panel is the 7 inch 1200\u00d71920 IPS screen from the 2013 Asus/Google Nexus 7 tablet. Some suppliers still have them for around $20 shipped. The display uses a 4-lane DSI interface, so it",
-      "_excerpt": "harlab has published a project that connects the JDI LT070ME05000 display to the Raspberry Pi Compute Module. The panel is the 7 inch 1200\u00d71920 IPS screen from the 2013 Asus/Google Nexus 7 tablet. Some suppliers still have them for around $20 shipped. The display uses a 4-lane DSI interface, so it needs a Compute Module [\u2026]",
-      "date_published": "2026-09-07T19:22:50+00:00",
-      "authors": [
-        {
-          "name": "Adafruit Blog",
-          "url": "https://blog.adafruit.com"
-        }
-      ],
-      "ai_score": 47,
-      "_quality": 69,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 51,
-      "_theme_score_raw": 4,
-      "_composite_podcast": 51,
-      "_keyword_matches": 0,
-      "_category": "homelab",
-      "_source_category": "homelab",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-15T04:09:48.485935+00:00"
-      },
-      "_boosted_score": 47
-    },
-    "held_date": "2026-09-15",
-    "target_date": "2026-09-16",
-    "target_weekday": 2,
-    "target_focus_slug": "maker-repair",
-    "target_focus_name": "Maker & Repair",
-    "status": "released",
-    "release_date": "2026-09-16"
-  },
-  "https://blog.adafruit.com/2026/09/07/rebuilding-a-1995-gps-time-server-with-raspberry-pi-and-python/": {
-    "article": {
-      "id": "https://blog.adafruit.com/2026/09/07/rebuilding-a-1995-gps-time-server-with-raspberry-pi-and-python/",
-      "url": "https://blog.adafruit.com/2026/09/07/rebuilding-a-1995-gps-time-server-with-raspberry-pi-and-python/",
-      "title": "[Adafruit Blog] Rebuilding a 1995 GPS Time Server with Raspberry Pi and Python",
-      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83c\udf3e <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fblog.adafruit.com%2F2026%2F09%2F07%2Frebuilding-a-1995-gps-time-server-with-raspberry-pi-and-python%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nA 1995 TrueTime XL-AK GPS time server has been rebuilt around a Raspberry Pi 5, and the writeup was published on jeffgeerling.com. The original unit was bought in June to learn about the history of GPS-based time. Sixteen days later, a similar GPS time server took down Australia&#8217;s cell service for 12 hours. The restomod [&#8230;]",
-      "summary": "A 1995 TrueTime XL-AK GPS time server has been rebuilt around a Raspberry Pi 5, and the writeup was published on jeffgeerling.com. The original unit was bought in June to learn about the history of GPS-based time. Sixteen days later, a similar GPS time server took down Australia\u2019s cell service for",
-      "_excerpt": "A 1995 TrueTime XL-AK GPS time server has been rebuilt around a Raspberry Pi 5, and the writeup was published on jeffgeerling.com. The original unit was bought in June to learn about the history of GPS-based time. Sixteen days later, a similar GPS time server took down Australia\u2019s cell service for 12 hours. The restomod [\u2026]",
-      "date_published": "2026-09-07T14:25:11+00:00",
-      "authors": [
-        {
-          "name": "Adafruit Blog",
-          "url": "https://blog.adafruit.com"
-        }
-      ],
-      "ai_score": 55,
-      "_quality": 72,
-      "_relevance": 0,
-      "_local": 0,
-      "_theme_score": 51,
-      "_theme_score_raw": 4,
-      "_composite_podcast": 51,
-      "_keyword_matches": 0,
-      "_category": "homelab",
-      "_source_category": "homelab",
-      "_is_bonus": true,
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-15T04:09:48.485935+00:00"
-      },
-      "_boosted_score": 55
-    },
-    "held_date": "2026-09-15",
-    "target_date": "2026-09-16",
-    "target_weekday": 2,
-    "target_focus_slug": "maker-repair",
-    "target_focus_name": "Maker & Repair",
-    "status": "released",
-    "release_date": "2026-09-16"
-  },
   "https://www.tomshardware.com/pc-components/gpus/enthusiast-says-dlss-5-pushed-rtx-5090-past-600w-and-melted-the-16-pin-connector-nvidias-neural-rendering-tech-adds-up-to-50-percent-more-power-draw-in-testing": {
     "article": {
       "id": "https://www.tomshardware.com/pc-components/gpus/enthusiast-says-dlss-5-pushed-rtx-5090-past-600w-and-melted-the-16-pin-connector-nvidias-neural-rendering-tech-adds-up-to-50-percent-more-power-draw-in-testing",
@@ -3878,48 +3033,6 @@
     "target_weekday": 4,
     "target_focus_slug": "wildfire-resilience",
     "target_focus_name": "Wildfire & Climate Resilience",
-    "status": "aired_early"
-  },
-  "https://www.mycariboonow.com/316242/news/indigenous/former-attorneys-general-voice-support-for-modern-treaties-amid-indigenous-title-concerns/": {
-    "article": {
-      "id": "https://www.mycariboonow.com/316242/news/indigenous/former-attorneys-general-voice-support-for-modern-treaties-amid-indigenous-title-concerns/",
-      "url": "https://www.mycariboonow.com/316242/news/indigenous/former-attorneys-general-voice-support-for-modern-treaties-amid-indigenous-title-concerns/",
-      "title": "[My Cariboo Now] Former attorneys general voice support for modern treaties amid Indigenous title concerns",
-      "content_html": "<img src=\"https://www.mycariboonow.com/wp-content/uploads/2026/04/IMG_1145-scaled-1.jpeg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83d\udd27 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.mycariboonow.com%2F316242%2Fnews%2Findigenous%2Fformer-attorneys-general-voice-support-for-modern-treaties-amid-indigenous-title-concerns%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p><img alt=\"\" class=\"attachment-large size-large wp-post-image\" height=\"392\" src=\"https://www.mycariboonow.com/wp-content/uploads/2026/04/IMG_1145-scaled-1-1024x576.jpeg\" width=\"696\" />Eleven former B.C. attorneys general are backing modern treaties, saying they support reconciliation while protecting private property rights.</p>\n<p>The post <a href=\"https://www.mycariboonow.com/316242/news/indigenous/former-attorneys-general-voice-support-for-modern-treaties-amid-indigenous-title-concerns/\">Former attorneys general voice support for modern treaties amid Indigenous title concerns</a> appeared first on <a href=\"https://www.mycariboonow.com\">My Cariboo Now</a>.</p>",
-      "summary": "Eleven former B.C. attorneys general are backing modern treaties, saying they support reconciliation while protecting private property rights. The post Former attorneys general voice support for modern treaties amid Indigenous title concerns appeared first on My Cariboo Now .",
-      "_excerpt": "Eleven former B.C. attorneys general are backing modern treaties, saying they support reconciliation while protecting private property rights. The post Former attorneys general voice support for modern treaties amid Indigenous title concerns appeared first on My Cariboo Now .",
-      "date_published": "2026-09-15T19:36:56+00:00",
-      "authors": [
-        {
-          "name": "My Cariboo Now",
-          "url": "https://www.mycariboonow.com"
-        }
-      ],
-      "ai_score": 74,
-      "_quality": 69,
-      "_relevance": 76,
-      "_local": 75,
-      "_theme_score": 93,
-      "_theme_score_raw": 17,
-      "_composite_podcast": 81,
-      "_keyword_matches": 0,
-      "_category": "local",
-      "_source_category": "local",
-      "_is_bonus": true,
-      "image": "https://www.mycariboonow.com/wp-content/uploads/2026/04/IMG_1145-scaled-1.jpeg",
-      "_cross_theme": {
-        "day": "monday",
-        "label": "Arts, Culture & Digital Storytelling",
-        "shown_at": "2026-09-16T04:09:55.776079+00:00"
-      },
-      "_boosted_score": 74,
-      "_no_deep_dive": true
-    },
-    "held_date": "2026-09-16",
-    "target_date": "2026-09-17",
-    "target_weekday": 3,
-    "target_focus_slug": "governance-title",
-    "target_focus_name": "Governance, Title & Treaty",
     "status": "aired_early"
   },
   "https://flowingdata.com/2026/09/15/hotter-days-and-more-of-them/": {
@@ -4001,7 +3114,8 @@
     "target_weekday": 3,
     "target_focus_slug": "governance-title",
     "target_focus_name": "Governance, Title & Treaty",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-17"
   },
   "https://www.aptnnews.ca/infocus/fighting-fires-with-good-fire-how-indigenous-land-guardians-are-protecting-the-boreal-forest/": {
     "article": {
@@ -4043,7 +3157,8 @@
     "target_weekday": 3,
     "target_focus_slug": "governance-title",
     "target_focus_name": "Governance, Title & Treaty",
-    "status": "held"
+    "status": "released",
+    "release_date": "2026-09-17"
   },
   "https://www.canadianminingjournal.com/news/new-cat-d11-xe-electric-drive-dozer-pushes-productivity-higher/": {
     "article": {
@@ -4904,6 +4019,388 @@
     "target_weekday": 6,
     "target_focus_slug": "living-world",
     "target_focus_name": "The Living World",
+    "status": "held"
+  },
+  "https://wltribune.com/2026/09/16/smoke-flames-expected-during-prescribed-burn-near-north-end-of-cotton-road/": {
+    "article": {
+      "id": "https://wltribune.com/2026/09/16/smoke-flames-expected-during-prescribed-burn-near-north-end-of-cotton-road/",
+      "url": "https://wltribune.com/2026/09/16/smoke-flames-expected-during-prescribed-burn-near-north-end-of-cotton-road/",
+      "title": "[Williams Lake Tribune] Smoke, flames expected during prescribed burn west of Williams Lake",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F09%2F16%2Fsmoke-flames-expected-during-prescribed-burn-near-north-end-of-cotton-road%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n## Smoke, flames expected during prescribed burn west of Williams Lake Published 3:23 pm Wednesday, September 16, 2026 **By Khushi Arora** The prescribed burn will proceed as early as Sept. 18 and may continue periodically until Oct. 31 near the north end of Cotton road, close to Riske Creek and Tl'esqox First Nation. (Ministry of Forests, BC Wildfire Service) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | The B.C. Wildfire Service is planning a prescribed burn west of Williams Lake near Riske Creek and",
+      "summary": "## Smoke, flames expected during prescribed burn west of Williams Lake Published 3:23 pm Wednesday, September 16, 2026 **By Khushi Arora** The prescribed burn will proceed as early as Sept. 18 and may continue periodically until Oct. 31 near the north end of Cotton road, close to Riske Creek and",
+      "_excerpt": "## Smoke, flames expected during prescribed burn west of Williams Lake Published 3:23 pm Wednesday, September 16, 2026 **By Khushi Arora** The prescribed burn will proceed as early as Sept. 18 and may continue periodically until Oct. 31 near the north end of Cotton road, close to Riske Creek and Tl'esqox First Nation. (Ministry of Forests, BC Wildfire Service) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | The B.C. Wildfire Service is planning a prescribed burn west of Williams Lake near Riske Creek and",
+      "date_published": "2026-09-17T04:02:54.195592+00:00",
+      "authors": [
+        {
+          "name": "Williams Lake Tribune",
+          "url": "https://wltribune.com"
+        }
+      ],
+      "ai_score": 89,
+      "_quality": 82,
+      "_relevance": 88,
+      "_local": 100,
+      "_theme_score": 86,
+      "_theme_score_raw": 11,
+      "_composite_podcast": 93,
+      "_keyword_matches": 1,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": false,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Williams Lake Tribune",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-17T04:11:17.658071+00:00"
+      },
+      "_boosted_score": 89,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-09-17",
+    "target_date": "2026-09-18",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "aired_early"
+  },
+  "https://wltribune.com/2026/09/16/bc-rail-corridor-alliance-renews-call-for-action-at-ubcm/": {
+    "article": {
+      "id": "https://wltribune.com/2026/09/16/bc-rail-corridor-alliance-renews-call-for-action-at-ubcm/",
+      "url": "https://wltribune.com/2026/09/16/bc-rail-corridor-alliance-renews-call-for-action-at-ubcm/",
+      "title": "[Williams Lake Tribune] B.C. Rail Corridor Alliance presses province for funding, governance",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F09%2F16%2Fbc-rail-corridor-alliance-renews-call-for-action-at-ubcm%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n## B.C. Rail Corridor Alliance presses province for funding, governance Published 12:37 pm Wednesday, September 16, 2026 **By Patrick Davies** District of 100 Mile House Mayor Maureen Pinkney speaks on Tuesday, Sept. 15, at the Union of BC Municipalities. (BC Green Caucus) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | Members of the BC Rail Corridor Alliance renewed their calls for the B.C. government to take a more active role in preserving the rail corridor between Squamish and Prince George at the Union of",
+      "summary": "## B.C. Rail Corridor Alliance presses province for funding, governance Published 12:37 pm Wednesday, September 16, 2026 **By Patrick Davies** District of 100 Mile House Mayor Maureen Pinkney speaks on Tuesday, Sept. 15, at the Union of BC Municipalities. (BC Green Caucus) | **Getting your Trinity",
+      "_excerpt": "## B.C. Rail Corridor Alliance presses province for funding, governance Published 12:37 pm Wednesday, September 16, 2026 **By Patrick Davies** District of 100 Mile House Mayor Maureen Pinkney speaks on Tuesday, Sept. 15, at the Union of BC Municipalities. (BC Green Caucus) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | Members of the BC Rail Corridor Alliance renewed their calls for the B.C. government to take a more active role in preserving the rail corridor between Squamish and Prince George at the Union of",
+      "date_published": "2026-09-17T04:02:54.195756+00:00",
+      "authors": [
+        {
+          "name": "Williams Lake Tribune",
+          "url": "https://wltribune.com"
+        }
+      ],
+      "ai_score": 83,
+      "_quality": 78,
+      "_relevance": 82,
+      "_local": 92,
+      "_theme_score": 88,
+      "_theme_score_raw": 12,
+      "_composite_podcast": 92,
+      "_keyword_matches": 1,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": false,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Williams Lake Tribune",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-17T04:11:17.658071+00:00"
+      },
+      "_boosted_score": 83
+    },
+    "held_date": "2026-09-17",
+    "target_date": "2026-09-19",
+    "target_weekday": 5,
+    "event_name": "Williams Lake and Cariboo Regional District 2026 general local election",
+    "recall": true,
+    "status": "recall"
+  },
+  "https://wltribune.com/2026/09/16/williams-lake-log-loader-competition-raises-over-10k-for-cariboo-memorial-hospital/": {
+    "article": {
+      "id": "https://wltribune.com/2026/09/16/williams-lake-log-loader-competition-raises-over-10k-for-cariboo-memorial-hospital/",
+      "url": "https://wltribune.com/2026/09/16/williams-lake-log-loader-competition-raises-over-10k-for-cariboo-memorial-hospital/",
+      "title": "[Williams Lake Tribune] Williams Lake Log Loader competition raises over $10k for Cariboo Memorial Hospital",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwltribune.com%2F2026%2F09%2F16%2Fwilliams-lake-log-loader-competition-raises-over-10k-for-cariboo-memorial-hospital%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n## Williams Lake Log Loader competition raises over $10k for Cariboo Memorial Hospital Published 10:00 am Wednesday, September 16, 2026 **By Khushi Arora** 1/3 The Link-Belt Log Loader competition held on Sept. 12 and 13 tests operating skills of participants at Williams Lake Harvest Fair. (Khushi Arora/Williams Lake Tribune) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | The Link-Belt Log Loader competition returned to the Williams Lake Harvest Fair on Sept. 12 and 13, putting operator\u2019s skill to the test at",
+      "summary": "## Williams Lake Log Loader competition raises over $10k for Cariboo Memorial Hospital Published 10:00 am Wednesday, September 16, 2026 **By Khushi Arora** 1/3 The Link-Belt Log Loader competition held on Sept. 12 and 13 tests operating skills of participants at Williams Lake Harvest Fair. (Khushi",
+      "_excerpt": "## Williams Lake Log Loader competition raises over $10k for Cariboo Memorial Hospital Published 10:00 am Wednesday, September 16, 2026 **By Khushi Arora** 1/3 The Link-Belt Log Loader competition held on Sept. 12 and 13 tests operating skills of participants at Williams Lake Harvest Fair. (Khushi Arora/Williams Lake Tribune) | **Getting your Trinity Audio player ready...** | | -------------------------------------------------------------------------- | The Link-Belt Log Loader competition returned to the Williams Lake Harvest Fair on Sept. 12 and 13, putting operator\u2019s skill to the test at",
+      "date_published": "2026-09-17T04:02:54.195926+00:00",
+      "authors": [
+        {
+          "name": "Williams Lake Tribune",
+          "url": "https://wltribune.com"
+        }
+      ],
+      "ai_score": 89,
+      "_quality": 82,
+      "_relevance": 88,
+      "_local": 100,
+      "_theme_score": 85,
+      "_theme_score_raw": 10,
+      "_composite_podcast": 91,
+      "_keyword_matches": 0,
+      "_category": "local",
+      "_source_category": "local",
+      "_is_bonus": true,
+      "tags": [
+        "subscriber-access"
+      ],
+      "_subscriber_access": "Williams Lake Tribune",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-17T04:11:17.658071+00:00"
+      },
+      "_boosted_score": 89,
+      "_no_deep_dive": true
+    },
+    "held_date": "2026-09-17",
+    "target_date": "2026-10-13",
+    "target_weekday": 1,
+    "target_focus_slug": "agriculture-ranching",
+    "target_focus_name": "Agriculture & Ranching",
+    "status": "aired_early"
+  },
+  "https://indiginews.com/features/kanaka-bar-calls-on-herd-for-help-with-wildfire-risk/": {
+    "article": {
+      "id": "https://indiginews.com/features/kanaka-bar-calls-on-herd-for-help-with-wildfire-risk/",
+      "url": "https://indiginews.com/features/kanaka-bar-calls-on-herd-for-help-with-wildfire-risk/",
+      "title": "[IndigiNews] Call in the goats: Kanaka Bar calls on herd for help with wildfire risk",
+      "content_html": "<img src=\"https://media.indiginews.com/2026/09/KanakaBarGoatsTheNarwhalSept2026_2-1024x683.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Findiginews.com%2Ffeatures%2Fkanaka-bar-calls-on-herd-for-help-with-wildfire-risk%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>As wildfires gain intensity each year, this Nlaka'pamux community is finding creative ways to prepare</p>\n<p>The post <a href=\"https://indiginews.com/features/kanaka-bar-calls-on-herd-for-help-with-wildfire-risk/\">Call in the goats: Kanaka Bar calls on herd for help with wildfire risk</a> appeared first on <a href=\"https://indiginews.com\">Indiginews</a>.</p>",
+      "summary": "As wildfires gain intensity each year, this Nlaka'pamux community is finding creative ways to prepare The post Call in the goats: Kanaka Bar calls on herd for help with wildfire risk appeared first on Indiginews .",
+      "_excerpt": "As wildfires gain intensity each year, this Nlaka'pamux community is finding creative ways to prepare The post Call in the goats: Kanaka Bar calls on herd for help with wildfire risk appeared first on Indiginews .",
+      "date_published": "2026-09-16T16:07:26+00:00",
+      "authors": [
+        {
+          "name": "IndigiNews",
+          "url": "https://indiginews.com/"
+        }
+      ],
+      "ai_score": 69,
+      "_quality": 77,
+      "_relevance": 74,
+      "_local": 45,
+      "_theme_score": 98,
+      "_theme_score_raw": 25,
+      "_composite_podcast": 86,
+      "_keyword_matches": 0,
+      "_category": "climate",
+      "_source_category": "climate",
+      "_is_bonus": true,
+      "image": "https://media.indiginews.com/2026/09/KanakaBarGoatsTheNarwhalSept2026_2-1024x683.jpg",
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-17T04:11:17.658071+00:00"
+      },
+      "_boosted_score": 69
+    },
+    "held_date": "2026-09-17",
+    "target_date": "2026-09-18",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "held"
+  },
+  "https://earthsky.org/earth/wildfires-near-the-south-pole-90-million-years-ago/": {
+    "article": {
+      "id": "https://earthsky.org/earth/wildfires-near-the-south-pole-90-million-years-ago/",
+      "url": "https://earthsky.org/earth/wildfires-near-the-south-pole-90-million-years-ago/",
+      "title": "[EarthSky] Wildfires near the South Pole burned 90 million years ago",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fearthsky.org%2Fearth%2Fwildfires-near-the-south-pole-90-million-years-ago%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\n<p>Researchers have found evidence in a sediment core in Antarctica that wildfires near the South Pole were a regular occurrence some 90 million years ago.</p>\n<p>The post <a href=\"https://earthsky.org/earth/wildfires-near-the-south-pole-90-million-years-ago/\">Wildfires near the South Pole burned 90 million years ago</a> first appeared on <a href=\"https://earthsky.org\">EarthSky</a>.</p>",
+      "summary": "Researchers have found evidence in a sediment core in Antarctica that wildfires near the South Pole were a regular occurrence some 90 million years ago. The post Wildfires near the South Pole burned 90 million years ago first appeared on EarthSky .",
+      "_excerpt": "Researchers have found evidence in a sediment core in Antarctica that wildfires near the South Pole were a regular occurrence some 90 million years ago. The post Wildfires near the South Pole burned 90 million years ago first appeared on EarthSky .",
+      "date_published": "2026-09-16T11:37:20+00:00",
+      "authors": [
+        {
+          "name": "EarthSky",
+          "url": "https://earthsky.org"
+        }
+      ],
+      "ai_score": 42,
+      "_quality": 68,
+      "_relevance": 48,
+      "_local": 0,
+      "_theme_score": 95,
+      "_theme_score_raw": 19,
+      "_composite_podcast": 81,
+      "_keyword_matches": 0,
+      "_category": "science",
+      "_source_category": "science",
+      "_is_bonus": true,
+      "_boosted_score": 42
+    },
+    "held_date": "2026-09-17",
+    "target_date": "2026-09-18",
+    "target_weekday": 4,
+    "target_focus_slug": "wildfire-resilience",
+    "target_focus_name": "Wildfire & Climate Resilience",
+    "status": "held"
+  },
+  "https://www.sciencedaily.com/releases/2026/09/260915232132.htm": {
+    "article": {
+      "id": "https://www.sciencedaily.com/releases/2026/09/260915232132.htm",
+      "url": "https://www.sciencedaily.com/releases/2026/09/260915232132.htm",
+      "title": "[ScienceDaily] Scientists \u201ctruly astonished\u201d by discovery that challenges Earth\u2019s origin story",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.sciencedaily.com%2Freleases%2F2026%2F09%2F260915232132.htm\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nA new study suggests Earth formed almost entirely from material in the inner Solar System, challenging the idea that water-rich material from beyond Jupiter played a major role. If correct, Earth\u2019s water may have been present much closer to the young Sun than scientists previously thought.",
+      "summary": "A new study suggests Earth formed almost entirely from material in the inner Solar System, challenging the idea that water-rich material from beyond Jupiter played a major role. If correct, Earth\u2019s water may have been present much closer to the young Sun than scientists previously thought.",
+      "_excerpt": "A new study suggests Earth formed almost entirely from material in the inner Solar System, challenging the idea that water-rich material from beyond Jupiter played a major role. If correct, Earth\u2019s water may have been present much closer to the young Sun than scientists previously thought.",
+      "date_published": "2026-09-16T11:03:10+00:00",
+      "authors": [
+        {
+          "name": "ScienceDaily",
+          "url": "https://www.sciencedaily.com"
+        }
+      ],
+      "ai_score": 65,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 92,
+      "_theme_score_raw": 16,
+      "_composite_podcast": 81,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-17T04:11:17.658071+00:00"
+      },
+      "_boosted_score": 65
+    },
+    "held_date": "2026-09-17",
+    "target_date": "2026-09-20",
+    "target_weekday": 6,
+    "target_focus_slug": "living-world",
+    "target_focus_name": "The Living World",
+    "status": "held"
+  },
+  "https://www.cnet.com/tech/services-and-software/interest-rates-went-up-consumer-tech-might-cost-more-2/": {
+    "article": {
+      "id": "https://www.cnet.com/tech/services-and-software/interest-rates-went-up-consumer-tech-might-cost-more-2/",
+      "url": "https://www.cnet.com/tech/services-and-software/interest-rates-went-up-consumer-tech-might-cost-more-2/",
+      "title": "[CNET] Interest Rates Just Went Up. Here\u2019s Why Consumer Tech Might Cost Even More",
+      "content_html": "<img src=\"https://www.cnet.com/wp-content/uploads/sites/2/GettyImages-2206461124.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.cnet.com%2Ftech%2Fservices-and-software%2Finterest-rates-went-up-consumer-tech-might-cost-more-2%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nThe Federal Reserve hiked interest rates. Now, if you want to finance a tech upgrade, you\u2019ll pay more in interest.",
+      "summary": "The Federal Reserve hiked interest rates. Now, if you want to finance a tech upgrade, you\u2019ll pay more in interest.",
+      "_excerpt": "The Federal Reserve hiked interest rates. Now, if you want to finance a tech upgrade, you\u2019ll pay more in interest.",
+      "date_published": "2026-09-16T23:03:14+00:00",
+      "authors": [
+        {
+          "name": "CNET",
+          "url": "https://www.cnet.com"
+        }
+      ],
+      "ai_score": 55,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 89,
+      "_theme_score_raw": 13,
+      "_composite_podcast": 62,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://www.cnet.com/wp-content/uploads/sites/2/GettyImages-2206461124.jpg",
+      "_us_policy": true,
+      "_us_policy_scope": "out-of-jurisdiction",
+      "tags": [
+        "us-policy"
+      ],
+      "_cross_theme": {
+        "day": "monday",
+        "label": "Arts, Culture & Digital Storytelling",
+        "shown_at": "2026-09-17T04:11:17.658071+00:00"
+      },
+      "_boosted_score": 16,
+      "_topic_cluster": "Federal Reserve raises interest rates",
+      "_cluster_suppressed": true
+    },
+    "held_date": "2026-09-17",
+    "target_date": "2026-09-23",
+    "target_weekday": 2,
+    "target_focus_slug": "homestead-offgrid",
+    "target_focus_name": "Homestead & Off-Grid Tech",
+    "status": "held"
+  },
+  "https://hyperallergic.com/striking-workers-shutter-three-v-a-london-locations/": {
+    "article": {
+      "id": "https://hyperallergic.com/striking-workers-shutter-three-v-a-london-locations/",
+      "url": "https://hyperallergic.com/striking-workers-shutter-three-v-a-london-locations/",
+      "title": "[Hyperallergic] Striking Workers Shutter Three V&A London Locations",
+      "content_html": "<img src=\"https://storage.ghost.io/c/51/f8/51f871d8-b6be-4a73-b958-0ca4fff0110a/content/images/2026/09/55507770611_ecc2d9b9ea_k.jpg\" style=\"width:100%;max-height:300px;object-fit:cover;\" />\n<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fhyperallergic.com%2Fstriking-workers-shutter-three-v-a-london-locations%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nUnionized staff at the Victoria and Albert Museum staged a two-day strike last weekend, citing \u201cAmazon-style\u201d working conditions.",
+      "summary": "Unionized staff at the Victoria and Albert Museum staged a two-day strike last weekend, citing \u201cAmazon-style\u201d working conditions.",
+      "_excerpt": "Unionized staff at the Victoria and Albert Museum staged a two-day strike last weekend, citing \u201cAmazon-style\u201d working conditions.",
+      "date_published": "2026-09-09T19:28:32+00:00",
+      "authors": [
+        {
+          "name": "Hyperallergic",
+          "url": "https://hyperallergic.com"
+        }
+      ],
+      "ai_score": 62,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 86,
+      "_theme_score_raw": 11,
+      "_composite_podcast": 61,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "image": "https://storage.ghost.io/c/51/f8/51f871d8-b6be-4a73-b958-0ca4fff0110a/content/images/2026/09/55507770611_ecc2d9b9ea_k.jpg",
+      "_cross_theme": {
+        "day": "tuesday",
+        "label": "Working Lands & Industry",
+        "shown_at": "2026-09-17T04:11:17.658071+00:00"
+      },
+      "_boosted_score": 62
+    },
+    "held_date": "2026-09-17",
+    "target_date": "2026-09-28",
+    "target_weekday": 0,
+    "target_focus_slug": "visual-arts-heritage",
+    "target_focus_name": "Visual Arts & Heritage",
+    "status": "held"
+  },
+  "https://www.mining.com/op-ed-chiles-copper-sector-faces-a-growing-power-problem/": {
+    "article": {
+      "id": "https://www.mining.com/op-ed-chiles-copper-sector-faces-a-growing-power-problem/",
+      "url": "https://www.mining.com/op-ed-chiles-copper-sector-faces-a-growing-power-problem/",
+      "title": "[Mining.com] Op-Ed: Chile\u2019s copper sector faces a growing power problem",
+      "content_html": "<p style=\"margin:0 0 0.75em;padding:5px 10px;background:#f0f4f8;border-left:3px solid #7b9fc4;border-radius:3px;font-size:0.82em;color:#444;line-height:1.8;\">\ud83e\udeb6 <a href=\"https://zirnhelt.github.io/super-rss-feed/review.html?url=https%3A%2F%2Fwww.mining.com%2Fop-ed-chiles-copper-sector-faces-a-growing-power-problem%2F\" style=\"color:#7b9fc4;text-decoration:none;\">\u270f\ufe0f</a></p>\nTwo decades of falling ore grades and mine electrification are putting mounting pressure on Chile\u2019s electricity system.",
+      "summary": "Two decades of falling ore grades and mine electrification are putting mounting pressure on Chile\u2019s electricity system.",
+      "_excerpt": "Two decades of falling ore grades and mine electrification are putting mounting pressure on Chile\u2019s electricity system.",
+      "date_published": "2026-09-09T11:01:00+00:00",
+      "authors": [
+        {
+          "name": "Mining.com",
+          "url": "https://www.mining.com"
+        }
+      ],
+      "ai_score": 70,
+      "_quality": 0,
+      "_relevance": 0,
+      "_local": 0,
+      "_theme_score": 53,
+      "_theme_score_raw": 6,
+      "_composite_podcast": 42,
+      "_keyword_matches": 0,
+      "_category": "news",
+      "_source_category": "news",
+      "_is_bonus": true,
+      "_thin_body": true,
+      "_cross_theme": {
+        "day": "wednesday",
+        "label": "Repair Culture & Practical Tech",
+        "shown_at": "2026-09-17T04:11:17.658071+00:00"
+      },
+      "_boosted_score": 70
+    },
+    "held_date": "2026-09-17",
+    "target_date": "2026-09-29",
+    "target_weekday": 1,
+    "target_focus_slug": "mining-energy",
+    "target_focus_name": "Mining & Energy",
     "status": "held"
   }
 }
