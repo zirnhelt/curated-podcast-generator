@@ -19,9 +19,9 @@ on:
   workflow_dispatch:
     inputs:
       tts_provider:
-        description: 'TTS provider — gemini (default) uses Gemini multi-speaker with OpenAI fallback; openai uses OpenAI primary + Azure parallel; azure uses Azure only (no parallel)'
+        description: 'TTS provider — openai (default) uses OpenAI primary + Azure parallel; gemini uses Gemini multi-speaker with OpenAI fallback; azure uses Azure only (no parallel)'
         required: false
-        default: gemini
+        default: openai
         type: choice
         options:
           - openai
@@ -190,11 +190,10 @@ jobs:
           # stage directions, so _stage_direction_addendum() would omit them and
           # the credit written into citations would name the wrong provider.
           USE_AZURE_TTS: ${{ inputs.tts_provider == 'azure' && 'true' || '' }}
-          # Scheduled runs pass no input, so the nightly show renders on Gemini.
-          # OpenAI is the fallback rather than the default: the canary decides the
-          # provider before any audio exists, and a section that fails mid-episode
-          # falls to OpenAI on its own. Set tts_provider=openai to skip Gemini.
-          USE_GEMINI_TTS: ${{ (inputs.tts_provider == 'gemini' || inputs.tts_provider == '') && 'true' || '' }}
+          # OpenAI is the nightly default. Scheduled runs (the cron backstop) pass
+          # no input at all, so `inputs.tts_provider` is empty there rather than
+          # defaulted — only an explicit tts_provider=gemini enables Gemini.
+          USE_GEMINI_TTS: ${{ inputs.tts_provider == 'gemini' && 'true' || '' }}
         run: |
           case "${{ github.event.schedule }}" in
             '5 8 * * *') label="Primary (1:05 AM Pacific)" ;;
@@ -368,11 +367,10 @@ jobs:
           # sides are falsy, and would name a model no surface has.
           GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_BACKEND == 'cloud' && vars.GEMINI_TTS_CLOUD_MODEL || vars.GEMINI_TTS_BACKEND != 'cloud' && vars.GEMINI_TTS_MODEL || '' }}
           GEMINI_TTS_FALLBACK_MODEL: ${{ vars.GEMINI_TTS_BACKEND == 'cloud' && vars.GEMINI_TTS_CLOUD_FALLBACK_MODEL || vars.GEMINI_TTS_BACKEND != 'cloud' && vars.GEMINI_TTS_FALLBACK_MODEL || '' }}
-          # Scheduled runs pass no input, so the nightly show renders on Gemini.
-          # OpenAI is the fallback rather than the default: the canary decides the
-          # provider before any audio exists, and a section that fails mid-episode
-          # falls to OpenAI on its own. Set tts_provider=openai to skip Gemini.
-          USE_GEMINI_TTS: ${{ (inputs.tts_provider == 'gemini' || inputs.tts_provider == '') && 'true' || '' }}
+          # OpenAI is the nightly default. Scheduled runs (the cron backstop) pass
+          # no input at all, so `inputs.tts_provider` is empty there rather than
+          # defaulted — only an explicit tts_provider=gemini enables Gemini.
+          USE_GEMINI_TTS: ${{ inputs.tts_provider == 'gemini' && 'true' || '' }}
         run: |
           echo "Re-rendering any past episodes whose audio never landed..."
           python podcast_generator.py --stage recover
@@ -419,11 +417,10 @@ jobs:
           # sides are falsy, and would name a model no surface has.
           GEMINI_TTS_MODEL: ${{ vars.GEMINI_TTS_BACKEND == 'cloud' && vars.GEMINI_TTS_CLOUD_MODEL || vars.GEMINI_TTS_BACKEND != 'cloud' && vars.GEMINI_TTS_MODEL || '' }}
           GEMINI_TTS_FALLBACK_MODEL: ${{ vars.GEMINI_TTS_BACKEND == 'cloud' && vars.GEMINI_TTS_CLOUD_FALLBACK_MODEL || vars.GEMINI_TTS_BACKEND != 'cloud' && vars.GEMINI_TTS_FALLBACK_MODEL || '' }}
-          # Scheduled runs pass no input, so the nightly show renders on Gemini.
-          # OpenAI is the fallback rather than the default: the canary decides the
-          # provider before any audio exists, and a section that fails mid-episode
-          # falls to OpenAI on its own. Set tts_provider=openai to skip Gemini.
-          USE_GEMINI_TTS: ${{ (inputs.tts_provider == 'gemini' || inputs.tts_provider == '') && 'true' || '' }}
+          # OpenAI is the nightly default. Scheduled runs (the cron backstop) pass
+          # no input at all, so `inputs.tts_provider` is empty there rather than
+          # defaulted — only an explicit tts_provider=gemini enables Gemini.
+          USE_GEMINI_TTS: ${{ inputs.tts_provider == 'gemini' && 'true' || '' }}
         run: |
           echo "Starting daily podcast audio render..."
           # Exit 77 = no audio produced. Deliberately not continue-on-error:

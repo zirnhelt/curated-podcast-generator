@@ -895,12 +895,13 @@ is running, and 200+ scripts on disk carry them. **The never-speak-a-tag rule is
 tags (`tag_instruction`), so the rung that sheds the style cannot ship tags with nothing
 saying they are direction.
 
-**Gemini is the nightly default; OpenAI is its fallback.** The daily workflow's
-`tts_provider` input defaults to `gemini` and a scheduled run passes no input, so the show
-renders multi-speaker. OpenAI catches it in two places, both automatic: the canary pins
-OpenAI for the whole episode before any audio exists when Gemini will not answer, and a
-section that fails mid-render falls back per section. Dispatch with `tts_provider=openai`
-to skip Gemini for a run.
+**OpenAI is the nightly default again (2026-09-17).** Gemini's multi-speaker delivery
+still reads as too sing-song after two prompt rewrites and a voice recast (see above), so
+the daily workflow's `tts_provider` input default flipped back from `gemini` to `openai`
+and `USE_GEMINI_TTS` no longer treats an unset input as `gemini` — a scheduled run (the
+cron backstop) passes no input at all, and only an explicit `tts_provider=gemini` dispatch
+enables Gemini now. Re-audition Gemini's voices later with `evaluate_tts.py` before
+flipping the default back.
 
 **The code default is `gemini-3.1-flash-tts-preview`, and it has never answered here.**
 It was made the default without the probe this section asks for, and every run from
