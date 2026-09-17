@@ -1021,3 +1021,206 @@ class TestEventResearchSweep:
         the same meter — the widened sweep must not spend the whole budget."""
         assert pg.EVENT_RESEARCH_SEARCH_LIMIT < pg.BRAVE_DEEP_DIVE_CALL_LIMIT
         assert pg.BRAVE_DEEP_DIVE_CALL_LIMIT - pg.EVENT_RESEARCH_SEARCH_LIMIT >= 4
+
+
+# ---------------------------------------------------------------------------
+# Released articles must carry the target day's labels, not the hold day's
+#
+# The 2026-09-17 episode is the whole reason this block exists. Three Indigenous
+# articles were held earlier in the week FOR Indigenous Lands day, released into
+# that day's pool, and then cut by the same run as "over budget/unconnected" —
+# because the labels that travelled with them (`_keyword_matches`, `_is_bonus`)
+# describe whichever day they were held ON, and both consumers read exactly
+# those. The roundup aired 15 stories with an empty theme block.
+# ---------------------------------------------------------------------------
+
+THURSDAY_THEME = "Indigenous Lands & Innovation"
+
+
+def _held_article(title, url, summary="", **extra):
+    """An article as the holding pen stores it: stamped by the day it was held."""
+    a = _article(title, url, kw=0, boosted=50, summary=summary)
+    a["_is_bonus"] = True          # the hold day's verdict, not today's
+    a["_theme_score"] = 97         # a percentile from the hold day's feed
+    a["_theme_score_raw"] = 6      # that day's charter, not this one's
+    a.update(extra)
+    return a
+
+
+class TestReleasedArticleRelabelling:
+    def test_relabel_recomputes_against_the_day_it_lands_on(self):
+        a = _held_article(
+            "[APTN News] Fighting fires with good fire: how Indigenous land "
+            "guardians are protecting the boreal forest", "good-fire",
+        )
+        pg._relabel_for_day(a, THURSDAY_THEME)
+        assert a["_keyword_matches"] > 0
+        assert a["_is_bonus"] is False
+
+    def test_relabel_drops_the_hold_days_scores_rather_than_rewriting_them(self):
+        a = _held_article("Something off-theme entirely", "off")
+        pg._relabel_for_day(a, THURSDAY_THEME)
+        # There is no charter judgment for today's theme to substitute, and a
+        # wrong number that looks authoritative is worse than no number.
+        assert "_theme_score" not in a
+        assert "_theme_score_raw" not in a
+        assert a["_keyword_matches"] == 0
+        assert a["_is_bonus"] is True
+
+    def test_relabel_strips_the_source_tag_before_matching(self):
+        # "[APTN News]" is a source tag, not evidence about the body.
+        tagged = _held_article("[APTN News] Ottawa budget briefing", "t1")
+        pg._relabel_for_day(tagged, THURSDAY_THEME)
+        assert tagged["_keyword_matches"] == 0
+
+    def test_released_article_reaches_the_roundup_theme_block(self):
+        a = _held_article(
+            "[APTN News] B.C. wildfires hit First Nations reserves harder, "
+            "human rights report says", "aptn-fires",
+        )
+        pg._relabel_for_day(a, THURSDAY_THEME)
+        a["_held_from"] = "2026-09-16"
+        pg._annotate_roundup_blocks([a], THURSDAY_THEME)
+        assert a["_roundup_block"] in ("theme", "theme_adjacent")
+
+    def test_released_article_is_never_relegated_to_the_offtheme_tail(self):
+        # Even with nothing matching, an imported article is theme_adjacent —
+        # the router already overruled the feed's `_is_bonus` by releasing it.
+        a = _held_article("An article about nothing in particular", "nowt")
+        pg._relabel_for_day(a, THURSDAY_THEME)
+        a["_held_from"] = "2026-09-16"
+        pg._annotate_roundup_blocks([a], THURSDAY_THEME)
+        assert a["_roundup_block"] == "theme_adjacent"
+        assert a["_roundup_block"] not in ("standalone", "kicker")
+
+    def test_released_article_is_protected_from_the_roundup_cap(self):
+        released = _held_article("[APTN News] Treaty talks resume", "rel")
+        pg._relabel_for_day(released, THURSDAY_THEME)
+        released["_held_from"] = "2026-09-16"
+        filler = [_article(f"Gadget review number {i}", f"f{i}", kw=0)
+                  for i in range(40)]
+        kept, dropped = pg._curate_roundup_pool(
+            [released] + filler, THURSDAY_THEME, pg.NEWS_ROUNDUP_COUNT
+        )
+        assert any(a["url"] == "rel" for a in kept)
+        assert all(a["url"] != "rel" for a in dropped)
+
+    def test_released_article_can_reach_the_deep_dive(self):
+        released = _held_article("A held story with no keyword hits", "rel")
+        pg._relabel_for_day(released, THURSDAY_THEME)
+        released["_held_from"] = "2026-09-16"
+        assert released["_keyword_matches"] == 0  # would have been weak_match
+        deep, _news = pg.select_deep_dive_from_feed(
+            [released] + [_article(f"Filler {i}", f"f{i}", kw=0) for i in range(5)],
+            THURSDAY_THEME, count=3,
+        )
+        assert any(a["url"] == "rel" for a in deep)
+
+    def test_a_genuine_keyword_match_still_outranks_an_imported_article(self):
+        # `_imported` is the last sort key, so this promotes nothing.
+        released = _held_article("A held story with no keyword hits", "rel")
+        pg._relabel_for_day(released, THURSDAY_THEME)
+        released["_held_from"] = "2026-09-16"
+        strong = _article("Indigenous guardians expand treaty land stewardship",
+                          "strong", kw=4, boosted=90)
+        deep, _news = pg.select_deep_dive_from_feed(
+            [released, strong], THURSDAY_THEME, count=1,
+        )
+        assert deep[0]["url"] == "strong"
+
+
+class TestCharterScoreGuardsTheExport:
+    def test_high_charter_fit_is_never_exported_despite_zero_keywords(self, holding_env):
+        # The 2026-09-17 export: an IndigiNews feature on an Nlaka'pamux
+        # community's wildfire-mitigation programme. Zero strict Thursday
+        # keywords — the nation's name is not in the list and "[IndigiNews]" is
+        # stripped as a source tag — and it matched Friday's wildfire slot twice.
+        thursday = date(2026, 9, 17)
+        goats = _article(
+            "[IndigiNews] Call in the goats: Kanaka Bar calls on herd for help "
+            "with wildfire risk", "goats-url", kw=0, boosted=69,
+            summary="As wildfires gain intensity each year, this Nlaka'pamux "
+                    "community is finding creative ways to prepare",
+        )
+        goats["_theme_score_raw"] = pg.HOLD_MIN_THEME_RAW
+        theme, bonus = pg.route_articles_for_focus(
+            _filler_pool() + [goats], [], thursday, THURSDAY_THEME, None
+        )
+        assert any(a["url"] == "goats-url" for a in theme + bonus)
+        assert "goats-url" not in pg.load_memory(pg.HOLDING_FILE)
+
+    def test_low_charter_fit_still_routes_to_its_day(self, holding_env):
+        # The guard must not simply disable holding. Same shape, charter says no.
+        thursday = date(2026, 9, 17)
+        paleo = _article(
+            "Wildfires near the South Pole burned 90 million years ago",
+            "paleo-url", kw=0, boosted=40,
+            summary="Ancient charcoal shows wildfire in Antarctic forests",
+        )
+        paleo["_theme_score_raw"] = 2
+        # A pool that IS scored, so the rank bar is live and still declines to
+        # protect a raw of 2 — rank without a floor is not evidence.
+        theme, bonus = pg.route_articles_for_focus(
+            _filler_pool() + [paleo], [], thursday, THURSDAY_THEME, None
+        )
+        assert all(a["url"] != "paleo-url" for a in theme + bonus)
+        assert pg.load_memory(pg.HOLDING_FILE)["paleo-url"]["status"] == "held"
+
+    def test_top_of_a_collapsed_pool_is_protected_by_rank(self, holding_env):
+        # When the joint-scoring collapse holds a whole theme under the absolute
+        # floor, nothing clears HOLD_MIN_THEME_RAW and only the relative bar
+        # fires. This is the case that was live on 2026-09-17.
+        thursday = date(2026, 9, 17)
+        best = _article(
+            "Wildfire crews trial a new mitigation programme", "best-url",
+            kw=0, boosted=60, summary="A community prepares for fire season",
+        )
+        best["_theme_score_raw"] = pg.HOLD_MIN_THEME_RAW - 1
+        pool = _filler_pool()
+        for a in pool:
+            a["_theme_score_raw"] = 3
+        theme, bonus = pg.route_articles_for_focus(
+            pool + [best], [], thursday, THURSDAY_THEME, None
+        )
+        assert any(a["url"] == "best-url" for a in theme + bonus)
+        assert "best-url" not in pg.load_memory(pg.HOLDING_FILE)
+
+    def test_missing_charter_score_changes_nothing(self, holding_env):
+        # Scripts and feeds predating `_theme_score_raw` must route as before.
+        thursday = date(2026, 9, 17)
+        a = _article("Copper mine expansion clears drilling permit", "mine-url",
+                     kw=0, boosted=50)
+        assert "_theme_score_raw" not in a
+        theme, bonus = pg.route_articles_for_focus(
+            _filler_pool() + [a], [], thursday, THURSDAY_THEME, None
+        )
+        assert all(x["url"] != "mine-url" for x in theme + bonus)
+        assert pg.load_memory(pg.HOLDING_FILE)["mine-url"]["status"] == "held"
+
+    def test_rank_guard_stays_dark_when_the_pool_is_mostly_unscored(self, holding_env):
+        # A feed predating `_theme_score_raw`, or one where most items lack it,
+        # gives a ranking that says nothing. Better to hold as before than to
+        # protect whichever article happens to carry the only number.
+        thursday = date(2026, 9, 17)
+        a = _article("Copper mine expansion clears drilling permit", "mine-url",
+                     kw=0, boosted=50)
+        a["_theme_score_raw"] = pg.HOLD_RANK_MIN_THEME_RAW + 1
+        pool = _filler_pool()  # none of these carry a charter score
+        theme, bonus = pg.route_articles_for_focus(
+            pool + [a], [], thursday, THURSDAY_THEME, None
+        )
+        assert all(x["url"] != "mine-url" for x in theme + bonus)
+        assert pg.load_memory(pg.HOLDING_FILE)["mine-url"]["status"] == "held"
+
+
+class TestThinThemePoolIsReported:
+    def test_empty_theme_block_on_a_themed_day_is_a_degradation(self):
+        # 2026-09-17 aired 15 roundup stories with an empty theme block on
+        # Indigenous Lands day and the run went green. The floor is the signal.
+        assert pg.ROUNDUP_THEME_FLOOR > 0
+        assert pg.THEME_POOL_FLOOR >= pg.ROUNDUP_THEME_FLOOR + 3
+
+    def test_geographic_day_is_exempt_from_the_theme_floor(self):
+        # Saturday has no theme block by construction — every candidate is local.
+        assert pg._is_geographic_theme("Cariboo Local Affairs")
+        assert not pg._is_geographic_theme(THURSDAY_THEME)
