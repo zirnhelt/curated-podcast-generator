@@ -1,24 +1,4 @@
 {
-  "2026-08-12": {
-    "timestamp": 1786527563.724829,
-    "topics": [
-      "[TechCrunch] Kyoto Fusioneering starts work on key fusion po",
-      "[Hackaday] Splitting a Ball Bearing to Cut Out Backlash",
-      "[WIRED] A Zoom Screen-Sharing Bug Let Anyone Take Over Other",
-      "[Williams Lake Tribune] UPDATE: Today\u2019s Northwest B.C. Inter",
-      "Arson spikes possible due to prediction markets\u2019 rise, US se",
-      "[KFF Health News] Patients Wary of Governments, Companies Pu",
-      "[TechRadar] Boeing and US Air Force sign deal to build guide",
-      "[Al Jazeera English] On the ground in Cali, Colombia\u2019s worst"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption"
-    ],
-    "date": "2026-08-12",
-    "focus": "vehicles-field-gear",
-    "focus_name": "Vehicles & Field Gear"
-  },
   "2026-08-13": {
     "timestamp": 1786613227.671768,
     "topics": [
@@ -742,5 +722,26 @@
     "date": "2026-09-16",
     "focus": "maker-repair",
     "focus_name": "Maker & Repair"
+  },
+  "2026-09-17": {
+    "timestamp": 1789633442.403247,
+    "topics": [
+      "[Williams Lake Tribune] Williams Lake Log Loader competition",
+      "[My Cariboo Now] Accused in drug bust in Williams Lake to go",
+      "[Williams Lake Tribune] Smoke, flames expected during prescr",
+      "[My Cariboo Now] Fire damages a hotel in Quesnel",
+      "[100 Mile Free Press] CARIBOO OUTDOORS: A day on the water",
+      "[APTN News] \u2018It\u2019s not a home\u2019: T\u0142\u0131\u0328ch\u01eb mother says daughters",
+      "[Williams Lake Tribune] B.C. Rail Corridor Alliance presses ",
+      "[ScienceDaily] Scientists turn seawater into fresh water wit"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech"
+    ],
+    "date": "2026-09-17",
+    "focus": "governance-title",
+    "focus_name": "Governance, Title & Treaty"
   }
 }

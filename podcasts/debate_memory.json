@@ -1,30 +1,4 @@
 {
-  "2026-06-18": {
-    "timestamp": 1781777852.479529,
-    "date": "2026-06-18",
-    "theme": "Indigenous Lands & Innovation",
-    "central_question": "What structural and funding models enable Indigenous self-determination in governance infrastructure versus mere consultation and accountability without enforcement power?",
-    "riley_position": "Operational independence in decision-making can be achieved even with external funding, and waiting for perfect structural independence means never building anything. Existing models like CRCC and FirstVoices demonstrate that governance frameworks can work within mixed funding contexts.",
-    "riley_key_evidence": [
-      "CRCC operates under federal funding while investigating federal police and produces findings that carry weight despite RCMP disagreement",
-      "FirstVoices platform has operated for years with communities controlling their own language archives and access decisions",
-      "Williams Lake First Nation controlled research timeline and disclosure decisions on residential school site investigations, demonstrating governance-first model success"
-    ],
-    "casey_position": "External funding creates leverage points that undermine genuine self-determination; true accountability requires decision-making authority and enforcement power held by Nations, not just investigative capacity. Governance infrastructure must be owned and controlled by Indigenous communities from inception, not retrofitted after external institutions deploy it.",
-    "casey_key_evidence": [
-      "BC First Nations Justice Council's PAU can investigate but cannot compel outcomes, lacking the enforcement lever that closes the accountability gap",
-      "FirstVoices works because governance was built into technical architecture from the beginning, not retrofitted after deployment",
-      "Te P\u0101 T\u016bwatawata (M\u0101ori data network) shifted from grant dependency to infrastructure ownership, making external dependency operational rather than existential"
-    ],
-    "resolution": "Casey and Riley converge on the principle that governance infrastructure must precede pressure and be designed with Indigenous controlling authority from inception. They agree the real ask is multi-year operational funding for Indigenous governance capacity itself, not project-based grants. They remain implicitly at tension on whether external funding relationships are necessarily compromising or manageable with proper structural safeguards.",
-    "topics_covered": [
-      "Police accountability units and investigative versus enforcement power",
-      "Indigenous data sovereignty and archival governance (uOttawa-Vanderbilt partnership, FirstVoices)",
-      "AI governance standard-setting and Indigenous participation (Animikii, GPAI Rio workshop)",
-      "Funding models for Indigenous governance infrastructure and operational independence",
-      "Comparative case studies (T\u015dilhqot'in title decision, Williams Lake First Nation, M\u0101ori data networks)"
-    ]
-  },
   "2026-06-19": {
     "timestamp": 1781864557.020523,
     "date": "2026-06-19",
@@ -2460,6 +2434,40 @@
       "A community group or school shop class could build a repair inventory documenting what equipment is actually still functional in the region, what's being locked by software rather than hardware failure, and where those categories diverge \u2014 starting on a spreadsheet next month without funding applications.",
       "A regional district or producer association could file a formal exemption request with the Copyright Board documenting real harm from locked equipment to force legal clarity on the right to repair.",
       "If anyone has a piece of gear that outlived its manufacturer's support window and kept running anyway, or observes gaps in local repair capacity, send documentation to feedback at cariboosignals dot ca to build the community record."
+    ]
+  },
+  "2026-09-17": {
+    "timestamp": 1789633445.853698,
+    "date": "2026-09-17",
+    "theme": "Indigenous Lands & Innovation",
+    "focus": "governance-title",
+    "anchor": "worth-saving",
+    "central_question": "When new laws, technologies, and infrastructure are built to serve Indigenous communities, who actually holds operational control and answers to the people living with the outcomes?",
+    "riley_position": "Indigenous communities have gained legal recognition and jurisdiction through bills like C-92 and emerging governance models, and new structures being drafted from scratch offer an opportunity to build co-governance in from the start rather than retrofitting it later.",
+    "riley_key_evidence": [
+      "Bill C-92 affirms the inherent right of Indigenous communities to run their own child and family services since January 1st, 2020, and changes what a Nation can demand at the funding table",
+      "The B.C. Rail Corridor Alliance is being formed now without inherited constraints, meaning founding documents can be written to include First Nations governance from the beginning",
+      "A solar-powered desalination system with mineral recovery creates a revenue line that makes it structurally different from failed pilots by giving the system a reason to keep running"
+    ],
+    "casey_position": "Legal recognition and technology are meaningless without the funded operational capacity to sustain them; the real problem is accountability structures that answer to ministries and funders rather than to the Indigenous communities living with the results.",
+    "casey_key_evidence": [
+      "In the Northwest Territories, 98 percent of children in government care are Indigenous five years after C-92 passed, yet two T\u0142\u0131\u0328ch\u01eb teenagers ended up in a Yellowknife shelter dormitory instead of community kinship care",
+      "H2O Innovation and University of Regina researchers have built water treatment systems for years, but the bottleneck is funding for a technician who stays in year six, not the technology itself",
+      "First Nations governance partners are not visibly named in published B.C. Rail Corridor Alliance materials, and consultation slots differ fundamentally from decision-making seats when money is at stake"
+    ],
+    "resolution": "Riley and Casey agreed that the core design question is who holds operational control and who the operator answers to when something breaks, and they both committed to asking verifiable questions\u2014caseworker names, technician presence, formal Alliance seats\u2014rather than accepting procedural claims at face value.",
+    "topics_covered": [
+      "Child welfare jurisdiction and Bill C-92 implementation gaps in the Northwest Territories",
+      "Co-governance structure design for the B.C. Rail Corridor Alliance and the timing advantage of new organizations",
+      "Solar desalination technology with mineral recovery as a revenue-generating model for coastal First Nations water systems",
+      "The difference between legal jurisdiction on paper and funded operational capacity on the ground",
+      "Accountability mechanisms and who answers to whom in policy implementation"
+    ],
+    "calls_to_action": [
+      "If you have information about whether the T\u0142\u0131\u0328ch\u01eb Government runs its own child and family services agency or whether a coordination agreement is in force, send it to feedback at cariboosignals.ca",
+      "Listeners with ten spare minutes can contact their band office or a local reporter to verify whether First Nations hold formal seats on the B.C. Rail Corridor Alliance",
+      "Attend or follow the next B.C. Rail Corridor Alliance meeting or UBCM session to ask on the record whether nations along the corridor hold a standing seat, formal consultation slot, or nothing yet",
+      "Keep windows shut and questions loud about prescribed burns happening west of Williams Lake as early as tomorrow"
     ]
   }
 }
