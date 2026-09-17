@@ -39,7 +39,7 @@ cannot reopen it. Anything written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-16) — 22 open.
+_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-17) — 22 open.
 Check a box to close one; it comes back only if the reviews raise it 2 more times._
 
 - [ ] **A credit-balance 400 is not the usage-limit wall, and every run pays for that.**
@@ -144,7 +144,7 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       late or why it stalled. Check the GitHub Actions scheduler logs and the in-progress run
       URL https://github.com/zirnhelt/curated-podcast-generator/actions/runs/33769783188 to
       determine whether the runner is hung, whether there is a capacity bottleneck, or whether
-      the cron expression is misconfigured. (seen in 6 reviews, latest 2026-09-15)
+      the cron expression is misconfigured. (seen in 7 reviews, latest 2026-09-17)
 - [ ] **One AI-tell pattern phrase shipped in the final episode without removal.** The quality
       review on 2026-09-04 flagged 1 instance of tell-pattern language (phrasing characteristic
       of Claude output) in the script. The system did not remove it before shipping. The pattern
@@ -157,14 +157,14 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       whether this represents acceptable variance or systematic drift. Establish a target voice
       ratio (e.g., 1.0 or 1.05) in the episode config and add a quality check that flags ratios
       outside a defined band. If this ratio persists across future runs, adjust the host
-      distribution weights in the synthesis prompt. (seen in 3 reviews, latest 2026-09-13)
+      distribution weights in the synthesis prompt. (seen in 4 reviews, latest 2026-09-17)
 - [ ] **Script expansion stopped one pass early despite remaining below target.** The first
       draft shipped at 2,512 words against a 3,400-word target, triggering one expand pass. The
       result was 2,994 words—406 words short—and the pipeline accepted this without retry. The
       mechanism appears to be a single-pass expansion request rather than an iterative loop that
       continues until target is met or a hard limit is hit. Enforce expansion cycles until the
       script either reaches the target word count or exhausts a maximum retry count, then log
-      and report which condition stopped it. (seen in 4 reviews, latest 2026-09-14)
+      and report which condition stopped it. (seen in 5 reviews, latest 2026-09-17)
 - [ ] **Brave body-backfill budget exhaustion is recurring and requires intervention.** On
       2026-09-08, the pipeline spent its full 12-call Brave budget during script generation,
       forcing nine articles to ship with stub bodies instead of full text. The degradations log

@@ -5,43 +5,43 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Thu, 17 Sep 2026 10:05:46 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 17 Sep 2026 15:30:21 +0000</lastBuildDate>
     <item>
       <title>Episode Review — Cariboo Signals, September 17, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-17.html</link>
       <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-17.html</guid>
-      <pubDate>Thu, 17 Sep 2026 10:05:46 +0000</pubDate>
+      <pubDate>Thu, 17 Sep 2026 15:30:21 +0000</pubDate>
       <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/35197798154"&gt;35197798154&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h3&gt;Brave's article-body budget exhausted mid-run&lt;/h3&gt;
+&lt;h3&gt;Brave API budget exhausted mid-run; 45 articles dropped from roundup&lt;/h3&gt;
 
-&lt;p&gt;The pipeline spent its 12-call Brave budget backfilling article bodies before processing the full roundup. Seventeen articles then kept stub bodies only. The system notes these may be cut as sparse during final assembly, but the facts do not state whether they were actually dropped or shipped truncated.&lt;/p&gt;
+&lt;p&gt;The pipeline burned through its Brave search budget on article body-backfill before finishing the roundup. Twelve calls to fetch full text depleted the allocation. The remaining 45 articles—those with only stub summaries—were dropped rather than included as thin segments.&lt;/p&gt;
 
-&lt;p&gt;This is a constraint, not a failure. The pipeline chose to spend search calls on depth rather than breadth. The cost is visibility: thin articles stay thin or disappear.&lt;/p&gt;
+&lt;p&gt;This is a structural failure, not a graceful degradation. The roundup normally anchors the episode. Instead, listeners received a show built almost entirely around three deep dives and the debate question. Citation alignment stayed strong on what ran: 13 of 15 roundup citations matched, and all 3 deep dive citations tracked.&lt;/p&gt;
 
-&lt;h3&gt;Roundup dropped 45 articles despite completing the run&lt;/h3&gt;
+&lt;h3&gt;Script expanded but stayed under target&lt;/h3&gt;
 
-&lt;p&gt;The episode included 3 deep dives but dropped 45 roundup items. No other facts explain why. The 15 roundup citations matched against 13 found suggests some articles were culled before citation work, others after. The pipeline completed successfully, so the drops were architectural, not accidental.&lt;/p&gt;
+&lt;p&gt;The first draft arrived at 2,802 words against a 3,400-word target. The system sent it back for one expansion pass. The shipped script landed at 2,896 words—504 words short of target, but 94 words closer than the draft.&lt;/p&gt;
 
-&lt;h3&gt;Script came short, was expanded, and still fell shy&lt;/h3&gt;
+&lt;p&gt;This suggests the expansion pass had ceiling or budget constraints. The script did not reach the goal, only narrowed the gap.&lt;/p&gt;
 
-&lt;p&gt;The first draft arrived at 2,802 words against a target of 3,400. The pipeline sent it back for one expand pass. The shipped script landed at 2,896 words. It never reached target.&lt;/p&gt;
+&lt;h3&gt;Voice distribution tilted toward Casey&lt;/h3&gt;
 
-&lt;p&gt;This was not a retry or failure state — the means explicitly states this was the intended flow. But the final word count was 504 words under target. Whether that shortfall matters depends on how the episode seats in runtime and audio quality.&lt;/p&gt;
+&lt;p&gt;Casey spoke for a ratio of 0.91 over Riley. The facts do not state which speaker was intended or what the normal ratio is, so this registers as an observation: one host dominated this episode's airtime.&lt;/p&gt;
 
-&lt;h3&gt;Audio and video rendered at matching length&lt;/h3&gt;
+&lt;h3&gt;Three manual runs before the scheduled fallback fired late&lt;/h3&gt;
 
-&lt;p&gt;Both audio and video came to 19.2 minutes. Audio was 17.6 MB; video was 60.6 MB. The file sizes reflect their different codecs and frame data, not different content duration.&lt;/p&gt;
+&lt;p&gt;The pipeline ran manually at 08:05, 09:05, and 10:05 UTC. All succeeded within minutes. A fourth run, scheduled for 03:05 Pacific (the fallback trigger), started at 15:29 UTC—324 minutes late—and was still in progress at report time.&lt;/p&gt;
 
-&lt;h3&gt;Citation alignment clean across deep dives, partial in roundup&lt;/h3&gt;
+&lt;p&gt;No explanation appears in the facts for why the scheduled run misfired or why it started so far behind clock.&lt;/p&gt;
 
-&lt;p&gt;All 3 deep-dive citations matched their sources. The roundup had 13 matched against 15 total — a 2-citation gap. No degradation or warning flags the missing 2, so they may have been dropped as articles, or matched work may have moved on before confirming them.&lt;/p&gt;
+&lt;h3&gt;Output and cost&lt;/h3&gt;
 
-&lt;h3&gt;No AI style flags; voice balance favored Casey&lt;/h3&gt;
+&lt;p&gt;The episode shipped at 19.2 audio minutes (17.6 MB) and generated a matching 19.2-minute video file at 60.6 MB. RSS feed now carries 233 episodes. Claude processed 92,594 input tokens across 12 API calls; Brave consumed 3 calls on search.&lt;/p&gt;
 
-&lt;p&gt;Zero hits on AI tell patterns. The voice ratio of Casey to Riley was 0.91, meaning Casey carried slightly more of the script. No threshold or target for this ratio appears in the facts.&lt;/p&gt;
+&lt;h3&gt;Debate question&lt;/h3&gt;
 
-&lt;p&gt;Three runs executed today. The first two completed. The third was in progress at report time.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;When new laws, technologies, and infrastructure are built to serve Indigenous communities, who actually holds operational control and answers to the people living with the outcomes?&lt;/em&gt;&lt;/p&gt;
 
 &lt;h3&gt;The day's triggers&lt;/h3&gt;
 &lt;table&gt;
@@ -49,7 +49,8 @@
 &lt;tbody&gt;
 &lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-17T08:05:08Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-17T09:05:12Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-17T10:05:12Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-17T10:05:12Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-09-17T15:29:42Z&lt;/td&gt;&lt;td&gt;+324 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
