@@ -39,7 +39,7 @@ cannot reopen it. Anything written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-16) — 23 open.
+_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-16) — 22 open.
 Check a box to close one; it comes back only if the reviews raise it 2 more times._
 
 - [ ] **A credit-balance 400 is not the usage-limit wall, and every run pays for that.**
@@ -112,17 +112,6 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       for whether it uses story depth or source type to vary its strategy, and run a test batch
       of deep dives against the current matching logic to confirm whether this is systematic or
       noise. (seen in 6 reviews, latest 2026-09-07)
-- [ ] **Gemini multi-speaker TTS has timed out three times in two days, forcing provider
-      fallback mid-episode.** On 2026-09-01, the news section hit a 120-second read timeout on
-      Gemini's generativelanguage.googleapis.com endpoint during multi-speaker synthesis. Two
-      canary checks against the same model failed at 45 seconds earlier that morning. The
-      pipeline fell back to OpenAI for the remaining sections and credits, creating an audible
-      voice delivery inconsistency (Casey-to-Riley ratio 0.68 across the whole episode but
-      synthesized on different providers for different segments). Check whether Gemini's
-      multi-speaker quota or rate limit is exhausted, confirm the project's tier and spend cap
-      status via the Gemini console, and either increase the timeout threshold with exponential
-      backoff for retries, or switch multi-speaker sections to OpenAI by default if Gemini's
-      quota is not recoverable. (seen in 2 reviews, latest 2026-09-02)
 - [ ] **Brave Answers body-backfill budget of 12 calls was exhausted, causing 48 roundup
       articles to be dropped instead of scripted.** The pipeline allocates 12 API calls to
       enrich thin article summaries via Brave's web search, making them narrative-ready for the
