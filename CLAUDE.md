@@ -429,6 +429,11 @@ no cleanup commit when it closes. Currently the Williams Lake 2026 general local
   collapse) landing on the day it matters most; the upstream half of this change adds Saturday
   to `targeted_rescore` with the Cariboo outlets as its `rescore_sources`. **When a Saturday
   deep dive looks wrong, check the upstream theme score before touching the ranking.**
+  — **and that upstream half was never applied.** It is described above as though it shipped;
+  `targeted_rescore.days` in `super-rss-feed` read `["tuesday", "wednesday"]` until 2026-09-17,
+  with no `rescore_sources` on Saturday at all. A note in this file is not a change in the
+  other repo, and nothing checks that the two agree — when a claim here is about
+  `super-rss-feed`, read `config/podcast_schedule.json` there before trusting it.
 
 ### News Roundup Curation (`_annotate_roundup_blocks`, `_curate_roundup_pool`, `_sequence_roundup`)
 
@@ -460,6 +465,22 @@ Blocks, in airing order — curation metadata the hosts never name on air:
 | discipline groups | Off-theme stories with ≥2 same-field siblings, kept adjacent so the back half plays as mini-arcs |
 | `standalone` | Connects to nothing; the weakest material in the segment |
 | `kicker` | One standalone, aired last, told properly — the roundup's deliberate closer |
+
+**A themed episode whose roundup carries nothing on its theme now says so.** That is the
+failure this whole selection stack exists to prevent, and until 2026-09-17 it was not an
+error, a warning or a row: that day's blocks were `local:5, community_life:3,
+life_sciences:3, physical_sciences:3, kicker:1` on Indigenous Lands day — fifteen stories,
+empty theme block — and the run went green. `script/curate` `degrade()`s below
+`ROUNDUP_THEME_FLOOR` on-theme stories, and again when the feed itself hands over
+`THEME_POOL_FLOOR` (6 = the deep dive's 3 plus the roundup's 3, which do not share) or fewer
+theme articles. The geographic day is exempt from both: it has no theme block by
+construction, which is the whole point of `_geographic_rank`.
+**Read the degradation as a scoring problem, not a supply problem** — on the day it fired,
+the feed held 65 bonus articles against 4 theme ones and APTN was publishing daily. See
+`super-rss-feed` gotcha 14, and check the theme's argmax share before touching `feeds.opml`.
+Note `ROUNDUP_THEME_FLOOR` already existed but could only reserve theme slots *within*
+`protected` when the arc overflowed the cap — it had nothing to floor when the theme block
+was empty, which is the commoner failure and the one that was silent.
 
 The **kicker** is why cutting the tail is an edit rather than a shortfall. Standalones used to
 be read out at a sentence apiece; one of them given real airtime is worth more than ten
@@ -547,6 +568,54 @@ Each daily theme (except Saturday, deliberately uncycled) rotates through a mult
   - **A geographic day is never a routing target** (`_is_geographic_theme`, themes.json `geographic: true`). Cariboo Local Affairs is defined by *where* a story is; every other theme is defined by what it is about. Geography is decided by `_is_local_article`, which also exempts local stories from holding, so the day has no import channel to fill and every match it wins is a false one. Its keyword list took the bare word `local` literally: five articles were waiting for 2026-08-22 — New York's housing shortage, a Brooklyn ADU that "follows local and zoning laws", two US drug-pricing pieces, and "8 local AI models that run great on 8GB of VRAM". Two of them aired.
   - **A local story that belongs to another day airs today and defers its deep dive.** It is never held — local news stays the most time-sensitive material in the pool — but when it carries none of today's *subject* keywords and answers an upcoming day's theme, it gets `_no_deep_dive` and an aired-early ledger entry so the callback lands on the day whose question it actually answers. On 2026-08-22 the Cariboo Local Affairs deep dive ran on softwood duties, a ranching award and a Tyson beef-plant closure — Tuesday's episode, aired on Saturday and spent for the week by dedup, because every one of them is local and locality was the whole score.
   - **`_no_deep_dive` is now read.** It was written by the router and read by nothing: `_ensure_deep_dive_substance` was free to swap back into the deep dive exactly what the router kept out of it. `select_deep_dive_from_feed` holds flagged articles back, and restores them only below `DEEP_DIVE_ELIGIBLE_FLOOR` (2) — a debate with no sources is a worse failure than a debate one day early.
+  - **A released article carried the labels of the day it was held on, and both consumers
+    read them** (`_relabel_for_day`). `_keyword_matches`, `_is_bonus`, `_theme_score` and
+    `_theme_score_raw` are computed by the feed *relative to whichever day the article
+    arrived on*, and the holding pen stores that snapshot verbatim. So a story held on
+    Wednesday *because it is Thursday material* was released on Thursday still stamped with
+    Wednesday's verdict that it is off-theme. `_annotate_roundup_blocks` tests `_is_bonus`
+    before it tests theme relevance, and `select_deep_dive_from_feed` split on
+    `_keyword_matches > 0` — and upstream defines `_is_bonus` as *exactly* `kw_matches == 0`,
+    so those were one gate applied twice rather than two opinions.
+    On 2026-09-17 all three articles held for Indigenous Lands day were released into the
+    pool and cut by the same run as "over budget/unconnected": two APTN pieces on First
+    Nations wildfire impacts and Indigenous land guardians, and a modern-treaties story.
+    They classified `standalone`, `standalone` and `kicker` — the weakest material in the
+    segment. The roundup aired fifteen stories with an **empty theme block** and the run
+    went green. Re-labelled against the target day, two land in `theme` and one in
+    `theme_adjacent`.
+    **A label that describes another day is worse than no label**, so `_relabel_for_day`
+    drops the two stale scores rather than rewriting them: there is no charter judgment for
+    today's theme to substitute, and a wrong number that looks authoritative is the failure
+    mode this exists to prevent. `_held_from` and `_recalled_from` now carry standing in
+    both consumers — arc-protected in `_curate_roundup_pool`, reachable by `strong_match` in
+    the deep dive, sorted last so nothing is promoted over a genuine keyword match.
+    **A story the router imported for today must not be droppable by the run that imported
+    it.**
+  - **The feed's charter score gets a vote in the export decision** (`_theme_fit_raw`,
+    `HOLD_MIN_THEME_RAW`, `HOLD_PROTECT_TOP_FRAC`). Literal substring hits on title+summary
+    were the only voice, and on 2026-09-17 that exported the day's single best-fitting
+    Indigenous story *off* Indigenous Lands day: an IndigiNews feature on an Nlaka'pamux
+    community's wildfire-mitigation programme, 98th percentile on Thursday's own feed,
+    scoring **zero** strict Thursday keywords — the nation's name is not in the list and
+    `[IndigiNews]` is stripped as a source tag — which matched Friday's wildfire slot twice
+    and left.
+    Neither `_theme_score` nor `_theme_score_raw` was read anywhere in `podcast_generator.py`
+    before this. **Use the raw score, never the percentile**: `_theme_score` is a rank within
+    that day's feed, so the top of a collapsed distribution reads 90-100 however poor the fit
+    (`super-rss-feed` gotcha 13) — on the day in question a paleo-wildfire story and a
+    consumer-electronics piece sat at 95 and 89 on Indigenous Lands day.
+    Two bars, because neither works alone. The absolute floor (`HOLD_MIN_THEME_RAW`, 25,
+    anchored to the thinnest upstream `min_score`) is the honest one and is what the upstream
+    targeted rescore makes reachable — Thursday's whole pool topped out at 58 before it. The
+    pool-relative bar (`HOLD_PROTECT_TOP_FRAC`) is what fires meanwhile, on a collapsed
+    charter where nothing reaches the floor; it carries `HOLD_RANK_MIN_THEME_RAW` and a
+    `HOLD_RANK_MIN_COVERAGE` requirement, because **rank without a floor is not evidence** —
+    on a pool where nothing is scored, a raw of 2 is top of the heap and means nothing.
+    Both log every time they fire, so they can be refitted off a measured month.
+    The cost is asymmetric on purpose: a genuinely off-theme story at the top of a bad
+    distribution stays home, which is one story in the roundup tail; the day's best on-theme
+    story cannot leave, which is the episode.
 
 - **Repeat-topic guard (`format_prior_coverage_for_prompt`):** local word-overlap check of deep-dive titles against recent episode topics and debate questions; on a match, hosts are instructed to acknowledge the earlier discussion and center what's new. Evolving-story context carries the same instruction.
 

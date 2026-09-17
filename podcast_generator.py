@@ -1099,6 +1099,33 @@ PHRASE_LEDGER_FILE = PODCASTS_DIR / "phrase_ledger.json"
 HOLD_MAX_DAYS = 14              # max days an article may wait for its focus day
 AIRED_EARLY_RETENTION_DAYS = 30 # how long the aired-early callback ledger keeps entries
 HOLD_MIN_FOCUS_HITS = 2         # focus-keyword hits required before holding
+# An article the feed scores at or above this against TODAY's charter is never
+# exported to another day, whatever the keyword match says. Anchored to the
+# thinnest upstream per-day `min_score` (Thursday's 25) rather than to a band of
+# the collapsed scale: the joint-scoring collapse (sibling gotcha 14) held
+# Thursday's whole pool under 58, so before the targeted rescore this bar is
+# rarely reached and does nothing. It becomes the load-bearing rule as the
+# rescore lifts real on-theme articles into their charter's own bands.
+HOLD_MIN_THEME_RAW = 25
+# ...and meanwhile, the top slice of today's pool by charter score is never
+# exported either. Relative, so it fires on a collapsed distribution where the
+# absolute floor cannot. The cost is that a genuinely off-theme story at the top
+# of a bad distribution stays home; the benefit is that the day's best on-theme
+# story cannot leave. Those are not symmetric, which is why this bar exists.
+HOLD_PROTECT_TOP_FRAC = 0.10
+# Rank alone is not evidence: on a pool where nothing carries a charter score, a
+# raw of 2 is the top of the heap and means nothing. The relative bar is for a
+# *collapsed* charter — real on-theme material sitting at roughly half its honest
+# floor, which is where Thursday's Indigenous articles were on 2026-09-17 — so it
+# carries half the absolute floor as its own, and needs most of the pool to be
+# scored before a ranking over it says anything at all.
+HOLD_RANK_MIN_THEME_RAW = HOLD_MIN_THEME_RAW // 2
+HOLD_RANK_MIN_COVERAGE = 0.5
+# Below this many on-theme articles from the feed, a themed episode is already
+# rationing before any ranking runs: the deep dive wants 3 and the roundup's
+# theme block wants ROUNDUP_THEME_FLOOR. Set at the sum, since those are the two
+# consumers and they do not share.
+THEME_POOL_FLOOR = 6
 URGENT_SCORE_THRESHOLD = 85     # _boosted_score at/above this always airs same-day
 # Newsletter bodies below this length are treated as URL-only → Brave enrichment
 EMAIL_BODY_MIN_CHARS = 300
@@ -3944,6 +3971,58 @@ def _theme_slug(theme_name: str) -> str:
     return theme_name.replace(" ", "_").replace("&", "and").lower()
 
 
+def _theme_fit_raw(article: dict) -> int:
+    """The feed's un-normalized charter score for the day the article arrived on.
+
+    `_theme_score` is a PERCENTILE within that day's feed (upstream
+    `normalize_theme_scores`), so the top of a collapsed distribution reads
+    90-100 however poor the actual fit — the sibling repo's gotcha 13. The raw
+    charter output rides alongside it as `_theme_score_raw` and is the only one
+    of the two that means anything on its own. Neither was read anywhere in this
+    file until 2026-09-17; both are ignored by the routing and ranking that the
+    upstream scoring exists to feed.
+    """
+    raw = article.get('_theme_score_raw')
+    return raw if isinstance(raw, int) else 0
+
+
+def _relabel_for_day(article: dict, theme_name: str) -> dict:
+    """Recompute a released article's theme labels against the day it lands on.
+
+    `_keyword_matches`, `_is_bonus`, `_theme_score` and `_theme_score_raw` are
+    all computed by the feed *relative to the day the article arrived on*, and
+    the holding pen stores that snapshot verbatim. So a story held on Wednesday
+    *because it is Thursday material* is released on Thursday still carrying
+    Wednesday's verdict that it is off-theme — and both consumers read exactly
+    that verdict:
+
+      - `_annotate_roundup_blocks` tests `_is_bonus` BEFORE it tests theme
+        relevance, so the article lands in the off-theme tail;
+      - `select_deep_dive_from_feed` splits on `_keyword_matches > 0`, so it
+        can never reach `strong_match`.
+
+    Upstream defines `_is_bonus` as exactly `kw_matches == 0`, so those are one
+    gate applied twice, not two opinions. On 2026-09-17 all three articles the
+    router had deliberately held for Indigenous Lands day were released into the
+    pool and then cut by the same run as "over budget/unconnected", and the
+    roundup aired fifteen stories with an empty theme block.
+
+    Strict keywords, not `_build_theme_keywords`: this gates a decision.
+    The stale scores are dropped rather than rewritten — there is no charter
+    judgment for today's theme to replace them with, and a wrong number that
+    looks authoritative is worse than no number.
+    """
+    title = re.sub(r'^\W*\[[^\]]*\]\s*', '', article.get('title', ''))
+    text = f"{title} {article.get('summary', '')} {article.get('_excerpt', '')}".lower()
+    hits = _keyword_hit_count(text, _build_strict_theme_keywords(theme_name))
+    anti = _keyword_hit_count(text, _build_theme_anti_keywords(theme_name))
+    article['_keyword_matches'] = max(0, hits - anti)
+    article['_is_bonus'] = article['_keyword_matches'] == 0
+    article.pop('_theme_score', None)
+    article.pop('_theme_score_raw', None)
+    return article
+
+
 def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_theme,
                              focus, event_focus=None):
     """Super-cycle content routing: release matured holds and hold off-theme articles.
@@ -4003,15 +4082,21 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
             # aired on the day it broke and returns on the day the show can
             # actually sit with it. The tag is the opposite of `_held_from` —
             # the hosts say plainly that they covered it, and what has moved.
+            _relabel_for_day(article, today_theme)
             article['_recalled_from'] = entry.get('held_date', '')
             article['_recall_event'] = entry.get('event_name', '')
             released.append(article)
             print(f"  🗳️  Recalled for the civic day (first aired "
                   f"{article['_recalled_from']}): {article.get('title', '')[:60]}")
             continue
+        # Labels travel with the article and describe the day it was held on,
+        # not the day it lands on. Nothing re-derived them until 2026-09-17, so
+        # a story imported FOR today arrived pre-stamped as off-theme.
+        _relabel_for_day(article, today_theme)
         article['_held_from'] = entry.get('held_date', '')
         released.append(article)
-        print(f"  📤 Released from holding (held {article['_held_from']}): {article.get('title', '')[:70]}")
+        print(f"  📤 Released from holding (held {article['_held_from']}, "
+              f"kw={article['_keyword_matches']}): {article.get('title', '')[:60]}")
     theme_articles = released + theme_articles
 
     # --- Hold / divert off-theme articles matching an upcoming day ---------
@@ -4061,6 +4146,18 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
     # Never shrink the pool below what the roundup + deep dive need
     max_holds = max(0, len(theme_articles) + len(bonus_articles) - (NEWS_ROUNDUP_COUNT + 3))
 
+    # Top slice of TODAY's pool by the feed's own charter score for TODAY's
+    # theme. Ranked rather than thresholded so it still bites when the whole
+    # distribution is collapsed, which is exactly the day the export hurts most.
+    _pool = [a for a in theme_articles + bonus_articles if a.get('url')]
+    _scored = [a for a in _pool if _theme_fit_raw(a) > 0]
+    protected_by_rank: set = set()
+    if _pool and len(_scored) / len(_pool) >= HOLD_RANK_MIN_COVERAGE:
+        _ranked = sorted(_scored, key=_theme_fit_raw, reverse=True)
+        _protect_n = max(1, int(len(_pool) * HOLD_PROTECT_TOP_FRAC))
+        protected_by_rank = {a['url'] for a in _ranked[:_protect_n]
+                             if _theme_fit_raw(a) >= HOLD_RANK_MIN_THEME_RAW}
+
     kept_theme: list = []
     kept_bonus: list = []
     held_count = 0
@@ -4092,6 +4189,33 @@ def route_articles_for_focus(theme_articles, bonus_articles, today_date, today_t
         else:
             weak_today = (a.get('_keyword_matches', 0) == 0
                           and _keyword_hit_count(text, today_theme_keywords) <= 1)
+        # The feed already shipped a charter judgment about this article and
+        # today's theme, and literal substring hits on title+summary were the
+        # only voice in the room. On 2026-09-17 that exported the day's single
+        # best-fitting Indigenous story off Indigenous Lands day: an IndigiNews
+        # feature on an Nlaka'pamux community's wildfire-mitigation program,
+        # 98th percentile on Thursday's own feed, scored ZERO strict Thursday
+        # keywords — "Nlaka'pamux" and "Kanaka Bar" are not in the list and
+        # "[IndigiNews]" is stripped as a source tag — matched Friday's slot on
+        # "wildfire" twice, and left.
+        #
+        # Two bars, because neither works alone on a collapsed scale:
+        #   - the absolute raw floor is the honest one, and is what the upstream
+        #     targeted rescore makes reachable (Thursday's whole pool topped out
+        #     at 58 before it);
+        #   - the pool-relative rank is what fires meanwhile, when a collapsed
+        #     charter puts nothing above the floor.
+        # Both are provisional and both log, so they can be refitted off a
+        # measured month rather than off appetite.
+        if weak_today and _theme_fit_raw(a) >= HOLD_MIN_THEME_RAW:
+            weak_today = False
+            print(f"  🧭 Kept for today on charter fit (raw={_theme_fit_raw(a)} "
+                  f">= {HOLD_MIN_THEME_RAW}, 0 keyword hits): {a.get('title', '')[:56]}")
+        elif weak_today and url and url in protected_by_rank:
+            weak_today = False
+            print(f"  🧭 Kept for today on charter rank (raw={_theme_fit_raw(a)}, "
+                  f"top {int(HOLD_PROTECT_TOP_FRAC * 100)}% of today's pool, "
+                  f"0 keyword hits): {a.get('title', '')[:56]}")
         belongs_to_today = not weak_today
         # Booked BEFORE the early-exit below, which is what the ordinary router
         # returns through for anything on today's theme. An election story is
@@ -5170,6 +5294,18 @@ def _annotate_roundup_blocks(articles: list, theme_name: str) -> tuple:
         if _is_local_article(a):
             a['_roundup_block'] = 'local'
             local_block.append(a)
+        elif a.get('_held_from') or a.get('_recalled_from'):
+            # The router imported this FOR today. `_is_bonus` is the feed's
+            # judgment about whichever day the article arrived on, and the
+            # release has already overruled it — deferring to it here is how
+            # 2026-09-17 held three Indigenous articles for Indigenous Lands
+            # day, released all three, and then classified them `standalone`,
+            # `standalone` and `kicker`: the weakest material in the segment,
+            # all three cut by the same run that imported them.
+            a['_roundup_block'] = ('theme' if a.get('_keyword_matches', 0) > 0
+                                   or relevance(a) >= 2 else 'theme_adjacent')
+            (theme_block if a['_roundup_block'] == 'theme'
+             else adjacent_block).append(a)
         elif a.get('_is_bonus'):
             rest.append(a)
         elif a.get('_keyword_matches', 0) > 0 or relevance(a) >= 2:
@@ -5345,9 +5481,23 @@ def _curate_roundup_pool(articles: list, theme_name: str, pool_size: int) -> tup
     if len(pool) <= pool_size:
         return _sequence_roundup(pool), over_cluster + dropped_us_politics
 
-    protected = [a for a in pool if a['_roundup_block'] in ROUNDUP_ARC_BLOCKS]
-    kicker = [a for a in pool if a['_roundup_block'] == 'kicker']
-    fillers = [a for a in pool if a['_roundup_block'] not in ROUNDUP_ARC_BLOCKS
+    # `theme`/`theme_adjacent` already covers every released article, since
+    # _annotate_roundup_blocks now routes them there — this is the belt to that
+    # braces: a story the router deliberately imported for today must not be
+    # droppable by the same run that imported it.
+    # `theme`/`theme_adjacent` already covers every released article, since
+    # _annotate_roundup_blocks now routes them there — this is the belt to that
+    # braces: a story the router deliberately imported for today must not be
+    # droppable by the same run that imported it. One predicate for both halves,
+    # so an imported article can never land in `protected` AND `fillers`.
+    def _is_protected(a) -> bool:
+        return bool(a['_roundup_block'] in ROUNDUP_ARC_BLOCKS
+                    or a.get('_held_from') or a.get('_recalled_from'))
+
+    protected = [a for a in pool if _is_protected(a)]
+    kicker = [a for a in pool if a['_roundup_block'] == 'kicker'
+              and not _is_protected(a)]
+    fillers = [a for a in pool if not _is_protected(a)
                and a['_roundup_block'] != 'kicker']
 
     kept_fill, dropped = [], list(over_cluster) + dropped_us_politics
@@ -5838,12 +5988,25 @@ def select_deep_dive_from_feed(theme_articles, theme_name, count=3, focus=None,
     # deep-dive slot purely by virtue of being first. Re-sort strong matches by
     # (keyword matches, boosted score) so genuinely on-theme feed articles can
     # outrank a weakly-matching newsletter or seed.
+    # A released article was imported for TODAY by the router. Splitting purely
+    # on `_keyword_matches > 0` put every one of them in `weak_match`, where the
+    # deep dive can never reach them — and upstream defines `_is_bonus` as
+    # exactly `kw_matches == 0`, so the roundup blocker and this split were one
+    # gate applied twice rather than two opinions. It sorts below genuine
+    # keyword matches (`_imported` is the last key), so this promotes nothing
+    # over a stronger on-theme article; it only makes the article reachable.
+    def _imported(a) -> int:
+        return 1 if (a.get('_held_from') or a.get('_recalled_from')) else 0
+
     strong_match = sorted(
-        (a for a in candidates if a.get('_keyword_matches', 0) > 0),
-        key=lambda a: (a.get('_keyword_matches', 0), a.get('_boosted_score', a.get('ai_score', 0))),
+        (a for a in candidates if a.get('_keyword_matches', 0) > 0 or _imported(a)),
+        key=lambda a: (a.get('_keyword_matches', 0),
+                       a.get('_boosted_score', a.get('ai_score', 0)),
+                       _imported(a)),
         reverse=True,
     )
-    weak_match = [a for a in candidates if a.get('_keyword_matches', 0) == 0]
+    weak_match = [a for a in candidates
+                  if a.get('_keyword_matches', 0) == 0 and not _imported(a)]
 
     theme_keywords = _build_theme_keywords(theme_name)
     theme_anti_keywords = _build_theme_anti_keywords(theme_name)
@@ -10609,6 +10772,24 @@ def run_script_stage() -> tuple[str, str] | None:
                     today_focus, event_focus=active_event
                 )
 
+                # The deep dive needs 3 and the roundup's theme block needs
+                # ROUNDUP_THEME_FLOOR; a pool at or under that is already
+                # rationing before any ranking runs. On 2026-09-17 the feed
+                # handed over 4 theme articles against 65 bonus on Indigenous
+                # Lands day and nothing anywhere said so. This is the upstream
+                # joint-scoring collapse arriving (sibling gotcha 14), not a
+                # quiet news week — check the theme's argmax share before
+                # touching selection or feeds.opml.
+                if (not _is_geographic_theme(today_theme)
+                        and len(theme_articles) <= THEME_POOL_FLOOR):
+                    degrade(
+                        "script/curate",
+                        f"Feed supplied {len(theme_articles)} theme article(s) "
+                        f"and {len(bonus_articles)} bonus on {today_theme} day "
+                        f"(floor {THEME_POOL_FLOOR}) — suspect upstream theme "
+                        f"scoring, not supply"
+                    )
+
                 # Inject user-seeded URLs into the article pool.
                 # High-priority seeds are always eligible (bypass theme day filter) so
                 # they appear in the very next episode, as the shortcut advertises.
@@ -10702,6 +10883,24 @@ def run_script_stage() -> tuple[str, str] | None:
                 print(f"   dropped {len(_roundup_dropped)} over budget/unconnected:")
                 for a in _roundup_dropped:
                     print(f"   ✂️  {a.get('title', '')[:70]}")
+            # A themed show whose roundup carries nothing on its theme is the
+            # failure this whole selection stack exists to prevent, and until
+            # 2026-09-17 it was not an error, a warning or a row — the run went
+            # green. That day's blocks were local:5, community_life:3,
+            # life_sciences:3, physical_sciences:3, kicker:1 on Indigenous Lands
+            # day: fifteen stories, empty theme block, and the only trace was
+            # one line of stdout nobody reads. The geographic day is exempt
+            # because it has no theme block by construction — every candidate
+            # there is local, which is the whole point of `_geographic_rank`.
+            _on_theme = _blocks.get('theme', 0) + _blocks.get('theme_adjacent', 0)
+            if not _is_geographic_theme(today_theme) and _on_theme < ROUNDUP_THEME_FLOOR:
+                degrade(
+                    "script/curate",
+                    f"News roundup carries {_on_theme} on-theme story(ies) "
+                    f"(floor {ROUNDUP_THEME_FLOOR}) on {today_theme} day — "
+                    f"{len(theme_articles)} theme article(s) reached the pool. "
+                    f"Check the upstream theme score before touching selection."
+                )
 
         # Everything from here to the script prompt enriches the episode without
         # being load-bearing for it. Each degrades to the value pre-assigned
