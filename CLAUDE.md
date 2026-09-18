@@ -279,6 +279,8 @@ history, and a truncated `podcast-feed.xml` breaks every podcast client at once.
 - `phrase_ledger.json` — 21-episode rolling phrase-frequency window + the burned list
 - `roadmap_ledger.json` — findings distilled from the daily reviews, with their recurrence
   counts and closed/retired records; renders the managed block of `ROADMAP.md`
+- `native_land_cache.json` — place name → coordinates + territory names. A lookup
+  cache, not history: losing it costs repeat lookups, never a claim
 
 ### Configuration System (`config_loader.py`)
 
@@ -297,6 +299,7 @@ All content is externalized to `config/` JSON files; loaders are LRU-cached (sin
 | `blocklist.json` | Excluded domains and keywords |
 | `psa_organizations.json` | Community org roster + weekday assignments |
 | `disciplines.json` | Topic hierarchy for news roundup grouping |
+| `indigenous_nations.json` | Nation names + aliases the territory check recognises (recognition only — it never puts a name in a script) |
 
 ### Themes
 
@@ -659,6 +662,77 @@ an editorial idea and the reason to listen more than one day a week.
   degradations and `run_script_stage` drains them via `_report_anchor_degradations()`. **A new
   fallback here must append to `_degradations`** or it will not reach the run report.
 - Preview the schedule without spending or writing state: `python weekly_anchor.py --preview 12`.
+
+### Naming a nation on air (`native_land.py`, `config/indigenous_nations.json`)
+
+On 2026-09-18 the Wild Spaces episode ran its deep dive on a BC Wildfire Service
+prescribed burn near Deer Park Mountain **outside Castlegar** — West Kootenay, Sinixt
+territory, about 600 km southeast of here — and asked four separate times, in the cold
+open, the deep dive and the outro, whether "Sinixt or **Tŝilhqot'in** voices" had shaped
+the burn plan. Sinixt is right. Tŝilhqot'in territory is the Chilcotin plateau and comes
+nowhere near Castlegar.
+
+**Nothing was wrong about a fact the pipeline had.** `INDIGENOUS CONTEXT` in
+`prompts.json` hands the writer the show's three acknowledgment nations as standing
+regional context, the writer reached for the vocabulary it was given, and no stage after
+it could tell that a nation and a place had been put together that do not go together.
+It is the same failure as the Sunday Meta Moment's fabricated Ktunaxa story and the
+roundup's borrowed candidate name: the prompt supplies a roster, and a roster with no
+scope attached gets used out of scope.
+
+- **The prompt fix is the load-bearing half.** Those three names now say in the prompt
+  that they describe the Cariboo and nowhere else, that a nation is named only for its
+  own territory and only when a source names it, and that a story the show has no
+  sourced nation for asks its question without naming anyone. **Naming the wrong people
+  is worse than naming none** — the escape hatch is the point, exactly as it is for the
+  weekly anchor and the Meta Moment's NONE.
+- **The check is the backstop**, and it measures the output rather than lengthening the
+  instruction — the phrase ledger's trade, and `_meta_moment_unknown_names`'.
+  `script/territory-check` runs after `script/tell-scrub`, deliberately: that day's error
+  was in the cold open, the deep dive *and* the outro, and a check placed before
+  `generate_cold_open` would have cleared two of the three.
+- **It only ever disconfirms.** A finding needs a nation, an out-of-region place, a
+  territory lookup that answered, and that nation absent from what came back. A lookup
+  that fails, is unsure, or returns an empty list changes nothing. Native Land Digital
+  says plainly that its maps are crowd-sourced, are not authoritative, and must not be
+  used to define boundaries — so it may take away a claim the show cannot source and
+  **must never supply one**. The rewrite deletes the wrong name and is forbidden from
+  substituting a right one; SOURCED OR UNSAID is not weakened by a crowd-sourced map and
+  must not be strengthened by one either.
+- **The standing land acknowledgment is exempt by construction, not by a special case.**
+  A sentence whose place names are all on `podcast.json`'s `local_places` is never
+  checked. The welcome line names the three nations and the Cariboo, is correct, and is
+  spoken every single episode — a check that rewrote it nightly would be worse than no
+  check. What is left is precisely the observed failure: a house nation attached to a
+  place the show is not from.
+- **Two keyless lookups, both cached forever, both bounded.** Place name → coordinates
+  via Open-Meteo's geocoder (already the show's weather vendor, so no new dependency and
+  no new key), coordinates → territories via `native-land.ca`. `NATIVE_LAND_API_KEY` is
+  sent when set. The geocoder is also the *gazetteer* — a capitalized word that does not
+  resolve to a Canadian place is cached as unresolved and costs one lookup once, ever —
+  and a Canadian result in BC outranks a same-named town elsewhere, because checking
+  Deer Park, Texas against this map would be worse than not checking.
+- **Orthography is the whole difficulty.** Tŝilhqot'in, Tsilhqot'in and Chilcotin are one
+  nation; "Secwépemc" in the script is "Secwepemc (Shuswap)" on the map. `_normalize`
+  folds diacritics and punctuation away and matching is substring in both directions —
+  a false *match* only means the line ships as written, which is the safe direction for
+  this check to fail in.
+- `native_land` cannot import `degrade()` without a circular import, so it records
+  degradations and the script stage drains them via `_report_native_land_degradations()`.
+  **A new fallback there must append to `_degradations`** or it will not reach the run
+  report.
+- **The lookup shape is not verified against the live API from this sandbox** — the
+  network policy denies both hosts. The parser accepts a bare GeoJSON feature list *and*
+  a FeatureCollection, and any other shape reads as "no answer", which produces no
+  finding. Confirm it against a real response before trusting the row it writes.
+
+**Opinion columns and crime incidents are filtered upstream, not here** —
+`super-rss-feed`'s `podcast_content_exclusion()`, whose scope is the podcast pool alone
+(the reader still gets the local RCMP story in `feed-local.json`). Articles already sitting
+in `article_holding.json` when that shipped were admitted under the old rule and age out
+on the 14-day hold window; nothing downstream re-checks them. **When a crime story or an
+op-ed reaches an episode, read `config/podcast_schedule.json` → `excluded_content` in the
+sibling repo before touching anything here.**
 
 ### Voice and AI Tells (`config/ai_tells.json`, `podcasts/phrase_ledger.json`)
 

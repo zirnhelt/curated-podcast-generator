@@ -104,6 +104,22 @@ def load_hosts_config():
         return json.load(f)
 
 @lru_cache(maxsize=1)
+def load_indigenous_nations():
+    """Nation names and aliases the territory check recognises (cached).
+
+    A style file must never be able to fail a run — the same rule
+    `score_script` follows with `_FALLBACK_TELL_PATTERNS`. A missing or
+    unreadable file here means the territory check finds no nation to look up
+    and stands down, which is the behaviour before the check existed.
+    """
+    try:
+        with open(CONFIG_DIR / "indigenous_nations.json", 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+@lru_cache(maxsize=1)
 def load_themes_config():
     """Load daily themes (cached)."""
     with open(CONFIG_DIR / "themes.json", 'r') as f:
