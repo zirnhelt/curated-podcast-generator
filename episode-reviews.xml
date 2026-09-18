@@ -5,39 +5,43 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Fri, 18 Sep 2026 10:05:50 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2026 14:54:02 +0000</lastBuildDate>
     <item>
       <title>Episode Review — Cariboo Signals, September 18, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-18.html</link>
       <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-18.html</guid>
-      <pubDate>Fri, 18 Sep 2026 10:05:50 +0000</pubDate>
+      <pubDate>Fri, 18 Sep 2026 14:54:02 +0000</pubDate>
       <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/35322586139"&gt;35322586139&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h3&gt;Brave API exhausted mid-run; thin articles kept stub bodies instead&lt;/h3&gt;
+&lt;h3&gt;Body text budget exhausted mid-run&lt;/h3&gt;
 
-&lt;p&gt;The Brave search budget for article body backfill consumed all 12 calls by the time the pipeline had processed roughly two-thirds of the roundup. Fourteen degradation warnings, all identical, mark the moment the budget emptied. Articles that arrived with minimal text stayed that way—no expansion attempted, bodies left thin. The pipeline proceeded rather than halted. Some of these sparse articles may be cut from the script later as editorially weak.&lt;/p&gt;
+&lt;p&gt;The pipeline burned through its Brave Search budget on article body-backfill before reaching the end of the roundup. Fourteen degradations flagged the same constraint: once 12 calls were spent, remaining thin articles kept their stub bodies and face potential removal from the script.&lt;/p&gt;
 
-&lt;p&gt;This is the cost. The script shipped at 3,049 words against a target of 3,400. The first draft came in at 2,672 words and was sent back for expansion, a normal step. The expanded version still fell 351 words short of target. Whether Brave exhaustion caused that shortfall or merely constrained it is not clear from the facts, but the timing suggests a causal link: more full article bodies would have meant more script surface to work with.&lt;/p&gt;
+&lt;p&gt;This is a structural choice, not a quality slip. The system chose to enrich fewer articles fully rather than distribute shallow content across more. The shipped script contains 3,049 words—below the 3,400-word target, but above the first draft's 2,672. One expand pass brought it there.&lt;/p&gt;
 
-&lt;h3&gt;Citation matching held; debate question stayed grounded&lt;/h3&gt;
+&lt;h3&gt;Citation matching held&lt;/h3&gt;
 
-&lt;p&gt;Of 15 citations in the roundup segment, 13 matched back to their sources. All 3 deep-dive citations matched their sources. The debate question—whether BC Wildfire Service should make prescribed burn decisions unilaterally or share co-decision authority with Indigenous Nations over their territories—remained anchored to concrete reporting rather than abstract framing.&lt;/p&gt;
+&lt;p&gt;The roundup matched 13 of 15 citations. The deep dive achieved perfect alignment: 3 of 3 citations verified.&lt;/p&gt;
 
-&lt;h3&gt;Script quality flagged three times for AI patterns&lt;/h3&gt;
+&lt;p&gt;The unmatched pair in the roundup suggests either source unavailability or citation drift between draft and final script—the facts do not specify which. No other warnings accompanied the mismatch.&lt;/p&gt;
 
-&lt;p&gt;The quality check caught three instances of tell-don't-show language or other signatures of LLM-generated voice. Voice ratio between Casey and Riley sat at 1.01 to 1, nearly balanced. The script itself was reviewed and approved at 3,049 words; that is what shipped.&lt;/p&gt;
+&lt;h3&gt;Voice balance and AI tells&lt;/h3&gt;
 
-&lt;h3&gt;Audio and video rendered at 19.1 minutes each&lt;/h3&gt;
+&lt;p&gt;Casey's airtime exceeded Riley's by a ratio of 1.01 to 1. Three AI tell patterns surfaced during quality review—moments where generated prose read as statistically characteristic of LLM output rather than natural narration.&lt;/p&gt;
 
-&lt;p&gt;Episode 234 in the RSS feed. Audio file 17.4 MB. Video file 64.9 MB. Both rendered to 19.1 minutes of content. Three deep dives were included: BC Wildfire Service prescribed burn at Deer Park Mountain, US state wildfire laws for utilities from Wildfire Today, and El Niño feedback loops from The Atlantic.&lt;/p&gt;
+&lt;h3&gt;The debate question&lt;/h3&gt;
 
-&lt;h3&gt;Three manual triggers completed; one still in progress&lt;/h3&gt;
+&lt;p&gt;Today's framing: "Should provincial prescribed burn decisions be made unilaterally by BC Wildfire Service, or should Indigenous Nations have co-decision authority over land management in their territories?"&lt;/p&gt;
 
-&lt;p&gt;Two successful runs finished this morning—one at 08:32 UTC, another at 09:05 UTC. A third run started at 10:05 UTC and remains in progress. All three were manual triggers. The generate script step took 774 seconds across runs. No timeout or service failures reported.&lt;/p&gt;
+&lt;h3&gt;Runaway fallback at 2:53 PM Pacific&lt;/h3&gt;
 
-&lt;h3&gt;Token spend and API calls&lt;/h3&gt;
+&lt;p&gt;Three manual triggers completed on schedule between 8:05 and 10:12 AM. A fallback run launched at 2:53 PM Pacific—288 minutes late—and remained in progress at report time. The log shows it started but provides no step details or conclusion yet.&lt;/p&gt;
 
-&lt;p&gt;91,685 input tokens to Anthropic across 7 Claude API calls. 3 calls to Brave for search and body backfill before budget exhaustion. Total spend figures were not provided in the run output.&lt;/p&gt;
+&lt;h3&gt;Production numbers&lt;/h3&gt;
+
+&lt;p&gt;The episode shipped at 19.1 audio minutes and 17.4 MB. Video matched the audio length at 19.1 minutes and rendered to 64.9 MB. Episode 234 now live in the RSS feed.&lt;/p&gt;
+
+&lt;p&gt;The pipeline consumed 91,685 Anthropic input tokens across 7 Claude calls and 3 Brave Answers calls. Script generation consumed 774 seconds; audio rendering took 382 seconds.&lt;/p&gt;
 
 &lt;h3&gt;The day's triggers&lt;/h3&gt;
 &lt;table&gt;
@@ -45,7 +49,8 @@
 &lt;tbody&gt;
 &lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-18T08:05:12Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-18T09:05:04Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-18T10:05:13Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-18T10:05:13Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-09-18T14:53:27Z&lt;/td&gt;&lt;td&gt;+288 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 

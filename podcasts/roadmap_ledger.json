@@ -231,15 +231,16 @@
       "detail": "The pipeline allocates 12 API calls to enrich thin article summaries via Brave's web search, making them narrative-ready for the script. Once the budget ran dry during this run on 2026-09-01, the remaining articles with stub bodies were culled rather than included as sparse entries. This created a 48-story gap between source volume and what shaped the final episode, introducing selection bias toward the deepest-coverage pieces. Raise the backfill budget, meter it per-article-length to preserve more thin stories, or implement a second-pass fallback that scripts stub bodies without enrichment rather than dropping them.",
       "source": "review",
       "status": "open",
-      "occurrences": 4,
+      "occurrences": 5,
       "first_seen": "2026-09-01",
       "seen": [
         "2026-09-01",
         "2026-09-05",
         "2026-09-06",
-        "2026-09-07"
+        "2026-09-07",
+        "2026-09-18"
       ],
-      "last_seen": "2026-09-07"
+      "last_seen": "2026-09-18"
     },
     {
       "id": "script-expansion-request-produced-net-word-loss",
@@ -290,7 +291,7 @@
       "detail": "On 2026-09-03 at 14:56 UTC, the 3:05 AM Pacific fallback trigger (scheduled for ~11:05 UTC) started 291 minutes late and was still in-progress when the review ran. Three manual runs occurred before the scheduled time, and the facts do not explain why the fallback ran so late or why it stalled. Check the GitHub Actions scheduler logs and the in-progress run URL https://github.com/zirnhelt/curated-podcast-generator/actions/runs/33769783188 to determine whether the runner is hung, whether there is a capacity bottleneck, or whether the cron expression is misconfigured.",
       "source": "review",
       "status": "open",
-      "occurrences": 7,
+      "occurrences": 8,
       "first_seen": "2026-09-03",
       "seen": [
         "2026-09-03",
@@ -299,9 +300,10 @@
         "2026-09-12",
         "2026-09-13",
         "2026-09-15",
-        "2026-09-17"
+        "2026-09-17",
+        "2026-09-18"
       ],
-      "last_seen": "2026-09-17"
+      "last_seen": "2026-09-18"
     },
     {
       "id": "ai-tell-pattern-in-shipped-episode",
@@ -458,15 +460,16 @@
       "detail": "On 2026-09-09, the quality check detected 3 AI-tell pattern hits in the shipped script. These phrases remained in the audio and RSS feed. The detection system is working, but the pipeline has no gate to reject episodes with pattern hits or halt publication for manual review before shipping.",
       "source": "review",
       "status": "open",
-      "occurrences": 4,
+      "occurrences": 5,
       "first_seen": "2026-09-09",
       "seen": [
         "2026-09-09",
         "2026-09-14",
         "2026-09-15",
-        "2026-09-16"
+        "2026-09-16",
+        "2026-09-18"
       ],
-      "last_seen": "2026-09-16"
+      "last_seen": "2026-09-18"
     },
     {
       "id": "manual-dispatch-and-fallback-both-incomplete",

@@ -120,8 +120,8 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       gap between source volume and what shaped the final episode, introducing selection bias
       toward the deepest-coverage pieces. Raise the backfill budget, meter it per-article-length
       to preserve more thin stories, or implement a second-pass fallback that scripts stub
-      bodies without enrichment rather than dropping them. (seen in 4 reviews, latest
-      2026-09-07)
+      bodies without enrichment rather than dropping them. (seen in 5 reviews, latest
+      2026-09-18)
 - [ ] **Script expansion request produced net word loss instead of growth.** On 2026-09-02, the
       first draft arrived at 2,986 words against a 3,400-word target. The pipeline issued an
       expand pass, expecting the script to grow toward target. The shipped script measured 2,871
@@ -144,7 +144,7 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       late or why it stalled. Check the GitHub Actions scheduler logs and the in-progress run
       URL https://github.com/zirnhelt/curated-podcast-generator/actions/runs/33769783188 to
       determine whether the runner is hung, whether there is a capacity bottleneck, or whether
-      the cron expression is misconfigured. (seen in 7 reviews, latest 2026-09-17)
+      the cron expression is misconfigured. (seen in 8 reviews, latest 2026-09-18)
 - [ ] **One AI-tell pattern phrase shipped in the final episode without removal.** The quality
       review on 2026-09-04 flagged 1 instance of tell-pattern language (phrasing characteristic
       of Claude output) in the script. The system did not remove it before shipping. The pattern
@@ -195,7 +195,7 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       final episode.** On 2026-09-09, the quality check detected 3 AI-tell pattern hits in the
       shipped script. These phrases remained in the audio and RSS feed. The detection system is
       working, but the pipeline has no gate to reject episodes with pattern hits or halt
-      publication for manual review before shipping. (seen in 4 reviews, latest 2026-09-16)
+      publication for manual review before shipping. (seen in 5 reviews, latest 2026-09-18)
 - [ ] **Deep dive citations matched at 33% versus roundup at 80%.** On September 13, the roundup
       section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3
       (33%). The gap suggests a different verification pathway or a shortfall in source
