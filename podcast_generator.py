@@ -44,6 +44,7 @@ from config_loader import (
     load_prompts_config,
     load_blocklist,
     load_disciplines_config,
+    load_indigenous_nations,
     load_bespoke_hosts,
     load_super_cycles_config,
     load_ai_tells_config,
@@ -80,6 +81,10 @@ from gemini_tts import (
 # Import deduplication module
 from dedup_articles import deduplicate_articles, format_evolving_story_context, cluster_and_rescore_corpus, load_recent_citations
 import cohere_enrichment
+# Territory confirmation for on-air nation names — see native_land.py.
+# Imported plainly rather than lazily: the module makes no network call
+# at import time and the check has to be reachable from the script stage.
+import native_land
 
 # Import PSA selector
 from psa_selector import select_psa
@@ -8496,6 +8501,274 @@ def _meta_moment_allowed_words(changelog: str) -> set:
     return set(_META_MOMENT_WORD_RE.findall(sources)) | _META_MOMENT_KNOWN_WORDS
 
 
+# --- Territory claims ---------------------------------------------------------
+# The show names Indigenous nations on air, which is right, and on 2026-09-18 it
+# named the wrong one: a prescribed burn outside Castlegar — West Kootenay,
+# Sinixt territory, ~600 km from here — was asked four separate times whether
+# "Sinixt or Tŝilhqot'in voices" had shaped it. Tŝilhqot'in is one of the three
+# nations the script prompt hands the writer as standing regional context, and
+# the writer reached for the vocabulary it was given.
+#
+# Two changes answer that, and the prompt is the load-bearing one: INDIGENOUS
+# CONTEXT in prompts.json now scopes those three names to the Cariboo and says
+# a nation is named only for its own territory. This is the measurement behind
+# it — the same trade the phrase ledger makes against AI tells, and the same one
+# `_meta_moment_unknown_names` makes against fabricated names: check the output
+# rather than lengthen the instruction.
+#
+# It only ever DISCONFIRMS. A finding needs a nation, a place, a successful
+# territory lookup, and that nation absent from what came back. A lookup that
+# fails, is unsure, or returns nothing changes nothing — see native_land.py on
+# why a crowd-sourced map may remove a claim the show cannot source and must
+# never supply one.
+
+# Capitalized words that are not places. Sentence-initial words are already
+# excluded by position; these are the ones that survive it.
+_TERRITORY_NON_PLACES = frozenset({
+    'riley', 'casey', 'cariboo', 'signals', 'nation', 'nations', 'first',
+    'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday',
+    'january', 'february', 'march', 'april', 'may', 'june', 'july', 'august',
+    'september', 'october', 'november', 'december',
+    'bc', 'b.c.', 'canada', 'canadian', 'british', 'columbia', 'ottawa',
+    'ministry', 'service', 'government', 'council', 'district', 'regional',
+    'province', 'provincial', 'federal', 'crown', 'wildfire', 'parks',
+    'indigenous', 'metis', 'inuit', 'the', 'and', 'but', 'plus', 'today',
+    'tomorrow', 'yesterday', 'coming', 'welcome', 'speaking', 'deep', 'dive',
+})
+
+_TERRITORY_WORD_RE = re.compile(r"[A-Z][\w'’šŝš\-]*")
+
+
+def _territory_nation_vocabulary():
+    """(display_name, [aliases]) for every nation the check can recognise."""
+    cfg = load_indigenous_nations() or {}
+    return [(n.get('name', ''), n.get('aliases', []) or [])
+            for n in cfg.get('nations', []) if n.get('name')]
+
+
+def _nations_named_in(sentence: str) -> list:
+    """Nations this sentence names, as (display, aliases) pairs.
+
+    Matched on the folded form so Tŝilhqot'in, Tsilhqot'in and Chilcotin are
+    one nation rather than three — the orthography is exactly what a naive
+    string comparison gets wrong.
+    """
+    folded = native_land._normalize(sentence)
+    found = []
+    for display, aliases in _territory_nation_vocabulary():
+        for candidate in [display] + list(aliases):
+            token = native_land._normalize(candidate)
+            if len(token) >= 5 and token in folded:
+                found.append((display, aliases))
+                break
+    return found
+
+
+def _territory_place_candidates(sentence: str, nation_words: set) -> list:
+    """Capitalized tokens in the sentence that might be place names.
+
+    Deliberately over-generous: the geocoder is the gazetteer, and a candidate
+    that is not a Canadian place resolves to nothing, is cached as unresolved
+    and costs one lookup once, ever. Sentence-initial tokens are dropped for
+    the reason `_meta_moment_unknown_names` drops them — they are capitalized
+    by grammar and prove nothing.
+    """
+    body = re.sub(r"\*\*[A-Za-z]+:\*\*", "", sentence)
+    body = re.sub(r"\[(?:pause|overlap):[^\]]*\]", "", body)
+    tokens = _TERRITORY_WORD_RE.findall(body)
+    out = []
+    for token in tokens[1:]:
+        stem = re.sub(r"['’]s$", "", token)
+        low = stem.lower()
+        if len(stem) < 4 or low in _TERRITORY_NON_PLACES or low in nation_words:
+            continue
+        if stem not in out:
+            out.append(stem)
+    return out
+
+
+def check_territory_claims(script_text: str) -> list:
+    """Sentences pairing a nation with a place whose territories exclude it.
+
+    The in-region exemption is what keeps the show's own land acknowledgment
+    out of this. "Speaking to you from the traditional territories of the
+    Secwépemc, Tŝilhqot'in, and Dakelh nations here in the Cariboo region" is
+    correct, is spoken every single episode, and names only places already on
+    the show's `local_places` list — so a sentence whose places are all local
+    is never checked. What is left is precisely the observed failure: a house
+    nation attached to a place the show is not from.
+    """
+    nations_cfg = load_indigenous_nations() or {}
+    if not nations_cfg.get('nations'):
+        return []
+
+    local_places = {p.lower() for p in CONFIG['podcast'].get('local_places', [])}
+    nation_words = set()
+    for display, aliases in _territory_nation_vocabulary():
+        for candidate in [display] + list(aliases):
+            nation_words.update(w.lower() for w in candidate.split())
+
+    findings = []
+    seen = set()
+    for line in script_text.split('\n'):
+        if not line.strip():
+            continue
+        for sentence in re.findall(r'[^.!?]*[.!?]|[^.!?]+$', line):
+            sentence = sentence.strip()
+            if not sentence:
+                continue
+            named = _nations_named_in(sentence)
+            if not named:
+                continue
+            places = _territory_place_candidates(sentence, nation_words)
+            # Every place in the sentence is somewhere the show is from: this
+            # is the acknowledgment or ordinary local coverage, not a borrowed
+            # nation name.
+            offsite = [p for p in places if p.lower() not in local_places]
+            if not offsite:
+                continue
+            for place in offsite:
+                territories = native_land.territories_for_place(place)
+                if not territories:
+                    continue  # no answer, or the map covers nothing — no finding
+                for display, aliases in named:
+                    if native_land.nation_matches_territories(display, aliases, territories):
+                        continue
+                    key = (sentence, display, place)
+                    if key in seen:
+                        continue
+                    seen.add(key)
+                    findings.append({
+                        'sentence': sentence,
+                        'nation': display,
+                        'place': place,
+                        'territories': territories,
+                    })
+    return findings
+
+
+def scrub_territory_claims(script_text: str, findings: list) -> str:
+    """Rewrite only the sentences attributing a nation to the wrong territory.
+
+    Same splice contract as `scrub_hard_banned`, for the same reason: a
+    re-polish of 3,400 words to fix one name is the expensive way to buy a
+    small correction, and a replacement is accepted only if the wrong nation
+    is gone from it and the original still matches verbatim. Anything else
+    keeps the original and degrades — a bad rewrite must never be worse than
+    the error it was fixing, and this one is about a real people.
+
+    The rewrite REMOVES the unsupported name. It does not substitute the
+    territories the lookup returned: those come from a crowd-sourced map that
+    says itself it is not authoritative, and putting one on air would be the
+    show asserting on a source it would not accept from anyone else.
+    """
+    client = get_anthropic_client()
+    if not client or not findings:
+        if findings:
+            degrade("script/territory-check",
+                    f"{len(findings)} unsupported territory claim(s) shipped unfixed "
+                    f"— no Anthropic client")
+        return script_text
+
+    sentences = list(dict.fromkeys(f['sentence'] for f in findings))
+    by_sentence = {}
+    for f in findings:
+        by_sentence.setdefault(f['sentence'], []).append(f)
+
+    numbered = []
+    for i, s in enumerate(sentences):
+        wrong = sorted({f['nation'] for f in by_sentence[s]})
+        where = sorted({f['place'] for f in by_sentence[s]})
+        numbered.append(
+            f"{i + 1}. {s}\n   REMOVE: {', '.join(wrong)} "
+            f"(not their territory — the story is about {', '.join(where)})"
+        )
+
+    prompt = (
+        "These sentences are from a two-host radio script. Each names an "
+        "Indigenous nation in connection with a place that is not in that "
+        "nation's territory. Rewrite each one so the wrong nation is gone.\n\n"
+        "Rules:\n"
+        "- Delete the wrong nation's name. Do NOT substitute a different "
+        "nation's name — the show has not sourced one, and naming the wrong "
+        "people is the error being fixed.\n"
+        "- If a correctly-named nation is also in the sentence, keep it.\n"
+        "- Otherwise rebuild the sentence around the question it was asking "
+        "(consultation, who was at the table, whose land it is) without "
+        "naming anyone.\n"
+        "- Keep every other fact, name, number and the speaker's meaning "
+        "identical.\n"
+        "- Keep it speakable and roughly the same length.\n"
+        "- Preserve any [pause:N] or [overlap:N] tags exactly where they are.\n\n"
+        f"Sentences:\n" + "\n".join(numbered) + "\n\n"
+        "Give the rewritten sentences in order — one per input sentence, same count."
+    )
+
+    try:
+        response = api_retry(lambda: client.messages.create(
+            model=SCRUB_MODEL,
+            max_tokens=1500,
+            messages=[{"role": "user", "content": prompt}],
+            output_config=_json_output({
+                "type": "object",
+                "properties": {
+                    "rewrites": {"type": "array", "items": {"type": "string"}},
+                },
+                "required": ["rewrites"],
+                "additionalProperties": False,
+            }),
+        ))
+        _log_api_call("claude", "input_tokens",
+                      getattr(getattr(response, "usage", None), "input_tokens", 0))
+        _log_api_call("claude", "output_tokens",
+                      getattr(getattr(response, "usage", None), "output_tokens", 0))
+        rewrites = json.loads(message_text(response)).get("rewrites", [])
+        if not isinstance(rewrites, list) or len(rewrites) != len(sentences):
+            raise ValueError(f"expected {len(sentences)} rewrites, got {len(rewrites)}")
+    except Exception as e:
+        degrade("script/territory-check",
+                f"{len(sentences)} sentence(s) naming the wrong nation shipped "
+                f"unfixed: {e}")
+        return script_text
+
+    fixed, skipped = 0, []
+    for original, replacement in zip(sentences, rewrites):
+        replacement = str(replacement).strip()
+        wrong = {f['nation'] for f in by_sentence[original]}
+        aliases = {a for f in by_sentence[original]
+                   for d, al in _territory_nation_vocabulary() if d == f['nation']
+                   for a in [d] + list(al)}
+        folded = native_land._normalize(replacement)
+        still_there = any(
+            len(native_land._normalize(a)) >= 5
+            and native_land._normalize(a) in folded
+            for a in aliases
+        )
+        if not replacement or still_there or original not in script_text:
+            skipped.append(original)
+            continue
+        script_text = script_text.replace(original, replacement, 1)
+        fixed += 1
+
+    print(f"   \U0001f5fa️  Territory scrub: {fixed}/{len(sentences)} sentence(s) rewritten")
+    if skipped:
+        degrade("script/territory-check",
+                f"{len(skipped)} sentence(s) kept an unsupported nation "
+                f"(rewrite rejected)")
+    return script_text
+
+
+def _report_native_land_degradations(name: str) -> None:
+    """Surface territory-lookup fallbacks as rows in the run report.
+
+    Same circular-import constraint as weekly_anchor and gemini_tts: the module
+    collects, the script path drains. An episode that shipped without the check
+    having run is not the same episode as one the check cleared.
+    """
+    for detail in native_land.drain_degradations():
+        degrade(name, detail)
+
+
 def _meta_moment_unknown_names(dialogue: str, changelog: str) -> list:
     """Names the dialogue asserts that nothing in the prompt authorized.
 
@@ -11132,6 +11405,25 @@ def run_script_stage() -> tuple[str, str] | None:
             if _tell_hits:
                 print(f"🧽 {len(_tell_hits)} hard-banned phrase(s) survived polish — scrubbing...")
                 script = scrub_hard_banned(script, _tell_hits)
+
+        with segment("script/territory-check", critical=False):
+            # After the cold open and the tell scrub, so it sees the final text
+            # of every segment — the 2026-09-18 Castlegar/Tŝilhqot'in error was
+            # in the cold open, the deep dive AND the outro, and a check that
+            # ran before generate_cold_open would have cleared two of the three.
+            _territory_findings = check_territory_claims(script)
+            if _territory_findings:
+                for _f in _territory_findings:
+                    print(f"   \U0001f5fa\ufe0f  {_f['nation']} named for {_f['place']} "
+                          f"— territories there: {', '.join(_f['territories'][:4])}")
+                    degrade(
+                        "script/territory-check",
+                        f"{_f['nation']} named in connection with {_f['place']}, "
+                        f"which the territory map covers as "
+                        f"{', '.join(_f['territories'][:4])}"
+                    )
+                script = scrub_territory_claims(script, _territory_findings)
+            _report_native_land_degradations("script/territory-check")
 
         with segment("script/debate-summary", critical=False):
             # Extract debate summary if not already obtained from batch

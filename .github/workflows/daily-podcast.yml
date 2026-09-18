@@ -185,6 +185,11 @@ jobs:
           BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
           BRAVE_ANSWERS_API_KEY: ${{ secrets.BRAVE_ANSWERS_API_KEY }}
           COHERE_API_KEY: ${{ secrets.COHERE_API_KEY }}
+          # Territory confirmation for on-air nation names (script/territory-check).
+          # Absent, native_land.py asks the endpoint without a key and, if that is
+          # refused, records a degradation and leaves every claim as written — a
+          # missing key costs the confirmation, never the episode.
+          NATIVE_LAND_API_KEY: ${{ secrets.NATIVE_LAND_API_KEY }}
           # The TTS provider flags (not the keys) must be set on this stage too:
           # the polish prompt is provider-gated — only Gemini performs `[tag]`
           # stage directions, so _stage_direction_addendum() would omit them and
