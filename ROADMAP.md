@@ -39,7 +39,7 @@ cannot reopen it. Anything written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-17) — 22 open.
+_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-18) — 22 open.
 Check a box to close one; it comes back only if the reviews raise it 2 more times._
 
 - [ ] **A credit-balance 400 is not the usage-limit wall, and every run pays for that.**
@@ -136,7 +136,7 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       segments. This is the same budget-exhaustion pattern as 2026-08-30. Increase the Brave
       call budget, prioritize articles by quality score before backfill, or implement a staged
       fallback that scripts stubs at reduced length rather than dropping articles entirely.
-      (seen in 3 reviews, latest 2026-09-04)
+      (seen in 4 reviews, latest 2026-09-18)
 - [ ] **Fallback 2 scheduled trigger started 291 minutes late and remains in-progress.** On
       2026-09-03 at 14:56 UTC, the 3:05 AM Pacific fallback trigger (scheduled for ~11:05 UTC)
       started 291 minutes late and was still in-progress when the review ran. Three manual runs

@@ -261,14 +261,15 @@
       "detail": "The pipeline spent its 12 Brave Search calls on body backfill and exhausted the budget mid-run on 2026-09-02. Fifty-five articles were dropped instead of scripted; the deep dives survived at 3 pieces. The remaining thin articles kept stub bodies, creating sparse segments. This is the same budget-exhaustion pattern as 2026-08-30. Increase the Brave call budget, prioritize articles by quality score before backfill, or implement a staged fallback that scripts stubs at reduced length rather than dropping articles entirely.",
       "source": "review",
       "status": "open",
-      "occurrences": 3,
+      "occurrences": 4,
       "first_seen": "2026-09-02",
       "seen": [
         "2026-09-02",
         "2026-09-03",
-        "2026-09-04"
+        "2026-09-04",
+        "2026-09-18"
       ],
-      "last_seen": "2026-09-04"
+      "last_seen": "2026-09-18"
     },
     {
       "id": "gemini-tts-multi-speaker-preamble-reject",
@@ -598,7 +599,20 @@
         "2026-09-17"
       ],
       "last_seen": "2026-09-17"
+    },
+    {
+      "id": "ai-tell-patterns-in-shipped-episode-three-instances",
+      "title": "Three AI-tell pattern instances passed quality review and shipped in the final episode.",
+      "detail": "The quality check on 2026-09-18 flagged three instances of LLM-signature language—tell-don't-show phrasing or other markers of synthetic voice—in the script that shipped at 3,049 words. These patterns reached the audio and video output despite the quality gate. Tighten the quality filter to reject episodes with two or more flagged patterns, or add a human review checkpoint before final render when the count exceeds one.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-18",
+      "seen": [
+        "2026-09-18"
+      ],
+      "last_seen": "2026-09-18"
     }
   ],
-  "updated": "2026-09-17"
+  "updated": "2026-09-18"
 }
