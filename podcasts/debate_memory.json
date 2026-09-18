@@ -1,30 +1,4 @@
 {
-  "2026-06-19": {
-    "timestamp": 1781864557.020523,
-    "date": "2026-06-19",
-    "theme": "Wild Spaces & Outdoor Life",
-    "central_question": "Has improved backcountry gear and technology actually enhanced safety in remote BC wilderness, or merely given people unwarranted confidence without the judgment to match it?",
-    "riley_position": "Technological and gear improvements are meaningfully trickling down to expand backcountry access, and data infrastructure solutions (like integrated fire/evacuation platforms) exist and are deployable if politically prioritized.",
-    "riley_key_evidence": [
-      "Satellite communicators like Garmin inReach Mini 2 now cost under $400 CAD with subscriptions under $30/month",
-      "BC Wildfire Service fire maps, DriveBC alerts, and similar data already exist in usable form",
-      "South Africa's FireWatch and Australia's Fires Near Me app demonstrate working integrated data models that BC could adopt"
-    ],
-    "casey_position": "The real gap isn't gear or data availability\u2014it's governance integration and judgment under uncertainty; premium innovation benefits the already-equipped while core preparedness costs remain burdensome, and fragmented data silos fail to reach people when decisions matter most.",
-    "casey_key_evidence": [
-      "Base backcountry preparedness costs (satellite communicator, bear spray, navigation, first aid) haven't meaningfully decreased",
-      "Rural households bear disproportionate connectivity cost burdens even with cheaper devices",
-      "Kullagh Creek fire escalated from reported to 149 hectares with evacuations in days, with no integrated real-time situational awareness available to travelers"
-    ],
-    "resolution": "Both agreed the status quo is unsafe by default and that the barrier in BC is political choice rather than technical capacity\u2014the NWT's Dehcho First Nations successfully implemented co-governance fire management, proving the model works but requires institutional will rather than app innovation.",
-    "topics_covered": [
-      "Gear innovation and market accessibility in backcountry preparedness",
-      "Data integration gaps between provincial agencies managing fire, roads, and evacuation zones",
-      "Governance frameworks and First Nations stewardship decision-making authority in wildfire management",
-      "Information delivery failures in rapid-onset fire scenarios (Kullagh Creek case study)",
-      "Community-sourced versus formal information ecosystems for backcountry conditions"
-    ]
-  },
   "2026-06-20": {
     "timestamp": 1781952152.491299,
     "date": "2026-06-20",
@@ -2468,6 +2442,34 @@
       "Listeners with ten spare minutes can contact their band office or a local reporter to verify whether First Nations hold formal seats on the B.C. Rail Corridor Alliance",
       "Attend or follow the next B.C. Rail Corridor Alliance meeting or UBCM session to ask on the record whether nations along the corridor hold a standing seat, formal consultation slot, or nothing yet",
       "Keep windows shut and questions loud about prescribed burns happening west of Williams Lake as early as tomorrow"
+    ]
+  },
+  "2026-09-18": {
+    "timestamp": 1789719595.867741,
+    "date": "2026-09-18",
+    "theme": "Wild Spaces & Outdoor Life",
+    "focus": "wildfire-resilience",
+    "anchor": "worth-saving",
+    "central_question": "Should provincial prescribed burn decisions be made unilaterally by BC Wildfire Service, or should Indigenous Nations have co-decision authority over land management in their territories?",
+    "riley_position": "Prescribed burning is necessary fire management grounded in solid science and Indigenous agreement on the principle of fire; the real question is ensuring meaningful consultation happens and governance processes improve, but waiting for perfect evidence while fuel loads build carries its own worse consequences.",
+    "riley_key_evidence": [
+      "NOAA's Climate Prediction Center flagged greater-than-90% probability of very strong El Ni\u00f1o events recurring more intensely than historical baseline",
+      "BC Wildfire Service has consultation protocols with Nations built into burn planning, which represents real improvement over no coordination",
+      "Summerland evacuated for 25 straight days last summer, showing real wildfire risk from unmanaged interior forest"
+    ],
+    "casey_position": "The Deer Park burn represents a colonial extraction of Indigenous burning techniques without transferring decision-making authority; the province is advancing a 450-hectare burn based on unsettled science while excluding Indigenous Nations from actual control over land management decisions.",
+    "casey_key_evidence": [
+      "2024 peer-reviewed study found prescribed fires under certain conditions actually raised probability of subsequent wildfire rather than lowering it",
+      "2025 People and Nature journal paper shows prescribed burning only works in specific contexts, yet agencies routinely stretch evidence beyond where it holds",
+      "Kanaka Bar's goat program demonstrates Indigenous-led fuel reduction on its own timeline and authority, contrasting sharply with ministry-scheduled burns"
+    ],
+    "resolution": "Riley and Casey agreed on a concrete test case: whether the Cariboo Regional District or Nations with territory touching planned burns secure formal co-decision authority (not just consultation) in burn planning before next spring fire season; they set this as the measurable marker to determine if reconciliation is substantive or theatrical.",
+    "topics_covered": [
+      "Indigenous co-decision authority versus consultation in land management",
+      "Scientific evidence and limitations of prescribed burning effectiveness",
+      "Climate intensification (El Ni\u00f1o patterns) and local mitigation actions",
+      "Comparison of Indigenous-led burning versus provincial protocols and timelines",
+      "Governance structures and liability frameworks shaping wildfire prevention decisions"
     ]
   }
 }

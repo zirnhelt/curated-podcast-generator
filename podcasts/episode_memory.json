@@ -1,26 +1,4 @@
 {
-  "2026-08-13": {
-    "timestamp": 1786613227.671768,
-    "topics": [
-      "[Williams Lake Tribune] Lytton festival to spotlight village",
-      "[Vancouver Sun] B.C. government rejects claim of massive, se",
-      "[Architizer] The Trouble With Typology: How Architecture\u2019s T",
-      "[Homebuilding & Renovating] Government confirms locations of",
-      "[CFJC Today Kamloops] Quesnel River Pulp curtailment sidelin",
-      "[ArchDaily] Beyond the Handmade Aesthetic: Why Craft Needs N",
-      "[Williams Lake Tribune] 3-day acting workshop inspires Xat\u015b\u016b",
-      "[The Guardian Global Development] \u2018The payment is small and "
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-08-13",
-    "focus": "guardians-stewardship",
-    "focus_name": "Guardians & Land Stewardship"
-  },
   "2026-08-14": {
     "timestamp": 1786699448.12024,
     "topics": [
@@ -743,5 +721,26 @@
     "date": "2026-09-17",
     "focus": "governance-title",
     "focus_name": "Governance, Title & Treaty"
+  },
+  "2026-09-18": {
+    "timestamp": 1789719592.377866,
+    "topics": [
+      "[My Cariboo Now] Police in 100 Mile House respond to road ra",
+      "[My Cariboo Now] Quesnel is getting ready to take back the n",
+      "[Williams Lake Tribune] DOERKSON: Natural resource sector cr",
+      "[My Cariboo Now] B.C. Conservative leader unveils new critic",
+      "[Williams Lake Tribune] Apple Pie Society recognizes Cariboo",
+      "[BC Wildfire Service] Prescribed Burn planned for Deer Park ",
+      "[Wildfire Today] Track US states\u2019 new wildfire laws for util",
+      "[The Atlantic] El Ni\u00f1o Has Become a Doom Loop"
+    ],
+    "themes": [
+      "rural development",
+      "environmental impact",
+      "Indigenous tech"
+    ],
+    "date": "2026-09-18",
+    "focus": "wildfire-resilience",
+    "focus_name": "Wildfire & Climate Resilience"
   }
 }

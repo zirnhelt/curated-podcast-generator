@@ -1,0 +1,365 @@
+{
+  "episode": {
+    "date": "2026-09-18",
+    "formatted_date": "Friday, September 18, 2026",
+    "theme": "Wild Spaces & Outdoor Life",
+    "title": "Cariboo Signals - Wild Spaces & Outdoor Life",
+    "description": "<p>Riley and Casey explore technology and society in rural communities. Today's focus: Wild Spaces & Outdoor Life.</p><p><b>THIS WEEK WE'RE ASKING:</b> Who decides what's worth saving?</p><p><b>NEWS ROUNDUP:</b> We break down [My Cariboo Now] Police in 100 Mile House respond to road rage incident and [My Cariboo Now] Quesnel is getting ready to take back the night, plus 1 more stories, and explore what these developments mean for communities like ours.</p><p><b>RURAL CONNECTIONS:</b> Should provincial prescribed burn decisions be made unilaterally by BC Wildfire Service, or should Indigenous Nations have co-decision authority over land management in their territories? Topics include: Indigenous co-decision authority versus consultation in land management, Scientific evidence and limitations of prescribed burning effectiveness, Climate intensification (El Niño patterns) and local mitigation actions, Comparison of Indigenous-led burning versus provincial protocols and timelines, Governance structures and liability frameworks shaping wildfire prevention decisions.</p><p><b>Hosts:</b> Riley (Tech optimist with an engineering background) and Casey (Community-first skeptic of tech promises).</p><p><b>COMMUNITY SPOTLIGHT:</b> <a href=\"https://conservationsociety.ca\">Cariboo Chilcotin Conservation Society</a></p><p><b>Sources discussed:</b></p><ul><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/316323/news/rcmp/police-in-100-mile-house-respond-to-road-rage-incident/\">[My Cariboo Now] Police in 100 Mile House respond to road ra...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/316306/news/health-care/quesnel-is-getting-ready-to-take-back-the-night/\">[My Cariboo Now] Quesnel is getting ready to take back the n...</a></li><li>none (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/09/17/doerkson-natural-resource-sector-crumbling-under-ndp-government/\">[Williams Lake Tribune] DOERKSON: Natural resource sector cr...</a></li><li>My Cariboo Now: <a href=\"https://www.mycariboonow.com/316148/news/politics/b-c-conservative-leader-unveils-new-critic-roles-after-9-mlas-quit-the-caucus/\">[My Cariboo Now] B.C. Conservative leader unveils new critic...</a></li><li>Rebecca Dyok (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/09/17/apple-pie-society-recognizes-cariboo-memorial-hospital-auxiliary-volunteers/\">[Williams Lake Tribune] Apple Pie Society recognizes Cariboo...</a></li><li>Brittany Webster (Williams Lake Tribune): <a href=\"https://wltribune.com/2026/09/15/video-team-leavitt-wins-pull-time-at-kelownas-annual-haul-for-hope/\">[Williams Lake Tribune] VIDEO: Team Leavitt wins pull time a...</a></li><li>Vancouver Sun: <a href=\"https://vancouversun.com/news/outdoor-recreation-contributes-6-billion-to-bc-economy\">[Vancouver Sun] Outdoor recreation contributes $6 billion to...</a></li><li>Santana Dreaver (IndigiNews): <a href=\"https://indiginews.com/features/kanaka-bar-calls-on-herd-for-help-with-wildfire-risk/\">[IndigiNews] Call in the goats: Kanaka Bar calls on herd for...</a></li><li>APTN News: <a href=\"https://www.aptnnews.ca/national-news/changes-to-canadas-climate-now-irreversible-federal-report-says/\">[APTN News] Changes to Canada’s climate now ‘irreversible,’ ...</a></li><li>Popular Mechanics: <a href=\"https://www.popularmechanics.com/science/health/a73643891/wildfire-smoke/\">[Popular Mechanics] North America’s Wildfire Smoke Is Becomi...</a></li><li>NYT Top Stories: <a href=\"https://www.nytimes.com/2026/09/13/climate/epa-power-plant-climate-rules.html\">[NYT Top Stories] E.P.A. Will Erase Limits on Climate Pollut...</a></li><li>Adam Kovac (Scientific American): <a href=\"https://www.scientificamerican.com/article/the-hole-in-the-ozone-layer-is-healing-but-extreme-weather-may-be-slowing-progress-down/\">[Scientific American] The hole in the ozone layer is healing...</a></li><li>Molly Taft (WIRED): <a href=\"https://www.wired.com/story/why-great-white-sharks-are-overrunning-maine/\">[WIRED] Why It Seems Like Great White Sharks Are Overrunning...</a></li><li>BC Wildfire Service: <a href=\"https://blog.gov.bc.ca/bcwildfire/prescribed-burn-planned-for-deer-park-mountain-area/\">[BC Wildfire Service] Prescribed Burn planned for Deer Park ...</a></li><li>Wildfire Today: <a href=\"https://wildfiretoday.com/track-us-states-new-wildfire-laws-for-utilities-with-this-interactive-map/\">[Wildfire Today] Track US states’ new wildfire laws for util...</a></li><li>Joshua Partlow (The Atlantic): <a href=\"https://www.theatlantic.com/science/2026/08/el-nino-effects/688429/?utm_source=feed\">[The Atlantic] El Niño Has Become a Doom Loop</a></li></ul><p><b>Additional sources provided:</b></p><ul><li>Molly Taft (Mother Jones): <a href=\"https://www.motherjones.com/environment/2026/09/supersized-historic-el-nino-havoc-consequences-climate-weather-warming-ocean-temperatures/\">[Mother Jones] This “Supersized” El Niño Is Only Just Beginn...</a></li><li>Liza Gross (Vox): <a href=\"https://www.vox.com/climate/501884/chemicals-produce-food-cancer-risk-reproductive-harm\">[Vox] Your food may be safe. Its packaging is another story.</a></li></ul><p><b>Credits</b><br>Theme Song: Cariboo Signals by Suno<br>Content Curation &amp; Script: Claude (Anthropic)<br>Script Review Model: claude-sonnet-5<br>Today's Voices: OpenAI TTS<br>Web Search: Brave Search API<br>Weather Data: Open-Meteo<br>Cover Art: ChatGPT (OpenAI)<br>Automation: GitHub Actions<br>Hosting: Cloudflare Pages<br>Producer: Erich Zirnhelt<br>Community Engagement: Cariboo Signals covers Secwépemc, Tŝilhqot'in, and Dakelh territories. We have not spoken directly with regional First Nations communications staff and welcome that conversation.<br>&#169; 2026 Erich Zirnhelt. Licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>.</p>",
+    "generated_at": "2026-09-18T01:19:47.794680-07:00",
+    "models": {
+      "script": "claude-sonnet-5",
+      "review": "claude-sonnet-5",
+      "summary": "claude-haiku-4-5"
+    },
+    "quality": {
+      "word_count": 3049,
+      "voice_ratio_casey_riley": 1.01,
+      "pattern_hits": {
+        "i_want_to_announcements": 0,
+        "heres_opener": 1,
+        "pre_validation": 1,
+        "contrastive_negation": 1,
+        "debate_club_vocab": 0,
+        "structural_announcements": 0,
+        "sourcing_meta_commentary": 0,
+        "ai_vocabulary_tics": 0,
+        "serves_as_dodge": 0,
+        "pedagogical_voice": 0,
+        "filler_transitions": 0,
+        "signposted_conclusion": 0,
+        "cliched_idioms": 0,
+        "dismissive_concession": 0,
+        "false_exclusivity": 0,
+        "patronizing_analogy": 0,
+        "futuristic_invitation": 0,
+        "vague_attribution": 0,
+        "dramatic_countdown": 0,
+        "closing_url_repetition": 0,
+        "worth_gerund": 0,
+        "roundup_seam": 0,
+        "thats_closer": 1,
+        "false_ranges": 0,
+        "meta_linguistic": 1,
+        "hard_banned": 0
+      },
+      "total_hits": 3,
+      "rhythm": {
+        "em_dashes_per_1k": 9.2,
+        "short_turns": 12,
+        "turns": 91,
+        "avg_turn_words": 32.2,
+        "antithesis_hits": 0,
+        "over_budget": [
+          "em_dashes"
+        ]
+      },
+      "deep_dive_article_quality": "rich",
+      "deep_dive_articles_with_body": 3
+    },
+    "anchor": {
+      "id": "worth-saving",
+      "question": "Who decides what's worth saving?"
+    }
+  },
+  "segments": {
+    "news_roundup": {
+      "title": "News Roundup",
+      "articles": [
+        {
+          "title": "[My Cariboo Now] Police in 100 Mile House respond to road rage incident",
+          "url": "https://www.mycariboonow.com/316323/news/rcmp/police-in-100-mile-house-respond-to-road-rage-incident/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 76,
+          "date_published": "2026-09-17T19:00:40+00:00",
+          "summary": "100 Mile House RCMP say a case of road rage has led to charges. The post Police in 100 Mile House respond to road rage incident appeared first on My Cariboo Now .",
+          "discussed": true,
+          "mention_offset_frac": 0.0262
+        },
+        {
+          "title": "[My Cariboo Now] Quesnel is getting ready to take back the night",
+          "url": "https://www.mycariboonow.com/316306/news/health-care/quesnel-is-getting-ready-to-take-back-the-night/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 78,
+          "date_published": "2026-09-17T13:00:17+00:00",
+          "summary": "The annual Take Back the Night event will take place tonight (Sept 17) in Quesnel. The post Quesnel is getting ready to take back the night appeared first on My Cariboo Now .",
+          "discussed": true,
+          "mention_offset_frac": 0.1168
+        },
+        {
+          "title": "[Williams Lake Tribune] DOERKSON: Natural resource sector crumbling under NDP government",
+          "url": "https://wltribune.com/2026/09/17/doerkson-natural-resource-sector-crumbling-under-ndp-government/",
+          "source": "Williams Lake Tribune",
+          "author": "none",
+          "ai_score": 72,
+          "date_published": "2026-09-18T04:03:05.424420+00:00",
+          "summary": "## DOERKSON: Natural resource sector crumbling under NDP government Published 8:00 am Thursday, September 17, 2026 **By Lorne Doerkson** Lorne Doerkson is the MLA for the Cariboo-Chilcotin ride. (Lorn...",
+          "discussed": true,
+          "mention_offset_frac": 0.1913
+        },
+        {
+          "title": "[APTN News] Changes to Canada’s climate now ‘irreversible,’ federal report says",
+          "url": "https://www.aptnnews.ca/national-news/changes-to-canadas-climate-now-irreversible-federal-report-says/",
+          "source": "APTN News",
+          "author": "",
+          "ai_score": 68,
+          "date_published": "2026-09-04T18:25:16+00:00",
+          "summary": "The impacts of climate change in Canada are now largely irreversible and average temperatures are... The post Changes to Canada’s climate now ‘irreversible,’ federal report says appeared first on APTN...",
+          "discussed": true,
+          "mention_offset_frac": 0.2144
+        },
+        {
+          "title": "[My Cariboo Now] B.C. Conservative leader unveils new critic roles after 9 MLAs quit the caucus",
+          "url": "https://www.mycariboonow.com/316148/news/politics/b-c-conservative-leader-unveils-new-critic-roles-after-9-mlas-quit-the-caucus/",
+          "source": "My Cariboo Now",
+          "author": "",
+          "ai_score": 73,
+          "date_published": "2026-09-09T20:14:17+00:00",
+          "summary": "B.C. Conservative Leader Kerry-Lynne Findlay has unveiled a revamped shadow cabinet after nine MLAs left the party caucus in less than three weeks. The post B.C. Conservative leader unveils new critic...",
+          "discussed": true,
+          "mention_offset_frac": 0.2237
+        },
+        {
+          "title": "[Williams Lake Tribune] Apple Pie Society recognizes Cariboo Memorial Hospital Auxiliary volunteers",
+          "url": "https://wltribune.com/2026/09/17/apple-pie-society-recognizes-cariboo-memorial-hospital-auxiliary-volunteers/",
+          "source": "Williams Lake Tribune",
+          "author": "Rebecca Dyok",
+          "ai_score": 51,
+          "date_published": "2026-09-18T04:03:05.424209+00:00",
+          "summary": "## Apple Pie Society recognizes Cariboo Memorial Hospital Auxiliary volunteers Published 3:21 pm Thursday, September 17, 2026 **By Rebecca Dyok** Volunteers with the Cariboo Memorial Hospital Auxiliar...",
+          "discussed": true,
+          "mention_offset_frac": 0.2914
+        },
+        {
+          "title": "[Williams Lake Tribune] VIDEO: Team Leavitt wins pull time at Kelowna’s annual Haul for Hope",
+          "url": "https://wltribune.com/2026/09/15/video-team-leavitt-wins-pull-time-at-kelownas-annual-haul-for-hope/",
+          "source": "Williams Lake Tribune",
+          "author": "Brittany Webster",
+          "ai_score": 42,
+          "date_published": "2026-09-18T04:03:05.424893+00:00",
+          "summary": "## VIDEO: Team Leavitt wins pull time at Kelowna’s annual Haul for Hope Published 3:26 pm Tuesday, September 15, 2026 **By Brittany Webster** Team Leavitt wins at the 2026 Kelowna Haul for Hope on Sep...",
+          "discussed": true,
+          "mention_offset_frac": 0.3407
+        },
+        {
+          "title": "[Vancouver Sun] Outdoor recreation contributes $6 billion to B.C.&#039;s economy",
+          "url": "https://vancouversun.com/news/outdoor-recreation-contributes-6-billion-to-bc-economy",
+          "source": "Vancouver Sun",
+          "author": "",
+          "ai_score": 62,
+          "date_published": "2026-09-17T20:00:18+00:00",
+          "summary": "New data puts the sector in the league of oil and gas extraction, tourism and film",
+          "discussed": true,
+          "mention_offset_frac": 0.3614
+        },
+        {
+          "title": "[IndigiNews] Call in the goats: Kanaka Bar calls on herd for help with wildfire risk",
+          "url": "https://indiginews.com/features/kanaka-bar-calls-on-herd-for-help-with-wildfire-risk/",
+          "source": "IndigiNews",
+          "author": "Santana Dreaver",
+          "ai_score": 69,
+          "date_published": "2026-09-16T16:07:26+00:00",
+          "summary": "As wildfires gain intensity each year, this Nlaka'pamux community is finding creative ways to prepare The post Call in the goats: Kanaka Bar calls on herd for help with wildfire risk appeared first on...",
+          "discussed": true,
+          "mention_offset_frac": 0.4949
+        },
+        {
+          "title": "[Popular Mechanics] North America’s Wildfire Smoke Is Becoming Deadly. It’s Only Going to Get Worse.",
+          "url": "https://www.popularmechanics.com/science/health/a73643891/wildfire-smoke/",
+          "source": "Popular Mechanics",
+          "author": "",
+          "ai_score": 61,
+          "date_published": "2026-09-10T12:30:00+00:00",
+          "summary": "The summer of 2026 showed how warming temperatures and wildfires are a growing threat to humanity’s health and safety.",
+          "discussed": true,
+          "mention_offset_frac": 0.5078
+        },
+        {
+          "title": "[NYT Top Stories] E.P.A. Will Erase Limits on Climate Pollution From Power Plants",
+          "url": "https://www.nytimes.com/2026/09/13/climate/epa-power-plant-climate-rules.html",
+          "source": "NYT Top Stories",
+          "author": "",
+          "ai_score": 61,
+          "date_published": "2026-09-14T02:14:19+00:00",
+          "summary": "Generation of electricity is the second largest source of carbon dioxide and other planet-warming gases in the United States.",
+          "discussed": true,
+          "mention_offset_frac": 0.7825
+        },
+        {
+          "title": "[Vox] Your food may be safe. Its packaging is another story.",
+          "url": "https://www.vox.com/climate/501884/chemicals-produce-food-cancer-risk-reproductive-harm",
+          "source": "Vox",
+          "author": "Liza Gross",
+          "ai_score": 60,
+          "date_published": "2026-09-07T11:00:00+00:00",
+          "summary": "This story was originally published by Inside Climate News and is reproduced here as part of the Climate Desk collaboration. Most people decide if it’s safe to eat an old tub of yogurt in the fridge o...",
+          "discussed": false
+        },
+        {
+          "title": "[Scientific American] The hole in the ozone layer is healing, but extreme weather may be slowing progress down",
+          "url": "https://www.scientificamerican.com/article/the-hole-in-the-ozone-layer-is-healing-but-extreme-weather-may-be-slowing-progress-down/",
+          "source": "Scientific American",
+          "author": "Adam Kovac",
+          "ai_score": 59,
+          "date_published": "2026-09-16T02:00:00+00:00",
+          "summary": "Climate change, driven by humans, is making extreme weather more commonplace",
+          "discussed": true,
+          "mention_offset_frac": 0.9076
+        },
+        {
+          "title": "[WIRED] Why It Seems Like Great White Sharks Are Overrunning Maine",
+          "url": "https://www.wired.com/story/why-great-white-sharks-are-overrunning-maine/",
+          "source": "WIRED",
+          "author": "Molly Taft",
+          "ai_score": 60,
+          "date_published": "2026-09-16T09:15:00+00:00",
+          "summary": "While a bunch of sharks cruising the Maine coast may seem ominous, it’s actually a sign of a conservation success story.",
+          "discussed": true,
+          "mention_offset_frac": 0.9342
+        },
+        {
+          "title": "[Mother Jones] This “Supersized” El Niño Is Only Just Beginning to Wreak Its Havoc",
+          "url": "https://www.motherjones.com/environment/2026/09/supersized-historic-el-nino-havoc-consequences-climate-weather-warming-ocean-temperatures/",
+          "source": "Mother Jones",
+          "author": "Molly Taft",
+          "ai_score": 61,
+          "date_published": "2026-09-04T11:30:00+00:00",
+          "summary": "This story was originally published by WIRED and is reproduced here as part of the Climate Desk collaboration. The world’s leading weather organization is sounding the alarm about this year’s super El...",
+          "discussed": false
+        }
+      ]
+    },
+    "deep_dive": {
+      "title": "Cariboo Connections - Wild Spaces & Outdoor Life",
+      "articles": [
+        {
+          "title": "[BC Wildfire Service] Prescribed Burn planned for Deer Park Mountain area",
+          "url": "https://blog.gov.bc.ca/bcwildfire/prescribed-burn-planned-for-deer-park-mountain-area/",
+          "source": "BC Wildfire Service",
+          "author": "",
+          "ai_score": 50,
+          "date_published": "2026-09-11T18:28:17+00:00",
+          "summary": "CASTLEGAR – To help reduce the risk of wildfires, the BC Wildfire Service is supporting Ministry of Water, Land and Resource Stewardship in conducting a prescribed burn in the Deer Park Mountain area....",
+          "discussed": true
+        },
+        {
+          "title": "[Wildfire Today] Track US states’ new wildfire laws for utilities with this interactive map",
+          "url": "https://wildfiretoday.com/track-us-states-new-wildfire-laws-for-utilities-with-this-interactive-map/",
+          "source": "Wildfire Today",
+          "author": "",
+          "ai_score": 64,
+          "date_published": "2026-09-17T07:15:36+00:00",
+          "summary": "Hawaii’s Lahaina Fire killed over 100 people and destroyed thousands of buildings. California’s Eaton Fire triggered the evacuation of over 100,000 residents. Texas’ Smokehouse Creek Fire burned over ...",
+          "discussed": true
+        },
+        {
+          "title": "[The Atlantic] El Niño Has Become a Doom Loop",
+          "url": "https://www.theatlantic.com/science/2026/08/el-nino-effects/688429/?utm_source=feed",
+          "source": "The Atlantic",
+          "author": "Joshua Partlow",
+          "ai_score": 60,
+          "date_published": "2026-08-30T11:00:00+00:00",
+          "summary": "Die-offs and floods have started already, a prelude to supercharged storms and droughts.",
+          "discussed": true
+        }
+      ],
+      "discussion": {
+        "central_question": "Should provincial prescribed burn decisions be made unilaterally by BC Wildfire Service, or should Indigenous Nations have co-decision authority over land management in their territories?",
+        "riley_position": "Prescribed burning is necessary fire management grounded in solid science and Indigenous agreement on the principle of fire; the real question is ensuring meaningful consultation happens and governance processes improve, but waiting for perfect evidence while fuel loads build carries its own worse consequences.",
+        "riley_key_evidence": [
+          "NOAA's Climate Prediction Center flagged greater-than-90% probability of very strong El Niño events recurring more intensely than historical baseline",
+          "BC Wildfire Service has consultation protocols with Nations built into burn planning, which represents real improvement over no coordination",
+          "Summerland evacuated for 25 straight days last summer, showing real wildfire risk from unmanaged interior forest"
+        ],
+        "casey_position": "The Deer Park burn represents a colonial extraction of Indigenous burning techniques without transferring decision-making authority; the province is advancing a 450-hectare burn based on unsettled science while excluding Indigenous Nations from actual control over land management decisions.",
+        "casey_key_evidence": [
+          "2024 peer-reviewed study found prescribed fires under certain conditions actually raised probability of subsequent wildfire rather than lowering it",
+          "2025 People and Nature journal paper shows prescribed burning only works in specific contexts, yet agencies routinely stretch evidence beyond where it holds",
+          "Kanaka Bar's goat program demonstrates Indigenous-led fuel reduction on its own timeline and authority, contrasting sharply with ministry-scheduled burns"
+        ],
+        "resolution": "Riley and Casey agreed on a concrete test case: whether the Cariboo Regional District or Nations with territory touching planned burns secure formal co-decision authority (not just consultation) in burn planning before next spring fire season; they set this as the measurable marker to determine if reconciliation is substantive or theatrical.",
+        "topics_covered": [
+          "Indigenous co-decision authority versus consultation in land management",
+          "Scientific evidence and limitations of prescribed burning effectiveness",
+          "Climate intensification (El Niño patterns) and local mitigation actions",
+          "Comparison of Indigenous-led burning versus provincial protocols and timelines",
+          "Governance structures and liability frameworks shaping wildfire prevention decisions"
+        ]
+      }
+    },
+    "weather": {
+      "title": "Weather Check",
+      "locations": [
+        {
+          "name": "Horsefly Lake",
+          "temp": 8,
+          "conditions": "overcast",
+          "high": 22,
+          "low": 7
+        },
+        {
+          "name": "100 Mile House",
+          "temp": 10,
+          "conditions": "clear skies",
+          "high": 21,
+          "low": 8
+        },
+        {
+          "name": "Williams Lake",
+          "temp": 9,
+          "conditions": "overcast",
+          "high": 24,
+          "low": 7
+        },
+        {
+          "name": "Quesnel",
+          "temp": 8,
+          "conditions": "clear skies",
+          "high": 24,
+          "low": 6
+        },
+        {
+          "name": "Tatla Lake",
+          "temp": 8,
+          "conditions": "clear skies",
+          "high": 24,
+          "low": 6
+        }
+      ],
+      "source": "Open-Meteo"
+    },
+    "community_spotlight": {
+      "title": "Community Spotlight",
+      "org_name": "Cariboo Chilcotin Conservation Society",
+      "description": "Environmental education nonprofit — Water Wise, Waste Wise, Skates for All, and school field programs since 1996",
+      "website": "conservationsociety.ca",
+      "psa_angle": "It's National Hunting Day. Ethical hunting is part of the Cariboo's heritage and conservation story. The Conservation Society's programs help connect communities with responsible land use.",
+      "event_name": "National Day of the Hunter"
+    }
+  },
+  "credits": {
+    "theme_song": "Cariboo Signals by Suno",
+    "theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/cariboo-signals-full.mp3",
+    "bespoke_theme_song": "String Theory Kickoff by Suno",
+    "bespoke_theme_song_url": "https://zirnhelt.github.io/curated-podcast-generator/string-theory-kickoff.mp3",
+    "content_curation": "Claude (Anthropic)",
+    "script_generation": "Claude (Anthropic)",
+    "text_to_speech_azure": "Azure Neural TTS",
+    "text_to_speech_openai": "OpenAI TTS",
+    "text_to_speech_gemini": "Gemini TTS",
+    "cover_art": "ChatGPT (OpenAI)",
+    "weather_data": "Open-Meteo",
+    "content_enrichment": "Cohere",
+    "producer": "Erich Zirnhelt",
+    "coordination": "Erich Zirnhelt",
+    "hosting": "Cloudflare Pages",
+    "automation": "GitHub Actions",
+    "project": "github.com/zirnhelt/curated-podcast-generator",
+    "license": "CC BY-NC 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "copyright_holder": "Erich Zirnhelt",
+    "copyright_year": "2026",
+    "text_to_speech": "OpenAI TTS"
+  }
+}
