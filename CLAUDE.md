@@ -707,8 +707,13 @@ scope attached gets used out of scope.
   place the show is not from.
 - **Two keyless lookups, both cached forever, both bounded.** Place name → coordinates
   via Open-Meteo's geocoder (already the show's weather vendor, so no new dependency and
-  no new key), coordinates → territories via `native-land.ca`. `NATIVE_LAND_API_KEY` is
-  sent when set. The geocoder is also the *gazetteer* — a capitalized word that does not
+  no new key), coordinates → territories via `native-land.ca`.
+  **`NATIVE_LAND_API_KEY` is a repository *secret*** — the opposite of the
+  `GEMINI_TTS_MODEL` rule two sections down, because a model name is not a credential
+  and this is. It is sent when set, the request is made without one when it is not, and
+  a missing or expired key costs the confirmation rather than the episode. The
+  degradation row records only the exception *type*: the message carries the request
+  URL, and the URL carries the key. The geocoder is also the *gazetteer* — a capitalized word that does not
   resolve to a Canadian place is cached as unresolved and costs one lookup once, ever —
   and a Canadian result in BC outranks a same-named town elsewhere, because checking
   Deer Park, Texas against this map would be worse than not checking.

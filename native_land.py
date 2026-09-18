@@ -30,8 +30,10 @@ Two keyless lookups, both cached to disk forever, both bounded per run:
 
 Open-Meteo is already the show's weather provider, so the geocoder adds a path
 on a vendor the pipeline depends on rather than a vendor it does not.
-Native Land's API takes an optional key (`NATIVE_LAND_API_KEY`); it is sent
-when present and the request is made without one when it is not.
+Native Land's API takes a key (`NATIVE_LAND_API_KEY`, a repository *secret* —
+unlike a model name, this one is a credential); it is sent when present and the
+request is made without one when it is not, so a missing or expired key costs
+the confirmation and never the episode.
 
 Same circular-import constraint as `weekly_anchor` and `gemini_tts`: this
 module records its own degradations and the script stage drains them.
@@ -126,6 +128,9 @@ def _get_json(url: str, params: Dict):
             if attempt + 1 < FETCH_ATTEMPTS:
                 time.sleep(RETRY_BACKOFF_S)
     if last is not None:
+        # The exception's own message carries the full request URL, and that URL
+        # carries the API key. Only the exception TYPE is recorded, because a
+        # degradation row is written to the job summary and the run report.
         _degradations.append(f"lookup failed ({type(last).__name__}) — claim left as written")
     return None
 
