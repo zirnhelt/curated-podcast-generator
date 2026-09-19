@@ -1,26 +1,4 @@
 {
-  "2026-08-14": {
-    "timestamp": 1786699448.12024,
-    "topics": [
-      "[Williams Lake Tribune] 51-unit supportive housing complex a",
-      "Shut down announced at Quesnel River Pulp : My Cariboo Now",
-      "Penticton Indian Band chief urges governments to prioritize ",
-      "Fort St. James adventure seeker swims the length of Stuart L",
-      "[Williams Lake Tribune] Re-entry information session for Pea",
-      "[Williams Lake Tribune] BCWS continues to respond to 6 out o",
-      "[Men's Health] Another Popular Greens Supplement Is Contamin",
-      "[NYT Business] What We Know About Taylor Farms\u2019 Food Recalls"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact",
-      "Indigenous tech"
-    ],
-    "date": "2026-08-14",
-    "focus": "wildlife-conservation",
-    "focus_name": "Wildlife & Conservation"
-  },
   "2026-08-15": {
     "timestamp": 1786783753.252489,
     "topics": [
@@ -742,5 +720,24 @@
     "date": "2026-09-18",
     "focus": "wildfire-resilience",
     "focus_name": "Wildfire & Climate Resilience"
+  },
+  "2026-09-19": {
+    "timestamp": 1789805797.620518,
+    "topics": [
+      "[Williams Lake Tribune] Williams Lake Legion cuts ribbon to ",
+      "[Williams Lake Tribune] Okanagan councillor guilty: \u2018Used co",
+      "[Williams Lake Tribune] B.C. Rail Corridor Alliance presses ",
+      "[My Cariboo Now] UPDATE: Highway 97 south of Quesnel now ope",
+      "[My Cariboo Now] Trial date scheduled for accused in large d",
+      "[Williams Lake Tribune] 2 mayor, 15 councillor candidates de",
+      "[Williams Lake Tribune] 14 candidates filed for School Distr",
+      "[Quesnel Cariboo Observer] 3 mayor, 18 council candidates in"
+    ],
+    "themes": [
+      "rural development"
+    ],
+    "date": "2026-09-19",
+    "focus": null,
+    "focus_name": null
   }
 }
