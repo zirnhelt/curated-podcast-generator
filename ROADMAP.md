@@ -136,7 +136,7 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       segments. This is the same budget-exhaustion pattern as 2026-08-30. Increase the Brave
       call budget, prioritize articles by quality score before backfill, or implement a staged
       fallback that scripts stubs at reduced length rather than dropping articles entirely.
-      (seen in 4 reviews, latest 2026-09-18)
+      (seen in 5 reviews, latest 2026-09-19)
 - [ ] **Fallback 2 scheduled trigger started 291 minutes late and remains in-progress.** On
       2026-09-03 at 14:56 UTC, the 3:05 AM Pacific fallback trigger (scheduled for ~11:05 UTC)
       started 291 minutes late and was still in-progress when the review ran. Three manual runs
@@ -144,7 +144,7 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       late or why it stalled. Check the GitHub Actions scheduler logs and the in-progress run
       URL https://github.com/zirnhelt/curated-podcast-generator/actions/runs/33769783188 to
       determine whether the runner is hung, whether there is a capacity bottleneck, or whether
-      the cron expression is misconfigured. (seen in 8 reviews, latest 2026-09-18)
+      the cron expression is misconfigured. (seen in 9 reviews, latest 2026-09-19)
 - [ ] **One AI-tell pattern phrase shipped in the final episode without removal.** The quality
       review on 2026-09-04 flagged 1 instance of tell-pattern language (phrasing characteristic
       of Claude output) in the script. The system did not remove it before shipping. The pattern
@@ -202,7 +202,7 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2
       proceeded despite this disparity. Audit the deep dive citation matching logic and the
       Brave API call sequence to confirm whether thin article bodies or budget exhaustion
-      degraded the deep dive's source alignment. (seen in 3 reviews, latest 2026-09-16)
+      degraded the deep dive's source alignment. (seen in 4 reviews, latest 2026-09-19)
 
 <!-- reviews:end -->
 

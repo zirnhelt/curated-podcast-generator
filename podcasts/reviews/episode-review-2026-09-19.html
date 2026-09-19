@@ -21,35 +21,33 @@
   <p class="meta">Published September 19, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
   <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/35431044874">35431044874</a>.</em></p>
 
-<h3>Body text budget exhausted; 60 articles dropped from roundup</h3>
+<h3>Body text budget exhausted mid-run</h3>
 
-<p>The pipeline made 12 calls to Brave to backfill article bodies before its budget ran dry. Remaining thin articles were kept as stubs, then cut as sparse. This produced a roundup with 60 fewer pieces than the source set contained. The deep dive kept all 5 pieces intact.</p>
+<p>The pipeline spent its full allocation of 12 API calls to backfill article bodies and ran dry. Sixteen degradations recorded the same failure: remaining thin articles kept stub bodies instead of expanded ones and face culling in subsequent assembly steps. This is a constraint, not a bug. The mechanism worked as designed—the budget held, the pipeline stopped spending, sparse sources stayed sparse.</p>
 
-<p>Citations tell the story. Roundup matched 11 of 15 sources (73%). Deep dive matched 3 of 5 (60%). The shortfall was not missing citations but missing bodies to cite from—the pipeline had the links but not the text to write about them.</p>
+<p>The outcome depends on how many of those stub-bodied articles survive the cut. The facts do not report which ones made it to air.</p>
 
-<h3>Script expanded successfully; quality checks passed</h3>
+<h3>Territory metadata conflicts unresolved</h3>
 
-<p>First draft arrived at 2272 words against a 3400-word target. The pipeline sent it back for expansion. Final script shipped at 3102 words. One expand pass closed most of the gap.</p>
+<p>Two Indigenous nation mentions triggered territory-check failures. A Sinixt reference connected to Redstone conflicted with the map's coverage (Tsilhqotin Nen, Dëndëh). A Syilx reference tied to the Tribune conflicted with coverage zones (K'ómoks, Hulqumiánum Treaty Group, Slaámen gəč̓əl, Tlaáamin, Homalco).</p>
 
-<p>Quality gates found zero AI-tell pattern hits. Voice split Casey over Riley at 0.9. No other warnings fired.</p>
+<p>A third failure flagged 2 sentences that kept an unsupported nation after rewrite was rejected. The pipeline carried them forward unsigned rather than drop them. This trades accuracy markup for narrative continuity.</p>
 
-<h3>TTS retry kept one short segment; both stayed in episode</h3>
+<h3>Script came short, expanded, and landed in range</h3>
 
-<p>Two text-to-speech takes came back shorter than their word counts predicted. Both were retried. One of the two retries still underran. The pipeline kept the longer take from that retry rather than drop the segment. The episode lost no content.</p>
+<p>The first draft measured 2272 words against a 3400-word target. The system flagged it and sent it back for expansion. The shipped script landed at 3102 words. The shortfall from target (298 words) is within the bounds of normal variation.</p>
 
-<h3>Territory check flagged 3 overlaps; 2 rewrites rejected</h3>
+<h3>Citation matching split between segments</h3>
 
-<p>The script named Sinixt in connection with Redstone (mapped as Tsìlhqot'in Nen, Dënëndeh). It named Syilx in connection with Tribune (mapped as K'ómoks, Hulqumiânum Treaty Group, Ɛ̓laÊamÉ©n gÉ©Ç°É, Tlaâamin, Homalco). Two sentences kept unsupported nations after rewrite attempts were rejected. These remain in the shipped script.</p>
+<p>Roundup citations matched 11 of 15 sources (73%). Deep dive citations matched 3 of 5 (60%). The roundup held stronger alignment; the deep dives ran thinner. No mechanism attempted to backfill the unmatched four.</p>
 
-<h3>Debate question: 2026 Cariboo elections</h3>
+<h3>Audio rendering produced minor length variance</h3>
 
-<p><em>In the 2026 Cariboo local elections, which candidate records and accomplishments should voters actually evaluate when choosing between incumbents and challengers across four separate ballots?</em></p>
+<p>Two TTS segments came back shorter than word count predicted. One retry succeeded and brought the segment into expected range. The other failed the retry; the pipeline kept the longer of the two takes. Nothing dropped from the episode.</p>
 
-<p>Deep dive sourced five pieces across Williams Lake, Quesnel, 100 Mile House, and School District 27.</p>
+<h3>Three manual runs plus a late fallback</h3>
 
-<h3>Delivery metrics</h3>
-
-<p>Episode runs to 18.8 minutes audio and video. Audio file: 17.3 MB. Video file: 66.4 MB. Feed now carries 235 episodes. Two manual runs completed in sequence at 08:05 and 09:05 UTC. A third run started at 10:05 and was still in progress at report time. Script generation took 567 seconds. Audio rendering took 215 seconds. Video render and upload took 84 seconds. Total API spend: 18 Claude calls, 136,058 input tokens.</p>
+<p>The first three runs triggered manually and completed on time: 8:05 AM, 9:05 AM, and 10:05 AM Pacific. A fourth run, Fallback 2 scheduled for 3:05 AM Pacific, arrived 252 minutes late at 2:17 PM. Status shows in_progress with no conclusion. The earlier runs had all succeeded; the cause of the lateness and current state is absent from the facts.</p>
 
 <h3>The day's triggers</h3>
 <table>
@@ -57,7 +55,8 @@
 <tbody>
 <tr><td>Manual (workflow_dispatch)</td><td>2026-09-19T08:05:05Z</td><td>+0 min</td><td>success</td></tr>
 <tr><td>Manual (workflow_dispatch)</td><td>2026-09-19T09:05:03Z</td><td>+0 min</td><td>success</td></tr>
-<tr><td>Manual (workflow_dispatch)</td><td>2026-09-19T10:05:03Z</td><td>+0 min</td><td>in_progress</td></tr>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-19T10:05:03Z</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Fallback 2 (3:05 AM Pacific)</td><td>2026-09-19T14:17:40Z</td><td>+252 min</td><td>in_progress</td></tr>
 </tbody>
 </table>
 

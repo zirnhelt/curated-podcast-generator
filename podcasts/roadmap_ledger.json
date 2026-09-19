@@ -262,15 +262,16 @@
       "detail": "The pipeline spent its 12 Brave Search calls on body backfill and exhausted the budget mid-run on 2026-09-02. Fifty-five articles were dropped instead of scripted; the deep dives survived at 3 pieces. The remaining thin articles kept stub bodies, creating sparse segments. This is the same budget-exhaustion pattern as 2026-08-30. Increase the Brave call budget, prioritize articles by quality score before backfill, or implement a staged fallback that scripts stubs at reduced length rather than dropping articles entirely.",
       "source": "review",
       "status": "open",
-      "occurrences": 4,
+      "occurrences": 5,
       "first_seen": "2026-09-02",
       "seen": [
         "2026-09-02",
         "2026-09-03",
         "2026-09-04",
-        "2026-09-18"
+        "2026-09-18",
+        "2026-09-19"
       ],
-      "last_seen": "2026-09-18"
+      "last_seen": "2026-09-19"
     },
     {
       "id": "gemini-tts-multi-speaker-preamble-reject",
@@ -291,7 +292,7 @@
       "detail": "On 2026-09-03 at 14:56 UTC, the 3:05 AM Pacific fallback trigger (scheduled for ~11:05 UTC) started 291 minutes late and was still in-progress when the review ran. Three manual runs occurred before the scheduled time, and the facts do not explain why the fallback ran so late or why it stalled. Check the GitHub Actions scheduler logs and the in-progress run URL https://github.com/zirnhelt/curated-podcast-generator/actions/runs/33769783188 to determine whether the runner is hung, whether there is a capacity bottleneck, or whether the cron expression is misconfigured.",
       "source": "review",
       "status": "open",
-      "occurrences": 8,
+      "occurrences": 9,
       "first_seen": "2026-09-03",
       "seen": [
         "2026-09-03",
@@ -301,9 +302,10 @@
         "2026-09-13",
         "2026-09-15",
         "2026-09-17",
-        "2026-09-18"
+        "2026-09-18",
+        "2026-09-19"
       ],
-      "last_seen": "2026-09-18"
+      "last_seen": "2026-09-19"
     },
     {
       "id": "ai-tell-pattern-in-shipped-episode",
@@ -517,14 +519,15 @@
       "detail": "On September 13, the roundup section matched 12 of 15 citations (80%), but the deep dive section matched only 1 of 3 (33%). The gap suggests a different verification pathway or a shortfall in source retrieval for longer-form segments. The debate question on Roberts Bank Terminal 2 proceeded despite this disparity. Audit the deep dive citation matching logic and the Brave API call sequence to confirm whether thin article bodies or budget exhaustion degraded the deep dive's source alignment.",
       "source": "review",
       "status": "open",
-      "occurrences": 3,
+      "occurrences": 4,
       "first_seen": "2026-09-13",
       "seen": [
         "2026-09-13",
         "2026-09-14",
-        "2026-09-16"
+        "2026-09-16",
+        "2026-09-19"
       ],
-      "last_seen": "2026-09-16"
+      "last_seen": "2026-09-19"
     },
     {
       "id": "roundup-dropped-43-stories",
