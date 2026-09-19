@@ -386,7 +386,7 @@
       "detail": "On 2026-09-08, the pipeline spent its full 12-call Brave budget during script generation, forcing nine articles to ship with stub bodies instead of full text. The degradations log lists this same reason 12 times. This pattern matches the 2026-09-02 incident (tracked as brave-body-budget-hit-55-article-drop) where 55 articles were dropped. The mechanism is a fixed call budget that does not reset between runs or scale with article volume. To close this: either expand the Brave quota in config, implement per-article fallback logic that drops sparse articles before scripting rather than airing them, or track Brave spend across runs and alert when 80% of the budget is consumed.",
       "source": "review",
       "status": "open",
-      "occurrences": 6,
+      "occurrences": 7,
       "first_seen": "2026-09-08",
       "seen": [
         "2026-09-08",
@@ -394,9 +394,10 @@
         "2026-09-12",
         "2026-09-13",
         "2026-09-15",
-        "2026-09-16"
+        "2026-09-16",
+        "2026-09-19"
       ],
-      "last_seen": "2026-09-16"
+      "last_seen": "2026-09-19"
     },
     {
       "id": "deep-dive-citation-alignment-below-target",
@@ -615,7 +616,20 @@
         "2026-09-18"
       ],
       "last_seen": "2026-09-18"
+    },
+    {
+      "id": "territory-check-rewrites-rejected-shipped-anyway",
+      "title": "Territory check flagged two sentences with unsupported nations; rewrites were rejected and they shipped.",
+      "detail": "The script named Sinixt in connection with Redstone and Syilx in connection with Tribune. The territory map covers those locations under other nations. Two rewrite attempts were rejected, and the unsupported references remained in the shipped episode. The pipeline should either enforce a hard block on unsupported nations or escalate rejected rewrites to the operator before shipping.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-19",
+      "seen": [
+        "2026-09-19"
+      ],
+      "last_seen": "2026-09-19"
     }
   ],
-  "updated": "2026-09-18"
+  "updated": "2026-09-19"
 }
