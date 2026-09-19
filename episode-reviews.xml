@@ -5,7 +5,68 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Fri, 18 Sep 2026 14:54:02 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 19 Sep 2026 10:05:40 +0000</lastBuildDate>
+    <item>
+      <title>Episode Review — Cariboo Signals, September 19, 2026</title>
+      <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-19.html</link>
+      <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-19.html</guid>
+      <pubDate>Sat, 19 Sep 2026 10:05:40 +0000</pubDate>
+      <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/35431044874"&gt;35431044874&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3&gt;Body text budget exhausted; 60 articles dropped from roundup&lt;/h3&gt;
+
+&lt;p&gt;The pipeline made 12 calls to Brave to backfill article bodies before its budget ran dry. Remaining thin articles were kept as stubs, then cut as sparse. This produced a roundup with 60 fewer pieces than the source set contained. The deep dive kept all 5 pieces intact.&lt;/p&gt;
+
+&lt;p&gt;Citations tell the story. Roundup matched 11 of 15 sources (73%). Deep dive matched 3 of 5 (60%). The shortfall was not missing citations but missing bodies to cite from—the pipeline had the links but not the text to write about them.&lt;/p&gt;
+
+&lt;h3&gt;Script expanded successfully; quality checks passed&lt;/h3&gt;
+
+&lt;p&gt;First draft arrived at 2272 words against a 3400-word target. The pipeline sent it back for expansion. Final script shipped at 3102 words. One expand pass closed most of the gap.&lt;/p&gt;
+
+&lt;p&gt;Quality gates found zero AI-tell pattern hits. Voice split Casey over Riley at 0.9. No other warnings fired.&lt;/p&gt;
+
+&lt;h3&gt;TTS retry kept one short segment; both stayed in episode&lt;/h3&gt;
+
+&lt;p&gt;Two text-to-speech takes came back shorter than their word counts predicted. Both were retried. One of the two retries still underran. The pipeline kept the longer take from that retry rather than drop the segment. The episode lost no content.&lt;/p&gt;
+
+&lt;h3&gt;Territory check flagged 3 overlaps; 2 rewrites rejected&lt;/h3&gt;
+
+&lt;p&gt;The script named Sinixt in connection with Redstone (mapped as Tsìlhqot'in Nen, Dënëndeh). It named Syilx in connection with Tribune (mapped as K'ómoks, Hulqumiânum Treaty Group, Ɛ̓laÊamÉ©n gÉ©Ç°É, Tlaâamin, Homalco). Two sentences kept unsupported nations after rewrite attempts were rejected. These remain in the shipped script.&lt;/p&gt;
+
+&lt;h3&gt;Debate question: 2026 Cariboo elections&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;In the 2026 Cariboo local elections, which candidate records and accomplishments should voters actually evaluate when choosing between incumbents and challengers across four separate ballots?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Deep dive sourced five pieces across Williams Lake, Quesnel, 100 Mile House, and School District 27.&lt;/p&gt;
+
+&lt;h3&gt;Delivery metrics&lt;/h3&gt;
+
+&lt;p&gt;Episode runs to 18.8 minutes audio and video. Audio file: 17.3 MB. Video file: 66.4 MB. Feed now carries 235 episodes. Two manual runs completed in sequence at 08:05 and 09:05 UTC. A third run started at 10:05 and was still in progress at report time. Script generation took 567 seconds. Audio rendering took 215 seconds. Video render and upload took 84 seconds. Total API spend: 18 Claude calls, 136,058 input tokens.&lt;/p&gt;
+
+&lt;h3&gt;The day's triggers&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Trigger&lt;/th&gt;&lt;th&gt;Created&lt;/th&gt;&lt;th&gt;Drift&lt;/th&gt;&lt;th&gt;Outcome&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-19T08:05:05Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-19T09:05:03Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-19T10:05:03Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3&gt;What shipped&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Measure&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Deep dive&lt;/td&gt;&lt;td&gt;5 articles&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Script&lt;/td&gt;&lt;td&gt;0 pattern hit(s), voice ratio 0.9, 3102 words&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio&lt;/td&gt;&lt;td&gt;18.8 min&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Audio size&lt;/td&gt;&lt;td&gt;17.3 MB&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Citations matched&lt;/td&gt;&lt;td&gt;11/15 roundup, 3/5 deep dive&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Feed&lt;/td&gt;&lt;td&gt;235 episodes&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Anthropic spend&lt;/td&gt;&lt;td&gt;136,058 input tokens, calls ***'claude': 18***&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
     <item>
       <title>Episode Review — Cariboo Signals, September 18, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-18.html</link>
