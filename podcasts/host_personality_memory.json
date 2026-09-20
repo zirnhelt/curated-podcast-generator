@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[WIRED] AI Slop Is Ruining Cute Animals on the Internet",
       "[Hyperallergic] How AIDS Activists Turned Graphic Design Int",
       "[TechCrunch] How AI accounting startup Rillet raised $100M a",
       "[CBC Arts] Australia bans fully AI-made songs from charts af",
@@ -10,7 +9,8 @@
       "[TechCrunch] Eric Wu\u2019s newest company, out of stealth since ",
       "EEVblog 1769 \u2013 Who Needs Three Phases? REPAIR",
       "[TechCrunch] Google DeepMind alumni are building tools to ac",
-      "[The Verge] Musicians-turned-detectives are hunting for AI g"
+      "[The Verge] Musicians-turned-detectives are hunting for AI g",
+      "[TechRadar] Microsoft 365 users hit by two major threat camp"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -150,13 +150,18 @@
         "occurrences": 2
       },
       {
-        "date": "2026-09-18",
-        "clue": "structural-lens:~ \u2014 acknowledged consultation-theater risk alongside procedural improvements",
-        "occurrences": 1
+        "date": "2026-09-20",
+        "clue": "structural-lens:~ \u2014 evolved from mechanism-focus to system-critique",
+        "occurrences": 2
       },
       {
         "date": "2026-09-18",
         "clue": "funding-risk:x \u2014 conceded self-insurance undermines utility hardening pressure",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-09-20",
+        "clue": "tech-optimism:x \u2014 conceded wonder insufficient without distribution pathway",
         "occurrences": 1
       }
     ],
@@ -414,13 +419,13 @@
         "occurrences": 2
       },
       {
-        "date": "2026-09-19",
-        "clue": "structural-lens:+ \u2014 pressed on turnout drop-off data as systemic signal",
-        "occurrences": 2
-      },
-      {
         "date": "2026-09-18",
         "clue": "community-trust:+ \u2014 escalated from consultation critique to co-decision demand",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-09-20",
+        "clue": "evidence-bar:+ \u2014 reinforced distinction between lab-discovery and real-world outcome",
         "occurrences": 1
       }
     ],
