@@ -292,7 +292,7 @@
       "detail": "On 2026-09-03 at 14:56 UTC, the 3:05 AM Pacific fallback trigger (scheduled for ~11:05 UTC) started 291 minutes late and was still in-progress when the review ran. Three manual runs occurred before the scheduled time, and the facts do not explain why the fallback ran so late or why it stalled. Check the GitHub Actions scheduler logs and the in-progress run URL https://github.com/zirnhelt/curated-podcast-generator/actions/runs/33769783188 to determine whether the runner is hung, whether there is a capacity bottleneck, or whether the cron expression is misconfigured.",
       "source": "review",
       "status": "open",
-      "occurrences": 9,
+      "occurrences": 10,
       "first_seen": "2026-09-03",
       "seen": [
         "2026-09-03",
@@ -303,9 +303,10 @@
         "2026-09-15",
         "2026-09-17",
         "2026-09-18",
-        "2026-09-19"
+        "2026-09-19",
+        "2026-09-20"
       ],
-      "last_seen": "2026-09-19"
+      "last_seen": "2026-09-20"
     },
     {
       "id": "ai-tell-pattern-in-shipped-episode",
@@ -633,6 +634,19 @@
       "first_seen": "2026-09-19",
       "seen": [
         "2026-09-19",
+        "2026-09-20"
+      ],
+      "last_seen": "2026-09-20"
+    },
+    {
+      "id": "deep-dive-citation-alignment-zero-percent",
+      "title": "Deep dive articles shipped with zero citation matches against their source material.",
+      "detail": "All three deep dive articles (Marginalian, ScienceDaily, TechRadar) failed citation alignment: 0 of 3 matched. Roundup articles achieved 87 percent alignment (13 of 15). The deep dives appear to be selected before the expansion and citation-verification stage runs. Either delay deep dive selection until after citation matching, or add a citation-check gate that flags zero-match articles for manual review before they air.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-20",
+      "seen": [
         "2026-09-20"
       ],
       "last_seen": "2026-09-20"
