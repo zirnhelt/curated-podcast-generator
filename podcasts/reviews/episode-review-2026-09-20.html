@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, September 20, 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.1rem; color: #444; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }
+    th { background: #f5f5f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    a { color: #0066cc; }
+    code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, September 20, 2026</h1>
+  <p class="meta">Published September 20, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/35498585594">35498585594</a>.</em></p>
+
+<h3>Brave's budget ran out mid-script, leaving 82 articles out of the roundup</h3>
+
+<p>The pipeline burned through its 12 Brave API calls backfilling article bodies and exhausted the budget before finishing. Remaining articles with thin stub text stayed that way—the system chose to drop them rather than ship incomplete summaries. 82 roundup items fell out as a result.</p>
+
+<p>This is a hard constraint, not a quality call. The episode shipped at 236 RSS entries rather than a larger count, and listeners will hear fewer stories in the news segment. The degradation is baked into one design choice: enrich what you can, cut what you can't.</p>
+
+<h3>Citation matching broke for the deep dives</h3>
+
+<p>The three deep dive articles matched zero of their 3 total citations. The roundup did better: 13 of 15 citations aligned. This split suggests the deep dives either came from sources without retrievable or verifiable detail, or the citation alignment step failed on that segment specifically.</p>
+
+<p>The episode aired with this mismatch intact. No fallback rewrote or re-sourced the dives—they shipped as authored.</p>
+
+<h3>Script expanded on second pass to meet target</h3>
+
+<p>The first draft came in at 2514 words against a 3400-word target. The pipeline sent it back for expansion and the final shipped script hit 3246 words. Quality checks recorded one instance of "AI tell" pattern language in the text.</p>
+
+<p>This is the system working as designed. The expand pass closed the gap, though the final script stayed 154 words short of target. The single tell-pattern hit suggests the expansion was competent enough.</p>
+
+<h3>Territory acknowledgements failed and stayed failed</h3>
+
+<p>Two sentences named the Tsilhqot'in nation in contexts the territory map did not cover. The rewrite step rejected the fix. Rather than rewrite a second time, the pipeline kept the unsupported claims in the episode.</p>
+
+<p>This is a choice to ship rather than loop. The meta-moment segment was also cut because the model found none of the week's commits listener-noticeable—a judgment call that simply removed the segment rather than filling it.</p>
+
+<h3>Voice balance tilted Casey</h3>
+
+<p>Casey's airtime exceeded Riley's by a ratio of 1.26. No facts state what the target ratio was. The pipeline shipped with this imbalance in place.</p>
+
+<h3>The pipeline ran twice, a third is ongoing</h3>
+
+<p>Two manual triggers fired at 08:05 and 09:05 on September 20th, both completing in under 22 minutes. A third run started at 10:05 and was still in progress at the time of this report. Script generation took 538 seconds across the successful runs—the slowest single step by far.</p>
+
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-20T08:05:03Z</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-20T09:05:04Z</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-20T10:05:04Z</td><td>+0 min</td><td>in_progress</td></tr>
+</tbody>
+</table>
+
+<h3>What shipped</h3>
+<table>
+<thead><tr><th>Measure</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Deep dive</td><td>3 articles</td></tr>
+<tr><td>Script</td><td>1 pattern hit(s), voice ratio 1.26, 3246 words</td></tr>
+<tr><td>Audio</td><td>19.7 min</td></tr>
+<tr><td>Audio size</td><td>18.0 MB</td></tr>
+<tr><td>Citations matched</td><td>13/15 roundup, 0/3 deep dive</td></tr>
+<tr><td>Feed</td><td>236 episodes</td></tr>
+<tr><td>Anthropic spend</td><td>91,170 input tokens, calls ***'claude': 12, 'brave-answers': 2***</td></tr>
+</tbody>
+</table>
+</body>
+</html>
