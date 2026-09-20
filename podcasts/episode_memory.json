@@ -1,24 +1,4 @@
 {
-  "2026-08-15": {
-    "timestamp": 1786783753.252489,
-    "topics": [
-      "[Quesnel Cariboo Observer] Wildfire-damaged power restoratio",
-      "[IndigiNews] Decade after fuel spill, H\u00ed\u026bzaqv are again defe",
-      "[Williams Lake Tribune] Many Clinton and area residents give",
-      "[Williams Lake Tribune] As fires rage, B.C.\u2019s ranchers band ",
-      "[Regional News Archives",
-      "[Williams Lake Tribune] PHOTOS: Bear family cools off west o",
-      "Lhoosk\u2019uz Dene Elder receives Medal of Good Citizenship from",
-      "[BC Gov News] Inviting residents of Cariboo region to commen"
-    ],
-    "themes": [
-      "rural development",
-      "Indigenous tech"
-    ],
-    "date": "2026-08-15",
-    "focus": null,
-    "focus_name": null
-  },
   "2026-08-16": {
     "timestamp": 1786870087.75909,
     "topics": [
@@ -739,5 +719,25 @@
     "date": "2026-09-19",
     "focus": null,
     "focus_name": null
+  },
+  "2026-09-20": {
+    "timestamp": 1789892148.456627,
+    "topics": [
+      "[Williams Lake Tribune] Nominations close Oct. 1 for 29th an",
+      "[My Cariboo Now] Former B.C. Conservatives join forces with ",
+      "[My Cariboo Now] Three MLAs removed from B.C. Conservative c",
+      "[Williams Lake Tribune] LETTER: When bears come looking for ",
+      "[Williams Lake Tribune] Williams Lake candle maker takes lea",
+      "[The Marginalian] The Fascinating Science of How We Think No",
+      "[ScienceDaily] Scientists discover a powerful new antivenom ",
+      "[TechRadar] Microsoft 365 users hit by two major threat camp"
+    ],
+    "themes": [
+      "rural development",
+      "environmental impact"
+    ],
+    "date": "2026-09-20",
+    "focus": "living-world",
+    "focus_name": "The Living World"
   }
 }

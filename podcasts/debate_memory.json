@@ -1,30 +1,4 @@
 {
-  "2026-06-21": {
-    "timestamp": 1782041205.507981,
-    "date": "2026-06-21",
-    "theme": "Science, Wonder & the Natural World",
-    "central_question": "How do environmental and developmental conditions shape cognitive styles like authoritarianism, and what civic infrastructure should communities build to foster adaptive social reasoning?",
-    "riley_position": "Ecological contact and exposure to complex, unpredictable natural systems reduce stress and shape social cognition development; communities should build systematic infrastructure (phenology networks, land-based learning) to leverage these effects.",
-    "riley_key_evidence": [
-      "University of Zaragoza study showing structural brain differences in authoritarians (reduced grey matter in empathy regions for right-wing authoritarians)",
-      "Stress reduction from ecological contact has replicated evidence (cortisol reduction, which affects cognitive rigidity)",
-      "USA National Phenology Network demonstrates citizen science value with century-long observational data"
-    ],
-    "casey_position": "Brain structural differences correlate with but don't establish causation; the real constraint on building ecological observation infrastructure is sustained attention and governance, not money; Indigenous knowledge systems represent multi-generational observational frameworks that shouldn't be generalized as universal wisdom.",
-    "casey_key_evidence": [
-      "Neuroplasticity runs bidirectionally\u2014practice shapes brain structure, not just vice versa",
-      "Nature contact studies have reproducibility and methodological issues; stronger claims don't hold",
-      "Xat\u015b\u016bll First Nation's land-based learning program exists because of specific community governance choices, not transferable model"
-    ],
-    "resolution": "Casey and Riley reached substantial agreement: the solstice observation and ecological proximity are civic infrastructure requiring governance and democratic accountability, not just appreciation; the constraint is sustained institutional attention and proper data governance across leadership changes, not funding.",
-    "topics_covered": [
-      "Neuroscience of authoritarianism and causation vs. correlation in brain imaging",
-      "Stress reduction and ecological contact as pathway to cognitive development",
-      "Indigenous vs. non-Indigenous knowledge systems and their pedagogical structures",
-      "Practical civic infrastructure for ecological observation (phenology networks, BioBlitz, citizen science)",
-      "Data governance and who owns community-generated ecological datasets"
-    ]
-  },
   "2026-06-22": {
     "timestamp": 1782135719.258662,
     "date": "2026-06-22",
@@ -2472,6 +2446,34 @@
       "The Quesnel mayoral and council races where incumbent Ron Paull and most sitting councillors face minimal opposition, reducing forced candidate distinctions",
       "100 Mile House's mayoral race as potentially Maureen Pinkney's first contested election after being acclaimed in 2022",
       "CRD electoral area director races (Areas D, E, F) and school trustee races receiving almost no local coverage despite controlling real budget and land-use authority"
+    ]
+  },
+  "2026-09-20": {
+    "timestamp": 1789892152.160758,
+    "date": "2026-09-20",
+    "theme": "Science, Wonder & the Natural World",
+    "focus": "living-world",
+    "anchor": "worth-saving",
+    "central_question": "Does scientific discovery alone constitute progress, or does equitable access and decision-making authority determine whether knowledge actually benefits those who need it most?",
+    "riley_position": "Scientific breakthroughs like the rattlesnake antivenom discovery represent genuine wins on their own terms, and a ten-times-more-potent molecule improves outcomes even within imperfect distribution systems.",
+    "riley_key_evidence": [
+      "PNAS study identifying five previously unknown FETUA-family metalloproteinase inhibitor proteins in rattlesnake blood that were ten times more potent against viper venom in lab mixtures",
+      "Evolution solved the resistance problem for free through millions of years of natural selection, giving humans a ready-made biological solution",
+      "Tools and written knowledge demonstrably change what's thinkable and allow minds to hold more ideas than short-term memory alone could carry"
+    ],
+    "casey_position": "Scientific discovery is only the first step; the actual finish line is whether marginalized populations with the greatest need gain access to treatments, which requires decisions made in boardrooms by people with pre-existing power and rarely includes affected communities.",
+    "casey_key_evidence": [
+      "Snakebite is a WHO-listed neglected tropical disease affecting hundreds of thousands yearly in low-resource regions where the bottleneck is access and distribution, not potency",
+      "Antivenom development historically takes years to a decade from bench discovery to regulatory approval, during which funding committees and pharmaceutical companies decide whose lives the solution reaches first",
+      "Dramatic, photogenic discoveries get funded and covered ahead of duller but more urgent interventions like routine stockpiling logistics in rural Kenya, which actually save lives this year rather than in five years"
+    ],
+    "resolution": "Riley and Casey agreed that the same gatekeeping pattern appears across all scales\u2014from antivenom regulation to species protection to wildlife conflict protocols\u2014where decisions about resource allocation happen in rooms without the affected person present, and they committed to investigating how local input actually factors into provincial bear-conflict decisions.",
+    "topics_covered": [
+      "Rattlesnake venom resistance proteins and antivenom development timelines",
+      "Global snakebite as a neglected tropical disease and access inequities in low-resource regions",
+      "Extended mind thesis and who decides what counts as cognition or knowledge",
+      "Decision-making authority in scientific and policy contexts and the gatekeeping role of funding panels and regulators",
+      "Wildlife conflict management in the Cariboo and local consultation in conservation officer protocols"
     ]
   }
 }
