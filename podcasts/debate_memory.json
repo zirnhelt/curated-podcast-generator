@@ -1,30 +1,4 @@
 {
-  "2026-06-22": {
-    "timestamp": 1782135719.258662,
-    "date": "2026-06-22",
-    "theme": "Arts, Culture & Digital Storytelling",
-    "central_question": "Can rural artists build sustainable creative practices and reach audiences independent of major urban centers and institutional backing, or are the structural barriers to audience-building and resource sustainability still insurmountable?",
-    "riley_position": "Digital tools have fundamentally changed the economics of audience-building, and platform-independent distribution models (direct email, community radio, live events, cooperative infrastructure) can enable rural creators to reach audiences without relying on algorithmic amplification or institutional credibility.",
-    "riley_key_evidence": [
-      "Tod Maffin built a 10 million weekly reach audience independently via newsletter and podcast after leaving CBC",
-      "T\u015dilhqot'in Nation uses community screening events combined with online release to create distribution leverage",
-      "Cariboo Imagine initiative demonstrates shared infrastructure without requiring new institutions or mergers"
-    ],
-    "casey_position": "The accessibility of tools masks persistent structural barriers: rural creators face a cold-start problem with no local audience base to bootstrap from, local/specific content doesn't perform well algorithmically, live events don't scale geographically, and cooperative/donation models lack sustainable funding at regional scale.",
-    "casey_key_evidence": [
-      "Most successful independent creators are city-based writing about national/international topics with high search volume",
-      "A Cariboo regional publication drawing from 65,000 people has a fundamentally smaller donor pool than national outlets",
-      "Resource-constrained arts organizations already operating at capacity can't add production responsibilities to shared platforms"
-    ],
-    "resolution": "Riley and Casey converged on 'governance before gear'\u2014both agreed that the core issue isn't technology access but ownership structure and sustainability models. They aligned that community-controlled archives and projects designed with communal production processes matter more than platform choice, and that treating cultural infrastructure as permanent (like roads or CBC) rather than project-funded is the real structural shift needed.",
-    "topics_covered": [
-      "Audience-building dynamics and algorithmic discoverability for rural creators",
-      "Live events and community gatherings as audience-development mechanisms",
-      "Indigenous storytelling, language archiving, and community-controlled digital governance (Mukurtu, T\u015dilhqot'in model)",
-      "Funding models: donations, grants, co-ops, and infrastructure classification",
-      "AI-assisted production tools as capacity multipliers without editorial risk"
-    ]
-  },
   "2026-06-23": {
     "timestamp": 1782214264.067481,
     "date": "2026-06-23",
@@ -2474,6 +2448,34 @@
       "Extended mind thesis and who decides what counts as cognition or knowledge",
       "Decision-making authority in scientific and policy contexts and the gatekeeping role of funding panels and regulators",
       "Wildlife conflict management in the Cariboo and local consultation in conservation officer protocols"
+    ]
+  },
+  "2026-09-21": {
+    "timestamp": 1789978507.743446,
+    "date": "2026-09-21",
+    "theme": "Arts, Culture & Digital Storytelling",
+    "focus": "music-performance",
+    "anchor": "place-unrecorded",
+    "central_question": "How should small rural venues document and share their performances in ways that preserve context and serve community rather than extracting value for external platforms?",
+    "riley_position": "Digital tools can democratize documentation and reach if venues treat recording as standing infrastructure rather than one-off novelty projects, and if venues control their own recordings to keep contextual information attached.",
+    "riley_key_evidence": [
+      "A hobbyist built a 512-LED stage lighting matrix from a modded Nintendo Switch and ESP32 board for a fraction of commercial equipment rental costs",
+      "The Earth Garden platform strips field recordings of context and credit, making a Horsefly creek recording indistinguishable from any other ambient audio globally",
+      "The Randy Bachman guitar reunion succeeded through physical documentation and people who cared, not through recording technology"
+    ],
+    "casey_position": "Technology adoption in rural venues fails because it ignores capacity constraints and governance questions; external platforms extract value without providing measurable benefit to places, and digital documentation doesn't automatically survive unless deliberate systems preserve context.",
+    "casey_key_evidence": [
+      "Digital ID verification apps at UK venues created longer lines rather than shorter ones, a problem that rural volunteer-run halls couldn't staff to manage",
+      "Earth Garden recordings provide no credit line or search traffic benefit back to the place where the recording was made",
+      "Even with a recorded file, someone must actively maintain and govern what gets kept versus deleted as storage fills up over time"
+    ],
+    "resolution": "Riley and Casey reached partial agreement that venues owning their own recording equipment and treating it as a standing job description (not a grant-dependent novelty) is a realistic lower-floor solution, though Casey notes this still requires governance decisions about long-term data management that technology alone cannot solve.",
+    "topics_covered": [
+      "Platform extraction of value from local cultural recordings without attribution or benefit to source communities",
+      "Cost barriers to rural venues accessing professional stage production and documentation technology",
+      "The difference between existence and legibility of places in digital systems",
+      "Technology adoption failures in volunteer-run venues lacking dedicated staff and IT infrastructure",
+      "Physical documentation (programs, instruments with provenance) versus digital files as preservation methods"
     ]
   }
 }

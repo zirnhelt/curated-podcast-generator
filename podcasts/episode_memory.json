@@ -1,25 +1,4 @@
 {
-  "2026-08-16": {
-    "timestamp": 1786870087.75909,
-    "topics": [
-      "[Williams Lake Tribune] South Cariboo children learn the joy",
-      "Eby says B.C. must rethink wildfire protection as fires grow",
-      "[Williams Lake Tribune] Residents, stakeholders across B.C. ",
-      "[Williams Lake Tribune] Highway 97 through Clinton reopen to",
-      "[Nautilus] The Conditions on a US Aircraft Carrier Sound Con",
-      "[Fast Company] Why stability might be the smartest career mo",
-      "New research shows that a particular kind of tree can act as",
-      "[ScienceAlert] We May Finally Know Why Mysterious Mushroom F"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption",
-      "environmental impact"
-    ],
-    "date": "2026-08-16",
-    "focus": "sky-cosmos",
-    "focus_name": "Sky & Cosmos"
-  },
   "2026-08-17": {
     "timestamp": 1786957400.649078,
     "topics": [
@@ -739,5 +718,25 @@
     "date": "2026-09-20",
     "focus": "living-world",
     "focus_name": "The Living World"
+  },
+  "2026-09-21": {
+    "timestamp": 1789978504.167587,
+    "topics": [
+      "[Quesnel Cariboo Observer] HOMETOWN HERO: Literacy Quesnel a",
+      "[Fast Company] I use AI to save time. So why am I working mo",
+      "[Engadget] Why is it illegal to use a Bluetooth jammer?",
+      "[The Verge] CD sales are booming as physical media continues",
+      "[Scientific American] Nature may have a preferred tempo",
+      "[The Verge] Explore the globe in field recordings",
+      "[TechRadar] The new digital ID apps for age verification in ",
+      "[Adafruit Blog] Driving 512 LEDs from a Nintendo Switch: ESP"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption"
+    ],
+    "date": "2026-09-21",
+    "focus": "music-performance",
+    "focus_name": "Music & Live Performance"
   }
 }
