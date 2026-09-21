@@ -257,9 +257,11 @@ def format_static_tell_block():
         lines.append("BURNED PHRASES — do not use any of these, in any form:")
         lines.append("  " + ", ".join(f'"{p}"' for p in hard))
         lines.append(
-            "  Do not substitute a synonym either — swapping one intensifier for "
-            "another is the same tic wearing a hat. Delete it, or replace it with "
-            "the specific detail that made you want to emphasise."
+            "  For an intensifier, do not substitute a synonym either — swapping one "
+            "for another is the same tic wearing a hat. Delete it, or replace it with "
+            "the specific detail that made you want to emphasise. The phrases placing "
+            "the episode at night are a different case and DO take a substitution: "
+            "this show is heard in the morning, so the day is the right word."
         )
     if rhythm:
         lines.append(

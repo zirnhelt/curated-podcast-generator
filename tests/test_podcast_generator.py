@@ -4947,3 +4947,207 @@ class TestInferDisciplineWordBoundaries:
         config = {"groups": {"physical_sciences": {"disciplines": {
             "astrophysics": {"keywords": ["star", "galaxy"]}}}}}
         assert _infer_discipline(article, config) == ("physical_sciences", "astrophysics")
+
+
+class TestEventFocusRoster:
+    """The filed nomination list, and the boundary that makes it safe to inject.
+
+    On 2026-09-19 the Williams Lake deep dive opened on "three regional director
+    seats we straight up can't name a single candidate for" and could not say
+    whether 100 Mile House's mayor had filed. The lens had demanded names since
+    it was written; the prompt carried none, because the producer's roster sat
+    in docs/ marked "recognize, don't cite" and was read by nothing.
+    """
+
+    @staticmethod
+    def _event(d=None):
+        from datetime import date as _date
+
+        import config_loader
+
+        return config_loader.get_event_focus_for_day(5, d or _date(2026, 9, 26))
+
+    def test_roster_names_every_filed_candidate(self):
+        from podcast_generator import _format_event_roster
+
+        block = _format_event_roster(self._event())
+        for name in ("Surinderpal Rathor", "Walt Cobb", "Ruth Lloyd",
+                     "Whitney Spearing", "Kayla Zaruk", "Jared Wardlaw-Gimbel"):
+            assert name in block, f"{name} missing from the rendered ballot"
+
+    def test_sitting_members_are_marked(self):
+        from podcast_generator import _format_event_roster
+
+        block = _format_event_roster(self._event())
+        # NAME PEOPLE, NOT ROLES asks the hosts to name whoever holds the seat
+        # first — which needs the roster to say which one that is.
+        assert "Surinderpal Rathor [holds the seat now]" in block
+        assert "Walt Cobb [holds the seat now]" not in block
+
+    def test_empty_race_renders_as_a_named_gap(self):
+        """A race the show has no list for is still on the listener's ballot."""
+        from podcast_generator import _format_event_roster
+
+        block = _format_event_roster(self._event())
+        assert "School District 27 trustee: NO FILED LIST" in block
+        assert "Areas D, E and F: NO FILED LIST" in block
+        assert "never the segment's hook" in block
+
+    def test_roster_does_not_widen_past_the_name(self):
+        """Names are citable; records are not. Widening that trades a hedging
+        segment for an inventing one, which is the worse failure."""
+        from podcast_generator import _format_event_roster
+
+        block = _format_event_roster(self._event())
+        assert "SOURCED OR UNSAID" in block
+        assert "source for the name and for nothing after it" in block
+        # Platform copy lives in the doc and is deliberately kept out of the JSON.
+        assert "Boitanio Mall" not in block
+        assert "R.I.S.E." not in block
+
+    def test_absent_outside_the_window_and_without_a_roster(self):
+        from datetime import date as _date
+
+        from podcast_generator import _format_event_roster
+
+        assert _format_event_roster(self._event(_date(2026, 11, 1))) == ""
+        assert _format_event_roster(None) == ""
+        assert _format_event_roster({"name": "x"}) == ""
+
+    def test_lens_carries_the_roster_on_the_civic_day(self):
+        from podcast_generator import _build_theme_lens
+
+        event = self._event()
+        lens = _build_theme_lens("Cariboo Local Affairs", event_focus=event)
+        assert "CONFIRMED BALLOT" in lens
+        assert "Jason Ryll" in lens
+        # Every other day still gets its plain theme lens.
+        assert "CONFIRMED BALLOT" not in _build_theme_lens("Cariboo Local Affairs")
+
+    def test_roster_matches_the_producer_doc(self):
+        """Two copies drift. The doc is the prose half, the JSON the half the
+        show reads — a correction landing in only one changes nothing on air."""
+        import pathlib
+        import re as _re
+
+        doc = pathlib.Path("docs/wl-2026-election-candidates.md").read_text(
+            encoding="utf-8")
+        roster = self._event()["roster"]
+        listed = {n for race in roster["races"] for n in race["candidates"]}
+        assert listed, "roster carries no candidates"
+
+        # Bolded names in the roster sections; the trailing group bolds several
+        # comma-separated names in one bullet.
+        bolded = set()
+        rosters = doc.split("## Mayor", 1)[1].split("## Using this list", 1)[0]
+        for chunk in _re.findall(r"\*\*([^*]+)\*\*", rosters):
+            for part in chunk.split(","):
+                part = _re.sub(r"\(.*", "", part).strip()
+                if part and part[0].isupper() and " " in part:
+                    bolded.add(part)
+
+        missing = sorted(listed - bolded)
+        assert not missing, (
+            "in config/themes.json event_focus.roster but not in the doc: "
+            + ", ".join(missing))
+        extra = sorted(bolded - listed)
+        assert not extra, (
+            "in docs/wl-2026-election-candidates.md but not in the roster the "
+            "show reads: " + ", ".join(extra))
+
+
+class TestMorningShowLanguage:
+    """The show renders overnight and is heard before breakfast.
+
+    Nothing in the prompt said so, and 2026-09-21 shipped "here's a concrete
+    version of tonight's argument" and "argue with either of us about tonight's
+    conclusion".
+    """
+
+    def test_episode_self_reference_at_night_is_banned(self):
+        import config_loader
+
+        banned = config_loader.load_ai_tells_config()["hard_banned"]
+        for phrase in ("tonight's episode", "tonight's argument",
+                       "tonight's conclusion", "this evening's show",
+                       "rest of your night", "good evening"):
+            assert phrase in banned
+
+    def test_the_world_at_night_still_airs(self):
+        """A rule about when the SHOW is, not about when the world is: an
+        overnight low and a meteor shower are correct and must keep airing."""
+        from podcast_generator import find_hard_banned
+
+        clean = (
+            "**CASEY:** High of 20 today, low of 9 tonight, clear skies.\n"
+            "**RILEY:** The Lyrids peak tonight — get outside if it stays clear.\n"
+        )
+        assert find_hard_banned(clean) == []
+
+        hits = find_hard_banned("**RILEY:** So here's a concrete version of "
+                                "tonight's argument.")
+        assert [p for p, _ in hits] == ["tonight's argument"]
+
+    def test_prompt_states_when_the_show_is_heard(self):
+        import config_loader
+
+        template = config_loader.load_prompts_config()[
+            "script_generation_system"]["template"]
+        assert "THIS IS A MORNING SHOW" in template
+
+    def test_sign_offs_never_send_listeners_into_the_night(self):
+        import re as _re
+
+        import podcast_generator as pg
+
+        # Read the literals straight out of the module source rather than
+        # re-running the branch ladder, which needs a whole episode's context.
+        import inspect
+
+        body = inspect.getsource(pg.generate_podcast_script)
+        offs = _re.findall(r'sign_off = (?:f")?"?([^"]+)"', body)
+        assert offs, "no sign-off literals found"
+        for off in offs:
+            assert not _re.search(r"\b(night|evening)\b", off, _re.I), off
+
+
+class TestRoundupDoesNotReadOutItsOwnShape:
+    """"Closer to home" is a fact about the stories; "ten in this docket" is
+    bookkeeping. The COVERAGE CUE rule used to ask for the count explicitly."""
+
+    def test_coverage_cue_bans_counting_and_container_nouns(self):
+        import config_loader
+
+        template = config_loader.load_prompts_config()[
+            "script_generation_system"]["template"]
+        cue = template.split("- OPEN WITH A COVERAGE CUE:", 1)[1].split("\n", 1)[0]
+        assert "NEVER READ OUT THE SHAPE OF THE SEGMENT" in cue
+        for word in ("docket", "queue", "batch", "lineup"):
+            assert word in cue, f"{word} not named as a container noun to avoid"
+        # The old rule's instruction to base the line on the article count is
+        # what produced "Fifteen stories in the queue today".
+        assert "count and depth of sourcing" not in cue
+
+    def test_block_headers_say_their_counts_are_not_for_air(self):
+        import inspect
+
+        import podcast_generator as pg
+
+        body = inspect.getsource(pg.generate_podcast_script)
+        marker = "_NEVER_ANNOUNCE = ("
+        never = body[body.index(marker):body.index(marker) + 600]
+        assert "read out how many stories are in it" in never
+        # The (count) stays in the header — the model needs it to budget the
+        # segment. What changed is that the header now says it is not for air.
+        assert "pacing budget" in never
+
+
+class TestColdOpenDoesNotTeaseAGap:
+    """The 2026-09-19 teaser led on what the episode could NOT establish."""
+
+    def test_cold_open_prompt_forbids_teasing_an_absence(self):
+        import config_loader
+
+        template = config_loader.load_prompts_config()[
+            "cold_open_generation"]["template"]
+        assert "Tease what the episode HAS, never what it lacks" in template

@@ -1,5 +1,5 @@
 {
-  "_description": "AI speech-tell corpus. `patterns`/`soft_patterns` drive score_script's regex scan; `hard_banned` drives the post-cold-open scrub gate; `ledger` tunes the self-discovering phrase-frequency ledger; `rhythm` is the measurable half of the voice spec. See CLAUDE.md > Voice and AI Tells. `soft_patterns` are reported but excluded from total_hits, which gates Opus escalation — a new family goes here unless the extra escalation is intended and costed.",
+  "_description": "AI speech-tell corpus. `patterns`/`soft_patterns` drive score_script's regex scan; `hard_banned` drives the post-cold-open scrub gate; `ledger` tunes the self-discovering phrase-frequency ledger; `rhythm` is the measurable half of the voice spec. See CLAUDE.md > Voice and AI Tells. `soft_patterns` are reported but excluded from total_hits, which gates Opus escalation — a new family goes here unless the extra escalation is intended and costed. The tail of `hard_banned` is not a style tic: the show publishes overnight and is heard in the morning, so those phrases place the episode at night. They live here because this one list already buys all three enforcement paths at once — the prompt's BURNED PHRASES block, the post-cold-open scrub, and the test that stops prompt prose teaching the phrase it bans. Only literal, always-wrong forms belong there: a real overnight low or a meteor shower tonight is correct and must keep airing.",
   "hard_banned": [
     "genuinely",
     "carrying a lot of weight",
@@ -8,7 +8,23 @@
     "doing a lot of heavy lifting",
     "not nothing",
     "isn't nothing",
-    "that's not nothing"
+    "that's not nothing",
+    "tonight's episode",
+    "tonight's show",
+    "tonight's argument",
+    "tonight's conclusion",
+    "tonight's conversation",
+    "tonight's discussion",
+    "tonight's deep dive",
+    "tonight's debate",
+    "tonight's topic",
+    "tonight's question",
+    "tonight's segment",
+    "this evening's episode",
+    "this evening's show",
+    "rest of your night",
+    "rest of your evening",
+    "good evening"
   ],
   "patterns": {
     "i_want_to_announcements": [
