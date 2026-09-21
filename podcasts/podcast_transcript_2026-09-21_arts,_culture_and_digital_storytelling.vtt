@@ -1,0 +1,214 @@
+WEBVTT
+
+00:00:00.636 --> 00:00:23.300
+<v Riley>Hey, welcome back. On today's episode — a modded Nintendo Switch running a full stage lighting rig for a fraction of what it costs to fly in equipment, ambient field recordings turning a Cariboo creek into anonymous background noise for strangers overseas, and the question we spend the Deep Dive on: if nobody records a show, did it still happen? That and more, coming right up.
+
+00:00:36.775 --> 00:00:58.359
+<v Riley>Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities — I'm Riley. It's Monday, September 21st, 2026. Coming to you from the Cariboo, on lands that have been cared for by the Secwépemc, Tŝilhqot'in, and Dakelh peoples since time immemorial. Today's theme is Arts, Culture &amp; Digital Storytelling.
+
+00:00:59.359 --> 00:01:29.311
+<v Casey>And I'm Casey. We're looking at who gets to make culture out here, and what tools they actually have to work with once the cameras and the funding cycles move on. Quick weather check — overcast and 11 degrees at Horsefly Lake this morning, climbing to a high of 23 with maybe an 8 percent chance of rain, so basically none. Around the region: 100 Mile House sitting at 11 and overcast, Williams Lake at 9 and partly cloudy, Quesnel at 10 with some sun breaking through, and Redstone clear and cool at 8.
+
+00:01:30.007 --> 00:01:34.087
+<v Riley>Good day to get outside before we start talking about screens. Let's get into the news.
+
+00:01:35.487 --> 00:01:39.071
+<v Riley>Fifteen stories in the queue today, a good mix of local and global.
+
+00:01:40.702 --> 00:02:00.814
+<v Riley>Starting close to home — Literacy Quesnel is approaching its twentieth anniversary. The society recently marked ten years of running its Used Books section, and over two decades it's grown from a handful of volunteers into a program that funds adult tutoring, family literacy nights, and one-on-one reading support across the region.
+
+00:02:02.039 --> 00:02:07.111
+<v Casey>Twenty years of volunteer labor that never made a headline until the anniversary did it for them.
+
+00:02:08.722 --> 00:02:41.802
+<v Casey>From homegrown literacy work to a very different kind of labor question, one showing up on laptops in every industry, including the arts. Fast Company published a piece yesterday asking why AI tools that are supposed to save time seem to be creating more work instead. The writer spent a week building an automated production pipeline for a podcast network — twenty-five shows, all needing social clips, transcripts, and promotional copy. The tools worked, but the author ended up putting in more total hours managing prompts, checking outputs, and fixing mistakes than the old manual process took.
+
+00:02:42.314 --> 00:02:46.138
+<v Riley>So the tool did the easy part and left the hard part standing.
+
+00:02:47.850 --> 00:03:16.970
+<v Riley>From acceleration illusions to a much older kind of noise problem. Engadget ran a piece earlier this week explaining why Bluetooth jammers are illegal, even though plenty of people buy them thinking they're a fix for a neighbor's speaker or a car alarm. Jamming any wireless signal violates federal radio law in both Canada and the US, and in Canada the fines can run up to twenty-five thousand dollars for a first offense as an individual, into the millions for a business.
+
+00:03:18.127 --> 00:03:39.007
+<v Casey>From killing signals to buying them on plastic discs again. The Verge reported earlier this week that CD sales are climbing, not falling. The Recording Industry Association of America says 17.5 million CDs sold in the US in just the first six months of 2026 — part of a broader physical media rebound that's already included vinyl for a few years running.
+
+00:03:40.275 --> 00:03:45.739
+<v Riley>People are apparently tired of a song vanishing off a streaming service the week they wanted to hear it again.
+
+00:03:47.225 --> 00:04:11.777
+<v Riley>Scientific American had a piece earlier this week on why music across wildly different cultures tends to settle into a similar tempo range, something close to a resting human heartbeat. Researchers pointed to firefly flash patterns and other biological rhythms converging in the same general range, suggesting there might be a shared physiological reason certain tempos feel natural to move or dance to.
+
+00:04:13.581 --> 00:04:37.597
+<v Casey>Turning to a story with less charm — a Texas Republican official's social media post drew broad condemnation last week for content widely described as racist, with even members of his own party publicly denouncing it. We're not relitigating the politics here; the media mechanics are the relevant piece. One post, a few hours, national coverage, party leadership scrambling to respond before the story set the narrative for them.
+
+00:04:38.909 --> 00:04:43.301
+<v Riley>The speed of that cycle hasn't slowed down in years. If anything it's gotten faster.
+
+00:04:44.612 --> 00:05:06.804
+<v Riley>On a quieter note — an XDA Developers writer described spending years chasing 4K resolution on a home theater setup, only to realize last week that fixing the audio made a bigger difference to how movies actually felt. Better speakers, better calibration, and suddenly a 1080p film felt more immersive than the same title in 4K with mediocre sound.
+
+00:05:07.326 --> 00:05:11.294
+<v Casey>Cheaper upgrade too. A decent soundbar costs less than half a decent TV.
+
+00:05:12.786 --> 00:05:39.706
+<v Casey>That same instinct — question which upgrade you're actually chasing — comes up in a TechRadar interview with the inventor of the CMOS image sensor, the chip inside essentially every phone camera on the planet. He built it originally for imaging in space. He told the interviewer flatly that he never anticipated it would end up powering selfies and social media, and that its social impact has outpaced anything he imagined when he was solving a much narrower engineering problem.
+
+00:05:41.076 --> 00:06:08.484
+<v Riley>A similar mismatch between original intent and eventual scale shows up with radio spectrum. Fast Company covered new AI systems that let multiple users share the same slice of wireless spectrum instead of each getting an exclusive, permanently reserved band. The pitch is smarter real-time allocation — sensing which frequencies are actually in use at a given moment and routing traffic around congestion instead of leaving unused spectrum locked up.
+
+00:06:09.678 --> 00:06:18.318
+<v Casey>That's the kind of infrastructure shift that could matter here directly — more usable capacity for rural towers that don't have much spectrum to spare in the first place.
+
+00:06:19.684 --> 00:06:38.524
+<v Casey>Zooming out to the broader economy — Business Insider flagged a two-sided squeeze coming for the US, and by extension Canada. Consumer spending is showing early signs of slowing at the same moment the Federal Reserve is raising interest rates, which the piece describes as a double drag hitting at once instead of one problem at a time.
+
+00:06:39.644 --> 00:06:56.924
+<v Riley>On a lighter note, New Atlas profiled a motorcycle helmet from an Indian manufacturer claiming to be the lightest off-road helmet in the world. Reviewers were skeptical going in, but early testing suggests the weight savings come from a new shell composite, not from skipping impact standards.
+
+00:06:57.556 --> 00:07:00.876
+<v Casey>Good to know somebody's actually checking before they strap it to their head.
+
+00:07:02.435 --> 00:07:21.491
+<v Casey>ScienceAlert reported on new research into depression's effects on the brain — two regions that show measurable change, though the pattern wasn't consistent across every patient studied. The researchers found the overall trajectory of someone's illness mattered more to brain change than either their diagnosis alone or a short-term spike in symptoms.
+
+00:07:22.707 --> 00:07:27.859
+<v Riley>So less about labeling the illness and more about tracking the whole course of it.
+
+00:07:29.522 --> 00:07:57.858
+<v Riley>AI turned up as a research method in a different corner of the health world too. ScienceDaily reported researchers scanned four hundred thousand Reddit posts using AI language models and surfaced side effects from drugs like Ozempic, Wegovy, and Mounjaro that hadn't been well documented in clinical trials — things like menstrual changes, chills, and fatigue that patients were describing to each other online long before doctors were tracking them systematically.
+
+00:07:58.376 --> 00:08:01.712
+<v Casey>Useful information, mined from a slightly uncomfortable source.
+
+00:08:03.214 --> 00:08:19.174
+<v Casey>AI showed up on the threat side of the ledger too. CNET reported on a new piece of Android malware called RatHat that disguises itself as a legitimate Chrome download. It's built to slip past standard security scans and is already spreading through fake app listings and phishing links.
+
+00:08:20.423 --> 00:08:27.319
+<v Riley>Reminder to only ever install browsers straight from the official app store, not from a link in a text message.
+
+00:08:28.817 --> 00:08:55.281
+<v Riley>And the story worth ending on — WIRED published a detailed explainer yesterday on the FCC's new ban on foreign-manufactured Wi-Fi routers and mobile hotspots sold in the US. Any consumer router or hotspot built outside the US can no longer be sold new, on national security grounds. The rule phases in over roughly the next year and is likely to raise prices in the short term as manufacturers scramble to shift production.
+
+00:08:56.609 --> 00:09:08.705
+<v Casey>Every router in every Cariboo living room right now was built somewhere else entirely. A rule like this doesn't just move prices around — it changes who controls the box that decides whether a household has internet at all.
+
+00:09:09.908 --> 00:09:15.572
+<v Riley>And that question, who owns the tools a community actually depends on, is where we're headed next.
+
+00:09:16.972 --> 00:09:47.588
+<v Casey>Today's spotlight is on the Museum of the Cariboo Chilcotin in Williams Lake, home to the BC Cowboy Hall of Fame. It's a regional history museum built around ranching culture, rodeo history, and the working life of this part of the province — the kind of collection that exists because someone decided decades ago that saddles, brands, and old photographs were worth keeping in one place instead of scattering into attics and estate sales. They're at cowboy-museum.com if you want to see the collection or find out how to donate family history of your own.
+
+00:09:48.108 --> 00:09:53.940
+<v Riley>A museum built entirely on the idea that working culture deserves a permanent record. Worth checking out.
+
+00:09:54.555 --> 00:10:00.475
+<v Casey>That idea, deciding in advance that something is worth keeping, carries straight into what we're getting into next.
+
+00:10:01.875 --> 00:10:12.387
+<v Riley>If a band plays a full set in a hall in Wells, or Horsefly, and nobody records a single second of it, did that show still happen as far as anyone outside the room is concerned?
+
+00:10:12.654 --> 00:10:20.118
+<v Casey>It happened for the eighty people who were there. Whether it happened for anyone else is a separate question, and I don't think the answer's obvious.
+
+00:10:20.723 --> 00:10:38.939
+<v Riley>The field-recording piece in The Verge gets at this from a strange angle. There's a platform called Earth Garden built around ambient audio — brooks, forests, city streets — recorded all over the world and served up as background sound for sleep or focus work. Anyone can browse recordings by region.
+
+00:10:39.566 --> 00:10:48.670
+<v Casey>So a field recording made at a creek outside Horsefly could end up as white noise for a stranger in Berlin who has no idea what they're listening to, or where it came from.
+
+00:10:49.263 --> 00:10:53.991
+<v Riley>A thirty-second clip can travel further than most of the people who made it ever will.
+
+00:10:54.659 --> 00:11:11.547
+<v Casey>Reach isn't the same as being known, though. Earth Garden strips a place down to pure texture — water sound, no name attached, no context, no credit line back to whoever stood there with a microphone for an afternoon. The platform extracts value from the recording. The place gets nothing measurable back.
+
+00:11:12.141 --> 00:11:20.301
+<v Riley>That's true of most recordings, though. A photograph of the Grand Canyon doesn't credit the specific ledge somebody was standing on when they took it.
+
+00:11:20.945 --> 00:11:39.297
+<v Casey>The Grand Canyon has ten thousand other ways of being known to the world. A creek outside Horsefly mostly doesn't. When the only version of a place that exists anywhere online is an anonymous ambient loop, that recording ends up doing all the representing for it, and it was never built to represent anything. It was built to help somebody sleep.
+
+00:11:39.797 --> 00:11:45.501
+<v Riley>Fair distinction. The recording exists somewhere in the world. The place still isn't findable through it.
+
+00:11:45.795 --> 00:11:48.803
+<v Casey>Right. Existing and being legible aren't the same thing.
+
+00:11:49.418 --> 00:12:19.778
+<v Riley>Where this gets more interesting is when a community controls the recording tool instead of just supplying raw material for somebody else's app. Adafruit wrote up a project last week where a hobbyist built a full 512-LED stage lighting matrix driven by a modded Nintendo Switch — pixel art streamed live over a USB connection to an ESP32 controller running the light show in real time. Total build cost is a fraction of renting a commercial stage lighting rig for a night.
+
+00:12:20.415 --> 00:12:25.447
+<v Casey>Who fixes it when a firmware update from Nintendo breaks the homebrew runtime the whole thing depends on?
+
+00:12:25.767 --> 00:12:47.543
+<v Riley>Somebody with a soldering iron and some patience, same as anyone maintaining analog gear. But look at what the barrier used to be — a small venue wanting real stage production had to fly in equipment and a technician from Kamloops or Vancouver for a single show. Now it's a used console, an ESP32 board that costs a few dollars, and a weekend of setup.
+
+00:12:48.147 --> 00:13:02.075
+<v Casey>A weekend, and then a maintainer for as long as that rig keeps getting used. A couple months back we talked about a motion-capture tool with the same problem — cheap access doesn't automatically mean anyone sticks around to run the thing after opening night.
+
+00:13:02.729 --> 00:13:13.073
+<v Riley>It doesn't have to be the same person forever. It needs a venue that treats the gear as standing infrastructure, not a one-off novelty somebody got excited about for a single gig.
+
+00:13:13.662 --> 00:13:26.110
+<v Casey>And that's the gap none of the arts organizations around here have closed. Somebody gets excited about a lighting rig, it works great for one show, and then it sits in a closet because nobody was ever assigned to own it.
+
+00:13:26.732 --> 00:13:55.084
+<v Riley>The digital ID story is the flip side of that — a case where the technology gets imposed on a venue from outside instead of something the venue chose and can maintain itself. TechRadar reported that pubs and other venues in the UK can now accept digital ID apps for age verification at the door. The writer flagged a specific problem: the scanning step is making lines longer, not shorter, because the app adds friction that flashing a physical card never had.
+
+00:13:55.625 --> 00:14:06.497
+<v Casey>Picture that at a hundred-person show in a Quesnel legion hall on a Friday night in February. One phone, one person running the scanner app, and a line stretching out into minus fifteen weather.
+
+00:14:07.129 --> 00:14:18.425
+<v Riley>It's not mandatory here yet. But it's the pattern worth watching — one compliance problem gets "solved" with an app, and the app becomes a new bottleneck nobody budgeted staff time to handle.
+
+00:14:19.089 --> 00:14:34.537
+<v Casey>That's a recurring failure with a lot of rural tech adoption generally. The tool gets designed assuming a venue with a dedicated door staff of six people. A volunteer-run hall has one person doing tickets, running the bar, and now also supposed to be running ID verification.
+
+00:14:35.136 --> 00:14:43.048
+<v Riley>Somebody ought to just staple a laminated sign to the door that says "phone dead, use a card," and call the whole debate solved.
+
+00:14:43.340 --> 00:14:46.668
+<v Casey>That would actually work better than half the pilot programs I've read about.
+
+00:14:47.235 --> 00:15:01.371
+<v Riley>So the honest read is that better documentation tools and worse gatekeeping tools are showing up side by side, and a small venue has to sort out which is which with no IT department to consult and no budget for a trial period.
+
+00:15:01.999 --> 00:15:08.319
+<v Casey>And no guarantee that sorting happens at all before somebody just adopts whatever a sales rep happens to be pitching that month.
+
+00:15:08.926 --> 00:15:31.566
+<v Riley>Which loops back to the recording question. A guitar's a useful comparison here — a while back we covered the story of a BC couple who tracked down and reunited a missing guitar with musician Randy Bachman decades after it disappeared. No recording did that. No app did that. It was one physical object with a documented history, and people who cared enough to chase it down.
+
+00:15:32.187 --> 00:15:45.419
+<v Casey>A physical instrument carries its own record built in — scratches, repairs, who owned it and when. A digital file doesn't carry any of that unless somebody deliberately attaches the context and keeps attaching it every time the file moves.
+
+00:15:45.942 --> 00:16:01.830
+<v Riley>So maybe the answer to whether a show existed isn't really about capture at all. It's about whether anything survives afterward with the story still attached to it — a recording with a name on it, an instrument with a paper trail, even just a printed program from that night.
+
+00:16:02.499 --> 00:16:14.203
+<v Casey>The printed program is underrated. The Museum of the Cariboo Chilcotin has rodeo records and ranching artifacts going back generations because somebody kept paper, not because anyone was running a microphone.
+
+00:16:14.806 --> 00:16:33.494
+<v Riley>So here's a concrete version of tonight's argument. A hall like the Arts Station in Wells could own one decent field recorder and treat "record the show" as a standing job description, the same way someone's assigned to unlock the doors or run the bar. Not a grant application. A line in a job description.
+
+00:16:34.053 --> 00:16:45.253
+<v Casey>That's a smaller ask than most solutions get pitched at, and it survives past year one, because it doesn't depend on a funding cycle. It depends on whoever runs the venue deciding, once, that it matters.
+
+00:16:45.878 --> 00:17:00.222
+<v Riley>It also partly answers the Earth Garden problem. If the venue holds its own recording, the name and the date and the place stay attached to it. Nobody's stripping it down into anonymous ambient wallpaper for someone else's sleep app three years later.
+
+00:17:00.873 --> 00:17:15.473
+<v Casey>It still doesn't answer who decides what gets kept and what gets deleted five years from now when the hard drive fills up and somebody has to choose. That's a governance question, not a hardware problem, and it doesn't get solved by buying a better recorder.
+
+00:17:16.132 --> 00:17:24.540
+<v Riley>True. But an unmaintained hard drive with the wrong two hundred hours on it is still a better problem to have than a show that was never captured at all.
+
+00:17:25.206 --> 00:17:35.310
+<v Casey>I'll give you that much. It's a lower floor, not a solved ceiling — and if your hall's got a recorder sitting in a closet somewhere, that's your sign to actually assign someone to it.
+
+00:17:36.010 --> 00:17:46.954
+<v Riley>If you've got a story about a Cariboo venue documenting its own shows, or you want to argue with either of us about tonight's conclusion, that's feedback at cariboo signals dot c-a. Have a good one, Casey.
+
+00:17:47.318 --> 00:17:49.014
+<v Casey>You too. See everybody tomorrow.
