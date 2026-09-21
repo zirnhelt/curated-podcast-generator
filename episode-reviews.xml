@@ -5,39 +5,47 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Mon, 21 Sep 2026 10:05:40 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 21 Sep 2026 16:57:35 +0000</lastBuildDate>
     <item>
       <title>Episode Review — Cariboo Signals, September 21, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-21.html</link>
       <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-21.html</guid>
-      <pubDate>Mon, 21 Sep 2026 10:05:40 +0000</pubDate>
+      <pubDate>Mon, 21 Sep 2026 16:57:35 +0000</pubDate>
       <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/35576051745"&gt;35576051745&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h3&gt;Brave budget exhausted; thin articles now ship as-is&lt;/h3&gt;
+&lt;h3&gt;Brave's budget exhausted; 51 articles dropped from roundup&lt;/h3&gt;
 
-&lt;p&gt;The pipeline spent its full budget of 12 Brave API calls on article body backfill and hit the limit mid-run. Of the 51 roundup articles dropped from today's episode, the constraint was structural: remaining articles with stub bodies stay stub, and sparse content gets cut rather than shipped incomplete. This is the designed fallback, not a failure state.&lt;/p&gt;
+&lt;p&gt;The pipeline burned through its Brave Search API allocation mid-run. It made 12 calls attempting to backfill article bodies before the budget expired. Twenty articles that remained too thin to script stayed that way. The system then dropped 51 articles from the roundup entirely rather than publish stubs.&lt;/p&gt;
 
-&lt;p&gt;Citation alignment shows the cost. The roundup matched 10 of 15 citations (67%); the three deep dives achieved 3 of 3 (100%). The deep dives—field recordings from &lt;em&gt;The Verge&lt;/em&gt;, digital ID apps from &lt;em&gt;TechRadar&lt;/em&gt;, and LED driving from &lt;em&gt;Adafruit Blog&lt;/em&gt;—all had sufficient source material. The roundup did not.&lt;/p&gt;
+&lt;p&gt;This is a structural choice, not a bug. Thin articles without bodies cannot anchor a segment. The pipeline preferred to shrink the roundup to 64 items (15 citations matched of 15 attempted on those 3 deep dives) rather than run script segments on hollow sources.&lt;/p&gt;
 
-&lt;h3&gt;Script undershot its target; expansion pass recovered it&lt;/h3&gt;
+&lt;h3&gt;Script came in light; one expansion pass added 567 words&lt;/h3&gt;
 
-&lt;p&gt;The first draft arrived at 2,488 words against a 3,400-word target. The pipeline triggered an expand pass. The shipped script settled at 3,055 words—still 345 words below target, but above the minimum threshold. No second expansion was attempted.&lt;/p&gt;
+&lt;p&gt;First draft landed at 2,488 words against a 3,400-word target. The system sent it back for expansion. The final script shipped at 3,055 words—still 345 short of target, but 567 words higher than the draft.&lt;/p&gt;
 
-&lt;h3&gt;Territory mapping failed on Indigenous nation coverage&lt;/h3&gt;
+&lt;p&gt;One AI-tell pattern surfaced in quality checks. Voice ratio favored Casey at 0.79:1 over Riley.&lt;/p&gt;
 
-&lt;p&gt;Two separate degradations flagged the Tsilhqot'in nation as appearing in connection with a museum, but the territory map covers that geography under Inuit Nunangat—a geographic mismatch. A third degradation reports that 2 sentences retained an unsupported nation claim after a rewrite was rejected. These stayed in the shipped script.&lt;/p&gt;
+&lt;h3&gt;Territory mapping failed on Tsilhqot'in; two sentences kept unsupported claims&lt;/h3&gt;
 
-&lt;h3&gt;Anchor framing went unaided; debate question recycles daily&lt;/h3&gt;
+&lt;p&gt;The territory-check step flagged a Tsilhqot'in reference paired against an Inuit Nunangat map boundary—a mismatch in geographic coverage. The system attempted a rewrite. That rewrite was rejected. Two sentences survived with the unsupported nation intact.&lt;/p&gt;
 
-&lt;p&gt;The debate question—"How should small rural venues document and share their performances in ways that preserve context and serve community rather than extracting value for external platforms?"—had no per-weekday framings available. Each day's anchor will pose the question without additional context variation.&lt;/p&gt;
+&lt;p&gt;This represents a constraint breach. The pipeline does not have a mechanism to force-reject these segments; it can only log them and move forward.&lt;/p&gt;
 
 &lt;h3&gt;One TTS segment came back short; retried once&lt;/h3&gt;
 
-&lt;p&gt;A single text-to-speech segment produced audio duration shorter than its word count predicted. The pipeline retried it once per spec. The result shipped in the final audio.&lt;/p&gt;
+&lt;p&gt;A single text-to-speech segment produced audio shorter than word count predicted. The system retried it once per protocol. The means field confirms each short segment gets one retry, not a full regeneration.&lt;/p&gt;
 
-&lt;h3&gt;Three runs completed in sequence; one still in progress&lt;/h3&gt;
+&lt;h3&gt;Citation coverage split wide between roundup and deep dives&lt;/h3&gt;
 
-&lt;p&gt;Two manual triggers completed at 08:05 and 09:05 UTC. Script generation took 491 seconds across the run—the slowest step. Audio rendering took 314 seconds. A third run initiated at 10:05 UTC is still in progress. The episode reached 237 in the RSS feed, 18.4 minutes of audio (16.8 MB), and 63.5 MB of video. Claude handled 12 API calls on 86,593 input tokens.&lt;/p&gt;
+&lt;p&gt;Roundup citations matched 10 of 15 sources (67%). Deep dive citations matched 3 of 3 (100%). The roundup's lower hit rate reflects the article-dropping decision: sources that were too thin to research fully were also less likely to yield matched citations downstream.&lt;/p&gt;
+
+&lt;h3&gt;Run history: three manual triggers, then 411 minutes late on fallback&lt;/h3&gt;
+
+&lt;p&gt;Three manual dispatches ran at 08:05, 09:05, and 10:05 UTC on September 21st. All completed successfully within 22, 6, and 9 minutes respectively. A fourth run initiated from "Fallback 2 (3:05 AM Pacific)" started at 16:56 UTC—411 minutes behind schedule—and remains in progress at time of review.&lt;/p&gt;
+
+&lt;p&gt;Episode 237 shipped. Audio and video both measured 18.4 minutes. File sizes: 16.8 MB audio, 63.5 MB video. Anthropic processed 86,593 input tokens across 12 Claude calls.&lt;/p&gt;
+
+&lt;p&gt;Debate question: &lt;em&gt;How should small rural venues document and share their performances in ways that preserve context and serve community rather than extracting value for external platforms?&lt;/em&gt;&lt;/p&gt;
 
 &lt;h3&gt;The day's triggers&lt;/h3&gt;
 &lt;table&gt;
@@ -45,7 +53,8 @@
 &lt;tbody&gt;
 &lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-21T08:05:03Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-21T09:05:04Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-21T10:05:04Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-21T10:05:04Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-09-21T16:56:54Z&lt;/td&gt;&lt;td&gt;+411 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
