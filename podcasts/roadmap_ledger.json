@@ -247,7 +247,7 @@
       "title": "Script expansion request produced net word loss instead of growth.",
       "detail": "On 2026-09-02, the first draft arrived at 2,986 words against a 3,400-word target. The pipeline issued an expand pass, expecting the script to grow toward target. The shipped script measured 2,871 words—114 words shorter than the first draft. Either the expand prompt failed to add content, or trimming removed more than expansion added. Audit the expand pass logic in the script generation phase and verify the prompt is requesting additive changes without downstream cuts.",
       "source": "review",
-      "status": "open",
+      "status": "retired",
       "occurrences": 2,
       "first_seen": "2026-09-02",
       "seen": [
@@ -551,13 +551,14 @@
       "title": "Daily anchor framing applied the same debate question without per-weekday context.",
       "detail": "The debate question—\"Who decides what stories get told and preserved in local communities, and how can digital tools democratize both the creation and archiving of cultural memory?\"—was used identically across all days on 2026-09-14, with no per-weekday customization in the prompt or template. The degradation log notes \"no per-weekday framings\" and \"each day frames the question unaided.\" To close this: add branching logic to the anchor framing stage that seeds the prompt with day-of-week context or topic hints, similar to how other segments vary by publication date.",
       "source": "review",
-      "status": "pending",
-      "occurrences": 1,
+      "status": "open",
+      "occurrences": 2,
       "first_seen": "2026-09-14",
       "seen": [
-        "2026-09-14"
+        "2026-09-14",
+        "2026-09-21"
       ],
-      "last_seen": "2026-09-14"
+      "last_seen": "2026-09-21"
     },
     {
       "id": "script-expansion-below-target-by-16-percent",
@@ -650,7 +651,20 @@
         "2026-09-20"
       ],
       "last_seen": "2026-09-20"
+    },
+    {
+      "id": "territory-check-tsilhqot-in-mismatch-recurs",
+      "title": "Territory check flags Tsilhqot'in nation mapped to wrong region.",
+      "detail": "On September 21, two degradations reported the Tsilhqot'in nation appearing in connection with a museum but mapped under Inuit Nunangat, a geographic mismatch. A third degradation noted that 2 sentences retained an unsupported nation claim after rewrite rejection. These sentences shipped in the final script. The territory validation logic either lacks the Tsilhqot'in nation in its mapping dictionary or returns false positives when matching nations to regions. Add Tsilhqot'in to the territory map with correct region coverage, and ensure rewrite rejections trigger content removal rather than passthrough to shipped audio.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-21",
+      "seen": [
+        "2026-09-21"
+      ],
+      "last_seen": "2026-09-21"
     }
   ],
-  "updated": "2026-09-20"
+  "updated": "2026-09-21"
 }

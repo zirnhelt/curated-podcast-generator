@@ -39,7 +39,7 @@ cannot reopen it. Anything written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-20) — 23 open.
+_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-21) — 23 open.
 Check a box to close one; it comes back only if the reviews raise it 2 more times._
 
 - [ ] **A credit-balance 400 is not the usage-limit wall, and every run pays for that.**
@@ -122,13 +122,6 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       to preserve more thin stories, or implement a second-pass fallback that scripts stub
       bodies without enrichment rather than dropping them. (seen in 5 reviews, latest
       2026-09-18)
-- [ ] **Script expansion request produced net word loss instead of growth.** On 2026-09-02, the
-      first draft arrived at 2,986 words against a 3,400-word target. The pipeline issued an
-      expand pass, expecting the script to grow toward target. The shipped script measured 2,871
-      words—114 words shorter than the first draft. Either the expand prompt failed to add
-      content, or trimming removed more than expansion added. Audit the expand pass logic in the
-      script generation phase and verify the prompt is requesting additive changes without
-      downstream cuts. (seen in 2 reviews, latest 2026-09-06)
 - [ ] **Brave body-backfill exhaustion dropped 55 roundup articles from the episode.** The
       pipeline spent its 12 Brave Search calls on body backfill and exhausted the budget mid-run
       on 2026-09-02. Fifty-five articles were dropped instead of scripted; the deep dives
@@ -203,6 +196,14 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       proceeded despite this disparity. Audit the deep dive citation matching logic and the
       Brave API call sequence to confirm whether thin article bodies or budget exhaustion
       degraded the deep dive's source alignment. (seen in 5 reviews, latest 2026-09-20)
+- [ ] **Daily anchor framing applied the same debate question without per-weekday context.** The
+      debate question—"Who decides what stories get told and preserved in local communities, and
+      how can digital tools democratize both the creation and archiving of cultural memory?"—was
+      used identically across all days on 2026-09-14, with no per-weekday customization in the
+      prompt or template. The degradation log notes "no per-weekday framings" and "each day
+      frames the question unaided." To close this: add branching logic to the anchor framing
+      stage that seeds the prompt with day-of-week context or topic hints, similar to how other
+      segments vary by publication date. (seen in 2 reviews, latest 2026-09-21)
 - [ ] **Territory check flagged two sentences with unsupported nations; rewrites were rejected
       and they shipped.** The script named Sinixt in connection with Redstone and Syilx in
       connection with Tribune. The territory map covers those locations under other nations. Two
