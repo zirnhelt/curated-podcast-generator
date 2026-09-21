@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Review — Cariboo Signals, September 21, 2026</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #222; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 0.5rem; font-size: 1.6rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.1rem; color: #444; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.8rem; text-align: left; }
+    th { background: #f5f5f5; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    a { color: #0066cc; }
+    code { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Episode Review — Cariboo Signals, September 21, 2026</h1>
+  <p class="meta">Published September 21, 2026 &middot; <a href="https://zirnhelt.github.io/curated-podcast-generator">Cariboo Signals</a></p>
+  <p><em>What the pipeline did, what broke, and what it chose when something broke. Run <a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/35576051745">35576051745</a>.</em></p>
+
+<h3>Brave budget exhausted; thin articles now ship as-is</h3>
+
+<p>The pipeline spent its full budget of 12 Brave API calls on article body backfill and hit the limit mid-run. Of the 51 roundup articles dropped from today's episode, the constraint was structural: remaining articles with stub bodies stay stub, and sparse content gets cut rather than shipped incomplete. This is the designed fallback, not a failure state.</p>
+
+<p>Citation alignment shows the cost. The roundup matched 10 of 15 citations (67%); the three deep dives achieved 3 of 3 (100%). The deep dives—field recordings from <em>The Verge</em>, digital ID apps from <em>TechRadar</em>, and LED driving from <em>Adafruit Blog</em>—all had sufficient source material. The roundup did not.</p>
+
+<h3>Script undershot its target; expansion pass recovered it</h3>
+
+<p>The first draft arrived at 2,488 words against a 3,400-word target. The pipeline triggered an expand pass. The shipped script settled at 3,055 words—still 345 words below target, but above the minimum threshold. No second expansion was attempted.</p>
+
+<h3>Territory mapping failed on Indigenous nation coverage</h3>
+
+<p>Two separate degradations flagged the Tsilhqot'in nation as appearing in connection with a museum, but the territory map covers that geography under Inuit Nunangat—a geographic mismatch. A third degradation reports that 2 sentences retained an unsupported nation claim after a rewrite was rejected. These stayed in the shipped script.</p>
+
+<h3>Anchor framing went unaided; debate question recycles daily</h3>
+
+<p>The debate question—"How should small rural venues document and share their performances in ways that preserve context and serve community rather than extracting value for external platforms?"—had no per-weekday framings available. Each day's anchor will pose the question without additional context variation.</p>
+
+<h3>One TTS segment came back short; retried once</h3>
+
+<p>A single text-to-speech segment produced audio duration shorter than its word count predicted. The pipeline retried it once per spec. The result shipped in the final audio.</p>
+
+<h3>Three runs completed in sequence; one still in progress</h3>
+
+<p>Two manual triggers completed at 08:05 and 09:05 UTC. Script generation took 491 seconds across the run—the slowest step. Audio rendering took 314 seconds. A third run initiated at 10:05 UTC is still in progress. The episode reached 237 in the RSS feed, 18.4 minutes of audio (16.8 MB), and 63.5 MB of video. Claude handled 12 API calls on 86,593 input tokens.</p>
+
+<h3>The day's triggers</h3>
+<table>
+<thead><tr><th>Trigger</th><th>Created</th><th>Drift</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-21T08:05:03Z</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-21T09:05:04Z</td><td>+0 min</td><td>success</td></tr>
+<tr><td>Manual (workflow_dispatch)</td><td>2026-09-21T10:05:04Z</td><td>+0 min</td><td>in_progress</td></tr>
+</tbody>
+</table>
+
+<h3>What shipped</h3>
+<table>
+<thead><tr><th>Measure</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Deep dive</td><td>3 articles</td></tr>
+<tr><td>Script</td><td>1 pattern hit(s), voice ratio 0.79, 3055 words</td></tr>
+<tr><td>Audio</td><td>18.4 min</td></tr>
+<tr><td>Audio size</td><td>16.8 MB</td></tr>
+<tr><td>Citations matched</td><td>10/15 roundup, 3/3 deep dive</td></tr>
+<tr><td>Feed</td><td>237 episodes</td></tr>
+<tr><td>Anthropic spend</td><td>86,593 input tokens, calls ***'claude': 12, 'brave-answers': 3***</td></tr>
+</tbody>
+</table>
+</body>
+</html>
