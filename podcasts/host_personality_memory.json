@@ -1,8 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[Hyperallergic] How AIDS Activists Turned Graphic Design Int",
-      "[TechCrunch] How AI accounting startup Rillet raised $100M a",
       "[CBC Arts] Australia bans fully AI-made songs from charts af",
       "[Kagi Small Web] SwarmWorld: Stigmergic technological evolut",
       "[TechRadar] Geekom reveals multiple mini-PCs may be infected",
@@ -10,7 +8,9 @@
       "EEVblog 1769 \u2013 Who Needs Three Phases? REPAIR",
       "[TechCrunch] Google DeepMind alumni are building tools to ac",
       "[The Verge] Musicians-turned-detectives are hunting for AI g",
-      "[TechRadar] Microsoft 365 users hit by two major threat camp"
+      "[TechRadar] Microsoft 365 users hit by two major threat camp",
+      "[Fast Company] I use AI to save time. So why am I working mo",
+      "[TechRadar] The new digital ID apps for age verification in "
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -125,11 +125,6 @@
         "occurrences": 1
       },
       {
-        "date": "2026-09-16",
-        "clue": "structural-lens:x \u2014 conceded Google's motive differs from Deere's",
-        "occurrences": 2
-      },
-      {
         "date": "2026-09-12",
         "clue": "evidence-bar:+ \u2014 Pushed for concrete delivery over campaign promises",
         "occurrences": 1
@@ -162,6 +157,11 @@
       {
         "date": "2026-09-20",
         "clue": "tech-optimism:x \u2014 conceded wonder insufficient without distribution pathway",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-09-21",
+        "clue": "rural-context:+ \u2014 Genuine frustration with volunteer-hall friction, moved concrete",
         "occurrences": 1
       }
     ],
@@ -399,11 +399,6 @@
         "occurrences": 2
       },
       {
-        "date": "2026-09-10",
-        "clue": "pilot-skepticism:+ \u2014 apprenticeship funding volatility poses bigger risk than tech",
-        "occurrences": 2
-      },
-      {
         "date": "2026-09-09",
         "clue": "pilot-skepticism:x \u2014 Conceded entry-point value despite teaching concerns",
         "occurrences": 1
@@ -426,6 +421,11 @@
       {
         "date": "2026-09-20",
         "clue": "evidence-bar:+ \u2014 reinforced distinction between lab-discovery and real-world outcome",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-09-21",
+        "clue": "community-trust:~ \u2014 Acknowledged recording value despite earlier skepticism, real movement",
         "occurrences": 1
       }
     ],

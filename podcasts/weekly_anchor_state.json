@@ -59,6 +59,16 @@
       "framings": {},
       "assigned_at": "2026-09-14",
       "origin": "seeded"
+    },
+    "2026-W39": {
+      "id": "place-unrecorded",
+      "question": "Does a place still exist if nobody records it?",
+      "dimension": "memory-record",
+      "premise": "The Cariboo is thinly documented and getting thinner \u2014 a shrinking local press, council meetings nobody minutes, oral history held by people in their eighties, ecosystems monitored by satellite but not by anyone who lives there. Meanwhile the same landscape is captured in enormous detail by systems that answer to nobody local. The question is what the difference is between being recorded and being known.",
+      "reading": null,
+      "framings": {},
+      "assigned_at": "2026-09-21",
+      "origin": "seeded"
     }
   },
   "used": [
@@ -97,6 +107,12 @@
       "dimension": "value-triage",
       "question": "Who decides what's worth saving?",
       "week": "2026-W38"
+    },
+    {
+      "id": "place-unrecorded",
+      "dimension": "memory-record",
+      "question": "Does a place still exist if nobody records it?",
+      "week": "2026-W39"
     }
   ],
   "generated": []
