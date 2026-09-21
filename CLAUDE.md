@@ -423,6 +423,32 @@ no cleanup commit when it closes. Currently the Williams Lake 2026 general local
   - **`home_places` carries the CRD electoral areas** (D, E, F and their communities) for the
     same reason it carries Williams Lake: those directors are on the listener's own ballot, so
     an area-director story must rank as *ours* rather than as neighbour coverage.
+  - **An instruction to name people met a prompt with no names in it.** The lens has demanded
+    every candidate by name since it was written, and on 2026-09-19 the deep dive still opened
+    on "three regional director seats we straight up can't name a single candidate for" and
+    could not say whether 100 Mile House's mayor had filed. Nothing selected wrong and nothing
+    was fabricated — a nomination-day article reports a *count*, the research sweep can only
+    look up names it was given, and the producer's filed list sat in
+    `docs/wl-2026-election-candidates.md` marked "recognize, don't cite", read by nothing.
+    `event_focus.roster` is that list as data, rendered by `_format_event_roster` into the
+    deep-dive lens and into the research sweep's standing assignment.
+    - **It settles who is running and nothing else**, and the block says so in the prompt.
+      A record, a prior result, a platform or a controversy is still SOURCED OR UNSAID — a
+      name on a nomination form is a source for the name and for nothing after it. That
+      boundary is what makes the roster safe to inject at all: the failure it fixes is
+      hedging, and the failure a wider roster would buy is invention, which is worse. The
+      platform notes stay in the doc and are deliberately absent from the JSON.
+    - **A race with no names renders as `NO FILED LIST`, not as nothing.** The ballot has four
+      races on it whether or not the show has four filed lists, so the lens names the race,
+      says in one plain sentence that the show does not have its candidates, and the sweep is
+      told to spend a search there before a fourth search on a name the articles already
+      cover. Said once inside the segment that is honest reporting; the 09-19 cold open turned
+      it into the episode's hook, which is why `cold_open_generation` now forbids teasing an
+      absence.
+    - **Two copies drift**, so `tests/test_podcast_generator.py` asserts the doc and the JSON
+      carry the same names — the lesson from this file's own claims about `super-rss-feed`.
+      Nothing else needs cleanup: `event_focus` is date-bounded, so the roster stops being
+      injected when the window shuts on Oct 24.
 
 - **The downstream ranking cannot select what the feed never sent.** On 2026-09-05 the pool held
   "Three Williams Lake city councillors not seeking re-election this fall" (Williams Lake
@@ -550,6 +576,19 @@ borrow a name from a different town's race. A third fact-check exception,
 `agentic_polish_and_factcheck` — the roundup is otherwise off-limits to the fact-check pass, but
 a candidate pairing gets checked against the verified sources like a bill's substance or a
 leadership race's winner do.
+
+**The segment used to read out its own filing system.** `_NEVER_ANNOUNCE` has kept block
+*names* off the air since 2026-08-11, but the COVERAGE CUE rule opposite it asked the opening
+line to reflect "how much ground there is", explicitly "(count and depth of sourcing)" — and
+the ◆ headers hand the model the counts. So the rule and the ban were pulling opposite ways,
+and the rule won: "Six stories close to home to start, one that ties straight into today's
+theme, and a longer tail after that", "Fifteen stories in the queue today", "a full docket
+today". That is the running order narrated. The cue is editorial framing now — what kind of
+day it is out there — with counts, container nouns ("docket", "queue", "batch", "lineup") and
+the running order named as things never to say, and `_NEVER_ANNOUNCE` says the header count is
+a pacing budget. **Where the stories sit is still fair game**: "a lot of it close to home
+today" is a fact about the news, not about how the file was sorted, and cutting it would cost
+the roundup its one honest opening move.
 
 Two prompt rules carry the rest: **NO HEADLINE CRAWL** (never stack unrelated stories into one
 host turn as one-sentence mentions) and **DO NOT MANUFACTURE CONNECTIONS** — an abstract bridge
@@ -787,6 +826,21 @@ thresholds was either basic English ("it's a", "rather than") or subject matter 
 and banning those in the prompt would damage the script. Division of labour: the ledger
 machine-detects the adverb register; multi-word tics are what a human notices, and
 `hard_banned` is the channel for naming them.
+
+**The tail of `hard_banned` is not a style tic.** The show renders overnight and listeners have
+it before breakfast, and nothing in the prompt said so — 2026-09-21 aired "here's a concrete
+version of tonight's argument" and "argue with either of us about tonight's conclusion". The
+prompt fix is the load-bearing half (`CRITICAL REQUIREMENTS` → **TIME OF DAY**), and the
+phrases placing the episode at night ride in `hard_banned` because that one list already buys
+all three enforcement paths with no code: the BURNED PHRASES block, the post-cold-open scrub,
+and the test that stops prompt prose teaching the phrase it bans.
+
+**It is a rule about when the SHOW is, not about when the world is.** Across 237 scripts every
+other "tonight" was correct — an overnight low, a meteor shower, a clear sky worth going
+outside for — so only literal, always-wrong forms belong there: `tonight's <episode noun>`, an
+evening greeting, a farewell to the night. A broader ban would delete the weather check. The
+scrub's rewrite rule is split for the same reason: an intensifier is deleted, a night phrase
+takes the daytime substitution.
 
 Promotion requires `phrase in counts` — the window aggregate still holds a phrase for weeks
 after the show stops saying it, so promoting off the aggregate alone re-fired daily, reset

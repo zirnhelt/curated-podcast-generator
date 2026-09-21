@@ -1,21 +1,40 @@
 # Williams Lake 2026 General Local Election — Candidate Reference
 
-*Producer background notes, compiled after nominations closed (Sept 11, 2026). Voting day Oct 17, 2026.*
+*Producer notes, compiled after nominations closed (Sept 11, 2026). Voting day
+Oct 17, 2026.*
 
-This is a **staff reference for recognizing names and spotting coverage gaps** —
-it is not a sourced-claims database and must not be read into a script or
-research pass as fact. Every on-air claim about a candidate still has to come
-from that day's articles or the `event_focus.research` sweep and cite an
-outlet and date, per the `event_focus` lens in `config/themes.json`
-(SOURCED OR UNSAID). Treat the platform notes below as *what the candidate
-says about themselves*, not as a verified record — the record (prior terms,
-prior results won and lost, controversies) is exactly what the research brief
-exists to establish independently each Saturday.
+**The names below are wired into the pipeline.** The machine-readable copy is
+`config/themes.json` → theme `5` → `event_focus.roster`, which
+`_format_event_roster` renders into the Saturday deep-dive lens and into the
+`event_focus.research` sweep's standing assignment. This file is the prose
+half — the platform notes and the reasoning — and the JSON is the half the
+show reads. `tests/test_podcast_generator.py` asserts every name here appears
+there, so **edit both or neither**: a correction that lands only in this file
+changes nothing on air, and one that lands only in the JSON loses the context
+for why.
 
-Scope: City of Williams Lake mayor and council only. CRD electoral area
-director races (D, E, F) and the SD27 trustee race are part of the same
-ballot and the same `event_focus` lens but are not covered by this list —
-flag it if a research pass can't find sourcing for those races either.
+**What the roster settles, and what it does not.** It settles exactly one
+question — who is running, and in which race — because that closed and became
+public on nomination day. That is why the hosts may now name candidates flatly
+instead of hedging: on 2026-09-19 the deep dive opened on "three regional
+director seats we straight up can't name a single candidate for" and could not
+say whether 100 Mile House's mayor had filed, because the lens demanded names
+and the prompt carried none.
+
+Everything *after* the name is still `SOURCED OR UNSAID`. Prior terms, previous
+results won and lost, the record in office, any controversy — those come from
+the day's articles or the research sweep, with an outlet and a date, exactly as
+before. The platform notes below are *what the candidate says about themselves*
+and are deliberately **not** in the JSON: a name on a nomination form is a
+source for the name and for nothing after it.
+
+Scope: City of Williams Lake mayor and council only. The CRD electoral area
+director races (D, E, F) and the SD27 trustee race are on the same ballot and
+in the same `event_focus` lens, and the roster carries them as empty races on
+purpose — the renderer marks each `NO FILED LIST`, the lens tells the hosts to
+name the race and say in one plain sentence that the show does not have its
+candidates, and the research sweep is told to spend a search there first. Fill
+them in here and in the JSON and that hedge disappears.
 
 ## Mayor
 
@@ -68,15 +87,20 @@ flag it if a research pass can't find sourcing for those races either.
 
 ## Using this list
 
-- **Recognize, don't cite.** When a Saturday deep dive touches the election,
-  cross-check the segment against this roster: did it name people rather
-  than roles, and does the ballot coverage add up against who's actually
-  running? A name missing from both the sources and this list is a gap
-  worth a research pass, not an invention to fill from here.
-- **Update, don't append forever.** If a candidate withdraws, is acclaimed,
-  or a race changes shape between now and Oct 17, edit this file in place
-  rather than layering corrections — it's a snapshot, not a ledger.
-- **Nothing here overrides `SOURCED OR UNSAID`.** If a future episode needs
-  to say a candidate's past-term record, or a controversy, that still has to
-  come from the research sweep's own outlet-and-date sourcing, even when the
-  fact happens to also appear in this file.
+- **Names are citable; records are not.** The show may say "Ruth Lloyd is
+  running for council" on the strength of this list alone. It may not say what
+  she did, won, lost or was accused of without a sourced finding, even when the
+  fact is also written above. That line is what makes the roster safe to put in
+  a prompt at all — widening it trades a hedging segment for an inventing one,
+  which is the worse failure.
+- **Update both copies, don't append forever.** If a candidate withdraws, is
+  acclaimed, or a race changes shape between now and Oct 17, edit this file
+  *and* `event_focus.roster` in place rather than layering corrections — it's a
+  snapshot, not a ledger. The drift test will fail if only one moves.
+- **An empty race is a real answer.** A race with no names is rendered as
+  `NO FILED LIST` and named on air as a gap in what the show has. Leaving it
+  empty is honest; guessing at it from a neighbouring race is the 2026-09-15
+  failure that put a 100 Mile House candidate in the Williams Lake mayoral race.
+- **The window closes itself.** `event_focus` is bounded by `start`/`end`
+  (Sept 1 – Oct 24, 2026), so the roster stops being injected the day the window
+  shuts. No cleanup commit, and nothing to remember.

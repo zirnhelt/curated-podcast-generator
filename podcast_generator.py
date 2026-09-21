@@ -2988,6 +2988,12 @@ def research_deep_dive_with_agent(deep_dive_articles, theme_name, client, event_
     # record it asks for is never in the day's articles, so "is research
     # warranted?" is already answered and the budget is the only open question.
     event_brief = (event_focus or {}).get('research', '')
+    # The brief says to sweep every candidate the ARTICLES name, which on a
+    # nomination-day story is a count and no names at all. The roster is the
+    # filed list, so the sweep gets a roll call instead of whoever the wire
+    # happened to quote — and the brief's closing "say which ones you could not
+    # source" finally has a denominator.
+    event_roster = _format_event_roster(event_focus) if event_brief else ""
     searches = EVENT_RESEARCH_SEARCH_LIMIT if event_brief else 4
 
     system_prompt = (
@@ -2995,7 +3001,13 @@ def research_deep_dive_with_agent(deep_dive_articles, theme_name, client, event_
         "Never fabricate organization names, person names, or event details — "
         "only reference entities found in the source articles or verified by your web searches.\n\n"
         + (f"STANDING ASSIGNMENT — {event_focus.get('name', 'active event')}:\n"
-           f"{event_brief}\n\n"
+           f"{event_brief}\n"
+           f"{event_roster}\n\n"
+           "The roster above is the filed list of who is running — research those people "
+           "by name whether or not the source articles mention them, and spend the budget "
+           "on the races and candidates the articles leave thinnest. Where a race is "
+           "marked NO FILED LIST, one search for that race's candidates is worth more "
+           "than a fourth search on a name the articles already cover.\n\n"
            "Research IS warranted today; go straight to the searches below.\n\n"
            if event_brief else "") +
         "First, decide whether live web research would meaningfully enrich this deep dive. "
@@ -5864,6 +5876,85 @@ def _build_theme_anti_keywords(theme_name):
     return []
 
 
+def _format_event_roster(event_focus) -> str:
+    """Render an `event_focus` roster — who is actually on the ballot — or "".
+
+    The lens has demanded every candidate by name since it was written, and on
+    2026-09-19 the deep dive still opened on "three regional director seats we
+    straight up can't name a single candidate for" and could not say whether
+    100 Mile House's mayor had filed. Nothing in the lens was wrong. The filed
+    nominations are public and closed, and the pipeline had no copy of them: a
+    nomination-day article reports counts, and the producer's roster sat in
+    docs/wl-2026-election-candidates.md marked "recognize, don't cite", read by
+    nothing. So an instruction to name people met a prompt with no names in it,
+    and the segment did the only honest thing left, at length and in the cold
+    open.
+
+    The roster settles exactly one question — who is running, in which race —
+    because that is what closed on nomination day. It settles nothing else, and
+    the block says so: a record, a platform, a prior result or a controversy is
+    still SOURCED OR UNSAID, because a name on a nomination form is a source for
+    the name and for nothing after it. That boundary is the whole reason this is
+    safe to inject; widening it would trade a hedging segment for an inventing
+    one, which is the worse failure.
+
+    A race carrying no names is rendered as the gap it is rather than dropped.
+    The ballot has four races on it whether or not the show has all four filed
+    lists, and "we don't have that one" said once in plain words is the answer
+    the 09-19 cold open turned into its hook.
+    """
+    roster = (event_focus or {}).get('roster') or {}
+    races = roster.get('races') or []
+    if not races:
+        return ""
+
+    lines = []
+    for race in races:
+        name = race.get('race', '').strip()
+        if not name:
+            continue
+        candidates = [c for c in race.get('candidates', []) if c and c.strip()]
+        if not candidates:
+            lines.append(f"  {name}: NO FILED LIST — the show does not have "
+                         "the candidates for this race.")
+            continue
+        incumbents = [c for c in race.get('incumbents', []) if c and c.strip()]
+        marked = [f"{c} [holds the seat now]" if c in incumbents else c
+                  for c in candidates]
+        lines.append(f"  {name} ({len(candidates)}): " + ", ".join(marked))
+
+    if not lines:
+        return ""
+
+    closed = roster.get('nominations_closed', '')
+    if closed:
+        try:
+            closed = datetime.strptime(closed, "%Y-%m-%d").strftime("%B %-d, %Y")
+        except ValueError:
+            pass
+    closed_line = f" Nominations closed {closed}." if closed else ""
+
+    return (
+        f"\n\nCONFIRMED BALLOT — {event_focus.get('name', 'this election')}."
+        f"{closed_line} This is the filed list, and it is the show's answer to "
+        "\"who is running\": these people are on this ballot, in these races, and the "
+        "hosts state that plainly — no hedging, no \"we couldn't establish\", and no "
+        "attributing the list to an article that only carried a count.\n"
+        + "\n".join(lines) +
+        "\n\nWHAT THE LIST DOES NOT DO: it settles who is running and nothing else. Every "
+        "claim about a candidate's record, prior terms, previous results, platform or any "
+        "controversy still comes from today's articles or the PRE-RESEARCHED INSIGHTS block, "
+        "with its outlet and date, exactly as SOURCED OR UNSAID requires — a name on a "
+        "nomination form is a source for the name and for nothing after it. Never move a "
+        "name from one race to another, never add a name this list does not carry, and never "
+        "read the list out as a list.\n"
+        "A RACE MARKED NO FILED LIST is still on the listener's ballot and is still named: "
+        "say the race is on the ballot and say in one plain sentence, once, that the show "
+        "does not have its candidates yet. That is a gap in what the show has — not a "
+        "mystery, not a finding, and never the segment's hook, its headline or the cold open."
+    )
+
+
 def _build_theme_lens(theme_name, focus=None, event_focus=None):
     """Return the theme's "lens" guidance string (empty if not configured).
 
@@ -5892,6 +5983,10 @@ def _build_theme_lens(theme_name, focus=None, event_focus=None):
         # an election is the civic fact the coverage exists to serve. Its own lens
         # copy carries the say-it-on-air instruction and the no-endorsement rule.
         lens = (lens + ' ' if lens else '') + event_focus['lens']
+        # The lens asks for every candidate by name; the roster is where the
+        # names are. Appended rather than folded into the lens copy so a race
+        # whose list the show does not have still renders as a named gap.
+        lens += _format_event_roster(event_focus)
     return lens
 
 
@@ -6736,9 +6831,14 @@ def scrub_hard_banned(script_text, hits):
         f"Banned phrases: {', '.join(phrases)}\n\n"
         "Rules:\n"
         "- Keep every fact, name, number and the speaker's meaning identical.\n"
-        "- Do not substitute a synonym for the banned word (\"truly\", \"really\", "
-        "\"genuinely\" are the same tic). Delete the intensifier, or rebuild the "
+        "- If the banned phrase is an intensifier, do not substitute a synonym for it "
+        "(\"truly\", \"really\" are the same tic). Delete it, or rebuild the "
         "sentence around the concrete claim.\n"
+        "- If the banned phrase places the episode at night (\"tonight's\", "
+        "\"this evening's\", a farewell to the evening), that one DOES take a "
+        "substitution: this show is heard in the morning, so say the daytime form "
+        "instead. Leave any reference to the WORLD at night alone — an overnight "
+        "low or something a listener can go outside and see later is correct.\n"
         "- Keep it speakable and roughly the same length.\n"
         "- Preserve any [pause:N] or [overlap:N] tags exactly where they are.\n\n"
         f"Sentences:\n{numbered}\n\n"
@@ -7414,8 +7514,11 @@ def generate_podcast_script(all_articles, deep_dive_articles, theme_name, episod
     # labelling a story's relationship to the theme, is the failure they exist
     # to avoid: on 2026-08-11 a bridge read "Closer to today's theme — the
     # evacuation order for the Gang Ranch area has been lifted".
-    _NEVER_ANNOUNCE = ("Never name this block on air or say a story is on- or "
-                       "off-theme; bridge on what the stories concretely share")
+    _NEVER_ANNOUNCE = ("Never name this block on air, say a story is on- or "
+                       "off-theme, or read out how many stories are in it — the "
+                       "number in this header is your pacing budget, never say "
+                       "how many there are; bridge on what the stories "
+                       "concretely share")
 
     def _roundup_block_header(block, count):
         if block == 'close_to_home':
