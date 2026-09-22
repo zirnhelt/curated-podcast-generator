@@ -5,37 +5,43 @@
     <link>https://zirnhelt.github.io/curated-podcast-generator</link>
     <description>A daily editorial review of the Cariboo Signals generation run: what it produced, what failed, and what it chose instead.</description>
     <language>en-ca</language>
-    <lastBuildDate>Tue, 22 Sep 2026 10:05:41 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 22 Sep 2026 15:29:16 +0000</lastBuildDate>
     <item>
       <title>Episode Review — Cariboo Signals, September 22, 2026</title>
       <link>https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-22.html</link>
       <guid isPermaLink="true">https://zirnhelt.github.io/curated-podcast-generator/podcasts/reviews/episode-review-2026-09-22.html</guid>
-      <pubDate>Tue, 22 Sep 2026 10:05:41 +0000</pubDate>
+      <pubDate>Tue, 22 Sep 2026 15:29:16 +0000</pubDate>
       <description>&lt;p&gt;&lt;em&gt;What the pipeline did, what broke, and what it chose when something broke. Run &lt;a href="https://github.com/zirnhelt/curated-podcast-generator/actions/runs/35702884714"&gt;35702884714&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h3&gt;Brave's body budget exhausted; sparse articles kept as stubs&lt;/h3&gt;
+&lt;h3&gt;Nine articles fell to a Brave API budget ceiling&lt;/h3&gt;
 
-&lt;p&gt;The pipeline spent its 12 Brave API calls fetching article bodies and hit its limit mid-run. Nine segments entered the script with stub bodies only. The system kept them rather than cutting them, accepting thinner copy in exchange for topic coverage. The final script shipped at 2,924 words, up from a first draft of 2,477—the expand pass recovered 447 words, but not enough to offset what stub bodies cost in density.&lt;/p&gt;
+&lt;p&gt;The pipeline ran three manual cycles before falling back to Fallback 2 at 3:05 AM Pacific, arriving 323 minutes late. The final scheduled run is still in progress. Across all attempts, 48 roundup articles were dropped entirely.&lt;/p&gt;
 
-&lt;h3&gt;Citation alignment split between segments&lt;/h3&gt;
+&lt;p&gt;The constraint: Brave's body-backfill service exhausted its 12-call budget midway through the run. The nine remaining thin articles kept their stub bodies and were marked sparse. The pipeline chose to cut them rather than ship incomplete entries into the script. This is the stated mechanism — not a retry loop or a parse failure, but a resource limit that forced a choice between padding and dropping.&lt;/p&gt;
 
-&lt;p&gt;The roundup matched 12 of 15 citations (80%). The deep dives matched 2 of 3 (67%). No AI tell-pattern hits registered, and no other quality flags fired. The voice ratio favored Casey at 1.13 to Riley. These numbers held within acceptable range, but the citation gaps point to source material that resisted full verification—either the original articles were thin or the citation layer itself was incomplete by the time matching ran.&lt;/p&gt;
+&lt;h3&gt;Citation alignment broke asymmetrically&lt;/h3&gt;
 
-&lt;h3&gt;Territory mapping rejected unsupported claims; one stayed anyway&lt;/h3&gt;
+&lt;p&gt;Of 15 roundup citations, 12 matched their sources (80%). Of 3 deep-dive citations, only 2 matched (67%). The deep-dive sources were &lt;code&gt;[My Cariboo Now]&lt;/code&gt; on vehicle inspection, &lt;code&gt;[TechRadar]&lt;/code&gt; on a cybercrime marketplace takedown, and &lt;code&gt;[Vox]&lt;/code&gt; on Alzheimer's research. One failed to align.&lt;/p&gt;
 
-&lt;p&gt;Two degradations flagged Indigenous nation references that the territory map did not cover. The system attempted rewrites on sentences claiming unsupported nations. One rewrite was rejected, and those 2 sentences remained in the script. The pipeline chose to ship them rather than cut the segment outright. This is a hard choice: the alternative was losing content, but it means the episode carries claims the geographic layer could not validate.&lt;/p&gt;
+&lt;h3&gt;Script expansion stopped short&lt;/h3&gt;
 
-&lt;h3&gt;R2 sync missing one object; RSS feed references it&lt;/h3&gt;
+&lt;p&gt;The first draft shipped at 2,477 words against a target of 3,400. It was sent back for one expansion pass and landed at 2,924 words in the final version — 476 words under target. The &lt;code&gt;means&lt;/code&gt; field states this was the intended behavior: the quality gate approved the expanded draft despite the gap.&lt;/p&gt;
 
-&lt;p&gt;A single object referenced in the podcast-feed.xml file is absent from R2 storage and cannot be rebuilt from disk. Crawlers will encounter a 404 on that reference. The file made it into the RSS metadata but not into the origin bucket. The pipeline completed successfully despite this condition.&lt;/p&gt;
+&lt;h3&gt;Territory mapping flagged three cases of misalignment&lt;/h3&gt;
 
-&lt;h3&gt;Roundup dropped 48 items; three deep dives shipped&lt;/h3&gt;
+&lt;p&gt;The Tsilhqot'in Nation appeared in the script in connection with two locations. One associates it with Lorne, mapped to Mi'kma'ki and Wabanaki. The other ties it to an unnamed Association mapped to multiple nations including Stoney, Blackfoot, Métis, and Tsuutina. A third degradation noted two sentences retained an unsupported nation after a rewrite was rejected.&lt;/p&gt;
 
-&lt;p&gt;The run produced 3 deep dives and dropped 48 roundup items. The final episode reached 17.9 minutes of audio (16.4 MB) and matched video runtime (61.9 MB for 17.9 minutes). Episode 238 entered the feed. The debate question centered on how ground-truth knowledge from workers like cruisers and ranchers can retain standing when satellite data and remote sensors drive management decisions—a question about automation and local expertise, fitting for a day when the pipeline itself faced the choice between stub bodies and no coverage.&lt;/p&gt;
+&lt;p&gt;These are script/territory-check flags, not omissions. The content stayed in the episode.&lt;/p&gt;
 
-&lt;h3&gt;Three manual runs, one still executing&lt;/h3&gt;
+&lt;h3&gt;Audio and video shipped at target length&lt;/h3&gt;
 
-&lt;p&gt;Two runs completed successfully at 8:44 and 9:05 UTC. A third began at 10:05 UTC and was still in progress at report time. Script generation took 1,231 seconds. Audio rendering took 549 seconds. The slowest single step was script generation, the largest file was video at 61.9 MB. Total spend: 94,448 input tokens across 11 Claude calls and 2 Brave calls.&lt;/p&gt;
+&lt;p&gt;17.9 minutes of audio (16.4 MB). 17.9 minutes of video (61.9 MB). Episode 238 was published to the RSS feed.&lt;/p&gt;
+
+&lt;h3&gt;Miscellaneous production notes&lt;/h3&gt;
+
+&lt;p&gt;Casey's airtime exceeded Riley's by a ratio of 1.13. No AI pattern-matching hits were caught by the quality filter. Claude received 94,448 input tokens across 11 API calls; Brave received 2 calls. One object referenced in the podcast feed is missing from R2 storage and unreachable from disk — crawlers will return 404 for that asset.&lt;/p&gt;
+
+&lt;p&gt;Script generation took 20 minutes 31 seconds. Audio rendering took 9 minutes 9 seconds. The full run from checkout to YouTube upload took 39 minutes 17 seconds, excluding the 323-minute gap between scheduled start and fallback trigger.&lt;/p&gt;
 
 &lt;h3&gt;The day's triggers&lt;/h3&gt;
 &lt;table&gt;
@@ -43,7 +49,8 @@
 &lt;tbody&gt;
 &lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-22T08:05:03Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-22T09:05:03Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-22T10:05:04Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Manual (workflow_dispatch)&lt;/td&gt;&lt;td&gt;2026-09-22T10:05:04Z&lt;/td&gt;&lt;td&gt;+0 min&lt;/td&gt;&lt;td&gt;success&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Fallback 2 (3:05 AM Pacific)&lt;/td&gt;&lt;td&gt;2026-09-22T15:28:35Z&lt;/td&gt;&lt;td&gt;+323 min&lt;/td&gt;&lt;td&gt;in_progress&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
