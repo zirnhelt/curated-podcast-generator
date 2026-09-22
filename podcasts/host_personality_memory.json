@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[CBC Arts] Australia bans fully AI-made songs from charts af",
       "[Kagi Small Web] SwarmWorld: Stigmergic technological evolut",
       "[TechRadar] Geekom reveals multiple mini-PCs may be infected",
       "[TechCrunch] Eric Wu\u2019s newest company, out of stealth since ",
@@ -10,7 +9,8 @@
       "[The Verge] Musicians-turned-detectives are hunting for AI g",
       "[TechRadar] Microsoft 365 users hit by two major threat camp",
       "[Fast Company] I use AI to save time. So why am I working mo",
-      "[TechRadar] The new digital ID apps for age verification in "
+      "[TechRadar] The new digital ID apps for age verification in ",
+      "[TechRadar] Microsoft, Google took down $66 million cybercri"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -137,11 +137,6 @@
       {
         "date": "2026-09-16",
         "clue": "community-trust:+ \u2014 shifted toward local inventory over legal filing",
-        "occurrences": 2
-      },
-      {
-        "date": "2026-09-19",
-        "clue": "structural-lens:+ \u2014 built entire analysis on invisible ballot architecture",
         "occurrences": 2
       },
       {
@@ -426,6 +421,11 @@
       {
         "date": "2026-09-21",
         "clue": "community-trust:~ \u2014 Acknowledged recording value despite earlier skepticism, real movement",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-09-22",
+        "clue": "evidence-bar:x \u2014 conceded local knowledge needs formal standing",
         "occurrences": 1
       }
     ],

@@ -1,24 +1,4 @@
 {
-  "2026-08-17": {
-    "timestamp": 1786957400.649078,
-    "topics": [
-      "[CFJC Today Kamloops] Williams Lake praises work of new Rapi",
-      "Eby makes mini cabinet shuffle as minister undergoes cancer ",
-      "[Williams Lake Tribune] Multiple planned ignitions scheduled",
-      "BC SPCA urge pets owners to take precaution during air quali",
-      "[Williams Lake Tribune] Ainslie Creek wildfire burns to Alex",
-      "[Fast Company] \u2018Holiday hoarding\u2019 is a workplace crisis",
-      "[Boing Boing] Microsoft, Google and Amazon now depend on two",
-      "[Popular Woodworking] Sanding Guard  for Inside Corners"
-    ],
-    "themes": [
-      "rural development",
-      "Indigenous tech"
-    ],
-    "date": "2026-08-17",
-    "focus": "film-screen",
-    "focus_name": "Film & Screen"
-  },
   "2026-08-18": {
     "timestamp": 1787043437.228284,
     "topics": [
@@ -738,5 +718,26 @@
     "date": "2026-09-21",
     "focus": "music-performance",
     "focus_name": "Music & Live Performance"
+  },
+  "2026-09-22": {
+    "timestamp": 1790065652.187991,
+    "topics": [
+      "[Williams Lake Tribune] Quesnel man whose life \u2018was off the ",
+      "[My Cariboo Now] Man sentenced in connection with serious in",
+      "[Williams Lake Tribune] Investigation continues into wildfir",
+      "[Williams Lake Tribune] B.C. Conservatives appoint Lorne Doe",
+      "[Tom's Hardware] Modders halve FSR 4 render times on AMD\u2019s P",
+      "[My Cariboo Now] Construction underway on new commercial veh",
+      "[TechRadar] Microsoft, Google took down $66 million cybercri",
+      "[Vox] Scientists are finally starting to figure out Alzheime"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "environmental impact"
+    ],
+    "date": "2026-09-22",
+    "focus": "forestry",
+    "focus_name": "Forestry & Timber"
   }
 }
