@@ -137,7 +137,7 @@
       "title": "One TTS segment returned audio shorter than its word count predicts, requiring a retry.",
       "detail": "On 2026-08-27, one text-to-speech take produced audio duration shorter than the word count would estimate. The pipeline retried once per protocol and the issue resolved. This is a single occurrence and may be transient voice synthesis variance. If this recurs across multiple segments or runs, it signals either a systematic issue in duration estimation, a problem with a particular voice model, or the TTS API's handling of edge-case text. Monitor for recurrence; if it persists, audit the duration formula against actual TTS output and consider adding a tolerance band before flagging a retry.",
       "source": "review",
-      "status": "open",
+      "status": "retired",
       "occurrences": 2,
       "first_seen": "2026-08-27",
       "seen": [
@@ -171,7 +171,7 @@
       "title": "Deep dive sections achieved 67% citation matching versus 87% for roundup sections.",
       "detail": "On 2026-08-28, the roundup matched 13 of 15 citations (87%), but the deep dive section matched only 2 of 3 (67%). Both figures are from the same run and the same citation alignment logic. The data does not name which deep dive source failed to align. The gap suggests the matching logic may not scale from brief news stories to longer-form analysis, or that deep dive sources need different handling. Inspect the citation-matching function for whether it uses story depth or source type to vary its strategy, and run a test batch of deep dives against the current matching logic to confirm whether this is systematic or noise.",
       "source": "review",
-      "status": "open",
+      "status": "retired",
       "occurrences": 6,
       "first_seen": "2026-08-28",
       "seen": [
@@ -391,7 +391,7 @@
       "detail": "On 2026-09-08, the pipeline spent its full 12-call Brave budget during script generation, forcing nine articles to ship with stub bodies instead of full text. The degradations log lists this same reason 12 times. This pattern matches the 2026-09-02 incident (tracked as brave-body-budget-hit-55-article-drop) where 55 articles were dropped. The mechanism is a fixed call budget that does not reset between runs or scale with article volume. To close this: either expand the Brave quota in config, implement per-article fallback logic that drops sparse articles before scripting rather than airing them, or track Brave spend across runs and alert when 80% of the budget is consumed.",
       "source": "review",
       "status": "open",
-      "occurrences": 9,
+      "occurrences": 10,
       "first_seen": "2026-09-08",
       "seen": [
         "2026-09-08",
@@ -402,9 +402,10 @@
         "2026-09-16",
         "2026-09-19",
         "2026-09-20",
-        "2026-09-21"
+        "2026-09-21",
+        "2026-09-22"
       ],
-      "last_seen": "2026-09-21"
+      "last_seen": "2026-09-22"
     },
     {
       "id": "deep-dive-citation-alignment-below-target",
@@ -667,7 +668,33 @@
         "2026-09-21"
       ],
       "last_seen": "2026-09-21"
+    },
+    {
+      "id": "r2-sync-missing-object-breaks-feed-reference",
+      "title": "One object referenced in the podcast feed is missing from R2 storage and will cause 404 errors.",
+      "detail": "On September 22, a single file present in podcast-feed.xml could not be found in R2 and could not be rebuilt from disk. The pipeline completed and published successfully despite this mismatch, leaving crawlers to encounter a 404 when following the RSS reference. Identify which object is missing, restore it to R2, or remove the reference from the feed XML before the next publish cycle.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-22",
+      "seen": [
+        "2026-09-22"
+      ],
+      "last_seen": "2026-09-22"
+    },
+    {
+      "id": "territory-check-unsupported-claim-shipped-after-rewrite-reje",
+      "title": "Two sentences with unsupported Indigenous nation references remained in the script after territory-check rewrites failed.",
+      "detail": "On September 22, the territory-check system flagged two sentences claiming Tsilhqot'in nation in contexts the territory map covers as other nations. The system attempted rewrites and rejected them. The two sentences shipped in the final episode anyway, carrying geographic claims the validation layer could not support. Log which sentences triggered the rewrite rejection, and decide whether to cut them, override the territory map data, or implement a mandatory-cut rule when rewrites fail.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-22",
+      "seen": [
+        "2026-09-22"
+      ],
+      "last_seen": "2026-09-22"
     }
   ],
-  "updated": "2026-09-21"
+  "updated": "2026-09-22"
 }

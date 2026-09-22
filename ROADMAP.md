@@ -39,7 +39,7 @@ cannot reopen it. Anything written outside the markers is never touched.
 
 <!-- reviews:begin -->
 
-_Distilled from the daily reviews by `episode_review.py` (2026-08-27..2026-09-21) — 24 open.
+_Distilled from the daily reviews by `episode_review.py` (2026-08-28..2026-09-22) — 22 open.
 Check a box to close one; it comes back only if the reviews raise it 2 more times._
 
 - [ ] **A credit-balance 400 is not the usage-limit wall, and every run pays for that.**
@@ -84,15 +84,6 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       never got that far. The probe item under Short-term is the diagnostic — the reviews now
       give it a daily before/after record, so run it and read the next week's reviews rather
       than re-reasoning about the ladder.
-- [ ] **One TTS segment returned audio shorter than its word count predicts, requiring a
-      retry.** On 2026-08-27, one text-to-speech take produced audio duration shorter than the
-      word count would estimate. The pipeline retried once per protocol and the issue resolved.
-      This is a single occurrence and may be transient voice synthesis variance. If this recurs
-      across multiple segments or runs, it signals either a systematic issue in duration
-      estimation, a problem with a particular voice model, or the TTS API's handling of
-      edge-case text. Monitor for recurrence; if it persists, audit the duration formula against
-      actual TTS output and consider adding a tolerance band before flagging a retry. (seen in 2
-      reviews, latest 2026-09-07)
 - [ ] **Gemini multi-speaker TTS timed out on the welcome section, forcing a mid-episode
       fallback to OpenAI.** During audio render on 2026-08-28, the welcome section synthesis via
       Gemini multi-speaker hit a ReadTimeout after 120 seconds on
@@ -103,15 +94,6 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       limits are being hit, and consider either increasing timeouts, implementing section-level
       retry logic before switching providers, or pre-allocating Gemini synthesis for critical
       segments at off-peak times. (seen in 8 reviews, latest 2026-09-11)
-- [ ] **Deep dive sections achieved 67% citation matching versus 87% for roundup sections.** On
-      2026-08-28, the roundup matched 13 of 15 citations (87%), but the deep dive section
-      matched only 2 of 3 (67%). Both figures are from the same run and the same citation
-      alignment logic. The data does not name which deep dive source failed to align. The gap
-      suggests the matching logic may not scale from brief news stories to longer-form analysis,
-      or that deep dive sources need different handling. Inspect the citation-matching function
-      for whether it uses story depth or source type to vary its strategy, and run a test batch
-      of deep dives against the current matching logic to confirm whether this is systematic or
-      noise. (seen in 6 reviews, latest 2026-09-07)
 - [ ] **Brave Answers body-backfill budget of 12 calls was exhausted, causing 48 roundup
       articles to be dropped instead of scripted.** The pipeline allocates 12 API calls to
       enrich thin article summaries via Brave's web search, making them narrative-ready for the
@@ -166,8 +148,8 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       fixed call budget that does not reset between runs or scale with article volume. To close
       this: either expand the Brave quota in config, implement per-article fallback logic that
       drops sparse articles before scripting rather than airing them, or track Brave spend
-      across runs and alert when 80% of the budget is consumed. (seen in 9 reviews, latest
-      2026-09-21)
+      across runs and alert when 80% of the budget is consumed. (seen in 10 reviews, latest
+      2026-09-22)
 - [ ] **Deep-dive citations matched at 67 percent while roundup citations matched at 93
       percent.** On 2026-09-08, roundup sections achieved 14 of 15 citations verified (93%), but
       deep-dive sections achieved only 2 of 3 (67%). This gap is flagged in the published review
