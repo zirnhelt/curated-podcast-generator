@@ -1,30 +1,4 @@
 {
-  "2026-06-23": {
-    "timestamp": 1782214264.067481,
-    "date": "2026-06-23",
-    "theme": "Working Lands & Industry",
-    "central_question": "Does cheap local AI hardware deployment change the competitive advantage for small-scale working-lands producers, or do governance and infrastructure barriers prevent them from capturing that benefit?",
-    "riley_position": "Local AI inference hardware is now affordable enough to be accessible to small producers, but the real barriers are governance, data infrastructure, and producer association priorities\u2014which are solvable political economy problems rather than technical ones.",
-    "riley_key_evidence": [
-      "Local AI inference setup costs $1,000-$3,000, less than a GPS spray controller",
-      "Quebec's agricultural extension model includes technology transfer functions that BC cut",
-      "Ontario commodity boards fund technology services through direct producer levies rather than grants"
-    ],
-    "casey_position": "Technology accessibility doesn't automatically translate to value capture for small producers; governance structures, land tenure insecurity, and support ecosystem gaps mean cheap tools risk further consolidating advantage to larger operations.",
-    "casey_key_evidence": [
-      "Crown tenure leases create investment uncertainty that prevents capital reallocation similar to what outright-owning ranchers can do",
-      "Extension services in BC have been 'cut to the bone' leaving no support ecosystem for producers to assemble datasets from public sources",
-      "Technology navigator positions keep landing as grant-funded pilots lasting one cycle rather than permanent structural services"
-    ],
-    "resolution": "They agreed the technology window is open but the governance structures aren't ready, and the decision point matters now before large operators entrench data advantages\u2014neither position fully conceded but they converged on the need for shared infrastructure and explicit data governance before consolidation occurs.",
-    "topics_covered": [
-      "Local versus cloud AI deployment economics and cost curves",
-      "Data sovereignty and governance in producer co-operatives",
-      "Land tenure and investment horizon differences between Crown leases and title-holding Nations",
-      "Producer association governance and succession gaps between older and younger operators",
-      "Regional infrastructure pilots versus permanent structural funding for agricultural extension"
-    ]
-  },
   "2026-06-24": {
     "timestamp": 1782299863.108679,
     "date": "2026-06-24",
@@ -2476,6 +2450,40 @@
       "The difference between existence and legibility of places in digital systems",
       "Technology adoption failures in volunteer-run venues lacking dedicated staff and IT infrastructure",
       "Physical documentation (programs, instruments with provenance) versus digital files as preservation methods"
+    ]
+  },
+  "2026-09-22": {
+    "timestamp": 1790065655.155121,
+    "date": "2026-09-22",
+    "theme": "Working Lands & Industry",
+    "focus": "forestry",
+    "anchor": "place-unrecorded",
+    "central_question": "When working lands are managed using satellite data and remote sensors, how do communities ensure that ground-truth knowledge from experienced workers like cruisers and ranchers has standing in tenure and management decisions?",
+    "riley_position": "Satellite imagery and LiDAR provide detailed canopy data, but they cannot capture crucial ground-level knowledge about drainage conditions, soil stability, and real-time land changes that only experienced workers walking the land actually know.",
+    "riley_key_evidence": [
+      "LiDAR flights from 400 kilometres up give canopy height and stand density but miss specific problems like root rot or unstable ground after burns",
+      "When mills curtail and lay off their highest-paid, most experienced cruisers first, the region loses the only people who knew what was actually standing beyond what sensors register",
+      "Weigh station records exist but don't feed into public dashboards that communities could use to check against mill curtailment numbers"
+    ],
+    "casey_position": "The infrastructure to track working land data exists (weigh stations, range assessments, harvest records), but communities and local knowledge-holders are excluded from formal decision-making processes, and no structural mechanism exists to reconcile local observations with official provincial records.",
+    "casey_key_evidence": [
+      "Ranchers standing on their land every day could report range degradation within a season, but when province-conducted range assessments arrive years apart, there's no formal channel to reconcile disagreements and the province's record wins by default",
+      "Tenure decisions are made only by province, licensee, and hired consultants\u2014never by the town whose mill curtailed 100 jobs",
+      "Some community forests already publish harvest and silviculture data publicly, but this model hasn't spread across licensee-held tenure covering most of the Cariboo's working forest"
+    ],
+    "resolution": "Neither party conceded their position. Instead, they identified a regulatory gap rather than a technology gap: the Forest Act doesn't require ground-truth reconciliation with local knowledge, and tenure renewal cycles run on decade-long timescales, meaning structural fixes arrive too slowly to help workers already laid off. They agreed that several tools exist on paper but require political will to implement.",
+    "topics_covered": [
+      "The role of satellite imagery and LiDAR in forestry management versus local expertise",
+      "Mill curtailments and the loss of experienced cruisers and fallers as institutional knowledge",
+      "Data gaps in timber flow tracking and the Red Rock weigh station example",
+      "Range health assessments on Crown grazing tenure versus daily rancher observations",
+      "Existing models like community forest reporting and potential mechanisms like tenure conditions or liaison committees"
+    ],
+    "calls_to_action": [
+      "A community forest board or producer association could keep its own running log of harvest volumes, range conditions, and mill throughput to cross-check against provincial data, following the precedent of watershed groups tracking stream flow independently",
+      "Make local reporting a condition of tenure holding, tied to the permit itself rather than to corporate ownership, similar to Impact Benefit Agreements, so obligations survive corporate sales and curtailments",
+      "A town could establish a local forest liaison committee made up of retired fallers and cruisers meeting a couple times a year to compare notes against the licensee's latest cut plan\u2014requiring only a room and licensee willingness, not legislative change",
+      "If you've sat through a tenure review hearing or serve on a community forest board, share what working reconciliation between local knowledge and official records actually looks like by sending feedback to cariboo signals dot c-a"
     ]
   }
 }
