@@ -694,6 +694,19 @@
         "2026-09-22"
       ],
       "last_seen": "2026-09-22"
+    },
+    {
+      "id": "deep-dive-citation-alignment-gap-widening",
+      "title": "Deep-dive citations are matching at a lower rate than roundup citations.",
+      "detail": "On 2026-09-22, deep-dive citations matched 2 out of 3 sources (67%), while roundup citations matched 12 out of 15 (80%). The gap persists from prior runs. The mechanism appears to be different handling or validation intensity between the two content streams. Align the citation-matching logic so both streams reach parity, or identify and fix the specific constraint affecting deep-dive sources.",
+      "source": "review",
+      "status": "pending",
+      "occurrences": 1,
+      "first_seen": "2026-09-22",
+      "seen": [
+        "2026-09-22"
+      ],
+      "last_seen": "2026-09-22"
     }
   ],
   "updated": "2026-09-22"
