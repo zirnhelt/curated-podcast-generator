@@ -65,12 +65,19 @@ FEED_LIMIT = 30
 REVIEW_MODEL = os.getenv("CLAUDE_REVIEW_MODEL", "claude-haiku-4-5")
 REVIEW_MAX_TOKENS = 2200
 
-# The three crons, by the hour they are scheduled for. GitHub fires them late —
-# 43, 28 and 30 minutes late on 2026-08-19 — so a run is matched to its slot by
-# _trigger_label and the drift is kept as a fact rather than smoothed away.
-CRON_HOURS = {8: "Primary (1:05 AM Pacific)",
-              9: "Fallback 1 (2:05 AM Pacific)",
-              10: "Fallback 2 (3:05 AM Pacific)"}
+# Where the day's runs come from, by UTC hour (BC is permanent UTC-7). The
+# ladder arrives as workflow_dispatch from the Cloudflare Worker, which fires on
+# the minute; the one GitHub cron left is the 4:05 AM backstop, and GitHub fires
+# that late — so its drift is kept as a fact rather than smoothed away. Until
+# 2026-09-23 this still mapped the retired three-cron ladder: the backstop read
+# as "Fallback 2, 291 minutes late" and the Worker's rungs as manual runs, and
+# the roadmap carried both as a problem for three weeks.
+LADDER_HOURS = {8: "Primary (1:05 AM Pacific)",
+                9: "Fallback 1 (2:05 AM Pacific)",
+                10: "Fallback 2 (3:05 AM Pacific)"}
+BACKSTOP_HOUR, BACKSTOP_LABEL = 11, "Backstop (4:05 AM Pacific) — GitHub cron"
+# A dispatch this soon after a rung is the Worker's; later is a person.
+DISPATCH_WINDOW_MINUTES = 10
 
 
 # ---------------------------------------------------------------------------
@@ -140,33 +147,42 @@ def _parse(ts: str) -> datetime:
 # Run metadata → facts
 # ---------------------------------------------------------------------------
 
-def _trigger_label(created: datetime) -> tuple[str, int]:
-    """Which cron a run came from, and how many minutes late it fired.
+def _trigger_label(created: datetime, event: str) -> tuple[str, int | None]:
+    """Which trigger a run came from, and how many minutes late it fired.
 
-    The latest slot at or before the run, not the nearest one: a cron fires at
-    or after its scheduled minute and never before it. 08:48 is 43 minutes late
-    for the 08:05 primary, and "nearest" reads it as the 09:05 fallback firing
-    17 minutes early — which cannot happen.
+    A cron fires at or after its scheduled minute and never before it, so the
+    backstop's drift is measured from 11:05 and floored at zero. A dispatch is
+    a ladder rung only inside DISPATCH_WINDOW_MINUTES of one; anything else is
+    someone running it by hand, and has no schedule to be late for.
     """
     minutes = created.hour * 60 + created.minute
-    slots = sorted(CRON_HOURS)
-    hour = next((h for h in reversed(slots) if minutes >= h * 60 + 5), slots[0])
-    return CRON_HOURS[hour], max(0, minutes - (hour * 60 + 5))
+    if event == "schedule":
+        return BACKSTOP_LABEL, max(0, minutes - (BACKSTOP_HOUR * 60 + 5))
+    for hour, label in LADDER_HOURS.items():
+        late = minutes - (hour * 60 + 5)
+        if 0 <= late <= DISPATCH_WINDOW_MINUTES:
+            return f"{label} — Cloudflare scheduler", late
+    return "Manual (workflow_dispatch)", None
 
 
 def summarize_runs(runs: list[dict]) -> list[dict]:
+    """One row per run. The run this review is executing inside is marked as
+    such: it is always still going when the review reads it, and unmarked it
+    was published every night as a trigger that never finished."""
+    own_run = os.getenv("GITHUB_RUN_ID", "")
     out = []
     for r in runs:
         created = _parse(r["created_at"])
-        label, late = _trigger_label(created)
+        label, late = _trigger_label(created, r.get("event", ""))
         jobs_started = r.get("run_started_at")
+        is_own = str(r["id"]) == own_run
         out.append({
             "run_id": r["id"],
-            "trigger": label if r.get("event") == "schedule" else "Manual (workflow_dispatch)",
+            "trigger": f"{label} — this review's own run" if is_own else label,
             "minutes_late": late,
             "created_at": r["created_at"],
             "updated_at": r.get("updated_at"),
-            "status": r.get("status"),
+            "status": "running this review" if is_own else r.get("status"),
             "conclusion": r.get("conclusion"),
             "url": r.get("html_url"),
             "run_started_at": jobs_started,
@@ -332,6 +348,10 @@ _MEANS: dict[str, str] = {
                        "search results."),
     "short_script": ("the first draft came in under target and was sent back for one expand pass. "
                      "quality.script_words is what shipped."),
+    # Raised as a lost-articles problem on five nights before this was here.
+    "roundup_dropped": ("stories cut from the roundup pool by the airtime budget "
+                        "(NEWS_ROUNDUP_COUNT). By design: the pool is larger than one segment "
+                        "can air, and a cut story can resurface on a better-matched day."),
 }
 
 
@@ -577,6 +597,14 @@ def build_feed(index: list[dict]) -> str:
 # its first: one bad night is an incident, the same bad night twice is a
 # roadmap item. Checking a box in the file closes it, and the ledger remembers
 # that so tomorrow's review cannot re-open it by mentioning it again.
+#
+# Each finding also names the *signal* it is about — a degrade() row or a
+# metric past a line, read off the facts by `run_signals`. The model's ids and
+# titles drift ("dropped 48 articles", "dropped 55 articles"), and by
+# 2026-09-23 the ledger held three items for the Brave body budget, five for
+# deep-dive citations and seven for script expansion. A signal does not drift, so it is the dedup key; and
+# because it comes from the facts, an item closes once its signal stops
+# appearing rather than once the model stops mentioning it.
 
 ROADMAP_FILE = Path("ROADMAP.md")
 LEDGER_FILE = Path("podcasts/roadmap_ledger.json")
@@ -594,6 +622,15 @@ ROADMAP_RETIRE_DAYS = int(os.getenv("ROADMAP_RETIRE_DAYS", "14"))
 ROADMAP_MAX_FINDINGS = 4
 ROADMAP_WRAP = 96
 _SEEN_KEPT = 10
+# Days a signal must be absent from the facts before its item closes. Three,
+# not one: a problem that skips a night has not been fixed.
+SIGNAL_QUIET_DAYS = int(os.getenv("ROADMAP_SIGNAL_QUIET_DAYS", "3"))
+# Where a metric becomes a signal. Below half the articles reaching the script
+# is a matching problem; a quarter either way on the voice ratio is a host
+# imbalance; the 1.13 that opened a roadmap item is two people talking.
+CITATION_FLOOR = 0.5
+VOICE_RATIO_BAND = (0.8, 1.25)
+_CLOSED_SHOWN = 25
 
 _FINDING_SCHEMA = {
     "type": "object",
@@ -616,8 +653,11 @@ _FINDING_SCHEMA = {
                                "description": ("2-5 sentences: the evidence with its date and "
                                                "numbers, the mechanism, and what would close it. "
                                                "Plain prose, no markdown headings or bullets.")},
+                    "signal": {"type": "string",
+                               "description": ("The signal from TODAY'S SIGNALS this finding is "
+                                               "about, or `other` when none fits.")},
                 },
-                "required": ["id", "title", "detail"],
+                "required": ["id", "title", "detail", "signal"],
                 "additionalProperties": False,
             },
         }
@@ -629,6 +669,49 @@ _FINDING_SCHEMA = {
 
 def _slug(text: str) -> str:
     return re.sub(r"-+", "-", re.sub(r"[^a-z0-9]+", "-", text.lower())).strip("-")[:60]
+
+
+def _finding_schema(signals: dict[str, str]) -> dict:
+    """The schema with `signal` pinned to today's signals plus `other`."""
+    import copy
+
+    schema = copy.deepcopy(_FINDING_SCHEMA)
+    item = schema["properties"]["findings"]["items"]
+    item["properties"]["signal"]["enum"] = sorted(signals) + ["other"]
+    return schema
+
+
+def run_signals(facts: dict[str, Any]) -> dict[str, str]:
+    """Stable key → one line of evidence, for each thing the facts show going wrong.
+
+    Only what a fact can show without judgement: a degrade() row, a first
+    draft sent back as short, a metric past its line, a run that failed. The
+    unknown unknowns in `other_warnings` have no key until they earn one.
+    """
+    signals: dict[str, str] = {}
+    for entry in facts.get("degradations", []):
+        if isinstance(entry, list) and len(entry) == 2:
+            signals.setdefault(f"degraded:{entry[0]}", f"degrade() row: {entry[1][:160]}")
+    short = facts.get("short_script")
+    if isinstance(short, list) and len(short) == 2:
+        signals["short-script"] = f"first draft {short[0]} words against a {short[1]}-word target"
+    cites = facts.get("citation_alignment")
+    if isinstance(cites, list) and len(cites) == 4:
+        for name, matched, total in (("roundup", cites[0], cites[1]),
+                                     ("deep-dive", cites[2], cites[3])):
+            if total and matched / total < CITATION_FLOOR:
+                signals[f"citations:{name}"] = f"{matched}/{total} {name} citations matched the script"
+    quality = facts.get("quality")
+    if isinstance(quality, list) and len(quality) == 3:
+        hits, ratio = quality[0], quality[1]
+        if hits:
+            signals["ai-tells-shipped"] = f"{hits} AI-tell pattern hit(s) in the shipped script"
+        if not VOICE_RATIO_BAND[0] <= ratio <= VOICE_RATIO_BAND[1]:
+            signals["voice-ratio"] = f"Casey/Riley voice ratio {ratio}"
+    failed = [r["trigger"] for r in facts.get("runs", []) if r.get("conclusion") == "failure"]
+    if failed:
+        signals["run-failed"] = "failed: " + ", ".join(failed)
+    return signals
 
 
 def load_ledger() -> dict:
@@ -692,7 +775,8 @@ def _section_body(text: str) -> str | None:
 
 def _render_item(item: dict) -> str:
     seen = item.get("seen", [])
-    provenance = (f"(seen in {item['occurrences']} reviews, latest {item['last_seen']})"
+    signal = f"signal `{item['signal']}`; " if item.get("signal") else ""
+    provenance = (f"({signal}seen in {item['occurrences']} reviews, latest {item['last_seen']})"
                   if item.get("source") == "review" and seen else "")
     box = "[x]" if item.get("status") == "done" else "[ ]"
     line = " ".join(filter(None, [f"- {box} **{item['title']}**",
@@ -725,8 +809,9 @@ def render_section(items: list[dict]) -> str:
         window = f" ({dates[0]}..{dates[-1]})" if dates[0] != dates[-1] else f" ({dates[-1]})"
     stat = "\n".join(textwrap.wrap(
         f"_Distilled from the daily reviews by `episode_review.py`{window} — "
-        f"{len(shown)} open. Check a box to close one; it comes back only if the reviews "
-        f"raise it {ROADMAP_MIN_OCCURRENCES} more times._", width=ROADMAP_WRAP))
+        f"{len(shown)} open. An item with a signal closes itself once the signal has been "
+        f"absent for {SIGNAL_QUIET_DAYS} days. Check a box to close one; it comes back only if "
+        f"the reviews raise it {ROADMAP_MIN_OCCURRENCES} more times._", width=ROADMAP_WRAP))
     body = "\n".join(_render_item(i) for i in shown) or "_Nothing recurring in the window._"
     return f"{SECTION_BEGIN}\n\n{stat}\n\n{body}\n\n{SECTION_END}"
 
@@ -789,21 +874,36 @@ def harvest_checked(ledger: dict, text: str) -> list[str]:
     return closed
 
 
-def _match(ledger: dict, finding: dict) -> dict | None:
-    """Find the ledger item a finding is about — by id, then by title.
+def _finding_signal(finding: dict) -> str:
+    signal = str(finding.get("signal") or "")
+    return "" if signal == "other" else signal
 
-    The id is the model's, so it drifts: the same problem came back as
-    `credit-balance-preflight` and `credit-balance-not-usage-limit` in testing.
-    A close title is the same finding whatever it called itself.
+
+def _match(ledger: dict, finding: dict) -> dict | None:
+    """Find the ledger item a finding is about — by signal, then id, then title.
+
+    The signal is read off the facts, so it does not drift. The id and title
+    are the model's, and do: the same problem came back as
+    `credit-balance-preflight` and `credit-balance-not-usage-limit` in testing,
+    and as five titles that differed only in their numbers in production. A
+    finding with a signal falls back to id and title only among items that
+    have none yet — a close title under another signal is a different problem
+    worded alike.
     """
     from difflib import SequenceMatcher
 
+    signal = _finding_signal(finding)
+    if signal:
+        for item in ledger["items"]:
+            if item.get("signal") == signal:
+                return item
+    candidates = [i for i in ledger["items"] if not (signal and i.get("signal"))]
     wanted = _slug(finding["id"])
-    for item in ledger["items"]:
+    for item in candidates:
         if item["id"] == wanted:
             return item
     best, score = None, 0.0
-    for item in ledger["items"]:
+    for item in candidates:
         ratio = SequenceMatcher(None, item["title"].lower(), finding["title"].lower()).ratio()
         if ratio > score:
             best, score = item, ratio
@@ -813,6 +913,7 @@ def _match(ledger: dict, finding: dict) -> dict | None:
 def merge_findings(ledger: dict, findings: list[dict], date: str) -> dict:
     """Fold one day's findings in. Recurrence is counted here, not asked for."""
     for finding in findings[:ROADMAP_MAX_FINDINGS]:
+        signal = _finding_signal(finding)
         item = _match(ledger, finding)
         if item is None:
             item = {
@@ -829,32 +930,58 @@ def merge_findings(ledger: dict, findings: list[dict], date: str) -> dict:
                 "seen": [],
             }
             ledger["items"].append(item)
+        if signal and not item.get("signal"):
+            item["signal"] = signal  # an item from before signals adopts one
+        if signal:
+            item["signal_seen"] = max(item.get("signal_seen", ""), date)
         if date in item.get("seen", []):
             continue  # idempotent: a re-run of the same date is not a recurrence
         item["occurrences"] = item.get("occurrences", 0) + 1
         item["seen"] = (item.get("seen", []) + [date])[-_SEEN_KEPT:]
         item["last_seen"] = date
-        if item.get("status") in ("pending", "done") and item["occurrences"] >= ROADMAP_MIN_OCCURRENCES:
+        if (item.get("status") in ("pending", "done", "retired")
+                and item["occurrences"] >= ROADMAP_MIN_OCCURRENCES):
             item["status"] = "open"
             print(f"  📌 Roadmap item promoted: {item['title']}")
     return ledger
 
 
-def retire_stale(ledger: dict, date: str) -> list[str]:
-    """Drop tool-written items the reviews have stopped raising.
+def retire_stale(ledger: dict, date: str, signals: dict[str, str] | None = None) -> list[str]:
+    """Close tool-written items whose problem has stopped showing.
 
-    Only `source: "review"` items, and only after ROADMAP_RETIRE_DAYS of
-    silence — a quiet week is not a fix. The record stays in the ledger, and a
-    recurrence puts it back.
+    An item with a signal closes once the signal has been absent from the
+    facts for SIGNAL_QUIET_DAYS: whether the problem is still happening is a
+    better answer than whether the model still mentions it, and a present
+    signal keeps its item open on nights the model says nothing. `signals` is
+    None when the day's log could not be read — no facts is not a fix, so
+    nothing closes on a signal that day.
+
+    An item without one falls back to silence: ROADMAP_RETIRE_DAYS without a
+    sighting — a quiet week is not a fix — pending ones included, so a single
+    sighting no longer sits in the prompt for ever.
+
+    Only `source: "review"` items; a human wrote the rest, only a human closes
+    them. The record stays in the ledger with its count restarted, and
+    ROADMAP_MIN_OCCURRENCES new sightings put it back.
     """
     today = datetime.strptime(date, "%Y-%m-%d")
     retired = []
     for item in ledger["items"]:
-        if item.get("status") != "open" or item.get("source") != "review":
+        if item.get("status") not in ("open", "pending") or item.get("source") != "review":
             continue
-        last = item.get("last_seen")
-        if last and (today - datetime.strptime(last, "%Y-%m-%d")).days > ROADMAP_RETIRE_DAYS:
+        signal = item.get("signal")
+        if signal:
+            if signals is None:
+                continue
+            if signal in signals:
+                item["signal_seen"] = max(item.get("signal_seen", ""), date)
+                continue
+            last, quiet = item.get("signal_seen") or item.get("last_seen"), SIGNAL_QUIET_DAYS
+        else:
+            last, quiet = item.get("last_seen"), ROADMAP_RETIRE_DAYS + 1
+        if last and (today - datetime.strptime(last, "%Y-%m-%d")).days >= quiet:
             item["status"] = "retired"
+            item["occurrences"] = 0
             retired.append(item["title"])
     return retired
 
@@ -864,7 +991,7 @@ def retire_stale(ledger: dict, date: str) -> list[str]:
 # ---------------------------------------------------------------------------
 
 def propose_findings(facts: dict[str, Any], narrative: str, ledger: dict,
-                     roadmap: str) -> list[dict]:
+                     roadmap: str, signals: dict[str, str] | None = None) -> list[dict]:
     """One Claude call: today's run in, candidate roadmap items out.
 
     The open ledger and the rest of ROADMAP.md both go in so the model reuses
@@ -879,12 +1006,19 @@ def propose_findings(facts: dict[str, Any], narrative: str, ledger: dict,
         print("  ⚠️  No roadmap_distill prompt configured — skipping distillation")
         return []
 
+    signals = signals or {}
+
+    def line(i: dict) -> str:
+        return f"- {i['id']}" + (f" [{i['signal']}]" if i.get("signal") else "") + f": {i['title']}"
+
     open_items = "\n".join(
-        f"- {i['id']}: {i['title']}" for i in ledger["items"]
-        if i.get("status") in ("open", "pending")) or "(none)"
-    closed = "\n".join(
-        f"- {i['id']}: {i['title']}" for i in ledger["items"]
-        if i.get("status") in ("done", "retired")) or "(none)"
+        line(i) for i in ledger["items"] if i.get("status") in ("open", "pending")) or "(none)"
+    # The most recent only: the closed list grows every week and the model
+    # needs it to avoid re-raising what was just fixed, not the whole archive.
+    recent = sorted((i for i in ledger["items"] if i.get("status") in ("done", "retired")),
+                    key=lambda i: i.get("last_seen", ""), reverse=True)[:_CLOSED_SHOWN]
+    closed = "\n".join(line(i) for i in recent) or "(none)"
+    signal_lines = "\n".join(f"- {k}: {v}" for k, v in sorted(signals.items())) or "(none)"
     planned = "\n".join(
         line.strip()[6:].strip() for line in roadmap.splitlines()
         if line.strip().startswith("- [ ] "))[:4000]
@@ -895,6 +1029,7 @@ def propose_findings(facts: dict[str, Any], narrative: str, ledger: dict,
         open_items=open_items,
         closed_items=closed,
         planned_items=planned,
+        signals=signal_lines,
         max_findings=ROADMAP_MAX_FINDINGS,
         min_occurrences=ROADMAP_MIN_OCCURRENCES,
         tell_block=format_static_tell_block(),
@@ -905,7 +1040,7 @@ def propose_findings(facts: dict[str, Any], narrative: str, ledger: dict,
             model=ROADMAP_MODEL,
             max_tokens=ROADMAP_MAX_TOKENS,
             messages=[{"role": "user", "content": prompt}],
-            output_config=json_output_config(_FINDING_SCHEMA),
+            output_config=json_output_config(_finding_schema(signals)),
         )
     except Exception as exc:
         print(f"  ⚠️  Roadmap distillation failed ({exc}) — the roadmap is unchanged")
@@ -924,8 +1059,12 @@ def propose_findings(facts: dict[str, Any], narrative: str, ledger: dict,
             if isinstance(f, dict) and f.get("id") and f.get("title") and f.get("detail")]
 
 
-def distill_roadmap(date: str, facts: dict[str, Any], narrative: str) -> bool:
+def distill_roadmap(date: str, facts: dict[str, Any], narrative: str,
+                    log_read: bool = False) -> bool:
     """Fold today's review into ROADMAP.md. True when the file changed.
+
+    `log_read` says the facts came from a job log. Without one, today's
+    signals are unknown rather than absent, and nothing closes on a signal.
 
     Never raises: this is a surface on top of the review, and a review that
     published is worth more than a roadmap that updated.
@@ -943,11 +1082,14 @@ def distill_roadmap(date: str, facts: dict[str, Any], narrative: str) -> bool:
     for title in harvest_checked(ledger, text):
         print(f"  ☑️  Closed by hand: {title}")
 
-    findings = propose_findings(facts, narrative, ledger, text)
+    signals = run_signals(facts)
+    if signals:
+        print(f"  📡 Signals: {', '.join(sorted(signals))}")
+    findings = propose_findings(facts, narrative, ledger, text, signals)
     print(f"  🧭 {len(findings)} finding(s) from the {date} review")
     merge_findings(ledger, findings, date)
-    for title in retire_stale(ledger, date):
-        print(f"  🗑️  Retired after {ROADMAP_RETIRE_DAYS} quiet days: {title}")
+    for title in retire_stale(ledger, date, signals if log_read else None):
+        print(f"  🗑️  Retired, no longer showing: {title}")
 
     ledger["updated"] = date
     atomic_write_json(LEDGER_FILE, ledger, ensure_ascii=False)
@@ -973,9 +1115,18 @@ def main() -> int:
     parser.add_argument("--no-roadmap", action="store_true",
                         help="Publish the review without distilling it into ROADMAP.md.")
     parser.add_argument("--dry-run", action="store_true", help="Print the facts, write nothing.")
+    parser.add_argument("--skip-if-reviewed", action="store_true",
+                        help="Exit if the date already has a review (the backstop after rung 3).")
     args = parser.parse_args()
 
     date = args.date or (datetime.now(timezone.utc) - timedelta(hours=7)).strftime("%Y-%m-%d")
+    # Both rung 3 and the backstop carry the review job, for the nights the
+    # Worker is down. On every other night the backstop's review repeated
+    # rung 3's — two narratives, two distillations — and described its own
+    # 20-second no-op as the day's unfinished run.
+    if args.skip_if_reviewed and (REVIEWS_DIR / f"episode-review-{date}.html").exists():
+        print(f"📝 {date} already reviewed — nothing to do")
+        return 0
     print(f"📝 Reviewing the {date} generation run")
 
     runs: list[dict] = []
@@ -991,7 +1142,12 @@ def main() -> int:
             runs = summarize_runs(raw_runs)
             print(f"  🔁 {len(runs)} trigger(s): "
                   + ", ".join(f"{r['trigger'].split()[0]}={r.get('conclusion') or r['status']}" for r in runs))
-            generated = next((r for r in runs if r.get("conclusion") == "success"), None)
+            # The run that made the episode; failing that, the newest one that
+            # failed, because a day with no success is the day most worth a
+            # review and its log says why (2026-08-23 published a bare table).
+            generated = (next((r for r in runs if r.get("conclusion") == "success"), None)
+                         or next((r for r in reversed(runs)
+                                  if r.get("conclusion") == "failure"), None))
             if generated:
                 log, steps = fetch_job_log(session, generated["run_id"])
                 # Only the steps worth a sentence: sub-minute ones are setup.
@@ -1030,7 +1186,7 @@ def main() -> int:
     # on top of it and must not be able to cost the day's review.
     if not (args.no_roadmap or args.no_llm):
         try:
-            distill_roadmap(date, facts, narrative)
+            distill_roadmap(date, facts, narrative, log_read=bool(log))
         except Exception as exc:
             print(f"  ⚠️  Roadmap distillation failed ({exc}) — the review still published")
     return 0

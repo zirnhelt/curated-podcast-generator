@@ -668,7 +668,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python episode_review.py
+        # --skip-if-reviewed: on a night rung 3 ran, the backstop has nothing to add.
+        run: python episode_review.py --skip-if-reviewed
 
       # ROADMAP.md and the ledger ride along: the review distils itself into
       # the roadmap's managed block, and a stage that writes a tracked file

@@ -86,15 +86,35 @@ class TestFalsehoodGuards:
 
 
 class TestTriggerLabels:
-    @pytest.mark.parametrize("created,expected,late", [
-        ("2026-08-19T08:48:12Z", "Primary (1:05 AM Pacific)", 43),
-        ("2026-08-19T09:33:32Z", "Fallback 1 (2:05 AM Pacific)", 28),
-        ("2026-08-19T10:35:15Z", "Fallback 2 (3:05 AM Pacific)", 30),
-        ("2026-08-19T08:05:00Z", "Primary (1:05 AM Pacific)", 0),
+    @pytest.mark.parametrize("created,event,expected,late", [
+        # The Worker's ladder: dispatches on the minute.
+        ("2026-09-23T08:05:09Z", "workflow_dispatch",
+         "Primary (1:05 AM Pacific) — Cloudflare scheduler", 0),
+        ("2026-09-23T10:06:40Z", "workflow_dispatch",
+         "Fallback 2 (3:05 AM Pacific) — Cloudflare scheduler", 1),
+        # The GitHub backstop, fired late — 2026-09-03's "291 minutes late".
+        ("2026-09-03T15:56:00Z", "schedule", "Backstop (4:05 AM Pacific) — GitHub cron", 291),
+        ("2026-09-03T11:05:00Z", "schedule", "Backstop (4:05 AM Pacific) — GitHub cron", 0),
+        # A person, with no schedule to be late for.
+        ("2026-09-23T14:42:00Z", "workflow_dispatch", "Manual (workflow_dispatch)", None),
+        ("2026-09-23T08:48:00Z", "workflow_dispatch", "Manual (workflow_dispatch)", None),
     ])
-    def test_run_is_matched_to_its_cron_with_drift(self, created, expected, late):
-        label, minutes = episode_review._trigger_label(episode_review._parse(created))
+    def test_run_is_matched_to_its_trigger_with_drift(self, created, event, expected, late):
+        label, minutes = episode_review._trigger_label(episode_review._parse(created), event)
         assert (label, minutes) == (expected, late)
+
+    def test_the_review_s_own_run_is_not_an_unfinished_trigger(self, monkeypatch):
+        """Every review to 2026-09-23 ended on its own run, "in_progress"."""
+        monkeypatch.setenv("GITHUB_RUN_ID", "42")
+        runs = episode_review.summarize_runs([
+            {"id": 41, "event": "workflow_dispatch", "created_at": "2026-09-23T08:05:05Z",
+             "status": "completed", "conclusion": "success"},
+            {"id": 42, "event": "schedule", "created_at": "2026-09-23T11:40:00Z",
+             "status": "in_progress", "conclusion": None},
+        ])
+        assert runs[0]["status"] == "completed"
+        assert runs[1]["status"] == "running this review"
+        assert runs[1]["trigger"].endswith("this review's own run")
 
 
 class TestRendering:
@@ -246,8 +266,9 @@ def roadmap(tmp_path):
     return episode_review.ROADMAP_FILE
 
 
-def _finding(id_="thing-is-broken", title="A third thing is broken.", detail="Evidence."):
-    return {"id": id_, "title": title, "detail": detail}
+def _finding(id_="thing-is-broken", title="A third thing is broken.", detail="Evidence.",
+             signal="other"):
+    return {"id": id_, "title": title, "detail": detail, "signal": signal}
 
 
 def _ledger(*findings, dates=("2026-08-20",)):
@@ -417,7 +438,93 @@ class TestRetireStale:
     def test_a_human_s_item_is_never_retired(self, roadmap):
         """Only a human closes what a human wrote."""
         ledger = episode_review.seed_ledger({"items": []}, roadmap.read_text("utf-8"), "2026-01-01")
-        assert episode_review.retire_stale(ledger, "2026-08-24") == []
+        assert episode_review.retire_stale(ledger, "2026-08-24", {}) == []
+        assert ledger["items"][0]["status"] == "open"
+
+    def test_a_single_sighting_does_not_wait_for_ever(self):
+        """Twenty pending items from August were still in the prompt in late September."""
+        ledger = _ledger(_finding(), dates=("2026-08-01",))
+        assert episode_review.retire_stale(ledger, "2026-08-24") == ["A third thing is broken."]
+
+    def test_a_retired_item_needs_the_full_count_to_return(self):
+        ledger = _ledger(_finding(), dates=("2026-08-01", "2026-08-02"))
+        episode_review.retire_stale(ledger, "2026-08-24")
+        episode_review.merge_findings(ledger, [_finding()], "2026-08-25")
+        assert ledger["items"][0]["status"] == "retired"
+        episode_review.merge_findings(ledger, [_finding()], "2026-08-26")
+        assert ledger["items"][0]["status"] == "open"
+
+
+BODIES = "degraded:script/bodies"
+
+
+class TestSignals:
+    """The dedup key and the closing condition, both read off the facts."""
+
+    def test_the_fixture_run_s_signals(self, facts):
+        signals = episode_review.run_signals(facts)
+        assert all(k.startswith(("degraded:", "short-script", "citations:", "ai-tells",
+                                 "voice-ratio", "run-failed")) for k in signals)
+
+    def test_each_kind_of_signal(self):
+        signals = episode_review.run_signals({
+            "degradations": [["script/bodies", "Brave body-backfill budget spent (12 calls)"],
+                             ["script/bodies", "again"]],
+            "short_script": [2192, 3400],
+            "citation_alignment": [12, 15, 1, 3],
+            "quality": [2, 1.4, 3300],
+            "runs": [{"trigger": "Primary", "conclusion": "failure"}],
+        })
+        assert set(signals) == {BODIES, "short-script", "citations:deep-dive",
+                                "ai-tells-shipped", "voice-ratio", "run-failed"}
+        assert "12 calls" in signals[BODIES]
+
+    def test_metrics_inside_their_lines_are_not_signals(self):
+        signals = episode_review.run_signals({
+            "citation_alignment": [12, 15, 2, 3], "quality": [0, 1.13, 3300]})
+        assert signals == {}
+
+    def test_differently_worded_findings_on_one_signal_are_one_item(self):
+        """The ledger held three Brave-budget items on 2026-09-23, one per wording."""
+        ledger = {"items": []}
+        episode_review.merge_findings(ledger, [_finding(
+            id_="brave-body-budget-hit-55-article-drop",
+            title="Brave body-backfill exhaustion dropped 55 roundup articles.",
+            signal=BODIES)], "2026-09-19")
+        episode_review.merge_findings(ledger, [_finding(
+            id_="brave-body-backfill-budget-exhaustion-pattern",
+            title="Brave body-backfill budget exhaustion is recurring and requires intervention.",
+            signal=BODIES)], "2026-09-20")
+        assert len(ledger["items"]) == 1
+        assert ledger["items"][0]["status"] == "open"
+        assert ledger["items"][0]["signal"] == BODIES
+
+    def test_a_close_title_under_another_signal_is_another_item(self):
+        ledger = _ledger(_finding(signal=BODIES))
+        episode_review.merge_findings(ledger, [_finding(signal="short-script")], "2026-08-21")
+        assert [i["signal"] for i in ledger["items"]] == [BODIES, "short-script"]
+
+    def test_an_item_from_before_signals_adopts_one(self):
+        ledger = _ledger(_finding())
+        episode_review.merge_findings(ledger, [_finding(signal=BODIES)], "2026-08-21")
+        assert len(ledger["items"]) == 1 and ledger["items"][0]["signal"] == BODIES
+
+    def test_an_item_closes_when_its_signal_goes_quiet(self):
+        ledger = _ledger(_finding(signal=BODIES), dates=("2026-09-19", "2026-09-20"))
+        assert episode_review.retire_stale(ledger, "2026-09-22", {}) == []
+        assert episode_review.retire_stale(ledger, "2026-09-23", {}) == [
+            "A third thing is broken."]
+
+    def test_a_present_signal_keeps_its_item_open_without_a_finding(self):
+        ledger = _ledger(_finding(signal=BODIES), dates=("2026-09-01", "2026-09-02"))
+        for day in ("2026-09-10", "2026-09-20", "2026-09-30"):
+            assert episode_review.retire_stale(ledger, day, {BODIES: "spent"}) == []
+        assert ledger["items"][0]["status"] == "open"
+        assert ledger["items"][0]["signal_seen"] == "2026-09-30"
+
+    def test_no_log_is_not_evidence_of_a_fix(self):
+        ledger = _ledger(_finding(signal=BODIES), dates=("2026-09-01", "2026-09-02"))
+        assert episode_review.retire_stale(ledger, "2026-09-30", None) == []
         assert ledger["items"][0]["status"] == "open"
 
 
@@ -471,8 +578,15 @@ class TestFindingSchema:
         """The strip-the-fences-and-hope pattern is what this replaced."""
         schema = episode_review._FINDING_SCHEMA
         item = schema["properties"]["findings"]["items"]
-        assert set(item["required"]) == {"id", "title", "detail"}
+        assert set(item["required"]) == {"id", "title", "detail", "signal"}
         assert all(p.get("description") for p in item["properties"].values())
+
+    def test_the_signal_is_pinned_to_today_s(self):
+        schema = episode_review._finding_schema({BODIES: "x", "short-script": "y"})
+        signal = schema["properties"]["findings"]["items"]["properties"]["signal"]
+        assert signal["enum"] == [BODIES, "short-script", "other"]
+        assert "enum" not in episode_review._FINDING_SCHEMA[
+            "properties"]["findings"]["items"]["properties"]["signal"]
 
     def test_both_object_levels_close_themselves(self):
         """The API refuses an object schema that does not, and the refusal is a
@@ -492,6 +606,19 @@ class TestFindingSchema:
 
         template = load_prompts_config()["roadmap_distill"]["template"]
         assert "empty list" in template.lower()
-        for field in ("facts_json", "narrative", "open_items", "closed_items",
-                      "planned_items", "max_findings", "min_occurrences", "tell_block"):
+        for field in ("facts_json", "narrative", "open_items", "closed_items", "planned_items",
+                      "signals", "max_findings", "min_occurrences", "tell_block"):
             assert "{" + field + "}" in template
+
+
+class TestSkipIfReviewed:
+    """Rung 3 and the backstop both carry the review job; one review a day."""
+
+    def test_an_existing_review_is_left_alone(self, tmp_path, monkeypatch):
+        monkeypatch.setattr(episode_review, "REVIEWS_DIR", tmp_path)
+        (tmp_path / "episode-review-2026-09-23.html").write_text("done", encoding="utf-8")
+        monkeypatch.setattr(episode_review, "_session",
+                            lambda: pytest.fail("reviewed the day twice"))
+        monkeypatch.setattr("sys.argv", ["episode_review.py", "--date", "2026-09-23",
+                                         "--skip-if-reviewed"])
+        assert episode_review.main() == 0
