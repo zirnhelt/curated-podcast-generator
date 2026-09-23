@@ -1376,9 +1376,19 @@ once one of them has nothing left.
 
 **The fallback crons are the multiplier that spends a month.** The workflow fires at 1:05, 2:05
 and 3:05 Pacific; the later two exit on the idempotency check and cost nothing — unless the
-first run failed *after* spending, when the day costs three full sets of calls (2026-08-23). A
-normal day is ~16 Search requests (~480/month, ~$2.40 of the $10); triple-cron days are the
-pathology the per-run ceilings exist to bound, not the ordinary one.
+first run failed *after* spending, when the day costs three full sets of calls (2026-08-23).
+Triple-cron days are the pathology the per-run ceilings exist to bound, not the ordinary one.
+
+**The Search cap is shared with `super-rss-feed`, and the estimate here was a third of the
+truth.** Brave's per-key export for 2026-09-01..22 put one Search key — used by both repos —
+at ~103 requests a day, ~2,260 for the period, already past $10 at list price. This file said
+a normal day was ~16. The feed's own log accounts for ~47 a night, which left the podcast at
+40–55, above the 28 its two ceilings allow: `_filter_sparse_news_articles` searched through
+`_brave_search` directly, once per thin article, and body fetching stops at 40 of a ~80-article
+pool, so everything past #40 bought an unmetered search. It now tries the feed's free
+`_excerpt` first and charges the rest to the SEARCH budget. **Only the two rate-limit wrappers
+may call `_brave_search`.** Read the per-key export in the Brave dashboard before trusting any
+figure in this section, including this one.
 
 **A 402 is a wall and closes that meter for the run** (`_is_brave_billing_wall`,
 `_trip_brave_wall(error, meter)`, `_brave_walled(meter)`). Unlike a 429 a 402 has no throttle

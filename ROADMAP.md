@@ -220,11 +220,12 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       process where `_tts_providers_rendered` is empty, so `get_tts_credit()` falls back to
       the env flag — check it cannot clobber the mixed credit the render stage wrote
       (`"Gemini TTS and OpenAI TTS"`) with a flag-derived guess.
-- [ ] Submit to Apple Podcasts (see [docs/submit-apple-podcasts.md](docs/submit-apple-podcasts.md))
-  - [ ] Upgrade cover art to 1400x1400+ pixels (Apple minimum)
-  - [ ] Replace placeholder email in config/podcast.json
-  - [ ] Submit RSS feed at podcastsconnect.apple.com
-- [ ] Submit to Spotify, Amazon Music, Pocket Casts
+- [x] Submit to Apple Podcasts (see [docs/submit-apple-podcasts.md](docs/submit-apple-podcasts.md))
+  - [x] Upgrade cover art to 1400x1400+ pixels (Apple minimum) — 3000x3000
+  - [x] Replace placeholder email in config/podcast.json
+  - [x] Submit RSS feed at podcastsconnect.apple.com
+- [x] Submit to Spotify
+- [ ] Submit to Amazon Music, Pocket Casts
 - [ ] Clean up backup and old generator scripts from root directory
 - [ ] Reduce technical jargon for general audiences
 - [ ] Theme-based filtering on website index page
