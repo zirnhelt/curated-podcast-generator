@@ -1,0 +1,21 @@
+# Standing producer notes — yours, applied to every episode.
+#
+# Each line that does not start with '#' is a rule or a fact every episode must
+# respect. The lines are added to the script-writing system prompt (cached, so they
+# cost almost nothing) and to both fact-check passes, which correct a script that
+# breaks one.
+#
+# Keep a line to one rule or one fact. A correction that only mattered once (a count
+# that will change, one episode's wording) does not belong here.
+#
+# Every Sunday, standing_notes.py reads the week's correction and feedback emails and
+# opens a pull request proposing new lines. Merging it adopts them. Closing it
+# declines them, and they will not be proposed again. Edit or delete any line by hand
+# at any time.
+
+The nation is Williams Lake First Nation. Never "WLIB" or "Williams Lake Indian Band", in speech or in text.
+The scripts are 100% AI-generated, by design. Never say or imply that they are partly AI-generated or written by a person.
+When referring back to earlier coverage, say exactly when it aired ("yesterday", "on Tuesday"), never a vaguer span such as "in the last few weeks".
+A story's outlet is not its location: a Williams Lake Tribune article can be about somewhere else. Say where the story happened, and never place a person in the Cariboo unless the source does.
+The Okanagan is south and east of the Cariboo.
+Performances in the Park pays its artists and sound technicians, and its organizers are paid staff.

@@ -64,6 +64,7 @@ from config_loader import (
     atomic_write_text as _atomic_write_text,
     atomic_write_json as _atomic_write_json,
     load_pronunciations,
+    format_standing_notes_block,
 )
 from gemini_tts import (
     canary as gemini_canary,
@@ -2243,7 +2244,7 @@ def build_cached_system_prompt():
         casey_name=hosts['casey']['name'],
         casey_pronouns=hosts['casey']['pronouns'],
         casey_bio=hosts['casey']['full_bio'],
-    )
+    ) + format_standing_notes_block()
 
 def select_welcome_host():
     """Randomly select which host opens the show."""
@@ -3427,7 +3428,8 @@ def polish_and_factcheck_with_agent(script, theme_name, news_articles, deep_dive
         anchor_block=anchor_block or "(none)",
         air_date=f"{weekday}, {date_str}",
         burned_phrases=format_burned_phrases_for_prompt(),
-    ) + _stage_direction_addendum() + _corrections_ground_truth(corrections)
+    ) + _stage_direction_addendum() + _corrections_ground_truth(corrections) \
+        + format_standing_notes_block(for_factcheck=True)
 
     review_model = model or select_review_model(deep_dive_articles)
     brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
@@ -3493,7 +3495,8 @@ def submit_post_processing_batch(script, theme_name, news_articles, deep_dive_ar
         anchor_block=anchor_block or "(none)",
         air_date=f"{weekday}, {date_str}",
         burned_phrases=format_burned_phrases_for_prompt(),
-    ) + _stage_direction_addendum() + _corrections_ground_truth(corrections)
+    ) + _stage_direction_addendum() + _corrections_ground_truth(corrections) \
+        + format_standing_notes_block(for_factcheck=True)
 
     # Build debate summary prompt — only send the deep-dive section (30% of script)
     deep_dive_section = _extract_deep_dive_section(script)

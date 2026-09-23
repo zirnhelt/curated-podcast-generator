@@ -21,3 +21,4 @@ podcasts/bespoke/*.mp3
 
 # Episode videos — rendered for YouTube upload (or CI artifact review), never committed
 podcasts/*.mp4
+standing_notes_pr.md

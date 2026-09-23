@@ -151,6 +151,7 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 | `ai_tells.json` | Hard-banned phrases, `score_script` pattern families, phrase-ledger tuning, rhythm budget |
 | `prompts.json` | All Claude prompt templates |
 | `pronunciations.json` | Name → spoken alias, applied in order before synthesis; a longer name must precede any name it contains |
+| `standing_notes.txt` | **The producer's** standing rules and facts, one per line, in the cached script system prompt and both fact-check prompts. Edited by hand or by merging a weekly proposal PR |
 | `interests.txt` | Article relevance rubric |
 | `blocklist.json` | Excluded domains and keywords; `email_producer_senders` |
 | `credits.json` | Spoken and written credits |
@@ -158,7 +159,7 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 | `disciplines.json` | Topic taxonomy for roundup grouping |
 | `indigenous_nations.json` | Nation names + aliases the territory check recognises (recognition only) |
 
-**Memory state** (`podcasts/`, committed daily by CI): `episode_memory.json` (35 days), `host_personality_memory.json`, `debate_memory.json` (90 days), `psa_rotation_state.json`, `article_holding.json`, `weekly_anchor_state.json`, `phrase_ledger.json`, `roadmap_ledger.json`, `native_land_cache.json`, `email_queue.json`.
+**Memory state** (`podcasts/`, committed daily by CI): `episode_memory.json` (35 days), `host_personality_memory.json`, `debate_memory.json` (90 days), `psa_rotation_state.json`, `article_holding.json`, `weekly_anchor_state.json`, `phrase_ledger.json`, `roadmap_ledger.json`, `native_land_cache.json`, `email_queue.json`, `standing_notes_ledger.json`.
 
 ### Curation — see [docs/decisions/curation.md](docs/decisions/curation.md)
 
@@ -230,6 +231,7 @@ All content lives in `config/` JSON files, loaded through LRU-cached loaders. No
 - "From the producer" is decided at ingest (`is_producer_sender`, stamped `from_producer`); never re-derive it from the masked address.
 - The block header stays `LISTENER CORRECTIONS`; attribution is per item.
 - A correction airs as the final beat of the next roundup (`docs/corrections-policy.md`).
+- **A correction that should outlive its episode becomes a standing note.** Every Sunday `standing_notes.py` (in `periodic-review.yml`) reads the correction and feedback emails no run has seen, makes one Haiku call, and opens a PR adding proposed lines to `config/standing_notes.txt`. Merge adopts; close declines for good. Email text is untrusted, so it is quoted as data and nothing reaches a prompt without a merged PR. One proposal PR at a time.
 
 ### TTS — see [docs/decisions/openai-tts.md](docs/decisions/openai-tts.md)
 

@@ -251,6 +251,38 @@ def load_ai_tells_config():
     with open(path, 'r') as f:
         return json.load(f)
 
+@lru_cache(maxsize=1)
+def load_standing_notes() -> tuple:
+    """The producer's standing notes, one per non-comment line (cached).
+
+    A missing file means no notes, never a failed run.
+    """
+    path = CONFIG_DIR / "standing_notes.txt"
+    if not path.exists():
+        return ()
+    return tuple(line.strip() for line in path.read_text(encoding="utf-8").splitlines()
+                 if line.strip() and not line.lstrip().startswith("#"))
+
+
+def format_standing_notes_block(for_factcheck: bool = False) -> str:
+    """Render the standing notes for a prompt, or '' when there are none.
+
+    The script writer is told to follow them; the fact-check passes are told a
+    script that breaks one is wrong and to correct it. Either way they are rules
+    for the hosts, never a list to read on air.
+    """
+    notes = load_standing_notes()
+    if not notes:
+        return ""
+    if for_factcheck:
+        lead = ("STANDING PRODUCER NOTES — the script must respect every one of these. "
+                "Where it breaks one, correct the line; never read the notes on air:")
+    else:
+        lead = ("STANDING PRODUCER NOTES — these apply to every episode. Follow them; "
+                "never read them on air:")
+    return "\n\n" + lead + "\n" + "\n".join(f"- {n}" for n in notes) + "\n"
+
+
 def format_static_tell_block():
     """The config-only half of the burned-phrase block: hard bans plus the rhythm
     budget. Lives here so generate_bespoke.py can use it without importing the
