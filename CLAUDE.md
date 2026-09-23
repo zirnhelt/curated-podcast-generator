@@ -117,6 +117,11 @@ Deploy with **Actions → Deploy Cloudflare Scheduler**; there is no local wrang
 path. See `cloudflare/scheduler/README.md` for the token scopes, the recorded PAT
 expiry, and the rollback.
 
+`cloudflare/feedback/` is a second, unrelated Worker that writes super-rss-feed's
+review-page ratings, so no GitHub token ships in that public page (one did from
+2026-06-17 to 2026-09-23). **A credential never goes into a page.** Deploy with
+**Actions → Deploy Feedback Worker**; see its README.
+
 ### Stages and Segments
 
 The pipeline is split at two levels: **stages** are separate processes with a git commit
@@ -1587,6 +1592,11 @@ list") had been in the prompt the whole time.
 Gmail items land in `podcasts/email_queue.json` as `newsletter`, `feedback` or `correction`.
 Feedback and newsletters wait for their theme day; a correction is never theme-gated and airs
 as the final beat of the next roundup (`docs/corrections-policy.md`).
+
+**The queue is committed to a public repo.** Senders are masked, and `_sanitize` redacts
+email addresses and phone numbers from bodies (`_redact_contact_details`), because a
+signature carries both. Before the recipient allowlist (2026-07-25) the ingest also queued
+personal mail as "feedback"; those items were removed on 2026-09-23 but remain in git history.
 
 **The producer is not a listener.** On 2026-09-02 a correction Erich sent himself aired as
 "A listener named Erich wrote in… Thanks, Erich" — the writer had only the body's signature to
