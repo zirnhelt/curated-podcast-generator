@@ -315,7 +315,7 @@ jobs:
       # the render steps below. Gated on the backend variable, so the nightly is
       # untouched until it is set to 'cloud'. A missing secret warns and lets the
       # render fall to OpenAI rather than costing the day's episode; the key is
-      # never echoed. Enablement checklist: CLAUDE.md → TTS Providers → Cloud TTS.
+      # never echoed. Enablement checklist: docs/decisions/gemini-tts.md → the GEMINI_TTS_BACKEND switch.
       - name: Authenticate to Google Cloud (cloud TTS backend)
         if: steps.generate.outputs.generated == 'true' && vars.GEMINI_TTS_BACKEND == 'cloud'
         env:

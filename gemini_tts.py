@@ -13,7 +13,7 @@ Plain REST via requests — no SDK dependency.
 Two backends, selected by GEMINI_TTS_BACKEND (default "studio"):
   studio — generativelanguage.googleapis.com :generateContent, GEMINI_API_KEY.
            The preview surface this integration has always used; no SLA, and the
-           read timeouts / 500s CLAUDE.md documents at length.
+           read timeouts / 500s docs/decisions/gemini-tts.md documents at length.
   cloud  — texttospeech.googleapis.com/v1beta1 text:synthesize, a service
            account via GOOGLE_APPLICATION_CREDENTIALS. Gemini-TTS is GA here, on
            a separate quota pool with requestable limits. Same prebuilt voices
@@ -56,7 +56,7 @@ from config_loader import (
 
 # Which Google surface renders the audio. See the module docstring. Default
 # stays "studio" until a probe (evaluate_tts.py --probe-models on the cloud
-# backend) has cleared the 8/15 baseline, per CLAUDE.md's cutover rule — GA does
+# backend) has cleared the 8/15 baseline, per the cutover rule in docs/decisions/gemini-tts.md — GA does
 # not become "measured here" until it is measured here.
 GEMINI_TTS_BACKEND = (os.getenv("GEMINI_TTS_BACKEND") or "studio").strip().lower()
 
@@ -754,7 +754,7 @@ def _audio_profile_block(speakers: list[str]) -> str:
 
     **No line here may begin `Name:`,** which is the shape of a transcript turn
     on the studio path and of a flattened `multiSpeakerMarkup` turn on cloud.
-    CLAUDE.md named this collision when the scaffolding was written — "if an
+    CLAUDE.md (now docs/decisions/gemini-tts.md) named this collision when the scaffolding was written — "if an
     episode ever reads a profile line aloud, that collision is the first thing
     to change" — and 2026-09-14 is that episode: the hosts read their own
     personality descriptions out on air, more than once, on a night whose
@@ -1345,7 +1345,7 @@ def _build_cloud_payload(
     # this surface refuse it: every call of the 2026-09-12 probe came back
     # `400 INVALID_ARGUMENT "Unsupported audio encoding."` — the first thing the
     # cloud backend met once its 403s were cleared, and the kind of defect that
-    # only shows up when the request is actually sent (CLAUDE.md: the shape was
+    # only shows up when the request is actually sent (docs/decisions/gemini-tts.md: the shape was
     # "verified against the v1beta1 proto … not run here").
     #
     # LINEAR16 returns a RIFF/WAVE container rather than headerless samples,
