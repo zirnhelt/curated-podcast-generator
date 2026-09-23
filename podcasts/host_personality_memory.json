@@ -1,7 +1,6 @@
 {
   "riley": {
     "consistent_interests": [
-      "[Kagi Small Web] SwarmWorld: Stigmergic technological evolut",
       "[TechRadar] Geekom reveals multiple mini-PCs may be infected",
       "[TechCrunch] Eric Wu\u2019s newest company, out of stealth since ",
       "EEVblog 1769 \u2013 Who Needs Three Phases? REPAIR",
@@ -10,7 +9,8 @@
       "[TechRadar] Microsoft 365 users hit by two major threat camp",
       "[Fast Company] I use AI to save time. So why am I working mo",
       "[TechRadar] The new digital ID apps for age verification in ",
-      "[TechRadar] Microsoft, Google took down $66 million cybercri"
+      "[TechRadar] Microsoft, Google took down $66 million cybercri",
+      "[Business Insider] Laid-off tech workers from Google, Micros"
     ],
     "recurring_questions": [
       "How would this actually work?",
@@ -157,6 +157,16 @@
       {
         "date": "2026-09-21",
         "clue": "rural-context:+ \u2014 Genuine frustration with volunteer-hall friction, moved concrete",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-09-23",
+        "clue": "structural-lens:~[pause:600]inverter-undersizing parallels GPU connector-melt exactly",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-09-23",
+        "clue": "Indigenous-tech:+local-First-Nations-infrastructure-model-as-template-for-private-systems",
         "occurrences": 1
       }
     ],
@@ -426,6 +436,16 @@
       {
         "date": "2026-09-22",
         "clue": "evidence-bar:x \u2014 conceded local knowledge needs formal standing",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-09-23",
+        "clue": "evidence-bar:xdata-existing-vs-findable-problem-distinction-surfaces",
+        "occurrences": 1
+      },
+      {
+        "date": "2026-09-23",
+        "clue": "community-trust:~undocumented-resilience-is-single-point-failure-reframing",
         "occurrences": 1
       }
     ],

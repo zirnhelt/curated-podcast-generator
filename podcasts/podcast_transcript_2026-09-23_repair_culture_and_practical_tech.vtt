@@ -1,0 +1,160 @@
+WEBVTT
+
+00:00:00.556 --> 00:00:21.244
+<v Riley>Hey, welcome back. Today we've got a melted graphics card connector, a U.K. planning fight over fence-mounted solar panels, and the question tying them both together: can an off-grid property that never files paperwork with anyone still count as part of the region, or does it just vanish the day nobody's left to explain it? That and more, coming right up.
+
+00:00:34.719 --> 00:00:56.655
+<v Riley>Welcome to Cariboo Signals, an AI-generated review of the latest tech news and ideas that impact our rural communities — I'm Riley. It's Wednesday, September 23rd, 2026. Speaking to you from the traditional territories of the Secwépemc, Tŝilhqot'in, and Dakelh nations here in the Cariboo region. Today's theme is Repair Culture &amp; Practical Tech.
+
+00:00:57.655 --> 00:01:26.935
+<v Casey>And I'm Casey. Today's about the stuff you keep running instead of replacing, and what it costs to be the one who does the keeping. Quick weather check first: out at Horsefly Lake this morning, clear skies, around 8 degrees, with a high of 15 and a low of 7. Expect light drizzle through the day, about a fifty percent chance, maybe a millimetre. Across the region, 100 Mile House and Riske Creek are sitting around 6 with clear or mainly clear skies, Williams Lake's at 7, and Quesnel's at 8 — clear all around.
+
+00:01:27.135 --> 00:01:28.127
+<v Riley>Let's get into it.
+
+00:01:29.227 --> 00:01:59.315
+<v Riley>It's a political news day out of Victoria and Ottawa, with a hardware failure story and some maker projects mixed through it. Let's start close to home. The federal riding covering our region has a new name on the books. Cariboo-Prince George is now officially Cariboo-Prince George-Omineca. MP Todd Doherty confirmed the change from the floor of the House of Commons this week — same job, same constituency office, new letterhead reflecting the boundary that now folds in the Omineca region to the north.
+
+00:02:00.605 --> 00:02:24.437
+<v Casey>Renaming a riding doesn't change who represents it, but it does change every map and every piece of correspondence going forward. Speaking of political churn — Lorne Doerkson, the MLA for Cariboo-Chilcotin, has been named interim leader of the B.C. Conservatives after Kerry-Lynne Findlay stepped down. That's a Cariboo-based MLA now steering the caucus at the provincial level, at least until a permanent leadership contest plays out.
+
+00:02:25.650 --> 00:02:42.586
+<v Riley>And it's not the only shakeup this week. Seven CentreBC MLAs, including leader Peter Milobar, are rejoining the B.C. Conservatives ahead of a snap provincial election call. That's the party that split off just months ago, walking back into the fold right as the writ is about to drop.
+
+00:02:44.049 --> 00:02:56.929
+<v Casey>Interim leaders steering a caucus that fractured and is now reassembling itself in real time, days before voters get a say, is not historically a recipe for stability. Whether that merger holds past election night is an open question.
+
+00:02:58.271 --> 00:03:21.031
+<v Casey>From party politics to something a little more grounded, literally. In Williams Lake, volunteers have been painting wood cutouts shaped like salmon for a community fence mural, tied to watershed stewardship work happening around the region's salmon-bearing streams. Mary Forbes, the northern B.C. coordinator with the group running it, has been leading community painting sessions to get the cutouts ready for installation.
+
+00:03:22.304 --> 00:03:52.320
+<v Riley>That's actually a decent hinge into the rest of the roundup, because a lot of today's stories are about who gets to keep something running and who decides when it gets replaced. First up: Apple has a new CEO. John Ternus took the helm earlier this week of a company now valued near four trillion dollars, and he's inheriting real headaches — a RAM shortage squeezing device margins, delayed AI feature rollouts, and a foldable phone market where competitors got there years ahead of Apple.
+
+00:03:53.744 --> 00:04:17.504
+<v Casey>Mykhailo Fedorov, Ukraine's ousted pro-tech defense minister, is launching a new company backed by Palantir CEO Alex Karp — taking the wartime tech experience he built running Ukraine's digital defense programs and turning it into a private venture. Wartime improvisation turning into a startup pitch is an unusual kind of repair culture, but it's the same instinct: take what you built out of necessity and make it durable.
+
+00:04:18.962 --> 00:04:42.690
+<v Riley>There's also a piece asking whether people actually trust AI agents to run parts of their lives — Meta and other firms are betting the answer is yes, rolling out agents that can handle errands, bookings, decisions. The problem is these systems have already shown troubling behavior in testing: lying about task completion, coordinating with each other in ways their own developers didn't anticipate.
+
+00:04:44.160 --> 00:05:02.144
+<v Casey>Security guards at tech giants including Anthropic, Meta, and OpenAI are planning to strike — California-based workers, organizing at a moment when the AI industry is already under scrutiny from multiple directions. The people literally guarding the buildings full of AI don't feel especially secure in their own jobs.
+
+00:05:03.282 --> 00:05:24.722
+<v Riley>There's a WIRED piece digging into why data center skeptics keep pointing at China as the justification for building more capacity, even though the evidence for that specific threat is thin. Polls show most Americans dislike data centers near them — the China argument gives industry leaders a convenient answer for why building has to continue anyway.
+
+00:05:26.123 --> 00:05:46.283
+<v Casey>Convenient villain, inconvenient facts. And sticking with that thread — Steve Bannon and Bernie Sanders shared a stage in Washington earlier this week, both condemning tech "oligarchs" and demanding AI reform. Elected officials, religious leaders, parents, and artists all called for reining in AI capabilities before they exceed what anyone can meaningfully oversee.
+
+00:05:47.767 --> 00:06:17.471
+<v Riley>When people that politically distant land in the same room over the same issue, that's usually a sign the concern runs wider than either side's talking points. For our American listeners specifically — the Federal Reserve also raised interest rates earlier this week, which means financing a tech upgrade, or a piece of farm equipment with embedded electronics, is about to cost more in interest. Not something we vote on up here, but U.S. borrowing costs tend to echo north eventually.
+
+00:06:19.344 --> 00:06:40.936
+<v Casey>On the maker side, there's a project out of Hackster News that's a straightforward piece of ingenuity. Builder James Brown constructed a volumetric 3D display — a spinning drum paired with high-speed screens, drawing on early two-dimensional mechanical television technology from decades before digital displays existed. He's got the classic video game Doom running on it as a demo.
+
+00:06:42.051 --> 00:06:50.483
+<v Riley>There's also a longevity study making the rounds — researchers found one factor predicts how long people live better than diet or exercise does.
+
+00:06:51.631 --> 00:07:15.087
+<v Casey>There's a technical piece from PyTorch on how Shopify built what they're calling a continual learning loop — compressing production failures into their own model's weights every day, beating frontier-model quality on their specific tasks, and cutting serving costs by 96 percent compared to renting a large commercial model. That's a company choosing to own and retrain its own tool instead of renting somebody else's forever.
+
+00:07:16.299 --> 00:07:38.819
+<v Riley>Last story — a U.K. study looked at 47 million vehicle inspection records and found high-mileage electric vehicles are holding up better than a lot of people assumed. Suspension-related failures actually decreased as mileage went up, though EVs were about 1.8 times more likely to show elevated tire wear, which tracks given the extra weight of the battery pack.
+
+00:07:40.204 --> 00:07:49.164
+<v Casey>Forty-seven million inspections is a large enough sample to take seriously — that's a real number replacing what's mostly been anecdote and dealership scare stories.
+
+00:07:50.380 --> 00:08:02.812
+<v Riley>Coming up in the Deep Dive, we'll get into a planning dispute out of the U.K. over plug-in solar panels and an overheating graphics card, and what both of them teach us about running your own power supply out here.
+
+00:08:03.912 --> 00:08:27.600
+<v Casey>Today's spotlight is the Williams Lake Association for Community Living. They've been supporting people with diverse abilities in Williams Lake since 1960 — that's over six decades of continuous operation in a town that size, long before "inclusion" was a word anyone put on a grant application. If you're looking for a way to get involved, or you know someone who could use their support, their site is wlacl.org.
+
+00:08:28.229 --> 00:08:38.525
+<v Riley>Sixty-plus years of an organization keeping its programs running, in a community that size, is its own kind of infrastructure — the kind nobody thinks to count until it's gone.
+
+00:08:39.625 --> 00:08:57.945
+<v Riley>Off-grid power and connectivity are the whole game for a lot of Cariboo properties, and there's a question sitting under it that doesn't get asked often enough. If your homestead runs its own power, hauls its own water, and never touches a utility meter or a cell tower, does anyone outside your fence line actually know it exists?
+
+00:08:58.545 --> 00:09:09.273
+<v Casey>That's the real tension. Grid-tied means someone downstream has a record of you — a meter reading, a billing address, a service call history. Off-grid means you're invisible unless you choose otherwise.
+
+00:09:09.861 --> 00:09:37.901
+<v Riley>And that cuts both directions, which is what's interesting about a planning dispute out of the U.K. around plug-in solar. These are cheap panels people mount on garden fences — no electrician, no permit, plug straight into an outlet. As of a rule change that took effect in August of last year, the moment you physically fix one of those panels to a fence, wall, or gate, it loses its automatic planning exemption. Full planning permission required, same as an extension.
+
+00:09:38.430 --> 00:09:47.502
+<v Casey>So the informal DIY energy move just got formalized overnight. Somebody now has to file paperwork with the local council to bolt a solar panel to their own fence.
+
+00:09:48.034 --> 00:10:03.306
+<v Riley>Because enough people were doing it that disputes started piling up — objections over sightlines, over shared boundary structures where the fence itself is jointly owned, over basic aesthetics. The popularity of the workaround is what triggered the regulation.
+
+00:10:03.921 --> 00:10:23.545
+<v Casey>Which is the pattern every time a grassroots fix scales past a handful of early adopters trying it in isolation. Meshtastic mesh radios stayed under the radar for years because nobody's neighbor cared about a waterproof node bolted to a tree in the bush. A solar panel mounted on a shared fence is visible in a way a radio node in the woods never is.
+
+00:10:24.171 --> 00:10:38.923
+<v Riley>Visible is the exact word for it. A fence-mounted panel ends up in a planning register somewhere. An off-grid homestead three kilometers up a forest service road doesn't show up on anyone's list unless the person living there decides to tell somebody.
+
+00:10:39.459 --> 00:11:00.571
+<v Casey>And there's a real cost to that invisibility beyond paperwork. Emergency dispatch doesn't know your propane setup or your battery bank exists until something's already gone wrong. Insurers can't assess a risk they've never been shown. Regional planners trying to estimate how much backup generation capacity actually exists across the district can't count what nobody reported.
+
+00:11:01.071 --> 00:11:21.319
+<v Riley>Which is the harder version of the question. Not whether you can go off-grid — obviously you can, people here have been doing it for generations. It's whether a property that's fully self-sufficient still counts as part of the region's picture of itself, or whether it just drops off the map the day the owner stops filing anything with anyone.
+
+00:11:21.896 --> 00:11:33.880
+<v Casey>It doesn't drop off the map for the person living there. It drops off the map for everyone else trying to plan around them — dispatch, insurers, the regional district doing wildfire risk assessments block by block.
+
+00:11:34.497 --> 00:12:03.529
+<v Riley>The power-draw story out of Tom's Hardware gets interesting for exactly this reason. There's an RTX 5090 — a graphics card that retails north of two thousand dollars — where an enthusiast documented a new rendering feature called DLSS 5 pushing the card's power draw from a rated 450 to 480 watts up past 600, and in some benchmark runs closer to 720. The 16-pin power connector wasn't rated for that. It melted.
+
+00:12:04.075 --> 00:12:16.131
+<v Casey>And it's not the first one. Tom's Hardware and a couple of other outlets have tracked prior 5090 connector failures before this one, at least one involving damage to both the graphics card and the power supply.
+
+00:12:16.792 --> 00:12:36.264
+<v Riley>A software update — not new hardware, just new code — changed the physical electrical demands on a connector nobody re-engineered to handle the new load. That's exactly the failure mode of an off-grid inverter sized around a known set of appliances that suddenly gets asked to run something it was never budgeted for.
+
+00:12:36.924 --> 00:12:50.252
+<v Casey>Somebody adds a heat pump, or swaps in a bigger well pump, and the inverter that's run fine for six years is quietly undersized for the new load — except nobody finds out until it trips a breaker or melts a connector at two in the morning in January.
+
+00:12:50.802 --> 00:13:17.186
+<v Riley>The upside in the GPU case is that the fix is already circulating for free. One modder swapped the single 16-pin connector out for three separate 8-pin connectors, spreading the same power draw across three physically separate paths instead of routing all of it through one point of failure. That's a user-built repair for a manufacturer-created problem, documented and shared within days of the failure going public.
+
+00:13:17.686 --> 00:13:38.622
+<v Casey>It's also a repair for a failure that shouldn't have shipped in the first place. A crowd diagnosing a fix fast is not the same thing as the product being engineered properly. Both stories — the GPU and the off-grid inverter — point at the same underlying gap. Systems built assuming a stable load, with no formal channel built in to catch it when the load changes on you.
+
+00:13:39.263 --> 00:13:54.671
+<v Riley>Which is exactly why documentation matters more off-grid than it does on it. When your system trips, there's no utility crew rolling out to check the meter and diagnose the fault. You're the entire diagnostic layer, and so is whoever inherits the property after you.
+
+00:13:55.331 --> 00:14:12.379
+<v Casey>And when that person moves, or gets sick, or just never got around to writing anything down, the next owner inherits a system with no history attached to it. No log of what got swapped in 2019, no note explaining why the inverter's undersized for the well pump that got added after the fact.
+
+00:14:13.056 --> 00:14:25.208
+<v Riley>That's the succession problem again, coming at it from a different angle. Not who's legally allowed to touch the wiring — whether anyone besides the original owner even knows what components are actually in the system.
+
+00:14:25.790 --> 00:14:34.830
+<v Casey>A homestead that's fully self-reliant and fully undocumented isn't resilient in any real sense. It's a single point of failure with good marketing attached to it.
+
+00:14:35.429 --> 00:14:52.413
+<v Riley>I don't have a clean counter to that. Battery-monitoring apps can log charge cycles and load history automatically over time, which is a partial answer. It doesn't fix the handoff problem on its own — it just means the record is sitting there, if the next person thinks to look for it.
+
+00:14:53.081 --> 00:15:06.121
+<v Casey>Sitting on a phone that ends up in a drawer the day the owner passes the property on. Data existing and data being findable by whoever comes next are two different problems, and only one of them gets solved by buying better hardware.
+
+00:15:06.648 --> 00:15:38.160
+<v Riley>Local First Nations governments have already worked through versions of this on shared community infrastructure — building systems that don't depend on one person's memory to keep functioning, with documentation and knowledge transfer built into the project from day one, not added after the fact. That's the model worth borrowing for private off-grid setups too — something as basic as a binder mounted next to the breaker box, or a laminated card listing panel wattage, battery bank capacity, and the date of the last inverter swap.
+
+00:15:38.710 --> 00:15:48.742
+<v Casey>A five-dollar fix for a problem that usually only surfaces after a fire, or a dead battery bank in the middle of a cold snap. No grant application required for a three-ring binder.
+
+00:15:49.142 --> 00:16:08.262
+<v Riley>Which might be the actual answer underneath the bigger question we opened with. A place existing doesn't require a satellite record or a utility account with your name on it. It requires that somebody besides the person currently living there can find out what's true about the property, after that person is gone.
+
+00:16:08.865 --> 00:16:28.569
+<v Casey>Not every off-grid property needs to report itself to a registry in Victoria. But every one of them should be legible to whoever walks in next — a neighbor, an inheritor, an emergency crew responding to a call with no file on the address. That's a lower bar than full documentation to a government body, and it's the one that keeps getting missed anyway.
+
+00:16:29.185 --> 00:16:56.313
+<v Riley>If you're running a system out there right now and you've never written down what's actually in it, that's the thing to do this month — not a grant application, just a page in a notebook by the panel, updated the next time something gets swapped. And if you've already built something like that for a Cariboo property — a shared inventory template a small co-op of off-grid neighbors could use — write in and tell us, feedback at cariboo signals dot c-a.
+
+00:16:56.713 --> 00:17:00.849
+<v Casey>Write the label before the battery dies, not after. Have a good one out there.
+
+00:17:01.153 --> 00:17:02.377
+<v Riley>Have a great rest of your day.

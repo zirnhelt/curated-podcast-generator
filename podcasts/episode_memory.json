@@ -1,24 +1,4 @@
 {
-  "2026-08-18": {
-    "timestamp": 1787043437.228284,
-    "topics": [
-      "Air siren being reactivated at 108 Mile Fire Hall : My Carib",
-      "[Williams Lake Tribune] Nuxalk Nation strongly opposes offic",
-      "Former Quesnel City Councillor announces intentions to run i",
-      "Hornets nest may be cause of structure fire in Quesnel area ",
-      "[Quesnel Cariboo Observer] Quesnel Fire Department extinguis",
-      "[Fast Company] Watch Duty is expanding beyond wildfires as d",
-      "[Fast Company] This stunning NASA map tracks our summer of w",
-      "[Williams Lake Tribune] Rare white magpies spotted west of W"
-    ],
-    "themes": [
-      "rural development",
-      "technology adoption"
-    ],
-    "date": "2026-08-18",
-    "focus": "agriculture-ranching",
-    "focus_name": "Agriculture & Ranching"
-  },
   "2026-08-19": {
     "timestamp": 1787144300.037435,
     "topics": [
@@ -739,5 +719,27 @@
     "date": "2026-09-22",
     "focus": "forestry",
     "focus_name": "Forestry & Timber"
+  },
+  "2026-09-23": {
+    "timestamp": 1790152005.489054,
+    "topics": [
+      "[Williams Lake Tribune] Cariboo-Prince George riding renamed",
+      "[My Cariboo Now] Cariboo-Chilcotin MLA named interim leader ",
+      "[My Cariboo Now] CentreBC MLAs defect back to the B.C. Conse",
+      "[Williams Lake Tribune] Salmon wood cutouts painted in Willi",
+      "[CNET] Yearn for the Tern: Apple Has a New Daddy",
+      "[Ideal Home (Country Homes & Interiors)] Can my neighbour ob",
+      "[Tom's Hardware] Enthusiast says DLSS 5 pushed RTX 5090 past",
+      "[Business Insider] Laid-off tech workers from Google, Micros"
+    ],
+    "themes": [
+      "rural development",
+      "technology adoption",
+      "Indigenous tech",
+      "connectivity"
+    ],
+    "date": "2026-09-23",
+    "focus": "homestead-offgrid",
+    "focus_name": "Homestead & Off-Grid Tech"
   }
 }
