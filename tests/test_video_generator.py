@@ -21,7 +21,7 @@ def sample_turns():
         {"speaker": "riley", "section": "news", "start_ms": 13400, "dur_ms": 2000},
         # Far-apart riley turn — separate span
         {"speaker": "riley", "section": "deep", "start_ms": 60000, "dur_ms": 1000},
-        # Azure fallback marker
+        # Whole-section (Gemini) span: no per-turn speaker
         {"speaker": None, "section": "spotlight", "start_ms": 70000, "dur_ms": 8000},
     ]
 
@@ -216,7 +216,7 @@ class TestSlides:
 
     def test_credits_slide_follows_the_citations_tts_credit(self, sample_citations, tmp_path):
         # The slide used to hardcode "Audio by OpenAI TTS", so it was wrong on
-        # every Gemini or Azure episode. It must track the citations credit.
+        # every Gemini episode. It must track the citations credit.
         chapters = [{"startTime": 0, "title": "Credits"}]
         (tmp_path / "a").mkdir()
         (tmp_path / "b").mkdir()

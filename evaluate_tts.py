@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-TTS Evaluation Script: Azure Multi-Talker vs OpenAI TTS vs Gemini multi-speaker
+TTS Evaluation Script: OpenAI TTS vs Gemini multi-speaker
 
 Reads the most recent podcast script from podcasts/, extracts sample sections,
 generates audio from each provider, and prints a comparison report.
@@ -8,10 +8,9 @@ generates audio from each provider, and prints a comparison report.
 Usage:
     python evaluate_tts.py --section all --output-dir /tmp/tts-eval
     python evaluate_tts.py --section news --skip-openai
-    python evaluate_tts.py --section deep_dive --skip-azure --skip-gemini
+    python evaluate_tts.py --section deep_dive --skip-gemini
 
 Requirements:
-    AZURE_SPEECH_KEY + AZURE_SPEECH_REGION  — for Azure path
     OPENAI_API_KEY                           — for OpenAI path
     GEMINI_API_KEY                           — for Gemini path (GEMINI_TTS_MODEL to override model)
 
@@ -82,7 +81,7 @@ def _generate_openai_section(
         OPENAI_TTS_MODEL,
         TARGET_SPEECH_DBFS,
     )
-    from azure_tts import PRONUNCIATION_DICT
+    from config_loader import load_pronunciations
 
     client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
     print(f"    OpenAI model: {OPENAI_TTS_MODEL}")
@@ -95,7 +94,7 @@ def _generate_openai_section(
     with tempfile.TemporaryDirectory() as tmpdir:
         for i, seg in enumerate(seg_list):
             clean = strip_stage_directions(seg["text"])
-            for word, alias in PRONUNCIATION_DICT.items():
+            for word, alias in load_pronunciations().items():
                 clean = clean.replace(word, alias)
 
             # Same request the render path builds — model, voice, and either
@@ -119,33 +118,6 @@ def _generate_openai_section(
     out_path = output_dir / f"openai_{section_name}.mp3"
     combined.export(str(out_path), format="mp3")
     return out_path, len(combined) / 1000, elapsed
-
-
-def _generate_azure_section(
-    seg_list: list[dict],
-    section_name: str,
-    output_dir: Path,
-) -> tuple[Path, float, float]:
-    """Generate one Azure Multi-Talker call for the section.
-
-    Returns (output_path, duration_s, elapsed_s).
-    """
-    from pydub import AudioSegment
-    from azure_tts import generate_azure_tts_for_section
-    from podcast_generator import normalize_segment, trim_tts_silence, TARGET_SPEECH_DBFS
-
-    t0 = time.time()
-    out_wav = output_dir / f"azure_{section_name}.wav"
-    generate_azure_tts_for_section(seg_list, out_wav)
-    elapsed = time.time() - t0
-
-    audio = normalize_segment(
-        trim_tts_silence(AudioSegment.from_file(str(out_wav), format="wav")),
-        TARGET_SPEECH_DBFS,
-    )
-    # Re-export as WAV at normalised level
-    audio.export(str(out_wav), format="wav")
-    return out_wav, len(audio) / 1000, elapsed
 
 
 def _generate_gemini_section(
@@ -219,7 +191,7 @@ def _probe_scope(seg_list: list[dict], chunk: list[dict]) -> str:
             f"(largest of {n} chunks; the section is {_char_count(seg_list)})")
 
 
-def _print_report(section: str, openai_result, azure_result, gemini_result=None) -> None:
+def _print_report(section: str, openai_result, gemini_result=None) -> None:
     header = f"=== TTS Evaluation: {section} ==="
     print("\n" + header)
     print("-" * len(header))
@@ -228,9 +200,6 @@ def _print_report(section: str, openai_result, azure_result, gemini_result=None)
     if openai_result:
         path, dur, elapsed = openai_result
         rows.append(("OpenAI (tts-1)", dur, elapsed, path))
-    if azure_result:
-        path, dur, elapsed = azure_result
-        rows.append(("Azure Multi-Talker", dur, elapsed, path))
     if gemini_result:
         path, dur, elapsed = gemini_result
         model = os.getenv("GEMINI_TTS_MODEL", "gemini-2.5-flash-preview-tts")
@@ -445,7 +414,7 @@ def _parse_voice_pairs(raw: str | None) -> list[tuple[str, str]]:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Compare OpenAI vs Azure TTS for Cariboo Signals")
+    parser = argparse.ArgumentParser(description="Compare OpenAI vs Gemini TTS for Cariboo Signals")
     parser.add_argument(
         "--section",
         choices=["welcome", "news", "community_spotlight", "deep_dive", "all"],
@@ -453,7 +422,6 @@ def main():
     )
     parser.add_argument("--output-dir", default=os.path.join(tempfile.gettempdir(), "tts-eval"))
     parser.add_argument("--skip-openai", action="store_true")
-    parser.add_argument("--skip-azure", action="store_true")
     parser.add_argument("--skip-gemini", action="store_true")
     parser.add_argument("--podcasts-dir", default="podcasts")
     parser.add_argument(
@@ -547,13 +515,11 @@ def main():
             continue
 
         chars = _char_count(seg_list)
-        estimated_azure_cost = chars / 1_000_000 * 22
         estimated_gemini_cost = chars / 1_000 * 0.04  # Flash TTS ≈ $0.04/1k chars
         print(f"\n▶ {section}: {len(seg_list)} turns, {chars} chars "
-              f"(~${estimated_azure_cost:.4f} Azure, ~${estimated_gemini_cost:.4f} Gemini Flash)")
+              f"(~${estimated_gemini_cost:.4f} Gemini Flash)")
 
         openai_result = None
-        azure_result = None
         gemini_result = None
 
         if not args.skip_openai and os.getenv("OPENAI_API_KEY"):
@@ -564,15 +530,6 @@ def main():
                 print(f"  ⚠️  OpenAI failed: {e}")
         elif not args.skip_openai:
             print("  Skipping OpenAI: OPENAI_API_KEY not set")
-
-        if not args.skip_azure and os.getenv("AZURE_SPEECH_KEY"):
-            print(f"  Generating Azure Multi-Talker TTS for {section}...")
-            try:
-                azure_result = _generate_azure_section(seg_list, section, output_dir)
-            except Exception as e:
-                print(f"  ⚠️  Azure failed: {e}")
-        elif not args.skip_azure:
-            print("  Skipping Azure: AZURE_SPEECH_KEY not set")
 
         if not args.skip_gemini:
             import gemini_tts
@@ -587,7 +544,7 @@ def main():
                 print(f"  Skipping Gemini: not configured for the "
                       f"{gemini_tts.GEMINI_TTS_BACKEND} backend")
 
-        _print_report(section, openai_result, azure_result, gemini_result)
+        _print_report(section, openai_result, gemini_result)
 
     print(f"\n✅ Evaluation complete. Files in: {output_dir}")
     print("Listen to the output files and compare naturalness at speaker transitions.")

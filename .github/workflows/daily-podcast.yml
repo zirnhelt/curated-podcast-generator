@@ -19,13 +19,12 @@ on:
   workflow_dispatch:
     inputs:
       tts_provider:
-        description: 'TTS provider — openai (default) uses OpenAI primary + Azure parallel; gemini uses Gemini multi-speaker with OpenAI fallback; azure uses Azure only (no parallel)'
+        description: 'TTS provider — openai (default); gemini uses Gemini multi-speaker with OpenAI fallback (parked: see docs/decisions/gemini-tts.md)'
         required: false
         default: openai
         type: choice
         options:
           - openai
-          - azure
           - gemini
       force:
         description: 'Force regeneration even if today''s episode already exists'
@@ -103,8 +102,7 @@ jobs:
     # default and lands on false either way.
     if: |
       needs.check-episode.outputs.episode_exists != 'true' ||
-      inputs.force == true ||
-      inputs.tts_provider == 'azure'
+      inputs.force == true
 
     steps:
       - name: Checkout repository
@@ -156,7 +154,6 @@ jobs:
             fi
           done
           [ -f podcast-feed.xml ] || wget https://zirnhelt.github.io/curated-podcast-generator/podcast-feed.xml -O podcast-feed.xml || { rm -f podcast-feed.xml; echo "No existing RSS feed"; }
-          [ -f tts-test-feed.xml ] || wget https://zirnhelt.github.io/curated-podcast-generator/tts-test-feed.xml -O tts-test-feed.xml || { rm -f tts-test-feed.xml; echo "No existing TTS test feed"; }
 
           # Download recent audio so _recover_orphaned_episodes() (3-day lookback) finds
           # audio for recent episodes and doesn't try to regenerate them.
@@ -194,7 +191,6 @@ jobs:
           # the polish prompt is provider-gated — only Gemini performs `[tag]`
           # stage directions, so _stage_direction_addendum() would omit them and
           # the credit written into citations would name the wrong provider.
-          USE_AZURE_TTS: ${{ inputs.tts_provider == 'azure' && 'true' || '' }}
           # OpenAI is the nightly default. Scheduled runs (the cron backstop) pass
           # no input at all, so `inputs.tts_provider` is empty there rather than
           # defaulted — only an explicit tts_provider=gemini enables Gemini.
@@ -319,7 +315,7 @@ jobs:
       # the render steps below. Gated on the backend variable, so the nightly is
       # untouched until it is set to 'cloud'. A missing secret warns and lets the
       # render fall to OpenAI rather than costing the day's episode; the key is
-      # never echoed. Enablement checklist: CLAUDE.md → TTS Providers → Cloud TTS.
+      # never echoed. Enablement checklist: docs/decisions/gemini-tts.md → the GEMINI_TTS_BACKEND switch.
       - name: Authenticate to Google Cloud (cloud TTS backend)
         if: steps.generate.outputs.generated == 'true' && vars.GEMINI_TTS_BACKEND == 'cloud'
         env:
@@ -339,9 +335,6 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
-          AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
-          USE_AZURE_TTS: ${{ inputs.tts_provider == 'azure' && 'true' || '' }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           # A model name is not a credential, and sourcing it from a secret made
           # GitHub mask it everywhere it appeared — so on 2026-08-28 the log said
@@ -389,9 +382,6 @@ jobs:
           # bookkeeping, so the key stays.
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
-          AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
-          USE_AZURE_TTS: ${{ inputs.tts_provider == 'azure' && 'true' || '' }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           # A model name is not a credential, and sourcing it from a secret made
           # GitHub mask it everywhere it appeared — so on 2026-08-28 the log said
@@ -525,7 +515,6 @@ jobs:
             podcasts/podcast_transcript_*.html
             podcasts/podcast_transcript_*.vtt
             podcast-feed.xml
-            tts-test-feed.xml
             index.html
 
       - name: Copy files to output directory
@@ -563,7 +552,6 @@ jobs:
           # Copy website files and all cover images referenced by index.html
           cp index.html output/
           cp podcast-feed.xml output/
-          cp tts-test-feed.xml output/ 2>/dev/null || echo "No TTS test feed to copy"
           cp cariboo-signals.png output/
           cp cariboo-saturday.png output/ 2>/dev/null || true
           cp cariboo-sunday.png output/ 2>/dev/null || true

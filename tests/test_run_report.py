@@ -111,7 +111,6 @@ class TestPublishStageDegradation:
 
         monkeypatch.setattr(pg, "resolve_script_for_audio", lambda *a, **k: str(script))
         monkeypatch.setattr(pg, "generate_episode_transcript", lambda *a, **k: None)
-        monkeypatch.setattr(pg, "generate_tts_test_feed", lambda *a, **k: None)
         monkeypatch.setattr(pg, "_regenerate_index_html", lambda *a, **k: None)
         monkeypatch.setattr(pg, "generate_podcast_rss_feed", lambda *a, **k: None)
         # Stands in for missing R2 credentials: returns normally, degrades.
@@ -127,7 +126,7 @@ class TestPublishStageDegradation:
         script.write_text("Riley: hi\n", encoding="utf-8")
 
         monkeypatch.setattr(pg, "resolve_script_for_audio", lambda *a, **k: str(script))
-        for name in ("generate_episode_transcript", "generate_tts_test_feed",
+        for name in ("generate_episode_transcript",
                      "_regenerate_index_html", "generate_podcast_rss_feed",
                      "sync_site_to_r2"):
             monkeypatch.setattr(pg, name, lambda *a, **k: None)
@@ -141,7 +140,7 @@ class TestPublishStageDegradation:
         script.write_text("Riley: hi\n", encoding="utf-8")
 
         monkeypatch.setattr(pg, "resolve_script_for_audio", lambda *a, **k: str(script))
-        for name in ("generate_episode_transcript", "generate_tts_test_feed",
+        for name in ("generate_episode_transcript",
                      "_regenerate_index_html", "generate_podcast_rss_feed",
                      "sync_site_to_r2"):
             monkeypatch.setattr(pg, name, lambda *a, **k: None)

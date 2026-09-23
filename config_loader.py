@@ -104,6 +104,19 @@ def load_hosts_config():
         return json.load(f)
 
 @lru_cache(maxsize=1)
+def load_pronunciations() -> dict:
+    """Name -> spoken alias, applied in order before OpenAI and Gemini synthesis (cached).
+
+    A missing file costs pronunciation, never the episode, so it reads as empty.
+    """
+    try:
+        with open(CONFIG_DIR / "pronunciations.json", 'r', encoding='utf-8') as f:
+            return json.load(f).get("aliases", {})
+    except (OSError, ValueError) as e:
+        print(f"⚠️  config/pronunciations.json unreadable ({e}) — names spoken as written")
+        return {}
+
+@lru_cache(maxsize=1)
 def load_indigenous_nations():
     """Nation names and aliases the territory check recognises (cached).
 
@@ -238,6 +251,38 @@ def load_ai_tells_config():
     with open(path, 'r') as f:
         return json.load(f)
 
+@lru_cache(maxsize=1)
+def load_standing_notes() -> tuple:
+    """The producer's standing notes, one per non-comment line (cached).
+
+    A missing file means no notes, never a failed run.
+    """
+    path = CONFIG_DIR / "standing_notes.txt"
+    if not path.exists():
+        return ()
+    return tuple(line.strip() for line in path.read_text(encoding="utf-8").splitlines()
+                 if line.strip() and not line.lstrip().startswith("#"))
+
+
+def format_standing_notes_block(for_factcheck: bool = False) -> str:
+    """Render the standing notes for a prompt, or '' when there are none.
+
+    The script writer is told to follow them; the fact-check passes are told a
+    script that breaks one is wrong and to correct it. Either way they are rules
+    for the hosts, never a list to read on air.
+    """
+    notes = load_standing_notes()
+    if not notes:
+        return ""
+    if for_factcheck:
+        lead = ("STANDING PRODUCER NOTES — the script must respect every one of these. "
+                "Where it breaks one, correct the line; never read the notes on air:")
+    else:
+        lead = ("STANDING PRODUCER NOTES — these apply to every episode. Follow them; "
+                "never read them on air:")
+    return "\n\n" + lead + "\n" + "\n".join(f"- {n}" for n in notes) + "\n"
+
+
 def format_static_tell_block():
     """The config-only half of the burned-phrase block: hard bans plus the rhythm
     budget. Lives here so generate_bespoke.py can use it without importing the
@@ -288,9 +333,6 @@ def get_voice_for_host(host_key):
     """Get TTS voice for a host."""
     return load_hosts_config()[host_key]["voice"]
 
-def get_azure_voice_for_host(host_key):
-    """Get Azure Neural TTS voice name for a host."""
-    return load_hosts_config()[host_key]["azure_voice"]
 
 def get_gemini_voice_for_host(host_key):
     """Get Gemini TTS prebuilt voice name for a host."""
@@ -326,7 +368,7 @@ def _stage_direction_pattern(retired_only=False):
     Both delimiters, and both whitelists. Cues are written `[thoughtfully]` now
     that the Gemini prompt is scaffolded the way the model documents, but every
     script already on disk carries the older `(wry)` parentheticals and a
-    re-render of one still has to strip them for the OpenAI and Azure paths.
+    re-render of one still has to strip them for the OpenAI path.
 
     retired_only=True narrows it to the cues the whitelist no longer offers —
     what a *Gemini* re-render of an old script has to drop even on the rung that

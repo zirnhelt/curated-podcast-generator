@@ -95,3 +95,69 @@ jobs:
           message: Add script review ${{ steps.stamp.outputs.date }}
           fatal: 'true'
           paths: reviews/
+
+  # The week's correction and feedback emails -> proposed standing notes, as a
+  # PR the producer merges or closes. Never auto-merged: email text is
+  # untrusted, and config/standing_notes.txt reaches every script prompt. One
+  # proposal PR at a time, so a second run cannot replace a pending one.
+  # GITHUB_TOKEN can open a PR only while Settings -> Actions -> General ->
+  # "Allow GitHub Actions to create and approve pull requests" is on.
+  standing-notes:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+
+      - name: Skip while a proposal PR is open
+        id: pending
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          open=$(gh pr list --head standing-notes --state open --json number --jq 'length')
+          echo "open=${open}" >> "$GITHUB_OUTPUT"
+          if [ "${open}" != "0" ]; then echo "::notice::A standing-notes PR is still open; merge or close it first."; fi
+
+      - name: Set up Python
+        if: steps.pending.outputs.open == '0'
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        if: steps.pending.outputs.open == '0'
+        run: pip install -r requirements-lock.txt
+
+      - name: Propose standing notes
+        id: propose
+        if: steps.pending.outputs.open == '0'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python standing_notes.py
+          if [ -f standing_notes_pr.md ]; then echo "proposed=1" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Record the emails considered
+        if: steps.pending.outputs.open == '0'
+        uses: ./.github/actions/commit-push
+        with:
+          message: Record standing-notes proposals
+          paths: podcasts/standing_notes_ledger.json
+
+      - name: Open the proposal PR
+        if: steps.propose.outputs.proposed == '1'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git switch -c standing-notes
+          git add config/standing_notes.txt
+          git commit -m "Propose standing notes from this week's email"
+          git push --force origin standing-notes
+          gh pr create --base main --head standing-notes \
+            --title "Standing notes: new proposals from this week's email" \
+            --body-file standing_notes_pr.md

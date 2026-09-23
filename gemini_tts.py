@@ -13,7 +13,7 @@ Plain REST via requests — no SDK dependency.
 Two backends, selected by GEMINI_TTS_BACKEND (default "studio"):
   studio — generativelanguage.googleapis.com :generateContent, GEMINI_API_KEY.
            The preview surface this integration has always used; no SLA, and the
-           read timeouts / 500s CLAUDE.md documents at length.
+           read timeouts / 500s docs/decisions/gemini-tts.md documents at length.
   cloud  — texttospeech.googleapis.com/v1beta1 text:synthesize, a service
            account via GOOGLE_APPLICATION_CREDENTIALS. Gemini-TTS is GA here, on
            a separate quota pool with requestable limits. Same prebuilt voices
@@ -44,12 +44,11 @@ from typing import NamedTuple
 
 import requests
 
-# ponytail: reuse azure_tts's segment splitter instead of writing a second one
-from azure_tts import PRONUNCIATION_DICT, _split_segments_by_char_limit
 from config_loader import (
     get_gemini_audio_profile_for_host,
     get_gemini_voice_for_host,
     load_hosts_config,
+    load_pronunciations,
     load_prompts_config,
     strip_retired_stage_directions,
     strip_stage_directions,
@@ -57,7 +56,7 @@ from config_loader import (
 
 # Which Google surface renders the audio. See the module docstring. Default
 # stays "studio" until a probe (evaluate_tts.py --probe-models on the cloud
-# backend) has cleared the 8/15 baseline, per CLAUDE.md's cutover rule — GA does
+# backend) has cleared the 8/15 baseline, per the cutover rule in docs/decisions/gemini-tts.md — GA does
 # not become "measured here" until it is measured here.
 GEMINI_TTS_BACKEND = (os.getenv("GEMINI_TTS_BACKEND") or "studio").strip().lower()
 
@@ -425,9 +424,9 @@ def _chunk_limit() -> int:
 def _pack_segments(segments: list[dict], target: int) -> list[list[dict]]:
     """Greedily pack whole speaker turns into chunks of at most *target* units.
 
-    Measured on the transcript alone. `_split_segments_by_char_limit` budgets an
-    extra 120 chars per segment for SSML tags, which is right for Azure and
-    wrong here — Gemini is sent plain speech, and the prompt scaffolding around
+    Measured on the transcript alone. Azure's splitter (removed 2026-09-23)
+    budgeted an extra 120 chars per segment for SSML tags, which was right for
+    Azure and wrong here — Gemini is sent plain speech, and the prompt scaffolding around
     it is one fixed block per request, not per turn. Borrowing that estimate
     counted 3 240 phantom chars against a 27-turn news roundup and bought two
     requests nobody needed. (The cloud backend does charge per turn, for the
@@ -755,7 +754,7 @@ def _audio_profile_block(speakers: list[str]) -> str:
 
     **No line here may begin `Name:`,** which is the shape of a transcript turn
     on the studio path and of a flattened `multiSpeakerMarkup` turn on cloud.
-    CLAUDE.md named this collision when the scaffolding was written — "if an
+    CLAUDE.md (now docs/decisions/gemini-tts.md) named this collision when the scaffolding was written — "if an
     episode ever reads a profile line aloud, that collision is the first thing
     to change" — and 2026-09-14 is that episode: the hosts read their own
     personality descriptions out on air, more than once, on a night whose
@@ -806,7 +805,7 @@ def _performance_notes_block(
 
 def apply_pronunciation(text: str) -> str:
     """Substitute Cariboo place-name phonetic aliases (plain text, no SSML)."""
-    for word, alias in PRONUNCIATION_DICT.items():
+    for word, alias in load_pronunciations().items():
         text = text.replace(word, alias)
     return text
 
@@ -815,7 +814,7 @@ def build_transcript(segments: list[dict], keep_cues: bool = True) -> str:
     """Build the speaker-labeled transcript for one request.
 
     keep_cues=False strips the whitelisted `[thoughtfully]`-style tags, the way
-    the OpenAI and Azure paths always do — a retry rung for when Gemini appears
+    the OpenAI path always does — a retry rung for when Gemini appears
     to be rejecting the request rather than failing to serve it. keep_cues=True
     still drops the *retired* cues: a script on disk may carry one the current
     prompt no longer explains, and an unexplained cue gets read aloud.
@@ -1346,7 +1345,7 @@ def _build_cloud_payload(
     # this surface refuse it: every call of the 2026-09-12 probe came back
     # `400 INVALID_ARGUMENT "Unsupported audio encoding."` — the first thing the
     # cloud backend met once its 403s were cleared, and the kind of defect that
-    # only shows up when the request is actually sent (CLAUDE.md: the shape was
+    # only shows up when the request is actually sent (docs/decisions/gemini-tts.md: the shape was
     # "verified against the v1beta1 proto … not run here").
     #
     # LINEAR16 returns a RIFF/WAVE container rather than headerless samples,

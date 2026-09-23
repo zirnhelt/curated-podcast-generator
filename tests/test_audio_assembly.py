@@ -219,7 +219,6 @@ class TestGeminiFailoverKeepsMusicAndCredits:
         # that still has to work when Gemini dies mid-episode.
         monkeypatch.setattr(pg, "gemini_canary", lambda: canary_model)
         monkeypatch.setattr(pg, "gemini_set_render_deadline", lambda s: None)
-        monkeypatch.setattr(pg, "USE_AZURE_PARALLEL", False)
         monkeypatch.setattr(pg, "_tts_provider_used", None)
         monkeypatch.setattr(pg, "gemini_available", lambda: True)
         monkeypatch.setattr(pg, "get_openai_client", lambda: object())
@@ -356,8 +355,6 @@ def _openai_only_setup(monkeypatch, tmp_path, silent_texts=()):
     pg = podcast_generator
     monkeypatch.setattr(pg, "AudioSegment", RichFakeSegment)
     monkeypatch.setattr(pg, "USE_GEMINI_TTS", False)
-    monkeypatch.setattr(pg, "USE_AZURE_TTS", False)
-    monkeypatch.setattr(pg, "USE_AZURE_PARALLEL", False)
     monkeypatch.setattr(pg, "_tts_provider_used", None)
     monkeypatch.setattr(pg, "get_openai_client", lambda: object())
     monkeypatch.setattr(pg, "normalize_segment", lambda seg, *a, **k: seg)
@@ -489,7 +486,7 @@ class TestSilentTakeIsDroppedNotShipped:
 class TestHostPanningDuringRoundupAndDeepDive:
     """Riley/Casey get a subtle stereo separation in the news roundup and deep
     dive only — never the welcome, cold open, spoken credits, or community
-    spotlight (PSA). OpenAI per-segment path only: Gemini/Azure synthesize a
+    spotlight (PSA). OpenAI per-segment path only: Gemini synthesizes a
     whole section (both hosts) as one clip, so there's no per-speaker channel
     to pan there."""
 

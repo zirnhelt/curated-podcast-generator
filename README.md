@@ -57,7 +57,7 @@ Super RSS Feed (scored articles + category feeds)
         │
         ▼
   OpenAI TTS renders each speaker segment
-  (optional: Azure Neural TTS via USE_AZURE_TTS env var)
+  (Gemini multi-speaker is parked: see docs/decisions/gemini-tts.md)
         │
         ▼
   pydub assembles audio: intro music → welcome → interval → news → interval → deep dive → outro
@@ -232,16 +232,13 @@ Both are AI hosts. The script explicitly avoids personal/family references and k
 |---|---|
 | `podcast_generator.py` | Main script — orchestrates the full daily pipeline (including weekends) |
 | `cohere_enrichment.py` | Optional Cohere AI enrichment — semantic dedup, article clustering, deep-dive reranking (enabled via `USE_COHERE=1`) |
-| `generate_bespoke.py` | Bespoke long-form debate generator — tag-driven, Brave Search expansion |
-| `azure_tts.py` | Azure Neural TTS integration (MultiTalker model) — optional alternative to OpenAI TTS |
+| `generate_bespoke.py` | Bespoke long-form debate generator — tag-driven, Brave Search expansion (parked) |
+| `gemini_tts.py` | Gemini multi-speaker TTS (parked; OpenAI is the nightly provider) |
 | `email_ingest.py` | Gmail ingest — classifies feedback, corrections and newsletters into the email queue, flagging mail from the production side |
-| `harvest_episode.py` | Extracts deep dive debate from an episode into a structured Markdown briefing |
 | `review_scripts.py` | Reviews generated scripts for quality and consistency |
 | `evaluate_tts.py` | Evaluates TTS output quality |
 | `dedup_articles.py` | Cross-episode deduplication (checks last 7 days of citations) |
 | `generate_html.py` | Generates `index.html` from config files |
-| `fix_rss.py` | Standalone RSS regenerator — use if `podcast-feed.xml` gets corrupted |
-| `generate_ambient_chimes.py` | Generates 7 themed ambient chimes from the main theme song |
 | `config_loader.py` | Config file loader with helpers |
 | `psa_selector.py` | Selects a community PSA organization for each episode |
 | `weather.py` | Fetches Cariboo weather from Open-Meteo (no API key required) |
@@ -272,27 +269,12 @@ Bespoke episodes are stored in `podcasts/bespoke/`.
 
 ## Tests
 
-178 unit tests across 8 modules. No API keys or network access required — heavy dependencies (anthropic, openai, pydub, azure-cognitiveservices-speech) are stubbed automatically via `conftest.py`.
+About 1,200 unit tests. No API keys or network access required — heavy dependencies (anthropic, openai, pydub, cohere) are stubbed automatically via `tests/conftest.py`. CI runs them on every push and PR (`.github/workflows/tests.yml`).
 
 ```bash
-pip install pytest
-python -m pytest tests/ -v
+pip install -r requirements-lock.txt pytest
+python -m pytest tests/ -q
 ```
-
-| Module | Tests | What it covers |
-|---|---|---|
-| `test_ambient.py` | 5 | Ambient config loading, theme transitions, fallbacks |
-| `test_azure_tts.py` | 21 | Azure SSML generation, pronunciation substitution, XML escaping |
-| `test_config_loader.py` | 12 | Loading each config file, voice/theme helpers, caching |
-| `test_dedup.py` | 21 | Title normalization, similarity scoring, evolving story context |
-| `test_email_ingest.py` | 34 | Sender blocklist, theme scoring, full ingest pipeline |
-| `test_podcast_generator.py` | 30 | Article scoring, script parsing, pacing tags, heuristic gaps, host selection |
-| `test_psa_selector.py` | 38 | PSA org selection, event matching, round-robin rotation, notable dates, config validation |
-| `test_weather.py` | 17 | Weather fetching, driving impact detection, prompt formatting, WMO codes |
-
-**Note:** `tests/` is in `.gitignore` (via `*test*`). Use `git add -f tests/` when committing test changes.
-
----
 
 ## Local Testing
 
@@ -311,12 +293,6 @@ export OPENAI_API_KEY='your-key'
 # Run daily show (weekday, weekend, or bespoke — all use the same entry point)
 python podcast_generator.py
 
-# Optional: use Azure Neural TTS instead of OpenAI
-export USE_AZURE_TTS=1
-export AZURE_SPEECH_KEY='your-key'
-export AZURE_SPEECH_REGION='canadacentral'
-python podcast_generator.py
-
 # Run bespoke (optionally set BRAVE_SEARCH_API_KEY for source expansion)
 python generate_bespoke.py --tag "your-topic"
 ```
@@ -331,10 +307,10 @@ sudo apt install ffmpeg
 
 ### Regenerate just the RSS feed
 
-If the XML gets corrupted or you need to rebuild it from existing audio files:
+If the XML gets corrupted or you need to rebuild it from existing episodes, re-run the publish stage (it rebuilds the feed from the citations files):
 
 ```bash
-python fix_rss.py
+python podcast_generator.py --stage publish
 ```
 
 ### Regenerate the website
@@ -358,7 +334,7 @@ For reference, here's the GitHub Actions flow broken into reviewable steps:
 1. **Checkout** the repo
 2. **Install** Python 3.11 + ffmpeg + pip dependencies
 3. **Download** `episode_memory.json`, `host_personality_memory.json`, `debate_memory.json`, `psa_rotation_state.json`, and `podcast-feed.xml` from the live GitHub Pages site (these aren't reliably in the git history due to how the workflow commits)
-4. **Run** `podcast_generator.py` with API keys in the environment; optionally generates Azure TTS in parallel when `tts_provider=openai` (default)
+4. **Run** `podcast_generator.py` with API keys in the environment
 5. **Commit** memory files + new episode files back to `main`
 6. **Deploy** everything to `gh-pages` via peaceiris/actions-gh-pages
 
