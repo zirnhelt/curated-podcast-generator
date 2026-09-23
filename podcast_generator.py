@@ -3676,6 +3676,25 @@ def get_pacific_now():
         return datetime.now(pytz.timezone("America/Vancouver"))
 
 
+# Pinned rather than left to ffmpeg's LAME default (which is also 128k): the feed
+# derives <itunes:duration> from the hosted file's size, so the bitrate is part of
+# the published metadata, not an encoder detail.
+MP3_BITRATE_KBPS = 128
+
+
+def _duration_from_mp3_size(size_bytes: int) -> str:
+    """M:SS for a constant-bitrate MP3 of ``size_bytes``.
+
+    The publish stage usually has no local copy of an archived episode — the audio
+    lives on R2 — so the feed used to fall back to the configured 30:00 and cache
+    it, and 232 of 238 episodes advertised 30 minutes to every podcast app. Size is
+    the one fact a HEAD request returns, and at a pinned CBR it is the duration:
+    checked against the six episodes measured from their audio, within 0.1%.
+    """
+    total_secs = round(size_bytes * 8 / (MP3_BITRATE_KBPS * 1000))
+    return f"{total_secs // 60}:{total_secs % 60:02d}"
+
+
 def _pacific_pub_date(date_obj):
     """Return RFC 2822 pub_date for 05:00 Pacific time with correct PST/PDT abbreviation."""
     try:
@@ -5918,10 +5937,28 @@ def _format_event_roster(event_focus) -> str:
             lines.append(f"  {name}: NO FILED LIST — the show does not have "
                          "the candidates for this race.")
             continue
+        # A withdrawal after nominations close is not on the filed list, and the
+        # count the renderer prints is the count the hosts say: on 2026-09-19 the
+        # show aired "fifteen" for a council race one candidate had left. A named
+        # withdrawal leaves the list; one the show cannot yet name corrects the
+        # count and says the list is not all still running.
+        withdrawn = {c for c in race.get('withdrawn', []) if c and c.strip()}
+        candidates = [c for c in candidates if c not in withdrawn]
+        unidentified = max(0, int(race.get('unidentified_withdrawals') or 0))
+        running = len(candidates) - unidentified
         incumbents = [c for c in race.get('incumbents', []) if c and c.strip()]
         marked = [f"{c} [holds the seat now]" if c in incumbents else c
                   for c in candidates]
-        lines.append(f"  {name} ({len(candidates)}): " + ", ".join(marked))
+        line = f"  {name} ({running} running): " + ", ".join(marked)
+        if withdrawn:
+            line += (f" — withdrew after nominations closed, never describe as running: "
+                     + ", ".join(sorted(withdrawn)))
+        if unidentified:
+            line += (f" — {unidentified} of the {len(candidates)} names above withdrew after "
+                     f"nominations closed and the show has not confirmed which: say "
+                     f"{running} are running, never {len(candidates)}, and do not tell a "
+                     "listener that every name here is still in the race")
+        lines.append(line)
 
     if not lines:
         return ""
@@ -6428,13 +6465,17 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
 
     # Get top story titles for teaser — prefer articles actually discussed
     teaser_pool = discussed_news if discussed_news else news_articles
-    top_stories = [article.get('title', '').split(' - ')[0] for article in teaser_pool[:3]]
+    # The whole pool, not a slice of three: "plus N more" counted the slice and read
+    # "plus 1 more stories" on every episode, fifteen-story roundups included.
+    top_stories = [re.sub(r'^\W*\[[^\]]*\]\s*', '', article.get('title', '')).split(' - ')[0]
+                   for article in teaser_pool]
     top_stories = [story for story in top_stories if story]
 
     if len(top_stories) >= 2:
         stories_preview = f"{top_stories[0]} and {top_stories[1]}"
-        if len(top_stories) > 2:
-            stories_preview += f", plus {len(top_stories)-2} more stories"
+        remaining = len(top_stories) - 2
+        if remaining:
+            stories_preview += f", plus {remaining} more {'story' if remaining == 1 else 'stories'}"
     elif len(top_stories) == 1:
         stories_preview = top_stories[0]
     else:
@@ -6494,9 +6535,14 @@ def generate_episode_description(news_articles, deep_dive_articles, theme_name, 
 
     def _format_citation(article):
         source_name = article.get('authors', [{}])[0].get('name', 'Unknown Source')
-        author = article.get('_article_author', '')
+        author = (article.get('_article_author') or '').strip()
         article_title = article.get('title', 'Untitled')[:60] + ("..." if len(article.get('title', '')) > 60 else "")
         url = article.get('url', '')
+        # Feeds put "none" and author-page URLs in the byline field; 68 of ~400 source
+        # lines in September's descriptions read "none (Williams Lake Tribune)" or an
+        # https:// link as the author. Neither is a name, so neither is shown.
+        if author.lower() in ('none', 'null', 'unknown') or '/' in author or '@' in author:
+            author = ''
         # Show author only when it's a distinct name (not the same as the publication)
         if author and author.lower() != source_name.lower():
             attribution = f"{author} ({source_name})"
@@ -9168,7 +9214,7 @@ def _generate_parallel_azure_audio(segments, base_output_filename, theme_name=No
                 print(f"  ⚠️  Azure parallel credits skipped: {ce}")
 
         combined = _bring_music_up_under(combined, outro_music)
-        combined.export(azure_path, format="mp3")
+        combined.export(azure_path, format="mp3", bitrate=f"{MP3_BITRATE_KBPS}k")
         elapsed = time.time() - t0
         duration_min = len(combined) / 1000 / 60
         total_chars = sum(
@@ -9568,7 +9614,7 @@ def generate_audio_from_script(script, output_filename, theme_name=None, brave_u
         combined = _bring_music_up_under(combined, outro_music)
 
         # Export
-        combined.export(output_filename, format="mp3")
+        combined.export(output_filename, format="mp3", bitrate=f"{MP3_BITRATE_KBPS}k")
 
     except Exception as e:
         print(f"❌ Error generating audio with music: {e}")
@@ -9745,7 +9791,7 @@ def generate_audio_tts_only(script, output_filename, _force_openai=False):
             except Exception as outro_err:
                 print(f"  ⚠️  Outro skipped in TTS-only mode: {outro_err}")
 
-        combined.export(output_filename, format="mp3")
+        combined.export(output_filename, format="mp3", bitrate=f"{MP3_BITRATE_KBPS}k")
 
         # Sidecars: even in fallback mode the video renderer needs real chapter
         # boundaries and a turn timeline, else section slides collapse onto one
@@ -10451,22 +10497,31 @@ def generate_podcast_rss_feed():
         # then a cached value from a previous run, then a fresh HEAD request
         # against the hosted copy.
         episode_meta = citations_data.get('episode', {})
+        placeholder = podcast_config["episode_duration"]
         if os.path.exists(audio_file):
             file_size = os.path.getsize(audio_file)
             duration = get_audio_duration(audio_file)
         elif episode_meta.get('audio_file_size'):
             file_size = episode_meta['audio_file_size']
-            duration = episode_meta.get('audio_duration', podcast_config["episode_duration"])
+            duration = episode_meta.get('audio_duration', placeholder)
+            # Heals the placeholder earlier runs cached for every archived episode.
+            if duration == placeholder:
+                duration = _duration_from_mp3_size(file_size)
         else:
             file_size = remote_content_length(f"{audio_base}podcasts/{audio_basename}")
-            duration = podcast_config["episode_duration"]
-            if file_size:
-                citations_data.setdefault('episode', {})['audio_file_size'] = file_size
-                citations_data['episode']['audio_duration'] = duration
-                try:
-                    _atomic_write_json(citations_file, citations_data, ensure_ascii=False)
-                except Exception as e:
-                    print(f"   ⚠️ Could not cache audio metadata for {citations_file}: {e}")
+            duration = _duration_from_mp3_size(file_size) if file_size else placeholder
+
+        # Cache what was measured, so an episode keeps its real duration after its
+        # audio leaves the runner. The local branch never cached, which is why only
+        # the newest few episodes ever showed one.
+        if file_size and (episode_meta.get('audio_file_size') != file_size
+                          or episode_meta.get('audio_duration') != duration):
+            citations_data.setdefault('episode', {})['audio_file_size'] = file_size
+            citations_data['episode']['audio_duration'] = duration
+            try:
+                _atomic_write_json(citations_file, citations_data, ensure_ascii=False)
+            except Exception as e:
+                print(f"   ⚠️ Could not cache audio metadata for {citations_file}: {e}")
 
         if not file_size:
             print(f"   ⚠️ No audio found locally or remotely for {audio_basename} — skipping")

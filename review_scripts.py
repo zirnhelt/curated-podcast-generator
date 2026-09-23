@@ -404,14 +404,27 @@ def run_review(days: int) -> str:
 
     client = anthropic.Anthropic()
 
+    # Thinking off and a larger budget. Sonnet 5 thinks when `thinking` is omitted,
+    # and thinking shares max_tokens with the report: from the switch on 2026-07-04
+    # every weekly review spent its 8,192 tokens thinking and saved a bare header
+    # (reviews/review_2026-07-12.md onwards, 132 bytes each). The reports that did
+    # arrive ran to ~9k tokens, so 16k leaves room without needing to stream.
     response = client.messages.create(
         model=REVIEW_MODEL,
-        max_tokens=8192,
+        max_tokens=16000,
         system=SYSTEM_PROMPT,
         messages=[{"role": "user", "content": build_review_prompt(scripts, config, recent_changes)}],
+        thinking={"type": "disabled"},
     )
 
-    return message_text(response)
+    report = message_text(response)
+    stop = getattr(response, "stop_reason", None)
+    if not report.strip():
+        # Fail the workflow rather than commit another empty review.
+        sys.exit(f"Review came back with no text (stop_reason={stop}); nothing saved.")
+    if stop == "max_tokens":
+        report += "\n\n*(Review truncated at the output limit.)*\n"
+    return report
 
 
 def save_report(report: str, days: int) -> Path:

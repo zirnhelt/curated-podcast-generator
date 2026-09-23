@@ -159,7 +159,7 @@ class RichFakeSegment(FakeSegment):
     def __add__(self, other):
         return RichFakeSegment(self.length + len(other))
 
-    def export(self, path, format=None):
+    def export(self, path, format=None, bitrate=None):
         with open(path, "wb") as f:
             f.write(b"\x00" * max(self.length, 1))
         return path

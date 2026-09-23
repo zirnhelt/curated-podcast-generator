@@ -102,6 +102,14 @@ class TestWeekKeys:
 # ---------------------------------------------------------------------------
 
 class TestSelectAnchor:
+    def test_framings_call_turns_thinking_off(self, pool):
+        """W33-W39 2026 all pinned with zero framings: Sonnet 5 thinks by default,
+        thinking shares max_tokens, and 1,500 tokens of it left no JSON behind."""
+        client = FakeClient(FRAMINGS_JSON)
+        anchor = wa.select_anchor(date(2026, 8, 17), client=client)
+        assert client.last_kwargs.get("thinking") == {"type": "disabled"}
+        assert len(anchor["framings"]) == 7
+
     def test_same_week_returns_same_anchor(self, pool):
         client = FakeClient(FRAMINGS_JSON)
         monday = wa.select_anchor(date(2026, 8, 17), client=client)
