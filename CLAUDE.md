@@ -117,11 +117,6 @@ Deploy with **Actions → Deploy Cloudflare Scheduler**; there is no local wrang
 path. See `cloudflare/scheduler/README.md` for the token scopes, the recorded PAT
 expiry, and the rollback.
 
-`cloudflare/feedback/` is a second, unrelated Worker that writes super-rss-feed's
-review-page ratings, so no GitHub token ships in that public page (one did from
-2026-06-17 to 2026-09-23). **A credential never goes into a page.** Deploy with
-**Actions → Deploy Feedback Worker**; see its README.
-
 ### Stages and Segments
 
 The pipeline is split at two levels: **stages** are separate processes with a git commit
