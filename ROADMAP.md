@@ -195,7 +195,7 @@ Check a box to close one; it comes back only if the reviews raise it 2 more time
       multi-hundred-word gaps. Investigate whether the expansion pass has a word-growth ceiling,
       whether it runs for a fixed iteration count rather than until target is met, or whether
       the LLM is rejecting longer rewrites. Match the target validation logic so expansion runs
-      until the shipped script reaches the goal. (seen in 2 reviews, latest 2026-09-21)
+      until the shipped script reaches the goal. (seen in 3 reviews, latest 2026-09-23)
 - [ ] **Territory check flagged two sentences with unsupported nations; rewrites were rejected
       and they shipped.** The script named Sinixt in connection with Redstone and Syilx in
       connection with Tribune. The territory map covers those locations under other nations. Two
