@@ -4989,9 +4989,31 @@ class TestEventFocusRoster:
         from podcast_generator import _format_event_roster
 
         block = _format_event_roster(self._event())
-        assert "School District 27 trustee: NO FILED LIST" in block
         assert "Areas D, E and F: NO FILED LIST" in block
         assert "never the segment's hook" in block
+        # SD27 Zone 6 was a gap until the City's Declaration of Candidates filled it.
+        assert "Zone 6 (City of Williams Lake) (1 running): Michael Franklin" in block
+
+    def test_unidentified_withdrawal_corrects_the_count(self):
+        """2026-09-19 aired "fifteen" for a council race one candidate had left.
+        The renderer's count is the count the hosts say."""
+        from podcast_generator import _format_event_roster
+
+        block = _format_event_roster(self._event())
+        assert "council (14 running)" in block
+        assert "say 14 are running, never 15" in block
+        assert "(15)" not in block
+
+    def test_named_withdrawal_leaves_the_list(self):
+        from podcast_generator import _format_event_roster
+
+        event = {"name": "Test election", "roster": {"races": [{
+            "race": "Council", "incumbents": [],
+            "candidates": ["Ann Able", "Ben Baker", "Cal Cole"],
+            "withdrawn": ["Ben Baker"]}]}}
+        block = _format_event_roster(event)
+        assert "Council (2 running): Ann Able, Cal Cole" in block
+        assert "never describe as running: Ben Baker" in block
 
     def test_roster_does_not_widen_past_the_name(self):
         """Names are citable; records are not. Widening that trades a hedging
@@ -5151,3 +5173,49 @@ class TestColdOpenDoesNotTeaseAGap:
         template = config_loader.load_prompts_config()[
             "cold_open_generation"]["template"]
         assert "Tease what the episode HAS, never what it lacks" in template
+
+
+class TestEpisodeMetadata:
+    """What podcast apps and the episode page show about each episode."""
+
+    def test_duration_from_hosted_size(self):
+        """232 of 238 episodes advertised 30:00: the publish stage has no local
+        copy of archived audio and cached the configured default. At the pinned
+        128 kbps CBR, size is the duration — these six were measured from audio."""
+        from podcast_generator import _duration_from_mp3_size
+
+        measured = {17155053: "17:52", 17630829: "18:22", 18922605: "19:43",
+                    18090477: "18:51", 18289389: "19:03", 18438381: "19:12"}
+        for size, expected in measured.items():
+            got = _duration_from_mp3_size(size)
+            m, s = map(int, got.split(":"))
+            em, es = map(int, expected.split(":"))
+            assert abs((m * 60 + s) - (em * 60 + es)) <= 1, (size, got, expected)
+
+    @staticmethod
+    def _articles(authors):
+        return [{"title": f"[Williams Lake Tribune] Story {i} - WLT",
+                 "url": f"https://example.com/{i}",
+                 "authors": [{"name": "Williams Lake Tribune"}],
+                 "_article_author": a} for i, a in enumerate(authors)]
+
+    def test_teaser_counts_every_story(self):
+        """It sliced three and always read "plus 1 more stories"."""
+        from podcast_generator import generate_episode_description
+
+        desc = generate_episode_description(self._articles([""] * 15), [], "Working Lands & Industry")
+        assert "Story 0 and Story 1, plus 13 more stories" in desc
+        assert "[Williams Lake Tribune] Story" not in desc.split("Sources")[0]
+
+        one_more = generate_episode_description(self._articles([""] * 3), [], "Working Lands & Industry")
+        assert "plus 1 more story," in one_more
+
+    def test_placeholder_and_url_bylines_are_dropped(self):
+        from podcast_generator import generate_episode_description
+
+        desc = generate_episode_description(
+            self._articles(["none", "https://www.tomshardware.com/author/etiido-uko", "Khushi Arora"]),
+            [], "Working Lands & Industry")
+        assert "none (" not in desc
+        assert "author/etiido-uko (" not in desc
+        assert "Khushi Arora (Williams Lake Tribune)" in desc

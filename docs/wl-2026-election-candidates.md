@@ -28,13 +28,14 @@ before. The platform notes below are *what the candidate says about themselves*
 and are deliberately **not** in the JSON: a name on a nomination form is a
 source for the name and for nothing after it.
 
-Scope: City of Williams Lake mayor and council only. The CRD electoral area
-director races (D, E, F) and the SD27 trustee race are on the same ballot and
-in the same `event_focus` lens, and the roster carries them as empty races on
-purpose — the renderer marks each `NO FILED LIST`, the lens tells the hosts to
-name the race and say in one plain sentence that the show does not have its
-candidates, and the research sweep is told to spend a search there first. Fill
-them in here and in the JSON and that hedge disappears.
+Scope: the City of Williams Lake ballot — mayor, council, and the SD27 Zone 6
+trustee seat — as filed in the City's Declaration of Candidates (Form 8-8, signed
+by the Chief Election Officer, Sept 11, 2026). The CRD electoral area director
+races (D, E, F) are in the same `event_focus` lens and the roster carries them as
+an empty race on purpose — the renderer marks it `NO FILED LIST`, the lens tells
+the hosts to name the race and say in one plain sentence that the show does not
+have its candidates, and the research sweep is told to spend a search there
+first. Fill it in here and in the JSON and that hedge disappears.
 
 ## Mayor
 
@@ -84,6 +85,21 @@ them in here and in the JSON and that hedge disappears.
   Nathan Wiebe, Kayla Zaruk** — community members; stated priorities vary
   across downtown renewal, family infrastructure, small business retention,
   and fiscal oversight.
+
+## Council — withdrawal after close of nominations
+
+Fifteen filed. One council candidate withdrew around Sept 16 (listener
+correction, Sept 19), so fourteen are running. Which one is not yet confirmed,
+so the JSON carries `"unidentified_withdrawals": 1` on the council race: the
+renderer says 14, never 15, and tells the hosts not to present every name as
+still in the race. When the name is confirmed, move it to that race's
+`"withdrawn"` list, set the count back to 0, and delete it from this file.
+
+## School trustee — SD27 Zone 6 (City of Williams Lake)
+
+One to be elected; one filed.
+
+- **Michael Franklin** — Williams Lake. No platform notes yet.
 
 ## Using this list
 

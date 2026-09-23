@@ -181,11 +181,17 @@ def _call_claude(client, prompt: str, max_tokens: int, schema: dict, log_usage=N
     if not client:
         return None
     try:
+        # Thinking off, explicitly. Sonnet 5 thinks when `thinking` is omitted, and
+        # thinking shares max_tokens with the answer: every framings call since this
+        # module shipped (W33-W39 2026) spent its 1,500 tokens thinking and returned
+        # no text, which json.loads reported as "Expecting value: line 1 column 1".
+        # A seven-line JSON answer does not need the reasoning budget.
         response = client.messages.create(
             model=ANCHOR_MODEL,
             max_tokens=max_tokens,
             messages=[{"role": "user", "content": prompt}],
             output_config=json_output_config(schema),
+            thinking={"type": "disabled"},
         )
         if log_usage:
             usage = getattr(response, "usage", None)
