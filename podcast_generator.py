@@ -4977,6 +4977,39 @@ def _assert_feed_fresh(items: list, feed_url: str) -> None:
         sys.exit(1)
 
 
+# The fields this repo reads from super-rss-feed's feed-podcast-{day}.json. The
+# writer's tests pin the same list against generate_podcast_feed()
+# (PODCAST_FEED_CONTRACT in super_rss_curator_json.py); this is the reader's
+# half, at runtime. Every read of these defaults a missing key, so a field
+# dropped upstream used to fail silently — without `_is_bonus` every article
+# reads as on-theme, without `_theme_score_raw` no held article is exported.
+FEED_CONTRACT_ITEM_FIELDS = (
+    "id", "url", "title", "summary", "date_published", "authors", "ai_score",
+    "_excerpt", "_is_bonus", "_keyword_matches", "_theme_score", "_theme_score_raw",
+)
+FEED_CONTRACT_FEED_FIELDS = ("theme", "theme_description")  # under `_podcast`
+
+
+def _check_feed_contract(feed_data: dict, feed_url: str) -> None:
+    """degrade() when the day feed has stopped carrying a field this repo reads.
+
+    Key presence, not value: an empty summary is still an article, a missing
+    key is a changed writer. Never raises — the defaults keep the episode
+    going; the row is what gets the writer fixed.
+    """
+    meta = feed_data.get("_podcast") or {}
+    missing = [f"_podcast.{k}" for k in FEED_CONTRACT_FEED_FIELDS if k not in meta]
+    items = [i for i in feed_data.get("items", []) if isinstance(i, dict)]
+    for field in FEED_CONTRACT_ITEM_FIELDS:
+        absent = sum(1 for i in items if field not in i)
+        if absent:
+            missing.append(f"{field} ({absent}/{len(items)} items)")
+    if missing:
+        degrade("script/feed-contract",
+                f"{feed_url} no longer carries {', '.join(missing)} — defaults stand in; "
+                "check generate_podcast_feed() in super-rss-feed")
+
+
 def fetch_podcast_feed(weekday):
     """Fetch the curated podcast feed for a specific day of the week.
 
@@ -5014,6 +5047,7 @@ def fetch_podcast_feed(weekday):
 
         items = feed_data.get('items', [])
         _assert_feed_fresh(items, feed_url)
+        _check_feed_contract(feed_data, feed_url)
 
         # Split into theme articles and bonus (off-theme) articles
         theme_articles = []

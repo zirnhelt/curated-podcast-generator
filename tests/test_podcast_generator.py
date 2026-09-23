@@ -2088,6 +2088,78 @@ def _vtt_ts_ms(ts: str) -> int:
     return ((int(h) * 60 + int(m)) * 60 + int(s)) * 1000 + int(ms)
 
 
+class TestFeedContract:
+    """The reader's half of the podcast-feed contract with super-rss-feed.
+    Every read defaults a missing key, so without this a dropped field is silent."""
+
+    @staticmethod
+    def _feed(**drop):
+        import podcast_generator as pg
+
+        item = {f: "x" for f in pg.FEED_CONTRACT_ITEM_FIELDS}
+        feed = {"_podcast": {f: "x" for f in pg.FEED_CONTRACT_FEED_FIELDS},
+                "items": [dict(item), dict(item)]}
+        for field in drop.get("item", ()):
+            del feed["items"][0][field]
+        for field in drop.get("meta", ()):
+            del feed["_podcast"][field]
+        return feed
+
+    @pytest.fixture
+    def rows(self, monkeypatch):
+        import podcast_generator as pg
+
+        rows = []
+        monkeypatch.setattr(pg, "degrade", lambda name, detail: rows.append((name, detail)))
+        return rows
+
+    def test_a_complete_feed_is_silent(self, rows):
+        from podcast_generator import _check_feed_contract
+
+        _check_feed_contract(self._feed(), "https://feed.example/friday.json")
+        assert rows == []
+
+    def test_a_dropped_field_degrades_with_its_count(self, rows):
+        from podcast_generator import _check_feed_contract
+
+        _check_feed_contract(self._feed(item=["_is_bonus"], meta=["theme"]),
+                             "https://feed.example/friday.json")
+        assert len(rows) == 1 and rows[0][0] == "script/feed-contract"
+        assert "_is_bonus (1/2 items)" in rows[0][1] and "_podcast.theme" in rows[0][1]
+
+    def test_an_empty_value_is_not_a_breach(self, rows):
+        from podcast_generator import _check_feed_contract
+
+        feed = self._feed()
+        feed["items"][0]["summary"] = ""
+        feed["items"][0]["_theme_score_raw"] = None
+        _check_feed_contract(feed, "https://feed.example/friday.json")
+        assert rows == []
+
+    def test_every_contract_field_is_actually_read(self):
+        """A field nobody reads is not a contract; drop it from both repos."""
+        from pathlib import Path
+
+        import podcast_generator as pg
+
+        source = Path(pg.__file__).read_text(encoding="utf-8")
+        body = source.split("def _check_feed_contract", 1)[1].split("\ndef ", 1)[1]
+        rest = source.split("FEED_CONTRACT_ITEM_FIELDS = (", 1)[0] + body
+        for field in pg.FEED_CONTRACT_ITEM_FIELDS + pg.FEED_CONTRACT_FEED_FIELDS:
+            assert re.search(rf"['\"]{re.escape(field)}['\"]", rest), field
+
+    def test_the_fetch_runs_the_check(self, rows, monkeypatch):
+        import podcast_generator as pg
+
+        feed = self._feed(item=["_theme_score_raw"])
+        response = MagicMock()
+        response.json.return_value = feed
+        monkeypatch.setattr(pg.requests, "get", lambda *a, **k: response)
+        monkeypatch.setenv("ALLOW_STALE_FEED", "1")
+        pg.fetch_podcast_feed(4)
+        assert any("_theme_score_raw" in detail for _, detail in rows)
+
+
 class TestScriptToVttTranscript:
     SCRIPT = "\n".join([
         "**RILEY:** Welcome to the show everyone, glad you could join.",

@@ -19,6 +19,7 @@ The podcast generator fetches from `https://zirnhelt.github.io/super-rss-feed/`:
 
 | Endpoint | Purpose |
 |---|---|
+| `feed-podcast-{monday..sunday}.json` | **The day's article pool** — theme-scored, the main input |
 | `scored_articles_cache.json` | Article scores from Claude |
 | `feed-local.json` | Local news articles |
 | `feed-ai-tech.json` | AI and technology articles |
@@ -43,6 +44,17 @@ The feed system must deploy before the podcast generator consumes it. For breaki
 5. Test locally, then deploy
 
 **Additive changes** (new fields) are safe — the podcast generator ignores fields it doesn't use. **Removals or renames** are breaking — check which fields `podcast_generator.py` actually reads before changing them.
+
+### The podcast-feed contract
+
+The fields this repo reads from `feed-podcast-{day}.json` are listed once on each side, and each side checks its own half:
+
+| Side | List | Check |
+|---|---|---|
+| Writer (`super-rss-feed`) | `PODCAST_FEED_CONTRACT` in `super_rss_curator_json.py` | `tests/test_podcast_feed_contract.py` — every listed key is in the item and `_podcast` literals `generate_podcast_feed()` writes |
+| Reader (this repo) | `FEED_CONTRACT_ITEM_FIELDS` / `FEED_CONTRACT_FEED_FIELDS` in `podcast_generator.py` | `_check_feed_contract()` degrades `script/feed-contract` at fetch time; `TestFeedContract` checks every listed field is really read |
+
+The two lists must match; change both in the same pair of PRs. A dropped field no longer fails silently: CI in the writer goes red, and the reader's run report carries the row.
 
 ---
 
