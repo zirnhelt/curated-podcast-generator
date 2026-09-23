@@ -5219,3 +5219,69 @@ class TestEpisodeMetadata:
         assert "none (" not in desc
         assert "author/etiido-uko (" not in desc
         assert "Khushi Arora (Williams Lake Tribune)" in desc
+
+
+class TestSparseFilterBudget:
+    """_filter_sparse_news_articles spends from the SEARCH budget, never around it.
+
+    Body fetching stops at 40 articles and the pool runs ~80, so every article past
+    #40 used to reach the sparse filter with no body and buy an unmetered title
+    search: Brave's September 2026 per-key export put the podcast at 40-55 Search
+    requests a day against per-run ceilings that sum to 28.
+    """
+
+    @pytest.fixture(autouse=True)
+    def _fresh_state(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "_BRAVE_WALLS", {
+            "search": {"hit": False, "detail": ""},
+            "answers": {"hit": False, "detail": ""},
+        })
+        monkeypatch.setattr(
+            pg, "_BRAVE_SEARCH_STATE",
+            {"search_calls": 0, "search_ts": 0.0, "deep_calls": 0, "deep_ts": 0.0,
+             "answer_calls": 0},
+        )
+        monkeypatch.setattr(pg, "degrade", lambda *a, **k: None)
+        monkeypatch.setenv("BRAVE_SEARCH_API_KEY", "test-key")
+
+    def test_feed_excerpt_is_used_before_any_search(self, monkeypatch):
+        import podcast_generator as pg
+
+        def _no_search(*a, **k):
+            raise AssertionError("searched for an article whose excerpt was enough")
+        monkeypatch.setattr(pg, "_brave_search", _no_search)
+
+        excerpt = "A council vote on the new water treatment plant. " * 5
+        kept, _ = pg._filter_sparse_news_articles(
+            [{"title": f"Story {i}", "_excerpt": excerpt} for i in range(4)])
+        assert len(kept) == 4
+        assert all(a["_body"] == excerpt.strip() for a in kept)
+
+    def test_title_searches_stop_at_the_search_budget(self, monkeypatch):
+        import podcast_generator as pg
+        monkeypatch.setattr(pg, "BRAVE_SEARCH_CALL_LIMIT", 3)
+        calls = []
+
+        def _search(query, api_key, count=5):
+            calls.append(query)
+            return [{"description": "Substantive search snippet about the story. " * 5}]
+        monkeypatch.setattr(pg, "_brave_search", _search)
+
+        articles = [{"title": f"Thin story {i}"} for i in range(20)]
+        kept, brave_used = pg._filter_sparse_news_articles(articles)
+        assert len(calls) == 3
+        assert len(kept) == 3 and brave_used
+
+    def test_only_the_budget_wrappers_call_brave_search(self):
+        """A direct _brave_search call is spend no per-run budget can see."""
+        import re
+        from pathlib import Path
+        src = (Path(__file__).resolve().parent.parent / "podcast_generator.py").read_text()
+        # Split into top-level functions; a caller is any whose body calls it.
+        functions = re.split(r"^def ", src, flags=re.M)[1:]
+        direct = sorted(
+            fn.split("(", 1)[0] for fn in functions
+            if re.search(r"\b_brave_search\(", fn.split("\n", 1)[-1])
+        )
+        assert direct == ["_brave_deep_dive_rate_limit", "_brave_search_rate_limit"], direct

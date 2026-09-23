@@ -718,14 +718,19 @@ CLEAN_POLISH_MAX_HITS = int(os.getenv("CLEAN_POLISH_MAX_HITS", "2"))
 # workflow fires at 1:05, 2:05 and 3:05 Pacific and the later two exit on the
 # idempotency check, costing nothing — unless the first run failed after
 # spending, in which case the day costs three full sets of calls (2026-08-23).
-# A normal day is ~16 requests (~480/month, ~$2.40); three-cron days are what
-# take a month to its limit, which is the pathology these ceilings bound.
+# The Search plan's cap is shared: super-rss-feed runs on the same key, and
+# Brave's per-key export for September 2026 put the pair at ~103 requests a day,
+# about half of it the feed's topic queries. The podcast's share was 40-55 a day,
+# not the ~16 once estimated here, because _filter_sparse_news_articles searched
+# outside both budgets until 2026-09-23. Three-cron days multiply whatever a run
+# spends, which is the pathology these ceilings bound.
 #
 # Two budgets, because the two kinds of call are not worth the same:
 #
 #   SEARCH    — speculative. Thin-body backfill in _fetch_article_body, run over
-#               up to 40 *pre-curation* candidates, of which ~15 air. A call
-#               here may well be spent on a story the roundup then drops.
+#               up to 40 *pre-curation* candidates, of which ~15 air, and the
+#               sparse filter's title search after it. A call here may well be
+#               spent on a story the roundup then drops.
 #   DEEP_DIVE — demand-driven. Research, enrichment and script-question
 #               resolution, all of which run on material already selected.
 #
@@ -2486,9 +2491,10 @@ def _brave_deep_dive_rate_limit(query, api_key, count=5):
 def _brave_search(query, api_key, count=5):
     """Call Brave Search API and return a list of result dicts.
 
-    The wall is checked here rather than in the two rate-limit wrappers so that
-    every path gets it — including _resolve_script_questions_with_brave, which
-    calls straight through.
+    Call it only through _brave_search_rate_limit or _brave_deep_dive_rate_limit:
+    a direct call is spend no per-run budget sees, which is how the sparse filter
+    ran ~30 unmetered searches a night until 2026-09-23 (a test enforces this).
+    The wall is still checked here as well, as a backstop.
     """
     if _brave_walled("search"):
         return []
@@ -3070,12 +3076,19 @@ def research_deep_dive_with_agent(deep_dive_articles, theme_name, client, event_
 
 
 def _filter_sparse_news_articles(articles: list) -> list:
-    """Remove news articles without sufficient body text after trying Brave enrichment.
+    """Remove news articles without sufficient body text after trying enrichment.
 
     Articles that can't be enriched are dropped so Claude doesn't broadcast a
-    story it can only describe in a single headline.  A title-based Brave search
-    is attempted first so articles that were paywalled or JS-rendered still get a
-    chance at real content before being cut.
+    story it can only describe in a single headline.  Before one is cut it gets
+    two chances at real content: the feed's own `_excerpt`, which is free, then a
+    title-based Brave search charged to the SEARCH budget.
+
+    That search used to call `_brave_search` directly, outside every budget. Body
+    fetching stops at the first 40 articles and the pool runs ~80, so every
+    article past #40 reached this loop with no body and bought its own search —
+    ~30 unmetered calls a night on stories the 15-slot roundup mostly drops, and
+    the reason the podcast spent 40-55 Search requests a day in September 2026
+    against per-run ceilings that add up to 28.
     """
     brave_key = os.getenv("BRAVE_SEARCH_API_KEY")
     kept, skipped = [], []
@@ -3087,9 +3100,17 @@ def _filter_sparse_news_articles(articles: list) -> list:
             kept.append(a)
             continue
 
+        # The feed ships the same kind of snippet a search would return (up to
+        # 600 chars) and ~55% of items carry one past the floor.
+        excerpt = (a.get("_excerpt", "") or "").strip()
+        if len(excerpt) >= NEWS_BODY_MIN_CHARS:
+            a["_body"] = excerpt
+            kept.append(a)
+            continue
+
         title = a.get("title", "")
         if brave_key and title:
-            results = _brave_search(title, brave_key, count=3)
+            results = _brave_search_rate_limit(title, brave_key, count=3)
             best = max(
                 (r for r in results if len(r.get("description", "")) >= NEWS_BODY_MIN_CHARS),
                 key=lambda r: len(r.get("description", "")),
