@@ -145,13 +145,33 @@ _INJECTION_PATTERN = re.compile(
 )
 
 
+# The queue is committed to a public repo, and a mail signature carries the
+# sender's phone number and address. Neither is ever material for the show.
+# URLs are extracted from the raw body before this runs, so a link is never
+# mangled by it; "/@handle" paths have no local part and do not match.
+_EMAIL_ADDRESS_RE = re.compile(r"[\w.+\-]+@[\w\-]+(?:\.[\w\-]+)+")
+_PHONE_NUMBER_RE = re.compile(
+    r"(?<![\w.])(?:\+?1[\s.\-]?)?(?:\(\d{3}\)|\d{3})[\s.\-]?\d{3}[\s.\-]\d{4}(?!\w)"
+)
+
+
+def _redact_contact_details(text: str) -> str:
+    """Replace email addresses and North American phone numbers with placeholders."""
+    text = _EMAIL_ADDRESS_RE.sub("[email]", text)
+    return _PHONE_NUMBER_RE.sub("[phone]", text)
+
+
 def _sanitize(text: str, max_chars: int) -> str:
-    """Strip HTML, remove prompt-injection patterns, normalize whitespace, truncate."""
+    """Strip HTML, remove prompt-injection patterns, redact contact details,
+    normalize whitespace, truncate."""
     if not text:
         return ""
     text = _strip_html(text)
     text = _INJECTION_PATTERN.sub(" ", text)
     text = re.sub(r"\s+", " ", text).strip()
+    # Before truncation, so a number cut off at the boundary cannot survive
+    # as a partial match.
+    text = _redact_contact_details(text)
     return text[:max_chars]
 
 

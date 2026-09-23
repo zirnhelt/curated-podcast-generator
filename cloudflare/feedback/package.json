@@ -1,0 +1,17 @@
+{
+  "name": "cariboo-feedback",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Cloudflare Worker that writes review-page ratings to super-rss-feed, so no GitHub token ships in a public page",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "node --no-warnings --test test/*.test.ts",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260831.1",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.127.1"
+  }
+}

@@ -19,6 +19,8 @@ from email_ingest import (
     _is_blocked_subject,
     _is_recipient_allowed,
     _looks_like_correction,
+    _redact_contact_details,
+    _sanitize,
     _score_themes,
     ingest,
 )
@@ -223,6 +225,38 @@ class TestIsBlockedSubject:
 # ---------------------------------------------------------------------------
 # _looks_like_correction
 # ---------------------------------------------------------------------------
+
+class TestRedactContactDetails:
+    """The queue is committed to a public repo; signatures must not be."""
+
+    def test_redacts_signature_phone_and_address(self):
+        # Shape of a real listener signature that reached the public queue.
+        text = "Great show. Jane Doe 250.555.0142 jane@example.org Sent from iPhone"
+        assert _redact_contact_details(text) == (
+            "Great show. Jane Doe [phone] [email] Sent from iPhone"
+        )
+
+    @pytest.mark.parametrize("number", [
+        "250-555-0142", "(250) 555-0142", "250 555 0142", "+1 250 555 0142", "1-800-555-0199",
+    ])
+    def test_redacts_common_north_american_formats(self, number):
+        assert _redact_contact_details(f"call {number} today") == "call [phone] today"
+
+    @pytest.mark.parametrize("text", [
+        "https://unsplash.com/@jelphoto?utm_source=x",
+        "https://www.linkedin.com/posts/x_activity-7448469173963264000-oI0X",
+        "https://www.cbc.ca/news/canada/north/virtual-museum-9.7151258",
+        "Published 3:11 pm Monday, September 21, 2026",
+        "Nominations closed 2026-09-11",
+    ])
+    def test_leaves_urls_dates_and_ids_alone(self, text):
+        assert _redact_contact_details(text) == text
+
+    def test_sanitize_redacts_before_truncating(self):
+        # A number straddling the cut must not survive as a partial match.
+        text = "x" * 20 + " 250-555-0142"
+        assert "555" not in _sanitize(text, 26)
+
 
 class TestLooksLikeCorrection:
     def test_matches_documented_convention(self):
